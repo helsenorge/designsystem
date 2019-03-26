@@ -40,6 +40,7 @@
     "react-dom": "^16.8.5",
     "react-testing-library": "^6.0.2",
     "rimraf": "^2.6.3",
+    "tslint-react": "^3.6.0",
     "typescript": "^3.3.4000",
     "webpack": "^4.29.6"
   }
