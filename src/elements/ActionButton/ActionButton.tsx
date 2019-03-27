@@ -3,14 +3,19 @@ import cn from 'classnames';
 
 import styles from './ActionButton.module.scss';
 
+type ActionButtonVariant = 'primary' | 'secondary';
+
 interface ActionButtonProps extends React.HTMLProps<HTMLButtonElement> {
     children: React.ReactNode;
     onClick?: () => void;
-    secondary?: boolean;
+    variant?: ActionButtonVariant;
 }
 
 function ActionButton(props: ActionButtonProps) {
-    const classes = cn(styles.button);
+    const classes = cn(
+        styles.button,
+        {[styles['button--secondary']]: props.variant === 'secondary'}
+    );
     return (
         <button className={classes} {...props}>
             {props.children}
@@ -19,7 +24,7 @@ function ActionButton(props: ActionButtonProps) {
 }
 
 ActionButton.defaultProps = {
-    secondary: false,
+    variant: 'primary',
     type: 'button'
 }
 
