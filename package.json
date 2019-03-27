@@ -25,6 +25,7 @@
   "scripts": {
     "build": "webpack --mode=production",
     "clean": "rimraf lib",
+    "lint": "tslint -p .",
     "start": "start-storybook -p 6006",
     "test": "jest"
   },
@@ -54,7 +55,6 @@
     "@types/react-dom": "^16.8.3",
     "@types/storybook__react": "^4.0.1",
     "babel-loader": "^8.0.5",
-    "classnames": "^2.2.6",
     "css-loader": "^2.1.1",
     "dtsbundler-webpack-plugin": "^1.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
@@ -72,9 +72,14 @@
     "storybook": "^1.0.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.3.3",
+    "tslint": "^5.14.0",
+    "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^3.6.0",
     "typescript": "^3.3.4000",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
   }
 }
