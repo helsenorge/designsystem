@@ -7,6 +7,9 @@ module.exports = {
   testEnvironment: 'jsdom',
   testMatch: ['<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}', '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}'],
   modulePaths: ['<rootDir>/src'],
+  moduleNameMapper: {
+      '\\.module\\.scss$': 'identity-obj-proxy'
+  },
   transformIgnorePatterns: ['node_modules/', '\\.snap'],
   transform: {
     '^.+\\.(ts|tsx)$': 'babel-jest',
@@ -14,4 +17,7 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/scripts/fileTransformer.js',
   },
+  setupFilesAfterEnv: [
+    './src/utils/tests/setup-test.ts'
+  ]
 };
