@@ -1,33 +1,33 @@
 @import '../../styling/colors';
 
 .button {
-    display: block;
-    cursor: pointer;
-    background-color: $primary-color;
-    color: white;
-    white-space: normal;
-    text-overflow: ellipsis;
-    font-size: 1.125rem;
-    font-weight: 400;
-    letter-spacing: 0.03125em; /* 16 * 0.0625 = 1px */
-    padding: 0.65rem 1.5rem 0.55rem;
-    text-align: center;
-    border: 3px solid transparent;
-    border-radius: 1.5rem;
-    appearance: none;
+  display: block;
+  cursor: pointer;
+  background-color: $primary-color;
+  color: white;
+  white-space: normal;
+  text-overflow: ellipsis;
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0.03125em; /* 16 * 0.0625 = 1px */
+  padding: 0.65rem 1.5rem 0.55rem;
+  text-align: center;
+  border: 3px solid transparent;
+  border-radius: 1.5rem;
+  appearance: none;
+  &:focus,
+  &:hover {
+    background-color: $primary-color-hover;
+    box-shadow: 0 0 0 4px $outline;
+  }
+  &.button--secondary {
+    background-color: transparent;
+    border: 3px solid $primary-color;
+    color: $primary-color;
     &:focus,
     &:hover {
-        background-color: $primary-color-hover;
-        box-shadow: 0 0 0 4px $outline;
+      border: 3px solid $primary-color-hover;
+      color: $primary-color-hover;
     }
-    &.button--secondary {
-        background-color: transparent;
-        border: 3px solid $primary-color;
-        color: $primary-color;
-        &:focus,
-        &:hover {
-            border: 3px solid $primary-color-hover;
-            color: $primary-color-hover;
-        }
-    }
+  }
 }

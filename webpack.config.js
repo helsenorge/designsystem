@@ -10,59 +10,55 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: pkg.main,
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
   plugins: [
-      new DtsBundlerWebpackPlugin({
-          out: 'index.d.ts'
-      }),
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[id].css'
-      })
+    new DtsBundlerWebpackPlugin({
+      out: 'index.d.ts',
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
   ],
   module: {
     rules: [
-        {
-            test: /\.(ts|tsx)$/,
-            use: [
-                {
-                    loader: 'babel-loader'
-                },
-                {
-                    loader: 'ts-loader'
-                }
-            ]
-        },
-        {
-            test: /\.(css|sass|scss)$/,
-            use: [
-                MiniCssExtractPlugin.loader,
-                'css-loader',
-                'sass-loader'
-            ]
-        }
-    ]
+      {
+        test: /\.(ts|tsx)$/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'ts-loader',
+          },
+        ],
+      },
+      {
+        test: /\.(css|sass|scss)$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
+    ],
   },
   resolve: {
-      alias: {
-          'react': path.resolve(__dirname, 'node_modules/react'),
-          'react-dom': path.resolve(__dirname, 'node_modules/react-dom')
-      },
-      extensions: ['.ts', '.tsx', '.js']
+    alias: {
+      react: path.resolve(__dirname, 'node_modules/react'),
+      'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+    },
+    extensions: ['.ts', '.tsx', '.js'],
   },
   externals: {
     react: {
-        commonjs: 'react',
-        commonjs2: 'react',
-        amd: 'React',
-        root: 'React'
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'React',
+      root: 'React',
     },
     'react-dom': {
-        commonjs: 'react-dom',
-        commonjs2: 'react-dom',
-        amd: 'ReactDOM',
-        root: 'ReactDOM'
-    }
-  }
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'ReactDOM',
+      root: 'ReactDOM',
+    },
+  },
 };
