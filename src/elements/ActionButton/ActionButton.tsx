@@ -11,7 +11,7 @@ interface ActionButtonProps extends React.HTMLProps<HTMLButtonElement> {
 }
 
 function ActionButton(props: ActionButtonProps) {
-  const classes = cn(styles.button, {[styles['button--secondary']]: props.variant === 'secondary'});
+  const classes = cn(styles['action-button'], {[styles['action-button--secondary']]: props.variant === 'secondary'});
   return (
     <button className={classes} {...props}>
       {props.children}

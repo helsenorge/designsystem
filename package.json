@@ -23,7 +23,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "webpack --mode=production",
+    "build": "yarn clean && webpack --mode=production",
     "clean": "rimraf lib",
     "format": "npm run prettier -- --write",
     "lint": "tslint -p .",
@@ -91,6 +91,7 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
+    "@types/storybook__addon-actions": "^3.4.2",
     "classnames": "^2.2.6"
   }
 }

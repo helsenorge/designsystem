@@ -3,7 +3,7 @@
 exports[`default variant renders correctly 1`] = `
 <div>
   <button
-    class="action-button"
+    class="display-button"
     type="button"
     variant="primary"
   >
