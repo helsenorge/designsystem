@@ -1,8 +1,9 @@
 import cn from 'classnames';
 import React from 'react';
+import {ButtonVariants} from '../../constants';
 import styles from './DisplayButton.module.scss';
 
-type DisplayButtonVariant = 'primary' | 'secondary' | 'tertiary';
+type DisplayButtonVariant = ButtonVariants.Primary | ButtonVariants.Secondary | ButtonVariants.Tertiary;
 
 interface DisplayButtonProps extends React.HTMLProps<HTMLButtonElement> {
   children: React.ReactNode;
@@ -21,7 +22,7 @@ function DisplayButton(props: DisplayButtonProps) {
 
 DisplayButton.defaultProps = {
   type: 'button',
-  variant: 'primary',
+  variant: ButtonVariants.Primary,
 };
 
 export {DisplayButton};

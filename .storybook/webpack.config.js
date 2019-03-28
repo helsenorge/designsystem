@@ -1,6 +1,8 @@
 const path = require('path');
 
 module.exports = (config, mode) => {
+  const svgWorkaround = config.config.module.rules.find(rule => rule.test.test('.svg'));
+  svgWorkaround.exclude = /\.svg$/;
   config.config.module.rules.push(
     {
       test: /\.(ts|tsx)$/,
@@ -12,6 +14,14 @@ module.exports = (config, mode) => {
           loader: require.resolve('react-docgen-typescript-loader'),
         },
       ],
+    },
+    {
+      test: /\.svg$/,
+      use: [
+        {
+          loader: require.resolve('svg-react-loader')
+        }
+      ]
     },
     {
       test: /\.module.scss$/,

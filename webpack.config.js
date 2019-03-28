@@ -32,7 +32,16 @@ module.exports = {
           {
             loader: 'ts-loader',
           },
+
         ],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-react-loader'
+          }
+        ]
       },
       {
         test: /\.(css|sass|scss)$/,

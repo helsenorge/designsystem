@@ -1,8 +1,9 @@
 import cn from 'classnames';
 import React from 'react';
+import {ButtonVariants} from '../../constants';
 import styles from './ActionButton.module.scss';
 
-type ActionButtonVariant = 'primary' | 'secondary';
+type ActionButtonVariant = ButtonVariants.Primary | ButtonVariants.Secondary;
 
 interface ActionButtonProps extends React.HTMLProps<HTMLButtonElement> {
   children: React.ReactNode;
@@ -11,7 +12,9 @@ interface ActionButtonProps extends React.HTMLProps<HTMLButtonElement> {
 }
 
 function ActionButton(props: ActionButtonProps) {
-  const classes = cn(styles['action-button'], {[styles['action-button--secondary']]: props.variant === 'secondary'});
+  const classes = cn(styles['action-button'], {
+    [styles['action-button--secondary']]: props.variant === ButtonVariants.Secondary,
+  });
   return (
     <button className={classes} {...props}>
       {props.children}
@@ -21,7 +24,7 @@ function ActionButton(props: ActionButtonProps) {
 
 ActionButton.defaultProps = {
   type: 'button',
-  variant: 'primary',
+  variant: ButtonVariants.Primary,
 };
 
 export {ActionButton};
