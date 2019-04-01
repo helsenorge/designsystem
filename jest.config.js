@@ -19,5 +19,9 @@ module.exports = {
   },
   setupFilesAfterEnv: [
     './src/utils/tests/setup-test.ts'
+  ],
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname'
   ]
 };
