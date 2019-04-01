@@ -15,7 +15,6 @@ function ActionButton(props: ActionButtonProps) {
   const classes = cn(styles['action-button'], {
     [styles['action-button--secondary']]: props.variant === ButtonVariants.Secondary,
   });
-  // Checking to see if this will trigger related tests only
   return (
     <button className={classes} {...props}>
       {props.children}
