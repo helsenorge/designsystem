@@ -1,6 +1,9 @@
 module.exports = {
     linters: {
-        'validate': 'yarn validate',
-        //'**/*.js': ['jest --findRelatedTests']
+        '*': ['prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"'],
+        '**/*.+(tsx|ts)': [
+            'tslint -p .',
+            'jest --findRelatedTests'
+        ]
     }
 }
