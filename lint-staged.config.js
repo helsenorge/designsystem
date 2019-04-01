@@ -1,9 +1,6 @@
 module.exports = {
-    linters: {
-        '*': ['prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"'],
-        '**/*.+(tsx|ts)': [
-            'tslint -p .',
-            'jest --findRelatedTests'
-        ]
-    }
-}
+  linters: {
+    '*': ['prettier --write "src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)"', 'git add'],
+    '**/*.+(tsx|ts)': ['tslint -p .', 'jest --findRelatedTests'],
+  },
+};
