@@ -3,6 +3,11 @@
   "rules": {
     "interface-name": false,
     "no-implicit-dependencies": [true, "dev"],
-    "no-submodule-imports": [true, "react-testing-library/cleanup-after-each"]
+    "no-submodule-imports": [
+      true,
+      "react-testing-library/cleanup-after-each",
+      "jest-axe/extend-expect",
+      "jest-dom/extend-expect"
+    ]
   }
 }

@@ -1,7 +1,6 @@
 const path = require('path');
 const pkg = require('./package.json');
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const DtsBundlerWebpackPlugin = require('dtsbundler-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -21,7 +20,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new BundleAnalyzerPlugin()
   ],
   module: {
     rules: [
@@ -34,16 +32,15 @@ module.exports = {
           {
             loader: 'ts-loader',
           },
-
         ],
       },
       {
         test: /\.svg$/,
         use: [
           {
-            loader: 'svg-react-loader'
-          }
-        ]
+            loader: 'svg-react-loader',
+          },
+        ],
       },
       {
         test: /\.(css|sass|scss)$/,
