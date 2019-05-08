@@ -1,15 +1,14 @@
-const path = require('path');
-const pkg = require('./package.json');
+import {resolve,join} from 'path'
+import * as pkg from './package.json';
 
-const DtsBundlerWebpackPlugin = require('dtsbundler-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import {DtsBundlerWebpackPlugin} from 'dtsbundler-webpack-plugin';
+import {MiniCssExtractPlugin} from 'mini-css-extract-plugin';
 
 module.exports = {
-  entry: path.join(__dirname, pkg.source),
+  entry: join(__dirname, pkg.source),
   devtool: 'inline-source-map',
   output: {
-    path: path.resolve(__dirname, 'lib'),
+    path: resolve(__dirname, 'lib'),
     filename: pkg.main,
     libraryTarget: 'commonjs2',
   },
@@ -56,14 +55,13 @@ module.exports = {
             loader: 'sass-loader'
           }
         ]
-        //use: [ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader!sass-loader'})],
       },
     ],
   },
   resolve: {
     alias: {
-      react: path.resolve(__dirname, 'node_modules/react'),
-      'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+      react: resolve(__dirname, 'node_modules/react'),
+      'react-dom': resolve(__dirname, 'node_modules/react-dom'),
     },
     extensions: ['.ts', '.tsx', '.js'],
   },

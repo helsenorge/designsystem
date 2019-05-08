@@ -9,7 +9,7 @@ interface ActionButtonProps extends React.HTMLProps<HTMLButtonElement> {
   variant?: ActionButtonVariants;
 }
 
-function ActionButton({children, variant, ...restProps}: ActionButtonProps) {
+function ActionButton({children, variant, ...restProps}: ActionButtonProps): JSX.Element {
   const classes = cn(
     'action-button',
     {['action-button--primary']: variant === ButtonVariants.Primary},
