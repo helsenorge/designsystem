@@ -1,0 +1,61 @@
+@import '../../styling/colors';
+
+.action-button {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  white-space: normal;
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0.03125em; /* 16 * 0.0625 = 1px */
+  padding: 0.65rem 1.5rem 0.55rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5rem;
+  appearance: none;
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+    border: 3px solid transparent;
+    &:focus:not([disabled]),
+    &:hover:not([disabled]) {
+      background-color: $primary-color-hover;
+      box-shadow: 0 0 0 4px $outline;
+      outline: none;
+    }
+    &:disabled {
+      background-color: $disabled;
+      color: $disabled-text;
+    }
+  }
+  &--secondary {
+    background-color: transparent;
+    border: 3px solid $primary-color;
+    color: $primary-color;
+    &:focus:not([disabled]),
+    &:hover:not([disabled]) {
+      background-color: transparent;
+      border: 3px solid $primary-color-hover;
+      box-shadow: 0 0 0 4px $outline;
+      color: $primary-color-hover;
+    }
+    &:disabled {
+      color: $disabled;
+      border: 3px solid $disabled;
+    }
+  }
+  &--tertiary {
+    color: primary-color;
+    border: none;
+    border: 3px solid transparent;
+    &:focus:not([disabled]),
+    &:hover:not([disabled]) {
+      box-shadow: 0 0 0 4px $outline;
+      outline: none;
+    }
+    &:disabled {
+      color: $disabled;
+    }
+  }
+}

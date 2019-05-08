@@ -1,23 +1,24 @@
 import cn from 'classnames';
 import React from 'react';
-import {ButtonVariants} from '../../constants';
-import styles from './ActionButton.module.scss';
-
-type ActionButtonVariant = ButtonVariants.Primary | ButtonVariants.Secondary;
+import {ActionButtonVariants, ButtonVariants} from '../../constants';
+import './ActionButton.scss';
 
 interface ActionButtonProps extends React.HTMLProps<HTMLButtonElement> {
   children: React.ReactNode;
   onClick?: () => void;
-  variant?: ActionButtonVariant;
+  variant?: ActionButtonVariants;
 }
 
-function ActionButton(props: ActionButtonProps) {
-  const classes = cn(styles['action-button'], {
-    [styles['action-button--secondary']]: props.variant === ButtonVariants.Secondary,
-  });
+function ActionButton({children, variant, ...restProps}: ActionButtonProps) {
+  const classes = cn(
+    'action-button',
+    {['action-button--primary']: variant === ButtonVariants.Primary},
+    {['action-button--secondary']: variant === ButtonVariants.Secondary},
+    {['action-button--tertiary']: variant === ButtonVariants.Tertiary},
+  );
   return (
-    <button className={classes} {...props}>
-      {props.children}
+    <button className={classes} {...restProps}>
+      {children}
     </button>
   );
 }

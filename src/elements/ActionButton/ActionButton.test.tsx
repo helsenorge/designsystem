@@ -4,6 +4,6 @@ import ActionButton from '.';
 import '../../constants';
 
 test('default variant renders correctly', () => {
-  const {container} = render(<ActionButton>Hello World</ActionButton>);
+  const {container} = render(<ActionButton>ActionButton</ActionButton>);
   expect(container).toMatchSnapshot();
 });

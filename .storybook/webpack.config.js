@@ -24,24 +24,18 @@ module.exports = (config, mode) => {
       ]
     },
     {
-      test: /\.module.scss$/,
+      test: /\.(css|sass|scss)$/,
       use: [
         {
-          loader: require.resolve('style-loader'),
+          loader: 'style-loader'
         },
         {
-          loader: require.resolve('css-loader'),
-          options: {
-            modules: true,
-            sourceMap: true,
-            importLoaders: 2,
-            localIdentName: '[name]__[local]___[hash:base64:5]',
-          },
+          loader: 'css-loader'
         },
         {
-          loader: 'sass-loader',
-        },
-      ],
+          loader: 'sass-loader'
+        }
+      ]
     },
   );
   config.config.resolve.extensions.push('.ts', '.tsx');

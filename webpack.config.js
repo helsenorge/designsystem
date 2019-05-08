@@ -2,6 +2,7 @@ const path = require('path');
 const pkg = require('./package.json');
 
 const DtsBundlerWebpackPlugin = require('dtsbundler-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -44,7 +45,18 @@ module.exports = {
       },
       {
         test: /\.(css|sass|scss)$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+        //use: [ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader!sass-loader'})],
       },
     ],
   },
