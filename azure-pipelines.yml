@@ -14,8 +14,8 @@ steps:
     displayName: 'Installing dependencies'
   - script: yarn build
   - script: yarn test
-  # - task: PublishBuildArtifacts@1
-  #   displayName: 'Publish Artifact: Component Library'
-  #   inputs:
-  #     PathtoPublish: lib/
-  #     ArtifactName: $(Build.Repository.Name)-$(Build.BuildNumber)-$(Build.SourceBranchName)
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Component Library'
+    inputs:
+      PathtoPublish: .
+      ArtifactName: $(Build.Repository.Name)-$(Build.BuildNumber)-$(Build.SourceBranchName)
