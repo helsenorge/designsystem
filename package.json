@@ -18,7 +18,7 @@
     "patterns",
     "react"
   ],
-  "private": true,
+  "private": false,
   "publishConfig": {
     "access": "public"
   },
@@ -30,6 +30,7 @@
     "format": "npm run prettier -- --write",
     "lint": "eslint .",
     "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
+    "publish:dev": "npm publish --tag dev --dry-run",
     "start": "start-storybook -p 6006",
     "test": "jest",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
