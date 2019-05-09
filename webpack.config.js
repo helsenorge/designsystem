@@ -1,26 +1,23 @@
-import {resolve,join} from 'path'
-import * as pkg from './package.json';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+const pkg = require('./package.json');
 
-import {DtsBundlerWebpackPlugin} from 'dtsbundler-webpack-plugin';
-import {MiniCssExtractPlugin} from 'mini-css-extract-plugin';
+const MiniCssExtractWebpackPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-  entry: join(__dirname, pkg.source),
-  devtool: 'inline-source-map',
+  entry: path.join(__dirname, pkg.source),
+  devtool: 'source-map',
   output: {
-    path: resolve(__dirname, 'lib'),
-    filename: pkg.main,
-    libraryTarget: 'commonjs2',
+    library: '@helsenorge/designsystem',
+    path: path.resolve(__dirname, 'lib'),
+    filename: 'index.js',
+    libraryTarget: 'umd'
   },
-  plugins: [
-    new DtsBundlerWebpackPlugin({
-      out: 'index.d.ts',
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-    }),
-  ],
+  optimization: {
+    minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
+  },
   module: {
     rules: [
       {
@@ -35,33 +32,31 @@ module.exports = {
         ],
       },
       {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'svg-react-loader',
-          },
-        ],
-      },
-      {
         test: /\.(css|sass|scss)$/,
         use: [
           {
             loader: 'style-loader'
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIdentName: '[local]'
+            }
           },
           {
             loader: 'sass-loader'
-          }
+          },
+          // MiniCssExtractWebpackPlugin.loader
         ]
       },
     ],
   },
   resolve: {
     alias: {
-      react: resolve(__dirname, 'node_modules/react'),
-      'react-dom': resolve(__dirname, 'node_modules/react-dom'),
+      react: path.resolve(__dirname, 'node_modules/react'),
+      'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
     },
     extensions: ['.ts', '.tsx', '.js'],
   },
@@ -79,4 +74,9 @@ module.exports = {
       root: 'ReactDOM',
     },
   },
+  plugins: [
+    new MiniCssExtractWebpackPlugin({
+      filename: 'helsenorge.css'
+    })
+  ]
 };

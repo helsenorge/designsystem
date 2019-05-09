@@ -3,6 +3,7 @@ node_modules
 .vscode
 *.log*
 lib
+types
 coverage
 propertyReferences.json
 bundle-stats.json

@@ -1,3 +1,1 @@
-import {ActionButton} from './ActionButton';
-
-export default ActionButton;
+export {default} from './ActionButton';

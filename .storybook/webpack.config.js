@@ -1,12 +1,13 @@
 const path = require('path');
 
-module.exports = (config, mode) => {
-  const svgWorkaround = config.config.module.rules.find(rule => rule.test.test('.svg'));
-  svgWorkaround.exclude = /\.svg$/;
+module.exports = (config) => {
   config.config.module.rules.push(
     {
       test: /\.(ts|tsx)$/,
       use: [
+        {
+          loader: require.resolve('babel-loader'),
+        },
         {
           loader: require.resolve('ts-loader'),
         },
@@ -16,24 +17,21 @@ module.exports = (config, mode) => {
       ],
     },
     {
-      test: /\.svg$/,
-      use: [
-        {
-          loader: require.resolve('svg-react-loader')
-        }
-      ]
-    },
-    {
       test: /\.(css|sass|scss)$/,
       use: [
         {
-          loader: 'style-loader'
+          loader: require.resolve('style-loader')
         },
         {
-          loader: 'css-loader'
+          loader: require.resolve('css-loader'),
+          options: {
+            importLoaders: 1,
+            modules: true,
+            localIdentName: '[local]'
+          }
         },
         {
-          loader: 'sass-loader'
+          loader: require.resolve('sass-loader')
         }
       ]
     },

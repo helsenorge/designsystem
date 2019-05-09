@@ -1,0 +1,21 @@
+
+trigger: 
+  - develop
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Installing and using NodeJS 10'
+  - script: yarn install
+    displayName: 'Installing dependencies'
+  - script: yarn build
+  - script: yarn test
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Component Library'
+    inputs:
+      PathtoPublish: lib/
+      ArtifactName: $(Build.Repository.Name)-$(Build.BuildNumber)-$(Build.SourceBranchName)

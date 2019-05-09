@@ -11,10 +11,10 @@ import ActionButton from '../../src/elements/ActionButton';
 
 const actionButtonVariants = [ButtonVariants.Primary, ButtonVariants.Secondary, ButtonVariants.Tertiary];
 
-stories.add('ActionButton', () => (
+stories.add('ActionButton', (): JSX.Element => (
   <ActionButton
     disabled={boolean('Disabled', false)}
     variant={select('Variant', actionButtonVariants, actionButtonVariants[0])}>
-      {text('Text', 'ActionButton')}
+    {text('Text', 'ActionButton')}
   </ActionButton>
 ));

@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem",
   "version": "0.0.1-dev.0",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "repository": "https://github.com/Helsenorge/designsystem.git",
   "homepage": "https://design.helsenorge.io",
   "description": "The official design system for Helsenorge.",
@@ -23,11 +23,12 @@
     "access": "public"
   },
   "scripts": {
-    "build": "yarn clean && webpack --mode=production",
+    "build": "yarn clean && webpack --mode=production && yarn bundle-ts",
+    "bundle-ts": "yarn dts-bundle --name @helsenorge/designsystem --main types/index.d.ts --baseDir types/ --out ../lib/index.d.ts --outputAsModuleFolder true",
     "bundle-analyze": "webpack --profile --json > bundle-stats.json && webpack-bundle-analyzer ./bundle-stats.json",
-    "clean": "rimraf lib",
+    "clean": "rimraf lib types",
     "format": "npm run prettier -- --write",
-    "lint": "eslint . --ignore-pattern lib/**/*",
+    "lint": "eslint .",
     "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
     "start": "start-storybook -p 6006",
     "test": "jest",
@@ -44,6 +45,9 @@
   "files": [
     "lib/**/*"
   ],
+  "typescript": {
+    "declaration": "./lib/index.d.ts"
+  },
   "peerDependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
@@ -61,18 +65,20 @@
     "@storybook/addon-links": "^5.0.5",
     "@storybook/addon-viewport": "^5.0.6",
     "@storybook/addons": "^5.0.5",
-    "@storybook/react": "5.1.0-alpha.20",
+    "@storybook/react": "5.1.0-alpha.39",
+    "@types/classnames": "^2.2.7",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.11.7",
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.3",
     "@types/storybook__addon-actions": "^3.4.2",
+    "@types/storybook__addon-knobs": "^5.0.0",
     "@types/storybook__react": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",
-    "dtsbundler-webpack-plugin": "^1.0.0",
+    "dts-bundle": "^0.7.3",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-react": "^7.13.0",
@@ -85,6 +91,7 @@
     "lint-staged": "^8.1.5",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.16.4",
     "react": "^16.8.5",
@@ -94,6 +101,7 @@
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^1.2.3",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.4000",
     "webpack": "^4.29.6",
