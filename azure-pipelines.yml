@@ -14,8 +14,17 @@ steps:
     displayName: 'Installing dependencies'
   - script: yarn build
   - script: yarn test
+  - task: CopyFiles@2
+    displayName: 'Copying core files'
+    inputs:
+      Contents: |
+        ./**/*
+        !node_modules/
+        !coverage/
+        !types/
+      TargetFolder: $(Build.ArtifactStagingDirectory)
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: Component Library'
     inputs:
-      PathtoPublish: .
+      PathtoPublish: $(Build.ArtifactStagingDirectory)
       ArtifactName: $(Build.Repository.Name)-$(Build.BuildNumber)-$(Build.SourceBranchName)
