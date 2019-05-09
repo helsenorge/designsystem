@@ -18,7 +18,7 @@ steps:
     displayName: 'Copying core files'
     inputs:
       Contents: |
-        ./**/*
+        **/*
         !node_modules/
         !coverage/
         !types/
