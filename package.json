@@ -29,6 +29,7 @@
     "clean": "rimraf lib types",
     "format": "npm run prettier -- --write",
     "lint": "eslint .",
+    "prerelease": "npm version prerelease",
     "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
     "publish:dev": "npm publish --tag dev --dry-run",
     "start": "start-storybook -p 6006",
