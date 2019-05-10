@@ -13,7 +13,8 @@ module.exports = {
     library: '@helsenorge/designsystem',
     path: path.resolve(__dirname, 'lib'),
     filename: 'index.js',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    globalObject: 'this'
   },
   optimization: {
     minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
