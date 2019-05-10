@@ -1,7 +1,7 @@
 module.exports = function(api) {
   api.cache(true);
   const presets = [
-    ['@babel/env', {modules: 'auto', targets: {node: 'current'}}],
+    '@babel/preset-env',
     '@babel/preset-typescript',
     '@babel/preset-react',
   ];

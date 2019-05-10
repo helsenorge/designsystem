@@ -13,8 +13,10 @@ module.exports = {
     library: '@helsenorge/designsystem',
     path: path.resolve(__dirname, 'lib'),
     filename: 'index.js',
-    libraryTarget: 'commonjs2',
-    // globalObject: '(typeof self !== "undefined" ? self : this)'
+    sourceMapFilename: 'index.js.map',
+    umdNamedDefine: true,
+    libraryTarget: 'umd',
+    globalObject: '(typeof self !== "undefined" ? self : this)'
   },
   optimization: {
     minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
@@ -35,21 +37,21 @@ module.exports = {
       {
         test: /\.(css|sass|scss)$/,
         use: [
-          {
-            loader: 'style-loader'
-          },
+          // {
+          //   loader: 'style-loader'
+          // },
+          MiniCssExtractWebpackPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              modules: true,
+              // modules: true,
               localIdentName: '[local]'
             }
           },
           {
             loader: 'sass-loader'
           },
-          // MiniCssExtractWebpackPlugin.loader
         ]
       },
     ],
