@@ -60,7 +60,7 @@ jobs:
           command: |
             if git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$";
             then
-              yarn publish:dev
+              npm publish --tag dev
             else
               echo "Not tagged, skipping release"
             fi
