@@ -48,24 +48,27 @@ jobs:
           file: coverage/*.json
   publish-dev:
     <<: *defaults
+    docker:
+      - image: circleci/node:lts
     steps:
+      - attach_workspace:
+          at: .
       - run:
-        name: Publish package (dev)
-        command: yarn publish:dev
+          name: Publish package (dev)
+          command: yarn publish:dev
 
 
 workflows:
-  build-test:
+  build-test-publish:
     jobs:
       - build
       - test:
           requires:
             - build
-  publish-dev:
-    jobs:
-      - publish:
+      - publish-dev:
           requires:
-            - build-test
+            - build
+            - test
           filters:
             branches:
               only: develop
