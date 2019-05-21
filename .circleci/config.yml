@@ -3,6 +3,9 @@ defaults: &defaults
 
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@1.0.4
+
 jobs:
   build:
     <<: *defaults
@@ -41,6 +44,9 @@ jobs:
       - run:
           name: Run tests
           command: yarn test
+      - codecov/upload:
+          file: coverage/*.json
+
   # deploy:
   #   <<: *defaults
   #   executor: azure-cli/azure-docker
@@ -56,7 +62,7 @@ jobs:
   #         name: Deploy files to Azure
   #         command:
   #           az storage blob upload-batch -s ./public/ -d \$web --account-name hndesignsystemsadev
-  
+
 
 workflows:
   build-test:
