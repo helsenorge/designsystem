@@ -62,8 +62,14 @@ jobs:
 workflows:
   build-test:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              ignore: /.*/
       - test:
+          filters:
+            tags:
+              ignore: /.*/
           requires:
             - build
   build-test-deploy:
@@ -71,11 +77,11 @@ workflows:
       - build:
           filters:
             tags:
-              only: /^(v0\.0\.1-dev).\d+/
+              only: /^(v0\.0\.1-dev\.)\d+/
       - test:
           filters:
             tags:
-              only: /^(v0\.0\.1-dev).\d+/
+              only: /^(v0\.0\.1-dev\.)\d+/
           requires:
             - build
       - publish-dev:
@@ -83,4 +89,4 @@ workflows:
             - test
           filters:
             tags:
-              only: /^(v0\.0\.1-dev).\d+/
+              only: /^(v0\.0\.1-dev\.)\d+/
