@@ -60,18 +60,27 @@ jobs:
 
 
 workflows:
-  build-test-publish:
+  build-test:
     jobs:
       - build
       - test:
           requires:
             - build
-      - publish-dev:
+  build-test-deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^(v0\.0\.1-dev).\d+/
+      - test:
+          filters:
+            tags:
+              only: /^(v0\.0\.1-dev).\d+/
           requires:
             - build
+      - publish-dev:
+          requires:
             - test
           filters:
-            branches:
-              only: develop
             tags:
               only: /^(v0\.0\.1-dev).\d+/
