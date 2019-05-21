@@ -31,6 +31,7 @@ jobs:
           root: .
           paths:
             - "lib"
+            - "package.json"
   test:
     <<: *defaults 
     docker:
@@ -73,4 +74,4 @@ workflows:
             branches:
               only: develop
             tags:
-              only: /^0.0.1-dev.*/
+              only: /^(v0\.0\.1-dev).\d+/
