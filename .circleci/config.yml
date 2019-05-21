@@ -79,6 +79,8 @@ workflows:
             - build
       - publish-dev:
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /^v*dev*/
           requires:
