@@ -46,22 +46,12 @@ jobs:
           command: yarn test
       - codecov/upload:
           file: coverage/*.json
-
-  # deploy:
-  #   <<: *defaults
-  #   executor: azure-cli/azure-docker
-  #   environment:
-  #     AZURE_SP: http://HelsenorgeDesignSystemServicePrincipal
-  #     AZURE_SP_TENANT: 6ba1bd5c-750f-4ad6-aba3-0f95585bc21f
-  #   steps:
-  #     - attach_workspace:
-  #         at: ./
-  #     - azure-cli/install
-  #     - azure-cli/login-with-service-principal
-  #     - run:
-  #         name: Deploy files to Azure
-  #         command:
-  #           az storage blob upload-batch -s ./public/ -d \$web --account-name hndesignsystemsadev
+  publish-dev:
+    <<: *defaults
+    steps:
+      - run:
+        name: Publish package (dev)
+        command: yarn publish:dev
 
 
 workflows:
@@ -71,3 +61,13 @@ workflows:
       - test:
           requires:
             - build
+  publish-dev:
+    jobs:
+      - publish:
+          requires:
+            - build-test
+          filters:
+            branches:
+              only: develop
+            tags:
+              only: /^0.0.1-dev.*/
