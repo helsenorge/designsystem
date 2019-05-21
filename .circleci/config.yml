@@ -62,7 +62,7 @@ jobs:
       - run:
           name: Publish package (dev)
           command: yarn publish:dev
-          when: on_success
+          when: on_fail
 
 workflows:
   version: 2
