@@ -55,45 +55,24 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      # - run:
-      #     name: Check for valid tag
-      #     command: |
-      #       git describe --exact-match $CIRCLE_SHA1
       - run:
-          name: Publish package (dev)
-          command: yarn publish:dev
+          name: Check for valid tag and publish
+          command: |
+            if git describe --exact-match $CIRCLE_SHA1 | grep "^v0.0.1-dev.[0-999]";
+            then
+              yarn publish:dev
+            else
+              echo "Not tagged, skipping release"
+            fi
 
 workflows:
   version: 2
-  build-test:
+  build-test-deploy:
     jobs:
-        - build:
-            filters:
-              tags:
-                ignore: /v.*/
+        - build
         - test:
             requires:
               - build
-            filters:
-              tags:
-                ignore: /v.*/
-  build-test-deploy:
-    jobs:
-      - build:
-          filters:
-            tags:
-              only: /v.*/
-      - test:
-          filters:
-            tags:
-              only: /v.*/
-          requires:
-            - build
-      - publish-dev:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /v.*/
-          requires:
-            - test
+        - publish-dev:
+            requires:
+              - test
