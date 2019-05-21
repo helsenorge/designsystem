@@ -55,14 +55,13 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run:
-          name: Check for valid tag
-          command: |
-            git describe --exact-match $CIRCLE_SHA1
+      # - run:
+      #     name: Check for valid tag
+      #     command: |
+      #       git describe --exact-match $CIRCLE_SHA1
       - run:
           name: Publish package (dev)
           command: yarn publish:dev
-          when: on_fail
 
 workflows:
   version: 2
@@ -81,6 +80,6 @@ workflows:
       - publish-dev:
           filters:
             tags:
-              only: /^(v0\.0\.1-dev\.)\d+/
+              only: /^v*dev*/
           requires:
             - test
