@@ -65,23 +65,35 @@ jobs:
 
 workflows:
   version: 2
+  build-test:
+    jobs:
+        - build:
+            filters:
+              tags:
+                ignore: /v.*/
+        - test:
+            requires:
+              - build
+            filters:
+              tags:
+                ignore: /v.*/
   build-test-deploy:
     jobs:
       - build:
           filters:
             tags:
-              ignore: /.*/
+              only: /v.*/
       - test:
           filters:
             tags:
-              ignore: /.*/
+              only: /v.*/
           requires:
             - build
       - publish-dev:
           filters:
             branches:
-              ignore: develop
+              ignore: /.*/
             tags:
-              only: /^v*dev*/
+              only: /v.*/
           requires:
             - test
