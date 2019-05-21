@@ -59,10 +59,10 @@ jobs:
           name: Check for valid tag
           command: |
             git describe --exact-match $CIRCLE_SHA1
-      # - run:
-      #     name: Publish package (dev)
-      #     command: yarn publish:dev
-      #     when: on_success
+      - run:
+          name: Publish package (dev)
+          command: yarn publish:dev
+          when: on_success
 
 workflows:
   version: 2
