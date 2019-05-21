@@ -58,16 +58,12 @@ jobs:
       - run:
           name: Check for valid tag and publish
           command: |
-            #if git describe --exact-match $CIRCLE_SHA1 | grep "^v0.0.1-dev.[0-999]";
-            #git describe --exact-match $CIRCLE_SHA1 | grep "^v0.0.1-dev.[0-999]";
-            git describe --tags
-            echo $CIRCLE_TAG
-            # if git log -1 --pretty=%B | grep "^v0.0.1-dev.[0-999]";
-            # then
-            #   yarn publish:dev
-            # else
-            #   echo "Not tagged, skipping release"
-            # fi
+            if git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$";
+            then
+              yarn publish:dev
+            else
+              echo "Not tagged, skipping release"
+            fi
 
 workflows:
   version: 2
