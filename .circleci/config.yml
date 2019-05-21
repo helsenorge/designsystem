@@ -80,7 +80,7 @@ workflows:
       - publish-dev:
           filters:
             branches:
-              ignore: /.*/
+              ignore: develop
             tags:
               only: /^v*dev*/
           requires:
