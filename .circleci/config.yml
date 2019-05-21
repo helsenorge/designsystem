@@ -1,0 +1,66 @@
+defaults: &defaults
+  working_directory: ~/designsystem/
+
+version: 2.1
+
+jobs:
+  build:
+    <<: *defaults
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run:
+          name: Installing dependencies
+          command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Build library
+          command: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - "lib"
+  test:
+    <<: *defaults 
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies
+      - run:
+          name: Run tests
+          command: yarn test
+  # deploy:
+  #   <<: *defaults
+  #   executor: azure-cli/azure-docker
+  #   environment:
+  #     AZURE_SP: http://HelsenorgeDesignSystemServicePrincipal
+  #     AZURE_SP_TENANT: 6ba1bd5c-750f-4ad6-aba3-0f95585bc21f
+  #   steps:
+  #     - attach_workspace:
+  #         at: ./
+  #     - azure-cli/install
+  #     - azure-cli/login-with-service-principal
+  #     - run:
+  #         name: Deploy files to Azure
+  #         command:
+  #           az storage blob upload-batch -s ./public/ -d \$web --account-name hndesignsystemsadev
+
+workflows:
+  build-test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
