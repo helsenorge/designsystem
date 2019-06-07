@@ -6,6 +6,7 @@ const MiniCssExtractWebpackPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+
 module.exports = {
   entry: path.join(__dirname, pkg.source),
   devtool: 'source-map',
@@ -28,7 +29,6 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-          },
           {
             loader: 'ts-loader',
           },

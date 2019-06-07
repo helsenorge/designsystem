@@ -1,0 +1,42 @@
+@import '../../../styling/colors';
+@import '../../../styling/variables';
+
+.cancel-button {
+  display: inline-block;
+  width: auto;
+  cursor: pointer;
+  color: $color-primary-1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: $basefont;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  font-weight: 400;
+  letter-spacing: 0.0625em; /* 16 * 0.0625 = 1px */
+  padding: 0.65rem 1.25rem 0.55rem;
+  background-color: transparent;
+  appearance: none;
+  text-align: center;
+  border-radius: 1.5rem;
+  border: 0;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 4px $color-base-4-2-5;
+  }
+
+  &:focus {
+    background: rgba(#a61e7b, 0.1);
+    outline: none;
+  }
+
+  &.secondary {
+    color: $color-primary-4;
+    font-size: 1.125rem;
+    line-height: 1.25rem;
+  }
+
+  @media only screen and (min-width: $one-to-two-col) {
+    padding: 0.65rem 1.5rem 0.55rem;
+  }
+}
