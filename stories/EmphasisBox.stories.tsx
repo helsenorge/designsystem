@@ -6,7 +6,7 @@ import {storiesOf} from '@storybook/react';
 const stories = storiesOf('Uncategorized', module);
 stories.addDecorator(withKnobs);
 
-import EmphasisBox, { EmphasisBoxColors }from '../src/components/finished/EmphasisBox';
+import { EmphasisBox, EmphasisBoxColors }from '../src/components/EmphasisBox';
 
 const emphasisBoxColors = {...EmphasisBoxColors, None: 'None'}
 

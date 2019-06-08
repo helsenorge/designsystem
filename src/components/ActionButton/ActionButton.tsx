@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import React from 'react';
-import {ButtonVariants} from '../../../constants';
+import {ButtonVariants} from '../../constants';
 import styles from './ActionButton.scss';
 
 interface ActionButtonProps extends React.HTMLProps<HTMLButtonElement> {
@@ -28,5 +28,6 @@ ActionButton.defaultProps = {
   type: 'button',
 };
 
-export type ActionButtonVariants = (typeof ButtonVariants)[keyof typeof ButtonVariants];
-export default ActionButton;
+type ActionButtonVariants = (typeof ButtonVariants)[keyof typeof ButtonVariants];
+
+export {ActionButton};

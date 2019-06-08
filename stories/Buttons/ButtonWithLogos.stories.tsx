@@ -9,7 +9,7 @@ import logoRight from '../../src/images/nav_arrow_right.svg';
 const stories = storiesOf('Buttons', module);
 stories.addDecorator(withKnobs);
 
-import ButtonWithLogos from '../../src/components/finished/ButtonWithLogos';
+import {ButtonWithLogos} from '../../src/components/ButtonWithLogos';
 
 stories.add('ButtonWithLogos', (): JSX.Element => (
   <ButtonWithLogos

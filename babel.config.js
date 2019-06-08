@@ -7,8 +7,7 @@ module.exports = function(api) {
   ];
   const plugins = [
     '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-object-rest-spread',
-    '@babel/plugin-transform-modules-commonjs',
+    '@babel/plugin-proposal-object-rest-spread'
   ];
   return {
     presets,

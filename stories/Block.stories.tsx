@@ -6,7 +6,7 @@ import {storiesOf} from '@storybook/react';
 const stories = storiesOf('Uncategorized', module);
 stories.addDecorator(withKnobs);
 
-import Block from '../src/components/finished/Block';
+import {Block} from '../src/components/Block';
 
 stories.add('Block', (): JSX.Element => (
   <Block

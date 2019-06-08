@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from 'react-testing-library';
-import ProgressBar from './ProgressBar';
+import {ButtonWithLogos} from './ButtonWithLogos';
 
 test('renders correctly', (): void => {
-  const {container} = render(<ProgressBar value={0}>ProgressBar</ProgressBar>);
+  const {container} = render(<ButtonWithLogos>ButtonWithLogos</ButtonWithLogos>);
   expect(container).toMatchSnapshot();
 });

@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from 'react-testing-library';
-import Block from './Block';
+import {ProgressBar} from './ProgressBar';
 
 test('renders correctly', (): void => {
-  const {container} = render(<Block>Block</Block>);
+  const {container} = render(<ProgressBar value={0}>ProgressBar</ProgressBar>);
   expect(container).toMatchSnapshot();
 });

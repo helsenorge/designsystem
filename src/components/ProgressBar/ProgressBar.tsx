@@ -46,4 +46,4 @@ function ProgressBar({
   );
 }
 
-export default ProgressBar;
+export {ProgressBar, useCalculatePercentageAndFormatValue};

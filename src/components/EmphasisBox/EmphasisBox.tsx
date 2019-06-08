@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import styles from './EmphasisBox.scss';
 
-export const EmphasisBoxColors = {
+const EmphasisBoxColors = {
   Green: 'green',
   Grey: 'grey',
   Blue: 'blue',
@@ -28,5 +28,6 @@ function EmphasisBox({children, color, ...restProps}: EmphasisBoxProps): JSX.Ele
   );
 }
 
-export type EmphasisBoxColors = (typeof EmphasisBoxColors)[keyof typeof EmphasisBoxColors];
-export default EmphasisBox;
+type EmphasisBoxColors = (typeof EmphasisBoxColors)[keyof typeof EmphasisBoxColors];
+
+export {EmphasisBox, EmphasisBoxColors};

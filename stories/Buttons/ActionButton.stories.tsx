@@ -7,7 +7,7 @@ const stories = storiesOf('Buttons', module);
 stories.addDecorator(withKnobs);
 
 import { ButtonVariants } from '../../src/constants';
-import ActionButton from '../../src/components/finished/ActionButton';
+import { ActionButton } from '../../src/components/ActionButton';
 
 stories.add('ActionButton', (): JSX.Element => (
   <ActionButton

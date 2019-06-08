@@ -18,4 +18,4 @@ function Block({isNew, noPadding, children, ...restProps}: BlockProps): JSX.Elem
   );
 }
 
-export default Block;
+export {Block};

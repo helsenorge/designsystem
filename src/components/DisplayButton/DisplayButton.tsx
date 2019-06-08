@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import styles from './DisplayButton.scss';
-import {ButtonVariants} from '../../../constants';
+import {ButtonVariants} from '../../constants';
 
 interface DisplayButtonProps extends React.HTMLProps<HTMLButtonElement> {
   children: React.ReactNode;
@@ -47,5 +47,6 @@ DisplayButton.defaultProps = {
   type: 'button',
 };
 
-export type DisplayButtonVariants = (typeof ButtonVariants)[keyof typeof ButtonVariants];
-export default DisplayButton;
+type DisplayButtonVariants = (typeof ButtonVariants)[keyof typeof ButtonVariants];
+
+export {DisplayButton};

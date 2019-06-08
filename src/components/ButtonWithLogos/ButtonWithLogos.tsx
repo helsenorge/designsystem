@@ -30,4 +30,4 @@ ButtonWithLogos.defaultProps = {
   type: 'button',
 };
 
-export default ButtonWithLogos;
+export {ButtonWithLogos};

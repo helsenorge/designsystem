@@ -30,7 +30,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - "lib"
+            - "dist"
             - "package.json"
   test:
     <<: *defaults 
