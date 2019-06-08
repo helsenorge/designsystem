@@ -1,1 +1,1 @@
-export {ProgressBar, useCalculatePercentageAndFormatValue} from './ProgressBar';
+export {ProgressBar} from './ProgressBar';
