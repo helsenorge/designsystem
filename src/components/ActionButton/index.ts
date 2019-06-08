@@ -1,1 +1,1 @@
-export {ActionButton, ActionButtonVariants} from './ActionButton';
+export {ActionButton} from './ActionButton';

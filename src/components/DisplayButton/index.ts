@@ -1,1 +1,1 @@
-export {DisplayButton, DisplayButtonVariants} from './DisplayButton';
+export {DisplayButton} from './DisplayButton';
