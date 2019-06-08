@@ -3,5 +3,5 @@
 
 // export {ActionButton, ButtonVariants, ActionButtonVariants};
 
-export {ButtonVariants, ActionButtonVariants} from './constants';
+export {ButtonVariants} from './constants';
 export {default} from './components/finished/ActionButton/index';

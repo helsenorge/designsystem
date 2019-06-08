@@ -23,7 +23,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "yarn clean && webpack --mode=production && yarn bundle-ts",
+    "build": "yarn clean && webpack --mode=production --progress && yarn bundle-ts",
     "bundle-ts": "yarn dts-bundle --name @helsenorge/designsystem --main types/index.d.ts --baseDir types/ --out ../lib/index.d.ts --outputAsModuleFolder true",
     "bundle-analyze": "webpack --profile --json > bundle-stats.json && webpack-bundle-analyzer ./bundle-stats.json",
     "clean": "rimraf lib types",
@@ -63,6 +63,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@storybook/addon-actions": "^5.0.5",
+    "@storybook/addon-backgrounds": "^5.1.3",
     "@storybook/addon-knobs": "^5.0.6",
     "@storybook/addon-links": "^5.0.5",
     "@storybook/addon-viewport": "^5.0.6",

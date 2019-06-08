@@ -3,5 +3,3 @@ export const ButtonVariants = {
   Secondary: 'secondary',
   Tertiary: 'tertiary',
 };
-
-export type ActionButtonVariants = (typeof ButtonVariants)[keyof typeof ButtonVariants];

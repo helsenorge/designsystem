@@ -3,10 +3,10 @@
 exports[`renders correctly 1`] = `
 <div>
   <button
-    class="action-button action-button--primary"
+    class="button-with-logos"
     type="button"
   >
-    ActionButton
+    ButtonWithLogos
   </button>
 </div>
 `;

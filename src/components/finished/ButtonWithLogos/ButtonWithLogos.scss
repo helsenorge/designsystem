@@ -1,35 +1,38 @@
 @import '../../../styling/colors';
-@import '../../../styling/variables';
+@import '../../../styling/old-variables';
 
 .button-with-logos {
   position: relative;
-  display: block;
-  margin: 0;
   cursor: pointer;
   background-color: $secondary-color;
   color: white;
   box-shadow: 0 1px 0 0 $secondary-color-hover;
-  text-overflow: ellipsis;
   padding: 0.625rem 5.625rem;
   font-size: 1.25rem;
   font-weight: 500;
-  border: none;
+  border: 0;
   appearance: none;
   min-width: 5.875rem;
   min-height: 3.75rem;
   word-wrap: break-word;
+  @media screen and (min-width: $one-to-two-col) {
+    padding: 0 6.125rem;
+    font-size: 1.5rem;
+    text-align: center;
+    min-height: 4.625rem;
+    &:after {
+      right: 2rem;
+    }
+  }
   &:hover {
-    color: auto;
     background-color: $secondary-color;
     box-shadow: $outline-box-shadow-thin;
   }
   &:focus {
-    color: auto;
     box-shadow: $outline-box-shadow-thin;
     outline: none;
   }
   &:disabled {
-    pointer-events: none;
     background-color: $color-base-4-2-5;
     box-shadow: 0 1px 0 0 $color-base-4;
   }
@@ -51,19 +54,6 @@
       height: 1rem;
       width: 0.6rem;
       background-size: cover;
-    }
-  }
-}
-
-@media screen and (min-width: $one-to-two-col) {
-  .button-with-logos {
-    padding: 0 6.125rem;
-    font-size: 1.5rem;
-    text-align: center;
-    min-height: 4.625rem;
-
-    &:after {
-      right: 2rem;
     }
   }
 }

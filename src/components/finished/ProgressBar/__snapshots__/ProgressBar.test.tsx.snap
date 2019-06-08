@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    class="progress-bar"
+  >
+    <div
+      class="progress-bar__indicator"
+      style="width: 0%;"
+    >
+      <div
+        class="progress-bar__indicator__value progress-bar__indicator__value--outside"
+      >
+        0
+      </div>
+    </div>
+  </div>
+</div>
+`;

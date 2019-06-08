@@ -1,0 +1,144 @@
+@import '../../../styling/old-variables';
+
+.display-button {
+  position: relative;
+  display: inline-flex;
+  border: none;
+  background-color: transparent;
+  text-overflow: ellipsis;
+  color: $color-base-0;
+  padding: 0 3.25rem;
+  min-height: 3.13rem;
+  font-size: 1.125rem;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  appearance: none;
+  white-space: nowrap;
+  //FIX for IE11 to vertical-align elements
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    height: 50px;
+  }
+  &:hover {
+    box-shadow: $outline-box-shadow-thin;
+  }
+  &:focus {
+    box-shadow: $outline-box-shadow-thin;
+    outline: none;
+  }
+  &:disabled {
+    pointer-events: none;
+    background-color: $color-base-4-2-5;
+  }
+  &--haslefticon {
+    padding-left: 0;
+    padding-right: 2rem;
+    &.atom_displaybutton--hasrighticon {
+      padding-right: 0;
+    }
+  }
+  &--hasrighticon {
+    padding-right: 0;
+    padding-left: 2rem;
+    &.atom_displaybutton--haslefticon {
+      padding-left: 0;
+    }
+  }
+
+  &--fullwidth {
+    width: 100%;
+  }
+
+  &--primary {
+    background-color: $color-primary-5;
+
+    &:hover,
+    &:focus {
+      background-color: $color-primary-5-5;
+    }
+
+    &:disabled,
+    &.disabled {
+      box-shadow: none;
+      color: white;
+    }
+  }
+
+  &--secondary {
+    box-shadow: inset 0 0 0 3px $color-primary-5;
+    color: $color-primary-5;
+
+    &:hover,
+    &:focus {
+      box-shadow: $outline-box-shadow-thin, inset 0 0 0 3px $color-primary-5-5;
+      color: $color-primary-5-5;
+    }
+    &:focus {
+      background-color: $color-base-4-5;
+    }
+
+    &:disabled,
+    &.disabled {
+      box-shadow: inset 0 0 0 3px $color-base-3-5;
+      color: $color-base-3-5;
+    }
+  }
+
+  &--tertiary {
+    color: $color-primary-5;
+
+    &:hover,
+    &:focus {
+      color: $color-primary-5-5;
+    }
+    &:focus {
+      background-color: $color-base-4-5;
+    }
+
+    &:disabled,
+    &.disabled {
+      color: $color-base-3-5;
+    }
+  }
+
+  .atom_displaybutton-text {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .atom_displaybutton-icon-left,
+  .atom_displaybutton-icon-right {
+    content: '';
+    height: 2rem;
+    width: 2rem;
+    padding: 0 2.25rem;
+    background-repeat: no-repeat;
+
+    background-size: contain;
+  }
+
+  .atom_displaybutton-icon-left {
+    background-position: 70%;
+  }
+
+  .atom_displaybutton-icon-right {
+    background-position: 30%;
+  }
+}
+
+@media screen and (min-width: $one-to-two-col) {
+  .atom_displaybutton {
+    &--fullwidth {
+      width: auto;
+    }
+
+    &--primary {
+    }
+
+    &--secondary {
+    }
+
+    &--tertiary {
+    }
+  }
+}

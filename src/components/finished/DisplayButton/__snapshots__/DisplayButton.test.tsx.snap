@@ -3,10 +3,14 @@
 exports[`renders correctly 1`] = `
 <div>
   <button
-    class="action-button action-button--primary"
+    class="display-button display-button--primary"
     type="button"
   >
-    ActionButton
+    <span
+      class="display-button__content"
+    >
+      DisplayButton
+    </span>
   </button>
 </div>
 `;
