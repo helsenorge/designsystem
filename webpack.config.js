@@ -18,7 +18,7 @@ module.exports = {
     filename: './dist/index.js',
     umdNamedDefine: true,
     libraryTarget: 'umd',
-    globalObject: '(typeof self !== "undefined" ? self : this)'
+    globalObject: '(typeof self !== "undefined" ? self : this)',
   },
   optimization: {
     minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
@@ -29,10 +29,10 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         use: [
           {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
           },
           {
-            loader: 'ts-loader'
+            loader: 'ts-loader',
           },
         ],
       },
@@ -47,56 +47,26 @@ module.exports = {
             options: {
               importLoaders: 1,
               modules: true,
-              localIdentName: '[local]'
-            }
-          },
-          {
-            loader: 'sass-loader'
-          },
-        ]
-      },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        issuer: issuerForJsTsFiles,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: getBabelPresets(
-                getDefaultBabelPresetOptions(
-                  true,
-                  isDev
-                ),
-                undefined
-              ),
+              localIdentName: '[local]',
             },
           },
           {
-            loader: '@svgr/webpack',
-            options: { babel: false },
-          },
-          {
-            loader: 'file-loader',
-            options: getFileLoaderOptions(
-              appDir,
-              isDev,
-              false
-            ),
+            loader: 'sass-loader',
           },
         ],
       },
-      // For everything else, we use file-loader only
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        issuer: issuerForNonJsTsFiles,
         use: [
           {
+            loader: 'babel-loader',
+          },
+          {
+            loader: '@svgr/webpack',
+            options: {babel: false},
+          },
+          {
             loader: 'file-loader',
-            options: getFileLoaderOptions(
-              appDir,
-              isDev,
-              true
-            ),
           },
         ],
       },
@@ -130,7 +100,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new MiniCssExtractWebpackPlugin({
-      filename: 'dist/helsenorge-designsystem.min.css'
-    })
-  ]
+      filename: 'dist/helsenorge-designsystem.min.css',
+    }),
+  ],
 };
