@@ -55,6 +55,51 @@ module.exports = {
           },
         ]
       },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        issuer: issuerForJsTsFiles,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: getBabelPresets(
+                getDefaultBabelPresetOptions(
+                  true,
+                  isDev
+                ),
+                undefined
+              ),
+            },
+          },
+          {
+            loader: '@svgr/webpack',
+            options: { babel: false },
+          },
+          {
+            loader: 'file-loader',
+            options: getFileLoaderOptions(
+              appDir,
+              isDev,
+              false
+            ),
+          },
+        ],
+      },
+      // For everything else, we use file-loader only
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        issuer: issuerForNonJsTsFiles,
+        use: [
+          {
+            loader: 'file-loader',
+            options: getFileLoaderOptions(
+              appDir,
+              isDev,
+              true
+            ),
+          },
+        ],
+      },
     ],
   },
   resolve: {

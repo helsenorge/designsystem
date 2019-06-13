@@ -10,40 +10,36 @@ interface ProgressBarProps extends React.HTMLProps<HTMLDivElement> {
   formatValue?: (value: number) => string;
 }
 
-function ProgressBar({
-  min = 0,
-  max = 100,
-  value,
-  formatValue = value => `${value}`,
-  ...restProps
-}: ProgressBarProps): JSX.Element {
-  const [percentage, formattedValue] = useCalculatePercentageAndFormatValue({min, max, value});
+const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
+  ({min = 0, max = 100, value, formatValue = value => `${value}`, ...restProps}, ref): JSX.Element => {
+    const [percentage, formattedValue] = useCalculatePercentageAndFormatValue({min, max, value});
 
-  function isValueInside(): boolean {
-    return percentage >= 50;
-  }
+    function isValueInside(): boolean {
+      return percentage >= 50;
+    }
 
-  function isComplete(): boolean {
-    return percentage >= 100;
-  }
+    function isComplete(): boolean {
+      return percentage >= 100;
+    }
 
-  const indicatorClasses = cn(styles['progress-bar__indicator'], {
-    [styles['progress-bar__indicator--complete']]: isComplete(),
-  });
+    const indicatorClasses = cn(styles['progress-bar__indicator'], {
+      [styles['progress-bar__indicator--complete']]: isComplete(),
+    });
 
-  const valueClasses = cn(
-    styles['progress-bar__indicator__value'],
-    {[styles['progress-bar__indicator__value--inside']]: isValueInside()},
-    {[styles['progress-bar__indicator__value--outside']]: !isValueInside()},
-  );
+    const valueClasses = cn(
+      styles['progress-bar__indicator__value'],
+      {[styles['progress-bar__indicator__value--inside']]: isValueInside()},
+      {[styles['progress-bar__indicator__value--outside']]: !isValueInside()},
+    );
 
-  return (
-    <div className={styles['progress-bar']}>
-      <div className={indicatorClasses} style={{width: `${percentage}%`}}>
-        <div className={valueClasses}>{formatValue(formattedValue)}</div>
+    return (
+      <div ref={ref} className={styles['progress-bar']}>
+        <div className={indicatorClasses} style={{width: `${percentage}%`}}>
+          <div className={valueClasses}>{formatValue(formattedValue)}</div>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  },
+);
 
 export {ProgressBar};

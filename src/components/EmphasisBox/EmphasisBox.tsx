@@ -13,20 +13,22 @@ interface EmphasisBoxProps extends React.HTMLProps<HTMLDivElement> {
   color?: EmphasisBoxColors;
 }
 
-function EmphasisBox({children, color, ...restProps}: EmphasisBoxProps): JSX.Element {
-  const classes = cn(
-    styles['emphasis-box'],
-    {[styles['emphasis-box--green']]: color === EmphasisBoxColors.Green},
-    {[styles['emphasis-box--grey']]: color === EmphasisBoxColors.Grey},
-    {[styles['emphasis-box--blue']]: color === EmphasisBoxColors.Blue},
-  );
+const EmphasisBox = React.forwardRef<HTMLDivElement, EmphasisBoxProps>(
+  ({children, color, ...restProps}, ref): JSX.Element => {
+    const classes = cn(
+      styles['emphasis-box'],
+      {[styles['emphasis-box--green']]: color === EmphasisBoxColors.Green},
+      {[styles['emphasis-box--grey']]: color === EmphasisBoxColors.Grey},
+      {[styles['emphasis-box--blue']]: color === EmphasisBoxColors.Blue},
+    );
 
-  return (
-    <div className={classes} {...restProps}>
-      {children}
-    </div>
-  );
-}
+    return (
+      <div ref={ref} className={classes} {...restProps}>
+        {children}
+      </div>
+    );
+  },
+);
 
 type EmphasisBoxColors = (typeof EmphasisBoxColors)[keyof typeof EmphasisBoxColors];
 

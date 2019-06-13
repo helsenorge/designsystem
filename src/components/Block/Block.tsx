@@ -8,14 +8,15 @@ interface BlockProps extends React.HTMLProps<HTMLDivElement> {
   noPadding?: boolean;
 }
 
-function Block({isNew, noPadding, children, ...restProps}: BlockProps): JSX.Element {
-  const classes = cn(styles['block'], {[styles['block--new']]: isNew}, {[styles['block--no-padding']]: noPadding});
-
-  return (
-    <div className={classes} {...restProps}>
-      {children}
-    </div>
-  );
-}
+const Block = React.forwardRef<HTMLDivElement, BlockProps>(
+  ({isNew, noPadding, children, ...restProps}, ref): JSX.Element => {
+    const classes = cn(styles['block'], {[styles['block--new']]: isNew}, {[styles['block--no-padding']]: noPadding});
+    return (
+      <div ref={ref} className={classes} {...restProps}>
+        {children}
+      </div>
+    );
+  },
+);
 
 export {Block};

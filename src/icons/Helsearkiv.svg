@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>Helsearkiv</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Helsearkiv" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M14,21 L50,21 L50,14 L14,14 L14,21 Z M17,50 L47,50 L47,25 L17,25 L17,50 Z M52,10 L12,10 C10.895,10 10,10.895 10,12 L10,25 L13,25 L13,52 C13,53.1 13.9,54 15,54 L49,54 C50.1,54 51,53.1 51,52 L51,25 L54,25 L54,12 C54,10.895 53.105,10 52,10 L52,10 Z M27.5,32 L36.5,32 C37.329,32 38,31.328 38,30.5 C38,29.671 37.329,29 36.5,29 L27.5,29 C26.672,29 26,29.671 26,30.5 C26,31.328 26.672,32 27.5,32 L27.5,32 Z" id="Icon_Mitt-helsearkiv" fill="#000000"></path>
+    </g>
+</svg>
