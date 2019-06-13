@@ -2,7 +2,7 @@
 node_modules
 .vscode
 *.log*
-lib
+dist
 types
 coverage
 propertyReferences.json

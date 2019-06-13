@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "outDir": "lib",
+    "outDir": "dist",
     "module": "esnext",
-    "target": "esnext",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "sourceMap": true,
     "allowJs": false,
@@ -25,8 +25,8 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["jest", "node", "react"]
+    "types": ["jest", "node", "react"],
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "scripts"]
+  "exclude": ["node_modules", "scripts", "./src/components/unfinished"]
 }

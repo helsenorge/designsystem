@@ -1,0 +1,241 @@
+@import '../../../utils/variables';
+
+/* _atom_messagebox */
+
+/*  HTML Structure
+  <div class="atom_messagebox_v2 full-bleed lvl1 alert">
+    <div class="content-wrapper">
+      <div class="content">
+        <div>
+          <h4 class="atom_messagebox__heading" id="2624d25b-37c5-466d-a95e-c42b48ed36bf" tabindex="-1">Tittel</h4>
+          <p>Lorem ipsum dolor sit amet, no debet mundi sapientem per, alia concludaturqu</p>
+          <span/>
+        </div>
+      </div>
+    </div>
+    <div class="children-wrapper"></div>
+  </div>
+*/
+
+.atom_messagebox_v2 {
+  .content-wrapper,
+  .children-wrapper {
+    padding: 1rem 1rem 1rem 3.125rem;
+  }
+
+  .atom_messagebox_v2__heading {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    margin: 0;
+    padding: 0;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  &.lvl1 .atom_messagebox_v2__heading {
+    font-weight: 500;
+    padding-bottom: 0.5rem;
+  }
+
+  &.lvl2 .atom_messagebox_v2__heading {
+    font-weight: 400;
+  }
+
+  p {
+    padding-bottom: 0;
+    line-height: 1.5rem;
+  }
+
+  .atom_messagebox_v2__heading + p,
+  p:first-child {
+    padding-top: 0;
+  }
+
+  .content {
+    position: relative;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -2rem;
+      width: 1.375rem;
+      height: 1.375rem;
+      background-size: 1.375rem;
+    }
+  }
+
+  &.error .content-wrapper {
+    background-color: $color-primary-9;
+    border: 1px solid $color-error-border;
+
+    .content:before {
+      background-image: url('./../../../img/icons/icon_alert_error_lvl1.svg');
+    }
+  }
+
+  &.info .content-wrapper,
+  &.success .content-wrapper,
+  &.thirdparty .content-wrapper {
+    background-color: $color-info-fill;
+    border: 1px solid $color-info-border;
+
+    .content:before {
+      background-image: url('./../../../img/icons/icon_alert_info_lvl3.svg');
+    }
+  }
+
+  &.success .content-wrapper .content:before {
+    background-image: url('./../../../img/icons/icon_alert_success_lvl1.svg');
+  }
+
+  &.alert .content-wrapper {
+    background-color: $color-alert-fill;
+    border: 1px solid $color-alert-border;
+
+    .content:before {
+      background-image: url('./../../../img/icons/icon_alert_alert_lvl1.svg');
+    }
+  }
+
+  &.full-bleed .content {
+    margin: 0 auto;
+  }
+
+  &.has-close-button .content {
+    padding-right: 2rem;
+  }
+
+  .atom_inline-btn.close {
+    top: 0;
+    right: 0;
+    position: absolute;
+    min-height: 1.5rem;
+    min-width: 1.5rem;
+
+    &:after {
+      background-size: 1.275rem;
+      width: 1.275rem;
+      height: 1.275rem;
+    }
+
+    span {
+      margin: 0;
+    }
+  }
+
+  .errortimestamp {
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+
+  &.with-expander {
+    min-height: 7rem;
+
+    .content {
+      word-break: break-word;
+      -ms-word-break: break-all;
+
+      .atom_inline-navigationbutton {
+        display: block;
+        padding-right: 2rem;
+        padding-left: 0;
+        line-height: 1.2rem;
+        background-color: transparent;
+
+        @media only screen and (min-width: $two-to-three-col) {
+          bottom: 1.35rem;
+        }
+
+        &:hover {
+          color: $color-primary-5-5;
+        }
+
+        &:hover:after {
+          color: $color-primary-5-5;
+        }
+      }
+    }
+  }
+
+  .children-wrapper {
+    background-color: white;
+    border: 1px solid $color-base-4-5;
+    border-top: 0;
+  }
+}
+
+/* ******************************************************************** */
+
+/* Landscape-oriented mobiles and portrait-oriented tablets. Two columns. */
+@media only screen and (min-width: $one-to-two-col) {
+  .atom_messagebox_v2 {
+    &.full-bleed .content {
+      width: $two-col;
+    }
+
+    &.with-expander {
+      min-height: 7.5rem;
+
+      .content {
+        .atom_inline-navigationbutton {
+          display: inline-block;
+          position: relative;
+          margin: 0;
+          padding-right: 2rem;
+          padding-left: 0.8rem;
+          line-height: 1.2rem;
+          background-color: transparent;
+          bottom: 0;
+        }
+
+        p:last-of-type {
+          display: inline;
+        }
+      }
+    }
+
+    .errortimestamp {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+/******************************************************************** */
+
+/* Narrow desktops and landscape-oriented tablets. Three columns. */
+@media only screen and (min-width: $two-to-three-col) {
+  .atom_messagebox_v2 {
+    &.full-bleed .content {
+      width: $three-col;
+    }
+
+    &.with-expander {
+      min-height: 0;
+    }
+  }
+}
+
+/* ******************************************************************* */
+
+/* Typical desktops. Four columns. */
+@media only screen and (min-width: $three-to-four-col) {
+  .atom_messagebox_v2.full-bleed .content {
+    width: $four-col;
+  }
+}
+
+/* ******************************************************************* */
+
+@media print {
+  .atom_messagebox_v2 {
+    page-break-inside: avoid;
+
+    &.full-bleed {
+      display: none;
+    }
+  }
+}

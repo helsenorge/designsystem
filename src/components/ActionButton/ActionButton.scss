@@ -1,0 +1,53 @@
+@import '../../styling/colors';
+
+.action-button {
+  cursor: pointer;
+  font-size: 1.125rem;
+  letter-spacing: 0.03125em;
+  padding: 0.65rem 1.5rem 0.55rem;
+  border-radius: 1.5rem;
+  appearance: none;
+  &:disabled {
+    pointer-events: none;
+    background-color: $disabled;
+  }
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+    border: 3px solid transparent;
+    &:focus,
+    &:hover {
+      background-color: $primary-color-hover;
+      box-shadow: 0 0 0 4px $outline;
+      outline: none;
+    }
+  }
+  &--secondary {
+    background-color: transparent;
+    border: 3px solid $primary-color;
+    color: $primary-color;
+    &:focus,
+    &:hover {
+      border: 3px solid $primary-color-hover;
+      box-shadow: 0 0 0 4px $outline;
+      color: $primary-color-hover;
+    }
+    &:disabled {
+      border: 3px solid $disabled-text;
+      color: $disabled-text;
+    }
+  }
+  &--tertiary {
+    color: primary-color;
+    border: none;
+    border: 3px solid transparent;
+    &:focus,
+    &:hover {
+      box-shadow: 0 0 0 4px $outline;
+      outline: none;
+    }
+    &:disabled {
+      color: $disabled-text;
+    }
+  }
+}

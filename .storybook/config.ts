@@ -6,4 +6,14 @@ function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
 
+import { addParameters } from '@storybook/react'; // <- or your storybook framework
+ 
+addParameters({
+  backgrounds: [
+    { name: 'white', value: 'white', default: true },
+    { name: 'black', value: 'black' },
+    { name: 'light-grey', value: 'lightgrey' },
+  ],
+});
+
 configure(loadStories, module);
