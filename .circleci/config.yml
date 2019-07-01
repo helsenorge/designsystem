@@ -60,7 +60,7 @@ jobs:
           command: |
             if git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$";
             then
-              echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+              echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN\n//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > .npmrc
               npm publish --tag dev
             else
               echo "Not tagged, skipping release"
