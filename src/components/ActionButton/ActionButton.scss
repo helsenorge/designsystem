@@ -14,7 +14,7 @@
   &--primary {
     background-color: $primary-color;
     color: white;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     &:focus,
     &:hover {
       background-color: $primary-color-hover;
@@ -24,23 +24,23 @@
   }
   &--secondary {
     background-color: transparent;
-    border: 3px solid $primary-color;
+    border: 2px solid $primary-color;
     color: $primary-color;
     &:focus,
     &:hover {
-      border: 3px solid $primary-color-hover;
+      border: 2px solid $primary-color-hover;
       box-shadow: 0 0 0 4px $outline;
       color: $primary-color-hover;
     }
     &:disabled {
-      border: 3px solid $disabled-text;
+      border: 2px solid $disabled-text;
       color: $disabled-text;
     }
   }
   &--tertiary {
     color: primary-color;
     border: none;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     &:focus,
     &:hover {
       box-shadow: 0 0 0 4px $outline;
