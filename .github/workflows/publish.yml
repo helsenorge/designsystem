@@ -5,7 +5,7 @@ on:
     branches:
       - develop
     tags:
-      - 0.0.1-dev.*
+      - v0.0.1-dev.*
 
 jobs:
   build:
