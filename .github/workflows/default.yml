@@ -3,7 +3,7 @@ name: Build & Test
 on: [pull_request]
 
 jobs:
-  build-test:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -13,7 +13,3 @@ jobs:
       run: yarn build
     - name: Run tests
       run: yarn test
-    - name: Upload test coverage to Codecov
-      uses: codecov/codecov-action@v1.0.0
-      with:
-        token: ${{secrets.CODECOV_TOKEN}}
