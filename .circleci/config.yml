@@ -58,13 +58,13 @@
 #       - run:
 #           name: Check for valid tag and publish
 #           command: |
-#             if git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$";
-#             then
-#               echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-#               npm publish --tag dev
-#             else
-#               echo "Not tagged, skipping release"
-#             fi
+            # if git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$";
+            # then
+            #   echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+            #   npm publish --tag dev
+            # else
+            #   echo "Not tagged, skipping release"
+            # fi
 
 # workflows:
 #   version: 2

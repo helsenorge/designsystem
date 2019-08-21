@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - develop
-    tags:
-      - v0.0.1-dev.*
 
 jobs:
   build:
@@ -35,7 +33,9 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm publish --tag dev --dry-run
+      - name: Publish to NPM
+        if: git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$"
+        run: npm publish --tag dev --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
@@ -49,6 +49,8 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '@helsenorge'
-      - run: npm publish --tag dev --dry-run
+      - name: Publish to GHP
+        if: git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$"
+        run: npm publish --tag dev --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
