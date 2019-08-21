@@ -35,14 +35,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: ls
       - name: Publish to NPM
-        run:
-          sh: |
-            if git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$";
-            then
-              npm publish --tag dev --dry-run
-            else
-              echo "Not tagged, skipping release"
-            fi
+        run: ./.github/workflows/publish.sh
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
