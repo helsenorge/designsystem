@@ -34,7 +34,7 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - name: Publish to NPM
-        if: git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$"
+        if: ${{git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$"}}
         run: npm publish --tag dev --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
@@ -50,7 +50,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@helsenorge'
       - name: Publish to GHP
-        if: git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$"
+        if: ${{git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$"}}
         run: npm publish --tag dev --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
