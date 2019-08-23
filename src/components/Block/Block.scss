@@ -1,18 +1,16 @@
-@import '../../styling/old-variables';
-
-.block {
-  background-color: $color-base-0;
-  padding: 1.5rem;
-  @media only screen and (min-width: $one-to-two-col) {
-    padding: 1.75rem 2rem;
-  }
-  &--new {
-    border-left: 0.25rem solid $color-primary-5;
-  }
-  &--no-padding {
-    padding: 0;
-    @media only screen and (min-width: $one-to-two-col) {
-      padding: 0;
-    }
-  }
-}
+// .block {
+//   background-color: $color-base-0;
+//   padding: 1.5rem;
+//   @media only screen and (min-width: $one-to-two-col) {
+//     padding: 1.75rem 2rem;
+//   }
+//   &--new {
+//     border-left: 0.25rem solid $color-primary-5;
+//   }
+//   &--no-padding {
+//     padding: 0;
+//     @media only screen and (min-width: $one-to-two-col) {
+//       padding: 0;
+//     }
+//   }
+// }
