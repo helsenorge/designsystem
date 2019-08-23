@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem",
   "version": "0.0.1-dev.11",
-  "main": "./dist/",
+  "main": "./dist/js/index.js",
   "repository": "https://github.com/Helsenorge/designsystem.git",
   "homepage": "https://design.helsenorge.io",
   "description": "The official design system for Helsenorge.",
@@ -24,8 +24,7 @@
   },
   "scripts": {
     "build": "yarn clean && NODE_ENV=production rollup -c --environment BUILD:production",
-    "build:lib": "yarn clean && NODE_ENV=production webpack --mode=production --progress --colors && yarn bundle-ts",
-    "bundle-ts": "yarn dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
+    "build:dts": "tsc -d && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
     "bundle-analyze": "webpack --profile --json > bundle-stats.json && webpack-bundle-analyzer ./bundle-stats.json",
     "clean": "rimraf dist types",
     "format": "npm run prettier -- --write",
@@ -46,6 +45,7 @@
       "pre-commit": "lint-staged"
     }
   },
+  "module": "./dist/js/index.esm.js",
   "source": "src/index.ts",
   "files": [
     "dist/**/*"
@@ -92,6 +92,7 @@
     "css-loader": "^2.1.1",
     "dts-bundle": "^0.7.3",
     "dts-bundle-generator": "^3.1.0",
+    "dts-gen": "^0.5.8",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-react": "^7.13.0",
@@ -122,11 +123,14 @@
     "rollup-plugin-buble": "^0.19.8",
     "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-copy": "^3.1.0",
+    "rollup-plugin-dts": "^1.1.6",
+    "rollup-plugin-exec": "^0.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-progress": "^1.1.1",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-sizes": "^0.5.1",
+    "rollup-plugin-typescript2": "^0.23.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "svg-inline-loader": "^0.8.0",

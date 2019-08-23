@@ -4,14 +4,12 @@ import commonjs from 'rollup-plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import buble from 'rollup-plugin-buble';
 import progress from 'rollup-plugin-progress';
+import dts from 'rollup-plugin-dts';
 import sizes from 'rollup-plugin-sizes';
-// import sass from 'rollup-plugin-sass';
 import sass from 'node-sass';
 import autoprefixer from 'autoprefixer';
 import copy from 'rollup-plugin-copy';
 import pkg from './package.json';
-
-const isProd = process.env.NODE_ENV === 'production';
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
@@ -21,16 +19,16 @@ const globals = {
 };
 
 export default {
-  input: './src/index.ts',
+  input: pkg.source,
   output: [
     {
-      file: './dist/js/index.js',
+      file: pkg.main,
       format: 'umd',
       name: 'workingConfig',
       globals,
       sourcemap: true,
     },
-    {file: './dist/js/index.es.js', format: 'es', globals, sourcemap: true},
+    {file: pkg.module, format: 'es', globals, sourcemap: true},
   ],
   plugins: [
     progress({

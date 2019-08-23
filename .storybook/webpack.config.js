@@ -1,9 +1,8 @@
 const path = require('path');
 
-
 const pathToInlineSvg = path.resolve(__dirname, '../src/images');
 
-module.exports = (config) => {
+module.exports = config => {
   const rules = config.config.module.rules;
 
   // modify storybook's file-loader rule to avoid conflicts with svgr
@@ -11,9 +10,9 @@ module.exports = (config) => {
   // fileLoaderRule.exclude = pathToInlineSvg;
   const svgWorkaround = config.config.module.rules.find(rule => rule.test.test('.svg'));
   svgWorkaround.exclude = /\.svg$/;
-//   const svgLoader = config.config.module.rules
-//   .find((r) => r.loader && r.loader.indexOf('svg-url-loader') !== -1);
-// svgLoader.query = {noquotes: true};
+  //   const svgLoader = config.config.module.rules
+  //   .find((r) => r.loader && r.loader.indexOf('svg-url-loader') !== -1);
+  // svgLoader.query = {noquotes: true};
   config.config.module.rules.push(
     {
       test: /\.(ts|tsx)$/,
@@ -33,28 +32,28 @@ module.exports = (config) => {
       test: /\.(css|sass|scss)$/,
       use: [
         {
-          loader: require.resolve('style-loader')
+          loader: require.resolve('style-loader'),
         },
         {
           loader: require.resolve('css-loader'),
           options: {
             importLoaders: 1,
             modules: true,
-            localIdentName: '[local]'
-          }
+            localIdentName: '[local]',
+          },
         },
         {
-          loader: require.resolve('sass-loader')
-        }
-      ]
+          loader: require.resolve('sass-loader'),
+        },
+      ],
     },
     {
       test: /\.(svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: "file-loader",
+      loader: 'file-loader',
       options: {
-        name: '[name].[ext]'
+        name: '[name].[ext]',
       },
-    }
+    },
   );
   config.config.resolve.extensions.push('.ts', '.tsx');
   return config.config;
