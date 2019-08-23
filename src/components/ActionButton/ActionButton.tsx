@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import React from 'react';
 import {ButtonVariants} from '../../constants';
-import styles from './ActionButton.scss';
+import './ActionButton.scss';
 
 interface ActionButtonProps extends React.HTMLProps<HTMLButtonElement> {
   children: React.ReactNode;
@@ -12,10 +12,10 @@ interface ActionButtonProps extends React.HTMLProps<HTMLButtonElement> {
 const ActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProps>(
   ({children, variant = ButtonVariants.Primary, ...restProps}, ref): JSX.Element => {
     const classes = cn(
-      styles['action-button'],
-      {[styles['action-button--primary']]: variant === ButtonVariants.Primary},
-      {[styles['action-button--secondary']]: variant === ButtonVariants.Secondary},
-      {[styles['action-button--tertiary']]: variant === ButtonVariants.Tertiary},
+      'action-button',
+      {'action-button--primary': variant === ButtonVariants.Primary},
+      {'action-button--secondary': variant === ButtonVariants.Secondary},
+      {'action-button--tertiary': variant === ButtonVariants.Tertiary},
     );
 
     return (

@@ -1,1 +1,0 @@
-export {ButtonWithLogos} from './ButtonWithLogos';
