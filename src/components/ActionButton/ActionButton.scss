@@ -2,52 +2,41 @@
 
 .action-button {
   cursor: pointer;
-  font-size: 2.125rem;
-  letter-spacing: 0.03125em;
-  padding: 0.65rem 1.5rem 0.55rem;
-  border-radius: 1.5rem;
+  font-size: 1.5rem;
+  padding: 0.75rem 2rem;
   appearance: none;
+  outline: none;
   &:disabled {
     pointer-events: none;
-    background-color: #cccccc;
+    background-color: #216779;
+    color: #3b8a99;
   }
   &--primary {
-    background-color: #cccccc;
-    color: white;
-    border: 2px solid transparent;
+    background-color: #023d52;
+    color: #15cb90;
+    border: 3px solid transparent;
+    transition: all 250ms;
     &:focus,
     &:hover {
-      background-color: #cccccc;
-      box-shadow: 0 0 0 4px #cccccc;
-      outline: none;
+      border: 3px solid #4bf2c0;
+      color: #4bf2c0;
     }
   }
   &--secondary {
     background-color: transparent;
-    border: 2px solid #cccccc;
-    color: #cccccc;
+    border: 3px solid #023d52;
+    color: #023d52;
+    transition: all 250ms;
     &:focus,
     &:hover {
-      border: 2px solid #cccccc;
-      box-shadow: 0 0 0 4px #cccccc;
-      color: #cccccc;
+      border: 3px solid transparent;
+      background: #023d52;
+      color: #4bf2c0;
     }
     &:disabled {
-      border: 2px solid #cccccc;
-      color: #cccccc;
-    }
-  }
-  &--tertiary {
-    color: #cccccc;
-    border: none;
-    border: 2px solid transparent;
-    &:focus,
-    &:hover {
-      box-shadow: 0 0 0 4px #cccccc;
-      outline: none;
-    }
-    &:disabled {
-      color: #cccccc;
+      border: 3px solid #3b8a99;
+      background-color: transparent;
+      color: #3b8a99;
     }
   }
 }

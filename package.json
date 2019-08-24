@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem",
   "version": "0.0.1-dev.12",
-  "main": "./dist/js/index.js",
+  "main": "./dist/js/helsenorge.js",
   "repository": "https://github.com/Helsenorge/designsystem.git",
   "homepage": "https://design.helsenorge.io",
   "description": "The official design system for Helsenorge.",
@@ -24,7 +24,7 @@
   },
   "scripts": {
     "build": "yarn clean && NODE_ENV=production rollup -c --environment BUILD:production && yarn build:dts",
-    "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
+    "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/indexs.d.ts ./types/index.d.ts",
     "bundle-analyze": "webpack --profile --json > bundle-stats.json && webpack-bundle-analyzer ./bundle-stats.json",
     "clean": "rimraf dist types",
     "format": "npm run prettier -- --write",
@@ -45,7 +45,7 @@
       "pre-commit": "lint-staged"
     }
   },
-  "module": "./dist/js/index.esm.js",
+  "module": "./dist/js/helsenorge.esm.js",
   "source": "src/index.ts",
   "files": [
     "dist/**/*"
