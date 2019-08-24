@@ -15,7 +15,6 @@ const ActionButton = React.forwardRef<HTMLButtonElement, ActionButtonProps>(
       'action-button',
       {'action-button--primary': variant === ButtonVariants.Primary},
       {'action-button--secondary': variant === ButtonVariants.Secondary},
-      {'action-button--tertiary': variant === ButtonVariants.Tertiary},
     );
 
     return (

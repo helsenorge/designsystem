@@ -1,15 +1,15 @@
 name: Build & Test
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Install dependencies
-      run: yarn install
-    - name: Build pattern library
-      run: yarn build
-    - name: Run tests
-      run: yarn test
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: yarn install
+      - name: Build pattern library
+        run: yarn build
+      - name: Run tests
+        run: yarn test
