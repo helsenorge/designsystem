@@ -57,7 +57,7 @@ export default {
       extensions: ['.scss'],
     }),
     copy({
-      targets: [{src: 'src/styling/**/*.scss', dest: './dist/scss'}],
+      targets: [{src: 'src/styling/*', dest: './dist/scss'}],
     }),
     buble(),
     sizes(),
