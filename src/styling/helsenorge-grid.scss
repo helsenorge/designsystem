@@ -11,6 +11,7 @@
 
 html {
   box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
 }
 
 *,
@@ -19,54 +20,14 @@ html {
   box-sizing: inherit;
 }
 
-@import 'bootstrap-grid/functions';
-@import 'bootstrap-grid/variables';
+@import 'bootstrap-grid-4.3.1/functions';
+@import 'bootstrap-grid-4.3.1/variables';
 
-@import 'bootstrap-grid/mixins/breakpoints';
-@import 'bootstrap-grid/mixins/grid-framework';
-@import 'bootstrap-grid/mixins/grid';
-@import 'bootstrap-grid/mixins/utilities';
+@import 'bootstrap-grid-4.3.1/mixins/breakpoints';
+@import 'bootstrap-grid-4.3.1/mixins/grid-framework';
+@import 'bootstrap-grid-4.3.1/mixins/grid';
 
-@import 'bootstrap-grid/grid';
-
-@import 'bootstrap-grid/utilities';
-// Only use the utilities we need
-// stylelint-disable-next-line scss/dollar-variable-default
-$utilities: map-get-multiple(
-  $utilities,
-  (
-    'display',
-    'order',
-    'flex',
-    'flex-direction',
-    'flex-grow',
-    'flex-shrink' 'flex-wrap',
-    'justify-content',
-    'align-items',
-    'align-content',
-    'align-self',
-    'margin',
-    'margin-x',
-    'margin-y',
-    'margin-top',
-    'margin-right',
-    'margin-bottom',
-    'margin-left',
-    'negative-margin',
-    'negative-margin-x',
-    'negative-margin-y',
-    'negative-margin-top',
-    'negative-margin-right',
-    'negative-margin-bottom',
-    'negative-margin-left',
-    'padding',
-    'padding-x',
-    'padding-y',
-    'padding-top',
-    'padding-right',
-    'padding-bottom',
-    'padding-left'
-  )
-);
-
-@import 'bootstrap-grid/utilities/api';
+@import 'bootstrap-grid-4.3.1/grid';
+@import 'bootstrap-grid-4.3.1/utilities/display';
+@import 'bootstrap-grid-4.3.1/utilities/flex';
+@import 'bootstrap-grid-4.3.1/utilities/spacing';
