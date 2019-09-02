@@ -20,14 +20,14 @@ html {
   box-sizing: inherit;
 }
 
-@import 'bootstrap-grid-4.3.1/functions';
-@import 'bootstrap-grid-4.3.1/variables';
+@import 'bootstrap-grid/functions';
+@import 'bootstrap-grid/variables';
 
-@import 'bootstrap-grid-4.3.1/mixins/breakpoints';
-@import 'bootstrap-grid-4.3.1/mixins/grid-framework';
-@import 'bootstrap-grid-4.3.1/mixins/grid';
+@import 'bootstrap-grid/mixins/breakpoints';
+@import 'bootstrap-grid/mixins/grid-framework';
+@import 'bootstrap-grid/mixins/grid';
 
-@import 'bootstrap-grid-4.3.1/grid';
-@import 'bootstrap-grid-4.3.1/utilities/display';
-@import 'bootstrap-grid-4.3.1/utilities/flex';
-@import 'bootstrap-grid-4.3.1/utilities/spacing';
+@import 'bootstrap-grid/grid';
+@import 'bootstrap-grid/utilities/display';
+@import 'bootstrap-grid/utilities/flex';
+@import 'bootstrap-grid/utilities/spacing';
