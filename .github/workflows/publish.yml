@@ -21,7 +21,7 @@ jobs:
       - name: Publish to NPM
         run: ./.github/workflows/publish.sh
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -30,4 +30,4 @@ jobs:
       - name: Publish to GPR
         run: ./.github/workflows/publish.sh
         env:
-          NODE_AUTH_TOKEN: ${{secrets.github_token}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
