@@ -17,13 +17,10 @@ jobs:
       - name: Ref
         run: echo ${{github.ref}}
       - name: Install dependencies
-        if: ${{git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$"}}
         run: yarn install
-      # - name: Build pattern library
-      #   if: contains(github.ref, 'v0.0.1-dev')
-      #   run: yarn build
-      # - name: Publish to NPM
-      #   if: contains(github.ref, 'v0.0.1-dev')
-      #   run: ./.github/workflows/publish.sh
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - name: Build pattern library
+        run: yarn build
+      - name: Publish to NPM
+        run: ./.github/workflows/publish.sh
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
