@@ -17,7 +17,7 @@ jobs:
       - name: Ref
         run: echo ${{github.ref}}
       - name: Install dependencies
-        if: git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$"
+        if: ${{git describe --tags | grep -E "^v0.0.1-dev.[0-9]{1,}[[:cntrl:]]*$"}}
         run: yarn install
       # - name: Build pattern library
       #   if: contains(github.ref, 'v0.0.1-dev')
