@@ -10,17 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
       - name: Ref
         run: echo ${{github.ref}}
       - name: Install dependencies
         run: yarn install
       - name: Build pattern library
         run: yarn build
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
       - name: Publish to NPM
         run: ./.github/workflows/publish.sh
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: "@helsenorge"
+        run: ./.github/workflows/publish.sh
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.github_token}}
