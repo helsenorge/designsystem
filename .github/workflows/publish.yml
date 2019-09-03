@@ -6,10 +6,22 @@ on:
       - develop
 
 jobs:
-  build:
+  publish-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Testing stuff out
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - name: Install dependencies
         if: contains(github.ref, 'refs/tags/*dev.*')
-        run: echo "This is a test!"
+        run: yarn install
+      - name: Build pattern library
+        if: contains(github.ref, 'refs/tags/*dev.*')
+        run: yarn build
+      - name: Publish to NPM
+        if: contains(github.ref, 'refs/tags/*dev.*')
+        run: ./.github/workflows/publish.sh
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
