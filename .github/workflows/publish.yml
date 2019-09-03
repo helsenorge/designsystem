@@ -15,7 +15,7 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - name: Ref
-        run: echo ${{github.ref}}
+        run: echo github.ref
       - name: Install dependencies
         if: contains(github.ref, 'v0.0.1-dev')
         run: yarn install
