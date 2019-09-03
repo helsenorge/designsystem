@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Ref
-        run: echo ${{github.ref}}
       - name: Install dependencies
         run: yarn install
       - name: Build pattern library
