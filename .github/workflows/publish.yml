@@ -15,10 +15,13 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - name: Install dependencies
+        if: contains(github.ref, 'refs/tags/*dev.*')
         run: yarn install
       - name: Build pattern library
+        if: contains(github.ref, 'refs/tags/*dev.*')
         run: yarn build
       - name: Publish to NPM
+        if: contains(github.ref, 'refs/tags/*dev.*')
         run: ./.github/workflows/publish.sh
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
