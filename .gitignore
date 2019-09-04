@@ -7,3 +7,4 @@ types
 coverage
 propertyReferences.json
 bundle-stats.json
+.npmrc
