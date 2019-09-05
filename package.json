@@ -1,6 +1,6 @@
 {
   "name": "@helsenorge/designsystem",
-  "version": "0.0.1-dev.15",
+  "version": "0.0.1-dev.16",
   "main": "./dist/js/helsenorge.js",
   "repository": "https://github.com/Helsenorge/designsystem.git",
   "homepage": "https://design.helsenorge.io",
