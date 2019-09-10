@@ -29,7 +29,7 @@ jobs:
           scope: "@helsenorge"
       - name: Publish to GPR
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+          echo "//https://npm.pkg.github.com/:_authToken=${NPM_TOKEN}" > .npmrc
           ./.github/workflows/publish.sh
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
