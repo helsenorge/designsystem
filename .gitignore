@@ -8,3 +8,4 @@ coverage
 propertyReferences.json
 bundle-stats.json
 .npmrc
+package-lock.json
