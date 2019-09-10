@@ -3,7 +3,8 @@ import React from 'react';
 import {ButtonVariants} from '../../constants';
 import './ActionButton.scss';
 
-interface ActionButtonProps extends React.HTMLProps<HTMLButtonElement> {
+interface ActionButtonProps
+  extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children: React.ReactNode;
   onClick?: () => void;
   variant?: ActionButtonVariants;
