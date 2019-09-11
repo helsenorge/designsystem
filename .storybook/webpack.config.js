@@ -39,6 +39,9 @@ module.exports = config => {
         },
         {
           loader: require.resolve('sass-loader'),
+          options: {
+            sourceMap: true,
+          },
         },
       ],
     },
