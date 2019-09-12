@@ -1,9 +1,7 @@
-import {boolean, select, text, withKnobs} from '@storybook/addon-knobs';
-import {storiesOf} from '@storybook/react';
+// import {withKnobs} from '@storybook/addon-knobs';
+import {storiesOf} from '@storybook/html';
 
 const stories = storiesOf('Buttons', module);
-stories.addDecorator(withKnobs);
+// stories.addDecorator(withKnobs);
 
-stories.add('action-button', (): JSX.Element => (
-  <hnds-action-button>Hello world!</hnds-action-button>
-));
+stories.add('action-button', () => `<hnds-action-button>Hello world!</hnds-action-button>`);

@@ -1,4 +1,4 @@
-import {configure} from '@storybook/react';
+import {configure} from '@storybook/html';
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../stories', true, /\.stories\.tsx$/);
@@ -6,7 +6,7 @@ function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
 
-import { addParameters } from '@storybook/react'; // <- or your storybook framework
+import { addParameters } from '@storybook/html'; // <- or your storybook framework
  
 addParameters({
   backgrounds: [

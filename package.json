@@ -71,7 +71,7 @@
     "@storybook/addon-links": "^5.1.11",
     "@storybook/addon-viewport": "^5.1.11",
     "@storybook/addons": "^5.1.11",
-    "@storybook/react": "5.1.11",
+    "@storybook/html": "^5.1.11",
     "@svgr/cli": "^4.3.2",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.1.4",
@@ -82,11 +82,13 @@
     "@types/react-dom": "^16.9.0",
     "@types/storybook__addon-actions": "^3.4.3",
     "@types/storybook__addon-knobs": "^5.0.3",
+    "@types/storybook__html": "^5.0.2",
     "@types/storybook__react": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.2.0",
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
     "dts-bundle-generator": "^3.2.0",
     "eslint": "^6.3.0",
@@ -122,7 +124,8 @@
     "style-loader": "^1.0.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.6.2",
-    "webpack-bundle-analyzer": "^3.4.1"
+    "webpack-bundle-analyzer": "^3.4.1",
+    "write-file-webpack-plugin": "^4.5.1"
   },
   "dependencies": {
     "classnames": "^2.2.6"

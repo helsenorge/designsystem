@@ -7,6 +7,7 @@
     "sourceMap": true,
     "allowJs": false,
     "jsx": "react",
+    "jsxFactory": "h",
     "strict": true,
     "moduleResolution": "node",
     "rootDirs": ["./src", "./stories"],
@@ -25,7 +26,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["jest", "node", "react"]
+    "types": ["jest", "node"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "scripts"]
