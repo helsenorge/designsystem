@@ -65,6 +65,8 @@
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.6.0",
+    "@stencil/core": "^1.4.0",
+    "@stencil/sass": "^1.0.1",
     "@storybook/addon-actions": "^5.1.11",
     "@storybook/addon-backgrounds": "^5.1.11",
     "@storybook/addon-knobs": "^5.1.11",

@@ -1281,6 +1281,18 @@
   resolved "https://registry.yarnpkg.com/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.2.tgz#8013f2af54a2b7d735f71560ff360d3a8176a87b"
   integrity sha512-vTCdPp/T/Q3oSqwHmZ5Kpa9oI7iLtGl3RQaA/NyLHikvcrPxACkkKVr/XzkSPJWXHRhKGzVvb0urJsbMlRxi1Q==
 
+"@stencil/core@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-1.4.0.tgz#309dbbb9470ed735b642397c12dd082c94e070fc"
+  integrity sha512-/iI87p7XsqE3U96ykx4SSY/btv9jZguI3JkG8RaTNlQipPUmPb0JmLei8sgijTUD/fY5TFuE3L1o8hwLI0rW3A==
+  dependencies:
+    typescript "3.6.2"
+
+"@stencil/sass@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-1.0.1.tgz#9eec7b54029b14ba2f53f540687d91aeed90911a"
+  integrity sha512-3vmF8zir9FcVY/tYW0/V/pWrYSU684eASmALL2v29PGJvX6/CXh9n8LF7Jy95SpJPij3lisIUXLls7edXy2hYg==
+
 "@storybook/addon-actions@^5.1.11":
   version "5.1.11"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.1.11.tgz#ebc299b9dfe476b5c65eb5d148c4b064f682ca08"
@@ -11759,7 +11771,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@>=2.6.1, typescript@^3.6.2:
+typescript@3.6.2, typescript@>=2.6.1, typescript@^3.6.2:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.2.tgz#105b0f1934119dde543ac8eb71af3a91009efe54"
   integrity sha512-lmQ4L+J6mnu3xweP8+rOrUwzmN+MRAj7TgtJtDaXE5PMyX2kCrklhg3rvOsOIfNeAWMQWO2F1GPc1kMD2vLAfw==
