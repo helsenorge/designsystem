@@ -9,3 +9,5 @@ propertyReferences.json
 bundle-stats.json
 .npmrc
 package-lock.json
+www
+src/components.d.ts
