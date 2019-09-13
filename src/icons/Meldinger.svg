@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
-    <title>Meldinger</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Meldinger" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M55,45.286 L40.195,31.299 L55,18.056 L55,45.286 Z M11.021,47 L25.515,33.307 L30.732,37.974 C31.017,38.229 31.374,38.356 31.732,38.356 C32.09,38.356 32.447,38.229 32.732,37.974 L37.95,33.306 L52.445,47 L11.021,47 Z M9,18.534 L23.271,31.299 L9,44.781 L9,18.534 Z M51.68,17 L31.732,34.843 L11.785,17 L51.68,17 Z M57,13 L7,13 C5.9,13 5,13.9 5,15 L5,49 C5,50.099 5.9,51 7,51 L57,51 C58.1,51 59,50.099 59,49 L59,15 C59,13.9 58.1,13 57,13 L57,13 Z" id="Fill-1" fill="#000000"></path>
-    </g>
-</svg>

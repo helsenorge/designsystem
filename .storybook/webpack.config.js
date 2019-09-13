@@ -36,11 +36,6 @@ module.exports = config => {
         },
         {
           loader: require.resolve('css-loader'),
-          options: {
-            importLoaders: 1,
-            modules: true,
-            localIdentName: '[local]',
-          },
         },
         {
           loader: require.resolve('sass-loader'),

@@ -28,6 +28,8 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: "@helsenorge"
       - name: Publish to GPR
-        run: ./.github/workflows/publish.sh
+        run: |
+          echo "//https://npm.pkg.github.com/:_authToken=${NPM_TOKEN}" > .npmrc
+          ./.github/workflows/publish.sh
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
