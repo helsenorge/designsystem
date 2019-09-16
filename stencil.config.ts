@@ -2,8 +2,14 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 
 export const config: Config = {
-  namespace: 'hnds',
+  namespace: 'helsenorge',
   plugins: [sass()],
+  srcDir: 'src/components',
+  hashFileNames: false,
+  globalStyle: 'src/styling/helsenorge.scss',
+  excludeSrc: [
+    'src/icons/**/*'
+  ],
   outputTargets: [
     {
       type: 'dist',

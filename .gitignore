@@ -11,3 +11,5 @@ bundle-stats.json
 package-lock.json
 www
 src/components.d.ts
+.stencil
+loader

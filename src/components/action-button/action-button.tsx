@@ -5,20 +5,22 @@ export type ActionButtonVariant = 'primary' | 'secondary';
 @Component({
   tag: 'hnds-action-button',
   styleUrl: 'action-button.scss',
-  shadow: true,
 })
 export class ActionButton {
   @Prop() variant: ActionButtonVariant = 'primary';
+  @Prop() type?: string = 'button';
+  @Prop() disabled?: boolean = false;
 
   render() {
+    const {variant, type, disabled} = this;
     const classes = {
       'action-button': true,
-      'action-button--primary': this.variant === 'primary',
-      'action-button--secondary': this.variant === 'secondary',
+      'action-button--primary': variant === 'primary',
+      'action-button--secondary': variant === 'secondary',
     };
 
     return (
-      <button class={classes}>
+      <button disabled={disabled} type={type} class={classes}>
         <slot />
       </button>
     );

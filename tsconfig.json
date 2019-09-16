@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "esnext",
-    "target": "es5",
+    "target": "es2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "sourceMap": true,
     "allowJs": false,
@@ -20,9 +20,6 @@
     "esModuleInterop": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "types/",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
