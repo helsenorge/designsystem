@@ -1,11 +1,7 @@
 name: Build & Test
 
 on:
-  push:
-    branches:
-      - "*"
-      - "!develop"
-  pull-request:
+  [push, pull-request]:
     branches:
       - "*"
       - "!develop"
