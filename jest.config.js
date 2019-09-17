@@ -5,8 +5,8 @@ module.exports = {
   coverageDirectory: '<rootDir>/coverage',
   collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx,ts,tsx}', '!<rootDir>/src/**/*.d.ts'],
   testEnvironment: 'jsdom',
-  testMatch: ['<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}', '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}'],
-  modulePaths: ['<rootDir>/src'],
+  testMatch: ['<rootDir>/src/components/**/?(*.)(test).{js,jsx,ts,tsx}'],
+  modulePaths: ['<rootDir>/src/components'],
   modulePathIgnorePatterns: ['<rootDir>/src/components/Icons'],
   moduleNameMapper: {
     '\\.scss$': 'identity-obj-proxy',

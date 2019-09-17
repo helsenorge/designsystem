@@ -1,0 +1,16 @@
+@import 'palette';
+// TODO: Will import/reuse colors from the pallette (when that is done...)
+
+// Might move these variables into the component specific SCSS-file instead. Not quite decided.
+// $action-button-color-primary: #d22e06;
+// $action-button-color-primary-hover: #ae2807;
+// $action-button-color-primary-disabled: #e2e2e2;
+
+// $action-button-color-font-primary: white;
+// $action-button-color-font-primary-hover: white;
+// $action-button-color-font-primary-disabled: #878787;
+
+$color-primary: $strawberry-red-500;
+$color-primary-dark: $strawberry-red-600;
+$color-primary-disabled: $mold-gray-200;
+$color-primary-disabled-dark: $mold-gray-500;

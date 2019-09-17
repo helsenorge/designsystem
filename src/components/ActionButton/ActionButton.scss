@@ -1,42 +1,56 @@
 @import '../../styling/colors';
 
+$action-button-color-primary: $color-primary;
+$action-button-color-primary-hover: $color-primary-dark;
+$action-button-color-primary-disabled: $color-primary-disabled;
+$action-button-color-primary-font: white;
+$action-button-color-primary-font-hover: white;
+$action-button-color-primary-font-disabled: $color-primary-disabled-dark;
+
+$action-button-color-secondary: $color-primary;
+$action-button-color-secondary-hover: $color-primary;
+$action-button-color-secondary-disabled: $color-primary-disabled;
+$action-button-color-secondary-font: $color-primary;
+$action-button-color-secondary-font-hover: white;
+$action-button-color-secondary-font-disabled: $color-primary-disabled-dark;
+
 .action-button {
   cursor: pointer;
-  font-size: 1.5rem;
-  padding: 0.75rem 2rem;
+  font-size: 1.4rem;
+  padding: 0.5rem 1.5rem;
   appearance: none;
+  border: 3px solid transparent;
   outline: none;
   &:disabled {
     pointer-events: none;
-    background-color: #216779;
-    color: #3b8a99;
+    background-color: $action-button-color-primary-disabled;
+    color: $action-button-color-primary-font-disabled;
   }
   &--primary {
-    background-color: #023d52;
-    color: #15cb90;
-    border: 3px solid transparent;
-    transition: all 250ms;
+    background-color: $action-button-color-primary;
+    color: $action-button-color-primary-font;
+    transition: all 200ms;
     &:focus,
     &:hover {
-      border: 3px solid #4bf2c0;
-      color: #4bf2c0;
+      background-color: $action-button-color-primary-hover;
+      color: $action-button-color-primary-font-hover;
     }
   }
   &--secondary {
     background-color: transparent;
-    border: 3px solid #023d52;
-    color: #023d52;
-    transition: all 250ms;
+    border: 3px solid $action-button-color-secondary;
+    color: $action-button-color-secondary-font;
+    transition: all 200ms;
     &:focus,
     &:hover {
       border: 3px solid transparent;
-      background: #023d52;
-      color: #4bf2c0;
+      background: $action-button-color-secondary-hover;
+      color: $action-button-color-secondary-font-hover;
     }
     &:disabled {
-      border: 3px solid #3b8a99;
+      border: 3px solid $action-button-color-secondary-disabled;
       background-color: transparent;
-      color: #3b8a99;
+      color: $action-button-color-secondary-font-disabled;
     }
   }
 }
