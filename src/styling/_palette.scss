@@ -1,41 +1,32 @@
-// Makeshift palette. Will be updated once the color scheme is actually finalized.
+// TODO: Still need to maybe future-proof this with more shades rather than unique colors
 
-$strawberry-red-100: #fce3cb;
-$strawberry-red-200: #fac299;
-$strawberry-red-300: #f19564;
-$strawberry-red-400: #e36a3d;
-$strawberry-red-500: #d22e06;
-$strawberry-red-600: #b41904;
-$strawberry-red-700: #970903;
-$strawberry-red-800: #790105;
-$strawberry-red-900: #64010b;
+$bone: white;
+$black-putrefaction: black;
 
-$kiwi-green-100: #d6fad1;
-$kiwi-green-200: #a6f6a5;
-$kiwi-green-300: #74e57c;
-$kiwi-green-400: #4ecc63;
-$kiwi-green-500: #1eaa44;
-$kiwi-green-600: #159243;
-$kiwi-green-700: #0f7a41;
-$kiwi-green-800: #09623b;
-$kiwi-green-900: #055137;
+$pallor: #fff1e1;
+$flesh: #ffdbbe;
+$subcutaneous-fat: #ffb291;
 
-$mold-gray-50: #fafafa;
-$mold-gray-100: #f5f5f5;
-$mold-gray-200: #eeeeee;
-$mold-gray-300: #e0e0e0;
-$mold-gray-400: #bdbdbd;
-$mold-gray-500: #9e9e9e;
-$mold-gray-600: #757575;
-$mold-gray-700: #616161;
-$mold-gray-800: #424242;
-$mold-gray-900: #212121;
+$inflammation: #d22e06;
+$blood: #bc2703;
 
-/**
- * blueberry-blue
- * mango-yellow
- * clementine-orange
- * grape-purple
- * coconut-brown
- * and so on...
- */
+$anti-bac: #c6f3f6;
+$cyanide: #95dee5;
+$varicose-veins: #59c2cc;
+
+$mri: #01656f;
+$rot: #00474f;
+$gangrene: #00373c;
+
+$corpse: #f6f5f2;
+$ashes: #d3dbd3;
+$waiting-room: #9b978c;
+$scab: #383838;
+
+$circulatory-failure: #f6f3ff;
+$strangulation: #c1b1ea;
+$acute-strangulation: #8a62db;
+
+$nausea: #e5f2ec;
+$mould: #badcce;
+$surgical: #73c09e;
