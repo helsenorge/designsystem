@@ -1,0 +1,30 @@
+@import '../../styling/helsenorge';
+
+$start-button-primary-color-font: white;
+$start-button-primary-color-background: $color-primary;
+
+$start-button-secondary-color-font: white;
+$start-button-secondary-color-background: $color-secondary;
+
+$start-button-tertiary-color-font: black;
+$start-button-tertiary-color-background: $color-tertiary;
+$start-button-tertiary-color-border: $color-tertiary-relief;
+
+.start-button {
+  padding: 0 2.5rem;
+  height: 5rem;
+  border: 0.25rem solid transparent;
+  &--primary {
+    background-color: $start-button-primary-color-background;
+    color: $start-button-primary-color-font;
+  }
+  &--secondary {
+    background-color: $start-button-secondary-color-background;
+    color: $start-button-secondary-color-font;
+  }
+  &--tertiary {
+    background-color: $start-button-tertiary-color-background;
+    color: $start-button-tertiary-color-font;
+    border-color: $start-button-tertiary-color-border;
+  }
+}

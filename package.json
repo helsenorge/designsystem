@@ -31,7 +31,7 @@
     "lint": "eslint .",
     "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
     "publish:dev": "npm version prerelease && git push --follow-tags",
-    "start": "start-storybook -p 6006 -s ./src/images",
+    "start": "start-storybook -p 6000 -s ../src",
     "test": "jest",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "test:watch": "jest --watch",
@@ -120,6 +120,7 @@
     "style-loader": "^1.0.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.6.2",
+    "url-loader": "^2.1.0",
     "webpack-bundle-analyzer": "^3.4.1"
   },
   "dependencies": {

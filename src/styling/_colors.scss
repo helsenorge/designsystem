@@ -1,10 +1,10 @@
 @import 'palette';
 
 $color-primary: $inflammation;
-$color-primary-hover: $blood;
+$color-primary-relief: $blood;
 
-$color-secondary: $black-putrefaction;
-$color-secondary-hover: $gangrene;
+$color-secondary: $gangrene;
+$color-secondary-relief: $mri-screen;
 
 $color-tertiary: $bone;
-$color-tertiary-hover: $bone;
+$color-tertiary-relief: rgba(1, 122, 135, 0.1); // $solidox
