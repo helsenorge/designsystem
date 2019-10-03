@@ -12,7 +12,10 @@ $start-button-tertiary-color-border: $color-tertiary-relief;
 
 .start-button {
   padding: 0 2.5rem;
-  height: 5rem;
+  display: inline-flex;
+  align-items: center;
+  height: 4.5rem;
+  font-size: 1.25rem;
   border: 0.25rem solid transparent;
   &--primary {
     background-color: $start-button-primary-color-background;

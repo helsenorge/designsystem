@@ -4,7 +4,6 @@ const pathToInlineSvg = path.resolve(__dirname, '../src/images');
 
 module.exports = config => {
   const rules = config.config.module.rules;
-  config.config.output.publicPath = 'http://localhost:6000/';
 
   // modify storybook's file-loader rule to avoid conflicts with svgr
   // const fileLoaderRule = rules.find(rule => rule.test.test('.svg'));
@@ -39,6 +38,9 @@ module.exports = config => {
           loader: require.resolve('css-loader'),
         },
         {
+          loader: require.resolve('resolve-url-loader'),
+        },
+        {
           loader: require.resolve('sass-loader'),
           options: {
             sourceMap: true,
@@ -52,7 +54,6 @@ module.exports = config => {
     //     {
     //       loader: require.resolve('file-loader'),
     //       options: {
-    //         limit: 100000,
     //         name: '[name].[ext]',
     //       },
     //     },
@@ -60,9 +61,9 @@ module.exports = config => {
     // },
     {
       test: /\.(svg|woff(2))(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'file-loader',
+      loader: require.resolve('file-loader'),
       options: {
-        name: '[name].[ext]',
+        name: 'fonts/[name].[ext]',
       },
     },
   );

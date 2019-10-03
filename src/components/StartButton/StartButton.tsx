@@ -4,21 +4,25 @@ import cn from 'classnames';
 import './StartButton.scss';
 
 export type StartButtonVariants = 'primary' | 'secondary' | 'tertiary';
-export type StartButtonElementType = 'a' | 'button';
 
-interface StartButtonProps {
-  as?: StartButtonElementType;
+interface StartButtonProps
+  extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children?: React.ReactNode;
   variant?: StartButtonVariants;
 }
 
-export const StartButton = React.forwardRef((props: StartButtonProps, ref: any) => {
-  const {as = 'a', children, variant = 'primary'} = props;
-  const ElementType = as;
+const StartButton = React.forwardRef((props: StartButtonProps, ref: any) => {
+  const {children, variant = 'primary', ...rest} = props;
   const classes = cn('start-button', `start-button--${variant}`);
   return (
-    <ElementType className={classes} ref={ref}>
+    <button className={classes} ref={ref} {...rest}>
       {children}
-    </ElementType>
+    </button>
   );
 });
+
+StartButton.defaultProps = {
+  type: 'button',
+};
+
+export {StartButton};
