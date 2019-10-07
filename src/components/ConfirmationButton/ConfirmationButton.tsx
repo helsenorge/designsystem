@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import cn from 'classnames';
 
 import './ConfirmationButton.scss';
@@ -7,16 +7,25 @@ export type ConfirmationButtonVariants = 'primary' | 'secondary' | 'tertiary';
 
 interface ConfirmationButtonProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-  children?: React.ReactNode;
+  iconLeft?: any;
+  children: React.ReactNode;
   variant?: ConfirmationButtonVariants;
+  isLoading?: boolean;
 }
 
 const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref: any) => {
-  const {children, variant = 'primary', ...rest} = props;
-  const classes = cn('confirmation-button', `confirmation-button--${variant}`);
+  const [isHoverActive, setIsHoverActive] = useState(false);
+  const {children, variant = 'primary', isLoading = false, iconLeft = null, ...rest} = props;
+  const classes = cn('confirmation-button', `confirmation-button--${variant}`, {
+    [`confirmation-button--icon`]: iconLeft,
+  });
+  function handleHover(e: any) {
+    setIsHoverActive(!isHoverActive);
+  }
   return (
-    <button className={classes} ref={ref} {...rest}>
-      {children}
+    <button onMouseEnter={handleHover} onMouseLeave={handleHover} className={classes} ref={ref} {...rest}>
+      {iconLeft}
+      <span>{children}</span>
     </button>
   );
 });
