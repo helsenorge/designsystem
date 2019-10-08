@@ -1,24 +1,24 @@
 import React, {useState} from 'react';
 import cn from 'classnames';
 
-import './ConfirmationButton.scss';
+import './CommonButton.scss';
 import {Spinner} from '../Spinner';
 
 // TODO: Make this inherit from a set of base variant types in constants.
-export type ConfirmationButtonVariants = 'primary' | 'secondary' | 'tertiary';
+export type CommonButtonVariants = 'primary' | 'secondary' | 'tertiary';
 
-interface ConfirmationButtonProps
+interface CommonButtonProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: ConfirmationButtonVariants;
+  variant?: CommonButtonVariants;
   isLoading?: boolean;
 }
 
 // TODO: Move most of the logic out in a generic Button-component that the others inherit.
-const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref: any) => {
+const CommonButton = React.forwardRef((props: CommonButtonProps, ref: any) => {
   const [isHoverActive, setIsHoverActive] = useState(false);
   const {children, variant = 'primary', isLoading = false, ...rest} = props;
-  const classes = cn('confirmation-button', `confirmation-button--${variant}`);
+  const classes = cn('common-button', `common-button--${variant}`);
   function handleHover(e: any) {
     setIsHoverActive(!isHoverActive);
   }
@@ -36,8 +36,8 @@ const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref
   );
 });
 
-ConfirmationButton.defaultProps = {
+CommonButton.defaultProps = {
   type: 'button',
 };
 
-export {ConfirmationButton};
+export {CommonButton};

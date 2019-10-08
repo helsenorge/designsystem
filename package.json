@@ -24,7 +24,7 @@
   },
   "scripts": {
     "build": "yarn clean && NODE_ENV=production rollup -c --environment BUILD:production && yarn build:dts",
-    "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/indexs.d.ts ./types/index.d.ts",
+    "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
     "bundle-analyze": "webpack --profile --json > bundle-stats.json && webpack-bundle-analyzer ./bundle-stats.json",
     "clean": "rimraf dist types",
     "format": "npm run prettier -- --write",

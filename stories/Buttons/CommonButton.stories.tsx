@@ -8,48 +8,48 @@ import Stacker from '../../.storybook/Stacker/Stacker';
 const stories = storiesOf('Buttons', module);
 stories.addDecorator(withKnobs);
 
-import {ConfirmationButton} from '../../src/components/ConfirmationButton';
+import {CommonButton} from '../../src/components/CommonButton';
 
-stories.add('ConfirmationButton', (): JSX.Element => (
-    <ConfirmationButton
+stories.add('CommonButton', (): JSX.Element => (
+    <CommonButton
       variant={select('variant', ['primary', 'secondary', 'tertiary'], 'primary')}
       isLoading={boolean('isLoading', false)}
       disabled={boolean('disabled', false)}
       >
-      {text('text', 'ConfirmationButton')}
-    </ConfirmationButton>
+      {text('text', 'CommonButton')}
+    </CommonButton>
 ));
 
-// stories.add('ConfirmationButton with icon', (): JSX.Element => (
-//     <ConfirmationButton
-//       iconLeft={<Icon size={32} color="white">lock</Icon>}
+// stories.add('CommonButton with icon', (): JSX.Element => (
+//     <CommonButton
+//       iconRight={<Icon size={32} color="white">lock</Icon>}
 //       variant={select('variant', ['primary', 'secondary', 'tertiary'], 'primary')}
 //       isLoading={boolean('isLoading', false)}
 //       disabled={boolean('disabled', false)}
 //       >
-//       {text('text', 'ConfirmationButton')}
-//     </ConfirmationButton>
+//       {text('text', 'CommonButton')}
+//     </CommonButton>
 // ));
 
-stories.add('ConfirmationButton (all variants)', (): JSX.Element => (
+stories.add('CommonButton (all variants)', (): JSX.Element => (
   <Stacker>
-    <ConfirmationButton
+    <CommonButton
       variant="primary"
       disabled={boolean('disabled', false)}
       >
       Primary
-    </ConfirmationButton>
-    <ConfirmationButton
+    </CommonButton>
+    <CommonButton
       variant="secondary"
       disabled={boolean('disabled', false)}
       >
       Secondary
-    </ConfirmationButton>
-    <ConfirmationButton
+    </CommonButton>
+    <CommonButton
       variant="tertiary"
       disabled={boolean('disabled', false)}
       >
       Tertiary
-    </ConfirmationButton>
+    </CommonButton>
   </Stacker>
 ));
