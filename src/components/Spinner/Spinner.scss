@@ -1,0 +1,40 @@
+@import '../../styling/helsenorge.scss';
+
+$dot-size: 1.125rem;
+$dot-size-small: 0.5rem;
+$dot-size-large: 2rem;
+
+// TODO: Restructure the CSS so that it's 100% BEM. Not sure it is right now.
+.spinner {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  &--primary > div {
+    background-color: black;
+  }
+  &--secondary > div {
+    background-color: white;
+  }
+  &__dot {
+    width: $dot-size;
+    height: $dot-size;
+    margin: 0 0.125rem;
+    border-radius: 100%;
+    animation: pulse 1.25s infinite ease-in-out both;
+    &--small {
+      height: $dot-size-small;
+      width: $dot-size-small;
+    }
+    &--large {
+      height: $dot-size-large;
+      width: $dot-size-large;
+    }
+    &--first-dot {
+      animation-delay: -0.32s;
+    }
+    &--second-dot {
+      animation-delay: -0.16s;
+    }
+  }
+}

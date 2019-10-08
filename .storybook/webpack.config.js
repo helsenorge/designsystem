@@ -38,6 +38,9 @@ module.exports = config => {
           loader: require.resolve('css-loader'),
         },
         {
+          loader: require.resolve('resolve-url-loader'),
+        },
+        {
           loader: require.resolve('sass-loader'),
           options: {
             sourceMap: true,
@@ -46,10 +49,10 @@ module.exports = config => {
       ],
     },
     {
-      test: /\.(svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'file-loader',
+      test: /\.(svg|woff(2))(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: require.resolve('file-loader'),
       options: {
-        name: '[name].[ext]',
+        name: 'fonts/[name].[ext]',
       },
     },
   );

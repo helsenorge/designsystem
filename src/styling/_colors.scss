@@ -1,10 +1,18 @@
 @import 'palette';
 
-$color-primary: $inflammation;
-$color-primary-hover: $blood;
+$color-primary: $ufc1;
+$color-primary-relief: $ufc2;
+$color-primary-disabled: $ufc3;
+$color-primary-disabled-font: $ufc4;
 
-$color-secondary: $black-putrefaction;
-$color-secondary-hover: $gangrene;
+$color-secondary: $ufc5;
+$color-secondary-relief: $ufc6;
+$color-secondary-relief-dark: $ufc2;
+$color-secondary-disabled: $ufc3;
+$color-secondary-disabled-font: $ufc4;
 
-$color-tertiary: $bone;
-$color-tertiary-hover: $bone;
+$color-tertiary: $ufc5;
+$color-tertiary-relief: $ufc6;
+$color-tertiary-relief-dark: $ufc2;
+$color-tertiary-disabled: $ufc3;
+$color-tertiary-disabled-font: $ufc4;
