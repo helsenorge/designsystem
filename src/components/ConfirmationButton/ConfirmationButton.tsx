@@ -9,8 +9,6 @@ export type ConfirmationButtonVariants = 'primary' | 'secondary' | 'tertiary';
 
 interface ConfirmationButtonProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-  // TODO: Implement the better and more dynamic compound components pattern instead of prop icons.
-  iconLeft?: any;
   children: React.ReactNode;
   variant?: ConfirmationButtonVariants;
   isLoading?: boolean;
@@ -19,10 +17,8 @@ interface ConfirmationButtonProps
 // TODO: Move most of the logic out in a generic Button-component that the others inherit.
 const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref: any) => {
   const [isHoverActive, setIsHoverActive] = useState(false);
-  const {children, variant = 'primary', isLoading = false, iconLeft = null, ...rest} = props;
-  const classes = cn('confirmation-button', `confirmation-button--${variant}`, {
-    [`confirmation-button--icon`]: iconLeft && !isLoading,
-  });
+  const {children, variant = 'primary', isLoading = false, ...rest} = props;
+  const classes = cn('confirmation-button', `confirmation-button--${variant}`);
   function handleHover(e: any) {
     setIsHoverActive(!isHoverActive);
   }
@@ -33,7 +29,6 @@ const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref
         <Spinner variant="secondary" />
       ) : (
         <>
-          {iconLeft}
           <span>{children}</span>
         </>
       )}

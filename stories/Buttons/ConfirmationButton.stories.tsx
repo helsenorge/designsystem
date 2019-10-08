@@ -9,7 +9,6 @@ const stories = storiesOf('Buttons', module);
 stories.addDecorator(withKnobs);
 
 import {ConfirmationButton} from '../../src/components/ConfirmationButton';
-import {Icon} from '../../src/components/Icons';
 
 stories.add('ConfirmationButton', (): JSX.Element => (
     <ConfirmationButton
@@ -21,16 +20,16 @@ stories.add('ConfirmationButton', (): JSX.Element => (
     </ConfirmationButton>
 ));
 
-stories.add('ConfirmationButton with icon', (): JSX.Element => (
-    <ConfirmationButton
-      iconLeft={<Icon size={32} color="white">lock</Icon>}
-      variant={select('variant', ['primary', 'secondary', 'tertiary'], 'primary')}
-      isLoading={boolean('isLoading', false)}
-      disabled={boolean('disabled', false)}
-      >
-      {text('text', 'ConfirmationButton')}
-    </ConfirmationButton>
-));
+// stories.add('ConfirmationButton with icon', (): JSX.Element => (
+//     <ConfirmationButton
+//       iconLeft={<Icon size={32} color="white">lock</Icon>}
+//       variant={select('variant', ['primary', 'secondary', 'tertiary'], 'primary')}
+//       isLoading={boolean('isLoading', false)}
+//       disabled={boolean('disabled', false)}
+//       >
+//       {text('text', 'ConfirmationButton')}
+//     </ConfirmationButton>
+// ));
 
 stories.add('ConfirmationButton (all variants)', (): JSX.Element => (
   <Stacker>

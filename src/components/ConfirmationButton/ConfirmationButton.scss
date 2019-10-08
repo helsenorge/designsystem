@@ -45,13 +45,6 @@ $confirmation-button-tertiary-disabled-color-font: $color-tertiary-disabled-font
   &:disabled {
     pointer-events: none;
   }
-  &--icon {
-    padding: 0 1.5rem 0 0.675rem;
-    display: inline-flex;
-    & > svg {
-      margin-right: 0.375rem;
-    }
-  }
   &--primary {
     background-color: $confirmation-button-primary-color-background;
     color: $confirmation-button-primary-color-font;

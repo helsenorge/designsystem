@@ -9,9 +9,6 @@ export type CommonButtonVariants = 'primary' | 'secondary' | 'tertiary';
 
 interface CommonButtonProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-  // TODO: Implement the better and more dynamic compound components pattern instead of prop icons.
-  iconLeft?: any;
-  iconRight?: any;
   children: React.ReactNode;
   variant?: CommonButtonVariants;
   isLoading?: boolean;
@@ -20,10 +17,8 @@ interface CommonButtonProps
 // TODO: Move most of the logic out in a generic Button-component that the others inherit.
 const CommonButton = React.forwardRef((props: CommonButtonProps, ref: any) => {
   const [isHoverActive, setIsHoverActive] = useState(false);
-  const {children, variant = 'primary', isLoading = false, iconLeft = null, iconRight = null, ...rest} = props;
-  const classes = cn('common-button', `common-button--${variant}`, {
-    [`common-button--icon`]: (iconLeft || iconRight) && !isLoading,
-  });
+  const {children, variant = 'primary', isLoading = false, ...rest} = props;
+  const classes = cn('common-button', `common-button--${variant}`);
   function handleHover(e: any) {
     setIsHoverActive(!isHoverActive);
   }
@@ -34,9 +29,7 @@ const CommonButton = React.forwardRef((props: CommonButtonProps, ref: any) => {
         <Spinner variant="secondary" />
       ) : (
         <>
-          {iconLeft}
           <span>{children}</span>
-          {iconRight}
         </>
       )}
     </button>

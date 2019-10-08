@@ -46,14 +46,6 @@ $common-button-tertiary-disabled-color-font: $color-tertiary-disabled-font;
   &:disabled {
     pointer-events: none;
   }
-  &--icon {
-    // padding: 0 1.5rem 0 0.675rem;
-    padding: 0 0.675rem 0 1.5rem;
-    display: inline-flex;
-    & > svg {
-      margin-left: 0.375rem;
-    }
-  }
   &--primary {
     background-color: $common-button-primary-color-background;
     color: $common-button-primary-color-font;
