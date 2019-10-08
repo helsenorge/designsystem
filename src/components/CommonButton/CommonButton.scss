@@ -16,9 +16,9 @@ $common-button-secondary-color-background: white;
 $common-button-secondary-color-border: $ufc7;
 // secondary:hover
 $common-button-secondary-hover-color-border: $ufc9;
-$common-button-secondary-hover-color-border: $gangrene;
 $common-button-secondary-hover-color-box-shadow: $gangrene;
 $common-button-secondary-hover-color-background: $ufc9;
+$common-button-secondary-hover-color-font: $gangrene;
 // secondary:disabled
 $common-button-secondary-disabled-color-border: $color-secondary-disabled;
 $common-button-secondary-disabled-color-font: $color-secondary-disabled-font;
@@ -27,9 +27,9 @@ $common-button-secondary-disabled-color-font: $color-secondary-disabled-font;
 $common-button-tertiary-color-font: $ufc7;
 $common-button-tertiary-color-background: white;
 // tertiary:hover
-$common-button-tertiary-hover-color-border: $color-tertiary-relief-dark;
-$common-button-tertiary-hover-color-background: $color-tertiary-relief;
-$common-button-tertiary-hover-color-font: $color-tertiary-relief-dark;
+$common-button-tertiary-hover-color-border: $ufc9;
+$common-button-tertiary-hover-color-box-shadow: $gangrene;
+$common-button-tertiary-hover-color-background: $ufc9;
 // tertiary:disable
 $common-button-tertiary-disabled-color-border: $color-tertiary-disabled;
 $common-button-tertiary-disabled-color-font: $color-tertiary-disabled-font;
@@ -68,7 +68,7 @@ $common-button-tertiary-disabled-color-font: $color-tertiary-disabled-font;
     &:active,
     &:focus {
       background-color: $common-button-secondary-hover-color-background;
-      border: 0.125rem solid $common-button-secondary-hover-color-background;
+      border: 0.125rem solid $common-button-secondary-hover-color-border;
       box-shadow: 0 0 0 0.25rem $common-button-secondary-hover-color-box-shadow;
     }
     &:disabled {
@@ -82,13 +82,13 @@ $common-button-tertiary-disabled-color-font: $color-tertiary-disabled-font;
     &:hover,
     &:active,
     &:focus {
-      background-color: $common-button-secondary-hover-color-background;
-      border: 0.125rem solid $common-button-secondary-hover-color-background;
-      box-shadow: 0 0 0 0.25rem $common-button-secondary-hover-color-box-shadow;
+      background-color: $common-button-tertiary-hover-color-background;
+      border: 0.125rem solid $common-button-tertiary-hover-color-border;
+      box-shadow: 0 0 0 0.25rem $common-button-tertiary-hover-color-box-shadow;
     }
     &:disabled {
-      color: $common-button-secondary-disabled-color-font;
-      border-color: $common-button-secondary-disabled-color-border;
+      color: $common-button-tertiary-disabled-color-font;
+      border-color: $common-button-tertiary-disabled-color-border;
     }
   }
 }
