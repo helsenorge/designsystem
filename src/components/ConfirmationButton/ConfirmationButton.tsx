@@ -15,8 +15,12 @@ interface ConfirmationButtonProps
 
 // TODO: Move most of the logic out in a generic Button-component that the others inherit.
 const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref: any) => {
-  const {children, variant = 'primary', isLoading = false, ...rest} = props;
-  const classes = cn('button is-confirmation', `is-${variant}`);
+  const {children, variant, isLoading = false, ...rest} = props;
+  const classes = cn(
+    'button is-confirmation',
+    {[`is-${variant}`]: variant === 'secondary' || variant === 'tertiary'},
+    {['is-loading']: isLoading},
+  );
   return (
     // TODO: Add a 'as' prop so that the button can be either an 'a'-tag or 'button'-tag.
     <button className={classes} ref={ref} {...rest}>
