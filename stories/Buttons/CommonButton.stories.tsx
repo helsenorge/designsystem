@@ -10,9 +10,15 @@ stories.addDecorator(withKnobs);
 
 import {CommonButton} from '../../src/components/CommonButton';
 
+const buttonVariants = {
+  primary: null,
+  secondary: 'secondary',
+  tertiary: 'tertiary'
+}
+
 stories.add('CommonButton', (): JSX.Element => (
     <CommonButton
-      variant={select('variant', ['primary', 'secondary', 'tertiary'], 'primary')}
+      variant={select('variant', buttonVariants, buttonVariants.primary)}
       isLoading={boolean('isLoading', false)}
       disabled={boolean('disabled', false)}
       >
@@ -34,7 +40,6 @@ stories.add('CommonButton', (): JSX.Element => (
 stories.add('CommonButton (all variants)', (): JSX.Element => (
   <Stacker>
     <CommonButton
-      variant="primary"
       disabled={boolean('disabled', false)}
       >
       Primary

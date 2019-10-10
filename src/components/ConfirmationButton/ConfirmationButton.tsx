@@ -1,37 +1,30 @@
-import React, {useState} from 'react';
+import React from 'react';
 import cn from 'classnames';
 
 import './ConfirmationButton.scss';
-import {Spinner} from '../Spinner';
 
 // TODO: Make this inherit from a set of base variant types in constants.
-export type ConfirmationButtonVariants = 'primary' | 'secondary' | 'tertiary';
+export type ConfirmationButtonVariant = string | 'seconary' | 'tertiary' | undefined | null;
 
 interface ConfirmationButtonProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: ConfirmationButtonVariants;
+  variant?: ConfirmationButtonVariant;
   isLoading?: boolean;
 }
 
 // TODO: Move most of the logic out in a generic Button-component that the others inherit.
 const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref: any) => {
-  const [isHoverActive, setIsHoverActive] = useState(false);
-  const {children, variant = 'primary', isLoading = false, ...rest} = props;
-  const classes = cn('confirmation-button', `confirmation-button--${variant}`);
-  function handleHover(e: any) {
-    setIsHoverActive(!isHoverActive);
-  }
+  const {children, variant, isLoading = false, ...rest} = props;
+  const classes = cn(
+    'button is-confirmation',
+    {[`is-${variant}`]: variant === 'secondary' || variant === 'tertiary'},
+    {['is-loading']: isLoading},
+  );
   return (
     // TODO: Add a 'as' prop so that the button can be either an 'a'-tag or 'button'-tag.
-    <button onMouseEnter={handleHover} onMouseLeave={handleHover} className={classes} ref={ref} {...rest}>
-      {isLoading ? (
-        <Spinner variant="secondary" />
-      ) : (
-        <>
-          <span>{children}</span>
-        </>
-      )}
+    <button className={classes} ref={ref} {...rest}>
+      <span>{children}</span>
     </button>
   );
 });
