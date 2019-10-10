@@ -10,9 +10,15 @@ stories.addDecorator(withKnobs);
 
 import {ConfirmationButton} from '../../src/components/ConfirmationButton';
 
+const buttonVariants = {
+  primary: null,
+  secondary: 'secondary',
+  tertiary: 'tertiary'
+}
+
 stories.add('ConfirmationButton', (): JSX.Element => (
     <ConfirmationButton
-      variant={select('variant', ['primary', 'secondary', 'tertiary'], 'primary')}
+      variant={select('variant', buttonVariants, buttonVariants.primary)}
       isLoading={boolean('isLoading', false)}
       disabled={boolean('disabled', false)}
       >
@@ -34,7 +40,6 @@ stories.add('ConfirmationButton', (): JSX.Element => (
 stories.add('ConfirmationButton (all variants)', (): JSX.Element => (
   <Stacker>
     <ConfirmationButton
-      variant="primary"
       disabled={boolean('disabled', false)}
       >
       Primary

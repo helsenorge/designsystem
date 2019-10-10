@@ -3,7 +3,7 @@
 exports[`renders default variant correctly 1`] = `
 <div>
   <button
-    class="confirmation-button confirmation-button--primary"
+    class="button is-confirmation is-primary"
     type="button"
   >
     <span>
