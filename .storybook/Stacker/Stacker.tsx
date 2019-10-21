@@ -12,7 +12,8 @@ function Stacker(props: StackerProps) {
     const style: CSSProperties = {
         display: 'grid',
         gridTemplateColumns: vertical ? 'auto' : `repeat(${React.Children.count(children)}, 1fr)`,
-        gridGap: '1rem'
+        gridGap: '1rem',
+        alignItems: 'center'
     }
     return (
         <div style={style}>

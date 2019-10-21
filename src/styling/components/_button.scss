@@ -13,3 +13,38 @@
     pointer-events: none;
   }
 }
+
+@mixin button-variant-borders($inner-border, $outer-border) {
+  position: relative;
+  &:before {
+    content: ' ';
+    position: absolute;
+    top: -0.25rem;
+    left: -0.25rem;
+    right: -0.25rem;
+    bottom: -0.25rem;
+    border: 0.125rem solid transparent;
+  }
+  &:after {
+    content: ' ';
+    position: absolute;
+    top: -0.375rem;
+    left: -0.375rem;
+    right: -0.375rem;
+    bottom: -0.375rem;
+    border: 0.125rem solid transparent;
+  }
+  &:hover,
+  &:active,
+  &:focus,
+  &.is-hovered,
+  &.is-active,
+  &.is-focused {
+    &:before {
+      border: 0.125rem solid $inner-border;
+    }
+    &:after {
+      border: 0.125rem solid $outer-border;
+    }
+  }
+}

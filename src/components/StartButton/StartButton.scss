@@ -1,41 +1,40 @@
-@import '../../styling/helsenorge';
+@import '../../styling/palette';
 
 // primary
 $start-button-primary-color-font: $bone;
-$start-button-primary-color-background: $strangulation-400;
+$start-button-primary-color-background: $surgical-500;
 // primary:hover
-$start-button-primary-hover-color-background: $strangulation-500;
-$start-button-primary-hover-color-border: $strangulation-500;
+$start-button-primary-hover-color-background: $surgical-400;
+$start-button-primary-hover-color-border: $surgical-400;
 // primary:disabled
 $start-button-primary-disabled-color-background: $ash;
 $start-button-primary-disabled-color-font: $waiting-room;
 
 // secondary
-$start-button-secondary-color-font: $strangulation-500;
-$start-button-secondary-color-background: $bone;
-$start-button-secondary-color-border: $strangulation-400;
+$start-button-secondary-color-font: $bone;
+$start-button-secondary-color-background: $surgical-500;
+$start-button-secondary-color-border: $surgical-500;
 // secondary:hover
-$start-button-secondary-hover-color-border: $strangulation-100;
-$start-button-secondary-hover-color-background: $strangulation-100;
-$start-button-secondary-hover-color-box-shadow: $strangulation-500;
-$start-button-secondary-hover-color-font: $strangulation-500;
+$start-button-secondary-hover-color-border: $surgical-400;
+$start-button-secondary-hover-color-background: $surgical-400;
 // secondary:disabled
 $start-button-secondary-disabled-color-border: $waiting-room;
 $start-button-secondary-disabled-color-font: $waiting-room;
 
 // tertiary
-$start-button-tertiary-color-font: $strangulation-500;
+$start-button-tertiary-color-font: $surgical-500;
+$start-button-tertiary-color-border: $surgical-500;
 $start-button-tertiary-color-background: $bone;
 // tertiary:hover
-$start-button-tertiary-hover-color-border: $strangulation-100;
-$start-button-tertiary-hover-color-background: $strangulation-100;
-$start-button-tertiary-hover-color-box-shadow: $strangulation-500;
-$start-button-tertiary-hover-color-font: $strangulation-500;
+$start-button-tertiary-hover-color-border: $surgical-400;
+$start-button-tertiary-hover-color-background: $surgical-100;
+// $start-button-tertiary-hover-color-box-shadow: $surgical-400;
 // tertiary:disable
 $start-button-tertiary-disabled-color-border: $waiting-room;
 $start-button-tertiary-disabled-color-font: $waiting-room;
 
 .is-start {
+  height: 5rem;
   background-color: $start-button-primary-color-background;
   color: $start-button-primary-color-font;
   &:disabled,
@@ -59,9 +58,9 @@ $start-button-tertiary-disabled-color-font: $waiting-room;
     box-shadow: 0 0 0 0.25rem $start-button-primary-hover-color-border;
   }
   &.is-secondary {
+    height: 4.375rem;
     background-color: $start-button-secondary-color-background;
     border: 0.125rem solid $start-button-secondary-color-border;
-    color: $start-button-secondary-color-font;
     &:disabled,
     &.is-disabled {
       color: $start-button-secondary-disabled-color-font;
@@ -71,23 +70,22 @@ $start-button-tertiary-disabled-color-font: $waiting-room;
     &.is-hovered {
       background-color: $start-button-secondary-hover-color-background;
       border: 0.125rem solid $start-button-secondary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $start-button-secondary-hover-color-box-shadow;
     }
     &:active,
     &.is-active {
       background-color: $start-button-secondary-hover-color-background;
       border: 0.125rem solid $start-button-secondary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $start-button-secondary-hover-color-box-shadow;
     }
     &:focus,
     &.is-focused {
       background-color: $start-button-secondary-hover-color-background;
       border: 0.125rem solid $start-button-secondary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $start-button-secondary-hover-color-box-shadow;
     }
   }
   &.is-tertiary {
+    height: 4.375rem;
     background-color: $start-button-tertiary-color-background;
+    border: 0.125rem solid $start-button-tertiary-color-border;
     color: $start-button-tertiary-color-font;
     &:disabled,
     &.is-disabled {
@@ -98,19 +96,19 @@ $start-button-tertiary-disabled-color-font: $waiting-room;
     &.is-hovered {
       background-color: $start-button-tertiary-hover-color-background;
       border: 0.125rem solid $start-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $start-button-tertiary-hover-color-box-shadow;
+      // box-shadow: 0 0 0 0.25rem $start-button-tertiary-hover-color-box-shadow;
     }
     &:active,
     &.is-active {
       background-color: $start-button-tertiary-hover-color-background;
       border: 0.125rem solid $start-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $start-button-tertiary-hover-color-box-shadow;
+      // box-shadow: 0 0 0 0.25rem $start-button-tertiary-hover-color-box-shadow;
     }
     &:focus,
     &.is-focused {
       background-color: $start-button-tertiary-hover-color-background;
       border: 0.125rem solid $start-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $start-button-tertiary-hover-color-box-shadow;
+      // box-shadow: 0 0 0 0.25rem $start-button-tertiary-hover-color-box-shadow;
     }
   }
 }

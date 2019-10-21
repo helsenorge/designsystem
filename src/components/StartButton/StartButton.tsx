@@ -1,10 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
 
-import './StartButton.scss';
-
 // TODO: Make this inherit from a set of base variant types in constants.
-export type StartButtonVariant = string | 'seconary' | 'tertiary' | undefined | null;
+export type StartButtonVariant = 'secondary' | 'tertiary' | string | undefined;
 
 interface StartButtonProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {

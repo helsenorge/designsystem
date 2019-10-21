@@ -26,19 +26,8 @@ stories.add('CommonButton', (): JSX.Element => (
     </CommonButton>
 ));
 
-// stories.add('CommonButton with icon', (): JSX.Element => (
-//     <CommonButton
-//       iconRight={<Icon size={32} color="white">lock</Icon>}
-//       variant={select('variant', ['primary', 'secondary', 'tertiary'], 'primary')}
-//       isLoading={boolean('isLoading', false)}
-//       disabled={boolean('disabled', false)}
-//       >
-//       {text('text', 'CommonButton')}
-//     </CommonButton>
-// ));
-
 stories.add('CommonButton (all variants)', (): JSX.Element => (
-  <Stacker>
+  <Stacker vertical={boolean('vertically stacking', false)}>
     <CommonButton
       disabled={boolean('disabled', false)}
       >

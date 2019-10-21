@@ -11,7 +11,7 @@ stories.addDecorator(withKnobs);
 import {StartButton} from '../../src/components/StartButton';
 
 const buttonVariants = {
-  primary: null,
+  primary: undefined,
   secondary: 'secondary',
   tertiary: 'tertiary'
 }
@@ -26,19 +26,8 @@ stories.add('StartButton', (): JSX.Element => (
     </StartButton>
 ));
 
-// stories.add('StartButton with icon', (): JSX.Element => (
-//     <StartButton
-//       iconLeft={<Icon size={32} color="white">lock</Icon>}
-//       variant={select('variant', ['primary', 'secondary', 'tertiary'], 'primary')}
-//       isLoading={boolean('isLoading', false)}
-//       disabled={boolean('disabled', false)}
-//       >
-//       {text('text', 'StartButton')}
-//     </StartButton>
-// ));
-
 stories.add('StartButton (all variants)', (): JSX.Element => (
-  <Stacker>
+  <Stacker vertical={boolean('vertically stacking', false)}>
     <StartButton
       disabled={boolean('disabled', false)}
       >

@@ -1,4 +1,4 @@
-@import '../../styling/helsenorge';
+@import '../../styling/palette';
 
 // primary
 $common-button-primary-color-font: $bone;
@@ -57,6 +57,10 @@ $common-button-tertiary-disabled-color-font: $waiting-room;
     box-shadow: 0 0 0 0.25rem $common-button-primary-hover-color-border;
   }
   &.is-secondary {
+    @include button-variant-borders(
+      $common-button-secondary-hover-color-border,
+      $common-button-secondary-hover-color-box-shadow
+    );
     background-color: $common-button-secondary-color-background;
     border: 0.125rem solid $common-button-secondary-color-border;
     color: $common-button-secondary-color-font;
@@ -69,46 +73,44 @@ $common-button-tertiary-disabled-color-font: $waiting-room;
     &.is-hovered {
       background-color: $common-button-secondary-hover-color-background;
       border: 0.125rem solid $common-button-secondary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $common-button-secondary-hover-color-box-shadow;
     }
     &:active,
     &.is-active {
       background-color: $common-button-secondary-hover-color-background;
       border: 0.125rem solid $common-button-secondary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $common-button-secondary-hover-color-box-shadow;
     }
     &:focus,
     &.is-focused {
       background-color: $common-button-secondary-hover-color-background;
       border: 0.125rem solid $common-button-secondary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $common-button-secondary-hover-color-box-shadow;
     }
   }
   &.is-tertiary {
+    @include button-variant-borders(
+      $common-button-tertiary-hover-color-border,
+      $common-button-tertiary-hover-color-box-shadow
+    );
     background-color: $common-button-tertiary-color-background;
     color: $common-button-tertiary-color-font;
     &:disabled,
     &.is-disabled {
       color: $common-button-tertiary-disabled-color-font;
-      border-color: $common-button-tertiary-disabled-color-border;
+      border: 0.125rem solid $common-button-tertiary-disabled-color-border;
     }
     &:hover,
     &.is-hovered {
       background-color: $common-button-tertiary-hover-color-background;
       border: 0.125rem solid $common-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $common-button-tertiary-hover-color-box-shadow;
     }
     &:active,
     &.is-active {
       background-color: $common-button-tertiary-hover-color-background;
       border: 0.125rem solid $common-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $common-button-tertiary-hover-color-box-shadow;
     }
     &:focus,
     &.is-focused {
       background-color: $common-button-tertiary-hover-color-background;
       border: 0.125rem solid $common-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $common-button-tertiary-hover-color-box-shadow;
     }
   }
 }
