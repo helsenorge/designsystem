@@ -1,0 +1,116 @@
+@import '../../styling/helsenorge';
+
+// primary
+$confirmation-button-primary-color-font: $bone;
+$confirmation-button-primary-color-background: $strangulation-400;
+// primary:hover
+$confirmation-button-primary-hover-color-background: $strangulation-500;
+$confirmation-button-primary-hover-color-border: $strangulation-500;
+// primary:disabled
+$confirmation-button-primary-disabled-color-background: $ash;
+$confirmation-button-primary-disabled-color-font: $waiting-room;
+
+// secondary
+$confirmation-button-secondary-color-font: $strangulation-500;
+$confirmation-button-secondary-color-background: $bone;
+$confirmation-button-secondary-color-border: $strangulation-400;
+// secondary:hover
+$confirmation-button-secondary-hover-color-border: $strangulation-100;
+$confirmation-button-secondary-hover-color-background: $strangulation-100;
+$confirmation-button-secondary-hover-color-box-shadow: $strangulation-500;
+$confirmation-button-secondary-hover-color-font: $strangulation-500;
+// secondary:disabled
+$confirmation-button-secondary-disabled-color-border: $waiting-room;
+$confirmation-button-secondary-disabled-color-font: $waiting-room;
+
+// tertiary
+$confirmation-button-tertiary-color-font: $strangulation-500;
+$confirmation-button-tertiary-color-background: $bone;
+// tertiary:hover
+$confirmation-button-tertiary-hover-color-border: $strangulation-100;
+$confirmation-button-tertiary-hover-color-background: $strangulation-100;
+$confirmation-button-tertiary-hover-color-box-shadow: $strangulation-500;
+$confirmation-button-tertiary-hover-color-font: $strangulation-500;
+// tertiary:disable
+$confirmation-button-tertiary-disabled-color-border: $waiting-room;
+$confirmation-button-tertiary-disabled-color-font: $waiting-room;
+
+.is-confirmation {
+  background-color: $confirmation-button-primary-color-background;
+  color: $confirmation-button-primary-color-font;
+  &:disabled,
+  &.is-disabled {
+    color: $confirmation-button-primary-disabled-color-font;
+    background-color: $confirmation-button-primary-disabled-color-background;
+  }
+  &:hover,
+  &.is-hovered {
+    background-color: $confirmation-button-primary-hover-color-background;
+    box-shadow: 0 0 0 0.25rem $confirmation-button-primary-hover-color-border;
+  }
+  &:active,
+  &.is-active {
+    background-color: $confirmation-button-primary-hover-color-background;
+    box-shadow: 0 0 0 0.25rem $confirmation-button-primary-hover-color-border;
+  }
+  &:focus,
+  &.is-focused {
+    background-color: $confirmation-button-primary-hover-color-background;
+    box-shadow: 0 0 0 0.25rem $confirmation-button-primary-hover-color-border;
+  }
+  &.is-secondary {
+    background-color: $confirmation-button-secondary-color-background;
+    border: 0.125rem solid $confirmation-button-secondary-color-border;
+    color: $confirmation-button-secondary-color-font;
+    &:disabled,
+    &.is-disabled {
+      color: $confirmation-button-secondary-disabled-color-font;
+      border-color: $confirmation-button-secondary-disabled-color-border;
+    }
+    &:hover,
+    &.is-hovered {
+      background-color: $confirmation-button-secondary-hover-color-background;
+      border: 0.125rem solid $confirmation-button-secondary-hover-color-border;
+      box-shadow: 0 0 0 0.25rem $confirmation-button-secondary-hover-color-box-shadow;
+    }
+    &:active,
+    &.is-active {
+      background-color: $confirmation-button-secondary-hover-color-background;
+      border: 0.125rem solid $confirmation-button-secondary-hover-color-border;
+      box-shadow: 0 0 0 0.25rem $confirmation-button-secondary-hover-color-box-shadow;
+    }
+    &:focus,
+    &.is-focused {
+      background-color: $confirmation-button-secondary-hover-color-background;
+      border: 0.125rem solid $confirmation-button-secondary-hover-color-border;
+      box-shadow: 0 0 0 0.25rem $confirmation-button-secondary-hover-color-box-shadow;
+    }
+  }
+  &.is-tertiary {
+    background-color: $confirmation-button-tertiary-color-background;
+    color: $confirmation-button-tertiary-color-font;
+    &:disabled,
+    &.is-disabled {
+      color: $confirmation-button-tertiary-disabled-color-font;
+      border-color: $confirmation-button-tertiary-disabled-color-border;
+    }
+    &:hover,
+    &.is-hovered {
+      background-color: $confirmation-button-tertiary-hover-color-background;
+      border: 0.125rem solid $confirmation-button-tertiary-hover-color-border;
+      box-shadow: 0 0 0 0.25rem $confirmation-button-tertiary-hover-color-box-shadow;
+    }
+    &:active,
+    &.is-active {
+      background-color: $confirmation-button-tertiary-hover-color-background;
+      border: 0.125rem solid $confirmation-button-tertiary-hover-color-border;
+      box-shadow: 0 0 0 0.25rem $confirmation-button-tertiary-hover-color-box-shadow;
+    }
+    &:focus,
+    &.is-focused {
+      background-color: $confirmation-button-tertiary-hover-color-background;
+      border: 0.125rem solid $confirmation-button-tertiary-hover-color-border;
+      box-shadow: 0 0 0 0.25rem $confirmation-button-tertiary-hover-color-box-shadow;
+    }
+  }
+}

@@ -24,7 +24,7 @@
   },
   "scripts": {
     "build": "yarn clean && NODE_ENV=production rollup -c --environment BUILD:production && yarn build:dts",
-    "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/indexs.d.ts ./types/index.d.ts",
+    "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
     "bundle-analyze": "webpack --profile --json > bundle-stats.json && webpack-bundle-analyzer ./bundle-stats.json",
     "clean": "rimraf dist types",
     "format": "npm run prettier -- --write",
@@ -67,6 +67,7 @@
     "@babel/preset-typescript": "^7.6.0",
     "@storybook/addon-actions": "^5.2.1",
     "@storybook/addon-backgrounds": "^5.2.1",
+    "@storybook/addon-centered": "^5.2.1",
     "@storybook/addon-knobs": "^5.2.1",
     "@storybook/addon-links": "^5.2.1",
     "@storybook/addon-viewport": "^5.2.1",

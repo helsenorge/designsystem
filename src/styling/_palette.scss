@@ -1,33 +1,32 @@
-// TODO: Still need to maybe future-proof this with more shades rather than unique colors
-
 $bone: white;
-$black-putrefaction: black;
-
-$pallor: #fff1e1;
-$flesh: #ffdbbe;
-$subcutaneous-fat: #ffb291;
-
-$inflammation: #d22e06;
-$blood: #bc2703;
-
-$anti-bac: #c6f3f6;
-$cyanide: #95dee5;
-$varicose-veins: #59c2cc;
-
-$mri-screen: #01656f;
-$solidox: #017a87; // TODO: Confirm this color. Hex value is new
-$rot: #00474f;
-$gangrene: #00373c; // TODO: Confirm this color. Hex value is new
-
-$corpse: #f6f5f2;
-$ashes: #d3dbd3;
+$ash: #f6f5f2;
+$scalpel: #dedbd3;
 $waiting-room: #9b978c;
 $scab: #383838;
+$wheel-chair: black;
 
-$circulatory-failure: #f6f3ff;
-$strangulation: #c1b1ea;
-$acute-strangulation: #8a62db;
+$band-aid-100: #fbf1db;
+$band-aid-200: #f8e1b8;
+$band-aid-300: #ecca8c;
 
-$nausea: #e5f2ec;
-$mould: #badcce;
-$surgical: #73c09e;
+$surgical-100: #d6f5f3;
+$surgical-200: #bbebe8;
+$surgical-300: #90d9d3;
+$surgical-400: #01656f;
+$surgical-500: #00373c;
+
+$strangulation-100: #e7dbff;
+$strangulation-200: #d9c9fa;
+$strangulation-300: #c5adfa;
+$strangulation-400: #7a33d7;
+$strangulation-500: #651ac6;
+$strangulation-600: #560fb3;
+
+$blood-100: #fed1c3;
+$blood-200: #dd3300;
+
+$urine-100: #fff0be;
+$urine-200: #e8be36;
+
+$nausea-100: #d5efe4;
+$nausea-200: #307a5b;
