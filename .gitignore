@@ -10,6 +10,6 @@ bundle-stats.json
 .npmrc
 package-lock.json
 www
-src/components.d.ts
+components.d.ts
 .stencil
 loader

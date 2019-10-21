@@ -4,9 +4,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = async ({config}) => {
-  config.entry.push(path.join(__dirname, '../dist/hnds.js'));
-  fs.readdirSync(path.join(__dirname, '../dist/collection/components')).map(function(file) {
-    jsFilePath = path.join(__dirname, `../dist/collection/components/${file}/${file}.js`);
+  config.entry.push(path.join(__dirname, '../dist/helsenorge.js'));
+  fs.readdirSync(path.join(__dirname, '../dist/collection/')).map(function(file) {
+    jsFilePath = path.join(__dirname, `../dist/collection/${file}/${file}.js`);
     try {
       if (fs.existsSync(jsFilePath)) {
         config.entry.push(jsFilePath);
@@ -15,7 +15,7 @@ module.exports = async ({config}) => {
       console.error(err);
     }
 
-    cssFilePath = path.join(__dirname, `../dist/collection/components/${file}/${file}.css`);
+    cssFilePath = path.join(__dirname, `../dist/collection/${file}/${file}.css`);
     try {
       if (fs.existsSync(cssFilePath)) {
         config.entry.push(cssFilePath);
