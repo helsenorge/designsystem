@@ -1,20 +1,3 @@
 @import 'palette';
 
-$color-primary: $ufc1;
-$color-primary-relief: $ufc2;
-$color-primary-disabled: $ufc3;
-$color-primary-disabled-font: $ufc4;
-
-$color-secondary: $ufc5;
-$color-secondary-relief: $ufc6;
-$color-secondary-relief-dark: $ufc2;
-$color-secondary-disabled: $ufc3;
-$color-secondary-disabled-font: $ufc4;
-
-$color-tertiary: $ufc5;
-$color-tertiary-relief: $ufc6;
-$color-tertiary-relief-dark: $ufc2;
-$color-tertiary-disabled: $ufc3;
-$color-tertiary-disabled-font: $ufc4;
-
-// TODO: Need to revamp this and add a better hierarchy.
+// TODO: Create a heriarchy of color patterns and variables based on the palette.

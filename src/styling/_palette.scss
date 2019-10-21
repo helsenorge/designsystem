@@ -1,42 +1,29 @@
-// TODO: Still need to maybe future-proof this with more shades rather than unique colors
-
 $bone: white;
-$black-putrefaction: black;
-
-$pallor: #fff1e1;
-$flesh: #ffdbbe;
-$subcutaneous-fat: #ffb291;
-
-$inflammation: #d22e06;
-$blood: #bc2703;
-
-$anti-bac: #c6f3f6;
-$cyanide: #95dee5;
-$varicose-veins: #59c2cc;
-
-$gangrene: #01656f; // In use
-$rot: #00474f;
-
-$corpse: #f6f5f2;
-$ashes: #d3dbd3;
-$waiting-room: #9b978c; // In use
+$ash: #f6f5f2;
+$waiting-room: #9b978c;
 $scab: #383838;
+$wheel-chair: black;
 
-$circulatory-failure: #f6f3ff;
-$strangulation: #c1b1ea;
-$acute-strangulation: #8a62db;
+$band-aid-100: #fbf1db;
+$band-aid-200: #f8e1b8;
 
-$nausea: #e5f2ec;
-$mould: #badcce;
-$surgical: #73c09e;
+$surgical-100: #d6f5f3;
+$surgical-200: #bbebe8;
+$surgical-300: #90d9d3;
+$surgical-400: #01656f;
+$surgical-500: #00373c;
 
-// Unindentified flying (fucking) color
-$ufc1: #7462e0;
-$ufc2: #5845c6;
-$ufc3: #dedbd3;
-$ufc4: #595959;
-$ufc5: #5a40f4;
-$ufc6: #f7f6fd; // In reality #7462E0 with 6% opacity
-$ufc7: #00373c;
-$ufc8: #e5f1f3; // In reality #017A87 with 10% opacity
-$ufc9: #f2f8f9; // In reality #017A87 with 5% opacity
+$strangulation-100: #e7dbff;
+$strangulation-200: #d8caf6;
+$strangulation-300: #c5adfa;
+$strangulation-400: #7a33d7;
+$strangulation-500: #651ac6;
+
+$blood-100: #fed1c3;
+$blood-200: #dd3300;
+
+$urine-100: #fff0be;
+$urine-200: #e8be36;
+
+$nausea-100: #d5efe4;
+$nausea-200: #307a5b;
