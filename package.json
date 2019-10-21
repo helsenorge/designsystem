@@ -29,8 +29,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "yarn clean && NODE_ENV=production stencil build",
-    "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/indexs.d.ts ./types/index.d.ts",
+    "build": "yarn clean && NODE_ENV=production rollup -c --environment BUILD:production && yarn build:dts",
+    "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
     "bundle-analyze": "webpack --profile --json > bundle-stats.json && webpack-bundle-analyzer ./bundle-stats.json",
     "clean": "rimraf dist types",
     "format": "npm run prettier -- --write",
@@ -78,9 +78,6 @@
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.4",
-    "@types/storybook__addon-actions": "^3.4.3",
-    "@types/storybook__addon-knobs": "^5.0.3",
-    "@types/storybook__html": "^5.0.2",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.2.0",
     "autoprefixer": "^9.6.1",

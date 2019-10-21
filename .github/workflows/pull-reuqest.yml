@@ -1,14 +1,6 @@
 name: Build & Test
 
-on:
-  push:
-    branches:
-      - "*"
-      - "!develop"
-  pull-request:
-    branches:
-      - "*"
-      - "!develop"
+on: pull_request
 
 jobs:
   build:
