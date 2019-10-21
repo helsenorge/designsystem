@@ -8,4 +8,8 @@
 
 @import 'components/button';
 
+@import '../components/CommonButton/CommonButton';
+@import '../components/ConfirmationButton/ConfirmationButton';
+@import '../components/StartButton/StartButton';
+
 @import 'helsenorge-grid';

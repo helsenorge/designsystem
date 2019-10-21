@@ -8,42 +8,42 @@ import Stacker from '../../.storybook/Stacker/Stacker';
 const stories = storiesOf('Buttons', module);
 stories.addDecorator(withKnobs);
 
-import {ConfirmationButton} from '../../src/components/ConfirmationButton';
+import {StartButton} from '../../src/components/StartButton';
 
 const buttonVariants = {
-  primary: null,
+  primary: undefined,
   secondary: 'secondary',
   tertiary: 'tertiary'
 }
 
-stories.add('ConfirmationButton', (): JSX.Element => (
-    <ConfirmationButton
+stories.add('StartButton', (): JSX.Element => (
+    <StartButton
       variant={select('variant', buttonVariants, buttonVariants.primary)}
       isLoading={boolean('isLoading', false)}
       disabled={boolean('disabled', false)}
       >
-      {text('text', 'ConfirmationButton')}
-    </ConfirmationButton>
+      {text('text', 'StartButton')}
+    </StartButton>
 ));
 
-stories.add('ConfirmationButton (all variants)', (): JSX.Element => (
+stories.add('StartButton (all variants)', (): JSX.Element => (
   <Stacker vertical={boolean('vertically stacking', false)}>
-    <ConfirmationButton
+    <StartButton
       disabled={boolean('disabled', false)}
       >
       Primary
-    </ConfirmationButton>
-    <ConfirmationButton
+    </StartButton>
+    <StartButton
       variant="secondary"
       disabled={boolean('disabled', false)}
       >
       Secondary
-    </ConfirmationButton>
-    <ConfirmationButton
+    </StartButton>
+    <StartButton
       variant="tertiary"
       disabled={boolean('disabled', false)}
       >
       Tertiary
-    </ConfirmationButton>
+    </StartButton>
   </Stacker>
 ));

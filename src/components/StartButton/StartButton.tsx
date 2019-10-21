@@ -2,21 +2,20 @@ import React from 'react';
 import cn from 'classnames';
 
 // TODO: Make this inherit from a set of base variant types in constants.
-export type CommonButtonVariant = string | 'seconary' | 'tertiary' | undefined | null;
+export type StartButtonVariant = 'secondary' | 'tertiary' | string | undefined;
 
-// TODO: Make this inherit attributes form both 'a'-tags and 'button'-tags.
-interface CommonButtonProps
+interface StartButtonProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: CommonButtonVariant;
+  variant?: StartButtonVariant;
   isLoading?: boolean;
 }
 
 // TODO: Move most of the logic out in a generic Button-component that the others inherit.
-const CommonButton = React.forwardRef((props: CommonButtonProps, ref: any) => {
+const StartButton = React.forwardRef((props: StartButtonProps, ref: any) => {
   const {children, variant, isLoading = false, ...rest} = props;
   const classes = cn(
-    'button is-common',
+    'button is-start',
     {[`is-${variant}`]: variant === 'secondary' || variant === 'tertiary'},
     {['is-loading']: isLoading},
   );
@@ -28,8 +27,8 @@ const CommonButton = React.forwardRef((props: CommonButtonProps, ref: any) => {
   );
 });
 
-CommonButton.defaultProps = {
+StartButton.defaultProps = {
   type: 'button',
 };
 
-export {CommonButton};
+export {StartButton};
