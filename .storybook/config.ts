@@ -8,8 +8,6 @@ function loadStories() {
 
 import { addParameters } from '@storybook/html'; // <- or your storybook framework
  
-addDecorator(centered);
-
 addParameters({
   backgrounds: [
     { name: 'white', value: 'white', default: true },
