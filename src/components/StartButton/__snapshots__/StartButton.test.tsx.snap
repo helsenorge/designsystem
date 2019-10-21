@@ -3,10 +3,12 @@
 exports[`renders default variant correctly 1`] = `
 <div>
   <button
-    class="start-button start-button--primary"
+    class="button is-start"
     type="button"
   >
-    StartButton
+    <span>
+      StartButton
+    </span>
   </button>
 </div>
 `;
