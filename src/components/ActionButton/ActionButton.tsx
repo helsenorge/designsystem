@@ -2,22 +2,25 @@ import React from 'react';
 import cn from 'classnames';
 
 // TODO: Make this inherit from a set of base variant types in constants.
-export type ConfirmationButtonVariant = 'seconary' | 'tertiary' | string | undefined;
+export type ActionButtonVariant = 'seconary' | 'tertiary' | string | undefined;
 
-interface ConfirmationButtonProps
+// TODO: Make this inherit attributes form both 'a'-tags and 'button'-tags.
+interface ActionButtonProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: ConfirmationButtonVariant;
+  variant?: ActionButtonVariant;
   isLoading?: boolean;
+  isDanger?: boolean;
 }
 
 // TODO: Move most of the logic out in a generic Button-component that the others inherit.
-const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref: any) => {
-  const {children, variant, isLoading = false, ...rest} = props;
+const ActionButton = React.forwardRef((props: ActionButtonProps, ref: any) => {
+  const {children, variant, isLoading = false, isDanger = false, ...rest} = props;
   const classes = cn(
-    'button is-confirmation',
+    'button is-action',
     {[`is-${variant}`]: variant === 'secondary' || variant === 'tertiary'},
     {['is-loading']: isLoading},
+    {['is-danger']: isDanger},
   );
   return (
     // TODO: Add a 'as' prop so that the button can be either an 'a'-tag or 'button'-tag.
@@ -27,8 +30,8 @@ const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref
   );
 });
 
-ConfirmationButton.defaultProps = {
+ActionButton.defaultProps = {
   type: 'button',
 };
 
-export {ConfirmationButton};
+export {ActionButton};

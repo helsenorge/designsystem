@@ -5,7 +5,6 @@ import buble from 'rollup-plugin-buble';
 import progress from 'rollup-plugin-progress';
 import sizes from 'rollup-plugin-sizes';
 
-// import sass from 'rollup-plugin-sass';
 import copy from 'rollup-plugin-copy';
 import pkg from './package.json';
 

@@ -1,5 +1,3 @@
-@import '../../styling/palette';
-
 // primary
 $common-button-primary-color-font: $bone;
 $common-button-primary-color-background: $surgical-500;
@@ -24,7 +22,7 @@ $common-button-secondary-disabled-color-font: $waiting-room;
 
 // tertiary
 $common-button-tertiary-color-font: $surgical-500;
-$common-button-tertiary-color-background: $bone;
+$common-button-tertiary-color-background: transparent;
 // tertiary:hover
 $common-button-tertiary-hover-color-border: $surgical-100;
 $common-button-tertiary-hover-color-box-shadow: $surgical-400;

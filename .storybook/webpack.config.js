@@ -45,17 +45,6 @@ module.exports = config => {
         },
       ],
     },
-    // {
-    //   test: /\.(woff(2))(\?v=\d+\.\d+\.\d+)?$/,
-    //   use: [
-    //     {
-    //       loader: require.resolve('file-loader'),
-    //       options: {
-    //         name: '[name].[ext]',
-    //       },
-    //     },
-    //   ],
-    // },
     {
       test: /\.(svg|woff(2))(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: require.resolve('file-loader'),
