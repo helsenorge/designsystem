@@ -1,6 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
 
+import './ActionButton.scss';
+
 // TODO: Make this inherit from a set of base variant types in constants.
 export type ActionButtonVariant = 'seconary' | 'tertiary' | string | undefined;
 
