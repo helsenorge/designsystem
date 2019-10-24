@@ -3,7 +3,7 @@
   "version": "0.0.1-dev.21",
   "main": "./dist/js/helsenorge.js",
   "repository": "https://github.com/Helsenorge/designsystem.git",
-  "homepage": "https://design.helsenorge.io",
+  "homepage": "https://helsenorge.design",
   "description": "The official design system for Helsenorge.",
   "author": "Steffen Lien <steffen.lien@ehelse.no>",
   "bugs": {
