@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-import './ConfirmationButton.scss';
+// import './ConfirmationButton.scss';
 
 // TODO: Make this inherit from a set of base variant types in constants.
 export type ConfirmationButtonVariant = 'seconary' | 'tertiary' | string | undefined;
