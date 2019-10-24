@@ -10,6 +10,7 @@ button,
   border: 0;
   outline: none;
   cursor: pointer;
+  appearance: none;
   &:disabled,
   &.is-disabled {
     pointer-events: none;
@@ -46,6 +47,7 @@ button,
   &.is-hovered,
   &.is-active,
   &.is-focused {
+    box-shadow: none;
     &:before {
       border: 0.125rem solid $inner-border;
     }
@@ -53,4 +55,8 @@ button,
       border: 0.125rem solid $outer-border;
     }
   }
+}
+
+@function button-variant-state-color($palette-color) {
+  @return rgba($palette-color, 0.05);
 }

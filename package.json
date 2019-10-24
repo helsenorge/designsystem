@@ -3,7 +3,7 @@
   "version": "0.0.1-dev.21",
   "main": "./dist/js/helsenorge.js",
   "repository": "https://github.com/Helsenorge/designsystem.git",
-  "homepage": "https://design.helsenorge.io",
+  "homepage": "https://helsenorge.design",
   "description": "The official design system for Helsenorge.",
   "author": "Steffen Lien <steffen.lien@ehelse.no>",
   "bugs": {
@@ -111,6 +111,7 @@
     "rollup-plugin-buble": "^0.19.8",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-copy": "^3.1.0",
+    "rollup-plugin-execute": "^1.1.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-progress": "^1.1.1",

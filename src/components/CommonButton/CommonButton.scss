@@ -1,4 +1,5 @@
 // @import '../../styling/palette';
+// @import '../../styling/components/button';
 
 // primary
 $common-button-primary-color-font: $bone;
@@ -12,12 +13,12 @@ $common-button-primary-disabled-color-font: $waiting-room;
 
 // secondary
 $common-button-secondary-color-font: $surgical-500;
-$common-button-secondary-color-background: $bone;
+$common-button-secondary-color-background: transparent;
 $common-button-secondary-color-border: $surgical-500;
 // secondary:hover
-$common-button-secondary-hover-color-border: $surgical-100;
+$common-button-secondary-hover-color-border: button-variant-state-color($surgical-400);
 $common-button-secondary-hover-color-box-shadow: $surgical-400;
-$common-button-secondary-hover-color-background: $surgical-100;
+$common-button-secondary-hover-color-background: button-variant-state-color($surgical-400);
 // secondary:disabled
 $common-button-secondary-disabled-color-border: $waiting-room;
 $common-button-secondary-disabled-color-font: $waiting-room;
@@ -26,9 +27,9 @@ $common-button-secondary-disabled-color-font: $waiting-room;
 $common-button-tertiary-color-font: $surgical-500;
 $common-button-tertiary-color-background: transparent;
 // tertiary:hover
-$common-button-tertiary-hover-color-border: $surgical-100;
+$common-button-tertiary-hover-color-border: button-variant-state-color($surgical-400);
 $common-button-tertiary-hover-color-box-shadow: $surgical-400;
-$common-button-tertiary-hover-color-background: $surgical-100;
+$common-button-tertiary-hover-color-background: button-variant-state-color($surgical-400);
 // tertiary:disable
 $common-button-tertiary-disabled-color-border: $waiting-room;
 $common-button-tertiary-disabled-color-font: $waiting-room;
@@ -72,17 +73,17 @@ $common-button-tertiary-disabled-color-font: $waiting-room;
     &:hover,
     &.is-hovered {
       background-color: $common-button-secondary-hover-color-background;
-      border: 0.125rem solid $common-button-secondary-hover-color-border;
+      border: 0.125rem solid transparent;
     }
     &:active,
     &.is-active {
       background-color: $common-button-secondary-hover-color-background;
-      border: 0.125rem solid $common-button-secondary-hover-color-border;
+      border: 0.125rem solid transparent;
     }
     &:focus,
     &.is-focused {
       background-color: $common-button-secondary-hover-color-background;
-      border: 0.125rem solid $common-button-secondary-hover-color-border;
+      border: 0.125rem solid transparent;
     }
   }
   &.is-tertiary {
@@ -100,17 +101,17 @@ $common-button-tertiary-disabled-color-font: $waiting-room;
     &:hover,
     &.is-hovered {
       background-color: $common-button-tertiary-hover-color-background;
-      border: 0.125rem solid $common-button-tertiary-hover-color-border;
+      border: 0.125rem solid transparent;
     }
     &:active,
     &.is-active {
       background-color: $common-button-tertiary-hover-color-background;
-      border: 0.125rem solid $common-button-tertiary-hover-color-border;
+      border: 0.125rem solid transparent;
     }
     &:focus,
     &.is-focused {
       background-color: $common-button-tertiary-hover-color-background;
-      border: 0.125rem solid $common-button-tertiary-hover-color-border;
+      border: 0.125rem solid transparent;
     }
   }
 }

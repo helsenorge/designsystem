@@ -8,12 +8,13 @@ import Stacker from '../.storybook/Stacker/Stacker';
 const stories = storiesOf('Evertyhing', module);
 stories.addDecorator(withKnobs);
 
-import '../src/styling/helsenorge.scss';
 
 import {CommonButton} from '../src/components/CommonButton';
 import {ActionButton} from '../src/components/ActionButton';
 import { ConfirmationButton } from '../src/components/ConfirmationButton';
 import { StartButton } from '../src/components/StartButton';
+
+import '../src/styling/helsenorge.scss';
 
 const buttonVariants = {
   primary: undefined,
