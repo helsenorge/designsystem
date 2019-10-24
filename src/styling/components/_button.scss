@@ -1,7 +1,9 @@
+button,
 .button {
   padding: 0 2.5rem;
   height: 3.125rem;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -11,6 +13,10 @@
   &:disabled,
   &.is-disabled {
     pointer-events: none;
+  }
+  @include media-breakpoint-up(md) {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
   }
 }
 
