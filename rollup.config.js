@@ -5,7 +5,7 @@ import buble from 'rollup-plugin-buble';
 import progress from 'rollup-plugin-progress';
 import sizes from 'rollup-plugin-sizes';
 
-// import sass from 'rollup-plugin-sass';
+import scss from 'rollup-plugin-scss';
 import copy from 'rollup-plugin-copy';
 import pkg from './package.json';
 
@@ -45,15 +45,22 @@ export default {
       include: ['src/**/*'],
       exclude: 'node_modules/**',
     }),
-    postcss({
-      minimize: true,
-      plugins: [autoprefixer],
-      sourceMap: true,
-      extract: './dist/css/helsenorge.min.css',
-      extensions: ['.scss'],
+    scss({
+      output: './dist/css/helsenorge.min.css',
+      outputStyle: 'compressed'
     }),
+    // postcss({
+    //   minimize: true,
+    //   plugins: [autoprefixer],
+    //   sourceMap: true,
+    //   extract: './dist/css/helsenorge.min.css',
+    //   extensions: ['.scss'],
+    // }),
     copy({
-      targets: [{src: 'src/styling/*', dest: './dist/scss'}, {src: 'src/fonts/*', dest: './dist/fonts'}],
+      targets: [
+        {src: 'src/styling/*', dest: './dist/scss'},
+        {src: 'src/fonts/*', dest: './dist/fonts'}
+      ],
       copyOnce: true,
     }),
     buble(),

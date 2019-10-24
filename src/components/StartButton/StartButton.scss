@@ -1,5 +1,4 @@
-@import '../../styling/palette';
-@import '../../styling/components/button';
+// @import '../../styling/palette';
 
 // primary
 $start-button-primary-color-font: $bone;
@@ -25,7 +24,7 @@ $start-button-secondary-disabled-color-font: $waiting-room;
 // tertiary
 $start-button-tertiary-color-font: $surgical-500;
 $start-button-tertiary-color-border: $surgical-500;
-$start-button-tertiary-color-background: $bone;
+$start-button-tertiary-color-background: transparent;
 // tertiary:hover
 $start-button-tertiary-hover-color-border: $surgical-100;
 $start-button-tertiary-hover-color-background: $surgical-100;

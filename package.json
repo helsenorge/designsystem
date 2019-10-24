@@ -1,6 +1,6 @@
 {
   "name": "@helsenorge/designsystem",
-  "version": "0.0.1-dev.18",
+  "version": "0.0.1-dev.19",
   "main": "./dist/js/helsenorge.js",
   "repository": "https://github.com/Helsenorge/designsystem.git",
   "homepage": "https://design.helsenorge.io",
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "yarn clean && NODE_ENV=production rollup -c --environment BUILD:production && yarn build:dts",
+    "build": "yarn clean && rollup -c --environment BUILD:production && yarn build:dts",
     "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
     "bundle-analyze": "webpack --profile --json > bundle-stats.json && webpack-bundle-analyzer ./bundle-stats.json",
     "clean": "rimraf dist types",
@@ -98,6 +98,7 @@
     "jest-watch-typeahead": "^0.4.0",
     "lint-staged": "^9.2.5",
     "node-sass": "^4.12.0",
+    "postcss": "^7.0.18",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.18.2",
     "react": "^16.9.0",
@@ -113,6 +114,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-progress": "^1.1.1",
+    "rollup-plugin-scss": "^1.0.2",
     "rollup-plugin-sizes": "^0.5.1",
     "rollup-pluginutils": "^2.8.1",
     "sass-loader": "^8.0.0",

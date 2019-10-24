@@ -1,5 +1,4 @@
-@import '../../styling/palette';
-@import '../../styling/components/button';
+// @import '../../styling/palette';
 
 // primary
 $confirmation-button-primary-color-font: $bone;
@@ -26,7 +25,7 @@ $confirmation-button-secondary-disabled-color-font: $waiting-room;
 
 // tertiary
 $confirmation-button-tertiary-color-font: $strangulation-500;
-$confirmation-button-tertiary-color-background: $bone;
+$confirmation-button-tertiary-color-background: transparent;
 // tertiary:hover
 $confirmation-button-tertiary-hover-color-border: $strangulation-100;
 $confirmation-button-tertiary-hover-color-background: $strangulation-100;

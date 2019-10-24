@@ -1,8 +1,10 @@
 import React from 'react';
 import cn from 'classnames';
 
+import './ConfirmationButton.scss';
+
 // TODO: Make this inherit from a set of base variant types in constants.
-export type ConfirmationButtonVariant = string | 'seconary' | 'tertiary' | undefined | null;
+export type ConfirmationButtonVariant = 'seconary' | 'tertiary' | string | undefined;
 
 interface ConfirmationButtonProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {

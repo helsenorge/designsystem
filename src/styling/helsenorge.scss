@@ -1,15 +1,16 @@
-@import 'fonts';
-@import 'colors';
-@import 'palette';
-@import 'animations';
+@import 'helsenorge-grid';
+
 @import 'reset';
+@import 'fonts';
+@import 'palette';
+@import 'colors';
+@import 'animations';
 @import 'typography';
 @import 'variables';
 
 @import 'components/button';
 
-@import '../components/CommonButton/CommonButton';
-@import '../components/ConfirmationButton/ConfirmationButton';
-@import '../components/StartButton/StartButton';
-
-@import 'helsenorge-grid';
+// @import '../components/ActionButton/ActionButton';
+// @import '../components/CommonButton/CommonButton';
+// @import '../components/ConfirmationButton/ConfirmationButton';
+// @import '../components/StartButton/StartButton';
