@@ -8,47 +8,63 @@ h5 {
 }
 
 h1 {
-  font-size: 3.25rem;
-  line-height: 3.75rem;
+  font-size: 2.625rem;
+  line-height: 3rem;
   @include media-breakpoint-up(md) {
-    font-size: 2.625rem;
-    line-height: 3rem;
+    font-size: 3.25rem;
+    line-height: 3.75rem;
   }
 }
 
 h2 {
-  font-size: 2.125rem;
-  line-height: 2.625rem;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
   @include media-breakpoint-up(md) {
-    font-size: 1.75rem;
-    line-height: 2.25rem;
+    font-size: 2.125rem;
+    line-height: 2.625rem;
   }
 }
 
 h3 {
   font-size: 1.5rem;
   line-height: 1.875rem;
-  @include media-breakpoint-up(md) {
-    font-size: 2.625rem;
-    line-height: 3rem;
-  }
 }
 
 h4 {
-  font-size: 1.25rem;
-  line-height: 2rem;
+  font-size: 1.625rem;
+  line-height: 1.75rem;
   @include media-breakpoint-up(md) {
-    font-size: 1.625;
-    line-height: 1.75rem;
+    font-size: 1.25rem;
+    line-height: 2rem;
   }
 }
 
 h5 {
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1.625rem;
   text-transform: uppercase;
   @include media-breakpoint-up(md) {
-    font-size: 1rem;
-    line-height: 1.625rem;
+    font-size: 1.125rem;
+  }
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  @include media-breakpoint-up(md) {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    &.is-focused {
+      line-height: 1.625rem;
+    }
+  }
+}
+
+strong {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  @include media-breakpoint-up(md) {
+    font-size: 1.125rem;
+    line-height: 1.875rem;
   }
 }
