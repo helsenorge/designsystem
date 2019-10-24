@@ -1,4 +1,5 @@
 // @import '../../styling/palette';
+// @import '../../styling/components/button';
 
 // primary
 $confirmation-button-primary-color-font: $bone;
@@ -12,11 +13,11 @@ $confirmation-button-primary-disabled-color-font: $waiting-room;
 
 // secondary
 $confirmation-button-secondary-color-font: $strangulation-500;
-$confirmation-button-secondary-color-background: $bone;
+$confirmation-button-secondary-color-background: transparent;
 $confirmation-button-secondary-color-border: $strangulation-400;
 // secondary:hover
-$confirmation-button-secondary-hover-color-border: $strangulation-100;
-$confirmation-button-secondary-hover-color-background: $strangulation-100;
+$confirmation-button-secondary-hover-color-border: button-variant-state-color($strangulation-500);
+$confirmation-button-secondary-hover-color-background: button-variant-state-color($strangulation-500);
 $confirmation-button-secondary-hover-color-box-shadow: $strangulation-500;
 $confirmation-button-secondary-hover-color-font: $strangulation-500;
 // secondary:disabled
@@ -27,8 +28,8 @@ $confirmation-button-secondary-disabled-color-font: $waiting-room;
 $confirmation-button-tertiary-color-font: $strangulation-500;
 $confirmation-button-tertiary-color-background: transparent;
 // tertiary:hover
-$confirmation-button-tertiary-hover-color-border: $strangulation-100;
-$confirmation-button-tertiary-hover-color-background: $strangulation-100;
+$confirmation-button-tertiary-hover-color-border: button-variant-state-color($strangulation-500);
+$confirmation-button-tertiary-hover-color-background: button-variant-state-color($strangulation-500);
 $confirmation-button-tertiary-hover-color-box-shadow: $strangulation-500;
 $confirmation-button-tertiary-hover-color-font: $strangulation-500;
 // tertiary:disable
@@ -74,17 +75,17 @@ $confirmation-button-tertiary-disabled-color-font: $waiting-room;
     &:hover,
     &.is-hovered {
       background-color: $confirmation-button-secondary-hover-color-background;
-      border: 0.125rem solid $confirmation-button-secondary-hover-color-border;
+      border: 0.125rem solid transparent;
     }
     &:active,
     &.is-active {
       background-color: $confirmation-button-secondary-hover-color-background;
-      border: 0.125rem solid $confirmation-button-secondary-hover-color-border;
+      border: 0.125rem solid transparent;
     }
     &:focus,
     &.is-focused {
       background-color: $confirmation-button-secondary-hover-color-background;
-      border: 0.125rem solid $confirmation-button-secondary-hover-color-border;
+      border: 0.125rem solid transparent;
     }
   }
   &.is-tertiary {
@@ -102,20 +103,17 @@ $confirmation-button-tertiary-disabled-color-font: $waiting-room;
     &:hover,
     &.is-hovered {
       background-color: $confirmation-button-tertiary-hover-color-background;
-      border: 0.125rem solid $confirmation-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $confirmation-button-tertiary-hover-color-box-shadow;
+      border: 0.125rem solid transparent;
     }
     &:active,
     &.is-active {
       background-color: $confirmation-button-tertiary-hover-color-background;
-      border: 0.125rem solid $confirmation-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $confirmation-button-tertiary-hover-color-box-shadow;
+      border: 0.125rem solid transparent;
     }
     &:focus,
     &.is-focused {
       background-color: $confirmation-button-tertiary-hover-color-background;
-      border: 0.125rem solid $confirmation-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $confirmation-button-tertiary-hover-color-box-shadow;
+      border: 0.125rem solid transparent;
     }
   }
 }

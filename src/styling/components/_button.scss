@@ -1,16 +1,23 @@
+button,
 .button {
   padding: 0 2.5rem;
   height: 3.125rem;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 0;
   outline: none;
   cursor: pointer;
+  appearance: none;
   &:disabled,
   &.is-disabled {
     pointer-events: none;
+  }
+  @include media-breakpoint-up(md) {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
   }
 }
 
@@ -40,6 +47,7 @@
   &.is-hovered,
   &.is-active,
   &.is-focused {
+    box-shadow: none;
     &:before {
       border: 0.125rem solid $inner-border;
     }
@@ -47,4 +55,8 @@
       border: 0.125rem solid $outer-border;
     }
   }
+}
+
+@function button-variant-state-color($palette-color) {
+  @return rgba($palette-color, 0.05);
 }

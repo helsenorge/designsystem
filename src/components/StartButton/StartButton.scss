@@ -1,4 +1,5 @@
 // @import '../../styling/palette';
+// @import '../../styling/components/button';
 
 // primary
 $start-button-primary-color-font: $bone;
@@ -23,12 +24,11 @@ $start-button-secondary-disabled-color-font: $waiting-room;
 
 // tertiary
 $start-button-tertiary-color-font: $surgical-500;
-$start-button-tertiary-color-border: $surgical-500;
 $start-button-tertiary-color-background: transparent;
 // tertiary:hover
-$start-button-tertiary-hover-color-border: $surgical-100;
-$start-button-tertiary-hover-color-background: $surgical-100;
+$start-button-tertiary-hover-color-border: button-variant-state-color($surgical-400);
 $start-button-tertiary-hover-color-box-shadow: $surgical-400;
+$start-button-tertiary-hover-color-background: button-variant-state-color($surgical-400);
 // tertiary:disable
 $start-button-tertiary-disabled-color-border: $waiting-room;
 $start-button-tertiary-disabled-color-font: $waiting-room;
@@ -89,7 +89,6 @@ $start-button-tertiary-disabled-color-font: $waiting-room;
     );
     height: 4.375rem;
     background-color: $start-button-tertiary-color-background;
-    border: 0.125rem solid $start-button-tertiary-color-border;
     color: $start-button-tertiary-color-font;
     &:disabled,
     &.is-disabled {
@@ -99,20 +98,17 @@ $start-button-tertiary-disabled-color-font: $waiting-room;
     &:hover,
     &.is-hovered {
       background-color: $start-button-tertiary-hover-color-background;
-      border: 0.125rem solid $start-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $start-button-tertiary-hover-color-box-shadow;
+      border: 0.125rem solid transparent;
     }
     &:active,
     &.is-active {
       background-color: $start-button-tertiary-hover-color-background;
-      border: 0.125rem solid $start-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $start-button-tertiary-hover-color-box-shadow;
+      border: 0.125rem solid transparent;
     }
     &:focus,
     &.is-focused {
       background-color: $start-button-tertiary-hover-color-background;
-      border: 0.125rem solid $start-button-tertiary-hover-color-border;
-      box-shadow: 0 0 0 0.25rem $start-button-tertiary-hover-color-box-shadow;
+      border: 0.125rem solid transparent;
     }
   }
 }
