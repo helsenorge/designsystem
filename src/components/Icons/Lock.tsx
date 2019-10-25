@@ -1,15 +1,27 @@
 import React from 'react';
+import {Palette} from '../../constants';
 
-const Lock = ({color}: {color: string}) => {
+interface IconProps {
+  color?: Palette;
+  size?: number;
+}
+
+const Lock = React.forwardRef((props: IconProps, ref: any) => {
+  const {size = 128, color = 'black'} = props;
   return (
-    <path
-      fill={color}
-      d="M368.5,190.4h-18.8v-37.5c0-51.8-42-93.8-93.8-93.8s-93.8,42-93.8,93.8v37.5h-18.8c-20.6,0-37.5,16.9-37.5,37.5v187.5
-                c0,20.6,16.9,37.5,37.5,37.5h225c20.6,0,37.5-16.9,37.5-37.5V227.9C406,207.2,389.1,190.4,368.5,190.4z M256,359.1
-                c-20.6,0-37.5-16.9-37.5-37.5s16.9-37.5,37.5-37.5s37.5,16.9,37.5,37.5S276.6,359.1,256,359.1z M314.1,190.4H197.9v-37.5
-                c0-32.1,26.1-58.1,58.1-58.1s58.1,26.1,58.1,58.1V190.4z"
-    />
+    <svg className="icon" width={size} height={size} viewBox="0 0 512 512" enable-background="new 0 0 512 512">
+      <path
+        fill={color}
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M389.5,195.8v-62.3C389.5,59.9,329.6,0,256,0c-73.6,0-133.5,59.9-133.5,133.5v62.3
+        H72V512h368V195.8H389.5z M160.5,133.5c0-52.7,42.8-95.5,95.5-95.5c52.7,0,95.5,42.8,95.5,95.5v62.3h-191V133.5z M109.9,474h292.1
+        V233.7H109.9V474z"
+      />
+    </svg>
   );
-};
+});
+
+Lock.displayName = 'Icon';
 
 export default Lock;

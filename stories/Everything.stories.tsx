@@ -13,8 +13,10 @@ import {CommonButton} from '../src/components/CommonButton';
 import {ActionButton} from '../src/components/ActionButton';
 import { ConfirmationButton } from '../src/components/ConfirmationButton';
 import { StartButton } from '../src/components/StartButton';
+import {Icon} from '../src/components/Icons';
 
 import '../src/styling/helsenorge.scss';
+import { Palette } from '../src/constants';
 
 const buttonVariants = {
   primary: undefined,
@@ -50,6 +52,53 @@ stories.add('CommonButton (all variants)', (): JSX.Element => (
       disabled={boolean('disabled', false)}
       >
       Tertiary
+    </CommonButton>
+  </Stacker>
+));
+
+stories.add('CommonButton (all variants with icons)', (): JSX.Element => (
+  <Stacker vertical={boolean('vertically stacking', true)}>
+    <CommonButton
+      disabled={boolean('disabled', false)}
+      >
+      Primary
+    </CommonButton>
+    <CommonButton
+      disabled={boolean('disabled', false)}
+      >
+      Primary
+      <Icon>lock</Icon>
+    </CommonButton>
+    <CommonButton
+      disabled={boolean('disabled', false)}
+      >
+      <Icon color={Palette.Bone}>lock</Icon>
+      Primary
+    </CommonButton>
+    <CommonButton
+      variant="secondary"
+      disabled={boolean('disabled', false)}
+      >
+      <Icon color={Palette.Surgical500}>lock</Icon>
+      Logg inn
+      <Icon color={Palette.Surgical500}>arrowRight</Icon>
+    </CommonButton>
+    <CommonButton
+      disabled={boolean('disabled', false)}
+      >
+      <Icon>lock</Icon>
+      Primary
+      <Icon>arrowRight</Icon>
+    </CommonButton>
+    <CommonButton
+      disabled={boolean('disabled', false)}
+      >
+      <Icon>lock</Icon>
+      Primary
+      Tullball
+      <Icon>lock</Icon>
+      Fjas
+      <Icon>lock</Icon>
     </CommonButton>
   </Stacker>
 ));

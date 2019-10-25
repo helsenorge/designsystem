@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
+import {Button} from '../Button';
 
 // import './CommonButton.scss';
 
@@ -18,15 +19,15 @@ interface CommonButtonProps
 const CommonButton = React.forwardRef((props: CommonButtonProps, ref: any) => {
   const {children, variant, isLoading = false, ...rest} = props;
   const classes = cn(
-    'button is-common',
+    'is-common',
     {[`is-${variant}`]: variant === 'secondary' || variant === 'tertiary'},
     {['is-loading']: isLoading},
   );
   return (
     // TODO: Add a 'as' prop so that the button can be either an 'a'-tag or 'button'-tag.
-    <button className={classes} ref={ref} {...rest}>
-      <span>{children}</span>
-    </button>
+    <Button className={classes} ref={ref} {...rest}>
+      {children}
+    </Button>
   );
 });
 

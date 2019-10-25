@@ -1,11 +1,13 @@
 import React from 'react';
 
 import Lock from './Lock';
-import Unlock from './Unlock';
+import Wheelchair from './Wheelcair';
+import ArrowRight from './ArrowRight';
 
 const IconMapping = {
   lock: Lock,
-  unlock: Unlock,
+  wheelchair: Wheelchair,
+  arrowRight: ArrowRight,
 };
 
 type IconArt = 'lock' | 'unlock' | string;
@@ -26,18 +28,11 @@ interface IconProps {
   children: IconArt;
   size?: IconSize;
   color?: string;
-  hover?: {icon: string; onHover: boolean};
 }
 
 const Icon = React.forwardRef((props: IconProps, ref: any) => {
-  const {children = '', size = IconSize.Medium, color = 'black', hover = null, ...restProps} = props;
-  return (
-    <svg version="1.1" viewBox="0 0 512 512" width={size} height={size} ref={ref} {...restProps}>
-      {!hover
-        ? React.createElement(IconMapping[children], {color})
-        : React.createElement(IconMapping[!hover.onHover ? children : hover.icon], {color})}
-    </svg>
-  );
+  const {children = '', size = IconSize.Medium, color = 'black'} = props;
+  return React.createElement(IconMapping[children], {size, color});
 });
 
 Icon.displayName = 'Icon';
