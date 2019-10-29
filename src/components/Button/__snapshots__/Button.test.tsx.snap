@@ -3,10 +3,10 @@
 exports[`renders default variant correctly 1`] = `
 <div>
   <button
-    class="button is-confirmation"
+    class="button undefined"
   >
     <span>
-      ConfirmationButton
+      Button
     </span>
   </button>
 </div>

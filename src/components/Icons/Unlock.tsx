@@ -1,15 +1,27 @@
 import React from 'react';
+import {IconProps} from './Icon';
 
-const Unlock = ({color}: {color: string}) => {
+const Unlock = React.forwardRef((props: IconProps, ref: any) => {
+  const {color, size} = props;
   return (
-    <path
-      fill={color}
-      d="M256.1,359.2c20.6,0,37.5-16.9,37.5-37.5s-16.9-37.5-37.5-37.5c-20.6,0-37.5,16.9-37.5,37.5S235.4,359.2,256.1,359.2z
-        M368.6,190.5h-18.8V153c0-51.8-42-93.8-93.8-93.8s-93.7,42-93.7,93.8h35.6c0-32.1,26.1-58.1,58.1-58.1s58.1,26.1,58.1,58.1v37.5
-        H143.6c-20.6,0-37.5,16.9-37.5,37.5v187.5c0,20.6,16.9,37.5,37.5,37.5h225c20.6,0,37.5-16.9,37.5-37.5V228
-        C406.1,207.4,389.2,190.5,368.6,190.5z M368.6,415.5h-225V228h225V415.5z"
-    />
+    <svg
+      className="icon"
+      ref={ref}
+      version="1.1"
+      viewBox="0 0 512 512"
+      width={size}
+      height={size}
+      enable-background="new 0 0 512 512">
+      <path
+        fill={color}
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M336.5,206.2c0-0.1,0.1-0.2,0.1-0.3V145c0-44.4-36.1-80.6-80.6-80.6
+        c-44.4,0-80.6,36.1-80.6,80.6v13.6c0,6.3,5.1,11.5,11.5,11.5c6.3,0,11.5-5.1,11.5-11.5V145c0-31.8,25.9-57.6,57.6-57.6
+        c31.8,0,57.7,25.9,57.7,57.6v60.8c0,0.1,0.1,0.2,0.1,0.3H144.9V397h222.2V206.2H336.5z M167.8,374.1h176.3v-145H167.8V374.1z"
+      />
+    </svg>
   );
-};
+});
 
 export default Unlock;

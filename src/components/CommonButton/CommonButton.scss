@@ -37,6 +37,9 @@ $common-button-tertiary-disabled-color-font: $waiting-room;
 .is-common {
   background-color: $common-button-primary-color-background;
   color: $common-button-primary-color-font;
+  &.has-icon .icon {
+    margin: 0 1rem;
+  }
   &:disabled,
   &.is-disabled {
     color: $common-button-primary-disabled-color-font;
@@ -92,6 +95,7 @@ $common-button-tertiary-disabled-color-font: $waiting-room;
       $common-button-tertiary-hover-color-box-shadow
     );
     background-color: $common-button-tertiary-color-background;
+    border: 0.125rem solid transparent;
     color: $common-button-tertiary-color-font;
     &:disabled,
     &.is-disabled {

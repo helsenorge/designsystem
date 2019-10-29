@@ -1,0 +1,7 @@
+.storybook-stacker {
+  display: grid;
+  align-items: center;
+  & > * {
+    width: fit-content;
+  }
+}
