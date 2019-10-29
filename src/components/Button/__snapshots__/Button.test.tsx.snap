@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders default variant correctly 1`] = `
+<div>
+  <button
+    class="button undefined"
+  >
+    <span>
+      Button
+    </span>
+  </button>
+</div>
+`;
