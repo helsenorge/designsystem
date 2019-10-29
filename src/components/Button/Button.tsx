@@ -3,12 +3,6 @@ import {HTMLButtonProps, HTMLAnchorProps, ButtonVariant} from '../../constants';
 
 export type ButtonElementType = 'a' | 'button';
 
-// function useIcon(child: any, className: string) {
-//   useEffect(() => {
-
-//   }, [])
-// }
-
 function getCorrectIcon(child: any, className: string, index: number) {
   const iconSizeMap = {
     'is-start': 64,
