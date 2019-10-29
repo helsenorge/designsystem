@@ -27,11 +27,29 @@ const buttonVariants = {
 stories.add('CommonButton', (): JSX.Element => (
     <CommonButton
       variant={select('variant', buttonVariants, buttonVariants.primary)}
-      isLoading={boolean('isLoading', false)}
       disabled={boolean('disabled', false)}
       >
       {text('text', 'CommonButton')}
     </CommonButton>
+));
+
+stories.add('CommonButton (button and a)', (): JSX.Element => (
+  <Stacker vertical={boolean('vertically stacking', false)}>
+    <CommonButton
+      as="button"
+      disabled={boolean('disabled', false)}
+      >
+      Button
+    </CommonButton>
+    <CommonButton
+      as="a"
+      disabled={boolean('disabled', false)}
+      >
+      Anchor
+    </CommonButton>
+    <button className="button is-common">Button (tag)</button>
+    <a className="button is-common">Anchor (tag)</a>
+  </Stacker>
 ));
 
 stories.add('CommonButton (all variants)', (): JSX.Element => (
@@ -56,57 +74,66 @@ stories.add('CommonButton (all variants)', (): JSX.Element => (
   </Stacker>
 ));
 
-stories.add('CommonButton (all variants with icons)', (): JSX.Element => (
+stories.add('Assorted (all variants with icons)', (): JSX.Element => (
   <Stacker vertical={boolean('vertically stacking', true)}>
-    <CommonButton
-      disabled={boolean('disabled', false)}
-      >
-      Primary
-    </CommonButton>
-    <CommonButton
-      disabled={boolean('disabled', false)}
-      >
-      Primary
-      <Icon>lock</Icon>
-    </CommonButton>
-    <CommonButton
-      disabled={boolean('disabled', false)}
-      >
+    <ConfirmationButton>
       <Icon color={Palette.Bone}>lock</Icon>
-      Primary
-    </CommonButton>
-    <CommonButton
-      variant="secondary"
-      disabled={boolean('disabled', false)}
-      >
-      <Icon color={Palette.Surgical500}>lock</Icon>
       Logg inn
+    </ConfirmationButton>
+    <ConfirmationButton>
+      Logg inn
+      <Icon color={Palette.Bone}>unlock</Icon>
+    </ConfirmationButton>
+    <ConfirmationButton>
+      <Icon color={Palette.Bone}>unlock</Icon>
+      Logg inn
+      <Icon color={Palette.Bone}>unlock</Icon>
+    </ConfirmationButton>
+    <CommonButton>
+      Gå videre
+      <Icon color={Palette.Bone}>arrowLeft</Icon>
+    </CommonButton>
+    <CommonButton variant="secondary">
       <Icon color={Palette.Surgical500}>arrowRight</Icon>
+      Tilbake
     </CommonButton>
-    <CommonButton
-      disabled={boolean('disabled', false)}
-      >
-      <Icon>lock</Icon>
-      Primary
-      <Icon>arrowRight</Icon>
+    <CommonButton variant="secondary">
+      <Icon color={Palette.Surgical500}>arrowRight</Icon>
+      Tilbake
+      <Icon color={Palette.Surgical500}>arrowLeft</Icon>
     </CommonButton>
-    <CommonButton
-      disabled={boolean('disabled', false)}
-      >
-      <Icon>lock</Icon>
-      Primary
-      Tullball
-      <Icon>lock</Icon>
-      Fjas
-      <Icon>lock</Icon>
-    </CommonButton>
+    <ActionButton>
+      <Icon color={Palette.Surgical500}>printer</Icon>
+      Skriv ut
+    </ActionButton>
+    <ActionButton>
+      Fjern
+      <Icon color={Palette.Surgical500}>bin</Icon>
+    </ActionButton>
+    <ActionButton>
+      <Icon color={Palette.Surgical500}>close</Icon>
+    </ActionButton>
+    <StartButton>
+      <Icon color={Palette.Bone}>bus</Icon>
+      Logg inn for å søke om pasientreise
+      <Icon color={Palette.Bone}>arrowLeft</Icon>
+    </StartButton>
+    <StartButton variant="secondary">
+      <Icon color={Palette.Bone}>envelope</Icon>
+      Skriv melding
+      <Icon color={Palette.Bone}>arrowLeft</Icon>
+    </StartButton>
+    <StartButton variant="tertiary">
+      <Icon color={Palette.Surgical500}>envelope</Icon>
+      Skriv melding
+      <Icon color={Palette.Surgical500}>arrowLeft</Icon>
+    </StartButton>
   </Stacker>
 ));
 
 stories.add('ActionButton', (): JSX.Element => (
     <ActionButton
       variant={select('variant', buttonVariants, buttonVariants.primary)}
-      isLoading={boolean('isLoading', false)}
       disabled={boolean('disabled', false)}
       >
       {text('text', 'ActionButton')}
@@ -146,8 +173,9 @@ stories.add('ConfirmationButton', (): JSX.Element => (
 ));
 
 stories.add('ConfirmationButton (all variants)', (): JSX.Element => (
-  <Stacker vertical={boolean('vertically stacking', false)}>
+  <>
     <ConfirmationButton
+    variant="secondary"
       disabled={boolean('disabled', false)}
       >
       Primary
@@ -164,13 +192,12 @@ stories.add('ConfirmationButton (all variants)', (): JSX.Element => (
       >
       Tertiary
     </ConfirmationButton>
-  </Stacker>
+  </>
 ));
 
 stories.add('StartButton', (): JSX.Element => (
     <StartButton
       variant={select('variant', buttonVariants, buttonVariants.primary)}
-      isLoading={boolean('isLoading', false)}
       disabled={boolean('disabled', false)}
       >
       {text('text', 'StartButton')}

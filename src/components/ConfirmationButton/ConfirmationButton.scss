@@ -94,6 +94,7 @@ $confirmation-button-tertiary-disabled-color-font: $waiting-room;
       $confirmation-button-tertiary-hover-color-box-shadow
     );
     background-color: $confirmation-button-tertiary-color-background;
+    border: 0.125rem solid transparent;
     color: $confirmation-button-tertiary-color-font;
     &:disabled,
     &.is-disabled {

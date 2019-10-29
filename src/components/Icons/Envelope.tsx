@@ -1,7 +1,7 @@
 import React from 'react';
 import {IconProps} from './Icon';
 
-const Lock = React.forwardRef((props: IconProps, ref: any) => {
+const Envelope = React.forwardRef((props: IconProps, ref: any) => {
   const {color, size} = props;
   return (
     <svg
@@ -16,12 +16,12 @@ const Lock = React.forwardRef((props: IconProps, ref: any) => {
         fill={color}
         fill-rule="evenodd"
         clip-rule="evenodd"
-        d="M336.6,206.2v-37.6c0-44.4-36.1-80.6-80.6-80.6c-44.4,0-80.6,36.2-80.6,80.6v37.6
-        h-30.5V397h222.2V206.2H336.6z M198.4,168.6c0-31.8,25.9-57.7,57.6-57.7c31.8,0,57.7,25.9,57.7,57.7v37.6H198.4V168.6z M167.8,374.1
-        h176.3v-145H167.8V374.1z"
+        d="M302.6,251.5l111.5,112H94.4l111.5-112l48.3,43.2L302.6,251.5z M84.9,143.2
+			l108.3,96.8L84.9,348.8V143.2z M315.3,240.1l111.7-100v212.2L315.3,240.1z M93.3,127.8h321.8L254.2,271.7L93.3,127.8z M425.8,127.8
+			h1.2v1.4L425.8,127.8z M76.5,110.7l-8.6,0.1V372l0.1,8.6h367.6l8.6-0.1V119.3l-0.1-8.6H76.5z"
       />
     </svg>
   );
 });
 
-export default Lock;
+export default Envelope;

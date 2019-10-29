@@ -1,37 +1,48 @@
 import React, {useState} from 'react';
+import {HTMLButtonProps, HTMLAnchorProps, ButtonVariant} from '../../constants';
 
-// import './CommonButton.scss';
+export type ButtonElementType = 'a' | 'button';
 
-// TODO: Make this inherit attributes form both 'a'-tags and 'button'-tags.
-interface ButtonProps
-  extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-  children: React.ReactNode;
-  className?: string;
+// function useIcon(child: any, className: string) {
+//   useEffect(() => {
+
+//   }, [])
+// }
+
+function getCorrectIcon(child: any, className: string, index: number) {
+  const iconSizeMap = {
+    'is-start': 64,
+    'is-start is-secondary': 48,
+    'is-start is-tertiary': 48,
+  };
+  const iconSize = iconSizeMap[className];
+  return React.cloneElement(child, {size: index === 0 && iconSize ? iconSize : 38});
 }
 
-// TODO: Move most of the logic out in a generic Button-component that the others inherit.
+interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
+  variant?: ButtonVariant;
+  children: React.ReactNode;
+  className?: string;
+  as?: ButtonElementType;
+}
+
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
-  const {children, className, ...rest} = props;
+  const {className, as = 'button', children, ...rest} = props;
   const [hasIcon, setHasIcon] = useState(false);
   const classes = hasIcon ? `button ${className} has-icon` : `button ${className}`;
-  return (
-    // TODO: Add a 'as' prop so that the button can be either an 'a'-tag or 'button'-tag.
-    <button className={classes} ref={ref} {...rest}>
-      {React.Children.map(children, (child: any, index: number) => {
-        if (child.type && child.type.displayName === 'Icon') {
-          if (!hasIcon) {
-            setHasIcon(true);
-          }
-          return React.cloneElement(child, {size: 24});
+  function handleChildren() {
+    return React.Children.map(children, (child: any, index: number) => {
+      if (child.type && child.type.displayName === 'Icon') {
+        if (!hasIcon) {
+          setHasIcon(true);
         }
-        return <span>{child}</span>;
-      })}
-    </button>
-  );
+        return getCorrectIcon(child, className!, index);
+      }
+      return <span>{child}</span>;
+    });
+  }
+  const Element = React.createElement(`${as}`, {children: handleChildren(), className: classes, ...rest});
+  return Element;
 });
 
-Button.defaultProps = {
-  type: 'button',
-};
-
-export {Button};
+export {Button, ButtonProps};

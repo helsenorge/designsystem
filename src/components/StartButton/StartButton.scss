@@ -37,6 +37,13 @@ $start-button-tertiary-disabled-color-font: $waiting-room;
   height: 5rem;
   background-color: $start-button-primary-color-background;
   color: $start-button-primary-color-font;
+  &.has-icon .icon {
+    margin: 0 1rem;
+    &.icon:last-child {
+      margin-left: 1.5rem;
+      margin-right: 1rem;
+    }
+  }
   &:disabled,
   &.is-disabled {
     color: $start-button-primary-disabled-color-font;
@@ -88,6 +95,7 @@ $start-button-tertiary-disabled-color-font: $waiting-room;
       $start-button-tertiary-hover-color-box-shadow
     );
     height: 4.375rem;
+    border: 0.125rem solid $start-button-secondary-color-border;
     background-color: $start-button-tertiary-color-background;
     color: $start-button-tertiary-color-font;
     &:disabled,

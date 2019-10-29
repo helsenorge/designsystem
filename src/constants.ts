@@ -7,3 +7,30 @@ export enum Palette {
   Surgical400 = '#01656f',
   Surgical500 = '#00373c',
 }
+
+export interface HTMLButtonProps {
+  autoFocus?: boolean;
+  disabled?: boolean;
+  form?: string;
+  formAction?: string;
+  formEncType?: string;
+  formMethod?: string;
+  formNoValidate?: boolean;
+  formTarget?: string;
+  name?: string;
+  type?: 'submit' | 'reset' | 'button' | string;
+  value?: string | string[] | number;
+}
+
+export interface HTMLAnchorProps {
+  download?: any;
+  href?: string;
+  hrefLang?: string;
+  media?: string;
+  ping?: string;
+  rel?: string;
+  target?: string;
+  referrerPolicy?: string;
+}
+
+export type ButtonVariant = 'secondary' | 'tertiary' | string | undefined | null;

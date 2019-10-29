@@ -1,7 +1,7 @@
 import React from 'react';
 import {IconProps} from './Icon';
 
-const ArrowRight = React.forwardRef((props: IconProps, ref: any) => {
+const ArrowLeft = React.forwardRef((props: IconProps, ref: any) => {
   const {color, size} = props;
   return (
     <svg
@@ -16,11 +16,11 @@ const ArrowRight = React.forwardRef((props: IconProps, ref: any) => {
         fill={color}
         fill-rule="evenodd"
         clip-rule="evenodd"
-        points="223.2,63.2 238.6,81.8 104.9,242.9 448.8,242.9 448.8,269.1 104.9,269.1 
-        238.6,430.2 223.2,448.8 63.2,256 "
+        points="288.8,63.2 273.4,81.8 407.1,242.9 63.2,242.9 63.2,269.1 407.1,269.1 
+        273.4,430.2 288.8,448.8 448.8,256 "
       />
     </svg>
   );
 });
 
-export default ArrowRight;
+export default ArrowLeft;
