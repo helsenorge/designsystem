@@ -1,27 +1,31 @@
 {
   "name": "@helsenorge/designsystem",
-  "version": "0.0.1-dev.25",
-  "main": "./dist/js/helsenorge.js",
-  "repository": "https://github.com/Helsenorge/designsystem.git",
+  "version": "0.0.1",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helsenorge/designsystem"
+  },
   "homepage": "https://helsenorge.design",
-  "description": "The official design system for Helsenorge.",
+  "description": "The official design system for Helsenorge consist of out-of-the-box components built with StencilJS and React.",
   "author": "Steffen Lien <steffen.lien@ehelse.no>",
   "bugs": {
     "url": "https://github.com/Helsenorge/designsystem/issues",
-    "email": "design@helsenorge.io"
+    "email": "design@helsenorge.design"
   },
   "license": "MIT",
   "keywords": [
     "components",
-    "designsystem",
+    "web-components",
+    "design-system",
     "helsenorge",
     "patterns",
-    "react"
+    "react",
+    "stenciljs"
   ],
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "yarn clean && rollup -c --environment BUILD:production && yarn build:dts",
     "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
@@ -43,19 +47,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "module": "./dist/js/helsenorge.esm.js",
-  "source": "src/index.ts",
-  "files": [
-    "dist/**/*"
-  ],
-  "types": "./dist/index.d.ts",
-  "typescript": {
-    "declaration": "./dist/index.d.ts"
-  },
-  "peerDependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
@@ -86,6 +77,7 @@
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
+    "@stencil/core": "^1.7.4",
     "dts-bundle-generator": "^3.2.0",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.2.0",
@@ -96,6 +88,7 @@
     "jest": "^24.9.0",
     "jest-axe": "^3.2.0",
     "jest-watch-typeahead": "^0.4.0",
+    "lerna": "^3.15.0",
     "lint-staged": "^9.2.5",
     "node-sass": "^4.12.0",
     "postcss": "^7.0.18",
