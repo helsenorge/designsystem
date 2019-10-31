@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {HTMLButtonProps, HTMLAnchorProps, ButtonVariant} from '../../constants';
 
-export type ButtonElementType = 'a' | 'button';
+export type ButtonTag = 'a' | 'button';
 
 function getCorrectIcon(child: any, className: string, index: number) {
   const iconSizeMap = {
@@ -17,11 +17,11 @@ interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   variant?: ButtonVariant;
   children: React.ReactNode;
   className?: string;
-  as?: ButtonElementType;
+  asTag?: ButtonTag;
 }
 
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
-  const {className, as = 'button', children, ...rest} = props;
+  const {className, asTag = 'button', children, ...rest} = props;
   const [hasIcon, setHasIcon] = useState(false);
   const classes = hasIcon ? `button ${className} has-icon` : `button ${className}`;
   function handleChildren() {
@@ -35,7 +35,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       return <span>{child}</span>;
     });
   }
-  const Element = React.createElement(`${as}`, {children: handleChildren(), className: classes, ...rest});
+  const Element = React.createElement(`${asTag}`, {children: handleChildren(), className: classes, ...rest});
   return Element;
 });
 
