@@ -38,6 +38,7 @@
     "clean": "rimraf dist www loader",
     "build": "stencil build",
     "format": "prettier --no-editorconfig --only-changed --write \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
+    "precommit": "lint-staged",
     "generate": "stencil generate",
     "test": "stencil test --spec",
     "test:watch": "stencil test --spec --watchAll",

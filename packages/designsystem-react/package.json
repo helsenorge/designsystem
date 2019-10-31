@@ -31,6 +31,7 @@
   "scripts": {
     "clean": "rimraf dist types",
     "format": "prettier --no-editorconfig --write \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
+    "precommit": "lint-staged",
     "lint": "eslint .",
     "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
     "publish:dev": "npm version prerelease && git push --follow-tags",
