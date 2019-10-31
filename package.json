@@ -27,19 +27,14 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn clean && rollup -c --environment BUILD:production && yarn build:dts",
-    "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
     "clean": "lerna run clean",
-    "format": "echo balls",
+    "format": "lerna run format",
     "lint": "eslint .",
-    "publish:dev": "npm version prerelease && git push --follow-tags",
     "start:react": "start-storybook -p 5000 -s ./src",
     "start:elements": "start-storybook -p 5000 -s ./src",
     "test": "jest",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "test:watch": "jest --watch",
-    "icons:generate": "npx @svgr/cli --ref --no-view-box false --replace-attr-values '#000={color}' --svg-props width={size} --svg-props height={size} --template ./scripts/iconTemplate.js --ext tsx -d ./src/components/Icons/  ./src/icons",
-    "icons:inject": "node ./scripts/iconInject.js",
     "validate": "npm run lint && npm run prettier -- --list-different"
   },
   "husky": {
@@ -114,10 +109,6 @@
     "style-loader": "^1.0.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.6.2",
-    "url-loader": "^2.1.0",
-    "webpack-bundle-analyzer": "^3.4.1"
-  },
-  "dependencies": {
-    "classnames": "^2.2.6"
+    "url-loader": "^2.1.0"
   }
 }

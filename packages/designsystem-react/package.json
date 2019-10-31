@@ -30,7 +30,7 @@
   ],
   "scripts": {
     "clean": "rimraf dist types",
-    "format": "prettier --no-editorconfig --write \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
+    "format": "prettier --no-editorconfig --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
     "precommit": "lint-staged",
     "lint": "eslint .",
     "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
