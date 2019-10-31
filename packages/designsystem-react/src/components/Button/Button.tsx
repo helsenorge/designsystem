@@ -6,7 +6,7 @@ export type ButtonElementType = 'a' | 'button';
 function getCorrectIcon(child: any, className: string, index: number) {
   const iconSizeMap = {
     'is-start': 64,
-              'is-start is-secondary': 48,
+    'is-start is-secondary': 48,
     'is-start is-tertiary': 48,
   };
   const iconSize = iconSizeMap[className];
