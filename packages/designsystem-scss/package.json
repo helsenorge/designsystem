@@ -1,7 +1,35 @@
 {
-  "name": "designsystem-scss",
+  "name": "@helsenorge/designsystem-scss",
   "version": "0.0.1-dev.0",
-  "description": "The official design system for Helsenorge built with SCSS",
-  "main": "index.js",
-  "license": "MIT"
+  "description": "The official design system for Helsenorge built with SCSS.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helsenorge/designsystem",
+    "directory": "packages/designsystem-scss"
+  },
+  "homepage": "https://helsenorge.design",
+  "author": "Steffen Lien <steffen.lien@ehelse.no>",
+  "bugs": {
+    "url": "https://github.com/Helsenorge/designsystem/issues",
+    "email": "design@helsenorge.design"
+  },
+  "license": "MIT",
+  "keywords": [
+    "components",
+    "design-system",
+    "helsenorge",
+    "patterns",
+    "scss",
+    "styling"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "lint": "eslint .",
+    "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
+    "start": "start-storybook -p 5000 -s ./src",
+    "validate": "npm run lint && npm run prettier -- --list-different"
+  },
+  "files": [
+    "dist/**/*"
+  ]
 }

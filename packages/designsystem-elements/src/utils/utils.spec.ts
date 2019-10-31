@@ -1,4 +1,4 @@
-import { format } from './utils';
+import {format} from './utils';
 
 describe('format', () => {
   it('returns empty string for no names defined', () => {
@@ -14,8 +14,6 @@ describe('format', () => {
   });
 
   it('formats first, middle and last names', () => {
-    expect(format('Joseph', 'Quincy', 'Publique')).toEqual(
-      'Joseph Quincy Publique'
-    );
+    expect(format('Joseph', 'Quincy', 'Publique')).toEqual('Joseph Quincy Publique');
   });
 });
