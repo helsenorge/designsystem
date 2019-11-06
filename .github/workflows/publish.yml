@@ -22,6 +22,9 @@ jobs:
         run: ./.github/workflows/publish.sh
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Send Slack notification
+        if: success()
+        run: ./.github/workflows/slack-notify.sh ${{secrets.SLACK_HOOK}}
       - uses: actions/setup-node@v1
         with:
           node-version: 12
