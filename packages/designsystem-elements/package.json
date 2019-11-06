@@ -37,11 +37,14 @@
   "scripts": {
     "clean": "rimraf dist www loader",
     "build": "stencil build",
-    "format": "prettier --no-editorconfig --only-changed --write \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
+    "format": "prettier --no-editorconfig --only-changed --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
     "precommit": "lint-staged",
     "generate": "stencil generate",
     "test": "stencil test --spec",
     "test:watch": "stencil test --spec --watchAll",
     "start": "stencil build --dev --watch --serve"
+  },
+  "devDependencies": {
+    "@stencil/core": "^1.7.5"
   }
 }

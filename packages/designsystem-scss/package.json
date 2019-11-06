@@ -22,14 +22,21 @@
     "scss",
     "styling"
   ],
-  "scripts": {
-    "clean": "rimraf dist",
-    "format": "prettier --no-editorconfig --only-changed --write \"src/**/*.+(scss)\"",
-    "lint": "eslint .",
-    "start": "start-storybook -p 5000 -s ./src",
-    "validate": "npm run lint && npm run prettier -- --list-different"
-  },
   "files": [
     "dist/**/*"
-  ]
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "format": "prettier --no-editorconfig --write \"src/**/*.+(scss)\"",
+    "lint": "stylelint src/",
+    "validate": "yarn lint && yarn format -l"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "stylelint": "^11.1.1",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-prettier": "^1.1.1"
+  }
 }
