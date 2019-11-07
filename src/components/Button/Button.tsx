@@ -18,6 +18,7 @@ interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   children: React.ReactNode;
   className?: string;
   asTag?: ButtonTag;
+  onClick?: () => void;
 }
 
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
