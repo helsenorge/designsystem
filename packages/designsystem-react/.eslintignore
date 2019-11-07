@@ -1,0 +1,5 @@
+types/**/*
+dist/**/*
+src/**/*.svg
+src/**/*.woff
+src/**/*.woff2

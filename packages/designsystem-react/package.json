@@ -11,7 +11,7 @@
   "author": "Steffen Lien <steffen.lien@ehelse.no>",
   "bugs": {
     "url": "https://github.com/Helsenorge/designsystem/issues",
-    "email": "design@helsenorge.design"
+    "email": "contact@helsenorge.design"
   },
   "license": "MIT",
   "keywords": [
@@ -30,18 +30,10 @@
   ],
   "scripts": {
     "clean": "rimraf dist types",
-    "format": "prettier --no-editorconfig --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
+    "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
+    "lint": "eslint \"src/**/*\"",
     "precommit": "lint-staged",
-    "lint": "eslint .",
-    "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
-    "publish:dev": "npm version prerelease && git push --follow-tags",
-    "start": "start-storybook -p 5000 -s ./src",
-    "test": "jest",
-    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
-    "test:watch": "jest --watch",
-    "icons:generate": "npx @svgr/cli --ref --no-view-box false --replace-attr-values '#000={color}' --svg-props width={size} --svg-props height={size} --template ./scripts/iconTemplate.js --ext tsx -d ./src/components/Icons/  ./src/icons",
-    "icons:inject": "node ./scripts/iconInject.js",
-    "validate": "npm run lint && npm run prettier -- --list-different"
+    "validate": "yarn lint && yarn format -l"
   },
   "peerDependencies": {
     "react": "^16.4.2",

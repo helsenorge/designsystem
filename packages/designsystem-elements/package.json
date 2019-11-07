@@ -11,7 +11,7 @@
   "author": "Steffen Lien <steffen.lien@ehelse.no>",
   "bugs": {
     "url": "https://github.com/Helsenorge/designsystem/issues",
-    "email": "design@helsenorge.design"
+    "email": "contact@helsenorge.design"
   },
   "license": "MIT",
   "keywords": [
@@ -37,14 +37,17 @@
   "scripts": {
     "clean": "rimraf dist www loader",
     "build": "stencil build",
-    "format": "prettier --no-editorconfig --only-changed --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
+    "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
     "precommit": "lint-staged",
     "generate": "stencil generate",
+    "lint": "eslint \"src/**/*\"",
     "test": "stencil test --spec",
     "test:watch": "stencil test --spec --watchAll",
-    "start": "stencil build --dev --watch --serve"
+    "start": "stencil build --dev --watch --serve",
+    "validate": "yarn lint && yarn format -l"
   },
   "devDependencies": {
-    "@stencil/core": "^1.7.5"
+    "@stencil/core": "^1.7.5",
+    "@stencil/eslint-plugin": "^0.2.1"
   }
 }

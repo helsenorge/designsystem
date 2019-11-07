@@ -1,18 +1,13 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
     "experimentalDecorators": true,
     "lib": ["dom", "dom.iterable", "es2017", "esnext"],
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es2017",
-    "noUnusedLocals": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
     "esModuleInterop": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,

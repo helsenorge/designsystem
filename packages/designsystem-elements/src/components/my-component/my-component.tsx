@@ -8,23 +8,23 @@ export class MyComponent {
   /**
    * The first name
    */
-  @Prop() first: string = '';
+  @Prop() first = '';
 
   /**
    * The middle name
    */
-  @Prop() middle: string = '';
+  @Prop() middle = '';
 
   /**
    * The last name
    */
-  @Prop() last: string = '';
+  @Prop() last = '';
 
   private getText(): string {
     return format(this.first, this.middle, this.last);
   }
 
-  render() {
+  render(): string {
     return `Hello, World! I'm ${this.getText()}`;
   }
 }
