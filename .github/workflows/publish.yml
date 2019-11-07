@@ -22,14 +22,15 @@ jobs:
         run: ./.github/workflows/publish.sh
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - name: Send Slack notification
+      - uses: helsenorge/slack-notifier@master
         if: success()
-        run: ./.github/workflows/slack-notify.sh ${{secrets.SLACK_HOOK}}
+        with:
+          webHookUrl: ${{secrets.SLACK_HOOK}}
       - uses: actions/setup-node@v1
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-          scope: "@helsenorge"
+          scope: '@helsenorge'
       - name: Publish to GPR
         run: |
           echo "//https://npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc

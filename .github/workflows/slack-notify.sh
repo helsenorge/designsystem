@@ -1,6 +1,11 @@
 #!/bin/sh
 
 HOOK_URL=$1
+SEINFELDS=(
+	"https://media.giphy.com/media/13xHqoOQOdFu5a/source.gif"
+	"https://media.giphy.com/media/Xhxd8T0og4oKs/giphy.gif"
+	"https://media.giphy.com/media/WMjfO612POH72/source.gif"
+)
 read -r -d '' MSG <<'EOF'
 payload={
 	"blocks": [
