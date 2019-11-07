@@ -25,7 +25,7 @@ jobs:
       - uses: helsenorge/slack-notifier@master
         if: success()
         with:
-          webHookUrl: ${{secrets.SLACK_HOOK}}
+          webHookUrl: ${{secrets.SLACK_WEB_HOOK}}
       - uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -33,7 +33,7 @@ jobs:
           scope: '@helsenorge'
       - name: Publish to GPR
         run: |
-          echo "//https://npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
+          echo "//https://npm.pkg.github.com/:_authToken=${{GITHUB_TOKEN}}" > .npmrc
           ./.github/workflows/publish.sh
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
