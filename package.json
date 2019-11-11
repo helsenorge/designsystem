@@ -6,7 +6,7 @@
     "url": "https://github.com/helsenorge/designsystem"
   },
   "homepage": "https://helsenorge.design",
-  "description": "The official design system for Helsenorge consist of out-of-the-box components built with StencilJS and React.",
+  "description": "The official design system for Helsenorge consist of out-of-the-box components built with React and SCSS",
   "author": "Steffen Lien <steffen.lien@ehelse.no>",
   "bugs": {
     "url": "https://github.com/Helsenorge/designsystem/issues",
@@ -26,6 +26,7 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "lerna run build",
     "clean": "lerna run clean",
     "cz": "git-cz",
     "format": "lerna run format",
