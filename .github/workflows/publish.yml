@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-          scope: "@helsenorge"
+          scope: '@helsenorge'
       - name: Publish to GPR
         run: |
           echo "//https://npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc

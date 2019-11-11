@@ -1,6 +1,5 @@
 {
   "name": "@helsenorge/designsystem",
-  "version": "0.0.2-dev.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -28,8 +27,10 @@
   ],
   "scripts": {
     "clean": "lerna run clean",
+    "cz": "git-cz",
     "format": "lerna run format",
     "lint": "lerna run lint",
+    "test": "lerna run test",
     "validate": "lerna run validate"
   },
   "husky": {
@@ -44,10 +45,18 @@
     "@commitlint/config-lerna-scopes": "^8.2.0",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-html": "^6.0.0",
+    "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
