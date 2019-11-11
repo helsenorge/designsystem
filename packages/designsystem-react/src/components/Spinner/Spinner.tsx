@@ -1,5 +1,5 @@
 import React from 'react';
-import cn from 'classnames';
+import cx from 'classnames';
 
 import './Spinner.scss';
 
@@ -15,7 +15,7 @@ interface SpinnerProps {
 
 function Spinner(props: SpinnerProps) {
   const {size = 'normal', variant = 'primary'} = props;
-  const classes = cn('spinner__dot', {[`spinner__dot--${size}`]: size === 'small' || size === 'large'});
+  const classes = cx('spinner__dot', {[`spinner__dot--${size}`]: size === 'small' || size === 'large'});
   return (
     <div className={`spinner spinner--${variant}`}>
       <div className={`${classes} spinner__dot--first-dot`} />

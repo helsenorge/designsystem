@@ -1,3 +1,4 @@
+import './styling/helsenorge.scss';
 export {ActionButton} from './components/ActionButton';
 export {StartButton} from './components/StartButton';
 export {ConfirmationButton} from './components/ConfirmationButton';
