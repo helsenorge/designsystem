@@ -11,7 +11,7 @@
   publish = "packages/designsystem-docs/public"
 
   # Default build command.
-  command = "yarn build"
+#   command = "yarn build"
 
 # Production context: all deploys from the Production branch set in your site's
 # deploy contexts will inherit these settings.
