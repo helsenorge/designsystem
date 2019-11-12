@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
-import { Location } from '@reach/router'
+import React, {useState, useEffect} from 'react';
+import {Link} from 'gatsby';
+import {Location} from '@reach/router';
 import styled from 'styled-components';
 
 import npm from '../images/npm-brands.svg';
@@ -11,47 +11,56 @@ const NavGroupName = styled('span')`
   font-weight: 600;
   color: #9b978c;
   text-transform: uppercase;
-`
+`;
 
 const NavGroupLink = styled(Link)`
   padding: 0.4rem;
   text-decoration: none;
-  background-color: ${(props: {active?: boolean}) => props.active ? 'white' : 'none'};
-  border: ${(props: {active?: boolean}) => props.active ? '1px solid #dedbd3' : '1px solid transparent'};
+  background-color: ${(props: {active?: boolean}) => (props.active ? 'white' : 'none')};
+  border: ${(props: {active?: boolean}) => (props.active ? '1px solid #dedbd3' : '1px solid transparent')};
   transition: all 200ms;
   margin: 0.2rem 0;
   &:hover {
-    background-color: ${(props: {active?: boolean}) => !props.active ? '#ffdbbe' : 'white'};
+    background-color: ${(props: {active?: boolean}) => (!props.active ? '#ffdbbe' : 'white')};
   }
-`
+`;
 
-function StyledNavGroup({className, children, groupTitle}: {className?: string, children: React.ReactNode, groupTitle?: string}) {
+function StyledNavGroup({
+  className,
+  children,
+  groupTitle,
+}: {
+  className?: string;
+  children: React.ReactNode;
+  groupTitle?: string;
+}) {
   return (
     <div className={className}>
       {groupTitle ? <NavGroupName>{groupTitle}</NavGroupName> : null}
       {children}
     </div>
-  )
+  );
 }
 
 const NavGroup = styled(StyledNavGroup)`
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
-`
+`;
 
 const NavContent = styled('nav')`
   margin-top: 3rem;
   padding: 0 2rem;
-`
+`;
 
 function StyledDesignSystemVersion({className}: {className?: string}) {
   const [latest, loading] = useLatestNPMVersion('dev');
   return (
     <div className={className}>
-      <img src={npm} /><span>{latest ? latest['dist-tags'].dev : ''}</span>
+      <img src={npm} />
+      <span>{latest ? latest['dist-tags'].dev : ''}</span>
     </div>
-  )
+  );
 }
 
 const DesignSystemVersion = styled(StyledDesignSystemVersion)`
@@ -67,7 +76,7 @@ const DesignSystemVersion = styled(StyledDesignSystemVersion)`
   & > span {
     font-size: 1.1rem;
   }
-`
+`;
 
 interface SidebarProps {
   children?: React.ReactNode;
@@ -78,7 +87,12 @@ function Sidebar(props: SidebarProps): JSX.Element {
   const [activeRoute, setActiveRoute] = useState();
   return (
     <div className={props.className}>
-      <Location>{({location}) => {setActiveRoute(location.pathname);return <></>}}</Location>
+      <Location>
+        {({location}) => {
+          setActiveRoute(location.pathname);
+          return <></>;
+        }}
+      </Location>
       {/* <DesignSystemVersion /> */}
       <NavContent>
         <NavGroup>
@@ -108,7 +122,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
         </NavGroup>
       </NavContent>
     </div>
-  )
+  );
 }
 
 const StyledSidebar = styled(Sidebar)`
@@ -118,8 +132,8 @@ const StyledSidebar = styled(Sidebar)`
   min-width: 18.625rem;
   overflow-y: auto;
   padding-left: calc((100% - 90.5rem) / 2);
-  border-right: 1px solid #DEDBD3;
+  border-right: 1px solid #dedbd3;
   background-color: #fff1e1;
-`
+`;
 
-export {StyledSidebar as Sidebar}
+export {StyledSidebar as Sidebar};

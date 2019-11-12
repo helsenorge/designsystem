@@ -1,6 +1,6 @@
-import React from "react"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react';
+import Helmet from 'react-helmet';
+import {useStaticQuery, graphql} from 'gatsby';
 
 interface SEOProps {
   description?: string;
@@ -10,8 +10,8 @@ interface SEOProps {
   title: string;
 }
 
-function SEO({ description, lang, meta, keywords, title }: SEOProps): JSX.Element {
-  const { site } = useStaticQuery(
+function SEO({description, lang, meta, keywords, title}: SEOProps): JSX.Element {
+  const {site} = useStaticQuery(
     graphql`
       query {
         site {
@@ -22,10 +22,10 @@ function SEO({ description, lang, meta, keywords, title }: SEOProps): JSX.Elemen
           }
         }
       }
-    `
-  )
+    `,
+  );
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || site.siteMetadata.description;
 
   return (
     <Helmet
@@ -71,14 +71,14 @@ function SEO({ description, lang, meta, keywords, title }: SEOProps): JSX.Elemen
         .concat(
           keywords.length > 0
             ? {
-              name: `keywords`,
-              content: keywords.join(`, `),
-            }
-            : []
+                name: `keywords`,
+                content: keywords.join(`, `),
+              }
+            : [],
         )
         .concat(meta)}
     />
-  )
+  );
 }
 
 SEO.defaultProps = {
@@ -86,6 +86,6 @@ SEO.defaultProps = {
   meta: [],
   keywords: [],
   description: ``,
-}
+};
 
-export default SEO
+export default SEO;

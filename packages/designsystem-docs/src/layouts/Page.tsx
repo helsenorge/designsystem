@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Header } from './Header';
-import { Content } from './Content';
-import { Sidebar } from './Sidebar';
-import { Main } from './Main';
+import {Header} from './Header';
+import {Content} from './Content';
+import {Sidebar} from './Sidebar';
+import {Main} from './Main';
 
 interface FrontpageProps {
   children?: React.ReactNode;
@@ -16,12 +16,10 @@ function StyledPage(props: FrontpageProps): JSX.Element {
       <Header />
       <Content>
         <Sidebar />
-        <Main>
-          {props.children}
-        </Main>
+        <Main>{props.children}</Main>
       </Content>
     </div>
-  )
+  );
 }
 
 const Page = styled(StyledPage)`
@@ -29,6 +27,6 @@ const Page = styled(StyledPage)`
   height: 100vh;
   display: flex;
   flex-direction: column;
-`
+`;
 
 export default Page;

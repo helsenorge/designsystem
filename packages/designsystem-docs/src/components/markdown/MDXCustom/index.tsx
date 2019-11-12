@@ -1,6 +1,6 @@
-import { Palette, ColorCard } from "./Palette";
-import Preamble from "./Preamble";
-import ComponentRenderer from "./ComponentRenderer";
+import {Palette, ColorCard} from './Palette';
+import Preamble from './Preamble';
+import ComponentRenderer from './ComponentRenderer';
 
 const MDXCustom = () => <></>;
 

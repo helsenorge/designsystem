@@ -7,11 +7,7 @@ interface ContentProps {
 }
 
 function Content(props: ContentProps): JSX.Element {
-  return (
-    <div className={props.className}>
-      {props.children}
-    </div>
-  )
+  return <div className={props.className}>{props.children}</div>;
 }
 
 const StyledContent = styled(Content)`
@@ -19,6 +15,6 @@ const StyledContent = styled(Content)`
   display: flex;
   flex: 1;
   align-items: stretch;
-`
+`;
 
-export {StyledContent as Content}
+export {StyledContent as Content};

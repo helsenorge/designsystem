@@ -6,7 +6,7 @@ function NotFoundPage(): JSX.Element {
     // <Page>
     // </Page>
     <div></div>
-  )
+  );
 }
 
-export default NotFoundPage
+export default NotFoundPage;
