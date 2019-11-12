@@ -1,79 +1,49 @@
 <p align="center">
-    <h1 align="center">Helsenorge Design System - Library</h1>
+  <img src="./hnd-logo.svg" />
 </p>
 <p align="center">
-    <a href="https://codecov.io/gh/Helsenorge/designsystem">
-        <img src="https://codecov.io/gh/Helsenorge/designsystem/branch/develop/graph/badge.svg?style=popout&token=QmUnBqCydy" />
-    </a>
-        <a href="https://www.npmjs.com/package/@helsenorge/designsystem">
-        <img src="https://img.shields.io/npm/v/@helsenorge/designsystem/latest.svg?style=popout" />
-    </a>
-    <a href="https://www.npmjs.com/package/@helsenorge/designsystem">
-        <img src="https://img.shields.io/npm/v/@helsenorge/designsystem/dev.svg?style=popout" />
-    </a>
+  <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" />
+  <img src="https://github.com/Helsenorge/designsystem/workflows/Publish%20(develop)/badge.svg" />
+  <img src="https://img.shields.io/github/last-commit/Helsenorge/designsystem" />
+  <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" />
+  <img src="https://img.shields.io/github/license/Helsenorge/designsystem" />
 </p>
 
-## 🔌 Quick start
+## 👋 Introduction
 
-### Installation
+The Helsenorge Design System is a fully fledged platform that implements our in-house components using various technology stacks such as React, SCSS, Blazor and more. Our design system comes out of the box with a documentation site which leverages patterns, principles and utilities to more efficiently build services and components for Helsenorge.
 
-**Notice:** Currently there is no production version avaiable for release and ther latest NPM package will point to version `v0.0.1-dev.0`. An ongoing development version of our design system is available using the `@dev`-tag.
+## 📦 Packages
 
-Our pattern library is hosted as a package on [npmjs](https://www.npmjs.com/package/@helsenorge/designsystem). Install the latest version of our package either using `yarn add @helsenorge/designsystem` or `npm install @helsenorge/designsystem`
+We use Lerna to manage our monorepo and list all our projects under the packages folder. Below is a list of published, unpublished and experimental packages and projects.
 
-To install our ongoing development package run either `yarn add @helsenorge/designsystem@dev` or `npm install @helsenorge/designsystem@dev`.
+### Available packages
 
-### Usage
+- [**designsystem-react**](https://github.com/Helsenorge/designsystem/tree/develop/packages/designsystem-react) - Our design system implemented with React components.
+- [**designsystem-scss**](https://github.com/Helsenorge/designsystem/tree/develop/packages/designsystem-scss) - The overall Helsenorge styling complete with variables, overrides and minified bundle.
 
-The pattern library consist of a set of React components that are easy to use straight out of the box. Below is an example of how to import and use our `ActionButton`-component. This example takes into consideration that your project is set up using `yarn create react-app` or using a similar project strucutre.
+### Unpublished packages
 
-Import the component from our design system and add it to your `App`-component.
-```jsx
-import React from 'react';
-import { ActionButton } from '@helsenorge/designsystem';
-import './App.css';
+- [**designsystem-docs**](https://github.com/Helsenorge/designsystem/tree/develop/packages/designsystem-docs) - Our documentation site built with GatsbyJS containing principles, patterns, component specifications and much more.
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <ActionButton onClick={() => console.log('Hello world!')}>Hello world!</ActionButton>
-      </header>
-    </div>
-  );
-}
+### Experimental packages
 
-export default App;
-```
-
-Add the CSS file either to your `index.html` or `index.js` to apply the styling.
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import '~@helsenorge/designsystem/dist/css/helsenorge.min.css';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-
-ReactDOM.render(<App />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
-```
-
-If the stars aligned correctly, after running `yarn start` in your project, you should see our `ActionButton`-component rendered in your application.
+- [**designsystem-blazor**](https://github.com/Helsenorge/designsystem/tree/develop/packages/designsystem-docs) - Our design system implemented with Blazor components.
 
 ## 📓 Documentation
 
-To read the full design system documentation head over to our web page [design.helsenorge.io](https://design.helsenorge.io/). Here you can read about our use of design principles, design language, patterns, compositions, live code examples and techincal component specifications.
-
-Contributions towards the documenation is handled in its own [repository](https://github.com/Helsenorge/designsystem-docs). Feel free to create issues regarding improvments and errors found.
+To read the full design system documentation head over to our web page [helsenorge.design](https://helsenorge.design/). Here you can read about our use of design principles, design language, patterns, compositions, live code examples and techincal component specifications.
 
 ## 💡 Contribute
 
+The main purpose of this repository is to continue to evolve React core, making it faster and easier to use. Development of React happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements. Read below to learn how you can take part in improving React.
+
+Our contribution guide is located [here](./CONTRIBUTING.md).
+
+## License
+
+Our design system is mainly [MIT licensed](./LICENSE).
+
 ## ❓FAQ
 
-## 🔮 Status
-**Active:** Currently in development.
+Coming soon...
