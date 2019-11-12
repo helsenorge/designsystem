@@ -28,7 +28,7 @@
   "scripts": {
     "build": "lerna run build",
     "clean": "lerna run clean",
-    "cz": "git-cz",
+    "cz": "git-cz -a",
     "format": "lerna run format",
     "lint": "lerna run lint",
     "test": "lerna run test",
