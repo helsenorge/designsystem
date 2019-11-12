@@ -3,7 +3,7 @@
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" />
-  <img src="https://github.com/Helsenorge/designsystem/workflows/.github/workflows/publish.yml/badge.svg" />
+  <img src="https://github.com/Helsenorge/designsystem/workflows/Publish%20(develop)/badge.svg" />
   <img src="https://img.shields.io/github/last-commit/Helsenorge/designsystem" />
   <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" />
   <img src="https://img.shields.io/github/license/Helsenorge/designsystem" />
