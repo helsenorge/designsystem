@@ -29,9 +29,11 @@
     "clean": "rimraf public .cache",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
     "lint": "eslint \"src/**/*\"",
+    "precommit": "lint-staged",
     "serve": "gatsby serve",
     "start": "gatsby develop",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "validate": "yarn lint && yarn format -l"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.4.5",
