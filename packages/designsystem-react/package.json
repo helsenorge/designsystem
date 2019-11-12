@@ -1,0 +1,92 @@
+{
+  "name": "@helsenorge/designsystem-react",
+  "version": "0.0.2-dev.0",
+  "description": "The official design system for Helsenorge built with React.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helsenorge/designsystem",
+    "directory": "packages/designsystem-react"
+  },
+  "homepage": "https://helsenorge.design",
+  "author": "Steffen Lien <steffen.lien@ehelse.no>",
+  "bugs": {
+    "url": "https://github.com/Helsenorge/designsystem/issues",
+    "email": "contact@helsenorge.design"
+  },
+  "license": "MIT",
+  "keywords": [
+    "components",
+    "design-system",
+    "helsenorge",
+    "patterns",
+    "react"
+  ],
+  "main": "dist/js/helsenorge.js",
+  "module": "dist/js/helsenorge.esm.js",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "yarn clean && rollup -c --environment BUILD:production && yarn build:defs",
+    "build:defs": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
+    "clean": "rimraf dist types",
+    "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
+    "lint": "eslint \"src/**/*\"",
+    "precommit": "lint-staged",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "start": "start-storybook",
+    "validate": "yarn lint && yarn format -l"
+  },
+  "peerDependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "@babel/preset-typescript": "^7.7.2",
+    "@storybook/addon-actions": "^5.2.6",
+    "@storybook/addon-backgrounds": "^5.2.6",
+    "@storybook/addon-centered": "^5.2.6",
+    "@storybook/addon-knobs": "^5.2.6",
+    "@storybook/addon-viewport": "^5.2.6",
+    "@storybook/addons": "^5.2.6",
+    "@storybook/react": "^5.2.6",
+    "@testing-library/react": "^9.3.2",
+    "@types/classnames": "^2.2.9",
+    "@types/jest": "^24.0.22",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "dts-bundle-generator": "^3.3.0",
+    "file-loader": "^4.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-watch-typeahead": "^0.4.2",
+    "react": "^16.11.0",
+    "react-docgen-typescript-loader": "^3.3.0",
+    "react-dom": "^16.11.0",
+    "resolve-url-loader": "^3.1.1",
+    "rollup": "^1.26.5",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.1.0",
+    "rollup-plugin-execute": "^1.1.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-progress": "^1.1.1",
+    "rollup-plugin-scss": "^1.0.2",
+    "rollup-plugin-sizes": "^0.5.1",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.2.1",
+    "webpack": "^4.41.2"
+  }
+}

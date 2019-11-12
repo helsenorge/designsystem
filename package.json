@@ -1,134 +1,65 @@
 {
   "name": "@helsenorge/designsystem",
-  "version": "0.0.1-dev.32",
-  "main": "./dist/js/helsenorge.js",
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Helsenorge/designsystem.git"
+    "url": "https://github.com/helsenorge/designsystem"
   },
   "homepage": "https://helsenorge.design",
-  "description": "The official design system for Helsenorge.",
+  "description": "The official design system for Helsenorge consist of out-of-the-box components built with React and SCSS",
   "author": "Steffen Lien <steffen.lien@ehelse.no>",
   "bugs": {
     "url": "https://github.com/Helsenorge/designsystem/issues",
-    "email": "design@helsenorge.io"
+    "email": "contact@helsenorge.design"
   },
   "license": "MIT",
   "keywords": [
     "components",
-    "designsystem",
+    "web-components",
+    "design-system",
     "helsenorge",
     "patterns",
-    "react"
+    "react",
+    "stenciljs"
   ],
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "yarn clean && rollup -c --environment BUILD:production && yarn build:dts",
-    "build:dts": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
-    "bundle-analyze": "webpack --profile --json > bundle-stats.json && webpack-bundle-analyzer ./bundle-stats.json",
-    "clean": "rimraf dist types",
-    "format": "npm run prettier -- --write",
-    "lint": "eslint .",
-    "prettier": "prettier \"src/**/*.+(js|jsx|json|yml|yaml|scss|ts|tsx)\"",
-    "publish:dev": "npm version prerelease && git push --follow-tags",
-    "start": "start-storybook -p 5000 -s ./src",
-    "test": "jest",
-    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
-    "test:watch": "jest --watch",
-    "icons:generate": "npx @svgr/cli --ref --no-view-box false --replace-attr-values '#000={color}' --svg-props width={size} --svg-props height={size} --template ./scripts/iconTemplate.js --ext tsx -d ./src/components/Icons/  ./src/icons",
-    "icons:inject": "node ./scripts/iconInject.js",
-    "validate": "npm run lint && npm run prettier -- --list-different"
+    "build": "lerna run build",
+    "clean": "lerna run clean",
+    "cz": "git-cz",
+    "format": "lerna run format",
+    "lint": "lerna run lint",
+    "test": "lerna run test",
+    "validate": "lerna run validate"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lerna run --concurrency 1 --stream precommit",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "module": "./dist/js/helsenorge.esm.js",
-  "source": "src/index.ts",
-  "files": [
-    "dist/**/*"
-  ],
-  "types": "./dist/index.d.ts",
-  "typescript": {
-    "declaration": "./dist/index.d.ts"
-  },
-  "peerDependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2"
-  },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
-    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.6.0",
-    "@storybook/addon-actions": "^5.2.5",
-    "@storybook/addon-backgrounds": "^5.2.5",
-    "@storybook/addon-centered": "^5.2.5",
-    "@storybook/addon-knobs": "^5.2.5",
-    "@storybook/addon-links": "^5.2.5",
-    "@storybook/addon-viewport": "^5.2.5",
-    "@storybook/addons": "^5.2.5",
-    "@storybook/react": "5.2.5",
-    "@svgr/cli": "^4.3.2",
-    "@testing-library/jest-dom": "^4.1.0",
-    "@testing-library/react": "^9.1.4",
-    "@types/classnames": "^2.2.9",
-    "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.4",
-    "@types/react": "^16.9.2",
-    "@types/react-dom": "^16.9.0",
-    "@typescript-eslint/eslint-plugin": "^2.2.0",
-    "@typescript-eslint/parser": "^2.2.0",
-    "autoprefixer": "^9.6.1",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
-    "dts-bundle-generator": "^3.2.0",
-    "eslint": "^6.3.0",
-    "eslint-config-prettier": "^6.2.0",
-    "eslint-plugin-react": "^7.14.3",
-    "file-loader": "^4.2.0",
-    "husky": "^3.0.5",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.9.0",
-    "jest-axe": "^3.2.0",
-    "jest-watch-typeahead": "^0.4.0",
-    "lint-staged": "^9.2.5",
-    "node-sass": "^4.12.0",
-    "postcss": "^7.0.18",
-    "postcss-loader": "^3.0.0",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@commitlint/config-lerna-scopes": "^8.2.0",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-html": "^6.0.0",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
-    "react": "^16.9.0",
-    "react-docgen-typescript-loader": "^3.2.0",
-    "react-dom": "^16.9.0",
-    "resolve-url-loader": "^3.1.0",
     "rimraf": "^3.0.0",
-    "rollup": "^1.21.2",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-buble": "^0.19.8",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-copy": "^3.1.0",
-    "rollup-plugin-execute": "^1.1.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-postcss": "^2.0.3",
-    "rollup-plugin-progress": "^1.1.1",
-    "rollup-plugin-scss": "^1.0.2",
-    "rollup-plugin-sizes": "^0.5.1",
-    "rollup-pluginutils": "^2.8.1",
-    "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.0",
-    "ts-loader": "^6.0.4",
-    "typescript": "^3.6.2",
-    "url-loader": "^2.1.0",
-    "webpack-bundle-analyzer": "^3.4.1"
+    "typescript": "^3.7.2"
   },
-  "dependencies": {
-    "classnames": "^2.2.6"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
