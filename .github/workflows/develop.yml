@@ -39,16 +39,6 @@ jobs:
       - uses: fregante/setup-git-token@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Authenticate to NPM
-      #   run: |
-      #     yarn global add npm-cli-login
-      #     export PATH="$(yarn global bin):$PATH"
-      #     npm-cli-login
-      #   env:
-      #     NPM_USER: gollum
-      #     NPM_PASS: ${{ secrets.VERDACCIO_PASS }}
-      #     NPM_EMAIL: gollum@gollum.gollum
-      #     NPM_REGISTRY: http://13.74.58.244:4873
       - name: Cache node modules
         uses: actions/cache@v1
         with:
