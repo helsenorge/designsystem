@@ -69,6 +69,7 @@
     "dts-bundle-generator": "^3.3.0",
     "file-loader": "^4.2.0",
     "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
     "jest-watch-typeahead": "^0.4.2",
     "react": "^16.11.0",
     "react-docgen-typescript-loader": "^3.3.0",
