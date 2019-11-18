@@ -1,0 +1,68 @@
+name: Build & Publish (develop)
+
+on:
+  push:
+    branches: 'develop'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Test
+        run: yarn test
+      - name: Upload artifact (designsystem-react)
+        uses: actions/upload-artifact@master
+        with:
+          name: designsystem-react
+          path: packages/designsystem-react/dist
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Prepare repository
+        run: git checkout "${GITHUB_REF:11}"
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          registry-url: https://registry.npmjs.org/
+      - uses: fregante/setup-git-token@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Authenticate to NPM
+      #   run: |
+      #     yarn global add npm-cli-login
+      #     export PATH="$(yarn global bin):$PATH"
+      #     npm-cli-login
+      #   env:
+      #     NPM_USER: gollum
+      #     NPM_PASS: ${{ secrets.VERDACCIO_PASS }}
+      #     NPM_EMAIL: gollum@gollum.gollum
+      #     NPM_REGISTRY: http://13.74.58.244:4873
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Download artifact (designsystem-react)
+        uses: actions/download-artifact@master
+        with:
+          name: designsystem-react
+          path: packages/designsystem-react/dist
+      - name: Publish
+        run: yarn run lerna publish --yes --conventional-commits --conventional-prerelease --dist-tag dev --preid dev
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

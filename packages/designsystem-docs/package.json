@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-docs",
   "private": true,
-  "version": "0.0.2-dev.0",
+  "version": "0.0.1-dev.32",
   "description": "The official documentation for Helsenorge's Design System",
   "repository": {
     "type": "git",
