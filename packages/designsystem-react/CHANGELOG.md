@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.1-dev.34](https://github.com/helsenorge/designsystem/compare/v0.0.1-dev.33...v0.0.1-dev.34) (2019-11-19)
+
+
+### Bug Fixes
+
+* trigger a change ([e8ad1bf](https://github.com/helsenorge/designsystem/commit/e8ad1bfa806811133ea648ee87ef1f7a9a72b645))
+
+
+
+
+
 ## [0.0.1-dev.33](https://github.com/helsenorge/designsystem/compare/v0.0.1-dev.32...v0.0.1-dev.33) (2019-11-19)
 
 
