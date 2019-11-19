@@ -52,7 +52,6 @@ jobs:
           name: designsystem-react
           path: packages/designsystem-react/dist
       - name: Publish
-        run: yarn run lerna publish --yes --conventional-commits --conventional-prerelease --dist-tag dev --preid dev
+        run: yarn run lerna publish from-git --yes --dist-tag dev
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
