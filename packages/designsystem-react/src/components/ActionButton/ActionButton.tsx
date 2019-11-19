@@ -2,6 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import {ButtonProps, Button} from '../Button';
 
+// Trigger change
+
 interface ActionButtonProps extends ButtonProps {
   isDanger?: boolean;
 }
