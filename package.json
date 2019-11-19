@@ -31,7 +31,7 @@
     "cz": "git-cz",
     "format": "lerna run format",
     "lint": "lerna run lint",
-    "release:dev": "yarn run lerna version --conventional-commits --conventional-prerelease --preid dev --create-release github",
+    "release:dev": "yarn run lerna version --conventional-commits --conventional-prerelease --preid dev",
     "test": "lerna run test",
     "validate": "lerna run validate"
   },
