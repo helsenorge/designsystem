@@ -21,6 +21,9 @@
     "patterns",
     "react"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/js/helsenorge.js",
   "module": "dist/js/helsenorge.esm.js",
   "types": "dist/index.d.ts",
