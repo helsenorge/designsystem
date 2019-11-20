@@ -39,8 +39,6 @@ jobs:
         with:
           node-version: '12.x'
           registry-url: https://registry.npmjs.org/
-      # - name: Set NPMRC
-      #   run: echo '//https://registry.npmjs.org/'
       - name: Cache node modules
         uses: actions/cache@v1
         with:
