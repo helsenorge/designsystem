@@ -45,6 +45,7 @@
     "validate": "yarn lint && yarn format -l"
   },
   "peerDependencies": {
+    "@helsenorge/designsystem-scss": "^0.0.2-dev.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },

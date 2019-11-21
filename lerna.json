@@ -1,16 +1,16 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "version": "0.0.2-dev.0",
+  "useWorkspaces": true,
   "command": {
     "run": {
       "npmClient": "yarn"
     },
+    "add": {
+      "npmClient": "yarn"
+    },
     "version": {
-      "allowBranch": [
-        "develop"
-      ]
+      "allowBranch": ["develop"]
     }
   }
 }
