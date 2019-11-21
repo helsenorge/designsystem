@@ -35,6 +35,7 @@
     "build": "yarn clean && rollup -c --environment BUILD:production && yarn build:defs",
     "build:defs": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/index.d.ts",
     "clean": "rimraf dist types",
+    "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
     "lint": "eslint \"src/**/*\"",
     "precommit": "lint-staged",

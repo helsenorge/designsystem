@@ -34,6 +34,7 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
+    "cz": "git-cz",
     "build": "yarn run clean && yarn run build:scss && yarn run build:postcss && yarn run build:cleancss && mkdir dist/scss && cp -R src/* dist/scss",
     "build:postcss": "postcss --use autoprefixer --map false --output dist/css/helsenorge.css dist/css/helsenorge.css",
     "build:cleancss": "cleancss -o dist/css/helsenorge.min.css dist/css/helsenorge.css",
