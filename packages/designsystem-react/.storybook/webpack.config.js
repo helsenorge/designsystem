@@ -1,18 +1,8 @@
 const path = require('path');
 
-const pathToInlineSvg = path.resolve(__dirname, '../src/images');
-
 module.exports = config => {
-  const rules = config.config.module.rules;
-
-  // modify storybook's file-loader rule to avoid conflicts with svgr
-  // const fileLoaderRule = rules.find(rule => rule.test.test('.svg'));
-  // fileLoaderRule.exclude = pathToInlineSvg;
-  const svgWorkaround = config.config.module.rules.find(rule => rule.test.test('.svg'));
-  svgWorkaround.exclude = /\.svg$/;
-  //   const svgLoader = config.config.module.rules
-  //   .find((r) => r.loader && r.loader.indexOf('svg-url-loader') !== -1);
-  // svgLoader.query = {noquotes: true};
+  const excludedFonts = config.config.module.rules.filter(rule => !rule.test.source.includes('woff'));
+  config.config.module.rules = excludedFonts;
   config.config.module.rules.push(
     {
       test: /\.(ts|tsx)$/,
@@ -29,7 +19,7 @@ module.exports = config => {
       ],
     },
     {
-      test: /\.(css|sass|scss)$/,
+      test: /\.(scss|css)$/,
       use: [
         {
           loader: require.resolve('style-loader'),
@@ -46,10 +36,10 @@ module.exports = config => {
       ],
     },
     {
-      test: /\.(svg|woff(2))(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      test: /\.(woff|woff2)$/,
       loader: require.resolve('file-loader'),
       options: {
-        name: 'fonts/[name].[ext]',
+        name: '../fonts/[name].[ext]',
       },
     },
   );

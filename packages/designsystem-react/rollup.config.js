@@ -48,14 +48,14 @@ export default {
       include: ['src/**/*'],
       exclude: '/node_modules/',
     }),
-    scss({
-      output: './dist/css/helsenorge.min.css',
-      outputStyle: 'compressed',
-    }),
-    copy({
-      targets: [{src: 'src/styling/*', dest: './dist/scss'}, {src: 'src/fonts/*', dest: './dist/fonts'}],
-      copyOnce: true,
-    }),
+    // scss({
+    //   output: './dist/css/helsenorge.min.css',
+    //   outputStyle: 'compressed',
+    // }),
+    // copy({
+    //   targets: [{src: 'src/styling/*', dest: './dist/scss'}, {src: 'src/fonts/*', dest: './dist/fonts'}],
+    //   copyOnce: true,
+    // }),
     execute(["cd ./src/components/ ;find . -name '*.scss' | cpio -pdm  ../../dist/components/"]),
     buble(),
     sizes(),
