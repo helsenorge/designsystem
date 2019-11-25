@@ -13,6 +13,7 @@ import {ActionButton} from '../src/components/ActionButton';
 import {ConfirmationButton} from '../src/components/ConfirmationButton';
 import {StartButton} from '../src/components/StartButton';
 import {Icon} from '../src/components/Icons';
+import {Diveboard} from '../src/components/Diveboard';
 
 import {Palette} from '../src/constants';
 
@@ -23,6 +24,8 @@ const buttonVariants = {
   secondary: 'secondary',
   tertiary: 'tertiary',
 };
+
+stories.add('Diveboard', (): JSX.Element => <Diveboard>{text('text', 'CommonButton')}</Diveboard>);
 
 stories.add(
   'CommonButton',
