@@ -33,13 +33,12 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "yarn run clean && yarn run build:scss && yarn run build:postcss && yarn run build:cleancss",
-    "build:postcss": "postcss --use autoprefixer --map false --output dist/css/helsenorge.css dist/css/helsenorge.css",
+    "build": "yarn run clean && yarn run build:scss && yarn run build:postcss && yarn run build:cleancss && yarn run build:post-script",
     "build:cleancss": "cleancss -o dist/css/helsenorge.min.css dist/css/helsenorge.css",
+    "build:post-script": "node scripts/post-build.js",
+    "build:postcss": "postcss --use autoprefixer --map false --output dist/css/helsenorge.css dist/css/helsenorge.css",
     "build:scss": "node-sass --output-style expanded --source-map true src/helsenorge.scss dist/css/helsenorge.css",
     "clean": "rimraf dist",
-    "copy:fonts": "mkdir dist/fonts && rsync -av --progress src/fonts/ dist/fonts",
-    "copy:scss": "mkdir dist/scss && rsync -av --progress src/ dist/scss --exclude fonts",
     "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(scss)\"",
     "lint": "stylelint src/",
