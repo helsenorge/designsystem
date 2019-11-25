@@ -16,7 +16,7 @@ import {Icon} from '../src/components/Icons';
 
 import {Palette} from '../src/constants';
 
-import '@helsenorge/designsystem-scss/dist/scss/helsenorge.scss';
+import '../../designsystem-scss/src/helsenorge.scss';
 
 const buttonVariants = {
   primary: undefined,
