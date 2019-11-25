@@ -14,8 +14,9 @@ import {ConfirmationButton} from '../src/components/ConfirmationButton';
 import {StartButton} from '../src/components/StartButton';
 import {Icon} from '../src/components/Icons';
 
-import '../src/styling/helsenorge.scss';
 import {Palette} from '../src/constants';
+
+import '@helsenorge/designsystem-scss/dist/scss/helsenorge.scss';
 
 const buttonVariants = {
   primary: undefined,
