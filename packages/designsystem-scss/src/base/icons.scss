@@ -1,0 +1,132 @@
+@font-face {
+  font-family: 'icons';
+  src: url('../icons/icons.woff2?469bd2c8c4c3f1d04c54c16a5d0c4fc7') format('woff2'),
+    url('../icons/icons.woff?469bd2c8c4c3f1d04c54c16a5d0c4fc7') format('woff');
+}
+
+i[class^='icon-']:before,
+i[class*=' icon-']:before {
+  font-family: icons !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-alarmclock-hover:before {
+  content: '\f101';
+}
+.icon-arrow-left-hover:before {
+  content: '\f102';
+}
+.icon-arrow-right-hover:before {
+  content: '\f103';
+}
+.icon-calendar-save-hover:before {
+  content: '\f104';
+}
+.icon-chevron-down-hover:before {
+  content: '\f105';
+}
+.icon-chevron-left-hover:before {
+  content: '\f106';
+}
+.icon-chevron-right-hover:before {
+  content: '\f107';
+}
+.icon-chevron-up-hover:before {
+  content: '\f108';
+}
+.icon-cross-hover:before {
+  content: '\f109';
+}
+.icon-eye-hover:before {
+  content: '\f10a';
+}
+.icon-filter-off-hover:before {
+  content: '\f10b';
+}
+.icon-minus-hover:before {
+  content: '\f10c';
+}
+.icon-paperplane-hover:before {
+  content: '\f10d';
+}
+.icon-pencil-hover:before {
+  content: '\f10e';
+}
+.icon-plus-large-hover:before {
+  content: '\f10f';
+}
+.icon-plus-small-hover:before {
+  content: '\f110';
+}
+.icon-printer-hover:before {
+  content: '\f111';
+}
+.icon-share-hover:before {
+  content: '\f112';
+}
+.icon-vertical-dots-hover:before {
+  content: '\f113';
+}
+.icon-alarmclock-normal:before {
+  content: '\f114';
+}
+.icon-arrow-left-normal:before {
+  content: '\f115';
+}
+.icon-arrow-right-normal:before {
+  content: '\f116';
+}
+.icon-calendar-save-normal:before {
+  content: '\f117';
+}
+.icon-chevron-down-normal:before {
+  content: '\f118';
+}
+.icon-chevron-left-normal:before {
+  content: '\f119';
+}
+.icon-chevron-right-normal:before {
+  content: '\f11a';
+}
+.icon-chevron-up-normal:before {
+  content: '\f11b';
+}
+.icon-cross-normal:before {
+  content: '\f11c';
+}
+.icon-eye-normal:before {
+  content: '\f11d';
+}
+.icon-filter-off-normal:before {
+  content: '\f11e';
+}
+.icon-minus-normal:before {
+  content: '\f11f';
+}
+.icon-paperplane-normal:before {
+  content: '\f120';
+}
+.icon-pencil-normal:before {
+  content: '\f121';
+}
+.icon-plus-large-normal:before {
+  content: '\f122';
+}
+.icon-plus-small-normal:before {
+  content: '\f123';
+}
+.icon-printer-normal:before {
+  content: '\f124';
+}
+.icon-share-normal:before {
+  content: '\f125';
+}
+.icon-vertical-dots-normal:before {
+  content: '\f126';
+}
