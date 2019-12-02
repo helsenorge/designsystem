@@ -1,7 +1,7 @@
 export enum Palette {
   Bone = 'white',
   Wheelchair = 'black',
-  Surgical100 = '#d6f5f3',
+  Surgical100 = '#d8f2ef',
   Surgical200 = '#bbebe8',
   Surgical300 = '#90d9d3',
   Surgical400 = '#01656f',
