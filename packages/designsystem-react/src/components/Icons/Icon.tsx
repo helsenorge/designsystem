@@ -61,8 +61,8 @@ interface IconProps {
 }
 
 const Icon = React.forwardRef((props: IconProps, ref: any) => {
-  const {children = '', size = IconSize.XSmall, color = Palette.Wheelchair} = props;
-  return React.createElement(iconMapping[children], {size, color, ref: ref});
+  const {children = '', size = IconSize.XSmall, color = Palette.Wheelchair, isHovered = false} = props;
+  return React.createElement(iconMapping[children], {size, color, isHovered, ref: ref});
 });
 
 Icon.displayName = 'Icon';

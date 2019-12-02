@@ -12,7 +12,7 @@ import {CommonButton} from '../src/components/CommonButton';
 import {ActionButton} from '../src/components/ActionButton';
 import {ConfirmationButton} from '../src/components/ConfirmationButton';
 import {StartButton} from '../src/components/StartButton';
-import {Icon} from '../src/components/Icons';
+import {Icon, IconSize} from '../src/components/Icons';
 
 import {Palette} from '../src/constants';
 
@@ -212,8 +212,12 @@ stories.add(
   'Icons',
   (): JSX.Element => (
     <div>
-      <i style={{fontSize: '8rem'}} className="icon-alarmclock-normal" />
-      <i style={{fontSize: '8rem'}} className="icon-alarmclock-hover" />
+      <Icon>paperplane</Icon>
+      <Icon size={64} isHovered color={Palette.Surgical300}>
+        alarmclock
+      </Icon>
+      <i style={{fontSize: '2.375rem'}} className="icon-paperplane-normal" />
+      <i style={{fontSize: '4rem', color: '#90d9d3'}} className="icon-alarmclock-hover" />
     </div>
   ),
 );
