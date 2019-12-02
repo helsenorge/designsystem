@@ -116,6 +116,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
           <NavGroupLink to="/pattern-library/introduction">Introduction</NavGroupLink>
           <NavGroupLink to="/pattern-library/get-started">Get started</NavGroupLink>
           <NavGroupLink to="/pattern-library/grid">Grid</NavGroupLink>
+          <NavGroupLink to="/pattern-library/icons">Icons</NavGroupLink>
         </NavGroup>
         <NavGroup groupTitle="Components">
           <NavGroupLink to="/pattern-library/components/confirmation-button">confirmation-button</NavGroupLink>

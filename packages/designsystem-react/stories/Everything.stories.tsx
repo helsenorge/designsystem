@@ -217,7 +217,7 @@ stories.add(
         alarmclock
       </Icon>
       <i style={{fontSize: '2.375rem'}} className="icon-paperplane-normal" />
-      <i style={{fontSize: '4rem', color: '#90d9d3'}} className="icon-alarmclock-hover" />
+      <i style={{fontSize: '4rem', color: '#90d9d3'}} className="icon-alarmclock-hover is-large is-surgical-300" />
     </div>
   ),
 );
