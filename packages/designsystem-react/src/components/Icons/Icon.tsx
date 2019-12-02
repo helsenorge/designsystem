@@ -20,6 +20,7 @@ import PlusSmall from './PlusSmall';
 import Printer from './Printer';
 import Share from './Share';
 import VerticalDots from './VerticalDots';
+import {Palette} from '../../constants';
 
 const iconMapping = {
   alarmclock: Alarmclock,
@@ -55,12 +56,12 @@ enum IconSize {
 interface IconProps {
   children?: string;
   size?: IconSize;
-  color?: string;
+  color?: Palette;
   isHovered?: boolean;
 }
 
 const Icon = React.forwardRef((props: IconProps, ref: any) => {
-  const {children = '', size = IconSize.XSmall, color = 'black'} = props;
+  const {children = '', size = IconSize.XSmall, color = Palette.Wheelchair} = props;
   return React.createElement(iconMapping[children], {size, color, ref: ref});
 });
 
