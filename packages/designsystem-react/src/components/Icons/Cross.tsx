@@ -1,14 +1,13 @@
 import React from 'react';
 import {IconProps} from './Icon';
-const ArrowLeft = React.forwardRef((svgProps: IconProps, ref: any) => {
+const Cross = React.forwardRef((svgProps: IconProps, ref: any) => {
   const {size = 38, color = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} {...props}>
       <polygon
         fill="{color}"
         fillRule="evenodd"
-        points="21.434 4.694 20.292 6.07 30.212 18.027 4.694 18.027 4.694 19.975 30.212 19.975 20.292 31.928 21.434 33.306 33.306 19.001"
-        transform="matrix(-1 0 0 1 38 0)"
+        points="20.404 19 28.663 10.741 27.26 9.338 19.001 17.597 10.741 9.337 9.338 10.74 17.598 19 9.338 27.26 10.741 28.663 19.001 20.403 27.26 28.662 28.663 27.259"
       />
     </svg>
   ) : (
@@ -16,10 +15,9 @@ const ArrowLeft = React.forwardRef((svgProps: IconProps, ref: any) => {
       <polygon
         fill="{color}"
         fillRule="evenodd"
-        points="17.434 4.694 16.292 6.07 26.212 18.027 .694 18.027 .694 19.975 26.212 19.975 16.292 31.928 17.434 33.306 29.306 19.001"
-        transform="matrix(-1 0 0 1 30 0)"
+        points="19 17.596 9.327 7.923 7.924 9.326 17.597 18.999 7.923 28.673 9.326 30.076 19 20.402 28.674 30.076 30.077 28.673 20.403 18.999 30.076 9.326 28.673 7.923"
       />
     </svg>
   );
 });
-export default ArrowLeft;
+export default Cross;

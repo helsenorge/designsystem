@@ -37,6 +37,7 @@
     "clean": "rimraf dist types",
     "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
+    "generate:icons": "node scripts/iconGenerator.js generate ../../designsystem-scss/src/icons/normal/ .",
     "lint": "eslint \"src/**/*\"",
     "precommit": "lint-staged",
     "test": "jest",
@@ -66,9 +67,11 @@
     "@storybook/addon-viewport": "^5.2.6",
     "@storybook/addons": "^5.2.6",
     "@storybook/react": "^5.2.6",
+    "@svgr/core": "^4.3.3",
     "@testing-library/react": "^9.3.2",
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.22",
+    "async": "^3.1.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "dts-bundle-generator": "^3.3.0",
@@ -96,7 +99,9 @@
     "rollup-plugin-sizes": "^0.5.1",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
+    "svg-parser": "^2.0.2",
     "ts-loader": "^6.2.1",
-    "webpack": "^4.41.2"
+    "webpack": "^4.41.2",
+    "yargs": "^15.0.2"
   }
 }

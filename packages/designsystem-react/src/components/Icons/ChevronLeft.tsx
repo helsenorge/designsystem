@@ -1,23 +1,23 @@
 import React from 'react';
 import {IconProps} from './Icon';
-const ArrowRight = React.forwardRef((svgProps: IconProps, ref: any) => {
+const ChevronLeft = React.forwardRef((svgProps: IconProps, ref: any) => {
   const {size = 38, color = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} {...props}>
       <polygon
         fill="{color}"
-        fillRule="evenodd"
-        points="21.434 4.694 20.292 6.07 30.212 18.027 4.694 18.027 4.694 19.975 30.212 19.975 20.292 31.928 21.434 33.306 33.306 19.001"
+        points="26.515 24.263 27.935 22.854 19.725 14.58 11.515 22.854 12.935 24.263 19.725 17.42"
+        transform="matrix(0 1 1 0 .304 -.304)"
       />
     </svg>
   ) : (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} {...props}>
       <polygon
         fill="{color}"
-        fillRule="evenodd"
-        points="25.434 4.694 24.292 6.07 34.212 18.027 8.694 18.027 8.694 19.975 34.212 19.975 24.292 31.928 25.434 33.306 37.306 19.001"
+        points="23.515 24.263 24.935 22.854 16.725 14.58 8.515 22.854 9.935 24.263 16.725 17.42"
+        transform="matrix(0 1 1 0 -2.696 2.696)"
       />
     </svg>
   );
 });
-export default ArrowRight;
+export default ChevronLeft;
