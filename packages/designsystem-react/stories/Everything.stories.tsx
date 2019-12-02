@@ -88,16 +88,16 @@ stories.add(
       </ConfirmationButton>
       <CommonButton>
         Gå videre
-        <Icon color={Palette.Bone}>arrowLeft</Icon>
+        <Icon color={Palette.Bone}>arrowRight</Icon>
       </CommonButton>
       <CommonButton variant="secondary">
         <Icon color={Palette.Surgical500}>arrowRight</Icon>
         Tilbake
       </CommonButton>
       <CommonButton variant="secondary">
-        <Icon color={Palette.Surgical500}>arrowRight</Icon>
-        Tilbake
         <Icon color={Palette.Surgical500}>arrowLeft</Icon>
+        Tilbake
+        <Icon color={Palette.Surgical500}>arrowRight</Icon>
       </CommonButton>
       <ActionButton>
         <Icon color={Palette.Surgical500}>alarmclock</Icon>
@@ -171,9 +171,7 @@ stories.add(
   'ConfirmationButton (all variants)',
   (): JSX.Element => (
     <>
-      <ConfirmationButton variant="secondary" disabled={boolean('disabled', false)}>
-        Primary
-      </ConfirmationButton>
+      <ConfirmationButton disabled={boolean('disabled', false)}>Primary</ConfirmationButton>
       <ConfirmationButton variant="secondary" disabled={boolean('disabled', false)}>
         Secondary
       </ConfirmationButton>
@@ -207,6 +205,16 @@ stories.add(
         Tertiary
       </StartButton>
     </Stacker>
+  ),
+);
+
+stories.add(
+  'Icons',
+  (): JSX.Element => (
+    <div>
+      <i style={{fontSize: '8rem'}} className="icon-alarmclock-normal" />
+      <i style={{fontSize: '8rem'}} className="icon-alarmclock-hover" />
+    </div>
   ),
 );
 

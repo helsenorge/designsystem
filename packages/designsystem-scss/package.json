@@ -41,7 +41,7 @@
     "clean": "rimraf dist",
     "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(scss)\"",
-    "generate:icon-font": "icon-font-generator --csspath src/base/icons.scss --types 'woff, woff2' --html false --json false src/icons/**/*.svg -o src/icons",
+    "generate:icon-font": "icon-font-generator --height 1000 --csspath src/base/icons.scss --types 'woff, woff2' --html false --json false src/icons/**/*.svg -o src/icons",
     "lint": "stylelint src/",
     "precommit": "lint-staged",
     "validate": "yarn lint && yarn format -l"

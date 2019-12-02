@@ -38,9 +38,6 @@ module.exports = config => {
     {
       test: /\.(woff|woff2)$/,
       loader: require.resolve('file-loader'),
-      options: {
-        name: '../fonts/[name].[ext]',
-      },
     },
   );
   config.config.resolve.extensions.push('.ts', '.tsx');
