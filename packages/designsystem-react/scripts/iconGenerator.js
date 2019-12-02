@@ -72,7 +72,7 @@ async function loadAllIcons(srcPath) {
         contentsNormal,
         {
           template: template,
-          svgProps: {width: '{size}', height: '{size}', ref: '{ref}'},
+          svgProps: {width: '{size}', height: '{size}', ref: '{ref}', className: 'icon'},
         },
         {componentName: componentName, svgNormal: svgElementNormal, svgHover: svgElementHover},
       ).then(code => {
@@ -102,17 +102,13 @@ function applyFillColor(children) {
     const type = child.openingElement.name.name;
     const attrs = child.openingElement.attributes;
     if (isValidSvgElement(type)) {
-      let found = false;
-      attrs.forEach(attr => {
+      attrs.forEach((attr, index) => {
         if (attr.name.name === 'fill') {
-          attr.value.value = '{color}';
-          found = true;
+          attrs.splice(index, 1);
           return;
         }
       });
-      if (!found) {
-        attrs.unshift(getFillAttribute());
-      }
+      attrs.unshift(getFillAttribute());
     }
   });
 }
@@ -125,7 +121,14 @@ function getFillAttribute() {
   return {
     type: 'JSXAttribute',
     name: {type: 'JSXIdentifier', name: 'fill'},
-    value: {type: 'StringLiteral', value: '{color}'},
+    value: {
+      type: 'JSXExpressionContainer',
+      expression: {
+        type: 'JSXText',
+        value: 'color',
+        raw: 'color',
+      },
+    },
   };
 }
 

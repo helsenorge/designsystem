@@ -72,17 +72,19 @@ stories.add(
   (): JSX.Element => (
     <Stacker vertical={boolean('vertically stacking', true)}>
       <ConfirmationButton>
-        <Icon color={Palette.Bone}>lock</Icon>
+        <Icon color={Palette.Bone}>alarmclock</Icon>
         Logg inn
       </ConfirmationButton>
       <ConfirmationButton>
         Logg inn
-        <Icon color={Palette.Bone}>unlock</Icon>
+        <Icon isHovered color={Palette.Bone}>
+          alarmclock
+        </Icon>
       </ConfirmationButton>
       <ConfirmationButton>
-        <Icon color={Palette.Bone}>unlock</Icon>
+        <Icon color={Palette.Bone}>alarmclock</Icon>
         Logg inn
-        <Icon color={Palette.Bone}>unlock</Icon>
+        <Icon color={Palette.Bone}>alarmclock</Icon>
       </ConfirmationButton>
       <CommonButton>
         Gå videre
@@ -98,30 +100,30 @@ stories.add(
         <Icon color={Palette.Surgical500}>arrowLeft</Icon>
       </CommonButton>
       <ActionButton>
-        <Icon color={Palette.Surgical500}>printer</Icon>
+        <Icon color={Palette.Surgical500}>alarmclock</Icon>
         Skriv ut
       </ActionButton>
       <ActionButton>
         Fjern
-        <Icon color={Palette.Surgical500}>bin</Icon>
+        <Icon color={Palette.Surgical500}>alarmclock</Icon>
       </ActionButton>
       <ActionButton>
-        <Icon color={Palette.Surgical500}>close</Icon>
+        <Icon color={Palette.Surgical500}>alarmclock</Icon>
       </ActionButton>
       <StartButton>
-        <Icon color={Palette.Bone}>bus</Icon>
+        <Icon color={Palette.Bone}>alarmclock</Icon>
         Logg inn for å søke om pasientreise
-        <Icon color={Palette.Bone}>arrowLeft</Icon>
+        <Icon color={Palette.Bone}>arrowRight</Icon>
       </StartButton>
       <StartButton variant="secondary">
-        <Icon color={Palette.Bone}>envelope</Icon>
+        <Icon color={Palette.Bone}>alarmclock</Icon>
         Skriv melding
-        <Icon color={Palette.Bone}>arrowLeft</Icon>
+        <Icon color={Palette.Bone}>arrowRight</Icon>
       </StartButton>
       <StartButton variant="tertiary">
-        <Icon color={Palette.Surgical500}>envelope</Icon>
+        <Icon color={Palette.Surgical500}>alarmclock</Icon>
         Skriv melding
-        <Icon color={Palette.Surgical500}>arrowLeft</Icon>
+        <Icon color={Palette.Surgical500}>arrowRight</Icon>
       </StartButton>
     </Stacker>
   ),

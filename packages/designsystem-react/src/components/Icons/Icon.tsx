@@ -20,7 +20,6 @@ import PlusSmall from './PlusSmall';
 import Printer from './Printer';
 import Share from './Share';
 import VerticalDots from './VerticalDots';
-import {Palette} from '../../constants';
 
 const iconMapping = {
   alarmclock: Alarmclock,
