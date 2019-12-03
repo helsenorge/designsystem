@@ -1,1 +1,1 @@
-export {Diveboard} from './Diveboard';
+export {DiveBoard, DiveBoardTitle, DiveBoardPreamable} from './DiveBoard';

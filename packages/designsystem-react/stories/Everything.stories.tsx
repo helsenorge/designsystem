@@ -13,7 +13,7 @@ import {ActionButton} from '../src/components/ActionButton';
 import {ConfirmationButton} from '../src/components/ConfirmationButton';
 import {StartButton} from '../src/components/StartButton';
 import {Icon} from '../src/components/Icons';
-import {Diveboard} from '../src/components/Diveboard';
+import {DiveBoard, DiveBoardTitle, DiveBoardPreamable} from '../src/components/DiveBoard';
 
 import {Palette} from '../src/constants';
 
@@ -25,7 +25,32 @@ const buttonVariants = {
   tertiary: 'tertiary',
 };
 
-stories.add('Diveboard', (): JSX.Element => <Diveboard>{text('text', 'CommonButton')}</Diveboard>);
+stories.add(
+  'Diveboard',
+  (): JSX.Element => (
+    <Stacker vertical>
+      <DiveBoard>
+        <DiveBoardTitle>Bekkenbunnstrening</DiveBoardTitle>
+        <DiveBoardPreamable>
+          Her finner du treningsprogram for bekkenbunnsmuskilatur fra Prostataforeningens nettside.
+        </DiveBoardPreamable>
+      </DiveBoard>
+      <DiveBoard variant="surgical">
+        <DiveBoardTitle>Helfos fristbruddavtaler med behandlingssteder</DiveBoardTitle>
+        <DiveBoardPreamable>
+          Her finner du treningsprogram for bekkenbunnsmuskilatur fra Prostataforeningens nettside.
+        </DiveBoardPreamable>
+      </DiveBoard>
+      <DiveBoard variant="strangulation">
+        <DiveBoardTitle>Finn ut hva du har rett på som pasient i utlandet</DiveBoardTitle>
+        <DiveBoardPreamable>
+          Dersom behandlingsinstutisjonen ikke oppfyller fristen for når helsehjelp senest kan gis, vil Helfo finne et
+          annet behandlinstilbud for deg.
+        </DiveBoardPreamable>
+      </DiveBoard>
+    </Stacker>
+  ),
+);
 
 stories.add(
   'CommonButton',

@@ -50,7 +50,10 @@
     "react-dom": "^16.4.2"
   },
   "dependencies": {
-    "classnames": "^2.2.6"
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.23",
+    "classnames": "^2.2.6",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",

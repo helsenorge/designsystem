@@ -3,4 +3,4 @@ export {StartButton} from './components/StartButton';
 export {ConfirmationButton} from './components/ConfirmationButton';
 export {CommonButton} from './components/CommonButton';
 export {Icon} from './components/Icons';
-export {Diveboard} from './components/Diveboard';
+export {DiveBoard} from './components/DiveBoard';
