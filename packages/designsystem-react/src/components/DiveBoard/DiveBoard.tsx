@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const KillingField = styled('h1')`
+const DiveBoard = styled('h1')`
   color: red;
 `;
 
-export {KillingField};
+export {DiveBoard};
 
 // import React, {useEffect} from 'react';
 // import styled, {css} from 'styled-components';
