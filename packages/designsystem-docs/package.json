@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-docs",
   "private": true,
-  "version": "0.0.2-dev.0",
+  "version": "0.0.2-dev.1",
   "description": "The official documentation for Helsenorge's Design System",
   "repository": {
     "type": "git",
@@ -37,8 +37,8 @@
     "validate": "yarn lint && yarn format -l"
   },
   "dependencies": {
-    "@helsenorge/designsystem-react": "^0.0.2-dev.0",
-    "@helsenorge/designsystem-scss": "^0.0.2-dev.0",
+    "@helsenorge/designsystem-react": "^0.0.2-dev.1",
+    "@helsenorge/designsystem-scss": "^0.0.2-dev.1",
     "@mdx-js/mdx": "^1.4.5",
     "@mdx-js/react": "^1.4.5",
     "@mdx-js/tag": "^0.20.3",
