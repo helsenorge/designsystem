@@ -4,13 +4,13 @@ module.exports = {
   siteMetadata: {
     title: 'Helsenorge Design System',
     description: 'Design System all the things!',
-    author: '@helsenorge'
+    author: '@helsenorge',
   },
   plugins: [
     'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
     {
-      resolve: 'gatsby-plugin-typescript'
+      resolve: 'gatsby-plugin-typescript',
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
@@ -19,16 +19,16 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        defaultLayouts: { default: path.resolve('./src/layouts/Page.tsx') },
-        extensions: ['.mdx']
-      }
+        defaultLayouts: {default: path.resolve('./src/layouts/Page.tsx')},
+        extensions: ['.mdx'],
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
-        path: `${__dirname}/src/pages/`
-      }
+        path: `${__dirname}/src/pages/`,
+      },
     },
     {
       resolve: `gatsby-plugin-alias-imports`,
@@ -38,10 +38,10 @@ module.exports = {
           '@images': path.resolve(__dirname, 'src/images'),
           '@shared': path.resolve(__dirname, 'src/shared'),
           '@styles': path.resolve(__dirname, 'src/styles'),
-          '@utils': path.resolve(__dirname, 'src/utils')
+          '@utils': path.resolve(__dirname, 'src/utils'),
         },
-        extensions: []
-      }
+        extensions: [],
+      },
     },
     {
       resolve: 'gatsby-plugin-manifest',
@@ -51,8 +51,8 @@ module.exports = {
         start_url: '/',
         background_color: '#3A0B53',
         theme_color: '#3A0B53',
-        display: 'minimal-ui'
-      }
-    }
-  ]
+        display: 'minimal-ui',
+      },
+    },
+  ],
 };
