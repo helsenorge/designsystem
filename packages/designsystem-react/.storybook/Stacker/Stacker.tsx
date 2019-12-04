@@ -13,8 +13,8 @@ function Stacker(props: StackerProps) {
     gridTemplateColumns: vertical ? 'auto' : `repeat(${React.Children.count(children)}, 1fr)`,
   };
   return (
-    <div className="storybook-stacker" style={style}>
-      {children}
+    <div className="row">
+      <div className="col-md-10 offset-md-1 col-lg-8 offset-lg-2">{children}</div>
     </div>
   );
 }

@@ -29,8 +29,16 @@ stories.add(
   'Diveboard',
   (): JSX.Element => (
     <Stacker vertical>
-      <DiveBoard>
+      <DiveBoard icon={<Icon>alarmclock</Icon>}>
         <DiveBoardTitle>Bekkenbunnstrening</DiveBoardTitle>
+        <DiveBoardPreamable>
+          Her finner du treningsprogram for bekkenbunnsmuskilatur fra Prostataforeningens nettside.
+        </DiveBoardPreamable>
+      </DiveBoard>
+      <DiveBoard>
+        <DiveBoardTitle>
+          Nasjonalt handlingsprogram med retningslinjer for diagnostikk, behandling og oppfølging av maligne melanomer
+        </DiveBoardTitle>
         <DiveBoardPreamable>
           Her finner du treningsprogram for bekkenbunnsmuskilatur fra Prostataforeningens nettside.
         </DiveBoardPreamable>
@@ -41,7 +49,7 @@ stories.add(
           Her finner du treningsprogram for bekkenbunnsmuskilatur fra Prostataforeningens nettside.
         </DiveBoardPreamable>
       </DiveBoard>
-      <DiveBoard variant="strangulation">
+      <DiveBoard icon={<Icon>pencil</Icon>} variant="strangulation">
         <DiveBoardTitle>Finn ut hva du har rett på som pasient i utlandet</DiveBoardTitle>
         <DiveBoardPreamable>
           Dersom behandlingsinstutisjonen ikke oppfyller fristen for når helsehjelp senest kan gis, vil Helfo finne et
