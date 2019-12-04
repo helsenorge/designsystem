@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-dev.2](https://github.com/helsenorge/designsystem/compare/v0.0.2-dev.1...v0.0.2-dev.2) (2019-12-04)
+
+
+### Bug Fixes
+
+* add diveboard to story ([a332f9e](https://github.com/helsenorge/designsystem/commit/a332f9e40b912bfde97e48103dc4ba817cc711d7))
+
+
+
+
+
 ## [0.0.1-dev.34](https://github.com/helsenorge/designsystem/compare/v0.0.1-dev.33...v0.0.1-dev.34) (2019-11-19)
 
 
