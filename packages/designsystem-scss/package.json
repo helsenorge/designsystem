@@ -33,7 +33,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "yarn run clean && yarn run build:scss && yarn run build:postcss && yarn run build:cleancss && yarn run build:post-script",
+    "build": "yarn run clean && yarn run build:scss && yarn run build:postcss && yarn run build:cleancss && yarn run generate:icon-font && yarn run build:post-script",
     "build:cleancss": "cleancss -o dist/css/helsenorge.min.css dist/css/helsenorge.css",
     "build:post-script": "node scripts/post-build.js",
     "build:postcss": "postcss --use autoprefixer --map false --output dist/css/helsenorge.css dist/css/helsenorge.css",
@@ -41,6 +41,7 @@
     "clean": "rimraf dist",
     "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(scss)\"",
+    "generate:icon-font": "icon-font-generator --height 1000 --csspath src/base/icons.scss --types 'woff, woff2' --html false --json false src/icons/**/*.svg -o src/icons",
     "lint": "stylelint src/",
     "precommit": "lint-staged",
     "validate": "yarn lint && yarn format -l"
@@ -48,7 +49,7 @@
   "devDependencies": {
     "autoprefixer": "^9.7.2",
     "clean-css-cli": "^4.3.0",
-    "fs-extra": "^8.1.0",
+    "icon-font-generator": "^2.1.10",
     "node-sass": "^4.13.0",
     "postcss-cli": "^6.1.3",
     "stylelint": "^11.1.1",

@@ -12,7 +12,7 @@ import {CommonButton} from '../src/components/CommonButton';
 import {ActionButton} from '../src/components/ActionButton';
 import {ConfirmationButton} from '../src/components/ConfirmationButton';
 import {StartButton} from '../src/components/StartButton';
-import {Icon} from '../src/components/Icons';
+import {Icon, IconSize} from '../src/components/Icons';
 
 import {Palette} from '../src/constants';
 
@@ -72,56 +72,58 @@ stories.add(
   (): JSX.Element => (
     <Stacker vertical={boolean('vertically stacking', true)}>
       <ConfirmationButton>
-        <Icon color={Palette.Bone}>lock</Icon>
+        <Icon color={Palette.Bone}>alarmclock</Icon>
         Logg inn
       </ConfirmationButton>
       <ConfirmationButton>
         Logg inn
-        <Icon color={Palette.Bone}>unlock</Icon>
+        <Icon isHovered color={Palette.Bone}>
+          alarmclock
+        </Icon>
       </ConfirmationButton>
       <ConfirmationButton>
-        <Icon color={Palette.Bone}>unlock</Icon>
+        <Icon color={Palette.Bone}>alarmclock</Icon>
         Logg inn
-        <Icon color={Palette.Bone}>unlock</Icon>
+        <Icon color={Palette.Bone}>alarmclock</Icon>
       </ConfirmationButton>
       <CommonButton>
         Gå videre
-        <Icon color={Palette.Bone}>arrowLeft</Icon>
+        <Icon color={Palette.Bone}>arrowRight</Icon>
       </CommonButton>
       <CommonButton variant="secondary">
         <Icon color={Palette.Surgical500}>arrowRight</Icon>
         Tilbake
       </CommonButton>
       <CommonButton variant="secondary">
-        <Icon color={Palette.Surgical500}>arrowRight</Icon>
-        Tilbake
         <Icon color={Palette.Surgical500}>arrowLeft</Icon>
+        Tilbake
+        <Icon color={Palette.Surgical500}>arrowRight</Icon>
       </CommonButton>
       <ActionButton>
-        <Icon color={Palette.Surgical500}>printer</Icon>
+        <Icon color={Palette.Surgical500}>alarmclock</Icon>
         Skriv ut
       </ActionButton>
       <ActionButton>
         Fjern
-        <Icon color={Palette.Surgical500}>bin</Icon>
+        <Icon color={Palette.Surgical500}>alarmclock</Icon>
       </ActionButton>
       <ActionButton>
-        <Icon color={Palette.Surgical500}>close</Icon>
+        <Icon color={Palette.Surgical500}>alarmclock</Icon>
       </ActionButton>
       <StartButton>
-        <Icon color={Palette.Bone}>bus</Icon>
+        <Icon color={Palette.Bone}>alarmclock</Icon>
         Logg inn for å søke om pasientreise
-        <Icon color={Palette.Bone}>arrowLeft</Icon>
+        <Icon color={Palette.Bone}>arrowRight</Icon>
       </StartButton>
       <StartButton variant="secondary">
-        <Icon color={Palette.Bone}>envelope</Icon>
+        <Icon color={Palette.Bone}>alarmclock</Icon>
         Skriv melding
-        <Icon color={Palette.Bone}>arrowLeft</Icon>
+        <Icon color={Palette.Bone}>arrowRight</Icon>
       </StartButton>
       <StartButton variant="tertiary">
-        <Icon color={Palette.Surgical500}>envelope</Icon>
+        <Icon color={Palette.Surgical500}>alarmclock</Icon>
         Skriv melding
-        <Icon color={Palette.Surgical500}>arrowLeft</Icon>
+        <Icon color={Palette.Surgical500}>arrowRight</Icon>
       </StartButton>
     </Stacker>
   ),
@@ -169,9 +171,7 @@ stories.add(
   'ConfirmationButton (all variants)',
   (): JSX.Element => (
     <>
-      <ConfirmationButton variant="secondary" disabled={boolean('disabled', false)}>
-        Primary
-      </ConfirmationButton>
+      <ConfirmationButton disabled={boolean('disabled', false)}>Primary</ConfirmationButton>
       <ConfirmationButton variant="secondary" disabled={boolean('disabled', false)}>
         Secondary
       </ConfirmationButton>
@@ -205,6 +205,20 @@ stories.add(
         Tertiary
       </StartButton>
     </Stacker>
+  ),
+);
+
+stories.add(
+  'Icons',
+  (): JSX.Element => (
+    <div>
+      <Icon>paperplane</Icon>
+      <Icon size={64} isHovered color={Palette.Surgical300}>
+        alarmclock
+      </Icon>
+      <i style={{fontSize: '2.375rem'}} className="icon-paperplane-normal" />
+      <i style={{fontSize: '4rem', color: '#90d9d3'}} className="icon-alarmclock-hover is-large is-surgical-300" />
+    </div>
   ),
 );
 

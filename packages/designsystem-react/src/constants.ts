@@ -1,11 +1,19 @@
 export enum Palette {
-  Bone = '#ffffff',
-  Wheelchair = '#000000',
+  Bone = 'white',
+  Wheelchair = 'black',
   Surgical100 = '#d8f2ef',
   Surgical200 = '#bbebe8',
   Surgical300 = '#90d9d3',
   Surgical400 = '#01656f',
   Surgical500 = '#00373c',
+}
+
+export enum IconSize {
+  XSmall = 38,
+  Small = 48,
+  Medium = 64,
+  Large = 80,
+  XLarge = 130,
 }
 
 export interface HTMLButtonProps {
