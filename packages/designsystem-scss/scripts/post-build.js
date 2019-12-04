@@ -42,6 +42,6 @@ function transformFontFacePath() {
 
 copySCSSFiles();
 copyFonts();
-copyIcons();
+// copyIcons();
 transformFontFacePath();
-transformIconFontFacePath();
+// transformIconFontFacePath();
