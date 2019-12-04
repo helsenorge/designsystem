@@ -19,11 +19,11 @@ function copyFonts() {
   fs.copySync(srcDir, distDir);
 }
 
-function copyIcons() {
-  const distDir = path.resolve(__dirname, '../dist/icons');
-  const srcDir = path.resolve(__dirname, '../src/icons');
-  fs.copySync(srcDir, distDir);
-}
+// function copyIcons() {
+//   const distDir = path.resolve(__dirname, '../dist/icons');
+//   const srcDir = path.resolve(__dirname, '../src/icons');
+//   fs.copySync(srcDir, distDir);
+// }
 
 function transformFontFacePath() {
   const filePath = path.resolve(__dirname, '../dist/scss/base/fonts.scss');
@@ -32,13 +32,13 @@ function transformFontFacePath() {
   fs.writeFileSync(filePath, transformedContents, 'utf8');
 }
 
-function transformIconFontFacePath() {
-  const filePath = path.resolve(__dirname, '../dist/scss/base/icons.scss');
-  const contents = fs.readFileSync(filePath, 'utf8', (data, err) => data.toString());
-  let transformedContents = contents.replace(/\.\.\//g, '../../');
-  transformedContents = transformedContents.replace(/\?[a-f0-9]{32}/g, '');
-  fs.writeFileSync(filePath, transformedContents, 'utf8');
-}
+// function transformIconFontFacePath() {
+//   const filePath = path.resolve(__dirname, '../dist/scss/base/icons.scss');
+//   const contents = fs.readFileSync(filePath, 'utf8', (data, err) => data.toString());
+//   let transformedContents = contents.replace(/\.\.\//g, '../../');
+//   transformedContents = transformedContents.replace(/\?[a-f0-9]{32}/g, '');
+//   fs.writeFileSync(filePath, transformedContents, 'utf8');
+// }
 
 copySCSSFiles();
 copyFonts();
