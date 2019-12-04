@@ -1,11 +1,5 @@
 import React from 'react';
 
-function TestComponent() {
-  return (
-    <div>
-      <h1>TestComponent</h1>
-    </div>
-  );
-}
+const TestComponent = () => <h1>TestComponent</h1>;
 
 export {TestComponent};
