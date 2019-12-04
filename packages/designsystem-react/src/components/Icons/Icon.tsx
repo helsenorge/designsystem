@@ -59,4 +59,4 @@ const Icon = React.forwardRef((props: IconProps, ref: any) => {
 
 Icon.displayName = 'Icon';
 
-export {Icon, IconSize, IconProps};
+export {Icon, IconProps};
