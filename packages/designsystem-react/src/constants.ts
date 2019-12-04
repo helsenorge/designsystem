@@ -8,6 +8,14 @@ export enum Palette {
   Surgical500 = '#00373c',
 }
 
+export enum IconSize {
+  XSmall = 38,
+  Small = 48,
+  Medium = 64,
+  Large = 80,
+  XLarge = 130,
+}
+
 export interface HTMLButtonProps {
   autoFocus?: boolean;
   disabled?: boolean;
