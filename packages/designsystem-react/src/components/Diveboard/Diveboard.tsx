@@ -1,3 +1,12 @@
+import React from 'react';
+import styled from 'styled-components';
+
+const DiveBoard = styled('h1')`
+  color: red;
+`;
+
+export {DiveBoard};
+
 // import React, {useEffect} from 'react';
 // import styled, {css} from 'styled-components';
 // import {theme, device} from '../../theme';
