@@ -1,5 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const TestComponent = () => <h1>TestComponent</h1>;
+const TestComponent = styled('h1')`
+  color: red;
+`;
 
 export {TestComponent};

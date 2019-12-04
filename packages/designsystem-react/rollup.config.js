@@ -32,7 +32,7 @@ export default {
     },
     {file: pkg.module, format: 'es', globals, sourcemap: true},
   ],
-  external: ['classnames'],
+  external: ['classnames', 'styled-components'],
   plugins: [
     progress({
       clearLine: false, // default: true
@@ -41,6 +41,7 @@ export default {
     commonjs({
       namedExports: {
         cx: ['classNames'],
+        '../../node_modules/react-is/index.js': ['isElement', 'isValidElementType', 'ForwardRef'],
       },
     }),
     babel({
