@@ -1,4 +1,4 @@
-export {DiveBoard} from './components/DiveBoard';
+// export {DiveBoard} from './components/DiveBoard';
 export {ActionButton} from './components/ActionButton';
 export {StartButton} from './components/StartButton';
 export {ConfirmationButton} from './components/ConfirmationButton';

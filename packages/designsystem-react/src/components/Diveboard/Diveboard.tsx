@@ -120,9 +120,3 @@
 // // DiveBoard.Title = DiveBoardTitle;
 
 // export {DiveBoard, DiveBoardTitle, DiveBoardPreamable};
-
-import React from 'react';
-
-const DiveBoard = () => <h1>Diveboard test</h1>;
-
-export {DiveBoard};

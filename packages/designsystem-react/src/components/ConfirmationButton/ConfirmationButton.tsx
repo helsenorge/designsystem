@@ -4,6 +4,7 @@ import {ButtonProps, Button} from '../Button';
 
 interface ConfirmationButtonProps extends ButtonProps {
   isLoading?: boolean;
+  test?: boolean;
 }
 
 // TODO: Move most of the logic out in a generic Button-component that the others inherit.
