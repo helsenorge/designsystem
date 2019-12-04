@@ -2,28 +2,8 @@
 
 exports[`renders default variant correctly 1`] = `
 <div>
-  <a
-    class="sc-bwzfXH jNIxir"
-  >
-    <span>
-      ConfirmationButton
-    </span>
-    <div
-      class="sc-htpNat bFWmHh"
-    >
-      <svg
-        class="icon"
-        height="38"
-        viewBox="0 0 38 38"
-        width="38"
-      >
-        <polygon
-          fill="black"
-          fill-rule="evenodd"
-          points="21.434 4.694 20.292 6.07 30.212 18.027 4.694 18.027 4.694 19.975 30.212 19.975 20.292 31.928 21.434 33.306 33.306 19.001"
-        />
-      </svg>
-    </div>
-  </a>
+  <h1>
+    Diveboard test
+  </h1>
 </div>
 `;
