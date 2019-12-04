@@ -7,7 +7,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   testMatch: ['<rootDir>/src/components/**/?(*.)(test).{js,jsx,ts,tsx}'],
   modulePaths: ['<rootDir>/src/components'],
-  modulePathIgnorePatterns: ['<rootDir>/src/components/Icons'],
+  modulePathIgnorePatterns: ['<rootDir>/src/components/Icons/*'],
   moduleNameMapper: {
     '\\.scss$': 'identity-obj-proxy',
   },
