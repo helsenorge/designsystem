@@ -32,7 +32,7 @@ export default {
     },
     {file: pkg.module, format: 'es', globals, sourcemap: true},
   ],
-  external: ['classnames'],
+  external: ['classnames', 'styled-components'],
   plugins: [
     progress({
       clearLine: false, // default: true
@@ -41,6 +41,7 @@ export default {
     commonjs({
       namedExports: {
         cx: ['classNames'],
+        '../../node_modules/react-is/index.js': ['isElement', 'isValidElementType', 'ForwardRef'],
       },
     }),
     babel({
@@ -53,7 +54,7 @@ export default {
     //   outputStyle: 'compressed',
     // }),
     // copy({
-    //   targets: [{src: 'src/styling/*', dest: './dist/scss'}, {src: 'src/fonts/*', dest: './dist/fonts'}],
+    //   targets: [{src: 'dist/*', dest: '../designsystem-react/dist'}],
     //   copyOnce: true,
     // }),
     execute(["cd ./src/components/ ;find . -name '*.scss' | cpio -pdm  ../../dist/components/"]),

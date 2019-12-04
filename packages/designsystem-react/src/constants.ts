@@ -1,4 +1,12 @@
 export enum Palette {
+  Ash = '#f6f5f2',
+  Scalpel = '#dedbd3',
+  Strangulation100 = '#eee5ff',
+  Strangulation200 = '#d9c9fa',
+  Strangulation300 = '#c5adfa',
+  Strangulation400 = '#7a33d7',
+  Strangulation500 = '#651ac6',
+  Strangulation600 = '#560fb3',
   Bone = 'white',
   Wheelchair = 'black',
   Surgical100 = '#d8f2ef',
