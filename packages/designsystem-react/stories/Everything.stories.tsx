@@ -13,7 +13,7 @@ import {ActionButton} from '../src/components/ActionButton';
 import {ConfirmationButton} from '../src/components/ConfirmationButton';
 import {StartButton} from '../src/components/StartButton';
 // import {DiveBoard, DiveBoardTitle, DiveBoardPreamable} from '../src/components/DiveBoard';
-import {Icon, IconSize} from '../src/components/Icons';
+import {Icon} from '../src/components/Icons';
 
 import {Palette} from '../src/constants';
 
