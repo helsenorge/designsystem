@@ -46,15 +46,12 @@
     "validate": "yarn lint && yarn format -l"
   },
   "peerDependencies": {
-    "@helsenorge/designsystem-scss": "^0.0.2-dev.0",
+    "styled-components": "^4.4.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.22",
-    "@emotion/styled": "^10.0.23",
-    "classnames": "^2.2.6",
-    "styled-components": "^4.4.1"
+    "classnames": "^2.2.6"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",

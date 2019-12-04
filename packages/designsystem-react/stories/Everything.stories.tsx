@@ -29,7 +29,7 @@ stories.add(
   'Diveboard',
   (): JSX.Element => (
     <Stacker vertical>
-      <DiveBoard icon={<Icon>alarmclock</Icon>}>
+      <DiveBoard icon={<Icon>chevronUp</Icon>}>
         <DiveBoardTitle>Bekkenbunnstrening</DiveBoardTitle>
         <DiveBoardPreamable>
           Her finner du treningsprogram for bekkenbunnsmuskilatur fra Prostataforeningens nettside.
