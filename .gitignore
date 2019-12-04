@@ -32,3 +32,5 @@ UserInterfaceState.xcuserstate
 .env
 .cache
 packages/designsystem-docs/public/
+packages/designsystem-scss/src/base/icons.scss
+packages/designsystem-scss/src/icons/*woff*
