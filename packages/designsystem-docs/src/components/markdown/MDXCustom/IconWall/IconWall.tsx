@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Icon} from '@helsenorge/designsystem-react';
+// import {Icon} from '@helsenorge/designsystem-react';
 import styled from 'styled-components';
 import Button from '../../../Button/Button';
 
@@ -131,7 +131,7 @@ function IconWall() {
           .filter(icon => (filterProps.filter ? icon.includes(filterProps.filter) : icon))
           .map(icon => (
             <StyledIconTile key={icon}>
-              <Icon>{icon}</Icon>
+              {/* <Icon>{icon}</Icon> */}
               <StyledIconName>{icon}</StyledIconName>
             </StyledIconTile>
           ))}

@@ -2,11 +2,11 @@ import React, {useState, useEffect, Dispatch, SetStateAction} from 'react';
 import styled, {css} from 'styled-components';
 import dracula from 'prism-react-renderer/themes/dracula';
 import {LivePreview, LiveProvider, LiveEditor} from 'react-live';
-import {Icon} from '@helsenorge/designsystem-react';
+// import {Icon} from '@helsenorge/designsystem-react';
 
 import toggleIcon from '../../../images/code.svg';
 
-const scope = {Icon};
+// const scope = {Icon};
 
 interface StyledToggleButtonProps {
   active?: boolean;
