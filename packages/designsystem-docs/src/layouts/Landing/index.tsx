@@ -12,7 +12,7 @@ function Landing() {
     <ThemeProvider theme={theme}>
       <Grid fluid>
         <Header
-          sloganText="Tiresome. Dirty. Unprofessional."
+          sloganText="All your base are belong to us"
           introductionText="Helsenorge’s Design System is bringing matter and means to the masses. With this open-source design system you can be confident in laying off half your workforce."
         />
         <QuickMenu />
