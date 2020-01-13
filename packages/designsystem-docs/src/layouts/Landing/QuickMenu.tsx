@@ -158,7 +158,7 @@ function QuickMenu(props: QuickMenuProps) {
         </Row>
         <Row style={{padding: '1rem 0 2rem 0'}} around="xs" center="xs">
           <Col xs={12} sm={6} md={4}>
-            <Card to="/perceptual-patterns/palette" springProp={springProps.card(400)}>
+            <Card to="/brand/palette" springProp={springProps.card(400)}>
               <CardIcon lottieData="palette" />
               <CardTitle>Palette</CardTitle>
               <CardDescription>

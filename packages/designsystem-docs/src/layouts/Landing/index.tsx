@@ -12,8 +12,8 @@ function Landing() {
     <ThemeProvider theme={theme}>
       <Grid fluid>
         <Header
-          sloganText="Tiresome. Dirty. Unprofessional."
-          introductionText="Helsenorge’s Design System is bringing matter and means to the masses. With this open-source design system you can be confident in laying off half your workforce."
+          sloganText="Helsenorge designsystem"
+          introductionText="Én sannhet om brukerflate, design og interaksjon på Helsenorge. For raskere utvikling, færre designbugs, bedre samhandling og en samlet, konsistent brukeropplevelse."
         />
         <QuickMenu />
         <Footer />
