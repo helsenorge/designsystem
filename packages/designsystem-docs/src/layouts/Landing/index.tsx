@@ -2,7 +2,7 @@ import React from 'react';
 import {ThemeProvider} from 'styled-components';
 
 import {Grid} from '@shared/CustomizedGrid';
-import {Header} from './Header';
+import Header from './NewHeader';
 import {QuickMenu} from './QuickMenu';
 import {Footer} from './Footer';
 import {theme} from '@styles/styled-constants';
@@ -11,10 +11,7 @@ function Landing() {
   return (
     <ThemeProvider theme={theme}>
       <Grid fluid>
-        <Header
-          sloganText="All your base are belong to us 2020"
-          introductionText="Helsenorge’s Design System is bringing matter and means to the masses. With this open-source design system you can be confident in laying off half your workforce."
-        />
+        <Header />
         <QuickMenu />
         <Footer />
       </Grid>

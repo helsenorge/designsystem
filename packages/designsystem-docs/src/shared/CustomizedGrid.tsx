@@ -6,7 +6,7 @@ interface GridProps {
 }
 
 export const Grid = styled(Flexbox.Grid)<GridProps>`
-  padding: 0 ${props => (props.padding ? `${props.padding}rem !important` : '0.5rem !important')};
+  padding: 0 ${props => (props.padding ? `${props.padding}rem !important` : '0rem !important')};
 `;
 
 interface RowProps {

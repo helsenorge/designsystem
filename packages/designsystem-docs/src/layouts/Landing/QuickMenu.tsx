@@ -191,8 +191,6 @@ function QuickMenu(props: QuickMenuProps) {
 }
 
 const StyledQuickMenu = styled(QuickMenu)`
-  margin-top: 4rem;
-  padding: 2rem 0;
   background-color: ${palette('bandAid100')};
 `;
 
