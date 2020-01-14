@@ -118,6 +118,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
           <NavGroupLink to="/brand/photography">Fotografi</NavGroupLink>
         </NavGroup>
         <NavGroup groupTitle="Interaksjonsmønstre">
+          <NavGroupLink to="/functional-patterns/lightbox">Lightbox</NavGroupLink>
           <NavGroupLink to="/functional-patterns/page-feedback">Page feedback</NavGroupLink>
         </NavGroup>
         <NavGroup groupTitle="Komponentbibliotek">
