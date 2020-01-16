@@ -8,5 +8,5 @@ const stories = storiesOf('Badge', module);
 stories.addDecorator(withKnobs);
 
 stories.add('Default', () => (
-  <Badge color={select('Color', Object.keys(palette), 'ash') as Colors}>{text('Text', '1')}</Badge>
+  <Badge color={select('Color', Object.keys(palette), 'wheelChair') as Colors}>{text('Text', '1')}</Badge>
 ));
