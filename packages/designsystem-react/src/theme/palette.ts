@@ -26,3 +26,32 @@ export const palette = {
   waitingRoom: '#9b978c',
   wheelChair: 'black',
 };
+
+export type Colors =
+  | undefined
+  | 'ash'
+  | 'bandAid100'
+  | 'bandAid200'
+  | 'bandAid300'
+  | 'blood100'
+  | 'blood200'
+  | 'bone'
+  | 'nausea100'
+  | 'nausea200'
+  | 'scab'
+  | 'scalpel'
+  | 'strangulation100'
+  | 'strangulation200'
+  | 'strangulation300'
+  | 'strangulation400'
+  | 'strangulation500'
+  | 'strangulation600'
+  | 'surgical100'
+  | 'surgical200'
+  | 'surgical300'
+  | 'surgical400'
+  | 'surgical500'
+  | 'urine100'
+  | 'urine200'
+  | 'waitingRoom'
+  | 'wheelChair';

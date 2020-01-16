@@ -9,7 +9,7 @@
     "declarationMap": true,
     "declarationDir": "types/",
     "emitDecoratorMetadata": true,
-    "types": ["jest", "node", "react"]
+    "types": ["jest", "node", "react", "./src"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "scripts"]
