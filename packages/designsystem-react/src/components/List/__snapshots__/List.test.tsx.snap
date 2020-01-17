@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays a list of 4 elements 1`] = `
+<div>
+  <ul
+    class="sc-bwzfXH gGWtoK"
+  >
+    <li
+      class="sc-bdVaJa jIuWZy"
+    >
+      <h1>
+        Tjeneste 1
+      </h1>
+    </li>
+    <li
+      class="sc-bdVaJa jIuWZy"
+    >
+      <h1>
+        Tjeneste 2
+      </h1>
+    </li>
+    <li
+      class="sc-bdVaJa jIuWZy"
+    >
+      <h1>
+        Tjeneste 3
+      </h1>
+    </li>
+    <li
+      class="sc-bdVaJa jIuWZy"
+    >
+      <h1>
+        Tjeneste 4
+      </h1>
+    </li>
+  </ul>
+</div>
+`;
