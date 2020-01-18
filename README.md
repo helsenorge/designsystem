@@ -1,3 +1,4 @@
+[![Board Status](https://dev.azure.com/helsenorge/e4ae01b0-e21c-4712-8941-e3dc6ccc9da0/ab8fab01-0931-44aa-ac17-d62f64f0f60e/_apis/work/boardbadge/0af5f7ba-9e28-4be9-b7dc-68699b78f69e)](https://dev.azure.com/helsenorge/e4ae01b0-e21c-4712-8941-e3dc6ccc9da0/_boards/board/t/ab8fab01-0931-44aa-ac17-d62f64f0f60e/Microsoft.RequirementCategory)
 <p align="center">
   <img width="500" src="./hnd-logo.svg" />
 </p>
