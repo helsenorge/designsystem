@@ -1,8 +1,8 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import {ActionButton} from './ActionButton';
+import ConfirmationButton from './ConfirmationButton';
 
 test('renders default variant correctly', (): void => {
-  const {container} = render(<ActionButton>ActionButton</ActionButton>);
+  const {container} = render(<ConfirmationButton>ConfirmationButton</ConfirmationButton>);
   expect(container).toMatchSnapshot();
 });
