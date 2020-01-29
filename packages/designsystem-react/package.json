@@ -37,7 +37,7 @@
     "clean": "rimraf dist types",
     "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
-    "generate:icons": "node scripts/iconGenerator.js generate ../../designsystem-scss/src/icons/normal/ .",
+    "generate:icons": "node scripts/iconGenerator.js generate",
     "lint": "eslint \"src/**/*\"",
     "precommit": "lint-staged",
     "test": "jest",

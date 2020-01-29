@@ -41,8 +41,10 @@ function AnchorLink(props: AnchorLinkProps) {
 }
 
 const H1 = styled('h1')`
-  font-size: 4rem;
-  margin-bottom: 0.5rem;
+  font-size: 3.25rem;
+  margin-top: 3rem;
+  margin-bottom: 2.75rem;
+  line-height: 3.75rem;
   font-weight: 600;
 `;
 
@@ -51,8 +53,10 @@ const H2 = styled(AnchorLink)`
   text-decoration: none;
   width: fit-content;
   cursor: pointer;
-  margin: 1.6rem 0;
-  font-size: 2.2rem;
+  margin: 3.75rem 0 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 2.75rem;
 `;
 
 const H3 = styled(AnchorLink)`
@@ -60,12 +64,15 @@ const H3 = styled(AnchorLink)`
   text-decoration: none;
   width: fit-content;
   cursor: pointer;
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 2rem;
+  margin: 2rem 0 1rem;
   transition: all 150ms;
 `;
 const H4 = styled('h4')`
   font-size: 1.2rem;
+  font-weight: 400;
   text-transform: uppercase;
   padding: 0.5rem 1rem;
   background-color: #000;

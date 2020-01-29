@@ -54,7 +54,7 @@ async function loadAllIcons(srcPath) {
   await new Promise(resolve => {
     fs.readdirSync(path.resolve(__dirname, srcPath)).forEach(async filename => {
       const filePathNormal = path.resolve(__dirname, srcPath + filename);
-      const filePathHover = path.resolve(__dirname, srcPath + '../hover/' + filename.replace('normal', 'hover'));
+      const filePathHover = path.resolve(__dirname, srcPath + filename.replace('normal', 'hover'));
       const contentsNormal = fs.readFileSync(filePathNormal, {encoding: 'utf8'}).toString();
       const contentsHover = fs.readFileSync(filePathHover, {encoding: 'utf8'}).toString();
 
