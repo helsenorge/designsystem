@@ -13,7 +13,7 @@ stories.add('Default', () => (
     variant={select('Variant', ['primary', 'secondary', 'tertiary'], 'primary')}
     disabled={boolean('Disabled', false)}
     href={text('Href (a tag only)', '')}
-    asTag={select('As tag', ['button', 'a'], 'button')}>
+    htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
     {text('Text', 'ConfirmationButton')}
   </ConfirmationButton>
 ));
@@ -21,22 +21,7 @@ stories.add('Default', () => (
 stories.add('With icon', () => (
   <ConfirmationButton
     variant={select('Variant', ['primary', 'secondary', 'tertiary'], 'primary')}
-    disabled={boolean('Disabled', false)}
-    leftIcon={<Icon>{select('Icon', allIcons, 'eye')}</Icon>}>
+    disabled={boolean('Disabled', false)}>
     {text('Text', 'ConfirmationButton')}
   </ConfirmationButton>
-));
-
-stories.add('All variants', () => (
-  <>
-    <ConfirmationButton variant="primary" disabled={boolean('Disabled', false)}>
-      {text('Text (primary)', 'ConfirmationButton')}
-    </ConfirmationButton>
-    <ConfirmationButton variant="secondary" disabled={boolean('Disabled', false)}>
-      {text('Text (secondary)', 'ConfirmationButton')}
-    </ConfirmationButton>
-    <ConfirmationButton variant="tertiary" disabled={boolean('Disabled', false)}>
-      {text('Text (tertiary)', 'ConfirmationButton')}
-    </ConfirmationButton>
-  </>
 ));

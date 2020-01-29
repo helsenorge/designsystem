@@ -9,9 +9,7 @@ const stories = storiesOf('Buttons/StartButton', module);
 stories.addDecorator(withKnobs);
 
 stories.add('Default', () => (
-  <StartButton
-    variant={select('Variant', ['primary', 'secondary', 'tertiary'], 'primary')}
-    leftIcon={<Icon>{select('Icon', allIcons, 'eye')}</Icon>}>
+  <StartButton variant={select('Variant', ['primary', 'secondary', 'tertiary'], 'primary')}>
     {text('Text', 'StartButton')}
   </StartButton>
 ));

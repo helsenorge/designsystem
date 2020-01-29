@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {StyledConfirmationButton} from './ConfirmationButton.styled';
 import {HTMLButtonProps, HTMLAnchorProps} from '../../../constants';
 import {useIconColor} from '../../../hooks';
 import Button, {ButtonVariants} from '../Button/Button';
@@ -10,9 +9,8 @@ export type ConfirmationButtonTag = 'a' | 'button';
 interface ConfirmationButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   children: React.ReactNode;
   variant?: ConfirmationButtonVariants;
-  leftIcon?: any;
-  asTag?: ConfirmationButtonTag;
-  isLoading?: boolean;
+  htmlTag?: ConfirmationButtonTag;
+  loading?: boolean;
 }
 
 const variantMap = {
@@ -22,38 +20,16 @@ const variantMap = {
 };
 
 const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref: any) => {
-  const {
-    children,
-    variant = 'primary',
-    asTag = 'button',
-    isLoading = false,
-    leftIcon = null,
-    disabled = false,
-    ...rest
-  } = props;
-  const [isHovered, setIsHovered] = useState(false);
-  // const iconColor = useIconColor({
-  //   variant,
-  //   variantColor: 'strangulation400',
-  //   defaultColor: 'bone',
-  //   onHover: {isToggled: isHovered, color: 'strangulation500'},
-  //   onDisable: {isToggled: disabled},
-  // });
+  const {children, variant = 'primary', htmlTag = 'button', disabled = false, ...rest} = props;
   return (
     <Button
-      // onMouseEnter={() => setIsHovered(true)}
-      // onMouseLeave={() => setIsHovered(false)}
-      // onFocus={() => setIsHovered(true)}
-      // onBlur={() => setIsHovered(false)}
-      // hasIcon={leftIcon}
       variant={variantMap[variant] as ButtonVariants}
       size="small"
       color="strangulation"
       disabled={disabled}
-      asTag={asTag}
+      htmlTag={htmlTag}
       ref={ref}
       {...rest}>
-      {/* {leftIcon ? React.cloneElement(leftIcon, {color: iconColor, size: 38, isHovered}) : null} */}
       {children}
     </Button>
   );

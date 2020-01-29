@@ -35,6 +35,7 @@ const fillStyle = (fillColor: ButtonColors) => css`
   }
 `;
 
+// TODO: Move duplicate before/after to seperate style
 const outlineStyle = (outlineColor: ButtonColors) => css`
   background-color: transparent;
   color: ${color(`${outlineColor}500` as Colors)};
@@ -77,7 +78,6 @@ const borderlessStyle = (borderlessColor: ButtonColors) => css`
   background-color: transparent;
   color: ${color(`${borderlessColor}500` as Colors)};
   border: 0.125rem solid transparent;
-  padding: 0 2.375rem;
   position: relative;
   &:before {
     content: ' ';
@@ -117,15 +117,35 @@ export const StyledButtonContent = styled('span')`
   align-items: center;
 `;
 
+export const StyledLeftFluidContent = styled('div')`
+  display: flex;
+`;
+
+// TODO: Move hasIcon logic to seperate styling
+// TODO: Clean up a lot of this logic into own styling functions
 export const StyledButton = styled('button')<{
   variant: ButtonVariants;
   size: ButtonSizes;
   color: ButtonColors;
+  fluid: boolean;
+  loading: boolean;
   hasIcon: boolean;
 }>`
   ${buttonStyle}
   ${props =>
+    props.fluid &&
+    css`
+      width: 100%;
+    `};
+  ${props =>
+    props.fluid &&
     props.hasIcon &&
+    css`
+      justify-content: space-between;
+    `}
+  ${props =>
+    props.hasIcon &&
+    !props.loading &&
     css`
       padding: 0;
       & .icon {

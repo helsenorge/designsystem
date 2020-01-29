@@ -1,18 +1,14 @@
 import React, {useState} from 'react';
-import styled, {css} from 'styled-components';
-import {Icon} from '../../Icons';
-import {color, Colors} from '../../../theme';
 import {HTMLButtonProps, HTMLAnchorProps} from '../../../constants';
 import Button, {ButtonVariants, ButtonSizes} from '../Button/Button';
 
 type StartButtonVariants = 'primary' | 'secondary' | 'tertiary';
 type StartButtonTag = 'a' | 'button';
 
-interface StartButtonProps {
+interface StartButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   variant?: StartButtonVariants;
   children: React.ReactNode;
-  leftIcon: any;
-  asTag?: StartButtonTag;
+  htmlTag?: StartButtonTag;
 }
 
 const variantMap = {
@@ -28,13 +24,12 @@ const sizeMap = {
 };
 
 const StartButton = React.forwardRef((props: StartButtonProps, ref: any) => {
-  const {children, variant = 'primary', asTag = 'button', leftIcon, ...rest} = props;
-  const [isHovered, setIsHovered] = useState(false);
+  const {children, variant = 'primary', htmlTag = 'button', ...rest} = props;
   return (
     <Button
       variant={variantMap[variant] as ButtonVariants}
       size={sizeMap[variant] as ButtonSizes}
-      asTag={asTag}
+      htmlTag={htmlTag}
       color="surgical"
       {...rest}>
       {children}

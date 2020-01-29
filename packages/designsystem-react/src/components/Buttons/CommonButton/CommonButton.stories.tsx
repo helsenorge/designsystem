@@ -13,7 +13,8 @@ stories.add('Default', () => (
     variant={select('Variant', ['primary', 'secondary', 'tertiary'], 'primary')}
     disabled={boolean('Disabled', false)}
     href={text('Href (a tag only)', '')}
-    asTag={select('As tag', ['button', 'a'], 'button')}>
+    htmlTag={select('HTML tag', ['button', 'a'], 'button')}
+    loading={boolean('Loading', false)}>
     {text('Text', 'CommonButton')}
   </CommonButton>
 ));
@@ -21,31 +22,9 @@ stories.add('Default', () => (
 stories.add('With icon', () => (
   <CommonButton
     variant={select('Variant', ['primary', 'secondary', 'tertiary'], 'primary')}
-    disabled={boolean('Disabled', false)}
-    leftIcon={<Icon>{select('Icon', allIcons, 'eye')}</Icon>}>
+    disabled={boolean('Disabled', false)}>
+    <Icon>{select('Right icon', allIcons, 'alarmclock')}</Icon>
     {text('Text', 'CommonButton')}
+    <Icon>{select('Left icon', allIcons, 'arrowRight')}</Icon>
   </CommonButton>
-));
-
-stories.add('All variants', () => (
-  <>
-    <CommonButton
-      variant="primary"
-      disabled={boolean('Disabled', false)}
-      asTag={select('As tag', ['button', 'a'], 'button')}>
-      {text('Text (primary)', 'CommonButton')}
-    </CommonButton>
-    <CommonButton
-      variant="secondary"
-      disabled={boolean('Disabled', false)}
-      asTag={select('As tag', ['button', 'a'], 'button')}>
-      {text('Text (secondary)', 'CommonButton')}
-    </CommonButton>
-    <CommonButton
-      variant="tertiary"
-      disabled={boolean('Disabled', false)}
-      asTag={select('As tag', ['button', 'a'], 'button')}>
-      {text('Text (tertiary)', 'CommonButton')}
-    </CommonButton>
-  </>
 ));
