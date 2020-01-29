@@ -55,5 +55,8 @@
     "stylelint": "^12.0.1",
     "stylelint-config-prettier": "^8.0.0",
     "stylelint-prettier": "^1.1.2"
+  },
+  "dependencies": {
+    "@helsenorge/designsystem-react": "^0.0.2-dev.2"
   }
 }
