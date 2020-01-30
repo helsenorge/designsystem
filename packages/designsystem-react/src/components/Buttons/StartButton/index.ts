@@ -1,1 +1,2 @@
-export * from './StartButton';
+import StartButton from './StartButton';
+export default StartButton;

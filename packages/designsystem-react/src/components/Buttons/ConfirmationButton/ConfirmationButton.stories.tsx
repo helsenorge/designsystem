@@ -2,7 +2,7 @@ import React from 'react';
 import {withKnobs, select, text, boolean} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import ConfirmationButton from './ConfirmationButton';
-import {Icon} from '../../..';
+import Icon from '../../Icons';
 import {allIcons} from '../../../../.storybook/knobs';
 
 const stories = storiesOf('Buttons/ConfirmationButton', module);

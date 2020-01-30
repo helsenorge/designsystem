@@ -2,7 +2,7 @@ import React from 'react';
 import {withKnobs, select, text} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import StartButton from './StartButton';
-import {Icon} from '../../Icons';
+import Icon from '../../Icons';
 import {allIcons} from '../../../../.storybook/knobs';
 
 const stories = storiesOf('Buttons/StartButton', module);

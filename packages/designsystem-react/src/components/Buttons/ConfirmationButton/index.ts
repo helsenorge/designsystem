@@ -1,1 +1,2 @@
-export * from './ConfirmationButton';
+import ConfirmationButton from './ConfirmationButton';
+export default ConfirmationButton;

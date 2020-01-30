@@ -4,7 +4,7 @@ import {action} from '@storybook/addon-actions';
 import {storiesOf} from '@storybook/react';
 import Button from './Button';
 import {allIcons} from '../../../../.storybook/knobs';
-import {Icon} from '../../..';
+import Icon from '../../Icons';
 
 const stories = storiesOf('Buttons/Button', module);
 stories.addDecorator(withKnobs);
