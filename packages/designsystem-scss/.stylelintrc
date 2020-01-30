@@ -1,6 +1,0 @@
-{
-  "extends": ["stylelint-prettier/recommended"],
-  "rules": {
-    "unit-whitelist": ["rem", "em", "s", "%"]
-  }
-}
