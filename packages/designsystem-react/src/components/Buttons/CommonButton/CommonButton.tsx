@@ -35,7 +35,9 @@ const CommonButton = React.forwardRef((props: CommonButtonProps, ref: any) => {
       loading={loading}
       ref={ref}
       {...rest}>
-      {children}
+      {leftIcon ? React.cloneElement(leftIcon as React.ReactElement, {size: 38}) : null}
+      {restChildren}
+      {rightIcon ? React.cloneElement(rightIcon as React.ReactElement, {size: 38}) : null}
     </Button>
   );
 });

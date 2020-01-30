@@ -23,8 +23,8 @@ stories.add('With icon', () => (
   <CommonButton
     variant={select('Variant', ['primary', 'secondary', 'tertiary'], 'primary')}
     disabled={boolean('Disabled', false)}>
-    <Icon>{select('Right icon', allIcons, 'alarmclock')}</Icon>
+    <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
     {text('Text', 'CommonButton')}
-    <Icon>{select('Left icon', allIcons, 'arrowRight')}</Icon>
+    <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
   </CommonButton>
 ));
