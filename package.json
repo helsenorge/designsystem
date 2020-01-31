@@ -26,7 +26,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build && cp -R packages/designsystem-scss/dist/* packages/designsystem-react/dist",
+    "build": "lerna run build",
     "clean": "lerna run clean",
     "cz": "git-cz",
     "format": "lerna run format",
