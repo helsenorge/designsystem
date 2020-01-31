@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays text 1`] = `
+<div>
+  <span
+    class="sc-bdVaJa hYVdCc"
+  >
+    123
+  </span>
+</div>
+`;

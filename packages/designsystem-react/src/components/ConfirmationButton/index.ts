@@ -1,1 +1,0 @@
-export {ConfirmationButton} from './ConfirmationButton';

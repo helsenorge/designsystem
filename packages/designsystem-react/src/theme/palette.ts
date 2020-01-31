@@ -10,19 +10,55 @@ export const palette = {
   nausea200: '#307a5b',
   scab: '#383838',
   scalpel: '#dedbd3',
-  strangulation100: '#eee5ff',
-  strangulation200: '#d9c9fa',
-  strangulation300: '#c5adfa',
-  strangulation400: '#7a33d7',
-  strangulation500: '#651ac6',
-  strangulation600: '#560fb3',
-  surgical100: '#d8f2ef',
-  surgical200: '#bbebe8',
-  surgical300: '#90d9d3',
-  surgical400: '#01656f',
-  surgical500: '#00373c',
+  strangulation100: '#af84e7',
+  strangulation200: '#a170e3',
+  strangulation300: '#945bdf',
+  strangulation400: '#8747db',
+  strangulation500: '#7a33d7',
+  strangulation600: '#6d2dc1',
+  strangulation700: '#6128ac',
+  strangulation800: '#552396',
+  strangulation900: '#491e81',
+  surgical100: '#66a2a8',
+  surgical200: '#4d939a',
+  surgical300: '#33838b',
+  surgical400: '#1a747d',
+  surgical500: '#01656f',
+  surgical600: '#005a63',
+  surgical700: '#005058',
+  surgical800: '#00464d',
+  surgical900: '#003c42',
   urine100: '#fff0be',
   urine200: '#e8be36',
   waitingRoom: '#9b978c',
   wheelChair: 'black',
 };
+
+export type Colors =
+  | undefined
+  | 'ash'
+  | 'bandAid100'
+  | 'bandAid200'
+  | 'bandAid300'
+  | 'blood100'
+  | 'blood200'
+  | 'bone'
+  | 'nausea100'
+  | 'nausea200'
+  | 'scab'
+  | 'scalpel'
+  | 'strangulation100'
+  | 'strangulation200'
+  | 'strangulation300'
+  | 'strangulation400'
+  | 'strangulation500'
+  | 'strangulation600'
+  | 'surgical100'
+  | 'surgical200'
+  | 'surgical300'
+  | 'surgical400'
+  | 'surgical500'
+  | 'urine100'
+  | 'urine200'
+  | 'waitingRoom'
+  | 'wheelChair';

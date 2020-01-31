@@ -105,24 +105,39 @@ function Sidebar(props: SidebarProps): JSX.Element {
           <NavGroupLink to="/about">About</NavGroupLink>
           <NavGroupLink to="/tags">Markdown tags</NavGroupLink>
         </NavGroup>
-        <NavGroup groupTitle="Principles">
-          <NavGroupLink to="/principles/design">Design</NavGroupLink>
+        <NavGroup groupTitle="Designprinsipper">
+          <NavGroupLink to="/principles/design">Designprinsipper</NavGroupLink>
         </NavGroup>
-        <NavGroup groupTitle="Brand (perc)">
-          <NavGroupLink to="/perceptual-patterns/palette">Palette</NavGroupLink>
-          <NavGroupLink to="/perceptual-patterns/spacing">Spacing</NavGroupLink>
+        <NavGroup groupTitle="Merkevare">
+          <NavGroupLink to="/brand/brandstrategy">Merkevarestrategi</NavGroupLink>
+          <NavGroupLink to="/brand/toneofvoice">Tone of voice</NavGroupLink>
+          <NavGroupLink to="/brand/logo">Logo</NavGroupLink>
+          <NavGroupLink to="/brand/palette">Fargepallett</NavGroupLink>
+          <NavGroupLink to="/brand/typography">Typografi</NavGroupLink>
+          <NavGroupLink to="/brand/icons">Ikoner</NavGroupLink>
+          <NavGroupLink to="/brand/spacing">Spacing</NavGroupLink>
+          <NavGroupLink to="/brand/animation">Animasjon</NavGroupLink>
+          <NavGroupLink to="/brand/illustrations">Illustrasjoner</NavGroupLink>
+          <NavGroupLink to="/brand/photography">Fotografi</NavGroupLink>
         </NavGroup>
-        <NavGroup groupTitle="Patterns (func)">
+        <NavGroup groupTitle="Interaksjonsmønstre">
+          <NavGroupLink to="/functional-patterns/introduction">Introduksjon</NavGroupLink>
+          <NavGroupLink to="/functional-patterns/lightbox">Lightbox</NavGroupLink>
           <NavGroupLink to="/functional-patterns/page-feedback">Page feedback</NavGroupLink>
         </NavGroup>
-        <NavGroup groupTitle="Component library">
+        <NavGroup groupTitle="Komponentbibliotek">
           <NavGroupLink to="/pattern-library/introduction">Introduction</NavGroupLink>
           <NavGroupLink to="/pattern-library/get-started">Get started</NavGroupLink>
           <NavGroupLink to="/pattern-library/grid">Grid</NavGroupLink>
           <NavGroupLink to="/pattern-library/icons">Icons</NavGroupLink>
         </NavGroup>
-        <NavGroup groupTitle="Components">
+        <NavGroup groupTitle="Komponenter">
           <NavGroupLink to="/pattern-library/components/confirmation-button">confirmation-button</NavGroupLink>
+          <NavGroupLink to="/pattern-library/components/start-button">start-button</NavGroupLink>
+          <NavGroupLink to="/pattern-library/components/highlight">highlight</NavGroupLink>
+        </NavGroup>
+        <NavGroup groupTitle="Markedsmateriell">
+          <NavGroupLink to="/marketing-material/marketing-material-intro">Om markedsmateriell</NavGroupLink>
         </NavGroup>
       </NavContent>
     </div>
