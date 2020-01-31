@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {HTMLButtonProps, HTMLAnchorProps} from '../../../constants';
 import {Colors} from '../../../theme';
 import {StyledButton, StyledButtonContent, StyledLeftFluidContent} from './Button.styled';
-import Loader from '../../Loader/Loader';
+import Loader from '../../Loader';
 
 export type ButtonVariants = 'fill' | 'outline' | 'borderless';
 export type ButtonSizes = 'small' | 'medium' | 'large';
