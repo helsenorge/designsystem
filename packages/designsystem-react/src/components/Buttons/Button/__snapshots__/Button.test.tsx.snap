@@ -53,18 +53,3 @@ exports[`displays the button with icons 1`] = `
   </button>
 </div>
 `;
-
-exports[`renders default variant correctly 1`] = `
-<div>
-  <button
-    class="sc-htpNat cCvToi"
-    color="strangulation"
-  >
-    <span
-      class="sc-bdVaJa hKAetY"
-    >
-      Button
-    </span>
-  </button>
-</div>
-`;
