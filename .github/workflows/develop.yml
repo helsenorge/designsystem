@@ -8,33 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
-      - name: Install dependencies
-        run: yarn install
-      - name: Build
-        run: yarn build
-      - name: Test
-        run: yarn test
-      - name: Upload artifact (designsystem-react)
-        uses: actions/upload-artifact@master
-        with:
-          name: designsystem-react
-          path: packages/designsystem-react/dist
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: fregante/setup-git-token@v1
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-      - name: Prepare repository
-        run: git checkout "${GITHUB_REF:11}"
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
@@ -46,11 +20,10 @@ jobs:
           key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
       - name: Install dependencies
         run: yarn install
-      - name: Download artifact (designsystem-react)
-        uses: actions/download-artifact@master
-        with:
-          name: designsystem-react
-          path: packages/designsystem-react/dist
+      - name: Build
+        run: yarn build
+      - name: Test
+        run: yarn test
       - name: Publish
         run: yarn run lerna publish from-git --yes --dist-tag dev
         env:
