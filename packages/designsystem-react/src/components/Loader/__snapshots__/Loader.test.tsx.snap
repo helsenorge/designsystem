@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays the loader 1`] = `
+<div>
+  <div
+    class="sc-bwzfXH gBPGCX"
+  >
+    <div
+      class="sc-bdVaJa czeqIa"
+      color="wheelChair"
+    />
+    <div
+      class="sc-bdVaJa czeqIa"
+      color="wheelChair"
+    />
+    <div
+      class="sc-bdVaJa czeqIa"
+      color="wheelChair"
+    />
+    <div
+      class="sc-bdVaJa czeqIa"
+      color="wheelChair"
+    />
+  </div>
+</div>
+`;

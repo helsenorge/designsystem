@@ -17,7 +17,7 @@ const Badge = styled('span')<BadgeProps>`
   width: 1rem;
   height: 1rem;
   border-radius: 1rem;
-  background-color: ${props => color(props.color, 'urine200')};
+  background-color: ${props => color(props.color, {fallback: 'urine200'})};
 `;
 
 export default Badge;

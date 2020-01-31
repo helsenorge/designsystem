@@ -1,12 +1,12 @@
-import '@storybook/addon-actions/register';
 import '@storybook/addon-knobs/register';
+import '@storybook/addon-actions/register';
 import '@storybook/addon-viewport/register';
 import '@storybook/addon-backgrounds/register';
 import {addons} from '@storybook/addons';
 import {addParameters} from '@storybook/react';
 import {create} from '@storybook/theming/create';
 
-/* TODO: Make use of palette from DS. Got a weird error that I think stems from webpack which crashed the build */
+/* TODO: Make use of palette from DS. Got a weird error that I think stems from the custom webpack config which crashed the build */
 const hndsTheme = create({
   base: 'light',
   colorSecondary: '#01656f',

@@ -1,7 +1,10 @@
-export {ActionButton} from './components/ActionButton';
-export {StartButton} from './components/StartButton';
-export {ConfirmationButton} from './components/ConfirmationButton';
-export {CommonButton} from './components/CommonButton';
-export {Icon} from './components/Icons';
-// export {DiveBoard, DiveBoardTitle, DiveBoardPreamable} from './components/DiveBoard';
-export {Palette, IconSize} from './constants';
+import Badge from './components/Badge';
+import CommonButton from './components/Buttons/CommonButton';
+import ConfirmationButton from './components/Buttons/ConfirmationButton';
+import Icon from './components/Icons';
+import List from './components/List';
+import Loader from './components/Loader';
+import Logo from './components/Logo';
+import StartButton from './components/Buttons/StartButton';
+
+export {Badge, CommonButton, ConfirmationButton, Icon, List, Loader, Logo, StartButton};

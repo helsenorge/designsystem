@@ -1,5 +1,6 @@
 import React from 'react';
 import {IconProps} from './Icon';
+
 const Alarmclock = React.forwardRef((svgProps: IconProps, ref: any) => {
   const {size = 38, color = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
@@ -20,4 +21,5 @@ const Alarmclock = React.forwardRef((svgProps: IconProps, ref: any) => {
     </svg>
   );
 });
+
 export default Alarmclock;
