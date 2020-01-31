@@ -18,7 +18,7 @@ function StyledPage(props: FrontpageProps): JSX.Element {
   let mobileFriendlyBreakpoint = 992;
 
   const mobileFriendlyLayout = () => {
-    if (window.innerWidth < mobileFriendlyBreakpoint) return true;
+    if (typeof window !== 'undefined' && window.innerWidth < mobileFriendlyBreakpoint) return true;
     return false;
   };
 
@@ -29,7 +29,9 @@ function StyledPage(props: FrontpageProps): JSX.Element {
     function handleResize() {
       setSmallScreen(mobileFriendlyLayout());
     }
-    window.addEventListener('resize', handleResize);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+    }
   });
   return (
     <div className={props.className}>
