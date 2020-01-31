@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import Footer from './NewFooter';
 import {Content} from './Content';
-import Sidebar from './NewSidebar';
+import Sidebar from './NewSideBar';
 import {Main} from './Main';
 import {palette} from '@styles/styled-constants';
 import {Grid, Row, Col} from '@shared/CustomizedGrid';
