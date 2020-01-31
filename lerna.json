@@ -1,8 +1,6 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "version": "0.0.3-dev.0",
+  "packages": ["packages/*"],
+  "version": "0.0.2-dev.2",
   "useWorkspaces": true,
   "command": {
     "run": {
@@ -12,9 +10,7 @@
       "npmClient": "yarn"
     },
     "version": {
-      "allowBranch": [
-        "develop"
-      ]
+      "allowBranch": ["develop"]
     }
   }
 }
