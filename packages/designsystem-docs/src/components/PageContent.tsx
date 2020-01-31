@@ -30,9 +30,9 @@ function PageContent({className, children}: PageContentProps) {
 }
 
 const StyledPageContent = styled(PageContent)`
-  max-width: 750px;
+  /* max-width: 750px; */
   margin: 0 58px;
-  padding: 0;
+  padding-bottom: 2rem;
 `;
 
 export {StyledPageContent as PageContent};

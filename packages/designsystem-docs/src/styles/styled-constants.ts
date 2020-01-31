@@ -1,4 +1,4 @@
-const PALETTE = {
+export const PALETTE = {
   bone: '#ffffff',
   ash: '#f6f5f2',
   waitingRoom: '#9b978c',

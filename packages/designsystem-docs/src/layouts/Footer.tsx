@@ -29,7 +29,7 @@ const HelsenorgeLink = styled(StyledHelsenorgeLink)`
  */
 
 const LinkGroupListItem = styled('li')`
-  padding: 0.3rem 0;
+  padding: 0.15rem 0.6875rem; /* 0.6875 = 11 px*/
   display: block;
 `;
 
@@ -42,25 +42,28 @@ interface LinkGroupProps extends StyledDefaultProps {}
 function StyledLinkGroup(props: LinkGroupProps) {
   const {className, children} = props;
   return (
-    <ul className={className}>
+    <div className={className}>
       {React.Children.map(children, child => {
         return <LinkGroupListItem>{child}</LinkGroupListItem>;
       })}
-    </ul>
+    </div>
   );
 }
 
 const LinkGroup = styled(StyledLinkGroup)`
   list-style: none;
+  border-left: 2px solid #d8d8d8;
   & a {
     display: block;
     text-decoration: none;
     width: fit-content;
     transition: all 250ms;
+    font-size: 1.125rem;
+    font-weight: 600;
     &:after {
       display: block;
       content: '';
-      border-bottom: 2px solid ${palette('wheelChair')};
+      /* border-bottom: 2px solid ${palette('surgical400')}; */
       transform: scaleX(0);
       transform-origin: 0% 50%;
       transition: transform 250ms ease-in-out;
@@ -78,26 +81,35 @@ function Footer(props: FooterProps) {
   const {className} = props;
   return (
     <Row className={className}>
-      <Grid padding={4}>
-        <Row around="xs">
-          <Col>
+      <Grid>
+        <Row>
+          <Col lg={3}>
             <LinkGroup>
-              <Link to="/about">About</Link>
-              <Link to="/contribute">Contribute</Link>
-              <Link to="/privacy">Privacy</Link>
-              <Link to="/terms-of-use">Terms of Use</Link>
+              <Link to="/about">Om Helsenorge design</Link>
+              <Link to="/komponenter">komponenter</Link>
             </LinkGroup>
           </Col>
-          <Col>
+          <Col lg={3}>
             <LinkGroup>
-              <a href="https://github.com/helsenorge/">GitHub</a>
-              <a href="https://slack.com">Slack</a>
-              <a href="mailto:contact@helsenorge.design">Email</a>
+              <Link to="/about">Bidra</Link>
+              <Link to="/contribute">Personvern</Link>
+              <Link to="/privacy">Bruksvilkår</Link>
             </LinkGroup>
           </Col>
-          <Row middle="xs">
-            <HelsenorgeLink />
-          </Row>
+          <Col lg={3}>
+            <LinkGroup>
+              <Link to="/about">Github</Link>
+              <Link to="/contribute">Slack</Link>
+              <Link to="/privacy">email</Link>
+            </LinkGroup>
+          </Col>
+          <Col lg={3}>
+            <div className="legal">
+              Innholdet levert av Helsenorge
+              <br />
+              Sist oppdatert 10.06.2020
+            </div>
+          </Col>
         </Row>
       </Grid>
     </Row>
@@ -105,7 +117,13 @@ function Footer(props: FooterProps) {
 }
 
 const StyledFooter = styled(Footer)`
-  padding: 3rem 0.5rem;
+  margin-top: 1rem;
+  height: 7rem;
+  & .legal {
+    padding: 0.6875rem;
+    font-size: 1.125rem;
+    text-align: right;
+  }
 `;
 
 export {StyledFooter as Footer};

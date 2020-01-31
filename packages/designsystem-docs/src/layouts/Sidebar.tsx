@@ -6,20 +6,22 @@ import styled from 'styled-components';
 import npm from '../images/npm-brands.svg';
 import useLatestNPMVersion from '../hooks/UseLatestNPMVersion';
 
+import DropDownMenu from '../components/DropDownMenu/DropDownMenu';
+
 const NavGroupName = styled('span')`
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
   font-weight: 600;
   color: #9b978c;
   text-transform: uppercase;
 `;
 
 const NavGroupLink = styled(Link)`
-  padding: 0.4rem;
+  /* padding: 0.4rem; */
   text-decoration: none;
   background-color: ${(props: {active?: boolean}) => (props.active ? 'white' : 'none')};
   border: ${(props: {active?: boolean}) => (props.active ? '1px solid #dedbd3' : '1px solid transparent')};
   transition: all 200ms;
-  margin: 0.2rem 0;
+  /* margin: 0.2rem 0; */
   &:hover {
     background-color: ${(props: {active?: boolean}) => (!props.active ? '#ffdbbe' : 'white')};
   }
@@ -49,8 +51,8 @@ const NavGroup = styled(StyledNavGroup)`
 `;
 
 const NavContent = styled('nav')`
-  margin-top: 3rem;
-  padding: 0 2rem;
+  /* margin-top: 3rem; */
+  /* padding: 0 2rem; */
 `;
 
 function StyledDesignSystemVersion({className}: {className?: string}) {
@@ -95,6 +97,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
       </Location>
       {/* <DesignSystemVersion /> */}
       <NavContent>
+        <DropDownMenu />
         <NavGroup>
           <NavGroupLink to="/introduction">Introduction</NavGroupLink>
           <NavGroupLink to="/personality">Personality</NavGroupLink>
@@ -127,14 +130,10 @@ function Sidebar(props: SidebarProps): JSX.Element {
 }
 
 const StyledSidebar = styled(Sidebar)`
-  flex: 0 0 auto;
-  width: calc((100% - 90.5rem) / 2 + 18.625rem);
-  height: calc(100vh - 5rem);
-  min-width: 18.625rem;
-  overflow-y: auto;
-  padding-left: calc((100% - 90.5rem) / 2);
-  border-right: 1px solid #dedbd3;
-  background-color: #fff1e1;
+  height: 100%;
+  margin-left: -32px;
+  padding-top: 8rem;
+  background-color: #d6f5f3;
 `;
 
 export {StyledSidebar as Sidebar};

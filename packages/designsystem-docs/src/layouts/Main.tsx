@@ -31,7 +31,7 @@ function Main(props: MainProps): JSX.Element {
   return (
     <Element name="mdx-content" id="mdx-content" className={props.className}>
       <PageContent>{props.children}</PageContent>
-      <ToC tableOfContents={tableOfContents} />
+      {/* <ToC tableOfContents={tableOfContents} /> */}
     </Element>
   );
 }
@@ -39,8 +39,7 @@ function Main(props: MainProps): JSX.Element {
 const StyledMain = styled(Main)`
   display: flex;
   flex: 1 1 auto;
-  height: calc(100vh - 5rem);
-  overflow-y: scroll;
+  height: 100%;
   max-width: 100%;
   min-width: 0;
 `;
