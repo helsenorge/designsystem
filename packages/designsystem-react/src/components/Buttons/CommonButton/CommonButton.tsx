@@ -23,11 +23,10 @@ const variantMap = {
 
 // TODO: Move most of the logic out in a generic Button-component that the others inherit.
 const CommonButton = React.forwardRef((props: CommonButtonProps, ref: any) => {
-  const {children, variant = 'primary', htmlTag, disabled, loading, ...rest} = props;
+  const {children, variant = 'primary', htmlTag, loading, ...rest} = props;
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
   return (
     <Button
-      disabled={disabled}
       variant={variantMap[variant] as ButtonVariants}
       size="small"
       color="surgical"

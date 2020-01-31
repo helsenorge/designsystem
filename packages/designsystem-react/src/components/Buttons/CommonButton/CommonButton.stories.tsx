@@ -4,12 +4,14 @@ import {storiesOf} from '@storybook/react';
 import CommonButton from './CommonButton';
 import Icon from '../../Icons';
 import {allIcons} from '../../../../.storybook/knobs';
+import {action} from '@storybook/addon-actions';
 
 const stories = storiesOf('Buttons/CommonButton', module);
 stories.addDecorator(withKnobs);
 
 stories.add('Default', () => (
   <CommonButton
+    onClick={action('button-click')}
     variant={select('Variant', ['primary', 'secondary', 'tertiary'], 'primary')}
     disabled={boolean('Disabled', false)}
     href={text('Href (a tag only)', '')}

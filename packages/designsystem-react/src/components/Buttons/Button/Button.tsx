@@ -48,7 +48,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       as={htmlTag}
       hasIcon={!!(leftIcon || rightIcon)}
       fluid={fluid}
-      loading={loading}
+      loader={loading}
       ref={ref}
       {...rest}>
       {/* TODO: Consider splitting this up into render-functions. This is a mess */}

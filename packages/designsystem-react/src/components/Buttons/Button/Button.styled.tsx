@@ -20,6 +20,9 @@ const buttonStyle = css`
   outline: none;
   border: 0;
   cursor: pointer;
+  &:disabled {
+    pointer-events: none;
+  }
 `;
 
 const fillStyle = (fillColor: ButtonColors) => css`
@@ -32,6 +35,11 @@ const fillStyle = (fillColor: ButtonColors) => css`
     background-color: ${color(`${fillColor}700` as Colors)};
     border: 0.125rem solid transparent;
     box-shadow: 0 0 0 0.25rem ${color(`${fillColor}700` as Colors)};
+  }
+  &:disabled {
+    background-color: ${color('scalpel')};
+    border: 0.125rem solid ${color('scalpel')};
+    color: ${color('waitingRoom')};
   }
 `;
 
@@ -72,6 +80,11 @@ const outlineStyle = (outlineColor: ButtonColors) => css`
       border: 0.125rem solid ${color(`${outlineColor}700` as Colors)};
     }
   }
+  &:disabled {
+    background-color: ${color('ash')};
+    border: 0.125rem solid ${color('waitingRoom')};
+    color: ${color('waitingRoom')};
+  }
 `;
 
 const borderlessStyle = (borderlessColor: ButtonColors) => css`
@@ -110,6 +123,11 @@ const borderlessStyle = (borderlessColor: ButtonColors) => css`
       border: 0.125rem solid ${color(`${borderlessColor}700` as Colors)};
     }
   }
+  &:disabled {
+    background-color: ${color('ash')};
+    border: 0.125rem solid ${color('waitingRoom')};
+    color: ${color('waitingRoom')};
+  }
 `;
 
 export const StyledButtonContent = styled('span')`
@@ -123,12 +141,13 @@ export const StyledLeftFluidContent = styled('div')`
 
 // TODO: Move hasIcon logic to seperate styling
 // TODO: Clean up a lot of this logic into own styling functions
+// For some reason we need to call the props loader instead of loading, reserved word in SC or something.
 export const StyledButton = styled('button')<{
   variant: ButtonVariants;
   size: ButtonSizes;
   color: ButtonColors;
   fluid: boolean;
-  loading: boolean;
+  loader: boolean;
   hasIcon: boolean;
 }>`
   ${buttonStyle}
@@ -145,7 +164,7 @@ export const StyledButton = styled('button')<{
     `}
   ${props =>
     props.hasIcon &&
-    !props.loading &&
+    !props.loader &&
     css`
       padding: 0;
       & .icon {

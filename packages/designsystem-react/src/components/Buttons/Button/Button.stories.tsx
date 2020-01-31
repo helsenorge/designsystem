@@ -17,6 +17,7 @@ stories.add('Default', () => (
     color={select('Color', ['strangulation', 'surgical'], 'strangulation')}
     loading={boolean('Loading', false)}
     fluid={boolean('Fluid', false)}
+    disabled={boolean('Disabled', false)}
     htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
     {text('Text', 'Button')}
   </Button>
