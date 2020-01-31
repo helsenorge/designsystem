@@ -31,7 +31,7 @@ We use Lerna to manage our monorepo and list all our projects under the packages
 
 ## 📓 Documentation
 
-To read the full design system documentation head over to our web page [helsenorge.design](https://helsenorge.design/). Here you can read about our use of design principles, design language, patterns, compositions, live code examples and techincal component specifications.
+To read the full design system documentation head over to our web page [Helsenorge Design](https://helsenorge.design/). Here you can read about our use of design principles, design language, patterns, compositions, live code examples and techincal component specifications.
 
 ## 💡 Contribute
 
