@@ -3,9 +3,12 @@
 exports[`renders default variant correctly 1`] = `
 <div>
   <button
-    class="button is-confirmation"
+    class="sc-htpNat cCvToi"
+    color="strangulation"
   >
-    <span>
+    <span
+      class="sc-bdVaJa hKAetY"
+    >
       ConfirmationButton
     </span>
   </button>

@@ -8,6 +8,13 @@ module.exports = {
   testEnvironment: 'jsdom',
   testMatch: ['<rootDir>/src/components/**/?(*.)(test).{js,jsx,ts,tsx}'],
   modulePaths: ['<rootDir>/src/components'],
+  roots: [
+    '<rootDir>/src/components/Buttons',
+    '<rootDir>/src/components/Badge',
+    '<rootDir>/src/components/Loader',
+    '<rootDir>/src/components/List',
+    '<rootDir>/src/components/Logo',
+  ],
   modulePathIgnorePatterns: ['<rootDir>/src/components/Icons/*'],
   moduleNameMapper: {
     '\\.scss$': 'identity-obj-proxy',
