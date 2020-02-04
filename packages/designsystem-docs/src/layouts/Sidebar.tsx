@@ -133,8 +133,8 @@ function Sidebar(props: SidebarProps): JSX.Element {
         </NavGroup> */}
         <NavGroup groupTitle="Komponenter">
           <NavGroupLink to="/library/components/badge">Badge</NavGroupLink>
-          <NavGroupLink to="/library/components/confirmation-button">ConfirmationButton</NavGroupLink>
           <NavGroupLink to="/library/components/common-button">CommonButton</NavGroupLink>
+          <NavGroupLink to="/library/components/confirmation-button">ConfirmationButton</NavGroupLink>
           <NavGroupLink to="/library/components/icon">Icon</NavGroupLink>
           <NavGroupLink to="/library/components/list">List</NavGroupLink>
           <NavGroupLink to="/library/components/loader">Loader</NavGroupLink>

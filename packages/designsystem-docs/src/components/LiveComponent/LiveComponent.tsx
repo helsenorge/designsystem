@@ -84,9 +84,9 @@ function LiveComponent(props: LiveComponentProps) {
   const {children, scope} = props;
   const [showEditor, setShowEditor] = useState(false);
   return (
-    <LiveProvider theme={theme} scope={{styled, ...scope}} code={children}>
+    <LiveProvider theme={theme} scope={{styled, ...scope}} code={`<>${children}</>`}>
       <StyledLivePreviewContainer>
-        <LivePreview />
+        <StyledLivePreview />
         <ToggleButton active={showEditor} onClick={() => setShowEditor(!showEditor)}>
           <Code size={16} />
         </ToggleButton>
@@ -119,6 +119,14 @@ const ToggleButton = styled('button')<{active: boolean}>`
   }
 `;
 
+const StyledLivePreview = styled(LivePreview)`
+  display: inline-flex;
+  flex-wrap: wrap;
+  & > * {
+    margin-right: 0.5rem;
+  }
+`;
+
 const StyledLiveError = styled(LiveError)`
   background-color: red;
   color: white;
@@ -134,6 +142,7 @@ const StyledLivePreviewContainer = styled('div')`
   position: relative;
   display: flex;
   padding: 1.5rem;
+  width: 100%;
   background-color: #f9f9f9;
   border: 2px solid #f1f1f1;
   transition: border 200ms;
