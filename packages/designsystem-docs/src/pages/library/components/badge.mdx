@@ -5,6 +5,7 @@ date: 2019-01-29
 ---
 
 import MDXCustom from '../../../components/markdown/MDXCustom';
+import * as propData from './properties/badge.json';
 import {Badge} from '@helsenorge/designsystem-react';
 
 # Badge
@@ -13,101 +14,21 @@ import {Badge} from '@helsenorge/designsystem-react';
   He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum is the
   single greatest threat.
 </MDXCustom.Preamble>
-<MDXCustom.LiveComponent>
-  <Badge color="wheelChair">12312321321312</Badge>
-</MDXCustom.LiveComponent>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{Badge}}>{`<Badge>34</Badge>`}</MDXCustom.LiveComponent>
 
 ## Properties
 
-| Property   |           Value            |
-| ---------- | :------------------------: |
-| icon       | any permitted svg resource |
-| prominence | primary/secondary/tertiary |
-| label      |           string           |
+<MDXCustom.ComponentProps propData={{propData}} />
 
 ## Variants
 
-<MDXCustom.ComponentRenderer>
-  <div>
-    <button>Primary</button>
-    <button>Secondary</button>
-    <button>Tertiary</button>
-  </div>
-</MDXCustom.ComponentRenderer>
-
-## States
-
-<MDXCustom.ComponentRenderer>
-  <div>
-    <button>Primary, normal</button>
-    <button>Primary, hover</button>
-    <button>Primary, active</button>
-    <button>Primary, focused</button>
-    <button>Secondary, normal</button>
-    <button>Secondary, hover</button>
-    <button>Secondary, active</button>
-    <button>Secondary, focused</button>
-    <button>Tertiary, normal</button>
-    <button>Tertiary, hover</button>
-    <button>Tertiary, active</button>
-    <button>Tertiary, focused</button>
-  </div>
-</MDXCustom.ComponentRenderer>
-
 ## Bruk
 
-### Når skal Confirmation-button brukes?
-
-Confirmation-button skal brukes når det er meningsfylt å gi en indikasjon på at bruk av knappen vil starte det som fra innbyggers perspektiv er en prosess eller oppgave.
-
-### Hvor bruke?
-
-Kan brukes på alle sider på Helsenorge, som aksjonspunkt etter en introduksjon, eller i kontekst av annet innhold som gir innbygger en forståelse av hva oppgaven/prosessen går ut på.
-
-### Hvordan bruke?
-
-Dette er retningslinjer for bruk av confirmation-button:
-
-- legges inn som del av innhold i egnede paneler/bokser, eller som en egen "blokk" mellom avsnitt i løpende tekst (gjelder "primary" versjonen)
-- har alltid en høyrepil
-- har alltid et ikon som sier noe om prosessen som knappen starter
-- må benyttes i ett av 3 grafiske styrkenivåer: Primary, secondary og tertiary
-- valget av styrkenivå gjøres ut i fra hvor dominerende knappen trenger å være eller ikke være, avhengig av annet omliggende innhold
-- teksten må holdes så kort og konsis som mulig og tydelig angi hvilken prosess knappen starter (ikke "fortsett" eller lignende)
-
-## Virkemåte
-
-### Bestanddeler
-
-- [Confirmation-button](/pattern-library/components/confirmation-button)
-- Ikon (valgfritt ihht. regelsett for bruk)
-- Tekststreng
-
-### Tilstander
-
-1. Normal
-2. Hover
-3. Active
-4. Focused
-
-### Interaksjon
-
-Fungerer som en standard button
-
-### Inngår i patterns
-
-...
-
-## Eksempler
-
-### Lenke til evt kjente bruksområder
+**TODO: Legg til bruk**
 
 ### Tilgjengelighet
 
-(SARAH)
-
-## Changelog og begrunnelse
-
-| Pattern-versjon | Dato       | Hva er endret?                | Begrunnelse |
-| :-------------- | :--------- | :---------------------------- | :---------- |
-| v0              | 2019.09.30 | Opprettet dokumentasjonssiden | -           |
+**TODO: Legg til UU**

@@ -11,13 +11,9 @@ function Content(props: ContentProps): JSX.Element {
 }
 
 const StyledContent = styled(Content)`
-  /* position: relative; */
   height: auto;
-  min-height: 800px;
   display: flex;
   flex: 1;
-  box-sizing: content-box;
-  border: 32px solid #d6f5f3;
 `;
 
 export {StyledContent as Content};
