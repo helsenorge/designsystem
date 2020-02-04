@@ -14,7 +14,7 @@ const Badge = styled('span')<BadgeProps>`
   justify-content: center;
   align-items: center;
   color: white;
-  width: 1rem;
+  min-width: 1rem;
   height: 1rem;
   border-radius: 1rem;
   background-color: ${props => color(props.color, {fallback: 'urine200'})};
