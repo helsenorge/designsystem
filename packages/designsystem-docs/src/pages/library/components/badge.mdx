@@ -1,21 +1,24 @@
 ---
-title: start-button
-path: /pattern-library/components/start-button
+title: badge
+path: /library/components/badge
 date: 2019-01-29
 ---
 
 import MDXCustom from '../../../components/markdown/MDXCustom';
+import {Badge} from '@helsenorge/designsystem-react';
 
-# start-button
+# Badge
+
 <MDXCustom.Preamble>
-Start-button brukes til å initiere en større/lengre prosess eller oppgave.
+  He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum is the
+  single greatest threat.
 </MDXCustom.Preamble>
-
-<MDXCustom.ComponentRenderer>
-    <button>Dette er en start-button</button>
-</MDXCustom.ComponentRenderer>
+<MDXCustom.LiveComponent>
+  <Badge color="wheelChair">12312321321312</Badge>
+</MDXCustom.LiveComponent>
 
 ## Properties
+
 | Property   |           Value            |
 | ---------- | :------------------------: |
 | icon       | any permitted svg resource |
@@ -23,43 +26,48 @@ Start-button brukes til å initiere en større/lengre prosess eller oppgave.
 | label      |           string           |
 
 ## Variants
+
 <MDXCustom.ComponentRenderer>
-    <div>
-        <button>Primary</button>
-        <button>Secondary</button>
-        <button>Tertiary</button>
-    </div>
+  <div>
+    <button>Primary</button>
+    <button>Secondary</button>
+    <button>Tertiary</button>
+  </div>
 </MDXCustom.ComponentRenderer>
 
 ## States
+
 <MDXCustom.ComponentRenderer>
-    <div>
-        <button>Primary, normal</button>
-        <button>Primary, hover</button>
-        <button>Primary, active</button>
-        <button>Primary, focused</button>
-        <button>Secondary, normal</button>
-        <button>Secondary, hover</button>
-        <button>Secondary, active</button>
-        <button>Secondary, focused</button>
-        <button>Tertiary, normal</button>
-        <button>Tertiary, hover</button>
-        <button>Tertiary, active</button>
-        <button>Tertiary, focused</button>
-    </div>
+  <div>
+    <button>Primary, normal</button>
+    <button>Primary, hover</button>
+    <button>Primary, active</button>
+    <button>Primary, focused</button>
+    <button>Secondary, normal</button>
+    <button>Secondary, hover</button>
+    <button>Secondary, active</button>
+    <button>Secondary, focused</button>
+    <button>Tertiary, normal</button>
+    <button>Tertiary, hover</button>
+    <button>Tertiary, active</button>
+    <button>Tertiary, focused</button>
+  </div>
 </MDXCustom.ComponentRenderer>
 
 ## Bruk
-### Når skal Start-button brukes?
 
-Start-button skal brukes når det er meningsfylt å gi en indikasjon på at bruk av knappen vil starte det som fra innbyggers perspektiv er en prosess eller oppgave.
+### Når skal Confirmation-button brukes?
 
-### Hvor bruke? 
+Confirmation-button skal brukes når det er meningsfylt å gi en indikasjon på at bruk av knappen vil starte det som fra innbyggers perspektiv er en prosess eller oppgave.
 
-Kan brukes på alle sider på Helsenorge, som aksjonspunkt etter en introduksjon, eller i kontekst av annet innhold som gir innbygger en forståelse av hva oppgaven/prosessen går ut på. 
+### Hvor bruke?
+
+Kan brukes på alle sider på Helsenorge, som aksjonspunkt etter en introduksjon, eller i kontekst av annet innhold som gir innbygger en forståelse av hva oppgaven/prosessen går ut på.
 
 ### Hvordan bruke?
-Dette er retningslinjer for bruk av start-button:
+
+Dette er retningslinjer for bruk av confirmation-button:
+
 - legges inn som del av innhold i egnede paneler/bokser, eller som en egen "blokk" mellom avsnitt i løpende tekst (gjelder "primary" versjonen)
 - har alltid en høyrepil
 - har alltid et ikon som sier noe om prosessen som knappen starter
@@ -68,9 +76,10 @@ Dette er retningslinjer for bruk av start-button:
 - teksten må holdes så kort og konsis som mulig og tydelig angi hvilken prosess knappen starter (ikke "fortsett" eller lignende)
 
 ## Virkemåte
+
 ### Bestanddeler
 
-- [Start-button](/pattern-library/components/start-button)
+- [Confirmation-button](/pattern-library/components/confirmation-button)
 - Ikon (valgfritt ihht. regelsett for bruk)
 - Tekststreng
 
@@ -85,11 +94,9 @@ Dette er retningslinjer for bruk av start-button:
 
 Fungerer som en standard button
 
-
 ### Inngår i patterns
 
-... 
-
+...
 
 ## Eksempler
 
@@ -100,7 +107,7 @@ Fungerer som en standard button
 (SARAH)
 
 ## Changelog og begrunnelse
+
 | Pattern-versjon | Dato       | Hva er endret?                | Begrunnelse |
 | :-------------- | :--------- | :---------------------------- | :---------- |
 | v0              | 2019.09.30 | Opprettet dokumentasjonssiden | -           |
-

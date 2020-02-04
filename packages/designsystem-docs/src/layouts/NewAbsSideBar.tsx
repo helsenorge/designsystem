@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import DropDownMenu from '../components/DropDownMenu/DropDownMenu';
@@ -60,7 +60,6 @@ const StyledSidebar = styled('div')<SidebarProps>`
   margin-left: ${props => (props.showSideBar ? '-32px' : '-440px')};
   max-width: 328px;
   /* padding-top: 8rem; */
-  background-color: #d6f5f3;
   /* transition: margin-left 300ms; */
 `;
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import Footer from './NewFooter';
 import {Content} from './Content';
-import Sidebar from './NewSideBar';
+import {Sidebar} from './Sidebar';
 import {Main} from './Main';
 import {palette} from '@styles/styled-constants';
 import {Grid, Row, Col} from '@shared/CustomizedGrid';
@@ -35,39 +35,13 @@ function StyledPage(props: FrontpageProps): JSX.Element {
   });
   return (
     <div className={props.className}>
-      <Grid>
-        <Row>
-          <Col lg={12}>
-            <Header fitLogoWideScreen={smallScreen} />
-          </Col>
-        </Row>
-        <Row>
-          <Col lg={12}>
-            <Content>
-              <Grid>
-                <Row>
-                  <Col lg={3} md={1}>
-                    <Sidebar
-                      toggleSideBar={setShowMobileSideBar}
-                      adaptToSmallScreen={smallScreen}
-                      showMobileSideBar={showMobileSideBar}
-                    />
-                    <RevealSideBarLink onClick={() => setShowMobileSideBar(true)}>Meny</RevealSideBarLink>
-                  </Col>
-                  <Col lg={9} md={11}>
-                    <Main>{props.children}</Main>
-                  </Col>
-                </Row>
-              </Grid>
-            </Content>
-          </Col>
-        </Row>
-        <Row>
-          <Col lg={12}>
-            <Footer />
-          </Col>
-        </Row>
-      </Grid>
+      <div className={props.className}>
+        <Header />
+        <Content>
+          <Sidebar />
+          <Main>{props.children}</Main>
+        </Content>
+      </div>
     </div>
   );
 }

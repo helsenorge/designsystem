@@ -97,8 +97,8 @@ function Sidebar(props: SidebarProps): JSX.Element {
       </Location>
       {/* <DesignSystemVersion /> */}
       <NavContent>
-        <DropDownMenu />
-        <NavGroup>
+        {/* <DropDownMenu /> */}
+        {/* <NavGroup>
           <NavGroupLink to="/introduction">Introduction</NavGroupLink>
           <NavGroupLink to="/personality">Personality</NavGroupLink>
           <NavGroupLink to="/roadmap">Roadmap</NavGroupLink>
@@ -130,15 +130,20 @@ function Sidebar(props: SidebarProps): JSX.Element {
           <NavGroupLink to="/pattern-library/get-started">Get started</NavGroupLink>
           <NavGroupLink to="/pattern-library/grid">Grid</NavGroupLink>
           <NavGroupLink to="/pattern-library/icons">Icons</NavGroupLink>
-        </NavGroup>
+        </NavGroup> */}
         <NavGroup groupTitle="Komponenter">
-          <NavGroupLink to="/pattern-library/components/confirmation-button">confirmation-button</NavGroupLink>
-          <NavGroupLink to="/pattern-library/components/start-button">start-button</NavGroupLink>
-          <NavGroupLink to="/pattern-library/components/highlight">highlight</NavGroupLink>
+          <NavGroupLink to="/library/components/badge">Badge</NavGroupLink>
+          <NavGroupLink to="/library/components/confirmation-button">ConfirmationButton</NavGroupLink>
+          <NavGroupLink to="/library/components/common-button">CommonButton</NavGroupLink>
+          <NavGroupLink to="/library/components/icon">Icon</NavGroupLink>
+          <NavGroupLink to="/library/components/list">List</NavGroupLink>
+          <NavGroupLink to="/library/components/loader">Loader</NavGroupLink>
+          <NavGroupLink to="/library/components/logo">Logo</NavGroupLink>
+          <NavGroupLink to="/library/components/start-button">StartButton</NavGroupLink>
         </NavGroup>
-        <NavGroup groupTitle="Markedsmateriell">
+        {/* <NavGroup groupTitle="Markedsmateriell">
           <NavGroupLink to="/marketing-material/marketing-material-intro">Om markedsmateriell</NavGroupLink>
-        </NavGroup>
+        </NavGroup> */}
       </NavContent>
     </div>
   );
@@ -146,8 +151,9 @@ function Sidebar(props: SidebarProps): JSX.Element {
 
 const StyledSidebar = styled(Sidebar)`
   height: 100%;
-  margin-left: -32px;
   padding-top: 8rem;
+  padding-right: 4rem;
+  padding-left: 15rem;
   background-color: #d6f5f3;
 `;
 

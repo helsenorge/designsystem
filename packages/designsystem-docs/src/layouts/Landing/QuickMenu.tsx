@@ -29,13 +29,13 @@ function QuickMenu() {
             </QuickMenuCard>
           </Col>
           <Col lg={4} md={12}>
-            <QuickMenuCard to="/patterns">
+            <QuickMenuCard to="/functional-patterns">
               <QuickMenuCardArt src={patternsIllustration} />
               <QuickMenuCardTitle>Patterns</QuickMenuCardTitle>
             </QuickMenuCard>
           </Col>
           <Col lg={4} md={12}>
-            <QuickMenuCard to="/components">
+            <QuickMenuCard to="/library">
               <QuickMenuCardArt src={componentsIllustration} />
               <QuickMenuCardTitle>Komponenter</QuickMenuCardTitle>
             </QuickMenuCard>
@@ -50,7 +50,7 @@ function QuickMenu() {
             </QuickMenuCard>
           </Col>
           <Col lg={3} md={6}>
-            <QuickMenuCard small to="/components">
+            <QuickMenuCard small to="/c">
               <QuickMenuCardArt src={editorialIllustration} />
               <QuickMenuCardTitle>Å skrive for helsenorge</QuickMenuCardTitle>
             </QuickMenuCard>
