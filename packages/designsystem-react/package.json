@@ -1,6 +1,6 @@
 {
   "name": "@helsenorge/designsystem-react",
-  "version": "0.0.3-dev.1",
+  "version": "0.0.3-dev.2",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -95,6 +95,7 @@
     "rollup-plugin-copy": "^3.1.0",
     "rollup-plugin-execute": "^1.1.1",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
     "rollup-plugin-progress": "^1.1.1",
     "rollup-plugin-scss": "^1.0.2",
     "rollup-plugin-sizes": "^0.5.1",
