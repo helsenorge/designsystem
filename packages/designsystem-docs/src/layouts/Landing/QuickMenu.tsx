@@ -1,63 +1,81 @@
 import React from 'react';
 import styled from 'styled-components';
-import QuickMenuCard from './QuickMenuCard';
+import QuickMenuCard, {QuickMenuCardTitle, QuickMenuCardArt} from './QuickMenuCard';
 import {Link} from 'gatsby';
 import {Grid, Row, Col} from '@shared/CustomizedGrid';
 import {palette} from '@styles/styled-constants';
 
+import brandIllustration from '@images/brand-illustration.svg';
+import patternsIllustration from '@images/patterns-illustration.svg';
+import componentsIllustration from '@images/components-illustration.svg';
+import principlesIllustration from '@images/principles-illustration.svg';
+import editorialIllustration from '@images/editorial-illustration.svg';
+import materialIllustration from '@images/material-illustration.svg';
+import roadmapIllustration from '@images/roadmap-illustration.svg';
+
+const StyledDivider = styled('div')`
+  height: 1rem;
+`;
+
 function QuickMenu() {
   return (
     <StyledQuickMenu>
-      <QuickMenuCardCollection>
-        <Grid>
-          <Row>
-            <Col lg={4} md={4}>
-              <QuickMenuCard title="merkevare" category="merkevare" large></QuickMenuCard>
-            </Col>
-            <Col lg={4} md={4}>
-              <QuickMenuCard title="patterns" category="patterns" large></QuickMenuCard>
-            </Col>
-            <Col lg={4} md={4}>
-              <Link to="/komponenter">
-                <QuickMenuCard title="komponenter" category="komponenter" large></QuickMenuCard>
-              </Link>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={3} md={3}>
-              <QuickMenuCard title="designprinsipper" category="designprinsipper"></QuickMenuCard>
-            </Col>
-            <Col lg={3} md={3}>
-              <QuickMenuCard title="å skrive for helsenorge" category="skrive"></QuickMenuCard>
-            </Col>
-            <Col lg={3} md={3}>
-              <QuickMenuCard title="markedsmateriell" category="markedsmateriell"></QuickMenuCard>
-            </Col>
-            <Col lg={3} md={3}>
-              <QuickMenuCard title="roadmap" category="roadmap"></QuickMenuCard>
-            </Col>
-          </Row>
-        </Grid>
-      </QuickMenuCardCollection>
+      <Grid>
+        <Row>
+          <Col lg={4} md={12}>
+            <QuickMenuCard to="/brand">
+              <QuickMenuCardArt src={brandIllustration} />
+              <QuickMenuCardTitle>Merkevare</QuickMenuCardTitle>
+            </QuickMenuCard>
+          </Col>
+          <Col lg={4} md={12}>
+            <QuickMenuCard to="/patterns">
+              <QuickMenuCardArt src={patternsIllustration} />
+              <QuickMenuCardTitle>Patterns</QuickMenuCardTitle>
+            </QuickMenuCard>
+          </Col>
+          <Col lg={4} md={12}>
+            <QuickMenuCard to="/components">
+              <QuickMenuCardArt src={componentsIllustration} />
+              <QuickMenuCardTitle>Komponenter</QuickMenuCardTitle>
+            </QuickMenuCard>
+          </Col>
+        </Row>
+        <StyledDivider />
+        <Row style={{flex: 1}}>
+          <Col lg={3} md={6}>
+            <QuickMenuCard small to="/">
+              <QuickMenuCardArt src={principlesIllustration} />
+              <QuickMenuCardTitle>Designprinsipper</QuickMenuCardTitle>
+            </QuickMenuCard>
+          </Col>
+          <Col lg={3} md={6}>
+            <QuickMenuCard small to="/components">
+              <QuickMenuCardArt src={editorialIllustration} />
+              <QuickMenuCardTitle>Å skrive for helsenorge</QuickMenuCardTitle>
+            </QuickMenuCard>
+          </Col>
+          <Col lg={3} md={6}>
+            <QuickMenuCard small to="/components">
+              <QuickMenuCardArt src={materialIllustration} />
+              <QuickMenuCardTitle>Markedsmateriell</QuickMenuCardTitle>
+            </QuickMenuCard>
+          </Col>
+          <Col lg={3} md={6}>
+            <QuickMenuCard small to="/roadmap">
+              <QuickMenuCardArt src={roadmapIllustration} />
+              <QuickMenuCardTitle>Veikart</QuickMenuCardTitle>
+            </QuickMenuCard>
+          </Col>
+        </Row>
+      </Grid>
     </StyledQuickMenu>
   );
 }
 
 const StyledQuickMenu = styled('div')`
-  min-height: 768px;
+  padding: 8rem 0;
   background: ${palette('surgical400')};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const QuickMenuCardCollection = styled('div')`
-  /* min-width: 1080px; */
-  /* max-width: 1080px; */
-  /* overflow: hidden; */
-  height: auto;
-  & a {
-    text-decoration: none;
-  }
 `;
 
 export default QuickMenu;
