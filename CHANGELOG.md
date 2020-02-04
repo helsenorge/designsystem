@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-dev.3](https://github.com/helsenorge/designsystem/compare/v0.0.3-dev.2...v0.0.3-dev.3) (2020-02-04)
+
+
+### Bug Fixes
+
+* replace badge width with min-width ([#112](https://github.com/helsenorge/designsystem/issues/112)) ([275bd03](https://github.com/helsenorge/designsystem/commit/275bd0300007660767ea2bfcd9c677ea5e23b725))
+
+
+
+
+
 ## [0.0.3-dev.2](https://github.com/helsenorge/designsystem/compare/v0.0.3-dev.1...v0.0.3-dev.2) (2020-02-04)
 
 **Note:** Version bump only for package @helsenorge/designsystem
