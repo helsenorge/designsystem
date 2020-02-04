@@ -30,6 +30,20 @@ export const PALETTE = {
 
 export const palette = (color: string) => (props: any) => props.theme.palette[color];
 
+const size = {
+  xs: '30em',
+  sm: '48em',
+  md: '64em',
+  lg: '75em',
+};
+
+export const screen = {
+  xs: `(max-width: ${size.xs})`,
+  sm: `(max-width: ${size.sm})`,
+  md: `(max-width: ${size.md})`,
+  lg: `(max-width: ${size.lg})`,
+};
+
 export const theme = {
   palette: {...PALETTE},
 };

@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import QuickMenuCard, {QuickMenuCardTitle, QuickMenuCardArt} from './QuickMenuCard';
 import {Link} from 'gatsby';
-import {Grid, Row, Col} from '@shared/CustomizedGrid';
-import {palette} from '@styles/styled-constants';
+import {Grid, Row, Col} from 'react-flexbox-grid';
+import {palette, screen} from '@styles/styled-constants';
 
 import brandIllustration from '@images/brand-illustration.svg';
 import patternsIllustration from '@images/patterns-illustration.svg';
@@ -76,6 +76,9 @@ function QuickMenu() {
 const StyledQuickMenu = styled('div')`
   padding: 8rem 0;
   background: ${palette('surgical400')};
+  @media ${screen.sm} {
+    padding: 0.5rem 0;
+  }
 `;
 
 export default QuickMenu;

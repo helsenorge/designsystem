@@ -35,13 +35,11 @@ function StyledPage(props: FrontpageProps): JSX.Element {
   });
   return (
     <div className={props.className}>
-      <div className={props.className}>
-        <Header />
-        <Content>
-          <Sidebar />
-          <Main>{props.children}</Main>
-        </Content>
-      </div>
+      <Header />
+      <Content>
+        <Sidebar />
+        <Main>{props.children}</Main>
+      </Content>
     </div>
   );
 }
