@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ReactDOMServer from 'react-dom/server';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {LiveProvider, LiveEditor, LivePreview, LiveError} from 'react-live';
 import theme from 'prism-react-renderer/themes/dracula';
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
@@ -78,15 +78,16 @@ import {palette} from '@styles/styled-constants';
 interface LiveComponentProps {
   children: string;
   scope?: any;
+  stack?: boolean;
 }
 
 function LiveComponent(props: LiveComponentProps) {
-  const {children, scope} = props;
+  const {children, scope, stack = false} = props;
   const [showEditor, setShowEditor] = useState(false);
   return (
     <LiveProvider theme={theme} scope={{styled, ...scope}} code={`<>${children}</>`}>
       <StyledLivePreviewContainer>
-        <StyledLivePreview />
+        <StyledLivePreview stack={stack} />
         <ToggleButton active={showEditor} onClick={() => setShowEditor(!showEditor)}>
           <Code size={16} />
         </ToggleButton>
@@ -119,11 +120,17 @@ const ToggleButton = styled('button')<{active: boolean}>`
   }
 `;
 
-const StyledLivePreview = styled(LivePreview)`
+const StyledLivePreview = styled(LivePreview)<{stack: boolean}>`
   display: inline-flex;
+  flex-direction: ${props => (props.stack ? 'column' : 'row')};
   flex-wrap: wrap;
   & > * {
     margin-right: 0.5rem;
+    ${props =>
+      props.stack &&
+      css`
+        margin-bottom: 0.5rem;
+      `}
   }
 `;
 

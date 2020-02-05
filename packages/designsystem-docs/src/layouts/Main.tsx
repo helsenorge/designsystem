@@ -31,7 +31,7 @@ function Main(props: MainProps): JSX.Element {
   return (
     <Element name="mdx-content" id="mdx-content" className={props.className}>
       <PageContent>{props.children}</PageContent>
-      <ToC tableOfContents={tableOfContents} />
+      {/* <ToC tableOfContents={tableOfContents} /> */}
     </Element>
   );
 }
