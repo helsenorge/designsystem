@@ -31,7 +31,7 @@ function Main(props: MainProps): JSX.Element {
   return (
     <Element name="mdx-content" id="mdx-content" className={props.className}>
       <PageContent>{props.children}</PageContent>
-      {/* <ToC tableOfContents={tableOfContents} /> */}
+      <ToC tableOfContents={tableOfContents} />
     </Element>
   );
 }
@@ -39,9 +39,11 @@ function Main(props: MainProps): JSX.Element {
 const StyledMain = styled(Main)`
   display: flex;
   flex: 1 1 auto;
-  height: 100%;
   max-width: 100%;
   min-width: 0;
+  background-color: white;
+  margin-top: 3rem;
+  margin-right: 3rem;
 `;
 
 export {StyledMain as Main};

@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Header from './Header';
 import Footer from './NewFooter';
-import {Content} from './Content';
 import {Sidebar} from './Sidebar';
 import {Main} from './Main';
 import {palette} from '@styles/styled-constants';
@@ -36,13 +35,19 @@ function StyledPage(props: FrontpageProps): JSX.Element {
   return (
     <div className={props.className}>
       <Header />
-      <Content>
+      <StyledContent>
         <Sidebar />
         <Main>{props.children}</Main>
-      </Content>
+      </StyledContent>
     </div>
   );
 }
+
+const StyledContent = styled('div')`
+  display: flex;
+  flex: 1;
+  background-color: #d6f5f3;
+`;
 
 const Page = styled(StyledPage)`
   position: relative;
@@ -50,7 +55,6 @@ const Page = styled(StyledPage)`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  /* background: lavender; */
 `;
 
 const RevealSideBarLink = styled('div')`

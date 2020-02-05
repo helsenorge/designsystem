@@ -61,7 +61,6 @@ const StyledSidebar = styled('div')<SidebarProps>`
   margin-left: ${props => (props.adaptToSmallScreen ? () => toggleMobileSidebar(props.showMobileSideBar) : '-32px')};
   padding-top: ${props => (props.adaptToSmallScreen ? '0' : '6rem')};
   max-width: 328px;
-  background-color: #d6f5f3;
   /* transition: margin-left 300ms; */
 `;
 

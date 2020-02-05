@@ -154,7 +154,6 @@ const StyledSidebar = styled(Sidebar)`
   padding-top: 8rem;
   padding-right: 4rem;
   padding-left: 15rem;
-  background-color: #d6f5f3;
 `;
 
 export {StyledSidebar as Sidebar};
