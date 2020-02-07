@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import styled, {ThemeProvider} from 'styled-components';
 import Header from './Header';
-import Footer from './NewFooter';
+// import Footer from './NewFooter';
 import {Sidebar} from './Sidebar/Sidebar';
 import {Main} from './Main';
 import {palette, theme} from '@styles/styled-constants';
 import {Grid, Row, Col} from '@shared/CustomizedGrid';
 import LiveComponent from '../components/LiveComponent/LiveComponent';
+import {Footer} from './Footer';
 
 interface FrontpageProps {
   children?: React.ReactNode;
@@ -46,6 +47,7 @@ function StyledPage(props: FrontpageProps): JSX.Element {
             </Col>
           </Row>
         </StyledMainContent>
+        <Footer />
       </StyledContent>
     </ThemeProvider>
   );

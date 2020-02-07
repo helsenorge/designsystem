@@ -25,7 +25,7 @@ function QuickMenu() {
           <Col lg={4} md={12}>
             <QuickMenuCard to="/brand">
               <QuickMenuCardArt src={brandIllustration} />
-              <QuickMenuCardTitle>Merkevare</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Brand</QuickMenuCardTitle>
             </QuickMenuCard>
           </Col>
           <Col lg={4} md={12}>
@@ -37,7 +37,7 @@ function QuickMenu() {
           <Col lg={4} md={12}>
             <QuickMenuCard to="/library">
               <QuickMenuCardArt src={componentsIllustration} />
-              <QuickMenuCardTitle>Bibliotek</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Library</QuickMenuCardTitle>
             </QuickMenuCard>
           </Col>
         </Row>
@@ -46,25 +46,25 @@ function QuickMenu() {
           <Col lg={3} md={6}>
             <QuickMenuCard small to="/principles">
               <QuickMenuCardArt src={principlesIllustration} />
-              <QuickMenuCardTitle>Designprinsipper</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Design principles</QuickMenuCardTitle>
             </QuickMenuCard>
           </Col>
           <Col lg={3} md={6}>
             <QuickMenuCard small to="/editorial">
               <QuickMenuCardArt src={editorialIllustration} />
-              <QuickMenuCardTitle>Å skrive for helsenorge</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Editorial guidelines</QuickMenuCardTitle>
             </QuickMenuCard>
           </Col>
           <Col lg={3} md={6}>
             <QuickMenuCard small to="/marketing-material">
               <QuickMenuCardArt src={materialIllustration} />
-              <QuickMenuCardTitle>Markedsmateriell</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Marketing material</QuickMenuCardTitle>
             </QuickMenuCard>
           </Col>
           <Col lg={3} md={6}>
             <QuickMenuCard small to="/roadmap">
               <QuickMenuCardArt src={roadmapIllustration} />
-              <QuickMenuCardTitle>Veikart</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Roadmap</QuickMenuCardTitle>
             </QuickMenuCard>
           </Col>
         </Row>

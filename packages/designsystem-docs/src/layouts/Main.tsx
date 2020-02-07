@@ -4,7 +4,7 @@ import {PageContent} from '../components/PageContent';
 import {ToC} from './ToC';
 import {useStaticQuery, graphql} from 'gatsby';
 import {globalHistory} from '@reach/router';
-import useTableOfContents from '../hooks/UseTableOfContents';
+// import useTableOfContents from '../hooks/UseTableOfContents';
 import {Link, Element} from 'react-scroll';
 
 interface MainProps {
@@ -27,7 +27,7 @@ const query = graphql`
 
 function Main(props: MainProps): JSX.Element {
   const data = useStaticQuery(query);
-  const [tableOfContents, anchorIds] = useTableOfContents(data);
+  // const [tableOfContents, anchorIds] = useTableOfContents(data);
   return (
     <Element name="mdx-content" id="mdx-content" className={props.className}>
       <PageContent>{props.children}</PageContent>

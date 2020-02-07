@@ -1,12 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {Codesandbox, ChevronDown, ChevronUp, Globe} from 'react-feather';
+import {Codesandbox, ChevronDown, ChevronUp, Globe, Framer} from 'react-feather';
 import {PALETTE} from '@styles/styled-constants';
+import {Link} from 'gatsby';
 
-const ComponentWrapper = styled('div')`
-  width: auto;
-  height: auto;
-`;
+import brandIllustration from '@images/brand-illustration.svg';
+import patternsIllustration from '@images/patterns-illustration.svg';
+import componentsIllustration from '@images/components-illustration.svg';
+import principlesIllustration from '@images/principles-illustration.svg';
+import editorialIllustration from '@images/editorial-illustration.svg';
+import materialIllustration from '@images/material-illustration.svg';
+import roadmapIllustration from '@images/roadmap-illustration.svg';
+
+const ComponentWrapper = styled('div')``;
 
 const IconContainer = styled('div')`
   width: 44px;
@@ -33,6 +39,7 @@ const StyledChevronUp = styled(ChevronUp)`
 
 const StyledDropDownNav = styled('div')`
   position: relative;
+  margin-bottom: 2rem;
   width: 100%;
   height: auto;
   height: 3.5rem;
@@ -53,15 +60,14 @@ const MenuDrawer = styled('div')`
   left: 0;
   width: 100%;
   height: auto;
-  /* min-height: 4rem; */
   background: ${PALETTE.bone};
-  /* border: 1px solid ${PALETTE.scab}; */
-  /* border-left: 2px solid #d6f5f3; */
 `;
-const MenuDrawerItem = styled('div')`
+const MenuDrawerItem = styled(Link)`
+  display: block;
   padding: 1rem 2rem;
   font-size: 1.125rem;
   font-weight: 600;
+  text-decoration: none;
   text-transform: uppercase;
   color: ${PALETTE.wheelChair};
   border-top: 1px solid #ded8d3;
@@ -80,9 +86,9 @@ function setChevron(expanded: boolean) {
 function showMenuDrawer(expanded: boolean) {
   return expanded ? (
     <MenuDrawer>
-      <MenuDrawerItem>apple</MenuDrawerItem>
-      <MenuDrawerItem>marsipan</MenuDrawerItem>
-      <MenuDrawerItem>orange</MenuDrawerItem>
+      {topLevelRoutes.map(route => {
+        return <MenuDrawerItem to={route.to}>{route.label}</MenuDrawerItem>;
+      })}
     </MenuDrawer>
   ) : null;
 }
@@ -106,37 +112,62 @@ function setComponentColors() {
 
 const topLevelRoutes = [
   {
-    label: 'Merkevare',
+    label: 'Brand',
     icon: <Globe size={32} />,
     to: '/brand',
   },
   {
-    label: 'Bibliotek',
+    label: 'Patterns',
+    icon: <Framer size={32} />,
+    to: '/patterns',
+  },
+  {
+    label: 'Library',
     icon: <Codesandbox size={32} />,
     to: '/library',
   },
+  {
+    label: 'Design principles',
+    icon: <Codesandbox size={32} />,
+    to: '/principles',
+  },
+  {
+    label: 'Editorial guidlines',
+    icon: <Codesandbox size={32} />,
+    to: '/editorial',
+  },
+  {
+    label: 'Marketing material',
+    icon: <Codesandbox size={32} />,
+    to: '/marketing-material',
+  },
+  {
+    label: 'Roadmap',
+    icon: <Codesandbox size={32} />,
+    to: '/roadmap',
+  },
 ];
 
-interface DropDownNavProps {
-  activeRoute?: string;
+interface RouteDropdownProps {
+  activeRoute: string;
 }
 
-function DropDownNav(props: DropDownNavProps) {
+function RouteDropdown(props: RouteDropdownProps) {
   const {activeRoute} = props;
   const [expanded, setExpanded] = useState(false);
-  const [mappedRoute, setMappedRoute] = useState({});
+  const [mappedRoute, setMappedRoute] = useState({} as any);
+  useEffect(() => {
+    const topLevelRoute = `/${activeRoute.split('/')[1]}`;
+    const route = topLevelRoutes.filter(route => route.to === topLevelRoute)[0];
+    setMappedRoute(route);
+  }, [activeRoute]);
   return (
-    <ComponentWrapper>
-      <StyledDropDownNav onClick={() => setExpanded(!expanded)}>
-        <IconContainer>
-          <Codesandbox size={32} />
-        </IconContainer>
-        <Label>sajdsahjd</Label>
-        {setChevron(expanded)}
-        {showMenuDrawer(expanded)}
-      </StyledDropDownNav>
-    </ComponentWrapper>
+    <StyledDropDownNav onClick={() => setExpanded(!expanded)}>
+      {mappedRoute ? <Label>{mappedRoute.label}</Label> : null}
+      {setChevron(expanded)}
+      {showMenuDrawer(expanded)}
+    </StyledDropDownNav>
   );
 }
 
-export default DropDownNav;
+export default RouteDropdown;

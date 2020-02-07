@@ -6,7 +6,7 @@ import styled, {css} from 'styled-components';
 import npm from '../images/npm-brands.svg';
 import useLatestNPMVersion from '../../hooks/UseLatestNPMVersion';
 
-import DropDownNav from '../../components/DropDownNav/DropDownNav';
+import RouteDropdown from './RouteDropdown';
 import {routes} from './routes';
 import {palette} from '@styles/styled-constants';
 
@@ -102,7 +102,7 @@ interface SidebarProps {
 //   );
 // }
 
-const StyledNavLink = styled(Link)<{child?: boolean; active?: boolean}>`
+const StyledNavLink = styled(Link)<{child?: boolean; activeLink?: boolean}>`
   text-decoration: none;
   display: block;
   font-weight: 600;
@@ -116,7 +116,7 @@ const StyledNavLink = styled(Link)<{child?: boolean; active?: boolean}>`
       font-weight: 400;
     `}
   ${props =>
-    props.active &&
+    props.activeLink &&
     css`
       background-color: white;
       color: ${palette('surgical500')};
@@ -135,7 +135,7 @@ const StyledNavGroup = styled('ul')`
   margin: 0;
 `;
 
-const useRouteMap = (activeRoute: string) => {
+export const useRouteMap = (activeRoute: string) => {
   const [routeMap, setRouteMap] = useState([]);
   useEffect(() => {
     if (activeRoute) {
@@ -159,20 +159,20 @@ function Sidebar(props: SidebarProps): JSX.Element {
         }}
       </Location>
       <NavContent>
-        <DropDownNav activeRoute={activeRoute} />
+        <RouteDropdown activeRoute={activeRoute} />
         {routeMap &&
-          routeMap.map((route: any) => {
+          routeMap.map((route: any, index: number) => {
             return (
-              <StyledNavGroup>
+              <StyledNavGroup key={route.path}>
                 <StyledNavItem>
-                  <StyledNavLink active={activeRoute === route.path} to={route.path}>
+                  <StyledNavLink activeLink={activeRoute === route.path} to={route.path}>
                     {route.label}
                   </StyledNavLink>
                 </StyledNavItem>
                 {route.children.map((child: any) => {
                   return (
-                    <StyledNavItem>
-                      <StyledNavLink active={activeRoute === child.path} child to={child.path}>
+                    <StyledNavItem key={child.path}>
+                      <StyledNavLink activeLink={activeRoute === child.path} child to={child.path}>
                         {child.label}
                       </StyledNavLink>
                     </StyledNavItem>
@@ -188,7 +188,6 @@ function Sidebar(props: SidebarProps): JSX.Element {
 
 const StyledSidebar = styled('div')`
   padding-top: 5rem;
-  padding-left: 3rem;
 `;
 
 export {Sidebar};

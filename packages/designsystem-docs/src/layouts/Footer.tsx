@@ -43,35 +43,37 @@ interface FooterProps extends StyledDefaultProps {}
 function Footer(props: FooterProps) {
   const {className} = props;
   return (
-    <StyledFooter>
-      <Row>
-        <Col lg={3}>
-          <LinkGroup>
-            <Link to="/about">Om Helsenorge Design</Link>
-            <Link to="/contribute">Bidra</Link>
-            <Link to="/privacy">Personvern</Link>
-            <Link to="/license">Bruksvilkår</Link>
-          </LinkGroup>
-        </Col>
-        <Col lg={3}>
-          <LinkGroup>
-            <Link to="/github">Github</Link>
-            <Link to="/email">Email</Link>
-          </LinkGroup>
-        </Col>
-        <Col lg={6}>
-          <Row end="md">
-            <Col lg={12}>
-              <div>
-                <StyledContentDisclaimerText>Innholdet er levert av</StyledContentDisclaimerText>
-                <StyledContentDisclaimerLink target="_blank" href="https://www.helsenorge.no">
-                  <Logo size={150} />
-                </StyledContentDisclaimerLink>
-              </div>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+    <StyledFooter fluid>
+      <Grid>
+        <Row>
+          <Col lg={3}>
+            <LinkGroup>
+              <Link to="/about">About Helsenorge Design</Link>
+              <Link to="/contribute">Contribute</Link>
+              <Link to="/privacy">Privacy</Link>
+              <Link to="/license">Term of Use</Link>
+            </LinkGroup>
+          </Col>
+          <Col lg={3}>
+            <LinkGroup>
+              <Link to="/github">Github</Link>
+              <Link to="/email">Email</Link>
+            </LinkGroup>
+          </Col>
+          <Col lg={6}>
+            <Row end="md">
+              <Col lg={12}>
+                <div>
+                  <StyledContentDisclaimerText>Innholdet er levert av</StyledContentDisclaimerText>
+                  <StyledContentDisclaimerLink target="_blank" href="https://www.helsenorge.no">
+                    <Logo size={150} />
+                  </StyledContentDisclaimerLink>
+                </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </Grid>
     </StyledFooter>
   );
 }
@@ -87,6 +89,7 @@ const StyledContentDisclaimerText = styled('h4')`
 
 const StyledFooter = styled(Grid)`
   margin-top: 2.5rem;
+  background-color: white;
 `;
 
 export {Footer};

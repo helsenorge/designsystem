@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import styled, {css} from 'styled-components';
 import {LiveProvider, LiveEditor, LivePreview, LiveError} from 'react-live';
 import theme from 'prism-react-renderer/themes/dracula';
-import SideBar from '../../layouts/NewSideBar';
+// import SideBar from '../../layouts/NewSideBar';
 import {Code} from 'react-feather';
 import {Badge} from '@helsenorge/designsystem-react';
 import {palette} from '@styles/styled-constants';

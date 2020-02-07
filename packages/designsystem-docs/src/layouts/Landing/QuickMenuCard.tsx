@@ -30,6 +30,7 @@ interface CardProps extends StyledDefaultProps {
   to: string;
 }
 
+// TODO: Weird issue with boolean props to styled-components. Need to find out why.
 function QuickMenuCard(props: CardProps) {
   const {children, to, small = false} = props;
   return (
@@ -39,7 +40,7 @@ function QuickMenuCard(props: CardProps) {
   );
 }
 
-const StyledQuickMenuCard = styled(Link)<{small?: boolean}>`
+const StyledQuickMenuCard = styled(Link)<{small: boolean}>`
   background-color: white;
   display: flex;
   flex-direction: column;
