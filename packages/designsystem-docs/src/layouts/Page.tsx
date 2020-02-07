@@ -7,7 +7,7 @@ import {Main} from './Main';
 import {palette, theme} from '@styles/styled-constants';
 import {Grid, Row, Col} from '@shared/CustomizedGrid';
 import LiveComponent from '../components/LiveComponent/LiveComponent';
-import {Footer} from './Footer';
+import Footer from './Footer';
 
 interface FrontpageProps {
   children?: React.ReactNode;

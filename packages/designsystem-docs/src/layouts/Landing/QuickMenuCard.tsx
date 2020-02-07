@@ -28,19 +28,20 @@ const StyledQuickMenuCardArt = styled('div')`
 interface CardProps extends StyledDefaultProps {
   small?: boolean;
   to: string;
+  grid: string;
 }
 
 // TODO: Weird issue with boolean props to styled-components. Need to find out why.
 function QuickMenuCard(props: CardProps) {
-  const {children, to, small = false} = props;
+  const {children, to, small = false, grid} = props;
   return (
-    <StyledQuickMenuCard small={small} to={to}>
+    <StyledQuickMenuCard grid={grid} small={small} to={to}>
       {children}
     </StyledQuickMenuCard>
   );
 }
 
-const StyledQuickMenuCard = styled(Link)<{small: boolean}>`
+const StyledQuickMenuCard = styled(Link)<{small: boolean; grid: string}>`
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -49,6 +50,8 @@ const StyledQuickMenuCard = styled(Link)<{small: boolean}>`
   height: 100%;
   border: 4px solid transparent;
   transition: border 200ms;
+  padding: 1rem;
+  grid-area: ${props => props.grid};
   &:hover {
     border: 4px solid ${palette('surgical500')};
   }

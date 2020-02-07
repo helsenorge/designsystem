@@ -1,95 +1,149 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
-import {StyledDefaultProps} from '@shared/constants';
-import {palette} from '@styles/styled-constants';
 import {Logo} from '@helsenorge/designsystem-react';
-import {Grid, Row, Col} from 'react-flexbox-grid';
+import {Grid, Row, Col} from '@shared/CustomizedGrid';
+import Section from './Section';
+import {screen, size as screenSize, palette} from '@styles/styled-constants';
+import useWindowSize from '@hooks/UseWindowSize';
 
-const LinkGroupListItem = styled('li')`
-  padding: 0.15rem 0.6875rem;
-  display: block;
+const StyledFooterContent = styled('div')`
+  width: 100%;
+  padding: 2rem 0 4rem 0;
 `;
 
-interface LinkGroupProps extends StyledDefaultProps {}
+const StyledContentDisclaimer = styled('div')`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+`;
 
-function StyledLinkGroup(props: LinkGroupProps) {
-  const {className, children} = props;
-  return (
-    <div className={className}>
-      {React.Children.map(children, child => {
-        return <LinkGroupListItem>{child}</LinkGroupListItem>;
-      })}
-    </div>
-  );
-}
-
-const LinkGroup = styled(StyledLinkGroup)`
-  list-style: none;
-  border-left: 2px solid #d8d8d8;
-  & a {
-    display: block;
-    text-decoration: none;
-    width: fit-content;
-    transition: all 250ms;
-    font-size: 1.125rem;
-    font-weight: 600;
+const StyledContentDisclaimerText = styled('span')`
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  @media ${screen.sm} {
+    font-size: 0.8rem;
   }
 `;
 
-interface FooterProps extends StyledDefaultProps {}
+const StyledContentDisclaimerLink = styled('a')`
+  display: block;
+`;
 
-function Footer(props: FooterProps) {
-  const {className} = props;
+const StyledFooterLinkGroup = styled('ul')`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledFooterLinkGroupItem = styled('li')`
+  list-style: none;
+`;
+
+const footerLinkStyle = css`
+  padding: 0.25rem 0.25rem 0.25rem 1rem;
+  display: block;
+  text-decoration: none;
+  border-left: 2px solid ${palette('surgical100')};
+  font-size: 1.1rem;
+  &:hover {
+    border-left: 2px solid ${palette('surgical400')};
+  }
+`;
+
+const StyledFooterLink = styled(Link)`
+  ${footerLinkStyle}
+`;
+
+const StyledFooterLinkExternal = styled('a')`
+  ${footerLinkStyle}
+`;
+
+interface FooterLinkProps {
+  children?: React.ReactNode;
+  external?: boolean;
+  to: string;
+}
+
+function FooterLink(props: FooterLinkProps) {
+  const {children, to, external} = props;
   return (
-    <StyledFooter fluid>
-      <Grid>
-        <Row>
-          <Col lg={3}>
-            <LinkGroup>
-              <Link to="/about">About Helsenorge Design</Link>
-              <Link to="/contribute">Contribute</Link>
-              <Link to="/privacy">Privacy</Link>
-              <Link to="/license">Term of Use</Link>
-            </LinkGroup>
-          </Col>
-          <Col lg={3}>
-            <LinkGroup>
-              <Link to="/github">Github</Link>
-              <Link to="/email">Email</Link>
-            </LinkGroup>
-          </Col>
-          <Col lg={6}>
-            <Row end="md">
-              <Col lg={12}>
-                <div>
-                  <StyledContentDisclaimerText>Innholdet er levert av</StyledContentDisclaimerText>
-                  <StyledContentDisclaimerLink target="_blank" href="https://www.helsenorge.no">
-                    <Logo size={150} />
-                  </StyledContentDisclaimerLink>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Grid>
-    </StyledFooter>
+    <StyledFooterLinkGroupItem>
+      {external ? (
+        <StyledFooterLinkExternal target="_blank" href={to}>
+          {children}
+        </StyledFooterLinkExternal>
+      ) : (
+        <StyledFooterLink to={to}>{children}</StyledFooterLink>
+      )}
+    </StyledFooterLinkGroupItem>
   );
 }
 
-const StyledContentDisclaimerLink = styled('a')`
-  text-decoration: none;
-`;
+interface ContentDisclaimerProps {
+  children: React.ReactNode;
+  byline?: boolean;
+}
 
-const StyledContentDisclaimerText = styled('h4')`
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-`;
+function ContentDisclaimer(props: ContentDisclaimerProps) {
+  const {children, byline = false} = props;
+  return (
+    <StyledContentDisclaimer>
+      <StyledContentDisclaimerText>{children}</StyledContentDisclaimerText>
+      <StyledContentDisclaimerLink href="https://www.helsenorge.no">
+        <Logo variant={byline ? 'byline' : 'original'} size={byline ? 200 : 125} />
+      </StyledContentDisclaimerLink>
+    </StyledContentDisclaimer>
+  );
+}
 
-const StyledFooter = styled(Grid)`
-  margin-top: 2.5rem;
-  background-color: white;
-`;
+function Footer() {
+  const size = useWindowSize();
+  return (
+    <Section>
+      <StyledFooterContent>
+        <Grid>
+          <Row>
+            <Col lg md={12}>
+              <StyledFooterLinkGroup>
+                <FooterLink to="/about">About Helsenorge Design</FooterLink>
+                <FooterLink to="/contribute">Contribution</FooterLink>
+                <FooterLink to="/Privacy">Privacy</FooterLink>
+                <FooterLink to="/Terms of use">Terms of use</FooterLink>
+              </StyledFooterLinkGroup>
+            </Col>
+            <Col md sm={12}>
+              <StyledFooterLinkGroup>
+                <FooterLink external to="https://github.com/helsenorge/designsystem">
+                  GitHub
+                </FooterLink>
+                <FooterLink external to="https://www.abstract.com">
+                  Abstract
+                </FooterLink>
+                <FooterLink external to="mailto:design@helsenorge.design">
+                  Email
+                </FooterLink>
+              </StyledFooterLinkGroup>
+            </Col>
+            {size.width && size.width > screenSize.sm ? (
+              <Row>
+                <Col md sm={12}>
+                  <ContentDisclaimer byline={false}>Content provided by</ContentDisclaimer>
+                </Col>
+              </Row>
+            ) : null}
+          </Row>
+          {size.width && size.width <= screenSize.sm ? (
+            <Row>
+              <Col md sm={12}>
+                <ContentDisclaimer byline={true}>Content provided by</ContentDisclaimer>
+              </Col>
+            </Row>
+          ) : null}
+        </Grid>
+      </StyledFooterContent>
+    </Section>
+  );
+}
 
-export {Footer};
+export default Footer;

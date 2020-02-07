@@ -10,12 +10,10 @@ export const Grid = styled(Flexbox.Grid)<GridProps>`
 `;
 
 interface RowProps {
-  padding?: number;
+  gap?: number;
 }
 
-export const Row = styled(Flexbox.Row)<RowProps>`
-    /* padding: 0 ${props => `${props.padding}rem` || 0}; */
-`;
+export const Row = styled(Flexbox.Row)<RowProps>``;
 
 interface ColProps {
   padding?: number;
