@@ -42,8 +42,6 @@ const StyledMain = styled(Main)`
   max-width: 100%;
   min-width: 0;
   background-color: white;
-  margin-top: 3rem;
-  margin-right: 3rem;
 `;
 
 export {StyledMain as Main};

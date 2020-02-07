@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 import Header from './Header';
 import Footer from './NewFooter';
-import {Sidebar} from './Sidebar';
+import {Sidebar} from './Sidebar/Sidebar';
 import {Main} from './Main';
-import {palette} from '@styles/styled-constants';
+import {palette, theme} from '@styles/styled-constants';
 import {Grid, Row, Col} from '@shared/CustomizedGrid';
 import LiveComponent from '../components/LiveComponent/LiveComponent';
 
@@ -14,39 +14,50 @@ interface FrontpageProps {
 }
 
 function StyledPage(props: FrontpageProps): JSX.Element {
-  let mobileFriendlyBreakpoint = 992;
+  // let mobileFriendlyBreakpoint = 992;
 
-  const mobileFriendlyLayout = () => {
-    if (typeof window !== 'undefined' && window.innerWidth < mobileFriendlyBreakpoint) return true;
-    return false;
-  };
+  // const mobileFriendlyLayout = () => {
+  //   if (typeof window !== 'undefined' && window.innerWidth < mobileFriendlyBreakpoint) return true;
+  //   return false;
+  // };
 
-  const [smallScreen, setSmallScreen] = useState(mobileFriendlyLayout());
-  const [showMobileSideBar, setShowMobileSideBar] = useState(false);
+  // const [smallScreen, setSmallScreen] = useState(mobileFriendlyLayout());
+  // const [showMobileSideBar, setShowMobileSideBar] = useState(false);
 
-  useEffect(() => {
-    function handleResize() {
-      setSmallScreen(mobileFriendlyLayout());
-    }
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize);
-    }
-  });
+  // useEffect(() => {
+  //   function handleResize() {
+  //     setSmallScreen(mobileFriendlyLayout());
+  //   }
+  //   if (typeof window !== 'undefined') {
+  //     window.addEventListener('resize', handleResize);
+  //   }
+  // });
   return (
-    <div className={props.className}>
-      <Header />
-      <StyledContent>
-        <Sidebar />
-        <Main>{props.children}</Main>
+    <ThemeProvider theme={theme}>
+      <StyledContent fluid>
+        <Header />
+        <StyledMainContent>
+          <Row>
+            <Col lg={3}>
+              <Sidebar />
+            </Col>
+            <Col lg={9}>
+              <Main>{props.children}</Main>
+            </Col>
+          </Row>
+        </StyledMainContent>
       </StyledContent>
-    </div>
+    </ThemeProvider>
   );
 }
 
-const StyledContent = styled('div')`
-  display: flex;
-  flex: 1;
-  background-color: #d6f5f3;
+const StyledMainContent = styled(Grid)`
+  min-height: calc(100vh - 8rem);
+  margin-top: 3rem;
+`;
+
+const StyledContent = styled(Grid)`
+  background-color: ${palette('bandAid100')};
 `;
 
 const Page = styled(StyledPage)`

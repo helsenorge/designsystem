@@ -22,5 +22,5 @@ interface ColProps {
 }
 
 export const Col = styled(Flexbox.Col)<ColProps>`
-    /* padding: 0 ${props => `${props.padding}rem` || 0}; */
+  padding: 0 ${props => (props.padding ? `${props.padding}rem !important` : '0 !important')};
 `;

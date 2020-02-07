@@ -29,7 +29,7 @@ function QuickMenu() {
             </QuickMenuCard>
           </Col>
           <Col lg={4} md={12}>
-            <QuickMenuCard to="/functional-patterns">
+            <QuickMenuCard to="/patterns">
               <QuickMenuCardArt src={patternsIllustration} />
               <QuickMenuCardTitle>Patterns</QuickMenuCardTitle>
             </QuickMenuCard>
@@ -37,26 +37,26 @@ function QuickMenu() {
           <Col lg={4} md={12}>
             <QuickMenuCard to="/library">
               <QuickMenuCardArt src={componentsIllustration} />
-              <QuickMenuCardTitle>Komponenter</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Bibliotek</QuickMenuCardTitle>
             </QuickMenuCard>
           </Col>
         </Row>
         <StyledDivider />
         <Row style={{flex: 1}}>
           <Col lg={3} md={6}>
-            <QuickMenuCard small to="/">
+            <QuickMenuCard small to="/principles">
               <QuickMenuCardArt src={principlesIllustration} />
               <QuickMenuCardTitle>Designprinsipper</QuickMenuCardTitle>
             </QuickMenuCard>
           </Col>
           <Col lg={3} md={6}>
-            <QuickMenuCard small to="/c">
+            <QuickMenuCard small to="/editorial">
               <QuickMenuCardArt src={editorialIllustration} />
               <QuickMenuCardTitle>Å skrive for helsenorge</QuickMenuCardTitle>
             </QuickMenuCard>
           </Col>
           <Col lg={3} md={6}>
-            <QuickMenuCard small to="/components">
+            <QuickMenuCard small to="/marketing-material">
               <QuickMenuCardArt src={materialIllustration} />
               <QuickMenuCardTitle>Markedsmateriell</QuickMenuCardTitle>
             </QuickMenuCard>
@@ -75,7 +75,7 @@ function QuickMenu() {
 
 const StyledQuickMenu = styled('div')`
   padding: 8rem 0;
-  background: ${palette('surgical400')};
+  background: ${palette('bandAid100')};
   @media ${screen.sm} {
     padding: 0.5rem 0;
   }

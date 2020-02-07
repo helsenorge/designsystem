@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import DropDownMenu from '../components/DropDownMenu/DropDownMenu';
+import DropDownNav from '../components/DropDownNav/DropDownNav';
 import Toc from '../components/ToC/ToC';
 import {Home, X} from 'react-feather';
 import {PALETTE} from '@styles/styled-constants';
@@ -21,7 +21,7 @@ function Sidebar(props: SidebarProps) {
         </Link>
         <StyledClose size={24} color={PALETTE.surgical400} onClick={props.toggle()} />
       </ToolBar>
-      <DropDownMenu />
+      <DropDownNav />
       <Toc />
     </StyledSidebar>
   );

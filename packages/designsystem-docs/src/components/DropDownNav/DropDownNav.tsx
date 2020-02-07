@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {Codesandbox, ChevronDown, ChevronUp} from 'react-feather';
+import {Codesandbox, ChevronDown, ChevronUp, Globe} from 'react-feather';
 import {PALETTE} from '@styles/styled-constants';
 
 const ComponentWrapper = styled('div')`
@@ -31,7 +31,7 @@ const StyledChevronUp = styled(ChevronUp)`
   margin-left: auto;
 `;
 
-const StyledDropDownMenu = styled('div')`
+const StyledDropDownNav = styled('div')`
   position: relative;
   width: 100%;
   height: auto;
@@ -104,20 +104,39 @@ function setComponentColors() {
   return componentColors;
 }
 
-function DropDownMenu() {
+const topLevelRoutes = [
+  {
+    label: 'Merkevare',
+    icon: <Globe size={32} />,
+    to: '/brand',
+  },
+  {
+    label: 'Bibliotek',
+    icon: <Codesandbox size={32} />,
+    to: '/library',
+  },
+];
+
+interface DropDownNavProps {
+  activeRoute?: string;
+}
+
+function DropDownNav(props: DropDownNavProps) {
+  const {activeRoute} = props;
   const [expanded, setExpanded] = useState(false);
+  const [mappedRoute, setMappedRoute] = useState({});
   return (
     <ComponentWrapper>
-      <StyledDropDownMenu onClick={() => setExpanded(!expanded)}>
+      <StyledDropDownNav onClick={() => setExpanded(!expanded)}>
         <IconContainer>
-          <Codesandbox color="#01656F" size={32} />
+          <Codesandbox size={32} />
         </IconContainer>
-        <Label>komponenter</Label>
+        <Label>sajdsahjd</Label>
         {setChevron(expanded)}
         {showMenuDrawer(expanded)}
-      </StyledDropDownMenu>
+      </StyledDropDownNav>
     </ComponentWrapper>
   );
 }
 
-export default DropDownMenu;
+export default DropDownNav;

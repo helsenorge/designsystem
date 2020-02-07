@@ -7,14 +7,16 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 
 function Header() {
   return (
-    <StyledHeader>
-      <Row>
-        <Col lg={4}>
-          <Link to="/">
-            <Logo src={hndLogo} />
-          </Link>
-        </Col>
-      </Row>
+    <StyledHeader fluid>
+      <Grid>
+        <Row>
+          <Col lg={4}>
+            <Link to="/">
+              <Logo src={hndLogo} />
+            </Link>
+          </Col>
+        </Row>
+      </Grid>
     </StyledHeader>
   );
 }
@@ -29,6 +31,7 @@ const Logo = styled('img')`
 
 const StyledHeader = styled(Grid)`
   height: 5rem;
+  background-color: white;
 `;
 
 export default Header;
