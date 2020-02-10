@@ -3,11 +3,11 @@
 exports[`renders default variant correctly 1`] = `
 <div>
   <button
-    class="sc-htpNat dauZty"
+    class="sc-AxiKw NlqvM"
     color="surgical"
   >
     <span
-      class="sc-bdVaJa hKAetY"
+      class="sc-AxjAm iMxqKn"
     >
       CommonButton
     </span>

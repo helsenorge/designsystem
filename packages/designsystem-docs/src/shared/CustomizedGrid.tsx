@@ -6,21 +6,19 @@ interface GridProps {
 }
 
 export const Grid = styled(Flexbox.Grid)<GridProps>`
-  padding: 0 ${props => (props.padding ? `${props.padding}rem !important` : '0.5rem !important')};
+  padding: 0 ${props => (props.padding ? `${props.padding}rem !important` : '0rem !important')};
 `;
 
 interface RowProps {
-  padding?: number;
+  gap?: number;
 }
 
-export const Row = styled(Flexbox.Row)<RowProps>`
-    /* padding: 0 ${props => `${props.padding}rem` || 0}; */
-`;
+export const Row = styled(Flexbox.Row)<RowProps>``;
 
 interface ColProps {
   padding?: number;
 }
 
 export const Col = styled(Flexbox.Col)<ColProps>`
-    /* padding: 0 ${props => `${props.padding}rem` || 0}; */
+  padding: 0 ${props => (props.padding ? `${props.padding}rem !important` : '0 !important')};
 `;

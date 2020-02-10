@@ -36,6 +36,7 @@ module.exports = {
         alias: {
           '@hooks': path.resolve(__dirname, 'src/hooks'),
           '@images': path.resolve(__dirname, 'src/images'),
+          '@layouts': path.resolve(__dirname, 'src/layouts'),
           '@shared': path.resolve(__dirname, 'src/shared'),
           '@styles': path.resolve(__dirname, 'src/styles'),
           '@utils': path.resolve(__dirname, 'src/utils'),
