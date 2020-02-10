@@ -11,10 +11,9 @@ import Footer from './Footer';
 
 interface FrontpageProps {
   children?: React.ReactNode;
-  className?: string;
 }
 
-function StyledPage(props: FrontpageProps): JSX.Element {
+function Page(props: FrontpageProps): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <StyledContent fluid>
@@ -36,20 +35,12 @@ function StyledPage(props: FrontpageProps): JSX.Element {
 }
 
 const StyledMainContent = styled(Grid)`
-  min-height: calc(100vh - 24rem);
-  margin-top: 3rem;
+  /* min-height: calc(100vh - 24rem); */
+  margin: 3rem 0;
 `;
 
 const StyledContent = styled(Grid)`
   background-color: ${palette('bandAid100')};
-`;
-
-const Page = styled(StyledPage)`
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
 `;
 
 const RevealSideBarLink = styled('div')`
