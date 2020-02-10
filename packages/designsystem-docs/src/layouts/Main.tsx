@@ -41,6 +41,8 @@ const StyledMain = styled(Main)`
   flex: 1 1 auto;
   max-width: 100%;
   min-width: 0;
+  min-height: 800px;
+  margin-bottom: 3rem;
   background-color: white;
 `;
 

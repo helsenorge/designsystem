@@ -15,24 +15,6 @@ interface FrontpageProps {
 }
 
 function StyledPage(props: FrontpageProps): JSX.Element {
-  // let mobileFriendlyBreakpoint = 992;
-
-  // const mobileFriendlyLayout = () => {
-  //   if (typeof window !== 'undefined' && window.innerWidth < mobileFriendlyBreakpoint) return true;
-  //   return false;
-  // };
-
-  // const [smallScreen, setSmallScreen] = useState(mobileFriendlyLayout());
-  // const [showMobileSideBar, setShowMobileSideBar] = useState(false);
-
-  // useEffect(() => {
-  //   function handleResize() {
-  //     setSmallScreen(mobileFriendlyLayout());
-  //   }
-  //   if (typeof window !== 'undefined') {
-  //     window.addEventListener('resize', handleResize);
-  //   }
-  // });
   return (
     <ThemeProvider theme={theme}>
       <StyledContent fluid>
@@ -54,7 +36,7 @@ function StyledPage(props: FrontpageProps): JSX.Element {
 }
 
 const StyledMainContent = styled(Grid)`
-  min-height: calc(100vh - 8rem);
+  min-height: calc(100vh - 24rem);
   margin-top: 3rem;
 `;
 
