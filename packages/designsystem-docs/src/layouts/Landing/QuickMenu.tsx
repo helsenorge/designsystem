@@ -14,7 +14,7 @@ import roadmapIllustration from '@images/roadmap-illustration.svg';
 import Section from '@layouts/Section';
 
 const StyledQuickMenuContent = styled('div')`
-  min-height: calc(100vh - 20rem);
+  min-height: calc(100vh - 21rem);
   padding: 6rem 0;
   display: flex;
   align-items: center;
