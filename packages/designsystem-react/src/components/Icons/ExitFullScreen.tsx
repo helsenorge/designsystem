@@ -1,7 +1,7 @@
 import React from 'react';
-import {IconProps} from './Icon';
-const ExitFullScreen = React.forwardRef((svgProps: IconProps, ref: any) => {
-  const {size = 38, color = 'black', isHovered = false, ...props} = svgProps;
+import {IconRawProps} from './Icon';
+const ExitFullScreen = React.forwardRef((svgProps: IconRawProps, ref: any) => {
+  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <path
@@ -13,7 +13,7 @@ const ExitFullScreen = React.forwardRef((svgProps: IconProps, ref: any) => {
   ) : (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <path
-        fill={color}
+        fill={hoverColor}
         fillRule="evenodd"
         d="M26.1289,12.6199 L28.1289,10.6199 L27.1389,9.6299 L26.1389,10.6299 L25.1389,11.6299 L21.6199,15.1489 L21.6199,10.4639 L20.2199,10.4639 L20.2199,17.5399 L27.3269,17.5399 L27.3269,16.1389 L22.6099,16.1389 L26.1289,12.6199 Z M10.4649,21.6529 L15.1819,21.6529 L10.6619,26.1719 L9.6619,27.1719 L10.6519,28.1619 L16.1719,22.6429 L16.1719,27.3269 L17.5719,27.3269 L17.5719,20.2529 L10.4649,20.2529 L10.4649,21.6529 Z"
       />

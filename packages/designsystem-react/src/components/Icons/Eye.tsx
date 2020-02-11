@@ -1,7 +1,7 @@
 import React from 'react';
-import {IconProps} from './Icon';
-const Eye = React.forwardRef((svgProps: IconProps, ref: any) => {
-  const {size = 38, color = 'black', isHovered = false, ...props} = svgProps;
+import {IconRawProps} from './Icon';
+const Eye = React.forwardRef((svgProps: IconRawProps, ref: any) => {
+  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <path
@@ -13,7 +13,7 @@ const Eye = React.forwardRef((svgProps: IconProps, ref: any) => {
   ) : (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <path
-        fill={color}
+        fill={hoverColor}
         fillRule="evenodd"
         d="M20.896,16.5283 C19.588,16.5283 18.528,17.5883 18.528,18.8953 C18.528,20.2033 19.588,21.2633 20.896,21.2633 C22.204,21.2633 23.264,20.2033 23.264,18.8953 C23.264,17.5883 22.204,16.5283 20.896,16.5283 M22.861,25.3123 C25.01,23.9793 26.449,21.6063 26.449,18.8963 C26.449,16.1703 24.993,13.7833 22.822,12.4553 C27.343,13.9013 29.613,17.5723 30.298,18.8913 C29.614,20.1873 27.328,23.8463 22.861,25.3123 M18.896,25.2493 C15.393,25.2493 12.542,22.3993 12.542,18.8963 C12.542,15.3923 15.393,12.5423 18.896,12.5423 C22.399,12.5423 25.25,15.3923 25.25,18.8963 C25.25,22.3993 22.399,25.2493 18.896,25.2493 M7.491,18.8963 C8.176,17.5773 10.446,13.9033 14.969,12.4553 C12.799,13.7843 11.343,16.1703 11.343,18.8963 C11.343,21.6223 12.799,24.0083 14.969,25.3363 C10.444,23.8883 8.174,20.2113 7.491,18.8963 M18.896,10.6523 C9.635,10.6523 6.161,18.8963 6.161,18.8963 C6.161,18.8963 9.635,27.1393 18.896,27.1393 C28.157,27.1393 31.631,18.8963 31.631,18.8963 C31.631,18.8963 28.157,10.6523 18.896,10.6523"
       />

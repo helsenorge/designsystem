@@ -1,3 +1,5 @@
+import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+
 export const PALETTE = {
   bone: '#ffffff',
   ash: '#f6f5f2',
@@ -45,5 +47,5 @@ export const screen = {
 };
 
 export const theme = {
-  palette: {...PALETTE},
+  palette: hndsTheme,
 };

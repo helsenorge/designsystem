@@ -9,8 +9,8 @@ import {create} from '@storybook/theming/create';
 /* TODO: Make use of palette from DS. Got a weird error that I think stems from the custom webpack config which crashed the build */
 const hndsTheme = create({
   base: 'light',
-  colorSecondary: '#01656f',
-  appBg: '#d8f2ef',
+  colorSecondary: '#188097',
+  appBg: '#E4F7F9',
   brandUrl: 'https://helsenorge.design',
   brandImage: 'https://hndsstatic.blob.core.windows.net/images/hnd-logo.png',
 });

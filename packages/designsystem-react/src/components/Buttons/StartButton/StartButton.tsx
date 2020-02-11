@@ -33,7 +33,7 @@ const StartButton = React.forwardRef((props: StartButtonProps, ref: any) => {
       size={sizeMap[variant] as ButtonSizes}
       htmlTag={htmlTag}
       loading={loading}
-      color="surgical"
+      color="vein"
       {...rest}>
       {children}
     </Button>

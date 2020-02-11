@@ -1,7 +1,7 @@
 import React from 'react';
-import {IconProps} from './Icon';
-const PlusSmall = React.forwardRef((svgProps: IconProps, ref: any) => {
-  const {size = 38, color = 'black', isHovered = false, ...props} = svgProps;
+import {IconRawProps} from './Icon';
+const PlusSmall = React.forwardRef((svgProps: IconRawProps, ref: any) => {
+  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <path
@@ -12,7 +12,7 @@ const PlusSmall = React.forwardRef((svgProps: IconProps, ref: any) => {
   ) : (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <path
-        fill={color}
+        fill={hoverColor}
         d="M19,9.22512463 L18.9991246,17.9991246 L27.7748756,18 L27.7748756,20 L18.9991246,19.9991246 L19,28.7748754 L17,28.7748754 L16.9991246,19.9991246 L8.22512463,20 L8.22512463,18 L16.9991246,17.9991246 L17,9.22512463 L19,9.22512463 Z"
       />
     </svg>

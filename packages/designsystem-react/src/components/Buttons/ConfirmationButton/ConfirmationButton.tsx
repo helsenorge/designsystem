@@ -25,7 +25,7 @@ const ConfirmationButton = React.forwardRef((props: ConfirmationButtonProps, ref
     <Button
       variant={variantMap[variant] as ButtonVariants}
       size="small"
-      color="strangulation"
+      color="pulse"
       disabled={disabled}
       htmlTag={htmlTag}
       loading={loading}

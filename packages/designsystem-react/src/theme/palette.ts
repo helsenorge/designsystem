@@ -2,35 +2,35 @@
 // https://en.wikipedia.org/wiki/Pantone_448_C
 const placeholder = '#4A412A';
 
-const calm = {
-  calm50: '#E4F7F9',
-  calm100: placeholder,
-  calm200: placeholder,
-  calm300: placeholder,
-  calm400: placeholder,
-  calm500: '#188097',
-  calm600: '#17798E',
-  calm700: '#08667C',
-  calm800: placeholder,
-  calm900: placeholder,
+const bone = {
+  bone50: '#F9F7F7',
+  bone100: '#F2F1F0',
+  bone200: '#D6D4D3',
+  bone300: placeholder,
+  bone400: placeholder,
+  bone500: placeholder,
+  bone600: '#666463',
+  bone700: placeholder,
+  bone800: placeholder,
+  bone900: '#333130',
 };
 
-const neutral = {
-  neutral50: '#F9F7F7',
-  neutral100: '#F2F1F0',
-  neutral200: '#D6D4D3',
-  neutral300: placeholder,
-  neutral400: placeholder,
-  neutral500: placeholder,
-  neutral600: '#666463',
-  neutral700: placeholder,
-  neutral800: placeholder,
-  neutral900: '#333130',
+const gall = {
+  gall50: placeholder,
+  gall100: '#FFF0BE',
+  gall200: placeholder,
+  gall300: placeholder,
+  gall400: placeholder,
+  gall500: '#DDAB06',
+  gall600: placeholder,
+  gall700: placeholder,
+  gall800: placeholder,
+  gall900: placeholder,
 };
 
 const pulse = {
   pulse50: '#FFF2EA',
-  pulse100: placeholder,
+  pulse100: '#FEE0D3',
   pulse200: placeholder,
   pulse300: placeholder,
   pulse400: placeholder,
@@ -41,33 +41,65 @@ const pulse = {
   pulse900: placeholder,
 };
 
-export const palette = {
-  ...calm,
-  ...neutral,
-  ...pulse,
+const surgical = {
+  surgical50: placeholder,
+  surgical100: '#DFF2EA',
+  surgical200: placeholder,
+  surgical300: placeholder,
+  surgical400: placeholder,
+  surgical500: placeholder,
+  surgical600: placeholder,
+  surgical700: '#115F3D',
+  surgical800: placeholder,
+  surgical900: placeholder,
 };
 
-export type Palette =
-  | 'calm50'
-  | 'calm100'
-  | 'calm200'
-  | 'calm300'
-  | 'calm400'
-  | 'calm500'
-  | 'calm600'
-  | 'calm700'
-  | 'calm800'
-  | 'calm900'
-  | 'neutral50'
-  | 'neutral100'
-  | 'neutral200'
-  | 'neutral300'
-  | 'neutral400'
-  | 'neutral500'
-  | 'neutral600'
-  | 'neutral700'
-  | 'neutral800'
-  | 'neutral900'
+const vein = {
+  vein50: '#E4F7F9',
+  vein100: placeholder,
+  vein200: placeholder,
+  vein300: placeholder,
+  vein400: placeholder,
+  vein500: '#188097',
+  vein600: '#17798E',
+  vein700: '#08667C',
+  vein800: placeholder,
+  vein900: placeholder,
+};
+
+export const palette = {
+  ...bone,
+  ...gall,
+  ...pulse,
+  ...surgical,
+  ...vein,
+};
+
+export type PaletteNames = 'bone' | 'gall' | 'pulse' | 'surgical' | 'vein';
+
+export type PaletteDepths = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+
+export type PaletteCodes =
+  | 'bone50'
+  | 'bone100'
+  | 'bone200'
+  | 'bone300'
+  | 'bone400'
+  | 'bone500'
+  | 'bone600'
+  | 'bone700'
+  | 'bone800'
+  | 'bone900'
+  | 'gall50'
+  | 'gall100'
+  | 'gall200'
+  | 'gall300'
+  | 'gall400'
+  | 'gall500'
+  | 'gall600'
+  | 'gall700'
+  | 'gall800'
+  | 'gall900'
   | 'pulse50'
   | 'pulse100'
   | 'pulse200'
@@ -77,4 +109,24 @@ export type Palette =
   | 'pulse600'
   | 'pulse700'
   | 'pulse800'
-  | 'pulse900';
+  | 'pulse900'
+  | 'surgical50'
+  | 'surgical100'
+  | 'surgical200'
+  | 'surgical300'
+  | 'surgical400'
+  | 'surgical500'
+  | 'surgical600'
+  | 'surgical700'
+  | 'surgical800'
+  | 'surgical900'
+  | 'vein50'
+  | 'vein100'
+  | 'vein200'
+  | 'vein300'
+  | 'vein400'
+  | 'vein500'
+  | 'vein600'
+  | 'vein700'
+  | 'vein800'
+  | 'vein900';
