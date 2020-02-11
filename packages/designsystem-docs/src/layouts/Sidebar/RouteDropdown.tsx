@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {Codesandbox, ChevronDown, ChevronUp, Globe, Framer} from 'react-feather';
+import {ChevronDown, ChevronUp} from 'react-feather';
 import {PALETTE} from '@styles/styled-constants';
 import {Link} from 'gatsby';
 
@@ -35,7 +35,6 @@ const StyledDropDownNav = styled('div')`
   align-items: center;
   background-color: ${setComponentColors().regular.background};
   padding: 0 1rem;
-  /* padding: 1rem 1rem 1rem 2rem; */
   color: ${PALETTE.surgical400};
   :hover {
     cursor: pointer;
@@ -89,7 +88,6 @@ function showMenuDrawer(expanded: boolean) {
       {topLevelRoutes.map(route => {
         return (
           <MenuDrawerItem to={route.to}>
-            {/* {route.icon} */}
             <img src={route.icon} />
             <Label>{route.label}</Label>
           </MenuDrawerItem>
