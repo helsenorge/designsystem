@@ -12,17 +12,6 @@ import editorialIllustration from '@images/editorial-illustration.svg';
 import materialIllustration from '@images/material-illustration.svg';
 import roadmapIllustration from '@images/roadmap-illustration.svg';
 
-const ComponentWrapper = styled('div')``;
-
-const IconContainer = styled('div')`
-  width: 44px;
-  margin-left: 1rem;
-  display: flex;
-  align-items: center;
-`;
-const Icon = styled('img')`
-  width: 2rem;
-`;
 const Label = styled('div')`
   font-size: 1.125rem;
   font-weight: 600;
@@ -41,17 +30,21 @@ const StyledDropDownNav = styled('div')`
   position: relative;
   margin-bottom: 2rem;
   width: 100%;
-  height: auto;
   height: 3.5rem;
   display: flex;
   align-items: center;
   background-color: ${setComponentColors().regular.background};
   padding: 0 1rem;
-  color:${PALETTE.surgical400};
+  /* padding: 1rem 1rem 1rem 2rem; */
+  color: ${PALETTE.surgical400};
   :hover {
     cursor: pointer;
-    /* color: ${setComponentColors().hover.color};
-    background: ${setComponentColors().hover.background}; */
+  }
+  ${Label} {
+    margin-left: 1rem;
+  }
+  img {
+    width: 2rem;
   }
 `;
 const MenuDrawer = styled('div')`
@@ -63,8 +56,9 @@ const MenuDrawer = styled('div')`
   background: ${PALETTE.bone};
 `;
 const MenuDrawerItem = styled(Link)`
-  display: block;
-  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
   font-size: 1.125rem;
   font-weight: 600;
   text-decoration: none;
@@ -73,6 +67,12 @@ const MenuDrawerItem = styled(Link)`
   border-top: 1px solid #ded8d3;
   :hover {
     background: #d6f5f3;
+  }
+  ${Label} {
+    margin-left: 1rem;
+  }
+  img {
+    width: 2rem;
   }
 `;
 
@@ -87,7 +87,13 @@ function showMenuDrawer(expanded: boolean) {
   return expanded ? (
     <MenuDrawer>
       {topLevelRoutes.map(route => {
-        return <MenuDrawerItem to={route.to}>{route.label}</MenuDrawerItem>;
+        return (
+          <MenuDrawerItem to={route.to}>
+            {/* {route.icon} */}
+            <img src={route.icon} />
+            <Label>{route.label}</Label>
+          </MenuDrawerItem>
+        );
       })}
     </MenuDrawer>
   ) : null;
@@ -109,41 +115,42 @@ function setComponentColors() {
   };
   return componentColors;
 }
+const ICONSIZE = 24;
 
 const topLevelRoutes = [
   {
     label: 'Brand',
-    icon: <Globe size={32} />,
+    icon: brandIllustration,
     to: '/brand',
   },
   {
     label: 'Patterns',
-    icon: <Framer size={32} />,
+    icon: patternsIllustration,
     to: '/patterns',
   },
   {
     label: 'Library',
-    icon: <Codesandbox size={32} />,
+    icon: componentsIllustration,
     to: '/library',
   },
   {
     label: 'Design principles',
-    icon: <Codesandbox size={32} />,
+    icon: principlesIllustration,
     to: '/principles',
   },
   {
     label: 'Editorial guidlines',
-    icon: <Codesandbox size={32} />,
+    icon: editorialIllustration,
     to: '/editorial',
   },
   {
     label: 'Marketing material',
-    icon: <Codesandbox size={32} />,
+    icon: materialIllustration,
     to: '/marketing-material',
   },
   {
     label: 'Roadmap',
-    icon: <Codesandbox size={32} />,
+    icon: roadmapIllustration,
     to: '/roadmap',
   },
 ];
@@ -153,6 +160,7 @@ interface RouteDropdownProps {
 }
 
 function RouteDropdown(props: RouteDropdownProps) {
+  console.log(topLevelRoutes);
   const {activeRoute} = props;
   const [expanded, setExpanded] = useState(false);
   const [mappedRoute, setMappedRoute] = useState({} as any);
@@ -163,7 +171,11 @@ function RouteDropdown(props: RouteDropdownProps) {
   }, [activeRoute]);
   return (
     <StyledDropDownNav onClick={() => setExpanded(!expanded)}>
-      {mappedRoute ? <Label>{mappedRoute.label}</Label> : null}
+      {mappedRoute ? (
+        <>
+          <img src={mappedRoute.icon} /> <Label>{mappedRoute.label}</Label>
+        </>
+      ) : null}
       {setChevron(expanded)}
       {showMenuDrawer(expanded)}
     </StyledDropDownNav>
