@@ -4,10 +4,15 @@ import Header from './Header';
 // import Footer from './NewFooter';
 import {Sidebar} from './Sidebar/Sidebar';
 import {Main} from './Main';
-import {palette, theme} from '@styles/styled-constants';
+import {palette, theme, PALETTE} from '@styles/styled-constants';
 import {Grid, Row, Col} from '@shared/CustomizedGrid';
 import LiveComponent from '../components/LiveComponent/LiveComponent';
 import Footer from './Footer';
+import Section from './Section';
+
+const StyledPageContent = styled(Row)`
+  padding: 3rem 0;
+`;
 
 interface FrontpageProps {
   children?: React.ReactNode;
@@ -16,39 +21,20 @@ interface FrontpageProps {
 function Page(props: FrontpageProps): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
-      <StyledContent fluid>
-        <Header />
-        <StyledMainContent>
-          <Row>
-            <Col lg={3}>
-              <Sidebar />
-            </Col>
-            <Col lg={9}>
-              <Main>{props.children}</Main>
-            </Col>
-          </Row>
-        </StyledMainContent>
-        <Footer />
-      </StyledContent>
+      <Header />
+      <Section color={PALETTE.bandAid100}>
+        <StyledPageContent>
+          <Col lg={3}>
+            <Sidebar />
+          </Col>
+          <Col lg={9}>
+            <Main>{props.children}</Main>
+          </Col>
+        </StyledPageContent>
+      </Section>
+      <Footer />
     </ThemeProvider>
   );
 }
-
-const StyledMainContent = styled(Grid)`
-  /* min-height: calc(100vh - 24rem); */
-  margin: 3rem 0;
-`;
-
-const StyledContent = styled(Grid)`
-  background-color: ${palette('bandAid100')};
-`;
-
-const RevealSideBarLink = styled('div')`
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 200px;
-  height: 2rem;
-`;
 
 export default Page;
