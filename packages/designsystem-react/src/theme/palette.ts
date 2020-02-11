@@ -1,64 +1,80 @@
-export const palette = {
-  ash: '#f6f5f2',
-  bandAid100: '#fbf1db',
-  bandAid200: '#f8e1b8',
-  bandAid300: '#ecca8c',
-  blood100: '#fed1c3',
-  blood200: '#dd3300',
-  bone: 'white',
-  nausea100: '#d5efe4',
-  nausea200: '#307a5b',
-  scab: '#383838',
-  scalpel: '#dedbd3',
-  strangulation100: '#af84e7',
-  strangulation200: '#a170e3',
-  strangulation300: '#945bdf',
-  strangulation400: '#8747db',
-  strangulation500: '#7a33d7',
-  strangulation600: '#6d2dc1',
-  strangulation700: '#6128ac',
-  strangulation800: '#552396',
-  strangulation900: '#491e81',
-  surgical100: '#66a2a8',
-  surgical200: '#4d939a',
-  surgical300: '#33838b',
-  surgical400: '#1a747d',
-  surgical500: '#01656f',
-  surgical600: '#005a63',
-  surgical700: '#005058',
-  surgical800: '#00464d',
-  surgical900: '#003c42',
-  urine100: '#fff0be',
-  urine200: '#e8be36',
-  waitingRoom: '#9b978c',
-  wheelChair: 'black',
+// Labeled as 'the ugliest color in the world'
+// https://en.wikipedia.org/wiki/Pantone_448_C
+const placeholder = '#4A412A';
+
+const calm = {
+  calm50: '#E4F7F9',
+  calm100: placeholder,
+  calm200: placeholder,
+  calm300: placeholder,
+  calm400: placeholder,
+  calm500: '#188097',
+  calm600: '#17798E',
+  calm700: '#08667C',
+  calm800: placeholder,
+  calm900: placeholder,
 };
 
-export type Colors =
-  | undefined
-  | 'ash'
-  | 'bandAid100'
-  | 'bandAid200'
-  | 'bandAid300'
-  | 'blood100'
-  | 'blood200'
-  | 'bone'
-  | 'nausea100'
-  | 'nausea200'
-  | 'scab'
-  | 'scalpel'
-  | 'strangulation100'
-  | 'strangulation200'
-  | 'strangulation300'
-  | 'strangulation400'
-  | 'strangulation500'
-  | 'strangulation600'
-  | 'surgical100'
-  | 'surgical200'
-  | 'surgical300'
-  | 'surgical400'
-  | 'surgical500'
-  | 'urine100'
-  | 'urine200'
-  | 'waitingRoom'
-  | 'wheelChair';
+const neutral = {
+  neutral50: '#F9F7F7',
+  neutral100: '#F2F1F0',
+  neutral200: '#D6D4D3',
+  neutral300: placeholder,
+  neutral400: placeholder,
+  neutral500: placeholder,
+  neutral600: '#666463',
+  neutral700: placeholder,
+  neutral800: placeholder,
+  neutral900: '#333130',
+};
+
+const pulse = {
+  pulse50: '#FFF2EA',
+  pulse100: placeholder,
+  pulse200: placeholder,
+  pulse300: placeholder,
+  pulse400: placeholder,
+  pulse500: '#C83521',
+  pulse600: placeholder,
+  pulse700: '#A31F0E',
+  pulse800: placeholder,
+  pulse900: placeholder,
+};
+
+export const palette = {
+  ...calm,
+  ...neutral,
+  ...pulse,
+};
+
+export type Palette =
+  | 'calm50'
+  | 'calm100'
+  | 'calm200'
+  | 'calm300'
+  | 'calm400'
+  | 'calm500'
+  | 'calm600'
+  | 'calm700'
+  | 'calm800'
+  | 'calm900'
+  | 'neutral50'
+  | 'neutral100'
+  | 'neutral200'
+  | 'neutral300'
+  | 'neutral400'
+  | 'neutral500'
+  | 'neutral600'
+  | 'neutral700'
+  | 'neutral800'
+  | 'neutral900'
+  | 'pulse50'
+  | 'pulse100'
+  | 'pulse200'
+  | 'pulse300'
+  | 'pulse400'
+  | 'pulse500'
+  | 'pulse600'
+  | 'pulse700'
+  | 'pulse800'
+  | 'pulse900';
