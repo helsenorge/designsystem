@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {palette, theme} from '@styles/styled-constants';
 import {ChevronDown, ChevronUp} from 'react-feather';
 import {Link} from 'gatsby';
 
-import brandIllustration from '@images/brand-illustration.svg';
-import patternsIllustration from '@images/patterns-illustration.svg';
-import componentsIllustration from '@images/components-illustration.svg';
-import principlesIllustration from '@images/principles-illustration.svg';
-import editorialIllustration from '@images/editorial-illustration.svg';
-import materialIllustration from '@images/material-illustration.svg';
-import roadmapIllustration from '@images/roadmap-illustration.svg';
+import Brand from '../../components/Icons/Brand';
+import Library from '../../components/Icons/Library';
+import Patterns from '../../components/Icons/Patterns';
+import Editorial from '../../components/Icons/Editorial';
+import Principles from '../../components/Icons/Principles';
+import Marketing from '../../components/Icons/Marketing';
+import Roadmap from '../../components/Icons/Roadmap';
 
 const Label = styled('div')`
   font-size: 1.125rem;
@@ -36,9 +36,12 @@ const StyledDropDownNav = styled('div')`
   background-color: white;
   padding: 0 1rem;
   border: 2px solid ${palette('bone200')};
-  color: ${props => palette('bone200')};
-  :hover {
-    cursor: pointer;
+  color: ${palette('vein500')};
+  transition: all 200ms;
+  cursor: pointer;
+  &:hover {
+    border: 2px solid ${palette('vein700')};
+    color: ${palette('vein700')};
   }
   ${Label} {
     margin-left: 1rem;
@@ -49,38 +52,42 @@ const StyledDropDownNav = styled('div')`
 `;
 const MenuDrawer = styled('div')`
   position: absolute;
-  top: 3.5rem;
-  left: 0;
+  box-sizing: content-box;
+  border: 2px solid ${palette('bone200')};
+  top: 3.75rem;
+  left: -0.1rem;
   width: 100%;
-  height: auto;
   background: white;
+  transition: all 200ms;
+  &:hover {
+    border: 2px solid ${palette('vein700')};
+  }
 `;
 const MenuDrawerItem = styled(Link)`
   display: flex;
   align-items: center;
   padding: 1rem;
   font-size: 1.125rem;
+  height: 3.5rem;
   font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
   color: black;
-  border-top: 1px solid #ded8d3;
-  :hover {
-    background: #d6f5f3;
+  transition: all 200ms;
+  &:hover {
+    color: white;
+    background-color: ${palette('vein700')};
   }
   ${Label} {
     margin-left: 1rem;
-  }
-  img {
-    width: 2rem;
   }
 `;
 
 function setChevron(expanded: boolean) {
   return expanded ? (
-    <StyledChevronUp color={theme.palette.vein50} size={24} />
+    <StyledChevronUp color={theme.palette.vein500} size={24} />
   ) : (
-    <StyledChevronDown color={theme.palette.vein50} size={24} />
+    <StyledChevronDown color={theme.palette.vein500} size={24} />
   );
 }
 function showMenuDrawer(expanded: boolean) {
@@ -89,7 +96,7 @@ function showMenuDrawer(expanded: boolean) {
       {topLevelRoutes.map(route => {
         return (
           <MenuDrawerItem to={route.to}>
-            <img src={route.icon} />
+            {route.icon}
             <Label>{route.label}</Label>
           </MenuDrawerItem>
         );
@@ -98,58 +105,40 @@ function showMenuDrawer(expanded: boolean) {
   ) : null;
 }
 
-function setComponentColors() {
-  let componentColors = {
-    hover: {
-      background: theme.palette.vein50,
-      color: 'black',
-    },
-    regular: {
-      background: 'rgba(255, 255, 255, 0.5)',
-      color: theme.palette.vein50,
-    },
-    expanded: {
-      background: 'green',
-    },
-  };
-  return componentColors;
-}
-const ICONSIZE = 24;
-
 const topLevelRoutes = [
   {
     label: 'Brand',
-    icon: brandIllustration,
+    icon: <Brand />,
     to: '/brand',
   },
   {
     label: 'Patterns',
-    icon: patternsIllustration,
+    icon: <Patterns />,
     to: '/patterns',
   },
   {
     label: 'Library',
-    icon: componentsIllustration,
+    icon: <Library />,
     to: '/library',
   },
   {
     label: 'Design principles',
-    icon: principlesIllustration,
+    icon: <Principles />,
     to: '/principles',
   },
   {
     label: 'Editorial guidlines',
-    icon: editorialIllustration,
+    icon: <Editorial />,
     to: '/editorial',
   },
   {
     label: 'Marketing material',
-    icon: materialIllustration,
+    icon: <Marketing />,
     to: '/marketing-material',
   },
   {
     label: 'Roadmap',
-    icon: roadmapIllustration,
+    icon: <Roadmap />,
     to: '/roadmap',
   },
 ];
@@ -159,7 +148,6 @@ interface RouteDropdownProps {
 }
 
 function RouteDropdown(props: RouteDropdownProps) {
-  console.log(topLevelRoutes);
   const {activeRoute} = props;
   const [expanded, setExpanded] = useState(false);
   const [mappedRoute, setMappedRoute] = useState({} as any);
@@ -172,7 +160,8 @@ function RouteDropdown(props: RouteDropdownProps) {
     <StyledDropDownNav onClick={() => setExpanded(!expanded)}>
       {mappedRoute ? (
         <>
-          <img src={mappedRoute.icon} /> <Label>{mappedRoute.label}</Label>
+          {mappedRoute.icon}
+          <Label>{mappedRoute.label}</Label>
         </>
       ) : null}
       {setChevron(expanded)}
