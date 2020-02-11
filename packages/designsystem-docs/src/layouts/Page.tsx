@@ -4,7 +4,7 @@ import Header from './Header';
 // import Footer from './NewFooter';
 import {Sidebar} from './Sidebar/Sidebar';
 import {Main} from './Main';
-import {palette, theme, PALETTE} from '@styles/styled-constants';
+import {theme} from '@styles/styled-constants';
 import {Grid, Row, Col} from '@shared/CustomizedGrid';
 import LiveComponent from '../components/LiveComponent/LiveComponent';
 import Footer from './Footer';
@@ -22,7 +22,7 @@ function Page(props: FrontpageProps): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <Section color={PALETTE.bandAid100}>
+      <Section color={theme.palette.surgical100}>
         <StyledPageContent>
           <Col lg={3}>
             <Sidebar />

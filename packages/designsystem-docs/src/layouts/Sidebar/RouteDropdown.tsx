@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {Codesandbox, ChevronDown, ChevronUp, Globe, Framer} from 'react-feather';
-import {PALETTE} from '@styles/styled-constants';
+import {palette, theme} from '@styles/styled-constants';
 import {Link} from 'gatsby';
 
 import brandIllustration from '@images/brand-illustration.svg';
@@ -45,9 +45,10 @@ const StyledDropDownNav = styled('div')`
   height: 3.5rem;
   display: flex;
   align-items: center;
-  background-color: ${setComponentColors().regular.background};
+  background-color: white;
   padding: 0 1rem;
-  color:${PALETTE.surgical400};
+  border: 2px solid ${palette('bone200')};
+  color: ${props => palette('bone200')};
   :hover {
     cursor: pointer;
     /* color: ${setComponentColors().hover.color};
@@ -60,7 +61,7 @@ const MenuDrawer = styled('div')`
   left: 0;
   width: 100%;
   height: auto;
-  background: ${PALETTE.bone};
+  background: white;
 `;
 const MenuDrawerItem = styled(Link)`
   display: block;
@@ -69,7 +70,7 @@ const MenuDrawerItem = styled(Link)`
   font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
-  color: ${PALETTE.wheelChair};
+  color: black;
   border-top: 1px solid #ded8d3;
   :hover {
     background: #d6f5f3;
@@ -78,9 +79,9 @@ const MenuDrawerItem = styled(Link)`
 
 function setChevron(expanded: boolean) {
   return expanded ? (
-    <StyledChevronUp color={PALETTE.surgical400} size={24} />
+    <StyledChevronUp color={theme.palette.vein50} size={24} />
   ) : (
-    <StyledChevronDown color={PALETTE.surgical400} size={24} />
+    <StyledChevronDown color={theme.palette.vein50} size={24} />
   );
 }
 function showMenuDrawer(expanded: boolean) {
@@ -96,12 +97,12 @@ function showMenuDrawer(expanded: boolean) {
 function setComponentColors() {
   let componentColors = {
     hover: {
-      background: PALETTE.surgical400,
-      color: PALETTE.bone,
+      background: theme.palette.vein50,
+      color: 'black',
     },
     regular: {
       background: 'rgba(255, 255, 255, 0.5)',
-      color: PALETTE.surgical400,
+      color: theme.palette.vein50,
     },
     expanded: {
       background: 'green',

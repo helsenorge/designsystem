@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import QuickMenuCard, {QuickMenuCardTitle, QuickMenuCardArt} from './QuickMenuCard';
-import {PALETTE, screen} from '@styles/styled-constants';
+import {screen, theme} from '@styles/styled-constants';
 
 import brandIllustration from '@images/brand-illustration.svg';
 import patternsIllustration from '@images/patterns-illustration.svg';
@@ -69,7 +69,7 @@ const StyledQuickMenuContainer = styled('div')`
 
 function QuickMenu() {
   return (
-    <Section color={PALETTE.bandAid100}>
+    <Section color={theme.palette.surgical100}>
       <StyledQuickMenuContent>
         <StyledQuickMenuContainer>
           <StyledUpperQuickMenuRow>

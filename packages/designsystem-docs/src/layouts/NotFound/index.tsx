@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Landing from '@layouts/Landing';
 import Section from '@layouts/Section';
 import notFoundIllustration from '@images/not-found-404.svg';
-import {PALETTE, screen} from '@styles/styled-constants';
+import {screen, theme} from '@styles/styled-constants';
 import {Row, Col} from '@shared/CustomizedGrid';
 
 const StyledNotFoundImage = styled('img')`
@@ -43,7 +43,7 @@ const StyledNotFoundBanner = styled(Row)`
 function NotFound() {
   return (
     <Landing>
-      <Section color={PALETTE.nausea100}>
+      <Section color={theme.palette.veins50}>
         <StyledNotFoundBanner middle="xs">
           <Col lg={6} md={12}>
             <Row center="xs">
