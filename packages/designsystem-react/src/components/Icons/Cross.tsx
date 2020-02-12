@@ -1,7 +1,7 @@
 import React from 'react';
-import {IconProps} from './Icon';
-const Cross = React.forwardRef((svgProps: IconProps, ref: any) => {
-  const {size = 38, color = 'black', isHovered = false, ...props} = svgProps;
+import {IconRawProps} from './Icon';
+const Cross = React.forwardRef((svgProps: IconRawProps, ref: any) => {
+  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <polygon
@@ -13,7 +13,7 @@ const Cross = React.forwardRef((svgProps: IconProps, ref: any) => {
   ) : (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <polygon
-        fill={color}
+        fill={hoverColor}
         fillRule="evenodd"
         points="19 17.596 9.327 7.923 7.924 9.326 17.597 18.999 7.923 28.673 9.326 30.076 19 20.402 28.674 30.076 30.077 28.673 20.403 18.999 30.076 9.326 28.673 7.923"
       />

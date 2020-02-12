@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyledLoader, StyledLoaderDot} from './Loader.styled';
-import {Colors} from '../../theme';
+import {PaletteNames} from '../../theme/palette';
 
-export type LoaderColors = Colors;
+export type LoaderColors = PaletteNames;
 export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';
 
 interface LoaderProps {
@@ -11,7 +11,7 @@ interface LoaderProps {
 }
 
 const Loader = React.forwardRef((props: LoaderProps, ref: any) => {
-  const {color = 'wheelChair', size = 'small'} = props;
+  const {color = 'vein', size = 'small'} = props;
   return (
     <StyledLoader size={size}>
       <StyledLoaderDot color={color} size={size} />

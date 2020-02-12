@@ -1,13 +1,7 @@
-import {Colors, palette} from './palette';
+import {PaletteNames, PaletteDepths} from './palette';
+import {theme} from './';
 
-interface ColorOptions {
-  fallback?: Colors;
-  translucent?: boolean;
-}
+const isNotPalette = (name: string) => name === 'white' || name === 'black';
 
-export const color = (name: Colors, options?: ColorOptions) =>
-  name
-    ? `${palette[name]}${options?.translucent ? '0d' : ''}`
-    : options!.fallback
-    ? palette[options!.fallback]
-    : 'none';
+export const getColor = (name: PaletteNames | 'white' | 'black', depth: PaletteDepths) =>
+  isNotPalette(name) ? name : theme.palette[`${name}${depth}`];

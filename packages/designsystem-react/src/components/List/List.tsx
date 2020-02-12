@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import {color} from '../../theme';
+import {getColor} from '../../theme/currys';
 
 const StyledListItem = styled('li')`
-  border-bottom: 1px solid ${color('waitingRoom')};
+  border-bottom: 1px solid ${getColor('bone', 600)};
 `;
 
 const StyledList = styled('ul')`

@@ -1,3 +1,5 @@
+import {PaletteNames} from '../src/theme/palette';
+
 export const allIcons = [
   'alarmclock',
   'arrowLeft',
@@ -29,4 +31,16 @@ export const allIcons = [
   'share',
   'verticalDots',
   'x',
+];
+
+export const allPaletteNames: PaletteNames[] = ['bone', 'gall', 'pulse', 'surgical', 'vein'];
+
+export const allPaletteNamesWithNegatives: (PaletteNames | 'black' | 'white')[] = [
+  'bone',
+  'gall',
+  'pulse',
+  'surgical',
+  'vein',
+  'black',
+  'white',
 ];

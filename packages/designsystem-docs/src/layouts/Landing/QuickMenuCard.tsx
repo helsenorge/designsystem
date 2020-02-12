@@ -48,12 +48,12 @@ const StyledQuickMenuCard = styled(Link)<{small: boolean; grid: string}>`
   text-align: center;
   text-decoration: none;
   height: 100%;
-  border: 4px solid transparent;
+  border: 4px solid ${palette('bone200')};
   transition: border 200ms;
   padding: 1rem;
   grid-area: ${props => props.grid};
   &:hover {
-    border: 4px solid ${palette('surgical500')};
+    border: 4px solid ${palette('vein700')};
   }
   ${props =>
     props.small &&

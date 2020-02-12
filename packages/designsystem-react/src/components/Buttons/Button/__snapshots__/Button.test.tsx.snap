@@ -3,8 +3,8 @@
 exports[`displays the button 1`] = `
 <div>
   <button
-    class="sc-AxiKw hEdxIY"
-    color="strangulation"
+    class="sc-AxiKw fNZTbF"
+    color="vein"
   >
     <span
       class="sc-AxjAm iMxqKn"
@@ -18,8 +18,8 @@ exports[`displays the button 1`] = `
 exports[`displays the button with icons 1`] = `
 <div>
   <button
-    class="sc-AxiKw eMFpjW"
-    color="strangulation"
+    class="sc-AxiKw ifIcCn"
+    color="vein"
   >
     <svg
       class="icon"

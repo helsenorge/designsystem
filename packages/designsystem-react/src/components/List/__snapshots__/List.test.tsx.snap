@@ -6,28 +6,28 @@ exports[`displays a list of 4 elements 1`] = `
     class="sc-AxirZ fOOpMY"
   >
     <li
-      class="sc-AxjAm hFCHtM"
+      class="sc-AxjAm kOzHsd"
     >
       <h1>
         Tjeneste 1
       </h1>
     </li>
     <li
-      class="sc-AxjAm hFCHtM"
+      class="sc-AxjAm kOzHsd"
     >
       <h1>
         Tjeneste 2
       </h1>
     </li>
     <li
-      class="sc-AxjAm hFCHtM"
+      class="sc-AxjAm kOzHsd"
     >
       <h1>
         Tjeneste 3
       </h1>
     </li>
     <li
-      class="sc-AxjAm hFCHtM"
+      class="sc-AxjAm kOzHsd"
     >
       <h1>
         Tjeneste 4

@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {HTMLButtonProps, HTMLAnchorProps} from '../../../constants';
-import {Colors} from '../../../theme';
 import {StyledButton, StyledButtonContent, StyledLeftFluidContent} from './Button.styled';
 import Loader from '../../Loader';
+import {getColor} from '../../../theme/currys';
+import {PaletteNames} from '../../../theme/palette';
 
 export type ButtonVariants = 'fill' | 'outline' | 'borderless';
 export type ButtonSizes = 'small' | 'medium' | 'large';
-export type ButtonColors = 'strangulation' | 'surgical';
+export type ButtonColors = PaletteNames;
 export type ButtonTags = 'button' | 'a';
 
 interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
@@ -30,12 +31,11 @@ export function useIcons(children: React.ReactNode[]) {
 }
 
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
-  const {children, variant, color, size, htmlTag = 'button', loading = false, fluid = false, ...rest} = props;
+  const {children, variant, color = 'vein', size, htmlTag = 'button', loading = false, fluid = false, ...rest} = props;
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
   const [isHovered, setIsHovered] = useState(false);
   // TODO: Considering expanding the Icon props to including color logic like this
-  const iconColor = variant === 'fill' ? 'bone' : `${color}500`;
-  const iconHoverColor = variant === 'fill' ? 'bone' : `${color}700`;
+  const iconColor = variant === 'fill' ? 'white' : color;
   return (
     <StyledButton
       onMouseEnter={() => setIsHovered(true)}
@@ -53,14 +53,14 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       {...rest}>
       {/* TODO: Consider splitting this up into render-functions. This is a mess */}
       {loading ? (
-        <Loader color={variant === 'fill' ? 'bone' : (`${color}500` as Colors)} size="tiny" />
+        <Loader color={variant === 'fill' ? 'calm' : getColor(color, 500)} size="tiny" />
       ) : (
         <>
           {fluid ? (
             <StyledLeftFluidContent>
               {leftIcon
                 ? React.cloneElement(leftIcon as React.ReactElement, {
-                    color: isHovered ? iconHoverColor : iconColor,
+                    color: iconColor,
                     isHovered,
                   })
                 : null}
@@ -70,7 +70,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
             <>
               {leftIcon
                 ? React.cloneElement(leftIcon as React.ReactElement, {
-                    color: isHovered ? iconHoverColor : iconColor,
+                    color: iconColor,
                     isHovered,
                   })
                 : null}
@@ -79,7 +79,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
           )}
           {rightIcon
             ? React.cloneElement(rightIcon as React.ReactElement, {
-                color: isHovered ? iconHoverColor : iconColor,
+                color: iconColor,
                 isHovered,
               })
             : null}

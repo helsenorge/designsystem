@@ -1,7 +1,7 @@
 import React from 'react';
-import {IconProps} from './Icon';
-const Reply = React.forwardRef((svgProps: IconProps, ref: any) => {
-  const {size = 38, color = 'black', isHovered = false, ...props} = svgProps;
+import {IconRawProps} from './Icon';
+const Reply = React.forwardRef((svgProps: IconRawProps, ref: any) => {
+  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <path
@@ -13,7 +13,7 @@ const Reply = React.forwardRef((svgProps: IconProps, ref: any) => {
   ) : (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <path
-        fill={color}
+        fill={hoverColor}
         fillRule="evenodd"
         d="M21.2529,14.3672 L4.8999,14.3672 L12.5909,6.1702 L11.5689,5.2122 L2.2499,15.1452 L11.7339,25.0222 L12.7439,24.0532 L4.7869,15.7672 L21.2529,15.7672 C26.6789,15.7672 31.0929,20.1812 31.0929,25.6072 L31.0929,26.9392 L32.4929,26.9392 L32.4929,25.6072 C32.4929,19.4092 27.4509,14.3672 21.2529,14.3672"
       />

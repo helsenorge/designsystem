@@ -29,7 +29,7 @@ const CommonButton = React.forwardRef((props: CommonButtonProps, ref: any) => {
     <Button
       variant={variantMap[variant] as ButtonVariants}
       size="small"
-      color="surgical"
+      color="vein"
       htmlTag={htmlTag}
       loading={loading}
       ref={ref}

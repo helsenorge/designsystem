@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
 import {ButtonVariants, ButtonSizes, ButtonColors} from './Button';
-import {color, Colors} from '../../../theme';
+import {getColor} from '../../../theme/currys';
 
 const buttonSizes = {
   small: '3.125rem',
@@ -26,28 +26,28 @@ const buttonStyle = css`
 `;
 
 const fillStyle = (fillColor: ButtonColors) => css`
-  background-color: ${color(`${fillColor}500` as Colors)};
-  border: 0.125rem solid ${color(`${fillColor}500` as Colors)};
+  background-color: ${getColor(fillColor, 500)};
+  border: 0.125rem solid ${getColor(fillColor, 500)};
   color: white;
   &:hover,
   :active,
   :focus {
-    background-color: ${color(`${fillColor}700` as Colors)};
+    background-color: ${getColor(fillColor, 700)};
     border: 0.125rem solid transparent;
-    box-shadow: 0 0 0 0.25rem ${color(`${fillColor}700` as Colors)};
+    box-shadow: 0 0 0 0.25rem ${getColor(fillColor, 700)};
   }
   &:disabled {
-    background-color: ${color('scalpel')};
-    border: 0.125rem solid ${color('scalpel')};
-    color: ${color('waitingRoom')};
+    background-color: ${getColor('bone', 200)};
+    border: 0.125rem solid ${getColor('bone', 200)};
+    color: ${getColor('bone', 600)};
   }
 `;
 
 // TODO: Move duplicate before/after to seperate style
 const outlineStyle = (outlineColor: ButtonColors) => css`
   background-color: transparent;
-  color: ${color(`${outlineColor}500` as Colors)};
-  border: 0.125rem solid ${color(`${outlineColor}500` as Colors)};
+  color: ${getColor(outlineColor, 500)};
+  border: 0.125rem solid ${getColor(outlineColor, 500)};
   position: relative;
   &:before {
     content: ' ';
@@ -70,26 +70,26 @@ const outlineStyle = (outlineColor: ButtonColors) => css`
   &:hover,
   :active,
   :focus {
-    background-color: ${color(`${outlineColor}700` as Colors, {translucent: true})};
+    background-color: ${getColor(outlineColor, 50)};
     border: 0.125rem solid transparent;
-    color: ${color(`${outlineColor}700` as Colors)};
+    color: ${getColor(outlineColor, 700)};
     &:before {
-      border: 0.125rem solid ${color(`${outlineColor}700` as Colors)};
+      border: 0.125rem solid ${getColor(outlineColor, 700)};
     }
     &:after {
-      border: 0.125rem solid ${color(`${outlineColor}700` as Colors)};
+      border: 0.125rem solid ${getColor(outlineColor, 700)};
     }
   }
   &:disabled {
-    background-color: ${color('ash')};
-    border: 0.125rem solid ${color('waitingRoom')};
-    color: ${color('waitingRoom')};
+    background-color: ${getColor('bone', 50)};
+    border: 0.125rem solid ${getColor('bone', 600)};
+    color: ${getColor('bone', 600)};
   }
 `;
 
 const borderlessStyle = (borderlessColor: ButtonColors) => css`
   background-color: transparent;
-  color: ${color(`${borderlessColor}500` as Colors)};
+  color: ${getColor(borderlessColor, 500)};
   border: 0.125rem solid transparent;
   position: relative;
   &:before {
@@ -113,20 +113,20 @@ const borderlessStyle = (borderlessColor: ButtonColors) => css`
   &:hover,
   :active,
   :focus {
-    background-color: ${color(`${borderlessColor}700` as Colors, {translucent: true})};
+    background-color: ${getColor(borderlessColor, 50)};
     border: 0.125rem solid transparent;
-    color: ${color(`${borderlessColor}700` as Colors)};
+    color: ${getColor(borderlessColor, 700)};
     &:before {
-      border: 0.125rem solid ${color(`${borderlessColor}700` as Colors)};
+      border: 0.125rem solid ${getColor(borderlessColor, 700)};
     }
     &:after {
-      border: 0.125rem solid ${color(`${borderlessColor}700` as Colors)};
+      border: 0.125rem solid ${getColor(borderlessColor, 700)};
     }
   }
   &:disabled {
-    background-color: ${color('ash')};
-    border: 0.125rem solid ${color('waitingRoom')};
-    color: ${color('waitingRoom')};
+    background-color: ${getColor('bone', 50)};
+    border: 0.125rem solid ${getColor('bone', 600)};
+    color: ${getColor('bone', 600)};
   }
 `;
 

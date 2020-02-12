@@ -6,5 +6,6 @@ import List from './components/List';
 import Loader from './components/Loader';
 import Logo from './components/Logo';
 import StartButton from './components/Buttons/StartButton';
+import {theme} from './theme';
 
-export {Badge, CommonButton, ConfirmationButton, Icon, List, Loader, Logo, StartButton};
+export {Badge, CommonButton, ConfirmationButton, Icon, List, Loader, Logo, StartButton, theme};

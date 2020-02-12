@@ -3,8 +3,8 @@
 exports[`renders default variant correctly 1`] = `
 <div>
   <button
-    class="sc-AxiKw dPkqAS"
-    color="surgical"
+    class="sc-AxiKw fynHZr"
+    color="vein"
   >
     <span
       class="sc-AxjAm iMxqKn"

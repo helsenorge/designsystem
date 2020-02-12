@@ -1,64 +1,132 @@
-export const palette = {
-  ash: '#f6f5f2',
-  bandAid100: '#fbf1db',
-  bandAid200: '#f8e1b8',
-  bandAid300: '#ecca8c',
-  blood100: '#fed1c3',
-  blood200: '#dd3300',
-  bone: 'white',
-  nausea100: '#d5efe4',
-  nausea200: '#307a5b',
-  scab: '#383838',
-  scalpel: '#dedbd3',
-  strangulation100: '#af84e7',
-  strangulation200: '#a170e3',
-  strangulation300: '#945bdf',
-  strangulation400: '#8747db',
-  strangulation500: '#7a33d7',
-  strangulation600: '#6d2dc1',
-  strangulation700: '#6128ac',
-  strangulation800: '#552396',
-  strangulation900: '#491e81',
-  surgical100: '#66a2a8',
-  surgical200: '#4d939a',
-  surgical300: '#33838b',
-  surgical400: '#1a747d',
-  surgical500: '#01656f',
-  surgical600: '#005a63',
-  surgical700: '#005058',
-  surgical800: '#00464d',
-  surgical900: '#003c42',
-  urine100: '#fff0be',
-  urine200: '#e8be36',
-  waitingRoom: '#9b978c',
-  wheelChair: 'black',
+// Labeled as 'the ugliest color in the world'
+// https://en.wikipedia.org/wiki/Pantone_448_C
+const placeholder = '#4A412A';
+
+const bone = {
+  bone50: '#F9F7F7',
+  bone100: '#F2F1F0',
+  bone200: '#D6D4D3',
+  bone300: placeholder,
+  bone400: placeholder,
+  bone500: placeholder,
+  bone600: '#666463',
+  bone700: placeholder,
+  bone800: placeholder,
+  bone900: '#333130',
 };
 
-export type Colors =
-  | undefined
-  | 'ash'
-  | 'bandAid100'
-  | 'bandAid200'
-  | 'bandAid300'
-  | 'blood100'
-  | 'blood200'
-  | 'bone'
-  | 'nausea100'
-  | 'nausea200'
-  | 'scab'
-  | 'scalpel'
-  | 'strangulation100'
-  | 'strangulation200'
-  | 'strangulation300'
-  | 'strangulation400'
-  | 'strangulation500'
-  | 'strangulation600'
+const gall = {
+  gall50: placeholder,
+  gall100: '#FFF0BE',
+  gall200: placeholder,
+  gall300: placeholder,
+  gall400: placeholder,
+  gall500: '#DDAB06',
+  gall600: placeholder,
+  gall700: placeholder,
+  gall800: placeholder,
+  gall900: placeholder,
+};
+
+const pulse = {
+  pulse50: '#FFF2EA',
+  pulse100: '#FEE0D3',
+  pulse200: placeholder,
+  pulse300: placeholder,
+  pulse400: placeholder,
+  pulse500: '#C83521',
+  pulse600: placeholder,
+  pulse700: '#A31F0E',
+  pulse800: placeholder,
+  pulse900: placeholder,
+};
+
+const surgical = {
+  surgical50: placeholder,
+  surgical100: '#DFF2EA',
+  surgical200: placeholder,
+  surgical300: placeholder,
+  surgical400: placeholder,
+  surgical500: placeholder,
+  surgical600: placeholder,
+  surgical700: '#115F3D',
+  surgical800: placeholder,
+  surgical900: placeholder,
+};
+
+const vein = {
+  vein50: '#E4F7F9',
+  vein100: placeholder,
+  vein200: placeholder,
+  vein300: placeholder,
+  vein400: placeholder,
+  vein500: '#188097',
+  vein600: '#17798E',
+  vein700: '#08667C',
+  vein800: placeholder,
+  vein900: placeholder,
+};
+
+export const palette = {
+  ...bone,
+  ...gall,
+  ...pulse,
+  ...surgical,
+  ...vein,
+};
+
+export type PaletteNames = 'bone' | 'gall' | 'pulse' | 'surgical' | 'vein';
+
+export type PaletteDepths = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+
+export type PaletteCodes =
+  | 'bone50'
+  | 'bone100'
+  | 'bone200'
+  | 'bone300'
+  | 'bone400'
+  | 'bone500'
+  | 'bone600'
+  | 'bone700'
+  | 'bone800'
+  | 'bone900'
+  | 'gall50'
+  | 'gall100'
+  | 'gall200'
+  | 'gall300'
+  | 'gall400'
+  | 'gall500'
+  | 'gall600'
+  | 'gall700'
+  | 'gall800'
+  | 'gall900'
+  | 'pulse50'
+  | 'pulse100'
+  | 'pulse200'
+  | 'pulse300'
+  | 'pulse400'
+  | 'pulse500'
+  | 'pulse600'
+  | 'pulse700'
+  | 'pulse800'
+  | 'pulse900'
+  | 'surgical50'
   | 'surgical100'
   | 'surgical200'
   | 'surgical300'
   | 'surgical400'
   | 'surgical500'
-  | 'urine100'
-  | 'urine200'
-  | 'waitingRoom'
-  | 'wheelChair';
+  | 'surgical600'
+  | 'surgical700'
+  | 'surgical800'
+  | 'surgical900'
+  | 'vein50'
+  | 'vein100'
+  | 'vein200'
+  | 'vein300'
+  | 'vein400'
+  | 'vein500'
+  | 'vein600'
+  | 'vein700'
+  | 'vein800'
+  | 'vein900';

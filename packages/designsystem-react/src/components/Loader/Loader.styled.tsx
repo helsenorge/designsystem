@@ -1,6 +1,6 @@
 import styled, {keyframes} from 'styled-components';
 import {LoaderColors, LoaderSizes} from './Loader';
-import {color} from '../../theme';
+import {getColor} from '../../theme/currys';
 
 const loaderDot1 = keyframes`
     0% {
@@ -41,7 +41,7 @@ export const StyledLoaderDot = styled('div')<{color: LoaderColors; size: LoaderS
   width: ${props => `${dotSizes[props.size]}px`};
   height: ${props => `${dotSizes[props.size]}px`};
   border-radius: 50%;
-  background-color: ${props => color(props.color)};
+  background-color: ${props => getColor(props.color, 500)};
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
   &:nth-child(1) {
     animation: ${loaderDot1} 0.6s infinite;

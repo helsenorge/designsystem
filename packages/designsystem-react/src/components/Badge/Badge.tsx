@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import {Colors} from '../../theme/palette';
-import {color} from '../../theme';
+import {PaletteNames} from '../../theme/palette';
+import {getColor} from '../../theme/currys';
 
-type BadgeColors = Colors;
+type BadgeColors = PaletteNames;
 
 interface BadgeProps {
   color?: BadgeColors;
@@ -17,7 +17,7 @@ const Badge = styled('span')<BadgeProps>`
   min-width: 1rem;
   height: 1rem;
   border-radius: 1rem;
-  background-color: ${props => color(props.color, {fallback: 'urine200'})};
+  background-color: ${props => (props.color ? getColor(props.color, 500) : getColor('vein', 500))};
 `;
 
 export default Badge;

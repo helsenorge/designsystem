@@ -1,7 +1,7 @@
 import React from 'react';
-import {IconProps} from './Icon';
-const ChevronDown = React.forwardRef((svgProps: IconProps, ref: any) => {
-  const {size = 38, color = 'black', isHovered = false, ...props} = svgProps;
+import {IconRawProps} from './Icon';
+const ChevronDown = React.forwardRef((svgProps: IconRawProps, ref: any) => {
+  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <polygon
@@ -13,7 +13,7 @@ const ChevronDown = React.forwardRef((svgProps: IconProps, ref: any) => {
   ) : (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
       <polygon
-        fill={color}
+        fill={hoverColor}
         points="26.515 17.58 27.935 18.989 19.725 27.263 11.515 18.989 12.935 17.58 19.725 24.423"
       />
     </svg>

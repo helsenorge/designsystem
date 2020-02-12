@@ -1,2 +1,7 @@
-export * from './palette';
-export * from './currys';
+import {palette} from './palette';
+import {typography} from './typography';
+
+export const theme = {
+  palette,
+  typography,
+};
