@@ -83,11 +83,11 @@ const MenuDrawerItem = styled(Link)`
   }
 `;
 
-function setChevron(expanded: boolean) {
+function setChevron(expanded: boolean, hover: boolean) {
   return expanded ? (
-    <StyledChevronUp color={theme.palette.vein500} size={24} />
+    <StyledChevronUp color={hover ? theme.palette.vein700 : theme.palette.vein500} size={24} />
   ) : (
-    <StyledChevronDown color={theme.palette.vein500} size={24} />
+    <StyledChevronDown color={hover ? theme.palette.vein700 : theme.palette.vein500} size={24} />
   );
 }
 function showMenuDrawer(expanded: boolean) {
@@ -149,6 +149,7 @@ interface RouteDropdownProps {
 
 function RouteDropdown(props: RouteDropdownProps) {
   const {activeRoute} = props;
+  const [isHovered, setIsHovered] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [mappedRoute, setMappedRoute] = useState({} as any);
   useEffect(() => {
@@ -157,14 +158,20 @@ function RouteDropdown(props: RouteDropdownProps) {
     setMappedRoute(route);
   }, [activeRoute]);
   return (
-    <StyledDropDownNav onClick={() => setExpanded(!expanded)}>
+    <StyledDropDownNav
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => setExpanded(!expanded)}>
       {mappedRoute ? (
         <>
-          {mappedRoute.icon}
+          {/* {React.cloneElement(mappedRoute.icon, {color: isHovered ? `${theme.palette.vein700}` : `${theme.palette.vein500}`})} */}
+          {mappedRoute.icon
+            ? React.cloneElement(mappedRoute.icon, {color: isHovered ? theme.palette.vein700 : theme.palette.vein500})
+            : null}
           <Label>{mappedRoute.label}</Label>
         </>
       ) : null}
-      {setChevron(expanded)}
+      {setChevron(expanded, isHovered)}
       {showMenuDrawer(expanded)}
     </StyledDropDownNav>
   );

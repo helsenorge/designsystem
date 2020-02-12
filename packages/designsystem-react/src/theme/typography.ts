@@ -1,4 +1,4 @@
-const h1 = {
+const title1 = {
   fontSize: 3.25,
   lineHeight: 3.75,
   fontWeight: 600,
@@ -8,7 +8,7 @@ const h1 = {
   },
 };
 
-const h2 = {
+const title2 = {
   fontSize: 2.125,
   lineHeight: 2.625,
   fontWeight: 600,
@@ -18,7 +18,7 @@ const h2 = {
   },
 };
 
-const h3 = {
+const title3 = {
   fontSize: 1.5,
   lineHeight: 1.875,
   fontWeight: 600,
@@ -28,7 +28,7 @@ const h3 = {
   },
 };
 
-const h4 = {
+const title4 = {
   fontSize: 1.5,
   lineHeight: 1.875,
   fontWeight: 700,
@@ -38,7 +38,7 @@ const h4 = {
   },
 };
 
-const h5 = {
+const title5 = {
   fontSize: 1.125,
   lineHeight: 1.625,
   fontWeight: 700,
@@ -48,7 +48,7 @@ const h5 = {
   },
 };
 
-const p = {
+const paragraph = {
   fontSize: 1.25,
   lineHeight: 1.875,
   mobile: {
@@ -58,10 +58,10 @@ const p = {
 };
 
 export const typography = {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  p,
+  title1,
+  title2,
+  title3,
+  title4,
+  title5,
+  paragraph,
 };
