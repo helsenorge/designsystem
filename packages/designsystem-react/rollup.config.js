@@ -45,7 +45,10 @@ export default {
       exclude: '/node_modules/',
     }),
     copy({
-      targets: [{src: 'src/fonts/**/*', dest: 'dist/fonts'}],
+      targets: [
+        {src: 'src/fonts/**/*', dest: 'dist/fonts'},
+        {src: 'src/scss/*', dest: 'dist/scss'},
+      ],
     }),
     buble(),
     sizes(),
