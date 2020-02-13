@@ -23,12 +23,8 @@ const libraryRoutes = [
         path: '/library/components/badge',
       },
       {
-        label: 'ConfirmationButton',
-        path: '/library/components/confirmation-button',
-      },
-      {
-        label: 'CommonButton',
-        path: '/library/components/common-button',
+        label: 'Button',
+        path: '/library/components/button',
       },
       {
         label: 'Icon',
@@ -45,10 +41,6 @@ const libraryRoutes = [
       {
         label: 'Logo',
         path: '/library/components/logo',
-      },
-      {
-        label: 'StartButton',
-        path: '/library/components/start-button',
       },
     ],
   },
