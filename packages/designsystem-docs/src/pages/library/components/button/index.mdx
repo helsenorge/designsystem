@@ -1,0 +1,84 @@
+---
+title: Button
+path: /library/components/button
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import {Button, Icon} from '@helsenorge/designsystem-react';
+
+# Button
+
+<MDXCustom.Preamble>
+  He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum is the
+  single greatest threat.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{Button}}>{`<Button>Button</Button>`}</MDXCustom.LiveComponent>
+
+## Properties
+
+## Examples
+
+### Variants
+
+<MDXCustom.LiveComponent scope={{Button}}>{`
+  <Button>Fill</Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="borderless">Borderless</Button>
+`}</MDXCustom.LiveComponent>
+
+### Colors
+
+<MDXCustom.LiveComponent scope={{Button}}>{`
+  <Button color="vein">Button</Button>
+  <Button color="pulse">Button</Button>
+  <Button color="white">Button</Button>
+`}</MDXCustom.LiveComponent>
+
+### Sizes
+
+<MDXCustom.LiveComponent scope={{Button}}>{`
+  <Button size="small">Button</Button>
+  <Button size="medium">Button</Button>
+  <Button size="large">Button</Button>
+`}</MDXCustom.LiveComponent>
+
+### Fluid
+
+<MDXCustom.LiveComponent fullWidth stack scope={{Button, Icon}}>{`
+    <Button fluid>Button</Button>
+    <Button fluid>
+      <Icon>alarmclock</Icon>
+      Button
+    <Icon>arrowRight</Icon>
+    </Button>
+`}</MDXCustom.LiveComponent>
+
+### With icons
+
+<MDXCustom.LiveComponent scope={{Button, Icon}}>{`
+  <Button>
+    <Icon>alarmclock</Icon>
+    Primary
+  </Button>
+  <Button>
+    Primary
+    <Icon>alarmclock</Icon>
+  </Button>
+  <Button>
+    <Icon>alarmclock</Icon>
+    Primary
+    <Icon>arrowRight</Icon>
+  </Button>
+`}</MDXCustom.LiveComponent>
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**
