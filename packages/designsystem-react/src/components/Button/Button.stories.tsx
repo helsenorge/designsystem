@@ -6,7 +6,7 @@ import Button from './Button';
 import {allIcons, allPaletteNames} from '../../../.storybook/knobs';
 import Icon from '../Icons';
 
-const stories = storiesOf('Buttons/Button', module);
+const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
 
 stories.add('Default', () => (
