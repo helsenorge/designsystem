@@ -6,7 +6,7 @@ import {getColor} from '../../theme/currys';
 
 export type ButtonVariants = 'fill' | 'outline' | 'borderless';
 export type ButtonSizes = 'small' | 'medium' | 'large';
-export type ButtonColors = 'vein' | 'white';
+export type ButtonColors = 'vein' | 'pulse' | 'white';
 export type ButtonTags = 'button' | 'a';
 
 interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
@@ -63,7 +63,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       {...rest}>
       {/* TODO: Consider splitting this up into render-functions. This is a mess */}
       {loading ? (
-        <Loader color={variant === 'fill' ? 'calm' : getColor(color, 500)} size="tiny" />
+        <Loader color={variant === 'fill' ? 'white' : getColor(color, 500)} size="tiny" />
       ) : (
         <>
           {fluid ? (
