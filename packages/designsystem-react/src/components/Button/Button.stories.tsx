@@ -3,8 +3,8 @@ import {withKnobs, select, boolean, text} from '@storybook/addon-knobs';
 import {action} from '@storybook/addon-actions';
 import {storiesOf} from '@storybook/react';
 import Button from './Button';
-import {allIcons, allPaletteNames} from '../../../../.storybook/knobs';
-import Icon from '../../Icons';
+import {allIcons, allPaletteNames} from '../../../.storybook/knobs';
+import Icon from '../Icons';
 
 const stories = storiesOf('Buttons/Button', module);
 stories.addDecorator(withKnobs);
@@ -14,7 +14,7 @@ stories.add('Default', () => (
     onClick={action('button-click')}
     variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
     size={select('Size', ['small', 'medium', 'large'], 'small')}
-    color={select('Color', allPaletteNames, 'vein')}
+    color={select('Color', ['vein'], 'vein')}
     loading={boolean('Loading', false)}
     fluid={boolean('Fluid', false)}
     disabled={boolean('Disabled', false)}
@@ -33,7 +33,7 @@ stories.add('Fluid', () => (
       onClick={action('button-click')}
       variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
       size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allPaletteNames, 'vein')}
+      color={select('Color', ['vein'], 'vein')}
       loading={boolean('Loading', false)}
       fluid={boolean('Fluid', false)}
       htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
@@ -43,7 +43,7 @@ stories.add('Fluid', () => (
     <Button
       variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
       size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allPaletteNames, 'vein')}
+      color={select('Color', ['vein'], 'vein')}
       loading={boolean('Loading', false)}
       fluid={boolean('Fluid', false)}
       htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
@@ -58,7 +58,7 @@ stories.add('With icon(s)', () => (
   <Button
     variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
     size={select('Size', ['small', 'medium', 'large'], 'small')}
-    color={select('Color', allPaletteNames, 'vein')}
+    color={select('Color', ['vein'], 'vein')}
     loading={boolean('Loading', false)}
     fluid={boolean('Fluid', false)}
     htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
@@ -73,21 +73,21 @@ stories.add('All variants', () => (
     <Button
       variant="fill"
       size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allPaletteNames, 'vein')}
+      color={select('Color', ['vein'], 'vein')}
       htmlTag={select('As tag', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <Button
       variant="outline"
       size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allPaletteNames, 'vein')}
+      color={select('Color', ['vein'], 'vein')}
       htmlTag={select('As tag', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <Button
       variant="borderless"
       size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allPaletteNames, 'vein')}
+      color={select('Color', ['vein'], 'vein')}
       htmlTag={select('As tag', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>

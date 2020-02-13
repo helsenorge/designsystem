@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
-import {HTMLButtonProps, HTMLAnchorProps} from '../../../constants';
+import {HTMLButtonProps, HTMLAnchorProps} from '../../constants';
 import {StyledButton, StyledButtonContent, StyledLeftFluidContent} from './Button.styled';
-import Loader from '../../Loader';
-import {getColor} from '../../../theme/currys';
-import {PaletteNames} from '../../../theme/palette';
+import Loader from '../Loader';
+import {getColor} from '../../theme/currys';
+import {PaletteNames} from '../../theme/palette';
 
 export type ButtonVariants = 'fill' | 'outline' | 'borderless';
 export type ButtonSizes = 'small' | 'medium' | 'large';
-export type ButtonColors = PaletteNames;
+export type ButtonColors = 'vein';
 export type ButtonTags = 'button' | 'a';
 
 interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   children: React.ReactNode;
-  variant: ButtonVariants;
-  color: ButtonColors;
-  size: ButtonSizes;
+  variant?: ButtonVariants;
+  color?: ButtonColors;
+  size?: ButtonSizes;
   fluid?: boolean;
   loading?: boolean;
   htmlTag?: ButtonTags;
@@ -31,7 +31,16 @@ export function useIcons(children: React.ReactNode[]) {
 }
 
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
-  const {children, variant, color = 'vein', size, htmlTag = 'button', loading = false, fluid = false, ...rest} = props;
+  const {
+    children,
+    variant = 'fill',
+    color = 'vein',
+    size = 'medium',
+    htmlTag = 'button',
+    loading = false,
+    fluid = false,
+    ...rest
+  } = props;
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
   const [isHovered, setIsHovered] = useState(false);
   // TODO: Considering expanding the Icon props to including color logic like this
