@@ -15,16 +15,21 @@ import Roadmap from '../../components/Icons/Roadmap';
 const Label = styled('div')`
   font-size: 1.125rem;
   font-weight: 600;
+  line-height: 1rem;
   text-transform: uppercase;
   color: inherit;
 `;
 
+const SectionIcon = styled('span')``;
+
 const StyledChevronDown = styled(ChevronDown)`
   margin-left: auto;
+  color: ${palette('vein500')};
 `;
 
 const StyledChevronUp = styled(ChevronUp)`
   margin-left: auto;
+  color: ${palette('vein500')};
 `;
 
 const StyledDropDownNav = styled('div')`
@@ -40,15 +45,22 @@ const StyledDropDownNav = styled('div')`
   color: ${palette('vein500')};
   transition: all 200ms;
   cursor: pointer;
-  &:hover {
-    border: 2px solid ${palette('vein700')};
-    color: ${palette('vein700')};
+  ${SectionIcon} {
+    fill: ${palette('vein500')};
   }
   ${Label} {
     margin-left: 1rem;
   }
-  img {
-    width: 2rem;
+  &:hover {
+    border: 2px solid ${palette('vein700')};
+    color: ${palette('vein700')};
+
+    > ${StyledChevronDown}, ${StyledChevronUp} {
+      color: ${palette('vein700')};
+    }
+    > ${SectionIcon} {
+      fill: ${palette('vein700')};
+    }
   }
 `;
 const MenuDrawer = styled('div')`
@@ -75,25 +87,24 @@ const MenuDrawerItem = styled(Link)`
   text-transform: uppercase;
   color: black;
   transition: all 200ms;
+  ${SectionIcon} {
+    fill: black;
+  }
   ${Label} {
     margin-left: 1rem;
   }
   &:hover {
-    color: white;
+    color: ${palette('bone100')};
     background-color: ${palette('vein700')};
 
-    > svg {
+    > ${SectionIcon} {
       fill: ${palette('bone100')};
     }
   }
 `;
 
-function setChevron(expanded: boolean, hover: boolean) {
-  return expanded ? (
-    <StyledChevronUp color={hover ? theme.palette.vein700 : theme.palette.vein500} size={24} />
-  ) : (
-    <StyledChevronDown color={hover ? theme.palette.vein700 : theme.palette.vein500} size={24} />
-  );
+function setChevron(expanded: boolean) {
+  return expanded ? <StyledChevronUp size={24} /> : <StyledChevronDown size={24} />;
 }
 function showMenuDrawer(expanded: boolean) {
   return expanded ? (
@@ -101,7 +112,7 @@ function showMenuDrawer(expanded: boolean) {
       {topLevelRoutes.map(route => {
         return (
           <MenuDrawerItem to={route.to}>
-            {route.icon}
+            <SectionIcon>{route.icon}</SectionIcon>
             <Label>{route.label}</Label>
           </MenuDrawerItem>
         );
@@ -154,7 +165,6 @@ interface RouteDropdownProps {
 
 function RouteDropdown(props: RouteDropdownProps) {
   const {activeRoute} = props;
-  const [isHovered, setIsHovered] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [mappedRoute, setMappedRoute] = useState({} as any);
   useEffect(() => {
@@ -163,19 +173,14 @@ function RouteDropdown(props: RouteDropdownProps) {
     setMappedRoute(route);
   }, [activeRoute]);
   return (
-    <StyledDropDownNav
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={() => setExpanded(!expanded)}>
+    <StyledDropDownNav onClick={() => setExpanded(!expanded)}>
       {mappedRoute ? (
         <>
-          {mappedRoute.icon
-            ? React.cloneElement(mappedRoute.icon, {color: isHovered ? theme.palette.vein700 : theme.palette.vein500})
-            : null}
+          {<SectionIcon>{mappedRoute.icon}</SectionIcon>}
           <Label>{mappedRoute.label}</Label>
         </>
       ) : null}
-      {setChevron(expanded, isHovered)}
+      {setChevron(expanded)}
       {showMenuDrawer(expanded)}
     </StyledDropDownNav>
   );
