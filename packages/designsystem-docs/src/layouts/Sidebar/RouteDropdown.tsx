@@ -22,6 +22,7 @@ const Label = styled('div')`
 const StyledChevronDown = styled(ChevronDown)`
   margin-left: auto;
 `;
+
 const StyledChevronUp = styled(ChevronUp)`
   margin-left: auto;
 `;
@@ -74,12 +75,16 @@ const MenuDrawerItem = styled(Link)`
   text-transform: uppercase;
   color: black;
   transition: all 200ms;
+  ${Label} {
+    margin-left: 1rem;
+  }
   &:hover {
     color: white;
     background-color: ${palette('vein700')};
-  }
-  ${Label} {
-    margin-left: 1rem;
+
+    > svg {
+      fill: ${palette('bone100')};
+    }
   }
 `;
 
@@ -164,7 +169,6 @@ function RouteDropdown(props: RouteDropdownProps) {
       onClick={() => setExpanded(!expanded)}>
       {mappedRoute ? (
         <>
-          {/* {React.cloneElement(mappedRoute.icon, {color: isHovered ? `${theme.palette.vein700}` : `${theme.palette.vein500}`})} */}
           {mappedRoute.icon
             ? React.cloneElement(mappedRoute.icon, {color: isHovered ? theme.palette.vein700 : theme.palette.vein500})
             : null}
