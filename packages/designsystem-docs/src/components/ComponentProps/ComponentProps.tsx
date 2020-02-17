@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+import {palette} from '@styles/styled-constants';
 
 interface ComponentPropsProps {
   propData: any;
@@ -42,29 +43,30 @@ export function ComponentProps(props: ComponentPropsProps) {
 }
 
 const StyledTableContainer = styled('div')`
-  overflow: auto;
+  overflow-x: auto;
 `;
 
 const StyledTable = styled('table')`
+  max-width: 200rem;
+  min-width: 75rem;
+  text-align: left;
   border-collapse: collapse;
 `;
 
-const StyledTableHead = styled('thead')`
-  border: 2px solid #e5e5e5;
-`;
+const StyledTableHead = styled('thead')``;
 
-const StyledTableBody = styled('tbody')`
-  border: 2px solid #e5e5e5;
-`;
+const StyledTableBody = styled('tbody')``;
 
 const StyledTableRow = styled('tr')``;
 
 const StyledTableHeadColumn = styled('th')`
-  font-weight: 400;
-  background-color: #f9f9f9;
-  padding: 0.25rem 1rem;
+  white-space: pre-line;
+  background-color: lightgray;
+  padding: 0.5rem 0.75rem;
 `;
 
 const StyledTableColumn = styled('td')`
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 0.75rem;
+  white-space: pre-line;
+  max-width: 40rem;
 `;

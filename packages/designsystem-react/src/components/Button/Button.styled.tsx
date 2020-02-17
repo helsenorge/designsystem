@@ -1,12 +1,14 @@
 import styled, {css} from 'styled-components';
 import {ButtonVariants, ButtonSizes, ButtonColors} from './Button';
-import {getColor} from '../../../theme/currys';
+import {getColor, getHoverColor} from '../../theme/currys';
 
 const buttonSizes = {
   small: '3.125rem',
   medium: '4.375rem',
   large: '5rem',
 };
+
+const fillOffsetTextColor = (color: ButtonColors) => (color === 'white' ? 'black' : 'white');
 
 const buttonStyle = css`
   padding: 0 2.5rem;
@@ -28,7 +30,7 @@ const buttonStyle = css`
 const fillStyle = (fillColor: ButtonColors) => css`
   background-color: ${getColor(fillColor, 500)};
   border: 0.125rem solid ${getColor(fillColor, 500)};
-  color: white;
+  color: ${fillOffsetTextColor(fillColor)};
   &:hover,
   :active,
   :focus {
@@ -70,7 +72,7 @@ const outlineStyle = (outlineColor: ButtonColors) => css`
   &:hover,
   :active,
   :focus {
-    background-color: ${getColor(outlineColor, 50)};
+    background-color: ${getHoverColor(outlineColor)};
     border: 0.125rem solid transparent;
     color: ${getColor(outlineColor, 700)};
     &:before {
@@ -113,7 +115,7 @@ const borderlessStyle = (borderlessColor: ButtonColors) => css`
   &:hover,
   :active,
   :focus {
-    background-color: ${getColor(borderlessColor, 50)};
+    background-color: ${getHoverColor(borderlessColor)};
     border: 0.125rem solid transparent;
     color: ${getColor(borderlessColor, 700)};
     &:before {

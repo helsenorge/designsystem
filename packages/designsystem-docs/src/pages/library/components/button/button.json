@@ -1,0 +1,52 @@
+{
+  "props": [
+    {
+      "name": "variant",
+      "type": "ButtonVariants",
+      "require": false,
+      "default": "fill",
+      "valid": ["fill", "outline", "borderless"],
+      "description": "Changes the visual representation of the button"
+    },
+    {
+      "name": "size",
+      "type": "ButtonSizes",
+      "require": false,
+      "default": "small",
+      "valid": ["small", "medium", "large"],
+      "description": "Changes the size of the button"
+    },
+    {
+      "name": "color",
+      "type": "ButtonColors",
+      "require": false,
+      "default": "vein",
+      "valid": ["vein", "pulse", "white"],
+      "description": "Changes the color of the button"
+    },
+    {
+      "name": "fluid",
+      "type": "boolean",
+      "require": false,
+      "default": false,
+      "valid": ["true", "false"],
+      "description": "Makes the button scale to full width of its parent element"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "require": false,
+      "default": false,
+      "valid": ["true", "false"],
+      "description": "Sets the button into a loading state displaying <Loader /> as content"
+    },
+    {
+      "name": "htmlTag",
+      "type": "ButtonTags",
+      "require": false,
+      "default": "button",
+      "valid": ["button", "a"],
+      "description": "Changes the underlying element of the button"
+    }
+  ]
+}
