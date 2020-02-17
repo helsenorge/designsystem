@@ -18,14 +18,15 @@ export interface ExpanderCompounds
 
 interface ExpanderHeaderProps {
   children?: React.ReactNode;
+  isExpanded?: boolean;
 }
 
 function ExpanderHeader(props: ExpanderHeaderProps) {
-  const {children} = props;
+  const {children, isExpanded} = props;
   return (
     <StyledExpanderHeader>
-      {children}
-      <Icon color="black">chevronDown</Icon>
+      <span>{children}</span>
+      <Icon color="black">{isExpanded ? 'chevronUp' : 'chevronDown'}</Icon>
     </StyledExpanderHeader>
   );
 }
@@ -39,7 +40,7 @@ const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
   const expanderContent = React.Children.toArray(children)[1];
   return (
     <StyledExpander variant={variant} ref={ref} onClick={() => setIsExpanded(!isExpanded)}>
-      {expanderHeader}
+      {React.cloneElement(expanderHeader as React.ReactElement, {isExpanded})}
       {isExpanded
         ? React.cloneElement(expanderContent as React.ReactElement, {onClick: (event: any) => event.stopPropagation()})
         : null}

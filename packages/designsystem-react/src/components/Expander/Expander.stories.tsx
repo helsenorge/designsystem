@@ -2,6 +2,7 @@ import React from 'react';
 import {withKnobs, text} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import Expander from './Expander';
+import {Icon} from '../..';
 
 const stories = storiesOf('Expander', module);
 stories.addDecorator(withKnobs);
