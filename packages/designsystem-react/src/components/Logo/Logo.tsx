@@ -1,5 +1,5 @@
 import React from 'react';
-import {getColor} from '../../theme/currys';
+import {getColor} from '../../theme/currys/color';
 import {PaletteNames} from '../../theme/palette';
 
 type LogoVariant = 'byline' | 'square' | 'original';

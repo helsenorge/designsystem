@@ -1,83 +1,170 @@
-const h1 = {
-  fontSize: 3.25,
-  lineHeight: 3.75,
-  fontWeight: 600,
-  mobile: {
-    fontSize: 2.625,
-    lineHeight: 3,
-  },
-};
+import {css} from 'styled-components';
+import {screen} from './grid';
 
-const h2 = {
-  fontSize: 2.125,
-  lineHeight: 2.625,
-  fontWeight: 600,
-  mobile: {
-    fontSize: 1.75,
-    lineHeight: 2.25,
-  },
-};
+const titleFeature = css`
+  font-size: 4rem;
+  line-height: 5rem;
+  font-weight: 600;
+  @media ${screen.md} {
+    font-size: 3rem;
+    line-height: 4rem;
+  }
+`;
 
-const h3 = {
-  fontSize: 1.5,
-  lineHeight: 1.875,
-  fontWeight: 600,
-  mobile: {
-    fontSize: 1.375,
-    lineHeight: 1.75,
-  },
-};
+const title1 = css`
+  font-size: 3.25rem;
+  line-height: 3.75rem;
+  font-weight: 600;
+  @media ${screen.md} {
+    font-size: 2.625rem;
+    line-height: 3rem;
+  }
+`;
 
-const h4 = {
-  fontSize: 1.25,
-  lineHeight: 2,
-  fontWeight: 700,
-  mobile: {
-    fontSize: 1.625,
-    lineHeight: 1.75,
-  },
-};
+const title2 = css`
+  font-size: 2.125rem;
+  line-height: 2.625rem;
+  font-weight: 600;
+  @media ${screen.md} {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+`;
 
-const h5 = {
-  fontSize: 1.125,
-  lineHeight: 1.625,
-  fontWeight: 700,
-  textTransform: 'uppercase',
-  mobile: {
-    fontSize: 1,
-  },
-};
+const title3 = css`
+  font-size: 1.5rem;
+  line-height: 1.875rem;
+  font-weight: 600;
+  @media ${screen.md} {
+    font-size: 1.375rem;
+    line-height: 1.75rem;
+  }
+`;
 
-const p = {
-  fontSize: 1.25,
-  lineHeight: 1.875,
-  mobile: {
-    fontSize: 1.125,
-    lineHeight: 1.75,
-  },
-};
+const title4 = css`
+  font-size: 1.25rem;
+  line-height: 2rem;
+  font-weight: 700;
+  @media ${screen.md} {
+    font-size: 1.625rem;
+    line-height: 1.75rem;
+  }
+`;
 
-const strong = {
-  fontSize: 1.125,
-  lineHeight: 1.875,
-  mobile: {
-    lineHeight: 1.75,
-  },
-};
+const title5 = css`
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  @media ${screen.md} {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+`;
 
-const h1Feature = {
-  fontSize: 4,
-  lineHeight: 4.625,
-  fontWeight: 600,
-};
+const preamble = css`
+  font-size: 1.5rem;
+  line-height: 2.125rem;
+  font-weight: 600;
+  @media ${screen.md} {
+    font-size: 1.375rem;
+    line-height: 1.875rem;
+  }
+`;
+
+const legend = css`
+  font-size: 1.5rem;
+  line-height: 2.125rem;
+  font-weight: 600;
+  @media ${screen.md} {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+  }
+`;
+
+const label = css`
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  @media ${screen.md} {
+    font-size: 1.125rem;
+    line-height: 1.625rem;
+  }
+`;
+
+const body = css`
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  @media ${screen.md} {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+`;
+
+const focusedContent = css`
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+`;
+
+const table = css`
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  @media ${screen.md} {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+`;
+
+const strong = css`
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  font-weight: 700;
+  @media ${screen.md} {
+    font-size: 1.125rem;
+    line-height: 1.175rem;
+  }
+`;
+
+const form = css`
+  font-size: 1.125rem;
+  line-height: 1.875rem;
+  @media ${screen.md} {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+`;
+
+const imageCaption = css`
+  font-size: 1rem;
+  line-height: 1.375rem;
+`;
+
+const imageCredit = css`
+  font-size: 0.75rem;
+  line-height: 1rem;
+`;
+
+const time = css`
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+`;
 
 export const typography = {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  p,
+  titleFeature,
+  title1,
+  title2,
+  title3,
+  title4,
+  title5,
+  preamble,
+  legend,
+  label,
+  body,
+  focusedContent,
+  table,
   strong,
-  h1Feature,
+  form,
+  imageCaption,
+  imageCredit,
+  time,
 };

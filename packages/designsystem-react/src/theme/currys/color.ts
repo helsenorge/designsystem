@@ -1,5 +1,5 @@
-import {PaletteNames, PaletteDepths} from './palette';
-import {theme} from './';
+import {PaletteNames, PaletteDepths} from '../palette';
+import {theme} from '..';
 
 const isNotPalette = (name: string) => name === 'white' || name === 'black';
 

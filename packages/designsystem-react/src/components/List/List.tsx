@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {getColor} from '../../theme/currys';
+import {getColor} from '../../theme/currys/color';
+import {titleFeature} from '../../theme/currys/typography';
 
 const StyledListItem = styled('li')`
   border-bottom: 1px solid ${getColor('bone', 600)};

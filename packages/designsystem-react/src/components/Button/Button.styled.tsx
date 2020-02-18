@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
 import {ButtonVariants, ButtonSizes, ButtonColors} from './Button';
-import {getColor, getHoverColor} from '../../theme/currys';
+import {getColor, getHoverColor} from '../../theme/currys/color';
 
 const buttonSizes = {
   small: '3.125rem',

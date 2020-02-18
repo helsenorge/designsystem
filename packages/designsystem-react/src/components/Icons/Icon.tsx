@@ -33,7 +33,7 @@ import Share from './Share';
 import VerticalDots from './VerticalDots';
 import X from './X';
 import {PaletteNames} from '../../theme/palette';
-import {getColor} from '../../theme/currys';
+import {getColor} from '../../theme/currys/color';
 
 const iconMapping = {
   alarmclock: Alarmclock,
