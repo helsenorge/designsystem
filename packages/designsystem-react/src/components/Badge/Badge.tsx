@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {PaletteNames} from '../../theme/palette';
-import {getColor} from '../../theme/currys';
+import {getColor} from '../../theme/currys/color';
 
 type BadgeColors = PaletteNames;
 

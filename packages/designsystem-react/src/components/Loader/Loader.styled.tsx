@@ -1,6 +1,6 @@
 import styled, {keyframes} from 'styled-components';
 import {LoaderColors, LoaderSizes} from './Loader';
-import {getColor} from '../../theme/currys';
+import {getColor} from '../../theme/currys/color';
 
 const loaderDot1 = keyframes`
     0% {
