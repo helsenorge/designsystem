@@ -6,7 +6,7 @@ import Button, {ButtonColors} from './Button';
 import {allIcons, allPaletteNames} from '../../../.storybook/knobs';
 import Icon from '../Icons';
 
-const allButtonColors: ButtonColors[] = ['vein', 'pulse', 'white'];
+const allButtonColors = allPaletteNames;
 
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
@@ -16,7 +16,7 @@ stories.add('Default', () => (
     onClick={action('button-click')}
     variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
     size={select('Size', ['small', 'medium', 'large'], 'small')}
-    color={select('Color', allButtonColors, 'vein')}
+    color={select('Color', allButtonColors, 'neutral')}
     loading={boolean('Loading', false)}
     fluid={boolean('Fluid', false)}
     disabled={boolean('Disabled', false)}
@@ -35,7 +35,7 @@ stories.add('Fluid', () => (
       onClick={action('button-click')}
       variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
       size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'vein')}
+      color={select('Color', allButtonColors, 'neutral')}
       loading={boolean('Loading', false)}
       fluid={boolean('Fluid', false)}
       htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
@@ -45,7 +45,7 @@ stories.add('Fluid', () => (
     <Button
       variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
       size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'vein')}
+      color={select('Color', allButtonColors, 'neutral')}
       loading={boolean('Loading', false)}
       fluid={boolean('Fluid', false)}
       htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
@@ -60,7 +60,7 @@ stories.add('With icon(s)', () => (
   <Button
     variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
     size={select('Size', ['small', 'medium', 'large'], 'small')}
-    color={select('Color', allButtonColors, 'vein')}
+    color={select('Color', allButtonColors, 'neutral')}
     loading={boolean('Loading', false)}
     fluid={boolean('Fluid', false)}
     htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
@@ -75,21 +75,21 @@ stories.add('All variants', () => (
     <Button
       variant="fill"
       size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'vein')}
+      color={select('Color', allButtonColors, 'neutral')}
       htmlTag={select('As tag', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <Button
       variant="outline"
       size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'vein')}
+      color={select('Color', allButtonColors, 'neutral')}
       htmlTag={select('As tag', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <Button
       variant="borderless"
       size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'vein')}
+      color={select('Color', allButtonColors, 'neutral')}
       htmlTag={select('As tag', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>

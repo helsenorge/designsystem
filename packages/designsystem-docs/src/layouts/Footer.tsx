@@ -44,10 +44,10 @@ const footerLinkStyle = css`
   padding: 0.25rem 0.25rem 0.25rem 1rem;
   display: block;
   text-decoration: none;
-  border-left: 2px solid ${palette('surgical100')};
+  border-left: 2px solid ${palette('kiwi100')};
   font-size: 1.1rem;
   &:hover {
-    border-left: 2px solid ${palette('surgical400')};
+    border-left: 2px solid ${palette('kiwi400')};
   }
 `;
 

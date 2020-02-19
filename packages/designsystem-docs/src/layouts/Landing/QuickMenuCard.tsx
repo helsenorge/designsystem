@@ -53,7 +53,7 @@ const StyledQuickMenuCard = styled(Link)<{small: boolean; grid: string}>`
   padding: 1rem;
   grid-area: ${props => props.grid};
   &:hover {
-    border: 4px solid ${palette('vein700')};
+    border: 4px solid ${palette('blueberry700')};
   }
   ${props =>
     props.small &&

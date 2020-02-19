@@ -5,7 +5,7 @@ import {Icon} from '../..';
 
 test('displays the button', (): void => {
   const {container} = render(
-    <Button size="small" variant="fill" color="vein">
+    <Button size="small" variant="fill" color="neutral">
       Button
     </Button>,
   );
@@ -14,7 +14,7 @@ test('displays the button', (): void => {
 
 test('displays the button with icons', (): void => {
   const {container} = render(
-    <Button size="small" variant="fill" color="vein">
+    <Button size="small" variant="fill" color="neutral">
       <Icon>alarmclock</Icon>
       Button
       <Icon>alarmclock</Icon>

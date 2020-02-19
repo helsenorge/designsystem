@@ -31,11 +31,11 @@ const StyledNavLink = styled(Link)<{child?: boolean; activeLink?: boolean}>`
   ${props =>
     props.activeLink &&
     css`
-      background-color: ${palette('vein500')};
+      background-color: ${palette('blueberry500')};
       color: white;
     `}
   &:hover {
-    background-color: ${palette('vein700')};
+    background-color: ${palette('blueberry700')};
     color: white;
   }
 `;

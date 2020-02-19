@@ -39,9 +39,9 @@ const fillStyle = (fillColor: ButtonColors) => css`
     box-shadow: 0 0 0 0.25rem ${getColor(fillColor, 700)};
   }
   &:disabled {
-    background-color: ${getColor('bone', 200)};
-    border: 0.125rem solid ${getColor('bone', 200)};
-    color: ${getColor('bone', 600)};
+    background-color: ${getColor('neutral', 200)};
+    border: 0.125rem solid ${getColor('neutral', 200)};
+    color: ${getColor('neutral', 600)};
   }
 `;
 
@@ -83,9 +83,9 @@ const outlineStyle = (outlineColor: ButtonColors) => css`
     }
   }
   &:disabled {
-    background-color: ${getColor('bone', 50)};
-    border: 0.125rem solid ${getColor('bone', 600)};
-    color: ${getColor('bone', 600)};
+    background-color: ${getColor('neutral', 50)};
+    border: 0.125rem solid ${getColor('neutral', 600)};
+    color: ${getColor('neutral', 600)};
   }
 `;
 
@@ -126,9 +126,9 @@ const borderlessStyle = (borderlessColor: ButtonColors) => css`
     }
   }
   &:disabled {
-    background-color: ${getColor('bone', 50)};
-    border: 0.125rem solid ${getColor('bone', 600)};
-    color: ${getColor('bone', 600)};
+    background-color: ${getColor('neutral', 50)};
+    border: 0.125rem solid ${getColor('neutral', 600)};
+    color: ${getColor('neutral', 600)};
   }
 `;
 

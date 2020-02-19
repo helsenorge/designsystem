@@ -43,7 +43,7 @@ const StyledNotFoundBanner = styled(Row)`
 function NotFound() {
   return (
     <Landing>
-      <Section color={theme.palette.veins50}>
+      <Section color={theme.palette.blueberry50}>
         <StyledNotFoundBanner middle="xs">
           <Col lg={6} md={12}>
             <Row center="xs">
