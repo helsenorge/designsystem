@@ -3,10 +3,11 @@ import {HTMLButtonProps, HTMLAnchorProps} from '../../constants';
 import {StyledButton, StyledButtonContent, StyledLeftFluidContent} from './Button.styled';
 import Loader from '../Loader';
 import {getColor} from '../../theme/currys/color';
+import {PaletteNames} from '../../theme/palette';
 
 export type ButtonVariants = 'fill' | 'outline' | 'borderless';
 export type ButtonSizes = 'small' | 'medium' | 'large';
-export type ButtonColors = 'vein' | 'pulse' | 'white';
+export type ButtonColors = PaletteNames | 'white' | 'black';
 export type ButtonTags = 'button' | 'a';
 
 interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
@@ -34,7 +35,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   const {
     children,
     variant = 'fill',
-    color = 'vein',
+    color = 'neutral',
     size = 'small',
     htmlTag = 'button',
     danger = false,

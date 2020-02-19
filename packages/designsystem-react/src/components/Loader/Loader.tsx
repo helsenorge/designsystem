@@ -11,7 +11,7 @@ interface LoaderProps {
 }
 
 const Loader = React.forwardRef((props: LoaderProps, ref: any) => {
-  const {color = 'vein', size = 'small'} = props;
+  const {color = 'neutral', size = 'small'} = props;
   return (
     <StyledLoader size={size}>
       <StyledLoaderDot color={color} size={size} />

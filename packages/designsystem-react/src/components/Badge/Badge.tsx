@@ -17,7 +17,7 @@ const Badge = styled('span')<BadgeProps>`
   min-width: 1rem;
   height: 1rem;
   border-radius: 1rem;
-  background-color: ${props => (props.color ? getColor(props.color, 500) : getColor('vein', 500))};
+  background-color: ${props => (props.color ? getColor(props.color, 500) : getColor('black', 500))};
 `;
 
 export default Badge;
