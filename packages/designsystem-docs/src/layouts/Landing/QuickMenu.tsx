@@ -69,7 +69,7 @@ const StyledQuickMenuContainer = styled('div')`
 
 function QuickMenu() {
   return (
-    <Section color={theme.palette.surgical100}>
+    <Section color={theme.palette.blueberry100}>
       <StyledQuickMenuContent>
         <StyledQuickMenuContainer>
           <StyledUpperQuickMenuRow>

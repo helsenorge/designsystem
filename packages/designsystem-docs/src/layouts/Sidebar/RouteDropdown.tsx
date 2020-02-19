@@ -24,12 +24,12 @@ const SectionIcon = styled('span')``;
 
 const StyledChevronDown = styled(ChevronDown)`
   margin-left: auto;
-  color: ${palette('vein500')};
+  color: ${palette('blueberry500')};
 `;
 
 const StyledChevronUp = styled(ChevronUp)`
   margin-left: auto;
-  color: ${palette('vein500')};
+  color: ${palette('blueberry500')};
 `;
 
 const StyledDropDownNav = styled('div')`
@@ -42,24 +42,24 @@ const StyledDropDownNav = styled('div')`
   background-color: white;
   padding: 0 1rem;
   border: 2px solid ${palette('bone200')};
-  color: ${palette('vein500')};
+  color: ${palette('blueberry500')};
   transition: all 200ms;
   cursor: pointer;
   ${SectionIcon} {
-    fill: ${palette('vein500')};
+    fill: ${palette('blueberry500')};
   }
   ${Label} {
     margin-left: 1rem;
   }
   &:hover {
-    border: 2px solid ${palette('vein700')};
-    color: ${palette('vein700')};
+    border: 2px solid ${palette('blueberry700')};
+    color: ${palette('blueberry700')};
 
     > ${StyledChevronDown}, ${StyledChevronUp} {
-      color: ${palette('vein700')};
+      color: ${palette('blueberry700')};
     }
     > ${SectionIcon} {
-      fill: ${palette('vein700')};
+      fill: ${palette('blueberry700')};
     }
   }
 `;
@@ -73,7 +73,7 @@ const MenuDrawer = styled('div')`
   background: white;
   transition: all 200ms;
   &:hover {
-    border: 2px solid ${palette('vein700')};
+    border: 2px solid ${palette('blueberry700')};
   }
 `;
 const MenuDrawerItem = styled(Link)`
@@ -95,7 +95,7 @@ const MenuDrawerItem = styled(Link)`
   }
   &:hover {
     color: ${palette('bone100')};
-    background-color: ${palette('vein700')};
+    background-color: ${palette('blueberry700')};
 
     > ${SectionIcon} {
       fill: ${palette('bone100')};
