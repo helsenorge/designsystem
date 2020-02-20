@@ -1,16 +1,18 @@
 import styled, {css} from 'styled-components';
-import {ButtonVariants, ButtonSizes, ButtonColors} from './Button';
+import {ButtonVariants, ButtonIntents, intentToColor} from './Button';
 import {getColor, getHoverColor} from '../../theme/currys/color';
+import {PaletteNames} from '../../theme/palette';
 
-const buttonSizes = {
-  small: '3.125rem',
-  medium: '4.375rem',
-  large: '5rem',
-};
+interface StyledButtonProps {
+  variant: ButtonVariants;
+  intent: ButtonIntents;
+  large: boolean;
+  fluid: boolean;
+  loader: boolean;
+  hasIcon: boolean;
+}
 
-const fillOffsetTextColor = (color: ButtonColors) => (color === 'white' ? 'black' : 'white');
-
-const buttonStyle = css`
+const defaultStyle = css`
   padding: 0 2.5rem;
   font-size: 1.25rem;
   font-family: inherit;
@@ -19,6 +21,7 @@ const buttonStyle = css`
   text-decoration: none;
   justify-content: center;
   align-items: center;
+  height: 3.125rem;
   outline: none;
   border: 0;
   cursor: pointer;
@@ -27,10 +30,10 @@ const buttonStyle = css`
   }
 `;
 
-const fillStyle = (fillColor: ButtonColors) => css`
+const fillStyle = (fillColor: PaletteNames) => css`
   background-color: ${getColor(fillColor, 500)};
   border: 0.125rem solid ${getColor(fillColor, 500)};
-  color: ${fillOffsetTextColor(fillColor)};
+  color: white;
   &:hover,
   :active,
   :focus {
@@ -45,8 +48,16 @@ const fillStyle = (fillColor: ButtonColors) => css`
   }
 `;
 
+const fluidStyle = (props: StyledButtonProps) =>
+  props.fluid &&
+  css`
+    width: 100%;
+  `;
+
+// const fillOffsetTextColor = (color: ButtonColors) => (color === 'white' ? 'black' : 'white');
+
 // TODO: Move duplicate before/after to seperate style
-const outlineStyle = (outlineColor: ButtonColors) => css`
+const outlineStyle = (outlineColor: PaletteNames) => css`
   background-color: transparent;
   color: ${getColor(outlineColor, 500)};
   border: 0.125rem solid ${getColor(outlineColor, 500)};
@@ -89,7 +100,7 @@ const outlineStyle = (outlineColor: ButtonColors) => css`
   }
 `;
 
-const borderlessStyle = (borderlessColor: ButtonColors) => css`
+const borderlessStyle = (borderlessColor: PaletteNames) => css`
   background-color: transparent;
   color: ${getColor(borderlessColor, 500)};
   border: 0.125rem solid transparent;
@@ -144,20 +155,9 @@ export const StyledLeftFluidContent = styled('div')`
 // TODO: Move hasIcon logic to seperate styling
 // TODO: Clean up a lot of this logic into own styling functions
 // For some reason we need to call the props loader instead of loading, reserved word in SC or something.
-export const StyledButton = styled('button')<{
-  variant: ButtonVariants;
-  size: ButtonSizes;
-  color: ButtonColors;
-  fluid: boolean;
-  loader: boolean;
-  hasIcon: boolean;
-}>`
-  ${buttonStyle}
-  ${props =>
-    props.fluid &&
-    css`
-      width: 100%;
-    `};
+export const StyledButton = styled('button')<StyledButtonProps>`
+  ${defaultStyle}
+  ${fluidStyle}
   ${props =>
     props.fluid &&
     props.hasIcon &&
@@ -179,8 +179,7 @@ export const StyledButton = styled('button')<{
         margin-right: 1.5rem;
       }
     `}
-  height: ${props => buttonSizes[props.size]};
-  ${props => props.variant === 'fill' && fillStyle(props.color)};
-  ${props => props.variant === 'outline' && outlineStyle(props.color)};
-  ${props => props.variant === 'borderless' && borderlessStyle(props.color)};
+  ${props => props.variant === 'fill' && fillStyle(intentToColor[props.intent] as PaletteNames)};
+  ${props => props.variant === 'outline' && outlineStyle(intentToColor[props.intent] as PaletteNames)};
+  ${props => props.variant === 'borderless' && borderlessStyle(intentToColor[props.intent] as PaletteNames)};
 `;

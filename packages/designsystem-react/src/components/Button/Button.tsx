@@ -6,19 +6,17 @@ import {getColor} from '../../theme/currys/color';
 import {PaletteNames} from '../../theme/palette';
 
 export type ButtonVariants = 'fill' | 'outline' | 'borderless';
-export type ButtonSizes = 'small' | 'medium' | 'large';
-export type ButtonColors = PaletteNames | 'white' | 'black';
+export type ButtonIntents = 'primary' | 'positive' | 'warning' | 'danger';
 export type ButtonTags = 'button' | 'a';
 
 interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   children: React.ReactNode;
   variant?: ButtonVariants;
-  color?: ButtonColors;
-  size?: ButtonSizes;
-  danger?: boolean;
+  intent?: ButtonIntents;
+  large?: boolean;
   fluid?: boolean;
   loading?: boolean;
-  htmlTag?: ButtonTags;
+  is?: ButtonTags;
   onClick?: () => void;
 }
 
@@ -31,14 +29,21 @@ export function useIcons(children: React.ReactNode[]) {
   return [leftIcon, rightIcon, children];
 }
 
+// TODO: Need to make more globally
+export const intentToColor = {
+  primary: 'blueberry',
+  positive: 'kiwi',
+  warning: 'banana',
+  danger: 'cherry',
+};
+
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   const {
     children,
     variant = 'fill',
-    color = 'neutral',
-    size = 'small',
-    htmlTag = 'button',
-    danger = false,
+    intent = 'primary',
+    large = false,
+    is = 'button',
     loading = false,
     fluid = false,
     ...rest
@@ -46,17 +51,17 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
   const [isHovered, setIsHovered] = useState(false);
   // TODO: Considering expanding the Icon props to including color logic like this
-  const iconColor = variant === 'fill' ? 'white' : color;
+  const iconColor = variant === 'fill' ? 'white' : intentToColor[intent];
   return (
     <StyledButton
       onMouseEnter={() => setIsHovered(true)}
       onFocus={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onBlur={() => setIsHovered(false)}
-      size={size}
       variant={variant}
-      color={color}
-      as={htmlTag}
+      intent={intent}
+      as={is}
+      large
       hasIcon={!!(leftIcon || rightIcon)}
       fluid={fluid}
       loader={loading}
@@ -64,7 +69,10 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       {...rest}>
       {/* TODO: Consider splitting this up into render-functions. This is a mess */}
       {loading ? (
-        <Loader color={variant === 'fill' ? 'white' : getColor(color, 500)} size="tiny" />
+        <Loader
+          color={variant === 'fill' ? 'white' : getColor(intentToColor[intent] as PaletteNames, 500)}
+          size="tiny"
+        />
       ) : (
         <>
           {fluid ? (

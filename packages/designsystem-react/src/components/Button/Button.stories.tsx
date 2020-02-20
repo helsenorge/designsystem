@@ -2,11 +2,12 @@ import React from 'react';
 import {withKnobs, select, boolean, text} from '@storybook/addon-knobs';
 import {action} from '@storybook/addon-actions';
 import {storiesOf} from '@storybook/react';
-import Button, {ButtonColors} from './Button';
-import {allIcons, allPaletteNames} from '../../../.storybook/knobs';
+import Button, {ButtonVariants, ButtonIntents} from './Button';
+import {allIcons} from '../../../.storybook/knobs';
 import Icon from '../Icons';
 
-const allButtonColors = allPaletteNames;
+const allButtonVariants: ButtonVariants[] = ['fill', 'outline', 'borderless'];
+const allButtonIntents: ButtonIntents[] = ['primary', 'positive', 'warning', 'danger'];
 
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
@@ -14,13 +15,13 @@ stories.addDecorator(withKnobs);
 stories.add('Default', () => (
   <Button
     onClick={action('button-click')}
-    variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
-    size={select('Size', ['small', 'medium', 'large'], 'small')}
-    color={select('Color', allButtonColors, 'neutral')}
+    variant={select('Variant', allButtonVariants, 'fill')}
+    intent={select('Intent', allButtonIntents, 'primary')}
+    large={boolean('Large', false)}
     loading={boolean('Loading', false)}
     fluid={boolean('Fluid', false)}
     disabled={boolean('Disabled', false)}
-    htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
+    is={select('Is', ['button', 'a'], 'button')}>
     {text('Text', 'Button')}
   </Button>
 ));
@@ -33,22 +34,25 @@ stories.add('Fluid', () => (
     }}>
     <Button
       onClick={action('button-click')}
-      variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
-      size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'neutral')}
+      variant={select('Variant', allButtonVariants, 'fill')}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      large={boolean('Large', false)}
       loading={boolean('Loading', false)}
-      fluid={boolean('Fluid', false)}
-      htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
+      fluid={boolean('Fluid', true)}
+      disabled={boolean('Disabled', false)}
+      is={select('Is', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
-      variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
-      size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'neutral')}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      large={boolean('Large', false)}
       loading={boolean('Loading', false)}
-      fluid={boolean('Fluid', false)}
-      htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
+      fluid={boolean('Fluid', true)}
+      disabled={boolean('Disabled', false)}
+      is={select('Is', ['button', 'a'], 'button')}>
       <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
       {text('Text', 'Button')}
       <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
@@ -58,12 +62,14 @@ stories.add('Fluid', () => (
 
 stories.add('With icon(s)', () => (
   <Button
-    variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
-    size={select('Size', ['small', 'medium', 'large'], 'small')}
-    color={select('Color', allButtonColors, 'neutral')}
+    onClick={action('button-click')}
+    variant={select('Variant', allButtonVariants, 'fill')}
+    intent={select('Intent', allButtonIntents, 'primary')}
+    large={boolean('Large', false)}
     loading={boolean('Loading', false)}
     fluid={boolean('Fluid', false)}
-    htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
+    disabled={boolean('Disabled', false)}
+    is={select('Is', ['button', 'a'], 'button')}>
     <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
     {text('Text', 'Button')}
     <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
@@ -74,23 +80,23 @@ stories.add('All variants', () => (
   <div style={{display: 'grid', gridGap: '2rem'}}>
     <Button
       variant="fill"
-      size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'neutral')}
-      htmlTag={select('As tag', ['button', 'a'], 'button')}>
+      intent={select('Intent', allButtonIntents, 'primary')}
+      large={boolean('Large', false)}
+      is={select('Is', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <Button
       variant="outline"
-      size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'neutral')}
-      htmlTag={select('As tag', ['button', 'a'], 'button')}>
+      intent={select('Intent', allButtonIntents, 'primary')}
+      large={boolean('Large', false)}
+      is={select('Is', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <Button
       variant="borderless"
-      size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'neutral')}
-      htmlTag={select('As tag', ['button', 'a'], 'button')}>
+      intent={select('Intent', allButtonIntents, 'primary')}
+      large={boolean('Large', false)}
+      is={select('Is', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
   </div>
