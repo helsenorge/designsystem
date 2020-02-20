@@ -57,7 +57,7 @@ const fluidStyle = (props: StyledButtonProps) =>
 const largeStyle = (props: StyledButtonProps) =>
   props.large &&
   css`
-    height: 4.735rem;
+    height: 4.5rem;
   `;
 
 // const fillOffsetTextColor = (color: ButtonColors) => (color === 'white' ? 'black' : 'white');
