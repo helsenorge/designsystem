@@ -61,7 +61,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       variant={variant}
       intent={intent}
       as={is}
-      large
+      large={large}
       hasIcon={!!(leftIcon || rightIcon)}
       fluid={fluid}
       loader={loading}
@@ -69,10 +69,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       {...rest}>
       {/* TODO: Consider splitting this up into render-functions. This is a mess */}
       {loading ? (
-        <Loader
-          color={variant === 'fill' ? 'white' : getColor(intentToColor[intent] as PaletteNames, 500)}
-          size="tiny"
-        />
+        <Loader color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)} size="tiny" />
       ) : (
         <>
           {fluid ? (

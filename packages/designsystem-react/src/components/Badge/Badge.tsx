@@ -14,11 +14,11 @@ const Badge = styled('span')<BadgeProps>`
   align-items: center;
   font-size: 0.875rem;
   font-weight: 600;
-  color: white;
+  color: ${props => (props.color === 'white' ? 'black' : 'white')};
   min-width: 1.375rem;
   height: 1.375rem;
   border-radius: 1rem;
-  background-color: ${props => (props.color ? getColor(props.color, 500) : getColor('black', 500))};
+  background-color: ${props => (props.color ? getColor(props.color, 500) : getColor('black'))};
 `;
 
 export default Badge;

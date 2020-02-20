@@ -83,9 +83,11 @@ export const palette = {
   ...kiwi,
   ...neutral,
   ...plum,
+  black: '#000',
+  white: '#fff',
 };
 
-export type PaletteNames = 'banana' | 'blueberry' | 'cherry' | 'kiwi' | 'neutral' | 'plum';
+export type PaletteNames = 'banana' | 'blueberry' | 'cherry' | 'kiwi' | 'neutral' | 'plum' | 'black' | 'white';
 
 export type PaletteDepths = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
 
@@ -149,4 +151,6 @@ export type PaletteCodes =
   | 'plum600'
   | 'plum700'
   | 'plum800'
-  | 'plum900';
+  | 'plum900'
+  | 'white'
+  | 'black';

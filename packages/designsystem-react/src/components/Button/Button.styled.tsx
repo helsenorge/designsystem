@@ -54,6 +54,12 @@ const fluidStyle = (props: StyledButtonProps) =>
     width: 100%;
   `;
 
+const largeStyle = (props: StyledButtonProps) =>
+  props.large &&
+  css`
+    height: 4.735rem;
+  `;
+
 // const fillOffsetTextColor = (color: ButtonColors) => (color === 'white' ? 'black' : 'white');
 
 // TODO: Move duplicate before/after to seperate style
@@ -158,6 +164,12 @@ export const StyledLeftFluidContent = styled('div')`
 export const StyledButton = styled('button')<StyledButtonProps>`
   ${defaultStyle}
   ${fluidStyle}
+  ${largeStyle}
+  ${props =>
+    props.large &&
+    css`
+      height: 4.375rem;
+    `}
   ${props =>
     props.fluid &&
     props.hasIcon &&
