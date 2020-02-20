@@ -7,4 +7,4 @@ import {allPaletteNames} from '../../../.storybook/knobs';
 const stories = storiesOf('Badge', module);
 stories.addDecorator(withKnobs);
 
-stories.add('Default', () => <Badge color={select('Color', allPaletteNames, 'neutral')}>{text('Text', '1')}</Badge>);
+stories.add('Default', () => <Badge color={select('Color', allPaletteNames, 'blueberry')}>{text('Text', '1')}</Badge>);

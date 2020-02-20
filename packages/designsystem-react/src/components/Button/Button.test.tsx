@@ -4,17 +4,13 @@ import Button from './Button';
 import {Icon} from '../..';
 
 test('displays the button', (): void => {
-  const {container} = render(
-    <Button size="small" variant="fill" color="neutral">
-      Button
-    </Button>,
-  );
+  const {container} = render(<Button>Button</Button>);
   expect(container).toMatchSnapshot();
 });
 
 test('displays the button with icons', (): void => {
   const {container} = render(
-    <Button size="small" variant="fill" color="neutral">
+    <Button>
       <Icon>alarmclock</Icon>
       Button
       <Icon>alarmclock</Icon>

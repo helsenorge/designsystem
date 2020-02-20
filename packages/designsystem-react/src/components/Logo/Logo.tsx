@@ -2,13 +2,12 @@ import React from 'react';
 import {getColor} from '../../theme/currys/color';
 import {PaletteNames} from '../../theme/palette';
 
-type LogoVariant = 'byline' | 'square' | 'original';
-type LogoColor = PaletteNames | 'white' | 'black';
+type LogoColor = PaletteNames;
 
 interface LogoProps {
   size?: number;
   color?: LogoColor;
-  variant?: LogoVariant;
+  byline?: boolean;
 }
 
 const Original = ({size = 300, color = 'black'}: {size?: number; color?: LogoColor}): JSX.Element => (
@@ -28,19 +27,8 @@ const Byline = ({size = 300, color = 'black'}: {size?: number; color?: LogoColor
 );
 
 function Logo(props: LogoProps): JSX.Element {
-  const {variant = 'original', ...restProps} = props;
-  function getVariant() {
-    switch (variant) {
-      case 'original':
-        return <Original {...restProps} />;
-      case 'byline':
-        return <Byline {...restProps} />;
-      case 'square':
-        /* TODO: This is not yet implemented due to missing AI-file from designers. */
-        return <></>;
-    }
-  }
-  return getVariant();
+  const {byline = false, ...restProps} = props;
+  return byline ? <Byline {...restProps} /> : <Original {...restProps} />;
 }
 
 export default Logo;

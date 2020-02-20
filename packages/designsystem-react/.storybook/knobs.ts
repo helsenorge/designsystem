@@ -33,9 +33,7 @@ export const allIcons = [
   'x',
 ];
 
-export const allPaletteNames: PaletteNames[] = ['banana', 'blueberry', 'cherry', 'kiwi', 'neutral', 'plum'];
-
-export const allPaletteNamesWithNegatives: (PaletteNames | 'black' | 'white')[] = [
+export const allPaletteNames: PaletteNames[] = [
   'banana',
   'blueberry',
   'cherry',

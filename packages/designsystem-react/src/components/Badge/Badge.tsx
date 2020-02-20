@@ -1,23 +1,24 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {PaletteNames} from '../../theme/palette';
 import {getColor} from '../../theme/currys/color';
 
-type BadgeColors = PaletteNames;
+export type BadgeColors = PaletteNames;
 
 interface BadgeProps {
   color?: BadgeColors;
 }
 
 const Badge = styled('span')<BadgeProps>`
-  padding: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  min-width: 1rem;
-  height: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: ${props => (props.color === 'white' ? 'black' : 'white')};
+  min-width: 1.375rem;
+  height: 1.375rem;
   border-radius: 1rem;
-  background-color: ${props => (props.color ? getColor(props.color, 500) : getColor('black', 500))};
+  background-color: ${props => (props.color ? getColor(props.color, 500) : getColor('black'))};
 `;
 
 export default Badge;
