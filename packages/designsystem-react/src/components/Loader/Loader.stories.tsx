@@ -3,9 +3,11 @@ import {withKnobs, select} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import Loader from './Loader';
 import {allPaletteNames} from '../../../.storybook/knobs';
+import {withA11y} from '@storybook/addon-a11y';
 
 const stories = storiesOf('Loader', module);
 stories.addDecorator(withKnobs);
+stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
   <Loader

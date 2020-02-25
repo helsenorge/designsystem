@@ -83,8 +83,8 @@ export const palette = {
   ...kiwi,
   ...neutral,
   ...plum,
-  black: '#000',
-  white: '#fff',
+  black: '#000000',
+  white: '#ffffff',
 };
 
 export type PaletteNames = 'banana' | 'blueberry' | 'cherry' | 'kiwi' | 'neutral' | 'plum' | 'black' | 'white';
