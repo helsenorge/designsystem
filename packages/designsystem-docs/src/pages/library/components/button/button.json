@@ -3,50 +3,58 @@
     {
       "name": "variant",
       "type": "ButtonVariants",
-      "require": false,
+      "require": "false",
       "default": "fill",
       "valid": ["fill", "outline", "borderless"],
-      "description": "Changes the visual representation of the button"
+      "description": "Changes the visual representation of the button."
     },
     {
-      "name": "size",
-      "type": "ButtonSizes",
-      "require": false,
-      "default": "small",
-      "valid": ["small", "medium", "large"],
-      "description": "Changes the size of the button"
+      "name": "intent",
+      "type": "ButtonIntents",
+      "require": "false",
+      "default": "primary",
+      "valid": ["primary", "warning", "danger"],
+      "description": "Changes the intent of the button. Mostly changes the color profile."
     },
     {
-      "name": "color",
-      "type": "ButtonColors",
-      "require": false,
-      "default": "blueberry",
-      "valid": ["blueberry", "pulse", "white"],
-      "description": "Changes the color of the button"
+      "name": "inverted",
+      "type": "boolean",
+      "require": "false",
+      "default": "false",
+      "valid": ["true", "false"],
+      "description": "Changes the color presentation for different backgrounds."
+    },
+    {
+      "name": "large",
+      "type": "boolean",
+      "require": "false",
+      "default": "false",
+      "valid": ["true", "false"],
+      "description": "Changes the size of the button to large."
     },
     {
       "name": "fluid",
       "type": "boolean",
-      "require": false,
-      "default": false,
+      "require": "false",
+      "default": "false",
       "valid": ["true", "false"],
-      "description": "Makes the button scale to full width of its parent element"
+      "description": "Makes the button scale to full width of its parent element."
     },
     {
       "name": "loading",
       "type": "boolean",
-      "require": false,
-      "default": false,
+      "require": "false",
+      "default": "false",
       "valid": ["true", "false"],
-      "description": "Sets the button into a loading state displaying <Loader /> as content"
+      "description": "Sets the button into a loading state displaying <Loader /> as content."
     },
     {
-      "name": "htmlTag",
+      "name": "is",
       "type": "ButtonTags",
-      "require": false,
+      "require": "false",
       "default": "button",
       "valid": ["button", "a"],
-      "description": "Changes the underlying element of the button"
+      "description": "Changes the underlying element of the button."
     }
   ]
 }

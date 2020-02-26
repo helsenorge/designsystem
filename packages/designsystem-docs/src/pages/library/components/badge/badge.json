@@ -3,37 +3,10 @@
     {
       "name": "color",
       "type": "BadgeColors",
-      "require": false,
-      "default": "urine200",
-      "valid": [
-        "ash",
-        "bandAid100",
-        "bandAid200",
-        "bandAid300",
-        "blood100",
-        "blood200",
-        "bone",
-        "nausea100",
-        "nausea200",
-        "scab",
-        "scalpel",
-        "strangulation100",
-        "strangulation200",
-        "strangulation300",
-        "strangulation400",
-        "strangulation500",
-        "strangulation600",
-        "kiwi100",
-        "kiwi200",
-        "kiwi300",
-        "kiwi400",
-        "kiwi500",
-        "urine100",
-        "urine200",
-        "waitingRoom",
-        "wheelChair"
-      ],
-      "description": "Endrer bakgrunnsfarge på komponenten"
+      "require": "false",
+      "default": "black",
+      "valid": ["banana", "blueberry", "cherry", "kiwi", "neutral", "plum", "black", "white"],
+      "description": "Changes the badge background color."
     }
   ]
 }
