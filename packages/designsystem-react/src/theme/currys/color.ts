@@ -6,4 +6,4 @@ const isComplementary = (name: PaletteNames) => name === 'black' || name === 'wh
 export const getColor = (name: PaletteNames, depth?: PaletteDepths) =>
   theme.palette[`${name}${isComplementary(name) ? '' : depth}`];
 
-export const getHoverColor = (color: PaletteNames | 'white' | 'black') => `${getColor(color, 700)}1A`;
+export const getHoverColor = (color: PaletteNames | 'white' | 'black') => `${getColor(color, 700)}0D`;

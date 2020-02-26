@@ -3,9 +3,11 @@ import {withKnobs, text, select, number, boolean} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import Logo from './Logo';
 import {allPaletteNames} from '../../../.storybook/knobs';
+import {withA11y} from '@storybook/addon-a11y';
 
 const stories = storiesOf('Logo', module);
 stories.addDecorator(withKnobs);
+stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
   <Logo

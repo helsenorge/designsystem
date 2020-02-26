@@ -5,25 +5,30 @@ import {storiesOf} from '@storybook/react';
 import Button, {ButtonVariants, ButtonIntents} from './Button';
 import {allIcons} from '../../../.storybook/knobs';
 import Icon from '../Icons';
+import {withA11y} from '@storybook/addon-a11y';
 
 const allButtonVariants: ButtonVariants[] = ['fill', 'outline', 'borderless'];
-const allButtonIntents: ButtonIntents[] = ['primary', 'positive', 'warning', 'danger'];
+const allButtonIntents: ButtonIntents[] = ['primary', 'warning', 'danger'];
 
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
+stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
-  <Button
-    onClick={action('button-click')}
-    variant={select('Variant', allButtonVariants, 'fill')}
-    intent={select('Intent', allButtonIntents, 'primary')}
-    large={boolean('Large', false)}
-    loading={boolean('Loading', false)}
-    fluid={boolean('Fluid', false)}
-    disabled={boolean('Disabled', false)}
-    is={select('Is', ['button', 'a'], 'button')}>
-    {text('Text', 'Button')}
-  </Button>
+  <div style={{width: '15rem'}}>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      {text('Text', 'Button')}
+    </Button>
+  </div>
 ));
 
 stories.add('Fluid', () => (
@@ -33,47 +38,94 @@ stories.add('Fluid', () => (
       padding: '1rem',
     }}>
     <Button
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
       large={boolean('Large', false)}
       loading={boolean('Loading', false)}
-      fluid={boolean('Fluid', true)}
-      disabled={boolean('Disabled', false)}
-      is={select('Is', ['button', 'a'], 'button')}>
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
       {text('Text', 'Button')}
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
       large={boolean('Large', false)}
       loading={boolean('Loading', false)}
-      fluid={boolean('Fluid', true)}
-      disabled={boolean('Disabled', false)}
-      is={select('Is', ['button', 'a'], 'button')}>
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
       <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
       {text('Text', 'Button')}
       <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
+    </Button>
+    <div style={{height: '1rem'}}></div>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      {text('Text', 'Button')}
     </Button>
   </div>
 ));
 
 stories.add('With icon(s)', () => (
-  <Button
-    onClick={action('button-click')}
-    variant={select('Variant', allButtonVariants, 'fill')}
-    intent={select('Intent', allButtonIntents, 'primary')}
-    large={boolean('Large', false)}
-    loading={boolean('Loading', false)}
-    fluid={boolean('Fluid', false)}
-    disabled={boolean('Disabled', false)}
-    is={select('Is', ['button', 'a'], 'button')}>
-    <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
-    {text('Text', 'Button')}
-    <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
-  </Button>
+  <div style={{}}>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      {text('Text', 'Button')}
+    </Button>
+    <div style={{height: '1rem'}}></div>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      {text('Text', 'Button')}
+      <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
+    </Button>
+    <div style={{height: '1rem'}}></div>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      {text('Text', 'Button')}
+      <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
+    </Button>
+  </div>
 ));
 
 stories.add('All variants', () => (
