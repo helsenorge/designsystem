@@ -12,27 +12,27 @@ const banana = {
 };
 
 const blueberry = {
-  blueberry50: '#DEF3F4',
-  blueberry100: '#B4E2E4',
-  blueberry200: '#8BCDD3',
-  blueberry300: '#63B6C0',
-  blueberry400: '#3D9CAC',
+  blueberry50: '#E4F7F9',
+  blueberry100: '#CAE7ED',
+  blueberry200: '#AFDAE3',
+  blueberry300: '#7ABECC',
+  blueberry400: '#58AABB',
   blueberry500: '#188097',
-  blueberry600: '#137186',
-  blueberry700: '#0F6275',
-  blueberry800: '#0B5363',
+  blueberry600: '#126F87',
+  blueberry700: '#08667C',
+  blueberry800: '#06596C',
   blueberry900: '#084350',
 };
 
 const cherry = {
-  cherry50: '#FCF4EA',
-  cherry100: '#F4DABF',
-  cherry200: '#EBB996',
-  cherry300: '#E0926E',
-  cherry400: '#D56547',
+  cherry50: '#FFF2EA',
+  cherry100: '#F7E1D2',
+  cherry200: '#EEC0A5',
+  cherry300: '#E39376',
+  cherry400: '#D56147',
   cherry500: '#C83521',
   cherry600: '#B62E1C',
-  cherry700: '#A42817',
+  cherry700: '#A31F0E',
   cherry800: '#912112',
   cherry900: '#7E1C0E',
 };
@@ -51,11 +51,11 @@ const kiwi = {
 };
 
 const neutral = {
-  neutral50: '#F4F4F3',
-  neutral100: '#E2E2E1',
-  neutral200: '#D0CFCD',
-  neutral300: '#BDBDBA',
-  neutral400: '#ABA9A6',
+  neutral50: '#F5F3F3',
+  neutral100: '#EAE7E7',
+  neutral200: '#D6D4D3',
+  neutral300: '#BDBAB9',
+  neutral400: '#AAA8A6',
   neutral500: '#989693',
   neutral600: '#7D7C79',
   neutral700: '#62625F',

@@ -63,9 +63,11 @@ const variantHoverStyle = css`
   }
 `;
 
-export const StyledButtonContent = styled('span')`
+export const StyledButtonWrapper = styled('span')`
   display: inline-flex;
   align-items: center;
+  justify-content: space-between;
+  width: inherit;
   height: 100%;
   &:focus {
     border-bottom: 1px solid white;
@@ -74,7 +76,11 @@ export const StyledButtonContent = styled('span')`
 
 export const StyledLeftFluidContent = styled('div')`
   display: flex;
+  align-items: center;
+  height: 100%;
 `;
+
+export const StyledButtonContent = styled('span')``;
 
 // TODO: Move hasIcon logic to seperate styling
 // TODO: Clean up a lot of this logic into own styling functions
@@ -92,6 +98,11 @@ const fillStyle = (color: PaletteNames, inverted?: boolean) => css`
     background-color: ${inverted ? 'white' : getColor(color, 700)};
     border-color: transparent;
     box-shadow: 0 0 0 0.25rem ${inverted ? 'white' : getColor(color, 700)};
+  }
+  &:focus {
+    ${StyledButtonContent} {
+      border-bottom: 1px solid ${!inverted ? 'white' : getColor(color, 700)};
+    }
   }
   &:disabled {
     background-color: ${getColor('neutral', 200)};
@@ -162,25 +173,20 @@ export const StyledButton = styled('button')<StyledButtonProps>`
   ${props => props.variant === 'outline' && outlineStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
   ${props =>
     props.variant === 'borderless' && borderlessStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
-  /* ${props =>
-    props.fluid &&
-    props.hasIcon &&
-    css`
-      justify-content: space-between;
-    `} */
-  /* ${props =>
+  ${props =>
     props.hasIcon &&
     !props.loader &&
     css`
       padding: 0;
-      & .icon {
-        margin: 0 0.375rem;
+      .icon {
+        margin: 0 0.7rem;
       }
-      & > ${StyledButtonContent}:first-child {
+      ${StyledButtonContent}:first-child {
         margin-left: 1.5rem;
       }
-      & > ${StyledButtonContent}:last-child {
+      ${StyledButtonContent}:last-child {
         margin-right: 1.5rem;
       }
-    `} */
+    `}
+
 `;
