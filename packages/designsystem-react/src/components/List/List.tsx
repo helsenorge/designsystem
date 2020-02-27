@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import {getColor} from '../../theme/currys';
+import {getColor} from '../../theme/currys/color';
 
 const StyledListItem = styled('li')`
-  border-bottom: 1px solid ${getColor('bone', 600)};
+  border-bottom: 1px solid ${getColor('neutral', 600)};
 `;
 
 const StyledList = styled('ul')`

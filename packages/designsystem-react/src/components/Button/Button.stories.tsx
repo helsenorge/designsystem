@@ -2,27 +2,33 @@ import React from 'react';
 import {withKnobs, select, boolean, text} from '@storybook/addon-knobs';
 import {action} from '@storybook/addon-actions';
 import {storiesOf} from '@storybook/react';
-import Button, {ButtonColors} from './Button';
-import {allIcons, allPaletteNames} from '../../../.storybook/knobs';
+import Button, {ButtonVariants, ButtonIntents} from './Button';
+import {allIcons} from '../../../.storybook/knobs';
 import Icon from '../Icons';
+import {withA11y} from '@storybook/addon-a11y';
 
-const allButtonColors: ButtonColors[] = ['vein', 'pulse', 'white'];
+const allButtonVariants: ButtonVariants[] = ['fill', 'outline', 'borderless'];
+const allButtonIntents: ButtonIntents[] = ['primary', 'warning', 'danger'];
 
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
+stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
-  <Button
-    onClick={action('button-click')}
-    variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
-    size={select('Size', ['small', 'medium', 'large'], 'small')}
-    color={select('Color', allButtonColors, 'vein')}
-    loading={boolean('Loading', false)}
-    fluid={boolean('Fluid', false)}
-    disabled={boolean('Disabled', false)}
-    htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
-    {text('Text', 'Button')}
-  </Button>
+  <div style={{width: '15rem'}}>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      {text('Text', 'Button')}
+    </Button>
+  </div>
 ));
 
 stories.add('Fluid', () => (
@@ -32,23 +38,89 @@ stories.add('Fluid', () => (
       padding: '1rem',
     }}>
     <Button
-      onClick={action('button-click')}
-      variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
-      size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'vein')}
-      loading={boolean('Loading', false)}
+      disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
-      htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
       {text('Text', 'Button')}
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
-      variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
-      size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'vein')}
-      loading={boolean('Loading', false)}
+      disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
-      htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      {text('Text', 'Button')}
+      <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
+    </Button>
+    <div style={{height: '1rem'}}></div>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      {text('Text', 'Button')}
+    </Button>
+  </div>
+));
+
+stories.add('With icon(s)', () => (
+  <div style={{}}>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      {text('Text', 'Button')}
+    </Button>
+    <div style={{height: '1rem'}}></div>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      {text('Text', 'Button')}
+      <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
+    </Button>
+    <div style={{height: '1rem'}}></div>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      is={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
       <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
       {text('Text', 'Button')}
       <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
@@ -56,41 +128,27 @@ stories.add('Fluid', () => (
   </div>
 ));
 
-stories.add('With icon(s)', () => (
-  <Button
-    variant={select('Variant', ['fill', 'outline', 'borderless'], 'fill')}
-    size={select('Size', ['small', 'medium', 'large'], 'small')}
-    color={select('Color', allButtonColors, 'vein')}
-    loading={boolean('Loading', false)}
-    fluid={boolean('Fluid', false)}
-    htmlTag={select('HTML tag', ['button', 'a'], 'button')}>
-    <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
-    {text('Text', 'Button')}
-    <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
-  </Button>
-));
-
 stories.add('All variants', () => (
   <div style={{display: 'grid', gridGap: '2rem'}}>
     <Button
       variant="fill"
-      size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'vein')}
-      htmlTag={select('As tag', ['button', 'a'], 'button')}>
+      intent={select('Intent', allButtonIntents, 'primary')}
+      large={boolean('Large', false)}
+      is={select('Is', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <Button
       variant="outline"
-      size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'vein')}
-      htmlTag={select('As tag', ['button', 'a'], 'button')}>
+      intent={select('Intent', allButtonIntents, 'primary')}
+      large={boolean('Large', false)}
+      is={select('Is', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <Button
       variant="borderless"
-      size={select('Size', ['small', 'medium', 'large'], 'small')}
-      color={select('Color', allButtonColors, 'vein')}
-      htmlTag={select('As tag', ['button', 'a'], 'button')}>
+      intent={select('Intent', allButtonIntents, 'primary')}
+      large={boolean('Large', false)}
+      is={select('Is', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
   </div>

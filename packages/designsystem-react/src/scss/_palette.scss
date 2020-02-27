@@ -1,56 +1,128 @@
-$placeholder: '#4A412A';
+$banana50: #fcf2bf;
+$banana100: #f9ea9f;
+$banana200: #f5e080;
+$banana300: #f1d460;
+$banana400: #ebc840;
+$banana500: #ddab06;
+$banana600: #c59302;
+$banana700: #ab7c00;
+$banana800: #916500;
+$banana900: #764f00;
 
-$bone50: '#E4F7F9';
-$bone100: '#F2F1F0';
-$bone200: '#D6D4D3';
-$bone300: $placeholder;
-$bone400: $placeholder;
-$bone500: $placeholder;
-$bone600: '#666463';
-$bone700: $placeholder;
-$bone800: $placeholder;
-$bone900: '#333130';
+$blueberry50: #def3f4;
+$blueberry100: #b4e2e4;
+$blueberry200: #8bcdd3;
+$blueberry300: #63b6c0;
+$blueberry400: #3d9cac;
+$blueberry500: #188097;
+$blueberry600: #137186;
+$blueberry700: #0f6275;
+$blueberry800: #0b5363;
+$blueberry900: #084350;
 
-$gall50: $placeholder;
-$gall100: '#FFF0BE';
-$gall200: $placeholder;
-$gall300: $placeholder;
-$gall400: $placeholder;
-$gall500: '#DDAB06';
-$gall600: $placeholder;
-$gall700: $placeholder;
-$gall800: $placeholder;
-$gall900: $placeholder;
+$cherry50: #fcf4ea;
+$cherry100: #f4dabf;
+$cherry200: #ebb996;
+$cherry300: #e0926e;
+$cherry400: #d56547;
+$cherry500: #c83521;
+$cherry600: #b62e1c;
+$cherry700: #a42817;
+$cherry800: #912112;
+$cherry900: #7e1c0e;
 
-$pulse50: '#FFF2EA';
-$pulse100: '#FEE0D3';
-$pulse200: $placeholder;
-$pulse300: $placeholder;
-$pulse400: $placeholder;
-$pulse500: '#C83521';
-$pulse600: $placeholder;
-$pulse700: '#A31F0E';
-$pulse800: $placeholder;
-$pulse900: $placeholder;
+$kiwi50: #e6f8ee;
+$kiwi100: #c2edd6;
+$kiwi200: #9de2bf;
+$kiwi300: #79d6aa;
+$kiwi400: #56ca96;
+$kiwi500: #33be84;
+$kiwi600: #10b172;
+$kiwi700: #0ca161;
+$kiwi800: #099150;
+$kiwi900: #078141;
 
-$surgical50: $placeholder;
-$surgical100: '#DFF2EA';
-$surgical200: $placeholder;
-$surgical300: $placeholder;
-$surgical400: $placeholder;
-$surgical500: $placeholder;
-$surgical600: $placeholder;
-$surgical700: '#115F3D';
-$surgical800: $placeholder;
-$surgical900: $placeholder;
+$neutral50: #f4f4f3;
+$neutral100: #e2e2e1;
+$neutral200: #d0cfcd;
+$neutral300: #bdbdba;
+$neutral400: #aba9a6;
+$neutral500: #989693;
+$neutral600: #7d7c79;
+$neutral700: #62625f;
+$neutral800: #474745;
+$neutral900: #2b2c2b;
 
-$vein50: '#E4F7F9';
-$vein100: $placeholder;
-$vein200: $placeholder;
-$vein300: $placeholder;
-$vein400: $placeholder;
-$vein500: '#188097';
-$vein600: '#17798E';
-$vein700: '#08667C';
-$vein800: $placeholder;
-$vein900: $placeholder;
+$plum50: #efe4fd;
+$plum100: #d7bdf9;
+$plum200: #bf98f3;
+$plum300: #a875eb;
+$plum400: #9153e2;
+$plum500: #7a33d7;
+$plum600: #6a2abf;
+$plum700: #5b22a6;
+$plum800: #4c1b8c;
+$plum900: #3c1471;
+
+$palette-map: (
+  'banana50': $banana50,
+  'banana100': $banana100,
+  'banana200': $banana200,
+  'banana300': $banana300,
+  'banana400': $banana400,
+  'banana500': $banana500,
+  'banana600': $banana600,
+  'banana700': $banana700,
+  'banana800': $banana800,
+  'banana900': $banana900,
+  'blueberry50': $blueberry50,
+  'blueberry100': $blueberry100,
+  'blueberry200': $blueberry200,
+  'blueberry300': $blueberry300,
+  'blueberry400': $blueberry400,
+  'blueberry500': $blueberry500,
+  'blueberry600': $blueberry600,
+  'blueberry700': $blueberry700,
+  'blueberry800': $blueberry800,
+  'blueberry900': $blueberry900,
+  'cherry50': $cherry50,
+  'cherry100': $cherry100,
+  'cherry200': $cherry200,
+  'cherry300': $cherry300,
+  'cherry400': $cherry400,
+  'cherry500': $cherry500,
+  'cherry600': $cherry600,
+  'cherry700': $cherry700,
+  'cherry800': $cherry800,
+  'cherry900': $cherry900,
+  'kiwi50': $kiwi50,
+  'kiwi100': $kiwi100,
+  'kiwi200': $kiwi200,
+  'kiwi300': $kiwi300,
+  'kiwi400': $kiwi400,
+  'kiwi500': $kiwi500,
+  'kiwi600': $kiwi600,
+  'kiwi700': $kiwi700,
+  'kiwi800': $kiwi800,
+  'kiwi900': $kiwi900,
+  'neutral50': $neutral50,
+  'neutral100': $neutral100,
+  'neutral200': $neutral200,
+  'neutral300': $neutral300,
+  'neutral400': $neutral400,
+  'neutral500': $neutral500,
+  'neutral600': $neutral600,
+  'neutral700': $neutral700,
+  'neutral800': $neutral800,
+  'neutral900': $neutral900,
+  'plum50': $plum50,
+  'plum100': $plum100,
+  'plum200': $plum200,
+  'plum300': $plum300,
+  'plum400': $plum400,
+  'plum500': $plum500,
+  'plum600': $plum600,
+  'plum700': $plum700,
+  'plum800': $plum800,
+  'plum900': $plum900,
+);

@@ -1,24 +1,23 @@
 import React, {useState} from 'react';
 import {HTMLButtonProps, HTMLAnchorProps} from '../../constants';
-import {StyledButton, StyledButtonContent, StyledLeftFluidContent} from './Button.styled';
+import {StyledButton, StyledButtonContent, StyledLeftFluidContent, StyledButtonWrapper} from './Button.styled';
 import Loader from '../Loader';
-import {getColor} from '../../theme/currys';
+import {PaletteNames} from '../../theme/palette';
 
-export type ButtonVariants = 'fill' | 'outline' | 'borderless';
-export type ButtonSizes = 'small' | 'medium' | 'large';
-export type ButtonColors = 'vein' | 'pulse' | 'white';
+export type ButtonIntents = 'primary' | 'warning' | 'danger';
 export type ButtonTags = 'button' | 'a';
+export type ButtonVariants = 'fill' | 'outline' | 'borderless';
 
 interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   children: React.ReactNode;
-  variant?: ButtonVariants;
-  color?: ButtonColors;
-  size?: ButtonSizes;
-  danger?: boolean;
   fluid?: boolean;
+  intent?: ButtonIntents;
+  inverted?: boolean;
+  is?: ButtonTags;
+  large?: boolean;
   loading?: boolean;
-  htmlTag?: ButtonTags;
   onClick?: () => void;
+  variant?: ButtonVariants;
 }
 
 // TODO: Consider making this a shared hook
@@ -30,71 +29,80 @@ export function useIcons(children: React.ReactNode[]) {
   return [leftIcon, rightIcon, children];
 }
 
+// TODO: Need to make more globally
+export const intentToColor = {
+  primary: 'blueberry',
+  warning: 'banana',
+  danger: 'cherry',
+};
+
+const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, inverted: boolean) => {
+  if (disabled) return 'neutral';
+  if ((fill && !inverted) || (!fill && inverted)) return 'white';
+  return intentToColor[intent];
+};
+
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   const {
     children,
-    variant = 'fill',
-    color = 'vein',
-    size = 'small',
-    htmlTag = 'button',
-    danger = false,
-    loading = false,
     fluid = false,
-    ...rest
+    intent = 'primary',
+    inverted = false,
+    is = 'button',
+    large = false,
+    loading = false,
+    variant = 'fill',
+    disabled = false,
+    ...restProps
   } = props;
+
+  const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted);
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
   const [isHovered, setIsHovered] = useState(false);
-  // TODO: Considering expanding the Icon props to including color logic like this
-  const iconColor = variant === 'fill' ? 'white' : color;
+
+  function renderIcon(iconElement: any, large: boolean, color: string, hover: boolean) {
+    return iconElement
+      ? React.cloneElement(iconElement as React.ReactElement, {size: large ? 64 : 38, color: color, hover})
+      : null;
+  }
+
   return (
     <StyledButton
       onMouseEnter={() => setIsHovered(true)}
       onFocus={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onBlur={() => setIsHovered(false)}
-      size={size}
       variant={variant}
-      color={color}
-      as={htmlTag}
+      intent={intent}
+      inverted={inverted}
+      as={is}
+      large={large}
       hasIcon={!!(leftIcon || rightIcon)}
       fluid={fluid}
       loader={loading}
       ref={ref}
-      {...rest}>
-      {/* TODO: Consider splitting this up into render-functions. This is a mess */}
-      {loading ? (
-        <Loader color={variant === 'fill' ? 'white' : getColor(color, 500)} size="tiny" />
-      ) : (
-        <>
-          {fluid ? (
-            <StyledLeftFluidContent>
-              {leftIcon
-                ? React.cloneElement(leftIcon as React.ReactElement, {
-                    color: iconColor,
-                    isHovered,
-                  })
-                : null}
-              <StyledButtonContent>{restChildren}</StyledButtonContent>
-            </StyledLeftFluidContent>
-          ) : (
-            <>
-              {leftIcon
-                ? React.cloneElement(leftIcon as React.ReactElement, {
-                    color: iconColor,
-                    isHovered,
-                  })
-                : null}
-              <StyledButtonContent>{restChildren}</StyledButtonContent>
-            </>
-          )}
-          {rightIcon
-            ? React.cloneElement(rightIcon as React.ReactElement, {
-                color: iconColor,
-                isHovered,
-              })
-            : null}
-        </>
-      )}
+      disabled={disabled}
+      {...restProps}>
+      <StyledButtonWrapper>
+        {loading ? (
+          <Loader color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)} size="tiny" />
+        ) : (
+          <>
+            {fluid ? (
+              <StyledLeftFluidContent>
+                {renderIcon(leftIcon, large, iconColor, isHovered)}
+                <StyledButtonContent>{restChildren}</StyledButtonContent>
+              </StyledLeftFluidContent>
+            ) : (
+              <>
+                {renderIcon(leftIcon, large, iconColor, isHovered)}
+                <StyledButtonContent>{restChildren}</StyledButtonContent>
+              </>
+            )}
+            {renderIcon(rightIcon, large, iconColor, isHovered)}
+          </>
+        )}
+      </StyledButtonWrapper>
     </StyledButton>
   );
 });

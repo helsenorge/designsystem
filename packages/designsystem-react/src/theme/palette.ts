@@ -1,132 +1,156 @@
-// Labeled as 'the ugliest color in the world'
-// https://en.wikipedia.org/wiki/Pantone_448_C
-const placeholder = '#4A412A';
-
-const bone = {
-  bone50: '#F9F7F7',
-  bone100: '#F2F1F0',
-  bone200: '#D6D4D3',
-  bone300: placeholder,
-  bone400: placeholder,
-  bone500: placeholder,
-  bone600: '#666463',
-  bone700: placeholder,
-  bone800: placeholder,
-  bone900: '#333130',
+const banana = {
+  banana50: '#FCF2BF',
+  banana100: '#F9EA9F',
+  banana200: '#F5E080',
+  banana300: '#F1D460',
+  banana400: '#EBC840',
+  banana500: '#DDAB06',
+  banana600: '#C59302',
+  banana700: '#AB7C00',
+  banana800: '#916500',
+  banana900: '#764F00',
 };
 
-const gall = {
-  gall50: placeholder,
-  gall100: '#FFF0BE',
-  gall200: placeholder,
-  gall300: placeholder,
-  gall400: placeholder,
-  gall500: '#DDAB06',
-  gall600: placeholder,
-  gall700: placeholder,
-  gall800: placeholder,
-  gall900: placeholder,
+const blueberry = {
+  blueberry50: '#E4F7F9',
+  blueberry100: '#CAE7ED',
+  blueberry200: '#AFDAE3',
+  blueberry300: '#7ABECC',
+  blueberry400: '#58AABB',
+  blueberry500: '#188097',
+  blueberry600: '#126F87',
+  blueberry700: '#08667C',
+  blueberry800: '#06596C',
+  blueberry900: '#084350',
 };
 
-const pulse = {
-  pulse50: '#FFF2EA',
-  pulse100: '#FEE0D3',
-  pulse200: placeholder,
-  pulse300: placeholder,
-  pulse400: placeholder,
-  pulse500: '#C83521',
-  pulse600: placeholder,
-  pulse700: '#A31F0E',
-  pulse800: placeholder,
-  pulse900: placeholder,
+const cherry = {
+  cherry50: '#FFF2EA',
+  cherry100: '#F7E1D2',
+  cherry200: '#EEC0A5',
+  cherry300: '#E39376',
+  cherry400: '#D56147',
+  cherry500: '#C83521',
+  cherry600: '#B62E1C',
+  cherry700: '#A31F0E',
+  cherry800: '#912112',
+  cherry900: '#7E1C0E',
 };
 
-const surgical = {
-  surgical50: placeholder,
-  surgical100: '#DFF2EA',
-  surgical200: placeholder,
-  surgical300: placeholder,
-  surgical400: placeholder,
-  surgical500: placeholder,
-  surgical600: placeholder,
-  surgical700: '#115F3D',
-  surgical800: placeholder,
-  surgical900: placeholder,
+const kiwi = {
+  kiwi50: '#E6F8EE',
+  kiwi100: '#C2EDD6',
+  kiwi200: '#9DE2BF',
+  kiwi300: '#79D6AA',
+  kiwi400: '#56CA96',
+  kiwi500: '#33BE84',
+  kiwi600: '#10B172',
+  kiwi700: '#0CA161',
+  kiwi800: '#099150',
+  kiwi900: '#078141',
 };
 
-const vein = {
-  vein50: '#E4F7F9',
-  vein100: placeholder,
-  vein200: placeholder,
-  vein300: placeholder,
-  vein400: placeholder,
-  vein500: '#188097',
-  vein600: '#17798E',
-  vein700: '#08667C',
-  vein800: placeholder,
-  vein900: placeholder,
+const neutral = {
+  neutral50: '#F5F3F3',
+  neutral100: '#EAE7E7',
+  neutral200: '#D6D4D3',
+  neutral300: '#BDBAB9',
+  neutral400: '#AAA8A6',
+  neutral500: '#989693',
+  neutral600: '#7D7C79',
+  neutral700: '#62625F',
+  neutral800: '#474745',
+  neutral900: '#2B2C2B',
+};
+
+const plum = {
+  plum50: '#EFE4FD',
+  plum100: '#D7BDF9',
+  plum200: '#BF98F3',
+  plum300: '#A875EB',
+  plum400: '#9153E2',
+  plum500: '#7A33D7',
+  plum600: '#6A2ABF',
+  plum700: '#5B22A6',
+  plum800: '#4C1B8C',
+  plum900: '#3C1471',
 };
 
 export const palette = {
-  ...bone,
-  ...gall,
-  ...pulse,
-  ...surgical,
-  ...vein,
+  ...banana,
+  ...blueberry,
+  ...cherry,
+  ...kiwi,
+  ...neutral,
+  ...plum,
+  black: '#000000',
+  white: '#ffffff',
 };
 
-export type PaletteNames = 'bone' | 'gall' | 'pulse' | 'surgical' | 'vein';
+export type PaletteNames = 'banana' | 'blueberry' | 'cherry' | 'kiwi' | 'neutral' | 'plum' | 'black' | 'white';
 
 export type PaletteDepths = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
 
 export type PaletteCodes =
-  | 'bone50'
-  | 'bone100'
-  | 'bone200'
-  | 'bone300'
-  | 'bone400'
-  | 'bone500'
-  | 'bone600'
-  | 'bone700'
-  | 'bone800'
-  | 'bone900'
-  | 'gall50'
-  | 'gall100'
-  | 'gall200'
-  | 'gall300'
-  | 'gall400'
-  | 'gall500'
-  | 'gall600'
-  | 'gall700'
-  | 'gall800'
-  | 'gall900'
-  | 'pulse50'
-  | 'pulse100'
-  | 'pulse200'
-  | 'pulse300'
-  | 'pulse400'
-  | 'pulse500'
-  | 'pulse600'
-  | 'pulse700'
-  | 'pulse800'
-  | 'pulse900'
-  | 'surgical50'
-  | 'surgical100'
-  | 'surgical200'
-  | 'surgical300'
-  | 'surgical400'
-  | 'surgical500'
-  | 'surgical600'
-  | 'surgical700'
-  | 'surgical800'
-  | 'surgical900'
-  | 'vein50'
-  | 'vein100'
-  | 'vein200'
-  | 'vein300'
-  | 'vein400'
-  | 'vein500'
-  | 'vein600'
-  | 'vein700'
-  | 'vein800'
-  | 'vein900';
+  | 'banana50'
+  | 'banana100'
+  | 'banana200'
+  | 'banana300'
+  | 'banana400'
+  | 'banana500'
+  | 'banana600'
+  | 'banana700'
+  | 'banana800'
+  | 'banana900'
+  | 'blueberry50'
+  | 'blueberry100'
+  | 'blueberry200'
+  | 'blueberry300'
+  | 'blueberry400'
+  | 'blueberry500'
+  | 'blueberry600'
+  | 'blueberry700'
+  | 'blueberry800'
+  | 'blueberry900'
+  | 'cherry50'
+  | 'cherry100'
+  | 'cherry200'
+  | 'cherry300'
+  | 'cherry400'
+  | 'cherry500'
+  | 'cherry600'
+  | 'cherry700'
+  | 'cherry800'
+  | 'cherry900'
+  | 'kiwi50'
+  | 'kiwi100'
+  | 'kiwi200'
+  | 'kiwi300'
+  | 'kiwi400'
+  | 'kiwi500'
+  | 'kiwi600'
+  | 'kiwi700'
+  | 'kiwi800'
+  | 'kiwi900'
+  | 'neutral50'
+  | 'neutral100'
+  | 'neutral200'
+  | 'neutral300'
+  | 'neutral400'
+  | 'neutral500'
+  | 'neutral600'
+  | 'neutral700'
+  | 'neutral800'
+  | 'neutral900'
+  | 'plum50'
+  | 'plum100'
+  | 'plum200'
+  | 'plum300'
+  | 'plum400'
+  | 'plum500'
+  | 'plum600'
+  | 'plum700'
+  | 'plum800'
+  | 'plum900'
+  | 'white'
+  | 'black';

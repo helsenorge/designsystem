@@ -33,14 +33,13 @@ export const allIcons = [
   'x',
 ];
 
-export const allPaletteNames: PaletteNames[] = ['bone', 'gall', 'pulse', 'surgical', 'vein'];
-
-export const allPaletteNamesWithNegatives: (PaletteNames | 'black' | 'white')[] = [
-  'bone',
-  'gall',
-  'pulse',
-  'surgical',
-  'vein',
+export const allPaletteNames: PaletteNames[] = [
+  'banana',
+  'blueberry',
+  'cherry',
+  'kiwi',
+  'neutral',
+  'plum',
   'black',
   'white',
 ];

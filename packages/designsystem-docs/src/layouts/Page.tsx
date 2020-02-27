@@ -22,7 +22,7 @@ function Page(props: FrontpageProps): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <Section color={theme.palette.surgical100}>
+      <Section color={theme.palette.blueberry100}>
         <StyledPageContent>
           <Col lg={3}>
             <Sidebar />

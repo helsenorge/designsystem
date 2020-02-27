@@ -33,20 +33,27 @@ import {Button, Icon} from '@helsenorge/designsystem-react';
   <Button variant="borderless">Borderless</Button>
 `}</MDXCustom.LiveComponent>
 
-### Colors
+### Intents
 
 <MDXCustom.LiveComponent scope={{Button}}>{`
-  <Button color="vein">Button</Button>
-  <Button color="pulse">Button</Button>
-  <Button color="white">Button</Button>
+  <Button intent="primary">Button</Button>
+  <Button intent="warning">Button</Button>
+  <Button intent="danger">Button</Button>
 `}</MDXCustom.LiveComponent>
 
-### Sizes
+### Inverted
 
 <MDXCustom.LiveComponent scope={{Button}}>{`
-  <Button size="small">Button</Button>
-  <Button size="medium">Button</Button>
-  <Button size="large">Button</Button>
+  <Button inverted>Button</Button>
+  <Button variant="outline" inverted >Button</Button>
+  <Button variant="borderless" inverted>Button</Button>
+`}</MDXCustom.LiveComponent>
+
+### Large
+
+<MDXCustom.LiveComponent scope={{Button}}>{`
+  <Button>Button</Button>
+  <Button large>Button</Button>
 `}</MDXCustom.LiveComponent>
 
 ### Fluid
