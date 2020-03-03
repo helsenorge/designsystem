@@ -5,6 +5,7 @@ import {getColor} from '../../theme/currys/color';
 export type BadgeColors = PaletteNames;
 
 interface BadgeProps {
+  className?: string;
   color?: BadgeColors;
 }
 

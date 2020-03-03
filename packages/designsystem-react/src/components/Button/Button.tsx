@@ -10,6 +10,7 @@ export type ButtonVariants = 'fill' | 'outline' | 'borderless';
 
 interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   children: React.ReactNode;
+  className?: string;
   fluid?: boolean;
   intent?: ButtonIntents;
   inverted?: boolean;
@@ -45,6 +46,7 @@ const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, i
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   const {
     children,
+    className = '',
     fluid = false,
     intent = 'primary',
     inverted = false,
@@ -62,7 +64,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
 
   function renderIcon(iconElement: any, large: boolean, color: string, hover: boolean) {
     return iconElement
-      ? React.cloneElement(iconElement as React.ReactElement, {size: large ? 64 : 38, color: color, hover})
+      ? React.cloneElement(iconElement as React.ReactElement, {size: large ? 64 : 38, color: color, isHovered: hover})
       : null;
   }
 
@@ -72,6 +74,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       onFocus={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onBlur={() => setIsHovered(false)}
+      className={className}
       variant={variant}
       intent={intent}
       inverted={inverted}
