@@ -3,6 +3,7 @@
 exports[`displays byline logo 1`] = `
 <div>
   <svg
+    class=""
     viewBox="0 0 87 12"
     width="300"
     xmlns="http://www.w3.org/2000/svg"
@@ -21,6 +22,7 @@ exports[`displays byline logo 1`] = `
 exports[`displays original logo 1`] = `
 <div>
   <svg
+    class=""
     viewBox="0 0 502 220"
     width="300"
     xmlns="http://www.w3.org/2000/svg"
