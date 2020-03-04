@@ -60,7 +60,7 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      <Icon>{select('Left icon', allIcons, 'cross')}</Icon>
       {text('Text', 'Button')}
       <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
     </Button>
@@ -75,14 +75,14 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      <Icon>{select('Left icon', allIcons, 'cross')}</Icon>
       {text('Text', 'Button')}
     </Button>
   </div>
 ));
 
 stories.add('With icon(s)', () => (
-  <div style={{}}>
+  <div>
     <Button
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
@@ -93,7 +93,7 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      <Icon>{select('Left icon', allIcons, 'cross')}</Icon>
       {text('Text', 'Button')}
     </Button>
     <div style={{height: '1rem'}}></div>
@@ -121,7 +121,7 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      <Icon>{select('Left icon', allIcons, 'cross')}</Icon>
       {text('Text', 'Button')}
       <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
     </Button>
