@@ -47,10 +47,10 @@
     "validate": "yarn lint && yarn format -l"
   },
   "peerDependencies": {
-    "bootstrap": "4.4.1",
+    "bootstrap-4-grid": "3.4.0",
     "normalize.css": "8.0.1",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": ">= 16.12.0",
+    "react-dom": ">= 16.12.0",
     "styled-components": "^5.0.0"
   },
   "devDependencies": {
@@ -73,10 +73,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@types/jest": "^24.9.0",
+    "@types/styled-components": "^5.0.1",
     "@types/testing-library__react": "^9.1.2",
     "async": "^3.1.0",
     "babel-loader": "^8.0.6",
-    "bootstrap": "4.4.1",
     "css-loader": "^3.2.0",
     "dts-bundle-generator": "^3.3.0",
     "file-loader": "^4.2.0",
@@ -89,9 +89,9 @@
     "postcss-loader": "^3.0.0",
     "postcss-nested": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
-    "react": "^16.12.0",
+    "react": "16.12.0",
     "react-docgen-typescript-loader": "^3.3.0",
-    "react-dom": "^16.12.0",
+    "react-dom": "16.12.0",
     "resolve-url-loader": "^3.1.1",
     "rollup": "^1.26.5",
     "rollup-plugin-babel": "^4.3.3",
@@ -111,5 +111,8 @@
     "ts-loader": "^6.2.1",
     "webpack": "^4.41.2",
     "yargs": "^15.0.2"
+  },
+  "dependencies": {
+    "bootstrap-4-grid": "^3.4.0"
   }
 }
