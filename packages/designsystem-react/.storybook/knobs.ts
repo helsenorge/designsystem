@@ -2,7 +2,7 @@ import {PaletteNames} from '../src/theme/palette';
 import {TitleTags, TitleAppearances} from '../src/components/Title/Title';
 
 export const allIcons = [
-  'alarmclock',
+  'alarmClock',
   'arrowLeft',
   'arrowRight',
   'avatar',
@@ -21,7 +21,7 @@ export const allIcons = [
   'lock',
   'menu',
   'minus',
-  'paperplane',
+  'paperPlane',
   'pause',
   'pencil',
   'plusLarge',
