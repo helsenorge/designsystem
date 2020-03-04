@@ -8,7 +8,6 @@
     "declaration": true,
     "declarationMap": true,
     "declarationDir": "types/",
-    "forceConsistentCasingInFileNames": false,
     "emitDecoratorMetadata": true,
     "types": ["jest", "node", "react"]
   },
