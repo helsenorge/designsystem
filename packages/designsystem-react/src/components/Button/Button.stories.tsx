@@ -82,7 +82,7 @@ stories.add('Fluid', () => (
 ));
 
 stories.add('With icon(s)', () => (
-  <div style={{}}>
+  <div>
     <Button
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
