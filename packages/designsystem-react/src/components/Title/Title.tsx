@@ -8,14 +8,14 @@ interface TitleProps {
   children: React.ReactNode;
   className?: string;
   margin?: number;
-  is?: TitleTags;
+  htmlMarkup?: TitleTags;
   appearance?: TitleAppearances;
 }
 
 const Title = React.forwardRef((props: TitleProps, ref: any) => {
-  const {children, className, is = 'h1', appearance = 'title1', margin = 0} = props;
+  const {children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0} = props;
   return (
-    <StyledTitle className={className} as={is} margin={margin} appearance={appearance} ref={ref}>
+    <StyledTitle className={className} as={htmlMarkup} margin={margin} appearance={appearance} ref={ref}>
       {children}
     </StyledTitle>
   );

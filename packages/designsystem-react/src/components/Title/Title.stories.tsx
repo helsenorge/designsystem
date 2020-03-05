@@ -11,7 +11,7 @@ stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
   <Title
-    is={select('Is', allTitleTags, 'h1')}
+    htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')}
     margin={number('Margin (rem)', 0)}
     appearance={select('Apperance', allTitleAppearances, 'title1')}>
     {text('Text', 'Title')}
@@ -20,22 +20,25 @@ stories.add('Default', () => (
 
 stories.add('All appearances', () => (
   <div>
-    <Title is={select('Is', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="titleFeature">
+    <Title
+      htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')}
+      margin={number('Margin (rem)', 0)}
+      appearance="titleFeature">
       {`${text('Text', 'Title')} (feature)`}
     </Title>
-    <Title is={select('Is', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title1">
+    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title1">
       {`${text('Text', 'Title')} (title1)`}
     </Title>
-    <Title is={select('Is', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title2">
+    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title2">
       {`${text('Text', 'Title')} (title2)`}
     </Title>
-    <Title is={select('Is', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title3">
+    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title3">
       {`${text('Text', 'Title')} (title3)`}
     </Title>
-    <Title is={select('Is', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title4">
+    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title4">
       {`${text('Text', 'Title')} (title4)`}
     </Title>
-    <Title is={select('Is', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title5">
+    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title5">
       {`${text('Text', 'Title')} (title5)`}
     </Title>
   </div>
