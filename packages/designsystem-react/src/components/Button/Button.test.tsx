@@ -11,9 +11,9 @@ test('displays the button', (): void => {
 test('displays the button with icons', (): void => {
   const {container} = render(
     <Button>
-      <Icon>alarmClock</Icon>
+      <Icon type="alarmClock" />
       Button
-      <Icon>alarmClock</Icon>
+      <Icon type="alarmClock" />
     </Button>,
   );
   expect(container).toMatchSnapshot();

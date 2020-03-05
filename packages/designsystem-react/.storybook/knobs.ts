@@ -1,7 +1,8 @@
 import {PaletteNames} from '../src/theme/palette';
 import {TitleTags, TitleAppearances} from '../src/components/Title/Title';
+import {IconTypes} from '../src/components/Icons/Icon';
 
-export const allIcons = [
+export const allIcons: IconTypes[] = [
   'alarmClock',
   'arrowLeft',
   'arrowRight',

@@ -61,9 +61,9 @@ import {Button, Icon} from '@helsenorge/designsystem-react';
 <MDXCustom.LiveComponent fullWidth stack scope={{Button, Icon}}>{`
     <Button fluid>Button</Button>
     <Button fluid>
-      <Icon>alarmClock</Icon>
+      <Icon type="alarmClock" />
       Button
-    <Icon>arrowRight</Icon>
+    <Icon type="arrowRight" />
     </Button>
 `}</MDXCustom.LiveComponent>
 
@@ -71,17 +71,20 @@ import {Button, Icon} from '@helsenorge/designsystem-react';
 
 <MDXCustom.LiveComponent scope={{Button, Icon}}>{`
   <Button>
-    <Icon>alarmClock</Icon>
+      <Icon type="alarmClock" />
     Primary
   </Button>
   <Button>
     Primary
-    <Icon>alarmClock</Icon>
+      <Icon type="alarmClock" />
+    Primary
   </Button>
   <Button>
-    <Icon>alarmClock</Icon>
+      <Icon type="alarmClock" />
     Primary
-    <Icon>arrowRight</Icon>
+    Primary
+      <Icon type="arrowRight" />
+    Primary
   </Button>
 `}</MDXCustom.LiveComponent>
 
