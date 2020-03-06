@@ -42,6 +42,10 @@ const libraryRoutes = [
         label: 'Logo',
         path: '/library/components/logo',
       },
+      {
+        label: 'Title',
+        path: '/library/components/title',
+      },
     ],
   },
 ];

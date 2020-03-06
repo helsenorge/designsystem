@@ -5,6 +5,7 @@ date: 2019-01-29
 ---
 
 import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from './icon.json';
 import {Icon} from '@helsenorge/designsystem-react';
 
 # Icon
@@ -19,6 +20,8 @@ import {Icon} from '@helsenorge/designsystem-react';
 <MDXCustom.LiveComponent scope={{Icon}}>{`<Icon type="pencil" />`}</MDXCustom.LiveComponent>
 
 ## Properties
+
+<MDXCustom.ComponentProps propData={{propData}} />
 
 ## Examples
 
@@ -41,6 +44,17 @@ import {Icon} from '@helsenorge/designsystem-react';
   <Icon type="pencil" color="cherry" />
   <Icon type="pencil" color="kiwi" />
   <Icon type="pencil" color="plum" />
+`}</MDXCustom.LiveComponent>
+
+### Hover
+
+<MDXCustom.LiveComponent scope={{Icon}}>{`
+  <Icon type="alarmClock" />
+  <Icon type="pencil" />
+  <Icon type="avatar" />
+  <Icon isHovered type="alarmClock" />
+  <Icon isHovered type="pencil" />
+  <Icon isHovered type="avatar" />
 `}</MDXCustom.LiveComponent>
 
 ## Bruk

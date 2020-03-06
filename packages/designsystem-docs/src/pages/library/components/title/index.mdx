@@ -1,0 +1,53 @@
+---
+title: Title
+path: /library/components/title
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from './Title.json';
+import {Title} from '@helsenorge/designsystem-react';
+
+# Title
+
+<MDXCustom.Preamble>
+  He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum is the
+  single greatest threat.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{Title}}>{`<Title>Title</Title>`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{propData}} />
+
+## Examples
+
+### Appearances
+
+<MDXCustom.LiveComponent stack scope={{Title}}>{`
+  <Title appearance="titleFeature">Title</Title>
+  <Title appearance="title1">Title</Title>
+  <Title appearance="title2">Title</Title>
+  <Title appearance="title3">Title</Title>
+  <Title appearance="title4">Title</Title>
+  <Title appearance="title5">Title</Title>
+`}</MDXCustom.LiveComponent>
+
+### Margin
+
+<MDXCustom.LiveComponent stack scope={{Title}}>{`
+  <Title margin="0.5" appearance="title1">Title</Title>
+  <Title margin="1" appearance="title2">Title</Title>
+  <Title margin="2" appearance="title3">Title</Title>
+`}</MDXCustom.LiveComponent>
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**
