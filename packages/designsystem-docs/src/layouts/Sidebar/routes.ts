@@ -7,6 +7,16 @@ const libraryRoutes = [
   {
     label: 'Grid',
     path: '/library/grid',
+    children: [
+      {
+        label: 'Spacing',
+        path: '/library/grid/spacing',
+      },
+    ],
+  },
+  {
+    label: 'Reset',
+    path: '/library/reset',
     children: [],
   },
   {
