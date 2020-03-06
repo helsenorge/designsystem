@@ -1,0 +1,12 @@
+{
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "require": "false",
+      "default": "",
+      "valid": [],
+      "description": "Adds custom classes to the element."
+    }
+  ]
+}

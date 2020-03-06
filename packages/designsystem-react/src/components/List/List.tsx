@@ -14,12 +14,13 @@ const StyledList = styled('ul')`
 
 interface ListProps {
   children: React.ReactNode[];
+  className?: string;
 }
 
 function List(props: ListProps) {
-  const {children} = props;
+  const {children, className} = props;
   return (
-    <StyledList>
+    <StyledList className={className}>
       {children.map((child: React.ReactNode, index: number) => {
         return <StyledListItem key={index}>{child}</StyledListItem>;
       })}

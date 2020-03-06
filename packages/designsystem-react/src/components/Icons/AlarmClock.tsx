@@ -1,7 +1,7 @@
 import React from 'react';
 import {IconRawProps} from './Icon';
 
-const Alarmclock = React.forwardRef((svgProps: IconRawProps, ref: any) => {
+const AlarmClock = React.forwardRef((svgProps: IconRawProps, ref: any) => {
   const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
     <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
@@ -22,4 +22,4 @@ const Alarmclock = React.forwardRef((svgProps: IconRawProps, ref: any) => {
   );
 });
 
-export default Alarmclock;
+export default AlarmClock;

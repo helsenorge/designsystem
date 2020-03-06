@@ -5,6 +5,7 @@ date: 2019-01-29
 ---
 
 import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from './loader.json';
 import {Loader} from '@helsenorge/designsystem-react';
 
 # Loader
@@ -20,6 +21,8 @@ import {Loader} from '@helsenorge/designsystem-react';
 
 ## Properties
 
+<MDXCustom.ComponentProps propData={{propData}} />
+
 ## Variants
 
 ### Sizes
@@ -34,32 +37,14 @@ import {Loader} from '@helsenorge/designsystem-react';
 ### Color
 
 <MDXCustom.LiveComponent scope={{Loader}}>{`
-  <Loader color="bone" />
-  <Loader color="wheelChair" />
-  <Loader color="ash" />
-  <Loader color="scalpel" />
-  <Loader color="waitingRoom" />
-  <Loader color="scab" />
-  <Loader color="urine100" />
-  <Loader color="urine100" />
-  <Loader color="blood100" />
-  <Loader color="blood200" />
-  <Loader color="bandAid100" />
-  <Loader color="bandAid200" />
-  <Loader color="bandAid300" />
-  <Loader color="nausea100" />
-  <Loader color="nausea200" />
-  <Loader color="kiwi100" />
-  <Loader color="kiwi200" />
-  <Loader color="kiwi300" />
-  <Loader color="kiwi400" />
-  <Loader color="kiwi500" />
-  <Loader color="strangulation100" />
-  <Loader color="strangulation200" />
-  <Loader color="strangulation300" />
-  <Loader color="strangulation400" />
-  <Loader color="strangulation500" />
-  <Loader color="strangulation600" />
+  <Loader color="black" />
+  <Loader color="white" />
+  <Loader color="blueberry" />
+  <Loader color="banana" />
+  <Loader color="cherry" />
+  <Loader color="kiwi" />
+  <Loader color="neutral" />
+  <Loader color="plum" />
 `}</MDXCustom.LiveComponent>
 
 ## Bruk

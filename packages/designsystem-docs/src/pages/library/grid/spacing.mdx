@@ -1,0 +1,37 @@
+---
+title: Spacing
+path: /library/grid/spacing
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../components/markdown/MDXCustom';
+
+# Spacing
+
+<MDXCustom.Preamble>
+  A spacing system to add air between elements is also powered by Bootstrap's grid system.
+</MDXCustom.Preamble>
+
+## How to use
+
+[Bootstrap spacing documentation](https://getbootstrap.com/docs/4.1/utilities/spacing/)
+
+## Overrides
+
+```scss
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer / 8,
+  2: $spacer / 4,
+  3: $spacer / 2,
+  4: $spacer * 1,
+  5: $spacer * 1.5,
+  6: $spacer * 2,
+  7: $spacer * 3,
+  8: $spacer * 4,
+  9: $spacer * 5,
+  10: $spacer * 7,
+  11: $spacer * 8,
+);
+```

@@ -60,9 +60,9 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      <Icon type={select('Left icon', allIcons, 'cross')} />
       {text('Text', 'Button')}
-      <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
+      <Icon type={select('Left icon', allIcons, 'cross')} />
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
@@ -75,14 +75,14 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      <Icon type={select('Left icon', allIcons, 'cross')} />
       {text('Text', 'Button')}
     </Button>
   </div>
 ));
 
 stories.add('With icon(s)', () => (
-  <div style={{}}>
+  <div>
     <Button
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
@@ -93,7 +93,7 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      <Icon type={select('Left icon', allIcons, 'cross')} />
       {text('Text', 'Button')}
     </Button>
     <div style={{height: '1rem'}}></div>
@@ -108,7 +108,7 @@ stories.add('With icon(s)', () => (
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
       {text('Text', 'Button')}
-      <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
+      <Icon type={select('Left icon', allIcons, 'cross')} />
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
@@ -121,9 +121,9 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon>{select('Left icon', allIcons, 'alarmclock')}</Icon>
+      <Icon type={select('Left icon', allIcons, 'cross')} />
       {text('Text', 'Button')}
-      <Icon>{select('Right icon', allIcons, 'arrowRight')}</Icon>
+      <Icon type={select('Left icon', allIcons, 'cross')} />
     </Button>
   </div>
 ));

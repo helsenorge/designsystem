@@ -1,0 +1,36 @@
+{
+  "props": [
+    {
+      "name": "is",
+      "type": "TitleTags",
+      "require": "false",
+      "default": "h1",
+      "valid": ["h1", "h2", "h3", "h4", "h5"],
+      "description": "Changes the underlying element of the title."
+    },
+    {
+      "name": "appearance",
+      "type": "TitleAppearances",
+      "require": "false",
+      "default": "title1",
+      "valid": ["titleFeature", "title1", "title2", "title3", "title4", "title5"],
+      "description": "Changes the appearance of the title."
+    },
+    {
+      "name": "margin",
+      "type": "number",
+      "require": "false",
+      "default": "0",
+      "valid": [],
+      "description": "Adds top and bottom margin in rem."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "require": "false",
+      "default": "",
+      "valid": [],
+      "description": "Adds custom classes to the element."
+    }
+  ]
+}
