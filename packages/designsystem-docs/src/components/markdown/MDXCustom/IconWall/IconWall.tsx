@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
-// import {Icon} from '@helsenorge/designsystem-react';
+import {Icon, IconTypes} from '@helsenorge/designsystem-react';
+import Checkbox from '../../../CheckBox/CheckBox';
 import styled from 'styled-components';
-import Button from '../../../Button/Button';
 
 const StyledIconTile = styled('div')`
   background-color: #f6f5f2;
   border: 1px solid #dedbd3;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,6 +38,7 @@ const StyledSearch = styled('input')`
 const StyledFilterProps = styled('div')`
   display: flex;
   margin-top: 1rem;
+  padding: 0.5rem;
 `;
 
 interface IconWallFilterProps {
@@ -47,18 +48,10 @@ interface IconWallFilterProps {
 function IconWallFilter(props: IconWallFilterProps) {
   const {onFilterChange} = props;
   const [filter, setFilter] = useState('');
-  // const [isHovered, setIsHovered] = useState(false);
-  // const [color, setColor] = useState(Palette.Wheelchair);
-  // const [size, setSize] = useState(IconSize.XSmall);
+  const [isHovered, setIsHovered] = useState(false);
   useEffect(() => {
-    onFilterChange({filter});
-  }, [filter]);
-  // function resetFilter() {
-  //   setFilter('');
-  //   setIsHovered(false);
-  //   setColor(Palette.Wheelchair);
-  //   setSize(IconSize.XSmall);
-  // }
+    onFilterChange({filter, isHovered});
+  }, [filter, isHovered]);
   return (
     <div>
       <StyledSearch
@@ -67,71 +60,60 @@ function IconWallFilter(props: IconWallFilterProps) {
         onInput={e => setFilter(e.currentTarget.value)}
         placeholder="Filter icon by name..."
       />
-      {/* <StyledFilterProps>
-        Hover: <input type="checkbox" onInput={e => setIsHovered(e.currentTarget.checked)} />
-        Color:
-        <select value={color} onChange={e => setColor(e.currentTarget.value)}>
-          {Object.keys(Palette).map(key => (
-            <option key={key} value={Palette[key]}>
-              {key}
-            </option>
-          ))}
-        </select>
-        Size:
-        <select value={size} onChange={e => setSize(Number(e.currentTarget.value))}>
-          {Object.keys(IconSize)
-            .filter(key => !isNaN(Number(IconSize[key])))
-            .map(key => (
-              <option key={key} value={IconSize[key]}>
-                {key}
-              </option>
-            ))}
-        </select>
-        <Button tiny onClick={resetFilter}>
-          Reset
-        </Button>
-      </StyledFilterProps> */}
+      <StyledFilterProps>
+        <Checkbox label="Hover state" checked={isHovered} onChange={() => setIsHovered(!isHovered)} />
+      </StyledFilterProps>
     </div>
   );
 }
 
+const allIcons: IconTypes[] = [
+  'alarmClock',
+  'arrowLeft',
+  'arrowRight',
+  'avatar',
+  'calendarSave',
+  'chevronDown',
+  'chevronRight',
+  'chevronLeft',
+  'chevronUp',
+  'cross',
+  'enterFullScreen',
+  'eraser',
+  'exitFullScreen',
+  'eye',
+  'filterOff',
+  'forward',
+  'lock',
+  'menu',
+  'minus',
+  'paperPlane',
+  'pause',
+  'pencil',
+  'plusLarge',
+  'plusSmall',
+  'printer',
+  'reply',
+  'search',
+  'share',
+  'verticalDots',
+  'x',
+];
+
 function IconWall() {
-  const icons = [
-    'alarmclock',
-    'arrowLeft',
-    'arrowRight',
-    'calendarSave',
-    'chevronDown',
-    'chevronLeft',
-    'chevronRight',
-    'chevronUp',
-    'cross',
-    'eye',
-    'filterOff',
-    'minus',
-    'paperplane',
-    'pencil',
-    'plusLarge',
-    'plusSmall',
-    'printer',
-    'share',
-    'verticalDots',
-  ];
   const [filterProps, setFilterProps] = useState({
     filter: '',
-    // isHovered: false,
-    // color: Palette.Wheelchair,
-    // size: IconSize.XSmall,
+    isHovered: false,
   });
   return (
     <>
       <IconWallFilter onFilterChange={e => setFilterProps(e)} />
       <StyledIconWall>
-        {icons
+        {allIcons
           .filter(icon => (filterProps.filter ? icon.includes(filterProps.filter) : icon))
           .map(icon => (
             <StyledIconTile key={icon}>
-              {/* <Icon>{icon}</Icon> */}
+              <Icon isHovered={filterProps.isHovered} type={icon} />
               <StyledIconName>{icon}</StyledIconName>
             </StyledIconTile>
           ))}
@@ -143,8 +125,8 @@ function IconWall() {
 const StyledIconWall = styled('div')`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 2rem;
-  margin: 2rem 0;
+  grid-gap: 1rem;
+  margin: 1rem 0;
 `;
 
 export default IconWall;

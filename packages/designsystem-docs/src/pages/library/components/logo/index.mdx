@@ -5,6 +5,7 @@ date: 2019-01-29
 ---
 
 import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from './logo.json';
 import {Logo} from '@helsenorge/designsystem-react';
 
 # Logo
@@ -20,13 +21,14 @@ import {Logo} from '@helsenorge/designsystem-react';
 
 ## Properties
 
+<MDXCustom.ComponentProps propData={{propData}} />
+
 ## Examples
 
-### Variants
+### Byline
 
 <MDXCustom.LiveComponent stack scope={{Logo}}>{`
-  <Logo />
-  <Logo variant="byline" />
+  <Logo byline />
 `}</MDXCustom.LiveComponent>
 
 ### Sizes
@@ -40,32 +42,14 @@ import {Logo} from '@helsenorge/designsystem-react';
 ### Colors
 
 <MDXCustom.LiveComponent scope={{Logo}}>{`
-  <Logo size={75} color="bone" />
-  <Logo size={75} color="wheelChair" />
-  <Logo size={75} color="ash" />
-  <Logo size={75} color="scalpel" />
-  <Logo size={75} color="waitingRoom" />
-  <Logo size={75} color="scab" />
-  <Logo size={75} color="urine100" />
-  <Logo size={75} color="urine100" />
-  <Logo size={75} color="blood100" />
-  <Logo size={75} color="blood200" />
-  <Logo size={75} color="bandAid100" />
-  <Logo size={75} color="bandAid200" />
-  <Logo size={75} color="bandAid300" />
-  <Logo size={75} color="nausea100" />
-  <Logo size={75} color="nausea200" />
-  <Logo size={75} color="kiwi100" />
-  <Logo size={75} color="kiwi200" />
-  <Logo size={75} color="kiwi300" />
-  <Logo size={75} color="kiwi400" />
-  <Logo size={75} color="kiwi500" />
-  <Logo size={75} color="strangulation100" />
-  <Logo size={75} color="strangulation200" />
-  <Logo size={75} color="strangulation300" />
-  <Logo size={75} color="strangulation400" />
-  <Logo size={75} color="strangulation500" />
-  <Logo size={75} color="strangulation600" />
+  <Logo size={75} color="black" />
+  <Logo size={75} color="white" />
+  <Logo size={75} color="blueberry" />
+  <Logo size={75} color="cherry" />
+  <Logo size={75} color="kiwi" />
+  <Logo size={75} color="neutral" />
+  <Logo size={75} color="banana" />
+  <Logo size={75} color="plum" />
 `}</MDXCustom.LiveComponent>
 
 ## Bruk

@@ -55,6 +55,14 @@
       "default": "button",
       "valid": ["button", "a"],
       "description": "Changes the underlying element of the button."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "require": "false",
+      "default": "",
+      "valid": [],
+      "description": "Adds custom classes to the element."
     }
   ]
 }
