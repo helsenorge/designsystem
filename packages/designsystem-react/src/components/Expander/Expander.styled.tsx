@@ -1,8 +1,16 @@
-import styled, {css} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 import {getColor} from '../../theme/currys';
 import {ExpanderVariants} from './Expander';
+import {boolean} from '@storybook/addon-knobs';
 
-const boxStyle = css``;
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+`;
 
 const StyledExpanderContent = styled('div')`
   transition: 400ms;
@@ -10,17 +18,21 @@ const StyledExpanderContent = styled('div')`
   padding: 1.5rem 0.5rem;
 `;
 
-const StyledExpanderHeader = styled('div')`
+const StyledExpanderHeader = styled('div')<{hasIcon?: boolean}>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.5rem 0.375rem 0.5rem 0.75rem;
   cursor: pointer;
-  border-top: 1px solid ${getColor('bone', 200)};
   &:hover,
   :focus {
-    background-color: ${getColor('bone', 100)};
+    background-color: ${getColor('neutral', 100)};
   }
+`;
+
+const StyledExpanderHeaderContent = styled('div')`
+  display: flex;
+  align-items: center;
 `;
 
 const StyledExpanderTitle = styled('h1')`
@@ -28,19 +40,33 @@ const StyledExpanderTitle = styled('h1')`
   font-size: 1.5rem;
   line-height: 2rem;
   margin: 0;
+  margin-left: 0.5rem;
 `;
 
-const StyledExpander = styled('div')<{variant: ExpanderVariants}>`
-  width: 100%;
-  ${props =>
-    StyledExpanderHeader &&
-    props.variant === 'box' &&
-    css`
-      background-color: black;
-    `}
-  &:last-child {
-    border-bottom: 1px solid ${getColor('bone', 200)};
+interface StyledExpanderProps {
+  topBorder: boolean;
+  bottomBorder: boolean;
+}
+
+const StyledExpander = styled('div')<StyledExpanderProps>`
+  /* width: inherit;
+  &:nth-child(n):not(:last-child) {
+    border-bottom: 1px solid ${getColor('neutral', 200)};
   }
+  ${props =>
+    props.topBorder &&
+    css`
+      &:first-child {
+        border-top: 1px solid ${getColor('neutral', 200)};
+      }
+    `}
+  ${props =>
+    props.bottomBorder &&
+    css`
+      &:last-child {
+        border-bottom: 1px solid ${getColor('neutral', 200)};
+      }
+    `} */
 `;
 
-export {StyledExpander, StyledExpanderContent, StyledExpanderHeader, StyledExpanderTitle};
+export {StyledExpander, StyledExpanderContent, StyledExpanderHeader, StyledExpanderTitle, StyledExpanderHeaderContent};

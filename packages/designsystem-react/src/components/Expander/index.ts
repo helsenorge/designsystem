@@ -1,2 +1,3 @@
 import Expander from './Expander';
-export default Expander;
+import ExpanderList from './ExpanderList';
+export {Expander, ExpanderList};
