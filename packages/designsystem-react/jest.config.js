@@ -9,11 +9,13 @@ module.exports = {
   testMatch: ['<rootDir>/src/components/**/?(*.)(test).{js,jsx,ts,tsx}'],
   modulePaths: ['<rootDir>/src/components'],
   roots: [
-    '<rootDir>/src/components/Buttons',
+    // '<rootDir>/src/components/Avatar',
     '<rootDir>/src/components/Badge',
-    '<rootDir>/src/components/Loader',
+    // '<rootDir>/src/components/Button',
     '<rootDir>/src/components/List',
+    '<rootDir>/src/components/Loader',
     '<rootDir>/src/components/Logo',
+    '<rootDir>/src/components/Title',
   ],
   modulePathIgnorePatterns: ['<rootDir>/src/components/Icons/*'],
   moduleNameMapper: {

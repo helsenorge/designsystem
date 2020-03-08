@@ -6,6 +6,7 @@ import ArrowLeft from './ArrowLeft';
 import ArrowRight from './ArrowRight';
 import Avatar from './Avatar';
 import CalendarSave from './CalendarSave';
+import Check from './Check';
 import ChevronDown from './ChevronDown';
 import ChevronLeft from './ChevronLeft';
 import ChevronRight from './ChevronRight';
@@ -40,6 +41,7 @@ const iconMapping = {
   arrowRight: ArrowRight,
   avatar: Avatar,
   calendarSave: CalendarSave,
+  check: Check,
   chevronDown: ChevronDown,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
@@ -75,6 +77,7 @@ export type IconTypes =
   | 'arrowRight'
   | 'avatar'
   | 'calendarSave'
+  | 'check'
   | 'chevronDown'
   | 'chevronLeft'
   | 'chevronRight'
