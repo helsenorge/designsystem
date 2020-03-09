@@ -18,12 +18,8 @@ stories.add('Default', () => (
       color="cherry"
       topBorder={boolean('Top border', true)}
       bottomBorder={boolean('Bottom border', true)}>
-      <LinkList.Link icon={<Icon type="alarmClock" />} href="https://vg.no">
-        Innhold A-Å
-      </LinkList.Link>
-      <LinkList.Link icon={<Icon type="paperPlane" />} href="https://db.no">
-        English
-      </LinkList.Link>
+      <LinkList.Link icon={<Icon type="alarmClock" />}>Innhold A-Å</LinkList.Link>
+      <LinkList.Link icon={<Icon type="paperPlane" />}>English</LinkList.Link>
     </LinkList>
   </div>
 ));
