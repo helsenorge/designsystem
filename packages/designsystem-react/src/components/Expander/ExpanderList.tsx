@@ -1,60 +1,74 @@
-// import React, {useState} from 'react';
-// import Expander, {ExpanderColors} from './Expander';
-// import styled, {css} from 'styled-components';
-// import {getColor} from '../../theme/currys';
+import React, {useState} from 'react';
+import {
+  StyledExpanderList,
+  StyledExpanderListLink,
+  StyledExpanderListLinkContent,
+  StyledExpanderContent,
+} from './ExpanderList.styled';
+import {PaletteNames} from '../../theme/palette';
+import {HTMLAnchorProps} from '../../constants';
+import Icon from '../Icons';
 
-// interface ExpanderListProps {
-//   children?: React.ReactNode;
-//   color: ExpanderColors;
-//   topBorder?: boolean;
-//   bottomBorder?: boolean;
-//   accordion?: boolean;
-// }
+export type ExpanderListColors = PaletteNames;
 
-// interface StyledExpanderListProps {
-//   topBorder?: boolean;
-//   bottomBorder?: boolean;
-// }
+export interface CompoundComponent
+  extends React.ForwardRefExoticComponent<ExpanderListProps & React.RefAttributes<HTMLUListElement>> {
+  Expander: any;
+}
 
-// const topBorder = (props: StyledExpanderListProps) =>
-//   props.topBorder &&
-//   css`
-//     & > :first-child {
-//       border-top: 1px solid ${getColor('neutral', 200)};
-//     }
-//   `;
+interface ExpanderListProps {
+  children: React.ReactNode;
+  color: ExpanderListColors;
+  bottomBorder?: boolean;
+  topBorder?: boolean;
+  large?: boolean;
+}
 
-// const bottomBorder = (props: StyledExpanderListProps) =>
-//   !props.bottomBorder &&
-//   css`
-//     & > :last-child {
-//       border-bottom: 0;
-//     }
-//   `;
+interface ExpanderProps extends React.HTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  title: string;
+  icon?: React.ReactElement;
+  color: ExpanderListColors;
+  large: boolean;
+}
 
-// const StyledExpanderList = styled('ul')<StyledExpanderListProps>`
-//   list-style: none;
-//   padding: 0;
-//   width: inherit;
-//   margin: 0;
-//   & > :nth-child(n) {
-//     border-bottom: 1px solid ${getColor('neutral', 200)};
-//   }
-//   ${topBorder}
-//   ${bottomBorder}
-// `;
+const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
+  const {children, color, icon, large, title, ...restProps} = props;
+  const [isExpanded, setIsExpanded] = useState(false);
+  return (
+    <li ref={ref}>
+      <StyledExpanderListLink
+        onClick={() => setIsExpanded(!isExpanded)}
+        isExpanded={isExpanded}
+        hasIcon={!!icon}
+        large={large}
+        color={color}
+        {...restProps}>
+        <StyledExpanderListLinkContent>
+          {icon && React.cloneElement(icon, {size: 48})}
+          {title}
+        </StyledExpanderListLinkContent>
+        <Icon type={isExpanded ? 'chevronUp' : 'chevronDown'} />
+      </StyledExpanderListLink>
+      {isExpanded ? <StyledExpanderContent>{children}</StyledExpanderContent> : null}
+    </li>
+  );
+});
 
-// const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
-//   const {children, color, accordion = false, topBorder = true} = props;
-//   return (
-//     <StyledExpanderList topBorder={topBorder} ref={ref}>
-//       {React.Children.map(children, (child: any) => {
-//         if (child.type.displayName === 'Expander') {
-//           return React.cloneElement(child, {color});
-//         }
-//       })}
-//     </StyledExpanderList>
-//   );
-// });
+const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
+  const {children, large, color, topBorder = true, bottomBorder = true} = props;
+  return (
+    <StyledExpanderList topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
+      {React.Children.map(children, (child: any) => {
+        if (child.type.displayName === 'ExpanderList.Expander') {
+          return React.cloneElement(child, {color, large});
+        }
+      })}
+    </StyledExpanderList>
+  );
+}) as CompoundComponent;
 
-// export default ExpanderList;
+ExpanderList.Expander = Expander;
+Expander.displayName = 'ExpanderList.Expander';
+
+export default ExpanderList;
