@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyledExpanderList,
   StyledExpanderListLink,
@@ -6,7 +6,6 @@ import {
   StyledExpanderContent,
 } from './ExpanderList.styled';
 import {PaletteNames} from '../../theme/palette';
-import {HTMLAnchorProps} from '../../constants';
 import Icon from '../Icons';
 
 export type ExpanderListColors = PaletteNames;
@@ -17,32 +16,33 @@ export interface CompoundComponent
 }
 
 interface ExpanderListProps {
+  accordion?: boolean;
+  bottomBorder?: boolean;
   children: React.ReactNode;
   color: ExpanderListColors;
-  bottomBorder?: boolean;
-  topBorder?: boolean;
   large?: boolean;
+  topBorder?: boolean;
 }
 
 interface ExpanderProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  title: string;
-  icon?: React.ReactElement;
   color: ExpanderListColors;
+  icon?: React.ReactElement;
+  isExpanded?: boolean;
   large: boolean;
+  title: string;
 }
 
 const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
-  const {children, color, icon, large, title, ...restProps} = props;
-  const [isExpanded, setIsExpanded] = useState(false);
+  const {children, color, icon, large, title, isExpanded = false, ...restProps} = props;
   return (
-    <li ref={ref}>
+    <li>
       <StyledExpanderListLink
-        onClick={() => setIsExpanded(!isExpanded)}
         isExpanded={isExpanded}
         hasIcon={!!icon}
         large={large}
         color={color}
+        ref={ref}
         {...restProps}>
         <StyledExpanderListLinkContent>
           {icon && React.cloneElement(icon, {size: 48})}
@@ -56,12 +56,27 @@ const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
 });
 
 const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
-  const {children, large, color, topBorder = true, bottomBorder = true} = props;
+  const {children, large, color, accordion = false, topBorder = true, bottomBorder = true} = props;
+  const [activeExpander, setActiveExpander] = useState({});
+  function handleExpanderClick(e: any) {
+    const id = e.currentTarget.id;
+    setActiveExpander(prevState =>
+      accordion ? {[id]: !Boolean(prevState[id])} : {...prevState, [id]: !Boolean(prevState[id])},
+    );
+  }
   return (
     <StyledExpanderList topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
-      {React.Children.map(children, (child: any) => {
+      {React.Children.map(children, (child: any, index: number) => {
         if (child.type.displayName === 'ExpanderList.Expander') {
-          return React.cloneElement(child, {color, large});
+          const isExpanded = activeExpander[index];
+          return React.cloneElement(child, {
+            id: index,
+            key: index,
+            isExpanded,
+            color,
+            large,
+            onClick: handleExpanderClick,
+          });
         }
       })}
     </StyledExpanderList>
