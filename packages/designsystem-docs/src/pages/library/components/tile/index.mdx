@@ -1,0 +1,53 @@
+---
+title: Tile
+path: /library/components/tile
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from './tile.json';
+import {Tile, Icon} from '@helsenorge/designsystem-react';
+
+# Tile
+
+<MDXCustom.Preamble>
+  He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum is the
+  single greatest threat.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{Tile, Icon}}>{`
+  <Tile icon={<Icon type="paperPlane" />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{propData}} />
+
+## Examples
+
+### Grid
+
+<MDXCustom.LiveComponent scope={{Tile, Icon}}>{`
+<div style={{width: '60rem', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridGap: '1rem'}}>
+  <Tile icon={<Icon type="paperPlane" />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+  <Tile icon={<Icon type="paperPlane" />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+  <Tile icon={<Icon type="paperPlane" />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+  <Tile icon={<Icon type="paperPlane" />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+  <Tile icon={<Icon type="paperPlane" />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+  </div>
+`}</MDXCustom.LiveComponent>
+
+### Fixed
+<MDXCustom.LiveComponent scope={{Tile, Icon}}>{`
+  <Tile fixed icon={<Icon type="paperPlane" />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+`}</MDXCustom.LiveComponent>
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**

@@ -79,14 +79,15 @@ const StyledLiveEditor = styled(LiveEditor)`
 const StyledLivePreviewContainer = styled('div')`
   position: relative;
   display: flex;
+  overflow: auto;
   padding: 1.5rem;
   width: 100%;
   background-color: #f9f9f9;
   border: 2px solid #f1f1f1;
   transition: border 200ms;
-  & * {
+  /* & * {
     box-sizing: initial;
-  }
+  } */
   &:hover {
     border: 2px solid #e2e2e2;
   }

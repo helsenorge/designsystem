@@ -29,6 +29,10 @@ const libraryRoutes = [
     path: '/library/components',
     children: [
       {
+        label: 'Avatar',
+        path: '/library/components/avatar',
+      },
+      {
         label: 'Badge',
         path: '/library/components/badge',
       },
@@ -37,8 +41,16 @@ const libraryRoutes = [
         path: '/library/components/button',
       },
       {
+        label: 'ExpanderList',
+        path: '/library/components/expander-list',
+      },
+      {
         label: 'Icon',
         path: '/library/components/icon',
+      },
+      {
+        label: 'LinkList',
+        path: '/library/components/link-list',
       },
       {
         label: 'List',
@@ -51,6 +63,10 @@ const libraryRoutes = [
       {
         label: 'Logo',
         path: '/library/components/logo',
+      },
+      {
+        label: 'Tile',
+        path: '/library/components/tile',
       },
       {
         label: 'Title',

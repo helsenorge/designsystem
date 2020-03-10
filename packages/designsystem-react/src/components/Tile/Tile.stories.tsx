@@ -11,9 +11,9 @@ stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
   <Tile
-    fixedWidth={boolean('Fixed width', false)}
+    fixed={boolean('Fixed width', false)}
     icon={<Icon size={64} type="alarmClock" />}
-    title={text('Title', 'Inbox')}
+    title={<Tile.Title>{text('Title', 'Inbox')}</Tile.Title>}
     description={text('Description', 'Messages between you and your health contacts through Helsenorge.')}
   />
 ));
@@ -30,32 +30,32 @@ stories.add('Wrapped container', () => (
     }}>
     <Tile
       icon={<Icon size={64} type="alarmClock" />}
-      title="Title"
+      title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       icon={<Icon size={64} type="alarmClock" />}
-      title="Title"
+      title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       icon={<Icon size={64} type="alarmClock" />}
-      title="Title"
+      title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       icon={<Icon size={64} type="alarmClock" />}
-      title="Title"
+      title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       icon={<Icon size={64} type="alarmClock" />}
-      title="Title"
+      title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       icon={<Icon size={64} type="alarmClock" />}
-      title="Title"
+      title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
   </div>

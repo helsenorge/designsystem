@@ -5,7 +5,11 @@ import Icon from '../Icons';
 
 test('displays tile', (): void => {
   const {container, getByText} = render(
-    <Tile icon={<Icon size={64} type="alarmClock" />} title="Title" description="Description" />,
+    <Tile
+      icon={<Icon size={64} type="alarmClock" />}
+      title={<Tile.Title>Title</Tile.Title>}
+      description="Description"
+    />,
   );
   expect(container).toMatchSnapshot();
 });

@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components';
 import {getColor} from '../../theme/currys';
 
 interface StyledTileProps {
-  fixedWidth: boolean;
+  fixed: boolean;
 }
 
 const StyledTitle = styled('h1')`
@@ -20,7 +20,7 @@ const StyledDescription = styled('p')`
 const StyledTile = styled('a')<StyledTileProps>`
   width: 'inherit';
   ${props =>
-    props.fixedWidth &&
+    props.fixed &&
     css`
       min-width: 15rem;
       max-width: 20rem;

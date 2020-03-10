@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   StyledExpanderList,
   StyledExpanderListLink,
@@ -10,7 +10,7 @@ import Icon from '../Icons';
 
 export type ExpanderListColors = PaletteNames;
 
-export interface CompoundComponent
+export interface ExpanderListCompound
   extends React.ForwardRefExoticComponent<ExpanderListProps & React.RefAttributes<HTMLUListElement>> {
   Expander: any;
 }
@@ -81,7 +81,7 @@ const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
       })}
     </StyledExpanderList>
   );
-}) as CompoundComponent;
+}) as ExpanderListCompound;
 
 ExpanderList.Expander = Expander;
 Expander.displayName = 'ExpanderList.Expander';
