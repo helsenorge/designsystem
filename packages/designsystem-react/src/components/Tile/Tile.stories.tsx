@@ -58,5 +58,10 @@ stories.add('Wrapped container', () => (
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
+    <Tile
+      icon={<Icon size={64} type="alarmClock" />}
+      title={<Tile.Title>Europeisk helsetrygdekort (nav)</Tile.Title>}
+    />
+    <Tile icon={<Icon size={64} type="alarmClock" />} title={<Tile.Title>Title</Tile.Title>} />
   </div>
 ));

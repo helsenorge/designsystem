@@ -3,6 +3,7 @@ import {getColor} from '../../theme/currys';
 
 interface StyledTileProps {
   fixed: boolean;
+  compact: boolean;
 }
 
 const StyledTitle = styled('h1')`
@@ -31,6 +32,18 @@ const StyledTile = styled('a')<StyledTileProps>`
   padding: 1.5rem;
   background-color: ${getColor('white')};
   cursor: pointer;
+  ${props =>
+    props.compact &&
+    css`
+      flex-direction: row;
+      align-items: center;
+      > svg {
+        flex-shrink: 0;
+      }
+      ${StyledTitle} {
+        margin: 0;
+      }
+    `}
 `;
 
 export {StyledTile, StyledTitle, StyledDescription};

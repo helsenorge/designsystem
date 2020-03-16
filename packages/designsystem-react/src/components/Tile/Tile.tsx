@@ -6,7 +6,7 @@ export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 interface TileProps {
   icon: React.ReactElement;
   title: React.ReactElement;
-  description: string;
+  description?: string;
   fixed?: boolean;
 }
 
@@ -32,10 +32,10 @@ const Title = React.forwardRef((props: TitleProps, ref: any) => {
 const Tile = React.forwardRef((props: TileProps, ref: any) => {
   const {icon, title, description, fixed = false} = props;
   return (
-    <StyledTile ref={ref} fixed={fixed}>
+    <StyledTile compact={!description} ref={ref} fixed={fixed}>
       {icon}
       {title}
-      <StyledDescription>{description}</StyledDescription>
+      {description ? <StyledDescription>{description}</StyledDescription> : null}
     </StyledTile>
   );
 }) as TileCompound;
