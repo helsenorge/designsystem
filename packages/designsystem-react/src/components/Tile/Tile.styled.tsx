@@ -53,7 +53,7 @@ const StyledTile = styled('a')<StyledTileProps>`
       }
     `}
   &:hover {
-    background-color: ${getColor('neutral')};
+    background-color: ${getColor('neutral', 100)};
   }
 `;
 
