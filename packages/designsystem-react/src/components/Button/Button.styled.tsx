@@ -116,7 +116,7 @@ const outlineStyle = (color: PaletteNames, inverted?: boolean) => css`
   border-style: solid;
   background-color: transparent;
   border-color: ${inverted ? 'white' : getColor(color, 500)};
-  color: ${inverted ? 'white' : getColor(color, 500)};
+  color: ${inverted ? 'white' : getColor(color, 600)};
   position: relative;
   ${variantHoverStyle}
   &:hover,
@@ -143,7 +143,7 @@ const borderlessStyle = (color: PaletteNames, inverted?: boolean) => css`
   border-style: solid;
   background-color: transparent;
   border-color: transparent;
-  color: ${inverted ? 'white' : getColor(color, 500)};
+  color: ${inverted ? 'white' : getColor(color, 600)};
   position: relative;
   ${variantHoverStyle}
   &:hover,
