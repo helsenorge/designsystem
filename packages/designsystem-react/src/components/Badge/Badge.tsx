@@ -1,25 +1,24 @@
-import styled, {css} from 'styled-components';
+import React from 'react';
 import {PaletteNames} from '../../theme/palette';
-import {getColor} from '../../theme/currys/color';
+import StyledBadge from './Badge.styled';
 
 export type BadgeColors = PaletteNames;
+export type BadgeChildren = string | number;
 
 interface BadgeProps {
+  children: BadgeChildren;
   className?: string;
   color?: BadgeColors;
 }
 
-const Badge = styled('span')<BadgeProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: ${props => (props.color === 'white' ? 'black' : 'white')};
-  min-width: 1.375rem;
-  height: 1.375rem;
-  border-radius: 1rem;
-  background-color: ${props => (props.color ? getColor(props.color, 500) : getColor('black'))};
-`;
+const Badge = React.forwardRef((props: BadgeProps, ref: any) => {
+  const {children, className = '', color = 'black'} = props;
+  const oversized = children.toString().length > 2;
+  return (
+    <StyledBadge oversized={oversized} className={className} color={color} ref={ref}>
+      {children}
+    </StyledBadge>
+  );
+});
 
 export default Badge;
