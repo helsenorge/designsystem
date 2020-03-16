@@ -182,10 +182,10 @@ export const StyledButton = styled('button')<StyledButtonProps>`
         margin: 0 0.7rem;
       }
       ${StyledButtonContent}:first-child {
-        margin-left: 1.5rem;
+        margin-left: ${props.large ? '2.5rem' : '1.5rem'};
       }
       ${StyledButtonContent}:last-child {
-        margin-right: 1.5rem;
+        margin-right: ${props.large ? '2.5rem' : '1.5rem'};
       }
     `}
 

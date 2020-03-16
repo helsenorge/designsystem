@@ -102,7 +102,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
                 <StyledButtonContent>{restChildren}</StyledButtonContent>
               </>
             )}
-            {renderIcon(rightIcon, large, iconColor, isHovered)}
+            {renderIcon(rightIcon, false, iconColor, isHovered)}
           </>
         )}
       </StyledButtonWrapper>
