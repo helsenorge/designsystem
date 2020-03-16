@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyledTitle, StyledTile, StyledDescription} from './Tile.styled';
 import {HTMLAnchorProps} from '../../constants';
 
@@ -32,10 +32,19 @@ const Title = React.forwardRef((props: TitleProps, ref: any) => {
 });
 
 const Tile = React.forwardRef((props: TileProps, ref: any) => {
-  const {icon, title, description, fixed = false} = props;
+  const {icon, title, description, fixed = false, ...restProps} = props;
+  const [isHovered, setIsHovered] = useState(false);
   return (
-    <StyledTile compact={!description} ref={ref} fixed={fixed}>
-      {icon}
+    <StyledTile
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsHovered(true)}
+      onBlur={() => setIsHovered(false)}
+      compact={!description}
+      ref={ref}
+      fixed={fixed}
+      {...restProps}>
+      {React.cloneElement(icon, {size: 64, isHovered})}
       {title}
       {description ? <StyledDescription>{description}</StyledDescription> : null}
     </StyledTile>

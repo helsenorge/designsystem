@@ -26,6 +26,8 @@ const StyledTile = styled('a')<StyledTileProps>`
       min-width: 15rem;
       max-width: 20rem;
     `}
+  text-decoration: none;
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -52,7 +54,9 @@ const StyledTile = styled('a')<StyledTileProps>`
         margin: 0 0 0 1.5rem;
       }
     `}
-  &:hover {
+  &:hover, 
+  &:active,
+  &:focus {
     background-color: ${getColor('neutral', 100)};
   }
 `;
