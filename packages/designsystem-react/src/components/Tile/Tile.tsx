@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyledTitle, StyledTile, StyledDescription} from './Tile.styled';
+import {HTMLAnchorProps} from '../../constants';
 
 export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
-interface TileProps {
+interface TileProps extends HTMLAnchorProps {
   icon: React.ReactElement;
   title: React.ReactElement;
-  description: string;
+  description?: string;
   fixed?: boolean;
 }
 
@@ -16,7 +17,8 @@ interface TitleProps {
   is?: TitleTags;
 }
 
-export interface TileCompound extends React.ForwardRefExoticComponent<TileProps & React.RefAttributes<HTMLDivElement>> {
+export interface TileCompound
+  extends React.ForwardRefExoticComponent<TileProps & React.RefAttributes<HTMLAnchorElement>> {
   Title: any;
 }
 
@@ -30,12 +32,21 @@ const Title = React.forwardRef((props: TitleProps, ref: any) => {
 });
 
 const Tile = React.forwardRef((props: TileProps, ref: any) => {
-  const {icon, title, description, fixed = false} = props;
+  const {icon, title, description, fixed = false, ...restProps} = props;
+  const [isHovered, setIsHovered] = useState(false);
   return (
-    <StyledTile ref={ref} fixed={fixed}>
-      {icon}
+    <StyledTile
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsHovered(true)}
+      onBlur={() => setIsHovered(false)}
+      compact={!description}
+      ref={ref}
+      fixed={fixed}
+      {...restProps}>
+      {React.cloneElement(icon, {size: 64, isHovered})}
       {title}
-      <StyledDescription>{description}</StyledDescription>
+      {description ? <StyledDescription>{description}</StyledDescription> : null}
     </StyledTile>
   );
 }) as TileCompound;

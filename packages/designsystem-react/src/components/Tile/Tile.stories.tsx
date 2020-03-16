@@ -29,34 +29,46 @@ stories.add('Wrapped container', () => (
       gridGap: '1.5rem',
     }}>
     <Tile
+      href="https://vg.no"
       icon={<Icon size={64} type="alarmClock" />}
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
+      href="https://vg.no"
       icon={<Icon size={64} type="alarmClock" />}
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
+      href="https://vg.no"
       icon={<Icon size={64} type="alarmClock" />}
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
+      href="https://vg.no"
       icon={<Icon size={64} type="alarmClock" />}
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
+      href="https://vg.no"
       icon={<Icon size={64} type="alarmClock" />}
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
+      href="https://vg.no"
       icon={<Icon size={64} type="alarmClock" />}
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
+    <Tile
+      href="https://vg.no"
+      icon={<Icon size={64} type="alarmClock" />}
+      title={<Tile.Title>Europeisk helsetrygdekort (nav)</Tile.Title>}
+    />
+    <Tile href="https://vg.no" icon={<Icon size={64} type="alarmClock" />} title={<Tile.Title>Title</Tile.Title>} />
   </div>
 ));
