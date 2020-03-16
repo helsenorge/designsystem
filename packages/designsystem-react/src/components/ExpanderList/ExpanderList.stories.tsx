@@ -15,7 +15,9 @@ stories.add('Default', () => (
       width: '40rem',
     }}>
     <ExpanderList accordion={boolean('Accordion', false)} color={select('Color', allPaletteNames, 'blueberry')}>
-      <LinkList.Link title="Cognitive therapy">Some major content/text about certain illness here.</LinkList.Link>
+      <ExpanderList.Expander title="Cognitive therapy">
+        Some major content/text about certain illness here.
+      </ExpanderList.Expander>
       <ExpanderList.Expander title="Health anxiety">
         Some major content/text about certain illness here.
       </ExpanderList.Expander>
