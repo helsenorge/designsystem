@@ -59,11 +59,10 @@ interface StyledExpanderListLinkProps {
   color: ExpanderListColors;
   large: boolean;
   isExpanded: boolean;
-  hasIcon: boolean;
 }
 
 const StyledExpanderListLink = styled('button')<StyledExpanderListLinkProps>`
-  padding: ${props => (props.hasIcon ? '0.5rem' : '1rem')} 0.5rem;
+  padding: 0.5rem;
   display: flex;
   cursor: pointer;
   font-size: 1.25rem;

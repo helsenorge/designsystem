@@ -37,13 +37,7 @@ const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
   const {children, color, icon, large, title, isExpanded = false, ...restProps} = props;
   return (
     <li>
-      <StyledExpanderListLink
-        isExpanded={isExpanded}
-        hasIcon={!!icon}
-        large={large}
-        color={color}
-        ref={ref}
-        {...restProps}>
+      <StyledExpanderListLink isExpanded={isExpanded} large={large} color={color} ref={ref} {...restProps}>
         <StyledExpanderListLinkContent>
           {icon && React.cloneElement(icon, {size: 48})}
           {title}
