@@ -25,8 +25,8 @@ interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
 export function useIcons(children: React.ReactNode[]) {
   let leftIcon = null;
   let rightIcon = null;
-  if ((children[0] as any).type?.displayName === 'Icon') leftIcon = children.shift();
-  if ((children[children.length - 1] as any).type?.displayName === 'Icon') rightIcon = children.pop();
+  if ((children[0] as any)?.type?.displayName === 'Icon') leftIcon = children.shift();
+  if ((children[children.length - 1] as any)?.type?.displayName === 'Icon') rightIcon = children.pop();
   return [leftIcon, rightIcon, children];
 }
 
