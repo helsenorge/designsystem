@@ -48,4 +48,11 @@ export const allPaletteNames: PaletteNames[] = [
 
 export const allTitleTags: TitleTags[] = ['h1', 'h2', 'h3', 'h4', 'h5'];
 
-export const allTitleAppearances: TitleAppearances[] = ['title1', 'title2', 'title3', 'title4', 'title5'];
+export const allTitleAppearances: TitleAppearances[] = [
+  'titleFeature',
+  'title1',
+  'title2',
+  'title3',
+  'title4',
+  'title5',
+];
