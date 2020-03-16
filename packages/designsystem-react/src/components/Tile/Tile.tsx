@@ -1,9 +1,10 @@
 import React from 'react';
 import {StyledTitle, StyledTile, StyledDescription} from './Tile.styled';
+import {HTMLAnchorProps} from '../../constants';
 
 export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
-interface TileProps {
+interface TileProps extends HTMLAnchorProps {
   icon: React.ReactElement;
   title: React.ReactElement;
   description?: string;
@@ -16,7 +17,8 @@ interface TitleProps {
   is?: TitleTags;
 }
 
-export interface TileCompound extends React.ForwardRefExoticComponent<TileProps & React.RefAttributes<HTMLDivElement>> {
+export interface TileCompound
+  extends React.ForwardRefExoticComponent<TileProps & React.RefAttributes<HTMLAnchorElement>> {
   Title: any;
 }
 
