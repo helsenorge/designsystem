@@ -80,7 +80,7 @@ export const StyledLeftFluidContent = styled('div')<{hasIcon: boolean}>`
   height: 100%;
   width: 100%;
   ${props =>
-    props.hasIcon &&
+    !props.hasIcon &&
     css`
       justify-content: center;
     `};
