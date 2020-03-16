@@ -72,6 +72,7 @@ const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
             onClick: handleExpanderClick,
           });
         }
+        return child;
       })}
     </StyledExpanderList>
   );
