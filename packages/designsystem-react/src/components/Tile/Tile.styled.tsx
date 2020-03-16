@@ -31,19 +31,30 @@ const StyledTile = styled('a')<StyledTileProps>`
   justify-content: flex-start;
   padding: 1.5rem;
   background-color: ${getColor('white')};
+  ${StyledTitle} {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  ${StyledDescription} {
+    margin: 0 0 3rem 0;
+  }
   cursor: pointer;
   ${props =>
     props.compact &&
     css`
       flex-direction: row;
       align-items: center;
+      padding-right: 1rem;
       > svg {
         flex-shrink: 0;
       }
       ${StyledTitle} {
-        margin: 0;
+        margin: 0 0 0 1.5rem;
       }
     `}
+  &:hover {
+    background-color: ${getColor('neutral')};
+  }
 `;
 
 export {StyledTile, StyledTitle, StyledDescription};
