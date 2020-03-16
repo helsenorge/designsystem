@@ -3,7 +3,8 @@
 exports[`displays text 1`] = `
 <div>
   <span
-    class="sc-AxjAm jNUibQ"
+    class="sc-AxjAm drUKFi"
+    color="black"
   >
     123
   </span>
