@@ -92,7 +92,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
         ) : (
           <>
             {fluid ? (
-              <StyledLeftFluidContent>
+              <StyledLeftFluidContent hasIcon={!(leftIcon || rightIcon)}>
                 {renderIcon(leftIcon, large, iconColor, isHovered)}
                 <StyledButtonContent>{restChildren}</StyledButtonContent>
               </StyledLeftFluidContent>
