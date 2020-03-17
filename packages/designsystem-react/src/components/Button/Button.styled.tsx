@@ -148,20 +148,18 @@ const borderlessStyle = (color: PaletteNames, inverted?: boolean) => css`
   border-width: 0.125rem;
   border-style: solid;
   background-color: transparent;
-  border-color: transparent;
+  border: 0;
+  ${StyledButtonContent} {
+    border-bottom: 1px solid transparent;
+  }
   color: ${inverted ? 'white' : getColor(color, 600)};
   position: relative;
-  ${variantHoverStyle}
+  padding: 0;
   &:hover,
   :active,
   :focus {
-    background-color: ${getHoverColor(inverted ? 'white' : color)};
-    border-color: transparent;
-    &:before {
-      border: 0.125rem solid ${getHoverColor(inverted ? 'white' : color)};
-    }
-    &:after {
-      border: 0.125rem solid ${getHoverColor(inverted ? 'white' : color)};
+    ${StyledButtonContent} {
+      border-bottom: 1px solid ${inverted ? 'white' : getColor(color, 700)};
     }
   }
   &:disabled {
@@ -171,6 +169,7 @@ const borderlessStyle = (color: PaletteNames, inverted?: boolean) => css`
   }
 `;
 
+// TODO: Need to refactor the mess at the bottom. Will have to make Icon a StyledComponent.
 export const StyledButton = styled('button')<StyledButtonProps>`
   ${defaultStyle}
   ${fluidStyle}
@@ -182,10 +181,11 @@ export const StyledButton = styled('button')<StyledButtonProps>`
   ${props =>
     props.hasIcon &&
     !props.loader &&
+    props.variant !== 'borderless' &&
     css`
       padding: 0;
       .icon {
-        margin: 0 0.7rem;
+        margin: 0 0.75rem;
       }
       ${StyledButtonContent}:first-child {
         margin-left: ${props.large ? '2.5rem' : '1.5rem'};
@@ -194,5 +194,16 @@ export const StyledButton = styled('button')<StyledButtonProps>`
         margin-right: ${props.large ? '2.5rem' : '1.5rem'};
       }
     `}
-
+    ${props =>
+      props.hasIcon &&
+      !props.loader &&
+      props.variant === 'borderless' &&
+      css`
+        .icon:first-child {
+          margin-right: 0.75rem;
+        }
+        .icon:last-child {
+          margin-left: 0.75rem;
+        }
+      `}
 `;
