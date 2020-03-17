@@ -33,7 +33,7 @@ const defaultStyle = css`
 const fluidStyle = (props: StyledButtonProps) =>
   props.fluid &&
   css`
-    width: inherit;
+    width: 100%;
   `;
 
 const largeStyle = (props: StyledButtonProps) =>
@@ -74,10 +74,16 @@ export const StyledButtonWrapper = styled('span')`
   }
 `;
 
-export const StyledLeftFluidContent = styled('div')`
+export const StyledLeftFluidContent = styled('div')<{hasIcon: boolean}>`
   display: flex;
   align-items: center;
   height: 100%;
+  width: 100%;
+  ${props =>
+    !props.hasIcon &&
+    css`
+      justify-content: center;
+    `};
 `;
 
 export const StyledButtonContent = styled('span')``;

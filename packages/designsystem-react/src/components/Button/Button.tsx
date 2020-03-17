@@ -88,11 +88,13 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       {...restProps}>
       <StyledButtonWrapper>
         {loading ? (
-          <Loader color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)} size="tiny" />
+          <StyledLeftFluidContent hasIcon={false}>
+            <Loader color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)} size="tiny" />
+          </StyledLeftFluidContent>
         ) : (
           <>
             {fluid ? (
-              <StyledLeftFluidContent>
+              <StyledLeftFluidContent hasIcon={!!(leftIcon || rightIcon)}>
                 {renderIcon(leftIcon, large, iconColor, isHovered)}
                 <StyledButtonContent>{restChildren}</StyledButtonContent>
               </StyledLeftFluidContent>
