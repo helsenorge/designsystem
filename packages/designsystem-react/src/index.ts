@@ -10,5 +10,6 @@ import Logo from './components/Logo';
 import Tile from './components/Tile';
 import Title from './components/Title';
 import {theme} from './theme';
+import {useHover} from './hooks/useHover';
 
-export {Avatar, Badge, Button, ExpanderList, Icon, LinkList, List, Loader, Logo, Tile, Title, theme};
+export {Avatar, Badge, Button, ExpanderList, Icon, LinkList, List, Loader, Logo, Tile, Title, theme, useHover};

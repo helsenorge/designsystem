@@ -3,6 +3,7 @@ import {StyledLinkList, StyledLinkListLink, StyledLinkListLinkContent} from './L
 import {PaletteNames} from '../../theme/palette';
 import {HTMLAnchorProps} from '../../constants';
 import Icon from '../Icons';
+import {useHover} from '../../hooks/useHover';
 
 export type LinkListColors = PaletteNames;
 
@@ -30,11 +31,12 @@ interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
 
 const Link = React.forwardRef((props: LinkProps, ref: any) => {
   const {children, color, icon, large, chevron, ...restProps} = props;
+  const {hoverRef, isHovered} = useHover<HTMLAnchorElement>();
   return (
     <li ref={ref}>
-      <StyledLinkListLink hasIcon={!!(chevron || icon)} large={large} color={color} {...restProps}>
+      <StyledLinkListLink ref={hoverRef} hasIcon={!!(chevron || icon)} large={large} color={color} {...restProps}>
         <StyledLinkListLinkContent>
-          {icon && React.cloneElement(icon, {size: 48})}
+          {icon && React.cloneElement(icon, {size: 48, isHovered})}
           {children}
         </StyledLinkListLinkContent>
         {chevron ? <Icon type="chevronRight" /> : null}

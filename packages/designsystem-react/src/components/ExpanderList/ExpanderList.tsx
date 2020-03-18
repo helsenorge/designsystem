@@ -7,6 +7,7 @@ import {
 } from './ExpanderList.styled';
 import {PaletteNames} from '../../theme/palette';
 import Icon from '../Icons';
+import {useHover} from '../../hooks/useHover';
 
 export type ExpanderListColors = PaletteNames;
 
@@ -33,13 +34,15 @@ interface ExpanderProps extends React.HTMLAttributes<HTMLButtonElement> {
   title: string;
 }
 
+// TODO: See what can be done with regards to double reffing.
 const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
   const {children, color, icon, large, title, isExpanded = false, ...restProps} = props;
+  const {hoverRef, isHovered} = useHover<HTMLButtonElement>();
   return (
     <li>
-      <StyledExpanderListLink isExpanded={isExpanded} large={large} color={color} ref={ref} {...restProps}>
+      <StyledExpanderListLink isExpanded={isExpanded} large={large} color={color} ref={hoverRef} {...restProps}>
         <StyledExpanderListLinkContent>
-          {icon && React.cloneElement(icon, {size: 48})}
+          {icon && React.cloneElement(icon, {size: 48, isHovered})}
           {title}
         </StyledExpanderListLinkContent>
         <Icon type={isExpanded ? 'chevronUp' : 'chevronDown'} />

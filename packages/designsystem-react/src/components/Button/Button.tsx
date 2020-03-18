@@ -3,6 +3,7 @@ import {HTMLButtonProps, HTMLAnchorProps} from '../../constants';
 import {StyledButton, StyledButtonContent, StyledLeftFluidContent, StyledButtonWrapper} from './Button.styled';
 import Loader from '../Loader';
 import {PaletteNames} from '../../theme/palette';
+import {useHover} from '../../hooks/useHover';
 
 export type ButtonIntents = 'primary' | 'warning' | 'danger';
 export type ButtonTags = 'button' | 'a';
@@ -43,6 +44,7 @@ const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, i
   return intentToColor[intent];
 };
 
+//TODO: Solve double ref situation like in this
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   const {
     children,
@@ -60,7 +62,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
 
   const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted);
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const [isHovered, setIsHovered] = useState(false);
+  const {hoverRef, isHovered} = useHover<any>();
 
   function renderIcon(iconElement: any, large: boolean, color: string, hover: boolean) {
     return iconElement
@@ -70,10 +72,6 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
 
   return (
     <StyledButton
-      onMouseEnter={() => setIsHovered(true)}
-      onFocus={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onBlur={() => setIsHovered(false)}
       className={className}
       variant={variant}
       intent={intent}
@@ -83,7 +81,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       hasIcon={!!(leftIcon || rightIcon)}
       fluid={fluid}
       loader={loading}
-      ref={ref}
+      ref={hoverRef}
       disabled={disabled}
       {...restProps}>
       <StyledButtonWrapper>
