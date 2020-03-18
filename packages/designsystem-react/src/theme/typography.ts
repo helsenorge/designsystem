@@ -12,8 +12,8 @@ const titleFeature = css`
 `;
 
 const title1 = css`
-  font-size: 2.625rem;
-  line-height: 3rem;
+  font-size: 2.75rem;
+  line-height: 3.25rem;
   font-weight: 600;
   @media ${screen.md} {
     font-size: 3.25rem;
@@ -27,28 +27,20 @@ const title2 = css`
   font-weight: 600;
   @media ${screen.md} {
     font-size: 2.125rem;
-    line-height: 2.625rem;
+    line-height: 2.75rem;
   }
 `;
 
 const title3 = css`
-  font-size: 1.375rem;
-  line-height: 1.75rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   font-weight: 600;
-  @media ${screen.md} {
-    font-size: 1.5rem;
-    line-height: 1.875rem;
-  }
 `;
 
 const title4 = css`
-  font-size: 1.625rem;
+  font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
-  @media ${screen.md} {
-    font-size: 1.25rem;
-    line-height: 2rem;
-  }
 `;
 
 const title5 = css`
@@ -56,35 +48,35 @@ const title5 = css`
   line-height: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.45px;
   @media ${screen.md} {
     font-size: 1.125rem;
-    line-height: 1.625rem;
+    line-height: 1.5rem;
   }
 `;
 
 const preamble = css`
   font-size: 1.375rem;
-  line-height: 1.875rem;
+  line-height: 2rem;
   font-weight: 600;
   @media ${screen.md} {
     font-size: 1.5rem;
-    line-height: 2.125rem;
   }
 `;
 
 const legend = css`
   font-size: 1.25rem;
-  line-height: 1.625rem;
+  line-height: 1.75rem;
   font-weight: 600;
   @media ${screen.md} {
     font-size: 1.5rem;
-    line-height: 2.125rem;
+    line-height: 2rem;
   }
 `;
 
 const label = css`
   font-size: 1.125rem;
-  line-height: 1.625rem;
+  line-height: 1.5rem;
   font-weight: 600;
   @media ${screen.md} {
     font-size: 1.25rem;
@@ -103,7 +95,7 @@ const body = css`
 
 const focusedContent = css`
   font-size: 1.125rem;
-  line-height: 1.625rem;
+  line-height: 1.75rem;
 `;
 
 const table = css`
@@ -111,7 +103,6 @@ const table = css`
   line-height: 1.75rem;
   @media ${screen.md} {
     font-size: 1.25rem;
-    line-height: 1.875rem;
   }
 `;
 
@@ -128,15 +119,11 @@ const strong = css`
 const form = css`
   font-size: 1.125rem;
   line-height: 1.75rem;
-  @media ${screen.md} {
-    font-size: 1.125rem;
-    line-height: 1.875rem;
-  }
 `;
 
 const imageCaption = css`
   font-size: 1rem;
-  line-height: 1.375rem;
+  line-height: 1.5rem;
 `;
 
 const imageCredit = css`
@@ -145,8 +132,8 @@ const imageCredit = css`
 `;
 
 const time = css`
-  font-size: 1.125rem;
-  line-height: 1.625rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 `;
 
 export const typography = {
