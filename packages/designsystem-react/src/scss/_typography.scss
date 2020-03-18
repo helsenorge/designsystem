@@ -1,6 +1,16 @@
+.title-feature {
+  font-size: 3rem;
+  line-height: 4rem;
+  font-weight: 600;
+  @include media-breakpoint-up(md) {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+}
+
 .title1 {
-  font-size: 2.625rem;
-  line-height: 3rem;
+  font-size: 2.75rem;
+  line-height: 3.25rem;
   font-weight: 600;
   @include media-breakpoint-up(md) {
     font-size: 3.25rem;
@@ -14,28 +24,20 @@
   font-weight: 600;
   @include media-breakpoint-up(md) {
     font-size: 2.125rem;
-    line-height: 2.625rem;
+    line-height: 2.75rem;
   }
 }
 
 .title3 {
-  font-size: 1.375rem;
-  line-height: 1.75rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   font-weight: 600;
-  @include media-breakpoint-up(md) {
-    font-size: 1.5rem;
-    line-height: 1.875rem;
-  }
 }
 
 .title4 {
-  font-size: 1.625rem;
+  font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
-  @include media-breakpoint-up(md) {
-    font-size: 1.25rem;
-    line-height: 2;
-  }
 }
 
 .title5 {
@@ -43,43 +45,18 @@
   line-height: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.45px;
   @include media-breakpoint-up(md) {
     font-size: 1.125rem;
-    line-height: 1.625rem;
-  }
-}
-
-.strong {
-  font-size: 1.125rem;
-  line-height: 1.175rem;
-  @include media-breakpoint-up(md) {
-    font-size: 1.25rem;
-    line-height: 1.875rem;
-  }
-}
-
-.focused-content {
-  font-size: 1.125rem;
-  line-height: 1.625rem;
-}
-
-.title-feature {
-  font-size: 3rem;
-  line-height: 4rem;
-  font-weight: 600;
-  @include media-breakpoint-up(md) {
-    font-size: 4rem;
-    line-height: 4.625rem;
   }
 }
 
 .preamble {
   font-size: 1.375rem;
-  line-height: 1.875rem;
+  line-height: 2rem;
   font-weight: 600;
   @include media-breakpoint-up(md) {
     font-size: 1.5rem;
-    line-height: 2.125rem;
   }
 }
 
@@ -95,14 +72,27 @@
 
 .label {
   font-size: 1.125rem;
-  line-height: 1.625rem;
+  line-height: 1.5rem;
   @include media-breakpoint-up(md) {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }
 
+.focused-content {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .table {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  @include media-breakpoint-up(md) {
+    font-size: 1.25rem;
+  }
+}
+
+.strong {
   font-size: 1.125rem;
   line-height: 1.75rem;
   @include media-breakpoint-up(md) {
@@ -116,13 +106,12 @@
   line-height: 1.75rem;
   @include media-breakpoint-up(md) {
     font-size: 1.25rem;
-    line-height: 1.875rem;
   }
 }
 
 .image-caption {
   font-size: 1rem;
-  line-height: 1.375rem;
+  line-height: 1.5rem;
 }
 
 .image-credit {
@@ -132,5 +121,5 @@
 
 .time {
   font-size: 1.125rem;
-  line-height: 1.625rem;
+  line-height: 1.75rem;
 }

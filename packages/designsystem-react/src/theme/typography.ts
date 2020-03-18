@@ -108,7 +108,7 @@ const table = css`
 
 const strong = css`
   font-size: 1.125rem;
-  line-height: 1.175rem;
+  line-height: 1.75rem;
   font-weight: 700;
   @media ${screen.md} {
     font-size: 1.25rem;
