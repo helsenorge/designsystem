@@ -39,6 +39,7 @@ import Bus from './Bus';
 import CriticalHealthInfo from './CiriticalHealthInfo';
 import Contacts from './Contacts';
 import Documents from './Documents';
+import DonorCard from './DonorCard';
 import Calendar from './Calendar';
 import Envelope from './Envelope';
 import EuropeanHealthCard from './EuropeanHealthCard';
@@ -75,6 +76,7 @@ const iconMapping = {
   contacts: Contacts,
   cross: Cross,
   documents: Documents,
+  donorCard: DonorCard,
   enterFullScreen: EnterFullScreen,
   envelope: Envelope,
   eraser: Eraser,
