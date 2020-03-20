@@ -9,8 +9,6 @@
     "add": {
       "npmClient": "yarn"
     },
-    "version": {
-      "allowBranch": []
-    }
+    "version": {}
   }
 }
