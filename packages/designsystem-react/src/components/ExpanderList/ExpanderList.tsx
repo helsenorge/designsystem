@@ -52,11 +52,15 @@ const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
   );
 });
 
+function findShadowDOMId(path: any[], tagName: string) {
+  return path.find(e => e.tagName === tagName).id;
+}
+
 const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
   const {children, large, color, accordion = false, topBorder = true, bottomBorder = true} = props;
   const [activeExpander, setActiveExpander] = useState({});
   function handleExpanderClick(e: any) {
-    const id = e.currentTarget.id;
+    const id = e.currentTarget?.id || findShadowDOMId(e.path, 'BUTTON');
     setActiveExpander(prevState =>
       accordion ? {[id]: !Boolean(prevState[id])} : {...prevState, [id]: !Boolean(prevState[id])},
     );
