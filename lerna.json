@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "0.0.3-dev.16",
+  "version": "0.0.3-dev.18",
   "useWorkspaces": true,
   "command": {
     "run": {
@@ -11,10 +11,6 @@
     "add": {
       "npmClient": "yarn"
     },
-    "version": {
-      "allowBranch": [
-        "develop"
-      ]
-    }
+    "version": {}
   }
 }
