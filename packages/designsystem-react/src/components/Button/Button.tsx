@@ -4,6 +4,8 @@ import {StyledButton, StyledButtonContent, StyledLeftFluidContent, StyledButtonW
 import Loader from '../Loader';
 import {PaletteNames} from '../../theme/palette';
 import {useHover} from '../../hooks/useHover';
+import {useWindowSize} from '../../hooks/useWindowSize';
+import {breakpoints} from '../../theme/grid';
 
 export type ButtonIntents = 'primary' | 'warning' | 'danger';
 export type ButtonTags = 'button' | 'a';
@@ -44,6 +46,13 @@ const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, i
   return intentToColor[intent];
 };
 
+const getLargeIconSize = (large: boolean, screenWidth: number | undefined) => {
+  const mobile = screenWidth && screenWidth < breakpoints.md;
+  if (mobile && large) return 48;
+  if (large) return 64;
+  return 38;
+};
+
 //TODO: Solve double ref situation like in this
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   const {
@@ -63,10 +72,11 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted);
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
   const {hoverRef, isHovered} = useHover<any>();
+  const size = useWindowSize();
 
-  function renderIcon(iconElement: any, large: boolean, color: string, hover: boolean) {
+  function renderIcon(iconElement: any, size: number, color: string, hover: boolean) {
     return iconElement
-      ? React.cloneElement(iconElement as React.ReactElement, {size: large ? 64 : 38, color: color, isHovered: hover})
+      ? React.cloneElement(iconElement as React.ReactElement, {size, color: color, isHovered: hover})
       : null;
   }
 
@@ -93,16 +103,16 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
           <>
             {fluid ? (
               <StyledLeftFluidContent hasIcon={!!(leftIcon || rightIcon)}>
-                {renderIcon(leftIcon, large, iconColor, isHovered)}
+                {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
                 <StyledButtonContent>{restChildren}</StyledButtonContent>
               </StyledLeftFluidContent>
             ) : (
               <>
-                {renderIcon(leftIcon, large, iconColor, isHovered)}
+                {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
                 <StyledButtonContent>{restChildren}</StyledButtonContent>
               </>
             )}
-            {renderIcon(rightIcon, false, iconColor, isHovered)}
+            {renderIcon(rightIcon, 38, iconColor, isHovered)}
           </>
         )}
       </StyledButtonWrapper>

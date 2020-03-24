@@ -5,6 +5,7 @@ import {HTMLAnchorProps} from '../../constants';
 export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
 interface TileProps extends HTMLAnchorProps {
+  className?: string;
   icon: React.ReactElement;
   title: React.ReactElement;
   description?: string;
@@ -32,7 +33,7 @@ const Title = React.forwardRef((props: TitleProps, ref: any) => {
 });
 
 const Tile = React.forwardRef((props: TileProps, ref: any) => {
-  const {icon, title, description, fixed = false, ...restProps} = props;
+  const {icon, title, className = '', description, fixed = false, ...restProps} = props;
   const [isHovered, setIsHovered] = useState(false);
   return (
     <StyledTile
@@ -41,6 +42,7 @@ const Tile = React.forwardRef((props: TileProps, ref: any) => {
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
       compact={!description}
+      className={className}
       ref={ref}
       fixed={fixed}
       {...restProps}>

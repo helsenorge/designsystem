@@ -14,6 +14,7 @@ export interface CompoundComponent
 
 interface LinkListProps {
   children: React.ReactNode;
+  className?: string;
   color: LinkListColors;
   chevron?: boolean;
   bottomBorder?: boolean;
@@ -23,6 +24,7 @@ interface LinkListProps {
 
 interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode;
+  className?: string;
   icon?: React.ReactElement;
   color: LinkListColors;
   large: boolean;
@@ -30,11 +32,17 @@ interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
 }
 
 const Link = React.forwardRef((props: LinkProps, ref: any) => {
-  const {children, color, icon, large, chevron, ...restProps} = props;
+  const {children, className = '', color, icon, large, chevron, ...restProps} = props;
   const {hoverRef, isHovered} = useHover<HTMLAnchorElement>();
   return (
     <li ref={ref}>
-      <StyledLinkListLink ref={hoverRef} hasIcon={!!(chevron || icon)} large={large} color={color} {...restProps}>
+      <StyledLinkListLink
+        className={className}
+        ref={hoverRef}
+        hasIcon={!!(chevron || icon)}
+        large={large}
+        color={color}
+        {...restProps}>
         <StyledLinkListLinkContent>
           {icon && React.cloneElement(icon, {size: 48, isHovered})}
           {children}
@@ -46,9 +54,9 @@ const Link = React.forwardRef((props: LinkProps, ref: any) => {
 });
 
 const LinkList = React.forwardRef((props: LinkListProps, ref: any) => {
-  const {children, chevron = false, large, color, topBorder = true, bottomBorder = true} = props;
+  const {children, className = '', chevron = false, large, color, topBorder = true, bottomBorder = true} = props;
   return (
-    <StyledLinkList topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
+    <StyledLinkList className={className} topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
       {React.Children.map(children, (child: any) => {
         if (child.type.displayName === 'LinkList.Link') {
           return React.cloneElement(child, {color, large, chevron});
