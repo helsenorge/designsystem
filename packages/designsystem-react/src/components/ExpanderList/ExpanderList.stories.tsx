@@ -14,7 +14,10 @@ stories.add('Default', () => (
     style={{
       width: '40rem',
     }}>
-    <ExpanderList accordion={boolean('Accordion', false)} color={select('Color', allPaletteNames, 'blueberry')}>
+    <ExpanderList
+      isOpen={boolean('Is open', false)}
+      accordion={boolean('Accordion', false)}
+      color={select('Color', allPaletteNames, 'blueberry')}>
       <ExpanderList.Expander title="Cognitive therapy">
         Some major content/text about certain illness here.
       </ExpanderList.Expander>
@@ -33,7 +36,7 @@ stories.add('With icon', () => (
     style={{
       width: '40rem',
     }}>
-    <ExpanderList color="cherry">
+    <ExpanderList isOpen={boolean('Is open', false)} color="cherry">
       <ExpanderList.Expander icon={<Icon type="alarmClock" />} title="Cognitive therapy">
         Some major content/text about certain illness here.
       </ExpanderList.Expander>
@@ -52,7 +55,7 @@ stories.add('With LinkList', () => (
     style={{
       width: '40rem',
     }}>
-    <ExpanderList color="cherry">
+    <ExpanderList isOpen={boolean('Is open', false)} color="cherry">
       <ExpanderList.Expander title="Cognitive therapy">
         <LinkList color="cherry">
           <LinkList.Link>First aid</LinkList.Link>
