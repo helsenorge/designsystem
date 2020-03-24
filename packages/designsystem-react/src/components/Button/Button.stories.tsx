@@ -62,7 +62,7 @@ stories.add('Fluid', () => (
       variant={select('Variant', allButtonVariants, 'fill')}>
       <Icon type={select('Left icon', allIcons, 'cross')} />
       {text('Text', 'Button')}
-      <Icon type={select('Left icon', allIcons, 'cross')} />
+      <Icon type={select('Right icon', allIcons, 'cross')} />
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
@@ -123,7 +123,7 @@ stories.add('With icon(s)', () => (
       variant={select('Variant', allButtonVariants, 'fill')}>
       <Icon type={select('Left icon', allIcons, 'cross')} />
       {text('Text', 'Button')}
-      <Icon type={select('Left icon', allIcons, 'cross')} />
+      <Icon type={select('Right icon', allIcons, 'cross')} />
     </Button>
   </div>
 ));
