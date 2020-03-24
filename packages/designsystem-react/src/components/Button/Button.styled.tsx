@@ -1,5 +1,6 @@
 import styled, {css} from 'styled-components';
 import {ButtonVariants, ButtonIntents, intentToColor} from './Button';
+import {screen} from '../../theme/grid';
 import {getColor, getHoverColor} from '../../theme/currys/color';
 import {PaletteNames} from '../../theme/palette';
 
@@ -15,18 +16,23 @@ interface StyledButtonProps {
 }
 
 const defaultStyle = css`
-  padding: 0 2.5rem;
-  font-size: 1.25rem;
+  padding: 0 1.5rem;
+  height: 2.5rem;
+  font-size: 1.125rem;
   font-family: inherit;
   display: inline-block;
   box-sizing: border-box;
   text-decoration: none;
-  height: 3.125rem;
   outline: none;
   border: 0;
   cursor: pointer;
   &:disabled {
     pointer-events: none;
+  }
+  @media ${screen.md} {
+    height: 3.125rem;
+    font-size: 1.25rem;
+    padding: 0 2.5rem;
   }
 `;
 
@@ -39,7 +45,12 @@ const fluidStyle = (props: StyledButtonProps) =>
 const largeStyle = (props: StyledButtonProps) =>
   props.large &&
   css`
-    height: 4.5rem;
+    height: 3.5rem;
+    font-size: 1.125rem;
+    /* padding: 0 0.5rem; */
+    @media ${screen.md} {
+      height: 4.5rem;
+    }
   `;
 
 const variantHoverStyle = css`
@@ -184,8 +195,14 @@ export const StyledButton = styled('button')<StyledButtonProps>`
     props.variant !== 'borderless' &&
     css`
       padding: 0;
+      @media ${screen.md} {
+        padding: 0;
+      }
       .icon {
-        margin: 0 0.75rem;
+        margin: 0 ${props.large ? '0.5rem' : '0.125rem'};
+        @media ${screen.md} {
+          margin: 0 0.75rem;
+        }
       }
       ${StyledButtonContent}:first-child {
         margin-left: ${props.large ? '2.5rem' : '1.5rem'};
