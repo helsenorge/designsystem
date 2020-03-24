@@ -23,6 +23,7 @@ interface ExpanderListProps {
   className?: string;
   color: ExpanderListColors;
   large?: boolean;
+  isOpen?: boolean;
   topBorder?: boolean;
 }
 
@@ -65,19 +66,21 @@ function findShadowDOMId(path: any[], tagName: string) {
 }
 
 const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
-  const {children, large, color, className = '', accordion = false, topBorder = true, bottomBorder = true} = props;
+  const {children, large, isOpen = false, color, className = '', accordion = false, topBorder = true, bottomBorder = true} = props;
   const [activeExpander, setActiveExpander] = useState({});
   function handleExpanderClick(e: any) {
     const id = e.currentTarget?.id || findShadowDOMId(e.path, 'BUTTON');
-    setActiveExpander(prevState =>
-      accordion ? {[id]: !Boolean(prevState[id])} : {...prevState, [id]: !Boolean(prevState[id])},
-    );
+    if (!isOpen) {
+      setActiveExpander(prevState =>
+        accordion ? {[id]: !Boolean(prevState[id])} : {...prevState, [id]: !Boolean(prevState[id])},
+      );
+    }
   }
   return (
     <StyledExpanderList className={className} topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
       {React.Children.map(children, (child: any, index: number) => {
         if (child.type.displayName === 'ExpanderList.Expander') {
-          const isExpanded = activeExpander[index];
+          const isExpanded = isOpen || activeExpander[index];
           return React.cloneElement(child, {
             id: index,
             key: index,
