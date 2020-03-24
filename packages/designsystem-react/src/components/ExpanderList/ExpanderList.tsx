@@ -20,6 +20,7 @@ interface ExpanderListProps {
   accordion?: boolean;
   bottomBorder?: boolean;
   children: React.ReactNode;
+  className?: string;
   color: ExpanderListColors;
   large?: boolean;
   topBorder?: boolean;
@@ -27,6 +28,7 @@ interface ExpanderListProps {
 
 interface ExpanderProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
+  className?: string;
   color: ExpanderListColors;
   icon?: React.ReactElement;
   isExpanded?: boolean;
@@ -36,11 +38,17 @@ interface ExpanderProps extends React.HTMLAttributes<HTMLButtonElement> {
 
 // TODO: See what can be done with regards to double reffing.
 const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
-  const {children, color, icon, large, title, isExpanded = false, ...restProps} = props;
+  const {children, color, className = '', icon, large, title, isExpanded = false, ...restProps} = props;
   const {hoverRef, isHovered} = useHover<HTMLButtonElement>();
   return (
     <li>
-      <StyledExpanderListLink isExpanded={isExpanded} large={large} color={color} ref={hoverRef} {...restProps}>
+      <StyledExpanderListLink
+        className={className}
+        isExpanded={isExpanded}
+        large={large}
+        color={color}
+        ref={hoverRef}
+        {...restProps}>
         <StyledExpanderListLinkContent>
           {icon && React.cloneElement(icon, {size: 48, isHovered})}
           {title}
@@ -57,7 +65,7 @@ function findShadowDOMId(path: any[], tagName: string) {
 }
 
 const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
-  const {children, large, color, accordion = false, topBorder = true, bottomBorder = true} = props;
+  const {children, large, color, className = '', accordion = false, topBorder = true, bottomBorder = true} = props;
   const [activeExpander, setActiveExpander] = useState({});
   function handleExpanderClick(e: any) {
     const id = e.currentTarget?.id || findShadowDOMId(e.path, 'BUTTON');
@@ -66,7 +74,7 @@ const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
     );
   }
   return (
-    <StyledExpanderList topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
+    <StyledExpanderList className={className} topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
       {React.Children.map(children, (child: any, index: number) => {
         if (child.type.displayName === 'ExpanderList.Expander') {
           const isExpanded = activeExpander[index];
