@@ -1,23 +1,26 @@
 import React from 'react';
 import {IconRawProps} from './Icon';
+
 const PlusLarge = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  return !isHovered ? (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
+  const hasHover = true;
+  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  return !isHovered || !hasHover ? (
+    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
       <polygon
         fill={color}
-        fillRule="evenodd"
-        points="19.992 18.008 19.992 6.327 18.009 6.327 18.009 18.008 6.327 18.008 6.327 19.991 18.009 19.991 18.009 31.672 19.992 31.672 19.992 19.991 31.672 19.991 31.672 18.008"
+        fill-rule="evenodd"
+        points="24.992 23.008 24.992 9.328 23.009 9.328 23.009 23.008 9.328 23.008 9.328 24.991 23.009 24.991 23.009 38.672 24.992 38.672 24.992 24.991 38.672 24.991 38.672 23.008"
       />
     </svg>
   ) : (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
+    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
       <polygon
-        fill={hoverColor}
-        fillRule="evenodd"
-        points="19.657 17.672 19.657 3.992 17.673 3.992 17.673 17.672 3.992 17.672 3.992 19.656 17.673 19.656 17.673 33.337 19.657 33.337 19.657 19.656 33.337 19.656 33.337 17.672"
+        fill={color}
+        fill-rule="evenodd"
+        points="24.992 23.008 24.992 7.327 23.009 7.327 23.009 23.008 7.327 23.008 7.327 24.991 23.009 24.991 23.009 40.672 24.992 40.672 24.992 24.991 40.672 24.991 40.672 23.008"
       />
     </svg>
   );
 });
+
 export default PlusLarge;
