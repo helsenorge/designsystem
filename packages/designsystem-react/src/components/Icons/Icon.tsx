@@ -161,7 +161,7 @@ const iconMapping = {
   twitter: Twitter,
   videoCamera: VideoCamera,
   warningSignFill: WarningSignFill,
-  WarningSignStroke: WarningSignStroke,
+  warningSignStroke: WarningSignStroke,
   youTube: YouTube,
   alarmClock: AlarmClock,
   archive: Archive,
@@ -271,7 +271,7 @@ export type IconTypes =
   | 'twitter'
   | 'videoCamera'
   | 'warningSignFill'
-  | 'WarningSignStroke'
+  | 'warningSignStroke'
   | 'youTube'
   | 'alertSignFill'
   | 'alarmClock'
