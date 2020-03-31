@@ -1,23 +1,26 @@
 import React from 'react';
 import {IconRawProps} from './Icon';
+
 const X = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  return !isHovered ? (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
-      <path
+  const hasHover = true;
+  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  return !isHovered || !hasHover ? (
+    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
+      <polygon
         fill={color}
-        fillRule="evenodd"
-        d="M26.1376353,10.5895725 L27.4104275,11.8623647 L20.2715725,18.9995725 L27.4104275,26.1376353 L26.1376353,27.4104275 L18.9995725,20.2715725 L11.8623647,27.4104275 L10.5895725,26.1376353 L17.7275725,18.9995725 L10.5895725,11.8623647 L11.8623647,10.5895725 L18.9995725,17.7275725 L26.1376353,10.5895725 Z"
+        fill-rule="evenodd"
+        points="25.403 24 35.662 13.741 34.259 12.338 24 22.597 13.741 12.337 12.338 13.74 22.597 24 12.338 34.26 13.741 35.663 24 25.403 34.259 35.662 35.662 34.259"
       />
     </svg>
   ) : (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
-      <path
-        fill={hoverColor}
-        fillRule="evenodd"
-        d="M28.5546147,7.79289322 L29.9688282,9.20710678 L20.3012032,18.8748932 L29.7428596,28.3163361 L28.328646,29.7305496 L18.8872032,20.2888932 L9.44538535,29.7305496 L8.03117178,28.3163361 L17.4722032,18.8738932 L7.80520317,9.20710678 L9.21941674,7.79289322 L18.8862032,17.4598932 L28.5546147,7.79289322 Z"
+    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
+      <polygon
+        fill={color}
+        fill-rule="evenodd"
+        points="24 22.597 12.327 10.924 10.924 12.326 22.597 24 10.923 35.674 12.326 37.076 24 25.403 35.674 37.076 37.077 35.674 25.403 24 37.076 12.326 35.673 10.924"
       />
     </svg>
   );
 });
+
 export default X;

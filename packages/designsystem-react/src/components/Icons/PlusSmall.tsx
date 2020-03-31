@@ -1,21 +1,26 @@
 import React from 'react';
 import {IconRawProps} from './Icon';
+
 const PlusSmall = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  return !isHovered ? (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
+  const hasHover = true;
+  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  return !isHovered || !hasHover ? (
+    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
       <path
         fill={color}
-        d="M19,11.2251246 L18.9991246,17.9991246 L25.7748756,18 L25.7748756,20 L18.9991246,19.9991246 L19,26.7748754 L17,26.7748754 L16.9991246,19.9991246 L10.2251246,20 L10.2251246,18 L16.9991246,17.9991246 L17,11.2251246 L19,11.2251246 Z"
+        fill-rule="evenodd"
+        d="M24.9999999,14.225125 L24.999124,22.999125 L33.774875,23 L33.774875,25 L24.999124,24.999125 L24.9999999,33.774876 L22.9999999,33.774876 L22.999124,24.999125 L14.225124,25 L14.225124,23 L22.999124,22.999125 L22.9999999,14.225125 L24.9999999,14.225125 Z"
       />
     </svg>
   ) : (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
+    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
       <path
-        fill={hoverColor}
-        d="M19,9.22512463 L18.9991246,17.9991246 L27.7748756,18 L27.7748756,20 L18.9991246,19.9991246 L19,28.7748754 L17,28.7748754 L16.9991246,19.9991246 L8.22512463,20 L8.22512463,18 L16.9991246,17.9991246 L17,9.22512463 L19,9.22512463 Z"
+        fill={color}
+        fill-rule="evenodd"
+        d="M24.9999999,12.225125 L24.999124,22.999125 L35.774875,23 L35.774875,25 L24.999124,24.999125 L24.9999999,35.774876 L22.9999999,35.774876 L22.999124,24.999125 L12.225124,25 L12.225124,23 L22.999124,22.999125 L22.9999999,12.225125 L24.9999999,12.225125 Z"
       />
     </svg>
   );
 });
+
 export default PlusSmall;

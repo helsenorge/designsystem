@@ -34,9 +34,62 @@ import Search from './Search';
 import Share from './Share';
 import VerticalDots from './VerticalDots';
 import X from './X';
+
+import AlertSignFill from './AlertSignFill';
+import AlertSignStroke from './AlertSignStroke';
+import ArmFlexing from './ArmFlexing';
+import AwakePersonOnPillow from './AwakePersonOnPillow';
+import Baby from './Baby';
+import BandAid from './BandAid';
+import BeerAndPills from './BeerAndPills';
+import Bell from './Bell';
+import CalendarEvent from './CalendarEvent';
+import Car from './Car';
+import Dog from './Dog';
+import Draft from './Draft';
+import EChat from './EChat';
+import Female from './Female';
+import FemaleDoctor from './FemaleDoctor';
+import Form from './Form';
+import Globe from './Globe';
+import HandWaving from './HandWaving';
+import Heart from './Heart';
+import Hormone from './Hormone';
+import InfoSignFill from './InfoSignFill';
+import InfoSignStroke from './InfoSignStroke';
+import Instagram from './Instagram';
+import JointPain from './JointPain';
+import LaptopBlog from './LaptopBlog';
+import LawBook from './LawBook';
+import LightBulb from './LightBulb';
+import Location from './Location';
+import PaintRoller from './PaintRoller';
+import PatientAndPerson from './PatientAndPerson';
+import Person from './Person';
+import PersonInXRayMachine from './PersonInXRayMachine';
+import PersonWithBrokenArm from './PersonWithBrokenArm';
+import Plane from './Plane';
+import Pregnant from './Pregnant';
+import Publication from './Publication';
+import Puzzle from './Puzzle';
+import Receptionist from './Receptionist';
+import Rocket from './Rocket';
+import Skin from './Skin';
+import Snapchat from './Snapchat';
+import Taxi from './Taxi';
+import TeddyBear from './TeddyBear';
+import Ticket from './Ticket';
+import Train from './Train';
+import TrashCan from './TrashCan';
+import Twitter from './Twitter';
+import VideoCamera from './VideoCamera';
+import WarningSignFill from './WarningSignFill';
+import WarningSignStroke from './WarningSignStroke';
+import YouTube from './YouTube';
+
 import Archive from './Archive';
 import Bus from './Bus';
-import CriticalHealthInfo from './CiriticalHealthInfo';
+import CriticalHealthInfo from './CriticalHealthInfo';
 import Contacts from './Contacts';
 import Documents from './Documents';
 import DonorCard from './DonorCard';
@@ -59,6 +112,57 @@ import Vaccine from './Vaccine';
 import Wallet from './Wallet';
 
 const iconMapping = {
+  alertSignFill: AlertSignFill,
+  alertSignStroke: AlertSignStroke,
+  armFlexing: ArmFlexing,
+  awakePersonOnPillow: AwakePersonOnPillow,
+  baby: Baby,
+  bandAid: BandAid,
+  beerAndPills: BeerAndPills,
+  bell: Bell,
+  calendarEvent: CalendarEvent,
+  car: Car,
+  dog: Dog,
+  draft: Draft,
+  eChat: EChat,
+  female: Female,
+  femaleDoctor: FemaleDoctor,
+  form: Form,
+  globe: Globe,
+  handWaving: HandWaving,
+  heart: Heart,
+  hormone: Hormone,
+  infoSignFill: InfoSignFill,
+  infoSignStroke: InfoSignStroke,
+  instagram: Instagram,
+  jointPain: JointPain,
+  laptopBlog: LaptopBlog,
+  lawBook: LawBook,
+  lightBulb: LightBulb,
+  location: Location,
+  paintRoller: PaintRoller,
+  patientAndPerson: PatientAndPerson,
+  person: Person,
+  personInXRayMachine: PersonInXRayMachine,
+  personWithBrokenArm: PersonWithBrokenArm,
+  plane: Plane,
+  pregnant: Pregnant,
+  publication: Publication,
+  puzzle: Puzzle,
+  receptionist: Receptionist,
+  rocket: Rocket,
+  skin: Skin,
+  snapchat: Snapchat,
+  taxi: Taxi,
+  teddyBear: TeddyBear,
+  ticket: Ticket,
+  train: Train,
+  trashCan: TrashCan,
+  twitter: Twitter,
+  videoCamera: VideoCamera,
+  warningSignFill: WarningSignFill,
+  WarningSignStroke: WarningSignStroke,
+  youTube: YouTube,
   alarmClock: AlarmClock,
   archive: Archive,
   arrowLeft: ArrowLeft,
@@ -118,6 +222,58 @@ const iconMapping = {
 
 export type IconColors = PaletteNames;
 export type IconTypes =
+  | 'alertSignFill'
+  | 'alertSignStroke'
+  | 'armFlexing'
+  | 'awakePersonOnPillow'
+  | 'baby'
+  | 'bandAid'
+  | 'beerAndPills'
+  | 'bell'
+  | 'calendarEvent'
+  | 'car'
+  | 'dog'
+  | 'draft'
+  | 'eChat'
+  | 'female'
+  | 'femaleDoctor'
+  | 'form'
+  | 'globe'
+  | 'handWaving'
+  | 'heart'
+  | 'hormone'
+  | 'infoSignFill'
+  | 'infoSignStroke'
+  | 'instagram'
+  | 'jointPain'
+  | 'laptopBlog'
+  | 'lawBook'
+  | 'lightBulb'
+  | 'location'
+  | 'paintRoller'
+  | 'patientAndPerson'
+  | 'person'
+  | 'personInXRayMachine'
+  | 'personWithBrokenArm'
+  | 'plane'
+  | 'pregnant'
+  | 'publication'
+  | 'puzzle'
+  | 'receptionist'
+  | 'rocket'
+  | 'skin'
+  | 'snapchat'
+  | 'taxi'
+  | 'teddyBear'
+  | 'ticket'
+  | 'train'
+  | 'trashCan'
+  | 'twitter'
+  | 'videoCamera'
+  | 'warningSignFill'
+  | 'WarningSignStroke'
+  | 'youTube'
+  | 'alertSignFill'
   | 'alarmClock'
   | 'archive'
   | 'arrowLeft'
@@ -188,7 +344,7 @@ interface IconRawProps {
 }
 
 const Icon = React.forwardRef((props: IconProps, ref: any) => {
-  const {type, size = 38, color = 'black', isHovered = false} = props;
+  const {type, size = 48, color = 'black', isHovered = false} = props;
   return React.createElement(iconMapping[type], {
     size,
     color: getColor(color, 600),

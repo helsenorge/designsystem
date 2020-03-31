@@ -1,21 +1,26 @@
 import React from 'react';
 import {IconRawProps} from './Icon';
+
 const Menu = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  return !isHovered ? (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
-      <path
-        fill={color}
-        d="M29.9882812,24.7089844 L29.9882812,26.5089844 L8,26.5089844 L8,24.7089844 L29.9882812,24.7089844 Z M29.9882812,17.7089844 L29.9882812,19.5089844 L8,19.5089844 L8,17.7089844 L29.9882812,17.7089844 Z M29.9882812,11 L29.9882812,12.8 L8,12.8 L8,11 L29.9882812,11 Z"
-      />
+  const hasHover = true;
+  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  return !isHovered || !hasHover ? (
+    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
+      <g fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <line x1="11.144" x2="36.781" y1="15.003" y2="15.003" stroke={color} stroke-width="1.75" />
+        <line x1="11.144" x2="36.781" y1="23.467" y2="23.467" stroke={color} stroke-width="1.75" />
+        <line x1="11.144" x2="36.781" y1="32.309" y2="32.309" stroke={color} stroke-width="1.75" />
+      </g>
     </svg>
   ) : (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
-      <path
-        fill={hoverColor}
-        d="M29.9882812,25.7089844 L29.9882812,27.5089844 L8,27.5089844 L8,25.7089844 L29.9882812,25.7089844 Z M29.9882812,17.7089844 L29.9882812,19.5089844 L8,19.5089844 L8,17.7089844 L29.9882812,17.7089844 Z M29.9882812,10 L29.9882812,11.8 L8,11.8 L8,10 L29.9882812,10 Z"
-      />
+    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
+      <g fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <line x1="11.174" x2="36.811" y1="23.501" y2="23.501" stroke={color} stroke-width="1.75" />
+        <line x1="11.174" x2="36.811" y1="13.727" y2="13.727" stroke={color} stroke-width="1.75" />
+        <line x1="11.174" x2="36.811" y1="33.598" y2="33.598" stroke={color} stroke-width="1.75" />
+      </g>
     </svg>
   );
 });
+
 export default Menu;

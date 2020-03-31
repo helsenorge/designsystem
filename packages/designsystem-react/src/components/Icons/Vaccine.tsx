@@ -2,9 +2,10 @@ import React from 'react';
 import {IconRawProps} from './Icon';
 
 const Vaccine = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 38, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  return !isHovered ? (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
+  const hasHover = true;
+  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  return !isHovered || !hasHover ? (
+    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
       <path
         fill={color}
         fill-rule="evenodd"
@@ -12,7 +13,7 @@ const Vaccine = React.forwardRef((svgProps: IconRawProps, ref: any) => {
       />
     </svg>
   ) : (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
+    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
       <path
         fill={color}
         fill-rule="evenodd"
