@@ -66,7 +66,16 @@ function findShadowDOMId(path: any[], tagName: string) {
 }
 
 const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
-  const {children, large, isOpen = false, color, className = '', accordion = false, topBorder = true, bottomBorder = true} = props;
+  const {
+    children,
+    large,
+    isOpen = false,
+    color,
+    className = '',
+    accordion = false,
+    topBorder = true,
+    bottomBorder = true,
+  } = props;
   const [activeExpander, setActiveExpander] = useState({});
   function handleExpanderClick(e: any) {
     const id = e.currentTarget?.id || findShadowDOMId(e.path, 'BUTTON');
