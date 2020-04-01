@@ -20,7 +20,7 @@ interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   is?: ButtonTags;
   large?: boolean;
   loading?: boolean;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
   variant?: ButtonVariants;
 }
 
