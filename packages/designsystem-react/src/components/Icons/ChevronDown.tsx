@@ -8,14 +8,14 @@ const ChevronDown = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
       <polygon
         fill={color}
-        fill-rule="evenodd"
+        fillRule="evenodd"
         points="32.951 30.648 34.37 29.239 23.999 18.788 13.63 29.239 15.049 30.648 24 21.627"
         transform="matrix(1 0 0 -1 0 49.436)"
       />
     </svg>
   ) : (
     <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
-      <g fill="none" fill-rule="evenodd">
+      <g fill="none" fillRule="evenodd">
         <polygon
           fill={color}
           points="34.951 36.93 36.37 35.521 23.999 23.07 11.63 35.521 13.049 36.93 24 25.91"
