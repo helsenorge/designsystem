@@ -8,7 +8,7 @@ const Check = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className="icon" {...props}>
       <polygon
         fill={color}
-        fill-rule="evenodd"
+        fillRule="evenodd"
         points="36.863 15 22.198 30.236 13.839 21.549 12.818 22.532 22.198 32.279 37.884 15.982"
       />
     </svg>
