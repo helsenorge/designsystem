@@ -166,6 +166,9 @@ const borderlessStyle = (color: PaletteNames, inverted?: boolean) => css`
   color: ${inverted ? 'white' : getColor(color, 600)};
   position: relative;
   padding: 0;
+  @media ${screen.md} {
+    padding: 0;
+  }
   &:hover,
   :active,
   :focus {
@@ -217,10 +220,16 @@ export const StyledButton = styled('button')<StyledButtonProps>`
       props.variant === 'borderless' &&
       css`
         .icon:first-child {
-          margin-right: 0.75rem;
+          margin-right: ${props.large ? '0.5rem' : '0.125rem'};
+          @media ${screen.md} {
+            margin-right: 0.75rem;
+          }
         }
         .icon:last-child {
-          margin-left: 0.75rem;
+          margin-left: ${props.large ? '0.5rem' : '0.125rem'};
+          @media ${screen.md} {
+            margin-left: 0.75rem;
+          }
         }
       `}
 `;
