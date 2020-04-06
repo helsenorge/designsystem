@@ -1,9 +1,9 @@
 import React from 'react';
 import {IconRawProps} from './Icon';
 const VerticalDots = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  const {size = 48, classNames, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered ? (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
+    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className={`${classNames} icon`} {...props}>
       <defs>
         <path
           fill={color}
@@ -14,7 +14,7 @@ const VerticalDots = React.forwardRef((svgProps: IconRawProps, ref: any) => {
       <use fillRule="evenodd" xlinkHref="#normal-a" />
     </svg>
   ) : (
-    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className="icon" {...props}>
+    <svg width={size} height={size} viewBox="0 0 38 38" ref={ref} className={`${classNames} icon`} {...props}>
       <defs>
         <path
           fill={hoverColor}
