@@ -46,11 +46,11 @@ const StyledExpanderContent = styled('div')`
   padding: 1.5rem 0.5rem;
 `;
 
-// TODO: Need to overhaul all icons to be Styled insteadof .icon.
+// TODO: Need to overhaul all icons to be Styled insteadof hnds-style-icon.
 const StyledExpanderListLinkContent = styled('span')`
   display: flex;
   align-items: center;
-  .icon {
+  hnds-style-icon {
     margin-right: 1.5rem;
   }
 `;

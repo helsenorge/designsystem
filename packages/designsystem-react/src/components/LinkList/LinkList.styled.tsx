@@ -42,11 +42,11 @@ const StyledLinkList = styled('ul')`
   ${bottomBorder}
 `;
 
-// TODO: Need to overhaul all icons to be Styled insteadof .icon.
+// TODO: Need to overhaul all icons to be Styled insteadof hnds-style-icon.
 const StyledLinkListLinkContent = styled('span')`
   display: flex;
   align-items: center;
-  .icon {
+  hnds-style-icon {
     margin-right: 1.5rem;
   }
 `;
