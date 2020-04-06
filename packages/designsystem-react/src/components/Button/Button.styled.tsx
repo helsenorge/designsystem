@@ -20,6 +20,7 @@ const defaultStyle = css`
   height: 2.5rem;
   font-size: 1.125rem;
   font-family: inherit;
+  font-weight: 600;
   display: inline-block;
   box-sizing: border-box;
   text-decoration: none;
