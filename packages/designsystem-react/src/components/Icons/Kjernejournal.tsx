@@ -5,7 +5,13 @@ const Kjernejournal = React.forwardRef((svgProps: IconRawProps, ref: any) => {
   const hasHover = true;
   const {size = 48, classNames, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   return !isHovered || !hasHover ? (
-    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className={`${classNames} icon`} {...props}>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      ref={ref}
+      className={`${classNames} hnds-style-icon`}
+      {...props}>
       <g fill="none" fillRule="evenodd">
         <path
           fill={color}
@@ -19,7 +25,13 @@ const Kjernejournal = React.forwardRef((svgProps: IconRawProps, ref: any) => {
       </g>
     </svg>
   ) : (
-    <svg width={size} height={size} viewBox="0 0 48 48" ref={ref} className={`${classNames} icon`} {...props}>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      ref={ref}
+      className={`${classNames} hnds-style-icon`}
+      {...props}>
       <g fill="none" fillRule="evenodd">
         <path
           fill={color}
