@@ -10,12 +10,14 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
-  <Title
-    htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')}
-    margin={number('Margin (rem)', 0)}
-    appearance={select('Apperance', allTitleAppearances, 'title1')}>
-    {text('Text', 'Title')}
-  </Title>
+  <div style={{width: '20rem'}}>
+    <Title
+      htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')}
+      margin={number('Margin (rem)', 0)}
+      appearance={select('Apperance', allTitleAppearances, 'title1')}>
+      {text('Text', 'Title')}
+    </Title>
+  </div>
 ));
 
 stories.add('All appearances', () => (

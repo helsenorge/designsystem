@@ -7,6 +7,8 @@ interface StyledTileProps {
 }
 
 const StyledTitle = styled('h1')`
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 600;
