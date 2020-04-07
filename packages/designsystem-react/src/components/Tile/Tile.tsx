@@ -10,6 +10,7 @@ interface TileProps extends HTMLAnchorProps {
   title: React.ReactElement;
   description?: string;
   fixed?: boolean;
+  onClick?: (e?: any) => void;
 }
 
 interface TitleProps {
