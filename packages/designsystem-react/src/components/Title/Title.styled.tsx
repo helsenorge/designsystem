@@ -8,6 +8,8 @@ interface StyledTitleProps {
 }
 
 const StyledTitle = styled('h1')<StyledTitleProps>`
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   margin: ${props => `${props.margin}rem`} 0;
   ${props => typography[props.appearance]};
 `;

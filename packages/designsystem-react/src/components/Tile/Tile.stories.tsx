@@ -25,13 +25,13 @@ stories.add('Wrapped container', () => (
       height: '100%',
       padding: '2rem',
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr',
+      gridTemplateColumns: 'repeat(3, 33.3%)',
       gridGap: '1.5rem',
     }}>
     <Tile
       href="https://vg.no"
       icon={<Icon size={64} type="alarmClock" />}
-      title={<Tile.Title>Title</Tile.Title>}
+      title={<Tile.Title>Titledffdgkdfklgfdlkglkdglkdfkglfssdasdasdsa</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
