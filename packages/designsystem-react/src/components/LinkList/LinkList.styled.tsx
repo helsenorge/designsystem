@@ -46,7 +46,7 @@ const StyledLinkList = styled('ul')`
 const StyledLinkListLinkContent = styled('span')`
   display: flex;
   align-items: center;
-  hnds-style-icon {
+  .hnds-style-icon {
     margin-right: 1.5rem;
   }
 `;

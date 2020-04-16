@@ -50,7 +50,7 @@ const StyledExpanderContent = styled('div')`
 const StyledExpanderListLinkContent = styled('span')`
   display: flex;
   align-items: center;
-  hnds-style-icon {
+  .hnds-style-icon {
     margin-right: 1.5rem;
   }
 `;
