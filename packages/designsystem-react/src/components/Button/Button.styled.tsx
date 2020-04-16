@@ -202,7 +202,7 @@ export const StyledButton = styled('button')<StyledButtonProps>`
       @media ${screen.md} {
         padding: 0;
       }
-      hnds-style-icon {
+      .hnds-style-icon {
         margin: 0 ${props.large ? '0.5rem' : '0.125rem'};
         @media ${screen.md} {
           margin: 0 0.75rem;
@@ -220,13 +220,13 @@ export const StyledButton = styled('button')<StyledButtonProps>`
       !props.loader &&
       props.variant === 'borderless' &&
       css`
-        hnds-style-icon:first-child {
+        .hnds-style-icon:first-child {
           margin-right: ${props.large ? '0.5rem' : '0.125rem'};
           @media ${screen.md} {
             margin-right: 0.75rem;
           }
         }
-        hnds-style-icon:last-child {
+        .hnds-style-icon:last-child {
           margin-left: ${props.large ? '0.5rem' : '0.125rem'};
           @media ${screen.md} {
             margin-left: 0.75rem;
