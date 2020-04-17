@@ -21,7 +21,7 @@ stories.add('Default', () => (
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
       inverted={boolean('Inverted', false)}
-      is={select('Is', ['button', 'a'], 'button')}
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}
       large={boolean('Large', false)}
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
@@ -42,7 +42,7 @@ stories.add('Fluid', () => (
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
       inverted={boolean('Inverted', false)}
-      is={select('Is', ['button', 'a'], 'button')}
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}
       large={boolean('Large', false)}
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
@@ -55,7 +55,7 @@ stories.add('Fluid', () => (
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
       inverted={boolean('Inverted', false)}
-      is={select('Is', ['button', 'a'], 'button')}
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}
       large={boolean('Large', false)}
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
@@ -70,7 +70,7 @@ stories.add('Fluid', () => (
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
       inverted={boolean('Inverted', false)}
-      is={select('Is', ['button', 'a'], 'button')}
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}
       large={boolean('Large', false)}
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
@@ -88,7 +88,7 @@ stories.add('With icon(s)', () => (
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
       inverted={boolean('Inverted', false)}
-      is={select('Is', ['button', 'a'], 'button')}
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}
       large={boolean('Large', false)}
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
@@ -102,7 +102,7 @@ stories.add('With icon(s)', () => (
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
       inverted={boolean('Inverted', false)}
-      is={select('Is', ['button', 'a'], 'button')}
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}
       large={boolean('Large', false)}
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
@@ -116,7 +116,7 @@ stories.add('With icon(s)', () => (
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
       inverted={boolean('Inverted', false)}
-      is={select('Is', ['button', 'a'], 'button')}
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}
       large={boolean('Large', false)}
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
@@ -134,21 +134,21 @@ stories.add('All variants', () => (
       variant="fill"
       intent={select('Intent', allButtonIntents, 'primary')}
       large={boolean('Large', false)}
-      is={select('Is', ['button', 'a'], 'button')}>
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <Button
       variant="outline"
       intent={select('Intent', allButtonIntents, 'primary')}
       large={boolean('Large', false)}
-      is={select('Is', ['button', 'a'], 'button')}>
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
     <Button
       variant="borderless"
       intent={select('Intent', allButtonIntents, 'primary')}
       large={boolean('Large', false)}
-      is={select('Is', ['button', 'a'], 'button')}>
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}>
       {text('Text', 'Button')}
     </Button>
   </div>
