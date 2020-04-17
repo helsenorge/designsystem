@@ -16,7 +16,7 @@ interface TileProps extends HTMLAnchorProps {
 interface TitleProps {
   children: React.ReactNode;
   className?: string;
-  is?: TitleTags;
+  htmlMarkup?: TitleTags;
 }
 
 export interface TileCompound
@@ -25,9 +25,9 @@ export interface TileCompound
 }
 
 const Title = React.forwardRef((props: TitleProps, ref: any) => {
-  const {children, className, is = 'h1'} = props;
+  const {children, className, htmlMarkup = 'h1'} = props;
   return (
-    <StyledTitle className={className} as={is} ref={ref}>
+    <StyledTitle className={className} as={htmlMarkup} ref={ref}>
       {children}
     </StyledTitle>
   );

@@ -17,7 +17,7 @@ interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   fluid?: boolean;
   intent?: ButtonIntents;
   inverted?: boolean;
-  is?: ButtonTags;
+  htmlMarkup?: ButtonTags;
   large?: boolean;
   loading?: boolean;
   onClick?: (e?: any) => void;
@@ -61,7 +61,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
     fluid = false,
     intent = 'primary',
     inverted = false,
-    is = 'button',
+    htmlMarkup = 'button',
     large = false,
     loading = false,
     variant = 'fill',
@@ -86,7 +86,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       variant={variant}
       intent={intent}
       inverted={inverted}
-      as={is}
+      as={htmlMarkup}
       large={large}
       hasIcon={!!(leftIcon || rightIcon)}
       fluid={fluid}
