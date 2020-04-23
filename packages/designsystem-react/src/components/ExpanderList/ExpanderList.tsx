@@ -90,13 +90,14 @@ const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
     <StyledExpanderList className={className} topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
       {React.Children.map(children, (child: any, index: number) => {
         if (child.type.displayName === 'ExpanderList.Expander') {
-          const isExpanded = isOpen || activeExpander[index];
+          const isExpanded = isOpen || activeExpander[`expander-${index}`];
           return React.cloneElement(child, {
-            id: index,
-            key: index,
+            id: `expander-${index}`,
+            key: `expander-${index}`,
             isExpanded,
             color,
             large,
+            'aria-expanded': isExpanded,
             onClick: handleExpanderClick,
           });
         }
