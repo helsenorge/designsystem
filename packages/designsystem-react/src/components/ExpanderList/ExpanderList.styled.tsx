@@ -76,8 +76,14 @@ const StyledExpanderListLink = styled('button')<StyledExpanderListLinkProps>`
   width: 100%;
   outline: none;
   ${largeStyle};
-  &:hover {
+  &:hover,
+  :focus {
     background-color: ${props => getColor(props.color, 100)};
+  }
+  &:focus {
+    ${StyledExpanderListLinkContent} {
+      text-decoration: underline;
+    }
   }
 `;
 
