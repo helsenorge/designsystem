@@ -1,6 +1,6 @@
 import {useRef, useEffect, useState} from 'react';
 
-export const useHover = <T extends HTMLElement>() => {
+export const useHover = <T extends HTMLElement>(condition?: boolean) => {
   const hoverRef = useRef<T>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -25,7 +25,7 @@ export const useHover = <T extends HTMLElement>() => {
           element.removeEventListener(eventName, handleOutEvent),
       );
     };
-  }, [hoverRef]);
+  }, [hoverRef, condition]);
 
   return {hoverRef, isHovered};
 };
