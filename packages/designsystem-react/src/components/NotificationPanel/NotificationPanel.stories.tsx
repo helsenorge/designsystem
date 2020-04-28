@@ -10,34 +10,75 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
-  <div style={{width: '50rem'}}>
+  <div style={{width: boolean('Fluid', false) ? '100vw' : '60rem'}}>
     <NotificationPanel
-      shadow={boolean('Shaodw', false)}
+      shadow={boolean('Shadow', false)}
       dismissable={boolean('Dismissable', false)}
       onClick={action('on-click-dismiss')}
+      fluid={boolean('Fluid', false)}
+      label={text('Label', '')}
       variant={select('Variant', ['info', 'warn', 'alert'], 'alert')}>
       <p>
         På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
         utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
-        prøve igjen senere.
+        prøve igjen senere.{' '}
+        <a target="_blank" href="https://vg.no">
+          Les mer om dine rettigheter her.
+        </a>
       </p>
     </NotificationPanel>
   </div>
 ));
 
-stories.add('Default with label', () => (
-  <div style={{width: '50rem'}}>
-    <NotificationPanel
-      shadow={boolean('Shaodw', false)}
-      dismissable={boolean('Dismissable', false)}
-      onClick={action('on-click-dismiss')}
-      label="Her er det noe du må være oppmerksom på"
-      variant={select('Variant', ['info', 'warn', 'alert'], 'alert')}>
-      <p>
-        På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
-        utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
-        prøve igjen senere.
-      </p>
-    </NotificationPanel>
+stories.add('All variants', () => (
+  <div className="container">
+    <div className="row">
+      <div className={select('Columns', ['col-12', 'col-10', 'col-8'], 'col-12')}>
+        <NotificationPanel
+          shadow={boolean('Shadow', false)}
+          dismissable={boolean('Dismissable', false)}
+          onClick={action('on-click-dismiss')}
+          variant="info"
+          label={text('Label', '')}>
+          <p>
+            På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
+            utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
+            prøve igjen senere.
+          </p>
+        </NotificationPanel>
+      </div>
+    </div>
+    <div className="row mt-6">
+      <div className={select('Columns', ['col-12', 'col-10', 'col-8'], 'col-12')}>
+        <NotificationPanel
+          shadow={boolean('Shadow', false)}
+          dismissable={boolean('Dismissable', false)}
+          onClick={action('on-click-dismiss')}
+          variant="warn"
+          label={text('Label', '')}>
+          <p>
+            På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
+            utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
+            prøve igjen senere.
+          </p>
+        </NotificationPanel>
+      </div>
+    </div>
+    <div className="row mt-6">
+      <div className={select('Columns', ['col-12', 'col-10', 'col-8'], 'col-12')}>
+        <NotificationPanel
+          shadow={boolean('Shadow', false)}
+          dismissable={boolean('Dismissable', false)}
+          onClick={action('on-click-dismiss')}
+          variant="alert"
+          label={text('Label', '')}>
+          <p>
+            På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
+            utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
+            prøve igjen senere.
+          </p>
+        </NotificationPanel>
+      </div>
+    </div>
   </div>
 ));
