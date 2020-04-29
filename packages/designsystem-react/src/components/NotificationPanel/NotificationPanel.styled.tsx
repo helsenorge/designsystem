@@ -7,6 +7,7 @@ import {breakpoints} from '../../theme/grid';
 
 interface StyledNotificationPanelProps {
   variant: NotificationPanelVariants;
+  label?: boolean;
   shadow: boolean;
 }
 
@@ -14,7 +15,7 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
   display: grid;
   padding: 1rem;
   grid-template-areas: 'icon' 'content' 'action';
-  grid-template-columns: 48px auto auto;
+  grid-template-columns: 48px auto 3rem;
   grid-template-rows: 1fr;
   max-width: ${`${breakpoints.lg}px`};
   width: 100%;
@@ -38,6 +39,7 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
           :focus {
             background-color: white;
             color: black;
+            text-decoration-color: white;
           }
         }
       }
@@ -47,6 +49,20 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
     css`
       box-shadow: 0 0.3rem 0.6rem -0.1rem rgba(0, 0, 0, 0.16);
     `}
+    ${props =>
+      props.label &&
+      css`
+        padding: 2rem 1rem;
+        ${StyledNotificationPanelContent} {
+          ${props.variant === 'alert' &&
+            css`
+              color: ${getColor('cherry', 500)};
+            `};
+          display: flex;
+          align-items: center;
+          margin: 0 1rem;
+        }
+      `}
 `;
 
 const StyledCloseButton = styled('button')`
@@ -79,6 +95,8 @@ const StyledNotificationPanelContent = styled('div')`
     }
     &:focus {
       background-color: ${getHoverColor('blueberry')};
+      color: ${getColor('blueberry', 700)};
+      text-decoration-color: ${getColor('blueberry', 700)};
     }
   }
 `;

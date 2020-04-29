@@ -38,6 +38,7 @@ export const variantToIconMap = {
   info: <InfoSignStroke color={palette.kiwi900} hoverColor={palette.kiwi900} />,
   warn: <AlertSignStroke color="black" hoverColor="black" />,
   alert: <AlertSignFill color={palette.cherry500} hoverColor={palette.cherry500} />,
+  alertLabel: <AlertSignStroke color={palette.cherry500} hoverColor={palette.cherry500} />,
   crisis: <AlertSignFill color={palette.banana200} hoverColor={palette.banana200} />,
 };
 
@@ -55,8 +56,10 @@ const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: 
     return panel;
   }
   return wrapFluid(
-    <StyledNotificationPanel shadow={!fluid && shadow} variant={variant}>
-      <StyledNotificationPanelIconColumn>{variantToIconMap[variant]}</StyledNotificationPanelIconColumn>
+    <StyledNotificationPanel label={!!label && !children} shadow={!fluid && shadow} variant={variant}>
+      <StyledNotificationPanelIconColumn>
+        {variantToIconMap[variant === 'alert' && label ? 'alertLabel' : variant]}
+      </StyledNotificationPanelIconColumn>
       <StyledNotificationPanelContent>
         {label ? <StyledLabel>{label}</StyledLabel> : null}
         {children}
