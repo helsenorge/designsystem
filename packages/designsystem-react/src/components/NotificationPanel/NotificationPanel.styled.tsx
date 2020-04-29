@@ -24,6 +24,25 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
       variantToColorMap[props.variant].depth as PaletteDepths,
     )};
   ${props =>
+    props.variant === 'crisis' &&
+    css`
+      ${StyledNotificationPanelContent} {
+        color: ${getColor('banana', 200)};
+        a {
+          color: white;
+          :hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            text-decoration-color: white;
+            color: white;
+          }
+          :focus {
+            background-color: white;
+            color: black;
+          }
+        }
+      }
+    `}
+  ${props =>
     props.shadow &&
     css`
       box-shadow: 0 0.3rem 0.6rem -0.1rem rgba(0, 0, 0, 0.16);
@@ -52,9 +71,11 @@ const StyledNotificationPanelContent = styled('div')`
   & a {
     color: ${getColor('blueberry', 600)};
     text-decoration: underline;
+    text-decoration-color: ${getColor('neutral', 300)};
     outline: none;
     &:hover {
       color: ${getColor('blueberry', 700)};
+      text-decoration-color: ${getColor('blueberry', 700)};
     }
     &:focus {
       background-color: ${getHoverColor('blueberry')};

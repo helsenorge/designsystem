@@ -1,7 +1,6 @@
 import React from 'react';
-import {PaletteNames, palette} from '../../theme/palette';
+import {palette} from '../../theme/palette';
 import Icon from '../Icons';
-import {IconTypes} from '../Icons/Icon';
 import {useHover} from '../..';
 import {
   StyledNotificationPanelFluidWrapper,
@@ -16,7 +15,7 @@ import InfoSignStroke from '../Icons/InfoSignStroke';
 import AlertSignStroke from '../Icons/AlertSignStroke';
 import AlertSignFill from '../Icons/AlertSignFill';
 
-export type NotificationPanelVariants = 'info' | 'warn' | 'alert';
+export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'crisis';
 
 interface NotificationPanelProps {
   children?: React.ReactNode;
@@ -32,12 +31,14 @@ export const variantToColorMap = {
   info: {color: 'kiwi', depth: 50},
   warn: {color: 'banana', depth: 50},
   alert: {color: 'cherry', depth: 100},
+  crisis: {color: 'black', depth: 0},
 };
 
 export const variantToIconMap = {
   info: <InfoSignStroke color={palette.kiwi900} hoverColor={palette.kiwi900} />,
   warn: <AlertSignStroke color="black" hoverColor="black" />,
   alert: <AlertSignFill color={palette.cherry500} hoverColor={palette.cherry500} />,
+  crisis: <AlertSignFill color={palette.banana200} hoverColor={palette.banana200} />,
 };
 
 const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: any) => {

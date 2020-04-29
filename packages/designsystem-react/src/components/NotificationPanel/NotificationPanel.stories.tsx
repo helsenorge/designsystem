@@ -17,7 +17,7 @@ stories.add('Default', () => (
       onClick={action('on-click-dismiss')}
       fluid={boolean('Fluid', false)}
       label={text('Label', '')}
-      variant={select('Variant', ['info', 'warn', 'alert'], 'alert')}>
+      variant={select('Variant', ['info', 'warn', 'alert', 'crisis'], 'alert')}>
       <p>
         På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
         utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
@@ -43,7 +43,7 @@ stories.add('All variants', () => (
           <p>
             På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
             utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
-            prøve igjen senere.
+            prøve igjen senere. <a>Les mer om dine rettigheter her.</a>
           </p>
         </NotificationPanel>
       </div>
@@ -59,7 +59,7 @@ stories.add('All variants', () => (
           <p>
             På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
             utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
-            prøve igjen senere.
+            prøve igjen senere. <a>Les mer om dine rettigheter her.</a>
           </p>
         </NotificationPanel>
       </div>
@@ -75,7 +75,23 @@ stories.add('All variants', () => (
           <p>
             På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
             utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
-            prøve igjen senere.
+            prøve igjen senere. <a>Les mer om dine rettigheter her.</a>
+          </p>
+        </NotificationPanel>
+      </div>
+    </div>
+    <div className="row mt-6">
+      <div className={select('Columns', ['col-12', 'col-10', 'col-8'], 'col-12')}>
+        <NotificationPanel
+          shadow={boolean('Shadow', false)}
+          dismissable={boolean('Dismissable', false)}
+          onClick={action('on-click-dismiss')}
+          variant="crisis"
+          label={text('Label', '')}>
+          <p>
+            På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
+            utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
+            prøve igjen senere. <a>Les mer om dine rettigheter her.</a>
           </p>
         </NotificationPanel>
       </div>
