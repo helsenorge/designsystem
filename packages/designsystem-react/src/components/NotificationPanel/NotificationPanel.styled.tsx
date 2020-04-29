@@ -22,7 +22,7 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
   display: grid;
   padding: 1rem;
   grid-template-areas: 'icon' 'content' 'action';
-  grid-template-columns: 48px auto max-content;
+  grid-template-columns: 48px auto auto;
   grid-template-rows: 1fr;
   max-width: ${props => props.size && sizeToWidthMap[props.size]};
   width: 100%;
@@ -78,7 +78,39 @@ const StyledCloseButton = styled('button')`
   padding: 0;
   display: flex;
   justify-content: center;
+  position: relative;
+  outline: none;
   cursor: pointer;
+  &:before {
+    content: ' ';
+    position: absolute;
+    top: -0.25rem;
+    left: -0.25rem;
+    right: -0.25rem;
+    bottom: -0.25rem;
+    border: 0.125rem solid transparent;
+  }
+  &:after {
+    content: ' ';
+    position: absolute;
+    top: -0.375rem;
+    left: -0.375rem;
+    right: -0.375rem;
+    bottom: -0.375rem;
+    border: 0.125rem solid transparent;
+  }
+  &:hover,
+  :active,
+  :focus {
+    background-color: ${getHoverColor('blueberry')};
+    border-color: transparent;
+    &:before {
+      border: 0.125rem solid ${getHoverColor('blueberry')};
+    }
+    &:after {
+      border: 0.125rem solid ${getColor('blueberry', 700)};
+    }
+  }
 `;
 
 const StyledNotificationPanelIconColumn = styled('span')`

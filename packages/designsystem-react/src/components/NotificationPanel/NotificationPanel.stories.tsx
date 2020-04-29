@@ -10,11 +10,12 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
-  <div style={{width: boolean('Fluid', false) ? '100vw' : '80rem'}}>
+  <div style={{width: boolean('Fluid', false) ? '100vw' : 'auto'}}>
     <NotificationPanel
       shadow={boolean('Shadow', false)}
       dismissable={boolean('Dismissable', false)}
       onClick={action('on-click-dismiss')}
+      size={select('Size', ['small', 'medium', 'large'], 'large')}
       fluid={boolean('Fluid', false)}
       label={text('Label', '')}
       variant={select('Variant', ['info', 'warn', 'alert', 'crisis'], 'alert')}>
