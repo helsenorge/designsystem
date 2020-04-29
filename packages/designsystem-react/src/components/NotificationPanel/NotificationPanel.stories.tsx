@@ -10,7 +10,7 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
-  <div style={{width: boolean('Fluid', false) ? '100vw' : '60rem'}}>
+  <div style={{width: boolean('Fluid', false) ? '100vw' : '80rem'}}>
     <NotificationPanel
       shadow={boolean('Shadow', false)}
       dismissable={boolean('Dismissable', false)}
@@ -19,11 +19,10 @@ stories.add('Default', () => (
       label={text('Label', '')}
       variant={select('Variant', ['info', 'warn', 'alert', 'crisis'], 'alert')}>
       <p>
-        På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
-        utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
-        prøve igjen senere.
+        Foreldre har begrenset tilgang til tjenester på vegne av barn mellom 12 og 16 år, og ingen tilgang etter fylte
+        16 år.{' '}
         <a target="_blank" href="https://vg.no">
-          Les mer om dine rettigheter her.
+          Les mer om foreldrerepresentasjon.
         </a>
       </p>
     </NotificationPanel>
@@ -31,7 +30,7 @@ stories.add('Default', () => (
 ));
 
 stories.add('Simplified (label only)', () => (
-  <div style={{width: boolean('Fluid', false) ? '100vw' : '60rem'}}>
+  <div style={{width: boolean('Fluid', false) ? '100vw' : '80rem'}}>
     <NotificationPanel
       shadow={boolean('Shadow', false)}
       dismissable={boolean('Dismissable', false)}

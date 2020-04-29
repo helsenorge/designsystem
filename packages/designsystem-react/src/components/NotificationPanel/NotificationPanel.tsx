@@ -16,11 +16,13 @@ import AlertSignStroke from '../Icons/AlertSignStroke';
 import AlertSignFill from '../Icons/AlertSignFill';
 
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'crisis';
+export type NotificationPanelSizes = 'small' | 'medium' | 'large';
 
 interface NotificationPanelProps {
   children?: React.ReactNode;
   variant?: NotificationPanelVariants;
   shadow?: boolean;
+  size?: NotificationPanelSizes;
   onClick?: (e?: any) => void;
   dismissable?: boolean;
   fluid?: boolean;
@@ -43,7 +45,16 @@ export const variantToIconMap = {
 };
 
 const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: any) => {
-  const {children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false} = props;
+  const {
+    children,
+    variant = 'info',
+    shadow = false,
+    dismissable = false,
+    onClick,
+    label,
+    fluid = false,
+    size = 'large',
+  } = props;
   const {hoverRef, isHovered} = useHover<HTMLButtonElement>(dismissable);
   function wrapFluid(panel: React.ReactNode): any {
     if (fluid) {
@@ -56,7 +67,7 @@ const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: 
     return panel;
   }
   return wrapFluid(
-    <StyledNotificationPanel label={!!label && !children} shadow={!fluid && shadow} variant={variant}>
+    <StyledNotificationPanel size={size} label={!!label && !children} shadow={!fluid && shadow} variant={variant}>
       <StyledNotificationPanelIconColumn>
         {variantToIconMap[variant === 'alert' && label ? 'alertLabel' : variant]}
       </StyledNotificationPanelIconColumn>

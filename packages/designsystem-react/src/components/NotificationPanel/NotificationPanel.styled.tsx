@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components';
-import {NotificationPanelVariants, variantToColorMap} from './NotificationPanel';
+import {NotificationPanelVariants, variantToColorMap, NotificationPanelSizes} from './NotificationPanel';
 import {getColor, getHoverColor} from '../../theme/currys';
 import {PaletteNames, PaletteDepths} from '../../theme/palette';
 import {typography} from '../../theme/typography';
@@ -7,17 +7,24 @@ import {breakpoints} from '../../theme/grid';
 
 interface StyledNotificationPanelProps {
   variant: NotificationPanelVariants;
+  size?: NotificationPanelSizes;
   label?: boolean;
   shadow: boolean;
 }
+
+const sizeToWidthMap = {
+  small: `${breakpoints.sm}px`,
+  medium: `${breakpoints.md}px`,
+  large: `${breakpoints.lg}px`,
+};
 
 const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
   display: grid;
   padding: 1rem;
   grid-template-areas: 'icon' 'content' 'action';
-  grid-template-columns: 48px auto 3rem;
+  grid-template-columns: 48px auto max-content;
   grid-template-rows: 1fr;
-  max-width: ${`${breakpoints.lg}px`};
+  max-width: ${props => props.size && sizeToWidthMap[props.size]};
   width: 100%;
   background-color: ${props =>
     getColor(
