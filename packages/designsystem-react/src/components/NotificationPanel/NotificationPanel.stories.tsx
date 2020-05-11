@@ -19,13 +19,14 @@ stories.add('Default', () => (
       fluid={boolean('Fluid', false)}
       label={text('Label', '')}
       variant={select('Variant', ['info', 'warn', 'alert', 'crisis'], 'alert')}>
-      <p>
+      {/* <p>
         Foreldre har begrenset tilgang til tjenester på vegne av barn mellom 12 og 16 år, og ingen tilgang etter fylte
         16 år.{' '}
         <a target="_blank" href="https://vg.no">
           Les mer om foreldrerepresentasjon.
         </a>
-      </p>
+      </p> */}
+      <p>hallo hva skjer?</p>
     </NotificationPanel>
   </div>
 ));
