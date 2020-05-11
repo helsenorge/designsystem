@@ -3,6 +3,7 @@ import {getColor} from '../../theme/currys';
 
 interface StyledTileProps {
   fixed: boolean;
+  highlighted: boolean;
   compact: boolean;
 }
 
@@ -21,6 +22,22 @@ const StyledDescription = styled('p')`
   font-size: 1.125rem;
 `;
 
+const highlightStyle = css`
+  background-color: ${getColor('blueberry', 500)};
+  color: white;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: ${getColor('blueberry', 700)};
+  }
+  &:focus {
+    box-shadow: 0 0 0 6px ${getColor('blueberry', 700)};
+    ${StyledTitle} {
+      text-decoration: underline;
+    }
+  }
+`;
+
 const StyledTile = styled('a')<StyledTileProps>`
   width: 'inherit';
   ${props =>
@@ -36,6 +53,7 @@ const StyledTile = styled('a')<StyledTileProps>`
   justify-content: flex-start;
   padding: 1.5rem;
   background-color: ${getColor('white')};
+  outline: none;
   ${StyledTitle} {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
@@ -62,6 +80,10 @@ const StyledTile = styled('a')<StyledTileProps>`
   &:focus {
     background-color: ${getColor('neutral', 100)};
   }
+  &:focus {
+    box-shadow: 0 0 0 6px ${getColor('neutral', 600)};
+  }
+  ${props => props.highlighted && highlightStyle}
 `;
 
 export {StyledTile, StyledTitle, StyledDescription};
