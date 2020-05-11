@@ -65,6 +65,10 @@ const libraryRoutes = [
         path: '/library/components/logo',
       },
       {
+        label: 'NotificationPanel',
+        path: '/library/components/notification-panel',
+      },
+      {
         label: 'Tile',
         path: '/library/components/tile',
       },
