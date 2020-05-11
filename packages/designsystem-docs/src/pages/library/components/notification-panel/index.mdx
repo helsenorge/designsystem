@@ -6,10 +6,68 @@ date: 2019-01-29
 
 import MDXCustom from '../../../../components/markdown/MDXCustom';
 import * as propData from './notification-panel.json';
+import {NotificationPanel} from '@helsenorge/designsystem-react';
 
 # NotificationPanel
 
-Testing something...
+<MDXCustom.Preamble>
+  He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum is the
+  single greatest threat.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{NotificationPanel}}>{`
+  <NotificationPanel>All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{propData}} />
+
+## Examples
+
+### Variants
+
+<MDXCustom.LiveComponent stack scope={{NotificationPanel}}>{`
+  <NotificationPanel variant="info">All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+  <NotificationPanel variant="warn">All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+  <NotificationPanel variant="alert">All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+  <NotificationPanel variant="crisis">All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+`}</MDXCustom.LiveComponent>
+
+### Sizes
+
+<MDXCustom.LiveComponent stack scope={{NotificationPanel}}>{`
+  <NotificationPanel size="large">All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+  <NotificationPanel size="medium">All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+  <NotificationPanel size="small">All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+`}</MDXCustom.LiveComponent>
+
+### Shadow
+
+<MDXCustom.LiveComponent scope={{NotificationPanel}}>{`
+  <NotificationPanel shadow>All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+`}</MDXCustom.LiveComponent>
+
+### Dismissable
+
+<MDXCustom.LiveComponent scope={{NotificationPanel}}>{`
+  <NotificationPanel dismissable>All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+`}</MDXCustom.LiveComponent>
+
+### Fluid
+
+<MDXCustom.LiveComponent scope={{NotificationPanel}}>{`
+  <NotificationPanel fluid>All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+`}</MDXCustom.LiveComponent>
+
+### Label
+
+<MDXCustom.LiveComponent stack scope={{NotificationPanel}}>{`
+  <NotificationPanel label="Ipsum lorem have flirted with me">All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot.</NotificationPanel>
+  <NotificationPanel label="Ipsum lorem have flirted with me" />
+`}</MDXCustom.LiveComponent>
 
 ## Usage
 
