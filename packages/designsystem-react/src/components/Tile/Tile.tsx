@@ -8,6 +8,7 @@ interface TileProps extends HTMLAnchorProps {
   className?: string;
   icon: React.ReactElement;
   title: React.ReactElement;
+  highlighted?: boolean;
   description?: string;
   fixed?: boolean;
   onClick?: (e?: any) => void;
@@ -34,7 +35,7 @@ const Title = React.forwardRef((props: TitleProps, ref: any) => {
 });
 
 const Tile = React.forwardRef((props: TileProps, ref: any) => {
-  const {icon, title, className = '', description, fixed = false, ...restProps} = props;
+  const {icon, title, className = '', description, fixed = false, highlighted = false, ...restProps} = props;
   const [isHovered, setIsHovered] = useState(false);
   return (
     <StyledTile
@@ -45,9 +46,10 @@ const Tile = React.forwardRef((props: TileProps, ref: any) => {
       compact={!description}
       className={className}
       ref={ref}
+      highlighted={highlighted}
       fixed={fixed}
       {...restProps}>
-      {React.cloneElement(icon, {size: 64, isHovered})}
+      {React.cloneElement(icon, {size: 64, isHovered, color: highlighted ? 'white' : 'black'})}
       {title}
       {description ? <StyledDescription>{description}</StyledDescription> : null}
     </StyledTile>

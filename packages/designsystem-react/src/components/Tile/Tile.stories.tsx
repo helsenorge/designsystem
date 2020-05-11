@@ -13,6 +13,8 @@ stories.add('Default', () => (
   <Tile
     fixed={boolean('Fixed width', false)}
     icon={<Icon size={64} type="alarmClock" />}
+    highlighted={boolean('Highlighted', false)}
+    href="https://vg.no"
     title={<Tile.Title>{text('Title', 'Inbox')}</Tile.Title>}
     description={text('Description', 'Messages between you and your health contacts through Helsenorge.')}
   />
