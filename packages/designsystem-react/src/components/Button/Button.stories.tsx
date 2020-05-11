@@ -60,9 +60,9 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon type={select('Left icon', allIcons, 'cross')} />
+      <Icon type={select('Left icon', allIcons, 'x')} />
       {text('Text', 'Button')}
-      <Icon type={select('Right icon', allIcons, 'cross')} />
+      <Icon type={select('Right icon', allIcons, 'x')} />
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
@@ -75,7 +75,7 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon type={select('Left icon', allIcons, 'cross')} />
+      <Icon type={select('Left icon', allIcons, 'x')} />
       {text('Text', 'Button')}
     </Button>
   </div>
@@ -93,7 +93,7 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon type={select('Left icon', allIcons, 'cross')} />
+      <Icon type={select('Left icon', allIcons, 'x')} />
       {text('Text', 'Button')}
     </Button>
     <div style={{height: '1rem'}}></div>
@@ -108,7 +108,7 @@ stories.add('With icon(s)', () => (
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
       {text('Text', 'Button')}
-      <Icon type={select('Left icon', allIcons, 'cross')} />
+      <Icon type={select('Left icon', allIcons, 'x')} />
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
@@ -121,9 +121,9 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon type={select('Left icon', allIcons, 'cross')} />
+      <Icon type={select('Left icon', allIcons, 'x')} />
       {text('Text', 'Button')}
-      <Icon type={select('Right icon', allIcons, 'cross')} />
+      <Icon type={select('Right icon', allIcons, 'x')} />
     </Button>
   </div>
 ));

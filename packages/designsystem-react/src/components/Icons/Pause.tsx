@@ -1,35 +1,49 @@
 import React from 'react';
 import {IconRawProps} from './Icon';
+
 const Pause = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, classNames, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  return !isHovered ? (
+  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  const isExtraSmall = size <= 38;
+  const normal = (
+    <g fill-rule="evenodd" transform="translate(17 16)">
+      <polygon points="10.447 15.959 13.447 15.959 13.447 .04 10.447 .04" />
+      <polygon points=".553 15.959 3.553 15.959 3.553 .04 .553 .04" />
+    </g>
+  );
+
+  const normalHover = (
+    <g fill-rule="evenodd" transform="translate(17 13)">
+      <polygon points="10.447 21.486 13.447 21.486 13.447 .513 10.447 .513" />
+      <polygon points=".553 21.486 3.553 21.486 3.553 .513 .553 .513" />
+    </g>
+  );
+
+  const simplified = (
+    <path
+      fill-rule="evenodd"
+      d="M26.8168421,31.8274105 L30.8147368,31.8274105 L30.8147368,15.9090947 L26.8168421,15.9090947 L26.8168421,31.8274105 Z M16.9225263,31.8274105 L20.9204211,31.8274105 L20.9204211,15.9090947 L16.9225263,15.9090947 L16.9225263,31.8274105 Z"
+    />
+  );
+
+  const simplifiedHover = (
+    <path
+      fill-rule="evenodd"
+      d="M26.8168421,34.3549895 L30.8147368,34.3549895 L30.8147368,13.3827789 L26.8168421,13.3827789 L26.8168421,34.3549895 Z M16.9225263,34.3549895 L20.9204211,34.3549895 L20.9204211,13.3827789 L16.9225263,13.3827789 L16.9225263,34.3549895 Z"
+    />
+  );
+
+  return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 38 38"
+      fill={isHovered ? hoverColor : color}
+      viewBox="0 0 48 48"
       ref={ref}
-      className={`${classNames} hnds-style-icon`}
+      className="icon"
       {...props}>
-      <path
-        fill={color}
-        fillRule="evenodd"
-        d="M21.23,25.1967 L24.395,25.1967 L24.395,12.5947 L21.23,12.5947 L21.23,25.1967 Z M13.397,25.1967 L16.562,25.1967 L16.562,12.5947 L13.397,12.5947 L13.397,25.1967 Z"
-      />
-    </svg>
-  ) : (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 38 38"
-      ref={ref}
-      className={`${classNames} hnds-style-icon`}
-      {...props}>
-      <path
-        fill={hoverColor}
-        fillRule="evenodd"
-        d="M21.23,27.1977 L24.395,27.1977 L24.395,10.5947 L21.23,10.5947 L21.23,27.1977 Z M13.397,27.1977 L16.562,27.1977 L16.562,10.5947 L13.397,10.5947 L13.397,27.1977 Z"
-      />
+      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
     </svg>
   );
 });
+
 export default Pause;
