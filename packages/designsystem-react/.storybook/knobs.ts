@@ -47,6 +47,7 @@ export const allIcons: IconTypes[] = [
   'coronavirus',
   'cough',
   'criticalHealthInfo',
+  'cross',
   'depression',
   'digestiveSystem',
   'dizzy',

@@ -46,6 +46,7 @@ import Copy from './Copy';
 import Coronavirus from './Coronavirus';
 import Cough from './Cough';
 import CriticalHealthInfo from './CriticalHealthInfo';
+import Cross from './Cross';
 import Depression from './Depression';
 import DigestiveSystem from './DigestiveSystem';
 import Dizzy from './Dizzy';
@@ -236,6 +237,7 @@ const iconMapping = {
   coronavirus: Coronavirus,
   cough: Cough,
   criticalHealthInfo: CriticalHealthInfo,
+  cross: Cross,
   depression: Depression,
   digestiveSystem: DigestiveSystem,
   dizzy: Dizzy,
@@ -429,6 +431,7 @@ export type IconTypes =
   | 'coronavirus'
   | 'cough'
   | 'criticalHealthInfo'
+  | 'cross'
   | 'depression'
   | 'digestiveSystem'
   | 'dizzy'
