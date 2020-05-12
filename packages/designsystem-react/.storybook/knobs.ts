@@ -190,7 +190,7 @@ export const allIcons: IconTypes[] = [
   'wordDocument',
   'x',
   'xmlFile',
-  'youtube',
+  'youTube',
 ];
 
 export const allPaletteNames: PaletteNames[] = [
