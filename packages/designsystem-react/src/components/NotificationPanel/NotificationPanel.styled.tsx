@@ -22,10 +22,10 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
   display: grid;
   padding: 1rem;
   grid-template-areas: 'icon' 'content' 'action';
-  grid-template-columns: 48px auto auto;
+  grid-template-columns: 48px auto 48px;
   grid-template-rows: 1fr;
   max-width: ${props => props.size && sizeToWidthMap[props.size]};
-  width: 100%;
+  width: inherit;
   background-color: ${props =>
     getColor(
       variantToColorMap[props.variant].color as PaletteNames,
