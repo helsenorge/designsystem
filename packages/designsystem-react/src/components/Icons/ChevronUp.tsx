@@ -6,34 +6,31 @@ const ChevronUp = React.forwardRef((svgProps: IconRawProps, ref: any) => {
   const isExtraSmall = size <= 38;
   const normal = (
     <polygon
-      fill-rule="evenodd"
+      fillRule="evenodd"
       points="32.951 30.277 34.37 28.868 23.999 18.417 13.63 28.868 15.049 30.277 24 21.257"
       transform="matrix(-1 0 0 1 48 0)"
     />
   );
 
   const normalHover = (
-    <g fill-rule="evenodd">
-      <polygon
-        points="34.951 24 36.37 22.591 23.999 10.14 11.63 22.591 13.049 24 24 12.979"
-        transform="matrix(-1 0 0 1 48 0)"
-      />
-      <rect width="2" height="22" x="23" y="13" />
-    </g>
+    <polygon
+      fillRule="evenodd"
+      points="24.001 10.14 36.37 22.591 34.951 24 25 13.985 25 35 23 35 23 13.985 13.049 24 11.63 22.591"
+    />
   );
 
   const simplified = (
     <polygon
-      fill-rule="evenodd"
+      fillRule="evenodd"
       points="32.577 30.115 34.37 28.336 23.999 17.885 13.63 28.336 15.423 30.115 23.999 21.471"
     />
   );
 
   const simplifiedHover = (
-    <g fill-rule="evenodd">
-      <polygon points="35.103 23.8 36.897 22.02 23.999 9.043 11.103 22.02 12.897 23.8 23.999 12.629" />
-      <rect width="2.526" height="22.737" x="22.737" y="11.368" />
-    </g>
+    <polygon
+      fillRule="evenodd"
+      points="23.999 9.043 36.897 22.02 35.103 23.8 25.262 13.9 25.263 34.105 22.737 34.105 22.736 13.9 12.897 23.8 11.103 22.02"
+    />
   );
 
   return (
