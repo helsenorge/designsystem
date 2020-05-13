@@ -1,35 +1,55 @@
 import React from 'react';
 import {IconRawProps} from './Icon';
+
 const EnterFullScreen = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, classNames, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  return !isHovered ? (
+  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  const isExtraSmall = size <= 38;
+  const normal = (
+    <g fillRule="evenodd" transform="translate(11 11)">
+      <polygon points="1.546 25.373 .627 24.454 7.845 17.236 8.764 18.155" />
+      <polygon points="9.18 25.563 .436 25.563 .436 16.861 1.736 16.861 1.736 24.263 9.18 24.263" />
+      <polygon points="18.155 8.764 17.236 7.845 24.454 .627 25.373 1.546" />
+      <polygon points="25.564 9.139 24.264 9.139 24.264 1.737 16.82 1.737 16.82 .437 25.564 .437" />
+    </g>
+  );
+
+  const normalHover = (
+    <g fillRule="evenodd" transform="translate(10 10)">
+      <polygon points="1.283 27.636 .364 26.717 7.582 19.499 8.501 20.418" />
+      <polygon points="8.917 27.827 .173 27.827 .173 19.125 1.473 19.125 1.473 26.527 8.917 26.527" />
+      <polygon points="20.418 8.501 19.499 7.582 26.717 .364 27.636 1.283" />
+      <polygon points="27.826 8.876 26.526 8.876 26.526 1.474 19.082 1.474 19.082 .174 27.826 .174" />
+      <polygon points="2.546 26.373 1.627 25.454 8.845 18.236 9.764 19.155" />
+      <polygon points="19.155 9.764 18.236 8.845 25.454 1.627 26.373 2.546" />
+    </g>
+  );
+
+  const simplified = (
+    <path
+      fillRule="evenodd"
+      d="M27.6879158,11.0705684 L27.6879158,12.8389895 L33.6462316,12.8389895 L27.9380211,18.5472 L29.1885474,19.7989895 L34.8967579,14.0907789 L34.8967579,20.0074105 L36.6651789,20.0074105 L36.6651789,11.0705684 L27.6879158,11.0705684 Z M19.7982316,29.1893053 L18.5477053,27.9387789 L12.8394947,33.6457263 L12.8394947,27.7290947 L11.0710737,27.7290947 L11.0710737,36.6659368 L20.0483368,36.6659368 L20.0483368,34.8975158 L14.0900211,34.8975158 L19.7982316,29.1893053 Z"
+    />
+  );
+
+  const simplifiedHover = (
+    <path
+      fillRule="evenodd"
+      d="M28.9514526,9.80741053 L28.9514526,11.5758316 L34.9097684,11.5758316 L27.9384,18.5472 L29.1889263,19.7989895 L30.4520842,18.5358316 L36.1602947,12.8276211 L36.1602947,18.7442526 L37.9287158,18.7442526 L37.9287158,9.80741053 L28.9514526,9.80741053 Z M18.5480842,27.9387789 L11.5754526,34.9101474 L11.5754526,28.9922526 L9.80703158,28.9922526 L9.80703158,37.9303579 L18.7855579,37.9303579 L18.7855579,36.1606737 L12.8272421,36.1606737 L19.7986105,29.1893053 L18.5480842,27.9387789 Z"
+    />
+  );
+
+  return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 38 38"
+      fill={isHovered ? hoverColor : color}
+      viewBox="0 0 48 48"
       ref={ref}
-      className={`${classNames} hnds-style-icon`}
+      className="icon"
       {...props}>
-      <path
-        fill={color}
-        fillRule="evenodd"
-        d="M21.9196,8.7642 L21.9196,10.1642 L26.6366,10.1642 L22.1176,14.6832 L23.1076,15.6742 L27.6266,11.1552 L27.6266,15.8392 L29.0266,15.8392 L29.0266,8.7642 L21.9196,8.7642 Z M15.6736,23.1082 L14.6836,22.1182 L10.1646,26.6362 L10.1646,21.9522 L8.7646,21.9522 L8.7646,29.0272 L15.8716,29.0272 L15.8716,27.6272 L11.1546,27.6272 L15.6736,23.1082 Z"
-      />
-    </svg>
-  ) : (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 38 38"
-      ref={ref}
-      className={`${classNames} hnds-style-icon`}
-      {...props}>
-      <path
-        fill={hoverColor}
-        fillRule="evenodd"
-        d="M22.9199,7.7642 L22.9199,9.1642 L27.6369,9.1642 L22.1179,14.6832 L23.1079,15.6742 L24.1079,14.6742 L28.6269,10.1552 L28.6269,14.8392 L30.0269,14.8392 L30.0269,7.7642 L22.9199,7.7642 Z M14.6839,22.1182 L9.1639,27.6372 L9.1639,22.9522 L7.7639,22.9522 L7.7639,30.0282 L14.8719,30.0282 L14.8719,28.6272 L10.1549,28.6272 L15.6739,23.1082 L14.6839,22.1182 Z"
-      />
+      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
     </svg>
   );
 });
+
 export default EnterFullScreen;

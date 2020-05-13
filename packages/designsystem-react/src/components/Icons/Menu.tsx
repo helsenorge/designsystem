@@ -2,35 +2,40 @@ import React from 'react';
 import {IconRawProps} from './Icon';
 
 const Menu = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const hasHover = true;
-  const {size = 48, classNames, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  return !isHovered || !hasHover ? (
+  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  const isExtraSmall = size <= 38;
+  const normal = (
+    <path d="M37.6555304,31.4342105 L37.6555304,33.1842105 L10.2690687,33.1842105 L10.2690687,31.4342105 L37.6555304,31.4342105 Z M37.6555304,22.5924137 L37.6555304,24.3424137 L10.2690687,24.3424137 L10.2690687,22.5924137 L37.6555304,22.5924137 Z M37.6555304,14.1282381 L37.6555304,15.8782381 L10.2690687,15.8782381 L10.2690687,14.1282381 L37.6555304,14.1282381 Z" />
+  );
+
+  const normalHover = (
+    <path d="M37.6858296,22.6260742 L37.6858296,24.3760742 L10.2993678,24.3760742 L10.2993678,22.6260742 L37.6858296,22.6260742 Z M37.6858296,12.8524825 L37.6858296,14.6024825 L10.2993678,14.6024825 L10.2993678,12.8524825 L37.6858296,12.8524825 Z M37.6858296,32.7225483 L37.6858296,34.4725483 L10.2993678,34.4725483 L10.2993678,32.7225483 L37.6858296,32.7225483 Z" />
+  );
+
+  const simplified = (
+    <path
+      fillRule="evenodd"
+      d="M37.8799342,31.2113487 L37.8799342,33.4850329 L10.1052632,33.4850329 L10.1052632,31.2113487 L37.8799342,31.2113487 Z M37.8799342,22.3692434 L37.8799342,24.6429276 L10.1052632,24.6429276 L10.1052632,22.3692434 L37.8799342,22.3692434 Z M37.8799342,13.8947368 L37.8799342,16.1684211 L10.1052632,16.1684211 L10.1052632,13.8947368 L37.8799342,13.8947368 Z"
+    />
+  );
+
+  const simplifiedHover = (
+    <path
+      fillRule="evenodd"
+      d="M37.8799342,32.4745066 L37.8799342,34.7481908 L10.1052632,34.7481908 L10.1052632,32.4745066 L37.8799342,32.4745066 Z M37.8799342,22.3692434 L37.8799342,24.6429276 L10.1052632,24.6429276 L10.1052632,22.3692434 L37.8799342,22.3692434 Z M37.8799342,12.6315789 L37.8799342,14.9052632 L10.1052632,14.9052632 L10.1052632,12.6315789 L37.8799342,12.6315789 Z"
+    />
+  );
+
+  return (
     <svg
       width={size}
       height={size}
+      fill={isHovered ? hoverColor : color}
       viewBox="0 0 48 48"
       ref={ref}
-      className={`${classNames} hnds-style-icon`}
+      className="icon"
       {...props}>
-      <g fill="none" fillRule="evenodd" strokeLinecap="square">
-        <line x1="11.144" x2="36.781" y1="15.003" y2="15.003" stroke={color} strokeWidth="1.75" />
-        <line x1="11.144" x2="36.781" y1="23.467" y2="23.467" stroke={color} strokeWidth="1.75" />
-        <line x1="11.144" x2="36.781" y1="32.309" y2="32.309" stroke={color} strokeWidth="1.75" />
-      </g>
-    </svg>
-  ) : (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`${classNames} hnds-style-icon`}
-      {...props}>
-      <g fill="none" fillRule="evenodd" strokeLinecap="square">
-        <line x1="11.174" x2="36.811" y1="23.501" y2="23.501" stroke={color} strokeWidth="1.75" />
-        <line x1="11.174" x2="36.811" y1="13.727" y2="13.727" stroke={color} strokeWidth="1.75" />
-        <line x1="11.174" x2="36.811" y1="33.598" y2="33.598" stroke={color} strokeWidth="1.75" />
-      </g>
+      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
     </svg>
   );
 });
