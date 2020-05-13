@@ -123,7 +123,7 @@ import MuscleLeg from './MuscleLeg';
 import Mushroom from './Mushroom';
 import NoFilter from './NoFilter';
 import Notepad from './Notepad';
-import PaintRoll from './PaintRoll';
+import PaintRoller from './PaintRoller';
 import PaperPlane from './PaperPlane';
 import PatientAndPerson from './PatientAndPerson';
 import Pause from './Pause';
@@ -261,6 +261,7 @@ const iconMapping = {
   female: Female,
   femaleDoctor: FemaleDoctor,
   ferry: Ferry,
+  filterOff: NoFilter, // TODO: Remove later. BREAKING
   fingerBleed: FingerBleed,
   firstAidKit: FirstAidKit,
   football: Football,
@@ -314,7 +315,7 @@ const iconMapping = {
   mushroom: Mushroom,
   noFilter: NoFilter,
   notepad: Notepad,
-  paintRoll: PaintRoll,
+  paintRoller: PaintRoller,
   paperPlane: PaperPlane,
   patientAndPerson: PatientAndPerson,
   pause: Pause,
@@ -377,6 +378,8 @@ const iconMapping = {
   videoCamera: VideoCamera,
   videoChat: VideoChat,
   wallet: Wallet,
+  warningSignFill: ErrorSignFill, // TODO: Remove later. BREAKING
+  warningSignStroke: ErrorSignStroke, // TODO: Remove later. BREAKING
   window: Window,
   wordDocument: WordDocument,
   x: X,
@@ -455,6 +458,7 @@ export type IconTypes =
   | 'female'
   | 'femaleDoctor'
   | 'ferry'
+  | 'filterOff' // TODO: Remove later. BREAKING
   | 'fingerBleed'
   | 'firstAidKit'
   | 'football'
@@ -508,7 +512,7 @@ export type IconTypes =
   | 'mushroom'
   | 'noFilter'
   | 'notepad'
-  | 'paintRoll'
+  | 'paintRoller'
   | 'paperPlane'
   | 'patientAndPerson'
   | 'pause'
@@ -571,6 +575,8 @@ export type IconTypes =
   | 'videoCamera'
   | 'videoChat'
   | 'wallet'
+  | 'warningSignFill' // TODO: Remove later. BREAKING
+  | 'warningSignStroke' // TODO: Remove later. BREAKING
   | 'window'
   | 'wordDocument'
   | 'x'
