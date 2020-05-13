@@ -45,16 +45,7 @@ export const variantToIconMap = {
 };
 
 const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: any) => {
-  const {
-    children,
-    variant = 'info',
-    shadow = false,
-    dismissable = false,
-    onClick,
-    label,
-    fluid = false,
-    size = 'large',
-  } = props;
+  const {children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size} = props;
   const {hoverRef, isHovered} = useHover<HTMLButtonElement>(dismissable);
   function wrapFluid(panel: React.ReactNode): any {
     if (fluid) {
