@@ -4,7 +4,7 @@ import {IconRawProps} from './Icon';
 // TODO: This should be removed. This will cause a breaking change if people use it.
 // Want to wait with removing this untill we have more breaking changes in v1.1 for example
 const Cross = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   const isExtraSmall = size <= 38;
   const normal = (
     <polygon
@@ -27,7 +27,7 @@ const Cross = React.forwardRef((svgProps: IconRawProps, ref: any) => {
       fill={isHovered ? hoverColor : color}
       viewBox="0 0 38 38"
       ref={ref}
-      className="icon"
+      className={`${className} hnds-style-icon`}
       {...props}>
       {isHovered ? normalHover : normal}
     </svg>

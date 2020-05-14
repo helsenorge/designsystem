@@ -2,7 +2,7 @@ import React from 'react';
 import {IconRawProps} from './Icon';
 
 const History = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   const isExtraSmall = size <= 38;
   const normal = (
     <path d="M23.8634,10.082 C31.6572093,10.082 37.9754,16.4008391 37.9754,24.195 C37.9754,31.9889851 31.6573851,38.307 23.8634,38.307 C17.2391895,38.307 11.5598075,33.7099102 10.1067056,27.3573468 L10.0375876,27.0382689 L11.3112124,26.7777311 C12.5212038,32.6927091 17.7492943,37.007 23.8634,37.007 C30.9394149,37.007 36.6754,31.2710149 36.6754,24.195 C36.6754,17.1187794 30.9392093,11.382 23.8634,11.382 C19.9130983,11.382 16.2650974,13.1821899 13.855848,16.1922215 L18.8048,16.193 L18.8048,17.493 L11.9707754,17.493 L11.6345238,10.3736658 L12.9330762,10.3123342 L13.1536773,15.0026194 C15.804023,11.9156079 19.6806871,10.082 23.8634,10.082 Z M23.6281,19.3884 L23.628,25.513 L28.2131,25.5134 L28.2131,26.5134 L22.6281,26.5134 L22.6281,19.3884 L23.6281,19.3884 Z" />
@@ -33,7 +33,7 @@ const History = React.forwardRef((svgProps: IconRawProps, ref: any) => {
       fill={isHovered ? hoverColor : color}
       viewBox="0 0 48 48"
       ref={ref}
-      className="icon"
+      className={`${className} hnds-style-icon`}
       {...props}>
       {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
     </svg>

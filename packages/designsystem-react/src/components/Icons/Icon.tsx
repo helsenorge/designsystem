@@ -587,24 +587,24 @@ interface IconProps {
   type: IconTypes;
   size?: number;
   color?: IconColors;
-  classNames?: string;
+  className?: string;
   isHovered?: boolean;
 }
 
 interface IconRawProps {
   color: string;
-  classNames?: string;
+  className?: string;
   hoverColor: string;
   size?: number;
   isHovered?: boolean;
 }
 
 const Icon = React.forwardRef((props: IconProps, ref: any) => {
-  const {type, classNames = '', size = 48, color = 'black', isHovered = false} = props;
+  const {type, className = '', size = 48, color = 'black', isHovered = false} = props;
   return React.createElement(iconMapping[type], {
     size,
     color: getColor(color, 600),
-    classNames,
+    className,
     hoverColor: getColor(color, 700),
     isHovered,
     ref: ref,
