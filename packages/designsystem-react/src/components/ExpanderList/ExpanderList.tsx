@@ -4,6 +4,7 @@ import {
   StyledExpanderListLink,
   StyledExpanderListLinkContent,
   StyledExpanderContent,
+  StyledExpanderListIconContainer,
 } from './ExpanderList.styled';
 import {PaletteNames} from '../../theme/palette';
 import Icon from '../Icons';
@@ -20,6 +21,7 @@ interface ExpanderListProps {
   accordion?: boolean;
   bottomBorder?: boolean;
   children: React.ReactNode;
+  childPadding?: boolean;
   className?: string;
   color: ExpanderListColors;
   large?: boolean;
@@ -32,6 +34,7 @@ interface ExpanderProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
   color: ExpanderListColors;
   icon?: React.ReactElement;
+  padding?: boolean;
   isExpanded?: boolean;
   large: boolean;
   title: string;
@@ -39,7 +42,7 @@ interface ExpanderProps extends React.HTMLAttributes<HTMLButtonElement> {
 
 // TODO: See what can be done with regards to double reffing.
 const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
-  const {children, color, className = '', icon, large, title, isExpanded = false, ...restProps} = props;
+  const {children, padding = true, color, className = '', icon, large, title, isExpanded = false, ...restProps} = props;
   const {hoverRef, isHovered} = useHover<HTMLButtonElement>();
   return (
     <li>
@@ -51,12 +54,18 @@ const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
         ref={hoverRef}
         {...restProps}>
         <StyledExpanderListLinkContent>
-          {icon && React.cloneElement(icon, {size: 48, isHovered})}
+          {icon ? (
+            <StyledExpanderListIconContainer>
+              {React.cloneElement(icon, {size: 48, isHovered})}
+            </StyledExpanderListIconContainer>
+          ) : null}
           {title}
         </StyledExpanderListLinkContent>
-        <Icon type={isExpanded ? 'chevronUp' : 'chevronDown'} />
+        <StyledExpanderListIconContainer>
+          <Icon type={isExpanded ? 'chevronUp' : 'chevronDown'} />
+        </StyledExpanderListIconContainer>
       </StyledExpanderListLink>
-      {isExpanded ? <StyledExpanderContent>{children}</StyledExpanderContent> : null}
+      {isExpanded ? <StyledExpanderContent padding={padding}>{children}</StyledExpanderContent> : null}
     </li>
   );
 });
@@ -69,6 +78,7 @@ function findShadowDOMId(event: any, tagName: string) {
 const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
   const {
     children,
+    childPadding = true,
     large,
     isOpen = false,
     color,
@@ -95,6 +105,7 @@ const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
             id: `expander-${index}`,
             key: `expander-${index}`,
             isExpanded,
+            padding: childPadding,
             color,
             large,
             'aria-expanded': isExpanded,

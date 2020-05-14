@@ -5,6 +5,7 @@ import ExpanderList from './ExpanderList';
 import LinkList from '../LinkList';
 import Icon from '../Icons';
 import {allPaletteNames} from '../../../.storybook/knobs';
+import {Title} from '../..';
 
 const stories = storiesOf('ExpanderList', module);
 stories.addDecorator(withKnobs);
@@ -17,6 +18,7 @@ stories.add('Default', () => (
     <ExpanderList
       isOpen={boolean('Is open', false)}
       accordion={boolean('Accordion', false)}
+      childPadding={boolean('Child padding', true)}
       color={select('Color', allPaletteNames, 'blueberry')}>
       <ExpanderList.Expander title="Cognitive therapy">
         Some major content/text about certain illness here.

@@ -7,6 +7,10 @@ interface StyledExpanderListProps {
   bottomBorder?: boolean;
 }
 
+interface StyledExpanderContentProps {
+  padding: boolean;
+}
+
 const topBorder = (props: StyledExpanderListProps) =>
   props.topBorder &&
   css`
@@ -42,14 +46,19 @@ const StyledExpanderList = styled('ul')`
   ${bottomBorder}
 `;
 
-const StyledExpanderContent = styled('div')`
-  padding: 1.5rem 0.5rem;
+const StyledExpanderContent = styled('div')<StyledExpanderContentProps>`
+  padding: ${props => (props.padding ? '1.5rem 0.5rem' : '0')};
+`;
+
+const StyledExpanderListIconContainer = styled('span')`
+  width: 3rem;
 `;
 
 // TODO: Need to overhaul all icons to be Styled insteadof hnds-style-icon.
 const StyledExpanderListLinkContent = styled('span')`
   display: flex;
   align-items: center;
+  text-align: left;
   .hnds-style-icon {
     margin-right: 1.5rem;
   }
@@ -87,4 +96,10 @@ const StyledExpanderListLink = styled('button')<StyledExpanderListLinkProps>`
   }
 `;
 
-export {StyledExpanderList, StyledExpanderListLink, StyledExpanderListLinkContent, StyledExpanderContent};
+export {
+  StyledExpanderList,
+  StyledExpanderListLink,
+  StyledExpanderListLinkContent,
+  StyledExpanderContent,
+  StyledExpanderListIconContainer,
+};
