@@ -2,7 +2,7 @@ import React from 'react';
 import {IconRawProps} from './Icon';
 
 const Minus = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   const isExtraSmall = size <= 38;
   const normal = (
     <polygon fillRule="evenodd" points="14.225 25 33.775 25 33.775 23 14.225 23" transform="matrix(1 0 0 -1 0 48)" />
@@ -29,7 +29,7 @@ const Minus = React.forwardRef((svgProps: IconRawProps, ref: any) => {
       fill={isHovered ? hoverColor : color}
       viewBox="0 0 48 48"
       ref={ref}
-      className="icon"
+      className={`${className} hnds-style-icon`}
       {...props}>
       {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
     </svg>

@@ -2,7 +2,7 @@ import React from 'react';
 import {IconRawProps} from './Icon';
 
 const PersonWorking = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
+  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
   const isExtraSmall = size <= 38;
   const normal = (
     <g fillRule="evenodd" transform="translate(6 3)">
@@ -29,7 +29,7 @@ const PersonWorking = React.forwardRef((svgProps: IconRawProps, ref: any) => {
       fill={isHovered ? hoverColor : color}
       viewBox="0 0 48 48"
       ref={ref}
-      className="icon"
+      className={`${className} hnds-style-icon`}
       {...props}>
       {isHovered ? normalHover : normal}
     </svg>
