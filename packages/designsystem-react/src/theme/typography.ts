@@ -26,7 +26,7 @@ const title2 = css`
   line-height: 2.25rem;
   font-weight: 600;
   @media ${screen.md} {
-    font-size: 2.125rem;
+    font-size: 2rem;
     line-height: 2.75rem;
   }
 `;
