@@ -59,8 +59,8 @@ const StyledExpanderListLinkContent = styled('span')`
   display: flex;
   align-items: center;
   text-align: left;
-  .hnds-style-icon {
-    margin-right: 1.5rem;
+  ${StyledExpanderListIconContainer} {
+    margin-right: 0.5rem;
   }
 `;
 
