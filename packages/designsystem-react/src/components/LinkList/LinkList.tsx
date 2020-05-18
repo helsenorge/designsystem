@@ -1,5 +1,10 @@
 import React from 'react';
-import {StyledLinkList, StyledLinkListLink, StyledLinkListLinkContent} from './LinkList.styled';
+import {
+  StyledLinkList,
+  StyledLinkListLink,
+  StyledLinkListLinkContent,
+  StyledLinkListIconContainer,
+} from './LinkList.styled';
 import {PaletteNames} from '../../theme/palette';
 import {HTMLAnchorProps} from '../../constants';
 import Icon from '../Icons';
@@ -44,10 +49,16 @@ const Link = React.forwardRef((props: LinkProps, ref: any) => {
         color={color}
         {...restProps}>
         <StyledLinkListLinkContent>
-          {icon && React.cloneElement(icon, {size: 48, isHovered})}
+          <StyledLinkListIconContainer>
+            {icon && React.cloneElement(icon, {size: 48, isHovered})}
+          </StyledLinkListIconContainer>
           {children}
         </StyledLinkListLinkContent>
-        {chevron ? <Icon type="chevronRight" /> : null}
+        {chevron ? (
+          <StyledLinkListIconContainer>
+            <Icon type="chevronRight" />
+          </StyledLinkListIconContainer>
+        ) : null}
       </StyledLinkListLink>
     </li>
   );

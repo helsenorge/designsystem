@@ -42,12 +42,16 @@ const StyledLinkList = styled('ul')`
   ${bottomBorder}
 `;
 
+const StyledLinkListIconContainer = styled('span')`
+  width: 3rem;
+`;
+
 // TODO: Need to overhaul all icons to be Styled insteadof hnds-style-icon.
 const StyledLinkListLinkContent = styled('span')`
   display: flex;
   align-items: center;
-  .hnds-style-icon {
-    margin-right: 1.5rem;
+  ${StyledLinkListIconContainer} {
+    margin-right: 0.5rem;
   }
 `;
 
@@ -73,4 +77,4 @@ const StyledLinkListLink = styled('a')<StyledLinkListLinkProps>`
   }
 `;
 
-export {StyledLinkList, StyledLinkListLink, StyledLinkListLinkContent};
+export {StyledLinkList, StyledLinkListLink, StyledLinkListLinkContent, StyledLinkListIconContainer};
