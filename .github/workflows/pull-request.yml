@@ -11,10 +11,10 @@ jobs:
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        run: yarn install
+        run: npm ci
       - name: Build
-        run: yarn build
+        run: npm run build
       - name: Test
-        run: yarn test
+        run: npm run test

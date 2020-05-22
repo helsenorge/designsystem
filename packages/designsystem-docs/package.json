@@ -34,7 +34,7 @@
     "serve": "gatsby serve",
     "start": "gatsby develop",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "validate": "yarn lint && yarn format -l"
+    "validate": "npm run lint && npm run format -l"
   },
   "dependencies": {
     "@helsenorge/designsystem-react": "^1.0.0-beta.7",

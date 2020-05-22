@@ -17,15 +17,15 @@ jobs:
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
-        run: yarn install
+        run: npm ci
       - name: Build
-        run: yarn build
+        run: npm run build
       - name: Test
-        run: yarn test
+        run: npm run test
       - name: Publish
-        run: yarn run lerna publish from-git --yes --dist-tag dev
+        run: npm run lerna publish from-git --yes --dist-tag dev
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
