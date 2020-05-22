@@ -25,6 +25,7 @@
     "react"
   ],
   "scripts": {
+    "install": "npm ci",
     "build": "gatsby build",
     "clean": "rimraf public .cache",
     "cz": "git-cz",

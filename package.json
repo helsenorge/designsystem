@@ -26,6 +26,7 @@
     "packages/*"
   ],
   "scripts": {
+    "install": "lerna run install",
     "build": "lerna run build",
     "clean": "lerna run clean",
     "cz": "git-cz",
