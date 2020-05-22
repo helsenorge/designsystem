@@ -26,12 +26,13 @@
     "packages/*"
   ],
   "scripts": {
+    "install:packages": "lerna run install:packages",
     "build": "lerna run build",
     "clean": "lerna run clean",
     "cz": "git-cz",
     "format": "lerna run format",
     "lint": "lerna run lint",
-    "release:dev": "yarn run lerna version --conventional-commits --conventional-prerelease --preid dev",
+    "release:dev": "lerna version --conventional-commits --conventional-prerelease --preid dev",
     "test": "lerna run test",
     "validate": "lerna run validate"
   },

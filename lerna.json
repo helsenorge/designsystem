@@ -1,15 +1,13 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "version": "1.0.0-beta.7",
   "useWorkspaces": true,
   "command": {
     "run": {
-      "npmClient": "yarn"
+      "npmClient": "npm"
     },
     "add": {
-      "npmClient": "yarn"
+      "npmClient": "npm"
     },
     "version": {}
   }

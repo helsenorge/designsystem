@@ -32,7 +32,8 @@
     "dist/"
   ],
   "scripts": {
-    "build": "yarn clean && rollup -c --environment BUILD:production && yarn build:defs",
+    "install:packages": "npm ci",
+    "build": "npm run clean && rollup -c --environment BUILD:production && npm run build:defs",
     "build:defs": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/src/index.d.ts",
     "clean": "rimraf dist types",
     "cz": "git-cz",
@@ -44,7 +45,7 @@
     "test:open": "open -a 'Google Chrome' coverage/lcov-report/index.html",
     "test:watch": "jest --watch",
     "start": "start-storybook",
-    "validate": "yarn lint && yarn format -l"
+    "validate": "npm run lint && npm run format -l"
   },
   "peerDependencies": {
     "bootstrap": "4.4.1",
