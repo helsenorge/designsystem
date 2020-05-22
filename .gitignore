@@ -1,8 +1,6 @@
 types
 coverage
 bundle-stats.json
-.npmrc
-package-lock.json
 
 dist/
 

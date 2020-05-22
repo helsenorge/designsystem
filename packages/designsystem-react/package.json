@@ -1,6 +1,6 @@
 {
   "name": "@helsenorge/designsystem-react",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -8,7 +8,7 @@
     "directory": "packages/designsystem-react"
   },
   "homepage": "https://helsenorge.design",
-  "author": "Steffen Lien <steffen.lien@ehelse.no>",
+  "author": "Helsenorge ROX",
   "bugs": {
     "url": "https://github.com/Helsenorge/designsystem/issues",
     "email": "contact@helsenorge.design"
