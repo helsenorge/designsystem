@@ -1,5 +1,6 @@
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import commonjs from 'rollup-plugin-commonjs';
 import buble from 'rollup-plugin-buble';
@@ -30,6 +31,7 @@ export default [
       }),
       peerDepsExternal(),
       resolve({extensions}),
+      //typescript(),
       commonjs({
         namedExports: {
           '../../node_modules/react-is/index.js': ['isElement', 'isValidElementType', 'ForwardRef'],
@@ -52,28 +54,24 @@ export default [
     output: [
       {
         file: pkg.main,
-        format: 'umd',
-        name: 'mlptest',
+        format: 'cjs',
+        name: 'designsystem',
         globals,
         sourcemap: true,
       },
-      {file: pkg.module, format: 'es', globals, sourcemap: true},
     ],
   },
   {
     input: inputEntries,
     output: [
       {
-        dir: 'dist/esm',
-        format: 'esm',
-      },
-      {
-        dir: 'dist/cjs',
+        dir: 'dist',
         format: 'cjs',
       },
     ],
 
     plugins: [
+      typescript(),
       progress({
         clearLine: false,
       }),
@@ -89,7 +87,6 @@ export default [
         include: ['src/**/*'],
         exclude: '/node_modules/',
       }),
-
       buble(),
       //sizes(),
     ],

@@ -7,10 +7,10 @@
     "jsx": "react",
     "declaration": true,
     "declarationMap": true,
-    "declarationDir": "types/",
+    "declarationDir": "dist/types/",
     "emitDecoratorMetadata": true,
     "types": ["jest", "node", "react"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "scripts"]
+  "exclude": [".storybook/**/*", "dist", "dist_OLD", "node_modules", "scripts"]
 }

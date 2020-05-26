@@ -24,8 +24,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/cjs/helsenorge.js",
-  "module": "dist/esm/helsenorge.js",
+  "main": "dist/helsenorge.js",
   "types": "dist/index.d.ts",
   "source": "src/index.ts",
   "files": [
@@ -34,12 +33,12 @@
   "scripts": {
     "install:packages": "npm ci",
     "prepare": "npm run clean && npm run generate:entries && npm run build",
-    "build": "rollup -c --environment BUILD:production && npm run build:defs",
-    "build:defs": "tsc --emitDeclarationOnly && dts-bundle-generator -project ./tsconfig.json -o ./dist/index.d.ts ./types/src/index.d.ts",
+    "build": "rollup -c --environment BUILD:production",
     "clean": "rimraf dist types",
     "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
     "generate:entries": "node scripts/entriesGenerator.js && prettier --write \"scripts/componentsEntries.json\"",
+    "generate:tsdefinitions": "tsc --emitDeclarationOnly && copyfiles -f \"./types/**/*.ts\" \"./dist/types\" ",
     "generate:icons": "node scripts/iconGenerator.js generate",
     "lint": "eslint \"src/**/*\"",
     "precommit": "lint-staged",
@@ -64,6 +63,7 @@
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
+    "@rollup/plugin-typescript": "^4.1.2",
     "@storybook/addon-a11y": "^5.3.13",
     "@storybook/addon-actions": "^5.3.12",
     "@storybook/addon-backgrounds": "^5.3.12",
@@ -80,6 +80,7 @@
     "@types/testing-library__react": "^9.1.2",
     "async": "^3.1.0",
     "babel-loader": "^8.0.6",
+    "copyfiles": "^2.2.0",
     "css-loader": "^3.2.0",
     "dts-bundle-generator": "^3.3.0",
     "file-loader": "^4.2.0",
