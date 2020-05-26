@@ -1,5 +1,6 @@
 {
   "name": "@helsenorge/designsystem-react",
+  "sideEffects": false,
   "version": "1.0.0-buildchunks01",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
@@ -24,7 +25,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/helsenorge.js",
   "types": "dist/index.d.ts",
   "source": "src/index.ts",
   "files": [
@@ -32,8 +32,8 @@
   ],
   "scripts": {
     "install:packages": "npm ci",
-    "prepare": "npm run clean && npm run generate:entries && npm run build",
-    "build": "rollup -c --environment BUILD:production",
+    "prepare": "npm run generate:entries && npm run build",
+    "build": "npm run clean && rollup -c --environment BUILD:production",
     "clean": "rimraf dist types",
     "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",

@@ -23,15 +23,22 @@ const globals = {
 
 export default [
   {
-    input: pkg.source,
+    input: inputEntries,
+    output: [
+      {
+        dir: 'dist',
+        format: 'esm',
+      },
+    ],
+
     plugins: [
+      typescript(),
       terser(),
       progress({
         clearLine: false,
       }),
       peerDepsExternal(),
       resolve({extensions}),
-      //typescript(),
       commonjs({
         namedExports: {
           '../../node_modules/react-is/index.js': ['isElement', 'isValidElementType', 'ForwardRef'],
@@ -47,45 +54,6 @@ export default [
           {src: 'src/fonts/**/*', dest: 'dist/fonts'},
           {src: 'src/scss/*', dest: 'dist/scss'},
         ],
-      }),
-      buble(),
-      sizes(),
-    ],
-    output: [
-      {
-        file: pkg.main,
-        format: 'cjs',
-        name: 'designsystem',
-        globals,
-        sourcemap: true,
-      },
-    ],
-  },
-  {
-    input: inputEntries,
-    output: [
-      {
-        dir: 'dist',
-        format: 'cjs',
-      },
-    ],
-
-    plugins: [
-      typescript(),
-      progress({
-        clearLine: false,
-      }),
-      peerDepsExternal(),
-      resolve({extensions}),
-      commonjs({
-        namedExports: {
-          '../../node_modules/react-is/index.js': ['isElement', 'isValidElementType', 'ForwardRef'],
-        },
-      }),
-      babel({
-        extensions,
-        include: ['src/**/*'],
-        exclude: '/node_modules/',
       }),
       buble(),
       //sizes(),
