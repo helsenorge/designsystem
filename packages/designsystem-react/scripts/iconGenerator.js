@@ -149,9 +149,11 @@ function template({template}, opts, {imports, componentName, props, jsx, exports
 }
 
 function injectIntoIconFile(components) {
+  console.log('injectIntoIconFile');
   const iconFilePath = path.resolve(__dirname, '../src/components/Icons/Icon.tsx');
   fs.readFile(iconFilePath, {encoding: 'utf8'}, async (err, contents) => {
     const lines = contents.split('\n');
+    console.log('lines', lines);
     const startIndex = lines.findIndex(line => line === COMMENT_TEMPLATE_START);
     const endIndex = lines.findIndex(line => line === COMMENT_TEMPLATE_END);
     const injectionBlock = await getInjectionContents(components);

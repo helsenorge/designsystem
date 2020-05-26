@@ -1,4 +1,4 @@
-import Avatar from './components/Avatar';
+/*import Avatar from './components/Avatar';
 import Badge from './components/Badge';
 import Button from './components/Button';
 import ExpanderList from './components/ExpanderList';
@@ -10,10 +10,12 @@ import Logo from './components/Logo';
 import NotificationPanel from './components/NotificationPanel';
 import Tile from './components/Tile';
 import Title from './components/Title';
+*/
 import {theme} from './theme';
 import {useHover} from './hooks/useHover';
 
 export {
+  /*
   Avatar,
   Badge,
   Button,
@@ -26,6 +28,7 @@ export {
   NotificationPanel,
   Tile,
   Title,
+  */
   theme,
   useHover,
 };
