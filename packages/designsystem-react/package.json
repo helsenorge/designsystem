@@ -25,7 +25,7 @@
     "access": "public"
   },
   "main": "dist/cjs/helsenorge.js",
-  "module": "dist/esm/helsenorge.esm.js",
+  "module": "dist/esm/helsenorge.js",
   "types": "dist/index.d.ts",
   "source": "src/index.ts",
   "files": [
@@ -39,8 +39,8 @@
     "clean": "rimraf dist types",
     "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
-    "generate:iconsfromsvg": "node scripts/iconGenerator.js generate",
-    "generate:entries": "node scripts/entriesGenerator.js",
+    "generate:entries": "node scripts/entriesGenerator.js && prettier --write \"scripts/componentsEntries.json\"",
+    "generate:icons": "node scripts/iconGenerator.js generate",
     "lint": "eslint \"src/**/*\"",
     "precommit": "lint-staged",
     "test": "jest",
@@ -92,6 +92,7 @@
     "postcss-loader": "^3.0.0",
     "postcss-nested": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.0.5",
     "react": "16.12.0",
     "react-docgen-typescript-loader": "^3.3.0",
     "react-dom": "16.12.0",

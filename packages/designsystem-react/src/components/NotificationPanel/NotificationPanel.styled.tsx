@@ -62,9 +62,9 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
         padding: 2rem 1rem;
         ${StyledNotificationPanelContent} {
           ${props.variant === 'alert' &&
-            css`
-              color: ${getColor('cherry', 500)};
-            `};
+          css`
+            color: ${getColor('cherry', 500)};
+          `};
           display: flex;
           align-items: center;
           margin: 0 1rem;

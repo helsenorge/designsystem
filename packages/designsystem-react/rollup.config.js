@@ -15,8 +15,6 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 const componentsEntries = require('./scripts/componentsEntries');
 const inputEntries = Object.assign({index: pkg.source}, componentsEntries);
 
-console.log('Rollup building following chunks', inputEntries);
-
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
