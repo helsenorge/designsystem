@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
-  "version": "1.0.0-buildchunks02",
+  "version": "1.0.0-buildchunks03",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -32,7 +32,9 @@
   ],
   "scripts": {
     "install:packages": "npm ci",
-    "build": "npm run generate:entries && npm run clean && rollup -c --environment BUILD:production && npm run generate:tsdefinitions && npm run copy:npmcontent",
+    "prebuild": "npm run generate:entries && npm run clean",
+    "build": "rollup -c --environment BUILD:production && npm run generate:tsdefinitions && npm run copy:npmcontent",
+    "publish:package": "npm publish ./dist",
     "clean": "rimraf dist types",
     "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
