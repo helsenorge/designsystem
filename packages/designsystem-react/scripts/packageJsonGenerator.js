@@ -21,18 +21,6 @@ function generatePackageJson() {
         ...packageData,
         scripts: {},
       };
-      /*
-      const minimalPackage = {
-        name: '@helsenorge/designsystem-react',
-        author,
-        version,
-        scripts: { prepublishOnly: 'node .././node_modules/@helsenorge/core-build/lib/helsenorge-scripts.js prepublish' },
-        main: './index.js',
-        license,
-        peerDependencies,
-        dependencies,
-      };
-      */
 
       return new Promise(resolve => {
         const libPath = path.resolve(__dirname, '../dist/package.json');
