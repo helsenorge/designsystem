@@ -52,7 +52,7 @@ function convertToEntryObject(arr) {
 
 function getComponents(pathToFolder, fn) {
   glob(
-    `${pathToFolder}/**/*`,
+    `${pathToFolder}/**/*.*`,
     {
       ignore: [
         '**/__snapshots__',
@@ -60,11 +60,11 @@ function getComponents(pathToFolder, fn) {
         '**/*.stories.tsx',
         '**/*.styled.tsx',
         '**/*.test.tsx',
-        `**/Icons/index.ts`,
         `${pathToFolder}/Icon.*`,
       ],
     },
     (err, files) => {
+      console.log('processing files:', files.length);
       fn(files, err);
     },
   );
@@ -84,16 +84,15 @@ function getComponentName(componentPath) {
     // returns null if the component has the same name as its folder (because then it is index.tsx that should be used)
     if (arr2[arr2.length - 1] === arr2[arr2.length - 2]) {
       name = null;
-    } else if (arr2[arr2.length - 1] === 'index') {
-      // returns the name of the folder if the file is 'index'
-      name = arr2[arr2.length - 2].toLowerCase();
     } else if (componentPath.includes('Icons')) {
       // returns the name of the icon with 'icons/' prefix if the component under Icons/
-      name = `icons/${arr2[arr2.length - 1].toLowerCase()}`;
+      name = `components/Icons/${arr2[arr2.length - 1]}`;
+    } else if (componentPath.includes('/components/')) {
+      // returns the name of the component with 'components/' prefix and 'index' suffix if the file is under /components
+      name = `components/${arr2[arr2.length - 2]}/index`;
     } else {
       name = arr2[arr2.length - 1].toLowerCase();
     }
-
     return name;
   } catch {
     console.log('ERROR in entriesGenerator getComponentName for filen', componentPath);
@@ -117,7 +116,7 @@ function getComponentData(componentPath) {
 
 function writeFile(filepath, content) {
   try {
-    fs.writeFile(filepath, content, function(err) {
+    fs.writeFile(filepath, content, function (err) {
       err ? console.log(chalk.red(err)) : console.log(chalk.green('Entries for components saved in ' + paths.output));
     });
   } catch {
