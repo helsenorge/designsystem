@@ -3,6 +3,7 @@ coverage
 bundle-stats.json
 
 dist/
+dist_OLD/
 
 *~
 *.sw[mnpcod]

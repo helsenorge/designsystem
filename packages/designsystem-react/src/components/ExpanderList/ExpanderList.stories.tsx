@@ -3,9 +3,9 @@ import {withKnobs, text, select, boolean} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import ExpanderList from './ExpanderList';
 import LinkList from '../LinkList';
+import Title from '../Title';
 import Icon from '../Icons';
 import {allPaletteNames} from '../../../.storybook/knobs';
-import {Title} from '../..';
 
 const stories = storiesOf('ExpanderList', module);
 stories.addDecorator(withKnobs);

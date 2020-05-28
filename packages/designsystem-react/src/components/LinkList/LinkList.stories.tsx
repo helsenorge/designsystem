@@ -2,7 +2,7 @@ import React from 'react';
 import {withKnobs, text, boolean} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import LinkList from './LinkList';
-import {Icon} from '../..';
+import {Icon} from '../Icons/Icon';
 
 const stories = storiesOf('LinkList', module);
 stories.addDecorator(withKnobs);

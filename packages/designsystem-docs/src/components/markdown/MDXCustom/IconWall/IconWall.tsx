@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Icon, IconTypes} from '@helsenorge/designsystem-react';
+import Icon from '@helsenorge/designsystem-react/components/Icons';
+import {IconTypes} from '@helsenorge/designsystem-react/components/Icons/Icon';
 import Checkbox from '../../../CheckBox/CheckBox';
 import styled from 'styled-components';
 

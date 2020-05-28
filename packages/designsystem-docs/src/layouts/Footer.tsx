@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 import styled, {css} from 'styled-components';
 
-import {Logo} from '@helsenorge/designsystem-react';
+import Logo from '@helsenorge/designsystem-react/components/Logo';
 import {Grid, Row, Col} from '@shared/CustomizedGrid';
 import Section from './Section';
 import {screen, size as screenSize, palette} from '@styles/styled-constants';

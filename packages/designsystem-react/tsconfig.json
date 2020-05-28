@@ -2,7 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "sourceMap": true,
+    "sourceMap": false,
+    "inlineSourceMap": false,
     "allowJs": false,
     "jsx": "react",
     "declaration": true,
@@ -12,5 +13,5 @@
     "types": ["jest", "node", "react"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "scripts"]
+  "exclude": [".storybook/**/*", "dist", "dist_OLD", "node_modules", "scripts", "src/utils", "**/__snapshots__", "**/__snapshots__/*", "**/*.stories.tsx","**/*.styled.tsx","**/*.test.tsx",]
 }
