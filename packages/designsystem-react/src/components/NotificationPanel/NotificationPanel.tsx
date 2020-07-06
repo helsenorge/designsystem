@@ -60,7 +60,7 @@ const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: 
   return wrapFluid(
     <StyledNotificationPanel size={size} label={!!label && !children} shadow={!fluid && shadow} variant={variant}>
       <StyledNotificationPanelIconColumn>
-        {variantToIconMap[variant === 'alert' && label && !children ? 'alertLabel' : variant]}
+        {variantToIconMap[variant === 'alert' && !!label && !children ? 'alertLabel' : variant]}
       </StyledNotificationPanelIconColumn>
       <StyledNotificationPanelContent>
         {label ? <StyledLabel>{label}</StyledLabel> : null}

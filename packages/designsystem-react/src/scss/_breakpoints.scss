@@ -1,14 +1,15 @@
 $grid-gutter-width: map-get($spacers, 5);
 
 $grid-breakpoints: (
-  xs: 0,
+  xs: 360px,
   sm: 564px,
-  md: 682px,
+  md: 768px,
   lg: 1088px,
+  xl: 1450px,
 );
 
 $container-max-widths: (
   sm: 528px,
-  md: 634px,
+  md: 612px,
   lg: 1056px,
 );

@@ -11,7 +11,7 @@ export type ButtonIntents = 'primary' | 'warning' | 'danger';
 export type ButtonTags = 'button' | 'a';
 export type ButtonVariants = 'fill' | 'outline' | 'borderless';
 
-interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
+export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   children: React.ReactNode;
   className?: string;
   fluid?: boolean;
