@@ -26,7 +26,7 @@ stories.add('Default', () => (
       <ExpanderList.Expander title="Health anxiety">
         Some major content/text about certain illness here.
       </ExpanderList.Expander>
-      <ExpanderList.Expander title="Brain damage">
+      <ExpanderList.Expander title="Brain damage (This is a super long text just so you can observe how it will wrap on a multiline context)">
         Some major content/text about certain illness here.
       </ExpanderList.Expander>
     </ExpanderList>

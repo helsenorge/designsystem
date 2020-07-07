@@ -62,7 +62,8 @@ interface StyledLinkListLinkProps {
 }
 
 const StyledLinkListLink = styled('a')<StyledLinkListLinkProps>`
-  padding: ${props => (props.hasIcon ? '0.5rem' : '1rem')} 0.5rem;
+  padding: 0.5rem;
+  min-height: ${props => (props.hasIcon ? 'unset' : '4.5rem')};
   display: flex;
   cursor: pointer;
   font-size: 1.25rem;
