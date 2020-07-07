@@ -49,16 +49,16 @@ const Link = React.forwardRef((props: LinkProps, ref: any) => {
         color={color}
         {...restProps}>
         <StyledLinkListLinkContent>
-          <StyledLinkListIconContainer>
-            {icon && React.cloneElement(icon, {size: 48, isHovered})}
-          </StyledLinkListIconContainer>
+          {icon && (
+            <StyledLinkListIconContainer>{React.cloneElement(icon, {size: 48, isHovered})}</StyledLinkListIconContainer>
+          )}
           {children}
         </StyledLinkListLinkContent>
-        {chevron ? (
+        {chevron && (
           <StyledLinkListIconContainer>
             <Icon type="chevronRight" />
           </StyledLinkListIconContainer>
-        ) : null}
+        )}
       </StyledLinkListLink>
     </li>
   );

@@ -44,6 +44,9 @@ const StyledLinkList = styled('ul')`
 
 const StyledLinkListIconContainer = styled('span')`
   width: 3rem;
+  .hnds-style-icon {
+    vertical-align: middle;
+  }
 `;
 
 // TODO: Need to overhaul all icons to be Styled insteadof hnds-style-icon.
@@ -62,7 +65,8 @@ interface StyledLinkListLinkProps {
 }
 
 const StyledLinkListLink = styled('a')<StyledLinkListLinkProps>`
-  padding: ${props => (props.hasIcon ? '0.5rem' : '1rem')} 0.5rem;
+  padding: 0.5rem;
+  min-height: ${props => (props.hasIcon ? 'unset' : '4.5rem')};
   display: flex;
   cursor: pointer;
   font-size: 1.25rem;

@@ -52,6 +52,9 @@ const StyledExpanderContent = styled('div')<StyledExpanderContentProps>`
 
 const StyledExpanderListIconContainer = styled('span')`
   width: 3rem;
+  .hnds-style-icon {
+    vertical-align: middle;
+  }
 `;
 
 // TODO: Need to overhaul all icons to be Styled insteadof hnds-style-icon.

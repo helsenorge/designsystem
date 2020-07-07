@@ -6,6 +6,7 @@ export type TitleAppearances = 'titleFeature' | 'title1' | 'title2' | 'title3' |
 
 interface TitleProps {
   children: React.ReactNode;
+  id?: string;
   className?: string;
   margin?: number;
   htmlMarkup?: TitleTags;
@@ -13,9 +14,9 @@ interface TitleProps {
 }
 
 const Title = React.forwardRef((props: TitleProps, ref: any) => {
-  const {children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0} = props;
+  const {id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0} = props;
   return (
-    <StyledTitle className={className} as={htmlMarkup} margin={margin} appearance={appearance} ref={ref}>
+    <StyledTitle id={id} className={className} as={htmlMarkup} margin={margin} appearance={appearance} ref={ref}>
       {children}
     </StyledTitle>
   );

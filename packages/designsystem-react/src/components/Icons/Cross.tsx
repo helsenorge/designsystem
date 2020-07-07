@@ -27,7 +27,7 @@ const Cross = React.forwardRef((svgProps: IconRawProps, ref: any) => {
       fill={isHovered ? hoverColor : color}
       viewBox="0 0 38 38"
       ref={ref}
-      className={`${className} hnds-style-icon`}
+      className={`hnds-style-icon ${className}`}
       {...props}>
       {isHovered ? normalHover : normal}
     </svg>
