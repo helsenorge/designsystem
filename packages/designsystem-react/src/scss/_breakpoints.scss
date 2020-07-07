@@ -1,6 +1,7 @@
 $grid-gutter-width: map-get($spacers, 5);
 
 $grid-breakpoints: (
+  null: 0,
   xs: 360px,
   sm: 564px,
   md: 768px,

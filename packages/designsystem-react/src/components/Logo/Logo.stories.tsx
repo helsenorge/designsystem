@@ -9,10 +9,18 @@ const stories = storiesOf('Logo', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
-stories.add('Default', () => (
+stories.add('Original', () => (
   <Logo
     color={select('Color', allPaletteNames, 'blueberry')}
     size={number('Size', 300)}
     byline={boolean('Byline', false)}
+  />
+));
+
+stories.add('Byline', () => (
+  <Logo
+    color={select('Color', allPaletteNames, 'blueberry')}
+    size={number('Size', 300)}
+    byline={boolean('Byline', true)}
   />
 ));
