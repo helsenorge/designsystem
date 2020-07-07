@@ -44,6 +44,9 @@ const StyledLinkList = styled('ul')`
 
 const StyledLinkListIconContainer = styled('span')`
   width: 3rem;
+  .hnds-style-icon {
+    vertical-align: middle;
+  }
 `;
 
 // TODO: Need to overhaul all icons to be Styled insteadof hnds-style-icon.
