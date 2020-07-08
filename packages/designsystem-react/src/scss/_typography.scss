@@ -1,8 +1,17 @@
+@import './spacers';
+@import './breakpoints';
+@import './palette';
+/*
+Denne filen er ment til å importeres som en css module:
+import designsystemtypography from './scss/_typography.scss'
+<div className={designsystemtypography.title1}></div>
+*/
+
 .title-feature {
   font-size: 3rem;
   line-height: 4rem;
   font-weight: 600;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 4rem;
     line-height: 5rem;
   }
@@ -12,7 +21,7 @@
   font-size: 2.75rem;
   line-height: 3.25rem;
   font-weight: 600;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 3.25rem;
     line-height: 3.75rem;
   }
@@ -22,7 +31,7 @@
   font-size: 1.75rem;
   line-height: 2.25rem;
   font-weight: 600;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 2rem;
     line-height: 2.75rem;
   }
@@ -46,7 +55,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.45px;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 1.125rem;
   }
 }
@@ -55,7 +64,7 @@
   font-size: 1.375rem;
   line-height: 2rem;
   font-weight: 600;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 1.5rem;
   }
 }
@@ -64,7 +73,7 @@
   font-size: 1.25rem;
   line-height: 1.625rem;
   font-weight: 600;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 1.5rem;
     line-height: 1.875rem;
   }
@@ -73,7 +82,7 @@
 .label {
   font-size: 1.125rem;
   line-height: 1.5rem;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
@@ -87,7 +96,7 @@
 .table {
   font-size: 1.125rem;
   line-height: 1.75rem;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 1.25rem;
   }
 }
@@ -95,7 +104,7 @@
 .strong {
   font-size: 1.125rem;
   line-height: 1.75rem;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 1.25rem;
     line-height: 1.875rem;
   }
@@ -104,7 +113,7 @@
 .form {
   font-size: 1.125rem;
   line-height: 1.75rem;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 1.25rem;
   }
 }
@@ -122,4 +131,62 @@
 .time {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.anchorlinkWrapper {
+  a {
+    display: inline;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: left;
+    padding-bottom: 0.25rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+    color: $blueberry600;
+    border-bottom: 1px solid $neutral300;
+    text-decoration: none;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      font-size: 1.25rem;
+      line-height: 1.875rem;
+    }
+
+    &:focus {
+      outline: none;
+      background-color: rgba(8, 102, 124, 0.05); /* Dette er blueberry 700 med 5% opacity*/
+      border-color: $neutral300;
+    }
+
+    &:hover {
+      cursor: pointer;
+      border-color: $blueberry700;
+    }
+    svg {
+      color: red;
+    }
+    polygon {
+      color: red;
+    }
+
+    &[target='_blank'] {
+      /* external styling legge til icon*/
+      &:after {
+        color: green;
+        content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48' fill='currentColor'><polygon fill='currentColor' fill-rule='evenodd' points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
+        display: inline-block;
+        width: 38px;
+        height: 38px;
+        vertical-align: bottom;
+        margin-bottom: -0.25rem;
+      }
+
+      svg {
+        color: red !important;
+      }
+      polygon {
+        color: red !important;
+      }
+    }
+  }
 }

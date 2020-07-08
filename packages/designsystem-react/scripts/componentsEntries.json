@@ -1,4 +1,5 @@
 {
+  "components/AnchorLink/index": "src/components/AnchorLink/index.ts",
   "components/Avatar/index": "src/components/Avatar/index.ts",
   "components/Badge/index": "src/components/Badge/index.ts",
   "components/Button/index": "src/components/Button/index.ts",
