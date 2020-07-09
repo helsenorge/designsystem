@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import {typography} from '../../theme/typography';
 import {getColor} from '../../theme/currys';
 
-interface StyledTitleProps {
+interface StyledAnchorLinkProps {
   external: boolean;
 }
 
-const StyledTitle = styled('a')<StyledTitleProps>`
+const StyledAnchorLink = styled('a')<StyledAnchorLinkProps>`
   display: inline;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -31,4 +31,4 @@ const StyledTitle = styled('a')<StyledTitleProps>`
   }
 `;
 
-export default StyledTitle;
+export default StyledAnchorLink;

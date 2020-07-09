@@ -20,6 +20,7 @@ module.exports = {
     '<rootDir>/src/components/Loader',
     '<rootDir>/src/components/Logo',
     '<rootDir>/src/components/NotificationPanel',
+    '<rootDir>/src/components/Spacer',
     '<rootDir>/src/components/Tile',
     '<rootDir>/src/components/Title',
   ],
