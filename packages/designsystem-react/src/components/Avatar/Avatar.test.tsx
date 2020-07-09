@@ -2,6 +2,8 @@ import React from 'react';
 import {render} from '@testing-library/react';
 import Avatar from './Avatar';
 
+/* This test is disabled in jest config */
+
 test('displays avatar', (): void => {
   const {container, getByText} = render(<Avatar>Line Danser</Avatar>);
   expect(getByText(Avatar.toString())).toBeInTheDocument();

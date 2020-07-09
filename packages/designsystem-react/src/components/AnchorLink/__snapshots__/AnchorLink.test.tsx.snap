@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays default anchorlink 1`] = `
+<div>
+  <a
+    class="sc-AxjAm iCOBYU"
+    target="_self"
+  >
+    AnchorLink
+  </a>
+</div>
+`;
+
+exports[`displays external anchorlink 1`] = `
+<div>
+  <a
+    class="sc-AxjAm iCOBYU"
+    target="_blank"
+  >
+    AnchorLink external
+    <svg
+      class="hnds-style-icon "
+      fill="#126F87"
+      height="38"
+      viewBox="0 0 48 48"
+      width="38"
+    >
+      <polygon
+        fill-rule="evenodd"
+        points="18.76 14.426 18.76 16.194 30.59 16.194 14.719 32.065 15.97 33.315 31.771 17.514 31.771 29.205 33.539 29.205 33.539 14.426"
+      />
+    </svg>
+  </a>
+</div>
+`;
