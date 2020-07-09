@@ -1,7 +1,7 @@
 import React from 'react';
 import {withKnobs, text} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
-import AnchorLink from './AnchorLink';
+import Spacer from './Spacer';
 import {withA11y} from '@storybook/addon-a11y';
 
 // import designsystemtypography from './../../scss/_typography.scss';
@@ -13,30 +13,49 @@ stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
   <div style={{width: '20rem'}}>
-    <AnchorLink target={'_self'}>{text('Text', 'link text')}</AnchorLink>
-    <br />
-    <br />
-    <AnchorLink target={'_self'}>{'I am a super long link (it is supposed to wrap!)'}</AnchorLink>
-  </div>
-));
-
-stories.add('External', () => (
-  <div style={{width: '20rem'}}>
-    <AnchorLink target={'_blank'}>{text('Text', 'link text')}</AnchorLink>
-    <br />
-    <br />
-    <AnchorLink target={'_blank'}>{'I am a super long link (it is supposed to wrap!)'}</AnchorLink>
-  </div>
-));
-
-stories.add('anchorlinkWrapper (css module)', () => (
-  <div className={'anchorlinkWrapper'} style={{width: '20rem'}}>
-    <p>
-      {'Lorem ipsum dolor sit '}
-      <a href={'#test'} target={'_blank'}>
-        {'click me'}
-      </a>
-      {' amet consectur'}
-    </p>
+    <p>{'3xs'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'3xs'} />
+    </div>
+    <p>{'2xs'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'2xs'} />
+    </div>
+    <p>{'xs'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'xs'} />
+    </div>
+    <p>{'s'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'s'} />
+    </div>
+    <p>{'m'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'m'} />
+    </div>
+    <p>{'l'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'l'} />
+    </div>
+    <p>{'xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'xl'} />
+    </div>
+    <p>{'2xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'2xl'} />
+    </div>
+    <p>{'3xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'3xl'} />
+    </div>
+    <p>{'4xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'4xl'} />
+    </div>
+    <p>{'5xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'5xl'} />
+    </div>
   </div>
 ));
