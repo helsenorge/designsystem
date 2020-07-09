@@ -162,30 +162,16 @@ import designsystemtypography from './scss/_typography.scss'
       cursor: pointer;
       border-color: $blueberry700;
     }
-    svg {
-      color: red;
-    }
-    polygon {
-      color: red;
-    }
 
     &[target='_blank'] {
       /* external styling legge til icon*/
       &:after {
-        color: green;
-        content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48' fill='currentColor'><polygon fill='currentColor' fill-rule='evenodd' points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
+        content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48' fill='%2308667c'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
         display: inline-block;
         width: 38px;
         height: 38px;
         vertical-align: bottom;
         margin-bottom: -0.25rem;
-      }
-
-      svg {
-        color: red !important;
-      }
-      polygon {
-        color: red !important;
       }
     }
   }
