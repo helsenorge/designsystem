@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-docs",
   "private": true,
-  "version": "1.0.0-beta.9",
+  "version": "1.0.0-beta.10",
   "description": "The official documentation for Helsenorge's Design System",
   "repository": {
     "type": "git",
@@ -38,7 +38,7 @@
     "validate": "npm run lint && npm run format -l"
   },
   "dependencies": {
-    "@helsenorge/designsystem-react": "^1.0.0-beta.9",
+    "@helsenorge/designsystem-react": "^1.0.0-beta.10",
     "@mdx-js/mdx": "^1.4.5",
     "@mdx-js/react": "^1.4.5",
     "@mdx-js/tag": "^0.20.3",
