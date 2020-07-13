@@ -4,7 +4,6 @@ import {storiesOf} from '@storybook/react';
 import AnchorLink from './AnchorLink';
 import {withA11y} from '@storybook/addon-a11y';
 
-// import designsystemtypography from './../../scss/_typography.scss';
 import './../../scss/_typography.scss';
 
 const stories = storiesOf('AnchorLink', module);
