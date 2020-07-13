@@ -1,0 +1,50 @@
+---
+title: AnchorLink
+path: /library/components/anchorLink
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from './anchor-link.json';
+import AnchorLink from '@helsenorge/designsystem-react/components/AnchorLink';
+
+# AnchorLink
+
+<MDXCustom.Preamble>
+  AnchorLink can be used as a component for each <a></a> tag. A .anchorlinkWrapper can also be used when there is no control over incomin markup<br/>
+  <a href="/library/scss/typography">Read more under Typography</a>
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{AnchorLink}}>{`<AnchorLink>This is my anchor-link</AnchorLink>`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{propData}} />
+
+## Examples
+
+
+<MDXCustom.LiveComponent stack scope={{AnchorLink}}>{`
+  <p>_self: </p>
+  <AnchorLink target={"_self"}>This is my anchor-link</AnchorLink>
+`}</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent stack scope={{AnchorLink}}>{`
+  <p>_blank: </p>
+  <AnchorLink target={"_blank"}>This is my anchor-link</AnchorLink>
+`}</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent stack scope={{AnchorLink}}>{`
+  <p>_parent: </p>
+  <AnchorLink target={"_parent"}>This is my anchor-link</AnchorLink>
+`}</MDXCustom.LiveComponent>
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**

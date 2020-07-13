@@ -1,0 +1,39 @@
+---
+title: Spacing
+path: /library/scss/typography
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../components/markdown/MDXCustom';
+
+# Typography
+
+<MDXCustom.Preamble>
+The typography file (/scss/_typography.scss) provides diverse styling for common markup. It is to be imported as a css module.
+It should not be imported as a global css because of css bleeding.
+</MDXCustom.Preamble>
+
+## How to use
+
+```
+import designsystemtypography from '@helsenorge/designsystemet/scss/_typography.scss'
+
+<div className={designsystemtypography.title1}></div>
+  <div className={designsystemtypography.anchorlinkWrapper}>
+    <a href="#">My link</a>
+  </div>
+</div>
+```
+
+## Anchorlink Wrapper
+
+The .anchorlinkWrapper class can be used to wrap an element that may contain anchor tags. It will apply anchor styling based on its target for every nested <a></a> tag.
+
+```
+import designsystemtypography from '@helsenorge/designsystemet/scss/_typography.scss'
+  <div className={designsystemtypography.anchorlinkWrapper}>
+    This is my <strong>xhtml content</strong>,
+    with som random links <a href="#">here</a> and <a href="#">there</a>.
+    It can come from a language service or any database and I have no contorl over the markup.
+  </div>
+```

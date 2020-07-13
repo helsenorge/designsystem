@@ -1,0 +1,28 @@
+{
+  "props": [
+    {
+      "name": "id",
+      "type": "string",
+      "require": "false",
+      "default": "false",
+      "valid": [],
+      "description": "Gives a unique id to the anchor-link"
+    },
+    {
+      "name": "target",
+      "type": "AnchorLinkTargets",
+      "require": "false",
+      "default": "false",
+      "valid": ["_self", "_blank", "_parent"],
+      "description": "Sets the target type of the <a> tag. _blank adds an arrow icon at the end of the link"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "require": "false",
+      "default": "",
+      "valid": [],
+      "description": "Adds custom classes to the element."
+    }
+  ]
+}
