@@ -1,7 +1,15 @@
 {
   "props": [
     {
-      "name": "is",
+      "name": "id",
+      "type": "string",
+      "require": "false",
+      "default": "false",
+      "valid": [],
+      "description": "Gives a unique id to the anchor-link"
+    },
+    {
+      "name": "htmlMarkup",
       "type": "TitleTags",
       "require": "false",
       "default": "h1",

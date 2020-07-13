@@ -5,20 +5,29 @@ const libraryRoutes = [
     children: [],
   },
   {
-    label: 'Grid',
-    path: '/library/grid',
-    children: [
-      {
-        label: 'Spacing',
-        path: '/library/grid/spacing',
-      },
-    ],
-  },
-  {
     label: 'Reset',
     path: '/library/reset',
     children: [],
   },
+  {
+    label: 'SCSS resources',
+    path: '/library/scss',
+    children: [
+      {
+        label: 'Grid and breakpoints',
+        path: '/library/scss/grid',
+      },
+      {
+        label: 'Spacing',
+        path: '/library/scss/spacing',
+      },
+      {
+        label: 'Typography',
+        path: '/library/scss/typography',
+      },
+    ],
+  },
+
   {
     label: 'Icons',
     path: '/library/icons',
@@ -28,6 +37,10 @@ const libraryRoutes = [
     label: 'Components',
     path: '/library/components',
     children: [
+      {
+        label: 'AnchorLink',
+        path: '/library/components/anchor-link',
+      },
       {
         label: 'Avatar',
         path: '/library/components/avatar',
@@ -67,6 +80,10 @@ const libraryRoutes = [
       {
         label: 'NotificationPanel',
         path: '/library/components/notification-panel',
+      },
+      {
+        label: 'Spacer',
+        path: '/library/components/spacer',
       },
       {
         label: 'Tile',
