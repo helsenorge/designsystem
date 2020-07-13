@@ -1,5 +1,6 @@
 import {PaletteNames} from '../src/theme/palette';
 import {TitleTags, TitleAppearances} from '../src/components/Title/Title';
+import {AnchorLinkTargets} from '../src/components/AnchorLink/AnchorLink';
 import {IconTypes} from '../src/components/Icons/Icon';
 
 export const allIcons: IconTypes[] = [
@@ -218,3 +219,5 @@ export const allTitleAppearances: TitleAppearances[] = [
   'title4',
   'title5',
 ];
+
+export const allAnchorLinkTargets: AnchorLinkTargets[] = ['_self', '_blank', '_parent'];

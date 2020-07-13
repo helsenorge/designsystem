@@ -106,6 +106,16 @@ const table = css`
   }
 `;
 
+const anchorlink = css`
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+  @media ${screen.md} {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+  }
+`;
+
 const strong = css`
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -148,6 +158,7 @@ export const typography = {
   label,
   body,
   focusedContent,
+  anchorlink,
   table,
   strong,
   form,
