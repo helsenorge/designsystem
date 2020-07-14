@@ -18,6 +18,11 @@ import designsystemtypography from './scss/_typography.scss'
   }
 }
 
+.focused-content {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .title1 {
   font-size: 2.75rem;
   line-height: 3.25rem;
@@ -89,11 +94,6 @@ import designsystemtypography from './scss/_typography.scss'
   }
 }
 
-.focused-content {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
 .table {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -119,6 +119,11 @@ import designsystemtypography from './scss/_typography.scss'
   }
 }
 
+.time {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .image-caption {
   font-size: $spacer;
   line-height: getSpacer(m);
@@ -127,11 +132,6 @@ import designsystemtypography from './scss/_typography.scss'
 .image-credit {
   font-size: 0.75rem;
   line-height: $spacer;
-}
-
-.time {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
 }
 
 .anchorlinkWrapper {
