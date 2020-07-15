@@ -1,6 +1,6 @@
 import React from 'react';
 import {withA11y} from '@storybook/addon-a11y';
-import {withKnobs, text, select, boolean, number} from '@storybook/addon-knobs';
+import {withKnobs, text, boolean, number} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import Tile from './Tile';
 import Icon from '../Icons';
@@ -45,7 +45,7 @@ stories.add('Wrapped container', () => (
     <Tile
       href="https://vg.no"
       icon={<Icon size={64} type="alarmClock" />}
-      title={<Tile.Title>Title</Tile.Title>}
+      title={<Tile.Title>Title - quiet long but with separated words at least!</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile

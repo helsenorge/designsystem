@@ -11,7 +11,7 @@ const StyledAnchorLink = styled('a')<StyledAnchorLinkProps>`
   overflow-wrap: break-word;
   word-wrap: break-word;
   text-align: left;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.15rem;
 
   ${typography['anchorlink']};
   color: ${getColor('blueberry', 600)};

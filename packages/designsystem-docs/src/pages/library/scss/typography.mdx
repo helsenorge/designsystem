@@ -23,14 +23,14 @@ import designsystemtypography from '@helsenorge/designsystemet-react/scss/typogr
 </h1>
 ```
 
-## Anchorlink Wrapper
+## anchorlink-wrapper
 
-The .anchorlinkWrapper class can be used to wrap an element that may contain anchor tags. It will apply anchor styling based on its target for every nested <a></a> tag.
+The .anchorlink-wrapper class can be used to wrap an element that may contain anchor tags. It will apply anchor styling based on its target for every nested <a></a> tag.
 
 ```
 import designsystemtypography from '@helsenorge/designsystemet-react/scss/typography.module.scss'
 
-  <div className={designsystemtypography.anchorlinkWrapper}>
+  <div className={designsystemtypography['anchorlink-wrapper']}>
     This is my <strong>xhtml content</strong>,
     with som random links <a href="#">here</a> and <a href="#">there</a>.
     It can come from a language service or any database and I have no contorl over the markup.

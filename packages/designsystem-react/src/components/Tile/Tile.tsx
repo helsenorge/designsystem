@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyledTitle, StyledTile, StyledDescription} from './Tile.styled';
+import {StyledTileTitle, StyledTileTitleWrapper, StyledTile, StyledDescription} from './Tile.styled';
 import {HTMLAnchorProps} from '../../constants';
 
 export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
@@ -28,9 +28,9 @@ export interface TileCompound
 const Title = React.forwardRef((props: TitleProps, ref: any) => {
   const {children, className, htmlMarkup = 'h1'} = props;
   return (
-    <StyledTitle className={className} as={htmlMarkup} ref={ref}>
+    <StyledTileTitle className={className} as={htmlMarkup} ref={ref}>
       {children}
-    </StyledTitle>
+    </StyledTileTitle>
   );
 });
 
@@ -49,8 +49,10 @@ const Tile = React.forwardRef((props: TileProps, ref: any) => {
       highlighted={highlighted}
       fixed={fixed}
       {...restProps}>
-      {React.cloneElement(icon, {size: 64, isHovered, color: highlighted ? 'white' : 'black'})}
-      {title}
+      <StyledTileTitleWrapper>
+        {React.cloneElement(icon, {size: 64, isHovered, color: highlighted ? 'white' : 'black'})}
+        {title}
+      </StyledTileTitleWrapper>
       {description ? <StyledDescription>{description}</StyledDescription> : null}
     </StyledTile>
   );

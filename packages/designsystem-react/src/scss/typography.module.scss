@@ -134,13 +134,13 @@ import designsystemtypography from './scss/_typography.scss'
   line-height: $spacer;
 }
 
-.anchorlinkWrapper {
+.anchorlink-wrapper {
   a {
     display: inline;
     overflow-wrap: break-word;
     word-wrap: break-word;
     text-align: left;
-    padding-bottom: 0.25rem;
+    padding-bottom: 0.15rem;
     font-size: 1.125rem;
     line-height: 1.75rem;
     font-weight: 400;

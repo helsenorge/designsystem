@@ -4,8 +4,6 @@ import {storiesOf} from '@storybook/react';
 import Spacer from './Spacer';
 import {withA11y} from '@storybook/addon-a11y';
 
-import './../../scss/_typography.scss';
-
 const stories = storiesOf('AnchorLink', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
