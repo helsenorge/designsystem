@@ -16,7 +16,7 @@ declare namespace StylesModuleScssNamespace {
     time: string;
     'image-caption': string;
     'image-credit': string;
-    anchorlinkWrapper: string;
+    'anchorlink-wrapper': string;
   }
 }
 

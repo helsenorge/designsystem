@@ -4,7 +4,7 @@ import {storiesOf} from '@storybook/react';
 import AnchorLink from './AnchorLink';
 import {withA11y} from '@storybook/addon-a11y';
 
-import './../../scss/_typography.scss';
+import './../../scss/typography.module.scss';
 
 const stories = storiesOf('AnchorLink', module);
 stories.addDecorator(withKnobs);
@@ -28,14 +28,15 @@ stories.add('External', () => (
   </div>
 ));
 
-stories.add('anchorlinkWrapper (css module)', () => (
-  <div className={'anchorlinkWrapper'} style={{width: '20rem'}}>
+stories.add('anchorlink-wrapper', () => (
+  <div className={'anchorlink-wrapper'} style={{width: '20rem'}}>
     <p>
-      {'Lorem ipsum dolor sit '}
+      {'Lorem ipsum dolor sit amet sonsectur '}
+      {' amet consectur. Lorem a '}
       <a href={'#test'} target={'_blank'}>
         {'click me'}
       </a>
-      {' amet consectur'}
+      {'Lorem ipsum dolor sit amet sonsectur '}
     </p>
   </div>
 ));
