@@ -21,7 +21,8 @@ stories.add('Default', () => (
       childPadding={boolean('Child padding', true)}
       color={select('Color', allPaletteNames, 'blueberry')}>
       <ExpanderList.Expander title="Cognitive therapy">
-        Some major content/text about certain illness here.
+        Some major content/text about <a href="#">certain illness here.</a>. Note that the anchors are not styled by
+        default. The content is free from styling.
       </ExpanderList.Expander>
       <ExpanderList.Expander title="Health anxiety">
         Some major content/text about certain illness here.

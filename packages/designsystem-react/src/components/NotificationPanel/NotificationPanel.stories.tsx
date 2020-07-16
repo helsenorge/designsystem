@@ -73,7 +73,10 @@ stories.add('All variants', () => (
           <p>
             På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
             utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
-            prøve igjen senere. <a href="/">Les mer om dine rettigheter her.</a>
+            prøve igjen senere.{' '}
+            <a href="/" target="_blank">
+              Les mer om dine rettigheter her (external).
+            </a>
           </p>
         </NotificationPanel>
       </div>
@@ -105,7 +108,10 @@ stories.add('All variants', () => (
           <p>
             På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis
             utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å
-            prøve igjen senere. <a href="/">Les mer om dine rettigheter her.</a>
+            prøve igjen senere.{' '}
+            <a href="/" target="_blank">
+              Les mer om dine rettigheter her.
+            </a>
           </p>
         </NotificationPanel>
       </div>
