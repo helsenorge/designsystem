@@ -9,6 +9,14 @@
       "description": "Gives a unique id to the anchor-link"
     },
     {
+      "name": "href",
+      "type": "string",
+      "require": "true",
+      "default": "false",
+      "valid": [],
+      "description": ""
+    },
+    {
       "name": "target",
       "type": "AnchorLinkTargets",
       "require": "false",

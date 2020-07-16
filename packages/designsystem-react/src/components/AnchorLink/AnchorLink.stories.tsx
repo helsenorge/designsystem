@@ -12,19 +12,27 @@ stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
   <div style={{width: '20rem'}}>
-    <AnchorLink target={'_self'}>{text('Text', 'link text')}</AnchorLink>
+    <AnchorLink href={text('Href', '/test')} target={'_self'}>
+      {text('Text', 'link text')}
+    </AnchorLink>
     <br />
     <br />
-    <AnchorLink target={'_self'}>{'I am a super long link (it is supposed to wrap!)'}</AnchorLink>
+    <AnchorLink href={text('Href', '/test')} target={'_self'}>
+      {'I am a super long link (I am supposed to wrap!)'}
+    </AnchorLink>
   </div>
 ));
 
 stories.add('External', () => (
   <div style={{width: '20rem'}}>
-    <AnchorLink target={'_blank'}>{text('Text', 'link text')}</AnchorLink>
+    <AnchorLink href={text('Href', '/test')} target={'_blank'}>
+      {text('Text', 'link text')}
+    </AnchorLink>
     <br />
     <br />
-    <AnchorLink target={'_blank'}>{'I am a super long link (it is supposed to wrap!)'}</AnchorLink>
+    <AnchorLink href={text('Href', '/test')} target={'_blank'}>
+      {'I am a super long link (it is supposed to wrap!)'}
+    </AnchorLink>
   </div>
 ));
 

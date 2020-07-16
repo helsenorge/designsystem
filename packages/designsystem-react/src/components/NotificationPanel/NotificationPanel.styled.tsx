@@ -40,13 +40,17 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
           color: white;
           :hover {
             background-color: rgba(255, 255, 255, 0.2);
-            text-decoration-color: white;
             color: white;
           }
           :focus {
             background-color: white;
             color: black;
-            text-decoration-color: white;
+          }
+          &[target='_blank'] {
+            /* white icon */
+            &:after {
+              content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48' fill='%23bdbab9'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
+            }
           }
         }
       }
@@ -124,18 +128,29 @@ const StyledNotificationPanelContent = styled('div')`
     margin: 0;
   }
   & a {
-    color: ${getColor('blueberry', 600)};
-    text-decoration: underline;
-    text-decoration-color: ${getColor('neutral', 300)};
     outline: none;
-    &:hover {
-      color: ${getColor('blueberry', 700)};
-      text-decoration-color: ${getColor('blueberry', 700)};
-    }
+    padding-bottom: 0.15rem;
+    color: ${getColor('blueberry', 600)};
+    border-bottom: 1px solid ${getColor('neutral', 300)};
+    text-decoration: none;
     &:focus {
-      background-color: ${getHoverColor('blueberry')};
-      color: ${getColor('blueberry', 700)};
-      text-decoration-color: ${getColor('blueberry', 700)};
+      outline: none;
+      background-color: rgba(8, 102, 124, 0.05); /* Dette er blueberry 700 med 5% opacity*/
+      border-color: ${getColor('neutral', 300)};
+    }
+    &:hover {
+      cursor: pointer;
+      border-color: ${getColor('blueberry', 700)};
+    }
+    &[target='_blank'] {
+      &:after {
+        content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48' fill='%2308667c'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
+        display: inline-block;
+        width: 38px;
+        height: 38px;
+        vertical-align: bottom;
+        margin-bottom: -0.25rem;
+      }
     }
   }
 `;

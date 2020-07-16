@@ -12,7 +12,7 @@ const StyledAnchorLink = styled('a')<StyledAnchorLinkProps>`
   word-wrap: break-word;
   text-align: left;
   padding-bottom: 0.15rem;
-
+  text-decoration: none;
   ${typography['anchorlink']};
   color: ${getColor('blueberry', 600)};
   border-bottom: 1px solid ${getColor('neutral', 300)};
