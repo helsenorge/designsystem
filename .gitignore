@@ -4,6 +4,8 @@ bundle-stats.json
 
 dist/
 dist_OLD/
+dist_ESM/
+dist_CJS/
 
 *~
 *.sw[mnpcod]
