@@ -1,8 +1,8 @@
 import {PaletteNames} from '../src/theme/palette';
 import {TitleTags, TitleAppearances} from '../src/components/Title/Title';
 import {AnchorLinkTargets} from '../src/components/AnchorLink/AnchorLink';
-import {IconTypes} from '../src/components/Icons/Icon';
-
+//import {IconTypes} from '../src/components/Icons/Icon';
+/*
 export const allIcons: IconTypes[] = [
   'alarmClock',
   'alertSignFill',
@@ -197,6 +197,7 @@ export const allIcons: IconTypes[] = [
   'xmlFile',
   'youTube',
 ];
+*/
 
 export const allPaletteNames: PaletteNames[] = [
   'banana',

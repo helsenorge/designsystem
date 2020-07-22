@@ -8,6 +8,7 @@ import {
 import {PaletteNames} from '../../theme/palette';
 import {HTMLAnchorProps} from '../../constants';
 import Icon from '../Icons';
+import ChevronRight from '../Icons/ChevronRight';
 import {useHover} from '../../hooks/useHover';
 
 export type LinkListColors = PaletteNames;
@@ -56,7 +57,7 @@ const Link = React.forwardRef((props: LinkProps, ref: any) => {
         </StyledLinkListLinkContent>
         {chevron && (
           <StyledLinkListIconContainer>
-            <Icon type="chevronRight" />
+            <Icon svgIcon={ChevronRight} />
           </StyledLinkListIconContainer>
         )}
       </StyledLinkListLink>

@@ -4,6 +4,7 @@ import {withKnobs, text, boolean, number} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import Tile from './Tile';
 import Icon from '../Icons';
+import AlarmClock from '../Icons/AlarmClock';
 
 const stories = storiesOf('Tile', module);
 stories.addDecorator(withKnobs);
@@ -12,7 +13,7 @@ stories.addDecorator(withA11y);
 stories.add('Default', () => (
   <Tile
     fixed={boolean('Fixed width', false)}
-    icon={<Icon size={64} type="alarmClock" />}
+    icon={<Icon size={64} svgIcon={AlarmClock} />}
     highlighted={boolean('Highlighted', false)}
     href="https://vg.no"
     title={<Tile.Title>{text('Title', 'Inbox')}</Tile.Title>}
@@ -32,45 +33,45 @@ stories.add('Wrapped container', () => (
     }}>
     <Tile
       href="https://vg.no"
-      icon={<Icon size={64} type="alarmClock" />}
+      icon={<Icon size={64} svgIcon={AlarmClock} />}
       title={<Tile.Title>Titledffdgkdfklgfdlkglkdglkdfkglfssdasdasdsa</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       href="https://vg.no"
-      icon={<Icon size={64} type="alarmClock" />}
+      icon={<Icon size={64} svgIcon={AlarmClock} />}
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       href="https://vg.no"
-      icon={<Icon size={64} type="alarmClock" />}
+      icon={<Icon size={64} svgIcon={AlarmClock} />}
       title={<Tile.Title>Title - quiet long but with separated words at least!</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       href="https://vg.no"
-      icon={<Icon size={64} type="alarmClock" />}
+      icon={<Icon size={64} svgIcon={AlarmClock} />}
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       href="https://vg.no"
-      icon={<Icon size={64} type="alarmClock" />}
+      icon={<Icon size={64} svgIcon={AlarmClock} />}
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       href="https://vg.no"
-      icon={<Icon size={64} type="alarmClock" />}
+      icon={<Icon size={64} svgIcon={AlarmClock} />}
       title={<Tile.Title>Title</Tile.Title>}
       description="Some long description about the service."
     />
     <Tile
       href="https://vg.no"
-      icon={<Icon size={64} type="alarmClock" />}
+      icon={<Icon size={64} svgIcon={AlarmClock} />}
       title={<Tile.Title>Europeisk helsetrygdekort (nav)</Tile.Title>}
     />
-    <Tile href="https://vg.no" icon={<Icon size={64} type="alarmClock" />} title={<Tile.Title>Title</Tile.Title>} />
+    <Tile href="https://vg.no" icon={<Icon size={64} svgIcon={AlarmClock} />} title={<Tile.Title>Title</Tile.Title>} />
   </div>
 ));
