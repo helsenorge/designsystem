@@ -1,8 +1,8 @@
 import React from 'react';
-import {withKnobs, text, boolean} from '@storybook/addon-knobs';
+import {withKnobs, boolean} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import LinkList from './LinkList';
-import {Icon} from '../Icons/Icon';
+import Icon from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
 

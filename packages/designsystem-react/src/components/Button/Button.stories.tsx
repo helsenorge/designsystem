@@ -3,7 +3,6 @@ import {withKnobs, select, boolean, text} from '@storybook/addon-knobs';
 import {action} from '@storybook/addon-actions';
 import {storiesOf} from '@storybook/react';
 import Button, {ButtonVariants, ButtonIntents} from './Button';
-//import {allIcons} from '../../../.storybook/knobs';
 import Icon from '../Icons';
 import X from '../Icons/X';
 import {withA11y} from '@storybook/addon-a11y';

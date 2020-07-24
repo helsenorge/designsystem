@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import Button from './Button';
-import {Icon} from '../Icons/Icon';
+import Icon from '../Icons';
 import Check from '../Icons/Check';
 
 test('displays the button', (): void => {

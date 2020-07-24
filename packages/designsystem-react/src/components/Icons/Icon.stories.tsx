@@ -16,19 +16,3 @@ stories.add('Default', () => (
     color={select('Color', allPaletteNames, 'black')}
   />
 ));
-/*
-stories.add('All icons', () => (
-  <div style={{display: 'grid', gridTemplateColumns: 'repeat(15, 1fr)'}}>
-    {allIcons.map(icon => {
-      return (
-        <Icon
-          isHovered={boolean('Is hovered', false)}
-          size={number('Size', 48)}
-          color={select('Color', allPaletteNames, 'black')}
-          type={icon}
-        />
-      );
-    })}
-  </div>
-));
-*/
