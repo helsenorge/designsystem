@@ -14,6 +14,7 @@ import {
 import InfoSignStroke from '../Icons/InfoSignStroke';
 import AlertSignStroke from '../Icons/AlertSignStroke';
 import AlertSignFill from '../Icons/AlertSignFill';
+import X from '../Icons/X';
 
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'crisis';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
@@ -73,7 +74,7 @@ const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: 
       <StyledNotificationPanelActionColumn>
         {dismissable ? (
           <StyledCloseButton onClick={onClick} ref={hoverRef}>
-            <Icon type="x" isHovered={isHovered} size={38} color="blueberry" />
+            <Icon svgIcon={X} isHovered={isHovered} size={38} color="blueberry" />
           </StyledCloseButton>
         ) : null}
       </StyledNotificationPanelActionColumn>

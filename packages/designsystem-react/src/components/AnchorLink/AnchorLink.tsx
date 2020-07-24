@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from '../Icons';
+import ArrowUpRight from '../Icons/ArrowUpRight';
 import StyledAnchorLink from './AnchorLink.styled';
 
 export type AnchorLinkTargets = '_self' | '_blank' | '_parent';
@@ -18,7 +19,7 @@ const AnchorLink = React.forwardRef((props: AnchorLinkProps, ref: any) => {
   return (
     <StyledAnchorLink id={id} href={href} className={className} target={target} external={external} ref={ref}>
       {children}
-      {external && <Icon type="arrowUpRight" color={'blueberry'} size={38} />}
+      {external && <Icon svgIcon={ArrowUpRight} color={'blueberry'} size={38} />}
     </StyledAnchorLink>
   );
 });

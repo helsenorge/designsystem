@@ -5,6 +5,9 @@ import ExpanderList from './ExpanderList';
 import LinkList from '../LinkList';
 import Title from '../Title';
 import Icon from '../Icons';
+import Avatar from '../Icons/Avatar';
+import PaperPlane from '../Icons/PaperPlane';
+import AlarmClock from '../Icons/AlarmClock';
 import {allPaletteNames} from '../../../.storybook/knobs';
 
 const stories = storiesOf('ExpanderList', module);
@@ -40,13 +43,13 @@ stories.add('With icon', () => (
       width: '40rem',
     }}>
     <ExpanderList isOpen={boolean('Is open', false)} color="cherry">
-      <ExpanderList.Expander icon={<Icon type="alarmClock" />} title="Cognitive therapy">
+      <ExpanderList.Expander icon={<Icon svgIcon={Avatar} />} title="Cognitive therapy">
         Some major content/text about certain illness here.
       </ExpanderList.Expander>
-      <ExpanderList.Expander icon={<Icon type="paperPlane" />} title="Health anxiety">
+      <ExpanderList.Expander icon={<Icon svgIcon={PaperPlane} />} title="Health anxiety">
         Some major content/text about certain illness here.
       </ExpanderList.Expander>
-      <ExpanderList.Expander icon={<Icon type="avatar" />} title="Brain damage">
+      <ExpanderList.Expander icon={<Icon svgIcon={AlarmClock} />} title="Brain damage">
         Some major content/text about certain illness here.
       </ExpanderList.Expander>
     </ExpanderList>

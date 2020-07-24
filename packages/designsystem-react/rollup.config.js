@@ -25,8 +25,8 @@ export default [
     output: [
       {
         dir: 'dist',
-        format: 'cjs',
-        sourcemap: false,
+        format: 'esm',
+        sourcemap: true,
       },
     ],
 

@@ -7,6 +7,8 @@ date: 2019-01-29
 import MDXCustom from '../../../../components/markdown/MDXCustom';
 import * as propData from './button.json';
 import Icon from '@helsenorge/designsystem-react/components/Icons';
+import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
+import ArrowRight from '@helsenorge/designsystem-react/components/Icons/ArrowRight';
 import Button from '@helsenorge/designsystem-react/components/Button';
 
 # Button
@@ -62,9 +64,9 @@ import Button from '@helsenorge/designsystem-react/components/Button';
 <MDXCustom.LiveComponent fullWidth stack scope={{Button, Icon}}>{`
     <Button fluid>Button</Button>
     <Button fluid>
-      <Icon type="alarmClock" />
+      <Icon svgIcon={AlarmClock} />
       Button
-    <Icon type="arrowRight" />
+    <Icon svgIcon={ArrowRight} />
     </Button>
 `}</MDXCustom.LiveComponent>
 
@@ -72,19 +74,19 @@ import Button from '@helsenorge/designsystem-react/components/Button';
 
 <MDXCustom.LiveComponent scope={{Button, Icon}}>{`
   <Button>
-      <Icon type="alarmClock" />
+      <Icon svgIcon={AlarmClock} />
     Primary
   </Button>
   <br/>
   <Button>
     Primary
-      <Icon type="alarmClock" />
+      <Icon svgIcon={AlarmClock} />
   </Button>
   <br/>
   <Button>
-      <Icon type="alarmClock" />
+      <Icon svgIcon={AlarmClock}/>
     Primary
-      <Icon type="arrowRight" />
+      <Icon svgIcon={ArrowRight} />
   </Button>
 `}</MDXCustom.LiveComponent>
 

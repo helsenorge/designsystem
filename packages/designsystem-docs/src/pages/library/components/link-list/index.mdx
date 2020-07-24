@@ -7,6 +7,9 @@ date: 2019-01-29
 import MDXCustom from '../../../../components/markdown/MDXCustom';
 import * as propData from './link-list.json';
 import Icon from '@helsenorge/designsystem-react/components/Icons';
+import PaperPlane from '@helsenorge/designsystem-react/components/Icons/PaperPlane';
+import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
+import Avatar from '@helsenorge/designsystem-react/components/Icons/Avatar';
 import LinkList from '@helsenorge/designsystem-react/components/LinkList';
 
 # LinkList
@@ -114,9 +117,9 @@ import LinkList from '@helsenorge/designsystem-react/components/LinkList';
   <div style={{width: '30rem'}}>
     <LinkList
       color="neutral">
-      <LinkList.Link icon={<Icon type="alarmClock"/>}>First link</LinkList.Link>
-      <LinkList.Link icon={<Icon type="paperPlane"/>}>Second link</LinkList.Link>
-      <LinkList.Link icon={<Icon type="avatar"/>}>Third link</LinkList.Link>
+      <LinkList.Link icon={<Icon svgIcon={AlarmClock} />}>First link</LinkList.Link>
+      <LinkList.Link icon={<Icon svgIcon={PaperPlane} />}>Second link</LinkList.Link>
+      <LinkList.Link icon={<Icon svgIcon={Avatar} />}>Third link</LinkList.Link>
     </LinkList>
   </div>
 `}</MDXCustom.LiveComponent>

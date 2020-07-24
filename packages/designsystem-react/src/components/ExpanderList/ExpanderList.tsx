@@ -8,6 +8,8 @@ import {
 } from './ExpanderList.styled';
 import {PaletteNames} from '../../theme/palette';
 import Icon from '../Icons';
+import ChevronUp from '../Icons/ChevronUp';
+import ChevronDown from '../Icons/ChevronDown';
 import {useHover} from '../../hooks/useHover';
 
 export type ExpanderListColors = PaletteNames;
@@ -62,7 +64,7 @@ const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
           {title}
         </StyledExpanderListLinkContent>
         <StyledExpanderListIconContainer>
-          <Icon type={isExpanded ? 'chevronUp' : 'chevronDown'} />
+          <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} />
         </StyledExpanderListIconContainer>
       </StyledExpanderListLink>
       {isExpanded ? <StyledExpanderContent padding={padding}>{children}</StyledExpanderContent> : null}

@@ -1,8 +1,10 @@
 import React from 'react';
-import {withKnobs, text, boolean} from '@storybook/addon-knobs';
+import {withKnobs, boolean} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import LinkList from './LinkList';
-import {Icon} from '../Icons/Icon';
+import Icon from '../Icons';
+import AlarmClock from '../Icons/AlarmClock';
+import PaperPlane from '../Icons/PaperPlane';
 
 const stories = storiesOf('LinkList', module);
 stories.addDecorator(withKnobs);
@@ -37,8 +39,8 @@ stories.add('With icon', () => (
       color="cherry"
       topBorder={boolean('Top border', true)}
       bottomBorder={boolean('Bottom border', true)}>
-      <LinkList.Link icon={<Icon type="alarmClock" />}>Innhold A-Å</LinkList.Link>
-      <LinkList.Link icon={<Icon type="paperPlane" />}>English</LinkList.Link>
+      <LinkList.Link icon={<Icon svgIcon={AlarmClock} />}>Innhold A-Å</LinkList.Link>
+      <LinkList.Link icon={<Icon svgIcon={PaperPlane} />}>English</LinkList.Link>
     </LinkList>
   </div>
 ));

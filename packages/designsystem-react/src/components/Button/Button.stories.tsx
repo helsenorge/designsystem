@@ -3,8 +3,8 @@ import {withKnobs, select, boolean, text} from '@storybook/addon-knobs';
 import {action} from '@storybook/addon-actions';
 import {storiesOf} from '@storybook/react';
 import Button, {ButtonVariants, ButtonIntents} from './Button';
-import {allIcons} from '../../../.storybook/knobs';
 import Icon from '../Icons';
+import X from '../Icons/X';
 import {withA11y} from '@storybook/addon-a11y';
 
 const allButtonVariants: ButtonVariants[] = ['fill', 'outline', 'borderless'];
@@ -60,9 +60,9 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon type={select('Left icon', allIcons, 'x')} />
+      <Icon svgIcon={X} />
       {text('Text', 'Button')}
-      <Icon type={select('Right icon', allIcons, 'x')} />
+      <Icon svgIcon={X} />
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
@@ -75,7 +75,7 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon type={select('Left icon', allIcons, 'x')} />
+      <Icon svgIcon={X} />
       {text('Text', 'Button')}
     </Button>
   </div>
@@ -93,7 +93,7 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon type={select('Left icon', allIcons, 'x')} />
+      <Icon svgIcon={X} />
       {text('Text', 'Button')}
     </Button>
     <div style={{height: '1rem'}}></div>
@@ -108,7 +108,7 @@ stories.add('With icon(s)', () => (
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
       {text('Text', 'Button')}
-      <Icon type={select('Left icon', allIcons, 'x')} />
+      <Icon svgIcon={X} />
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
@@ -121,9 +121,9 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon type={select('Left icon', allIcons, 'x')} />
+      <Icon svgIcon={X} />
       {text('Text', 'Button')}
-      <Icon type={select('Right icon', allIcons, 'x')} />
+      <Icon svgIcon={X} />
     </Button>
   </div>
 ));

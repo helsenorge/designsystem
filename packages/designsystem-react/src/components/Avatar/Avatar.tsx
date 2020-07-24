@@ -1,6 +1,7 @@
 import React from 'react';
 import StyledAvatar from './Avatar.styled';
 import Icon from '../Icons';
+import Check from '../Icons/Check';
 
 interface AvatarProps {
   children: string;
@@ -10,10 +11,10 @@ interface AvatarProps {
 
 const Avatar = React.forwardRef((props: AvatarProps, ref: any) => {
   const {children, className = '', selected = false} = props;
-  const trunctuatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
+  const truncatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
   return (
     <StyledAvatar selected={selected} className={className} ref={ref}>
-      {selected ? <Icon size={48} type="check" color="kiwi" /> : trunctuatedName}
+      {selected ? <Icon svgIcon={Check} size={48} color="kiwi" /> : truncatedName}
     </StyledAvatar>
   );
 });
