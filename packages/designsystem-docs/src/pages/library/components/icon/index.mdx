@@ -7,6 +7,9 @@ date: 2019-01-29
 import MDXCustom from '../../../../components/markdown/MDXCustom';
 import * as propData from './icon.json';
 import Icon from '@helsenorge/designsystem-react/components/Icons';
+import Pencil from '@helsenorge/designsystem-react/components/Icons/Pencil';
+import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
+import Avatar from '@helsenorge/designsystem-react/components/Icons/Avatar';
 
 # Icon
 
@@ -17,7 +20,7 @@ import Icon from '@helsenorge/designsystem-react/components/Icons';
 
 ## Preview
 
-<MDXCustom.LiveComponent scope={{Icon}}>{`<Icon type="pencil" />`}</MDXCustom.LiveComponent>
+<MDXCustom.LiveComponent scope={{Icon}}>{`<Icon svgIcon={Pencil} />`}</MDXCustom.LiveComponent>
 
 ## Properties
 
@@ -28,33 +31,33 @@ import Icon from '@helsenorge/designsystem-react/components/Icons';
 ### Sizes
 
 <MDXCustom.LiveComponent stack scope={{Icon}}>{`
-  <Icon type="pencil" size={16} />
-  <Icon type="pencil" size={32} />
-  <Icon type="pencil" size={64} />
-  <Icon type="pencil" size={128} />
+  <Icon svgIcon={Pencil} size={16} />
+  <Icon svgIcon={Pencil} size={32} />
+  <Icon svgIcon={Pencil} size={64} />
+  <Icon svgIcon={Pencil} size={128} />
 `}</MDXCustom.LiveComponent>
 
 ### Colors
 
 <MDXCustom.LiveComponent scope={{Icon}}>{`
-  <Icon type="pencil" color="black" />
-  <Icon type="pencil" color="white" />
-  <Icon type="pencil" color="banana" />
-  <Icon type="pencil" color="blueberry" />
-  <Icon type="pencil" color="cherry" />
-  <Icon type="pencil" color="kiwi" />
-  <Icon type="pencil" color="plum" />
+  <Icon svgIcon={Pencil} color="black" />
+  <Icon svgIcon={Pencil} color="white" />
+  <Icon svgIcon={Pencil} color="banana" />
+  <Icon svgIcon={Pencil} color="blueberry" />
+  <Icon svgIcon={Pencil} color="cherry" />
+  <Icon svgIcon={Pencil} color="kiwi" />
+  <Icon svgIcon={Pencil} color="plum" />
 `}</MDXCustom.LiveComponent>
 
 ### Hover
 
 <MDXCustom.LiveComponent scope={{Icon}}>{`
-  <Icon type="alarmClock" />
-  <Icon type="pencil" />
-  <Icon type="avatar" />
-  <Icon isHovered type="alarmClock" />
-  <Icon isHovered type="pencil" />
-  <Icon isHovered type="avatar" />
+  <Icon svgIcon={AlarmClock} />
+  <Icon svgIcon={Pencil} />
+  <Icon svgIcon={Avatar} />
+  <Icon isHovered svgIcon={AlarmClock} />
+  <Icon isHovered svgIcon={Pencil} />
+  <Icon isHovered svgIcon={Avatar} />
 `}</MDXCustom.LiveComponent>
 
 ## Bruk

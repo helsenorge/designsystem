@@ -1,8 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import Icon from '@helsenorge/designsystem-react/components/Icons';
-import {IconTypes} from '@helsenorge/designsystem-react/components/Icons/Icon';
-import Checkbox from '../../../CheckBox/CheckBox';
 import styled from 'styled-components';
+
+import Icon from '@helsenorge/designsystem-react/components/Icons';
+import * as SvgIcons from './allIconsImports';
+
+import Checkbox from '../../../CheckBox/CheckBox';
+import {SvgIcon} from '@helsenorge/designsystem-react/components/Icons/Icon';
+
+type IconImport = {module: SvgIcon; name: string};
 
 const StyledIconTile = styled('div')`
   background-color: #f6f5f2;
@@ -68,218 +73,34 @@ function IconWallFilter(props: IconWallFilterProps) {
   );
 }
 
-const allIcons: IconTypes[] = [
-  'alarmClock',
-  'alertSignFill',
-  'alertSignStroke',
-  'amputation',
-  'anxiety',
-  'apple',
-  'archive',
-  'armFlexing',
-  'arrowLeft',
-  'arrowRight',
-  'arrowUpRight',
-  'attachment',
-  'atv',
-  'avatar',
-  'awakePersonOnPillow',
-  'baby',
-  'bandAid',
-  'beerAndPills',
-  'bell',
-  'bike',
-  'birthdayCake',
-  'boat',
-  'brain',
-  'breasts',
-  'brokenHeart',
-  'brokenPuzzle',
-  'bus',
-  'calendar',
-  'calendarEvent',
-  'calendarSave',
-  'cancer',
-  'car',
-  'check',
-  'chevronDown',
-  'chevronLeft',
-  'chevronRight',
-  'chevronUp',
-  'childPlaying',
-  'cigarette',
-  'contacts',
-  'copy',
-  'coronavirus',
-  'cough',
-  'criticalHealthInfo',
-  'cross',
-  'depression',
-  'digestiveSystem',
-  'dizzy',
-  'documents',
-  'dog',
-  'donorCard',
-  'draft',
-  'eChat',
-  'earNoseThroat',
-  'elderlyPerson',
-  'enterFullScreen',
-  'envelope',
-  'epilepsy',
-  'eraser',
-  'errorSignFill',
-  'errorSignStroke',
-  'europeanHealthCard',
-  'exitFullScreen',
-  'eye',
-  'facebook',
-  'female',
-  'femaleDoctor',
-  'ferry',
-  'filterOff',
-  'fingerBleed',
-  'firstAidKit',
-  'football',
-  'form',
-  'forward',
-  'garden',
-  'gasCan',
-  'globe',
-  'handWaving',
-  'handWithDisease',
-  'heart',
-  'helpSign',
-  'hiker',
-  'history',
-  'hivAndAids',
-  'hormone',
-  'hospital',
-  'imgFile',
-  'inbox',
-  'infoSignFill',
-  'infoSignStroke',
-  'instagram',
-  'jointPain',
-  'journal',
-  'jpgFile',
-  'kidney',
-  'kjernejournal',
-  'laboratory',
-  'laptopBlog',
-  'lawBook',
-  'lightBulb',
-  'location',
-  'lock',
-  'lungs',
-  'makeup',
-  'maleDoctor',
-  'maleDoctorAndPerson',
-  'maleGenitalia',
-  'medicine',
-  'medicineWarning',
-  'mentalHealthAdult',
-  'mentalHealthChild',
-  'menu',
-  'microscope',
-  'minus',
-  'mirror',
-  'mobilePhone',
-  'motherHoldingBaby',
-  'muscleBack',
-  'muscleLeg',
-  'mushroom',
-  'noFilter',
-  'notepad',
-  'paintRoller',
-  'paperPlane',
-  'patientAndPerson',
-  'pause',
-  'pdfFile',
-  'pencil',
-  'person',
-  'personAndPatient',
-  'personInXRayMachine',
-  'personOverweight',
-  'personRelaxing',
-  'personWithBrain',
-  'personWithBrokenArm',
-  'personWithCrutches',
-  'personWithJaw',
-  'personWithMagnifyingGlass',
-  'personWithSenses',
-  'personWorking',
-  'pizzaSlice',
-  'plane',
-  'plant',
-  'plusLarge',
-  'plusSmall',
-  'pngFile',
-  'poisonInformation',
-  'pregnant',
-  'printer',
-  'psychosis',
-  'publication',
-  'puzzle',
-  'receptionist',
-  'referral',
-  'refresh',
-  'refund',
-  'reply',
-  'rocket',
-  'rtfFile',
-  'save',
-  'scale',
-  'search',
-  'shakingHand',
-  'share',
-  'skeleton',
-  'skin',
-  'snake',
-  'snapchat',
-  'spray',
-  'taxi',
-  'teddyBear',
-  'thinkingAboutBaby',
-  'ticket',
-  'toolbox',
-  'tooth',
-  'train',
-  'trashCan',
-  'twitter',
-  'upload',
-  'userOrganization',
-  'vaccine',
-  'verticalDots',
-  'videoCamera',
-  'videoChat',
-  'wallet',
-  'warningSignFill',
-  'warningSignStroke',
-  'window',
-  'wordDocument',
-  'x',
-  'xmlFile',
-  'youTube',
-];
-
 function IconWall() {
   const [filterProps, setFilterProps] = useState({
     filter: '',
     isHovered: false,
   });
+
+  const filterIcons = (iconImport: IconImport, index: number) => {
+    if (filterProps.filter) {
+      if (iconImport.name.toLowerCase().includes(filterProps.filter.toLowerCase())) {
+        return iconImport;
+      } else {
+        return false;
+      }
+    } else {
+      return iconImport;
+    }
+  };
+
   return (
     <>
       <IconWallFilter onFilterChange={e => setFilterProps(e)} />
       <StyledIconWall>
-        {allIcons
-          .filter(icon => (filterProps.filter ? icon.includes(filterProps.filter) : icon))
-          .map(icon => (
-            <StyledIconTile key={icon}>
-              <Icon isHovered={filterProps.isHovered} type={icon} />
-              <StyledIconName>{icon}</StyledIconName>
-            </StyledIconTile>
-          ))}
+        {SvgIcons.allSvgIcons.filter(filterIcons).map((iconImport: IconImport, index) => (
+          <StyledIconTile>
+            <Icon isHovered={filterProps.isHovered} svgIcon={iconImport.module} />
+            <StyledIconName>{iconImport.name}</StyledIconName>
+          </StyledIconTile>
+        ))}
       </StyledIconWall>
     </>
   );

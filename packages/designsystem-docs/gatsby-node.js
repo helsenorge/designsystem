@@ -1,3 +1,12 @@
+exports.onCreateWebpackConfig = ({actions}) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: 'empty',
+      '@helsenorge': 'empty',
+    },
+  });
+};
+
 // /* eslint-disable @typescript-eslint/no-var-requires */
 // // For some reason adding imports as ES6 totally broke all the node configurations.
 // const path = require('path');
