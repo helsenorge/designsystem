@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import {StyledDefaultProps} from '@shared/constants';
-import {palette} from '@styles/styled-constants';
+import {theme as hndsTheme} from '@helsenorge/designsystem-react';
 import {Link} from 'gatsby';
 
 export const QuickMenuCardTitle = styled('h1')`
@@ -48,12 +48,12 @@ const StyledQuickMenuCard = styled(Link)<{small: boolean; grid: string}>`
   text-align: center;
   text-decoration: none;
   height: 100%;
-  border: 4px solid ${palette('bone200')};
+  border: 4px solid ${hndsTheme.palette.black};
   transition: border 200ms;
   padding: 1rem;
   grid-area: ${props => props.grid};
   &:hover {
-    border: 4px solid ${palette('blueberry700')};
+    border-color: ${hndsTheme.palette.blueberry700};
   }
   ${props =>
     props.small &&

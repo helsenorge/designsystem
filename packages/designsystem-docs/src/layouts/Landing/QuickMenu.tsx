@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+
+import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+
 import QuickMenuCard, {QuickMenuCardTitle, QuickMenuCardArt} from './QuickMenuCard';
-import {screen, theme} from '@styles/styled-constants';
 
 import brandIllustration from '@images/brand-illustration.svg';
 import patternsIllustration from '@images/patterns-illustration.svg';
@@ -15,11 +17,12 @@ import Section from '@layouts/Section';
 
 const StyledQuickMenuContent = styled('div')`
   min-height: calc(100vh - 21rem);
-  padding: 6rem 0;
   display: flex;
   align-items: center;
-  @media ${screen.sm} {
-    padding: 1.5rem 0;
+  padding: 1.5rem 0;
+
+  @media ${hndsTheme.screen.sm} {
+    padding: 6rem 0;
   }
 `;
 
@@ -27,37 +30,42 @@ const StyledUpperQuickMenuRow = styled('div')`
   display: grid;
   grid-gap: 1rem;
   width: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  grid-template-areas: 'brand patterns library';
-  @media ${screen.sm} {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'brand'
-      'patterns'
-      'library';
+
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'brand'
+    'patterns'
+    'library';
+
+  @media ${hndsTheme.screen.sm} {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 'brand patterns library';
   }
 `;
 
 const StyledLowerQuickMenuRow = styled('div')`
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  grid-template-areas: 'principles editorial marketing roadmap';
-  @media ${screen.md} {
+
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'principles'
+    'editorial'
+    'marketing'
+    'roadmap';
+
+  @media ${hndsTheme.screen.sm} {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'principles editorial'
       'marketing roadmap';
   }
-  @media ${screen.sm} {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'principles'
-      'editorial'
-      'marketing'
-      'roadmap';
+
+  @media ${hndsTheme.screen.md} {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 'principles editorial marketing roadmap';
   }
 `;
 
@@ -69,7 +77,7 @@ const StyledQuickMenuContainer = styled('div')`
 
 function QuickMenu() {
   return (
-    <Section color={theme.palette.blueberry100}>
+    <Section color={hndsTheme.palette.blueberry100}>
       <StyledQuickMenuContent>
         <StyledQuickMenuContainer>
           <StyledUpperQuickMenuRow>

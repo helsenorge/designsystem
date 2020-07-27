@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {Link, graphql, useStaticQuery} from 'gatsby';
-import {Location} from '@reach/router';
+import {Link} from 'gatsby';
 import styled, {css} from 'styled-components';
+import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import {Location} from '@reach/router';
 
 import RouteDropdown from './RouteDropdown';
 import {routes} from './routes';
-import {palette} from '@styles/styled-constants';
 
 const NavContent = styled('nav')``;
 
@@ -31,11 +31,11 @@ const StyledNavLink = styled(Link)<{child?: boolean; activeLink?: boolean}>`
   ${props =>
     props.activeLink &&
     css`
-      background-color: ${palette('blueberry500')};
+      background-color: ${hndsTheme.palette.blueberry500};
       color: white;
     `}
   &:hover {
-    background-color: ${palette('blueberry700')};
+    background-color: ${hndsTheme.palette.blueberry700};
     color: white;
   }
 `;
@@ -100,8 +100,11 @@ function Sidebar(props: SidebarProps): JSX.Element {
 }
 
 const StyledSidebar = styled('div')`
-  padding-top: 5rem;
-  padding-right: 1rem;
+  padding: ${hndsTheme.spacer}rem ${hndsTheme.spacer}rem ${hndsTheme.spacers[6]}rem 0;
+
+  @media ${hndsTheme.screen.sm} {
+    padding-bottom: ${hndsTheme.spacer}rem;
+  }
 `;
 
 export {Sidebar};

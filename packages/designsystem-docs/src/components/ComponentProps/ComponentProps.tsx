@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {palette} from '@styles/styled-constants';
 
 interface ComponentPropsProps {
   propData: any;

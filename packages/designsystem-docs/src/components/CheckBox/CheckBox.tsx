@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {palette} from '@styles/styled-constants';
+import {theme as hndsTheme} from '@helsenorge/designsystem-react';
 
 const CheckboxContainer = styled('div')`
   display: inline-block;
@@ -31,7 +31,7 @@ const StyledCheckbox = styled('div')<{checked: boolean}>`
   display: inline-block;
   width: 1rem;
   height: 1rem;
-  background-color: ${props => (props.checked ? palette('blueberry500') : palette('blueberry100'))};
+  background-color: ${props => (props.checked ? hndsTheme.palette.blueberry500 : hndsTheme.palette.blueberry100)};
   transition: all 150ms;
 
   ${HiddenCheckbox}:focus + & {
