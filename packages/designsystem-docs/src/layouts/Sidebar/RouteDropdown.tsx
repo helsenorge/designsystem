@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled, {css} from 'styled-components';
-import {palette, theme} from '@styles/styled-constants';
+import {theme as hndsTheme} from '@helsenorge/designsystem-react';
 import {ChevronDown, ChevronUp} from 'react-feather';
 import {Link} from 'gatsby';
 
@@ -24,12 +24,12 @@ const SectionIcon = styled('span')``;
 
 const StyledChevronDown = styled(ChevronDown)`
   margin-left: auto;
-  color: ${palette('blueberry500')};
+  color: ${hndsTheme.palette.blueberry500};
 `;
 
 const StyledChevronUp = styled(ChevronUp)`
   margin-left: auto;
-  color: ${palette('blueberry500')};
+  color: ${hndsTheme.palette.blueberry500};
 `;
 
 const StyledDropDownNav = styled('div')`
@@ -41,39 +41,39 @@ const StyledDropDownNav = styled('div')`
   align-items: center;
   background-color: white;
   padding: 0 1rem;
-  border: 2px solid ${palette('bone200')};
-  color: ${palette('blueberry500')};
+  border: 2px solid ${hndsTheme.palette.blueberry500};
+  color: ${hndsTheme.palette.blueberry500};
   transition: all 200ms;
   cursor: pointer;
   ${SectionIcon} {
-    fill: ${palette('blueberry500')};
+    fill: ${hndsTheme.palette.blueberry500};
   }
   ${Label} {
     margin-left: 1rem;
   }
   &:hover {
-    border: 2px solid ${palette('blueberry700')};
-    color: ${palette('blueberry700')};
+    border-color: ${hndsTheme.palette.blueberry700};
+    color: ${hndsTheme.palette.blueberry700};
 
     > ${StyledChevronDown}, ${StyledChevronUp} {
-      color: ${palette('blueberry700')};
+      color: ${hndsTheme.palette.blueberry700};
     }
     > ${SectionIcon} {
-      fill: ${palette('blueberry700')};
+      fill: ${hndsTheme.palette.blueberry700};
     }
   }
 `;
 const MenuDrawer = styled('div')`
   position: absolute;
   box-sizing: content-box;
-  border: 2px solid ${palette('bone200')};
+  border: 2px solid ${hndsTheme.palette.blueberry500};
   top: 3.75rem;
   left: -0.1rem;
   width: 100%;
   background: white;
   transition: all 200ms;
   &:hover {
-    border: 2px solid ${palette('blueberry700')};
+    border-color: ${hndsTheme.palette.blueberry700};
   }
 `;
 const MenuDrawerItem = styled(Link)`
@@ -94,32 +94,14 @@ const MenuDrawerItem = styled(Link)`
     margin-left: 1rem;
   }
   &:hover {
-    color: ${palette('bone100')};
-    background-color: ${palette('blueberry700')};
+    color: ${hndsTheme.palette.black};
+    background-color: ${hndsTheme.palette.neutral100};
 
     > ${SectionIcon} {
-      fill: ${palette('bone100')};
+      fill: ${hndsTheme.palette.black};
     }
   }
 `;
-
-function setChevron(expanded: boolean) {
-  return expanded ? <StyledChevronUp size={24} /> : <StyledChevronDown size={24} />;
-}
-function showMenuDrawer(expanded: boolean) {
-  return expanded ? (
-    <MenuDrawer>
-      {topLevelRoutes.map(route => {
-        return (
-          <MenuDrawerItem to={route.to}>
-            <SectionIcon>{route.icon}</SectionIcon>
-            <Label>{route.label}</Label>
-          </MenuDrawerItem>
-        );
-      })}
-    </MenuDrawer>
-  ) : null;
-}
 
 const topLevelRoutes = [
   {
@@ -158,6 +140,24 @@ const topLevelRoutes = [
     to: '/roadmap',
   },
 ];
+
+function setChevron(expanded: boolean) {
+  return expanded ? <StyledChevronUp size={24} /> : <StyledChevronDown size={24} />;
+}
+function showMenuDrawer(expanded: boolean) {
+  return expanded ? (
+    <MenuDrawer>
+      {topLevelRoutes.map(route => {
+        return (
+          <MenuDrawerItem to={route.to}>
+            <SectionIcon>{route.icon}</SectionIcon>
+            <Label>{route.label}</Label>
+          </MenuDrawerItem>
+        );
+      })}
+    </MenuDrawer>
+  ) : null;
+}
 
 interface RouteDropdownProps {
   activeRoute: string;

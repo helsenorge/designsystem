@@ -7,6 +7,12 @@ export const breakpoints = {
   xl: 1450,
 };
 
+export const containerMaxWidths = {
+  sm: 528,
+  md: 612,
+  lg: 1056,
+};
+
 export const screen = {
   xs: `(min-width: ${breakpoints.xs}px)`,
   sm: `(min-width: ${breakpoints.sm}px)`,

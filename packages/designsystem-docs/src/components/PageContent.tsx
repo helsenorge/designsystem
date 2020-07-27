@@ -1,8 +1,8 @@
 import React from 'react';
 import {MDXProvider} from '@mdx-js/react';
 import styled from 'styled-components';
+import {theme as hndsTheme} from '@helsenorge/designsystem-react';
 import MDXOverride from './markdown/MDXOverride';
-import {Link} from 'react-scroll';
 
 const overridedMDXComponents = {
   h1: MDXOverride.H1,
@@ -21,7 +21,7 @@ interface PageContentProps {
   children: React.ReactNode;
 }
 
-function PageContent({className, children}: PageContentProps) {
+function PageContent({className, children}: PageContentProps): JSX.Element {
   return (
     <div className={className}>
       <MDXProvider components={overridedMDXComponents}>{children}</MDXProvider>
@@ -30,8 +30,11 @@ function PageContent({className, children}: PageContentProps) {
 }
 
 const StyledPageContent = styled(PageContent)`
-  max-width: 750px;
-  padding: 0 58px;
+  width: 100%;
+  padding: 0 ${hndsTheme.spacer}rem;
+  @media ${hndsTheme.screen.sm} {
+    padding: 0 ${hndsTheme.spacers[8]}rem;
+  }
 `;
 
 export {StyledPageContent as PageContent};

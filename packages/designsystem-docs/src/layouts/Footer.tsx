@@ -2,10 +2,10 @@ import React from 'react';
 import {Link} from 'gatsby';
 import styled, {css} from 'styled-components';
 
+import {theme as hndsTheme} from '@helsenorge/designsystem-react';
 import Logo from '@helsenorge/designsystem-react/components/Logo';
 import {Grid, Row, Col} from '@shared/CustomizedGrid';
 import Section from './Section';
-import {screen, size as screenSize, palette} from '@styles/styled-constants';
 import useWindowSize from '@hooks/UseWindowSize';
 
 const StyledFooterContent = styled('div')`
@@ -22,7 +22,7 @@ const StyledContentDisclaimer = styled('div')`
 const StyledContentDisclaimerText = styled('span')`
   margin-bottom: 1rem;
   font-size: 1rem;
-  @media ${screen.sm} {
+  @media ${hndsTheme.screen.sm} {
     font-size: 0.8rem;
   }
 `;
@@ -44,10 +44,10 @@ const footerLinkStyle = css`
   padding: 0.25rem 0.25rem 0.25rem 1rem;
   display: block;
   text-decoration: none;
-  border-left: 2px solid ${palette('kiwi100')};
+  border-left: 2px solid ${hndsTheme.palette.kiwi100};
   font-size: 1.1rem;
   &:hover {
-    border-left: 2px solid ${palette('kiwi400')};
+    border-left: 2px solid ${hndsTheme.palette.kiwi400};
   }
 `;
 
@@ -91,7 +91,7 @@ function ContentDisclaimer(props: ContentDisclaimerProps) {
     <StyledContentDisclaimer>
       <StyledContentDisclaimerText>{children}</StyledContentDisclaimerText>
       <StyledContentDisclaimerLink href="https://www.helsenorge.no">
-        <Logo variant={byline ? 'byline' : 'original'} size={byline ? 200 : 125} />
+        <Logo byline={byline ? true : false} size={byline ? 200 : 125} />
       </StyledContentDisclaimerLink>
     </StyledContentDisclaimer>
   );
@@ -125,7 +125,7 @@ function Footer() {
                 </FooterLink>
               </StyledFooterLinkGroup>
             </Col>
-            {size.width && size.width > screenSize.sm ? (
+            {size.width && size.width > 768 ? (
               <Row>
                 <Col md sm={12}>
                   <ContentDisclaimer byline={false}>Content provided by</ContentDisclaimer>
@@ -133,7 +133,7 @@ function Footer() {
               </Row>
             ) : null}
           </Row>
-          {size.width && size.width <= screenSize.sm ? (
+          {size.width && size.width <= 768 ? (
             <Row>
               <Col md sm={12}>
                 <ContentDisclaimer byline={true}>Content provided by</ContentDisclaimer>

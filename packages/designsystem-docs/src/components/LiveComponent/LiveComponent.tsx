@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, HTMLProps} from 'react';
 import styled, {css} from 'styled-components';
 import {LiveProvider, LiveEditor, LivePreview, LiveError} from 'react-live';
 import theme from 'prism-react-renderer/themes/dracula';
@@ -17,7 +17,7 @@ function LiveComponent(props: LiveComponentProps) {
   return (
     <LiveProvider theme={theme} scope={{styled, ...scope}} code={`<>${children}</>`}>
       <StyledLivePreviewContainer>
-        <StyledLivePreview fullWidth={fullWidth} stack={stack} />
+        <StyledLivePreview hasFullWidth={fullWidth} stack={stack} />
         <ToggleButton active={showEditor} onClick={() => setShowEditor(!showEditor)}>
           <Code size={16} />
         </ToggleButton>
@@ -50,8 +50,13 @@ const ToggleButton = styled('button')<{active: boolean}>`
   }
 `;
 
-const StyledLivePreview = styled(LivePreview)<{stack: boolean; fullWidth: boolean}>`
-  width: ${props => (props.fullWidth ? '100%' : 'auto')};
+interface LivePreviewProps extends HTMLProps<HTMLDivElement> {
+  stack: boolean;
+  hasFullWidth: boolean;
+}
+
+const StyledLivePreview = styled(LivePreview)<LivePreviewProps>`
+  width: ${props => (props.hasFullWidth ? '100%' : 'auto')};
   display: inline-flex;
   flex-direction: ${props => (props.stack ? 'column' : 'row')};
   flex-wrap: wrap;
