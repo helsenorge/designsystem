@@ -21,7 +21,7 @@ export interface HTMLButtonProps {
 }
 
 export interface HTMLAnchorProps {
-  download?: any;
+  download?: string;
   href?: string;
   hrefLang?: string;
   media?: string;

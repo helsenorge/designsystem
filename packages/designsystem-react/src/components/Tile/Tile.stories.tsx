@@ -1,10 +1,11 @@
 import React from 'react';
 import {withA11y} from '@storybook/addon-a11y';
-import {withKnobs, text, boolean, number} from '@storybook/addon-knobs';
+import {withKnobs, select, text, boolean, number} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import Tile from './Tile';
 import Icon from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
+import {allTitleTags} from '../../../.storybook/knobs';
 
 const stories = storiesOf('Tile', module);
 stories.addDecorator(withKnobs);
@@ -16,7 +17,7 @@ stories.add('Default', () => (
     icon={<Icon size={64} svgIcon={AlarmClock} />}
     highlighted={boolean('Highlighted', false)}
     href="https://vg.no"
-    title={<Tile.Title>{text('Title', 'Inbox')}</Tile.Title>}
+    title={<Tile.Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')}>{text('Title', 'Inbox')}</Tile.Title>}
     description={text('Description', 'Messages between you and your health contacts through Helsenorge.')}
   />
 ));
