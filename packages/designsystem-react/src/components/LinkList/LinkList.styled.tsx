@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
 import {getColor} from '../../theme/currys';
-import {LinkListColors} from './LinkList';
+import {LinkProps, LinkListColors} from './LinkList';
 
 interface StyledLinkListProps {
   topBorder?: boolean;

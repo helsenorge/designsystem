@@ -36,20 +36,24 @@ interface ExpanderListProps {
   topBorder?: boolean;
 }
 
-interface ExpanderProps extends React.HTMLAttributes<HTMLButtonElement> {
-  title: string;
-  children: React.ReactNode;
-  className?: string;
-  color?: ExpanderListColors;
-  icon?: React.ReactElement;
-  padding?: boolean;
-  isExpanded?: boolean;
-  large?: boolean;
-}
+type Modify<T, R> = Omit<T, keyof R> & R;
+
+type ExpanderProps = Modify<
+  React.HTMLAttributes<HTMLButtonElement>,
+  {
+    title: JSX.Element | string;
+    children: React.ReactNode;
+    className?: string;
+    color?: ExpanderListColors;
+    icon?: React.ReactElement;
+    padding?: boolean;
+    isExpanded?: boolean;
+    large?: boolean;
+  }
+>;
 
 // TODO: See what can be done with regards to double reffing.
-
-const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
+const Expander = React.forwardRef((props: ExpanderProps, ref: React.Ref<HTMLLIElement>) => {
   const {
     children,
     padding = true,
@@ -63,7 +67,7 @@ const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
   } = props;
   const {hoverRef, isHovered} = useHover<HTMLButtonElement>();
   return (
-    <li>
+    <li ref={ref}>
       <StyledExpanderListLink
         className={className}
         isExpanded={isExpanded}
@@ -95,7 +99,7 @@ function findShadowDOMId(event: MouseEventWithPath, tagName: string): string {
   return element ? element.id : '';
 }
 
-const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
+const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: React.Ref<HTMLUListElement>) => {
   const {
     children,
     childPadding = true,
