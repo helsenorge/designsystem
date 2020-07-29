@@ -13,7 +13,7 @@ import ChevronDown from '../Icons/ChevronDown';
 import {useHover} from '../../hooks/useHover';
 
 export type ExpanderListColors = PaletteNames;
-export type ExpanderType = React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<unknown>>;
+export type ExpanderType = React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>>;
 
 export interface ExpanderListCompound
   extends React.ForwardRefExoticComponent<ExpanderListProps & React.RefAttributes<HTMLUListElement>> {
@@ -53,7 +53,7 @@ type ExpanderProps = Modify<
 >;
 
 // TODO: See what can be done with regards to double reffing.
-const Expander = React.forwardRef((props: ExpanderProps, ref: React.Ref<HTMLLIElement>) => {
+const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: React.Ref<HTMLLIElement>) => {
   const {
     children,
     padding = true,
