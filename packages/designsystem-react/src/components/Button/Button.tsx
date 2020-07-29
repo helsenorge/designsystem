@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {HTMLButtonProps, HTMLAnchorProps} from '../../constants';
 import {StyledButton, StyledButtonContent, StyledLeftFluidContent, StyledButtonWrapper} from './Button.styled';
+import {IconProps, IconColors} from './../Icons/';
 import Loader from '../Loader';
 import {PaletteNames} from '../../theme/palette';
 import {useHover} from '../../hooks/useHover';
@@ -8,8 +9,22 @@ import {useWindowSize} from '../../hooks/useWindowSize';
 import {breakpoints} from '../../theme/grid';
 
 export type ButtonIntents = 'primary' | 'warning' | 'danger';
+export type ButtonIntentsColors = 'blueberry' | 'banana' | 'cherry' | 'neutral' | 'white';
 export type ButtonTags = 'button' | 'a';
 export type ButtonVariants = 'fill' | 'outline' | 'borderless';
+
+interface IntentToColor {
+  primary: ButtonIntentsColors;
+  warning: ButtonIntentsColors;
+  danger: ButtonIntentsColors;
+}
+
+// TODO: Need to make more globally
+export const intentToColor: IntentToColor = {
+  primary: 'blueberry',
+  warning: 'banana',
+  danger: 'cherry',
+};
 
 export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   children: React.ReactNode;
@@ -20,33 +35,40 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   htmlMarkup?: ButtonTags;
   large?: boolean;
   loading?: boolean;
-  onClick?: (e?: any) => void;
+  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   variant?: ButtonVariants;
 }
 
 // TODO: Consider making this a shared hook
-export function useIcons(children: React.ReactNode[]) {
-  let leftIcon = null;
-  let rightIcon = null;
-  if ((children[0] as any)?.type?.displayName === 'Icon') leftIcon = children.shift();
-  if ((children[children.length - 1] as any)?.type?.displayName === 'Icon') rightIcon = children.pop();
+
+export function useIcons(
+  children: React.ReactNode[],
+): Array<React.ReactElement<IconProps> | React.ReactNode | {} | undefined | null> {
+  let leftIcon: React.ReactElement<IconProps> | undefined | null = null;
+  let rightIcon: React.ReactElement<IconProps> | undefined | null = null;
+
+  if ((children[0] as React.ReactElement<IconProps>)?.props?.svgIcon !== undefined) {
+    leftIcon = children.shift() as React.ReactElement<IconProps>;
+  }
+  if ((children[children.length - 1] as React.ReactElement<IconProps>)?.props?.svgIcon !== undefined) {
+    rightIcon = children.pop() as React.ReactElement<IconProps>;
+  }
+
   return [leftIcon, rightIcon, children];
 }
 
-// TODO: Need to make more globally
-export const intentToColor = {
-  primary: 'blueberry',
-  warning: 'banana',
-  danger: 'cherry',
-};
-
-const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, inverted: boolean) => {
+const getIconColor = (
+  fill: boolean,
+  disabled: boolean,
+  intent: ButtonIntents,
+  inverted: boolean,
+): ButtonIntentsColors => {
   if (disabled) return 'neutral';
   if ((fill && !inverted) || (!fill && inverted)) return 'white';
   return intentToColor[intent];
 };
 
-const getLargeIconSize = (large: boolean, screenWidth: number | undefined) => {
+const getLargeIconSize = (large: boolean, screenWidth: number | undefined): number => {
   const mobile = screenWidth && screenWidth < breakpoints.md;
   if (mobile && large) return 48;
   if (large) return 64;
@@ -71,12 +93,17 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
 
   const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted);
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const {hoverRef, isHovered} = useHover<any>();
+  const {hoverRef, isHovered} = useHover<HTMLButtonElement>();
   const size = useWindowSize();
 
-  function renderIcon(iconElement: any, size: number, color: string, hover: boolean) {
-    return iconElement
-      ? React.cloneElement(iconElement as React.ReactElement, {size, color: color, isHovered: hover})
+  function renderIcon(
+    iconElement: React.ReactElement<IconProps> | {} | undefined | null,
+    size: number,
+    color: IconColors,
+    hover: boolean,
+  ): React.ReactElement<IconProps> | React.Component<IconProps> | null {
+    return iconElement && Object.keys(iconElement).length > 0
+      ? React.cloneElement(iconElement as React.ReactElement<IconProps>, {size, color: color, isHovered: hover})
       : null;
   }
 

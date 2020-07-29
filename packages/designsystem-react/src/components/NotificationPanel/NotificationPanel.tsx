@@ -24,7 +24,7 @@ interface NotificationPanelProps {
   variant?: NotificationPanelVariants;
   shadow?: boolean;
   size?: NotificationPanelSizes;
-  onClick?: (e?: any) => void;
+  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   dismissable?: boolean;
   fluid?: boolean;
   label?: string;
@@ -48,7 +48,8 @@ export const variantToIconMap = {
 const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: any) => {
   const {children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size} = props;
   const {hoverRef, isHovered} = useHover<HTMLButtonElement>(dismissable);
-  function wrapFluid(panel: React.ReactNode): any {
+
+  function wrapFluid(panel: React.ReactElement): React.ReactElement {
     if (fluid) {
       return (
         <StyledNotificationPanelFluidWrapper shadow={shadow} variant={variant}>
@@ -58,6 +59,7 @@ const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: 
     }
     return panel;
   }
+
   return wrapFluid(
     <StyledNotificationPanel
       size={size}

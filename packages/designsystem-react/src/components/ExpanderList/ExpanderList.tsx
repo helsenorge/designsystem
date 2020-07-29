@@ -13,10 +13,15 @@ import ChevronDown from '../Icons/ChevronDown';
 import {useHover} from '../../hooks/useHover';
 
 export type ExpanderListColors = PaletteNames;
+export type ExpanderType = React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<unknown>>;
 
 export interface ExpanderListCompound
   extends React.ForwardRefExoticComponent<ExpanderListProps & React.RefAttributes<HTMLUListElement>> {
-  Expander: any;
+  Expander: ExpanderType;
+}
+
+interface MouseEventWithPath extends MouseEvent {
+  path?: Array<HTMLElement>;
 }
 
 interface ExpanderListProps {
@@ -25,26 +30,37 @@ interface ExpanderListProps {
   children: React.ReactNode;
   childPadding?: boolean;
   className?: string;
-  color: ExpanderListColors;
+  color?: ExpanderListColors;
   large?: boolean;
   isOpen?: boolean;
   topBorder?: boolean;
 }
 
 interface ExpanderProps extends React.HTMLAttributes<HTMLButtonElement> {
+  title: string;
   children: React.ReactNode;
   className?: string;
-  color: ExpanderListColors;
+  color?: ExpanderListColors;
   icon?: React.ReactElement;
   padding?: boolean;
   isExpanded?: boolean;
-  large: boolean;
-  title: string;
+  large?: boolean;
 }
 
 // TODO: See what can be done with regards to double reffing.
+
 const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
-  const {children, padding = true, color, className = '', icon, large, title, isExpanded = false, ...restProps} = props;
+  const {
+    children,
+    padding = true,
+    color = 'neutral',
+    className = '',
+    icon,
+    large = false,
+    title,
+    isExpanded = false,
+    ...restProps
+  } = props;
   const {hoverRef, isHovered} = useHover<HTMLButtonElement>();
   return (
     <li>
@@ -72,9 +88,11 @@ const Expander = React.forwardRef((props: ExpanderProps, ref: any) => {
   );
 });
 
-function findShadowDOMId(event: any, tagName: string) {
-  const path = event.path || (event.composedPath && event.composedPath());
-  return path.find((e: any) => e.tagName === tagName).id;
+function findShadowDOMId(event: MouseEventWithPath, tagName: string): string {
+  const pathElements: Array<HTMLElement> =
+    event.path || (event.composedPath && (event.composedPath() as Array<HTMLElement>));
+  const element = pathElements.find((el: HTMLElement) => el.tagName === tagName);
+  return element ? element.id : '';
 }
 
 const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
@@ -90,20 +108,20 @@ const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: any) => {
     bottomBorder = true,
   } = props;
   const [activeExpander, setActiveExpander] = useState({});
-  function handleExpanderClick(event: any) {
-    const id = event.currentTarget?.id || findShadowDOMId(event, 'BUTTON');
+
+  function handleExpanderClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
+    const id = event.currentTarget?.id || findShadowDOMId((event as unknown) as MouseEventWithPath, 'BUTTON');
     if (!isOpen) {
-      setActiveExpander(prevState =>
-        accordion ? {[id]: !Boolean(prevState[id])} : {...prevState, [id]: !Boolean(prevState[id])},
-      );
+      setActiveExpander(prevState => (accordion ? {[id]: !prevState[id]} : {...prevState, [id]: !prevState[id]}));
     }
   }
+
   return (
     <StyledExpanderList className={className} topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
-      {React.Children.map(children, (child: any, index: number) => {
-        if (child.type.displayName === 'ExpanderList.Expander') {
+      {React.Children.map(children, (child: React.ReactNode, index: number) => {
+        if ((child as React.ReactElement<ExpanderProps>).type === Expander) {
           const isExpanded = isOpen || activeExpander[`expander-${index}`];
-          return React.cloneElement(child, {
+          return React.cloneElement(child as React.ReactElement<ExpanderProps>, {
             id: `expander-${index}`,
             key: `expander-${index}`,
             isExpanded,

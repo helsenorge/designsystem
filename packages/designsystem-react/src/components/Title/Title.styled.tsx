@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {TitleAppearances} from './Title';
 import {typography} from '../../theme/typography';
 
-interface StyledTitleProps {
+export interface StyledTitleProps {
   appearance: TitleAppearances;
   margin: number;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import StyledTitle from './Title.styled';
 
-export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span';
 export type TitleAppearances = 'titleFeature' | 'title1' | 'title2' | 'title3' | 'title4' | 'title5';
 
 interface TitleProps {

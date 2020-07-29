@@ -13,7 +13,7 @@ export const allPaletteNames: PaletteNames[] = [
   'white',
 ];
 
-export const allTitleTags: TitleTags[] = ['h1', 'h2', 'h3', 'h4', 'h5'];
+export const allTitleTags: TitleTags[] = ['h1', 'h2', 'h3', 'h4', 'h5', 'span'];
 
 export const allTitleAppearances: TitleAppearances[] = [
   'titleFeature',

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyledTileTitle, StyledTileTitleWrapper, StyledTile, StyledDescription} from './Tile.styled';
 import {HTMLAnchorProps} from '../../constants';
 
-export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+import {TitleTags} from './../Title/Title';
 
 interface TileProps extends HTMLAnchorProps {
   className?: string;
@@ -11,10 +11,10 @@ interface TileProps extends HTMLAnchorProps {
   highlighted?: boolean;
   description?: string;
   fixed?: boolean;
-  onClick?: (e?: any) => void;
+  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
-interface TitleProps {
+interface TileTitleProps {
   children: React.ReactNode;
   className?: string;
   htmlMarkup?: TitleTags;
@@ -22,11 +22,11 @@ interface TitleProps {
 
 export interface TileCompound
   extends React.ForwardRefExoticComponent<TileProps & React.RefAttributes<HTMLAnchorElement>> {
-  Title: any;
+  Title: React.ForwardRefExoticComponent<TileTitleProps & React.RefAttributes<unknown>>;
 }
 
-const Title = React.forwardRef((props: TitleProps, ref: any) => {
-  const {children, className, htmlMarkup = 'h1'} = props;
+const Title = React.forwardRef((props: TileTitleProps, ref: any) => {
+  const {children, className, htmlMarkup = 'span'} = props;
   return (
     <StyledTileTitle className={className} as={htmlMarkup} ref={ref}>
       {children}

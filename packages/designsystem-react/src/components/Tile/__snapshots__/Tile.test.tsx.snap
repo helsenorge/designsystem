@@ -36,11 +36,11 @@ exports[`displays tile 1`] = `
           />
         </g>
       </svg>
-      <h1
+      <span
         class="sc-AxirZ frRwPO"
       >
         Title
-      </h1>
+      </span>
     </div>
     <p
       class="sc-AxiKw kNBEMG"
