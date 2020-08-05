@@ -3,10 +3,10 @@
 exports[`displays tile 1`] = `
 <div>
   <a
-    class="sc-AxhCb iEYjYa"
+    class="sc-AxiKw kVCsqj"
   >
     <div
-      class="sc-AxjAm huXrmQ"
+      class="sc-AxhCb gkJdxg"
     >
       <svg
         class="hnds-style-icon "
@@ -37,13 +37,13 @@ exports[`displays tile 1`] = `
         </g>
       </svg>
       <span
-        class="sc-AxirZ frRwPO"
+        class="sc-AxjAm fgRJKB"
       >
         Title
       </span>
     </div>
     <p
-      class="sc-AxiKw kNBEMG"
+      class="sc-AxirZ fGGCAe"
     >
       Description
     </p>
