@@ -5,17 +5,11 @@ import {screen} from '../../theme/grid';
 interface StyledTileProps {
   fixed: boolean;
   highlighted: boolean;
-  compact: boolean;
 }
 
-const StyledTileTitleWrapper = styled('div')`
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 0.5rem;
-  @media ${screen.sm} {
-    flex-direction: column;
-  }
-`;
+interface StyledTileTitleWrapperProps {
+  compact: boolean;
+}
 
 const StyledTileTitle = styled('h1')`
   overflow-wrap: break-word;
@@ -66,13 +60,15 @@ const StyledTile = styled('a')<StyledTileProps>`
       min-width: 15rem;
       max-width: 20rem;
     `}
-  text-decoration: none;
-  color: black;
+
+  padding: 1.5rem 1.5rem 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 1.5rem 1.5rem 2rem 1.5rem;
   background-color: ${getColor('white')};
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
   outline: none;
   .hnds-style-icon {
     flex-shrink: 0;
@@ -81,22 +77,7 @@ const StyledTile = styled('a')<StyledTileProps>`
       align-self: start;
     }
   }
-
-  cursor: pointer;
-  ${props =>
-    props.compact &&
-    css`
-      flex-direction: row;
-      align-items: center;
-      padding-right: 1rem;
-      > svg {
-        flex-shrink: 0;
-      }
-      ${StyledTileTitle} {
-        margin: 0 0 0 1.5rem;
-      }
-    `}
-  &:hover, 
+  &:hover,
   &:active,
   &:focus {
     background-color: ${getColor('neutral', 100)};
@@ -105,6 +86,34 @@ const StyledTile = styled('a')<StyledTileProps>`
     box-shadow: 0 0 0 6px ${getColor('neutral', 600)};
   }
   ${props => props.highlighted && highlightStyle}
+`;
+
+const StyledTileTitleWrapper = styled('div')<StyledTileTitleWrapperProps>`
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 0.5rem;
+
+  ${props =>
+    props.compact &&
+    css`
+      align-items: center;
+      padding-right: 1rem;
+      > .hnds-style-icon {
+        flex-shrink: 0;
+        align-self: center;
+      }
+      ${StyledTileTitle} {
+        align-self: center;
+        margin: 0 0 0 1.5rem;
+      }
+    `}
+  ${props =>
+    !props.compact &&
+    css`
+      @media ${screen.sm} {
+        flex-direction: column;
+      }
+    `}
 `;
 
 export {StyledTile, StyledTileTitleWrapper, StyledTileTitle, StyledDescription};
