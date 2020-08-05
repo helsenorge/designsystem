@@ -22,6 +22,16 @@ stories.add('Default', () => (
   />
 ));
 
+stories.add('External', () => (
+  <Tile
+    fixed={boolean('Fixed width', false)}
+    icon={<Icon size={64} svgIcon={AlarmClock} />}
+    highlighted={boolean('Highlighted', false)}
+    href="https://vg.no"
+    title={<Tile.Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')}>{text('Title', 'External')}</Tile.Title>}
+  />
+));
+
 stories.add('Wrapped container', () => (
   <div
     style={{

@@ -26,6 +26,7 @@ const defaultStyle = css`
   text-decoration: none;
   outline: none;
   border: 0;
+  letter-spacing: unset;
   cursor: pointer;
   &:disabled {
     pointer-events: none;

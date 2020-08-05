@@ -43,13 +43,12 @@ const Tile = React.forwardRef((props: TileProps, ref: any) => {
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
-      compact={!description}
       className={className}
       ref={ref}
       highlighted={highlighted}
       fixed={fixed}
       {...restProps}>
-      <StyledTileTitleWrapper>
+      <StyledTileTitleWrapper compact={!description}>
         {React.cloneElement(icon, {size: 64, isHovered, color: highlighted ? 'white' : 'black'})}
         {title}
       </StyledTileTitleWrapper>
