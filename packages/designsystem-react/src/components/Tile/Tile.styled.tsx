@@ -24,7 +24,6 @@ const StyledTileTitle = styled('h1')`
   margin-left: 0.5rem;
   @media ${screen.sm} {
     font-size: 1.25rem;
-    margin-left: 0;
     margin-top: 1rem;
     align-self: start;
   }
@@ -33,7 +32,7 @@ const StyledTileTitle = styled('h1')`
 const StyledDescription = styled('p')`
   font-size: 1.125rem;
   line-height: 1.75rem;
-  margin: 0;
+  margin: 0 0 0 0.5rem;
 `;
 
 const highlightStyle = css`
@@ -61,7 +60,7 @@ const StyledTile = styled('a')<StyledTileProps>`
       max-width: 20rem;
     `}
 
-  padding: 1.5rem 1.5rem 2rem 1.5rem;
+  padding: 1.5rem 2rem 1.5rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
