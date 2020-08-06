@@ -60,7 +60,6 @@ import designsystemtypography from './scss/_typography.scss'
   line-height: getSpacer(m);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.45px;
   @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 1.125rem;
   }
