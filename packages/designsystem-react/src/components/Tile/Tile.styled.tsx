@@ -97,6 +97,7 @@ const StyledTileTitleWrapper = styled('div')<StyledTileTitleWrapperProps>`
     css`
       align-items: center;
       padding-right: 1rem;
+      padding-bottom: 0;
       > .hnds-style-icon {
         flex-shrink: 0;
         align-self: center;
