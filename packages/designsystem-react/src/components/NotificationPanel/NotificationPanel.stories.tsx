@@ -12,7 +12,6 @@ stories.addDecorator(withA11y);
 stories.add('Default', () => (
   <div style={{width: boolean('Fluid', false) ? '100vw' : '1400px'}}>
     <NotificationPanel
-      className={'mlp-classname'}
       shadow={boolean('Shadow', false)}
       dismissable={boolean('Dismissable', false)}
       onClick={action('on-click-dismiss')}
