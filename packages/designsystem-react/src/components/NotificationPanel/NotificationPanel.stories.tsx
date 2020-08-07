@@ -1,7 +1,7 @@
 import React from 'react';
 import {withA11y} from '@storybook/addon-a11y';
 import {action} from '@storybook/addon-actions';
-import {withKnobs, text, select, boolean, number} from '@storybook/addon-knobs';
+import {withKnobs, text, select, boolean} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
 import NotificationPanel from './NotificationPanel';
 
@@ -12,6 +12,7 @@ stories.addDecorator(withA11y);
 stories.add('Default', () => (
   <div style={{width: boolean('Fluid', false) ? '100vw' : '1400px'}}>
     <NotificationPanel
+      className={'mlp-classname'}
       shadow={boolean('Shadow', false)}
       dismissable={boolean('Dismissable', false)}
       onClick={action('on-click-dismiss')}
@@ -19,13 +20,6 @@ stories.add('Default', () => (
       fluid={boolean('Fluid', false)}
       label={text('Label', '')}
       variant={select('Variant', ['info', 'warn', 'alert', 'crisis'], 'alert')}>
-      {/* <p>
-        Foreldre har begrenset tilgang til tjenester på vegne av barn mellom 12 og 16 år, og ingen tilgang etter fylte
-        16 år.{' '}
-        <a target="_blank" href="https://vg.no">
-          Les mer om foreldrerepresentasjon.
-        </a>
-      </p> */}
       <p>Hallo</p>
     </NotificationPanel>
   </div>

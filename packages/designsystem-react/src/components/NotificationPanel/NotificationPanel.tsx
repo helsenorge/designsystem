@@ -20,6 +20,7 @@ export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'crisis';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
 
 interface NotificationPanelProps {
+  className?: string;
   children?: React.ReactNode;
   variant?: NotificationPanelVariants;
   shadow?: boolean;
@@ -46,7 +47,17 @@ export const variantToIconMap = {
 };
 
 const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: any) => {
-  const {children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size} = props;
+  const {
+    children,
+    variant = 'info',
+    shadow = false,
+    dismissable = false,
+    onClick,
+    label,
+    fluid = false,
+    size,
+    className,
+  } = props;
   const {hoverRef, isHovered} = useHover<HTMLButtonElement>(dismissable);
 
   function wrapFluid(panel: React.ReactElement): React.ReactElement {
@@ -62,6 +73,7 @@ const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: 
 
   return wrapFluid(
     <StyledNotificationPanel
+      className={className}
       size={size}
       label={!!label && !children ? true : undefined}
       shadow={!fluid && shadow}
