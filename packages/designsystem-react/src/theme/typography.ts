@@ -48,7 +48,6 @@ const title5 = css`
   line-height: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.45px;
   @media ${screen.md} {
     font-size: 1.125rem;
     line-height: 1.5rem;
