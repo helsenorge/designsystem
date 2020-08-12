@@ -7,11 +7,11 @@ exports[`displays a list of links 1`] = `
   >
     <li>
       <a
-        class="sc-AxhCb cSSczh"
+        class="sc-AxhCb edeBBa"
         color="cherry"
       >
         <span
-          class="sc-AxiKw kRGDdD"
+          class="sc-AxiKw bJTvlc"
         >
           Link 1
         </span>
@@ -19,11 +19,11 @@ exports[`displays a list of links 1`] = `
     </li>
     <li>
       <a
-        class="sc-AxhCb cSSczh"
+        class="sc-AxhCb edeBBa"
         color="cherry"
       >
         <span
-          class="sc-AxiKw kRGDdD"
+          class="sc-AxiKw bJTvlc"
         >
           Link 2
         </span>
@@ -31,11 +31,11 @@ exports[`displays a list of links 1`] = `
     </li>
     <li>
       <a
-        class="sc-AxhCb cSSczh"
+        class="sc-AxhCb edeBBa"
         color="cherry"
       >
         <span
-          class="sc-AxiKw kRGDdD"
+          class="sc-AxiKw bJTvlc"
         >
           Link 3
         </span>

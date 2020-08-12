@@ -5,6 +5,7 @@ import {screen} from '../../theme/grid';
 interface StyledTileProps {
   fixed: boolean;
   highlighted: boolean;
+  compact: boolean;
 }
 
 interface StyledTileTitleWrapperProps {
@@ -60,7 +61,15 @@ const StyledTile = styled('a')<StyledTileProps>`
       max-width: 20rem;
     `}
 
-  padding: 1.5rem 2rem 1.5rem 1rem;
+  ${props =>
+    !props.compact
+      ? css`
+          padding: 1.5rem 2rem 2rem 1rem;
+        `
+      : css`
+          padding: 1.5rem 1rem 1.5rem 1rem;
+        `}
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

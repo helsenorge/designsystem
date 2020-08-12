@@ -47,6 +47,7 @@ const Tile = React.forwardRef((props: TileProps, ref: any) => {
       ref={ref}
       highlighted={highlighted}
       fixed={fixed}
+      compact={!description}
       {...restProps}>
       <StyledTileTitleWrapper compact={!description}>
         {React.cloneElement(icon, {size: 64, isHovered, color: highlighted ? 'white' : 'black'})}
