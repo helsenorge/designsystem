@@ -62,6 +62,7 @@ const StyledExpanderListLinkContent = styled('span')`
   display: flex;
   align-items: center;
   text-align: left;
+  border-bottom: 1px solid transparent;
   ${StyledExpanderListIconContainer} {
     margin-right: 0.5rem;
   }
@@ -87,6 +88,7 @@ const StyledExpanderListLink = styled('button')<StyledExpanderListLinkProps>`
   background-color: ${props => (props.isExpanded ? getColor(props.color, 100) : 'transparent')};
   border: 0;
   width: 100%;
+
   outline: none;
   ${largeStyle};
   &:hover,
@@ -94,8 +96,9 @@ const StyledExpanderListLink = styled('button')<StyledExpanderListLinkProps>`
     background-color: ${props => getColor(props.color, 100)};
   }
   &:focus {
+    outline: none;
     ${StyledExpanderListLinkContent} {
-      text-decoration: underline;
+      border-color: ${getColor('black')};
     }
   }
 `;
