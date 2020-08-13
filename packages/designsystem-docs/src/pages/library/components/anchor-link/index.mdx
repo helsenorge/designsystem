@@ -17,7 +17,7 @@ import AnchorLink from '@helsenorge/designsystem-react/components/AnchorLink';
 
 ## Preview
 
-<MDXCustom.LiveComponent scope={{AnchorLink}}>{`<AnchorLink>This is my anchor-link</AnchorLink>`}</MDXCustom.LiveComponent>
+<MDXCustom.LiveComponent scope={{AnchorLink}}>{`<div><AnchorLink>This is my anchor-link</AnchorLink></div>`}</MDXCustom.LiveComponent>
 
 ## Properties
 
@@ -28,17 +28,23 @@ import AnchorLink from '@helsenorge/designsystem-react/components/AnchorLink';
 
 <MDXCustom.LiveComponent stack scope={{AnchorLink}}>{`
   <p>_self: </p>
+  <div>
   <AnchorLink href={'/test'} target={"_self"}>This is my anchor-link</AnchorLink>
+  </div>
 `}</MDXCustom.LiveComponent>
 
 <MDXCustom.LiveComponent stack scope={{AnchorLink}}>{`
   <p>_blank: </p>
+  <div>
   <AnchorLink href={'/test'} target={"_blank"}>This is my anchor-link</AnchorLink>
+  </div>
 `}</MDXCustom.LiveComponent>
 
 <MDXCustom.LiveComponent stack scope={{AnchorLink}}>{`
   <p>_parent: </p>
+  <div>
   <AnchorLink href={'/test'} target={"_parent"}>This is my anchor-link</AnchorLink>
+  </div>
 `}</MDXCustom.LiveComponent>
 
 ## Bruk
