@@ -53,6 +53,7 @@ const StyledLinkListIconContainer = styled('span')`
 const StyledLinkListLinkContent = styled('span')`
   display: flex;
   align-items: center;
+  border-bottom: 1px solid transparent;
   ${StyledLinkListIconContainer} {
     margin-right: 0.5rem;
   }
@@ -76,8 +77,15 @@ const StyledLinkListLink = styled('a')<StyledLinkListLinkProps>`
   align-items: center;
   color: ${getColor('black')};
   ${largeStyle};
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${props => getColor(props.color, 100)};
+  }
+  &:focus {
+    outline: none;
+    ${StyledLinkListLinkContent} {
+      border-color: ${getColor('black')};
+    }
   }
 `;
 

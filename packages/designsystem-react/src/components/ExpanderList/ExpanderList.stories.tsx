@@ -64,9 +64,9 @@ stories.add('With LinkList', () => (
     <ExpanderList isOpen={boolean('Is open', false)} color="cherry">
       <ExpanderList.Expander title="Cognitive therapy">
         <LinkList color="cherry">
-          <LinkList.Link>First aid</LinkList.Link>
-          <LinkList.Link>Second aid</LinkList.Link>
-          <LinkList.Link>Third aid</LinkList.Link>
+          <LinkList.Link href="/firstaid">First aid</LinkList.Link>
+          <LinkList.Link href="/secondaid">Second aid</LinkList.Link>
+          <LinkList.Link href="/thirdaid">Third aid</LinkList.Link>
         </LinkList>
       </ExpanderList.Expander>
     </ExpanderList>

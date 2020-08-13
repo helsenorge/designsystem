@@ -3,7 +3,7 @@
 exports[`displays tile 1`] = `
 <div>
   <a
-    class="sc-AxiKw kVCsqj"
+    class="sc-AxiKw gDpFax"
   >
     <div
       class="sc-AxhCb gkJdxg"
@@ -37,13 +37,13 @@ exports[`displays tile 1`] = `
         </g>
       </svg>
       <span
-        class="sc-AxjAm fgRJKB"
+        class="sc-AxjAm hEBMUq"
       >
         Title
       </span>
     </div>
     <p
-      class="sc-AxirZ fGGCAe"
+      class="sc-AxirZ dAHZwv"
     >
       Description
     </p>
