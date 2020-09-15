@@ -64,6 +64,8 @@ import Car_ from '@helsenorge/designsystem-react/components/Icons/Car';
 export const Car = Car_;
 import Check_ from '@helsenorge/designsystem-react/components/Icons/Check';
 export const Check = Check_;
+import Chest_ from '@helsenorge/designsystem-react/components/Icons/Chest';
+export const Chest = Chest_;
 import ChevronDown_ from '@helsenorge/designsystem-react/components/Icons/ChevronDown';
 export const ChevronDown = ChevronDown_;
 import ChevronLeft_ from '@helsenorge/designsystem-react/components/Icons/ChevronLeft';
@@ -236,6 +238,8 @@ import MuscleLeg_ from '@helsenorge/designsystem-react/components/Icons/MuscleLe
 export const MuscleLeg = MuscleLeg_;
 import Mushroom_ from '@helsenorge/designsystem-react/components/Icons/Mushroom';
 export const Mushroom = Mushroom_;
+import MusselsAndSalt_ from '@helsenorge/designsystem-react/components/Icons/MusselsAndSalt';
+export const MusselsAndSalt = MusselsAndSalt_;
 import NoFilter_ from '@helsenorge/designsystem-react/components/Icons/NoFilter';
 export const NoFilter = NoFilter_;
 import Notepad_ from '@helsenorge/designsystem-react/components/Icons/Notepad';
@@ -300,6 +304,8 @@ import Publication_ from '@helsenorge/designsystem-react/components/Icons/Public
 export const Publication = Publication_;
 import Puzzle_ from '@helsenorge/designsystem-react/components/Icons/Puzzle';
 export const Puzzle = Puzzle_;
+import Receipt_ from '@helsenorge/designsystem-react/components/Icons/Receipt';
+export const Receipt = Receipt_;
 import Receptionist_ from '@helsenorge/designsystem-react/components/Icons/Receptionist';
 export const Receptionist = Receptionist_;
 import Referral_ from '@helsenorge/designsystem-react/components/Icons/Referral';
@@ -370,6 +376,9 @@ import Window_ from '@helsenorge/designsystem-react/components/Icons/Window';
 export const Window = Window_;
 import WordDocument_ from '@helsenorge/designsystem-react/components/Icons/WordDocument';
 export const WordDocument = WordDocument_;
+import WorkSuitcase_ from '@helsenorge/designsystem-react/components/Icons/WorkSuitcase';
+export const WorkSuitcase = WorkSuitcase_;
+
 import X_ from '@helsenorge/designsystem-react/components/Icons/X';
 export const X = X_;
 import XmlFile_ from '@helsenorge/designsystem-react/components/Icons/XmlFile';
@@ -411,6 +420,7 @@ export const allSvgIcons = [
   {module: Cancer, name: 'Cancer'},
   {module: Car, name: 'Car'},
   {module: Check, name: 'Check'},
+  {module: Chest, name: 'Chest'},
   {module: ChevronDown, name: 'ChevronDown'},
   {module: ChevronLeft, name: 'ChevronLeft'},
   {module: ChevronRight, name: 'ChevronRight'},
@@ -497,6 +507,7 @@ export const allSvgIcons = [
   {module: MuscleBack, name: 'MuscleBack'},
   {module: MuscleLeg, name: 'MuscleLeg'},
   {module: Mushroom, name: 'Mushroom'},
+  {module: MusselsAndSalt, name: 'MusselsAndSalt'},
   {module: NoFilter, name: 'NoFilter'},
   {module: Notepad, name: 'Notepad'},
   {module: PaintRoller, name: 'PaintRoller'},
@@ -529,6 +540,7 @@ export const allSvgIcons = [
   {module: Psychosis, name: 'Psychosis'},
   {module: Publication, name: 'Publication'},
   {module: Puzzle, name: 'Puzzle'},
+  {module: Receipt, name: 'Receipt'},
   {module: Receptionist, name: 'Receptionist'},
   {module: Referral, name: 'Referral'},
   {module: Refresh, name: 'Refresh'},
@@ -564,6 +576,7 @@ export const allSvgIcons = [
   {module: Wallet, name: 'Wallet'},
   {module: Window, name: 'Window'},
   {module: WordDocument, name: 'WordDocument'},
+  {module: WorkSuitcase, name: 'WorkSuitcase'},
   {module: X, name: 'X'},
   {module: XmlFile, name: 'XmlFile'},
   {module: YouTube, name: 'YouTube'},
