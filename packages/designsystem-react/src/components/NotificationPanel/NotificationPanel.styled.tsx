@@ -61,19 +61,19 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
       box-shadow: 0 0.3rem 0.6rem -0.1rem rgba(0, 0, 0, 0.16);
     `}
     ${props =>
-      props.label &&
-      css`
-        padding: 2rem 1rem;
-        ${StyledNotificationPanelContent} {
-          ${props.variant === 'alert' &&
-          css`
-            color: ${getColor('cherry', 500)};
-          `};
-          display: flex;
-          align-items: center;
-          margin: 0 1rem;
-        }
-      `}
+    props.label &&
+    css`
+      padding: 2rem 1rem;
+      ${StyledNotificationPanelContent} {
+        ${props.variant === 'alert' &&
+        css`
+          color: ${getColor('cherry', 500)};
+        `};
+        display: flex;
+        align-items: center;
+        margin: 0 1rem;
+      }
+    `}
 `;
 
 const StyledCloseButton = styled('button')`

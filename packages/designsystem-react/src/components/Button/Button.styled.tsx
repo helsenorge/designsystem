@@ -216,22 +216,22 @@ export const StyledButton = styled('button')<StyledButtonProps>`
         margin-right: ${props.large ? '2.5rem' : '1.5rem'};
       }
     `}
-    ${props =>
-      props.hasIcon &&
-      !props.loader &&
-      props.variant === 'borderless' &&
-      css`
-        .hnds-style-icon:first-child {
-          margin-right: ${props.large ? '0.5rem' : '0.125rem'};
-          @media ${screen.md} {
-            margin-right: 0.75rem;
-          }
+  ${props =>
+    props.hasIcon &&
+    !props.loader &&
+    props.variant === 'borderless' &&
+    css`
+      .hnds-style-icon:first-child {
+        margin-right: ${props.large ? '0.5rem' : '0.125rem'};
+        @media ${screen.md} {
+          margin-right: 0.75rem;
         }
-        .hnds-style-icon:last-child {
-          margin-left: ${props.large ? '0.5rem' : '0.125rem'};
-          @media ${screen.md} {
-            margin-left: 0.75rem;
-          }
+      }
+      .hnds-style-icon:last-child {
+        margin-left: ${props.large ? '0.5rem' : '0.125rem'};
+        @media ${screen.md} {
+          margin-left: 0.75rem;
         }
-      `}
+      }
+    `}
 `;
