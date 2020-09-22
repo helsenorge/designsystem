@@ -378,7 +378,6 @@ import WordDocument_ from '@helsenorge/designsystem-react/components/Icons/WordD
 export const WordDocument = WordDocument_;
 import WorkSuitcase_ from '@helsenorge/designsystem-react/components/Icons/WorkSuitcase';
 export const WorkSuitcase = WorkSuitcase_;
-
 import X_ from '@helsenorge/designsystem-react/components/Icons/X';
 export const X = X_;
 import XmlFile_ from '@helsenorge/designsystem-react/components/Icons/XmlFile';

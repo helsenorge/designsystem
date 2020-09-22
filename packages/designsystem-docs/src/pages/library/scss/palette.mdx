@@ -1,0 +1,33 @@
+---
+title: Palette
+path: /library/scss/palette
+date: 2020-09-21
+---
+
+import MDXCustom from '../../../components/markdown/MDXCustom';
+
+# Palette
+
+<MDXCustom.Preamble>
+  The color variables can be imported from the designsystem theme (js) or as sass variables.
+</MDXCustom.Preamble>
+
+## Usage
+
+```
+JS
+import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+const mycolor = hndsTheme.palette[color];
+```
+
+```
+SCSS
+@import '~@helsenorge/designsystem-react/scss/_palette.scss';
+
+
+```
+
+## Overview
+
+<p>Click on a color to copy the scss variable</p>
+<MDXCustom.ColorWall></MDXCustom.ColorWall>

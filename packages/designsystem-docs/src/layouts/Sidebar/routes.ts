@@ -25,6 +25,10 @@ const libraryRoutes = [
         label: 'Typography',
         path: '/library/scss/typography',
       },
+      {
+        label: 'Palette',
+        path: '/library/scss/palette',
+      },
     ],
   },
 

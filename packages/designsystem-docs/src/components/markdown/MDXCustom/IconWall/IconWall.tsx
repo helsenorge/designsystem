@@ -6,21 +6,22 @@ import * as SvgIcons from './allIconsImports';
 
 import Checkbox from '../../../CheckBox/CheckBox';
 import {SvgIcon} from '@helsenorge/designsystem-react/components/Icons/Icon';
+import {theme as hndsTheme} from '@helsenorge/designsystem-react';
 
 type IconImport = {module: SvgIcon; name: string};
 
 const StyledIconTile = styled('div')`
   background-color: #f6f5f2;
   border: 1px solid #dedbd3;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 1rem;
 `;
 
 const StyledIconName = styled('span')`
-  margin-top: 1rem;
+  margin: 1rem auto;
   color: #9b978c;
 `;
 
@@ -96,10 +97,12 @@ function IconWall() {
       <IconWallFilter onFilterChange={e => setFilterProps(e)} />
       <StyledIconWall>
         {SvgIcons.allSvgIcons.filter(filterIcons).map((iconImport: IconImport, index) => (
-          <StyledIconTile>
-            <Icon isHovered={filterProps.isHovered} svgIcon={iconImport.module} />
-            <StyledIconName>{iconImport.name}</StyledIconName>
-          </StyledIconTile>
+          <div>
+            <StyledIconTile>
+              <Icon isHovered={filterProps.isHovered} svgIcon={iconImport.module} />
+              <StyledIconName>{iconImport.name}</StyledIconName>
+            </StyledIconTile>
+          </div>
         ))}
       </StyledIconWall>
     </>
@@ -108,9 +111,12 @@ function IconWall() {
 
 const StyledIconWall = styled('div')`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 1rem;
+  grid-row-gap: 1rem;
   margin: 1rem 0;
+  @media ${hndsTheme.screen.sm} {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1rem;
+  }
 `;
 
 export default IconWall;
