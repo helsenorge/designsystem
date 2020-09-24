@@ -1,0 +1,25 @@
+backend:
+  name: git-gateway
+  branch: feature/cms
+  commit_messages:
+    create: 'Create {{collection}} “{{slug}}”'
+    update: 'Update {{collection}} “{{slug}}”'
+    delete: 'Delete {{collection}} “{{slug}}”'
+    uploadMedia: '[skip ci] Upload “{{path}}”'
+    deleteMedia: '[skip ci] Delete “{{path}}”'
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: 'pages'
+    label: 'Pages'
+    files:
+      - file: 'src/pages/about/index.md'
+        label: 'About'
+        name: 'about'
+        fields:
+          - {label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page'}
+          - {label: 'Title', name: 'title', widget: 'string'}
+          - {label: 'Preamble', name: 'preamble', widget: 'string'}
+          - {label: 'Body', name: 'body', widget: 'markdown'}
