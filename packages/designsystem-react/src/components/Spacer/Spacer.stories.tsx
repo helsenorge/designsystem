@@ -54,5 +54,9 @@ stories.add('Default', () => (
     <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
       <Spacer size={'5xl'} />
     </div>
+    <p>{'6xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'6xl'} />
+    </div>
   </div>
 ));
