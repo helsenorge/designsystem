@@ -55,10 +55,15 @@ test('displays 3xl spacer', (): void => {
 
 test('displays 4xl spacer', (): void => {
   const {container} = render(<Spacer size="4xl" />);
-  expect(container.querySelector('span')).toHaveStyle('height: 7rem');
+  expect(container.querySelector('span')).toHaveStyle('height: 6rem');
 });
 
 test('displays 5xl spacer', (): void => {
   const {container} = render(<Spacer size="5xl" />);
+  expect(container.querySelector('span')).toHaveStyle('height: 7rem');
+});
+
+test('displays 6xl spacer', (): void => {
+  const {container} = render(<Spacer size="6xl" />);
   expect(container.querySelector('span')).toHaveStyle('height: 8rem');
 });
