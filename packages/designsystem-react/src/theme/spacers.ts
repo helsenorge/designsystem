@@ -1,4 +1,4 @@
-export type SpacerSizes = '3xs' | '2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
+export type SpacerSizes = '3xs' | '2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
 export const spacer = 1;
 
@@ -13,6 +13,7 @@ export const spacers = {
   7: spacer * 3,
   8: spacer * 4,
   9: spacer * 5,
-  10: spacer * 7,
-  11: spacer * 8,
+  10: spacer * 6,
+  11: spacer * 7,
+  12: spacer * 8,
 };
