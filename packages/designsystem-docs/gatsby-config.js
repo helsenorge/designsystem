@@ -7,7 +7,6 @@ module.exports = {
     author: '@helsenorge',
   },
   plugins: [
-    'gatsby-plugin-netlify-cms',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
     {
@@ -54,6 +53,12 @@ module.exports = {
         background_color: '#3A0B53',
         theme_color: '#3A0B53',
         display: 'minimal-ui',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-netlify-cms',
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.tsx`,
       },
     },
   ],

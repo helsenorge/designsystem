@@ -3,8 +3,10 @@ import {MDXProvider} from '@mdx-js/react';
 import styled from 'styled-components';
 import {theme as hndsTheme} from '@helsenorge/designsystem-react';
 import MDXOverride from './markdown/MDXOverride';
+import {UIComponents} from './markdown/MDXCustom';
 
 const overridedMDXComponents = {
+  ...UIComponents,
   h1: MDXOverride.H1,
   h2: MDXOverride.H2,
   h3: MDXOverride.H3,

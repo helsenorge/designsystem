@@ -16,3 +16,10 @@ MDXCustom.LiveComponent = LiveComponent;
 MDXCustom.ComponentProps = ComponentProps;
 
 export default MDXCustom;
+
+export const UIComponents = {
+  ColorWall,
+  Preamble,
+  IconWall,
+  LiveComponent,
+};
