@@ -25,6 +25,8 @@ export const mapSpacerValue = (spacerSize: SpacerSizes): number => {
       return spacers[10];
     case '5xl':
       return spacers[11];
+    case '6xl':
+      return spacers[12];
     default:
       return spacers[4];
   }
