@@ -38,7 +38,7 @@ collections:
     label: 'Brand'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/pages/brand'
+    folder: 'packages/designsystem-docs/src/templatePages/brand'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -47,7 +47,7 @@ collections:
     label: 'Editorial Guidelines'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/pages/editorial'
+    folder: 'packages/designsystem-docs/src/templatePages/editorial'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -56,7 +56,7 @@ collections:
     label: 'Marketing material'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/pages/marketing-material'
+    folder: 'packages/designsystem-docs/src/templatePages/marketing-material'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -65,7 +65,7 @@ collections:
     label: 'Design Patterns'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/pages/patterns'
+    folder: 'packages/designsystem-docs/src/templatePages/patterns'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -75,13 +75,13 @@ collections:
     extension: mdx
     format: frontmatter
     files:
-      - file: 'packages/designsystem-docs/src/pages/about.mdx'
+      - file: 'packages/designsystem-docs/src/templatePages/about.mdx'
         label: 'About'
         name: 'about'
         slug: '{{slug}}'
         fields: *ABOUT
         files:
-      - file: 'packages/designsystem-docs/src/pages/contribute.mdx'
+      - file: 'packages/designsystem-docs/src/templatePages/contribute.mdx'
         label: 'Contribute'
         name: 'contribute'
         slug: '{{slug}}'

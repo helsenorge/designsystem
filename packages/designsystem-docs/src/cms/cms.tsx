@@ -1,5 +1,5 @@
 import React from 'react';
-import CMS, {init} from 'netlify-cms-app';
+import CMS from 'netlify-cms-app';
 
 import AboutPagePreview from './preview-templates/about-page-preview';
 import {MdxControl, MdxPreview} from 'netlify-cms-widget-mdx';
@@ -43,4 +43,3 @@ CMS.registerPreviewTemplate('brand', SimplePagePreview);
 CMS.registerPreviewTemplate('editorial', SimplePagePreview);
 CMS.registerPreviewTemplate('marketing-material', SimplePagePreview);
 CMS.registerPreviewTemplate('patterns', SimplePagePreview);
-init();
