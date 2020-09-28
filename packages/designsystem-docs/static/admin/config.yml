@@ -41,9 +41,7 @@ collections:
     folder: 'packages/designsystem-docs/src/cms-pages/brand'
     create: true
     slug: '{{slug}}'
-    fields:
-      - {label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'simple-page'}
-      - {label: 'Tittel', name: 'title', widget: 'string'}
+    fields: *PAGE
 
   - name: 'editorial'
     label: 'Editorial Guidelines'
