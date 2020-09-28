@@ -1,8 +1,7 @@
 backend:
   name: github
-  local_backend: true
   repo: helsenorge/designsystem
-  branch: feature/cms
+  branch: develop
   commit_messages:
     create: 'Create {{collection}} “{{slug}}”'
     update: 'Update {{collection}} “{{slug}}”'
@@ -31,6 +30,7 @@ project: &ABOUT
 project2: &PAGE
   - {label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'simple-page'}
   - {label: 'Tittel', name: 'title', widget: 'string'}
+  - {label: 'Ingress', name: 'preamble', widget: 'string'}
   - <<: *BODY
 
 collections:
@@ -38,16 +38,18 @@ collections:
     label: 'Brand'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/templatePages/brand'
+    folder: 'packages/designsystem-docs/src/cms-pages/brand'
     create: true
     slug: '{{slug}}'
-    fields: *PAGE
+    fields:
+      - {label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'simple-page'}
+      - {label: 'Tittel', name: 'title', widget: 'string'}
 
   - name: 'editorial'
     label: 'Editorial Guidelines'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/templatePages/editorial'
+    folder: 'packages/designsystem-docs/src/cms-pages/editorial'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -56,7 +58,7 @@ collections:
     label: 'Marketing material'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/templatePages/marketing-material'
+    folder: 'packages/designsystem-docs/src/cms-pages/marketing-material'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -65,7 +67,7 @@ collections:
     label: 'Design Patterns'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/templatePages/patterns'
+    folder: 'packages/designsystem-docs/src/cms-pages/patterns'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -75,14 +77,33 @@ collections:
     extension: mdx
     format: frontmatter
     files:
-      - file: 'packages/designsystem-docs/src/templatePages/about.mdx'
+      - file: 'packages/designsystem-docs/src/cms-pages/about.mdx'
         label: 'About'
         name: 'about'
         slug: '{{slug}}'
         fields: *ABOUT
-        files:
-      - file: 'packages/designsystem-docs/src/templatePages/contribute.mdx'
+      - file: 'packages/designsystem-docs/src/cms-pages/contribute.mdx'
         label: 'Contribute'
         name: 'contribute'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/principles.mdx'
+        label: 'Principles'
+        name: 'principles'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/privacy.mdx'
+        label: 'Privacy'
+        name: 'privacy'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/roadmap.mdx'
+        label: 'Roadmap'
+        name: 'roadmap'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/terms-of-use.mdx'
+        label: 'Terms of use'
+        name: 'terms-of-use'
         slug: '{{slug}}'
         fields: *PAGE

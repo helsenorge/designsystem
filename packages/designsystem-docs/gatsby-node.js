@@ -31,7 +31,7 @@ exports.createPages = ({actions, graphql}) => {
     posts.forEach(edge => {
       const id = edge.node.id;
       const templateKey = edge.node.frontmatter.templateKey;
-      const component = path.resolve(`src/templates/${templateKey ? String(templateKey) : 'simple-page'}.tsx`);
+      const component = path.resolve(`src/cms-templates/${templateKey ? String(templateKey) : 'simple-page'}.tsx`);
       createPage({
         path: edge.node.fields.slug,
         component,

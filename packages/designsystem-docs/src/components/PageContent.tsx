@@ -6,16 +6,8 @@ import MDXOverride from './markdown/MDXOverride';
 import {UIComponents} from './markdown/MDXCustom';
 
 const overridedMDXComponents = {
+  ...MDXOverride,
   ...UIComponents,
-  h1: MDXOverride.H1,
-  h2: MDXOverride.H2,
-  h3: MDXOverride.H3,
-  h4: MDXOverride.H4,
-  img: MDXOverride.Image,
-  table: MDXOverride.Table,
-  tr: MDXOverride.TableRow,
-  th: MDXOverride.TableHeader,
-  td: MDXOverride.TableCell,
 };
 
 interface PageContentProps {

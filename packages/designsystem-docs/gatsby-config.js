@@ -33,7 +33,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/templatePages`, // mdx-filer som skal benytte page template må ligge her (https://github.com/gatsbyjs/gatsby/issues/24164)
+        path: `${__dirname}/src/cms-pages`, // mdx-filer som skal benytte page template må ligge her (https://github.com/gatsbyjs/gatsby/issues/24164)
         name: 'templatePages',
       },
     },

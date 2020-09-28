@@ -3,6 +3,7 @@ import {graphql} from 'gatsby';
 import {MDXRenderer} from 'gatsby-plugin-mdx';
 import {MarkdownRemark} from 'types/graphql-types';
 
+import {H1} from '../components/markdown/MDXOverride/Heading';
 import Preamble from '../components/markdown/MDXCustom/Preamble';
 import Page from '../layouts/Page';
 
@@ -10,21 +11,21 @@ interface AboutPageTemplateProps {
   title?: string | null;
   preamble?: string | null;
   pdf?: string | null;
-  content?: JSX.Element;
+  content?: JSX.Element | null;
 }
 
 export const AboutPageTemplate: React.FC<AboutPageTemplateProps> = ({title, content, preamble, pdf}) => {
   return (
-    <section>
-      <h1>{title}</h1>
+    <article>
+      <H1>{title}</H1>
       <Preamble>{preamble}</Preamble>
       {pdf && (
         <p>
           Fil: <a href={pdf}>{pdf}</a>
         </p>
       )}
-      {content}
-    </section>
+      <section>{content}</section>
+    </article>
   );
 };
 

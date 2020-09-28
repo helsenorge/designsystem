@@ -1,19 +1,18 @@
 import React from 'react';
+import {PreviewTemplateComponentProps} from 'netlify-cms-core';
 
-import {AboutPageTemplate} from '../../templates/about-page';
+import {AboutPageTemplate} from '../../cms-templates/about-page';
+import PreviewWrapper from '../preview-wrapper';
 
-interface AboutPagePreviewProps {
-  entry: {getIn: (data: Array<string>) => string};
-  widgetFor: (content: string) => JSX.Element;
-}
-
-const AboutPagePreview = ({entry, widgetFor}: AboutPagePreviewProps): JSX.Element => (
-  <AboutPageTemplate
-    title={entry.getIn(['data', 'title'])}
-    preamble={entry.getIn(['data', 'preamble'])}
-    pdf={entry.getIn(['data', 'pdf'])}
-    content={widgetFor('body')}
-  />
+const AboutPagePreview = ({entry, widgetFor}: PreviewTemplateComponentProps): JSX.Element => (
+  <PreviewWrapper>
+    <AboutPageTemplate
+      title={entry.getIn(['data', 'title'])}
+      preamble={entry.getIn(['data', 'preamble'])}
+      pdf={entry.getIn(['data', 'pdf'])}
+      content={widgetFor('body')}
+    />
+  </PreviewWrapper>
 );
 
 export default AboutPagePreview;
