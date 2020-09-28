@@ -20,14 +20,7 @@ module.exports = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         defaultLayouts: {default: path.resolve('./src/layouts/Page.tsx')},
-        extensions: ['.mdx', '.md'],
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/static/img`,
-        name: 'uploads',
+        extensions: ['.mdx'],
       },
     },
     {
@@ -42,14 +35,6 @@ module.exports = {
       options: {
         path: `${__dirname}/src/templatePages`, // mdx-filer som skal benytte page template må ligge her (https://github.com/gatsbyjs/gatsby/issues/24164)
         name: 'templatePages',
-      },
-    },
-
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/images`,
-        name: 'images',
       },
     },
     {
