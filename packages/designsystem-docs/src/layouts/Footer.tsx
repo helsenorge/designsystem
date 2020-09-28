@@ -108,8 +108,8 @@ function Footer() {
               <StyledFooterLinkGroup>
                 <FooterLink to="/about">About Helsenorge Design</FooterLink>
                 <FooterLink to="/contribute">Contribution</FooterLink>
-                <FooterLink to="/Privacy">Privacy</FooterLink>
-                <FooterLink to="/Terms of use">Terms of use</FooterLink>
+                <FooterLink to="/privacy">Privacy</FooterLink>
+                <FooterLink to="/terms-of-use">Terms of use</FooterLink>
               </StyledFooterLinkGroup>
             </Col>
             <Col md sm={12}>
