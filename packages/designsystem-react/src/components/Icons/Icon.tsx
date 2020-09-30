@@ -1,39 +1,52 @@
 import React from 'react';
-import {PaletteNames} from '../../theme/palette';
-import {getColor} from '../../theme/currys/color';
 
-type SvgIcon = React.ForwardRefExoticComponent<IconRawProps & React.RefAttributes<unknown>>;
-type IconColors = PaletteNames;
+type SvgIcon = React.FC<SvgPathProps>;
 
 interface IconProps {
   svgIcon: SvgIcon;
-  hoverType?: SvgIcon;
   size?: number;
-  color?: IconColors;
+  color?: string;
+  hoverColor?: string;
   className?: string;
+  hoverType?: SvgIcon;
   isHovered?: boolean;
 }
 
-interface IconRawProps {
-  color: string;
-  className?: string;
-  hoverColor: string;
-  size?: number;
-  isHovered?: boolean;
+interface SvgPathProps {
+  isExtraSmall: boolean;
+  isHovered: boolean;
 }
 
 const Icon = React.forwardRef((props: IconProps, ref: any) => {
-  const {svgIcon, className = '', size = 48, color = 'black', isHovered = false} = props;
-  return React.createElement(svgIcon, {
-    size,
-    color: getColor(color, 600),
-    hoverColor: getColor(color, 700),
-    className,
+  const {
+    svgIcon,
+    className = '',
+    size = 48,
+    color = 'black',
+    hoverColor = 'black',
+    isHovered = false,
+    ...other
+  } = props;
+
+  const svgRaw = React.createElement(svgIcon, {
+    isExtraSmall: size <= 38,
     isHovered,
-    ref: ref,
   });
+
+  return (
+    <svg
+      ref={ref}
+      className={`hnds-style-icon ${className}`}
+      viewBox="0 0 48 48"
+      width={size}
+      height={size}
+      fill={isHovered ? hoverColor : color}
+      {...other}>
+      {svgRaw}
+    </svg>
+  );
 });
 
 Icon.displayName = 'Icon';
 
-export {Icon, IconProps, IconRawProps, SvgIcon, IconColors};
+export {Icon, IconProps, SvgPathProps, SvgIcon};

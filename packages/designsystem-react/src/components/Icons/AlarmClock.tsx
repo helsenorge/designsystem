@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const AlarmClock = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const AlarmClock: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <g fillRule="evenodd" transform="translate(11 11)">
       <polygon points="13.65 14.937 8.77 14.937 8.77 13.637 12.35 13.637 12.35 8.775 13.65 8.775" />
@@ -40,18 +38,7 @@ const AlarmClock = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     />
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+};
 
 export default AlarmClock;

@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const ChildPlaying = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const ChildPlaying: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <g fillRule="evenodd" transform="translate(9 6)">
       <path d="M13.6929 1.3367C15.6259 1.3367 17.1979 2.9087 17.1979 4.8427 17.1979 6.7747 15.6259 8.3477 13.6929 8.3477 11.7589 8.3477 10.1869 6.7747 10.1869 4.8427 10.1869 2.9087 11.7589 1.3367 13.6929 1.3367M13.6929 9.6487C16.3419 9.6487 18.4989 7.4917 18.4989 4.8427 18.4989 2.1917 16.3419.0357 13.6929.0357 11.0429.0357 8.8859 2.1917 8.8859 4.8427 8.8859 7.4917 11.0429 9.6487 13.6929 9.6487M25.7642 35.0769C24.3422 35.0769 23.1862 33.9209 23.1862 32.4989 23.1862 31.0769 24.3422 29.9209 25.7642 29.9209 27.1862 29.9209 28.3432 31.0769 28.3432 32.4989 28.3432 33.9209 27.1862 35.0769 25.7642 35.0769M25.7642 28.9209C23.7912 28.9209 22.1862 30.5259 22.1862 32.4989 22.1862 34.4719 23.7912 36.0769 25.7642 36.0769 27.7382 36.0769 29.3432 34.4719 29.3432 32.4989 29.3432 30.5259 27.7382 28.9209 25.7642 28.9209" />
@@ -18,18 +16,7 @@ const ChildPlaying = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     </g>
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isHovered ? normalHover : normal;
+};
 
 export default ChildPlaying;

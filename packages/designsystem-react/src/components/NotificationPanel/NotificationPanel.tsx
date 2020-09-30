@@ -1,6 +1,6 @@
 import React from 'react';
 import {palette} from '../../theme/palette';
-import Icon from '../Icons';
+import Icon, {SvgIcon} from '../Icons';
 import {useHover} from '../..';
 import {
   StyledNotificationPanelFluidWrapper,
@@ -39,11 +39,11 @@ export const variantToColorMap = {
 };
 
 export const variantToIconMap = {
-  info: <InfoSignStroke color={palette.kiwi900} hoverColor={palette.kiwi900} />,
-  warn: <AlertSignStroke color="black" hoverColor="black" />,
-  alert: <AlertSignFill color={palette.cherry500} hoverColor={palette.cherry500} />,
-  alertLabel: <AlertSignStroke color={palette.cherry500} hoverColor={palette.cherry500} />,
-  crisis: <AlertSignFill color={palette.banana200} hoverColor={palette.banana200} />,
+  info: <Icon svgIcon={InfoSignStroke} color={palette.kiwi900} hoverColor={palette.kiwi900} />,
+  warn: <Icon svgIcon={AlertSignStroke} color="black" hoverColor="black" />,
+  alert: <Icon svgIcon={AlertSignFill} color={palette.cherry500} hoverColor={palette.cherry500} />,
+  alertLabel: <Icon svgIcon={AlertSignStroke} color={palette.cherry500} hoverColor={palette.cherry500} />,
+  crisis: <Icon svgIcon={AlertSignFill} color={palette.banana200} hoverColor={palette.banana200} />,
 };
 
 const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: any) => {

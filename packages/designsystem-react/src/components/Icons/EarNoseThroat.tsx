@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const EarNoseThroat = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const EarNoseThroat: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <g fillRule="evenodd" transform="translate(8 7)">
       <path d="M18.6035 13.4028C18.0405 13.4028 17.5835 13.8598 17.5835 14.4228 17.5835 14.9858 18.0405 15.4428 18.6035 15.4428 19.1665 15.4428 19.6245 14.9858 19.6245 14.4228 19.6245 13.8598 19.1665 13.4028 18.6035 13.4028M8.6025 20.0376C8.4255 20.0936 8.2375 20.0726 8.0755 19.9856 7.9125 19.8986 7.7925 19.7536 7.7395 19.5766L6.6135 15.8776C6.3755 15.0976 6.8185 14.2696 7.5975 14.0326 8.0665 13.8906 8.5785 13.9896 8.9605 14.3006L9.5895 13.5226C8.9495 13.0036 8.0965 12.8396 7.3065 13.0756 5.9995 13.4746 5.2585 14.8606 5.6565 16.1686L6.7825 19.8676C6.9145 20.3006 7.2065 20.6556 7.6045 20.8686 7.8535 21.0016 8.1245 21.0686 8.3995 21.0686 8.5645 21.0686 8.7305 21.0436 8.8935 20.9946 9.4335 20.8306 9.8535 20.4106 10.0195 19.8716L9.0625 19.5786C8.9955 19.7996 8.8235 19.9706 8.6025 20.0376" />
@@ -20,18 +18,7 @@ const EarNoseThroat = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     </g>
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isHovered ? normalHover : normal;
+};
 
 export default EarNoseThroat;

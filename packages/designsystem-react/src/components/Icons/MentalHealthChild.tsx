@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const MentalHealthChild = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const MentalHealthChild: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <g fillRule="evenodd" transform="translate(11 10)">
       <path d="M24.1042,18.3319 C23.7992,18.9579 22.6812,19.3759 22.3142,19.4729 L21.8472,19.5959 L21.8292,20.0759 C21.7122,23.0709 20.4432,23.3069 18.9722,23.5789 C17.8562,23.7849 16.3282,24.0679 16.4002,26.1639 C16.4392,27.2999 16.4222,29.0159 16.4102,29.9359 L5.3802,29.9359 L5.3802,25.0429 C5.3802,22.6359 4.4672,20.9639 3.5002,19.1929 C2.4382,17.2479 1.3392,15.2359 1.3392,11.9309 C1.3392,5.5379 6.7202,1.5809 11.7072,1.5809 C14.8082,1.5809 17.4472,2.5929 19.1362,4.4319 C21.0202,6.4809 21.8062,9.5249 21.4722,13.4779 C21.3762,14.6099 22.2842,15.5479 23.0842,16.3759 C23.5022,16.8089 23.9362,17.2559 24.0842,17.6009 C24.2432,17.9679 24.1712,18.1939 24.1042,18.3319 M25.2782,17.0869 C25.0362,16.5229 24.5412,16.0129 24.0182,15.4719 C23.4112,14.8439 22.7212,14.1309 22.7672,13.5879 C23.1332,9.2579 22.2342,5.8809 20.0932,3.5519 C18.1552,1.4419 15.1762,0.2799 11.7072,0.2799 C4.5002,0.2799 0.0392,6.3279 0.0392,11.9309 C0.0392,15.5679 1.2722,17.8249 2.3592,19.8159 C3.2832,21.5069 4.0802,22.9679 4.0802,25.0429 L4.0802,31.2359 L17.6862,31.2359 L17.6992,30.5989 C17.7022,30.4839 17.7552,27.7639 17.6992,26.1189 C17.6672,25.1849 18.0112,25.0789 19.2082,24.8569 C20.6482,24.5909 22.7942,24.1929 23.1002,20.5839 C23.7312,20.3529 24.8162,19.8349 25.2712,18.9049 C25.5462,18.3429 25.5482,17.7139 25.2782,17.0869" />
@@ -18,18 +16,7 @@ const MentalHealthChild = React.forwardRef((svgProps: IconRawProps, ref: any) =>
     </g>
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isHovered ? normalHover : normal;
+};
 
 export default MentalHealthChild;

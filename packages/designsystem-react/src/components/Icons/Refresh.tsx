@@ -1,10 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const Refresh = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
-
+const Refresh: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <path d="M24.1368,10.082 C28.6204902,10.082 32.7507684,12.1879701 35.3970736,15.6875337 L35.6141397,15.9823746 L34.5574603,16.7396254 C32.1648751,13.400975 28.3213888,11.382 24.1368,11.382 C17.0609907,11.382 11.3248,17.1187794 11.3248,24.195 C11.3248,31.2712206 17.0609907,37.008 24.1368,37.008 C30.1452351,37.008 35.2983917,32.8404899 36.6228316,27.0822512 L36.6889876,26.7777311 L37.9626124,27.0382689 C36.6293945,33.555633 30.8711897,38.308 24.1368,38.308 C16.3429907,38.308 10.0248,31.9891609 10.0248,24.195 C10.0248,16.4008391 16.3429907,10.082 24.1368,10.082 Z M35.0671238,10.3123342 L36.3656762,10.3736658 L36.0294246,17.493 L29.1944,17.493 L29.1944,16.193 L34.789,16.192 L35.0671238,10.3123342 Z" />
   );
@@ -27,18 +24,7 @@ const Refresh = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     />
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+};
 
 export default Refresh;

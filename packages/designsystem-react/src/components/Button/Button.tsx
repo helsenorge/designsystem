@@ -1,7 +1,7 @@
 import React from 'react';
 import {HTMLButtonProps, HTMLAnchorProps} from '../../constants';
 import {StyledButton, StyledButtonContent, StyledLeftFluidContent, StyledButtonWrapper} from './Button.styled';
-import {IconProps, IconColors} from './../Icons/';
+import {IconProps} from './../Icons/';
 import Loader from '../Loader';
 import {PaletteNames} from '../../theme/palette';
 import {useHover} from '../../hooks/useHover';
@@ -99,7 +99,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   function renderIcon(
     iconElement: React.ReactElement<IconProps> | {} | undefined | null,
     size: number,
-    color: IconColors,
+    color: string,
     hover: boolean,
   ): React.ReactElement<IconProps> | React.Component<IconProps> | null {
     return iconElement && Object.keys(iconElement).length > 0

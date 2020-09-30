@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const PersonRelaxing = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const PersonRelaxing: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <g fillRule="evenodd" transform="translate(7 5)">
       <path d="M5.2869 2.248C6.9699 2.248 8.3379 3.617 8.3379 5.3 8.3379 6.982 6.9699 8.351 5.2869 8.351 3.6039 8.351 2.2349 6.982 2.2349 5.3 2.2349 3.617 3.6039 2.248 5.2869 2.248M5.2869 9.651C7.6859 9.651 9.6389 7.699 9.6389 5.3 9.6389 2.9 7.6859.947 5.2869.947 2.8879.947.9339 2.9.9339 5.3.9339 7.699 2.8879 9.651 5.2869 9.651M30.7078 34.5908C30.5948 35.0198 30.2818 35.3688 29.7498 35.6578 29.2928 35.9058 27.8988 36.6618 26.5328 34.2868L22.0528 26.7688 14.0208 26.7688C12.1948 26.7688 10.5398 25.6208 9.8998 23.9118L6.7948 15.6178C6.4818 14.7868 6.4378 14.1138 6.6628 13.6188 6.8468 13.2158 7.2268 12.9038 7.7908 12.6948 8.1788 12.5498 8.5238 12.4748 8.8378 12.4748 9.7748 12.4748 10.4138 13.1468 10.9668 14.6198L14.0918 22.7528 23.0338 22.7528C23.8618 22.7528 24.7408 23.3308 25.2738 24.2258L30.0478 32.2348C30.6368 33.1798 30.8648 33.9938 30.7078 34.5908M31.1578 31.5578L26.3918 23.5598C25.6278 22.2788 24.3108 21.4518 23.0338 21.4518L14.9838 21.4518 12.1818 14.1578C11.2018 11.5438 9.5738 10.6418 7.3358 11.4758 6.4368 11.8118 5.8118 12.3518 5.4798 13.0798 5.1058 13.9018 5.1398 14.9088 5.5778 16.0738L8.6838 24.3668C9.5108 26.5808 11.6548 28.0698 14.0208 28.0698L21.3138 28.0698 25.4108 34.9448C26.2908 36.4738 27.4318 37.2678 28.6768 37.2678 29.2258 37.2678 29.7948 37.1128 30.3708 36.8008 31.2228 36.3368 31.7588 35.7048 31.9658 34.9218 32.2198 33.9568 31.9448 32.8208 31.1578 31.5578" />
@@ -18,18 +16,7 @@ const PersonRelaxing = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     </g>
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isHovered ? normalHover : normal;
+};
 
 export default PersonRelaxing;

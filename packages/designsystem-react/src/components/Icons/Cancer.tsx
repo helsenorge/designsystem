@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const Cancer = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const Cancer: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <g fillRule="evenodd" transform="translate(7 6)">
       <path d="M17.2644,8.9799 C15.2734,8.9799 13.6544,7.3609 13.6544,5.3699 C13.6544,4.4049 14.0294,3.4979 14.7114,2.8159 C15.3924,2.1339 16.2994,1.7589 17.2644,1.7589 C19.2554,1.7589 20.8744,3.3779 20.8744,5.3699 C20.8744,7.3609 19.2554,8.9799 17.2644,8.9799 M22.1754,5.3699 C22.1754,2.6619 19.9724,0.4589 17.2644,0.4589 C15.9524,0.4589 14.7184,0.9699 13.7924,1.8969 C12.8654,2.8239 12.3534,4.0569 12.3534,5.3699 C12.3534,8.0779 14.5564,10.2809 17.2644,10.2809 C19.9724,10.2809 22.1754,8.0779 22.1754,5.3699" />
@@ -26,18 +24,7 @@ const Cancer = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     </g>
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isHovered ? normalHover : normal;
+};
 
 export default Cancer;

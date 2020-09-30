@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const Search = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const Search: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <path d="M21.2765868,7.7379884 C28.5478513,7.7379884 34.4423759,13.6325129 34.4423759,20.9037774 C34.4423759,23.1263835 33.8916266,25.2203552 32.919156,27.0566648 L39.1874127,33.324774 C40.721762,34.8591233 40.721762,37.3467951 39.1874127,38.8811444 C37.7010118,40.3675454 35.31994,40.4139954 33.7776222,39.0204945 L33.6310422,38.8811444 L27.3421242,32.5921859 C25.5268747,33.5361062 23.4640289,34.0695664 21.2765868,34.0695664 C14.0053223,34.0695664 8.11079782,28.1750419 8.11079782,20.9037774 C8.11079782,13.6325129 14.0053223,7.7379884 21.2765868,7.7379884 Z M32.001345,28.5421521 C31.1324216,29.7599881 30.0612395,30.8235682 28.8368474,31.6838438 L34.8331237,37.6790629 C35.7035818,38.549521 37.1148731,38.549521 37.9853312,37.6790629 C38.8179432,36.8464509 38.8541437,35.5190121 38.0939327,34.6433717 L37.9853312,34.5268555 Z M21.2765868,9.4379884 C14.9442064,9.4379884 9.81079782,14.571397 9.81079782,20.9037774 C9.81079782,27.2361578 14.9442064,32.3695664 21.2765868,32.3695664 C23.5353726,32.3695664 25.6416039,31.7164029 27.4167114,30.5886451 L27.5796961,30.4256353 L27.6137407,30.4606195 C28.8625723,29.6308578 29.9394269,28.5628472 30.7794312,27.321461 L30.7319036,27.2734279 L30.959554,27.0468923 C32.0884785,25.2711601 32.7423759,23.1638317 32.7423759,20.9037774 C32.7423759,14.571397 27.6089673,9.4379884 21.2765868,9.4379884 Z" />
   );
@@ -26,18 +24,7 @@ const Search = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     />
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+};
 
 export default Search;

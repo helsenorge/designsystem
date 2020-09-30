@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const PersonWithJaw = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const PersonWithJaw: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <g fillRule="evenodd" transform="translate(10 7)">
       <path d="M18.405,13.3198 C17.842,13.3198 17.385,13.7768 17.385,14.3398 C17.385,14.9028 17.842,15.3598 18.405,15.3598 C18.968,15.3598 19.426,14.9028 19.426,14.3398 C19.426,13.7768 18.968,13.3198 18.405,13.3198" />
@@ -18,18 +16,7 @@ const PersonWithJaw = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     </g>
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isHovered ? normalHover : normal;
+};
 
 export default PersonWithJaw;

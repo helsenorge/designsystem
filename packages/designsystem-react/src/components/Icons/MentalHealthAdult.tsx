@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const MentalHealthAdult = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const MentalHealthAdult: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <g fillRule="evenodd" transform="translate(10 7)">
       <path d="M26.3005,19.616 C26.1435,19.862 25.8865,20.003 25.5945,20.003 L23.7375,20.003 L23.7375,22.043 C23.7375,24.966 21.3615,27.343 18.4395,27.343 L17.7885,27.343 L17.7885,32.527 L5.6475,32.527 L5.6475,27.13 C5.6475,24.529 4.7295,22.715 3.7585,20.794 C2.6805,18.661 1.5665,16.456 1.5665,12.823 C1.5665,7.364 5.7875,1.472 12.6095,1.472 C18.0045,1.472 23.7375,5.528 23.7375,13.044 L23.7375,13.187 L26.3545,18.812 C26.4775,19.077 26.4575,19.37 26.3005,19.616 M27.5325,18.263 L25.0375,12.898 C24.9645,4.631 18.5995,0.172 12.6095,0.172 C5.8025,0.172 0.2655,5.847 0.2655,12.823 C0.2655,16.765 1.5045,19.218 2.5985,21.381 C3.5365,23.236 4.3465,24.839 4.3465,27.13 L4.3465,33.828 L19.0895,33.828 L19.0895,28.611 C22.4245,28.284 25.0385,25.463 25.0385,22.043 L25.0385,21.303 L25.5945,21.303 C26.3275,21.303 27.0015,20.933 27.3965,20.314 C27.7915,19.696 27.8425,18.929 27.5325,18.263" />
@@ -18,18 +16,7 @@ const MentalHealthAdult = React.forwardRef((svgProps: IconRawProps, ref: any) =>
     </g>
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isHovered ? normalHover : normal;
+};
 
 export default MentalHealthAdult;

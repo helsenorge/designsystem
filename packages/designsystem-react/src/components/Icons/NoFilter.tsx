@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const NoFilter = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const NoFilter: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <g fillRule="evenodd" transform="translate(11 8)">
       <path d="M1.5929,6.4962 L1.5929,9.0222 C1.5929,9.3592 1.7309,9.6872 1.9709,9.9242 L11.1879,18.9912 L11.1879,30.6172 L14.8109,27.2602 L14.8109,18.9912 L24.0289,9.9242 C24.2689,9.6872 24.4059,9.3592 24.4059,9.0222 L24.4059,6.4962 L1.5929,6.4962 Z M9.8879,33.5942 L9.8879,19.5362 L1.0589,10.8502 C0.5719,10.3712 0.2929,9.7042 0.2929,9.0222 L0.2929,5.1962 L25.7059,5.1962 L25.7059,9.0222 C25.7059,9.7042 25.4269,10.3712 24.9409,10.8502 L16.1109,19.5362 L16.1109,27.8272 L9.8879,33.5942 Z" />
@@ -32,18 +30,7 @@ const NoFilter = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     />
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+};
 
 export default NoFilter;

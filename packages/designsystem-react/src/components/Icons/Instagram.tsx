@@ -1,9 +1,7 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const Instagram = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const Instagram: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
     <g fillRule="evenodd" transform="translate(6.5 6.5)">
       <path d="M33.8386,28.3854 C33.8386,31.4924 31.3106,34.0204 28.2026,34.0204 L7.3816,34.0204 C4.2746,34.0204 1.7466,31.4924 1.7466,28.3854 L1.7466,7.5644 C1.7466,4.4564 4.2746,1.9284 7.3816,1.9284 L28.2026,1.9284 C31.3106,1.9284 33.8386,4.4564 33.8386,7.5644 L33.8386,28.3854 Z M28.2026,0.6294 L7.3816,0.6294 C3.5576,0.6294 0.4456,3.7394 0.4456,7.5644 L0.4456,28.3854 C0.4456,32.2094 3.5576,35.3204 7.3816,35.3204 L28.2026,35.3204 C32.0266,35.3204 35.1396,32.2094 35.1396,28.3854 L35.1396,7.5644 C35.1396,3.7394 32.0266,0.6294 28.2026,0.6294 L28.2026,0.6294 Z" />
@@ -19,18 +17,7 @@ const Instagram = React.forwardRef((svgProps: IconRawProps, ref: any) => {
     </g>
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isHovered ? normalHover : normal;
+};
 
 export default Instagram;
