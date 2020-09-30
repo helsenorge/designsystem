@@ -9,10 +9,6 @@ import SimplePagePreview from './preview-templates/simple-page-preview';
 import AboutPagePreview from './preview-templates/about-page-preview';
 import MenuPreview from './preview-templates/menu-preview';
 
-// Registrer evt file-system for lokal utvikling
-// import {FileSystemBackend} from 'netlify-cms-backend-fs';
-// CMS.registerBackend('file-system', FileSystemBackend);
-
 const PreviewWindow = (props: React.Props<{}>) => {
   const mdxProps = {
     // This key represents html elements used in markdown; h1, p, etc
