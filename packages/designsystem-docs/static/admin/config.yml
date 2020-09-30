@@ -33,7 +33,43 @@ project2: &PAGE
   - {label: 'Ingress', name: 'preamble', widget: 'string'}
   - <<: *BODY
 
+menu-item: &MENU
+  - {label: Navn, name: label, widget: string}
+  - {label: Path, name: path, widget: string}
+  - label: Sub meny
+    name: children
+    widget: list
+    fields:
+      - {label: Navn, name: label, widget: string}
+      - {label: Path, name: path, widget: string}
+
 collections:
+  - name: 'main-pages'
+    label: 'Hovedsider'
+    extension: mdx
+    format: frontmatter
+    files:
+      - file: 'packages/designsystem-docs/src/cms-pages/brand/index.mdx'
+        label: 'Brand'
+        name: 'brand'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/editorial/index.mdx'
+        label: 'Editorial Guidelines'
+        name: 'editorial'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/marketing-material/index.mdx'
+        label: 'Marketing Material'
+        name: 'marketing-material'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/patterns/index.mdx'
+        label: 'Patterns'
+        name: 'patterns'
+        slug: '{{slug}}'
+        fields: *PAGE
+
   - name: 'brand'
     label: 'Brand'
     extension: mdx
@@ -53,7 +89,7 @@ collections:
     fields: *PAGE
 
   - name: 'marketing-material'
-    label: 'Marketing material'
+    label: 'Marketing Material'
     extension: mdx
     format: frontmatter
     folder: 'packages/designsystem-docs/src/cms-pages/marketing-material'
@@ -62,7 +98,7 @@ collections:
     fields: *PAGE
 
   - name: 'patterns'
-    label: 'Design Patterns'
+    label: 'Patterns'
     extension: mdx
     format: frontmatter
     folder: 'packages/designsystem-docs/src/cms-pages/patterns'
@@ -70,7 +106,7 @@ collections:
     slug: '{{slug}}'
     fields: *PAGE
 
-  - name: 'pages'
+  - name: 'other-pages'
     label: 'Andre sider'
     extension: mdx
     format: frontmatter
@@ -105,3 +141,31 @@ collections:
         name: 'terms-of-use'
         slug: '{{slug}}'
         fields: *PAGE
+
+  - name: settings
+    label: Innstillinger
+    files:
+      - file: packages/designsystem-docs/src/settings/routes.json
+        label: Meny
+        name: routes
+        fields:
+          - label: Library
+            name: library
+            widget: list
+            fields: *MENU
+          - label: Brand
+            name: brand
+            widget: list
+            fields: *MENU
+          - label: Patterns
+            name: patterns
+            widget: list
+            fields: *MENU
+          - label: Editorial
+            name: editorial
+            widget: list
+            fields: *MENU
+          - label: Marekting material
+            name: marketing-material
+            widget: list
+            fields: *MENU
