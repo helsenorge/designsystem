@@ -7,10 +7,7 @@ import MDXOverride from '../components/markdown/MDXOverride';
 
 import SimplePagePreview from './preview-templates/simple-page-preview';
 import AboutPagePreview from './preview-templates/about-page-preview';
-
-// Registrer evt file-system for lokal utvikling
-// import {FileSystemBackend} from 'netlify-cms-backend-fs';
-// CMS.registerBackend('file-system', FileSystemBackend);
+import MenuPreview from './preview-templates/menu-preview';
 
 const PreviewWindow = (props: React.Props<{}>) => {
   const mdxProps = {
@@ -30,6 +27,7 @@ CMS.registerPreviewTemplate('brand', SimplePagePreview);
 CMS.registerPreviewTemplate('editorial', SimplePagePreview);
 CMS.registerPreviewTemplate('marketing-material', SimplePagePreview);
 CMS.registerPreviewTemplate('patterns', SimplePagePreview);
+CMS.registerPreviewTemplate('routes', MenuPreview);
 
 CMS.registerPreviewTemplate('about', AboutPagePreview);
 CMS.registerPreviewTemplate('contribute', SimplePagePreview);
