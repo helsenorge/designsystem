@@ -384,8 +384,6 @@ import XmlFile_ from '@helsenorge/designsystem-react/components/Icons/XmlFile';
 export const XmlFile = XmlFile_;
 import YouTube_ from '@helsenorge/designsystem-react/components/Icons/YouTube';
 export const YouTube = YouTube_;
-import svg_ from '@helsenorge/designsystem-react/components/Icons/svg';
-export const svg = svg_;
 
 export const allSvgIcons = [
   {module: AlarmClock, name: 'AlarmClock'},
@@ -581,5 +579,4 @@ export const allSvgIcons = [
   {module: X, name: 'X'},
   {module: XmlFile, name: 'XmlFile'},
   {module: YouTube, name: 'YouTube'},
-  {module: svg, name: 'svg'},
 ];

@@ -177,7 +177,6 @@
   "components/Icons/Snake": "src/components/Icons/Snake.tsx",
   "components/Icons/Snapchat": "src/components/Icons/Snapchat.tsx",
   "components/Icons/Spray": "src/components/Icons/Spray.tsx",
-  "components/Icons/svg": "src/components/Icons/svg.svg",
   "components/Icons/Taxi": "src/components/Icons/Taxi.tsx",
   "components/Icons/TeddyBear": "src/components/Icons/TeddyBear.tsx",
   "components/Icons/ThinkingAboutBaby": "src/components/Icons/ThinkingAboutBaby.tsx",
