@@ -2,34 +2,16 @@ import React from 'react';
 import {SvgPathProps} from './Icon';
 
 const ChevronLeft: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
-  const normal = (
-    <polygon
-      fillRule="evenodd"
-      points="33.681 29.93 35.101 28.521 24.73 18.07 14.36 28.521 15.78 29.93 24.73 20.91"
-      transform="matrix(0 1 1 0 .73 -.73)"
-    />
-  );
+  const normal = <path d="M30.66 32.951l-1.409 1.42L18.8 24l10.451-10.37 1.409 1.42L21.64 24z" />;
 
   const normalHover = (
-    <polygon
-      fillRule="evenodd"
-      points="23.521 11.63 24.93 13.049 14.914 23 35 23 35 25 14.916 25 24.93 34.951 23.521 36.37 11.07 23.999"
-    />
+    <path d="M23.521 11.63l1.409 1.419L14.914 23H35v2H14.916l10.014 9.951-1.409 1.419L11.07 23.999z" />
   );
 
-  const simplified = (
-    <polygon
-      fillRule="evenodd"
-      points="32.577 30.115 34.37 28.336 23.999 17.885 13.63 28.336 15.423 30.115 23.999 21.471"
-      transform="matrix(0 1 1 0 0 0)"
-    />
-  );
+  const simplified = <path d="M30.115 32.577l-1.779 1.793-10.451-10.371L28.336 13.63l1.779 1.793-8.644 8.576z" />;
 
   const simplifiedHover = (
-    <polygon
-      fillRule="evenodd"
-      points="22.02 11.103 23.8 12.897 13.9 22.736 34.105 22.737 34.105 25.263 13.9 25.262 23.8 35.103 22.02 36.897 9.043 23.999"
-    />
+    <path d="M22.02 11.103l1.78 1.794-9.9 9.839 20.205.001v2.526L13.9 25.262l9.9 9.841-1.78 1.794L9.043 23.999z" />
   );
   return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
 };

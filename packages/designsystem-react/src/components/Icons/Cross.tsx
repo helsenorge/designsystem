@@ -5,17 +5,11 @@ import {SvgPathProps} from './Icon';
 // Want to wait with removing this untill we have more breaking changes in v1.1 for example
 const Cross: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
-    <polygon
-      fillRule="evenodd"
-      points="20.404 19 28.663 10.741 27.26 9.338 19.001 17.597 10.741 9.337 9.338 10.74 17.598 19 9.338 27.26 10.741 28.663 19.001 20.403 27.26 28.662 28.663 27.259"
-    />
+    <path d="M20.404 19l8.259-8.259-1.403-1.403-8.259 8.259-8.26-8.26-1.403 1.403 8.26 8.26-8.26 8.26 1.403 1.403 8.26-8.26 8.259 8.259 1.403-1.403z" />
   );
 
   const normalHover = (
-    <polygon
-      fillRule="evenodd"
-      points="19 17.596 9.327 7.923 7.924 9.326 17.597 18.999 7.923 28.673 9.326 30.076 19 20.402 28.674 30.076 30.077 28.673 20.403 18.999 30.076 9.326 28.673 7.923"
-    />
+    <path d="M19 17.596L9.327 7.923 7.924 9.326l9.673 9.673-9.674 9.674 1.403 1.403L19 20.402l9.674 9.674 1.403-1.403-9.674-9.674 9.673-9.673-1.403-1.403z" />
   );
 
   return isHovered ? normalHover : normal;
