@@ -1,55 +1,33 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const EnterFullScreen = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const EnterFullScreen: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
-    <g fillRule="evenodd" transform="translate(11 11)">
-      <polygon points="1.546 25.373 .627 24.454 7.845 17.236 8.764 18.155" />
-      <polygon points="9.18 25.563 .436 25.563 .436 16.861 1.736 16.861 1.736 24.263 9.18 24.263" />
-      <polygon points="18.155 8.764 17.236 7.845 24.454 .627 25.373 1.546" />
-      <polygon points="25.564 9.139 24.264 9.139 24.264 1.737 16.82 1.737 16.82 .437 25.564 .437" />
+    <g>
+      <path d="M12.546 36.373l-.919-.919 7.218-7.218.919.919z" />
+      <path d="M20.18 36.563h-8.744v-8.702h1.3v7.402h7.444zM29.155 19.764l-.919-.919 7.218-7.218.919.919z" />
+      <path d="M36.564 20.139h-1.3v-7.402H27.82v-1.3h8.744z" />
     </g>
   );
 
   const normalHover = (
-    <g fillRule="evenodd" transform="translate(10 10)">
-      <polygon points="1.283 27.636 .364 26.717 7.582 19.499 8.501 20.418" />
-      <polygon points="8.917 27.827 .173 27.827 .173 19.125 1.473 19.125 1.473 26.527 8.917 26.527" />
-      <polygon points="20.418 8.501 19.499 7.582 26.717 .364 27.636 1.283" />
-      <polygon points="27.826 8.876 26.526 8.876 26.526 1.474 19.082 1.474 19.082 .174 27.826 .174" />
-      <polygon points="2.546 26.373 1.627 25.454 8.845 18.236 9.764 19.155" />
-      <polygon points="19.155 9.764 18.236 8.845 25.454 1.627 26.373 2.546" />
+    <g>
+      <path d="M11.283 37.636l-.919-.919 7.218-7.218.919.919z" />
+      <path d="M18.917 37.827h-8.744v-8.702h1.3v7.402h7.444zM30.418 18.501l-.919-.919 7.218-7.218.919.919z" />
+      <path d="M37.826 18.876h-1.3v-7.402h-7.444v-1.3h8.744zM12.546 36.373l-.919-.919 7.218-7.218.919.919z" />
+      <path d="M29.155 19.764l-.919-.919 7.218-7.218.919.919z" />
     </g>
   );
 
   const simplified = (
-    <path
-      fillRule="evenodd"
-      d="M27.6879158,11.0705684 L27.6879158,12.8389895 L33.6462316,12.8389895 L27.9380211,18.5472 L29.1885474,19.7989895 L34.8967579,14.0907789 L34.8967579,20.0074105 L36.6651789,20.0074105 L36.6651789,11.0705684 L27.6879158,11.0705684 Z M19.7982316,29.1893053 L18.5477053,27.9387789 L12.8394947,33.6457263 L12.8394947,27.7290947 L11.0710737,27.7290947 L11.0710737,36.6659368 L20.0483368,36.6659368 L20.0483368,34.8975158 L14.0900211,34.8975158 L19.7982316,29.1893053 Z"
-    />
+    <path d="M27.688 11.07v1.769h5.958l-5.708 5.708 1.25 1.252 5.709-5.708v5.916h1.768v-8.936h-8.977zm-7.89 18.12l-1.25-1.251-5.709 5.707v-5.917h-1.768v8.937h8.977v-1.768H14.09l5.708-5.709z" />
   );
 
   const simplifiedHover = (
-    <path
-      fillRule="evenodd"
-      d="M28.9514526,9.80741053 L28.9514526,11.5758316 L34.9097684,11.5758316 L27.9384,18.5472 L29.1889263,19.7989895 L30.4520842,18.5358316 L36.1602947,12.8276211 L36.1602947,18.7442526 L37.9287158,18.7442526 L37.9287158,9.80741053 L28.9514526,9.80741053 Z M18.5480842,27.9387789 L11.5754526,34.9101474 L11.5754526,28.9922526 L9.80703158,28.9922526 L9.80703158,37.9303579 L18.7855579,37.9303579 L18.7855579,36.1606737 L12.8272421,36.1606737 L19.7986105,29.1893053 L18.5480842,27.9387789 Z"
-    />
+    <path d="M28.951 9.807v1.769h5.959l-6.972 6.971 1.25 1.252 1.264-1.263 5.708-5.708v5.916h1.769V9.807H28.95zM18.548 27.94l-6.973 6.971v-5.918H9.807v8.938h8.979v-1.77h-5.959l6.972-6.97-1.25-1.251z" />
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+};
 
 export default EnterFullScreen;

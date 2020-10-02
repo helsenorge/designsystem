@@ -1,49 +1,24 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const X = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const X: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
-    <polygon
-      fillRule="evenodd"
-      points="25.403 24 35.662 13.741 34.259 12.338 24 22.597 13.741 12.337 12.338 13.74 22.597 24 12.338 34.26 13.741 35.663 24 25.403 34.259 35.662 35.662 34.259"
-    />
+    <path d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z" />
   );
 
   const normalHover = (
-    <polygon
-      fillRule="evenodd"
-      points="24 22.597 12.327 10.924 10.924 12.326 22.597 24 10.923 35.674 12.326 37.076 24 25.403 35.674 37.076 37.077 35.674 25.403 24 37.076 12.326 35.673 10.924"
-    />
+    <path d="M24 22.597L12.327 10.924l-1.403 1.402L22.597 24 10.923 35.674l1.403 1.402L24 25.403l11.674 11.673 1.403-1.402L25.403 24l11.673-11.674-1.403-1.402z" />
   );
 
   const simplified = (
-    <polygon
-      fillRule="evenodd"
-      points="25.773 24 36.205 13.568 34.433 11.795 24.001 22.228 13.568 11.795 11.795 13.567 22.229 24 11.795 34.433 13.568 36.205 24.001 25.772 34.433 36.205 36.205 34.432"
-    />
+    <path d="M25.773 24l10.432-10.432-1.772-1.773-10.432 10.433-10.433-10.433-1.773 1.772L22.229 24 11.795 34.433l1.773 1.772 10.433-10.433 10.432 10.433 1.772-1.773z" />
   );
 
   const simplifiedHover = (
-    <polygon
-      fillRule="evenodd"
-      points="24 22.227 11.781 10.008 10.009 11.78 22.228 23.999 10.008 36.219 11.78 37.991 24 25.771 36.22 37.991 37.992 36.219 25.772 23.999 37.991 11.78 36.219 10.008"
-    />
+    <path d="M24 22.227L11.781 10.008l-1.772 1.772 12.219 12.219-12.22 12.22 1.772 1.772L24 25.771l12.22 12.22 1.772-1.772-12.22-12.22L37.991 11.78l-1.772-1.772z" />
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+};
 
 export default X;

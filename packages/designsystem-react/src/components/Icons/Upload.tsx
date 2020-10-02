@@ -1,51 +1,30 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const Upload = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
+const Upload: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
   const normal = (
-    <g fillRule="evenodd" transform="translate(10 8)">
-      <polygon points=".791 29.839 27.209 29.839 27.209 28.539 .791 28.539" />
-      <polygon points="13.372 21.496 14.672 21.496 14.672 1.881 13.372 1.881" />
-      <polygon points="22.165 10.539 14.083 2.777 5.959 10.4 5.07 9.452 14.094 .985 23.065 9.602" />
+    <g>
+      <path d="M10.791 37.839h26.418v-1.3H10.791zM23.372 29.496h1.3V9.881h-1.3z" />
+      <path d="M32.165 18.539l-8.082-7.762-8.124 7.623-.889-.948 9.024-8.467 8.971 8.617z" />
     </g>
   );
 
   const normalHover = (
-    <g fillRule="evenodd" transform="translate(10 11)">
-      <polygon points=".791 26.839 27.209 26.839 27.209 25.539 .791 25.539" />
-      <polygon points="13.372 21.023 14.672 21.023 14.672 1.408 13.372 1.408" />
-      <polygon points="22.165 10.065 14.082 2.303 5.959 9.926 5.07 8.978 14.093 .511 23.065 9.128" />
+    <g>
+      <path d="M10.791 37.839h26.418v-1.3H10.791zM23.372 32.023h1.3V12.408h-1.3z" />
+      <path d="M32.165 21.065l-8.083-7.762-8.123 7.623-.889-.948 9.023-8.467 8.972 8.617z" />
     </g>
   );
 
   const simplified = (
-    <path
-      fillRule="evenodd"
-      d="M14.9627368,18.8223158 L16.0781053,19.9856842 L23.3071579,13.0421053 L23.3071579,30.8298947 L24.9176842,30.8298947 L24.9176842,13.1381053 L32.0684211,19.8467368 L33.1711579,18.672 L24.0410526,10.1052632 L14.9627368,18.8223158 Z M10.7905263,38.2193684 L37.2094737,38.2193684 L37.2094737,36.6088421 L10.7905263,36.6088421 L10.7905263,38.2193684 Z"
-    />
+    <path d="M14.963 18.822l1.115 1.164 7.23-6.944V30.83h1.61V13.138l7.15 6.709 1.103-1.175-9.13-8.567-9.078 8.717zM10.79 38.22h26.418v-1.61H10.791v1.61z" />
   );
 
   const simplifiedHover = (
-    <path
-      fillRule="evenodd"
-      d="M24.0423158,7.57894737 L14.964,16.296 L16.0781053,17.4581053 L23.3084211,10.5170526 L23.3084211,28.3035789 L24.9202105,28.3035789 L24.9202105,10.6105263 L32.0709474,17.3204211 L33.1736842,16.1456842 L24.0423158,7.57894737 Z M10.7917895,38.2193684 L37.2082105,38.2193684 L37.2082105,36.6088421 L10.7917895,36.6088421 L10.7917895,38.2193684 Z"
-    />
+    <path d="M24.042 7.579l-9.078 8.717 1.114 1.162 7.23-6.94v17.786h1.612V10.61l7.15 6.71 1.104-1.175-9.132-8.567zm-13.25 30.64h26.416v-1.61H10.792v1.61z" />
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+};
 
 export default Upload;

@@ -1,18 +1,36 @@
 import React from 'react';
-import {withKnobs, select, boolean, number} from '@storybook/addon-knobs';
+import {withKnobs, boolean, text} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react';
-import Icon from '../Icons';
-import AlarmClock from '../Icons/AlarmClock';
-import {allPaletteNames} from '../../../.storybook/knobs';
+import Icon from '.';
+import TestIcon from './YouTube';
 
 const stories = storiesOf('Icon', module);
 stories.addDecorator(withKnobs);
 
 stories.add('Default', () => (
-  <Icon
-    svgIcon={AlarmClock}
-    isHovered={boolean('Is hovered', false)}
-    size={number('Size', 48)}
-    color={select('Color', allPaletteNames, 'black')}
-  />
+  <>
+    <>
+      <p>{'Normal'}</p>
+      <Icon
+        svgIcon={TestIcon}
+        isHovered={boolean('animate hover', false)}
+        size={48}
+        color={text('Color', 'black')}
+        hoverColor={text('hoverColor', 'gray')}
+      />
+      <Icon svgIcon={TestIcon} isHovered={true} size={48} hoverColor={text('hoverColor', 'gray')} />
+    </>
+    <>
+      <br />
+      <p>{'ExtraSmall'}</p>
+      <Icon
+        svgIcon={TestIcon}
+        isHovered={boolean('animate hover', false)}
+        size={35}
+        color={text('Color', 'black')}
+        hoverColor={text('hoverColor', 'gray')}
+      />
+      <Icon svgIcon={TestIcon} isHovered={true} size={35} hoverColor={text('hoverColor', 'gray')} />
+    </>
+  </>
 ));

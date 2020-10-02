@@ -32,14 +32,13 @@ exports[`displays external anchorlink 1`] = `
     AnchorLink external
     <svg
       class="hnds-style-icon "
-      fill="#126F87"
+      fill="blueberry"
       height="38"
       viewBox="0 0 48 48"
       width="38"
     >
-      <polygon
-        fill-rule="evenodd"
-        points="18.76 14.426 18.76 16.194 30.59 16.194 14.719 32.065 15.97 33.315 31.771 17.514 31.771 29.205 33.539 29.205 33.539 14.426"
+      <path
+        d="M18.76 14.426v1.768h11.83L14.719 32.065l1.251 1.25 15.801-15.801v11.691h1.768V14.426z"
       />
     </svg>
   </a>

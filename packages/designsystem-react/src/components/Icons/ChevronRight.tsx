@@ -1,51 +1,20 @@
 import React from 'react';
-import {IconRawProps} from './Icon';
+import {SvgPathProps} from './Icon';
 
-const ChevronRight = React.forwardRef((svgProps: IconRawProps, ref: any) => {
-  const {size = 48, className, color = 'black', hoverColor = 'black', isHovered = false, ...props} = svgProps;
-  const isExtraSmall = size <= 38;
-  const normal = (
-    <polygon
-      fillRule="evenodd"
-      points="34.052 29.93 35.472 28.521 25.101 18.07 14.731 28.521 16.151 29.93 25.101 20.91"
-      transform="rotate(90 25.101 24)"
-    />
-  );
+const ChevronRight: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
+  const normal = <path d="M19.171 32.951l1.409 1.42L31.031 24 20.58 13.63l-1.409 1.42 9.02 8.95z" />;
 
   const normalHover = (
-    <polygon
-      fillRule="evenodd"
-      points="24.479 11.63 36.93 23.999 24.479 36.37 23.07 34.951 33.083 25 13 25 13 23 33.085 23 23.07 13.049"
-    />
+    <path d="M24.479 11.63L36.93 23.999 24.479 36.37l-1.409-1.419L33.083 25H13v-2h20.085L23.07 13.049z" />
   );
 
-  const simplified = (
-    <polygon
-      fillRule="evenodd"
-      points="32.577 30.115 34.37 28.336 23.999 17.885 13.63 28.336 15.423 30.115 23.999 21.471"
-      transform="rotate(90 24 24)"
-    />
-  );
+  const simplified = <path d="M17.885 32.577l1.779 1.793 10.451-10.371L19.664 13.63l-1.779 1.793 8.644 8.576z" />;
 
   const simplifiedHover = (
-    <polygon
-      fillRule="evenodd"
-      points="25.98 11.103 38.957 23.999 25.98 36.897 24.2 35.103 34.099 25.262 13.895 25.263 13.895 22.737 34.099 22.736 24.2 12.897"
-    />
+    <path d="M25.98 11.103l12.977 12.896L25.98 36.897l-1.78-1.794 9.899-9.841-20.204.001v-2.526l20.204-.001-9.899-9.839z" />
   );
 
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      viewBox="0 0 48 48"
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      {...props}>
-      {isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal}
-    </svg>
-  );
-});
+  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+};
 
 export default ChevronRight;
