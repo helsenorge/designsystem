@@ -174,9 +174,13 @@
       "children": []
     },
     {
-      "label": "Ny side test",
-      "path": "/patterns/enda-et-design-pattern",
+      "label": "Fokusert visning",
+      "path": "/patterns/fokusert-visning",
       "children": []
+    },
+    {
+      "label": "Superflubberoo",
+      "path": "/patterns/superflubberoo"
     }
   ],
   "editorial": [
