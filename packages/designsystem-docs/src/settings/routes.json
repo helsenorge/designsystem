@@ -181,8 +181,8 @@
   ],
   "editorial": [
     {
-      "label": "Editorial",
-      "path": "/editorial",
+      "label": "Redaksjonelle retningslinjer",
+      "path": "/redaksjonelt",
       "children": []
     }
   ],
