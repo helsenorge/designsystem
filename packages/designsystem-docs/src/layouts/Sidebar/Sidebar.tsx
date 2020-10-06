@@ -95,7 +95,7 @@ function SubMenu({routeMap, activeRoute}: SubMenuProps): JSX.Element {
                   {route.label}
                 </StyledNavLink>
               </StyledNavItem>
-              {route.children.map((child: any) => {
+              {route.children?.map((child: any) => {
                 return (
                   <StyledNavItem key={child.path}>
                     <StyledNavLink activeLink={activeRoute === child.path} child to={child.path}>
