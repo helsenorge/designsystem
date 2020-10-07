@@ -176,6 +176,10 @@
     {
       "label": "Superflubberoo",
       "path": "/patterns/superflubberoo"
+    },
+    {
+      "label": "Fokusertvisning",
+      "path": "/patterns/fokusertvisning"
     }
   ],
   "editorial": [
