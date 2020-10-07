@@ -174,11 +174,6 @@
       "children": []
     },
     {
-      "label": "Fokusert visning",
-      "path": "/patterns/fokusert-visning",
-      "children": []
-    },
-    {
       "label": "Superflubberoo",
       "path": "/patterns/superflubberoo"
     }
