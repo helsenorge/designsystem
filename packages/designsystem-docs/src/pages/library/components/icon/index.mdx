@@ -10,6 +10,7 @@ import {theme as hndsTheme} from '@helsenorge/designsystem-react';
 import Icon from '@helsenorge/designsystem-react/components/Icons';
 import Pencil from '@helsenorge/designsystem-react/components/Icons/Pencil';
 import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
+import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Avatar from '@helsenorge/designsystem-react/components/Icons/Avatar';
 
 # Icon
@@ -55,15 +56,18 @@ it is recommended to use the '900' color range from the theme palette:
 
 ### Hover
 
-<MDXCustom.LiveComponent scope={{hndsTheme, Icon, Pencil, Avatar, AlarmClock}}>{`
+<MDXCustom.LiveComponent scope={{hndsTheme, Icon, Pencil, Avatar, AlarmClock, Calendar}}>{`
   <Icon svgIcon={AlarmClock} color={hndsTheme.palette.blueberry900} />
-  <Icon isHovered svgIcon={AlarmClock} color={hndsTheme.palette.blueberry900}  />
+  <Icon isHovered svgIcon={AlarmClock}  color={hndsTheme.palette.blueberry900} hoverColor={hndsTheme.palette.cherry900} />
   <br/>
   <Icon svgIcon={Pencil} color={hndsTheme.palette.blueberry900} />
   <Icon isHovered svgIcon={Pencil} color={hndsTheme.palette.blueberry900} hoverColor={hndsTheme.palette.cherry900} />
   <br/>
   <Icon svgIcon={Avatar} color={hndsTheme.palette.blueberry900} />
   <Icon isHovered svgIcon={Avatar} color={hndsTheme.palette.blueberry900} hoverColor={hndsTheme.palette.cherry900} />
+   <br/>
+  <Icon svgIcon={Calendar} color={hndsTheme.palette.blueberry900} />
+  <Icon isHovered svgIcon={Calendar} color={hndsTheme.palette.blueberry900} hoverColor={hndsTheme.palette.cherry900} />
 `}</MDXCustom.LiveComponent>
 
 ## Bruk
