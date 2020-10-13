@@ -5,9 +5,7 @@ interface ComponentPropsProps {
   propData: any;
 }
 
-// TODO: Fix this insanly long prop drilling
 const ComponentProps = (props: ComponentPropsProps) => {
-  console.log('incoming propData', props);
   const data = props.propData.propData.default.props;
   return (
     <StyledTableContainer>
