@@ -1,9 +1,10 @@
 import React from 'react';
 import {HTMLButtonProps, HTMLAnchorProps} from '../../constants';
 import {StyledButton, StyledButtonContent, StyledLeftFluidContent, StyledButtonWrapper} from './Button.styled';
+import {getColor} from '../../theme/currys/color';
 import {IconProps} from './../Icons/';
 import Loader from '../Loader';
-import {PaletteNames} from '../../theme/palette';
+import {palette, PaletteNames} from '../../theme/palette';
 import {useHover} from '../../hooks/useHover';
 import {useWindowSize} from '../../hooks/useWindowSize';
 import {breakpoints} from '../../theme/grid';
@@ -19,7 +20,6 @@ interface IntentToColor {
   danger: ButtonIntentsColors;
 }
 
-// TODO: Need to make more globally
 export const intentToColor: IntentToColor = {
   primary: 'blueberry',
   warning: 'banana',
@@ -53,7 +53,6 @@ export function useIcons(
   if ((children[children.length - 1] as React.ReactElement<IconProps>)?.props?.svgIcon !== undefined) {
     rightIcon = children.pop() as React.ReactElement<IconProps>;
   }
-
   return [leftIcon, rightIcon, children];
 }
 
@@ -62,10 +61,11 @@ const getIconColor = (
   disabled: boolean,
   intent: ButtonIntents,
   inverted: boolean,
-): ButtonIntentsColors => {
-  if (disabled) return 'neutral';
+  hovered: boolean,
+): string => {
+  if (disabled) return getColor('neutral', 600);
   if ((fill && !inverted) || (!fill && inverted)) return 'white';
-  return intentToColor[intent];
+  return getColor(intentToColor[intent], hovered ? 700 : 600);
 };
 
 const getLargeIconSize = (large: boolean, screenWidth: number | undefined): number => {
@@ -91,19 +91,25 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
     ...restProps
   } = props;
 
-  const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted);
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
   const {hoverRef, isHovered} = useHover<HTMLButtonElement>();
+  const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted, isHovered);
   const size = useWindowSize();
 
   function renderIcon(
     iconElement: React.ReactElement<IconProps> | {} | undefined | null,
     size: number,
-    color: string,
+    iconColor: string,
     hover: boolean,
   ): React.ReactElement<IconProps> | React.Component<IconProps> | null {
+    const color =
+      iconElement &&
+      (iconElement as React.ReactElement<IconProps>).props &&
+      (iconElement as React.ReactElement<IconProps>).props.color
+        ? (iconElement as React.ReactElement<IconProps>).props.color
+        : iconColor;
     return iconElement && Object.keys(iconElement).length > 0
-      ? React.cloneElement(iconElement as React.ReactElement<IconProps>, {size, color: color, isHovered: hover})
+      ? React.cloneElement(iconElement as React.ReactElement<IconProps>, {size, color, isHovered: hover})
       : null;
   }
 

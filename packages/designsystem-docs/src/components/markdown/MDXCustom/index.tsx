@@ -4,7 +4,7 @@ import ComponentRenderer from './ComponentRenderer';
 import IconWall from './IconWall/IconWall';
 import ColorWall from './ColorWall/ColorWall';
 import LiveComponent from '../../LiveComponent/LiveComponent';
-import {ComponentProps} from '../../ComponentProps/ComponentProps';
+import ComponentProps from '../../ComponentProps/ComponentProps';
 
 const MDXCustom = () => <></>;
 

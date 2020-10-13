@@ -9,6 +9,7 @@ import * as propData from './button.json';
 import Icon from '@helsenorge/designsystem-react/components/Icons';
 import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
 import ArrowRight from '@helsenorge/designsystem-react/components/Icons/ArrowRight';
+import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Button from '@helsenorge/designsystem-react/components/Button';
 
 # Button
@@ -72,19 +73,19 @@ import Button from '@helsenorge/designsystem-react/components/Button';
 
 ### With icons
 
-<MDXCustom.LiveComponent scope={{Button, Icon, AlarmClock, ArrowRight}}>{`
-  <Button>
-      <Icon svgIcon={AlarmClock} />
+<MDXCustom.LiveComponent scope={{ Button, Icon, Calendar, ArrowRight}}>{`
+  <Button variant="outline" >
+      <Icon svgIcon={Calendar} />
     Primary
   </Button>
   <br/>
-  <Button>
+  <Button variant="outline">
     Primary
-      <Icon svgIcon={AlarmClock} />
+      <Icon svgIcon={Calendar} />
   </Button>
   <br/>
-  <Button>
-      <Icon svgIcon={AlarmClock}/>
+  <Button variant="outline">
+      <Icon svgIcon={Calendar}/>
     Primary
       <Icon svgIcon={ArrowRight} />
   </Button>

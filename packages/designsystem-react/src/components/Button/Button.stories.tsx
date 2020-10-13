@@ -5,6 +5,7 @@ import {storiesOf} from '@storybook/react';
 import Button, {ButtonVariants, ButtonIntents} from './Button';
 import Icon from '../Icons';
 import X from '../Icons/X';
+import Calendar from '../Icons/Calendar';
 import {withA11y} from '@storybook/addon-a11y';
 
 const allButtonVariants: ButtonVariants[] = ['fill', 'outline', 'borderless'];
@@ -121,9 +122,24 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
-      <Icon svgIcon={X} />
+      <Icon svgIcon={Calendar} />
       {text('Text', 'Button')}
       <Icon svgIcon={X} />
+    </Button>
+    <div style={{height: '1rem'}}></div>
+    <Button
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}>
+      <Icon svgIcon={Calendar} color={'lime'} hoverColor={'red'} />
+      {text('Text', 'Button')}
+      <Icon svgIcon={X} color={'lime'} hoverColor={'red'} />
     </Button>
   </div>
 ));
@@ -131,25 +147,35 @@ stories.add('With icon(s)', () => (
 stories.add('All variants', () => (
   <div style={{display: 'grid', gridGap: '2rem'}}>
     <Button
+      disabled={boolean('Disabled', false)}
       variant="fill"
       intent={select('Intent', allButtonIntents, 'primary')}
       large={boolean('Large', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}>
+      {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
       {text('Text', 'Button')}
+      <Icon svgIcon={X} />
     </Button>
+
     <Button
+      disabled={boolean('Disabled', false)}
       variant="outline"
       intent={select('Intent', allButtonIntents, 'primary')}
       large={boolean('Large', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}>
+      {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
       {text('Text', 'Button')}
+      <Icon svgIcon={X} />
     </Button>
     <Button
+      disabled={boolean('Disabled', false)}
       variant="borderless"
       intent={select('Intent', allButtonIntents, 'primary')}
       large={boolean('Large', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}>
+      {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
       {text('Text', 'Button')}
+      <Icon svgIcon={X} />
     </Button>
   </div>
 ));

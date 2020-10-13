@@ -5,8 +5,7 @@ interface ComponentPropsProps {
   propData: any;
 }
 
-// TODO: Fix this insanly long prop drilling
-export function ComponentProps(props: ComponentPropsProps) {
+const ComponentProps = (props: ComponentPropsProps) => {
   const data = props.propData.propData.default.props;
   return (
     <StyledTableContainer>
@@ -39,7 +38,9 @@ export function ComponentProps(props: ComponentPropsProps) {
       </StyledTable>
     </StyledTableContainer>
   );
-}
+};
+
+export default ComponentProps;
 
 const StyledTableContainer = styled('div')`
   overflow-x: auto;

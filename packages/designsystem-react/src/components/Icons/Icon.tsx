@@ -23,7 +23,7 @@ const Icon = React.forwardRef((props: IconProps, ref: any) => {
     className = '',
     size = 48,
     color = 'black',
-    hoverColor = 'black',
+    hoverColor = color || 'black',
     isHovered = false,
     ...other
   } = props;
