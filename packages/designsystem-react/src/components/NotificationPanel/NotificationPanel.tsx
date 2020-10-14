@@ -88,7 +88,13 @@ const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: 
       <StyledNotificationPanelActionColumn>
         {dismissable ? (
           <StyledCloseButton onClick={onClick} ref={hoverRef}>
-            <Icon svgIcon={X} isHovered={isHovered} size={38} color="blueberry" />
+            <Icon
+              svgIcon={X}
+              isHovered={isHovered}
+              size={38}
+              color={palette.blueberry500}
+              hoverColor={palette.blueberry700}
+            />
           </StyledCloseButton>
         ) : null}
       </StyledNotificationPanelActionColumn>
