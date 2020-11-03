@@ -58,7 +58,7 @@ const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: 
     size,
     className,
   } = props;
-  const {hoverRef, isHovered} = useHover<HTMLButtonElement>(dismissable);
+  const {hoverRef, isHovered} = useHover<HTMLButtonElement>(undefined, dismissable);
 
   function wrapFluid(panel: React.ReactElement): React.ReactElement {
     if (fluid) {

@@ -4,7 +4,7 @@ import {StyledButton, StyledButtonContent, StyledLeftFluidContent, StyledButtonW
 import {getColor} from '../../theme/currys/color';
 import {IconProps} from './../Icons/';
 import Loader from '../Loader';
-import {palette, PaletteNames} from '../../theme/palette';
+import {PaletteNames} from '../../theme/palette';
 import {useHover} from '../../hooks/useHover';
 import {useWindowSize} from '../../hooks/useWindowSize';
 import {breakpoints} from '../../theme/grid';
