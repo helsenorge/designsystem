@@ -75,7 +75,6 @@ const getLargeIconSize = (large: boolean, screenWidth: number | undefined): numb
   return 38;
 };
 
-//TODO: Solve double ref situation like in this
 const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   const {
     children,
@@ -92,7 +91,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   } = props;
 
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const {hoverRef, isHovered} = useHover<HTMLButtonElement>();
+  const {hoverRef, isHovered} = useHover<HTMLButtonElement>(ref);
   const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted, isHovered);
   const size = useWindowSize();
 

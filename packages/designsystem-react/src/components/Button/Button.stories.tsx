@@ -15,6 +15,11 @@ const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
+const myRef1 = React.createRef();
+const myRef2 = React.createRef();
+const myRef3 = React.createRef();
+const myRef4 = React.createRef();
+
 stories.add('Default', () => (
   <div style={{width: '15rem'}}>
     <Button
@@ -85,6 +90,7 @@ stories.add('Fluid', () => (
 stories.add('With icon(s)', () => (
   <div>
     <Button
+      ref={myRef1}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -95,10 +101,11 @@ stories.add('With icon(s)', () => (
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}>
       <Icon svgIcon={X} />
-      {text('Text', 'Button')}
+      {text('Text', 'Button with ref')}
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
+      ref={myRef2}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -113,6 +120,7 @@ stories.add('With icon(s)', () => (
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
+      ref={myRef3}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -128,6 +136,7 @@ stories.add('With icon(s)', () => (
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
+      ref={myRef4}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
