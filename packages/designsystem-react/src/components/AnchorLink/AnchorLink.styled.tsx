@@ -27,7 +27,11 @@ const StyledAnchorLink = styled('a')<StyledAnchorLinkProps>`
   }
   &:hover {
     cursor: pointer;
-    border-color: ${getColor('blueberry', 700)};
+    color: ${getColor('blueberry', 700)};
+    border-color: ${getColor('blueberry', 600)};
+    .hnds-style-icon {
+      fill: ${getColor('blueberry', 700)};
+    }
   }
 `;
 
