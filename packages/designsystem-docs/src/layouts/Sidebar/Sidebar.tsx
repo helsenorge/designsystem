@@ -51,6 +51,7 @@ const StyledNavItem = styled('li')`
 
 const StyledNavGroup = styled('ul')`
   margin: 0;
+  padding: 0;
 `;
 
 export const useRouteMap = (activeRoute: string) => {
