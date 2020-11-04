@@ -22,7 +22,15 @@ const AnchorLink = React.forwardRef((props: AnchorLinkProps, ref: any) => {
   return (
     <StyledAnchorLink id={id} href={href} className={className} target={target} external={external} ref={hoverRef}>
       {children}
-      {external && <Icon svgIcon={ArrowUpRight} color={getColor('blueberry', 600)} size={38} isHovered={isHovered} />}
+      {external && (
+        <Icon
+          svgIcon={ArrowUpRight}
+          color={getColor('blueberry', 600)}
+          hoverColor={getColor('blueberry', 700)}
+          size={38}
+          isHovered={isHovered}
+        />
+      )}
     </StyledAnchorLink>
   );
 });
