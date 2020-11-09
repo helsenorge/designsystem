@@ -84,7 +84,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
           {title}
         </StyledExpanderListLinkContent>
         <StyledExpanderListIconContainer>
-          <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} />
+          {React.cloneElement(<Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} />, {isHovered})}
         </StyledExpanderListIconContainer>
       </StyledExpanderListLink>
       {isExpanded ? <StyledExpanderContent padding={padding}>{children}</StyledExpanderContent> : null}
