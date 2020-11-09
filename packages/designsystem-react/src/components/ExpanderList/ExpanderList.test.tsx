@@ -4,7 +4,7 @@ import ExpanderList from './ExpanderList';
 import {boolean, select} from '@storybook/addon-knobs';
 import {allPaletteNames} from '../../../.storybook/knobs';
 
-test('displays an expanderlist with title and content', (): void => {
+test('displays an expanderlist with expanders, containing title and content', (): void => {
   const {container} = render(
     <div
       style={{
