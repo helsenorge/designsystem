@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`displays an expanderlist with expanders, containing title and content 1`] = `
+exports[`Gitt ExpanderList blir rendret Sjekk at ExpanderList sitt snapshot matcher 1`] = `
 <div>
   <div
     style="width: 40rem;"
@@ -12,6 +12,7 @@ exports[`displays an expanderlist with expanders, containing title and content 1
         <button
           class="sc-AxhUy eNACsH"
           color="blueberry"
+          data-testid=""
           id="expander-0"
         >
           <span
@@ -40,6 +41,7 @@ exports[`displays an expanderlist with expanders, containing title and content 1
         <button
           class="sc-AxhUy eNACsH"
           color="blueberry"
+          data-testid=""
           id="expander-1"
         >
           <span
@@ -68,6 +70,7 @@ exports[`displays an expanderlist with expanders, containing title and content 1
         <button
           class="sc-AxhUy eNACsH"
           color="blueberry"
+          data-testid=""
           id="expander-2"
         >
           <span
