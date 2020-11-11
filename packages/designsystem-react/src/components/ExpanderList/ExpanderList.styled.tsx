@@ -15,7 +15,7 @@ const topBorder = (props: StyledExpanderListProps) =>
   props.topBorder &&
   css`
     & > :first-child {
-      border-top: 1px solid ${getColor('neutral', 200)};
+      border-top: 1px solid ${getColor('neutral', 500)};
     }
   `;
 
@@ -40,7 +40,7 @@ const StyledExpanderList = styled('ul')`
   width: inherit;
   margin: 0;
   & > :nth-child(n) {
-    border-bottom: 1px solid ${getColor('neutral', 200)};
+    border-bottom: 1px solid ${getColor('neutral', 500)};
   }
   ${topBorder}
   ${bottomBorder}

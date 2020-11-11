@@ -49,6 +49,7 @@ type ExpanderProps = Modify<
     padding?: boolean;
     isExpanded?: boolean;
     large?: boolean;
+    testId?: string;
   }
 >;
 
@@ -63,12 +64,14 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     large = false,
     title,
     isExpanded = false,
+    testId = '',
     ...restProps
   } = props;
   const {hoverRef, isHovered} = useHover<HTMLButtonElement>();
   return (
     <li ref={ref}>
       <StyledExpanderListLink
+        data-testid={testId}
         className={className}
         isExpanded={isExpanded}
         large={large}
@@ -84,7 +87,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
           {title}
         </StyledExpanderListLinkContent>
         <StyledExpanderListIconContainer>
-          <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} />
+          <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} />
         </StyledExpanderListIconContainer>
       </StyledExpanderListLink>
       {isExpanded ? <StyledExpanderContent padding={padding}>{children}</StyledExpanderContent> : null}

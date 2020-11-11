@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt ExpanderList blir rendret Sjekk at ExpanderList sitt snapshot matcher 1`] = `
+<div>
+  <div
+    style="width: 40rem;"
+  >
+    <ul
+      class="sc-AxjAm cdEKGT"
+    >
+      <li>
+        <button
+          class="sc-AxhUy eNACsH"
+          color="blueberry"
+          data-testid=""
+          id="expander-0"
+        >
+          <span
+            class="sc-AxhCb gPRmPx"
+          >
+            Title 1
+          </span>
+          <span
+            class="sc-AxiKw hcQbGl"
+          >
+            <svg
+              class="hnds-style-icon "
+              fill="black"
+              height="48"
+              viewBox="0 0 48 48"
+              width="48"
+            >
+              <path
+                d="M32.951 18.788l1.419 1.409-10.371 10.451L13.63 20.197l1.419-1.409L24 27.809z"
+              />
+            </svg>
+          </span>
+        </button>
+      </li>
+      <li>
+        <button
+          class="sc-AxhUy eNACsH"
+          color="blueberry"
+          data-testid=""
+          id="expander-1"
+        >
+          <span
+            class="sc-AxhCb gPRmPx"
+          >
+            Title 2
+          </span>
+          <span
+            class="sc-AxiKw hcQbGl"
+          >
+            <svg
+              class="hnds-style-icon "
+              fill="black"
+              height="48"
+              viewBox="0 0 48 48"
+              width="48"
+            >
+              <path
+                d="M32.951 18.788l1.419 1.409-10.371 10.451L13.63 20.197l1.419-1.409L24 27.809z"
+              />
+            </svg>
+          </span>
+        </button>
+      </li>
+      <li>
+        <button
+          class="sc-AxhUy eNACsH"
+          color="blueberry"
+          data-testid=""
+          id="expander-2"
+        >
+          <span
+            class="sc-AxhCb gPRmPx"
+          >
+            Title 3
+          </span>
+          <span
+            class="sc-AxiKw hcQbGl"
+          >
+            <svg
+              class="hnds-style-icon "
+              fill="black"
+              height="48"
+              viewBox="0 0 48 48"
+              width="48"
+            >
+              <path
+                d="M32.951 18.788l1.419 1.409-10.371 10.451L13.63 20.197l1.419-1.409L24 27.809z"
+              />
+            </svg>
+          </span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

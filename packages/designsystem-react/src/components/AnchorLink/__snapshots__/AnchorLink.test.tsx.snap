@@ -3,7 +3,7 @@
 exports[`displays anchorlink with className and id 1`] = `
 <div>
   <a
-    class="sc-AxjAm ldQZmC custom-classname"
+    class="sc-AxjAm kmBrzU custom-classname"
     id="custom-id"
     target="_self"
   >
@@ -15,7 +15,7 @@ exports[`displays anchorlink with className and id 1`] = `
 exports[`displays default anchorlink 1`] = `
 <div>
   <a
-    class="sc-AxjAm ldQZmC"
+    class="sc-AxjAm kmBrzU"
     target="_self"
   >
     AnchorLink
@@ -26,13 +26,13 @@ exports[`displays default anchorlink 1`] = `
 exports[`displays external anchorlink 1`] = `
 <div>
   <a
-    class="sc-AxjAm ldQZmC"
+    class="sc-AxjAm kmBrzU"
     target="_blank"
   >
     AnchorLink external
     <svg
       class="hnds-style-icon "
-      fill="blueberry"
+      fill="#126F87"
       height="38"
       viewBox="0 0 48 48"
       width="38"
