@@ -7,10 +7,10 @@ interface SpacerProps {
   className?: string;
 }
 
-const AnchorLink = React.forwardRef((props: SpacerProps, ref: any) => {
+const Spacer = React.forwardRef((props: SpacerProps, ref: any) => {
   const {size = 's', className} = props;
 
   return <StyledSpacer size={size} className={className} ref={ref}></StyledSpacer>;
 });
 
-export default AnchorLink;
+export default Spacer;
