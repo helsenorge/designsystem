@@ -9,15 +9,14 @@ interface LiveComponentProps {
   scope?: any;
   stack?: boolean;
   fullWidth?: boolean;
-  backgroundColor?: string;
 }
 
 function LiveComponent(props: LiveComponentProps) {
-  const {children, scope, stack = false, fullWidth = false, backgroundColor = null} = props;
+  const {children, scope, stack = false, fullWidth = false} = props;
   const [showEditor, setShowEditor] = useState(false);
   return (
     <LiveProvider theme={theme} scope={{styled, ...scope}} code={`<>${children}</>`}>
-      <StyledLivePreviewContainer backgroundColor={backgroundColor}>
+      <StyledLivePreviewContainer>
         <StyledLivePreview hasFullWidth={fullWidth} stack={stack} />
         <ToggleButton active={showEditor} onClick={() => setShowEditor(!showEditor)}>
           <Code size={16} />
@@ -82,17 +81,13 @@ const StyledLiveEditor = styled(LiveEditor)`
   font-family: 'Fira code', 'Fira Mono', monospace;
 `;
 
-interface LivePreviewContainerProps extends HTMLProps<HTMLDivElement> {
-  backgroundColor: string;
-}
-
-const StyledLivePreviewContainer = styled('div')<LivePreviewContainerProps>`
+const StyledLivePreviewContainer = styled('div')`
   position: relative;
   display: flex;
   overflow: auto;
   padding: 1.5rem;
   width: 100%;
-  background-color: ${props => (props.backgroundColor ? props.backgroundColor : '#f9f9f9')};
+  background-color: #f9f9f9;
   border: 2px solid #f1f1f1;
   transition: border 200ms;
   /* & * {

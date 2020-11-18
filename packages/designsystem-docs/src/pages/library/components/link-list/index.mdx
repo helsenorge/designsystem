@@ -6,7 +6,6 @@ date: 2019-01-29
 
 import MDXCustom from '../../../../components/markdown/MDXCustom';
 import * as propData from './link-list.json';
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
 import Icon from '@helsenorge/designsystem-react/components/Icons';
 import PaperPlane from '@helsenorge/designsystem-react/components/Icons/PaperPlane';
 import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
@@ -40,71 +39,44 @@ import LinkList from '@helsenorge/designsystem-react/components/LinkList';
 
 ### Colors
 
-<MDXCustom.LiveComponent scope={{LinkList}} backgroundColor={hndsTheme.palette.white}>{`
-  <div style={{width: '30rem'}}>
-    <LinkList
-      color="white">
-      <LinkList.Link>First link</LinkList.Link>
-    </LinkList>
-  </div>
-`}</MDXCustom.LiveComponent>
-
-<MDXCustom.LiveComponent scope={{LinkList}} backgroundColor={hndsTheme.palette.neutral50}>{`
+<MDXCustom.LiveComponent scope={{LinkList}}>{`
   <div style={{width: '30rem'}}>
     <LinkList
       color="neutral">
       <LinkList.Link>First link</LinkList.Link>
     </LinkList>
-  </div>
-`}</MDXCustom.LiveComponent>
-
-<MDXCustom.LiveComponent scope={{LinkList}} backgroundColor={hndsTheme.palette.blueberry50}>{`
-  <div style={{width: '30rem'}}>
     <LinkList
       color="blueberry">
       <LinkList.Link>First link</LinkList.Link>
     </LinkList>
-  </div>
-`}</MDXCustom.LiveComponent>
-
-<MDXCustom.LiveComponent scope={{LinkList}} backgroundColor={hndsTheme.palette.cherry50}>{`
-  <div style={{width: '30rem'}}>
     <LinkList
       color="cherry">
       <LinkList.Link>First link</LinkList.Link>
     </LinkList>
-  </div>
-`}</MDXCustom.LiveComponent>
-
-<MDXCustom.LiveComponent scope={{LinkList}} backgroundColor={hndsTheme.palette.kiwi50}>{`
-  <div style={{width: '30rem'}}>
     <LinkList
       color="kiwi">
       <LinkList.Link>First link</LinkList.Link>
     </LinkList>
-  </div>
-`}</MDXCustom.LiveComponent>
-
-<MDXCustom.LiveComponent scope={{LinkList}} backgroundColor={hndsTheme.palette.banana50}>{`
-  <div style={{width: '30rem'}}>
     <LinkList
       color="banana">
       <LinkList.Link>First link</LinkList.Link>
     </LinkList>
-  </div>
-`}</MDXCustom.LiveComponent>
-
-<MDXCustom.LiveComponent scope={{LinkList}} backgroundColor={hndsTheme.palette.plum50}>{`
-  <div style={{width: '30rem'}}>
     <LinkList
       color="plum">
+      <LinkList.Link>First link</LinkList.Link>
+    </LinkList>
+    <LinkList
+      color="white">
+      <LinkList.Link>First link</LinkList.Link>
+    </LinkList>
+    <LinkList
+      color="black">
       <LinkList.Link>First link</LinkList.Link>
     </LinkList>
   </div>
 `}</MDXCustom.LiveComponent>
 
 ### Large
-
 <MDXCustom.LiveComponent scope={{LinkList}}>{`
   <div style={{width: '30rem'}}>
     <LinkList
@@ -116,7 +88,6 @@ import LinkList from '@helsenorge/designsystem-react/components/LinkList';
 `}</MDXCustom.LiveComponent>
 
 ### Chevron
-
 <MDXCustom.LiveComponent scope={{LinkList}}>{`
   <div style={{width: '30rem'}}>
     <LinkList
@@ -128,7 +99,6 @@ import LinkList from '@helsenorge/designsystem-react/components/LinkList';
 `}</MDXCustom.LiveComponent>
 
 ### Border toggle
-
 <MDXCustom.LiveComponent scope={{LinkList}}>{`
   <div style={{width: '30rem'}}>
     <LinkList
@@ -143,7 +113,6 @@ import LinkList from '@helsenorge/designsystem-react/components/LinkList';
 `}</MDXCustom.LiveComponent>
 
 ### With icons
-
 <MDXCustom.LiveComponent scope={{LinkList, Icon, AlarmClock, Avatar, PaperPlane}}>{`
   <div style={{width: '30rem'}}>
     <LinkList
