@@ -93,7 +93,7 @@ const StyledExpanderListLink = styled('button')<StyledExpanderListLinkProps>`
   ${largeStyle};
   &:hover,
   :focus {
-    background-color: ${props => getColor(props.color, 100)};
+    background-color: ${props => (props.color === 'white' ? getColor('neutral', 50) : getColor(props.color, 100))};
   }
   &:focus {
     outline: none;
