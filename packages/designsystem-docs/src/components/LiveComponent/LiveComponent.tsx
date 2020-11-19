@@ -13,7 +13,7 @@ interface LiveComponentProps {
 }
 
 function LiveComponent(props: LiveComponentProps) {
-  const {children, scope, stack = false, fullWidth = false, backgroundColor = undefined} = props;
+  const {children, scope, stack = false, fullWidth = false, backgroundColor} = props;
   const [showEditor, setShowEditor] = useState(false);
   return (
     <LiveProvider theme={theme} scope={{styled, ...scope}} code={`<>${children}</>`}>
@@ -83,7 +83,7 @@ const StyledLiveEditor = styled(LiveEditor)`
 `;
 
 interface LivePreviewContainerProps extends HTMLProps<HTMLDivElement> {
-  backgroundColor: string;
+  backgroundColor?: string;
 }
 
 const StyledLivePreviewContainer = styled('div')<LivePreviewContainerProps>`
