@@ -24,9 +24,11 @@ exports[`Gitt ExpanderList blir rendret Sjekk at ExpanderList sitt snapshot matc
             class="sc-AxiKw hcQbGl"
           >
             <svg
+              aria-hidden="true"
               class="hnds-style-icon "
               fill="black"
               height="48"
+              role="img"
               viewBox="0 0 48 48"
               width="48"
             >
@@ -53,9 +55,11 @@ exports[`Gitt ExpanderList blir rendret Sjekk at ExpanderList sitt snapshot matc
             class="sc-AxiKw hcQbGl"
           >
             <svg
+              aria-hidden="true"
               class="hnds-style-icon "
               fill="black"
               height="48"
+              role="img"
               viewBox="0 0 48 48"
               width="48"
             >
@@ -82,9 +86,11 @@ exports[`Gitt ExpanderList blir rendret Sjekk at ExpanderList sitt snapshot matc
             class="sc-AxiKw hcQbGl"
           >
             <svg
+              aria-hidden="true"
               class="hnds-style-icon "
               fill="black"
               height="48"
+              role="img"
               viewBox="0 0 48 48"
               width="48"
             >

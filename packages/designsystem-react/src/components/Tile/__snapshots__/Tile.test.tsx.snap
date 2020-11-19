@@ -9,9 +9,11 @@ exports[`displays tile 1`] = `
       class="sc-AxhCb gkJdxg"
     >
       <svg
+        aria-hidden="true"
         class="hnds-style-icon "
         fill="black"
         height="64"
+        role="img"
         viewBox="0 0 48 48"
         width="64"
       >
