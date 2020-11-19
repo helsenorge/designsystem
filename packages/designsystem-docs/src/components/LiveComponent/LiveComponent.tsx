@@ -13,7 +13,7 @@ interface LiveComponentProps {
 }
 
 function LiveComponent(props: LiveComponentProps) {
-  const {children, scope, stack = false, fullWidth = false, backgroundColor = null} = props;
+  const {children, scope, stack = false, fullWidth = false, backgroundColor = undefined} = props;
   const [showEditor, setShowEditor] = useState(false);
   return (
     <LiveProvider theme={theme} scope={{styled, ...scope}} code={`<>${children}</>`}>
