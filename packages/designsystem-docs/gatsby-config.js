@@ -54,6 +54,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
+        icon: path.resolve(__dirname, `src/images/favicon.svg`),
         name: 'helsenorge-design-system',
         short_name: 'starter',
         start_url: '/',

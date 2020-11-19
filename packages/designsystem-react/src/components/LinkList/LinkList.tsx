@@ -57,7 +57,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
         </StyledLinkListLinkContent>
         {chevron && (
           <StyledLinkListIconContainer>
-            <Icon svgIcon={ChevronRight} />
+            <Icon svgIcon={ChevronRight} isHovered={isHovered} />
           </StyledLinkListIconContainer>
         )}
       </StyledLinkListLink>
