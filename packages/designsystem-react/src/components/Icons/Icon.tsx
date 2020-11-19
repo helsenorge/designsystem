@@ -21,6 +21,7 @@ interface SvgPathProps {
 const Icon = React.forwardRef((props: IconProps, ref: any) => {
   const {
     svgIcon,
+    title,
     className = '',
     size = 48,
     color = 'black',
