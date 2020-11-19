@@ -4,6 +4,7 @@ type SvgIcon = React.FC<SvgPathProps>;
 
 interface IconProps {
   svgIcon: SvgIcon;
+  title?: string;
   size?: number;
   color?: string;
   hoverColor?: string;
@@ -20,6 +21,7 @@ interface SvgPathProps {
 const Icon = React.forwardRef((props: IconProps, ref: any) => {
   const {
     svgIcon,
+    title,
     className = '',
     size = 48,
     color = 'black',
@@ -37,6 +39,9 @@ const Icon = React.forwardRef((props: IconProps, ref: any) => {
     <svg
       ref={ref}
       className={`hnds-style-icon ${className}`}
+      id={title}
+      role="img"
+      aria-hidden="true"
       viewBox="0 0 48 48"
       width={size}
       height={size}
