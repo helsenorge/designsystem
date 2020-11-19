@@ -28,7 +28,16 @@ export interface HTMLAnchorProps {
   ping?: string;
   rel?: string;
   target?: string;
-  referrerPolicy?: string;
+  referrerPolicy?:
+    | ''
+    | 'same-origin'
+    | 'no-referrer'
+    | 'no-referrer-when-downgrade'
+    | 'origin'
+    | 'origin-when-cross-origin'
+    | 'strict-origin'
+    | 'strict-origin-when-cross-origin'
+    | 'unsafe-url';
 }
 
 export type ButtonVariant = 'secondary' | 'tertiary' | string | undefined | null;
