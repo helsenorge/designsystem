@@ -40,6 +40,7 @@ const Icon = React.forwardRef((props: IconProps, ref: any) => {
       ref={ref}
       className={`hnds-style-icon ${className}`}
       id={title}
+      role="img"
       aria-hidden="true"
       viewBox="0 0 48 48"
       width={size}
