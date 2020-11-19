@@ -85,7 +85,12 @@ const StyledExpanderListLink = styled('button')<StyledExpanderListLinkProps>`
   align-items: center;
   letter-spacing: unset;
   color: ${getColor('black')};
-  background-color: ${props => (props.isExpanded ? getColor(props.color, 100) : 'transparent')};
+  background-color: ${props =>
+    props.isExpanded
+      ? props.color === 'white'
+        ? getColor('neutral', 50)
+        : getColor(props.color, 100)
+      : 'transparent'};
   border: 0;
   width: 100%;
 
