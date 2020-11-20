@@ -31,9 +31,11 @@ exports[`displays external anchorlink 1`] = `
   >
     AnchorLink external
     <svg
+      aria-hidden="true"
       class="hnds-style-icon "
       fill="#126F87"
       height="38"
+      role="img"
       viewBox="0 0 48 48"
       width="38"
     >

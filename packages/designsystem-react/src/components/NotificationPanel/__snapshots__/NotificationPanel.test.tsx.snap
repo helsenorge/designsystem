@@ -9,9 +9,11 @@ exports[`displays a notification panel 1`] = `
       class="sc-AxiKw dXoJxW"
     >
       <svg
+        aria-hidden="true"
         class="hnds-style-icon "
         fill="#078141"
         height="48"
+        role="img"
         viewBox="0 0 48 48"
         width="48"
       >
