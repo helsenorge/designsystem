@@ -180,6 +180,20 @@
     {
       "label": "Sunday morning",
       "path": "/patterns/sunday-morning"
+    },
+    {
+      "label": "Avgrense - forenkle",
+      "path": "/patterns/avgrense",
+      "children": [
+        {
+          "label": "Gruppere",
+          "path": "/patterns/avgrense/gruppere"
+        },
+        {
+          "label": "Stegvisning",
+          "path": "/patterns/avgrense/stegvisning"
+        }
+      ]
     }
   ],
   "editorial": [
