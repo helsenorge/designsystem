@@ -9,10 +9,10 @@ const chalk = require('chalk');
 const glob = require('glob');
 
 const paths = {
-  src: path.join(__dirname, '../', 'src'),
-  components: path.join(__dirname, '../', 'src', 'components'),
-  icons: path.join(__dirname, '../', 'src', 'components/Icons'),
-  output: path.join(__dirname, '../', 'scripts', 'componentsEntries.json'),
+  src: path.join('src'),
+  components: path.join('src', 'components'),
+  icons: path.join('src', 'components/Icons'),
+  output: path.join('scripts', 'componentsEntries.json'),
 };
 
 // Generate component metadata
