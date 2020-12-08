@@ -42,10 +42,14 @@ const StyledSearch = styled('input')`
   }
 `;
 
-const StyledFilterProps = styled('div')`
+const StyledFilterPropsHolder = styled('div')`
   display: flex;
   margin-top: 1rem;
   padding: 0.5rem;
+`;
+
+const StyledFilterProp = styled('div')`
+  margin-right: 1rem;
 `;
 
 interface IconWallFilterProps {
@@ -56,9 +60,12 @@ function IconWallFilter(props: IconWallFilterProps) {
   const {onFilterChange} = props;
   const [filter, setFilter] = useState('');
   const [isHovered, setIsHovered] = useState(false);
+  const [isExtraSmall, setIsExtraSmall] = useState(false);
+
   useEffect(() => {
-    onFilterChange({filter, isHovered});
-  }, [filter, isHovered]);
+    onFilterChange({filter, isHovered, isExtraSmall});
+  }, [filter, isHovered, isExtraSmall]);
+
   return (
     <div>
       <StyledSearch
@@ -67,9 +74,14 @@ function IconWallFilter(props: IconWallFilterProps) {
         onInput={e => setFilter(e.currentTarget.value)}
         placeholder="Filter icon by name..."
       />
-      <StyledFilterProps>
-        <Checkbox label="Hover state" checked={isHovered} onChange={() => setIsHovered(!isHovered)} />
-      </StyledFilterProps>
+      <StyledFilterPropsHolder>
+        <StyledFilterProp>
+          <Checkbox label="Hover state" checked={isHovered} onChange={() => setIsHovered(!isHovered)} />
+        </StyledFilterProp>
+        <StyledFilterProp>
+          <Checkbox label="Extra small state" checked={isExtraSmall} onChange={() => setIsExtraSmall(!isExtraSmall)} />
+        </StyledFilterProp>
+      </StyledFilterPropsHolder>
     </div>
   );
 }
@@ -78,6 +90,7 @@ function IconWall() {
   const [filterProps, setFilterProps] = useState({
     filter: '',
     isHovered: false,
+    isExtraSmall: false,
   });
 
   const filterIcons = (iconImport: IconImport, index: number) => {
@@ -99,7 +112,11 @@ function IconWall() {
         {SvgIcons.allSvgIcons.filter(filterIcons).map((iconImport: IconImport, index) => (
           <div>
             <StyledIconTile>
-              <Icon isHovered={filterProps.isHovered} svgIcon={iconImport.module} />
+              <Icon
+                isHovered={filterProps.isHovered}
+                size={filterProps.isExtraSmall ? 38 : 48}
+                svgIcon={iconImport.module}
+              />
               <StyledIconName>{iconImport.name}</StyledIconName>
             </StyledIconTile>
           </div>
