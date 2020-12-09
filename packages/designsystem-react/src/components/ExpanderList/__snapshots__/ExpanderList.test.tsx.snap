@@ -23,19 +23,25 @@ exports[`Gitt ExpanderList blir rendret Sjekk at ExpanderList sitt snapshot matc
           <span
             class="sc-AxiKw hcQbGl"
           >
-            <svg
-              aria-hidden="true"
-              class="hnds-style-icon "
-              fill="black"
-              height="48"
-              role="img"
-              viewBox="0 0 48 48"
-              width="48"
+            <div
+              class="sc-AxgMl hCjLEc"
+              data-testid=""
+              size="48"
             >
-              <path
-                d="M32.951 18.788l1.419 1.409-10.371 10.451L13.63 20.197l1.419-1.409L24 27.809z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="hnds-style-icon "
+                fill="black"
+                height="48"
+                role="img"
+                viewBox="0 0 48 48"
+                width="48"
+              >
+                <path
+                  d="M32.951 18.788l1.419 1.409-10.371 10.451L13.63 20.197l1.419-1.409L24 27.809z"
+                />
+              </svg>
+            </div>
           </span>
         </button>
       </li>
@@ -54,19 +60,25 @@ exports[`Gitt ExpanderList blir rendret Sjekk at ExpanderList sitt snapshot matc
           <span
             class="sc-AxiKw hcQbGl"
           >
-            <svg
-              aria-hidden="true"
-              class="hnds-style-icon "
-              fill="black"
-              height="48"
-              role="img"
-              viewBox="0 0 48 48"
-              width="48"
+            <div
+              class="sc-AxgMl hCjLEc"
+              data-testid=""
+              size="48"
             >
-              <path
-                d="M32.951 18.788l1.419 1.409-10.371 10.451L13.63 20.197l1.419-1.409L24 27.809z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="hnds-style-icon "
+                fill="black"
+                height="48"
+                role="img"
+                viewBox="0 0 48 48"
+                width="48"
+              >
+                <path
+                  d="M32.951 18.788l1.419 1.409-10.371 10.451L13.63 20.197l1.419-1.409L24 27.809z"
+                />
+              </svg>
+            </div>
           </span>
         </button>
       </li>
@@ -85,19 +97,25 @@ exports[`Gitt ExpanderList blir rendret Sjekk at ExpanderList sitt snapshot matc
           <span
             class="sc-AxiKw hcQbGl"
           >
-            <svg
-              aria-hidden="true"
-              class="hnds-style-icon "
-              fill="black"
-              height="48"
-              role="img"
-              viewBox="0 0 48 48"
-              width="48"
+            <div
+              class="sc-AxgMl hCjLEc"
+              data-testid=""
+              size="48"
             >
-              <path
-                d="M32.951 18.788l1.419 1.409-10.371 10.451L13.63 20.197l1.419-1.409L24 27.809z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="hnds-style-icon "
+                fill="black"
+                height="48"
+                role="img"
+                viewBox="0 0 48 48"
+                width="48"
+              >
+                <path
+                  d="M32.951 18.788l1.419 1.409-10.371 10.451L13.63 20.197l1.419-1.409L24 27.809z"
+                />
+              </svg>
+            </div>
           </span>
         </button>
       </li>

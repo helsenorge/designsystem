@@ -13,11 +13,13 @@ interface StyledButtonProps {
   loader: boolean;
   hasIcon: boolean;
   disabled: boolean;
+  textWrap: boolean;
+  ellipsisWidth: number;
 }
 
 const defaultStyle = css`
   padding: 0 1.5rem;
-  height: 2.5rem;
+  min-height: 2.5rem;
   font-size: 1.125rem;
   font-family: inherit;
   font-weight: 600;
@@ -32,7 +34,7 @@ const defaultStyle = css`
     pointer-events: none;
   }
   @media ${screen.md} {
-    height: 3.125rem;
+    min-height: 3.125rem;
     font-size: 1.25rem;
     padding: 0 2.5rem;
   }
@@ -47,11 +49,11 @@ const fluidStyle = (props: StyledButtonProps) =>
 const largeStyle = (props: StyledButtonProps) =>
   props.large &&
   css`
-    height: 3.5rem;
+    min-height: 3.5rem;
     font-size: 1.125rem;
     /* padding: 0 0.5rem; */
     @media ${screen.md} {
-      height: 4.5rem;
+      min-height: 4.5rem;
     }
   `;
 
@@ -77,7 +79,7 @@ const variantHoverStyle = css`
 `;
 
 export const StyledButtonWrapper = styled('span')`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   width: inherit;
@@ -97,9 +99,18 @@ export const StyledLeftFluidContent = styled('div')<{hasIcon: boolean}>`
     css`
       justify-content: center;
     `};
+  ${props =>
+    props.hasIcon &&
+    css`
+      text-align: left;
+    `};
 `;
 
-export const StyledButtonContent = styled('span')``;
+export const StyledButtonContent = styled('span')`
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  white-space: normal;
+`;
 
 // TODO: Move hasIcon logic to seperate styling
 // TODO: Clean up a lot of this logic into own styling functions
@@ -214,6 +225,31 @@ export const StyledButton = styled('button')<StyledButtonProps>`
       }
       ${StyledButtonContent}:last-child {
         margin-right: ${props.large ? '2.5rem' : '1.5rem'};
+      }
+      ${props.fluid &&
+      css`
+        ${StyledButtonContent}:last-child {
+          margin-right: 0;
+          @media ${screen.md} {
+            margin-right: ${props.large ? '2.5rem' : '1.5rem'};
+          }
+        }
+        ${StyledLeftFluidContent}:last-child {
+          margin-right: ${props.large ? '2.5rem' : '1.5rem'};
+          @media ${screen.md} {
+            margin-right: 0;
+          }
+        }
+      `}
+    `}
+  ${props =>
+    !props.textWrap &&
+    css`
+      ${StyledButtonContent} {
+        max-width: ${props.ellipsisWidth >= 1 ? props.ellipsisWidth : 1}rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     `}
   ${props =>

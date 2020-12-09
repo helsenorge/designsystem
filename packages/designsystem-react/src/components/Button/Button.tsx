@@ -37,6 +37,9 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   loading?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   variant?: ButtonVariants;
+  textWrap?: boolean;
+  ellipsisWidth?: number;
+  testContentId?: string;
 }
 
 // TODO: Consider making this a shared hook
@@ -87,6 +90,9 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
     loading = false,
     variant = 'fill',
     disabled = false,
+    textWrap = true,
+    ellipsisWidth = 5,
+    testContentId = '',
     ...restProps
   } = props;
 
@@ -125,6 +131,8 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       loader={loading}
       ref={hoverRef}
       disabled={disabled}
+      textWrap={textWrap}
+      ellipsisWidth={ellipsisWidth}
       {...restProps}>
       <StyledButtonWrapper>
         {loading ? (
@@ -136,12 +144,12 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
             {fluid ? (
               <StyledLeftFluidContent hasIcon={!!(leftIcon || rightIcon)}>
                 {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
-                <StyledButtonContent>{restChildren}</StyledButtonContent>
+                <StyledButtonContent data-testid={testContentId}>{restChildren}</StyledButtonContent>
               </StyledLeftFluidContent>
             ) : (
               <>
                 {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
-                <StyledButtonContent>{restChildren}</StyledButtonContent>
+                <StyledButtonContent data-testid={testContentId}>{restChildren}</StyledButtonContent>
               </>
             )}
             {renderIcon(rightIcon, 38, iconColor, isHovered)}
