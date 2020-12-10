@@ -1,9 +1,11 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import {Icon} from './Icon';
-import AlarmClock from '../Icons/AlarmClock';
+import AlarmClock from './AlarmClock';
+import {execPath} from 'process';
 
 /* Should test all icons */
+
 describe('Gitt at icon skal vises', (): void => {
   describe('Når icon rendres', (): void => {
     test('Så vises riktig icon', (): void => {
