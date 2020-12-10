@@ -4,6 +4,7 @@ exports[`displays the loader 1`] = `
 <div>
   <div
     class="sc-AxirZ fsuNgq"
+    data-testid=""
   >
     <div
       class="sc-AxjAm beDnoW"

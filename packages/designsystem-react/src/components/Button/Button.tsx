@@ -38,8 +38,10 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   variant?: ButtonVariants;
   textWrap?: boolean;
-  ellipsisWidth?: number;
+  testId?: string;
+  testLeftFluidContentId?: string;
   testContentId?: string;
+  testLoaderId?: string;
 }
 
 // TODO: Consider making this a shared hook
@@ -91,8 +93,10 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
     variant = 'fill',
     disabled = false,
     textWrap = true,
-    ellipsisWidth = 5,
+    testId = '',
+    testLeftFluidContentId = '',
     testContentId = '',
+    testLoaderId = '',
     ...restProps
   } = props;
 
@@ -120,6 +124,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
 
   return (
     <StyledButton
+      data-testid={testId}
       className={className}
       variant={variant}
       intent={intent}
@@ -132,17 +137,20 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       ref={hoverRef}
       disabled={disabled}
       textWrap={textWrap}
-      ellipsisWidth={ellipsisWidth}
       {...restProps}>
       <StyledButtonWrapper>
         {loading ? (
-          <StyledLeftFluidContent hasIcon={false}>
-            <Loader color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)} size="tiny" />
+          <StyledLeftFluidContent data-testid={testLeftFluidContentId} hasIcon={false}>
+            <Loader
+              testId={testLoaderId}
+              color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)}
+              size="tiny"
+            />
           </StyledLeftFluidContent>
         ) : (
           <>
             {fluid ? (
-              <StyledLeftFluidContent hasIcon={!!(leftIcon || rightIcon)}>
+              <StyledLeftFluidContent data-testid={testLeftFluidContentId} hasIcon={!!(leftIcon || rightIcon)}>
                 {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
                 <StyledButtonContent data-testid={testContentId}>{restChildren}</StyledButtonContent>
               </StyledLeftFluidContent>

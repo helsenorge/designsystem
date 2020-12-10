@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components';
 import {ButtonVariants, ButtonIntents, intentToColor} from './Button';
 import {screen} from '../../theme/grid';
 import {getColor, getHoverColor} from '../../theme/currys/color';
-import {PaletteNames} from '../../theme/palette';
+import {palette, PaletteNames} from '../../theme/palette';
 
 interface StyledButtonProps {
   variant: ButtonVariants;
@@ -14,7 +14,6 @@ interface StyledButtonProps {
   hasIcon: boolean;
   disabled: boolean;
   textWrap: boolean;
-  ellipsisWidth: number;
 }
 
 const defaultStyle = css`
@@ -85,7 +84,7 @@ export const StyledButtonWrapper = styled('span')`
   width: inherit;
   height: 100%;
   &:focus {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid ${getColor('white')};
   }
 `;
 
@@ -119,19 +118,19 @@ export const StyledButtonContent = styled('span')`
 const fillStyle = (color: PaletteNames, inverted?: boolean) => css`
   border-width: 0.125rem;
   border-style: solid;
-  background-color: ${inverted ? 'white' : getColor(color, 500)};
-  border-color: ${inverted ? 'white' : getColor(color, 500)};
-  color: ${!inverted ? 'white' : getColor(color, 500)};
+  background-color: ${inverted ? getColor('white') : getColor(color, 500)};
+  border-color: ${inverted ? getColor('white') : getColor(color, 500)};
+  color: ${!inverted ? getColor('white') : getColor(color, 500)};
   &:hover,
   :active,
   :focus {
-    background-color: ${inverted ? 'white' : getColor(color, 700)};
+    background-color: ${inverted ? getColor('white') : getColor(color, 700)};
     border-color: transparent;
-    box-shadow: 0 0 0 0.25rem ${inverted ? 'white' : getColor(color, 700)};
+    box-shadow: 0 0 0 0.25rem ${inverted ? getColor('white') : getColor(color, 700)};
   }
   &:focus {
     ${StyledButtonContent} {
-      border-bottom: 1px solid ${!inverted ? 'white' : getColor(color, 700)};
+      border-bottom: 1px solid ${!inverted ? getColor('white') : getColor(color, 700)};
     }
   }
   &:disabled {
@@ -245,8 +244,8 @@ export const StyledButton = styled('button')<StyledButtonProps>`
   ${props =>
     !props.textWrap &&
     css`
+      max-width: 100%;
       ${StyledButtonContent} {
-        max-width: ${props.ellipsisWidth >= 1 ? props.ellipsisWidth : 1}rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

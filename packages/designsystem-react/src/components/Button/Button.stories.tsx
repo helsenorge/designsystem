@@ -23,7 +23,6 @@ const myRef4 = React.createRef();
 stories.add('Default', () => (
   <div style={{width: '15rem'}}>
     <Button
-      ellipsisWidth={number('ellipsisWidth', 10)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
@@ -46,7 +45,6 @@ stories.add('Fluid', () => (
       padding: '1rem',
     }}>
     <Button
-      ellipsisWidth={number('ellipsisWidth', 5)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
@@ -61,7 +59,6 @@ stories.add('Fluid', () => (
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
-      ellipsisWidth={number('ellipsisWidth', 5)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
@@ -78,7 +75,6 @@ stories.add('Fluid', () => (
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
-      ellipsisWidth={number('ellipsisWidth', 5)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
@@ -99,7 +95,6 @@ stories.add('With icon(s)', () => (
   <div>
     <Button
       ref={myRef1}
-      ellipsisWidth={number('ellipsisWidth', 5)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
@@ -116,7 +111,6 @@ stories.add('With icon(s)', () => (
     <div style={{height: '1rem'}}></div>
     <Button
       ref={myRef2}
-      ellipsisWidth={number('ellipsisWidth', 5)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
@@ -133,7 +127,6 @@ stories.add('With icon(s)', () => (
     <div style={{height: '1rem'}}></div>
     <Button
       ref={myRef3}
-      ellipsisWidth={number('ellipsisWidth', 5)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
@@ -151,7 +144,6 @@ stories.add('With icon(s)', () => (
     <div style={{height: '1rem'}}></div>
     <Button
       ref={myRef4}
-      ellipsisWidth={number('ellipsisWidth', 5)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
@@ -172,7 +164,6 @@ stories.add('With icon(s)', () => (
 stories.add('All variants', () => (
   <div style={{display: 'grid', gridGap: '2rem'}}>
     <Button
-      ellipsisWidth={number('ellipsisWidth', 5)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       variant="fill"
@@ -185,7 +176,6 @@ stories.add('All variants', () => (
     </Button>
 
     <Button
-      ellipsisWidth={number('ellipsisWidth', 5)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       variant="outline"
@@ -197,7 +187,6 @@ stories.add('All variants', () => (
       <Icon svgIcon={X} />
     </Button>
     <Button
-      ellipsisWidth={number('ellipsisWidth', 5)}
       textWrap={boolean('textWrap', true)}
       disabled={boolean('Disabled', false)}
       variant="borderless"

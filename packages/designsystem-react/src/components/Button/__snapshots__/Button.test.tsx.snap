@@ -3,10 +3,11 @@
 exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
 <div>
   <button
-    class="sc-AxhCb kvOBoY"
+    class="sc-AxhCb gHxYek"
+    data-testid=""
   >
     <span
-      class="sc-AxjAm bHmITJ"
+      class="sc-AxjAm jcbWlK"
     >
       <span
         class="sc-AxiKw ikgxwu"
@@ -22,10 +23,11 @@ exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
 exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikonene 1`] = `
 <div>
   <button
-    class="sc-AxhCb ghvZHC"
+    class="sc-AxhCb gvHgQy"
+    data-testid=""
   >
     <span
-      class="sc-AxjAm bHmITJ"
+      class="sc-AxjAm jcbWlK"
     >
       <div
         class="sc-AxheI ifuJNm"
