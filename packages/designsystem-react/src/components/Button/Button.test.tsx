@@ -13,9 +13,7 @@ describe('Gitt at button skal vises', (): void => {
       const {container} = render(<Button>Button</Button>);
       expect(container).toMatchSnapshot();
     });
-  });
 
-  describe('Når button rendres', (): void => {
     test('Så er textwrap på', (): void => {
       render(<Button>Button text</Button>);
 
@@ -78,9 +76,7 @@ describe('Gitt at button skal vises', (): void => {
       expect(handleClick).toHaveBeenCalledTimes(0);
       expect(testButton).toBeDisabled();
     });
-  });
 
-  describe('Når button rendres med disabled', (): void => {
     test('Så rendres den riktig', (): void => {
       render(
         <Button testId={'test01'} disabled={true}>
