@@ -23,7 +23,7 @@ const myRef4 = React.createRef();
 stories.add('Default', () => (
   <div style={{width: '15rem'}}>
     <Button
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -45,7 +45,7 @@ stories.add('Fluid', () => (
       padding: '1rem',
     }}>
     <Button
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -59,7 +59,7 @@ stories.add('Fluid', () => (
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -75,7 +75,7 @@ stories.add('Fluid', () => (
     </Button>
     <div style={{height: '1rem'}}></div>
     <Button
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -95,7 +95,7 @@ stories.add('With icon(s)', () => (
   <div>
     <Button
       ref={myRef1}
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -111,7 +111,7 @@ stories.add('With icon(s)', () => (
     <div style={{height: '1rem'}}></div>
     <Button
       ref={myRef2}
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -127,7 +127,7 @@ stories.add('With icon(s)', () => (
     <div style={{height: '1rem'}}></div>
     <Button
       ref={myRef3}
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -144,7 +144,7 @@ stories.add('With icon(s)', () => (
     <div style={{height: '1rem'}}></div>
     <Button
       ref={myRef4}
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       fluid={boolean('Fluid', false)}
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -164,7 +164,7 @@ stories.add('With icon(s)', () => (
 stories.add('All variants', () => (
   <div style={{display: 'grid', gridGap: '2rem'}}>
     <Button
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       variant="fill"
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -176,7 +176,7 @@ stories.add('All variants', () => (
     </Button>
 
     <Button
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       variant="outline"
       intent={select('Intent', allButtonIntents, 'primary')}
@@ -187,7 +187,7 @@ stories.add('All variants', () => (
       <Icon svgIcon={X} />
     </Button>
     <Button
-      textWrap={boolean('textWrap', true)}
+      ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
       variant="borderless"
       intent={select('Intent', allButtonIntents, 'primary')}

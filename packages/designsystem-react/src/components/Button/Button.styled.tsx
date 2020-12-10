@@ -13,7 +13,7 @@ interface StyledButtonProps {
   loader: boolean;
   hasIcon: boolean;
   disabled: boolean;
-  textWrap: boolean;
+  ellipsis: boolean;
 }
 
 const defaultStyle = css`
@@ -242,7 +242,7 @@ export const StyledButton = styled('button')<StyledButtonProps>`
       `}
     `}
   ${props =>
-    !props.textWrap &&
+    props.ellipsis &&
     css`
       max-width: 100%;
       ${StyledButtonContent} {

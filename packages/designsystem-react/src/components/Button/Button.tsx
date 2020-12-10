@@ -37,11 +37,8 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   loading?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   variant?: ButtonVariants;
-  textWrap?: boolean;
+  ellipsis?: boolean;
   testId?: string;
-  testLeftFluidContentId?: string;
-  testContentId?: string;
-  testLoaderId?: string;
 }
 
 // TODO: Consider making this a shared hook
@@ -92,11 +89,8 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
     loading = false,
     variant = 'fill',
     disabled = false,
-    textWrap = true,
+    ellipsis = false,
     testId = '',
-    testLeftFluidContentId = '',
-    testContentId = '',
-    testLoaderId = '',
     ...restProps
   } = props;
 
@@ -136,13 +130,13 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       loader={loading}
       ref={hoverRef}
       disabled={disabled}
-      textWrap={textWrap}
+      ellipsis={ellipsis}
       {...restProps}>
       <StyledButtonWrapper>
         {loading ? (
-          <StyledLeftFluidContent data-testid={testLeftFluidContentId} hasIcon={false}>
+          <StyledLeftFluidContent hasIcon={false}>
             <Loader
-              testId={testLoaderId}
+              testId={'test-id-loader'}
               color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)}
               size="tiny"
             />
@@ -150,14 +144,14 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
         ) : (
           <>
             {fluid ? (
-              <StyledLeftFluidContent data-testid={testLeftFluidContentId} hasIcon={!!(leftIcon || rightIcon)}>
+              <StyledLeftFluidContent hasIcon={!!(leftIcon || rightIcon)}>
                 {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
-                <StyledButtonContent data-testid={testContentId}>{restChildren}</StyledButtonContent>
+                <StyledButtonContent>{restChildren}</StyledButtonContent>
               </StyledLeftFluidContent>
             ) : (
               <>
                 {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
-                <StyledButtonContent data-testid={testContentId}>{restChildren}</StyledButtonContent>
+                <StyledButtonContent>{restChildren}</StyledButtonContent>
               </>
             )}
             {renderIcon(rightIcon, 38, iconColor, isHovered)}

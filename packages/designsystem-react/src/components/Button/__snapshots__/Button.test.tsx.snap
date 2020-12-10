@@ -11,7 +11,6 @@ exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
     >
       <span
         class="sc-AxiKw ikgxwu"
-        data-testid=""
       >
         Button
       </span>
@@ -50,7 +49,6 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
       </div>
       <span
         class="sc-AxiKw ikgxwu"
-        data-testid=""
       >
         Button
       </span>

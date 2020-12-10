@@ -4,12 +4,23 @@ import Button from './Button';
 import Icon from '../Icons';
 import Check from '../Icons/Check';
 import {palette} from '../../theme/palette';
+import {exitProcess} from 'yargs';
+import {isExportDeclaration} from 'typescript';
 
 describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres', (): void => {
     test('Så vises button', (): void => {
       const {container} = render(<Button>Button</Button>);
       expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe('Når button rendres', (): void => {
+    test('Så er textwrap på', (): void => {
+      render(<Button>Button text</Button>);
+
+      const testButtonText = screen.getByText('Button text');
+      expect(testButtonText).toHaveStyle('white-space: normal;');
     });
   });
 
@@ -26,24 +37,11 @@ describe('Gitt at button skal vises', (): void => {
     });
   });
 
-  describe('Når button rendres', (): void => {
-    test('Så er textwrap på', (): void => {
-      render(<Button testContentId={'test01'}>Button text</Button>);
-
-      const testButtonText = screen.getByTestId('test01');
-      expect(testButtonText).toHaveStyle('white-space: normal;');
-    });
-  });
-
-  describe('Når button rendres med textWrap av', (): void => {
+  describe('Når button rendres med ellipsis på', (): void => {
     test('Så brukes ellipsis på overflødig tekst', (): void => {
-      render(
-        <Button testContentId={'test01'} textWrap={false}>
-          Button text
-        </Button>,
-      );
+      render(<Button ellipsis={true}>Button text</Button>);
 
-      const testButtonText = screen.getByTestId('test01');
+      const testButtonText = screen.getByText('Button text');
       expect(testButtonText).toHaveStyle('white-space: nowrap;');
       expect(testButtonText).toHaveStyle('text-overflow: ellipsis;');
     });
@@ -52,13 +50,13 @@ describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres med fluid og ikon(er)', (): void => {
     test('Så venstrestilles teksten', (): void => {
       render(
-        <Button testLeftFluidContentId={'test01'} fluid={true}>
+        <Button testId={'test01'} fluid={true}>
           Button text
           <Icon svgIcon={Check} />
         </Button>,
       );
 
-      const testLeftFluidContent = screen.getByTestId('test01');
+      const testLeftFluidContent = screen.getByTestId('test01').querySelector('div');
       expect(testLeftFluidContent).toHaveStyle('text-align: left;');
     });
   });
@@ -76,7 +74,24 @@ describe('Gitt at button skal vises', (): void => {
       const testButton = screen.getByTestId('test01');
 
       fireEvent.click(testButton);
+
       expect(handleClick).toHaveBeenCalledTimes(0);
+      expect(testButton).toBeDisabled();
+    });
+  });
+
+  describe('Når button rendres med disabled', (): void => {
+    test('Så rendres den riktig', (): void => {
+      render(
+        <Button testId={'test01'} disabled={true}>
+          Button
+        </Button>,
+      );
+
+      const testButton = screen.getByTestId('test01');
+
+      expect(testButton).toHaveStyle(`background-color: ${palette.neutral200}`);
+      expect(testButton).toHaveStyle(`color: ${palette.neutral600}`);
     });
   });
 
@@ -142,13 +157,13 @@ describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres med loading', (): void => {
     test('Så er loader elementet lagt til', (): void => {
       render(
-        <Button testLoaderId={'test01'} loading={true}>
+        <Button loading={true}>
           <Icon svgIcon={Check} />
           Button
         </Button>,
       );
 
-      const testLoader = screen.getByTestId('test01');
+      const testLoader = screen.getByTestId('test-id-loader');
 
       expect(testLoader).toBeTruthy();
     });
