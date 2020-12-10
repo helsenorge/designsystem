@@ -3,7 +3,7 @@ module.exports = {
   rootDir: './',
   collectCoverage: true,
   coverageDirectory: '<rootDir>/coverage',
-  collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx,ts,tsx}', '!<rootDir>/src/components/Icons/*'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx,ts,tsx}', '!<rootDir>/src/components/Icons/[^Icon]*'],
   coveragePathIgnorePatterns: ['.stories.tsx', '.d.ts', 'index.ts'],
   testEnvironment: 'jsdom',
   moduleNameMapper: {
