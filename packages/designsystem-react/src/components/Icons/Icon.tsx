@@ -1,4 +1,5 @@
 import React from 'react';
+import StyledIcon from './Icon.styled';
 
 type SvgIcon = React.FC<SvgPathProps>;
 
@@ -11,6 +12,7 @@ interface IconProps {
   className?: string;
   hoverType?: SvgIcon;
   isHovered?: boolean;
+  testId?: string;
 }
 
 interface SvgPathProps {
@@ -27,6 +29,7 @@ const Icon = React.forwardRef((props: IconProps, ref: any) => {
     color = 'black',
     hoverColor = color || 'black',
     isHovered = false,
+    testId = '',
     ...other
   } = props;
 
@@ -36,19 +39,21 @@ const Icon = React.forwardRef((props: IconProps, ref: any) => {
   });
 
   return (
-    <svg
-      ref={ref}
-      className={`hnds-style-icon ${className}`}
-      role="img"
-      aria-label={ariaLabel}
-      aria-hidden="true"
-      viewBox="0 0 48 48"
-      width={size}
-      height={size}
-      fill={isHovered ? hoverColor : color}
-      {...other}>
-      {svgRaw}
-    </svg>
+    <StyledIcon data-testid={testId} size={size}>
+      <svg
+        ref={ref}
+        className={`hnds-style-icon ${className}`}
+        role="img"
+        aria-label={ariaLabel}
+        aria-hidden="true"
+        viewBox="0 0 48 48"
+        width={size}
+        height={size}
+        fill={isHovered ? hoverColor : color}
+        {...other}>
+        {svgRaw}
+      </svg>
+    </StyledIcon>
   );
 });
 

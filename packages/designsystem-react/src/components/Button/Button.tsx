@@ -37,6 +37,8 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   loading?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   variant?: ButtonVariants;
+  ellipsis?: boolean;
+  testId?: string;
 }
 
 // TODO: Consider making this a shared hook
@@ -87,6 +89,8 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
     loading = false,
     variant = 'fill',
     disabled = false,
+    ellipsis = false,
+    testId = '',
     ...restProps
   } = props;
 
@@ -114,6 +118,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
 
   return (
     <StyledButton
+      data-testid={testId}
       className={className}
       variant={variant}
       intent={intent}
@@ -125,11 +130,16 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       loader={loading}
       ref={hoverRef}
       disabled={disabled}
+      ellipsis={ellipsis}
       {...restProps}>
       <StyledButtonWrapper>
         {loading ? (
           <StyledLeftFluidContent hasIcon={false}>
-            <Loader color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)} size="tiny" />
+            <Loader
+              testId={'test-id-loader'}
+              color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)}
+              size="tiny"
+            />
           </StyledLeftFluidContent>
         ) : (
           <>

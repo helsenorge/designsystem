@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components';
 import {ButtonVariants, ButtonIntents, intentToColor} from './Button';
 import {screen} from '../../theme/grid';
 import {getColor, getHoverColor} from '../../theme/currys/color';
-import {PaletteNames} from '../../theme/palette';
+import {palette, PaletteNames} from '../../theme/palette';
 
 interface StyledButtonProps {
   variant: ButtonVariants;
@@ -13,11 +13,12 @@ interface StyledButtonProps {
   loader: boolean;
   hasIcon: boolean;
   disabled: boolean;
+  ellipsis: boolean;
 }
 
 const defaultStyle = css`
   padding: 0 1.5rem;
-  height: 2.5rem;
+  min-height: 2.5rem;
   font-size: 1.125rem;
   font-family: inherit;
   font-weight: 600;
@@ -32,7 +33,7 @@ const defaultStyle = css`
     pointer-events: none;
   }
   @media ${screen.md} {
-    height: 3.125rem;
+    min-height: 3.125rem;
     font-size: 1.25rem;
     padding: 0 2.5rem;
   }
@@ -47,11 +48,11 @@ const fluidStyle = (props: StyledButtonProps) =>
 const largeStyle = (props: StyledButtonProps) =>
   props.large &&
   css`
-    height: 3.5rem;
+    min-height: 3.5rem;
     font-size: 1.125rem;
     /* padding: 0 0.5rem; */
     @media ${screen.md} {
-      height: 4.5rem;
+      min-height: 4.5rem;
     }
   `;
 
@@ -77,13 +78,13 @@ const variantHoverStyle = css`
 `;
 
 export const StyledButtonWrapper = styled('span')`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   width: inherit;
   height: 100%;
   &:focus {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid ${getColor('white')};
   }
 `;
 
@@ -97,9 +98,18 @@ export const StyledLeftFluidContent = styled('div')<{hasIcon: boolean}>`
     css`
       justify-content: center;
     `};
+  ${props =>
+    props.hasIcon &&
+    css`
+      text-align: left;
+    `};
 `;
 
-export const StyledButtonContent = styled('span')``;
+export const StyledButtonContent = styled('span')`
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  white-space: normal;
+`;
 
 // TODO: Move hasIcon logic to seperate styling
 // TODO: Clean up a lot of this logic into own styling functions
@@ -108,19 +118,19 @@ export const StyledButtonContent = styled('span')``;
 const fillStyle = (color: PaletteNames, inverted?: boolean) => css`
   border-width: 0.125rem;
   border-style: solid;
-  background-color: ${inverted ? 'white' : getColor(color, 500)};
-  border-color: ${inverted ? 'white' : getColor(color, 500)};
-  color: ${!inverted ? 'white' : getColor(color, 500)};
+  background-color: ${inverted ? getColor('white') : getColor(color, 500)};
+  border-color: ${inverted ? getColor('white') : getColor(color, 500)};
+  color: ${!inverted ? getColor('white') : getColor(color, 500)};
   &:hover,
   :active,
   :focus {
-    background-color: ${inverted ? 'white' : getColor(color, 700)};
+    background-color: ${inverted ? getColor('white') : getColor(color, 700)};
     border-color: transparent;
-    box-shadow: 0 0 0 0.25rem ${inverted ? 'white' : getColor(color, 700)};
+    box-shadow: 0 0 0 0.25rem ${inverted ? getColor('white') : getColor(color, 700)};
   }
   &:focus {
     ${StyledButtonContent} {
-      border-bottom: 1px solid ${!inverted ? 'white' : getColor(color, 700)};
+      border-bottom: 1px solid ${!inverted ? getColor('white') : getColor(color, 700)};
     }
   }
   &:disabled {
@@ -214,6 +224,31 @@ export const StyledButton = styled('button')<StyledButtonProps>`
       }
       ${StyledButtonContent}:last-child {
         margin-right: ${props.large ? '2.5rem' : '1.5rem'};
+      }
+      ${props.fluid &&
+      css`
+        ${StyledButtonContent}:last-child {
+          margin-right: 0;
+          @media ${screen.md} {
+            margin-right: ${props.large ? '2.5rem' : '1.5rem'};
+          }
+        }
+        ${StyledLeftFluidContent}:last-child {
+          margin-right: ${props.large ? '2.5rem' : '1.5rem'};
+          @media ${screen.md} {
+            margin-right: 0;
+          }
+        }
+      `}
+    `}
+  ${props =>
+    props.ellipsis &&
+    css`
+      max-width: 100%;
+      ${StyledButtonContent} {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     `}
   ${props =>

@@ -9,12 +9,13 @@ interface LoaderProps {
   color?: LoaderColors;
   className?: string;
   size?: LoaderSizes;
+  testId?: string;
 }
 
 const Loader = React.forwardRef((props: LoaderProps, ref: any) => {
-  const {color = 'neutral', size = 'small', className = ''} = props;
+  const {color = 'neutral', size = 'small', className = '', testId = ''} = props;
   return (
-    <StyledLoader className={className} size={size}>
+    <StyledLoader data-testid={testId} className={className} size={size}>
       <StyledLoaderDot color={color} size={size} />
       <StyledLoaderDot color={color} size={size} />
       <StyledLoaderDot color={color} size={size} />
