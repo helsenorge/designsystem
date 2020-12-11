@@ -63,6 +63,14 @@
       "default": "",
       "valid": [],
       "description": "Adds custom classes to the element."
+    },
+    {
+      "name": "ellipsis",
+      "type": "boolean",
+      "require": "false",
+      "default": "false",
+      "valid": ["true", "false"],
+      "description": "Disables text wrapping and enables ellipsis."
     }
   ]
 }
