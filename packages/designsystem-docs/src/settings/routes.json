@@ -202,6 +202,10 @@
           "label": "Veileder for skribenter"
         }
       ]
+    },
+    {
+      "label": "Testseparator",
+      "path": "/editorial"
     }
   ],
   "marketing-material": [
