@@ -196,7 +196,12 @@
     {
       "label": "Redaksjonelle retningslinjer",
       "path": "/editorial",
-      "children": []
+      "children": [
+        {
+          "path": "/editoriial/for-skribenter-og-fagansvarlig",
+          "label": "For skribenter og fagansvarlig"
+        }
+      ]
     }
   ],
   "marketing-material": [
