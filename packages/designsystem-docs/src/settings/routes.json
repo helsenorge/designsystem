@@ -198,8 +198,8 @@
       "path": "/editorial",
       "children": [
         {
-          "path": "/editorial/for-skribenter-og-fagansvarlig",
-          "label": "For skribenter og fagansvarlig"
+          "path": "/editoriial/veileder-for-skribenter",
+          "label": "Veileder for skribenter"
         }
       ]
     }
