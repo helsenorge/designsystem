@@ -210,6 +210,10 @@
         {
           "label": "Veileder for skribenter",
           "path": "/editorial/veileder-for-skribenter"
+        },
+        {
+          "label": "Sjekkliste for skribenter",
+          "path": "/editorial/sjekkliste-for-skribenter"
         }
       ]
     }
