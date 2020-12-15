@@ -83,33 +83,33 @@ function QuickMenu() {
           <StyledUpperQuickMenuRow>
             <QuickMenuCard grid="brand" to="/brand">
               <QuickMenuCardArt src={brandIllustration} />
-              <QuickMenuCardTitle>Brand</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Merkevare</QuickMenuCardTitle>
             </QuickMenuCard>
             <QuickMenuCard grid="patterns" to="/patterns">
               <QuickMenuCardArt src={patternsIllustration} />
-              <QuickMenuCardTitle>Patterns</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Design-mønstre</QuickMenuCardTitle>
             </QuickMenuCard>
             <QuickMenuCard grid="library" to="/library">
               <QuickMenuCardArt src={componentsIllustration} />
-              <QuickMenuCardTitle>Library</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Komponenter</QuickMenuCardTitle>
             </QuickMenuCard>
           </StyledUpperQuickMenuRow>
           <StyledLowerQuickMenuRow>
             <QuickMenuCard grid="principles" small to="/principles">
               <QuickMenuCardArt src={principlesIllustration} />
-              <QuickMenuCardTitle>Design principles</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Design-prinsipper</QuickMenuCardTitle>
             </QuickMenuCard>
             <QuickMenuCard grid="editorial" small to="/editorial">
               <QuickMenuCardArt src={editorialIllustration} />
-              <QuickMenuCardTitle>Editorial guidelines</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Redaksjonelle retningslinjer</QuickMenuCardTitle>
             </QuickMenuCard>
             <QuickMenuCard grid="marketing" small to="/marketing-material">
               <QuickMenuCardArt src={materialIllustration} />
-              <QuickMenuCardTitle>Marketing material</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Markedsmateriell</QuickMenuCardTitle>
             </QuickMenuCard>
             <QuickMenuCard grid="roadmap" small to="/roadmap">
               <QuickMenuCardArt src={roadmapIllustration} />
-              <QuickMenuCardTitle>Roadmap</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Veikart</QuickMenuCardTitle>
             </QuickMenuCard>
           </StyledLowerQuickMenuRow>
         </StyledQuickMenuContainer>
