@@ -196,12 +196,7 @@
     {
       "label": "Redaksjonelle retningslinjer",
       "path": "/editorial",
-      "children": [
-        {
-          "path": "/editorial/veileder-for-skribenter",
-          "label": "Veileder for skribenter"
-        }
-      ]
+      "children": []
     },
     {
       "label": "For skribenter og fagansvarlig",
