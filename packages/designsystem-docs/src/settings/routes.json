@@ -204,8 +204,14 @@
       ]
     },
     {
-      "label": "Testseparator",
-      "path": "#"
+      "label": "For skribenter og fagansvarlig",
+      "path": "#",
+      "children": [
+        {
+          "label": "Veileder for skribenter",
+          "path": "/editorial/veileder-for-skribenter"
+        }
+      ]
     }
   ],
   "marketing-material": [
