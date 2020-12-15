@@ -209,6 +209,10 @@
         {
           "label": "Sjekkliste for skribenter",
           "path": "/editorial/sjekkliste-for-skribenter"
+        },
+        {
+          "label": "Kilder og referanser",
+          "path": "/editorial/kilder-og-referanser"
         }
       ]
     }
