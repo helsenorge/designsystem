@@ -21,8 +21,8 @@ describe('Gitt at icon skal vises', (): void => {
       render(<Icon testId={'test01'} size={iconSize} svgIcon={AlarmClock} />);
 
       const testIcon = screen.getByTestId('test01');
-      expect(testIcon).toHaveStyle(`min-width: ${iconSize};`);
-      expect(testIcon).toHaveStyle(`min-height: ${iconSize};`);
+      expect(testIcon).toHaveStyle(`min-width: ${iconSize}px;`);
+      expect(testIcon).toHaveStyle(`min-height: ${iconSize}px;`);
     });
   });
 });
