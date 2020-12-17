@@ -1,15 +1,16 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
+import {SvgIcon} from './Icon';
 
-interface StyledIconProps {
-  size: number;
-}
+interface StyledIconProps {}
 
-export const StyledIcon = styled('div')<StyledIconProps>`
-  min-width: ${props => props.size};
-  min-height: ${props => props.size};
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const StyledIcon = styled('svg')<StyledIconProps>`
+  ${props =>
+    props.width &&
+    props.height &&
+    css`
+      min-width: ${props.width}px;
+      min-height: ${props.height}px;
+    `}
 `;
 
 export default StyledIcon;

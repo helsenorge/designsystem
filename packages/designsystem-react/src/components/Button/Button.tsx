@@ -90,7 +90,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
     variant = 'fill',
     disabled = false,
     ellipsis = false,
-    testId = '',
+    testId,
     ...restProps
   } = props;
 

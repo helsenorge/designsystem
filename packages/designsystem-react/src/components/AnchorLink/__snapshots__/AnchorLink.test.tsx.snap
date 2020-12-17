@@ -30,25 +30,19 @@ exports[`displays external anchorlink 1`] = `
     target="_blank"
   >
     AnchorLink external
-    <div
-      class="sc-AxjAm hiXawY"
-      data-testid=""
-      size="38"
+    <svg
+      aria-hidden="true"
+      class="sc-AxjAm SZoaN hnds-style-icon "
+      fill="#126F87"
+      height="38"
+      role="img"
+      viewBox="0 0 48 48"
+      width="38"
     >
-      <svg
-        aria-hidden="true"
-        class="hnds-style-icon "
-        fill="#126F87"
-        height="38"
-        role="img"
-        viewBox="0 0 48 48"
-        width="38"
-      >
-        <path
-          d="M18.76 14.426v1.768h11.83L14.719 32.065l1.251 1.25 15.801-15.801v11.691h1.768V14.426z"
-        />
-      </svg>
-    </div>
+      <path
+        d="M18.76 14.426v1.768h11.83L14.719 32.065l1.251 1.25 15.801-15.801v11.691h1.768V14.426z"
+      />
+    </svg>
   </a>
 </div>
 `;

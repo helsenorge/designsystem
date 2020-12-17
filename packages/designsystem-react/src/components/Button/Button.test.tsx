@@ -142,11 +142,11 @@ describe('Gitt at button skal vises', (): void => {
       );
 
       const testButtonIcon = screen.getByTestId('test01');
-      const minHeight = getComputedStyle(testButtonIcon).getPropertyValue('min-height');
-      const minWidth = getComputedStyle(testButtonIcon).getPropertyValue('min-width');
+      const height = getComputedStyle(testButtonIcon).getPropertyValue('min-height');
+      const width = getComputedStyle(testButtonIcon).getPropertyValue('min-width');
 
-      expect(minHeight).toBe('64');
-      expect(minWidth).toBe('64');
+      expect(height).toBe('64px');
+      expect(width).toBe('64px');
     });
   });
 
