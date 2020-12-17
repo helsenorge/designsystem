@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "1.0.0-beta35",
+  "version": "1.0.0-beta36",
   "useWorkspaces": true,
   "command": {
     "run": {
