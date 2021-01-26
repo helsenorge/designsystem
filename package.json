@@ -39,13 +39,9 @@
   "husky": {
     "hooks": {
       "pre-commit": "lerna run --concurrency 1 --stream precommit",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.4",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@commitlint/config-lerna-scopes": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "@typescript-eslint/parser": "^2.15.0",
     "commitizen": "^4.0.3",

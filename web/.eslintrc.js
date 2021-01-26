@@ -1,5 +1,9 @@
-// TO-DO - replace with helsenorge eslint rule set - available through npm package
 module.exports = {
-  extends: ['../../.eslintrc'],
-  rules: {},
+  extends: ["@helsenorge/eslint-config"],
+  rules: {
+    "react/no-string-refs": 1,
+    "no-console": 0,
+    "@typescript-eslint/no-inferrable-types": 0,
+    "@typescript-eslint/camelcase": 0
+  }
 };

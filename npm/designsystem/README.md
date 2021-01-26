@@ -1,5 +1,7 @@
 # `designsystem-react`
 
+<h1>OUTDATED -> should refer to confluence for now</h1>
+
 <a href="https://www.npmjs.com/package/@helsenorge/designsystem-react/v/latest">
     <img src="https://img.shields.io/npm/v/@helsenorge/designsystem-react/latest" />
 </a>
@@ -36,7 +38,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import {CommonButton} from '@helsenorge/designsystem-react';
+import { CommonButton } from '@helsenorge/designsystem-react';
 
 const App: React.FC = () => {
   return (
@@ -60,6 +62,8 @@ export default App;
 
 ## 📓 Documentation
 
-A more detailed getting started manual can be viewed [here](https://helsenorge.design/pattern-library). For a full overview of all the available components and their specification, head over [here](https://helsenorge.design/pattern-library/components)
+A more detailed getting started manual can be viewed [here](https://helsenorge.design/pattern-library). For a full overview of all the
+available components and their specification, head over [here](https://helsenorge.design/pattern-library/components)
 
-To read the full design system documentation head over to our web page [Helsenorge Design](https://helsenorge.design/). Here you can read about our use of design principles, design language, patterns, compositions, live code examples and techincal component specifications.
+To read the full design system documentation head over to our web page [Helsenorge Design](https://helsenorge.design/). Here you can read
+about our use of design principles, design language, patterns, compositions, live code examples and techincal component specifications.
