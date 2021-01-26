@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-beta36",
+  "version": "1.0.0-beta36-dummy",
   "npmClient": "npm",
   "command": {
     "run": {
@@ -10,12 +10,17 @@
     },
     "version": {
       "push": false,
-      "allowBranch": ["master"]
+      "allowBranch": [
+        "master"
+      ]
     },
     "publish": {
       "scope": "@helsenorge/*",
       "registry": "https://pkgs.dev.azure.com/nhnfelles/_packaging/Helsenorge/npm/registry/"
     }
   },
-  "packages": ["npm/*", "web"]
+  "packages": [
+    "npm/*",
+    "web"
+  ]
 }
