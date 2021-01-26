@@ -1,0 +1,59 @@
+---
+title: Tile
+path: /library/components/tile
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from './tile.json';
+import Icon from '@helsenorge/designsystem-react/components/Icons';
+import PaperPlane from '@helsenorge/designsystem-react/components/Icons/PaperPlane';
+import Tile from '@helsenorge/designsystem-react/components/Tile';
+
+# Tile
+
+<MDXCustom.Preamble>
+  He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum is the
+  single greatest threat.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{Tile, Icon, PaperPlane}}>{`
+  <Tile icon={<Icon svgIcon={PaperPlane} />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+`}</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent scope={{Tile, Icon, PaperPlane}}>{`
+  <Tile icon={<Icon svgIcon={PaperPlane} />} title={<Tile.Title>External</Tile.Title>} />
+`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{propData}} />
+
+## Examples
+
+### Grid
+
+<MDXCustom.LiveComponent scope={{Tile, Icon, PaperPlane}}>{`
+<div style={{width: '60rem', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridGap: '1rem'}}>
+  <Tile icon={<Icon svgIcon={PaperPlane} />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+  <Tile icon={<Icon svgIcon={PaperPlane}/>} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+  <Tile icon={<Icon svgIcon={PaperPlane} />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+  <Tile icon={<Icon svgIcon={PaperPlane}/>} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+  <Tile icon={<Icon svgIcon={PaperPlane}/>} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+  </div>
+`}</MDXCustom.LiveComponent>
+
+### Fixed
+<MDXCustom.LiveComponent scope={{Tile, Icon, PaperPlane}}>{`
+  <Tile fixed icon={<Icon svgIcon={PaperPlane} />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+`}</MDXCustom.LiveComponent>
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**

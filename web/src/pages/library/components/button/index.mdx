@@ -1,0 +1,100 @@
+---
+title: Button
+path: /library/components/button
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from './button.json';
+import Icon from '@helsenorge/designsystem-react/components/Icons';
+import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
+import ArrowRight from '@helsenorge/designsystem-react/components/Icons/ArrowRight';
+import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
+import Button from '@helsenorge/designsystem-react/components/Button';
+
+# Button
+
+<MDXCustom.Preamble>
+  He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum is the
+  single greatest threat.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{Button}}>{`<Button>Button</Button>`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{propData}} />
+
+## Examples
+
+### Variants
+
+<MDXCustom.LiveComponent scope={{Button}}>{`
+  <Button>Fill</Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="borderless">Borderless</Button>
+`}</MDXCustom.LiveComponent>
+
+### Intents
+
+<MDXCustom.LiveComponent scope={{Button}}>{`
+  <Button intent="primary">Button</Button>
+  <Button intent="warning">Button</Button>
+  <Button intent="danger">Button</Button>
+`}</MDXCustom.LiveComponent>
+
+### Inverted
+
+<MDXCustom.LiveComponent scope={{Button}}>{`
+  <Button inverted>Button</Button>
+  <Button variant="outline" inverted >Button</Button>
+  <Button variant="borderless" inverted>Button</Button>
+`}</MDXCustom.LiveComponent>
+
+### Large
+
+<MDXCustom.LiveComponent scope={{Button}}>{`
+  <Button>Button</Button>
+  <Button large>Button</Button>
+`}</MDXCustom.LiveComponent>
+
+### Fluid
+
+<MDXCustom.LiveComponent fullWidth stack scope={{Button, Icon, AlarmClock, ArrowRight}}>{`
+    <Button fluid>Button</Button>
+    <Button fluid>
+      <Icon svgIcon={AlarmClock} />
+      Button
+    <Icon svgIcon={ArrowRight} />
+    </Button>
+`}</MDXCustom.LiveComponent>
+
+### With icons
+
+<MDXCustom.LiveComponent scope={{ Button, Icon, Calendar, ArrowRight}}>{`
+  <Button variant="outline" >
+      <Icon svgIcon={Calendar} />
+    Primary
+  </Button>
+  <br/>
+  <Button variant="outline">
+    Primary
+      <Icon svgIcon={Calendar} />
+  </Button>
+  <br/>
+  <Button variant="outline">
+      <Icon svgIcon={Calendar}/>
+    Primary
+      <Icon svgIcon={ArrowRight} />
+  </Button>
+`}</MDXCustom.LiveComponent>
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**

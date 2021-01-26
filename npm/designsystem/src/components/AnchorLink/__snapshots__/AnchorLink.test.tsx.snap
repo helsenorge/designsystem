@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays anchorlink with className and id 1`] = `
+<div>
+  <a
+    class="sc-AxirZ bkUrWL custom-classname"
+    id="custom-id"
+    target="_self"
+  >
+    AnchorLink
+  </a>
+</div>
+`;
+
+exports[`displays default anchorlink 1`] = `
+<div>
+  <a
+    class="sc-AxirZ bkUrWL"
+    target="_self"
+  >
+    AnchorLink
+  </a>
+</div>
+`;
+
+exports[`displays external anchorlink 1`] = `
+<div>
+  <a
+    class="sc-AxirZ bkUrWL"
+    target="_blank"
+  >
+    AnchorLink external
+    <svg
+      aria-hidden="true"
+      class="sc-AxjAm SZoaN hnds-style-icon "
+      fill="#126F87"
+      height="38"
+      role="img"
+      viewBox="0 0 48 48"
+      width="38"
+    >
+      <path
+        d="M18.76 14.426v1.768h11.83L14.719 32.065l1.251 1.25 15.801-15.801v11.691h1.768V14.426z"
+      />
+    </svg>
+  </a>
+</div>
+`;

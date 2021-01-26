@@ -1,0 +1,20 @@
+{
+  "props": [
+    {
+      "name": "size",
+      "type": "SpacerSizes",
+      "require": "false",
+      "default": "s",
+      "valid": ["3xs", "2xs", "xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl", "5xl", "6xl"],
+      "description": "Sets the size of the spacer."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "require": "false",
+      "default": "",
+      "valid": [],
+      "description": "Adds custom classes to the element."
+    }
+  ]
+}

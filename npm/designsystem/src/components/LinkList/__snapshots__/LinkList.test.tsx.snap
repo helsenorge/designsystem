@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays a list of links 1`] = `
+<div>
+  <ul
+    class="sc-AxjAm cdEKGT"
+  >
+    <li>
+      <a
+        class="sc-AxhCb edeBBa"
+        color="cherry"
+      >
+        <span
+          class="sc-AxiKw bJTvlc"
+        >
+          Link 1
+        </span>
+      </a>
+    </li>
+    <li>
+      <a
+        class="sc-AxhCb edeBBa"
+        color="cherry"
+      >
+        <span
+          class="sc-AxiKw bJTvlc"
+        >
+          Link 2
+        </span>
+      </a>
+    </li>
+    <li>
+      <a
+        class="sc-AxhCb edeBBa"
+        color="cherry"
+      >
+        <span
+          class="sc-AxiKw bJTvlc"
+        >
+          Link 3
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
+`;

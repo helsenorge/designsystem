@@ -1,0 +1,95 @@
+---
+templateKey: simple-page
+title: Loader [Loader]
+preamble: Brukes for å vise at det pågår en uavsluttet prosess i systemet,
+  typisk der hvor det må lastes innhold eller avventes en kvittering
+---
+
+<img src="/img/loaderlarge.png" title="Stillbilde av loader" alt="Stillbilde av Loader, størrelse Large"/>
+
+Animert grafikk som viser et sett på 3 prikker som beveger seg fra venstre til høyre i uendelig rotasjon.
+
+### Nytteverdi for innbygger
+
+Loadere lar innbygger se at systemet jobber, og forteller at prosessen som pågår ikke er ferdig ennå. En loader som dukker opp etter en brukerhandling, f.eks. klikk på en knapp, gjør det også lett å forstå at handlingen har blitt oppfattet av systemet. Ved tidkrevende henting av data hindrer loaderen at innbygger får inntrykk av at systemet ikke virker eller at det ikke er noe innhold å se.
+
+
+
+
+### Dette mønsteret finnes som
+
+| Prinsipp | SketchLib | [Kodekomponent](https://helsenorge.design/library/components/loader) |
+| ---- | --- | --- |
+
+### Relaterte mønstre
+
+
+## Bruk
+### Gjør dette
+
+* Plasser loader i nærheten av der hvor handlingen startet (f.eks. ved en knapp) eller i nærheten av der hvor innholdet vil komme til syne
+* Bruk en størrelse som er tilstrekkelig iøyenfallende i forhold til konteksten loaderen står i
+* Bruk nøytral farge som gir god kontrast. Bruk en farge som er i samme koloritt som bakgrunnen (neutral/black på hvit, blueberry på lys blueberry, hvit på mørke fargebakgrunner)
+
+### Unngå dette
+
+* Unngå om mulig å bruke flere loadere samtidig, unntatt hvis det er tydelig at det er flere distinkte områder som skal hentes inn, f.eks. datavisning i forskjellige paneler på et dashboard
+
+
+### Prinsipp
+
+Loader skal gi innbygger trygghet for at en prosess pågår og ikke er ferdig ennå, at det "kommer noe mer" eller at en handling innbygger gjorde er registrert av systemet selv om det ikke har skjedd noen andre endringer i grensesnittet.
+
+## Virkemåte
+### Bestanddeler
+
+* Enkel CSS-animasjon
+
+### Varianter
+
+Loader kan innplasseres på forskjellige måte etter behov som følger:
+
+|||
+| --- | --- |
+| InButton | i bakgrunnen på en Knapp [Button] |
+| Inline | som del av løpende tekst |
+| Centered |  | 
+| Block | i sentrum av en blokk som avgrenser et gitt område i grensesnittet |
+| Fullscreen | som del av et semitransparent lag som dekker hele skjermen |
+| AutomaticLoading (liste) | i bunnen av en liste når det hentes mer innhold til listen  |
+
+
+Loader finnes størrelsene XS, S, M og L.
+ 
+Loader kan settes til standardfargene banana, blueberry, cherry, kiwi, neutral, plum, black, white. 
+
+### Tilstander (states)
+
+### Interaksjon
+
+### Tilgjengelighet
+
+Oppfyller WCAG 2.1 AA krav til kontrast
+
+### Inngår i mønstre
+
+* Autoloader
+
+## Eksempler
+
+<br />
+<br />
+
+### Lenke til kjente bruksområder
+
+
+## Changelog og begrunnelse
+
+| Pattern-versjon | Dato       | Hva er endret?                | Begrunnelse |
+| --------------- | ---------- | ----------------------------- | ----------- |
+| v1              | 2020.04.23 | Første versjon  | \-          |
+
+
+
+<br />
+<br />

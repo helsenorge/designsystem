@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
+<div>
+  <button
+    class="sc-AxhCb gHxYek"
+  >
+    <span
+      class="sc-AxjAm jcbWlK"
+    >
+      <span
+        class="sc-AxiKw ikgxwu"
+      >
+        Button
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikonene 1`] = `
+<div>
+  <button
+    class="sc-AxhCb gvHgQy"
+  >
+    <span
+      class="sc-AxjAm jcbWlK"
+    >
+      <svg
+        aria-hidden="true"
+        class="sc-AxheI qooqL hnds-style-icon "
+        fill="white"
+        height="38"
+        role="img"
+        viewBox="0 0 48 48"
+        width="38"
+      >
+        <path
+          d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z"
+        />
+      </svg>
+      <span
+        class="sc-AxiKw ikgxwu"
+      >
+        Button
+      </span>
+      <svg
+        aria-hidden="true"
+        class="sc-AxheI qooqL hnds-style-icon "
+        fill="white"
+        height="38"
+        role="img"
+        viewBox="0 0 48 48"
+        width="38"
+      >
+        <path
+          d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+`;

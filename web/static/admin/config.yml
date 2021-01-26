@@ -1,0 +1,171 @@
+backend:
+  name: github
+  repo: helsenorge/designsystem
+  branch: develop
+  commit_messages:
+    create: 'Create {{collection}} “{{slug}}”'
+    update: 'Update {{collection}} “{{slug}}”'
+    delete: 'Delete {{collection}} “{{slug}}”'
+    uploadMedia: '[skip ci] Upload “{{path}}”'
+    deleteMedia: '[skip ci] Delete “{{path}}”'
+
+media_folder: packages/designsystem-docs/static/img
+public_folder: /img
+
+aliases:
+  - &BODY {
+      label: 'Innhold',
+      name: 'body',
+      widget: 'mdx',
+      hint: 'Følgende react-komponenter kan benyttes: ColorWall, Preamble, IconWall, LiveComponent. Eksempel på bruk: <ColorWall></ColorWall>',
+    }
+
+project: &ABOUT
+  - {label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page'}
+  - {label: 'Tittel', name: 'title', widget: 'string'}
+  - {label: 'Ingress', name: 'preamble', widget: 'text'}
+  - {label: 'Filer', name: 'pdf', widget: 'file', media_library: {config: {multiple: true}}}
+  - <<: *BODY
+
+project2: &PAGE
+  - {label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'simple-page'}
+  - {label: 'Tittel', name: 'title', widget: 'string'}
+  - {label: 'Ingress', name: 'preamble', widget: 'string'}
+  - <<: *BODY
+
+menu-item: &MENU
+  - {label: Navn, name: label, widget: string}
+  - {label: Path, name: path, widget: string}
+  - label: Sub meny
+    name: children
+    widget: list
+    fields:
+      - {label: Navn, name: label, widget: string}
+      - {label: Path, name: path, widget: string}
+
+collections:
+  - name: 'main-pages'
+    label: 'Hovedsider'
+    extension: mdx
+    format: frontmatter
+    files:
+      - file: 'packages/designsystem-docs/src/cms-pages/brand/index.mdx'
+        label: 'Brand'
+        name: 'brand'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/editorial/index.mdx'
+        label: 'Editorial Guidelines'
+        name: 'editorial'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/marketing-material/index.mdx'
+        label: 'Marketing Material'
+        name: 'marketing-material'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/patterns/index.mdx'
+        label: 'Patterns'
+        name: 'patterns'
+        slug: '{{slug}}'
+        fields: *PAGE
+
+  - name: 'brand'
+    label: 'Brand'
+    extension: mdx
+    format: frontmatter
+    folder: 'packages/designsystem-docs/src/cms-pages/brand'
+    create: true
+    slug: '{{slug}}'
+    fields: *PAGE
+
+  - name: 'editorial'
+    label: 'Editorial Guidelines'
+    extension: mdx
+    format: frontmatter
+    folder: 'packages/designsystem-docs/src/cms-pages/editorial'
+    create: true
+    slug: '{{slug}}'
+    fields: *PAGE
+
+  - name: 'marketing-material'
+    label: 'Marketing Material'
+    extension: mdx
+    format: frontmatter
+    folder: 'packages/designsystem-docs/src/cms-pages/marketing-material'
+    create: true
+    slug: '{{slug}}'
+    fields: *PAGE
+
+  - name: 'patterns'
+    label: 'Patterns'
+    extension: mdx
+    format: frontmatter
+    folder: 'packages/designsystem-docs/src/cms-pages/patterns'
+    create: true
+    slug: '{{slug}}'
+    fields: *PAGE
+
+  - name: 'other-pages'
+    label: 'Andre sider'
+    extension: mdx
+    format: frontmatter
+    files:
+      - file: 'packages/designsystem-docs/src/cms-pages/about.mdx'
+        label: 'About'
+        name: 'about'
+        slug: '{{slug}}'
+        fields: *ABOUT
+      - file: 'packages/designsystem-docs/src/cms-pages/contribute.mdx'
+        label: 'Contribute'
+        name: 'contribute'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/principles.mdx'
+        label: 'Principles'
+        name: 'principles'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/privacy.mdx'
+        label: 'Privacy'
+        name: 'privacy'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/roadmap.mdx'
+        label: 'Roadmap'
+        name: 'roadmap'
+        slug: '{{slug}}'
+        fields: *PAGE
+      - file: 'packages/designsystem-docs/src/cms-pages/terms-of-use.mdx'
+        label: 'Terms of use'
+        name: 'terms-of-use'
+        slug: '{{slug}}'
+        fields: *PAGE
+
+  - name: settings
+    label: Innstillinger
+    files:
+      - file: packages/designsystem-docs/src/settings/routes.json
+        label: Meny
+        name: routes
+        fields:
+          - label: Library
+            name: library
+            widget: list
+            fields: *MENU
+          - label: Brand
+            name: brand
+            widget: list
+            fields: *MENU
+          - label: Patterns
+            name: patterns
+            widget: list
+            fields: *MENU
+          - label: Editorial
+            name: editorial
+            widget: list
+            fields: *MENU
+          - label: Marekting material
+            name: marketing-material
+            widget: list
+            fields: *MENU

@@ -1,0 +1,203 @@
+{
+  "library": [
+    {
+      "label": "Get started",
+      "path": "/library",
+      "children": []
+    },
+    {
+      "label": "Reset",
+      "path": "/library/reset",
+      "children": []
+    },
+    {
+      "label": "SCSS resources",
+      "path": "/library/scss",
+      "children": [
+        {
+          "label": "Grid and breakpoints",
+          "path": "/library/scss/grid"
+        },
+        {
+          "label": "Spacing",
+          "path": "/library/scss/spacing"
+        },
+        {
+          "label": "Typography",
+          "path": "/library/scss/typography"
+        },
+        {
+          "label": "Palette",
+          "path": "/library/scss/palette"
+        }
+      ]
+    },
+    {
+      "label": "Icons",
+      "path": "/library/icons",
+      "children": []
+    },
+    {
+      "label": "Components",
+      "path": "/library/components",
+      "children": [
+        {
+          "label": "AnchorLink",
+          "path": "/library/components/anchor-link"
+        },
+        {
+          "label": "Avatar",
+          "path": "/library/components/avatar"
+        },
+        {
+          "label": "Badge",
+          "path": "/library/components/badge"
+        },
+        {
+          "label": "Button",
+          "path": "/library/components/button"
+        },
+        {
+          "label": "ExpanderList",
+          "path": "/library/components/expander-list"
+        },
+        {
+          "label": "Icon",
+          "path": "/library/components/icon"
+        },
+        {
+          "label": "LinkList",
+          "path": "/library/components/link-list"
+        },
+        {
+          "label": "List",
+          "path": "/library/components/list"
+        },
+        {
+          "label": "Loader",
+          "path": "/library/components/loader"
+        },
+        {
+          "label": "Logo",
+          "path": "/library/components/logo"
+        },
+        {
+          "label": "NotificationPanel",
+          "path": "/library/components/notification-panel"
+        },
+        {
+          "label": "Spacer",
+          "path": "/library/components/spacer"
+        },
+        {
+          "label": "Tile",
+          "path": "/library/components/tile"
+        },
+        {
+          "label": "Title",
+          "path": "/library/components/title"
+        }
+      ]
+    }
+  ],
+  "brand": [
+    {
+      "label": "Merkevare",
+      "path": "/brand",
+      "children": []
+    }
+  ],
+  "patterns": [
+    {
+      "label": "Mønstre",
+      "path": "/patterns",
+      "children": []
+    },
+    {
+      "label": "Avgrense - forenkle",
+      "path": "/patterns/avgrense-og-forenkle",
+      "children": [
+        {
+          "label": "Gruppere",
+          "path": "/patterns/gruppere"
+        },
+        {
+          "label": "Stegvisning",
+          "path": "/patterns/stegvisning"
+        }
+      ]
+    },
+    {
+      "label": "Brukerinput",
+      "path": "/patterns/brukerinput"
+    },
+    {
+      "label": "Datapresentasjon",
+      "path": "/patterns/datapresentasjon"
+    },
+    {
+      "label": "Estetisk",
+      "path": "/patterns/estetisk"
+    },
+    {
+      "label": "Navigasjon",
+      "path": "/patterns/navigasjon"
+    },
+    {
+      "label": "Orientere",
+      "path": "/patterns/orientere",
+      "children": [
+        {
+          "label": "Ikon [Icon]",
+          "path": "/patterns/ikon-icon"
+        }
+      ]
+    },
+    {
+      "label": "Tilstander",
+      "path": "/patterns/tilstander",
+      "children": [
+        {
+          "label": "Loader [Loader]",
+          "path": "/patterns/loader-loader"
+        }
+      ]
+    },
+    {
+      "label": "Markdown testside",
+      "path": "/patterns/superflubberoo"
+    }
+  ],
+  "editorial": [
+    {
+      "label": "Redaksjonelle retningslinjer",
+      "path": "/editorial",
+      "children": []
+    },
+    {
+      "label": "For skribenter og fagansvarlig",
+      "path": "#",
+      "children": [
+        {
+          "label": "Veileder for skribenter",
+          "path": "/editorial/veileder-for-skribenter"
+        },
+        {
+          "label": "Sjekkliste for skribenter",
+          "path": "/editorial/sjekkliste-for-skribenter"
+        },
+        {
+          "label": "Kilder og referanser",
+          "path": "/editorial/kilder-og-referanser"
+        }
+      ]
+    }
+  ],
+  "marketing-material": [
+    {
+      "label": "Marekting material",
+      "path": "/marketing-material",
+      "children": []
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+---
+title: Spacer
+path: /library/components/spacer
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from './spacer.json';
+import Spacer from '@helsenorge/designsystem-react/components/Spacer';
+
+# Spacer
+
+<MDXCustom.Preamble>
+  The Spacer component can be used to add spading within the layout. For more flexibility with margin and paddings the getSpacer function can be imported from the scss resources. 
+  <a href="/library/scss/spacing">Read more under Spacing</a>
+</MDXCustom.Preamble>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{propData}} />
+
+## Examples
+
+
+<MDXCustom.LiveComponent fullWidth stack scope={{Spacer}}>{`
+ <div style={{width: '100%'}}>
+    <p>{'3xs'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'3xs'} />
+    </div>
+    <p>{'2xs'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'2xs'} />
+    </div>
+    <p>{'xs'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'xs'} />
+    </div>
+    <p>{'s'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'s'} />
+    </div>
+    <p>{'m'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'m'} />
+    </div>
+    <p>{'l'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'l'} />
+    </div>
+    <p>{'xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'xl'} />
+    </div>
+    <p>{'2xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'2xl'} />
+    </div>
+    <p>{'3xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'3xl'} />
+    </div>
+    <p>{'4xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'4xl'} />
+    </div>
+    <p>{'5xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'5xl'} />
+    </div>
+     <p>{'6xl'}</p>
+    <div style={{backgroundColor: 'lightgray', marginBottom: '0.25rem'}}>
+      <Spacer size={'6xl'} />
+    </div>
+  </div>
+`}</MDXCustom.LiveComponent>
+
+
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**

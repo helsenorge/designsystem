@@ -1,20 +1,27 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+<p align="center">
+  <img width="500" src="./hnd-logo.svg" />
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" />
+  <img src="https://github.com/Helsenorge/designsystem/workflows/Publish%20(develop)/badge.svg" />
+  <img src="https://img.shields.io/github/last-commit/Helsenorge/designsystem" />
+  <img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" />
+  <img src="https://img.shields.io/github/license/Helsenorge/designsystem" />
+</p>
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## 👋 Introduction
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+The Helsenorge Design System is a fully fledged platform that implements our in-house components using various technology stacks such as React, Blazor (not yet started on) and more. Our design system comes out of the box with a documentation site which leverages patterns, principles and utilities to more efficiently build services and components for Helsenorge.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## 📦 Packages
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+We use Lerna to manage our monorepo and list all our projects under the packages folder. Below is a list of published, unpublished and experimental packages and projects.
+
+## 📓 Documentation
+
+To read the full design system documentation head over to our web page [Helsenorge Design](https://helsenorge.design/). Here you can read about our use of design principles, design language, patterns, compositions, live code examples and techincal component specifications.
+
+## License
+
+Our design system is distributed with the [MIT license](./LICENSE).
+

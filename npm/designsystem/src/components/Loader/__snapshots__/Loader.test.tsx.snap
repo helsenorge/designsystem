@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays the loader 1`] = `
+<div>
+  <div
+    class="sc-AxirZ fsuNgq"
+    data-testid=""
+  >
+    <div
+      class="sc-AxjAm beDnoW"
+      color="neutral"
+    />
+    <div
+      class="sc-AxjAm beDnoW"
+      color="neutral"
+    />
+    <div
+      class="sc-AxjAm beDnoW"
+      color="neutral"
+    />
+    <div
+      class="sc-AxjAm beDnoW"
+      color="neutral"
+    />
+  </div>
+</div>
+`;

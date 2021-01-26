@@ -1,0 +1,69 @@
+{
+  "name": "@helsenorge/designsystem",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helsenorge/designsystem"
+  },
+  "homepage": "https://helsenorge.design",
+  "description": "The official design system for Helsenorge consist of out-of-the-box components built with React and SCSS",
+  "author": "Steffen Lien <steffen.lien@ehelse.no>",
+  "bugs": {
+    "url": "https://github.com/Helsenorge/designsystem/issues",
+    "email": "contact@helsenorge.design"
+  },
+  "license": "MIT",
+  "keywords": [
+    "components",
+    "web-components",
+    "design-system",
+    "helsenorge",
+    "patterns",
+    "react",
+    "stenciljs"
+  ],
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "install:packages": "lerna run install:packages",
+    "build": "lerna run build",
+    "clean": "lerna run clean",
+    "cz": "git-cz",
+    "format": "lerna run format",
+    "lint": "lerna run lint",
+    "release:dev": "lerna version --conventional-commits --conventional-prerelease --preid dev",
+    "test": "lerna run test",
+    "validate": "lerna run validate"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run --concurrency 1 --stream precommit",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/config-lerna-scopes": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-html": "^6.0.0",
+    "fs-extra": "^8.1.0",
+    "husky": "^4.0.3",
+    "lerna": "^3.21.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
