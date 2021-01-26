@@ -13,7 +13,6 @@
     "ROX"
   ],
   "license": "MIT",
-  
   "scripts": {
     "bootstrap:dev": "lerna exec npm install",
     "bootstrap": "lerna exec npm ci",
@@ -28,11 +27,6 @@
     "validate": "lerna run validate",
     "clean": "lerna run clean"
   },
-  
-  "workspaces": [
-    "packages/*"
-  ],
-  
   "dependencies": {
     "eslint-plugin-html": "^6.0.0",
     "fs-extra": "^8.1.0",
@@ -42,5 +36,4 @@
     "rimraf": "^3.0.0",
     "typescript": "~3.8.3"
   }
-
 }

@@ -1,7 +1,6 @@
 {
   "version": "1.0.0-beta36",
   "npmClient": "npm",
-  "useWorkspaces": true,
   "command": {
     "run": {
       "npmClient": "npm"
