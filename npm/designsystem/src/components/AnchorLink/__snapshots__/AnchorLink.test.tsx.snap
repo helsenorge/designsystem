@@ -32,15 +32,15 @@ exports[`displays external anchorlink 1`] = `
     AnchorLink external
     <svg
       aria-hidden="true"
-      class="sc-AxjAm SZoaN hnds-style-icon "
+      class="sc-AxjAm jPyZsV hnds-style-icon "
       fill="#126F87"
-      height="38"
+      height="48"
       role="img"
       viewBox="0 0 48 48"
-      width="38"
+      width="48"
     >
       <path
-        d="M18.76 14.426v1.768h11.83L14.719 32.065l1.251 1.25 15.801-15.801v11.691h1.768V14.426z"
+        d="M33.305 14.659v14.546h-1.3V16.948L15.804 33.149l-.919-.92 16.27-16.27-12.394.001v-1.301z"
       />
     </svg>
   </a>
