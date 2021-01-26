@@ -20,7 +20,7 @@
     "build": "lerna run build",
     "lint": "lerna run lint",
     "test": "lerna run test",
-    "version": "lerna version prepatch --no-push --preid=beta --allow-branch=*/*",
+    "version": "lerna prepatch --no-push --preid=beta --allow-branch=*/*",
     "publish:beta": "lerna publish --dist-tag=beta  --allow-branch=*/*",
     "publish:latest": "lerna publish from-git --yes --allow-branch=master",
     "format": "lerna run format",
