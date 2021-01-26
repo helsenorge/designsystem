@@ -15,6 +15,7 @@
   "license": "MIT",
   
   "scripts": {
+    "bootstrap:dev": "lerna exec npm install",
     "bootstrap": "lerna exec npm ci",
     "link": "lerna link",
     "build": "lerna run build",
