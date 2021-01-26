@@ -27,6 +27,6 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 .env
 .cache
-packages/designsystem-docs/public/
+web/public/
 # Local Netlify folder
 .netlify

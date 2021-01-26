@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@helsenorge/eslint-config": "^1.1.1",
-    "@helsenorge/designsystem-react": "^1.0.0-beta36",
+    "@helsenorge/designsystem-react": "1.0.0-beta36",
     "@mdx-js/mdx": "^1.4.5",
     "@mdx-js/react": "^1.4.5",
     "@mdx-js/tag": "^0.20.3",
