@@ -1,65 +1,45 @@
 {
-  "name": "@helsenorge/designsystem",
+  "name": "hn-designsystem",
+  "version": "1.0.0",
   "private": true,
+  "description": "NPM pakke og dokumentasjon for Helsenorges designsystem",
   "repository": {
     "type": "git",
-    "url": "https://github.com/helsenorge/designsystem"
+    "url": "https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem"
   },
   "homepage": "https://helsenorge.design",
-  "description": "The official design system for Helsenorge consist of out-of-the-box components built with React and SCSS",
-  "author": "Steffen Lien <steffen.lien@ehelse.no>",
-  "bugs": {
-    "url": "https://github.com/Helsenorge/designsystem/issues",
-    "email": "contact@helsenorge.design"
-  },
-  "license": "MIT",
-  "keywords": [
-    "components",
-    "web-components",
-    "design-system",
-    "helsenorge",
-    "patterns",
-    "react",
-    "stenciljs"
+  "author": "Helsenorge",
+  "maintainers": [
+    "ROX"
   ],
+  "license": "MIT",
+  
+  "scripts": {
+    "bootstrap": "lerna exec npm ci",
+    "link": "lerna link",
+    "build": "lerna run build",
+    "lint": "lerna run lint",
+    "test": "lerna run test",
+    "version": "lerna version",
+    "publish:beta": "lerna publish --canary --preid=beta --dist-tag=beta",
+    "publish:latest": "lerna publish from-git --yes",
+    "format": "lerna run format",
+    "validate": "lerna run validate",
+    "clean": "lerna run clean"
+  },
+  
   "workspaces": [
     "packages/*"
   ],
-  "scripts": {
-    "install:packages": "lerna run install:packages",
-    "build": "lerna run build",
-    "clean": "lerna run clean",
-    "cz": "git-cz",
-    "format": "lerna run format",
-    "lint": "lerna run lint",
-    "release:dev": "lerna version --conventional-commits --conventional-prerelease --preid dev",
-    "test": "lerna run test",
-    "validate": "lerna run validate"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lerna run --concurrency 1 --stream precommit",
-    }
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.15.0",
-    "@typescript-eslint/parser": "^2.15.0",
-    "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^3.0.2",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.9.0",
+  
+  "dependencies": {
     "eslint-plugin-html": "^6.0.0",
     "fs-extra": "^8.1.0",
     "husky": "^4.0.3",
-    "lerna": "^3.21.0",
+    "lerna": "^3.22.1",
     "lint-staged": "^9.5.0",
-    "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
-    "typescript": "^3.7.4"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "typescript": "~3.8.3"
   }
+
 }

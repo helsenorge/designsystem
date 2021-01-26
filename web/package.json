@@ -9,23 +9,12 @@
     "directory": "packages/designsystem-docs"
   },
   "homepage": "https://helsenorge.design",
-  "author": "Helsenorge ROX",
-  "bugs": {
-    "url": "https://github.com/Helsenorge/designsystem/issues",
-    "email": "contact@helsenorge.design"
-  },
-  "license": "MIT",
-  "keywords": [
-    "components",
-    "design-system",
-    "documentation",
-    "gatsbyjs",
-    "helsenorge",
-    "patterns",
-    "react"
+  "author": "Helsenorge",
+  "maintainers": [
+    "ROX"
   ],
+  "license": "MIT",
   "scripts": {
-    "install:packages": "npm ci",
     "prebuild": "node src/components/markdown/MDXCustom/IconWall/generate-icon-imports.js",
     "build": "gatsby build",
     "clean": "rimraf public .cache",
@@ -82,6 +71,5 @@
     "react-scroll": "^1.7.14",
     "react-spring": "^8.0.27",
     "styled-components": "^4.4.1"
-  },
- 
+  }
 }
