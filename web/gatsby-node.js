@@ -1,8 +1,8 @@
 const path = require('path');
-const {createFilePath} = require('gatsby-source-filesystem');
+const { createFilePath } = require('gatsby-source-filesystem');
 
-exports.createPages = ({actions, graphql}) => {
-  const {createPage} = actions;
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage } = actions;
 
   return graphql(`
     {
@@ -44,11 +44,11 @@ exports.createPages = ({actions, graphql}) => {
   });
 };
 
-exports.onCreateNode = ({node, actions, getNode}) => {
-  const {createNodeField} = actions;
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
-    const value = createFilePath({node, getNode});
+    const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,
       node,
@@ -57,10 +57,14 @@ exports.onCreateNode = ({node, actions, getNode}) => {
   }
 };
 
-exports.onCreateWebpackConfig = ({actions}) => {
+exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     node: {
       fs: 'empty',
+    },
+    resolve: {
+      modules: [path.resolve('./node_modules'), path.resolve('../npm/designsystem/node_modules')],
+      symlinks: false,
     },
   });
 };
