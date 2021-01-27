@@ -18,7 +18,6 @@
     "prebuild": "node src/components/markdown/MDXCustom/IconWall/generate-icon-imports.js",
     "build": "gatsby build",
     "clean": "rimraf public .cache",
-    "cz": "git-cz",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
     "lint": "eslint \"src/**/*\"",
     "precommit": "lint-staged",
