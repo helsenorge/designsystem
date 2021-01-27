@@ -4,12 +4,13 @@ const fs = require('fs');
 let singleIconModulesImports = '';
 let arrayOfIconModules = '\r\n\r\nexport const allSvgIcons = [';
 
-const pathToIcons = './node_modules/@helsenorge/designsystem-react/components/Icons';
+const pathToIcons = path.resolve('../npm/designsystem/dist/components/Icons');
 const finalFileName = 'allIconsImports.tsx';
 
 // This script loops through all icons in designsystem components/Icons and creates a file with
 // re-export of all default imports for each icon
 // export of an Array with all the modules and respective names
+console.log('Running generate-icon-imports. Getting icons from: ', pathToIcons);
 
 fs.readdir(pathToIcons, (err, files) => {
   const arrayOfModules = [];

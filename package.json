@@ -14,8 +14,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "bootstrap:dev": "lerna bootstrap",
-    "bootstrap": "lerna bootstrap --npm-ci-mode",
+    "bootstrap": "lerna bootstrap",
+    "bootstrap:ci": "lerna bootstrap --npm-ci-mode",
     "build": "lerna run build",
     "lint": "lerna run lint",
     "test": "lerna run test",
