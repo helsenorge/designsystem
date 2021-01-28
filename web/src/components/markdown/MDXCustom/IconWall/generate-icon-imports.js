@@ -4,7 +4,7 @@ const fs = require('fs');
 let singleIconModulesImports = '';
 let arrayOfIconModules = '\r\n\r\nexport const allSvgIcons = [';
 
-const pathToIcons = path.resolve('../npm/designsystem/dist/components/Icons');
+const pathToIcons = './node_modules/@helsenorge/designsystem-react/components/Icons';
 const finalFileName = 'allIconsImports.tsx';
 
 // This script loops through all icons in designsystem components/Icons and creates a file with
@@ -25,19 +25,16 @@ fs.readdir(pathToIcons, (err, files) => {
         console.log('generating import for', iconFile);
 
         singleIconModulesImports =
-          singleIconModulesImports +
-          `import ${fileName}_ from '${iconFile}';\r\nexport const ${fileName} = ${fileName}_;\r\n`;
+          singleIconModulesImports + `import ${fileName}_ from '${iconFile}';\r\nexport const ${fileName} = ${fileName}_;\r\n`;
         arrayOfIconModules = `${arrayOfIconModules} { "module": ${fileName}, "name": "${fileName}"},`;
       }
     });
     arrayOfIconModules = arrayOfIconModules.slice(0, -1) + '];';
 
-    fs.writeFile(
-      './src/components/markdown/MDXCustom/IconWall/' + finalFileName,
-      singleIconModulesImports + arrayOfIconModules,
-      function (err) {
-        err ? console.log('Error when writing file', err) : console.log('Generating icon imports completed.');
-      },
-    );
+    fs.writeFile('./src/components/markdown/MDXCustom/IconWall/' + finalFileName, singleIconModulesImports + arrayOfIconModules, function(
+      err
+    ) {
+      err ? console.log('Error when writing file', err) : console.log('Generating icon imports completed.');
+    });
   }
 });

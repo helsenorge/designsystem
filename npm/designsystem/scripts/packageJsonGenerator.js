@@ -23,7 +23,7 @@ function generatePackageJson() {
       };
 
       return new Promise(resolve => {
-        const libPath = path.resolve(__dirname, '../dist/package.json');
+        const libPath = path.resolve(__dirname, '../lib/package.json');
         const data = JSON.stringify(minimalPackage, null, 2);
         fse.writeFile(libPath, data, err => {
           if (err) {

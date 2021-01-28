@@ -1,5 +1,5 @@
 const path = require('path');
-/* eslint-disable @typescript-eslint/camelcase */
+
 module.exports = {
   siteMetadata: {
     title: 'Helsenorge Design System',
@@ -19,7 +19,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        defaultLayouts: {default: path.resolve('./src/layouts/Page.tsx')},
+        defaultLayouts: { default: path.resolve('./src/layouts/Page.tsx') },
         extensions: ['.mdx'],
       },
     },
@@ -67,9 +67,6 @@ module.exports = {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
         modulePath: `${__dirname}/src/cms/cms.tsx`,
-        customizeWebpackConfig: (config) => {
-          config.resolve.symlinks = false;
-        },
       },
     },
   ],

@@ -24,7 +24,7 @@ export default [
     input: inputEntries,
     output: [
       {
-        dir: 'dist',
+        dir: 'lib',
         format: 'esm',
         sourcemap: true,
       },
@@ -49,8 +49,8 @@ export default [
       }),
       copy({
         targets: [
-          {src: 'src/fonts/**/*', dest: 'dist/fonts'},
-          {src: 'src/scss/*', dest: 'dist/scss'},
+          {src: 'src/fonts/**/*', dest: 'lib/fonts'},
+          {src: 'src/scss/*', dest: 'lib/scss'},
         ],
       }),
       buble(),
