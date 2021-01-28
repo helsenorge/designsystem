@@ -21,6 +21,7 @@
     "test": "lerna run test",
     "test:update": "lerna run test:update",
     "version": "lerna version --no-push --allow-branch=*/*",
+    "postversion": "lerna run build",
     "publish:beta": "cd npm/designsystem/dist && npm publish --tag=beta",
     "publish:latest": "lerna publish from-git --yes --allow-branch=master",
     "format": "lerna run format",
