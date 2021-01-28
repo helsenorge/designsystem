@@ -7,7 +7,7 @@ interface SpacerProps {
   className?: string;
 }
 
-const Spacer = React.forwardRef((props: SpacerProps, ref: any) => {
+const Spacer = React.forwardRef(function SpacerForwardedRef(props: SpacerProps, ref: React.ForwardedRef<HTMLElement>) {
   const { size = 's', className } = props;
 
   return <StyledSpacer size={size} className={className} ref={ref}></StyledSpacer>;

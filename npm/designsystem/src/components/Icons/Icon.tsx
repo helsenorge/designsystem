@@ -20,7 +20,7 @@ interface SvgPathProps {
   isHovered: boolean;
 }
 
-const Icon = React.forwardRef((props: IconProps, ref: any) => {
+const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGElement>) => {
   const {
     svgIcon,
     ariaLabel,
@@ -41,7 +41,7 @@ const Icon = React.forwardRef((props: IconProps, ref: any) => {
   return (
     <StyledIcon
       data-testid={testId}
-      ref={ref}
+      ref={ref as React.RefObject<SVGSVGElement>}
       className={`hnds-style-icon ${className}`}
       role="img"
       aria-label={ariaLabel}

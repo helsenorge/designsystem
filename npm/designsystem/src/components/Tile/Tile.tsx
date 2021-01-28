@@ -21,10 +21,10 @@ interface TileTitleProps {
 }
 
 export interface TileCompound extends React.ForwardRefExoticComponent<TileProps & React.RefAttributes<HTMLAnchorElement>> {
-  Title: React.ForwardRefExoticComponent<TileTitleProps & React.RefAttributes<unknown>>;
+  Title: React.ForwardRefExoticComponent<TileTitleProps & React.RefAttributes<HTMLHeadingElement>>;
 }
 
-const Title = React.forwardRef((props: TileTitleProps, ref: any) => {
+const Title = React.forwardRef(function TitleForwardedRef(props: TileTitleProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
   const { children, className, htmlMarkup = 'span' } = props;
   return (
     <StyledTileTitle className={className} as={htmlMarkup} ref={ref}>
@@ -33,17 +33,17 @@ const Title = React.forwardRef((props: TileTitleProps, ref: any) => {
   );
 });
 
-const Tile = React.forwardRef((props: TileProps, ref: any) => {
+const Tile = React.forwardRef(function TileForwardedRef(props: TileProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
   const { icon, title, className = '', description, fixed = false, highlighted = false, ...restProps } = props;
   const [isHovered, setIsHovered] = useState(false);
   return (
     <StyledTile
+      ref={ref}
+      className={className}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
-      className={className}
-      ref={ref}
       highlighted={highlighted}
       fixed={fixed}
       compact={!description}

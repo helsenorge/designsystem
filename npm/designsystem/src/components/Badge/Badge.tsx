@@ -11,7 +11,7 @@ interface BadgeProps {
   color?: BadgeColors;
 }
 
-const Badge = React.forwardRef((props: BadgeProps, ref: any) => {
+const Badge = React.forwardRef(function BadgeForwardedRef(props: BadgeProps, ref: React.ForwardedRef<HTMLElement>) {
   const { children, className = '', color = 'black' } = props;
   const oversized = children.toString().length > 2;
   return (

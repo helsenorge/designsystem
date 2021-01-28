@@ -69,7 +69,7 @@ const getLargeIconSize = (large: boolean, screenWidth: number | undefined): numb
   return 38;
 };
 
-const Button = React.forwardRef((props: ButtonProps, ref: any) => {
+const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, ref: React.ForwardedRef<HTMLButtonElement>) {
   const {
     children,
     className = '',
@@ -87,7 +87,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   } = props;
 
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement>(ref);
+  const { hoverRef, isHovered } = useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>);
   const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted, isHovered);
   const size = useWindowSize();
 

@@ -15,10 +15,10 @@ interface AnchorLinkProps {
   target?: AnchorLinkTargets;
 }
 
-const AnchorLink = React.forwardRef((props: AnchorLinkProps, ref: any) => {
+const AnchorLink = React.forwardRef(function AnchorLinkForwardedRef(props: AnchorLinkProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
   const { id, href, children, className, target = '_self' } = props;
   const external = target === '_blank';
-  const { hoverRef, isHovered } = useHover<HTMLAnchorElement>(ref);
+  const { hoverRef, isHovered } = useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
   return (
     <StyledAnchorLink id={id} href={href} className={className} target={target} external={external} ref={hoverRef}>
       {children}

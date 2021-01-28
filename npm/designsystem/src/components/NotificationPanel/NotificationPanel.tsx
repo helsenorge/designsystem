@@ -46,7 +46,10 @@ export const variantToIconMap = {
   crisis: <Icon svgIcon={AlertSignFill} color={palette.banana200} hoverColor={palette.banana200} />,
 };
 
-const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: any) => {
+const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRef(
+  props: NotificationPanelProps,
+  ref: React.ForwardedRef<HTMLElement>
+) {
   const { children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size, className } = props;
   const { hoverRef, isHovered } = useHover<HTMLButtonElement>(undefined, dismissable);
 

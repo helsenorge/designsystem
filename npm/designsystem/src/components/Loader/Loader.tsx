@@ -12,7 +12,7 @@ interface LoaderProps {
   testId?: string;
 }
 
-const Loader = React.forwardRef((props: LoaderProps, ref: any) => {
+const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, ref: React.ForwardedRef<HTMLElement>) {
   const { color = 'neutral', size = 'small', className = '', testId = '' } = props;
   return (
     <StyledLoader data-testid={testId} className={className} size={size}>

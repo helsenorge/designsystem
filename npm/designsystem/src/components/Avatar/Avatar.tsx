@@ -9,7 +9,7 @@ interface AvatarProps {
   className?: string;
 }
 
-const Avatar = React.forwardRef((props: AvatarProps, ref: any) => {
+const Avatar = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, ref: React.ForwardedRef<HTMLElement>) {
   const { children, className = '', selected = false } = props;
   const truncatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
   return (

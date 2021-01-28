@@ -51,7 +51,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
   );
 });
 
-const LinkList = React.forwardRef((props: LinkListProps, ref: React.Ref<HTMLUListElement>) => {
+const LinkList = React.forwardRef(function LinkListForwardedRef(props: LinkListProps, ref: React.Ref<HTMLUListElement>) {
   const { children, className = '', chevron = false, large, color, topBorder = true, bottomBorder = true } = props;
   return (
     <StyledLinkList className={className} topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
