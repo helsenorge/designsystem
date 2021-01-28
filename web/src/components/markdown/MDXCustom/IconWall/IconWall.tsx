@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Icon from '@helsenorge/designsystem-react/components/Icons';
 import * as SvgIcons from './allIconsImports';
 
 import Checkbox from '../../../CheckBox/CheckBox';
-import {SvgIcon} from '@helsenorge/designsystem-react/components/Icons/Icon';
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import { SvgIcon } from '@helsenorge/designsystem-react/components/Icons/Icon';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
-type IconImport = {module: SvgIcon; name: string};
+type IconImport = { module: SvgIcon; name: string };
 
 const StyledIconTile = styled('div')`
   background-color: #f6f5f2;
@@ -57,13 +57,13 @@ interface IconWallFilterProps {
 }
 
 function IconWallFilter(props: IconWallFilterProps) {
-  const {onFilterChange} = props;
+  const { onFilterChange } = props;
   const [filter, setFilter] = useState('');
   const [isHovered, setIsHovered] = useState(false);
   const [isExtraSmall, setIsExtraSmall] = useState(false);
 
   useEffect(() => {
-    onFilterChange({filter, isHovered, isExtraSmall});
+    onFilterChange({ filter, isHovered, isExtraSmall });
   }, [filter, isHovered, isExtraSmall]);
 
   return (
@@ -112,11 +112,7 @@ function IconWall() {
         {SvgIcons.allSvgIcons.filter(filterIcons).map((iconImport: IconImport, index) => (
           <div>
             <StyledIconTile>
-              <Icon
-                isHovered={filterProps.isHovered}
-                size={filterProps.isExtraSmall ? 38 : 48}
-                svgIcon={iconImport.module}
-              />
+              <Icon isHovered={filterProps.isHovered} size={filterProps.isExtraSmall ? 38 : 48} svgIcon={iconImport.module} />
               <StyledIconName>{iconImport.name}</StyledIconName>
             </StyledIconTile>
           </div>

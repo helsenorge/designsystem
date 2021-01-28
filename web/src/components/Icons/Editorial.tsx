@@ -6,7 +6,7 @@ interface EditorialProps {
 }
 
 function Editorial(props: EditorialProps) {
-  const {size = 32, color} = props;
+  const { size = 32, color } = props;
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={size} viewBox="0 0 56 56">
       <g id="Layer_3" data-name="Layer 3">

@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import {useStaticQuery, graphql} from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 
 interface SEOProps {
   description?: string;
@@ -10,8 +10,8 @@ interface SEOProps {
   title: string;
 }
 
-function SEO({description, lang, meta, keywords, title}: SEOProps): JSX.Element {
-  const {site} = useStaticQuery(
+function SEO({ description, lang, meta, keywords, title }: SEOProps): JSX.Element {
+  const { site } = useStaticQuery(
     graphql`
       query {
         site {
@@ -22,7 +22,7 @@ function SEO({description, lang, meta, keywords, title}: SEOProps): JSX.Element 
           }
         }
       }
-    `,
+    `
   );
 
   const metaDescription = description || site.siteMetadata.description;
@@ -74,7 +74,7 @@ function SEO({description, lang, meta, keywords, title}: SEOProps): JSX.Element 
                 name: `keywords`,
                 content: keywords.join(`, `),
               }
-            : [],
+            : []
         )
         .concat(meta)}
     />

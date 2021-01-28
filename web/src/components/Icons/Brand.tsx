@@ -6,7 +6,7 @@ interface BrandProps {
 }
 
 function Brand(props: BrandProps) {
-  const {size = 32, color} = props;
+  const { size = 32, color } = props;
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={size} viewBox="0 0 56 56">
       <g id="Layer_3" data-name="Layer 3">
@@ -15,11 +15,7 @@ function Brand(props: BrandProps) {
           className="cls-1"
           d="M33.33 28.66A5.33 5.33 0 1028 34a5.33 5.33 0 005.33-5.34zM28 32.49a3.83 3.83 0 113.83-3.83A3.84 3.84 0 0128 32.49z"
         />
-        <path
-          fill={color}
-          className="cls-1"
-          d="M28 27.08a1.58 1.58 0 101.58 1.58A1.58 1.58 0 0028 27.08zM26.06 18.35h4.27v2.45h-4.27z"
-        />
+        <path fill={color} className="cls-1" d="M28 27.08a1.58 1.58 0 101.58 1.58A1.58 1.58 0 0028 27.08zM26.06 18.35h4.27v2.45h-4.27z" />
         <path fill={color} className="cls-1" transform="rotate(-45 21.704 22.1)" d="M19.57 20.87h4.27v2.45h-4.27z" />
         <path fill={color} className="cls-1" d="M17.69 26.34h2.45v4.27h-2.45z" />
         <path fill={color} className="cls-1" transform="rotate(-45 21.428 34.954)" d="M20.21 32.82h2.45v4.27h-2.45z" />

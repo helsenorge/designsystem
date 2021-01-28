@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
 import Landing from '@layouts/Landing';
 import Section from '@layouts/Section';
 import notFoundIllustration from '@images/not-found-404.svg';
-import {Row, Col} from '@shared/CustomizedGrid';
+import { Row, Col } from '@shared/CustomizedGrid';
 
 const StyledNotFoundImage = styled('img')`
   max-width: 20rem;

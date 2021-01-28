@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react';
-import {globalHistory} from '@reach/router';
+import { useEffect, useState } from 'react';
+import { globalHistory } from '@reach/router';
 
 const anchorIds = [];
 
@@ -17,9 +17,8 @@ export default function useTableOfContents(queryData: any): any {
   const [tableOfContents, setTableOfContents] = useState([]);
   const [anchorIds, setAnchorIds] = useState([]);
   useEffect(() => {
-    const tableOfContents = queryData.allMdx.nodes.find(
-      node => node.frontmatter.path === globalHistory.location.pathname,
-    ).tableOfContents.items[0].items;
+    const tableOfContents = queryData.allMdx.nodes.find(node => node.frontmatter.path === globalHistory.location.pathname).tableOfContents
+      .items[0].items;
     if (tableOfContents) {
       setTableOfContents(tableOfContents);
       setAnchorIds(getAllIdOccurrences(tableOfContents));

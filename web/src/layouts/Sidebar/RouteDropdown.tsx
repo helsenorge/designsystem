@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import styled, {css} from 'styled-components';
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
-import {ChevronDown, ChevronUp} from 'react-feather';
-import {Link} from 'gatsby';
+import React, { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
+import { ChevronDown, ChevronUp } from 'react-feather';
+import { Link } from 'gatsby';
 
 import Brand from '../../components/Icons/Brand';
 import Library from '../../components/Icons/Library';
@@ -164,7 +164,7 @@ interface RouteDropdownProps {
 }
 
 function RouteDropdown(props: RouteDropdownProps) {
-  const {activeRoute} = props;
+  const { activeRoute } = props;
   const [expanded, setExpanded] = useState(false);
   const [mappedRoute, setMappedRoute] = useState({} as any);
   useEffect(() => {

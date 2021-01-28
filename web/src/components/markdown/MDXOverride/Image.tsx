@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {HNDS_BUCKET_IMAGE_URL} from '@shared/constants';
+import { HNDS_BUCKET_IMAGE_URL } from '@shared/constants';
 
 interface ImageProps {
   src: string;
@@ -8,7 +8,7 @@ interface ImageProps {
   className?: string;
 }
 
-function StyledImage({src, alt, className}: ImageProps) {
+function StyledImage({ src, alt, className }: ImageProps) {
   const imageUrl = !src.startsWith('https') ? `${HNDS_BUCKET_IMAGE_URL}${src}` : src;
   return <img className={className} alt={alt} src={imageUrl} />;
 }

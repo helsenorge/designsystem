@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from 'gatsby';
+import { Link } from 'gatsby';
 
 interface LogoProps {
   size?: number;
 }
 
 function Logo(props: LogoProps) {
-  const {size = 225} = props;
+  const { size = 225 } = props;
   return (
     <Link to="/">
       <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width={size} viewBox="0 0 260 58">

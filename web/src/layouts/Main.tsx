@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import {PageContent} from '../components/PageContent';
-import {ToC} from './ToC';
-import {useStaticQuery, graphql} from 'gatsby';
-import {globalHistory} from '@reach/router';
+import { PageContent } from '../components/PageContent';
+import { ToC } from './ToC';
+import { useStaticQuery, graphql } from 'gatsby';
+import { globalHistory } from '@reach/router';
 // import useTableOfContents from '../hooks/UseTableOfContents';
-import {Link, Element} from 'react-scroll';
+import { Link, Element } from 'react-scroll';
 
 interface MainProps {
   children?: React.ReactNode;
@@ -46,4 +46,4 @@ const StyledMain = styled(Main)`
   background-color: white;
 `;
 
-export {StyledMain as Main};
+export { StyledMain as Main };

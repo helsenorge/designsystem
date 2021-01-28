@@ -1,6 +1,6 @@
 import React from 'react';
-import {ThemeProvider} from 'styled-components';
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import { ThemeProvider } from 'styled-components';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
 import QuickMenu from './QuickMenu';
 
@@ -12,7 +12,7 @@ interface LandingProps {
 }
 
 function Landing(props: LandingProps) {
-  const {children} = props;
+  const { children } = props;
   return (
     <ThemeProvider theme={hndsTheme}>
       <Header />

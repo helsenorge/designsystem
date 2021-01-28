@@ -1,8 +1,8 @@
-import React, {useState, HTMLProps} from 'react';
-import styled, {css} from 'styled-components';
-import {LiveProvider, LiveEditor, LivePreview, LiveError} from 'react-live';
+import React, { useState, HTMLProps } from 'react';
+import styled, { css } from 'styled-components';
+import { LiveProvider, LiveEditor, LivePreview, LiveError } from 'react-live';
 import theme from 'prism-react-renderer/themes/dracula';
-import {Code} from 'react-feather';
+import { Code } from 'react-feather';
 
 interface LiveComponentProps {
   children: string;
@@ -13,10 +13,10 @@ interface LiveComponentProps {
 }
 
 function LiveComponent(props: LiveComponentProps) {
-  const {children, scope, stack = false, fullWidth = false, backgroundColor} = props;
+  const { children, scope, stack = false, fullWidth = false, backgroundColor } = props;
   const [showEditor, setShowEditor] = useState(false);
   return (
-    <LiveProvider theme={theme} scope={{styled, ...scope}} code={`<>${children}</>`}>
+    <LiveProvider theme={theme} scope={{ styled, ...scope }} code={`<>${children}</>`}>
       <StyledLivePreviewContainer backgroundColor={backgroundColor}>
         <StyledLivePreview hasFullWidth={fullWidth} stack={stack} />
         <ToggleButton active={showEditor} onClick={() => setShowEditor(!showEditor)}>
@@ -33,7 +33,7 @@ function LiveComponent(props: LiveComponentProps) {
   );
 }
 
-const ToggleButton = styled('button')<{active: boolean}>`
+const ToggleButton = styled('button')<{ active: boolean }>`
   display: flex;
   justify-content: center;
   position: absolute;

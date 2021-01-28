@@ -1,9 +1,9 @@
 import React from 'react';
-import {graphql} from 'gatsby';
-import {MDXRenderer} from 'gatsby-plugin-mdx';
-import {MarkdownRemark} from 'types/graphql-types';
+import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { MarkdownRemark } from 'types/graphql-types';
 
-import {H1} from '../components/markdown/MDXOverride/Heading';
+import { H1 } from '../components/markdown/MDXOverride/Heading';
 import Preamble from '../components/markdown/MDXCustom/Preamble';
 import Page from '../layouts/Page';
 
@@ -13,7 +13,7 @@ interface AboutPageTemplateProps {
   content?: JSX.Element | null;
 }
 
-export const SimplePageTemplate: React.FC<AboutPageTemplateProps> = ({title, preamble, content}) => {
+export const SimplePageTemplate: React.FC<AboutPageTemplateProps> = ({ title, preamble, content }) => {
   return (
     <article>
       <H1>{title}</H1>
@@ -29,8 +29,8 @@ interface SimplePageProps {
   };
 }
 
-const SimplePage: React.FC<SimplePageProps> = ({data}) => {
-  const {mdx} = data;
+const SimplePage: React.FC<SimplePageProps> = ({ data }) => {
+  const { mdx } = data;
   return (
     <Page>
       <SimplePageTemplate
@@ -46,7 +46,7 @@ export default SimplePage;
 
 export const aboutPageQuery = graphql`
   query SimplePage($id: String!) {
-    mdx(id: {eq: $id}) {
+    mdx(id: { eq: $id }) {
       body
       frontmatter {
         title

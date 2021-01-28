@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
 const CheckboxContainer = styled('div')`
   display: inline-block;
@@ -14,7 +14,7 @@ const Icon = styled('svg')`
   stroke-width: 2px;
 `;
 
-const HiddenCheckbox = styled('input').attrs({type: 'checkbox'})`
+const HiddenCheckbox = styled('input').attrs({ type: 'checkbox' })`
   border: 0;
   clip: rect(0 0 0 0);
   clippath: inset(50%);
@@ -27,7 +27,7 @@ const HiddenCheckbox = styled('input').attrs({type: 'checkbox'})`
   width: 1px;
 `;
 
-const StyledCheckbox = styled('div')<{checked: boolean}>`
+const StyledCheckbox = styled('div')<{ checked: boolean }>`
   display: inline-block;
   width: 1rem;
   height: 1rem;
@@ -56,7 +56,7 @@ function Checkbox({
   onChange: () => void;
 }) {
   return (
-    <label style={{cursor: 'pointer'}}>
+    <label style={{ cursor: 'pointer' }}>
       <CheckboxContainer className={className}>
         <HiddenCheckbox checked={checked} onChange={onChange} {...props} />
         <StyledCheckbox checked={checked}>
@@ -65,7 +65,7 @@ function Checkbox({
           </Icon>
         </StyledCheckbox>
       </CheckboxContainer>
-      <span style={{marginLeft: '0.5rem'}}>{label}</span>
+      <span style={{ marginLeft: '0.5rem' }}>{label}</span>
     </label>
   );
 }

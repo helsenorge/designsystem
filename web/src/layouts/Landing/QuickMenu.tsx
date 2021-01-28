@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
-import QuickMenuCard, {QuickMenuCardTitle, QuickMenuCardArt} from './QuickMenuCard';
+import QuickMenuCard, { QuickMenuCardTitle, QuickMenuCardArt } from './QuickMenuCard';
 
 import brandIllustration from '@images/brand-illustration.svg';
 import patternsIllustration from '@images/patterns-illustration.svg';

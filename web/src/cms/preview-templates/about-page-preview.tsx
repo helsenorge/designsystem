@@ -1,10 +1,10 @@
 import React from 'react';
-import {PreviewTemplateComponentProps} from 'netlify-cms-core';
+import { PreviewTemplateComponentProps } from 'netlify-cms-core';
 
-import {AboutPageTemplate} from '../../cms-templates/about-page';
+import { AboutPageTemplate } from '../../cms-templates/about-page';
 import PreviewWrapper from '../preview-wrapper';
 
-const AboutPagePreview = ({entry, widgetFor}: PreviewTemplateComponentProps): JSX.Element => (
+const AboutPagePreview = ({ entry, widgetFor }: PreviewTemplateComponentProps): JSX.Element => (
   <PreviewWrapper>
     <AboutPageTemplate
       title={entry.getIn(['data', 'title'])}

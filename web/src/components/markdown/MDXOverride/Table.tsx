@@ -18,4 +18,4 @@ const TableHeader = styled('th')`
   padding: 0.4rem 0.5rem;
 `;
 
-export {Table, TableRow, TableCell, TableHeader};
+export { Table, TableRow, TableCell, TableHeader };

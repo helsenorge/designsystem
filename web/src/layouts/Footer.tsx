@@ -1,10 +1,10 @@
 import React from 'react';
-import {Link} from 'gatsby';
-import styled, {css} from 'styled-components';
+import { Link } from 'gatsby';
+import styled, { css } from 'styled-components';
 
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 import Logo from '@helsenorge/designsystem-react/components/Logo';
-import {Grid, Row, Col} from '@shared/CustomizedGrid';
+import { Grid, Row, Col } from '@shared/CustomizedGrid';
 import Section from './Section';
 import useWindowSize from '@hooks/UseWindowSize';
 
@@ -66,7 +66,7 @@ interface FooterLinkProps {
 }
 
 function FooterLink(props: FooterLinkProps) {
-  const {children, to, external} = props;
+  const { children, to, external } = props;
   return (
     <StyledFooterLinkGroupItem>
       {external ? (
@@ -86,7 +86,7 @@ interface ContentDisclaimerProps {
 }
 
 function ContentDisclaimer(props: ContentDisclaimerProps) {
-  const {children, byline = false} = props;
+  const { children, byline = false } = props;
   return (
     <StyledContentDisclaimer>
       <StyledContentDisclaimerText>{children}</StyledContentDisclaimerText>

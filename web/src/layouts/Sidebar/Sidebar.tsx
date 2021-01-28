@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {Link} from 'gatsby';
-import styled, {css} from 'styled-components';
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
-import {Location} from '@reach/router';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'gatsby';
+import styled, { css } from 'styled-components';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
+import { Location } from '@reach/router';
 
 import RouteDropdown from './RouteDropdown';
 import routes from '../../settings/routes.json';
@@ -19,7 +19,7 @@ interface SubMenuProps {
   routeMap: never[];
 }
 
-const StyledNavLink = styled(Link)<{child?: boolean; activeLink?: boolean}>`
+const StyledNavLink = styled(Link)<{ child?: boolean; activeLink?: boolean }>`
   text-decoration: none;
   display: block;
   font-weight: 600;
@@ -71,7 +71,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
   return (
     <StyledSidebar>
       <Location>
-        {({location}) => {
+        {({ location }) => {
           setActiveRoute(location.pathname);
           return <></>;
         }}
@@ -84,7 +84,7 @@ function Sidebar(props: SidebarProps): JSX.Element {
   );
 }
 
-function SubMenu({routeMap, activeRoute}: SubMenuProps): JSX.Element {
+function SubMenu({ routeMap, activeRoute }: SubMenuProps): JSX.Element {
   return (
     <>
       {routeMap &&
@@ -120,4 +120,4 @@ const StyledSidebar = styled('div')`
   }
 `;
 
-export {Sidebar, SubMenu};
+export { Sidebar, SubMenu };

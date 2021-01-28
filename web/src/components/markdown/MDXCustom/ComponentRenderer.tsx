@@ -1,7 +1,7 @@
-import React, {useState, useEffect, Dispatch, SetStateAction} from 'react';
-import styled, {css} from 'styled-components';
+import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import styled, { css } from 'styled-components';
 import dracula from 'prism-react-renderer/themes/dracula';
-import {LivePreview, LiveProvider, LiveEditor} from 'react-live';
+import { LivePreview, LiveProvider, LiveEditor } from 'react-live';
 
 import toggleIcon from '../../../images/code.svg';
 
@@ -40,7 +40,7 @@ interface CodeToggleButtonProps {
 }
 
 function CodeToggleButton(props: CodeToggleButtonProps) {
-  const {editorToggle} = props;
+  const { editorToggle } = props;
   const [isToggled, setIsToggled] = useState(false);
   useEffect(() => editorToggle(isToggled), [isToggled]);
   return (
@@ -55,7 +55,7 @@ interface ComponentPreviewProps {
 }
 
 function ComponentPreview(props: ComponentPreviewProps) {
-  const {editorToggle} = props;
+  const { editorToggle } = props;
   return (
     <StyledLivePreview>
       <LivePreview />

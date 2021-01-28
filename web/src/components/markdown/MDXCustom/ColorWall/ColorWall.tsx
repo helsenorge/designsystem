@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import {useSpring, animated} from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 import copy from '../../../../images/copy.svg';
 
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
 function StyledColorCard({
   className,
@@ -30,7 +30,8 @@ function StyledColorCard({
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         border={border}
-        hex={hex}>
+        hex={hex}
+      >
         <span>{isHover ? <CopyCircle /> : null}</span>
       </ColorCircle>
       <ColorHex>{hex}</ColorHex>
@@ -40,9 +41,9 @@ function StyledColorCard({
 
 function CopyCircle() {
   const props = useSpring({
-    config: {duration: 250},
-    to: {width: '2rem', height: '2rem'},
-    from: {width: '0rem', height: '0rem'},
+    config: { duration: 250 },
+    to: { width: '2rem', height: '2rem' },
+    from: { width: '0rem', height: '0rem' },
   });
   return <animated.img style={props} src={copy} />;
 }
@@ -77,8 +78,8 @@ const ColorCircle = styled('button')`
     bottom: 0;
     right: 0;
     padding-top: 35%;
-    background-color: ${(props: {hex: string; border: boolean}) => `${props.hex}`};
-    border: ${(props: {hex: string; border: boolean}) => (props.border ? '1px solid #999999' : 'none')};
+    background-color: ${(props: { hex: string; border: boolean }) => `${props.hex}`};
+    border: ${(props: { hex: string; border: boolean }) => (props.border ? '1px solid #999999' : 'none')};
     border-radius: 50%;
     vertical-align: middle;
   }

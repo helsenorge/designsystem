@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import styled, {css} from 'styled-components';
-import {Link, animateScroll as scroll} from 'react-scroll';
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
+import { Link, animateScroll as scroll } from 'react-scroll';
 
 import bookIcon from '../images/book-open.svg';
 import arrowUpIcon from '../images/arrow-up.svg';
-import {animated, useSpring} from 'react-spring';
+import { animated, useSpring } from 'react-spring';
 
 interface ToCProps {
   children?: React.ReactNode;
@@ -13,7 +13,7 @@ interface ToCProps {
 }
 
 function ToC(props: ToCProps): JSX.Element {
-  const {className, tableOfContents} = props;
+  const { className, tableOfContents } = props;
   function createToC(items, level) {
     if (items) {
       return items.map(item => {
@@ -27,7 +27,8 @@ function ToC(props: ToCProps): JSX.Element {
               duration={600}
               containerId="mdx-content"
               to={item.url.replace('#', '')}
-              level={level}>
+              level={level}
+            >
               {item.title}
             </LinkBox>,
           ];
@@ -40,7 +41,8 @@ function ToC(props: ToCProps): JSX.Element {
             smooth={true}
             duration={600}
             containerId="mdx-content"
-            to={item.url.replace('#', '')}>
+            to={item.url.replace('#', '')}
+          >
             {item.title}
           </LinkBox>
         );
@@ -92,28 +94,25 @@ interface BoxProps {
 }
 
 function StyledBox(props: BoxProps) {
-  const {children, className} = props;
+  const { children, className } = props;
   return <div className={className}>{children}</div>;
 }
 
-function StyledBoxHeader({className}: {className?: string}) {
+function StyledBoxHeader({ className }: { className?: string }) {
   const [isHovered, setIsHovered] = useState(false);
-  const animPropsArrow = useSpring({opacity: isHovered ? 1 : 0});
-  const animPropsBook = useSpring({opacity: !isHovered ? 1 : 0});
+  const animPropsArrow = useSpring({ opacity: isHovered ? 1 : 0 });
+  const animPropsBook = useSpring({ opacity: !isHovered ? 1 : 0 });
   function scrollToTop() {
-    scroll.scrollToTop({containerId: 'mdx-content', duration: 250});
+    scroll.scrollToTop({ containerId: 'mdx-content', duration: 250 });
   }
   return (
     <button
       onMouseEnter={() => setIsHovered(!isHovered)}
       onMouseLeave={() => setIsHovered(!isHovered)}
       onClick={scrollToTop}
-      className={className}>
-      {!isHovered ? (
-        <BoxIcon style={animPropsBook} src={bookIcon} />
-      ) : (
-        <BoxIcon style={animPropsArrow} src={arrowUpIcon} />
-      )}
+      className={className}
+    >
+      {!isHovered ? <BoxIcon style={animPropsBook} src={bookIcon} /> : <BoxIcon style={animPropsArrow} src={arrowUpIcon} />}
       <BoxTitle hovered={isHovered}>Table of contents</BoxTitle>
     </button>
   );
@@ -167,4 +166,4 @@ const StyledToC = styled(ToC)`
   width: 260px;
 `;
 
-export {StyledToC as ToC};
+export { StyledToC as ToC };

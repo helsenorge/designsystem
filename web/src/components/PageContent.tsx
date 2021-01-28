@@ -1,9 +1,9 @@
 import React from 'react';
-import {MDXProvider} from '@mdx-js/react';
+import { MDXProvider } from '@mdx-js/react';
 import styled from 'styled-components';
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 import MDXOverride from './markdown/MDXOverride';
-import {UIComponents} from './markdown/MDXCustom';
+import { UIComponents } from './markdown/MDXCustom';
 
 const overridedMDXComponents = {
   ...MDXOverride,
@@ -15,7 +15,7 @@ interface PageContentProps {
   children: React.ReactNode;
 }
 
-function PageContent({className, children}: PageContentProps): JSX.Element {
+function PageContent({ className, children }: PageContentProps): JSX.Element {
   return (
     <div className={className}>
       <MDXProvider components={overridedMDXComponents}>{children}</MDXProvider>
@@ -31,4 +31,4 @@ const StyledPageContent = styled(PageContent)`
   }
 `;
 
-export {StyledPageContent as PageContent};
+export { StyledPageContent as PageContent };

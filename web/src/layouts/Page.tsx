@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import styled, {ThemeProvider} from 'styled-components';
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import React, { useState, useEffect } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
 import Header from './Header';
-import {Sidebar} from './Sidebar/Sidebar';
-import {Main} from './Main';
+import { Sidebar } from './Sidebar/Sidebar';
+import { Main } from './Main';
 
-import {Grid, Row, Col} from '@shared/CustomizedGrid';
+import { Grid, Row, Col } from '@shared/CustomizedGrid';
 import LiveComponent from '../components/LiveComponent/LiveComponent';
 import Footer from './Footer';
 import Section from './Section';

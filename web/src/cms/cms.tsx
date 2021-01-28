@@ -1,8 +1,8 @@
 import React from 'react';
 import CMS from 'netlify-cms-app';
-import {MdxControl, MdxPreview} from 'netlify-cms-widget-mdx';
+import { MdxControl, MdxPreview } from 'netlify-cms-widget-mdx';
 
-import {UIComponents} from '../components/markdown/MDXCustom';
+import { UIComponents } from '../components/markdown/MDXCustom';
 import MDXOverride from '../components/markdown/MDXOverride';
 
 import SimplePagePreview from './preview-templates/simple-page-preview';

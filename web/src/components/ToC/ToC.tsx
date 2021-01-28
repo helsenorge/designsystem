@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from 'gatsby';
+import { Link } from 'gatsby';
 
 const StyledToc = styled('div')`
   margin: 1rem 0 1rem 1rem;

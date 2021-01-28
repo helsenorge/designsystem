@@ -1,6 +1,6 @@
-import {H1, H2, H3, H4} from './Heading';
+import { H1, H2, H3, H4 } from './Heading';
 import Image from './Image';
-import {Table, TableHeader, TableRow, TableCell} from './Table';
+import { Table, TableHeader, TableRow, TableCell } from './Table';
 
 export default {
   h1: H1,

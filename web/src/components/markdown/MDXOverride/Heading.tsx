@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import {useSpring, animated} from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 
 import anchorIcon from '../../../images/link.svg';
-import {Link} from 'react-scroll';
+import { Link } from 'react-scroll';
 
 interface AnchorLinkProps {
   children?: string;
@@ -20,7 +20,7 @@ function AnchorLink(props: AnchorLinkProps) {
   const [isHovered, setIsHovered] = useState(false);
   const idUrlified = props.children.replace(/\s+/g, '-').toLowerCase();
   const id = idUrlified.replace(/#|\?|_/g, '');
-  const anim = useSpring({opacity: isHovered ? 1 : 0, duration: 250});
+  const anim = useSpring({ opacity: isHovered ? 1 : 0, duration: 250 });
   return (
     <Link
       id={id}
@@ -31,7 +31,8 @@ function AnchorLink(props: AnchorLinkProps) {
       onMouseEnter={() => setIsHovered(!isHovered)}
       onMouseLeave={() => setIsHovered(!isHovered)}
       className={props.className}
-      to={`${id}`}>
+      to={`${id}`}
+    >
       <>
         {props.children}
         {isHovered ? <AnchorIcon style={anim} src={anchorIcon} /> : null}
@@ -80,4 +81,4 @@ const H4 = styled('h4')`
   margin: 3rem 0 2rem;
 `;
 
-export {H1, H2, H3, H4, AnchorLink};
+export { H1, H2, H3, H4, AnchorLink };

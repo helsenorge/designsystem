@@ -1,8 +1,8 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
-import {StyledDefaultProps} from '@shared/constants';
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
-import {Link} from 'gatsby';
+import styled, { css } from 'styled-components';
+import { StyledDefaultProps } from '@shared/constants';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
+import { Link } from 'gatsby';
 
 export const QuickMenuCardTitle = styled('h1')`
   font-size: 2.5rem;
@@ -10,7 +10,7 @@ export const QuickMenuCardTitle = styled('h1')`
   margin: 1rem 0;
 `;
 
-export function QuickMenuCardArt({src}: {src: string}) {
+export function QuickMenuCardArt({ src }: { src: string }) {
   return (
     <StyledQuickMenuCardArt>
       <img src={src} />
@@ -33,7 +33,7 @@ interface CardProps extends StyledDefaultProps {
 
 // TODO: Weird issue with boolean props to styled-components. Need to find out why.
 function QuickMenuCard(props: CardProps) {
-  const {children, to, small = false, grid} = props;
+  const { children, to, small = false, grid } = props;
   return (
     <StyledQuickMenuCard grid={grid} small={small} to={to}>
       {children}
@@ -41,7 +41,7 @@ function QuickMenuCard(props: CardProps) {
   );
 }
 
-const StyledQuickMenuCard = styled(Link)<{small: boolean; grid: string}>`
+const StyledQuickMenuCard = styled(Link)<{ small: boolean; grid: string }>`
   background-color: white;
   display: flex;
   flex-direction: column;

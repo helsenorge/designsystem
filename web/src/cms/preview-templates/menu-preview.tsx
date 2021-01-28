@@ -1,17 +1,17 @@
 import React from 'react';
-import {PreviewTemplateComponentProps} from 'netlify-cms-core';
+import { PreviewTemplateComponentProps } from 'netlify-cms-core';
 
 import Spacer from '@helsenorge/designsystem-react/components/Spacer';
-import {theme as hndsTheme} from '@helsenorge/designsystem-react';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
 import PreviewWrapper from '../preview-wrapper';
-import {SubMenu} from '@layouts/Sidebar/Sidebar';
+import { SubMenu } from '@layouts/Sidebar/Sidebar';
 import Section from '@layouts/Section';
 
 import Preamble from '../../components/markdown/MDXCustom/Preamble';
-import {H1, H2} from '../../components/markdown/MDXOverride/Heading';
+import { H1, H2 } from '../../components/markdown/MDXOverride/Heading';
 
-const MenuPreview = ({entry}: PreviewTemplateComponentProps): JSX.Element => {
+const MenuPreview = ({ entry }: PreviewTemplateComponentProps): JSX.Element => {
   const menu = entry.get('data').toJS();
 
   return (
@@ -19,9 +19,7 @@ const MenuPreview = ({entry}: PreviewTemplateComponentProps): JSX.Element => {
       <Section color={hndsTheme.palette.blueberry100}>
         <Spacer size={'s'} />
         <H1>Meny</H1>
-        <Preamble>
-          Her vises forhåndvisning av menyene for hver hovedside. Scroll ned for å se alle undermenyene.
-        </Preamble>
+        <Preamble>Her vises forhåndvisning av menyene for hver hovedside. Scroll ned for å se alle undermenyene.</Preamble>
         {Object.entries(menu).map(menuItem => {
           const menuName = menuItem[0];
           const subMenu = menuItem[1];

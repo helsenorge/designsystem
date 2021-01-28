@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Row, Col} from '@shared/CustomizedGrid';
+import { Row, Col } from '@shared/CustomizedGrid';
 import Logo from '../components/Logo';
 import Section from './Section';
 
