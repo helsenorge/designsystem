@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyledExpanderList,
   StyledExpanderListLink,
@@ -6,17 +6,16 @@ import {
   StyledExpanderContent,
   StyledExpanderListIconContainer,
 } from './ExpanderList.styled';
-import {PaletteNames} from '../../theme/palette';
+import { PaletteNames } from '../../theme/palette';
 import Icon from '../Icons';
 import ChevronUp from '../Icons/ChevronUp';
 import ChevronDown from '../Icons/ChevronDown';
-import {useHover} from '../../hooks/useHover';
+import { useHover } from '../../hooks/useHover';
 
 export type ExpanderListColors = PaletteNames;
 export type ExpanderType = React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>>;
 
-export interface ExpanderListCompound
-  extends React.ForwardRefExoticComponent<ExpanderListProps & React.RefAttributes<HTMLUListElement>> {
+export interface ExpanderListCompound extends React.ForwardRefExoticComponent<ExpanderListProps & React.RefAttributes<HTMLUListElement>> {
   Expander: ExpanderType;
 }
 
@@ -67,7 +66,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     testId = '',
     ...restProps
   } = props;
-  const {hoverRef, isHovered} = useHover<HTMLButtonElement>();
+  const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
   return (
     <li ref={ref}>
       <StyledExpanderListLink
@@ -77,12 +76,11 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
         large={large}
         color={color}
         ref={hoverRef}
-        {...restProps}>
+        {...restProps}
+      >
         <StyledExpanderListLinkContent>
           {icon ? (
-            <StyledExpanderListIconContainer>
-              {React.cloneElement(icon, {size: 48, isHovered})}
-            </StyledExpanderListIconContainer>
+            <StyledExpanderListIconContainer>{React.cloneElement(icon, { size: 48, isHovered })}</StyledExpanderListIconContainer>
           ) : null}
           {title}
         </StyledExpanderListLinkContent>
@@ -96,8 +94,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
 });
 
 function findShadowDOMId(event: MouseEventWithPath, tagName: string): string {
-  const pathElements: Array<HTMLElement> =
-    event.path || (event.composedPath && (event.composedPath() as Array<HTMLElement>));
+  const pathElements: Array<HTMLElement> = event.path || (event.composedPath && (event.composedPath() as Array<HTMLElement>));
   const element = pathElements.find((el: HTMLElement) => el.tagName === tagName);
   return element ? element.id : '';
 }
@@ -119,7 +116,7 @@ const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: React.Ref<
   function handleExpanderClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
     const id = event.currentTarget?.id || findShadowDOMId((event as unknown) as MouseEventWithPath, 'BUTTON');
     if (!isOpen) {
-      setActiveExpander(prevState => (accordion ? {[id]: !prevState[id]} : {...prevState, [id]: !prevState[id]}));
+      setActiveExpander((prevState) => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
     }
   }
 

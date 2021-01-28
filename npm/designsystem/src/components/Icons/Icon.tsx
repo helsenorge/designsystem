@@ -50,7 +50,8 @@ const Icon = React.forwardRef((props: IconProps, ref: any) => {
       width={size}
       height={size}
       fill={isHovered ? hoverColor : color}
-      {...other}>
+      {...other}
+    >
       {svgRaw}
     </StyledIcon>
   );
@@ -58,4 +59,4 @@ const Icon = React.forwardRef((props: IconProps, ref: any) => {
 
 Icon.displayName = 'Icon';
 
-export {Icon, IconProps, SvgPathProps, SvgIcon};
+export { Icon, IconProps, SvgPathProps, SvgIcon };

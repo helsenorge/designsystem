@@ -1,7 +1,7 @@
 import React from 'react';
-import {palette} from '../../theme/palette';
-import Icon, {SvgIcon} from '../Icons';
-import {useHover} from '../..';
+import { palette } from '../../theme/palette';
+import Icon, { SvgIcon } from '../Icons';
+import { useHover } from '../..';
 import {
   StyledNotificationPanelFluidWrapper,
   StyledNotificationPanel,
@@ -32,10 +32,10 @@ interface NotificationPanelProps {
 }
 
 export const variantToColorMap = {
-  info: {color: 'kiwi', depth: 50},
-  warn: {color: 'banana', depth: 50},
-  alert: {color: 'cherry', depth: 100},
-  crisis: {color: 'black', depth: 0},
+  info: { color: 'kiwi', depth: 50 },
+  warn: { color: 'banana', depth: 50 },
+  alert: { color: 'cherry', depth: 100 },
+  crisis: { color: 'black', depth: 0 },
 };
 
 export const variantToIconMap = {
@@ -47,18 +47,8 @@ export const variantToIconMap = {
 };
 
 const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: any) => {
-  const {
-    children,
-    variant = 'info',
-    shadow = false,
-    dismissable = false,
-    onClick,
-    label,
-    fluid = false,
-    size,
-    className,
-  } = props;
-  const {hoverRef, isHovered} = useHover<HTMLButtonElement>(undefined, dismissable);
+  const { children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size, className } = props;
+  const { hoverRef, isHovered } = useHover<HTMLButtonElement>(undefined, dismissable);
 
   function wrapFluid(panel: React.ReactElement): React.ReactElement {
     if (fluid) {
@@ -77,7 +67,8 @@ const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: 
       size={size}
       label={!!label && !children ? true : undefined}
       shadow={!fluid && shadow}
-      variant={variant}>
+      variant={variant}
+    >
       <StyledNotificationPanelIconColumn>
         {variantToIconMap[variant === 'alert' && label && !children ? 'alertLabel' : variant]}
       </StyledNotificationPanelIconColumn>
@@ -88,17 +79,11 @@ const NotificationPanel = React.forwardRef((props: NotificationPanelProps, ref: 
       <StyledNotificationPanelActionColumn>
         {dismissable ? (
           <StyledCloseButton onClick={onClick} ref={hoverRef}>
-            <Icon
-              svgIcon={X}
-              isHovered={isHovered}
-              size={38}
-              color={palette.blueberry500}
-              hoverColor={palette.blueberry700}
-            />
+            <Icon svgIcon={X} isHovered={isHovered} size={38} color={palette.blueberry500} hoverColor={palette.blueberry700} />
           </StyledCloseButton>
         ) : null}
       </StyledNotificationPanelActionColumn>
-    </StyledNotificationPanel>,
+    </StyledNotificationPanel>
   );
 });
 

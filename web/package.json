@@ -22,6 +22,7 @@
     "clean": "gatsby clean",
     "deletecache": "rimraf public .cache",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
+    "format:ci": "prettier --check \"src/**/*.+(js|jsx|json|ts|tsx)\"",
     "lint": "eslint \"src/**/*\"",
     "precommit": "lint-staged",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",

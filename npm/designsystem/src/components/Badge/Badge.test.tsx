@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Badge from './Badge';
 // import 'jest-styled-components';
 // import {palette} from '../../theme';
@@ -7,7 +7,7 @@ import Badge from './Badge';
 const badgeNumber = 123;
 
 test('displays text', (): void => {
-  const {container, getByText} = render(<Badge>{badgeNumber}</Badge>);
+  const { container, getByText } = render(<Badge>{badgeNumber}</Badge>);
   expect(getByText(badgeNumber.toString())).toBeInTheDocument();
   expect(container).toMatchSnapshot();
 });

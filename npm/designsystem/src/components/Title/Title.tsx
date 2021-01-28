@@ -14,7 +14,7 @@ interface TitleProps {
 }
 
 const Title = React.forwardRef((props: TitleProps, ref: any) => {
-  const {id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0} = props;
+  const { id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0 } = props;
   return (
     <StyledTitle id={id} className={className} as={htmlMarkup} margin={margin} appearance={appearance} ref={ref}>
       {children}

@@ -10,7 +10,7 @@ interface AvatarProps {
 }
 
 const Avatar = React.forwardRef((props: AvatarProps, ref: any) => {
-  const {children, className = '', selected = false} = props;
+  const { children, className = '', selected = false } = props;
   const truncatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
   return (
     <StyledAvatar selected={selected} className={className} ref={ref}>

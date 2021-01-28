@@ -20,6 +20,7 @@
     "lint": "lerna run lint",
     "test": "lerna run test",
     "test:update": "lerna run test:update",
+    "format:ci": "lerna run format:ci",
     "version": "lerna version --no-push --allow-branch=*/*",
     "postversion": "lerna run build",
     "publish:beta": "cd npm/designsystem/dist && npm publish --tag=beta",

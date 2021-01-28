@@ -1,6 +1,6 @@
 import React from 'react';
-import {withKnobs, boolean, text} from '@storybook/addon-knobs';
-import {storiesOf} from '@storybook/react';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
 import Icon from '.';
 import TestIcon from './YouTube';
 

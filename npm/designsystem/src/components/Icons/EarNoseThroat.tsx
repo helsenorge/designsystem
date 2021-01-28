@@ -1,7 +1,7 @@
 import React from 'react';
-import {SvgPathProps} from './Icon';
+import { SvgPathProps } from './Icon';
 
-const EarNoseThroat: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
+const EarNoseThroat: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <g>
       <path d="M26.604 20.403a1.02 1.02 0 100 2.04 1.02 1.02 0 000-2.04m-10.002 6.635a.677.677 0 01-.527-.052.684.684 0 01-.336-.41l-1.126-3.698a1.48 1.48 0 01.984-1.845 1.48 1.48 0 011.363.268l.63-.778a2.488 2.488 0 00-2.284-.447 2.482 2.482 0 00-1.65 3.093l1.126 3.699c.132.433.424.788.822 1a1.68 1.68 0 001.29.127c.54-.164.96-.584 1.125-1.123l-.957-.293a.687.687 0 01-.46.459" />

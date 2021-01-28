@@ -26,6 +26,7 @@
     "publish:package": "npm publish ./lib --tag=beta",
     "clean": "rimraf lib types",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
+    "format:ci": "prettier --check \"src/**/*.+(js|jsx|json|ts|tsx)\"",
     "generate:entries": "node scripts/entriesGenerator.js && prettier --write \"scripts/componentsEntries.json\"",
     "generate:tsdefinitions": "tsc --emitDeclarationOnly --project tsconfig.json && copyfiles --up 1 \"./types/**/*.ts\" \"./lib\" -E",
     "generate:icons": "node scripts/iconGenerator.js generate",

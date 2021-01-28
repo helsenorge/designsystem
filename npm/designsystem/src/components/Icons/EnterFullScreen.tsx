@@ -1,7 +1,7 @@
 import React from 'react';
-import {SvgPathProps} from './Icon';
+import { SvgPathProps } from './Icon';
 
-const EnterFullScreen: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
+const EnterFullScreen: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <g>
       <path d="M12.546 36.373l-.919-.919 7.218-7.218.919.919z" />

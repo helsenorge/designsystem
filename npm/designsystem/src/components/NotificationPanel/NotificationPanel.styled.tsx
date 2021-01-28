@@ -1,9 +1,9 @@
-import styled, {css} from 'styled-components';
-import {NotificationPanelVariants, variantToColorMap, NotificationPanelSizes} from './NotificationPanel';
-import {getColor, getHoverColor} from '../../theme/currys';
-import {PaletteNames, PaletteDepths} from '../../theme/palette';
-import {typography} from '../../theme/typography';
-import {breakpoints} from '../../theme/grid';
+import styled, { css } from 'styled-components';
+import { NotificationPanelVariants, variantToColorMap, NotificationPanelSizes } from './NotificationPanel';
+import { getColor, getHoverColor } from '../../theme/currys';
+import { PaletteNames, PaletteDepths } from '../../theme/palette';
+import { typography } from '../../theme/typography';
+import { breakpoints } from '../../theme/grid';
 
 interface StyledNotificationPanelProps {
   variant: NotificationPanelVariants;
@@ -24,14 +24,11 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
   grid-template-areas: 'icon' 'content' 'action';
   grid-template-columns: 48px auto 48px;
   grid-template-rows: 1fr;
-  max-width: ${props => props.size && sizeToWidthMap[props.size]};
+  max-width: ${(props) => props.size && sizeToWidthMap[props.size]};
   width: inherit;
-  background-color: ${props =>
-    getColor(
-      variantToColorMap[props.variant].color as PaletteNames,
-      variantToColorMap[props.variant].depth as PaletteDepths,
-    )};
-  ${props =>
+  background-color: ${(props) =>
+    getColor(variantToColorMap[props.variant].color as PaletteNames, variantToColorMap[props.variant].depth as PaletteDepths)};
+  ${(props) =>
     props.variant === 'crisis' &&
     css`
       ${StyledNotificationPanelContent} {
@@ -55,12 +52,12 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
         }
       }
     `}
-  ${props =>
+  ${(props) =>
     props.shadow &&
     css`
       box-shadow: 0 0.3rem 0.6rem -0.1rem rgba(0, 0, 0, 0.16);
     `}
-    ${props =>
+    ${(props) =>
     props.label &&
     css`
       padding: 2rem 1rem;
@@ -168,12 +165,9 @@ const StyledNotificationPanelFluidWrapper = styled('div')<StyledNotificationPane
   display: flex;
   justify-content: center;
   width: 100%;
-  background-color: ${props =>
-    getColor(
-      variantToColorMap[props.variant].color as PaletteNames,
-      variantToColorMap[props.variant].depth as PaletteDepths,
-    )};
-  ${props =>
+  background-color: ${(props) =>
+    getColor(variantToColorMap[props.variant].color as PaletteNames, variantToColorMap[props.variant].depth as PaletteDepths)};
+  ${(props) =>
     props.shadow &&
     css`
       box-shadow: 0 0.3rem 0.6rem -0.1rem rgba(0, 0, 0, 0.16);

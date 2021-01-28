@@ -1,13 +1,13 @@
 import React from 'react';
-import {HTMLButtonProps, HTMLAnchorProps} from '../../constants';
-import {StyledButton, StyledButtonContent, StyledLeftFluidContent, StyledButtonWrapper} from './Button.styled';
-import {getColor} from '../../theme/currys/color';
-import {IconProps} from './../Icons/';
+import { HTMLButtonProps, HTMLAnchorProps } from '../../constants';
+import { StyledButton, StyledButtonContent, StyledLeftFluidContent, StyledButtonWrapper } from './Button.styled';
+import { getColor } from '../../theme/currys/color';
+import { IconProps } from './../Icons/';
 import Loader from '../Loader';
-import {PaletteNames} from '../../theme/palette';
-import {useHover} from '../../hooks/useHover';
-import {useWindowSize} from '../../hooks/useWindowSize';
-import {breakpoints} from '../../theme/grid';
+import { PaletteNames } from '../../theme/palette';
+import { useHover } from '../../hooks/useHover';
+import { useWindowSize } from '../../hooks/useWindowSize';
+import { breakpoints } from '../../theme/grid';
 
 export type ButtonIntents = 'primary' | 'warning' | 'danger';
 export type ButtonIntentsColors = 'blueberry' | 'banana' | 'cherry' | 'neutral' | 'white';
@@ -43,9 +43,7 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
 
 // TODO: Consider making this a shared hook
 
-export function useIcons(
-  children: React.ReactNode[],
-): Array<React.ReactElement<IconProps> | React.ReactNode | {} | undefined | null> {
+export function useIcons(children: React.ReactNode[]): Array<React.ReactElement<IconProps> | React.ReactNode | {} | undefined | null> {
   let leftIcon: React.ReactElement<IconProps> | undefined | null = null;
   let rightIcon: React.ReactElement<IconProps> | undefined | null = null;
 
@@ -58,13 +56,7 @@ export function useIcons(
   return [leftIcon, rightIcon, children];
 }
 
-const getIconColor = (
-  fill: boolean,
-  disabled: boolean,
-  intent: ButtonIntents,
-  inverted: boolean,
-  hovered: boolean,
-): string => {
+const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, inverted: boolean, hovered: boolean): string => {
   if (disabled) return getColor('neutral', 600);
   if ((fill && !inverted) || (!fill && inverted)) return 'white';
   return getColor(intentToColor[intent], hovered ? 700 : 600);
@@ -95,7 +87,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
   } = props;
 
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const {hoverRef, isHovered} = useHover<HTMLButtonElement>(ref);
+  const { hoverRef, isHovered } = useHover<HTMLButtonElement>(ref);
   const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted, isHovered);
   const size = useWindowSize();
 
@@ -103,16 +95,14 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
     iconElement: React.ReactElement<IconProps> | {} | undefined | null,
     size: number,
     iconColor: string,
-    hover: boolean,
+    hover: boolean
   ): React.ReactElement<IconProps> | React.Component<IconProps> | null {
     const color =
-      iconElement &&
-      (iconElement as React.ReactElement<IconProps>).props &&
-      (iconElement as React.ReactElement<IconProps>).props.color
+      iconElement && (iconElement as React.ReactElement<IconProps>).props && (iconElement as React.ReactElement<IconProps>).props.color
         ? (iconElement as React.ReactElement<IconProps>).props.color
         : iconColor;
     return iconElement && Object.keys(iconElement).length > 0
-      ? React.cloneElement(iconElement as React.ReactElement<IconProps>, {size, color, isHovered: hover})
+      ? React.cloneElement(iconElement as React.ReactElement<IconProps>, { size, color, isHovered: hover })
       : null;
   }
 
@@ -131,15 +121,12 @@ const Button = React.forwardRef((props: ButtonProps, ref: any) => {
       ref={hoverRef}
       disabled={disabled}
       ellipsis={ellipsis}
-      {...restProps}>
+      {...restProps}
+    >
       <StyledButtonWrapper>
         {loading ? (
           <StyledLeftFluidContent hasIcon={false}>
-            <Loader
-              testId={'test-id-loader'}
-              color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)}
-              size="tiny"
-            />
+            <Loader testId={'test-id-loader'} color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)} size="tiny" />
           </StyledLeftFluidContent>
         ) : (
           <>

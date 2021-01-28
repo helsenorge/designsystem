@@ -1,7 +1,7 @@
 import React from 'react';
-import {SvgPathProps} from './Icon';
+import { SvgPathProps } from './Icon';
 
-const Cancer: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
+const Cancer: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <g>
       <path d="M24.264 14.98a3.614 3.614 0 01-2.553-6.164 3.583 3.583 0 012.553-1.057 3.614 3.614 0 013.61 3.61 3.614 3.614 0 01-3.61 3.61m4.911-3.61a4.916 4.916 0 00-4.91-4.91 4.876 4.876 0 00-3.473 1.438 4.88 4.88 0 00-1.439 3.473 4.916 4.916 0 004.911 4.91 4.916 4.916 0 004.911-4.91" />

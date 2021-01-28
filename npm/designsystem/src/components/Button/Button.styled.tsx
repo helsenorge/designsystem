@@ -1,8 +1,8 @@
-import styled, {css} from 'styled-components';
-import {ButtonVariants, ButtonIntents, intentToColor} from './Button';
-import {screen} from '../../theme/grid';
-import {getColor, getHoverColor} from '../../theme/currys/color';
-import {palette, PaletteNames} from '../../theme/palette';
+import styled, { css } from 'styled-components';
+import { ButtonVariants, ButtonIntents, intentToColor } from './Button';
+import { screen } from '../../theme/grid';
+import { getColor, getHoverColor } from '../../theme/currys/color';
+import { palette, PaletteNames } from '../../theme/palette';
 
 interface StyledButtonProps {
   variant: ButtonVariants;
@@ -88,17 +88,17 @@ export const StyledButtonWrapper = styled('span')`
   }
 `;
 
-export const StyledLeftFluidContent = styled('div')<{hasIcon: boolean}>`
+export const StyledLeftFluidContent = styled('div')<{ hasIcon: boolean }>`
   display: flex;
   align-items: center;
   height: 100%;
   width: 100%;
-  ${props =>
+  ${(props) =>
     !props.hasIcon &&
     css`
       justify-content: center;
     `};
-  ${props =>
+  ${(props) =>
     props.hasIcon &&
     css`
       text-align: left;
@@ -200,11 +200,10 @@ export const StyledButton = styled('button')<StyledButtonProps>`
   ${defaultStyle}
   ${fluidStyle}
   ${largeStyle}
-  ${props => props.variant === 'fill' && fillStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
-  ${props => props.variant === 'outline' && outlineStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
-  ${props =>
-    props.variant === 'borderless' && borderlessStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
-  ${props =>
+  ${(props) => props.variant === 'fill' && fillStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
+  ${(props) => props.variant === 'outline' && outlineStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
+  ${(props) => props.variant === 'borderless' && borderlessStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
+  ${(props) =>
     props.hasIcon &&
     !props.loader &&
     props.variant !== 'borderless' &&
@@ -241,7 +240,7 @@ export const StyledButton = styled('button')<StyledButtonProps>`
         }
       `}
     `}
-  ${props =>
+  ${(props) =>
     props.ellipsis &&
     css`
       max-width: 100%;
@@ -251,7 +250,7 @@ export const StyledButton = styled('button')<StyledButtonProps>`
         text-overflow: ellipsis;
       }
     `}
-  ${props =>
+  ${(props) =>
     props.hasIcon &&
     !props.loader &&
     props.variant === 'borderless' &&

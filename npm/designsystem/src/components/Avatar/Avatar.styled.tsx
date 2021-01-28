@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {getColor} from '../../theme/currys';
+import { getColor } from '../../theme/currys';
 
 interface StyledAvatarProps {
   selected?: boolean;
@@ -13,7 +13,7 @@ const StyledAvatar = styled('span')<StyledAvatarProps>`
   height: 3rem;
   font-size: 1.5rem;
   font-weight: 700;
-  background-color: ${props => (props.selected ? 'transparent' : getColor('blueberry', 100))};
+  background-color: ${(props) => (props.selected ? 'transparent' : getColor('blueberry', 100))};
 `;
 
 export default StyledAvatar;

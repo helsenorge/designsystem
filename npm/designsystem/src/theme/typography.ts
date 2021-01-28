@@ -1,5 +1,5 @@
-import {css} from 'styled-components';
-import {screen} from './grid';
+import { css } from 'styled-components';
+import { screen } from './grid';
 
 const titleFeature = css`
   font-size: 3rem;

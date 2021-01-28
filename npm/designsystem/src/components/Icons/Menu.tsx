@@ -1,10 +1,8 @@
 import React from 'react';
-import {SvgPathProps} from './Icon';
+import { SvgPathProps } from './Icon';
 
-const Menu: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
-  const normal = (
-    <path d="M37.656 31.434v1.75H10.269v-1.75h27.387zm0-8.842v1.75H10.269v-1.75h27.387zm0-8.464v1.75H10.269v-1.75h27.387z" />
-  );
+const Menu: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+  const normal = <path d="M37.656 31.434v1.75H10.269v-1.75h27.387zm0-8.842v1.75H10.269v-1.75h27.387zm0-8.464v1.75H10.269v-1.75h27.387z" />;
 
   const normalHover = (
     <path d="M37.686 22.626v1.75H10.299v-1.75h27.387zm0-9.774v1.75H10.299v-1.75h27.387zm0 19.87v1.75H10.299v-1.75h27.387z" />

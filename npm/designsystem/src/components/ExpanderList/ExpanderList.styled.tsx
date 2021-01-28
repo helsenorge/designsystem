@@ -1,6 +1,6 @@
-import styled, {css} from 'styled-components';
-import {getColor} from '../../theme/currys';
-import {ExpanderListColors} from './ExpanderList';
+import styled, { css } from 'styled-components';
+import { getColor } from '../../theme/currys';
+import { ExpanderListColors } from './ExpanderList';
 
 interface StyledExpanderListProps {
   topBorder?: boolean;
@@ -47,7 +47,7 @@ const StyledExpanderList = styled('ul')`
 `;
 
 const StyledExpanderContent = styled('div')<StyledExpanderContentProps>`
-  padding: ${props => (props.padding ? '1.5rem 0.5rem' : '0')};
+  padding: ${(props) => (props.padding ? '1.5rem 0.5rem' : '0')};
 `;
 
 const StyledExpanderListIconContainer = styled('span')`
@@ -85,12 +85,8 @@ const StyledExpanderListLink = styled('button')<StyledExpanderListLinkProps>`
   align-items: center;
   letter-spacing: unset;
   color: ${getColor('black')};
-  background-color: ${props =>
-    props.isExpanded
-      ? props.color === 'white'
-        ? getColor('neutral', 50)
-        : getColor(props.color, 100)
-      : 'transparent'};
+  background-color: ${(props) =>
+    props.isExpanded ? (props.color === 'white' ? getColor('neutral', 50) : getColor(props.color, 100)) : 'transparent'};
   border: 0;
   width: 100%;
 
@@ -98,7 +94,7 @@ const StyledExpanderListLink = styled('button')<StyledExpanderListLinkProps>`
   ${largeStyle};
   &:hover,
   :focus {
-    background-color: ${props => (props.color === 'white' ? getColor('neutral', 50) : getColor(props.color, 100))};
+    background-color: ${(props) => (props.color === 'white' ? getColor('neutral', 50) : getColor(props.color, 100))};
   }
   &:focus {
     outline: none;

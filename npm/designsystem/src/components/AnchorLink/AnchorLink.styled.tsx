@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import {typography} from '../../theme/typography';
-import {getColor} from '../../theme/currys';
+import { typography } from '../../theme/typography';
+import { getColor } from '../../theme/currys';
 
 interface StyledAnchorLinkProps {
   external: boolean;

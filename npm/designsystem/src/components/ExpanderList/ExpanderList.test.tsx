@@ -1,21 +1,22 @@
 import React from 'react';
-import {render, fireEvent, screen, act} from '@testing-library/react';
+import { render, fireEvent, screen, act } from '@testing-library/react';
 import ExpanderList from './ExpanderList';
-import {theme} from '../../theme';
+import { theme } from '../../theme';
 
 describe('Gitt ExpanderList blir rendret', (): void => {
   test('Sjekk at ExpanderList sitt snapshot matcher', (): void => {
-    const {container} = render(
+    const { container } = render(
       <div
         style={{
           width: '40rem',
-        }}>
+        }}
+      >
         <ExpanderList isOpen={false} accordion={false} childPadding={true} color={'blueberry'}>
           <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
           <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
           <ExpanderList.Expander title="Title 3">Text 2</ExpanderList.Expander>
         </ExpanderList>
-      </div>,
+      </div>
     );
     expect(container).toMatchSnapshot();
   });
@@ -25,7 +26,8 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       <div
         style={{
           width: '40rem',
-        }}>
+        }}
+      >
         <ExpanderList isOpen={false} accordion={false} childPadding={true} color={'blueberry'}>
           <ExpanderList.Expander testId="test01" title="Title 1">
             Text 1
@@ -33,7 +35,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
           <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
           <ExpanderList.Expander title="Title 3">Text 2</ExpanderList.Expander>
         </ExpanderList>
-      </div>,
+      </div>
     );
 
     const testExpander = screen.getByTestId('test01');

@@ -1,10 +1,10 @@
-import styled, {css} from 'styled-components';
-import {SvgIcon} from './Icon';
+import styled, { css } from 'styled-components';
+import { SvgIcon } from './Icon';
 
 interface StyledIconProps {}
 
 export const StyledIcon = styled('svg')<StyledIconProps>`
-  ${props =>
+  ${(props) =>
     props.width &&
     props.height &&
     css`

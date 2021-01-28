@@ -1,6 +1,6 @@
-import styled, {css} from 'styled-components';
-import {getColor} from '../../theme/currys';
-import {LinkProps, LinkListColors} from './LinkList';
+import styled, { css } from 'styled-components';
+import { getColor } from '../../theme/currys';
+import { LinkProps, LinkListColors } from './LinkList';
 
 interface StyledLinkListProps {
   topBorder?: boolean;
@@ -67,7 +67,7 @@ interface StyledLinkListLinkProps {
 
 const StyledLinkListLink = styled('a')<StyledLinkListLinkProps>`
   padding: 0.5rem;
-  min-height: ${props => (props.hasIcon ? 'unset' : '4.5rem')};
+  min-height: ${(props) => (props.hasIcon ? 'unset' : '4.5rem')};
   display: flex;
   cursor: pointer;
   font-size: 1.25rem;
@@ -79,7 +79,7 @@ const StyledLinkListLink = styled('a')<StyledLinkListLinkProps>`
   ${largeStyle};
   &:hover,
   &:focus {
-    background-color: ${props => (props.color === 'white' ? getColor('neutral', 50) : getColor(props.color, 100))};
+    background-color: ${(props) => (props.color === 'white' ? getColor('neutral', 50) : getColor(props.color, 100))};
   }
   &:focus {
     outline: none;
@@ -89,4 +89,4 @@ const StyledLinkListLink = styled('a')<StyledLinkListLinkProps>`
   }
 `;
 
-export {StyledLinkList, StyledLinkListLink, StyledLinkListLinkContent, StyledLinkListIconContainer};
+export { StyledLinkList, StyledLinkListLink, StyledLinkListLinkContent, StyledLinkListIconContainer };

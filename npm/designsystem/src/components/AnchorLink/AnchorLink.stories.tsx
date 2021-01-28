@@ -1,8 +1,8 @@
 import React from 'react';
-import {withKnobs, text} from '@storybook/addon-knobs';
-import {storiesOf} from '@storybook/react';
+import { withKnobs, text } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
 import AnchorLink from './AnchorLink';
-import {withA11y} from '@storybook/addon-a11y';
+import { withA11y } from '@storybook/addon-a11y';
 
 import './../../scss/typography.module.scss';
 
@@ -11,7 +11,7 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
-  <div style={{width: '20rem'}}>
+  <div style={{ width: '20rem' }}>
     <AnchorLink href={text('Href', '/test')} target={'_self'}>
       {text('Text', 'link text')}
     </AnchorLink>
@@ -24,7 +24,7 @@ stories.add('Default', () => (
 ));
 
 stories.add('External', () => (
-  <div style={{width: '20rem'}}>
+  <div style={{ width: '20rem' }}>
     <AnchorLink href={text('Href', '/test')} target={'_blank'}>
       {text('Text', 'link text')}
     </AnchorLink>
@@ -37,7 +37,7 @@ stories.add('External', () => (
 ));
 
 stories.add('anchorlink-wrapper', () => (
-  <div className={'anchorlink-wrapper'} style={{width: '20rem'}}>
+  <div className={'anchorlink-wrapper'} style={{ width: '20rem' }}>
     <p>
       {'Lorem ipsum dolor sit amet sonsectur '}
       {' amet consectur. Lorem a '}

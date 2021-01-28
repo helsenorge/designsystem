@@ -1,7 +1,7 @@
 import React from 'react';
-import {SvgPathProps} from './Icon';
+import { SvgPathProps } from './Icon';
 
-const Form: React.FC<SvgPathProps> = ({isExtraSmall, isHovered}: SvgPathProps): JSX.Element => {
+const Form: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path d="M24.598 9.37a.583.583 0 100-1.166.583.583 0 000 1.166zm14.769 23.259c0 .752-.612 1.363-1.364 1.363H16.849a2.35 2.35 0 00.434-1.363v-.095h22.084v.095zm-.945 4.894H10.774V9.182h8.821l-1.93 1.292v.442h-5.109v21.713a2.366 2.366 0 002.363 2.363h23.084c.143 0 .283-.018.419-.042v2.573zM20.712 9.637V6.52h7.773v3.117l2.046 1.37v1.134H18.665v-1.133l2.047-1.371zm10.819 3.504v-1.225h4.109v19.618H16.283v1.095a1.364 1.364 0 01-2.727 0V11.916h4.109v1.225h13.866zM29.485 9.06h8.937v22.474H36.64V10.916h-5.109v-.442l-2.046-1.371V9.06zm10.237 22.474V7.76H29.485V5.52h-9.773v2.36H9.474v30.944h30.248V34.24c.397-.423.645-.987.645-1.612v-1.095h-.645zm-9.996-10.977l-.721-.694-4.922 5.114-2.728-2.834-.72.694 3.448 3.582 5.643-5.862z" />
   );

@@ -1,16 +1,16 @@
 import React from 'react';
-import {render, screen, fireEvent} from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Button from './Button';
 import Icon from '../Icons';
 import Check from '../Icons/Check';
-import {palette} from '../../theme/palette';
-import {exitProcess} from 'yargs';
-import {isExportDeclaration} from 'typescript';
+import { palette } from '../../theme/palette';
+import { exitProcess } from 'yargs';
+import { isExportDeclaration } from 'typescript';
 
 describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres', (): void => {
     test('Så vises button', (): void => {
-      const {container} = render(<Button>Button</Button>);
+      const { container } = render(<Button>Button</Button>);
       expect(container).toMatchSnapshot();
     });
 
@@ -24,12 +24,12 @@ describe('Gitt at button skal vises', (): void => {
 
   describe('Når button rendres med ikoner', (): void => {
     test('Så vises ikonene', (): void => {
-      const {container} = render(
+      const { container } = render(
         <Button>
           <Icon svgIcon={Check} />
           Button
           <Icon svgIcon={Check} />
-        </Button>,
+        </Button>
       );
       expect(container).toMatchSnapshot();
     });
@@ -51,7 +51,7 @@ describe('Gitt at button skal vises', (): void => {
         <Button testId={'test01'} fluid={true}>
           Button text
           <Icon svgIcon={Check} />
-        </Button>,
+        </Button>
       );
 
       const testLeftFluidContent = screen.getByTestId('test01').querySelector('div');
@@ -66,7 +66,7 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <Button testId={'test01'} onClick={handleClick} disabled={true}>
           Button
-        </Button>,
+        </Button>
       );
 
       const testButton = screen.getByTestId('test01');
@@ -81,7 +81,7 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <Button testId={'test01'} disabled={true}>
           Button
-        </Button>,
+        </Button>
       );
 
       const testButton = screen.getByTestId('test01');
@@ -104,7 +104,7 @@ describe('Gitt at button skal vises', (): void => {
           <Button testId={'test03'} intent={'danger'}>
             Button
           </Button>
-        </div>,
+        </div>
       );
 
       const testButton1 = screen.getByTestId('test01');
@@ -122,7 +122,7 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <Button testId={'test01'} inverted={true}>
           Button
-        </Button>,
+        </Button>
       );
 
       const testButton = screen.getByTestId('test01');
@@ -138,7 +138,7 @@ describe('Gitt at button skal vises', (): void => {
         <Button large={true}>
           <Icon testId={'test01'} svgIcon={Check} />
           Button
-        </Button>,
+        </Button>
       );
 
       const testButtonIcon = screen.getByTestId('test01');
@@ -156,7 +156,7 @@ describe('Gitt at button skal vises', (): void => {
         <Button loading={true}>
           <Icon svgIcon={Check} />
           Button
-        </Button>,
+        </Button>
       );
 
       const testLoader = screen.getByTestId('test-id-loader');
@@ -178,7 +178,7 @@ describe('Gitt at button skal vises', (): void => {
           <Button testId={'test03'} variant={'borderless'}>
             Button
           </Button>
-        </div>,
+        </div>
       );
 
       const testFill = screen.getByTestId('test01');
