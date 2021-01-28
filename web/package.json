@@ -38,7 +38,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-lottie": "^1.2.3",
     "@types/react-scroll": "^1.5.4",
-    "@types/styled-components": "^4.1.19",
+    "@types/styled-components": "5.0.1",
     "babel-plugin-styled-components": "^1.10.0",
     "gatsby": "^2.31.1",
     "gatsby-image": "^2.2.19",
@@ -61,8 +61,8 @@
     "netlify-cms-app": "^2.12.24",
     "netlify-cms-widget-mdx": "^0.4.3",
     "node-sass": "^4.12.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
     "react-feather": "2.0.3",
     "react-flexbox-grid": "^2.1.2",
     "react-helmet": "^5.2.1",
@@ -70,6 +70,6 @@
     "react-lottie": "^1.2.3",
     "react-scroll": "^1.7.14",
     "react-spring": "^8.0.27",
-    "styled-components": "^4.4.1"
+    "styled-components": "5.0.1"
   }
 }
