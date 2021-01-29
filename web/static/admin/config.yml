@@ -1,7 +1,9 @@
 backend:
-  name: github
-  repo: helsenorge/designsystem
-  branch: develop
+  name: azure
+  repo: HN-Designsystem
+  branch: master
+  tenant_id: 412637ba-c32a-41ce-abb5-b60abad7c191
+  app_id: 57031404-4c9f-4cc3-8418-ad4e9ef0190e
   commit_messages:
     create: 'Create {{collection}} “{{slug}}”'
     update: 'Update {{collection}} “{{slug}}”'
@@ -9,7 +11,7 @@ backend:
     uploadMedia: '[skip ci] Upload “{{path}}”'
     deleteMedia: '[skip ci] Delete “{{path}}”'
 
-media_folder: packages/designsystem-docs/static/img
+media_folder: web/static/img
 public_folder: /img
 
 aliases:
@@ -17,31 +19,32 @@ aliases:
       label: 'Innhold',
       name: 'body',
       widget: 'mdx',
-      hint: 'Følgende react-komponenter kan benyttes: ColorWall, Preamble, IconWall, LiveComponent. Eksempel på bruk: <ColorWall></ColorWall>',
+      hint:
+        'Følgende react-komponenter kan benyttes: ColorWall, Preamble, IconWall, LiveComponent. Eksempel på bruk: <ColorWall></ColorWall>',
     }
 
 project: &ABOUT
-  - {label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page'}
-  - {label: 'Tittel', name: 'title', widget: 'string'}
-  - {label: 'Ingress', name: 'preamble', widget: 'text'}
-  - {label: 'Filer', name: 'pdf', widget: 'file', media_library: {config: {multiple: true}}}
+  - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page' }
+  - { label: 'Tittel', name: 'title', widget: 'string' }
+  - { label: 'Ingress', name: 'preamble', widget: 'text' }
+  - { label: 'Filer', name: 'pdf', widget: 'file', media_library: { config: { multiple: true } } }
   - <<: *BODY
 
 project2: &PAGE
-  - {label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'simple-page'}
-  - {label: 'Tittel', name: 'title', widget: 'string'}
-  - {label: 'Ingress', name: 'preamble', widget: 'string'}
+  - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'simple-page' }
+  - { label: 'Tittel', name: 'title', widget: 'string' }
+  - { label: 'Ingress', name: 'preamble', widget: 'string' }
   - <<: *BODY
 
 menu-item: &MENU
-  - {label: Navn, name: label, widget: string}
-  - {label: Path, name: path, widget: string}
+  - { label: Navn, name: label, widget: string }
+  - { label: Path, name: path, widget: string }
   - label: Sub meny
     name: children
     widget: list
     fields:
-      - {label: Navn, name: label, widget: string}
-      - {label: Path, name: path, widget: string}
+      - { label: Navn, name: label, widget: string }
+      - { label: Path, name: path, widget: string }
 
 collections:
   - name: 'main-pages'
@@ -49,22 +52,22 @@ collections:
     extension: mdx
     format: frontmatter
     files:
-      - file: 'packages/designsystem-docs/src/cms-pages/brand/index.mdx'
+      - file: 'web/src/cms-pages/brand/index.mdx'
         label: 'Brand'
         name: 'brand'
         slug: '{{slug}}'
         fields: *PAGE
-      - file: 'packages/designsystem-docs/src/cms-pages/editorial/index.mdx'
+      - file: 'web/src/cms-pages/editorial/index.mdx'
         label: 'Editorial Guidelines'
         name: 'editorial'
         slug: '{{slug}}'
         fields: *PAGE
-      - file: 'packages/designsystem-docs/src/cms-pages/marketing-material/index.mdx'
+      - file: 'web/src/cms-pages/marketing-material/index.mdx'
         label: 'Marketing Material'
         name: 'marketing-material'
         slug: '{{slug}}'
         fields: *PAGE
-      - file: 'packages/designsystem-docs/src/cms-pages/patterns/index.mdx'
+      - file: 'web/src/cms-pages/patterns/index.mdx'
         label: 'Patterns'
         name: 'patterns'
         slug: '{{slug}}'
@@ -74,7 +77,7 @@ collections:
     label: 'Brand'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/cms-pages/brand'
+    folder: 'web/src/cms-pages/brand'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -83,7 +86,7 @@ collections:
     label: 'Editorial Guidelines'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/cms-pages/editorial'
+    folder: 'web/src/cms-pages/editorial'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -92,7 +95,7 @@ collections:
     label: 'Marketing Material'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/cms-pages/marketing-material'
+    folder: 'web/src/cms-pages/marketing-material'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -101,7 +104,7 @@ collections:
     label: 'Patterns'
     extension: mdx
     format: frontmatter
-    folder: 'packages/designsystem-docs/src/cms-pages/patterns'
+    folder: 'web/src/cms-pages/patterns'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -111,32 +114,32 @@ collections:
     extension: mdx
     format: frontmatter
     files:
-      - file: 'packages/designsystem-docs/src/cms-pages/about.mdx'
+      - file: 'web/src/cms-pages/about.mdx'
         label: 'About'
         name: 'about'
         slug: '{{slug}}'
         fields: *ABOUT
-      - file: 'packages/designsystem-docs/src/cms-pages/contribute.mdx'
+      - file: 'web/src/cms-pages/contribute.mdx'
         label: 'Contribute'
         name: 'contribute'
         slug: '{{slug}}'
         fields: *PAGE
-      - file: 'packages/designsystem-docs/src/cms-pages/principles.mdx'
+      - file: 'web/src/cms-pages/principles.mdx'
         label: 'Principles'
         name: 'principles'
         slug: '{{slug}}'
         fields: *PAGE
-      - file: 'packages/designsystem-docs/src/cms-pages/privacy.mdx'
+      - file: 'web/src/cms-pages/privacy.mdx'
         label: 'Privacy'
         name: 'privacy'
         slug: '{{slug}}'
         fields: *PAGE
-      - file: 'packages/designsystem-docs/src/cms-pages/roadmap.mdx'
+      - file: 'web/src/cms-pages/roadmap.mdx'
         label: 'Roadmap'
         name: 'roadmap'
         slug: '{{slug}}'
         fields: *PAGE
-      - file: 'packages/designsystem-docs/src/cms-pages/terms-of-use.mdx'
+      - file: 'web/src/cms-pages/terms-of-use.mdx'
         label: 'Terms of use'
         name: 'terms-of-use'
         slug: '{{slug}}'
@@ -145,7 +148,7 @@ collections:
   - name: settings
     label: Innstillinger
     files:
-      - file: packages/designsystem-docs/src/settings/routes.json
+      - file: web/src/settings/routes.json
         label: Meny
         name: routes
         fields:
