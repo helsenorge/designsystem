@@ -1,7 +1,6 @@
 {
   "name": "hn-designsystem",
   "version": "1.0.0",
-  "private": true,
   "description": "NPM pakke og dokumentasjon for Helsenorges designsystem",
   "repository": {
     "type": "git",
