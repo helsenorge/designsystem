@@ -1,6 +1,6 @@
 backend:
   name: azure
-  repo: nhnfelles/Helsenorge/_git/HN-Designsystem
+  repo: nhnfelles/Helsenorge/HN-Designsystem
   branch: master
   tenant_id: 412637ba-c32a-41ce-abb5-b60abad7c191
   app_id: 57031404-4c9f-4cc3-8418-ad4e9ef0190e
