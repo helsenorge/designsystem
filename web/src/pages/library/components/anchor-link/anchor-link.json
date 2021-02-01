@@ -6,7 +6,7 @@
       "require": "false",
       "default": "false",
       "valid": [],
-      "description": "Gives a unique id to the anchor-link"
+      "description": "Gives a unique id to the anchor-link :)"
     },
     {
       "name": "href",
