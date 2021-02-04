@@ -15,10 +15,10 @@ const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
-const myRef1 = React.createRef();
-const myRef2 = React.createRef();
-const myRef3 = React.createRef();
-const myRef4 = React.createRef();
+const myRef1: React.RefObject<HTMLButtonElement> = React.createRef();
+const myRef2: React.RefObject<HTMLButtonElement> = React.createRef();
+const myRef3: React.RefObject<HTMLButtonElement> = React.createRef();
+const myRef4: React.RefObject<HTMLButtonElement> = React.createRef();
 
 stories.add('Default', () => (
   <div style={{ width: '15rem' }}>
