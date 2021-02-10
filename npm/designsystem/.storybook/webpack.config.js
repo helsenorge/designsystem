@@ -26,6 +26,9 @@ module.exports = config => {
         },
         {
           loader: require.resolve('css-loader'),
+          options: {
+            modules: true,
+          },
         },
         {
           loader: require.resolve('resolve-url-loader'),
@@ -38,7 +41,7 @@ module.exports = config => {
     {
       test: /\.(woff|woff2)$/,
       loader: require.resolve('file-loader'),
-    },
+    }
   );
   config.config.resolve.extensions.push('.ts', '.tsx');
   return config.config;
