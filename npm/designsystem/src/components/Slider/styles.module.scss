@@ -1,0 +1,133 @@
+@import '../../theme/currys';
+
+$sliderContainerHeight: 2rem;
+$sliderContainerPadding: 1rem;
+$sliderTrackHeight: $sliderContainerHeight / 4;
+$valueWidth: 7rem;
+$trackBackgroundColor: $color-base-4-2;
+
+.slider {
+  width: 100%;
+  padding: $sliderContainerPadding 0;
+  position: relative;
+
+  &__track {
+    height: 0.15rem;
+    background-color: getColor('black');
+    position: absolute;
+    top: (($sliderContainerHeight - $sliderTrackHeight) / 2) + $sliderContainerPadding;
+    width: 100%;
+  }
+
+  &__trigger {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: getColor('blueberry', 600);
+    border: 0.2rem solid getColor('white');
+    border-radius: 1rem;
+    box-shadow: 0 0 0 0.1rem getColor('black');
+    position: absolute;
+    left: 0;
+    z-index: 9;
+    outline: none;
+    cursor: pointer;
+    :hover {
+      background-color: getColor('blueberry', 800);
+    }
+  }
+
+  &__options {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  input[type='range'] {
+    /* stylelint-disable property-no-vendor-prefix */
+    -webkit-appearance: none;
+    /* stylelint-enable */
+    appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+    padding: 0;
+  }
+
+  input[type='range']::-ms-fill-lower {
+    background: $trackBackgroundColor;
+  }
+
+  input[type='range']:focus::-ms-fill-lower {
+    background: $trackBackgroundColor;
+  }
+
+  input[type='range']::-ms-fill-upper {
+    background: $trackBackgroundColor;
+  }
+
+  input[type='range']:focus::-ms-fill-upper {
+    background: $trackBackgroundColor;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    /* stylelint-disable property-no-vendor-prefix */
+    -webkit-appearance: none;
+    /* stylelint-enable */
+    appearance: none;
+    width: $sliderContainerHeight;
+    height: $sliderContainerHeight;
+    border-radius: $sliderContainerHeight / 2;
+    background-color: $color-primary-1;
+    cursor: pointer;
+    margin-top: -14px;
+  }
+
+  /* All the same stuff for Firefox */
+  input[type='range']::-moz-range-thumb {
+    width: $sliderContainerHeight;
+    height: $sliderContainerHeight;
+    border-radius: $sliderContainerHeight / 2;
+    background-color: $color-primary-1;
+    cursor: pointer;
+    margin-top: -14px;
+  }
+
+  /* All the same stuff for IE */
+  input[type='range']::-ms-thumb {
+    width: $sliderContainerHeight;
+    height: $sliderContainerHeight;
+    border-radius: $sliderContainerHeight / 2;
+    background-color: $color-primary-1;
+    cursor: pointer;
+  }
+
+  input[type='range']:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+    box-shadow: $outline-box-shadow-thin;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    width: 100%;
+    height: $sliderTrackHeight;
+    background: $trackBackgroundColor;
+    cursor: pointer;
+  }
+
+  input[type='range']::-moz-range-track {
+    width: 100%;
+    height: $sliderTrackHeight;
+    background: $trackBackgroundColor;
+    cursor: pointer;
+  }
+
+  input[type='range']::-ms-track {
+    width: 100%;
+    height: $sliderTrackHeight;
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    /* in IE thumb can not be bigger then track. Add a transparent border to track is a trick to make it possible anyway */
+    border-width: 1rem 0;
+    color: transparent;
+  }
+}

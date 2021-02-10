@@ -241,6 +241,7 @@
   "components/Loader/index": "src/components/Loader/index.ts",
   "components/Logo/index": "src/components/Logo/index.ts",
   "components/NotificationPanel/index": "src/components/NotificationPanel/index.ts",
+  "components/Slider/index": "src/components/Slider/styles.module.scss.d.ts",
   "components/Spacer/index": "src/components/Spacer/index.ts",
   "components/Tile/index": "src/components/Tile/index.ts",
   "components/Title/index": "src/components/Title/index.ts"
