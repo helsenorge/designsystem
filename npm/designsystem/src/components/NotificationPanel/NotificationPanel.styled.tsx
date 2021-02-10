@@ -11,24 +11,25 @@ interface StyledNotificationPanelProps {
   label?: boolean;
   shadow: boolean;
 }
-
+/*
 const sizeToWidthMap = {
   small: `${breakpoints.sm}px`,
   medium: `${breakpoints.md}px`,
   large: `${breakpoints.lg}px`,
 };
-
+*/
+/*
 const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
   display: grid;
   padding: 1rem;
   grid-template-areas: 'icon' 'content' 'action';
   grid-template-columns: 48px auto 48px;
   grid-template-rows: 1fr;
-  max-width: ${(props) => props.size && sizeToWidthMap[props.size]};
+  max-width: ${props => props.size && sizeToWidthMap[props.size]};
   width: inherit;
-  background-color: ${(props) =>
+  background-color: ${props =>
     getColor(variantToColorMap[props.variant].color as PaletteNames, variantToColorMap[props.variant].depth as PaletteDepths)};
-  ${(props) =>
+  ${props =>
     props.variant === 'crisis' &&
     css`
       ${StyledNotificationPanelContent} {
@@ -44,7 +45,6 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
             color: black;
           }
           &[target='_blank'] {
-            /* white icon */
             &:after {
               content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48' fill='%23bdbab9'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
             }
@@ -52,26 +52,27 @@ const StyledNotificationPanel = styled('div')<StyledNotificationPanelProps>`
         }
       }
     `}
-  ${(props) =>
+  ${props =>
     props.shadow &&
     css`
       box-shadow: 0 0.3rem 0.6rem -0.1rem rgba(0, 0, 0, 0.16);
     `}
-    ${(props) =>
-    props.label &&
-    css`
-      padding: 2rem 1rem;
-      ${StyledNotificationPanelContent} {
-        ${props.variant === 'alert' &&
-        css`
-          color: ${getColor('cherry', 500)};
-        `};
-        display: flex;
-        align-items: center;
-        margin: 0 1rem;
-      }
-    `}
+    ${props =>
+      props.label &&
+      css`
+        padding: 2rem 1rem;
+        ${StyledNotificationPanelContent} {
+          ${props.variant === 'alert' &&
+            css`
+              color: ${getColor('cherry', 500)};
+            `};
+          display: flex;
+          align-items: center;
+          margin: 0 1rem;
+        }
+      `}
 `;
+*/
 
 const StyledCloseButton = styled('button')`
   border: 0.125rem solid ${getColor('blueberry', 600)};
@@ -113,10 +114,13 @@ const StyledCloseButton = styled('button')`
     }
   }
 `;
-
+/*
 const StyledNotificationPanelIconColumn = styled('span')`
   grid-area: 'icon';
 `;
+*/
+
+/*
 
 const StyledNotificationPanelContent = styled('div')`
   grid-area: 'content';
@@ -132,7 +136,7 @@ const StyledNotificationPanelContent = styled('div')`
     text-decoration: none;
     &:focus {
       outline: none;
-      background-color: rgba(8, 102, 124, 0.05); /* Dette er blueberry 700 med 5% opacity*/
+      background-color: rgba(8, 102, 124, 0.05);
       border-color: ${getColor('neutral', 300)};
     }
     &:hover {
@@ -151,6 +155,7 @@ const StyledNotificationPanelContent = styled('div')`
     }
   }
 `;
+*/
 
 const StyledNotificationPanelActionColumn = styled('span')`
   grid-area: 'action';
@@ -160,6 +165,8 @@ const StyledLabel = styled('h1')`
   ${typography.label}
   margin: 0;
 `;
+
+/*
 
 const StyledNotificationPanelFluidWrapper = styled('div')<StyledNotificationPanelProps>`
   display: flex;
@@ -173,13 +180,5 @@ const StyledNotificationPanelFluidWrapper = styled('div')<StyledNotificationPane
       box-shadow: 0 0.3rem 0.6rem -0.1rem rgba(0, 0, 0, 0.16);
     `}
 `;
-
-export {
-  StyledNotificationPanel,
-  StyledNotificationPanelActionColumn,
-  StyledNotificationPanelContent,
-  StyledNotificationPanelFluidWrapper,
-  StyledNotificationPanelIconColumn,
-  StyledLabel,
-  StyledCloseButton,
-};
+*/
+export { StyledNotificationPanelActionColumn, StyledLabel, StyledCloseButton };
