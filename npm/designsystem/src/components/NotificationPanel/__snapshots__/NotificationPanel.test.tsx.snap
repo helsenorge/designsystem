@@ -3,10 +3,10 @@
 exports[`displays a notification panel 1`] = `
 <div>
   <div
-    class="sc-AxirZ lgMsec"
+    class="notification-panel notification-panel--undefined notification-panel--info"
   >
     <span
-      class="sc-AxhCb giigQO"
+      class="notification-panel__icon"
     >
       <svg
         aria-hidden="true"
@@ -23,12 +23,12 @@ exports[`displays a notification panel 1`] = `
       </svg>
     </span>
     <div
-      class="sc-AxhUy dkmWPL"
+      class="notification-panel__content"
     >
       Some text here for testing.
     </div>
     <span
-      class="sc-AxgMl dnqiUY"
+      class="notification-panel__action-column"
     />
   </div>
 </div>

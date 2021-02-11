@@ -5,7 +5,6 @@ import { palette } from '../../theme/palette';
 import Icon from '../Icons';
 import { useHover } from '../..';
 
-import { StyledNotificationPanelActionColumn, StyledLabel, StyledCloseButton } from './NotificationPanel.styled';
 import InfoSignStroke from '../Icons/InfoSignStroke';
 import AlertSignStroke from '../Icons/AlertSignStroke';
 import AlertSignFill from '../Icons/AlertSignFill';
@@ -91,16 +90,16 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
           [NotificationPanelStyles['notification-panel__content--isred']]: variant === 'alert' && !!label && !children,
         })}
       >
-        {label ? <StyledLabel>{label}</StyledLabel> : null}
+        {label ? <h1 className={NotificationPanelStyles['notification-panel__label']}>{label}</h1> : null}
         {children}
       </div>
-      <StyledNotificationPanelActionColumn>
+      <span className={NotificationPanelStyles['notification-panel__action-column']}>
         {dismissable ? (
-          <StyledCloseButton onClick={onClick} ref={hoverRef}>
+          <button className={NotificationPanelStyles['notification-panel__close-button']} onClick={onClick} ref={hoverRef}>
             <Icon svgIcon={X} isHovered={isHovered} size={38} color={palette.blueberry500} hoverColor={palette.blueberry700} />
-          </StyledCloseButton>
+          </button>
         ) : null}
-      </StyledNotificationPanelActionColumn>
+      </span>
     </div>
   );
 });

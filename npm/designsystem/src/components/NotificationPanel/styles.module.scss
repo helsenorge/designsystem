@@ -67,10 +67,11 @@
   &__content {
     grid-area: 'content';
     margin: getSpacer(xs) getSpacer(m);
+
     p {
       margin: 0;
     }
-    /* TO-DO see to reuse anchorlink styles ? */
+    /* TO-DO gjenbruke anchorlink styles når de blir skrevet om til styles modules */
     a {
       color: $blueberry600;
       padding-bottom: 0.15rem;
@@ -126,6 +127,62 @@
       display: flex;
       align-items: center;
       margin: 0 1rem;
+    }
+  }
+
+  &__label {
+    font-size: 1.125rem;
+    line-height: getSpacer(m);
+    font-weight: 600;
+    margin: 0;
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      font-size: 1.25rem;
+      line-height: 1.875rem;
+    }
+  }
+
+  &__action-column {
+    grid-area: 'action';
+  }
+
+  &__close-button {
+    display: flex;
+    position: relative;
+    background: transparent;
+    border: 2px solid $blueberry600;
+    padding: 0;
+    justify-content: center;
+    outline: none;
+    cursor: pointer;
+    &:before {
+      content: ' ';
+      position: absolute;
+      top: -getSpacer(2xs);
+      left: -getSpacer(2xs);
+      right: -getSpacer(2xs);
+      bottom: -getSpacer(2xs);
+      border: 2px solid transparent;
+    }
+    &:after {
+      content: ' ';
+      position: absolute;
+      top: -0.375rem;
+      left: -0.375rem;
+      right: -0.375rem;
+      bottom: -0.375rem;
+      border: 2px solid transparent;
+    }
+    &:hover,
+    :active,
+    :focus {
+      background-color: $blueberry700;
+      border-color: transparent;
+      &:before {
+        border-color: $blueberry700;
+      }
+      &:after {
+        border-color: $blueberry700;
+      }
     }
   }
 }
