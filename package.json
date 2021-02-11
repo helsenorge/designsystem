@@ -22,8 +22,8 @@
     "format:ci": "lerna run format:ci",
     "version": "lerna version --no-push --allow-branch=*/*",
     "postversion": "lerna run build",
-    "publish:beta": "cd npm/designsystem/dist && npm publish --tag=beta",
-    "publish:latest": "cd npm/designsystem/dist && npm publish",
+    "publish:beta": "cd npm/designsystem/lib && npm publish --tag=beta",
+    "publish:latest": "cd npm/designsystem/lib && npm publish",
     "format": "lerna run format",
     "validate": "lerna run validate",
     "clean": "lerna run clean"
