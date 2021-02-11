@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
@@ -6,10 +6,11 @@ import Header from './Header';
 import { Sidebar } from './Sidebar/Sidebar';
 import { Main } from './Main';
 
-import { Grid, Row, Col } from '@shared/CustomizedGrid';
-import LiveComponent from '../components/LiveComponent/LiveComponent';
+import { Row, Col } from '@shared/CustomizedGrid';
 import Footer from './Footer';
 import Section from './Section';
+
+import '@helsenorge/designsystem-react/scss/helsenorge.scss';
 
 const StyledPageContent = styled(Row)`
   padding: 3rem 0;
