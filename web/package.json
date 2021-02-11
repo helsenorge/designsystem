@@ -59,7 +59,7 @@
     "lottie-web": "^5.5.9",
     "netlify-cms-app": "^2.12.24",
     "netlify-cms-widget-mdx": "^0.4.3",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "prettier": "1.19.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
