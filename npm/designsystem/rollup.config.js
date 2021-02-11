@@ -38,7 +38,7 @@ export default [
       }),
       peerDepsExternal(),
       postcss({
-        extract: true,
+        extract: false,
         modules: true,
         use: ['sass'],
       }),
