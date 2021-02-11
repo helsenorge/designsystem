@@ -1,0 +1,105 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  width: inherit;
+  margin: 0;
+
+  & > :nth-child(n) {
+    border-bottom: 1px solid $neutral500;
+  }
+  &--hastopborder {
+    & > :first-child {
+      border-top: 1px solid $neutral500;
+    }
+  }
+  &--nobottomborder {
+    & > :last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__anchor {
+    display: flex;
+    padding: 0.5rem;
+    min-height: '4.5rem';
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    text-decoration: none;
+    justify-content: space-between;
+    align-items: center;
+    color: $black;
+
+    &--hasicon {
+      min-height: unset;
+    }
+    &--large {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+
+    &--banana {
+      &:hover,
+      &:focus {
+        background-color: $banana100;
+      }
+    }
+    &--blueberry {
+      &:hover,
+      &:focus {
+        background-color: $blueberry100;
+      }
+    }
+    &--cherry {
+      &:hover,
+      &:focus {
+        background-color: $cherry100;
+      }
+    }
+    &--kiwi {
+      &:hover,
+      &:focus {
+        background-color: $kiwi100;
+      }
+    }
+    &--neutral,
+    &--black {
+      &:hover,
+      &:focus {
+        background-color: $neutral100;
+      }
+    }
+    &--plum {
+      &:hover,
+      &:focus {
+        background-color: $plum100;
+      }
+    }
+    &--black {
+      &:hover,
+      &:focus {
+        background-color: $black;
+        color: $white;
+      }
+    }
+    &--white {
+      &:hover,
+      &:focus {
+        background-color: $neutral50;
+      }
+    }
+
+    &:focus {
+      outline: none;
+      /*
+    ${StyledLinkListLinkContent} {
+      border-color: ${getColor('black')};
+    }
+    */
+    }
+  }
+}

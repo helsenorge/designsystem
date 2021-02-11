@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
 import { getColor } from '../../theme/currys';
-import { LinkProps, LinkListColors } from './LinkList';
+import { LinkListColors } from './LinkList';
 
 interface StyledLinkListProps {
   topBorder?: boolean;
   bottomBorder?: boolean;
 }
-
+/*
 const topBorder = (props: StyledLinkListProps) =>
   props.topBorder &&
   css`
@@ -22,14 +22,16 @@ const bottomBorder = (props: StyledLinkListProps) =>
       border-bottom: 0;
     }
   `;
-
+*/
+/*
 const largeStyle = (props: StyledLinkListLinkProps) =>
   props.large &&
   css`
     font-size: 1.5rem;
     line-height: 2rem;
   `;
-
+  */
+/*
 const StyledLinkList = styled('ul')`
   list-style: none;
   padding: 0;
@@ -41,6 +43,7 @@ const StyledLinkList = styled('ul')`
   ${topBorder}
   ${bottomBorder}
 `;
+*/
 
 const StyledLinkListIconContainer = styled('span')`
   width: 3rem;
@@ -58,16 +61,17 @@ const StyledLinkListLinkContent = styled('span')`
     margin-right: 0.5rem;
   }
 `;
-
+/*
 interface StyledLinkListLinkProps {
   color: LinkListColors;
   large: boolean;
   hasIcon: boolean;
 }
-
+*/
+/*
 const StyledLinkListLink = styled('a')<StyledLinkListLinkProps>`
   padding: 0.5rem;
-  min-height: ${(props) => (props.hasIcon ? 'unset' : '4.5rem')};
+  min-height: ${props => (props.hasIcon ? 'unset' : '4.5rem')};
   display: flex;
   cursor: pointer;
   font-size: 1.25rem;
@@ -79,7 +83,7 @@ const StyledLinkListLink = styled('a')<StyledLinkListLinkProps>`
   ${largeStyle};
   &:hover,
   &:focus {
-    background-color: ${(props) => (props.color === 'white' ? getColor('neutral', 50) : getColor(props.color, 100))};
+    background-color: ${props => (props.color === 'white' ? getColor('neutral', 50) : getColor(props.color, 100))};
   }
   &:focus {
     outline: none;
@@ -88,5 +92,6 @@ const StyledLinkListLink = styled('a')<StyledLinkListLinkProps>`
     }
   }
 `;
+*/
 
-export { StyledLinkList, StyledLinkListLink, StyledLinkListLinkContent, StyledLinkListIconContainer };
+export { StyledLinkListLinkContent, StyledLinkListIconContainer };
