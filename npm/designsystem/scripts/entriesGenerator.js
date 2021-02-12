@@ -1,5 +1,5 @@
 /*
-  Scriptet går gjennom alle komponenter under /components/Icons
+  Scriptet går gjennom alle komponenter under /components og
   og genererer en .json fil som brukes videre av rollup for å lage entries
 */
 
@@ -59,6 +59,7 @@ function getComponents(pathToFolder, fn) {
         '**/__snapshots__/*',
         '**/*.stories.tsx',
         '**/*.styled.tsx',
+        '**/*.scss',
         '**/*.test.tsx',
         `${pathToFolder}/Icon.*`,
       ],

@@ -1,11 +1,11 @@
 body {
   font-family: 'Source Sans Pro', Arial, Verdana, sans-serif;
-  color: black;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
   background-color: $neutral50;
+  color: $black;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
   @include media-breakpoint-up(md) {
-    font-size: 1.25rem;
-    line-height: 1.875rem;
+    font-size: $font-size-md;
+    line-height: $lineheight-size-md;
   }
 }

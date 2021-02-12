@@ -1,3 +1,8 @@
+$font-size-sm: 1.125rem;
+$font-size-md: 1.25rem;
+$lineheight-size-sm: 1.75rem;
+$lineheight-size-md: 1.875rem;
+
 /* latin */
 @font-face {
   font-family: 'Source Sans Pro';
@@ -5,8 +10,7 @@
   font-weight: 200;
   font-display: swap;
   src: local('Source Sans Pro Extra Light'), local('SourceSansPro-ExtraLight'),
-    url(../fonts/source-sans-pro-200-extralight.woff) format('woff'),
-    url(../fonts/source-sans-pro-200-extralight.woff2) format('woff2');
+    url(../fonts/source-sans-pro-200-extralight.woff) format('woff'), url(../fonts/source-sans-pro-200-extralight.woff2) format('woff2');
 }
 /* latin */
 @font-face {
@@ -24,8 +28,7 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: local('Source Sans Pro Light'), local('SourceSansPro-Light'),
-    url(../fonts/source-sans-pro-300-light.woff) format('woff'),
+  src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(../fonts/source-sans-pro-300-light.woff) format('woff'),
     url(../fonts/source-sans-pro-300-light.woff2) format('woff2');
 }
 /* latin */
@@ -35,8 +38,7 @@
   font-weight: 300;
   font-display: swap;
   src: local('Source Sans Pro Light Italic'), local('SourceSansPro-LightItalic'),
-    url(../fonts/source-sans-pro-300-light-italic.woff) format('woff'),
-    url(../fonts/source-sans-pro-300-light-italic.woff2) format('woff2');
+    url(../fonts/source-sans-pro-300-light-italic.woff) format('woff'), url(../fonts/source-sans-pro-300-light-italic.woff2) format('woff2');
 }
 /* latin */
 @font-face {
@@ -44,8 +46,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'),
-    url(../fonts/source-sans-pro-400-regular.woff) format('woff'),
+  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(../fonts/source-sans-pro-400-regular.woff) format('woff'),
     url(../fonts/source-sans-pro-400-regular.woff2) format('woff2');
 }
 /* latin */
@@ -54,8 +55,7 @@
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: local('Source Sans Pro Italic'), local('SourceSansPro-Italic'),
-    url(../fonts/source-sans-pro-400-regular-italic.woff) format('woff'),
+  src: local('Source Sans Pro Italic'), local('SourceSansPro-Italic'), url(../fonts/source-sans-pro-400-regular-italic.woff) format('woff'),
     url(../fonts/source-sans-pro-400-regular-italic.woff2) format('woff2');
 }
 /* latin */
@@ -64,8 +64,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'),
-    url(../fonts/source-sans-pro-600-semibold.woff) format('woff'),
+  src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(../fonts/source-sans-pro-600-semibold.woff) format('woff'),
     url(../fonts/source-sans-pro-600-semibold.woff2) format('woff2');
 }
 /* latin */
@@ -84,8 +83,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'),
-    url(../fonts/source-sans-pro-700-bold.woff) format('woff'),
+  src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(../fonts/source-sans-pro-700-bold.woff) format('woff'),
     url(../fonts/source-sans-pro-700-bold.woff2) format('woff2');
 }
 /* latin */
@@ -95,8 +93,7 @@
   font-weight: 700;
   font-display: swap;
   src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldItalic'),
-    url(../fonts/source-sans-pro-700-bold-italic.woff) format('woff'),
-    url(../fonts/source-sans-pro-700-bold-italic.woff2) format('woff2');
+    url(../fonts/source-sans-pro-700-bold-italic.woff) format('woff'), url(../fonts/source-sans-pro-700-bold-italic.woff2) format('woff2');
 }
 /* latin */
 @font-face {
@@ -104,8 +101,7 @@
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: local('Source Sans Pro Black'), local('SourceSansPro-Black'),
-    url(../fonts/source-sans-pro-900-black.woff) format('woff'),
+  src: local('Source Sans Pro Black'), local('SourceSansPro-Black'), url(../fonts/source-sans-pro-900-black.woff) format('woff'),
     url(../fonts/source-sans-pro-900-black.woff2) format('woff2');
 }
 /* latin */
@@ -115,6 +111,5 @@
   font-weight: 900;
   font-display: swap;
   src: local('Source Sans Pro Black Italic'), local('SourceSansPro-BlackItalic'),
-    url(../fonts/source-sans-pro-900-black-italic.woff) format('woff'),
-    url(../fonts/source-sans-pro-900-black-italic.woff2) format('woff2');
+    url(../fonts/source-sans-pro-900-black-italic.woff) format('woff'), url(../fonts/source-sans-pro-900-black-italic.woff2) format('woff2');
 }

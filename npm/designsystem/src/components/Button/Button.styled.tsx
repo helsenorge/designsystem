@@ -93,12 +93,12 @@ export const StyledLeftFluidContent = styled('div')<{ hasIcon: boolean }>`
   align-items: center;
   height: 100%;
   width: 100%;
-  ${(props) =>
+  ${props =>
     !props.hasIcon &&
     css`
       justify-content: center;
     `};
-  ${(props) =>
+  ${props =>
     props.hasIcon &&
     css`
       text-align: left;
@@ -200,10 +200,10 @@ export const StyledButton = styled('button')<StyledButtonProps>`
   ${defaultStyle}
   ${fluidStyle}
   ${largeStyle}
-  ${(props) => props.variant === 'fill' && fillStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
-  ${(props) => props.variant === 'outline' && outlineStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
-  ${(props) => props.variant === 'borderless' && borderlessStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
-  ${(props) =>
+  ${props => props.variant === 'fill' && fillStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
+  ${props => props.variant === 'outline' && outlineStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
+  ${props => props.variant === 'borderless' && borderlessStyle(intentToColor[props.intent] as PaletteNames, props.inverted)};
+  ${props =>
     props.hasIcon &&
     !props.loader &&
     props.variant !== 'borderless' &&
@@ -225,22 +225,22 @@ export const StyledButton = styled('button')<StyledButtonProps>`
         margin-right: ${props.large ? '2.5rem' : '1.5rem'};
       }
       ${props.fluid &&
-      css`
-        ${StyledButtonContent}:last-child {
-          margin-right: 0;
-          @media ${screen.md} {
-            margin-right: ${props.large ? '2.5rem' : '1.5rem'};
-          }
-        }
-        ${StyledLeftFluidContent}:last-child {
-          margin-right: ${props.large ? '2.5rem' : '1.5rem'};
-          @media ${screen.md} {
+        css`
+          ${StyledButtonContent}:last-child {
             margin-right: 0;
+            @media ${screen.md} {
+              margin-right: ${props.large ? '2.5rem' : '1.5rem'};
+            }
           }
-        }
-      `}
+          ${StyledLeftFluidContent}:last-child {
+            margin-right: ${props.large ? '2.5rem' : '1.5rem'};
+            @media ${screen.md} {
+              margin-right: 0;
+            }
+          }
+        `}
     `}
-  ${(props) =>
+  ${props =>
     props.ellipsis &&
     css`
       max-width: 100%;
@@ -250,7 +250,7 @@ export const StyledButton = styled('button')<StyledButtonProps>`
         text-overflow: ellipsis;
       }
     `}
-  ${(props) =>
+  ${props =>
     props.hasIcon &&
     !props.loader &&
     props.variant === 'borderless' &&

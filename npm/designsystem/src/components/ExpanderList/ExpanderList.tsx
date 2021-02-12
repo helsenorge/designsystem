@@ -116,7 +116,7 @@ const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: React.Ref<
   function handleExpanderClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
     const id = event.currentTarget?.id || findShadowDOMId((event as unknown) as MouseEventWithPath, 'BUTTON');
     if (!isOpen) {
-      setActiveExpander((prevState) => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
+      setActiveExpander(prevState => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
     }
   }
 

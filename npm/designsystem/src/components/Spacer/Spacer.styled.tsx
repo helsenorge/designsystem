@@ -9,7 +9,7 @@ interface StyledSpacerProps {
 const StyledSpacer = styled('span')<StyledSpacerProps>`
   display: block;
   width: 100%;
-  height: ${(props) => getSpacer(props.size)};
+  height: ${props => getSpacer(props.size)};
 `;
 
 export default StyledSpacer;
