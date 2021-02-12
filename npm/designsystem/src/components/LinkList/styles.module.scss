@@ -1,5 +1,6 @@
 @import '../../scss/_spacers.scss';
 @import '../../scss/_breakpoints.scss';
+@import '../../scss/_fonts.scss';
 @import '../../scss/_palette.scss';
 
 .link-list {
@@ -24,15 +25,15 @@
 
   &__anchor {
     display: flex;
-    padding: 0.5rem;
-    min-height: '4.5rem';
-    cursor: pointer;
-    font-size: 1.25rem;
-    line-height: 1.875rem;
+    padding: getSpacer(xs);
+    min-height: 4.5rem;
+    font-size: $font-size-md;
+    line-height: $lineheight-size-md;
     text-decoration: none;
     justify-content: space-between;
     align-items: center;
     color: $black;
+    cursor: pointer;
 
     &--hasicon {
       min-height: unset;
@@ -108,9 +109,9 @@
   }
 
   &__icon-container {
-    width: 3rem;
+    width: getSpacer(xl);
     &--hasmargin {
-      margin-right: 0.5rem;
+      margin-right: getSpacer(xs);
     }
   }
   &__icon {

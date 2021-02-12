@@ -1,5 +1,6 @@
 @import '../../scss/_spacers.scss';
 @import '../../scss/_breakpoints.scss';
+@import '../../scss/_fonts.scss';
 @import '../../scss/_palette.scss';
 
 .notification-panel {
@@ -131,13 +132,13 @@
   }
 
   &__label {
-    font-size: 1.125rem;
+    font-size: $font-size-sm;
     line-height: getSpacer(m);
     font-weight: 600;
     margin: 0;
     @media (min-width: map-get($grid-breakpoints, md)) {
-      font-size: 1.25rem;
-      line-height: 1.875rem;
+      font-size: $font-size-md;
+      line-height: $lineheight-size-md;
     }
   }
 
