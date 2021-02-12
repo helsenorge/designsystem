@@ -54,14 +54,14 @@ const highlightStyle = css`
 
 const StyledTile = styled('a')<StyledTileProps>`
   width: 'inherit';
-  ${(props) =>
+  ${props =>
     props.fixed &&
     css`
       min-width: 15rem;
       max-width: 20rem;
     `}
 
-  ${(props) =>
+  ${props =>
     !props.compact
       ? css`
           padding: 1.5rem 2rem 2rem 1rem;
@@ -93,7 +93,7 @@ const StyledTile = styled('a')<StyledTileProps>`
   &:focus {
     box-shadow: 0 0 0 6px ${getColor('neutral', 600)};
   }
-  ${(props) => props.highlighted && highlightStyle}
+  ${props => props.highlighted && highlightStyle}
 `;
 
 const StyledTileTitleWrapper = styled('div')<StyledTileTitleWrapperProps>`
@@ -101,7 +101,7 @@ const StyledTileTitleWrapper = styled('div')<StyledTileTitleWrapperProps>`
   flex-direction: row;
   padding-bottom: 0.5rem;
 
-  ${(props) =>
+  ${props =>
     props.compact &&
     css`
       align-items: center;
@@ -116,7 +116,7 @@ const StyledTileTitleWrapper = styled('div')<StyledTileTitleWrapperProps>`
         margin: 0 0 0 1.5rem;
       }
     `}
-  ${(props) =>
+  ${props =>
     !props.compact &&
     css`
       @media ${screen.sm} {

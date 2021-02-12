@@ -12,14 +12,14 @@ export const useHover = <T extends HTMLElement>(ref?: RefObject<T>, condition?: 
     const handleOutEvent = () => setIsHovered(false);
 
     const inEventList = ['mouseenter', 'focusin'];
-    inEventList.forEach((eventName) => element && element.addEventListener(eventName, handleInEvent));
+    inEventList.forEach(eventName => element && element.addEventListener(eventName, handleInEvent));
 
     const outEventList = ['mouseleave', 'focusout'];
-    outEventList.forEach((eventName) => element && element.addEventListener(eventName, handleOutEvent));
+    outEventList.forEach(eventName => element && element.addEventListener(eventName, handleOutEvent));
 
     return () => {
       [...inEventList, ...outEventList].forEach(
-        (eventName) =>
+        eventName =>
           element && element.removeEventListener(eventName, handleInEvent) && element.removeEventListener(eventName, handleOutEvent)
       );
     };

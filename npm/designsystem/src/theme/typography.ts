@@ -1,6 +1,8 @@
 import { css } from 'styled-components';
 import { screen } from './grid';
 
+/* Fases ut etterhvert */
+
 const titleFeature = css`
   font-size: 3rem;
   line-height: 4rem;

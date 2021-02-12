@@ -20,7 +20,7 @@
     "test": "lerna run test",
     "test:update": "lerna run test:update",
     "format:ci": "lerna run format:ci",
-    "version": "lerna version --no-push --allow-branch=*/*",
+    "version": "lerna version --no-push --force-publish=* --allow-branch=*/*",
     "postversion": "lerna run build",
     "publish:beta": "cd npm/designsystem/lib && npm publish --tag=beta",
     "publish:latest": "cd npm/designsystem/lib && npm publish",
