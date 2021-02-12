@@ -95,11 +95,25 @@
 
     &:focus {
       outline: none;
-      /*
-    ${StyledLinkListLinkContent} {
-      border-color: ${getColor('black')};
+      .link-list__content {
+        border-color: $black;
+      }
     }
-    */
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid transparent;
+  }
+
+  &__icon-container {
+    width: 3rem;
+    &--hasmargin {
+      margin-right: 0.5rem;
     }
+  }
+  &__icon {
+    vertical-align: middle;
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { StyledLinkListLinkContent, StyledLinkListIconContainer } from './LinkList.styled';
+
 import { PaletteNames } from '../../theme/palette';
 import Icon from '../Icons';
 import ChevronRight from '../Icons/ChevronRight';
@@ -47,14 +47,18 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
         ref={hoverRef}
         {...restProps}
       >
-        <StyledLinkListLinkContent>
-          {icon && <StyledLinkListIconContainer>{React.cloneElement(icon, { size: 48, isHovered })}</StyledLinkListIconContainer>}
+        <span className={LinkListStyles['link-list__content']}>
+          {icon && (
+            <span className={`${LinkListStyles['link-list__icon-container']} ${LinkListStyles['link-list__icon-container--hasmargin']}`}>
+              {React.cloneElement(icon, { className: LinkListStyles['link-list__icon'], size: 48, isHovered })}
+            </span>
+          )}
           {children}
-        </StyledLinkListLinkContent>
+        </span>
         {chevron && (
-          <StyledLinkListIconContainer>
-            <Icon svgIcon={ChevronRight} isHovered={isHovered} />
-          </StyledLinkListIconContainer>
+          <span className={LinkListStyles['link-list__icon-container']}>
+            <Icon className={LinkListStyles['link-list__icon']} svgIcon={ChevronRight} isHovered={isHovered} />
+          </span>
         )}
       </a>
     </li>
