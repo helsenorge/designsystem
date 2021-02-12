@@ -1,9 +1,12 @@
 import React from 'react';
-import { StyledLinkList, StyledLinkListLink, StyledLinkListLinkContent, StyledLinkListIconContainer } from './LinkList.styled';
+import cn from 'classnames';
+
 import { PaletteNames } from '../../theme/palette';
 import Icon from '../Icons';
 import ChevronRight from '../Icons/ChevronRight';
 import { useHover } from '../../hooks/useHover';
+
+import LinkListStyles from './styles.module.scss';
 
 export type LinkListColors = PaletteNames;
 export type LinkType = React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLLIElement>>;
@@ -36,17 +39,28 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
   const { hoverRef, isHovered } = useHover<HTMLAnchorElement>();
   return (
     <li ref={ref}>
-      <StyledLinkListLink ref={hoverRef} className={className} hasIcon={!!(chevron || icon)} large={large} color={color} {...restProps}>
-        <StyledLinkListLinkContent>
-          {icon && <StyledLinkListIconContainer>{React.cloneElement(icon, { size: 48, isHovered })}</StyledLinkListIconContainer>}
+      <a
+        className={cn(LinkListStyles['link-list__anchor'], LinkListStyles['link-list__anchor--' + color], {
+          [LinkListStyles['link-list__anchor--hasicon']]: !!(chevron || icon),
+          [LinkListStyles['link-list__anchor--large']]: large,
+        })}
+        ref={hoverRef}
+        {...restProps}
+      >
+        <span className={LinkListStyles['link-list__content']}>
+          {icon && (
+            <span className={`${LinkListStyles['link-list__icon-container']} ${LinkListStyles['link-list__icon-container--hasmargin']}`}>
+              {React.cloneElement(icon, { className: LinkListStyles['link-list__icon'], size: 48, isHovered })}
+            </span>
+          )}
           {children}
-        </StyledLinkListLinkContent>
+        </span>
         {chevron && (
-          <StyledLinkListIconContainer>
-            <Icon svgIcon={ChevronRight} isHovered={isHovered} />
-          </StyledLinkListIconContainer>
+          <span className={LinkListStyles['link-list__icon-container']}>
+            <Icon className={LinkListStyles['link-list__icon']} svgIcon={ChevronRight} isHovered={isHovered} />
+          </span>
         )}
-      </StyledLinkListLink>
+      </a>
     </li>
   );
 });
@@ -54,13 +68,23 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
 const LinkList = React.forwardRef(function LinkListForwardedRef(props: LinkListProps, ref: React.Ref<HTMLUListElement>) {
   const { children, className = '', chevron = false, large, color, topBorder = true, bottomBorder = true } = props;
   return (
-    <StyledLinkList className={className} topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
+    <ul
+      ref={ref}
+      className={cn(
+        LinkListStyles['link-list'],
+        {
+          [LinkListStyles['link-list--hastopborder']]: topBorder,
+          [LinkListStyles['link-list--nobottomborder']]: !bottomBorder,
+        },
+        className ? className : ''
+      )}
+    >
       {React.Children.map(children, (child: React.ReactNode | React.ReactElement<LinkProps>) => {
         if ((child as React.ReactElement<LinkProps>).type === Link) {
           return React.cloneElement(child as React.ReactElement<LinkProps>, { color, large, chevron });
         }
       })}
-    </StyledLinkList>
+    </ul>
   );
 }) as CompoundComponent;
 

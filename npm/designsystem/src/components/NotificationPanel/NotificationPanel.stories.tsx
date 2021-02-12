@@ -17,10 +17,14 @@ stories.add('Default', () => (
       onClick={action('on-click-dismiss')}
       size={select('Size', ['small', 'medium', 'large'], 'large')}
       fluid={boolean('Fluid', false)}
-      label={text('Label', '')}
+      label={text('Label', 'Det har skjedd noe galt. Prøv igjen senere.')}
       variant={select('Variant', ['info', 'warn', 'alert', 'crisis'], 'alert')}
     >
-      <p>Hallo</p>
+      All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was
+      with Lee Harvey Oswald prior to Oswald's being, you know, shot.{' '}
+      <a href="/test" target="_blank">
+        Les mer
+      </a>
     </NotificationPanel>
   </div>
 ));

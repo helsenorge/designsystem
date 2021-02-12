@@ -1,5 +1,6 @@
 @import './spacers';
 @import './breakpoints';
+@import './fonts.scss';
 @import './palette';
 
 /*
@@ -19,8 +20,8 @@ import designsystemtypography from './scss/_typography.scss'
 }
 
 .focused-content {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
 }
 
 .title1 {
@@ -50,8 +51,8 @@ import designsystemtypography from './scss/_typography.scss'
 }
 
 .title4 {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: $font-size-md;
+  line-height: $lineheight-size-sm;
   font-weight: 700;
 }
 
@@ -61,7 +62,7 @@ import designsystemtypography from './scss/_typography.scss'
   font-weight: 700;
   text-transform: uppercase;
   @media (min-width: map-get($grid-breakpoints, md)) {
-    font-size: 1.125rem;
+    font-size: $font-size-sm;
   }
 }
 
@@ -75,52 +76,52 @@ import designsystemtypography from './scss/_typography.scss'
 }
 
 .legend {
-  font-size: 1.25rem;
+  font-size: $font-size-md;
   line-height: 1.625rem;
   font-weight: 600;
   @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: getSpacer(m);
-    line-height: 1.875rem;
+    line-height: $lineheight-size-md;
   }
 }
 
 .label {
-  font-size: 1.125rem;
+  font-size: $font-size-sm;
   line-height: getSpacer(m);
   @media (min-width: map-get($grid-breakpoints, md)) {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font-size: $font-size-md;
+    line-height: $lineheight-size-sm;
   }
 }
 
 .table {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
   @media (min-width: map-get($grid-breakpoints, md)) {
-    font-size: 1.25rem;
+    font-size: $font-size-md;
   }
 }
 
 .strong {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
   @media (min-width: map-get($grid-breakpoints, md)) {
-    font-size: 1.25rem;
-    line-height: 1.875rem;
+    font-size: $font-size-md;
+    line-height: $lineheight-size-md;
   }
 }
 
 .form {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
   @media (min-width: map-get($grid-breakpoints, md)) {
-    font-size: 1.25rem;
+    font-size: $font-size-md;
   }
 }
 
 .time {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
 }
 
 .image-caption {
@@ -140,16 +141,16 @@ import designsystemtypography from './scss/_typography.scss'
     word-wrap: break-word;
     text-align: left;
     padding-bottom: 0.15rem;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+    font-size: $font-size-sm;
+    line-height: $lineheight-size-sm;
     font-weight: 400;
     color: $blueberry600;
     border-bottom: 1px solid $neutral300;
     text-decoration: none;
 
     @media (min-width: map-get($grid-breakpoints, md)) {
-      font-size: 1.25rem;
-      line-height: 1.875rem;
+      font-size: $font-size-md;
+      line-height: $lineheight-size-md;
     }
 
     &:focus {

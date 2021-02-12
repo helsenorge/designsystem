@@ -1,0 +1,120 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_fonts.scss';
+@import '../../scss/_palette.scss';
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  width: inherit;
+  margin: 0;
+
+  & > :nth-child(n) {
+    border-bottom: 1px solid $neutral500;
+  }
+  &--hastopborder {
+    & > :first-child {
+      border-top: 1px solid $neutral500;
+    }
+  }
+  &--nobottomborder {
+    & > :last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__anchor {
+    display: flex;
+    padding: getSpacer(xs);
+    min-height: 4.5rem;
+    font-size: $font-size-md;
+    line-height: $lineheight-size-md;
+    text-decoration: none;
+    justify-content: space-between;
+    align-items: center;
+    color: $black;
+    cursor: pointer;
+
+    &--hasicon {
+      min-height: unset;
+    }
+    &--large {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+
+    &--banana {
+      &:hover,
+      &:focus {
+        background-color: $banana100;
+      }
+    }
+    &--blueberry {
+      &:hover,
+      &:focus {
+        background-color: $blueberry100;
+      }
+    }
+    &--cherry {
+      &:hover,
+      &:focus {
+        background-color: $cherry100;
+      }
+    }
+    &--kiwi {
+      &:hover,
+      &:focus {
+        background-color: $kiwi100;
+      }
+    }
+    &--neutral,
+    &--black {
+      &:hover,
+      &:focus {
+        background-color: $neutral100;
+      }
+    }
+    &--plum {
+      &:hover,
+      &:focus {
+        background-color: $plum100;
+      }
+    }
+    &--black {
+      &:hover,
+      &:focus {
+        background-color: $black;
+        color: $white;
+      }
+    }
+    &--white {
+      &:hover,
+      &:focus {
+        background-color: $neutral50;
+      }
+    }
+
+    &:focus {
+      outline: none;
+      .link-list__content {
+        border-color: $black;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid transparent;
+  }
+
+  &__icon-container {
+    width: getSpacer(xl);
+    &--hasmargin {
+      margin-right: getSpacer(xs);
+    }
+  }
+  &__icon {
+    vertical-align: middle;
+  }
+}

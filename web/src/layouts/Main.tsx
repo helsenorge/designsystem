@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { PageContent } from '../components/PageContent';
-import { ToC } from './ToC';
+import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { globalHistory } from '@reach/router';
-// import useTableOfContents from '../hooks/UseTableOfContents';
-import { Link, Element } from 'react-scroll';
+import styled from 'styled-components';
+import { Element } from 'react-scroll';
+import { PageContent } from '../components/PageContent';
 
 interface MainProps {
   children?: React.ReactNode;

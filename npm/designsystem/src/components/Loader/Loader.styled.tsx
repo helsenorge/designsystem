@@ -38,23 +38,23 @@ const dotSizes = {
 
 export const StyledLoaderDot = styled('div')<{ color: LoaderColors; size: LoaderSizes }>`
   position: absolute;
-  width: ${(props) => `${dotSizes[props.size]}px`};
-  height: ${(props) => `${dotSizes[props.size]}px`};
+  width: ${props => `${dotSizes[props.size]}px`};
+  height: ${props => `${dotSizes[props.size]}px`};
   border-radius: 50%;
-  background-color: ${(props) => getColor(props.color, 500)};
+  background-color: ${props => getColor(props.color, 500)};
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
   &:nth-child(1) {
     animation: ${loaderDot1} 0.6s infinite;
   }
   &:nth-child(2) {
-    animation: ${(props) => loaderDot2(`${dotSizes[props.size] * 2}px`)} 0.6s infinite;
+    animation: ${props => loaderDot2(`${dotSizes[props.size] * 2}px`)} 0.6s infinite;
   }
   &:nth-child(3) {
-    left: ${(props) => `${dotSizes[props.size] * 2}px`};
-    animation: ${(props) => loaderDot2(`${dotSizes[props.size] * 2}px`)} 0.6s infinite;
+    left: ${props => `${dotSizes[props.size] * 2}px`};
+    animation: ${props => loaderDot2(`${dotSizes[props.size] * 2}px`)} 0.6s infinite;
   }
   &:nth-child(4) {
-    left: ${(props) => `${dotSizes[props.size] * 4}px`};
+    left: ${props => `${dotSizes[props.size] * 4}px`};
     animation: ${loaderDot3} 0.6s infinite;
   }
 `;
@@ -62,6 +62,6 @@ export const StyledLoaderDot = styled('div')<{ color: LoaderColors; size: Loader
 export const StyledLoader = styled('div')<{ size: LoaderSizes }>`
   display: inline-block;
   position: relative;
-  width: ${(props) => `${dotSizes[props.size] * 5}px`};
-  height: ${(props) => `${dotSizes[props.size]}px`};
+  width: ${props => `${dotSizes[props.size] * 5}px`};
+  height: ${props => `${dotSizes[props.size]}px`};
 `;

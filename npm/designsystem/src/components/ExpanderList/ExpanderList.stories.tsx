@@ -1,9 +1,8 @@
 import React from 'react';
-import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import ExpanderList from './ExpanderList';
 import LinkList from '../LinkList';
-import Title from '../Title';
 import Icon from '../Icons';
 import Avatar from '../Icons/Avatar';
 import PaperPlane from '../Icons/PaperPlane';

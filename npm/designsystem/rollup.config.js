@@ -3,16 +3,17 @@ import resolve from 'rollup-plugin-node-resolve';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import commonjs from 'rollup-plugin-commonjs';
 import buble from 'rollup-plugin-buble';
+import postcss from 'rollup-plugin-postcss';
 import progress from 'rollup-plugin-progress';
 import copy from 'rollup-plugin-copy';
-import {terser} from 'rollup-plugin-terser';
+import { terser } from 'rollup-plugin-terser';
 
 import pkg from './package.json';
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
 const componentsEntries = require('./scripts/componentsEntries');
-const inputEntries = Object.assign({index: pkg.source}, componentsEntries);
+const inputEntries = Object.assign({ index: pkg.source }, componentsEntries);
 
 const globals = {
   react: 'React',
@@ -36,7 +37,12 @@ export default [
         clearLine: false,
       }),
       peerDepsExternal(),
-      resolve({extensions}),
+      postcss({
+        extract: false,
+        modules: true,
+        use: ['sass'],
+      }),
+      resolve({ extensions }),
       commonjs({
         namedExports: {
           '../../node_modules/react-is/index.js': ['isElement', 'isValidElementType', 'ForwardRef'],
@@ -49,10 +55,11 @@ export default [
       }),
       copy({
         targets: [
-          {src: 'src/fonts/**/*', dest: 'lib/fonts'},
-          {src: 'src/scss/*', dest: 'lib/scss'},
+          { src: 'src/fonts/**/*', dest: 'lib/fonts' },
+          { src: 'src/scss/*', dest: 'lib/scss' },
         ],
       }),
+
       buble(),
     ],
     external: Object.keys(globals),
