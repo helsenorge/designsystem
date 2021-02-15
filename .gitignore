@@ -4,6 +4,7 @@ bundle-stats.json
 
 dist/
 lib/
+lib_npm/
 **/dist/**
 **/lib/**
 
