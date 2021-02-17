@@ -60,6 +60,7 @@ function getComponents(pathToFolder, fn) {
         '**/*.stories.tsx',
         '**/*.styled.tsx',
         '**/*.scss',
+        '**/*.scss.d.ts',
         '**/*.test.tsx',
         `${pathToFolder}/Icon.*`,
       ],
@@ -67,7 +68,7 @@ function getComponents(pathToFolder, fn) {
     (err, files) => {
       console.log('processing files:', files.length);
       fn(files, err);
-    },
+    }
   );
 }
 
@@ -117,7 +118,7 @@ function getComponentData(componentPath) {
 
 function writeFile(filepath, content) {
   try {
-    fs.writeFile(filepath, content, function (err) {
+    fs.writeFile(filepath, content, function(err) {
       err ? console.log(chalk.red(err)) : console.log(chalk.green('Entries for components saved in ' + paths.output));
     });
   } catch {
