@@ -47,7 +47,6 @@ export const notifyMove = (value: number, onChange?: (value: number) => void): v
   }
 };
 
-// TO-DO "calculateSliderPositionBasedOnValue" hva betyr det? Value på hva?
 // TO-DO min kommer alltid før max, bytt gjerne rekkefølge på dem. Gjelder flere.
 export const calculateSliderPositionBasedOnValue = (
   value: number,
@@ -56,10 +55,8 @@ export const calculateSliderPositionBasedOnValue = (
   max: number,
   min: number
 ): number => {
-  console.log('>>> calculateSliderPositionBasedOnValue', trackerWidth, sliderWidth);
   const size: number = max - min;
   const pixelPerSize: number = (trackerWidth - sliderWidth) / size;
-  console.log('return pixelPerSize', pixelPerSize * value);
   return pixelPerSize * value;
 };
 
@@ -90,6 +87,28 @@ export const alignValue = (value: number, step: number, max: number): number => 
   }
 
   return Math.round(alignedValue);
+};
+
+export const calculateChangeOfPosition = (diff: number, sliderXPos: number, trackerWidth: number, sliderWidth: number): number => {
+  let newSliderPos: number = sliderXPos + diff;
+  if (newSliderPos < 0) {
+    newSliderPos = 0;
+  }
+  if (newSliderPos > trackerWidth - sliderWidth) {
+    newSliderPos = trackerWidth - sliderWidth;
+  }
+  return newSliderPos;
+};
+
+export const calculateSliderTranslate = (
+  XPos: number,
+  sliderElement: HTMLDivElement | null,
+  sliderWidth: number,
+  cb: (a: number) => void
+) => {
+  const sliderPageXPos = sliderElement ? sliderElement.getBoundingClientRect().left : 0;
+  const diff: number = sliderPageXPos ? XPos - (sliderPageXPos + sliderWidth / 2) : 0;
+  cb(diff);
 };
 
 export const addMouseListeners = (moveMouseEvent: any, mouseUpEvent: any): void => {

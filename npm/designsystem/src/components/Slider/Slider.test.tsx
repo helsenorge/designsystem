@@ -3,13 +3,12 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { Slider } from './Slider';
 
 describe('Gitt at Slider skal vises', (): void => {
-  /*
   describe('Når slider rendres', (): void => {
     test('Så vises slider riktig', (): void => {
       const title = 'This is a title';
       const optionLeft = 'left';
       const optionRight = 'right';
-      const { container } = render(<Slider title={title} optionLeft={optionLeft} optionRight={optionRight} />);
+      const { container } = render(<Slider title={title} labelLeft={optionLeft} labelRight={optionRight} />);
       expect(container).toMatchSnapshot();
 
       const titleElement = screen.getByText(title);
@@ -23,6 +22,22 @@ describe('Gitt at Slider skal vises', (): void => {
 
       const sliderElement = screen.getByRole('slider');
       expect(sliderElement.className).toBe('slider__trigger');
+    });
+
+    test('Så er sliderElement posisjonert riktig', () => {
+      const original = global.document['window'];
+      const getBoundingClientRect = jest
+        .fn()
+        .mockReturnValueOnce({ left: 100, right: 500 })
+        .mockReturnValueOnce({ left: 150, right: 450 });
+      window.HTMLDivElement.prototype.getBoundingClientRect = getBoundingClientRect;
+
+      const step = 10;
+      render(<Slider step={step} />);
+
+      const sliderElement = screen.getByRole('slider');
+      expect(sliderElement).toHaveAttribute('style', 'left: 50px;');
+      global.document['window'] = original;
     });
   });
   describe('Når title ikke settes', (): void => {
@@ -43,7 +58,7 @@ describe('Gitt at Slider skal vises', (): void => {
   });
   describe('Når disabled settes til true', (): void => {
     test('Så deaktiveres slideren', (): void => {
-      const { container } = render(<Slider disabled={true} />);
+      render(<Slider disabled={true} />);
 
       const sliderElement = screen.getByRole('slider');
       expect(sliderElement.className).toBe('slider__trigger slider__trigger--disabled');
@@ -66,73 +81,33 @@ describe('Gitt at Slider skal vises', (): void => {
       expect(mockFunction).toHaveBeenCalledTimes(1);
     });
   });
-  */
-  describe('Når step settes', (): void => {
-    test('Så settes verdi riktig ved bevegelse av slider triggeren', () => {
-      // Begynt å se på en løsning rundt window mocking:
-      /* Object.defineProperties(window.HTMLElement.prototype, {
-        offsetLeft: {
-          get: function() {
-            return parseFloat(window.getComputedStyle(this).marginLeft) || 0;
-          },
-        },
-        offsetTop: {
-          get: function() {
-            return parseFloat(window.getComputedStyle(this).marginTop) || 0;
-          },
-        },
-        offsetHeight: {
-          get: function() {
-            return parseFloat(window.getComputedStyle(this).height) || 0;
-          },
-        },
-        offsetWidth: {
-          get: function() {
-            return parseFloat(window.getComputedStyle(this).width) || 0;
-          },
-        },
-      }); */
 
-      // const el: HTMLSpanElement = document.createElement('span');
-      // Object.defineProperty(el, 'offsetTop', { configurable: true, value: index }); and it work.
+  describe('Når keyDown kalles', (): void => {
+    test('Så settes verdi riktig ved bevegelse av slider triggeren', () => {
+      const original = global.document['window'];
 
       const getBoundingClientRect = jest
         .fn()
-        .mockReturnValueOnce({ left: 200, right: 400 })
-        .mockReturnValueOnce({ left: 300, right: 500 });
+        .mockReturnValueOnce({ left: 100, right: 900 })
+        .mockReturnValueOnce({ left: 150, right: 850 });
       window.HTMLDivElement.prototype.getBoundingClientRect = getBoundingClientRect;
 
-      // const getBoundingClientRectSpy1 = jest.fn(() => ({ left: 200, right: 400 }));
-      // const getBoundingClientRectSpy2 = jest.fn(() => ({ left: 250, right: 350 }));
-
       const step = 10;
-      console.log('Just before render');
-      render(<Slider step={10} />);
-      console.log('Just after render');
-
-      expect(screen.getByTestId('tracker')).toBeInTheDocument();
-      //const trackerElement = screen.getByTestId('tracker');
-      //trackerElement.getBoundingClientRect = getBoundingClientRectSpy1;
+      render(<Slider step={step} />);
 
       const sliderElement = screen.getByRole('slider');
-      //sliderElement.getBoundingClientRect = getBoundingClientRectSpy2;
-      //const getTrackerWidth = trackerElement.getBoundingClientRect();
-      //console.log('getTrackerWidth from test', getTrackerWidth);
-      // expect(sliderElement).toHaveAttribute('style', 'left: 0px;');
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '50');
+      expect(sliderElement).toHaveAttribute('style', 'left: 50px;');
 
-      expect(sliderElement).toHaveAttribute('style', 'left: 200px;');
-
-      /*
-     
       fireEvent.keyDown(sliderElement, { key: 'ArrowRight', code: 'ArrowRight' });
-      expect(sliderElement).toHaveAttribute('style', 'left: 233px;');
       expect(sliderElement).toHaveAttribute('aria-valuenow', '60');
-      */
+      expect(sliderElement).toHaveAttribute('style', 'left: 60px;');
 
-      // fireEvent.keyDown(trackerElement, { key: 'ArrowRight', code: 'ArrowRight' });
-      // await waitFor(() => {
-      //   expect(sliderElement).toHaveAttribute('aria-valuenow', '60');
-      // });
+      fireEvent.keyDown(sliderElement, { key: 'ArrowLeft', code: 'ArrowLeft' });
+      fireEvent.keyDown(sliderElement, { key: 'ArrowLeft', code: 'ArrowLeft' });
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '40');
+      expect(sliderElement).toHaveAttribute('style', 'left: 40px;');
+      global.document['window'] = original;
     });
   });
 });
