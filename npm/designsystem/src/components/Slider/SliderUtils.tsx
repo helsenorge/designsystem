@@ -1,12 +1,9 @@
 // TO-DO: beskrive hver methode i utils, både formål og parametrene
+// TO-DO: teste systematisk hver methode
 
 export const stopEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): boolean => {
-  if (e.stopPropagation) {
-    e.stopPropagation();
-  }
-  if (e.preventDefault) {
-    e.preventDefault();
-  }
+  if (e.stopPropagation) e.stopPropagation();
+  if (e.preventDefault) e.preventDefault();
   return false;
 };
 
@@ -32,19 +29,9 @@ export const isTouchEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent |
     e.type === 'touchmove' ||
     e.type === 'touchstart'
   ) {
-    if ((e as TouchEvent).touches.length === 0) {
-      return false;
-    } else {
-      return true;
-    }
+    return !((e as TouchEvent).touches.length === 0);
   }
   return false;
-};
-
-export const notifyMove = (value: number, onChange?: (value: number) => void): void => {
-  if (onChange) {
-    onChange(value);
-  }
 };
 
 // TO-DO min kommer alltid før max, bytt gjerne rekkefølge på dem. Gjelder flere.
@@ -60,6 +47,7 @@ export const calculateSliderPositionBasedOnValue = (
   return pixelPerSize * value;
 };
 
+// TO-DO prøv så godt som mulig å bruke lik rekkefølge på tvers av methodene. Slik unngår man uheldige feil i parametre
 export const calculateValueBasedOnSliderPosition = (
   sliderPosition: number,
   max: number,
@@ -106,11 +94,13 @@ export const calculateSliderTranslate = (
   sliderWidth: number,
   cb: (a: number) => void
 ) => {
-  const sliderPageXPos = sliderElement ? sliderElement.getBoundingClientRect().left : 0;
+  const elementViewportPosition = sliderElement ? sliderElement.getBoundingClientRect() : undefined;
+  const sliderPageXPos = elementViewportPosition ? elementViewportPosition.left : 0;
   const diff: number = sliderPageXPos ? XPos - (sliderPageXPos + sliderWidth / 2) : 0;
   cb(diff);
 };
 
+// TO-DO Ikke bruk any
 export const addMouseListeners = (moveMouseEvent: any, mouseUpEvent: any): void => {
   document.addEventListener('mousemove', moveMouseEvent, false);
   document.addEventListener('mouseup', mouseUpEvent, false);

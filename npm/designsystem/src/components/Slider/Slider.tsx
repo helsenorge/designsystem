@@ -7,14 +7,13 @@ import {
   stopEvent,
   getMousePosition,
   getElementWidth,
-  notifyMove,
   calculateSliderPositionBasedOnValue,
   calculateValueBasedOnSliderPosition,
   calculateChangeOfPosition,
   calculateSliderTranslate,
   addMouseListeners,
-  removeMouseListeners,
   addTouchListeners,
+  removeMouseListeners,
   removeTouchListeners,
 } from './SliderUtils';
 
@@ -47,6 +46,7 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   const sliderRef = useRef<HTMLDivElement>(null);
   const min = 0;
   const max = 100;
+
   const moveMouseEvent = (evt: MouseEvent) => {
     onMouseMove(evt);
   };
@@ -76,8 +76,8 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   }, [isMouseDown]);
 
   useEffect(() => {
-    if (!disabled) {
-      notifyMove(value, onChange);
+    if (!disabled && onChange) {
+      onChange(value);
     }
   }, [value]);
 
