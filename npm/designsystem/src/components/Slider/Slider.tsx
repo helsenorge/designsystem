@@ -6,6 +6,7 @@ import Title from '../Title';
 import {
   stopEvent,
   getMousePosition,
+  getElementWidth,
   notifyMove,
   calculateSliderPositionBasedOnValue,
   calculateValueBasedOnSliderPosition,
@@ -39,7 +40,7 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   const [trackerWidth, setTrackerWidth] = useState(0);
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderXPos, setSliderXPos] = useState(0);
- const [sliderTemporaryXPos, setSliderTemporaryXPos] = useState(0);
+  const [sliderTemporaryXPos, setSliderTemporaryXPos] = useState(0);
   const trackerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const min = 0;
@@ -58,15 +59,22 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   };
 
   useEffect(() => {
+    console.log('>>> UseEffect');
     /** to calculate the initial position of the slider we have to get
      * the width of html container element this can only be done after
      * render, and to save the value we have to put in state and trigger rerender
      */
-    const newTrackWidth: number = trackerRef.current ? trackerRef.current.offsetWidth : 0;
-    const newSliderWidth: number = sliderRef.current ? sliderRef.current.offsetWidth : 0;
-    setSliderXPos(calculateSliderPositionBasedOnValue(value, newTrackWidth, newSliderWidth, max, min));
-    setTrackerWidth(newTrackWidth);
-    setSliderWidth(newSliderWidth);
+    console.log('trackerRef.current ', trackerRef.current ? trackerRef.current.getBoundingClientRect() : 'NULL');
+    console.log('sliderRef.current ', sliderRef.current ? sliderRef.current.getBoundingClientRect() : 'NULL');
+    // const trackerPosition = trackerRef.current ? trackerRef.current.getBoundingClientRect() : undefined;
+    // const trackerWidth: number = trackerPosition ? trackerPosition.right - trackerPosition.left : 0;
+    // const sliderPosition = sliderRef.current ? sliderRef.current.getBoundingClientRect() : undefined;
+    //const sliderWidth: number = sliderPosition ? sliderPosition.right - sliderPosition.left : 0;
+    const trackerWidth = getElementWidth(trackerRef.current);
+    const sliderWidth = getElementWidth(sliderRef.current);
+    setSliderXPos(calculateSliderPositionBasedOnValue(value, trackerWidth, sliderWidth, max, min));
+    setTrackerWidth(trackerWidth);
+    setSliderWidth(sliderWidth);
   }, []);
 
   useEffect(() => {
@@ -102,14 +110,16 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
     if (disabled) {
       return;
     }
-    const newTrackerWidth: number = trackerRef.current ? trackerRef.current.offsetWidth : 0;
-    const newSliderWidth: number = sliderRef.current ? sliderRef.current.offsetWidth : 0;
-    const newXpos: number = getMousePosition(e);
-    calculateSliderTranslate(newXpos, newSliderWidth);
+    //const newTrackerWidth: number = trackerRef.current ? trackerRef.current.offsetWidth : 0;
+    //const newSliderWidth: number = sliderRef.current ? sliderRef.current.offsetWidth : 0;
+    const trackerWidth = getElementWidth(trackerRef.current);
+    const sliderWidth = getElementWidth(sliderRef.current);
+    const updatedMousePosition: number = getMousePosition(e);
+    calculateSliderTranslate(updatedMousePosition, sliderWidth);
     setIsMouseDown(true);
-    setSliderTemporaryXPos(newXpos);
-    setTrackerWidth(newTrackerWidth);
-    setSliderWidth(newSliderWidth);
+    setSliderTemporaryXPos(updatedMousePosition);
+    setTrackerWidth(trackerWidth);
+    setSliderWidth(sliderWidth);
     stopEvent(e);
   };
 
@@ -117,15 +127,17 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
     if (disabled) {
       return;
     }
-    const newTrackerWidth: number = trackerRef.current ? trackerRef.current.offsetWidth : 0;
-    const newSliderWidth: number = sliderRef.current ? sliderRef.current.offsetWidth : 0;
-    const newXpos: number = getMousePosition(e);
-    calculateSliderTranslate(newXpos, newSliderWidth);
+    //const newTrackerWidth: number = trackerRef.current ? trackerRef.current.offsetWidth : 0;
+    //const newSliderWidth: number = sliderRef.current ? sliderRef.current.offsetWidth : 0;
+    const trackerWidth = getElementWidth(trackerRef.current);
+    const sliderWidth = getElementWidth(sliderRef.current);
+    const updatedMousePosition: number = getMousePosition(e);
+    calculateSliderTranslate(updatedMousePosition, sliderWidth);
 
     setIsMouseDown(true);
-    setSliderTemporaryXPos(newXpos);
-    setTrackerWidth(newTrackerWidth);
-    setSliderWidth(newSliderWidth);
+    setSliderTemporaryXPos(updatedMousePosition);
+    setTrackerWidth(trackerWidth);
+    setSliderWidth(sliderWidth);
     stopEvent(e);
   };
 
@@ -145,8 +157,8 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
       return;
     }
 
-    const newXpos: number = getMousePosition(e);
-    const diff: number = newXpos - sliderTemporaryXPos;
+    const updatedMousePosition: number = getMousePosition(e);
+    const diff: number = updatedMousePosition - sliderTemporaryXPos;
 
     moveSlider(diff);
     stopEvent(e);
@@ -172,9 +184,9 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   };
 
   // TO-DO: flyttes til utils
-  function calculateSliderTranslate(newXpos: number, newSliderWidth: number) {
+  function calculateSliderTranslate(XPos: number, newSliderWidth: number) {
     const sliderPageXPos = sliderRef.current?.getBoundingClientRect().left;
-    const diff: number = sliderPageXPos ? newXpos - (sliderPageXPos + newSliderWidth / 2) : 0;
+    const diff: number = sliderPageXPos ? XPos - (sliderPageXPos + newSliderWidth / 2) : 0;
     moveSlider(diff);
   }
 
@@ -190,6 +202,7 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
         className={classNames(SliderStyles['slider__track-wrapper'], disabled ? SliderStyles['slider__track-wrapper--disabled'] : '')}
         onMouseDown={onMouseDown}
         onTouchStart={onTouchDown}
+        data-testid={'tracker'}
       >
         <div className={classNames(SliderStyles.slider__track, disabled ? SliderStyles['slider__track--disabled'] : '')} />
         <div

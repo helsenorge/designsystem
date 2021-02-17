@@ -18,6 +18,11 @@ export const getMousePosition = (e: MouseEvent | React.MouseEvent<{}> | TouchEve
   return (e as MouseEvent).pageX;
 };
 
+export const getElementWidth = (el: HTMLDivElement | null): number => {
+  const elementViewportPosition = el ? el.getBoundingClientRect() : undefined;
+  return elementViewportPosition ? elementViewportPosition.right - elementViewportPosition.left : 0;
+};
+
 export const isTouchEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): boolean => {
   if (
     e.type === 'touchcancel' ||
@@ -42,15 +47,19 @@ export const notifyMove = (value: number, onChange?: (value: number) => void): v
   }
 };
 
+// TO-DO "calculateSliderPositionBasedOnValue" hva betyr det? Value på hva?
+// TO-DO min kommer alltid før max, bytt gjerne rekkefølge på dem. Gjelder flere.
 export const calculateSliderPositionBasedOnValue = (
   value: number,
-  trackWidth: number,
+  trackerWidth: number,
   sliderWidth: number,
   max: number,
   min: number
 ): number => {
+  console.log('>>> calculateSliderPositionBasedOnValue', trackerWidth, sliderWidth);
   const size: number = max - min;
-  const pixelPerSize: number = (trackWidth - sliderWidth) / size;
+  const pixelPerSize: number = (trackerWidth - sliderWidth) / size;
+  console.log('return pixelPerSize', pixelPerSize * value);
   return pixelPerSize * value;
 };
 
