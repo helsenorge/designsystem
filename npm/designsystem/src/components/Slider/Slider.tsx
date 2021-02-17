@@ -20,9 +20,9 @@ import SliderStyles from './styles.module.scss';
 interface SliderProps {
   /** Tekst som vises til over feltet */
   title?: string;
-  /** Tekst som vises til venstre i feltet */
+  /** Tekst som vises til venstre i feltet TO-DO renames til labelLeft */
   optionLeft?: string;
-  /** Tekst som vises til høyre i feltet */
+  /** Tekst som vises til høyre i feltet TO-DO renames til labelRight */
   optionRight?: string;
   /** Step value som brukes når verdien endres på slider'en */
   step?: number;
@@ -36,10 +36,10 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   const { title, optionLeft, optionRight, disabled = false, step = 1, onChange } = props;
   const [value, setValue] = useState(50);
   const [isMouseDown, setIsMouseDown] = useState(false);
-  const [tempXPos, setTempXPos] = useState(0);
   const [trackerWidth, setTrackerWidth] = useState(0);
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderXPos, setSliderXPos] = useState(0);
+ const [sliderTemporaryXPos, setSliderTemporaryXPos] = useState(0);
   const trackerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const min = 0;
@@ -98,7 +98,22 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
     }
   };
 
-  function onMouseDown(e: MouseEvent | React.MouseEvent<{}>): void {
+  const onMouseDown = (e: MouseEvent | React.MouseEvent<{}>): void => {
+    if (disabled) {
+      return;
+    }
+    const newTrackerWidth: number = trackerRef.current ? trackerRef.current.offsetWidth : 0;
+    const newSliderWidth: number = sliderRef.current ? sliderRef.current.offsetWidth : 0;
+    const newXpos: number = getMousePosition(e);
+    calculateSliderTranslate(newXpos, newSliderWidth);
+    setIsMouseDown(true);
+    setSliderTemporaryXPos(newXpos);
+    setTrackerWidth(newTrackerWidth);
+    setSliderWidth(newSliderWidth);
+    stopEvent(e);
+  };
+
+  const onTouchDown = (e: TouchEvent | React.TouchEvent<{}>): void => {
     if (disabled) {
       return;
     }
@@ -108,29 +123,13 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
     calculateSliderTranslate(newXpos, newSliderWidth);
 
     setIsMouseDown(true);
-    setTempXPos(newXpos);
+    setSliderTemporaryXPos(newXpos);
     setTrackerWidth(newTrackerWidth);
     setSliderWidth(newSliderWidth);
     stopEvent(e);
-  }
+  };
 
-  function onTouchDown(e: TouchEvent | React.TouchEvent<{}>): void {
-    if (disabled) {
-      return;
-    }
-    const newTrackerWidth: number = trackerRef.current ? trackerRef.current.offsetWidth : 0;
-    const newSliderWidth: number = sliderRef.current ? sliderRef.current.offsetWidth : 0;
-    const newXpos: number = getMousePosition(e);
-    calculateSliderTranslate(newXpos, newSliderWidth);
-
-    setIsMouseDown(true);
-    setTempXPos(newXpos);
-    setTrackerWidth(newTrackerWidth);
-    setSliderWidth(newSliderWidth);
-    stopEvent(e);
-  }
-
-  function onMouseUp(e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void {
+  const onMouseUp = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void => {
     if (disabled) {
       return;
     }
@@ -139,20 +138,22 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
     removeMouseListeners(moveMouseEvent, mouseUpEvent);
     removeTouchListeners(moveTouchEvent, touchUpEvent);
     stopEvent(e);
-  }
+  };
 
-  function onMouseMove(e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void {
+  const onMouseMove = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void => {
     if (disabled || !isMouseDown) {
       return;
     }
 
     const newXpos: number = getMousePosition(e);
-    const diff: number = newXpos - tempXPos;
+    const diff: number = newXpos - sliderTemporaryXPos;
 
     moveSlider(diff);
     stopEvent(e);
-  }
+  };
 
+  // TO-DO Flytt business logikk til utils og behold bare state håndteringen.
+  // Oppdateres til "updateSlidePosition"
   const moveSlider = (diff: number): void => {
     if (diff === 0) {
       return;
@@ -166,19 +167,16 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
     }
 
     setSliderXPos(newSliderPos);
-    setTempXPos(newSliderPos + diff);
+    setSliderTemporaryXPos(newSliderPos + diff);
     setValue(calculateValueBasedOnSliderPosition(newSliderPos, max, min, trackerWidth, sliderWidth, step));
   };
 
+  // TO-DO: flyttes til utils
   function calculateSliderTranslate(newXpos: number, newSliderWidth: number) {
     const sliderPageXPos = sliderRef.current?.getBoundingClientRect().left;
     const diff: number = sliderPageXPos ? newXpos - (sliderPageXPos + newSliderWidth / 2) : 0;
     moveSlider(diff);
   }
-
-  const sliderPositionStyle = {
-    left: `${sliderXPos}px`,
-  };
 
   return (
     <div className={SliderStyles.slider}>
@@ -196,15 +194,17 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
         <div className={classNames(SliderStyles.slider__track, disabled ? SliderStyles['slider__track--disabled'] : '')} />
         <div
           ref={sliderRef}
-          style={sliderPositionStyle}
           className={classNames(SliderStyles.slider__trigger, disabled ? SliderStyles['slider__trigger--disabled'] : '')}
+          style={{
+            left: `${sliderXPos}px`,
+          }}
+          onKeyDown={handleKeyPress}
           role={'slider'}
           aria-valuenow={value}
           aria-valuemin={min}
           aria-valuemax={max}
           aria-label={`${title ? title + ' ' : ''}${optionLeft ? optionLeft + ' ' : ''}${optionRight ? optionRight + ' ' : ''}`}
           tabIndex={disabled ? -1 : 0}
-          onKeyDown={handleKeyPress}
         >
           <div
             className={classNames(SliderStyles['slider__trigger-inner'], disabled ? SliderStyles['slider__trigger-inner--disabled'] : '')}
@@ -213,10 +213,10 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
       </div>
       {(optionLeft || optionRight) && (
         <span className={SliderStyles.slider__options}>
-          <p aria-hidden={true} className={SliderStyles.slider__text}>
+          <p className={SliderStyles.slider__text} aria-hidden={true}>
             {optionLeft}
           </p>
-          <p aria-hidden={true} className={SliderStyles.slider__text}>
+          <p className={SliderStyles.slider__text} aria-hidden={true}>
             {optionRight}
           </p>
         </span>

@@ -1,3 +1,5 @@
+// TO-DO: beskrive hver methode i utils, både formål og parametrene
+
 export const stopEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): boolean => {
   if (e.stopPropagation) {
     e.stopPropagation();
