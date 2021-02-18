@@ -12,6 +12,7 @@ exports[`Gitt at Slider skal vises Når slider rendres Så vises slider riktig 1
     </h3>
     <div
       class="slider__track-wrapper"
+      data-testid="tracker"
     >
       <div
         class="slider__track"

@@ -6,12 +6,14 @@ import Title from '../Title';
 import {
   stopEvent,
   getMousePosition,
-  notifyMove,
+  getElementWidth,
   calculateSliderPositionBasedOnValue,
   calculateValueBasedOnSliderPosition,
+  calculateChangeOfPosition,
+  calculateSliderTranslate,
   addMouseListeners,
-  removeMouseListeners,
   addTouchListeners,
+  removeMouseListeners,
   removeTouchListeners,
 } from './SliderUtils';
 
@@ -21,9 +23,9 @@ interface SliderProps {
   /** Tekst som vises til over feltet */
   title?: string;
   /** Tekst som vises til venstre i feltet */
-  optionLeft?: string;
+  labelLeft?: string;
   /** Tekst som vises til høyre i feltet */
-  optionRight?: string;
+  labelRight?: string;
   /** Step value som brukes når verdien endres på slider'en */
   step?: number;
   /** Om feltet er disabled */
@@ -33,17 +35,18 @@ interface SliderProps {
 }
 
 export const Slider = React.forwardRef(function SliderForwardedRef(props: SliderProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { title, optionLeft, optionRight, disabled = false, step = 1, onChange } = props;
+  const { title, labelLeft, labelRight, disabled = false, step = 1, onChange } = props;
   const [value, setValue] = useState(50);
   const [isMouseDown, setIsMouseDown] = useState(false);
-  const [tempXPos, setTempXPos] = useState(0);
   const [trackerWidth, setTrackerWidth] = useState(0);
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderXPos, setSliderXPos] = useState(0);
-  const trackerRef = useRef<HTMLDivElement>(null);
+  const [sliderTemporaryXPos, setSliderTemporaryXPos] = useState(0);
+  const trackerRef = ref ? (ref as React.RefObject<HTMLDivElement>) : useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const min = 0;
   const max = 100;
+
   const moveMouseEvent = (evt: MouseEvent) => {
     onMouseMove(evt);
   };
@@ -58,15 +61,11 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   };
 
   useEffect(() => {
-    /** to calculate the initial position of the slider we have to get
-     * the width of html container element this can only be done after
-     * render, and to save the value we have to put in state and trigger rerender
-     */
-    const newTrackWidth: number = trackerRef.current ? trackerRef.current.offsetWidth : 0;
-    const newSliderWidth: number = sliderRef.current ? sliderRef.current.offsetWidth : 0;
-    setSliderXPos(calculateSliderPositionBasedOnValue(value, newTrackWidth, newSliderWidth, max, min));
-    setTrackerWidth(newTrackWidth);
-    setSliderWidth(newSliderWidth);
+    const trackerWidth = getElementWidth(trackerRef.current);
+    const sliderWidth = getElementWidth(sliderRef.current);
+    setSliderXPos(calculateSliderPositionBasedOnValue(value, trackerWidth, sliderWidth, max, min));
+    setTrackerWidth(trackerWidth);
+    setSliderWidth(sliderWidth);
   }, []);
 
   useEffect(() => {
@@ -77,107 +76,58 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   }, [isMouseDown]);
 
   useEffect(() => {
-    if (!disabled) {
-      notifyMove(value, onChange);
+    if (!disabled && onChange) {
+      onChange(value);
     }
   }, [value]);
 
-  const handleKeyPress = (evt: any) => {
-    if (disabled) {
-      return;
-    }
-
+  const onKeyDown = (evt: React.KeyboardEvent<HTMLDivElement>) => {
+    if (disabled) return;
     const size: number = max - min;
     const pixelPerSize: number = (trackerWidth - sliderWidth) / size;
-
     if (evt.key === 'ArrowRight' || evt.key === 'ArrowDown') {
-      moveSlider(step * pixelPerSize);
+      updateSliderPosition(step * pixelPerSize);
     }
     if (evt.key === 'ArrowLeft' || evt.key === 'ArrowUp') {
-      moveSlider(-step * pixelPerSize);
+      updateSliderPosition(-step * pixelPerSize);
     }
   };
 
-  function onMouseDown(e: MouseEvent | React.MouseEvent<{}>): void {
-    if (disabled) {
-      return;
-    }
-    const newTrackerWidth: number = trackerRef.current ? trackerRef.current.offsetWidth : 0;
-    const newSliderWidth: number = sliderRef.current ? sliderRef.current.offsetWidth : 0;
-    const newXpos: number = getMousePosition(e);
-    calculateSliderTranslate(newXpos, newSliderWidth);
-
+  const onMouseOrTouchDown = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void => {
+    if (disabled) return;
+    const trackerWidth = getElementWidth(trackerRef.current);
+    const sliderWidth = getElementWidth(sliderRef.current);
+    const updatedMousePosition: number = getMousePosition(e);
+    calculateSliderTranslate(updatedMousePosition, sliderRef.current, sliderWidth, updateSliderPosition);
     setIsMouseDown(true);
-    setTempXPos(newXpos);
-    setTrackerWidth(newTrackerWidth);
-    setSliderWidth(newSliderWidth);
+    setSliderTemporaryXPos(updatedMousePosition);
+    setTrackerWidth(trackerWidth);
+    setSliderWidth(sliderWidth);
     stopEvent(e);
-  }
+  };
 
-  function onTouchDown(e: TouchEvent | React.TouchEvent<{}>): void {
-    if (disabled) {
-      return;
-    }
-    const newTrackerWidth: number = trackerRef.current ? trackerRef.current.offsetWidth : 0;
-    const newSliderWidth: number = sliderRef.current ? sliderRef.current.offsetWidth : 0;
-    const newXpos: number = getMousePosition(e);
-    calculateSliderTranslate(newXpos, newSliderWidth);
-
-    setIsMouseDown(true);
-    setTempXPos(newXpos);
-    setTrackerWidth(newTrackerWidth);
-    setSliderWidth(newSliderWidth);
-    stopEvent(e);
-  }
-
-  function onMouseUp(e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void {
-    if (disabled) {
-      return;
-    }
-
+  const onMouseUp = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void => {
+    if (disabled) return;
     setIsMouseDown(false);
     removeMouseListeners(moveMouseEvent, mouseUpEvent);
     removeTouchListeners(moveTouchEvent, touchUpEvent);
     stopEvent(e);
-  }
-
-  function onMouseMove(e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void {
-    if (disabled || !isMouseDown) {
-      return;
-    }
-
-    const newXpos: number = getMousePosition(e);
-    const diff: number = newXpos - tempXPos;
-
-    moveSlider(diff);
-    stopEvent(e);
-  }
-
-  const moveSlider = (diff: number): void => {
-    if (diff === 0) {
-      return;
-    }
-    let newSliderPos: number = sliderXPos + diff;
-    if (newSliderPos < 0) {
-      newSliderPos = 0;
-    }
-    if (newSliderPos > trackerWidth - sliderWidth) {
-      newSliderPos = trackerWidth - sliderWidth;
-    }
-
-    setSliderXPos(newSliderPos);
-    setTempXPos(newSliderPos + diff);
-    setValue(calculateValueBasedOnSliderPosition(newSliderPos, max, min, trackerWidth, sliderWidth, step));
   };
 
-  function calculateSliderTranslate(newXpos: number, newSliderWidth: number) {
-    const sliderPageXPos = sliderRef.current?.getBoundingClientRect().left;
-    const diff: number = sliderPageXPos ? newXpos - (sliderPageXPos + newSliderWidth / 2) : 0;
-    moveSlider(diff);
-  }
+  const onMouseMove = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void => {
+    if (disabled || !isMouseDown) return;
+    const updatedMousePosition: number = getMousePosition(e);
+    const diff: number = updatedMousePosition - sliderTemporaryXPos;
+    updateSliderPosition(diff);
+    stopEvent(e);
+  };
 
-  const sliderPositionStyle = {
-    left: `${sliderXPos}px`,
+  const updateSliderPosition = (diff: number): void => {
+    if (diff === 0) return;
+    const updatedSliderPos: number = calculateChangeOfPosition(diff, sliderXPos, trackerWidth, sliderWidth);
+    setSliderXPos(updatedSliderPos);
+    setSliderTemporaryXPos(updatedSliderPos + diff);
+    setValue(calculateValueBasedOnSliderPosition(updatedSliderPos, max, min, trackerWidth, sliderWidth, step));
   };
 
   return (
@@ -190,34 +140,37 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
       <div
         ref={trackerRef}
         className={classNames(SliderStyles['slider__track-wrapper'], disabled ? SliderStyles['slider__track-wrapper--disabled'] : '')}
-        onMouseDown={onMouseDown}
-        onTouchStart={onTouchDown}
+        onMouseDown={onMouseOrTouchDown}
+        onTouchStart={onMouseOrTouchDown}
+        data-testid={'tracker'}
       >
         <div className={classNames(SliderStyles.slider__track, disabled ? SliderStyles['slider__track--disabled'] : '')} />
         <div
           ref={sliderRef}
-          style={sliderPositionStyle}
           className={classNames(SliderStyles.slider__trigger, disabled ? SliderStyles['slider__trigger--disabled'] : '')}
+          style={{
+            left: `${sliderXPos}px`,
+          }}
+          onKeyDown={onKeyDown}
           role={'slider'}
           aria-valuenow={value}
           aria-valuemin={min}
           aria-valuemax={max}
-          aria-label={`${title ? title + ' ' : ''}${optionLeft ? optionLeft + ' ' : ''}${optionRight ? optionRight + ' ' : ''}`}
+          aria-label={`${title ? title + ' ' : ''}${labelLeft ? labelLeft + ' ' : ''}${labelRight ? labelRight + ' ' : ''}`}
           tabIndex={disabled ? -1 : 0}
-          onKeyDown={handleKeyPress}
         >
           <div
             className={classNames(SliderStyles['slider__trigger-inner'], disabled ? SliderStyles['slider__trigger-inner--disabled'] : '')}
           />
         </div>
       </div>
-      {(optionLeft || optionRight) && (
+      {(labelLeft || labelRight) && (
         <span className={SliderStyles.slider__options}>
-          <p aria-hidden={true} className={SliderStyles.slider__text}>
-            {optionLeft}
+          <p className={SliderStyles.slider__text} aria-hidden={true}>
+            {labelLeft}
           </p>
-          <p aria-hidden={true} className={SliderStyles.slider__text}>
-            {optionRight}
+          <p className={SliderStyles.slider__text} aria-hidden={true}>
+            {labelRight}
           </p>
         </span>
       )}

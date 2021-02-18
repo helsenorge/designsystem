@@ -1,10 +1,9 @@
+// TO-DO: beskrive hver methode i utils, både formål og parametrene
+// TO-DO: teste systematisk hver methode
+
 export const stopEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): boolean => {
-  if (e.stopPropagation) {
-    e.stopPropagation();
-  }
-  if (e.preventDefault) {
-    e.preventDefault();
-  }
+  if (e.stopPropagation) e.stopPropagation();
+  if (e.preventDefault) e.preventDefault();
   return false;
 };
 
@@ -16,6 +15,11 @@ export const getMousePosition = (e: MouseEvent | React.MouseEvent<{}> | TouchEve
   return (e as MouseEvent).pageX;
 };
 
+export const getElementWidth = (el: HTMLDivElement | null): number => {
+  const elementViewportPosition = el ? el.getBoundingClientRect() : undefined;
+  return elementViewportPosition ? elementViewportPosition.right - elementViewportPosition.left : 0;
+};
+
 export const isTouchEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): boolean => {
   if (
     e.type === 'touchcancel' ||
@@ -25,33 +29,25 @@ export const isTouchEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent |
     e.type === 'touchmove' ||
     e.type === 'touchstart'
   ) {
-    if ((e as TouchEvent).touches.length === 0) {
-      return false;
-    } else {
-      return true;
-    }
+    return !((e as TouchEvent).touches.length === 0);
   }
   return false;
 };
 
-export const notifyMove = (value: number, onChange?: (value: number) => void): void => {
-  if (onChange) {
-    onChange(value);
-  }
-};
-
+// TO-DO min kommer alltid før max, bytt gjerne rekkefølge på dem. Gjelder flere.
 export const calculateSliderPositionBasedOnValue = (
   value: number,
-  trackWidth: number,
+  trackerWidth: number,
   sliderWidth: number,
   max: number,
   min: number
 ): number => {
   const size: number = max - min;
-  const pixelPerSize: number = (trackWidth - sliderWidth) / size;
+  const pixelPerSize: number = (trackerWidth - sliderWidth) / size;
   return pixelPerSize * value;
 };
 
+// TO-DO prøv så godt som mulig å bruke lik rekkefølge på tvers av methodene. Slik unngår man uheldige feil i parametre
 export const calculateValueBasedOnSliderPosition = (
   sliderPosition: number,
   max: number,
@@ -81,6 +77,30 @@ export const alignValue = (value: number, step: number, max: number): number => 
   return Math.round(alignedValue);
 };
 
+export const calculateChangeOfPosition = (diff: number, sliderXPos: number, trackerWidth: number, sliderWidth: number): number => {
+  let newSliderPos: number = sliderXPos + diff;
+  if (newSliderPos < 0) {
+    newSliderPos = 0;
+  }
+  if (newSliderPos > trackerWidth - sliderWidth) {
+    newSliderPos = trackerWidth - sliderWidth;
+  }
+  return newSliderPos;
+};
+
+export const calculateSliderTranslate = (
+  XPos: number,
+  sliderElement: HTMLDivElement | null,
+  sliderWidth: number,
+  cb: (a: number) => void
+) => {
+  const elementViewportPosition = sliderElement ? sliderElement.getBoundingClientRect() : undefined;
+  const sliderPageXPos = elementViewportPosition ? elementViewportPosition.left : 0;
+  const diff: number = sliderPageXPos ? XPos - (sliderPageXPos + sliderWidth / 2) : 0;
+  cb(diff);
+};
+
+// TO-DO Ikke bruk any
 export const addMouseListeners = (moveMouseEvent: any, mouseUpEvent: any): void => {
   document.addEventListener('mousemove', moveMouseEvent, false);
   document.addEventListener('mouseup', mouseUpEvent, false);

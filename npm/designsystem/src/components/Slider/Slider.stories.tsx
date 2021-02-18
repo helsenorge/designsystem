@@ -10,7 +10,7 @@ stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
   <div style={{ width: '30rem' }}>
-    <Slider title={'Steps: 100'} optionLeft={'left'} optionRight={'right'} step={1} />
+    <Slider title={'Steps: 100'} labelLeft={'left'} labelRight={'right'} step={1} />
     <Slider title={'Steps: 10'} step={10} />
     <Slider title={'Steps: 3'} step={50} />
     <Slider title={'Disabled'} disabled={true} />
