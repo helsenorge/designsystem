@@ -332,3 +332,128 @@ describe('Gitt at Slider skal vises', (): void => {
     });
   });
 });
+
+describe('Gitt at SliderUtils funksjoner skal kjøres', (): void => {
+  describe('Når stopEvent funksjonen blir kalt', (): void => {
+    test('Så blir kommer ikke eventet videre', () => {
+      const mouseDown = getMouseEvent('mousedown');
+      mouseDown.stopPropagation = jest.fn();
+      mouseDown.preventDefault = jest.fn();
+
+      utils.stopEvent(mouseDown);
+
+      expect(mouseDown.stopPropagation).toHaveBeenCalledTimes(1);
+      expect(mouseDown.preventDefault).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('Når getMousePosition funksjonen blir kalt', (): void => {
+    test('Så kan vi hente dens posisjon', () => {
+      const mouseDown = getMouseEvent('mousedown', {
+        pageX: 400,
+      });
+      const touchStart = getMouseEvent('touchstart', {
+        touches: [{ pageX: 800 }],
+      });
+
+      const mouseX = utils.getMousePosition(mouseDown);
+      const touchX = utils.getMousePosition(touchStart);
+
+      expect(mouseX).toBe(400);
+      expect(touchX).toBe(800);
+    });
+  });
+
+  describe('Når getElementWidth funksjonen blir kalt', (): void => {
+    test('Så får vi ut elementets bredde', () => {
+      const original = global.document['window'];
+
+      const getBoundingClientRect = jest.fn().mockReturnValueOnce({ left: 100, right: 900 });
+      window.HTMLDivElement.prototype.getBoundingClientRect = getBoundingClientRect;
+
+      const divElement = document.createElement('div');
+
+      const elementWidth = utils.getElementWidth(divElement);
+      expect(elementWidth).toBe(800);
+
+      global.document['window'] = original;
+    });
+  });
+
+  describe('Når isTouchEvent funksjonen blir kalt', (): void => {
+    test('Så får vi riktig svar tilbake', () => {
+      const mouseDown = getMouseEvent('mousedown');
+      const touchStart = getMouseEvent('touchstart', {
+        touches: [0],
+      });
+
+      const mouseIsTouch = utils.isTouchEvent(mouseDown);
+      const touchIsTouch = utils.isTouchEvent(touchStart);
+
+      expect(mouseIsTouch).toBe(false);
+      expect(touchIsTouch).toBe(true);
+    });
+  });
+
+  describe('Når calculateSliderPositionBasedOnValue funksjonen blir kalt', (): void => {
+    test('Så får vi riktig slider posisjon tilbake', () => {
+      const sliderPos = utils.calculateSliderPositionBasedOnValue(50, 100, 10, 0, 100);
+      expect(sliderPos).toBe(45);
+    });
+  });
+
+  describe('Når calculateValueBasedOnSliderPosition funksjonen blir kalt', (): void => {
+    test('Så får vi riktig value tilbake', () => {
+      const value = utils.calculateValueBasedOnSliderPosition(50, 100, 10, 10, 0, 100);
+      expect(value).toBe(50);
+    });
+  });
+
+  describe('Når alignValue funksjonen blir kalt', (): void => {
+    test('Så får vi riktig justert value tilbake', () => {
+      let value = utils.alignValue(55, 10, 100);
+      expect(value).toBe(50);
+
+      value = utils.alignValue(50, 10, 100);
+      expect(value).toBe(50);
+
+      value = utils.alignValue(99, 5, 100);
+      expect(value).toBe(95);
+    });
+  });
+
+  describe('Når calculateChangeOfPosition funksjonen blir kalt', (): void => {
+    test('Så får vi riktig slider posisjon tilbake', () => {
+      const trackerWidth = 100;
+      const sliderWidth = 10;
+      const maxWidth = trackerWidth - sliderWidth;
+      let sliderPos = utils.calculateChangeOfPosition(-100, trackerWidth, sliderWidth, 10);
+
+      expect(sliderPos).toBe(0);
+
+      sliderPos = utils.calculateChangeOfPosition(30, trackerWidth, sliderWidth, 50);
+      expect(sliderPos).toBe(80);
+
+      sliderPos = utils.calculateChangeOfPosition(100, trackerWidth, sliderWidth, 90);
+      expect(sliderPos).toBe(maxWidth);
+    });
+  });
+
+  describe('Når calculateSliderTranslate funksjonen blir kalt', (): void => {
+    test('Så får vi riktig slider posisjon tilbake', () => {
+      const original = global.document['window'];
+
+      const getBoundingClientRect = jest.fn().mockReturnValueOnce({ left: 100, right: 900 });
+      window.HTMLDivElement.prototype.getBoundingClientRect = getBoundingClientRect;
+
+      const mockCallBack = jest.fn();
+      const divElement = document.createElement('div');
+      utils.calculateSliderTranslate(50, divElement, 10, mockCallBack);
+
+      expect(mockCallBack).toHaveBeenCalledTimes(1);
+      expect(mockCallBack).toHaveBeenCalledWith(-55);
+
+      global.document['window'] = original;
+    });
+  });
+});

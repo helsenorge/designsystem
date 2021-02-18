@@ -1,12 +1,11 @@
-// TO-DO: beskrive hver methode i utils, både formål og parametrene
-// TO-DO: teste systematisk hver methode
-
+/** Stopper MouseEvent eller TouchEvent parameter e som sendes inn fra å nå videre.*/
 export const stopEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): boolean => {
   if (e.stopPropagation) e.stopPropagation();
   if (e.preventDefault) e.preventDefault();
   return false;
 };
 
+/** Henter ut x posisjon til MouseEvent eller TouchEvent e */
 export const getMousePosition = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): number => {
   if (isTouchEvent(e)) {
     const touch: Touch = (e as TouchEvent).touches[0];
@@ -15,11 +14,13 @@ export const getMousePosition = (e: MouseEvent | React.MouseEvent<{}> | TouchEve
   return (e as MouseEvent).pageX;
 };
 
+/** Henter ut width basert på viewport posisjon til parameter elementet el som sendes inn */
 export const getElementWidth = (el: HTMLDivElement | null): number => {
   const elementViewportPosition = el ? el.getBoundingClientRect() : undefined;
   return elementViewportPosition ? elementViewportPosition.right - elementViewportPosition.left : 0;
 };
 
+/** Returnerer en boolean på om innsendte event e er en TouchEvent */
 export const isTouchEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): boolean => {
   if (
     e.type === 'touchcancel' ||
@@ -34,27 +35,31 @@ export const isTouchEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent |
   return false;
 };
 
-// TO-DO min kommer alltid før max, bytt gjerne rekkefølge på dem. Gjelder flere.
+/** Kalkulerer x posisjonen til slideren basert på value som sendes inn,
+ *  trackerWidth - bredden til trackeren, sliderWidth - bredden på slideren,
+ *  og min og max verdier som er satt på slider komponentet. */
 export const calculateSliderPositionBasedOnValue = (
   value: number,
   trackerWidth: number,
   sliderWidth: number,
-  max: number,
-  min: number
+  min: number,
+  max: number
 ): number => {
   const size: number = max - min;
   const pixelPerSize: number = (trackerWidth - sliderWidth) / size;
   return pixelPerSize * value;
 };
 
-// TO-DO prøv så godt som mulig å bruke lik rekkefølge på tvers av methodene. Slik unngår man uheldige feil i parametre
+/** Kalkulerer verdi basert på sliderPosition som sendes inn,
+ *  trackerWidth - bredden til trackeren, sliderWidth - bredden på slideren,
+ *  og min og max verdier som er satt på slider komponentet. */
 export const calculateValueBasedOnSliderPosition = (
   sliderPosition: number,
-  max: number,
-  min: number,
   trackerWidth: number,
   sliderWidth: number,
-  step: number
+  step: number,
+  min: number,
+  max: number
 ): number => {
   const size: number = max - min;
   const pixelPerSize: number = (trackerWidth - sliderWidth) / size;
@@ -62,6 +67,9 @@ export const calculateValueBasedOnSliderPosition = (
   return alignValue(newValue, step, max);
 };
 
+/** Kalkulerer modifisert value basert på step parameteret,
+ * med hensyn til max verdi til slideren.
+ * Med en step på 10 vil da value gå fra 0 til 10 til 20 osv. */
 export const alignValue = (value: number, step: number, max: number): number => {
   const valModStep: number = value % step;
   let alignedValue: number = value - valModStep;
@@ -77,7 +85,10 @@ export const alignValue = (value: number, step: number, max: number): number => 
   return Math.round(alignedValue);
 };
 
-export const calculateChangeOfPosition = (diff: number, sliderXPos: number, trackerWidth: number, sliderWidth: number): number => {
+/** Kalkulerer ny x posisjon til slider basert på innsendt differanse diff,
+ *  nåværende sliderXPos, bredden til tracker - TrackerWidth og bredden til
+ *  slider - sliderWidth. */
+export const calculateChangeOfPosition = (diff: number, trackerWidth: number, sliderWidth: number, sliderXPos: number): number => {
   let newSliderPos: number = sliderXPos + diff;
   if (newSliderPos < 0) {
     newSliderPos = 0;
@@ -88,35 +99,44 @@ export const calculateChangeOfPosition = (diff: number, sliderXPos: number, trac
   return newSliderPos;
 };
 
+/** Kalkulerer posisjon til slider basert på xPos, nåværende sliderELement og
+ *  bredden til slider - sliderWidth */
 export const calculateSliderTranslate = (
-  XPos: number,
+  xPos: number,
   sliderElement: HTMLDivElement | null,
   sliderWidth: number,
   cb: (a: number) => void
 ) => {
   const elementViewportPosition = sliderElement ? sliderElement.getBoundingClientRect() : undefined;
   const sliderPageXPos = elementViewportPosition ? elementViewportPosition.left : 0;
-  const diff: number = sliderPageXPos ? XPos - (sliderPageXPos + sliderWidth / 2) : 0;
+  const diff: number = sliderPageXPos ? xPos - (sliderPageXPos + sliderWidth / 2) : 0;
   cb(diff);
 };
 
-// TO-DO Ikke bruk any
-export const addMouseListeners = (moveMouseEvent: any, mouseUpEvent: any): void => {
+/** Legger til mousemove og mouseup event listeners,
+ *  basert på moveMouseEvent og mouseUpEvent eventene */
+export const addMouseListeners = (moveMouseEvent: (evt: MouseEvent) => void, mouseUpEvent: (evt: MouseEvent) => void): void => {
   document.addEventListener('mousemove', moveMouseEvent, false);
   document.addEventListener('mouseup', mouseUpEvent, false);
 };
 
-export const removeMouseListeners = (moveMouseEvent: any, mouseUpEvent: any): void => {
+/** Fjerner mousemove og mouseup event listeners,
+ *  basert på moveMouseEvent og mouseUpEvent eventene */
+export const removeMouseListeners = (moveMouseEvent: (evt: MouseEvent) => void, mouseUpEvent: (evt: MouseEvent) => void): void => {
   document.removeEventListener('mousemove', moveMouseEvent, false);
   document.removeEventListener('mouseup', mouseUpEvent, false);
 };
 
-export const addTouchListeners = (moveTouchEvent: any, touchUpEvent: any): void => {
+/** Legger til touchmove og touchend event listeners,
+ *  basert på moveTouchEvent og touchUpEvent eventene */
+export const addTouchListeners = (moveTouchEvent: (evt: TouchEvent) => void, touchUpEvent: (evt: TouchEvent) => void): void => {
   document.addEventListener('touchmove', moveTouchEvent, false);
   document.addEventListener('touchend', touchUpEvent, false);
 };
 
-export const removeTouchListeners = (moveTouchEvent: any, touchUpEvent: any): void => {
+/** Fjerner touchmove og touchup event listeners,
+ *  basert på moveTouchEvent og touchUpEvent eventene */
+export const removeTouchListeners = (moveTouchEvent: (evt: TouchEvent) => void, touchUpEvent: (evt: TouchEvent) => void): void => {
   document.removeEventListener('touchmove', moveTouchEvent, false);
   document.removeEventListener('touchend', touchUpEvent, false);
 };

@@ -63,7 +63,7 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   useEffect(() => {
     const trackerWidth = getElementWidth(trackerRef.current);
     const sliderWidth = getElementWidth(sliderRef.current);
-    setSliderXPos(calculateSliderPositionBasedOnValue(value, trackerWidth, sliderWidth, max, min));
+    setSliderXPos(calculateSliderPositionBasedOnValue(value, trackerWidth, sliderWidth, min, max));
     setTrackerWidth(trackerWidth);
     setSliderWidth(sliderWidth);
   }, []);
@@ -124,10 +124,10 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
 
   const updateSliderPosition = (diff: number): void => {
     if (diff === 0) return;
-    const updatedSliderPos: number = calculateChangeOfPosition(diff, sliderXPos, trackerWidth, sliderWidth);
+    const updatedSliderPos: number = calculateChangeOfPosition(diff, trackerWidth, sliderWidth, sliderXPos);
     setSliderXPos(updatedSliderPos);
     setSliderTemporaryXPos(updatedSliderPos + diff);
-    setValue(calculateValueBasedOnSliderPosition(updatedSliderPos, max, min, trackerWidth, sliderWidth, step));
+    setValue(calculateValueBasedOnSliderPosition(updatedSliderPos, trackerWidth, sliderWidth, step, min, max));
   };
 
   return (
