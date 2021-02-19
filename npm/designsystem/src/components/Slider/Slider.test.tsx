@@ -335,7 +335,7 @@ describe('Gitt at Slider skal vises', (): void => {
 
 describe('Gitt at SliderUtils funksjoner skal kjøres', (): void => {
   describe('Når stopEvent funksjonen blir kalt', (): void => {
-    test('Så blir kommer ikke eventet videre', () => {
+    test('Så har stopPropagation og preventDefault blitt kalt på eventet', () => {
       const mouseDown = getMouseEvent('mousedown');
       mouseDown.stopPropagation = jest.fn();
       mouseDown.preventDefault = jest.fn();
@@ -348,7 +348,7 @@ describe('Gitt at SliderUtils funksjoner skal kjøres', (): void => {
   });
 
   describe('Når getMousePosition funksjonen blir kalt', (): void => {
-    test('Så kan vi hente dens posisjon', () => {
+    test('Så kan musens posisjon hentes', () => {
       const mouseDown = getMouseEvent('mousedown', {
         pageX: 400,
       });

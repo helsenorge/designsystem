@@ -62,6 +62,7 @@ function getComponents(pathToFolder, fn) {
         '**/*.scss',
         '**/*.scss.d.ts',
         '**/*.test.tsx',
+        '**/*Utils.tsx',
         `${pathToFolder}/Icon.*`,
       ],
     },
