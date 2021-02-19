@@ -1,0 +1,52 @@
+{
+  "props": [
+    {
+      "name": "title",
+      "type": "string",
+      "require": "false",
+      "default": "",
+      "valid": [],
+      "description": "Sets the title of the slider."
+    },
+    {
+      "name": "labelLeft",
+      "type": "string",
+      "require": "false",
+      "default": "",
+      "valid": [],
+      "description": "Adds the left hand label to the element."
+    },
+    {
+      "name": "labelRight",
+      "type": "string",
+      "require": "false",
+      "default": "",
+      "valid": [],
+      "description": "Adds the right hand label to the element."
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "require": "false",
+      "default": "1",
+      "valid": ["1 to 100"],
+      "description": "Decides the number of steps for each movement of the slider."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "require": "false",
+      "default": "false",
+      "valid": ["false", "true"],
+      "description": "Disables the slider element."
+    },
+    {
+      "name": "onChange",
+      "type": "function",
+      "require": "false",
+      "default": "",
+      "valid": ["() => {}"],
+      "description": "Function to be called when the value state has changed."
+    }
+  ]
+}

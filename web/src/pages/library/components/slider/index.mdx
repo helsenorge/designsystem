@@ -1,0 +1,61 @@
+---
+title: Slider
+path: /library/components/slider
+date: 2021-02-19
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from './slider.json';
+import Slider from '@helsenorge/designsystem-react/components/Slider';
+
+# Slider
+
+<MDXCustom.Preamble>
+  The slider element shows an interactable slider, both by mouse/touch and keyboard interactions. This returns the value of the slider to the onChange prop passed to it.
+</MDXCustom.Preamble>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{propData}} />
+
+## Examples
+
+### Default
+
+<MDXCustom.LiveComponent fullWidth stack scope={{Slider}}>{`
+ <div style={{width: '100%'}}>
+    <div style={{marginBottom: '0.25rem'}}>
+      <Slider />
+    </div>
+  </div>
+`}</MDXCustom.LiveComponent>
+
+### Title and labels
+
+<MDXCustom.LiveComponent fullWidth stack scope={{Slider}}>{`
+ <div style={{width: '100%'}}>
+    <div style={{marginBottom: '0.25rem'}}>
+      <Slider title={'Title'} labelLeft={'Left label'} labelRight={'Right Label'} />
+    </div>
+  </div>
+`}</MDXCustom.LiveComponent>
+
+### Disabled
+
+<MDXCustom.LiveComponent fullWidth stack scope={{Slider}}>{`
+ <div style={{width: '100%'}}>
+    <div style={{marginBottom: '0.25rem'}}>
+      <Slider disabled={true}/>
+    </div>
+  </div>
+`}</MDXCustom.LiveComponent>
+
+
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**

@@ -1,0 +1,85 @@
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+
+.slider {
+  width: 100%;
+  padding: getSpacer(m) 0;
+  position: relative;
+  outline: none !important;
+
+  &__track-wrapper {
+    width: 100%;
+    cursor: pointer;
+
+    &--disabled {
+      cursor: default;
+    }
+  }
+
+  &__track {
+    height: 2px;
+    background-color: $black;
+    width: 100%;
+    position: relative;
+    top: 1rem;
+
+    &--disabled {
+      background-color: $neutral600;
+    }
+  }
+
+  &__trigger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: $white;
+    border: 0.15rem solid $black;
+    border-radius: 1rem;
+    position: relative;
+    top: -0.05rem;
+    z-index: 9;
+    outline: none;
+    cursor: pointer;
+
+    &--disabled {
+      border-color: $neutral500;
+      cursor: default;
+    }
+  }
+
+  &__trigger-inner {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 0.1rem solid $black;
+    border-radius: 1rem;
+    background-color: $blueberry600;
+
+    :hover > &,
+    :focus > & {
+      background-color: $blueberry800;
+    }
+
+    &--disabled {
+      border-color: $neutral500;
+      background-color: $neutral200;
+
+      :hover > &,
+      :focus > & {
+        background-color: $neutral200;
+      }
+    }
+  }
+
+  &__options {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__text {
+    margin: 0;
+  }
+}
