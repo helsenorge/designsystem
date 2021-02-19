@@ -17,7 +17,7 @@
       "description": "Adds the left hand label to the element."
     },
     {
-      "name": "labelReft",
+      "name": "labelRight",
       "type": "string",
       "require": "false",
       "default": "",
