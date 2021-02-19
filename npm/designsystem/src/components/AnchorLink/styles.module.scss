@@ -61,11 +61,11 @@
   &:focus {
     outline: none;
     border: none;
-    box-shadow: 0 0 0 2px $black;
+    box-shadow: 0 0 0 0.1rem $black;
   }
 
   &__icon {
     vertical-align: bottom;
-    margin: 0 -0.5rem -0.5rem -0.5rem;
+    margin: 0 -0.5rem -0.3rem -0rem;
   }
 }
