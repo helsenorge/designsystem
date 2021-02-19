@@ -90,6 +90,10 @@
           "path": "/library/components/spacer"
         },
         {
+          "label": "Slider",
+          "path": "/library/components/slider"
+        },
+        {
           "label": "Tile",
           "path": "/library/components/tile"
         },
