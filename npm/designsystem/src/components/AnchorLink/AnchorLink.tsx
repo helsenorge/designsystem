@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Icon from '../Icons';
 import ArrowUpRight from '../Icons/ArrowUpRight';
 import { getColor } from '../../theme/currys';
@@ -20,20 +20,26 @@ interface AnchorLinkProps {
 const AnchorLink = React.forwardRef(function AnchorLinkForwardedRef(props: AnchorLinkProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
   const { id, href, children, className, target = '_self' } = props;
   const external = target === '_blank';
-  const { hoverRef, isHovered } = useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
+  const { hoverRef, isHovered } = useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>, undefined, false);
   const anchorClasses = classNames(AnchorLinkStyles.anchorlink, className ?? '');
+
   return (
     <a id={id} href={href} className={anchorClasses} target={target} ref={hoverRef}>
       {children}
       {external && (
-        <Icon
-          className={AnchorLinkStyles.anchorlink__icon}
-          svgIcon={ArrowUpRight}
-          color={getColor('blueberry', 600)}
-          hoverColor={getColor('blueberry', 700)}
-          size={40}
-          isHovered={isHovered}
-        />
+        <>
+          <span className={AnchorLinkStyles.anchorlink__spacer}></span>
+          <span className={AnchorLinkStyles['anchorlink__icon-wrapper']}>
+            <Icon
+              className={AnchorLinkStyles.anchorlink__icon}
+              svgIcon={ArrowUpRight}
+              color={getColor('blueberry', 600)}
+              hoverColor={getColor('blueberry', 700)}
+              size={38}
+              isHovered={isHovered}
+            />
+          </span>
+        </>
       )}
     </a>
   );

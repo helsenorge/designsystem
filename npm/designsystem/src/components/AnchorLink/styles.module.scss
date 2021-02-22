@@ -2,70 +2,70 @@
 @import '../../scss/_breakpoints.scss';
 @import '../../scss/_palette.scss';
 
-/*  Undersøk om du finner noe module spesifikt før vi bruker dette:
-    Undersøk bruk av @mixin og @include for å gjenbruke anchorlink styling i notificationpanel
-    linje 75 i notificationpanel/styles.module.scss */
-
-// .link {
-//   color: $blueberry600;
-//   padding-bottom: 0.15rem;
-//   border-bottom: 1px solid $neutral300;
-//   text-decoration: none;
-//   outline: none;
-//   &:focus {
-//     outline: none;
-//     background-color: rgba(8, 102, 124, 0.05); /* Dette er blueberry 700 med 5% opacity*/
-//     border-color: $neutral300;
-//   }
-//   &:hover {
-//     cursor: pointer;
-//     border-color: $blueberry700;
-//   }
-//   &[target='_blank'] {
-//     &:after {
-//       content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48' fill='%2308667c'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
-//       display: inline-block;
-//       width: 38px;
-//       height: 38px;
-//       vertical-align: bottom;
-//       margin-bottom: -0.25rem;
-//     }
-//   }
-// }
-
-.anchorlink {
+@mixin anchorlink {
   display: inline;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   overflow-wrap: break-word;
   word-wrap: break-word;
   text-align: left;
-  padding-bottom: 0.15rem;
   text-decoration: none;
   color: $blueberry600;
+  padding: 0.15rem;
   border-bottom: 1px solid $neutral300;
 
-  /* -- anchorlink -- */
   font-size: 1.125rem;
   line-height: 1.875rem;
   font-weight: 400;
   @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 1.25rem;
   }
-  /* -- anchorlink -- */
 
   &:hover {
     cursor: pointer;
     color: $blueberry700;
-    border-color: $blueberry600;
     background-color: $blueberry50;
+    border-bottom-color: $blueberry600;
   }
   &:focus {
+    padding: 0 0 0.15rem 0;
     outline: none;
-    border: none;
-    box-shadow: 0 0 0 0.1rem $black;
+    border: 0.15rem solid $black;
+  }
+
+  &__spacer {
+    display: inline-block;
+    width: 2rem;
+    height: 1rem;
+  }
+
+  &__icon-wrapper {
+    display: inline-flex;
+    position: absolute;
+    width: 0;
   }
 
   &__icon {
     vertical-align: bottom;
-    margin: 0 -0.5rem -0.3rem -0rem;
+    position: relative;
+    bottom: 0.2rem;
+    left: -2rem;
   }
+}
+
+@mixin anchorlink-icon {
+  &[target='_blank'] {
+    &:after {
+      content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48' fill='%2308667c'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
+      display: inline-block;
+      width: 38px;
+      height: 38px;
+      vertical-align: bottom;
+      margin-bottom: -0.25rem;
+    }
+  }
+}
+
+.anchorlink {
+  @include anchorlink;
 }
