@@ -103,6 +103,7 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
     setSliderTemporaryXPos(updatedMousePosition);
     setTrackerWidth(trackerWidth);
     setSliderWidth(sliderWidth);
+    sliderRef.current?.focus();
     stopEvent(e);
   };
 
