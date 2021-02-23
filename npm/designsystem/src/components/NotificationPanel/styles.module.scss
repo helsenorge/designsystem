@@ -96,6 +96,12 @@
           &:after {
             content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48' fill='%23bdbab9'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
           }
+
+          &:focus {
+            &:after {
+              content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='38px' height='38px' viewBox='0 0 48 48'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
+            }
+          }
         }
       }
     }

@@ -27,19 +27,14 @@ const AnchorLink = React.forwardRef(function AnchorLinkForwardedRef(props: Ancho
     <a id={id} href={href} className={anchorClasses} target={target} ref={hoverRef}>
       {children}
       {external && (
-        <>
-          <span className={AnchorLinkStyles.anchorlink__spacer}></span>
-          <span className={AnchorLinkStyles['anchorlink__icon-wrapper']}>
-            <Icon
-              className={AnchorLinkStyles.anchorlink__icon}
-              svgIcon={ArrowUpRight}
-              color={getColor('blueberry', 600)}
-              hoverColor={getColor('blueberry', 700)}
-              size={38}
-              isHovered={isHovered}
-            />
-          </span>
-        </>
+        <Icon
+          className={AnchorLinkStyles.anchorlink__icon}
+          svgIcon={ArrowUpRight}
+          color={getColor('blueberry', 600)}
+          hoverColor={getColor('blueberry', 700)}
+          size={38}
+          isHovered={isHovered}
+        />
       )}
     </a>
   );

@@ -1,7 +1,4 @@
 export const anchorlink: string
-export const anchorlinkSpacer: string
-export const anchorlink__spacer: string
-export const anchorlinkIconWrapper: string
 export const anchorlinkIcon: string
 export const anchorlink__icon: string
 export const notificationPanel: string
@@ -30,10 +27,6 @@ export const notificationPanelActionColumn: string
 export const notificationPanelCloseButton: string
 interface Namespace {
 	"anchorlink": string,
-	"anchorlinkSpacer": string,
-	"anchorlink__spacer": string,
-	"anchorlinkIconWrapper": string,
-	"anchorlink__icon-wrapper": string,
 	"anchorlinkIcon": string,
 	"anchorlink__icon": string,
 	"notificationPanel": string,
