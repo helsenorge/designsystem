@@ -3,7 +3,7 @@
 exports[`displays anchorlink with className and id 1`] = `
 <div>
   <a
-    class="sc-AxirZ bkUrWL custom-classname"
+    class="anchorlink custom-classname"
     id="custom-id"
     target="_self"
   >
@@ -15,7 +15,7 @@ exports[`displays anchorlink with className and id 1`] = `
 exports[`displays default anchorlink 1`] = `
 <div>
   <a
-    class="sc-AxirZ bkUrWL"
+    class="anchorlink"
     target="_self"
   >
     AnchorLink
@@ -26,23 +26,30 @@ exports[`displays default anchorlink 1`] = `
 exports[`displays external anchorlink 1`] = `
 <div>
   <a
-    class="sc-AxirZ bkUrWL"
+    class="anchorlink"
     target="_blank"
   >
     AnchorLink external
-    <svg
-      aria-hidden="true"
-      class="sc-AxjAm jPyZsV hnds-style-icon "
-      fill="#126F87"
-      height="48"
-      role="img"
-      viewBox="0 0 48 48"
-      width="48"
+    <span
+      class="anchorlink__spacer"
+    />
+    <span
+      class="anchorlink__icon-wrapper"
     >
-      <path
-        d="M33.305 14.659v14.546h-1.3V16.948L15.804 33.149l-.919-.92 16.27-16.27-12.394.001v-1.301z"
-      />
-    </svg>
+      <svg
+        aria-hidden="true"
+        class="sc-AxjAm SZoaN hnds-style-icon anchorlink__icon"
+        fill="#126F87"
+        height="38"
+        role="img"
+        viewBox="0 0 48 48"
+        width="38"
+      >
+        <path
+          d="M18.76 14.426v1.768h11.83L14.719 32.065l1.251 1.25 15.801-15.801v11.691h1.768V14.426z"
+        />
+      </svg>
+    </span>
   </a>
 </div>
 `;
