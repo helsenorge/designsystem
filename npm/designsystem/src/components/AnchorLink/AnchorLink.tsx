@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Icon from '../Icons';
 import ArrowUpRight from '../Icons/ArrowUpRight';
 import { getColor } from '../../theme/currys';
