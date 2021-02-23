@@ -1,6 +1,12 @@
 import { useRef, useEffect, useState, RefObject } from 'react';
 
-export const useHover = <T extends HTMLElement>(ref?: RefObject<T>, condition?: boolean) => {
+/** ref: Reference object for the trigger of the hover state
+ *
+ *  condition: Additional boolean condition to trigger the useEffect checking for hover.
+ *
+ *  includeFocus: If focusing the ref should count as a hover or not. True by default.
+ */
+export const useHover = <T extends HTMLElement>(ref?: RefObject<T>, condition?: boolean, includeFocus: boolean = true) => {
   const hoverRef = ref ? ref : useRef<T>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -11,10 +17,10 @@ export const useHover = <T extends HTMLElement>(ref?: RefObject<T>, condition?: 
 
     const handleOutEvent = () => setIsHovered(false);
 
-    const inEventList = ['mouseenter', 'focusin'];
+    const inEventList = ['mouseenter', includeFocus ? 'focusin' : ''];
     inEventList.forEach(eventName => element && element.addEventListener(eventName, handleInEvent));
 
-    const outEventList = ['mouseleave', 'focusout'];
+    const outEventList = ['mouseleave', includeFocus ? 'focusout' : ''];
     outEventList.forEach(eventName => element && element.addEventListener(eventName, handleOutEvent));
 
     return () => {

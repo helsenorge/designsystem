@@ -1,3 +1,6 @@
+export const anchorlink: string
+export const anchorlinkIcon: string
+export const anchorlink__icon: string
 export const notificationPanel: string
 export const notificationPanelSmall: string
 export const notificationPanelMedium: string
@@ -23,6 +26,9 @@ export const notificationPanelLabel: string
 export const notificationPanelActionColumn: string
 export const notificationPanelCloseButton: string
 interface Namespace {
+	"anchorlink": string,
+	"anchorlinkIcon": string,
+	"anchorlink__icon": string,
 	"notificationPanel": string,
 	"notification-panel": string,
 	"notificationPanelSmall": string,
