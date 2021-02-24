@@ -14,13 +14,6 @@
   padding: 0.15rem;
   border-bottom: 1px solid $neutral300;
 
-  font-size: 1.125rem;
-  line-height: 1.875rem;
-  font-weight: 400;
-  @media (min-width: map-get($grid-breakpoints, md)) {
-    font-size: 1.25rem;
-  }
-
   &:hover {
     cursor: pointer;
     color: $blueberry700;
@@ -42,9 +35,17 @@
   }
 }
 
+@mixin anchorlink-font {
+  font-size: 1.125rem;
+  line-height: 1.875rem;
+  font-weight: 400;
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    font-size: 1.25rem;
+  }
+}
+
 @mixin anchorlink-icon {
   &[target='_blank'] {
-    word-break: break-all;
     &:after {
       content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='38px' height='38px' viewBox='0 0 48 48' fill='%2308667c'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
       display: inline-block;
@@ -58,4 +59,5 @@
 
 .anchorlink {
   @include anchorlink;
+  @include anchorlink-font();
 }
