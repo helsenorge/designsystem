@@ -10,7 +10,6 @@ export interface StyledTitleProps {
 const StyledTitle = styled('h1')<StyledTitleProps>`
   overflow-wrap: break-word;
   word-wrap: break-word;
-  text-align: left;
   margin: ${props => `${props.margin}rem`} 0;
   ${props => typography[props.appearance]};
 `;
