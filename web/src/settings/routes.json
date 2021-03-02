@@ -133,7 +133,13 @@
     },
     {
       "label": "Brukerinput",
-      "path": "/patterns/brukerinput"
+      "path": "/patterns/brukerinput",
+      "children": [
+        {
+          "label": "Knapp [Button]",
+          "path": "/patterns/knapp-button"
+        }
+      ]
     },
     {
       "label": "Datapresentasjon",
