@@ -1,28 +1,25 @@
-declare namespace StylesModuleScssNamespace {
-  export interface IStylesModuleScss {
-    'title-feature': string;
-    'focused-content': string;
-    title1: string;
-    title2: string;
-    title3: string;
-    title4: string;
-    title5: string;
-    preamble: string;
-    legend: string;
-    label: string;
-    table: string;
-    strong: string;
-    form: string;
-    time: string;
-    'image-caption': string;
-    'image-credit': string;
-    'anchorlink-wrapper': string;
-  }
-}
-
-declare const StylesModuleScssModule: StylesModuleScssNamespace.IStylesModuleScss & {
-  /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: StylesModuleScssNamespace.IStylesModuleScss;
+export type Styles = {
+  'anchorlink-wrapper': string;
+  'focused-content': string;
+  form: string;
+  'image-caption': string;
+  'image-credit': string;
+  label: string;
+  legend: string;
+  preamble: string;
+  strong: string;
+  table: string;
+  time: string;
+  'title-feature': string;
+  title1: string;
+  title2: string;
+  title3: string;
+  title4: string;
+  title5: string;
 };
 
-export default StylesModuleScssModule;
+export type ClassNames = keyof Styles;
+
+declare const styles: Styles;
+
+export default styles;

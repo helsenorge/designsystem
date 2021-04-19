@@ -3,7 +3,6 @@ import resolve from 'rollup-plugin-node-resolve';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import commonjs from 'rollup-plugin-commonjs';
 import buble from 'rollup-plugin-buble';
-import postcss from 'rollup-plugin-postcss-modules';
 import typescript from 'rollup-plugin-typescript2';
 import progress from 'rollup-plugin-progress';
 import copy from 'rollup-plugin-copy';
@@ -38,12 +37,6 @@ export default [
         clearLine: false,
       }),
       peerDepsExternal(),
-      postcss({
-        extract: false,
-        modules: true,
-        writeDefinitions: true,
-        use: ['sass'],
-      }),
       typescript(),
       resolve({ extensions }),
       commonjs({
@@ -65,6 +58,6 @@ export default [
 
       buble(),
     ],
-    external: Object.keys(globals),
+    external: [...Object.keys(globals), './styles.module.scss'],
   },
 ];
