@@ -11,6 +11,7 @@ import AlertSignFill from '../Icons/AlertSignFill';
 import X from '../Icons/X';
 
 import NotificationPanelStyles from './styles.module.scss';
+import classNames from 'classnames';
 
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'crisis';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
@@ -48,6 +49,10 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
 ) {
   const { children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size, className } = props;
   const { hoverRef, isHovered } = useHover<HTMLButtonElement>(undefined, dismissable);
+  const closeButtonClasses = classNames(
+    NotificationPanelStyles['notification-panel__close-button'],
+    variant === 'crisis' ? NotificationPanelStyles['notification-panel__close-button--crisis'] : ''
+  );
 
   function wrapFluid(panel: React.ReactElement): React.ReactElement {
     if (fluid) {
@@ -95,8 +100,14 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
       </div>
       <span className={NotificationPanelStyles['notification-panel__action-column']}>
         {dismissable ? (
-          <button className={NotificationPanelStyles['notification-panel__close-button']} onClick={onClick} ref={hoverRef}>
-            <Icon svgIcon={X} isHovered={isHovered} size={38} color={palette.blueberry500} hoverColor={palette.blueberry700} />
+          <button className={closeButtonClasses} onClick={onClick} ref={hoverRef}>
+            <Icon
+              svgIcon={X}
+              isHovered={isHovered}
+              size={38}
+              color={variant === 'crisis' ? palette.white : palette.blueberry500}
+              hoverColor={variant === 'crisis' ? palette.white : palette.blueberry700}
+            />
           </button>
         ) : null}
       </span>
