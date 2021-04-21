@@ -4,6 +4,7 @@ export type Styles = {
   'notification-panel': string;
   'notification-panel__action-column': string;
   'notification-panel__close-button': string;
+  'notification-panel__close-button--crisis': string;
   'notification-panel__content': string;
   'notification-panel__content--crisis': string;
   'notification-panel__content--haslabel': string;

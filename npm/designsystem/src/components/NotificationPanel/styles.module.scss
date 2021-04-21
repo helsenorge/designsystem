@@ -162,13 +162,23 @@
     &:hover,
     :active,
     :focus {
-      background-color: $blueberry700;
+      background-color: rgba(8, 102, 124, 0.05);
       border-color: transparent;
-      &:before {
-        border-color: $blueberry700;
-      }
       &:after {
         border-color: $blueberry700;
+      }
+    }
+
+    &--crisis {
+      border-color: $white;
+
+      &:hover,
+      :active,
+      :focus {
+        border-color: transparent;
+        &:after {
+          border-color: $white;
+        }
       }
     }
   }

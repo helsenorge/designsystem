@@ -40,10 +40,15 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
   return (
     <li ref={ref}>
       <a
-        className={cn(LinkListStyles['link-list__anchor'], LinkListStyles['link-list__anchor--' + color], {
-          [LinkListStyles['link-list__anchor--hasicon']]: !!(chevron || icon),
-          [LinkListStyles['link-list__anchor--large']]: large,
-        })}
+        className={cn(
+          LinkListStyles['link-list__anchor'],
+          LinkListStyles['link-list__anchor--' + color],
+          {
+            [LinkListStyles['link-list__anchor--hasicon']]: !!(chevron || icon),
+            [LinkListStyles['link-list__anchor--large']]: large,
+          },
+          className
+        )}
         ref={hoverRef}
         {...restProps}
       >
