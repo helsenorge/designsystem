@@ -95,7 +95,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
           [NotificationPanelStyles['notification-panel__content--isred']]: variant === 'alert' && !!label && !children,
         })}
       >
-        {label ? <h1 className={NotificationPanelStyles['notification-panel__label']}>{label}</h1> : null}
+        {label ? <h1 className={NotificationPanelStyles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} /> : null}
         {children}
       </div>
       <span className={NotificationPanelStyles['notification-panel__action-column']}>
