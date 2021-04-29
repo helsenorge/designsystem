@@ -1,26 +1,21 @@
 {
-  "version": "1.0.0-beta46",
-  "npmClient": "npm",
-  "command": {
-    "run": {
-      "npmClient": "npm"
-    },
-    "add": {
-      "npmClient": "npm"
-    },
-    "version": {
-      "push": false,
-      "allowBranch": [
-        "master"
-      ]
-    },
-    "publish": {
-      "scope": "@helsenorge/*",
-      "registry": "https://pkgs.dev.azure.com/nhnfelles/_packaging/Helsenorge/npm/registry/"
-    }
-  },
-  "packages": [
-    "npm/*",
-    "web"
-  ]
+	"version": "1.0.0-beta47",
+	"npmClient": "npm",
+	"command": {
+		"run": {
+			"npmClient": "npm"
+		},
+		"add": {
+			"npmClient": "npm"
+		},
+		"version": {
+			"push": false,
+			"allowBranch": ["master"]
+		},
+		"publish": {
+			"scope": "@helsenorge/*",
+			"registry": "https://pkgs.dev.azure.com/nhnfelles/_packaging/Helsenorge/npm/registry/"
+		}
+	},
+	"packages": ["npm/*", "web"]
 }

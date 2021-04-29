@@ -8,7 +8,7 @@ import Checkbox from '../../../CheckBox/CheckBox';
 import { SvgIcon } from '@helsenorge/designsystem-react/components/Icons/Icon';
 import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
-type IconImport = { module: SvgIcon; name: string };
+type IconImport = { module: SvgIcon; name: string; alternativeName: string; categories: string };
 
 const StyledIconTile = styled('div')`
   background-color: #f6f5f2;
@@ -21,6 +21,15 @@ const StyledIconTile = styled('div')`
 `;
 
 const StyledIconName = styled('span')`
+  margin: 1rem auto 0;
+  color: #9b978c;
+`;
+
+const StyledAlternativeIconName = styled('span')`
+  color: #9b978c;
+`;
+
+const StyledIconCategory = styled('span')`
   margin: 1rem auto;
   color: #9b978c;
 `;
@@ -95,7 +104,15 @@ function IconWall() {
 
   const filterIcons = (iconImport: IconImport, index: number) => {
     if (filterProps.filter) {
-      if (iconImport.name.toLowerCase().includes(filterProps.filter.toLowerCase())) {
+      const filterAlternativenames = iconImport.alternativeName.toLowerCase().includes(filterProps.filter.toLowerCase());
+      const filterCategories = iconImport.categories.split(',').some(e =>
+        e
+          .toLowerCase()
+          .trim()
+          .includes(filterProps.filter.toLowerCase())
+      );
+
+      if (iconImport.name.toLowerCase().includes(filterProps.filter.toLowerCase()) || filterAlternativenames || filterCategories) {
         return iconImport;
       } else {
         return false;
@@ -114,6 +131,10 @@ function IconWall() {
             <StyledIconTile>
               <Icon isHovered={filterProps.isHovered} size={filterProps.isExtraSmall ? 38 : 48} svgIcon={iconImport.module} />
               <StyledIconName>{iconImport.name}</StyledIconName>
+              <StyledAlternativeIconName>
+                {iconImport.alternativeName.length ? `(${iconImport.alternativeName})` : ''}
+              </StyledAlternativeIconName>
+              <StyledIconCategory>{iconImport.categories}</StyledIconCategory>
             </StyledIconTile>
           </div>
         ))}

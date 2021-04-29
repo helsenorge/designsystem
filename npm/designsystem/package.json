@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
-  "version": "1.0.0-beta46",
+  "version": "1.0.0-beta47",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "tfs",
@@ -34,7 +34,7 @@
     "generate:icons": "node scripts/iconGenerator.js generate",
     "copy:npmcontent": "node scripts/packageJsonGenerator.js && copyfiles \".npmrc\" \"./lib\" -E && copyfiles \"*.md\" \"./lib\" -E",
     "copy:libnpmjs": "node scripts/createNpmrc.js && copyfiles -u 1 \"./lib/**/*\" \"./lib_npm\" -E",
-    "copy:scss": "copyfiles -V -u 1 src/components/**/*.scss* lib",
+    "copy:scss": "copyfiles -V -u 1 src/components/**/*.{scss*,json,js} lib",
     "lint": "eslint \"src/**/*\"",
     "precommit": "lint-staged",
     "test": "jest",

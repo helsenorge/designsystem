@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const additionalInfo = require('@helsenorge/designsystem-react/components/Icons/AdditionalIconInformation.js');
 
 let singleIconModulesImports = '';
 let arrayOfIconModules = '\r\n\r\nexport const allSvgIcons = [';
@@ -19,14 +20,17 @@ fs.readdir(pathToIcons, (err, files) => {
   }
   if (files.length > 0) {
     files.forEach(file => {
-      if (file.endsWith('.js') && file !== 'Icon.js' && file !== 'index.js') {
+      if (file.endsWith('.js') && file !== 'Icon.js' && file !== 'index.js' && file !== 'AdditionalIconInformation.js') {
         const fileName = file.replace(/\.[^/.]+$/, '');
         const iconFile = '@helsenorge/designsystem-react/components/Icons/' + fileName;
         console.log('generating import for', iconFile);
 
         singleIconModulesImports =
           singleIconModulesImports + `import ${fileName}_ from '${iconFile}';\r\nexport const ${fileName} = ${fileName}_;\r\n`;
-        arrayOfIconModules = `${arrayOfIconModules} { "module": ${fileName}, "name": "${fileName}"},`;
+        arrayOfIconModules = `${arrayOfIconModules} { "module": ${fileName}, "name": "${fileName}", "alternativeName": "${
+          additionalInfo[fileName.toLowerCase()] ? additionalInfo[fileName.toLowerCase()].alternativeName : ''
+        }", 
+        "categories": "${additionalInfo[fileName.toLowerCase()] ? additionalInfo[fileName.toLowerCase()].categories : ''}", },`;
       }
     });
     arrayOfIconModules = arrayOfIconModules.slice(0, -1) + '];';

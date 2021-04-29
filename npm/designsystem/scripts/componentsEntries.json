@@ -5,6 +5,7 @@
   "components/Button/index": "src/components/Button/index.ts",
   "components/ExpanderList/index": "src/components/ExpanderList/index.ts",
   "components/Icons/ActiveMonitoring": "src/components/Icons/ActiveMonitoring.tsx",
+  "components/Icons/AdditionalIconInformation": "src/components/Icons/AdditionalIconInformation.js",
   "components/Icons/AlarmClock": "src/components/Icons/AlarmClock.tsx",
   "components/Icons/AlertSignFill": "src/components/Icons/AlertSignFill.tsx",
   "components/Icons/AlertSignStroke": "src/components/Icons/AlertSignStroke.tsx",
