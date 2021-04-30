@@ -98,6 +98,8 @@ import Contacts_ from '@helsenorge/designsystem-react/components/Icons/Contacts'
 export const Contacts = Contacts_;
 import Copy_ from '@helsenorge/designsystem-react/components/Icons/Copy';
 export const Copy = Copy_;
+import CoronaCertificate_ from '@helsenorge/designsystem-react/components/Icons/CoronaCertificate';
+export const CoronaCertificate = CoronaCertificate_;
 import Coronavirus_ from '@helsenorge/designsystem-react/components/Icons/Coronavirus';
 export const Coronavirus = Coronavirus_;
 import Cough_ from '@helsenorge/designsystem-react/components/Icons/Cough';
@@ -184,6 +186,8 @@ import HandWaving_ from '@helsenorge/designsystem-react/components/Icons/HandWav
 export const HandWaving = HandWaving_;
 import HandWithDisease_ from '@helsenorge/designsystem-react/components/Icons/HandWithDisease';
 export const HandWithDisease = HandWithDisease_;
+import HealthClinic_ from '@helsenorge/designsystem-react/components/Icons/HealthClinic';
+export const HealthClinic = HealthClinic_;
 import Heart_ from '@helsenorge/designsystem-react/components/Icons/Heart';
 export const Heart = Heart_;
 import HelpingHand_ from '@helsenorge/designsystem-react/components/Icons/HelpingHand';
@@ -384,6 +388,8 @@ import Scale_ from '@helsenorge/designsystem-react/components/Icons/Scale';
 export const Scale = Scale_;
 import Search_ from '@helsenorge/designsystem-react/components/Icons/Search';
 export const Search = Search_;
+import Settings_ from '@helsenorge/designsystem-react/components/Icons/Settings';
+export const Settings = Settings_;
 import ShakingHand_ from '@helsenorge/designsystem-react/components/Icons/ShakingHand';
 export const ShakingHand = ShakingHand_;
 import Share_ from '@helsenorge/designsystem-react/components/Icons/Share';
@@ -408,6 +414,8 @@ import Taxi_ from '@helsenorge/designsystem-react/components/Icons/Taxi';
 export const Taxi = Taxi_;
 import TeddyBear_ from '@helsenorge/designsystem-react/components/Icons/TeddyBear';
 export const TeddyBear = TeddyBear_;
+import Teenagers_ from '@helsenorge/designsystem-react/components/Icons/Teenagers';
+export const Teenagers = Teenagers_;
 import ThinkingAboutBaby_ from '@helsenorge/designsystem-react/components/Icons/ThinkingAboutBaby';
 export const ThinkingAboutBaby = ThinkingAboutBaby_;
 import Ticket_ from '@helsenorge/designsystem-react/components/Icons/Ticket';
@@ -428,6 +436,8 @@ import TrashCan_ from '@helsenorge/designsystem-react/components/Icons/TrashCan'
 export const TrashCan = TrashCan_;
 import Twitter_ from '@helsenorge/designsystem-react/components/Icons/Twitter';
 export const Twitter = Twitter_;
+import Undo_ from '@helsenorge/designsystem-react/components/Icons/Undo';
+export const Undo = Undo_;
 import UniProsthesis_ from '@helsenorge/designsystem-react/components/Icons/UniProsthesis';
 export const UniProsthesis = UniProsthesis_;
 import Upload_ from '@helsenorge/designsystem-react/components/Icons/Upload';
@@ -446,6 +456,12 @@ import Wallet_ from '@helsenorge/designsystem-react/components/Icons/Wallet';
 export const Wallet = Wallet_;
 import Watch_ from '@helsenorge/designsystem-react/components/Icons/Watch';
 export const Watch = Watch_;
+import Website_ from '@helsenorge/designsystem-react/components/Icons/Website';
+export const Website = Website_;
+import Wheelchair_ from '@helsenorge/designsystem-react/components/Icons/Wheelchair';
+export const Wheelchair = Wheelchair_;
+import WheelchairActive_ from '@helsenorge/designsystem-react/components/Icons/WheelchairActive';
+export const WheelchairActive = WheelchairActive_;
 import Window_ from '@helsenorge/designsystem-react/components/Icons/Window';
 export const Window = Window_;
 import WordDocument_ from '@helsenorge/designsystem-react/components/Icons/WordDocument';
@@ -460,4 +476,242 @@ import YouTube_ from '@helsenorge/designsystem-react/components/Icons/YouTube';
 export const YouTube = YouTube_;
 
 
-export const allSvgIcons = [ { "module": ActiveMonitoring, "name": "ActiveMonitoring"}, { "module": AlarmClock, "name": "AlarmClock"}, { "module": AlertSignFill, "name": "AlertSignFill"}, { "module": AlertSignStroke, "name": "AlertSignStroke"}, { "module": Amputation, "name": "Amputation"}, { "module": Anxiety, "name": "Anxiety"}, { "module": Apple, "name": "Apple"}, { "module": Archive, "name": "Archive"}, { "module": ArmFlexing, "name": "ArmFlexing"}, { "module": ArrowLeft, "name": "ArrowLeft"}, { "module": ArrowRight, "name": "ArrowRight"}, { "module": ArrowUpRight, "name": "ArrowUpRight"}, { "module": Attachment, "name": "Attachment"}, { "module": Atv, "name": "Atv"}, { "module": Avatar, "name": "Avatar"}, { "module": AwakePersonOnPillow, "name": "AwakePersonOnPillow"}, { "module": Baby, "name": "Baby"}, { "module": BandAid, "name": "BandAid"}, { "module": BeerAndPills, "name": "BeerAndPills"}, { "module": Bell, "name": "Bell"}, { "module": Bike, "name": "Bike"}, { "module": BirthdayCake, "name": "BirthdayCake"}, { "module": Boat, "name": "Boat"}, { "module": Brain, "name": "Brain"}, { "module": BreastReconstruction, "name": "BreastReconstruction"}, { "module": BreastRemoval, "name": "BreastRemoval"}, { "module": Breasts, "name": "Breasts"}, { "module": BrokenHeart, "name": "BrokenHeart"}, { "module": BrokenPuzzle, "name": "BrokenPuzzle"}, { "module": Bus, "name": "Bus"}, { "module": Calendar, "name": "Calendar"}, { "module": CalendarChange, "name": "CalendarChange"}, { "module": CalendarCheck, "name": "CalendarCheck"}, { "module": CalendarEvent, "name": "CalendarEvent"}, { "module": CalendarSave, "name": "CalendarSave"}, { "module": Cancer, "name": "Cancer"}, { "module": Car, "name": "Car"}, { "module": Change, "name": "Change"}, { "module": Check, "name": "Check"}, { "module": Chest, "name": "Chest"}, { "module": ChevronDown, "name": "ChevronDown"}, { "module": ChevronLeft, "name": "ChevronLeft"}, { "module": ChevronRight, "name": "ChevronRight"}, { "module": ChevronsDown, "name": "ChevronsDown"}, { "module": ChevronsUp, "name": "ChevronsUp"}, { "module": ChevronUp, "name": "ChevronUp"}, { "module": ChildPlaying, "name": "ChildPlaying"}, { "module": Cigarette, "name": "Cigarette"}, { "module": Contacts, "name": "Contacts"}, { "module": Copy, "name": "Copy"}, { "module": Coronavirus, "name": "Coronavirus"}, { "module": Cough, "name": "Cough"}, { "module": CriticalHealthInfo, "name": "CriticalHealthInfo"}, { "module": Cross, "name": "Cross"}, { "module": DataExchange, "name": "DataExchange"}, { "module": DataReceived, "name": "DataReceived"}, { "module": DataSent, "name": "DataSent"}, { "module": Depression, "name": "Depression"}, { "module": DigestiveSystem, "name": "DigestiveSystem"}, { "module": Dizzy, "name": "Dizzy"}, { "module": Documents, "name": "Documents"}, { "module": Dog, "name": "Dog"}, { "module": DonorCard, "name": "DonorCard"}, { "module": Download, "name": "Download"}, { "module": Draft, "name": "Draft"}, { "module": EarNoseThroat, "name": "EarNoseThroat"}, { "module": EChat, "name": "EChat"}, { "module": ElderlyPerson, "name": "ElderlyPerson"}, { "module": Embolization, "name": "Embolization"}, { "module": EnterFullScreen, "name": "EnterFullScreen"}, { "module": Envelope, "name": "Envelope"}, { "module": Epilepsy, "name": "Epilepsy"}, { "module": Eraser, "name": "Eraser"}, { "module": ErrorSignFill, "name": "ErrorSignFill"}, { "module": ErrorSignStroke, "name": "ErrorSignStroke"}, { "module": EuropeanHealthCard, "name": "EuropeanHealthCard"}, { "module": ExitFullScreen, "name": "ExitFullScreen"}, { "module": Eye, "name": "Eye"}, { "module": Facebook, "name": "Facebook"}, { "module": Female, "name": "Female"}, { "module": FemaleDoctor, "name": "FemaleDoctor"}, { "module": Ferry, "name": "Ferry"}, { "module": FingerBleed, "name": "FingerBleed"}, { "module": FirstAidKit, "name": "FirstAidKit"}, { "module": FloppyDisk, "name": "FloppyDisk"}, { "module": Football, "name": "Football"}, { "module": Form, "name": "Form"}, { "module": Forward, "name": "Forward"}, { "module": Garden, "name": "Garden"}, { "module": GasCan, "name": "GasCan"}, { "module": Globe, "name": "Globe"}, { "module": HandWaving, "name": "HandWaving"}, { "module": HandWithDisease, "name": "HandWithDisease"}, { "module": Heart, "name": "Heart"}, { "module": HelpingHand, "name": "HelpingHand"}, { "module": HelpSign, "name": "HelpSign"}, { "module": Hemodialysis, "name": "Hemodialysis"}, { "module": Hiker, "name": "Hiker"}, { "module": Hipprosthesis, "name": "Hipprosthesis"}, { "module": History, "name": "History"}, { "module": HivAndAids, "name": "HivAndAids"}, { "module": Hormone, "name": "Hormone"}, { "module": Hospital, "name": "Hospital"}, { "module": Hourglass, "name": "Hourglass"}, { "module": ImgFile, "name": "ImgFile"}, { "module": Inbox, "name": "Inbox"}, { "module": InfoSignFill, "name": "InfoSignFill"}, { "module": InfoSignStroke, "name": "InfoSignStroke"}, { "module": Instagram, "name": "Instagram"}, { "module": Intravenous, "name": "Intravenous"}, { "module": JointPain, "name": "JointPain"}, { "module": Journal, "name": "Journal"}, { "module": JpgFile, "name": "JpgFile"}, { "module": Kidney, "name": "Kidney"}, { "module": KitchenScale, "name": "KitchenScale"}, { "module": Kjernejournal, "name": "Kjernejournal"}, { "module": Laboratory, "name": "Laboratory"}, { "module": LaptopBlog, "name": "LaptopBlog"}, { "module": LawBook, "name": "LawBook"}, { "module": LightBulb, "name": "LightBulb"}, { "module": Location, "name": "Location"}, { "module": Lock, "name": "Lock"}, { "module": Lungs, "name": "Lungs"}, { "module": Makeup, "name": "Makeup"}, { "module": MaleDoctor, "name": "MaleDoctor"}, { "module": MaleDoctorAndPerson, "name": "MaleDoctorAndPerson"}, { "module": MaleGenitalia, "name": "MaleGenitalia"}, { "module": Medicine, "name": "Medicine"}, { "module": MedicineWarning, "name": "MedicineWarning"}, { "module": MentalHealthAdult, "name": "MentalHealthAdult"}, { "module": MentalHealthChild, "name": "MentalHealthChild"}, { "module": Menu, "name": "Menu"}, { "module": Microscope, "name": "Microscope"}, { "module": Minus, "name": "Minus"}, { "module": Mirror, "name": "Mirror"}, { "module": MobilePhone, "name": "MobilePhone"}, { "module": MotherHoldingBaby, "name": "MotherHoldingBaby"}, { "module": MuscleBack, "name": "MuscleBack"}, { "module": MuscleLeg, "name": "MuscleLeg"}, { "module": Mushroom, "name": "Mushroom"}, { "module": Music, "name": "Music"}, { "module": MusselsAndSalt, "name": "MusselsAndSalt"}, { "module": NoFilter, "name": "NoFilter"}, { "module": Notepad, "name": "Notepad"}, { "module": Osteotomy, "name": "Osteotomy"}, { "module": PaintRoller, "name": "PaintRoller"}, { "module": PaperPlane, "name": "PaperPlane"}, { "module": PatientAndPerson, "name": "PatientAndPerson"}, { "module": Pause, "name": "Pause"}, { "module": PdfFile, "name": "PdfFile"}, { "module": Pencil, "name": "Pencil"}, { "module": PeopleTalking, "name": "PeopleTalking"}, { "module": Peritonealdialysis, "name": "Peritonealdialysis"}, { "module": Person, "name": "Person"}, { "module": PersonAndPatient, "name": "PersonAndPatient"}, { "module": PersonInXRayMachine, "name": "PersonInXRayMachine"}, { "module": PersonOverweight, "name": "PersonOverweight"}, { "module": PersonRelaxing, "name": "PersonRelaxing"}, { "module": PersonWithBrain, "name": "PersonWithBrain"}, { "module": PersonWithBrokenArm, "name": "PersonWithBrokenArm"}, { "module": PersonWithCrutches, "name": "PersonWithCrutches"}, { "module": PersonWithJaw, "name": "PersonWithJaw"}, { "module": PersonWithMagnifyingGlass, "name": "PersonWithMagnifyingGlass"}, { "module": PersonWithSenses, "name": "PersonWithSenses"}, { "module": PersonWorking, "name": "PersonWorking"}, { "module": PizzaSlice, "name": "PizzaSlice"}, { "module": Plane, "name": "Plane"}, { "module": Plant, "name": "Plant"}, { "module": Play, "name": "Play"}, { "module": PlusLarge, "name": "PlusLarge"}, { "module": PlusSmall, "name": "PlusSmall"}, { "module": PngFile, "name": "PngFile"}, { "module": Podcast, "name": "Podcast"}, { "module": PoisonInformation, "name": "PoisonInformation"}, { "module": Pregnant, "name": "Pregnant"}, { "module": Printer, "name": "Printer"}, { "module": Psychosis, "name": "Psychosis"}, { "module": Publication, "name": "Publication"}, { "module": Puzzle, "name": "Puzzle"}, { "module": RadioactiveTreatment, "name": "RadioactiveTreatment"}, { "module": Radioiodine, "name": "Radioiodine"}, { "module": RadioTherapy, "name": "RadioTherapy"}, { "module": Receipt, "name": "Receipt"}, { "module": Receptionist, "name": "Receptionist"}, { "module": Referral, "name": "Referral"}, { "module": Refresh, "name": "Refresh"}, { "module": Refund, "name": "Refund"}, { "module": Reply, "name": "Reply"}, { "module": Rocket, "name": "Rocket"}, { "module": RtfFile, "name": "RtfFile"}, { "module": Save, "name": "Save"}, { "module": Scale, "name": "Scale"}, { "module": Search, "name": "Search"}, { "module": ShakingHand, "name": "ShakingHand"}, { "module": Share, "name": "Share"}, { "module": ShuntOperation, "name": "ShuntOperation"}, { "module": Skeleton, "name": "Skeleton"}, { "module": Skin, "name": "Skin"}, { "module": Snake, "name": "Snake"}, { "module": Snapchat, "name": "Snapchat"}, { "module": Spray, "name": "Spray"}, { "module": Stopwatch, "name": "Stopwatch"}, { "module": Surgery, "name": "Surgery"}, { "module": Taxi, "name": "Taxi"}, { "module": TeddyBear, "name": "TeddyBear"}, { "module": ThinkingAboutBaby, "name": "ThinkingAboutBaby"}, { "module": Ticket, "name": "Ticket"}, { "module": TimePassing, "name": "TimePassing"}, { "module": Toolbox, "name": "Toolbox"}, { "module": Tooth, "name": "Tooth"}, { "module": TotalKneeProsthesis, "name": "TotalKneeProsthesis"}, { "module": Train, "name": "Train"}, { "module": Transplantation, "name": "Transplantation"}, { "module": TrashCan, "name": "TrashCan"}, { "module": Twitter, "name": "Twitter"}, { "module": UniProsthesis, "name": "UniProsthesis"}, { "module": Upload, "name": "Upload"}, { "module": UserOrganization, "name": "UserOrganization"}, { "module": Vaccine, "name": "Vaccine"}, { "module": VerticalDots, "name": "VerticalDots"}, { "module": VideoCamera, "name": "VideoCamera"}, { "module": VideoChat, "name": "VideoChat"}, { "module": Wallet, "name": "Wallet"}, { "module": Watch, "name": "Watch"}, { "module": Window, "name": "Window"}, { "module": WordDocument, "name": "WordDocument"}, { "module": WorkSuitcase, "name": "WorkSuitcase"}, { "module": X, "name": "X"}, { "module": XmlFile, "name": "XmlFile"}, { "module": YouTube, "name": "YouTube"}];
+export const allSvgIcons = [ { "module": ActiveMonitoring, "name": "ActiveMonitoring", "alternativeName": "Aktiv overvåkning", 
+        "categories": "Samvalg", }, { "module": AlarmClock, "name": "AlarmClock", "alternativeName": "Vekkeklokke", 
+        "categories": "Generisk", }, { "module": AlertSignFill, "name": "AlertSignFill", "alternativeName": "Varseltegn fyllt", 
+        "categories": "Generisk", }, { "module": AlertSignStroke, "name": "AlertSignStroke", "alternativeName": "Varseltegn ytterkant", 
+        "categories": "Generisk", }, { "module": Amputation, "name": "Amputation", "alternativeName": "Amputasjon", 
+        "categories": "Sykdom, Behandling", }, { "module": Anxiety, "name": "Anxiety", "alternativeName": "Angst", 
+        "categories": "Psykisk helse, Sykdom", }, { "module": Apple, "name": "Apple", "alternativeName": "Eple", 
+        "categories": "Livsstil", }, { "module": Archive, "name": "Archive", "alternativeName": "Arkivboks", 
+        "categories": "Tjeneste", }, { "module": ArmFlexing, "name": "ArmFlexing", "alternativeName": "Viser muskler (arm)", 
+        "categories": "Livsstil, Anatomi", }, { "module": ArrowLeft, "name": "ArrowLeft", "alternativeName": "Ventrepil", 
+        "categories": "System", }, { "module": ArrowRight, "name": "ArrowRight", "alternativeName": "Høyrepil", 
+        "categories": "System", }, { "module": ArrowUpRight, "name": "ArrowUpRight", "alternativeName": "Pil oppover mot høyre", 
+        "categories": "System", }, { "module": Attachment, "name": "Attachment", "alternativeName": "Vedlegg", 
+        "categories": "Generisk", }, { "module": Atv, "name": "Atv", "alternativeName": "ATV", 
+        "categories": "Kjøretøy", }, { "module": Avatar, "name": "Avatar", "alternativeName": "Avatar", 
+        "categories": "Generisk", }, { "module": AwakePersonOnPillow, "name": "AwakePersonOnPillow", "alternativeName": "Person som ikke får sove", 
+        "categories": "Generisk, Sykdom", }, { "module": Baby, "name": "Baby", "alternativeName": "Baby", 
+        "categories": "Gravid og fødsel", }, { "module": BandAid, "name": "BandAid", "alternativeName": "Plaster", 
+        "categories": "Behandling, Generisk", }, { "module": BeerAndPills, "name": "BeerAndPills", "alternativeName": "Rusmidler", 
+        "categories": "Giftinformasjonen, Livsstil", }, { "module": Bell, "name": "Bell", "alternativeName": "Varsel", 
+        "categories": "Generisk", }, { "module": Bike, "name": "Bike", "alternativeName": "Sykkel", 
+        "categories": "Kjøretøy", }, { "module": BirthdayCake, "name": "BirthdayCake", "alternativeName": "Bursdagskake", 
+        "categories": "Gravid og fødsel", }, { "module": Boat, "name": "Boat", "alternativeName": "Båt", 
+        "categories": "Kjøretøy", }, { "module": Brain, "name": "Brain", "alternativeName": "Hjerne", 
+        "categories": "Sykdom, Anatomi", }, { "module": BreastReconstruction, "name": "BreastReconstruction", "alternativeName": "Brystrekonstruksjon", 
+        "categories": "Samvalg", }, { "module": BreastRemoval, "name": "BreastRemoval", "alternativeName": "Brystfjerning", 
+        "categories": "Samvalg", }, { "module": Breasts, "name": "Breasts", "alternativeName": "Pupper", 
+        "categories": "Samvalg", }, { "module": BrokenHeart, "name": "BrokenHeart", "alternativeName": "Knust hjerte", 
+        "categories": "Generisk", }, { "module": BrokenPuzzle, "name": "BrokenPuzzle", "alternativeName": "Ødelagt pusslespill", 
+        "categories": "Generisk", }, { "module": Bus, "name": "Bus", "alternativeName": "Buss", 
+        "categories": "Tjeneste, Kjøretøy", }, { "module": Calendar, "name": "Calendar", "alternativeName": "Kalender", 
+        "categories": "Tjeneste", }, { "module": CalendarChange, "name": "CalendarChange", "alternativeName": "Kalender endring", 
+        "categories": "System, Generisk", }, { "module": CalendarCheck, "name": "CalendarCheck", "alternativeName": "Kalender ok", 
+        "categories": "System, Generisk", }, { "module": CalendarEvent, "name": "CalendarEvent", "alternativeName": "Kalenderhendelse", 
+        "categories": "Generisk", }, { "module": CalendarSave, "name": "CalendarSave", "alternativeName": "Lagre i kalender", 
+        "categories": "System", }, { "module": Cancer, "name": "Cancer", "alternativeName": "Kreft", 
+        "categories": "Sykdom", }, { "module": Car, "name": "Car", "alternativeName": "Bil", 
+        "categories": "Kjøretøy", }, { "module": Change, "name": "Change", "alternativeName": "Endre", 
+        "categories": "System, Generisk", }, { "module": Check, "name": "Check", "alternativeName": "Avsjekket", 
+        "categories": "Generisk", }, { "module": Chest, "name": "Chest", "alternativeName": "Kiste", 
+        "categories": "Generisk", }, { "module": ChevronDown, "name": "ChevronDown", "alternativeName": "Nedover halvpil", 
+        "categories": "System", }, { "module": ChevronLeft, "name": "ChevronLeft", "alternativeName": "Venstre halvpil", 
+        "categories": "System", }, { "module": ChevronRight, "name": "ChevronRight", "alternativeName": "Høyre halvpil", 
+        "categories": "System", }, { "module": ChevronsDown, "name": "ChevronsDown", "alternativeName": "Dobbelpil ned", 
+        "categories": "System, Generisk", }, { "module": ChevronsUp, "name": "ChevronsUp", "alternativeName": "Dobbeltpil opp", 
+        "categories": "System, Generisk", }, { "module": ChevronUp, "name": "ChevronUp", "alternativeName": "Oppover halvpil", 
+        "categories": "System", }, { "module": ChildPlaying, "name": "ChildPlaying", "alternativeName": "Barn leker", 
+        "categories": "Livsstil", }, { "module": Cigarette, "name": "Cigarette", "alternativeName": "Sigarett", 
+        "categories": "Livsstil", }, { "module": Contacts, "name": "Contacts", "alternativeName": "Helsekontakter", 
+        "categories": "Tjeneste", }, { "module": Copy, "name": "Copy", "alternativeName": "Kopi", 
+        "categories": "System", }, { "module": CoronaCertificate, "name": "CoronaCertificate", "alternativeName": "Koronasertifikat", 
+        "categories": "Tjeneste", }, { "module": Coronavirus, "name": "Coronavirus", "alternativeName": "Koronavirus", 
+        "categories": "Sykdom", }, { "module": Cough, "name": "Cough", "alternativeName": "Hoste", 
+        "categories": "Sykdom, Behandling", }, { "module": CriticalHealthInfo, "name": "CriticalHealthInfo", "alternativeName": "Sykdom og kritisk informasjon", 
+        "categories": "Tjeneste", }, { "module": Cross, "name": "Cross", "alternativeName": "Kryss", 
+        "categories": "System", }, { "module": DataExchange, "name": "DataExchange", "alternativeName": "Datautveklsling", 
+        "categories": "System, Generisk", }, { "module": DataReceived, "name": "DataReceived", "alternativeName": "Data motatt", 
+        "categories": "System, Generisk", }, { "module": DataSent, "name": "DataSent", "alternativeName": "Data sendt", 
+        "categories": "System, Generisk", }, { "module": Depression, "name": "Depression", "alternativeName": "Depresjon", 
+        "categories": "Psykisk helse, Sykdom", }, { "module": DigestiveSystem, "name": "DigestiveSystem", "alternativeName": "Fordøyelsessystem", 
+        "categories": "Sykdom, Anatomi", }, { "module": Dizzy, "name": "Dizzy", "alternativeName": "Svimmel", 
+        "categories": "Sykdom", }, { "module": Documents, "name": "Documents", "alternativeName": "Dokumenter", 
+        "categories": "Tjeneste, Generisk", }, { "module": Dog, "name": "Dog", "alternativeName": "Hund", 
+        "categories": "Giftinformasjonen", }, { "module": DonorCard, "name": "DonorCard", "alternativeName": "Donorkort", 
+        "categories": "Tjeneste", }, { "module": Download, "name": "Download", "alternativeName": "Last ned", 
+        "categories": "System, Generisk", }, { "module": Draft, "name": "Draft", "alternativeName": "Kladd", 
+        "categories": "Generisk", }, { "module": EarNoseThroat, "name": "EarNoseThroat", "alternativeName": "Øre - nese - hals", 
+        "categories": "Sykdom, Anatomi", }, { "module": EChat, "name": "EChat", "alternativeName": "Sosiale medier (generisk)", 
+        "categories": "Sosiale medier, Generisk", }, { "module": ElderlyPerson, "name": "ElderlyPerson", "alternativeName": "Eldre", 
+        "categories": "Livsstil, Generisk", }, { "module": Embolization, "name": "Embolization", "alternativeName": "Cyster", 
+        "categories": "Sykdom", }, { "module": EnterFullScreen, "name": "EnterFullScreen", "alternativeName": "Fullskjermvisning", 
+        "categories": "System", }, { "module": Envelope, "name": "Envelope", "alternativeName": "Konvolutt", 
+        "categories": "Tjeneste", }, { "module": Epilepsy, "name": "Epilepsy", "alternativeName": "Epilepsi", 
+        "categories": "Sykdom", }, { "module": Eraser, "name": "Eraser", "alternativeName": "Viskelær", 
+        "categories": "System", }, { "module": ErrorSignFill, "name": "ErrorSignFill", "alternativeName": "Feilmelding (mørk)", 
+        "categories": "Generisk", }, { "module": ErrorSignStroke, "name": "ErrorSignStroke", "alternativeName": "Feilmelding (lys)", 
+        "categories": "Generisk", }, { "module": EuropeanHealthCard, "name": "EuropeanHealthCard", "alternativeName": "Europeisk helsetrygdkort", 
+        "categories": "Tjeneste", }, { "module": ExitFullScreen, "name": "ExitFullScreen", "alternativeName": "Gå ut av fullskjermvisning", 
+        "categories": "System", }, { "module": Eye, "name": "Eye", "alternativeName": "Øye", 
+        "categories": "Sykdom, Anatomi", }, { "module": Facebook, "name": "Facebook", "alternativeName": "Facebook", 
+        "categories": "Sosiale medier", }, { "module": Female, "name": "Female", "alternativeName": "Kvinne- tegn", 
+        "categories": "Generisk", }, { "module": FemaleDoctor, "name": "FemaleDoctor", "alternativeName": "Kvinnelig lege", 
+        "categories": "Tjeneste, Behandling", }, { "module": Ferry, "name": "Ferry", "alternativeName": "Ferje", 
+        "categories": "Kjøretøy", }, { "module": FingerBleed, "name": "FingerBleed", "alternativeName": "Finger som blør", 
+        "categories": "Sykdom, Behandling", }, { "module": FirstAidKit, "name": "FirstAidKit", "alternativeName": "Førstehjelpsskrin", 
+        "categories": "Giftinformasjonen, Behandling", }, { "module": FloppyDisk, "name": "FloppyDisk", "alternativeName": "Diskett", 
+        "categories": "Generisk", }, { "module": Football, "name": "Football", "alternativeName": "Fotball", 
+        "categories": "Giftinformasjonen, Livsstil", }, { "module": Form, "name": "Form", "alternativeName": "Skjema", 
+        "categories": "Tjeneste, Generisk", }, { "module": Forward, "name": "Forward", "alternativeName": "Pil fremover", 
+        "categories": "System", }, { "module": Garden, "name": "Garden", "alternativeName": "Hage", 
+        "categories": "Giftinformasjonen", }, { "module": GasCan, "name": "GasCan", "alternativeName": "Gasskanne", 
+        "categories": "Giftinformasjonen", }, { "module": Globe, "name": "Globe", "alternativeName": "Globus", 
+        "categories": "Generisk", }, { "module": HandWaving, "name": "HandWaving", "alternativeName": "Vinke", 
+        "categories": "Generisk", }, { "module": HandWithDisease, "name": "HandWithDisease", "alternativeName": "Hånd med utslett", 
+        "categories": "Sykdom", }, { "module": HealthClinic, "name": "HealthClinic", "alternativeName": "Helsesenter", 
+        "categories": "Generisk, Behandling", }, { "module": Heart, "name": "Heart", "alternativeName": "Hjerte", 
+        "categories": "Sykdom, Anatomi", }, { "module": HelpingHand, "name": "HelpingHand", "alternativeName": "Hjelpende hånd", 
+        "categories": "Samvalg", }, { "module": HelpSign, "name": "HelpSign", "alternativeName": "Spørsmål", 
+        "categories": "Generisk", }, { "module": Hemodialysis, "name": "Hemodialysis", "alternativeName": "Hemodialyse", 
+        "categories": "Samvalg", }, { "module": Hiker, "name": "Hiker", "alternativeName": "Turgåer", 
+        "categories": "Samvalg", }, { "module": Hipprosthesis, "name": "Hipprosthesis", "alternativeName": "Hofteprotese", 
+        "categories": "Samvalg", }, { "module": History, "name": "History", "alternativeName": "Historikk", 
+        "categories": "Generisk", }, { "module": HivAndAids, "name": "HivAndAids", "alternativeName": "HIV og Aids", 
+        "categories": "Sykdom", }, { "module": Hormone, "name": "Hormone", "alternativeName": "Hormoner", 
+        "categories": "Sykdom, Anatomi", }, { "module": Hospital, "name": "Hospital", "alternativeName": "Sykehus", 
+        "categories": "Tjeneste, Behandling", }, { "module": Hourglass, "name": "Hourglass", "alternativeName": "Timeglass", 
+        "categories": "Generisk", }, { "module": ImgFile, "name": "ImgFile", "alternativeName": "Bildefil", 
+        "categories": "Filtyper", }, { "module": Inbox, "name": "Inbox", "alternativeName": "Innboks", 
+        "categories": "Generisk", }, { "module": InfoSignFill, "name": "InfoSignFill", "alternativeName": "Informasjon (mørk)", 
+        "categories": "Generisk", }, { "module": InfoSignStroke, "name": "InfoSignStroke", "alternativeName": "Informasjon (lys)", 
+        "categories": "Generisk", }, { "module": Instagram, "name": "Instagram", "alternativeName": "Instagram", 
+        "categories": "Sosiale medier, Generisk", }, { "module": Intravenous, "name": "Intravenous", "alternativeName": "Intravenøs", 
+        "categories": "Behandling", }, { "module": JointPain, "name": "JointPain", "alternativeName": "Leddsmerte", 
+        "categories": "Sykdom, Anatomi", }, { "module": Journal, "name": "Journal", "alternativeName": "Pasientjournal", 
+        "categories": "Tjeneste", }, { "module": JpgFile, "name": "JpgFile", "alternativeName": "Jpg-fil", 
+        "categories": "Filtyper", }, { "module": Kidney, "name": "Kidney", "alternativeName": "Nyre", 
+        "categories": "Sykdom, Anatomi", }, { "module": KitchenScale, "name": "KitchenScale", "alternativeName": "Kjøkkenvekt", 
+        "categories": "Samvalg", }, { "module": Kjernejournal, "name": "Kjernejournal", "alternativeName": "Kjernejournal", 
+        "categories": "Tjeneste", }, { "module": Laboratory, "name": "Laboratory", "alternativeName": "Laboratorieprøve", 
+        "categories": "Tjeneste, Behandling", }, { "module": LaptopBlog, "name": "LaptopBlog", "alternativeName": "Laptop blogg", 
+        "categories": "Generisk, Sosiale medier", }, { "module": LawBook, "name": "LawBook", "alternativeName": "Lovbok", 
+        "categories": "Generisk", }, { "module": LightBulb, "name": "LightBulb", "alternativeName": "Lyspære", 
+        "categories": "Generisk", }, { "module": Location, "name": "Location", "alternativeName": "Lokasjon", 
+        "categories": "Generisk", }, { "module": Lock, "name": "Lock", "alternativeName": "Hengelås", 
+        "categories": "Tjeneste, Generisk", }, { "module": Lungs, "name": "Lungs", "alternativeName": "Lunger", 
+        "categories": "Sykdom, Anatomi", }, { "module": Makeup, "name": "Makeup", "alternativeName": "Sminke", 
+        "categories": "Giftinformasjonen", }, { "module": MaleDoctor, "name": "MaleDoctor", "alternativeName": "Mannlig lege", 
+        "categories": "Tjeneste, Behandling", }, { "module": MaleDoctorAndPerson, "name": "MaleDoctorAndPerson", "alternativeName": "Mannlig lege og pasient", 
+        "categories": "Behandling", }, { "module": MaleGenitalia, "name": "MaleGenitalia", "alternativeName": "Mannlig kjønnsorgan", 
+        "categories": "Sykdom, Anatomi", }, { "module": Medicine, "name": "Medicine", "alternativeName": "Legemidler", 
+        "categories": "Tjeneste, Behandling", }, { "module": MedicineWarning, "name": "MedicineWarning", "alternativeName": "Meld bivirkninger", 
+        "categories": "Tjeneste", }, { "module": MentalHealthAdult, "name": "MentalHealthAdult", "alternativeName": "Psykisk helse (positiv)", 
+        "categories": "Psykisk helse", }, { "module": MentalHealthChild, "name": "MentalHealthChild", "alternativeName": "Mental helse barn", 
+        "categories": "Psykisk helse, Sykdom", }, { "module": Menu, "name": "Menu", "alternativeName": "Meny", 
+        "categories": "System", }, { "module": Microscope, "name": "Microscope", "alternativeName": "Mikroskop", 
+        "categories": "Tjeneste, Behandling", }, { "module": Minus, "name": "Minus", "alternativeName": "Minus", 
+        "categories": "System", }, { "module": Mirror, "name": "Mirror", "alternativeName": "Speil", 
+        "categories": "Generisk", }, { "module": MobilePhone, "name": "MobilePhone", "alternativeName": "Mobiltelefon", 
+        "categories": "Generisk", }, { "module": MotherHoldingBaby, "name": "MotherHoldingBaby", "alternativeName": "Kvinne holder baby", 
+        "categories": "Gravid og fødsel", }, { "module": MuscleBack, "name": "MuscleBack", "alternativeName": "Ryggmuskler", 
+        "categories": "Kroppsdel", }, { "module": MuscleLeg, "name": "MuscleLeg", "alternativeName": "Leggmuskler", 
+        "categories": "Kroppsdel", }, { "module": Mushroom, "name": "Mushroom", "alternativeName": "Sopp", 
+        "categories": "Giftinformasjonen, Livsstil", }, { "module": Music, "name": "Music", "alternativeName": "Musikk", 
+        "categories": "Samvalg", }, { "module": MusselsAndSalt, "name": "MusselsAndSalt", "alternativeName": "Blåskjell og saltbøsse", 
+        "categories": "Giftinformasjonen, Livsstil", }, { "module": NoFilter, "name": "NoFilter", "alternativeName": "Fjern filter", 
+        "categories": "System", }, { "module": Notepad, "name": "Notepad", "alternativeName": "Skriveblokk", 
+        "categories": "Generisk", }, { "module": Osteotomy, "name": "Osteotomy", "alternativeName": "Osteotomi", 
+        "categories": "Samvalg", }, { "module": PaintRoller, "name": "PaintRoller", "alternativeName": "Malingsrull", 
+        "categories": "Giftinformasjonen", }, { "module": PaperPlane, "name": "PaperPlane", "alternativeName": "Papirfly", 
+        "categories": "Generisk", }, { "module": PatientAndPerson, "name": "PatientAndPerson", "alternativeName": "Pasient og person", 
+        "categories": "Behandling", }, { "module": Pause, "name": "Pause", "alternativeName": "Pause", 
+        "categories": "System", }, { "module": PdfFile, "name": "PdfFile", "alternativeName": "PDF", 
+        "categories": "Filtyper", }, { "module": Pencil, "name": "Pencil", "alternativeName": "Blyant", 
+        "categories": "Giftinformasjonen", }, { "module": PeopleTalking, "name": "PeopleTalking", "alternativeName": "Samtale", 
+        "categories": "Samvalg", }, { "module": Peritonealdialysis, "name": "Peritonealdialysis", "alternativeName": "Peritoneal dialyse", 
+        "categories": "Samvalg", }, { "module": Person, "name": "Person", "alternativeName": "Person", 
+        "categories": "Generisk", }, { "module": PersonAndPatient, "name": "PersonAndPatient", "alternativeName": "Pasient og pårørende", 
+        "categories": "Behandling, Sykdom", }, { "module": PersonInXRayMachine, "name": "PersonInXRayMachine", "alternativeName": "Røntgen", 
+        "categories": "Behandling, Sykdom", }, { "module": PersonOverweight, "name": "PersonOverweight", "alternativeName": "Overvektig person", 
+        "categories": "Livsstil, Sykdom", }, { "module": PersonRelaxing, "name": "PersonRelaxing", "alternativeName": "Person som slapper av", 
+        "categories": "Livsstil", }, { "module": PersonWithBrain, "name": "PersonWithBrain", "alternativeName": "Person med hjerne", 
+        "categories": "Kroppsdel", }, { "module": PersonWithBrokenArm, "name": "PersonWithBrokenArm", "alternativeName": "Person med brukket arm", 
+        "categories": "Behandling, Sykdom", }, { "module": PersonWithCrutches, "name": "PersonWithCrutches", "alternativeName": "Person med krykker", 
+        "categories": "Behandling, Sykdom", }, { "module": PersonWithJaw, "name": "PersonWithJaw", "alternativeName": "Person med kjeve", 
+        "categories": "Kroppsdel", }, { "module": PersonWithMagnifyingGlass, "name": "PersonWithMagnifyingGlass", "alternativeName": "Person med lupe", 
+        "categories": "Behandling", }, { "module": PersonWithSenses, "name": "PersonWithSenses", "alternativeName": "Person med sanser", 
+        "categories": "Psykisk helse", }, { "module": PersonWorking, "name": "PersonWorking", "alternativeName": "Person som jobber", 
+        "categories": "Samvalg", }, { "module": PizzaSlice, "name": "PizzaSlice", "alternativeName": "Pizza", 
+        "categories": "Generisk, Livsstil", }, { "module": Plane, "name": "Plane", "alternativeName": "Fly", 
+        "categories": "Kjøretøy", }, { "module": Plant, "name": "Plant", "alternativeName": "Plante", 
+        "categories": "Giftinformasjonen", }, { "module": Play, "name": "Play", "alternativeName": "Play", 
+        "categories": "Generisk", }, { "module": PlusLarge, "name": "PlusLarge", "alternativeName": "Stort pluss", 
+        "categories": "System", }, { "module": PlusSmall, "name": "PlusSmall", "alternativeName": "Liten pluss", 
+        "categories": "System", }, { "module": PngFile, "name": "PngFile", "alternativeName": "PNG", 
+        "categories": "Filtyper", }, { "module": Podcast, "name": "Podcast", "alternativeName": "Podcast", 
+        "categories": "Generisk", }, { "module": PoisonInformation, "name": "PoisonInformation", "alternativeName": "Giftinformasjonen", 
+        "categories": "Giftinformasjonen", }, { "module": Pregnant, "name": "Pregnant", "alternativeName": "Gravid", 
+        "categories": "Gravid og fødsel", }, { "module": Printer, "name": "Printer", "alternativeName": "Printer", 
+        "categories": "Generisk", }, { "module": Psychosis, "name": "Psychosis", "alternativeName": "Psykose", 
+        "categories": "Sykdom, Psykisk helse", }, { "module": Publication, "name": "Publication", "alternativeName": "Publikasjon", 
+        "categories": "Generisk", }, { "module": Puzzle, "name": "Puzzle", "alternativeName": "Puslespillbit", 
+        "categories": "Generisk", }, { "module": RadioactiveTreatment, "name": "RadioactiveTreatment", "alternativeName": "Radioaktiv behandling", 
+        "categories": "Samvalg", }, { "module": Radioiodine, "name": "Radioiodine", "alternativeName": "Radiojod", 
+        "categories": "Samvalg", }, { "module": RadioTherapy, "name": "RadioTherapy", "alternativeName": "Strålebehandling", 
+        "categories": "Samvalg", }, { "module": Receipt, "name": "Receipt", "alternativeName": "Kvittering", 
+        "categories": "Generisk", }, { "module": Receptionist, "name": "Receptionist", "alternativeName": "Person med headset", 
+        "categories": "Generisk", }, { "module": Referral, "name": "Referral", "alternativeName": "Henvisninger", 
+        "categories": "Tjeneste", }, { "module": Refresh, "name": "Refresh", "alternativeName": "Oppdater", 
+        "categories": "Generisk", }, { "module": Refund, "name": "Refund", "alternativeName": "Refusjon", 
+        "categories": "Tjeneste, Generisk", }, { "module": Reply, "name": "Reply", "alternativeName": "Svar", 
+        "categories": "System", }, { "module": Rocket, "name": "Rocket", "alternativeName": "Romrakett", 
+        "categories": "Kjøretøy", }, { "module": RtfFile, "name": "RtfFile", "alternativeName": "", 
+        "categories": "", }, { "module": Save, "name": "Save", "alternativeName": "Lagre", 
+        "categories": "System", }, { "module": Scale, "name": "Scale", "alternativeName": "Vektskål", 
+        "categories": "Generisk", }, { "module": Search, "name": "Search", "alternativeName": "Søk", 
+        "categories": "Generisk", }, { "module": Settings, "name": "Settings", "alternativeName": "Innstillinger", 
+        "categories": "System", }, { "module": ShakingHand, "name": "ShakingHand", "alternativeName": "Hender som holder", 
+        "categories": "Tjeneste, Samvalg", }, { "module": Share, "name": "Share", "alternativeName": "Dele", 
+        "categories": "Sosiale medier", }, { "module": ShuntOperation, "name": "ShuntOperation", "alternativeName": "Shunt-operasjon", 
+        "categories": "Samvalg", }, { "module": Skeleton, "name": "Skeleton", "alternativeName": "Skjelett", 
+        "categories": "Sykdom, Anatomi", }, { "module": Skin, "name": "Skin", "alternativeName": "Hud og hår", 
+        "categories": "Sykdom, Anatomi", }, { "module": Snake, "name": "Snake", "alternativeName": "Slange", 
+        "categories": "Giftinformasjonen", }, { "module": Snapchat, "name": "Snapchat", "alternativeName": "Snapshat", 
+        "categories": "Sosiale medier, Generisk", }, { "module": Spray, "name": "Spray", "alternativeName": "Sprayflaske", 
+        "categories": "Giftinformasjonen", }, { "module": Stopwatch, "name": "Stopwatch", "alternativeName": "Stoppeklokke", 
+        "categories": "Generisk", }, { "module": Surgery, "name": "Surgery", "alternativeName": "Kirurgi", 
+        "categories": "Behandling", }, { "module": Taxi, "name": "Taxi", "alternativeName": "Taxi", 
+        "categories": "Kjøretøy", }, { "module": TeddyBear, "name": "TeddyBear", "alternativeName": "Teddybjørn", 
+        "categories": "Generisk, Sykdom", }, { "module": Teenagers, "name": "Teenagers", "alternativeName": "Tenåringer", 
+        "categories": "Generisk, Behandling", }, { "module": ThinkingAboutBaby, "name": "ThinkingAboutBaby", "alternativeName": "Ufrivillig barnløshet", 
+        "categories": "Behandling, Sykdom", }, { "module": Ticket, "name": "Ticket", "alternativeName": "Billett", 
+        "categories": "Generisk", }, { "module": TimePassing, "name": "TimePassing", "alternativeName": "Tiden går", 
+        "categories": "Samvalg", }, { "module": Toolbox, "name": "Toolbox", "alternativeName": "Verktøykasse", 
+        "categories": "Tjeneste, Generisk", }, { "module": Tooth, "name": "Tooth", "alternativeName": "Tann", 
+        "categories": "Anatomi", }, { "module": TotalKneeProsthesis, "name": "TotalKneeProsthesis", "alternativeName": "Full kneprotese", 
+        "categories": "Samvalg, Behandling", }, { "module": Train, "name": "Train", "alternativeName": "Tog", 
+        "categories": "Kjøretøy", }, { "module": Transplantation, "name": "Transplantation", "alternativeName": "Transplantasjon", 
+        "categories": "Samvalg", }, { "module": TrashCan, "name": "TrashCan", "alternativeName": "Søplekasse", 
+        "categories": "Generisk", }, { "module": Twitter, "name": "Twitter", "alternativeName": "Twitter", 
+        "categories": "Sosiale medier, Generisk", }, { "module": Undo, "name": "Undo", "alternativeName": "Angre", 
+        "categories": "System", }, { "module": UniProsthesis, "name": "UniProsthesis", "alternativeName": "Uniprotese", 
+        "categories": "Samvalg", }, { "module": Upload, "name": "Upload", "alternativeName": "Last opp", 
+        "categories": "System", }, { "module": UserOrganization, "name": "UserOrganization", "alternativeName": "Pasient- og brukerorganisasjoner", 
+        "categories": "Generisk", }, { "module": Vaccine, "name": "Vaccine", "alternativeName": "Vaksiner", 
+        "categories": "Tjeneste, Behandling", }, { "module": VerticalDots, "name": "VerticalDots", "alternativeName": "Vertikale prikker", 
+        "categories": "System", }, { "module": VideoCamera, "name": "VideoCamera", "alternativeName": "Videokamera", 
+        "categories": "Generisk", }, { "module": VideoChat, "name": "VideoChat", "alternativeName": "Video chat", 
+        "categories": "Tjeneste, Generisk", }, { "module": Wallet, "name": "Wallet", "alternativeName": "Lommebok", 
+        "categories": "Tjeneste, Generisk", }, { "module": Watch, "name": "Watch", "alternativeName": "Klokke", 
+        "categories": "Generisk", }, { "module": Website, "name": "Website", "alternativeName": "Nettside", 
+        "categories": "Generisk", }, { "module": Wheelchair, "name": "Wheelchair", "alternativeName": "Rullestol", 
+        "categories": "Generisk, Behandling", }, { "module": WheelchairActive, "name": "WheelchairActive", "alternativeName": "Rullestol aktov", 
+        "categories": "Generisk, Behandling", }, { "module": Window, "name": "Window", "alternativeName": "Vindu", 
+        "categories": "Generisk", }, { "module": WordDocument, "name": "WordDocument", "alternativeName": "Word fil", 
+        "categories": "Filtyper", }, { "module": WorkSuitcase, "name": "WorkSuitcase", "alternativeName": "Koffert", 
+        "categories": "Generisk", }, { "module": X, "name": "X", "alternativeName": "X", 
+        "categories": "System", }, { "module": XmlFile, "name": "XmlFile", "alternativeName": "XML", 
+        "categories": "Filtyper", }, { "module": YouTube, "name": "YouTube", "alternativeName": "Youtube", 
+        "categories": "Sosiale medier, Generisk", }];
