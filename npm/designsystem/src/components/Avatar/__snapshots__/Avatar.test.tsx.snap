@@ -1,11 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`displays avatar 1`] = `
+exports[`Gitt at Avatar skal vises Når selected er false Så vises teksten i Avatar-komponenten 1`] = `
 <div>
   <span
-    class="sc-AxjAm jjPIJS"
+    class="avatar"
   >
     Li
+  </span>
+</div>
+`;
+
+exports[`Gitt at Avatar skal vises Når selected er true Så vises ikke teksten 1`] = `
+<div>
+  <span
+    class="avatar avatar--selected"
+  >
+    <svg
+      aria-hidden="true"
+      class="sc-AxjAm jPyZsV hnds-style-icon "
+      fill="kiwi"
+      height="48"
+      role="img"
+      viewBox="0 0 48 48"
+      width="48"
+    >
+      <path
+        d="M22.504 31.198l-9.59-9.966 1.441-1.387 8.149 8.468 14.455-15.016 1.441 1.386z"
+      />
+    </svg>
   </span>
 </div>
 `;

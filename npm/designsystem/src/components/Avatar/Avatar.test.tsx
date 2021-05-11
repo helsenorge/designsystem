@@ -1,18 +1,24 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import Avatar from './Avatar';
 
-/* This test is disabled in jest config */
+describe('Gitt at Avatar skal vises', (): void => {
+  describe('Når selected er false', (): void => {
+    it('Så vises teksten i Avatar-komponenten', (): void => {
+      const { container } = render(<Avatar>Line Danser</Avatar>);
 
-// TODO: Rydde opp i denne testen
-test('displays avatar', (): void => {
-  const { container, getByText } = render(<Avatar>Line Danser</Avatar>);
-  // expect(getByText(Avatar.toString())).toBeInTheDocument();
-  expect(container).toMatchSnapshot();
+      const text = screen.getByText('Li');
+      expect(text).toBeVisible();
+      expect(container).toMatchSnapshot();
+    });
+  });
+  describe('Når selected er true', (): void => {
+    it('Så vises ikke teksten', (): void => {
+      const { container } = render(<Avatar selected>Line Danser</Avatar>);
+
+      const text = screen.queryByText('Li');
+      expect(text).not.toBeInTheDocument();
+      expect(container).toMatchSnapshot();
+    });
+  });
 });
-
-// test('displays check icon when selected', (): void => {
-//   const {container, getByText} = render(<Avatar selected>Line Danser</Avatar>);
-//   expect(getByText(Avatar.toString())).toBeNull();
-//   expect(container).toMatchSnapshot();
-// });
