@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gitt ExpanderList blir rendret Sjekk at ExpanderList sitt snapshot matcher 1`] = `
+exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion er false Sjekk at ExpanderList sitt snapshot matcher 1`] = `
 <div>
   <div
     style="width: 40rem;"

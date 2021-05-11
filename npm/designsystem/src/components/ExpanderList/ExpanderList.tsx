@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyledExpanderList,
   StyledExpanderListLink,
@@ -11,6 +11,7 @@ import Icon from '../Icons';
 import ChevronUp from '../Icons/ChevronUp';
 import ChevronDown from '../Icons/ChevronDown';
 import { useHover } from '../../hooks/useHover';
+import { isElementInViewport } from '../../utils/viewport';
 
 export type ExpanderListColors = PaletteNames;
 export type ExpanderType = React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>>;
@@ -112,13 +113,21 @@ const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: React.Ref<
     bottomBorder = true,
   } = props;
   const [activeExpander, setActiveExpander] = useState({});
+  const [latestExpander, setLatestExpander] = useState<HTMLElement>();
 
   function handleExpanderClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
     const id = event.currentTarget?.id || findShadowDOMId((event as unknown) as MouseEventWithPath, 'BUTTON');
     if (!isOpen) {
       setActiveExpander(prevState => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
+      setLatestExpander(event.currentTarget);
     }
   }
+
+  useEffect(() => {
+    if (accordion && latestExpander && !isElementInViewport(latestExpander)) {
+      latestExpander.scrollIntoView();
+    }
+  }, [accordion, latestExpander]);
 
   return (
     <StyledExpanderList className={className} topBorder={topBorder} bottomBorder={bottomBorder} ref={ref}>
