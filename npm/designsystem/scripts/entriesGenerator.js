@@ -6,6 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
+const docgen = require('react-docgen-typescript');
 const glob = require('glob');
 
 const paths = {
@@ -14,6 +15,15 @@ const paths = {
   icons: path.join('src', 'components/Icons'),
   output: path.join('scripts', 'componentsEntries.json'),
 };
+
+const { parse } = docgen.withCustomConfig('./tsconfig.json', {
+  propFilter: {
+    skipPropsWithName: ['ref', 'key'],
+  },
+  savePropValueAsString: true,
+  shouldRemoveUndefinedFromOptional: true,
+  shouldExtractLiteralValuesFromEnum: true,
+});
 
 // Generate component metadata
 generate(paths);
@@ -26,6 +36,7 @@ function generate(paths) {
     if (err) {
       console.log(chalk.red(err));
     } else {
+      // 1. Skriv componentsEntries.json
       const componentsEntriesArr = files.map(file => {
         try {
           return getComponentData(file);
@@ -38,6 +49,15 @@ function generate(paths) {
 
       componentsEntries = Object.assign(componentsEntries, componentsEntriesObj);
       writeFile(paths.output, JSON.stringify(componentsEntries));
+      // 2. Skriv componentdata.json for hver komponent
+      files
+        // Ignorer alle ikoner utenom <Icon>-komponenten
+        .filter(file => file.endsWith('.tsx') && (!file.includes('/Icons') || file.includes('/Icons/Icon')))
+        .forEach(file => {
+          const [{ props = {} } = {}] = parse(file);
+          const directory = path.dirname(file);
+          fs.writeFileSync(`${directory}/componentdata.json`, JSON.stringify({ props }, null, 2) + '\n');
+        });
     }
   });
 }
@@ -64,6 +84,7 @@ function getComponents(pathToFolder, fn) {
         '**/*.test.tsx',
         '**/*Utils.tsx',
         `${pathToFolder}/Icon.*`,
+        '**/*.json',
       ],
     },
     (err, files) => {

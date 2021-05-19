@@ -6,10 +6,15 @@ export type TitleAppearances = 'titleFeature' | 'title1' | 'title2' | 'title3' |
 
 interface TitleProps {
   children: React.ReactNode;
+  /** Gives a unique id to the title */
   id?: string;
+  /** Adds custom classes to the element. */
   className?: string;
+  /** Adds top and bottom margin in rem. */
   margin?: number;
+  /** Changes the underlying element of the title. */
   htmlMarkup?: TitleTags;
+  /** Changes the appearance of the title. */
   appearance?: TitleAppearances;
 }
 

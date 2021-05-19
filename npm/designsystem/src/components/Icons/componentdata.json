@@ -1,0 +1,175 @@
+{
+  "props": {
+    "svgIcon": {
+      "defaultValue": null,
+      "description": "",
+      "name": "svgIcon",
+      "parent": {
+        "fileName": "src/components/Icons/Icon.tsx",
+        "name": "IconProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Icons/Icon.tsx",
+          "name": "IconProps"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "FC<SvgPathProps>"
+      }
+    },
+    "ariaLabel": {
+      "defaultValue": null,
+      "description": "",
+      "name": "ariaLabel",
+      "parent": {
+        "fileName": "src/components/Icons/Icon.tsx",
+        "name": "IconProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Icons/Icon.tsx",
+          "name": "IconProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "size": {
+      "defaultValue": null,
+      "description": "",
+      "name": "size",
+      "parent": {
+        "fileName": "src/components/Icons/Icon.tsx",
+        "name": "IconProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Icons/Icon.tsx",
+          "name": "IconProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "number"
+      }
+    },
+    "color": {
+      "defaultValue": null,
+      "description": "",
+      "name": "color",
+      "parent": {
+        "fileName": "src/components/Icons/Icon.tsx",
+        "name": "IconProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Icons/Icon.tsx",
+          "name": "IconProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "hoverColor": {
+      "defaultValue": null,
+      "description": "",
+      "name": "hoverColor",
+      "parent": {
+        "fileName": "src/components/Icons/Icon.tsx",
+        "name": "IconProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Icons/Icon.tsx",
+          "name": "IconProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "className": {
+      "defaultValue": null,
+      "description": "",
+      "name": "className",
+      "parent": {
+        "fileName": "src/components/Icons/Icon.tsx",
+        "name": "IconProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Icons/Icon.tsx",
+          "name": "IconProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "hoverType": {
+      "defaultValue": null,
+      "description": "",
+      "name": "hoverType",
+      "parent": {
+        "fileName": "src/components/Icons/Icon.tsx",
+        "name": "IconProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Icons/Icon.tsx",
+          "name": "IconProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "FC<SvgPathProps>"
+      }
+    },
+    "isHovered": {
+      "defaultValue": null,
+      "description": "",
+      "name": "isHovered",
+      "parent": {
+        "fileName": "src/components/Icons/Icon.tsx",
+        "name": "IconProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Icons/Icon.tsx",
+          "name": "IconProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "testId": {
+      "defaultValue": null,
+      "description": "Sets the data-testid attribute.",
+      "name": "testId",
+      "parent": {
+        "fileName": "src/components/Icons/Icon.tsx",
+        "name": "IconProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Icons/Icon.tsx",
+          "name": "IconProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    }
+  }
+}

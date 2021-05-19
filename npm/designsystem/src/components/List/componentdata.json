@@ -1,0 +1,23 @@
+{
+  "props": {
+    "className": {
+      "defaultValue": null,
+      "description": "",
+      "name": "className",
+      "parent": {
+        "fileName": "src/components/List/List.tsx",
+        "name": "ListProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/List/List.tsx",
+          "name": "ListProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    }
+  }
+}

@@ -15,12 +15,19 @@ export interface CompoundComponent extends React.ForwardRefExoticComponent<LinkL
 }
 
 interface LinkListProps {
+  /** Items in the LinkList */
   children: React.ReactNode;
+  /** Adds custom classes to the element. */
   className?: string;
+  /** Changes the link list background color on hover. */
   color: LinkListColors;
+  /** Toggles chevron icon on or off. */
   chevron?: boolean;
+  /** Toggles the bottom border of the last child element. */
   bottomBorder?: boolean;
+  /** Toggles the top border of the first child element. */
   topBorder?: boolean;
+  /** Changes the font size. */
   large?: boolean;
 }
 
@@ -70,7 +77,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
   );
 });
 
-const LinkList = React.forwardRef(function LinkListForwardedRef(props: LinkListProps, ref: React.Ref<HTMLUListElement>) {
+export const LinkList = React.forwardRef(function LinkListForwardedRef(props: LinkListProps, ref: React.Ref<HTMLUListElement>) {
   const { children, className = '', chevron = false, large, color, topBorder = true, bottomBorder = true } = props;
   return (
     <ul

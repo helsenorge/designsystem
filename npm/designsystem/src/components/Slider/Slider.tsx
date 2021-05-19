@@ -20,17 +20,17 @@ import {
 import SliderStyles from './styles.module.scss';
 
 interface SliderProps {
-  /** Tekst som vises til over feltet */
+  /**	Sets the title of the slider. */
   title?: string;
-  /** Tekst som vises til venstre i feltet */
+  /** Adds the left hand label to the element. */
   labelLeft?: string;
-  /** Tekst som vises til høyre i feltet */
+  /** Adds the right hand label to the element. */
   labelRight?: string;
-  /** Step value som brukes når verdien endres på slider'en */
+  /**	Decides the number of steps for each movement of the slider. */
   step?: number;
-  /** Om feltet er disabled */
+  /** Disables the slider element. */
   disabled?: boolean;
-  /** Function som kalles når verdien i feltet endres */
+  /** Function to be called when the value state has changed. */
   onChange?: (value: number) => void;
 }
 

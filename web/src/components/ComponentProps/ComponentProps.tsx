@@ -7,6 +7,7 @@ interface ComponentPropsProps {
 
 const ComponentProps = (props: ComponentPropsProps) => {
   const data = props.propData.propData.default.props;
+
   return (
     <StyledTableContainer>
       <StyledTable>
@@ -22,15 +23,15 @@ const ComponentProps = (props: ComponentPropsProps) => {
         </StyledTableHead>
         <StyledTableBody>
           {data &&
-            data.map((prop: any, index: number) => {
+            Object.keys(data).map(prop => {
               return (
-                <StyledTableRow key={index}>
-                  <StyledTableColumn>{prop.name}</StyledTableColumn>
-                  <StyledTableColumn>{prop.type}</StyledTableColumn>
-                  <StyledTableColumn>{prop.require}</StyledTableColumn>
-                  <StyledTableColumn>{prop.default}</StyledTableColumn>
-                  <StyledTableColumn>{prop.valid.join(', ')}</StyledTableColumn>
-                  <StyledTableColumn>{prop.description}</StyledTableColumn>
+                <StyledTableRow key={prop}>
+                  <StyledTableColumn>{data[prop].name}</StyledTableColumn>
+                  <StyledTableColumn>{data[prop].type.name}</StyledTableColumn>
+                  <StyledTableColumn>{data[prop].required.toString()}</StyledTableColumn>
+                  <StyledTableColumn>{data[prop].defaultValue?.value}</StyledTableColumn>
+                  <StyledTableColumn>{data[prop].type.raw}</StyledTableColumn>
+                  <StyledTableColumn>{data[prop].description}</StyledTableColumn>
                 </StyledTableRow>
               );
             })}

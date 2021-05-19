@@ -3,7 +3,9 @@ import StyledSpacer from './Spacer.styled';
 import { SpacerSizes } from './../../theme/spacers';
 
 interface SpacerProps {
+  /** Sets the size of the spacer. */
   size?: SpacerSizes;
+  /** Adds custom classes to the element. */
   className?: string;
 }
 

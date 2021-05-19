@@ -25,14 +25,23 @@ interface MouseEventWithPath extends MouseEvent {
 }
 
 interface ExpanderListProps {
+  /** Toggles accordion functionality for the expanders. */
   accordion?: boolean;
+  /** Toggles the bottom border of the last child element. */
   bottomBorder?: boolean;
+  /** Items in the ExpanderList */
   children: React.ReactNode;
+  /** Toggles padding of child elements */
   childPadding?: boolean;
+  /** Adds custom classes to the element. */
   className?: string;
+  /** Changes the link list background color on hover. */
   color?: ExpanderListColors;
+  /** Changes the font size. */
   large?: boolean;
+  /** Opens the first item in the list. */
   isOpen?: boolean;
+  /** Toggles the top border of the first child element. */
   topBorder?: boolean;
 }
 
@@ -100,7 +109,7 @@ function findShadowDOMId(event: MouseEventWithPath, tagName: string): string {
   return element ? element.id : '';
 }
 
-const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: React.Ref<HTMLUListElement>) => {
+export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: React.Ref<HTMLUListElement>) => {
   const {
     children,
     childPadding = true,

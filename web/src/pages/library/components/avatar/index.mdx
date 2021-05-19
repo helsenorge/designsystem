@@ -5,28 +5,29 @@ date: 2019-01-29
 ---
 
 import MDXCustom from '../../../../components/markdown/MDXCustom';
-import * as propData from './avatar.json';
+import * as propData from '@helsenorge/designsystem-react/components/Avatar/componentdata.json';
 import Avatar from '@helsenorge/designsystem-react/components/Avatar';
 
 # Avatar
 
 <MDXCustom.Preamble>
-  Avatar [Avatar] lar innbygger oppfatte en representasjon, f.eks. hvem man er logget inn som, hvem man handler på vegne av eller hvem som er avsender eller mottaker av en melding
+  Avatar [Avatar] lar innbygger oppfatte en representasjon, f.eks. hvem man er logget inn som, hvem man handler på vegne av eller hvem som
+  er avsender eller mottaker av en melding
 </MDXCustom.Preamble>
 
 ## Preview
 
-<MDXCustom.LiveComponent scope={{Avatar}}>{`<Avatar>Line Danser</Avatar>`}</MDXCustom.LiveComponent>
+<MDXCustom.LiveComponent scope={{ Avatar }}>{`<Avatar>Line Danser</Avatar>`}</MDXCustom.LiveComponent>
 
 ## Properties
 
-<MDXCustom.ComponentProps propData={{propData}} />
+<MDXCustom.ComponentProps propData={{ propData }} />
 
 ## Examples
 
 ### Selected
 
-<MDXCustom.LiveComponent scope={{Avatar}}>{`
+<MDXCustom.LiveComponent scope={{ Avatar }}>{`
   <Avatar selected>Line Danser</Avatar>
 `}</MDXCustom.LiveComponent>
 

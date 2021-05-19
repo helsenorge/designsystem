@@ -17,14 +17,23 @@ export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'crisis';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
 
 interface NotificationPanelProps {
+  /** Adds custom classes to the element. */
   className?: string;
+  /** Adds inner child elements. */
   children?: React.ReactNode;
+  /** Changes the visual representation of the notification panel. */
   variant?: NotificationPanelVariants;
+  /** Adds a shadow effect around the notification panel. */
   shadow?: boolean;
+  /** Sets a fixed size for the content container. */
   size?: NotificationPanelSizes;
+  /** Used in combination with dismissiable property to close the notification panel. */
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  /** Toggles the close button in the top right corner. */
   dismissable?: boolean;
+  /** Enables a fluid outer container that spans the entire width of parent. */
   fluid?: boolean;
+  /** Sets a label for the notification panel. */
   label?: string;
 }
 

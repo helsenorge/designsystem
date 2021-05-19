@@ -1,0 +1,128 @@
+{
+  "props": {
+    "color": {
+      "defaultValue": null,
+      "description": "Sets the color of the loader",
+      "name": "color",
+      "parent": {
+        "fileName": "src/components/Loader/Loader.tsx",
+        "name": "LoaderProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Loader/Loader.tsx",
+          "name": "LoaderProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"banana\" | \"blueberry\" | \"cherry\" | \"kiwi\" | \"neutral\" | \"plum\" | \"black\" | \"white\" | undefined",
+        "value": [
+          {
+            "value": "undefined"
+          },
+          {
+            "value": "\"banana\""
+          },
+          {
+            "value": "\"blueberry\""
+          },
+          {
+            "value": "\"cherry\""
+          },
+          {
+            "value": "\"kiwi\""
+          },
+          {
+            "value": "\"neutral\""
+          },
+          {
+            "value": "\"plum\""
+          },
+          {
+            "value": "\"black\""
+          },
+          {
+            "value": "\"white\""
+          }
+        ]
+      }
+    },
+    "className": {
+      "defaultValue": null,
+      "description": "Adds custom classes to the element.",
+      "name": "className",
+      "parent": {
+        "fileName": "src/components/Loader/Loader.tsx",
+        "name": "LoaderProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Loader/Loader.tsx",
+          "name": "LoaderProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "size": {
+      "defaultValue": null,
+      "description": "Changes the size of the loader.",
+      "name": "size",
+      "parent": {
+        "fileName": "src/components/Loader/Loader.tsx",
+        "name": "LoaderProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Loader/Loader.tsx",
+          "name": "LoaderProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"tiny\" | \"small\" | \"medium\" | \"large\" | undefined",
+        "value": [
+          {
+            "value": "undefined"
+          },
+          {
+            "value": "\"tiny\""
+          },
+          {
+            "value": "\"small\""
+          },
+          {
+            "value": "\"medium\""
+          },
+          {
+            "value": "\"large\""
+          }
+        ]
+      }
+    },
+    "testId": {
+      "defaultValue": null,
+      "description": "Sets the data-testid attribute.",
+      "name": "testId",
+      "parent": {
+        "fileName": "src/components/Loader/Loader.tsx",
+        "name": "LoaderProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Loader/Loader.tsx",
+          "name": "LoaderProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    }
+  }
+}

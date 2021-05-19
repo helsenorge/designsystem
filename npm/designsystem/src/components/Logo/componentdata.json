@@ -1,0 +1,116 @@
+{
+  "props": {
+    "size": {
+      "defaultValue": {
+        "value": "300"
+      },
+      "description": "Changes the size of the logo.",
+      "name": "size",
+      "parent": {
+        "fileName": "src/components/Logo/Logo.tsx",
+        "name": "LogoProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Logo/Logo.tsx",
+          "name": "LogoProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "number"
+      }
+    },
+    "className": {
+      "defaultValue": {
+        "value": ""
+      },
+      "description": "Adds custom classes to the element.",
+      "name": "className",
+      "parent": {
+        "fileName": "src/components/Logo/Logo.tsx",
+        "name": "LogoProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Logo/Logo.tsx",
+          "name": "LogoProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "color": {
+      "defaultValue": {
+        "value": "black"
+      },
+      "description": "Changes the color of the logo.",
+      "name": "color",
+      "parent": {
+        "fileName": "src/components/Logo/Logo.tsx",
+        "name": "LogoProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Logo/Logo.tsx",
+          "name": "LogoProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"banana\" | \"blueberry\" | \"cherry\" | \"kiwi\" | \"neutral\" | \"plum\" | \"black\" | \"white\" | undefined",
+        "value": [
+          {
+            "value": "undefined"
+          },
+          {
+            "value": "\"banana\""
+          },
+          {
+            "value": "\"blueberry\""
+          },
+          {
+            "value": "\"cherry\""
+          },
+          {
+            "value": "\"kiwi\""
+          },
+          {
+            "value": "\"neutral\""
+          },
+          {
+            "value": "\"plum\""
+          },
+          {
+            "value": "\"black\""
+          },
+          {
+            "value": "\"white\""
+          }
+        ]
+      }
+    },
+    "byline": {
+      "defaultValue": null,
+      "description": "Changes to the byline variant of the logo.",
+      "name": "byline",
+      "parent": {
+        "fileName": "src/components/Logo/Logo.tsx",
+        "name": "LogoProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Logo/Logo.tsx",
+          "name": "LogoProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    }
+  }
+}

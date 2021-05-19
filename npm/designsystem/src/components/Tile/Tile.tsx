@@ -5,12 +5,19 @@ import { HTMLAnchorProps } from '../../constants';
 import { TitleTags } from './../Title/Title';
 
 interface TileProps extends HTMLAnchorProps {
+  /** Adds custom classes to the element. */
   className?: string;
+  /**	Sets the icon to be displayed inside the tile. */
   icon: React.ReactElement;
+  /**	Sets the title to be displayed inside the tile. */
   title: React.ReactElement;
+  /** Toggles the highlighted style of the tile. */
   highlighted?: boolean;
+  /** Sets the description to be displayed inside the tile. */
   description?: string;
+  /** Sets a fixed max and min width for the tile. */
   fixed?: boolean;
+  /** Called when the tile is clicked on. */
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
@@ -33,7 +40,7 @@ const Title = React.forwardRef(function TitleForwardedRef(props: TileTitleProps,
   );
 });
 
-const Tile = React.forwardRef(function TileForwardedRef(props: TileProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
+export const Tile = React.forwardRef(function TileForwardedRef(props: TileProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
   const { icon, title, className = '', description, fixed = false, highlighted = false, ...restProps } = props;
   const [isHovered, setIsHovered] = useState(false);
   return (

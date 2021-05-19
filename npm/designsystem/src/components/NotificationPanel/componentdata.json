@@ -1,0 +1,208 @@
+{
+  "props": {
+    "className": {
+      "defaultValue": null,
+      "description": "Adds custom classes to the element.",
+      "name": "className",
+      "parent": {
+        "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+        "name": "NotificationPanelProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+          "name": "NotificationPanelProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "children": {
+      "defaultValue": null,
+      "description": "Adds inner child elements.",
+      "name": "children",
+      "parent": {
+        "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+        "name": "NotificationPanelProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+          "name": "NotificationPanelProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "ReactNode"
+      }
+    },
+    "variant": {
+      "defaultValue": null,
+      "description": "Changes the visual representation of the notification panel.",
+      "name": "variant",
+      "parent": {
+        "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+        "name": "NotificationPanelProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+          "name": "NotificationPanelProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"info\" | \"warn\" | \"alert\" | \"crisis\" | undefined",
+        "value": [
+          {
+            "value": "undefined"
+          },
+          {
+            "value": "\"info\""
+          },
+          {
+            "value": "\"warn\""
+          },
+          {
+            "value": "\"alert\""
+          },
+          {
+            "value": "\"crisis\""
+          }
+        ]
+      }
+    },
+    "shadow": {
+      "defaultValue": null,
+      "description": "Adds a shadow effect around the notification panel.",
+      "name": "shadow",
+      "parent": {
+        "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+        "name": "NotificationPanelProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+          "name": "NotificationPanelProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "size": {
+      "defaultValue": null,
+      "description": "Sets a fixed size for the content container.",
+      "name": "size",
+      "parent": {
+        "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+        "name": "NotificationPanelProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+          "name": "NotificationPanelProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"small\" | \"medium\" | \"large\" | undefined",
+        "value": [
+          {
+            "value": "undefined"
+          },
+          {
+            "value": "\"small\""
+          },
+          {
+            "value": "\"medium\""
+          },
+          {
+            "value": "\"large\""
+          }
+        ]
+      }
+    },
+    "onClick": {
+      "defaultValue": null,
+      "description": "Used in combination with dismissiable property to close the notification panel.",
+      "name": "onClick",
+      "parent": {
+        "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+        "name": "NotificationPanelProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+          "name": "NotificationPanelProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "((e?: MouseEvent<HTMLElement, MouseEvent>) => void) | undefined"
+      }
+    },
+    "dismissable": {
+      "defaultValue": null,
+      "description": "Toggles the close button in the top right corner.",
+      "name": "dismissable",
+      "parent": {
+        "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+        "name": "NotificationPanelProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+          "name": "NotificationPanelProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "fluid": {
+      "defaultValue": null,
+      "description": "Enables a fluid outer container that spans the entire width of parent.",
+      "name": "fluid",
+      "parent": {
+        "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+        "name": "NotificationPanelProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+          "name": "NotificationPanelProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "label": {
+      "defaultValue": null,
+      "description": "Sets a label for the notification panel.",
+      "name": "label",
+      "parent": {
+        "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+        "name": "NotificationPanelProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/NotificationPanel/NotificationPanel.tsx",
+          "name": "NotificationPanelProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    }
+  }
+}

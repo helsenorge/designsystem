@@ -19,7 +19,8 @@ fs.readdir(pathToIcons, (err, files) => {
     console.error('ERROR in generate-icon-imports.js while attempting to create ' + finalFileName, err);
   }
   if (files.length > 0) {
-    files.forEach(file => {
+    const sorted = files.sort();
+    sorted.forEach(file => {
       if (file.endsWith('.js') && file !== 'Icon.js' && file !== 'index.js' && file !== 'AdditionalIconInformation.js') {
         const fileName = file.replace(/\.[^/.]+$/, '');
         const iconFile = '@helsenorge/designsystem-react/components/Icons/' + fileName;
@@ -27,10 +28,9 @@ fs.readdir(pathToIcons, (err, files) => {
 
         singleIconModulesImports =
           singleIconModulesImports + `import ${fileName}_ from '${iconFile}';\r\nexport const ${fileName} = ${fileName}_;\r\n`;
-        arrayOfIconModules = `${arrayOfIconModules} { "module": ${fileName}, "name": "${fileName}", "alternativeName": "${
+        arrayOfIconModules = `${arrayOfIconModules} { module: ${fileName}, name: "${fileName}", alternativeName: "${
           additionalInfo[fileName.toLowerCase()] ? additionalInfo[fileName.toLowerCase()].alternativeName : ''
-        }", 
-        "categories": "${additionalInfo[fileName.toLowerCase()] ? additionalInfo[fileName.toLowerCase()].categories : ''}", },`;
+        }", categories: "${additionalInfo[fileName.toLowerCase()] ? additionalInfo[fileName.toLowerCase()].categories : ''}", },`;
       }
     });
     arrayOfIconModules = arrayOfIconModules.slice(0, -1) + '];';

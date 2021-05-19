@@ -27,23 +27,34 @@ export const intentToColor: IntentToColor = {
 };
 
 export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
+  /** Sets the content of the button. */
   children: React.ReactNode;
+  /** Adds custom classes to the element. */
   className?: string;
+  /** Makes the button scale to full width of its parent element. */
   fluid?: boolean;
+  /** Changes the intent of the button. Mostly changes the color profile. */
   intent?: ButtonIntents;
+  /** Changes the color presentation for different backgrounds. */
   inverted?: boolean;
+  /** Changes the underlying element of the button. */
   htmlMarkup?: ButtonTags;
+  /** Changes the size of the button to large. */
   large?: boolean;
+  /** Sets the button into a loading state displaying <Loader /> as content. */
   loading?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  /** Changes the visual representation of the button. */
   variant?: ButtonVariants;
+  /** Disables text wrapping and enables ellipsis. */
   ellipsis?: boolean;
+  /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 // TODO: Consider making this a shared hook
 
-export function useIcons(children: React.ReactNode[]): Array<React.ReactElement<IconProps> | React.ReactNode | {} | undefined | null> {
+function useIcons(children: React.ReactNode[]): Array<React.ReactElement<IconProps> | React.ReactNode | {} | undefined | null> {
   let leftIcon: React.ReactElement<IconProps> | undefined | null = null;
   let rightIcon: React.ReactElement<IconProps> | undefined | null = null;
 

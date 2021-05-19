@@ -6,8 +6,11 @@ import cn from 'classnames';
 import styles from './styles.module.scss';
 
 interface AvatarProps {
+  /** Name to display in the avatar. Will be truncated to the first two characters. */
   children: string;
+  /** Displays a check icon to indicated the selected state. */
   selected?: boolean;
+  /** Adds custom classes to the element. */
   className?: string;
 }
 

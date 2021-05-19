@@ -6,9 +6,13 @@ export type LoaderColors = PaletteNames;
 export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';
 
 interface LoaderProps {
+  /** Sets the color of the loader */
   color?: LoaderColors;
+  /**	Adds custom classes to the element. */
   className?: string;
+  /** Changes the size of the loader. */
   size?: LoaderSizes;
+  /** Sets the data-testid attribute. */
   testId?: string;
 }
 

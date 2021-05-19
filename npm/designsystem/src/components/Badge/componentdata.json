@@ -1,0 +1,91 @@
+{
+  "props": {
+    "children": {
+      "defaultValue": null,
+      "description": "Sets the content of the badge.",
+      "name": "children",
+      "parent": {
+        "fileName": "src/components/Badge/Badge.tsx",
+        "name": "BadgeProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Badge/Badge.tsx",
+          "name": "BadgeProps"
+        }
+      ],
+      "required": true,
+      "type": {
+        "name": "ReactText"
+      }
+    },
+    "className": {
+      "defaultValue": null,
+      "description": "Adds custom classes to the element.",
+      "name": "className",
+      "parent": {
+        "fileName": "src/components/Badge/Badge.tsx",
+        "name": "BadgeProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Badge/Badge.tsx",
+          "name": "BadgeProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "color": {
+      "defaultValue": null,
+      "description": "Changes the badge background color.",
+      "name": "color",
+      "parent": {
+        "fileName": "src/components/Badge/Badge.tsx",
+        "name": "BadgeProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Badge/Badge.tsx",
+          "name": "BadgeProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"banana\" | \"blueberry\" | \"cherry\" | \"kiwi\" | \"neutral\" | \"plum\" | \"black\" | \"white\" | undefined",
+        "value": [
+          {
+            "value": "undefined"
+          },
+          {
+            "value": "\"banana\""
+          },
+          {
+            "value": "\"blueberry\""
+          },
+          {
+            "value": "\"cherry\""
+          },
+          {
+            "value": "\"kiwi\""
+          },
+          {
+            "value": "\"neutral\""
+          },
+          {
+            "value": "\"plum\""
+          },
+          {
+            "value": "\"black\""
+          },
+          {
+            "value": "\"white\""
+          }
+        ]
+      }
+    }
+  }
+}

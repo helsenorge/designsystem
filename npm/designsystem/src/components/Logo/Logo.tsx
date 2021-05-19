@@ -5,9 +5,13 @@ import { PaletteNames } from '../../theme/palette';
 type LogoColor = PaletteNames;
 
 interface LogoProps {
+  /** Changes the size of the logo. */
   size?: number;
+  /** Adds custom classes to the element. */
   className?: string;
+  /**	Changes the color of the logo. */
   color?: LogoColor;
+  /** Changes to the byline variant of the logo. */
   byline?: boolean;
 }
 

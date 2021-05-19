@@ -1,0 +1,147 @@
+{
+  "props": {
+    "id": {
+      "defaultValue": null,
+      "description": "Gives a unique id to the title",
+      "name": "id",
+      "parent": {
+        "fileName": "src/components/Title/Title.tsx",
+        "name": "TitleProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Title/Title.tsx",
+          "name": "TitleProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "className": {
+      "defaultValue": null,
+      "description": "Adds custom classes to the element.",
+      "name": "className",
+      "parent": {
+        "fileName": "src/components/Title/Title.tsx",
+        "name": "TitleProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Title/Title.tsx",
+          "name": "TitleProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "margin": {
+      "defaultValue": null,
+      "description": "Adds top and bottom margin in rem.",
+      "name": "margin",
+      "parent": {
+        "fileName": "src/components/Title/Title.tsx",
+        "name": "TitleProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Title/Title.tsx",
+          "name": "TitleProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "number"
+      }
+    },
+    "htmlMarkup": {
+      "defaultValue": null,
+      "description": "Changes the underlying element of the title.",
+      "name": "htmlMarkup",
+      "parent": {
+        "fileName": "src/components/Title/Title.tsx",
+        "name": "TitleProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Title/Title.tsx",
+          "name": "TitleProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"span\" | undefined",
+        "value": [
+          {
+            "value": "undefined"
+          },
+          {
+            "value": "\"h1\""
+          },
+          {
+            "value": "\"h2\""
+          },
+          {
+            "value": "\"h3\""
+          },
+          {
+            "value": "\"h4\""
+          },
+          {
+            "value": "\"h5\""
+          },
+          {
+            "value": "\"span\""
+          }
+        ]
+      }
+    },
+    "appearance": {
+      "defaultValue": null,
+      "description": "Changes the appearance of the title.",
+      "name": "appearance",
+      "parent": {
+        "fileName": "src/components/Title/Title.tsx",
+        "name": "TitleProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Title/Title.tsx",
+          "name": "TitleProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"titleFeature\" | \"title1\" | \"title2\" | \"title3\" | \"title4\" | \"title5\" | undefined",
+        "value": [
+          {
+            "value": "undefined"
+          },
+          {
+            "value": "\"titleFeature\""
+          },
+          {
+            "value": "\"title1\""
+          },
+          {
+            "value": "\"title2\""
+          },
+          {
+            "value": "\"title3\""
+          },
+          {
+            "value": "\"title4\""
+          },
+          {
+            "value": "\"title5\""
+          }
+        ]
+      }
+    }
+  }
+}

@@ -10,10 +10,15 @@ import classNames from 'classnames';
 export type AnchorLinkTargets = '_self' | '_blank' | '_parent';
 
 interface AnchorLinkProps {
+  /** Sets the content of the <a> tag */
   children: React.ReactNode;
+  /** URL to link to */
   href: string;
+  /** Gives a unique id to the anchor-link :) */
   id?: string;
+  /** Adds custom classes to the element. */
   className?: string;
+  /** Sets the target type of the <a> tag. _blank adds an arrow icon at the end of the link */
   target?: AnchorLinkTargets;
 }
 

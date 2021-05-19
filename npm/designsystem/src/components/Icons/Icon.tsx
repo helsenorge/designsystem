@@ -4,14 +4,22 @@ import StyledIcon from './Icon.styled';
 type SvgIcon = React.FC<SvgPathProps>;
 
 interface IconProps {
+  /* Sets which icon should be displayed. */
   svgIcon: SvgIcon;
   ariaLabel?: string;
+  /* Changes the size of the icon. */
   size?: number;
+  /* Changes the color of the icon. */
   color?: string;
+  /* Changes the hover color of the icon. */
   hoverColor?: string;
+  /* Adds custom classes to the element. */
   className?: string;
+  /* Use a custom hover icon. */
   hoverType?: SvgIcon;
+  /* Swaps the displayed icon to the hover version and changes its color. */
   isHovered?: boolean;
+  /** Sets the data-testid attribute. */
   testId?: string;
 }
 
