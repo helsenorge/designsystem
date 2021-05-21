@@ -26,14 +26,14 @@ aliases:
 project: &ABOUT
   - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page' }
   - { label: 'Tittel', name: 'title', widget: 'string' }
-  - { label: 'Ingress', name: 'preamble', widget: 'text' }
+  - { label: 'Ingress', name: 'preamble', widget: 'mdx', required: false }
   - { label: 'Filer', name: 'pdf', widget: 'file', media_library: { config: { multiple: true } } }
   - <<: *BODY
 
 project2: &PAGE
   - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'simple-page' }
   - { label: 'Tittel', name: 'title', widget: 'string' }
-  - { label: 'Ingress', name: 'preamble', widget: 'string' }
+  - { label: 'Ingress', name: 'preamble', widget: 'mdx', required: false }
   - <<: *BODY
 
 menu-item: &MENU
@@ -52,59 +52,59 @@ collections:
     extension: mdx
     format: frontmatter
     files:
-      - file: 'web/src/cms-pages/brand/index.mdx'
-        label: 'Brand'
-        name: 'brand'
+      - file: 'web/src/cms-pages/merkevare/index.mdx'
+        label: 'Merkevare'
+        name: 'merkevare'
         slug: '{{slug}}'
         fields: *PAGE
-      - file: 'web/src/cms-pages/editorial/index.mdx'
-        label: 'Editorial Guidelines'
-        name: 'editorial'
+      - file: 'web/src/cms-pages/redaksjonelle-retningslinjer/index.mdx'
+        label: 'Redaksjonelle Retningslinjer'
+        name: 'redaksjonelle-retningslinjer'
         slug: '{{slug}}'
         fields: *PAGE
-      - file: 'web/src/cms-pages/marketing-material/index.mdx'
-        label: 'Marketing Material'
-        name: 'marketing-material'
+      - file: 'web/src/cms-pages/profilmateriell/index.mdx'
+        label: 'Profilmateriell'
+        name: 'profilmateriell'
         slug: '{{slug}}'
         fields: *PAGE
       - file: 'web/src/cms-pages/patterns/index.mdx'
-        label: 'Patterns'
-        name: 'patterns'
+        label: 'Mønstre'
+        name: 'monstre'
         slug: '{{slug}}'
         fields: *PAGE
 
-  - name: 'brand'
-    label: 'Brand'
+  - name: 'merkevare'
+    label: 'Merkevare'
     extension: mdx
     format: frontmatter
-    folder: 'web/src/cms-pages/brand'
+    folder: 'web/src/cms-pages/merkevare'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
 
-  - name: 'editorial'
-    label: 'Editorial Guidelines'
+  - name: 'redaksjonelle-retningslinjer'
+    label: 'Redaksjonelle Retningslinjer'
     extension: mdx
     format: frontmatter
-    folder: 'web/src/cms-pages/editorial'
+    folder: 'web/src/cms-pages/redaksjonelle-retningslinjer'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
 
-  - name: 'marketing-material'
-    label: 'Marketing Material'
+  - name: 'profilmateriell'
+    label: 'Profilmateriell'
     extension: mdx
     format: frontmatter
-    folder: 'web/src/cms-pages/marketing-material'
+    folder: 'web/src/cms-pages/profilmateriell'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
 
-  - name: 'patterns'
-    label: 'Patterns'
+  - name: 'monstre'
+    label: 'Mønstre'
     extension: mdx
     format: frontmatter
-    folder: 'web/src/cms-pages/patterns'
+    folder: 'web/src/cms-pages/monstre'
     create: true
     slug: '{{slug}}'
     fields: *PAGE
@@ -152,23 +152,23 @@ collections:
         label: Meny
         name: routes
         fields:
-          - label: Library
-            name: library
+          - label: Bibliotek
+            name: bibliotek
             widget: list
             fields: *MENU
-          - label: Brand
-            name: brand
+          - label: Merkevare
+            name: merkevare
             widget: list
             fields: *MENU
-          - label: Patterns
-            name: patterns
+          - label: Mønster
+            name: monster
             widget: list
             fields: *MENU
-          - label: Editorial
-            name: editorial
+          - label: Redaksjonelle Retningslinjer
+            name: redaksjonelle-retningslinjer
             widget: list
             fields: *MENU
-          - label: Marekting material
-            name: marketing-material
+          - label: Profilmateriell
+            name: profilmateriell
             widget: list
             fields: *MENU

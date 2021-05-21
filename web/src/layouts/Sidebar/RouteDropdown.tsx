@@ -9,7 +9,7 @@ import Library from '../../components/Icons/Library';
 import Patterns from '../../components/Icons/Patterns';
 import Editorial from '../../components/Icons/Editorial';
 import Principles from '../../components/Icons/Principles';
-import Marketing from '../../components/Icons/Marketing';
+import ProfileMaterial from '../../components/Icons/ProfileMaterial';
 import Roadmap from '../../components/Icons/Roadmap';
 
 const Label = styled('div')`
@@ -107,37 +107,37 @@ const topLevelRoutes = [
   {
     label: 'Merkevare',
     icon: <Brand />,
-    to: '/brand',
+    to: '/merkevare',
   },
   {
     label: 'Mønstre',
     icon: <Patterns />,
-    to: '/patterns',
+    to: '/monstre',
   },
   {
     label: 'Komponenter',
     icon: <Library />,
-    to: '/library',
+    to: '/bibliotek',
   },
   {
     label: 'Designprinsipper',
     icon: <Principles />,
-    to: '/principles',
+    to: '/designprinsipper',
   },
   {
     label: 'Redaksjonelle retningslinjer',
     icon: <Editorial />,
-    to: '/editorial',
+    to: '/redaksjonelle-retningslinjer',
   },
   {
-    label: 'Markedsmateriell',
-    icon: <Marketing />,
-    to: '/marketing-material',
+    label: 'Profilmateriell',
+    icon: <ProfileMaterial />,
+    to: '/profilmateriell',
   },
   {
     label: 'Veikart',
     icon: <Roadmap />,
-    to: '/roadmap',
+    to: '/veikart',
   },
 ];
 

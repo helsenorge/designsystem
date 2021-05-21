@@ -5,6 +5,8 @@ import { useSpring, animated } from 'react-spring';
 import anchorIcon from '../../../images/link.svg';
 import { Link } from 'react-scroll';
 
+import { theme } from '@helsenorge/designsystem-react';
+
 interface AnchorLinkProps {
   children?: string;
   className?: string;
@@ -58,6 +60,7 @@ const H2 = styled(AnchorLink)`
   font-size: 2rem;
   font-weight: 600;
   line-height: 2.75rem;
+  color: ${theme.palette.blueberry700};
 `;
 
 const H3 = styled(AnchorLink)`
@@ -70,6 +73,7 @@ const H3 = styled(AnchorLink)`
   line-height: 2rem;
   margin: 2rem 0 1rem;
   transition: all 150ms;
+  color: ${theme.palette.blueberry700};
 `;
 const H4 = styled('h4')`
   font-size: 1.2rem;

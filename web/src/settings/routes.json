@@ -1,187 +1,187 @@
 {
-  "library": [
+  "bibliotek": [
     {
       "label": "Get started",
-      "path": "/library",
+      "path": "/bibliotek",
       "children": []
     },
     {
       "label": "Reset",
-      "path": "/library/reset",
+      "path": "/bibliotek/reset",
       "children": []
     },
     {
       "label": "SCSS resources",
-      "path": "/library/scss",
+      "path": "/bibliotek/scss",
       "children": [
         {
           "label": "Grid and breakpoints",
-          "path": "/library/scss/grid"
+          "path": "/bibliotek/scss/grid"
         },
         {
           "label": "Spacing",
-          "path": "/library/scss/spacing"
+          "path": "/bibliotek/scss/spacing"
         },
         {
           "label": "Typography",
-          "path": "/library/scss/typography"
+          "path": "/bibliotek/scss/typography"
         },
         {
           "label": "Palette",
-          "path": "/library/scss/palette"
+          "path": "/bibliotek/scss/palette"
         }
       ]
     },
     {
       "label": "Icons",
-      "path": "/library/icons",
+      "path": "/bibliotek/icons",
       "children": []
     },
     {
       "label": "Components",
-      "path": "/library/components",
+      "path": "/bibliotek/komponenter",
       "children": [
         {
           "label": "AnchorLink",
-          "path": "/library/components/anchor-link"
+          "path": "/bibliotek/komponenter/anchor-link"
         },
         {
           "label": "Avatar",
-          "path": "/library/components/avatar"
+          "path": "/bibliotek/komponenter/avatar"
         },
         {
           "label": "Badge",
-          "path": "/library/components/badge"
+          "path": "/bibliotek/komponenter/badge"
         },
         {
           "label": "Button",
-          "path": "/library/components/button"
+          "path": "/bibliotek/komponenter/button"
         },
         {
           "label": "ExpanderList",
-          "path": "/library/components/expander-list"
+          "path": "/bibliotek/komponenter/expander-list"
         },
         {
           "label": "Icon",
-          "path": "/library/components/icon"
+          "path": "/bibliotek/komponenter/icon"
         },
         {
           "label": "LinkList",
-          "path": "/library/components/link-list"
+          "path": "/bibliotek/komponenter/link-list"
         },
         {
           "label": "List",
-          "path": "/library/components/list"
+          "path": "/bibliotek/komponenter/list"
         },
         {
           "label": "Loader",
-          "path": "/library/components/loader"
+          "path": "/bibliotek/komponenter/loader"
         },
         {
           "label": "Logo",
-          "path": "/library/components/logo"
+          "path": "/bibliotek/komponenter/logo"
         },
         {
           "label": "NotificationPanel",
-          "path": "/library/components/notification-panel"
+          "path": "/bibliotek/komponenter/notification-panel"
         },
         {
           "label": "Spacer",
-          "path": "/library/components/spacer"
+          "path": "/bibliotek/komponenter/spacer"
         },
         {
           "label": "Slider",
-          "path": "/library/components/slider"
+          "path": "/bibliotek/komponenter/slider"
         },
         {
           "label": "Tile",
-          "path": "/library/components/tile"
+          "path": "/bibliotek/komponenter/tile"
         },
         {
           "label": "Title",
-          "path": "/library/components/title"
+          "path": "/bibliotek/komponenter/title"
         }
       ]
     }
   ],
-  "brand": [
+  "merkevare": [
     {
       "label": "Merkevare",
-      "path": "/brand",
+      "path": "/merkevare",
       "children": []
     }
   ],
-  "patterns": [
+  "monstre": [
     {
       "label": "Mønstre",
-      "path": "/patterns",
+      "path": "/monstre",
       "children": []
     },
     {
       "label": "Avgrense - forenkle",
-      "path": "/patterns/avgrense-og-forenkle",
+      "path": "/monstre/avgrense-og-forenkle",
       "children": [
         {
           "label": "Gruppere",
-          "path": "/patterns/gruppere"
+          "path": "/monstre/gruppere"
         },
         {
           "label": "Stegvisning",
-          "path": "/patterns/stegvisning"
+          "path": "/monstre/stegvisning"
         }
       ]
     },
     {
       "label": "Brukerinput",
-      "path": "/patterns/brukerinput",
+      "path": "/monstre/brukerinput",
       "children": [
         {
           "label": "Knapp [Button]",
-          "path": "/patterns/knapp-button"
+          "path": "/monstre/knapp-button"
         }
       ]
     },
     {
       "label": "Datapresentasjon",
-      "path": "/patterns/datapresentasjon"
+      "path": "/monstre/datapresentasjon"
     },
     {
       "label": "Estetisk",
-      "path": "/patterns/estetisk"
+      "path": "/monstre/estetisk"
     },
     {
       "label": "Navigasjon",
-      "path": "/patterns/navigasjon"
+      "path": "/monstre/navigasjon"
     },
     {
       "label": "Orientere",
-      "path": "/patterns/orientere",
+      "path": "/monstre/orientere",
       "children": [
         {
           "label": "Ikon [Icon]",
-          "path": "/patterns/ikon-icon"
+          "path": "/monstre/ikon-icon"
         }
       ]
     },
     {
       "label": "Tilstander",
-      "path": "/patterns/tilstander",
+      "path": "/monstre/tilstander",
       "children": [
         {
           "label": "Loader [Loader]",
-          "path": "/patterns/loader-loader"
+          "path": "/monstre/loader-loader"
         }
       ]
     },
     {
       "label": "Markdown testside",
-      "path": "/patterns/superflubberoo"
+      "path": "/monstre/superflubberoo"
     }
   ],
-  "editorial": [
+  "redaksjonelle-retningslinjer": [
     {
       "label": "Redaksjonelle retningslinjer",
-      "path": "/editorial",
+      "path": "/redaksjonelle-retningslinjer",
       "children": []
     },
     {
@@ -190,23 +190,23 @@
       "children": [
         {
           "label": "Veileder for skribenter",
-          "path": "/editorial/veileder-for-skribenter"
+          "path": "/redaksjonelle-retningslinjer/veileder-for-skribenter"
         },
         {
           "label": "Sjekkliste for skribenter",
-          "path": "/editorial/sjekkliste-for-skribenter"
+          "path": "/redaksjonelle-retningslinjer/sjekkliste-for-skribenter"
         },
         {
           "label": "Kilder og referanser",
-          "path": "/editorial/kilder-og-referanser"
+          "path": "/redaksjonelle-retningslinjer/kilder-og-referanser"
         }
       ]
     }
   ],
-  "marketing-material": [
+  "profilmateriell": [
     {
-      "label": "Marekting material",
-      "path": "/marketing-material",
+      "label": "Profilmateriell",
+      "path": "/profilmateriell",
       "children": []
     }
   ]

@@ -1,0 +1,98 @@
+---
+title: Button
+path: /bibliotek/komponenter/button
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/Button/componentdata.json';
+import Icon from '@helsenorge/designsystem-react/components/Icons';
+import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
+import ArrowRight from '@helsenorge/designsystem-react/components/Icons/ArrowRight';
+import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
+import Button from '@helsenorge/designsystem-react/components/Button';
+
+# Button
+
+<MDXCustom.Preamble>
+  Button [<a href="/monstre/knapp-button">Knapp</a>] benyttes for å la innbygger initiere en handling eller hendelse. Knapper lar innbygger
+  vite hva som vil skje om man trykker på dem.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{ Button }}>{`<Button>Button</Button>`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+## Examples
+
+### Variants
+
+<MDXCustom.LiveComponent scope={{ Button }}>{`
+  <Button>Fill</Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="borderless">Borderless</Button>
+`}</MDXCustom.LiveComponent>
+
+### Intents
+
+<MDXCustom.LiveComponent scope={{ Button }}>{`
+  <Button intent="primary">Button</Button>
+  <Button intent="warning">Button</Button>
+  <Button intent="danger">Button</Button>
+`}</MDXCustom.LiveComponent>
+
+### Inverted
+
+<MDXCustom.LiveComponent scope={{ Button }}>{`
+  <Button inverted>Button</Button>
+  <Button variant="outline" inverted >Button</Button>
+  <Button variant="borderless" inverted>Button</Button>
+`}</MDXCustom.LiveComponent>
+
+### Large
+
+<MDXCustom.LiveComponent scope={{ Button }}>{`
+  <Button>Button</Button>
+  <Button large>Button</Button>
+`}</MDXCustom.LiveComponent>
+
+### Fluid
+
+<MDXCustom.LiveComponent fullWidth stack scope={{ Button, Icon, AlarmClock, ArrowRight }}>{`
+    <Button fluid>Button</Button>
+    <Button fluid>
+      <Icon svgIcon={AlarmClock} />
+      Button
+    <Icon svgIcon={ArrowRight} />
+    </Button>
+`}</MDXCustom.LiveComponent>
+
+### With icons
+
+<MDXCustom.LiveComponent scope={{ Button, Icon, Calendar, ArrowRight }}>{`
+  <Button variant="outline" >
+      <Icon svgIcon={Calendar} />
+    Primary
+  </Button>
+  <br/>
+  <Button variant="outline">
+    Primary
+      <Icon svgIcon={Calendar} />
+  </Button>
+  <br/>
+  <Button variant="outline">
+      <Icon svgIcon={Calendar}/>
+    Primary
+      <Icon svgIcon={ArrowRight} />
+  </Button>
+`}</MDXCustom.LiveComponent>
+
+## Bruk
+
+<a href="/patterns/knapp-button">Se retningslinjer for bruk</a>
+
+### Tilgjengelighet

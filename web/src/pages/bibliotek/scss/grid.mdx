@@ -1,0 +1,38 @@
+---
+title: Grid and breakpoints
+path: /bibliotek/scss/grid
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../components/markdown/MDXCustom';
+
+# Grid and breakpoints
+
+<MDXCustom.Preamble>
+  Our library comes with global styling which also includes usage of a forked Bootstrap's grid system. Some of our internal services and
+  projects use this grid system as the basis for positioning and alignment.
+</MDXCustom.Preamble>
+
+## How to use
+
+[Bootstrap grid documentation](https://getbootstrap.com/docs/4.1/layout/grid/)
+
+## Overrides
+
+```scss
+$grid-gutter-width: map-get($spacers, 5); // tilsvarer 0.75rem = 12px
+
+$grid-breakpoints: (
+  xs: 360px,
+  sm: 564px,
+  md: 768px,
+  lg: 1088px,
+  xl: 1450px,
+);
+
+$container-max-widths: (
+  sm: 528px,
+  md: 612px,
+  lg: 1056px,
+);
+```

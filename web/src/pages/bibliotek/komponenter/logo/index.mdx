@@ -1,0 +1,61 @@
+---
+title: Logo
+path: /bibliotek/komponenter/logo
+date: 2019-01-29
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/Logo/componentdata.json';
+import Logo from '@helsenorge/designsystem-react/components/Logo';
+
+# Logo
+
+<MDXCustom.Preamble>
+  He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum is the single greatest
+  threat.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{ Logo }}>{`<Logo />`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+## Examples
+
+### Byline
+
+<MDXCustom.LiveComponent stack scope={{ Logo }}>{`
+  <Logo byline />
+`}</MDXCustom.LiveComponent>
+
+### Sizes
+
+<MDXCustom.LiveComponent stack scope={{ Logo }}>{`
+  <Logo size={100} />
+  <Logo size={200} />
+  <Logo size={300} />
+`}</MDXCustom.LiveComponent>
+
+### Colors
+
+<MDXCustom.LiveComponent scope={{ Logo }}>{`
+  <Logo size={75} color="black" />
+  <Logo size={75} color="white" />
+  <Logo size={75} color="blueberry" />
+  <Logo size={75} color="cherry" />
+  <Logo size={75} color="kiwi" />
+  <Logo size={75} color="neutral" />
+  <Logo size={75} color="banana" />
+  <Logo size={75} color="plum" />
+`}</MDXCustom.LiveComponent>
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**

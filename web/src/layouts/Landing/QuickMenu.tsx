@@ -52,20 +52,20 @@ const StyledLowerQuickMenuRow = styled('div')`
   grid-template-areas:
     'principles'
     'editorial'
-    'marketing'
+    'profile-material'
     'roadmap';
 
   @media ${hndsTheme.screen.sm} {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'principles editorial'
-      'marketing roadmap';
+      'profile-material roadmap';
   }
 
   @media ${hndsTheme.screen.md} {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
-    grid-template-areas: 'principles editorial marketing roadmap';
+    grid-template-areas: 'principles editorial profile-material roadmap';
   }
 `;
 
@@ -81,33 +81,33 @@ function QuickMenu() {
       <StyledQuickMenuContent>
         <StyledQuickMenuContainer>
           <StyledUpperQuickMenuRow>
-            <QuickMenuCard grid="brand" to="/brand">
+            <QuickMenuCard grid="brand" to="/merkevare">
               <QuickMenuCardArt src={brandIllustration} />
               <QuickMenuCardTitle>Merkevare</QuickMenuCardTitle>
             </QuickMenuCard>
-            <QuickMenuCard grid="patterns" to="/patterns">
+            <QuickMenuCard grid="patterns" to="/monstre">
               <QuickMenuCardArt src={patternsIllustration} />
               <QuickMenuCardTitle>Mønstre</QuickMenuCardTitle>
             </QuickMenuCard>
-            <QuickMenuCard grid="library" to="/library">
+            <QuickMenuCard grid="library" to="/bibliotek">
               <QuickMenuCardArt src={componentsIllustration} />
               <QuickMenuCardTitle>Komponenter</QuickMenuCardTitle>
             </QuickMenuCard>
           </StyledUpperQuickMenuRow>
           <StyledLowerQuickMenuRow>
-            <QuickMenuCard grid="principles" small to="/principles">
+            <QuickMenuCard grid="principles" small to="/designprinsipper">
               <QuickMenuCardArt src={principlesIllustration} />
               <QuickMenuCardTitle>Design-prinsipper</QuickMenuCardTitle>
             </QuickMenuCard>
-            <QuickMenuCard grid="editorial" small to="/editorial">
+            <QuickMenuCard grid="editorial" small to="/redaksjonelle-retningslinjer">
               <QuickMenuCardArt src={editorialIllustration} />
               <QuickMenuCardTitle>Redaksjonelle retningslinjer</QuickMenuCardTitle>
             </QuickMenuCard>
-            <QuickMenuCard grid="marketing" small to="/marketing-material">
+            <QuickMenuCard grid="profile-material" small to="/profilmateriell">
               <QuickMenuCardArt src={materialIllustration} />
-              <QuickMenuCardTitle>Markedsmateriell</QuickMenuCardTitle>
+              <QuickMenuCardTitle>Profilmateriell</QuickMenuCardTitle>
             </QuickMenuCard>
-            <QuickMenuCard grid="roadmap" small to="/roadmap">
+            <QuickMenuCard grid="roadmap" small to="/veikart">
               <QuickMenuCardArt src={roadmapIllustration} />
               <QuickMenuCardTitle>Veikart</QuickMenuCardTitle>
             </QuickMenuCard>

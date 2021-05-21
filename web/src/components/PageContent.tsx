@@ -27,7 +27,7 @@ const StyledPageContent = styled(PageContent)`
   width: 100%;
   padding: 0 ${hndsTheme.spacer}rem;
   @media ${hndsTheme.screen.sm} {
-    padding: 0 ${hndsTheme.spacers[8]}rem;
+    padding: 0 ${hndsTheme.spacers[8]}rem ${hndsTheme.spacers[7]}rem;
   }
 `;
 
