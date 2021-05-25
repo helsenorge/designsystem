@@ -238,4 +238,10 @@ module.exports = {
   change: { alternativeName: 'Endre', categories: 'System, Generisk' },
   calendarchange: { alternativeName: 'Kalender endring', categories: 'System, Generisk' },
   calendarcheck: { alternativeName: 'Kalender ok', categories: 'System, Generisk' },
+  healthwarning: { alternativeName: 'Helseadvarsel', categories: 'Generisk' },
+  zoom: { alternativeName: 'Zoom inn', categories: 'System, Generisk' },
+  checkoutline: { alternativeName: 'Avhukning', categories: 'System, Generisk' },
+  shield: { alternativeName: 'Skjold', categories: 'System, Generisk' },
+  xoutline: { alternativeName: 'X', categories: 'System, Generisk' },
+  recovery: { alternativeName: 'Gjenoppretting', categories: 'System, Generisk' },
 };
