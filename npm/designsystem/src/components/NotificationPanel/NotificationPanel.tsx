@@ -90,6 +90,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
         {
           [NotificationPanelStyles['notification-panel--shadow']]: !fluid && shadow,
           [NotificationPanelStyles['notification-panel--haslabel']]: !!label && !children,
+          [NotificationPanelStyles['notification-panel--dismissable']]: dismissable,
         },
         className ? className : ''
       )}
@@ -107,8 +108,8 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
         {label ? <h1 className={NotificationPanelStyles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} /> : null}
         {children}
       </div>
-      <span className={NotificationPanelStyles['notification-panel__action-column']}>
-        {dismissable ? (
+      {dismissable ? (
+        <span className={NotificationPanelStyles['notification-panel__action-column']}>
           <button className={closeButtonClasses} onClick={onClick} ref={hoverRef}>
             <Icon
               svgIcon={X}
@@ -118,8 +119,8 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
               hoverColor={variant === 'crisis' ? palette.white : palette.blueberry700}
             />
           </button>
-        ) : null}
-      </span>
+        </span>
+      ) : null}
     </div>
   );
 });

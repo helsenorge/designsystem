@@ -8,10 +8,14 @@
   display: grid;
   width: inherit;
   padding: $spacer;
-  grid-template-areas: 'icon' 'content' 'action';
-  grid-template-columns: 48px auto 48px;
+  grid-template-areas: 'icon' 'content';
+  grid-template-columns: 48px auto;
   grid-template-rows: 1fr;
 
+  &--dismissable {
+    grid-template-areas: 'icon' 'content' 'action';
+    grid-template-columns: 48px auto 48px;
+  }
   &--small {
     max-width: map-get($grid-breakpoints, sm);
   }

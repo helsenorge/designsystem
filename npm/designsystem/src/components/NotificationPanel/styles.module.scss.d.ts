@@ -19,6 +19,7 @@ export type Styles = {
   'notification-panel__label': string;
   'notification-panel--alert': string;
   'notification-panel--crisis': string;
+  'notification-panel--dismissable': string;
   'notification-panel--haslabel': string;
   'notification-panel--info': string;
   'notification-panel--large': string;
