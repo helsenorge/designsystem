@@ -18,7 +18,39 @@ exports[`Gitt at Avatar skal vises Når selected er true Så vises ikke teksten 
     <svg
       aria-hidden="true"
       class="sc-AxjAm jPyZsV hnds-style-icon "
-      fill="kiwi"
+      fill="#126F87"
+      height="48"
+      role="img"
+      viewBox="0 0 48 48"
+      width="48"
+    >
+      <path
+        d="M22.504 31.198l-9.59-9.966 1.441-1.387 8.149 8.468 14.455-15.016 1.441 1.386z"
+      />
+    </svg>
+  </span>
+</div>
+`;
+
+exports[`Gitt at Avatar skal vises Når variant er black Så skal komponenten være svart 1`] = `
+<div>
+  <span
+    class="avatar avatar--black"
+  >
+    Ba
+  </span>
+</div>
+`;
+
+exports[`Gitt at Avatar skal vises Når variant er black og selected Så skal bakgrunnen være transparent og fargen på ikon er svart 1`] = `
+<div>
+  <span
+    class="avatar avatar--selected avatar--black"
+  >
+    <svg
+      aria-hidden="true"
+      class="sc-AxjAm jPyZsV hnds-style-icon "
+      fill="#2B2C2B"
       height="48"
       role="img"
       viewBox="0 0 48 48"

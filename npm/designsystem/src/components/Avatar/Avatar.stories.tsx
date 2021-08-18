@@ -9,3 +9,8 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
 stories.add('Default', () => <Avatar selected={boolean('Selected', false)}>{text('Name', 'Line Danser')}</Avatar>);
+stories.add('Inverted', () => (
+  <Avatar variant="black" selected={boolean('Selected', false)}>
+    {text('Name', 'Line Danser')}
+  </Avatar>
+));

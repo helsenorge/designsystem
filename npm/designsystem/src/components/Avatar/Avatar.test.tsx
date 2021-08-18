@@ -21,4 +21,26 @@ describe('Gitt at Avatar skal vises', (): void => {
       expect(container).toMatchSnapshot();
     });
   });
+  describe('Når variant er black', (): void => {
+    it('Så skal komponenten være svart', (): void => {
+      const { container } = render(<Avatar variant="black">Barbra Streisand</Avatar>);
+
+      const text = screen.queryByText('Ba');
+      expect(text).toBeVisible();
+      expect(container).toMatchSnapshot();
+    });
+  });
+  describe('Når variant er black og selected', (): void => {
+    it('Så skal bakgrunnen være transparent og fargen på ikon er svart', (): void => {
+      const { container } = render(
+        <Avatar selected variant="black">
+          Barbra Streisand
+        </Avatar>
+      );
+
+      const text = screen.queryByText('Ba');
+      expect(text).not.toBeInTheDocument();
+      expect(container).toMatchSnapshot();
+    });
+  });
 });

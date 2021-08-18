@@ -13,4 +13,10 @@
   &--selected {
     background-color: transparent;
   }
+  &--black {
+    background-color: $neutral900;
+  }
+  &--selected#{&}--black {
+    background-color: transparent;
+  }
 }

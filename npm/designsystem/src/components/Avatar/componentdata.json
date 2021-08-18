@@ -56,6 +56,34 @@
       "type": {
         "name": "string"
       }
+    },
+    "variant": {
+      "defaultValue": "normal",
+      "description": "Displays the background-color and color of the component",
+      "name": "variant",
+      "parent": {
+        "fileName": "src/components/Avatar/Avatar.tsx",
+        "name": "AvatarProps"
+      },
+      "declarations": [
+        {
+          "fileName": "src/components/Avatar/Avatar.tsx",
+          "name": "AvatarProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "enum",
+        "raw": "\"normal\" | \"black\"",
+        "value": [
+          {
+            "value": "\"normal\""
+          },
+          {
+            "value": "\"black\""
+          }
+        ]
+      }
     }
   }
 }
