@@ -1,0 +1,69 @@
+---
+title: Modal
+path: /bibliotek/komponenter/modal
+date: 2021-09-10
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/Modal/componentdata.json';
+import Modal from '@helsenorge/designsystem-react/components/Modal';
+import Slider from '@helsenorge/designsystem-react/components/Slider';
+
+<MDXCustom.Preamble>
+  En Modal informerer brukere om en oppgave og kan inneholde kritisk informasjon, kreve beslutninger eller involvere flere oppgaver. En
+  modal har tre varianter normal, warning og error
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{ Modal }}>{`
+<Modal 
+  buttonText="Åpne modal"
+  title="Modal 1"
+  variant="normal"
+  description="En Modal informerer brukere om en oppgave eller status"
+  primaryButtonText="Lagre"
+  large={false}
+  testId="modal_1"
+  ariaLabel="dialog xx"
+  ariaLabelledBy="test-id6"
+  secondaryButtonText="Avbryt"
+  onSuccess={() => alert('Lagre')}
+   />
+`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+### Modal warning
+
+<MDXCustom.LiveComponent fullWidth stack scope={{ Modal }}>{`
+<Modal
+  buttonText="Åpne modal (warning)"
+  variant="warning"
+  title="Modal 2"
+  description="Hei du der"
+  secondaryButtonText="Avbryt"
+  onSuccess={() => alert('Lagre')}
+  onClose={() => alert('Lukker')}
+   />
+`}</MDXCustom.LiveComponent>
+
+### Modal error
+
+<MDXCustom.LiveComponent fullWidth stack scope={{ Modal, Slider }}>{`
+<Modal
+  buttonText="Åpne custom modal (error)"
+  large
+  variant="error"
+  title="Slider"
+  primaryButtonText="Lagre"
+  secondaryButtonText="Avbryt"
+  onSuccess={() => alert('Lagre')}
+  children={(<>
+    <p>Hvor mange burgere vil du bestille?</p>
+    <Slider labelLeft='ingen' labelRight="mange" />
+    </>)}
+   />
+`}</MDXCustom.LiveComponent>

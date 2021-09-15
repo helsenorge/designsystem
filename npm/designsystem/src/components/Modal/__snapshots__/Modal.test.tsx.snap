@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal bakgrunnen endre seg til riktig farge og det vises et ikon 1`] = `
+<div>
+  <div
+    data-testid="dialog-container"
+  >
+    <div
+      class="modal-overlay"
+    >
+      <div
+        class="align"
+      >
+        <div
+          aria-label="Dialog"
+          class="modal error"
+          role="dialog"
+        >
+          <div
+            class="close"
+          >
+            <button
+              aria-label="Lukk"
+              class="lukkekryss"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="sc-AxheI fbuQaL hnds-style-icon "
+                fill="#126F87"
+                height="32"
+                role="img"
+                viewBox="0 0 48 48"
+                width="32"
+              >
+                <path
+                  d="M25.773 24l10.432-10.432-1.772-1.773-10.432 10.433-10.433-10.433-1.773 1.772L22.229 24 11.795 34.433l1.773 1.772 10.433-10.433 10.432 10.433 1.772-1.773z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            class="contentWrapper"
+          >
+            <div
+              class="title"
+            >
+              <div>
+                <svg
+                  aria-hidden="true"
+                  class="sc-AxheI ehxhsT hnds-style-icon "
+                  fill="#C83521"
+                  height="48"
+                  role="img"
+                  viewBox="0 0 48 48"
+                  width="48"
+                >
+                  <path
+                    d="M24.898 21.447v7.228a.893.893 0 01-1.785 0v-7.228a.892.892 0 111.785 0zm.5 11.601a1.394 1.394 0 11-2.787-.001 1.394 1.394 0 012.787.001zm-18.822 6.71h34.847L24.111 8.242 6.576 39.758z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3
+                  class="sc-Axmtr bqmA-DQ"
+                >
+                  Hei der
+                </h3>
+              </div>
+            </div>
+            <div
+              class="content"
+            />
+            <div
+              class="actions"
+            >
+              <button
+                class="sc-AxhCb gHxYek"
+              >
+                <span
+                  class="sc-AxjAm jcbWlK"
+                >
+                  <span
+                    class="sc-AxiKw ikgxwu"
+                  >
+                    OK
+                  </span>
+                </span>
+              </button>
+              <button
+                class="sc-AxhCb uVXsb"
+              >
+                <span
+                  class="sc-AxjAm jcbWlK"
+                >
+                  <span
+                    class="sc-AxiKw ikgxwu"
+                  >
+                    Avbryt
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal bakgrunnen endre seg til riktig farge og det vises et ikon 1`] = `
+<div>
+  <div
+    data-testid="dialog-container"
+  >
+    <div
+      class="modal-overlay"
+    >
+      <div
+        class="align"
+      >
+        <div
+          aria-label="Dialog"
+          class="modal warning"
+          role="dialog"
+        >
+          <div
+            class="close"
+          >
+            <button
+              aria-label="Lukk"
+              class="lukkekryss"
+              role="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="sc-AxheI fbuQaL hnds-style-icon "
+                fill="#126F87"
+                height="32"
+                role="img"
+                viewBox="0 0 48 48"
+                width="32"
+              >
+                <path
+                  d="M25.773 24l10.432-10.432-1.772-1.773-10.432 10.433-10.433-10.433-1.773 1.772L22.229 24 11.795 34.433l1.773 1.772 10.433-10.433 10.432 10.433 1.772-1.773z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            class="contentWrapper"
+          >
+            <div
+              class="title"
+            >
+              <div>
+                <svg
+                  aria-hidden="true"
+                  class="sc-AxheI ehxhsT hnds-style-icon "
+                  fill="#000000"
+                  height="48"
+                  role="img"
+                  viewBox="0 0 48 48"
+                  width="48"
+                >
+                  <path
+                    d="M24.003 31.578a1.394 1.394 0 100 2.788 1.394 1.394 0 000-2.788zm.098-20.19l14.687 26.735H9.227L24.1 11.388zm.008-2.929L6.816 39.541h34.367L24.109 8.459zm-.106 21.033c.494 0 .893-.4.893-.893v-7.228a.893.893 0 00-1.786 0v7.228c0 .493.4.893.893.893z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3
+                  class="sc-Axmtr bqmA-DQ"
+                >
+                  Hei der
+                </h3>
+              </div>
+            </div>
+            <div
+              class="content"
+            />
+            <div
+              class="actions"
+            >
+              <button
+                class="sc-AxhCb gHxYek"
+              >
+                <span
+                  class="sc-AxjAm jcbWlK"
+                >
+                  <span
+                    class="sc-AxiKw ikgxwu"
+                  >
+                    OK
+                  </span>
+                </span>
+              </button>
+              <button
+                class="sc-AxhCb uVXsb"
+              >
+                <span
+                  class="sc-AxjAm jcbWlK"
+                >
+                  <span
+                    class="sc-AxiKw ikgxwu"
+                  >
+                    Avbryt
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

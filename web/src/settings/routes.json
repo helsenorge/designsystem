@@ -82,6 +82,10 @@
           "path": "/bibliotek/komponenter/logo"
         },
         {
+          "label": "Modal",
+          "path": "/bibliotek/komponenter/modal"
+        },
+        {
           "label": "NotificationPanel",
           "path": "/bibliotek/komponenter/notification-panel"
         },
