@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 import React, { useState } from 'react';
 import Button from '../Button';
-import Modal, { ModalProps } from './Modal';
+import Modal, { ModalProps } from '../Modal/Modal';
 
 interface ModalWithButtonProps extends ModalProps {
   /** Text of the button */

@@ -6,7 +6,7 @@ date: 2021-09-10
 
 import MDXCustom from '../../../../components/markdown/MDXCustom';
 import * as propData from '@helsenorge/designsystem-react/components/Modal/componentdata.json';
-import Modal from '@helsenorge/designsystem-react/components/Modal';
+import ButtonWithModal from '@helsenorge/designsystem-react/components/ButtonWithModal';
 import Slider from '@helsenorge/designsystem-react/components/Slider';
 
 <MDXCustom.Preamble>
@@ -14,10 +14,35 @@ import Slider from '@helsenorge/designsystem-react/components/Slider';
   modal har tre varianter normal, warning og error
 </MDXCustom.Preamble>
 
+## Usage
+```javascript
+import Modal from '@helsenorge/designsystem-react/components/Modal';
+
+const ViewModal = ({open: boolean}) {
+  const [showModal, setShowModal] = useState(open);
+
+  return (
+    <div>
+      <button
+        onClick={() => setShowModal(true)}
+      >{props.buttonText}</button>
+      {
+        showModal && 
+        <Modal
+          title="Modal xx"
+          onClose={() => setShowModal(false)}
+        />
+      }
+    </div>
+  );
+});
+```
+
+
 ## Preview
 
-<MDXCustom.LiveComponent scope={{ Modal }}>{`
-<Modal 
+<MDXCustom.LiveComponent scope={{ ButtonWithModal }}>{`
+<ButtonWithModal 
   buttonText="Åpne modal"
   title="Modal 1"
   variant="normal"
@@ -38,9 +63,9 @@ import Slider from '@helsenorge/designsystem-react/components/Slider';
 
 ### Modal warning
 
-<MDXCustom.LiveComponent fullWidth stack scope={{ Modal }}>{`
-<Modal
-  buttonText="Åpne modal (warning)"
+<MDXCustom.LiveComponent fullWidth stack scope={{ ButtonWithModal }}>{`
+<ButtonWithModal
+  buttonText="Åpne warning modal"
   variant="warning"
   title="Modal 2"
   description="Hei du der"
@@ -52,9 +77,9 @@ import Slider from '@helsenorge/designsystem-react/components/Slider';
 
 ### Modal error
 
-<MDXCustom.LiveComponent fullWidth stack scope={{ Modal, Slider }}>{`
-<Modal
-  buttonText="Åpne custom modal (error)"
+<MDXCustom.LiveComponent fullWidth stack scope={{ ButtonWithModal, Slider }}>{`
+<ButtonWithModal
+  buttonText="Åpne error modal"
   large
   variant="error"
   title="Slider"

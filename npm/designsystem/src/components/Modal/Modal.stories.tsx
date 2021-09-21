@@ -2,7 +2,8 @@ import React from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import Modal from './index';
+import Modal from './Modal';
+import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
 import { ModalVariants } from './Modal';
 import Button from '../Button';
 import Slider from '../Slider';
@@ -40,41 +41,26 @@ stories.add('Large modal', () => (
 ));
 
 stories.add('Modal with state example', () => {
-  const [open, isOpen] = React.useState(false);
-
   return (
-    <div>
-      <Button onClick={() => isOpen(!open)}>Open modal</Button>
-      {open && (
-        <Modal
-          variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
-          title={text('title', 'Er du sikker på at du vil?')}
-          description={text('description', 'Kort intro tekst som går over to linjer for å vise hvordan det ser ut.')}
-          primaryButtonText={text('primaryButtonText', 'OK')}
-          secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
-          onClose={() => isOpen(false)}
-          onSuccess={() => isOpen(false)}
-        />
-      )}
-    </div>
+    <ButtonWithModal
+      buttonText="Open modal"
+      variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
+      title={text('title', 'Er du sikker på at du vil?')}
+      description={text('description', 'Kort intro tekst som går over to linjer for å vise hvordan det ser ut.')}
+      primaryButtonText={text('primaryButtonText', 'OK')}
+      secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
+      onSuccess={() => alert('success')}
+    />
   );
 });
 
 stories.add('Modal with only title', () => {
-  const [open, isOpen] = React.useState(false);
-
   return (
-    <div>
-      <Button onClick={() => isOpen(!open)}>Open modal</Button>
-      {open && (
-        <Modal
-          variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
-          title={text('title', 'Er du sikker på at du vil?')}
-          onClose={() => isOpen(false)}
-          secondaryButtonText=""
-        />
-      )}
-    </div>
+    <ButtonWithModal
+      buttonText="Open modal"
+      variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
+      title={text('title', 'Er du sikker på at du vil?')}
+    />
   );
 });
 
@@ -84,15 +70,11 @@ stories.add('Modal in bottom of page', () => {
   return (
     <div>
       <div style={{ minHeight: '200vh' }}></div>
-      <Button onClick={() => isOpen(!open)}>Open modal</Button>
-      {open && (
-        <Modal
-          variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
-          title={text('title', 'Er du sikker på at du vil?')}
-          onClose={() => isOpen(false)}
-          secondaryButtonText=""
-        />
-      )}
+      <ButtonWithModal
+        buttonText="Open modal"
+        variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
+        title={text('title', 'Er du sikker på at du vil?')}
+      />
     </div>
   );
 });

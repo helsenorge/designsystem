@@ -56,7 +56,7 @@ const defaultProps = {
 
 const Lukkekryss = (props: { onClick?: () => void; ariaLabel?: string }) => (
   <button className={styles.lukkekryss} aria-label={props.ariaLabel || 'Lukk'} onClick={props.onClick} autoFocus role="button">
-    <Icon svgIcon={X} color={palette.blueberry600} size={32} />
+    <Icon svgIcon={X} color={palette.blueberry600} size={42} />
   </button>
 );
 
@@ -122,13 +122,12 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
   return (
     <div ref={containerRef} data-testid="dialog-container">
       <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId}>
-        <div className={styles.align}>
+        <div className={styles.align} ref={FocusTrap()}>
           <div
             className={cn(styles.modal, styles[props.variant as string], props.large ? styles.large : '')}
             role="dialog"
             aria-label={props.ariaLabel}
             aria-labelledby={props.ariaLabelledBy}
-            ref={FocusTrap()}
           >
             <div className={styles.close}>
               <Lukkekryss onClick={props.onClose} ariaLabel={props.ariaLabelCloseBtn} />

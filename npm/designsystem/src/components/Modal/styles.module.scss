@@ -2,8 +2,6 @@
 @import '../../scss/spacers.scss';
 @import '../../scss/_breakpoints.scss';
 
-$minContentHeight: 60px;
-
 .modal-overlay {
   z-index: 1300000;
   background: rgba(51, 51, 51, 0.75);
@@ -34,10 +32,11 @@ $minContentHeight: 60px;
   pointer-events: auto;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   background-color: $white;
-  margin: 0 12px;
-  padding: 12px;
-  min-height: 250px;
   animation: open 200ms 1;
+
+  p {
+    font-size: 20px;
+  }
 
   &.normal {
     background-color: $white;
@@ -63,6 +62,9 @@ $minContentHeight: 60px;
 
   @media (max-width: map-get($grid-breakpoints, sm)) {
     width: calc(100vw - 24px);
+    p {
+      font-size: 18px;
+    }
   }
 
   @media (min-width: map-get($grid-breakpoints, md)) {
@@ -83,18 +85,21 @@ $minContentHeight: 60px;
 }
 
 .close {
-  text-align: right;
-  height: 27px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    right: 0px;
+    top: 0px;
+  }
 }
 
 .contentWrapper {
-  padding: 0 12px 8px;
-  
+  padding: 48px;
   @media (max-width: map-get($grid-breakpoints, sm)) {
-    padding: 0;
+    padding: 32px 24px;
   }
   .content {
-    min-height: $minContentHeight;
     margin: 20px 0;
   }
   .title {
@@ -112,8 +117,8 @@ $minContentHeight: 60px;
 }
 
 .lukkekryss {
-  height: 32px;
-  width: 32px;
+  height: 42px;
+  width: 42px;
   padding: 0;
   border: 0;
   background-color: transparent;
@@ -133,6 +138,7 @@ $minContentHeight: 60px;
 }
 
 .actions {
+  display: flex;
   padding: 5px 0;
   button:first-child {
     margin-right: 24px;
