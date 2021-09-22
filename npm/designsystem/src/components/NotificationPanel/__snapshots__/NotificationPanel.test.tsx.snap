@@ -22,12 +22,11 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
         />
       </svg>
     </span>
-    <section
-      aria-label="Some text here for testing."
+    <div
       class="notification-panel__content"
     >
       Some text here for testing.
-    </section>
+    </div>
     <span
       class="notification-panel__action-column"
     >
@@ -75,12 +74,11 @@ exports[`Gitt at NotificationPanel skal vises Når panelet vises med default pro
         />
       </svg>
     </span>
-    <section
-      aria-label="Some text here for testing."
+    <div
       class="notification-panel__content"
     >
       Some text here for testing.
-    </section>
+    </div>
   </div>
 </div>
 `;

@@ -80,22 +80,6 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
     return panel;
   }
 
-  const getStringChildren = (children: React.ReactNode) => {
-    if (children) {
-      let textChildren = '';
-
-      React.Children.map(children, child => {
-        if (typeof child === 'string') {
-          textChildren += child;
-        }
-      });
-
-      return textChildren;
-    }
-
-    return '';
-  };
-
   return wrapFluid(
     <div
       ref={ref}
@@ -114,8 +98,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
       <span className={NotificationPanelStyles['notification-panel__icon']}>
         {variantToIconMap[variant === 'alert' && label && !children ? 'alertLabel' : variant]}
       </span>
-      <section
-        aria-label={getStringChildren(children)}
+      <div
         className={cn(NotificationPanelStyles['notification-panel__content'], {
           [NotificationPanelStyles['notification-panel__content--crisis']]: variant === 'crisis',
           [NotificationPanelStyles['notification-panel__content--haslabel']]: !!label && !children,
@@ -124,7 +107,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
       >
         {label ? <h1 className={NotificationPanelStyles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} /> : null}
         {children}
-      </section>
+      </div>
       {dismissable ? (
         <span className={NotificationPanelStyles['notification-panel__action-column']}>
           <button className={closeButtonClasses} onClick={onClick} ref={hoverRef}>
