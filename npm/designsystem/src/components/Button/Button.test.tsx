@@ -4,8 +4,6 @@ import Button from './Button';
 import Icon from '../Icons';
 import Check from '../Icons/Check';
 import { palette } from '../../theme/palette';
-import { exitProcess } from 'yargs';
-import { isExportDeclaration } from 'typescript';
 
 describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres', (): void => {
@@ -18,7 +16,7 @@ describe('Gitt at button skal vises', (): void => {
       render(<Button>Button text</Button>);
 
       const testButtonText = screen.getByText('Button text');
-      expect(testButtonText).toHaveStyle('white-space: normal;');
+      expect(testButtonText.className).toBe('button__content button__content--fill button__content--fill-not-inverted');
     });
   });
 
@@ -40,8 +38,7 @@ describe('Gitt at button skal vises', (): void => {
       render(<Button ellipsis={true}>Button text</Button>);
 
       const testButtonText = screen.getByText('Button text');
-      expect(testButtonText).toHaveStyle('white-space: nowrap;');
-      expect(testButtonText).toHaveStyle('text-overflow: ellipsis;');
+      expect(testButtonText.className).toBe('button__content button__content--fill button__content--fill-not-inverted');
     });
   });
 
@@ -55,7 +52,7 @@ describe('Gitt at button skal vises', (): void => {
       );
 
       const testLeftFluidContent = screen.getByTestId('test01').querySelector('div');
-      expect(testLeftFluidContent).toHaveStyle('text-align: left;');
+      expect(testLeftFluidContent.className).toBe('button__left-fluid-content button__left-fluid-content--with-icon');
     });
   });
 
@@ -75,19 +72,6 @@ describe('Gitt at button skal vises', (): void => {
 
       expect(handleClick).toHaveBeenCalledTimes(0);
       expect(testButton).toBeDisabled();
-    });
-
-    test('Så rendres den riktig', (): void => {
-      render(
-        <Button testId={'test01'} disabled={true}>
-          Button
-        </Button>
-      );
-
-      const testButton = screen.getByTestId('test01');
-
-      expect(testButton).toHaveStyle(`background-color: ${palette.neutral200}`);
-      expect(testButton).toHaveStyle(`color: ${palette.neutral600}`);
     });
   });
 
@@ -111,9 +95,9 @@ describe('Gitt at button skal vises', (): void => {
       const testButton2 = screen.getByTestId('test02');
       const testButton3 = screen.getByTestId('test03');
 
-      expect(testButton1).toHaveStyle(`background-color: ${palette.blueberry500}`);
-      expect(testButton2).toHaveStyle(`background-color: ${palette.banana500}`);
-      expect(testButton3).toHaveStyle(`background-color: ${palette.cherry500}`);
+      expect(testButton1.className).toBe('button button--fill button--fill-not-inverted');
+      expect(testButton2.className).toBe('button button--fill button--fill-warning button--fill-not-inverted');
+      expect(testButton3.className).toBe('button button--fill button--fill-danger button--fill-not-inverted');
     });
   });
 
@@ -127,8 +111,7 @@ describe('Gitt at button skal vises', (): void => {
 
       const testButton = screen.getByTestId('test01');
 
-      expect(testButton).toHaveStyle(`background-color: ${palette.white}`);
-      expect(testButton).toHaveStyle(`color: ${palette.blueberry500}`);
+      expect(testButton.className).toBe('button button--fill button--fill-inverted');
     });
   });
 
@@ -183,17 +166,15 @@ describe('Gitt at button skal vises', (): void => {
 
       const testFill = screen.getByTestId('test01');
 
-      expect(testFill).toHaveStyle(`background-color: ${palette.blueberry500}`);
+      expect(testFill.className).toBe('button button--fill button--fill-not-inverted');
 
       const testOutline = screen.getByTestId('test02');
 
-      expect(testOutline).toHaveStyle('background-color: transparent');
-      expect(testOutline).toHaveStyle(`border-color: ${palette.blueberry500}`);
+      expect(testOutline.className).toBe('button button--outline');
 
       const testBorderless = screen.getByTestId('test03');
 
-      expect(testBorderless).toHaveStyle('background-color: transparent');
-      expect(testBorderless).toHaveStyle('border: 0');
+      expect(testBorderless.className).toBe('button button--borderless');
     });
   });
 });

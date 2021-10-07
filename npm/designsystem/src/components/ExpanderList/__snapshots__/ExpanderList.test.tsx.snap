@@ -6,26 +6,27 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
     style="width: 40rem;"
   >
     <ul
-      class="sc-AxjAm cdEKGT"
+      class="expander-list"
     >
-      <li>
+      <li
+        class="expander-list__item expander-list__item--top"
+      >
         <button
-          class="sc-AxhUy eNACsH"
-          color="blueberry"
+          class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
           data-testid=""
           id="expander-0"
         >
           <span
-            class="sc-AxhCb gPRmPx"
+            class="expander-list-link__link-content"
           >
             Title 1
           </span>
           <span
-            class="sc-AxiKw hcQbGl"
+            class="expander-list-link__icon"
           >
             <svg
               aria-hidden="true"
-              class="sc-AxgMl gUSQvJ hnds-style-icon "
+              class="sc-AxjAm jPyZsV hnds-style-icon "
               fill="black"
               height="48"
               role="img"
@@ -39,24 +40,25 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
           </span>
         </button>
       </li>
-      <li>
+      <li
+        class="expander-list__item"
+      >
         <button
-          class="sc-AxhUy eNACsH"
-          color="blueberry"
+          class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
           data-testid=""
           id="expander-1"
         >
           <span
-            class="sc-AxhCb gPRmPx"
+            class="expander-list-link__link-content"
           >
             Title 2
           </span>
           <span
-            class="sc-AxiKw hcQbGl"
+            class="expander-list-link__icon"
           >
             <svg
               aria-hidden="true"
-              class="sc-AxgMl gUSQvJ hnds-style-icon "
+              class="sc-AxjAm jPyZsV hnds-style-icon "
               fill="black"
               height="48"
               role="img"
@@ -70,24 +72,25 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
           </span>
         </button>
       </li>
-      <li>
+      <li
+        class="expander-list__item"
+      >
         <button
-          class="sc-AxhUy eNACsH"
-          color="blueberry"
+          class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
           data-testid=""
           id="expander-2"
         >
           <span
-            class="sc-AxhCb gPRmPx"
+            class="expander-list-link__link-content"
           >
             Title 3
           </span>
           <span
-            class="sc-AxiKw hcQbGl"
+            class="expander-list-link__icon"
           >
             <svg
               aria-hidden="true"
-              class="sc-AxgMl gUSQvJ hnds-style-icon "
+              class="sc-AxjAm jPyZsV hnds-style-icon "
               fill="black"
               height="48"
               role="img"

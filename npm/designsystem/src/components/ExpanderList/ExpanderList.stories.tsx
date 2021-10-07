@@ -23,6 +23,9 @@ stories.add('Default', () => (
       accordion={boolean('Accordion', false)}
       childPadding={boolean('Child padding', true)}
       color={select('Color', allPaletteNames, 'blueberry')}
+      topBorder={boolean('Top border', true)}
+      bottomBorder={boolean('Bottom border', true)}
+      large={boolean('Large', false)}
     >
       <ExpanderList.Expander title="Cognitive therapy">
         Some major content/text about <a href="#">certain illness here.</a>. Note that the anchors are not styled by default. The content is

@@ -26,7 +26,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
             >
               <svg
                 aria-hidden="true"
-                class="sc-AxheI hPFwRP hnds-style-icon "
+                class="sc-AxiKw ifVavq hnds-style-icon "
                 fill="#126F87"
                 height="42"
                 role="img"
@@ -48,7 +48,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
               <div>
                 <svg
                   aria-hidden="true"
-                  class="sc-AxheI ehxhsT hnds-style-icon "
+                  class="sc-AxiKw kHJAkS hnds-style-icon "
                   fill="#C83521"
                   height="48"
                   role="img"
@@ -62,7 +62,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
               </div>
               <div>
                 <h3
-                  class="sc-Axmtr bqmA-DQ"
+                  class="sc-AxhCb kqMhXi"
                 >
                   Hei der
                 </h3>
@@ -75,26 +75,26 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
               class="actions"
             >
               <button
-                class="sc-AxhCb gHxYek"
+                class="button button--fill button--fill-not-inverted"
               >
                 <span
-                  class="sc-AxjAm jcbWlK"
+                  class="content-wrapper"
                 >
                   <span
-                    class="sc-AxiKw ikgxwu"
+                    class="button__content button__content--fill button__content--fill-not-inverted"
                   >
                     OK
                   </span>
                 </span>
               </button>
               <button
-                class="sc-AxhCb uVXsb"
+                class="button button--borderless"
               >
                 <span
-                  class="sc-AxjAm jcbWlK"
+                  class="content-wrapper"
                 >
                   <span
-                    class="sc-AxiKw ikgxwu"
+                    class="button__content button__content--borderless"
                   >
                     Avbryt
                   </span>
@@ -135,7 +135,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
             >
               <svg
                 aria-hidden="true"
-                class="sc-AxheI hPFwRP hnds-style-icon "
+                class="sc-AxiKw ifVavq hnds-style-icon "
                 fill="#126F87"
                 height="42"
                 role="img"
@@ -157,7 +157,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
               <div>
                 <svg
                   aria-hidden="true"
-                  class="sc-AxheI ehxhsT hnds-style-icon "
+                  class="sc-AxiKw kHJAkS hnds-style-icon "
                   fill="#000000"
                   height="48"
                   role="img"
@@ -171,7 +171,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
               </div>
               <div>
                 <h3
-                  class="sc-Axmtr bqmA-DQ"
+                  class="sc-AxhCb kqMhXi"
                 >
                   Hei der
                 </h3>
@@ -184,26 +184,26 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
               class="actions"
             >
               <button
-                class="sc-AxhCb gHxYek"
+                class="button button--fill button--fill-not-inverted"
               >
                 <span
-                  class="sc-AxjAm jcbWlK"
+                  class="content-wrapper"
                 >
                   <span
-                    class="sc-AxiKw ikgxwu"
+                    class="button__content button__content--fill button__content--fill-not-inverted"
                   >
                     OK
                   </span>
                 </span>
               </button>
               <button
-                class="sc-AxhCb uVXsb"
+                class="button button--borderless"
               >
                 <span
-                  class="sc-AxjAm jcbWlK"
+                  class="content-wrapper"
                 >
                   <span
-                    class="sc-AxiKw ikgxwu"
+                    class="button__content button__content--borderless"
                   >
                     Avbryt
                   </span>

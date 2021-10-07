@@ -1,0 +1,138 @@
+@import '../../scss/_palette.scss';
+
+.expander-list {
+  list-style: none;
+  padding: 0;
+  width: inherit;
+  margin: 0;
+
+  &__item {
+    border: 0;
+    border-bottom: 1px solid $neutral500;
+
+    &--top {
+      border-top: 1px solid $neutral500;
+    }
+
+    &--no-bottom {
+      border-bottom: 0;
+    }
+  }
+}
+
+.expander-list-link {
+  padding: 0.5rem;
+  display: flex;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  text-decoration: none;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: unset;
+  color: $black;
+  border: 0;
+  width: 100%;
+  outline: none;
+
+  &--banana {
+    background-color: $banana100;
+
+    &:hover,
+    &:focus {
+      background-color: $banana100;
+    }
+  }
+  &--blueberry {
+    background-color: $blueberry100;
+
+    &:hover,
+    &:focus {
+      background-color: $blueberry100;
+    }
+  }
+  &--cherry {
+    background-color: $cherry100;
+
+    &:hover,
+    &:focus {
+      background-color: $cherry100;
+    }
+  }
+  &--kiwi {
+    background-color: $kiwi100;
+
+    &:hover,
+    &:focus {
+      background-color: $kiwi100;
+    }
+  }
+  &--neutral {
+    background-color: $neutral100;
+
+    &:hover,
+    &:focus {
+      background-color: $neutral100;
+    }
+  }
+  &--plum {
+    background-color: $plum100;
+
+    &:hover,
+    &:focus {
+      background-color: $plum100;
+    }
+  }
+  &--white {
+    background-color: $neutral50;
+
+    &:hover,
+    &:focus {
+      background-color: $neutral50;
+    }
+  }
+
+  &--closed:not(:hover, :focus) {
+    background-color: transparent;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &--large {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  &__link-content {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    border-bottom: 1px solid transparent;
+
+    :focus > & {
+      border-color: $black;
+    }
+  }
+
+  &__main-content {
+    padding: 0;
+
+    &--padding {
+      padding: 1.5rem 0.5rem;
+    }
+  }
+
+  &__icon {
+    max-height: 3rem;
+    width: 3rem;
+    .hnds-style-icon {
+      vertical-align: middle;
+    }
+
+    &--margin-right {
+      margin-right: 0.5rem;
+    }
+  }
+}

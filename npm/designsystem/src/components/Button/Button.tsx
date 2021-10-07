@@ -1,6 +1,6 @@
 import React from 'react';
+
 import { HTMLButtonProps, HTMLAnchorProps } from '../../constants';
-import { StyledButton, StyledButtonContent, StyledLeftFluidContent, StyledButtonWrapper } from './Button.styled';
 import { getColor } from '../../theme/currys/color';
 import { IconProps } from './../Icons/';
 import Loader from '../Loader';
@@ -8,6 +8,9 @@ import { PaletteNames } from '../../theme/palette';
 import { useHover } from '../../hooks/useHover';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { breakpoints } from '../../theme/grid';
+import classNames from 'classnames';
+
+import buttonStyles from './styles.module.scss';
 
 export type ButtonIntents = 'primary' | 'warning' | 'danger';
 export type ButtonIntentsColors = 'blueberry' | 'banana' | 'cherry' | 'neutral' | 'white';
@@ -88,19 +91,75 @@ const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, 
     intent = 'primary',
     inverted = false,
     htmlMarkup = 'button',
+    onClick,
     large = false,
     loading = false,
     variant = 'fill',
     disabled = false,
     ellipsis = false,
     testId,
-    ...restProps
   } = props;
 
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
   const { hoverRef, isHovered } = useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>);
   const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted, isHovered);
   const size = useWindowSize();
+  const fillVariant = variant === 'fill';
+  const outlineVariant = variant === 'outline';
+  const borderlessVariant = variant === 'borderless';
+  const warningIntent = intent === 'warning';
+  const dangerIntent = intent === 'danger';
+  const hasIcon = !!(leftIcon || rightIcon);
+  const hasIconBorder = hasIcon && !loading && !borderlessVariant;
+  const hasIconBorderless = hasIcon && !loading && borderlessVariant;
+
+  const buttonClasses = classNames(
+    buttonStyles.button,
+    {
+      [buttonStyles['button--fluid']]: fluid,
+      [buttonStyles['button--large']]: large,
+      [buttonStyles['button--fill']]: fillVariant,
+      [buttonStyles[`button--fill-warning`]]: fillVariant && warningIntent,
+      [buttonStyles[`button--fill-danger`]]: fillVariant && dangerIntent,
+      [buttonStyles[`button--fill-inverted`]]: fillVariant && inverted,
+      [buttonStyles[`button--fill-not-inverted`]]: fillVariant && !inverted,
+      [buttonStyles['button--outline']]: outlineVariant,
+      [buttonStyles['button--outline-warning']]: outlineVariant && warningIntent,
+      [buttonStyles['button--outline-danger']]: outlineVariant && dangerIntent,
+      [buttonStyles['button--outline-inverted']]: outlineVariant && inverted,
+      [buttonStyles['button--borderless']]: borderlessVariant,
+      [buttonStyles['button--borderless-warning']]: borderlessVariant && warningIntent,
+      [buttonStyles['button--borderless-danger']]: borderlessVariant && dangerIntent,
+      [buttonStyles['button--borderless-inverted']]: borderlessVariant && inverted,
+      [buttonStyles['button--with-icon']]: hasIconBorder,
+      [buttonStyles['button--large-with-icon']]: hasIconBorder && large,
+      [buttonStyles['button--ellipsis-with-icon']]: hasIconBorder && ellipsis,
+      [buttonStyles['button--borderless-with-icon']]: hasIconBorderless,
+      [buttonStyles['button--large-borderless-with-icon']]: hasIconBorderless && large,
+    },
+    className
+  );
+
+  const contentClasses = classNames(buttonStyles.button__content, {
+    [buttonStyles['button__content--fill']]: fillVariant,
+    [buttonStyles['button__content--fill-warning']]: fillVariant && warningIntent,
+    [buttonStyles['button__content--fill-danger']]: fillVariant && dangerIntent,
+    [buttonStyles['button__content--fill-not-inverted']]: fillVariant && !inverted,
+    [buttonStyles['button__content--borderless']]: borderlessVariant,
+    [buttonStyles['button__content--borderless-warning']]: borderlessVariant && warningIntent,
+    [buttonStyles['button__content--borderless-danger']]: borderlessVariant && dangerIntent,
+    [buttonStyles['button__content--borderless-inverted']]: borderlessVariant && inverted,
+    [buttonStyles['button__content--with-icon']]: hasIconBorder,
+    [buttonStyles['button__content--large-with-icon']]: hasIconBorder && large,
+    [buttonStyles['button__content--ellipsis-with-icon']]: hasIconBorder && ellipsis,
+    [buttonStyles['button__content--fluid-with-icon']]: hasIconBorder && fluid,
+    [buttonStyles['button__content--large-fluid-with-icon']]: hasIconBorder && fluid && large,
+  });
+
+  const leftFluidContentClasses = classNames(buttonStyles['button__left-fluid-content'], {
+    [buttonStyles['button__left-fluid-content--with-icon']]: hasIcon,
+    [buttonStyles['button__left-fluid-content--large-with-icon']]: hasIcon && large,
+  });
 
   function renderIcon(
     iconElement: React.ReactElement<IconProps> | {} | undefined | null,
@@ -117,46 +176,54 @@ const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, 
       : null;
   }
 
-  return (
-    <StyledButton
-      data-testid={testId}
-      className={className}
-      variant={variant}
-      intent={intent}
-      inverted={inverted}
-      as={htmlMarkup}
-      large={large}
-      hasIcon={!!(leftIcon || rightIcon)}
-      fluid={fluid}
-      loader={loading}
-      ref={hoverRef}
-      disabled={disabled}
-      ellipsis={ellipsis}
-      {...restProps}
-    >
-      <StyledButtonWrapper>
+  const renderButtonContent = () => {
+    return <span className={contentClasses}>{restChildren}</span>;
+  };
+
+  const renderbuttonContentWrapper = () => {
+    return (
+      <span className={buttonStyles['content-wrapper']}>
         {loading ? (
-          <StyledLeftFluidContent hasIcon={false}>
-            <Loader testId={'test-id-loader'} color={variant === 'fill' ? 'white' : (intentToColor[intent] as PaletteNames)} size="tiny" />
-          </StyledLeftFluidContent>
+          <div className={buttonStyles['button__left-fluid-content']}>
+            <Loader
+              testId={'test-id-loader'}
+              color={variant === 'fill' && !inverted ? 'white' : (intentToColor[intent] as PaletteNames)}
+              size="tiny"
+            />
+          </div>
         ) : (
           <>
             {fluid ? (
-              <StyledLeftFluidContent hasIcon={!!(leftIcon || rightIcon)}>
+              <div className={leftFluidContentClasses}>
                 {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
-                <StyledButtonContent>{restChildren}</StyledButtonContent>
-              </StyledLeftFluidContent>
+                {renderButtonContent()}
+              </div>
             ) : (
               <>
                 {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
-                <StyledButtonContent>{restChildren}</StyledButtonContent>
+                {renderButtonContent()}
               </>
             )}
             {renderIcon(rightIcon, 38, iconColor, isHovered)}
           </>
         )}
-      </StyledButtonWrapper>
-    </StyledButton>
+      </span>
+    );
+  };
+
+  return (
+    <>
+      {htmlMarkup === 'button' && (
+        <button onClick={onClick} disabled={disabled} data-testid={testId} className={buttonClasses} ref={hoverRef}>
+          {renderbuttonContentWrapper()}
+        </button>
+      )}
+      {htmlMarkup === 'a' && (
+        <a onClick={onClick} data-testid={testId} className={buttonClasses}>
+          {renderbuttonContentWrapper()}
+        </a>
+      )}
+    </>
   );
 });
 

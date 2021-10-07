@@ -45,7 +45,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
 
       const testExpander = screen.getByTestId('test01');
       fireEvent.click(testExpander);
-      expect(testExpander).toHaveStyle(`background-color: ${theme.palette.blueberry100}`);
+      expect(testExpander.className).toBe('expander-list-link expander-list-link--blueberry');
     });
   });
 

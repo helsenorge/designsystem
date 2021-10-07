@@ -3,13 +3,13 @@
 exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
 <div>
   <button
-    class="sc-AxhCb gHxYek"
+    class="button button--fill button--fill-not-inverted"
   >
     <span
-      class="sc-AxjAm jcbWlK"
+      class="content-wrapper"
     >
       <span
-        class="sc-AxiKw ikgxwu"
+        class="button__content button__content--fill button__content--fill-not-inverted"
       >
         Button
       </span>
@@ -21,14 +21,14 @@ exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
 exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikonene 1`] = `
 <div>
   <button
-    class="sc-AxhCb gvHgQy"
+    class="button button--fill button--fill-not-inverted button--with-icon"
   >
     <span
-      class="sc-AxjAm jcbWlK"
+      class="content-wrapper"
     >
       <svg
         aria-hidden="true"
-        class="sc-AxheI qooqL hnds-style-icon "
+        class="sc-AxiKw kgEvoS hnds-style-icon "
         fill="white"
         height="38"
         role="img"
@@ -40,13 +40,13 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
         />
       </svg>
       <span
-        class="sc-AxiKw ikgxwu"
+        class="button__content button__content--fill button__content--fill-not-inverted button__content--with-icon"
       >
         Button
       </span>
       <svg
         aria-hidden="true"
-        class="sc-AxheI qooqL hnds-style-icon "
+        class="sc-AxiKw kgEvoS hnds-style-icon "
         fill="white"
         height="38"
         role="img"
