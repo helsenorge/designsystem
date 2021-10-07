@@ -98,6 +98,8 @@ const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, 
     disabled = false,
     ellipsis = false,
     testId,
+    href,
+    target,
   } = props;
 
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
@@ -219,7 +221,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, 
         </button>
       )}
       {htmlMarkup === 'a' && (
-        <a onClick={onClick} data-testid={testId} className={buttonClasses}>
+        <a onClick={onClick} data-testid={testId} className={buttonClasses} href={href} target={target}>
           {renderbuttonContentWrapper()}
         </a>
       )}
