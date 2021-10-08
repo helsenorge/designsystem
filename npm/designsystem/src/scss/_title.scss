@@ -1,0 +1,55 @@
+@import './spacers';
+@import './breakpoints';
+@import './font-settings';
+
+@mixin title-feature {
+  font-size: getSpacer(xl);
+  line-height: getSpacer(2xl);
+  font-weight: 600;
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    font-size: getSpacer(2xl);
+    line-height: getSpacer(3xl);
+  }
+}
+
+@mixin title1 {
+  font-size: 2.75rem;
+  line-height: 3.25rem;
+  font-weight: 600;
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    font-size: 3.25rem;
+    line-height: 3.75rem;
+  }
+}
+
+@mixin title2 {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    font-size: getSpacer(l);
+    line-height: 2.75rem;
+  }
+}
+
+@mixin title3 {
+  font-size: getSpacer(m);
+  line-height: getSpacer(l);
+  font-weight: 600;
+}
+
+@mixin title4 {
+  font-size: $font-size-md;
+  line-height: $lineheight-size-sm;
+  font-weight: 700;
+}
+
+@mixin title5 {
+  font-size: $spacer;
+  line-height: getSpacer(m);
+  font-weight: 700;
+  text-transform: uppercase;
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-sm;
+  }
+}

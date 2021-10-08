@@ -1,6 +1,9 @@
 import React from 'react';
+import classNames from 'classnames';
+
 import { PaletteNames } from '../../theme/palette';
-import StyledBadge from './Badge.styled';
+
+import badgeStyles from './styles.module.scss';
 
 export type BadgeColors = PaletteNames;
 export type BadgeChildren = string | number;
@@ -17,10 +20,26 @@ interface BadgeProps {
 const Badge = React.forwardRef(function BadgeForwardedRef(props: BadgeProps, ref: React.ForwardedRef<HTMLElement>) {
   const { children, className = '', color = 'black' } = props;
   const oversized = children.toString().length > 2;
+  const badgeClasses = classNames(
+    badgeStyles.badge,
+    {
+      [badgeStyles['badge--oversized']]: oversized,
+      [badgeStyles['badge--black']]: color === 'black',
+      [badgeStyles['badge--white']]: color === 'white',
+      [badgeStyles['badge--blueberry']]: color === 'blueberry',
+      [badgeStyles['badge--banana']]: color === 'banana',
+      [badgeStyles['badge--cherry']]: color === 'cherry',
+      [badgeStyles['badge--kiwi']]: color === 'kiwi',
+      [badgeStyles['badge--neutral']]: color === 'neutral',
+      [badgeStyles['badge--plum']]: color === 'plum',
+    },
+    className
+  );
+
   return (
-    <StyledBadge oversized={oversized} className={className} color={color} ref={ref}>
+    <span className={badgeClasses} ref={ref}>
       {children}
-    </StyledBadge>
+    </span>
   );
 });
 

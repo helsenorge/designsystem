@@ -1,0 +1,27 @@
+@import '../../scss/title';
+
+.title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin-left: 0;
+  margin-right: 0;
+
+  &--feature {
+    @include title-feature;
+  }
+  &--title1 {
+    @include title1;
+  }
+  &--title2 {
+    @include title2;
+  }
+  &--title3 {
+    @include title3;
+  }
+  &--title4 {
+    @include title4;
+  }
+  &--title5 {
+    @include title5;
+  }
+}

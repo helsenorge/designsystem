@@ -6,7 +6,8 @@ exports[`Gitt at Slider skal vises Når slider rendres Så vises slider riktig 1
     class="slider"
   >
     <h3
-      class="sc-AxjAm gunVkb"
+      class="title title--title3"
+      style="margin-top: 1.5rem; margin-bottom: 1.5rem;"
     >
       This is a title
     </h3>

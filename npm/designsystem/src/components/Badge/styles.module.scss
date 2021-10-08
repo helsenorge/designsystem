@@ -1,0 +1,41 @@
+@import '../../scss/_palette.scss';
+
+.badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  min-width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 1rem;
+  padding: 0;
+  color: $white;
+  background-color: $black;
+
+  &--oversized {
+    padding: 0 0.25rem;
+  }
+  &--white {
+    color: $black;
+    background-color: $white;
+  }
+  &--blueberry {
+    background-color: $blueberry500;
+  }
+  &--banana {
+    background-color: $banana500;
+  }
+  &--cherry {
+    background-color: $cherry500;
+  }
+  &--kiwi {
+    background-color: $kiwi500;
+  }
+  &--neutral {
+    background-color: $neutral500;
+  }
+  &--plum {
+    background-color: $plum500;
+  }
+}

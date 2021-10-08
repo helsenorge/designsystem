@@ -62,7 +62,8 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
               </div>
               <div>
                 <h3
-                  class="sc-AxhCb kqMhXi"
+                  class="title title--title3"
+                  style="margin-top: 0rem; margin-bottom: 0rem;"
                 >
                   Hei der
                 </h3>
@@ -171,7 +172,8 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
               </div>
               <div>
                 <h3
-                  class="sc-AxhCb kqMhXi"
+                  class="title title--title3"
+                  style="margin-top: 0rem; margin-bottom: 0rem;"
                 >
                   Hei der
                 </h3>
