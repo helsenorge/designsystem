@@ -38,7 +38,6 @@ export type Styles = {
   'button--outline-warning': string;
   'button--with-icon': string;
   'content-wrapper': string;
-  'hnds-style-icon': string;
 };
 
 export type ClassNames = keyof Styles;

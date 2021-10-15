@@ -18,7 +18,6 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
   }
 }
 
-// TODO: Need to refactor the mess at the bottom. Will have to make Icon a StyledComponent.
 .button {
   // Referanse for grandparent selection i underklassene lenger nede
   $button: &;
@@ -248,7 +247,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     @media (min-width: map-get($grid-breakpoints, md)) {
       padding: 0;
     }
-    .hnds-style-icon {
+    svg {
       margin: 0 0.125rem;
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin: 0 0.75rem;
@@ -256,7 +255,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     }
   }
   &--large-with-icon {
-    .hnds-style-icon {
+    svg {
       margin: 0 0.5rem;
     }
   }
@@ -266,13 +265,13 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
   }
 
   &--borderless-with-icon {
-    .hnds-style-icon:first-child {
+    svg:first-child {
       margin-right: 0.125rem;
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-right: 0.75rem;
       }
     }
-    .hnds-style-icon:last-child {
+    svg:last-child {
       margin-left: 0.125rem;
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-left: 0.75rem;
@@ -280,13 +279,13 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     }
   }
   &--large-borderless-with-icon {
-    .hnds-style-icon:first-child {
+    svg:first-child {
       margin-right: 0.5rem;
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-right: 0.75rem;
       }
     }
-    .hnds-style-icon:last-child {
+    svg:last-child {
       margin-left: 0.5rem;
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-left: 0.75rem;
