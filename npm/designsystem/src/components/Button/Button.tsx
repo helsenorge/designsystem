@@ -100,6 +100,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, 
     testId,
     href,
     target,
+    ...restProps
   } = props;
 
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
@@ -114,6 +115,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, 
   const hasIcon = !!(leftIcon || rightIcon);
   const hasIconBorder = hasIcon && !loading && !borderlessVariant;
   const hasIconBorderless = hasIcon && !loading && borderlessVariant;
+  const rest = { ...(restProps as React.HtmlHTMLAttributes<HTMLButtonElement>) };
 
   const buttonClasses = classNames(
     buttonStyles.button,
@@ -216,12 +218,12 @@ const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, 
   return (
     <>
       {htmlMarkup === 'button' && (
-        <button onClick={onClick} disabled={disabled} data-testid={testId} className={buttonClasses} ref={hoverRef}>
+        <button onClick={onClick} disabled={disabled} data-testid={testId} className={buttonClasses} ref={hoverRef} {...rest}>
           {renderbuttonContentWrapper()}
         </button>
       )}
       {htmlMarkup === 'a' && (
-        <a onClick={onClick} data-testid={testId} className={buttonClasses} href={href} target={target}>
+        <a onClick={onClick} data-testid={testId} className={buttonClasses} href={href} target={target} {...restProps}>
           {renderbuttonContentWrapper()}
         </a>
       )}

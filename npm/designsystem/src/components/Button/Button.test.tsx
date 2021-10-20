@@ -12,6 +12,20 @@ describe('Gitt at button skal vises', (): void => {
       expect(container).toMatchSnapshot();
     });
 
+    test('Så rendres button uten aria props', (): void => {
+      render(
+        <div>
+          <Button testId={'test01'}>Button</Button>
+        </div>
+      );
+
+      const testFill = screen.getByTestId('test01');
+
+      expect(testFill).not.toHaveAttribute('aria-label');
+      expect(testFill).not.toHaveAttribute('aria-controls');
+      expect(testFill).not.toHaveAttribute('aria-expanded');
+    });
+
     test('Så er textwrap på', (): void => {
       render(<Button>Button text</Button>);
 
@@ -175,6 +189,23 @@ describe('Gitt at button skal vises', (): void => {
       const testBorderless = screen.getByTestId('test03');
 
       expect(testBorderless.className).toBe('button button--borderless');
+    });
+  });
+  describe('Når button rendres med aria props', (): void => {
+    test('Så rendres innholdet riktig', (): void => {
+      render(
+        <div>
+          <Button testId={'test01'} aria-label={'aria-label-test'} aria-controls={'aria-controls-test'} aria-expanded={true}>
+            Button
+          </Button>
+        </div>
+      );
+
+      const testFill = screen.getByTestId('test01');
+
+      expect(testFill).toHaveAttribute('aria-label', 'aria-label-test');
+      expect(testFill).toHaveAttribute('aria-controls', 'aria-controls-test');
+      expect(testFill).toHaveAttribute('aria-expanded', 'true');
     });
   });
 });
