@@ -27,6 +27,8 @@ export interface ModalProps {
   variant?: ModalVariants;
   /** Displays a large modal */
   large?: boolean;
+  /** Hides the close button */
+  noCloseButton?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
   /**Primary button text */
@@ -129,9 +131,11 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
             aria-label={props.ariaLabel}
             aria-labelledby={props.ariaLabelledBy}
           >
-            <div className={styles.close}>
-              <Lukkekryss onClick={props.onClose} ariaLabel={props.ariaLabelCloseBtn} />
-            </div>
+            {!props.noCloseButton && (
+              <div className={styles.close}>
+                <Lukkekryss onClick={props.onClose} ariaLabel={props.ariaLabelCloseBtn} />
+              </div>
+            )}
             <div className={styles.contentWrapper}>
               <div className={styles.title}>
                 {props.variant && getIcon(props.variant)}

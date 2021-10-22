@@ -30,6 +30,15 @@ describe('Gitt at en modal skal vises ', (): void => {
     });
   });
 
+  describe('Når modal ikke skal ha lukkeknapp', (): void => {
+    it('Så vises ikke lukkeknappen', (): void => {
+      render(<Modal title="Hei der" noCloseButton />);
+
+      const lukk = screen.queryByRole('button');
+      expect(lukk).not.toBeInTheDocument();
+    });
+  });
+
   describe('Når en bruker trykker på OK knappen', (): void => {
     it('Så skal onSuccess kalles en gang', (): void => {
       const onClose = jest.fn();
