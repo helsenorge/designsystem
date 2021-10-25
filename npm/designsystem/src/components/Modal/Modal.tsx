@@ -43,6 +43,8 @@ export interface ModalProps {
   ariaLabelCloseBtn?: string;
   /** Alternative component to modal */
   children?: React.ReactNode;
+  /** Adds custom classes to the element. */
+  className?: string;
   /** Function is called when user clicks primary button */
   onSuccess?: () => void;
   /** Function is called when user clicks secondary button */
@@ -54,6 +56,7 @@ const defaultProps = {
   primaryButtonText: 'OK',
   ariaLabel: 'Dialog',
   large: false,
+  className: '',
 };
 
 const Lukkekryss = (props: { onClick?: () => void; ariaLabel?: string }) => (
@@ -126,7 +129,7 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
       <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId}>
         <div className={styles.align} ref={FocusTrap()}>
           <div
-            className={cn(styles.modal, styles[props.variant as string], props.large ? styles.large : '')}
+            className={cn(props.className, styles.modal, styles[props.variant as string], props.large ? styles.large : '')}
             role="dialog"
             aria-label={props.ariaLabel}
             aria-labelledby={props.ariaLabelledBy}
