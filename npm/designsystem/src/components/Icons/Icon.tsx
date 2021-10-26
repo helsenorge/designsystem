@@ -1,5 +1,4 @@
 import React from 'react';
-import StyledIcon from './Icon.styled';
 
 type SvgIcon = React.FC<SvgPathProps>;
 
@@ -47,7 +46,7 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
   });
 
   return (
-    <StyledIcon
+    <svg
       data-testid={testId}
       ref={ref as React.RefObject<SVGSVGElement>}
       className={`hnds-style-icon ${className}`}
@@ -55,13 +54,14 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
       aria-label={ariaLabel}
       aria-hidden="true"
       viewBox="0 0 48 48"
+      style={{ minWidth: size, minHeight: size }}
       width={size}
       height={size}
       fill={isHovered ? hoverColor : color}
       {...other}
     >
       {svgRaw}
-    </StyledIcon>
+    </svg>
   );
 });
 

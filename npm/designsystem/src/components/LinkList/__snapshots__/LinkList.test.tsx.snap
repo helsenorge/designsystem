@@ -17,10 +17,11 @@ exports[`displays a list of links 1`] = `
           >
             <svg
               aria-hidden="true"
-              class="sc-AxjAm jPyZsV hnds-style-icon link-list__icon"
+              class="hnds-style-icon link-list__icon"
               fill="black"
               height="48"
               role="img"
+              style="min-width: 48px; min-height: 48px;"
               viewBox="0 0 48 48"
               width="48"
             >

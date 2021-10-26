@@ -26,10 +26,11 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
             >
               <svg
                 aria-hidden="true"
-                class="sc-AxiKw ifVavq hnds-style-icon "
+                class="hnds-style-icon "
                 fill="#126F87"
                 height="42"
                 role="img"
+                style="min-width: 42px; min-height: 42px;"
                 viewBox="0 0 48 48"
                 width="42"
               >
@@ -48,10 +49,11 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
               <div>
                 <svg
                   aria-hidden="true"
-                  class="sc-AxiKw kHJAkS hnds-style-icon "
+                  class="hnds-style-icon "
                   fill="#C83521"
                   height="48"
                   role="img"
+                  style="min-width: 48px; min-height: 48px;"
                   viewBox="0 0 48 48"
                   width="48"
                 >
@@ -136,10 +138,11 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
             >
               <svg
                 aria-hidden="true"
-                class="sc-AxiKw ifVavq hnds-style-icon "
+                class="hnds-style-icon "
                 fill="#126F87"
                 height="42"
                 role="img"
+                style="min-width: 42px; min-height: 42px;"
                 viewBox="0 0 48 48"
                 width="42"
               >
@@ -158,10 +161,11 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
               <div>
                 <svg
                   aria-hidden="true"
-                  class="sc-AxiKw kHJAkS hnds-style-icon "
+                  class="hnds-style-icon "
                   fill="#000000"
                   height="48"
                   role="img"
+                  style="min-width: 48px; min-height: 48px;"
                   viewBox="0 0 48 48"
                   width="48"
                 >

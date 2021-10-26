@@ -11,7 +11,7 @@ stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
   <Loader
-    size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'tiny')}
+    size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
     color={select('Color', allPaletteNames, 'blueberry')}
   />
 ));

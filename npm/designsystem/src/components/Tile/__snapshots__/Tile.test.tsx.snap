@@ -3,17 +3,18 @@
 exports[`displays tile 1`] = `
 <div>
   <a
-    class="sc-AxiKw gDpFax"
+    class="tile"
   >
     <div
-      class="sc-AxhCb gkJdxg"
+      class="title-wrapper"
     >
       <svg
         aria-hidden="true"
-        class="sc-AxhUy dkCAqL hnds-style-icon "
+        class="hnds-style-icon "
         fill="black"
         height="64"
         role="img"
+        style="min-width: 64px; min-height: 64px;"
         viewBox="0 0 48 48"
         width="64"
       >
@@ -32,13 +33,13 @@ exports[`displays tile 1`] = `
         </g>
       </svg>
       <span
-        class="sc-AxjAm hEBMUq"
+        class="tile__title"
       >
         Title
       </span>
     </div>
     <p
-      class="sc-AxirZ dAHZwv"
+      class="tile__description"
     >
       Description
     </p>

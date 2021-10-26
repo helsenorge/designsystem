@@ -3,7 +3,7 @@
 exports[`displays default spacer 1`] = `
 <div>
   <span
-    class="sc-AxjAm fEkUGG"
+    class="spacer spacer--s"
   />
 </div>
 `;

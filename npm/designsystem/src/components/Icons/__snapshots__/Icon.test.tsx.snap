@@ -4,10 +4,11 @@ exports[`Gitt at icon skal vises Når icon rendres Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
-    class="sc-AxjAm jPyZsV hnds-style-icon "
+    class="hnds-style-icon "
     fill="black"
     height="48"
     role="img"
+    style="min-width: 48px; min-height: 48px;"
     viewBox="0 0 48 48"
     width="48"
   >

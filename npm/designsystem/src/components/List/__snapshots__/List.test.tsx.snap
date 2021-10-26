@@ -3,31 +3,31 @@
 exports[`displays a list of 4 elements 1`] = `
 <div>
   <ul
-    class="sc-AxirZ fOOpMY"
+    class="list"
   >
     <li
-      class="sc-AxjAm guaFVz"
+      class="list__item"
     >
       <h1>
         Tjeneste 1
       </h1>
     </li>
     <li
-      class="sc-AxjAm guaFVz"
+      class="list__item"
     >
       <h1>
         Tjeneste 2
       </h1>
     </li>
     <li
-      class="sc-AxjAm guaFVz"
+      class="list__item"
     >
       <h1>
         Tjeneste 3
       </h1>
     </li>
     <li
-      class="sc-AxjAm guaFVz"
+      class="list__item"
     >
       <h1>
         Tjeneste 4

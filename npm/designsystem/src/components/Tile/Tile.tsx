@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { StyledTileTitle, StyledTileTitleWrapper, StyledTile, StyledDescription } from './Tile.styled';
-import { HTMLAnchorProps } from '../../constants';
+import classNames from 'classnames';
 
+import { HTMLAnchorProps } from '../../constants';
 import { TitleTags } from './../Title/Title';
+
+import tileStyles from './styles.module.scss';
 
 interface TileProps extends HTMLAnchorProps {
   /** Adds custom classes to the element. */
@@ -25,6 +27,8 @@ interface TileTitleProps {
   children: React.ReactNode;
   className?: string;
   htmlMarkup?: TitleTags;
+  highlighted?: boolean;
+  compact?: boolean;
 }
 
 export interface TileCompound extends React.ForwardRefExoticComponent<TileProps & React.RefAttributes<HTMLAnchorElement>> {
@@ -32,36 +36,57 @@ export interface TileCompound extends React.ForwardRefExoticComponent<TileProps 
 }
 
 const Title = React.forwardRef(function TitleForwardedRef(props: TileTitleProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
-  const { children, className, htmlMarkup = 'span' } = props;
+  const { children, className, htmlMarkup = 'span', highlighted, compact } = props;
+  const titleClasses = classNames(
+    tileStyles['tile__title'],
+    {
+      [tileStyles['tile__title--highlighted']]: highlighted,
+      [tileStyles['tile__title--compact']]: compact,
+    },
+    className
+  );
+  const CustomTag = htmlMarkup;
+
   return (
-    <StyledTileTitle className={className} as={htmlMarkup} ref={ref}>
+    <CustomTag className={titleClasses} ref={ref}>
       {children}
-    </StyledTileTitle>
+    </CustomTag>
   );
 });
 
 export const Tile = React.forwardRef(function TileForwardedRef(props: TileProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
   const { icon, title, className = '', description, fixed = false, highlighted = false, ...restProps } = props;
   const [isHovered, setIsHovered] = useState(false);
+  const compact = !description;
+  const tileClasses = classNames(
+    tileStyles.tile,
+    {
+      [tileStyles['tile--fixed']]: fixed,
+      [tileStyles['tile--compact']]: compact,
+      [tileStyles['tile--highlighted']]: highlighted,
+    },
+    className
+  );
+  const tileTitleWrapperClasses = classNames(tileStyles['title-wrapper'], {
+    [tileStyles['title-wrapper--compact']]: compact,
+  });
+
   return (
-    <StyledTile
+    <a
       ref={ref}
-      className={className}
+      className={tileClasses}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
-      highlighted={highlighted}
-      fixed={fixed}
-      compact={!description}
       {...restProps}
     >
-      <StyledTileTitleWrapper compact={!description}>
+      <div className={tileTitleWrapperClasses}>
         {React.cloneElement(icon, { size: 64, isHovered, color: highlighted ? 'white' : 'black' })}
-        {title}
-      </StyledTileTitleWrapper>
-      {description ? <StyledDescription>{description}</StyledDescription> : null}
-    </StyledTile>
+        {React.cloneElement(title, { highlighted: highlighted, compact: compact })}
+      </div>
+      {description ? <p className={tileStyles.tile__description}>{description}</p> : null}
+    </a>
   );
 }) as TileCompound;
 

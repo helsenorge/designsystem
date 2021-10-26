@@ -28,10 +28,11 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
     >
       <svg
         aria-hidden="true"
-        class="sc-AxiKw kgEvoS hnds-style-icon "
+        class="hnds-style-icon "
         fill="white"
         height="38"
         role="img"
+        style="min-width: 38px; min-height: 38px;"
         viewBox="0 0 48 48"
         width="38"
       >
@@ -46,10 +47,11 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
       </span>
       <svg
         aria-hidden="true"
-        class="sc-AxiKw kgEvoS hnds-style-icon "
+        class="hnds-style-icon "
         fill="white"
         height="38"
         role="img"
+        style="min-width: 38px; min-height: 38px;"
         viewBox="0 0 48 48"
         width="38"
       >

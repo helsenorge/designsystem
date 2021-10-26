@@ -1,0 +1,120 @@
+@import '../../scss/_palette.scss';
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+
+@mixin tile-title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  font-size: 1.5rem;
+  text-align: left;
+  align-self: center;
+  line-height: 1.75rem;
+  font-weight: 600;
+  margin: 0;
+  margin-left: 0.5rem;
+
+  @media (max-width: map-get($grid-breakpoints, sm)) {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    align-self: start;
+  }
+}
+
+.tile {
+  // Referanse for grandparent selection i underklassene lenger nede
+  $tile: &;
+
+  display: flex;
+  width: 'inherit';
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: $white;
+  color: $black;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+
+  &--fixed {
+    min-width: 15rem;
+    max-width: 20rem;
+  }
+
+  &--compact {
+    padding: 1.5rem 2rem 2rem 1rem;
+  }
+
+  svg {
+    flex-shrink: 0;
+    align-self: center;
+    @media (max-width: map-get($grid-breakpoints, sm)) {
+      align-self: start;
+    }
+  }
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $neutral100;
+  }
+  &:focus {
+    box-shadow: 0 0 0 6px $neutral600;
+  }
+
+  &--highlighted {
+    background-color: $blueberry500;
+    color: $white;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $blueberry700;
+    }
+    &:focus {
+      box-shadow: 0 0 0 6px $blueberry700;
+    }
+  }
+
+  &__title {
+    @include tile-title;
+
+    &--compact {
+      align-self: center;
+      margin: 0 0 0 1.5rem;
+    }
+  }
+
+  #{$tile}:focus & {
+    &__title {
+      &--highlighted {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__description {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin: 0 0 0 0.5rem;
+  }
+}
+
+.title-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 0.5rem;
+
+  @media (max-width: map-get($grid-breakpoints, sm)) {
+    flex-direction: column;
+  }
+
+  &--compact {
+    align-items: center;
+    padding-right: 1rem;
+    padding-bottom: 0;
+
+    svg {
+      flex-shrink: 0;
+      align-self: center;
+    }
+  }
+}

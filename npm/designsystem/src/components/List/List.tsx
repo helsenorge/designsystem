@@ -1,16 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import { getColor } from '../../theme/currys/color';
 
-const StyledListItem = styled('li')`
-  border-bottom: 1px solid ${getColor('neutral', 600)};
-`;
+import classNames from 'classnames';
 
-const StyledList = styled('ul')`
-  width: 100%;
-  list-style: none;
-  padding: 0 1rem 0 0.5rem;
-`;
+import listStyles from './styles.module.scss';
 
 interface ListProps {
   children: React.ReactNode[];
@@ -20,11 +12,15 @@ interface ListProps {
 function List(props: ListProps) {
   const { children, className } = props;
   return (
-    <StyledList className={className}>
+    <ul className={classNames(listStyles.list, className)}>
       {children.map((child: React.ReactNode, index: number) => {
-        return <StyledListItem key={index}>{child}</StyledListItem>;
+        return (
+          <li className={listStyles.list__item} key={index}>
+            {child}
+          </li>
+        );
       })}
-    </StyledList>
+    </ul>
   );
 }
 

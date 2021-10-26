@@ -10,10 +10,11 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
     >
       <svg
         aria-hidden="true"
-        class="sc-AxjAm jPyZsV hnds-style-icon "
+        class="hnds-style-icon "
         fill="#078141"
         height="48"
         role="img"
+        style="min-width: 48px; min-height: 48px;"
         viewBox="0 0 48 48"
         width="48"
       >
@@ -36,10 +37,11 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
       >
         <svg
           aria-hidden="true"
-          class="sc-AxjAm SZoaN hnds-style-icon "
+          class="hnds-style-icon "
           fill="#188097"
           height="38"
           role="img"
+          style="min-width: 38px; min-height: 38px;"
           viewBox="0 0 48 48"
           width="38"
         >
@@ -63,10 +65,11 @@ exports[`Gitt at NotificationPanel skal vises Når panelet vises med default pro
     >
       <svg
         aria-hidden="true"
-        class="sc-AxjAm jPyZsV hnds-style-icon "
+        class="hnds-style-icon "
         fill="#078141"
         height="48"
         role="img"
+        style="min-width: 48px; min-height: 48px;"
         viewBox="0 0 48 48"
         width="48"
       >

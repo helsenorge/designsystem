@@ -1,7 +1,7 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import titleStyles from './styles.module.scss';
-import classNames from 'classnames';
 
 export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span';
 export type TitleAppearances = 'titleFeature' | 'title1' | 'title2' | 'title3' | 'title4' | 'title5';
@@ -34,44 +34,13 @@ const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref
     },
     className
   );
+  const CustomTag = htmlMarkup;
 
-  if (htmlMarkup === 'h1') {
-    return (
-      <h1 id={id} className={titleClasses} style={{ marginTop: `${margin}rem`, marginBottom: `${margin}rem` }} ref={ref}>
-        {children}
-      </h1>
-    );
-  } else if (htmlMarkup === 'h2') {
-    return (
-      <h2 id={id} className={titleClasses} style={{ marginTop: `${margin}rem`, marginBottom: `${margin}rem` }} ref={ref}>
-        {children}
-      </h2>
-    );
-  } else if (htmlMarkup === 'h3') {
-    return (
-      <h3 id={id} className={titleClasses} style={{ marginTop: `${margin}rem`, marginBottom: `${margin}rem` }} ref={ref}>
-        {children}
-      </h3>
-    );
-  } else if (htmlMarkup === 'h4') {
-    return (
-      <h4 id={id} className={titleClasses} style={{ marginTop: `${margin}rem`, marginBottom: `${margin}rem` }} ref={ref}>
-        {children}
-      </h4>
-    );
-  } else if (htmlMarkup === 'h5') {
-    return (
-      <h5 id={id} className={titleClasses} style={{ marginTop: `${margin}rem`, marginBottom: `${margin}rem` }} ref={ref}>
-        {children}
-      </h5>
-    );
-  } else {
-    return (
-      <span id={id} className={titleClasses} style={{ marginTop: `${margin}rem`, marginBottom: `${margin}rem` }} ref={ref}>
-        {children}
-      </span>
-    );
-  }
+  return (
+    <CustomTag id={id} className={titleClasses} style={{ marginTop: `${margin}rem`, marginBottom: `${margin}rem` }} ref={ref}>
+      {children}
+    </CustomTag>
+  );
 });
 
 export default Title;

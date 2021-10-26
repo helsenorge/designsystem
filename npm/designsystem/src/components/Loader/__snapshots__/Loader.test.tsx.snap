@@ -3,24 +3,20 @@
 exports[`displays the loader 1`] = `
 <div>
   <div
-    class="sc-AxirZ fsuNgq"
+    class="loader loader--small"
     data-testid=""
   >
     <div
-      class="sc-AxjAm beDnoW"
-      color="neutral"
+      class="loader__dot loader__dot--small loader__dot--neutral"
     />
     <div
-      class="sc-AxjAm beDnoW"
-      color="neutral"
+      class="loader__dot loader__dot--small loader__dot--neutral"
     />
     <div
-      class="sc-AxjAm beDnoW"
-      color="neutral"
+      class="loader__dot loader__dot--small loader__dot--neutral"
     />
     <div
-      class="sc-AxjAm beDnoW"
-      color="neutral"
+      class="loader__dot loader__dot--small loader__dot--neutral"
     />
   </div>
 </div>

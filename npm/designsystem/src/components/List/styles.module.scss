@@ -1,0 +1,11 @@
+@import '../../scss/_palette.scss';
+
+.list {
+  width: 100%;
+  list-style: none;
+  padding: 0 1rem 0 0.5rem;
+
+  &__item {
+    border-bottom: 1px solid $neutral600;
+  }
+}

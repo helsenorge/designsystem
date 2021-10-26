@@ -21,10 +21,11 @@ exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises som exter
     AnchorLink external
     <svg
       aria-hidden="true"
-      class="sc-AxjAm SZoaN hnds-style-icon anchorlink__icon"
+      class="hnds-style-icon anchorlink__icon"
       fill="#126F87"
       height="38"
       role="img"
+      style="min-width: 38px; min-height: 38px;"
       viewBox="0 0 48 48"
       width="38"
     >

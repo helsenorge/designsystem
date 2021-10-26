@@ -1,0 +1,153 @@
+@import '../../scss/_palette.scss';
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animate($name, $animation, $duration, $times) {
+  animation: $animation $duration $times;
+  animation-name: $name;
+}
+
+@mixin loaderDotScale($name, $scale-start, $scale-end) {
+  @include keyframes($name) {
+    0% {
+      transform: scale($scale-start);
+    }
+    100% {
+      transform: scale($scale-end);
+    }
+  }
+  @include animate($name, scale, 0.6s, infinite);
+}
+
+@mixin loaderDotTranslate($name, $distance) {
+  @include keyframes($name) {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate($distance, 0);
+    }
+  }
+  @include animate($name, translate, 0.6s, infinite);
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 8 * 5px;
+  height: 8px;
+
+  &--small {
+    width: 12 * 5px;
+    height: 12px;
+  }
+
+  &--medium {
+    width: 18 * 5px;
+    height: 18px;
+  }
+
+  &--large {
+    width: 24 * 5px;
+    height: 24px;
+  }
+
+  &__dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: $blueberry500;
+    border-radius: 50%;
+
+    &--small {
+      width: 12px;
+      height: 12px;
+    }
+    &--medium {
+      width: 18px;
+      height: 18px;
+    }
+    &--large {
+      width: 24px;
+      height: 24px;
+    }
+
+    &--banana {
+      background-color: $banana500;
+    }
+    &--cherry {
+      background-color: $cherry500;
+    }
+    &--kiwi {
+      background-color: $kiwi500;
+    }
+    &--neutral {
+      background-color: $neutral500;
+    }
+    &--plum {
+      background-color: $plum500;
+    }
+    &--black {
+      background-color: $black;
+    }
+    &--white {
+      background-color: $white;
+    }
+
+    // Sets a form of easing animation curve
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    // Scales up the first dot
+    &:nth-child(1) {
+      @include loaderDotScale(scale-regular, 0, 1);
+    }
+
+    // Translates the dots rightwards depending on size
+    &:nth-child(2),
+    &:nth-child(3) {
+      @include loaderDotTranslate(translate-tiny, 16px);
+    }
+    &:nth-child(3) {
+      left: 16px;
+    }
+    &--small:nth-child(2),
+    &--small:nth-child(3) {
+      @include loaderDotTranslate(translate-small, 24px);
+    }
+    &--medium:nth-child(2),
+    &--medium:nth-child(3) {
+      @include loaderDotTranslate(translate-medium, 36px);
+    }
+    &--large:nth-child(2),
+    &--large:nth-child(3) {
+      @include loaderDotTranslate(translate-large, 48px);
+    }
+    &--small:nth-child(3) {
+      left: 24px;
+    }
+    &--medium:nth-child(3) {
+      left: 36px;
+    }
+    &--large:nth-child(3) {
+      left: 48px;
+    }
+
+    // Scales down the last dot
+    &:nth-child(4) {
+      left: 32px;
+      @include loaderDotScale(scale-reverse, 1, 0);
+    }
+    &--small:nth-child(4) {
+      left: 48px;
+    }
+    &--medium:nth-child(4) {
+      left: 72px;
+    }
+    &--large:nth-child(4) {
+      left: 96px;
+    }
+  }
+}
