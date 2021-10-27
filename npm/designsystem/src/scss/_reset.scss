@@ -1,1 +1,13 @@
 @import 'normalize.css/normalize';
+
+/** Fiks for iOS og Safari 15 */
+button,
+input,
+optgroup,
+select,
+textarea,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  color: black;
+}
