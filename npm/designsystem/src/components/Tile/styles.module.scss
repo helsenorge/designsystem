@@ -8,16 +8,14 @@
   word-break: break-word;
   font-size: 1.5rem;
   text-align: left;
-  align-self: center;
   line-height: 1.75rem;
   font-weight: 600;
   margin: 0;
   margin-left: 0.5rem;
 
-  @media (max-width: map-get($grid-breakpoints, sm)) {
+  @media (min-width: map-get($grid-breakpoints, sm)) {
     font-size: 1.25rem;
     margin-top: 1rem;
-    align-self: start;
   }
 }
 
@@ -27,7 +25,7 @@
 
   display: flex;
   width: 'inherit';
-  padding: 1.5rem 1rem 1.5rem 1rem;
+  padding: 1.5rem 2rem 2rem 1rem;
   flex-direction: column;
   justify-content: flex-start;
   background-color: $white;
@@ -42,15 +40,11 @@
   }
 
   &--compact {
-    padding: 1.5rem 2rem 2rem 1rem;
+    padding: 1.5rem 1rem 1.5rem 1rem;
   }
 
   svg {
     flex-shrink: 0;
-    align-self: center;
-    @media (max-width: map-get($grid-breakpoints, sm)) {
-      align-self: start;
-    }
   }
   &:hover,
   &:active,
@@ -78,7 +72,6 @@
     @include tile-title;
 
     &--compact {
-      align-self: center;
       margin: 0 0 0 1.5rem;
     }
   }
@@ -101,20 +94,22 @@
 .title-wrapper {
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding-bottom: 0.5rem;
 
-  @media (max-width: map-get($grid-breakpoints, sm)) {
+  @media (min-width: map-get($grid-breakpoints, sm)) {
     flex-direction: column;
+    align-items: start;
   }
 
   &--compact {
+    flex-direction: row;
     align-items: center;
     padding-right: 1rem;
     padding-bottom: 0;
 
     svg {
       flex-shrink: 0;
-      align-self: center;
     }
   }
 }
