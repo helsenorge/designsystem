@@ -83,7 +83,10 @@ const getLargeIconSize = (large: boolean, screenWidth: number | undefined): numb
   return 38;
 };
 
-const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, ref: React.ForwardedRef<HTMLButtonElement>) {
+const Button = React.forwardRef(function ButtonForwardedRef(
+  props: ButtonProps,
+  ref: React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>
+) {
   const {
     children,
     className = '',
@@ -104,7 +107,10 @@ const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, 
   } = props;
 
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>);
+  const { hoverRef, isHovered } =
+    htmlMarkup === 'button'
+      ? useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>)
+      : useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
   const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted, isHovered);
   const size = useWindowSize();
   const fillVariant = variant === 'fill';
@@ -218,12 +224,28 @@ const Button = React.forwardRef(function ButtonForwardedRef(props: ButtonProps, 
   return (
     <>
       {htmlMarkup === 'button' && (
-        <button onClick={onClick} disabled={disabled} data-testid={testId} className={buttonClasses} ref={hoverRef} {...rest}>
+        <button
+          onClick={onClick}
+          disabled={disabled}
+          data-testid={testId}
+          className={buttonClasses}
+          ref={hoverRef as React.ForwardedRef<HTMLButtonElement>}
+          {...rest}
+        >
           {renderbuttonContentWrapper()}
         </button>
       )}
       {htmlMarkup === 'a' && (
-        <a onClick={onClick} data-testid={testId} className={buttonClasses} href={href} target={target} {...restProps}>
+        <a
+          onClick={onClick}
+          data-testid={testId}
+          className={buttonClasses}
+          href={href}
+          target={target}
+          ref={hoverRef as React.ForwardedRef<HTMLAnchorElement>}
+          tabIndex={0}
+          {...restProps}
+        >
           {renderbuttonContentWrapper()}
         </a>
       )}
