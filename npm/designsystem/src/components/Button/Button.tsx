@@ -243,7 +243,6 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           href={href}
           target={target}
           ref={hoverRef as React.ForwardedRef<HTMLAnchorElement>}
-          tabIndex={0}
           {...restProps}
         >
           {renderbuttonContentWrapper()}

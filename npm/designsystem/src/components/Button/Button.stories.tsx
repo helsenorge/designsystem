@@ -33,6 +33,7 @@ stories.add('Default', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}
+      href={'https://www.helsenorge.no'}
     >
       {text('Text', 'Button')}
     </Button>
@@ -57,6 +58,7 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}
+      href={'https://www.helsenorge.no'}
     >
       {text('Text', 'Button')}
     </Button>
@@ -72,6 +74,7 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}
+      href={'https://www.helsenorge.no'}
     >
       <Icon svgIcon={X} />
       {text('Text', 'Button')}
@@ -89,6 +92,7 @@ stories.add('Fluid', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}
+      href={'https://www.helsenorge.no'}
     >
       <Icon svgIcon={X} />
       {text('Text', 'Button')}
@@ -110,6 +114,7 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}
+      href={'https://www.helsenorge.no'}
     >
       <Icon svgIcon={X} />
       {text('Text', 'Button with ref')}
@@ -127,6 +132,7 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}
+      href={'https://www.helsenorge.no'}
     >
       {text('Text', 'Button')}
       <Icon svgIcon={X} />
@@ -144,6 +150,7 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}
+      href={'https://www.helsenorge.no'}
     >
       <Icon svgIcon={Calendar} />
       {text('Text', 'Button')}
@@ -162,6 +169,7 @@ stories.add('With icon(s)', () => (
       loading={boolean('Loading', false)}
       onClick={action('button-click')}
       variant={select('Variant', allButtonVariants, 'fill')}
+      href={'https://www.helsenorge.no'}
     >
       <Icon svgIcon={Calendar} color={'lime'} hoverColor={'red'} />
       {text('Text', 'Button')}
@@ -179,6 +187,7 @@ stories.add('All variants', () => (
       intent={select('Intent', allButtonIntents, 'primary')}
       large={boolean('Large', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}
+      href={'https://www.helsenorge.no'}
     >
       {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
       {text('Text', 'Button')}
@@ -192,6 +201,7 @@ stories.add('All variants', () => (
       intent={select('Intent', allButtonIntents, 'primary')}
       large={boolean('Large', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}
+      href={'https://www.helsenorge.no'}
     >
       {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
       {text('Text', 'Button')}
@@ -204,6 +214,7 @@ stories.add('All variants', () => (
       intent={select('Intent', allButtonIntents, 'primary')}
       large={boolean('Large', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}
+      href={'https://www.helsenorge.no'}
     >
       {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
       {text('Text', 'Button')}
