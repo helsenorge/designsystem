@@ -22,7 +22,6 @@ describe('Gitt at button skal vises', (): void => {
       const testFill = screen.getByTestId('test01');
 
       expect(testFill).not.toHaveAttribute('aria-label');
-      expect(testFill).not.toHaveAttribute('aria-controls');
       expect(testFill).not.toHaveAttribute('aria-expanded');
     });
 
@@ -195,7 +194,7 @@ describe('Gitt at button skal vises', (): void => {
     test('Så rendres innholdet riktig', (): void => {
       render(
         <div>
-          <Button testId={'test01'} aria-label={'aria-label-test'} aria-controls={'aria-controls-test'} aria-expanded={true}>
+          <Button testId={'test01'} aria-label={'aria-label-test'} aria-expanded={true}>
             Button
           </Button>
         </div>
@@ -204,7 +203,6 @@ describe('Gitt at button skal vises', (): void => {
       const testFill = screen.getByTestId('test01');
 
       expect(testFill).toHaveAttribute('aria-label', 'aria-label-test');
-      expect(testFill).toHaveAttribute('aria-controls', 'aria-controls-test');
       expect(testFill).toHaveAttribute('aria-expanded', 'true');
     });
   });
