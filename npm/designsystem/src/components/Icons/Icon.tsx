@@ -5,7 +5,10 @@ type SvgIcon = React.FC<SvgPathProps>;
 interface IconProps {
   /* Sets which icon should be displayed. */
   svgIcon: SvgIcon;
+  /* aria-label for the <svg> element. Used as <title> tag if id is set */
   ariaLabel?: string;
+  /* id to */
+  id?: string;
   /* Changes the size of the icon. */
   size?: number;
   /* Changes the color of the icon. */
@@ -31,6 +34,7 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
   const {
     svgIcon,
     ariaLabel,
+    id,
     className = '',
     size = 48,
     color = 'black',
@@ -45,13 +49,17 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
     isHovered,
   });
 
+  const labelledby = id && ariaLabel ? `title-${id}` : undefined;
+
   return (
     <svg
+      id={id}
       data-testid={testId}
       ref={ref as React.RefObject<SVGSVGElement>}
       className={`hnds-style-icon ${className}`}
       role="img"
-      aria-label={ariaLabel}
+      aria-label={!id && ariaLabel ? ariaLabel : undefined}
+      aria-labelledby={labelledby}
       aria-hidden="true"
       viewBox="0 0 48 48"
       style={{ minWidth: size, minHeight: size }}
@@ -60,6 +68,7 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
       fill={isHovered ? hoverColor : color}
       {...other}
     >
+      {labelledby && <title id={labelledby}>{ariaLabel}</title>}
       {svgRaw}
     </svg>
   );
