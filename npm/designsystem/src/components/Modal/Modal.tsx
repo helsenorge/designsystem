@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import cn from 'classnames';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import { palette } from '../../theme/palette';
 import Button from '../Button';
 import Icon from '../Icons';
@@ -21,6 +23,8 @@ export enum ModalVariants {
 export interface ModalProps {
   /** Title of the modal */
   title: string;
+  /** Title of the modal */
+  titleId?: string;
   /** Description of the modal */
   description?: string;
   /** Changes the visual representation of the modal. Description will not render if children prop is provided */
@@ -54,7 +58,6 @@ export interface ModalProps {
 const defaultProps = {
   variant: ModalVariants.normal,
   primaryButtonText: 'OK',
-  ariaLabel: 'Dialog',
   large: false,
   className: '',
 };
@@ -105,9 +108,14 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
     document.body.style.removeProperty('overflow');
   }
 
+  const titleId = props.titleId ?? uuidv4();
   const containerRef = React.useRef(null);
   const overlayRef = React.useRef(null);
   const showActions = (props.secondaryButtonText && props.secondaryButtonText?.length > 0) || props.onSuccess;
+
+  // AriaLabelledBy prioriteres, og AriaLabel prioriteres over fallback til AriaLabelledBy
+  const ariaLabel = !props.ariaLabelledBy ? props.ariaLabel : undefined;
+  const ariaLabelledBy = props.ariaLabelledBy ? props.ariaLabelledBy : !props.ariaLabel ? titleId : undefined;
 
   useEffect(() => {
     const containerElement = (containerRef.current as unknown) as HTMLElement;
@@ -131,8 +139,8 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
           <div
             className={cn(props.className, styles.modal, styles[props.variant as string], props.large ? styles.large : '')}
             role="dialog"
-            aria-label={props.ariaLabel}
-            aria-labelledby={props.ariaLabelledBy}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
           >
             {!props.noCloseButton && (
               <div className={styles.close}>
@@ -143,7 +151,7 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
               <div className={styles.title}>
                 {props.variant && getIcon(props.variant)}
                 <div>
-                  <Title htmlMarkup="h3" appearance="title3">
+                  <Title id={titleId} htmlMarkup="h3" appearance="title3">
                     {props.title}
                   </Title>
                 </div>
