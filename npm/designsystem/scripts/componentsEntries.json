@@ -4,6 +4,7 @@
   "components/Badge/index": "src/components/Badge/index.ts",
   "components/Button/index": "src/components/Button/index.ts",
   "components/ButtonWithModal/index": "src/components/ButtonWithModal/index.tsx",
+  "components/Checkbox/index": "src/components/Checkbox/index.ts",
   "components/ExpanderList/index": "src/components/ExpanderList/index.ts",
   "components/Icons/ActiveMonitoring": "src/components/Icons/ActiveMonitoring.tsx",
   "components/Icons/AdditionalIconInformation": "src/components/Icons/AdditionalIconInformation.js",
