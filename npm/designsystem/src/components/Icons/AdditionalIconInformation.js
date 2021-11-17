@@ -250,8 +250,8 @@ module.exports = {
   qrcode: { alternativeName: 'QR kode', categories: 'Generisk' },
   quarrel: { alternativeName: 'Krangle', categories: 'Generisk' },
   sexualorientation: { alternativeName: 'Seksuell orientering', categories: 'Generisk' },
-  birthcontrol: { alternativeName: 'Prevensjon', categories: '' },
-  gallery: { alternativeName: 'Galleri', categories: '' },
-  list: { alternativeName: 'Liste', categories: '' },
-  stds: { alternativeName: 'Kjønnssykom', categories: '' },
+  birthcontrol: { alternativeName: 'Prevensjon', categories: 'Generisk' },
+  gallery: { alternativeName: 'Galleri', categories: 'System' },
+  list: { alternativeName: 'Liste', categories: 'System' },
+  stds: { alternativeName: 'Kjønnssykom', categories: 'Generisk' },
 };
