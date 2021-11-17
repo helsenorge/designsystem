@@ -1,0 +1,16 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  margin: getSpacer(s);
+  height: 1.68rem;
+  width: 1.68rem;
+  border: 1px solid $black;
+  border-radius: 0;
+}

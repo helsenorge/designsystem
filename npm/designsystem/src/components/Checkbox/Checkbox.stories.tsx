@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import Checkbox from './Checkbox';
 
-const stories = storiesOf('ExpanderList', module);
+const stories = storiesOf('Checkbox', module);
 stories.addDecorator(withKnobs);
 
 stories.add('Default', () => (
@@ -12,6 +12,6 @@ stories.add('Default', () => (
       width: '40rem',
     }}
   >
-    <Checkbox text={'Check me!'} />
+    <Checkbox label={'Check me out!'} />
   </div>
 ));
