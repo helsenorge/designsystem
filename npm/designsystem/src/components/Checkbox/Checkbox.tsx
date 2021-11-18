@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import classNames from 'classnames';
+
+import Check from '../Icons/Check';
 
 import checkboxStyles from './styles.module.scss';
 
@@ -14,15 +16,23 @@ interface CheckboxProps {
 }
 
 export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<HTMLUListElement>) => {
-  const { className = '', checked = false, label = '' } = props;
+  const { className = '', label = '' } = props;
+  const [checked, setChecked] = useState(props.checked);
 
   const checkboxClasses = classNames(checkboxStyles.checkbox, className);
 
   return (
-    <div className={checkboxStyles['checkbox-wrapper']}>
-      <input className={checkboxClasses} type={'checkbox'} checked={checked} />
-      <label>{label}</label>
-    </div>
+    <label className={checkboxStyles['checkbox-wrapper']}>
+      <input
+        className={checkboxClasses}
+        type={'checkbox'}
+        checked={checked}
+        onClick={() => {
+          setChecked(!checked);
+        }}
+      />
+      {label}
+    </label>
   );
 });
 

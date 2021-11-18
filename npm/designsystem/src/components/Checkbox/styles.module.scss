@@ -11,6 +11,17 @@
   margin: getSpacer(s);
   height: 1.68rem;
   width: 1.68rem;
-  border: 1px solid $black;
-  border-radius: 0;
+  box-shadow: 0 0 0 0.1rem $neutral700;
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+
+  &:checked {
+    box-shadow: 0 0 0 0.1rem $blueberry500;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 0.2rem $neutral700;
+  }
 }
