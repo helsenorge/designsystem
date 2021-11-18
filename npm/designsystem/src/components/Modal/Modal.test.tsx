@@ -81,7 +81,14 @@ describe('Gitt at en modal skal vises ', (): void => {
       const onSuccess = jest.fn();
 
       const { container } = render(
-        <Modal title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" variant={ModalVariants.warning} />
+        <Modal
+          title="Hei der"
+          titleId={'titleid01'}
+          onClose={onClose}
+          onSuccess={onSuccess}
+          secondaryButtonText="Avbryt"
+          variant={ModalVariants.warning}
+        />
       );
 
       const dialog = screen.getByRole('dialog');
@@ -97,7 +104,14 @@ describe('Gitt at en modal skal vises ', (): void => {
       const onSuccess = jest.fn();
 
       const { container } = render(
-        <Modal title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" variant={ModalVariants.error} />
+        <Modal
+          title="Hei der"
+          titleId={'titleid02'}
+          onClose={onClose}
+          onSuccess={onSuccess}
+          secondaryButtonText="Avbryt"
+          variant={ModalVariants.error}
+        />
       );
 
       const dialog = screen.getByRole('dialog');
@@ -196,6 +210,77 @@ describe('Gitt at en modal skal vises ', (): void => {
       fireEvent.keyDown(dialog, { key: 'Escape' });
 
       expect(onClose).toBeCalled();
+    });
+  });
+
+  describe(`Når en modal rendres med titleId`, (): void => {
+    it('Så skal titleId settes', (): void => {
+      const onClose = jest.fn();
+      const onSuccess = jest.fn();
+
+      render(
+        <Modal
+          title="Hei der"
+          titleId="titleIdTest"
+          onClose={onClose}
+          onSuccess={onSuccess}
+          secondaryButtonText="Avbryt"
+          variant={ModalVariants.error}
+          testId="testid"
+        />
+      );
+
+      const title = screen.getByText('Hei der');
+
+      expect(title.id).toBe('titleIdTest');
+    });
+  });
+
+  describe(`Når en modal rendres med ariaLabel satt`, (): void => {
+    it('Så skal ariaLabel settes', (): void => {
+      const onClose = jest.fn();
+      const onSuccess = jest.fn();
+
+      render(
+        <Modal
+          title="Hei der"
+          ariaLabel={'aria label test'}
+          onClose={onClose}
+          onSuccess={onSuccess}
+          secondaryButtonText="Avbryt"
+          variant={ModalVariants.error}
+          testId="testid"
+        />
+      );
+
+      const dialog = screen.getByLabelText('aria label test');
+
+      expect(dialog).toBeVisible();
+    });
+  });
+
+  describe(`Når en modal rendres med ariaLabelledBy satt`, (): void => {
+    it('Så skal ariaLabel settes etter ariaLabbeledBy og ikke ariaLabel', (): void => {
+      const onClose = jest.fn();
+      const onSuccess = jest.fn();
+
+      render(
+        <Modal
+          title="Hei der"
+          titleId="titleId"
+          ariaLabel={'aria label test'}
+          ariaLabelledBy={'titleId'}
+          onClose={onClose}
+          onSuccess={onSuccess}
+          secondaryButtonText="Avbryt"
+          variant={ModalVariants.error}
+          testId="testid"
+        />
+      );
+
+      const dialog = screen.getByLabelText('Hei der');
+
+      expect(dialog).toBeVisible();
     });
   });
 });

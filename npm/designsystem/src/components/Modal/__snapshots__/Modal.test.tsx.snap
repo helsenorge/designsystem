@@ -12,7 +12,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
         class="align"
       >
         <div
-          aria-label="Dialog"
+          aria-labelledby="titleid02"
           class="modal error"
           role="dialog"
         >
@@ -65,6 +65,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
               <div>
                 <h3
                   class="title title--title3"
+                  id="titleid02"
                   style="margin-top: 0rem; margin-bottom: 0rem;"
                 >
                   Hei der
@@ -124,7 +125,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
         class="align"
       >
         <div
-          aria-label="Dialog"
+          aria-labelledby="titleid01"
           class="modal warning"
           role="dialog"
         >
@@ -177,6 +178,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
               <div>
                 <h3
                   class="title title--title3"
+                  id="titleid01"
                   style="margin-top: 0rem; margin-bottom: 0rem;"
                 >
                   Hei der
