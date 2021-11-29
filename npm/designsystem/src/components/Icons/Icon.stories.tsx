@@ -1,7 +1,7 @@
 import React from 'react';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import Icon from '.';
+import Icon, { IconSize } from '.';
 import YouTube from './YouTube';
 import Search from './Search';
 
@@ -15,11 +15,11 @@ stories.add('Default', () => (
       <Icon
         svgIcon={YouTube}
         isHovered={boolean('animate hover', false)}
-        size={48}
+        size={IconSize.Small}
         color={text('Color', 'black')}
         hoverColor={text('hoverColor', 'gray')}
       />
-      <Icon svgIcon={YouTube} isHovered={true} size={48} hoverColor={text('hoverColor', 'gray')} />
+      <Icon svgIcon={YouTube} isHovered={true} size={IconSize.Small} hoverColor={text('hoverColor', 'gray')} />
     </>
     <>
       <br />
@@ -40,12 +40,12 @@ stories.add('Accessibility', () => (
   <>
     <>
       <p>{'aria-label'}</p>
-      <Icon svgIcon={Search} ariaLabel="Search" size={48} />
+      <Icon svgIcon={Search} ariaLabel="Search" size={IconSize.Small} />
     </>
     <>
       <br />
       <p>{'title'}</p>
-      <Icon svgIcon={Search} id="search" ariaLabel="Search" size={48} />
+      <Icon svgIcon={Search} id="search" ariaLabel="Search" size={IconSize.Small} />
     </>
   </>
 ));

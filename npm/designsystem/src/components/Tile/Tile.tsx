@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import { HTMLAnchorProps } from '../../constants';
 import { TitleTags } from './../Title/Title';
+import { IconSize } from '../Icons';
 
 import tileStyles from './styles.module.scss';
 
@@ -82,7 +83,7 @@ export const Tile = React.forwardRef(function TileForwardedRef(props: TileProps,
       {...restProps}
     >
       <div className={tileTitleWrapperClasses}>
-        {React.cloneElement(icon, { size: 64, isHovered, color: highlighted ? 'white' : 'black' })}
+        {React.cloneElement(icon, { size: IconSize.Medium, isHovered, color: highlighted ? 'white' : 'black' })}
         {React.cloneElement(title, { highlighted: highlighted, compact: compact })}
       </div>
       {description ? <p className={tileStyles.tile__description}>{description}</p> : null}

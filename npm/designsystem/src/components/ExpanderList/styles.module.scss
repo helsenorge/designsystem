@@ -1,3 +1,6 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_font-settings.scss';
 @import '../../scss/_palette.scss';
 
 .expander-list {
@@ -21,12 +24,19 @@
 }
 
 .expander-list-link {
-  padding: 0.5rem;
+  padding: getSpacer(xs) 0 getSpacer(xs) 0;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    padding-left: getSpacer(xs);
+    padding-right: getSpacer(xs);
+    font-size: $font-size-md;
+    line-height: $lineheight-size-md;
+  }
   display: flex;
   cursor: pointer;
+  font-weight: 600;
   font-family: inherit;
-  font-size: 1.25rem;
-  line-height: 1.875rem;
   text-decoration: none;
   justify-content: space-between;
   align-items: center;
@@ -102,8 +112,8 @@
   }
 
   &--large {
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: $font-size-lg;
+    line-height: $lineheight-size-lg;
   }
 
   &__link-content {
@@ -122,19 +132,20 @@
     padding: 0;
 
     &--padding {
-      padding: 1.5rem 0.5rem;
+      padding: getSpacer(m) 0 getSpacer(m) 0;
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding-left: getSpacer(xs);
+        padding-right: getSpacer(xs);
+      }
     }
   }
 
+  &__icon-container {
+    &--hasmargin {
+      margin-right: getSpacer(xs);
+    }
+  }
   &__icon {
-    max-height: 3rem;
-    width: 3rem;
-    .hnds-style-icon {
-      vertical-align: middle;
-    }
-
-    &--margin-right {
-      margin-right: 0.5rem;
-    }
+    vertical-align: middle;
   }
 }

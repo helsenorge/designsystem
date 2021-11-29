@@ -2,7 +2,7 @@ import React from 'react';
 
 import { HTMLButtonProps, HTMLAnchorProps } from '../../constants';
 import { getColor } from '../../theme/currys/color';
-import { IconProps } from './../Icons/';
+import { IconProps, IconSize } from './../Icons/';
 import Loader from '../Loader';
 import { PaletteNames } from '../../theme/palette';
 import { useHover } from '../../hooks/useHover';
@@ -78,9 +78,9 @@ const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, i
 
 const getLargeIconSize = (large: boolean, screenWidth: number | undefined): number => {
   const mobile = screenWidth && screenWidth < breakpoints.md;
-  if (mobile && large) return 48;
-  if (large) return 64;
-  return 38;
+  if (mobile && large) return IconSize.Small;
+  if (large) return IconSize.Medium;
+  return IconSize.XSmall;
 };
 
 const Button = React.forwardRef(function ButtonForwardedRef(
@@ -214,7 +214,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
                 {renderButtonContent()}
               </>
             )}
-            {renderIcon(rightIcon, 38, iconColor, isHovered)}
+            {renderIcon(rightIcon, IconSize.XSmall, iconColor, isHovered)}
           </>
         )}
       </span>

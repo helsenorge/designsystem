@@ -7,7 +7,7 @@ exports[`displays a list of links 1`] = `
   >
     <li>
       <a
-        class="link-list__anchor link-list__anchor--cherry link-list__anchor--hasicon"
+        class="link-list__anchor link-list__anchor--cherry link-list__anchor--hasicon link-list__anchor--medium"
       >
         <span
           class="link-list__content"
@@ -46,7 +46,7 @@ exports[`displays a list of links 1`] = `
     </li>
     <li>
       <a
-        class="link-list__anchor link-list__anchor--cherry"
+        class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
       >
         <span
           class="link-list__content"
@@ -57,7 +57,7 @@ exports[`displays a list of links 1`] = `
     </li>
     <li>
       <a
-        class="link-list__anchor link-list__anchor--cherry"
+        class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
       >
         <span
           class="link-list__content"
