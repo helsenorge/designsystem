@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
-  "version": "1.0.0-beta75",
+  "version": "1.0.0-beta76",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "tfs",
@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "bootstrap": "4.4.1",
-    "uuid": "^8.3.2"
+    "uuid": "8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
@@ -80,7 +80,7 @@
     "@types/prettier": "1.19.0",
     "@types/styled-components": "5.0.1",
     "@types/testing-library__react": "^10.0.5",
-    "@types/uuid": "^8.3.1",
+    "@types/uuid": "8.3.1",
     "async": "^3.1.0",
     "babel-loader": "^8.0.6",
     "classnames": "^2.2.6",

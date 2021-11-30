@@ -42,7 +42,7 @@
 
 .overlay {
   z-index: 9999;
-  background: rgba(102, 102, 102, 0.75);
+  background: $transparentGrey;
   position: fixed;
   top: 0;
   left: 0;
