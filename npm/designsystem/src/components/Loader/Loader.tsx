@@ -53,7 +53,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   });
 
   const LoaderComponent = (
-    <div data-testid={testId} className={loaderClasses}>
+    <div data-testid={testId} aria-label={ariaLabel} className={loaderClasses}>
       <div className={loaderDotClasses} />
       <div className={loaderDotClasses} />
       <div className={loaderDotClasses} />
@@ -62,7 +62,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   );
 
   if (overlay) {
-    return <div aria-label={ariaLabel} role="progressbar" className={loaderStyles.overlay}>{LoaderComponent}</div>;
+    return <div role="progressbar" className={loaderStyles.overlay}>{LoaderComponent}</div>;
   }
 
   if (center) {
