@@ -3,10 +3,10 @@
 exports[`displays the loader 1`] = `
 <div>
   <div
-    aria-label="Laster inn.."
     class="loader loader--small"
     data-testid=""
   >
+    <span />
     <div
       class="loader__dot loader__dot--small loader__dot--neutral"
     />
