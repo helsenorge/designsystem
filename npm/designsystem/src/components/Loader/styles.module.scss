@@ -1,4 +1,5 @@
 @import '../../scss/_palette.scss';
+@import 'bootstrap/scss/mixins/_screen-reader.scss';
 
 @mixin keyframes($name) {
   @keyframes #{$name} {
@@ -71,6 +72,10 @@
   &--large {
     width: 24 * 5px;
     height: 24px;
+  }
+
+  &__hidden-text{
+      @include sr-only();
   }
 
   &__dot {

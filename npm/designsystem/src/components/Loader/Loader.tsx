@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
+import { v4 as uuid } from 'uuid';
 
 import { PaletteNames } from '../../theme/palette';
-
 import loaderStyles from './styles.module.scss';
 
 export type LoaderColors = PaletteNames;
@@ -21,12 +21,23 @@ interface LoaderProps {
   center?: boolean;
   /** Loader is displayed with grey background covering the entire screen */
   overlay?: boolean;
-  /** aria-label */
+  /**  individual id for loading icon (aria-labelledby).  */
+  ariaLabelledbyId?: string;
+  /**  individual id for loading icon (aria-labelledby).  */
   ariaLabel?: string;
 }
 
 const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { color = 'neutral', size = 'small', className = '', testId = '', center, overlay, ariaLabel = 'Laster inn..' } = props;
+  const {
+    color = 'neutral',
+    size = 'small',
+    className = '',
+    testId = '',
+    center,
+    overlay,
+    ariaLabelledbyId,
+    ariaLabel = 'Laster inn',
+  } = props;
   const isSmall = size === 'small';
   const isMedium = size === 'medium';
   const isLarge = size === 'large';
@@ -52,9 +63,15 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     [loaderStyles['loader__dot--white']]: color === 'white',
   });
 
+  const uniqueId = `loader${uuid()}`;
+
   const LoaderComponent = (
-    <div data-testid={testId} className={loaderClasses}>
-      <span></span>
+    <div data-testid={testId} aria-labelledby={ariaLabelledbyId || uniqueId} className={loaderClasses}>
+      {!ariaLabelledbyId && (
+        <span id={uniqueId} className={loaderStyles['loader__hidden-text']}>
+          {ariaLabel}
+        </span>
+      )}
       <div className={loaderDotClasses} />
       <div className={loaderDotClasses} />
       <div className={loaderDotClasses} />

@@ -2,6 +2,7 @@ export type Styles = {
   center: string;
   loader: string;
   loader__dot: string;
+ ' loader__hidden-text': string;
   'loader__dot--banana': string;
   'loader__dot--black': string;
   'loader__dot--cherry': string;

@@ -2,6 +2,11 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Loader from './Loader';
 
+jest.mock('uuid', () => {
+  const uuidGen = (): string => `-unik-id`;
+  return { v4: uuidGen };
+});
+
 test('displays the loader', (): void => {
   const { container } = render(<Loader />);
   expect(container).toMatchSnapshot();
@@ -15,4 +20,11 @@ test('center loader', (): void => {
 test('loader has overlay', (): void => {
   const { container } = render(<Loader overlay />);
   expect(container.firstChild).toHaveClass('overlay');
+  expect(container.firstChild.firstChild).toHaveAttribute('aria-labelledby', 'loader-unik-id');
+});
+
+test('loader has external aria-labelledby', (): void => {
+  const { container } = render(<Loader ariaLabelledbyId="aria-test" overlay />);
+  expect(container.firstChild).toHaveClass('overlay');
+  expect(container.firstChild.firstChild).toHaveAttribute('aria-labelledby', 'aria-test');
 });
