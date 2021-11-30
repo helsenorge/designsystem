@@ -26,7 +26,7 @@ stories.add('All sizes', () => (
 ));
 
 stories.add('Loader is centered', () => (
-  <div style={{width: 300, background: 'white'}}>
+  <div style={{ width: 300, background: 'white' }}>
     <Loader
       size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
       color={select('Color', allPaletteNames, 'blueberry')}
@@ -36,7 +36,7 @@ stories.add('Loader is centered', () => (
 ));
 
 stories.add('Fullscreen', () => (
-  <div style={{width: '100%', height: '200vh'}}>
+  <div style={{ width: '100%', height: '200vh' }}>
     <h2>{'Fastlegen din er Arnfinn Nesset ved Orkdal sykehjem'}</h2>
     <Loader
       size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
