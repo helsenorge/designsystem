@@ -17,10 +17,16 @@ interface LoaderProps {
   size?: LoaderSizes;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Centers the loader in a container */
+  center?: boolean;
+  /** Loader is displayed with grey background covering the entire screen */
+  overlay?: boolean;
+  /** aria-label */
+  ariaLabel?: string;
 }
 
 const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { color = 'neutral', size = 'small', className = '', testId = '' } = props;
+  const { color = 'neutral', size = 'small', className = '', testId = '', center, overlay, ariaLabel = 'Laster inn..' } = props;
   const isSmall = size === 'small';
   const isMedium = size === 'medium';
   const isLarge = size === 'large';
@@ -46,7 +52,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     [loaderStyles['loader__dot--white']]: color === 'white',
   });
 
-  return (
+  const LoaderComponent = (
     <div data-testid={testId} className={loaderClasses}>
       <div className={loaderDotClasses} />
       <div className={loaderDotClasses} />
@@ -54,6 +60,16 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
       <div className={loaderDotClasses} />
     </div>
   );
+
+  if (overlay) {
+    return <div aria-label={ariaLabel} role="progressbar" className={loaderStyles.overlay}>{LoaderComponent}</div>;
+  }
+
+  if (center) {
+    return <div className={loaderStyles.center}>{LoaderComponent}</div>;
+  }
+
+  return LoaderComponent;
 });
 
 export default Loader;
