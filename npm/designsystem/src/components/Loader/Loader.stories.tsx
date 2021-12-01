@@ -24,3 +24,24 @@ stories.add('All sizes', () => (
     <Loader size="large" color={select('Color', allPaletteNames, 'blueberry')} />
   </div>
 ));
+
+stories.add('Loader is centered', () => (
+  <div style={{ width: 300, background: 'white' }}>
+    <Loader
+      size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
+      color={select('Color', allPaletteNames, 'blueberry')}
+      center
+    />
+  </div>
+));
+
+stories.add('Fullscreen', () => (
+  <div style={{ width: '100%', height: '200vh' }}>
+    <h2>{'Fastlegen din er Arnfinn Nesset ved Orkdal sykehjem'}</h2>
+    <Loader
+      size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
+      color={select('Color', allPaletteNames, 'black')}
+      overlay
+    />
+  </div>
+));
