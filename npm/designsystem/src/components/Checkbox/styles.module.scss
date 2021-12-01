@@ -2,26 +2,189 @@
 @import '../../scss/_breakpoints.scss';
 @import '../../scss/_palette.scss';
 
+.checkbox-errors {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $cherry500;
+  margin-top: 0;
+}
+
 .checkbox-wrapper {
+  &--with-error {
+    padding: getSpacer(s) getSpacer(xs) getSpacer(m);
+    background-color: $cherry50;
+    border-left: 0.25rem solid $cherry500;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      padding: getSpacer(s) getSpacer(m) getSpacer(l);
+    }
+  }
+
+  &--with-error#{&}--bigform {
+    padding: getSpacer(m) getSpacer(m);
+  }
+}
+
+.checkbox-label {
   display: flex;
   align-items: center;
+  cursor: pointer;
+  font-size: 1.125rem;
+  margin: getSpacer(s) 0;
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    font-size: 1.25rem;
+  }
+
+  &--on-dark {
+    color: $white;
+  }
+
+  &--invalid {
+    color: $black;
+    padding: getSpacer(s);
+  }
+
+  &--disabled {
+    cursor: default;
+    color: $neutral400;
+  }
+
+  &--bigform {
+    margin: getSpacer(xs) 0 getSpacer(xs) 0;
+    padding: 1.68rem getSpacer(l);
+    background-color: $neutral50;
+  }
+
+  &--bigform#{&}--on-blueberry {
+    background-color: $blueberry50;
+  }
+
+  &--bigform#{&}--on-dark {
+    background-color: $blueberry800;
+  }
+
+  &--invalid,
+  &--bigform#{&}--invalid {
+    background-color: $white;
+  }
+}
+
+.checkbox-label:last-of-type {
+  margin-bottom: 0;
 }
 
 .checkbox {
-  margin: getSpacer(s);
-  height: 1.68rem;
-  width: 1.68rem;
-  box-shadow: 0 0 0 0.1rem $neutral700;
+  width: 0px;
 
   -moz-appearance: none;
   -webkit-appearance: none;
   -o-appearance: none;
 
-  &:checked {
-    box-shadow: 0 0 0 0.1rem $blueberry500;
+  &__icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: getSpacer(3xs) getSpacer(s) getSpacer(3xs) getSpacer(3xs);
+    height: 1.625rem;
+    width: 1.625rem;
+    min-width: auto !important;
+    min-height: auto !important;
+    color: $neutral700;
+    box-shadow: 0 0 0 getSpacer(3xs);
+
+    :hover > & {
+      box-shadow: 0 0 0 getSpacer(2xs);
+      background-color: $neutral100;
+    }
+
+    :active > & {
+      box-shadow: 0 0 0 getSpacer(2xs);
+      color: $black;
+    }
+
+    &--checked {
+      color: $blueberry500;
+
+      :hover > & {
+        background-color: $blueberry50;
+      }
+    }
+
+    &--on-blueberry {
+      color: $blueberry500;
+
+      :hover > & {
+        background-color: $blueberry100;
+      }
+    }
+
+    &--on-dark {
+      color: $neutral200;
+
+      :hover > & {
+        background-color: $inverted-hover;
+      }
+
+      &.checkbox__icon-wrapper--checked {
+        color: $blueberry200;
+      }
+
+      :active > & {
+        color: $white;
+      }
+    }
+
+    &--invalid {
+      color: $cherry500;
+
+      :hover > & {
+        background-color: $cherry100;
+      }
+
+      &.checkbox__icon-wrapper--checked {
+        color: $cherry500;
+      }
+
+      :active > & {
+        color: $black;
+      }
+    }
+
+    &--disabled {
+      color: $neutral400;
+      &.checkbox__icon-wrapper--checked {
+        color: $neutral400;
+      }
+      :hover > & {
+        box-shadow: 0 0 0 getSpacer(3xs);
+        background-color: transparent;
+      }
+
+      :active > & {
+        color: $neutral400;
+      }
+    }
   }
 
-  &:hover {
-    box-shadow: 0 0 0 0.2rem $neutral700;
+  &__icon {
+    position: relative;
+    top: 0.1rem;
+    right: 0.05rem;
+  }
+
+  &:focus {
+    & + .checkbox__icon-wrapper {
+      box-shadow: 0 0 0 getSpacer(2xs);
+      color: $black;
+
+      &--on-dark {
+        color: $white;
+      }
+
+      &--invalid {
+        color: $black;
+      }
+    }
   }
 }

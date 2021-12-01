@@ -1,0 +1,78 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+
+.form-group-wrapper {
+  padding: getSpacer(s) getSpacer(xs) getSpacer(m);
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    padding: getSpacer(s) getSpacer(m) getSpacer(l);
+  }
+
+  &--bigform {
+    background-color: $neutral50;
+  }
+
+  &--on-blueberry {
+    background-color: $blueberry50;
+  }
+
+  &--on-dark {
+    background-color: $blueberry800;
+  }
+
+  &--invalid {
+    background-color: $cherry50;
+    border-left: 0.25rem solid $cherry500;
+  }
+
+  &__title {
+    margin-bottom: getSpacer(l) !important;
+
+    &--on-dark {
+      color: $white;
+    }
+
+    &--bigform {
+      margin-left: getSpacer(l) !important;
+    }
+  }
+
+  &__errors {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $cherry500;
+    margin-top: 0;
+
+    &--bigform {
+      margin-left: getSpacer(l);
+    }
+  }
+}
+
+.form-group-wrapper:first-of-type {
+  padding-top: getSpacer(xl);
+}
+
+.form-group-wrapper:last-of-type {
+  padding-bottom: getSpacer(xl);
+}
+
+.form-group {
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  &__legend {
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    &--on-dark {
+      color: $white;
+    }
+
+    &--bigform {
+      padding: 0 getSpacer(l) getSpacer(l);
+    }
+  }
+}
