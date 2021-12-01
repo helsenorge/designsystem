@@ -1,6 +1,8 @@
 export type Styles = {
+  center: string;
   loader: string;
   loader__dot: string;
+ ' loader__hidden-text': string;
   'loader__dot--banana': string;
   'loader__dot--black': string;
   'loader__dot--cherry': string;
@@ -14,6 +16,7 @@ export type Styles = {
   'loader--large': string;
   'loader--medium': string;
   'loader--small': string;
+  overlay: string;
   scale: string;
   'scale-regular': string;
   'scale-reverse': string;

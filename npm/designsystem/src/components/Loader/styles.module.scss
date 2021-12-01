@@ -1,4 +1,5 @@
 @import '../../scss/_palette.scss';
+@import 'bootstrap/scss/mixins/_screen-reader.scss';
 
 @mixin keyframes($name) {
   @keyframes #{$name} {
@@ -35,6 +36,25 @@
   @include animate($name, translate, 0.6s, infinite);
 }
 
+.loader-wrapper {
+  &--center {
+    text-align: center;
+  }
+
+  &--overlay {
+    z-index: 9999;
+    background: $transparentGrey;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .loader {
   display: inline-block;
   position: relative;
@@ -54,6 +74,10 @@
   &--large {
     width: 24 * 5px;
     height: 24px;
+  }
+
+  &__hidden-text {
+    @include sr-only();
   }
 
   &__dot {

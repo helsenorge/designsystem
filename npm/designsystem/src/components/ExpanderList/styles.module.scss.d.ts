@@ -5,7 +5,7 @@ export type Styles = {
   'expander-list__item--top': string;
   'expander-list-link': string;
   'expander-list-link__icon': string;
-  'expander-list-link__icon--margin-right': string;
+  'expander-list-link__icon-container--hasmargin': string;
   'expander-list-link__link-content': string;
   'expander-list-link__main-content': string;
   'expander-list-link__main-content--padding': string;
@@ -18,7 +18,6 @@ export type Styles = {
   'expander-list-link--neutral': string;
   'expander-list-link--plum': string;
   'expander-list-link--white': string;
-  'hnds-style-icon': string;
 };
 
 export type ClassNames = keyof Styles;

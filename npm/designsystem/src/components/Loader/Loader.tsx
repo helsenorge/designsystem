@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
+import { v4 as uuid } from 'uuid';
 
 import { PaletteNames } from '../../theme/palette';
-
 import loaderStyles from './styles.module.scss';
 
 export type LoaderColors = PaletteNames;
@@ -17,13 +17,35 @@ interface LoaderProps {
   size?: LoaderSizes;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Centers the loader in a container */
+  center?: boolean;
+  /** Loader is displayed with grey background covering the entire screen */
+  overlay?: boolean;
+  /**  individual id for loading icon (aria-labelledby).  */
+  ariaLabelledById?: string;
+  /**  individual id for loading icon (aria-labelledby).  */
+  ariaLabel?: string;
 }
 
 const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { color = 'neutral', size = 'small', className = '', testId = '' } = props;
+  const {
+    color = 'neutral',
+    size = 'small',
+    className = '',
+    testId = '',
+    center,
+    overlay,
+    ariaLabelledById,
+    ariaLabel = 'Laster inn',
+  } = props;
   const isSmall = size === 'small';
   const isMedium = size === 'medium';
   const isLarge = size === 'large';
+
+  const loaderWrapperClasses = classNames(loaderStyles['loader-wrapper'], {
+    [loaderStyles['loader-wrapper--center']]: center,
+    [loaderStyles['loader-wrapper--overlay']]: overlay,
+  });
   const loaderClasses = classNames(
     loaderStyles.loader,
     {
@@ -46,12 +68,21 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     [loaderStyles['loader__dot--white']]: color === 'white',
   });
 
+  const uniqueId = `loader${uuid()}`;
+
   return (
-    <div data-testid={testId} className={loaderClasses}>
-      <div className={loaderDotClasses} />
-      <div className={loaderDotClasses} />
-      <div className={loaderDotClasses} />
-      <div className={loaderDotClasses} />
+    <div role="progressbar" className={loaderWrapperClasses}>
+      <div data-testid={testId} aria-labelledby={ariaLabelledById || uniqueId} className={loaderClasses}>
+        <div className={loaderDotClasses} />
+        <div className={loaderDotClasses} />
+        <div className={loaderDotClasses} />
+        <div className={loaderDotClasses} />
+        {!ariaLabelledById && (
+          <span id={uniqueId} className={loaderStyles['loader__hidden-text']}>
+            {ariaLabel}
+          </span>
+        )}
+      </div>
     </div>
   );
 });
