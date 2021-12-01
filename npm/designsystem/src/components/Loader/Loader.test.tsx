@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Loader from './Loader';
 
 jest.mock('uuid', () => {
@@ -21,6 +21,11 @@ test('loader has overlay', (): void => {
   const { container } = render(<Loader overlay />);
   expect(container.firstChild).toHaveClass('overlay');
   expect(container.firstChild.firstChild).toHaveAttribute('aria-labelledby', 'loader-unik-id');
+});
+
+test('loader has progressbar role', (): void => {
+  render(<Loader overlay />);
+  expect(screen.getByRole('progressbar')).toBeVisible();
 });
 
 test('loader has external aria-labelledby', (): void => {
