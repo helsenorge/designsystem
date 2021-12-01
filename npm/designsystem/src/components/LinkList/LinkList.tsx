@@ -2,11 +2,14 @@ import React from 'react';
 import cn from 'classnames';
 
 import { PaletteNames } from '../../theme/palette';
-import Icon from '../Icons';
+import Icon, { IconSize } from '../Icons';
 import ChevronRight from '../Icons/ChevronRight';
+import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useHover } from '../../hooks/useHover';
 
 import LinkListStyles from './styles.module.scss';
+
+export type LinkListSize = 'small' | 'medium' | 'large';
 
 export type LinkListColors = PaletteNames;
 export type LinkType = React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLLIElement>>;
@@ -27,14 +30,14 @@ interface LinkListProps {
   bottomBorder?: boolean;
   /** Toggles the top border of the first child element. */
   topBorder?: boolean;
-  /** Changes the font size. */
-  large?: boolean;
+  /** Changes size of the LinkList. */
+  size?: LinkListSize;
 }
 
 export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode;
   color?: LinkListColors;
-  large?: boolean;
+  size?: LinkListSize;
   chevron?: boolean;
   className?: string;
   icon?: React.ReactElement;
@@ -42,8 +45,12 @@ export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
 }
 
 const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLIElement>) => {
-  const { children, className = '', color = 'neutral', icon, large = false, chevron = false, ...restProps } = props;
+  const { children, className = '', color = 'neutral', icon, size = 'medium', chevron = false, ...restProps } = props;
   const { hoverRef, isHovered } = useHover<HTMLAnchorElement>();
+  const breakpoint = useBreakpoint();
+
+  const hasIcon = size !== 'small' && !!(chevron || icon);
+
   return (
     <li ref={ref}>
       <a
@@ -51,8 +58,10 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
           LinkListStyles['link-list__anchor'],
           LinkListStyles['link-list__anchor--' + color],
           {
-            [LinkListStyles['link-list__anchor--hasicon']]: !!(chevron || icon),
-            [LinkListStyles['link-list__anchor--large']]: large,
+            [LinkListStyles['link-list__anchor--hasicon']]: hasIcon,
+            [LinkListStyles['link-list__anchor--small']]: size === 'small',
+            [LinkListStyles['link-list__anchor--medium']]: size === 'medium',
+            [LinkListStyles['link-list__anchor--large']]: size === 'large',
           },
           className
         )}
@@ -60,16 +69,20 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
         {...restProps}
       >
         <span className={LinkListStyles['link-list__content']}>
-          {icon && (
+          {hasIcon && icon && (
             <span className={`${LinkListStyles['link-list__icon-container']} ${LinkListStyles['link-list__icon-container--hasmargin']}`}>
-              {React.cloneElement(icon, { className: LinkListStyles['link-list__icon'], size: 48, isHovered })}
+              {React.cloneElement(icon, {
+                className: LinkListStyles['link-list__icon'],
+                size: breakpoint === Breakpoint.Xs ? IconSize.XSmall : IconSize.Small,
+                isHovered,
+              })}
             </span>
           )}
           {children}
         </span>
-        {chevron && (
+        {hasIcon && chevron && (
           <span className={LinkListStyles['link-list__icon-container']}>
-            <Icon className={LinkListStyles['link-list__icon']} svgIcon={ChevronRight} isHovered={isHovered} />
+            <Icon className={LinkListStyles['link-list__icon']} svgIcon={ChevronRight} isHovered={isHovered} size={IconSize.XSmall} />
           </span>
         )}
       </a>
@@ -78,7 +91,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
 });
 
 export const LinkList = React.forwardRef(function LinkListForwardedRef(props: LinkListProps, ref: React.Ref<HTMLUListElement>) {
-  const { children, className = '', chevron = false, large, color, topBorder = true, bottomBorder = true } = props;
+  const { children, className = '', chevron = false, size = 'medium', color, topBorder = true, bottomBorder = true } = props;
   return (
     <ul
       ref={ref}
@@ -93,7 +106,7 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
     >
       {React.Children.map(children, (child: React.ReactNode | React.ReactElement<LinkProps>) => {
         if ((child as React.ReactElement<LinkProps>).type === Link) {
-          return React.cloneElement(child as React.ReactElement<LinkProps>, { color, large, chevron });
+          return React.cloneElement(child as React.ReactElement<LinkProps>, { color, size, chevron });
         }
       })}
     </ul>

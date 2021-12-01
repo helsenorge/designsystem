@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../Icons';
+import Icon, { IconSize } from '../Icons';
 import Check from '../Icons/Check';
 import cn from 'classnames';
 
@@ -27,7 +27,7 @@ const Avatar = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, 
       ref={ref}
     >
       {selected ? (
-        <Icon svgIcon={Check} size={48} color={variant === 'black' ? palette.neutral900 : palette.blueberry600} />
+        <Icon svgIcon={Check} size={IconSize.Small} color={variant === 'black' ? palette.neutral900 : palette.blueberry600} />
       ) : (
         truncatedName
       )}

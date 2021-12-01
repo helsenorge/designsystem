@@ -25,10 +25,7 @@
 
   &__anchor {
     display: flex;
-    padding: getSpacer(xs);
     min-height: 4.5rem;
-    font-size: $font-size-md;
-    line-height: $lineheight-size-md;
     text-decoration: none;
     justify-content: space-between;
     align-items: center;
@@ -38,9 +35,40 @@
     &--hasicon {
       min-height: unset;
     }
+    &--small {
+      padding: getSpacer(xs) 0 getSpacer(xs) 0;
+      font-size: $font-size-xs;
+      line-height: $lineheight-size-xs;
+    }
+    &--medium {
+      padding: getSpacer(xs) 0 getSpacer(xs) 0;
+      font-size: $font-size-sm;
+      line-height: $lineheight-size-sm;
+    }
     &--large {
-      font-size: 1.5rem;
-      line-height: 2rem;
+      padding: getSpacer(xs) 0 getSpacer(xs) 0;
+      font-size: $font-size-md;
+      line-height: $lineheight-size-md;
+    }
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      &--small {
+        padding-left: getSpacer(xs);
+        padding-right: getSpacer(xs);
+        font-size: $font-size-sm;
+        line-height: $lineheight-size-sm;
+      }
+      &--medium {
+        padding-left: getSpacer(xs);
+        padding-right: getSpacer(xs);
+        font-size: $font-size-md;
+        line-height: $lineheight-size-md;
+      }
+      &--large {
+        padding-left: getSpacer(xs);
+        padding-right: getSpacer(xs);
+        font-size: $font-size-lg;
+        line-height: $lineheight-size-lg;
+      }
     }
 
     &--banana {
@@ -109,7 +137,6 @@
   }
 
   &__icon-container {
-    width: getSpacer(xl);
     &--hasmargin {
       margin-right: getSpacer(xs);
     }

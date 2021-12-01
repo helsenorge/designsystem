@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import Icon from '@helsenorge/designsystem-react/components/Icons';
+import Icon, { IconSize } from '@helsenorge/designsystem-react/components/Icons';
 import * as SvgIcons from './allIconsImports';
 
 import Checkbox from '../../../CheckBox/CheckBox';
@@ -127,9 +127,13 @@ function IconWall() {
       <IconWallFilter onFilterChange={e => setFilterProps(e)} />
       <StyledIconWall>
         {SvgIcons.allSvgIcons.filter(filterIcons).map((iconImport: IconImport, index) => (
-          <div>
+          <div key={index}>
             <StyledIconTile>
-              <Icon isHovered={filterProps.isHovered} size={filterProps.isExtraSmall ? 38 : 48} svgIcon={iconImport.module} />
+              <Icon
+                isHovered={filterProps.isHovered}
+                size={filterProps.isExtraSmall ? IconSize.XSmall : IconSize.Small}
+                svgIcon={iconImport.module}
+              />
               <StyledIconName>{iconImport.name}</StyledIconName>
               <StyledAlternativeIconName>
                 {iconImport.alternativeName.length ? `(${iconImport.alternativeName})` : ''}
