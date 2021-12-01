@@ -41,6 +41,11 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   const isSmall = size === 'small';
   const isMedium = size === 'medium';
   const isLarge = size === 'large';
+
+  const loaderWrapperClasses = classNames(loaderStyles['loader-wrapper'], {
+    [loaderStyles['loader-wrapper--center']]: center,
+    [loaderStyles['loader-wrapper--overlay']]: overlay,
+  });
   const loaderClasses = classNames(
     loaderStyles.loader,
     {
@@ -65,33 +70,21 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
 
   const uniqueId = `loader${uuid()}`;
 
-  const LoaderComponent = (
-    <div data-testid={testId} aria-labelledby={ariaLabelledById || uniqueId} className={loaderClasses}>
-      {!ariaLabelledById && (
-        <span id={uniqueId} className={loaderStyles['loader__hidden-text']}>
-          {ariaLabel}
-        </span>
-      )}
-      <div className={loaderDotClasses} />
-      <div className={loaderDotClasses} />
-      <div className={loaderDotClasses} />
-      <div className={loaderDotClasses} />
+  return (
+    <div role="progressbar" className={loaderWrapperClasses}>
+      <div data-testid={testId} aria-labelledby={ariaLabelledById || uniqueId} className={loaderClasses}>
+        <div className={loaderDotClasses} />
+        <div className={loaderDotClasses} />
+        <div className={loaderDotClasses} />
+        <div className={loaderDotClasses} />
+        {!ariaLabelledById && (
+          <span id={uniqueId} className={loaderStyles['loader__hidden-text']}>
+            {ariaLabel}
+          </span>
+        )}
+      </div>
     </div>
   );
-
-  if (overlay) {
-    return (
-      <div role="progressbar" className={loaderStyles.overlay}>
-        {LoaderComponent}
-      </div>
-    );
-  }
-
-  if (center) {
-    return <div className={loaderStyles.center}>{LoaderComponent}</div>;
-  }
-
-  return LoaderComponent;
 });
 
 export default Loader;

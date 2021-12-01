@@ -3,28 +3,33 @@
 exports[`Gitt at en loader skal vises  Når at en loader rendres  Så vises loaderen 1`] = `
 <div>
   <div
-    aria-labelledby="loader-unik-id"
-    class="loader loader--small"
-    data-testid=""
+    class="loader-wrapper"
+    role="progressbar"
   >
-    <span
-      class="loader__hidden-text"
-      id="loader-unik-id"
+    <div
+      aria-labelledby="loader-unik-id"
+      class="loader loader--small"
+      data-testid=""
     >
-      Laster inn
-    </span>
-    <div
-      class="loader__dot loader__dot--small loader__dot--neutral"
-    />
-    <div
-      class="loader__dot loader__dot--small loader__dot--neutral"
-    />
-    <div
-      class="loader__dot loader__dot--small loader__dot--neutral"
-    />
-    <div
-      class="loader__dot loader__dot--small loader__dot--neutral"
-    />
+      <div
+        class="loader__dot loader__dot--small loader__dot--neutral"
+      />
+      <div
+        class="loader__dot loader__dot--small loader__dot--neutral"
+      />
+      <div
+        class="loader__dot loader__dot--small loader__dot--neutral"
+      />
+      <div
+        class="loader__dot loader__dot--small loader__dot--neutral"
+      />
+      <span
+        class="loader__hidden-text"
+        id="loader-unik-id"
+      >
+        Laster inn
+      </span>
+    </div>
   </div>
 </div>
 `;
