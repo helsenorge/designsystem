@@ -1,4 +1,5 @@
 import React from 'react';
+import { IconSize } from '.';
 
 type SvgIcon = React.FC<SvgPathProps>;
 
@@ -36,7 +37,7 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
     ariaLabel,
     id,
     className = '',
-    size = 48,
+    size = IconSize.Small,
     color = 'black',
     hoverColor = color || 'black',
     isHovered = false,
@@ -45,7 +46,7 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
   } = props;
 
   const svgRaw = React.createElement(svgIcon, {
-    isExtraSmall: size <= 38,
+    isExtraSmall: size <= IconSize.XSmall,
     isHovered,
   });
 

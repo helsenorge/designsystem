@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../Icons';
+import Icon, { IconSize } from '../Icons';
 import ArrowUpRight from '../Icons/ArrowUpRight';
 import { getColor } from '../../theme/currys';
 import { useHover } from '../../hooks/useHover';
@@ -37,7 +37,7 @@ const AnchorLink = React.forwardRef(function AnchorLinkForwardedRef(props: Ancho
           svgIcon={ArrowUpRight}
           color={getColor('blueberry', 600)}
           hoverColor={getColor('blueberry', 700)}
-          size={38}
+          size={IconSize.XSmall}
           isHovered={isHovered}
         />
       )}

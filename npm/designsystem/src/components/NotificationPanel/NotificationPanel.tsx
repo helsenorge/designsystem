@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 
 import { palette } from '../../theme/palette';
-import Icon from '../Icons';
+import Icon, { IconSize } from '../Icons';
 import { useHover } from '../..';
 
 import InfoSignStroke from '../Icons/InfoSignStroke';
@@ -131,7 +131,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
             <Icon
               svgIcon={X}
               isHovered={isHovered}
-              size={38}
+              size={IconSize.XSmall}
               color={variant === 'crisis' ? palette.white : palette.blueberry500}
               hoverColor={variant === 'crisis' ? palette.white : palette.blueberry700}
             />

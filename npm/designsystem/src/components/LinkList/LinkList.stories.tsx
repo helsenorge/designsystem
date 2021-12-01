@@ -2,6 +2,7 @@ import React from 'react';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { allPaletteNames } from '../../../.storybook/knobs';
+import { allLinkListSizes } from '../../../.storybook/knobs';
 import LinkList from './LinkList';
 import Icon from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
@@ -18,7 +19,7 @@ stories.add('Default', () => (
   >
     <LinkList
       chevron={boolean('Chevron', false)}
-      large={boolean('Large', false)}
+      size={select('Size', allLinkListSizes, 'medium')}
       color={select('Color', allPaletteNames, 'blueberry')}
       topBorder={boolean('Top border', true)}
       bottomBorder={boolean('Bottom border', true)}
@@ -37,7 +38,7 @@ stories.add('With icon', () => (
   >
     <LinkList
       chevron={boolean('Chevron', false)}
-      large={boolean('Large', false)}
+      size={select('Size', allLinkListSizes, 'medium')}
       color="cherry"
       topBorder={boolean('Top border', true)}
       bottomBorder={boolean('Bottom border', true)}

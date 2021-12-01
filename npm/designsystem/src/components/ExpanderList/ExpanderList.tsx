@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 import { PaletteNames } from '../../theme/palette';
-import Icon from '../Icons';
+import Icon, { IconSize } from '../Icons';
 import ChevronUp from '../Icons/ChevronUp';
 import ChevronDown from '../Icons/ChevronDown';
 import { useHover } from '../../hooks/useHover';
+import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { isElementInViewport } from '../../utils/viewport';
 
 import classNames from 'classnames';
@@ -78,6 +79,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     handleExpanderClick,
   } = props;
   const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
+  const breakpoint = useBreakpoint();
   const expanderClasses = classNames(expanderListStyles['expander-list-link'], expanderListStyles[`expander-list-link--${color}`], {
     [expanderListStyles['expander-list-link--closed']]: !isExpanded,
     [expanderListStyles['expander-list-link--large']]: large,
@@ -86,20 +88,33 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     expanderListStyles['expander-list-link__main-content'],
     padding ? expanderListStyles['expander-list-link__main-content--padding'] : ''
   );
-  const linkIconClasses = classNames(
-    expanderListStyles['expander-list-link__icon'],
-    expanderListStyles['expander-list-link__icon--margin-right']
+  const iconContainerClasses = classNames(
+    expanderListStyles['expander-list-link__icon-container'],
+    expanderListStyles['expander-list-link__icon-container--hasmargin']
   );
 
   return (
     <li className={className} ref={ref}>
       <button id={id} onClick={handleExpanderClick} data-testid={testId} className={expanderClasses} ref={hoverRef}>
         <span className={expanderListStyles['expander-list-link__link-content']}>
-          {icon ? <span className={linkIconClasses}>{React.cloneElement(icon, { size: 48, isHovered })}</span> : null}
+          {icon ? (
+            <span className={iconContainerClasses}>
+              {React.cloneElement(icon, {
+                className: expanderListStyles['expander-list-link__icon'],
+                size: breakpoint === Breakpoint.Xs ? IconSize.XSmall : IconSize.Small,
+                isHovered,
+              })}
+            </span>
+          ) : null}
           {title}
         </span>
-        <span className={expanderListStyles['expander-list-link__icon']}>
-          <Icon size={48} svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} />
+        <span className={expanderListStyles['expander-list-link__icon-container']}>
+          <Icon
+            className={expanderListStyles['expander-list-link__icon']}
+            size={IconSize.XSmall}
+            svgIcon={isExpanded ? ChevronUp : ChevronDown}
+            isHovered={isHovered}
+          />
         </span>
       </button>
       {isExpanded ? <div className={mainContentClasses}>{children}</div> : null}
