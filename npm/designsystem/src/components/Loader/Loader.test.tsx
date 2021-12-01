@@ -24,7 +24,7 @@ test('loader has overlay', (): void => {
 });
 
 test('loader has external aria-labelledby', (): void => {
-  const { container } = render(<Loader ariaLabelledbyId="aria-test" overlay />);
+  const { container } = render(<Loader ariaLabelledById="aria-test" overlay />);
   expect(container.firstChild).toHaveClass('overlay');
   expect(container.firstChild.firstChild).toHaveAttribute('aria-labelledby', 'aria-test');
 });

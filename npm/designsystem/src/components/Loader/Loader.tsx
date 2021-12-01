@@ -22,7 +22,7 @@ interface LoaderProps {
   /** Loader is displayed with grey background covering the entire screen */
   overlay?: boolean;
   /**  individual id for loading icon (aria-labelledby).  */
-  ariaLabelledbyId?: string;
+  ariaLabelledById?: string;
   /**  individual id for loading icon (aria-labelledby).  */
   ariaLabel?: string;
 }
@@ -35,7 +35,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     testId = '',
     center,
     overlay,
-    ariaLabelledbyId,
+    ariaLabelledById,
     ariaLabel = 'Laster inn',
   } = props;
   const isSmall = size === 'small';
@@ -66,8 +66,8 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   const uniqueId = `loader${uuid()}`;
 
   const LoaderComponent = (
-    <div data-testid={testId} aria-labelledby={ariaLabelledbyId || uniqueId} className={loaderClasses}>
-      {!ariaLabelledbyId && (
+    <div data-testid={testId} aria-labelledby={ariaLabelledById || uniqueId} className={loaderClasses}>
+      {!ariaLabelledById && (
         <span id={uniqueId} className={loaderStyles['loader__hidden-text']}>
           {ariaLabel}
         </span>
