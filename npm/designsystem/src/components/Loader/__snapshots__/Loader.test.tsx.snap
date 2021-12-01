@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`displays the loader 1`] = `
+exports[`Gitt at en loader skal vises  Når at en loader rendres  Så vises loaderen 1`] = `
 <div>
   <div
     aria-labelledby="loader-unik-id"
