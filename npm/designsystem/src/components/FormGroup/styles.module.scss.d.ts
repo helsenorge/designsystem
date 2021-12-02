@@ -5,6 +5,7 @@ export type Styles = {
   'form-group__legend--on-dark': string;
   'form-group-wrapper': string;
   'form-group-wrapper__errors': string;
+  'form-group-wrapper__errors--bigform': string;
   'form-group-wrapper__title': string;
   'form-group-wrapper__title--bigform': string;
   'form-group-wrapper__title--on-dark': string;

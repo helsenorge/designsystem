@@ -27,14 +27,25 @@ export interface CheckboxProps {
   name?: string;
   /** Changes the visuals of the checkbox */
   variant?: FormGroupVariants;
-  /** Error for the validation of the form */
+  /** Activates Error style for the checkbox - This is can be true while errorText is empty, when in a FormGroup */
   error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
 }
 
 export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<HTMLInputElement>) => {
-  const { className, startChecked = false, disabled, label, inputid = uuidv4(), mode, name = inputid, variant, error, errorText } = props;
+  const {
+    className,
+    startChecked = false,
+    disabled,
+    label,
+    inputid = uuidv4(),
+    mode,
+    name = inputid,
+    variant,
+    errorText,
+    error = !!errorText,
+  } = props;
   const [checked, setChecked] = useState(startChecked);
   const invalid = error;
   const onDark = mode === FormGroupModes.onDark;

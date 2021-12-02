@@ -1,16 +1,10 @@
 import React from 'react';
-import { select, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import Validation from './Validation';
-
 import { useForm } from 'react-hook-form';
-import FormGroup, { FormGroupModes, FormGroupVariants } from '../FormGroup/FormGroup';
 
+import Validation from './Validation';
+import FormGroup, { FormGroupVariants } from '../FormGroup/FormGroup';
 import Checkbox from '../Checkbox';
 import Button from '../Button';
-
-const stories = storiesOf('Validation', module);
-stories.addDecorator(withKnobs);
 
 interface FormExampleProps {
   exampleType: FormExampleVariants;
@@ -40,22 +34,15 @@ export const FormExample = React.forwardRef((props: FormExampleProps, ref: React
       return (
         <>
           <FormGroup
-            title={text('Title 1', 'One amazing title')}
-            legend={text('Legend 1', 'Check out these checkboxes!')}
-            mode={select('Mode', FormGroupModes, FormGroupModes.onWhite)}
-            variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)}
+            title={'One amazing title'}
+            legend={'Check out these checkboxes!'}
             error={errors[formGroup1] ? errors[formGroup1].message : undefined}
           >
             <Checkbox name={formGroup1} label={'Checkbox 1'} ref={register({ required: errorMessage })} />
             <Checkbox name={formGroup1} label={'Checkbox 2'} ref={register({ required: errorMessage })} />
             <Checkbox name={formGroup1} label={'Checkbox 3'} ref={register({ required: errorMessage })} />
           </FormGroup>
-          <FormGroup
-            legend={text('Legend 2', 'Select two options!')}
-            mode={select('Mode', FormGroupModes, FormGroupModes.onWhite)}
-            variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)}
-            error={errors[formGroup2] ? errors[formGroup2].message : undefined}
-          >
+          <FormGroup legend={'Select two options!'} error={errors[formGroup2] ? errors[formGroup2].message : undefined}>
             <Checkbox name={formGroup2} label={'Checkbox 4'} ref={register({ validate: requireTwo })} />
             <Checkbox name={formGroup2} label={'Checkbox 5'} ref={register({ validate: requireTwo })} />
             <Checkbox name={formGroup2} label={'Checkbox 6'} ref={register({ validate: requireTwo })} />
@@ -70,8 +57,6 @@ export const FormExample = React.forwardRef((props: FormExampleProps, ref: React
             label={'Checkbox 1'}
             error={errors[formGroup1]}
             errorText={errors[formGroup1] ? errors[formGroup1].message : undefined}
-            mode={select('Mode', FormGroupModes, FormGroupModes.onWhite)}
-            variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)}
             ref={register({ required: errorMessage })}
           />
         </>
@@ -94,22 +79,4 @@ export const FormExample = React.forwardRef((props: FormExampleProps, ref: React
   );
 });
 
-stories.add('FormGroup', () => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
-    <FormExample variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)} exampleType={FormExampleVariants.formgroup} />
-  </div>
-));
-
-stories.add('Checkbox', () => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
-    <FormExample variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)} exampleType={FormExampleVariants.checkbox} />
-  </div>
-));
+export default FormExample;
