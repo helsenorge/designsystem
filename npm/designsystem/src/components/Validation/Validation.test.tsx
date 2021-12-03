@@ -5,9 +5,9 @@ import userEvent from '@testing-library/user-event';
 import { FormExample, FormExampleVariants } from './FormExample';
 import { FormGroupVariants } from '../FormGroup/FormGroup';
 
-describe('Gitt at Validation skal vises', (): void => {
-  describe('Når Validation rendres', (): void => {
-    test('Så vises den riktig', (): void => {
+describe('Gitt at Validation skal vises', () => {
+  describe('Når Validation rendres', () => {
+    test('Så vises den riktig', () => {
       render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
       const validation = screen.getByText('One amazing title').parentElement.parentElement;
@@ -15,8 +15,8 @@ describe('Gitt at Validation skal vises', (): void => {
     });
   });
 
-  describe('Når Validation rendres med children', (): void => {
-    test('Så vises children', (): void => {
+  describe('Når Validation rendres med children', () => {
+    test('Så vises children', () => {
       render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
       const formGroup = screen.getByText('One amazing title').parentElement;
@@ -24,7 +24,7 @@ describe('Gitt at Validation skal vises', (): void => {
     });
   });
 
-  describe('Når Submit knapp trykkes på', (): void => {
+  describe('Når Submit knapp trykkes på', () => {
     test('Så vises error', async () => {
       render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
@@ -45,7 +45,7 @@ describe('Gitt at Validation skal vises', (): void => {
     });
   });
 
-  describe('Når error vises med variant prop satt til bigform', (): void => {
+  describe('Når error vises med variant prop satt til bigform', () => {
     test('Så vises errorSummary med riktig styling', async () => {
       render(<FormExample variant={FormGroupVariants.bigform} exampleType={FormExampleVariants.formgroup} />);
 
@@ -59,7 +59,7 @@ describe('Gitt at Validation skal vises', (): void => {
     });
   });
 
-  describe('Når validation krav blir møtt', (): void => {
+  describe('Når validation krav blir møtt', () => {
     test('Så fjernes error', async () => {
       render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
