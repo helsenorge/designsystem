@@ -6,6 +6,7 @@
   "components/ButtonWithModal/index": "src/components/ButtonWithModal/index.tsx",
   "components/Checkbox/index": "src/components/Checkbox/index.ts",
   "components/ExpanderList/index": "src/components/ExpanderList/index.ts",
+  "components/FormExample/index": "src/components/FormExample/index.tsx",
   "components/FormGroup/index": "src/components/FormGroup/index.ts",
   "components/Icons/ActiveMonitoring": "src/components/Icons/ActiveMonitoring.tsx",
   "components/Icons/AdditionalIconInformation": "src/components/Icons/AdditionalIconInformation.js",
