@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { FormExample, FormExampleVariants } from './FormExample';
+import { FormExample, FormExampleVariants } from '../FormExample/FormExample';
 import { FormGroupVariants } from '../FormGroup/FormGroup';
 
 describe('Gitt at Validation skal vises', () => {
