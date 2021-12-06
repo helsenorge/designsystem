@@ -21,20 +21,20 @@ interface LoaderProps {
   center?: boolean;
   /** Loader is displayed with grey background covering the entire screen */
   overlay?: boolean;
-  /**  individual id for loading icon (aria-labelledby).  */
+  /**  Individual id for loading icon (aria-labelledby).  */
   ariaLabelledById?: string;
-  /**  individual id for loading icon (aria-labelledby).  */
+  /**  String that labels the current loading element  */
   ariaLabel?: string;
 }
 
 const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, ref: React.ForwardedRef<HTMLElement>) {
   const {
-    color = 'neutral',
+    overlay,
+    color = overlay ? 'black' : 'neutral',
     size = 'small',
     className = '',
     testId = '',
     center,
-    overlay,
     ariaLabelledById,
     ariaLabel = 'Laster inn',
   } = props;
