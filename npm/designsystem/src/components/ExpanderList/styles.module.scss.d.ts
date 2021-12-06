@@ -4,11 +4,11 @@ export type Styles = {
   'expander-list__item--no-bottom': string;
   'expander-list__item--top': string;
   'expander-list-link': string;
+  'expander-list-link__chevron': string;
   'expander-list-link__icon': string;
-  'expander-list-link__icon-container--hasmargin': string;
-  'expander-list-link__link-content': string;
   'expander-list-link__main-content': string;
   'expander-list-link__main-content--padding': string;
+  'expander-list-link__title': string;
   'expander-list-link--banana': string;
   'expander-list-link--blueberry': string;
   'expander-list-link--cherry': string;
