@@ -88,33 +88,21 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     expanderListStyles['expander-list-link__main-content'],
     padding ? expanderListStyles['expander-list-link__main-content--padding'] : ''
   );
-  const iconContainerClasses = classNames(
-    expanderListStyles['expander-list-link__icon-container'],
-    expanderListStyles['expander-list-link__icon-container--hasmargin']
-  );
 
   return (
     <li className={className} ref={ref}>
       <button id={id} onClick={handleExpanderClick} data-testid={testId} className={expanderClasses} ref={hoverRef}>
-        <span className={expanderListStyles['expander-list-link__link-content']}>
-          {icon ? (
-            <span className={iconContainerClasses}>
-              {React.cloneElement(icon, {
-                className: expanderListStyles['expander-list-link__icon'],
-                size: breakpoint === Breakpoint.Xs ? IconSize.XSmall : IconSize.Small,
-                isHovered,
-              })}
-            </span>
-          ) : null}
-          {title}
-        </span>
-        <span className={expanderListStyles['expander-list-link__icon-container']}>
-          <Icon
-            className={expanderListStyles['expander-list-link__icon']}
-            size={IconSize.XSmall}
-            svgIcon={isExpanded ? ChevronUp : ChevronDown}
-            isHovered={isHovered}
-          />
+        {icon && (
+          <span className={expanderListStyles['expander-list-link__icon']}>
+            {React.cloneElement(icon, {
+              size: breakpoint === Breakpoint.Xs ? IconSize.XSmall : IconSize.Small,
+              isHovered,
+            })}
+          </span>
+        )}
+        <span className={expanderListStyles['expander-list-link__title']}>{title}</span>
+        <span className={expanderListStyles['expander-list-link__chevron']}>
+          <Icon size={IconSize.XSmall} svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} />
         </span>
       </button>
       {isExpanded ? <div className={mainContentClasses}>{children}</div> : null}

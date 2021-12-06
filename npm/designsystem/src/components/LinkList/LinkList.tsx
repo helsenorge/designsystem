@@ -68,21 +68,18 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
         ref={hoverRef}
         {...restProps}
       >
-        <span className={LinkListStyles['link-list__content']}>
-          {hasIcon && icon && (
-            <span className={`${LinkListStyles['link-list__icon-container']} ${LinkListStyles['link-list__icon-container--hasmargin']}`}>
-              {React.cloneElement(icon, {
-                className: LinkListStyles['link-list__icon'],
-                size: breakpoint === Breakpoint.Xs ? IconSize.XSmall : IconSize.Small,
-                isHovered,
-              })}
-            </span>
-          )}
-          {children}
-        </span>
+        {hasIcon && icon && (
+          <span className={LinkListStyles['link-list__icon']}>
+            {React.cloneElement(icon, {
+              size: breakpoint === Breakpoint.Xs ? IconSize.XSmall : IconSize.Small,
+              isHovered,
+            })}
+          </span>
+        )}
+        <span className={LinkListStyles['link-list__content']}>{children}</span>
         {hasIcon && chevron && (
-          <span className={LinkListStyles['link-list__icon-container']}>
-            <Icon className={LinkListStyles['link-list__icon']} svgIcon={ChevronRight} isHovered={isHovered} size={IconSize.XSmall} />
+          <span className={LinkListStyles['link-list__chevron']}>
+            <Icon svgIcon={ChevronRight} isHovered={isHovered} size={IconSize.XSmall} />
           </span>
         )}
       </a>

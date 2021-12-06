@@ -17,16 +17,16 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
           id="expander-0"
         >
           <span
-            class="expander-list-link__link-content"
+            class="expander-list-link__title"
           >
             Title 1
           </span>
           <span
-            class="expander-list-link__icon-container"
+            class="expander-list-link__chevron"
           >
             <svg
               aria-hidden="true"
-              class="hnds-style-icon expander-list-link__icon"
+              class="hnds-style-icon "
               fill="black"
               height="38"
               role="img"
@@ -50,16 +50,16 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
           id="expander-1"
         >
           <span
-            class="expander-list-link__link-content"
+            class="expander-list-link__title"
           >
             Title 2
           </span>
           <span
-            class="expander-list-link__icon-container"
+            class="expander-list-link__chevron"
           >
             <svg
               aria-hidden="true"
-              class="hnds-style-icon expander-list-link__icon"
+              class="hnds-style-icon "
               fill="black"
               height="38"
               role="img"
@@ -83,16 +83,16 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
           id="expander-2"
         >
           <span
-            class="expander-list-link__link-content"
+            class="expander-list-link__title"
           >
             Title 3
           </span>
           <span
-            class="expander-list-link__icon-container"
+            class="expander-list-link__chevron"
           >
             <svg
               aria-hidden="true"
-              class="hnds-style-icon expander-list-link__icon"
+              class="hnds-style-icon "
               fill="black"
               height="38"
               role="img"

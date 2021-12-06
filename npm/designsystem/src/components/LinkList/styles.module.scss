@@ -27,7 +27,6 @@
     display: flex;
     min-height: 4.5rem;
     text-decoration: none;
-    justify-content: space-between;
     align-items: center;
     color: $black;
     cursor: pointer;
@@ -124,9 +123,6 @@
 
     &:focus {
       outline: none;
-      .link-list__content {
-        border-color: $black;
-      }
     }
   }
 
@@ -134,14 +130,21 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid transparent;
-  }
-
-  &__icon-container {
-    &--hasmargin {
-      margin-right: getSpacer(xs);
+    :focus > & {
+      border-color: $black;
     }
   }
+
   &__icon {
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    margin-right: getSpacer(xs);
+  }
+
+  &__chevron {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding-left: getSpacer(xs);
   }
 }

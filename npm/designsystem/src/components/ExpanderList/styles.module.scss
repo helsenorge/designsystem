@@ -116,7 +116,7 @@
     line-height: $lineheight-size-lg;
   }
 
-  &__link-content {
+  &__title {
     color: $black;
     display: flex;
     align-items: center;
@@ -126,6 +126,19 @@
     :focus > & {
       border-color: $black;
     }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    margin-right: getSpacer(xs);
+  }
+
+  &__chevron {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding-left: getSpacer(xs);
   }
 
   &__main-content {
@@ -138,14 +151,5 @@
         padding-right: getSpacer(xs);
       }
     }
-  }
-
-  &__icon-container {
-    &--hasmargin {
-      margin-right: getSpacer(xs);
-    }
-  }
-  &__icon {
-    vertical-align: middle;
   }
 }
