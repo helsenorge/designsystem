@@ -129,7 +129,33 @@ describe('Gitt at en modal skal vises ', (): void => {
       render(<Modal title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" large />);
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe('modal normal large');
+      expect(dialog.className).toBe('modal normal modal--large');
+    });
+  });
+
+  describe(`Når en modal har satt attributt imageView`, (): void => {
+    it('så skal dialogen ha klassen imageView', (): void => {
+      const onClose = jest.fn();
+      const onSuccess = jest.fn();
+
+      render(<Modal variant={ModalVariants.image} title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" />);
+
+      const dialog = screen.getByRole('dialog');
+      expect(dialog.className).toBe('modal image modal--imageView');
+    });
+  });
+
+  describe(`Når en modal har satt attributt imageView og large`, (): void => {
+    it('så skal dialogen ha klassen imageView', (): void => {
+      const onClose = jest.fn();
+      const onSuccess = jest.fn();
+
+      render(
+        <Modal variant={ModalVariants.image} title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" large />
+      );
+
+      const dialog = screen.getByRole('dialog');
+      expect(dialog.className).toBe('modal image modal--large modal--imageView');
     });
   });
 

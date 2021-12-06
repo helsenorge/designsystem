@@ -17,7 +17,11 @@ const onSuccess = () => alert('Success');
 
 stories.add('Default', () => (
   <Modal
-    variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
+    variant={select(
+      'variant',
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+      ModalVariants.normal
+    )}
     title={text('title', 'Er du sikker på at du vil?')}
     description={text('description', 'Kort intro tekst som går over to linjer for å vise hvordan det ser ut.')}
     primaryButtonText={text('primaryButtonText', 'OK')}
@@ -29,7 +33,11 @@ stories.add('Default', () => (
 
 stories.add('Large modal', () => (
   <Modal
-    variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
+    variant={select(
+      'variant',
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+      ModalVariants.normal
+    )}
     title={text('title', 'Er du sikker på at du vil?')}
     description={text('description', 'Kort intro tekst som går over to linjer for å vise hvordan det ser ut.')}
     primaryButtonText={text('primaryButtonText', 'OK')}
@@ -38,6 +46,21 @@ stories.add('Large modal', () => (
     onSuccess={onSuccess}
     large={boolean('large', true)}
   />
+));
+
+stories.add('ImageView modal', () => (
+  <Modal
+    variant={select(
+      'variant',
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+      ModalVariants.image
+    )}
+    title={text('title', '')}
+    description={text('description', 'Kort intro tekst som går over to linjer for å vise hvordan det ser ut.')}
+    onClose={onClose}
+  >
+    <img src="http://fakeimg.pl/1000x600?text=jpg&font=lobster" alt="" />
+  </Modal>
 ));
 
 stories.add('Modal without close button', () => {
@@ -57,7 +80,11 @@ stories.add('Modal with state example', () => {
   return (
     <ButtonWithModal
       buttonText="Open modal"
-      variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
+      variant={select(
+        'variant',
+        [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+        ModalVariants.normal
+      )}
       title={text('title', 'Er du sikker på at du vil?')}
       description={text('description', 'Kort intro tekst som går over to linjer for å vise hvordan det ser ut.')}
       primaryButtonText={text('primaryButtonText', 'OK')}
@@ -71,7 +98,11 @@ stories.add('Modal with only title', () => {
   return (
     <ButtonWithModal
       buttonText="Open modal"
-      variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
+      variant={select(
+        'variant',
+        [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+        ModalVariants.normal
+      )}
       title={text('title', 'Er du sikker på at du vil?')}
     />
   );
@@ -85,7 +116,11 @@ stories.add('Modal in bottom of page', () => {
       <div style={{ minHeight: '200vh' }}></div>
       <ButtonWithModal
         buttonText="Open modal"
-        variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
+        variant={select(
+          'variant',
+          [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+          ModalVariants.normal
+        )}
         title={text('title', 'Er du sikker på at du vil?')}
       />
     </div>
@@ -109,7 +144,11 @@ stories.add('Modal with custom content', () => {
       )}
       {open && (
         <Modal
-          variant={select('variant', [ModalVariants.normal, ModalVariants.error, ModalVariants.warning], ModalVariants.normal)}
+          variant={select(
+            'variant',
+            [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+            ModalVariants.normal
+          )}
           title={text('title', 'Hvor mange burgere vil du ha?')}
           children={
             <div>
