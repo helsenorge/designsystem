@@ -17,11 +17,11 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
           role="dialog"
         >
           <div
-            class="close"
+            class="modal__close"
           >
             <button
               aria-label="Lukk"
-              class="lukkekryss"
+              class="modal__lukkekryss"
               role="button"
             >
               <svg
@@ -41,10 +41,10 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
             </button>
           </div>
           <div
-            class="contentWrapper"
+            class="modal__contentWrapper"
           >
             <div
-              class="title"
+              class="modal__contentWrapper__title"
             >
               <div>
                 <svg
@@ -73,10 +73,10 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
               </div>
             </div>
             <div
-              class="content"
+              class="modal__contentWrapper__content"
             />
             <div
-              class="actions"
+              class="modal__actions"
             >
               <button
                 class="button button--fill button--fill-not-inverted"
@@ -130,11 +130,11 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
           role="dialog"
         >
           <div
-            class="close"
+            class="modal__close"
           >
             <button
               aria-label="Lukk"
-              class="lukkekryss"
+              class="modal__lukkekryss"
               role="button"
             >
               <svg
@@ -154,10 +154,10 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
             </button>
           </div>
           <div
-            class="contentWrapper"
+            class="modal__contentWrapper"
           >
             <div
-              class="title"
+              class="modal__contentWrapper__title"
             >
               <div>
                 <svg
@@ -186,10 +186,10 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
               </div>
             </div>
             <div
-              class="content"
+              class="modal__contentWrapper__content"
             />
             <div
-              class="actions"
+              class="modal__actions"
             >
               <button
                 class="button button--fill button--fill-not-inverted"

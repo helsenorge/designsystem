@@ -18,6 +18,7 @@ export enum ModalVariants {
   normal = 'normal',
   warning = 'warning',
   error = 'error',
+  image = 'image',
 }
 
 export interface ModalProps {
@@ -63,7 +64,7 @@ const defaultProps = {
 };
 
 const Lukkekryss = (props: { onClick?: () => void; ariaLabel?: string }) => (
-  <button className={styles.lukkekryss} aria-label={props.ariaLabel || 'Lukk'} onClick={props.onClick} autoFocus role="button">
+  <button className={styles.modal__lukkekryss} aria-label={props.ariaLabel || 'Lukk'} onClick={props.onClick} autoFocus role="button">
     <Icon svgIcon={X} color={palette.blueberry600} size={42} />
   </button>
 );
@@ -108,6 +109,9 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
     document.body.style.removeProperty('overflow');
   }
 
+  /* Displays a full window size modal with image */
+  const imageView = props.variant === ModalVariants.image;
+
   const titleId = props.titleId ?? uuidv4();
   const containerRef = React.useRef(null);
   const overlayRef = React.useRef(null);
@@ -137,18 +141,24 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
       <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId}>
         <div className={styles.align} ref={FocusTrap()}>
           <div
-            className={cn(props.className, styles.modal, styles[props.variant as string], props.large ? styles.large : '')}
+            className={cn(
+              props.className,
+              styles.modal,
+              styles[props.variant as string],
+              props.large ? styles['modal--large'] : '',
+              imageView ? styles['modal--imageView'] : ''
+            )}
             role="dialog"
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
           >
             {!props.noCloseButton && (
-              <div className={styles.close}>
+              <div className={cn(imageView ? styles['modal__close--imageView'] : styles.modal__close)}>
                 <Lukkekryss onClick={props.onClose} ariaLabel={props.ariaLabelCloseBtn} />
               </div>
             )}
-            <div className={styles.contentWrapper}>
-              <div className={styles.title}>
+            <div className={imageView ? styles['modal__contentWrapper--imageView'] : styles.modal__contentWrapper}>
+              <div className={styles.modal__contentWrapper__title}>
                 {props.variant && getIcon(props.variant)}
                 <div>
                   <Title id={titleId} htmlMarkup="h3" appearance="title3">
@@ -156,12 +166,19 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
                   </Title>
                 </div>
               </div>
-              <div className={styles.content}>
-                {props.children && <div>{props.children}</div>}
-                {props.description && !props.children && <p className={styles.description}>{props.description}</p>}
+              <div className={imageView ? styles['modal__contentWrapper__content--imageView'] : styles.modal__contentWrapper__content}>
+                {imageView
+                  ? props.children && (
+                      <div>
+                        <div className={styles['modal--imageView__img']}>{props.children}</div>
+                        <span className={styles['modal--imageView__text']}>{props.description}</span>
+                      </div>
+                    )
+                  : props.children && <div>{props.children}</div>}
+                {props.description && !props.children && <p className={styles.modal__description}>{props.description}</p>}
               </div>
               {showActions && (
-                <div className={styles.actions}>
+                <div className={styles.modal__actions}>
                   {props.onSuccess && <Button onClick={props.onSuccess}>{props.primaryButtonText}</Button>}
                   {props.secondaryButtonText && props.secondaryButtonText?.length > 0 && (
                     <Button variant="borderless" onClick={props.onClose}>
