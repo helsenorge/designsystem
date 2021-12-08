@@ -15,6 +15,7 @@ stories.add('Default', () => (
   >
     <Checkbox
       label={'Check me out!'}
+      checked={boolean('Checked', false)}
       disabled={boolean('Disabled', false)}
       mode={select('Mode', FormGroupModes, FormGroupModes.onWhite)}
       variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)}
