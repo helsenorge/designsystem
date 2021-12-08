@@ -83,7 +83,7 @@
     }
   }
 
-  &--imageView {
+  &--image {
     max-height: calc(100vh - 24px);
     max-width: calc(100vw - 24px);
     width: 100%;
@@ -104,6 +104,7 @@
   }
 
   &__close {
+    position: absolute;
     right: 15px;
     top: 15px;
     @media (max-width: map-get($grid-breakpoints, md)) {
@@ -111,7 +112,7 @@
       top: 0px;
     }
 
-    &--imageView {
+    &--image {
       position: absolute;
       right: 0px;
       margin: 8px;
@@ -124,14 +125,14 @@
       padding: 32px 24px;
     }
 
-    &--imageView {
+    &--image {
       padding: 48px 16px 32px;
     }
 
     &__content {
       margin: 20px 0;
 
-      &--imageView {
+      &--image {
         margin-top: 10px;
       }
     }

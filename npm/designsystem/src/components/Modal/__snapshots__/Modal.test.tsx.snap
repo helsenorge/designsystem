@@ -13,7 +13,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
       >
         <div
           aria-labelledby="titleid02"
-          class="modal error"
+          class="modal modal--error"
           role="dialog"
         >
           <div
@@ -126,7 +126,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
       >
         <div
           aria-labelledby="titleid01"
-          class="modal warning"
+          class="modal modal--warning"
           role="dialog"
         >
           <div

@@ -92,7 +92,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe('modal warning');
+      expect(dialog.className).toBe('modal modal--warning');
 
       expect(container).toMatchSnapshot();
     });
@@ -115,7 +115,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe(`modal ${ModalVariants.error}`);
+      expect(dialog.className).toBe(`modal modal--${ModalVariants.error}`);
 
       expect(container).toMatchSnapshot();
     });
@@ -129,7 +129,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       render(<Modal title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" large />);
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe('modal normal modal--large');
+      expect(dialog.className).toBe('modal modal--normal modal--large');
     });
   });
 
@@ -141,7 +141,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       render(<Modal variant={ModalVariants.image} title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" />);
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe('modal image modal--imageView');
+      expect(dialog.className).toBe('modal modal--image');
     });
   });
 
@@ -155,7 +155,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe('modal image modal--large modal--imageView');
+      expect(dialog.className).toBe('modal modal--image modal--large');
     });
   });
 
