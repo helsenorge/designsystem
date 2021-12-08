@@ -118,9 +118,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const borderlessVariant = variant === 'borderless';
   const warningIntent = intent === 'warning';
   const dangerIntent = intent === 'danger';
-  const hasIcon = !!(leftIcon || rightIcon);
-  const hasIconBorder = hasIcon && !loading && !borderlessVariant;
-  const hasIconBorderless = hasIcon && !loading && borderlessVariant;
+  const hasIcon = !!(leftIcon || rightIcon) && !loading;
   const rest = { ...(restProps as React.HtmlHTMLAttributes<HTMLButtonElement>) };
 
   const buttonClasses = classNames(
@@ -128,47 +126,33 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     {
       [buttonStyles['button--fluid']]: fluid,
       [buttonStyles['button--large']]: large,
+      [buttonStyles[`button--warning`]]: warningIntent,
+      [buttonStyles[`button--danger`]]: dangerIntent,
+      [buttonStyles[`button--inverted`]]: inverted,
       [buttonStyles['button--fill']]: fillVariant,
-      [buttonStyles[`button--fill-warning`]]: fillVariant && warningIntent,
-      [buttonStyles[`button--fill-danger`]]: fillVariant && dangerIntent,
-      [buttonStyles[`button--fill-inverted`]]: fillVariant && inverted,
-      [buttonStyles[`button--fill-not-inverted`]]: fillVariant && !inverted,
       [buttonStyles['button--outline']]: outlineVariant,
-      [buttonStyles['button--outline-warning']]: outlineVariant && warningIntent,
-      [buttonStyles['button--outline-danger']]: outlineVariant && dangerIntent,
-      [buttonStyles['button--outline-inverted']]: outlineVariant && inverted,
       [buttonStyles['button--borderless']]: borderlessVariant,
-      [buttonStyles['button--borderless-warning']]: borderlessVariant && warningIntent,
-      [buttonStyles['button--borderless-danger']]: borderlessVariant && dangerIntent,
-      [buttonStyles['button--borderless-inverted']]: borderlessVariant && inverted,
-      [buttonStyles['button--with-icon']]: hasIconBorder,
-      [buttonStyles['button--large-with-icon']]: hasIconBorder && large,
-      [buttonStyles['button--ellipsis-with-icon']]: hasIconBorder && ellipsis,
-      [buttonStyles['button--borderless-with-icon']]: hasIconBorderless,
-      [buttonStyles['button--large-borderless-with-icon']]: hasIconBorderless && large,
+      [buttonStyles['button--with-icon']]: hasIcon,
+      [buttonStyles['button--ellipsis']]: ellipsis,
     },
     className
   );
 
   const contentClasses = classNames(buttonStyles.button__content, {
+    [buttonStyles['button__content--warning']]: warningIntent,
+    [buttonStyles['button__content--danger']]: dangerIntent,
     [buttonStyles['button__content--fill']]: fillVariant,
-    [buttonStyles['button__content--fill-warning']]: fillVariant && warningIntent,
-    [buttonStyles['button__content--fill-danger']]: fillVariant && dangerIntent,
-    [buttonStyles['button__content--fill-not-inverted']]: fillVariant && !inverted,
     [buttonStyles['button__content--borderless']]: borderlessVariant,
-    [buttonStyles['button__content--borderless-warning']]: borderlessVariant && warningIntent,
-    [buttonStyles['button__content--borderless-danger']]: borderlessVariant && dangerIntent,
-    [buttonStyles['button__content--borderless-inverted']]: borderlessVariant && inverted,
-    [buttonStyles['button__content--with-icon']]: hasIconBorder,
-    [buttonStyles['button__content--large-with-icon']]: hasIconBorder && large,
-    [buttonStyles['button__content--ellipsis-with-icon']]: hasIconBorder && ellipsis,
-    [buttonStyles['button__content--fluid-with-icon']]: hasIconBorder && fluid,
-    [buttonStyles['button__content--large-fluid-with-icon']]: hasIconBorder && fluid && large,
+    [buttonStyles['button__content--with-icon']]: hasIcon,
+    [buttonStyles['button__content--large']]: large,
+    [buttonStyles['button__content--ellipsis']]: ellipsis,
+    [buttonStyles['button__content--inverted']]: inverted,
+    [buttonStyles['button__content--fluid']]: fluid,
   });
 
   const leftFluidContentClasses = classNames(buttonStyles['button__left-fluid-content'], {
     [buttonStyles['button__left-fluid-content--with-icon']]: hasIcon,
-    [buttonStyles['button__left-fluid-content--large-with-icon']]: hasIcon && large,
+    [buttonStyles['button__left-fluid-content--large']]: large,
   });
 
   function renderIcon(

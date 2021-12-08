@@ -29,7 +29,7 @@ describe('Gitt at button skal vises', (): void => {
       render(<Button>Button text</Button>);
 
       const testButtonText = screen.getByText('Button text');
-      expect(testButtonText.className).toBe('button__content button__content--fill button__content--fill-not-inverted');
+      expect(testButtonText.className).toBe('button__content button__content--fill');
     });
   });
 
@@ -51,7 +51,7 @@ describe('Gitt at button skal vises', (): void => {
       render(<Button ellipsis={true}>Button text</Button>);
 
       const testButtonText = screen.getByText('Button text');
-      expect(testButtonText.className).toBe('button__content button__content--fill button__content--fill-not-inverted');
+      expect(testButtonText.className).toBe('button__content button__content--fill button__content--ellipsis');
     });
   });
 
@@ -108,9 +108,9 @@ describe('Gitt at button skal vises', (): void => {
       const testButton2 = screen.getByTestId('test02');
       const testButton3 = screen.getByTestId('test03');
 
-      expect(testButton1.className).toBe('button button--fill button--fill-not-inverted');
-      expect(testButton2.className).toBe('button button--fill button--fill-warning button--fill-not-inverted');
-      expect(testButton3.className).toBe('button button--fill button--fill-danger button--fill-not-inverted');
+      expect(testButton1.className).toBe('button button--fill');
+      expect(testButton2.className).toBe('button button--warning button--fill');
+      expect(testButton3.className).toBe('button button--danger button--fill');
     });
   });
 
@@ -124,7 +124,7 @@ describe('Gitt at button skal vises', (): void => {
 
       const testButton = screen.getByTestId('test01');
 
-      expect(testButton.className).toBe('button button--fill button--fill-inverted');
+      expect(testButton.className).toBe('button button--inverted button--fill');
     });
   });
 
@@ -179,7 +179,7 @@ describe('Gitt at button skal vises', (): void => {
 
       const testFill = screen.getByTestId('test01');
 
-      expect(testFill.className).toBe('button button--fill button--fill-not-inverted');
+      expect(testFill.className).toBe('button button--fill');
 
       const testOutline = screen.getByTestId('test02');
 
