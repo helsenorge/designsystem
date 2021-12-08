@@ -13,9 +13,9 @@ export type Styles = {
   'link-list__anchor--plum': string;
   'link-list__anchor--small': string;
   'link-list__anchor--white': string;
+  'link-list__chevron': string;
   'link-list__content': string;
   'link-list__icon': string;
-  'link-list__icon-container--hasmargin': string;
   'link-list--hastopborder': string;
   'link-list--nobottomborder': string;
 };

@@ -144,20 +144,19 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
             className={cn(
               props.className,
               styles.modal,
-              styles[props.variant as string],
-              props.large ? styles['modal--large'] : '',
-              imageView ? styles['modal--imageView'] : ''
+              styles[`modal--${props.variant}` as string],
+              props.large ? styles['modal--large'] : ''
             )}
             role="dialog"
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
           >
             {!props.noCloseButton && (
-              <div className={cn(imageView ? styles['modal__close--imageView'] : styles.modal__close)}>
+              <div className={imageView ? styles['modal__close--image'] : styles.modal__close}>
                 <Lukkekryss onClick={props.onClose} ariaLabel={props.ariaLabelCloseBtn} />
               </div>
             )}
-            <div className={imageView ? styles['modal__contentWrapper--imageView'] : styles.modal__contentWrapper}>
+            <div className={imageView ? styles['modal__contentWrapper--image'] : styles.modal__contentWrapper}>
               <div className={styles.modal__contentWrapper__title}>
                 {props.variant && getIcon(props.variant)}
                 <div>
@@ -166,12 +165,12 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
                   </Title>
                 </div>
               </div>
-              <div className={imageView ? styles['modal__contentWrapper__content--imageView'] : styles.modal__contentWrapper__content}>
+              <div className={imageView ? styles['modal__contentWrapper__content--image'] : styles.modal__contentWrapper__content}>
                 {imageView
                   ? props.children && (
                       <div>
-                        <div className={styles['modal--imageView__img']}>{props.children}</div>
-                        <span className={styles['modal--imageView__text']}>{props.description}</span>
+                        <div className={styles['modal--image__img']}>{props.children}</div>
+                        <span className={styles['modal--image__text']}>{props.description}</span>
                       </div>
                     )
                   : props.children && <div>{props.children}</div>}
