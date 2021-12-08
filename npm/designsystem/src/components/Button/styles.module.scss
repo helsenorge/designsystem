@@ -63,7 +63,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     border-style: solid;
     background-color: $blueberry500;
     border-color: $blueberry500;
-    color: $blueberry500;
+    color: $white;
 
     &:hover,
     &:active,
@@ -78,33 +78,34 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       color: $neutral600;
     }
   }
-  &--fill-warning {
+  &--fill#{&}--warning {
     background-color: $banana500;
     border-color: $banana500;
-    color: $banana500;
 
     &:hover,
     &:active,
     &:focus {
       background-color: $banana700;
+      border-color: $banana700;
       box-shadow: 0 0 0 0.25rem $banana700;
     }
   }
-  &--fill-danger {
+  &--fill#{&}--danger {
     background-color: $cherry500;
     border-color: $cherry500;
-    color: $cherry500;
 
     &:hover,
     &:active,
     &:focus {
       background-color: $cherry700;
+      border-color: $cherry700;
       box-shadow: 0 0 0 0.25rem $cherry700;
     }
   }
-  &--fill-inverted {
+  &--fill#{&}--inverted {
     background-color: $white;
     border-color: $white;
+    color: $blueberry500;
 
     &:hover,
     &:active,
@@ -114,8 +115,11 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       box-shadow: 0 0 0 0.25rem $white;
     }
   }
-  &--fill-not-inverted {
-    color: $white;
+  &--fill#{&}--warning#{&}--inverted {
+    color: $banana500;
+  }
+  &--fill#{&}--danger#{&}--inverted {
+    color: $cherry500;
   }
 
   &--outline {
@@ -163,7 +167,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       color: $neutral600;
     }
   }
-  &--outline-warning {
+  &--outline#{&}--warning {
     border-color: $banana500;
     color: $banana600;
 
@@ -171,6 +175,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     &:active,
     &:focus {
       background-color: $warningHoverColor;
+      border-color: transparent;
 
       &:before {
         border-color: $warningHoverColor;
@@ -180,7 +185,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       }
     }
   }
-  &--outline-danger {
+  &--outline#{&}--danger {
     border-color: $cherry500;
     color: $cherry600;
 
@@ -188,6 +193,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     &:active,
     &:focus {
       background-color: $dangerHoverColor;
+      border-color: transparent;
 
       &:before {
         border-color: $dangerHoverColor;
@@ -197,7 +203,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       }
     }
   }
-  &--outline-inverted {
+  &--outline#{&}--inverted {
     border-color: $white;
     color: $white;
 
@@ -205,6 +211,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     &:active,
     &:focus {
       background-color: $invertedHoverColor;
+      border-color: transparent;
 
       &:before {
         border-color: $invertedHoverColor;
@@ -232,13 +239,13 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       color: $neutral600;
     }
   }
-  &--borderless-warning {
+  &--borderless#{&}--warning {
     color: $banana600;
   }
-  &--borderless-danger {
+  &--borderless#{&}--danger {
     color: $cherry600;
   }
-  &--borderless-inverted {
+  &--borderless#{&}--inverted {
     color: $white;
   }
 
@@ -254,17 +261,17 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       }
     }
   }
-  &--large-with-icon {
+  &--large#{&}--with-icon {
     svg {
       margin: 0 0.5rem;
     }
   }
 
-  &--ellipsis-with-icon {
+  &--ellipsis#{&}--with-icon {
     max-width: 100%;
   }
 
-  &--borderless-with-icon {
+  &--borderless#{&}--with-icon {
     svg:first-child {
       margin-right: 0.125rem;
       @media (min-width: map-get($grid-breakpoints, md)) {
@@ -278,7 +285,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       }
     }
   }
-  &--large-borderless-with-icon {
+  &--large#{&}--borderless#{&}--with-icon {
     svg:first-child {
       margin-right: 0.5rem;
       @media (min-width: map-get($grid-breakpoints, md)) {
@@ -298,18 +305,25 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     margin-bottom: 0.5rem;
     white-space: normal;
 
-    #{$button}:focus & {
-      &--fill {
-        border-bottom: 1px solid $blueberry700;
+    &--fill {
+      #{$button}:focus & {
+        border-bottom: 1px solid $white;
       }
-      &--fill-warning {
+    }
+
+    &--fill#{&}--inverted {
+      #{$button}:focus & {
+        border-bottom-color: $blueberry700;
+      }
+    }
+    &--fill#{&}--warning#{&}--inverted {
+      #{$button}:focus & {
         border-bottom-color: $banana700;
       }
-      &--fill-danger {
+    }
+    &--fill#{&}--danger#{&}--inverted {
+      #{$button}:focus & {
         border-bottom-color: $cherry700;
-      }
-      &--fill-not-inverted {
-        border-bottom-color: $white;
       }
     }
 
@@ -322,21 +336,21 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
         border-bottom-color: $blueberry700;
       }
     }
-    &--borderless-warning {
+    &--borderless#{&}--warning {
       #{$button}:hover &,
       #{$button}:active &,
       #{$button}:focus & {
         border-bottom-color: $banana700;
       }
     }
-    &--borderless-danger {
+    &--borderless#{&}--danger {
       #{$button}:hover &,
       #{$button}:active &,
       #{$button}:focus & {
         border-bottom-color: $cherry700;
       }
     }
-    &--borderless-inverted {
+    &--borderless#{&}--inverted {
       #{$button}:hover &,
       #{$button}:active &,
       #{$button}:focus & {
@@ -350,26 +364,26 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     &--with-icon:last-child {
       margin-right: 1.5rem;
     }
-    &--large-with-icon:first-child {
+    &--large#{&}--with-icon:first-child {
       margin-left: 2.5rem;
     }
-    &--large-with-icon:last-child {
+    &--large#{&}--with-icon:last-child {
       margin-right: 2.5rem;
     }
 
-    &--ellipsis-with-icon {
+    &--ellipsis#{&}--with-icon {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    &--fluid-with-icon:last-child {
+    &--fluid#{&}--with-icon:last-child {
       margin-right: 0;
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-right: 1.5rem;
       }
     }
-    &--large-fluid-with-icon:last-child {
+    &--large-fluid#{&}--with-icon:last-child {
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-right: 2.5rem;
       }
@@ -391,7 +405,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
         margin-right: 0;
       }
     }
-    &--large-with-icon:last-child {
+    &--large#{&}--with-icon:last-child {
       margin-right: 2.5rem;
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-right: 0;

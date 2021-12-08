@@ -3,13 +3,13 @@
 exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
 <div>
   <button
-    class="button button--fill button--fill-not-inverted"
+    class="button button--fill"
   >
     <span
       class="content-wrapper"
     >
       <span
-        class="button__content button__content--fill button__content--fill-not-inverted"
+        class="button__content button__content--fill"
       >
         Button
       </span>
@@ -21,7 +21,7 @@ exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
 exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikonene 1`] = `
 <div>
   <button
-    class="button button--fill button--fill-not-inverted button--with-icon"
+    class="button button--fill button--with-icon"
   >
     <span
       class="content-wrapper"
@@ -41,7 +41,7 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
         />
       </svg>
       <span
-        class="button__content button__content--fill button__content--fill-not-inverted button__content--with-icon"
+        class="button__content button__content--fill button__content--with-icon"
       >
         Button
       </span>

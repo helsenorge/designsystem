@@ -79,13 +79,13 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
               class="modal__actions"
             >
               <button
-                class="button button--fill button--fill-not-inverted"
+                class="button button--fill"
               >
                 <span
                   class="content-wrapper"
                 >
                   <span
-                    class="button__content button__content--fill button__content--fill-not-inverted"
+                    class="button__content button__content--fill"
                   >
                     OK
                   </span>
@@ -192,13 +192,13 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
               class="modal__actions"
             >
               <button
-                class="button button--fill button--fill-not-inverted"
+                class="button button--fill"
               >
                 <span
                   class="content-wrapper"
                 >
                   <span
-                    class="button__content button__content--fill button__content--fill-not-inverted"
+                    class="button__content button__content--fill"
                   >
                     OK
                   </span>
