@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
-import { v4 as uuidv4 } from 'uuid';
+import { uuid } from '../../utils/uuid';
 
 import Check from '../Icons/Check';
 import Icon from '../Icons';
@@ -40,9 +40,10 @@ export interface CheckboxProps {
 export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<HTMLInputElement>) => {
   const {
     className,
+    checked = false,
     disabled,
     label,
-    inputid = uuidv4(),
+    inputid = uuid(),
     mode,
     name = inputid,
     variant,
@@ -50,7 +51,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     error = !!errorText,
     value = label,
   } = props;
-  const [isChecked, setIsChecked] = useState(props.checked);
+  const [isChecked, setIsChecked] = useState(checked);
   const invalid = error;
   const onDark = mode === 'on-dark';
   const onBlueberry = mode === 'on-blueberry';
@@ -85,8 +86,8 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   if (invalid) iconColor = getColor('cherry', 500);
 
   useEffect(() => {
-    setIsChecked(props.checked);
-  }, [props.checked]);
+    setIsChecked(checked);
+  }, [checked]);
 
   return (
     <div data-testid={props.testId} className={checkboxWrapperClasses}>
