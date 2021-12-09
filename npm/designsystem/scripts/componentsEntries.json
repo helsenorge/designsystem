@@ -4,7 +4,10 @@
   "components/Badge/index": "src/components/Badge/index.ts",
   "components/Button/index": "src/components/Button/index.ts",
   "components/ButtonWithModal/index": "src/components/ButtonWithModal/index.tsx",
+  "components/Checkbox/index": "src/components/Checkbox/index.ts",
   "components/ExpanderList/index": "src/components/ExpanderList/index.ts",
+  "components/FormExample/index": "src/components/FormExample/index.tsx",
+  "components/FormGroup/index": "src/components/FormGroup/index.ts",
   "components/Icons/ActiveMonitoring": "src/components/Icons/ActiveMonitoring.tsx",
   "components/Icons/AdditionalIconInformation": "src/components/Icons/AdditionalIconInformation.js",
   "components/Icons/AlarmClock": "src/components/Icons/AlarmClock.tsx",
@@ -271,5 +274,6 @@
   "components/Slider/index": "src/components/Slider/index.ts",
   "components/Spacer/index": "src/components/Spacer/index.ts",
   "components/Tile/index": "src/components/Tile/index.ts",
-  "components/Title/index": "src/components/Title/index.ts"
+  "components/Title/index": "src/components/Title/index.ts",
+  "components/Validation/index": "src/components/Validation/index.ts"
 }

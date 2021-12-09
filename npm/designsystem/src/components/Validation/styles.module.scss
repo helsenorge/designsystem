@@ -1,0 +1,15 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/font-settings.scss';
+
+.validation {
+  &__errors {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $cherry500;
+
+    &--bigform {
+      margin-left: getSpacer(l);
+    }
+  }
+}
