@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import cn from 'classnames';
 
-import { v4 as uuidv4 } from 'uuid';
+import { uuid } from '../../utils/uuid';
 
 import { palette } from '../../theme/palette';
 import Button from '../Button';
@@ -112,7 +112,7 @@ const Modal = React.forwardRef(function ModalForwardedRef(props: ModalProps, ref
   /* Displays a full window size modal with image */
   const imageView = props.variant === ModalVariants.image;
 
-  const titleId = props.titleId ?? uuidv4();
+  const titleId = props.titleId ?? uuid();
   const containerRef = React.useRef(null);
   const overlayRef = React.useRef(null);
   const showActions = (props.secondaryButtonText && props.secondaryButtonText?.length > 0) || props.onSuccess;

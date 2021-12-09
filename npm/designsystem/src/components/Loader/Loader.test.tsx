@@ -1,11 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Loader from './Loader';
+import * as uuidUtils from '../../utils/uuid';
 
-jest.mock('uuid', () => {
-  const uuidGen = (): string => `-unik-id`;
-  return { v4: uuidGen };
-});
+jest.spyOn(uuidUtils, 'uuid').mockReturnValue(`-unik-id`);
 
 describe('Gitt at en loader skal vises ', (): void => {
   describe('Når at en loader rendres ', (): void => {
