@@ -1,6 +1,7 @@
 @import '../../scss/_spacers.scss';
 @import '../../scss/_breakpoints.scss';
 @import '../../scss/_palette.scss';
+@import '../../scss/font-settings.scss';
 
 .form-group-wrapper {
   padding: getSpacer(s) getSpacer(xs) getSpacer(m);
@@ -39,7 +40,7 @@
   }
 
   &__errors {
-    font-size: 1.125rem;
+    font-size: $font-size-sm;
     font-weight: 600;
     color: $cherry500;
     margin-top: 0;
@@ -64,7 +65,7 @@
   margin: 0;
 
   &__legend {
-    font-size: 1.25rem;
+    font-size: $font-size-md;
     font-weight: 600;
 
     &--on-dark {

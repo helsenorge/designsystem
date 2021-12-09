@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Checkbox from '../Checkbox/Checkbox';
-import FormGroup, { FormGroupModes, FormGroupVariants } from './FormGroup';
+import FormGroup from './FormGroup';
 
 describe('Gitt at FormGroup skal vises', (): void => {
   describe('Når FormGroup rendres', (): void => {
@@ -33,7 +33,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
   describe('Når mode settes', (): void => {
     test('Så er stylingen satt riktig på FormGroup', (): void => {
       render(
-        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} mode={FormGroupModes.onBlueberry}>
+        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} mode={'on-blueberry'}>
           <Checkbox inputid={'Checkbox1'} label={'Checkbox 1'} />
           <Checkbox inputid={'Checkbox2'} label={'Checkbox 2'} />
           <Checkbox inputid={'Checkbox3'} label={'Checkbox 3'} />
@@ -49,7 +49,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
   describe('Når variant settes', (): void => {
     test('Så er stylingen satt riktig på FormGroup', (): void => {
       render(
-        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} variant={FormGroupVariants.bigform}>
+        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} variant={'bigform'}>
           <Checkbox inputid={'Checkbox1'} label={'Checkbox 1'} />
           <Checkbox inputid={'Checkbox2'} label={'Checkbox 2'} />
           <Checkbox inputid={'Checkbox3'} label={'Checkbox 3'} />

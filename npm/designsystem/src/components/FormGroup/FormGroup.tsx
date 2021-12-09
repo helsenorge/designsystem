@@ -7,7 +7,7 @@ import Checkbox from '../Checkbox';
 import { CheckboxProps } from '../Checkbox/Checkbox';
 import Title from '../Title';
 
-interface FormGroupProps {
+export interface FormGroupProps {
   /** title for the the fieldset */
   title?: string;
   /** text placed in the legend tag of the fieldset */
@@ -17,34 +17,26 @@ interface FormGroupProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** Changes the visuals of the formgroup */
-  mode?: FormGroupModes;
+  mode?: FormMode;
   /** Changes the visuals of the formgroup */
-  variant?: FormGroupVariants;
+  variant?: FormVariant;
   /** Error message */
   error?: string;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
-export enum FormGroupVariants {
-  normal = 'normal',
-  bigform = 'bigform',
-}
+export type FormVariant = 'normal' | 'bigform';
+export type FormMode = 'on-white' | 'on-blueberry' | 'on-dark';
 
-export enum FormGroupModes {
-  onWhite = 'on-white',
-  onBlueberry = 'on-blueberry',
-  onDark = 'on-dark',
-}
-
-const defaultProps = {
-  mode: FormGroupModes.onWhite,
-  variant: FormGroupVariants.normal,
-};
+export const allFormVariants: FormVariant[] = ['normal', 'bigform'];
+export const allFormModes: FormMode[] = ['on-white', 'on-blueberry', 'on-dark'];
 
 export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLElement>) => {
-  const { className, mode, variant, error } = props;
-  const onDark = mode === FormGroupModes.onDark;
-  const onBlueberry = mode === FormGroupModes.onBlueberry;
-  const bigform = variant === FormGroupVariants.bigform;
+  const { className, mode = 'on-white', variant = 'normal', error } = props;
+  const onDark = mode === 'on-dark';
+  const onBlueberry = mode === 'on-blueberry';
+  const bigform = variant === 'bigform';
   const fieldSetClasses = classNames(
     formGroupStyles['form-group-wrapper'],
     {
@@ -68,7 +60,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   });
 
   return (
-    <div className={fieldSetClasses}>
+    <div data-testid={props.testId} className={fieldSetClasses}>
       {props.title && (
         <Title className={titleClasses} htmlMarkup={'h4'} appearance={'title4'}>
           {props.title}
@@ -91,7 +83,5 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     </div>
   );
 });
-
-FormGroup.defaultProps = defaultProps;
 
 export default FormGroup;

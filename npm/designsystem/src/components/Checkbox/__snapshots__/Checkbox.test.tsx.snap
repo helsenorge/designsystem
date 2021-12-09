@@ -10,6 +10,7 @@ exports[`Gitt at Checkbox skal vises Når Checkbox rendres Så vises Checkbox 1`
       for="test01"
     >
       <input
+        aria-invalid="false"
         class="checkbox"
         id="test01"
         name="test01"

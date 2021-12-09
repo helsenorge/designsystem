@@ -1,9 +1,10 @@
 @import '../../scss/_spacers.scss';
 @import '../../scss/_breakpoints.scss';
 @import '../../scss/_palette.scss';
+@import '../../scss/font-settings.scss';
 
 .checkbox-errors {
-  font-size: 1.125rem;
+  font-size: $font-size-sm;
   font-weight: 600;
   color: $cherry500;
   margin-top: 0;
@@ -29,11 +30,11 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  font-size: 1.125rem;
+  font-size: $font-size-sm;
   margin: getSpacer(s) 0;
 
   @media (min-width: map-get($grid-breakpoints, md)) {
-    font-size: 1.25rem;
+    font-size: $font-size-md;
   }
 
   &--on-dark {

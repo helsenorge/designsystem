@@ -2,7 +2,7 @@ import React from 'react';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { FormGroupVariants } from '../FormGroup/FormGroup';
+import { allFormVariants } from '../FormGroup/FormGroup';
 import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
 
 const stories = storiesOf('Validation', module);
@@ -14,7 +14,7 @@ stories.add('FormGroup', () => (
       width: '40rem',
     }}
   >
-    <FormExample variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)} exampleType={FormExampleVariants.formgroup} />
+    <FormExample variant={select('Variant', allFormVariants, 'normal')} exampleType={FormExampleVariants.formgroup} />
   </div>
 ));
 
@@ -24,6 +24,6 @@ stories.add('Checkbox', () => (
       width: '40rem',
     }}
   >
-    <FormExample variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)} exampleType={FormExampleVariants.checkbox} />
+    <FormExample variant={select('Variant', allFormVariants, 'normal')} exampleType={FormExampleVariants.checkbox} />
   </div>
 ));

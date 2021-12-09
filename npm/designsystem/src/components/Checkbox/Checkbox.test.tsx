@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Checkbox from './Checkbox';
-import { FormGroupModes, FormGroupVariants } from '../FormGroup/FormGroup';
 
 describe('Gitt at Checkbox skal vises', (): void => {
   describe('Når Checkbox rendres', (): void => {
@@ -34,7 +33,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når mode er onBlueberry', (): void => {
     test('Så vises Checkbox med onBlueberry styling', (): void => {
-      render(<Checkbox label={'Check me out!'} mode={FormGroupModes.onBlueberry} />);
+      render(<Checkbox label={'Check me out!'} mode={'on-blueberry'} />);
 
       const label = screen.getByText('Check me out!');
       expect(label.className).toBe('checkbox-label checkbox-label--on-blueberry');
@@ -42,7 +41,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
   });
   describe('Når mode er onDark', (): void => {
     test('Så vises Checkbox med onDark styling', (): void => {
-      render(<Checkbox label={'Check me out!'} mode={FormGroupModes.onDark} />);
+      render(<Checkbox label={'Check me out!'} mode={'on-dark'} />);
 
       const label = screen.getByText('Check me out!');
       expect(label.className).toBe('checkbox-label checkbox-label--on-dark');
@@ -51,7 +50,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når formvariant er bigform', (): void => {
     test('Så vises Checkbox med bigform styling', (): void => {
-      render(<Checkbox label={'Check me out!'} variant={FormGroupVariants.bigform} />);
+      render(<Checkbox label={'Check me out!'} variant={'bigform'} />);
 
       const label = screen.getByText('Check me out!');
       expect(label.className).toBe('checkbox-label checkbox-label--bigform');
@@ -60,7 +59,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når startChecked er true', (): void => {
     test('Så vises Checkbox med checkmark ikon', (): void => {
-      render(<Checkbox label={'Check me out!'} startChecked />);
+      render(<Checkbox label={'Check me out!'} checked />);
 
       const checkIcon = screen.getByText('Check me out!').children[1];
 

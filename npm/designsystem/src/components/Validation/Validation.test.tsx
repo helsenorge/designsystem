@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { FormExample, FormExampleVariants } from './validation.stories';
-import { FormGroupVariants } from '../FormGroup/FormGroup';
+import { FormExample, FormExampleVariants } from '../FormExample/FormExample';
 
 describe('Gitt at Validation skal vises', () => {
   describe('Når Validation rendres', () => {
@@ -47,7 +46,7 @@ describe('Gitt at Validation skal vises', () => {
 
   describe('Når error vises med variant prop satt til bigform', () => {
     test('Så vises errorSummary med riktig styling', async () => {
-      render(<FormExample variant={FormGroupVariants.bigform} exampleType={FormExampleVariants.formgroup} />);
+      render(<FormExample variant={'bigform'} exampleType={FormExampleVariants.formgroup} />);
 
       const submit = screen.getByText('Submit');
 

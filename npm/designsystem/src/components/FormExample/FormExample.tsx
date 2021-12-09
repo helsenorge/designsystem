@@ -2,13 +2,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import Validation from '../Validation';
-import FormGroup, { FormGroupVariants } from '../FormGroup/FormGroup';
+import FormGroup, { FormVariant } from '../FormGroup/FormGroup';
 import Checkbox from '../Checkbox';
 import Button from '../Button';
 
 interface FormExampleProps {
   exampleType: FormExampleVariants;
-  variant?: FormGroupVariants;
+  variant?: FormVariant;
 }
 
 export enum FormExampleVariants {
