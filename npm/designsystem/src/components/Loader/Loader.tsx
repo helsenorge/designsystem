@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { v4 as uuid } from 'uuid';
+import { uuid } from '../../utils/uuid';
 
 import { PaletteNames } from '../../theme/palette';
 import loaderStyles from './styles.module.scss';
