@@ -35,6 +35,8 @@ interface NotificationPanelProps {
   fluid?: boolean;
   /** Sets a label for the notification panel. */
   label?: string;
+  /** Close button aria-label */
+  ariaLabelCloseBtn?: string;
 }
 
 export const variantToColorMap = {
@@ -127,7 +129,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
       </section>
       {dismissable ? (
         <span className={NotificationPanelStyles['notification-panel__action-column']}>
-          <button className={closeButtonClasses} onClick={onClick} ref={hoverRef}>
+          <button className={closeButtonClasses} onClick={onClick} ref={hoverRef} aria-label={props.ariaLabelCloseBtn ?? 'Lukk'}>
             <Icon
               svgIcon={X}
               isHovered={isHovered}
