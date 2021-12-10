@@ -110,12 +110,6 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
   );
 });
 
-function findShadowDOMId(event: MouseEventWithPath, tagName: string): string {
-  const pathElements: Array<HTMLElement> = event.path || (event.composedPath && (event.composedPath() as Array<HTMLElement>));
-  const element = pathElements.find((el: HTMLElement) => el.tagName === tagName);
-  return element ? element.id : '';
-}
-
 export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: React.Ref<HTMLUListElement>) => {
   const {
     children,
@@ -133,12 +127,9 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   const childCount = React.Children.count(children);
   const expanderListClasses = classNames(expanderListStyles['expander-list'], className);
 
-  function handleExpanderClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
-    const id = event.currentTarget?.id || findShadowDOMId((event as unknown) as MouseEventWithPath, 'BUTTON');
-    if (!isOpen) {
-      setActiveExpander(prevState => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
-      setLatestExpander(event.currentTarget);
-    }
+  function handleExpanderClick(event: React.MouseEvent<HTMLElement, MouseEvent>, id: string): void {
+    setActiveExpander(prevState => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
+    setLatestExpander(event.currentTarget);
   }
 
   /** Returns the class modifier top when we want to show the top border and no-bottom when we don't want to show the bottom border */
@@ -155,11 +146,19 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     }
   }, [accordion, latestExpander]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const id = 'expander-0';
+      setActiveExpander(prevState => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
+    }
+  }, [isOpen]);
+
   return (
     <ul className={expanderListClasses} ref={ref}>
       {React.Children.map(children, (child: React.ReactNode, index: number) => {
         if ((child as React.ReactElement<ExpanderProps>).type === Expander) {
-          const isExpanded = isOpen || activeExpander[`expander-${index}`];
+          const isExpanded = activeExpander[`expander-${index}`];
+
           const expanderItemClass = getExpanderItemClass(index);
 
           return React.cloneElement(child as React.ReactElement<ExpanderProps>, {
@@ -171,7 +170,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
             large,
             'aria-expanded': isExpanded,
             className: expanderItemClass,
-            handleExpanderClick: handleExpanderClick,
+            handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `expander-${index}`),
           });
         }
         return child;

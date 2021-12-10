@@ -25,6 +25,58 @@ describe('Gitt ExpanderList blir rendret', (): void => {
     });
   });
 
+  describe('Når det er to expandere og isOpen er true', (): void => {
+    it('så er den første expanderen åpen, og den andre ikke åpen', (): void => {
+      render(
+        <ExpanderList isOpen={true}>
+          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const text1 = screen.getByText('Text 1');
+      expect(text1).toBeVisible();
+      const text2 = screen.queryByText('Text 2');
+      expect(text2).not.toBeInTheDocument();
+    });
+
+    it('så kan man åpne den andre expanderen', (): void => {
+      render(
+        <ExpanderList isOpen={true}>
+          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const button2 = screen.queryByRole('button', { name: 'Title 2' });
+      expect(button2).toBeVisible();
+
+      userEvent.click(button2);
+
+      const text2 = screen.getByText('Text 2');
+      expect(text2).toBeVisible();
+    });
+
+    it('så kan man lukke den første', (): void => {
+      render(
+        <ExpanderList isOpen={true}>
+          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const button1 = screen.queryByRole('button', { name: 'Title 1' });
+      expect(button1).toBeVisible();
+
+      const text1 = screen.getByText('Text 1');
+      expect(text1).toBeVisible();
+
+      userEvent.click(button1);
+
+      expect(text1).not.toBeInTheDocument();
+    });
+  });
+
   describe('Når man klikker på en expander', (): void => {
     it('Sjekk Expander bakgrunnsfarge når musepeker trykker på den', (): void => {
       render(
