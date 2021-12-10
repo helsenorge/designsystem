@@ -86,14 +86,14 @@
   &--image {
     max-height: calc(100vh - 24px);
     max-width: calc(100vw - 24px);
-    width: 100%;
 
     &__img {
-      max-height: calc(100vh - 185px);
-      max-width: calc(100vw - 40px);
-      width: 100%;
-      line-height: 0px;
-      overflow: hidden;
+      line-height: 0;
+      img {
+        max-height: calc(100vh - 185px);
+        max-width: calc(100vw - 57px);
+        min-width: 100%;
+      }
     }
 
     &__text {

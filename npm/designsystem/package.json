@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
-  "version": "1.0.0-beta80",
+  "version": "1.0.0-beta82",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "tfs",
