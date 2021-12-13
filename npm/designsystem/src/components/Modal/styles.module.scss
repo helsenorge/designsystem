@@ -86,6 +86,7 @@
   &--image {
     max-height: calc(100vh - 24px);
     max-width: calc(100vw - 24px);
+    width: 100%;
 
     &__img {
       line-height: 0;
