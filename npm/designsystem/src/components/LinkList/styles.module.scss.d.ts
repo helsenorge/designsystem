@@ -5,7 +5,6 @@ export type Styles = {
   'link-list__anchor--black': string;
   'link-list__anchor--blueberry': string;
   'link-list__anchor--cherry': string;
-  'link-list__anchor--hasicon': string;
   'link-list__anchor--kiwi': string;
   'link-list__anchor--large': string;
   'link-list__anchor--medium': string;

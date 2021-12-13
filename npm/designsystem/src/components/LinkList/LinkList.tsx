@@ -58,7 +58,6 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
           LinkListStyles['link-list__anchor'],
           LinkListStyles['link-list__anchor--' + color],
           {
-            [LinkListStyles['link-list__anchor--hasicon']]: hasIcon,
             [LinkListStyles['link-list__anchor--small']]: size === 'small',
             [LinkListStyles['link-list__anchor--medium']]: size === 'medium',
             [LinkListStyles['link-list__anchor--large']]: size === 'large',
