@@ -10,6 +10,23 @@ describe('Gitt at NotificationPanel skal vises', () => {
       expect(container).toMatchSnapshot();
     });
   });
+
+  describe('Når panelet skal kunne lukkes', () => {
+    test('Så kalles onClick-handler når man klikker på lukkeknappen', (): void => {
+      const mockClose = jest.fn();
+
+      render(
+        <NotificationPanel onClick={mockClose} dismissable ariaLabelCloseBtn="Lukk denne beskjeden">
+          Some text here for testing.
+        </NotificationPanel>
+      );
+
+      const closeButton = screen.getByRole('button', { name: 'Lukk denne beskjeden' });
+      userEvent.click(closeButton);
+      expect(mockClose).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('Når panelet kan lukkes', () => {
     test('Så kalles onClick-handleren når man klikker på knappen', (): void => {
       const mockOnClick = jest.fn();

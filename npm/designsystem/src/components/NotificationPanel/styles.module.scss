@@ -164,8 +164,8 @@
       border: 2px solid transparent;
     }
     &:hover,
-    :active,
-    :focus {
+    &:active,
+    &:focus {
       background-color: rgba(8, 102, 124, 0.05);
       border-color: transparent;
       &:after {
@@ -177,8 +177,8 @@
       border-color: $white;
 
       &:hover,
-      :active,
-      :focus {
+      &:active,
+      &:focus {
         border-color: transparent;
         &:after {
           border-color: $white;
