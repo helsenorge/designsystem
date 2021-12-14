@@ -31,6 +31,21 @@ interface SvgPathProps {
   isHovered: boolean;
 }
 
+export const returnIcon = (
+  isExtraSmall: boolean,
+  isHovered: boolean,
+  normal: JSX.Element,
+  normalHover: JSX.Element,
+  simplifield?: JSX.Element,
+  simplifiedHover?: JSX.Element
+) => {
+  if (isExtraSmall && simplifield && simplifiedHover) {
+    return isHovered ? simplifiedHover : simplifield;
+  }
+
+  return isHovered ? normalHover : normal;
+};
+
 const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGElement>) => {
   const {
     svgIcon,
