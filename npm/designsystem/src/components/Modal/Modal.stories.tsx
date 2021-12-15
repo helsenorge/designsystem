@@ -12,8 +12,8 @@ const stories = storiesOf('Modal', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
-const onClose = () => alert('Lukk');
-const onSuccess = () => alert('Success');
+const onClose = (): void => alert('Lukk');
+const onSuccess = (): void => alert('Success');
 
 stories.add('Default', () => (
   <Modal
@@ -87,7 +87,7 @@ stories.add('With horizontal image (16:9)', () => (
     description={text('description', 'Kort intro tekst som går over to linjer for å vise hvordan det ser ut.')}
     onClose={onClose}
   >
-    <img src="http://fakeimg.pl/1600x900?text=jpg&font=lobster" alt=""  />
+    <img src="http://fakeimg.pl/1600x900?text=jpg&font=lobster" alt="" />
   </Modal>
 ));
 

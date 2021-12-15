@@ -219,14 +219,7 @@ describe('Gitt at en modal skal vises ', (): void => {
     it('Så skal modalen lukkes', (): void => {
       const onClose = jest.fn();
 
-      render(
-        <Modal
-          title="Hei der"
-          onClose={onClose}
-          variant={ModalVariants.error}
-          testId="testid"
-        />
-      );
+      render(<Modal title="Hei der" onClose={onClose} variant={ModalVariants.error} testId="testid" />);
 
       const dialog = screen.getByTestId('testid');
 
@@ -264,14 +257,7 @@ describe('Gitt at en modal skal vises ', (): void => {
     it('Så skal modalen lukkes', (): void => {
       const onClose = jest.fn();
 
-      render(
-        <Modal
-          title="Hei der"
-          onClose={onClose}
-          variant={ModalVariants.error}
-          testId="testid"
-        />
-      );
+      render(<Modal title="Hei der" onClose={onClose} variant={ModalVariants.error} testId="testid" />);
 
       const dialog = screen.getByTestId('testid');
 

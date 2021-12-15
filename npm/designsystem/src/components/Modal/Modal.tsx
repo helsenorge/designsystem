@@ -150,71 +150,71 @@ const Modal = (props: ModalProps): JSX.Element => {
     <div data-testid="dialog-container">
       <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId}>
         <div className={styles.align} ref={FocusTrap()}>
+          <div
+            className={cn(props.className, styles.modal, styles[`modal--${props.variant}` as string], styles[`modal--${props.size}`])}
+            role="dialog"
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
+          >
             <div
-              className={cn(props.className, styles.modal, styles[`modal--${props.variant}` as string], styles[`modal--${props.size}`])}
-              role="dialog"
-              aria-label={ariaLabel}
-              aria-labelledby={ariaLabelledBy}
+              className={cn(styles['modal__shadow'], styles['modal__shadow--top'], {
+                [styles['modal__shadow--show']]: !topContentVisible && contentIsScrollable,
+              })}
+            />
+            <div
+              className={cn(styles.modal__contentWrapper, {
+                [styles['modal__contentWrapper--image']]: imageView,
+              })}
+              ref={modalContentRef}
             >
-              <div
-                className={cn(styles['modal__shadow'], styles['modal__shadow--top'], {
-                  [styles['modal__shadow--show']]: !topContentVisible && contentIsScrollable,
-                })}
-              />
-              <div
-                className={cn(styles.modal__contentWrapper, {
-                  [styles['modal__contentWrapper--image']]: imageView,
-                })}
-                ref={modalContentRef}
-              >
-                {!props.noCloseButton && (
-                  <div style={{ position: 'relative', width: '100%' }}>
-                    <div className={cn(styles.modal__closeWrapper__close)}>
-                      <Lukkekryss onClick={props.onClose} ariaLabel={props.ariaLabelCloseBtn} />
-                    </div>
+              {!props.noCloseButton && (
+                <div style={{ position: 'relative', width: '100%' }}>
+                  <div className={cn(styles.modal__closeWrapper__close)}>
+                    <Lukkekryss onClick={props.onClose} ariaLabel={props.ariaLabelCloseBtn} />
                   </div>
-                )}
-                <div
-                  className={cn(styles[`modal__contentWrapper__scroll--${props.size}`], {
-                    [styles['modal__contentWrapper__scroll--image']]: imageView,
-                  })}
-                >
-                  <div ref={topContent} />
-                  <div className={cn(styles.modal__contentWrapper__title, styles['modal--error__title'])}>
-                    {props.variant && getIcon(props.variant)}
-                    <div className={props.variant === ModalVariants.error ? styles['title--error'] : ''}>
-                      <Title id={titleId} htmlMarkup="h3" appearance="title3">
-                        {props.title}
-                      </Title>
-                    </div>
-                  </div>
-                  {imageView && (
-                    <div>
-                      <div className={styles['modal__contentWrapper__imageWrapper']}>{props.children}</div>
-                      <span className={styles['modal__contentWrapper__imageDescription']}>{props.description}</span>
-                    </div>
-                  )}
-                  {!imageView && props.children && <div>{props.children}</div>}
-                  {!imageView && !props.children && <p className={styles.modal__description}>{props.description}</p>}
-                  <div ref={bottomContent} />
-                </div>
-              </div>
-              <div
-                className={cn(styles['modal__shadow'], styles['modal__shadow--bottom'], {
-                  [styles['modal__shadow--show']]: !bottomContentVisible && contentIsScrollable,
-                })}
-              />
-              {showActions && (
-                <div className={cn(styles['modal__call-to-action'], styles[`modal__call-to-action--${props.size}`])}>
-                  {props.onSuccess && <Button onClick={props.onSuccess}>{props.primaryButtonText}</Button>}
-                  {props.secondaryButtonText && props.secondaryButtonText?.length > 0 && (
-                    <Button variant="borderless" onClick={props.onClose}>
-                      {props.secondaryButtonText}
-                    </Button>
-                  )}
                 </div>
               )}
+              <div
+                className={cn(styles[`modal__contentWrapper__scroll--${props.size}`], {
+                  [styles['modal__contentWrapper__scroll--image']]: imageView,
+                })}
+              >
+                <div ref={topContent} />
+                <div className={cn(styles.modal__contentWrapper__title, styles['modal--error__title'])}>
+                  {props.variant && getIcon(props.variant)}
+                  <div className={props.variant === ModalVariants.error ? styles['title--error'] : ''}>
+                    <Title id={titleId} htmlMarkup="h3" appearance="title3">
+                      {props.title}
+                    </Title>
+                  </div>
+                </div>
+                {imageView && (
+                  <div>
+                    <div className={styles['modal__contentWrapper__imageWrapper']}>{props.children}</div>
+                    <span className={styles['modal__contentWrapper__imageDescription']}>{props.description}</span>
+                  </div>
+                )}
+                {!imageView && props.children && <div>{props.children}</div>}
+                {!imageView && !props.children && <p className={styles.modal__description}>{props.description}</p>}
+                <div ref={bottomContent} />
+              </div>
             </div>
+            <div
+              className={cn(styles['modal__shadow'], styles['modal__shadow--bottom'], {
+                [styles['modal__shadow--show']]: !bottomContentVisible && contentIsScrollable,
+              })}
+            />
+            {showActions && (
+              <div className={cn(styles['modal__call-to-action'], styles[`modal__call-to-action--${props.size}`])}>
+                {props.onSuccess && <Button onClick={props.onSuccess}>{props.primaryButtonText}</Button>}
+                {props.secondaryButtonText && props.secondaryButtonText?.length > 0 && (
+                  <Button variant="borderless" onClick={props.onClose}>
+                    {props.secondaryButtonText}
+                  </Button>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

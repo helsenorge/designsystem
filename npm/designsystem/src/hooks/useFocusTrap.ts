@@ -4,16 +4,16 @@ import { getDocumentActiveElement } from './focus-utils';
 export default function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
   const elRef = useRef<HTMLDivElement>(null);
 
-  elRef.current?.focus()
+  elRef.current?.focus();
 
   function handleFocus(e: KeyboardEvent): void {
     const node = elRef.current;
     const isTabPressed = e.key === 'Tab';
-    
+
     if (!node || !isTabPressed) {
       return;
     }
-    
+
     const activeElement = getDocumentActiveElement(node);
 
     const focusElements = node.querySelectorAll(
@@ -29,8 +29,7 @@ export default function useFocusTrap(): React.MutableRefObject<HTMLDivElement | 
         lastFocusableEl.focus();
         e.preventDefault();
       }
-    } /* tab */
-     else {
+    } /* tab */ else {
       if (activeElement === lastFocusableEl) {
         firstFocusableEl.focus();
         e.preventDefault();

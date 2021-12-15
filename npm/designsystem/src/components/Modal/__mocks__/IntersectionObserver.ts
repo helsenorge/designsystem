@@ -1,14 +1,14 @@
 class IntersectionObserver {
-    observe(): void {
-      // do nothing
-    }
-    unobserve(): void {
-      // do nothing
-    }
+  observe(): void {
+    // do nothing
   }
-  
-  Object.defineProperty(window, 'IntersectionObserver', {
-    value: IntersectionObserver,
-  });
-  
-  export default IntersectionObserver;
+  unobserve(): void {
+    // do nothing
+  }
+}
+
+Object.defineProperty(window, 'IntersectionObserver', {
+  value: IntersectionObserver,
+});
+
+export default IntersectionObserver;
