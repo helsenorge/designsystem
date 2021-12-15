@@ -1,10 +1,20 @@
 import React, { useRef, useEffect } from 'react';
+import { getDocumentActiveElement } from './focus-utils';
 
-export default function useFocusTrap() {
-  const elRef = useRef(null);
+export default function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
+  const elRef = useRef<HTMLDivElement>(null);
 
-  function handleFocus(e: KeyboardEvent) {
-    const node = (elRef.current as unknown) as HTMLElement;
+  elRef.current?.focus()
+
+  function handleFocus(e: KeyboardEvent): void {
+    const node = elRef.current;
+    const isTabPressed = e.key === 'Tab';
+    
+    if (!node || !isTabPressed) {
+      return;
+    }
+    
+    const activeElement = getDocumentActiveElement(node);
 
     const focusElements = node.querySelectorAll(
         'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
@@ -13,28 +23,28 @@ export default function useFocusTrap() {
       lastFocusableEl =
         focusElements.length === 1 ? firstFocusableEl : ((focusElements[focusElements.length - 1] as unknown) as HTMLElement);
 
-    const isTabPressed = e.key === 'Tab';
-
-    if (!isTabPressed) {
-      return;
-    }
-
     if (e.shiftKey) {
       /* shift + tab */
-      if (document.activeElement === firstFocusableEl) {
+      if (activeElement === firstFocusableEl) {
         lastFocusableEl.focus();
         e.preventDefault();
       }
-    } /* tab */ else {
-      if (document.activeElement === lastFocusableEl) {
+    } /* tab */
+     else {
+      if (activeElement === lastFocusableEl) {
         firstFocusableEl.focus();
         e.preventDefault();
       }
     }
   }
 
-  function handleClick(e: MouseEvent) {
-    const node = (elRef.current as unknown) as HTMLElement;
+  function handleClick(e: MouseEvent): void {
+    const node = elRef.current;
+
+    if (!node) {
+      return;
+    }
+
     const focusElements = (node.querySelectorAll(
       'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
     ) as unknown) as HTMLElement[];
@@ -48,7 +58,7 @@ export default function useFocusTrap() {
     const node = (elRef.current as unknown) as HTMLElement;
     node.addEventListener('keydown', handleFocus);
     node.addEventListener('click', handleClick);
-    return () => {
+    return (): void => {
       node.removeEventListener('keydown', handleFocus);
       node.removeEventListener('click', handleClick);
     };

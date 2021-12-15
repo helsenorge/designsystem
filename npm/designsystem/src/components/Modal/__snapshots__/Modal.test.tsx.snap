@@ -13,98 +13,118 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
       >
         <div
           aria-labelledby="titleid02"
-          class="modal modal--error"
+          class="modal modal--error modal--large"
           role="dialog"
         >
           <div
-            class="modal__close"
-          >
-            <button
-              aria-label="Lukk"
-              class="modal__lukkekryss"
-              role="button"
-            >
-              <svg
-                aria-hidden="true"
-                class="hnds-style-icon "
-                fill="#126F87"
-                height="42"
-                role="img"
-                style="min-width: 42px; min-height: 42px;"
-                viewBox="0 0 48 48"
-                width="42"
-              >
-                <path
-                  d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z"
-                />
-              </svg>
-            </button>
-          </div>
+            class="modal__shadow modal__shadow--top"
+          />
           <div
             class="modal__contentWrapper"
           >
             <div
-              class="modal__contentWrapper__title"
+              style="position: relative; width: 100%;"
             >
-              <div>
-                <svg
-                  aria-hidden="true"
-                  class="hnds-style-icon "
-                  fill="#C83521"
-                  height="48"
-                  role="img"
-                  style="min-width: 48px; min-height: 48px;"
-                  viewBox="0 0 48 48"
-                  width="48"
+              <div
+                class="modal__closeWrapper__close"
+              >
+                <button
+                  aria-label="Lukk"
+                  class="modal__lukkekryss"
+                  role="button"
                 >
-                  <path
-                    d="M24.898 21.447v7.228a.893.893 0 01-1.785 0v-7.228a.892.892 0 111.785 0zm.5 11.601a1.394 1.394 0 11-2.787-.001 1.394 1.394 0 012.787.001zm-18.822 6.71h34.847L24.111 8.242 6.576 39.758z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3
-                  class="title title--title3"
-                  id="titleid02"
-                  style="margin-top: 0rem; margin-bottom: 0rem;"
-                >
-                  Hei der
-                </h3>
+                  <svg
+                    aria-hidden="true"
+                    class="hnds-style-icon "
+                    fill="#126F87"
+                    height="42"
+                    role="img"
+                    style="min-width: 42px; min-height: 42px;"
+                    viewBox="0 0 48 48"
+                    width="42"
+                  >
+                    <path
+                      d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z"
+                    />
+                  </svg>
+                </button>
               </div>
             </div>
             <div
-              class="modal__contentWrapper__content"
-            />
-            <div
-              class="modal__actions"
+              class="modal__contentWrapper__scroll--large"
             >
-              <button
-                class="button button--fill"
+              <div />
+              <div
+                class="modal__contentWrapper__title modal--error__title"
               >
-                <span
-                  class="content-wrapper"
+                <div
+                  class="iconWrapper"
                 >
-                  <span
-                    class="button__content button__content--fill"
+                  <svg
+                    aria-hidden="true"
+                    class="hnds-style-icon "
+                    fill="#C83521"
+                    height="48"
+                    role="img"
+                    style="min-width: 48px; min-height: 48px;"
+                    viewBox="0 0 48 48"
+                    width="48"
                   >
-                    OK
-                  </span>
-                </span>
-              </button>
-              <button
-                class="button button--borderless"
-              >
-                <span
-                  class="content-wrapper"
+                    <path
+                      d="M24.898 21.447v7.228a.893.893 0 01-1.785 0v-7.228a.892.892 0 111.785 0zm.5 11.601a1.394 1.394 0 11-2.787-.001 1.394 1.394 0 012.787.001zm-18.822 6.71h34.847L24.111 8.242 6.576 39.758z"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="title--error"
                 >
-                  <span
-                    class="button__content button__content--borderless"
+                  <h3
+                    class="title title--title3"
+                    id="titleid02"
+                    style="margin-top: 0rem; margin-bottom: 0rem;"
                   >
-                    Avbryt
-                  </span>
-                </span>
-              </button>
+                    Hei der
+                  </h3>
+                </div>
+              </div>
+              <p
+                class="modal__description"
+              />
+              <div />
             </div>
+          </div>
+          <div
+            class="modal__shadow modal__shadow--bottom"
+          />
+          <div
+            class="modal__call-to-action modal__call-to-action--large"
+          >
+            <button
+              class="button button--fill"
+            >
+              <span
+                class="content-wrapper"
+              >
+                <span
+                  class="button__content button__content--fill"
+                >
+                  OK
+                </span>
+              </span>
+            </button>
+            <button
+              class="button button--borderless"
+            >
+              <span
+                class="content-wrapper"
+              >
+                <span
+                  class="button__content button__content--borderless"
+                >
+                  Avbryt
+                </span>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -126,98 +146,118 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
       >
         <div
           aria-labelledby="titleid01"
-          class="modal modal--warning"
+          class="modal modal--warning modal--large"
           role="dialog"
         >
           <div
-            class="modal__close"
-          >
-            <button
-              aria-label="Lukk"
-              class="modal__lukkekryss"
-              role="button"
-            >
-              <svg
-                aria-hidden="true"
-                class="hnds-style-icon "
-                fill="#126F87"
-                height="42"
-                role="img"
-                style="min-width: 42px; min-height: 42px;"
-                viewBox="0 0 48 48"
-                width="42"
-              >
-                <path
-                  d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z"
-                />
-              </svg>
-            </button>
-          </div>
+            class="modal__shadow modal__shadow--top"
+          />
           <div
             class="modal__contentWrapper"
           >
             <div
-              class="modal__contentWrapper__title"
+              style="position: relative; width: 100%;"
             >
-              <div>
-                <svg
-                  aria-hidden="true"
-                  class="hnds-style-icon "
-                  fill="#000000"
-                  height="48"
-                  role="img"
-                  style="min-width: 48px; min-height: 48px;"
-                  viewBox="0 0 48 48"
-                  width="48"
+              <div
+                class="modal__closeWrapper__close"
+              >
+                <button
+                  aria-label="Lukk"
+                  class="modal__lukkekryss"
+                  role="button"
                 >
-                  <path
-                    d="M24.003 31.578a1.394 1.394 0 100 2.788 1.394 1.394 0 000-2.788zm.098-20.19l14.687 26.735H9.227L24.1 11.388zm.008-2.929L6.816 39.541h34.367L24.109 8.459zm-.106 21.033c.494 0 .893-.4.893-.893v-7.228a.893.893 0 00-1.786 0v7.228c0 .493.4.893.893.893z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3
-                  class="title title--title3"
-                  id="titleid01"
-                  style="margin-top: 0rem; margin-bottom: 0rem;"
-                >
-                  Hei der
-                </h3>
+                  <svg
+                    aria-hidden="true"
+                    class="hnds-style-icon "
+                    fill="#126F87"
+                    height="42"
+                    role="img"
+                    style="min-width: 42px; min-height: 42px;"
+                    viewBox="0 0 48 48"
+                    width="42"
+                  >
+                    <path
+                      d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z"
+                    />
+                  </svg>
+                </button>
               </div>
             </div>
             <div
-              class="modal__contentWrapper__content"
-            />
-            <div
-              class="modal__actions"
+              class="modal__contentWrapper__scroll--large"
             >
-              <button
-                class="button button--fill"
+              <div />
+              <div
+                class="modal__contentWrapper__title modal--error__title"
               >
-                <span
-                  class="content-wrapper"
+                <div
+                  class="iconWrapper"
                 >
-                  <span
-                    class="button__content button__content--fill"
+                  <svg
+                    aria-hidden="true"
+                    class="hnds-style-icon "
+                    fill="#000000"
+                    height="48"
+                    role="img"
+                    style="min-width: 48px; min-height: 48px;"
+                    viewBox="0 0 48 48"
+                    width="48"
                   >
-                    OK
-                  </span>
-                </span>
-              </button>
-              <button
-                class="button button--borderless"
-              >
-                <span
-                  class="content-wrapper"
+                    <path
+                      d="M24.003 31.578a1.394 1.394 0 100 2.788 1.394 1.394 0 000-2.788zm.098-20.19l14.687 26.735H9.227L24.1 11.388zm.008-2.929L6.816 39.541h34.367L24.109 8.459zm-.106 21.033c.494 0 .893-.4.893-.893v-7.228a.893.893 0 00-1.786 0v7.228c0 .493.4.893.893.893z"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class=""
                 >
-                  <span
-                    class="button__content button__content--borderless"
+                  <h3
+                    class="title title--title3"
+                    id="titleid01"
+                    style="margin-top: 0rem; margin-bottom: 0rem;"
                   >
-                    Avbryt
-                  </span>
-                </span>
-              </button>
+                    Hei der
+                  </h3>
+                </div>
+              </div>
+              <p
+                class="modal__description"
+              />
+              <div />
             </div>
+          </div>
+          <div
+            class="modal__shadow modal__shadow--bottom"
+          />
+          <div
+            class="modal__call-to-action modal__call-to-action--large"
+          >
+            <button
+              class="button button--fill"
+            >
+              <span
+                class="content-wrapper"
+              >
+                <span
+                  class="button__content button__content--fill"
+                >
+                  OK
+                </span>
+              </span>
+            </button>
+            <button
+              class="button button--borderless"
+            >
+              <span
+                class="content-wrapper"
+              >
+                <span
+                  class="button__content button__content--borderless"
+                >
+                  Avbryt
+                </span>
+              </span>
+            </button>
           </div>
         </div>
       </div>

@@ -4,6 +4,8 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import Modal, { ModalVariants } from './Modal';
 import userEvent from '@testing-library/user-event';
 
+import './__mocks__/IntersectionObserver';
+
 describe('Gitt at en modal skal vises ', (): void => {
   describe('Når en modal skal vise kun tittel og lukkeknapp', (): void => {
     it('Så skal den kun vise sist nevnte', (): void => {
@@ -92,7 +94,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe('modal modal--warning');
+      expect(dialog.className).toBe(`modal modal--${ModalVariants.warning} modal--large`);
 
       expect(container).toMatchSnapshot();
     });
@@ -115,7 +117,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe(`modal modal--${ModalVariants.error}`);
+      expect(dialog.className).toBe(`modal modal--${ModalVariants.error} modal--large`);
 
       expect(container).toMatchSnapshot();
     });
@@ -141,7 +143,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       render(<Modal variant={ModalVariants.image} title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" />);
 
       const dialog = screen.getByRole('dialog');
-      expect(dialog.className).toBe('modal modal--image');
+      expect(dialog.className).toBe('modal modal--image modal--large');
     });
   });
 
@@ -166,10 +168,6 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       render(
         <>
-          <div>
-            stuff
-            <button>Morn</button>
-          </div>
           <Modal
             title="Hei der"
             onClose={onClose}
@@ -183,16 +181,18 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       const buttons = screen.getAllByRole('button');
       userEvent.tab();
-      expect(buttons[2]).toHaveFocus();
-      userEvent.tab();
-      expect(buttons[3]).toHaveFocus();
+      expect(buttons[0]).toHaveFocus();
       userEvent.tab();
       expect(buttons[1]).toHaveFocus();
+      userEvent.tab();
+      expect(buttons[2]).toHaveFocus();
+      userEvent.tab();
+      expect(buttons[0]).toHaveFocus();
     });
   });
 
-  describe(`Når en bruker trykker på overlay`, (): void => {
-    it('Så skal modalen lukkes', (): void => {
+  describe(`Når en modal har knapperad nederst (CTA), og en bruker trykker utenfor modalen`, (): void => {
+    it('Så skal modalen ikke lukkes', (): void => {
       const onClose = jest.fn();
       const onSuccess = jest.fn();
 
@@ -211,12 +211,33 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       userEvent.click(dialog);
 
-      expect(onClose).toBeCalled();
+      expect(onClose).not.toHaveBeenCalled();
     });
   });
 
-  describe(`Når en bruker trykker Escape`, (): void => {
+  describe(`Når en modal ikke har knapperad nederst (CTA), og en bruker trykker utenfor modalen`, (): void => {
     it('Så skal modalen lukkes', (): void => {
+      const onClose = jest.fn();
+
+      render(
+        <Modal
+          title="Hei der"
+          onClose={onClose}
+          variant={ModalVariants.error}
+          testId="testid"
+        />
+      );
+
+      const dialog = screen.getByTestId('testid');
+
+      userEvent.click(dialog);
+
+      expect(onClose).toHaveBeenCalled();
+    });
+  });
+
+  describe(`Når en modal har knapperad nederst (CTA), og en bruker trykker Escape`, (): void => {
+    it('Så skal modalen ikke lukkes', (): void => {
       const onClose = jest.fn();
       const onSuccess = jest.fn();
 
@@ -232,6 +253,27 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const dialog = screen.getByTestId('dialog-container');
+
+      fireEvent.keyDown(dialog, { key: 'Escape' });
+
+      expect(onClose).not.toBeCalled();
+    });
+  });
+
+  describe(`Når en modal ikke har en knapperad (CTA) nederst og en bruker trykker Escape`, (): void => {
+    it('Så skal modalen lukkes', (): void => {
+      const onClose = jest.fn();
+
+      render(
+        <Modal
+          title="Hei der"
+          onClose={onClose}
+          variant={ModalVariants.error}
+          testId="testid"
+        />
+      );
+
+      const dialog = screen.getByTestId('testid');
 
       fireEvent.keyDown(dialog, { key: 'Escape' });
 
