@@ -10,6 +10,10 @@ stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
   <div style={{ width: '20rem' }}>
+    <p>{'4xs'}</p>
+    <div style={{ backgroundColor: 'lightgray', marginBottom: '0.25rem' }}>
+      <Spacer size={'4xs'} />
+    </div>
     <p>{'3xs'}</p>
     <div style={{ backgroundColor: 'lightgray', marginBottom: '0.25rem' }}>
       <Spacer size={'3xs'} />

@@ -3,32 +3,34 @@ import { SpacerSizes } from './../spacers';
 
 export const mapSpacerValue = (spacerSize: SpacerSizes): number => {
   switch (spacerSize) {
-    case '3xs':
+    case '4xs':
       return spacers[1];
-    case '2xs':
+    case '3xs':
       return spacers[2];
-    case 'xs':
+    case '2xs':
       return spacers[3];
+    case 'xs':
+      return spacers[4];
     case 's':
-      return spacers[4];
-    case 'm':
       return spacers[5];
-    case 'l':
+    case 'm':
       return spacers[6];
-    case 'xl':
+    case 'l':
       return spacers[7];
-    case '2xl':
+    case 'xl':
       return spacers[8];
-    case '3xl':
+    case '2xl':
       return spacers[9];
-    case '4xl':
+    case '3xl':
       return spacers[10];
-    case '5xl':
+    case '4xl':
       return spacers[11];
-    case '6xl':
+    case '5xl':
       return spacers[12];
+    case '6xl':
+      return spacers[13];
     default:
-      return spacers[4];
+      return spacers[5];
   }
 };
 

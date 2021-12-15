@@ -4,7 +4,7 @@
 @import '../../scss/font-settings.scss';
 
 .form-group-wrapper {
-  padding: getSpacer(s) getSpacer(xs) getSpacer(m);
+  padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
 
   @media (min-width: map-get($grid-breakpoints, md)) {
     padding: getSpacer(s) getSpacer(m) getSpacer(l);

@@ -1,39 +1,47 @@
+@import '../../scss/spacers.scss';
+
 .spacer {
   display: block;
   width: 100%;
   height: 0.125rem;
 
+  &--4xs {
+    height: getSpacer(4xs);
+  }
+  &--3xs {
+    height: getSpacer(3xs);
+  }
   &--2xs {
-    height: 0.25rem;
+    height: getSpacer(2xs);
   }
   &--xs {
-    height: 0.5rem;
+    height: getSpacer(xs);
   }
   &--s {
-    height: 1rem;
+    height: getSpacer(s);
   }
   &--m {
-    height: 1.5rem;
+    height: getSpacer(m);
   }
   &--l {
-    height: 2rem;
+    height: getSpacer(l);
   }
   &--xl {
-    height: 3rem;
+    height: getSpacer(xl);
   }
   &--2xl {
-    height: 4rem;
+    height: getSpacer(2xl);
   }
   &--3xl {
-    height: 5rem;
+    height: getSpacer(3xl);
   }
   &--4xl {
-    height: 6rem;
+    height: getSpacer(4xl);
   }
   &--5xl {
-    height: 7rem;
+    height: getSpacer(5xl);
   }
   &--6xl {
-    height: 8rem;
+    height: getSpacer(6xl);
   }
 }

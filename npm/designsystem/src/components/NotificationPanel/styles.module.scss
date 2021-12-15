@@ -38,7 +38,7 @@
     background-color: $black;
   }
   &--shadow {
-    box-shadow: 0 0.3rem getSpacer(xs) -0.1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.3rem getSpacer(2xs) -0.1rem rgba(0, 0, 0, 0.15);
   }
   &--haslabel {
     padding: getSpacer(l) $spacer;
@@ -62,7 +62,7 @@
       background-color: $black;
     }
     &--shadow {
-      box-shadow: 0 0.3rem getSpacer(xs) -0.1rem rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0.3rem getSpacer(2xs) -0.1rem rgba(0, 0, 0, 0.15);
     }
   }
 
@@ -72,7 +72,7 @@
 
   &__content {
     grid-area: 'content';
-    margin: getSpacer(xs) getSpacer(m);
+    margin: getSpacer(2xs) getSpacer(m);
 
     p {
       margin: 0;
@@ -148,10 +148,10 @@
     &:before {
       content: ' ';
       position: absolute;
-      top: -getSpacer(2xs);
-      left: -getSpacer(2xs);
-      right: -getSpacer(2xs);
-      bottom: -getSpacer(2xs);
+      top: -getSpacer(3xs);
+      left: -getSpacer(3xs);
+      right: -getSpacer(3xs);
+      bottom: -getSpacer(3xs);
       border: 2px solid transparent;
     }
     &:after {

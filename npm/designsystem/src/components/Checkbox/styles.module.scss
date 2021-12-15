@@ -12,7 +12,7 @@
 
 .checkbox-wrapper {
   &--with-error {
-    padding: getSpacer(s) getSpacer(xs) getSpacer(m);
+    padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
     background-color: $cherry50;
     border-left: 0.25rem solid $cherry500;
 
@@ -52,7 +52,7 @@
   }
 
   &--bigform {
-    margin: getSpacer(xs) 0 getSpacer(xs) 0;
+    margin: getSpacer(2xs) 0 getSpacer(2xs) 0;
     padding: 1.68rem getSpacer(l);
     background-color: $neutral50;
   }
@@ -86,21 +86,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: getSpacer(3xs) getSpacer(s) getSpacer(3xs) getSpacer(3xs);
+    margin: getSpacer(4xs) getSpacer(s) getSpacer(4xs) getSpacer(4xs);
     height: 1.625rem;
     width: 1.625rem;
     min-width: auto !important;
     min-height: auto !important;
     color: $neutral700;
-    box-shadow: 0 0 0 getSpacer(3xs);
+    box-shadow: 0 0 0 getSpacer(4xs);
 
     :hover > & {
-      box-shadow: 0 0 0 getSpacer(2xs);
+      box-shadow: 0 0 0 getSpacer(3xs);
       background-color: $neutral100;
     }
 
     :active > & {
-      box-shadow: 0 0 0 getSpacer(2xs);
+      box-shadow: 0 0 0 getSpacer(3xs);
       color: $black;
     }
 
@@ -158,7 +158,7 @@
         color: $neutral400;
       }
       :hover > & {
-        box-shadow: 0 0 0 getSpacer(3xs);
+        box-shadow: 0 0 0 getSpacer(4xs);
         background-color: transparent;
       }
 
@@ -176,7 +176,7 @@
 
   &:focus {
     & + .checkbox__icon-wrapper {
-      box-shadow: 0 0 0 getSpacer(2xs);
+      box-shadow: 0 0 0 getSpacer(3xs);
       color: $black;
 
       &--on-dark {
