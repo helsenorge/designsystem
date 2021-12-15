@@ -1,11 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Loader from './Loader';
+import * as uuidUtils from '../../utils/uuid';
 
-jest.mock('uuid', () => {
-  const uuidGen = (): string => `-unik-id`;
-  return { v4: uuidGen };
-});
+jest.spyOn(uuidUtils, 'uuid').mockReturnValue(`-unik-id`);
 
 describe('Gitt at en loader skal vises ', (): void => {
   describe('Når at en loader rendres ', (): void => {
@@ -37,11 +35,14 @@ describe('Gitt at en loader skal vises ', (): void => {
     });
   });
 
-  describe('Når overlay prop er true', (): void => {
-    test('Så har loaderen en overlay', (): void => {
-      const { container } = render(<Loader overlay />);
+  describe('Når overlay prop er satt', (): void => {
+    test('Så har loaderen en overlay, og color er nå svart på loaderen', (): void => {
+      const { container } = render(<Loader overlay testId={'loaderDotTest'} />);
       expect(container.firstChild).toHaveClass('loader-wrapper--overlay');
       expect(container.firstChild.firstChild).toHaveAttribute('aria-labelledby', 'loader-unik-id');
+
+      const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
+      expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--small loader__dot--black');
     });
   });
 

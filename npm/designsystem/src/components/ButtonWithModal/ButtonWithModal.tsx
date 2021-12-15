@@ -8,7 +8,7 @@ interface ModalWithButtonProps extends ModalProps {
   buttonText: string;
 }
 
-const ModalWithButton = React.forwardRef(function ModalForwardedRef(props: ModalWithButtonProps) {
+const ModalWithButton = React.forwardRef(function ModalForwardedRef(props: ModalWithButtonProps, ref: React.ForwardedRef<HTMLElement>) {
   const [showModal, setShowModal] = useState(false);
 
   return (

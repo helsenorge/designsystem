@@ -25,15 +25,12 @@
 
   &__anchor {
     display: flex;
-    min-height: 4.5rem;
+    min-height: 4rem;
     text-decoration: none;
     align-items: center;
     color: $black;
     cursor: pointer;
 
-    &--hasicon {
-      min-height: unset;
-    }
     &--small {
       padding: getSpacer(xs) 0 getSpacer(xs) 0;
       font-size: $font-size-xs;

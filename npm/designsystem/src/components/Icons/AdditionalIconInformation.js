@@ -254,4 +254,10 @@ module.exports = {
   gallery: { alternativeName: 'Galleri', categories: 'System' },
   list: { alternativeName: 'Liste', categories: 'System' },
   stds: { alternativeName: 'Kjønnssykom', categories: 'Generisk' },
+  acupunctureback: { alternativeName: 'Akupunktur rygg', categories: '' },
+  noeye: { alternativeName: 'Øye m strek', categories: '' },
+  sectionsign: { alternativeName: 'Paragraftegn', categories: '' },
+  speechbubble: { alternativeName: 'Snakkeboble', categories: '' },
+  supportingperson: { alternativeName: 'Ledsager', categories: '' },
+  syringe: { alternativeName: 'Sprøyte', categories: '' },
 };

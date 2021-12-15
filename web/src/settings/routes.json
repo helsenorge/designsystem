@@ -58,8 +58,16 @@
           "path": "/bibliotek/komponenter/button"
         },
         {
+          "label": "Checkbox",
+          "path": "/bibliotek/komponenter/checkbox"
+        },
+        {
           "label": "ExpanderList",
           "path": "/bibliotek/komponenter/expander-list"
+        },
+        {
+          "label": "FormGroup",
+          "path": "/bibliotek/komponenter/formgroup"
         },
         {
           "label": "Icon",
@@ -104,6 +112,10 @@
         {
           "label": "Title",
           "path": "/bibliotek/komponenter/title"
+        },
+        {
+          "label": "Validation",
+          "path": "/bibliotek/komponenter/validation"
         }
       ]
     }

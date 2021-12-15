@@ -33,6 +33,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
       class="notification-panel__action-column"
     >
       <button
+        aria-label="Lukk"
         class="notification-panel__close-button"
       >
         <svg

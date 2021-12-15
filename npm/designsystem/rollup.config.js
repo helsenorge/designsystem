@@ -56,7 +56,12 @@ export default [
         ],
       }),
 
-      buble(),
+      buble({
+        transforms: {
+          asyncAwait: false,
+          dangerousForOf: true,
+        },
+      }),
     ],
     external: [...Object.keys(globals), './styles.module.scss'],
   },

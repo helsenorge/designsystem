@@ -124,6 +124,7 @@ const Modal = (props: ModalProps): JSX.Element => {
 
   const titleId = props.titleId ?? uniqueTitleId;
   const overlayRef = React.useRef<HTMLDivElement>(null);
+
   const showActions = (props.secondaryButtonText && props.secondaryButtonText?.length > 0) || props.onSuccess;
 
   // AriaLabelledBy prioriteres, og AriaLabel prioriteres over fallback til AriaLabelledBy

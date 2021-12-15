@@ -1,0 +1,191 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/font-settings.scss';
+
+.checkbox-errors {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $cherry500;
+  margin-top: 0;
+}
+
+.checkbox-wrapper {
+  &--with-error {
+    padding: getSpacer(s) getSpacer(xs) getSpacer(m);
+    background-color: $cherry50;
+    border-left: 0.25rem solid $cherry500;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      padding: getSpacer(s) getSpacer(m) getSpacer(l);
+    }
+  }
+
+  &--with-error#{&}--bigform {
+    padding: getSpacer(m) getSpacer(m);
+  }
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  margin: getSpacer(s) 0;
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-md;
+  }
+
+  &--on-dark {
+    color: $white;
+  }
+
+  &--invalid {
+    color: $black;
+    padding: getSpacer(s);
+  }
+
+  &--disabled {
+    cursor: default;
+    color: $neutral400;
+  }
+
+  &--bigform {
+    margin: getSpacer(xs) 0 getSpacer(xs) 0;
+    padding: 1.68rem getSpacer(l);
+    background-color: $neutral50;
+  }
+
+  &--bigform#{&}--on-blueberry {
+    background-color: $blueberry50;
+  }
+
+  &--bigform#{&}--on-dark {
+    background-color: $blueberry800;
+  }
+
+  &--invalid,
+  &--bigform#{&}--invalid {
+    background-color: $white;
+  }
+}
+
+.checkbox-label:last-of-type {
+  margin-bottom: 0;
+}
+
+.checkbox {
+  width: 0px;
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+
+  &__icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: getSpacer(3xs) getSpacer(s) getSpacer(3xs) getSpacer(3xs);
+    height: 1.625rem;
+    width: 1.625rem;
+    min-width: auto !important;
+    min-height: auto !important;
+    color: $neutral700;
+    box-shadow: 0 0 0 getSpacer(3xs);
+
+    :hover > & {
+      box-shadow: 0 0 0 getSpacer(2xs);
+      background-color: $neutral100;
+    }
+
+    :active > & {
+      box-shadow: 0 0 0 getSpacer(2xs);
+      color: $black;
+    }
+
+    &--checked {
+      color: $blueberry500;
+
+      :hover > & {
+        background-color: $blueberry50;
+      }
+    }
+
+    &--on-blueberry {
+      color: $blueberry500;
+
+      :hover > & {
+        background-color: $blueberry100;
+      }
+    }
+
+    &--on-dark {
+      color: $neutral200;
+
+      :hover > & {
+        background-color: $inverted-hover;
+      }
+
+      &.checkbox__icon-wrapper--checked {
+        color: $blueberry200;
+      }
+
+      :active > & {
+        color: $white;
+      }
+    }
+
+    &--invalid {
+      color: $cherry500;
+
+      :hover > & {
+        background-color: $cherry100;
+      }
+
+      &.checkbox__icon-wrapper--checked {
+        color: $cherry500;
+      }
+
+      :active > & {
+        color: $black;
+      }
+    }
+
+    &--disabled {
+      color: $neutral400;
+      &.checkbox__icon-wrapper--checked {
+        color: $neutral400;
+      }
+      :hover > & {
+        box-shadow: 0 0 0 getSpacer(3xs);
+        background-color: transparent;
+      }
+
+      :active > & {
+        color: $neutral400;
+      }
+    }
+  }
+
+  &__icon {
+    position: relative;
+    top: 0.1rem;
+    right: 0.05rem;
+  }
+
+  &:focus {
+    & + .checkbox__icon-wrapper {
+      box-shadow: 0 0 0 getSpacer(2xs);
+      color: $black;
+
+      &--on-dark {
+        color: $white;
+      }
+
+      &--invalid {
+        color: $black;
+      }
+    }
+  }
+}

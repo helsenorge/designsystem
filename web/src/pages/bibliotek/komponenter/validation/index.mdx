@@ -1,0 +1,98 @@
+---
+title: Validation
+path: /bibliotek/komponenter/Validation
+date: 2021-02-12
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/Validation/componentdata.json';
+import Button from '@helsenorge/designsystem-react/components/Button';
+import Checkbox from '@helsenorge/designsystem-react/components/Checkbox';
+import FormGroup from '@helsenorge/designsystem-react/components/FormGroup';
+import Validation from '@helsenorge/designsystem-react/components/Validation';
+import FormExample from '@helsenorge/designsystem-react/components/FormExample';
+
+# Validation
+
+<MDXCustom.Preamble>
+  Et validation komponent som wrapper enten FormGroup eller et individuelt form input komponent.
+</MDXCustom.Preamble>
+
+## Usage
+```javascript
+import React from 'react';
+
+import { useForm } from 'react-hook-form';
+
+import Validation from '@helsenorge/designsystem-react/components/Validation';
+import FormGroup, { FormGroupModes, FormGroupVariants } from '@helsenorge/designsystem-react/components/FormGroup';
+import Checkbox from '@helsenorge/designsystem-react/components/Checkbox';
+import Button from '@helsenorge/designsystem-react/components/Button';
+
+export const FormExample = React.forwardRef((props, ref: React.ForwardedRef<HTMLElement>) => {
+  const { register, handleSubmit, errors } = useForm();
+  const formGroup1 = 'formgroup1';
+  const formGroup2 = 'formgroup2';
+  const allErrors = errors[formGroup1] || errors[formGroup2];
+  const errorMessage = 'Du må velge et alternativ';
+  const errorMessage2 = 'Du må velge to alternativ';
+
+  const requireTwo = (value: Array<string>) => {
+    return value.length >= 2 || errorMessage2;
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit(data => {
+        console.log(data);
+      })}
+    >
+      <Validation variant={props.variant} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
+        <FormGroup
+          title={text('Title 1', 'One amazing title')}
+          legend={text('Legend 1', 'Check out these checkboxes!')}
+          mode={select('Mode', FormGroupModes, FormGroupModes.onWhite)}
+          variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)}
+          error={errors[formGroup1] ? errors[formGroup1].message : undefined}
+        >
+          <Checkbox name={formGroup1} label={'Checkbox 1'} ref={register({ required: errorMessage })} />
+          <Checkbox name={formGroup1} label={'Checkbox 2'} ref={register({ required: errorMessage })} />
+          <Checkbox name={formGroup1} label={'Checkbox 3'} ref={register({ required: errorMessage })} />
+        </FormGroup>
+        <FormGroup
+          legend={text('Legend 2', 'Select two options!')}
+          mode={select('Mode', FormGroupModes, FormGroupModes.onWhite)}
+          variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)}
+          error={errors[formGroup2] ? errors[formGroup2].message : undefined}
+        >
+          <Checkbox name={formGroup2} label={'Checkbox 4'} ref={register({ validate: requireTwo })} />
+          <Checkbox name={formGroup2} label={'Checkbox 5'} ref={register({ validate: requireTwo })} />
+          <Checkbox name={formGroup2} label={'Checkbox 6'} ref={register({ validate: requireTwo })} />
+        </FormGroup>
+      </Validation>
+      <br />
+      <Button>{'Submit'}</Button>
+    </form>
+  );
+});
+```
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{ FormExample }}>
+  {`
+    <FormExample exampleType={'formgroup'}></FormExample>
+  `}
+</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**
