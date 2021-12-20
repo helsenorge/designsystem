@@ -6,7 +6,6 @@ export type Styles = {
   'form-group--invalid': string;
   'form-group-wrapper': string;
   'form-group-wrapper__errors': string;
-  'form-group-wrapper__title': string;
   'form-group-wrapper__title--on-dark': string;
 };
 

@@ -13,11 +13,16 @@ interface TitleProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** Adds top and bottom margin in rem. */
-  margin?: number;
+  margin?: number | TitleMargin;
   /** Changes the underlying element of the title. */
   htmlMarkup?: TitleTags;
   /** Changes the appearance of the title. */
   appearance?: TitleAppearances;
+}
+
+export interface TitleMargin {
+  marginTop: number;
+  marginBottom: number;
 }
 
 const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
@@ -36,8 +41,16 @@ const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref
   );
   const CustomTag = htmlMarkup;
 
+  const instanceOfTitleMargin = (margin: any): margin is TitleMargin => {
+    return Object.prototype.hasOwnProperty.call(margin, 'marginTop') && Object.prototype.hasOwnProperty.call(margin, 'marginBottom');
+  };
+
+  const inlineStyle = instanceOfTitleMargin(margin)
+    ? { marginTop: `${margin.marginTop}rem`, marginBottom: `${margin.marginBottom}rem` }
+    : { marginTop: `${margin}rem`, marginBottom: `${margin}rem` };
+
   return (
-    <CustomTag id={id} className={titleClasses} style={{ marginTop: `${margin}rem`, marginBottom: `${margin}rem` }} ref={ref}>
+    <CustomTag id={id} className={titleClasses} style={inlineStyle} ref={ref}>
       {children}
     </CustomTag>
   );

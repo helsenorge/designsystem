@@ -5,8 +5,6 @@
 
 .form-group-wrapper {
   &__title {
-    margin-bottom: getSpacer(l) !important;
-
     &--on-dark {
       color: $white;
     }

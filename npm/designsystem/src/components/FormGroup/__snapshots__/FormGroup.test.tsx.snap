@@ -7,7 +7,7 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
   >
     <h4
       class="title title--title4 form-group-wrapper__title"
-      style="margin-top: 0rem; margin-bottom: 0rem;"
+      style="margin-top: 0rem; margin-bottom: 2rem;"
     >
       One amazing title
     </h4>
@@ -32,7 +32,6 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
           >
             <input
               aria-invalid="false"
-              aria-required="false"
               class="checkbox"
               id="Checkbox1"
               name="Checkbox1"
@@ -54,7 +53,6 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
           >
             <input
               aria-invalid="false"
-              aria-required="false"
               class="checkbox"
               id="Checkbox2"
               name="Checkbox2"
@@ -76,7 +74,6 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
           >
             <input
               aria-invalid="false"
-              aria-required="false"
               class="checkbox"
               id="Checkbox3"
               name="Checkbox3"

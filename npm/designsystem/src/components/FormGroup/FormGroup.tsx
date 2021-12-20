@@ -63,7 +63,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   return (
     <div data-testid={props.testId} className={formGroupWrapperClasses}>
       {props.title && (
-        <Title className={titleClasses} htmlMarkup={'h4'} appearance={'title4'}>
+        <Title className={titleClasses} htmlMarkup={'h4'} appearance={'title4'} margin={{ marginTop: 0, marginBottom: 2 }}>
           {props.title}
         </Title>
       )}
