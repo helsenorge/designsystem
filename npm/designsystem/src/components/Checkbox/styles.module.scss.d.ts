@@ -14,6 +14,7 @@ export type Styles = {
   'checkbox-label--invalid': string;
   'checkbox-label--on-blueberry': string;
   'checkbox-label--on-dark': string;
+  'checkbox-wrapper': string;
   'checkbox-wrapper--bigform': string;
   'checkbox-wrapper--with-error': string;
 };

@@ -7,83 +7,87 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
   >
     <h4
       class="title title--title4 form-group-wrapper__title"
-      style="margin-top: 0rem; margin-bottom: 0rem;"
+      style="margin-top: 0rem; margin-bottom: 2rem;"
     >
       One amazing title
     </h4>
-    <fieldset
+    <div
       class="form-group"
-      name="One amazing title"
     >
-      <legend
-        class="form-group__legend"
+      <fieldset
+        class="field-set"
+        name="One amazing title"
       >
-        Check out these checkboxes!
-      </legend>
-      <div
-        class="checkbox-wrapper"
-      >
-        <label
-          class="checkbox-label"
-          for="Checkbox1"
+        <legend
+          class="field-set__legend"
         >
-          <input
-            aria-invalid="false"
-            class="checkbox"
-            id="Checkbox1"
-            name="Checkbox1"
-            type="checkbox"
-            value="Checkbox 1"
-          />
-          <span
-            class="checkbox__icon-wrapper"
-          />
-          Checkbox 1
-        </label>
-      </div>
-      <div
-        class="checkbox-wrapper"
-      >
-        <label
-          class="checkbox-label"
-          for="Checkbox2"
+          Check out these checkboxes!
+        </legend>
+        <div
+          class="checkbox-wrapper"
         >
-          <input
-            aria-invalid="false"
-            class="checkbox"
-            id="Checkbox2"
-            name="Checkbox2"
-            type="checkbox"
-            value="Checkbox 2"
-          />
-          <span
-            class="checkbox__icon-wrapper"
-          />
-          Checkbox 2
-        </label>
-      </div>
-      <div
-        class="checkbox-wrapper"
-      >
-        <label
-          class="checkbox-label"
-          for="Checkbox3"
+          <label
+            class="checkbox-label"
+            for="Checkbox1"
+          >
+            <input
+              aria-invalid="false"
+              class="checkbox"
+              id="Checkbox1"
+              name="Checkbox1"
+              type="checkbox"
+              value="Checkbox 1"
+            />
+            <span
+              class="checkbox__icon-wrapper"
+            />
+            Checkbox 1
+          </label>
+        </div>
+        <div
+          class="checkbox-wrapper"
         >
-          <input
-            aria-invalid="false"
-            class="checkbox"
-            id="Checkbox3"
-            name="Checkbox3"
-            type="checkbox"
-            value="Checkbox 3"
-          />
-          <span
-            class="checkbox__icon-wrapper"
-          />
-          Checkbox 3
-        </label>
-      </div>
-    </fieldset>
+          <label
+            class="checkbox-label"
+            for="Checkbox2"
+          >
+            <input
+              aria-invalid="false"
+              class="checkbox"
+              id="Checkbox2"
+              name="Checkbox2"
+              type="checkbox"
+              value="Checkbox 2"
+            />
+            <span
+              class="checkbox__icon-wrapper"
+            />
+            Checkbox 2
+          </label>
+        </div>
+        <div
+          class="checkbox-wrapper"
+        >
+          <label
+            class="checkbox-label"
+            for="Checkbox3"
+          >
+            <input
+              aria-invalid="false"
+              class="checkbox"
+              id="Checkbox3"
+              name="Checkbox3"
+              type="checkbox"
+              value="Checkbox 3"
+            />
+            <span
+              class="checkbox__icon-wrapper"
+            />
+            Checkbox 3
+          </label>
+        </div>
+      </fieldset>
+    </div>
   </div>
 </div>
 `;
