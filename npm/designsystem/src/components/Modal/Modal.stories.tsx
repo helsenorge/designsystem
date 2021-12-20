@@ -111,7 +111,7 @@ stories.add('Modal without close button', () => {
     <Modal
       title={text('title', 'Du må ta et valg')}
       size={ModalSize.large}
-      variant='warning'
+      variant="warning"
       noCloseButton={boolean('noCloseButton', true)}
       primaryButtonText={text('primaryButtonText', 'Fortsett å være logget inn')}
       secondaryButtonText={text('secondaryButtonText', 'Logg ut')}
