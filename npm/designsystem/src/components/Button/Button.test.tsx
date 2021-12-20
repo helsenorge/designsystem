@@ -46,6 +46,21 @@ describe('Gitt at button skal vises', (): void => {
     });
   });
 
+  describe('Når button rendres kun med ikon', (): void => {
+    test('Så inneholder knappen bare ikon, og aria-label kan leses', (): void => {
+      const { container } = render(
+        <Button aria-label="Check me">
+          <Icon svgIcon={Check} />
+        </Button>
+      );
+
+      const button = screen.getByLabelText('Check me');
+
+      expect(button).toBeVisible();
+      expect(container).toMatchSnapshot();
+    });
+  });
+
   describe('Når button rendres med ellipsis på', (): void => {
     test('Så brukes ellipsis på overflødig tekst', (): void => {
       render(<Button ellipsis={true}>Button text</Button>);

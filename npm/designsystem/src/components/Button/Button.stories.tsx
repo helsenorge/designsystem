@@ -19,6 +19,7 @@ const myRef1: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef2: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef3: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef4: React.RefObject<HTMLButtonElement> = React.createRef();
+const myRef5: React.RefObject<HTMLButtonElement> = React.createRef();
 
 stories.add('Default', () => (
   <div style={{ width: '15rem' }}>
@@ -174,6 +175,24 @@ stories.add('With icon(s)', () => (
       <Icon svgIcon={Calendar} color={'lime'} hoverColor={'red'} />
       {text('Text', 'Button')}
       <Icon svgIcon={X} color={'lime'} hoverColor={'red'} />
+    </Button>
+    <div style={{ height: '1rem' }}></div>
+    <Button
+      ref={myRef5}
+      ellipsis={boolean('Ellipsis', false)}
+      disabled={boolean('Disabled', false)}
+      fluid={boolean('Fluid', false)}
+      intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
+      htmlMarkup={select('Is', ['button', 'a'], 'button')}
+      large={boolean('Large', false)}
+      loading={boolean('Loading', false)}
+      onClick={action('button-click')}
+      variant={select('Variant', allButtonVariants, 'fill')}
+      href={'https://www.helsenorge.no'}
+      aria-label={text('Text', 'Button')}
+    >
+      <Icon svgIcon={X} />
     </Button>
   </div>
 ));
