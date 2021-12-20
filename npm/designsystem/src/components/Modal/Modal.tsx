@@ -152,7 +152,7 @@ const Modal = (props: ModalProps): JSX.Element => {
       <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId}>
         <div className={styles.align} ref={FocusTrap()}>
           <div
-            className={cn(props.className, styles.modal, styles[`modal--${props.variant}` as string], styles[`modal--${props.size}`])}
+            className={cn(props.className, styles.modal, styles[`modal--${props.variant}`], styles[`modal--${props.size}`])}
             role="dialog"
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}

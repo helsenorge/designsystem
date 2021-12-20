@@ -5,7 +5,7 @@
  */
 export const getDocumentActiveElement = (element: HTMLElement | string): Element | null => {
   try {
-    const domNode = typeof element === 'string' ? (document.querySelector(element) as HTMLElement) : (element as HTMLElement);
+    const domNode = typeof element === 'string' ? (document.querySelector(element) as HTMLElement) : element;
     const root = domNode.getRootNode() as Document;
     return root.activeElement;
   } catch (e) {
