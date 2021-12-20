@@ -10,6 +10,7 @@ import Icon from '@helsenorge/designsystem-react/components/Icons';
 import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
 import ArrowRight from '@helsenorge/designsystem-react/components/Icons/ArrowRight';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
+import X from '@helsenorge/designsystem-react/components/Icons/X';
 import Button from '@helsenorge/designsystem-react/components/Button';
 
 # Button
@@ -88,6 +89,14 @@ import Button from '@helsenorge/designsystem-react/components/Button';
       <Icon svgIcon={Calendar}/>
     Primary
       <Icon svgIcon={ArrowRight} />
+  </Button>
+`}</MDXCustom.LiveComponent>
+
+### Without text
+
+<MDXCustom.LiveComponent scope={{ Button, Icon, X }}>{`
+  <Button variant="outline" aria-label="Lukk">
+      <Icon svgIcon={X} />
   </Button>
 `}</MDXCustom.LiveComponent>
 
