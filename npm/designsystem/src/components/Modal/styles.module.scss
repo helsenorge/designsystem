@@ -25,19 +25,19 @@
   transform: translate(-50%, -50%);
 }
 
-.iconWrapper {
-  padding-right: 0.75rem;
-}
-
-.title--error {
-  color: $cherry600;
-}
-
 .modal {
   pointer-events: auto;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   background-color: $white;
   animation: open 200ms 1;
+
+  &__title--error {
+    color: $cherry600;
+  }
+
+  &__iconWrapper {
+    padding-right: 0.75rem;
+  }
 
   p {
     font-size: 1.125rem;
@@ -112,16 +112,13 @@
   }
 
   &__closeWrapper {
+    position: relative;
+    width: 100%;
+
     &__close {
       position: absolute;
       right: getSpacer(2xs);
       top: getSpacer(2xs);
-
-      &--image {
-        position: absolute;
-        right: 0px;
-        margin: 8px;
-      }
     }
   }
 

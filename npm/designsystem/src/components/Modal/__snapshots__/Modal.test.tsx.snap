@@ -23,7 +23,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
             class="modal__contentWrapper"
           >
             <div
-              style="position: relative; width: 100%;"
+              class="modal__closeWrapper"
             >
               <div
                 class="modal__closeWrapper__close"
@@ -55,10 +55,10 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
             >
               <div />
               <div
-                class="modal__contentWrapper__title modal--error__title"
+                class="modal__contentWrapper__title"
               >
                 <div
-                  class="iconWrapper"
+                  class="modal__iconWrapper"
                 >
                   <svg
                     aria-hidden="true"
@@ -76,7 +76,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
                   </svg>
                 </div>
                 <div
-                  class="title--error"
+                  class="modal__title--error"
                 >
                   <h3
                     class="title title--title3"
@@ -156,7 +156,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
             class="modal__contentWrapper"
           >
             <div
-              style="position: relative; width: 100%;"
+              class="modal__closeWrapper"
             >
               <div
                 class="modal__closeWrapper__close"
@@ -188,10 +188,10 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
             >
               <div />
               <div
-                class="modal__contentWrapper__title modal--error__title"
+                class="modal__contentWrapper__title"
               >
                 <div
-                  class="iconWrapper"
+                  class="modal__iconWrapper"
                 >
                   <svg
                     aria-hidden="true"

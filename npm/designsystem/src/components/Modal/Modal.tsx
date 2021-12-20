@@ -34,9 +34,9 @@ export interface ModalProps {
   /** Description of the modal */
   description?: string;
   /** Changes the visual representation of the modal. Description will not render if children prop is provided */
-  variant?: ModalVariants;
+  variant?: keyof typeof ModalVariants;
   /** Change width of the modal (default: large) */
-  size?: ModalSize;
+  size?: keyof typeof ModalSize;
   /** Hides the close button */
   noCloseButton?: boolean;
   /** Sets the data-testid attribute. */
@@ -75,7 +75,7 @@ const Lukkekryss = (props: { onClick?: () => void; ariaLabel?: string }): JSX.El
   </button>
 );
 
-const getIcon = (variant: ModalVariants): JSX.Element | null => {
+const getIcon = (variant: keyof typeof ModalVariants): JSX.Element | null => {
   let icon;
 
   if (variant === ModalVariants.error) {
@@ -85,7 +85,7 @@ const getIcon = (variant: ModalVariants): JSX.Element | null => {
   } else {
     return null;
   }
-  return <div className={styles.iconWrapper}>{icon}</div>;
+  return <div className={styles.modal__iconWrapper}>{icon}</div>;
 };
 
 const Modal = (props: ModalProps): JSX.Element => {
@@ -169,7 +169,7 @@ const Modal = (props: ModalProps): JSX.Element => {
               ref={modalContentRef}
             >
               {!props.noCloseButton && (
-                <div style={{ position: 'relative', width: '100%' }}>
+                <div className={styles.modal__closeWrapper}>
                   <div className={cn(styles.modal__closeWrapper__close)}>
                     <Lukkekryss onClick={props.onClose} ariaLabel={props.ariaLabelCloseBtn} />
                   </div>
@@ -181,9 +181,9 @@ const Modal = (props: ModalProps): JSX.Element => {
                 })}
               >
                 <div ref={topContent} />
-                <div className={cn(styles.modal__contentWrapper__title, styles['modal--error__title'])}>
+                <div className={styles.modal__contentWrapper__title}>
                   {props.variant && getIcon(props.variant)}
-                  <div className={props.variant === ModalVariants.error ? styles['title--error'] : ''}>
+                  <div className={props.variant === ModalVariants.error ? styles['modal__title--error'] : ''}>
                     <Title id={titleId} htmlMarkup="h3" appearance="title3">
                       {props.title}
                     </Title>
