@@ -11,6 +11,7 @@ exports[`Gitt at Checkbox skal vises Når Checkbox rendres Så vises Checkbox 1`
     >
       <input
         aria-invalid="false"
+        aria-required="false"
         class="checkbox"
         id="test01"
         name="test01"
