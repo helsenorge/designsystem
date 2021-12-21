@@ -52,7 +52,7 @@ export interface ModalProps {
   /** Close button aria-label */
   ariaLabelCloseBtn?: string;
   /** Alternative component to modal */
-  children?: JSX.Element;
+  children?: React.ReactNode;
   /** Adds custom classes to the element. */
   className?: string;
   /** Function is called when user clicks primary button */
@@ -120,7 +120,7 @@ const Modal = (props: ModalProps): JSX.Element => {
   }
 
   /* Displays a full window size modal with image */
-  const imageView = props.variant === ModalVariants.image || props.children?.type === 'img';
+  const imageView = props.variant === ModalVariants.image;
 
   const titleId = props.titleId ?? uniqueTitleId;
   const overlayRef = React.useRef<HTMLDivElement>(null);
