@@ -13,6 +13,7 @@ import FocusTrap from '../../hooks/useFocusTrap';
 import { useIsVisible } from '../../hooks/useVisibility';
 import Title from '../Title/Title';
 import uuid from '../../utils/uuid';
+import Lukkekryss from '../Lukkekryss';
 
 export enum ModalVariants {
   normal = 'normal',
@@ -68,12 +69,6 @@ const defaultProps = {
   className: '',
   size: ModalSize.large,
 };
-
-const Lukkekryss = (props: { onClick?: () => void; ariaLabel?: string }): JSX.Element | null => (
-  <button className={styles.modal__lukkekryss} aria-label={props.ariaLabel || 'Lukk'} onClick={props.onClick} role="button">
-    <Icon svgIcon={X} color={palette.blueberry600} size={42} />
-  </button>
-);
 
 const getIcon = (variant: keyof typeof ModalVariants): JSX.Element | null => {
   let icon;

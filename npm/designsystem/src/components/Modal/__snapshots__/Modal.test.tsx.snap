@@ -30,18 +30,18 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
               >
                 <button
                   aria-label="Lukk"
-                  class="modal__lukkekryss"
+                  class="lukkekryss"
                   role="button"
                 >
                   <svg
                     aria-hidden="true"
                     class="hnds-style-icon "
                     fill="#126F87"
-                    height="42"
+                    height="48"
                     role="img"
-                    style="min-width: 42px; min-height: 42px;"
+                    style="min-width: 48px; min-height: 48px;"
                     viewBox="0 0 48 48"
-                    width="42"
+                    width="48"
                   >
                     <path
                       d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z"
@@ -163,18 +163,18 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
               >
                 <button
                   aria-label="Lukk"
-                  class="modal__lukkekryss"
+                  class="lukkekryss"
                   role="button"
                 >
                   <svg
                     aria-hidden="true"
                     class="hnds-style-icon "
                     fill="#126F87"
-                    height="42"
+                    height="48"
                     role="img"
-                    style="min-width: 42px; min-height: 42px;"
+                    style="min-width: 48px; min-height: 48px;"
                     viewBox="0 0 48 48"
-                    width="42"
+                    width="48"
                   >
                     <path
                       d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z"
