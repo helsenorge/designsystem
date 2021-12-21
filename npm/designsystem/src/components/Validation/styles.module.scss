@@ -7,9 +7,12 @@
     font-size: $font-size-sm;
     font-weight: 600;
     color: $cherry500;
+    margin: getSpacer(l) 0 getSpacer(s);
+  }
+}
 
-    &--bigform {
-      margin-left: getSpacer(l);
-    }
+.form-group-wrapper {
+  &--error-sibling {
+    padding-bottom: 0 !important;
   }
 }

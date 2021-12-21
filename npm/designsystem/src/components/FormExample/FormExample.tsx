@@ -31,24 +31,29 @@ export const FormExample = React.forwardRef((props: FormExampleProps, ref: React
 
   const getFormExample = () => {
     if (exampleType === FormExampleVariants.formgroup) {
-      return (
-        <>
-          <FormGroup
-            title={'One amazing title'}
-            legend={'Check out these checkboxes!'}
-            error={errors[formGroup1] ? errors[formGroup1].message : undefined}
-          >
-            <Checkbox name={formGroup1} label={'Checkbox 1'} ref={register({ required: errorMessage })} />
-            <Checkbox name={formGroup1} label={'Checkbox 2'} ref={register({ required: errorMessage })} />
-            <Checkbox name={formGroup1} label={'Checkbox 3'} ref={register({ required: errorMessage })} />
-          </FormGroup>
-          <FormGroup legend={'Select two options!'} error={errors[formGroup2] ? errors[formGroup2].message : undefined}>
-            <Checkbox name={formGroup2} label={'Checkbox 4'} ref={register({ validate: requireTwo })} />
-            <Checkbox name={formGroup2} label={'Checkbox 5'} ref={register({ validate: requireTwo })} />
-            <Checkbox name={formGroup2} label={'Checkbox 6'} ref={register({ validate: requireTwo })} />
-          </FormGroup>
-        </>
-      );
+      return [
+        <FormGroup
+          key={0}
+          title={'One amazing title'}
+          legend={'Check out these checkboxes!'}
+          error={errors[formGroup1] ? errors[formGroup1].message : undefined}
+          variant={props.variant}
+        >
+          <Checkbox name={formGroup1} label={'Checkbox 1'} ref={register({ required: errorMessage })} />
+          <Checkbox name={formGroup1} label={'Checkbox 2'} ref={register({ required: errorMessage })} />
+          <Checkbox name={formGroup1} label={'Checkbox 3'} ref={register({ required: errorMessage })} />
+        </FormGroup>,
+        <FormGroup
+          key={1}
+          legend={'Select two options!'}
+          error={errors[formGroup2] ? errors[formGroup2].message : undefined}
+          variant={props.variant}
+        >
+          <Checkbox name={formGroup2} label={'Checkbox 4'} ref={register({ validate: requireTwo })} />
+          <Checkbox name={formGroup2} label={'Checkbox 5'} ref={register({ validate: requireTwo })} />
+          <Checkbox name={formGroup2} label={'Checkbox 6'} ref={register({ validate: requireTwo })} />
+        </FormGroup>,
+      ];
     } else if (exampleType === FormExampleVariants.checkbox) {
       return (
         <>
@@ -57,6 +62,7 @@ export const FormExample = React.forwardRef((props: FormExampleProps, ref: React
             label={'Checkbox 1'}
             error={errors[formGroup1]}
             errorText={errors[formGroup1] ? errors[formGroup1].message : undefined}
+            variant={props.variant}
             ref={register({ required: errorMessage })}
           />
         </>
@@ -73,7 +79,6 @@ export const FormExample = React.forwardRef((props: FormExampleProps, ref: React
       <Validation variant={props.variant} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
         {getFormExample()}
       </Validation>
-      <br />
       <Button>{'Submit'}</Button>
     </form>
   );

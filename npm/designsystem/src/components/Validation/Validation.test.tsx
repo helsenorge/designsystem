@@ -54,7 +54,7 @@ describe('Gitt at Validation skal vises', () => {
 
       const errorSummary = await screen.findByText('Sjekk at alt er riktig utfylt');
 
-      expect(errorSummary.className).toBe('validation__errors validation__errors--bigform');
+      expect(errorSummary.className).toBe('validation__errors');
     });
   });
 
