@@ -30,7 +30,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
               >
                 <button
                   aria-label="Lukk"
-                  class="lukkekryss"
+                  class="close"
                   role="button"
                 >
                   <svg
@@ -163,7 +163,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
               >
                 <button
                   aria-label="Lukk"
-                  class="lukkekryss"
+                  class="close"
                   role="button"
                 >
                   <svg

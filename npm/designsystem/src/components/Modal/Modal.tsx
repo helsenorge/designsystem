@@ -13,7 +13,7 @@ import FocusTrap from '../../hooks/useFocusTrap';
 import { useIsVisible } from '../../hooks/useVisibility';
 import Title from '../Title/Title';
 import uuid from '../../utils/uuid';
-import Lukkekryss from '../Lukkekryss';
+import Close from '../Close';
 
 export enum ModalVariants {
   normal = 'normal',
@@ -166,7 +166,7 @@ const Modal = (props: ModalProps): JSX.Element => {
               {!props.noCloseButton && (
                 <div className={styles.modal__closeWrapper}>
                   <div className={cn(styles.modal__closeWrapper__close)}>
-                    <Lukkekryss onClick={props.onClose} ariaLabel={props.ariaLabelCloseBtn} />
+                    <Close onClick={props.onClose} ariaLabel={props.ariaLabelCloseBtn} />
                   </div>
                 </div>
               )}

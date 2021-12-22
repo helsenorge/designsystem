@@ -2,7 +2,7 @@
 @import '../../scss/_palette.scss';
 @import '../../scss/_breakpoints.scss';
 
-.lukkekryss {
+.close {
   @media (max-width: map-get($grid-breakpoints, sm)) {
     height: 2.375rem;
     width: 2.375rem;

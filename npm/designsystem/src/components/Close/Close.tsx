@@ -5,7 +5,7 @@ import X from '../Icons/X';
 import styles from './styles.module.scss';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 
-export interface LukkekryssProps {
+export interface CloseProps {
   /** Function is called when user clicks the button */
   onClick?: () => void;
   /** Sets the aria-label of the button */
@@ -14,7 +14,7 @@ export interface LukkekryssProps {
   testId?: string;
 }
 
-const Lukkekryss = (props: LukkekryssProps): JSX.Element => {
+const Close = (props: CloseProps): JSX.Element => {
   const breakpoint = useBreakpoint();
 
   const iconSize = breakpoint === Breakpoint.Xs ? 38 : 48;
@@ -22,7 +22,7 @@ const Lukkekryss = (props: LukkekryssProps): JSX.Element => {
   return (
     <button
       data-testid={props.testId}
-      className={styles.lukkekryss}
+      className={styles.close}
       aria-label={props.ariaLabel || 'Lukk'}
       onClick={props.onClick}
       role="button"
@@ -32,4 +32,4 @@ const Lukkekryss = (props: LukkekryssProps): JSX.Element => {
   );
 };
 
-export default Lukkekryss;
+export default Close;

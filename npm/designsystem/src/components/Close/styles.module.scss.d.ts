@@ -1,6 +1,6 @@
 export type Styles = {
-    lukkekryss: string
-}
+  close: string;
+};
 
 export type ClassNames = keyof Styles;
 
