@@ -62,6 +62,10 @@
           "path": "/bibliotek/komponenter/checkbox"
         },
         {
+          "label": "Close",
+          "path": "/bibliotek/komponenter/close"
+        },
+        {
           "label": "ExpanderList",
           "path": "/bibliotek/komponenter/expander-list"
         },
