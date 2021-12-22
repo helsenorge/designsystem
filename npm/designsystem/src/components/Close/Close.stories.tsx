@@ -9,6 +9,4 @@ const stories = storiesOf('Close', module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(withA11y);
 
-stories.add('Default', () => (
-  <Close onClick={action('button-click')} testId={text('testId', '')} ariaLabel={text('aria-label', '')} />
-));
+stories.add('Default', () => <Close onClick={action('button-click')} testId={text('testId', '')} ariaLabel={text('aria-label', '')} />);
