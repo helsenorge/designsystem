@@ -84,7 +84,9 @@ const getIcon = (variant: keyof typeof ModalVariants): JSX.Element | null => {
 };
 
 const Modal = (props: ModalProps): JSX.Element => {
+  const [tabIndex, setTabIndex] = React.useState(0);
   const [uniqueTitleId] = React.useState(uuid());
+  const initFocus = React.useRef<HTMLDivElement>(null);
   const topContent = React.useRef<HTMLDivElement>(null);
   const modalContentRef = React.useRef<HTMLDivElement>(null);
   const topContentVisible = useIsVisible(topContent);
@@ -128,6 +130,7 @@ const Modal = (props: ModalProps): JSX.Element => {
 
   useEffect(() => {
     const overlayElement = overlayRef.current;
+    initFocus.current?.focus();
     disableBodyScroll();
     if (overlayElement && !showActions) {
       overlayElement.addEventListener('keydown', keyListener);
@@ -152,6 +155,7 @@ const Modal = (props: ModalProps): JSX.Element => {
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
           >
+            <div tabIndex={tabIndex} ref={initFocus} onBlur={(): void => setTabIndex(-1)} />
             <div
               className={cn(styles['modal__shadow'], styles['modal__shadow--top'], {
                 [styles['modal__shadow--show']]: !topContentVisible && contentIsScrollable,

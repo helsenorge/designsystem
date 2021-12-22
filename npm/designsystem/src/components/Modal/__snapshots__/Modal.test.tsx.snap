@@ -17,6 +17,9 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
           role="dialog"
         >
           <div
+            tabindex="0"
+          />
+          <div
             class="modal__shadow modal__shadow--top"
           />
           <div
@@ -149,6 +152,9 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
           class="modal modal--warning modal--large"
           role="dialog"
         >
+          <div
+            tabindex="0"
+          />
           <div
             class="modal__shadow modal__shadow--top"
           />
