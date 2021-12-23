@@ -1,0 +1,60 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_palette.scss';
+
+.textarea {
+  width: 100%;
+  line-height: 0;
+
+  &--gutterBottom {
+    margin-bottom: getSpacer(s);
+  }
+
+  &__input {
+    width: 100%;
+    height: 8.125rem;
+    padding: getSpacer(s);
+    resize: none;
+    border: $neutral700 2px solid;
+    outline: none;
+
+    &:hover {
+      background: $neutral50;
+      border-color: $neutral700;
+      box-shadow: 0px 0px 0px 1px $neutral700;
+    }
+    &:focus {
+      background: $white;
+      border-radius: 0;
+      border-color: $neutral900;
+      box-shadow: 0px 0px 0px 2px $neutral900;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background: $neutral50;
+      border-color: $neutral500;
+      color: $neutral500;
+    }
+    &::placeholder {
+      color: $neutral500;
+    }
+
+    &--transparent {
+      background: transparent;
+    }
+    &--onBlueberry{
+      border-color: $blueberry500;
+
+      &:hover{
+        background: $blueberry50;
+        box-shadow: 0px 0px 0px 1px $blueberry500;
+        border-color: $blueberry500;
+      }
+    }
+  }
+
+  &__counter-wrapper {
+    display: flex;
+    justify-content: end;
+  }
+}
