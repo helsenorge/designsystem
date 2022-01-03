@@ -144,4 +144,19 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       expect(mockScrollIntoView).toHaveBeenCalledWith();
     });
   });
+
+  describe('Når testId-prop er satt', (): void => {
+    test('Så kan komponenten finnes ved hjelp av testId', (): void => {
+      render(
+        <ExpanderList testId="bare-tester">
+          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 3">Text 2</ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+    });
+  });
 });

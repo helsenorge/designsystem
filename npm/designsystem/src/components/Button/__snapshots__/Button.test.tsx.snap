@@ -18,6 +18,34 @@ exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
 </div>
 `;
 
+exports[`Gitt at button skal vises Når button rendres kun med ikon Så inneholder knappen bare ikon, og aria-label kan leses 1`] = `
+<div>
+  <button
+    aria-label="Check me"
+    class="button button--fill button--with-icon"
+  >
+    <span
+      class="content-wrapper"
+    >
+      <svg
+        aria-hidden="true"
+        class="hnds-style-icon "
+        fill="white"
+        height="38"
+        role="img"
+        style="min-width: 38px; min-height: 38px;"
+        viewBox="0 0 48 48"
+        width="38"
+      >
+        <path
+          d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+`;
+
 exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikonene 1`] = `
 <div>
   <button

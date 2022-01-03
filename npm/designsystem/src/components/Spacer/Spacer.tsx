@@ -10,10 +10,12 @@ interface SpacerProps {
   size?: SpacerSizes;
   /** Adds custom classes to the element. */
   className?: string;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 const Spacer = React.forwardRef(function SpacerForwardedRef(props: SpacerProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { size = 's', className } = props;
+  const { size = 's', className, testId } = props;
   const spacerClasses = classNames(
     spacerStyles.spacer,
     {
@@ -34,7 +36,7 @@ const Spacer = React.forwardRef(function SpacerForwardedRef(props: SpacerProps, 
     className
   );
 
-  return <span className={spacerClasses} ref={ref}></span>;
+  return <span className={spacerClasses} ref={ref} data-testid={testId}></span>;
 });
 
 export default Spacer;

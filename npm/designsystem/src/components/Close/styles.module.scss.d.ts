@@ -1,6 +1,5 @@
 export type Styles = {
-  'form-group-wrapper--error-sibling': string;
-  validation__errors: string;
+  close: string;
 };
 
 export type ClassNames = keyof Styles;

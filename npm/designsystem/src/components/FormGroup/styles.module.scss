@@ -4,38 +4,9 @@
 @import '../../scss/font-settings.scss';
 
 .form-group-wrapper {
-  padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
-
-  @media (min-width: map-get($grid-breakpoints, md)) {
-    padding: getSpacer(s) getSpacer(m) getSpacer(l);
-  }
-
-  &--bigform {
-    background-color: $neutral50;
-  }
-
-  &--on-blueberry {
-    background-color: $blueberry50;
-  }
-
-  &--on-dark {
-    background-color: $blueberry800;
-  }
-
-  &--invalid {
-    background-color: $cherry50;
-    border-left: 0.25rem solid $cherry500;
-  }
-
   &__title {
-    margin-bottom: getSpacer(l) !important;
-
     &--on-dark {
       color: $white;
-    }
-
-    &--bigform {
-      margin-left: getSpacer(l) !important;
     }
   }
 
@@ -44,10 +15,6 @@
     font-weight: 600;
     color: $cherry500;
     margin-top: 0;
-
-    &--bigform {
-      margin-left: getSpacer(l);
-    }
   }
 }
 
@@ -60,6 +27,21 @@
 }
 
 .form-group {
+  padding: getSpacer(s) 0 getSpacer(m);
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    padding: getSpacer(s) 0 getSpacer(l);
+  }
+
+  &--invalid {
+    margin-left: -(getSpacer(m) + 0.25rem);
+    padding-left: getSpacer(m);
+    background-color: $cherry50;
+    border-left: 0.25rem solid $cherry500;
+  }
+}
+
+.field-set {
   border: none;
   padding: 0;
   margin: 0;
@@ -67,13 +49,10 @@
   &__legend {
     font-size: $font-size-md;
     font-weight: 600;
+    margin-bottom: getSpacer(m);
 
     &--on-dark {
       color: $white;
-    }
-
-    &--bigform {
-      padding: 0 getSpacer(l) getSpacer(l);
     }
   }
 }

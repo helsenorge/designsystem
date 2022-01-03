@@ -13,7 +13,6 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
       >
         <button
           class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
-          data-testid=""
           id="expander-0"
         >
           <span
@@ -46,7 +45,6 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
       >
         <button
           class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
-          data-testid=""
           id="expander-1"
         >
           <span
@@ -79,7 +77,6 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
       >
         <button
           class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
-          data-testid=""
           id="expander-2"
         >
           <span

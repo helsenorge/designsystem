@@ -25,4 +25,13 @@ describe('Gitt at Title skal rendres', (): void => {
       expect(titleElement.tagName).toBe('H2');
     });
   });
+
+  describe('Når testId-prop er satt', (): void => {
+    test('Så kan komponenten finnes ved hjelp av testId', (): void => {
+      render(<Title testId="bare-tester">Title</Title>);
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+    });
+  });
 });

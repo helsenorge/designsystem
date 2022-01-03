@@ -11,6 +11,8 @@
 }
 
 .checkbox-wrapper {
+  margin: getSpacer(s) 0;
+
   &--with-error {
     padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
     background-color: $cherry50;
@@ -24,6 +26,18 @@
   &--with-error#{&}--bigform {
     padding: getSpacer(m) getSpacer(m);
   }
+
+  &--bigform {
+    margin: getSpacer(xs) 0 getSpacer(xs) 0;
+  }
+}
+
+.checkbox-wrapper:first-of-type {
+  margin-top: 0;
+}
+
+.checkbox-wrapper:last-of-type {
+  margin-bottom: 0;
 }
 
 .checkbox-label {
@@ -31,7 +45,6 @@
   align-items: center;
   cursor: pointer;
   font-size: $font-size-sm;
-  margin: getSpacer(s) 0;
 
   @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: $font-size-md;
@@ -43,7 +56,6 @@
 
   &--invalid {
     color: $black;
-    padding: getSpacer(s);
   }
 
   &--disabled {
@@ -52,8 +64,7 @@
   }
 
   &--bigform {
-    margin: getSpacer(2xs) 0 getSpacer(2xs) 0;
-    padding: 1.68rem getSpacer(l);
+    padding: getSpacer(s);
     background-color: $neutral50;
   }
 
@@ -65,14 +76,15 @@
     background-color: $blueberry800;
   }
 
-  &--invalid,
   &--bigform#{&}--invalid {
     background-color: $white;
   }
-}
 
-.checkbox-label:last-of-type {
-  margin-bottom: 0;
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    &--bigform {
+      padding: 1.68rem getSpacer(l);
+    }
+  }
 }
 
 .checkbox {

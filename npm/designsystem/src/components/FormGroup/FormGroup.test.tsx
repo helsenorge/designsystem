@@ -22,7 +22,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       const legend = screen.getByText('Check out these checkboxes!');
       expect(legend).toBeVisible();
-      expect(legend.className).toBe('form-group__legend');
+      expect(legend.className).toBe('field-set__legend');
 
       const wrapper = title.parentElement;
       expect(wrapper).toBeVisible();
@@ -42,7 +42,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       const wrapper = screen.getByText('One amazing title').parentElement;
       expect(wrapper).toBeVisible();
-      expect(wrapper.className).toBe('form-group-wrapper form-group-wrapper--on-blueberry');
+      expect(wrapper.className).toBe('form-group-wrapper');
     });
   });
 
@@ -58,7 +58,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       const wrapper = screen.getByText('One amazing title').parentElement;
       expect(wrapper).toBeVisible();
-      expect(wrapper.className).toBe('form-group-wrapper form-group-wrapper--bigform');
+      expect(wrapper.className).toBe('form-group-wrapper');
     });
   });
 
@@ -91,7 +91,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
       expect(error).toBeVisible();
 
       const formGroup = screen.getByRole('group').parentElement;
-      expect(formGroup.className).toBe('form-group-wrapper form-group-wrapper--invalid');
+      const formGroupWrapper = formGroup.parentElement;
+      expect(formGroup.className).toBe('form-group form-group--invalid');
+      expect(formGroupWrapper.className).toBe('form-group-wrapper form-group-wrapper--invalid');
     });
   });
 });

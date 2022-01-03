@@ -32,10 +32,12 @@ interface SliderProps {
   disabled?: boolean;
   /** Function to be called when the value state has changed. */
   onChange?: (value: number) => void;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 export const Slider = React.forwardRef(function SliderForwardedRef(props: SliderProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { title, labelLeft, labelRight, disabled = false, step = 1, onChange } = props;
+  const { title, labelLeft, labelRight, disabled = false, step = 1, onChange, testId } = props;
   const [value, setValue] = useState(50);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [trackerWidth, setTrackerWidth] = useState(0);
@@ -132,7 +134,7 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   };
 
   return (
-    <div className={SliderStyles.slider}>
+    <div className={SliderStyles.slider} data-testid={testId}>
       {title && (
         <Title htmlMarkup={'h3'} margin={1.5} appearance={'title3'}>
           {title}

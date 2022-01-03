@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Badge from './Badge';
 // import 'jest-styled-components';
 // import {palette} from '../../theme';
@@ -20,3 +20,14 @@ test('displays text', (): void => {
 //   const {container} = render(<Badge color="blood200">{badgeNumber}</Badge>);
 //   expect(container).toMatchSnapshot();
 // });
+
+describe('Gitt at Badge skal vises', (): void => {
+  describe('Når testId-prop er satt', (): void => {
+    test('Så kan komponenten finnes ved hjelp av testId', (): void => {
+      render(<Badge testId="bare-tester">123</Badge>);
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+    });
+  });
+});

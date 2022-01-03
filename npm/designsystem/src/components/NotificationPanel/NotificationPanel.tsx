@@ -37,6 +37,8 @@ interface NotificationPanelProps {
   label?: string;
   /** Close button aria-label */
   ariaLabelCloseBtn?: string;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 export const variantToColorMap = {
@@ -58,7 +60,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
   props: NotificationPanelProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
-  const { children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size, className } = props;
+  const { children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size, className, testId } = props;
   const { hoverRef, isHovered } = useHover<HTMLButtonElement>(undefined, dismissable);
   const closeButtonClasses = classNames(
     NotificationPanelStyles['notification-panel__close-button'],
@@ -101,6 +103,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
   return wrapFluid(
     <div
       ref={ref}
+      data-testid={testId}
       className={cn(
         NotificationPanelStyles['notification-panel'],
         NotificationPanelStyles['notification-panel--' + size],

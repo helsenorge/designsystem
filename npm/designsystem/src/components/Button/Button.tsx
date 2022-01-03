@@ -67,7 +67,9 @@ function useIcons(children: React.ReactNode[]): Array<React.ReactElement<IconPro
   if ((children[children.length - 1] as React.ReactElement<IconProps>)?.props?.svgIcon !== undefined) {
     rightIcon = children.pop() as React.ReactElement<IconProps>;
   }
-  return [leftIcon, rightIcon, children];
+  const restChildren = children.filter(child => child);
+
+  return [leftIcon, rightIcon, restChildren.length > 0 ? restChildren : null];
 }
 
 const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, inverted: boolean, hovered: boolean): string => {
@@ -171,7 +173,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   }
 
   const renderButtonContent = () => {
-    return <span className={contentClasses}>{restChildren}</span>;
+    return restChildren ? <span className={contentClasses}>{restChildren}</span> : null;
   };
 
   const renderbuttonContentWrapper = () => {

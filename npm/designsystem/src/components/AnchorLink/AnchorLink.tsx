@@ -20,16 +20,18 @@ interface AnchorLinkProps {
   className?: string;
   /** Sets the target type of the <a> tag. _blank adds an arrow icon at the end of the link */
   target?: AnchorLinkTargets;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 const AnchorLink = React.forwardRef(function AnchorLinkForwardedRef(props: AnchorLinkProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
-  const { id, href, children, className, target = '_self' } = props;
+  const { id, href, children, className, target = '_self', testId } = props;
   const external = target === '_blank';
   const { hoverRef, isHovered } = useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>, undefined, false);
   const anchorClasses = classNames(AnchorLinkStyles.anchorlink, className ?? '');
 
   return (
-    <a id={id} href={href} className={anchorClasses} target={target} ref={hoverRef}>
+    <a id={id} href={href} className={anchorClasses} target={target} ref={hoverRef} data-testid={testId}>
       {children}
       {external && (
         <Icon

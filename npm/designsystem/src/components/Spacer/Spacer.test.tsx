@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Spacer from './Spacer';
 
 test('displays default spacer', (): void => {
@@ -71,4 +71,15 @@ test('displays 5xl spacer', (): void => {
 test('displays 6xl spacer', (): void => {
   const { container } = render(<Spacer size="6xl" />);
   expect(container.querySelector('span').className).toBe('spacer spacer--6xl');
+});
+
+describe('Gitt at Spacer skal vises', (): void => {
+  describe('Når testId-prop er satt', (): void => {
+    test('Så kan komponenten finnes ved hjelp av testId', (): void => {
+      render(<Spacer testId="bare-tester" />);
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+    });
+  });
 });

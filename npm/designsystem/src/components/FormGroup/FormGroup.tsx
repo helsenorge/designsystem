@@ -12,7 +12,7 @@ export interface FormGroupProps {
   title?: string;
   /** text placed in the legend tag of the fieldset */
   legend?: string;
-  /** Items in the ExpanderList */
+  /** Items in the FormGroup component */
   children?: React.ReactNode;
   /** Adds custom classes to the element. */
   className?: string;
@@ -37,12 +37,10 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   const onDark = mode === 'on-dark';
   const onBlueberry = mode === 'on-blueberry';
   const bigform = variant === 'bigform';
-  const fieldSetClasses = classNames(
+  const formGroupWrapperClasses = classNames(
     formGroupStyles['form-group-wrapper'],
     {
-      [formGroupStyles['form-group-wrapper--on-blueberry']]: onBlueberry,
       [formGroupStyles['form-group-wrapper--on-dark']]: onDark,
-      [formGroupStyles['form-group-wrapper--bigform']]: bigform,
       [formGroupStyles['form-group-wrapper--invalid']]: error,
     },
     className
@@ -51,35 +49,40 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     [formGroupStyles['form-group-wrapper__title--on-dark']]: onDark && !error,
     [formGroupStyles['form-group-wrapper__title--bigform']]: bigform,
   });
+  const formGroupClasses = classNames(formGroupStyles['form-group'], {
+    [formGroupStyles['form-group--invalid']]: error,
+  });
   const errorStyles = classNames(formGroupStyles['form-group-wrapper__errors'], {
     [formGroupStyles['form-group-wrapper__errors--bigform']]: bigform,
   });
-  const legendClasses = classNames(formGroupStyles['form-group__legend'], {
-    [formGroupStyles['form-group__legend--on-dark']]: onDark && !error,
-    [formGroupStyles['form-group__legend--bigform']]: bigform,
+  const legendClasses = classNames(formGroupStyles['field-set__legend'], {
+    [formGroupStyles['field-set__legend--on-dark']]: onDark && !error,
+    [formGroupStyles['field-set__legend--bigform']]: bigform,
   });
 
   return (
-    <div data-testid={props.testId} className={fieldSetClasses}>
+    <div data-testid={props.testId} className={formGroupWrapperClasses}>
       {props.title && (
-        <Title className={titleClasses} htmlMarkup={'h4'} appearance={'title4'}>
+        <Title className={titleClasses} htmlMarkup={'h4'} appearance={'title4'} margin={{ marginTop: 0, marginBottom: 2 }}>
           {props.title}
         </Title>
       )}
-      {error && <p className={errorStyles}>{error}</p>}
-      <fieldset name={props.title} className={formGroupStyles['form-group']}>
-        {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
-        {React.Children.map(props.children, (child: React.ReactNode) => {
-          if ((child as React.ReactElement<CheckboxProps>).type === Checkbox) {
-            return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
-              mode,
-              variant,
-              error: !!error,
-            });
-          }
-          return child;
-        })}
-      </fieldset>
+      <div className={formGroupClasses}>
+        {error && <p className={errorStyles}>{error}</p>}
+        <fieldset name={props.title} className={formGroupStyles['field-set']}>
+          {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
+          {React.Children.map(props.children, (child: React.ReactNode) => {
+            if ((child as React.ReactElement<CheckboxProps>).type === Checkbox) {
+              return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
+                mode,
+                variant,
+                error: !!error,
+              });
+            }
+            return child;
+          })}
+        </fieldset>
+      </div>
     </div>
   );
 });

@@ -456,4 +456,16 @@ describe('Gitt at SliderUtils funksjoner skal kjøres', (): void => {
       global.document['window'] = original;
     });
   });
+
+  describe('Når testId-prop er satt', (): void => {
+    test('Så kan komponenten finnes ved hjelp av testId', (): void => {
+      const title = 'This is a title';
+      const optionLeft = 'left';
+      const optionRight = 'right';
+      render(<Slider title={title} labelLeft={optionLeft} labelRight={optionRight} testId="bare-tester" />);
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+    });
+  });
 });

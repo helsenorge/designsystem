@@ -15,10 +15,12 @@ interface BadgeProps {
   className?: string;
   /** Changes the badge background color. */
   color?: BadgeColors;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 const Badge = React.forwardRef(function BadgeForwardedRef(props: BadgeProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { children, className = '', color = 'black' } = props;
+  const { children, className = '', color = 'black', testId } = props;
   const oversized = children.toString().length > 2;
   const badgeClasses = classNames(
     badgeStyles.badge,
@@ -37,7 +39,7 @@ const Badge = React.forwardRef(function BadgeForwardedRef(props: BadgeProps, ref
   );
 
   return (
-    <span className={badgeClasses} ref={ref}>
+    <span className={badgeClasses} ref={ref} data-testid={testId}>
       {children}
     </span>
   );
