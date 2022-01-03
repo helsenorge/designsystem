@@ -43,4 +43,13 @@ describe('Gitt at Avatar skal vises', (): void => {
       expect(container).toMatchSnapshot();
     });
   });
+
+  describe('Når testId-prop er satt', (): void => {
+    test('Så kan komponenten finnes ved hjelp av testId', (): void => {
+      render(<Avatar testId="bare-tester">Barbara Streisand</Avatar>);
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+    });
+  });
 });

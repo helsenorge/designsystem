@@ -18,6 +18,8 @@ interface TitleProps {
   htmlMarkup?: TitleTags;
   /** Changes the appearance of the title. */
   appearance?: TitleAppearances;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 export interface TitleMargin {
@@ -30,7 +32,7 @@ export const instanceOfTitleMargin = (margin: any): margin is TitleMargin => {
 };
 
 const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
-  const { id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0 } = props;
+  const { id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0, testId } = props;
   const titleClasses = classNames(
     titleStyles.title,
     {
@@ -50,7 +52,7 @@ const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref
     : { marginTop: `${margin}rem`, marginBottom: `${margin}rem` };
 
   return (
-    <CustomTag id={id} className={titleClasses} style={inlineStyle} ref={ref}>
+    <CustomTag id={id} className={titleClasses} style={inlineStyle} ref={ref} data-testid={testId}>
       {children}
     </CustomTag>
   );

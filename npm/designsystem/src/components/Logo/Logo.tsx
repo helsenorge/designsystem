@@ -13,16 +13,20 @@ interface LogoProps {
   color?: LogoColor;
   /** Changes to the byline variant of the logo. */
   byline?: boolean;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 const Original = ({
   size = 300,
   color = 'black',
   className = '',
+  testId,
 }: {
   size?: number;
   color?: LogoColor;
   className?: string;
+  testId?: string;
 }): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -31,6 +35,7 @@ const Original = ({
     aria-labelledby="logo-title"
     viewBox="0 0 502 220"
     className={className}
+    data-testid={testId}
   >
     <title id={'logo-title'}>Helsenorge</title>
     <g fill={getColor(color, 500)}>
@@ -39,8 +44,26 @@ const Original = ({
   </svg>
 );
 
-const Byline = ({ size = 300, color = 'black', className = '' }: { size?: number; color?: LogoColor; className?: string }): JSX.Element => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} role={'img'} aria-labelledby="logo-title" viewBox="0 0 87 12" className={className}>
+const Byline = ({
+  size = 300,
+  color = 'black',
+  className = '',
+  testId,
+}: {
+  size?: number;
+  color?: LogoColor;
+  className?: string;
+  testId?: string;
+}): JSX.Element => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    role={'img'}
+    aria-labelledby="logo-title"
+    viewBox="0 0 87 12"
+    className={className}
+    data-testid={testId}
+  >
     <title id={'logo-title'}>Helsenorge</title>
     <g fill={getColor(color, 500)}>
       <path d="M5 .8v2.8H2.6V.8H1V8h1.6V5.1H5V8h1.6V.8zM20.9 6.6V.8h-1.6V8h4.5V6.6zM57.9 1.4c-1.7 0-2.8 1.4-2.8 3.4s1.2 3.4 2.8 3.4 2.8-1.4 2.8-3.4-1.1-3.4-2.8-3.4zm2 3.4c0 1.2-.5 2.7-2 2.7-1.4 0-2-1.4-2-2.7s.5-2.7 2-2.7 2 1.5 2 2.7zM86 4.7c0-2-1.1-3.3-2.8-3.3-1.7 0-2.8 1.4-2.8 3.4s1.2 3.4 2.9 3.4c1.2 0 2.2-.6 2.5-1.7l.1-.2H85v.1c-.3.6-.9 1-1.7 1-1.3 0-1.9-1.2-2-2.3H86v-.4zm-.9-.3h-3.9c.1-1.1.7-2.3 1.9-2.3 1.5 0 2 1.3 2 2.3zM49.2 1.4c-1.1 0-1.7.7-2 1.2v-1h-.8V8h.8V4.8c0-.9.5-2.6 1.9-2.6s1.6 1.2 1.6 2.6V8h.8V4.7c0-1.6-.2-3.3-2.3-3.3zM12.1 6.6V5h2.4V3.7h-2.4V2.2h3.2V.8h-4.8V8h4.9V6.6zM38.3 6.6V5h2.3V3.7h-2.3V2.2h3.2V.8h-4.8V8h4.9V6.6zM65.5 3.3V1.6h-.8V8h.8V4.1l2.8-2v-.9zM77.6 1.2l-1.5 1.1c-.5-.6-1.1-.9-1.9-.9-1.4 0-2.4 1-2.4 2.4 0 1.1.6 2 1.6 2.3l-1.6 1.8c-.4.5-.6.9-.6 1.3 0 1.3 1.1 2.1 2.9 2.1 1.7 0 2.9-.9 2.9-2.1 0-1.3-1.1-2.1-2.9-2.1h-.6l.8-.9c1.3-.1 2.3-1.1 2.3-2.4 0-.3 0-.6-.1-.8l1.2-.8v-1zM74 7.8c1.2 0 2.1.5 2.1 1.4 0 .8-.8 1.4-2.1 1.4-1.2 0-2-.5-2-1.4 0-.8.8-1.4 2-1.4zm.1-2.4c-.9 0-1.6-.7-1.6-1.7s.7-1.6 1.6-1.6c.9 0 1.6.7 1.6 1.6 0 1-.7 1.7-1.6 1.7zM30.4 3.7c-.7-.2-1.4-.5-1.4-1s.4-.7 1-.7.9.5.9.9V3h1.7v-.1c0-1.3-1.1-2.2-2.6-2.2-1.6 0-2.6.8-2.6 2.1 0 1.5 1.3 1.9 2.4 2.3.7.2 1.4.4 1.4.9s-.3.8-1.1.8c-.7 0-1.1-.4-1.1-1v-.1h-1.7v.1c0 1.5 1.1 2.4 2.8 2.4 1.7 0 2.7-.8 2.7-2.2-.1-1.5-1.4-2-2.4-2.3z" />

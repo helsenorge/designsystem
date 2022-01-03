@@ -43,4 +43,13 @@ describe('Gitt at NotificationPanel skal vises', () => {
       expect(mockOnClick).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe('Når testId-prop er satt', (): void => {
+    test('Så kan komponenten finnes ved hjelp av testId', (): void => {
+      render(<NotificationPanel testId="bare-tester">Some text here for testing.</NotificationPanel>);
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+    });
+  });
 });

@@ -22,6 +22,8 @@ interface TileProps extends HTMLAnchorProps {
   fixed?: boolean;
   /** Called when the tile is clicked on. */
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 interface TileTitleProps {
@@ -56,7 +58,7 @@ const Title = React.forwardRef(function TitleForwardedRef(props: TileTitleProps,
 });
 
 export const Tile = React.forwardRef(function TileForwardedRef(props: TileProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
-  const { icon, title, className = '', description, fixed = false, highlighted = false, ...restProps } = props;
+  const { icon, title, className = '', description, fixed = false, highlighted = false, testId, ...restProps } = props;
   const [isHovered, setIsHovered] = useState(false);
   const compact = !description;
   const tileClasses = classNames(
@@ -80,6 +82,7 @@ export const Tile = React.forwardRef(function TileForwardedRef(props: TileProps,
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
+      data-testid={testId}
       {...restProps}
     >
       <div className={tileTitleWrapperClasses}>

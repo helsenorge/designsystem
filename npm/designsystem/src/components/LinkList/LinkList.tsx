@@ -32,6 +32,8 @@ interface LinkListProps {
   topBorder?: boolean;
   /** Changes size of the LinkList. */
   size?: LinkListSize;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
@@ -42,17 +44,19 @@ export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   className?: string;
   icon?: React.ReactElement;
   href?: string;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLIElement>) => {
-  const { children, className = '', color = 'neutral', icon, size = 'medium', chevron = false, ...restProps } = props;
+  const { children, className = '', color = 'neutral', icon, size = 'medium', chevron = false, testId, ...restProps } = props;
   const { hoverRef, isHovered } = useHover<HTMLAnchorElement>();
   const breakpoint = useBreakpoint();
 
   const hasIcon = size !== 'small' && !!(chevron || icon);
 
   return (
-    <li ref={ref}>
+    <li ref={ref} data-testid={testId}>
       <a
         className={cn(
           LinkListStyles['link-list__anchor'],
@@ -87,7 +91,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
 });
 
 export const LinkList = React.forwardRef(function LinkListForwardedRef(props: LinkListProps, ref: React.Ref<HTMLUListElement>) {
-  const { children, className = '', chevron = false, size = 'medium', color, topBorder = true, bottomBorder = true } = props;
+  const { children, className = '', chevron = false, size = 'medium', color, topBorder = true, bottomBorder = true, testId } = props;
   return (
     <ul
       ref={ref}
@@ -99,6 +103,7 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
         },
         className ? className : ''
       )}
+      data-testid={testId}
     >
       {React.Children.map(children, (child: React.ReactNode | React.ReactElement<LinkProps>) => {
         if ((child as React.ReactElement<LinkProps>).type === Link) {

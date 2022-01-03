@@ -42,6 +42,8 @@ interface ExpanderListProps {
   isOpen?: boolean;
   /** Toggles the top border of the first child element. */
   topBorder?: boolean;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -75,7 +77,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     large = false,
     title,
     isExpanded = false,
-    testId = '',
+    testId,
     handleExpanderClick,
   } = props;
   const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
@@ -121,6 +123,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     accordion = false,
     topBorder = true,
     bottomBorder = true,
+    testId,
   } = props;
   const [activeExpander, setActiveExpander] = useState({});
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
@@ -154,7 +157,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   }, [isOpen]);
 
   return (
-    <ul className={expanderListClasses} ref={ref}>
+    <ul className={expanderListClasses} ref={ref} data-testid={testId}>
       {React.Children.map(children, (child: React.ReactNode, index: number) => {
         if ((child as React.ReactElement<ExpanderProps>).type === Expander) {
           const isExpanded = activeExpander[`expander-${index}`];

@@ -40,4 +40,17 @@ describe('Gitt at AnchorLink skal rendres', (): void => {
       expect(pathElement).toHaveAttribute('d', 'M18.76 14.426v1.768h11.83L14.719 32.065l1.251 1.25 15.801-15.801v11.691h1.768V14.426z');
     });
   });
+
+  describe('Når testId-prop er satt', (): void => {
+    test('Så kan komponenten finnes ved hjelp av testId', (): void => {
+      render(
+        <AnchorLink testId="bare-tester" href="/">
+          AnchorLink
+        </AnchorLink>
+      );
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+    });
+  });
 });

@@ -16,15 +16,18 @@ interface AvatarProps {
   variant?: 'normal' | 'black';
   /** Adds custom classes to the element. */
   className?: string;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 const Avatar = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { children, className = '', selected = false, variant = 'normal' } = props;
+  const { children, className = '', selected = false, variant = 'normal', testId } = props;
   const truncatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
   return (
     <span
       className={cn(styles.avatar, selected && styles['avatar--selected'], variant === 'black' && styles['avatar--black'], className)}
       ref={ref}
+      data-testid={testId}
     >
       {selected ? (
         <Icon svgIcon={Check} size={IconSize.Small} color={variant === 'black' ? palette.neutral900 : palette.blueberry600} />

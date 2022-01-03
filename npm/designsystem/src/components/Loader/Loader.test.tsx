@@ -53,4 +53,13 @@ describe('Gitt at en loader skal vises ', (): void => {
       expect(container.firstChild.firstChild).toHaveAttribute('aria-labelledby', 'aria-test');
     });
   });
+
+  describe('Når testId-prop er satt', (): void => {
+    test('Så kan komponenten finnes ved hjelp av testId', (): void => {
+      render(<Loader testId="bare-tester" />);
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+    });
+  });
 });
