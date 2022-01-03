@@ -177,27 +177,6 @@
     white-space: pre-line;
   }
 
-  &__lukkekryss {
-    height: 42px;
-    width: 42px;
-    padding: 0;
-    border: 0;
-    background-color: transparent;
-    cursor: pointer;
-
-    &:hover,
-    &:active {
-      background-color: rgba(88, 171, 187, 0.1);
-    }
-    &:focus {
-      box-shadow: 0px 0px 0px 2px $black;
-      background-color: rgba(88, 171, 187, 0.1);
-      border-radius: 0;
-      border: 0;
-      outline: none;
-    }
-  }
-
   &__call-to-action {
     display: flex;
 

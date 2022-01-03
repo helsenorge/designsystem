@@ -16,7 +16,6 @@ export type Styles = {
   'modal__contentWrapper--image': string;
   modal__description: string;
   modal__iconWrapper: string;
-  modal__lukkekryss: string;
   modal__shadow: string;
   'modal__shadow--bottom': string;
   'modal__shadow--show': string;

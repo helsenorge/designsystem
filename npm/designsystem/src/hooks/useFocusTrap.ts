@@ -4,8 +4,6 @@ import { getDocumentActiveElement } from './focus-utils';
 export default function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
   const elRef = useRef<HTMLDivElement>(null);
 
-  elRef.current?.focus();
-
   function handleFocus(e: KeyboardEvent): void {
     const node = elRef.current;
     const isTabPressed = e.key === 'Tab';
@@ -16,9 +14,7 @@ export default function useFocusTrap(): React.MutableRefObject<HTMLDivElement | 
 
     const activeElement = getDocumentActiveElement(node);
 
-    const focusElements = node.querySelectorAll(
-        'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-      ),
+    const focusElements = node?.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'),
       firstFocusableEl = (focusElements[0] as unknown) as HTMLElement,
       lastFocusableEl =
         focusElements.length === 1 ? firstFocusableEl : ((focusElements[focusElements.length - 1] as unknown) as HTMLElement);
