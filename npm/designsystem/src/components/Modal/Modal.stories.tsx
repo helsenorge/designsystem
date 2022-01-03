@@ -7,6 +7,8 @@ import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
 import { ModalVariants } from './Modal';
 import Button from '../Button';
 import Slider from '../Slider';
+import Icon from '../Icons';
+import Envelope from '../Icons/Envelope';
 
 const stories = storiesOf('Modal', module);
 stories.addDecorator(withKnobs);
@@ -17,6 +19,24 @@ const onSuccess = (): void => alert('Success');
 
 stories.add('Default', () => (
   <Modal
+    variant={select(
+      'variant',
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+      ModalVariants.normal
+    )}
+    size={select('size', [ModalSize.large, ModalSize.medium], ModalSize.large)}
+    title={text('title', 'Er du sikker på at du vil?')}
+    description={text('description', 'For mye H P Lovecraft til å få plass i denne boksen: The most merciful thing in the world, I think.')}
+    primaryButtonText={text('primaryButtonText', 'OK')}
+    secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
+    onClose={onClose}
+    onSuccess={onSuccess}
+  />
+));
+
+stories.add('Modal with icon', () => (
+  <Modal
+    icon={<Icon svgIcon={Envelope} />}
     variant={select(
       'variant',
       [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],

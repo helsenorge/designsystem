@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import { palette } from '../../theme/palette';
 import Button from '../Button';
-import Icon from '../Icons';
+import Icon, { IconSize } from '../Icons';
 import X from '../Icons/X';
 
 import styles from './styles.module.scss';
@@ -38,6 +38,8 @@ export interface ModalProps {
   variant?: keyof typeof ModalVariants;
   /** Change width of the modal (default: large) */
   size?: keyof typeof ModalSize;
+  /** Icon displayed in title */
+  icon?: React.ReactElement;
   /** Hides the close button */
   noCloseButton?: boolean;
   /** Sets the data-testid attribute. */
@@ -70,17 +72,30 @@ const defaultProps = {
   size: ModalSize.large,
 };
 
-const getIcon = (variant: keyof typeof ModalVariants): JSX.Element | null => {
-  let icon;
-
+const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => {
   if (variant === ModalVariants.error) {
-    icon = <Icon svgIcon={AlertSignFill} color={palette.cherry500} hoverColor={palette.cherry500} />;
+    return <Icon size={IconSize.Small} svgIcon={AlertSignFill} color={palette.cherry500} hoverColor={palette.cherry500} />;
   } else if (variant === ModalVariants.warning) {
-    icon = <Icon svgIcon={AlertSignStroke} color={palette.black} hoverColor={palette.black} />;
-  } else {
-    return null;
+    return <Icon size={IconSize.Small} svgIcon={AlertSignStroke} color={palette.black} hoverColor={palette.black} />;
   }
-  return <div className={styles.modal__iconWrapper}>{icon}</div>;
+  return null;
+};
+
+const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): JSX.Element | null => {
+  const variantIcon = getVariantIcon(variant);
+  if (variantIcon) {
+    return <div className={styles.modal__iconWrapper}>{variantIcon}</div>;
+  }
+  if (icon) {
+    return (
+      <div className={styles.modal__iconWrapper}>
+        {React.cloneElement(icon, {
+          size: IconSize.Small,
+        })}
+      </div>
+    );
+  }
+  return null;
 };
 
 const Modal = (props: ModalProps): JSX.Element => {
@@ -181,7 +196,7 @@ const Modal = (props: ModalProps): JSX.Element => {
               >
                 <div ref={topContent} />
                 <div className={styles.modal__contentWrapper__title}>
-                  {props.variant && getIcon(props.variant)}
+                  {getIcon(props.variant, props.icon)}
                   <div className={props.variant === ModalVariants.error ? styles['modal__title--error'] : ''}>
                     <Title id={titleId} htmlMarkup="h3" appearance="title3">
                       {props.title}
