@@ -20,10 +20,10 @@ stories.add('Default', () => (
       label={text('Label', 'Det har skjedd noe galt. Prøv igjen senere.')}
       variant={select('Variant', ['info', 'warn', 'alert', 'crisis'], 'alert')}
     >
-      All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was
-      with Lee Harvey Oswald prior to Oswald's being, you know, shot.{' '}
-      <a href="/test" target="_blank" ref="noopener noreferrer">
-        Les mer
+      {`All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was
+      with Lee Harvey Oswald prior to Oswald's being, you know, shot. `}
+      <a href="/test" target="_blank" rel="noopener noreferrer">
+        {'Les mer'}
       </a>
     </NotificationPanel>
   </div>
@@ -54,9 +54,9 @@ stories.add('All variants', () => (
           label={text('Label', '')}
         >
           <p>
-            På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
-            periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.{' '}
-            <a href="/">Les mer om dine rettigheter her.</a>
+            {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
+            periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.`}
+            <a href="/">{'Les mer om dine rettigheter her.'}</a>
           </p>
         </NotificationPanel>
       </div>
@@ -71,10 +71,10 @@ stories.add('All variants', () => (
           label={text('Label', '')}
         >
           <p>
-            På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
-            periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.{' '}
+            {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
+            periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
             <a href="/" target="_blank" rel="noopener noreferrer">
-              Les mer om dine rettigheter her (external).
+              {'Les mer om dine rettigheter her (external).'}
             </a>
           </p>
         </NotificationPanel>
@@ -90,9 +90,9 @@ stories.add('All variants', () => (
           label={text('Label', '')}
         >
           <p>
-            På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
-            periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.{' '}
-            <a href="/">Les mer om dine rettigheter her.</a>
+            {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
+            periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
+            <a href="/">{'Les mer om dine rettigheter her.'}</a>
           </p>
         </NotificationPanel>
       </div>
@@ -107,10 +107,10 @@ stories.add('All variants', () => (
           label={text('Label', '')}
         >
           <p>
-            På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
-            periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.{' '}
+            {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
+            periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
             <a href="/" target="_blank" rel="noopener noreferrer">
-              Les mer om dine rettigheter her.
+              {'Les mer om dine rettigheter her.'}
             </a>
           </p>
         </NotificationPanel>
