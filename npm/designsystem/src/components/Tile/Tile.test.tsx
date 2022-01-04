@@ -27,4 +27,23 @@ describe('Gitt at Tile skal vises', (): void => {
       expect(component).toBeVisible();
     });
   });
+
+  describe('Når target=_blank', (): void => {
+    test('Skal Tile ha riktig rel-attributt', (): void => {
+      render(
+        <Tile
+          icon={<Icon size={64} svgIcon={AlarmClock} />}
+          title={<Tile.Title>Title</Tile.Title>}
+          description="Description"
+          target="_blank"
+          testId="tester-rel"
+        />
+      );
+
+      const component = screen.getByTestId('tester-rel');
+      expect(component).toBeVisible();
+      expect(component).toHaveAttribute('target', '_blank');
+      expect(component).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+  });
 });

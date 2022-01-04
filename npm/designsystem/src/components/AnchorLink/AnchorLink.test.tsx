@@ -30,6 +30,17 @@ describe('Gitt at AnchorLink skal rendres', (): void => {
       expect(container).toMatchSnapshot();
     });
 
+    test('Så har AnchorLink riktig rel-attributt', (): void => {
+      render(
+        <AnchorLink testId="target-test" target={'_blank'}>
+          AnchorLink external
+        </AnchorLink>
+      );
+      const component = screen.getByTestId('target-test');
+      expect(component).toBeVisible();
+      expect(component).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+
     test('Så har AnchorLink ArrowUpRight svg', (): void => {
       render(<AnchorLink target={'_blank'}>AnchorLink external</AnchorLink>);
 

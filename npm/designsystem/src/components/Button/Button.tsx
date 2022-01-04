@@ -228,6 +228,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           className={buttonClasses}
           href={href}
           target={target}
+          rel={target === '_blank' ? 'noopener noreferrer' : props.rel}
           ref={hoverRef as React.ForwardedRef<HTMLAnchorElement>}
           {...restProps}
         >

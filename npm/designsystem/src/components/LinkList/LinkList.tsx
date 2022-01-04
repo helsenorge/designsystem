@@ -11,6 +11,8 @@ import LinkListStyles from './styles.module.scss';
 
 export type LinkListSize = 'small' | 'medium' | 'large';
 
+export type LinkAnchorTargets = '_self' | '_blank' | '_parent';
+
 export type LinkListColors = PaletteNames;
 export type LinkType = React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLLIElement>>;
 export interface CompoundComponent extends React.ForwardRefExoticComponent<LinkListProps & React.RefAttributes<HTMLUListElement>> {
@@ -44,12 +46,13 @@ export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   className?: string;
   icon?: React.ReactElement;
   href?: string;
+  target?: LinkAnchorTargets;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLIElement>) => {
-  const { children, className = '', color = 'neutral', icon, size = 'medium', chevron = false, testId, ...restProps } = props;
+  const { children, className = '', color = 'neutral', icon, size = 'medium', chevron = false, testId, target, ...restProps } = props;
   const { hoverRef, isHovered } = useHover<HTMLAnchorElement>();
   const breakpoint = useBreakpoint();
 
@@ -69,6 +72,8 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
           className
         )}
         ref={hoverRef}
+        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+        target={target}
         {...restProps}
       >
         {hasIcon && icon && (

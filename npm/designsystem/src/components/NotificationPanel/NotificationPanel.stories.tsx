@@ -22,7 +22,7 @@ stories.add('Default', () => (
     >
       All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was
       with Lee Harvey Oswald prior to Oswald's being, you know, shot.{' '}
-      <a href="/test" target="_blank">
+      <a href="/test" target="_blank" ref="noopener noreferrer">
         Les mer
       </a>
     </NotificationPanel>
@@ -73,7 +73,7 @@ stories.add('All variants', () => (
           <p>
             På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
             periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.{' '}
-            <a href="/" target="_blank">
+            <a href="/" target="_blank" rel="noopener noreferrer">
               Les mer om dine rettigheter her (external).
             </a>
           </p>
@@ -109,7 +109,7 @@ stories.add('All variants', () => (
           <p>
             På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
             periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.{' '}
-            <a href="/" target="_blank">
+            <a href="/" target="_blank" rel="noopener noreferrer">
               Les mer om dine rettigheter her.
             </a>
           </p>
