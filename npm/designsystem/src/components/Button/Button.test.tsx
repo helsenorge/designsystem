@@ -221,4 +221,20 @@ describe('Gitt at button skal vises', (): void => {
       expect(testFill).toHaveAttribute('aria-expanded', 'true');
     });
   });
+  describe('Når button rendres som anchor med target=_blank', (): void => {
+    test('Så skal den ha riktig rel-attributt', (): void => {
+      render(
+        <div>
+          <Button testId={'tester-rel'} htmlMarkup="a" target="_blank">
+            Button
+          </Button>
+        </div>
+      );
+
+      const testFill = screen.getByTestId('tester-rel');
+
+      expect(testFill).toHaveAttribute('rel', 'noopener noreferrer');
+      expect(testFill).toHaveAttribute('target', '_blank');
+    });
+  });
 });

@@ -31,7 +31,15 @@ const AnchorLink = React.forwardRef(function AnchorLinkForwardedRef(props: Ancho
   const anchorClasses = classNames(AnchorLinkStyles.anchorlink, className ?? '');
 
   return (
-    <a id={id} href={href} className={anchorClasses} target={target} ref={hoverRef} data-testid={testId}>
+    <a
+      id={id}
+      href={href}
+      className={anchorClasses}
+      target={target}
+      rel={external ? 'noopener noreferrer' : undefined}
+      ref={hoverRef}
+      data-testid={testId}
+    >
       {children}
       {external && (
         <Icon

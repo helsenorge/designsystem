@@ -16,6 +16,7 @@ exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises som exter
 <div>
   <a
     class="anchorlink"
+    rel="noopener noreferrer"
     target="_blank"
   >
     AnchorLink external

@@ -30,4 +30,23 @@ describe('Gitt at LinkList skal vises', (): void => {
       expect(component).toBeVisible();
     });
   });
+  describe('Når target=_blank', (): void => {
+    test('Så skal lenker ha riktig rel-attributt', (): void => {
+      render(
+        <LinkList>
+          <LinkList.Link testId="tester-rel" target="_blank">
+            Ekstern lenke
+          </LinkList.Link>
+          <LinkList.Link>Link 2</LinkList.Link>
+          <LinkList.Link>Link 3</LinkList.Link>
+        </LinkList>
+      );
+
+      const component = screen.getByTestId('tester-rel');
+      const anchor = component.firstChild;
+      expect(component).toBeVisible();
+      expect(anchor).toHaveAttribute('target', '_blank');
+      expect(anchor).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+  });
 });

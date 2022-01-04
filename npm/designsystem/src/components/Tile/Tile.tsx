@@ -83,6 +83,7 @@ export const Tile = React.forwardRef(function TileForwardedRef(props: TileProps,
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
       data-testid={testId}
+      rel={props.target === '_blank' ? 'noopener noreferrer' : props.rel}
       {...restProps}
     >
       <div className={tileTitleWrapperClasses}>
