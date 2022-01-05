@@ -63,6 +63,7 @@ export enum ModeVariant {
   onWhite = 'onWhite',
   onGrey = 'onGrey',
   onBlueberry = 'onBlueberry',
-  onDark = 'onDark'
+  onDark = 'onDark',
+  onError = 'onError'
 }
 
