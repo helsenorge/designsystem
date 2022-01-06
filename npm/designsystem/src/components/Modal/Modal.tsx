@@ -14,11 +14,13 @@ import { useIsVisible } from '../../hooks/useVisibility';
 import Title from '../Title/Title';
 import uuid from '../../utils/uuid';
 import Close from '../Close';
+import CheckOutline from '../Icons/CheckOutline';
 
 export enum ModalVariants {
   normal = 'normal',
   warning = 'warning',
   error = 'error',
+  success = 'success',
   image = 'image',
 }
 
@@ -56,6 +58,8 @@ export interface ModalProps {
   ariaLabelCloseBtn?: string;
   /** Alternative component to modal */
   children?: React.ReactNode;
+  /** Component shown after title */
+  afterTitleChildren?: React.ReactNode;
   /** Adds custom classes to the element. */
   className?: string;
   /** Function is called when user clicks primary button */
@@ -74,9 +78,11 @@ const defaultProps = {
 
 const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => {
   if (variant === ModalVariants.error) {
-    return <Icon size={IconSize.Small} svgIcon={AlertSignFill} color={palette.cherry500} hoverColor={palette.cherry500} />;
+    return <Icon size={IconSize.Small} svgIcon={AlertSignFill} color={palette.cherry500} />;
   } else if (variant === ModalVariants.warning) {
-    return <Icon size={IconSize.Small} svgIcon={AlertSignStroke} color={palette.black} hoverColor={palette.black} />;
+    return <Icon size={IconSize.Small} svgIcon={AlertSignStroke} color={palette.black} />;
+  } else if (variant === ModalVariants.success) {
+    return <Icon size={IconSize.Small} svgIcon={CheckOutline} color={palette.kiwi900} />;
   }
   return null;
 };
@@ -160,6 +166,11 @@ const Modal = (props: ModalProps): JSX.Element => {
     };
   }, []);
 
+  const titleClasses = cn({
+    [styles['modal__title--error']]: props.variant === ModalVariants.error,
+    [styles['modal__title--success']]: props.variant === ModalVariants.success,
+  });
+
   return (
     <div data-testid="dialog-container">
       <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId}>
@@ -197,11 +208,10 @@ const Modal = (props: ModalProps): JSX.Element => {
                 <div ref={topContent} />
                 <div className={styles.modal__contentWrapper__title}>
                   {getIcon(props.variant, props.icon)}
-                  <div className={props.variant === ModalVariants.error ? styles['modal__title--error'] : ''}>
-                    <Title id={titleId} htmlMarkup="h3" appearance="title3">
-                      {props.title}
-                    </Title>
-                  </div>
+                  <Title id={titleId} htmlMarkup="h3" appearance="title3" className={titleClasses}>
+                    {props.title}
+                  </Title>
+                  {props.afterTitleChildren && <div className={styles['modal__afterTitleChildren']}>{props.afterTitleChildren}</div>}
                 </div>
                 {imageView && (
                   <div>

@@ -21,7 +21,7 @@ stories.add('Default', () => (
   <Modal
     variant={select(
       'variant',
-      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
       ModalVariants.normal
     )}
     size={select('size', [ModalSize.large, ModalSize.medium], ModalSize.large)}
@@ -39,7 +39,7 @@ stories.add('Modal with icon', () => (
     icon={<Icon svgIcon={Envelope} />}
     variant={select(
       'variant',
-      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
       ModalVariants.normal
     )}
     size={select('size', [ModalSize.large, ModalSize.medium], ModalSize.large)}
@@ -52,11 +52,30 @@ stories.add('Modal with icon', () => (
   />
 ));
 
+stories.add('Modal with children after title', () => (
+  <Modal
+    icon={<Icon svgIcon={Envelope} />}
+    variant={select(
+      'variant',
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
+      ModalVariants.normal
+    )}
+    size={select('size', [ModalSize.large, ModalSize.medium], ModalSize.large)}
+    title={text('title', 'Er du sikker på at du vil?')}
+    description={text('description', 'For mye H P Lovecraft til å få plass i denne boksen: The most merciful thing in the world, I think.')}
+    primaryButtonText={text('primaryButtonText', 'OK')}
+    secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
+    afterTitleChildren={<Icon svgIcon={Envelope} size={48} />}
+    onClose={onClose}
+    onSuccess={onSuccess}
+  />
+));
+
 stories.add('Scroll', () => (
   <Modal
     variant={select(
       'variant',
-      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
       ModalVariants.normal
     )}
     size={select('size', [ModalSize.large, ModalSize.medium], ModalSize.large)}
@@ -85,7 +104,7 @@ stories.add('With horizontal image (4:3)', () => (
   <Modal
     variant={select(
       'variant',
-      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
       ModalVariants.image
     )}
     title={text('title', '')}
@@ -100,7 +119,7 @@ stories.add('With horizontal image (16:9)', () => (
   <Modal
     variant={select(
       'variant',
-      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
       ModalVariants.image
     )}
     title={text('title', '')}
@@ -115,7 +134,7 @@ stories.add('With vertical image', () => (
   <Modal
     variant={select(
       'variant',
-      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+      [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
       ModalVariants.image
     )}
     title={text('title', '')}
@@ -147,7 +166,7 @@ stories.add('Modal with state example', () => {
       buttonText="Open modal"
       variant={select(
         'variant',
-        [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+        [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
         ModalVariants.normal
       )}
       title={text('title', 'Er du sikker på at du vil?')}
@@ -165,7 +184,7 @@ stories.add('Modal with only title', () => {
       buttonText="Open modal"
       variant={select(
         'variant',
-        [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+        [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
         ModalVariants.normal
       )}
       title={text('title', 'Er du sikker på at du vil?')}
@@ -182,7 +201,7 @@ stories.add('Modal in bottom of page', () => {
         buttonText="Open modal"
         variant={select(
           'variant',
-          [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+          [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
           ModalVariants.normal
         )}
         title={text('title', 'Er du sikker på at du vil?')}
@@ -211,7 +230,7 @@ stories.add('Modal with custom content', () => {
         <Modal
           variant={select(
             'variant',
-            [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.image],
+            [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
             ModalVariants.normal
           )}
           title={text('title', 'Hvor mange burgere vil du ha?')}
