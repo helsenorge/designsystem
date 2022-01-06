@@ -2,16 +2,14 @@ import React from 'react';
 import cn from 'classnames';
 
 import { palette } from '../../theme/palette';
-import Icon, { IconSize } from '../Icons';
-import { useHover } from '../..';
+import Icon from '../Icons';
 
 import InfoSignStroke from '../Icons/InfoSignStroke';
 import AlertSignStroke from '../Icons/AlertSignStroke';
 import AlertSignFill from '../Icons/AlertSignFill';
-import X from '../Icons/X';
 
 import NotificationPanelStyles from './styles.module.scss';
-import classNames from 'classnames';
+import Close from '../Close';
 
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'crisis';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
@@ -61,11 +59,6 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
   const { children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size, className, testId } = props;
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement>(undefined, dismissable);
-  const closeButtonClasses = classNames(
-    NotificationPanelStyles['notification-panel__close-button'],
-    variant === 'crisis' ? NotificationPanelStyles['notification-panel__close-button--crisis'] : ''
-  );
 
   function wrapFluid(panel: React.ReactElement): React.ReactElement {
     if (fluid) {
@@ -84,7 +77,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
     return panel;
   }
 
-  const getStringChildren = () => {
+  const getStringChildren = (): string => {
     if (children) {
       let textChildren = '';
 
@@ -132,15 +125,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
       </section>
       {dismissable ? (
         <span className={NotificationPanelStyles['notification-panel__action-column']}>
-          <button className={closeButtonClasses} onClick={onClick} ref={hoverRef} aria-label={props.ariaLabelCloseBtn ?? 'Lukk'}>
-            <Icon
-              svgIcon={X}
-              isHovered={isHovered}
-              size={IconSize.XSmall}
-              color={variant === 'crisis' ? palette.white : palette.blueberry500}
-              hoverColor={variant === 'crisis' ? palette.white : palette.blueberry700}
-            />
-          </button>
+          <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} />
         </span>
       ) : null}
     </div>
