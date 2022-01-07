@@ -5,6 +5,7 @@ export type Styles = {
     'textarea__input': string;
     'textarea__counter-wrapper': string;
     'textarea__counter-wrapper--onDark': string;
+    'textarea__error-text': string;
   };
   
   export type ClassNames = keyof Styles;

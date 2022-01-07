@@ -39,7 +39,7 @@ stories.add('All props', () => {
       <Textarea
         max={150}
         maxText={'chars'}
-        defaultValue={`It is not the fart that kills you, it's the smell \n \n
+        value={`It is not the fart that kills you, it's the smell \n \n
   - Petter Solberg`}
         testId="123-test"
         transparent={boolean('transparent', false)}
@@ -49,6 +49,7 @@ stories.add('All props', () => {
         minRows={number('minRows', 3)}
         maxRows={number('maxRows', 15)}
         grow={boolean('grow', true)}
+        errorText={text('errorText', '')}
       />
     </div>
   );
@@ -65,7 +66,7 @@ stories.add('Max characters', () => (
     </div>
 
     <div style={{ width: '20rem' }}>
-      <Textarea max={100} defaultValue="test" />
+      <Textarea max={100} value="test" />
     </div>
   </div>
 ));
@@ -76,7 +77,7 @@ stories.add('Disabled', () => (
       <Textarea disabled placeholder={'This is a placeholder'} gutterBottom />
     </div>
     <div style={{ width: '20rem' }}>
-      <Textarea disabled defaultValue={`This is a defaultValue`} />
+      <Textarea disabled value={`This is a default value`}></Textarea>
     </div>
   </>
 ));
@@ -86,7 +87,7 @@ stories.add('Transparent', () => (
     <Textarea
       max={150}
       transparent
-      defaultValue={`It is not the fart that kills you, it's the smell
+      value={`It is not the fart that kills you, it's the smell
 - Petter Solberg`}
     />
   </div>

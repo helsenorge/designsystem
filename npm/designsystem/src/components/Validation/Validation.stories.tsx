@@ -27,3 +27,13 @@ stories.add('Checkbox', () => (
     <FormExample variant={select('Variant', allFormVariants, 'normal')} exampleType={FormExampleVariants.checkbox} />
   </div>
 ));
+
+stories.add('Textarea', () => (
+  <div
+    style={{
+      width: '40rem',
+    }}
+  >
+    <FormExample variant={select('Variant', allFormVariants, 'normal')} exampleType={FormExampleVariants.textarea} />
+  </div>
+));

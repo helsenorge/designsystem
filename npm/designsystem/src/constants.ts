@@ -30,11 +30,11 @@ export interface HTMLTextareaProps {
   id?: string;
   autocomplete?: 'off' | 'on';
   placeholder?: string;
-  readonly?:boolean;
+  readonly?: boolean;
   required?: boolean;
   spellcheck?: 'true' | 'default' | 'false';
+  value?: string;
 }
-
 
 export interface HTMLAnchorProps {
   download?: string;
@@ -58,12 +58,10 @@ export interface HTMLAnchorProps {
 
 export type ButtonVariant = 'secondary' | 'tertiary' | string | undefined | null;
 
-
 export enum ModeVariant {
   onWhite = 'onWhite',
   onGrey = 'onGrey',
   onBlueberry = 'onBlueberry',
   onDark = 'onDark',
-  onError = 'onError'
+  onError = 'onError',
 }
-
