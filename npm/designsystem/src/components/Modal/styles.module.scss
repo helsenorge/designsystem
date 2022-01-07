@@ -31,12 +31,20 @@
   background-color: $white;
   animation: open 200ms 1;
 
-  &__title--error {
-    color: $cherry600;
+  &__title {
+    &--error {
+      color: $cherry600;
+    }
+    &--success {
+      color: $kiwi900;
+    }
   }
 
   &__iconWrapper {
     padding-right: 0.75rem;
+  }
+  &__afterTitleChildren {
+    padding-left: 0.75rem;
   }
 
   p {
@@ -51,6 +59,9 @@
   }
   &--warning {
     background-color: $banana50;
+  }
+  &--success {
+    background-color: $kiwi50;
   }
 
   &--large {
@@ -150,6 +161,7 @@
 
     &__title {
       display: flex;
+      align-items: center;
       div {
         display: flex;
         justify-content: center;

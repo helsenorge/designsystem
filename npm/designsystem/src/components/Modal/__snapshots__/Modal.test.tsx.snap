@@ -78,17 +78,13 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
                     />
                   </svg>
                 </div>
-                <div
-                  class="modal__title--error"
+                <h3
+                  class="title title--title3 modal__title--error"
+                  id="titleid02"
+                  style="margin-top: 0rem; margin-bottom: 0rem;"
                 >
-                  <h3
-                    class="title title--title3"
-                    id="titleid02"
-                    style="margin-top: 0rem; margin-bottom: 0rem;"
-                  >
-                    Hei der
-                  </h3>
-                </div>
+                  Hei der
+                </h3>
               </div>
               <p
                 class="modal__description"
@@ -214,17 +210,13 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
                     />
                   </svg>
                 </div>
-                <div
-                  class=""
+                <h3
+                  class="title title--title3"
+                  id="titleid01"
+                  style="margin-top: 0rem; margin-bottom: 0rem;"
                 >
-                  <h3
-                    class="title title--title3"
-                    id="titleid01"
-                    style="margin-top: 0rem; margin-bottom: 0rem;"
-                  >
-                    Hei der
-                  </h3>
-                </div>
+                  Hei der
+                </h3>
               </div>
               <p
                 class="modal__description"

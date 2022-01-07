@@ -92,3 +92,16 @@ const ViewModal = ({open: boolean}) {
     </>)}
    />
 `}</MDXCustom.LiveComponent>
+
+### Modal success
+
+<MDXCustom.LiveComponent fullWidth stack scope={{ ButtonWithModal }}>{`
+<ButtonWithModal
+  buttonText="Åpne success modal"
+  large
+  variant="success"
+  title="Dette gikk kjempefint"
+  primaryButtonText="OK"
+  onSuccess={() => alert('OK')}
+   />
+`}</MDXCustom.LiveComponent>

@@ -41,6 +41,15 @@ describe('Gitt at en modal skal vises ', (): void => {
     });
   });
 
+  describe('Når modal skal ha en komponent etter tittelen', (): void => {
+    it('Så vises komponenten', (): void => {
+      render(<Modal title="Hei der" afterTitleChildren={<h2>{'Hei til deg også'}</h2>} />);
+
+      const title = screen.queryByRole('heading', { name: 'Hei til deg også' });
+      expect(title).toBeVisible();
+    });
+  });
+
   describe('Når en bruker trykker på OK knappen', (): void => {
     it('Så skal onSuccess kalles en gang', (): void => {
       const onClose = jest.fn();
