@@ -9,7 +9,7 @@ import { useRef } from 'react';
 
 interface TextareaProps extends HTMLTextareaProps {
   /** initial value for textarea */
-  value?: string;
+  defaultValue?: string;
   /** max character limit in textarea  */
   max?: number;
   /** The text is displayed in the end of the text-counter */
@@ -32,7 +32,6 @@ interface TextareaProps extends HTMLTextareaProps {
   grow?: boolean;
   /** Error text to show above the component */
   errorText?: string;
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
@@ -40,7 +39,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     max,
     maxText,
     testId,
-    value,
+    defaultValue,
     gutterBottom,
     transparent,
     mode,
@@ -49,12 +48,11 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     maxRows = 10,
     grow,
     errorText,
-    onChange,
     ...restProps
   } = props;
 
-  const [temp, setTemp] = useState(value || '');
   const [rows, setRows] = useState(minRows);
+  const [textareaInput, setTextareaInput] = useState(defaultValue || '');
   const referanse = useRef<HTMLDivElement>(null);
 
   const resizeHeight = (target: HTMLTextAreaElement): void => {
@@ -85,17 +83,13 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     if (grow) {
       resizeHeight(event.target);
     }
-
-    if (onChange) {
-      onChange(event);
-    }
-    setTemp(event.currentTarget.value);
+    setTextareaInput(event.target.value);
   };
 
   const onDark = mode === ModeVariant.onDark;
   const onBlueberry = mode === ModeVariant.onBlueberry;
-  const textHasError = max && temp.length > max;
-  const onError = mode === ModeVariant.onError || textHasError || errorText;
+  const textHasError = max && textareaInput.length > max;
+  const onError = mode === ModeVariant.onError || errorText || textHasError;
 
   const textareaWrapperClass = cn(styles.textarea, {
     [styles['textarea--gutterBottom']]: gutterBottom,
@@ -128,22 +122,29 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   }, []);
 
   return (
-    <div data-testid={testId} className={textareaWrapperClass}>
-      {errorText && <p className={styles['textarea__error-text']}>{errorText}</p>}
-      {label && (
-        <div className={labelClass}>
-          <label htmlFor={uniqueId}>{label}</label>
-        </div>
-      )}
-      <div ref={referanse}>
-        <textarea rows={rows} id={uniqueId} value={temp} className={textareaClass} ref={ref} onChange={handleChange} {...restProps} />
-        {max && (
-          <div className={counterTextClass}>
-            <p>{`${temp.length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
+      <div data-testid={testId} className={textareaWrapperClass}>
+        {label && (
+          <div className={labelClass}>
+            <label htmlFor={uniqueId}>{label}</label>
           </div>
         )}
+        <div ref={referanse}>
+          <textarea
+            rows={rows}
+            defaultValue={defaultValue}
+            id={uniqueId}
+            className={textareaClass}
+            ref={ref}
+            onChange={handleChange}
+            {...restProps}
+          />
+          {max && (
+            <div className={counterTextClass}>
+              <p>{`${textareaInput.length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
   );
 });
 

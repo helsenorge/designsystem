@@ -12,7 +12,22 @@ stories.addDecorator(withA11y);
 
 stories.add('Skeleton', () => (
   <div style={{ width: '20rem' }}>
-    <Textarea placeholder="Dette er en placeholder" />
+    <Textarea
+      placeholder="Dette er en placeholder"
+      max={150}
+      maxText={'chars'}
+      defaultValue={`It is not the fart that kills you, it's the smell \n \n
+  - Petter Solberg`}
+      testId="123-test"
+      transparent={boolean('transparent', false)}
+    
+      disabled={boolean('disabled', false)}
+      label="Skriv inn din tekst"
+      minRows={number('minRows', 3)}
+      maxRows={number('maxRows', 15)}
+      grow={boolean('grow', true)}
+      errorText={text('errorText', '')}
+    />
   </div>
 ));
 
@@ -39,7 +54,7 @@ stories.add('All props', () => {
       <Textarea
         max={150}
         maxText={'chars'}
-        value={`It is not the fart that kills you, it's the smell \n \n
+        defaultValue={`It is not the fart that kills you, it's the smell \n \n
   - Petter Solberg`}
         testId="123-test"
         transparent={boolean('transparent', false)}
@@ -66,7 +81,7 @@ stories.add('Max characters', () => (
     </div>
 
     <div style={{ width: '20rem' }}>
-      <Textarea max={100} value="test" />
+      <Textarea max={100} defaultValue="test" />
     </div>
   </div>
 ));
@@ -77,7 +92,7 @@ stories.add('Disabled', () => (
       <Textarea disabled placeholder={'This is a placeholder'} gutterBottom />
     </div>
     <div style={{ width: '20rem' }}>
-      <Textarea disabled value={`This is a default value`}></Textarea>
+      <Textarea disabled defaultValue={`This is a default value`}></Textarea>
     </div>
   </>
 ));
@@ -87,7 +102,7 @@ stories.add('Transparent', () => (
     <Textarea
       max={150}
       transparent
-      value={`It is not the fart that kills you, it's the smell
+      defaultValue={`It is not the fart that kills you, it's the smell
 - Petter Solberg`}
     />
   </div>

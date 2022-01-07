@@ -11,7 +11,7 @@ stories.addDecorator(withKnobs);
 stories.add('FormGroup', () => (
   <div
     style={{
-      width: '40rem',
+      width: '50vw',
     }}
   >
     <FormExample variant={select('Variant', allFormVariants, 'normal')} exampleType={FormExampleVariants.formgroup} />
@@ -31,7 +31,7 @@ stories.add('Checkbox', () => (
 stories.add('Textarea', () => (
   <div
     style={{
-      width: '40rem',
+      width: '90vw',
     }}
   >
     <FormExample variant={select('Variant', allFormVariants, 'normal')} exampleType={FormExampleVariants.textarea} />

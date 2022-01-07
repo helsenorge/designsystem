@@ -73,10 +73,9 @@ export const FormExample = (props: FormExampleProps) => {
       );
     } else if (exampleType === FormExampleVariants.textarea) {
       return (
-        <>
+        <FormGroup error={errors[formGroup3] ? errors[formGroup3].message : undefined}>
           <Textarea
-            errorText={errors[formGroup3] ? errors[formGroup3].message : undefined}
-            value={`Dette er min historie \n\n Hello \n\n test`}
+            defaultValue={`Dette er min historie \n\n Hello \n\n test`}
             grow
             max={40}
             minRows={5}
@@ -84,7 +83,7 @@ export const FormExample = (props: FormExampleProps) => {
             name={formGroup3}
             ref={register({ maxLength: { value: 40, message: errorMessage3 } })}
           />
-        </>
+        </FormGroup>
       );
     }
   };

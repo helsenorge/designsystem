@@ -33,7 +33,6 @@ export interface HTMLTextareaProps {
   readonly?: boolean;
   required?: boolean;
   spellcheck?: 'true' | 'default' | 'false';
-  value?: string;
 }
 
 export interface HTMLAnchorProps {

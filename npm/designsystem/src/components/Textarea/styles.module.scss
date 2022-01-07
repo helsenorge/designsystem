@@ -7,16 +7,6 @@
   width: 100%;
   line-height: 0;
 
-  &--onError {
-    padding: getSpacer(s) getSpacer(xs) getSpacer(m);
-    background-color: $cherry50;
-    border-left: 0.25rem solid $cherry500;
-
-    @media (min-width: map-get($grid-breakpoints, md)) {
-      padding: getSpacer(s) getSpacer(m) getSpacer(l);
-    }
-  }
-
   &__error-text {
     font-size: $font-size-sm;
     line-height: $font-size-sm;

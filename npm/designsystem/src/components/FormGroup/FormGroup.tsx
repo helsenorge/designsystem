@@ -35,7 +35,6 @@ export const allFormModes: FormMode[] = ['on-white', 'on-blueberry', 'on-dark'];
 export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLElement>) => {
   const { className, mode = 'on-white', variant = 'normal', error } = props;
   const onDark = mode === 'on-dark';
-  const onBlueberry = mode === 'on-blueberry';
   const bigform = variant === 'bigform';
   const formGroupWrapperClasses = classNames(
     formGroupStyles['form-group-wrapper'],
