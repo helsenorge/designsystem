@@ -1,9 +1,9 @@
 $spacer: 1rem;
 $spacers: (
   0: 0,
-  1: calc(#{$spacer} / 8),
-  2: calc(#{$spacer} / 4),
-  3: calc(#{$spacer} / 2),
+  1: $spacer * 0.125,
+  2: $spacer * 0.25,
+  3: $spacer * 0.5,
   4: $spacer * 0.75,
   5: $spacer * 1,
   6: $spacer * 1.5,
