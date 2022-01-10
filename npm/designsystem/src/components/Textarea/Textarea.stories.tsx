@@ -3,7 +3,7 @@ import { withKnobs, text, select, number, boolean } from '@storybook/addon-knobs
 import { storiesOf } from '@storybook/react';
 import Textarea from './Textarea';
 import { withA11y } from '@storybook/addon-a11y';
-import { ModeVariant } from '../../constants';
+import { FormMode } from '../../constants';
 import { palette } from '../../theme/palette';
 
 const stories = storiesOf('Textarea', module);
@@ -32,18 +32,18 @@ stories.add('Skeleton', () => (
 ));
 
 stories.add('All props', () => {
-  const modes = select('background', ModeVariant, ModeVariant.onWhite);
+  const modes = select('background', FormMode, FormMode.onWhite);
 
-  const mapToBackgoundColor = (mode: ModeVariant): string => {
+  const mapToBackgoundColor = (mode: FormMode): string => {
     switch (mode) {
-      case ModeVariant.onBlueberry:
+      case FormMode.onBlueberry:
         return palette.blueberry50;
-      case ModeVariant.onDark:
+      case FormMode.onDark:
         return palette.blueberry800;
-      case ModeVariant.onGrey:
+      case FormMode.onGrey:
         return palette.neutral50;
-      case ModeVariant.onError:
-        return palette.cherry50;
+      case FormMode.onError:
+        return palette.cherry100;
       default:
         return palette.white;
     }

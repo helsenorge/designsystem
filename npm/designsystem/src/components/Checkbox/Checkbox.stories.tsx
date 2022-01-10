@@ -1,7 +1,8 @@
 import React from 'react';
 import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { allFormVariants, allFormModes } from '../FormGroup/FormGroup';
+import { allFormVariants } from '../FormGroup/FormGroup';
+import { FormMode } from '../../constants';
 import Checkbox from './Checkbox';
 
 const stories = storiesOf('Checkbox', module);
@@ -17,7 +18,7 @@ stories.add('Default', () => (
       label={'Check me out!'}
       checked={boolean('Checked', false)}
       disabled={boolean('Disabled', false)}
-      mode={select('Mode', allFormModes, 'on-white')}
+      mode={select('Mode', FormMode, FormMode.onWhite)}
       variant={select('Variant', allFormVariants, 'normal')}
     />
   </div>

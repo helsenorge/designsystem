@@ -1,6 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
+import { action } from '@storybook/addon-actions';
+
 import Validation from '../Validation';
 import FormGroup, { FormVariant } from '../FormGroup/FormGroup';
 import Checkbox from '../Checkbox';
@@ -57,6 +59,17 @@ export const FormExample = (props: FormExampleProps) => {
           <Checkbox name={formGroup2} label={'Checkbox 5'} ref={register({ validate: requireTwo })} />
           <Checkbox name={formGroup2} label={'Checkbox 6'} ref={register({ validate: requireTwo })} />
         </FormGroup>,
+        <FormGroup key={2} error={errors[formGroup3] ? errors[formGroup3].message : undefined}>
+          <Textarea
+            defaultValue={`Dette er en test \n\n Hello \n\n test \n\n test test`}
+            grow
+            max={40}
+            minRows={5}
+            label="Skriv din historie her"
+            name={formGroup3}
+            ref={register({ maxLength: { value: 40, message: errorMessage3 } })}
+          />
+        </FormGroup>,
       ];
     } else if (exampleType === FormExampleVariants.checkbox) {
       return (
@@ -91,8 +104,7 @@ export const FormExample = (props: FormExampleProps) => {
   return (
     <form
       onSubmit={handleSubmit(data => {
-        // eslint-disable-next-line no-console
-        console.log(data);
+        action('onSubmit',data);
       })}
     >
       <Validation variant={props.variant} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>

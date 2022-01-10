@@ -2,7 +2,8 @@ import React from 'react';
 import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import Checkbox from '../Checkbox/Checkbox';
-import FormGroup, { allFormVariants, allFormModes } from './FormGroup';
+import FormGroup, { allFormVariants } from './FormGroup';
+import { FormMode } from '../../constants';
 
 const stories = storiesOf('FormGroup', module);
 stories.addDecorator(withKnobs);
@@ -16,7 +17,7 @@ stories.add('Checkbox', () => (
     <FormGroup
       title={text('Title', 'One amazing title')}
       legend={text('Legend', 'Check out these checkboxes!')}
-      mode={select('Mode', allFormModes, 'on-white')}
+      mode={select('Mode', FormMode, FormMode.onWhite)}
       variant={select('Variant', allFormVariants, 'normal')}
     >
       <Checkbox inputid={'Checkbox1'} label={'Checkbox 1'} />
@@ -25,7 +26,7 @@ stories.add('Checkbox', () => (
     </FormGroup>
     <FormGroup
       legend={text('Legend', 'Check out these checkboxes!')}
-      mode={select('Mode', allFormModes, 'on-white')}
+      mode={select('Mode', FormMode, FormMode.onWhite)}
       variant={select('Variant', allFormVariants, 'normal')}
     >
       <Checkbox label={'Checkbox 4'} />

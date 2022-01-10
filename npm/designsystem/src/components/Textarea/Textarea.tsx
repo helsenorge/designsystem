@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 
 import styles from './styles.module.scss';
-import { HTMLTextareaProps, ModeVariant } from '../../constants';
+import { HTMLTextareaProps, FormMode } from '../../constants';
 import uuid from '../../utils/uuid';
 import { useEffect } from 'react';
 import { useRef } from 'react';
@@ -21,7 +21,7 @@ interface TextareaProps extends HTMLTextareaProps {
   /** If true, the component will be transparent. */
   transparent?: boolean;
   /** Changes the visuals of the textarea */
-  mode?: keyof typeof ModeVariant;
+  mode?: keyof typeof FormMode;
   /** Label of the input */
   label?: string;
   /** max rows */
@@ -86,30 +86,30 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     setTextareaInput(event.target.value);
   };
 
-  const onDark = mode === ModeVariant.onDark;
-  const onBlueberry = mode === ModeVariant.onBlueberry;
+  const onDark = mode === FormMode.onDark;
+  const onBlueberry = mode === FormMode.onBlueberry;
   const textHasError = max && textareaInput.length > max;
-  const onError = mode === ModeVariant.onError || errorText || textHasError;
+  const onError = mode === FormMode.onError || errorText || textHasError;
 
   const textareaWrapperClass = cn(styles.textarea, {
     [styles['textarea--gutterBottom']]: gutterBottom,
-    [styles[`textarea--${ModeVariant.onError}`]]: errorText,
+    [styles[`textarea--${FormMode.onError}`]]: errorText,
   });
 
   const textareaClass = cn(styles.textarea__input, {
     [styles['textarea__input--transparent']]: transparent,
-    [styles[`textarea__input--${ModeVariant.onBlueberry}`]]: onBlueberry,
-    [styles[`textarea__input--${ModeVariant.onDark}`]]: onDark,
-    [styles[`textarea__input--${ModeVariant.onError}`]]: onError,
+    [styles[`textarea__input--${FormMode.onBlueberry}`]]: onBlueberry,
+    [styles[`textarea__input--${FormMode.onDark}`]]: onDark,
+    [styles[`textarea__input--${FormMode.onError}`]]: onError,
   });
 
   const counterTextClass = cn(styles['textarea__counter-wrapper'], {
-    [styles[`textarea__counter-wrapper--${ModeVariant.onDark}`]]: onDark,
-    [styles[`textarea__counter-wrapper--${ModeVariant.onError}`]]: onError,
+    [styles[`textarea__counter-wrapper--${FormMode.onDark}`]]: onDark,
+    [styles[`textarea__counter-wrapper--${FormMode.onError}`]]: onError,
   });
 
   const labelClass = cn(styles.textarea__label, {
-    [styles[`textarea__label--${ModeVariant.onDark}`]]: onDark,
+    [styles[`textarea__label--${FormMode.onDark}`]]: onDark,
   });
 
   const uniqueId = label ? uuid() : undefined;
