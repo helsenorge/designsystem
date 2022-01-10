@@ -104,7 +104,8 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   return (
     <form
       onSubmit={handleSubmit(data => {
-        action('onSubmit', data);
+        // eslint-disable-next-line no-console
+        console.log(data);
       })}
     >
       <Validation variant={props.variant} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>

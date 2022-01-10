@@ -81,7 +81,11 @@ export const FormExample = React.forwardRef((props, ref: React.ForwardedRef<HTML
 
 <MDXCustom.LiveComponent scope={{ FormExample }}>
   {`
+  <div style={
+    {padding: '20px',
+    width: '30vw'}}>
     <FormExample exampleType={'formgroup'}></FormExample>
+    </div>
   `}
 </MDXCustom.LiveComponent>
 
