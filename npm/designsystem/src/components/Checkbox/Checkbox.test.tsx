@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Checkbox from './Checkbox';
+import { FormMode } from '../../constants';
 
 describe('Gitt at Checkbox skal vises', (): void => {
   describe('Når Checkbox rendres', (): void => {
@@ -33,7 +34,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når mode er onBlueberry', (): void => {
     test('Så vises Checkbox med onBlueberry styling', (): void => {
-      render(<Checkbox label={'Check me out!'} mode={'on-blueberry'} />);
+      render(<Checkbox label={'Check me out!'} mode={FormMode.onBlueberry} />);
 
       const label = screen.getByText('Check me out!');
       expect(label.className).toBe('checkbox-label checkbox-label--on-blueberry');
@@ -41,7 +42,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
   });
   describe('Når mode er onDark', (): void => {
     test('Så vises Checkbox med onDark styling', (): void => {
-      render(<Checkbox label={'Check me out!'} mode={'on-dark'} />);
+      render(<Checkbox label={'Check me out!'} mode={FormMode.onDark} />);
 
       const label = screen.getByText('Check me out!');
       expect(label.className).toBe('checkbox-label checkbox-label--on-dark');

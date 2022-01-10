@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import styles from './styles.module.scss';
 import { HTMLTextareaProps, FormMode } from '../../constants';
-import uuid from '../../utils/uuid';
+import { uuid } from '../../utils/uuid';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 
@@ -93,19 +93,19 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
 
   const textareaWrapperClass = cn(styles.textarea, {
     [styles['textarea--gutterBottom']]: gutterBottom,
-    [styles[`textarea--${FormMode.onError}`]]: errorText,
+    [styles[`textarea--invalid`]]: errorText,
   });
 
   const textareaClass = cn(styles.textarea__input, {
     [styles['textarea__input--transparent']]: transparent,
     [styles[`textarea__input--${FormMode.onBlueberry}`]]: onBlueberry,
     [styles[`textarea__input--${FormMode.onDark}`]]: onDark,
-    [styles[`textarea__input--${FormMode.onError}`]]: onError,
+    [styles[`textarea__input--invalid`]]: onError,
   });
 
   const counterTextClass = cn(styles['textarea__counter-wrapper'], {
     [styles[`textarea__counter-wrapper--${FormMode.onDark}`]]: onDark,
-    [styles[`textarea__counter-wrapper--${FormMode.onError}`]]: onError,
+    [styles[`textarea__counter-wrapper--invalid`]]: onError,
   });
 
   const labelClass = cn(styles.textarea__label, {
@@ -122,29 +122,29 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   }, []);
 
   return (
-      <div data-testid={testId} className={textareaWrapperClass}>
-        {label && (
-          <div className={labelClass}>
-            <label htmlFor={uniqueId}>{label}</label>
+    <div data-testid={testId} className={textareaWrapperClass}>
+      {label && (
+        <div className={labelClass}>
+          <label htmlFor={uniqueId}>{label}</label>
+        </div>
+      )}
+      <div ref={referanse}>
+        <textarea
+          rows={rows}
+          defaultValue={defaultValue}
+          id={uniqueId}
+          className={textareaClass}
+          ref={ref}
+          onChange={handleChange}
+          {...restProps}
+        />
+        {max && (
+          <div className={counterTextClass}>
+            <p>{`${textareaInput.length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
           </div>
         )}
-        <div ref={referanse}>
-          <textarea
-            rows={rows}
-            defaultValue={defaultValue}
-            id={uniqueId}
-            className={textareaClass}
-            ref={ref}
-            onChange={handleChange}
-            {...restProps}
-          />
-          {max && (
-            <div className={counterTextClass}>
-              <p>{`${textareaInput.length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
-            </div>
-          )}
-        </div>
       </div>
+    </div>
   );
 });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { FormExample, FormExampleVariants } from '../FormExample/FormExample';
@@ -68,24 +68,29 @@ describe('Gitt at Validation skal vises', () => {
 
       const error = await screen.findByText('Du må velge et alternativ');
       const error2 = await screen.findByText('Du må velge to alternativ');
+      const error3 = await screen.findByText('Det kan ikke legges inn mer enn 40 tegn');
       const errorSummary = screen.getByText('Sjekk at alt er riktig utfylt');
 
       expect(error).toBeVisible();
       expect(error2).toBeVisible();
+      expect(error3).toBeVisible();
       expect(errorSummary).toBeVisible();
 
       const checkbox1 = screen.getByLabelText('Checkbox 1');
       const checkbox4 = screen.getByLabelText('Checkbox 4');
       const checkbox5 = screen.getByLabelText('Checkbox 5');
+      const textarea1 = screen.getByLabelText('Skriv din historie her');
       userEvent.click(checkbox1);
       userEvent.click(checkbox4);
       userEvent.click(checkbox5);
+      fireEvent.change(textarea1, {target: {value: 'Endring.'}})
 
       userEvent.click(submit);
 
       await waitFor(() => {
         expect(error).not.toBeInTheDocument();
         expect(error2).not.toBeInTheDocument();
+        expect(error3).not.toBeInTheDocument();
         expect(errorSummary).not.toBeInTheDocument();
       });
     });

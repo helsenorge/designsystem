@@ -20,7 +20,7 @@ export enum FormExampleVariants {
   textarea = 'textarea',
 }
 
-export const FormExample = (props: FormExampleProps) => {
+export const FormExample = (props: FormExampleProps): JSX.Element => {
   const { exampleType = FormExampleVariants.formgroup } = props;
   const { register, handleSubmit, errors } = useForm();
   const formGroup1 = 'formgroup1';
