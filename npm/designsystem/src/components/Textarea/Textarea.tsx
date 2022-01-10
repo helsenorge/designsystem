@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import cn from 'classnames';
 
 import styles from './styles.module.scss';
 import { HTMLTextareaProps, FormMode } from '../../constants';
 import { uuid } from '../../utils/uuid';
-import { useEffect } from 'react';
-import { useRef } from 'react';
 
 interface TextareaProps extends HTMLTextareaProps {
   /** initial value for textarea */
