@@ -56,7 +56,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       expect(screen.getByText('0/50 tegn')).toBeVisible();
 
-      fireEvent.change(textarea1, {target: {value: 'Jeg tester teksten her.'}})
+      fireEvent.change(textarea1, { target: { value: 'Jeg tester teksten her.' } });
 
       const input = screen.getByRole('textbox');
 
@@ -67,7 +67,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når textarea har en default value', (): void => {
     test('Så skal default verdien vises', (): void => {
-      render(<Textarea label={'Skriv din historie her'} defaultValue='Min historie' />);
+      render(<Textarea label={'Skriv din historie her'} defaultValue="Min historie" />);
       const input = screen.getByRole('textbox');
       expect(input).toHaveValue('Min historie');
     });
@@ -75,7 +75,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når textarea har en placeholder value', (): void => {
     test('Så skal placeholder verdien vises', (): void => {
-      render(<Textarea label={'Skriv din historie her'} placeholder='Fin placeholder' />);
+      render(<Textarea label={'Skriv din historie her'} placeholder="Fin placeholder" />);
       const input = screen.getByPlaceholderText('Fin placeholder');
       expect(input).toBeVisible();
     });
@@ -89,10 +89,10 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       expect(screen.getByText('0/10 tegn')).toBeVisible();
 
-      fireEvent.change(textarea1, {target: {value: 'Jeg tester teksten her.'}})
+      fireEvent.change(textarea1, { target: { value: 'Jeg tester teksten her.' } });
 
       expect(screen.getByText('23/10 tegn')).toBeVisible();
-      
+
       const input = screen.getByRole('textbox');
 
       expect(input.className).toEqual('textarea__input textarea__input--invalid');

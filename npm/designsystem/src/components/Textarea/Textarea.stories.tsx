@@ -20,7 +20,6 @@ stories.add('Skeleton', () => (
   - Petter Solberg`}
       testId="123-test"
       transparent={boolean('transparent', false)}
-    
       disabled={boolean('disabled', false)}
       label="Skriv inn din tekst"
       minRows={number('minRows', 3)}

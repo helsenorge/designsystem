@@ -83,7 +83,7 @@ describe('Gitt at Validation skal vises', () => {
       userEvent.click(checkbox1);
       userEvent.click(checkbox4);
       userEvent.click(checkbox5);
-      fireEvent.change(textarea1, {target: {value: 'Endring.'}})
+      fireEvent.change(textarea1, { target: { value: 'Endring.' } });
 
       userEvent.click(submit);
 

@@ -101,7 +101,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           type="checkbox"
           checked={isChecked}
           disabled={disabled}
-          onChange={():void => {
+          onChange={(): void => {
             setIsChecked(!isChecked);
           }}
           value={value}

@@ -104,7 +104,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   return (
     <form
       onSubmit={handleSubmit(data => {
-        action('onSubmit',data);
+        action('onSubmit', data);
       })}
     >
       <Validation variant={props.variant} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
