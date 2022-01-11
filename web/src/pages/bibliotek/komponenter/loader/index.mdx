@@ -13,7 +13,7 @@ import Button from '@helsenorge/designsystem-react/components/Button';
 # Loader
 
 <MDXCustom.Preamble>
-  Loader benyttes for å vise innbygger at det lastes ned innhold, slik at innbygger må vente til innholdet er lastet ferdig. Loader har tre forskjellige visninger inline, parent og screen
+  Loader benyttes for å vise innbygger at det lastes ned innhold, slik at innbygger må vente til innholdet er lastet ferdig.
 </MDXCustom.Preamble>
 
 ## Preview
@@ -58,10 +58,12 @@ import Button from '@helsenorge/designsystem-react/components/Button';
   </div>
 `}</MDXCustom.LiveComponent>
 
-## Bruk
+### Inline
 
-**TODO: Legg til bruk**
-
-### Tilgjengelighet
-
-**TODO: Legg til UU**
+<MDXCustom.LiveComponent scope={{ Loader }}>{`
+  <div>
+    <span>
+      Søker <Loader color="black" inline size="tiny" />
+    </span>
+  </div>
+`}</MDXCustom.LiveComponent>

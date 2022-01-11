@@ -86,4 +86,21 @@ describe('Gitt at en loader skal vises ', (): void => {
       expect(wrapper).toHaveStyle('position: relative');
     });
   });
+
+  describe('Når loader skal vises inline med span', (): void => {
+    test('Så rendres komponenten med riktig klasse', (): void => {
+      render(
+        <div>
+          <span>{'Morn'}</span>
+          <Loader testId="bare-tester" inline />
+        </div>
+      );
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+
+      const loaderWrapper = screen.getByRole('progressbar');
+      expect(loaderWrapper).toHaveClass('loader-wrapper--inline');
+    });
+  });
 });

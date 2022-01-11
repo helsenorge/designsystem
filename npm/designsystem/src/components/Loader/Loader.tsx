@@ -23,6 +23,8 @@ interface LoaderProps {
   testId?: string;
   /** Centers the loader in a container */
   center?: boolean;
+  /** Inline the loader so it can be used in a span or paragraph */
+  inline?: boolean;
   /** Loader is displayed with grey background covering the entire screen */
   overlay?: keyof typeof Overlay;
   /**  Individual id for loading icon (aria-labelledby).  */
@@ -39,6 +41,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     className = '',
     testId,
     center,
+    inline,
     ariaLabelledById,
     ariaLabel = 'Laster inn',
   } = props;
@@ -53,6 +56,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     [loaderStyles['loader-wrapper--center']]: center,
     [loaderStyles['loader-wrapper--overlay-screen']]: overlay === Overlay.screen,
     [loaderStyles['loader-wrapper--overlay-parent']]: overlay === Overlay.parent && display,
+    [loaderStyles['loader-wrapper--inline']]: inline,
   });
   const loaderClasses = classNames(
     loaderStyles.loader,

@@ -37,6 +37,14 @@ stories.add('Loader is centered', () => (
   </div>
 ));
 
+stories.add('Inline', () => (
+  <div>
+    <span>
+      {'Søker '} <Loader color="black" inline size="tiny" />
+    </span>
+  </div>
+));
+
 stories.add('Overlay screen', () => (
   <div style={{ width: '100%', height: '200vh' }}>
     <h2>{'Fastlegen din er Arnfinn Nesset ved Orkdal sykehjem'}</h2>

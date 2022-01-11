@@ -41,6 +41,10 @@
     text-align: center;
   }
 
+  &--inline{
+    display: inline;
+  }
+
   &--overlay-screen {
     z-index: 9999;
     background: $transparentGrey;
