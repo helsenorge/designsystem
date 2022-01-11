@@ -21,11 +21,6 @@ describe('Gitt at en loader skal vises ', (): void => {
       expect(loaderDotsWrapper.children[2].className).toBe('loader__dot loader__dot--small loader__dot--neutral');
       expect(loaderDotsWrapper.children[3].className).toBe('loader__dot loader__dot--small loader__dot--neutral');
     });
-
-    test('Så har loader progressbar role', (): void => {
-      render(<Loader overlay="screen" />);
-      expect(screen.getByRole('progressbar')).toBeVisible();
-    });
   });
 
   describe('Når center prop er true ', (): void => {
@@ -35,14 +30,25 @@ describe('Gitt at en loader skal vises ', (): void => {
     });
   });
 
-  describe('Når overlay prop er satt', (): void => {
-    test('Så har loaderen en overlay, og color er nå svart på loaderen', (): void => {
-      const { container } = render(<Loader overlay="screen" testId={'loaderDotTest'} />);
-      expect(container.firstChild).toHaveClass('loader-wrapper--overlay-screen');
-      expect(container.firstChild.firstChild).toHaveAttribute('aria-labelledby', 'loader-unik-id');
-
+  describe('Når overlay prop er satt til screen', (): void => {
+    test('Så har loaderen en overlay som dekker skjermen, og color er nå svart på loaderen og progressbar. Samt ingen styling på parent element', (): void => {
+      render(
+        <div data-testid="parent-wrapper">
+          <Loader overlay="screen" testId={'loaderDotTest'} />
+        </div>
+      );
+      const loader = screen.getByRole('progressbar');
+      expect(loader).toBeVisible();
+      
+      expect(loader).toHaveClass('loader-wrapper--overlay-screen');
+      
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
+      expect(loaderDotsWrapper).toHaveAttribute('aria-labelledby', 'loader-unik-id');
       expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--small loader__dot--black');
+
+
+      const parent = screen.getByTestId('parent-wrapper');
+      expect(parent).not.toHaveStyle('position: relative');
     });
   });
 
