@@ -39,13 +39,12 @@ describe('Gitt at en loader skal vises ', (): void => {
       );
       const loader = screen.getByRole('progressbar');
       expect(loader).toBeVisible();
-      
+
       expect(loader).toHaveClass('loader-wrapper--overlay-screen');
-      
+
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
       expect(loaderDotsWrapper).toHaveAttribute('aria-labelledby', 'loader-unik-id');
       expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--small loader__dot--black');
-
 
       const parent = screen.getByTestId('parent-wrapper');
       expect(parent).not.toHaveStyle('position: relative');
