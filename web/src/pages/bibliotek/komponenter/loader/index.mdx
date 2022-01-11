@@ -7,12 +7,13 @@ date: 2019-01-29
 import MDXCustom from '../../../../components/markdown/MDXCustom';
 import * as propData from '@helsenorge/designsystem-react/components/Loader/componentdata.json';
 import Loader from '@helsenorge/designsystem-react/components/Loader';
+import Title from '@helsenorge/designsystem-react/components/Title';
+import Button from '@helsenorge/designsystem-react/components/Button';
 
 # Loader
 
 <MDXCustom.Preamble>
-  He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum is the single greatest
-  threat.
+  Loader benyttes for å vise innbygger at det lastes ned innhold, slik at innbygger må vente til innholdet er lastet ferdig. Loader har tre forskjellige visninger inline, parent og screen
 </MDXCustom.Preamble>
 
 ## Preview
@@ -45,6 +46,16 @@ import Loader from '@helsenorge/designsystem-react/components/Loader';
   <Loader color="kiwi" />
   <Loader color="neutral" />
   <Loader color="plum" />
+`}</MDXCustom.LiveComponent>
+
+### Parent wrapper overlay
+
+<MDXCustom.LiveComponent scope={{ Loader, Title, Button }}>{`
+  <div>
+  <Title>Content of the wrapper</Title>
+  <Button>Submit button</Button>
+  <Loader overlay="parent" />
+  </div>
 `}</MDXCustom.LiveComponent>
 
 ## Bruk

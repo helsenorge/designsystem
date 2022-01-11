@@ -1,6 +1,7 @@
 export type Styles = {
   align: string;
   modal: string;
+  modal__afterTitleChildren: string;
   'modal__call-to-action': string;
   'modal__call-to-action--large': string;
   'modal__call-to-action--medium': string;
@@ -21,11 +22,13 @@ export type Styles = {
   'modal__shadow--show': string;
   'modal__shadow--top': string;
   'modal__title--error': string;
+  'modal__title--success': string;
   'modal--error': string;
   'modal--image': string;
   'modal--large': string;
   'modal--medium': string;
   'modal--normal': string;
+  'modal--success': string;
   'modal--warning': string;
   'modal-overlay': string;
   open: string;
