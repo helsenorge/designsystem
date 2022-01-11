@@ -23,7 +23,7 @@ describe('Gitt at en loader skal vises ', (): void => {
     });
 
     test('Så har loader progressbar role', (): void => {
-      render(<Loader overlay />);
+      render(<Loader overlay="screen" />);
       expect(screen.getByRole('progressbar')).toBeVisible();
     });
   });
@@ -37,8 +37,8 @@ describe('Gitt at en loader skal vises ', (): void => {
 
   describe('Når overlay prop er satt', (): void => {
     test('Så har loaderen en overlay, og color er nå svart på loaderen', (): void => {
-      const { container } = render(<Loader overlay testId={'loaderDotTest'} />);
-      expect(container.firstChild).toHaveClass('loader-wrapper--overlay');
+      const { container } = render(<Loader overlay="screen" testId={'loaderDotTest'} />);
+      expect(container.firstChild).toHaveClass('loader-wrapper--overlay-screen');
       expect(container.firstChild.firstChild).toHaveAttribute('aria-labelledby', 'loader-unik-id');
 
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
@@ -48,8 +48,8 @@ describe('Gitt at en loader skal vises ', (): void => {
 
   describe('Når ariaLabelledById er satt', (): void => {
     test('Så settes attributten aria-labelledby til det samme', (): void => {
-      const { container } = render(<Loader ariaLabelledById="aria-test" overlay />);
-      expect(container.firstChild).toHaveClass('loader-wrapper--overlay');
+      const { container } = render(<Loader ariaLabelledById="aria-test" overlay="screen" />);
+      expect(container.firstChild).toHaveClass('loader-wrapper--overlay-screen');
       expect(container.firstChild.firstChild).toHaveAttribute('aria-labelledby', 'aria-test');
     });
   });
@@ -60,6 +60,25 @@ describe('Gitt at en loader skal vises ', (): void => {
 
       const component = screen.getByTestId('bare-tester');
       expect(component).toBeVisible();
+    });
+  });
+
+  describe('Når loader skal vises med overlay på parent', (): void => {
+    test('Så så endres parent postion til display og riktig klasse i loader', (): void => {
+      render(
+        <div data-testid="parent-wrapper">
+          <Loader testId="bare-tester" overlay="parent" />
+        </div>
+      );
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+
+      const loaderWrapper = screen.getByRole('progressbar');
+      expect(loaderWrapper).toHaveClass('loader-wrapper--overlay-parent');
+
+      const wrapper = screen.getByTestId('parent-wrapper');
+      expect(wrapper).toHaveStyle('position: relative');
     });
   });
 });

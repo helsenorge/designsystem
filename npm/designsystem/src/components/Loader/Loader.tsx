@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { uuid } from '../../utils/uuid';
 
@@ -7,6 +7,10 @@ import loaderStyles from './styles.module.scss';
 
 export type LoaderColors = PaletteNames;
 export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';
+export enum Overlay {
+  screen = 'screen',
+  parent = 'parent',
+}
 
 interface LoaderProps {
   /** Sets the color of the loader */
@@ -20,7 +24,7 @@ interface LoaderProps {
   /** Centers the loader in a container */
   center?: boolean;
   /** Loader is displayed with grey background covering the entire screen */
-  overlay?: boolean;
+  overlay?: keyof typeof Overlay;
   /**  Individual id for loading icon (aria-labelledby).  */
   ariaLabelledById?: string;
   /**  String that labels the current loading element  */
@@ -38,13 +42,17 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     ariaLabelledById,
     ariaLabel = 'Laster inn',
   } = props;
+
+  const [display, setDisplay] = useState(overlay !== Overlay.parent);
+
   const isSmall = size === 'small';
   const isMedium = size === 'medium';
   const isLarge = size === 'large';
 
   const loaderWrapperClasses = classNames(loaderStyles['loader-wrapper'], {
     [loaderStyles['loader-wrapper--center']]: center,
-    [loaderStyles['loader-wrapper--overlay']]: overlay,
+    [loaderStyles['loader-wrapper--overlay-screen']]: overlay === Overlay.screen,
+    [loaderStyles['loader-wrapper--overlay-parent']]: overlay === Overlay.parent && display,
   });
   const loaderClasses = classNames(
     loaderStyles.loader,
@@ -70,19 +78,30 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
 
   const uniqueId = `loader${uuid()}`;
 
+  const referance = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (referance.current?.parentElement?.style && overlay === Overlay.parent) {
+      referance.current.parentElement.style.position = 'relative';
+      setDisplay(true);
+    }
+  }, []);
+
   return (
-    <div role="progressbar" className={loaderWrapperClasses}>
-      <div data-testid={testId} aria-labelledby={ariaLabelledById || uniqueId} className={loaderClasses}>
-        <div className={loaderDotClasses} />
-        <div className={loaderDotClasses} />
-        <div className={loaderDotClasses} />
-        <div className={loaderDotClasses} />
-        {!ariaLabelledById && (
-          <span id={uniqueId} className={loaderStyles['loader__hidden-text']}>
-            {ariaLabel}
-          </span>
-        )}
-      </div>
+    <div role="progressbar" className={loaderWrapperClasses} ref={referance}>
+      {display && (
+        <div data-testid={testId} aria-labelledby={ariaLabelledById || uniqueId} className={loaderClasses}>
+          <div className={loaderDotClasses} />
+          <div className={loaderDotClasses} />
+          <div className={loaderDotClasses} />
+          <div className={loaderDotClasses} />
+          {!ariaLabelledById && (
+            <span id={uniqueId} className={loaderStyles['loader__hidden-text']}>
+              {ariaLabel}
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 });

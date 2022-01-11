@@ -41,7 +41,7 @@
     text-align: center;
   }
 
-  &--overlay {
+  &--overlay-screen {
     z-index: 9999;
     background: $transparentGrey;
     position: fixed;
@@ -49,6 +49,16 @@
     left: 0;
     right: 0;
     bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &--overlay-parent {
+    position: absolute;
+    top: 0;
+    background: $transparentGrey;
+    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
