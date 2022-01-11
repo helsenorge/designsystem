@@ -46,7 +46,15 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     ariaLabel = 'Laster inn',
   } = props;
 
-  const [display, setDisplay] = useState(overlay !== Overlay.parent);
+  const showLoader = (): boolean => {
+    if (overlay === Overlay.parent || inline) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const [display, setDisplay] = useState(showLoader());
 
   const isSmall = size === 'small';
   const isMedium = size === 'medium';
@@ -56,7 +64,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     [loaderStyles['loader-wrapper--center']]: center,
     [loaderStyles['loader-wrapper--overlay-screen']]: overlay === Overlay.screen,
     [loaderStyles['loader-wrapper--overlay-parent']]: overlay === Overlay.parent && display,
-    [loaderStyles['loader-wrapper--inline']]: inline,
+    [loaderStyles['loader-wrapper--inline']]: inline && display,
   });
   const loaderClasses = classNames(
     loaderStyles.loader,
@@ -85,8 +93,13 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   const referance = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (referance.current?.parentElement?.style && overlay === Overlay.parent) {
+    if (overlay === Overlay.parent && referance.current?.parentElement?.style) {
       referance.current.parentElement.style.position = 'relative';
+      setDisplay(true);
+    }
+
+    if (inline && referance.current?.parentElement?.style) {
+      referance.current.parentElement.style.display = 'flex';
       setDisplay(true);
     }
   }, []);

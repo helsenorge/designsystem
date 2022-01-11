@@ -41,8 +41,9 @@
     text-align: center;
   }
 
-  &--inline{
-    display: inline;
+  &--inline {
+    align-self: center;
+    padding-left: .5rem;
   }
 
   &--overlay-screen {

@@ -90,7 +90,7 @@ describe('Gitt at en loader skal vises ', (): void => {
   describe('Når loader skal vises inline med span', (): void => {
     test('Så rendres komponenten med riktig klasse', (): void => {
       render(
-        <div>
+        <div data-testid="parent-wrapper">
           <span>{'Morn'}</span>
           <Loader testId="bare-tester" inline />
         </div>
@@ -101,6 +101,9 @@ describe('Gitt at en loader skal vises ', (): void => {
 
       const loaderWrapper = screen.getByRole('progressbar');
       expect(loaderWrapper).toHaveClass('loader-wrapper--inline');
+
+      const wrapper = screen.getByTestId('parent-wrapper');
+      expect(wrapper).toHaveStyle('display: flex');
     });
   });
 });
