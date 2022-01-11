@@ -39,9 +39,9 @@ stories.add('Loader is centered', () => (
 
 stories.add('Inline', () => (
   <div>
-    <Title htmlMarkup="span" appearance="title3">
+    <Title htmlMarkup="span" appearance="title1">
       {'Søker'}
-    </Title>{' '}
+    </Title>
     <Loader color="black" inline size="tiny" />
   </div>
 ));
