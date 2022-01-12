@@ -20,6 +20,22 @@ export interface HTMLButtonProps {
   value?: string | string[] | number;
 }
 
+export interface HTMLTextareaProps {
+  autoFocus?: boolean;
+  disabled?: boolean;
+  form?: string;
+  formNoValidate?: boolean;
+  formTarget?: string;
+  name?: string;
+  id?: string;
+  autocomplete?: 'off' | 'on';
+  placeholder?: string;
+  readonly?: boolean;
+  required?: boolean;
+  spellcheck?: 'true' | 'default' | 'false';
+  'aria-invalid'?: boolean;
+}
+
 export interface HTMLAnchorProps {
   download?: string;
   href?: string;
@@ -41,3 +57,11 @@ export interface HTMLAnchorProps {
 }
 
 export type ButtonVariant = 'secondary' | 'tertiary' | string | undefined | null;
+
+export enum FormMode {
+  OnWhite = 'OnWhite',
+  OnGrey = 'OnGrey',
+  OnBlueberry = 'OnBlueberry',
+  OnDark = 'OnDark',
+  OnError = 'OnError',
+}

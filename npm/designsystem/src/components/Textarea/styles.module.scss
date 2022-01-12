@@ -1,0 +1,154 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/_font-settings.scss';
+
+.textarea {
+  width: 100%;
+  line-height: 0;
+
+  &__error-text {
+    font-size: $font-size-sm;
+    line-height: $font-size-sm;
+    font-weight: 600;
+    color: $cherry500;
+    margin-top: 0;
+  }
+
+  &--gutterBottom {
+    margin-bottom: getSpacer(s);
+  }
+
+  &__label {
+    line-height: getSpacer(m);
+    font-size: $font-size-sm;
+    font-weight: 600;
+    padding-bottom: getSpacer(2xs);
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      line-height: getSpacer(l);
+      font-size: $font-size-md;
+    }
+
+    &--OnDark {
+      color: $white;
+    }
+  }
+
+  &__input {
+    line-height: 26px;
+    font-size: $font-size-sm;
+    width: 100%;
+    padding: 16px;
+    resize: none;
+    border: $neutral700 2px solid;
+    outline: none;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      line-height: 28px;
+      font-size: $font-size-md;
+    }
+
+    &:hover {
+      background: $neutral50;
+      border-color: $neutral700;
+      box-shadow: 0px 0px 0px 1px $neutral700;
+    }
+    &:focus {
+      background: $white;
+      border-radius: 0;
+      border-color: $neutral900;
+      box-shadow: 0px 0px 0px 2px $neutral900;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background: $neutral50;
+      border-color: $neutral500;
+      color: $neutral500;
+    }
+    &::placeholder {
+      color: $neutral500;
+    }
+
+    &--OnBlueberry {
+      border-color: $blueberry500;
+
+      &:hover {
+        background: $blueberry50;
+        box-shadow: 0px 0px 0px 1px $blueberry500;
+        border-color: $blueberry500;
+      }
+
+      &:focus {
+        background: $white;
+        border-color: $neutral900;
+        box-shadow: 0px 0px 0px 2px $neutral900;
+      }
+      &:disabled {
+        background: $neutral50;
+        border-color: $neutral500;
+        color: $neutral500;
+      }
+    }
+    &--OnDark {
+      border-color: $blueberry900;
+      &:hover {
+        background: $blueberry50;
+        border-color: $blueberry900;
+        box-shadow: 0px 0px 0px 1px $blueberry900;
+      }
+      &:focus {
+        background: $white;
+        border-color: $neutral900;
+        box-shadow: 0px 0px 0px 2px $neutral900;
+      }
+      &:disabled {
+        background: $neutral50;
+      }
+    }
+    &--invalid {
+      border-color: $cherry500;
+      &:focus {
+        border-color: $cherry500;
+        box-shadow: 0px 0px 0px 2px $cherry500;
+      }
+    }
+
+    &--transparent {
+      background: transparent;
+      &:hover {
+        background: transparent;
+      }
+      &:focus {
+        background: $white;
+      }
+    }
+  }
+
+  &__counter-wrapper {
+    display: flex;
+    justify-content: end;
+    padding-top: getSpacer(xs);
+    padding-right: 2px;
+    font-size: $font-size-sm;
+    line-height: 28px;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      line-height: 30px;
+      font-size: $font-size-md;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    &--OnDark {
+      color: $white;
+    }
+    &--invalid {
+      color: $cherry500;
+      font-weight: 600;
+    }
+  }
+}

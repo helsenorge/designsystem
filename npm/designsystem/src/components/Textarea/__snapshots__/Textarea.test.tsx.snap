@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at Checkbox skal vises Når Textarea rendres Så vises Textarea 1`] = `
+<div>
+  <div
+    class="textarea"
+  >
+    <div
+      class="textarea__label"
+    >
+      <label
+        for="-unik-id"
+      >
+        Skriv din historie
+      </label>
+    </div>
+    <div>
+      <textarea
+        aria-invalid="false"
+        class="textarea__input"
+        id="-unik-id"
+        rows="3"
+      />
+    </div>
+  </div>
+</div>
+`;

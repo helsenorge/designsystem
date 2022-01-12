@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import formGroupStyles from './styles.module.scss';
 import Checkbox from '../Checkbox';
 import { CheckboxProps } from '../Checkbox/Checkbox';
+import { FormMode } from '../../constants';
 import Title from '../Title';
 
 export interface FormGroupProps {
@@ -17,7 +18,7 @@ export interface FormGroupProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** Changes the visuals of the formgroup */
-  mode?: FormMode;
+  mode?: keyof typeof FormMode;
   /** Changes the visuals of the formgroup */
   variant?: FormVariant;
   /** Error message */
@@ -27,15 +28,12 @@ export interface FormGroupProps {
 }
 
 export type FormVariant = 'normal' | 'bigform';
-export type FormMode = 'on-white' | 'on-blueberry' | 'on-dark';
 
 export const allFormVariants: FormVariant[] = ['normal', 'bigform'];
-export const allFormModes: FormMode[] = ['on-white', 'on-blueberry', 'on-dark'];
 
 export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLElement>) => {
-  const { className, mode = 'on-white', variant = 'normal', error } = props;
-  const onDark = mode === 'on-dark';
-  const onBlueberry = mode === 'on-blueberry';
+  const { className, mode = FormMode.OnWhite, variant = 'normal', error } = props;
+  const onDark = mode === FormMode.OnDark;
   const bigform = variant === 'bigform';
   const formGroupWrapperClasses = classNames(
     formGroupStyles['form-group-wrapper'],

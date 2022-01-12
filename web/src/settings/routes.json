@@ -110,6 +110,10 @@
           "path": "/bibliotek/komponenter/slider"
         },
         {
+          "label": "Textarea",
+          "path": "/bibliotek/komponenter/textarea"
+        },
+        {
           "label": "Tile",
           "path": "/bibliotek/komponenter/tile"
         },
