@@ -33,6 +33,7 @@ export interface HTMLTextareaProps {
   readonly?: boolean;
   required?: boolean;
   spellcheck?: 'true' | 'default' | 'false';
+  'aria-invalid'?: boolean;
 }
 
 export interface HTMLAnchorProps {
@@ -58,9 +59,9 @@ export interface HTMLAnchorProps {
 export type ButtonVariant = 'secondary' | 'tertiary' | string | undefined | null;
 
 export enum FormMode {
-  onWhite = 'onWhite',
-  onGrey = 'onGrey',
-  onBlueberry = 'onBlueberry',
-  onDark = 'onDark',
-  onError = 'onError',
+  OnWhite = 'OnWhite',
+  OnGrey = 'OnGrey',
+  OnBlueberry = 'OnBlueberry',
+  OnDark = 'OnDark',
+  OnError = 'OnError',
 }

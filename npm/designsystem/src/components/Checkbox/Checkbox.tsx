@@ -54,8 +54,8 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
   const invalid = error;
-  const onDark = mode === FormMode.onDark;
-  const onBlueberry = mode === FormMode.onBlueberry;
+  const onDark = mode === FormMode.OnDark;
+  const onBlueberry = mode === FormMode.OnBlueberry;
   const bigform = variant === 'bigform';
 
   const checkboxWrapperClasses = classNames(checkboxStyles['checkbox-wrapper'], {

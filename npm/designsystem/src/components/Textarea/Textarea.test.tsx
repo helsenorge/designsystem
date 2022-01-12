@@ -27,30 +27,30 @@ describe('Gitt at Checkbox skal vises', (): void => {
       render(<Textarea label={'Check me out!'} disabled />);
 
       const input = screen.getByRole('textbox');
-      expect(input).toHaveAttribute('disabled');
+      expect(input).toBeDisabled();
     });
   });
 
-  describe('Når FormMode er onBlueberry', (): void => {
-    test('Så vises Textarea med onBlueberry styling', (): void => {
-      render(<Textarea label={'Check me out!'} mode={FormMode.onBlueberry} />);
+  describe('Når FormMode er OnBlueberry', (): void => {
+    test('Så vises Textarea med OnBlueberry styling', (): void => {
+      render(<Textarea label={'Check me out!'} mode={FormMode.OnBlueberry} />);
 
       const input = screen.getByRole('textbox');
-      expect(input.className).toBe('textarea__input textarea__input--onBlueberry');
+      expect(input.className).toBe('textarea__input textarea__input--OnBlueberry');
     });
   });
-  describe('Når mode er onDark', (): void => {
-    test('Så vises Textarea med onDark styling', (): void => {
-      render(<Textarea label={'Check me out!'} mode={FormMode.onDark} />);
+  describe('Når mode er OnDark', (): void => {
+    test('Så vises Textarea med OnDark styling', (): void => {
+      render(<Textarea label={'Check me out!'} mode={FormMode.OnDark} />);
 
       const input = screen.getByRole('textbox');
-      expect(input.className).toBe('textarea__input textarea__input--onDark');
+      expect(input.className).toBe('textarea__input textarea__input--OnDark');
     });
   });
 
   describe('Når textarea endres med ny tekst og antall tegn skal vises', (): void => {
     test('Så endres teksten og antall tegn', (): void => {
-      render(<Textarea label={'Skriv din historie her'} max={50} />);
+      render(<Textarea label={'Skriv din historie her'} maxCharacters={50} />);
 
       const textarea1 = screen.getByLabelText('Skriv din historie her');
 
@@ -83,7 +83,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når textarea har en gått over maksgrensen', (): void => {
     test('Så skal textarea vise at input er ugyldig', (): void => {
-      render(<Textarea label={'Skriv din historie her'} grow max={10} />);
+      render(<Textarea label={'Skriv din historie her'} grow maxCharacters={10} />);
 
       const textarea1 = screen.getByLabelText('Skriv din historie her');
 

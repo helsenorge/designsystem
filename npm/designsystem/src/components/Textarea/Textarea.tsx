@@ -9,13 +9,13 @@ interface TextareaProps extends HTMLTextareaProps {
   /** initial value for textarea */
   defaultValue?: string;
   /** max character limit in textarea  */
-  max?: number;
+  maxCharacters?: number;
   /** The text is displayed in the end of the text-counter */
   maxText?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** If true, the component will have a bottom margin. */
-  gutterBottom?: boolean;
+  marginBottom?: boolean;
   /** If true, the component will be transparent. */
   transparent?: boolean;
   /** Changes the visuals of the textarea */
@@ -34,11 +34,11 @@ interface TextareaProps extends HTMLTextareaProps {
 
 const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
   const {
-    max,
+    maxCharacters: max,
     maxText,
     testId,
     defaultValue,
-    gutterBottom,
+    marginBottom: gutterBottom,
     transparent,
     mode,
     label,
@@ -84,10 +84,10 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     setTextareaInput(event.target.value);
   };
 
-  const onDark = mode === FormMode.onDark;
-  const onBlueberry = mode === FormMode.onBlueberry;
+  const onDark = mode === FormMode.OnDark;
+  const onBlueberry = mode === FormMode.OnBlueberry;
   const textHasError = max && textareaInput.length > max;
-  const onError = mode === FormMode.onError || errorText || textHasError;
+  const onError = mode === FormMode.OnError || errorText || textHasError;
 
   const textareaWrapperClass = cn(styles.textarea, {
     [styles['textarea--gutterBottom']]: gutterBottom,
@@ -96,18 +96,18 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
 
   const textareaClass = cn(styles.textarea__input, {
     [styles['textarea__input--transparent']]: transparent,
-    [styles[`textarea__input--${FormMode.onBlueberry}`]]: onBlueberry,
-    [styles[`textarea__input--${FormMode.onDark}`]]: onDark,
+    [styles[`textarea__input--${FormMode.OnBlueberry}`]]: onBlueberry,
+    [styles[`textarea__input--${FormMode.OnDark}`]]: onDark,
     [styles[`textarea__input--invalid`]]: onError,
   });
 
   const counterTextClass = cn(styles['textarea__counter-wrapper'], {
-    [styles[`textarea__counter-wrapper--${FormMode.onDark}`]]: onDark,
+    [styles[`textarea__counter-wrapper--${FormMode.OnDark}`]]: onDark,
     [styles[`textarea__counter-wrapper--invalid`]]: onError,
   });
 
   const labelClass = cn(styles.textarea__label, {
-    [styles[`textarea__label--${FormMode.onDark}`]]: onDark,
+    [styles[`textarea__label--${FormMode.OnDark}`]]: onDark,
   });
 
   const uniqueId = label ? uuid() : undefined;
@@ -134,6 +134,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
           className={textareaClass}
           ref={ref}
           onChange={handleChange}
+          aria-invalid={!!onError}
           {...restProps}
         />
         {max && (

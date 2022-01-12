@@ -30,7 +30,7 @@
       font-size: $font-size-md;
     }
 
-    &--onDark {
+    &--OnDark {
       color: $white;
     }
   }
@@ -71,7 +71,7 @@
       color: $neutral500;
     }
 
-    &--onBlueberry {
+    &--OnBlueberry {
       border-color: $blueberry500;
 
       &:hover {
@@ -91,7 +91,7 @@
         color: $neutral500;
       }
     }
-    &--onDark {
+    &--OnDark {
       border-color: $blueberry900;
       &:hover {
         background: $blueberry50;
@@ -143,7 +143,7 @@
       margin: 0;
     }
 
-    &--onDark {
+    &--OnDark {
       color: $white;
     }
     &--invalid {

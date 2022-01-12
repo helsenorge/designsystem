@@ -14,7 +14,7 @@ stories.add('Skeleton', () => (
   <div style={{ width: '20rem' }}>
     <Textarea
       placeholder="Dette er en placeholder"
-      max={150}
+      maxCharacters={150}
       maxText={'chars'}
       defaultValue={`It is not the fart that kills you, it's the smell \n \n
   - Petter Solberg`}
@@ -31,17 +31,17 @@ stories.add('Skeleton', () => (
 ));
 
 stories.add('All props', () => {
-  const modes = select('background', FormMode, FormMode.onWhite);
+  const modes = select('background', FormMode, FormMode.OnWhite);
 
   const mapToBackgoundColor = (mode: FormMode): string => {
     switch (mode) {
-      case FormMode.onBlueberry:
+      case FormMode.OnBlueberry:
         return palette.blueberry50;
-      case FormMode.onDark:
+      case FormMode.OnDark:
         return palette.blueberry800;
-      case FormMode.onGrey:
+      case FormMode.OnGrey:
         return palette.neutral50;
-      case FormMode.onError:
+      case FormMode.OnError:
         return palette.cherry100;
       default:
         return palette.white;
@@ -51,7 +51,7 @@ stories.add('All props', () => {
   return (
     <div style={{ width: '80vw', background: mapToBackgoundColor(modes), padding: 20 }}>
       <Textarea
-        max={150}
+        maxCharacters={150}
         maxText={'chars'}
         defaultValue={`It is not the fart that kills you, it's the smell \n \n
   - Petter Solberg`}
@@ -72,15 +72,15 @@ stories.add('All props', () => {
 stories.add('Max characters', () => (
   <div style={{ paddingTop: 50 }}>
     <div style={{ display: 'flex', width: '50rem' }}>
-      <Textarea max={10} gutterBottom />
+      <Textarea maxCharacters={10} marginBottom />
     </div>
 
     <div style={{ display: 'flex', width: '40rem' }}>
-      <Textarea max={100} />
+      <Textarea maxCharacters={100} />
     </div>
 
     <div style={{ width: '20rem' }}>
-      <Textarea max={100} defaultValue="test" />
+      <Textarea maxCharacters={100} defaultValue="test" />
     </div>
   </div>
 ));
@@ -88,7 +88,7 @@ stories.add('Max characters', () => (
 stories.add('Disabled', () => (
   <>
     <div style={{ width: '20rem' }}>
-      <Textarea disabled placeholder={'This is a placeholder'} gutterBottom />
+      <Textarea disabled placeholder={'This is a placeholder'} marginBottom />
     </div>
     <div style={{ width: '20rem' }}>
       <Textarea disabled defaultValue={`This is a default value`}></Textarea>
@@ -99,7 +99,7 @@ stories.add('Disabled', () => (
 stories.add('Transparent', () => (
   <div style={{ width: '25rem', background: '#e4f7f9' }}>
     <Textarea
-      max={150}
+      maxCharacters={150}
       transparent
       defaultValue={`It is not the fart that kills you, it's the smell
 - Petter Solberg`}

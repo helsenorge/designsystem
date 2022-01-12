@@ -32,8 +32,8 @@ export type FormVariant = 'normal' | 'bigform';
 export const allFormVariants: FormVariant[] = ['normal', 'bigform'];
 
 export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLElement>) => {
-  const { className, mode = FormMode.onWhite, variant = 'normal', error } = props;
-  const onDark = mode === FormMode.onDark;
+  const { className, mode = FormMode.OnWhite, variant = 'normal', error } = props;
+  const onDark = mode === FormMode.OnDark;
   const bigform = variant === 'bigform';
   const formGroupWrapperClasses = classNames(
     formGroupStyles['form-group-wrapper'],
