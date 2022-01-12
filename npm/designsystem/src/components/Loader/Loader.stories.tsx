@@ -1,7 +1,7 @@
 import React from 'react';
 import { withKnobs, select } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import Loader from './Loader';
+import Loader, { Overlay } from './Loader';
 import { allPaletteNames } from '../../../.storybook/knobs';
 import { withA11y } from '@storybook/addon-a11y';
 import Title from '../Title/Title';
@@ -52,7 +52,7 @@ stories.add('Overlay screen', () => (
     <Loader
       size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
       color={select('Color', allPaletteNames, 'black')}
-      overlay="screen"
+      overlay={Overlay.Screen}
     />
   </div>
 ));
@@ -67,7 +67,7 @@ stories.add('Overlay parent', () => (
       <Loader
         size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
         color={select('Color', allPaletteNames, 'black')}
-        overlay="parent"
+        overlay={Overlay.Parent}
       />
     </div>
   </div>
