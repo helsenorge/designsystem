@@ -18,7 +18,7 @@ stories.add('Default', () => (
       label={'Check me out!'}
       checked={boolean('Checked', false)}
       disabled={boolean('Disabled', false)}
-      mode={select('Mode', FormMode, FormMode.onWhite)}
+      mode={select('Mode', FormMode, FormMode.OnWhite)}
       variant={select('Variant', allFormVariants, 'normal')}
     />
   </div>

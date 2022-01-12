@@ -17,7 +17,7 @@ stories.add('Checkbox', () => (
     <FormGroup
       title={text('Title', 'One amazing title')}
       legend={text('Legend', 'Check out these checkboxes!')}
-      mode={select('Mode', FormMode, FormMode.onWhite)}
+      mode={select('Mode', FormMode, FormMode.OnWhite)}
       variant={select('Variant', allFormVariants, 'normal')}
     >
       <Checkbox inputid={'Checkbox1'} label={'Checkbox 1'} />
@@ -26,7 +26,7 @@ stories.add('Checkbox', () => (
     </FormGroup>
     <FormGroup
       legend={text('Legend', 'Check out these checkboxes!')}
-      mode={select('Mode', FormMode, FormMode.onWhite)}
+      mode={select('Mode', FormMode, FormMode.OnWhite)}
       variant={select('Variant', allFormVariants, 'normal')}
     >
       <Checkbox label={'Checkbox 4'} />

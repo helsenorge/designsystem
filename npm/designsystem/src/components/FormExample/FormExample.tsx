@@ -61,7 +61,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           <Textarea
             defaultValue={`Dette er en test \n\n Hello \n\n test \n\n test test`}
             grow
-            max={40}
+            maxCharacters={40}
             minRows={5}
             label="Skriv din historie her"
             name={formGroup3}
@@ -88,7 +88,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           <Textarea
             defaultValue={`Dette er min historie \n\n Hello \n\n test`}
             grow
-            max={40}
+            maxCharacters={40}
             minRows={5}
             label="Skriv din historie her"
             name={formGroup3}
