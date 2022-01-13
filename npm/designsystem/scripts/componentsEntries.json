@@ -5,6 +5,7 @@
   "components/Button/index": "src/components/Button/index.ts",
   "components/ButtonWithModal/index": "src/components/ButtonWithModal/index.tsx",
   "components/Checkbox/index": "src/components/Checkbox/index.ts",
+  "components/Close/index": "src/components/Close/index.tsx",
   "components/ExpanderList/index": "src/components/ExpanderList/index.ts",
   "components/FormExample/index": "src/components/FormExample/index.tsx",
   "components/FormGroup/index": "src/components/FormGroup/index.ts",
