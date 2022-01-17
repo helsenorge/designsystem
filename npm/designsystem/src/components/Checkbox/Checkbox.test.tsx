@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Checkbox from './Checkbox';
-import { FormMode } from '../../constants';
+import { FormMode, FormVariant } from '../../constants';
 
 describe('Gitt at Checkbox skal vises', (): void => {
   describe('Når Checkbox rendres', (): void => {
@@ -51,7 +51,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når formvariant er bigform', (): void => {
     test('Så vises Checkbox med bigform styling', (): void => {
-      render(<Checkbox label={'Check me out!'} variant={'bigform'} />);
+      render(<Checkbox label={'Check me out!'} variant={FormVariant.BigForm} />);
 
       const label = screen.getByText('Check me out!');
       expect(label.className).toBe('checkbox-label checkbox-label--bigform');

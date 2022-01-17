@@ -1,0 +1,51 @@
+---
+title: RadioButton
+path: /bibliotek/komponenter/RadioButton
+date: 2021-02-12
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/RadioButton/componentdata.json';
+import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
+
+# RadioButton
+
+<MDXCustom.Preamble>
+  RadioButton kan brukes frittstående, som en del av en FormGroup eller direkte i et Validation komponent.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{ RadioButton }}>{`<RadioButton label={'Check me out!'} />`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+## Variants
+
+### Normal
+
+<MDXCustom.LiveComponent stack scope={{ RadioButton }}>{`
+  <RadioButton label={'Check me out!'} />
+  <RadioButton label={'Check me out!'} mode={'OnBlueberry'} />
+  <RadioButton label={'Check me out!'} mode={'OnDark'} />
+  <RadioButton label={'Check me out!'} error />
+`}</MDXCustom.LiveComponent>
+
+### Bigform
+
+<MDXCustom.LiveComponent stack scope={{ RadioButton }}>{`
+  <RadioButton label={'Check me out!'} variant={'BigForm'} />
+  <RadioButton label={'Check me out!'} variant={'BigForm'} mode={'OnBlueberry'} />
+  <RadioButton label={'Check me out!'} variant={'BigForm'} mode={'OnDark'} />
+  <RadioButton label={'Check me out!'} variant={'BigForm'} error />
+`}</MDXCustom.LiveComponent>
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**

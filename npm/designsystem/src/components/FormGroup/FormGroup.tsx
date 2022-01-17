@@ -5,8 +5,9 @@ import classNames from 'classnames';
 import formGroupStyles from './styles.module.scss';
 import Checkbox from '../Checkbox';
 import { CheckboxProps } from '../Checkbox/Checkbox';
-import { FormMode } from '../../constants';
+import { FormMode, FormVariant } from '../../constants';
 import Title from '../Title';
+import RadioButton, { RadioButtonProps } from '../RadioButton/RadioButton';
 
 export interface FormGroupProps {
   /** title for the the fieldset */
@@ -20,21 +21,19 @@ export interface FormGroupProps {
   /** Changes the visuals of the formgroup */
   mode?: keyof typeof FormMode;
   /** Changes the visuals of the formgroup */
-  variant?: FormVariant;
+  variant?: keyof typeof FormVariant;
   /** Error message */
   error?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Unique identifyer for the child input tags */
+  name?: string;
 }
 
-export type FormVariant = 'normal' | 'bigform';
-
-export const allFormVariants: FormVariant[] = ['normal', 'bigform'];
-
 export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLElement>) => {
-  const { className, mode = FormMode.OnWhite, variant = 'normal', error } = props;
+  const { className, mode = FormMode.OnWhite, variant = FormVariant.Normal, error, name } = props;
   const onDark = mode === FormMode.OnDark;
-  const bigform = variant === 'bigform';
+  const bigform = variant === FormVariant.BigForm;
   const formGroupWrapperClasses = classNames(
     formGroupStyles['form-group-wrapper'],
     {
@@ -71,7 +70,17 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
           {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
           {React.Children.map(props.children, (child: React.ReactNode) => {
             if ((child as React.ReactElement<CheckboxProps>).type === Checkbox) {
+              let checkbox = (child as React.ReactElement<CheckboxProps>).type === Checkbox;
               return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
+                name: name ?? checkbox.valueOf.name,
+                mode,
+                variant,
+                error: !!error,
+              });
+            } else if ((child as React.ReactElement<RadioButtonProps>).type === RadioButton) {
+              let radioButton = (child as React.ReactElement<RadioButtonProps>).type === RadioButton;
+              return React.cloneElement(child as React.ReactElement<RadioButtonProps>, {
+                name: name ?? radioButton.valueOf.name,
                 mode,
                 variant,
                 error: !!error,

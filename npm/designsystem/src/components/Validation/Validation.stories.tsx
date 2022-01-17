@@ -2,8 +2,8 @@ import React from 'react';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 
-import { allFormVariants } from '../FormGroup/FormGroup';
 import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
+import { FormVariant } from '../../constants';
 
 const stories = storiesOf('Validation', module);
 stories.addDecorator(withKnobs);
@@ -14,7 +14,7 @@ stories.add('FormGroup', () => (
       width: '50vw',
     }}
   >
-    <FormExample variant={select('Variant', allFormVariants, 'normal')} exampleType={FormExampleVariants.formgroup} />
+    <FormExample variant={select('Variant', FormVariant, FormVariant.Normal)} exampleType={FormExampleVariants.formgroup} />
   </div>
 ));
 
@@ -24,7 +24,17 @@ stories.add('Checkbox', () => (
       width: '40rem',
     }}
   >
-    <FormExample variant={select('Variant', allFormVariants, 'normal')} exampleType={FormExampleVariants.checkbox} />
+    <FormExample variant={select('Variant', FormVariant, FormVariant.Normal)} exampleType={FormExampleVariants.checkbox} />
+  </div>
+));
+
+stories.add('Radiobutton', () => (
+  <div
+    style={{
+      width: '40rem',
+    }}
+  >
+    <FormExample variant={select('Variant', FormVariant, FormVariant.Normal)} exampleType={FormExampleVariants.radiobutton} />
   </div>
 ));
 
@@ -34,6 +44,6 @@ stories.add('Textarea', () => (
       width: '90vw',
     }}
   >
-    <FormExample variant={select('Variant', allFormVariants, 'normal')} exampleType={FormExampleVariants.textarea} />
+    <FormExample variant={select('Variant', FormVariant, FormVariant.Normal)} exampleType={FormExampleVariants.textarea} />
   </div>
 ));

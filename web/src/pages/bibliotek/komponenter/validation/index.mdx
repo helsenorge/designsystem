@@ -49,25 +49,38 @@ export const FormExample = React.forwardRef((props, ref: React.ForwardedRef<HTML
     >
       <Validation variant={props.variant} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
         <FormGroup
-          title={text('Title 1', 'One amazing title')}
-          legend={text('Legend 1', 'Check out these checkboxes!')}
-          mode={select('Mode', FormGroupModes, FormGroupModes.onWhite)}
-          variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)}
+          key={0}
+          title={'One amazing title'}
+          legend={'Check out these checkboxes!'}
           error={errors[formGroup1] ? errors[formGroup1].message : undefined}
+          variant={props.variant}
+          name={formGroup1}
         >
-          <Checkbox name={formGroup1} label={'Checkbox 1'} ref={register({ required: errorMessage })} />
-          <Checkbox name={formGroup1} label={'Checkbox 2'} ref={register({ required: errorMessage })} />
-          <Checkbox name={formGroup1} label={'Checkbox 3'} ref={register({ required: errorMessage })} />
-        </FormGroup>
+          <Checkbox label={'Checkbox 1'} ref={register({ required: errorMessage })} />
+          <Checkbox label={'Checkbox 2'} ref={register({ required: errorMessage })} />
+          <Checkbox label={'Checkbox 3'} ref={register({ required: errorMessage })} />
+        </FormGroup>,
         <FormGroup
-          legend={text('Legend 2', 'Select two options!')}
-          mode={select('Mode', FormGroupModes, FormGroupModes.onWhite)}
-          variant={select('Variant', FormGroupVariants, FormGroupVariants.normal)}
-          error={errors[formGroup2] ? errors[formGroup2].message : undefined}
+          key={1}
+          legend={'Select one options!'}
+          error={errors[formGroup3] ? errors[formGroup3].message : undefined}
+          variant={props.variant}
+          name={formGroup3}
         >
-          <Checkbox name={formGroup2} label={'Checkbox 4'} ref={register({ validate: requireTwo })} />
-          <Checkbox name={formGroup2} label={'Checkbox 5'} ref={register({ validate: requireTwo })} />
-          <Checkbox name={formGroup2} label={'Checkbox 6'} ref={register({ validate: requireTwo })} />
+          <RadioButton label={'Radiobutton 1'} ref={register({ required: errorMessage })} />
+          <RadioButton label={'Radiobutton 2'} ref={register({ required: errorMessage })} />
+          <RadioButton label={'Radiobutton 3'} ref={register({ required: errorMessage })} />
+        </FormGroup>,
+        <FormGroup key={2} error={errors[formGroup4] ? errors[formGroup4].message : undefined}>
+          <Textarea
+            defaultValue={`Dette er en test \n\n Hello \n\n test \n\n test test`}
+            grow
+            maxCharacters={40}
+            minRows={5}
+            label="Skriv din historie her"
+            name={formGroup4}
+            ref={register({ maxLength: { value: 40, message: errorMessage3 } })}
+          />
         </FormGroup>
       </Validation>
       <br />

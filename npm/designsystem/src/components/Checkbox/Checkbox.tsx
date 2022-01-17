@@ -8,8 +8,7 @@ import Icon from '../Icons';
 import { getColor } from '../../theme/currys/color';
 
 import checkboxStyles from './styles.module.scss';
-import { FormVariant } from '../FormGroup/FormGroup';
-import { FormMode } from '../../constants';
+import { FormMode, FormVariant } from '../../constants';
 
 export interface CheckboxProps {
   /** Adds custom classes to the element. */
@@ -29,7 +28,7 @@ export interface CheckboxProps {
   /** Return value for the checkbox */
   value?: string;
   /** Changes the visuals of the checkbox */
-  variant?: FormVariant;
+  variant?: keyof typeof FormVariant;
   /** Activates Error style for the checkbox - This is can be true while errorText is empty, when in a FormGroup */
   error?: boolean;
   /** Error text to show above the component */
@@ -53,10 +52,10 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     value = label,
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
-  const invalid = error;
+  const invalid = error || mode === FormMode.OnError;
   const onDark = mode === FormMode.OnDark;
   const onBlueberry = mode === FormMode.OnBlueberry;
-  const bigform = variant === 'bigform';
+  const bigform = variant === FormVariant.BigForm;
 
   const checkboxWrapperClasses = classNames(checkboxStyles['checkbox-wrapper'], {
     [checkboxStyles['checkbox-wrapper--with-error']]: errorText,

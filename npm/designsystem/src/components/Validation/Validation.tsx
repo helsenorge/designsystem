@@ -2,9 +2,10 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import FormGroup, { FormGroupProps, FormVariant } from '../FormGroup/FormGroup';
+import FormGroup, { FormGroupProps } from '../FormGroup/FormGroup';
 
 import validationStyles from './styles.module.scss';
+import { FormVariant } from '../../constants';
 
 interface ValidationProps {
   /** text placed in the legend tag of the fieldset */
@@ -14,14 +15,13 @@ interface ValidationProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** Changes the visuals of the formgroup */
-  variant?: FormVariant;
+  variant?: keyof typeof FormVariant;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLElement>) => {
   const { errorSummary, className } = props;
-  const bigform = props.variant === 'bigform';
   const validationClasses = classNames(validationStyles['validation'], className);
 
   return (

@@ -102,6 +102,10 @@
           "path": "/bibliotek/komponenter/notification-panel"
         },
         {
+          "label": "RadioButton",
+          "path": "/bibliotek/komponenter/radiobutton"
+        },
+        {
           "label": "Spacer",
           "path": "/bibliotek/komponenter/spacer"
         },

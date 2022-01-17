@@ -69,3 +69,8 @@ export enum FormMode {
   OnDark = 'OnDark',
   OnError = 'OnError',
 }
+
+export enum FormVariant {
+  Normal = 'Normal',
+  BigForm = 'BigForm',
+}

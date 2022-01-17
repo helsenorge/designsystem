@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from './FormGroup';
+import RadioButton from '../RadioButton';
 
 describe('Gitt at FormGroup skal vises', (): void => {
   describe('Når FormGroup rendres', (): void => {
@@ -62,7 +63,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
     });
   });
 
-  describe('Når FormGroup har children', (): void => {
+  describe('Når FormGroup har checkbox children', (): void => {
     test('Så rendres de', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
@@ -74,6 +75,21 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       const checkboxArray = screen.getAllByRole('checkbox');
       expect(checkboxArray.length).toBe(3);
+    });
+  });
+
+  describe('Når FormGroup har radio children', (): void => {
+    test('Så rendres de', (): void => {
+      render(
+        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
+          <RadioButton inputid={'Radiobutton1'} label={'Radiobutton 1'} />
+          <RadioButton inputid={'Radiobutton2'} label={'Radiobutton 2'} />
+          <RadioButton inputid={'Radiobutton3'} label={'Radiobutton 3'} />
+        </FormGroup>
+      );
+
+      const radioButtonArray = screen.getAllByRole('radio');
+      expect(radioButtonArray.length).toBe(3);
     });
   });
 

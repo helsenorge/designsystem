@@ -31,12 +31,12 @@ describe('Gitt at Validation skal vises', () => {
 
       userEvent.click(submit);
 
-      const error = await screen.findByText('Du må velge et alternativ');
+      const error = await screen.findAllByText('Du må velge et alternativ');
       const error2 = await screen.findByText('Du må velge to alternativ');
       const errorSummary = screen.getByText('Sjekk at alt er riktig utfylt');
 
-      expect(error).toBeVisible();
-      expect(error.className).toBe('form-group-wrapper__errors');
+      expect(error.length).toBe(2);
+      expect(error[0].className).toBe('form-group-wrapper__errors');
       expect(error2).toBeVisible();
       expect(error2.className).toBe('form-group-wrapper__errors');
       expect(errorSummary).toBeVisible();
@@ -66,12 +66,12 @@ describe('Gitt at Validation skal vises', () => {
 
       userEvent.click(submit);
 
-      const error = await screen.findByText('Du må velge et alternativ');
+      const error = await screen.findAllByText('Du må velge et alternativ');
       const error2 = await screen.findByText('Du må velge to alternativ');
       const error3 = await screen.findByText('Det kan ikke legges inn mer enn 40 tegn');
       const errorSummary = screen.getByText('Sjekk at alt er riktig utfylt');
 
-      expect(error).toBeVisible();
+      expect(error.length).toBe(2);
       expect(error2).toBeVisible();
       expect(error3).toBeVisible();
       expect(errorSummary).toBeVisible();
@@ -79,16 +79,18 @@ describe('Gitt at Validation skal vises', () => {
       const checkbox1 = screen.getByLabelText('Checkbox 1');
       const checkbox4 = screen.getByLabelText('Checkbox 4');
       const checkbox5 = screen.getByLabelText('Checkbox 5');
+      const radiobutton1 = screen.getByLabelText('Radiobutton 1');
       const textarea1 = screen.getByLabelText('Skriv din historie her');
       userEvent.click(checkbox1);
       userEvent.click(checkbox4);
       userEvent.click(checkbox5);
+      userEvent.click(radiobutton1);
       fireEvent.change(textarea1, { target: { value: 'Endring.' } });
 
       userEvent.click(submit);
 
       await waitFor(() => {
-        expect(error).not.toBeInTheDocument();
+        expect(error[0]).not.toBeInTheDocument();
         expect(error2).not.toBeInTheDocument();
         expect(error3).not.toBeInTheDocument();
         expect(errorSummary).not.toBeInTheDocument();
