@@ -4,7 +4,6 @@ import cn from 'classnames';
 import { palette } from '../../theme/palette';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icons';
-import X from '../Icons/X';
 
 import styles from './styles.module.scss';
 import AlertSignStroke from '../Icons/AlertSignStroke';
@@ -15,6 +14,7 @@ import Title from '../Title/Title';
 import uuid from '../../utils/uuid';
 import Close from '../Close';
 import CheckOutline from '../Icons/CheckOutline';
+import { ZIndex } from '../../constants';
 
 export enum ModalVariants {
   normal = 'normal',
@@ -62,6 +62,8 @@ export interface ModalProps {
   afterTitleChildren?: React.ReactNode;
   /** Adds custom classes to the element. */
   className?: string;
+  /** Customize the z-index of the modal */
+  zIndex?: number;
   /** Function is called when user clicks primary button */
   onSuccess?: () => void;
   /** Function is called when user clicks secondary button */
@@ -74,6 +76,7 @@ const defaultProps = {
   large: false,
   className: '',
   size: ModalSize.large,
+  zIndex: ZIndex.Modal,
 };
 
 const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => {
@@ -173,7 +176,7 @@ const Modal = (props: ModalProps): JSX.Element => {
 
   return (
     <div data-testid="dialog-container">
-      <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId}>
+      <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId} style={{ zIndex: props.zIndex }}>
         <div className={styles.align} ref={FocusTrap()}>
           <div
             className={cn(props.className, styles.modal, styles[`modal--${props.variant}`], styles[`modal--${props.size}`])}

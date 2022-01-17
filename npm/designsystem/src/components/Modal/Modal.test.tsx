@@ -50,6 +50,15 @@ describe('Gitt at en modal skal vises ', (): void => {
     });
   });
 
+  describe('Når modal har custom z-index', (): void => {
+    it('Så er z-index satt med inline styling', (): void => {
+      render(<Modal title="Hei der" zIndex={123} testId="modal-med-custom-z-index" />);
+
+      const modal = screen.getByTestId('modal-med-custom-z-index');
+      expect(modal).toHaveAttribute('style', 'z-index: 123;');
+    });
+  });
+
   describe('Når en bruker trykker på OK knappen', (): void => {
     it('Så skal onSuccess kalles en gang', (): void => {
       const onClose = jest.fn();

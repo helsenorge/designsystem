@@ -6,6 +6,10 @@ export enum IconSize {
   XLarge = 130,
 }
 
+export enum ZIndex {
+  Modal = 1300000,
+}
+
 export interface HTMLButtonProps {
   autoFocus?: boolean;
   disabled?: boolean;

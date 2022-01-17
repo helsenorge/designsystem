@@ -7,6 +7,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
   >
     <div
       class="modal-overlay"
+      style="z-index: 1300000;"
     >
       <div
         class="align"
@@ -139,6 +140,7 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
   >
     <div
       class="modal-overlay"
+      style="z-index: 1300000;"
     >
       <div
         class="align"
