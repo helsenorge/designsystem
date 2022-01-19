@@ -105,3 +105,21 @@ const ViewModal = ({open: boolean}) {
   onSuccess={() => alert('OK')}
    />
 `}</MDXCustom.LiveComponent>
+
+## Printable
+
+<MDXCustom.LiveComponent scope={{ ButtonWithModal }}>{`
+<ButtonWithModal 
+  buttonText="Åpne modal"
+  title="Dette kan printes"
+  titleId="test-id6"
+  description="En Modal informerer brukere om en oppgave eller status"
+  primaryButtonText="Lagre"
+  large={false}
+  testId="modal_1"
+  ariaLabel="dialog xx"
+  secondaryButtonText="Avbryt"
+  onSuccess={() => alert('Lagre')}
+  printable
+   />
+`}</MDXCustom.LiveComponent>

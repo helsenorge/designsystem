@@ -14,6 +14,7 @@ import Title from '../Title/Title';
 import uuid from '../../utils/uuid';
 import Close from '../Close';
 import CheckOutline from '../Icons/CheckOutline';
+import Portal from '../Portal';
 import { ZIndex } from '../../constants';
 
 export enum ModalVariants {
@@ -68,6 +69,8 @@ export interface ModalProps {
   onSuccess?: () => void;
   /** Function is called when user clicks secondary button */
   onClose?: () => void;
+  /** When enabled the component will be rendered in the bottom of document.body */
+  printable?: boolean;
 }
 
 const defaultProps = {
@@ -174,7 +177,7 @@ const Modal = (props: ModalProps): JSX.Element => {
     [styles['modal__title--success']]: props.variant === ModalVariants.success,
   });
 
-  return (
+  const Component = (
     <div data-testid="dialog-container">
       <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId} style={{ zIndex: props.zIndex }}>
         <div className={styles.align} ref={FocusTrap()}>
@@ -247,6 +250,18 @@ const Modal = (props: ModalProps): JSX.Element => {
       </div>
     </div>
   );
+
+  if (props.printable) {
+    const printModal = 'print-modal';
+    return (
+      <Portal className={printModal} testId="print-modal">
+        <style media="print">{`body > *:not(.${printModal}) {visibility: hidden;}`}</style>
+        {Component}
+      </Portal>
+    );
+  }
+
+  return Component;
 };
 
 Modal.defaultProps = defaultProps;

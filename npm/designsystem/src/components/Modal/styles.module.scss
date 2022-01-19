@@ -13,7 +13,7 @@
   bottom: 0;
 
   @media print {
-    display: none;
+    position: absolute;
   }
 }
 
@@ -22,6 +22,13 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+
+  @media print {
+    position: initial;
+    left: 0;
+    top: 0;
+    transform: none;
+  }
 }
 
 .modal {
@@ -122,6 +129,10 @@
   }
 
   &__closeWrapper {
+    @media print {
+      display: none;
+    }
+
     position: relative;
     width: 100%;
 
@@ -135,6 +146,11 @@
   &__contentWrapper {
     max-height: calc(100vh - 10rem);
     overflow: auto;
+
+    @media print {
+      overflow: hidden;
+      max-height: none;
+    }
 
     &--image {
       max-height: 100vh;
@@ -217,5 +233,9 @@
       opacity: 1;
       transform: scale(1);
     }
+  }
+
+  @media print {
+    width: 100%;
   }
 }

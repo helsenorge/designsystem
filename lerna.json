@@ -1,5 +1,5 @@
 {
-	"version": "1.0.0-beta91",
+	"version": "1.0.0-beta92",
 	"npmClient": "npm",
 	"command": {
 		"run": {

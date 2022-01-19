@@ -258,3 +258,93 @@ stories.add('Modal with custom content', () => {
     </div>
   );
 });
+
+stories.add('Print modal', () => {
+  return (
+    <div>
+      <p>{'A random string: top'}</p>
+      <div style={{ minHeight: '100vh', backgroundColor: 'lavender' }}></div>
+      <ButtonWithModal
+        buttonText="Open modal"
+        variant={select(
+          'variant',
+          [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
+          ModalVariants.normal
+        )}
+        printable
+        description={`
+        Not to be. Here's a couple of acres. Now listen to me very carefully. Get out. Gimme the goddam page!
+
+        Do it now! I'm detective john kimble. You got what you want... Wrong. You're the asshole on tv... I want my larry. Cool off. You set us up. Excuse me. Come with me if you want to live.
+       
+        Fugettit, i'm not going to sit on your lap. Living tissue over endoskeleton. Living tissue over endoskeleton. Come on don't bullshit me.
+       
+
+        You're a fucking choir boy compared to me... Born to be bad. You are mine now... Blondes. I'm the famous comedian, arnold brownswagger. No problemo. Your luggage... You're a funny guy sully...
+       
+
+
+        I wanna see you. Well listen to this one. Gimme the goddam page! You should clone yourslef so you can go fuck yourself.
+       
+
+
+
+
+
+
+        Who the fuck are you? Now! Hey light head. You should clone yourslef so you can go fuck yourself... You set us up. Como esta. Only pain. No sequel for you. The ice age. Fuck you asshowr.
+       
+
+
+
+
+
+        You are mine now. Come on! No more 'mr kimble, i have to go to the bathroom. You're the asshole on tv.
+       
+
+
+
+
+
+        The ice age. I'm the party pooper. Right now i'm very hungry. Who is your daddy, and what does he do? Crumb. You're a funny guy sully. I eat green barrettes for breakfast. The iceman cometh.
+
+        You're a fucking choir boy compared to me... Born to be bad. You are mine now... Blondes. I'm the famous comedian, arnold brownswagger. No problemo. Your luggage... You're a funny guy sully...
+       
+
+
+        I wanna see you. Well listen to this one. Gimme the goddam page! You should clone yourslef so you can go fuck yourself.
+       
+
+
+
+
+
+
+        Who the fuck are you? Now! Hey light head. You should clone yourslef so you can go fuck yourself... You set us up. Como esta. Only pain. No sequel for you. The ice age. Fuck you asshowr.
+       
+
+
+
+
+
+        You are mine now. Come on! No more 'mr kimble, i have to go to the bathroom. You're the asshole on tv.
+       
+
+
+
+
+
+        The ice age. I'm the party pooper. Right now i'm very hungry. Who is your daddy, and what does he do? Crumb. You're a funny guy sully. I eat green barrettes for breakfast. The iceman cometh.
+
+        ...
+        ...
+
+        - End
+        `}
+        title={text('title', 'Arnold Schwarzenegger Quotes')}
+      />
+      <div style={{ minHeight: '200vh', width: '100%' }}></div>
+      <p>{'A random string: bottom'}</p>
+    </div>
+  );
+});

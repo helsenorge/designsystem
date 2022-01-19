@@ -356,3 +356,30 @@ describe('Gitt at en modal skal vises ', (): void => {
     });
   });
 });
+
+describe('Gitt at en modal skal vises som printable ', (): void => {
+  it('Så skal modalen wrappes med Portal', (): void => {
+    const onClose = jest.fn();
+    const onSuccess = jest.fn();
+
+    render(
+      <Modal
+        title="Hei der"
+        description="Dette er innhold"
+        onClose={onClose}
+        onSuccess={onSuccess}
+        secondaryButtonText="Avbryt"
+        variant={ModalVariants.error}
+        testId="testid"
+        titleId="test"
+        printable
+      />
+    );
+    const portal = screen.getByTestId('print-modal');
+    expect(portal).toBeVisible();
+    expect(portal.innerHTML).toMatchSnapshot();
+
+    const dialog = screen.getByLabelText('Hei der');
+    expect(dialog).toBeVisible();
+  });
+});
