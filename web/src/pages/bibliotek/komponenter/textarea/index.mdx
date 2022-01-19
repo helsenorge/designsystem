@@ -5,7 +5,7 @@ date: 2021-01-10
 ---
 
 import MDXCustom from '../../../../components/markdown/MDXCustom';
-import * as propData from '@helsenorge/designsystem-react/components/Title/componentdata.json';
+import * as propData from '@helsenorge/designsystem-react/components/Textarea/componentdata.json';
 import Textarea from '@helsenorge/designsystem-react/components/Textarea';
 
 # Textarea
@@ -17,7 +17,7 @@ import Textarea from '@helsenorge/designsystem-react/components/Textarea';
 
 ## Preview
 
-<MDXCustom.LiveComponent scope={{ Textarea }}>{`<div style={{width: '35vw'}}><Textarea placeholder="Dette er en placeholder" /></div>`}</MDXCustom.LiveComponent>
+<MDXCustom.LiveComponent scope={{ Textarea }}>{`<div style={{width: '500px'}}><Textarea placeholder="Dette er en placeholder" /></div>`}</MDXCustom.LiveComponent>
 
 ## Properties
 
@@ -25,19 +25,19 @@ import Textarea from '@helsenorge/designsystem-react/components/Textarea';
 
 ## Examples
 
-### Appearances
+### Textarea (med maxCharacters, grow og defaultValue)
 
 <MDXCustom.LiveComponent stack scope={{ Textarea }}>{`
-  <div style={{width: '35vw'}}>
+  <div style={{width: '500px'}}>
   <Textarea 
       placeholder="Dette er en placeholder"
-      max={255}
+      maxCharacters={255}
       maxText="chars"
       defaultValue="LO\\n\\n - Første ordet på internett 29 Oktober, 1969"
       testId="123-test"
       transparent={false}
       disabled={false}
-      label="Dette er en label"
+      label="Skriv inn en tekst"
       minRows={3}
       maxRows={10}
       grow={true}
@@ -46,11 +46,3 @@ import Textarea from '@helsenorge/designsystem-react/components/Textarea';
     />
     </div>
 `}</MDXCustom.LiveComponent>
-
-## Bruk
-
-**TODO: Legg til bruk**
-
-### Tilgjengelighet
-
-**TODO: Legg til UU**
