@@ -255,7 +255,7 @@ const Modal = (props: ModalProps): JSX.Element => {
     const printModal = 'print-modal';
     return (
       <Portal className={printModal} testId="print-modal">
-        <style media="print">{`body > *:not(.${printModal}) {visibility: hidden;}`}</style>
+        <style media="print">{`body > *:not(.${printModal}) {display: none;}`}</style>
         {Component}
       </Portal>
     );

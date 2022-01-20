@@ -278,7 +278,7 @@
   "components/Loader/index": "src/components/Loader/index.ts",
   "components/Logo/index": "src/components/Logo/index.ts",
   "components/__mocks__/index": "src/components/Modal/__mocks__/IntersectionObserver.ts",
-  "components/Modal/index": "src/components/Modal/index.tsx",
+  "components/Modal/index": "src/components/Modal/index.ts",
   "components/NotificationPanel/index": "src/components/NotificationPanel/index.ts",
   "components/Portal/index": "src/components/Portal/index.tsx",
   "components/RadioButton/index": "src/components/RadioButton/index.ts",

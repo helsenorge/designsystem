@@ -265,6 +265,9 @@ stories.add('Print modal', () => {
       <p>{'A random string: top'}</p>
       <div style={{ minHeight: '100vh', backgroundColor: 'lavender' }}></div>
       <ButtonWithModal
+        onSuccess={onSuccess}
+        primaryButtonText="I'm a button"
+        title={text('title', 'Arnold Schwarzenegger Quotes')}
         buttonText="Open modal"
         variant={select(
           'variant',
@@ -341,9 +344,8 @@ stories.add('Print modal', () => {
 
         - End
         `}
-        title={text('title', 'Arnold Schwarzenegger Quotes')}
       />
-      <div style={{ minHeight: '200vh', width: '100%' }}></div>
+      <div style={{ minHeight: '1200vh', width: '100%' }}></div>
       <p>{'A random string: bottom'}</p>
     </div>
   );
