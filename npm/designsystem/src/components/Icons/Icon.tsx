@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconSize } from '.';
+import { IconSize } from '../../constants';
 
 type SvgIcon = React.FC<SvgPathProps>;
 

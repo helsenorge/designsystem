@@ -8,8 +8,8 @@ import loaderStyles from './styles.module.scss';
 export type LoaderColors = PaletteNames;
 export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';
 export enum Overlay {
-  Screen = 'Screen',
-  Parent = 'Parent',
+  screen = 'screen',
+  parent = 'parent',
 }
 
 interface LoaderProps {
@@ -47,7 +47,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   } = props;
 
   const showLoader = (): boolean => {
-    if (overlay === Overlay.Parent || inline) {
+    if (overlay === Overlay.parent || inline) {
       return false;
     }
 
@@ -63,8 +63,8 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   const loaderWrapperClasses = classNames(loaderStyles['loader-wrapper'], {
     [loaderStyles['loader-wrapper--center']]: center,
     [loaderStyles['loader-wrapper--overlay']]: overlay,
-    [loaderStyles['loader-wrapper--overlay-screen']]: overlay === Overlay.Screen,
-    [loaderStyles['loader-wrapper--overlay-parent']]: overlay === Overlay.Parent && display,
+    [loaderStyles['loader-wrapper--overlay-screen']]: overlay === Overlay.screen,
+    [loaderStyles['loader-wrapper--overlay-parent']]: overlay === Overlay.parent && display,
     [loaderStyles['loader-wrapper--inline']]: inline && display,
   });
   const loaderClasses = classNames(
@@ -94,7 +94,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (overlay === Overlay.Parent && wrapperRef.current?.parentElement?.style) {
+    if (overlay === Overlay.parent && wrapperRef.current?.parentElement?.style) {
       wrapperRef.current.parentElement.style.position = 'relative';
       setDisplay(true);
     }

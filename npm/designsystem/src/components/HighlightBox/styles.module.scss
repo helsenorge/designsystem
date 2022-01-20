@@ -1,0 +1,89 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/_grid.scss';
+
+.highlightbox {
+  $box: &;
+  $colors: 'blueberry', 'cherry', 'neutral', 'kiwi', 'plum';
+
+  &--medium,
+  &--large {
+    @include make-container;
+  }
+
+  // large og fluid skal ha bakgrunnsfarge på den ytre containeren
+  &--large,
+  &--fluid {
+    @each $color in $colors {
+      &#{$box}--#{$color} {
+        background-color: map-get($palette-map, #{$color}50);
+      }
+    }
+    // Hvit har sin egen regel siden den ikke har valører
+    &#{$box}--white {
+      background-color: $white;
+    }
+  }
+
+  // medium skal ha bakgrunnsfarge på den indre kolonnen
+  @each $color in $colors {
+    &--medium#{&}--#{$color} {
+      #{$box}__col {
+        background-color: map-get($palette-map, #{$color}50);
+      }
+    }
+  }
+  &--medium#{&}--white {
+    #{$box}__col {
+      background-color: $white;
+    }
+  }
+
+  &--fluid {
+    padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
+
+    @media (min-width: map-get($grid-breakpoints, lg)) {
+      padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
+    }
+  }
+
+  &--medium {
+    #{$box}__col {
+      padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
+      }
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        padding: getSpacer(l);
+      }
+    }
+  }
+
+  &--large {
+    #{$box}__col {
+      padding-top: getSpacer(m);
+      padding-bottom: getSpacer(l);
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        padding-top: getSpacer(l);
+        padding-bottom: getSpacer(xl);
+      }
+    }
+  }
+
+  &__row {
+    @include make-row;
+  }
+  &__col {
+    display: block;
+    @include make-col(12);
+    @media (min-width: map-get($grid-breakpoints, sm)) {
+      @include make-col(10);
+      @include make-col-offset(1);
+    }
+    @media (min-width: map-get($grid-breakpoints, lg)) {
+      @include make-col(8);
+      @include make-col-offset(2);
+    }
+  }
+}

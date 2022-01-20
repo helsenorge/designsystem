@@ -9,6 +9,7 @@
   "components/ExpanderList/index": "src/components/ExpanderList/index.ts",
   "components/FormExample/index": "src/components/FormExample/index.tsx",
   "components/FormGroup/index": "src/components/FormGroup/index.ts",
+  "components/HighlightBox/index": "src/components/HighlightBox/index.ts",
   "components/Icons/ActiveMonitoring": "src/components/Icons/ActiveMonitoring.tsx",
   "components/Icons/AcupunctureBack": "src/components/Icons/AcupunctureBack.tsx",
   "components/Icons/AdditionalIconInformation": "src/components/Icons/AdditionalIconInformation.js",

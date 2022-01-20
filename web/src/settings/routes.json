@@ -74,6 +74,10 @@
           "path": "/bibliotek/komponenter/formgroup"
         },
         {
+          "label": "HighlightBox",
+          "path": "/bibliotek/komponenter/highlightbox"
+        },
+        {
           "label": "Icon",
           "path": "/bibliotek/komponenter/icon"
         },

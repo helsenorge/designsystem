@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som fluid Så rendres HighlightBox riktig 1`] = `
+<div>
+  <div
+    class="highlightbox highlightbox--blueberry highlightbox--fluid"
+  >
+    <p>
+      Avsnitt
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som large Så rendres HighlightBox riktig 1`] = `
+<div>
+  <div
+    class="highlightbox highlightbox--blueberry highlightbox--large"
+  >
+    <div
+      class="highlightbox__row"
+    >
+      <div
+        class="highlightbox__col"
+      >
+        <p>
+          Avsnitt
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som medium Så rendres HighlightBox riktig 1`] = `
+<div>
+  <div
+    class="highlightbox highlightbox--blueberry highlightbox--medium"
+  >
+    <div
+      class="highlightbox__row"
+    >
+      <div
+        class="highlightbox__col"
+      >
+        <p>
+          Avsnitt
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

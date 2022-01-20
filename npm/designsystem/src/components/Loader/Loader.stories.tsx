@@ -52,7 +52,7 @@ stories.add('Overlay screen', () => (
     <Loader
       size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
       color={select('Color', allPaletteNames, 'black')}
-      overlay={Overlay.Screen}
+      overlay={Overlay.screen}
     />
   </div>
 ));
@@ -67,7 +67,7 @@ stories.add('Overlay parent', () => (
       <Loader
         size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
         color={select('Color', allPaletteNames, 'black')}
-        overlay={Overlay.Parent}
+        overlay={Overlay.parent}
       />
     </div>
   </div>
