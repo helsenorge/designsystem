@@ -6,7 +6,7 @@ import { FormMode } from '../../constants';
 import * as uuidUtils from '../../utils/uuid';
 jest.spyOn(uuidUtils, 'uuid').mockReturnValue(`-unik-id`);
 
-describe('Gitt at Checkbox skal vises', (): void => {
+describe('Gitt at Textarea skal vises', (): void => {
   describe('Når Textarea rendres', (): void => {
     test('Så vises Textarea', (): void => {
       const { container } = render(<Textarea label={'Skriv din historie'} />);
@@ -18,7 +18,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       const input = screen.getByRole('textbox');
       expect(input).toBeVisible();
-      expect(input.className).toBe('textarea__input');
+      expect(input.className).toBe('content-wrapper__input');
     });
   });
 
@@ -31,20 +31,20 @@ describe('Gitt at Checkbox skal vises', (): void => {
     });
   });
 
-  describe('Når FormMode er OnBlueberry', (): void => {
-    test('Så vises Textarea med OnBlueberry styling', (): void => {
-      render(<Textarea label={'Check me out!'} mode={FormMode.OnBlueberry} />);
+  describe('Når FormMode er onblueberry', (): void => {
+    test('Så vises Textarea med onblueberry styling', (): void => {
+      render(<Textarea label={'Check me out!'} mode={FormMode.onblueberry} />);
 
-      const input = screen.getByRole('textbox');
-      expect(input.className).toBe('textarea__input textarea__input--OnBlueberry');
+      const contentWrapper = screen.getByRole('textbox').parentElement;
+      expect(contentWrapper.className).toBe('content-wrapper content-wrapper--on-blueberry');
     });
   });
-  describe('Når mode er OnDark', (): void => {
-    test('Så vises Textarea med OnDark styling', (): void => {
-      render(<Textarea label={'Check me out!'} mode={FormMode.OnDark} />);
+  describe('Når mode er ondark', (): void => {
+    test('Så vises Textarea med ondark styling', (): void => {
+      render(<Textarea label={'Check me out!'} mode={FormMode.ondark} />);
 
-      const input = screen.getByRole('textbox');
-      expect(input.className).toBe('textarea__input textarea__input--OnDark');
+      const contentWrapper = screen.getByRole('textbox').parentElement;
+      expect(contentWrapper.className).toBe('content-wrapper content-wrapper--on-dark');
     });
   });
 
@@ -93,9 +93,9 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       expect(screen.getByText('23/10 tegn')).toBeVisible();
 
-      const input = screen.getByRole('textbox');
+      const contentWrapper = screen.getByRole('textbox').parentElement;
 
-      expect(input.className).toEqual('textarea__input textarea__input--invalid');
+      expect(contentWrapper.className).toEqual('content-wrapper content-wrapper--invalid');
     });
   });
 });

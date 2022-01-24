@@ -47,10 +47,10 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     error = !!errorText,
     value = label,
   } = props;
-  const invalid = error || mode === FormMode.OnError;
-  const onDark = mode === FormMode.OnDark;
-  const onBlueberry = mode === FormMode.OnBlueberry;
-  const bigform = variant === FormVariant.BigForm;
+  const invalid = error || mode === FormMode.oninvalid;
+  const onDark = mode === FormMode.ondark;
+  const onBlueberry = mode === FormMode.onblueberry;
+  const bigform = variant === FormVariant.bigform;
 
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
     [radioButtonStyles['radio-button-wrapper--with-error']]: errorText,

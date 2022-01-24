@@ -273,6 +273,7 @@
   "components/Icons/XOutline": "src/components/Icons/XOutline.tsx",
   "components/Icons/YouTube": "src/components/Icons/YouTube.tsx",
   "components/Icons/Zoom": "src/components/Icons/Zoom.tsx",
+  "components/Input/index": "src/components/Input/index.tsx",
   "components/LinkList/index": "src/components/LinkList/index.ts",
   "components/List/index": "src/components/List/index.ts",
   "components/Loader/index": "src/components/Loader/index.ts",

@@ -30,6 +30,10 @@ interface TextareaProps extends HTMLTextareaProps {
   grow?: boolean;
   /** Error text to show above the component */
   errorText?: string;
+  /** Component shown after label */
+  afterLabelChildren?: React.ReactNode;
+  /** Component shown under label */
+  belowLabelChildren?: React.ReactNode;
 }
 
 const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
@@ -46,6 +50,8 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     maxRows = 10,
     grow,
     errorText,
+    afterLabelChildren,
+    belowLabelChildren,
     ...restProps
   } = props;
 
@@ -84,30 +90,35 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     setTextareaInput(event.target.value);
   };
 
-  const onDark = mode === FormMode.OnDark;
-  const onBlueberry = mode === FormMode.OnBlueberry;
+  const onDark = mode === FormMode.ondark;
+  const onBlueberry = mode === FormMode.onblueberry;
   const textHasError = max && textareaInput.length > max;
-  const onError = mode === FormMode.OnError || errorText || textHasError;
+  const onError = mode === FormMode.oninvalid || errorText || textHasError;
 
   const textareaWrapperClass = cn(styles.textarea, {
     [styles['textarea--gutterBottom']]: gutterBottom,
     [styles[`textarea--invalid`]]: errorText,
   });
 
-  const textareaClass = cn(styles.textarea__input, {
-    [styles['textarea__input--transparent']]: transparent,
-    [styles[`textarea__input--${FormMode.OnBlueberry}`]]: onBlueberry,
-    [styles[`textarea__input--${FormMode.OnDark}`]]: onDark,
-    [styles[`textarea__input--invalid`]]: onError,
+  const labelWrapperClass = cn(styles['textarea__label-wrapper'], {
+    [styles[`textarea__label-wrapper--on-dark`]]: onDark,
+  });
+
+  const contentWrapperClass = cn(styles['content-wrapper'], {
+    [styles['content-wrapper--transparent']]: transparent,
+    [styles['content-wrapper--on-blueberry']]: onBlueberry,
+    [styles['content-wrapper--on-dark']]: onDark,
+    [styles['content-wrapper--invalid']]: onError,
+    [styles['content-wrapper--disabled']]: props.disabled,
+  });
+
+  const textareaClass = cn(styles['content-wrapper__input'], {
+    [styles[`content-wrapper__input--disabled`]]: props.disabled,
   });
 
   const counterTextClass = cn(styles['textarea__counter-wrapper'], {
-    [styles[`textarea__counter-wrapper--${FormMode.OnDark}`]]: onDark,
+    [styles[`textarea__counter-wrapper--on-dark`]]: onDark,
     [styles[`textarea__counter-wrapper--invalid`]]: onError,
-  });
-
-  const labelClass = cn(styles.textarea__label, {
-    [styles[`textarea__label--${FormMode.OnDark}`]]: onDark,
   });
 
   const uniqueId = label ? uuid() : undefined;
@@ -122,11 +133,13 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   return (
     <div data-testid={testId} className={textareaWrapperClass}>
       {label && (
-        <div className={labelClass}>
+        <div className={labelWrapperClass}>
           <label htmlFor={uniqueId}>{label}</label>
+          {afterLabelChildren && <div className={styles['textarea__after-label-children']}>{afterLabelChildren}</div>}
         </div>
       )}
-      <div ref={referanse}>
+      {belowLabelChildren && <div>{belowLabelChildren}</div>}
+      <div className={contentWrapperClass} ref={referanse}>
         <textarea
           rows={rows}
           defaultValue={defaultValue}
@@ -137,12 +150,12 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
           aria-invalid={!!onError}
           {...restProps}
         />
-        {max && (
-          <div className={counterTextClass}>
-            <p>{`${textareaInput.length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
-          </div>
-        )}
       </div>
+      {max && (
+        <div className={counterTextClass}>
+          <p>{`${textareaInput.length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
+        </div>
+      )}
     </div>
   );
 });

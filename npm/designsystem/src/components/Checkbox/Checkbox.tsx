@@ -52,10 +52,10 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     value = label,
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
-  const invalid = error || mode === FormMode.OnError;
-  const onDark = mode === FormMode.OnDark;
-  const onBlueberry = mode === FormMode.OnBlueberry;
-  const bigform = variant === FormVariant.BigForm;
+  const invalid = error || mode === FormMode.oninvalid;
+  const onDark = mode === FormMode.ondark;
+  const onBlueberry = mode === FormMode.onblueberry;
+  const bigform = variant === FormVariant.bigform;
 
   const checkboxWrapperClasses = classNames(checkboxStyles['checkbox-wrapper'], {
     [checkboxStyles['checkbox-wrapper--with-error']]: errorText,

@@ -33,7 +33,7 @@ describe('Gitt at RadioButton skal vises', (): void => {
 
   describe('Når mode er onBlueberry', (): void => {
     test('Så vises RadioButton med onBlueberry styling', (): void => {
-      render(<RadioButton label={'Radio1'} mode={FormMode.OnBlueberry} />);
+      render(<RadioButton label={'Radio1'} mode={FormMode.onblueberry} />);
 
       const label = screen.getByText('Radio1');
       expect(label).toHaveClass('radio-button-label radio-button-label--on-blueberry');
@@ -41,7 +41,7 @@ describe('Gitt at RadioButton skal vises', (): void => {
   });
   describe('Når mode er onDark', (): void => {
     test('Så vises RadioButton med onDark styling', (): void => {
-      render(<RadioButton label={'Radio1'} mode={FormMode.OnDark} />);
+      render(<RadioButton label={'Radio1'} mode={FormMode.ondark} />);
 
       const label = screen.getByText('Radio1');
       expect(label).toHaveClass('radio-button-label radio-button-label--on-dark');
@@ -50,7 +50,7 @@ describe('Gitt at RadioButton skal vises', (): void => {
 
   describe('Når formvariant er bigform', (): void => {
     test('Så vises RadioButton med bigform styling', (): void => {
-      render(<RadioButton label={'Radio1'} variant={FormVariant.BigForm} />);
+      render(<RadioButton label={'Radio1'} variant={FormVariant.bigform} />);
 
       const label = screen.getByText('Radio1');
       expect(label).toHaveClass('radio-button-label radio-button-label--bigform');

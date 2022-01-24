@@ -8,6 +8,8 @@ import Button from '../Button';
 import RadioButton from '../RadioButton';
 import Textarea from '../Textarea';
 import { FormVariant } from '../../constants';
+import Input from '../Input';
+import Hospital from '../Icons/Hospital';
 
 interface FormExampleProps {
   exampleType: FormExampleVariants;
@@ -19,6 +21,7 @@ export enum FormExampleVariants {
   checkbox = 'checkbox',
   radiobutton = 'radiobutton',
   textarea = 'textarea',
+  input = 'input',
 }
 
 export const FormExample = (props: FormExampleProps): JSX.Element => {
@@ -28,10 +31,12 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   const formGroup2 = 'formgroup2';
   const formGroup3 = 'formgroup3';
   const formGroup4 = 'formgroup4';
-  const allErrors = errors[formGroup1] || errors[formGroup2] || errors[formGroup3] || errors[formGroup4];
+  const formGroup5 = 'formgroup5';
+  const allErrors = errors[formGroup1] || errors[formGroup2] || errors[formGroup3] || errors[formGroup4] || errors[formGroup5];
   const errorMessage = 'Du må velge et alternativ';
   const errorMessage2 = 'Du må velge to alternativ';
   const errorMessage3 = 'Det kan ikke legges inn mer enn 40 tegn';
+  const errorMessage4 = 'Du må skrive noe her';
 
   const requireTwo = (value: Array<string>): true | string => {
     return value.length >= 2 || errorMessage2;
@@ -85,6 +90,9 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             ref={register({ maxLength: { value: 40, message: errorMessage3 } })}
           />
         </FormGroup>,
+        <FormGroup name={formGroup5} key={4} variant={props.variant} error={errors[formGroup5] ? errors[formGroup5].message : undefined}>
+          <Input label={'Skriv inn din tekst'} placeholder={'Skriv noe!'} icon={Hospital} ref={register({ required: errorMessage4 })} />
+        </FormGroup>,
       ];
     } else if (exampleType === FormExampleVariants.checkbox) {
       return (
@@ -122,6 +130,12 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             name={formGroup4}
             ref={register({ maxLength: { value: 40, message: errorMessage3 } })}
           />
+        </FormGroup>
+      );
+    } else if (exampleType === FormExampleVariants.input) {
+      return (
+        <FormGroup name={formGroup5} key={4} variant={props.variant} error={errors[formGroup5] ? errors[formGroup5].message : undefined}>
+          <Input label={'Skriv inn din tekst'} placeholder={'Skriv noe!'} icon={Hospital} ref={register({ required: errorMessage4 })} />
         </FormGroup>
       );
     }

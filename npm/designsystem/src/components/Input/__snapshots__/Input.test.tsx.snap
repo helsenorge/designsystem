@@ -1,27 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gitt at Textarea skal vises Når Textarea rendres Så vises Textarea 1`] = `
+exports[`Gitt at Input skal vises Når Input rendres Så vises Input 1`] = `
 <div>
   <div
-    class="textarea"
+    class="input-wrapper"
   >
     <div
-      class="textarea__label-wrapper"
+      class="input-wrapper__label-wrapper"
     >
       <label
         for="-unik-id"
       >
-        Skriv din historie
+        Skriv noe
       </label>
     </div>
     <div
       class="content-wrapper"
     >
-      <textarea
+      <input
         aria-invalid="false"
+        autocomplete="off"
         class="content-wrapper__input"
         id="-unik-id"
-        rows="3"
+        type="text"
+        value=""
       />
     </div>
   </div>

@@ -1,0 +1,55 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/_font-settings.scss';
+@import '../../scss/_input.scss';
+
+.input-wrapper {
+  @include input-wrapper;
+
+  margin: getSpacer(l) 0;
+}
+
+.input-wrapper:first-of-type {
+  margin-top: 0;
+}
+
+.input-wrapper:last-of-type {
+  margin-bottom: 0;
+}
+
+.content-wrapper {
+  @include content-wrapper;
+
+  padding: 0.5rem 0;
+  display: inline-flex;
+  align-items: center;
+
+  &--with-icon {
+    padding: 1px 0;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      padding: 0.375rem 0;
+    }
+  }
+
+  &__input {
+    line-height: getSpacer(m);
+    height: getSpacer(m);
+
+    &--bigform {
+      height: 2.5rem;
+    }
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      line-height: 1.625rem;
+      height: 2.125rem;
+      font-size: $font-size-md;
+
+      &--bigform {
+        line-height: 1.75rem;
+        height: 3.5rem;
+      }
+    }
+  }
+}

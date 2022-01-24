@@ -6,6 +6,7 @@ import { IconProps, IconSize } from './../Icons/';
 import Loader from '../Loader';
 import { PaletteNames } from '../../theme/palette';
 import { useHover } from '../../hooks/useHover';
+import { useIcons } from '../../hooks/useIcons';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { breakpoints } from '../../theme/grid';
 import classNames from 'classnames';
@@ -53,23 +54,6 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   ellipsis?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
-}
-
-// TODO: Consider making this a shared hook
-
-function useIcons(children: React.ReactNode[]): Array<React.ReactElement<IconProps> | React.ReactNode | {} | undefined | null> {
-  let leftIcon: React.ReactElement<IconProps> | undefined | null = null;
-  let rightIcon: React.ReactElement<IconProps> | undefined | null = null;
-
-  if ((children[0] as React.ReactElement<IconProps>)?.props?.svgIcon !== undefined) {
-    leftIcon = children.shift() as React.ReactElement<IconProps>;
-  }
-  if ((children[children.length - 1] as React.ReactElement<IconProps>)?.props?.svgIcon !== undefined) {
-    rightIcon = children.pop() as React.ReactElement<IconProps>;
-  }
-  const restChildren = children.filter(child => child);
-
-  return [leftIcon, rightIcon, restChildren.length > 0 ? restChildren : null];
 }
 
 const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, inverted: boolean, hovered: boolean): string => {

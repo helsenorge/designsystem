@@ -1,6 +1,7 @@
 export type Styles = {
   'content-wrapper': string;
   'content-wrapper__input': string;
+  'content-wrapper__input--bigform': string;
   'content-wrapper__input--disabled': string;
   'content-wrapper--bigform': string;
   'content-wrapper--disabled': string;
@@ -8,15 +9,11 @@ export type Styles = {
   'content-wrapper--on-blueberry': string;
   'content-wrapper--on-dark': string;
   'content-wrapper--transparent': string;
-  textarea: string;
-  'textarea__after-label-children': string;
-  'textarea__counter-wrapper': string;
-  'textarea__counter-wrapper--invalid': string;
-  'textarea__counter-wrapper--on-dark': string;
-  'textarea__error-text': string;
-  'textarea__label-wrapper': string;
-  'textarea__label-wrapper--on-dark': string;
-  'textarea--gutterBottom': string;
+  'content-wrapper--with-icon': string;
+  'input-wrapper': string;
+  'input-wrapper__after-label-children': string;
+  'input-wrapper__label-wrapper': string;
+  'input-wrapper__label-wrapper--on-dark': string;
 };
 
 export type ClassNames = keyof Styles;

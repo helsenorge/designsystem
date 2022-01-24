@@ -3,11 +3,11 @@ import React from 'react';
 import classNames from 'classnames';
 
 import formGroupStyles from './styles.module.scss';
-import Checkbox from '../Checkbox';
-import { CheckboxProps } from '../Checkbox/Checkbox';
+import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
+import RadioButton, { RadioButtonProps } from '../RadioButton/RadioButton';
+import Input, { InputProps } from '../Input/Input';
 import { FormMode, FormVariant } from '../../constants';
 import Title from '../Title';
-import RadioButton, { RadioButtonProps } from '../RadioButton/RadioButton';
 
 export interface FormGroupProps {
   /** title for the the fieldset */
@@ -31,9 +31,9 @@ export interface FormGroupProps {
 }
 
 export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLElement>) => {
-  const { className, mode = FormMode.OnWhite, variant = FormVariant.Normal, error, name } = props;
-  const onDark = mode === FormMode.OnDark;
-  const bigform = variant === FormVariant.BigForm;
+  const { className, mode = FormMode.onwhite, variant = FormVariant.normal, error, name } = props;
+  const onDark = mode === FormMode.ondark;
+  const bigform = variant === FormVariant.bigform;
   const formGroupWrapperClasses = classNames(
     formGroupStyles['form-group-wrapper'],
     {
@@ -81,6 +81,14 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
               let radioButton = (child as React.ReactElement<RadioButtonProps>).type === RadioButton;
               return React.cloneElement(child as React.ReactElement<RadioButtonProps>, {
                 name: name ?? radioButton.valueOf.name,
+                mode,
+                variant,
+                error: !!error,
+              });
+            } else if ((child as React.ReactElement<InputProps>).type === Input) {
+              let input = (child as React.ReactElement<InputProps>).type === Input;
+              return React.cloneElement(child as React.ReactElement<InputProps>, {
+                name: name ?? input.valueOf.name,
                 mode,
                 variant,
                 error: !!error,

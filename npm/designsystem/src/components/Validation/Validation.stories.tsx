@@ -14,7 +14,7 @@ stories.add('FormGroup', () => (
       width: '50vw',
     }}
   >
-    <FormExample variant={select('Variant', FormVariant, FormVariant.Normal)} exampleType={FormExampleVariants.formgroup} />
+    <FormExample variant={select('Variant', FormVariant, FormVariant.normal)} exampleType={FormExampleVariants.formgroup} />
   </div>
 ));
 
@@ -24,7 +24,7 @@ stories.add('Checkbox', () => (
       width: '40rem',
     }}
   >
-    <FormExample variant={select('Variant', FormVariant, FormVariant.Normal)} exampleType={FormExampleVariants.checkbox} />
+    <FormExample variant={select('Variant', FormVariant, FormVariant.normal)} exampleType={FormExampleVariants.checkbox} />
   </div>
 ));
 
@@ -34,7 +34,7 @@ stories.add('Radiobutton', () => (
       width: '40rem',
     }}
   >
-    <FormExample variant={select('Variant', FormVariant, FormVariant.Normal)} exampleType={FormExampleVariants.radiobutton} />
+    <FormExample variant={select('Variant', FormVariant, FormVariant.normal)} exampleType={FormExampleVariants.radiobutton} />
   </div>
 ));
 
@@ -44,6 +44,16 @@ stories.add('Textarea', () => (
       width: '90vw',
     }}
   >
-    <FormExample variant={select('Variant', FormVariant, FormVariant.Normal)} exampleType={FormExampleVariants.textarea} />
+    <FormExample variant={select('Variant', FormVariant, FormVariant.normal)} exampleType={FormExampleVariants.textarea} />
+  </div>
+));
+
+stories.add('Input', () => (
+  <div
+    style={{
+      width: '90vw',
+    }}
+  >
+    <FormExample variant={select('Variant', FormVariant, FormVariant.normal)} exampleType={FormExampleVariants.input} />
   </div>
 ));

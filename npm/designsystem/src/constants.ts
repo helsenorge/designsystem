@@ -63,14 +63,14 @@ export interface HTMLAnchorProps {
 export type ButtonVariant = 'secondary' | 'tertiary' | string | undefined | null;
 
 export enum FormMode {
-  OnWhite = 'OnWhite',
-  OnGrey = 'OnGrey',
-  OnBlueberry = 'OnBlueberry',
-  OnDark = 'OnDark',
-  OnError = 'OnError',
+  onwhite = 'onwhite',
+  ongrey = 'ongrey',
+  onblueberry = 'onblueberry',
+  ondark = 'ondark',
+  oninvalid = 'oninvalid',
 }
 
 export enum FormVariant {
-  Normal = 'Normal',
-  BigForm = 'BigForm',
+  normal = 'normal',
+  bigform = 'bigform',
 }

@@ -82,6 +82,10 @@
           "path": "/bibliotek/komponenter/icon"
         },
         {
+          "label": "Input",
+          "path": "/bibliotek/komponenter/input"
+        },
+        {
           "label": "LinkList",
           "path": "/bibliotek/komponenter/link-list"
         },

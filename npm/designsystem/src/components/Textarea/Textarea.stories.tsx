@@ -3,8 +3,11 @@ import { withKnobs, text, select, number, boolean } from '@storybook/addon-knobs
 import { storiesOf } from '@storybook/react';
 import Textarea from './Textarea';
 import { withA11y } from '@storybook/addon-a11y';
+import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
+
 import { FormMode } from '../../constants';
-import { palette } from '../../theme/palette';
+import Hospital from '../Icons/Hospital';
+import Icon, { IconSize } from '../Icons';
 
 const stories = storiesOf('Textarea', module);
 stories.addDecorator(withKnobs);
@@ -31,22 +34,7 @@ stories.add('Skeleton', () => (
 ));
 
 stories.add('All props', () => {
-  const modes = select('background', FormMode, FormMode.OnWhite);
-
-  const mapToBackgoundColor = (mode: FormMode): string => {
-    switch (mode) {
-      case FormMode.OnBlueberry:
-        return palette.blueberry50;
-      case FormMode.OnDark:
-        return palette.blueberry800;
-      case FormMode.OnGrey:
-        return palette.neutral50;
-      case FormMode.OnError:
-        return palette.cherry100;
-      default:
-        return palette.white;
-    }
-  };
+  const modes = select('background', FormMode, FormMode.onwhite);
 
   return (
     <div style={{ width: '80vw', background: mapToBackgoundColor(modes), padding: 20 }}>
@@ -103,6 +91,18 @@ stories.add('Transparent', () => (
       transparent
       defaultValue={`It is not the fart that kills you, it's the smell
 - Petter Solberg`}
+    />
+  </div>
+));
+
+stories.add('Children after label', () => (
+  <div style={{ width: '25rem', background: '#e4f7f9' }}>
+    <Textarea
+      label={'Here is a child next to me'}
+      maxCharacters={150}
+      defaultValue={`It is not the fart that kills you, it's the smell
+- Petter Solberg`}
+      afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>}
     />
   </div>
 ));
