@@ -285,6 +285,20 @@ describe('Gitt at en modal skal vises ', (): void => {
     });
   });
 
+  describe(`Når en modal ikke har en knapperad (CTA) nederst, og har disableCloseEvents til true`, (): void => {
+    it('Så skal Escape ikke få modalen til å lukkes', (): void => {
+      const onClose = jest.fn();
+
+      render(<Modal title="Hei der" onClose={onClose} variant={ModalVariants.error} disableCloseEvents testId="testid" />);
+
+      const dialog = screen.getByTestId('testid');
+
+      fireEvent.keyDown(dialog, { key: 'Escape' });
+
+      expect(onClose).not.toBeCalled();
+    });
+  });
+
   describe(`Når en modal rendres med titleId`, (): void => {
     it('Så skal titleId settes', (): void => {
       const onClose = jest.fn();

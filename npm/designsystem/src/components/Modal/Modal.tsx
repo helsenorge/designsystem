@@ -71,6 +71,8 @@ export interface ModalProps {
   onClose?: () => void;
   /** When enabled the component will be rendered in the bottom of document.body */
   printable?: boolean;
+  /** When enabled the events for closing the modal won't be added */
+  disableCloseEvents?: boolean;
 }
 
 const defaultProps = {
@@ -159,13 +161,13 @@ const Modal = (props: ModalProps): JSX.Element => {
     const overlayElement = overlayRef.current;
     initFocus.current?.focus();
     disableBodyScroll();
-    if (overlayElement && !showActions) {
+    if (!props.disableCloseEvents && overlayElement && !showActions) {
       overlayElement.addEventListener('keydown', keyListener);
       overlayElement.addEventListener('click', handleClick);
     }
     return (): void => {
       enableBodyScroll();
-      if (overlayElement && !showActions) {
+      if (!props.disableCloseEvents && overlayElement && !showActions) {
         overlayElement.removeEventListener('keydown', keyListener);
         overlayElement.removeEventListener('click', handleClick);
       }

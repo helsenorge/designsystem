@@ -193,6 +193,22 @@ stories.add('Modal with only title', () => {
   );
 });
 
+stories.add('Modal with only title and no close events', () => {
+  return (
+    <ButtonWithModal
+      buttonText="Open modal"
+      variant={select(
+        'variant',
+        [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
+        ModalVariants.normal
+      )}
+      title={text('title', 'Er du sikker på at du vil?')}
+      noCloseButton
+      disableCloseEvents
+    />
+  );
+});
+
 stories.add('Modal in bottom of page', () => {
   return (
     <div>
