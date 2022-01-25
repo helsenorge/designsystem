@@ -36,8 +36,8 @@
   &--invalid {
     margin-left: -0.75rem;
     margin-right: -0.75rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    padding-left: getSpacer(xs);
+    padding-right: getSpacer(s);
     background-color: $cherry100;
     border-left: 0.25rem solid $cherry500;
 

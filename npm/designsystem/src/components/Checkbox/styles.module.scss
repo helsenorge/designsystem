@@ -15,7 +15,7 @@
 
   &--with-error {
     padding: getSpacer(s) getSpacer(xs) getSpacer(m);
-    background-color: $cherry50;
+    background-color: $cherry100;
     border-left: 0.25rem solid $cherry500;
 
     @media (min-width: map-get($grid-breakpoints, md)) {
@@ -89,6 +89,7 @@
 
 .checkbox {
   width: 0px;
+  margin: 0;
 
   -moz-appearance: none;
   -webkit-appearance: none;

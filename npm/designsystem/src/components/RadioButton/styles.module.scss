@@ -16,7 +16,7 @@
 
   &--with-error {
     padding: getSpacer(s) getSpacer(xs) getSpacer(m);
-    background-color: $cherry50;
+    background-color: $cherry100;
     margin-left: -0.75rem;
     border-left: 0.25rem solid $cherry500;
 
@@ -99,7 +99,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 10rem;
-  margin: getSpacer(3xs) getSpacer(s) getSpacer(3xs) getSpacer(3xs);
+  margin: 0 getSpacer(s) 0 0;
   height: 1.5rem;
   width: 1.5rem;
   min-width: auto !important;
