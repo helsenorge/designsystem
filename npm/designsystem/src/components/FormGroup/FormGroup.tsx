@@ -4,9 +4,9 @@ import classNames from 'classnames';
 
 import formGroupStyles from './styles.module.scss';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
+import { AnalyticsId, FormMode, FormVariant } from '../../constants';
 import RadioButton, { RadioButtonProps } from '../RadioButton/RadioButton';
 import Input, { InputProps } from '../Input/Input';
-import { FormMode, FormVariant } from '../../constants';
 import Title from '../Title';
 
 export interface FormGroupProps {
@@ -58,7 +58,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   });
 
   return (
-    <div data-testid={props.testId} className={formGroupWrapperClasses}>
+    <div data-testid={props.testId} data-analyticsid={AnalyticsId.FormGroup} className={formGroupWrapperClasses}>
       {props.title && (
         <Title className={titleClasses} htmlMarkup={'h4'} appearance={'title4'} margin={{ marginTop: 0, marginBottom: 2 }}>
           {props.title}

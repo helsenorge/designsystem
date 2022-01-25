@@ -8,6 +8,7 @@ import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useHover } from '../../hooks/useHover';
 
 import LinkListStyles from './styles.module.scss';
+import { AnalyticsId } from '../../constants';
 
 export type LinkListSize = 'small' | 'medium' | 'large';
 
@@ -59,7 +60,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
   const hasIcon = size !== 'small' && !!(chevron || icon);
 
   return (
-    <li ref={ref} data-testid={testId}>
+    <li ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
       <a
         className={cn(
           LinkListStyles['link-list__anchor'],
@@ -109,6 +110,7 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
         className ? className : ''
       )}
       data-testid={testId}
+      data-analyticsid={AnalyticsId.LinkList}
     >
       {React.Children.map(children, (child: React.ReactNode | React.ReactElement<LinkProps>) => {
         if ((child as React.ReactElement<LinkProps>).type === Link) {

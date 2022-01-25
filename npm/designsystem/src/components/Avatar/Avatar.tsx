@@ -6,6 +6,7 @@ import cn from 'classnames';
 import styles from './styles.module.scss';
 
 import { palette } from '../../theme/palette';
+import { AnalyticsId } from '../../constants';
 
 interface AvatarProps {
   /** Name to display in the avatar. Will be truncated to the first two characters. */
@@ -28,6 +29,7 @@ const Avatar = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, 
       className={cn(styles.avatar, selected && styles['avatar--selected'], variant === 'black' && styles['avatar--black'], className)}
       ref={ref}
       data-testid={testId}
+      data-analyticsid={AnalyticsId.Avatar}
     >
       {selected ? (
         <Icon svgIcon={Check} size={IconSize.Small} color={variant === 'black' ? palette.neutral900 : palette.blueberry600} />

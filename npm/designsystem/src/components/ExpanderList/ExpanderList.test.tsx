@@ -159,4 +159,19 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       expect(component).toBeVisible();
     });
   });
+  describe('Gitt at ExpanderList vises', (): void => {
+    test('Så har den riktig analyticsid', (): void => {
+      render(
+        <ExpanderList>
+          <ExpanderList.Expander title="Title 1" testId="expander">
+            Text 1
+          </ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const button = screen.getByTestId('expander');
+
+      expect(button).toHaveAttribute('data-analyticsid', 'expander');
+    });
+  });
 });

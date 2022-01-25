@@ -8,7 +8,7 @@ import Icon from '../Icons';
 import { getColor } from '../../theme/currys/color';
 
 import checkboxStyles from './styles.module.scss';
-import { FormMode, FormVariant } from '../../constants';
+import { AnalyticsId, FormMode, FormVariant } from '../../constants';
 
 export interface CheckboxProps {
   /** Adds custom classes to the element. */
@@ -90,7 +90,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   }, [checked]);
 
   return (
-    <div data-testid={props.testId} className={checkboxWrapperClasses}>
+    <div data-testid={props.testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
       {errorText && <p className={errorStyles}>{errorText}</p>}
       <label htmlFor={inputid} className={checkboxLabelClasses}>
         <input

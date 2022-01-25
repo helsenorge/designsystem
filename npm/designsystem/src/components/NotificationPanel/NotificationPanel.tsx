@@ -10,6 +10,7 @@ import AlertSignFill from '../Icons/AlertSignFill';
 
 import NotificationPanelStyles from './styles.module.scss';
 import Close from '../Close';
+import { AnalyticsId } from '../../constants';
 
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'crisis';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
@@ -97,6 +98,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
     <div
       ref={ref}
       data-testid={testId}
+      data-analyticsid={AnalyticsId.NotificationPanel}
       className={cn(
         NotificationPanelStyles['notification-panel'],
         NotificationPanelStyles['notification-panel--' + size],

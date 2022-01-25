@@ -4,6 +4,7 @@ exports[`Gitt at Avatar skal vises N책r selected er false S책 vises teksten i Av
 <div>
   <span
     class="avatar"
+    data-analyticsid="avatar"
   >
     Li
   </span>
@@ -14,10 +15,12 @@ exports[`Gitt at Avatar skal vises N책r selected er true S책 vises ikke teksten 
 <div>
   <span
     class="avatar avatar--selected"
+    data-analyticsid="avatar"
   >
     <svg
       aria-hidden="true"
       class="hnds-style-icon "
+      data-analyticsid="icon"
       fill="#126F87"
       height="48"
       role="img"
@@ -37,6 +40,7 @@ exports[`Gitt at Avatar skal vises N책r variant er black S책 skal komponenten v�
 <div>
   <span
     class="avatar avatar--black"
+    data-analyticsid="avatar"
   >
     Ba
   </span>
@@ -47,10 +51,12 @@ exports[`Gitt at Avatar skal vises N책r variant er black og selected S책 skal ba
 <div>
   <span
     class="avatar avatar--selected avatar--black"
+    data-analyticsid="avatar"
   >
     <svg
       aria-hidden="true"
       class="hnds-style-icon "
+      data-analyticsid="icon"
       fill="#2B2C2B"
       height="48"
       role="img"

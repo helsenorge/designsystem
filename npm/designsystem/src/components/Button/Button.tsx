@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HTMLButtonProps, HTMLAnchorProps } from '../../constants';
+import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
 import { getColor } from '../../theme/currys/color';
 import { IconProps, IconSize } from './../Icons/';
 import Loader from '../Loader';
@@ -198,6 +198,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           onClick={onClick}
           disabled={disabled}
           data-testid={testId}
+          data-analyticsid={AnalyticsId.Button}
           className={buttonClasses}
           ref={hoverRef as React.ForwardedRef<HTMLButtonElement>}
           {...rest}
@@ -209,6 +210,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
         <a
           onClick={onClick}
           data-testid={testId}
+          data-analyticsid={AnalyticsId.Button}
           className={buttonClasses}
           href={href}
           target={target}

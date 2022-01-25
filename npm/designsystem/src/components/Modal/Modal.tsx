@@ -9,13 +9,13 @@ import styles from './styles.module.scss';
 import AlertSignStroke from '../Icons/AlertSignStroke';
 import AlertSignFill from '../Icons/AlertSignFill';
 import FocusTrap from '../../hooks/useFocusTrap';
-import { useIsVisible } from '../../hooks/useVisibility';
+import { useIsVisible } from '../../hooks/useIsVisible';
 import Title from '../Title/Title';
 import uuid from '../../utils/uuid';
 import Close from '../Close';
 import CheckOutline from '../Icons/CheckOutline';
 import Portal from '../Portal';
-import { ZIndex } from '../../constants';
+import { AnalyticsId, ZIndex } from '../../constants';
 
 export enum ModalVariants {
   normal = 'normal',
@@ -181,7 +181,13 @@ const Modal = (props: ModalProps): JSX.Element => {
 
   const Component = (
     <div data-testid="dialog-container">
-      <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId} style={{ zIndex: props.zIndex }}>
+      <div
+        ref={overlayRef}
+        className={styles['modal-overlay']}
+        data-testid={props.testId}
+        data-analyticsid={AnalyticsId.Modal}
+        style={{ zIndex: props.zIndex }}
+      >
         <div className={styles.align} ref={FocusTrap()}>
           <div
             className={cn(props.className, styles.modal, styles[`modal--${props.variant}`], styles[`modal--${props.size}`])}

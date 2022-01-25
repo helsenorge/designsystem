@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import cn from 'classnames';
 
-import { FormMode, FormVariant } from '../../constants';
+import { FormMode, FormVariant, AnalyticsId } from '../../constants';
 import { uuid } from '../../utils/uuid';
 import Icon, { IconSize, SvgIcon } from '../Icons';
 import { getColor } from '../../theme/currys';
@@ -132,7 +132,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   };
 
   return (
-    <div data-testid={testId} className={inputWrapperClass}>
+    <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass}>
       {label && (
         <div className={labelWrapperClass}>
           <label htmlFor={inputid}>{label}</label>

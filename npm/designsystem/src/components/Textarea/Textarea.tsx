@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import cn from 'classnames';
 
 import styles from './styles.module.scss';
-import { HTMLTextareaProps, FormMode } from '../../constants';
+import { HTMLTextareaProps, FormMode, AnalyticsId } from '../../constants';
 import { uuid } from '../../utils/uuid';
 
 interface TextareaProps extends HTMLTextareaProps {
@@ -131,7 +131,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   }, []);
 
   return (
-    <div data-testid={testId} className={textareaWrapperClass}>
+    <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
       {label && (
         <div className={labelWrapperClass}>
           <label htmlFor={uniqueId}>{label}</label>

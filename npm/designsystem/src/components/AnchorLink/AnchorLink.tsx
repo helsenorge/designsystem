@@ -6,6 +6,7 @@ import { useHover } from '../../hooks/useHover';
 
 import AnchorLinkStyles from './styles.module.scss';
 import classNames from 'classnames';
+import { AnalyticsId } from '../../constants';
 
 export type AnchorLinkTargets = '_self' | '_blank' | '_parent';
 
@@ -39,6 +40,7 @@ const AnchorLink = React.forwardRef(function AnchorLinkForwardedRef(props: Ancho
       rel={external ? 'noopener noreferrer' : undefined}
       ref={hoverRef}
       data-testid={testId}
+      data-analyticsid={AnalyticsId.AnchorLink}
     >
       {children}
       {external && (

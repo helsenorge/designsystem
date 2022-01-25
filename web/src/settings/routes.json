@@ -66,6 +66,10 @@
           "path": "/bibliotek/komponenter/close"
         },
         {
+          "label": "Expander",
+          "path": "/bibliotek/komponenter/expander"
+        },
+        {
           "label": "ExpanderList",
           "path": "/bibliotek/komponenter/expander-list"
         },

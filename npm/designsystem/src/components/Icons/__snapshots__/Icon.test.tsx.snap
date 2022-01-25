@@ -5,6 +5,7 @@ exports[`Gitt at icon skal vises Når icon rendres Så vises riktig icon 1`] = `
   <svg
     aria-hidden="true"
     class="hnds-style-icon "
+    data-analyticsid="icon"
     fill="black"
     height="48"
     role="img"

@@ -4,6 +4,7 @@ import { uuid } from '../../utils/uuid';
 
 import { PaletteNames } from '../../theme/palette';
 import loaderStyles from './styles.module.scss';
+import { AnalyticsId } from '../../constants';
 
 export type LoaderColors = PaletteNames;
 export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';
@@ -108,7 +109,12 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   return (
     <div role="progressbar" className={loaderWrapperClasses} ref={wrapperRef}>
       {display && (
-        <div data-testid={testId} aria-labelledby={ariaLabelledById || uniqueId} className={loaderClasses}>
+        <div
+          data-testid={testId}
+          data-analyticsid={AnalyticsId.Loader}
+          aria-labelledby={ariaLabelledById || uniqueId}
+          className={loaderClasses}
+        >
           <div className={loaderDotClasses} />
           <div className={loaderDotClasses} />
           <div className={loaderDotClasses} />

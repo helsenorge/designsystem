@@ -9,6 +9,7 @@ exports[`Gitt at en loader skal vises  Når at en loader rendres  Så vises load
     <div
       aria-labelledby="loader-unik-id"
       class="loader loader--small"
+      data-analyticsid="loader"
     >
       <div
         class="loader__dot loader__dot--small loader__dot--neutral"

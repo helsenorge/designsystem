@@ -1,4 +1,5 @@
 import React from 'react';
+import { AnalyticsId } from '../../constants';
 import { getColor } from '../../theme/currys/color';
 import { PaletteNames } from '../../theme/palette';
 
@@ -36,6 +37,7 @@ const Original = ({
     viewBox="0 0 502 220"
     className={className}
     data-testid={testId}
+    data-analyticsid={AnalyticsId.Logo}
   >
     <title id={'logo-title'}>Helsenorge</title>
     <g fill={getColor(color, 500)}>

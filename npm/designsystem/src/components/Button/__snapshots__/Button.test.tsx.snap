@@ -4,6 +4,7 @@ exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
 <div>
   <button
     class="button button--fill"
+    data-analyticsid="button"
   >
     <span
       class="content-wrapper"
@@ -23,6 +24,7 @@ exports[`Gitt at button skal vises Når button rendres kun med ikon Så innehold
   <button
     aria-label="Check me"
     class="button button--fill button--with-icon"
+    data-analyticsid="button"
   >
     <span
       class="content-wrapper"
@@ -30,6 +32,7 @@ exports[`Gitt at button skal vises Når button rendres kun med ikon Så innehold
       <svg
         aria-hidden="true"
         class="hnds-style-icon "
+        data-analyticsid="icon"
         fill="white"
         height="38"
         role="img"
@@ -50,6 +53,7 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
 <div>
   <button
     class="button button--fill button--with-icon"
+    data-analyticsid="button"
   >
     <span
       class="content-wrapper"
@@ -57,6 +61,7 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
       <svg
         aria-hidden="true"
         class="hnds-style-icon "
+        data-analyticsid="icon"
         fill="white"
         height="38"
         role="img"
@@ -76,6 +81,7 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
       <svg
         aria-hidden="true"
         class="hnds-style-icon "
+        data-analyticsid="icon"
         fill="white"
         height="38"
         role="img"

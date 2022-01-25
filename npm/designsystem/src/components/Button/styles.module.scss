@@ -273,6 +273,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
 
   &--borderless#{&}--with-icon {
     svg:first-child {
+      margin-left: 0;
       margin-right: 0.125rem;
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-right: 0.75rem;
@@ -287,6 +288,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
   }
   &--large#{&}--borderless#{&}--with-icon {
     svg:first-child {
+      margin-left: 0;
       margin-right: 0.5rem;
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-right: 0.75rem;

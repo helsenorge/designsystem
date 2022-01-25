@@ -4,6 +4,7 @@ exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises med class
 <div>
   <a
     class="anchorlink custom-classname"
+    data-analyticsid="anchor-link"
     id="custom-id"
     target="_self"
   >
@@ -16,6 +17,7 @@ exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises som exter
 <div>
   <a
     class="anchorlink"
+    data-analyticsid="anchor-link"
     rel="noopener noreferrer"
     target="_blank"
   >
@@ -23,6 +25,7 @@ exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises som exter
     <svg
       aria-hidden="true"
       class="hnds-style-icon anchorlink__icon"
+      data-analyticsid="icon"
       fill="#126F87"
       height="38"
       role="img"
@@ -42,6 +45,7 @@ exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises vanlig SÃ
 <div>
   <a
     class="anchorlink"
+    data-analyticsid="anchor-link"
     target="_self"
   >
     AnchorLink

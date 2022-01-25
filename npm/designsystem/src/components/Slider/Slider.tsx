@@ -18,6 +18,7 @@ import {
 } from './SliderUtils';
 
 import SliderStyles from './styles.module.scss';
+import { AnalyticsId } from '../../constants';
 
 interface SliderProps {
   /**	Sets the title of the slider. */
@@ -134,7 +135,7 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   };
 
   return (
-    <div className={SliderStyles.slider} data-testid={testId}>
+    <div className={SliderStyles.slider} data-testid={testId} data-analyticsid={AnalyticsId.Slider}>
       {title && (
         <Title htmlMarkup={'h3'} margin={1.5} appearance={'title3'}>
           {title}

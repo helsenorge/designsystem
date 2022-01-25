@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import FormGroup, { FormGroupProps } from '../FormGroup/FormGroup';
 
 import validationStyles from './styles.module.scss';
-import { FormVariant } from '../../constants';
+import { AnalyticsId, FormVariant } from '../../constants';
 
 interface ValidationProps {
   /** text placed in the legend tag of the fieldset */
@@ -26,7 +26,7 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
 
   return (
     <>
-      <div data-testid={props.testId} className={validationClasses}>
+      <div data-testid={props.testId} data-analyticsid={AnalyticsId.Validation} className={validationClasses}>
         {React.Children.map(props.children, (child: React.ReactNode) => {
           if ((child as React.ReactElement<FormGroupProps>).type === FormGroup) {
             return React.cloneElement(child as React.ReactElement<FormGroupProps>, {

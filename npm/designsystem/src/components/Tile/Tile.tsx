@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
-import { HTMLAnchorProps } from '../../constants';
+import { AnalyticsId, HTMLAnchorProps } from '../../constants';
 import { TitleTags } from './../Title/Title';
 import { IconSize } from '../Icons';
 
@@ -83,6 +83,7 @@ export const Tile = React.forwardRef(function TileForwardedRef(props: TileProps,
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
       data-testid={testId}
+      data-analyticsid={AnalyticsId.Tile}
       rel={props.target === '_blank' ? 'noopener noreferrer' : props.rel}
       {...restProps}
     >
