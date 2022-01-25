@@ -34,7 +34,7 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
               aria-invalid="false"
               class="checkbox"
               id="Checkbox1"
-              name="Checkbox1"
+              name="valueOf"
               type="checkbox"
               value="Checkbox 1"
             />
@@ -55,7 +55,7 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
               aria-invalid="false"
               class="checkbox"
               id="Checkbox2"
-              name="Checkbox2"
+              name="valueOf"
               type="checkbox"
               value="Checkbox 2"
             />
@@ -76,7 +76,7 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
               aria-invalid="false"
               class="checkbox"
               id="Checkbox3"
-              name="Checkbox3"
+              name="valueOf"
               type="checkbox"
               value="Checkbox 3"
             />

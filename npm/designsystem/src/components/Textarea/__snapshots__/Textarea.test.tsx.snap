@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at Textarea skal vises Når Textarea rendres Så vises Textarea 1`] = `
+<div>
+  <div
+    class="textarea"
+  >
+    <div
+      class="textarea__label-wrapper"
+    >
+      <label
+        for="-unik-id"
+      >
+        Skriv din historie
+      </label>
+    </div>
+    <div
+      class="content-wrapper"
+    >
+      <textarea
+        aria-invalid="false"
+        class="content-wrapper__input"
+        id="-unik-id"
+        rows="3"
+      />
+    </div>
+  </div>
+</div>
+`;

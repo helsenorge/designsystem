@@ -6,6 +6,10 @@ export enum IconSize {
   XLarge = 130,
 }
 
+export enum ZIndex {
+  Modal = 1300000,
+}
+
 export interface HTMLButtonProps {
   autoFocus?: boolean;
   disabled?: boolean;
@@ -18,6 +22,22 @@ export interface HTMLButtonProps {
   name?: string;
   type?: 'submit' | 'reset' | 'button' | string;
   value?: string | string[] | number;
+}
+
+export interface HTMLTextareaProps {
+  autoFocus?: boolean;
+  disabled?: boolean;
+  form?: string;
+  formNoValidate?: boolean;
+  formTarget?: string;
+  name?: string;
+  id?: string;
+  autocomplete?: 'off' | 'on';
+  placeholder?: string;
+  readonly?: boolean;
+  required?: boolean;
+  spellcheck?: 'true' | 'default' | 'false';
+  'aria-invalid'?: boolean;
 }
 
 export interface HTMLAnchorProps {
@@ -41,3 +61,16 @@ export interface HTMLAnchorProps {
 }
 
 export type ButtonVariant = 'secondary' | 'tertiary' | string | undefined | null;
+
+export enum FormMode {
+  onwhite = 'onwhite',
+  ongrey = 'ongrey',
+  onblueberry = 'onblueberry',
+  ondark = 'ondark',
+  oninvalid = 'oninvalid',
+}
+
+export enum FormVariant {
+  normal = 'normal',
+  bigform = 'bigform',
+}

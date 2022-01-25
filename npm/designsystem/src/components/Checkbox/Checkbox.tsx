@@ -8,7 +8,7 @@ import Icon from '../Icons';
 import { getColor } from '../../theme/currys/color';
 
 import checkboxStyles from './styles.module.scss';
-import { FormMode, FormVariant } from '../FormGroup/FormGroup';
+import { FormMode, FormVariant } from '../../constants';
 
 export interface CheckboxProps {
   /** Adds custom classes to the element. */
@@ -22,13 +22,13 @@ export interface CheckboxProps {
   /** input id of the checkbox */
   inputid?: string;
   /** Changes the visuals of the checkbox */
-  mode?: FormMode;
+  mode?: keyof typeof FormMode;
   /** Unique identifyer for the input tag */
   name?: string;
   /** Return value for the checkbox */
   value?: string;
   /** Changes the visuals of the checkbox */
-  variant?: FormVariant;
+  variant?: keyof typeof FormVariant;
   /** Activates Error style for the checkbox - This is can be true while errorText is empty, when in a FormGroup */
   error?: boolean;
   /** Error text to show above the component */
@@ -52,10 +52,10 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     value = label,
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
-  const invalid = error;
-  const onDark = mode === 'on-dark';
-  const onBlueberry = mode === 'on-blueberry';
-  const bigform = variant === 'bigform';
+  const invalid = error || mode === FormMode.oninvalid;
+  const onDark = mode === FormMode.ondark;
+  const onBlueberry = mode === FormMode.onblueberry;
+  const bigform = variant === FormVariant.bigform;
 
   const checkboxWrapperClasses = classNames(checkboxStyles['checkbox-wrapper'], {
     [checkboxStyles['checkbox-wrapper--with-error']]: errorText,
@@ -100,7 +100,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           type="checkbox"
           checked={isChecked}
           disabled={disabled}
-          onChange={() => {
+          onChange={(): void => {
             setIsChecked(!isChecked);
           }}
           value={value}

@@ -50,6 +50,15 @@ describe('Gitt at en modal skal vises ', (): void => {
     });
   });
 
+  describe('Når modal har custom z-index', (): void => {
+    it('Så er z-index satt med inline styling', (): void => {
+      render(<Modal title="Hei der" zIndex={123} testId="modal-med-custom-z-index" />);
+
+      const modal = screen.getByTestId('modal-med-custom-z-index');
+      expect(modal).toHaveAttribute('style', 'z-index: 123;');
+    });
+  });
+
   describe('Når en bruker trykker på OK knappen', (): void => {
     it('Så skal onSuccess kalles en gang', (): void => {
       const onClose = jest.fn();
@@ -276,6 +285,20 @@ describe('Gitt at en modal skal vises ', (): void => {
     });
   });
 
+  describe(`Når en modal ikke har en knapperad (CTA) nederst, og har disableCloseEvents til true`, (): void => {
+    it('Så skal Escape ikke få modalen til å lukkes', (): void => {
+      const onClose = jest.fn();
+
+      render(<Modal title="Hei der" onClose={onClose} variant={ModalVariants.error} disableCloseEvents testId="testid" />);
+
+      const dialog = screen.getByTestId('testid');
+
+      fireEvent.keyDown(dialog, { key: 'Escape' });
+
+      expect(onClose).not.toBeCalled();
+    });
+  });
+
   describe(`Når en modal rendres med titleId`, (): void => {
     it('Så skal titleId settes', (): void => {
       const onClose = jest.fn();
@@ -345,5 +368,32 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       expect(dialog).toBeVisible();
     });
+  });
+});
+
+describe('Gitt at en modal skal vises som printable ', (): void => {
+  it('Så skal modalen wrappes med Portal', (): void => {
+    const onClose = jest.fn();
+    const onSuccess = jest.fn();
+
+    render(
+      <Modal
+        title="Hei der"
+        description="Dette er innhold"
+        onClose={onClose}
+        onSuccess={onSuccess}
+        secondaryButtonText="Avbryt"
+        variant={ModalVariants.error}
+        testId="testid"
+        titleId="test"
+        printable
+      />
+    );
+    const portal = screen.getByTestId('print-modal');
+    expect(portal).toBeVisible();
+    expect(portal.innerHTML).toMatchSnapshot();
+
+    const dialog = screen.getByLabelText('Hei der');
+    expect(dialog).toBeVisible();
   });
 });

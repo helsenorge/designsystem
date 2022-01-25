@@ -1,0 +1,57 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/_font-settings.scss';
+@import '../../scss/_input.scss';
+
+.textarea {
+  @include input-wrapper;
+
+  &__error-text {
+    font-size: $font-size-sm;
+    line-height: $font-size-sm;
+    font-weight: 600;
+    color: $cherry500;
+    margin-top: 0;
+  }
+
+  &--gutterBottom {
+    margin-bottom: getSpacer(s);
+  }
+
+  &__counter-wrapper {
+    display: flex;
+    justify-content: end;
+    padding-top: getSpacer(xs);
+    padding-right: 2px;
+    font-size: $font-size-sm;
+    line-height: 28px;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      line-height: 30px;
+      font-size: $font-size-md;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    &--on-dark {
+      color: $white;
+    }
+    &--invalid {
+      color: $cherry500;
+      font-weight: 600;
+    }
+  }
+}
+
+.content-wrapper {
+  @include content-wrapper;
+  &__input {
+    line-height: 28px;
+    height: auto;
+    padding: 16px;
+    resize: none;
+  }
+}

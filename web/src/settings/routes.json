@@ -74,8 +74,16 @@
           "path": "/bibliotek/komponenter/formgroup"
         },
         {
+          "label": "HighlightBox",
+          "path": "/bibliotek/komponenter/highlightbox"
+        },
+        {
           "label": "Icon",
           "path": "/bibliotek/komponenter/icon"
+        },
+        {
+          "label": "Input",
+          "path": "/bibliotek/komponenter/input"
         },
         {
           "label": "LinkList",
@@ -102,12 +110,20 @@
           "path": "/bibliotek/komponenter/notification-panel"
         },
         {
+          "label": "RadioButton",
+          "path": "/bibliotek/komponenter/radiobutton"
+        },
+        {
           "label": "Spacer",
           "path": "/bibliotek/komponenter/spacer"
         },
         {
           "label": "Slider",
           "path": "/bibliotek/komponenter/slider"
+        },
+        {
+          "label": "Textarea",
+          "path": "/bibliotek/komponenter/textarea"
         },
         {
           "label": "Tile",

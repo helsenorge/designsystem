@@ -4,7 +4,6 @@ import cn from 'classnames';
 import { palette } from '../../theme/palette';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icons';
-import X from '../Icons/X';
 
 import styles from './styles.module.scss';
 import AlertSignStroke from '../Icons/AlertSignStroke';
@@ -15,6 +14,8 @@ import Title from '../Title/Title';
 import uuid from '../../utils/uuid';
 import Close from '../Close';
 import CheckOutline from '../Icons/CheckOutline';
+import Portal from '../Portal';
+import { ZIndex } from '../../constants';
 
 export enum ModalVariants {
   normal = 'normal',
@@ -62,10 +63,16 @@ export interface ModalProps {
   afterTitleChildren?: React.ReactNode;
   /** Adds custom classes to the element. */
   className?: string;
+  /** Customize the z-index of the modal */
+  zIndex?: number;
   /** Function is called when user clicks primary button */
   onSuccess?: () => void;
   /** Function is called when user clicks secondary button */
   onClose?: () => void;
+  /** When enabled the component will be rendered in the bottom of document.body */
+  printable?: boolean;
+  /** When enabled the events for closing the modal won't be added */
+  disableCloseEvents?: boolean;
 }
 
 const defaultProps = {
@@ -74,6 +81,7 @@ const defaultProps = {
   large: false,
   className: '',
   size: ModalSize.large,
+  zIndex: ZIndex.Modal,
 };
 
 const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => {
@@ -153,13 +161,13 @@ const Modal = (props: ModalProps): JSX.Element => {
     const overlayElement = overlayRef.current;
     initFocus.current?.focus();
     disableBodyScroll();
-    if (overlayElement && !showActions) {
+    if (!props.disableCloseEvents && overlayElement && !showActions) {
       overlayElement.addEventListener('keydown', keyListener);
       overlayElement.addEventListener('click', handleClick);
     }
     return (): void => {
       enableBodyScroll();
-      if (overlayElement && !showActions) {
+      if (!props.disableCloseEvents && overlayElement && !showActions) {
         overlayElement.removeEventListener('keydown', keyListener);
         overlayElement.removeEventListener('click', handleClick);
       }
@@ -171,9 +179,9 @@ const Modal = (props: ModalProps): JSX.Element => {
     [styles['modal__title--success']]: props.variant === ModalVariants.success,
   });
 
-  return (
+  const Component = (
     <div data-testid="dialog-container">
-      <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId}>
+      <div ref={overlayRef} className={styles['modal-overlay']} data-testid={props.testId} style={{ zIndex: props.zIndex }}>
         <div className={styles.align} ref={FocusTrap()}>
           <div
             className={cn(props.className, styles.modal, styles[`modal--${props.variant}`], styles[`modal--${props.size}`])}
@@ -244,6 +252,18 @@ const Modal = (props: ModalProps): JSX.Element => {
       </div>
     </div>
   );
+
+  if (props.printable) {
+    const printModal = 'print-modal';
+    return (
+      <Portal className={printModal} testId="print-modal">
+        <style media="print">{`body > *:not(.${printModal}) {display: none;}`}</style>
+        {Component}
+      </Portal>
+    );
+  }
+
+  return Component;
 };
 
 Modal.defaultProps = defaultProps;

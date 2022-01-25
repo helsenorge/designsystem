@@ -34,10 +34,19 @@
   }
 
   &--invalid {
-    margin-left: -(getSpacer(m) + 0.25rem);
-    padding-left: getSpacer(m);
-    background-color: $cherry50;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    background-color: $cherry100;
     border-left: 0.25rem solid $cherry500;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      margin-left: -(getSpacer(m) + 0.25rem);
+      margin-right: -(getSpacer(m) + 0.25rem);
+      padding-left: getSpacer(m);
+      padding-right: getSpacer(m);
+    }
   }
 }
 

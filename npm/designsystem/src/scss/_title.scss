@@ -3,18 +3,18 @@
 @import './font-settings';
 
 @mixin title-feature {
-  font-size: getSpacer(xl);
-  line-height: getSpacer(2xl);
+  font-size: 2.375rem;
+  line-height: 2.875rem;
   font-weight: 600;
   @media (min-width: map-get($grid-breakpoints, md)) {
-    font-size: getSpacer(2xl);
-    line-height: getSpacer(3xl);
+    font-size: 4rem;
+    line-height: 5rem;
   }
 }
 
 @mixin title1 {
-  font-size: 2.75rem;
-  line-height: 3.25rem;
+  font-size: 2.25rem;
+  line-height: 2.75rem;
   font-weight: 600;
   @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: 3.25rem;
@@ -23,19 +23,23 @@
 }
 
 @mixin title2 {
-  font-size: 1.75rem;
-  line-height: 2.25rem;
+  font-size: 1.625rem;
+  line-height: 2.125rem;
   font-weight: 600;
   @media (min-width: map-get($grid-breakpoints, md)) {
-    font-size: getSpacer(l);
+    font-size: 2rem;
     line-height: 2.75rem;
   }
 }
 
 @mixin title3 {
-  font-size: getSpacer(m);
-  line-height: getSpacer(l);
+  font-size: 1.375rem;
+  line-height: 1.875rem;
   font-weight: 600;
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
 }
 
 @mixin title4 {
@@ -46,7 +50,7 @@
 
 @mixin title5 {
   font-size: $spacer;
-  line-height: getSpacer(m);
+  line-height: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
   @media (min-width: map-get($grid-breakpoints, md)) {

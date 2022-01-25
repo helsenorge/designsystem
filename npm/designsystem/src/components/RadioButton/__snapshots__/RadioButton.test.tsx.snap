@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at RadioButton skal vises Når RadioButton rendres Så vises RadioButton 1`] = `
+<div>
+  <div
+    class="radio-button-wrapper"
+  >
+    <label
+      class="radio-button-label"
+      for="test01"
+    >
+      <input
+        aria-invalid="false"
+        class="radio-button"
+        id="test01"
+        name="test01"
+        type="radio"
+        value="Radio1"
+      />
+      Radio1
+    </label>
+  </div>
+</div>
+`;

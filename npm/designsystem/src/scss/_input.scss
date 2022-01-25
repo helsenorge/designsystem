@@ -1,0 +1,174 @@
+@mixin input-wrapper {
+  width: 100%;
+  line-height: 0;
+
+  &__label-wrapper {
+    display: inline-flex;
+    align-items: center;
+    line-height: getSpacer(m);
+    font-size: $font-size-sm;
+    font-weight: 600;
+    padding-bottom: getSpacer(xs);
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      line-height: getSpacer(l);
+      font-size: $font-size-md;
+    }
+
+    &--on-dark {
+      color: $white;
+    }
+  }
+
+  &__after-label-children {
+    padding-left: 0.75rem;
+  }
+}
+
+@mixin content-wrapper {
+  font-size: $font-size-sm;
+  width: 100%;
+  border: $neutral700 2px solid;
+  outline: none;
+  background: $white;
+
+  svg:first-child {
+    padding-left: 0.375rem;
+  }
+
+  svg:last-child {
+    padding-right: 0.375rem;
+  }
+
+  &--bigform {
+    padding: getSpacer(xs) 0;
+
+    svg:first-child {
+      padding-left: getSpacer(xs);
+    }
+
+    svg:last-child {
+      padding-right: getSpacer(xs);
+    }
+  }
+
+  &:hover {
+    background: $neutral50;
+    border-color: $neutral700;
+    box-shadow: 0px 0px 0px 1px $neutral700;
+
+    &:focus-within {
+      border-color: $black;
+      box-shadow: 0px 0px 0px 2px $black;
+    }
+  }
+  &:focus-within {
+    background: $white;
+    border-color: $neutral900;
+    box-shadow: 0px 0px 0px 2px $neutral900;
+  }
+
+  &--on-blueberry {
+    border-color: $blueberry500;
+
+    &:hover {
+      background: $blueberry50;
+      box-shadow: 0px 0px 0px 1px $blueberry500;
+      border-color: $blueberry500;
+    }
+
+    &:focus-within {
+      background: $white;
+      border-color: $neutral900;
+      box-shadow: 0px 0px 0px 2px $neutral900;
+    }
+  }
+  &--on-dark {
+    border-color: $blueberry900;
+    &:hover {
+      background: $blueberry50;
+      border-color: $blueberry900;
+      box-shadow: 0px 0px 0px 1px $blueberry900;
+    }
+    &:focus-within {
+      background: $white;
+      border-color: $neutral900;
+      box-shadow: 0px 0px 0px 2px $neutral900;
+    }
+  }
+  &--invalid {
+    border-color: $cherry500;
+
+    &:hover {
+      background: $cherry100;
+      border-color: $cherry500;
+      box-shadow: 0px 0px 0px 2px $cherry500;
+    }
+    &:focus-within {
+      background: $white;
+      border-color: $neutral900;
+      box-shadow: 0px 0px 0px 2px $neutral900;
+    }
+  }
+  &--transparent {
+    background: transparent;
+
+    &:hover {
+      background: $neutral100;
+    }
+
+    &:focus-within {
+      background: $white;
+    }
+  }
+  &--transparent#{&}--on-blueberry {
+    &:hover {
+      background: $blueberry100;
+    }
+
+    &:focus-within {
+      background: $white;
+    }
+  }
+
+  &--disabled {
+    background: $neutral50;
+    border-color: $neutral500;
+    color: $neutral500;
+
+    &:hover {
+      border-color: $neutral500;
+      box-shadow: none;
+    }
+  }
+
+  &__input {
+    line-height: 1.625rem;
+    font-size: $font-size-sm;
+    padding: 0 getSpacer(xs);
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      font-size: $font-size-md;
+    }
+
+    &::placeholder {
+      color: $neutral500;
+    }
+
+    &--disabled {
+      color: $neutral500;
+    }
+
+    &:first-child {
+      padding-left: getSpacer(s);
+    }
+
+    &:last-child {
+      padding-right: getSpacer(s);
+    }
+  }
+}
