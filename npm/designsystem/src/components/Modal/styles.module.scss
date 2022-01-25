@@ -47,10 +47,10 @@
   }
 
   &__iconWrapper {
-    padding-right: 0.75rem;
+    padding-right: getSpacer(xs);
   }
   &__afterTitleChildren {
-    padding-left: 0.75rem;
+    padding-left: getSpacer(xs);
   }
 
   p {
@@ -138,8 +138,8 @@
 
     &__close {
       position: absolute;
-      right: getSpacer(2xs);
-      top: getSpacer(2xs);
+      right: getSpacer(3xs);
+      top: getSpacer(3xs);
     }
   }
 
@@ -159,18 +159,18 @@
     &__scroll {
       &--large {
         @media (max-width: map-get($grid-breakpoints, sm)) {
-          padding: getSpacer(xl) getSpacer(m) getSpacer(xs) getSpacer(m);
+          padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
         }
-        padding: getSpacer(xl) getSpacer(xl) getSpacer(xs) getSpacer(xl);
+        padding: getSpacer(xl) getSpacer(xl) getSpacer(2xs) getSpacer(xl);
       }
       &--medium {
         @media (max-width: map-get($grid-breakpoints, sm)) {
-          padding: getSpacer(xl) getSpacer(m) getSpacer(xs) getSpacer(m);
+          padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
         }
-        padding: getSpacer(l) getSpacer(m) getSpacer(xs) getSpacer(m);
+        padding: getSpacer(l) getSpacer(m) getSpacer(2xs) getSpacer(m);
       }
       &--large#{&}--image {
-        padding: getSpacer(xl) getSpacer(xs) getSpacer(l) getSpacer(xs);
+        padding: getSpacer(xl) getSpacer(2xs) getSpacer(l) getSpacer(2xs);
       }
     }
 

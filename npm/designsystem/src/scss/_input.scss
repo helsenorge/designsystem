@@ -41,14 +41,14 @@
   }
 
   &--bigform {
-    padding: getSpacer(xs) 0;
+    padding: getSpacer(2xs) 0;
 
     svg:first-child {
-      padding-left: getSpacer(xs);
+      padding-left: getSpacer(2xs);
     }
 
     svg:last-child {
-      padding-right: getSpacer(xs);
+      padding-right: getSpacer(2xs);
     }
   }
 
@@ -145,7 +145,7 @@
   &__input {
     line-height: 1.625rem;
     font-size: $font-size-sm;
-    padding: 0 getSpacer(xs);
+    padding: 0 getSpacer(2xs);
     border: none;
     outline: none;
     background-color: transparent;

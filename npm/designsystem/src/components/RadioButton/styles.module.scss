@@ -15,7 +15,7 @@
   margin: getSpacer(s) 0;
 
   &--with-error {
-    padding: getSpacer(s) getSpacer(xs) getSpacer(m);
+    padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
     background-color: $cherry100;
     margin-left: -0.75rem;
     border-left: 0.25rem solid $cherry500;
@@ -30,7 +30,7 @@
   }
 
   &--bigform {
-    margin: getSpacer(xs) 0 getSpacer(xs) 0;
+    margin: getSpacer(2xs) 0 getSpacer(2xs) 0;
   }
 }
 
@@ -105,7 +105,7 @@
   min-width: auto !important;
   min-height: auto !important;
   color: $neutral700;
-  box-shadow: 0 0 0 getSpacer(3xs);
+  box-shadow: 0 0 0 getSpacer(4xs);
 
   &:checked {
     color: $blueberry500;
@@ -116,17 +116,17 @@
   }
 
   &:focus {
-    box-shadow: 0 0 0 getSpacer(2xs);
+    box-shadow: 0 0 0 getSpacer(3xs);
     color: $black;
   }
 
   &:hover {
-    box-shadow: 0 0 0 getSpacer(2xs);
+    box-shadow: 0 0 0 getSpacer(3xs);
     background-color: $neutral100;
   }
 
   :active > & {
-    box-shadow: 0 0 0 getSpacer(2xs);
+    box-shadow: 0 0 0 getSpacer(3xs);
     color: $black;
   }
 
@@ -143,7 +143,7 @@
 
     &:hover {
       background-color: $inverted-hover;
-      box-shadow: 0 0 0 getSpacer(2xs);
+      box-shadow: 0 0 0 getSpacer(3xs);
     }
 
     &:checked {
@@ -155,7 +155,7 @@
     }
 
     :active > & {
-      box-shadow: 0 0 0 getSpacer(2xs);
+      box-shadow: 0 0 0 getSpacer(3xs);
       color: $white;
     }
 
@@ -196,12 +196,12 @@
       color: $neutral400;
 
       &:hover {
-        box-shadow: 0 0 0 getSpacer(3xs);
+        box-shadow: 0 0 0 getSpacer(4xs);
         background-color: transparent;
       }
     }
     &:hover {
-      box-shadow: 0 0 0 getSpacer(3xs);
+      box-shadow: 0 0 0 getSpacer(4xs);
       background-color: transparent;
     }
 
