@@ -372,6 +372,12 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     &--large#{&}--with-icon:last-child {
       margin-right: 2.5rem;
     }
+    &--borderless#{&}--with-icon:first-child {
+      margin-left: 0;
+    }
+    &--borderless#{&}--with-icon:last-child {
+      margin-right: 0;
+    }
 
     &--ellipsis#{&}--with-icon {
       white-space: nowrap;
