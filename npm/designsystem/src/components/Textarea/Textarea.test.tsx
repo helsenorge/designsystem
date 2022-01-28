@@ -98,4 +98,13 @@ describe('Gitt at Textarea skal vises', (): void => {
       expect(contentWrapper.className).toEqual('content-wrapper content-wrapper--invalid');
     });
   });
+
+  describe('Når textarea skal vises med custom textareaId', (): void => {
+    test('Så har textarea id-en', (): void => {
+      render(<Textarea textareaId="testing" />);
+
+      const textarea = screen.getByRole('textbox');
+      expect(textarea).toHaveAttribute('id', 'testing');
+    });
+  });
 });

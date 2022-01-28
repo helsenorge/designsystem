@@ -9,9 +9,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så vises FormGroup', (): void => {
       const { container } = render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
-          <Checkbox inputid={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputid={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputid={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
+          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
+          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
         </FormGroup>
       );
 
@@ -35,9 +35,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så er stylingen satt riktig på FormGroup', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} mode={'on-blueberry'}>
-          <Checkbox inputid={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputid={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputid={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
+          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
+          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
         </FormGroup>
       );
 
@@ -51,9 +51,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så er stylingen satt riktig på FormGroup', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} variant={'bigform'}>
-          <Checkbox inputid={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputid={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputid={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
+          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
+          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
         </FormGroup>
       );
 
@@ -67,9 +67,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så rendres de', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
-          <Checkbox inputid={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputid={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputid={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
+          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
+          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
         </FormGroup>
       );
 
@@ -82,9 +82,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så rendres de', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
-          <RadioButton inputid={'Radiobutton1'} label={'Radiobutton 1'} />
-          <RadioButton inputid={'Radiobutton2'} label={'Radiobutton 2'} />
-          <RadioButton inputid={'Radiobutton3'} label={'Radiobutton 3'} />
+          <RadioButton inputId={'Radiobutton1'} label={'Radiobutton 1'} />
+          <RadioButton inputId={'Radiobutton2'} label={'Radiobutton 2'} />
+          <RadioButton inputId={'Radiobutton3'} label={'Radiobutton 3'} />
         </FormGroup>
       );
 
@@ -97,9 +97,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så rendres error melding og styling', (): void => {
       render(
         <FormGroup error={'error error!'} title={'One amazing title'} legend={'Check out these checkboxes!'}>
-          <Checkbox inputid={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputid={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputid={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
+          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
+          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
         </FormGroup>
       );
 

@@ -6,7 +6,7 @@ import { FormMode, FormVariant } from '../../constants';
 describe('Gitt at RadioButton skal vises', (): void => {
   describe('Når RadioButton rendres', (): void => {
     test('Så vises RadioButton', (): void => {
-      const { container } = render(<RadioButton inputid={'test01'} label={'Radio1'} />);
+      const { container } = render(<RadioButton inputId={'test01'} label={'Radio1'} />);
 
       expect(container).toMatchSnapshot();
 

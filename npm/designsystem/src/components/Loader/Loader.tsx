@@ -22,6 +22,8 @@ interface LoaderProps {
   size?: LoaderSizes;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** id of the label */
+  labelId?: string;
   /** Centers the loader in a container */
   center?: boolean;
   /** Inline the loader so it can be used in a span or paragraph */
@@ -40,6 +42,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     color = overlay ? 'black' : 'neutral',
     size = 'small',
     className = '',
+    labelId = uuid(),
     testId,
     center,
     inline,
@@ -90,8 +93,6 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     [loaderStyles['loader__dot--white']]: color === 'white',
   });
 
-  const uniqueId = `loader${uuid()}`;
-
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -112,7 +113,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
         <div
           data-testid={testId}
           data-analyticsid={AnalyticsId.Loader}
-          aria-labelledby={ariaLabelledById || uniqueId}
+          aria-labelledby={ariaLabelledById || labelId}
           className={loaderClasses}
         >
           <div className={loaderDotClasses} />
@@ -120,7 +121,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
           <div className={loaderDotClasses} />
           <div className={loaderDotClasses} />
           {!ariaLabelledById && (
-            <span id={uniqueId} className={loaderStyles['loader__hidden-text']}>
+            <span id={labelId} className={loaderStyles['loader__hidden-text']}>
               {ariaLabel}
             </span>
           )}

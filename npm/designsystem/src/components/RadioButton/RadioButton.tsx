@@ -16,7 +16,7 @@ export interface RadioButtonProps {
   /** The label text next to the radioButton */
   label: string;
   /** input id of the radioButton */
-  inputid?: string;
+  inputId?: string;
   /** Changes the visuals of the radioButton */
   mode?: keyof typeof FormMode;
   /** Unique identifyer for the input tag */
@@ -39,9 +39,9 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     defaultChecked = false,
     disabled,
     label,
-    inputid = uuid(),
+    inputId = uuid(),
     mode,
-    name = inputid,
+    name = inputId,
     variant,
     errorText,
     error = !!errorText,
@@ -80,9 +80,9 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   return (
     <div data-testid={props.testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
       {errorText && <p className={errorStyles}>{errorText}</p>}
-      <label htmlFor={inputid} className={radioButtonLabelClasses}>
+      <label htmlFor={inputId} className={radioButtonLabelClasses}>
         <input
-          id={inputid}
+          id={inputId}
           name={name}
           className={radioButtonClasses}
           type="radio"

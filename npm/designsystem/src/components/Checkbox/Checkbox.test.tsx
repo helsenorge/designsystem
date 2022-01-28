@@ -6,7 +6,7 @@ import { FormMode, FormVariant } from '../../constants';
 describe('Gitt at Checkbox skal vises', (): void => {
   describe('Når Checkbox rendres', (): void => {
     test('Så vises Checkbox', (): void => {
-      const { container } = render(<Checkbox inputid={'test01'} label={'Check me out!'} />);
+      const { container } = render(<Checkbox inputId={'test01'} label={'Check me out!'} />);
 
       expect(container).toMatchSnapshot();
 

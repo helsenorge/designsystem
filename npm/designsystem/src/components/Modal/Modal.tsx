@@ -33,7 +33,7 @@ export enum ModalSize {
 export interface ModalProps {
   /** Title of the modal */
   title: string;
-  /** Title of the modal */
+  /** id of the modal title */
   titleId?: string;
   /** Description of the modal */
   description?: string;
@@ -78,7 +78,7 @@ export interface ModalProps {
 const defaultProps = {
   variant: ModalVariants.normal,
   primaryButtonText: 'OK',
-  large: false,
+  titleId: uuid(),
   className: '',
   size: ModalSize.large,
   zIndex: ZIndex.Modal,
@@ -114,7 +114,6 @@ const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): JS
 
 const Modal = (props: ModalProps): JSX.Element => {
   const [tabIndex, setTabIndex] = React.useState(0);
-  const [uniqueTitleId] = React.useState(uuid());
   const initFocus = React.useRef<HTMLDivElement>(null);
   const topContent = React.useRef<HTMLDivElement>(null);
   const modalContentRef = React.useRef<HTMLDivElement>(null);
@@ -148,14 +147,13 @@ const Modal = (props: ModalProps): JSX.Element => {
   /* Displays a full window size modal with image */
   const imageView = props.variant === ModalVariants.image;
 
-  const titleId = props.titleId ?? uniqueTitleId;
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
   const showActions = (props.secondaryButtonText && props.secondaryButtonText?.length > 0) || props.onSuccess;
 
-  // AriaLabelledBy prioriteres, og AriaLabel prioriteres over fallback til AriaLabelledBy
+  // ariaLabelledBy prioriteres over ariaLabel, men dersom ariaLabel brukes trengs ikke ariaLabelledBy
   const ariaLabel = !props.ariaLabelledBy ? props.ariaLabel : undefined;
-  const ariaLabelledBy = props.ariaLabelledBy ? props.ariaLabelledBy : !props.ariaLabel ? titleId : undefined;
+  const ariaLabelledBy = props.ariaLabelledBy ? props.ariaLabelledBy : !props.ariaLabel ? props.titleId : undefined;
 
   useEffect(() => {
     const overlayElement = overlayRef.current;
@@ -222,7 +220,7 @@ const Modal = (props: ModalProps): JSX.Element => {
                 <div ref={topContent} />
                 <div className={styles.modal__contentWrapper__title}>
                   {getIcon(props.variant, props.icon)}
-                  <Title id={titleId} htmlMarkup="h3" appearance="title3" className={titleClasses}>
+                  <Title id={ariaLabelledBy} htmlMarkup="h3" appearance="title3" className={titleClasses}>
                     {props.title}
                   </Title>
                   {props.afterTitleChildren && <div className={styles['modal__afterTitleChildren']}>{props.afterTitleChildren}</div>}
