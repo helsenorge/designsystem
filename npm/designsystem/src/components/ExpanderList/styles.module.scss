@@ -24,12 +24,12 @@
 }
 
 .expander-list-link {
-  padding: getSpacer(xs) 0 getSpacer(xs) 0;
+  padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
   @media (min-width: map-get($grid-breakpoints, md)) {
-    padding-left: getSpacer(xs);
-    padding-right: getSpacer(xs);
+    padding-left: getSpacer(2xs);
+    padding-right: getSpacer(2xs);
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
   }
@@ -131,14 +131,14 @@
   &__icon {
     display: flex;
     align-items: center;
-    margin-right: getSpacer(xs);
+    margin-right: getSpacer(2xs);
   }
 
   &__chevron {
     display: flex;
     align-items: center;
     margin-left: auto;
-    padding-left: getSpacer(xs);
+    padding-left: getSpacer(2xs);
   }
 
   &__main-content {
@@ -147,8 +147,8 @@
     &--padding {
       padding: getSpacer(m) 0 getSpacer(m) 0;
       @media (min-width: map-get($grid-breakpoints, md)) {
-        padding-left: getSpacer(xs);
-        padding-right: getSpacer(xs);
+        padding-left: getSpacer(2xs);
+        padding-right: getSpacer(2xs);
       }
     }
   }

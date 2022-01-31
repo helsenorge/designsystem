@@ -32,36 +32,36 @@
     cursor: pointer;
 
     &--small {
-      padding: getSpacer(xs) 0 getSpacer(xs) 0;
+      padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
       font-size: $font-size-xs;
       line-height: $lineheight-size-xs;
     }
     &--medium {
-      padding: getSpacer(xs) 0 getSpacer(xs) 0;
+      padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
       font-size: $font-size-sm;
       line-height: $lineheight-size-sm;
     }
     &--large {
-      padding: getSpacer(xs) 0 getSpacer(xs) 0;
+      padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
       font-size: $font-size-md;
       line-height: $lineheight-size-md;
     }
     @media (min-width: map-get($grid-breakpoints, md)) {
       &--small {
-        padding-left: getSpacer(xs);
-        padding-right: getSpacer(xs);
+        padding-left: getSpacer(2xs);
+        padding-right: getSpacer(2xs);
         font-size: $font-size-sm;
         line-height: $lineheight-size-sm;
       }
       &--medium {
-        padding-left: getSpacer(xs);
-        padding-right: getSpacer(xs);
+        padding-left: getSpacer(2xs);
+        padding-right: getSpacer(2xs);
         font-size: $font-size-md;
         line-height: $lineheight-size-md;
       }
       &--large {
-        padding-left: getSpacer(xs);
-        padding-right: getSpacer(xs);
+        padding-left: getSpacer(2xs);
+        padding-right: getSpacer(2xs);
         font-size: $font-size-lg;
         line-height: $lineheight-size-lg;
       }
@@ -135,13 +135,13 @@
   &__icon {
     display: flex;
     align-items: center;
-    margin-right: getSpacer(xs);
+    margin-right: getSpacer(2xs);
   }
 
   &__chevron {
     display: flex;
     align-items: center;
     margin-left: auto;
-    padding-left: getSpacer(xs);
+    padding-left: getSpacer(2xs);
   }
 }

@@ -10,14 +10,14 @@
     display: flex;
     align-items: center;
     &--left {
-      margin-right: getSpacer(xs);
+      margin-right: getSpacer(2xs);
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-right: getSpacer(s);
       }
     }
     &--right {
       margin-left: auto;
-      padding-left: getSpacer(xs);
+      padding-left: getSpacer(2xs);
     }
   }
   &__button {
@@ -46,14 +46,14 @@
 
     &--large {
       width: 100%;
-      padding: 12px getSpacer(xs) 12px getSpacer(s); // TODO: Bruk ny getspacer her i stedet for 12px
+      padding: getSpacer(xs) getSpacer(2xs) getSpacer(xs) getSpacer(s);
 
       @media (min-width: map-get($grid-breakpoints, md)) {
-        padding: 12px getSpacer(s) 12px getSpacer(l);
+        padding: getSpacer(xs) getSpacer(s) getSpacer(xs) getSpacer(l);
       }
     }
     &--icon {
-      padding-left: getSpacer(xs);
+      padding-left: getSpacer(2xs);
       @media (min-width: map-get($grid-breakpoints, md)) {
         padding-left: getSpacer(s);
       }

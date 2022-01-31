@@ -33,6 +33,10 @@
     }
   }
 
+  &--with-icon#{&}--bigform {
+    padding: getSpacer(2xs) 0;
+  }
+
   &__input {
     line-height: getSpacer(m);
     height: getSpacer(m);

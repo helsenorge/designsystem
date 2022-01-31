@@ -20,6 +20,8 @@ const Spacer = React.forwardRef(function SpacerForwardedRef(props: SpacerProps, 
   const spacerClasses = classNames(
     spacerStyles.spacer,
     {
+      [spacerStyles['spacer--4xs']]: size === '4xs',
+      [spacerStyles['spacer--3xs']]: size === '3xs',
       [spacerStyles['spacer--2xs']]: size === '2xs',
       [spacerStyles['spacer--xs']]: size === 'xs',
       [spacerStyles['spacer--s']]: size === 's',

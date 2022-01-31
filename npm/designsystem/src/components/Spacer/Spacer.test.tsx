@@ -9,8 +9,13 @@ test('displays default spacer', (): void => {
 });
 
 test('displays 3xs spacer', (): void => {
+  const { container } = render(<Spacer size="4xs" />);
+  expect(container.querySelector('span').className).toBe('spacer spacer--4xs');
+});
+
+test('displays 3xs spacer', (): void => {
   const { container } = render(<Spacer size="3xs" />);
-  expect(container.querySelector('span').className).toBe('spacer');
+  expect(container.querySelector('span').className).toBe('spacer spacer--3xs');
 });
 
 test('displays 2xs spacer', (): void => {
