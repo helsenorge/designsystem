@@ -34,16 +34,16 @@
   }
 
   &--invalid {
-    margin-left: -getSpacer(xs);
-    margin-right: -getSpacer(xs);
+    margin-left: getSpacer(xs) * -1;
+    margin-right: getSpacer(xs) * -1;
     padding-left: getSpacer(2xs);
-    padding-right: getSpacer(s);
+    padding-right: getSpacer(xs);
     background-color: $cherry100;
     border-left: getSpacer(3xs) solid $cherry500;
 
     @media (min-width: map-get($grid-breakpoints, md)) {
-      margin-left: -(getSpacer(m) + 0.25rem);
-      margin-right: -(getSpacer(m) + 0.25rem);
+      margin-left: (getSpacer(m) + 0.25rem) * -1;
+      margin-right: (getSpacer(m) + 0.25rem) * -1;
       padding-left: getSpacer(m);
       padding-right: getSpacer(m);
     }
