@@ -75,6 +75,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     &:disabled {
       background-color: $neutral200;
       border: 0.125rem solid $neutral200;
+      box-shadow: 0 0 0 0.25rem $neutral200;
       color: $neutral600;
     }
   }
@@ -162,9 +163,17 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       }
     }
     &:disabled {
-      background-color: $neutral200;
+      background-color: transparent;
       border: 0.125rem solid $neutral200;
       color: $neutral600;
+
+      &:before {
+        border: none;
+      }
+
+      &:after {
+        border: none;
+      }
     }
   }
   &--outline#{&}--warning {
@@ -234,8 +243,6 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       padding: 0;
     }
     &:disabled {
-      background-color: $neutral200;
-      border: 0.125rem solid $neutral200;
       color: $neutral600;
     }
   }
@@ -395,6 +402,10 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin-right: 2.5rem;
       }
+    }
+
+    #{$button}:disabled & {
+      border-bottom: none;
     }
   }
 
