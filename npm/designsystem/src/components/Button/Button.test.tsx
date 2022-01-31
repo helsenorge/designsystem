@@ -237,4 +237,13 @@ describe('Gitt at button skal vises', (): void => {
       expect(testFill).toHaveAttribute('target', '_blank');
     });
   });
+  describe('Gitt at Button vises', (): void => {
+    test('Så har den riktig analyticsid', (): void => {
+      render(<Button testId={'knapp'}>Tekst</Button>);
+
+      const button = screen.getByTestId('knapp');
+
+      expect(button).toHaveAttribute('data-analyticsid', 'button');
+    });
+  });
 });

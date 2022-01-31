@@ -4,6 +4,7 @@ exports[`Gitt at Checkbox skal vises Når Checkbox rendres Så vises Checkbox 1`
 <div>
   <div
     class="checkbox-wrapper"
+    data-analyticsid="checkbox"
   >
     <label
       class="checkbox-label"

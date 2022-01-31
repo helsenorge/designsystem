@@ -4,6 +4,7 @@ exports[`displays default spacer 1`] = `
 <div>
   <span
     class="spacer spacer--s"
+    data-analyticsid="spacer"
   />
 </div>
 `;

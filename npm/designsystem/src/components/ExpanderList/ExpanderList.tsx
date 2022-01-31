@@ -11,6 +11,7 @@ import { isElementInViewport } from '../../utils/viewport';
 import classNames from 'classnames';
 
 import expanderListStyles from './styles.module.scss';
+import { AnalyticsId } from '../../constants';
 
 export type ExpanderListColors = PaletteNames;
 export type ExpanderType = React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>>;
@@ -93,7 +94,14 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
 
   return (
     <li className={className} ref={ref}>
-      <button id={id} onClick={handleExpanderClick} data-testid={testId} className={expanderClasses} ref={hoverRef}>
+      <button
+        id={id}
+        onClick={handleExpanderClick}
+        data-testid={testId}
+        data-analyticsid={AnalyticsId.Expander}
+        className={expanderClasses}
+        ref={hoverRef}
+      >
         {icon && (
           <span className={expanderListStyles['expander-list-link__icon']}>
             {React.cloneElement(icon, {
@@ -157,7 +165,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   }, [isOpen]);
 
   return (
-    <ul className={expanderListClasses} ref={ref} data-testid={testId}>
+    <ul className={expanderListClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.ExpanderList}>
       {React.Children.map(children, (child: React.ReactNode, index: number) => {
         if ((child as React.ReactElement<ExpanderProps>).type === Expander) {
           const isExpanded = activeExpander[`expander-${index}`];

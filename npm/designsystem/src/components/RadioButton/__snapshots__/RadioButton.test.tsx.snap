@@ -4,6 +4,7 @@ exports[`Gitt at RadioButton skal vises Når RadioButton rendres Så vises Radio
 <div>
   <div
     class="radio-button-wrapper"
+    data-analyticsid="radio-button"
   >
     <label
       class="radio-button-label"

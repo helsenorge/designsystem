@@ -4,6 +4,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
 <div>
   <div
     class="notification-panel notification-panel--undefined notification-panel--info notification-panel--dismissable"
+    data-analyticsid="notification-panel"
   >
     <span
       class="notification-panel__icon"
@@ -11,6 +12,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
       <svg
         aria-hidden="true"
         class="hnds-style-icon "
+        data-analyticsid="icon"
         fill="#078141"
         height="48"
         role="img"
@@ -35,11 +37,13 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
       <button
         aria-label="Lukk"
         class="close"
+        data-analyticsid="close"
         role="button"
       >
         <svg
           aria-hidden="true"
           class="hnds-style-icon "
+          data-analyticsid="icon"
           fill="#126F87"
           height="48"
           role="img"
@@ -61,6 +65,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet vises med default pro
 <div>
   <div
     class="notification-panel notification-panel--undefined notification-panel--info"
+    data-analyticsid="notification-panel"
   >
     <span
       class="notification-panel__icon"
@@ -68,6 +73,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet vises med default pro
       <svg
         aria-hidden="true"
         class="hnds-style-icon "
+        data-analyticsid="icon"
         fill="#078141"
         height="48"
         role="img"

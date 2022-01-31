@@ -31,6 +31,7 @@ exports[`displays original logo 1`] = `
   <svg
     aria-labelledby="logo-title"
     class=""
+    data-analyticsid="logo"
     role="img"
     viewBox="0 0 502 220"
     width="300"

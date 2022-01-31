@@ -53,9 +53,9 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           variant={props.variant}
           name={formGroup1}
         >
-          <Checkbox label={'Checkbox 1'} ref={register({ required: errorMessage })} />
-          <Checkbox label={'Checkbox 2'} ref={register({ required: errorMessage })} />
-          <Checkbox label={'Checkbox 3'} ref={register({ required: errorMessage })} />
+          <Checkbox inputId="checkbox1" label={'Checkbox 1'} ref={register({ required: errorMessage })} />
+          <Checkbox inputId="checkbox2" label={'Checkbox 2'} ref={register({ required: errorMessage })} />
+          <Checkbox inputId="checkbox3" label={'Checkbox 3'} ref={register({ required: errorMessage })} />
         </FormGroup>,
         <FormGroup
           key={1}
@@ -64,9 +64,9 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           variant={props.variant}
           name={formGroup2}
         >
-          <Checkbox label={'Checkbox 4'} ref={register({ validate: requireTwo })} />
-          <Checkbox label={'Checkbox 5'} ref={register({ validate: requireTwo })} />
-          <Checkbox label={'Checkbox 6'} ref={register({ validate: requireTwo })} />
+          <Checkbox inputId="checkbox4" label={'Checkbox 4'} ref={register({ validate: requireTwo })} />
+          <Checkbox inputId="checkbox5" label={'Checkbox 5'} ref={register({ validate: requireTwo })} />
+          <Checkbox inputId="checkbox6" label={'Checkbox 6'} ref={register({ validate: requireTwo })} />
         </FormGroup>,
         <FormGroup
           key={2}
@@ -75,9 +75,9 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           variant={props.variant}
           name={formGroup3}
         >
-          <RadioButton label={'Radiobutton 1'} ref={register({ required: errorMessage })} />
-          <RadioButton label={'Radiobutton 2'} ref={register({ required: errorMessage })} />
-          <RadioButton label={'Radiobutton 3'} ref={register({ required: errorMessage })} />
+          <RadioButton inputId="radiobutton1" label={'Radiobutton 1'} ref={register({ required: errorMessage })} />
+          <RadioButton inputId="radiobutton2" label={'Radiobutton 2'} ref={register({ required: errorMessage })} />
+          <RadioButton inputId="radiobutton3" label={'Radiobutton 3'} ref={register({ required: errorMessage })} />
         </FormGroup>,
         <FormGroup key={3} error={errors[formGroup4] ? errors[formGroup4].message : undefined}>
           <Textarea
@@ -86,6 +86,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             maxCharacters={40}
             minRows={5}
             label="Skriv din historie her"
+            textareaId="textarea1"
             name={formGroup4}
             ref={register({ maxLength: { value: 40, message: errorMessage3 } })}
           />
@@ -99,6 +100,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         <FormGroup name={formGroup1} error={errors[formGroup1] ? errors[formGroup1].message : undefined}>
           <Checkbox
             name={formGroup1}
+            inputId="checkbox1"
             label={'Checkbox 1'}
             error={errors[formGroup1]}
             variant={props.variant}
@@ -111,6 +113,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         <FormGroup name={formGroup3} error={errors[formGroup3] ? errors[formGroup3].message : undefined}>
           <RadioButton
             name={formGroup3}
+            inputId="radiobutton1"
             label={'Radiobutton 1'}
             error={errors[formGroup3]}
             variant={props.variant}
@@ -127,6 +130,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             maxCharacters={40}
             minRows={5}
             label="Skriv din historie her"
+            textareaId="textarea1"
             name={formGroup4}
             ref={register({ maxLength: { value: 40, message: errorMessage3 } })}
           />
@@ -135,7 +139,13 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     } else if (exampleType === FormExampleVariants.input) {
       return (
         <FormGroup name={formGroup5} key={4} variant={props.variant} error={errors[formGroup5] ? errors[formGroup5].message : undefined}>
-          <Input label={'Skriv inn din tekst'} placeholder={'Skriv noe!'} icon={Hospital} ref={register({ required: errorMessage4 })} />
+          <Input
+            inputId="input1"
+            label={'Skriv inn din tekst'}
+            placeholder={'Skriv noe!'}
+            icon={Hospital}
+            ref={register({ required: errorMessage4 })}
+          />
         </FormGroup>
       );
     }

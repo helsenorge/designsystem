@@ -4,6 +4,7 @@ import { uuid } from '../../utils/uuid';
 
 import { PaletteNames } from '../../theme/palette';
 import loaderStyles from './styles.module.scss';
+import { AnalyticsId } from '../../constants';
 
 export type LoaderColors = PaletteNames;
 export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';
@@ -21,6 +22,8 @@ interface LoaderProps {
   size?: LoaderSizes;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** id of the label */
+  labelId?: string;
   /** Centers the loader in a container */
   center?: boolean;
   /** Inline the loader so it can be used in a span or paragraph */
@@ -39,6 +42,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     color = overlay ? 'black' : 'neutral',
     size = 'small',
     className = '',
+    labelId = uuid(),
     testId,
     center,
     inline,
@@ -89,8 +93,6 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
     [loaderStyles['loader__dot--white']]: color === 'white',
   });
 
-  const uniqueId = `loader${uuid()}`;
-
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -108,13 +110,18 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   return (
     <div role="progressbar" className={loaderWrapperClasses} ref={wrapperRef}>
       {display && (
-        <div data-testid={testId} aria-labelledby={ariaLabelledById || uniqueId} className={loaderClasses}>
+        <div
+          data-testid={testId}
+          data-analyticsid={AnalyticsId.Loader}
+          aria-labelledby={ariaLabelledById || labelId}
+          className={loaderClasses}
+        >
           <div className={loaderDotClasses} />
           <div className={loaderDotClasses} />
           <div className={loaderDotClasses} />
           <div className={loaderDotClasses} />
           {!ariaLabelledById && (
-            <span id={uniqueId} className={loaderStyles['loader__hidden-text']}>
+            <span id={labelId} className={loaderStyles['loader__hidden-text']}>
               {ariaLabel}
             </span>
           )}

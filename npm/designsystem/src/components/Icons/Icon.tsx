@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconSize } from '../../constants';
+import { AnalyticsId, IconSize } from '../../constants';
 
 type SvgIcon = React.FC<SvgPathProps>;
 
@@ -71,6 +71,7 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
     <svg
       id={id}
       data-testid={testId}
+      data-analyticsid={AnalyticsId.Icon}
       ref={ref as React.RefObject<SVGSVGElement>}
       className={`hnds-style-icon ${className}`}
       role="img"

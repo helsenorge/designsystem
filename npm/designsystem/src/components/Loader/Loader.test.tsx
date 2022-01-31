@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Loader, { Overlay } from './Loader';
 import * as uuidUtils from '../../utils/uuid';
 
-jest.spyOn(uuidUtils, 'uuid').mockReturnValue(`-unik-id`);
+jest.spyOn(uuidUtils, 'uuid').mockReturnValue(`unik-id`);
 
 describe('Gitt at en loader skal vises ', (): void => {
   describe('Når at en loader rendres ', (): void => {
@@ -43,7 +43,7 @@ describe('Gitt at en loader skal vises ', (): void => {
       expect(loader).toHaveClass('loader-wrapper--overlay-screen');
 
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
-      expect(loaderDotsWrapper).toHaveAttribute('aria-labelledby', 'loader-unik-id');
+      expect(loaderDotsWrapper).toHaveAttribute('aria-labelledby', 'unik-id');
       expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--small loader__dot--black');
 
       const parent = screen.getByTestId('parent-wrapper');
@@ -104,6 +104,15 @@ describe('Gitt at en loader skal vises ', (): void => {
 
       const wrapper = screen.getByTestId('parent-wrapper');
       expect(wrapper).toHaveStyle('display: flex');
+    });
+  });
+
+  describe('Når loader skal vises med custom labelId', (): void => {
+    test('Så har label id-en', (): void => {
+      render(<Loader ariaLabel="Laster inn" labelId="testing" />);
+
+      const label = screen.getByText('Laster inn');
+      expect(label).toHaveAttribute('id', 'testing');
     });
   });
 });

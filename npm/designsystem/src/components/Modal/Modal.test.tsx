@@ -369,6 +369,15 @@ describe('Gitt at en modal skal vises ', (): void => {
       expect(dialog).toBeVisible();
     });
   });
+
+  describe('Når modal skal vises med custom titleId', (): void => {
+    test('Så har tittelen id-en', (): void => {
+      render(<Modal title="Dette er tittelen" titleId="testing" />);
+
+      const label = screen.getByText('Dette er tittelen');
+      expect(label).toHaveAttribute('id', 'testing');
+    });
+  });
 });
 
 describe('Gitt at en modal skal vises som printable ', (): void => {

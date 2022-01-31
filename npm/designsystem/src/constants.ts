@@ -8,6 +8,7 @@ export enum IconSize {
 
 export enum ZIndex {
   Modal = 1300000,
+  ExpanderTrigger = 10000,
 }
 
 export interface HTMLButtonProps {
@@ -73,4 +74,34 @@ export enum FormMode {
 export enum FormVariant {
   normal = 'normal',
   bigform = 'bigform',
+}
+
+export enum AnalyticsId {
+  AnchorLink = 'anchor-link',
+  Avatar = 'avatar',
+  Badge = 'badge',
+  Button = 'button',
+  Checkbox = 'checkbox',
+  Close = 'close',
+  Expander = 'expander',
+  ExpanderList = 'expander-list',
+  FormGroup = 'form-group',
+  HighlightBox = 'highlight-box',
+  Icon = 'icon',
+  Input = 'input',
+  Link = 'link',
+  LinkList = 'link-list',
+  List = 'list',
+  Loader = 'loader',
+  Logo = 'logo',
+  Modal = 'modal',
+  NotificationPanel = 'notification-panel',
+  Portal = 'portal',
+  RadioButton = 'radio-button',
+  Slider = 'slider',
+  Spacer = 'spacer',
+  Textarea = 'textarea',
+  Tile = 'tile',
+  Title = 'title',
+  Validation = 'validation',
 }

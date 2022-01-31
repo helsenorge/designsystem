@@ -1,5 +1,6 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
+import { AnalyticsId } from '../../constants';
 
 export interface PortalProps {
   /** Add custom class to portal, default class is portal-container */
@@ -15,6 +16,7 @@ export interface PortalProps {
 export default function Portal({ children, parent, className, testId }: PortalProps): React.ReactPortal {
   // Create div to contain everything
   const el = React.useMemo(() => document.createElement('div'), []);
+  el.setAttribute('data-analyticsid', AnalyticsId.Portal);
   if (testId) {
     el.setAttribute('data-testid', testId);
   }

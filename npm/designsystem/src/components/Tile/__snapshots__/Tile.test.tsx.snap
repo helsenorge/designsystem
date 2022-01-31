@@ -4,6 +4,7 @@ exports[`displays tile 1`] = `
 <div>
   <a
     class="tile"
+    data-analyticsid="tile"
   >
     <div
       class="title-wrapper"
@@ -11,6 +12,7 @@ exports[`displays tile 1`] = `
       <svg
         aria-hidden="true"
         class="hnds-style-icon "
+        data-analyticsid="icon"
         fill="black"
         height="64"
         role="img"

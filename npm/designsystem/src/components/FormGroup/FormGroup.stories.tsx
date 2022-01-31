@@ -28,9 +28,9 @@ stories.add('Checkbox', () => {
         mode={modes}
         variant={select('Variant', FormVariant, FormVariant.normal)}
       >
-        <Checkbox inputid={'Checkbox1'} label={'Checkbox 1'} />
-        <Checkbox inputid={'Checkbox2'} label={'Checkbox 2'} />
-        <Checkbox inputid={'Checkbox3'} label={'Checkbox 3'} />
+        <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
+        <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
+        <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
       </FormGroup>
       <FormGroup
         legend={text('Legend', 'Check out these checkboxes!')}
@@ -62,9 +62,9 @@ stories.add('RadioButton', () => {
         variant={select('Variant', FormVariant, FormVariant.normal)}
         name={'radiogroup1'}
       >
-        <RadioButton inputid={'RadioButton1'} label={'RadioButton 1'} />
-        <RadioButton inputid={'RadioButton2'} label={'RadioButton 2'} />
-        <RadioButton inputid={'RadioButton3'} label={'RadioButton 3'} />
+        <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
+        <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
+        <RadioButton inputId={'RadioButton3'} label={'RadioButton 3'} />
       </FormGroup>
       <FormGroup
         legend={text('Legend', 'Radio radio hello!')}
@@ -72,9 +72,9 @@ stories.add('RadioButton', () => {
         variant={select('Variant', FormVariant, FormVariant.normal)}
         name={'radiogroup2'}
       >
-        <RadioButton inputid={'RadioButton4'} label={'RadioButton 4'} />
-        <RadioButton inputid={'RadioButton5'} label={'RadioButton 5'} />
-        <RadioButton inputid={'RadioButton6'} label={'RadioButton 6'} />
+        <RadioButton inputId={'RadioButton4'} label={'RadioButton 4'} />
+        <RadioButton inputId={'RadioButton5'} label={'RadioButton 5'} />
+        <RadioButton inputId={'RadioButton6'} label={'RadioButton 6'} />
       </FormGroup>
     </div>
   );

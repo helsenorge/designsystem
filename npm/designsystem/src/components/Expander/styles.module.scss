@@ -1,0 +1,165 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/_font-settings.scss';
+
+.expander {
+  position: relative;
+  width: 100%;
+  &__icon {
+    display: flex;
+    align-items: center;
+    &--left {
+      margin-right: getSpacer(xs);
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        margin-right: getSpacer(s);
+      }
+    }
+    &--right {
+      margin-left: auto;
+      padding-left: getSpacer(xs);
+    }
+  }
+  &__button {
+    position: relative;
+    &:hover {
+      background-color: $blueberry50;
+    }
+    &--expanded {
+      background-color: $blueberry50;
+    }
+  }
+  &__trigger {
+    $trigger: &;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: none;
+    outline: none;
+    font-size: $font-size-sm;
+    line-height: $lineheight-size-sm;
+    font-weight: 600;
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      font-size: $font-size-md;
+      line-height: $lineheight-size-md;
+    }
+
+    &--large {
+      width: 100%;
+      padding: 12px getSpacer(xs) 12px getSpacer(s); // TODO: Bruk ny getspacer her i stedet for 12px
+
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding: 12px getSpacer(s) 12px getSpacer(l);
+      }
+    }
+    &--icon {
+      padding-left: getSpacer(xs);
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding-left: getSpacer(s);
+      }
+    }
+
+    $colors: 'neutral', 'blueberry', 'cherry', 'kiwi', 'banana', 'plum';
+
+    @each $color in $colors {
+      &--#{$color} {
+        background-color: map-get($palette-map, #{$color}50);
+        &:hover {
+          background-color: map-get($palette-map, #{$color}100);
+        }
+        &:focus {
+          box-shadow: 0 0 0 1.5px $neutral600, inset 0 0 0 1.5px $neutral600;
+        }
+        &#{$trigger}--expanded {
+          background-color: map-get($palette-map, #{$color}100);
+          &:hover {
+            background-color: map-get($palette-map, #{$color}200);
+          }
+        }
+      }
+    }
+
+    // Hvit bakgrunn har egne regler for bakgrunnsfarge, hover og fokus
+    &--white {
+      background-color: $white;
+      &:hover {
+        background-color: $neutral100;
+      }
+      &:focus {
+        box-shadow: 0 0 0 1.5px $neutral600, inset 0 0 0 1.5px $neutral600;
+      }
+      &#{$trigger}--expanded {
+        box-shadow: inset 0 0 0 6px $neutral100;
+        &:focus {
+          box-shadow: 0 0 0 1.5px $neutral600, inset 0 0 0 1.5px $neutral600, inset 0 0 0 6px $neutral100;
+        }
+      }
+    }
+  }
+  &__button,
+  &__trigger {
+    &--sticky {
+      position: fixed;
+      top: 0;
+    }
+    &--absolute {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+  &__content {
+    $content: &;
+    display: none;
+    width: 100%;
+
+    &--expanded {
+      display: block;
+    }
+    &--small {
+      margin-top: getSpacer(s);
+    }
+    &--nested-line {
+      padding-left: getSpacer(s);
+      border-left: solid 3px $neutral200;
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        margin-left: calc(38px / 2 - 1px); // Halvparten av chevron-ikonets bredde minus halve bredden på border
+        padding-left: calc(
+          38px / 2 + 12px - 2px
+        ); // Halvparten av chevron-ikonets bredde, pluss ikonets margin-right på tablet, minus bredden på border
+      }
+    }
+    &--large {
+      padding: getSpacer(s) getSpacer(m) getSpacer(l) getSpacer(s);
+
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding: getSpacer(m) getSpacer(l) getSpacer(xl) getSpacer(l);
+      }
+      &#{$content}--icon {
+        @media (min-width: map-get($grid-breakpoints, md)) {
+          padding-left: 70px;
+        }
+      }
+    }
+    &--neutral {
+      background-color: $neutral50;
+    }
+    &--blueberry {
+      background-color: $blueberry50;
+    }
+    &--cherry {
+      background-color: $cherry50;
+    }
+    &--kiwi {
+      background-color: $kiwi50;
+    }
+    &--banana {
+      background-color: $banana50;
+    }
+    &--plum {
+      background-color: $plum50;
+    }
+    &--white {
+      background-color: $white;
+    }
+  }
+}

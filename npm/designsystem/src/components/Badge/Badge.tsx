@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { PaletteNames } from '../../theme/palette';
 
 import badgeStyles from './styles.module.scss';
+import { AnalyticsId } from '../../constants';
 
 export type BadgeColors = PaletteNames;
 export type BadgeChildren = string | number;
@@ -39,7 +40,7 @@ const Badge = React.forwardRef(function BadgeForwardedRef(props: BadgeProps, ref
   );
 
   return (
-    <span className={badgeClasses} ref={ref} data-testid={testId}>
+    <span className={badgeClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Badge}>
       {children}
     </span>
   );

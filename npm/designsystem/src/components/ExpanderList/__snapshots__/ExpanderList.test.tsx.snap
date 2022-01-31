@@ -7,12 +7,14 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
   >
     <ul
       class="expander-list"
+      data-analyticsid="expander-list"
     >
       <li
         class="expander-list__item expander-list__item--top"
       >
         <button
           class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
+          data-analyticsid="expander"
           id="expander-0"
         >
           <span
@@ -26,6 +28,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
             <svg
               aria-hidden="true"
               class="hnds-style-icon "
+              data-analyticsid="icon"
               fill="black"
               height="38"
               role="img"
@@ -45,6 +48,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
       >
         <button
           class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
+          data-analyticsid="expander"
           id="expander-1"
         >
           <span
@@ -58,6 +62,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
             <svg
               aria-hidden="true"
               class="hnds-style-icon "
+              data-analyticsid="icon"
               fill="black"
               height="38"
               role="img"
@@ -77,6 +82,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
       >
         <button
           class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
+          data-analyticsid="expander"
           id="expander-2"
         >
           <span
@@ -90,6 +96,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
             <svg
               aria-hidden="true"
               class="hnds-style-icon "
+              data-analyticsid="icon"
               fill="black"
               height="38"
               role="img"

@@ -4,6 +4,7 @@ exports[`displays a list of 4 elements 1`] = `
 <div>
   <ul
     class="list"
+    data-analyticsid="list"
   >
     <li
       class="list__item"

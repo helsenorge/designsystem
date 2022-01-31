@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import titleStyles from './styles.module.scss';
+import { AnalyticsId } from '../../constants';
 
 export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span';
 export type TitleAppearances = 'titleFeature' | 'title1' | 'title2' | 'title3' | 'title4' | 'title5';
@@ -52,7 +53,7 @@ const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref
     : { marginTop: `${margin}rem`, marginBottom: `${margin}rem` };
 
   return (
-    <CustomTag id={id} className={titleClasses} style={inlineStyle} ref={ref} data-testid={testId}>
+    <CustomTag id={id} className={titleClasses} style={inlineStyle} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Title}>
       {children}
     </CustomTag>
   );

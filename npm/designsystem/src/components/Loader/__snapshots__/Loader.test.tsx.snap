@@ -7,8 +7,9 @@ exports[`Gitt at en loader skal vises  Når at en loader rendres  Så vises load
     role="progressbar"
   >
     <div
-      aria-labelledby="loader-unik-id"
+      aria-labelledby="unik-id"
       class="loader loader--small"
+      data-analyticsid="loader"
     >
       <div
         class="loader__dot loader__dot--small loader__dot--neutral"
@@ -24,7 +25,7 @@ exports[`Gitt at en loader skal vises  Når at en loader rendres  Så vises load
       />
       <span
         class="loader__hidden-text"
-        id="loader-unik-id"
+        id="unik-id"
       >
         Laster inn
       </span>

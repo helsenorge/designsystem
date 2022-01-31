@@ -4,8 +4,11 @@ exports[`displays a list of links 1`] = `
 <div>
   <ul
     class="link-list link-list--hastopborder"
+    data-analyticsid="link-list"
   >
-    <li>
+    <li
+      data-analyticsid="link"
+    >
       <a
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
       >
@@ -15,6 +18,7 @@ exports[`displays a list of links 1`] = `
           <svg
             aria-hidden="true"
             class="hnds-style-icon "
+            data-analyticsid="icon"
             fill="black"
             height="48"
             role="img"
@@ -44,7 +48,9 @@ exports[`displays a list of links 1`] = `
         </span>
       </a>
     </li>
-    <li>
+    <li
+      data-analyticsid="link"
+    >
       <a
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
       >
@@ -55,7 +61,9 @@ exports[`displays a list of links 1`] = `
         </span>
       </a>
     </li>
-    <li>
+    <li
+      data-analyticsid="link"
+    >
       <a
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
       >

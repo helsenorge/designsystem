@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import cn from 'classnames';
 
-import { FormMode, FormVariant } from '../../constants';
+import { FormMode, FormVariant, AnalyticsId } from '../../constants';
 import { uuid } from '../../utils/uuid';
 import Icon, { IconSize, SvgIcon } from '../Icons';
 import { getColor } from '../../theme/currys';
@@ -17,7 +17,7 @@ export interface InputProps {
   /**  HMTL Input type */
   type?: keyof typeof InputTypes;
   /** input id */
-  inputid?: string;
+  inputId?: string;
   /** Unique identifyer for the input tag */
   name?: string;
   /** If true, the component will be transparent. */
@@ -65,7 +65,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     defaultValue,
     placeholder,
     type = InputTypes.text,
-    inputid = uuid(),
+    inputId = uuid(),
     name,
     transparent = false,
     icon,
@@ -132,10 +132,10 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   };
 
   return (
-    <div data-testid={testId} className={inputWrapperClass}>
+    <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass}>
       {label && (
         <div className={labelWrapperClass}>
-          <label htmlFor={inputid}>{label}</label>
+          <label htmlFor={inputId}>{label}</label>
           {afterLabelChildren && <div className={styles['input-wrapper__after-label-children']}>{afterLabelChildren}</div>}
         </div>
       )}
@@ -146,7 +146,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
           name={name}
           type={type}
           defaultValue={defaultValue}
-          id={inputid}
+          id={inputId}
           className={inputClass}
           ref={ref}
           aria-invalid={!!onError}

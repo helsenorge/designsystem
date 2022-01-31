@@ -22,6 +22,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som larg
     >
       <div
         class="highlightbox__col"
+        data-analyticsid="highlight-box"
       >
         <p>
           Avsnitt
@@ -42,6 +43,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som medi
     >
       <div
         class="highlightbox__col"
+        data-analyticsid="highlight-box"
       >
         <p>
           Avsnitt

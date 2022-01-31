@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at Expander skal rendres Gitt at Expander skal vises som large, med farge og ikon Så rendres expanderen som den skal 1`] = `
+<div>
+  <div
+    class="expander"
+  >
+    <button
+      aria-expanded="false"
+      class="expander__trigger expander__trigger--large expander__trigger--blueberry expander__trigger--icon"
+      data-analyticsid="expander"
+    >
+      <span
+        class="expander__icon expander__icon--left"
+      >
+        <svg
+          aria-hidden="true"
+          class="hnds-style-icon "
+          data-analyticsid="icon"
+          fill="black"
+          height="38"
+          role="img"
+          style="min-width: 38px; min-height: 38px;"
+          viewBox="0 0 48 48"
+          width="38"
+        >
+          <path
+            d="M38.887 16.71H8.6v-6.197h3.862v1.17c0 1.223.994 2.216 2.216 2.216a2.218 2.218 0 002.215-2.215v-1.171h13.582v1.17c0 1.223.994 2.216 2.215 2.216a2.218 2.218 0 002.216-2.215v-1.171h3.982v6.197zM8.6 34.46h30.288V17.974H8.6V34.46zm5.125-26.17a.953.953 0 011.905 0v3.394a.953.953 0 01-1.905 0V8.289zm18.013 0a.953.953 0 011.905 0v3.394a.953.953 0 01-1.905 0V8.289zm3.168.96v-.96a2.218 2.218 0 00-2.216-2.216 2.218 2.218 0 00-2.215 2.215v.96H16.892v-.96a2.218 2.218 0 00-2.215-2.215 2.218 2.218 0 00-2.216 2.215v.96H7.336v26.475h32.815V9.249h-5.246zM27.67 28.292a1.508 1.508 0 100-3.016 1.508 1.508 0 000 3.016z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+      Knapp
+      <span
+        class="expander__icon expander__icon--right"
+      >
+        <svg
+          aria-hidden="true"
+          class="hnds-style-icon "
+          data-analyticsid="icon"
+          fill="black"
+          height="38"
+          role="img"
+          style="min-width: 38px; min-height: 38px;"
+          viewBox="0 0 48 48"
+          width="38"
+        >
+          <path
+            d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+          />
+        </svg>
+      </span>
+    </button>
+    <div
+      class="expander__content expander__content--large expander__content--blueberry expander__content--icon"
+    >
+      <h1>
+        Innhold i expander
+      </h1>
+    </div>
+  </div>
+</div>
+`;

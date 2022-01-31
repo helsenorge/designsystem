@@ -4,6 +4,7 @@ exports[`Gitt at Title skal rendres Gitt at Title skal vises vanlig Så rendres 
 <div>
   <h1
     class="title title--title1"
+    data-analyticsid="title"
     style="margin-top: 0rem; margin-bottom: 0rem;"
   >
     Title

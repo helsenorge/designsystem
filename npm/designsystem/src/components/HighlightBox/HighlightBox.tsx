@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { PaletteNames } from '../../theme/palette';
 
 import styles from './styles.module.scss';
+import { AnalyticsId } from '../../constants';
 
 export type HighlightBoxColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cherry' | 'neutral' | 'kiwi' | 'plum'>;
 
@@ -48,7 +49,7 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
   return (
     <div className={containerClassName}>
       <div className={styles.highlightbox__row}>
-        <CustomTag className={styles.highlightbox__col} data-testid={testId}>
+        <CustomTag className={styles.highlightbox__col} data-testid={testId} data-analyticsid={AnalyticsId.HighlightBox}>
           {children}
         </CustomTag>
       </div>

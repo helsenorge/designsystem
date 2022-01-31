@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { SpacerSizes } from './../../theme/spacers';
 
 import spacerStyles from './styles.module.scss';
+import { AnalyticsId } from '../../constants';
 
 interface SpacerProps {
   /** Sets the size of the spacer. */
@@ -36,7 +37,7 @@ const Spacer = React.forwardRef(function SpacerForwardedRef(props: SpacerProps, 
     className
   );
 
-  return <span className={spacerClasses} ref={ref} data-testid={testId}></span>;
+  return <span className={spacerClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Spacer}></span>;
 });
 
 export default Spacer;

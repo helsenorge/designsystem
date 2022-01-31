@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import cn from 'classnames';
 
 import styles from './styles.module.scss';
-import { HTMLTextareaProps, FormMode } from '../../constants';
+import { HTMLTextareaProps, FormMode, AnalyticsId } from '../../constants';
 import { uuid } from '../../utils/uuid';
 
 interface TextareaProps extends HTMLTextareaProps {
@@ -22,6 +22,8 @@ interface TextareaProps extends HTMLTextareaProps {
   mode?: keyof typeof FormMode;
   /** Label of the input */
   label?: string;
+  /** id of the textarea */
+  textareaId?: string;
   /** max rows */
   maxRows?: number;
   /** min rows */
@@ -46,6 +48,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     transparent,
     mode,
     label,
+    textareaId = uuid(),
     minRows = 3,
     maxRows = 10,
     grow,
@@ -121,8 +124,6 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     [styles[`textarea__counter-wrapper--invalid`]]: onError,
   });
 
-  const uniqueId = label ? uuid() : undefined;
-
   useEffect(() => {
     if (grow && referanse.current?.children && referanse.current?.children[0]) {
       const textarea = referanse.current?.children[0] as HTMLTextAreaElement;
@@ -131,10 +132,10 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   }, []);
 
   return (
-    <div data-testid={testId} className={textareaWrapperClass}>
+    <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
       {label && (
         <div className={labelWrapperClass}>
-          <label htmlFor={uniqueId}>{label}</label>
+          <label htmlFor={textareaId}>{label}</label>
           {afterLabelChildren && <div className={styles['textarea__after-label-children']}>{afterLabelChildren}</div>}
         </div>
       )}
@@ -143,7 +144,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
         <textarea
           rows={rows}
           defaultValue={defaultValue}
-          id={uniqueId}
+          id={textareaId}
           className={textareaClass}
           ref={ref}
           onChange={handleChange}

@@ -8,7 +8,7 @@ import Icon from '../Icons';
 import { getColor } from '../../theme/currys/color';
 
 import checkboxStyles from './styles.module.scss';
-import { FormMode, FormVariant } from '../../constants';
+import { AnalyticsId, FormMode, FormVariant } from '../../constants';
 
 export interface CheckboxProps {
   /** Adds custom classes to the element. */
@@ -20,7 +20,7 @@ export interface CheckboxProps {
   /** The label text next to the checkbox */
   label: string;
   /** input id of the checkbox */
-  inputid?: string;
+  inputId?: string;
   /** Changes the visuals of the checkbox */
   mode?: keyof typeof FormMode;
   /** Unique identifyer for the input tag */
@@ -43,9 +43,9 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     checked = false,
     disabled,
     label,
-    inputid = uuid(),
+    inputId = uuid(),
     mode,
-    name = inputid,
+    name = inputId,
     variant,
     errorText,
     error = !!errorText,
@@ -90,11 +90,11 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   }, [checked]);
 
   return (
-    <div data-testid={props.testId} className={checkboxWrapperClasses}>
+    <div data-testid={props.testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
       {errorText && <p className={errorStyles}>{errorText}</p>}
-      <label htmlFor={inputid} className={checkboxLabelClasses}>
+      <label htmlFor={inputId} className={checkboxLabelClasses}>
         <input
-          id={inputid}
+          id={inputId}
           name={name}
           className={checkboxClasses}
           type="checkbox"
