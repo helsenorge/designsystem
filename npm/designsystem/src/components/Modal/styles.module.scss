@@ -72,13 +72,14 @@
 
   &--large {
     width: calc(100vw - 0.75rem);
+    padding-bottom: getSpacer(l);
     @media (max-width: map-get($grid-breakpoints, sm)) {
       p {
         font-size: 1.125rem;
       }
     }
-
     @media (min-width: map-get($grid-breakpoints, md)) {
+      padding-bottom: getSpacer(xl);
       width: 612px;
     }
     @media (min-width: map-get($grid-breakpoints, lg)) {
@@ -88,7 +89,7 @@
 
   &--medium {
     width: calc(100vw - 0.75rem);
-
+    padding-bottom: getSpacer(m);
     @media (min-width: map-get($grid-breakpoints, md)) {
       width: 335px;
     }
@@ -98,6 +99,7 @@
   }
 
   &--image {
+    padding: 0;
     @media (min-width: map-get($grid-breakpoints, md)) {
       max-height: calc(100vh - 24px);
       max-width: calc(100vw - 24px);
@@ -158,16 +160,16 @@
 
     &__scroll {
       &--large {
-        @media (max-width: map-get($grid-breakpoints, sm)) {
-          padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
+        padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
+        @media (min-width: map-get($grid-breakpoints, md)) {
+          padding: getSpacer(xl) getSpacer(xl) getSpacer(2xs) getSpacer(xl);
         }
-        padding: getSpacer(xl) getSpacer(xl) getSpacer(2xs) getSpacer(xl);
       }
       &--medium {
-        @media (max-width: map-get($grid-breakpoints, sm)) {
+        padding: getSpacer(l) getSpacer(m) getSpacer(2xs) getSpacer(m);
+        @media (min-width: map-get($grid-breakpoints, md)) {
           padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
         }
-        padding: getSpacer(l) getSpacer(m) getSpacer(2xs) getSpacer(m);
       }
       &--large#{&}--image {
         padding: getSpacer(xl) getSpacer(2xs) getSpacer(l) getSpacer(2xs);
@@ -212,13 +214,13 @@
     }
 
     &--large {
-      padding: getSpacer(l) getSpacer(xl) getSpacer(xl) getSpacer(xl);
-      @media (max-width: map-get($grid-breakpoints, sm)) {
-        padding: getSpacer(l) getSpacer(m) getSpacer(l) getSpacer(m);
+      padding: getSpacer(l) getSpacer(m) 0 getSpacer(m);
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding: getSpacer(l) getSpacer(xl) 0 getSpacer(xl);
       }
     }
     &--medium {
-      padding: getSpacer(m) getSpacer(m) getSpacer(m) getSpacer(m);
+      padding: getSpacer(m) getSpacer(m) 0 getSpacer(m);
     }
   }
 
