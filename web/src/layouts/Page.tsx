@@ -10,8 +10,6 @@ import { Row, Col } from '@shared/CustomizedGrid';
 import Footer from './Footer';
 import Section from './Section';
 
-import '@helsenorge/designsystem-react/scss/helsenorge.scss';
-
 const StyledPageContent = styled(Row)`
   padding: 3rem 0;
 `;
