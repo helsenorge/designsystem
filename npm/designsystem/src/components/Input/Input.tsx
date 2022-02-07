@@ -119,7 +119,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const iconColor = disabled ? getColor('neutral', 500) : getColor('black');
 
   const renderIcon = () => {
-    const iconSize = breakpoint === Breakpoint.Xs || !bigForm ? IconSize.XSmall : IconSize.Small;
+    const iconSize = breakpoint === Breakpoint.xs || !bigForm ? IconSize.XSmall : IconSize.Small;
     return icon !== undefined ? <Icon color={iconColor} size={iconSize} svgIcon={icon} /> : null;
   };
 

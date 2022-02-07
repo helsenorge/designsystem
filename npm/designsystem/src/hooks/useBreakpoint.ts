@@ -1,35 +1,58 @@
 import { useState, useEffect } from 'react';
-import { useWindowSize } from './useWindowSize';
-import { breakpoints } from '../theme/grid';
+import { breakpoints, screen } from '../theme/grid';
 
 export enum Breakpoint {
-  Xs = breakpoints.xs,
-  Sm = breakpoints.sm,
-  Md = breakpoints.md,
-  Lg = breakpoints.lg,
-  Xl = breakpoints.xl,
+  xs = breakpoints.xs,
+  sm = breakpoints.sm,
+  md = breakpoints.md,
+  lg = breakpoints.lg,
+  xl = breakpoints.xl,
 }
 
+/**
+ * Lytt på endringer i breakpoint basert på media queries. Trigger re-render bare når breakpoint er endret.
+ * @returns Gjeldende breakpoint
+ */
 export const useBreakpoint = (): Breakpoint | undefined => {
-  const { width } = useWindowSize();
   const [breakpoint, setBreakpoint] = useState<Breakpoint>();
 
   useEffect(() => {
-    if (!width) {
-      return;
-    }
-    if (width >= Breakpoint.Xl) {
-      setBreakpoint(Breakpoint.Xl);
-    } else if (width >= Breakpoint.Lg) {
-      setBreakpoint(Breakpoint.Lg);
-    } else if (width >= Breakpoint.Md) {
-      setBreakpoint(Breakpoint.Md);
-    } else if (width >= Breakpoint.Sm) {
-      setBreakpoint(Breakpoint.Sm);
-    } else {
-      setBreakpoint(Breakpoint.Xs);
-    }
-  }, [width]);
+    const handleMediaQueryEvent = (event: MediaQueryListEvent): void => {
+      switch (event.media) {
+        case screen.xl:
+          setBreakpoint(event.matches ? Breakpoint.xl : Breakpoint.lg);
+          return;
+        case screen.lg:
+          setBreakpoint(event.matches ? Breakpoint.lg : Breakpoint.md);
+          return;
+        case screen.md:
+          setBreakpoint(event.matches ? Breakpoint.md : Breakpoint.sm);
+          return;
+        case screen.sm:
+          setBreakpoint(event.matches ? Breakpoint.sm : Breakpoint.xs);
+          return;
+        default:
+          setBreakpoint(Breakpoint.xs);
+          return;
+      }
+    };
+
+    // Lytt etter endringer for hvert breakpoint
+    const mediaQueryList = Object.entries(screen)
+      .reverse()
+      .map(([size, mediaQuery]) => {
+        return { size, mediaQuery: window.matchMedia(mediaQuery) };
+      });
+    mediaQueryList.forEach(x => x.mediaQuery.addEventListener('change', handleMediaQueryEvent));
+
+    // Finn breakpoint ved første render
+    const firstMatch = mediaQueryList.find(x => x.mediaQuery.matches);
+    setBreakpoint((firstMatch?.size as unknown) as Breakpoint);
+
+    return (): void => {
+      mediaQueryList.forEach(x => x.mediaQuery.removeEventListener('change', handleMediaQueryEvent));
+    };
+  }, []);
 
   return breakpoint;
 };

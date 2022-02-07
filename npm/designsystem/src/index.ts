@@ -1,5 +1,11 @@
-import { theme } from './theme';
-import { useHover } from './hooks/useHover';
-
-export { theme, useHover };
+export { theme } from './theme';
+export { useBreakpoint, Breakpoint } from './hooks/useBreakpoint';
+export { useFocusToggle } from './hooks/useFocusToggle';
+export { useFocusTrap } from './hooks/useFocusTrap';
+export { useHover } from './hooks/useHover';
+export { useIntersectionObserver } from './hooks/useIntersectionObserver';
+export { useIsVisible } from './hooks/useIsVisible';
+export { useLayoutEvent } from './hooks/useLayoutEvent';
+export { useSticky } from './hooks/useSticky';
+export { useWindowSize } from './hooks/useWindowSize';
 export * from './constants';

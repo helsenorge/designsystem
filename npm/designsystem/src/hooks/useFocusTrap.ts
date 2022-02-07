@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { getDocumentActiveElement } from './focus-utils';
 
-export default function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
+export function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
   const elRef = useRef<HTMLDivElement>(null);
 
   function handleFocus(e: KeyboardEvent): void {
@@ -61,3 +61,5 @@ export default function useFocusTrap(): React.MutableRefObject<HTMLDivElement | 
 
   return elRef;
 }
+
+export default useFocusTrap;

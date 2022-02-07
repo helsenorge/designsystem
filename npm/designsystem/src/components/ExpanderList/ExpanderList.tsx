@@ -105,7 +105,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
         {icon && (
           <span className={expanderListStyles['expander-list-link__icon']}>
             {React.cloneElement(icon, {
-              size: breakpoint === Breakpoint.Xs ? IconSize.XSmall : IconSize.Small,
+              size: breakpoint === Breakpoint.xs ? IconSize.XSmall : IconSize.Small,
               isHovered,
             })}
           </span>

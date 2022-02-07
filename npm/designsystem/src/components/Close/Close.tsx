@@ -18,7 +18,7 @@ export interface CloseProps {
 const Close = (props: CloseProps): JSX.Element => {
   const breakpoint = useBreakpoint();
 
-  const iconSize = breakpoint === Breakpoint.Xs ? 38 : 48;
+  const iconSize = breakpoint === Breakpoint.xs ? 38 : 48;
 
   return (
     <button

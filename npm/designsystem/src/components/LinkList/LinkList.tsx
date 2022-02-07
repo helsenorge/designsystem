@@ -80,7 +80,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
         {hasIcon && icon && (
           <span className={LinkListStyles['link-list__icon']}>
             {React.cloneElement(icon, {
-              size: breakpoint === Breakpoint.Xs ? IconSize.XSmall : IconSize.Small,
+              size: breakpoint === Breakpoint.xs ? IconSize.XSmall : IconSize.Small,
               isHovered,
             })}
           </span>
