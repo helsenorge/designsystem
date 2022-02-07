@@ -41,13 +41,13 @@ export const useBreakpoint = (): Breakpoint | undefined => {
     const mediaQueryList = Object.entries(screen)
       .reverse()
       .map(([size, mediaQuery]) => {
-        return { size, mediaQuery: window.matchMedia(mediaQuery) };
+        return { breakpoint: Breakpoint[size as keyof typeof Breakpoint], mediaQuery: window.matchMedia(mediaQuery) };
       });
     mediaQueryList.forEach(x => x.mediaQuery.addEventListener('change', handleMediaQueryEvent));
 
     // Finn breakpoint ved første render
-    const firstMatch = mediaQueryList.find(x => x.mediaQuery.matches);
-    setBreakpoint((firstMatch?.size as unknown) as Breakpoint);
+    const initialBreakpoint = mediaQueryList.find(x => x.mediaQuery.matches)?.breakpoint ?? Breakpoint.xs;
+    setBreakpoint(initialBreakpoint);
 
     return (): void => {
       mediaQueryList.forEach(x => x.mediaQuery.removeEventListener('change', handleMediaQueryEvent));
