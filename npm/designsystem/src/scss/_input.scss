@@ -145,6 +145,7 @@
 
   &__input {
     line-height: 1.625rem;
+    font-family: inherit;
     font-size: $font-size-sm;
     padding: 0 getSpacer(2xs);
     border: none;
