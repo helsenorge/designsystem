@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { returnIcon, SvgPathProps } from './Icon';
 
-const TrashCan: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const TrashCan: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
       fillRule="evenodd"
@@ -16,21 +16,21 @@ const TrashCan: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathPr
     />
   );
 
-  const simplified = (
+  const small = (
     <path
       fillRule="evenodd"
       d="M23.254 33.848h1.49V19.863h-1.49v13.985zM12.532 14.3h22.934v-1.627H12.532V14.3zm20.543 21.1a2.887 2.887 0 01-2.882 2.883H17.807a2.886 2.886 0 01-2.882-2.882V15.815h18.15v19.586zM22.923 10.77c0-.595.484-1.078 1.076-1.078a1.08 1.08 0 011.078 1.077v.387h-2.154v-.387zm3.644.386v-.387A2.57 2.57 0 0024 8.201a2.57 2.57 0 00-2.566 2.568v.387H11.018v4.66h2.392V35.4a4.402 4.402 0 004.397 4.398h12.386A4.402 4.402 0 0034.59 35.4V15.815h2.392v-4.66H26.567zm1.037 22.692h1.49V19.863h-1.49v13.985zm-8.7 0h1.49V19.863h-1.49v13.985z"
     />
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <path
       fillRule="evenodd"
       d="M12.534 10.415h22.934V8.788H12.534v1.627zm10.39-3.529A1.08 1.08 0 0124 5.81a1.08 1.08 0 011.077 1.077v.387h-2.155v-.387zm3.645.387v-.387A2.57 2.57 0 0024 4.318a2.57 2.57 0 00-2.567 2.568v.387H11.018v4.658h25.964V7.273H26.57zm-11.644 8.542h18.15v19.586a2.886 2.886 0 01-2.882 2.882H17.807a2.887 2.887 0 01-2.882-2.882V15.815zM13.41 35.401a4.402 4.402 0 004.397 4.398h12.386A4.403 4.403 0 0034.59 35.4V14.3H13.41v21.1zm5.494-1.553h1.49V19.863h-1.49v13.985zm8.702 0h1.49V19.863h-1.49v13.985zm-4.35 0h1.49V19.863h-1.49v13.985z"
     />
   );
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default TrashCan;

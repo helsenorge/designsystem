@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { returnIcon, SvgPathProps } from './Icon';
 
-const Gallery: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const Gallery: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
       fillRule={'evenodd'}
@@ -16,20 +16,20 @@ const Gallery: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathPro
     />
   );
 
-  const simplified = (
+  const small = (
     <path
       fillRule={'evenodd'}
       d="M29.615 37.7h8.084v-8.084h-8.084V37.7zm-2.274 2.274h12.632V27.342H27.34v12.632zM10.301 37.7h8.084v-8.084h-8.084V37.7zm-2.274 2.274H20.66V27.342H8.027v12.632zm21.588-21.59h8.084V10.3h-8.084v8.084zm-2.274 2.274h12.632V8.026H27.34v12.632zm-17.04-2.274h8.084V10.3h-8.084v8.084zm-2.274 2.274H20.66V8.026H8.027v12.632z"
     />
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <path
       fillRule={'evenodd'}
       d="M29.615 38.963h9.347v-9.347h-9.347v9.347zm-2.274 2.274h13.895V27.342H27.34v13.895zM9.038 38.963h9.347v-9.347H9.038v9.347zm-2.274 2.274H20.66V27.342H6.764v13.895zm2.274-22.853h9.347V9.037H9.038v9.347zm-2.274 2.274H20.66V6.763H6.764v13.895zm22.85-2.274h9.348V9.037h-9.347v9.347zm-2.273 2.274h13.895V6.763H27.34v13.895z"
     />
   );
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Gallery;

@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { returnIcon, SvgPathProps } from './Icon';
 
-const ExitFullScreen: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const ExitFullScreen: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <g>
       <path d="M13.421 35.539l-.919-.919 7.219-7.218.918.919z" />
@@ -19,15 +19,15 @@ const ExitFullScreen: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: Svg
     </g>
   );
 
-  const simplified = (
+  const small = (
     <path d="M29.823 19.123l5.709-5.709-1.25-1.25-5.71 5.708v-5.917h-1.769v8.936h8.979v-1.768h-5.959zm-17.868 9.49h5.958l-5.707 5.71 1.25 1.25 5.708-5.707v5.915h1.77v-8.935h-8.98v1.768z" />
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <path d="M33.005 15.94l2.526-2.525-1.25-1.25-1.263 1.262-1.264 1.263-4.445 4.445v-5.917h-1.768v8.938h8.977v-1.77H28.56l4.445-4.445zM13.219 27.352h5.958l-5.71 5.708-1.262 1.263 1.25 1.25 6.973-6.97v5.916h1.768v-8.935H13.22v1.768z" />
   );
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default ExitFullScreen;

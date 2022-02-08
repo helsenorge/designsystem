@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { returnIcon, SvgPathProps } from './Icon';
 
-const Forward: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const Forward: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <g>
       <path d="M7.333 24.941h32.309v-2H7.333z" />
@@ -16,11 +16,11 @@ const Forward: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathPro
     </g>
   );
 
-  const simplified = <path d="M28.999 11l-1.84 1.759 9.102 9.889H7v2.571h29.388l-9.42 9.999L28.787 37 41 24.037z" />;
+  const small = <path d="M28.999 11l-1.84 1.759 9.102 9.889H7v2.571h29.388l-9.42 9.999L28.787 37 41 24.037z" />;
 
-  const simplifiedHover = <path d="M32.93 11l-1.85 1.759 9.154 9.889H7v2.571h33.361l-9.473 9.999L32.717 37 45 24.037z" />;
+  const smallHover = <path d="M32.93 11l-1.85 1.759 9.154 9.889H7v2.571h33.361l-9.473 9.999L32.717 37 45 24.037z" />;
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Forward;

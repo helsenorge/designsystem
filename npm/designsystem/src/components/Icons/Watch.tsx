@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { returnIcon, SvgPathProps } from './Icon';
 
-const Watch: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const Watch: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
       fillRule={'evenodd'}
@@ -16,21 +16,21 @@ const Watch: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps
     />
   );
 
-  const simplified = (
+  const small = (
     <path
       fillRule={'evenodd'}
       d="M24 36.577c-6.936 0-12.579-5.642-12.579-12.577 0-6.936 5.643-12.579 12.579-12.579 6.936 0 12.579 5.643 12.579 12.579 0 6.935-5.643 12.577-12.579 12.577zm0-26.924C16.089 9.653 9.653 16.09 9.653 24S16.09 38.346 24 38.346 38.347 31.91 38.347 24c0-7.911-6.436-14.347-14.347-14.347zm.632 7.722h-1.264v7.257h5.717v-1.264h-4.453v-5.993z"
     />
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <path
       fillRule={'evenodd'}
       d="M36.578 24c0-6.936-5.643-12.579-12.579-12.579-6.934 0-12.577 5.643-12.577 12.579 0 6.935 5.643 12.577 12.577 12.577 6.936 0 12.579-5.642 12.579-12.577zm1.768 0c0 7.911-6.435 14.346-14.347 14.346-7.91 0-14.345-6.435-14.345-14.346 0-7.911 6.435-14.347 14.345-14.347 7.912 0 14.347 6.436 14.347 14.347zm-13.715-.261l3.412 3.41-.893.893-3.782-3.78v-6.887h1.263v6.364z"
     />
   );
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Watch;

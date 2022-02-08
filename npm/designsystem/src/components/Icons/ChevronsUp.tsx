@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { returnIcon, SvgPathProps } from './Icon';
 
-const ChevronsUp: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const ChevronsUp: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
       fillRule={'evenodd'}
@@ -16,21 +16,21 @@ const ChevronsUp: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPath
     />
   );
 
-  const simplified = (
+  const small = (
     <path
       fillRule={'evenodd'}
       d="M23.998 22.698L13.495 33.2l1.786 1.786 8.717-8.717 8.726 8.725 1.786-1.786-10.512-10.511zm-8.72 1.704l-1.788-1.786L23.994 12.11l10.512 10.511-1.786 1.786-8.726-8.724-8.717 8.718z"
     />
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <path
       fillRule={'evenodd'}
       d="M23.997 20.172L13.494 30.675l1.786 1.786 8.717-8.717 8.726 8.724 1.786-1.786-10.512-10.51zm-8.72 1.704l-1.788-1.786L23.994 9.585l10.512 10.51-1.786 1.787-8.726-8.725-8.717 8.719z"
     />
   );
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default ChevronsUp;

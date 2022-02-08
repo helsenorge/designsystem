@@ -1,7 +1,7 @@
 import React from 'react';
 import { SvgPathProps } from './Icon';
 
-const PersonWithJaw: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const PersonWithJaw: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <g>
       <path d="M28.405 20.32a1.02 1.02 0 100 2.04 1.02 1.02 0 000-2.04" />

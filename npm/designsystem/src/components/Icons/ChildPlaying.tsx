@@ -1,7 +1,7 @@
 import React from 'react';
 import { SvgPathProps } from './Icon';
 
-const ChildPlaying: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const ChildPlaying: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <g>
       <path d="M22.693 7.337a3.509 3.509 0 013.505 3.506 3.51 3.51 0 01-3.505 3.505 3.51 3.51 0 01-3.506-3.505 3.509 3.509 0 013.506-3.506m0 8.312a4.813 4.813 0 004.806-4.806 4.812 4.812 0 00-4.806-4.807 4.813 4.813 0 00-4.807 4.807 4.813 4.813 0 004.807 4.806m12.071 25.428a2.58 2.58 0 01-2.578-2.578 2.58 2.58 0 012.578-2.578 2.581 2.581 0 012.58 2.578 2.581 2.581 0 01-2.58 2.578m0-6.156a3.582 3.582 0 00-3.578 3.578 3.582 3.582 0 003.578 3.578 3.582 3.582 0 003.58-3.578 3.582 3.582 0 00-3.58-3.578" />

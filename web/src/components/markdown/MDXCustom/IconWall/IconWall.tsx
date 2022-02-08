@@ -69,11 +69,11 @@ function IconWallFilter(props: IconWallFilterProps) {
   const { onFilterChange } = props;
   const [filter, setFilter] = useState('');
   const [isHovered, setIsHovered] = useState(false);
-  const [isExtraSmall, setIsExtraSmall] = useState(false);
+  const [size, setIconSize] = useState(IconSize.Small);
 
   useEffect(() => {
-    onFilterChange({ filter, isHovered, isExtraSmall });
-  }, [filter, isHovered, isExtraSmall]);
+    onFilterChange({ filter, isHovered, size });
+  }, [filter, isHovered, size]);
 
   return (
     <div>
@@ -88,8 +88,17 @@ function IconWallFilter(props: IconWallFilterProps) {
           <Checkbox label="Hover state" checked={isHovered} onChange={() => setIsHovered(!isHovered)} />
         </StyledFilterProp>
         <StyledFilterProp>
-          <Checkbox label="Extra small state" checked={isExtraSmall} onChange={() => setIsExtraSmall(!isExtraSmall)} />
+          <select name="iconSize" value={size} onChange={(event): void => setIconSize(parseInt(event.target.value))}>
+            <option value={IconSize.Large}>{'Large'}</option>
+            <option value={IconSize.Medium}>{'Medium'}</option>
+            <option value={IconSize.Small}>{'Small'}</option>
+            <option value={IconSize.XSmall}>{'Xsmall'}</option>
+            <option value={IconSize.Tiny}>{'Tiny'}</option>
+          </select>
         </StyledFilterProp>
+        {/* <StyledFilterProp>
+          <Checkbox label="Extra small state z" checked={size} onChange={() => setsize(!size)} />
+        </StyledFilterProp> */}
       </StyledFilterPropsHolder>
     </div>
   );
@@ -99,7 +108,7 @@ function IconWall() {
   const [filterProps, setFilterProps] = useState({
     filter: '',
     isHovered: false,
-    isExtraSmall: false,
+    size: IconSize.Small,
   });
 
   const filterIcons = (iconImport: IconImport, index: number) => {
@@ -131,7 +140,7 @@ function IconWall() {
             <StyledIconTile>
               <Icon
                 isHovered={filterProps.isHovered}
-                size={filterProps.isExtraSmall ? IconSize.XSmall : IconSize.Small}
+                size={filterProps.size}
                 svgIcon={iconImport.module}
               />
               <StyledIconName>{iconImport.name}</StyledIconName>

@@ -27,20 +27,26 @@ interface IconProps {
 }
 
 interface SvgPathProps {
-  isExtraSmall: boolean;
+  size: IconSize;
   isHovered: boolean;
 }
 
 export const returnIcon = (
-  isExtraSmall: boolean,
+  size: IconSize = IconSize.Medium,
   isHovered: boolean,
   normal: JSX.Element,
   normalHover: JSX.Element,
-  simplifield?: JSX.Element,
-  simplifiedHover?: JSX.Element
-) => {
-  if (isExtraSmall && simplifield && simplifiedHover) {
-    return isHovered ? simplifiedHover : simplifield;
+  small?: JSX.Element,
+  smallHover?: JSX.Element,
+  tiny?: JSX.Element,
+  tinyHover?: JSX.Element
+): JSX.Element => {
+  if (size === IconSize.XSmall && small && smallHover) {
+    return isHovered ? smallHover : small;
+  }
+
+  if (size === IconSize.Tiny && tiny && tinyHover) {
+    return isHovered ? tinyHover : tiny;
   }
 
   return isHovered ? normalHover : normal;
@@ -61,7 +67,7 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
   } = props;
 
   const svgRaw = React.createElement(svgIcon, {
-    isExtraSmall: size <= IconSize.XSmall,
+    size,
     isHovered,
   });
 
