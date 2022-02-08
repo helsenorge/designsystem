@@ -138,11 +138,7 @@ function IconWall() {
         {SvgIcons.allSvgIcons.filter(filterIcons).map((iconImport: IconImport, index) => (
           <div key={index}>
             <StyledIconTile>
-              <Icon
-                isHovered={filterProps.isHovered}
-                size={filterProps.size}
-                svgIcon={iconImport.module}
-              />
+              <Icon isHovered={filterProps.isHovered} size={filterProps.size} svgIcon={iconImport.module} />
               <StyledIconName>{iconImport.name}</StyledIconName>
               <StyledAlternativeIconName>
                 {iconImport.alternativeName.length ? `(${iconImport.alternativeName})` : ''}
