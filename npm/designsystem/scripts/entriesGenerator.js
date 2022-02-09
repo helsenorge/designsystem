@@ -78,7 +78,6 @@ function getComponents(pathToFolder, fn) {
         '**/__snapshots__',
         '**/__snapshots__/*',
         '**/*.stories.tsx',
-        '**/*.styled.tsx',
         '**/*.scss',
         '**/*.scss.d.ts',
         '**/*.test.tsx',

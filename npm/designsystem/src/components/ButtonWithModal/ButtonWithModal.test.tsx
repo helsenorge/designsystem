@@ -1,8 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ButtonWithModal from './ButtonWithModal';
-// import 'jest-styled-components';
-// import {palette} from '../../theme';
 
 describe('Gitt at ButtonWithModal skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {

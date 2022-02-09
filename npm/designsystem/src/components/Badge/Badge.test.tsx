@@ -1,8 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Badge from './Badge';
-// import 'jest-styled-components';
-// import {palette} from '../../theme';
 
 const badgeNumber = 123;
 
