@@ -31,6 +31,8 @@ export const intentToColor: IntentToColor = {
 };
 
 export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
+  /** Gives a unique id to the button */
+  id?: string;
   /** Sets the content of the button. */
   children: React.ReactNode;
   /** Adds custom classes to the element. */
@@ -74,6 +76,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   ref: React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>
 ) {
   const {
+    id,
     children,
     className = '',
     fluid = false,
@@ -195,6 +198,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     <>
       {htmlMarkup === 'button' && (
         <button
+          id={id}
           onClick={onClick}
           disabled={disabled}
           data-testid={testId}
@@ -208,6 +212,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       )}
       {htmlMarkup === 'a' && (
         <a
+          id={id}
           onClick={onClick}
           data-testid={testId}
           data-analyticsid={AnalyticsId.Button}

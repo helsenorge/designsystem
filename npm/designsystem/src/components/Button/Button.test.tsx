@@ -33,6 +33,19 @@ describe('Gitt at button skal vises', (): void => {
     });
   });
 
+  describe('Når button rendres med id', (): void => {
+    test('Så blir id satt', (): void => {
+      const { container } = render(
+        <Button id="id123" testId={'test01'}>
+          Button
+        </Button>
+      );
+      const testFill = screen.getByTestId('test01');
+
+      expect(testFill.id).toBe('id123');
+    });
+  });
+
   describe('Når button rendres med ikoner', (): void => {
     test('Så vises ikonene', (): void => {
       const { container } = render(
