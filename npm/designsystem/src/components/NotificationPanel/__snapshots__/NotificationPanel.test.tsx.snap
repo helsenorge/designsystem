@@ -3,7 +3,7 @@
 exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles onClick-handleren når man klikker på knappen 1`] = `
 <div>
   <div
-    class="notification-panel notification-panel--undefined notification-panel--info notification-panel--dismissable"
+    class="notification-panel notification-panel--info notification-panel--has-children notification-panel--dismissable"
     data-analyticsid="notification-panel"
   >
     <span
@@ -32,7 +32,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
       Some text here for testing.
     </section>
     <span
-      class="notification-panel__action-column"
+      class="notification-panel__close"
     >
       <button
         aria-label="Lukk"
@@ -64,7 +64,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
 exports[`Gitt at NotificationPanel skal vises Når panelet vises med default props Så rendres komponenten riktig 1`] = `
 <div>
   <div
-    class="notification-panel notification-panel--undefined notification-panel--info"
+    class="notification-panel notification-panel--info notification-panel--has-children"
     data-analyticsid="notification-panel"
   >
     <span

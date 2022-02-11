@@ -8,7 +8,7 @@ import InfoSignStroke from '../Icons/InfoSignStroke';
 import AlertSignStroke from '../Icons/AlertSignStroke';
 import AlertSignFill from '../Icons/AlertSignFill';
 
-import NotificationPanelStyles from './styles.module.scss';
+import styles from './styles.module.scss';
 import Close from '../Close';
 import { AnalyticsId } from '../../constants';
 
@@ -28,7 +28,7 @@ interface NotificationPanelProps {
   size?: NotificationPanelSizes;
   /** Used in combination with dismissiable property to close the notification panel. */
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  /** Toggles the close button in the top right corner. */
+  /** Toggles the close button in the top right corner. Will only show if there are children. */
   dismissable?: boolean;
   /** Enables a fluid outer container that spans the entire width of parent. */
   fluid?: boolean;
@@ -65,11 +65,9 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
     if (fluid) {
       return (
         <div
-          className={cn(
-            NotificationPanelStyles['notification-panel__fluidwrapper'],
-            NotificationPanelStyles['notification-panel__fluidwrapper--' + variant],
-            { [NotificationPanelStyles['notification-panel__fluidwrapper--shadow']]: shadow }
-          )}
+          className={cn(styles['fluid-wrapper'], styles['fluid-wrapper--' + variant], {
+            [styles['fluid-wrapper--shadow']]: shadow,
+          })}
         >
           {panel}
         </div>
@@ -94,42 +92,44 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
     return '';
   };
 
+  const labelOnly = !!label && !children;
+
   return wrapFluid(
     <div
       ref={ref}
       data-testid={testId}
       data-analyticsid={AnalyticsId.NotificationPanel}
       className={cn(
-        NotificationPanelStyles['notification-panel'],
-        NotificationPanelStyles['notification-panel--' + size],
-        NotificationPanelStyles['notification-panel--' + variant],
+        styles['notification-panel'],
+        size && styles['notification-panel--' + size],
+        styles['notification-panel--' + variant],
         {
-          [NotificationPanelStyles['notification-panel--shadow']]: !fluid && shadow,
-          [NotificationPanelStyles['notification-panel--haslabel']]: !!label && !children,
-          [NotificationPanelStyles['notification-panel--dismissable']]: dismissable,
+          [styles['notification-panel--shadow']]: !fluid && shadow,
+          [styles['notification-panel--has-children']]: !labelOnly,
+          [styles['notification-panel--label-only']]: labelOnly,
+          [styles['notification-panel--dismissable']]: !labelOnly && dismissable,
         },
-        className ? className : ''
+        className
       )}
     >
-      <span className={NotificationPanelStyles['notification-panel__icon']}>
+      <span className={styles['notification-panel__icon']}>
         {variantToIconMap[variant === 'alert' && label && !children ? 'alertLabel' : variant]}
       </span>
       <section
         aria-label={getStringChildren()}
-        className={cn(NotificationPanelStyles['notification-panel__content'], {
-          [NotificationPanelStyles['notification-panel__content--crisis']]: variant === 'crisis',
-          [NotificationPanelStyles['notification-panel__content--haslabel']]: !!label && !children,
-          [NotificationPanelStyles['notification-panel__content--isred']]: variant === 'alert' && !!label && !children,
+        className={cn(styles['notification-panel__content'], {
+          [styles['notification-panel__content--crisis']]: variant === 'crisis',
+          [styles['notification-panel__content--alert']]: variant === 'alert',
         })}
       >
-        {label ? <h1 className={NotificationPanelStyles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} /> : null}
+        {label && <h1 className={styles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} />}
         {children}
       </section>
-      {dismissable ? (
-        <span className={NotificationPanelStyles['notification-panel__action-column']}>
+      {!labelOnly && dismissable && (
+        <span className={styles['notification-panel__close']}>
           <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} />
         </span>
-      ) : null}
+      )}
     </div>
   );
 });

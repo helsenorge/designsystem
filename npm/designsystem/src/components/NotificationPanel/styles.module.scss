@@ -5,16 +5,46 @@
 @import '../AnchorLink/styles.module.scss';
 
 .notification-panel {
-  display: grid;
+  $panel: &;
+  display: flex;
   width: inherit;
-  padding: $spacer;
-  grid-template-areas: 'icon' 'content';
-  grid-template-columns: 48px auto;
-  grid-template-rows: 1fr;
 
+  &--has-children {
+    padding: getSpacer(2xs) getSpacer(s) getSpacer(m) getSpacer(2xs);
+    #{$panel}__icon {
+      margin-top: getSpacer(2xs);
+      margin-right: getSpacer(2xs);
+    }
+    #{$panel}__content {
+      margin-top: getSpacer(s);
+    }
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      padding-left: getSpacer(s);
+      padding-right: getSpacer(m);
+      #{$panel}__icon {
+        margin-right: getSpacer(m);
+      }
+    }
+  }
+  &--label-only {
+    align-items: center;
+    padding: getSpacer(m) getSpacer(s) getSpacer(m) getSpacer(2xs);
+    #{$panel}__icon {
+      display: flex;
+      margin-right: getSpacer(2xs);
+    }
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      padding: getSpacer(l) getSpacer(m) getSpacer(l) getSpacer(s);
+      #{$panel}__icon {
+        margin-right: getSpacer(s);
+      }
+    }
+  }
   &--dismissable {
-    grid-template-areas: 'icon' 'content' 'action';
-    grid-template-columns: 48px auto 48px;
+    padding: getSpacer(2xs) getSpacer(2xs) getSpacer(m) getSpacer(2xs);
+  }
+  &--dismissable#{&}--has-children {
+    padding-left: getSpacer(s);
   }
   &--small {
     max-width: map-get($grid-breakpoints, sm);
@@ -34,46 +64,23 @@
   &--alert {
     background-color: $cherry100;
   }
+  &--alert#{&}--label-only {
+    color: $cherry500;
+  }
   &--crisis {
     background-color: $black;
   }
   &--shadow {
     box-shadow: 0 0.3rem getSpacer(2xs) -0.1rem rgba(0, 0, 0, 0.15);
   }
-  &--haslabel {
-    padding: getSpacer(l) $spacer;
-  }
 
-  &__fluidwrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-
-    &--info {
-      background-color: $kiwi50;
-    }
-    &--warn {
-      background-color: $banana50;
-    }
-    &--alert {
-      background-color: $cherry100;
-    }
-    &--crisis {
-      background-color: $black;
-    }
-    &--shadow {
-      box-shadow: 0 0.3rem getSpacer(2xs) -0.1rem rgba(0, 0, 0, 0.15);
-    }
-  }
-
-  &__icon {
-    grid-area: 'icon';
+  &__close {
+    margin-left: auto;
+    padding-left: getSpacer(2xs);
   }
 
   &__content {
-    grid-area: 'content';
-    margin: getSpacer(2xs) getSpacer(m);
-
+    max-width: 772px;
     p {
       margin: 0;
     }
@@ -103,27 +110,17 @@
 
           &:focus {
             &:after {
-              content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='38px' height='38px' viewBox='0 0 48 48'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
+              content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
             }
           }
         }
       }
     }
-
-    &--isred {
-      color: $cherry500;
-    }
-
-    &--haslabel {
-      display: flex;
-      align-items: center;
-      margin: 0 1rem;
-    }
   }
 
   &__label {
     font-size: $font-size-sm;
-    line-height: getSpacer(m);
+    line-height: $lineheight-size-xs;
     font-weight: 600;
     margin: 0;
     @media (min-width: map-get($grid-breakpoints, md)) {
@@ -131,8 +128,26 @@
       line-height: $lineheight-size-md;
     }
   }
+}
 
-  &__action-column {
-    grid-area: 'action';
+.fluid-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  &--info {
+    background-color: $kiwi50;
+  }
+  &--warn {
+    background-color: $banana50;
+  }
+  &--alert {
+    background-color: $cherry100;
+  }
+  &--crisis {
+    background-color: $black;
+  }
+  &--shadow {
+    box-shadow: 0 0.3rem getSpacer(2xs) -0.1rem rgba(0, 0, 0, 0.15);
   }
 }
