@@ -20,10 +20,6 @@ export interface ExpanderListCompound extends React.ForwardRefExoticComponent<Ex
   Expander: ExpanderType;
 }
 
-interface MouseEventWithPath extends MouseEvent {
-  path?: Array<HTMLElement>;
-}
-
 interface ExpanderListProps {
   /** Toggles accordion functionality for the expanders. */
   accordion?: boolean;
@@ -89,6 +85,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
   });
   const mainContentClasses = classNames(
     expanderListStyles['expander-list-link__main-content'],
+    isExpanded && expanderListStyles['expander-list-link__main-content--expanded'],
     padding ? expanderListStyles['expander-list-link__main-content--padding'] : ''
   );
 
@@ -101,6 +98,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
         data-analyticsid={AnalyticsId.Expander}
         className={expanderClasses}
         ref={hoverRef}
+        aria-expanded={isExpanded}
       >
         {icon && (
           <span className={expanderListStyles['expander-list-link__icon']}>
@@ -115,7 +113,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
           <Icon size={IconSize.XSmall} svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} />
         </span>
       </button>
-      {isExpanded ? <div className={mainContentClasses}>{children}</div> : null}
+      <div className={mainContentClasses}>{children}</div>
     </li>
   );
 });

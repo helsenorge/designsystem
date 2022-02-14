@@ -13,9 +13,11 @@ describe('Gitt at Expander skal rendres', (): void => {
         </Expander>
       );
       const expander = screen.getByRole('button', { name: 'Knapp' });
+      expect(expander).toHaveAttribute('aria-expanded', 'false');
 
       userEvent.click(expander);
-      expect(screen.getByRole('heading', { name: 'Innhold i expander' })).toBeVisible();
+      expect(expander).toHaveAttribute('aria-expanded', 'true');
+      expect(screen.getByRole('heading', { name: 'Innhold i expander' })).toBeInTheDocument();
     });
   });
   describe('Gitt at Expander skal vises som ekspandert', (): void => {
@@ -26,8 +28,11 @@ describe('Gitt at Expander skal rendres', (): void => {
         </Expander>
       );
 
+      const expander = screen.getByRole('button', { name: 'Knapp' });
+      expect(expander).toHaveAttribute('aria-expanded', 'true');
+
       const content = screen.getByRole('heading', { name: 'Innhold i expander' });
-      expect(content).toBeVisible();
+      expect(content).toBeInTheDocument();
     });
   });
   describe('Gitt at Expander skal vises som large, med farge og ikon', (): void => {
@@ -67,23 +72,6 @@ describe('Gitt at Expander skal rendres', (): void => {
       expect(handleExpand).toHaveBeenCalledTimes(2);
       expect(handleExpand).toHaveBeenNthCalledWith(1, true);
       expect(handleExpand).toHaveBeenNthCalledWith(2, false);
-    });
-  });
-  describe('Gitt at det er to Expandere etter hverandre', (): void => {
-    test('Så kan man tabbe fra den ene til den andre og innholdet i den første er fokuserbart', (): void => {
-      render(
-        <>
-          <Expander title={'Knapp 1'}>
-            <button>En knapp til</button>
-          </Expander>
-          <Expander title={'Knapp 2'}></Expander>
-        </>
-      );
-
-      userEvent.tab();
-      expect(screen.getByRole('button', { name: 'Knapp 1' })).toHaveFocus();
-      userEvent.tab();
-      expect(screen.getByRole('button', { name: 'Knapp 2' })).toHaveFocus();
     });
   });
   describe('Gitt at Expander vises med et fokuserbart element', (): void => {

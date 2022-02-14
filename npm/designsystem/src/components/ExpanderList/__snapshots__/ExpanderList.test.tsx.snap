@@ -2,116 +2,130 @@
 
 exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion er false Sjekk at ExpanderList sitt snapshot matcher 1`] = `
 <div>
-  <div
-    style="width: 40rem;"
+  <ul
+    class="expander-list"
+    data-analyticsid="expander-list"
   >
-    <ul
-      class="expander-list"
-      data-analyticsid="expander-list"
+    <li
+      class="expander-list__item expander-list__item--top"
     >
-      <li
-        class="expander-list__item expander-list__item--top"
+      <button
+        aria-expanded="false"
+        class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
+        data-analyticsid="expander"
+        id="expander-0"
       >
-        <button
-          class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
-          data-analyticsid="expander"
-          id="expander-0"
+        <span
+          class="expander-list-link__title"
         >
-          <span
-            class="expander-list-link__title"
+          Title 1
+        </span>
+        <span
+          class="expander-list-link__chevron"
+        >
+          <svg
+            aria-hidden="true"
+            class="hnds-style-icon "
+            data-analyticsid="icon"
+            fill="black"
+            height="38"
+            role="img"
+            style="min-width: 38px; min-height: 38px;"
+            viewBox="0 0 48 48"
+            width="38"
           >
-            Title 1
-          </span>
-          <span
-            class="expander-list-link__chevron"
-          >
-            <svg
-              aria-hidden="true"
-              class="hnds-style-icon "
-              data-analyticsid="icon"
-              fill="black"
-              height="38"
-              role="img"
-              style="min-width: 38px; min-height: 38px;"
-              viewBox="0 0 48 48"
-              width="38"
-            >
-              <path
-                d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-              />
-            </svg>
-          </span>
-        </button>
-      </li>
-      <li
-        class="expander-list__item"
+            <path
+              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="expander-list-link__main-content expander-list-link__main-content--padding"
       >
-        <button
-          class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
-          data-analyticsid="expander"
-          id="expander-1"
-        >
-          <span
-            class="expander-list-link__title"
-          >
-            Title 2
-          </span>
-          <span
-            class="expander-list-link__chevron"
-          >
-            <svg
-              aria-hidden="true"
-              class="hnds-style-icon "
-              data-analyticsid="icon"
-              fill="black"
-              height="38"
-              role="img"
-              style="min-width: 38px; min-height: 38px;"
-              viewBox="0 0 48 48"
-              width="38"
-            >
-              <path
-                d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-              />
-            </svg>
-          </span>
-        </button>
-      </li>
-      <li
-        class="expander-list__item"
+        Text 1
+      </div>
+    </li>
+    <li
+      class="expander-list__item"
+    >
+      <button
+        aria-expanded="false"
+        class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
+        data-analyticsid="expander"
+        id="expander-1"
       >
-        <button
-          class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
-          data-analyticsid="expander"
-          id="expander-2"
+        <span
+          class="expander-list-link__title"
         >
-          <span
-            class="expander-list-link__title"
+          Title 2
+        </span>
+        <span
+          class="expander-list-link__chevron"
+        >
+          <svg
+            aria-hidden="true"
+            class="hnds-style-icon "
+            data-analyticsid="icon"
+            fill="black"
+            height="38"
+            role="img"
+            style="min-width: 38px; min-height: 38px;"
+            viewBox="0 0 48 48"
+            width="38"
           >
-            Title 3
-          </span>
-          <span
-            class="expander-list-link__chevron"
+            <path
+              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="expander-list-link__main-content expander-list-link__main-content--padding"
+      >
+        Text 2
+      </div>
+    </li>
+    <li
+      class="expander-list__item"
+    >
+      <button
+        aria-expanded="false"
+        class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
+        data-analyticsid="expander"
+        id="expander-2"
+      >
+        <span
+          class="expander-list-link__title"
+        >
+          Title 3
+        </span>
+        <span
+          class="expander-list-link__chevron"
+        >
+          <svg
+            aria-hidden="true"
+            class="hnds-style-icon "
+            data-analyticsid="icon"
+            fill="black"
+            height="38"
+            role="img"
+            style="min-width: 38px; min-height: 38px;"
+            viewBox="0 0 48 48"
+            width="38"
           >
-            <svg
-              aria-hidden="true"
-              class="hnds-style-icon "
-              data-analyticsid="icon"
-              fill="black"
-              height="38"
-              role="img"
-              style="min-width: 38px; min-height: 38px;"
-              viewBox="0 0 48 48"
-              width="38"
-            >
-              <path
-                d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-              />
-            </svg>
-          </span>
-        </button>
-      </li>
-    </ul>
-  </div>
+            <path
+              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="expander-list-link__main-content expander-list-link__main-content--padding"
+      >
+        Text 2
+      </div>
+    </li>
+  </ul>
 </div>
 `;

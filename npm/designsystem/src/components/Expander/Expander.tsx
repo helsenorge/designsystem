@@ -8,7 +8,6 @@ import classNames from 'classnames';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
 import Button from '../Button';
-import { useFocusToggle } from '../../hooks/useFocusToggle';
 import { useSticky } from '../../hooks/useSticky';
 import { AnalyticsId, ZIndex } from '../../constants';
 
@@ -61,7 +60,6 @@ const Expander: React.FC<ExpanderProps> = props => {
   const contentRef = useRef<HTMLDivElement>(null);
   const { isHovered } = useHover(triggerRef);
   const { isOutsideWindow, isLeavingWindow, offsetHeight, contentWidth } = useSticky(expanderRef, triggerRef);
-  useFocusToggle(contentRef, isExpanded);
 
   const isSticky = sticky && isExpanded && isOutsideWindow;
 

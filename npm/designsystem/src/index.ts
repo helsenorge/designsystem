@@ -8,4 +8,5 @@ export { useIsVisible } from './hooks/useIsVisible';
 export { useLayoutEvent } from './hooks/useLayoutEvent';
 export { useSticky } from './hooks/useSticky';
 export { useWindowSize } from './hooks/useWindowSize';
+export { useSize } from './hooks/useSize';
 export * from './constants';
