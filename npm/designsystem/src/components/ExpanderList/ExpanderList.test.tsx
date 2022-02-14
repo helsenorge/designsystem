@@ -176,7 +176,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
 
       const button = screen.getByTestId('expander');
 
-      expect(button).toHaveAttribute('data-analyticsid', 'expander');
+      expect(button).toHaveAttribute('data-analyticsid', 'expander-list-expander');
     });
   });
 });
