@@ -22,11 +22,23 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som larg
     >
       <div
         class="highlightbox__col"
-        data-analyticsid="highlight-box"
       >
-        <p>
-          Avsnitt
-        </p>
+        <div
+          class="highlightbox__content-wrapper"
+        >
+          <div
+            class="highlightbox__row"
+          >
+            <div
+              class="highlightbox__col highlightbox__col--offset"
+              data-analyticsid="highlight-box"
+            >
+              <p>
+                Avsnitt
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -42,12 +54,16 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som medi
       class="highlightbox__row"
     >
       <div
-        class="highlightbox__col"
-        data-analyticsid="highlight-box"
+        class="highlightbox__col highlightbox__col--offset"
       >
-        <p>
-          Avsnitt
-        </p>
+        <div
+          class="highlightbox__content-wrapper"
+          data-analyticsid="highlight-box"
+        >
+          <p>
+            Avsnitt
+          </p>
+        </div>
       </div>
     </div>
   </div>

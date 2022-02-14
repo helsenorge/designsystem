@@ -7,49 +7,47 @@
   $box: &;
   $colors: 'blueberry', 'cherry', 'neutral', 'kiwi', 'plum';
 
+  // Medium og large har bakgrunnsfarge på den indre wrapperen
+  // slik at bakgrunnsfargen ikke går helt ut i kantene
   &--medium,
   &--large {
-    @include make-container;
-  }
-
-  // large og fluid skal ha bakgrunnsfarge på den ytre containeren
-  &--large,
-  &--fluid {
+    @include make-container();
     @each $color in $colors {
       &#{$box}--#{$color} {
-        background-color: map-get($palette-map, #{$color}50);
+        #{$box}__content-wrapper {
+          background-color: map-get($palette-map, #{$color}50);
+        }
       }
     }
+
     // Hvit har sin egen regel siden den ikke har valører
     &#{$box}--white {
-      background-color: $white;
-    }
-  }
-
-  // medium skal ha bakgrunnsfarge på den indre kolonnen
-  @each $color in $colors {
-    &--medium#{&}--#{$color} {
-      #{$box}__col {
-        background-color: map-get($palette-map, #{$color}50);
+      #{$box}__content-wrapper {
+        background-color: $white;
       }
     }
   }
-  &--medium#{&}--white {
-    #{$box}__col {
-      background-color: $white;
+
+  // large skal også ha bakgrunnsfarge på den ytre containeren på de minste skjermnene
+  // slik at bakgrunnsfargen går helt ut til skjermkanten
+  &--large {
+    @each $color in $colors {
+      &#{$box}--#{$color} {
+        @include media-breakpoint-down(xs) {
+          background-color: map-get($palette-map, #{$color}50);
+        }
+      }
     }
-  }
 
-  &--fluid {
-    padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
-
-    @media (min-width: map-get($grid-breakpoints, lg)) {
-      padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
+    &#{$box}--white {
+      @include media-breakpoint-down(xs) {
+        background-color: $white;
+      }
     }
   }
 
   &--medium {
-    #{$box}__col {
+    #{$box}__content-wrapper {
       padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
       @media (min-width: map-get($grid-breakpoints, md)) {
         padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
@@ -61,7 +59,7 @@
   }
 
   &--large {
-    #{$box}__col {
+    #{$box}__content-wrapper {
       padding-top: getSpacer(m);
       padding-bottom: getSpacer(l);
       @media (min-width: map-get($grid-breakpoints, lg)) {
@@ -71,19 +69,106 @@
     }
   }
 
-  &__row {
-    @include make-row;
-  }
-  &__col {
-    display: block;
-    @include make-col(12);
-    @media (min-width: map-get($grid-breakpoints, sm)) {
-      @include make-col(10);
-      @include make-col-offset(1);
-    }
+  // fluid skal ha bakgrunnsfarge på den ytre containeren
+  &--fluid {
+    padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
+
     @media (min-width: map-get($grid-breakpoints, lg)) {
-      @include make-col(8);
-      @include make-col-offset(2);
+      padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
+    }
+
+    @each $color in $colors {
+      &#{$box}--#{$color} {
+        background-color: map-get($palette-map, #{$color}50);
+      }
+    }
+    &#{$box}--white {
+      background-color: $white;
+    }
+  }
+
+  &--has-icon#{&}--medium {
+    #{$box}__content-wrapper {
+      display: flex;
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        padding-left: getSpacer(m);
+      }
+    }
+  }
+
+  &--has-icon#{&}--large {
+    #{$box}__col {
+      display: flex;
+    }
+    #{$box}__content-wrapper {
+      @media (min-width: map-get($grid-breakpoints, sm)) {
+        padding-left: getSpacer(s);
+      }
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding-left: getSpacer(m);
+      }
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        padding-left: 0;
+        padding-top: getSpacer(l);
+        padding-bottom: getSpacer(xl);
+      }
+    }
+
+    #{$box}__icon {
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        @include make-col-ready();
+        @include make-col(2);
+        display: flex;
+        justify-content: end;
+        margin-right: 0;
+        padding-right: getSpacer(s);
+      }
+    }
+
+    #{$box}__content {
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        @include make-col-ready();
+        @include make-col(8);
+      }
+    }
+  }
+
+  &--has-icon#{&}--fluid {
+    display: flex;
+  }
+
+  &__icon {
+    margin-right: getSpacer(s);
+  }
+
+  &__row {
+    @include make-row();
+  }
+
+  &__col {
+    @include make-col-ready();
+    @include make-col(12);
+
+    &--offset {
+      @media (min-width: map-get($grid-breakpoints, sm)) {
+        @include make-col(10);
+        @include make-col-offset(1);
+      }
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        @include make-col(8);
+        @include make-col-offset(2);
+      }
+    }
+
+    &--large-with-icon {
+      @media (min-width: map-get($grid-breakpoints, sm)) {
+        @include make-col(11);
+        @include make-col-offset(0);
+      }
+
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        @include make-col(12);
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import HighlightBox from './HighlightBox';
+import PdfFile from '../Icons/PdfFile';
 
 describe('Gitt at HighlightBox skal rendres', (): void => {
   describe('Når HighlightBox skal vises vanlig', (): void => {
@@ -69,6 +70,19 @@ describe('Gitt at HighlightBox skal rendres', (): void => {
 
       const title = screen.getByRole('heading', { name: 'Jeg er en tittel' });
       expect(title).toBeVisible();
+    });
+  });
+
+  describe('Når HighlightBox skal vises med ikon', (): void => {
+    test('Så er ikonet med', (): void => {
+      render(
+        <HighlightBox testId="boksen" svgIcon={PdfFile}>
+          <h1>Jeg er en tittel</h1>
+        </HighlightBox>
+      );
+
+      const icon = screen.getByRole('img', { hidden: true });
+      expect(icon).toBeInTheDocument();
     });
   });
 });
