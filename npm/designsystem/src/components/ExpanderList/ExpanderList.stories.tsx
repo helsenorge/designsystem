@@ -168,3 +168,25 @@ stories.add('As accordion', () => (
     </ExpanderList>
   </div>
 ));
+
+stories.add('With callback', () => (
+  <div
+    style={{
+      width: '40rem',
+    }}
+  >
+    <ExpanderList
+      isOpen={boolean('Is open', false)}
+      accordion={boolean('Accordion', false)}
+      childPadding={boolean('Child padding', true)}
+      color={select('Color', allPaletteNames, 'blueberry')}
+      topBorder={boolean('Top border', true)}
+      bottomBorder={boolean('Bottom border', true)}
+      large={boolean('Large', false)}
+    >
+      <ExpanderList.Expander title="Cognitive therapy" onExpand={isExpanded => console.log(isExpanded)}>
+        <p>Sjekk nettleserkonsollen</p>
+      </ExpanderList.Expander>
+    </ExpanderList>
+  </div>
+));

@@ -179,4 +179,49 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       expect(button).toHaveAttribute('data-analyticsid', 'expander-list-expander');
     });
   });
+  describe('Gitt at ExpanderList har expander med onExpand-callback', (): void => {
+    describe('Når man klikker på ekspanderen tre ganger', (): void => {
+      test('Så kalles callbacken med true, false og true', (): void => {
+        const handleExpand = jest.fn();
+        render(
+          <ExpanderList>
+            <ExpanderList.Expander title="Title 1" onExpand={handleExpand}>
+              Text 1
+            </ExpanderList.Expander>
+          </ExpanderList>
+        );
+
+        const expander = screen.getByText('Title 1');
+
+        userEvent.click(expander);
+        userEvent.click(expander);
+        userEvent.click(expander);
+        expect(handleExpand).toHaveBeenCalledTimes(3);
+        expect(handleExpand).toHaveBeenNthCalledWith(1, true);
+        expect(handleExpand).toHaveBeenNthCalledWith(2, false);
+        expect(handleExpand).toHaveBeenNthCalledWith(3, true);
+      });
+    });
+  });
+  describe('Gitt at ExpanderList har Expander med onExpand-callback og isOpen satt til true', (): void => {
+    describe('Når man klikker på expanderen én gang', (): void => {
+      test('Så kalles callback først med true og så med false', (): void => {
+        const handleExpand = jest.fn();
+        render(
+          <ExpanderList isOpen>
+            <ExpanderList.Expander title="Title 1" onExpand={handleExpand}>
+              Text 1
+            </ExpanderList.Expander>
+          </ExpanderList>
+        );
+
+        const expander = screen.getByText('Title 1');
+
+        userEvent.click(expander);
+        expect(handleExpand).toHaveBeenCalledTimes(2);
+        expect(handleExpand).toHaveBeenNthCalledWith(1, true);
+        expect(handleExpand).toHaveBeenNthCalledWith(2, false);
+      });
+    });
+  });
 });

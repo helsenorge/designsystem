@@ -5,6 +5,7 @@ import Icon, { IconSize } from '../Icons';
 import ChevronUp from '../Icons/ChevronUp';
 import ChevronDown from '../Icons/ChevronDown';
 import { useHover } from '../../hooks/useHover';
+import { usePrevious } from '../../hooks/usePrevious';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { isElementInViewport } from '../../utils/viewport';
 
@@ -55,10 +56,12 @@ type ExpanderProps = Modify<
     color?: ExpanderListColors;
     icon?: React.ReactElement;
     padding?: boolean;
-    isExpanded?: boolean;
+    expanded?: boolean;
     large?: boolean;
     testId?: string;
     handleExpanderClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+    /** Called when expander is open/closed. */
+    onExpand?: (isExpanded: boolean) => void;
   }
 >;
 
@@ -73,10 +76,13 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     icon,
     large = false,
     title,
-    isExpanded = false,
+    expanded = false,
     testId,
     handleExpanderClick,
+    onExpand,
   } = props;
+  const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
+  const previousIsExpanded = usePrevious(isExpanded);
   const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
   const breakpoint = useBreakpoint();
   const expanderClasses = classNames(expanderListStyles['expander-list-link'], expanderListStyles[`expander-list-link--${color}`], {
@@ -88,6 +94,18 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     isExpanded && expanderListStyles['expander-list-link__main-content--expanded'],
     padding ? expanderListStyles['expander-list-link__main-content--padding'] : ''
   );
+
+  useEffect(() => {
+    if (expanded !== isExpanded) {
+      setIsExpanded(expanded);
+    }
+  }, [expanded]);
+
+  useEffect(() => {
+    if (onExpand && isExpanded !== !!previousIsExpanded) {
+      onExpand(isExpanded);
+    }
+  }, [isExpanded, onExpand]);
 
   return (
     <li className={className} ref={ref}>
@@ -166,18 +184,18 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     <ul className={expanderListClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.ExpanderList}>
       {React.Children.map(children, (child: React.ReactNode, index: number) => {
         if ((child as React.ReactElement<ExpanderProps>).type === Expander) {
-          const isExpanded = activeExpander[`expander-${index}`];
+          const expanded = activeExpander[`expander-${index}`];
 
           const expanderItemClass = getExpanderItemClass(index);
 
           return React.cloneElement(child as React.ReactElement<ExpanderProps>, {
             id: `expander-${index}`,
             key: `expander-${index}`,
-            isExpanded,
+            expanded,
             padding: childPadding,
             color,
             large,
-            'aria-expanded': isExpanded,
+            'aria-expanded': expanded,
             className: expanderItemClass,
             handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `expander-${index}`),
           });

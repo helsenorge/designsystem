@@ -171,3 +171,18 @@ stories.add('With loader', () => (
     </Expander>
   </div>
 ));
+stories.add('With callback', () => (
+  <div style={{ width: '40rem' }}>
+    <Expander
+      title={text('Title', 'Hva skjer i kroppen?')}
+      size={select('Size', ExpanderSize, ExpanderSize.large)}
+      color={select('Color', ['banana', 'blueberry', 'cherry', 'kiwi', 'neutral', 'plum', 'white'], 'blueberry')}
+      noNestedLine={boolean('No nested line', false)}
+      expanded={boolean('Expanded', false)}
+      svgIcon={LawBook}
+      onExpand={isExpanded => console.log(isExpanded)}
+    >
+      <p>Sjekk nettleserkonsollen</p>
+    </Expander>
+  </div>
+));

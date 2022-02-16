@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gitt at Expander skal rendres Gitt at Expander skal vises som large, med farge og ikon Så rendres expanderen som den skal 1`] = `
+exports[`Gitt at Expander skal vises som large, med farge og ikon Når Expanderen vises Så rendres expanderen som den skal 1`] = `
 <div>
   <div
     class="expander"

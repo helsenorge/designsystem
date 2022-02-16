@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Icon, { IconSize, SvgIcon } from '../Icons';
 import { useHover } from '../../hooks/useHover';
+import { usePrevious } from '../../hooks/usePrevious';
 import { PaletteNames } from '../../theme/palette';
 
 import styles from './styles.module.scss';
@@ -55,6 +56,7 @@ const Expander: React.FC<ExpanderProps> = props => {
     onExpand,
   } = props;
   const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
+  const previousIsExpanded = usePrevious(isExpanded);
   const expanderRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -70,8 +72,8 @@ const Expander: React.FC<ExpanderProps> = props => {
   }, [expanded]);
 
   useEffect(() => {
-    if (onExpand) {
-      onExpand(!!isExpanded);
+    if (onExpand && isExpanded !== !!previousIsExpanded) {
+      onExpand(isExpanded);
     }
   }, [isExpanded, onExpand]);
 
