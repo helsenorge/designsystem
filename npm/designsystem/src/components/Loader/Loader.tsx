@@ -13,7 +13,7 @@ export enum Overlay {
   parent = 'parent',
 }
 
-interface LoaderProps {
+export interface LoaderProps {
   /** Sets the color of the loader */
   color?: LoaderColors;
   /**	Adds custom classes to the element. */

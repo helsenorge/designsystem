@@ -7,6 +7,7 @@ export type Styles = {
   'expander-list-link__chevron': string;
   'expander-list-link__icon': string;
   'expander-list-link__main-content': string;
+  'expander-list-link__main-content--expanded': string;
   'expander-list-link__main-content--padding': string;
   'expander-list-link__title': string;
   'expander-list-link--banana': string;

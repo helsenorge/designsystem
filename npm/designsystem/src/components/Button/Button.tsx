@@ -49,7 +49,8 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   large?: boolean;
   /** Sets the button into a loading state displaying <Loader /> as content. */
   loading?: boolean;
-  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  /** Function that is called when  clicked */
+  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null) => void;
   /** Changes the visual representation of the button. */
   variant?: ButtonVariants;
   /** Disables text wrapping and enables ellipsis. */
