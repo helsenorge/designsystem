@@ -146,8 +146,10 @@
   }
 
   &__contentWrapper {
+    max-width: 100%;
     max-height: calc(100vh - 10rem);
     overflow: auto;
+    overflow-x: hidden;
 
     @media print {
       overflow: hidden;
