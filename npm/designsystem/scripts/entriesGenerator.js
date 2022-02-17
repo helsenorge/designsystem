@@ -11,7 +11,7 @@ const glob = require('glob');
 
 const paths = {
   src: path.join('src'),
-  components: path.join('src', 'components'),
+  components: path.join('src', '{components,hoc}'),
   icons: path.join('src', 'components/Icons'),
   output: path.join('scripts', 'componentsEntries.json'),
 };
@@ -113,6 +113,9 @@ function getComponentName(componentPath) {
     } else if (componentPath.includes('/components/')) {
       // returns the name of the component with 'components/' prefix and 'index' suffix if the file is under /components
       name = `components/${arr2[arr2.length - 2]}/index`;
+    } else if (componentPath.includes('/hoc/')) {
+      // returns the name of the component with 'hoc/' prefix and 'index' suffix if the file is under /hoc
+      name = `hoc/${arr2[arr2.length - 2]}/index`;
     } else {
       name = arr2[arr2.length - 1].toLowerCase();
     }

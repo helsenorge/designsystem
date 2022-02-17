@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { breakpoints, screen } from '../theme/grid';
 
 export enum Breakpoint {
+  xxs = breakpoints.xxs,
   xs = breakpoints.xs,
   sm = breakpoints.sm,
   md = breakpoints.md,
@@ -31,8 +32,11 @@ export const useBreakpoint = (): Breakpoint | undefined => {
         case screen.sm:
           setBreakpoint(event.matches ? Breakpoint.sm : Breakpoint.xs);
           return;
+        case screen.xs:
+          setBreakpoint(event.matches ? Breakpoint.xs : Breakpoint.xxs);
+          return;
         default:
-          setBreakpoint(Breakpoint.xs);
+          setBreakpoint(Breakpoint.xxs);
           return;
       }
     };

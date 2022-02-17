@@ -11,6 +11,7 @@ import { debounce } from '../utils/debounce';
  */
 export const useLayoutEvent = (callback: () => void, events = ['layoutchange', 'resize', 'orientationchange'], debounceMs = 10) => {
   useEffect(() => {
+    if (typeof window !== 'object') return;
     const debouncedCallback = debounce(callback, debounceMs);
 
     events.forEach(eventName => window.addEventListener(eventName, debouncedCallback));

@@ -4,8 +4,6 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import Modal, { ModalVariants } from './Modal';
 import userEvent from '@testing-library/user-event';
 
-import './__mocks__/IntersectionObserver';
-
 describe('Gitt at en modal skal vises ', (): void => {
   describe('Når en modal skal vise kun tittel og lukkeknapp', (): void => {
     it('Så skal den kun vise sist nevnte', (): void => {

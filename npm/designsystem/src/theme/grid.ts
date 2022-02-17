@@ -1,5 +1,5 @@
 export const breakpoints = {
-  null: 0,
+  xxs: 0,
   xs: 360,
   sm: 564,
   md: 768,
@@ -14,6 +14,7 @@ export const containerMaxWidths = {
 };
 
 export const screen = {
+  xxs: `(min-width: ${breakpoints.xxs}px)`,
   xs: `(min-width: ${breakpoints.xs}px)`,
   sm: `(min-width: ${breakpoints.sm}px)`,
   md: `(min-width: ${breakpoints.md}px)`,

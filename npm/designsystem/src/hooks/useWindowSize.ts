@@ -1,27 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useLayoutEvent } from '../hooks/useLayoutEvent';
+
+const getWindowSize = () => {
+  const isClient = typeof window === 'object';
+  return {
+    width: isClient ? window.innerWidth : undefined,
+    height: isClient ? window.innerHeight : undefined,
+  };
+};
 
 export function useWindowSize() {
-  const isClient = typeof window === 'object';
+  const [windowSize, setWindowSize] = useState(getWindowSize());
 
-  function getSize() {
-    return {
-      width: isClient ? window.innerWidth : undefined,
-      height: isClient ? window.innerHeight : undefined,
-    };
-  }
+  const handleLayoutEvent = () => {
+    setWindowSize(getWindowSize());
+  };
 
-  const [windowSize, setWindowSize] = useState(getSize);
-
-  useEffect(() => {
-    if (!isClient) return () => {};
-
-    function handleResize() {
-      setWindowSize(getSize());
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  useLayoutEvent(handleLayoutEvent, ['resize']);
 
   return windowSize;
 }
