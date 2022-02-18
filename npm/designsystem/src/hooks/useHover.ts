@@ -6,7 +6,7 @@ import { useRef, useEffect, useState, RefObject } from 'react';
  *
  *  includeFocus: If focusing the ref should count as a hover or not. True by default.
  */
-export const useHover = <T extends HTMLElement>(ref?: RefObject<T>, condition?: boolean, includeFocus: boolean = true) => {
+export const useHover = <T extends HTMLElement | SVGElement>(ref?: RefObject<T>, condition?: boolean, includeFocus: boolean = true) => {
   const hoverRef = ref ? ref : useRef<T>(null);
   const [isHovered, setIsHovered] = useState(false);
 
