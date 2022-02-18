@@ -38,15 +38,15 @@ export const getIcon = (
   normalHover: JSX.Element,
   small?: JSX.Element,
   smallHover?: JSX.Element,
-  tiny?: JSX.Element,
-  tinyHover?: JSX.Element
+  xxSmall?: JSX.Element,
+  xxSmallHover?: JSX.Element
 ): JSX.Element => {
   if (size === IconSize.XSmall && small && smallHover) {
     return isHovered ? smallHover : small;
   }
 
-  if (size === IconSize.Tiny && tiny && tinyHover) {
-    return isHovered ? tinyHover : tiny;
+  if (size === IconSize.XXSmall && xxSmall && xxSmallHover) {
+    return isHovered ? xxSmallHover : xxSmall;
   }
 
   return isHovered ? normalHover : normal;

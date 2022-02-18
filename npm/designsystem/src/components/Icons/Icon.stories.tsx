@@ -64,7 +64,7 @@ stories.add('Default', () => {
         />
       </div>
       <div>
-        <p>{'ExtraSmall'}</p>
+        <p>{'XSmall'}</p>
         <Icon
           svgIcon={ExampleSvgIcon}
           ref={xSmallRef}
@@ -75,12 +75,12 @@ stories.add('Default', () => {
         />
       </div>
       <div>
-        <p>{'Tiny'}</p>
+        <p>{'XXSmall'}</p>
         <Icon
           svgIcon={ExampleSvgIcon}
           ref={xxSmallRef}
           isHovered={boolean('hovered', false) || xxSmallIsHovered}
-          size={IconSize.Tiny}
+          size={IconSize.XXSmall}
           color={text('Color', 'black')}
           hoverColor={text('hoverColor', 'gray')}
         />

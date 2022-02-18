@@ -89,11 +89,12 @@ function IconWallFilter(props: IconWallFilterProps) {
         </StyledFilterProp>
         <StyledFilterProp>
           <select name="iconSize" value={size} onChange={(event): void => setIconSize(parseInt(event.target.value))}>
+            <option value={IconSize.XLarge}>{'XLarge'}</option>
             <option value={IconSize.Large}>{'Large'}</option>
             <option value={IconSize.Medium}>{'Medium'}</option>
             <option value={IconSize.Small}>{'Small'}</option>
             <option value={IconSize.XSmall}>{'Xsmall'}</option>
-            <option value={IconSize.Tiny}>{'Tiny'}</option>
+            <option value={IconSize.XXSmall}>{'XXSmall'}</option>
           </select>
         </StyledFilterProp>
         {/* <StyledFilterProp>

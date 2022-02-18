@@ -18,15 +18,15 @@ const X: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Eleme
     <path d="M24 22.227L11.781 10.008l-1.772 1.772 12.219 12.219-12.22 12.22 1.772 1.772L24 25.771l12.22 12.22 1.772-1.772-12.22-12.22L37.991 11.78l-1.772-1.772z" />
   );
 
-  const tiny = (
+  const xxSmall = (
     <path d="M36.3746 13.6056 34.3946 11.6256 24.0006 22.0196 13.6066 11.6256 11.6266 13.6056 22.0206 23.9996 11.6266 34.3936 13.6066 36.3736 24.0006 25.9796 34.3946 36.3736 36.3746 34.3936 25.9806 23.9996" />
   );
 
-  const tinyHover = (
+  const xxSmallHover = (
     <path d="M39.0362 10.9454 37.0562 8.9654 24.0002 22.0194 10.9442 8.9654 8.9642 10.9454 22.0202 23.9994 8.9642 37.0554 10.9442 39.0354 24.0002 25.9814 37.0562 39.0354 39.0362 37.0554 25.9802 23.9994" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, small, smallHover, tiny, tinyHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover, xxSmall, xxSmallHover);
 };
 
 export default X;
