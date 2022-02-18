@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const Eye: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -26,7 +26,7 @@ const Eye: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Ele
     <path d="M26.395 20.878a2.99 2.99 0 10-.001 5.981 2.99 2.99 0 000-5.981m2.483 11.095c2.715-1.683 4.532-4.68 4.532-8.104 0-3.443-1.839-6.459-4.581-8.136 5.71 1.827 8.578 6.464 9.443 8.13-.864 1.637-3.751 6.259-9.394 8.11m-5.008-.08c-4.425 0-8.026-3.6-8.026-8.024 0-4.426 3.6-8.026 8.026-8.026 4.424 0 8.026 3.6 8.026 8.026 0 4.425-3.602 8.025-8.026 8.025M9.462 23.869c.866-1.666 3.733-6.307 9.446-8.136-2.74 1.679-4.58 4.693-4.58 8.136 0 3.443 1.84 6.457 4.58 8.135-5.716-1.83-8.583-6.474-9.446-8.135M23.87 13.456c-11.698 0-16.087 10.413-16.087 10.413s4.389 10.412 16.087 10.412S39.955 23.87 39.955 23.87s-4.388-10.413-16.086-10.413" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Eye;

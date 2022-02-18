@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconSize } from '.';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const AcupunctureBack: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -17,7 +17,7 @@ const AcupunctureBack: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathPro
     />
   );
 
-  return returnIcon(IconSize.Medium, isHovered, normal, normalHover);
+  return getIcon(IconSize.Medium, isHovered, normal, normalHover);
 };
 
 export default AcupunctureBack;

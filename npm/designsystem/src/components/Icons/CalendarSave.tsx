@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const CalendarSave: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -18,7 +18,7 @@ const CalendarSave: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
     <path d="M27.136 34.649l2.274-2.184-.97-1.01-3.325 3.194H24.7v-6.744h-1.4v6.744h-.425l-3.321-3.116-.958 1.02 2.233 2.096H8.925V18.298h10.137l4.957 4.65 4.843-4.65h10.213v16.35H27.136zM23.3 18.298v2.069l-2.248-2.07H23.3zm1.4 0h2.175L24.7 20.362v-2.064zm-12.051-7.46v1.433c0 1.077.877 1.954 1.954 1.954h.66a1.957 1.957 0 001.954-1.954v-1.433h13.444v1.433c0 1.077.877 1.954 1.955 1.954h.66a1.957 1.957 0 001.954-1.954v-1.433h3.845v6.06H8.925v-6.06h3.724zm1.4-2.622c0-.305.248-.553.554-.553h.66c.306 0 .554.248.554.553v4.055a.554.554 0 01-.554.554h-.66a.554.554 0 01-.554-.554V8.216zm18.013 0c0-.305.248-.553.554-.553h.66c.305 0 .554.248.554.553v4.055a.555.555 0 01-.554.554h-.66a.554.554 0 01-.554-.554V8.216zm3.168 1.222V8.216a1.957 1.957 0 00-1.954-1.954h-.66a1.957 1.957 0 00-1.955 1.954v1.222H17.217V8.216a1.957 1.957 0 00-1.954-1.954h-.66a1.957 1.957 0 00-1.954 1.954v1.222H7.524v26.61h32.952V9.439H35.23z" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default CalendarSave;

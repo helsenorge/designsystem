@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const Referral: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -18,7 +18,7 @@ const Referral: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JS
     <path d="M35.559 7.21v4.93h-1.263V8.474h-23.96V39.21h23.96V30.21h1.263v10.265H9.073V7.21H35.56zm-5.795 22.301v1.265H15.592V29.51h14.172zm8.452-13.669l5.331 5.332-5.331 5.332h-1.788l4.7-4.7H23.843v-1.263H41.13l-4.7-4.7h1.787zm-8.452 9.185v1.263H15.592v-1.263h14.172z" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Referral;

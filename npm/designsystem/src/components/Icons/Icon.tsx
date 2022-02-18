@@ -31,8 +31,8 @@ interface SvgPathProps {
   isHovered: boolean;
 }
 
-export const returnIcon = (
-  size: IconSize = IconSize.Medium,
+export const getIcon = (
+  size: IconSize,
   isHovered: boolean,
   normal: JSX.Element,
   normalHover: JSX.Element,

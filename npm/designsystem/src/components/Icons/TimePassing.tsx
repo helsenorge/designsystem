@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const TimePassing: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -30,7 +30,7 @@ const TimePassing: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps):
     />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default TimePassing;

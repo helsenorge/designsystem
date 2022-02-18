@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const Share: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -24,7 +24,7 @@ const Share: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.E
     <path d="M32.446 40.006a2.78 2.78 0 01-2.776-2.778 2.78 2.78 0 012.776-2.776 2.78 2.78 0 012.778 2.776 2.78 2.78 0 01-2.778 2.778M16.87 27.041a2.78 2.78 0 01-2.776-2.778 2.78 2.78 0 012.776-2.777 2.78 2.78 0 012.777 2.777 2.78 2.78 0 01-2.777 2.778M32.92 7.73a2.78 2.78 0 012.778 2.778 2.78 2.78 0 01-2.778 2.776 2.78 2.78 0 01-2.776-2.776A2.78 2.78 0 0132.92 7.73m-.474 24.951a4.5 4.5 0 00-2.823 1.012l-8.793-7.247a4.48 4.48 0 00.585-2.184c0-.802-.227-1.545-.592-2.199l9.29-8.008c.775.615 1.742.999 2.807.999a4.553 4.553 0 004.548-4.546 4.553 4.553 0 00-4.548-4.546 4.552 4.552 0 00-4.546 4.546c0 .802.227 1.545.594 2.2l-9.29 8.007a4.495 4.495 0 00-2.809-.999 4.552 4.552 0 00-4.546 4.546 4.552 4.552 0 004.546 4.546 4.505 4.505 0 002.822-1.009l8.793 7.247a4.486 4.486 0 00-.584 2.181 4.551 4.551 0 004.546 4.546 4.552 4.552 0 004.548-4.546 4.553 4.553 0 00-4.548-4.546" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Share;

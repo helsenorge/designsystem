@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const ChevronRight: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = <path d="M19.171 32.951l1.409 1.42L31.031 24 20.58 13.63l-1.409 1.42 9.02 8.95z" />;
@@ -12,7 +12,7 @@ const ChevronRight: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
     <path d="M25.98 11.103l12.977 12.896L25.98 36.897l-1.78-1.794 9.899-9.841-20.204.001v-2.526l20.204-.001-9.899-9.839z" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default ChevronRight;

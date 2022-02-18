@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const ErrorSignStroke: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -18,7 +18,7 @@ const ErrorSignStroke: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathPro
     <path d="M24.003 31.562a1.39 1.39 0 100 2.782 1.39 1.39 0 000-2.782zm.097-20.147l14.656 26.678H9.258L24.1 11.415zm.008-2.923L6.853 39.508h34.294L24.108 8.492zm-.105 18.462c.492 0 .892-.399.892-.891V18.85a.891.891 0 00-1.783 0v7.213c0 .492.4.891.891.891z" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default ErrorSignStroke;

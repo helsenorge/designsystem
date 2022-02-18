@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const Upload: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -24,7 +24,7 @@ const Upload: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.
     <path d="M24.042 7.579l-9.078 8.717 1.114 1.162 7.23-6.94v17.786h1.612V10.61l7.15 6.71 1.104-1.175-9.132-8.567zm-13.25 30.64h26.416v-1.61H10.792v1.61z" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Upload;

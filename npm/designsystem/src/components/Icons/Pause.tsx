@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const Pause: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -18,7 +18,7 @@ const Pause: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.E
 
   const smallHover = <path d="M26.817 34.355h3.998V13.383h-3.998v20.972zm-9.894 0h3.997V13.383h-3.997v20.972z" />;
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Pause;

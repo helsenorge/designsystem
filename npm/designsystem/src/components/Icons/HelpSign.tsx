@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const HelpSign: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -18,7 +18,7 @@ const HelpSign: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JS
     <path d="M24 7.957c8.846 0 16.043 7.196 16.043 16.042 0 8.846-7.197 16.044-16.043 16.044S7.958 32.845 7.958 23.999 15.154 7.957 24 7.957zm0 1.769c-7.871 0-14.274 6.404-14.274 14.273 0 7.872 6.403 14.275 14.274 14.275 7.87 0 14.273-6.403 14.273-14.275 0-7.87-6.403-14.273-14.273-14.273zm-.315 18.46c.908 0 1.657.77 1.657 1.678 0 .908-.749 1.657-1.657 1.657-.93 0-1.656-.749-1.656-1.657 0-.907.726-1.679 1.656-1.679zm.295-14.64c3.357 0 5.173 2.224 5.173 4.538 0 1.794-.953 3.064-2.27 3.994l-.976.68c-.747.521-1.133 1.272-1.133 2.155 0 .046 0 .16.022.295h-2.267c-.023-.295-.047-.544-.047-.863 0-1.359.523-2.472 1.839-3.424l1.043-.75c.748-.544 1.065-1.202 1.065-1.973 0-1.18-.792-2.29-2.45-2.29-1.678 0-2.562 1.293-2.562 2.585 0 .341.045.772.135 1.022l-2.563-.183a3.915 3.915 0 01-.136-1.043c0-2.268 1.701-4.742 5.127-4.742z" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default HelpSign;

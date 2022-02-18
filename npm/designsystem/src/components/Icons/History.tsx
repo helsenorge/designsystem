@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const History: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -18,7 +18,7 @@ const History: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX
     <path d="M22.232 19.147v7.383h5.842v-1.514h-4.328v-5.869h-1.514zm11.718-5.242c-5.563-5.564-14.615-5.564-20.177 0a14.307 14.307 0 00-4.158 10.793L6.421 21.79l-1.085 1.191 5.382 4.897 4.938-4.937-1.14-1.14-3.248 3.25c-.305-3.692 1.006-7.37 3.644-10.007 4.934-4.934 12.965-4.934 17.899 0 4.935 4.933 4.935 12.965 0 17.898-4.236 4.233-10.926 4.915-15.913 1.622l-.888 1.346a14.18 14.18 0 007.827 2.342c3.693 0 7.365-1.422 10.113-4.17 5.564-5.563 5.564-14.615 0-20.178z" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default History;

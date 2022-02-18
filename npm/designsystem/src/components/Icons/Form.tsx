@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const Form: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -18,7 +18,7 @@ const Form: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.El
     <path d="M23.957 12.037a.543.543 0 100-1.087.543.543 0 000 1.087zm6.699 9.404l-.902-.868-5.58 5.795-1.656-1.72-.903.87 2.56 2.655 6.48-6.732zm5.397 12.998H17.386c.147-.288.235-.612.249-.954h19.46a1.047 1.047 0 01-1.042.954zm.603 3.667H11.259V12.059h7.447l-1.377.922v.75h-4.29v19.662c0 1.268 1.033 2.3 2.3 2.3h20.714c.21 0 .41-.038.603-.09v2.503zM20.49 12.37V9.537h6.932v2.834l1.91 1.279v.812h-10.75v-.812l1.908-1.279zm10.095 3.344v-.731h3.168v17.248h-17.37v1.16a1.046 1.046 0 01-2.091 0V14.985h3.036v.73h13.257zm6.07-3.768v20.285h-1.649V13.731h-4.42v-.75l-1.546-1.034h7.615zm1.696 20.285h-.085V10.335h-9.59V8.284h-9.44v2.164H9.648v29.268h28.62v-5.429h-.097c.117-.275.181-.577.181-.894v-1.161z" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Form;

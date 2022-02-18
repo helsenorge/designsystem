@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const ArrowUpRight: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = <path d="M33.305 14.659v14.546h-1.3V16.948L15.804 33.149l-.919-.92 16.27-16.27-12.394.001v-1.301z" />;
@@ -10,7 +10,7 @@ const ArrowUpRight: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
 
   const smallHover = <path d="M22.076 11.122v1.769h11.736L14.819 31.884l1.252 1.25 19.015-19.015v11.782h1.769V11.122z" />;
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default ArrowUpRight;

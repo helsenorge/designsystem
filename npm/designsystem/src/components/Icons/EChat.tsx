@@ -1,5 +1,5 @@
 import React from 'react';
-import { returnIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
 const EChat: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -18,7 +18,7 @@ const EChat: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.E
     <path d="M32.92 4.678a3.967 3.967 0 013.963 3.962v30.72a3.967 3.967 0 01-3.963 3.963H19.08a3.967 3.967 0 01-3.962-3.963V25.577h-4.983a3.02 3.02 0 01-3.017-3.018v-7.403a3.022 3.022 0 013.017-3.02h4.983V8.64a3.966 3.966 0 013.962-3.962zm0 1.514H19.08a2.45 2.45 0 00-2.446 2.448v3.497h9.507a3.022 3.022 0 013.017 3.019v7.403a3.02 3.02 0 01-3.017 3.018h-2.077v3.154l-4.906-3.154h-2.524V39.36a2.45 2.45 0 002.446 2.447H32.92a2.45 2.45 0 002.447-2.447V8.64a2.45 2.45 0 00-2.447-2.448zM26 35.726a2.529 2.529 0 012.526 2.527A2.53 2.53 0 0126 40.779a2.53 2.53 0 01-2.526-2.526A2.529 2.529 0 0126 35.726zm0 1.012c-.836 0-1.516.68-1.516 1.515a1.517 1.517 0 003.032 0c0-.835-.68-1.515-1.516-1.515zm.14-23.087H10.134c-.827 0-1.502.676-1.502 1.505v7.403c0 .827.675 1.503 1.502 1.503h9.468l2.945 1.894v-1.894h3.593c.828 0 1.502-.676 1.502-1.503v-7.403c0-.829-.674-1.505-1.502-1.505zm-2.484 5.962v1.012H11.617v-1.012h12.04zm0-2.982v1.012H11.617V16.63h12.04zm5.538-8.95a.496.496 0 010 .992H24.86a.496.496 0 010-.992zm-5.963.07a.425.425 0 11-.001.85.425.425 0 010-.85z" />
   );
 
-  return returnIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default EChat;
