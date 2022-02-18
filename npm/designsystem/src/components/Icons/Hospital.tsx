@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
-const Hospital: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const Hospital: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
       fillRule={'evenodd'}
@@ -16,21 +16,21 @@ const Hospital: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathPr
     />
   );
 
-  const simplified = (
+  const small = (
     <path
       fillRule={'evenodd'}
       d="M21.527 35.62h2.862v-3.233h-2.862v3.234zm-1.01 1.01H25.4v-5.254h-4.884v5.254zm-7.09-1.01h2.863v-3.233h-2.863v3.234zm-1.01 1.01H17.3v-5.254h-4.883v5.254zm9.11-8.322h2.862v-3.232h-2.862v3.232zm-1.01 1.01H25.4v-5.254h-4.884v5.254zm-7.09-1.01h2.863v-3.232h-2.863v3.232zm-1.01 1.01H17.3v-5.253h-4.883v5.254zm5.86-9.6h1.264V16.69h3.027v-1.263H19.54V12.4h-1.263v3.027H15.25v1.263h3.028v3.028zm12.365 19.888h8.406V20.53h-8.406v19.075zm-22.204 0h20.94V9.132H8.439v30.474zm22.204-20.338V7.87H7.175v33H40.31V19.267h-9.67z"
     />
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <path
       fillRule={'evenodd'}
       d="M22.158 35.62h2.863v-3.233h-2.863v3.234zm-1.01 1.01h4.883v-5.254h-4.883v5.254zm-7.09-1.01h2.863v-3.233H14.06v3.234zm-1.01 1.01h4.884v-5.254h-4.884v5.254zm9.11-8.322h2.863v-3.232h-2.863v3.232zm-1.01 1.01h4.883v-5.254h-4.883v5.254zm-7.09-1.01h2.863v-3.232H14.06v3.232zm-1.01 1.01h4.884v-5.253h-4.884v5.254zm5.861-9.6h1.264V16.69h3.026v-1.263h-3.026V12.4h-1.264v3.027h-3.027v1.263h3.027v3.028zm12.364 19.888h8.407V20.53h-8.407v19.075zm-22.204 0H30.01V9.132H9.07v30.474zm22.204-20.338V7.87H7.806v33h33.137V19.267h-9.67z"
     />
   );
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Hospital;

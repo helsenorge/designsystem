@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
-const Download: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const Download: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
       fillRule={'evenodd'}
@@ -16,21 +16,21 @@ const Download: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathPr
     />
   );
 
-  const simplified = (
+  const small = (
     <path
       fillRule={'evenodd'}
       d="M10.791 38.074h26.42v-1.768H10.79v1.768zm22.438-16.13l-1.227-1.274-7.095 6.815V9.882h-1.77v17.51l-7.018-6.585-1.209 1.29 9.186 8.62 9.133-8.772z"
     />
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <path
       fillRule={'evenodd'}
       d="M10.791 38.074H37.21v-1.768H10.79v1.768zm22.436-13.603l-1.224-1.274-7.096 6.813V12.408h-1.768v17.511l-7.02-6.586-1.209 1.29 9.185 8.62 9.132-8.772z"
     />
   );
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Download;

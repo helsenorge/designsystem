@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
-const Calendar: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const Calendar: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
       fillRule="evenodd"
@@ -16,21 +16,21 @@ const Calendar: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathPr
     />
   );
 
-  const simplified = (
+  const small = (
     <path
       fillRule="evenodd"
       d="M38.887 16.71H8.6v-6.197h3.862v1.17c0 1.223.994 2.216 2.216 2.216a2.218 2.218 0 002.215-2.215v-1.171h13.582v1.17c0 1.223.994 2.216 2.215 2.216a2.218 2.218 0 002.216-2.215v-1.171h3.982v6.197zM8.6 34.46h30.288V17.974H8.6V34.46zm5.125-26.17a.953.953 0 011.905 0v3.394a.953.953 0 01-1.905 0V8.289zm18.013 0a.953.953 0 011.905 0v3.394a.953.953 0 01-1.905 0V8.289zm3.168.96v-.96a2.218 2.218 0 00-2.216-2.216 2.218 2.218 0 00-2.215 2.215v.96H16.892v-.96a2.218 2.218 0 00-2.215-2.215 2.218 2.218 0 00-2.216 2.215v.96H7.336v26.475h32.815V9.249h-5.246zM27.67 28.292a1.508 1.508 0 100-3.016 1.508 1.508 0 000 3.016z"
     />
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <path
       fillRule="evenodd"
       d="M38.888 16.71H8.598v-6.197h3.862v1.17a2.216 2.216 0 004.431 0v-1.17h13.583v1.17a2.217 2.217 0 004.431 0v-1.17h3.983v6.197zM8.598 34.46h30.29V17.974H8.598V34.46zm5.125-26.17a.953.953 0 011.905 0v3.394a.953.953 0 01-1.905 0V8.289zm18.014 0a.953.953 0 011.905 0v3.394a.953.953 0 01-1.905 0V8.289zm3.168.96v-.96a2.218 2.218 0 00-2.215-2.216 2.218 2.218 0 00-2.216 2.215v.96H16.89v-.96a2.217 2.217 0 00-2.214-2.215 2.219 2.219 0 00-2.217 2.215v.96H7.335v26.475h32.816V9.249h-5.246zm-7.234 19.043a1.507 1.507 0 000-3.017 1.51 1.51 0 100 3.017zm5.019-4.297a1.509 1.509 0 10-.002-3.018 1.509 1.509 0 00.002 3.018z"
     />
   );
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Calendar;

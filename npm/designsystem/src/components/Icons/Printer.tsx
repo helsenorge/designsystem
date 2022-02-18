@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
-const Printer: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const Printer: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
       fillRule={'evenodd'}
@@ -16,21 +16,21 @@ const Printer: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathPro
     />
   );
 
-  const simplified = (
+  const small = (
     <path
       fillRule={'evenodd'}
       d="M32.629 22.697a1.184 1.184 0 11.001-2.364 1.184 1.184 0 01-.001 2.364zm0-3.503c-1.28 0-2.32 1.04-2.32 2.32 0 1.279 1.04 2.318 2.32 2.318 1.28 0 2.32-1.04 2.32-2.319 0-1.278-1.04-2.319-2.32-2.319zm-13.406 16.21h9.292v-1.137h-9.292v1.137zm20.181-8.217H8.332V12.565h5.728v3.709h-1.993v1.135H35.67v-1.135h-1.993v-3.709h5.727v14.622zM15.701 37.934h16.334v-8.978H15.701v8.978zm.128-21.66h16.078V7.402H15.83v8.872zm17.848-5.479v-5.16H14.06v5.16H6.562v18.16h7.625V39.45H33.55V28.956h7.624v-18.16h-7.497zM19.223 32.087h9.292V30.95h-9.292v1.137z"
     />
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <path
       fillRule={'evenodd'}
       d="M39.405 27.187H8.331V12.565h5.729v3.708h-1.995v1.137h23.606v-1.137h-1.993v-3.708h5.727v14.622zM15.701 40.46h16.335V28.955H15.7V40.46zm.127-24.187h16.08V9.928h-16.08v6.345zm17.85-5.478V8.16H14.06v2.635H6.563v18.16h7.623v13.021H33.55v-13.02h7.623V10.794h-7.495zM19.222 34.613h9.293v-1.137h-9.293v1.137zm0 3.318h9.293v-1.136h-9.293v1.136zm0-6.634h9.293V30.16h-9.293v1.137zm13.407-8.6a1.184 1.184 0 010-2.366 1.184 1.184 0 010 2.365zm0-3.503c-1.28 0-2.32 1.04-2.32 2.32 0 1.278 1.04 2.32 2.32 2.32 1.279 0 2.32-1.042 2.32-2.32 0-1.28-1.041-2.32-2.32-2.32z"
     />
   );
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Printer;

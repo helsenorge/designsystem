@@ -1,4 +1,5 @@
 export enum IconSize {
+  XXSmall = 24,
   XSmall = 38,
   Small = 48,
   Medium = 64,

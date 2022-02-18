@@ -1,7 +1,7 @@
 import React from 'react';
 import { SvgPathProps } from './Icon';
 
-const FirstAidKit: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const FirstAidKit: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path d="M27.994 8.336a3.768 3.768 0 013.764 3.764v1.82h6.538a2.868 2.868 0 012.865 2.863V36.8a2.868 2.868 0 01-2.865 2.865H9.765A2.868 2.868 0 016.9 36.8V16.783a2.868 2.868 0 012.865-2.864h6.538V12.1a3.768 3.768 0 013.764-3.764zm10.302 6.882H9.765c-.863 0-1.565.703-1.565 1.565V36.8c0 .863.702 1.565 1.565 1.565h28.53c.864 0 1.566-.702 1.566-1.565V16.783c0-.862-.702-1.565-1.565-1.565zm-11.822 5.928v3.206h3.203v4.885h-3.203v3.2h-4.887v-3.2h-3.203v-4.885h3.203v-3.206h4.887zm-1.301 1.3h-2.286v3.206h-3.203v2.285h3.203v3.2h2.286v-3.2h3.204v-2.285h-3.204v-3.206zm2.82-12.81h-7.926a2.467 2.467 0 00-2.464 2.464v1.82h12.855V12.1a2.467 2.467 0 00-2.464-2.465z" />
   );

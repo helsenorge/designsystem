@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
-const Eraser: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const Eraser: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <g>
       <path d="M28.747 30.364L17.984 19.601l.919-.919 10.763 10.763zM15.743 38.846h17.708v-1.3H15.743zM36.04 38.846h2.944v-1.3H36.04z" />
@@ -16,15 +16,15 @@ const Eraser: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProp
     </g>
   );
 
-  const simplified = (
+  const small = (
     <path d="M35.79 38.95h2.943v-1.77H35.79v1.77zm-15.756-1.77h-5.381a.943.943 0 01-.459-.189l-4.627-4.589a2.466 2.466 0 01-.727-1.757c0-.663.257-1.287.727-1.757l8.626-8.626 9.513 9.512-7.219 7.218a.966.966 0 01-.453.187zm7.5-26.26l9.53 9.496-8.107 8.107-9.513-9.513 8.09-8.09zm10.96 10.566c.286-.287.444-.668.443-1.074a1.506 1.506 0 00-.445-1.07l-9.89-9.851a1.523 1.523 0 00-2.143.003L8.317 27.638a4.222 4.222 0 00-1.246 3.007c0 1.137.442 2.206 1.248 3.01l4.63 4.593c.409.406 1.126.701 1.704.701H33.2v-1.77H22.8l15.694-15.693z" />
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <path d="M33.475 28.523l-9.513-9.513 8.09-8.09 9.53 9.496-8.107 8.107zm-8.47 8.47a.955.955 0 01-.451.188H19.17a.95.95 0 01-.457-.189l-4.628-4.59a2.464 2.464 0 01-.728-1.757c0-.663.258-1.287.728-1.757l8.626-8.626 9.513 9.511-7.22 7.22zm18.006-17.65L33.12 9.49a1.523 1.523 0 00-2.143.002L12.835 27.637a4.224 4.224 0 00-1.245 3.008c0 1.137.442 2.205 1.248 3.01l4.63 4.593c.41.405 1.126.701 1.703.701H33.2v-1.768h-5.88l15.693-15.695c.286-.287.444-.668.442-1.074a1.506 1.506 0 00-.444-1.07zm-7.222 19.606h2.943v-1.768H35.79v1.768z" />
   );
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Eraser;

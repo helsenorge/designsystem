@@ -1,7 +1,7 @@
 import React from 'react';
-import { SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from './Icon';
 
-const Toolbox: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathProps): JSX.Element => {
+const Toolbox: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
       fillRule="evenodd"
@@ -16,7 +16,7 @@ const Toolbox: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathPro
     />
   );
 
-  const simplified = (
+  const small = (
     <g>
       <path
         fillRule="evenodd"
@@ -29,7 +29,7 @@ const Toolbox: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathPro
     </g>
   );
 
-  const simplifiedHover = (
+  const smallHover = (
     <g>
       <path
         fillRule="evenodd"
@@ -42,7 +42,7 @@ const Toolbox: React.FC<SvgPathProps> = ({ isExtraSmall, isHovered }: SvgPathPro
     </g>
   );
 
-  return isExtraSmall ? (isHovered ? simplifiedHover : simplified) : isHovered ? normalHover : normal;
+  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
 };
 
 export default Toolbox;
