@@ -13,6 +13,14 @@ const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
 
 const ExampleWithBreakpoint = withBreakpoint(Example);
 
+class ClassExample extends React.Component<BreakpointProps> {
+  render() {
+    return <>{`${Breakpoint[this.props.breakpoint]}/${this.props.breakpoint}`}</>;
+  }
+}
+
+const ClassExampleWithBreakpoint = withBreakpoint(ClassExample);
+
 describe('Gitt at withBreakpoint skal vises', (): void => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -126,6 +134,17 @@ describe('Gitt at withBreakpoint skal vises', (): void => {
       render(<ExampleWithBreakpoint />);
 
       expect(screen.getByText('xxs/0')).toBeVisible();
+    });
+  });
+  describe('Når komponenten er klassebasert', (): void => {
+    test('Så er returnerer withBreakpoint breakpoint', (): void => {
+      when(mockWindowMatchMedia)
+        .calledWith(themeScreen.xl)
+        .mockReturnValue({ matches: true, addEventListener: jest.fn(), removeEventListener: jest.fn() });
+
+      render(<ClassExampleWithBreakpoint />);
+
+      expect(screen.getByText('xl/1450')).toBeVisible();
     });
   });
 });

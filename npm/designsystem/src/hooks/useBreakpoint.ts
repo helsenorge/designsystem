@@ -14,8 +14,8 @@ export enum Breakpoint {
  * Lytt på endringer i breakpoint basert på media queries. Trigger re-render bare når breakpoint er endret.
  * @returns Gjeldende breakpoint
  */
-export const useBreakpoint = (): Breakpoint | undefined => {
-  const [breakpoint, setBreakpoint] = useState<Breakpoint>();
+export const useBreakpoint = (): Breakpoint => {
+  const [breakpoint, setBreakpoint] = useState<Breakpoint>(Breakpoint.xxs);
 
   useEffect(() => {
     const handleMediaQueryEvent = (event: MediaQueryListEvent): void => {
@@ -50,7 +50,7 @@ export const useBreakpoint = (): Breakpoint | undefined => {
     mediaQueryList.forEach(x => x.mediaQuery.addEventListener('change', handleMediaQueryEvent));
 
     // Finn breakpoint ved første render
-    const initialBreakpoint = mediaQueryList.find(x => x.mediaQuery.matches)?.breakpoint ?? Breakpoint.xs;
+    const initialBreakpoint = mediaQueryList.find(x => x.mediaQuery.matches)?.breakpoint ?? breakpoint;
     setBreakpoint(initialBreakpoint);
 
     return (): void => {

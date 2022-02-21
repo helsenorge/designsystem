@@ -3,21 +3,23 @@ import React from 'react';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 
 export interface BreakpointProps {
-  breakpoint?: Breakpoint;
+  breakpoint: Breakpoint;
 }
 
 // Hentet fra https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35834#issuecomment-497605842
-export function withBreakpoint<T extends React.ComponentClass<any>>(
-  Component: T
-): React.ForwardRefExoticComponent<React.ComponentPropsWithoutRef<T> & { ref?: React.Ref<InstanceType<T>> }>;
+export function withBreakpoint<P extends BreakpointProps, C extends React.ComponentClass<P>>(
+  Component: C & React.ComponentType<P>
+): React.ForwardRefExoticComponent<Omit<React.ComponentPropsWithoutRef<C> & { ref?: React.Ref<InstanceType<C>> }, keyof BreakpointProps>>;
 
-export function withBreakpoint<P extends { ref?: React.Ref<any> }>(
+export function withBreakpoint<P extends BreakpointProps & { ref?: React.Ref<any> }>(
   Component: React.ForwardRefExoticComponent<P>
-): React.ForwardRefExoticComponent<P>;
+): React.ForwardRefExoticComponent<Omit<P, keyof BreakpointProps>>;
 
-export function withBreakpoint<P>(Component: React.FunctionComponent<P>): React.ForwardRefExoticComponent<P>;
+export function withBreakpoint<P extends BreakpointProps>(
+  Component: React.FunctionComponent<P>
+): React.ForwardRefExoticComponent<Omit<P, keyof BreakpointProps>>;
 
-export function withBreakpoint<P>(Component: React.ComponentType<P>) {
+export function withBreakpoint<P extends BreakpointProps>(Component: React.ComponentType<P>) {
   return React.forwardRef((props, ref) => {
     const breakpoint = useBreakpoint();
     return <Component ref={ref} {...(props as P)} breakpoint={breakpoint} />;
