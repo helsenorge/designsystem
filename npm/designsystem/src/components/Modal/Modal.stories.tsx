@@ -6,6 +6,7 @@ import Modal, { ModalSize } from './Modal';
 import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
 import { ModalVariants } from './Modal';
 import Button from '../Button';
+import Checkbox from '../Checkbox';
 import Slider from '../Slider';
 import Icon from '../Icons';
 import Envelope from '../Icons/Envelope';
@@ -175,6 +176,35 @@ stories.add('Modal with state example', () => {
       secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
       onSuccess={(): void => alert('success')}
     />
+  );
+});
+
+stories.add('Modal with disabled button', () => {
+  const [open, isOpen] = React.useState(false);
+  return (
+    <div>
+      <Button onClick={(): void => isOpen(!open)}>{'Åpne modal'}</Button>
+      {open && (
+        <Modal
+          variant={select(
+            'variant',
+            [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
+            ModalVariants.normal
+          )}
+          title={text('title', 'Tab her for å se at focustrap fungerer')}
+          onClose={() => isOpen(!open)}
+        >
+          <div>
+            <Checkbox label="Checkbox 1" />
+            <Checkbox label="Checkbox 2" />
+            <p>Vanlig tekst</p>
+            <Button onClick={onSuccess} disabled>
+              Ok
+            </Button>
+          </div>
+        </Modal>
+      )}
+    </div>
   );
 });
 

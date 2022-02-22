@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { getDocumentActiveElement } from './focus-utils';
+import { FOCUSABLE_SELECTORS } from './useFocusToggle';
 
 export function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
   const elRef = useRef<HTMLDivElement>(null);
@@ -14,7 +15,7 @@ export function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
 
     const activeElement = getDocumentActiveElement(node);
 
-    const focusElements = node?.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'),
+    const focusElements = node?.querySelectorAll(FOCUSABLE_SELECTORS),
       firstFocusableEl = (focusElements[0] as unknown) as HTMLElement,
       lastFocusableEl =
         focusElements.length === 1 ? firstFocusableEl : ((focusElements[focusElements.length - 1] as unknown) as HTMLElement);
