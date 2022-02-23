@@ -24,6 +24,7 @@ export interface HTMLButtonProps {
   name?: string;
   type?: 'submit' | 'reset' | 'button' | string;
   value?: string | string[] | number;
+  id?: string;
 }
 
 export interface HTMLTextareaProps {
@@ -42,13 +43,15 @@ export interface HTMLTextareaProps {
   'aria-invalid'?: boolean;
 }
 
+export type AnchorTarget = '_self' | '_blank' | '_parent' | '_top';
+
 export interface HTMLAnchorProps {
   download?: string;
   href?: string;
   hrefLang?: string;
   media?: string;
   ping?: string;
-  rel?: string;
+  rel?: AnchorTarget;
   target?: string;
   referrerPolicy?:
     | ''
@@ -98,6 +101,7 @@ export enum AnalyticsId {
   Logo = 'logo',
   Modal = 'modal',
   NotificationPanel = 'notification-panel',
+  Panel = 'panel',
   Portal = 'portal',
   RadioButton = 'radio-button',
   Slider = 'slider',

@@ -282,6 +282,7 @@
   "components/__mocks__/index": "src/components/Modal/__mocks__/IntersectionObserver.ts",
   "components/Modal/index": "src/components/Modal/index.ts",
   "components/NotificationPanel/index": "src/components/NotificationPanel/index.ts",
+  "components/Panel/index": "src/components/Panel/index.tsx",
   "components/Portal/index": "src/components/Portal/index.tsx",
   "components/RadioButton/index": "src/components/RadioButton/index.ts",
   "components/Slider/index": "src/components/Slider/index.ts",

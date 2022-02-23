@@ -1,0 +1,345 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/_grid.scss';
+@import '../../scss/_font-settings.scss';
+
+.panel-wrapper {
+  width: 100%;
+}
+
+@mixin panel-padding {
+  padding: getSpacer(s) getSpacer(s) getSpacer(s) getSpacer(s);
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    padding: getSpacer(l) getSpacer(m) getSpacer(l) getSpacer(l);
+  }
+}
+
+.panel {
+  @include panel-padding;
+  outline: none;
+  position: relative;
+  width: 100%;
+
+  &__container {
+    @media (min-width: map-get($grid-breakpoints, sm)) {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+    }
+
+    &--layout3ish{
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+
+    &--grow{
+      flex: 1;
+    }
+  }
+
+  &--with-icon {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__icon {
+    padding-right: getSpacer(s);
+    &--right {
+      padding-left: getSpacer(s);
+    }
+  }
+
+  &__content-left {
+    &--flex {
+      display: flex;
+    }
+  }
+
+  &__content-right {
+    &--layout1 {
+      display: flex;
+      flex-direction: column;
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        flex-direction: row;
+      }
+    }
+
+    &--layout2 {
+      display: flex;
+      flex-direction: column;
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        max-width: 200px;
+      }
+    }
+
+    &--layout3ish {
+      display: flex;
+      flex-direction: column;
+      padding-left: 0;
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        flex-direction: row;
+        padding-left: getSpacer(m);
+      }
+    }
+
+    &--layout3a {
+      flex: 0.4;
+    }
+    &--layout3b {
+      flex: 0.55;
+    }
+    &--layout3c {
+      flex: 0.65;
+    }
+  }
+
+  &__btn-container {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: map-get($grid-breakpoints, lg)) {
+      align-self: end;
+      max-width: 300px;
+    }
+
+    &--layout3ish {
+      display: flex;
+      align-self: initial;
+      flex-direction: column;
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        align-self: end;
+      }
+    }
+    &--padding-top {
+      padding-top: getSpacer(s);
+    }
+  }
+
+  &__details-btn {
+    &--pull-right {
+      align-self: end;
+    }
+  }
+
+  // Panel variants
+
+  &--fill {
+    background-color: $neutral50;
+
+    &:hover {
+      background-color: $neutral100;
+    }
+
+    &:focus {
+      box-shadow: inset 0px 0px 0px 3px $neutral600;
+    }
+  }
+
+  &--selected#{&}--fill {
+    background-color: $neutral100;
+    border-bottom: 0;
+    &:hover {
+      background-color: $neutral200;
+    }
+  }
+
+  &--white {
+    background-color: $white;
+    &:hover {
+      background-color: $neutral100;
+    }
+    &:focus {
+      box-shadow: inset 0px 0px 0px 3px $neutral600;
+    }
+  }
+
+  &--selected#{&}--white {
+    box-shadow: inset 0px 0px 0px 6px $neutral100;
+    &:hover {
+      background-color: $neutral100;
+    }
+    &:focus {
+      box-shadow: inset 0px 0px 0px 3px $neutral600;
+    }
+  }
+
+  &--stroke {
+    border: 6px solid $neutral100;
+    &:hover {
+      background-color: $neutral50;
+    }
+    &:focus {
+      border-color: $neutral600;
+      box-shadow: inset 0px 0px 0px 3px $neutral100;
+    }
+  }
+
+  &--line {
+    background-color: $white;
+    border-color: $neutral500;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    &:hover {
+      background-color: $neutral50;
+    }
+    &:focus {
+      border-color: transparent;
+      box-shadow: inset 0px 0px 0px 3px $neutral600;
+    }
+  }
+
+  &--selected#{&}--line {
+    background-color: $neutral50;
+    border-bottom: 0;
+    &:hover {
+      background-color: $neutral100;
+    }
+  }
+
+  &--button {
+    cursor: pointer;
+  }
+
+  //Panel status
+  &--status {
+    &::before {
+      content: '';
+      position: absolute;
+      border-left: 0.375rem;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-left-style: solid;
+    }
+  }
+  &--new {
+    &::before {
+      border-left-color: $blueberry600;
+    }
+  }
+
+  &--draft {
+    &::before {
+      border-left-style: dashed;
+      border-left-color: $neutral500;
+    }
+  }
+
+  &--error {
+    &::before {
+      border-left-color: $cherry500;
+    }
+  }
+}
+
+.panel-details {
+  background-color: $neutral50;
+  display: none;
+  @include panel-padding;
+
+  &--open {
+    display: block;
+  }
+
+  &--line {
+    background: $white;
+    border-bottom: 1px solid $neutral500;
+  }
+  &--white {
+    background: $white;
+  }
+}
+
+.status-message {
+  font-size: $font-size-sm;
+  color: $cherry500;
+  display: flex;
+
+  span {
+    padding-left: 5px;
+    align-self: center;
+    font-size: $font-size-sm;
+  }
+
+  &--new {
+    color: $blueberry800;
+  }
+}
+.panel-content-a {
+  flex: 1;
+  padding-right: 0;
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    padding-right: getSpacer(m);
+  }
+
+  &__title-container {
+    display: flex;
+    align-items: center;
+    padding-bottom: getSpacer(s);
+
+    & > :last-child() {
+      padding-left: getSpacer(xs);
+    }
+    & > :first-child() {
+      padding-left: 0;
+    }
+  }
+
+  &--layout3a {
+    flex: 0.6;
+  }
+  &--layout3b {
+    flex: 0.45;
+  }
+  &--layout3c {
+    flex: 0.35;
+  }
+}
+
+.panel-content-b {
+  flex: 1;
+  padding-top: getSpacer(s);
+
+  @media (min-width: map-get($grid-breakpoints, lg)) {
+    padding-top: 0;
+  }
+
+  &--layout1 {
+    padding-top: getSpacer(s);
+    padding-left: 0;
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      padding-right: getSpacer(m);
+    }
+  }
+}
+
+.datetime-container {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: map-get($grid-breakpoints, lg)) {
+    padding-top: getSpacer(xs);
+    flex-direction: row;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    padding-bottom: getSpacer(2xs);
+
+    @media (min-width: map-get($grid-breakpoints, lg)) {
+      padding-top: 0;
+      padding-right: getSpacer(m);
+      padding-bottom: 0;
+    }
+
+    span {
+      padding-left: getSpacer(2xs);
+      font-size: $font-size-sm;
+    }
+  }
+}

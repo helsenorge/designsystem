@@ -1,0 +1,206 @@
+---
+title: Panel
+path: /library/komponenter/Panel
+date: 2022-02-04
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/Panel/componentdata.json';
+import Panel from '@helsenorge/designsystem-react/components/Panel';
+import Avatar from '@helsenorge/designsystem-react/components/Avatar';
+
+import Icon from '@helsenorge/designsystem-react/components/Icons';
+import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
+import Attachment from '@helsenorge/designsystem-react/components/Icons/Attachment';
+
+# Panel
+
+<MDXCustom.Preamble>
+  Som innbygger vil jeg se formatterte data på et avgrenset område som gjør det scanbart og tilgjengelig, og som kan være en inngang til mer informasjon, slik at jeg kan løse oppgavene mine.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{`
+    <Panel
+        title="Klikk på knappen for å se mer detaljer"
+        contentA="Egendefinert innhold"
+        >
+        Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+## Status
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{`<Panel status="new" statusMessage="1 ny" title="Klikk på knappen for å se mer detaljer">Ekspandert innhold</Panel>`}</MDXCustom.LiveComponent>
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{`<Panel status="draft" statusMessage="Du må gjøre en endring" title="Klikk på knappen for å se mer detaljer">Ekspandert innhold</Panel>`}</MDXCustom.LiveComponent>
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{`<Panel status="error" statusMessage="Du mangler innsending" title="Klikk på knappen for å se mer detaljer">Ekspandert innhold</Panel>`}</MDXCustom.LiveComponent>
+
+## Ikon
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel, Icon, AlarmClock }}>{
+    `<Panel
+      title="Medisinsk fødselsregister (MFR)"
+      icon={<Icon svgIcon={AlarmClock} />}
+      iconRight={false}
+    >
+      <p>{'Ekspandert innhold'}</p>
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel, Icon, Attachment }}>{
+    `<Panel
+      title="Melding til forløpskoordinator (1)"
+      icon={<Icon svgIcon={Attachment} size={38}/>}
+      iconRight={true}
+      contentA="Deg, Forløpskoordinator Psykisk Helse Og Rus, Rusmedisin"
+      buttonText="Se mer her"
+      url="#?dette-er-en-url"
+      status="error"
+      statusMessage="Meldingen ble ikke sendt "
+     />`}
+</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel, Avatar }}>{
+    `<Panel
+      title="Avatar"
+      icon={<Avatar variant="black">Line Danser</Avatar>}
+      url="#?din-url-her"
+      buttonText="Se din profil her"
+     />`}
+</MDXCustom.LiveComponent>
+
+## Klikkbar Panel
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel, Avatar }}>{
+    `<Panel
+      title="Avatar"
+      icon={<Avatar variant="black">Line Danser</Avatar>}
+      url="#?din-url-her"
+      buttonText="Se din profil her"
+      containerAsButton
+     />`}
+</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel, Avatar }}>{
+    `<Panel
+      title="Panel som knapp"
+      buttonText="Ekspander"
+      buttonTextClose="Lukk"
+      containerAsButton
+      closeButtonInExpand={false}
+     >
+     Titten Tei André von Drei
+     </Panel>`}
+</MDXCustom.LiveComponent>
+
+## Variant
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{`
+    <Panel
+        title="Variant fill"
+        contentA="Egendefinert innhold"
+        variant="fill"
+        >
+        Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{`
+    <Panel
+        title="Variant stroke"
+        contentA="Egendefinert innhold"
+        variant="stroke"
+        >
+        Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{`
+    <Panel
+        title="Variant line"
+        contentA="Egendefinert line"
+        variant="line"
+        >
+        Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{`
+    <Panel
+        title="Variant white"
+        contentA="Egendefinert innhold"
+        variant="white"
+        >
+        Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+## Layout
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{
+    `<Panel title="Layout1" 
+        layout="layout1"
+        contentA={<div style={{height: '50px', background: '#a7a7a7'}}>Content A with backgound #a7a7a7'</div>}
+        contentB={<div style={{height: '90px', background: '#a7a7a7'}}>Content B with backgound #a7a7a7'</div>}
+    >
+    Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{
+    `<Panel title="Layout2" 
+        layout="layout2"
+        contentA={<div style={{height: '135px', background: '#a7a7a7'}}>Content A with backgound #a7a7a7'</div>}
+        contentB={<div style={{height: '110px', background: '#a7a7a7'}}>Content B with backgound #a7a7a7'</div>}
+    >
+    Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{
+    `<Panel title="Layout3a" 
+        layout="layout3a"
+        contentA={<div style={{height: '100px', background: '#a7a7a7'}}>Content A with backgound #a7a7a7'</div>}
+        contentB={<div style={{height: '147px', background: '#a7a7a7'}}>Content B with backgound #a7a7a7'</div>}
+    >
+    Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{
+    `<Panel title="Layout3b" 
+        layout="layout3b"
+        contentA={<div style={{height: '100px', background: '#a7a7a7'}}>Content A with backgound #a7a7a7'</div>}
+        contentB={<div style={{height: '147px', background: '#a7a7a7'}}>Content B with backgound #a7a7a7'</div>}
+    >
+    Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{
+    `<Panel title="Layout3c" 
+        layout="layout3c"
+        contentA={<div style={{height: '100px', background: '#a7a7a7'}}>Content A with backgound #a7a7a7'</div>}
+        contentB={<div style={{height: '147px', background: '#a7a7a7'}}>Content B with backgound #a7a7a7'</div>}
+    >
+    Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>
+
+## Date and time
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{`
+    <Panel
+        title="Date and time"
+        contentA="Gitt dato og tid"
+        date="7 februar 2022"
+        time="12:00"
+        >
+        Ekspandert innhold
+    </Panel>`}
+</MDXCustom.LiveComponent>

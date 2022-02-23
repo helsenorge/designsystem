@@ -57,6 +57,8 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   ellipsis?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Indicates that its element can be focused, avoid using values greater than 0 */
+  tabIndex?: number;
 }
 
 const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, inverted: boolean, hovered: boolean): string => {
@@ -90,6 +92,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     variant = 'fill',
     disabled = false,
     ellipsis = false,
+    tabIndex,
     testId,
     href,
     target,
@@ -133,7 +136,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     [buttonStyles['button__content--danger']]: dangerIntent,
     [buttonStyles['button__content--fill']]: fillVariant,
     [buttonStyles['button__content--borderless']]: borderlessVariant,
-    [buttonStyles['button__content--with-icon']]: hasIcon,
+    [buttonStyles['button__content--with-icon']]: hasIcon && !borderlessVariant,
     [buttonStyles['button__content--large']]: large,
     [buttonStyles['button__content--ellipsis']]: ellipsis,
     [buttonStyles['button__content--inverted']]: inverted,
@@ -206,6 +209,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           data-analyticsid={AnalyticsId.Button}
           className={buttonClasses}
           ref={hoverRef as React.ForwardedRef<HTMLButtonElement>}
+          tabIndex={tabIndex}
           {...rest}
         >
           {renderbuttonContentWrapper()}
@@ -222,6 +226,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           target={target}
           rel={target === '_blank' ? 'noopener noreferrer' : props.rel}
           ref={hoverRef as React.ForwardedRef<HTMLAnchorElement>}
+          tabIndex={tabIndex}
           {...restProps}
         >
           {renderbuttonContentWrapper()}
