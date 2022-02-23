@@ -5,7 +5,7 @@ import { Breakpoint } from '../../hooks/useBreakpoint';
 import { when } from 'jest-when';
 import { screen as themeScreen } from '../../theme/grid';
 
-import { mockWindowMatchMedia } from '../../utils/tests/__mocks__/matchMedia';
+import { mockWindowMatchMedia } from '../../__mocks__/matchMedia';
 
 const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
   return <>{`${Breakpoint[breakpoint]}/${breakpoint}`}</>;

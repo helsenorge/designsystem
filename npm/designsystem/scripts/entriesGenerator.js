@@ -11,7 +11,7 @@ const glob = require('glob');
 
 const paths = {
   src: path.join('src'),
-  components: path.join('src', '{components,hoc}'),
+  components: path.join('src', '{components,hoc,__mocks__}'),
   icons: path.join('src', 'components/Icons'),
   output: path.join('scripts', 'componentsEntries.json'),
 };
@@ -110,6 +110,9 @@ function getComponentName(componentPath) {
     } else if (componentPath.includes('Icons')) {
       // returns the name of the icon with 'icons/' prefix if the component under Icons/
       name = `components/Icons/${arr2[arr2.length - 1]}`;
+    } else if (componentPath.includes('__mocks__')) {
+      // returns the name of the mock with '__mocks__/' prefix if the component under __mocks__/
+      name = `__mocks__/${arr2[arr2.length - 1]}`;
     } else if (componentPath.includes('/components/')) {
       // returns the name of the component with 'components/' prefix and 'index' suffix if the file is under /components
       name = `components/${arr2[arr2.length - 2]}/index`;

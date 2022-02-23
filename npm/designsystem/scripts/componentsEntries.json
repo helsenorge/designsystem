@@ -1,4 +1,6 @@
 {
+  "__mocks__/IntersectionObserver": "src/__mocks__/IntersectionObserver.ts",
+  "__mocks__/matchMedia": "src/__mocks__/matchMedia.ts",
   "components/AnchorLink/index": "src/components/AnchorLink/index.ts",
   "components/Avatar/index": "src/components/Avatar/index.ts",
   "components/Badge/index": "src/components/Badge/index.ts",
@@ -279,7 +281,6 @@
   "components/List/index": "src/components/List/index.ts",
   "components/Loader/index": "src/components/Loader/index.ts",
   "components/Logo/index": "src/components/Logo/index.ts",
-  "components/__mocks__/index": "src/components/Modal/__mocks__/IntersectionObserver.ts",
   "components/Modal/index": "src/components/Modal/index.ts",
   "components/NotificationPanel/index": "src/components/NotificationPanel/index.ts",
   "components/Panel/index": "src/components/Panel/index.tsx",
@@ -290,5 +291,6 @@
   "components/Textarea/index": "src/components/Textarea/index.tsx",
   "components/Tile/index": "src/components/Tile/index.ts",
   "components/Title/index": "src/components/Title/index.ts",
-  "components/Validation/index": "src/components/Validation/index.ts"
+  "components/Validation/index": "src/components/Validation/index.ts",
+  "hoc/withBreakpoint/index": "src/hoc/withBreakpoint/index.ts"
 }
