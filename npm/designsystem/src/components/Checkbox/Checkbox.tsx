@@ -8,7 +8,7 @@ import Icon from '../Icons';
 import { getColor } from '../../theme/currys/color';
 
 import checkboxStyles from './styles.module.scss';
-import { AnalyticsId, FormMode, FormVariant } from '../../constants';
+import { AnalyticsId, FormMode, FormVariant, IconSize } from '../../constants';
 
 export interface CheckboxProps {
   /** Adds custom classes to the element. */
@@ -108,7 +108,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           aria-invalid={error}
         />
         <span className={checkboxIconWrapperClasses}>
-          {isChecked && <Icon color={iconColor} className={checkboxStyles['checkbox__icon']} svgIcon={Check} size={38} />}
+          {isChecked && <Icon color={iconColor} className={checkboxStyles['checkbox__icon']} svgIcon={Check} size={IconSize.XSmall} />}
         </span>
         {label}
       </label>

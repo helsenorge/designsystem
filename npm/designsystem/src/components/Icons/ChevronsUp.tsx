@@ -16,21 +16,21 @@ const ChevronsUp: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): 
     />
   );
 
-  const small = (
+  const xSmall = (
     <path
       fillRule={'evenodd'}
       d="M23.998 22.698L13.495 33.2l1.786 1.786 8.717-8.717 8.726 8.725 1.786-1.786-10.512-10.511zm-8.72 1.704l-1.788-1.786L23.994 12.11l10.512 10.511-1.786 1.786-8.726-8.724-8.717 8.718z"
     />
   );
 
-  const smallHover = (
+  const xSmallHover = (
     <path
       fillRule={'evenodd'}
       d="M23.997 20.172L13.494 30.675l1.786 1.786 8.717-8.717 8.726 8.724 1.786-1.786-10.512-10.51zm-8.72 1.704l-1.788-1.786L23.994 9.585l10.512 10.51-1.786 1.787-8.726-8.725-8.717 8.719z"
     />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
 };
 
 export default ChevronsUp;

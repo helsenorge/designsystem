@@ -16,14 +16,14 @@ const Undo: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.El
     />
   );
 
-  const small = (
+  const xSmall = (
     <path
       fillRule={'evenodd'}
       d="M38.21 24.195c0 7.911-6.436 14.347-14.347 14.347-6.784 0-12.696-4.82-14.055-11.457l1.732-.355c1.192 5.82 6.374 10.043 12.323 10.043 6.936 0 12.579-5.642 12.579-12.578 0-6.936-5.643-12.579-12.579-12.579-3.65 0-7.109 1.61-9.486 4.342h4.428v1.77h-7.058l-.346-7.343 1.766-.085.195 4.13a14.384 14.384 0 0110.501-4.582c7.911 0 14.347 6.436 14.347 14.347"
     />
   );
 
-  const smallHover = (
+  const xSmallHover = (
     <path
       fillRule={'evenodd'}
       d="M34.186 34.38a14.37 14.37 0 01-10.169 4.192c-2.73 0-5.474-.772-7.87-2.355l.973-1.475c4.957 3.271 11.608 2.593 15.815-1.613 4.905-4.905 4.905-12.885 0-17.788-4.903-4.905-12.884-4.905-17.788 0-2.581 2.58-3.888 6.165-3.637 9.777l3.13-3.132 1.251 1.252-4.99 4.99-5.438-4.947 1.19-1.307 3.058 2.781a14.382 14.382 0 014.186-10.665c5.593-5.593 14.695-5.594 20.289 0 5.593 5.594 5.593 14.695 0 20.29"
@@ -44,7 +44,7 @@ const Undo: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.El
     ></path>
   );
 
-  return getIcon(size, isHovered, normal, normalHover, small, smallHover, xxSmall, xxSmallHover);
+  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover);
 };
 
 export default Undo;

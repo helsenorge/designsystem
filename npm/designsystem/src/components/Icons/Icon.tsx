@@ -36,17 +36,16 @@ export const getIcon = (
   isHovered: boolean,
   normal: JSX.Element,
   normalHover: JSX.Element,
-  small?: JSX.Element,
-  smallHover?: JSX.Element,
+  xSmall?: JSX.Element,
+  xSmallHover?: JSX.Element,
   xxSmall?: JSX.Element,
   xxSmallHover?: JSX.Element
 ): JSX.Element => {
-  if (size === IconSize.XSmall && small && smallHover) {
-    return isHovered ? smallHover : small;
-  }
-
-  if (size === IconSize.XXSmall && xxSmall && xxSmallHover) {
+  if (size <= IconSize.XXSmall && xxSmall && xxSmallHover) {
     return isHovered ? xxSmallHover : xxSmall;
+  }
+  if (size <= IconSize.XSmall && xSmall && xSmallHover) {
+    return isHovered ? xSmallHover : xSmall;
   }
 
   return isHovered ? normalHover : normal;

@@ -10,21 +10,21 @@ const Lock: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.El
     <path d="M29.594 19.509v-5.921a5.594 5.594 0 00-11.184-.22l-.004.22v1.57a.875.875 0 01-1.743.11l-.007-.11v-1.57a7.344 7.344 0 0114.684-.243l.004.243v5.921h3.005v17.444H13.69V19.51l15.903-.001zm-14.154 1.75v13.944h17.158V21.259H15.44z" />
   );
 
-  const small = (
+  const xSmall = (
     <path
       fillRule={'evenodd'}
       d="M15.735 35.075h16.53V21.477h-16.53v13.598zm2.861-19.27A5.41 5.41 0 0124 10.4a5.41 5.41 0 015.405 5.405v3.523H18.596v-3.523zm12.959 3.523v-3.523c0-4.164-3.39-7.555-7.555-7.555-4.165 0-7.552 3.39-7.552 7.555v3.523h-2.861v17.895h20.826V19.328h-2.858z"
     />
   );
 
-  const smallHover = (
+  const xSmallHover = (
     <path
       fillRule={'evenodd'}
       d="M15.735 35.075h16.53V21.477h-16.53v13.598zm15.812-15.747c.002-.011.008-.02.008-.031v-5.705c0-4.164-3.39-7.552-7.555-7.552-4.165 0-7.552 3.388-7.552 7.552v1.28a1.074 1.074 0 002.148 0v-1.28A5.41 5.41 0 0124 8.188a5.41 5.41 0 015.405 5.404v5.705c0 .011.006.02.008.031H13.587v17.895h20.826V19.328h-2.866z"
     />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
 };
 
 export default Lock;

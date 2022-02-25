@@ -16,11 +16,11 @@ const Forward: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX
     </g>
   );
 
-  const small = <path d="M28.999 11l-1.84 1.759 9.102 9.889H7v2.571h29.388l-9.42 9.999L28.787 37 41 24.037z" />;
+  const xSmall = <path d="M28.999 11l-1.84 1.759 9.102 9.889H7v2.571h29.388l-9.42 9.999L28.787 37 41 24.037z" />;
 
-  const smallHover = <path d="M32.93 11l-1.85 1.759 9.154 9.889H7v2.571h33.361l-9.473 9.999L32.717 37 45 24.037z" />;
+  const xSmallHover = <path d="M32.93 11l-1.85 1.759 9.154 9.889H7v2.571h33.361l-9.473 9.999L32.717 37 45 24.037z" />;
 
-  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
 };
 
 export default Forward;

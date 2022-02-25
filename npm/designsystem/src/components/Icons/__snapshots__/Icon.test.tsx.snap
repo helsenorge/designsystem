@@ -1,6 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gitt at icon skal vises Når icon rendres Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises Når icon rendres med Large størrelse Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="80"
+    role="img"
+    style="min-width: 80px; min-height: 80px;"
+    viewBox="0 0 48 48"
+    width="80"
+  >
+    <path
+      d="M37.976 24.195c0 7.782-6.331 14.112-14.113 14.112-6.675 0-12.49-4.74-13.825-11.27l1.273-.26c1.213 5.928 6.492 10.23 12.552 10.23 7.065 0 12.813-5.747 12.813-12.812 0-7.065-5.748-12.813-12.813-12.813-3.885 0-7.554 1.796-9.977 4.812h4.92v1.299H11.97l-.337-7.12 1.299-.061.223 4.72c2.669-3.11 6.578-4.95 10.707-4.95 7.782 0 14.113 6.33 14.113 14.113"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med Large størrelse og isHovered Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="80"
+    role="img"
+    style="min-width: 80px; min-height: 80px;"
+    viewBox="0 0 48 48"
+    width="80"
+  >
+    <path
+      d="M34.02 34.213a14.132 14.132 0 01-10.002 4.125 14.03 14.03 0 01-7.743-2.317l.716-1.085c5.049 3.333 11.823 2.644 16.11-1.642 4.995-4.996 4.995-13.124 0-18.12-4.996-4.995-13.124-4.994-18.12 0-2.747 2.747-4.071 6.611-3.653 10.457l3.479-3.479.919.92-4.833 4.832-5.272-4.796.875-.962 3.496 3.181c-.313-4.087 1.15-8.153 4.07-11.072 5.502-5.502 14.455-5.503 19.958 0 5.502 5.502 5.502 14.456 0 19.958"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med Medium størrelse Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="64"
+    role="img"
+    style="min-width: 64px; min-height: 64px;"
+    viewBox="0 0 48 48"
+    width="64"
+  >
+    <path
+      d="M37.976 24.195c0 7.782-6.331 14.112-14.113 14.112-6.675 0-12.49-4.74-13.825-11.27l1.273-.26c1.213 5.928 6.492 10.23 12.552 10.23 7.065 0 12.813-5.747 12.813-12.812 0-7.065-5.748-12.813-12.813-12.813-3.885 0-7.554 1.796-9.977 4.812h4.92v1.299H11.97l-.337-7.12 1.299-.061.223 4.72c2.669-3.11 6.578-4.95 10.707-4.95 7.782 0 14.113 6.33 14.113 14.113"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med Medium størrelse og isHovered Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="64"
+    role="img"
+    style="min-width: 64px; min-height: 64px;"
+    viewBox="0 0 48 48"
+    width="64"
+  >
+    <path
+      d="M34.02 34.213a14.132 14.132 0 01-10.002 4.125 14.03 14.03 0 01-7.743-2.317l.716-1.085c5.049 3.333 11.823 2.644 16.11-1.642 4.995-4.996 4.995-13.124 0-18.12-4.996-4.995-13.124-4.994-18.12 0-2.747 2.747-4.071 6.611-3.653 10.457l3.479-3.479.919.92-4.833 4.832-5.272-4.796.875-.962 3.496 3.181c-.313-4.087 1.15-8.153 4.07-11.072 5.502-5.502 14.455-5.503 19.958 0 5.502 5.502 5.502 14.456 0 19.958"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med Small størrelse Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -13,19 +97,283 @@ exports[`Gitt at icon skal vises Når icon rendres Så vises riktig icon 1`] = `
     viewBox="0 0 48 48"
     width="48"
   >
-    <g
+    <path
+      d="M37.976 24.195c0 7.782-6.331 14.112-14.113 14.112-6.675 0-12.49-4.74-13.825-11.27l1.273-.26c1.213 5.928 6.492 10.23 12.552 10.23 7.065 0 12.813-5.747 12.813-12.812 0-7.065-5.748-12.813-12.813-12.813-3.885 0-7.554 1.796-9.977 4.812h4.92v1.299H11.97l-.337-7.12 1.299-.061.223 4.72c2.669-3.11 6.578-4.95 10.707-4.95 7.782 0 14.113 6.33 14.113 14.113"
       fill-rule="evenodd"
-    >
-      <path
-        d="M24.65 25.937h-4.88v-1.3h3.58v-4.862h1.3zM16.272 36.651l-.954-.883 2.632-2.845.954.883zM31.728 36.651l-2.632-2.845.954-.883 2.632 2.845z"
-      />
-      <path
-        d="M24 14.602c-5.447 0-9.879 4.432-9.879 9.88 0 5.446 4.432 9.877 9.879 9.877 5.447 0 9.878-4.43 9.878-9.878 0-5.447-4.431-9.879-9.878-9.879m0 21.057c-6.164 0-11.179-5.015-11.179-11.178 0-6.164 5.015-11.179 11.179-11.179 6.164 0 11.178 5.015 11.178 11.18 0 6.162-5.014 11.177-11.178 11.177"
-      />
-      <path
-        d="M16.287 12.44h-.005a3.418 3.418 0 00-2.435 1.013 3.435 3.435 0 00.557 5.306 11.19 11.19 0 014.936-4.43 3.407 3.407 0 00-3.053-1.89zm-1.33 8.03l-.556-.241a4.74 4.74 0 01-2.859-4.336 4.707 4.707 0 011.384-3.357 4.715 4.715 0 013.354-1.396h.007c2.08 0 3.892 1.344 4.513 3.346l.18.579-.565.219a9.885 9.885 0 00-5.178 4.649l-.28.538zm13.704-6.14a11.179 11.179 0 014.935 4.428 3.438 3.438 0 001.563-2.879 3.45 3.45 0 00-3.446-3.44h-.006a3.407 3.407 0 00-3.046 1.89zm4.382 6.14l-.28-.537a9.884 9.884 0 00-5.178-4.649l-.563-.22.179-.578a4.713 4.713 0 014.504-3.346h.008a4.75 4.75 0 014.745 4.737 4.738 4.738 0 01-2.86 4.35l-.555.242z"
-      />
-    </g>
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med Small størrelse og isHovered Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="48"
+    role="img"
+    style="min-width: 48px; min-height: 48px;"
+    viewBox="0 0 48 48"
+    width="48"
+  >
+    <path
+      d="M34.02 34.213a14.132 14.132 0 01-10.002 4.125 14.03 14.03 0 01-7.743-2.317l.716-1.085c5.049 3.333 11.823 2.644 16.11-1.642 4.995-4.996 4.995-13.124 0-18.12-4.996-4.995-13.124-4.994-18.12 0-2.747 2.747-4.071 6.611-3.653 10.457l3.479-3.479.919.92-4.833 4.832-5.272-4.796.875-.962 3.496 3.181c-.313-4.087 1.15-8.153 4.07-11.072 5.502-5.502 14.455-5.503 19.958 0 5.502 5.502 5.502 14.456 0 19.958"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med XLarge størrelse Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="130"
+    role="img"
+    style="min-width: 130px; min-height: 130px;"
+    viewBox="0 0 48 48"
+    width="130"
+  >
+    <path
+      d="M37.976 24.195c0 7.782-6.331 14.112-14.113 14.112-6.675 0-12.49-4.74-13.825-11.27l1.273-.26c1.213 5.928 6.492 10.23 12.552 10.23 7.065 0 12.813-5.747 12.813-12.812 0-7.065-5.748-12.813-12.813-12.813-3.885 0-7.554 1.796-9.977 4.812h4.92v1.299H11.97l-.337-7.12 1.299-.061.223 4.72c2.669-3.11 6.578-4.95 10.707-4.95 7.782 0 14.113 6.33 14.113 14.113"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med XLarge størrelse og isHovered Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="130"
+    role="img"
+    style="min-width: 130px; min-height: 130px;"
+    viewBox="0 0 48 48"
+    width="130"
+  >
+    <path
+      d="M34.02 34.213a14.132 14.132 0 01-10.002 4.125 14.03 14.03 0 01-7.743-2.317l.716-1.085c5.049 3.333 11.823 2.644 16.11-1.642 4.995-4.996 4.995-13.124 0-18.12-4.996-4.995-13.124-4.994-18.12 0-2.747 2.747-4.071 6.611-3.653 10.457l3.479-3.479.919.92-4.833 4.832-5.272-4.796.875-.962 3.496 3.181c-.313-4.087 1.15-8.153 4.07-11.072 5.502-5.502 14.455-5.503 19.958 0 5.502 5.502 5.502 14.456 0 19.958"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med XSmall størrelse Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="38"
+    role="img"
+    style="min-width: 38px; min-height: 38px;"
+    viewBox="0 0 48 48"
+    width="38"
+  >
+    <path
+      d="M38.21 24.195c0 7.911-6.436 14.347-14.347 14.347-6.784 0-12.696-4.82-14.055-11.457l1.732-.355c1.192 5.82 6.374 10.043 12.323 10.043 6.936 0 12.579-5.642 12.579-12.578 0-6.936-5.643-12.579-12.579-12.579-3.65 0-7.109 1.61-9.486 4.342h4.428v1.77h-7.058l-.346-7.343 1.766-.085.195 4.13a14.384 14.384 0 0110.501-4.582c7.911 0 14.347 6.436 14.347 14.347"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med XSmall størrelse og isHovered Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="38"
+    role="img"
+    style="min-width: 38px; min-height: 38px;"
+    viewBox="0 0 48 48"
+    width="38"
+  >
+    <path
+      d="M34.186 34.38a14.37 14.37 0 01-10.169 4.192c-2.73 0-5.474-.772-7.87-2.355l.973-1.475c4.957 3.271 11.608 2.593 15.815-1.613 4.905-4.905 4.905-12.885 0-17.788-4.903-4.905-12.884-4.905-17.788 0-2.581 2.58-3.888 6.165-3.637 9.777l3.13-3.132 1.251 1.252-4.99 4.99-5.438-4.947 1.19-1.307 3.058 2.781a14.382 14.382 0 014.186-10.665c5.593-5.593 14.695-5.594 20.289 0 5.593 5.594 5.593 14.695 0 20.29"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med XXSmall størrelse Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="24"
+    role="img"
+    style="min-width: 24px; min-height: 24px;"
+    viewBox="0 0 48 48"
+    width="24"
+  >
+    <path
+      d="M38.726,24.1944 C38.726,32.3904 32.058,39.0584 23.862,39.0584 C16.834,39.0584 10.71,34.0664 9.302,27.1884 L12.046,26.6284 C13.186,32.2064 18.156,36.2564 23.862,36.2564 C30.514,36.2564 35.926,30.8464 35.926,24.1944 C35.926,17.5424 30.514,12.1324 23.862,12.1324 C20.762,12.1324 17.812,13.3504 15.59,15.4444 L20.838,15.4444 L20.838,18.2464 L11.322,18.2464 L11.318,8.3564 L14.12,8.3564 L14.12,12.9804 C16.798,10.6584 20.254,9.3324 23.862,9.3324 C32.058,9.3324 38.726,15.9984 38.726,24.1944"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med XXSmall størrelse og isHovered Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="24"
+    role="img"
+    style="min-width: 24px; min-height: 24px;"
+    viewBox="0 0 48 48"
+    width="24"
+  >
+    <path
+      d="M32.733,36.2656 C30.129,38.1556 27.063,39.0896 24.007,39.0896 C20.389,39.0896 16.785,37.7816 13.979,35.2136 L15.869,33.1476 C20.067,36.9916 26.469,37.3516 31.089,33.9996 C36.471,30.0936 37.673,22.5356 33.767,17.1516 C31.873,14.5456 29.079,12.8296 25.897,12.3256 C22.713,11.8156 19.527,12.5836 16.919,14.4756 C14.409,16.2976 12.735,19.0156 12.169,22.0156 L16.417,18.9336 L18.061,21.1996 L10.359,26.7896 L4.547,18.7876 L6.813,17.1416 L9.531,20.8856 C10.335,17.4316 12.353,14.3296 15.275,12.2096 C21.905,7.3936 31.219,8.8736 36.031,15.5076 C40.845,22.1416 39.365,31.4516 32.733,36.2656"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med default størrelse Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="48"
+    role="img"
+    style="min-width: 48px; min-height: 48px;"
+    viewBox="0 0 48 48"
+    width="48"
+  >
+    <path
+      d="M37.976 24.195c0 7.782-6.331 14.112-14.113 14.112-6.675 0-12.49-4.74-13.825-11.27l1.273-.26c1.213 5.928 6.492 10.23 12.552 10.23 7.065 0 12.813-5.747 12.813-12.812 0-7.065-5.748-12.813-12.813-12.813-3.885 0-7.554 1.796-9.977 4.812h4.92v1.299H11.97l-.337-7.12 1.299-.061.223 4.72c2.669-3.11 6.578-4.95 10.707-4.95 7.782 0 14.113 6.33 14.113 14.113"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med default størrelse og isHovered Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="48"
+    role="img"
+    style="min-width: 48px; min-height: 48px;"
+    viewBox="0 0 48 48"
+    width="48"
+  >
+    <path
+      d="M34.02 34.213a14.132 14.132 0 01-10.002 4.125 14.03 14.03 0 01-7.743-2.317l.716-1.085c5.049 3.333 11.823 2.644 16.11-1.642 4.995-4.996 4.995-13.124 0-18.12-4.996-4.995-13.124-4.994-18.12 0-2.747 2.747-4.071 6.611-3.653 10.457l3.479-3.479.919.92-4.833 4.832-5.272-4.796.875-.962 3.496 3.181c-.313-4.087 1.15-8.153 4.07-11.072 5.502-5.502 14.455-5.503 19.958 0 5.502 5.502 5.502 14.456 0 19.958"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med mindre enn XSmall størrelse Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="37"
+    role="img"
+    style="min-width: 37px; min-height: 37px;"
+    viewBox="0 0 48 48"
+    width="37"
+  >
+    <path
+      d="M38.21 24.195c0 7.911-6.436 14.347-14.347 14.347-6.784 0-12.696-4.82-14.055-11.457l1.732-.355c1.192 5.82 6.374 10.043 12.323 10.043 6.936 0 12.579-5.642 12.579-12.578 0-6.936-5.643-12.579-12.579-12.579-3.65 0-7.109 1.61-9.486 4.342h4.428v1.77h-7.058l-.346-7.343 1.766-.085.195 4.13a14.384 14.384 0 0110.501-4.582c7.911 0 14.347 6.436 14.347 14.347"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med mindre enn XSmall størrelse og isHovered Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="37"
+    role="img"
+    style="min-width: 37px; min-height: 37px;"
+    viewBox="0 0 48 48"
+    width="37"
+  >
+    <path
+      d="M34.186 34.38a14.37 14.37 0 01-10.169 4.192c-2.73 0-5.474-.772-7.87-2.355l.973-1.475c4.957 3.271 11.608 2.593 15.815-1.613 4.905-4.905 4.905-12.885 0-17.788-4.903-4.905-12.884-4.905-17.788 0-2.581 2.58-3.888 6.165-3.637 9.777l3.13-3.132 1.251 1.252-4.99 4.99-5.438-4.947 1.19-1.307 3.058 2.781a14.382 14.382 0 014.186-10.665c5.593-5.593 14.695-5.594 20.289 0 5.593 5.594 5.593 14.695 0 20.29"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med mindre enn XXSmall størrelse Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="23"
+    role="img"
+    style="min-width: 23px; min-height: 23px;"
+    viewBox="0 0 48 48"
+    width="23"
+  >
+    <path
+      d="M38.726,24.1944 C38.726,32.3904 32.058,39.0584 23.862,39.0584 C16.834,39.0584 10.71,34.0664 9.302,27.1884 L12.046,26.6284 C13.186,32.2064 18.156,36.2564 23.862,36.2564 C30.514,36.2564 35.926,30.8464 35.926,24.1944 C35.926,17.5424 30.514,12.1324 23.862,12.1324 C20.762,12.1324 17.812,13.3504 15.59,15.4444 L20.838,15.4444 L20.838,18.2464 L11.322,18.2464 L11.318,8.3564 L14.12,8.3564 L14.12,12.9804 C16.798,10.6584 20.254,9.3324 23.862,9.3324 C32.058,9.3324 38.726,15.9984 38.726,24.1944"
+      fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Gitt at icon skal vises Når icon rendres med mindre enn XXSmall størrelse og isHovered Så vises riktig icon 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon "
+    data-analyticsid="icon"
+    fill="black"
+    height="23"
+    role="img"
+    style="min-width: 23px; min-height: 23px;"
+    viewBox="0 0 48 48"
+    width="23"
+  >
+    <path
+      d="M32.733,36.2656 C30.129,38.1556 27.063,39.0896 24.007,39.0896 C20.389,39.0896 16.785,37.7816 13.979,35.2136 L15.869,33.1476 C20.067,36.9916 26.469,37.3516 31.089,33.9996 C36.471,30.0936 37.673,22.5356 33.767,17.1516 C31.873,14.5456 29.079,12.8296 25.897,12.3256 C22.713,11.8156 19.527,12.5836 16.919,14.4756 C14.409,16.2976 12.735,19.0156 12.169,22.0156 L16.417,18.9336 L18.061,21.1996 L10.359,26.7896 L4.547,18.7876 L6.813,17.1416 L9.531,20.8856 C10.335,17.4316 12.353,14.3296 15.275,12.2096 C21.905,7.3936 31.219,8.8736 36.031,15.5076 C40.845,22.1416 39.365,31.4516 32.733,36.2656"
+      fill-rule="evenodd"
+    />
   </svg>
 </div>
 `;

@@ -9,6 +9,7 @@ import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Slider from '../Slider';
 import Icon from '../Icons';
+import { IconSize } from '../../constants';
 import Envelope from '../Icons/Envelope';
 
 const stories = storiesOf('Modal', module);
@@ -66,7 +67,7 @@ stories.add('Modal with children after title', () => (
     description={text('description', 'For mye H P Lovecraft til å få plass i denne boksen: The most merciful thing in the world, I think.')}
     primaryButtonText={text('primaryButtonText', 'OK')}
     secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
-    afterTitleChildren={<Icon svgIcon={Envelope} size={48} />}
+    afterTitleChildren={<Icon svgIcon={Envelope} size={IconSize.Small} />}
     onClose={onClose}
     onSuccess={onSuccess}
   />

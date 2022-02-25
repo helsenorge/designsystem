@@ -14,11 +14,11 @@ const Pause: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.E
     </g>
   );
 
-  const small = <path d="M26.817 31.827h3.998V15.91h-3.998v15.918zm-9.894 0h3.997V15.91h-3.997v15.918z" />;
+  const xSmall = <path d="M26.817 31.827h3.998V15.91h-3.998v15.918zm-9.894 0h3.997V15.91h-3.997v15.918z" />;
 
-  const smallHover = <path d="M26.817 34.355h3.998V13.383h-3.998v20.972zm-9.894 0h3.997V13.383h-3.997v20.972z" />;
+  const xSmallHover = <path d="M26.817 34.355h3.998V13.383h-3.998v20.972zm-9.894 0h3.997V13.383h-3.997v20.972z" />;
 
-  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
 };
 
 export default Pause;

@@ -6,11 +6,11 @@ const ArrowRight: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): 
 
   const normalHover = <path d="M30.075 5.929l-1.142 1.377 13.044 15.721H5.929v1.948h36.048L28.933 40.692l1.142 1.379 14.996-18.07z" />;
 
-  const small = <path d="M27.075 5.929l-1.443 1.739 12.53 15.103H5.929v2.46h32.233L25.632 40.33l1.443 1.741 14.996-18.07z" />;
+  const xSmall = <path d="M27.075 5.929l-1.443 1.739 12.53 15.103H5.929v2.46h32.233L25.632 40.33l1.443 1.741 14.996-18.07z" />;
 
-  const smallHover = <path d="M30.864 5.929l-1.443 1.739 12.531 15.103H5.929v2.46h36.023L29.421 40.33l1.443 1.741 14.997-18.07z" />;
+  const xSmallHover = <path d="M30.864 5.929l-1.443 1.739 12.531 15.103H5.929v2.46h36.023L29.421 40.33l1.443 1.741 14.997-18.07z" />;
 
-  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
 };
 
 export default ArrowRight;

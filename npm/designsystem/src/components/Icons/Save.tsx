@@ -18,15 +18,15 @@ const Save: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.El
     </g>
   );
 
-  const small = (
+  const xSmall = (
     <path d="M23.216 9.473v17.693l-7.15-6.708-1.103 1.175 9.132 8.569 9.077-8.721-1.116-1.162-7.229 6.943V9.473h-1.611zm13.188 18.048v8.456H11.596v-8.456h-1.61v10.067h28.029V27.52h-1.61z" />
   );
 
-  const smallHover = (
+  const xSmallHover = (
     <path d="M23.217 12v17.694l-7.15-6.71-1.103 1.175 9.13 8.57 9.078-8.722-1.114-1.162-7.23 6.943V12h-1.61zM36.404 27.52v8.456H11.598v-8.456H9.986v10.067h28.028V27.52h-1.61z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
 };
 
 export default Save;

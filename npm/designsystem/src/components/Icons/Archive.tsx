@@ -16,21 +16,21 @@ const Archive: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX
     />
   );
 
-  const small = (
+  const xSmall = (
     <path
       fillRule={'evenodd'}
       d="M9.107 16.848H38.38v-6.506H9.107v6.506zm2.097 20.691h25.079V18.111H11.204v19.428zM7.845 9.08v9.032h2.096v20.692h27.605V18.11h2.096V9.079H7.845zM20.73 21.703h6.027c.421 0 .763.343.763.762 0 .42-.342.763-.763.763H20.73a.764.764 0 01-.763-.763c0-.42.342-.762.763-.762zm0 2.535h6.027c.978 0 1.774-.795 1.774-1.773 0-.978-.796-1.772-1.774-1.772H20.73c-.978 0-1.774.794-1.774 1.772s.796 1.773 1.774 1.773z"
     />
   );
 
-  const smallHover = (
+  const xSmallHover = (
     <path
       fillRule={'evenodd'}
       d="M11.188 38.171h25.079V18.744h-25.08V38.17zM9.006 17.747l-1.124-6.408 28.832-5.056 1.123 6.408-28.83 5.056zm30.293-4.03L37.74 4.82 6.421 10.313l1.56 8.895 1.944-.34v20.566H37.53V17.48H17.838L39.3 13.716zm-18.586 8.618h6.028c.42 0 .763.342.763.761 0 .421-.342.763-.763.763h-6.028a.763.763 0 010-1.524zm0 2.535h6.028c.978 0 1.774-.796 1.774-1.774 0-.977-.796-1.772-1.774-1.772h-6.028a1.774 1.774 0 000 3.546z"
     />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
 };
 
 export default Archive;

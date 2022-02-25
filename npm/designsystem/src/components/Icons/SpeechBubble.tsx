@@ -14,19 +14,19 @@ const SpeechBubble: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
       fill-rule="evenodd"
     />
   );
-  const small = (
+  const xSmall = (
     <path
       d="M14.003 25.669h13.958v-1.644H14.003v1.644Zm0-4.574h19.602V19.45H14.003v1.644Zm24.91 7.492a2.647 2.647 0 0 1-2.644 2.643h-5.166v3.189l-4.958-3.189H11.73a2.647 2.647 0 0 1-2.644-2.643V17.236a2.646 2.646 0 0 1 2.644-2.644h24.538a2.646 2.646 0 0 1 2.644 2.644v11.35Zm-2.644-15.638H11.731a4.29 4.29 0 0 0-4.286 4.287v11.35a4.29 4.29 0 0 0 4.286 4.286h13.931l7.083 4.554v-4.554h3.524a4.29 4.29 0 0 0 4.286-4.285V17.236a4.29 4.29 0 0 0-4.286-4.287Z"
       fill-rule="evenodd"
     />
   );
-  const smallHover = (
+  const xSmallHover = (
     <path
       d="M14.003 25.669h19.602v-1.644H14.003v1.644Zm0-4.574h19.602V19.45H14.003v1.644Zm24.91 7.492a2.647 2.647 0 0 1-2.644 2.643h-5.166v3.189l-4.958-3.189H11.73a2.647 2.647 0 0 1-2.644-2.643V17.236a2.646 2.646 0 0 1 2.644-2.644h24.538a2.646 2.646 0 0 1 2.644 2.644v11.35Zm-2.644-15.638H11.731a4.29 4.29 0 0 0-4.286 4.287v11.35a4.29 4.29 0 0 0 4.286 4.286h13.931l7.083 4.554v-4.554h3.524a4.29 4.29 0 0 0 4.286-4.285V17.236a4.29 4.29 0 0 0-4.286-4.287Z"
       fill-rule="evenodd"
     />
   );
-  return getIcon(size, isHovered, normal, normalHover, small, smallHover);
+  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
 };
 
 export default SpeechBubble;
