@@ -29,14 +29,14 @@
       flex: 1;
     }
 
-    &--layout3ish{
+    &--layout3ish {
       @media (min-width: map-get($grid-breakpoints, lg)) {
         display: flex;
         flex-direction: row;
       }
     }
 
-    &--grow{
+    &--grow {
       flex: 1;
     }
   }
@@ -198,6 +198,9 @@
       background-color: $neutral100;
     }
   }
+  &--no-top-border#{&}--line {
+    border-top: none;
+  }
 
   &--button {
     cursor: pointer;
@@ -257,7 +260,7 @@
   font-size: $font-size-sm;
   color: $cherry500;
   display: flex;
-
+  margin-bottom: getSpacer(2xs);
   span {
     padding-left: 5px;
     align-self: center;

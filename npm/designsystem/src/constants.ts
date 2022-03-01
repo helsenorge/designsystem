@@ -102,6 +102,7 @@ export enum AnalyticsId {
   Modal = 'modal',
   NotificationPanel = 'notification-panel',
   Panel = 'panel',
+  PanelList = 'panel-list',
   Portal = 'portal',
   RadioButton = 'radio-button',
   Slider = 'slider',

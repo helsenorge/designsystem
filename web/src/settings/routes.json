@@ -118,6 +118,10 @@
           "path": "/bibliotek/komponenter/panel"
         },
         {
+          "label": "PanelList",
+          "path": "/bibliotek/komponenter/panel-list"
+        },
+        {
           "label": "RadioButton",
           "path": "/bibliotek/komponenter/radiobutton"
         },

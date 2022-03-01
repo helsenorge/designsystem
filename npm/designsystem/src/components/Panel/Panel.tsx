@@ -41,7 +41,7 @@ export enum PanelLayout {
   layout3c = 'layout3c',
 }
 
-interface PanelProps {
+export interface PanelProps {
   children?: React.ReactNode;
   /** Title of the panel */
   title?: string;
@@ -81,7 +81,85 @@ interface PanelProps {
   time?: string;
   /** Displays date with icon */
   date?: string;
+  /** Removes top border when variant is "line" */
+  noTopBorder?: boolean;
 }
+
+const StatusText: React.FC<{ status?: keyof typeof PanelStatus; statusMessage?: string }> = ({ status, statusMessage }) => {
+  const statusIcon = (): { color: string; svgIcon: React.FC<SvgPathProps> } => {
+    if (status === PanelStatus.error) {
+      return { color: palette.cherry500, svgIcon: AlertSignFill };
+    }
+
+    return { color: palette.black, svgIcon: Pencil };
+  };
+
+  const statusMessageClass = classNames(panelStyles['status-message'], {
+    [panelStyles['status-message--new']]: status === PanelStatus.new,
+  });
+
+  if ((status === PanelStatus.error || status === PanelStatus.draft) && statusMessage) {
+    return (
+      <div className={statusMessageClass} data-testid="display-status">
+        {<Icon {...statusIcon()} size={IconSize.XSmall} />} <span>{statusMessage}</span>
+      </div>
+    );
+  }
+
+  return null;
+};
+
+const DateTime: React.FC<{ date?: string; time?: string }> = ({ date, time }) => {
+  if (date || time) {
+    return (
+      <div className={panelStyles['datetime-container']} data-testid="datetime">
+        {date && (
+          <div className={panelStyles['datetime-container__icon']}>
+            <Icon svgIcon={Calendar} size={IconSize.XSmall} />
+            <span>{date}</span>
+          </div>
+        )}
+        {time && (
+          <div className={panelStyles['datetime-container__icon']}>
+            <Icon svgIcon={Watch} size={IconSize.XSmall} />
+            <span>{time}</span>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return null;
+};
+
+type DetailsButtonProps = Pick<PanelProps, 'buttonText' | 'buttonTextClose' | 'url' | 'target'> & {
+  onClick: () => void;
+  renderAsButton: boolean;
+  showDetails: boolean;
+};
+
+const DetailsButton = React.forwardRef(function DetailsButtonForwardedRef(
+  props: DetailsButtonProps,
+  ref: React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>
+) {
+  const { buttonText, buttonTextClose, url, target, onClick, renderAsButton, showDetails, ...rest } = props;
+
+  if (renderAsButton) {
+    return (
+      <Button testId="expand" ref={ref} onClick={onClick} {...rest}>
+        {showDetails ? buttonTextClose : buttonText}
+        <Icon svgIcon={showDetails ? ChevronUp : ChevronDown} />
+      </Button>
+    );
+  }
+
+  return (
+    <Button testId="url" ref={ref} htmlMarkup="a" href={url} target={target} {...rest}>
+      {buttonText}
+      <Icon svgIcon={ArrowRight} />
+    </Button>
+  );
+});
 
 const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
   const {
@@ -105,6 +183,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     containerAsButton = false,
     date,
     time,
+    noTopBorder,
   } = props;
 
   const [showDetails, setShowDetails] = useState(false);
@@ -112,8 +191,6 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   const buttonId = uuid();
   const breakpoint = useBreakpoint();
 
-  const lineVariant = variant === PanelVariant.line;
-  const whiteVariant = variant === PanelVariant.white;
   const layout3 = [PanelLayout.layout3a.toString(), PanelLayout.layout3b.toString(), PanelLayout.layout3c.toString()].includes(layout);
 
   const panelWrapperClass = classNames(panelStyles['panel-wrapper'], className);
@@ -121,8 +198,9 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   const panelClasses = classNames(panelStyles.panel, {
     [panelStyles['panel--fill']]: variant === PanelVariant.fill,
     [panelStyles['panel--stroke']]: variant === PanelVariant.stroke,
-    [panelStyles['panel--white']]: whiteVariant,
-    [panelStyles['panel--line']]: lineVariant,
+    [panelStyles['panel--white']]: variant === PanelVariant.white,
+    [panelStyles['panel--line']]: variant === PanelVariant.line,
+    [panelStyles['panel--no-top-border']]: variant === PanelVariant.line && noTopBorder,
     [panelStyles['panel--selected']]: showDetails,
     [panelStyles['panel--new']]: status === PanelStatus.new,
     [panelStyles['panel--draft']]: status === PanelStatus.draft,
@@ -156,8 +234,8 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
 
   const panelDetailsClasses = classNames(panelStyles['panel-details'], {
     [panelStyles['panel-details--open']]: showDetails,
-    [panelStyles['panel-details--line']]: lineVariant,
-    [panelStyles['panel-details--white']]: whiteVariant,
+    [panelStyles['panel-details--line']]: variant === PanelVariant.line,
+    [panelStyles['panel-details--white']]: variant === PanelVariant.white,
   });
 
   const panelContentBClass = classNames(panelStyles['panel-content-b'], {
@@ -173,24 +251,21 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
       id,
       tabIndex: tabable ? undefined : -1,
       variant: 'borderless' as ButtonVariants,
-      ref: id ? buttonRef : undefined,
       ellipsis: true,
     };
 
-    if (children) {
-      return (
-        <Button testId="expand" onClick={(): void => setShowDetails(!showDetails)} {...btnProps}>
-          {showDetails ? buttonTextClose : buttonText}
-          <Icon svgIcon={showDetails ? ChevronUp : ChevronDown} />
-        </Button>
-      );
-    }
-
     return (
-      <Button testId="url" htmlMarkup="a" href={url} target={target} {...btnProps}>
-        {buttonText}
-        <Icon svgIcon={ArrowRight} />
-      </Button>
+      <DetailsButton
+        renderAsButton={!!children}
+        onClick={(): void => setShowDetails(!showDetails)}
+        showDetails={showDetails}
+        buttonText={buttonText}
+        url={url}
+        target={target}
+        buttonTextClose={buttonTextClose}
+        ref={id ? buttonRef : undefined}
+        {...btnProps}
+      />
     );
   };
 
@@ -198,30 +273,6 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel__btn-container--layout3ish']]: layout3,
     [panelStyles['panel__btn-container--padding-top']]: contentB,
   });
-
-  const renderStatusText = (): JSX.Element | null => {
-    const statusIcon = (): { color: string; svgIcon: React.FC<SvgPathProps> } => {
-      if (status === PanelStatus.error) {
-        return { color: palette.cherry500, svgIcon: AlertSignFill };
-      }
-
-      return { color: palette.black, svgIcon: Pencil };
-    };
-
-    const statusMessageClass = classNames(panelStyles['status-message'], {
-      [panelStyles['status-message--new']]: status === PanelStatus.new,
-    });
-
-    if ((status === PanelStatus.error || status === PanelStatus.draft) && statusMessage) {
-      return (
-        <div className={statusMessageClass} data-testid="display-status">
-          {<Icon {...statusIcon()} size={IconSize.XSmall} />} <span>{statusMessage}</span>
-        </div>
-      );
-    }
-
-    return null;
-  };
 
   const onContainerClick = (): void => {
     if (containerAsButton) {
@@ -238,29 +289,6 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     }
   };
 
-  const renderDateAndTime = (): JSX.Element | null => {
-    if (date || time) {
-      return (
-        <div className={panelStyles['datetime-container']} data-testid="datetime">
-          {date && (
-            <div className={panelStyles['datetime-container__icon']}>
-              <Icon svgIcon={Calendar} size={IconSize.XSmall} />
-              <span>{date}</span>
-            </div>
-          )}
-          {time && (
-            <div className={panelStyles['datetime-container__icon']}>
-              <Icon svgIcon={Watch} size={IconSize.XSmall} />
-              <span>{time}</span>
-            </div>
-          )}
-        </div>
-      );
-    }
-
-    return null;
-  };
-
   return (
     <div ref={ref} data-testid={testId} className={panelWrapperClass} data-analyticsid={AnalyticsId.Panel}>
       <div
@@ -274,7 +302,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
         {icon && !iconRight && <div className={panelStyles.panel__icon}>{icon}</div>}
         <div className={panelContainer}>
           <div className={panelContentLeftClass}>
-            {renderStatusText()}
+            <StatusText status={status} statusMessage={statusMessage} />
             {title && (
               <div className={panelStyles['panel-content-a__title-container']}>
                 <Title appearance="title3">{title}</Title>
@@ -288,13 +316,13 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
               </div>
             )}
             {contentA}
-            {breakpoint !== undefined && breakpoint >= Breakpoint.lg && renderDateAndTime()}
+            {breakpoint >= Breakpoint.lg && <DateTime date={date} time={time} />}
           </div>
           <div className={panelContentRightClass}>
             {contentB && <div className={panelContentBClass}>{contentB}</div>}
             {(children || url || date || time) && (
               <div className={btnContainerClass}>
-                {breakpoint !== undefined && breakpoint < Breakpoint.lg && renderDateAndTime()}
+                {breakpoint < Breakpoint.lg && <DateTime date={date} time={time} />}
                 {(children || url) && <div className={panelActionBtnClass}>{renderDetailsButton(!containerAsButton, buttonId)}</div>}
               </div>
             )}
