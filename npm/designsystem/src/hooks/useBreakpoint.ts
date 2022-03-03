@@ -47,14 +47,28 @@ export const useBreakpoint = (): Breakpoint => {
       .map(([size, mediaQuery]) => {
         return { breakpoint: Breakpoint[size as keyof typeof Breakpoint], mediaQuery: window.matchMedia(mediaQuery) };
       });
-    mediaQueryList.forEach(x => x.mediaQuery.addEventListener('change', handleMediaQueryEvent));
+    mediaQueryList.forEach(x => {
+      // iOS <=13 har ikke støtte for addEventListener/removeEventListener på MediaQueryList,
+      // men har støtte for addListener
+      if (x.mediaQuery.addEventListener) {
+        x.mediaQuery.addEventListener('change', handleMediaQueryEvent);
+      } else if (x.mediaQuery.addListener) {
+        x.mediaQuery.addListener(handleMediaQueryEvent);
+      }
+    });
 
     // Finn breakpoint ved første render
     const initialBreakpoint = mediaQueryList.find(x => x.mediaQuery.matches)?.breakpoint ?? breakpoint;
     setBreakpoint(initialBreakpoint);
 
     return (): void => {
-      mediaQueryList.forEach(x => x.mediaQuery.removeEventListener('change', handleMediaQueryEvent));
+      mediaQueryList.forEach(x => {
+        if (x.mediaQuery.removeEventListener) {
+          x.mediaQuery.removeEventListener('change', handleMediaQueryEvent);
+        } else if (x.mediaQuery.removeListener) {
+          x.mediaQuery.removeListener(handleMediaQueryEvent);
+        }
+      });
     };
   }, []);
 
