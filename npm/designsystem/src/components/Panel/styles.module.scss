@@ -16,6 +16,16 @@
   }
 }
 
+@mixin panel-padding-icon {
+  padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
+  }
+  @media (min-width: map-get($grid-breakpoints, lg)) {
+    padding: getSpacer(l) getSpacer(m) getSpacer(l) getSpacer(m);
+  }
+}
+
 .panel {
   @include panel-padding;
   outline: none;
@@ -29,7 +39,7 @@
       flex: 1;
     }
 
-    &--layout3ish {
+    &--layout3 {
       @media (min-width: map-get($grid-breakpoints, lg)) {
         display: flex;
         flex-direction: row;
@@ -44,6 +54,7 @@
   &--with-icon {
     display: flex;
     flex-direction: row;
+    @include panel-padding-icon;
   }
 
   &__icon {
@@ -76,7 +87,7 @@
       }
     }
 
-    &--layout3ish {
+    &--layout3 {
       display: flex;
       flex-direction: column;
       padding-left: 0;
@@ -105,7 +116,7 @@
       max-width: 300px;
     }
 
-    &--layout3ish {
+    &--layout3 {
       display: flex;
       align-self: initial;
       flex-direction: column;
@@ -246,13 +257,15 @@
   &--open {
     display: block;
   }
-
   &--line {
     background: $white;
     border-bottom: 1px solid $neutral500;
   }
   &--white {
     background: $white;
+  }
+  &--with-icon {
+    @include panel-padding-icon;
   }
 }
 
@@ -315,6 +328,11 @@
     padding-top: getSpacer(s);
     padding-left: 0;
     @media (min-width: map-get($grid-breakpoints, md)) {
+      padding-right: getSpacer(m);
+    }
+  }
+  &--layout3 {
+    @media (min-width: map-get($grid-breakpoints, lg)) {
       padding-right: getSpacer(m);
     }
   }

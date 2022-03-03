@@ -212,7 +212,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
 
   const panelContainer = classNames({
     [panelStyles['panel__container']]: layout === PanelLayout.layout2 && contentB,
-    [panelStyles['panel__container--layout3ish']]: layout3 && contentB,
+    [panelStyles['panel__container--layout3']]: layout3 && contentB,
     [panelStyles['panel__container--grow']]: icon,
   });
 
@@ -226,7 +226,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   const panelContentRightClass = classNames({
     [panelStyles['panel__content-right--layout1']]: contentB && layout === PanelLayout.layout1,
     [panelStyles['panel__content-right--layout2']]: contentB && layout === PanelLayout.layout2,
-    [panelStyles['panel__content-right--layout3ish']]: contentB && layout3,
+    [panelStyles['panel__content-right--layout3']]: contentB && layout3,
     [panelStyles['panel__content-right--layout3a']]: contentB && layout === PanelLayout.layout3a,
     [panelStyles['panel__content-right--layout3b']]: contentB && layout === PanelLayout.layout3b,
     [panelStyles['panel__content-right--layout3c']]: contentB && layout === PanelLayout.layout3c,
@@ -236,10 +236,12 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel-details--open']]: showDetails,
     [panelStyles['panel-details--line']]: variant === PanelVariant.line,
     [panelStyles['panel-details--white']]: variant === PanelVariant.white,
+    [panelStyles['panel-details--with-icon']]: icon,
   });
 
   const panelContentBClass = classNames(panelStyles['panel-content-b'], {
     [panelStyles['panel-content-b--layout1']]: layout === PanelLayout.layout1,
+    [panelStyles['panel-content-b--layout3']]: layout3,
   });
 
   const panelActionBtnClass = classNames(panelStyles['panel__details-btn'], {
@@ -270,7 +272,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   };
 
   const btnContainerClass = classNames(panelStyles['panel__btn-container'], {
-    [panelStyles['panel__btn-container--layout3ish']]: layout3,
+    [panelStyles['panel__btn-container--layout3']]: layout3,
     [panelStyles['panel__btn-container--padding-top']]: contentB,
   });
 
