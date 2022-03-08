@@ -47,6 +47,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
 
   &--fluid {
     width: 100%;
+    padding: 0;
   }
 
   &--large {
@@ -367,13 +368,15 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       }
     }
 
-    &--with-icon:first-child {
+    &--with-icon:first-child,
+    &--fluid:first-child {
       margin-left: 1.5rem;
     }
     &--with-icon:last-child {
       margin-right: 1.5rem;
     }
-    &--large#{&}--with-icon:first-child {
+    &--large#{&}--with-icon:first-child,
+    &--large#{&}--fluid:first-child {
       margin-left: 2.5rem;
     }
     &--large#{&}--with-icon:last-child {
