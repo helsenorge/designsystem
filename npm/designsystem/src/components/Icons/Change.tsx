@@ -30,7 +30,14 @@ const Change: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.
     />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  const xxSmall = (
+    <path
+      fillRule={'evenodd'}
+      d="M6.336 1.176 6.101 0C2.604.699.066 3.799.066 7.369c0 1.974.793 3.852 2.152 5.245L0 12.718l.057 1.199 4.348-.205V9.529h-1.2v2.382a6.332 6.332 0 0 1-1.939-4.542c0-3 2.132-5.604 5.07-6.193Zm6.409.809a7.52 7.52 0 0 1 2.152 5.244 7.477 7.477 0 0 1-5.827 7.325c-.55.127-1.118.19-1.689.19v-1.199c.48 0 .958-.055 1.419-.161l.135.585-.134-.585a6.28 6.28 0 0 0 4.896-6.155c0-1.723-.715-3.36-1.939-4.542v2.386h-1.2V.887l4.351-.206.057 1.199-2.221.105Z"
+    />
+  );
+
+  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmall);
 };
 
 export default Change;

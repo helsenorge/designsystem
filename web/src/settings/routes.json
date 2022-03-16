@@ -134,6 +134,10 @@
           "path": "/bibliotek/komponenter/slider"
         },
         {
+          "label": "StatusDot",
+          "path": "/bibliotek/komponenter/statusdot"
+        },
+        {
           "label": "Textarea",
           "path": "/bibliotek/komponenter/textarea"
         },

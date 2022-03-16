@@ -107,6 +107,7 @@ export enum AnalyticsId {
   RadioButton = 'radio-button',
   Slider = 'slider',
   Spacer = 'spacer',
+  StatusDot = 'status-dot',
   Textarea = 'textarea',
   Tile = 'tile',
   Title = 'title',

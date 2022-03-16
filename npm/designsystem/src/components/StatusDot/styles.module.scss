@@ -1,0 +1,59 @@
+@import '../../scss/palette';
+@import '../../scss/spacers.scss';
+@import '../../scss/font-settings';
+
+.statusdot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: $font-size-sm;
+  font-weight: 400;
+  line-height: $lineheight-size-sm;
+
+  &--cancelled {
+    color: $cherry600;
+  }
+
+  &__dot {
+    top: getSpacer(3xs);
+    margin-right: getSpacer(2xs);
+    border-radius: 10rem;
+
+    &:not(#{&}--icon) {
+      width: 0.937rem;
+      height: 0.937rem;
+    }
+
+    &--info {
+      background: $kiwi900;
+    }
+
+    &--warning {
+      background: $banana400;
+    }
+
+    &--alert,
+    &--cancelled {
+      background: $cherry500;
+    }
+
+    &--active {
+      background: $blueberry500;
+    }
+
+    &--transparent {
+      border: 1px solid $neutral500;
+    }
+
+    &--icon {
+      position: absolute;
+      margin: getSpacer(4xs) * -1 0 0 getSpacer(3xs) * -1;
+    }
+  }
+
+  &__label {
+    &--icon {
+      margin-left: getSpacer(m);
+    }
+  }
+}
