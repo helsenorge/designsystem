@@ -259,4 +259,26 @@ describe('Gitt at button skal vises', (): void => {
       expect(button).toHaveAttribute('data-analyticsid', 'button');
     });
   });
+  describe('Når Button ikke har noen type', (): void => {
+    test('Så er den av typen button', (): void => {
+      render(<Button testId={'knapp'}>Tekst</Button>);
+
+      const button = screen.getByTestId('knapp');
+
+      expect(button).toHaveAttribute('type', 'button');
+    });
+  });
+  describe('Når Button har type submit', (): void => {
+    test('Så er den av typen submit', (): void => {
+      render(
+        <Button testId={'knapp'} type="submit">
+          Tekst
+        </Button>
+      );
+
+      const button = screen.getByTestId('knapp');
+
+      expect(button).toHaveAttribute('type', 'submit');
+    });
+  });
 });

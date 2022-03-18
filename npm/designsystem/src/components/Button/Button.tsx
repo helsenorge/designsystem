@@ -45,6 +45,8 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   inverted?: boolean;
   /** Changes the underlying element of the button. */
   htmlMarkup?: ButtonTags;
+  /** Button type. Default: button */
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   /** Changes the size of the button to large. */
   large?: boolean;
   /** Sets the button into a loading state displaying <Loader /> as content. */
@@ -86,6 +88,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     intent = 'primary',
     inverted = false,
     htmlMarkup = 'button',
+    type = 'button',
     onClick,
     large = false,
     loading = false,
@@ -210,6 +213,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           className={buttonClasses}
           ref={hoverRef as React.ForwardedRef<HTMLButtonElement>}
           tabIndex={tabIndex}
+          type={type}
           {...rest}
         >
           {renderbuttonContentWrapper()}

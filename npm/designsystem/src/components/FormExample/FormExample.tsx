@@ -161,7 +161,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       <Validation variant={props.variant} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
         {getFormExample()}
       </Validation>
-      <Button>{'Submit'}</Button>
+      <Button type="submit">{'Submit'}</Button>
     </form>
   );
 };

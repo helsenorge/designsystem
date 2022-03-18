@@ -5,6 +5,7 @@ exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
   <button
     class="button button--fill"
     data-analyticsid="button"
+    type="button"
   >
     <span
       class="content-wrapper"
@@ -25,6 +26,7 @@ exports[`Gitt at button skal vises Når button rendres kun med ikon Så innehold
     aria-label="Check me"
     class="button button--fill button--with-icon"
     data-analyticsid="button"
+    type="button"
   >
     <span
       class="content-wrapper"
@@ -54,6 +56,7 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
   <button
     class="button button--fill button--with-icon"
     data-analyticsid="button"
+    type="button"
   >
     <span
       class="content-wrapper"
