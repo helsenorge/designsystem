@@ -316,28 +316,37 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
     white-space: normal;
 
     &--fill {
+      color: $white;
+
       #{$button}:focus & {
         border-bottom: 1px solid $white;
       }
     }
 
     &--fill#{&}--inverted {
+      color: $blueberry500;
+
       #{$button}:focus & {
         border-bottom-color: $blueberry700;
       }
     }
     &--fill#{&}--warning#{&}--inverted {
+      color: $banana500;
+
       #{$button}:focus & {
         border-bottom-color: $banana700;
       }
     }
     &--fill#{&}--danger#{&}--inverted {
+      color: $cherry500;
+
       #{$button}:focus & {
         border-bottom-color: $cherry700;
       }
     }
 
     &--borderless {
+      color: $blueberry500;
       border-bottom: 1px solid transparent;
 
       #{$button}:hover &,
@@ -347,6 +356,8 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       }
     }
     &--borderless#{&}--warning {
+      color: $banana500;
+
       #{$button}:hover &,
       #{$button}:active &,
       #{$button}:focus & {
@@ -354,6 +365,8 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       }
     }
     &--borderless#{&}--danger {
+      color: $cherry500;
+
       #{$button}:hover &,
       #{$button}:active &,
       #{$button}:focus & {
@@ -361,11 +374,26 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       }
     }
     &--borderless#{&}--inverted {
+      color: $white;
+
       #{$button}:hover &,
       #{$button}:active &,
       #{$button}:focus & {
         border-bottom-color: $white;
       }
+    }
+
+    &--outline {
+      color: $blueberry500;
+    }
+    &--outline#{&}--warning {
+      color: $banana500;
+    }
+    &--outline#{&}--danger {
+      color: $cherry500;
+    }
+    &--outline#{&}--inverted {
+      color: $white;
     }
 
     &--with-icon:first-child,

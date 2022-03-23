@@ -10,6 +10,7 @@ import Textarea from '../Textarea';
 import { FormVariant } from '../../constants';
 import Input from '../Input';
 import Hospital from '../Icons/Hospital';
+import FormLayout, { FormLayoutColumns } from '../FormLayout';
 
 interface FormExampleProps {
   exampleType: FormExampleVariants;
@@ -38,6 +39,12 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   const errorMessage3 = 'Det kan ikke legges inn mer enn 40 tegn';
   const errorMessage4 = 'Du må skrive noe her';
 
+  const allCheckBoxes = [
+    <Checkbox key={0} inputId="checkbox1" label={'Checkbox 1'} ref={register({ required: errorMessage })} />,
+    <Checkbox key={1} inputId="checkbox2" label={'Checkbox 2'} ref={register({ required: errorMessage })} />,
+    <Checkbox key={2} inputId="checkbox3" label={'Checkbox 3'} ref={register({ required: errorMessage })} />,
+  ];
+
   const requireTwo = (value: Array<string>): true | string => {
     return value.length >= 2 || errorMessage2;
   };
@@ -53,9 +60,11 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           variant={props.variant}
           name={formGroup1}
         >
-          <Checkbox inputId="checkbox1" label={'Checkbox 1'} ref={register({ required: errorMessage })} />
-          <Checkbox inputId="checkbox2" label={'Checkbox 2'} ref={register({ required: errorMessage })} />
-          <Checkbox inputId="checkbox3" label={'Checkbox 3'} ref={register({ required: errorMessage })} />
+          <FormLayout maxColumns={FormLayoutColumns.two}>
+            {allCheckBoxes.map(check => {
+              return check;
+            })}
+          </FormLayout>
         </FormGroup>,
         <FormGroup
           key={1}

@@ -21,7 +21,11 @@ exports[`Gitt at Checkbox skal vises Når Checkbox rendres Så vises Checkbox 1`
       <span
         class="checkbox__icon-wrapper"
       />
-      Check me out!
+      <span
+        class="checkbox-label__text"
+      >
+        Check me out!
+      </span>
     </label>
   </div>
 </div>

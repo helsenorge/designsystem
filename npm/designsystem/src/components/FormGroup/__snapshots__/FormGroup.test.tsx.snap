@@ -44,7 +44,11 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
             <span
               class="checkbox__icon-wrapper"
             />
-            Checkbox 1
+            <span
+              class="checkbox-label__text"
+            >
+              Checkbox 1
+            </span>
           </label>
         </div>
         <div
@@ -66,7 +70,11 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
             <span
               class="checkbox__icon-wrapper"
             />
-            Checkbox 2
+            <span
+              class="checkbox-label__text"
+            >
+              Checkbox 2
+            </span>
           </label>
         </div>
         <div
@@ -88,7 +96,11 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
             <span
               class="checkbox__icon-wrapper"
             />
-            Checkbox 3
+            <span
+              class="checkbox-label__text"
+            >
+              Checkbox 3
+            </span>
           </label>
         </div>
       </fieldset>

@@ -44,9 +44,10 @@
 
 .radio-button-label {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   cursor: pointer;
   font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
 
   @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: $font-size-md;
@@ -102,8 +103,8 @@
   margin: 0 getSpacer(s) 0 0;
   height: 1.5rem;
   width: 1.5rem;
-  min-width: auto !important;
-  min-height: auto !important;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
   color: $neutral700;
   box-shadow: 0 0 0 getSpacer(4xs);
 

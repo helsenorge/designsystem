@@ -110,7 +110,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
         <span className={checkboxIconWrapperClasses}>
           {isChecked && <Icon color={iconColor} className={checkboxStyles['checkbox__icon']} svgIcon={Check} size={IconSize.XSmall} />}
         </span>
-        {label}
+        <span className={checkboxStyles['checkbox-label__text']}>{label}</span>
       </label>
     </div>
   );

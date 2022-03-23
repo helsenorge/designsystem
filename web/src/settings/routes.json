@@ -78,6 +78,10 @@
           "path": "/bibliotek/komponenter/formgroup"
         },
         {
+          "label": "FormLayout",
+          "path": "/bibliotek/komponenter/formlayout"
+        },
+        {
           "label": "HighlightBox",
           "path": "/bibliotek/komponenter/highlightbox"
         },

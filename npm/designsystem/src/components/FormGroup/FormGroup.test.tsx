@@ -32,23 +32,23 @@ describe('Gitt at FormGroup skal vises', (): void => {
   });
 
   describe('Når mode settes', (): void => {
-    test('Så er stylingen satt riktig på FormGroup', (): void => {
+    test('Så er stylingen satt riktig på FormGroup children', (): void => {
       render(
-        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} mode={'on-blueberry'}>
+        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} mode={'onblueberry'}>
           <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
           <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
           <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
         </FormGroup>
       );
 
-      const wrapper = screen.getByText('One amazing title').parentElement;
-      expect(wrapper).toBeVisible();
-      expect(wrapper.className).toBe('form-group-wrapper');
+      const checkbox = screen.getByText('Checkbox 1').parentElement;
+      expect(checkbox).toBeVisible();
+      expect(checkbox.className).toBe('checkbox-label checkbox-label--on-blueberry');
     });
   });
 
   describe('Når variant settes', (): void => {
-    test('Så er stylingen satt riktig på FormGroup', (): void => {
+    test('Så er stylingen satt riktig på FormGroup children', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} variant={'bigform'}>
           <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
@@ -57,9 +57,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
         </FormGroup>
       );
 
-      const wrapper = screen.getByText('One amazing title').parentElement;
-      expect(wrapper).toBeVisible();
-      expect(wrapper.className).toBe('form-group-wrapper');
+      const checkbox = screen.getByText('Checkbox 1').parentElement;
+      expect(checkbox).toBeVisible();
+      expect(checkbox.className).toBe('checkbox-label checkbox-label--bigform');
     });
   });
 

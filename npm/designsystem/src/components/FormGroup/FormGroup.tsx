@@ -8,6 +8,7 @@ import { AnalyticsId, FormMode, FormVariant } from '../../constants';
 import RadioButton, { RadioButtonProps } from '../RadioButton/RadioButton';
 import Input, { InputProps } from '../Input/Input';
 import Title from '../Title';
+import FormLayout, { FormLayoutProps } from '../FormLayout';
 
 export interface FormGroupProps {
   /** title for the the fieldset */
@@ -57,6 +58,40 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     [formGroupStyles['field-set__legend--bigform']]: bigform,
   });
 
+  const mapFormComponent = (child: React.ReactNode): React.ReactNode => {
+    if ((child as React.ReactElement<FormLayoutProps>).type === FormLayout) {
+      return React.cloneElement(child as React.ReactElement<FormLayoutProps>, {
+        variant,
+        mapHelper: mapFormComponent,
+      });
+    } else if ((child as React.ReactElement<CheckboxProps>).type === Checkbox) {
+      let checkbox = (child as React.ReactElement<CheckboxProps>).type === Checkbox;
+      return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
+        name: name ?? checkbox.valueOf.name,
+        mode,
+        variant,
+        error: !!error,
+      });
+    } else if ((child as React.ReactElement<RadioButtonProps>).type === RadioButton) {
+      let radioButton = (child as React.ReactElement<RadioButtonProps>).type === RadioButton;
+      return React.cloneElement(child as React.ReactElement<RadioButtonProps>, {
+        name: name ?? radioButton.valueOf.name,
+        mode,
+        variant,
+        error: !!error,
+      });
+    } else if ((child as React.ReactElement<InputProps>).type === Input) {
+      let input = (child as React.ReactElement<InputProps>).type === Input;
+      return React.cloneElement(child as React.ReactElement<InputProps>, {
+        name: name ?? input.valueOf.name,
+        mode,
+        variant,
+        error: !!error,
+      });
+    }
+    return child;
+  };
+
   return (
     <div data-testid={props.testId} data-analyticsid={AnalyticsId.FormGroup} className={formGroupWrapperClasses}>
       {props.title && (
@@ -68,34 +103,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         {error && <p className={errorStyles}>{error}</p>}
         <fieldset name={props.title} className={formGroupStyles['field-set']}>
           {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
-          {React.Children.map(props.children, (child: React.ReactNode) => {
-            if ((child as React.ReactElement<CheckboxProps>).type === Checkbox) {
-              let checkbox = (child as React.ReactElement<CheckboxProps>).type === Checkbox;
-              return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
-                name: name ?? checkbox.valueOf.name,
-                mode,
-                variant,
-                error: !!error,
-              });
-            } else if ((child as React.ReactElement<RadioButtonProps>).type === RadioButton) {
-              let radioButton = (child as React.ReactElement<RadioButtonProps>).type === RadioButton;
-              return React.cloneElement(child as React.ReactElement<RadioButtonProps>, {
-                name: name ?? radioButton.valueOf.name,
-                mode,
-                variant,
-                error: !!error,
-              });
-            } else if ((child as React.ReactElement<InputProps>).type === Input) {
-              let input = (child as React.ReactElement<InputProps>).type === Input;
-              return React.cloneElement(child as React.ReactElement<InputProps>, {
-                name: name ?? input.valueOf.name,
-                mode,
-                variant,
-                error: !!error,
-              });
-            }
-            return child;
-          })}
+          {React.Children.map(props.children, mapFormComponent)}
         </fieldset>
       </div>
     </div>

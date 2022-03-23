@@ -10,7 +10,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       expect(container).toMatchSnapshot();
 
-      const label = screen.getByText('Check me out!');
+      const label = screen.getByText('Check me out!').parentElement;
       expect(label).toBeVisible();
       expect(label.className).toBe('checkbox-label');
 
@@ -18,7 +18,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
       expect(input).toBeVisible();
       expect(input.className).toBe('checkbox');
 
-      const checkIconWrapper = screen.getByText('Check me out!').children[1];
+      const checkIconWrapper = label.children[1];
       expect(checkIconWrapper.className).toBe('checkbox__icon-wrapper');
     });
   });
@@ -27,7 +27,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
     test('Så vises Checkbox som disabled', (): void => {
       render(<Checkbox label={'Check me out!'} disabled />);
 
-      const label = screen.getByText('Check me out!');
+      const label = screen.getByText('Check me out!').parentElement;
       expect(label.className).toBe('checkbox-label checkbox-label--disabled');
     });
   });
@@ -36,7 +36,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
     test('Så vises Checkbox med onBlueberry styling', (): void => {
       render(<Checkbox label={'Check me out!'} mode={FormMode.onblueberry} />);
 
-      const label = screen.getByText('Check me out!');
+      const label = screen.getByText('Check me out!').parentElement;
       expect(label.className).toBe('checkbox-label checkbox-label--on-blueberry');
     });
   });
@@ -44,7 +44,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
     test('Så vises Checkbox med onDark styling', (): void => {
       render(<Checkbox label={'Check me out!'} mode={FormMode.ondark} />);
 
-      const label = screen.getByText('Check me out!');
+      const label = screen.getByText('Check me out!').parentElement;
       expect(label.className).toBe('checkbox-label checkbox-label--on-dark');
     });
   });
@@ -53,7 +53,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
     test('Så vises Checkbox med bigform styling', (): void => {
       render(<Checkbox label={'Check me out!'} variant={FormVariant.bigform} />);
 
-      const label = screen.getByText('Check me out!');
+      const label = screen.getByText('Check me out!').parentElement;
       expect(label.className).toBe('checkbox-label checkbox-label--bigform');
     });
   });
@@ -62,7 +62,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
     test('Så vises Checkbox med checkmark ikon', (): void => {
       render(<Checkbox label={'Check me out!'} checked />);
 
-      const checkIcon = screen.getByText('Check me out!').children[1];
+      const checkIcon = screen.getByText('Check me out!').parentElement.children[1];
 
       expect(checkIcon).toBeVisible();
       expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--checked');
@@ -73,7 +73,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
     test('Så vises Checkbox med checkmark ikon', (): void => {
       render(<Checkbox label={'Check me out!'} />);
 
-      const label = screen.getByText('Check me out!');
+      const label = screen.getByText('Check me out!').parentElement;
 
       fireEvent.click(screen.getByText('Check me out!'));
 
@@ -92,7 +92,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
       render(<Checkbox label={'Check me out!'} error />);
 
       // Indre styling
-      const label = screen.getByText('Check me out!');
+      const label = screen.getByText('Check me out!').parentElement;
       const checkIcon = label.children[1];
 
       expect(label.className).toBe('checkbox-label checkbox-label--invalid');
@@ -111,7 +111,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
       expect(screen.getByText('error error!')).toBeVisible();
 
       // Indre styling
-      const label = screen.getByText('Check me out!');
+      const label = screen.getByText('Check me out!').parentElement;
       const checkIcon = label.children[1];
 
       expect(label.className).toBe('checkbox-label checkbox-label--invalid');

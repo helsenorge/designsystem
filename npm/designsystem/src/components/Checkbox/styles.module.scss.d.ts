@@ -9,6 +9,7 @@ export type Styles = {
   'checkbox__icon-wrapper--on-dark': string;
   'checkbox-errors': string;
   'checkbox-label': string;
+  'checkbox-label__text': string;
   'checkbox-label--bigform': string;
   'checkbox-label--disabled': string;
   'checkbox-label--invalid': string;

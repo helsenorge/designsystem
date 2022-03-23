@@ -139,6 +139,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     [buttonStyles['button__content--danger']]: dangerIntent,
     [buttonStyles['button__content--fill']]: fillVariant,
     [buttonStyles['button__content--borderless']]: borderlessVariant,
+    [buttonStyles['button__content--outline']]: outlineVariant,
     [buttonStyles['button__content--with-icon']]: hasIcon && !borderlessVariant,
     [buttonStyles['button__content--large']]: large,
     [buttonStyles['button__content--ellipsis']]: ellipsis,

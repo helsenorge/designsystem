@@ -9,6 +9,7 @@ export type Styles = {
   'button__content--inverted': string;
   'button__content--large': string;
   'button__content--large-fluid': string;
+  'button__content--outline': string;
   'button__content--warning': string;
   'button__content--with-icon': string;
   'button__left-fluid-content': string;
