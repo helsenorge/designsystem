@@ -10,4 +10,5 @@ export { usePrevious } from './hooks/usePrevious';
 export { useSticky } from './hooks/useSticky';
 export { useWindowSize } from './hooks/useWindowSize';
 export { useSize } from './hooks/useSize';
+export { uuid } from './utils/uuid';
 export * from './constants';
