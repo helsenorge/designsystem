@@ -98,6 +98,10 @@
     }
   }
 
+  &--no-actions {
+    padding-bottom: 0;
+  }
+
   &--image {
     padding: 0;
     @media (min-width: map-get($grid-breakpoints, md)) {

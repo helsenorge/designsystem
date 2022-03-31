@@ -172,6 +172,14 @@ const Modal = (props: ModalProps): JSX.Element => {
     };
   }, []);
 
+  const dialogClasses = cn(
+    props.className,
+    styles.modal,
+    styles[`modal--${props.variant}`],
+    styles[`modal--${props.size}`],
+    !showActions && styles['modal--no-actions']
+  );
+
   const titleClasses = cn({
     [styles['modal__title--error']]: props.variant === ModalVariants.error,
     [styles['modal__title--success']]: props.variant === ModalVariants.success,
@@ -187,12 +195,7 @@ const Modal = (props: ModalProps): JSX.Element => {
         style={{ zIndex: props.zIndex }}
       >
         <div className={styles.align} ref={FocusTrap()}>
-          <div
-            className={cn(props.className, styles.modal, styles[`modal--${props.variant}`], styles[`modal--${props.size}`])}
-            role="dialog"
-            aria-label={ariaLabel}
-            aria-labelledby={ariaLabelledBy}
-          >
+          <div className={dialogClasses} role="dialog" aria-label={ariaLabel} aria-labelledby={ariaLabelledBy}>
             <div tabIndex={tabIndex} ref={initFocus} onBlur={(): void => setTabIndex(-1)} />
             <div
               className={cn(styles['modal__shadow'], styles['modal__shadow--top'], {
