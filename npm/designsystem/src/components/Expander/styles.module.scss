@@ -6,6 +6,11 @@
 .expander {
   position: relative;
   width: 100%;
+
+  @media print {
+    border: 1px solid $black;
+  }
+
   &__icon {
     display: flex;
     align-items: center;
@@ -112,9 +117,14 @@
     display: none;
     width: 100%;
 
+    @media print {
+      display: block;
+    }
+
     &--expanded {
       display: block;
     }
+
     &--small {
       margin-top: getSpacer(s);
     }
