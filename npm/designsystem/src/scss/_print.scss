@@ -11,10 +11,10 @@
   }
 
   body {
-    min-width: map-get($grid-breakpoints, xs) !important;
+    min-width: map-get($grid-breakpoints, lg) !important;
   }
   .container {
-    min-width: map-get($grid-breakpoints, xs) !important;
+    min-width: map-get($grid-breakpoints, lg) !important;
   }
 
   abbr[title]::after {
