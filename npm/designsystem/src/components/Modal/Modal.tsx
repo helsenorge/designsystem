@@ -11,7 +11,7 @@ import AlertSignFill from '../Icons/AlertSignFill';
 import FocusTrap from '../../hooks/useFocusTrap';
 import { useIsVisible } from '../../hooks/useIsVisible';
 import Title from '../Title/Title';
-import uuid from '../../utils/uuid';
+import { uuid } from '../../utils/uuid';
 import Close from '../Close';
 import CheckOutline from '../Icons/CheckOutline';
 import Portal from '../Portal';

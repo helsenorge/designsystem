@@ -3,9 +3,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Textarea from './Textarea';
 import { FormMode } from '../../constants';
 
-import * as uuidUtils from '../../utils/uuid';
-jest.spyOn(uuidUtils, 'uuid').mockReturnValue(`-unik-id`);
-
 describe('Gitt at Textarea skal vises', (): void => {
   describe('Når Textarea rendres', (): void => {
     test('Så vises Textarea', (): void => {

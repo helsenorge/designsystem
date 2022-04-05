@@ -10,7 +10,7 @@ exports[`Gitt at Textarea skal vises Når Textarea rendres Så vises Textarea 1`
       class="textarea__label-wrapper"
     >
       <label
-        for="-unik-id"
+        for="test"
       >
         Skriv din historie
       </label>
@@ -21,7 +21,7 @@ exports[`Gitt at Textarea skal vises Når Textarea rendres Så vises Textarea 1`
       <textarea
         aria-invalid="false"
         class="content-wrapper__input"
-        id="-unik-id"
+        id="test"
         rows="3"
       />
     </div>

@@ -1,0 +1,145 @@
+---
+title: Dropdown
+path: /bibliotek/komponenter/dropdown
+date: 2022-03-15
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/Dropdown/componentdata.json';
+import Dropdown from '@helsenorge/designsystem-react/components/Dropdown';
+import RadioButton from '@helsenorge/designsystem-react/components/RadioButton';
+import Checkbox from '@helsenorge/designsystem-react/components/Checkbox';
+
+# Dropdown
+
+<MDXCustom.Preamble>
+  Som innbygger ønsker jeg å kunne gjøre ett eller flere valg i en liste der hvor det ikke er plass til å vise listen i grensesnittet
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent fullWidth scope={{ Dropdown, Checkbox }}>
+  {`
+    <Dropdown label="Velg verdi i listen">
+      <Checkbox label="Valg 1" name="checkbox" />
+      <Checkbox label="Valg 2" name="checkbox" />
+      <Checkbox label="Valg 3" name="checkbox" />
+      <Checkbox label="Valg 4" name="checkbox" />
+      <Checkbox label="Valg 5" name="checkbox" />
+      <Checkbox label="Valg 6" name="checkbox" />
+      <Checkbox label="Valg 7" name="checkbox" />
+      <Checkbox label="Valg 8" name="checkbox" />
+      <Checkbox label="Valg 9" name="checkbox" />
+    </Dropdown>`}
+</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+## RadioButton
+
+<MDXCustom.LiveComponent fullWidth scope={{ Dropdown, RadioButton }}>
+  {`
+    <Dropdown label="Velg verdi i listen">
+      <RadioButton label="Valg 1" name="radiobutton" />
+      <RadioButton label="Valg 2" name="radiobutton" />
+      <RadioButton label="Valg 3" name="radiobutton" />
+      <RadioButton label="Valg 4" name="radiobutton" />
+      <RadioButton label="Valg 5" name="radiobutton" />
+      <RadioButton label="Valg 6" name="radiobutton" />
+      <RadioButton label="Valg 7" name="radiobutton" />
+      <RadioButton label="Valg 8" name="radiobutton" />
+      <RadioButton label="Valg 9" name="radiobutton" />
+    </Dropdown>`}
+</MDXCustom.LiveComponent>
+
+## Modes
+
+### onwhite
+
+<MDXCustom.LiveComponent fullWidth scope={{ Dropdown, Checkbox }}>
+  {`
+    <Dropdown label="Velg verdi i listen" mode="onwhite">
+      <Checkbox label="Valg 1" name="checkbox" />
+      <Checkbox label="Valg 2" name="checkbox" />
+      <Checkbox label="Valg 3" name="checkbox" />
+    </Dropdown>`}
+</MDXCustom.LiveComponent>
+
+### ongrey
+
+<MDXCustom.LiveComponent fullWidth scope={{ Dropdown, Checkbox }}>
+  {`
+    <Dropdown label="Velg verdi i listen" mode="ongrey">
+      <Checkbox label="Valg 1" name="checkbox" />
+      <Checkbox label="Valg 2" name="checkbox" />
+      <Checkbox label="Valg 3" name="checkbox" />
+    </Dropdown>`}
+</MDXCustom.LiveComponent>
+
+### onblueberry
+
+<MDXCustom.LiveComponent fullWidth scope={{ Dropdown, Checkbox }}>
+  {`
+    <Dropdown label="Velg verdi i listen" mode="onblueberry">
+      <Checkbox label="Valg 1" name="checkbox" />
+      <Checkbox label="Valg 2" name="checkbox" />
+      <Checkbox label="Valg 3" name="checkbox" />
+    </Dropdown>`}
+</MDXCustom.LiveComponent>
+
+### oncherry
+
+<MDXCustom.LiveComponent fullWidth scope={{ Dropdown, Checkbox }}>
+  {`
+    <Dropdown label="Velg verdi i listen" mode="oncherry">
+      <Checkbox label="Valg 1" name="checkbox" />
+      <Checkbox label="Valg 2" name="checkbox" />
+      <Checkbox label="Valg 3" name="checkbox" />
+    </Dropdown>`}
+</MDXCustom.LiveComponent>
+
+## Transparent
+
+<MDXCustom.LiveComponent fullWidth scope={{ Dropdown, Checkbox }}>
+  {`
+    <Dropdown label="Velg verdi i listen" mode="onwhite" transparent>
+      <Checkbox label="Valg 1" name="checkbox" />
+      <Checkbox label="Valg 2" name="checkbox" />
+      <Checkbox label="Valg 3" name="checkbox" />
+    </Dropdown>`}
+</MDXCustom.LiveComponent>
+
+## Fluid
+
+<MDXCustom.LiveComponent fullWidth scope={{ Dropdown, Checkbox }}>
+  {`
+    <Dropdown label="Velg verdi i listen" fluid>
+      <Checkbox label="Valg 1" name="checkbox" />
+      <Checkbox label="Valg 2" name="checkbox" />
+      <Checkbox label="Valg 3" name="checkbox" />
+    </Dropdown>`}
+</MDXCustom.LiveComponent>
+
+## Disabled
+
+<MDXCustom.LiveComponent fullWidth scope={{ Dropdown, Checkbox }}>
+  {`
+    <Dropdown label="Velg verdi i listen" disabled>
+      <Checkbox label="Valg 1" name="checkbox" />
+      <Checkbox label="Valg 2" name="checkbox" />
+      <Checkbox label="Valg 3" name="checkbox" />
+    </Dropdown>`}
+</MDXCustom.LiveComponent>
+
+## No close button
+
+<MDXCustom.LiveComponent fullWidth scope={{ Dropdown, Checkbox }}>
+  {`
+    <Dropdown label="Velg verdi i listen" noCloseButton>
+      <Checkbox label="Valg 1" name="checkbox" />
+      <Checkbox label="Valg 2" name="checkbox" />
+      <Checkbox label="Valg 3" name="checkbox" />
+    </Dropdown>`}
+</MDXCustom.LiveComponent>

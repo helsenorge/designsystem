@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold Så ser Dropdown ut slik den skal 1`] = `
+<div>
+  <div
+    class="dropdown"
+  >
+    <span
+      class="dropdown__label"
+      id="testid-13"
+    >
+      Ta et valg
+    </span>
+    <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="testid-14"
+      class="dropdown__toggle dropdown__toggle--on-white"
+      data-analyticsid="dropdown"
+      type="button"
+    >
+      <span
+        class="dropdown__toggle__label"
+        id="testid-14"
+      >
+        Knapp
+      </span>
+      <svg
+        aria-hidden="true"
+        class="hnds-style-icon dropdown__icon"
+        data-analyticsid="icon"
+        fill="#126F87"
+        height="38"
+        role="img"
+        style="min-width: 38px; min-height: 38px;"
+        viewBox="0 0 48 48"
+        width="38"
+      >
+        <path
+          d="M24 14.18v8.556h8.558v2.527H24v8.558h-2.526l-.001-8.558h-8.557v-2.526h8.557v-8.558H24z"
+        />
+      </svg>
+    </button>
+    <div
+      class="dropdown__content"
+    >
+      <ul
+        aria-labelledby="testid-13"
+        class="dropdown__options"
+        role="listbox"
+        tabindex="-1"
+      >
+        <li
+          class="dropdown__input"
+          id="testid-15-0"
+          role="option"
+        >
+          <h2>
+            Innhold i Dropdown
+          </h2>
+        </li>
+      </ul>
+      <div
+        class="dropdown__close"
+      >
+        <button
+          aria-expanded="false"
+          class="button button--fluid button--fill"
+          data-analyticsid="button"
+          type="button"
+        >
+          <span
+            class="content-wrapper"
+          >
+            <div
+              class="button__left-fluid-content"
+            >
+              <span
+                class="button__content button__content--fill button__content--fluid"
+              >
+                Lukk
+              </span>
+            </div>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

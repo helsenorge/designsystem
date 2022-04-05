@@ -87,6 +87,7 @@ export enum AnalyticsId {
   Button = 'button',
   Checkbox = 'checkbox',
   Close = 'close',
+  Dropdown = 'dropdown',
   Expander = 'expander',
   ExpanderList = 'expander-list',
   ExpanderListExpander = 'expander-list-expander',
@@ -113,4 +114,13 @@ export enum AnalyticsId {
   Tile = 'tile',
   Title = 'title',
   Validation = 'validation',
+}
+
+export enum KeyboardEventKey {
+  Enter = 'Enter',
+  Escape = 'Escape',
+  ArrowDown = 'ArrowDown',
+  ArrowUp = 'ArrowUp',
+  Home = 'Home',
+  End = 'End',
 }

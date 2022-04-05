@@ -66,6 +66,10 @@
           "path": "/bibliotek/komponenter/close"
         },
         {
+          "label": "Dropdown",
+          "path": "/bibliotek/komponenter/dropdown"
+        },
+        {
           "label": "Expander",
           "path": "/bibliotek/komponenter/expander"
         },

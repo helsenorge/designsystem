@@ -10,7 +10,7 @@ exports[`Gitt at Input skal vises Når Input rendres Så vises Input 1`] = `
       class="input-wrapper__label-wrapper"
     >
       <label
-        for="-unik-id"
+        for="test"
       >
         Skriv noe
       </label>
@@ -22,7 +22,7 @@ exports[`Gitt at Input skal vises Når Input rendres Så vises Input 1`] = `
         aria-invalid="false"
         autocomplete="off"
         class="content-wrapper__input"
-        id="-unik-id"
+        id="test"
         type="text"
         value=""
       />

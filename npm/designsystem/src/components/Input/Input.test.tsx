@@ -4,9 +4,6 @@ import Input, { InputTypes } from './Input';
 import { FormMode, FormVariant } from '../../constants';
 import Hospital from '../Icons/Hospital';
 
-import * as uuidUtils from '../../utils/uuid';
-jest.spyOn(uuidUtils, 'uuid').mockReturnValue(`-unik-id`);
-
 describe('Gitt at Input skal vises', (): void => {
   describe('Når Input rendres', (): void => {
     test('Så vises Input', (): void => {

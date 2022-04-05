@@ -17,7 +17,7 @@ import Calendar from '../Icons/Calendar';
 import Watch from '../Icons/Watch';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import Badge from '../Badge';
-import uuid from '../../utils/uuid';
+import { uuid } from '../../utils/uuid';
 
 export enum PanelStatus {
   normal = 'normal',
