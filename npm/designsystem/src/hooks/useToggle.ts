@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { usePrevious } from '..';
+import { usePrevious } from './usePrevious';
 
 /**
  * Hook for å toggle en boolean og kjøre en callback når verdien endres
