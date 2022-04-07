@@ -438,6 +438,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
 
     #{$button}:disabled & {
       border-bottom: none;
+      color: $neutral600;
     }
   }
 
