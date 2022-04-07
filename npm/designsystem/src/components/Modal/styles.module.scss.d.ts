@@ -27,6 +27,7 @@ export type Styles = {
   'modal--image': string;
   'modal--large': string;
   'modal--medium': string;
+  'modal--no-actions': string;
   'modal--normal': string;
   'modal--success': string;
   'modal--warning': string;
