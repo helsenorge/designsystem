@@ -30,7 +30,9 @@ exports[`Gitt at FormLayout skal vises Når FormLayout rendres Så vises FormLay
           data-analyticsid="form-layout"
           style="--min-col-width: 300px;"
         >
-          <div>
+          <div
+            class="form-layout-child"
+          >
             <div
               class="checkbox-wrapper"
               data-analyticsid="checkbox"
@@ -58,7 +60,9 @@ exports[`Gitt at FormLayout skal vises Når FormLayout rendres Så vises FormLay
               </label>
             </div>
           </div>
-          <div>
+          <div
+            class="form-layout-child"
+          >
             <div
               class="checkbox-wrapper"
               data-analyticsid="checkbox"
@@ -86,7 +90,9 @@ exports[`Gitt at FormLayout skal vises Når FormLayout rendres Så vises FormLay
               </label>
             </div>
           </div>
-          <div>
+          <div
+            class="form-layout-child"
+          >
             <div
               class="checkbox-wrapper"
               data-analyticsid="checkbox"

@@ -1,10 +1,11 @@
 export type Styles = {
+  'form-layout-child': string;
+  'form-layout-child--five': string;
+  'form-layout-child--four': string;
+  'form-layout-child--three': string;
+  'form-layout-child--two': string;
   'form-layout-container': string;
   'form-layout-container--bigform': string;
-  'form-layout-container--five': string;
-  'form-layout-container--four': string;
-  'form-layout-container--three': string;
-  'form-layout-container--two': string;
 };
 
 export type ClassNames = keyof Styles;

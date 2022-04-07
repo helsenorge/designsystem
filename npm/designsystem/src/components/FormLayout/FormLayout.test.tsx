@@ -38,9 +38,9 @@ describe('Gitt at FormLayout skal vises', (): void => {
         </FormGroup>
       );
 
-      const layout = screen.getByText('Checkbox 1').parentElement.parentElement.parentElement.parentElement;
+      const layout = screen.getByText('Checkbox 1').parentElement.parentElement.parentElement;
       expect(layout).toBeVisible();
-      expect(layout.className).toBe('form-layout-container form-layout-container--two');
+      expect(layout.className).toBe('form-layout-child form-layout-child--two');
     });
   });
 

@@ -38,18 +38,20 @@ export const FormLayout = React.forwardRef((props: FormLayoutProps, ref: React.F
     formGroupStyles['form-layout-container'],
     {
       [formGroupStyles['form-layout-container--bigform']]: variant === FormVariant.bigform,
-      [formGroupStyles['form-layout-container--two']]: columns === FormLayoutColumns.two,
-      [formGroupStyles['form-layout-container--three']]: columns === FormLayoutColumns.three,
-      [formGroupStyles['form-layout-container--four']]: columns === FormLayoutColumns.four,
-      [formGroupStyles['form-layout-container--five']]: columns === FormLayoutColumns.five,
     },
     className
   );
+  const formLayoutChildClasses = classNames(formGroupStyles['form-layout-child'], {
+    [formGroupStyles['form-layout-child--two']]: columns === FormLayoutColumns.two,
+    [formGroupStyles['form-layout-child--three']]: columns === FormLayoutColumns.three,
+    [formGroupStyles['form-layout-child--four']]: columns === FormLayoutColumns.four,
+    [formGroupStyles['form-layout-child--five']]: columns === FormLayoutColumns.five,
+  });
 
   return (
     <div data-testid={props.testId} data-analyticsid={AnalyticsId.FormLayout} style={cssVariable} className={formLayoutContainerClasses}>
       {React.Children.map(props.children, (child: React.ReactNode) => {
-        return <div>{mapHelper ? mapHelper(child) : child}</div>;
+        return <div className={formLayoutChildClasses}>{mapHelper ? mapHelper(child) : child}</div>;
       })}
     </div>
   );

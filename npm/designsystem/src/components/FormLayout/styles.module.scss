@@ -4,26 +4,31 @@
 .form-layout-container {
   // Settes med harde verdier fordi calc() lenger nede ikke støtter getSpacer()
   --column-gap: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--min-col-width), calc(100% - var(--column-gap))));
+
+  display: flex;
+  flex-wrap: wrap;
   row-gap: getSpacer(s);
   column-gap: var(--column-gap);
 
-  // calc(50% - var(--column-gap)) - 50% setter antall kolonner til to, - var(--column-gap) er for å ta hensyn til column gap
-  &--two {
-    grid-template-columns: repeat(auto-fill, minmax(var(--min-col-width), calc(50% - var(--column-gap))));
-  }
-  &--three {
-    grid-template-columns: repeat(auto-fill, minmax(var(--min-col-width), calc(33% - var(--column-gap))));
-  }
-  &--four {
-    grid-template-columns: repeat(auto-fill, minmax(var(--min-col-width), calc(25% - var(--column-gap))));
-  }
-  &--five {
-    grid-template-columns: repeat(auto-fill, minmax(var(--min-col-width), calc(20% - var(--column-gap))));
-  }
-
   &--bigform {
     row-gap: getSpacer(2xs);
+  }
+}
+
+.form-layout-child {
+  min-width: var(--min-col-width);
+  flex-basis: calc(100% - var(--column-gap));
+
+  &--two {
+    flex-basis: calc(50% - var(--column-gap));
+  }
+  &--three {
+    flex-basis: calc(33% - var(--column-gap));
+  }
+  &--four {
+    flex-basis: calc(25% - var(--column-gap));
+  }
+  &--five {
+    flex-basis: calc(20% - var(--column-gap));
   }
 }
