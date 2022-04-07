@@ -27,7 +27,8 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
   font-size: 1.125rem;
   font-family: inherit;
   font-weight: 600;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   box-sizing: border-box;
   text-decoration: none;
   outline: none;
@@ -437,6 +438,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
 
     #{$button}:disabled & {
       border-bottom: none;
+      color: $neutral600;
     }
   }
 
