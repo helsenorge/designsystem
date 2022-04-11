@@ -7,6 +7,15 @@ $warningHoverColor: #ab7c000d; //$banana700 + '0D';
 $dangerHoverColor: #a31f0e0d; //$cherry700 + '0D';
 $invertedHoverColor: #ffffff0d; //$white + '0D';
 
+
+@mixin disabled-button {
+  pointer-events: none;
+  background-color: $neutral200;
+  border: 0.125rem solid $neutral200;
+  box-shadow: 0 0 0 0.25rem $neutral200;
+  color: $neutral600;
+}
+
 .content-wrapper {
   display: flex;
   align-items: center;
@@ -75,10 +84,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       border-color: transparent;
     }
     &:disabled {
-      background-color: $neutral200;
-      border: 0.125rem solid $neutral200;
-      box-shadow: 0 0 0 0.25rem $neutral200;
-      color: $neutral600;
+      @include disabled-button();
     }
   }
   &--fill#{&}--warning {
@@ -92,6 +98,9 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       border-color: $banana700;
       box-shadow: 0 0 0 0.25rem $banana700;
     }
+    &:disabled {
+      @include disabled-button();
+    }
   }
   &--fill#{&}--danger {
     background-color: $cherry500;
@@ -103,6 +112,9 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       background-color: $cherry700;
       border-color: $cherry700;
       box-shadow: 0 0 0 0.25rem $cherry700;
+    }
+    &:disabled {
+      @include disabled-button();
     }
   }
   &--fill#{&}--inverted {
@@ -116,6 +128,9 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       background-color: $white;
       border-color: $white;
       box-shadow: 0 0 0 0.25rem $white;
+    }
+    &:disabled {
+      @include disabled-button();
     }
   }
   &--fill#{&}--warning#{&}--inverted {
@@ -195,6 +210,9 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
         border-color: $banana700;
       }
     }
+    &:disabled {
+      border: 0.125rem solid $neutral200;
+    }
   }
   &--outline#{&}--danger {
     border-color: $cherry500;
@@ -212,6 +230,9 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       &:after {
         border-color: $cherry700;
       }
+    }
+    &:disabled {
+      border: 0.125rem solid $neutral200;
     }
   }
   &--outline#{&}--inverted {
@@ -245,7 +266,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
       padding: 0;
     }
     &:disabled {
-      color: $neutral600;
+      @include disabled-button();
     }
   }
   &--borderless#{&}--warning {

@@ -204,12 +204,13 @@ stories.add('All variants', () => (
       disabled={boolean('Disabled', false)}
       variant="fill"
       intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
       large={boolean('Large', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}
       href={'https://www.helsenorge.no'}
     >
       {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
-      {text('Text', 'Button')}
+      {text('Text 1', 'Fill')}
       <Icon svgIcon={X} />
     </Button>
 
@@ -218,12 +219,13 @@ stories.add('All variants', () => (
       disabled={boolean('Disabled', false)}
       variant="outline"
       intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
       large={boolean('Large', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}
       href={'https://www.helsenorge.no'}
     >
       {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
-      {text('Text', 'Button')}
+      {text('Text 2', 'Outline')}
       <Icon svgIcon={X} />
     </Button>
     <Button
@@ -231,12 +233,13 @@ stories.add('All variants', () => (
       disabled={boolean('Disabled', false)}
       variant="borderless"
       intent={select('Intent', allButtonIntents, 'primary')}
+      inverted={boolean('Inverted', false)}
       large={boolean('Large', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}
       href={'https://www.helsenorge.no'}
     >
       {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
-      {text('Text', 'Button')}
+      {text('Text 3', 'Borderless')}
       <Icon svgIcon={X} />
     </Button>
   </div>
