@@ -1,6 +1,5 @@
-import { configure, addDecorator } from '@storybook/react';
+import { configure, addDecorator, addParameters } from '@storybook/react';
 import centered from '@storybook/addon-centered/react';
-import { addParameters } from '@storybook/react';
 import { theme } from '../src/theme';
 import './global.scss';
 
