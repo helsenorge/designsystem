@@ -10,7 +10,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   describe('Når Dropdownen har vanlig innhold', (): void => {
     test('Så kan man klikke og se innholdet', (): void => {
       render(
-        <Dropdown label="Ta et valg" toggleLabel="Knapp">
+        <Dropdown label="Ta et valg" placeholder="Knapp">
           <h2>Innhold i Dropdown</h2>
         </Dropdown>
       );
@@ -28,7 +28,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
 
     test('Så ser Dropdown ut slik den skal', (): void => {
       const { container } = render(
-        <Dropdown label="Ta et valg" toggleLabel="Knapp">
+        <Dropdown label="Ta et valg" placeholder="Knapp">
           <h2>Innhold i Dropdown</h2>
         </Dropdown>
       );
@@ -40,7 +40,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   describe('Når Dropdownen har lukkeknapp', (): void => {
     test('Så kan man lukke dropdownen med knappen', (): void => {
       render(
-        <Dropdown label="Ta et valg" toggleLabel="Knapp" closeText="Lukk">
+        <Dropdown label="Ta et valg" placeholder="Knapp" closeText="Lukk">
           <h2>Innhold i Dropdown</h2>
         </Dropdown>
       );
@@ -58,7 +58,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   describe('Når Dropdownen har open prop', (): void => {
     test('Så er den åpen', (): void => {
       render(
-        <Dropdown label="Ta et valg" toggleLabel="Knapp" open>
+        <Dropdown label="Ta et valg" placeholder="Knapp" open>
           <h2>Innhold i Dropdown</h2>
         </Dropdown>
       );
@@ -71,7 +71,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   describe('Når Dropdownen har disabled prop', (): void => {
     test('Så er den disabled', (): void => {
       render(
-        <Dropdown label="Ta et valg" toggleLabel="Knapp" disabled>
+        <Dropdown label="Ta et valg" placeholder="Knapp" disabled>
           <h2>Innhold i Dropdown</h2>
         </Dropdown>
       );
@@ -84,7 +84,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   describe('Når Dropdownen har noCloseButton prop', (): void => {
     test('Så er det ingen lukkeknapp', (): void => {
       render(
-        <Dropdown label="Ta et valg" toggleLabel="Knapp" closeText="Lukk" noCloseButton>
+        <Dropdown label="Ta et valg" placeholder="Knapp" closeText="Lukk" noCloseButton>
           <h2>Innhold i Dropdown</h2>
         </Dropdown>
       );
@@ -102,7 +102,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
       render(
         <>
           <button>Knapp utenfor dropdown</button>
-          <Dropdown label="Ta et valg" toggleLabel="Knapp" open>
+          <Dropdown label="Ta et valg" placeholder="Knapp" open>
             <h2>Innhold i Dropdown</h2>
           </Dropdown>
         </>
@@ -121,7 +121,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   describe('Når man klikker på Escape mens Dropdown er åpen', (): void => {
     test('Så lukkes Dropdownen', (): void => {
       render(
-        <Dropdown label="Ta et valg" toggleLabel="Knapp">
+        <Dropdown label="Ta et valg" placeholder="Knapp">
           <h2>Innhold i Dropdown</h2>
         </Dropdown>
       );
@@ -136,7 +136,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   describe('Når man klikker på Enter mens Dropdown er lukket', (): void => {
     test('Så åpnes Dropdownen', (): void => {
       render(
-        <Dropdown label="Ta et valg" toggleLabel="Knapp">
+        <Dropdown label="Ta et valg" placeholder="Knapp">
           <h2>Innhold i Dropdown</h2>
         </Dropdown>
       );
@@ -153,7 +153,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   describe('Når man klikker på Home mens Dropdown er åpen', (): void => {
     test('Så flyttes fokus til første radioknapp, og man kan bruke tastaturet for å gå nedover, men ikke oppover', (): void => {
       render(
-        <Dropdown label="Ta et valg" toggleLabel="Knapp">
+        <Dropdown label="Ta et valg" placeholder="Knapp">
           <RadioButton label="Førstevalg" inputId="radio-1" value="radio-1" />
           <RadioButton label="Andrevalg" inputId="radio-2" value="radio-2" />
           <RadioButton label="Tredjevalg" inputId="radio-3" value="radio-3" />
@@ -178,7 +178,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   describe('Når man klikker på End mens Dropdown er åpen', (): void => {
     test('Så flyttes fokus til sist radioknapp, og man kan bruke tastaturet for å gå oppover, men ikke nedover', (): void => {
       render(
-        <Dropdown label="Ta et valg" toggleLabel="Knapp">
+        <Dropdown label="Ta et valg" placeholder="Knapp">
           <RadioButton label="Førstevalg" inputId="radio-1" value="radio-1" />
           <RadioButton label="Andrevalg" inputId="radio-2" value="radio-2" />
           <RadioButton label="Tredjevalg" inputId="radio-3" value="radio-3" />

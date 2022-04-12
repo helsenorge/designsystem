@@ -20,6 +20,7 @@
     border-width: 2px;
     border-style: solid;
     padding: 0 getSpacer(3xs) 0 getSpacer(s);
+    font-family: inherit;
     font-size: $font-size-sm;
     line-height: 1.3rem; // Custom fordi teksten skal henge bedre sammen om den går over to linjer
 

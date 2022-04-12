@@ -32,7 +32,7 @@ export interface DropdownProps {
   /** Label for dropdown. Synlig for skjermlesere.  */
   label: string;
   /** Tekst på knappen som åpner dropdownen */
-  toggleLabel: string;
+  placeholder: string;
   /** Sets the dropdown content */
   children: React.ReactNode;
   /** Close button text */
@@ -58,7 +58,7 @@ export interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = props => {
   const {
     label,
-    toggleLabel,
+    placeholder,
     closeText = 'Lukk',
     noCloseButton = false,
     onToggle,
@@ -175,7 +175,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
         aria-expanded={isOpen}
       >
         <span id={toggleLabelId} className={styles.dropdown__toggle__label}>
-          {toggleLabel}
+          {placeholder}
         </span>
         <Icon
           color={disabled ? theme.palette.neutral500 : theme.palette.blueberry600}

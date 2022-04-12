@@ -13,8 +13,8 @@ stories.addDecorator(withA11y);
 stories.add('RadioButton', () => (
   <div style={{ width: '60rem' }}>
     <Dropdown
-      label={text('Dropdown label', 'Ta et valg')}
-      toggleLabel={text('Toggle label', 'Hva skjer i kroppen?')}
+      label={text('Label', 'Ta et valg')}
+      placeholder={text('Placeholder', 'Hva skjer i kroppen?')}
       closeText={text('Close text', 'Lukk')}
       open={boolean('Open', false)}
       mode={select('Mode', DropdownMode, DropdownMode.onwhite)}
@@ -39,8 +39,8 @@ stories.add('RadioButton', () => (
 stories.add('Checkbox', () => (
   <div style={{ width: '60rem' }}>
     <Dropdown
-      label={text('Dropdown label', 'Ta et valg')}
-      toggleLabel={text('Toggle label', 'Hva skjer i kroppen?')}
+      label={text('Label', 'Ta et valg')}
+      placeholder={text('Placeholder', 'Hva skjer i kroppen?')}
       closeText={text('Close text', 'Lukk')}
       open={boolean('Open', false)}
       mode={select('Mode', DropdownMode, DropdownMode.onwhite)}
@@ -65,8 +65,8 @@ stories.add('Checkbox', () => (
 stories.add('Custom content', () => (
   <div style={{ width: '60rem' }}>
     <Dropdown
-      label={text('Dropdown label', 'Ta et valg')}
-      toggleLabel={text('Toggle label', 'Hva skjer i kroppen?')}
+      label={text('Label', 'Ta et valg')}
+      placeholder={text('Placeholder', 'Hva skjer i kroppen?')}
       closeText={text('Close text', 'Lukk')}
       open={boolean('Open', false)}
       mode={select('Mode', DropdownMode, DropdownMode.onwhite)}
