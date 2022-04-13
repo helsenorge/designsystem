@@ -54,8 +54,8 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       return [
         <FormGroup
           key={0}
-          title={'One amazing title'}
-          legend={'Check out these checkboxes!'}
+          title={'Gruppe tittel'}
+          legend={'Velg minst en'}
           error={errors[formGroup1] ? errors[formGroup1].message : undefined}
           variant={props.variant}
           name={formGroup1}
@@ -68,7 +68,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         </FormGroup>,
         <FormGroup
           key={1}
-          legend={'Select two options!'}
+          legend={'Velg minst to'}
           error={errors[formGroup2] ? errors[formGroup2].message : undefined}
           variant={props.variant}
           name={formGroup2}
@@ -79,7 +79,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         </FormGroup>,
         <FormGroup
           key={2}
-          legend={'Select two options!'}
+          legend={'Velg en'}
           error={errors[formGroup3] ? errors[formGroup3].message : undefined}
           variant={props.variant}
           name={formGroup3}
@@ -170,7 +170,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       <Validation variant={props.variant} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
         {getFormExample()}
       </Validation>
-      <Button type="submit">{'Submit'}</Button>
+      <Button type="submit">{'Send inn'}</Button>
     </form>
   );
 };

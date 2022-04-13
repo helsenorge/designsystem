@@ -20,8 +20,7 @@ stories.add('Default', () => (
       label={text('Label', 'Det har skjedd noe galt. Prøv igjen senere.')}
       variant={select('Variant', ['info', 'warn', 'alert', 'crisis'], 'alert')}
     >
-      {`All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. Lorem Ipsum's father was
-      with Lee Harvey Oswald prior to Oswald's being, you know, shot. `}
+      {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
       <a href="/test" target="_blank" rel="noopener noreferrer">
         {'Les mer'}
       </a>

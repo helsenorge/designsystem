@@ -51,7 +51,7 @@ stories.add('Fluid', () => (
     <Button
       ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
-      fluid={boolean('Fluid', false)}
+      fluid
       intent={select('Intent', allButtonIntents, 'primary')}
       inverted={boolean('Inverted', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}
@@ -67,7 +67,7 @@ stories.add('Fluid', () => (
     <Button
       ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
-      fluid={boolean('Fluid', false)}
+      fluid
       intent={select('Intent', allButtonIntents, 'primary')}
       inverted={boolean('Inverted', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}
@@ -85,7 +85,7 @@ stories.add('Fluid', () => (
     <Button
       ellipsis={boolean('Ellipsis', false)}
       disabled={boolean('Disabled', false)}
-      fluid={boolean('Fluid', false)}
+      fluid
       intent={select('Intent', allButtonIntents, 'primary')}
       inverted={boolean('Inverted', false)}
       htmlMarkup={select('Is', ['button', 'a'], 'button')}
@@ -158,25 +158,7 @@ stories.add('With icon(s)', () => (
       <Icon svgIcon={X} />
     </Button>
     <div style={{ height: '1rem' }}></div>
-    <Button
-      ref={myRef4}
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      fluid={boolean('Fluid', false)}
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      large={boolean('Large', false)}
-      loading={boolean('Loading', false)}
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
-      href={'https://www.helsenorge.no'}
-    >
-      <Icon svgIcon={Calendar} color={'lime'} hoverColor={'red'} />
-      {text('Text', 'Button')}
-      <Icon svgIcon={X} color={'lime'} hoverColor={'red'} />
-    </Button>
-    <div style={{ height: '1rem' }}></div>
+
     <Button
       ref={myRef5}
       ellipsis={boolean('Ellipsis', false)}

@@ -10,7 +10,7 @@ stories.addDecorator(withA11y);
 
 stories.add('Default', () => (
   <div style={{ width: '20rem' }}>
-    <StatusDot variant={select('Variant', StatusDotVariant, StatusDotVariant.info)} text={text('Text', 'StatusDot Text')} />
+    <StatusDot variant={select('Variant', StatusDotVariant, StatusDotVariant.info)} text={text('Text', 'StatusDot label')} />
   </div>
 ));
 

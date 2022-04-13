@@ -18,7 +18,10 @@ stories.add('Default', () => (
     highlighted={boolean('Highlighted', false)}
     href="https://vg.no"
     title={<Tile.Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')}>{text('Title', 'Inbox')}</Tile.Title>}
-    description={text('Description', 'Messages between you and your health contacts through Helsenorge.')}
+    description={text(
+      'Description',
+      'Førstehjelp de første minuttene etter at en akutt sykdom eller skade har oppstått er livsviktig og minsker risikoen for langtidsskader.'
+    )}
   />
 ));
 
@@ -27,7 +30,7 @@ stories.add('External', () => (
     fixed={boolean('Fixed width', false)}
     icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
     highlighted={boolean('Highlighted', false)}
-    href="https://vg.no"
+    href="https://helsenorge.no"
     title={<Tile.Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')}>{text('Title', 'External')}</Tile.Title>}
   />
 ));
@@ -44,46 +47,68 @@ stories.add('Wrapped container', () => (
     }}
   >
     <Tile
-      href="https://vg.no"
+      href="https://helsenorge.no"
       icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-      title={<Tile.Title>Titledffdgkdfklgfdlkglkdglkdfkglfssdasdasdsa</Tile.Title>}
-      description="Some long description about the service."
+      title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+      description="Hva du heter.
+      Hvor du ringer fra.
+      Telefonnummer du ringer fra.
+      Beskriv situasjonen og symptomer."
     />
     <Tile
-      href="https://vg.no"
+      href="https://helsenorge.no"
       icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-      title={<Tile.Title>Title</Tile.Title>}
-      description="Some long description about the service."
+      title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+      description="Hva du heter.
+      Hvor du ringer fra.
+      Telefonnummer du ringer fra.
+      Beskriv situasjonen og symptomer."
     />
     <Tile
-      href="https://vg.no"
+      href="https://helsenorge.no"
       icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-      title={<Tile.Title>Title - quiet long but with separated words at least!</Tile.Title>}
-      description="Some long description about the service."
+      title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+      description="Hva du heter.
+      Hvor du ringer fra.
+      Telefonnummer du ringer fra.
+      Beskriv situasjonen og symptomer."
     />
     <Tile
-      href="https://vg.no"
+      href="https://helsenorge.no"
       icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-      title={<Tile.Title>Title</Tile.Title>}
-      description="Some long description about the service."
+      title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+      description="Hva du heter.
+      Hvor du ringer fra.
+      Telefonnummer du ringer fra.
+      Beskriv situasjonen og symptomer."
     />
     <Tile
-      href="https://vg.no"
+      href="https://helsenorge.no"
       icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-      title={<Tile.Title>Title</Tile.Title>}
-      description="Some long description about the service."
+      title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+      description="Hva du heter.
+      Hvor du ringer fra.
+      Telefonnummer du ringer fra.
+      Beskriv situasjonen og symptomer."
     />
     <Tile
-      href="https://vg.no"
+      href="https://helsenorge.no"
       icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-      title={<Tile.Title>Title</Tile.Title>}
-      description="Some long description about the service."
+      title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+      description="Hva du heter.
+      Hvor du ringer fra.
+      Telefonnummer du ringer fra.
+      Beskriv situasjonen og symptomer."
     />
     <Tile
-      href="https://vg.no"
+      href="https://helsenorge.no"
       icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
       title={<Tile.Title>Europeisk helsetrygdekort (nav)</Tile.Title>}
     />
-    <Tile href="https://vg.no" icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />} title={<Tile.Title>Title</Tile.Title>} />
+    <Tile
+      href="https://helsenorge.no"
+      icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+      title={<Tile.Title>Europeisk helsetrygdekort (nav)</Tile.Title>}
+    />
   </div>
 ));

@@ -25,7 +25,10 @@ stories.add('Default', () => (
       bottomBorder={boolean('Bottom border', true)}
     >
       <LinkList.Link>Innhold A-Å</LinkList.Link>
-      <LinkList.Link>English (This is a super long text just so you can observe how it will wrap on a multiline context)</LinkList.Link>
+      <LinkList.Link>
+        Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
+        bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
+      </LinkList.Link>
     </LinkList>
   </div>
 ));

@@ -19,8 +19,7 @@ stories.add('Skeleton', () => (
       placeholder="Dette er en placeholder"
       maxCharacters={150}
       maxText={'chars'}
-      defaultValue={`It is not the fart that kills you, it's the smell \n \n
-  - Petter Solberg`}
+      defaultValue={`Førstehjelp de første minuttene etter at en akutt sykdom eller skade har oppstått er livsviktig og minsker risikoen for langtidsskader.`}
       testId="123-test"
       transparent={boolean('transparent', false)}
       disabled={boolean('disabled', false)}
@@ -41,8 +40,7 @@ stories.add('All props', () => {
       <Textarea
         maxCharacters={150}
         maxText={'chars'}
-        defaultValue={`It is not the fart that kills you, it's the smell \n \n
-  - Petter Solberg`}
+        defaultValue={`Førstehjelp de første minuttene etter at en akutt sykdom eller skade har oppstått er livsviktig og minsker risikoen for langtidsskader.`}
         testId="123-test"
         transparent={boolean('transparent', false)}
         mode={modes}
@@ -76,10 +74,10 @@ stories.add('Max characters', () => (
 stories.add('Disabled', () => (
   <>
     <div style={{ width: '20rem' }}>
-      <Textarea disabled placeholder={'This is a placeholder'} marginBottom />
+      <Textarea disabled placeholder={'Dette er en placeholder'} marginBottom />
     </div>
     <div style={{ width: '20rem' }}>
-      <Textarea disabled defaultValue={`This is a default value`}></Textarea>
+      <Textarea disabled defaultValue={`Default value`}></Textarea>
     </div>
   </>
 ));
@@ -89,8 +87,7 @@ stories.add('Transparent', () => (
     <Textarea
       maxCharacters={150}
       transparent
-      defaultValue={`It is not the fart that kills you, it's the smell
-- Petter Solberg`}
+      defaultValue={`Førstehjelp de første minuttene etter at en akutt sykdom eller skade har oppstått er livsviktig og minsker risikoen for langtidsskader.`}
     />
   </div>
 ));
@@ -100,8 +97,7 @@ stories.add('Children after label', () => (
     <Textarea
       label={'Here is a child next to me'}
       maxCharacters={150}
-      defaultValue={`It is not the fart that kills you, it's the smell
-- Petter Solberg`}
+      defaultValue={`Førstehjelp de første minuttene etter at en akutt sykdom eller skade har oppstått er livsviktig og minsker risikoen for langtidsskader.`}
       afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>}
     />
   </div>

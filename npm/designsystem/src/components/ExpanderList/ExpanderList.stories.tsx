@@ -27,13 +27,18 @@ stories.add('Default', () => (
       bottomBorder={boolean('Bottom border', true)}
       large={boolean('Large', false)}
     >
-      <ExpanderList.Expander title="Cognitive therapy">
-        Some major content/text about <a href="#">certain illness here.</a>. Note that the anchors are not styled by default. The content is
-        free from styling.
+      <ExpanderList.Expander title="Kognitiv terapi">
+        Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger
+        og følelser. Et viktig mål er å bryte selvforsterkende onde sirkler som opprettholder psykiske helseproblemer.
       </ExpanderList.Expander>
-      <ExpanderList.Expander title="Health anxiety">Some major content/text about certain illness here.</ExpanderList.Expander>
-      <ExpanderList.Expander title="Brain damage (This is a super long text just so you can observe how it will wrap on a multiline context)">
-        Some major content/text about certain illness here.
+      <ExpanderList.Expander title="Hypokondri">
+        Hypokondri er en sykdom der folk føler at de har en sykdom som de i realiteten ikke har. Statens helsetilsyn sier blant annet
+        følgende om sykdommen: «Det vesentlige kjennetegnet er vedvarende opptatthet av muligheten for å ha en eller flere alvorlige og
+        fremadskridende somatiske lidelser».
+      </ExpanderList.Expander>
+      <ExpanderList.Expander title="En hjerneskade er en skade opstået i hjernen, med vedvarende funktionsnedsættelse til følge (Ekstra lang tekst for wrapping)">
+        De hyppigste årsager til hjerneskader er hjerneblødninger, blodpropper i hjernen, trafik- eller drukneulykker, svulster eller
+        hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.
       </ExpanderList.Expander>
     </ExpanderList>
   </div>
@@ -46,14 +51,18 @@ stories.add('With icon', () => (
     }}
   >
     <ExpanderList isOpen={boolean('Is open', false)} color="cherry">
-      <ExpanderList.Expander icon={<Icon svgIcon={Avatar} />} title="Cognitive therapy">
-        Some major content/text about certain illness here.
+      <ExpanderList.Expander icon={<Icon svgIcon={Avatar} />} title="Kognitiv terapi">
+        Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger
+        og følelser. Et viktig mål er å bryte selvforsterkende onde sirkler som opprettholder psykiske helseproblemer.
       </ExpanderList.Expander>
-      <ExpanderList.Expander icon={<Icon svgIcon={PaperPlane} />} title="Health anxiety">
-        Some major content/text about certain illness here.
+      <ExpanderList.Expander icon={<Icon svgIcon={PaperPlane} />} title="Hypokondri">
+        Hypokondri er en sykdom der folk føler at de har en sykdom som de i realiteten ikke har. Statens helsetilsyn sier blant annet
+        følgende om sykdommen: «Det vesentlige kjennetegnet er vedvarende opptatthet av muligheten for å ha en eller flere alvorlige og
+        fremadskridende somatiske lidelser».
       </ExpanderList.Expander>
-      <ExpanderList.Expander icon={<Icon svgIcon={AlarmClock} />} title="Brain damage">
-        Some major content/text about certain illness here.
+      <ExpanderList.Expander icon={<Icon svgIcon={AlarmClock} />} title="Hjerneskade">
+        De hyppigste årsager til hjerneskader er hjerneblødninger, blodpropper i hjernen, trafik- eller drukneulykker, svulster eller
+        hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.
       </ExpanderList.Expander>
     </ExpanderList>
   </div>
@@ -66,11 +75,11 @@ stories.add('With LinkList', () => (
     }}
   >
     <ExpanderList isOpen={boolean('Is open', false)} color="cherry">
-      <ExpanderList.Expander title="Cognitive therapy">
+      <ExpanderList.Expander title="Kognitiv terapi">
         <LinkList color="cherry">
-          <LinkList.Link href="/firstaid">First aid</LinkList.Link>
-          <LinkList.Link href="/secondaid">Second aid</LinkList.Link>
-          <LinkList.Link href="/thirdaid">Third aid</LinkList.Link>
+          <LinkList.Link href="/kognitivterapi1">Første lenke</LinkList.Link>
+          <LinkList.Link href="/kognitivterapi2">Andre lenke</LinkList.Link>
+          <LinkList.Link href="/kognitivterapi3">Tredje lenke</LinkList.Link>
         </LinkList>
       </ExpanderList.Expander>
     </ExpanderList>
@@ -184,7 +193,7 @@ stories.add('With callback', () => (
       bottomBorder={boolean('Bottom border', true)}
       large={boolean('Large', false)}
     >
-      <ExpanderList.Expander title="Cognitive therapy" onExpand={isExpanded => console.log(isExpanded)}>
+      <ExpanderList.Expander title="Kognitiv terapi" onExpand={isExpanded => console.log(isExpanded)}>
         <p>Sjekk nettleserkonsollen</p>
       </ExpanderList.Expander>
     </ExpanderList>

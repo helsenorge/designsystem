@@ -133,7 +133,11 @@ stories.add('Ikon og detaljer', () => (
       title={text('Title', 'Medisinsk fødselsregister (MFR)')}
       icon={<Icon svgIcon={Envelope} size={IconSize.XSmall} />}
     >
-      <p>{'Content'}</p>
+      <p>
+        {
+          'Dolor sit nisi exercitation esse sint et excepteur commodo officia qui exercitation. Ad excepteur laboris laboris Lorem. Occaecat aliquip cupidatat pariatur enim est eiusmod laboris ea nulla dolore ullamco dolore nostrud proident. Irure in eu irure excepteur sit exercitation aliquip deserunt adipisicing ullamco nulla elit culpa culpa.'
+        }
+      </p>
     </Panel>
   </div>
 ));
@@ -149,7 +153,7 @@ stories.add('Avatar og detaljer', () => (
         <Button htmlMarkup="a" target="_blank" href="https://www.facebook.com/people/Line-Danser/100007422643849/">
           {'Line Danser'}
         </Button>
-        <span>{' med livet som innsats'}</span>
+        <span>{' Lorem culpa esse dolore cillum minim qui minim aliquip eu laborum voluptate.'}</span>
       </div>
     </Panel>
   </div>

@@ -13,12 +13,14 @@ stories.addDecorator(withA11y);
 stories.add('Default', () => (
   <div style={{ width: '20rem' }}>
     <AnchorLink href={text('Href', '/test')} target={'_self'}>
-      {text('Text', 'link text')}
+      {text('Text', 'Anchorlink tekst')}
     </AnchorLink>
     <br />
     <br />
     <AnchorLink href={text('Href', '/test')} target={'_self'}>
-      {'I am a super long link (I am supposed to wrap!)'}
+      {
+        'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
+      }
     </AnchorLink>
   </div>
 ));
@@ -26,25 +28,14 @@ stories.add('Default', () => (
 stories.add('External', () => (
   <div style={{ width: '20rem' }}>
     <AnchorLink href={text('Href', '/test')} target={'_blank'}>
-      {text('Text', 'link text')}
+      {text('Text', 'Anchorlink tekst')}
     </AnchorLink>
     <br />
     <br />
     <AnchorLink href={text('Href', '/test')} target={'_blank'}>
-      {'I am a super long link (it is supposed to wrap!)'}
+      {
+        'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
+      }
     </AnchorLink>
-  </div>
-));
-
-stories.add('anchorlink-wrapper', () => (
-  <div className={'anchorlink-wrapper'} style={{ width: '20rem' }}>
-    <p>
-      {'Lorem ipsum dolor sit amet sonsectur '}
-      {' amet consectur. Lorem a '}
-      <a href={'#test'} target={'_blank'}>
-        {'click me'}
-      </a>
-      {'Lorem ipsum dolor sit amet sonsectur '}
-    </p>
   </div>
 ));

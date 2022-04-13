@@ -20,7 +20,7 @@ stories.add('Default', () => {
       }}
     >
       <RadioButton
-        label={'Check me out!'}
+        label={'RadioButton label'}
         defaultChecked={boolean('Checked', false)}
         disabled={boolean('Disabled', false)}
         mode={modes}

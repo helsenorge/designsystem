@@ -9,7 +9,7 @@ describe('Gitt at Validation skal vises', () => {
     test('Så vises den riktig', () => {
       render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
-      const validation = screen.getByText('One amazing title').parentElement.parentElement;
+      const validation = screen.getByText('Gruppe tittel').parentElement.parentElement;
       expect(validation.className).toBe('validation');
     });
   });
@@ -18,7 +18,7 @@ describe('Gitt at Validation skal vises', () => {
     test('Så vises children', () => {
       render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
-      const formGroup = screen.getByText('One amazing title').parentElement;
+      const formGroup = screen.getByText('Gruppe tittel').parentElement;
       expect(formGroup).toBeVisible();
     });
   });
@@ -27,7 +27,7 @@ describe('Gitt at Validation skal vises', () => {
     test('Så vises error', async () => {
       render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
-      const submit = screen.getByText('Submit');
+      const submit = screen.getByText('Send inn');
 
       userEvent.click(submit);
 
@@ -48,7 +48,7 @@ describe('Gitt at Validation skal vises', () => {
     test('Så vises errorSummary med riktig styling', async () => {
       render(<FormExample variant={'bigform'} exampleType={FormExampleVariants.formgroup} />);
 
-      const submit = screen.getByText('Submit');
+      const submit = screen.getByText('Send inn');
 
       userEvent.click(submit);
 
@@ -62,7 +62,7 @@ describe('Gitt at Validation skal vises', () => {
     test('Så fjernes error', async () => {
       render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
-      const submit = screen.getByText('Submit');
+      const submit = screen.getByText('Send inn');
 
       userEvent.click(submit);
 

@@ -20,7 +20,7 @@ stories.add('Default', () => {
     <div style={{ width: '80vw', background: mapToBackgoundColor(modes), padding: 20 }}>
       <Input
         defaultValue={text('defaultValue', '')}
-        placeholder={text('placeholdertext', 'Put some text here!')}
+        placeholder={text('placeholdertext', 'Skriv inn tekst her')}
         testId={'123-test'}
         variant={select('Variant', FormVariant, FormVariant.normal)}
         transparent={boolean('transparent', false)}
@@ -43,7 +43,7 @@ stories.add('Multiple examples', () => {
     <div style={{ width: '80vw', background: mapToBackgoundColor(modes), padding: 20 }}>
       <Input
         defaultValue={text('defaultValue', '')}
-        placeholder={text('placeholdertext', 'Put some text here!')}
+        placeholder={text('placeholdertext', 'Skriv inn tekst her')}
         testId={'123-test'}
         variant={select('Variant', FormVariant, FormVariant.normal)}
         transparent={boolean('transparent', false)}
@@ -58,7 +58,7 @@ stories.add('Multiple examples', () => {
 
       <Input
         defaultValue={text('defaultValue', '')}
-        placeholder={text('placeholdertext', 'Put some text here!')}
+        placeholder={text('placeholdertext', 'Skriv inn tekst her')}
         testId={'123-test'}
         variant={select('Variant', FormVariant, FormVariant.normal)}
         transparent={boolean('transparent', false)}
@@ -73,7 +73,7 @@ stories.add('Multiple examples', () => {
 
       <Input
         defaultValue={text('defaultValue', '')}
-        placeholder={text('placeholdertext', 'Put some text here!')}
+        placeholder={text('placeholdertext', 'Skriv inn tekst her')}
         testId={'123-test'}
         variant={select('Variant', FormVariant, FormVariant.normal)}
         transparent={boolean('transparent', false)}
@@ -96,7 +96,7 @@ stories.add('Children after label', () => {
     <div style={{ width: '80vw', background: mapToBackgoundColor(modes), padding: 20 }}>
       <Input
         defaultValue={text('defaultValue', '')}
-        placeholder={text('placeholdertext', 'Put some text here!')}
+        placeholder={text('placeholdertext', 'Skriv inn tekst her')}
         testId={'123-test'}
         variant={select('Variant', FormVariant, FormVariant.normal)}
         transparent={boolean('transparent', false)}

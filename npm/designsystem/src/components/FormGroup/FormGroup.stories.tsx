@@ -18,13 +18,13 @@ stories.add('Checkbox', () => {
   return (
     <div
       style={{
-        width: '40rem',
+        width: '90vw',
         background: mapToBackgoundColor(modes),
       }}
     >
       <FormGroup
-        title={text('Title', 'One amazing title')}
-        legend={text('Legend', 'Check out these checkboxes!')}
+        title={text('Title', 'Gruppe tittel')}
+        legend={text('Legend 1', 'Første gruppe')}
         mode={modes}
         variant={select('Variant', FormVariant, FormVariant.normal)}
       >
@@ -32,11 +32,7 @@ stories.add('Checkbox', () => {
         <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
         <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
       </FormGroup>
-      <FormGroup
-        legend={text('Legend', 'Check out these checkboxes!')}
-        mode={modes}
-        variant={select('Variant', FormVariant, FormVariant.normal)}
-      >
+      <FormGroup legend={text('Legend 2', 'Andre gruppe')} mode={modes} variant={select('Variant', FormVariant, FormVariant.normal)}>
         <Checkbox label={'Checkbox 4'} />
         <Checkbox label={'Checkbox 5'} />
         <Checkbox label={'Checkbox 6'} />
@@ -51,13 +47,13 @@ stories.add('RadioButton', () => {
   return (
     <div
       style={{
-        width: '40rem',
+        width: '90vw',
         background: mapToBackgoundColor(modes),
       }}
     >
       <FormGroup
-        title={text('Title', 'One amazing title')}
-        legend={text('Legend', 'Radio radio hello!')}
+        title={text('Title', 'Gruppe tittel')}
+        legend={text('Legend 1', 'Første gruppe')}
         mode={modes}
         variant={select('Variant', FormVariant, FormVariant.normal)}
         name={'radiogroup1'}
@@ -67,7 +63,7 @@ stories.add('RadioButton', () => {
         <RadioButton inputId={'RadioButton3'} label={'RadioButton 3'} />
       </FormGroup>
       <FormGroup
-        legend={text('Legend', 'Radio radio hello!')}
+        legend={text('Legend 2', 'Andre gruppe')}
         mode={modes}
         variant={select('Variant', FormVariant, FormVariant.normal)}
         name={'radiogroup2'}
@@ -86,13 +82,13 @@ stories.add('Input', () => {
   return (
     <div
       style={{
-        width: '40rem',
+        width: '90vw',
         background: mapToBackgoundColor(modes),
       }}
     >
       <FormGroup
-        title={text('Title', 'One amazing title')}
-        legend={text('Legend', 'Group of textsss')}
+        title={text('Title', 'Gruppe tittel')}
+        legend={text('Legend 1', 'Første gruppe')}
         mode={modes}
         variant={select('Variant', FormVariant, FormVariant.normal)}
       >
@@ -101,7 +97,7 @@ stories.add('Input', () => {
         <Input icon={Coronavirus} iconRight label={'Input 3'} />
       </FormGroup>
       <FormGroup
-        legend={text('Legend', 'Group of textsss')}
+        legend={text('Legend 2', 'Andre gruppe')}
         mode={modes}
         variant={select('Variant', FormVariant, FormVariant.normal)}
         name={'radiogroup2'}

@@ -17,34 +17,23 @@ stories.add('Checkbox', () => {
   return (
     <div
       style={{
-        width: '100vw',
+        width: '90vw',
         background: mapToBackgoundColor(modes),
       }}
     >
       <FormGroup
-        title={text('Title', 'One amazing title')}
-        legend={text('Legend', 'Check out these checkboxes!')}
+        title={text('Title', 'Her kan du styre maks antall kolonner')}
+        legend={text('Legend', 'Antallet er basert på hvor mange som har plass')}
         mode={modes}
         variant={select('Variant', FormVariant, FormVariant.normal)}
       >
-        <FormLayout maxColumns={select('maxColumns', FormLayoutColumns, FormLayoutColumns.one)} colMinWidth={number('colMinWidth', 300)}>
+        <FormLayout maxColumns={select('maxColumns', FormLayoutColumns, FormLayoutColumns.three)} colMinWidth={number('colMinWidth', 300)}>
           <Checkbox inputId={'Checkbox1'} label={'Checkbox hei'} />
           <Checkbox inputId={'Checkbox2'} label={'Checkbox lalalala'} />
           <Checkbox inputId={'Checkbox3'} label={'Checkbox asdadasd afasasfaa'} />
           <Checkbox inputId={'Checkbox4'} label={'Checkbox hmm'} />
           <Checkbox inputId={'Checkbox5'} label={'Checkbox'} />
           <Checkbox inputId={'Checkbox6'} label={'Checkbox jadada'} />
-        </FormLayout>
-      </FormGroup>
-      <FormGroup
-        legend={text('Legend', 'Check out these checkboxes!')}
-        mode={modes}
-        variant={select('Variant', FormVariant, FormVariant.normal)}
-      >
-        <FormLayout maxColumns={select('maxColumns', FormLayoutColumns, FormLayoutColumns.one)} colMinWidth={number('colMinWidth', 300)}>
-          <Checkbox label={'Checkbox 4'} />
-          <Checkbox label={'Checkbox 5'} />
-          <Checkbox label={'Checkbox 6'} />
         </FormLayout>
       </FormGroup>
     </div>
@@ -57,18 +46,18 @@ stories.add('RadioButton', () => {
   return (
     <div
       style={{
-        width: '100vw',
+        width: '90vw',
         background: mapToBackgoundColor(modes),
       }}
     >
       <FormGroup
-        title={text('Title', 'One amazing title')}
-        legend={text('Legend', 'Radio radio hello!')}
+        title={text('Title', 'Her kan du styre maks antall kolonner')}
+        legend={text('Legend', 'Antallet er basert på hvor mange som har plass')}
         mode={modes}
         variant={select('Variant', FormVariant, FormVariant.normal)}
         name={'radiogroup1'}
       >
-        <FormLayout maxColumns={select('maxColumns', FormLayoutColumns, FormLayoutColumns.one)} colMinWidth={number('colMinWidth', 300)}>
+        <FormLayout maxColumns={select('maxColumns', FormLayoutColumns, FormLayoutColumns.two)} colMinWidth={number('colMinWidth', 300)}>
           <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
           <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
           <RadioButton inputId={'RadioButton3'} label={'RadioButton 3'} />

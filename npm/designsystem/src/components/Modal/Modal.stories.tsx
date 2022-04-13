@@ -27,8 +27,11 @@ stories.add('Default', () => (
       ModalVariants.normal
     )}
     size={select('size', [ModalSize.large, ModalSize.medium], ModalSize.large)}
-    title={text('title', 'Er du sikker på at du vil?')}
-    description={text('description', 'For mye H P Lovecraft til å få plass i denne boksen: The most merciful thing in the world, I think.')}
+    title={text('title', 'Vil du spise en appelsin?')}
+    description={text(
+      'description',
+      ' Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'
+    )}
     primaryButtonText={text('primaryButtonText', 'OK')}
     secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
     onClose={onClose}
@@ -45,8 +48,11 @@ stories.add('Modal with icon', () => (
       ModalVariants.normal
     )}
     size={select('size', [ModalSize.large, ModalSize.medium], ModalSize.large)}
-    title={text('title', 'Er du sikker på at du vil?')}
-    description={text('description', 'For mye H P Lovecraft til å få plass i denne boksen: The most merciful thing in the world, I think.')}
+    title={text('title', 'Vil du spise en appelsin?')}
+    description={text(
+      'description',
+      ' Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'
+    )}
     primaryButtonText={text('primaryButtonText', 'OK')}
     secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
     onClose={onClose}
@@ -63,8 +69,11 @@ stories.add('Modal with children after title', () => (
       ModalVariants.normal
     )}
     size={select('size', [ModalSize.large, ModalSize.medium], ModalSize.large)}
-    title={text('title', 'Er du sikker på at du vil?')}
-    description={text('description', 'For mye H P Lovecraft til å få plass i denne boksen: The most merciful thing in the world, I think.')}
+    title={text('title', 'Vil du spise en appelsin?')}
+    description={text(
+      'description',
+      ' Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'
+    )}
     primaryButtonText={text('primaryButtonText', 'OK')}
     secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
     afterTitleChildren={<Icon svgIcon={Envelope} size={IconSize.Small} />}
@@ -81,19 +90,24 @@ stories.add('Scroll', () => (
       ModalVariants.normal
     )}
     size={select('size', [ModalSize.large, ModalSize.medium], ModalSize.large)}
-    title={text('title', 'Infinite Scroll: What Is It Good For? The content is endless, but user patience is not.')}
+    title={text('title', 'Derfor bør du spise frukt')}
     description={text(
       'description',
-      `I am so sorry, says inventor of endless online scrolling
+      `Er frukt egentlig så sunt, og hvor mye frukt kan man spise? Hvilken frukt er den sunneste? 
       
-      The man behind our ability to endlessly scroll through content on social media sites without ever needing to click a button said he regrets what his invention has done to society.
+      Frukt er en viktig kilde til antioksidanter, mineraler, vitaminer og fiber, og er en særlig god kilde til vitamin C. Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.  
 
-      Aza Raskin is the creator of “infinite scroll”, a feature that has become ubiquitous on sites such as Facebook and Twitter and allows users to continuously move up or down a page, removing any need to press “refresh” or hit a “next page” button.
-      I am so sorry, says inventor of endless online scrolling
+      Nyere forskning viser også at fiber er god mat for de gode tarmbakteriene som hjelper med å holde oss friske.  
       
-      The man behind our ability to endlessly scroll through content on social media sites without ever needing to click a button said he regrets what his invention has done to society.
+      De siste årene har det vært stilt spørsmål om frukt egentlig er så sunt på grunn av fruktens karbohydratinnhold. Noen lurer også på om man kan legge på seg av frukt. Det korte svaret er at frukt er sunt, karbohydratinnholdet er ikke noe friske mennesker behøver å bekymre seg over og nei - det er nok ikke frukten som er syndebukken. Norske kostholdsundersøkelser viser at vi fortsatt spiser mindre frukt og grønt enn anbefalt.
+      
+      Er frukt egentlig så sunt, og hvor mye frukt kan man spise? Hvilken frukt er den sunneste? 
+      
+      Frukt er en viktig kilde til antioksidanter, mineraler, vitaminer og fiber, og er en særlig god kilde til vitamin C. Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.  
 
-      Aza Raskin is the creator of “infinite scroll”, a feature that has become ubiquitous on sites such as Facebook and Twitter and allows users to continuously move up or down a page, removing any need to press “refresh” or hit a “next page” button.`
+      Nyere forskning viser også at fiber er god mat for de gode tarmbakteriene som hjelper med å holde oss friske.  
+      
+      De siste årene har det vært stilt spørsmål om frukt egentlig er så sunt på grunn av fruktens karbohydratinnhold. Noen lurer også på om man kan legge på seg av frukt. Det korte svaret er at frukt er sunt, karbohydratinnholdet er ikke noe friske mennesker behøver å bekymre seg over og nei - det er nok ikke frukten som er syndebukken. Norske kostholdsundersøkelser viser at vi fortsatt spiser mindre frukt og grønt enn anbefalt.`
     )}
     primaryButtonText={text('primaryButtonText', 'OK')}
     secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
@@ -165,7 +179,7 @@ stories.add('Modal without close button', () => {
 stories.add('Modal with state example', () => {
   return (
     <ButtonWithModal
-      buttonText="Open modal"
+      buttonText="Åpne modal"
       variant={select(
         'variant',
         [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
@@ -212,7 +226,7 @@ stories.add('Modal with disabled button', () => {
 stories.add('Modal with only title', () => {
   return (
     <ButtonWithModal
-      buttonText="Open modal"
+      buttonText="Åpne modal"
       variant={select(
         'variant',
         [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
@@ -227,7 +241,7 @@ stories.add('Modal with only title', () => {
 stories.add('Modal with only title and no close events', () => {
   return (
     <ButtonWithModal
-      buttonText="Open modal"
+      buttonText="Åpne modal"
       variant={select(
         'variant',
         [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
@@ -245,7 +259,7 @@ stories.add('Modal in bottom of page', () => {
     <div>
       <div style={{ minHeight: '200vh' }}></div>
       <ButtonWithModal
-        buttonText="Open modal"
+        buttonText="Åpne modal"
         variant={select(
           'variant',
           [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
@@ -266,10 +280,10 @@ stories.add('Modal with custom content', () => {
 
   return (
     <div>
-      <Button onClick={(): void => isOpen(!open)}>{'Bestill burger'}</Button>
+      <Button onClick={(): void => isOpen(!open)}>{'Bestill frukt'}</Button>
       {burger > 0 && (
         <p style={{ color: 'red' }}>
-          {'Antall bestilte burgere: '}
+          {'Antall bestilte frukt: '}
           <strong>{burger}</strong>
         </p>
       )}
@@ -280,7 +294,7 @@ stories.add('Modal with custom content', () => {
             [ModalVariants.normal, ModalVariants.error, ModalVariants.warning, ModalVariants.success, ModalVariants.image],
             ModalVariants.normal
           )}
-          title={text('title', 'Hvor mange burgere vil du ha?')}
+          title={text('title', 'Hvor mye frukt vil du ha?')}
           primaryButtonText={text('primaryButtonText', 'OK')}
           secondaryButtonText={text('secondaryButtonText', 'Avbryt')}
           onClose={(): void => {
@@ -309,12 +323,12 @@ stories.add('Modal with custom content', () => {
 stories.add('Print modal', () => {
   return (
     <div>
-      <p>{'A random string: top'}</p>
+      <p>{'En tilfeldig string'}</p>
       <div style={{ minHeight: '100vh', backgroundColor: 'lavender' }}></div>
       <ButtonWithModal
         onSuccess={onSuccess}
-        primaryButtonText="I'm a button"
-        title={text('title', 'Arnold Schwarzenegger Quotes')}
+        primaryButtonText="Jeg er en knapp"
+        title={text('title', 'Derfor bør du spise frukt')}
         buttonText="Open modal"
         variant={select(
           'variant',
@@ -323,73 +337,21 @@ stories.add('Print modal', () => {
         )}
         printable
         description={`
-        Not to be. Here's a couple of acres. Now listen to me very carefully. Get out. Gimme the goddam page!
+        Er frukt egentlig så sunt, og hvor mye frukt kan man spise? Hvilken frukt er den sunneste? 
+      
+      Frukt er en viktig kilde til antioksidanter, mineraler, vitaminer og fiber, og er en særlig god kilde til vitamin C. Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.  
 
-        Do it now! I'm detective john kimble. You got what you want... Wrong. You're the asshole on tv... I want my larry. Cool off. You set us up. Excuse me. Come with me if you want to live.
-       
-        Fugettit, i'm not going to sit on your lap. Living tissue over endoskeleton. Living tissue over endoskeleton. Come on don't bullshit me.
-       
+      Nyere forskning viser også at fiber er god mat for de gode tarmbakteriene som hjelper med å holde oss friske.  
+      
+      De siste årene har det vært stilt spørsmål om frukt egentlig er så sunt på grunn av fruktens karbohydratinnhold. Noen lurer også på om man kan legge på seg av frukt. Det korte svaret er at frukt er sunt, karbohydratinnholdet er ikke noe friske mennesker behøver å bekymre seg over og nei - det er nok ikke frukten som er syndebukken. Norske kostholdsundersøkelser viser at vi fortsatt spiser mindre frukt og grønt enn anbefalt.
+      
+      Er frukt egentlig så sunt, og hvor mye frukt kan man spise? Hvilken frukt er den sunneste? 
+      
+      Frukt er en viktig kilde til antioksidanter, mineraler, vitaminer og fiber, og er en særlig god kilde til vitamin C. Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.  
 
-        You're a fucking choir boy compared to me... Born to be bad. You are mine now... Blondes. I'm the famous comedian, arnold brownswagger. No problemo. Your luggage... You're a funny guy sully...
-       
-
-
-        I wanna see you. Well listen to this one. Gimme the goddam page! You should clone yourslef so you can go fuck yourself.
-       
-
-
-
-
-
-
-        Who the fuck are you? Now! Hey light head. You should clone yourslef so you can go fuck yourself... You set us up. Como esta. Only pain. No sequel for you. The ice age. Fuck you asshowr.
-       
-
-
-
-
-
-        You are mine now. Come on! No more 'mr kimble, i have to go to the bathroom. You're the asshole on tv.
-       
-
-
-
-
-
-        The ice age. I'm the party pooper. Right now i'm very hungry. Who is your daddy, and what does he do? Crumb. You're a funny guy sully. I eat green barrettes for breakfast. The iceman cometh.
-
-        You're a fucking choir boy compared to me... Born to be bad. You are mine now... Blondes. I'm the famous comedian, arnold brownswagger. No problemo. Your luggage... You're a funny guy sully...
-       
-
-
-        I wanna see you. Well listen to this one. Gimme the goddam page! You should clone yourslef so you can go fuck yourself.
-       
-
-
-
-
-
-
-        Who the fuck are you? Now! Hey light head. You should clone yourslef so you can go fuck yourself... You set us up. Como esta. Only pain. No sequel for you. The ice age. Fuck you asshowr.
-       
-
-
-
-
-
-        You are mine now. Come on! No more 'mr kimble, i have to go to the bathroom. You're the asshole on tv.
-       
-
-
-
-
-
-        The ice age. I'm the party pooper. Right now i'm very hungry. Who is your daddy, and what does he do? Crumb. You're a funny guy sully. I eat green barrettes for breakfast. The iceman cometh.
-
-        ...
-        ...
-
-        - End
+      Nyere forskning viser også at fiber er god mat for de gode tarmbakteriene som hjelper med å holde oss friske.  
+      
+      De siste årene har det vært stilt spørsmål om frukt egentlig er så sunt på grunn av fruktens karbohydratinnhold. Noen lurer også på om man kan legge på seg av frukt. Det korte svaret er at frukt er sunt, karbohydratinnholdet er ikke noe friske mennesker behøver å bekymre seg over og nei - det er nok ikke frukten som er syndebukken. Norske kostholdsundersøkelser viser at vi fortsatt spiser mindre frukt og grønt enn anbefalt.
         `}
       />
       <div style={{ minHeight: '1200vh', width: '100%' }}></div>

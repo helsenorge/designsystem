@@ -20,7 +20,7 @@ stories.add('Default', () => {
       }}
     >
       <Checkbox
-        label={'Check me out!'}
+        label={'Jeg er frisk!'}
         checked={boolean('Checked', false)}
         disabled={boolean('Disabled', false)}
         mode={modes}
