@@ -1,5 +1,100 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme dokument Så har expanderne forskjellige IDer 1`] = `
+<div>
+  <ul
+    class="expander-list"
+    data-analyticsid="expander-list"
+  >
+    <li
+      class="expander-list__item expander-list__item--top"
+    >
+      <button
+        aria-expanded="false"
+        class="expander-list-link expander-list-link--neutral expander-list-link--closed"
+        data-analyticsid="expander-list-expander"
+        id="testid-26-0"
+      >
+        <span
+          class="expander-list-link__title"
+        >
+          ExpanderList 1
+        </span>
+        <span
+          class="expander-list-link__chevron"
+        >
+          <svg
+            aria-hidden="true"
+            class="hnds-style-icon "
+            data-analyticsid="icon"
+            fill="black"
+            height="38"
+            role="img"
+            style="min-width: 38px; min-height: 38px;"
+            viewBox="0 0 48 48"
+            width="38"
+          >
+            <path
+              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="expander-list-link__main-content expander-list-link__main-content--padding"
+      >
+        Text 1
+      </div>
+    </li>
+  </ul>
+  <ul
+    class="expander-list"
+    data-analyticsid="expander-list"
+  >
+    <li
+      class="expander-list__item expander-list__item--top"
+    >
+      <button
+        aria-expanded="false"
+        class="expander-list-link expander-list-link--neutral expander-list-link--closed"
+        data-analyticsid="expander-list-expander"
+        id="testid-27-0"
+      >
+        <span
+          class="expander-list-link__title"
+        >
+          ExpanderList 2
+        </span>
+        <span
+          class="expander-list-link__chevron"
+        >
+          <svg
+            aria-hidden="true"
+            class="hnds-style-icon "
+            data-analyticsid="icon"
+            fill="black"
+            height="38"
+            role="img"
+            style="min-width: 38px; min-height: 38px;"
+            viewBox="0 0 48 48"
+            width="38"
+          >
+            <path
+              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="expander-list-link__main-content expander-list-link__main-content--padding"
+      >
+        Text 2
+      </div>
+    </li>
+  </ul>
+</div>
+`;
+
 exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion er false Sjekk at ExpanderList sitt snapshot matcher 1`] = `
 <div>
   <ul
@@ -13,7 +108,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         aria-expanded="false"
         class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
         data-analyticsid="expander-list-expander"
-        id="expander-0"
+        id="testid-1-0"
       >
         <span
           class="expander-list-link__title"
@@ -53,7 +148,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         aria-expanded="false"
         class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
         data-analyticsid="expander-list-expander"
-        id="expander-1"
+        id="testid-1-1"
       >
         <span
           class="expander-list-link__title"
@@ -93,7 +188,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         aria-expanded="false"
         class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
         data-analyticsid="expander-list-expander"
-        id="expander-2"
+        id="testid-1-2"
       >
         <span
           class="expander-list-link__title"

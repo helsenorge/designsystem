@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ExpanderList from './ExpanderList';
 import * as ViewportUtils from '../../utils/viewport';
+import '../../__mocks__/uuid';
 
 describe('Gitt ExpanderList blir rendret', (): void => {
   describe('Når det er tre expandere og accordion er false', (): void => {
@@ -222,6 +223,26 @@ describe('Gitt ExpanderList blir rendret', (): void => {
         expect(handleExpand).toHaveBeenNthCalledWith(1, true);
         expect(handleExpand).toHaveBeenNthCalledWith(2, false);
       });
+    });
+  });
+  describe('Når det er to ExpanderList i samme dokument', (): void => {
+    test('Så har expanderne forskjellige IDer', (): void => {
+      const { container } = render(
+        <>
+          <ExpanderList>
+            <ExpanderList.Expander title="ExpanderList 1">Text 1</ExpanderList.Expander>
+          </ExpanderList>
+          <ExpanderList>
+            <ExpanderList.Expander title="ExpanderList 2">Text 2</ExpanderList.Expander>
+          </ExpanderList>
+        </>
+      );
+
+      const buttonId1 = screen.getByRole('button', { name: 'ExpanderList 1' }).id;
+      const buttonId2 = screen.getByRole('button', { name: 'ExpanderList 2' }).id;
+
+      expect(buttonId1).not.toEqual(buttonId2);
+      expect(container).toMatchSnapshot();
     });
   });
 });

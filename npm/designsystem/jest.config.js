@@ -1,6 +1,7 @@
 module.exports = {
   verbose: true,
   rootDir: './',
+  coverageReporters: ['cobertura', 'lcov'],
   collectCoverage: true,
   coverageDirectory: '<rootDir>/coverage',
   collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx,ts,tsx}', '!<rootDir>/src/components/Icons/[^Icon]*'],

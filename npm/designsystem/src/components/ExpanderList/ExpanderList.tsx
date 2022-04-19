@@ -13,6 +13,7 @@ import classNames from 'classnames';
 
 import expanderListStyles from './styles.module.scss';
 import { AnalyticsId } from '../../constants';
+import { useUuid } from '../../hooks/useUuid';
 
 export type ExpanderListColors = PaletteNames;
 export type ExpanderType = React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>>;
@@ -151,6 +152,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   } = props;
   const [activeExpander, setActiveExpander] = useState({});
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
+  const uuid = useUuid();
   const childCount = React.Children.count(children);
   const expanderListClasses = classNames(expanderListStyles['expander-list'], className);
 
@@ -175,7 +177,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
 
   useEffect(() => {
     if (isOpen) {
-      const id = 'expander-0';
+      const id = `${uuid}-0`;
       setActiveExpander(prevState => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
     }
   }, [isOpen]);
@@ -184,20 +186,20 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     <ul className={expanderListClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.ExpanderList}>
       {React.Children.map(children, (child: React.ReactNode, index: number) => {
         if ((child as React.ReactElement<ExpanderProps>).type === Expander) {
-          const expanded = activeExpander[`expander-${index}`];
+          const expanded = activeExpander[`${uuid}-${index}`];
 
           const expanderItemClass = getExpanderItemClass(index);
 
           return React.cloneElement(child as React.ReactElement<ExpanderProps>, {
-            id: `expander-${index}`,
-            key: `expander-${index}`,
+            id: `${uuid}-${index}`,
+            key: index,
             expanded,
             padding: childPadding,
             color,
             large,
             'aria-expanded': expanded,
             className: expanderItemClass,
-            handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `expander-${index}`),
+            handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${uuid}-${index}`),
           });
         }
         return child;
