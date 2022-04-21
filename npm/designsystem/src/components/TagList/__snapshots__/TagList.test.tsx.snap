@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at Tag skal vises vanlig Når Tagen vises Så ser den ut slik den skal 1`] = `
+<div>
+  <div
+    class="tag-list"
+    data-analyticsid="tag-list"
+  >
+    <span
+      class="tag tag--medium tag--blueberry tag--normal"
+      data-analyticsid="tag"
+    >
+      Tekst
+    </span>
+    <span
+      class="tag tag--medium tag--blueberry tag--normal"
+      data-analyticsid="tag"
+    >
+      Mer tekst
+    </span>
+  </div>
+</div>
+`;
