@@ -68,7 +68,7 @@
         &#{$tag}--has-action {
           &:hover {
             background-color: map-get($palette-map, #{$color}100);
-            border-color:  map-get($palette-map, #{$color}100);
+            border-color: map-get($palette-map, #{$color}100);
           }
           &:focus {
             background-color: $white;
@@ -99,6 +99,7 @@
 
   &--has-action[type='button'] {
     cursor: pointer;
+    font-family: inherit;
     &:focus {
       outline: none;
       border-color: $black;
