@@ -120,13 +120,6 @@ import designsystemtypography from './scss/_typography.scss'
     padding: 0.15rem;
     border-bottom: 1px solid $neutral300;
 
-    font-size: 1.125rem;
-    line-height: 1.875rem;
-    font-weight: 400;
-    @media (min-width: map-get($grid-breakpoints, md)) {
-      font-size: 1.25rem;
-    }
-
     &:hover {
       cursor: pointer;
       color: $blueberry700;
