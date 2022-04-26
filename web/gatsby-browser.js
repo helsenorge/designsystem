@@ -1,2 +1,2 @@
-require('@helsenorge/designsystem-react/scss/helsenorge.scss');
-require('./src/global.scss');
+import '@helsenorge/designsystem-react/scss/helsenorge.scss';
+import './src/global.scss';

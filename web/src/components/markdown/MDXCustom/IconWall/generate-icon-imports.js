@@ -1,6 +1,6 @@
-const path = require('path');
-const fs = require('fs');
-const additionalInfo = require('@helsenorge/designsystem-react/components/Icons/AdditionalIconInformation.js');
+import path from 'path';
+import fs from 'fs';
+import additionalInfo from '@helsenorge/designsystem-react/components/Icons/AdditionalIconInformation.js';
 
 let singleIconModulesImports = '';
 let arrayOfIconModules = '\r\n\r\nexport const allSvgIcons = [';

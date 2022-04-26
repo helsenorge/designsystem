@@ -12,6 +12,7 @@
     "ROX"
   ],
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "gatsby develop",
     "serve": "gatsby serve",

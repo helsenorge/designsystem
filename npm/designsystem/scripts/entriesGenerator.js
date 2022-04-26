@@ -3,11 +3,11 @@
   og genererer en .json fil som brukes videre av rollup for å lage entries
 */
 
-const fs = require('fs');
-const path = require('path');
-const chalk = require('chalk');
-const docgen = require('react-docgen-typescript');
-const glob = require('glob');
+import fs from 'fs';
+import path from 'path';
+import chalk from 'chalk';
+import docgen from 'react-docgen-typescript';
+import glob from 'glob';
 
 const paths = {
   src: path.join('src'),

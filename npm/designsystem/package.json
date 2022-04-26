@@ -13,6 +13,7 @@
     "ROX"
   ],
   "license": "MIT",
+  "type": "module",
   "publishConfig": {
     "directory": "lib",
     "access": "public"

@@ -9,10 +9,9 @@ import copy from 'rollup-plugin-copy';
 import { terser } from 'rollup-plugin-terser';
 
 import pkg from './package.json';
+import componentsEntries from './scripts/componentsEntries.json';
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
-
-const componentsEntries = require('./scripts/componentsEntries');
 const inputEntries = Object.assign({ index: pkg.source }, componentsEntries);
 
 const globals = {

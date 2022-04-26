@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 
 module.exports = config => {
   const excludedFonts = config.config.module.rules.filter(rule => !rule.test.source.includes('woff'));

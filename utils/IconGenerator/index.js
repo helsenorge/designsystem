@@ -1,5 +1,5 @@
-const puppeteer = require('puppeteer');
-const IconGenerator = require('./IconGenerator');
+import puppeteer from 'puppeteer';
+import IconGenerator from './IconGenerator';
 
 (async () => {
   let browser;

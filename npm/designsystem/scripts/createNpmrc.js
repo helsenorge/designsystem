@@ -1,8 +1,7 @@
 /*
   Scriptet oppretter en .npmrc fil under /lib_npm for publisering mot npmjs
 */
-
-const fs = require('fs');
+import fs from 'fs';
 
 var dir = './lib_npm';
 

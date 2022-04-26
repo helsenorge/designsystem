@@ -1,5 +1,5 @@
-const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
+import path from 'path';
+import { createFilePath } from 'gatsby-source-filesystem';
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
@@ -20,15 +20,15 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-  `).then((result) => {
+  `).then(result => {
     if (result.errors) {
-      result.errors.forEach((e) => console.error(e.toString()));
+      result.errors.forEach(e => console.error(e.toString()));
       return Promise.reject(result.errors);
     }
 
     const posts = result.data.allMdx.edges;
 
-    posts.forEach((edge) => {
+    posts.forEach(edge => {
       const id = edge.node.id;
       const templateKey = edge.node.frontmatter.templateKey;
       const component = path.resolve(`src/cms-templates/${templateKey ? String(templateKey) : 'simple-page'}.tsx`);

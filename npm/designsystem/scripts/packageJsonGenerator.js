@@ -1,9 +1,13 @@
-const path = require('path');
-const fse = require('fs-extra');
+import path, { dirname } from 'path';
+import fse from 'fs-extra';
+import { fileURLToPath } from 'url';
 
 generatePackageJson();
 
 function generatePackageJson() {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+
   return new Promise(resolve => {
     fse.readFile(path.resolve(__dirname, '../package.json'), 'utf8', (err, data) => {
       if (err) {
@@ -15,7 +19,7 @@ function generatePackageJson() {
   })
     .then(data => JSON.parse(data))
     .then(packageData => {
-      const {author, version, peerDependencies, license, dependencies} = packageData;
+      const { author, version, peerDependencies, license, dependencies } = packageData;
 
       const minimalPackage = {
         ...packageData,
