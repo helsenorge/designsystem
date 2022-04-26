@@ -104,7 +104,7 @@
   for = "/*"
 
   [headers.values]
-    Content-Security-Policy = "storybook.com *.storybook.com;"
+    Content-Security-Policy = "storybook.com *.storybook.com"
 
     # Multi-value headers are expressed with multi-line strings.
 	cache-control = '''
