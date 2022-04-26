@@ -146,6 +146,14 @@
           "path": "/bibliotek/komponenter/statusdot"
         },
         {
+          "label": "Tag",
+          "path": "/bibliotek/komponenter/tag"
+        },
+        {
+          "label": "TagList",
+          "path": "/bibliotek/komponenter/tag-list"
+        },
+        {
           "label": "Textarea",
           "path": "/bibliotek/komponenter/textarea"
         },

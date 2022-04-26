@@ -297,6 +297,8 @@
   "components/Slider/index": "src/components/Slider/index.ts",
   "components/Spacer/index": "src/components/Spacer/index.ts",
   "components/StatusDot/index": "src/components/StatusDot/index.ts",
+  "components/Tag/index": "src/components/Tag/index.ts",
+  "components/TagList/index": "src/components/TagList/index.ts",
   "components/Textarea/index": "src/components/Textarea/index.tsx",
   "components/Tile/index": "src/components/Tile/index.ts",
   "components/Title/index": "src/components/Title/index.ts",

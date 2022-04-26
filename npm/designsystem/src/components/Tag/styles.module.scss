@@ -1,0 +1,175 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/_font-settings.scss';
+
+/**
+* Konverter en gjennomsiktig farge til en ugjennomsiktig farge ved å simulere fargen plassert
+* på en bakgrunnsfarge (f.eks. 50% gjennomsiktig $blueberry200 på hvit bakgrunn).
+* 
+* Fra https://makandracards.com/makandra/42500-sass-how-to-convert-an-rgba-color-to-its-rgb-look-alike
+* 
+* @param $rgba Farge med alpha-verdi, f.eks. rgba(black, 0.67)
+* @param $background Bakgrunnsfarge. Default: $white
+* 
+* @returns Farge uten gjennomsiktighet
+*/
+@function rgba-to-rgb($rgba, $background: $white) {
+  @return mix(rgb(red($rgba), green($rgba), blue($rgba)), $background, alpha($rgba) * 100%);
+}
+
+.tag {
+  $tag: &;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  border-width: 1px;
+  border-style: solid;
+  background-color: transparent;
+  // komponenten bruker ekstra liten font-size og line-height
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  font-weight: 600;
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    font-size: $font-size-xs;
+    line-height: 1.25rem;
+  }
+
+  $colors: 'blueberry', 'neutral', 'cherry', 'banana', 'kiwi', 'plum';
+
+  @each $color in $colors {
+    &--#{$color},
+    // Sørg for at fargene overstyrer dersom tag har type=button
+    &--#{$color}[type='button'] {
+      // banana og kiwi har unntak fra hovedregelen
+      @if $color == 'banana' {
+        color: map-get($palette-map, #{$color}900);
+        border-color: map-get($palette-map, #{$color}300);
+      } @else if $color == 'kiwi' {
+        color: map-get($palette-map, #{$color}900);
+        border-color: map-get($palette-map, #{$color}200);
+      } @else {
+        color: map-get($palette-map, #{$color}800);
+        border-color: map-get($palette-map, #{$color}200);
+      }
+
+      &#{$tag}--normal {
+        &#{$tag}--has-action {
+          &:hover {
+            background-color: rgba-to-rgb(rgba(map-get($palette-map, #{$color}200), 0.2));
+          }
+        }
+      }
+
+      &#{$tag}--oncolor {
+        background-color: transparent;
+        &#{$tag}--has-action {
+          &:hover {
+            background-color: map-get($palette-map, #{$color}100);
+            border-color: map-get($palette-map, #{$color}100);
+          }
+          &:focus {
+            background-color: $white;
+            border-color: $white;
+            box-shadow: 0px 0px 0px 3px $black;
+          }
+        }
+      }
+
+      &#{$tag}--emphasised {
+        @if $color == 'banana' {
+          background-color: rgba-to-rgb(rgba(map-get($palette-map, #{$color}300), 0.4));
+        } @else {
+          background-color: rgba-to-rgb(rgba(map-get($palette-map, #{$color}200), 0.4));
+        }
+        &#{$tag}--has-action {
+          &:hover {
+            @if $color == 'banana' {
+              background-color: rgba-to-rgb(rgba(map-get($palette-map, #{$color}300), 0.5));
+            } @else {
+              background-color: rgba-to-rgb(rgba(map-get($palette-map, #{$color}200), 0.5));
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--has-action[type='button'] {
+    cursor: pointer;
+    font-family: inherit;
+    &:focus {
+      outline: none;
+      border-color: $black;
+      box-shadow: inset 0px 0px 0px 2px $black;
+    }
+    &#{$tag}--undo {
+      color: $blueberry800;
+      background-color: $blueberry100;
+      border-color: $blueberry100;
+      text-decoration: line-through;
+      &:hover {
+        background-color: $white;
+        border-color: $blueberry200;
+      }
+    }
+  }
+
+  &--medium {
+    padding: 0 getSpacer(xs);
+    min-height: 26px;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      min-height: 30px;
+    }
+
+    &#{$tag}--has-icon {
+      padding: 0 getSpacer(xs) 0 6px;
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding: getSpacer(4xs) getSpacer(xs) getSpacer(4xs) 6px;
+      }
+    }
+
+    &#{$tag}--has-action {
+      padding: 0 getSpacer(3xs) 0 getSpacer(xs);
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding: getSpacer(4xs) getSpacer(3xs) getSpacer(4xs) getSpacer(xs);
+      }
+    }
+
+    #{$tag}__icon {
+      margin-right: getSpacer(4xs);
+    }
+  }
+  &--large {
+    padding: 0 getSpacer(xs);
+    min-height: 30px;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      min-height: 34px;
+    }
+
+    &#{$tag}--has-icon {
+      padding: getSpacer(4xs) getSpacer(xs) getSpacer(4xs) 6px;
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding: getSpacer(3xs) getSpacer(xs) getSpacer(3xs) getSpacer(2xs);
+      }
+    }
+
+    &#{$tag}--has-action {
+      padding: getSpacer(4xs) getSpacer(3xs) getSpacer(4xs) getSpacer(xs);
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        padding: getSpacer(3xs) getSpacer(2xs) getSpacer(3xs) getSpacer(xs);
+      }
+    }
+
+    #{$tag}__icon {
+      margin-right: getSpacer(4xs);
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        margin-right: getSpacer(3xs);
+      }
+    }
+  }
+}
