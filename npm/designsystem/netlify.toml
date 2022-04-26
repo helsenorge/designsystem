@@ -103,9 +103,6 @@
   # Define which paths this specific [[headers]] block will cover.
   for = "/*"
 
-  [headers.values]
-    Content-Security-Policy = "storybook.com"
-
     # Multi-value headers are expressed with multi-line strings.
 	cache-control = '''
 	max-age=0,
