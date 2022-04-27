@@ -1,4 +1,4 @@
-import path from 'path';
+const path = require('path');
 
 module.exports = {
   siteMetadata: {
@@ -18,6 +18,7 @@ module.exports = {
       resolve: `gatsby-plugin-sass`,
       options: {
         cssLoaderOptions: {
+          esModule: false,
           camelCase: false,
         },
       },
