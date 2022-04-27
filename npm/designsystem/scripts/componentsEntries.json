@@ -176,6 +176,7 @@
   "components/Icons/Mushroom": "src/components/Icons/Mushroom.tsx",
   "components/Icons/Music": "src/components/Icons/Music.tsx",
   "components/Icons/MusselsAndSalt": "src/components/Icons/MusselsAndSalt.tsx",
+  "components/Icons/NoAccess": "src/components/Icons/NoAccess.tsx",
   "components/Icons/NoEye": "src/components/Icons/NoEye.tsx",
   "components/Icons/NoFilter": "src/components/Icons/NoFilter.tsx",
   "components/Icons/Notepad": "src/components/Icons/Notepad.tsx",
