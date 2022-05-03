@@ -1,29 +1,59 @@
 import React from 'react';
-import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import { withA11y } from '@storybook/addon-a11y';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+
 import Dropdown, { DropdownMode } from './Dropdown';
 import Checkbox from '../Checkbox';
 import RadioButton from '../RadioButton';
 
-const stories = storiesOf('Dropdown', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Dropdown',
+  component: Dropdown,
+  argTypes: {
+    label: {
+      control: 'text',
+      defaultValue: 'Ta et valg',
+    },
+    placeholder: {
+      control: 'text',
+      defaultValue: 'Hva skjer i kroppen?',
+    },
+    closeText: {
+      control: 'text',
+      defaultValue: 'Lukk',
+    },
+    open: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    mode: {
+      control: 'select',
+      options: DropdownMode,
+      defaultValue: DropdownMode.onwhite,
+    },
+    transparent: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    fluid: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    noCloseButton: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    disabled: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+  },
+} as ComponentMeta<typeof Dropdown>;
 
-stories.add('RadioButton', () => (
+export const RadioButtonChildren: ComponentStory<typeof Dropdown> = (args: any) => (
   <div style={{ width: '60rem' }}>
-    <Dropdown
-      label={text('Label', 'Ta et valg')}
-      placeholder={text('Placeholder', 'Hva skjer i kroppen?')}
-      closeText={text('Close text', 'Lukk')}
-      open={boolean('Open', false)}
-      mode={select('Mode', DropdownMode, DropdownMode.onwhite)}
-      transparent={boolean('Transparent', false)}
-      fluid={boolean('Fluid', false)}
-      noCloseButton={boolean('No close button', false)}
-      disabled={boolean('Disabled', false)}
-      onToggle={value => console.log('onToggle', value)}
-    >
+    <Dropdown {...args} onToggle={action('onToggle')}>
       <RadioButton label="Valg 1" name="radiobutton" />
       <RadioButton label="Valg 2" name="radiobutton" />
       <RadioButton label="Valg 3" name="radiobutton" />
@@ -35,21 +65,11 @@ stories.add('RadioButton', () => (
       <RadioButton label="Valg 9" name="radiobutton" />
     </Dropdown>
   </div>
-));
-stories.add('Checkbox', () => (
+);
+
+export const CheckboxChildren: ComponentStory<typeof Dropdown> = (args: any) => (
   <div style={{ width: '60rem' }}>
-    <Dropdown
-      label={text('Label', 'Ta et valg')}
-      placeholder={text('Placeholder', 'Hva skjer i kroppen?')}
-      closeText={text('Close text', 'Lukk')}
-      open={boolean('Open', false)}
-      mode={select('Mode', DropdownMode, DropdownMode.onwhite)}
-      transparent={boolean('Transparent', false)}
-      fluid={boolean('Fluid', false)}
-      noCloseButton={boolean('No close button', false)}
-      disabled={boolean('Disabled', false)}
-      onToggle={value => console.log('onToggle', value)}
-    >
+    <Dropdown {...args} onToggle={action('onToggle')}>
       <Checkbox label="Valg 1" name="checkbox" />
       <Checkbox label="Valg 2" name="checkbox" />
       <Checkbox label="Valg 3" name="checkbox" />
@@ -61,21 +81,11 @@ stories.add('Checkbox', () => (
       <Checkbox label="Valg 9" name="checkbox" />
     </Dropdown>
   </div>
-));
-stories.add('Custom content', () => (
+);
+
+export const CustomContent: ComponentStory<typeof Dropdown> = (args: any) => (
   <div style={{ width: '60rem' }}>
-    <Dropdown
-      label={text('Label', 'Ta et valg')}
-      placeholder={text('Placeholder', 'Hva skjer i kroppen?')}
-      closeText={text('Close text', 'Lukk')}
-      open={boolean('Open', false)}
-      mode={select('Mode', DropdownMode, DropdownMode.onwhite)}
-      transparent={boolean('Transparent', false)}
-      fluid={boolean('Fluid', false)}
-      noCloseButton={boolean('No close button', false)}
-      disabled={boolean('Disabled', false)}
-      onToggle={value => console.log('onToggle', value)}
-    >
+    <Dropdown {...args} onToggle={action('onToggle')}>
       <div style={{ padding: '1rem' }}>
         {
           'Hva skjer i kroppen? Hva skjer i kroppen? Hva skjer i kroppen? Hva skjer i kroppen? Hva skjer i kroppen? Hva skjer i kroppen? Hva skjer i kroppen? Hva skjer i kroppen? Hva skjer i kroppen? Hva skjer i kroppen? Hva skjer i kroppen? Hva skjer i kroppen?'
@@ -83,4 +93,4 @@ stories.add('Custom content', () => (
       </div>
     </Dropdown>
   </div>
-));
+);

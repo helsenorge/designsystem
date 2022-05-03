@@ -3,11 +3,11 @@
   og genererer en .json fil som brukes videre av rollup for å lage entries
 */
 
-import fs from 'fs';
-import path from 'path';
-import chalk from 'chalk';
-import docgen from 'react-docgen-typescript';
-import glob from 'glob';
+const fs = require('fs');
+const path = require('path');
+const chalk = require('chalk');
+const docgen = require('react-docgen-typescript');
+const glob = require('glob');
 
 const paths = {
   src: path.join('src'),
@@ -37,7 +37,7 @@ function generate(paths) {
       console.log(chalk.red(err));
     } else {
       // 1. Skriv componentsEntries.json
-      const componentsEntriesArr = files.map(file => {
+      const componentsEntriesArr = files.map((file) => {
         try {
           return getComponentData(file);
         } catch {
@@ -52,8 +52,8 @@ function generate(paths) {
       // 2. Skriv componentdata.json for hver komponent
       files
         // Ignorer alle ikoner utenom <Icon>-komponenten
-        .filter(file => file.endsWith('.tsx') && (!file.includes('/Icons') || file.includes('/Icons/Icon')))
-        .forEach(file => {
+        .filter((file) => file.endsWith('.tsx') && (!file.includes('/Icons') || file.includes('/Icons/Icon')))
+        .forEach((file) => {
           const [{ props = {} } = {}] = parse(file);
           const directory = path.dirname(file);
           fs.writeFileSync(`${directory}/componentdata.json`, JSON.stringify({ props }, null, 2) + '\n');
@@ -94,7 +94,7 @@ function getComponents(pathToFolder, fn) {
 }
 
 function removeEmpty(components) {
-  return components.filter(el => el !== undefined);
+  return components.filter((el) => el !== undefined);
 }
 
 function getComponentName(componentPath) {
@@ -145,7 +145,7 @@ function getComponentData(componentPath) {
 
 function writeFile(filepath, content) {
   try {
-    fs.writeFile(filepath, content, function(err) {
+    fs.writeFile(filepath, content, function (err) {
       err ? console.log(chalk.red(err)) : console.log(chalk.green('Entries for components saved in ' + paths.output));
     });
   } catch {

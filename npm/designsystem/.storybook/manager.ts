@@ -1,8 +1,3 @@
-import '@storybook/addon-knobs/register';
-import '@storybook/addon-actions/register';
-import '@storybook/addon-viewport/register';
-import '@storybook/addon-backgrounds/register';
-import '@storybook/addon-a11y/register';
 import { addons } from '@storybook/addons';
 import { create } from '@storybook/theming/create';
 import logo from './hnd-logo.svg';
@@ -18,4 +13,7 @@ const hndsTheme = create({
 
 addons.setConfig({
   theme: hndsTheme,
+  sidebar: {
+    showRoots: false,
+  },
 });

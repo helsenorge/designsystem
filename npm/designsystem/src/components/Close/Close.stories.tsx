@@ -1,12 +1,23 @@
 import React from 'react';
-import { withKnobs, text } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import Close from './Close';
-import { withA11y } from '@storybook/addon-a11y';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-const stories = storiesOf('Close', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+import Close from './Close';
 
-stories.add('Default', () => <Close onClick={action('button-click')} testId={text('testId', '')} ariaLabel={text('aria-label', '')} />);
+export default {
+  title: 'Close',
+  component: Close,
+  argTypes: {
+    testId: {
+      control: 'text',
+      defaultValue: '',
+    },
+    ariaLabel: {
+      control: 'text',
+      defaultValue: '',
+    },
+  },
+} as ComponentMeta<typeof Close>;
+
+export const Default: ComponentStory<typeof Close> = (args: any) => <Close {...args} onClick={action('button-click')} />;

@@ -1,18 +1,38 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+
 import Slider from './Slider';
-import { withA11y } from '@storybook/addon-a11y';
 
-const stories = storiesOf('Slider', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Slider',
+  component: Slider,
+  argTypes: {
+    title: {
+      control: 'text',
+      defaultValue: 'Hvor ofte sykler du til jobb?',
+    },
+    labelLeft: {
+      control: 'text',
+      defaultValue: 'Skjeldent',
+    },
+    labelRight: {
+      control: 'text',
+      defaultValue: 'Ofte',
+    },
+    step: {
+      control: { type: 'range', min: 1, max: 100, defaultValue: 1 },
+    },
+    disabled: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+  },
+} as ComponentMeta<typeof Slider>;
 
-stories.add('Default', () => (
+export const Default: ComponentStory<typeof Slider> = (args: any) => (
   <div style={{ width: '30rem' }}>
-    <Slider title={'Steps: 100'} labelLeft={'left'} labelRight={'right'} step={1} />
-    <Slider title={'Steps: 10'} step={10} />
-    <Slider title={'Steps: 3'} step={50} />
-    <Slider title={'Disabled'} disabled={true} />
+    <Slider onChange={action('Slider')} {...args} />
   </div>
-));
+);

@@ -1,114 +1,84 @@
 import React from 'react';
-import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import Input, { InputTypes } from './Input';
-import { withA11y } from '@storybook/addon-a11y';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 
+import Input, { InputTypes } from './Input';
 import { FormMode, FormVariant } from '../../constants';
 import Hospital from '../Icons/Hospital';
 import Icon, { IconSize } from '../Icons';
 
-const stories = storiesOf('Input', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Input',
+  component: Input,
+  argTypes: {
+    defaultValue: {
+      control: 'text',
+      defaultValue: '',
+    },
+    placeholder: {
+      control: 'text',
+      defaultValue: 'Skriv inn tekst her',
+    },
+    variant: {
+      control: 'select',
+      options: FormVariant,
+      defaultValue: FormVariant.normal,
+    },
+    transparent: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    type: {
+      control: 'select',
+      options: InputTypes,
+      defaultValue: InputTypes.text,
+    },
+    disabled: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    mode: {
+      control: 'select',
+      options: FormMode,
+      defaultValue: FormMode.onwhite,
+    },
+    label: {
+      control: 'text',
+      defaultValue: 'Skriv inn din tekst',
+    },
+    showicon: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+    iconRight: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    readOnly: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+  },
+} as ComponentMeta<typeof Input>;
 
-stories.add('Default', () => {
-  const modes = select('background', FormMode, FormMode.onwhite);
+export const Default: ComponentStory<typeof Input> = (args: any) => (
+  <div style={{ width: '80vw' }}>
+    <Input {...args} icon={args.showicon ? Hospital : undefined} />
+  </div>
+);
 
-  return (
-    <div style={{ width: '80vw', background: mapToBackgoundColor(modes), padding: 20 }}>
-      <Input
-        defaultValue={text('defaultValue', '')}
-        placeholder={text('placeholdertext', 'Skriv inn tekst her')}
-        testId={'123-test'}
-        variant={select('Variant', FormVariant, FormVariant.normal)}
-        transparent={boolean('transparent', false)}
-        type={select('type', InputTypes, InputTypes.text)}
-        disabled={boolean('disabled', false)}
-        mode={modes}
-        label={'Skriv inn din tekst'}
-        icon={boolean('icon', true) ? Hospital : undefined}
-        iconRight={boolean('iconRight', false)}
-        readOnly={boolean('readOnly', false)}
-      />
-    </div>
-  );
-});
+export const MultipleExamples: ComponentStory<typeof Input> = (args: any) => (
+  <div style={{ width: '80vw' }}>
+    <Input {...args} icon={args.showicon ? Hospital : undefined} />
+    <Input {...args} icon={args.showicon ? Hospital : undefined} />
+    <Input {...args} icon={args.showicon ? Hospital : undefined} />
+  </div>
+);
 
-stories.add('Multiple examples', () => {
-  const modes = select('background', FormMode, FormMode.onwhite);
-
-  return (
-    <div style={{ width: '80vw', background: mapToBackgoundColor(modes), padding: 20 }}>
-      <Input
-        defaultValue={text('defaultValue', '')}
-        placeholder={text('placeholdertext', 'Skriv inn tekst her')}
-        testId={'123-test'}
-        variant={select('Variant', FormVariant, FormVariant.normal)}
-        transparent={boolean('transparent', false)}
-        type={select('type', InputTypes, InputTypes.text)}
-        disabled={boolean('disabled', false)}
-        mode={modes}
-        label={'Skriv inn din tekst'}
-        icon={boolean('icon', true) ? Hospital : undefined}
-        iconRight={boolean('iconRight', false)}
-        readOnly={boolean('readOnly', false)}
-      />
-
-      <Input
-        defaultValue={text('defaultValue', '')}
-        placeholder={text('placeholdertext', 'Skriv inn tekst her')}
-        testId={'123-test'}
-        variant={select('Variant', FormVariant, FormVariant.normal)}
-        transparent={boolean('transparent', false)}
-        type={select('type', InputTypes, InputTypes.text)}
-        disabled={boolean('disabled', false)}
-        mode={modes}
-        label={'Skriv inn din tekst'}
-        icon={boolean('icon', true) ? Hospital : undefined}
-        iconRight={boolean('iconRight', false)}
-        readOnly={boolean('readOnly', false)}
-      />
-
-      <Input
-        defaultValue={text('defaultValue', '')}
-        placeholder={text('placeholdertext', 'Skriv inn tekst her')}
-        testId={'123-test'}
-        variant={select('Variant', FormVariant, FormVariant.normal)}
-        transparent={boolean('transparent', false)}
-        type={select('type', InputTypes, InputTypes.text)}
-        disabled={boolean('disabled', false)}
-        mode={modes}
-        label={'Skriv inn din tekst'}
-        icon={boolean('icon', true) ? Hospital : undefined}
-        iconRight={boolean('iconRight', false)}
-        readOnly={boolean('readOnly', false)}
-      />
-    </div>
-  );
-});
-
-stories.add('Children after label', () => {
-  const modes = select('background', FormMode, FormMode.onwhite);
-
-  return (
-    <div style={{ width: '80vw', background: mapToBackgoundColor(modes), padding: 20 }}>
-      <Input
-        defaultValue={text('defaultValue', '')}
-        placeholder={text('placeholdertext', 'Skriv inn tekst her')}
-        testId={'123-test'}
-        variant={select('Variant', FormVariant, FormVariant.normal)}
-        transparent={boolean('transparent', false)}
-        type={select('type', InputTypes, InputTypes.text)}
-        disabled={boolean('disabled', false)}
-        mode={modes}
-        label={'Skriv inn din tekst'}
-        icon={boolean('icon', true) ? Hospital : undefined}
-        iconRight={boolean('iconRight', false)}
-        readOnly={boolean('readOnly', false)}
-        afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>}
-      />
-    </div>
-  );
-});
+export const ChildrenAfterLabel: ComponentStory<typeof Input> = (args: any) => (
+  <div style={{ width: '80vw' }}>
+    <Input {...args} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>} />
+  </div>
+);

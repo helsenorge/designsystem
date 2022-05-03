@@ -1,6 +1,7 @@
 import React from 'react';
-import { withKnobs, boolean, select } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import { allPaletteNames } from '../../../.storybook/knobs';
 import { allLinkListSizes } from '../../../.storybook/knobs';
 import LinkList from './LinkList';
@@ -8,22 +9,42 @@ import Icon from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
 
-const stories = storiesOf('LinkList', module);
-stories.addDecorator(withKnobs);
+export default {
+  title: 'LinkList',
+  component: LinkList,
+  argTypes: {
+    chevron: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    size: {
+      control: 'select',
+      options: allLinkListSizes,
+      defaultValue: 'medium',
+    },
+    color: {
+      control: 'select',
+      options: allPaletteNames,
+      defaultValue: 'blueberry',
+    },
+    topBorder: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+    bottomBorder: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+  },
+} as ComponentMeta<typeof LinkList>;
 
-stories.add('Default', () => (
+export const Default: ComponentStory<typeof LinkList> = (args: any) => (
   <div
     style={{
       width: '40rem',
     }}
   >
-    <LinkList
-      chevron={boolean('Chevron', false)}
-      size={select('Size', allLinkListSizes, 'medium')}
-      color={select('Color', allPaletteNames, 'blueberry')}
-      topBorder={boolean('Top border', true)}
-      bottomBorder={boolean('Bottom border', true)}
-    >
+    <LinkList {...args}>
       <LinkList.Link>Innhold A-Å</LinkList.Link>
       <LinkList.Link>
         Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
@@ -31,23 +52,17 @@ stories.add('Default', () => (
       </LinkList.Link>
     </LinkList>
   </div>
-));
+);
 
-stories.add('With icon', () => (
+export const WithIcon: ComponentStory<typeof LinkList> = (args: any) => (
   <div
     style={{
       width: '40rem',
     }}
   >
-    <LinkList
-      chevron={boolean('Chevron', false)}
-      size={select('Size', allLinkListSizes, 'medium')}
-      color="cherry"
-      topBorder={boolean('Top border', true)}
-      bottomBorder={boolean('Bottom border', true)}
-    >
+    <LinkList {...args}>
       <LinkList.Link icon={<Icon svgIcon={AlarmClock} />}>Innhold A-Å</LinkList.Link>
       <LinkList.Link icon={<Icon svgIcon={PaperPlane} />}>English</LinkList.Link>
     </LinkList>
   </div>
-));
+);

@@ -1,3 +1,7 @@
+@import './font-settings';
+@import './palette';
+@import 'breakpoints';
+
 body {
   font-family: 'Source Sans Pro', Arial, Verdana, sans-serif;
   background-color: $neutral50;

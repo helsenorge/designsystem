@@ -1,57 +1,64 @@
 import React from 'react';
-import { withA11y } from '@storybook/addon-a11y';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import NotificationPanel from './NotificationPanel';
 
-const stories = storiesOf('NotificationPanel', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'NotificationPanel',
+  component: NotificationPanel,
+  argTypes: {
+    shadow: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    dismissable: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+      defaultValue: 'large',
+    },
+    fluid: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    label: {
+      control: 'text',
+      defaultValue: 'Det har skjedd noe galt. Prøv igjen senere.',
+    },
+    variant: {
+      control: 'select',
+      options: ['info', 'warn', 'alert', 'crisis'],
+      defaultValue: 'alert',
+    },
+  },
+} as ComponentMeta<typeof NotificationPanel>;
 
-stories.add('Default', () => (
-  <div style={{ width: boolean('Fluid', false) ? '100vw' : '1400px' }}>
-    <NotificationPanel
-      shadow={boolean('Shadow', false)}
-      dismissable={boolean('Dismissable', false)}
-      onClick={action('on-click-dismiss')}
-      size={select('Size', ['small', 'medium', 'large'], 'large')}
-      fluid={boolean('Fluid', false)}
-      label={text('Label', 'Det har skjedd noe galt. Prøv igjen senere.')}
-      variant={select('Variant', ['info', 'warn', 'alert', 'crisis'], 'alert')}
-    >
+export const Default: ComponentStory<typeof NotificationPanel> = (args: any) => (
+  <div style={{ width: args.fluid ? '100vw' : '1400px' }}>
+    <NotificationPanel {...args}>
       {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
       <a href="/test" target="_blank" rel="noopener noreferrer">
         {'Les mer'}
       </a>
     </NotificationPanel>
   </div>
-));
+);
 
-stories.add('Simplified (label only)', () => (
-  <div style={{ width: boolean('Fluid', false) ? '100vw' : '80rem' }}>
-    <NotificationPanel
-      shadow={boolean('Shadow', false)}
-      dismissable={boolean('Dismissable', false)}
-      onClick={action('on-click-dismiss')}
-      fluid={boolean('Fluid', false)}
-      label={text('Label', 'Det har skjedd noe galt. Prøv igjen senere.')}
-      variant={select('Variant', ['info', 'warn', 'alert', 'crisis'], 'alert')}
-    />
+export const SimplifiedLabelOnly: ComponentStory<typeof NotificationPanel> = (args: any) => (
+  <div style={{ width: args.fluid ? '100vw' : '80rem' }}>
+    <NotificationPanel {...args} />
   </div>
-));
+);
 
-stories.add('All variants', () => (
+export const AllVariants: ComponentStory<typeof NotificationPanel> = (args: any) => (
   <div className="container">
     <div className="row">
-      <div className={select('Columns', ['col-12', 'col-10', 'col-8'], 'col-12')}>
-        <NotificationPanel
-          shadow={boolean('Shadow', false)}
-          dismissable={boolean('Dismissable', false)}
-          onClick={action('on-click-dismiss')}
-          variant="info"
-          label={text('Label', '')}
-        >
+      <div className={'col-12'}>
+        <NotificationPanel {...args} variant={'info'}>
           <p>
             {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
             periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.`}
@@ -61,14 +68,8 @@ stories.add('All variants', () => (
       </div>
     </div>
     <div className="row mt-6">
-      <div className={select('Columns', ['col-12', 'col-10', 'col-8'], 'col-12')}>
-        <NotificationPanel
-          shadow={boolean('Shadow', false)}
-          dismissable={boolean('Dismissable', false)}
-          onClick={action('on-click-dismiss')}
-          variant="warn"
-          label={text('Label', '')}
-        >
+      <div className={'col-12'}>
+        <NotificationPanel {...args} variant={'warn'}>
           <p>
             {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
             periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
@@ -80,14 +81,8 @@ stories.add('All variants', () => (
       </div>
     </div>
     <div className="row mt-6">
-      <div className={select('Columns', ['col-12', 'col-10', 'col-8'], 'col-12')}>
-        <NotificationPanel
-          shadow={boolean('Shadow', false)}
-          dismissable={boolean('Dismissable', false)}
-          onClick={action('on-click-dismiss')}
-          variant="alert"
-          label={text('Label', '')}
-        >
+      <div className={'col-12'}>
+        <NotificationPanel {...args} variant={'alert'}>
           <p>
             {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
             periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
@@ -97,14 +92,8 @@ stories.add('All variants', () => (
       </div>
     </div>
     <div className="row mt-6">
-      <div className={select('Columns', ['col-12', 'col-10', 'col-8'], 'col-12')}>
-        <NotificationPanel
-          shadow={boolean('Shadow', false)}
-          dismissable={boolean('Dismissable', false)}
-          onClick={action('on-click-dismiss')}
-          variant="crisis"
-          label={text('Label', '')}
-        >
+      <div className={'col-12'}>
+        <NotificationPanel {...args} variant={'crisis'}>
           <p>
             {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
             periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
@@ -116,4 +105,4 @@ stories.add('All variants', () => (
       </div>
     </div>
   </div>
-));
+);

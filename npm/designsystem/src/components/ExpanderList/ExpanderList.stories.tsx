@@ -1,32 +1,58 @@
 import React from 'react';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
+import { allPaletteNames } from '../../../.storybook/knobs';
 import ExpanderList from './ExpanderList';
 import LinkList from '../LinkList';
 import Icon from '../Icons';
 import Avatar from '../Icons/Avatar';
 import PaperPlane from '../Icons/PaperPlane';
 import AlarmClock from '../Icons/AlarmClock';
-import { allPaletteNames } from '../../../.storybook/knobs';
 
-const stories = storiesOf('ExpanderList', module);
-stories.addDecorator(withKnobs);
+export default {
+  title: 'ExpanderList',
+  component: ExpanderList,
+  argTypes: {
+    isOpen: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    accordion: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    childPadding: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+    color: {
+      control: 'select',
+      options: allPaletteNames,
+      defaultValue: 'blueberry',
+    },
+    topBorder: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+    bottomBorder: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+    large: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+  },
+} as ComponentMeta<typeof ExpanderList>;
 
-stories.add('Default', () => (
+export const Default: ComponentStory<typeof ExpanderList> = (args: any) => (
   <div
     style={{
       width: '40rem',
     }}
   >
-    <ExpanderList
-      isOpen={boolean('Is open', false)}
-      accordion={boolean('Accordion', false)}
-      childPadding={boolean('Child padding', true)}
-      color={select('Color', allPaletteNames, 'blueberry')}
-      topBorder={boolean('Top border', true)}
-      bottomBorder={boolean('Bottom border', true)}
-      large={boolean('Large', false)}
-    >
+    <ExpanderList {...args}>
       <ExpanderList.Expander title="Kognitiv terapi">
         Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger
         og følelser. Et viktig mål er å bryte selvforsterkende onde sirkler som opprettholder psykiske helseproblemer.
@@ -42,15 +68,15 @@ stories.add('Default', () => (
       </ExpanderList.Expander>
     </ExpanderList>
   </div>
-));
+);
 
-stories.add('With icon', () => (
+export const WithIcon: ComponentStory<typeof ExpanderList> = (args: any) => (
   <div
     style={{
       width: '40rem',
     }}
   >
-    <ExpanderList isOpen={boolean('Is open', false)} color="cherry">
+    <ExpanderList {...args}>
       <ExpanderList.Expander icon={<Icon svgIcon={Avatar} />} title="Kognitiv terapi">
         Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger
         og følelser. Et viktig mål er å bryte selvforsterkende onde sirkler som opprettholder psykiske helseproblemer.
@@ -66,15 +92,15 @@ stories.add('With icon', () => (
       </ExpanderList.Expander>
     </ExpanderList>
   </div>
-));
+);
 
-stories.add('With LinkList', () => (
+export const WithLinkList: ComponentStory<typeof ExpanderList> = (args: any) => (
   <div
     style={{
       width: '40rem',
     }}
   >
-    <ExpanderList isOpen={boolean('Is open', false)} color="cherry">
+    <ExpanderList {...args}>
       <ExpanderList.Expander title="Kognitiv terapi">
         <LinkList color="cherry">
           <LinkList.Link href="/kognitivterapi1">Første lenke</LinkList.Link>
@@ -84,8 +110,9 @@ stories.add('With LinkList', () => (
       </ExpanderList.Expander>
     </ExpanderList>
   </div>
-));
-stories.add('As accordion', () => (
+);
+
+export const AsAccordion: ComponentStory<typeof ExpanderList> = (args: any) => (
   <div
     style={{
       width: '40rem',
@@ -105,7 +132,7 @@ stories.add('As accordion', () => (
       andre friske kvinner. Influensa hos spebarn kan være alvorlig. Vaksinasjon av mor under graviditeten beskytter mor under svangerskapet
       og gir også barnet beskyttelse mot influensa den første tiden etter fødselen.
     </p>
-    <ExpanderList accordion={boolean('Accordion', true)}>
+    <ExpanderList {...args} accordion>
       <ExpanderList.Expander title="Influensa">
         <p>
           Nær 1,6 million mennesker i Norge tilhører grupper med økt risiko for komplikasjoner av influensa. Det er anslått at det i
@@ -176,26 +203,18 @@ stories.add('As accordion', () => (
       </ExpanderList.Expander>
     </ExpanderList>
   </div>
-));
+);
 
-stories.add('With callback', () => (
+export const WithCallback: ComponentStory<typeof ExpanderList> = (args: any) => (
   <div
     style={{
       width: '40rem',
     }}
   >
-    <ExpanderList
-      isOpen={boolean('Is open', false)}
-      accordion={boolean('Accordion', false)}
-      childPadding={boolean('Child padding', true)}
-      color={select('Color', allPaletteNames, 'blueberry')}
-      topBorder={boolean('Top border', true)}
-      bottomBorder={boolean('Bottom border', true)}
-      large={boolean('Large', false)}
-    >
-      <ExpanderList.Expander title="Kognitiv terapi" onExpand={isExpanded => console.log(isExpanded)}>
+    <ExpanderList {...args}>
+      <ExpanderList.Expander title="Kognitiv terapi" onExpand={(isExpanded) => console.log(isExpanded)}>
         <p>Sjekk nettleserkonsollen</p>
       </ExpanderList.Expander>
     </ExpanderList>
   </div>
-));
+);

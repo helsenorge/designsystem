@@ -1,228 +1,145 @@
 import React from 'react';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { storiesOf } from '@storybook/react';
+
 import Button, { ButtonVariants, ButtonIntents } from './Button';
 import Icon from '../Icons';
 import X from '../Icons/X';
 import Calendar from '../Icons/Calendar';
-import { withA11y } from '@storybook/addon-a11y';
 
 const allButtonVariants: ButtonVariants[] = ['fill', 'outline', 'borderless'];
 const allButtonIntents: ButtonIntents[] = ['primary', 'warning', 'danger'];
 
-const stories = storiesOf('Button', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Button',
+  component: Button,
+  argTypes: {
+    children: {
+      control: 'text',
+      defaultValue: 'Button',
+    },
+    ellipsis: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    disabled: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    fluid: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    intent: {
+      control: 'select',
+      options: allButtonIntents,
+      defaultValue: 'primary',
+    },
+    inverted: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    htmlMarkup: {
+      control: 'select',
+      options: ['button', 'a'],
+      defaultValue: 'button',
+    },
+    large: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    loading: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    variant: {
+      control: 'select',
+      options: allButtonVariants,
+      defaultValue: 'fill',
+    },
+    href: {
+      control: 'text',
+      defaultValue: 'https://www.helsenorge.no',
+    },
+  },
+} as ComponentMeta<typeof Button>;
 
 const myRef1: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef2: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef3: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef4: React.RefObject<HTMLButtonElement> = React.createRef();
-const myRef5: React.RefObject<HTMLButtonElement> = React.createRef();
 
-stories.add('Default', () => (
+export const Default: ComponentStory<typeof Button> = (args: any) => (
   <div style={{ width: '15rem' }}>
-    <Button
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      fluid={boolean('Fluid', false)}
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      large={boolean('Large', false)}
-      loading={boolean('Loading', false)}
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
-      href={'https://www.helsenorge.no'}
-    >
-      {text('Text', 'Button')}
+    <Button {...args} onClick={action('Button clicked')}>
+      {args.children}
     </Button>
   </div>
-));
+);
 
-stories.add('Fluid', () => (
-  <div
-    style={{
-      width: '30rem',
-      padding: '1rem',
-    }}
-  >
-    <Button
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      fluid
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      large={boolean('Large', false)}
-      loading={boolean('Loading', false)}
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
-      href={'https://www.helsenorge.no'}
-    >
-      {text('Text', 'Button')}
+export const Fluid: ComponentStory<typeof Button> = (args: any) => (
+  <div style={{ width: '30rem', padding: '1rem' }}>
+    <Button {...args} fluid onClick={action('Button clicked')}>
+      {args.children}
     </Button>
-    <div style={{ height: '1rem' }}></div>
-    <Button
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      fluid
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      large={boolean('Large', false)}
-      loading={boolean('Loading', false)}
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
-      href={'https://www.helsenorge.no'}
-    >
+    <br />
+    <br />
+    <Button {...args} fluid onClick={action('Button clicked')}>
       <Icon svgIcon={X} />
-      {text('Text', 'Button')}
+      {args.children}
       <Icon svgIcon={X} />
     </Button>
-    <div style={{ height: '1rem' }}></div>
-    <Button
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      fluid
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      large={boolean('Large', false)}
-      loading={boolean('Loading', false)}
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
-      href={'https://www.helsenorge.no'}
-    >
+    <br />
+    <br />
+    <Button {...args} fluid onClick={action('Button clicked')}>
       <Icon svgIcon={X} />
-      {text('Text', 'Button')}
+      {args.children}
     </Button>
   </div>
-));
+);
 
-stories.add('With icon(s)', () => (
+export const WithIcons: ComponentStory<typeof Button> = (args: any) => (
   <div>
-    <Button
-      ref={myRef1}
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      fluid={boolean('Fluid', false)}
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      large={boolean('Large', false)}
-      loading={boolean('Loading', false)}
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
-      href={'https://www.helsenorge.no'}
-    >
+    <Button {...args} ref={myRef1} onClick={action('Button clicked')}>
       <Icon svgIcon={X} />
-      {text('Text', 'Button with ref')}
+      {args.children}
     </Button>
-    <div style={{ height: '1rem' }}></div>
-    <Button
-      ref={myRef2}
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      fluid={boolean('Fluid', false)}
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      large={boolean('Large', false)}
-      loading={boolean('Loading', false)}
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
-      href={'https://www.helsenorge.no'}
-    >
-      {text('Text', 'Button')}
+    <br />
+    <br />
+    <Button {...args} ref={myRef2} onClick={action('Button clicked')}>
+      {args.children}
       <Icon svgIcon={X} />
     </Button>
-    <div style={{ height: '1rem' }}></div>
-    <Button
-      ref={myRef3}
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      fluid={boolean('Fluid', false)}
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      large={boolean('Large', false)}
-      loading={boolean('Loading', false)}
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
-      href={'https://www.helsenorge.no'}
-    >
+    <br />
+    <br />
+    <Button {...args} ref={myRef3} onClick={action('Button clicked')}>
       <Icon svgIcon={Calendar} />
-      {text('Text', 'Button')}
+      {args.children}
       <Icon svgIcon={X} />
     </Button>
-    <div style={{ height: '1rem' }}></div>
-
-    <Button
-      ref={myRef5}
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      fluid={boolean('Fluid', false)}
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      large={boolean('Large', false)}
-      loading={boolean('Loading', false)}
-      onClick={action('button-click')}
-      variant={select('Variant', allButtonVariants, 'fill')}
-      href={'https://www.helsenorge.no'}
-      aria-label={text('Text', 'Button')}
-    >
+    <br />
+    <br />
+    <Button {...args} ref={myRef4} onClick={action('Button clicked')}>
       <Icon svgIcon={X} />
     </Button>
   </div>
-));
+);
 
-stories.add('All variants', () => (
+export const AllVariants: ComponentStory<typeof Button> = (args: any) => (
   <div style={{ display: 'grid', gridGap: '2rem' }}>
-    <Button
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      variant="fill"
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      large={boolean('Large', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      href={'https://www.helsenorge.no'}
-    >
-      {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
-      {text('Text 1', 'Fill')}
+    <Button {...args} variant={'fill'} onClick={action('Button clicked')}>
+      <Icon svgIcon={X} />
+      {'Fill'}
+    </Button>
+    <Button {...args} variant={'outline'} onClick={action('Button clicked')}>
+      {'Outline'}
       <Icon svgIcon={X} />
     </Button>
-
-    <Button
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      variant="outline"
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      large={boolean('Large', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      href={'https://www.helsenorge.no'}
-    >
-      {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
-      {text('Text 2', 'Outline')}
-      <Icon svgIcon={X} />
-    </Button>
-    <Button
-      ellipsis={boolean('Ellipsis', false)}
-      disabled={boolean('Disabled', false)}
-      variant="borderless"
-      intent={select('Intent', allButtonIntents, 'primary')}
-      inverted={boolean('Inverted', false)}
-      large={boolean('Large', false)}
-      htmlMarkup={select('Is', ['button', 'a'], 'button')}
-      href={'https://www.helsenorge.no'}
-    >
-      {boolean('HasIcon', true) && <Icon svgIcon={Calendar} />}
-      {text('Text 3', 'Borderless')}
+    <Button {...args} variant={'borderless'} onClick={action('Button clicked')}>
+      <Icon svgIcon={Calendar} />
+      {'Borderless'}
       <Icon svgIcon={X} />
     </Button>
   </div>
-));
+);
