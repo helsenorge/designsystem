@@ -6,7 +6,7 @@ import TagList from './TagList';
 import Tag from '../Tag';
 
 export default {
-  title: 'TagList',
+  title: 'Components/TagList',
   component: TagList,
 } as ComponentMeta<typeof TagList>;
 

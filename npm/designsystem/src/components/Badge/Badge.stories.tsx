@@ -6,7 +6,7 @@ import { allPaletteNames } from '../../../.storybook/knobs';
 import Badge from './Badge';
 
 export default {
-  title: 'Badge',
+  title: 'Components/Badge',
   component: Badge,
   argTypes: {
     children: {

@@ -7,7 +7,7 @@ import Tag, { TagAction, TagSize, TagVariant } from './Tag';
 import LawBook from '../Icons/LawBook';
 
 export default {
-  title: 'Tag',
+  title: 'Components/Tag',
   component: Tag,
   argTypes: {
     children: {

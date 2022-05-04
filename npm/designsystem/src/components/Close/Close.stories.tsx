@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import Close from './Close';
 
 export default {
-  title: 'Close',
+  title: 'Components/Close',
   component: Close,
   argTypes: {
     testId: {

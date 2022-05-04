@@ -8,7 +8,7 @@ import Checkbox from '../Checkbox';
 import RadioButton from '../RadioButton';
 
 export default {
-  title: 'Dropdown',
+  title: 'Components/Dropdown',
   component: Dropdown,
   argTypes: {
     label: {

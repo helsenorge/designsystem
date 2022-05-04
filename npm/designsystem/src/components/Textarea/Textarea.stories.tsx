@@ -7,7 +7,7 @@ import Hospital from '../Icons/Hospital';
 import Icon, { IconSize } from '../Icons';
 
 export default {
-  title: 'Textarea',
+  title: 'Components/Textarea',
   component: Textarea,
   argTypes: {
     placeholder: {

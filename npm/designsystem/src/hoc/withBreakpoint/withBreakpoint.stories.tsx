@@ -24,7 +24,7 @@ const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
 const ExampleWithBreakpoint = withBreakpoint(Example);
 
 export default {
-  title: 'withBreakpoint',
+  title: 'Hooks/withBreakpoint',
   component: ExampleWithBreakpoint,
 } as ComponentMeta<typeof ExampleWithBreakpoint>;
 

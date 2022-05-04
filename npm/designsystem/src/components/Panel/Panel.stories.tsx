@@ -11,7 +11,7 @@ import Attachment from '../Icons/Attachment';
 import Button from '../Button';
 
 export default {
-  title: 'Panel',
+  title: 'Components/Panel',
   component: Panel,
   argTypes: {
     variant: {

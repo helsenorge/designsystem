@@ -8,7 +8,7 @@ import Title from '../Title/Title';
 import Button from '../Button/Button';
 
 export default {
-  title: 'Loader',
+  title: 'Components/Loader',
   component: Loader,
   argTypes: {
     color: {

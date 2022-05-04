@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import AnchorLink from './AnchorLink';
 
 export default {
-  title: 'AnchorLink',
+  title: 'Components/AnchorLink',
   component: AnchorLink,
   argTypes: {
     children: {

@@ -11,7 +11,7 @@ import Coronavirus from '../Icons/Coronavirus';
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 
 export default {
-  title: 'FormGroup',
+  title: 'Components/FormGroup',
   component: FormGroup,
   argTypes: {
     title: {

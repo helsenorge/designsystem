@@ -12,7 +12,7 @@ const allButtonVariants: ButtonVariants[] = ['fill', 'outline', 'borderless'];
 const allButtonIntents: ButtonIntents[] = ['primary', 'warning', 'danger'];
 
 export default {
-  title: 'Button',
+  title: 'Components/Button',
   component: Button,
   argTypes: {
     children: {

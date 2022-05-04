@@ -13,7 +13,4 @@ const hndsTheme = create({
 
 addons.setConfig({
   theme: hndsTheme,
-  sidebar: {
-    showRoots: false,
-  },
 });

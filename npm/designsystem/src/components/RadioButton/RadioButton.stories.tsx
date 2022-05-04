@@ -6,7 +6,7 @@ import RadioButton from './RadioButton';
 import { FormMode, FormVariant } from '../../constants';
 
 export default {
-  title: 'RadioButton',
+  title: 'Components/RadioButton',
   component: RadioButton,
   argTypes: {
     label: {

@@ -6,7 +6,7 @@ import Title from './Title';
 import { allTitleTags, allTitleAppearances } from '../../../.storybook/knobs';
 
 export default {
-  title: 'Title',
+  title: 'Components/Title',
   component: Title,
   argTypes: {
     children: {

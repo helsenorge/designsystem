@@ -8,7 +8,7 @@ import FormGroup from '../FormGroup';
 import FormLayout, { FormLayoutColumns } from './FormLayout';
 
 export default {
-  title: 'FormLayout',
+  title: 'Components/FormLayout',
   component: FormLayout,
   argTypes: {
     maxColumns: {

@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Spacer from './Spacer';
 
 export default {
-  title: 'Spacer',
+  title: 'Components/Spacer',
   component: Spacer,
 } as ComponentMeta<typeof Spacer>;
 

@@ -14,7 +14,7 @@ import { IconSize } from '../../constants';
 import Envelope from '../Icons/Envelope';
 
 export default {
-  title: 'Modal',
+  title: 'Components/Modal',
   component: Modal,
   argTypes: {
     variant: {

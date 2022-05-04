@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import List from './List';
 
 export default {
-  title: 'List',
+  title: 'Components/List',
   component: List,
 } as ComponentMeta<typeof List>;
 

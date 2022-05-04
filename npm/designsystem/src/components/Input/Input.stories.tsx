@@ -10,7 +10,7 @@ import Hospital from '../Icons/Hospital';
 import Icon, { IconSize } from '../Icons';
 
 export default {
-  title: 'Input',
+  title: 'Components/Input',
   component: Input,
   argTypes: {
     defaultValue: {

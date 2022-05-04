@@ -11,7 +11,7 @@ import PaperPlane from '../Icons/PaperPlane';
 import AlarmClock from '../Icons/AlarmClock';
 
 export default {
-  title: 'ExpanderList',
+  title: 'Components/ExpanderList',
   component: ExpanderList,
   argTypes: {
     isOpen: {

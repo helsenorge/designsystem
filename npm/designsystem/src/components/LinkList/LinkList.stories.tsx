@@ -10,7 +10,7 @@ import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
 
 export default {
-  title: 'LinkList',
+  title: 'Components/LinkList',
   component: LinkList,
   argTypes: {
     chevron: {

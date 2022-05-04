@@ -6,7 +6,7 @@ import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
 import { FormVariant } from '../../constants';
 
 export default {
-  title: 'Validation',
+  title: 'Components/Validation',
   component: FormExample,
   argTypes: {
     variant: {

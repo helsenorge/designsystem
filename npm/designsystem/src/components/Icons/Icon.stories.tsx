@@ -8,7 +8,7 @@ import Search from './Search';
 import Spacer from '../Spacer';
 
 export default {
-  title: 'Icon',
+  title: 'Components/Icon',
   component: Icon,
   argTypes: {
     color: {

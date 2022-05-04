@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import StatusDot, { StatusDotVariant } from './StatusDot';
 
 export default {
-  title: 'StatusDot',
+  title: 'Components/StatusDot',
   component: StatusDot,
   argTypes: {
     variant: {

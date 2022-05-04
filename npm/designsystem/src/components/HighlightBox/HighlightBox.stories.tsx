@@ -6,7 +6,7 @@ import HighlightBox, { HighlightBoxSize } from './HighlightBox';
 import PdfFile from '../Icons/PdfFile';
 
 export default {
-  title: 'HighlightBox',
+  title: 'Components/HighlightBox',
   component: HighlightBox,
   argTypes: {
     children: {

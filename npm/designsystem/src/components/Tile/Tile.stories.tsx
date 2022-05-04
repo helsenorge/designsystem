@@ -7,7 +7,7 @@ import Icon, { IconSize } from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
 
 export default {
-  title: 'Tile',
+  title: 'Components/Tile',
   component: Tile,
   argTypes: {
     fixed: {

@@ -8,7 +8,7 @@ import { Overlay } from '../Loader/Loader';
 import LawBook from '../Icons/LawBook';
 
 export default {
-  title: 'Expander',
+  title: 'Components/Expander',
   component: Expander,
   argTypes: {
     children: {

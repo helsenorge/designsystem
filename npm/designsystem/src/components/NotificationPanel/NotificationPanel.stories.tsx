@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import NotificationPanel from './NotificationPanel';
 
 export default {
-  title: 'NotificationPanel',
+  title: 'Components/NotificationPanel',
   component: NotificationPanel,
   argTypes: {
     shadow: {

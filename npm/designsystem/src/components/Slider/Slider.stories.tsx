@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import Slider from './Slider';
 
 export default {
-  title: 'Slider',
+  title: 'Components/Slider',
   component: Slider,
   argTypes: {
     title: {
