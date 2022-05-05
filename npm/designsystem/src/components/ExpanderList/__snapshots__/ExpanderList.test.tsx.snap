@@ -14,6 +14,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         class="expander-list-link expander-list-link--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-26-0"
+        type="button"
       >
         <span
           class="expander-list-link__title"
@@ -59,6 +60,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         class="expander-list-link expander-list-link--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-27-0"
+        type="button"
       >
         <span
           class="expander-list-link__title"
@@ -109,6 +111,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-1-0"
+        type="button"
       >
         <span
           class="expander-list-link__title"
@@ -149,6 +152,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-1-1"
+        type="button"
       >
         <span
           class="expander-list-link__title"
@@ -189,6 +193,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         class="expander-list-link expander-list-link--blueberry expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-1-2"
+        type="button"
       >
         <span
           class="expander-list-link__title"

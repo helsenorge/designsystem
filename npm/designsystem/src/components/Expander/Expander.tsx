@@ -95,6 +95,7 @@ const Expander: React.FC<ExpanderProps> = props => {
 
   const renderTrigger = () => (
     <button
+      type="button"
       className={triggerClassName}
       style={{
         zIndex: isHovered || isSticky ? ZIndex.ExpanderTrigger : undefined,

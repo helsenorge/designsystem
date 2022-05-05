@@ -38,7 +38,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
         aria-label="Lukk"
         class="close"
         data-analyticsid="close"
-        role="button"
+        type="button"
       >
         <svg
           aria-hidden="true"

@@ -111,6 +111,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
   return (
     <li className={className} ref={ref}>
       <button
+        type="button"
         id={id}
         onClick={handleExpanderClick}
         data-testid={testId}
