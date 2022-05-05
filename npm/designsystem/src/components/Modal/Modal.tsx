@@ -177,7 +177,7 @@ const Modal = (props: ModalProps): JSX.Element => {
     styles.modal,
     styles[`modal--${props.variant}`],
     styles[`modal--${props.size}`],
-    !showActions && styles['modal--no-actions']
+    contentIsScrollable && !showActions && styles['modal--no-actions']
   );
 
   const titleClasses = cn({
