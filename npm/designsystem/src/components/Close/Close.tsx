@@ -27,7 +27,7 @@ const Close = (props: CloseProps): JSX.Element => {
       className={styles.close}
       aria-label={props.ariaLabel || 'Lukk'}
       onClick={props.onClick}
-      role="button"
+      type="button"
     >
       <Icon svgIcon={X} color={palette.blueberry600} size={iconSize} />
     </button>

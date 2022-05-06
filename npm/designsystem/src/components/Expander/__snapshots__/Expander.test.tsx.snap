@@ -9,6 +9,7 @@ exports[`Gitt at Expander skal vises som large, med farge og ikon Når Expandere
       aria-expanded="false"
       class="expander__trigger expander__trigger--large expander__trigger--blueberry expander__trigger--icon"
       data-analyticsid="expander"
+      type="button"
     >
       <span
         class="expander__icon expander__icon--left"
