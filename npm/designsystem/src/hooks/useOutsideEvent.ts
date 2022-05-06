@@ -22,10 +22,10 @@ export const useOutsideEvent = (
   };
 
   useEffect(() => {
-    events.forEach(eventName => document.addEventListener(eventName, handleOutsideEvent));
+    events.forEach((eventName) => document.addEventListener(eventName, handleOutsideEvent));
 
     return () => {
-      events.forEach(eventName => document.removeEventListener(eventName, handleOutsideEvent));
+      events.forEach((eventName) => document.removeEventListener(eventName, handleOutsideEvent));
     };
   });
 };

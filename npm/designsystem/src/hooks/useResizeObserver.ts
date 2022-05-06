@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 export const useResizeObserver = (ref?: React.RefObject<HTMLElement>): DOMRect | undefined => {
   const [size, setSize] = useState<DOMRect>();
   useEffect(() => {
-    const resizeObserver = new ResizeObserver(entries => {
+    const resizeObserver = new ResizeObserver((entries) => {
       setSize(entries[0].target.getBoundingClientRect());
     });
     if (ref?.current) {

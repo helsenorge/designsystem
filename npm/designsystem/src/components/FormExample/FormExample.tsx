@@ -61,7 +61,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           name={formGroup1}
         >
           <FormLayout maxColumns={FormLayoutColumns.two}>
-            {allCheckBoxes.map(check => {
+            {allCheckBoxes.map((check) => {
               return check;
             })}
           </FormLayout>
@@ -162,7 +162,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
 
   return (
     <form
-      onSubmit={handleSubmit(data => {
+      onSubmit={handleSubmit((data) => {
         // eslint-disable-next-line no-console
         console.log(data);
       })}

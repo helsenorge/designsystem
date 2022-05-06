@@ -26,14 +26,14 @@ const StyledNavLink = styled(Link)<{ child?: boolean; activeLink?: boolean }>`
   font-size: 1.2rem;
   padding: 0.5rem;
   transition: all 200ms;
-  ${(props) =>
+  ${props =>
     props.child &&
     css`
       font-size: 1.1rem;
       padding-left: 1.5rem;
       font-weight: 400;
     `}
-  ${(props) =>
+  ${props =>
     props.activeLink &&
     css`
       background-color: ${hndsTheme.palette.blueberry500};

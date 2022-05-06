@@ -18,14 +18,14 @@ export const useHover = <T extends HTMLElement | SVGElement>(ref?: RefObject<T>,
     const handleOutEvent = () => setIsHovered(false);
 
     const inEventList = ['mouseenter', includeFocus ? 'focusin' : ''];
-    inEventList.forEach(eventName => element && element.addEventListener(eventName, handleInEvent));
+    inEventList.forEach((eventName) => element && element.addEventListener(eventName, handleInEvent));
 
     const outEventList = ['mouseleave', includeFocus ? 'focusout' : ''];
-    outEventList.forEach(eventName => element && element.addEventListener(eventName, handleOutEvent));
+    outEventList.forEach((eventName) => element && element.addEventListener(eventName, handleOutEvent));
 
     return () => {
       [...inEventList, ...outEventList].forEach(
-        eventName =>
+        (eventName) =>
           element && element.removeEventListener(eventName, handleInEvent) && element.removeEventListener(eventName, handleOutEvent)
       );
     };

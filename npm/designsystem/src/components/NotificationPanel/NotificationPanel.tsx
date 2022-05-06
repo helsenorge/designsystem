@@ -80,7 +80,7 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
     if (children) {
       let textChildren = '';
 
-      React.Children.map(children, child => {
+      React.Children.map(children, (child) => {
         if (typeof child === 'string') {
           textChildren += child;
         }

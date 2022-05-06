@@ -51,7 +51,7 @@ export const useFocusToggle = (ref: React.RefObject<HTMLElement>, allowFocus?: b
     const TABINDEX_ATTRIBUTE_NAME = 'tabindex';
     const PREVIOUS_TABINDEX_ATTRIBUTE_NAME = 'data-tabindex';
     if (allowFocus) {
-      focusableElementList?.forEach(el => {
+      focusableElementList?.forEach((el) => {
         // Sett tabIndex tilbake til verdien den hadde før, eller fjern tabIndex
         // slik at elementet kan tabbes til igjen.
         const prevTabIndex = el.getAttribute(PREVIOUS_TABINDEX_ATTRIBUTE_NAME);
@@ -62,7 +62,7 @@ export const useFocusToggle = (ref: React.RefObject<HTMLElement>, allowFocus?: b
         }
       });
     } else {
-      focusableElementList?.forEach(el => {
+      focusableElementList?.forEach((el) => {
         // Hvis elementet allerede har tabIndex, ta vare på den før vi gjør det umulig å
         // tabbe til det.
         if (el.hasAttribute(TABINDEX_ATTRIBUTE_NAME)) {

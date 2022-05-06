@@ -16,9 +16,8 @@ export function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
     const activeElement = getDocumentActiveElement(node);
 
     const focusElements = node?.querySelectorAll(FOCUSABLE_SELECTORS),
-      firstFocusableEl = (focusElements[0] as unknown) as HTMLElement,
-      lastFocusableEl =
-        focusElements.length === 1 ? firstFocusableEl : ((focusElements[focusElements.length - 1] as unknown) as HTMLElement);
+      firstFocusableEl = focusElements[0] as unknown as HTMLElement,
+      lastFocusableEl = focusElements.length === 1 ? firstFocusableEl : (focusElements[focusElements.length - 1] as unknown as HTMLElement);
 
     if (e.shiftKey) {
       /* shift + tab */
@@ -41,9 +40,9 @@ export function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
       return;
     }
 
-    const focusElements = (node.querySelectorAll(
+    const focusElements = node.querySelectorAll(
       'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-    ) as unknown) as HTMLElement[];
+    ) as unknown as HTMLElement[];
     if (focusElements.length === 1) {
       focusElements[0].focus();
       e.preventDefault();
@@ -51,7 +50,7 @@ export function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
   }
 
   useEffect(() => {
-    const node = (elRef.current as unknown) as HTMLElement;
+    const node = elRef.current as unknown as HTMLElement;
     node.addEventListener('keydown', handleFocus);
     node.addEventListener('click', handleClick);
     return (): void => {

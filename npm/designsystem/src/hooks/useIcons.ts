@@ -10,7 +10,7 @@ export const useIcons = (children: React.ReactNode[]): Array<React.ReactElement<
   if ((children[children.length - 1] as React.ReactElement<IconProps>)?.props?.svgIcon !== undefined) {
     rightIcon = children.pop() as React.ReactElement<IconProps>;
   }
-  const restChildren = children.filter(child => child);
+  const restChildren = children.filter((child) => child);
 
   return [leftIcon, rightIcon, restChildren.length > 0 ? restChildren : null];
 };

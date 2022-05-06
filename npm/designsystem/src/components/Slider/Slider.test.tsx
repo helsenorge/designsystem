@@ -86,10 +86,7 @@ describe('Gitt at Slider skal vises', (): void => {
 
     test('Så er sliderElement posisjonert riktig', () => {
       const original = global.document['window'];
-      const getBoundingClientRect = jest
-        .fn()
-        .mockReturnValueOnce({ left: 100, right: 500 })
-        .mockReturnValueOnce({ left: 150, right: 450 });
+      const getBoundingClientRect = jest.fn().mockReturnValueOnce({ left: 100, right: 500 }).mockReturnValueOnce({ left: 150, right: 450 });
       window.HTMLDivElement.prototype.getBoundingClientRect = getBoundingClientRect;
 
       const step = 10;
@@ -146,10 +143,7 @@ describe('Gitt at Slider skal vises', (): void => {
     test('Så settes verdien riktig', () => {
       const original = global.document['window'];
 
-      const getBoundingClientRect = jest
-        .fn()
-        .mockReturnValueOnce({ left: 100, right: 900 })
-        .mockReturnValueOnce({ left: 150, right: 850 });
+      const getBoundingClientRect = jest.fn().mockReturnValueOnce({ left: 100, right: 900 }).mockReturnValueOnce({ left: 150, right: 850 });
       window.HTMLDivElement.prototype.getBoundingClientRect = getBoundingClientRect;
 
       const step = 10;

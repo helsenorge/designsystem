@@ -158,7 +158,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   const expanderListClasses = classNames(expanderListStyles['expander-list'], className);
 
   function handleExpanderClick(event: React.MouseEvent<HTMLElement, MouseEvent>, id: string): void {
-    setActiveExpander(prevState => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
+    setActiveExpander((prevState) => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
     setLatestExpander(event.currentTarget);
   }
 
@@ -179,7 +179,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   useEffect(() => {
     if (isOpen) {
       const id = `${uuid}-0`;
-      setActiveExpander(prevState => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
+      setActiveExpander((prevState) => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
     }
   }, [isOpen]);
 
