@@ -18,7 +18,6 @@ module.exports = {
       resolve: `gatsby-plugin-sass`,
       options: {
         cssLoaderOptions: {
-          esModule: false,
           camelCase: false,
         },
       },

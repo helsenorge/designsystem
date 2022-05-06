@@ -1,1 +1,1 @@
-import '../../lint-staged.config';
+module.exports = require('../../lint-staged.config');

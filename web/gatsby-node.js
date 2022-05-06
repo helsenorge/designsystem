@@ -59,17 +59,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
-    output: {
-      globalObject: 'this',
+    node: {
+      fs: 'empty',
     },
     resolve: {
       alias: {
         react: path.resolve('./node_modules/react'),
         'react-dom': path.resolve('./node_modules/react-dom'),
       },
-      fallback: {
-        fs: false,
-      }
     },
   });
 };
