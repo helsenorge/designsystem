@@ -15,17 +15,17 @@ yargs
   .command(
     'generate <src> <dest>',
     'Generates React components from SVG files.',
-    (yargs) => {
-      yargs.positional('src', {
+    yargsIcon => {
+      yargsIcon.positional('src', {
         type: 'path',
         describe: 'the source path where the svg files reside.',
       });
-      yargs.positional('dest', {
+      yargsIcon.positional('dest', {
         type: 'path',
         describe: 'the destionation path where to put the react components.',
       });
     },
-    function (argv) {
+    function(argv) {
       loadAllIcons(argv.src);
     }
   )
@@ -36,7 +36,7 @@ function capitalizeFirstLetter(string) {
 }
 
 async function getComponentNameFromFileName(filename) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     let componentName = '';
     const splitOnDash = filename.split('-');
     async.forEach(splitOnDash, (namePartial, callback) => {
@@ -51,8 +51,8 @@ async function getComponentNameFromFileName(filename) {
 
 async function loadAllIcons(srcPath) {
   const components = [];
-  await new Promise((resolve) => {
-    fs.readdirSync(path.resolve(__dirname, srcPath)).forEach(async (filename) => {
+  await new Promise(resolve => {
+    fs.readdirSync(path.resolve(__dirname, srcPath)).forEach(async filename => {
       const filePathNormal = path.resolve(__dirname, srcPath + filename);
       const filePathHover = path.resolve(__dirname, srcPath + filename.replace('normal', 'hover'));
       const contentsNormal = fs.readFileSync(filePathNormal, { encoding: 'utf8' }).toString();
@@ -75,7 +75,7 @@ async function loadAllIcons(srcPath) {
           svgProps: { width: '{size}', height: '{size}', ref: '{ref}', className: 'icon' },
         },
         { componentName: componentName, svgNormal: svgElementNormal, svgHover: svgElementHover }
-      ).then((code) => {
+      ).then(code => {
         writeIconToFile(code, componentName);
       });
 
@@ -90,14 +90,14 @@ function writeIconToFile(contents, componentName) {
 }
 
 async function parseToJsx(code) {
-  const parsedSvg = await new Promise((resolve) => resolve(parse(code)));
-  const babelTree = await new Promise((resolve) => resolve(hastToBabelAst(parsedSvg)));
+  const parsedSvg = await new Promise(resolve => resolve(parse(code)));
+  const babelTree = await new Promise(resolve => resolve(hastToBabelAst(parsedSvg)));
   return babelTree.body[0].expression;
 }
 
 function applyFillColor(children) {
   if (!children) return;
-  children.forEach((child) => {
+  children.forEach(child => {
     applyFillColor(child.children);
     const type = child.openingElement.name.name;
     const attrs = child.openingElement.attributes;
@@ -152,15 +152,15 @@ function injectIntoIconFile(components) {
   const iconFilePath = path.resolve(__dirname, '../src/components/Icons/Icon.tsx');
   fs.readFile(iconFilePath, { encoding: 'utf8' }, async (err, contents) => {
     const lines = contents.split('\n');
-    const startIndex = lines.findIndex((line) => line === COMMENT_TEMPLATE_START);
-    const endIndex = lines.findIndex((line) => line === COMMENT_TEMPLATE_END);
+    const startIndex = lines.findIndex(line => line === COMMENT_TEMPLATE_START);
+    const endIndex = lines.findIndex(line => line === COMMENT_TEMPLATE_END);
     const injectionBlock = await getInjectionContents(components);
     lines.splice(startIndex, endIndex - 1, ...injectionBlock);
     const file = fs.createWriteStream(iconFilePath);
-    file.on('error', function (err) {
+    file.on('error', function(err) {
       /* error handling */
     });
-    lines.forEach(function (v) {
+    lines.forEach(function(v) {
       file.write(v + '\n');
     });
     file.end();
@@ -168,12 +168,12 @@ function injectIntoIconFile(components) {
 }
 
 function getInjectionContents(components) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     let injection = [COMMENT_TEMPLATE_START];
     const importBlock = [];
     const objectMapBlock = ['const iconMapping = {'];
 
-    components.forEach((component) => {
+    components.forEach(component => {
       importBlock.push(`import ${component} from './${component}';`);
       objectMapBlock.push(`  ${component.charAt(0).toLowerCase() + component.substring(1)}: ${component},`);
     });
