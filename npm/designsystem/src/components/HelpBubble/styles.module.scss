@@ -1,0 +1,30 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/_font-settings.scss';
+.helpbubble {
+  display: flex;
+  align-items: flex-start;
+  text-align: start;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
+  background-color: $white;
+  border: getSpacer(4xs) solid $plum600;
+  border-radius: 9px;
+  box-shadow: 0 2px 16px 0 $transparentGrey;
+  @media (min-width: map-get($grid-breakpoints, lg)) {
+    font-size: $font-size-md;
+    line-height: $lineheight-size-md;
+  }
+  &__child-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: getSpacer(2xs);
+    padding: getSpacer(s) 0 getSpacer(m) getSpacer(s);
+  }
+  &__close-wrapper {
+    padding: getSpacer(2xs) getSpacer(2xs) 0px 0px;
+  }
+}
