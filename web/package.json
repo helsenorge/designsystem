@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@helsenorge/designsystem-react": "^1.0.0-beta129",
+    "@hot-loader/react-dom": "^16.0.0",
     "@mdx-js/mdx": "^1.4.5",
     "@mdx-js/react": "1.4.5",
     "@mdx-js/tag": "^0.20.3",
@@ -71,7 +72,7 @@
     "react-lottie": "^1.2.3",
     "react-scroll": "^1.7.14",
     "react-spring": "^8.0.27",
-    "styled-components": "5.0.1"
+    "styled-components": "5.3.5"
   },
   "overrides": {
     "@helsenorge/designsystem-react": {

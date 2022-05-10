@@ -35,13 +35,13 @@ interface CardProps extends StyledDefaultProps {
 function QuickMenuCard(props: CardProps) {
   const { children, to, small = false, grid } = props;
   return (
-    <StyledQuickMenuCard grid={grid} small={small} to={to}>
+    <StyledQuickMenuCard grid={grid} $small={small} to={to}>
       {children}
     </StyledQuickMenuCard>
   );
 }
 
-const StyledQuickMenuCard = styled(Link)<{ small: boolean; grid: string }>`
+const StyledQuickMenuCard = styled(Link)<{ $small: boolean; grid: string }>`
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -56,7 +56,7 @@ const StyledQuickMenuCard = styled(Link)<{ small: boolean; grid: string }>`
     border-color: ${hndsTheme.palette.blueberry700};
   }
   ${props =>
-    props.small &&
+    props.$small &&
     css`
       ${QuickMenuCardTitle} {
         font-size: 1.25rem;

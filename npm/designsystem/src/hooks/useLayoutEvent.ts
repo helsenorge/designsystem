@@ -14,12 +14,12 @@ export const useLayoutEvent = (callback: () => void, events = ['layoutchange', '
     if (typeof window !== 'object') return;
     const debouncedCallback = debounce(callback, debounceMs);
 
-    events.forEach((eventName) => window.addEventListener(eventName, debouncedCallback));
+    events.forEach(eventName => window.addEventListener(eventName, debouncedCallback));
 
     debouncedCallback();
 
     return () => {
-      events.forEach((eventName) => window.removeEventListener(eventName, debouncedCallback));
+      events.forEach(eventName => window.removeEventListener(eventName, debouncedCallback));
     };
   }, []);
 };

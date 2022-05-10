@@ -56,7 +56,7 @@ const ContentWrapper: React.FC = ({ children }) => (
   </div>
 );
 
-const HighlightBox: React.FC<HighlightBoxProps> = (props) => {
+const HighlightBox: React.FC<HighlightBoxProps> = props => {
   const { children, color = 'white', size = HighlightBoxSize.medium, testId, svgIcon, htmlMarkup = 'div' } = props;
   const breakpoint = useBreakpoint();
 

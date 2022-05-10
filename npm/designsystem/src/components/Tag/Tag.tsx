@@ -49,7 +49,7 @@ interface TagProps {
 
 type ActionTagProps = Required<Pick<TagProps, 'children' | 'size' | 'color' | 'variant' | 'action' | 'onClick'>> & Pick<TagProps, 'testId'>;
 
-const ActionTag: React.FC<ActionTagProps> = (props) => {
+const ActionTag: React.FC<ActionTagProps> = props => {
   const { children, size, color, variant, action, onClick, testId } = props;
 
   const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
@@ -84,7 +84,7 @@ const ActionTag: React.FC<ActionTagProps> = (props) => {
   );
 };
 
-const Tag: React.FC<TagProps> = (props) => {
+const Tag: React.FC<TagProps> = props => {
   const { children, size = TagSize.medium, color = 'blueberry', svgIcon, variant = 'normal', action, onClick, testId } = props;
 
   const tagClasses = cn(styles.tag, styles[`tag--${size}`], styles[`tag--${color}`], styles[`tag--${variant}`], {

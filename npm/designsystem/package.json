@@ -65,7 +65,7 @@
     "@rollup/plugin-buble": "^0.21.3",
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^4.1.2",
+    "@rollup/plugin-typescript": "^8.0.0",
     "@storybook/addon-a11y": "^6.0.0",
     "@storybook/addon-actions": "^6.0.0",
     "@storybook/addon-backgrounds": "^6.0.0",

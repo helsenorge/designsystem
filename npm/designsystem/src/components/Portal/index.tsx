@@ -27,8 +27,8 @@ export default function Portal({ children, parent, className, testId }: PortalPr
     // Default classes
     const classList = ['portal-container'];
     // If className prop is present add each class the classList
-    if (className) className.split(' ').forEach((item) => classList.push(item));
-    classList.forEach((item) => el.classList.add(item));
+    if (className) className.split(' ').forEach(item => classList.push(item));
+    classList.forEach(item => el.classList.add(item));
 
     target.appendChild(el);
     // On unmount function

@@ -48,7 +48,7 @@ export default {
 const removeStyleProp = (elm: HTMLElement, prop: string) =>
   (elm.style.cssText = elm.style.cssText // "top: 0px; bottom: 50px; text-align: right;"
     .split('; ') // ["top: 0px", "bottom: 50px", "right: 2px", "text-align: right;"]
-    .filter((p) => !p.startsWith(prop)) // ["top: 0px", "bottom: 50px", "text-align: right;"]
+    .filter(p => !p.startsWith(prop)) // ["top: 0px", "bottom: 50px", "text-align: right;"]
     .join(';'));
 
 setTimeout(() => {
@@ -155,7 +155,7 @@ export const WithLoader: ComponentStory<typeof Expander> = (args: any) => (
 
 export const WithCallback: ComponentStory<typeof Expander> = (args: any) => (
   <div style={{ width: '40rem' }}>
-    <Expander {...args} svgIcon={LawBook} onExpand={(isExpanded) => console.log(isExpanded)}>
+    <Expander {...args} svgIcon={LawBook} onExpand={isExpanded => console.log(isExpanded)}>
       <p>Sjekk nettleserkonsollen</p>
     </Expander>
   </div>

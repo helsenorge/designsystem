@@ -11,7 +11,7 @@ import { useIntersectionObserver } from './useIntersectionObserver';
 export const useIsVisible = (ref: React.RefObject<HTMLElement>, threshold = 1): boolean => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleIntersectChange: IntersectionObserverCallback = (entries) => {
+  const handleIntersectChange: IntersectionObserverCallback = entries => {
     setIsVisible(entries[0].intersectionRatio >= threshold);
   };
 

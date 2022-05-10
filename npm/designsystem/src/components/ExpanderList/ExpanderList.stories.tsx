@@ -212,7 +212,7 @@ export const WithCallback: ComponentStory<typeof ExpanderList> = (args: any) => 
     }}
   >
     <ExpanderList {...args}>
-      <ExpanderList.Expander title="Kognitiv terapi" onExpand={(isExpanded) => console.log(isExpanded)}>
+      <ExpanderList.Expander title="Kognitiv terapi" onExpand={isExpanded => console.log(isExpanded)}>
         <p>Sjekk nettleserkonsollen</p>
       </ExpanderList.Expander>
     </ExpanderList>

@@ -55,7 +55,7 @@ export interface DropdownProps {
   testId?: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = (props) => {
+const Dropdown: React.FC<DropdownProps> = props => {
   const {
     label,
     placeholder,
@@ -106,7 +106,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
       return;
     }
 
-    const index = inputRefList.current.findIndex((x) => x.current === event.target);
+    const index = inputRefList.current.findIndex(x => x.current === event.target);
     let nextIndex = index;
 
     if (event.key === KeyboardEventKey.Home) {

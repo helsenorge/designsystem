@@ -42,7 +42,7 @@ interface ExpanderProps {
   testId?: string;
 }
 
-const Expander: React.FC<ExpanderProps> = (props) => {
+const Expander: React.FC<ExpanderProps> = props => {
   const {
     title,
     children,

@@ -20,15 +20,15 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-  `).then((result) => {
+  `).then(result => {
     if (result.errors) {
-      result.errors.forEach((e) => console.error(e.toString()));
+      result.errors.forEach(e => console.error(e.toString()));
       return Promise.reject(result.errors);
     }
 
     const posts = result.data.allMdx.edges;
 
-    posts.forEach((edge) => {
+    posts.forEach(edge => {
       const id = edge.node.id;
       const templateKey = edge.node.frontmatter.templateKey;
       const component = path.resolve(`src/cms-templates/${templateKey ? String(templateKey) : 'simple-page'}.tsx`);
@@ -65,7 +65,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     resolve: {
       alias: {
         react: path.resolve('./node_modules/react'),
-        'react-dom': path.resolve('./node_modules/react-dom'),
+        'react-dom': path.resolve('./node_modules/@hot-loader/react-dom'),
       },
     },
   });
