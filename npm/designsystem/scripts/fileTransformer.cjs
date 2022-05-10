@@ -1,4 +1,4 @@
-import {basename} from 'path';
+const { basename } = require('path');
 
 module.exports = {
   process(filename) {

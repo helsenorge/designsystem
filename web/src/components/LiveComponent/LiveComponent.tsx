@@ -18,7 +18,7 @@ function LiveComponent(props: LiveComponentProps) {
   return (
     <LiveProvider theme={theme} scope={{ styled, ...scope }} code={`<>${children}</>`}>
       <StyledLivePreviewContainer backgroundColor={backgroundColor}>
-        <StyledLivePreview hasFullWidth={fullWidth} stack={stack} />
+        <StyledLivePreview $hasFullWidth={fullWidth} $stack={stack} />
         <ToggleButton active={showEditor} onClick={() => setShowEditor(!showEditor)}>
           <Code size={16} />
         </ToggleButton>
@@ -57,14 +57,14 @@ interface LivePreviewProps extends HTMLProps<HTMLDivElement> {
 }
 
 const StyledLivePreview = styled(LivePreview)<LivePreviewProps>`
-  width: ${props => (props.hasFullWidth ? '100%' : 'auto')};
+  width: ${props => (props.$hasFullWidth ? '100%' : 'auto')};
   display: inline-flex;
-  flex-direction: ${props => (props.stack ? 'column' : 'row')};
+  flex-direction: ${props => (props.$stack ? 'column' : 'row')};
   flex-wrap: wrap;
   & > * {
     margin-right: 0.5rem;
     ${props =>
-      props.stack &&
+      props.$stack &&
       css`
         margin-bottom: 0.5rem;
       `}

@@ -1,59 +1,68 @@
 import React from 'react';
-import { select, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
 import { FormVariant } from '../../constants';
 
-const stories = storiesOf('Validation', module);
-stories.addDecorator(withKnobs);
+export default {
+  title: 'Components/Validation',
+  component: FormExample,
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: FormVariant,
+      defaultValue: FormVariant.normal,
+    },
+  },
+} as ComponentMeta<typeof FormExample>;
 
-stories.add('FormGroup', () => (
+export const FormGroup: ComponentStory<typeof FormExample> = (args: any) => (
   <div
     style={{
       width: '50vw',
     }}
   >
-    <FormExample variant={select('Variant', FormVariant, FormVariant.normal)} exampleType={FormExampleVariants.formgroup} />
+    <FormExample {...args} exampleType={FormExampleVariants.formgroup} />
   </div>
-));
+);
 
-stories.add('Checkbox', () => (
+export const Checkbox: ComponentStory<typeof FormExample> = (args: any) => (
   <div
     style={{
       width: '40rem',
     }}
   >
-    <FormExample variant={select('Variant', FormVariant, FormVariant.normal)} exampleType={FormExampleVariants.checkbox} />
+    <FormExample {...args} exampleType={FormExampleVariants.checkbox} />
   </div>
-));
+);
 
-stories.add('Radiobutton', () => (
+export const Radiobutton: ComponentStory<typeof FormExample> = (args: any) => (
   <div
     style={{
       width: '40rem',
     }}
   >
-    <FormExample variant={select('Variant', FormVariant, FormVariant.normal)} exampleType={FormExampleVariants.radiobutton} />
+    <FormExample {...args} exampleType={FormExampleVariants.radiobutton} />
   </div>
-));
+);
 
-stories.add('Textarea', () => (
+export const Textarea: ComponentStory<typeof FormExample> = (args: any) => (
   <div
     style={{
       width: '90vw',
     }}
   >
-    <FormExample variant={select('Variant', FormVariant, FormVariant.normal)} exampleType={FormExampleVariants.textarea} />
+    <FormExample {...args} exampleType={FormExampleVariants.textarea} />
   </div>
-));
+);
 
-stories.add('Input', () => (
+export const Input: ComponentStory<typeof FormExample> = (args: any) => (
   <div
     style={{
       width: '90vw',
     }}
   >
-    <FormExample variant={select('Variant', FormVariant, FormVariant.normal)} exampleType={FormExampleVariants.input} />
+    <FormExample {...args} exampleType={FormExampleVariants.input} />
   </div>
-));
+);

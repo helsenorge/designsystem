@@ -1,4 +1,4 @@
-const writeFileSync = require('fs').writeFileSync;
+import writeFileSync from 'fs';
 module.exports = class IconGenerator {
 	constructor(browser, page) {
 		this.browser = browser;

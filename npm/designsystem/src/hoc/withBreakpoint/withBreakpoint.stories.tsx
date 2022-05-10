@@ -1,16 +1,10 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
 
-import { storiesOf } from '@storybook/react';
-import { BreakpointProps, withBreakpoint } from './withBreakpoint';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { withA11y } from '@storybook/addon-a11y';
 import { Breakpoint } from '../../hooks/useBreakpoint';
 import { useWindowSize } from '../../hooks/useWindowSize';
-
-const stories = storiesOf('withBreakpoint', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+import { BreakpointProps, withBreakpoint } from './withBreakpoint';
 
 const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
   const windowSize = useWindowSize();
@@ -29,4 +23,9 @@ const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
 
 const ExampleWithBreakpoint = withBreakpoint(Example);
 
-stories.add('Default', () => <ExampleWithBreakpoint />);
+export default {
+  title: 'Hooks/withBreakpoint',
+  component: ExampleWithBreakpoint,
+} as ComponentMeta<typeof ExampleWithBreakpoint>;
+
+export const Default: ComponentStory<typeof ExampleWithBreakpoint> = () => <ExampleWithBreakpoint />;

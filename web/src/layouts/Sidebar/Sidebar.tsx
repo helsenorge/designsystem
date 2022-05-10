@@ -19,7 +19,7 @@ interface SubMenuProps {
   routeMap: never[];
 }
 
-const StyledNavLink = styled(Link)<{ child?: boolean; activeLink?: boolean }>`
+const StyledNavLink = styled(Link)<{ child?: boolean; $activeLink?: boolean }>`
   text-decoration: none;
   display: block;
   font-weight: 600;
@@ -34,7 +34,7 @@ const StyledNavLink = styled(Link)<{ child?: boolean; activeLink?: boolean }>`
       font-weight: 400;
     `}
   ${props =>
-    props.activeLink &&
+    props.$activeLink &&
     css`
       background-color: ${hndsTheme.palette.blueberry500};
       color: white;
@@ -92,14 +92,14 @@ function SubMenu({ routeMap, activeRoute }: SubMenuProps): JSX.Element {
           return (
             <StyledNavGroup key={route.path}>
               <StyledNavItem>
-                <StyledNavLink activeLink={activeRoute === route.path} to={route.path}>
+                <StyledNavLink $activeLink={activeRoute === route.path} to={route.path}>
                   {route.label}
                 </StyledNavLink>
               </StyledNavItem>
               {route.children?.map((child: any) => {
                 return (
                   <StyledNavItem key={child.path}>
-                    <StyledNavLink activeLink={activeRoute === child.path} child to={child.path}>
+                    <StyledNavLink $activeLink={activeRoute === child.path} child to={child.path}>
                       {child.label}
                     </StyledNavLink>
                   </StyledNavItem>

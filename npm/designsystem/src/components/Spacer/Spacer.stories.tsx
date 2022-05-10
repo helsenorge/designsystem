@@ -1,14 +1,15 @@
 import React from 'react';
-import { withKnobs, text } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import Spacer from './Spacer';
-import { withA11y } from '@storybook/addon-a11y';
 
-const stories = storiesOf('Spacer', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Components/Spacer',
+  component: Spacer,
+} as ComponentMeta<typeof Spacer>;
 
-stories.add('Default', () => (
+export const Default: ComponentStory<typeof Spacer> = () => (
   <div style={{ width: '20rem' }}>
     <p>{'4xs'}</p>
     <div style={{ backgroundColor: 'lightgray', marginBottom: '0.25rem' }}>
@@ -63,4 +64,4 @@ stories.add('Default', () => (
       <Spacer size={'6xl'} />
     </div>
   </div>
-));
+);

@@ -1,18 +1,30 @@
 import React from 'react';
-import { withKnobs, text, select, number, boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import Logo from './Logo';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { allPaletteNames } from '../../../.storybook/knobs';
-import { withA11y } from '@storybook/addon-a11y';
 
-const stories = storiesOf('Logo', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+import Logo from './Logo';
 
-stories.add('Original', () => (
-  <Logo color={select('Color', allPaletteNames, 'blueberry')} size={number('Size', 300)} byline={boolean('Byline', false)} />
-));
+export default {
+  title: 'Components/Logo',
+  component: Logo,
+  argTypes: {
+    color: {
+      control: 'select',
+      options: allPaletteNames,
+      defaultValue: 'blueberry',
+    },
+    size: {
+      control: 'number',
+      defaultValue: 300,
+    },
+    byline: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+  },
+} as ComponentMeta<typeof Logo>;
 
-stories.add('Byline', () => (
-  <Logo color={select('Color', allPaletteNames, 'blueberry')} size={number('Size', 300)} byline={boolean('Byline', true)} />
-));
+export const Default: ComponentStory<typeof Logo> = (args: any) => <Logo {...args} />;
+
+export const Byline: ComponentStory<typeof Logo> = (args: any) => <Logo {...args} byline />;

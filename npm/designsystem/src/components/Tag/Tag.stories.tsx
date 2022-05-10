@@ -1,49 +1,60 @@
 import React from 'react';
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import { withA11y } from '@storybook/addon-a11y';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+
 import Tag, { TagAction, TagSize, TagVariant } from './Tag';
 import LawBook from '../Icons/LawBook';
 
-const stories = storiesOf('Tag', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Components/Tag',
+  component: Tag,
+  argTypes: {
+    children: {
+      control: 'text',
+      defaultValue: 'Tekst',
+    },
+    size: {
+      control: 'select',
+      options: TagSize,
+      defaultValue: TagSize.medium,
+    },
+    color: {
+      control: 'select',
+      options: ['blueberry', 'neutral', 'cherry', 'banana', 'kiwi', 'plum'],
+      defaultValue: 'blueberry',
+    },
+    variant: {
+      control: 'select',
+      options: TagVariant,
+      defaultValue: TagVariant.normal,
+    },
+    action: {
+      control: 'select',
+      options: TagAction,
+      defaultValue: TagAction.remove,
+    },
+  },
+} as ComponentMeta<typeof Tag>;
 
-stories.add('Default', () => (
+export const Default: ComponentStory<typeof Tag> = (args: any) => (
   <div style={{ width: '40rem' }}>
-    <Tag
-      size={select('Size', TagSize, TagSize.medium)}
-      color={select('Color', ['blueberry', 'neutral', 'cherry', 'banana', 'kiwi', 'plum'], 'blueberry')}
-      variant={select('Variant', TagVariant, TagVariant.normal)}
-    >
-      {text('Label', 'Tekst')}
+    <Tag {...args}>{args.children}</Tag>
+  </div>
+);
+
+export const WithIcon: ComponentStory<typeof Tag> = (args: any) => (
+  <div style={{ width: '40rem' }}>
+    <Tag {...args} svgIcon={LawBook}>
+      {args.children}
     </Tag>
   </div>
-));
+);
 
-stories.add('With icon', () => (
+export const Action: ComponentStory<typeof Tag> = (args: any) => (
   <div style={{ width: '40rem' }}>
-    <Tag
-      size={select('Size', TagSize, TagSize.medium)}
-      color={select('Color', ['blueberry', 'neutral', 'cherry', 'banana', 'kiwi', 'plum'], 'blueberry')}
-      variant={select('Variant', TagVariant, TagVariant.normal)}
-      svgIcon={LawBook}
-    >
-      {text('Label', 'Tekst')}
+    <Tag {...args} svgIcon={LawBook} onClick={action('Tag clicked')}>
+      {args.children}
     </Tag>
   </div>
-));
-
-stories.add('Action', () => (
-  <div style={{ width: '40rem' }}>
-    <Tag
-      size={select('Size', TagSize, TagSize.medium)}
-      color={select('Color', ['blueberry', 'neutral', 'cherry', 'banana', 'kiwi', 'plum'], 'blueberry')}
-      variant={select('Variant', TagVariant, TagVariant.normal)}
-      action={select('Action', TagAction, TagAction.remove)}
-      onClick={() => console.log('Tag clicked')}
-    >
-      {text('Label', 'Tekst')}
-    </Tag>
-  </div>
-));
+);

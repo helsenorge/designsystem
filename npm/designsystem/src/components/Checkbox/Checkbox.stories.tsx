@@ -1,31 +1,46 @@
 import React from 'react';
-import { boolean, select, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
+import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import { FormMode, FormVariant } from '../../constants';
 import Checkbox from './Checkbox';
-import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 
-const stories = storiesOf('Checkbox', module);
-stories.addDecorator(withKnobs);
+export default {
+  title: 'Components/Checkbox',
+  component: Checkbox,
+  argTypes: {
+    label: {
+      control: 'text',
+      defaultValue: 'Jeg er frisk!',
+    },
+    checked: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    disabled: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    mode: {
+      control: 'select',
+      options: FormMode,
+      defaultValue: FormMode.onwhite,
+    },
+    variant: {
+      control: 'select',
+      options: FormVariant,
+      defaultValue: FormVariant.normal,
+    },
+  },
+} as ComponentMeta<typeof Checkbox>;
 
-stories.add('Default', () => {
-  const modes = select('background', FormMode, FormMode.onwhite);
-
-  return (
-    <div
-      style={{
-        width: '40rem',
-        background: mapToBackgoundColor(modes),
-        padding: '1rem',
-      }}
-    >
-      <Checkbox
-        label={'Jeg er frisk!'}
-        checked={boolean('Checked', false)}
-        disabled={boolean('Disabled', false)}
-        mode={modes}
-        variant={select('Variant', FormVariant, FormVariant.normal)}
-      />
-    </div>
-  );
-});
+export const Default: ComponentStory<typeof Checkbox> = (args: any) => (
+  <div
+    style={{
+      width: '40rem',
+    }}
+  >
+    <Checkbox {...args} />
+  </div>
+);
