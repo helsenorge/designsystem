@@ -7,7 +7,7 @@ import Loader from '../Loader';
 import { PaletteNames } from '../../theme/palette';
 import { useHover } from '../../hooks/useHover';
 import { useIcons } from '../../hooks/useIcons';
-import { useWindowSize } from '../../hooks/useWindowSize';
+import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { breakpoints } from '../../theme/grid';
 import classNames from 'classnames';
 
@@ -69,8 +69,8 @@ const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, i
   return getColor(intentToColor[intent], hovered ? 700 : 600);
 };
 
-const getLargeIconSize = (large: boolean, screenWidth: number | undefined): number => {
-  const mobile = screenWidth && screenWidth < breakpoints.md;
+const getLargeIconSize = (large: boolean, breakpoint: Breakpoint): IconSize => {
+  const mobile = breakpoint < breakpoints.md;
   if (mobile && large) return IconSize.Small;
   if (large) return IconSize.Medium;
   return IconSize.XSmall;
@@ -108,7 +108,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       ? useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>)
       : useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
   const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted, isHovered);
-  const size = useWindowSize();
+  const breakpoint = useBreakpoint();
   const fillVariant = variant === 'fill';
   const outlineVariant = variant === 'outline';
   const borderlessVariant = variant === 'borderless';
@@ -186,12 +186,12 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           <>
             {fluid ? (
               <div className={leftFluidContentClasses}>
-                {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
+                {renderIcon(leftIcon, getLargeIconSize(large, breakpoint), iconColor, isHovered)}
                 {renderButtonContent()}
               </div>
             ) : (
               <>
-                {renderIcon(leftIcon, getLargeIconSize(large, size.width), iconColor, isHovered)}
+                {renderIcon(leftIcon, getLargeIconSize(large, breakpoint), iconColor, isHovered)}
                 {renderButtonContent()}
               </>
             )}
