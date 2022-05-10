@@ -1,12 +1,24 @@
 import React from 'react';
-import { withA11y } from '@storybook/addon-a11y';
-import { withKnobs, text, select } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import Badge from './Badge';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import { allPaletteNames } from '../../../.storybook/knobs';
+import Badge from './Badge';
 
-const stories = storiesOf('Badge', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Components/Badge',
+  component: Badge,
+  argTypes: {
+    children: {
+      control: 'text',
+      defaultValue: '1',
+    },
+    color: {
+      control: 'select',
+      options: allPaletteNames,
+      defaultValue: 'blueberry',
+    },
+  },
+} as ComponentMeta<typeof Badge>;
 
-stories.add('Default', () => <Badge color={select('Color', allPaletteNames, 'blueberry')}>{text('Text', '1')}</Badge>);
+export const Default: ComponentStory<typeof Badge> = (args: any) => <Badge {...args}>{args.children}</Badge>;

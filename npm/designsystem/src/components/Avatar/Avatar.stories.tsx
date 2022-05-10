@@ -1,16 +1,28 @@
 import React from 'react';
-import { withA11y } from '@storybook/addon-a11y';
-import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import Avatar from './Avatar';
 
-const stories = storiesOf('Avatar', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Components/Avatar',
+  component: Avatar,
+  argTypes: {
+    children: {
+      control: 'text',
+      defaultValue: 'Line Danser',
+    },
+    selected: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+  },
+} as ComponentMeta<typeof Avatar>;
 
-stories.add('Default', () => <Avatar selected={boolean('Selected', false)}>{text('Name', 'Line Danser')}</Avatar>);
-stories.add('Inverted', () => (
-  <Avatar variant="black" selected={boolean('Selected', false)}>
-    {text('Name', 'Line Danser')}
+export const Default: ComponentStory<typeof Avatar> = (args: any) => <Avatar {...args}>{args.children}</Avatar>;
+
+export const Inverted: ComponentStory<typeof Avatar> = (args: any) => (
+  <Avatar {...args} variant={'black'}>
+    {args.children}
   </Avatar>
-));
+);

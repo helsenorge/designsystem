@@ -1,45 +1,60 @@
 import React from 'react';
-import { withKnobs, text, select, number, boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import Title from './Title';
-import { withA11y } from '@storybook/addon-a11y';
 import { allTitleTags, allTitleAppearances } from '../../../.storybook/knobs';
 
-const stories = storiesOf('Title', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Components/Title',
+  component: Title,
+  argTypes: {
+    children: {
+      control: 'text',
+      defaultValue: 'Title',
+    },
+    htmlMarkup: {
+      control: 'select',
+      options: allTitleTags,
+      defaultValue: 'h1',
+    },
+    margin: {
+      control: 'number',
+      defaultValue: 0,
+    },
+    appearance: {
+      control: 'select',
+      options: allTitleAppearances,
+      defaultValue: 'title1',
+    },
+  },
+} as ComponentMeta<typeof Title>;
 
-stories.add('Default', () => (
+export const Default: ComponentStory<typeof Title> = (args: any) => (
   <div style={{ width: '20rem' }}>
-    <Title
-      htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')}
-      margin={number('Margin (rem)', 0)}
-      appearance={select('Apperance', allTitleAppearances, 'title1')}
-    >
-      {text('Text', 'Title')}
-    </Title>
+    <Title {...args}>{args.children}</Title>
   </div>
-));
+);
 
-stories.add('All appearances', () => (
+export const AllAppearances: ComponentStory<typeof Title> = (args: any) => (
   <div>
-    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="titleFeature">
-      {`${text('Text', 'Title')} (feature)`}
+    <Title {...args} appearance="titleFeature">
+      {`${args.children} (feature)`}
     </Title>
-    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title1">
-      {`${text('Text', 'Title')} (title1)`}
+    <Title {...args} appearance="title1">
+      {`${args.children} (title1)`}
     </Title>
-    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title2">
-      {`${text('Text', 'Title')} (title2)`}
+    <Title {...args} appearance="title2">
+      {`${args.children} (title2)`}
     </Title>
-    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title3">
-      {`${text('Text', 'Title')} (title3)`}
+    <Title {...args} appearance="title3">
+      {`${args.children} (title3)`}
     </Title>
-    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title4">
-      {`${text('Text', 'Title')} (title4)`}
+    <Title {...args} appearance="title4">
+      {`${args.children} (title4)`}
     </Title>
-    <Title htmlMarkup={select('HtmlMarkup', allTitleTags, 'h1')} margin={number('Margin (rem)', 0)} appearance="title5">
-      {`${text('Text', 'Title')} (title5)`}
+    <Title {...args} appearance="title5">
+      {`${args.children} (title5)`}
     </Title>
   </div>
-));
+);

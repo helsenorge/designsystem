@@ -94,7 +94,7 @@ const ColorWall = () => {
   return (
     <StyledColorWall>
       {Object.keys(hndsTheme.palette).map((color: string, index) => (
-        <ColorCard name={color} hex={hndsTheme.palette[color]} />
+        <ColorCard key={index} name={color} hex={hndsTheme.palette[color]} />
       ))}
     </StyledColorWall>
   );

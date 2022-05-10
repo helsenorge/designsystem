@@ -61,7 +61,7 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
   const breakpoint = useBreakpoint();
 
   const containerClassName = classNames(
-    styles.highlightbox,
+    styles['highlightbox'],
     styles[`highlightbox--${color}`],
     styles[`highlightbox--${size}`],
     svgIcon && styles['highlightbox--has-icon']

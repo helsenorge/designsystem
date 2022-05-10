@@ -1,31 +1,46 @@
 import React from 'react';
-import { boolean, select, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import RadioButton from './RadioButton';
 import { FormMode, FormVariant } from '../../constants';
-import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 
-const stories = storiesOf('RadioButton', module);
-stories.addDecorator(withKnobs);
+export default {
+  title: 'Components/RadioButton',
+  component: RadioButton,
+  argTypes: {
+    label: {
+      control: 'text',
+      defaultValue: 'RadioButton label',
+    },
+    defaultChecked: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    disabled: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    mode: {
+      control: 'select',
+      options: FormMode,
+      defaultValue: FormMode.onwhite,
+    },
+    variant: {
+      control: 'select',
+      options: FormVariant,
+      defaultValue: FormVariant.normal,
+    },
+  },
+} as ComponentMeta<typeof RadioButton>;
 
-stories.add('Default', () => {
-  const modes = select('background', FormMode, FormMode.onwhite);
-
-  return (
-    <div
-      style={{
-        width: '40rem',
-        background: mapToBackgoundColor(modes),
-        padding: '1rem',
-      }}
-    >
-      <RadioButton
-        label={'RadioButton label'}
-        defaultChecked={boolean('Checked', false)}
-        disabled={boolean('Disabled', false)}
-        mode={modes}
-        variant={select('Variant', FormVariant, FormVariant.normal)}
-      />
-    </div>
-  );
-});
+export const Default: ComponentStory<typeof RadioButton> = (args: any) => (
+  <div
+    style={{
+      width: '40rem',
+      padding: '1rem',
+    }}
+  >
+    <RadioButton {...args} />
+  </div>
+);

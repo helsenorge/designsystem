@@ -147,9 +147,9 @@ function setChevron(expanded: boolean) {
 function showMenuDrawer(expanded: boolean) {
   return expanded ? (
     <MenuDrawer>
-      {topLevelRoutes.map(route => {
+      {topLevelRoutes.map((route, index) => {
         return (
-          <MenuDrawerItem to={route.to}>
+          <MenuDrawerItem key={index} to={route.to}>
             <SectionIcon>{route.icon}</SectionIcon>
             <Label>{route.label}</Label>
           </MenuDrawerItem>

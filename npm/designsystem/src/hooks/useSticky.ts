@@ -25,8 +25,11 @@ export const useSticky = (contentRef: React.RefObject<HTMLElement>, stickyRef: R
   const [contentWidth, setContentWidth] = useState<number>();
 
   const handleLayoutChange = () => {
-    const { top: topOfContentElement = 0, width: widthOfContentElement = 0, bottom: bottomOfContentElement = 0 } =
-      contentRef.current?.getBoundingClientRect() || {};
+    const {
+      top: topOfContentElement = 0,
+      width: widthOfContentElement = 0,
+      bottom: bottomOfContentElement = 0,
+    } = contentRef.current?.getBoundingClientRect() || {};
     const heightOfStickyElement = stickyRef.current?.getBoundingClientRect().height ?? 0;
     setIsOutsideWindow(topOfContentElement <= 0);
     setIsLeavingWindow(bottomOfContentElement <= heightOfStickyElement);

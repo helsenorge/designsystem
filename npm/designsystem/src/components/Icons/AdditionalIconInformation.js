@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   bandaid: { alternativeName: 'Plaster', categories: 'Generisk, Behandling, Samvalg' },
   plant: { alternativeName: 'Plante', categories: 'Giftinformasjonen, Livsstil' },
   snake: { alternativeName: 'Slange', categories: 'Giftinformasjonen' },

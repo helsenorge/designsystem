@@ -1,15 +1,16 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import { withA11y } from '@storybook/addon-a11y';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import TagList from './TagList';
 import Tag from '../Tag';
 
-const stories = storiesOf('TagList', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Components/TagList',
+  component: TagList,
+} as ComponentMeta<typeof TagList>;
 
-stories.add('Default', () => (
+export const Default: ComponentStory<typeof TagList> = (args: any) => (
   <div style={{ width: '20rem' }}>
     <TagList>
       <Tag>{'Læring'}</Tag>
@@ -18,4 +19,4 @@ stories.add('Default', () => (
       <Tag>{'Livsstil'}</Tag>
     </TagList>
   </div>
-));
+);

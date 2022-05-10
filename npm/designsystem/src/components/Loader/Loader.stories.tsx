@@ -1,74 +1,65 @@
 import React from 'react';
-import { withKnobs, select } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
-import Loader, { Overlay } from './Loader';
+
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { allPaletteNames } from '../../../.storybook/knobs';
-import { withA11y } from '@storybook/addon-a11y';
+
+import Loader, { Overlay } from './Loader';
 import Title from '../Title/Title';
 import Button from '../Button/Button';
 
-const stories = storiesOf('Loader', module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(withA11y);
+export default {
+  title: 'Components/Loader',
+  component: Loader,
+  argTypes: {
+    color: {
+      control: 'select',
+      options: allPaletteNames,
+      defaultValue: 'blueberry',
+    },
+  },
+} as ComponentMeta<typeof Loader>;
 
-stories.add('Default', () => (
-  <Loader
-    size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
-    color={select('Color', allPaletteNames, 'blueberry')}
-  />
-));
+export const Default: ComponentStory<typeof Loader> = (args: any) => <Loader {...args} />;
 
-stories.add('All sizes', () => (
+export const AllSizes: ComponentStory<typeof Loader> = (args: any) => (
   <div style={{ display: 'grid', gridGap: '2rem' }}>
-    <Loader size="tiny" color={select('Color', allPaletteNames, 'blueberry')} />
-    <Loader size="small" color={select('Color', allPaletteNames, 'blueberry')} />
-    <Loader size="medium" color={select('Color', allPaletteNames, 'blueberry')} />
-    <Loader size="large" color={select('Color', allPaletteNames, 'blueberry')} />
+    <Loader {...args} size={'tiny'} />
+    <Loader {...args} size={'small'} />
+    <Loader {...args} size={'medium'} />
+    <Loader {...args} size={'large'} />
   </div>
-));
+);
 
-stories.add('Loader is centered', () => (
+export const LoaderIsCentered: ComponentStory<typeof Loader> = (args: any) => (
   <div style={{ width: 300, background: 'white' }}>
-    <Loader
-      size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
-      color={select('Color', allPaletteNames, 'blueberry')}
-      center
-    />
+    <Loader {...args} center />
   </div>
-));
+);
 
-stories.add('Inline', () => (
+export const Inline: ComponentStory<typeof Loader> = (args: any) => (
   <div>
     <Title htmlMarkup="span" appearance="title1">
       {'Søker'}
     </Title>
-    <Loader color="black" inline size="tiny" />
+    <Loader {...args} color="black" inline size="tiny" />
   </div>
-));
+);
 
-stories.add('Overlay screen', () => (
+export const OverlayScreen: ComponentStory<typeof Loader> = (args: any) => (
   <div style={{ width: '100%', height: '200vh' }}>
     <h2>{'Fastlegen din er Arnfinn Nesset ved Orkdal sykehjem'}</h2>
-    <Loader
-      size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
-      color={select('Color', allPaletteNames, 'black')}
-      overlay={Overlay.screen}
-    />
+    <Loader {...args} overlay={Overlay.screen} />
   </div>
-));
+);
 
-stories.add('Overlay parent', () => (
+export const OverlayParent: ComponentStory<typeof Loader> = (args: any) => (
   <div style={{ width: '100%', height: '100vh' }}>
     <h2>{'Fastlegen din er Arnfinn Nesset ved Orkdal sykehjem'}</h2>
     <div>
       <Title>{'Søknad'}</Title>
       <p style={{ color: 'red' }}>{'Søknad om greier'}</p>
       <Button>{'Lagre'}</Button>
-      <Loader
-        size={select('Size (does not work properly)', ['tiny', 'small', 'medium', 'large'], 'small')}
-        color={select('Color', allPaletteNames, 'black')}
-        overlay={Overlay.parent}
-      />
+      <Loader {...args} overlay={Overlay.parent} />
     </div>
   </div>
-));
+);
