@@ -2,9 +2,13 @@
 @import '../../scss/_breakpoints.scss';
 @import '../../scss/_palette.scss';
 @import '../../scss/_font-settings.scss';
+
 .helpbubble {
   display: flex;
+  position: absolute;
   align-items: flex-start;
+  max-width: 23.312rem;
+  min-height: 6rem;
   text-align: start;
   font-family: inherit;
   font-size: $font-size-sm;
@@ -12,19 +16,49 @@
   background-color: $white;
   border: getSpacer(4xs) solid $plum600;
   border-radius: 9px;
-  box-shadow: 0 2px 16px 0 $transparentGrey;
+  box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.15);
+  z-index: 1;
+
   @media (min-width: map-get($grid-breakpoints, lg)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
   }
+
   &__child-wrapper {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    overflow-wrap: anywhere;
     row-gap: getSpacer(2xs);
     padding: getSpacer(s) 0 getSpacer(m) getSpacer(s);
   }
+
   &__close-wrapper {
     padding: getSpacer(2xs) getSpacer(2xs) 0px 0px;
+  }
+
+  &__arrow {
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    border-style: solid;
+    border-color: transparent;
+    z-index: 2;
+
+    &--over {
+      top: -1.2rem;
+      border-width: 10px 10px;
+      border-bottom-color: $white;
+      -webkit-filter: drop-shadow($plum600 0px 2px 6px 2px);
+      filter: drop-shadow(0px -0.185rem 0px $plum600);
+    }
+    &--under {
+      bottom: -1.2rem;
+      border-width: 10px 10px;
+      border-top-color: $white;
+      -webkit-filter: drop-shadow($plum600 0px 2px 6px 2px);
+      filter: drop-shadow(0px 0.2rem 0px $plum600);
+    }
   }
 }

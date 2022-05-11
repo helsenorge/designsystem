@@ -1,6 +1,7 @@
 export type Styles = {
-  close: string;
-  'close--small': string;
+  helpbubble: string;
+  'helpbubble__child-wrapper': string;
+  'helpbubble__close-wrapper': string;
 };
 
 export type ClassNames = keyof Styles;
