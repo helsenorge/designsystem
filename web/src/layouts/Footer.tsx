@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled, { css } from 'styled-components';
 
-import { theme as hndsTheme } from '@helsenorge/designsystem-react';
+import { theme as hndsTheme, useBreakpoint, Breakpoint } from '@helsenorge/designsystem-react';
 import Logo from '@helsenorge/designsystem-react/components/Logo';
 import { Grid, Row, Col } from '@shared/CustomizedGrid';
 import Section from './Section';
-import useWindowSize from '@hooks/UseWindowSize';
 
 const StyledFooterContent = styled('div')`
   width: 100%;
@@ -98,7 +97,7 @@ function ContentDisclaimer(props: ContentDisclaimerProps) {
 }
 
 function Footer() {
-  const size = useWindowSize();
+  const breakpoint = useBreakpoint();
   return (
     <Section>
       <StyledFooterContent>
@@ -125,7 +124,7 @@ function Footer() {
                 </FooterLink>
               </StyledFooterLinkGroup>
             </Col>
-            {size.width && size.width > 768 ? (
+            {breakpoint > Breakpoint.md ? (
               <Row>
                 <Col md sm={12}>
                   <ContentDisclaimer byline={false}>Content provided by</ContentDisclaimer>
@@ -133,7 +132,7 @@ function Footer() {
               </Row>
             ) : null}
           </Row>
-          {size.width && size.width <= 768 ? (
+          {breakpoint <= Breakpoint.md ? (
             <Row>
               <Col md sm={12}>
                 <ContentDisclaimer byline={true}>Content provided by</ContentDisclaimer>
