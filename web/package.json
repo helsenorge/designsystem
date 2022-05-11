@@ -58,7 +58,7 @@
     "gatsby-transformer-remark": "^2.6.22",
     "gatsby-transformer-sharp": "^2.2.14",
     "lottie-web": "^5.5.9",
-    "netlify-cms-app": "2.12.24",
+    "netlify-cms-app": "^2.12.24",
     "netlify-cms-widget-mdx": "^0.4.3",
     "node-sass": "^4.13.0",
     "prettier": "1.19.1",
