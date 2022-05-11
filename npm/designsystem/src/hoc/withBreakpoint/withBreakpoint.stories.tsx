@@ -6,7 +6,6 @@ import { Breakpoint } from '../../hooks/useBreakpoint';
 import { BreakpointProps, withBreakpoint } from './withBreakpoint';
 
 const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
-
   const description = breakpoint && `Breakpoint er nå ${Breakpoint[breakpoint]} (${breakpoint}px)`;
 
   console.log(description);
