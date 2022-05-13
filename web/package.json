@@ -1,6 +1,6 @@
 {
   "name": "designsystem-docs",
-  "version": "1.0.0-beta129",
+  "version": "1.0.0-beta131",
   "description": "The official documentation for Helsenorge's Design System",
   "repository": {
     "type": "tfs",
@@ -27,7 +27,7 @@
     "validate": "npm run lint && npm run format -l"
   },
   "devDependencies": {
-    "@helsenorge/designsystem-react": "^1.0.0-beta129",
+    "@helsenorge/designsystem-react": "^1.0.0-beta131",
     "@hot-loader/react-dom": "^16.0.0",
     "@mdx-js/mdx": "^1.4.5",
     "@mdx-js/react": "1.4.5",
@@ -58,7 +58,7 @@
     "gatsby-transformer-remark": "^2.6.22",
     "gatsby-transformer-sharp": "^2.2.14",
     "lottie-web": "^5.5.9",
-    "netlify-cms-app": "2.12.24",
+    "netlify-cms-app": "^2.12.24",
     "netlify-cms-widget-mdx": "^0.4.3",
     "node-sass": "^4.13.0",
     "prettier": "1.19.1",
