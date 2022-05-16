@@ -8,7 +8,7 @@
 export function debounce(func: Function, wait: number, immediate?: boolean): [() => void, () => void] {
   let timeout: ReturnType<typeof setTimeout> | null;
 
-  const debouncedFunc = function(this: Function): void {
+  const debouncedFunc = function (this: Function): void {
     const context: Function = this,
       args: IArguments = arguments,
       later: () => void = (): void => {
