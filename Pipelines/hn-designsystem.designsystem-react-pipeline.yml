@@ -55,7 +55,7 @@ stages:
           - task: npmAuthenticate@0
             displayName: "npm Authenticate .npmrc"
             inputs:
-              workingFile: $(working_directory)/.npmrc
+              workingFile: npm/designsystem/.npmrc
 
           - task: Npm@1
             displayName: "npm i (install lerna)"
