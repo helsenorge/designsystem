@@ -27,6 +27,8 @@
   }
   &__button {
     position: relative;
+    padding-right: getSpacer(s);
+
     &:hover {
       background-color: $blueberry50;
     }
