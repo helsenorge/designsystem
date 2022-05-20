@@ -21,7 +21,7 @@
   "types": "lib/index.d.ts",
   "source": "src/index.ts",
   "scripts": {
-    "start": "start-storybook",
+    "start": "start-storybook --ci",
     "prebuild": "npm-run-all generate:entries clean",
     "build": "rollup -c --environment BUILD:production",
     "build-storybook": "build-storybook -o dist",
