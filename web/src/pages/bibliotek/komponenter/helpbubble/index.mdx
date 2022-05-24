@@ -1,0 +1,72 @@
+---
+title: HelpBubble
+path: /bibliotek/komponenter/helpbubble
+date: 2022-05-24
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/HelpBubble/componentdata.json';
+
+import HelpBubbleExample from '@helsenorge/designsystem-react/components/HelpBubbleExample';
+
+# HelpBubble
+
+<MDXCustom.Preamble>
+  HelpBubble [HelpBubble] hjelper innbygger å oppfatte viktigere innhold, der hvor det er behov for å utheve et innholdsområde fremfor annet
+  innhold på samme side
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{ HelpBubbleExample }}>{`
+        <HelpBubbleExample showBubble>
+          {'Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'}
+        </HelpBubbleExample>`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+## Variants
+
+### automatic
+
+<MDXCustom.LiveComponent scope={{ HelpBubbleExample }}>{`
+          <HelpBubbleExample showBubble testId="test01">
+            {'Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'}
+          </HelpBubbleExample>
+`}</MDXCustom.LiveComponent>
+
+### triggertop
+
+<MDXCustom.LiveComponent scope={{ HelpBubbleExample }}>{`
+    <HelpBubbleExample variant={'triggertop'} showBubble testId="test01">
+          {'Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'}
+        </HelpBubbleExample>
+`}</MDXCustom.LiveComponent>
+
+### triggerbottom
+
+<MDXCustom.LiveComponent scope={{ HelpBubbleExample }}>{`
+  <HelpBubbleExample variant={'triggerbottom'} showBubble testId="test01">
+          {'Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'}
+        </HelpBubbleExample>
+`}</MDXCustom.LiveComponent>
+
+## LinkExample
+
+### onLinkClick
+
+<MDXCustom.LiveComponent scope={{ HelpBubbleExample }}>{`
+          <HelpBubbleExample linkText={'Mer hjelp'} onLinkClick={() => {}} showBubble testId="test01">
+          {'Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'}
+          </HelpBubbleExample>
+`}</MDXCustom.LiveComponent>
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**

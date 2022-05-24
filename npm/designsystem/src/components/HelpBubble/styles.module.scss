@@ -2,13 +2,14 @@
 @import '../../scss/_breakpoints.scss';
 @import '../../scss/_palette.scss';
 @import '../../scss/_font-settings.scss';
+@import '../AnchorLink/styles.module.scss';
 
 .helpbubble {
   display: flex;
   position: absolute;
   left: 0;
   align-items: flex-start;
-  max-width: 23.312rem;
+  max-width: 373px;
   text-align: start;
   font-family: inherit;
   font-size: $font-size-sm;
@@ -30,10 +31,6 @@
     margin-bottom: getSpacer(s);
   }
 
-  @media (min-width: map-get($grid-breakpoints, sm)) {
-    width: max-content;
-  }
-
   @media (min-width: map-get($grid-breakpoints, lg)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
@@ -41,11 +38,17 @@
 
   &__child-wrapper {
     display: flex;
+    width: max-content;
     flex-direction: column;
     align-items: flex-start;
     overflow-wrap: anywhere;
     row-gap: getSpacer(2xs);
     padding: getSpacer(s) 0 getSpacer(m) getSpacer(s);
+  }
+
+  &__link-button {
+    all: unset;
+    @include anchorlink;
   }
 
   &__close-wrapper {
