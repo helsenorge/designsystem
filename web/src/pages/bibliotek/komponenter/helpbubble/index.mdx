@@ -29,7 +29,7 @@ import HelpBubbleExample from '@helsenorge/designsystem-react/components/HelpBub
 
 ## Variants
 
-### automatic
+### positionautomatic
 
 <MDXCustom.LiveComponent scope={{ HelpBubbleExample }}>{`
           <HelpBubbleExample showBubble testId="test01">
@@ -37,18 +37,18 @@ import HelpBubbleExample from '@helsenorge/designsystem-react/components/HelpBub
           </HelpBubbleExample>
 `}</MDXCustom.LiveComponent>
 
-### triggertop
+### positionbelow
 
 <MDXCustom.LiveComponent scope={{ HelpBubbleExample }}>{`
-    <HelpBubbleExample variant={'triggertop'} showBubble testId="test01">
+    <HelpBubbleExample variant={'positionbelow'} showBubble testId="test01">
           {'Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'}
         </HelpBubbleExample>
 `}</MDXCustom.LiveComponent>
 
-### triggerbottom
+### positionabove
 
 <MDXCustom.LiveComponent scope={{ HelpBubbleExample }}>{`
-  <HelpBubbleExample variant={'triggerbottom'} showBubble testId="test01">
+  <HelpBubbleExample variant={'positionabove'} showBubble testId="test01">
           {'Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'}
         </HelpBubbleExample>
 `}</MDXCustom.LiveComponent>
@@ -58,7 +58,7 @@ import HelpBubbleExample from '@helsenorge/designsystem-react/components/HelpBub
 ### onLinkClick
 
 <MDXCustom.LiveComponent scope={{ HelpBubbleExample }}>{`
-          <HelpBubbleExample linkText={'Mer hjelp'} onLinkClick={() => {}} showBubble testId="test01">
+          <HelpBubbleExample  linkText={'Mer hjelp'} onLinkClick={() => {alert('Mer hjelp clicked');}} showBubble testId="test01">
           {'Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.'}
           </HelpBubbleExample>
 `}</MDXCustom.LiveComponent>

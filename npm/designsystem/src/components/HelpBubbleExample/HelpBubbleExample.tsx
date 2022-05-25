@@ -18,9 +18,6 @@ const HelpBubbleExample: React.FC<HelpBubbleProps> = props => {
         </span>
         <HelpBubble
           {...props}
-          onLinkClick={() => {
-            alert('Mer hjelp clicked');
-          }}
           onClose={() => {
             alert('Bubble closed');
           }}

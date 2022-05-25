@@ -215,7 +215,7 @@
   &__call-to-action {
     display: flex;
 
-    button:first-child {
+    button:first-of-type {
       margin-right: 24px;
     }
 

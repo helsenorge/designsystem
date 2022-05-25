@@ -23,7 +23,7 @@ export default {
     variant: {
       control: 'select',
       options: HelpBubbleVariant,
-      defaultValue: HelpBubbleVariant.automatic,
+      defaultValue: HelpBubbleVariant.positionautomatic,
     },
   },
 } as ComponentMeta<typeof HelpBubble>;

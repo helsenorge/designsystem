@@ -1,18 +1,18 @@
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { AnalyticsId } from '../../constants';
+import { useEventListenerState } from '../../hooks/useEventListenerState';
+import { debounce } from '../../utils/debounce';
 import AnchorLink from '../AnchorLink';
 import Close from '../Close';
 
 import styles from './styles.module.scss';
-import { debounce } from '../../utils/debounce';
 
 export enum HelpBubbleVariant {
-  automatic = 'automatic',
-  triggertop = 'triggertop',
-  triggerbottom = 'triggerbottom',
+  positionautomatic = 'positionautomatic',
+  positionbelow = 'positionbelow',
+  positionabove = 'positionabove',
 }
 
 export interface HelpBubbleProps {
@@ -32,6 +32,8 @@ export interface HelpBubbleProps {
   onLinkClick?: () => void;
   /** Function is called when user clicks the button */
   onClose?: () => void;
+  /** aria-label to be passed onto Close */
+  closeAriaLabel?: string;
   /** Ref for the element the HelpBubble is placed upon */
   controllerRef?: React.RefObject<HTMLElement>;
   /** Sets the data-testid attribute. */
@@ -42,12 +44,13 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   const {
     children,
     className = '',
-    variant = HelpBubbleVariant.automatic,
+    variant = HelpBubbleVariant.positionautomatic,
     showBubble,
-    linkText,
+    linkText = 'Mer hjelp',
     linkUrl,
     onLinkClick,
     onClose,
+    closeAriaLabel,
     controllerRef,
     testId,
   } = props;
@@ -56,8 +59,6 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   const BUBBLE_WIDTH_PX = 373;
   /* Hjelpeboblen skal holde avstand til venstre/høyre kant på vinduet */
   const WINDOW_MARGIN_PX = 12;
-  /* Hvor ofte skal størrelsen på hjelpeboblen oppdateres når vinduet endrer størrelse */
-  const DEBOUNCE_MS = 100;
   /* Y akse Offset på HelpBubble arrow */
   const ARROW_Y_OFFSET = 8;
 
@@ -65,27 +66,19 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   let arrowPositionStyle = undefined;
   const bubbleRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
-  const [bubbleFitsScreenWidth, setBubbleFitsScreenWidth] = useState(false);
-  const [bubbleWidth, setBubbleWidth] = useState(0);
-  const [arrowWidth, setArrowWidth] = useState(0);
-  const [controllerWidth, setControllerWidth] = useState(0);
-  const [controllerHeight, setControllerHeight] = useState(0);
-  const [bubbleLeft, setBubbleLeft] = useState(0);
-  const [bubbleRight, setBubbleRight] = useState(0);
-  const [translateBubbleX, setTranslateBubbleX] = useState(0);
-  const [translateBubbleY, setTranslateBubbleY] = useState(0);
-  const [translateArrowX, setTranslateArrowX] = useState(0);
-  const [translateArrowY, setTranslateArrowY] = useState(0);
-  const [bubbleAbove, setBubbleAbove] = useState(variant === HelpBubbleVariant.triggerbottom);
+  const [customBubbleWidth, setCustomBubbleWidth] = useState(0);
+  const [translateBubble, setTranslateBubble] = useState({ x: 0, y: 0 });
+  const [translateArrow, setTranslateArrow] = useState({ x: 0, y: 0 });
+  const [bubbleAbove, setBubbleAbove] = useEventListenerState(variant === HelpBubbleVariant.positionabove);
 
   const helpBubbleClasses = classNames(
     styles.helpbubble,
-    { [styles['helpbubble--above']]: bubbleAbove, [styles['helpbubble--below']]: !bubbleAbove },
+    { [styles['helpbubble--above']]: bubbleAbove.current, [styles['helpbubble--below']]: !bubbleAbove.current },
     className
   );
   const arrowClasses = classNames(styles['helpbubble-arrow'], {
-    [styles['helpbubble-arrow--under']]: bubbleAbove,
-    [styles['helpbubble-arrow--over']]: !bubbleAbove,
+    [styles['helpbubble-arrow--under']]: bubbleAbove.current,
+    [styles['helpbubble-arrow--over']]: !bubbleAbove.current,
   });
 
   const checkSpaceAbove = () => {
@@ -94,22 +87,28 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
       const bubbleHeight = bubbleRef.current.getBoundingClientRect().height;
       setBubbleAbove(controllerBottom > bubbleHeight);
     }
+
+    return true;
   };
 
   const checkBubbleFitsScreenWidth = () => {
     const windowWidth = document.documentElement.clientWidth;
-    setBubbleFitsScreenWidth(windowWidth > BUBBLE_WIDTH_PX + WINDOW_MARGIN_PX * 2);
+    return windowWidth > BUBBLE_WIDTH_PX + WINDOW_MARGIN_PX * 2;
   };
 
-  const updateXTranslate = () => {
-    if (controllerRef?.current && bubbleRef.current) {
+  const updateTranslate = () => {
+    if (controllerRef?.current && bubbleRef.current && arrowRef.current) {
       const clientWidth = document.documentElement.clientWidth;
       const controllerX = controllerRef.current.getBoundingClientRect().x;
-      const controllerHalf = controllerWidth / 2;
+      const controllerSize = controllerRef.current.getBoundingClientRect();
+      const bubbleWidth = bubbleRef.current.getBoundingClientRect().width;
+      const arrowWidth = arrowRef.current.getBoundingClientRect().width;
+      const controllerHalf = controllerSize.width / 2;
+      let newBubbleX = 0;
 
-      if (!bubbleFitsScreenWidth) {
-        setBubbleLeft(-controllerX + WINDOW_MARGIN_PX);
-        setBubbleRight(clientWidth - WINDOW_MARGIN_PX * 2);
+      if (!checkBubbleFitsScreenWidth()) {
+        newBubbleX = -controllerX + WINDOW_MARGIN_PX;
+        setCustomBubbleWidth(clientWidth - WINDOW_MARGIN_PX * 2);
       } else {
         const bubbleHalf = bubbleWidth / 2;
 
@@ -123,70 +122,51 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
         const viewportXRightAdjustment = bubbleRightOverlap < 0 ? bubbleRightOverlap - WINDOW_MARGIN_PX : 0;
 
         const tempBubbleX = controllerHalf - bubbleHalf;
-        setTranslateBubbleX(tempBubbleX - viewportXLeftAdjustment + viewportXRightAdjustment);
-        setTranslateArrowX(controllerHalf - arrowWidth / 2);
+        newBubbleX = tempBubbleX - viewportXLeftAdjustment + viewportXRightAdjustment;
       }
-    }
-  };
 
-  const updateYTranslate = () => {
-    setTranslateBubbleY(!bubbleAbove ? 0 : -controllerHeight);
-    setTranslateArrowY(!bubbleAbove ? 0 - ARROW_Y_OFFSET : -controllerHeight + ARROW_Y_OFFSET);
-  };
-
-  const updateControllerSize = () => {
-    if (controllerRef?.current) {
-      setControllerWidth(controllerRef.current.getBoundingClientRect().width);
-      setControllerHeight(controllerRef.current.getBoundingClientRect().height);
-    }
-  };
-
-  const updateBubbleWidth = () => {
-    if (bubbleRef.current) {
-      setBubbleWidth(bubbleRef.current.getBoundingClientRect().width);
-    }
-  };
-
-  const updateArrowWidth = () => {
-    if (arrowRef.current) {
-      setArrowWidth(arrowRef.current.getBoundingClientRect().width);
+      setTranslateBubble({ x: newBubbleX, y: !bubbleAbove.current ? 0 : -controllerSize.height });
+      setTranslateArrow({
+        x: controllerHalf - arrowWidth / 2,
+        y: !bubbleAbove.current ? 0 - ARROW_Y_OFFSET : -controllerSize.height + ARROW_Y_OFFSET,
+      });
     }
   };
 
   const updatePositionStyle = () => {
-    if (!bubbleFitsScreenWidth) {
+    if (!checkBubbleFitsScreenWidth()) {
       bubblePositionStyle = {
-        left: `${bubbleLeft}px`,
-        width: `${bubbleRight}px`,
-        transform: `translateY(${translateBubbleY}px)`,
+        left: `${translateBubble.x}px`,
+        width: `${customBubbleWidth}px`,
+        transform: `translateY(${translateBubble.y}px)`,
       };
     } else {
       bubblePositionStyle = {
-        transform: `translate(${translateBubbleX}px, ${translateBubbleY}px)`,
+        transform: `translate(${translateBubble.x}px, ${translateBubble.y}px)`,
       };
     }
 
     arrowPositionStyle = {
-      transform: `translate(${translateArrowX}px, ${translateArrowY}px)`,
+      transform: `translate(${translateArrow.x}px, ${translateArrow.y}px)`,
     };
   };
 
   const handleScroll = useCallback((): void => {
     checkSpaceAbove();
-    updateXTranslate();
+    updateTranslate();
   }, []);
 
   const handleResize = useCallback((): void => {
     checkSpaceAbove();
-    updateXTranslate();
+    updateTranslate();
   }, []);
 
   const handleSetBubbleAbove = () => {
-    if (variant !== HelpBubbleVariant.automatic) {
+    if (variant !== HelpBubbleVariant.positionautomatic) {
       window.removeEventListener('scroll', handleScroll, false);
       window.removeEventListener('resize', handleResize, false);
 
-      setBubbleAbove(variant === HelpBubbleVariant.triggerbottom);
+      setBubbleAbove(variant === HelpBubbleVariant.positionabove);
     } else {
       window.addEventListener('scroll', handleScroll, false);
       window.addEventListener('resize', handleResize, false);
@@ -194,20 +174,20 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   };
 
   useEffect(() => {
-    updateBubbleWidth();
-    checkBubbleFitsScreenWidth();
-    updateArrowWidth();
-    updateXTranslate();
-    updateYTranslate();
-  });
+    updateTranslate();
+
+    return (): void => {
+      if (variant === HelpBubbleVariant.positionautomatic) {
+        window.removeEventListener('scroll', handleScroll, false);
+        window.removeEventListener('resize', handleResize, false);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (showBubble) {
-      updateBubbleWidth();
-      checkBubbleFitsScreenWidth();
-      updateArrowWidth();
-      updateXTranslate();
       checkSpaceAbove();
+      updateTranslate();
     }
   }, [showBubble]);
 
@@ -215,28 +195,19 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
     handleSetBubbleAbove();
   }, [variant]);
 
-  useEffect(() => {
-    updateControllerSize();
-
-    return (): void => {
-      if (variant === HelpBubbleVariant.automatic) {
-        window.removeEventListener('scroll', handleScroll, false);
-        window.removeEventListener('resize', handleResize, false);
-      }
-    };
-  }, []);
-
-  const renderMoreHelp = () => {
-    return onLinkClick ? (
-      <button className={styles['helpbubble__link-button']} onClick={onLinkClick}>
-        {linkText && linkText !== undefined ? linkText : 'Mer hjelp'}
-      </button>
-    ) : (
-      linkUrl && <AnchorLink href={linkUrl}>{linkText && linkText !== undefined ? linkText : 'Mer hjelp'}</AnchorLink>
-    );
-  };
-
   updatePositionStyle();
+
+  const renderLink = () => {
+    if (onLinkClick && linkText) {
+      return (
+        <button className={styles['helpbubble__link-button']} onClick={onLinkClick}>
+          {linkText}
+        </button>
+      );
+    } else if (linkUrl && linkText) {
+      return <AnchorLink href={linkUrl}>{linkText}</AnchorLink>;
+    }
+  };
 
   return showBubble ? (
     <>
@@ -249,10 +220,10 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
       >
         <div className={styles['helpbubble__child-wrapper']}>
           {children}
-          {renderMoreHelp()}
+          {renderLink()}
         </div>
         <div className={styles['helpbubble__close-wrapper']}>
-          <Close small onClick={onClose} />
+          <Close small onClick={onClose} ariaLabel={closeAriaLabel} />
         </div>
       </div>
       <div ref={arrowRef} style={arrowPositionStyle} className={arrowClasses} />

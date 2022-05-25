@@ -28,10 +28,10 @@ describe('Gitt at HelpBubble skal vises', (): void => {
     });
   });
 
-  describe('Når variant er triggerTop', (): void => {
+  describe('Når variant er positionbelow', (): void => {
     it('Så vises HelpBubble riktig', (): void => {
       render(
-        <HelpBubble variant={HelpBubbleVariant.triggertop} showBubble testId="test01">
+        <HelpBubble variant={HelpBubbleVariant.positionbelow} showBubble testId="test01">
           {'Test tekst'}
         </HelpBubble>
       );
@@ -42,10 +42,10 @@ describe('Gitt at HelpBubble skal vises', (): void => {
     });
   });
 
-  describe('Når variant er triggerBottom', (): void => {
+  describe('Når variant er positionabove', (): void => {
     it('Så vises HelpBubble riktig', (): void => {
       render(
-        <HelpBubble variant={HelpBubbleVariant.triggerbottom} showBubble testId="test01">
+        <HelpBubble variant={HelpBubbleVariant.positionabove} showBubble testId="test01">
           {'Test tekst'}
         </HelpBubble>
       );
