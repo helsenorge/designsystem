@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { AnalyticsId } from '../../constants';
 import { useEventListenerState } from '../../hooks/useEventListenerState';
-import { debounce } from '../../utils/debounce';
 import AnchorLink from '../AnchorLink';
 import Close from '../Close';
 
