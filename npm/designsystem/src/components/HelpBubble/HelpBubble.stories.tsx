@@ -68,7 +68,7 @@ export const OnText: ComponentStory<typeof HelpBubble> = (args: any) => {
           {'Jeg er en tooltip tekst.'}
         </span>
         <HelpBubble {...args} onClose={action('Bubble closed')} controllerRef={controllerRef}>
-          {args.children}
+          <div>{args.children}</div>
         </HelpBubble>
       </div>
       <span>

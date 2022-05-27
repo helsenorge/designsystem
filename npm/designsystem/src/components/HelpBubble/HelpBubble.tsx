@@ -16,7 +16,9 @@ export enum HelpBubbleVariant {
 
 export interface HelpBubbleProps {
   /** Name to display in the avatar. Will be truncated to the first two characters. */
-  children: string;
+  children: React.ReactNode;
+  /** Ref for the element the HelpBubble is placed upon */
+  controllerRef: React.RefObject<HTMLElement | SVGSVGElement>;
   /** Adds custom classes to the element. */
   className?: string;
   /** Determines the placement of the helpbubble */
@@ -33,8 +35,6 @@ export interface HelpBubbleProps {
   onClose?: () => void;
   /** aria-label to be passed onto Close */
   closeAriaLabel?: string;
-  /** Ref for the element the HelpBubble is placed upon */
-  controllerRef?: React.RefObject<HTMLElement>;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -42,6 +42,7 @@ export interface HelpBubbleProps {
 const HelpBubble: React.FC<HelpBubbleProps> = props => {
   const {
     children,
+    controllerRef,
     className = '',
     variant = HelpBubbleVariant.positionautomatic,
     showBubble,
@@ -50,7 +51,6 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
     onLinkClick,
     onClose,
     closeAriaLabel,
-    controllerRef,
     testId,
   } = props;
 
@@ -65,29 +65,34 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   let arrowPositionStyle = undefined;
   const bubbleRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
+  const [initialRender, setInitialRender] = useState(true);
+  const [eventListenerVariant, setEventListenerVariant] = useEventListenerState(variant);
   const [customBubbleWidth, setCustomBubbleWidth] = useState(0);
   const [translateBubble, setTranslateBubble] = useState({ x: 0, y: 0 });
   const [translateArrow, setTranslateArrow] = useState({ x: 0, y: 0 });
-  const [bubbleAbove, setBubbleAbove] = useEventListenerState(variant === HelpBubbleVariant.positionabove);
+  const [bubbleAbove, setBubbleAbove] = useEventListenerState(variant !== HelpBubbleVariant.positionbelow);
 
   const helpBubbleClasses = classNames(
     styles.helpbubble,
-    { [styles['helpbubble--above']]: bubbleAbove.current, [styles['helpbubble--below']]: !bubbleAbove.current },
+    {
+      [styles['helpbubble--initial-render']]: initialRender,
+      [styles['helpbubble--above']]: bubbleAbove.current,
+      [styles['helpbubble--below']]: !bubbleAbove.current,
+    },
     className
   );
   const arrowClasses = classNames(styles['helpbubble-arrow'], {
+    [styles['helpbubble-arrow--initial-render']]: initialRender,
     [styles['helpbubble-arrow--under']]: bubbleAbove.current,
     [styles['helpbubble-arrow--over']]: !bubbleAbove.current,
   });
 
   const checkSpaceAbove = () => {
-    if (bubbleRef.current && controllerRef?.current) {
+    if (eventListenerVariant.current === HelpBubbleVariant.positionautomatic && bubbleRef.current && controllerRef.current) {
       const controllerBottom = controllerRef.current.getBoundingClientRect().y;
       const bubbleHeight = bubbleRef.current.getBoundingClientRect().height;
       setBubbleAbove(controllerBottom > bubbleHeight);
     }
-
-    return true;
   };
 
   const checkBubbleFitsScreenWidth = () => {
@@ -96,7 +101,7 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   };
 
   const updateTranslate = () => {
-    if (controllerRef?.current && bubbleRef.current && arrowRef.current) {
+    if (controllerRef.current && bubbleRef.current && arrowRef.current) {
       const clientWidth = document.documentElement.clientWidth;
       const controllerX = controllerRef.current.getBoundingClientRect().x;
       const controllerSize = controllerRef.current.getBoundingClientRect();
@@ -150,48 +155,51 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
     };
   };
 
-  const handleScroll = useCallback((): void => {
+  const handleBubbleUpdate = () => {
     checkSpaceAbove();
     updateTranslate();
+  };
+
+  const handleScroll = useCallback((): void => {
+    handleBubbleUpdate();
   }, []);
 
   const handleResize = useCallback((): void => {
-    checkSpaceAbove();
-    updateTranslate();
+    handleBubbleUpdate();
   }, []);
 
-  const handleSetBubbleAbove = () => {
-    if (variant !== HelpBubbleVariant.positionautomatic) {
-      window.removeEventListener('scroll', handleScroll, false);
-      window.removeEventListener('resize', handleResize, false);
+  const addEventListeners = () => {
+    window.addEventListener('scroll', handleScroll, false);
+    window.addEventListener('resize', handleResize, false);
+  };
 
-      setBubbleAbove(variant === HelpBubbleVariant.positionabove);
-    } else {
-      window.addEventListener('scroll', handleScroll, false);
-      window.addEventListener('resize', handleResize, false);
-    }
+  const removeEventListeners = () => {
+    window.removeEventListener('scroll', handleScroll, false);
+    window.removeEventListener('resize', handleResize, false);
   };
 
   useEffect(() => {
+    setInitialRender(false);
     updateTranslate();
 
     return (): void => {
-      if (variant === HelpBubbleVariant.positionautomatic) {
-        window.removeEventListener('scroll', handleScroll, false);
-        window.removeEventListener('resize', handleResize, false);
-      }
+      removeEventListeners();
     };
   }, []);
 
   useEffect(() => {
     if (showBubble) {
-      checkSpaceAbove();
-      updateTranslate();
+      addEventListeners();
+      handleBubbleUpdate();
+    } else if (!showBubble) {
+      removeEventListeners();
     }
   }, [showBubble]);
 
   useEffect(() => {
-    handleSetBubbleAbove();
+    setEventListenerVariant(variant);
+    setBubbleAbove(variant !== HelpBubbleVariant.positionbelow);
+    handleBubbleUpdate();
   }, [variant]);
 
   updatePositionStyle();

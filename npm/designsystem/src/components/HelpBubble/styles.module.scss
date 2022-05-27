@@ -16,6 +16,7 @@
   line-height: $lineheight-size-sm;
   background-color: $white;
   z-index: 1;
+  visibility: visible;
 
   border: getSpacer(4xs) solid $plum600;
   border-radius: 9px;
@@ -31,6 +32,10 @@
     margin-bottom: getSpacer(s);
   }
 
+  &--initial-render {
+    visibility: hidden;
+  }
+
   @media (min-width: map-get($grid-breakpoints, lg)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
@@ -44,6 +49,10 @@
     overflow-wrap: anywhere;
     row-gap: getSpacer(2xs);
     padding: getSpacer(s) 0 getSpacer(m) getSpacer(s);
+
+    > p {
+      margin: 0;
+    }
   }
 
   &__link-button {
@@ -80,5 +89,9 @@
     border-top-color: $white;
     -webkit-filter: drop-shadow($plum600 0px 2px 6px 2px);
     filter: drop-shadow(0px 0.2rem 0px $plum600);
+  }
+
+  &--initial-render {
+    visibility: hidden;
   }
 }

@@ -8,7 +8,9 @@ export type Styles = {
   'helpbubble__link-button__icon': string;
   'helpbubble--above': string;
   'helpbubble--below': string;
+  'helpbubble--initial-render': string;
   'helpbubble-arrow': string;
+  'helpbubble-arrow--initial-render': string;
   'helpbubble-arrow--over': string;
   'helpbubble-arrow--under': string;
 };
