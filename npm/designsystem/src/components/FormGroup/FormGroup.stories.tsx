@@ -83,3 +83,18 @@ export const InputChildren: ComponentStory<typeof FormGroup> = (args: any) => (
     </FormGroup>
   </div>
 );
+
+export const DivTagTrue: ComponentStory<typeof FormGroup> = (args: any) => (
+  <div
+    style={{
+      width: '90vw',
+      background: mapToBackgoundColor(args.mode),
+    }}
+  >
+    <FormGroup htmlMarkup="div" {...args}>
+      <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
+      <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
+      <RadioButton inputId={'RadioButton3'} label={'RadioButton 3'} />
+    </FormGroup>
+  </div>
+);

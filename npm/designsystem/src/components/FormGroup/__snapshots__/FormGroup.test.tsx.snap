@@ -5,6 +5,7 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
   <div
     class="form-group-wrapper"
     data-analyticsid="form-group"
+    tabindex="-1"
   >
     <h4
       class="title title--title4 form-group-wrapper__title"
