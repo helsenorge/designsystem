@@ -1,6 +1,6 @@
 {
   "name": "designsystem-docs",
-  "version": "1.0.0-betahelpbubble",
+  "version": "1.0.0-betahelpbubble1",
   "description": "The official documentation for Helsenorge's Design System",
   "repository": {
     "type": "tfs",
@@ -27,7 +27,7 @@
     "validate": "npm run lint && npm run format -l"
   },
   "devDependencies": {
-    "@helsenorge/designsystem-react": "^1.0.0-betahelpbubble",
+    "@helsenorge/designsystem-react": "^1.0.0-betahelpbubble1",
     "@hot-loader/react-dom": "^16.0.0",
     "@mdx-js/mdx": "^1.4.5",
     "@mdx-js/react": "1.4.5",
