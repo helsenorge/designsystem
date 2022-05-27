@@ -179,7 +179,6 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   };
 
   useEffect(() => {
-    setInitialRender(false);
     updateTranslate();
 
     return (): void => {
@@ -189,9 +188,11 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
 
   useEffect(() => {
     if (showBubble) {
+      setInitialRender(false);
       addEventListeners();
       handleBubbleUpdate();
     } else if (!showBubble) {
+      setInitialRender(true);
       removeEventListeners();
     }
   }, [showBubble]);
