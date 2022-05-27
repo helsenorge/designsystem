@@ -3,11 +3,13 @@ import { screen, render } from '@testing-library/react';
 import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
 import userEvent from '@testing-library/user-event';
 
+const controllerRef = jest.fn();
+
 describe('Gitt at HelpBubble skal vises', (): void => {
   describe('Når den skal vises vanlig', (): void => {
     it('Så vises HelpBubble som vanlig', (): void => {
       const { container } = render(
-        <HelpBubble showBubble testId="test01">
+        <HelpBubble controllerRef={controllerRef} showBubble testId="test01">
           {'Test tekst'}
         </HelpBubble>
       );
@@ -20,7 +22,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
       expect(child).toBeInTheDocument();
       expect(closeButton).toBeInTheDocument();
 
-      expect(bubble).toHaveClass('helpbubble helpbubble--below');
+      expect(bubble).toHaveClass('helpbubble helpbubble--above');
       expect(child).toHaveClass('helpbubble__child-wrapper');
       expect(closeButton).toHaveClass('close close--small');
 
@@ -31,7 +33,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
   describe('Når variant er positionbelow', (): void => {
     it('Så vises HelpBubble riktig', (): void => {
       render(
-        <HelpBubble variant={HelpBubbleVariant.positionbelow} showBubble testId="test01">
+        <HelpBubble controllerRef={controllerRef} variant={HelpBubbleVariant.positionbelow} showBubble testId="test01">
           {'Test tekst'}
         </HelpBubble>
       );
@@ -45,7 +47,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
   describe('Når variant er positionabove', (): void => {
     it('Så vises HelpBubble riktig', (): void => {
       render(
-        <HelpBubble variant={HelpBubbleVariant.positionabove} showBubble testId="test01">
+        <HelpBubble controllerRef={controllerRef} variant={HelpBubbleVariant.positionabove} showBubble testId="test01">
           {'Test tekst'}
         </HelpBubble>
       );
@@ -60,7 +62,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
     it('Så vises ekstra knapp med onLinkClick callback riktig', (): void => {
       const onLinkClick = jest.fn();
       render(
-        <HelpBubble showBubble linkText={'Egen link tekst'} onLinkClick={onLinkClick} testId="test01">
+        <HelpBubble controllerRef={controllerRef} showBubble linkText={'Egen link tekst'} onLinkClick={onLinkClick} testId="test01">
           {'Test tekst'}
         </HelpBubble>
       );
@@ -79,7 +81,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
   describe('Når linkUrl er satt', (): void => {
     it('Så vises ekstra knapp med linkUrl riktig', (): void => {
       render(
-        <HelpBubble showBubble linkText={'Egen link tekst'} linkUrl={'/'} testId="test01">
+        <HelpBubble controllerRef={controllerRef} showBubble linkText={'Egen link tekst'} linkUrl={'/'} testId="test01">
           {'Test tekst'}
         </HelpBubble>
       );
@@ -96,7 +98,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
   describe('Når onLinkClick og linkUrl ikke er satt', (): void => {
     it('Så vises ikke ekstra knapp for link', (): void => {
       render(
-        <HelpBubble showBubble testId="test01">
+        <HelpBubble controllerRef={controllerRef} showBubble testId="test01">
           {'Test tekst'}
         </HelpBubble>
       );
@@ -111,7 +113,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
     it('Så kalles onClose callback riktig', (): void => {
       const onClose = jest.fn();
       render(
-        <HelpBubble onClose={onClose} showBubble testId="test01">
+        <HelpBubble controllerRef={controllerRef} onClose={onClose} showBubble testId="test01">
           {'Test tekst'}
         </HelpBubble>
       );
@@ -127,7 +129,11 @@ describe('Gitt at HelpBubble skal vises', (): void => {
 describe('Gitt at HelpBubble ikke skal vises', (): void => {
   describe('Når den rendres', (): void => {
     it('Så vises HelpBubble ikke', (): void => {
-      render(<HelpBubble testId="test01">{'Test tekst'}</HelpBubble>);
+      render(
+        <HelpBubble controllerRef={controllerRef} testId="test01">
+          {'Test tekst'}
+        </HelpBubble>
+      );
 
       const bubble = screen.queryByTestId('test01');
       const child = screen.queryByText('Test tekst');
