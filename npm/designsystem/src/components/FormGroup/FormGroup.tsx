@@ -10,6 +10,8 @@ import Input, { InputProps } from '../Input/Input';
 import Title from '../Title';
 import FormLayout, { FormLayoutProps } from '../FormLayout';
 
+export type FormGroupTags = 'fieldset' | 'div';
+
 export interface FormGroupProps {
   /** title for the the fieldset */
   title?: string;
@@ -29,10 +31,12 @@ export interface FormGroupProps {
   testId?: string;
   /** Unique identifyer for the child input tags */
   name?: string;
+  /** Sets div instead of fieldset tag */
+  htmlMarkup?: FormGroupTags;
 }
 
-export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLElement>) => {
-  const { className, mode = FormMode.onwhite, variant = FormVariant.normal, error, name } = props;
+export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+  const { className, mode = FormMode.onwhite, variant = FormVariant.normal, error, name, htmlMarkup = 'fieldset' } = props;
   const onDark = mode === FormMode.ondark;
   const bigform = variant === FormVariant.bigform;
   const formGroupWrapperClasses = classNames(
@@ -93,7 +97,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   };
 
   return (
-    <div data-testid={props.testId} data-analyticsid={AnalyticsId.FormGroup} className={formGroupWrapperClasses}>
+    <div data-testid={props.testId} data-analyticsid={AnalyticsId.FormGroup} className={formGroupWrapperClasses} ref={ref} tabIndex={-1}>
       {props.title && (
         <Title className={titleClasses} htmlMarkup={'h4'} appearance={'title4'} margin={{ marginTop: 0, marginBottom: 2 }}>
           {props.title}
@@ -101,10 +105,18 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
       )}
       <div className={formGroupClasses}>
         {error && <p className={errorStyles}>{error}</p>}
-        <fieldset name={props.title} className={formGroupStyles['field-set']}>
-          {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
-          {React.Children.map(props.children, mapFormComponent)}
-        </fieldset>
+        {htmlMarkup === 'div' && (
+          <div id={props.title} className={formGroupStyles['field-set']}>
+            {props.legend && <h5 className={legendClasses}>{props.legend}</h5>}
+            {React.Children.map(props.children, mapFormComponent)}
+          </div>
+        )}
+        {htmlMarkup === 'fieldset' && (
+          <fieldset name={props.title} className={formGroupStyles['field-set']}>
+            {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
+            {React.Children.map(props.children, mapFormComponent)}
+          </fieldset>
+        )}
       </div>
     </div>
   );
