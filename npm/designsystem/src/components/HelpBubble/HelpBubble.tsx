@@ -102,6 +102,7 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
 
   const updateTranslate = () => {
     if (controllerRef.current && bubbleRef.current && arrowRef.current) {
+      // Henter ut størrelser og posisjoner som trengs til kalkulering av HelpBubble posisjonering
       const clientWidth = document.documentElement.clientWidth;
       const controllerX = controllerRef.current.getBoundingClientRect().x;
       const controllerSize = controllerRef.current.getBoundingClientRect();
@@ -110,23 +111,11 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
       const controllerHalf = controllerSize.width / 2;
       let newBubbleX = 0;
 
-      if (!checkBubbleFitsScreenWidth()) {
+      if (checkBubbleFitsScreenWidth()) {
+        newBubbleX = getBubbleXAdjustment(bubbleWidth, controllerX, controllerHalf, clientWidth);
+      } else {
         newBubbleX = -controllerX + WINDOW_MARGIN_PX;
         setCustomBubbleWidth(clientWidth - WINDOW_MARGIN_PX * 2);
-      } else {
-        const bubbleHalf = bubbleWidth / 2;
-
-        // Viewport overlap kalkulering
-        const controllerXMiddle = controllerX + controllerHalf;
-        const bubbleControllerDifferenceX = controllerXMiddle - bubbleHalf;
-        const bubbleRightOverlap = clientWidth - controllerXMiddle - bubbleHalf;
-
-        // Viewport overlap justering
-        const viewportXLeftAdjustment = bubbleControllerDifferenceX < 0 ? bubbleControllerDifferenceX - WINDOW_MARGIN_PX : 0;
-        const viewportXRightAdjustment = bubbleRightOverlap < 0 ? bubbleRightOverlap - WINDOW_MARGIN_PX : 0;
-
-        const tempBubbleX = controllerHalf - bubbleHalf;
-        newBubbleX = tempBubbleX - viewportXLeftAdjustment + viewportXRightAdjustment;
       }
 
       setTranslateBubble({ x: newBubbleX, y: !bubbleAbove.current ? 0 : -controllerSize.height });
@@ -137,16 +126,33 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
     }
   };
 
+  const getBubbleXAdjustment = (bubbleWidth: number, controllerX: number, controllerHalf: number, clientWidth: number) => {
+    const bubbleHalfWidth = bubbleWidth / 2;
+
+    // Kalkulerer om HelpBubble går utenfor viewporten
+    const controllerXMiddle = controllerX + controllerHalf;
+    const bubbleControllerDifferenceX = controllerXMiddle - bubbleHalfWidth;
+    const bubbleRightOverlap = clientWidth - controllerXMiddle - bubbleHalfWidth;
+
+    // Justerer x akse posisjon utifra funnene over
+    const viewportXLeftAdjustment = bubbleControllerDifferenceX < 0 ? bubbleControllerDifferenceX - WINDOW_MARGIN_PX : 0;
+    const viewportXRightAdjustment = bubbleRightOverlap < 0 ? bubbleRightOverlap - WINDOW_MARGIN_PX : 0;
+
+    // Returnerer den justerte x posisjonen
+    const tempBubbleX = controllerHalf - bubbleHalfWidth;
+    return tempBubbleX - viewportXLeftAdjustment + viewportXRightAdjustment;
+  };
+
   const updatePositionStyle = () => {
-    if (!checkBubbleFitsScreenWidth()) {
+    if (checkBubbleFitsScreenWidth()) {
+      bubblePositionStyle = {
+        transform: `translate(${translateBubble.x}px, ${translateBubble.y}px)`,
+      };
+    } else {
       bubblePositionStyle = {
         left: `${translateBubble.x}px`,
         width: `${customBubbleWidth}px`,
         transform: `translateY(${translateBubble.y}px)`,
-      };
-    } else {
-      bubblePositionStyle = {
-        transform: `translate(${translateBubble.x}px, ${translateBubble.y}px)`,
       };
     }
 
