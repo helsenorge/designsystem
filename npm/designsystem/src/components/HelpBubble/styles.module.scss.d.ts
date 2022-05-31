@@ -6,8 +6,6 @@ export type Styles = {
   'helpbubble__close-wrapper': string;
   'helpbubble__link-button': string;
   'helpbubble__link-button__icon': string;
-  'helpbubble--above': string;
-  'helpbubble--below': string;
   'helpbubble--initial-render': string;
   'helpbubble-arrow': string;
   'helpbubble-arrow--initial-render': string;
