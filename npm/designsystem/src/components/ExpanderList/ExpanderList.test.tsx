@@ -73,6 +73,31 @@ describe('Gitt ExpanderList blir rendret', (): void => {
     });
   });
 
+  describe('Når det er to expandere med expanded true', (): void => {
+    it('så er begge expanderne åpne', async (): Promise<void> => {
+      render(
+        <ExpanderList>
+          <ExpanderList.Expander expanded title="Title 1">
+            Text 1
+          </ExpanderList.Expander>
+          <ExpanderList.Expander expanded title="Title 2">
+            Text 2
+          </ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 3">Text 3</ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const button1 = screen.getByRole('button', { name: 'Title 1' });
+      expect(button1).toHaveAttribute('aria-expanded', 'true');
+
+      const button2 = screen.getByRole('button', { name: 'Title 2' });
+      expect(button2).toHaveAttribute('aria-expanded', 'true');
+
+      const button3 = screen.getByRole('button', { name: 'Title 3' });
+      expect(button3).toHaveAttribute('aria-expanded', 'false');
+    });
+  });
+
   describe('Når man klikker på en expander', (): void => {
     it('Sjekk Expander bakgrunnsfarge når musepeker trykker på den', (): void => {
       render(

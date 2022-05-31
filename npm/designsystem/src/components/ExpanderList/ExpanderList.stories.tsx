@@ -70,6 +70,32 @@ export const Default: ComponentStory<typeof ExpanderList> = (args: any) => (
   </div>
 );
 
+export const MultipleOpenExpanders: ComponentStory<typeof ExpanderList> = (args: any) => {
+  return (
+    <div
+      style={{
+        width: '40rem',
+      }}
+    >
+      <ExpanderList {...args}>
+        <ExpanderList.Expander title="Kognitiv terapi" expanded>
+          Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger
+          og følelser. Et viktig mål er å bryte selvforsterkende onde sirkler som opprettholder psykiske helseproblemer.
+        </ExpanderList.Expander>
+        <ExpanderList.Expander title="Hypokondri" expanded>
+          Hypokondri er en sykdom der folk føler at de har en sykdom som de i realiteten ikke har. Statens helsetilsyn sier blant annet
+          følgende om sykdommen: «Det vesentlige kjennetegnet er vedvarende opptatthet av muligheten for å ha en eller flere alvorlige og
+          fremadskridende somatiske lidelser».
+        </ExpanderList.Expander>
+        <ExpanderList.Expander title="En hjerneskade er en skade opstået i hjernen, med vedvarende funktionsnedsættelse til følge (Ekstra lang tekst for wrapping)">
+          De hyppigste årsager til hjerneskader er hjerneblødninger, blodpropper i hjernen, trafik- eller drukneulykker, svulster eller
+          hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.
+        </ExpanderList.Expander>
+      </ExpanderList>
+    </div>
+  );
+};
+
 export const WithIcon: ComponentStory<typeof ExpanderList> = (args: any) => (
   <div
     style={{

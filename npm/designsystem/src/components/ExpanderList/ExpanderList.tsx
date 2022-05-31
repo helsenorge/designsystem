@@ -38,6 +38,7 @@ interface ExpanderListProps {
   /** Changes the font size. */
   large?: boolean;
   /** Opens the first item in the list. */
+  /** @deprecated Skal fases ut til fordel for å bruke expanded-prop på første ExpanderList.Expander */
   isOpen?: boolean;
   /** Toggles the top border of the first child element. */
   topBorder?: boolean;
@@ -138,6 +139,11 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
   );
 });
 
+type ActiveExpander = Record<string, boolean>;
+
+const isExpanderComponent = (element: {} | null | undefined): element is React.ReactElement<ExpanderProps> =>
+  React.isValidElement<ExpanderProps>(element) && (element as React.ReactElement).type === Expander;
+
 export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: React.Ref<HTMLUListElement>) => {
   const {
     children,
@@ -151,14 +157,14 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     bottomBorder = true,
     testId,
   } = props;
-  const [activeExpander, setActiveExpander] = useState({});
+  const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
   const uuid = useUuid();
   const childCount = React.Children.count(children);
   const expanderListClasses = classNames(expanderListStyles['expander-list'], className);
 
   function handleExpanderClick(event: React.MouseEvent<HTMLElement, MouseEvent>, id: string): void {
-    setActiveExpander(prevState => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
+    setActiveExpander(prevState => (accordion ? { [id]: !prevState?.[id] } : { ...prevState, [id]: !prevState?.[id] }));
     setLatestExpander(event.currentTarget);
   }
 
@@ -170,6 +176,8 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     });
   };
 
+  const getExpanderId = (index: number) => `${uuid}-${index}`;
+
   useEffect(() => {
     if (accordion && latestExpander && !isElementInViewport(latestExpander)) {
       latestExpander.scrollIntoView();
@@ -178,21 +186,35 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
 
   useEffect(() => {
     if (isOpen) {
-      const id = `${uuid}-0`;
-      setActiveExpander(prevState => (accordion ? { [id]: !prevState[id] } : { ...prevState, [id]: !prevState[id] }));
+      const id = getExpanderId(0);
+      setActiveExpander(prevState => (accordion ? { [id]: !prevState?.[id] } : { ...prevState, [id]: !prevState?.[id] }));
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      const newActiveExpander = React.Children.map(children, child => isExpanderComponent(child) && child.props.expanded)?.reduce(
+        (acc, expanded, index) => {
+          acc[getExpanderId(index)] = expanded;
+          return acc;
+        },
+        {} as ActiveExpander
+      );
+
+      setActiveExpander(newActiveExpander);
+    }
+  }, [children]);
+
   return (
     <ul className={expanderListClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.ExpanderList}>
-      {React.Children.map(children, (child: React.ReactNode, index: number) => {
-        if ((child as React.ReactElement<ExpanderProps>).type === Expander) {
-          const expanded = activeExpander[`${uuid}-${index}`];
-
+      {React.Children.map(children, (child, index) => {
+        if (isExpanderComponent(child)) {
+          const id = getExpanderId(index);
+          const expanded = activeExpander?.[id];
           const expanderItemClass = getExpanderItemClass(index);
 
           return React.cloneElement(child as React.ReactElement<ExpanderProps>, {
-            id: `${uuid}-${index}`,
+            id,
             key: index,
             expanded,
             padding: childPadding,
