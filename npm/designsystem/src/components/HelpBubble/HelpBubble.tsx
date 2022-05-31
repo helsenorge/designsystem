@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { AnalyticsId } from '../../constants';
 import { useEventListenerState } from '../../hooks/useEventListenerState';
+import { useGetDOMRect } from '../../hooks/useGetDOMRect';
 import AnchorLink from '../AnchorLink';
 import Close from '../Close';
 
@@ -59,12 +60,13 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   /* Hjelpeboblen skal holde avstand til venstre/høyre kant på vinduet */
   const WINDOW_MARGIN_PX = 12;
   /* Y akse Offset på HelpBubble arrow */
-  const ARROW_Y_OFFSET = 8;
+  const ARROW_Y_OFFSET = 3;
 
   let bubblePositionStyle = undefined;
   let arrowPositionStyle = undefined;
   const bubbleRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
+  const [controllerDOM, resetControllerDOM] = useGetDOMRect(controllerRef, showBubble, 500);
   const [initialRender, setInitialRender] = useState(true);
   const [eventListenerVariant, setEventListenerVariant] = useEventListenerState(variant);
   const [customBubbleWidth, setCustomBubbleWidth] = useState(0);
@@ -76,8 +78,6 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
     styles.helpbubble,
     {
       [styles['helpbubble--initial-render']]: initialRender,
-      [styles['helpbubble--above']]: bubbleAbove.current,
-      [styles['helpbubble--below']]: !bubbleAbove.current,
     },
     className
   );
@@ -104,24 +104,27 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
     if (controllerRef.current && bubbleRef.current && arrowRef.current) {
       // Henter ut størrelser og posisjoner som trengs til kalkulering av HelpBubble posisjonering
       const clientWidth = document.documentElement.clientWidth;
-      const controllerX = controllerRef.current.getBoundingClientRect().x;
+      const controllerX = controllerDOM.x > 0 ? controllerDOM.x : controllerRef.current.getBoundingClientRect().x;
+      const controllerY = controllerDOM.y > 0 ? controllerDOM.y : controllerRef.current.getBoundingClientRect().y;
       const controllerSize = controllerRef.current.getBoundingClientRect();
-      const bubbleWidth = bubbleRef.current.getBoundingClientRect().width;
-      const arrowWidth = arrowRef.current.getBoundingClientRect().width;
-      const controllerHalf = controllerSize.width / 2;
-      let newBubbleX = 0;
+      const bubbleSize = bubbleRef.current.getBoundingClientRect();
+      const arrowSize = arrowRef.current.getBoundingClientRect();
+      const controllerHalfWidth = controllerSize.width / 2;
+      const newBubbleX = getBubbleXAdjustment(bubbleSize.width, controllerX, controllerHalfWidth, clientWidth);
 
-      if (checkBubbleFitsScreenWidth()) {
-        newBubbleX = getBubbleXAdjustment(bubbleWidth, controllerX, controllerHalf, clientWidth);
-      } else {
-        newBubbleX = -controllerX + WINDOW_MARGIN_PX;
+      if (!checkBubbleFitsScreenWidth()) {
         setCustomBubbleWidth(clientWidth - WINDOW_MARGIN_PX * 2);
       }
 
-      setTranslateBubble({ x: newBubbleX, y: !bubbleAbove.current ? 0 : -controllerSize.height });
+      setTranslateBubble({
+        x: newBubbleX,
+        y: bubbleAbove.current
+          ? controllerY - arrowSize.height - bubbleSize.height + ARROW_Y_OFFSET
+          : controllerY + controllerSize.height + arrowSize.height - ARROW_Y_OFFSET,
+      });
       setTranslateArrow({
-        x: controllerHalf - arrowWidth / 2,
-        y: !bubbleAbove.current ? 0 - ARROW_Y_OFFSET : -controllerSize.height + ARROW_Y_OFFSET,
+        x: controllerX + controllerHalfWidth - arrowSize.width / 2,
+        y: bubbleAbove.current ? controllerY - arrowSize.height : controllerY + controllerSize.height,
       });
     }
   };
@@ -139,25 +142,27 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
     const viewportXRightAdjustment = bubbleRightOverlap < 0 ? bubbleRightOverlap - WINDOW_MARGIN_PX : 0;
 
     // Returnerer den justerte x posisjonen
-    const tempBubbleX = controllerHalf - bubbleHalfWidth;
+    const tempBubbleX = controllerX + controllerHalf - bubbleHalfWidth;
     return tempBubbleX - viewportXLeftAdjustment + viewportXRightAdjustment;
   };
 
   const updatePositionStyle = () => {
     if (checkBubbleFitsScreenWidth()) {
       bubblePositionStyle = {
-        transform: `translate(${translateBubble.x}px, ${translateBubble.y}px)`,
+        left: `${translateBubble.x}px`,
+        top: `${translateBubble.y}px`,
       };
     } else {
       bubblePositionStyle = {
         left: `${translateBubble.x}px`,
+        top: `${translateBubble.y}px`,
         width: `${customBubbleWidth}px`,
-        transform: `translateY(${translateBubble.y}px)`,
       };
     }
 
     arrowPositionStyle = {
-      transform: `translate(${translateArrow.x}px, ${translateArrow.y}px)`,
+      left: `${translateArrow.x}px`,
+      top: `${translateArrow.y}px`,
     };
   };
 
@@ -193,6 +198,10 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   }, []);
 
   useEffect(() => {
+    handleBubbleUpdate();
+  }, [controllerDOM]);
+
+  useEffect(() => {
     if (showBubble) {
       setInitialRender(false);
       addEventListeners();
@@ -200,6 +209,7 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
     } else if (!showBubble) {
       setInitialRender(true);
       removeEventListeners();
+      resetControllerDOM();
     }
   }, [showBubble]);
 
