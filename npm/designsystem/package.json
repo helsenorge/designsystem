@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
-  "version": "1.0.0-beta132",
+  "version": "1.0.0-beta133",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "tfs",
@@ -21,7 +21,7 @@
   "types": "lib/index.d.ts",
   "source": "src/index.ts",
   "scripts": {
-    "start": "start-storybook",
+    "start": "start-storybook --ci",
     "prebuild": "npm-run-all generate:entries clean",
     "build": "rollup -c --environment BUILD:production",
     "build-storybook": "build-storybook -o dist",

@@ -86,6 +86,10 @@
           "path": "/bibliotek/komponenter/formlayout"
         },
         {
+          "label": "HelpBubble",
+          "path": "/bibliotek/komponenter/helpbubble"
+        },
+        {
           "label": "HighlightBox",
           "path": "/bibliotek/komponenter/highlightbox"
         },

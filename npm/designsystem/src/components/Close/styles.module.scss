@@ -1,20 +1,20 @@
 @import '../../scss/_spacers.scss';
 @import '../../scss/_palette.scss';
 @import '../../scss/_breakpoints.scss';
-
 .close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media (max-width: map-get($grid-breakpoints, sm)) {
     height: 2.375rem;
     width: 2.375rem;
   }
-
   height: 3rem;
   width: 3rem;
   padding: 0;
   border: 0;
   background-color: transparent;
   cursor: pointer;
-
   &:hover,
   &:active {
     background-color: rgba(88, 170, 187, 0.1);
@@ -26,7 +26,11 @@
     border: 0;
     outline: none;
   }
-  &:hover#{&}:hover{
+  &:hover#{&}:hover {
     background-color: rgba(88, 170, 187, 0.1);
+  }
+  &--small {
+    height: auto;
+    width: auto;
   }
 }

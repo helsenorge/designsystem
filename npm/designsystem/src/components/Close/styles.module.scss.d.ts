@@ -1,5 +1,6 @@
 export type Styles = {
   close: string;
+  'close--small': string;
 };
 
 export type ClassNames = keyof Styles;

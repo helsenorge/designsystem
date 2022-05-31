@@ -93,6 +93,7 @@ export enum AnalyticsId {
   ExpanderListExpander = 'expander-list-expander',
   FormGroup = 'form-group',
   FormLayout = 'form-layout',
+  HelpBubble = 'help-bubble',
   HighlightBox = 'highlight-box',
   Icon = 'icon',
   Input = 'input',

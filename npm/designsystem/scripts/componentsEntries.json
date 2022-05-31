@@ -17,6 +17,8 @@
   "components/FormExample/index": "src/components/FormExample/index.tsx",
   "components/FormGroup/index": "src/components/FormGroup/index.ts",
   "components/FormLayout/index": "src/components/FormLayout/index.ts",
+  "components/HelpBubble/index": "src/components/HelpBubble/index.ts",
+  "components/HelpBubbleExample/index": "src/components/HelpBubbleExample/index.ts",
   "components/HighlightBox/index": "src/components/HighlightBox/index.ts",
   "components/Icons/ActiveMonitoring": "src/components/Icons/ActiveMonitoring.tsx",
   "components/Icons/AcupunctureBack": "src/components/Icons/AcupunctureBack.tsx",
