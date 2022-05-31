@@ -5,7 +5,9 @@
 
 .modal-overlay {
   background: rgba(51, 51, 51, 0.75);
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -19,9 +21,6 @@
 
 .align {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 
   @media print {
     position: initial;

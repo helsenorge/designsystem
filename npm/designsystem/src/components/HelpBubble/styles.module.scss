@@ -14,7 +14,7 @@
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
   background-color: $white;
-  z-index: 1;
+  z-index: 3;
   visibility: visible;
 
   border: getSpacer(4xs) solid $plum600;
@@ -60,7 +60,7 @@
   position: fixed;
   border-style: solid;
   border-color: transparent;
-  z-index: 2;
+  z-index: 4;
 
   &--over {
     border-width: 10px 10px;
