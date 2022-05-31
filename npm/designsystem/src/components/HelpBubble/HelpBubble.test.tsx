@@ -22,7 +22,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
       expect(child).toBeInTheDocument();
       expect(closeButton).toBeInTheDocument();
 
-      expect(bubble).toHaveClass('helpbubble helpbubble--above');
+      expect(bubble).toHaveClass('helpbubble');
       expect(child).toHaveClass('helpbubble__child-wrapper');
       expect(closeButton).toHaveClass('close close--small');
 
@@ -39,8 +39,10 @@ describe('Gitt at HelpBubble skal vises', (): void => {
       );
 
       const bubble = screen.getByTestId('test01');
+      const arrow = bubble.nextSibling;
 
-      expect(bubble).toHaveClass('helpbubble helpbubble--below');
+      expect(bubble).toHaveClass('helpbubble');
+      expect(arrow).toHaveClass('helpbubble-arrow helpbubble-arrow--over');
     });
   });
 
@@ -53,8 +55,10 @@ describe('Gitt at HelpBubble skal vises', (): void => {
       );
 
       const bubble = screen.getByTestId('test01');
+      const arrow = bubble.nextSibling;
 
-      expect(bubble).toHaveClass('helpbubble helpbubble--above');
+      expect(bubble).toHaveClass('helpbubble');
+      expect(arrow).toHaveClass('helpbubble-arrow helpbubble-arrow--under');
     });
   });
 

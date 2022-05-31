@@ -13,7 +13,18 @@ export const useGetDOMRect = (
   updatePosition = true,
   frequency = 10
 ): [DOMRect, () => void] => {
-  const [domRect, setDomRect] = useState<DOMRect>(new DOMRect());
+  const newDOMRect = {
+    height: 0,
+    width: 0,
+    x: 0,
+    y: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    toJSON: () => null,
+  };
+  const [domRect, setDomRect] = useState<DOMRect>(newDOMRect);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
 
   useEffect(() => {
@@ -41,7 +52,7 @@ export const useGetDOMRect = (
   };
 
   const resetDomRect = () => {
-    setDomRect(new DOMRect());
+    setDomRect(newDOMRect);
   };
 
   return [domRect, resetDomRect];

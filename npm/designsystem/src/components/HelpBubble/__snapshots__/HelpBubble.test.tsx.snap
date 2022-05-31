@@ -3,10 +3,10 @@
 exports[`Gitt at HelpBubble skal vises Når den skal vises vanlig Så vises HelpBubble som vanlig 1`] = `
 <div>
   <div
-    class="helpbubble helpbubble--above"
+    class="helpbubble"
     data-analyticsid="help-bubble"
     data-testid="test01"
-    style="left: 0px; width: 0px; transform: translateY(0px);"
+    style="left: 0px; top: 0px; width: 0px;"
   >
     <div
       class="helpbubble__child-wrapper"
@@ -42,7 +42,7 @@ exports[`Gitt at HelpBubble skal vises Når den skal vises vanlig Så vises Help
   </div>
   <div
     class="helpbubble-arrow helpbubble-arrow--under"
-    style="transform: translate(0px, 0px);"
+    style="left: 0px; top: 0px;"
   />
 </div>
 `;
