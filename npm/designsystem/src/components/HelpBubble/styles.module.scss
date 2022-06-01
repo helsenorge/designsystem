@@ -7,7 +7,7 @@
 .helpbubble {
   display: flex;
   position: fixed;
-  align-items: flex-start;
+  align-items: flex-start !important;
   max-width: 373px;
   text-align: start;
   font-family: inherit;
