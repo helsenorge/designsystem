@@ -21,7 +21,7 @@ export type ExpanderColors = Extract<PaletteNames, 'banana' | 'blueberry' | 'che
 
 interface ExpanderProps {
   /** Sets the trigger title */
-  title: string;
+  title: JSX.Element | string;
   /** Sets the expanded content */
   children?: React.ReactNode;
   /** Sets the size of the expander. Default: ExpanderSize.small */
