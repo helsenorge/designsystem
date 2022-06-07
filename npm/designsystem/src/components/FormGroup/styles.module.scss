@@ -4,8 +4,6 @@
 @import '../../scss/font-settings.scss';
 
 .form-group-wrapper {
-  padding-bottom: getSpacer(xl);
-
   &__title {
     &--on-dark {
       color: $white;
@@ -25,13 +23,15 @@
 }
 
 .form-group {
-  padding: getSpacer(s) 0 getSpacer(m);
+  padding: 0 0 getSpacer(m);
 
   @media (min-width: map-get($grid-breakpoints, md)) {
-    padding: getSpacer(s) 0 getSpacer(l);
+    padding: 0 0 getSpacer(l);
   }
 
   &--invalid {
+    padding-top: getSpacer(s);
+    margin-top: getSpacer(s) * -1;
     margin-left: getSpacer(xs) * -1;
     margin-right: getSpacer(xs) * -1;
     padding-left: getSpacer(2xs);
