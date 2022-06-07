@@ -13,7 +13,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         aria-expanded="false"
         class="expander-list-link expander-list-link--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
-        id="testid-35-0"
+        id="testid-53-0"
         type="button"
       >
         <span
@@ -59,7 +59,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         aria-expanded="false"
         class="expander-list-link expander-list-link--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
-        id="testid-36-0"
+        id="testid-54-0"
         type="button"
       >
         <span

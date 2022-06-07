@@ -193,15 +193,19 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
 
   useEffect(() => {
     if (!isOpen) {
-      const newActiveExpander = React.Children.map(children, child => isExpanderComponent(child) && child.props.expanded)?.reduce(
-        (acc, expanded, index) => {
-          acc[getExpanderId(index)] = expanded;
-          return acc;
-        },
-        {} as ActiveExpander
-      );
+      const newActiveExpander = React.Children.map(children, child => {
+        if (isExpanderComponent(child)) {
+          return child;
+        }
+      })?.reduce((acc, child, index) => {
+        // Expanded-status skal bare settes dersom prop er satt av den som bruker komponenten
+        if (typeof child.props.expanded !== 'undefined') {
+          acc[getExpanderId(index)] = child.props.expanded;
+        }
+        return acc;
+      }, {} as ActiveExpander);
 
-      setActiveExpander(newActiveExpander);
+      setActiveExpander({ ...activeExpander, ...newActiveExpander });
     }
   }, [children]);
 

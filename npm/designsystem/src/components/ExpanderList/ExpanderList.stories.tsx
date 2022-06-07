@@ -244,3 +244,26 @@ export const WithCallback: ComponentStory<typeof ExpanderList> = (args: any) => 
     </ExpanderList>
   </div>
 );
+
+export const InteractiveChildren: ComponentStory<typeof ExpanderList> = (args: any) => {
+  const [text, setText] = React.useState('knapp');
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  return (
+    <div
+      style={{
+        width: '40rem',
+      }}
+    >
+      <ExpanderList>
+        <ExpanderList.Expander title={'Expander 1'}>
+          <button onClick={() => setText('oppdatert knapp')}>{text}</button>
+        </ExpanderList.Expander>
+        <ExpanderList.Expander title={'Expander 2'} expanded={isExpanded}>
+          <button onClick={() => setText('oppdatert knapp')}>{text}</button>
+        </ExpanderList.Expander>
+      </ExpanderList>
+
+      <button onClick={() => setIsExpanded(!isExpanded)}>{isExpanded ? 'Lukk' : 'Åpne'} Expander 2</button>
+    </div>
+  );
+};

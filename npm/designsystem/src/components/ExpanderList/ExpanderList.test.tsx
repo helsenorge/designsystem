@@ -98,6 +98,124 @@ describe('Gitt ExpanderList blir rendret', (): void => {
     });
   });
 
+  describe('Når det er to expandere, der den andre har expanded true', (): void => {
+    it('så er bare den andre expanderen åpen', async (): Promise<void> => {
+      render(
+        <ExpanderList>
+          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
+          <ExpanderList.Expander expanded title="Title 2">
+            Text 2
+          </ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 3">Text 3</ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const button1 = screen.getByRole('button', { name: 'Title 1' });
+      expect(button1).toHaveAttribute('aria-expanded', 'false');
+
+      const button2 = screen.getByRole('button', { name: 'Title 2' });
+      expect(button2).toHaveAttribute('aria-expanded', 'true');
+
+      const button3 = screen.getByRole('button', { name: 'Title 3' });
+      expect(button3).toHaveAttribute('aria-expanded', 'false');
+    });
+  });
+
+  describe('Når rerendring trigges i children mens expander er åpen', (): void => {
+    it('så er expander fortsatt åpen', async (): Promise<void> => {
+      const ExpanderListTest: React.FC = () => {
+        const [text, setText] = React.useState('knapp');
+
+        return (
+          <ExpanderList>
+            <ExpanderList.Expander title={'Title 1'}>
+              <button onClick={() => setText('oppdatert knapp')}>{text}</button>
+            </ExpanderList.Expander>
+          </ExpanderList>
+        );
+      };
+
+      render(<ExpanderListTest />);
+
+      const expander = screen.getByRole('button', { name: 'Title 1' });
+      userEvent.click(expander);
+      expect(expander).toHaveAttribute('aria-expanded', 'true');
+
+      const button = screen.getByRole('button', { name: 'knapp' });
+      userEvent.click(button);
+
+      expect(expander).toHaveAttribute('aria-expanded', 'true');
+    });
+  });
+
+  describe('Når det er en expander der children kan oppdatere state', (): void => {
+    describe('Når state oppdateres i children mens expander er åpen', (): void => {
+      it('så er expander fortsatt åpen', async (): Promise<void> => {
+        const ExpanderListTest: React.FC = () => {
+          const [text, setText] = React.useState('knapp');
+
+          return (
+            <ExpanderList>
+              <ExpanderList.Expander title={'Title 1'}>
+                <button onClick={() => setText('oppdatert knapp')}>{text}</button>
+              </ExpanderList.Expander>
+            </ExpanderList>
+          );
+        };
+
+        render(<ExpanderListTest />);
+
+        const expander = screen.getByRole('button', { name: 'Title 1' });
+        userEvent.click(expander);
+        expect(expander).toHaveAttribute('aria-expanded', 'true');
+
+        const button = screen.getByRole('button', { name: 'knapp' });
+        userEvent.click(button);
+
+        expect(expander).toHaveAttribute('aria-expanded', 'true');
+      });
+    });
+  });
+
+  describe('Når det er en expander der expanded-status kan endres utenfra', (): void => {
+    describe('Når expanded endrer status', (): void => {
+      it('Så toggles riktig expander', async (): Promise<void> => {
+        const ExpanderListTest: React.FC = () => {
+          const [isExpanded, setIsExpanded] = React.useState(false);
+
+          return (
+            <>
+              <ExpanderList>
+                <ExpanderList.Expander title={'Title 1'}>{'Hei 1'}</ExpanderList.Expander>
+                <ExpanderList.Expander title={'Title 2'} expanded={isExpanded}>
+                  {'Hei 2'}
+                </ExpanderList.Expander>
+              </ExpanderList>
+              <button onClick={() => setIsExpanded(!isExpanded)}>{isExpanded ? 'Lukk' : 'Åpne'}</button>
+            </>
+          );
+        };
+
+        render(<ExpanderListTest />);
+
+        const expander1 = screen.getByRole('button', { name: 'Title 1' });
+        expect(expander1).toHaveAttribute('aria-expanded', 'false');
+
+        const expander2 = screen.getByRole('button', { name: 'Title 2' });
+        expect(expander2).toHaveAttribute('aria-expanded', 'false');
+
+        userEvent.click(screen.getByRole('button', { name: 'Åpne' }));
+
+        expect(expander1).toHaveAttribute('aria-expanded', 'false');
+        expect(expander2).toHaveAttribute('aria-expanded', 'true');
+
+        userEvent.click(screen.getByRole('button', { name: 'Lukk' }));
+        expect(expander1).toHaveAttribute('aria-expanded', 'false');
+        expect(expander2).toHaveAttribute('aria-expanded', 'false');
+      });
+    });
+  });
+
   describe('Når man klikker på en expander', (): void => {
     it('Sjekk Expander bakgrunnsfarge når musepeker trykker på den', (): void => {
       render(
