@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useLayoutEvent } from './useLayoutEvent';
+import { useEffect, useState } from 'react';
 
 /**
  * Lytt på endringer i størrelse på et element
@@ -9,12 +8,15 @@ import { useLayoutEvent } from './useLayoutEvent';
  */
 export const useSize = (ref?: React.RefObject<HTMLElement>) => {
   const [size, setSize] = useState<DOMRect>();
-
-  const handleLayoutEvent = () => {
-    ref?.current && setSize(ref.current.getBoundingClientRect());
-  };
-
-  useLayoutEvent(handleLayoutEvent);
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(entries => {
+      setSize(entries[0].target.getBoundingClientRect());
+    });
+    if (ref?.current) {
+      resizeObserver.observe(ref?.current);
+    }
+    return resizeObserver.disconnect;
+  }, [ref]);
 
   return size;
 };
