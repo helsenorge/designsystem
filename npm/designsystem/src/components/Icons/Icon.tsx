@@ -1,15 +1,15 @@
+import classNames from 'classnames';
 import React from 'react';
 import { AnalyticsId, IconSize } from '../../constants';
+import { useUuid } from '../../hooks/useUuid';
 
 type SvgIcon = React.FC<SvgPathProps>;
 
 interface IconProps {
   /* Sets which icon should be displayed. */
   svgIcon: SvgIcon;
-  /* aria-label for the <svg> element. Used as <title> tag if id is set */
+  /* aria-label for the <svg> element. Used as <title> tag. */
   ariaLabel?: string;
-  /* id to */
-  id?: string;
   /* Changes the size of the icon. */
   size?: number;
   /* Changes the color of the icon. */
@@ -55,7 +55,6 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
   const {
     svgIcon,
     ariaLabel,
-    id,
     className = '',
     size = IconSize.Small,
     color = 'black',
@@ -70,19 +69,18 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
     isHovered,
   });
 
-  const labelledby = id && ariaLabel ? `title-${id}` : undefined;
+  const titleId = useUuid();
 
   return (
     <svg
-      id={id}
       data-testid={testId}
       data-analyticsid={AnalyticsId.Icon}
-      ref={ref as React.RefObject<SVGSVGElement>}
-      className={`hnds-style-icon ${className}`}
-      role="img"
-      aria-label={!id && ariaLabel ? ariaLabel : undefined}
-      aria-labelledby={labelledby}
-      aria-hidden="true"
+      ref={ref}
+      className={classNames(`hnds-style-icon`, className)}
+      role={ariaLabel ? 'img' : 'presentation'}
+      aria-labelledby={ariaLabel ? titleId : undefined}
+      focusable={false}
+      aria-hidden={ariaLabel ? undefined : true}
       viewBox="0 0 48 48"
       style={{ minWidth: size, minHeight: size }}
       width={size}
@@ -90,7 +88,7 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
       fill={isHovered ? hoverColor : color}
       {...other}
     >
-      {labelledby && <title id={labelledby}>{ariaLabel}</title>}
+      {ariaLabel && <title id={titleId}>{ariaLabel}</title>}
       {svgRaw}
     </svg>
   );

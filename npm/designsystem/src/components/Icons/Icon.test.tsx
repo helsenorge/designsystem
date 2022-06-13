@@ -128,31 +128,34 @@ describe('Gitt at icon skal vises', (): void => {
     });
   });
 
+  // https://css-tricks.com/accessible-svgs/#aa-example-1-standalone-icon-meaningful
   describe('Når ariaLabel er satt', (): void => {
-    test('Så brukes ariaLabel som aria-label i SVGen', (): void => {
-      render(<Icon ariaLabel="Søkeknapp" svgIcon={Undo} />);
+    test('Så er ikonet synlig for skjermlesere og har tekst som kan leses', (): void => {
+      render(<Icon ariaLabel="Angre" svgIcon={Undo} />);
 
-      const testIcon = screen.getByRole('img', { hidden: true });
+      const testIcon = screen.getByRole('img', { name: 'Angre' });
 
-      expect(testIcon).toHaveAttribute('aria-label', 'Søkeknapp');
+      expect(testIcon).toBeVisible();
+      expect(testIcon).toHaveAttribute('focusable', 'false');
+      expect(testIcon).not.toHaveAttribute('aria-hidden');
+      expect(testIcon).toHaveAttribute('aria-labelledby');
 
-      const title = within(testIcon).queryByTitle('Søkeknapp');
-      expect(title).not.toBeInTheDocument();
+      const title = within(testIcon).getByTitle('Angre');
+      expect(title).toBeInTheDocument();
+
+      expect(testIcon.getAttribute('aria-labelledby')).toEqual(title.id);
     });
   });
 
-  describe('Når ariaLabel og id er satt', (): void => {
-    test('Så brukes ariaLabel som title i SVGen', (): void => {
-      render(<Icon ariaLabel="Søkeknapp" id="search-button" svgIcon={Undo} />);
+  describe('Når ariaLabel ikke er satt', (): void => {
+    test('Så er ikonet skjult for skjermlesere', (): void => {
+      render(<Icon svgIcon={Undo} />);
 
-      const testIcon = screen.getByRole('img', { hidden: true });
+      const testIcon = screen.getByRole('presentation', { hidden: true });
 
-      expect(testIcon).not.toHaveAttribute('aria-label');
-      expect(testIcon).toHaveAttribute('aria-labelledby', 'title-search-button');
-
-      const title = within(testIcon).getByTitle('Søkeknapp');
-      expect(title).toBeInTheDocument();
-      expect(title).toHaveAttribute('id', 'title-search-button');
+      expect(testIcon).toBeInTheDocument();
+      expect(testIcon).toHaveAttribute('focusable', 'false');
+      expect(testIcon).toHaveAttribute('aria-hidden', 'true');
     });
   });
 });

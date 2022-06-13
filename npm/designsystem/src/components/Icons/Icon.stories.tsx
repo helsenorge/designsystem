@@ -65,8 +65,8 @@ export const Accessibility: ComponentStory<typeof Icon> = (args: any) => (
     </>
     <Spacer size="4xs" />
     <>
-      <p>{'title'}</p>
-      <Icon {...args} svgIcon={Search} id="search" ariaLabel="Search" size={IconSize.Small} />
+      <p>{'ingen aria-label'}</p>
+      <Icon {...args} svgIcon={Search} size={IconSize.Small} />
     </>
   </>
 );

@@ -7,21 +7,21 @@ exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold S
   >
     <span
       class="dropdown__label"
-      id="testid-13"
+      id="testid-16"
     >
       Ta et valg
     </span>
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
-      aria-labelledby="testid-14"
+      aria-labelledby="testid-17"
       class="dropdown__toggle dropdown__toggle--on-white"
       data-analyticsid="dropdown"
       type="button"
     >
       <span
         class="dropdown__toggle__label"
-        id="testid-14"
+        id="testid-17"
       >
         Knapp
       </span>
@@ -30,8 +30,9 @@ exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold S
         class="hnds-style-icon dropdown__icon"
         data-analyticsid="icon"
         fill="#126F87"
+        focusable="false"
         height="38"
-        role="img"
+        role="presentation"
         style="min-width: 38px; min-height: 38px;"
         viewBox="0 0 48 48"
         width="38"
@@ -45,14 +46,14 @@ exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold S
       class="dropdown__content"
     >
       <ul
-        aria-labelledby="testid-13"
+        aria-labelledby="testid-16"
         class="dropdown__options"
         role="listbox"
         tabindex="-1"
       >
         <li
           class="dropdown__input"
-          id="testid-15-0"
+          id="testid-18-0"
           role="option"
         >
           <h2>

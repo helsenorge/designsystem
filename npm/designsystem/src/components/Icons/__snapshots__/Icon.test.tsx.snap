@@ -4,11 +4,12 @@ exports[`Gitt at icon skal vises Når icon rendres med Large størrelse Så vise
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="80"
-    role="img"
+    role="presentation"
     style="min-width: 80px; min-height: 80px;"
     viewBox="0 0 48 48"
     width="80"
@@ -25,11 +26,12 @@ exports[`Gitt at icon skal vises Når icon rendres med Large størrelse og isHov
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="80"
-    role="img"
+    role="presentation"
     style="min-width: 80px; min-height: 80px;"
     viewBox="0 0 48 48"
     width="80"
@@ -46,11 +48,12 @@ exports[`Gitt at icon skal vises Når icon rendres med Medium størrelse Så vis
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="64"
-    role="img"
+    role="presentation"
     style="min-width: 64px; min-height: 64px;"
     viewBox="0 0 48 48"
     width="64"
@@ -67,11 +70,12 @@ exports[`Gitt at icon skal vises Når icon rendres med Medium størrelse og isHo
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="64"
-    role="img"
+    role="presentation"
     style="min-width: 64px; min-height: 64px;"
     viewBox="0 0 48 48"
     width="64"
@@ -88,11 +92,12 @@ exports[`Gitt at icon skal vises Når icon rendres med Small størrelse Så vise
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="48"
-    role="img"
+    role="presentation"
     style="min-width: 48px; min-height: 48px;"
     viewBox="0 0 48 48"
     width="48"
@@ -109,11 +114,12 @@ exports[`Gitt at icon skal vises Når icon rendres med Small størrelse og isHov
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="48"
-    role="img"
+    role="presentation"
     style="min-width: 48px; min-height: 48px;"
     viewBox="0 0 48 48"
     width="48"
@@ -130,11 +136,12 @@ exports[`Gitt at icon skal vises Når icon rendres med XLarge størrelse Så vis
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="130"
-    role="img"
+    role="presentation"
     style="min-width: 130px; min-height: 130px;"
     viewBox="0 0 48 48"
     width="130"
@@ -151,11 +158,12 @@ exports[`Gitt at icon skal vises Når icon rendres med XLarge størrelse og isHo
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="130"
-    role="img"
+    role="presentation"
     style="min-width: 130px; min-height: 130px;"
     viewBox="0 0 48 48"
     width="130"
@@ -172,11 +180,12 @@ exports[`Gitt at icon skal vises Når icon rendres med XSmall størrelse Så vis
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="38"
-    role="img"
+    role="presentation"
     style="min-width: 38px; min-height: 38px;"
     viewBox="0 0 48 48"
     width="38"
@@ -193,11 +202,12 @@ exports[`Gitt at icon skal vises Når icon rendres med XSmall størrelse og isHo
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="38"
-    role="img"
+    role="presentation"
     style="min-width: 38px; min-height: 38px;"
     viewBox="0 0 48 48"
     width="38"
@@ -214,11 +224,12 @@ exports[`Gitt at icon skal vises Når icon rendres med XXSmall størrelse Så vi
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="24"
-    role="img"
+    role="presentation"
     style="min-width: 24px; min-height: 24px;"
     viewBox="0 0 48 48"
     width="24"
@@ -235,11 +246,12 @@ exports[`Gitt at icon skal vises Når icon rendres med XXSmall størrelse og isH
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="24"
-    role="img"
+    role="presentation"
     style="min-width: 24px; min-height: 24px;"
     viewBox="0 0 48 48"
     width="24"
@@ -256,11 +268,12 @@ exports[`Gitt at icon skal vises Når icon rendres med default størrelse Så vi
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="48"
-    role="img"
+    role="presentation"
     style="min-width: 48px; min-height: 48px;"
     viewBox="0 0 48 48"
     width="48"
@@ -277,11 +290,12 @@ exports[`Gitt at icon skal vises Når icon rendres med default størrelse og isH
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="48"
-    role="img"
+    role="presentation"
     style="min-width: 48px; min-height: 48px;"
     viewBox="0 0 48 48"
     width="48"
@@ -298,11 +312,12 @@ exports[`Gitt at icon skal vises Når icon rendres med mindre enn XSmall større
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="37"
-    role="img"
+    role="presentation"
     style="min-width: 37px; min-height: 37px;"
     viewBox="0 0 48 48"
     width="37"
@@ -319,11 +334,12 @@ exports[`Gitt at icon skal vises Når icon rendres med mindre enn XSmall større
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="37"
-    role="img"
+    role="presentation"
     style="min-width: 37px; min-height: 37px;"
     viewBox="0 0 48 48"
     width="37"
@@ -340,11 +356,12 @@ exports[`Gitt at icon skal vises Når icon rendres med mindre enn XXSmall størr
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="23"
-    role="img"
+    role="presentation"
     style="min-width: 23px; min-height: 23px;"
     viewBox="0 0 48 48"
     width="23"
@@ -361,11 +378,12 @@ exports[`Gitt at icon skal vises Når icon rendres med mindre enn XXSmall størr
 <div>
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="black"
+    focusable="false"
     height="23"
-    role="img"
+    role="presentation"
     style="min-width: 23px; min-height: 23px;"
     viewBox="0 0 48 48"
     width="23"

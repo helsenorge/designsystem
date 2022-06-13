@@ -81,7 +81,7 @@ describe('Gitt at HighlightBox skal rendres', (): void => {
         </HighlightBox>
       );
 
-      const icon = screen.getByRole('img', { hidden: true });
+      const icon = screen.getByRole('presentation', { hidden: true });
       expect(icon).toBeInTheDocument();
     });
   });

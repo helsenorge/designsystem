@@ -44,7 +44,7 @@ describe('Gitt at AnchorLink skal rendres', (): void => {
     test('Så har AnchorLink ArrowUpRight svg', (): void => {
       render(<AnchorLink target={'_blank'}>AnchorLink external</AnchorLink>);
 
-      const svgElement = screen.getByRole('img', { hidden: true });
+      const svgElement = screen.getByRole('presentation', { hidden: true });
       expect(svgElement).toBeTruthy();
 
       const pathElement = svgElement.firstChild;

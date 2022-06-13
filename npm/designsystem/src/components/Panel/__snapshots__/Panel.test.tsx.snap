@@ -7,11 +7,12 @@ exports[`Gitt at Panel skal vises Gitt at status er draft og statusMessage er sa
 >
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="#000000"
+    focusable="false"
     height="38"
-    role="img"
+    role="presentation"
     style="min-width: 38px; min-height: 38px;"
     viewBox="0 0 48 48"
     width="38"
@@ -34,11 +35,12 @@ exports[`Gitt at Panel skal vises Gitt at status er error og statusMessage er sa
 >
   <svg
     aria-hidden="true"
-    class="hnds-style-icon "
+    class="hnds-style-icon"
     data-analyticsid="icon"
     fill="#C83521"
+    focusable="false"
     height="38"
-    role="img"
+    role="presentation"
     style="min-width: 38px; min-height: 38px;"
     viewBox="0 0 48 48"
     width="38"

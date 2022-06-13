@@ -13,7 +13,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         aria-expanded="false"
         class="expander-list-link expander-list-link--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
-        id="testid-53-0"
+        id="testid-190-0"
         type="button"
       >
         <span
@@ -26,11 +26,12 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         >
           <svg
             aria-hidden="true"
-            class="hnds-style-icon "
+            class="hnds-style-icon"
             data-analyticsid="icon"
             fill="black"
+            focusable="false"
             height="38"
-            role="img"
+            role="presentation"
             style="min-width: 38px; min-height: 38px;"
             viewBox="0 0 48 48"
             width="38"
@@ -59,7 +60,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         aria-expanded="false"
         class="expander-list-link expander-list-link--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
-        id="testid-54-0"
+        id="testid-192-0"
         type="button"
       >
         <span
@@ -72,11 +73,12 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         >
           <svg
             aria-hidden="true"
-            class="hnds-style-icon "
+            class="hnds-style-icon"
             data-analyticsid="icon"
             fill="black"
+            focusable="false"
             height="38"
-            role="img"
+            role="presentation"
             style="min-width: 38px; min-height: 38px;"
             viewBox="0 0 48 48"
             width="38"
@@ -123,11 +125,12 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         >
           <svg
             aria-hidden="true"
-            class="hnds-style-icon "
+            class="hnds-style-icon"
             data-analyticsid="icon"
             fill="black"
+            focusable="false"
             height="38"
-            role="img"
+            role="presentation"
             style="min-width: 38px; min-height: 38px;"
             viewBox="0 0 48 48"
             width="38"
@@ -164,11 +167,12 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         >
           <svg
             aria-hidden="true"
-            class="hnds-style-icon "
+            class="hnds-style-icon"
             data-analyticsid="icon"
             fill="black"
+            focusable="false"
             height="38"
-            role="img"
+            role="presentation"
             style="min-width: 38px; min-height: 38px;"
             viewBox="0 0 48 48"
             width="38"
@@ -205,11 +209,12 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         >
           <svg
             aria-hidden="true"
-            class="hnds-style-icon "
+            class="hnds-style-icon"
             data-analyticsid="icon"
             fill="black"
+            focusable="false"
             height="38"
-            role="img"
+            role="presentation"
             style="min-width: 38px; min-height: 38px;"
             viewBox="0 0 48 48"
             width="38"
