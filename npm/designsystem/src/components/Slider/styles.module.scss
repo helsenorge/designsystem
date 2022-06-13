@@ -48,6 +48,9 @@
       border-color: $neutral500;
       cursor: default;
     }
+    &:focus-within {
+      box-shadow: 0px 0px 0px 0.1rem $black;
+    }
   }
 
   &__trigger-inner {
@@ -59,7 +62,7 @@
 
     :hover > &,
     :focus > & {
-      background-color: $blueberry800;
+      background-color: $blueberry700;
     }
 
     &--disabled {
