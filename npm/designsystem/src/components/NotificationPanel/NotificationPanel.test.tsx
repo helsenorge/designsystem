@@ -52,4 +52,20 @@ describe('Gitt at NotificationPanel skal vises', () => {
       expect(component).toBeVisible();
     });
   });
+
+  describe('Når bruker klikker på tab', (): void => {
+    test('Så får lukkeknappen fokus først', (): void => {
+      render(
+        <NotificationPanel dismissable>
+          Some text here for testing.<a href="/">Lenke</a>
+        </NotificationPanel>
+      );
+
+      userEvent.tab();
+
+      const closeButton = screen.getByRole('button', { name: 'Lukk' });
+
+      expect(closeButton).toHaveFocus();
+    });
+  });
 });

@@ -115,6 +115,11 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
       <span className={styles['notification-panel__icon']}>
         {variantToIconMap[variant === 'alert' && label && !children ? 'alertLabel' : variant]}
       </span>
+      {!labelOnly && dismissable && (
+        <span className={styles['notification-panel__close']}>
+          <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} />
+        </span>
+      )}
       <section
         aria-label={getStringChildren()}
         className={cn(styles['notification-panel__content'], {
@@ -125,11 +130,6 @@ const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRe
         {label && <h1 className={styles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} />}
         {children}
       </section>
-      {!labelOnly && dismissable && (
-        <span className={styles['notification-panel__close']}>
-          <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} />
-        </span>
-      )}
     </div>
   );
 });

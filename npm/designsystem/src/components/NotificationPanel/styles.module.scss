@@ -75,6 +75,7 @@
   }
 
   &__close {
+    order: 1;
     margin-left: auto;
     padding-left: getSpacer(2xs);
   }
