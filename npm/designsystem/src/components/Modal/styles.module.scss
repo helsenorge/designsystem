@@ -72,7 +72,7 @@
   &--large {
     width: calc(100vw - 0.75rem);
     padding-bottom: getSpacer(l);
-    @media (max-width: map-get($grid-breakpoints, sm)) {
+    @media (max-width: calc(map-get($grid-breakpoints, sm), -1px)) {
       p {
         font-size: 1.125rem;
       }

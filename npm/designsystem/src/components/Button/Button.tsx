@@ -17,7 +17,7 @@ export type ButtonIntents = 'primary' | 'warning' | 'danger';
 export type ButtonIntentsColors = 'blueberry' | 'banana' | 'cherry' | 'neutral' | 'white';
 export type ButtonTags = 'button' | 'a';
 export type ButtonVariants = 'fill' | 'outline' | 'borderless';
-
+export type ButtonHoverVariants = 'auto' | 'never' | 'always';
 interface IntentToColor {
   primary: ButtonIntentsColors;
   warning: ButtonIntentsColors;
@@ -57,6 +57,10 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   variant?: ButtonVariants;
   /** Disables text wrapping and enables ellipsis. */
   ellipsis?: boolean;
+  /** Can override auto hover  */
+  hoverEffect?: ButtonHoverVariants;
+  /** Can override iconSize  */
+  iconSize?: IconSize;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Indicates that its element can be focused, avoid using values greater than 0 */
@@ -69,6 +73,7 @@ const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, i
   return getColor(intentToColor[intent], hovered ? 700 : 600);
 };
 
+// TODO: Denne er forvirrende
 const getLargeIconSize = (large: boolean, breakpoint: Breakpoint): IconSize => {
   const mobile = breakpoint < breakpoints.md;
   if (mobile && large) return IconSize.Small;
@@ -95,6 +100,8 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     variant = 'fill',
     disabled = false,
     ellipsis = false,
+    hoverEffect: hoverVariant = 'auto',
+    iconSize,
     tabIndex,
     testId,
     href,
@@ -103,10 +110,11 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   } = props;
 
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const { hoverRef, isHovered } =
+  let { hoverRef, isHovered } =
     htmlMarkup === 'button'
       ? useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>)
       : useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
+  isHovered = hoverVariant === 'auto' ? isHovered : hoverVariant === 'always'; // TODO: Kanskje gjøre denne bedre?
   const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted, isHovered);
   const breakpoint = useBreakpoint();
   const fillVariant = variant === 'fill';
@@ -186,16 +194,16 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           <>
             {fluid ? (
               <div className={leftFluidContentClasses}>
-                {renderIcon(leftIcon, getLargeIconSize(large, breakpoint), iconColor, isHovered)}
+                {renderIcon(leftIcon, iconSize || getLargeIconSize(large, breakpoint), iconColor, isHovered)}
                 {renderButtonContent()}
               </div>
             ) : (
               <>
-                {renderIcon(leftIcon, getLargeIconSize(large, breakpoint), iconColor, isHovered)}
+                {renderIcon(leftIcon, iconSize || getLargeIconSize(large, breakpoint), iconColor, isHovered)}
                 {renderButtonContent()}
               </>
             )}
-            {renderIcon(rightIcon, IconSize.XSmall, iconColor, isHovered)}
+            {renderIcon(rightIcon, iconSize || IconSize.XSmall, iconColor, isHovered)}
           </>
         )}
       </span>
