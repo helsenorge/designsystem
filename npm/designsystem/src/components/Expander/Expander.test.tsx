@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Expander from './Expander';
 import Calendar from '../Icons/Calendar';
+import { isExportDeclaration } from 'typescript';
 
 describe('Gitt at Expander skal vises vanlig', (): void => {
   describe('Når Expanderen vises', (): void => {
@@ -106,6 +107,24 @@ describe('Gitt at Expander vises med et fokuserbart element', (): void => {
       userEvent.tab();
       const focusableButton = screen.getByRole('button', { name: 'En knapp til' });
       expect(focusableButton).toHaveFocus();
+    });
+  });
+});
+describe('Gitt at Expander vises react-element som title', (): void => {
+  describe('Når Expanderen vises', (): void => {
+    test('Så fungerer Expanderen slik den skal', (): void => {
+      render(
+        <Expander title={<span data-testid="tittel">Tittel</span>}>
+          <button>En knapp til</button>
+        </Expander>
+      );
+
+      const title = screen.getByTestId('tittel');
+      expect(title).toBeVisible();
+
+      userEvent.click(title);
+      const expander = screen.getByRole('button', { name: 'Tittel' });
+      expect(expander).toHaveAttribute('aria-expanded', 'true');
     });
   });
 });
