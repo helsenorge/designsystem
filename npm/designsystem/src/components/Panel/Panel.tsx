@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import classNames from 'classnames';
 
 import panelStyles from './styles.module.scss';
-import Title from '../Title';
+import Title, { TitleTags } from '../Title';
 import Button, { ButtonVariants } from '../Button';
 import { AnchorTarget, AnalyticsId } from '../../constants';
 
@@ -45,6 +45,8 @@ export interface PanelProps {
   children?: React.ReactNode;
   /** Title of the panel */
   title?: string;
+  /** Changes the underlying element of the title. Default: h2*/
+  titleHtmlMarkup?: TitleTags;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the data-testid attribute. */
@@ -169,6 +171,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     className,
     testId,
     title,
+    titleHtmlMarkup = 'h2',
     url,
     target = '_self',
     icon,
@@ -307,7 +310,9 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
             <StatusText status={status} statusMessage={statusMessage} />
             {title && (
               <div className={panelStyles['panel-content-a__title-container']}>
-                <Title appearance="title3">{title}</Title>
+                <Title appearance="title3" htmlMarkup={titleHtmlMarkup}>
+                  {title}
+                </Title>
                 {statusMessage && status === PanelStatus.new && (
                   <div>
                     <Badge color="blueberry" testId="badge-status">

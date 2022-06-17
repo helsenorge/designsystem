@@ -16,6 +16,15 @@ describe('Gitt at Panel skal vises', (): void => {
     });
   });
 
+  describe('Når titleHtmlMarkup-prop er satt', (): void => {
+    test('Så er tittel satt til ønsket overskriftsnivå', (): void => {
+      render(<Panel title="Tittel" titleHtmlMarkup="h3" />);
+      const title = screen.getByRole('heading', { name: 'Tittel' });
+      expect(title).toBeVisible();
+      expect(title.tagName).toEqual('H3');
+    });
+  });
+
   describe('Når icon er satt', (): void => {
     test('Så skal komponenten vise ikon på venstre side', (): void => {
       render(<Panel testId="bare-tester" icon={<Icon testId="icon-testid" svgIcon={Calendar} size={IconSize.XSmall} />} />);
