@@ -16,6 +16,8 @@ export enum HelpBubbleVariant {
 }
 
 export interface HelpBubbleProps {
+  /** Id of the HelpBubble */
+  helpBubbleId?: string;
   /** Name to display in the avatar. Will be truncated to the first two characters. */
   children: React.ReactNode;
   /** Ref for the element the HelpBubble is placed upon */
@@ -26,6 +28,8 @@ export interface HelpBubbleProps {
   variant?: keyof typeof HelpBubbleVariant;
   /** Visible text on the link */
   showBubble?: boolean;
+  /** Visible text on the link */
+  noCloseButton?: boolean;
   /** Visible text on the link */
   linkText?: string;
   /** Url the link leads to */
@@ -42,11 +46,13 @@ export interface HelpBubbleProps {
 
 const HelpBubble: React.FC<HelpBubbleProps> = props => {
   const {
+    helpBubbleId,
     children,
     controllerRef,
     className = '',
     variant = HelpBubbleVariant.positionautomatic,
     showBubble,
+    noCloseButton,
     linkText = 'Mer hjelp',
     linkUrl,
     onLinkClick,
@@ -66,7 +72,7 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   let arrowPositionStyle = undefined;
   const bubbleRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
-  const [controllerDOM, resetControllerDOM] = useGetDOMRect(controllerRef, showBubble, 500);
+  const [controllerDOM, resetControllerDOM] = useGetDOMRect(controllerRef, showBubble, 100);
   const [initialRender, setInitialRender] = useState(true);
   const [eventListenerVariant, setEventListenerVariant] = useEventListenerState(variant);
   const [customBubbleWidth, setCustomBubbleWidth] = useState(0);
@@ -236,19 +242,27 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   return showBubble ? (
     <>
       <div
+        id={helpBubbleId}
         ref={bubbleRef}
         style={bubblePositionStyle}
         className={helpBubbleClasses}
         data-testid={testId}
         data-analyticsid={AnalyticsId.HelpBubble}
+        role={'tooltip'}
       >
-        <div className={styles['helpbubble__child-wrapper']}>
+        <div
+          className={classNames(styles['helpbubble__child-wrapper'], {
+            [styles['helpbubble__child-wrapper--no-close-button']]: noCloseButton,
+          })}
+        >
           {children}
           {renderLink()}
         </div>
-        <div className={styles['helpbubble__close-wrapper']}>
-          <Close small onClick={onClose} ariaLabel={closeAriaLabel} />
-        </div>
+        {!noCloseButton && (
+          <div className={styles['helpbubble__close-wrapper']}>
+            <Close small onClick={onClose} ariaLabel={closeAriaLabel} />
+          </div>
+        )}
       </div>
       <div ref={arrowRef} style={arrowPositionStyle} className={arrowClasses} />
     </>

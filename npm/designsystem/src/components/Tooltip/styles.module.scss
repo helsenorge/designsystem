@@ -1,0 +1,18 @@
+@import '../../scss/_palette.scss';
+@import '../../scss/_spacers.scss';
+
+.word {
+  position: relative;
+  display: inline-block;
+  -webkit-text-decoration: underline dashed $plum400;
+  text-decoration: underline 0.15rem dashed $plum400;
+
+  &:hover {
+    cursor: help;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 getSpacer(4xs) $black;
+    outline: none;
+  }
+}

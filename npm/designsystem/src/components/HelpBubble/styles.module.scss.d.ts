@@ -3,6 +3,7 @@ export type Styles = {
   anchorlink__icon: string;
   helpbubble: string;
   'helpbubble__child-wrapper': string;
+  'helpbubble__child-wrapper--no-close-button': string;
   'helpbubble__close-wrapper': string;
   'helpbubble__link-button': string;
   'helpbubble__link-button__icon': string;

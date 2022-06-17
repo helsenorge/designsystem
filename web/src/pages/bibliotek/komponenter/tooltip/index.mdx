@@ -1,0 +1,53 @@
+---
+title: Tooltip
+path: /bibliotek/komponenter/helpbubble
+date: 2022-05-24
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/Tooltip/componentdata.json';
+
+import TooltipExample from '@helsenorge/designsystem-react/components/TooltipExample';
+
+# Tooltip
+
+<MDXCustom.Preamble>
+  Tooltip [Tooltip] hjelper innbygger å forstå et ord eller en setning bedre ved å vise en forklaring i en HelpBubble når teksten hovres
+  eller klikkes på.
+
+  Ved bruk av flere tooltips på en side så skal de wrappes i TooltipOpenProvider som eksporteres fra Tooltip.
+</MDXCustom.Preamble>
+
+## Usage
+```javascript
+import React from 'react';
+
+import Tooltip, { TooltipOpenProvider } from '../Tooltip';
+
+  return (
+    <TooltipOpenProvider>
+      <>
+        <Tooltip description={'Dette er tekst som skal fylle HelpBubble'} >{'ordet'}</Tooltip>
+        {'Dette er '}
+        <Tooltip description={'Dette er tekst som skal fylle HelpBubble'} >{'enda et tooltip ord'}</Tooltip>
+      </>
+    </TooltipOpenProvider>
+  );
+```
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{ TooltipExample }}>{`
+        <div><TooltipExample description={'Dette er tekst som skal fylle HelpBubble'}>{'ordet'}</TooltipExample></div>`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**

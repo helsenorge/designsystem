@@ -23,16 +23,7 @@ interface TitleProps {
   testId?: string;
 }
 
-export interface TitleMargin {
-  marginTop: number;
-  marginBottom: number;
-}
-
-export const instanceOfTitleMargin = (margin: any): margin is TitleMargin => {
-  return Object.prototype.hasOwnProperty.call(margin, 'marginTop') && Object.prototype.hasOwnProperty.call(margin, 'marginBottom');
-};
-
-const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
+export const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
   const { id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0, testId } = props;
   const titleClasses = classNames(
     titleStyles.title,
@@ -58,5 +49,14 @@ const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref
     </CustomTag>
   );
 });
+
+export interface TitleMargin {
+  marginTop: number;
+  marginBottom: number;
+}
+
+export const instanceOfTitleMargin = (margin: any): margin is TitleMargin => {
+  return Object.prototype.hasOwnProperty.call(margin, 'marginTop') && Object.prototype.hasOwnProperty.call(margin, 'marginBottom');
+};
 
 export default Title;

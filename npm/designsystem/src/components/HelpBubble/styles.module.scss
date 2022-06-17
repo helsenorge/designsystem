@@ -39,6 +39,10 @@
     row-gap: getSpacer(2xs);
     padding: getSpacer(s) 0 getSpacer(m) getSpacer(s);
 
+    &--no-close-button {
+      padding: getSpacer(s) getSpacer(s) getSpacer(m);
+    }
+
     > p {
       margin: 0;
     }

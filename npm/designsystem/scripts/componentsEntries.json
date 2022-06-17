@@ -305,6 +305,8 @@
   "components/Textarea/index": "src/components/Textarea/index.tsx",
   "components/Tile/index": "src/components/Tile/index.ts",
   "components/Title/index": "src/components/Title/index.ts",
+  "components/Tooltip/index": "src/components/Tooltip/index.ts",
+  "components/TooltipExample/index": "src/components/TooltipExample/index.ts",
   "components/Validation/index": "src/components/Validation/index.ts",
   "hoc/withBreakpoint/index": "src/hoc/withBreakpoint/index.ts"
 }

@@ -170,6 +170,10 @@
           "path": "/bibliotek/komponenter/title"
         },
         {
+          "label": "Tooltip",
+          "path": "/bibliotek/komponenter/tooltip"
+        },
+        {
           "label": "Validation",
           "path": "/bibliotek/komponenter/validation"
         }
