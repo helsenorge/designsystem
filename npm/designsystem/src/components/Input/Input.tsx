@@ -20,6 +20,8 @@ export interface InputProps {
   inputId?: string;
   /** Unique identifyer for the input tag */
   name?: string;
+  /** Width of input field in characters (approximate) */
+  width?: number;
   /** If true, the component will be transparent. */
   transparent?: boolean;
   /** Icon to be displayed next to the input field */
@@ -60,6 +62,16 @@ export enum InputTypes {
   url = 'url',
 }
 
+export const AVERAGE_CHARACTER_WIDTH_PX = 12;
+
+const getInputMaxWidth = (characters: number, hasIcon: boolean, iconSize: number): string => {
+  const paddingWidth = hasIcon ? '1.5rem' : '2rem';
+  const iconWidth = hasIcon ? `${iconSize}px` : '0px';
+  const borderWidth = '4px';
+
+  return `calc(${characters * AVERAGE_CHARACTER_WIDTH_PX}px + ${paddingWidth} + ${iconWidth} + ${borderWidth})`;
+};
+
 const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputElement>) => {
   const {
     defaultValue,
@@ -81,6 +93,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     autocomplete,
     afterLabelChildren,
     belowLabelChildren,
+    width,
     ...restProps
   } = props;
   const breakpoint = useBreakpoint();
@@ -117,9 +130,9 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   });
 
   const iconColor = disabled ? getColor('neutral', 500) : getColor('black');
+  const iconSize = breakpoint === Breakpoint.xs || !bigForm ? IconSize.XSmall : IconSize.Small;
 
   const renderIcon = () => {
-    const iconSize = breakpoint === Breakpoint.xs || !bigForm ? IconSize.XSmall : IconSize.Small;
     return icon !== undefined ? <Icon color={iconColor} size={iconSize} svgIcon={icon} /> : null;
   };
 
@@ -131,6 +144,8 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     }
   };
 
+  const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
+
   return (
     <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass}>
       {label && (
@@ -140,7 +155,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
         </div>
       )}
       {belowLabelChildren && <div>{belowLabelChildren}</div>}
-      <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass}>
+      <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>
         {!iconRight && renderIcon()}
         <input
           name={name}

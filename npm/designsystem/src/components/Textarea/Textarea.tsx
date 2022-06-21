@@ -4,6 +4,7 @@ import cn from 'classnames';
 import styles from './styles.module.scss';
 import { HTMLTextareaProps, FormMode, AnalyticsId } from '../../constants';
 import { uuid } from '../../utils/uuid';
+import { AVERAGE_CHARACTER_WIDTH_PX } from '../Input';
 
 interface TextareaProps extends HTMLTextareaProps {
   /** initial value for textarea */
@@ -12,6 +13,8 @@ interface TextareaProps extends HTMLTextareaProps {
   maxCharacters?: number;
   /** The text is displayed in the end of the text-counter */
   maxText?: string;
+  /** Width of textarea in characters (approximate) */
+  width?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** If true, the component will have a bottom margin. */
@@ -38,10 +41,19 @@ interface TextareaProps extends HTMLTextareaProps {
   belowLabelChildren?: React.ReactNode;
 }
 
+const getTextareaMaxWidth = (characters: number): string => {
+  const paddingWidth = '2rem';
+  const scrollbarWidth = '16px';
+  const borderWidth = '4px';
+
+  return `calc(${characters * AVERAGE_CHARACTER_WIDTH_PX}px + ${paddingWidth} + ${scrollbarWidth} + ${borderWidth})`;
+};
+
 const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
   const {
     maxCharacters: max,
     maxText,
+    width,
     testId,
     defaultValue,
     marginBottom: gutterBottom,
@@ -131,6 +143,8 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     }
   }, []);
 
+  const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
+
   return (
     <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
       {label && (
@@ -140,7 +154,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
         </div>
       )}
       {belowLabelChildren && <div>{belowLabelChildren}</div>}
-      <div className={contentWrapperClass} ref={referanse}>
+      <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
         <textarea
           rows={rows}
           defaultValue={defaultValue}
@@ -153,7 +167,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
         />
       </div>
       {max && (
-        <div className={counterTextClass}>
+        <div className={counterTextClass} style={{ maxWidth }}>
           <p>{`${textareaInput.length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
         </div>
       )}

@@ -2,11 +2,11 @@
 const path = require('path');
 
 module.exports = {
-  webpackFinal: async (config) => {
+  webpackFinal: async config => {
     // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
     // You can change the configuration based on that.
     // 'PRODUCTION' is used when building the static version of storybook.
-    const excludedFonts = config.module.rules.filter((rule) => !rule.test.source.includes('woff'));
+    const excludedFonts = config.module.rules.filter(rule => !rule.test.source.includes('woff'));
     config.module.rules = excludedFonts;
     // Make whatever fine-grained changes you need
     config.module.rules.push(
@@ -33,7 +33,9 @@ module.exports = {
           {
             loader: require.resolve('css-loader'),
             options: {
-              modules: true,
+              modules: {
+                localIdentName: '[local]--[hash:base64:5]',
+              },
             },
           },
           {

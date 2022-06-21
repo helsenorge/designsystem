@@ -22,7 +22,7 @@
   @include content-wrapper;
 
   padding: 0.5rem 0;
-  display: inline-flex;
+  display: flex;
   align-items: center;
 
   &--with-icon {

@@ -2,8 +2,6 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
-
 import Input, { InputTypes } from './Input';
 import { FormMode, FormVariant } from '../../constants';
 import Hospital from '../Icons/Hospital';
@@ -20,6 +18,10 @@ export default {
     placeholder: {
       control: 'text',
       defaultValue: 'Skriv inn tekst her',
+    },
+    width: {
+      control: 'number',
+      defaultValue: undefined,
     },
     variant: {
       control: 'select',

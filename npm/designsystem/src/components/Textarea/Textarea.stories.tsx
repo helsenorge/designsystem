@@ -22,6 +22,10 @@ export default {
       control: 'text',
       defaultValue: 'chars',
     },
+    width: {
+      control: 'number',
+      defaultValue: undefined,
+    },
     defaultValue: {
       control: 'text',
       defaultValue:
