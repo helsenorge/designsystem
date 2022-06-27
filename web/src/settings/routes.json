@@ -150,6 +150,10 @@
           "path": "/bibliotek/komponenter/statusdot"
         },
         {
+          "label": "Table",
+          "path": "/bibliotek/komponenter/table"
+        },
+        {
           "label": "Tag",
           "path": "/bibliotek/komponenter/tag"
         },

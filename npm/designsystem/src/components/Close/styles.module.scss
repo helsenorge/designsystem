@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  @media (max-width: map-get($grid-breakpoints, sm)) {
+  @media (max-width: calc(map-get($grid-breakpoints, sm), -1px)) {
     height: 2.375rem;
     width: 2.375rem;
   }

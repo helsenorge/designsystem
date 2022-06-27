@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at Tabel skal vises Når den skal vises Så vises en tabell 1`] = `
+<div>
+  <table
+    class="table"
+    data-testid="test01"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

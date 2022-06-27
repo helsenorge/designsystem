@@ -37,7 +37,7 @@ function generate(paths) {
       console.log(chalk.red(err));
     } else {
       // 1. Skriv componentsEntries.json
-      const componentsEntriesArr = files.map((file) => {
+      const componentsEntriesArr = files.map(file => {
         try {
           return getComponentData(file);
         } catch {
@@ -52,8 +52,8 @@ function generate(paths) {
       // 2. Skriv componentdata.json for hver komponent
       files
         // Ignorer alle ikoner utenom <Icon>-komponenten
-        .filter((file) => file.endsWith('.tsx') && (!file.includes('/Icons') || file.includes('/Icons/Icon')))
-        .forEach((file) => {
+        .filter(file => file.endsWith('.tsx') && (!file.includes('/Icons') || file.includes('/Icons/Icon')))
+        .forEach(file => {
           const [{ props = {} } = {}] = parse(file);
           const directory = path.dirname(file);
           fs.writeFileSync(`${directory}/componentdata.json`, JSON.stringify({ props }, null, 2) + '\n');
@@ -94,7 +94,7 @@ function getComponents(pathToFolder, fn) {
 }
 
 function removeEmpty(components) {
-  return components.filter((el) => el !== undefined);
+  return components.filter(el => el !== undefined);
 }
 
 function getComponentName(componentPath) {
@@ -152,3 +152,8 @@ function writeFile(filepath, content) {
     console.log('ERROR in entriesGenerator writeFile');
   }
 }
+
+/* else if (componentPath.includes('Table')) {
+      // returns the name of the component with 'Table/' prefix if the component under Table/
+      name = `components/Table/${arr2[arr2.length - 1]}`;
+    }*/

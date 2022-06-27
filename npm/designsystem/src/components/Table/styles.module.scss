@@ -1,0 +1,135 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/_grid.scss';
+@import '../../scss/_font-settings.scss';
+@import '../../scss/typography.module.scss';
+
+/* fix outline for Safari */
+table tbody tr {
+  outline: 3px solid transparent;
+}
+
+.table {
+  width: 100%;
+  //table-layout: fixed;
+  border-collapse: collapse;
+  //
+
+  &__expander-cell-mobile {
+    display: none;
+  }
+}
+
+.table__head {
+  background: $blueberry50;
+  &--normal {
+    background: $neutral50;
+  }
+  &--transparent {
+    background: transparent;
+  }
+
+  &--sortable {
+    background: $blueberry50;
+  }
+
+  @media (min-width: map-get($grid-breakpoints, lg)) {
+    height: 6.125rem;
+  }
+}
+
+.table__head-cell {
+  height: 3.625rem;
+  font-size: $font-size-sm;
+  line-height: 1.378rem;
+  text-align: left;
+  vertical-align: bottom;
+  font-weight: 200;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid $neutral500;
+
+  &--sortable:hover {
+    background-color: $blueberry100;
+    cursor: pointer;
+  }
+  &--sortable:focus {
+    outline: 3px solid $black;
+  }
+
+  &--sorted {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3125rem;
+  }
+  @media (min-width: map-get($grid-breakpoints, lg)) {
+    padding: 1rem;
+    height: 5.5rem;
+    font-size: $font-size-md;
+    line-height: 1.75rem;
+    font-weight: 200;
+  }
+}
+
+.table__cell {
+  height: 2, 375;
+  font-size: $font-size-xs;
+  line-height: 1.378rem;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border: 1px solid $neutral500;
+
+  &--center {
+    text-align: center;
+  }
+  &--right {
+    text-align: right;
+  }
+  &--nowrap {
+    white-space: nowrap;
+  }
+
+  @media (min-width: map-get($grid-breakpoints, lg)) {
+    padding: 1rem;
+    height: 3.625rem;
+    font-size: $font-size-sm;
+    line-height: 1.75rem;
+  }
+}
+
+.table__cell-expander {
+  text-align: center;
+  width: min-content;
+  padding: 0px;
+  vertical-align: middle;
+}
+
+.table__row--expandable {
+  &--selected {
+    background: $neutral100;
+  }
+  &:hover {
+    cursor: pointer;
+    background: $neutral100;
+  }
+  &:focus-within {
+    outline: 3px solid $black;
+  }
+}
+.table__expanded-row {
+  display: none;
+  &--expanded {
+    display: table-row;
+  }
+
+  &-container {
+    padding: 0.5rem;
+    @media (min-width: map-get($grid-breakpoints, lg)) {
+      &--open {
+        border-bottom: 1px solid $neutral100;
+      }
+    }
+  }
+}
+
+@import 'collapseTwoCol.scss';

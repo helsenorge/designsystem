@@ -1,0 +1,67 @@
+---
+title: Table
+path: /bibliotek/komponenter/Table
+date: 2022-06-27
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/Table/componentdata.json';
+import * as propDataTableHead from '@helsenorge/designsystem-react/components/TableHead/componentdata.json';
+
+import { Table } from '@helsenorge/designsystem-react/components/Table';
+import TableBody from '@helsenorge/designsystem-react/components/TableBody';
+import { TableCell, TextAlign } from '@helsenorge/designsystem-react/components/TableCell';
+import TableHead from '@helsenorge/designsystem-react/components/TableHead';
+import { TableHeadCell } from '@helsenorge/designsystem-react/components/TableHeadCell';
+import { TableRow } from '@helsenorge/designsystem-react/components/TableRow';
+
+# Table
+
+<MDXCustom.Preamble>
+  Som innbygger vil jeg se og sammenligne tabulære data slik at jeg kan forstå informasjonen jeg trenger.
+</MDXCustom.Preamble>
+
+### Default
+
+<MDXCustom.LiveComponent fullWidth scope={{ Table }}>
+  {`
+    <Table>
+        <TableHead>
+          <TableRow key="0">
+            <TableHeadCell>Navn</TableHeadCell>
+            <TableHeadCell>Beskrivelse</TableHeadCell>           
+            <TableHeadCell>Dato</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow key="1">
+            <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
+            <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>           
+            <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
+              12.12.2020
+            </TableCell>
+          </TableRow>
+          <TableRow key="2">
+            <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
+            <TableCell dataLabel="Beskrivelse">Enda en ganske lang beskrivelse...</TableCell>           
+            <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
+              12.12.2020
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>`}
+</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+\*\*TODO: Legg til eksempel for sortering og ekspanderende rad (hvis det er behov for å vise dette)
+
+## Bruk
+
+**TODO: Legg til bruk**
+
+### Tilgjengelighet
+
+**TODO: Legg til UU**
