@@ -1,0 +1,144 @@
+.table {
+  &--collapse2col {
+    @media (max-width: map-get($grid-max-breakpoints, sm)) {
+      .table__cell-expander {
+        display: none;
+      }
+
+      .table__head {
+        display: none;
+      }
+
+      display: block;
+      clear: both;
+
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+      }
+
+      tr {
+        clear: both;
+      }
+
+      select {
+        max-width: 100%;
+      }
+
+      th:focus {
+        outline: none;
+        background-color: $blueberry800;
+        text-decoration: underline;
+      }
+      td {
+        position: relative;
+        padding-left: 40%;
+        padding-right: 0;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        float: left;
+        clear: both;
+        width: 100%;
+
+        &:not(.expandable-container) {
+          font-weight: 400;
+        }
+
+        /* Get data from the td-tag attribute "data-label"   and use this to populate :before content */
+        &::before {
+          content: attr(data-label);
+          position: relative;
+          top: 0;
+          left: 0;
+          width: 60%;
+          padding-right: $spacer;
+          white-space: normal;
+          display: block;
+          float: left;
+          word-wrap: break-word;
+          margin-left: -67%;
+          padding-left: 0.75rem;
+          font-weight: 400;
+        }
+      }
+
+      .table__expander-cell-mobile {
+        padding-left: 0.75rem;
+      }
+
+      .table__expander-button-mobile {
+        font-weight: 100;
+        padding-right: 1rem;
+        &:hover {
+          background-color: $blueberry50;
+        }
+        &--expanded {
+          background-color: $blueberry50;
+        }
+      }
+
+      .table__expanded-row td {
+        text-align: left;
+        padding: 0.75rem;
+      }
+
+      .table__expanded-row {
+        display: none;
+        &--expanded {
+          display: block;
+        }
+      }
+
+      .table__cell {
+        border-top: 0;
+        border-bottom: 0;
+
+        outline: 0;
+
+        &--center {
+          text-align: left;
+        }
+        &--right {
+          text-align: left;
+        }
+      }
+      .table__cell:first-child {
+        border-collapse: collapse;
+        border-top: 1px solid $neutral500;
+      }
+      .table__expanded-row {
+        .table__cell:first-child {
+          border-top: 0;
+        }
+      }
+      .table__row--expandable {
+        .table__cell:nth-child(2) {
+          border-collapse: collapse;
+          border-top: 1px solid $neutral500;
+        }
+      }
+
+      tr:last-child .table__cell:last-child {
+        border-bottom: 1px solid $neutral500;
+      }
+
+      .table__expander-cell-mobile {
+        border-bottom: 1px solid $neutral500;
+        &--expanded {
+          border-bottom: 0;
+        }
+      }
+
+      .table__row--expandable {
+        &:focus-within {
+          outline: none;
+        }
+      }
+      .table__expanded-row-button {
+        display: none;
+      }
+    }
+  }
+}

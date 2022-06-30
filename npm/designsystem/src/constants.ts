@@ -111,6 +111,7 @@ export enum AnalyticsId {
   Slider = 'slider',
   Spacer = 'spacer',
   StatusDot = 'status-dot',
+  Table = 'table',
   Tag = 'tag',
   TagList = 'tag-list',
   Textarea = 'textarea',
