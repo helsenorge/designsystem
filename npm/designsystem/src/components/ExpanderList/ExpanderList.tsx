@@ -87,15 +87,25 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
   const previousIsExpanded = usePrevious(isExpanded);
   const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
   const breakpoint = useBreakpoint();
+
+  const isJsxTitle = typeof title === 'object';
+
+  const itemClasses = classNames(className, { [expanderListStyles['expander-list__item--jsx']]: isJsxTitle });
+
   const expanderClasses = classNames(expanderListStyles['expander-list-link'], expanderListStyles[`expander-list-link--${color}`], {
     [expanderListStyles['expander-list-link--closed']]: !isExpanded,
     [expanderListStyles['expander-list-link--large']]: large,
+    [expanderListStyles['expander-list-link--jsx']]: isJsxTitle,
   });
   const mainContentClasses = classNames(
     expanderListStyles['expander-list-link__main-content'],
     isExpanded && expanderListStyles['expander-list-link__main-content--expanded'],
     padding ? expanderListStyles['expander-list-link__main-content--padding'] : ''
   );
+  const titleClasses = classNames(expanderListStyles['expander-list-link__title'], {
+    [expanderListStyles['expander-list-link__title--string']]: !isJsxTitle,
+    [expanderListStyles['expander-list-link__title--jsx']]: isJsxTitle,
+  });
 
   useEffect(() => {
     if (expanded !== isExpanded) {
@@ -110,7 +120,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
   }, [isExpanded, onExpand]);
 
   return (
-    <li className={className} ref={ref}>
+    <li className={itemClasses} ref={ref}>
       <button
         type="button"
         id={id}
@@ -129,7 +139,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
             })}
           </span>
         )}
-        <span className={expanderListStyles['expander-list-link__title']}>{title}</span>
+        <span className={titleClasses}>{title}</span>
         <span className={expanderListStyles['expander-list-link__chevron']}>
           <Icon size={IconSize.XSmall} svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} />
         </span>

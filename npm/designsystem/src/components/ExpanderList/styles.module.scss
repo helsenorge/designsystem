@@ -116,15 +116,26 @@
     line-height: $lineheight-size-lg;
   }
 
+  &--jsx {
+    &:focus {
+      box-shadow: inset 0px 2px 0px 0px $neutral500, inset 0px -2px 0px 0px $neutral500;
+    }
+  }
+
   &__title {
     color: $black;
     display: flex;
     align-items: center;
     text-align: left;
-    border-bottom: 1px solid transparent;
+    &--string {
+      border-bottom: 1px solid transparent;
 
-    :focus > & {
-      border-color: $black;
+      :focus > & {
+        border-color: $black;
+      }
+    }
+    &--jsx {
+      width: 100%;
     }
   }
 

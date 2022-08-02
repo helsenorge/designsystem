@@ -7,8 +7,10 @@ import ExpanderList from './ExpanderList';
 import LinkList from '../LinkList';
 import Icon from '../Icons';
 import Avatar from '../Icons/Avatar';
+import AvatarComponent from '../Avatar';
 import PaperPlane from '../Icons/PaperPlane';
 import AlarmClock from '../Icons/AlarmClock';
+import Title from '../Title/Title';
 
 export default {
   title: 'Components/ExpanderList',
@@ -267,3 +269,26 @@ export const InteractiveChildren: ComponentStory<typeof ExpanderList> = (args: a
     </div>
   );
 };
+
+export const JsxTitle: ComponentStory<typeof ExpanderList> = (args: any) => (
+  <div
+    style={{
+      width: '40rem',
+    }}
+  >
+    <ExpanderList>
+      <ExpanderList.Expander
+        title={
+          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+            <AvatarComponent>{'Tittel'}</AvatarComponent>
+            <Title appearance="title3">Fastlege</Title>
+            <Icon svgIcon={Avatar} />
+          </span>
+        }
+      >
+        {'Hei'}
+      </ExpanderList.Expander>
+      <ExpanderList.Expander title={<Title appearance="title3">Fastlege</Title>}>{'Hei'}</ExpanderList.Expander>
+    </ExpanderList>
+  </div>
+);

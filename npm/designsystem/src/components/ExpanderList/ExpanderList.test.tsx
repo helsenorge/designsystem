@@ -2,6 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ExpanderList from './ExpanderList';
+import Icon from '../Icons';
+import Avatar from '../Icons/Avatar';
+import Title from '../Title/Title';
 import * as ViewportUtils from '../../utils/viewport';
 import '../../__mocks__/uuid';
 
@@ -379,6 +382,31 @@ describe('Gitt ExpanderList blir rendret', (): void => {
             <ExpanderList.Expander title="ExpanderList 2">Text 2</ExpanderList.Expander>
           </ExpanderList>
         </>
+      );
+
+      const buttonId1 = screen.getByRole('button', { name: 'ExpanderList 1' }).id;
+      const buttonId2 = screen.getByRole('button', { name: 'ExpanderList 2' }).id;
+
+      expect(buttonId1).not.toEqual(buttonId2);
+      expect(container).toMatchSnapshot();
+    });
+  });
+  describe('Når title er JSX', (): void => {
+    test('Så fungerer expanderen', (): void => {
+      const { container } = render(
+        <ExpanderList>
+          <ExpanderList.Expander
+            title={
+              <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                <Title appearance="title3">ExpanderList 1</Title>
+                <Icon svgIcon={Avatar} />
+              </span>
+            }
+          >
+            {'Hei'}
+          </ExpanderList.Expander>
+          <ExpanderList.Expander title={<Title appearance="title3">ExpanderList 2</Title>}>{'Hei'}</ExpanderList.Expander>
+        </ExpanderList>
       );
 
       const buttonId1 = screen.getByRole('button', { name: 'ExpanderList 1' }).id;
