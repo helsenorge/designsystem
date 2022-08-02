@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { allPaletteNames } from '../../../.storybook/knobs';
 import { allLinkListSizes } from '../../../.storybook/knobs';
@@ -63,6 +64,24 @@ export const WithIcon: ComponentStory<typeof LinkList> = (args: any) => (
     <LinkList {...args}>
       <LinkList.Link icon={<Icon svgIcon={AlarmClock} />}>Innhold A-Å</LinkList.Link>
       <LinkList.Link icon={<Icon svgIcon={PaperPlane} />}>English</LinkList.Link>
+    </LinkList>
+  </div>
+);
+
+export const AsButton: ComponentStory<typeof LinkList> = (args: any) => (
+  <div
+    style={{
+      width: '40rem',
+    }}
+  >
+    <LinkList {...args}>
+      <LinkList.Link htmlMarkup="button" onClick={action('Link 1 clicked')}>
+        Innhold A-Å
+      </LinkList.Link>
+      <LinkList.Link htmlMarkup="button" onClick={action('Link 2 clicked')}>
+        Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
+        bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
+      </LinkList.Link>
     </LinkList>
   </div>
 );

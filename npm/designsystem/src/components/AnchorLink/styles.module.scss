@@ -2,6 +2,19 @@
 @import '../../scss/_breakpoints.scss';
 @import '../../scss/_palette.scss';
 
+@mixin anchorlink-hover {
+  cursor: pointer;
+  color: $blueberry700;
+  background-color: $blueberry50;
+  border-bottom-color: $blueberry600;
+}
+@mixin anchorlink-focus {
+  padding: 0 0 0.15rem 0;
+  outline: none;
+  border: 0.15rem solid $black;
+  margin-top: -0.075rem;
+}
+
 @mixin anchorlink {
   display: inline;
   -webkit-box-decoration-break: clone;
@@ -15,16 +28,11 @@
   border-bottom: 1px solid $neutral300;
 
   &:hover {
-    cursor: pointer;
-    color: $blueberry700;
-    background-color: $blueberry50;
-    border-bottom-color: $blueberry600;
+    @include anchorlink-hover;
   }
   &:focus {
-    padding: 0 0 0.15rem 0;
-    outline: none;
-    border: 0.15rem solid $black;
-    margin-top: -0.075rem;
+    @include anchorlink-focus;
+
   }
 
   &__icon {
@@ -61,4 +69,14 @@
 .anchorlink {
   @include anchorlink;
   @include anchorlink-font;
+}
+
+.anchorlink-wrapper {
+  all: unset;
+  &:hover > span {
+    @include anchorlink-hover;
+  }
+  &:focus > span {
+    @include anchorlink-focus;
+  }
 }

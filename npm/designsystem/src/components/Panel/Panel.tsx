@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import panelStyles from './styles.module.scss';
 import Title, { TitleTags } from '../Title';
-import Button, { ButtonVariants } from '../Button';
+import Button, { ButtonProps, ButtonTags, ButtonVariants } from '../Button';
 import { AnchorTarget, AnalyticsId } from '../../constants';
 
 import Icon, { IconSize, SvgPathProps } from '../Icons';
@@ -16,8 +16,8 @@ import Pencil from '../Icons/Pencil';
 import Calendar from '../Icons/Calendar';
 import Watch from '../Icons/Watch';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { useUuid } from '../../hooks/useUuid';
 import Badge from '../Badge';
-import { uuid } from '../../utils/uuid';
 
 export enum PanelStatus {
   normal = 'normal',
@@ -73,6 +73,10 @@ export interface PanelProps {
   buttonText?: string;
   /** Panel button close text */
   buttonTextClose?: string;
+  /** HTML markup for panel button. Default: a */
+  buttonHtmlMarkup?: ButtonTags;
+  /** Callback when panel button is clicked  */
+  buttonOnClick?: ButtonProps['onClick'];
   /** Show close button in bottom of Panel Expand, default: true */
   showCloseButtonInExpand?: boolean;
   /** Layout (see description) */
@@ -134,29 +138,26 @@ const DateTime: React.FC<{ date?: string; time?: string }> = ({ date, time }) =>
   return null;
 };
 
-type DetailsButtonProps = Pick<PanelProps, 'buttonText' | 'buttonTextClose' | 'url' | 'target'> & {
-  onClick: () => void;
-  renderAsButton: boolean;
-  showDetails: boolean;
+type DetailsButtonProps = Pick<PanelProps, 'buttonText' | 'buttonTextClose' | 'url' | 'target' | 'buttonHtmlMarkup'> & {
+  onClick: ButtonProps['onClick'];
+  renderAsExpander: boolean;
+  isExpanded: boolean;
 };
 
-const DetailsButton = React.forwardRef(function DetailsButtonForwardedRef(
-  props: DetailsButtonProps,
-  ref: React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>
-) {
-  const { buttonText, buttonTextClose, url, target, onClick, renderAsButton, showDetails, ...rest } = props;
+const DetailsButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, DetailsButtonProps>((props, ref) => {
+  const { buttonText, buttonTextClose, url, target, onClick, renderAsExpander, isExpanded, buttonHtmlMarkup = 'a', ...rest } = props;
 
-  if (renderAsButton) {
+  if (renderAsExpander) {
     return (
       <Button testId="expand" ref={ref} onClick={onClick} {...rest}>
-        {showDetails ? buttonTextClose : buttonText}
-        <Icon svgIcon={showDetails ? ChevronUp : ChevronDown} />
+        {isExpanded ? buttonTextClose : buttonText}
+        <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} />
       </Button>
     );
   }
 
   return (
-    <Button testId="url" ref={ref} htmlMarkup="a" href={url} target={target} {...rest}>
+    <Button testId="url" ref={ref} htmlMarkup={buttonHtmlMarkup} onClick={onClick} href={url} target={target} {...rest}>
       {buttonText}
       <Icon svgIcon={ArrowRight} />
     </Button>
@@ -187,11 +188,13 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     date,
     time,
     noTopBorder,
+    buttonOnClick,
+    buttonHtmlMarkup,
   } = props;
 
-  const [showDetails, setShowDetails] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const buttonId = uuid();
+  const buttonId = useUuid();
   const breakpoint = useBreakpoint();
 
   const layout3 = [PanelLayout.layout3a.toString(), PanelLayout.layout3b.toString(), PanelLayout.layout3c.toString()].includes(layout);
@@ -204,7 +207,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel--white']]: variant === PanelVariant.white,
     [panelStyles['panel--line']]: variant === PanelVariant.line,
     [panelStyles['panel--no-top-border']]: variant === PanelVariant.line && noTopBorder,
-    [panelStyles['panel--selected']]: showDetails,
+    [panelStyles['panel--selected']]: isExpanded,
     [panelStyles['panel--new']]: status === PanelStatus.new,
     [panelStyles['panel--draft']]: status === PanelStatus.draft,
     [panelStyles['panel--error']]: status === PanelStatus.error,
@@ -236,7 +239,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   });
 
   const panelDetailsClasses = classNames(panelStyles['panel-details'], {
-    [panelStyles['panel-details--open']]: showDetails,
+    [panelStyles['panel-details--open']]: isExpanded,
     [panelStyles['panel-details--line']]: variant === PanelVariant.line,
     [panelStyles['panel-details--white']]: variant === PanelVariant.white,
     [panelStyles['panel-details--with-icon']]: icon,
@@ -261,14 +264,15 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
 
     return (
       <DetailsButton
-        renderAsButton={!!children}
-        onClick={(): void => setShowDetails(!showDetails)}
-        showDetails={showDetails}
+        renderAsExpander={!!children}
+        onClick={buttonOnClick ? buttonOnClick : () => setIsExpanded(!isExpanded)}
+        isExpanded={isExpanded}
         buttonText={buttonText}
         url={url}
         target={target}
         buttonTextClose={buttonTextClose}
         ref={id ? buttonRef : undefined}
+        buttonHtmlMarkup={buttonHtmlMarkup}
         {...btnProps}
       />
     );
@@ -327,10 +331,12 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
           </div>
           <div className={panelContentRightClass}>
             {contentB && <div className={panelContentBClass}>{contentB}</div>}
-            {(children || url || date || time) && (
+            {(children || url || date || time || buttonOnClick) && (
               <div className={btnContainerClass}>
                 {breakpoint < Breakpoint.lg && <DateTime date={date} time={time} />}
-                {(children || url) && <div className={panelActionBtnClass}>{renderDetailsButton(!containerAsButton, buttonId)}</div>}
+                {(children || url || buttonOnClick) && (
+                  <div className={panelActionBtnClass}>{renderDetailsButton(!containerAsButton, buttonId)}</div>
+                )}
               </div>
             )}
           </div>

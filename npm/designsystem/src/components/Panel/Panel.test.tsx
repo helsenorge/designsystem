@@ -1,10 +1,10 @@
 import React from 'react';
 import { screen, render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Panel from './Panel';
 import { Icon, IconSize } from '../Icons';
 import Calendar from '../Icons/Calendar';
 import Avatar from '../Avatar';
-import userEvent from '@testing-library/user-event';
 
 describe('Gitt at Panel skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {
@@ -227,6 +227,31 @@ describe('Gitt at Panel skal vises', (): void => {
 
       expect(screen.getByText('dato')).toBeVisible();
       expect(screen.getByText('tid')).toBeVisible();
+    });
+  });
+
+  describe('Gitt at panelet skal vise lenke som knapp med onClick', () => {
+    test('Så kalles onClick-handler når man klikker på knappen', () => {
+      const onClickMock = jest.fn();
+      render(<Panel buttonText="Lenke til mer" buttonOnClick={onClickMock} buttonHtmlMarkup="button" />);
+
+      const link = screen.getByRole('button', { name: 'Lenke til mer' });
+      userEvent.click(link);
+      expect(onClickMock).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('Gitt at panelet skal vise lenke som a med onClick', () => {
+    test('Så kalles onClick-handler når man klikker på lenken', () => {
+      const onClickMock = jest.fn();
+      render(<Panel buttonText="Lenke til mer" buttonOnClick={onClickMock} buttonHtmlMarkup="a" url="#" />);
+
+      const link = screen.getByRole('link', { name: 'Lenke til mer' });
+
+      expect(link).toHaveAttribute('href', '#');
+
+      userEvent.click(link);
+      expect(onClickMock).toHaveBeenCalledTimes(1);
     });
   });
 });

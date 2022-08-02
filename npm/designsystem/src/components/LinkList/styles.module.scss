@@ -30,7 +30,13 @@
     align-items: center;
     color: $black;
     cursor: pointer;
-
+    &--button {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      box-sizing: border-box;
+    }
     &--small {
       padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
       font-size: $font-size-xs;

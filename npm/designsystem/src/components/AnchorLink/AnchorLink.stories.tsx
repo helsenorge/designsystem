@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import AnchorLink from './AnchorLink';
 
@@ -46,5 +47,25 @@ export const External: ComponentStory<typeof AnchorLink> = (args: any) => (
         'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
       }
     </AnchorLink>
+  </div>
+);
+
+export const AsButton: ComponentStory<typeof AnchorLink> = (args: any) => (
+  <div style={{ width: '20rem' }}>
+    <p style={{ fontSize: '1.25rem' }}>
+      Dette er først en{' '}
+      <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
+        vanlig lenke i løpende tekst
+      </AnchorLink>{' '}
+      og nå kommer en
+      <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
+        button-lenke i løpende tekst som går over flere linjer
+      </AnchorLink>{' '}
+      og til slutt en{' '}
+      <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
+        kort
+      </AnchorLink>{' '}
+      button-lenke
+    </p>
   </div>
 );

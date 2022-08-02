@@ -155,6 +155,18 @@ import LinkList from '@helsenorge/designsystem-react/components/LinkList';
   </div>
 `}</MDXCustom.LiveComponent>
 
+### As buttons
+
+<MDXCustom.LiveComponent scope={{LinkList}}>{`
+  <div style={{width: '30rem'}}>
+    <LinkList color="neutral">
+      <LinkList.Link htmlMarkup={'button'} onClick={() => alert('link 1 clicked')}>First link</LinkList.Link>
+      <LinkList.Link htmlMarkup={'button'} onClick={() => alert('link 2 clicked')}>Second link</LinkList.Link>
+      <LinkList.Link htmlMarkup={'button'} onClick={() => alert('link 3 clicked')}>Third link</LinkList.Link>
+    </LinkList>
+  </div>
+`}</MDXCustom.LiveComponent>
+
 ## Bruk
 
 **TODO: Legg til bruk**

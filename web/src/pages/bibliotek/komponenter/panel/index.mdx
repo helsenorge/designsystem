@@ -215,3 +215,14 @@ import Attachment from '@helsenorge/designsystem-react/components/Icons/Attachme
         Ekspandert innhold
     </Panel>`}
 </MDXCustom.LiveComponent>
+
+## Link as button
+
+<MDXCustom.LiveComponent fullWidth scope={{ Panel }}>{`
+    <Panel
+        title={'Medisinsk fødselsregister (MFR)'}
+        buttonText="Lenke til mer"
+        buttonOnClick={action('Button clicked!')}
+        buttonHtmlMarkup="button"
+    />`}
+</MDXCustom.LiveComponent>

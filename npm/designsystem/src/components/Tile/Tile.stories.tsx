@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import Tile from './Tile';
 import Icon, { IconSize } from '../Icons';
@@ -123,4 +124,14 @@ export const WrappedContainer: ComponentStory<typeof Tile> = (args: any) => (
       title={<Tile.Title>Europeisk helsetrygdekort (nav)</Tile.Title>}
     />
   </div>
+);
+
+export const AsButton: ComponentStory<typeof Tile> = (args: any) => (
+  <Tile
+    {...args}
+    onClick={action('Tile clicked!')}
+    htmlMarkup="button"
+    icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+    title={<Tile.Title htmlMarkup={'h1'}>{'External'}</Tile.Title>}
+  />
 );

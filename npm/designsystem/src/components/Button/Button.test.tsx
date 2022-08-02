@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Button from './Button';
 import Icon from '../Icons';
 import Check from '../Icons/Check';
@@ -94,6 +95,42 @@ describe('Gitt at button skal vises', (): void => {
 
       const testLeftFluidContent = screen.getByTestId('test01').querySelector('div');
       expect(testLeftFluidContent.className).toBe('button__left-fluid-content button__left-fluid-content--with-icon');
+    });
+  });
+
+  describe('Når button rendres som button med onClick-handler', () => {
+    test('Så kalles onClick-handleren når man klikker på knappen', () => {
+      const handleClick = jest.fn();
+
+      render(
+        <Button onClick={handleClick} htmlMarkup="button">
+          Lenketekst
+        </Button>
+      );
+
+      const link = screen.getByRole('button', { name: 'Lenketekst' });
+
+      userEvent.click(link);
+
+      expect(handleClick).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('Når button rendres som lenke med onClick-handler', () => {
+    test('Så kalles onClick-handleren når man klikker på knappen', () => {
+      const handleClick = jest.fn();
+
+      render(
+        <Button onClick={handleClick} htmlMarkup="a" href="#">
+          Lenketekst
+        </Button>
+      );
+
+      const link = screen.getByRole('link', { name: 'Lenketekst' });
+
+      userEvent.click(link);
+
+      expect(handleClick).toHaveBeenCalledTimes(1);
     });
   });
 

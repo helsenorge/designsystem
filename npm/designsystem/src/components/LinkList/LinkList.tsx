@@ -16,6 +16,8 @@ export type LinkAnchorTargets = '_self' | '_blank' | '_parent';
 
 export type LinkListColors = PaletteNames;
 export type LinkType = React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLLIElement>>;
+
+export type LinkTags = 'button' | 'a';
 export interface CompoundComponent extends React.ForwardRefExoticComponent<LinkListProps & React.RefAttributes<HTMLUListElement>> {
   Link: LinkType;
 }
@@ -39,7 +41,7 @@ interface LinkListProps {
   testId?: string;
 }
 
-export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
   children: React.ReactNode;
   color?: LinkListColors;
   size?: LinkListSize;
@@ -48,50 +50,79 @@ export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
   icon?: React.ReactElement;
   href?: string;
   target?: LinkAnchorTargets;
+  /** HTML markup for link. Default: a */
+  htmlMarkup?: LinkTags;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLIElement>) => {
-  const { children, className = '', color = 'neutral', icon, size = 'medium', chevron = false, testId, target, ...restProps } = props;
-  const { hoverRef, isHovered } = useHover<HTMLAnchorElement>();
+  const {
+    children,
+    className = '',
+    color = 'neutral',
+    icon,
+    size = 'medium',
+    chevron = false,
+    testId,
+    target,
+    htmlMarkup = 'a',
+    ...restProps
+  } = props;
+  const { hoverRef, isHovered } = useHover<HTMLButtonElement | HTMLAnchorElement>();
   const breakpoint = useBreakpoint();
 
   const hasIcon = size !== 'small' && !!(chevron || icon);
 
+  const renderContent = (): JSX.Element => (
+    <>
+      {hasIcon && icon && (
+        <span className={LinkListStyles['link-list__icon']}>
+          {React.cloneElement(icon, {
+            size: breakpoint === Breakpoint.xs ? IconSize.XSmall : IconSize.Small,
+            isHovered,
+          })}
+        </span>
+      )}
+      <span className={LinkListStyles['link-list__content']}>{children}</span>
+      {hasIcon && chevron && (
+        <span className={LinkListStyles['link-list__chevron']}>
+          <Icon svgIcon={ChevronRight} isHovered={isHovered} size={IconSize.XSmall} />
+        </span>
+      )}
+    </>
+  );
+
+  const linkClasses = cn(
+    LinkListStyles['link-list__anchor'],
+    LinkListStyles['link-list__anchor--' + color],
+    {
+      [LinkListStyles['link-list__anchor--small']]: size === 'small',
+      [LinkListStyles['link-list__anchor--medium']]: size === 'medium',
+      [LinkListStyles['link-list__anchor--large']]: size === 'large',
+      [LinkListStyles['link-list__anchor--button']]: htmlMarkup === 'button',
+    },
+    className
+  );
+
   return (
     <li ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
-      <a
-        className={cn(
-          LinkListStyles['link-list__anchor'],
-          LinkListStyles['link-list__anchor--' + color],
-          {
-            [LinkListStyles['link-list__anchor--small']]: size === 'small',
-            [LinkListStyles['link-list__anchor--medium']]: size === 'medium',
-            [LinkListStyles['link-list__anchor--large']]: size === 'large',
-          },
-          className
-        )}
-        ref={hoverRef}
-        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-        target={target}
-        {...restProps}
-      >
-        {hasIcon && icon && (
-          <span className={LinkListStyles['link-list__icon']}>
-            {React.cloneElement(icon, {
-              size: breakpoint === Breakpoint.xs ? IconSize.XSmall : IconSize.Small,
-              isHovered,
-            })}
-          </span>
-        )}
-        <span className={LinkListStyles['link-list__content']}>{children}</span>
-        {hasIcon && chevron && (
-          <span className={LinkListStyles['link-list__chevron']}>
-            <Icon svgIcon={ChevronRight} isHovered={isHovered} size={IconSize.XSmall} />
-          </span>
-        )}
-      </a>
+      {htmlMarkup === 'a' && (
+        <a
+          className={linkClasses}
+          ref={hoverRef as React.RefObject<HTMLAnchorElement>}
+          rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+          target={target}
+          {...restProps}
+        >
+          {renderContent()}
+        </a>
+      )}
+      {htmlMarkup === 'button' && (
+        <button className={linkClasses} ref={hoverRef as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
+          {renderContent()}
+        </button>
+      )}
     </li>
   );
 });
@@ -107,7 +138,7 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
           [LinkListStyles['link-list--hastopborder']]: topBorder,
           [LinkListStyles['link-list--nobottomborder']]: !bottomBorder,
         },
-        className ? className : ''
+        className
       )}
       data-testid={testId}
       data-analyticsid={AnalyticsId.LinkList}

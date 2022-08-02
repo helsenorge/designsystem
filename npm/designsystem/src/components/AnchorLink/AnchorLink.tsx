@@ -10,38 +10,44 @@ import { AnalyticsId } from '../../constants';
 
 export type AnchorLinkTargets = '_self' | '_blank' | '_parent';
 
+export type AnchorLinkTags = 'a' | 'button';
+
 interface AnchorLinkProps {
   /** Sets the content of the <a> tag */
   children: React.ReactNode;
   /** URL to link to */
-  href: string;
+  href?: string;
   /** Gives a unique id to the anchor-link :) */
   id?: string;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the target type of the <a> tag. _blank adds an arrow icon at the end of the link */
   target?: AnchorLinkTargets;
+  /** HTML markup for anchor link. Default: a */
+  htmlMarkup?: AnchorLinkTags;
+  /** Function that is called when clicked */
+  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null) => void;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
-const AnchorLink = React.forwardRef(function AnchorLinkForwardedRef(props: AnchorLinkProps, ref: React.ForwardedRef<HTMLAnchorElement>) {
-  const { id, href, children, className, target = '_self', testId } = props;
+const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, AnchorLinkProps>((props, ref) => {
+  const { id, href, children, className, target = '_self', htmlMarkup = 'a', onClick, testId } = props;
   const external = target === '_blank';
-  const { hoverRef, isHovered } = useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>, undefined, false);
-  const anchorClasses = classNames(AnchorLinkStyles.anchorlink, className ?? '');
+  const { hoverRef, isHovered } = useHover<HTMLButtonElement | HTMLAnchorElement>(
+    ref as React.RefObject<HTMLButtonElement | HTMLAnchorElement>
+  );
+  const anchorClasses = classNames(AnchorLinkStyles.anchorlink, className);
 
-  return (
-    <a
-      id={id}
-      href={href}
-      className={anchorClasses}
-      target={target}
-      rel={external ? 'noopener noreferrer' : undefined}
-      ref={hoverRef}
-      data-testid={testId}
-      data-analyticsid={AnalyticsId.AnchorLink}
-    >
+  const commonProps = {
+    id,
+    ['data-testid']: testId,
+    ['data-analyticsid']: AnalyticsId.AnchorLink,
+    onClick,
+  };
+
+  const renderContent = () => (
+    <>
       {children}
       {external && (
         <Icon
@@ -53,7 +59,34 @@ const AnchorLink = React.forwardRef(function AnchorLinkForwardedRef(props: Ancho
           isHovered={isHovered}
         />
       )}
-    </a>
+    </>
+  );
+
+  return (
+    <>
+      {htmlMarkup === 'a' && (
+        <a
+          href={href}
+          target={target}
+          className={anchorClasses}
+          rel={external ? 'noopener noreferrer' : undefined}
+          ref={hoverRef as React.RefObject<HTMLAnchorElement>}
+          {...commonProps}
+        >
+          {renderContent()}
+        </a>
+      )}
+      {htmlMarkup === 'button' && (
+        <button
+          type="button"
+          className={AnchorLinkStyles['anchorlink-wrapper']}
+          ref={hoverRef as React.RefObject<HTMLButtonElement>}
+          {...commonProps}
+        >
+          <span className={anchorClasses}>{renderContent()}</span>
+        </button>
+      )}
+    </>
   );
 });
 

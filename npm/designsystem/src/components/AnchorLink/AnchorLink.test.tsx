@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import AnchorLink from './AnchorLink';
 
 describe('Gitt at AnchorLink skal rendres', (): void => {
@@ -62,6 +63,36 @@ describe('Gitt at AnchorLink skal rendres', (): void => {
 
       const component = screen.getByTestId('bare-tester');
       expect(component).toBeVisible();
+    });
+  });
+
+  describe('Når htmlMarkup er button', () => {
+    test('Skal kalles onClick-handler når man klikker på knappen', () => {
+      const onClickMock = jest.fn();
+      render(
+        <AnchorLink htmlMarkup="button" onClick={onClickMock} href="#">
+          Lenketekst
+        </AnchorLink>
+      );
+
+      const link = screen.getByRole('button', { name: 'Lenketekst' });
+      userEvent.click(link);
+      expect(onClickMock).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('Når htmlMarkup er a', () => {
+    test('Skal kalles onClick-handler når man klikker på knappen', () => {
+      const onClickMock = jest.fn();
+      render(
+        <AnchorLink htmlMarkup="a" onClick={onClickMock} href="#">
+          Lenketekst
+        </AnchorLink>
+      );
+
+      const link = screen.getByRole('link', { name: 'Lenketekst' });
+      userEvent.click(link);
+      expect(onClickMock).toHaveBeenCalledTimes(1);
     });
   });
 });

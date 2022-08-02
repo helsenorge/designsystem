@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Tile from './Tile';
 import Icon from '../Icons';
 import { IconSize } from '../../constants';
@@ -45,6 +46,41 @@ describe('Gitt at Tile skal vises', (): void => {
       expect(component).toBeVisible();
       expect(component).toHaveAttribute('target', '_blank');
       expect(component).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+  });
+  describe('Når htmlMarkup er a', () => {
+    test('Skal kalles onClick-handler når man klikker på knappen', () => {
+      const onClickMock = jest.fn();
+      render(
+        <Tile
+          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+          title={<Tile.Title>Lenketekst</Tile.Title>}
+          htmlMarkup="a"
+          onClick={onClickMock}
+          href="#"
+        />
+      );
+
+      const tile = screen.getByRole('link', { name: 'Lenketekst' });
+      userEvent.click(tile);
+      expect(onClickMock).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('Når htmlMarkup er button', () => {
+    test('Skal kalles onClick-handler når man klikker på knappen', () => {
+      const onClickMock = jest.fn();
+      render(
+        <Tile
+          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+          title={<Tile.Title>Lenketekst</Tile.Title>}
+          htmlMarkup="button"
+          onClick={onClickMock}
+        />
+      );
+
+      const tile = screen.getByRole('button', { name: 'Lenketekst' });
+      userEvent.click(tile);
+      expect(onClickMock).toHaveBeenCalledTimes(1);
     });
   });
 });

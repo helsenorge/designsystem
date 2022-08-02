@@ -50,6 +50,11 @@ import Tile from '@helsenorge/designsystem-react/components/Tile';
   <Tile fixed icon={<Icon svgIcon={PaperPlane} />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
 `}</MDXCustom.LiveComponent>
 
+### Button
+<MDXCustom.LiveComponent scope={{Tile, Icon, PaperPlane}}>{`
+  <Tile htmlMarkup="button" onClick={() => alert('tile clicked')} icon={<Icon svgIcon={PaperPlane} />} title={<Tile.Title>Inbox</Tile.Title>} description="Messages between you and your health contacts through Helsenorge." />
+`}</MDXCustom.LiveComponent>
+
 ## Bruk
 
 **TODO: Legg til bruk**

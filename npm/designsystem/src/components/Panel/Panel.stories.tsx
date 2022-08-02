@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import Panel, { PanelStatus, PanelVariant } from './Panel';
 import Avatar from '../Avatar';
@@ -174,5 +175,17 @@ export const AvatarAndDetails: ComponentStory<typeof Panel> = () => (
 export const Status: ComponentStory<typeof Panel> = (args: any) => (
   <div style={{ width: '90vw', padding: '1vw', backgroundColor: 'white' }}>
     <Panel status={args.status} statusMessage={args.statusMessage} title={args.title} url={'https://www.helsenorge.no/'} />
+  </div>
+);
+
+export const AsButton: ComponentStory<typeof Panel> = (args: any) => (
+  <div style={{ width: '90vw', padding: '1vw', backgroundColor: 'white' }}>
+    <Panel
+      title={'Medisinsk fødselsregister (MFR)'}
+      icon={<Avatar variant="black">{'Line Danser'}</Avatar>}
+      buttonText="Lenke til mer"
+      buttonOnClick={action('Button clicked!')}
+      buttonHtmlMarkup="button"
+    />
   </div>
 );
