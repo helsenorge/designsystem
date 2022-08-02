@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 
 import panelStyles from './styles.module.scss';
@@ -17,6 +17,7 @@ import Calendar from '../Icons/Calendar';
 import Watch from '../Icons/Watch';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useUuid } from '../../hooks/useUuid';
+import { usePrevious } from '../../hooks/usePrevious';
 import Badge from '../Badge';
 
 export enum PanelStatus {
@@ -89,6 +90,10 @@ export interface PanelProps {
   date?: string;
   /** Removes top border when variant is "line" */
   noTopBorder?: boolean;
+  /** Opens or closes the panel */
+  expanded?: boolean;
+  /** Called when panel is open/closed. */
+  onExpand?: (isExpanded: boolean) => void;
 }
 
 const StatusText: React.FC<{ status?: keyof typeof PanelStatus; statusMessage?: string }> = ({ status, statusMessage }) => {
@@ -149,7 +154,7 @@ const DetailsButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, De
 
   if (renderAsExpander) {
     return (
-      <Button testId="expand" ref={ref} onClick={onClick} {...rest}>
+      <Button testId="expand" ref={ref} onClick={onClick} {...rest} aria-expanded={isExpanded}>
         {isExpanded ? buttonTextClose : buttonText}
         <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} />
       </Button>
@@ -190,12 +195,27 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     noTopBorder,
     buttonOnClick,
     buttonHtmlMarkup,
+    expanded = false,
+    onExpand,
   } = props;
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
+  const previousIsExpanded = usePrevious(isExpanded);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const buttonId = useUuid();
   const breakpoint = useBreakpoint();
+
+  useEffect(() => {
+    if (expanded !== isExpanded) {
+      setIsExpanded(expanded);
+    }
+  }, [expanded]);
+
+  useEffect(() => {
+    if (onExpand && isExpanded !== !!previousIsExpanded) {
+      onExpand(isExpanded);
+    }
+  }, [isExpanded, onExpand]);
 
   const layout3 = [PanelLayout.layout3a.toString(), PanelLayout.layout3b.toString(), PanelLayout.layout3c.toString()].includes(layout);
 

@@ -30,7 +30,7 @@ interface ExpanderProps {
   color?: ExpanderColors;
   /** Adds an icon to the expander trigger. Requires size=ExpanderSize.large. */
   svgIcon?: SvgIcon;
-  /** Adds an icon to the expander trigger */
+  /** Opens or closes the expander */
   expanded?: boolean;
   /** Removes border to the left of the content. Requires size=ExpanderSize.small. */
   noNestedLine?: boolean;

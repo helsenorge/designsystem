@@ -57,6 +57,10 @@ export default {
       control: 'text',
       defaultValue: 'Tid',
     },
+    expanded: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
 } as ComponentMeta<typeof Panel>;
 
@@ -187,5 +191,13 @@ export const AsButton: ComponentStory<typeof Panel> = (args: any) => (
       buttonOnClick={action('Button clicked!')}
       buttonHtmlMarkup="button"
     />
+  </div>
+);
+
+export const WithCallback: ComponentStory<typeof Panel> = (args: any) => (
+  <div style={{ width: '40rem' }}>
+    <Panel {...args} title={'Medisinsk fødselsregister (MFR)'} onExpand={isExpanded => console.log(isExpanded)}>
+      <p>Sjekk nettleserkonsollen</p>
+    </Panel>
   </div>
 );

@@ -160,6 +160,64 @@ describe('Gitt at Panel skal vises', (): void => {
     });
   });
 
+  describe('Gitt at panelet skal vises som ekspandert', (): void => {
+    test('Så vises innholdet ekspandert fra starten av', (): void => {
+      render(
+        <Panel title={'Dette er en tittel'} expanded>
+          <h1>Innhold i panel</h1>
+        </Panel>
+      );
+
+      const button = screen.getAllByTestId('expand')[0];
+      expect(button).toHaveAttribute('aria-expanded', 'true');
+
+      const content = screen.getByRole('heading', { name: 'Innhold i panel' });
+      expect(content).toBeInTheDocument();
+    });
+  });
+
+  describe('Gitt at panelet har onExpand-callback', (): void => {
+    describe('Når man klikker på panelet to ganger', (): void => {
+      test('Så kalles callback først med true og så med false', (): void => {
+        const handleExpand = jest.fn();
+        render(
+          <Panel title={'Dette er en tittel'} onExpand={handleExpand}>
+            <h1>Innhold i panel</h1>
+          </Panel>
+        );
+
+        const button = screen.getAllByTestId('expand')[0];
+
+        userEvent.click(button);
+        userEvent.click(button);
+
+        expect(handleExpand).toHaveBeenCalledTimes(2);
+        expect(handleExpand).toHaveBeenNthCalledWith(1, true);
+        expect(handleExpand).toHaveBeenNthCalledWith(2, false);
+      });
+    });
+  });
+  describe('Gitt at panelet har onExpand-callback og expanded satt til true', (): void => {
+    describe('Når man klikker på panelet én gang', (): void => {
+      test('Så kalles callback først med true og så med false', (): void => {
+        const handleExpand = jest.fn();
+        render(
+          <Panel title={'Dette er en tittel'} onExpand={handleExpand} expanded>
+            <h1>Innhold i panel</h1>
+          </Panel>
+        );
+
+        const button = screen.getAllByTestId('expand')[0];
+
+        userEvent.click(button);
+
+        expect(handleExpand).toHaveBeenCalledTimes(2);
+        expect(handleExpand).toHaveBeenNthCalledWith(1, true);
+        expect(handleExpand).toHaveBeenNthCalledWith(2, false);
+      });
+    });
+  });
+
   describe('Gitt at panelet er button, og container trigger click-event', (): void => {
     test('Så vises detalje-området', (): void => {
       render(
