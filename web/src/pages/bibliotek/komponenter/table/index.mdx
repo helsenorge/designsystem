@@ -36,7 +36,7 @@ import {
   {`
     <Table>
         <TableHead category={HeaderCategory.sortable}>
-          <TableRow key="0">
+          <TableRow rowKey="0">
             <TableHeadCell></TableHeadCell>
             <TableHeadCell sortable sortDir={SortDirection.asc}>Navn</TableHeadCell>
             <TableHeadCell sortable>Beskrivelse</TableHeadCell>           
@@ -44,7 +44,7 @@ import {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow key="1">
+          <TableRow rowKey="1">
             <TableExpanderCell exanded />
             <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
             <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>           
@@ -55,7 +55,7 @@ import {
           <TableExpandedRow expanded numberOfColumns={4} hideDetailsText={"Skjul"}>
             <h3>Innhold i exanded row</h3>
           </TableExpandedRow>
-          <TableRow key="2">
+          <TableRow rowKey="2">
             <TableExpanderCell />
             <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
             <TableCell dataLabel="Beskrivelse">Enda en ganske lang beskrivelse...</TableCell>           

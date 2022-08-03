@@ -8,13 +8,13 @@ describe('Gitt at Tabel skal vises', (): void => {
       const { container } = render(
         <Table smallViewportVariant={SmallViewportVariant.horizontalscroll} testId="test01">
           <TableHead category={HeaderCategory.normal}>
-            <TableRow key="0">
+            <TableRow rowKey="0">
               <TableHeadCell>Navn</TableHeadCell>
               <TableHeadCell>Beskrivelse</TableHeadCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow key="1">
+            <TableRow rowKey="1">
               <TableCell dataLabel="Navn">Hans Nilsen</TableCell>
               <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>
             </TableRow>

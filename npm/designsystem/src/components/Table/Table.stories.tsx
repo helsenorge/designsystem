@@ -44,7 +44,7 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
     <div className="container" style={{ backgroundColor: 'white' }}>
       <Table smallViewportVariant={args.smallViewportVariant}>
         <TableHead category={args.headerCategory}>
-          <TableRow key="head">
+          <TableRow rowKey="head">
             <TableHeadCell>Fastlege</TableHeadCell>
             <TableHeadCell>Fastlegekontor</TableHeadCell>
             <TableHeadCell>Ledige plasser</TableHeadCell>
@@ -54,7 +54,7 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
         <TableBody>
           {data.map((fastlege, i: number) => (
             <>
-              <TableRow key={'row' + i}>{getFastlegeDataCells(fastlege)}</TableRow>
+              <TableRow rowKey={'row' + i}>{getFastlegeDataCells(fastlege)}</TableRow>
             </>
           ))}
         </TableBody>
@@ -89,7 +89,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
     <div className="container" style={{ backgroundColor: 'white' }}>
       <Table smallViewportVariant={SmallViewportVariant.block}>
         <TableHead category={HeaderCategory.sortable}>
-          <TableRow key="head">
+          <TableRow rowKey="head">
             <TableHeadCell />
             <TableHeadCell sortable sortDir={sortColumn === 'Fastlege' ? sortDirection : undefined} onClick={() => clickSort('Fastlege')}>
               Navn, alder og kjønn på fastlegen
@@ -129,7 +129,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
                 expanded={expanded[i]}
                 hideDetailsText="Skjul detaljer"
                 showDetailsText="Vis detaljer"
-                key={'row' + i}
+                rowKey={'row' + i}
               >
                 <TableExpanderCell
                   expanded={expanded[i]}
@@ -181,7 +181,7 @@ export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
     <div className="container" style={{ backgroundColor: 'white' }}>
       <Table smallViewportVariant={SmallViewportVariant.horizontalscroll}>
         <TableHead category={HeaderCategory.normal}>
-          <TableRow key="0">
+          <TableRow rowKey="0">
             <TableHeadCell>Navn</TableHeadCell>
             <TableHeadCell>Beskrivelse</TableHeadCell>
             <TableHeadCell>Mer info</TableHeadCell>
@@ -191,7 +191,7 @@ export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow key="1">
+          <TableRow rowKey="1">
             <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
             <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>
             <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
@@ -205,7 +205,7 @@ export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
               12.12.2020
             </TableCell>
           </TableRow>
-          <TableRow key="2">
+          <TableRow rowKey="2">
             <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
             <TableCell dataLabel="Beskrivelse">Enda en ganske lang beskrivelse...</TableCell>
             <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
@@ -219,7 +219,7 @@ export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
               12.12.2020
             </TableCell>
           </TableRow>
-          <TableRow key="3">
+          <TableRow rowKey="3">
             <TableCell dataLabel="Navn">Ole Nilsen</TableCell>
             <TableCell dataLabel="Beskrivelse" nowrap>
               En-ganske-lang-tekst-uten-noen-mellomrom
