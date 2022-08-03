@@ -19,7 +19,7 @@ export interface Props {
   /** Text for expanded row show button. */
   showDetailsText?: string;
   /** Key attribute for row */
-  key?: string;
+  rowKey?: string;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the cells of the table row element.  */
@@ -27,7 +27,7 @@ export interface Props {
 }
 
 export const TableRow = function TableRow({
-  key,
+  rowKey,
   hideDetailsText,
   showDetailsText,
   expandable,
@@ -72,7 +72,7 @@ export const TableRow = function TableRow({
   }
 
   return (
-    <tr className={tableRowClass} onClick={onClick} key={key}>
+    <tr className={tableRowClass} onClick={onClick} key={rowKey}>
       {children}
       {expandablerButtonMobile}
     </tr>
