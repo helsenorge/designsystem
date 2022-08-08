@@ -92,7 +92,7 @@ const StyledLivePreviewContainer = styled('div')<LivePreviewContainerProps>`
   overflow: auto;
   padding: 1.5rem;
   width: 100%;
-  background-color: ${props => (props.backgroundColor ? props.backgroundColor : '#f9f9f9')};
+  background-color: ${props => (props.backgroundColor ? props.backgroundColor : 'white')};
   border: 2px solid #f1f1f1;
   transition: border 200ms;
   &:hover {

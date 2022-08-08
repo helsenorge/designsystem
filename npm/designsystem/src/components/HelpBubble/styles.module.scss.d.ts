@@ -1,6 +1,7 @@
 export type Styles = {
   anchorlink: string;
   anchorlink__icon: string;
+  'anchorlink-wrapper': string;
   helpbubble: string;
   'helpbubble__child-wrapper': string;
   'helpbubble__child-wrapper--no-close-button': string;

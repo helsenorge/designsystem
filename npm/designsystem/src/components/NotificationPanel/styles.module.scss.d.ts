@@ -1,6 +1,7 @@
 export type Styles = {
   anchorlink: string;
   anchorlink__icon: string;
+  'anchorlink-wrapper': string;
   'fluid-wrapper': string;
   'fluid-wrapper--alert': string;
   'fluid-wrapper--crisis': string;

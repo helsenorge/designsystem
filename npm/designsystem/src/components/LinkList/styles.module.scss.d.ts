@@ -4,6 +4,7 @@ export type Styles = {
   'link-list__anchor--banana': string;
   'link-list__anchor--black': string;
   'link-list__anchor--blueberry': string;
+  'link-list__anchor--button': string;
   'link-list__anchor--cherry': string;
   'link-list__anchor--kiwi': string;
   'link-list__anchor--large': string;

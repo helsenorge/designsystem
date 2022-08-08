@@ -10,10 +10,13 @@ export type Styles = {
   'expander-list-link__main-content--expanded': string;
   'expander-list-link__main-content--padding': string;
   'expander-list-link__title': string;
+  'expander-list-link__title--jsx': string;
+  'expander-list-link__title--string': string;
   'expander-list-link--banana': string;
   'expander-list-link--blueberry': string;
   'expander-list-link--cherry': string;
   'expander-list-link--closed': string;
+  'expander-list-link--jsx': string;
   'expander-list-link--kiwi': string;
   'expander-list-link--large': string;
   'expander-list-link--neutral': string;

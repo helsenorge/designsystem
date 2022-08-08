@@ -4,6 +4,7 @@ export type Styles = {
   tile__title: string;
   'tile__title--compact': string;
   'tile__title--highlighted': string;
+  'tile--button': string;
   'tile--compact': string;
   'tile--fixed': string;
   'tile--highlighted': string;
