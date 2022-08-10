@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at HorizontalScroll skal rendres Når HorizontalScroll skal vises vanlig Så rendres HorizontalScroll riktig 1`] = `
+<div>
+  <div
+    class="horizontalscroll"
+  >
+    <div
+      class="horizontalscroll__viewport"
+    >
+      <div
+        class="horizontalscroll__indicator horizontalscroll__indicator--left horizontalscroll__indicator--visible"
+      />
+      <div
+        class="horizontalscroll__indicator horizontalscroll__indicator--right horizontalscroll__indicator--visible"
+      />
+      <div />
+      Teksten sin
+      <div />
+    </div>
+  </div>
+</div>
+`;

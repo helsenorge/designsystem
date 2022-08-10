@@ -19,6 +19,7 @@ import {
 } from './';
 import Icon from '../Icons';
 import VerticalDots from '../Icons/VerticalDots';
+import { loremText } from '../../utils/loremtext';
 
 export default {
   title: 'Components/Table',
@@ -42,7 +43,7 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
 
   return (
     <div className="container" style={{ backgroundColor: 'white' }}>
-      <Table smallViewportVariant={args.smallViewportVariant}>
+      <Table smallViewportVariant={args.viewportVariant}>
         <TableHead category={args.headerCategory}>
           <TableRow rowKey="head">
             <TableHeadCell>Fastlege</TableHeadCell>
@@ -59,6 +60,34 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
           ))}
         </TableBody>
       </Table>
+    </div>
+  );
+};
+
+export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
+  const data = getFastlegeData(SortDirection.asc, '');
+
+  return (
+    <div style={{ width: '20rem' }}>
+      <p>{loremText}</p>
+      <Table smallViewportVariant={SmallViewportVariant.horizontalscroll}>
+        <TableHead category={args.headerCategory}>
+          <TableRow key="head">
+            <TableHeadCell>Fastlege</TableHeadCell>
+            <TableHeadCell>Fastlegekontor</TableHeadCell>
+            <TableHeadCell>Ledige plasser</TableHeadCell>
+            <TableHeadCell>Antall på venteliste</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((fastlege, i: number) => (
+            <>
+              <TableRow key={'row' + i}>{getFastlegeDataCells(fastlege)}</TableRow>
+            </>
+          ))}
+        </TableBody>
+      </Table>
+      <p>{loremText}</p>
     </div>
   );
 };
@@ -92,7 +121,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
           <TableRow rowKey="head">
             <TableHeadCell />
             <TableHeadCell sortable sortDir={sortColumn === 'Fastlege' ? sortDirection : undefined} onClick={() => clickSort('Fastlege')}>
-              Navn, alder og kjønn på fastlegen
+              Navn, alder og kjønn på fastlegenfastlegenfastlegenfastlegenfastlegenfastlegenfastlegenfastlegen
             </TableHeadCell>
             <TableHeadCell
               sortable
@@ -275,7 +304,9 @@ function getFastlegeDataCells(fastlege: FastlegeAvtale): React.ReactNode {
         <br />
         {fastlege.Fastlege.Alder + ' år, ' + fastlege.Fastlege.Kjonn}{' '}
       </TableCell>
-      <TableCell dataLabel="Fastlegekontor">{fastlege.Legekontor.Navn + ', ' + fastlege.Legekontor.Adresse}</TableCell>
+      <TableCell dataLabel="Fastlegekontor">
+        {fastlege.Legekontor.Navn + ', ' + fastlege.Legekontor.Adresse}fastlegenfastlegenfastlegenfastlegenfastlegenfastlegenfastlegen
+      </TableCell>
       <TableCell dataLabel="Ledige plasser">{fastlege.LedigePlasser + ' av ' + fastlege.AntallPlasser}</TableCell>
       <TableCell dataLabel="Antall på venteliste">
         {fastlege.AntallPaVenteliste > 0 ? fastlege.AntallPaVenteliste : 'Har ikke venteliste'}

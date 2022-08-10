@@ -73,6 +73,46 @@ import {
 
 \*\*TODO: Legg til eksempel for sortering og ekspanderende rad (hvis det er behov for å vise dette)
 
+## Horizontal scroll
+
+<MDXCustom.LiveComponent
+  fullWidth
+  scope={{ Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, TextAlign, TableExpanderCell, TableExpandedRow, SortDirection, HeaderCategory }}
+>
+  {`
+    <Table viewportVariant={"horizontalscroll"}>
+        <TableHead category={HeaderCategory.sortable}>
+          <TableRow key="0">
+            <TableHeadCell></TableHeadCell>
+            <TableHeadCell sortable sortDir={SortDirection.asc}>Navn</TableHeadCell>
+            <TableHeadCell sortable>Beskrivelse</TableHeadCell>           
+            <TableHeadCell sortable>Dato</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow key="1">
+            <TableExpanderCell exanded />
+            <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
+            <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>           
+            <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
+              12.12.2020
+            </TableCell>
+          </TableRow>
+          <TableExpandedRow expanded numberOfColumns={4} hideDetailsText={"Skjul"}>
+            <h3>Innhold i exanded row</h3>
+          </TableExpandedRow>
+          <TableRow key="2">
+            <TableExpanderCell />
+            <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
+            <TableCell dataLabel="Beskrivelse">Enda en ganske lang beskrivelse...</TableCell>           
+            <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
+              12.12.2020
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>`}
+</MDXCustom.LiveComponent>
+
 ## Bruk
 
 **TODO: Legg til bruk**

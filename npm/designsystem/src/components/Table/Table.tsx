@@ -4,9 +4,16 @@ import classNames from 'classnames';
 import tableStyles from './styles.module.scss';
 
 import { AnalyticsId } from '../../constants';
+import HorizontalScroll from '../HorizontalScroll';
 
 export enum SmallViewportVariant {
+  /**
+   * Show horizontal scrollbar when table is too big for the screen
+   */
   horizontalscroll = 'horizontalscroll',
+  /**
+   * Collapse to two columns on small screens
+   */
   block = 'block',
 }
 
@@ -23,7 +30,13 @@ export interface Props {
   children: React.ReactNode;
 }
 
-export const Table = function Table({ id, testId, className, children, smallViewportVariant = SmallViewportVariant.block }: Props) {
+export const Table = function Table({
+  id,
+  testId,
+  className,
+  children,
+  smallViewportVariant = SmallViewportVariant.horizontalscroll,
+}: Props) {
   const tableClass = classNames(
     tableStyles['table'],
     { [tableStyles['table--collapse2col']]: smallViewportVariant === SmallViewportVariant.block },
@@ -31,9 +44,11 @@ export const Table = function Table({ id, testId, className, children, smallView
   );
 
   return (
-    <table className={tableClass} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Table}>
-      {children}
-    </table>
+    <HorizontalScroll>
+      <table className={tableClass} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Table}>
+        {children}
+      </table>
+    </HorizontalScroll>
   );
 };
 
