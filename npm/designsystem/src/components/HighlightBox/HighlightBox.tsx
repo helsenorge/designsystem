@@ -64,7 +64,8 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
     styles['highlightbox'],
     styles[`highlightbox--${color}`],
     styles[`highlightbox--${size}`],
-    svgIcon && styles['highlightbox--has-icon']
+    svgIcon && styles['highlightbox--has-icon'],
+    { container: size === 'medium' || size === 'large' }
   );
 
   const renderContent = () => {

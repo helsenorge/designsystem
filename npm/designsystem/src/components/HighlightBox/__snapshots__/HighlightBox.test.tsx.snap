@@ -15,7 +15,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som flui
 exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som large Så rendres HighlightBox riktig 1`] = `
 <div>
   <div
-    class="highlightbox highlightbox--blueberry highlightbox--large"
+    class="highlightbox highlightbox--blueberry highlightbox--large container"
   >
     <div
       class="highlightbox__row"
@@ -48,7 +48,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som larg
 exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som medium Så rendres HighlightBox riktig 1`] = `
 <div>
   <div
-    class="highlightbox highlightbox--blueberry highlightbox--medium"
+    class="highlightbox highlightbox--blueberry highlightbox--medium container"
   >
     <div
       class="highlightbox__row"

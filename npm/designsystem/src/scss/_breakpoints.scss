@@ -2,6 +2,8 @@
 
 $grid-gutter-width: map-get($spacers, 5);
 
+$grid-columns: 12;
+
 $grid-breakpoints: (
   xxs: 0,
   xs: 360px,

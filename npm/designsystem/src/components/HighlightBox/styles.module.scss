@@ -11,8 +11,6 @@
   // slik at bakgrunnsfargen ikke går helt ut i kantene
   &--medium,
   &--large {
-    @include make-container();
-    @include make-container-max-widths();
     @each $color in $colors {
       &#{$box}--#{$color} {
         #{$box}__content-wrapper {
