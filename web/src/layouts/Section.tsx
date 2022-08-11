@@ -5,6 +5,7 @@ import { Grid } from '@shared/CustomizedGrid';
 interface SectionProps {
   children?: React.ReactNode;
   color?: string;
+  fluid?: boolean;
 }
 
 const StyledSection = styled(Grid)<{ color: string }>`
@@ -12,10 +13,10 @@ const StyledSection = styled(Grid)<{ color: string }>`
 `;
 
 function Section(props: SectionProps) {
-  const { children, color = 'white' } = props;
+  const { children, color = 'white', fluid = false } = props;
   return (
     <StyledSection color={color} fluid>
-      <Grid padding={1.5}>{children}</Grid>
+      <Grid fluid={fluid}>{children}</Grid>
     </StyledSection>
   );
 }
