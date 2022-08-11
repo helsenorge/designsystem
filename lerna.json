@@ -9,7 +9,6 @@
 			"npmClient": "npm"
 		},
 		"version": {
-			"push": false,
 			"allowBranch": [
 				"master"
 			]
