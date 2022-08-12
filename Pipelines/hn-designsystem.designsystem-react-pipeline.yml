@@ -103,7 +103,7 @@ stages:
               customCommand: "run copy:libnpmjs"
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')))
 
           # Run Code Analysis task
           - task: SonarQubeAnalyze@4
@@ -154,3 +154,49 @@ stages:
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')))
+
+          - task: Npm@1
+            displayName: "build storybook"
+            inputs:
+              command: custom
+              workingDir: npm/designsystem
+              customCommand: "run build-storybook"
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              in(variables['Build.SourceBranch'], 'refs/heads/master', 'refs/heads/feature/next'))
+
+          - task: Npm@1
+            displayName: "deploy storybook (master)"
+            inputs:
+              command: custom
+              workingDir: $(working_directory)
+              customCommand: "run deploy:storybook"
+            env:
+              NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+          - task: Npm@1
+            displayName: "deploy storybook (next)"
+            inputs:
+              command: custom
+              workingDir: $(working_directory)
+              customCommand: "run deploy:storybook:next"
+            env:
+              NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              eq(variables['Build.SourceBranch'], 'refs/heads/feature/next'))
+
+          - task: Npm@1
+            displayName: "deploy documentation (master)"
+            inputs:
+              command: custom
+              workingDir: $(working_directory)
+              customCommand: "run deploy:documentation"
+            env:
+              NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              eq(variables['Build.SourceBranch'], 'refs/heads/master'))

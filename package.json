@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci",
-    "bootstrap:ci": "lerna bootstrap",
+    "bootstrap:ci": "lerna bootstrap --ci",
     "build": "lerna run build",
     "lint": "lerna run lint",
     "test": "lerna run test",
@@ -27,18 +27,22 @@
     "validate": "lerna run validate",
     "clean:npm": "npm-run-all clean:packages clean:root",
     "clean:packages": "lerna clean --yes",
+    "deploy:documentation": "netlify deploy --site 3eb86f35-9926-4654-8937-33464387f516 --dir web/public --prod",
+    "deploy:storybook": "netlify deploy --site 69e5c387-fee4-47d2-9498-67068981bee7 --dir npm/designsystem/dist --prod",
+    "deploy:storybook:next": "netlify deploy --site 69e5c387-fee4-47d2-9498-67068981bee7 --dir npm/designsystem/dist --alias next",
     "clean:root": "rimraf node_modules"
   },
   "dependencies": {
     "eslint": "8.9.0",
     "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.28.0",
     "fs-extra": "^10.0.0",
     "husky": "^4.3.8",
     "lerna": "^4.0.0",
     "lint-staged": "^9.5.0",
+    "netlify-cli": "^10.17.1",
     "npm-run-all": "4.1.5",
     "rimraf": "^3.0.0",
     "typescript": "~4.2.4"
