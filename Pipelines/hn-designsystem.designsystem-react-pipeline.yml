@@ -9,6 +9,9 @@ trigger:
     include:
       - master
       - feature/*
+  tags:
+    include:
+      - "v*"
 
 pool:
   name: Helsenorge_LinuxScaleSetAgents
