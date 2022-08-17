@@ -8,6 +8,8 @@ $gradient: rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.27) 18%, transparent;
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
+    // overflow-settingene har en tendens til å klippe 1px av innholdet
+    padding: 1px;
   }
   &__indicator {
     position: fixed;
