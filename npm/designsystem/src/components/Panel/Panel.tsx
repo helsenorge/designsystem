@@ -234,6 +234,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel--status']]: status && status !== PanelStatus.normal,
     [panelStyles['panel--with-icon']]: icon,
     [panelStyles['panel--button']]: containerAsButton,
+    [panelStyles['panel--clickable']]: children || url || onExpand || buttonOnClick || containerAsButton,
   });
 
   const panelContainer = classNames({
@@ -270,9 +271,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel-content-b--layout3']]: layout3,
   });
 
-  const panelActionBtnClass = classNames(panelStyles['panel__details-btn'], {
-    [panelStyles['panel__details-btn--pull-right']]: contentB,
-  });
+  const panelActionBtnClass = classNames(panelStyles['panel__details-btn']);
 
   const renderDetailsButton = (tabable: boolean = true, id?: string): JSX.Element => {
     const btnProps = {
@@ -366,7 +365,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
       {children && (
         <div className={panelDetailsClasses} data-testid="panel-details">
           <div>{children}</div>
-          {showCloseButtonInExpand && renderDetailsButton()}
+          {showCloseButtonInExpand && <div className={panelActionBtnClass}>{renderDetailsButton()}</div>}
         </div>
       )}
     </div>

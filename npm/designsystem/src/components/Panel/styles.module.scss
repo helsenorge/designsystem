@@ -25,11 +25,22 @@
   }
 }
 
+@mixin hover-and-focus-effects($background-color, $box-shadow-color) {
+  &:hover {
+    background-color: $background-color;
+  }
+
+  &:focus {
+    box-shadow: inset 0px 0px 0px 3px $box-shadow-color;
+  }
+}
+
 .panel {
   @include panel-padding;
   outline: none;
   position: relative;
   width: 100%;
+  box-sizing: border-box;
 
   &__container {
     @media (min-width: map-get($grid-breakpoints, sm)) {
@@ -112,7 +123,6 @@
     flex-direction: column;
     @media (min-width: map-get($grid-breakpoints, lg)) {
       align-self: end;
-      max-width: 300px;
     }
 
     &--layout3 {
@@ -129,7 +139,8 @@
   }
 
   &__details-btn {
-    &--pull-right {
+
+    @media (min-width: map-get($grid-breakpoints, lg)) {
       align-self: end;
     }
   }
@@ -138,19 +149,13 @@
 
   &--fill {
     background-color: $neutral50;
-
-    &:hover {
-      background-color: $neutral100;
-    }
-
-    &:focus {
-      box-shadow: inset 0px 0px 0px 3px $neutral600;
-    }
   }
 
-  &--selected#{&}--fill {
+  &--fill#{&}--selected {
     background-color: $neutral100;
-    border-bottom: 0;
+  }
+
+  &--fill#{&}--selected#{&}--clickable {
     &:hover {
       background-color: $neutral200;
     }
@@ -158,32 +163,25 @@
 
   &--white {
     background-color: $white;
-    &:hover {
-      background-color: $neutral100;
-    }
-    &:focus {
-      box-shadow: inset 0px 0px 0px 3px $neutral600;
-    }
   }
 
-  &--selected#{&}--white {
+  &--fill#{&}--clickable,
+  &--white#{&}--clickable {
+    @include hover-and-focus-effects($neutral100, $neutral600);
+  }
+
+  &--white#{&}--selected {
     box-shadow: inset 0px 0px 0px 6px $neutral100;
-    &:hover {
-      background-color: $neutral100;
-    }
-    &:focus {
-      box-shadow: inset 0px 0px 0px 3px $neutral600;
-    }
   }
 
   &--stroke {
     border: 6px solid $neutral100;
-    &:hover {
-      background-color: $neutral50;
-    }
+  }
+
+  &--stroke#{&}--clickable {
+    @include hover-and-focus-effects($neutral50, $neutral100);
     &:focus {
       border-color: $neutral600;
-      box-shadow: inset 0px 0px 0px 3px $neutral100;
     }
   }
 
@@ -192,22 +190,23 @@
     border-color: $neutral500;
     border-top: 1px solid;
     border-bottom: 1px solid;
-    &:hover {
-      background-color: $neutral50;
-    }
-    &:focus {
-      border-color: transparent;
-      box-shadow: inset 0px 0px 0px 3px $neutral600;
-    }
   }
 
-  &--selected#{&}--line {
+  &--line#{&}--clickable {
+    @include hover-and-focus-effects($neutral50, $neutral600);
+  }
+
+  &--line#{&}--selected {
     background-color: $neutral50;
     border-bottom: 0;
+  }
+
+  &--line#{&}--selected#{&}--clickable {
     &:hover {
       background-color: $neutral100;
     }
   }
+
   &--no-top-border#{&}--line {
     border-top: none;
   }
@@ -254,7 +253,8 @@
   @include panel-padding;
 
   &--open {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
   &--line {
     background: $white;

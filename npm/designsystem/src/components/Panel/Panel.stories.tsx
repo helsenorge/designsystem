@@ -201,3 +201,9 @@ export const WithCallback: ComponentStory<typeof Panel> = (args: any) => (
     </Panel>
   </div>
 );
+
+export const NotClickable: ComponentStory<typeof Panel> = (args: any) => (
+  <div style={{ width: '40rem' }}>
+    <Panel {...args} title={'Medisinsk fødselsregister (MFR)'}></Panel>
+  </div>
+);
