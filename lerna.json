@@ -11,7 +11,8 @@
 		"version": {
 			"allowBranch": [
 				"master"
-			]
+			],
+			"ignoreChanges": ["CHANGELOG.md"]
 		},
 		"publish": {
 			"scope": "@helsenorge/*",

@@ -30,9 +30,15 @@
     "deploy:documentation": "netlify deploy --site 3eb86f35-9926-4654-8937-33464387f516 --dir web/public --prod",
     "deploy:storybook": "netlify deploy --site 69e5c387-fee4-47d2-9498-67068981bee7 --dir npm/designsystem/dist --prod",
     "deploy:storybook:next": "netlify deploy --site 69e5c387-fee4-47d2-9498-67068981bee7 --dir npm/designsystem/dist --alias next",
-    "clean:root": "rimraf node_modules"
+    "clean:root": "rimraf node_modules",
+    "postversion": "npm run changelog",
+    "changelog": "conventional-changelog --config changelog.config.js --infile CHANGELOG.md --same-file --release-count 0 --skip-unstable --tag-prefix v --outputUnreleased false",
+    "postchangelog": "git commit --include CHANGELOG.md -m \"docs: oppdater CHANGELOG\""
   },
   "dependencies": {
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-conventional": "17.0.3",
+    "conventional-changelog-cli": "2.2.2",
     "eslint": "8.9.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-html": "^6.2.0",
