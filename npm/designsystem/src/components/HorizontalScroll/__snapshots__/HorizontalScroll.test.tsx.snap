@@ -9,10 +9,10 @@ exports[`Gitt at HorizontalScroll skal rendres Når HorizontalScroll skal vises 
       class="horizontalscroll__viewport"
     >
       <div
-        class="horizontalscroll__indicator horizontalscroll__indicator--left horizontalscroll__indicator--visible"
+        class="horizontalscroll__indicator horizontalscroll__indicator--left"
       />
       <div
-        class="horizontalscroll__indicator horizontalscroll__indicator--right horizontalscroll__indicator--visible"
+        class="horizontalscroll__indicator horizontalscroll__indicator--right"
       />
       <div />
       Teksten sin
