@@ -16,6 +16,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som larg
 <div>
   <div
     class="highlightbox highlightbox--blueberry highlightbox--large container"
+    data-testid="highlightbox-wrapper"
   >
     <div
       class="highlightbox__row"
@@ -49,6 +50,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som medi
 <div>
   <div
     class="highlightbox highlightbox--blueberry highlightbox--medium container"
+    data-testid="highlightbox-wrapper"
   >
     <div
       class="highlightbox__row"

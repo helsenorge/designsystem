@@ -31,6 +31,8 @@ interface HighlightBoxProps {
   svgIcon?: SvgIcon;
   /** Changes the underlying element. Default: div */
   htmlMarkup?: HighlightBoxTags;
+  /** Adds custom classes to the element. */
+  className?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -41,7 +43,7 @@ interface WrapperProps {
 }
 
 const Wrapper: React.FC<WrapperProps> = ({ className, size, children }) => (
-  <div className={className}>
+  <div className={className} data-testid={'highlightbox-wrapper'}>
     <div className={styles.highlightbox__row}>
       <div className={classNames(styles.highlightbox__col, size === HighlightBoxSize.medium && styles['highlightbox__col--offset'])}>
         {children}
@@ -57,7 +59,7 @@ const ContentWrapper: React.FC = ({ children }) => (
 );
 
 const HighlightBox: React.FC<HighlightBoxProps> = props => {
-  const { children, color = 'white', size = HighlightBoxSize.medium, testId, svgIcon, htmlMarkup = 'div' } = props;
+  const { children, color = 'white', size = HighlightBoxSize.medium, testId, svgIcon, htmlMarkup = 'div', className } = props;
   const breakpoint = useBreakpoint();
 
   const containerClassName = classNames(
@@ -65,7 +67,8 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
     styles[`highlightbox--${color}`],
     styles[`highlightbox--${size}`],
     svgIcon && styles['highlightbox--has-icon'],
-    { container: size === 'medium' || size === 'large' }
+    { container: size === 'medium' || size === 'large' },
+    className
   );
 
   const renderContent = () => {

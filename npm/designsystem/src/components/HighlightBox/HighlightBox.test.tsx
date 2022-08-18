@@ -85,4 +85,28 @@ describe('Gitt at HighlightBox skal rendres', (): void => {
       expect(icon).toBeInTheDocument();
     });
   });
+  describe('Når HighlightBox skal vises med custom className', (): void => {
+    test('Så er className med', (): void => {
+      render(
+        <HighlightBox className="test-av-custom-classname">
+          <h1>Jeg er en tittel</h1>
+        </HighlightBox>
+      );
+
+      const box = screen.getByTestId('highlightbox-wrapper');
+      expect(box).toHaveClass('test-av-custom-classname');
+    });
+  });
+  describe('Når HighlightBox skal vises som fluid med custom className', (): void => {
+    test('Så er className med', (): void => {
+      render(
+        <HighlightBox className="test-av-custom-classname" size={'fluid'} testId="fluid-highlightbox">
+          <h1>Jeg er en tittel</h1>
+        </HighlightBox>
+      );
+
+      const box = screen.getByTestId('fluid-highlightbox');
+      expect(box).toHaveClass('test-av-custom-classname');
+    });
+  });
 });
