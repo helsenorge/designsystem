@@ -73,6 +73,22 @@ stages:
               workingDir: $(working_directory)
               customCommand: "run bootstrap:ci"
 
+          - task: Npm@1
+            displayName: "npm audit (prod)"
+            inputs:
+              command: custom
+              workingDir: npm/designsystem
+              customCommand: "audit --registry=https://registry.npmjs.org/ --only=prod --audit-level=moderate --package-lock-only"
+            continueOnError: true
+
+          - task: Npm@1
+            displayName: "npm audit"
+            inputs:
+              command: custom
+              workingDir: npm/designsystem
+              customCommand: "audit --registry=https://registry.npmjs.org/ --audit-level=high --package-lock-only"
+            continueOnError: true
+
           # Lint commit message
           - bash: |
               PR_TITLE="$(curl --silent -u azdo:$SYSTEM_ACCESSTOKEN \
