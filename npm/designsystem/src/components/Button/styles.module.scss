@@ -1,490 +1,307 @@
 @import '../../scss/_spacers.scss';
 @import '../../scss/_breakpoints.scss';
 @import '../../scss/_palette.scss';
+@import '../../scss/_font-settings.scss';
+@import '~bootstrap/scss/mixins/_screen-reader.scss';
 
-$primaryHoverColor: #08667c0d; //$blueberry700 + '0D';
-$warningHoverColor: #ab7c000d; //$banana700 + '0D';
-$dangerHoverColor: #a31f0e0d; //$cherry700 + '0D';
-$invertedHoverColor: #ffffff0d; //$white + '0D';
+$dark-mode-disabled-transparrent: #ffffffb3;
 
-@mixin disabled-button {
-  pointer-events: none;
-  background-color: $neutral200;
-  border: 0.125rem solid $neutral200;
-  box-shadow: 0 0 0 0.25rem $neutral200;
-  color: $neutral600;
+$with-icons: 
+// icon-class, size-class, padding-left, padding-right, padding-left desktop, padding-right desktop, svg-margin-left, svg-margin-right, svg-margin-left desktop, svg-margin-right desktop
+  'left-icon' 'normal' getSpacer(4xs) getSpacer(xs) getSpacer(xs) getSpacer(m) 0 getSpacer(3xs) 0 getSpacer(2xs),
+  'right-icon' 'normal' getSpacer(xs) getSpacer(4xs) getSpacer(m) getSpacer(xs) getSpacer(3xs) 0 getSpacer(2xs) 0,
+  'left-icon' 'large' getSpacer(xs) getSpacer(m) getSpacer(s) getSpacer(l) 0 getSpacer(2xs) 0 getSpacer(xs),
+  'right-icon' 'large' getSpacer(m) getSpacer(xs) getSpacer(l) getSpacer(s) getSpacer(2xs) 0 getSpacer(xs) 0,
+  'only-icon' 'normal' 0.062rem 0.062rem 0.375rem 0.375rem 0 0 0 0,
+  'only-icon' 'large' 0.312rem 0.312rem getSpacer(3xs) getSpacer(3xs) 0 0 0 0;
+
+@mixin on-dark {
+  &--on-dark {
+    background-color: $white;
+
+    &:hover {
+      box-shadow: none;
+    }
+    &:hover,
+    :focus > & {
+      background-color: $blueberry50;
+    }
+    :focus > & {
+      box-shadow: 0 0 0 getSpacer(3xs) $white;
+
+      &:hover {
+        background-color: $white;
+      }
+    }
+
+    :disabled > & {
+      background-color: $dark-mode-disabled-transparrent;
+    }
+  }
+  &--on-dark#{&}--outline,
+  &--on-dark#{&}--borderless {
+    background-color: transparent;
+
+    &:hover {
+      background-color: $inverted-hover;
+    }
+  }
+  &--on-dark#{&}--outline {
+    outline-color: $white;
+
+    :disabled > & {
+      @media (min-width: map-get($grid-breakpoints, sm)) {
+        outline-color: $dark-mode-disabled-transparrent;
+      }
+    }
+  }
+  &--on-dark#{&}--borderless {
+    :disabled > & {
+      border-color: $dark-mode-disabled-transparrent;
+    }
+  }
+
+  &--on-dark &__text {
+    color: $blueberry600;
+
+    :disabled > & {
+      color: $neutral700;
+    }
+  }
+  &--on-dark#{&}--outline &__text,
+  &--on-dark#{&}--borderless &__text {
+    color: $white;
+
+    :disabled > & {
+      @media (min-width: map-get($grid-breakpoints, sm)) {
+        color: $dark-mode-disabled-transparrent;
+      }
+    }
+  }
 }
 
-.content-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: inherit;
-  height: 100%;
-  &:focus {
-    border-bottom: 1px solid $white;
+// UU krav om klikkbart område er 48x48px, button-wrapper fyller de manglende 8px i høyden på mobilskjerm (synlig button er 40px høy)
+.button-wrapper {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  padding: getSpacer(2xs) 0;
+
+  @media (min-width: map-get($grid-breakpoints, sm)) {
+    padding: 0;
+  }
+
+  &--fluid {
+    width: 100%;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 
 .button {
-  // Referanse for grandparent selection i underklassene lenger nede
-  $button: &;
-
-  padding: 0 1.5rem;
-  min-height: 2.5rem;
-  font-size: 1.125rem;
-  font-family: inherit;
-  font-weight: 600;
   display: inline-flex;
+  background-color: $blueberry500;
+  padding: 0 getSpacer(m);
+  font-size: $font-size-sm;
+  font-weight: 600;
+  font-family: inherit;
   align-items: center;
+  width: 100%;
+  min-height: 2.5rem;
   box-sizing: border-box;
   text-decoration: none;
   outline: none;
   border: 0;
   letter-spacing: unset;
-  cursor: pointer;
 
-  &:disabled {
+  &:hover {
+    background-color: $blueberry700;
+    box-shadow: 0 0 0 getSpacer(3xs) $blueberry700;
+  }
+
+  :disabled > & {
     pointer-events: none;
+    outline: getSpacer(4xs) dashed $neutral700;
+    outline-offset: getSpacer(4xs) * -1;
+    background-color: $neutral200;
+  }
+  :disabled > & &__text {
+    color: $neutral800;
   }
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map-get($grid-breakpoints, sm)) {
     min-height: 3.125rem;
-    font-size: 1.25rem;
-    padding: 0 2.5rem;
-  }
-
-  &--fluid {
-    width: 100%;
-    padding: 0;
+    padding: 0 getSpacer(l);
+    font-size: $font-size-md;
   }
 
   &--large {
-    min-height: 3.5rem;
-    font-size: 1.125rem;
+    min-height: 3.625rem;
+    padding: 0 getSpacer(l);
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map-get($grid-breakpoints, sm)) {
       min-height: 4.5rem;
     }
   }
 
-  &--fill {
-    border-width: 0.125rem;
-    border-style: solid;
-    background-color: $blueberry500;
-    border-color: $blueberry500;
-    color: $white;
+  &--arrow {
+    padding-left: getSpacer(s);
+    padding-right: getSpacer(xs);
 
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: $blueberry700;
-      box-shadow: 0 0 0 0.25rem $blueberry700;
-      border-color: transparent;
-    }
-    &:disabled {
-      @include disabled-button();
+    @media (min-width: map-get($grid-breakpoints, sm)) {
+      padding-left: getSpacer(m);
+      padding-right: getSpacer(m);
     }
   }
-  &--fill#{&}--warning {
-    background-color: $banana500;
-    border-color: $banana500;
 
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: $banana700;
-      border-color: $banana700;
-      box-shadow: 0 0 0 0.25rem $banana700;
-    }
-    &:disabled {
-      @include disabled-button();
+  @each $icon-class, $size-class, $pl, $pr, $pld, $prd, $svgml, $svgmr, $svgmld, $svgmrd in $with-icons {
+    &--#{$icon-class}#{&}--#{$size-class} {
+      padding-left: $pl;
+      padding-right: $pr;
+
+      @media (min-width: map-get($grid-breakpoints, sm)) {
+        padding-left: $pld;
+        padding-right: $prd;
+      }
+
+      svg:not(.button__arrow) {
+        margin-left: $svgml;
+        margin-right: $svgmr;
+
+        @media (min-width: map-get($grid-breakpoints, sm)) {
+          margin-left: $svgmld;
+          margin-right: $svgmrd;
+        }
+      }
     }
   }
-  &--fill#{&}--danger {
+
+  &__arrow {
+    margin-left: getSpacer(m);
+
+    @media (min-width: map-get($grid-breakpoints, sm)) {
+      margin-left: getSpacer(l);
+    }
+  }
+  &--large &__arrow {
+    margin-left: getSpacer(l);
+
+    @media (min-width: map-get($grid-breakpoints, sm)) {
+      margin-left: getSpacer(xl);
+    }
+  }
+
+  &--destructive {
     background-color: $cherry500;
-    border-color: $cherry500;
 
-    &:hover,
-    &:active,
-    &:focus {
+    &:hover {
       background-color: $cherry700;
-      border-color: $cherry700;
-      box-shadow: 0 0 0 0.25rem $cherry700;
-    }
-    &:disabled {
-      @include disabled-button();
+      box-shadow: 0 0 0 getSpacer(3xs) $cherry700;
     }
   }
-  &--fill#{&}--inverted {
-    background-color: $white;
-    border-color: $white;
-    color: $blueberry500;
 
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: $white;
-      border-color: $white;
-      box-shadow: 0 0 0 0.25rem $white;
+  &--outline,
+  &--borderless {
+    background-color: transparent;
+
+    &:hover {
+      background-color: $blueberry50;
     }
-    &:disabled {
-      @include disabled-button();
+    :disabled > & {
+      background-color: transparent;
     }
-  }
-  &--fill#{&}--warning#{&}--inverted {
-    color: $banana500;
-  }
-  &--fill#{&}--danger#{&}--inverted {
-    color: $cherry500;
   }
 
   &--outline {
-    border-width: 0.125rem;
-    border-style: solid;
-    background-color: transparent;
-    border-color: $blueberry500;
-    color: $blueberry600;
-    position: relative;
+    outline: getSpacer(4xs) solid $blueberry700;
+    outline-offset: getSpacer(4xs) * -1;
 
-    &:before {
-      content: ' ';
-      position: absolute;
-      top: -0.25rem;
-      left: -0.25rem;
-      right: -0.25rem;
-      bottom: -0.25rem;
-      border: 0.125rem solid transparent;
-    }
-    &:after {
-      content: ' ';
-      position: absolute;
-      top: -0.375rem;
-      left: -0.375rem;
-      right: -0.375rem;
-      bottom: -0.375rem;
-      border: 0.125rem solid transparent;
+    &:hover {
+      color: $blueberry700;
+      outline: getSpacer(4xs) solid $blueberry50;
+      outline-offset: 0;
+      box-shadow: 0 0 0 getSpacer(3xs) $blueberry700;
     }
 
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: $primaryHoverColor;
-      border-color: transparent;
-      &:before {
-        border: 0.125rem solid $primaryHoverColor;
-      }
-      &:after {
-        border: 0.125rem solid $blueberry700;
-      }
-    }
-    &:disabled {
-      background-color: transparent;
-      border: 0.125rem solid $neutral200;
-      color: $neutral600;
+    :disabled > & {
+      outline-color: $neutral700;
 
-      &:before {
-        border: none;
-      }
-
-      &:after {
-        border: none;
-      }
-    }
-  }
-  &--outline#{&}--warning {
-    border-color: $banana500;
-    color: $banana600;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: $warningHoverColor;
-      border-color: transparent;
-
-      &:before {
-        border-color: $warningHoverColor;
-      }
-      &:after {
-        border-color: $banana700;
-      }
-    }
-    &:disabled {
-      border: 0.125rem solid $neutral200;
-    }
-  }
-  &--outline#{&}--danger {
-    border-color: $cherry500;
-    color: $cherry600;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: $dangerHoverColor;
-      border-color: transparent;
-
-      &:before {
-        border-color: $dangerHoverColor;
-      }
-      &:after {
-        border-color: $cherry700;
-      }
-    }
-    &:disabled {
-      border: 0.125rem solid $neutral200;
-    }
-  }
-  &--outline#{&}--inverted {
-    border-color: $white;
-    color: $white;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: $invertedHoverColor;
-      border-color: transparent;
-
-      &:before {
-        border-color: $invertedHoverColor;
-      }
-      &:after {
-        border-color: $white;
+      @media (min-width: map-get($grid-breakpoints, sm)) {
+        outline-color: $neutral500;
       }
     }
   }
 
+  &--borderless:not(.button--only-icon) {
+    padding: 0;
+  }
   &--borderless {
-    border-width: 0.125rem;
-    border-style: solid;
-    background-color: transparent;
-    border: 0;
-    color: $blueberry600;
-    position: relative;
-    padding: 0;
-    @media (min-width: map-get($grid-breakpoints, md)) {
-      padding: 0;
+    &:hover {
+      box-shadow: none;
     }
-    &:disabled {
-      @include disabled-button();
+
+    :disabled > & {
+      outline: none;
     }
   }
-  &--borderless#{&}--warning {
-    color: $banana600;
+
+  :focus > & {
+    outline: none;
+    box-shadow: 0 0 0 getSpacer(3xs) $black;
   }
-  &--borderless#{&}--danger {
-    color: $cherry600;
-  }
-  &--borderless#{&}--inverted {
+
+  &__text {
     color: $white;
-  }
+    margin: 0 auto 0 0;
 
-  &--with-icon {
-    padding: 0;
-    @media (min-width: map-get($grid-breakpoints, md)) {
-      padding: 0;
-    }
-    svg {
-      margin: 0 0.125rem;
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        margin: 0 0.75rem;
-      }
-    }
-  }
-  &--large#{&}--with-icon {
-    svg {
-      margin: 0 0.5rem;
-    }
-  }
-
-  &--ellipsis#{&}--with-icon {
-    max-width: 100%;
-  }
-
-  &--borderless#{&}--with-icon {
-    svg:first-of-type {
-      margin-left: 0;
-      margin-right: 0.125rem;
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        margin-right: 0.75rem;
-      }
-    }
-    svg:last-of-type {
-      margin-left: 0.125rem;
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        margin-left: 0.75rem;
-      }
-    }
-  }
-  &--large#{&}--borderless#{&}--with-icon {
-    svg:first-of-type {
-      margin-left: 0;
-      margin-right: 0.5rem;
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        margin-right: 0.75rem;
-      }
-    }
-    svg:last-of-type {
-      margin-left: 0.5rem;
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        margin-left: 0.75rem;
-      }
-    }
-  }
-
-  &__content {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    white-space: normal;
-
-    &--fill {
-      color: $white;
-
-      #{$button}:focus & {
-        border-bottom: 1px solid $white;
-      }
+    @media (min-width: map-get($grid-breakpoints, sm)) {
+      margin: 0 auto 0 0;
     }
 
-    &--fill#{&}--inverted {
-      color: $blueberry500;
-
-      #{$button}:focus & {
-        border-bottom-color: $blueberry700;
-      }
-    }
-    &--fill#{&}--warning#{&}--inverted {
-      color: $banana500;
-
-      #{$button}:focus & {
-        border-bottom-color: $banana700;
-      }
-    }
-    &--fill#{&}--danger#{&}--inverted {
-      color: $cherry500;
-
-      #{$button}:focus & {
-        border-bottom-color: $cherry700;
-      }
-    }
-
-    &--borderless {
-      color: $blueberry500;
-      border-bottom: 1px solid transparent;
-
-      #{$button}:hover &,
-      #{$button}:active &,
-      #{$button}:focus & {
-        border-bottom-color: $blueberry700;
-      }
-    }
-    &--borderless#{&}--warning {
-      color: $banana500;
-
-      #{$button}:hover &,
-      #{$button}:active &,
-      #{$button}:focus & {
-        border-bottom-color: $banana700;
-      }
-    }
-    &--borderless#{&}--danger {
-      color: $cherry500;
-
-      #{$button}:hover &,
-      #{$button}:active &,
-      #{$button}:focus & {
-        border-bottom-color: $cherry700;
-      }
-    }
-    &--borderless#{&}--inverted {
-      color: $white;
-
-      #{$button}:hover &,
-      #{$button}:active &,
-      #{$button}:focus & {
-        border-bottom-color: $white;
-      }
-    }
-
-    &--outline {
-      color: $blueberry500;
-    }
-    &--outline#{&}--warning {
-      color: $banana500;
-    }
-    &--outline#{&}--danger {
-      color: $cherry500;
-    }
-    &--outline#{&}--inverted {
-      color: $white;
-    }
-
-    &--with-icon:first-child,
-    &--fluid:first-child {
-      margin-left: 1.5rem;
-    }
-    &--with-icon:last-child {
-      margin-right: 1.5rem;
-    }
-    &--large#{&}--with-icon:first-child,
-    &--large#{&}--fluid:first-child {
-      margin-left: 2.5rem;
-    }
-    &--large#{&}--with-icon:last-child {
-      margin-right: 2.5rem;
-    }
-    &--borderless#{&}--with-icon:first-child {
-      margin-left: 0;
-    }
-    &--borderless#{&}--with-icon:last-child {
-      margin-right: 0;
-    }
-
-    &--ellipsis#{&}--with-icon {
+    &--ellipsis {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
-    &--fluid#{&}--with-icon:last-child {
-      margin-right: 0;
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        margin-right: 1.5rem;
-      }
-    }
-    &--large-fluid#{&}--with-icon:last-child {
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        margin-right: 2.5rem;
-      }
-    }
-
-    #{$button}:disabled & {
-      border-bottom: none;
-      color: $neutral600;
-    }
   }
-
-  &__left-fluid-content {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-
-    &--with-icon {
-      text-align: left;
-    }
-    &--with-icon:last-child {
-      margin-right: 1.5rem;
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        margin-right: 0;
-      }
-    }
-    &--large#{&}--with-icon:last-child {
-      margin-right: 2.5rem;
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        margin-right: 0;
+  &--outline &__text {
+    color: $blueberry600;
+    :disabled > & {
+      @media (min-width: map-get($grid-breakpoints, sm)) {
+        color: $neutral700;
       }
     }
   }
-  @media print {
-    border-color: $blueberry600 !important;
+  &--borderless &__text {
+    color: $blueberry600;
+    :disabled > & {
+      color: $neutral700;
+    }
+  }
+  &--only-icon &__text {
+    @include sr-only();
+  }
+
+  @include on-dark();
+}
+
+.diagonal {
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+
+  &__line {
+    border-bottom: getSpacer(4xs) dashed $neutral500;
+    transform-origin: top left;
+    position: absolute;
+  }
+
+  &--on-dark &__line {
+    border-color: $white;
+
+    @media (min-width: map-get($grid-breakpoints, sm)) {
+      border-color: $dark-mode-disabled-transparrent;
+    }
   }
 }

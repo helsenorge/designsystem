@@ -7,11 +7,10 @@ date: 2019-01-29
 import MDXCustom from '../../../../components/markdown/MDXCustom';
 import * as propData from '@helsenorge/designsystem-react/components/Button/componentdata.json';
 import Icon from '@helsenorge/designsystem-react/components/Icons';
-import AlarmClock from '@helsenorge/designsystem-react/components/Icons/AlarmClock';
-import ArrowRight from '@helsenorge/designsystem-react/components/Icons/ArrowRight';
-import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
-import X from '@helsenorge/designsystem-react/components/Icons/X';
+import VerticalDots from '@helsenorge/designsystem-react/components/Icons/VerticalDots';
+import Dog from '@helsenorge/designsystem-react/components/Icons/Dog';
 import Button from '@helsenorge/designsystem-react/components/Button';
+import { theme as hndsTheme } from '@helsenorge/designsystem-react';
 
 # Button
 
@@ -38,65 +37,84 @@ import Button from '@helsenorge/designsystem-react/components/Button';
   <Button variant="borderless">Borderless</Button>
 `}</MDXCustom.LiveComponent>
 
-### Intents
+### Concepts
 
 <MDXCustom.LiveComponent scope={{ Button }}>{`
-  <Button intent="primary">Button</Button>
-  <Button intent="warning">Button</Button>
-  <Button intent="danger">Button</Button>
+  <Button concept="normal">Button</Button>
+  <Button concept="destructive">Button</Button>
 `}</MDXCustom.LiveComponent>
 
-### Inverted
+### Mode ondark
 
-<MDXCustom.LiveComponent scope={{ Button }}>{`
-  <Button inverted>Button</Button>
-  <Button variant="outline" inverted >Button</Button>
-  <Button variant="borderless" inverted>Button</Button>
+<MDXCustom.LiveComponent scope={{ Button }} backgroundColor={hndsTheme.palette.blueberry600}>{`
+  <Button mode="ondark">Button</Button>
+  <Button mode="ondark" variant="outline">Button</Button>
+  <Button mode="ondark" variant="borderless">Button</Button>
 `}</MDXCustom.LiveComponent>
 
-### Large
+### Size large
 
-<MDXCustom.LiveComponent scope={{ Button }}>{`
-  <Button>Button</Button>
-  <Button large>Button</Button>
+<MDXCustom.LiveComponent scope={{ Button, Icon, Dog }}>{`
+  <Button size="large">Button</Button>
+  <Button size="large" variant="outline"><Icon svgIcon={Dog} />Button</Button>
 `}</MDXCustom.LiveComponent>
 
 ### Fluid
 
-<MDXCustom.LiveComponent fullWidth stack scope={{ Button, Icon, AlarmClock, ArrowRight }}>{`
-    <Button fluid>Button</Button>
-    <Button fluid>
-      <Icon svgIcon={AlarmClock} />
-      Button
-    <Icon svgIcon={ArrowRight} />
+<MDXCustom.LiveComponent fullWidth stack scope={{ Button, Icon, Dog }}>{`
+  <Button fluid>Button</Button>
+  <Button fluid arrow>
+    <Icon svgIcon={Dog} />
+    Button
+  </Button>
+`}</MDXCustom.LiveComponent>
+
+### Ellipsis
+
+<MDXCustom.LiveComponent stack scope={{ Button, Icon, Dog }}>{`
+  <div style={{width: '12rem'}}>
+    <Button ellipsis>Alt for mye tekst her</Button>
+    <br/>
+    <br/>
+    <Button ellipsis>
+      <Icon svgIcon={Dog} />
+      Alt for mye tekst her
     </Button>
+  </div>
 `}</MDXCustom.LiveComponent>
 
 ### With icons
 
-<MDXCustom.LiveComponent scope={{ Button, Icon, Calendar, ArrowRight }}>{`
+<MDXCustom.LiveComponent scope={{ Button, Icon, Dog }}>{`
   <Button variant="outline" >
-      <Icon svgIcon={Calendar} />
-    Primary
+      <Icon svgIcon={Dog} />
+    Button
   </Button>
   <br/>
   <Button variant="outline">
-    Primary
-      <Icon svgIcon={Calendar} />
+    Button
+      <Icon svgIcon={Dog} />
   </Button>
   <br/>
-  <Button variant="outline">
-      <Icon svgIcon={Calendar}/>
-    Primary
-      <Icon svgIcon={ArrowRight} />
+  <Button variant="outline" arrow>
+      <Icon svgIcon={Dog}/>
+    Button
   </Button>
+`}</MDXCustom.LiveComponent>
+
+### Disabled
+
+<MDXCustom.LiveComponent scope={{ Button }}>{`
+  <Button disabled>Fill</Button>
+  <Button disabled variant="outline">Outline</Button>
+  <Button disabled variant="borderless">Borderless</Button>
 `}</MDXCustom.LiveComponent>
 
 ### Without text
 
-<MDXCustom.LiveComponent scope={{ Button, Icon, X }}>{`
-  <Button variant="outline" aria-label="Lukk">
-      <Icon svgIcon={X} />
+<MDXCustom.LiveComponent scope={{ Button, Icon, VerticalDots }}>{`
+  <Button ariaLabel="Verticaldots button" variant="borderless">
+      <Icon svgIcon={VerticalDots} />
   </Button>
 `}</MDXCustom.LiveComponent>
 

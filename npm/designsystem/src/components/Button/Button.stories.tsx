@@ -3,13 +3,12 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import Button, { ButtonVariants, ButtonIntents } from './Button';
+import Button from './Button';
 import Icon from '../Icons';
-import X from '../Icons/X';
-import Calendar from '../Icons/Calendar';
-
-const allButtonVariants: ButtonVariants[] = ['fill', 'outline', 'borderless'];
-const allButtonIntents: ButtonIntents[] = ['primary', 'warning', 'danger'];
+import Dog from '../Icons/Dog';
+import VerticalDots from '../Icons/VerticalDots';
+import Title from '../Title';
+import { getColor } from '../../theme/currys/color';
 
 export default {
   title: 'Components/Button',
@@ -31,32 +30,10 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
-    intent: {
-      control: 'select',
-      options: allButtonIntents,
-      defaultValue: 'primary',
-    },
-    inverted: {
-      control: 'boolean',
-      defaultValue: false,
-    },
     htmlMarkup: {
       control: 'select',
       options: ['button', 'a'],
       defaultValue: 'button',
-    },
-    large: {
-      control: 'boolean',
-      defaultValue: false,
-    },
-    loading: {
-      control: 'boolean',
-      defaultValue: false,
-    },
-    variant: {
-      control: 'select',
-      options: allButtonVariants,
-      defaultValue: 'fill',
     },
     href: {
       control: 'text',
@@ -69,6 +46,7 @@ const myRef1: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef2: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef3: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef4: React.RefObject<HTMLButtonElement> = React.createRef();
+const myRef5: React.RefObject<HTMLButtonElement> = React.createRef();
 
 export const Default: ComponentStory<typeof Button> = (args: any) => (
   <div style={{ width: '15rem' }}>
@@ -78,68 +56,193 @@ export const Default: ComponentStory<typeof Button> = (args: any) => (
   </div>
 );
 
-export const Fluid: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ width: '30rem', padding: '1rem' }}>
-    <Button {...args} fluid onClick={action('Button clicked')}>
+export const Concepts: ComponentStory<typeof Button> = (args: any) => (
+  <div style={{ width: '15rem' }}>
+    <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
+      {'Concepts'}
+    </Title>
+    <Button {...args} onClick={action('Button clicked')} concept={'normal'}>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} fluid onClick={action('Button clicked')}>
-      <Icon svgIcon={X} />
-      {args.children}
-      <Icon svgIcon={X} />
-    </Button>
-    <br />
-    <br />
-    <Button {...args} fluid onClick={action('Button clicked')}>
-      <Icon svgIcon={X} />
+    <Button {...args} onClick={action('Button clicked')} concept={'destructive'}>
       {args.children}
     </Button>
   </div>
 );
 
-export const WithIcons: ComponentStory<typeof Button> = (args: any) => (
-  <div>
+export const Icons: ComponentStory<typeof Button> = (args: any) => (
+  <div style={{ width: '15rem' }}>
+    <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
+      {'Icons'}
+    </Title>
     <Button {...args} ref={myRef1} onClick={action('Button clicked')}>
-      <Icon svgIcon={X} />
+      <Icon svgIcon={Dog} />
       {args.children}
     </Button>
     <br />
     <br />
     <Button {...args} ref={myRef2} onClick={action('Button clicked')}>
       {args.children}
-      <Icon svgIcon={X} />
+      <Icon svgIcon={Dog} />
     </Button>
     <br />
     <br />
-    <Button {...args} ref={myRef3} onClick={action('Button clicked')}>
-      <Icon svgIcon={Calendar} />
+    <Button {...args} ref={myRef3} onClick={action('Button clicked')} arrow>
       {args.children}
-      <Icon svgIcon={X} />
     </Button>
     <br />
     <br />
-    <Button {...args} ref={myRef4} onClick={action('Button clicked')}>
-      <Icon svgIcon={X} />
+    <Button {...args} ref={myRef4} onClick={action('Button clicked')} arrow>
+      <Icon svgIcon={Dog} />
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} ariaLabel={'Verticaldots button'} ref={myRef5} onClick={action('Button clicked')}>
+      <Icon svgIcon={VerticalDots} />
+    </Button>
+  </div>
+);
+
+export const Variants: ComponentStory<typeof Button> = (args: any) => (
+  <div style={{ width: '15rem' }}>
+    <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
+      {'Variants'}
+    </Title>
+    <Button {...args} onClick={action('Button clicked')} variant={'fill'}>
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} onClick={action('Button clicked')} variant={'outline'}>
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} onClick={action('Button clicked')} variant={'borderless'}>
+      {args.children}
+    </Button>
+  </div>
+);
+
+export const DarkMode: ComponentStory<typeof Button> = (args: any) => (
+  <div style={{ minWidth: '15rem' }}>
+    <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
+      {'DarkMode'}
+    </Title>
+    <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 600) }}>
+      <Button {...args} onClick={action('Button clicked')} variant={'fill'} mode={'ondark'}>
+        {args.children}
+      </Button>
+      <br />
+      <br />
+      <Button {...args} onClick={action('Button clicked')} mode={'ondark'}>
+        <Icon svgIcon={Dog} />
+        {args.children}
+      </Button>
+      <br />
+      <br />
+      <Button {...args} onClick={action('Button clicked')} variant={'outline'} mode={'ondark'}>
+        {args.children}
+      </Button>
+      <br />
+      <br />
+      <Button {...args} onClick={action('Button clicked')} variant={'borderless'} mode={'ondark'}>
+        {args.children}
+      </Button>
+      <br />
+      <br />
+      <Button {...args} onClick={action('Button clicked')} variant={'borderless'} mode={'ondark'}>
+        <Icon svgIcon={Dog} />
+        {args.children}
+      </Button>
+    </div>
+  </div>
+);
+
+export const Disabled: ComponentStory<typeof Button> = (args: any) => (
+  <div style={{ width: '15rem' }}>
+    <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
+      {'Disabled'}
+    </Title>
+    <Button {...args} onClick={action('Button clicked')} variant={'fill'} disabled>
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} onClick={action('Button clicked')} variant={'outline'} disabled>
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} onClick={action('Button clicked')} variant={'borderless'} disabled>
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} onClick={action('Button clicked')} variant={'borderless'} disabled>
+      <Icon svgIcon={Dog} />
+      {'Button long text'}
+    </Button>
+  </div>
+);
+
+export const Fluid: ComponentStory<typeof Button> = (args: any) => (
+  <div style={{ width: '30rem' }}>
+    <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
+      {'Fluid'}
+    </Title>
+    <Button {...args} fluid onClick={action('Button clicked')}>
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} fluid onClick={action('Button clicked')}>
+      <Icon svgIcon={Dog} />
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} fluid onClick={action('Button clicked')}>
+      {args.children}
+      <Icon svgIcon={Dog} />
+    </Button>
+    <br />
+    <br />
+    <Button {...args} arrow fluid onClick={action('Button clicked')}>
+      <Icon svgIcon={Dog} />
+      {args.children}
+    </Button>
+  </div>
+);
+
+export const Ellipsis: ComponentStory<typeof Button> = (args: any) => (
+  <div style={{ width: '15rem' }}>
+    <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
+      {'Ellipsis'}
+    </Title>
+    <Button {...args} ellipsis onClick={action('Button clicked')}>
+      {'Alt for mye tekst her'}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} ellipsis onClick={action('Button clicked')}>
+      <Icon svgIcon={Dog} />
+      {'Alt for mye tekst her'}
     </Button>
   </div>
 );
 
 export const AllVariants: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ display: 'grid', gridGap: '2rem' }}>
-    <Button {...args} variant={'fill'} onClick={action('Button clicked')}>
-      <Icon svgIcon={X} />
-      {'Fill'}
-    </Button>
-    <Button {...args} variant={'outline'} onClick={action('Button clicked')}>
-      {'Outline'}
-      <Icon svgIcon={X} />
-    </Button>
-    <Button {...args} variant={'borderless'} onClick={action('Button clicked')}>
-      <Icon svgIcon={Calendar} />
-      {'Borderless'}
-      <Icon svgIcon={X} />
-    </Button>
-  </div>
+  <>
+    <Concepts {...args} />
+    <Icons {...args} />
+    <Variants {...args} />
+    <DarkMode {...args} />
+    <Disabled {...args} />
+    <Fluid {...args} />
+    <Ellipsis {...args} />
+  </>
 );

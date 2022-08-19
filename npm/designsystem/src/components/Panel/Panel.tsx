@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import panelStyles from './styles.module.scss';
 import Title, { TitleTags } from '../Title';
-import Button, { ButtonProps, ButtonTags, ButtonVariants } from '../Button';
+import Button, { ButtonProps, ButtonTags, ButtonVariant } from '../Button';
 import { AnchorTarget, AnalyticsId } from '../../constants';
 
 import Icon, { IconSize, SvgPathProps } from '../Icons';
@@ -277,7 +277,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     const btnProps = {
       id,
       tabIndex: tabable ? undefined : -1,
-      variant: 'borderless' as ButtonVariants,
+      variant: 'borderless' as ButtonVariant,
       ellipsis: true,
     };
 

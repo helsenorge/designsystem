@@ -3,33 +3,32 @@
 exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
 <div>
   <button
-    class="button button--fill"
+    class="button-wrapper"
     data-analyticsid="button"
     type="button"
   >
-    <span
-      class="content-wrapper"
+    <div
+      class="button button--normal"
     >
       <span
-        class="button__content button__content--fill"
+        class="button__text"
       >
         Button
       </span>
-    </span>
+    </div>
   </button>
 </div>
 `;
 
-exports[`Gitt at button skal vises Når button rendres kun med ikon Så inneholder knappen bare ikon, og aria-label kan leses 1`] = `
+exports[`Gitt at button skal vises Når button rendres kun med ikon Så inneholder knappen bare ikon, og ariaLabel kan leses 1`] = `
 <div>
   <button
-    aria-label="Check me"
-    class="button button--fill button--with-icon"
+    class="button-wrapper"
     data-analyticsid="button"
     type="button"
   >
-    <span
-      class="content-wrapper"
+    <div
+      class="button button--normal button--only-icon"
     >
       <svg
         aria-hidden="true"
@@ -47,7 +46,12 @@ exports[`Gitt at button skal vises Når button rendres kun med ikon Så innehold
           d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z"
         />
       </svg>
-    </span>
+      <span
+        class="button__text"
+      >
+        Check me
+      </span>
+    </div>
   </button>
 </div>
 `;
@@ -55,12 +59,12 @@ exports[`Gitt at button skal vises Når button rendres kun med ikon Så innehold
 exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikonene 1`] = `
 <div>
   <button
-    class="button button--fill button--with-icon"
+    class="button-wrapper"
     data-analyticsid="button"
     type="button"
   >
-    <span
-      class="content-wrapper"
+    <div
+      class="button button--normal button--left-icon button--right-icon"
     >
       <svg
         aria-hidden="true"
@@ -79,7 +83,7 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
         />
       </svg>
       <span
-        class="button__content button__content--fill button__content--with-icon"
+        class="button__text"
       >
         Button
       </span>
@@ -99,7 +103,7 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
           d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z"
         />
       </svg>
-    </span>
+    </div>
   </button>
 </div>
 `;

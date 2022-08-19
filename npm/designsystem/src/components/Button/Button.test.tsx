@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import Button from './Button';
 import Icon from '../Icons';
 import Check from '../Icons/Check';
-import { palette } from '../../theme/palette';
 
 describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres', (): void => {
@@ -26,11 +25,11 @@ describe('Gitt at button skal vises', (): void => {
       expect(testFill).not.toHaveAttribute('aria-expanded');
     });
 
-    test('Så er textwrap på', (): void => {
+    test('Så er text klasse på', (): void => {
       render(<Button>Button text</Button>);
 
       const testButtonText = screen.getByText('Button text');
-      expect(testButtonText.className).toBe('button__content button__content--fill');
+      expect(testButtonText.className).toBe('button__text');
     });
   });
 
@@ -61,14 +60,14 @@ describe('Gitt at button skal vises', (): void => {
   });
 
   describe('Når button rendres kun med ikon', (): void => {
-    test('Så inneholder knappen bare ikon, og aria-label kan leses', (): void => {
+    test('Så inneholder knappen bare ikon, og ariaLabel kan leses', (): void => {
       const { container } = render(
-        <Button aria-label="Check me">
+        <Button ariaLabel="Check me">
           <Icon svgIcon={Check} />
         </Button>
       );
 
-      const button = screen.getByLabelText('Check me');
+      const button = screen.getByText('Check me');
 
       expect(button).toBeVisible();
       expect(container).toMatchSnapshot();
@@ -77,15 +76,21 @@ describe('Gitt at button skal vises', (): void => {
 
   describe('Når button rendres med ellipsis på', (): void => {
     test('Så brukes ellipsis på overflødig tekst', (): void => {
-      render(<Button ellipsis={true}>Button text</Button>);
+      render(
+        <Button ellipsis={true} testId={'test01'}>
+          Button text
+        </Button>
+      );
 
+      const button = screen.getByTestId('test01');
       const testButtonText = screen.getByText('Button text');
-      expect(testButtonText.className).toBe('button__content button__content--fill button__content--ellipsis');
+      expect(button.className).toBe('button-wrapper button-wrapper--fluid');
+      expect(testButtonText.className).toBe('button__text button__text--ellipsis');
     });
   });
 
-  describe('Når button rendres med fluid og ikon(er)', (): void => {
-    test('Så venstrestilles teksten', (): void => {
+  describe('Når button rendres med fluid', (): void => {
+    test('Så settes riktige klasse på wrapper', (): void => {
       render(
         <Button testId={'test01'} fluid={true}>
           Button text
@@ -93,8 +98,8 @@ describe('Gitt at button skal vises', (): void => {
         </Button>
       );
 
-      const testLeftFluidContent = screen.getByTestId('test01').querySelector('div');
-      expect(testLeftFluidContent.className).toBe('button__left-fluid-content button__left-fluid-content--with-icon');
+      const buttonWrapper = screen.getByTestId('test01');
+      expect(buttonWrapper.className).toBe('button-wrapper button-wrapper--fluid');
     });
   });
 
@@ -153,50 +158,45 @@ describe('Gitt at button skal vises', (): void => {
     });
   });
 
-  describe('Når button rendres med intent', (): void => {
+  describe('Når button rendres med concept', (): void => {
     test('Så er background-color riktig', (): void => {
       render(
         <div>
-          <Button testId={'test01'} intent={'primary'}>
+          <Button testId={'test01'} concept={'normal'}>
             Button
           </Button>
-          <Button testId={'test02'} intent={'warning'}>
-            Button
-          </Button>
-          <Button testId={'test03'} intent={'danger'}>
+          <Button testId={'test02'} concept={'destructive'}>
             Button
           </Button>
         </div>
       );
 
-      const testButton1 = screen.getByTestId('test01');
-      const testButton2 = screen.getByTestId('test02');
-      const testButton3 = screen.getByTestId('test03');
+      const testButton1 = screen.getByTestId('test01').children[0];
+      const testButton2 = screen.getByTestId('test02').children[0];
 
-      expect(testButton1.className).toBe('button button--fill');
-      expect(testButton2.className).toBe('button button--warning button--fill');
-      expect(testButton3.className).toBe('button button--danger button--fill');
+      expect(testButton1.className).toBe('button button--normal');
+      expect(testButton2.className).toBe('button button--destructive button--normal');
     });
   });
 
-  describe('Når button rendres med inverted', (): void => {
+  describe('Når button rendres med mode ondark', (): void => {
     test('Så er farger riktig', (): void => {
       render(
-        <Button testId={'test01'} inverted={true}>
+        <Button testId={'test01'} mode={'ondark'}>
           Button
         </Button>
       );
 
-      const testButton = screen.getByTestId('test01');
+      const testButton = screen.getByTestId('test01').children[0];
 
-      expect(testButton.className).toBe('button button--inverted button--fill');
+      expect(testButton.className).toBe('button button--normal button--on-dark');
     });
   });
 
-  describe('Når button rendres med large', (): void => {
+  describe('Når button rendres med size large', (): void => {
     test('Så er ikon riktig størrelse', (): void => {
       render(
-        <Button large={true}>
+        <Button size={'large'}>
           <Icon testId={'test01'} svgIcon={Check} />
           Button
         </Button>
@@ -208,21 +208,6 @@ describe('Gitt at button skal vises', (): void => {
 
       expect(height).toBe('64px');
       expect(width).toBe('64px');
-    });
-  });
-
-  describe('Når button rendres med loading', (): void => {
-    test('Så er loader elementet lagt til', (): void => {
-      render(
-        <Button loading={true}>
-          <Icon svgIcon={Check} />
-          Button
-        </Button>
-      );
-
-      const testLoader = screen.getByTestId('test-id-loader');
-
-      expect(testLoader).toBeTruthy();
     });
   });
 
@@ -242,17 +227,45 @@ describe('Gitt at button skal vises', (): void => {
         </div>
       );
 
-      const testFill = screen.getByTestId('test01');
+      const testFill = screen.getByTestId('test01').children[0];
 
-      expect(testFill.className).toBe('button button--fill');
+      expect(testFill.className).toBe('button button--normal');
 
-      const testOutline = screen.getByTestId('test02');
+      const testOutline = screen.getByTestId('test02').children[0];
 
-      expect(testOutline.className).toBe('button button--outline');
+      expect(testOutline.className).toBe('button button--normal button--outline');
 
-      const testBorderless = screen.getByTestId('test03');
+      const testBorderless = screen.getByTestId('test03').children[0];
 
-      expect(testBorderless.className).toBe('button button--borderless');
+      expect(testBorderless.className).toBe('button button--normal button--borderless');
+    });
+  });
+  describe('Når button rendres med borderless variant', (): void => {
+    test('Så er ikke large size tilgjengelig', (): void => {
+      render(
+        <div>
+          <Button testId={'test01'} variant={'borderless'} size={'large'}>
+            Button
+          </Button>
+        </div>
+      );
+
+      const testFill = screen.getByTestId('test01').children[0];
+
+      expect(testFill.className).toBe('button button--normal button--borderless');
+    });
+    test('Så er ikke arrow tilgjengelig', (): void => {
+      render(
+        <div>
+          <Button testId={'test01'} variant={'borderless'} arrow>
+            Button
+          </Button>
+        </div>
+      );
+
+      const testFill = screen.getByTestId('test01').children[0];
+
+      expect(testFill.className).toBe('button button--normal button--borderless');
     });
   });
   describe('Når button rendres med aria props', (): void => {

@@ -107,34 +107,34 @@ exports[`Gitt at en modal skal vises  Når en modal har variant error Så skal b
             class="modal__call-to-action modal__call-to-action--large"
           >
             <button
-              class="button button--fill"
+              class="button-wrapper"
               data-analyticsid="button"
               type="button"
             >
-              <span
-                class="content-wrapper"
+              <div
+                class="button button--normal"
               >
                 <span
-                  class="button__content button__content--fill"
+                  class="button__text"
                 >
                   OK
                 </span>
-              </span>
+              </div>
             </button>
             <button
-              class="button button--borderless"
+              class="button-wrapper"
               data-analyticsid="button"
               type="button"
             >
-              <span
-                class="content-wrapper"
+              <div
+                class="button button--normal button--borderless"
               >
                 <span
-                  class="button__content button__content--borderless"
+                  class="button__text"
                 >
                   Avbryt
                 </span>
-              </span>
+              </div>
             </button>
           </div>
         </div>
@@ -251,34 +251,34 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
             class="modal__call-to-action modal__call-to-action--large"
           >
             <button
-              class="button button--fill"
+              class="button-wrapper"
               data-analyticsid="button"
               type="button"
             >
-              <span
-                class="content-wrapper"
+              <div
+                class="button button--normal"
               >
                 <span
-                  class="button__content button__content--fill"
+                  class="button__text"
                 >
                   OK
                 </span>
-              </span>
+              </div>
             </button>
             <button
-              class="button button--borderless"
+              class="button-wrapper"
               data-analyticsid="button"
               type="button"
             >
-              <span
-                class="content-wrapper"
+              <div
+                class="button button--normal button--borderless"
               >
                 <span
-                  class="button__content button__content--borderless"
+                  class="button__text"
                 >
                   Avbryt
                 </span>
-              </span>
+              </div>
             </button>
           </div>
         </div>
@@ -288,4 +288,4 @@ exports[`Gitt at en modal skal vises  Når en modal har variant warning Så skal
 </div>
 `;
 
-exports[`Gitt at en modal skal vises som printable  Så skal modalen wrappes med Portal 1`] = `"<style media=\\"print\\">body > *:not(.print-modal) {display: none;}</style><div data-testid=\\"dialog-container\\"><div class=\\"modal-overlay\\" data-testid=\\"testid\\" data-analyticsid=\\"modal\\" style=\\"z-index: 1300000;\\"><div class=\\"align\\"><div class=\\"modal modal--error modal--large\\" role=\\"dialog\\" aria-labelledby=\\"test\\"><div tabindex=\\"0\\"></div><div class=\\"modal__shadow modal__shadow--top\\"></div><div class=\\"modal__contentWrapper\\"><div class=\\"modal__closeWrapper\\"><div class=\\"modal__closeWrapper__close\\"><button data-analyticsid=\\"close\\" class=\\"close\\" aria-label=\\"Lukk\\" type=\\"button\\"><svg data-analyticsid=\\"icon\\" class=\\"hnds-style-icon\\" role=\\"presentation\\" focusable=\\"false\\" aria-hidden=\\"true\\" viewBox=\\"0 0 48 48\\" style=\\"min-width: 48px; min-height: 48px;\\" width=\\"48\\" height=\\"48\\" fill=\\"#126F87\\"><path d=\\"M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z\\"></path></svg></button></div></div><div class=\\"modal__contentWrapper__scroll--large\\"><div></div><div class=\\"modal__contentWrapper__title\\"><div class=\\"modal__iconWrapper\\"><svg data-analyticsid=\\"icon\\" class=\\"hnds-style-icon\\" role=\\"presentation\\" focusable=\\"false\\" aria-hidden=\\"true\\" viewBox=\\"0 0 48 48\\" style=\\"min-width: 48px; min-height: 48px;\\" width=\\"48\\" height=\\"48\\" fill=\\"#C83521\\"><path d=\\"M24.898 21.447v7.228a.893.893 0 01-1.785 0v-7.228a.892.892 0 111.785 0zm.5 11.601a1.394 1.394 0 11-2.787-.001 1.394 1.394 0 012.787.001zm-18.822 6.71h34.847L24.111 8.242 6.576 39.758z\\"></path></svg></div><h3 id=\\"test\\" class=\\"title title--title3 modal__title--error\\" style=\\"margin-top: 0rem; margin-bottom: 0rem;\\" data-analyticsid=\\"title\\">Hei der</h3></div><p class=\\"modal__description\\">Dette er innhold</p><div></div></div></div><div class=\\"modal__shadow modal__shadow--bottom\\"></div><div class=\\"modal__call-to-action modal__call-to-action--large\\"><button data-analyticsid=\\"button\\" class=\\"button button--fill\\" type=\\"button\\"><span class=\\"content-wrapper\\"><span class=\\"button__content button__content--fill\\">OK</span></span></button><button data-analyticsid=\\"button\\" class=\\"button button--borderless\\" type=\\"button\\"><span class=\\"content-wrapper\\"><span class=\\"button__content button__content--borderless\\">Avbryt</span></span></button></div></div></div></div></div>"`;
+exports[`Gitt at en modal skal vises som printable  Så skal modalen wrappes med Portal 1`] = `"<style media=\\"print\\">body > *:not(.print-modal) {display: none;}</style><div data-testid=\\"dialog-container\\"><div class=\\"modal-overlay\\" data-testid=\\"testid\\" data-analyticsid=\\"modal\\" style=\\"z-index: 1300000;\\"><div class=\\"align\\"><div class=\\"modal modal--error modal--large\\" role=\\"dialog\\" aria-labelledby=\\"test\\"><div tabindex=\\"0\\"></div><div class=\\"modal__shadow modal__shadow--top\\"></div><div class=\\"modal__contentWrapper\\"><div class=\\"modal__closeWrapper\\"><div class=\\"modal__closeWrapper__close\\"><button data-analyticsid=\\"close\\" class=\\"close\\" aria-label=\\"Lukk\\" type=\\"button\\"><svg data-analyticsid=\\"icon\\" class=\\"hnds-style-icon\\" role=\\"presentation\\" focusable=\\"false\\" aria-hidden=\\"true\\" viewBox=\\"0 0 48 48\\" style=\\"min-width: 48px; min-height: 48px;\\" width=\\"48\\" height=\\"48\\" fill=\\"#126F87\\"><path d=\\"M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z\\"></path></svg></button></div></div><div class=\\"modal__contentWrapper__scroll--large\\"><div></div><div class=\\"modal__contentWrapper__title\\"><div class=\\"modal__iconWrapper\\"><svg data-analyticsid=\\"icon\\" class=\\"hnds-style-icon\\" role=\\"presentation\\" focusable=\\"false\\" aria-hidden=\\"true\\" viewBox=\\"0 0 48 48\\" style=\\"min-width: 48px; min-height: 48px;\\" width=\\"48\\" height=\\"48\\" fill=\\"#C83521\\"><path d=\\"M24.898 21.447v7.228a.893.893 0 01-1.785 0v-7.228a.892.892 0 111.785 0zm.5 11.601a1.394 1.394 0 11-2.787-.001 1.394 1.394 0 012.787.001zm-18.822 6.71h34.847L24.111 8.242 6.576 39.758z\\"></path></svg></div><h3 id=\\"test\\" class=\\"title title--title3 modal__title--error\\" style=\\"margin-top: 0rem; margin-bottom: 0rem;\\" data-analyticsid=\\"title\\">Hei der</h3></div><p class=\\"modal__description\\">Dette er innhold</p><div></div></div></div><div class=\\"modal__shadow modal__shadow--bottom\\"></div><div class=\\"modal__call-to-action modal__call-to-action--large\\"><button data-analyticsid=\\"button\\" class=\\"button-wrapper\\" type=\\"button\\"><div class=\\"button button--normal\\"><span class=\\"button__text\\">OK</span></div></button><button data-analyticsid=\\"button\\" class=\\"button-wrapper\\" type=\\"button\\"><div class=\\"button button--normal button--borderless\\"><span class=\\"button__text\\">Avbryt</span></div></button></div></div></div></div></div>"`;

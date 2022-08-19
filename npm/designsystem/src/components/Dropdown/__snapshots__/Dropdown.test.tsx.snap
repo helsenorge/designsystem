@@ -66,23 +66,19 @@ exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold S
       >
         <button
           aria-expanded="false"
-          class="button button--fluid button--fill"
+          class="button-wrapper button-wrapper--fluid"
           data-analyticsid="button"
           type="button"
         >
-          <span
-            class="content-wrapper"
+          <div
+            class="button button--normal"
           >
-            <div
-              class="button__left-fluid-content"
+            <span
+              class="button__text"
             >
-              <span
-                class="button__content button__content--fill button__content--fluid"
-              >
-                Lukk
-              </span>
-            </div>
-          </span>
+              Lukk
+            </span>
+          </div>
         </button>
       </div>
     </div>
