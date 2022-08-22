@@ -1,3 +1,17 @@
+## [1.1.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.0.1&targetVersion=GTv1.1.0) (2022-08-22)
+
+
+### Features
+
+*  highlightbox støtter custom className ([333fede](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/333fede5be849d6bbd45ba59a2a60c49d3f012cf)), closes [#281862](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/281862)
+
+
+### Bug Fixes
+
+*  hover-effekter på ikke klikkbare panel og ny plassering for detalj-knapp i panel ([22bf59d](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/22bf59d8bdca3b8dd67d6589f252a314eb2ea333)), closes [#281061](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/281061)
+*  ikke vis scrolleindikator mens innholdet lastes ([ad6f7d2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ad6f7d21cafcdfaf39c6d0afb04be057e290678c))
+*  tabell med horisontal scroll viser hele borderen ([6c5cb02](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/6c5cb0208967986902a5c62a3e3171d4b1f50e36))
+
 ### [1.0.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.0.0-beta106&targetVersion=GTv1.0.1) (2022-08-12)
 
 
