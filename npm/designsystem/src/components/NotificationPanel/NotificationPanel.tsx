@@ -1,16 +1,11 @@
 import React from 'react';
-import cn from 'classnames';
-
-import { palette } from '../../theme/palette';
-import Icon from '../Icons';
-
-import InfoSignStroke from '../Icons/InfoSignStroke';
-import AlertSignStroke from '../Icons/AlertSignStroke';
-import AlertSignFill from '../Icons/AlertSignFill';
+import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 import Close from '../Close';
 import { AnalyticsId } from '../../constants';
+import { getAriaLabelAttributes, variantToIconMap } from './utils';
+import { useUuid } from '../../hooks/useUuid';
 
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'crisis';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
@@ -40,97 +35,73 @@ interface NotificationPanelProps {
   testId?: string;
 }
 
-export const variantToColorMap = {
-  info: { color: 'kiwi', depth: 50 },
-  warn: { color: 'banana', depth: 50 },
-  alert: { color: 'cherry', depth: 100 },
-  crisis: { color: 'black', depth: 0 },
+type WrapFluidProps = Pick<NotificationPanelProps, 'fluid' | 'variant' | 'shadow'> & {
+  children: React.ReactElement;
 };
 
-const variantToIconMap = {
-  info: <Icon svgIcon={InfoSignStroke} color={palette.kiwi900} hoverColor={palette.kiwi900} />,
-  warn: <Icon svgIcon={AlertSignStroke} color="black" hoverColor="black" />,
-  alert: <Icon svgIcon={AlertSignFill} color={palette.cherry500} hoverColor={palette.cherry500} />,
-  alertLabel: <Icon svgIcon={AlertSignStroke} color={palette.cherry500} hoverColor={palette.cherry500} />,
-  crisis: <Icon svgIcon={AlertSignFill} color={palette.banana200} hoverColor={palette.banana200} />,
-};
+const FluidWrapper: React.FC<WrapFluidProps> = ({ fluid, variant, shadow, children }) => {
+  if (fluid) {
+    const fluidClasses = classNames(styles['fluid-wrapper'], styles[`fluid-wrapper--${variant}`], {
+      [styles['fluid-wrapper--shadow']]: shadow,
+    });
 
-const NotificationPanel = React.forwardRef(function NotificationPanelForwardedRef(
-  props: NotificationPanelProps,
-  ref: React.ForwardedRef<HTMLDivElement>
-) {
-  const { children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size, className, testId } = props;
-
-  function wrapFluid(panel: React.ReactElement): React.ReactElement {
-    if (fluid) {
-      return (
-        <div
-          className={cn(styles['fluid-wrapper'], styles['fluid-wrapper--' + variant], {
-            [styles['fluid-wrapper--shadow']]: shadow,
-          })}
-        >
-          {panel}
-        </div>
-      );
-    }
-    return panel;
+    return <div className={fluidClasses}>{children}</div>;
   }
+  return children;
+};
 
-  const getStringChildren = (): string => {
-    if (children) {
-      let textChildren = '';
+const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProps>((props, ref) => {
+  const { children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size, className, testId } = props;
+  const uuid = useUuid();
 
-      React.Children.map(children, child => {
-        if (typeof child === 'string') {
-          textChildren += child;
-        }
-      });
+  const renderContent = (): JSX.Element => {
+    const contentClasses = classNames(styles['notification-panel__content'], styles[`notification-panel__content--${variant}`]);
 
-      return textChildren;
-    }
-
-    return '';
+    return (
+      <div className={contentClasses} id={!label ? uuid : undefined}>
+        {label && <h1 className={styles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} id={uuid} />}
+        {children}
+      </div>
+    );
   };
 
   const labelOnly = !!label && !children;
 
-  return wrapFluid(
-    <div
-      ref={ref}
-      data-testid={testId}
-      data-analyticsid={AnalyticsId.NotificationPanel}
-      className={cn(
-        styles['notification-panel'],
-        size && styles['notification-panel--' + size],
-        styles['notification-panel--' + variant],
-        {
-          [styles['notification-panel--shadow']]: !fluid && shadow,
-          [styles['notification-panel--has-children']]: !labelOnly,
-          [styles['notification-panel--label-only']]: labelOnly,
-          [styles['notification-panel--dismissable']]: !labelOnly && dismissable,
-        },
-        className
-      )}
-    >
-      <span className={styles['notification-panel__icon']}>
-        {variantToIconMap[variant === 'alert' && label && !children ? 'alertLabel' : variant]}
-      </span>
-      {!labelOnly && dismissable && (
-        <span className={styles['notification-panel__close']}>
-          <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} />
-        </span>
-      )}
+  const notificationPanelClasses = classNames(
+    styles['notification-panel'],
+    size && styles[`notification-panel--${size}`],
+    styles[`notification-panel--${variant}`],
+    {
+      [styles['notification-panel--shadow']]: !fluid && shadow,
+      [styles['notification-panel--has-children']]: !!children,
+      [styles['notification-panel--label-only']]: labelOnly,
+      [styles['notification-panel--dismissable']]: !labelOnly && dismissable,
+    },
+    className
+  );
+
+  const ariaLabelAttributes = getAriaLabelAttributes({ label, id: uuid });
+
+  return (
+    <FluidWrapper>
       <section
-        aria-label={getStringChildren()}
-        className={cn(styles['notification-panel__content'], {
-          [styles['notification-panel__content--crisis']]: variant === 'crisis',
-          [styles['notification-panel__content--alert']]: variant === 'alert',
-        })}
+        ref={ref}
+        data-testid={testId}
+        data-analyticsid={AnalyticsId.NotificationPanel}
+        className={notificationPanelClasses}
+        {...ariaLabelAttributes}
       >
-        {label && <h1 className={styles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} />}
-        {children}
+        <span className={styles['notification-panel__icon']}>
+          {variantToIconMap[variant === 'alert' && label && !children ? 'alertLabel' : variant]}
+        </span>
+        {!labelOnly && dismissable && (
+          <span className={styles['notification-panel__close']}>
+            <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} />
+          </span>
+        )}
+        {renderContent()}
       </section>
-    </div>
+    </FluidWrapper>
   );
 });
 

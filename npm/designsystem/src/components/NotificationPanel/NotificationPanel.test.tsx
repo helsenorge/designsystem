@@ -68,4 +68,34 @@ describe('Gitt at NotificationPanel skal vises', () => {
       expect(closeButton).toHaveFocus();
     });
   });
+
+  describe('Når panelet har label og tekstlig innhold', (): void => {
+    test('Så er panelet tilgjengelig via label', (): void => {
+      render(<NotificationPanel label="Overskrift">Some text here for testing</NotificationPanel>);
+
+      const panel = screen.getByRole('region', { name: 'Overskrift' });
+      expect(panel).toBeInTheDocument();
+    });
+  });
+
+  describe('Når panelet har bare rent tekstlig innhold', (): void => {
+    test('Så er panelet tilgjengelig via teksten i panelet', (): void => {
+      render(<NotificationPanel>Some text here for testing</NotificationPanel>);
+
+      const panel = screen.getByRole('region', { name: 'Some text here for testing' });
+      expect(panel).toBeInTheDocument();
+    });
+  });
+  describe('Når panelet JSX som innhold, og ikke ariaLabel eller label', (): void => {
+    test('Så er panelet tilgjengelig via teksten i panelet', (): void => {
+      render(
+        <NotificationPanel>
+          <p>Some text here for testing</p>
+        </NotificationPanel>
+      );
+
+      const panel = screen.getByRole('region', { name: 'Some text here for testing' });
+      expect(panel).toBeInTheDocument();
+    });
+  });
 });
