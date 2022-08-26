@@ -66,6 +66,7 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
 const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, inverted: boolean, hovered: boolean): string => {
   if (disabled) return getColor('neutral', 600);
   if ((fill && !inverted) || (!fill && inverted)) return 'white';
+  if (intent === 'warning' && !inverted) return getColor(intentToColor[intent], hovered ? 800 : 700);
   return getColor(intentToColor[intent], hovered ? 700 : 600);
 };
 
