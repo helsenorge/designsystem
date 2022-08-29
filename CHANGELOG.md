@@ -1,3 +1,11 @@
+## [1.2.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.1.0&targetVersion=GTv1.2.0) (2022-08-29)
+
+
+### Features
+
+*  endret button farger for å støtte uu krav ([183447e](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/183447e99ec43e01f963c78c7144d55f14827fb1))
+*  notificationpanel har ariaLabel-prop ([f1a7db7](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/f1a7db7b33446b9df2a109f50c401ec80d70b317)), closes [#279887](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/279887)
+
 ## [1.1.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.0.1&targetVersion=GTv1.1.0) (2022-08-22)
 
 
