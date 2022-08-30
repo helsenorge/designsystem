@@ -36,7 +36,7 @@ export const TableExpanderCell = function TableExpanderCell({
         variant="borderless"
         aria-expanded={expanded}
         aria-controls={expandableRowId}
-        aria-label={expanded ? hideDetailsText : showDetailsText}
+        ariaLabel={expanded ? hideDetailsText : showDetailsText}
       >
         <Icon svgIcon={icon} color={palette.blueberry500}></Icon>
       </Button>
