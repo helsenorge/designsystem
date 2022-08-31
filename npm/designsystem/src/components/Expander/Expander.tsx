@@ -38,6 +38,8 @@ interface ExpanderProps {
   sticky?: boolean;
   /** Called when expander is open/closed. */
   onExpand?: (isExpanded: boolean) => void;
+  /** Whether to render children when closed (in which case they are hidden with CSS). Default: false */
+  renderChildrenWhenClosed?: boolean;
   /** Sets the data-testid attribute on the expander button. */
   testId?: string;
 }
@@ -54,12 +56,12 @@ const Expander: React.FC<ExpanderProps> = props => {
     sticky = false,
     testId,
     onExpand,
+    renderChildrenWhenClosed = false,
   } = props;
   const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
   const previousIsExpanded = usePrevious(isExpanded);
   const expanderRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const { isHovered } = useHover(triggerRef);
   const { isOutsideWindow, isLeavingWindow, offsetHeight, contentWidth } = useSticky(expanderRef, triggerRef);
 
@@ -140,20 +142,22 @@ const Expander: React.FC<ExpanderProps> = props => {
     </Button>
   );
 
-  const contentClassName = classNames(
-    styles['expander__content'],
-    styles[`expander__content--${size}`],
-    size === ExpanderSize.large && styles[`expander__content--${color || 'neutral'}`],
-    size === ExpanderSize.large && icon && styles['expander__content--icon'],
-    isExpanded && styles['expander__content--expanded'],
-    size === ExpanderSize.small && !noNestedLine && styles['expander__content--nested-line']
-  );
+  const renderContent = () => {
+    if (!renderChildrenWhenClosed && !isExpanded) {
+      return null;
+    }
 
-  const renderContent = () => (
-    <div className={contentClassName} ref={contentRef}>
-      {children}
-    </div>
-  );
+    const contentClassName = classNames(
+      styles['expander__content'],
+      styles[`expander__content--${size}`],
+      size === ExpanderSize.large && styles[`expander__content--${color || 'neutral'}`],
+      size === ExpanderSize.large && icon && styles['expander__content--icon'],
+      isExpanded && styles['expander__content--expanded'],
+      size === ExpanderSize.small && !noNestedLine && styles['expander__content--nested-line']
+    );
+
+    return <div className={contentClassName}>{children}</div>;
+  };
 
   return (
     <div

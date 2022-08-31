@@ -94,6 +94,8 @@ export interface PanelProps {
   expanded?: boolean;
   /** Called when panel is open/closed. */
   onExpand?: (isExpanded: boolean) => void;
+  /** Whether to render children when closed (in which case they are hidden with CSS). Default: false */
+  renderChildrenWhenClosed?: boolean;
 }
 
 const StatusText: React.FC<{ status?: keyof typeof PanelStatus; statusMessage?: string }> = ({ status, statusMessage }) => {
@@ -197,6 +199,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     buttonHtmlMarkup,
     expanded = false,
     onExpand,
+    renderChildrenWhenClosed = false,
   } = props;
 
   const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
@@ -259,13 +262,6 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel__content-right--layout3c']]: contentB && layout === PanelLayout.layout3c,
   });
 
-  const panelDetailsClasses = classNames(panelStyles['panel-details'], {
-    [panelStyles['panel-details--open']]: isExpanded,
-    [panelStyles['panel-details--line']]: variant === PanelVariant.line,
-    [panelStyles['panel-details--white']]: variant === PanelVariant.white,
-    [panelStyles['panel-details--with-icon']]: icon,
-  });
-
   const panelContentBClass = classNames(panelStyles['panel-content-b'], {
     [panelStyles['panel-content-b--layout1']]: layout === PanelLayout.layout1,
     [panelStyles['panel-content-b--layout3']]: layout3,
@@ -317,6 +313,29 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     }
   };
 
+  const renderContent = () => {
+    if (!children) {
+      return null;
+    }
+    if (!renderChildrenWhenClosed && !isExpanded) {
+      return null;
+    }
+
+    const panelDetailsClasses = classNames(panelStyles['panel-details'], {
+      [panelStyles['panel-details--open']]: isExpanded,
+      [panelStyles['panel-details--line']]: variant === PanelVariant.line,
+      [panelStyles['panel-details--white']]: variant === PanelVariant.white,
+      [panelStyles['panel-details--with-icon']]: icon,
+    });
+
+    return (
+      <div className={panelDetailsClasses} data-testid="panel-details">
+        <div>{children}</div>
+        {showCloseButtonInExpand && <div className={panelActionBtnClass}>{renderDetailsButton()}</div>}
+      </div>
+    );
+  };
+
   return (
     <div ref={ref} data-testid={testId} className={panelWrapperClass} data-analyticsid={AnalyticsId.Panel}>
       <div
@@ -362,12 +381,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
         </div>
         {icon && iconRight && <div className={panelStyles['panel__icon--right']}>{icon}</div>}
       </div>
-      {children && (
-        <div className={panelDetailsClasses} data-testid="panel-details">
-          <div>{children}</div>
-          {showCloseButtonInExpand && <div className={panelActionBtnClass}>{renderDetailsButton()}</div>}
-        </div>
-      )}
+      {renderContent()}
     </div>
   );
 });

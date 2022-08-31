@@ -38,6 +38,10 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    renderChildrenWhenClosed: {
+      control: 'boolean',
+      defaultValue: false,
+    },
     sticky: {
       control: 'boolean',
       defaultValue: true,

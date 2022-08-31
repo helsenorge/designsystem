@@ -40,6 +40,8 @@ interface ExpanderListProps {
   /** Opens the first item in the list. */
   /** @deprecated Skal fases ut til fordel for å bruke expanded-prop på første ExpanderList.Expander */
   isOpen?: boolean;
+  /** Whether to render children when closed (in which case they are hidden with CSS). Default: false */
+  renderChildrenWhenClosed?: boolean;
   /** Toggles the top border of the first child element. */
   topBorder?: boolean;
   /** Sets the data-testid attribute. */
@@ -65,7 +67,8 @@ type ExpanderProps = Modify<
     /** Called when expander is open/closed. */
     onExpand?: (isExpanded: boolean) => void;
   }
->;
+> &
+  Pick<ExpanderListProps, 'renderChildrenWhenClosed'>;
 
 // TODO: See what can be done with regards to double reffing.
 const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: React.Ref<HTMLLIElement>) => {
@@ -82,6 +85,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     testId,
     handleExpanderClick,
     onExpand,
+    renderChildrenWhenClosed,
   } = props;
   const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
   const previousIsExpanded = usePrevious(isExpanded);
@@ -97,11 +101,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     [expanderListStyles['expander-list-link--large']]: large,
     [expanderListStyles['expander-list-link--jsx']]: isJsxTitle,
   });
-  const mainContentClasses = classNames(
-    expanderListStyles['expander-list-link__main-content'],
-    isExpanded && expanderListStyles['expander-list-link__main-content--expanded'],
-    padding ? expanderListStyles['expander-list-link__main-content--padding'] : ''
-  );
+
   const titleClasses = classNames(expanderListStyles['expander-list-link__title'], {
     [expanderListStyles['expander-list-link__title--string']]: !isJsxTitle,
     [expanderListStyles['expander-list-link__title--jsx']]: isJsxTitle,
@@ -118,6 +118,20 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
       onExpand(isExpanded);
     }
   }, [isExpanded, onExpand]);
+
+  const renderContent = () => {
+    if (!renderChildrenWhenClosed && !isExpanded) {
+      return null;
+    }
+
+    const mainContentClasses = classNames(
+      expanderListStyles['expander-list-link__main-content'],
+      isExpanded && expanderListStyles['expander-list-link__main-content--expanded'],
+      padding ? expanderListStyles['expander-list-link__main-content--padding'] : ''
+    );
+
+    return <div className={mainContentClasses}>{children}</div>;
+  };
 
   return (
     <li className={itemClasses} ref={ref}>
@@ -144,7 +158,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
           <Icon size={IconSize.XSmall} svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} />
         </span>
       </button>
-      <div className={mainContentClasses}>{children}</div>
+      {renderContent()}
     </li>
   );
 });
@@ -160,6 +174,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     childPadding = true,
     large,
     isOpen = false,
+    renderChildrenWhenClosed = false,
     color,
     className = '',
     accordion = false,
@@ -237,6 +252,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
             'aria-expanded': expanded,
             className: expanderItemClass,
             handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${uuid}-${index}`),
+            renderChildrenWhenClosed,
           });
         }
         return child;

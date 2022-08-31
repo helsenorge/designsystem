@@ -416,4 +416,46 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       expect(container).toMatchSnapshot();
     });
   });
+  describe('Når renderChildrenWhenClosed ikke er satt', (): void => {
+    test('Så er children ikke rendret', (): void => {
+      render(
+        <ExpanderList>
+          <ExpanderList.Expander title={'Test'}>
+            <span data-testid="test">{'Test'}</span>
+          </ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const child = screen.queryByTestId('test');
+      expect(child).not.toBeInTheDocument();
+    });
+  });
+  describe('Når renderChildrenWhenClosed er true', (): void => {
+    test('Så er children rendret', (): void => {
+      render(
+        <ExpanderList renderChildrenWhenClosed={true}>
+          <ExpanderList.Expander title={'Test'}>
+            <span data-testid="test">{'Test'}</span>
+          </ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const child = screen.getByTestId('test');
+      expect(child).toBeInTheDocument();
+    });
+  });
+  describe('Når renderChildrenWhenClosed er false', (): void => {
+    test('Så er children ikke rendret', (): void => {
+      render(
+        <ExpanderList renderChildrenWhenClosed={false}>
+          <ExpanderList.Expander title={'Test'}>
+            <span data-testid="test">{'Test'}</span>
+          </ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const child = screen.queryByTestId('test');
+      expect(child).not.toBeInTheDocument();
+    });
+  });
 });

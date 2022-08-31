@@ -139,7 +139,6 @@
   }
 
   &__details-btn {
-
     @media (min-width: map-get($grid-breakpoints, lg)) {
       align-self: end;
     }
@@ -252,6 +251,10 @@
   display: none;
   @include panel-padding;
 
+  @media print {
+    display: flex;
+    flex-direction: column;
+  }
   &--open {
     display: flex;
     flex-direction: column;

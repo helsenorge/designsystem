@@ -109,3 +109,41 @@ describe('Gitt at Expander vises med et fokuserbart element', (): void => {
     });
   });
 });
+describe('Gitt at Expander skal vises', (): void => {
+  describe('Når renderChildrenWhenClosed ikke er satt', (): void => {
+    test('Så er children ikke rendret', (): void => {
+      render(
+        <Expander title={'Knapp'}>
+          <span data-testid="test">{'Test'}</span>
+        </Expander>
+      );
+
+      const child = screen.queryByTestId('test');
+      expect(child).not.toBeInTheDocument();
+    });
+  });
+  describe('Når renderChildrenWhenClosed er true', (): void => {
+    test('Så er children rendret', (): void => {
+      render(
+        <Expander title={'Knapp'} renderChildrenWhenClosed={true}>
+          <span data-testid="test">{'Test'}</span>
+        </Expander>
+      );
+
+      const child = screen.getByTestId('test');
+      expect(child).toBeInTheDocument();
+    });
+  });
+  describe('Når renderChildrenWhenClosed er false', (): void => {
+    test('Så er children ikke rendret', (): void => {
+      render(
+        <Expander title={'Knapp'} renderChildrenWhenClosed={false}>
+          <span data-testid="test">{'Test'}</span>
+        </Expander>
+      );
+
+      const child = screen.queryByTestId('test');
+      expect(child).not.toBeInTheDocument();
+    });
+  });
+});
