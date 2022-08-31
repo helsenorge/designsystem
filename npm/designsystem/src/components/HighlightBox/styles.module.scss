@@ -3,6 +3,23 @@
 @import '../../scss/_palette.scss';
 @import '../../scss/_grid.scss';
 
+@mixin content-wrapper-with-icon-flex {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    flex-direction: row;
+  }
+}
+
+@mixin content-wrapper-with-icon-padding {
+  padding-top: getSpacer(s);
+
+  @media (min-width: map-get($grid-breakpoints, xl)) {
+    padding-top: getSpacer(m);
+  }
+}
+
 .highlightbox {
   $box: &;
   $colors: 'blueberry', 'cherry', 'neutral', 'kiwi', 'plum';
@@ -88,7 +105,9 @@
 
   &--has-icon#{&}--medium {
     #{$box}__content-wrapper {
-      display: flex;
+      @include content-wrapper-with-icon-flex;
+      @include content-wrapper-with-icon-padding;
+
       @media (min-width: map-get($grid-breakpoints, lg)) {
         padding-left: getSpacer(m);
       }
@@ -97,9 +116,10 @@
 
   &--has-icon#{&}--large {
     #{$box}__col {
-      display: flex;
+      @include content-wrapper-with-icon-flex;
     }
     #{$box}__content-wrapper {
+      @include content-wrapper-with-icon-padding;
       @media (min-width: map-get($grid-breakpoints, sm)) {
         padding-left: getSpacer(s);
       }
@@ -132,12 +152,25 @@
     }
   }
 
+  &__content {
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      margin-top: 0.625rem;
+    }
+  }
+
   &--has-icon#{&}--fluid {
-    display: flex;
+    @include content-wrapper-with-icon-flex;
+    @include content-wrapper-with-icon-padding;
   }
 
   &__icon {
+    display: inline-flex;
     margin-right: getSpacer(s);
+    margin-bottom: getSpacer(2xs);
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      margin-bottom: 0;
+    }
   }
 
   &__row {
