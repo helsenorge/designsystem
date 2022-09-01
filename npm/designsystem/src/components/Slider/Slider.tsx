@@ -19,6 +19,7 @@ import {
 
 import SliderStyles from './styles.module.scss';
 import { AnalyticsId } from '../../constants';
+import { useSize } from '../../hooks/useSize';
 
 interface SliderProps {
   /**	Sets the title of the slider. */
@@ -41,12 +42,13 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   const { title, labelLeft, labelRight, disabled = false, step = 1, onChange, testId } = props;
   const [value, setValue] = useState(50);
   const [isMouseDown, setIsMouseDown] = useState(false);
-  const [trackerWidth, setTrackerWidth] = useState(0);
-  const [sliderWidth, setSliderWidth] = useState(0);
+
   const [sliderXPos, setSliderXPos] = useState(0);
   const [sliderTemporaryXPos, setSliderTemporaryXPos] = useState(0);
   const trackerRef = ref ? (ref as React.RefObject<HTMLDivElement>) : useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const { width: trackerWidth } = useSize(trackerRef) || { width: 0 };
+  const { width: sliderWidth } = useSize(sliderRef) || { width: 0 };
   const min = 0;
   const max = 100;
 
@@ -64,12 +66,8 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
   };
 
   useEffect(() => {
-    const trackerWidth = getElementWidth(trackerRef.current);
-    const sliderWidth = getElementWidth(sliderRef.current);
     setSliderXPos(calculateSliderPositionBasedOnValue(value, trackerWidth, sliderWidth, min, max));
-    setTrackerWidth(trackerWidth);
-    setSliderWidth(sliderWidth);
-  }, []);
+  }, [value, trackerWidth, sliderWidth]);
 
   useEffect(() => {
     if (isMouseDown) {
@@ -104,8 +102,6 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
     calculateSliderTranslate(updatedMousePosition, sliderRef.current, sliderWidth, updateSliderPosition);
     setIsMouseDown(true);
     setSliderTemporaryXPos(updatedMousePosition);
-    setTrackerWidth(trackerWidth);
-    setSliderWidth(sliderWidth);
     sliderRef.current?.focus();
     stopEvent(e);
   };
