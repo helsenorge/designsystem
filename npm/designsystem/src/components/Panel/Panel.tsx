@@ -356,11 +356,9 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
                   {title}
                 </Title>
                 {statusMessage && status === PanelStatus.new && (
-                  <div>
-                    <Badge color="blueberry" testId="badge-status">
-                      {statusMessage}
-                    </Badge>
-                  </div>
+                  <Badge color="blueberry" testId="badge-status" className={panelStyles.panel__badge}>
+                    {statusMessage}
+                  </Badge>
                 )}
               </div>
             )}

@@ -74,6 +74,10 @@
     }
   }
 
+  &__badge {
+    margin-left: getSpacer(2xs);
+  }
+
   &__content-left {
     &--flex {
       display: flex;
@@ -298,13 +302,6 @@
     display: flex;
     align-items: center;
     padding-bottom: getSpacer(s);
-
-    & > :last-child() {
-      padding-left: getSpacer(xs);
-    }
-    & > :first-child() {
-      padding-left: 0;
-    }
   }
 
   &--layout3a {
