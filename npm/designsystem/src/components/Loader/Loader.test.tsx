@@ -37,7 +37,7 @@ describe('Gitt at en loader skal vises ', (): void => {
       const loader = screen.getByRole('progressbar');
       expect(loader).toBeVisible();
 
-      expect(loader).toHaveClass('loader-wrapper--overlay-screen');
+      expect(loader.parentElement).toHaveClass('loader-wrapper--overlay-screen');
 
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
       expect(loaderDotsWrapper).toHaveAttribute('aria-labelledby', 'test');
@@ -77,7 +77,7 @@ describe('Gitt at en loader skal vises ', (): void => {
       expect(component).toBeVisible();
 
       const loaderWrapper = screen.getByRole('progressbar');
-      expect(loaderWrapper).toHaveClass('loader-wrapper--overlay-parent');
+      expect(loaderWrapper.parentElement).toHaveClass('loader-wrapper--overlay-parent');
 
       const wrapper = screen.getByTestId('parent-wrapper');
       expect(wrapper).toHaveStyle('position: relative');
@@ -97,7 +97,7 @@ describe('Gitt at en loader skal vises ', (): void => {
       expect(component).toBeVisible();
 
       const loaderWrapper = screen.getByRole('progressbar');
-      expect(loaderWrapper).toHaveClass('loader-wrapper--inline');
+      expect(loaderWrapper.parentElement).toHaveClass('loader-wrapper--inline');
 
       const wrapper = screen.getByTestId('parent-wrapper');
       expect(wrapper).toHaveStyle('display: flex');
