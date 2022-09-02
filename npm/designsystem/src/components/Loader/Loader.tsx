@@ -108,11 +108,12 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   }, []);
 
   return (
-    <div role="progressbar" className={loaderWrapperClasses} ref={wrapperRef}>
+    <div className={loaderWrapperClasses} ref={wrapperRef}>
       {display && (
         <div
           data-testid={testId}
           data-analyticsid={AnalyticsId.Loader}
+          role="progressbar"
           aria-labelledby={ariaLabelledById || labelId}
           className={loaderClasses}
         >
