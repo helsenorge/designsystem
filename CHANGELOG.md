@@ -1,3 +1,11 @@
+### [1.3.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.0&targetVersion=GTv1.3.1) (2022-09-02)
+
+
+### Bug Fixes
+
+*  forbedret sr-only og sr-only-focusable mixins ([c5c81d4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/c5c81d41298e03854c742410566c57405f5c36b5))
+*  loader har role="progressbar" på riktig element ([a04ced2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/a04ced210957560132db684f56f873a08e4dddf6))
+
 ## [1.3.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.2&targetVersion=GTv1.3.0) (2022-09-01)
 
 
