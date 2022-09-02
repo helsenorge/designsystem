@@ -1,3 +1,20 @@
+## [1.3.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.2&targetVersion=GTv1.3.0) (2022-09-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* CMSet eller andre steder som vil vise children ved utskrift må ta i bruk propen renderChildrenWhenClosed ved bruk av komponentene Expander, Panel og ExpanderList
+
+### Features
+
+*  vis children ved printing hvis renderChildrenWhenClosed er true ([1833ddf](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/1833ddf6fa324f104f31fc41ec635945ac88cec2)), closes [#282870](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282870)
+
+
+### Bug Fixes
+
+*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
+*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
+
 ### [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
 
