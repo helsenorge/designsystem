@@ -4,12 +4,12 @@ exports[`Gitt at en loader skal vises  Når at en loader rendres  Så vises load
 <div>
   <div
     class="loader-wrapper"
-    role="progressbar"
   >
     <div
       aria-labelledby="test"
       class="loader loader--small"
       data-analyticsid="loader"
+      role="progressbar"
     >
       <div
         class="loader__dot loader__dot--small loader__dot--neutral"

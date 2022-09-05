@@ -54,13 +54,6 @@ exports[`Gitt at Expander skal vises som large, med farge og ikon Når Expandere
         </svg>
       </span>
     </button>
-    <div
-      class="expander__content expander__content--large expander__content--blueberry expander__content--icon"
-    >
-      <h1>
-        Innhold i expander
-      </h1>
-    </div>
   </div>
 </div>
 `;

@@ -2,6 +2,7 @@ export type Styles = {
   'datetime-container': string;
   'datetime-container__icon': string;
   panel: string;
+  panel__badge: string;
   'panel__btn-container': string;
   'panel__btn-container--layout3': string;
   'panel__btn-container--padding-top': string;

@@ -74,6 +74,10 @@
     }
   }
 
+  &__badge {
+    margin-left: getSpacer(2xs);
+  }
+
   &__content-left {
     &--flex {
       display: flex;
@@ -139,7 +143,6 @@
   }
 
   &__details-btn {
-
     @media (min-width: map-get($grid-breakpoints, lg)) {
       align-self: end;
     }
@@ -252,6 +255,10 @@
   display: none;
   @include panel-padding;
 
+  @media print {
+    display: flex;
+    flex-direction: column;
+  }
   &--open {
     display: flex;
     flex-direction: column;
@@ -295,13 +302,6 @@
     display: flex;
     align-items: center;
     padding-bottom: getSpacer(s);
-
-    & > :last-child() {
-      padding-left: getSpacer(xs);
-    }
-    & > :first-child() {
-      padding-left: 0;
-    }
   }
 
   &--layout3a {

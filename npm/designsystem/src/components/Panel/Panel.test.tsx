@@ -140,7 +140,7 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Gitt at panelet har en expand knapp, og gitt at knappen trykkes', (): void => {
     test('Så vises detalje-området', (): void => {
       render(
-        <Panel title="Dette er en tittel">
+        <Panel title="Dette er en tittel" renderChildrenWhenClosed>
           <div>{'Details'}</div>
         </Panel>
       );
@@ -221,7 +221,7 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Gitt at panelet er button, og container trigger click-event', (): void => {
     test('Så vises detalje-området', (): void => {
       render(
-        <Panel testId="panel-test" containerAsButton title="Dette er en tittel">
+        <Panel testId="panel-test" containerAsButton title="Dette er en tittel" renderChildrenWhenClosed>
           <div>{'Details'}</div>
         </Panel>
       );
@@ -248,7 +248,7 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Gitt at panelet er button, og container trigger key-down event', (): void => {
     test('Så vises detalje-området', (): void => {
       render(
-        <Panel testId="panel-test" containerAsButton title="Dette er en tittel">
+        <Panel testId="panel-test" containerAsButton title="Dette er en tittel" renderChildrenWhenClosed>
           <div>{'Details'}</div>
         </Panel>
       );
@@ -310,6 +310,42 @@ describe('Gitt at Panel skal vises', (): void => {
 
       userEvent.click(link);
       expect(onClickMock).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('Når renderChildrenWhenClosed ikke er satt', (): void => {
+    test('Så er children ikke rendret', (): void => {
+      render(
+        <Panel>
+          <span data-testid="test">{'Test'}</span>
+        </Panel>
+      );
+
+      const child = screen.queryByTestId('test');
+      expect(child).not.toBeInTheDocument();
+    });
+  });
+  describe('Når renderChildrenWhenClosed er true', (): void => {
+    test('Så er children rendret', (): void => {
+      render(
+        <Panel renderChildrenWhenClosed={true}>
+          <span data-testid="test">{'Test'}</span>
+        </Panel>
+      );
+
+      const child = screen.getByTestId('test');
+      expect(child).toBeInTheDocument();
+    });
+  });
+  describe('Når renderChildrenWhenClosed er false', (): void => {
+    test('Så er children ikke rendret', (): void => {
+      render(
+        <Panel renderChildrenWhenClosed={false}>
+          <span data-testid="test">{'Test'}</span>
+        </Panel>
+      );
+
+      const child = screen.queryByTestId('test');
+      expect(child).not.toBeInTheDocument();
     });
   });
 });

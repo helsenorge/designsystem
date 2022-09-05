@@ -42,11 +42,6 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
           </svg>
         </span>
       </button>
-      <div
-        class="expander-list-link__main-content expander-list-link__main-content--padding"
-      >
-        Text 1
-      </div>
     </li>
   </ul>
   <ul
@@ -89,11 +84,6 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
           </svg>
         </span>
       </button>
-      <div
-        class="expander-list-link__main-content expander-list-link__main-content--padding"
-      >
-        Text 2
-      </div>
     </li>
   </ul>
 </div>
@@ -141,11 +131,6 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
           </svg>
         </span>
       </button>
-      <div
-        class="expander-list-link__main-content expander-list-link__main-content--padding"
-      >
-        Text 1
-      </div>
     </li>
     <li
       class="expander-list__item"
@@ -183,11 +168,6 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
           </svg>
         </span>
       </button>
-      <div
-        class="expander-list-link__main-content expander-list-link__main-content--padding"
-      >
-        Text 2
-      </div>
     </li>
     <li
       class="expander-list__item"
@@ -225,11 +205,6 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
           </svg>
         </span>
       </button>
-      <div
-        class="expander-list-link__main-content expander-list-link__main-content--padding"
-      >
-        Text 2
-      </div>
     </li>
   </ul>
 </div>
@@ -303,11 +278,6 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
           </svg>
         </span>
       </button>
-      <div
-        class="expander-list-link__main-content expander-list-link__main-content--padding"
-      >
-        Hei
-      </div>
     </li>
     <li
       class="expander-list__item expander-list__item--jsx"
@@ -351,11 +321,6 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
           </svg>
         </span>
       </button>
-      <div
-        class="expander-list-link__main-content expander-list-link__main-content--padding"
-      >
-        Hei
-      </div>
     </li>
   </ul>
 </div>

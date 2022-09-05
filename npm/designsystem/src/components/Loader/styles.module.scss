@@ -1,6 +1,6 @@
 @import '../../scss/_spacers.scss';
 @import '../../scss/_palette.scss';
-@import '~bootstrap/scss/mixins/_screen-reader.scss';
+@import '../../scss/_screen-reader.scss';
 
 @mixin keyframes($name) {
   @keyframes #{$name} {

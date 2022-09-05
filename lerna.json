@@ -1,5 +1,5 @@
 {
-	"version": "1.0.1",
+	"version": "1.3.1",
 	"npmClient": "npm",
 	"command": {
 		"run": {
@@ -12,7 +12,9 @@
 			"allowBranch": [
 				"master"
 			],
-			"ignoreChanges": ["CHANGELOG.md"]
+			"ignoreChanges": [
+				"CHANGELOG.md"
+			]
 		},
 		"publish": {
 			"scope": "@helsenorge/*",

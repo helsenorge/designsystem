@@ -2,7 +2,8 @@
 
 exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles onClick-handleren når man klikker på knappen 1`] = `
 <div>
-  <div
+  <section
+    aria-labelledby="test"
     class="notification-panel notification-panel--info notification-panel--has-children notification-panel--dismissable"
     data-analyticsid="notification-panel"
   >
@@ -53,19 +54,20 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
         </svg>
       </button>
     </span>
-    <section
-      aria-label="Some text here for testing."
-      class="notification-panel__content"
+    <div
+      class="notification-panel__content notification-panel__content--info"
+      id="test"
     >
       Some text here for testing.
-    </section>
-  </div>
+    </div>
+  </section>
 </div>
 `;
 
 exports[`Gitt at NotificationPanel skal vises Når panelet vises med default props Så rendres komponenten riktig 1`] = `
 <div>
-  <div
+  <section
+    aria-labelledby="test"
     class="notification-panel notification-panel--info notification-panel--has-children"
     data-analyticsid="notification-panel"
   >
@@ -89,12 +91,12 @@ exports[`Gitt at NotificationPanel skal vises Når panelet vises med default pro
         />
       </svg>
     </span>
-    <section
-      aria-label="Some text here for testing."
-      class="notification-panel__content"
+    <div
+      class="notification-panel__content notification-panel__content--info"
+      id="test"
     >
       Some text here for testing.
-    </section>
-  </div>
+    </div>
+  </section>
 </div>
 `;

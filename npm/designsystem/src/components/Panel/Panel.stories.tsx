@@ -61,6 +61,10 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    renderChildrenWhenClosed: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
 } as ComponentMeta<typeof Panel>;
 

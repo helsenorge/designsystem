@@ -20,6 +20,10 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    renderChildrenWhenClosed: {
+      control: 'boolean',
+      defaultValue: false,
+    },
     accordion: {
       control: 'boolean',
       defaultValue: false,
