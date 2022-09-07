@@ -51,6 +51,7 @@ table tbody tr {
   }
   &--sortable:focus {
     outline: 3px solid $black;
+    outline-offset: -3px;
   }
 
   &--sorted {
@@ -100,7 +101,7 @@ table tbody tr {
 .table__cell-expander {
   text-align: center;
   width: min-content;
-  padding: 0px;
+  padding: 0 getSpacer(3xs);
   vertical-align: middle;
 }
 
@@ -110,10 +111,7 @@ table tbody tr {
   }
   &:hover {
     cursor: pointer;
-    background: $neutral100;
-  }
-  &:focus-within {
-    outline: 3px solid $black;
+    background: $blueberry50;
   }
 }
 .table__expanded-row {

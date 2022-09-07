@@ -236,7 +236,7 @@ $with-icons:
   }
 
   &--borderless:not(.button--only-icon) {
-    padding: 0;
+    padding: 0 getSpacer(3xs);
   }
   &--borderless {
     &:hover {
