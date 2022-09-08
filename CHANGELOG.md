@@ -1,3 +1,10 @@
+### [1.3.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.1&targetVersion=GTv1.3.2) (2022-09-08)
+
+
+### Bug Fixes
+
+*  slider beholder riktig posisjon/verdi hvis den endrer størrelse ([afa1d0a](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/afa1d0af335c4e2450962904f042768badbc18fd)), closes [#279639](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/279639)
+
 ### [1.3.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.0&targetVersion=GTv1.3.1) (2022-09-02)
 
 
