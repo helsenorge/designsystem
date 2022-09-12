@@ -118,9 +118,10 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     htmlMarkup === 'button'
       ? useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>)
       : useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
-  const buttonContentWrapperRef = useRef<HTMLDivElement>(null);
-  const buttonSize = useSize(buttonContentWrapperRef);
+  const buttonContentRef = useRef<HTMLDivElement>(null);
+  const buttonContentSize = useSize(buttonContentRef);
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
+  const bothIcons = leftIcon && (rightIcon || arrow) && !onlyIcon;
   const onDark = mode === 'ondark';
   const breakpoint = useBreakpoint();
   const mobile = breakpoint < breakpoints.sm;
@@ -143,6 +144,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       [buttonStyles['button--borderless']]: borderlessVariant,
       [buttonStyles['button--left-icon']]: leftIcon && !onlyIcon,
       [buttonStyles['button--right-icon']]: rightIcon && !onlyIcon,
+      [buttonStyles['button--both-icons']]: bothIcons,
       [buttonStyles['button--only-icon']]: onlyIcon,
       [buttonStyles['button--arrow']]: hasArrow,
       [buttonStyles['button--on-dark']]: onDark,
@@ -162,42 +164,47 @@ const Button = React.forwardRef(function ButtonForwardedRef(
 
   const renderIcon = (
     iconElement: React.ReactElement<IconProps> | {} | undefined | null,
-    size: number
+    iconSize: number,
+    iconClassName?: string
   ): React.ReactElement<IconProps> | React.Component<IconProps> | null => {
     const color =
       iconElement && (iconElement as React.ReactElement<IconProps>).props && (iconElement as React.ReactElement<IconProps>).props.color
         ? (iconElement as React.ReactElement<IconProps>).props.color
         : iconColor;
     return iconElement && Object.keys(iconElement).length > 0
-      ? React.cloneElement(iconElement as React.ReactElement<IconProps>, { size, color, isHovered })
+      ? React.cloneElement(iconElement as React.ReactElement<IconProps>, { size: iconSize, color, isHovered, className: iconClassName })
       : null;
   };
 
   const renderButtonContent = () => {
-    return <span className={buttonTextClasses}>{onlyIcon ? ariaLabel : restChildren}</span>;
-  };
-
-  const renderbuttonContentWrapper = () => {
     let angle;
     let diagonalWidth;
-    if (buttonSize) {
-      angle = Math.atan2(buttonSize.height, buttonSize.width);
-      diagonalWidth = Math.sqrt(Math.pow(buttonSize.width, 2) + Math.pow(buttonSize.height, 2));
+    if (buttonContentSize) {
+      angle = Math.atan2(buttonContentSize.height, buttonContentSize.width);
+      diagonalWidth = Math.sqrt(Math.pow(buttonContentSize.width, 2) + Math.pow(buttonContentSize.height, 2));
     }
 
     return (
-      <>
+      <div className={buttonTextClasses} ref={buttonContentRef}>
         {disabled && borderlessVariant && (
           <div className={diagonalClasses}>
             <div style={{ transform: `rotate(${angle}rad)`, width: diagonalWidth }} className={buttonStyles['diagonal__line']} />
           </div>
         )}
-        <div ref={buttonContentWrapperRef} className={buttonClasses}>
-          {renderIcon(leftIcon, getLargeIconSize(large, mobile))}
+        <span>{onlyIcon ? ariaLabel : restChildren}</span>
+      </div>
+    );
+  };
+
+  const renderbuttonContentWrapper = () => {
+    return (
+      <>
+        <div className={buttonClasses}>
+          {renderIcon(leftIcon, getLargeIconSize(large, mobile), !onlyIcon && buttonStyles['button__left-icon'])}
           {renderButtonContent()}
           {hasArrow
-            ? renderIcon(<Icon className={buttonStyles['button__arrow']} svgIcon={ArrowRight} />, getLargeIconSize(large, mobile))
-            : renderIcon(rightIcon, getLargeIconSize(large, mobile))}
+            ? renderIcon(<Icon svgIcon={ArrowRight} />, getLargeIconSize(large, mobile), buttonStyles['button__arrow'])
+            : renderIcon(rightIcon, getLargeIconSize(large, mobile), buttonStyles['button__right-icon'])}
         </div>
       </>
     );

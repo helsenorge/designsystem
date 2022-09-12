@@ -73,11 +73,13 @@ exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold S
           <div
             class="button button--normal"
           >
-            <span
+            <div
               class="button__text"
             >
-              Lukk
-            </span>
+              <span>
+                Lukk
+              </span>
+            </div>
           </div>
         </button>
       </div>

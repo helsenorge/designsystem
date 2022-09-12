@@ -10,11 +10,13 @@ exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
     <div
       class="button button--normal"
     >
-      <span
+      <div
         class="button__text"
       >
-        Button
-      </span>
+        <span>
+          Button
+        </span>
+      </div>
     </div>
   </button>
 </div>
@@ -46,11 +48,13 @@ exports[`Gitt at button skal vises Når button rendres kun med ikon Så innehold
           d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z"
         />
       </svg>
-      <span
+      <div
         class="button__text"
       >
-        Check me
-      </span>
+        <span>
+          Check me
+        </span>
+      </div>
     </div>
   </button>
 </div>
@@ -64,11 +68,11 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
     type="button"
   >
     <div
-      class="button button--normal button--left-icon button--right-icon"
+      class="button button--normal button--left-icon button--right-icon button--both-icons"
     >
       <svg
         aria-hidden="true"
-        class="hnds-style-icon"
+        class="hnds-style-icon button__left-icon"
         data-analyticsid="icon"
         fill="white"
         focusable="false"
@@ -82,14 +86,16 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
           d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z"
         />
       </svg>
-      <span
+      <div
         class="button__text"
       >
-        Button
-      </span>
+        <span>
+          Button
+        </span>
+      </div>
       <svg
         aria-hidden="true"
-        class="hnds-style-icon"
+        class="hnds-style-icon button__right-icon"
         data-analyticsid="icon"
         fill="white"
         focusable="false"

@@ -12,8 +12,12 @@ $with-icons:
   'right-icon' 'normal' getSpacer(xs) getSpacer(4xs) getSpacer(m) getSpacer(xs) getSpacer(3xs) 0 getSpacer(2xs) 0,
   'left-icon' 'large' getSpacer(xs) getSpacer(m) getSpacer(s) getSpacer(l) 0 getSpacer(2xs) 0 getSpacer(xs),
   'right-icon' 'large' getSpacer(m) getSpacer(xs) getSpacer(l) getSpacer(s) getSpacer(2xs) 0 getSpacer(xs) 0,
+  'arrow' 'normal' getSpacer(xs) getSpacer(4xs) getSpacer(m) getSpacer(xs) getSpacer(m) 0 getSpacer(l) 0,
+  'arrow' 'large' getSpacer(m) getSpacer(xs) getSpacer(l) getSpacer(s) getSpacer(l) 0 getSpacer(xl) 0,
   'only-icon' 'normal' 0.062rem 0.062rem 0.375rem 0.375rem 0 0 0 0,
-  'only-icon' 'large' 0.312rem 0.312rem getSpacer(3xs) getSpacer(3xs) 0 0 0 0;
+  'only-icon' 'large' 0.312rem 0.312rem getSpacer(3xs) getSpacer(3xs) 0 0 0 0,
+  'both-icons' 'normal' getSpacer(4xs) getSpacer(4xs) getSpacer(xs) getSpacer(xs) 0 0 0 0,
+  'both-icons' 'large' getSpacer(xs) getSpacer(xs) getSpacer(s) getSpacer(s) 0 0 0 0;
 
 @mixin on-dark {
   &--on-dark {
@@ -147,16 +151,6 @@ $with-icons:
     }
   }
 
-  &--arrow {
-    padding-left: getSpacer(s);
-    padding-right: getSpacer(xs);
-
-    @media (min-width: map-get($grid-breakpoints, sm)) {
-      padding-left: getSpacer(m);
-      padding-right: getSpacer(m);
-    }
-  }
-
   @each $icon-class, $size-class, $pl, $pr, $pld, $prd, $svgml, $svgmr, $svgmld, $svgmrd in $with-icons {
     &--#{$icon-class}#{&}--#{$size-class} {
       padding-left: $pl;
@@ -166,31 +160,17 @@ $with-icons:
         padding-left: $pld;
         padding-right: $prd;
       }
+    }
+  }
+  @each $icon-class, $size-class, $pl, $pr, $pld, $prd, $svgml, $svgmr, $svgmld, $svgmrd in $with-icons {
+    &__#{$icon-class} {
+      margin-left: $svgml;
+      margin-right: $svgmr;
 
-      svg:not(.button__arrow) {
-        margin-left: $svgml;
-        margin-right: $svgmr;
-
-        @media (min-width: map-get($grid-breakpoints, sm)) {
-          margin-left: $svgmld;
-          margin-right: $svgmrd;
-        }
+      @media (min-width: map-get($grid-breakpoints, sm)) {
+        margin-left: $svgmld;
+        margin-right: $svgmrd;
       }
-    }
-  }
-
-  &__arrow {
-    margin-left: getSpacer(m);
-
-    @media (min-width: map-get($grid-breakpoints, sm)) {
-      margin-left: getSpacer(l);
-    }
-  }
-  &--large &__arrow {
-    margin-left: getSpacer(l);
-
-    @media (min-width: map-get($grid-breakpoints, sm)) {
-      margin-left: getSpacer(xl);
     }
   }
 

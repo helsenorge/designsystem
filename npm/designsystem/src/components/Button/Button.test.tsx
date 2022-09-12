@@ -28,8 +28,8 @@ describe('Gitt at button skal vises', (): void => {
     test('Så er text klasse på', (): void => {
       render(<Button>Button text</Button>);
 
-      const testButtonText = screen.getByText('Button text');
-      expect(testButtonText.className).toBe('button__text');
+      const testButtonText = screen.getByText('Button text').parentElement;
+      expect(testButtonText?.className).toBe('button__text');
     });
   });
 
@@ -83,9 +83,9 @@ describe('Gitt at button skal vises', (): void => {
       );
 
       const button = screen.getByTestId('test01');
-      const testButtonText = screen.getByText('Button text');
+      const testButtonText = screen.getByText('Button text').parentElement;
       expect(button.className).toBe('button-wrapper button-wrapper--fluid');
-      expect(testButtonText.className).toBe('button__text button__text--ellipsis');
+      expect(testButtonText?.className).toBe('button__text button__text--ellipsis');
     });
   });
 
