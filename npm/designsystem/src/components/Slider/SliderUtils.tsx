@@ -14,12 +14,6 @@ export const getMousePosition = (e: MouseEvent | React.MouseEvent<{}> | TouchEve
   return (e as MouseEvent).pageX;
 };
 
-/** Henter ut width basert på viewport posisjon til parameter elementet el som sendes inn */
-export const getElementWidth = (el: HTMLDivElement | null): number => {
-  const elementViewportPosition = el ? el.getBoundingClientRect() : undefined;
-  return elementViewportPosition ? elementViewportPosition.right - elementViewportPosition.left : 0;
-};
-
 /** Returnerer en boolean på om innsendte event e er en TouchEvent */
 export const isTouchEvent = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): boolean => {
   if (
