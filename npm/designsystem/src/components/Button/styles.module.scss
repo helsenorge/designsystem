@@ -41,6 +41,7 @@ $invertedHoverColor: #ffffff0d; //$white + '0D';
   text-decoration: none;
   outline: none;
   border: 0;
+  border-radius: var(--button-border-radius, 0);
   letter-spacing: unset;
   cursor: pointer;
 
