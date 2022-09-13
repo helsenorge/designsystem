@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { AriaAttributes, useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import panelStyles from './styles.module.scss';
@@ -146,66 +146,6 @@ const DateTime: React.FC<{ date?: string; time?: string }> = ({ date, time }) =>
   return null;
 };
 
-type DetailsButtonProps = Pick<
-  PanelProps,
-  'buttonText' | 'buttonTextClose' | 'url' | 'target' | 'buttonHtmlMarkup' | 'containerAsButton'
-> & {
-  onClick: ButtonProps['onClick'];
-  renderAsExpander: boolean;
-  isExpanded: boolean;
-  titleId?: string;
-};
-
-const DetailsButton: React.FC<DetailsButtonProps> = props => {
-  const buttonTextId = useUuid();
-  const {
-    buttonText,
-    buttonTextClose,
-    url,
-    target,
-    onClick,
-    renderAsExpander,
-    containerAsButton,
-    isExpanded,
-    titleId,
-    buttonHtmlMarkup = 'a',
-  } = props;
-
-  if (renderAsExpander) {
-    return (
-      <Button
-        testId="expand"
-        onClick={onClick}
-        aria-expanded={isExpanded}
-        aria-labelledby={titleId ? `${buttonTextId} ${titleId}` : undefined}
-        className={containerAsButton && panelStyles['panel__expand']}
-        variant={'borderless'}
-        ellipsis
-      >
-        <span id={buttonTextId}>{isExpanded ? buttonTextClose : buttonText}</span>
-        <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} />
-      </Button>
-    );
-  }
-
-  return (
-    <Button
-      testId="url"
-      htmlMarkup={buttonHtmlMarkup}
-      onClick={onClick}
-      aria-labelledby={titleId ? `${buttonTextId} ${titleId}` : undefined}
-      href={url}
-      target={target}
-      className={containerAsButton && panelStyles['panel__expand']}
-      variant={'borderless'}
-      ellipsis
-    >
-      <span id={buttonTextId}>{buttonText}</span>
-      <Icon svgIcon={ArrowRight} />
-    </Button>
-  );
-};
-
 const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
   const {
     children,
@@ -230,7 +170,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     time,
     noTopBorder,
     buttonOnClick,
-    buttonHtmlMarkup,
+    buttonHtmlMarkup = 'a',
     expanded = false,
     onExpand,
     renderChildrenWhenClosed = false,
@@ -239,6 +179,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
   const previousIsExpanded = usePrevious(isExpanded);
   const titleId = useUuid();
+  const buttonTextId = useUuid();
   const breakpoint = useBreakpoint();
 
   useEffect(() => {
@@ -303,19 +244,28 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   const panelActionBtnClass = classNames(panelStyles['panel__details-btn']);
 
   const renderDetailsButton = (): JSX.Element => {
+    const commonProps: Partial<ButtonProps> & Pick<AriaAttributes, 'aria-labelledby'> = {
+      onClick: buttonOnClick ? buttonOnClick : () => setIsExpanded(!isExpanded),
+      className: containerAsButton && panelStyles['panel__expand'],
+      variant: 'borderless',
+      ellipsis: true,
+      ['aria-labelledby']: title && titleId ? `${buttonTextId} ${titleId}` : undefined,
+    };
+
+    if (!!children) {
+      return (
+        <Button testId="expand" aria-expanded={isExpanded} {...commonProps}>
+          <span id={buttonTextId}>{isExpanded ? buttonTextClose : buttonText}</span>
+          <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} />
+        </Button>
+      );
+    }
+
     return (
-      <DetailsButton
-        renderAsExpander={!!children}
-        onClick={buttonOnClick ? buttonOnClick : () => setIsExpanded(!isExpanded)}
-        isExpanded={isExpanded}
-        buttonText={buttonText}
-        url={url}
-        target={target}
-        buttonTextClose={buttonTextClose}
-        buttonHtmlMarkup={buttonHtmlMarkup}
-        titleId={title && titleId}
-        containerAsButton={containerAsButton}
-      />
+      <Button testId="url" htmlMarkup={buttonHtmlMarkup} href={url} target={target} {...commonProps}>
+        <span id={buttonTextId}>{buttonText}</span>
+        <Icon svgIcon={ArrowRight} />
+      </Button>
     );
   };
 

@@ -69,8 +69,6 @@ describe('Gitt at Panel skal vises', (): void => {
     });
   });
 
-  // TODO: Fjerne Hover-effekt på Panel
-
   describe('Når titleHtmlMarkup-prop er satt', (): void => {
     test('Så er tittel satt til ønsket overskriftsnivå', (): void => {
       render(<Panel title="Tittel" titleHtmlMarkup="h3" />);
