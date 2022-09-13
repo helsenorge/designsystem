@@ -145,17 +145,17 @@ describe('Gitt at Panel skal vises', (): void => {
         </Panel>
       );
 
-      const btnDetails = screen.getAllByTestId('expand');
+      const btnDetails = screen.getByTestId('expand');
 
-      expect(btnDetails).toHaveLength(2);
+      expect(btnDetails).toBeVisible();
 
       const panelDetails = screen.getByTestId('panel-details');
 
-      userEvent.click(btnDetails[0]);
+      userEvent.click(btnDetails);
       expect(screen.getByText('Details')).toBeVisible();
       expect(panelDetails).toHaveClass('panel-details--open');
 
-      userEvent.click(btnDetails[1]);
+      userEvent.click(btnDetails);
       expect(panelDetails).not.toHaveClass('panel-details--open');
     });
   });
@@ -168,11 +168,21 @@ describe('Gitt at Panel skal vises', (): void => {
         </Panel>
       );
 
-      const button = screen.getAllByTestId('expand')[0];
+      const button = screen.getByTestId('expand');
       expect(button).toHaveAttribute('aria-expanded', 'true');
 
       const content = screen.getByRole('heading', { name: 'Innhold i panel' });
       expect(content).toBeInTheDocument();
+    });
+    test('Så er det bare én knapp for skjul detaljer', (): void => {
+      render(
+        <Panel title={'Dette er en tittel'} expanded>
+          <h1>Innhold i panel</h1>
+        </Panel>
+      );
+
+      const button = screen.getByTestId('expand');
+      expect(button).toBeVisible();
     });
   });
 
@@ -227,11 +237,10 @@ describe('Gitt at Panel skal vises', (): void => {
       );
 
       const container = screen.getByTestId('panel-test');
-      const btnDetails = screen.getAllByTestId('expand');
+      const btnDetails = screen.getByTestId('expand');
 
-      expect(btnDetails).toHaveLength(2);
-      expect(btnDetails[0]).toHaveAttribute('tabIndex', '-1');
-      expect(btnDetails[1]).not.toHaveAttribute('tabIndex', '-1');
+      expect(btnDetails).toBeVisible();
+      expect(btnDetails).toHaveAttribute('tabIndex', '-1');
 
       const panelDetails = screen.getByTestId('panel-details');
 
@@ -240,7 +249,7 @@ describe('Gitt at Panel skal vises', (): void => {
       expect(screen.getByText('Details')).toBeVisible();
       expect(panelDetails).toHaveClass('panel-details--open');
 
-      userEvent.click(btnDetails[1]);
+      userEvent.click(btnDetails);
       expect(panelDetails).not.toHaveClass('panel-details--open');
     });
   });

@@ -78,7 +78,8 @@ export interface PanelProps {
   buttonHtmlMarkup?: ButtonTags;
   /** Callback when panel button is clicked  */
   buttonOnClick?: ButtonProps['onClick'];
-  /** Show close button in bottom of Panel Expand, default: true */
+  /** Show close button in bottom of Panel Expand */
+  /** @deprecated Has no effect anymore due to accessbility reasons. No close button is shown in expanded content. Will be removed in 2.0.0 */
   showCloseButtonInExpand?: boolean;
   /** Layout (see description) */
   layout?: keyof typeof PanelLayout;
@@ -189,7 +190,6 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     statusMessage,
     buttonText = 'Se detaljer',
     buttonTextClose = 'Skjul detaljer',
-    showCloseButtonInExpand = true,
     layout = PanelLayout.layout2,
     containerAsButton = false,
     date,
@@ -331,7 +331,6 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     return (
       <div className={panelDetailsClasses} data-testid="panel-details">
         <div>{children}</div>
-        {showCloseButtonInExpand && <div className={panelActionBtnClass}>{renderDetailsButton()}</div>}
       </div>
     );
   };
