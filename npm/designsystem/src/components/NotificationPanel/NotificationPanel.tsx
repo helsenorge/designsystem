@@ -1,4 +1,4 @@
-import React, { AriaAttributes } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import styles from './styles.module.scss';
@@ -6,6 +6,7 @@ import Close from '../Close';
 import { AnalyticsId } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
 import { palette } from '../../theme/palette';
+import { getAriaLabelAttributes } from '../../utils/accessibility';
 import Icon from '../Icons';
 import InfoSignStroke from '../Icons/InfoSignStroke';
 import AlertSignStroke from '../Icons/AlertSignStroke';
@@ -20,28 +21,6 @@ const variantToIconMap = {
   alert: <Icon svgIcon={AlertSignFill} color={palette.cherry500} hoverColor={palette.cherry500} />,
   alertLabel: <Icon svgIcon={AlertSignStroke} color={palette.cherry500} hoverColor={palette.cherry500} />,
   crisis: <Icon svgIcon={AlertSignFill} color={palette.banana200} hoverColor={palette.banana200} />,
-};
-
-interface AriaLabelAttributesConfig {
-  label?: string;
-  id?: string;
-}
-
-type AriaLabelAttributes = Pick<AriaAttributes, 'aria-label' | 'aria-labelledby'>;
-
-export const getAriaLabelAttributes = (config: AriaLabelAttributesConfig): AriaLabelAttributes | undefined => {
-  const { label, id } = config;
-
-  if (id) {
-    return {
-      'aria-labelledby': id,
-    };
-  }
-  if (label) {
-    return {
-      'aria-label': label,
-    };
-  }
 };
 
 interface NotificationPanelProps {

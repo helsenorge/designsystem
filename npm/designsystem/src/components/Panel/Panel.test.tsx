@@ -6,6 +6,8 @@ import { Icon, IconSize } from '../Icons';
 import Calendar from '../Icons/Calendar';
 import Avatar from '../Avatar';
 
+import * as uuidUtils from '../../utils/uuid';
+
 describe('Gitt at Panel skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
@@ -13,6 +15,81 @@ describe('Gitt at Panel skal vises', (): void => {
       const component = screen.getByTestId('bare-tester');
       expect(component).toBeVisible();
       expect(component).toHaveAttribute('data-analyticsid', 'panel');
+    });
+  });
+
+  describe('Når panelet har children', (): void => {
+    describe('Når panelet har title', (): void => {
+      test('Så er tittelen synlig', (): void => {
+        render(
+          <Panel title="Medisinsk fødselsregister" buttonText="Vis detaljer">
+            <p>Mer tekst</p>
+          </Panel>
+        );
+        const title = screen.getByRole('heading', { name: 'Medisinsk fødselsregister' });
+        expect(title).toBeVisible();
+      });
+      test('Så har knappen som brukes for å ekspandere et unikt navn', (): void => {
+        jest.spyOn(uuidUtils, 'uuid').mockReturnValueOnce('a').mockReturnValueOnce('b');
+
+        render(
+          <Panel title="Medisinsk fødselsregister" buttonText="Vis detaljer">
+            <p>Mer tekst</p>
+          </Panel>
+        );
+        const button = screen.getByRole('button', { name: 'Vis detaljer Medisinsk fødselsregister' });
+        expect(button).toBeVisible();
+      });
+    });
+    describe('Når panelet ikke har title', (): void => {
+      test('Så har knappen som brukes for å ekspandere riktig navn', (): void => {
+        jest.spyOn(uuidUtils, 'uuid').mockReturnValueOnce('a').mockReturnValueOnce('b');
+
+        render(
+          <Panel buttonText="Vis detaljer">
+            <p>Mer tekst</p>
+          </Panel>
+        );
+        const button = screen.getByRole('button', { name: 'Vis detaljer' });
+        expect(button).toBeVisible();
+      });
+    });
+  });
+
+  describe('Når panelet har url', (): void => {
+    describe('Når panelet har title', (): void => {
+      test('Så har linken et unikt navn', (): void => {
+        jest.spyOn(uuidUtils, 'uuid').mockReturnValueOnce('a').mockReturnValueOnce('b');
+
+        render(<Panel title="Medisinsk fødselsregister" buttonText="Åpne" url={'https://www.helsenorge.no'} />);
+
+        const link = screen.getByRole('link', { name: 'Åpne Medisinsk fødselsregister' });
+        expect(link).toBeVisible();
+      });
+    });
+  });
+
+  describe('Når buttonAriaLabelledById-prop er satt', (): void => {
+    test('Så har knappen som brukes for å ekspandere riktig navn', (): void => {
+      render(
+        <Panel buttonText="Vis detaljer" buttonAriaLabelledById="egen-id" contentA={<h2 id="egen-id">Egendefinert tittel</h2>}>
+          <p>Mer tekst</p>
+        </Panel>
+      );
+      const button = screen.getByRole('button', { name: 'Vis detaljer Egendefinert tittel' });
+      expect(button).toBeVisible();
+    });
+  });
+
+  describe('Når buttonAriaLabel-prop er satt', (): void => {
+    test('Så har knappen som brukes for å ekspandere riktig navn', (): void => {
+      render(
+        <Panel buttonText="Vis detaljer" buttonAriaLabel="Helt egen tekst på knappen">
+          <p>Mer tekst</p>
+        </Panel>
+      );
+      const button = screen.getByRole('button', { name: 'Helt egen tekst på knappen' });
+      expect(button).toBeVisible();
     });
   });
 
@@ -145,17 +222,17 @@ describe('Gitt at Panel skal vises', (): void => {
         </Panel>
       );
 
-      const btnDetails = screen.getAllByTestId('expand');
+      const btnDetails = screen.getByTestId('expand');
 
-      expect(btnDetails).toHaveLength(2);
+      expect(btnDetails).toBeVisible();
 
       const panelDetails = screen.getByTestId('panel-details');
 
-      userEvent.click(btnDetails[0]);
+      userEvent.click(btnDetails);
       expect(screen.getByText('Details')).toBeVisible();
       expect(panelDetails).toHaveClass('panel-details--open');
 
-      userEvent.click(btnDetails[1]);
+      userEvent.click(btnDetails);
       expect(panelDetails).not.toHaveClass('panel-details--open');
     });
   });
@@ -168,11 +245,21 @@ describe('Gitt at Panel skal vises', (): void => {
         </Panel>
       );
 
-      const button = screen.getAllByTestId('expand')[0];
+      const button = screen.getByTestId('expand');
       expect(button).toHaveAttribute('aria-expanded', 'true');
 
       const content = screen.getByRole('heading', { name: 'Innhold i panel' });
       expect(content).toBeInTheDocument();
+    });
+    test('Så er det bare én knapp for skjul detaljer', (): void => {
+      render(
+        <Panel title={'Dette er en tittel'} expanded>
+          <h1>Innhold i panel</h1>
+        </Panel>
+      );
+
+      const button = screen.getByTestId('expand');
+      expect(button).toBeVisible();
     });
   });
 
@@ -218,67 +305,31 @@ describe('Gitt at Panel skal vises', (): void => {
     });
   });
 
-  describe('Gitt at panelet er button, og container trigger click-event', (): void => {
-    test('Så vises detalje-området', (): void => {
-      render(
-        <Panel testId="panel-test" containerAsButton title="Dette er en tittel" renderChildrenWhenClosed>
-          <div>{'Details'}</div>
-        </Panel>
-      );
+  describe('Gitt at containerAsButton er true', (): void => {
+    describe('Når man klikker på knappen for å vise detaljer', (): void => {
+      test('Så vises detaljer-området', (): void => {
+        render(
+          <Panel testId="panel-test" containerAsButton title="Dette er en tittel" renderChildrenWhenClosed>
+            <div>{'Details'}</div>
+          </Panel>
+        );
 
-      const container = screen.getByTestId('panel-test');
-      const btnDetails = screen.getAllByTestId('expand');
+        const button = screen.getByTestId('expand');
 
-      expect(btnDetails).toHaveLength(2);
-      expect(btnDetails[0]).toHaveAttribute('tabIndex', '-1');
-      expect(btnDetails[1]).not.toHaveAttribute('tabIndex', '-1');
+        expect(button).toBeVisible();
+        expect(button).toHaveAttribute('aria-expanded', 'false');
 
-      const panelDetails = screen.getByTestId('panel-details');
+        userEvent.click(button);
 
-      userEvent.click(container.children[0]);
-
-      expect(screen.getByText('Details')).toBeVisible();
-      expect(panelDetails).toHaveClass('panel-details--open');
-
-      userEvent.click(btnDetails[1]);
-      expect(panelDetails).not.toHaveClass('panel-details--open');
-    });
-  });
-
-  describe('Gitt at panelet er button, og container trigger key-down event', (): void => {
-    test('Så vises detalje-området', (): void => {
-      render(
-        <Panel testId="panel-test" containerAsButton title="Dette er en tittel" renderChildrenWhenClosed>
-          <div>{'Details'}</div>
-        </Panel>
-      );
-
-      const container = screen.getByTestId('panel-test').children[0];
-
-      const panelDetails = screen.getByTestId('panel-details');
-
-      fireEvent.keyDown(container, { key: 'Enter' });
-
-      expect(screen.getByText('Details')).toBeVisible();
-      expect(panelDetails).toHaveClass('panel-details--open');
-
-      fireEvent.keyDown(container, { key: ' ' });
-      expect(panelDetails).not.toHaveClass('panel-details--open');
+        expect(screen.getByText('Details')).toBeVisible();
+      });
     });
   });
 
   describe('Gitt at panelet skal vise tid og dato', (): void => {
     test('Så vises tid og dato', (): void => {
       render(
-        <Panel
-          testId="panel-test"
-          containerAsButton
-          date="dato"
-          time="tid"
-          title="Dette er en tittel"
-          contentA={'Innhold A'}
-          contentB={'Innhold B'}
-        >
+        <Panel testId="panel-test" date="dato" time="tid" title="Dette er en tittel" contentA={'Innhold A'} contentB={'Innhold B'}>
           <div>{'Details'}</div>
         </Panel>
       );
