@@ -1,3 +1,16 @@
+## [1.4.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.2&targetVersion=GTv1.4.0) (2022-09-14)
+
+
+### Features
+
+*  panel har props for buttonAriaLabelledById og buttonAriaLabel ([deacdfe](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/deacdfe06eb6904ff6657ecaa56daf64e9012b64))
+
+
+### Bug Fixes
+
+*  button i panel har unik label ([a37ef06](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/a37ef06b7ff967d4bb372d5c9e0e181e25c912c8))
+*  skjul detaljer-knapp fjernet fra ekspandert Panel ([011b0ac](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/011b0ac12c50e19e8e88812f73e9285d3371940d))
+
 ### [1.3.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.1&targetVersion=GTv1.3.2) (2022-09-08)
 
 
