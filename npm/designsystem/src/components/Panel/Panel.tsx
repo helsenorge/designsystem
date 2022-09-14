@@ -258,7 +258,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
 
     const commonProps: Partial<ButtonProps> & AriaLabelAttributes = {
       onClick: buttonOnClick ? buttonOnClick : () => setIsExpanded(!isExpanded),
-      className: containerAsButton && panelStyles['panel__expand'],
+      className: containerAsButton ? panelStyles['panel__expand'] : undefined,
       variant: 'borderless',
       ellipsis: true,
       ...ariaLabelAttributes,
