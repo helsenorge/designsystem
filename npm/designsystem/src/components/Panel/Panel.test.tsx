@@ -69,6 +69,30 @@ describe('Gitt at Panel skal vises', (): void => {
     });
   });
 
+  describe('Når buttonAriaLabelledById-prop er satt', (): void => {
+    test('Så har knappen som brukes for å ekspandere riktig navn', (): void => {
+      render(
+        <Panel buttonText="Vis detaljer" buttonAriaLabelledById="egen-id" contentA={<h2 id="egen-id">Egendefinert tittel</h2>}>
+          <p>Mer tekst</p>
+        </Panel>
+      );
+      const button = screen.getByRole('button', { name: 'Vis detaljer Egendefinert tittel' });
+      expect(button).toBeVisible();
+    });
+  });
+
+  describe('Når buttonAriaLabel-prop er satt', (): void => {
+    test('Så har knappen som brukes for å ekspandere riktig navn', (): void => {
+      render(
+        <Panel buttonText="Vis detaljer" buttonAriaLabel="Helt egen tekst på knappen">
+          <p>Mer tekst</p>
+        </Panel>
+      );
+      const button = screen.getByRole('button', { name: 'Helt egen tekst på knappen' });
+      expect(button).toBeVisible();
+    });
+  });
+
   describe('Når titleHtmlMarkup-prop er satt', (): void => {
     test('Så er tittel satt til ønsket overskriftsnivå', (): void => {
       render(<Panel title="Tittel" titleHtmlMarkup="h3" />);

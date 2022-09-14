@@ -1,9 +1,9 @@
-import React, { AriaAttributes, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import panelStyles from './styles.module.scss';
 import Title, { TitleTags } from '../Title';
-import Button, { ButtonProps, ButtonTags, ButtonVariants } from '../Button';
+import Button, { ButtonProps, ButtonTags } from '../Button';
 import { AnchorTarget, AnalyticsId } from '../../constants';
 
 import Icon, { IconSize, SvgPathProps } from '../Icons';
@@ -18,6 +18,7 @@ import Watch from '../Icons/Watch';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useUuid } from '../../hooks/useUuid';
 import { usePrevious } from '../../hooks/usePrevious';
+import { AriaLabelAttributes, getAriaLabelAttributes } from '../../utils/accessibility';
 import Badge from '../Badge';
 
 export enum PanelStatus {
@@ -78,6 +79,10 @@ export interface PanelProps {
   buttonHtmlMarkup?: ButtonTags;
   /** Callback when panel button is clicked  */
   buttonOnClick?: ButtonProps['onClick'];
+  /** Panel button is aria-labelledby the text in the button itself + the element set in buttonAriaLabelledById. Default: auto-generated id for title (if title is set). */
+  buttonAriaLabelledById?: string;
+  /** Panel button aria label */
+  buttonAriaLabel?: string;
   /** Show close button in bottom of Panel Expand */
   /** @deprecated Has no effect anymore due to accessbility reasons. No close button is shown in expanded content. Will be removed in 2.0.0 */
   showCloseButtonInExpand?: boolean;
@@ -164,6 +169,8 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     statusMessage,
     buttonText = 'Se detaljer',
     buttonTextClose = 'Skjul detaljer',
+    buttonAriaLabelledById,
+    buttonAriaLabel,
     layout = PanelLayout.layout2,
     containerAsButton = false,
     date,
@@ -244,12 +251,17 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   const panelActionBtnClass = classNames(panelStyles['panel__details-btn']);
 
   const renderDetailsButton = (): JSX.Element => {
-    const commonProps: Partial<ButtonProps> & Pick<AriaAttributes, 'aria-labelledby'> = {
+    const ariaLabelAttributes = getAriaLabelAttributes({
+      label: buttonAriaLabel,
+      id: (buttonAriaLabelledById && `${buttonTextId} ${buttonAriaLabelledById}`) || (title && titleId && `${buttonTextId} ${titleId}`),
+    });
+
+    const commonProps: Partial<ButtonProps> & AriaLabelAttributes = {
       onClick: buttonOnClick ? buttonOnClick : () => setIsExpanded(!isExpanded),
       className: containerAsButton && panelStyles['panel__expand'],
       variant: 'borderless',
       ellipsis: true,
-      ['aria-labelledby']: title && titleId ? `${buttonTextId} ${titleId}` : undefined,
+      ...ariaLabelAttributes,
     };
 
     if (!!children) {
