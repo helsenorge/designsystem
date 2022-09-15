@@ -166,6 +166,8 @@ stages:
             inputs:
               customCommand: "publish --tag=beta"
               workingDir: npm/designsystem/lib
+              publishRegistry: useFeed
+              publishFeed: "926a1f6a-72f8-4464-b9be-a7978dee78b0"
             continueOnError: true
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
