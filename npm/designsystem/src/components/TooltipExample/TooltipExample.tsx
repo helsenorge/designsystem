@@ -1,18 +1,18 @@
 import React from 'react';
 
 import Tooltip, { TooltipProps, TooltipOpenProvider } from '../Tooltip';
-import loremText from '../../utils/loremtext';
+import longLoremText from '../../utils/loremtext';
 
 const TooltipExample: React.FC<TooltipProps> = props => {
   return (
     <TooltipOpenProvider>
       <>
         <Tooltip {...props}>{'Et tooltip her.'}</Tooltip>
-        {' ' + loremText}
+        {' ' + longLoremText}
         {'Dette er '}
         <Tooltip {...props}>{props.children}</Tooltip>
         {' som skal ha nærmere forklaring.'}
-        {loremText}
+        {longLoremText}
         <Tooltip {...props}>{'Enda et tooltip her.'}</Tooltip>
       </>
     </TooltipOpenProvider>

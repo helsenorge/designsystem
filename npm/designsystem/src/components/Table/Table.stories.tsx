@@ -19,7 +19,7 @@ import {
 } from './';
 import Icon from '../Icons';
 import VerticalDots from '../Icons/VerticalDots';
-import { loremText } from '../../utils/loremtext';
+import { longLoremText } from '../../utils/loremtext';
 
 export default {
   title: 'Components/Table',
@@ -69,7 +69,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
 
   return (
     <div style={{ width: '20rem' }}>
-      <p>{loremText}</p>
+      <p>{longLoremText}</p>
       <Table smallViewportVariant={SmallViewportVariant.horizontalscroll}>
         <TableHead category={args.headerCategory}>
           <TableRow key="head">
@@ -87,7 +87,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
           ))}
         </TableBody>
       </Table>
-      <p>{loremText}</p>
+      <p>{longLoremText}</p>
     </div>
   );
 };

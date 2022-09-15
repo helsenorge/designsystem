@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at Duolist skal vises Når Duolist skal vises vanlig Så rendres den som den skal 1`] = `
+<div>
+  <div
+    class="duolist-wrapper"
+    data-analyticsid="duolist"
+    data-testid="test01"
+  >
+    <dl
+      class="duolist"
+    >
+      <dt
+        class="duolist__dt duolist__dt--bold"
+      >
+        test term 1
+      </dt>
+      <dd
+        class="duolist__dd"
+      >
+        test description 1
+      </dd>
+      <dt
+        class="duolist__dt duolist__dt--bold"
+      >
+        test term 2
+      </dt>
+      <dd
+        class="duolist__dd"
+      >
+        test description 2
+      </dd>
+    </dl>
+  </div>
+</div>
+`;

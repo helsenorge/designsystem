@@ -88,6 +88,7 @@ export enum AnalyticsId {
   Checkbox = 'checkbox',
   Close = 'close',
   Dropdown = 'dropdown',
+  Duolist = 'duolist',
   Expander = 'expander',
   ExpanderList = 'expander-list',
   ExpanderListExpander = 'expander-list-expander',
