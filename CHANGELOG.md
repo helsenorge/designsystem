@@ -1,4 +1,6 @@
-## 2.0.0-beta.0 (2022-09-12)
+## 2.0.0-beta.1 (2022-09-15)
+
+## 2.0.0-beta.0 (2022-09-15)
 
 
 ### Features
@@ -12,14 +14,14 @@
 *  button Table bruker ariaLabel ([e547919](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/e547919b63306fc926571e4b23c41d482389771c)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
 *  tilbakemeldinger på button ([7c61596](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/7c6159630a77ed6c0ebdc8c3cf78aa3f2345e44b)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
 
-### [1.3.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.1&targetVersion=GTv1.3.2) (2022-09-08)
+## [1.3.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.1&targetVersion=GTv1.3.2) (2022-09-08)
 
 
 ### Bug Fixes
 
 *  slider beholder riktig posisjon/verdi hvis den endrer størrelse ([afa1d0a](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/afa1d0af335c4e2450962904f042768badbc18fd)), closes [#279639](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/279639)
 
-### [1.3.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.0&targetVersion=GTv1.3.1) (2022-09-02)
+## [1.3.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.0&targetVersion=GTv1.3.1) (2022-09-02)
 
 
 ### Bug Fixes
@@ -41,17 +43,17 @@
 
 ### Bug Fixes
 
-*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 *  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
+*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 
-### [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
+## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
 
 ### Features
 
 *  highlightbox oppdatert styling ([98c44aa](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/98c44aa68e6bbea5c9853a5807e66c0ed6be67d0)), closes [#280715](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/280715)
 
-### [1.2.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.0&targetVersion=GTv1.2.1) (2022-08-29)
+## [1.2.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.0&targetVersion=GTv1.2.1) (2022-08-29)
 
 ## [1.2.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.1.0&targetVersion=GTv1.2.0) (2022-08-29)
 
@@ -75,7 +77,7 @@
 *  ikke vis scrolleindikator mens innholdet lastes ([ad6f7d2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ad6f7d21cafcdfaf39c6d0afb04be057e290678c))
 *  tabell med horisontal scroll viser hele borderen ([6c5cb02](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/6c5cb0208967986902a5c62a3e3171d4b1f50e36))
 
-### [1.0.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.0.0-betahelpbubble3&targetVersion=GTv1.0.1) (2022-08-12)
+## [1.0.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.0.0-betahelpbubble3&targetVersion=GTv1.0.1) (2022-08-12)
 
 
 ### ⚠ BREAKING CHANGES
