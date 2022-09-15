@@ -23,6 +23,8 @@
     "format:ci": "lerna run format:ci",
     "version:latest": "lerna version",
     "version:beta": "lerna version --preid=beta --allow-branch=*/* --force-publish=*",
+    "publish:latest": "lerna publish from-git --yes",
+    "publish:beta": "lerna publish from-git --dist-tag=beta --yes",
     "confluence:icons": "node utils/IconGenerator/index.js",
     "validate": "lerna run validate",
     "clean:npm": "npm-run-all clean:packages clean:root",

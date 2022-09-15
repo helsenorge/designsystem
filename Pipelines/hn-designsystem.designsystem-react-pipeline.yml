@@ -58,7 +58,7 @@ stages:
           - task: npmAuthenticate@0
             displayName: "npm Authenticate .npmrc"
             inputs:
-              workingFile: npm/designsystem/.npmrc
+              workingFile: $(working_directory)/.npmrc
 
           - task: Npm@1
             displayName: "npm i (install lerna)"
@@ -73,6 +73,25 @@ stages:
               workingDir: $(working_directory)
               customCommand: "run bootstrap:ci"
 
+          # Lint commit message
+          - bash: |
+              PR_TITLE="$(curl --silent -u azdo:$SYSTEM_ACCESSTOKEN \
+              $(System.CollectionUri)_apis/git/repositories/$(Build.Repository.ID)/pullRequests/$(System.PullRequest.PullRequestId)?api-version=5.1 \
+              | jq -r .title)"
+              echo "##vso[task.setvariable variable=Pr.Title]$PR_TITLE"
+            env:
+              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+            displayName: Extract pull request title
+            condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+
+          - bash: |
+              echo "${PR_TITLE}" | npx commitlint -V
+            env:
+              PR_TITLE: $(Pr.Title)
+            displayName: Lint pull request title
+            condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+
+          # audit
           - task: Npm@1
             displayName: "npm audit (prod)"
             inputs:
@@ -89,17 +108,7 @@ stages:
               customCommand: "audit --registry=https://registry.npmjs.org/ --audit-level=high --package-lock-only"
             continueOnError: true
 
-          # Lint commit message
-          - bash: |
-              PR_TITLE="$(curl --silent -u azdo:$SYSTEM_ACCESSTOKEN \
-              $(System.CollectionUri)_apis/git/repositories/$(Build.Repository.ID)/pullRequests/$(System.PullRequest.PullRequestId)?api-version=5.1 \
-              | jq -r .title)"
-              echo "##vso[task.setvariable variable=Pr.Title]$PR_TITLE"
-            env:
-              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-            displayName: Extract pull request title
-            condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
-
+          # prettier
           - task: Npm@1
             displayName: prettier
             inputs:
@@ -108,6 +117,7 @@ stages:
               customCommand: "run format:ci"
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
+          # test
           - task: Npm@1
             displayName: test
             inputs:
@@ -115,6 +125,7 @@ stages:
               workingDir: $(working_directory)
               customCommand: "run test"
 
+          # build
           - task: Npm@1
             displayName: build
             inputs:
@@ -149,11 +160,35 @@ stages:
               summaryFileLocation: '$(Build.SourcesDirectory)\$(project_directory)\coverage\cobertura-coverage.xml'
             condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
 
+          # Nullstill alle endringer fra tester o.l. før publisering
+          - script: "git reset --hard"
+            displayName: "git reset --hard"
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
+
+          - task: npmAuthenticate@0
+            displayName: "npm Authenticate .npmrc"
+            inputs:
+              workingFile: .npmrc
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
+
+          - script: "git update-index --assume-unchanged .npmrc"
+            displayName: "Ignore changes to .npmrc"
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
+
+          # Publiser nye versjoner
           - task: Npm@1
             displayName: "publish designsystem to Helsnorge-registry (latest)"
             inputs:
-              command: publish
-              workingDir: npm/designsystem/lib
+              command: custom
+              verbose: false
+              customCommand: "run publish:latest"
+              workingDir: $(working_directory)
               publishRegistry: useFeed
               publishFeed: "926a1f6a-72f8-4464-b9be-a7978dee78b0"
             continueOnError: true
@@ -164,8 +199,10 @@ stages:
           - task: Npm@1
             displayName: "publish designsystem to Helsnorge-registry (beta)"
             inputs:
-              customCommand: "publish --tag=beta"
-              workingDir: npm/designsystem/lib
+              command: custom
+              verbose: false
+              customCommand: "run publish:beta"
+              workingDir: $(working_directory)
               publishRegistry: useFeed
               publishFeed: "926a1f6a-72f8-4464-b9be-a7978dee78b0"
             continueOnError: true
