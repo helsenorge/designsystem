@@ -91,9 +91,11 @@ $with-icons:
   outline: none;
   border: 0;
   padding: getSpacer(2xs) 0;
+  margin: getSpacer(2xs) * -1 0;
 
   @media (min-width: map-get($grid-breakpoints, sm)) {
     padding: 0;
+    margin: 0;
   }
 
   &--fluid {
