@@ -7,7 +7,7 @@ import { AnalyticsId } from '../../constants';
 export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span';
 export type TitleAppearances = 'titleFeature' | 'title1' | 'title2' | 'title3' | 'title4' | 'title5';
 
-interface TitleProps {
+export interface TitleProps {
   children: React.ReactNode;
   /** Gives a unique id to the title */
   id?: string;

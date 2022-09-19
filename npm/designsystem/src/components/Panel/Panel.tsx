@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import panelStyles from './styles.module.scss';
 import Title, { TitleTags } from '../Title';
-import Button, { ButtonProps, ButtonTags, ButtonVariant } from '../Button';
+import Button, { ButtonProps, ButtonTags } from '../Button';
 import { AnchorTarget, AnalyticsId } from '../../constants';
 
 import Icon, { IconSize, SvgPathProps } from '../Icons';
@@ -18,6 +18,7 @@ import Watch from '../Icons/Watch';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useUuid } from '../../hooks/useUuid';
 import { usePrevious } from '../../hooks/usePrevious';
+import { AriaLabelAttributes, getAriaLabelAttributes } from '../../utils/accessibility';
 import Badge from '../Badge';
 
 export enum PanelStatus {
@@ -78,11 +79,16 @@ export interface PanelProps {
   buttonHtmlMarkup?: ButtonTags;
   /** Callback when panel button is clicked  */
   buttonOnClick?: ButtonProps['onClick'];
-  /** Show close button in bottom of Panel Expand, default: true */
+  /** Panel button is aria-labelledby the text in the button itself + the element set in buttonAriaLabelledById. Default: auto-generated id for title (if title is set). */
+  buttonAriaLabelledById?: string;
+  /** Panel button aria label */
+  buttonAriaLabel?: string;
+  /** Show close button in bottom of Panel Expand */
+  /** @deprecated Has no effect anymore due to accessbility reasons. No close button is shown in expanded content. Will be removed in 2.0.0 */
   showCloseButtonInExpand?: boolean;
   /** Layout (see description) */
   layout?: keyof typeof PanelLayout;
-  /** Use the panel's container as a button */
+  /** Clicking anywhere on the container will trigger a click on the panel's button */
   containerAsButton?: boolean;
   /** Displays time with icon */
   time?: string;
@@ -145,32 +151,6 @@ const DateTime: React.FC<{ date?: string; time?: string }> = ({ date, time }) =>
   return null;
 };
 
-type DetailsButtonProps = Pick<PanelProps, 'buttonText' | 'buttonTextClose' | 'url' | 'target' | 'buttonHtmlMarkup'> & {
-  onClick: ButtonProps['onClick'];
-  renderAsExpander: boolean;
-  isExpanded: boolean;
-};
-
-const DetailsButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, DetailsButtonProps>((props, ref) => {
-  const { buttonText, buttonTextClose, url, target, onClick, renderAsExpander, isExpanded, buttonHtmlMarkup = 'a', ...rest } = props;
-
-  if (renderAsExpander) {
-    return (
-      <Button testId="expand" ref={ref} onClick={onClick} {...rest} aria-expanded={isExpanded}>
-        {isExpanded ? buttonTextClose : buttonText}
-        <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} />
-      </Button>
-    );
-  }
-
-  return (
-    <Button testId="url" ref={ref} htmlMarkup={buttonHtmlMarkup} onClick={onClick} href={url} target={target} {...rest}>
-      {buttonText}
-      <Icon svgIcon={ArrowRight} />
-    </Button>
-  );
-});
-
 const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
   const {
     children,
@@ -189,14 +169,15 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     statusMessage,
     buttonText = 'Se detaljer',
     buttonTextClose = 'Skjul detaljer',
-    showCloseButtonInExpand = true,
+    buttonAriaLabelledById,
+    buttonAriaLabel,
     layout = PanelLayout.layout2,
     containerAsButton = false,
     date,
     time,
     noTopBorder,
     buttonOnClick,
-    buttonHtmlMarkup,
+    buttonHtmlMarkup = 'a',
     expanded = false,
     onExpand,
     renderChildrenWhenClosed = false,
@@ -204,8 +185,8 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
 
   const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
   const previousIsExpanded = usePrevious(isExpanded);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const buttonId = useUuid();
+  const titleId = useUuid();
+  const buttonTextId = useUuid();
   const breakpoint = useBreakpoint();
 
   useEffect(() => {
@@ -269,27 +250,34 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
 
   const panelActionBtnClass = classNames(panelStyles['panel__details-btn']);
 
-  const renderDetailsButton = (tabable: boolean = true, id?: string): JSX.Element => {
-    const btnProps = {
-      id,
-      tabIndex: tabable ? undefined : -1,
-      variant: 'borderless' as ButtonVariant,
+  const renderDetailsButton = (): JSX.Element => {
+    const ariaLabelAttributes = getAriaLabelAttributes({
+      label: buttonAriaLabel,
+      id: (buttonAriaLabelledById && `${buttonTextId} ${buttonAriaLabelledById}`) || (title && titleId && `${buttonTextId} ${titleId}`),
+    });
+
+    const commonProps: Partial<ButtonProps> & AriaLabelAttributes = {
+      onClick: buttonOnClick ? buttonOnClick : () => setIsExpanded(!isExpanded),
+      className: containerAsButton ? panelStyles['panel__expand'] : undefined,
+      variant: 'borderless',
       ellipsis: true,
+      ...ariaLabelAttributes,
     };
 
+    if (!!children) {
+      return (
+        <Button testId="expand" aria-expanded={isExpanded} {...commonProps}>
+          <span id={buttonTextId}>{isExpanded ? buttonTextClose : buttonText}</span>
+          <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} />
+        </Button>
+      );
+    }
+
     return (
-      <DetailsButton
-        renderAsExpander={!!children}
-        onClick={buttonOnClick ? buttonOnClick : () => setIsExpanded(!isExpanded)}
-        isExpanded={isExpanded}
-        buttonText={buttonText}
-        url={url}
-        target={target}
-        buttonTextClose={buttonTextClose}
-        ref={id ? buttonRef : undefined}
-        buttonHtmlMarkup={buttonHtmlMarkup}
-        {...btnProps}
-      />
+      <Button testId="url" htmlMarkup={buttonHtmlMarkup} href={url} target={target} {...commonProps}>
+        <span id={buttonTextId}>{buttonText}</span>
+        <Icon svgIcon={ArrowRight} />
+      </Button>
     );
   };
 
@@ -297,21 +285,6 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel__btn-container--layout3']]: layout3,
     [panelStyles['panel__btn-container--padding-top']]: contentB,
   });
-
-  const onContainerClick = (): void => {
-    if (containerAsButton) {
-      buttonRef.current?.click();
-    }
-  };
-
-  const onContainerKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
-    const key = event.key;
-    //if enter or space
-    if (containerAsButton && (key === 'Enter' || key === ' ')) {
-      event.preventDefault();
-      buttonRef.current?.click();
-    }
-  };
 
   const renderContent = () => {
     if (!children) {
@@ -331,28 +304,20 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     return (
       <div className={panelDetailsClasses} data-testid="panel-details">
         <div>{children}</div>
-        {showCloseButtonInExpand && <div className={panelActionBtnClass}>{renderDetailsButton()}</div>}
       </div>
     );
   };
 
   return (
     <div ref={ref} data-testid={testId} className={panelWrapperClass} data-analyticsid={AnalyticsId.Panel}>
-      <div
-        className={panelClasses}
-        tabIndex={containerAsButton ? 0 : undefined}
-        onClick={onContainerClick}
-        onKeyDown={onContainerKeyDown}
-        aria-labelledby={containerAsButton ? buttonId : undefined}
-        role={containerAsButton ? 'button' : undefined}
-      >
+      <div className={panelClasses}>
         {icon && !iconRight && <div className={panelStyles.panel__icon}>{icon}</div>}
         <div className={panelContainer}>
           <div className={panelContentLeftClass}>
             <StatusText status={status} statusMessage={statusMessage} />
             {title && (
               <div className={panelStyles['panel-content-a__title-container']}>
-                <Title appearance="title3" htmlMarkup={titleHtmlMarkup}>
+                <Title appearance="title3" htmlMarkup={titleHtmlMarkup} id={titleId}>
                   {title}
                 </Title>
                 {statusMessage && status === PanelStatus.new && (
@@ -370,9 +335,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
             {(children || url || date || time || buttonOnClick) && (
               <div className={btnContainerClass}>
                 {breakpoint < Breakpoint.lg && <DateTime date={date} time={time} />}
-                {(children || url || buttonOnClick) && (
-                  <div className={panelActionBtnClass}>{renderDetailsButton(!containerAsButton, buttonId)}</div>
-                )}
+                {(children || url || buttonOnClick) && <div className={panelActionBtnClass}>{renderDetailsButton()}</div>}
               </div>
             )}
           </div>

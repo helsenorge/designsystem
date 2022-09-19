@@ -17,6 +17,7 @@ export type Styles = {
   'panel__content-right--layout3b': string;
   'panel__content-right--layout3c': string;
   'panel__details-btn': string;
+  panel__expand: string;
   panel__icon: string;
   'panel__icon--right': string;
   'panel--button': string;

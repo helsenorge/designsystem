@@ -70,6 +70,10 @@
           "path": "/bibliotek/komponenter/dropdown"
         },
         {
+          "label": "Duolist",
+          "path": "/bibliotek/komponenter/duolist"
+        },
+        {
           "label": "Expander",
           "path": "/bibliotek/komponenter/expander"
         },

@@ -35,7 +35,11 @@ export default {
     },
     buttonText: {
       control: 'text',
-      defaultValue: 'Expand',
+      defaultValue: 'Vis detaljer',
+    },
+    buttonTextClose: {
+      control: 'text',
+      defaultValue: 'Skjul detaljer',
     },
     useicon: {
       control: 'boolean',

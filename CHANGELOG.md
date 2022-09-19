@@ -1,3 +1,23 @@
+## [1.5.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.4.0&targetVersion=GTv1.5.0) (2022-09-16)
+
+
+### Features
+
+*  nytt komponent duolist ([7b7254e](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/7b7254e429340ada1f0605d16b302675de0bd835)), closes [#275213](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/275213)
+
+## [1.4.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.2&targetVersion=GTv1.4.0) (2022-09-14)
+
+
+### Features
+
+*  panel har props for buttonAriaLabelledById og buttonAriaLabel ([deacdfe](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/deacdfe06eb6904ff6657ecaa56daf64e9012b64))
+
+
+### Bug Fixes
+
+*  button i panel har unik label ([a37ef06](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/a37ef06b7ff967d4bb372d5c9e0e181e25c912c8))
+*  skjul detaljer-knapp fjernet fra ekspandert Panel ([011b0ac](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/011b0ac12c50e19e8e88812f73e9285d3371940d))
+
 ## 2.0.0-beta.1 (2022-09-15)
 
 ## 2.0.0-beta.0 (2022-09-15)
@@ -43,8 +63,8 @@
 
 ### Bug Fixes
 
-*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 *  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
+*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 
 ## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 

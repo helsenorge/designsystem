@@ -12,6 +12,7 @@
   "components/Checkbox/index": "src/components/Checkbox/index.ts",
   "components/Close/index": "src/components/Close/index.tsx",
   "components/Dropdown/index": "src/components/Dropdown/index.ts",
+  "components/Duolist/index": "src/components/Duolist/index.ts",
   "components/Expander/index": "src/components/Expander/index.ts",
   "components/ExpanderList/index": "src/components/ExpanderList/index.ts",
   "components/FormExample/index": "src/components/FormExample/index.tsx",
