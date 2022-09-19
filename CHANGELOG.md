@@ -1,3 +1,27 @@
+## 2.0.0-beta.2 (2022-09-19)
+
+
+### Bug Fixes
+
+*  button lagt til negativ margin på mobil for å fikse spacing feil ([3dd306b](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/3dd306b207c0d3bae3b8e3332c4c6b5b29a7ec73)), closes [#284656](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/284656)
+*  button mobilview på md istedet for sm ([e9a4910](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/e9a4910a30d6941b235f8003204c76e9f379b158))
+
+## 2.0.0-beta.1 (2022-09-15)
+
+## 2.0.0-beta.0 (2022-09-12)
+
+
+### Features
+
+*  button nytt design ([d0f2034](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/d0f20343f4ce5a55beeef87428c147f8e7654753)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
+*  endret styling på komponenter som bruker Button ([81e29fb](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/81e29fbd14e436a1151c1adb64e36461f2bfb815)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
+
+
+### Bug Fixes
+
+*  button Table bruker ariaLabel ([e547919](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/e547919b63306fc926571e4b23c41d482389771c)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
+*  tilbakemeldinger på button ([7c61596](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/7c6159630a77ed6c0ebdc8c3cf78aa3f2345e44b)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
+
 ## [1.5.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.4.0&targetVersion=GTv1.5.0) (2022-09-16)
 
 
@@ -18,30 +42,14 @@
 *  button i panel har unik label ([a37ef06](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/a37ef06b7ff967d4bb372d5c9e0e181e25c912c8))
 *  skjul detaljer-knapp fjernet fra ekspandert Panel ([011b0ac](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/011b0ac12c50e19e8e88812f73e9285d3371940d))
 
-## 2.0.0-beta.1 (2022-09-15)
-
-## 2.0.0-beta.0 (2022-09-15)
-
-
-### Features
-
-*  button nytt design ([d0f2034](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/d0f20343f4ce5a55beeef87428c147f8e7654753)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
-*  endret styling på komponenter som bruker Button ([81e29fb](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/81e29fbd14e436a1151c1adb64e36461f2bfb815)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
-
-
-### Bug Fixes
-
-*  button Table bruker ariaLabel ([e547919](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/e547919b63306fc926571e4b23c41d482389771c)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
-*  tilbakemeldinger på button ([7c61596](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/7c6159630a77ed6c0ebdc8c3cf78aa3f2345e44b)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
-
-## [1.3.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.1&targetVersion=GTv1.3.2) (2022-09-08)
+### [1.3.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.1&targetVersion=GTv1.3.2) (2022-09-08)
 
 
 ### Bug Fixes
 
 *  slider beholder riktig posisjon/verdi hvis den endrer størrelse ([afa1d0a](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/afa1d0af335c4e2450962904f042768badbc18fd)), closes [#279639](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/279639)
 
-## [1.3.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.0&targetVersion=GTv1.3.1) (2022-09-02)
+### [1.3.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.0&targetVersion=GTv1.3.1) (2022-09-02)
 
 
 ### Bug Fixes
@@ -66,14 +74,14 @@
 *  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 *  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 
-## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
+### [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
 
 ### Features
 
 *  highlightbox oppdatert styling ([98c44aa](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/98c44aa68e6bbea5c9853a5807e66c0ed6be67d0)), closes [#280715](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/280715)
 
-## [1.2.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.0&targetVersion=GTv1.2.1) (2022-08-29)
+### [1.2.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.0&targetVersion=GTv1.2.1) (2022-08-29)
 
 ## [1.2.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.1.0&targetVersion=GTv1.2.0) (2022-08-29)
 
@@ -97,7 +105,7 @@
 *  ikke vis scrolleindikator mens innholdet lastes ([ad6f7d2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ad6f7d21cafcdfaf39c6d0afb04be057e290678c))
 *  tabell med horisontal scroll viser hele borderen ([6c5cb02](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/6c5cb0208967986902a5c62a3e3171d4b1f50e36))
 
-## [1.0.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.0.0-betahelpbubble3&targetVersion=GTv1.0.1) (2022-08-12)
+### [1.0.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.0.0-betahelpbubble3&targetVersion=GTv1.0.1) (2022-08-12)
 
 
 ### ⚠ BREAKING CHANGES
