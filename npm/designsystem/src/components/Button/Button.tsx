@@ -124,7 +124,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const bothIcons = leftIcon && (rightIcon || arrow) && !onlyIcon;
   const onDark = mode === 'ondark';
   const breakpoint = useBreakpoint();
-  const mobile = breakpoint < breakpoints.sm;
+  const mobile = breakpoint < breakpoints.md;
   const destructive = concept === 'destructive';
   const outlineVariant = variant === 'outline';
   const borderlessVariant = variant === 'borderless';
