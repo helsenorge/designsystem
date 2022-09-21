@@ -82,8 +82,8 @@ const getLargeIconSize = (large: boolean, mobile: boolean): IconSize => {
   return IconSize.XSmall;
 };
 
-const checkOnlyIconAria = (onlyIcon: boolean, ariaLabel: string | undefined) => {
-  if (process?.env?.NODE_ENV !== 'test' && onlyIcon && (ariaLabel === undefined || ariaLabel === '')) {
+const checkOnlyIconAria = (onlyIcon: boolean, ariaLabel: string | undefined, testEnv: boolean) => {
+  if (!testEnv && onlyIcon && (ariaLabel === undefined || ariaLabel === '')) {
     throw new Error('Fyll inn ariaLabel prop på Button uten tekst for å opprettholde UU krav');
   }
 };
@@ -121,6 +121,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     htmlMarkup === 'button'
       ? useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>)
       : useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
+  const testEnv = process.env.NODE_ENV === 'test';
   const buttonContentRef = useRef<HTMLDivElement>(null);
   const buttonContentSize = useSize(buttonContentRef);
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
@@ -166,7 +167,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   });
 
   useEffect(() => {
-    checkOnlyIconAria(onlyIcon, ariaLabel);
+    checkOnlyIconAria(onlyIcon, ariaLabel, testEnv);
   }, []);
 
   const renderIcon = (
