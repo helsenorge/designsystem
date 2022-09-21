@@ -1,3 +1,10 @@
+## 2.0.0-beta.4 (2022-09-21)
+
+
+### Bug Fixes
+
+*  button ariaLabel execption kastes ikke under tester ([ffd059a](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ffd059a07f245fa4426a53e328cfc37b8b6c976a))
+
 ## 2.0.0-beta.3 (2022-09-21)
 
 
