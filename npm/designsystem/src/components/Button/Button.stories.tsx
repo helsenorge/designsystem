@@ -47,6 +47,8 @@ const myRef2: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef3: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef4: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef5: React.RefObject<HTMLButtonElement> = React.createRef();
+const myRef6: React.RefObject<HTMLButtonElement> = React.createRef();
+const myRef7: React.RefObject<HTMLButtonElement> = React.createRef();
 
 export const Default: ComponentStory<typeof Button> = (args: any) => (
   <div style={{ width: '15rem' }}>
@@ -111,12 +113,12 @@ export const Sizes: ComponentStory<typeof Button> = (args: any) => (
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Sizes'}
     </Title>
-    <Button size={'medium'} {...args} ref={myRef1} onClick={action('Button clicked')}>
+    <Button size={'medium'} {...args} ref={myRef6} onClick={action('Button clicked')}>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button size={'large'} {...args} ref={myRef2} onClick={action('Button clicked')}>
+    <Button size={'large'} {...args} ref={myRef7} onClick={action('Button clicked')}>
       {args.children}
       <Icon svgIcon={Dog} />
     </Button>
