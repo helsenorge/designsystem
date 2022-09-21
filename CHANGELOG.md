@@ -1,3 +1,10 @@
+## 2.0.0-beta.5 (2022-09-21)
+
+
+### Bug Fixes
+
+*  sjekk av test env flyttes utenfor useEffect ([ce0b693](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ce0b693ad7a5a020222fce753dba728e2be6d54f))
+
 ## 2.0.0-beta.4 (2022-09-21)
 
 
