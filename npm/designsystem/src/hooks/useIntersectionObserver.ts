@@ -24,6 +24,8 @@ export const useIntersectionObserver = (
     return (): void => {
       if (ref?.current) {
         intersectionObserver.unobserve(ref.current);
+      } else {
+        intersectionObserver.disconnect();
       }
     };
   }, [ref, options]);
