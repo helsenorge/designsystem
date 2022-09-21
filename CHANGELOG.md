@@ -1,3 +1,10 @@
+### [1.5.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.5.0&targetVersion=GTv1.5.1) (2022-09-21)
+
+
+### Bug Fixes
+
+*  unobserve eller disconnect når komponent som bruker ResizeObserve/IntersectionObserver unmountes ([87196e0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/87196e0c333d87deb3006b5e5813b12749652b03)), closes [#284648](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/284648)
+
 ## [1.5.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.4.0&targetVersion=GTv1.5.0) (2022-09-16)
 
 
@@ -47,8 +54,8 @@
 
 ### Bug Fixes
 
-*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 *  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
+*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 
 ### [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
