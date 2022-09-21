@@ -19,31 +19,103 @@ $with-icons:
   'both-icons' 'normal' getSpacer(4xs) getSpacer(4xs) getSpacer(xs) getSpacer(xs) 0 0 0 0,
   'both-icons' 'large' getSpacer(xs) getSpacer(xs) getSpacer(s) getSpacer(s) 0 0 0 0;
 
-@mixin on-dark {
-  &--on-dark {
-    background-color: $white;
+@mixin focus-shadow {
+  outline: none;
+  box-shadow: 0 0 0 getSpacer(3xs) $black;
+}
+@mixin focus-shadow-on-dark {
+  box-shadow: 0 0 0 getSpacer(3xs) $white;
+}
 
-    &:hover {
-      box-shadow: none;
-    }
-    &:hover,
-    :focus > & {
-      background-color: $blueberry50;
-    }
-    :focus > & {
-      box-shadow: 0 0 0 getSpacer(3xs) $white;
+@mixin outline-borderless($background-color) {
+  background-color: transparent;
 
-      &:hover {
-        background-color: $white;
-      }
-    }
+  &:hover {
+    background-color: $background-color;
+  }
+  :disabled > & {
+    background-color: transparent;
+  }
+}
 
-    :disabled > & {
-      background-color: $dark-mode-disabled-transparrent;
+@mixin outline($ouline-color, $hover-outline-color) {
+  outline: getSpacer(4xs) solid $ouline-color;
+  outline-offset: getSpacer(4xs) * -1;
+
+  &:hover {
+    color: $ouline-color;
+    outline: getSpacer(4xs) solid $hover-outline-color;
+    outline-offset: 0;
+    box-shadow: 0 0 0 getSpacer(3xs) $ouline-color;
+  }
+
+  :disabled > & {
+    outline-color: $neutral700;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      outline-color: $neutral500;
     }
   }
+}
+
+@mixin outline-text($color) {
+  color: $color;
+  :disabled > & {
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      color: $neutral700;
+    }
+  }
+}
+@mixin borderless-text($color) {
+  color: $color;
+  :disabled > & {
+    color: $neutral700;
+  }
+}
+
+@mixin fill-on-dark($background-color) {
+  background-color: $white;
+
+  &:hover {
+    box-shadow: none;
+  }
+  &:hover,
+  :focus > & {
+    background-color: $background-color;
+  }
+  :focus > & {
+    @include focus-shadow-on-dark;
+
+    &:hover {
+      @include focus-shadow-on-dark;
+      background-color: $white;
+    }
+  }
+
+  :disabled > & {
+    background-color: $dark-mode-disabled-transparrent;
+  }
+}
+
+@mixin on-dark-text($color) {
+  color: $color;
+
+  :disabled > & {
+    color: $neutral700;
+  }
+}
+
+@mixin on-dark {
+  &--on-dark {
+    @include fill-on-dark($blueberry50);
+  }
+  &--on-dark#{&}--destructive {
+    @include fill-on-dark($cherry50);
+  }
   &--on-dark#{&}--outline,
-  &--on-dark#{&}--borderless {
+  &--on-dark#{&}--borderless,
+  &--on-dark#{&}--outline#{&}--destructive,
+  &--on-dark#{&}--borderless#{&}--destructive {
     background-color: transparent;
 
     &:hover {
@@ -66,11 +138,10 @@ $with-icons:
   }
 
   &--on-dark &__text {
-    color: $blueberry600;
-
-    :disabled > & {
-      color: $neutral700;
-    }
+    @include on-dark-text($blueberry600);
+  }
+  &--on-dark#{&}--destructive &__text {
+    @include on-dark-text($cherry600);
   }
   &--on-dark#{&}--outline &__text,
   &--on-dark#{&}--borderless &__text {
@@ -116,6 +187,7 @@ $with-icons:
   font-size: $font-size-sm;
   font-weight: 600;
   font-family: inherit;
+  line-height: 1.25rem;
   align-items: center;
   width: 100%;
   min-height: 2.5rem;
@@ -188,34 +260,18 @@ $with-icons:
 
   &--outline,
   &--borderless {
-    background-color: transparent;
-
-    &:hover {
-      background-color: $blueberry50;
-    }
-    :disabled > & {
-      background-color: transparent;
-    }
+    @include outline-borderless($blueberry50);
+  }
+  &--outline#{&}--destructive,
+  &--borderless#{&}--destructive {
+    @include outline-borderless($cherry50);
   }
 
   &--outline {
-    outline: getSpacer(4xs) solid $blueberry700;
-    outline-offset: getSpacer(4xs) * -1;
-
-    &:hover {
-      color: $blueberry700;
-      outline: getSpacer(4xs) solid $blueberry50;
-      outline-offset: 0;
-      box-shadow: 0 0 0 getSpacer(3xs) $blueberry700;
-    }
-
-    :disabled > & {
-      outline-color: $neutral700;
-
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        outline-color: $neutral500;
-      }
-    }
+    @include outline($blueberry700, $blueberry50);
+  }
+  &--outline#{&}--destructive {
+    @include outline($cherry700, $cherry50);
   }
 
   &--borderless:not(.button--only-icon) {
@@ -232,8 +288,10 @@ $with-icons:
   }
 
   :focus > & {
-    outline: none;
-    box-shadow: 0 0 0 getSpacer(3xs) $black;
+    @include focus-shadow;
+    &:hover {
+      @include focus-shadow;
+    }
   }
 
   &__text {
@@ -251,18 +309,16 @@ $with-icons:
     }
   }
   &--outline &__text {
-    color: $blueberry600;
-    :disabled > & {
-      @media (min-width: map-get($grid-breakpoints, md)) {
-        color: $neutral700;
-      }
-    }
+    @include outline-text($blueberry600);
+  }
+  &--outline#{&}--destructive &__text {
+    @include outline-text($cherry600);
   }
   &--borderless &__text {
-    color: $blueberry600;
-    :disabled > & {
-      color: $neutral700;
-    }
+    @include borderless-text($blueberry600);
+  }
+  &--borderless#{&}--destructive &__text {
+    @include borderless-text($cherry600);
   }
   &--only-icon &__text {
     @include sr-only();

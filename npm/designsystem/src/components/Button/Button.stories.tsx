@@ -106,6 +106,23 @@ export const Icons: ComponentStory<typeof Button> = (args: any) => (
   </div>
 );
 
+export const Sizes: ComponentStory<typeof Button> = (args: any) => (
+  <div style={{ width: '15rem' }}>
+    <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
+      {'Sizes'}
+    </Title>
+    <Button size={'medium'} {...args} ref={myRef1} onClick={action('Button clicked')}>
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button size={'large'} {...args} ref={myRef2} onClick={action('Button clicked')}>
+      {args.children}
+      <Icon svgIcon={Dog} />
+    </Button>
+  </div>
+);
+
 export const Variants: ComponentStory<typeof Button> = (args: any) => (
   <div style={{ width: '15rem' }}>
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
@@ -239,6 +256,7 @@ export const AllVariants: ComponentStory<typeof Button> = (args: any) => (
   <>
     <Concepts {...args} />
     <Icons {...args} />
+    <Sizes {...args} />
     <Variants {...args} />
     <DarkMode {...args} />
     <Disabled {...args} />

@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
 import { getColor } from '../../theme/currys/color';
 import Icon, { IconProps, IconSize } from './../Icons/';
 import { useHover } from '../../hooks/useHover';
 import { useIcons } from '../../hooks/useIcons';
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { breakpoints } from '../../theme/grid';
 import classNames from 'classnames';
 
@@ -26,6 +26,8 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
   id?: string;
   /** Sets the content of the button. */
   children: React.ReactNode;
+  /** Adds custom classes to the wrapper element. */
+  wrapperClassName?: string;
   /** Adds custom classes to the element. */
   className?: string;
   /** Enables an arrow icon to the right inside the button (Not available in borderless variant) */
@@ -94,7 +96,8 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     ariaLabel,
     id,
     children,
-    className = '',
+    wrapperClassName,
+    className,
     arrow = false,
     concept = 'normal',
     disabled = false,
@@ -125,7 +128,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const onDark = mode === 'ondark';
   const breakpoint = useBreakpoint();
   const mobile = breakpoint < breakpoints.md;
-  const destructive = concept === 'destructive';
+  const destructive = concept === 'destructive' && !disabled;
   const outlineVariant = variant === 'outline';
   const borderlessVariant = variant === 'borderless';
   const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, mobile);
@@ -136,21 +139,25 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const buttonWrapperClasses = classNames(
     buttonStyles['button-wrapper'],
     { [buttonStyles['button-wrapper--fluid']]: fluid || ellipsis },
+    wrapperClassName
+  );
+  const buttonClasses = classNames(
+    buttonStyles.button,
+    {
+      [buttonStyles['button--destructive']]: destructive,
+      [buttonStyles['button--normal']]: !large,
+      [buttonStyles['button--large']]: large,
+      [buttonStyles['button--outline']]: outlineVariant,
+      [buttonStyles['button--borderless']]: borderlessVariant,
+      [buttonStyles['button--left-icon']]: leftIcon && !onlyIcon,
+      [buttonStyles['button--right-icon']]: rightIcon && !onlyIcon,
+      [buttonStyles['button--both-icons']]: bothIcons,
+      [buttonStyles['button--only-icon']]: onlyIcon,
+      [buttonStyles['button--arrow']]: hasArrow,
+      [buttonStyles['button--on-dark']]: onDark,
+    },
     className
   );
-  const buttonClasses = classNames(buttonStyles.button, {
-    [buttonStyles['button--destructive']]: destructive,
-    [buttonStyles['button--normal']]: !large,
-    [buttonStyles['button--large']]: large,
-    [buttonStyles['button--outline']]: outlineVariant,
-    [buttonStyles['button--borderless']]: borderlessVariant,
-    [buttonStyles['button--left-icon']]: leftIcon && !onlyIcon,
-    [buttonStyles['button--right-icon']]: rightIcon && !onlyIcon,
-    [buttonStyles['button--both-icons']]: bothIcons,
-    [buttonStyles['button--only-icon']]: onlyIcon,
-    [buttonStyles['button--arrow']]: hasArrow,
-    [buttonStyles['button--on-dark']]: onDark,
-  });
   const buttonTextClasses = classNames(buttonStyles['button__text'], {
     [buttonStyles['button__text--ellipsis']]: ellipsis,
   });
