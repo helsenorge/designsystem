@@ -133,24 +133,24 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const large = size === 'large' && !destructive && !borderlessVariant;
   const rest = { ...(restProps as React.HtmlHTMLAttributes<HTMLButtonElement>) };
 
-  const buttonWrapperClasses = classNames(buttonStyles['button-wrapper'], { [buttonStyles['button-wrapper--fluid']]: fluid || ellipsis });
-  const buttonClasses = classNames(
-    buttonStyles.button,
-    {
-      [buttonStyles['button--destructive']]: destructive,
-      [buttonStyles['button--normal']]: !large,
-      [buttonStyles['button--large']]: large,
-      [buttonStyles['button--outline']]: outlineVariant,
-      [buttonStyles['button--borderless']]: borderlessVariant,
-      [buttonStyles['button--left-icon']]: leftIcon && !onlyIcon,
-      [buttonStyles['button--right-icon']]: rightIcon && !onlyIcon,
-      [buttonStyles['button--both-icons']]: bothIcons,
-      [buttonStyles['button--only-icon']]: onlyIcon,
-      [buttonStyles['button--arrow']]: hasArrow,
-      [buttonStyles['button--on-dark']]: onDark,
-    },
+  const buttonWrapperClasses = classNames(
+    buttonStyles['button-wrapper'],
+    { [buttonStyles['button-wrapper--fluid']]: fluid || ellipsis },
     className
   );
+  const buttonClasses = classNames(buttonStyles.button, {
+    [buttonStyles['button--destructive']]: destructive,
+    [buttonStyles['button--normal']]: !large,
+    [buttonStyles['button--large']]: large,
+    [buttonStyles['button--outline']]: outlineVariant,
+    [buttonStyles['button--borderless']]: borderlessVariant,
+    [buttonStyles['button--left-icon']]: leftIcon && !onlyIcon,
+    [buttonStyles['button--right-icon']]: rightIcon && !onlyIcon,
+    [buttonStyles['button--both-icons']]: bothIcons,
+    [buttonStyles['button--only-icon']]: onlyIcon,
+    [buttonStyles['button--arrow']]: hasArrow,
+    [buttonStyles['button--on-dark']]: onDark,
+  });
   const buttonTextClasses = classNames(buttonStyles['button__text'], {
     [buttonStyles['button__text--ellipsis']]: ellipsis,
   });

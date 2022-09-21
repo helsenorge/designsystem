@@ -86,7 +86,9 @@ $with-icons:
 
 // UU krav om klikkbart område er 48x48px, button-wrapper fyller de manglende 8px i høyden på mobilskjerm (synlig button er 40px høy)
 .button-wrapper {
+  display: inline-flex;
   cursor: pointer;
+  text-decoration: none;
   background-color: transparent;
   outline: none;
   border: 0;
@@ -118,7 +120,6 @@ $with-icons:
   width: 100%;
   min-height: 2.5rem;
   box-sizing: border-box;
-  text-decoration: none;
   outline: none;
   border: 0;
   letter-spacing: unset;

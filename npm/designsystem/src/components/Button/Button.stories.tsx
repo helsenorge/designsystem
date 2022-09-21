@@ -219,7 +219,7 @@ export const Fluid: ComponentStory<typeof Button> = (args: any) => (
 );
 
 export const Ellipsis: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ width: '15rem' }}>
+  <div style={{ width: '10rem' }}>
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Ellipsis'}
     </Title>
