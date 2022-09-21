@@ -1,9 +1,15 @@
-### [1.5.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.5.0&targetVersion=GTv1.5.1) (2022-09-21)
+## 2.0.0-beta.3 (2022-09-21)
+
+
+### Features
+
+*  destructive concept støtter og outline, borderless og on-dark varianter ([59f5a22](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/59f5a220c7d70369616ac3c9bebcacddf1354700)), closes [#285025](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/285025)
 
 
 ### Bug Fixes
 
-*  unobserve eller disconnect når komponent som bruker ResizeObserve/IntersectionObserver unmountes ([87196e0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/87196e0c333d87deb3006b5e5813b12749652b03)), closes [#284648](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/284648)
+*  button a tag decoration og width fix ([ff05b12](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ff05b12a194e68b3aa575caa39770c06c40a8c54)), closes [#284656](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/284656)
+*  button storybooks har unike refs ([56b0715](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/56b07150d3861c54b1702a25f4d9c1e27465d489))
 
 ## 2.0.0-beta.2 (2022-09-19)
 
@@ -28,6 +34,13 @@
 
 *  button Table bruker ariaLabel ([e547919](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/e547919b63306fc926571e4b23c41d482389771c)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
 *  tilbakemeldinger på button ([7c61596](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/7c6159630a77ed6c0ebdc8c3cf78aa3f2345e44b)), closes [#260900](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260900)
+
+### [1.5.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.5.0&targetVersion=GTv1.5.1) (2022-09-21)
+
+
+### Bug Fixes
+
+*  unobserve eller disconnect når komponent som bruker ResizeObserve/IntersectionObserver unmountes ([87196e0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/87196e0c333d87deb3006b5e5813b12749652b03)), closes [#284648](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/284648)
 
 ## [1.5.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.4.0&targetVersion=GTv1.5.0) (2022-09-16)
 
@@ -78,8 +91,8 @@
 
 ### Bug Fixes
 
-*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 *  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
+*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 
 ### [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
