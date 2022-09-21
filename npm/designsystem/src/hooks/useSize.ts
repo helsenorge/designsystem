@@ -17,7 +17,13 @@ export const useSize = (ref?: React.RefObject<HTMLElement>) => {
       if (ref?.current) {
         resizeObserver.observe(ref?.current);
       }
-      return resizeObserver.disconnect;
+      return (): void => {
+        if (ref?.current) {
+          resizeObserver.unobserve(ref.current);
+        } else {
+          resizeObserver.disconnect();
+        }
+      };
     } else if (typeof window === 'object') {
       // For nettlesere som ikke støtter ResizeObserver (iOS 13 og lavere)
       const handleLayoutEvent = () => {
