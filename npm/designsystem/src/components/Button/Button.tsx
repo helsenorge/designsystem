@@ -83,7 +83,7 @@ const getLargeIconSize = (large: boolean, mobile: boolean): IconSize => {
 };
 
 const checkOnlyIconAria = (onlyIcon: boolean, ariaLabel: string | undefined) => {
-  if (onlyIcon && (ariaLabel === undefined || ariaLabel === '')) {
+  if (process?.env?.NODE_ENV !== 'test' && onlyIcon && (ariaLabel === undefined || ariaLabel === '')) {
     throw new Error('Fyll inn ariaLabel prop på Button uten tekst for å opprettholde UU krav');
   }
 };
