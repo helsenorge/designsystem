@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { PaletteNames } from '../../theme/palette';
 import Icon, { IconSize } from '../Icons';
@@ -12,8 +12,11 @@ import { isElementInViewport } from '../../utils/viewport';
 import classNames from 'classnames';
 
 import expanderListStyles from './styles.module.scss';
-import { AnalyticsId } from '../../constants';
+import { AnalyticsId, ZIndex } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
+import { useSticky } from '../../hooks/useSticky';
+
+import { mergeRefs } from '../../utils/refs';
 
 export type ExpanderListColors = PaletteNames;
 export type ExpanderType = React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>>;
@@ -44,6 +47,8 @@ interface ExpanderListProps {
   renderChildrenWhenClosed?: boolean;
   /** Toggles the top border of the first child element. */
   topBorder?: boolean;
+  /** Stick expander trigger to top of screen while scrolling down */
+  sticky?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -68,10 +73,9 @@ type ExpanderProps = Modify<
     onExpand?: (isExpanded: boolean) => void;
   }
 > &
-  Pick<ExpanderListProps, 'renderChildrenWhenClosed'>;
+  Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'sticky'>;
 
-// TODO: See what can be done with regards to double reffing.
-const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: React.Ref<HTMLLIElement>) => {
+const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((props, ref) => {
   const {
     id,
     children,
@@ -82,6 +86,7 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     large = false,
     title,
     expanded = false,
+    sticky,
     testId,
     handleExpanderClick,
     onExpand,
@@ -89,8 +94,14 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
   } = props;
   const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
   const previousIsExpanded = usePrevious(isExpanded);
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
+  const expanderRef = useRef<HTMLLIElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const { isHovered } = useHover(triggerRef);
   const breakpoint = useBreakpoint();
+
+  const { isOutsideWindow, isLeavingWindow, offsetHeight, contentWidth } = useSticky(expanderRef, triggerRef);
+
+  const isSticky = sticky && isExpanded && isOutsideWindow;
 
   const isJsxTitle = typeof title === 'object';
 
@@ -100,6 +111,8 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
     [expanderListStyles['expander-list-link--closed']]: !isExpanded,
     [expanderListStyles['expander-list-link--large']]: large,
     [expanderListStyles['expander-list-link--jsx']]: isJsxTitle,
+    [expanderListStyles['expander-list-link--sticky']]: isSticky && !isLeavingWindow,
+    [expanderListStyles['expander-list-link--absolute']]: isSticky && isLeavingWindow,
   });
 
   const titleClasses = classNames(expanderListStyles['expander-list-link__title'], {
@@ -134,7 +147,11 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
   };
 
   return (
-    <li className={itemClasses} ref={ref}>
+    <li
+      className={itemClasses}
+      ref={mergeRefs([ref, expanderRef])}
+      style={{ paddingTop: isSticky && offsetHeight ? `${offsetHeight}px` : undefined }}
+    >
       <button
         type="button"
         id={id}
@@ -142,8 +159,12 @@ const Expander: ExpanderType = React.forwardRef((props: ExpanderProps, ref: Reac
         data-testid={testId}
         data-analyticsid={AnalyticsId.ExpanderListExpander}
         className={expanderClasses}
-        ref={hoverRef}
+        ref={triggerRef}
         aria-expanded={isExpanded}
+        style={{
+          zIndex: isHovered || isSticky ? ZIndex.ExpanderTrigger : undefined,
+          width: isSticky && contentWidth ? `${contentWidth}px` : undefined,
+        }}
       >
         {icon && (
           <span className={expanderListStyles['expander-list-link__icon']}>
@@ -180,6 +201,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     accordion = false,
     topBorder = true,
     bottomBorder = true,
+    sticky = false,
     testId,
   } = props;
   const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
@@ -249,6 +271,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
             padding: childPadding,
             color,
             large,
+            sticky,
             'aria-expanded': expanded,
             className: expanderItemClass,
             handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${uuid}-${index}`),

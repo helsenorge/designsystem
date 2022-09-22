@@ -12,6 +12,7 @@
   &__item {
     border: 0;
     border-bottom: 1px solid $neutral500;
+    position: relative;
 
     &--top {
       border-top: 1px solid $neutral500;
@@ -120,6 +121,15 @@
     &:focus {
       box-shadow: inset 0px 2px 0px 0px $neutral500, inset 0px -2px 0px 0px $neutral500;
     }
+  }
+
+  &--sticky {
+    position: fixed;
+    top: 0;
+  }
+  &--absolute {
+    position: absolute;
+    bottom: 0;
   }
 
   &__title {
