@@ -17,15 +17,13 @@ export interface Props {
   sortDir?: SortDirection;
   /** Function that is called when clicked */
   onClick?: () => void;
-  /** Sets tabIndex on th element */
-  tabIndex?: 0 | -1;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the content of the td element.  */
   children?: React.ReactNode;
 }
 
-export const TableHeadCell = function TableHeadCell({ sortable, onClick, className, children, sortDir, tabIndex }: Props) {
+export const TableHeadCell = function TableHeadCell({ sortable, onClick, className, children, sortDir }: Props) {
   const tableHeadCellDefaultClass = tableStyles['table__head-cell'];
 
   if (!sortable) {
@@ -36,30 +34,35 @@ export const TableHeadCell = function TableHeadCell({ sortable, onClick, classNa
     );
   }
 
-  const tableHeadCellClass = classNames(
+  const sortableClasses = classNames(
     tableHeadCellDefaultClass,
     tableStyles['table__head-cell--sortable'],
-    { [tableStyles['table__head-cell--sorted']]: !!sortDir },
+    { [tableStyles['table__head-cell--sorted']]: sortDir },
     className
   );
 
-  let sortIcon: JSX.Element | null = null;
-  if (sortDir) {
-    const arrow = sortDir == SortDirection.asc ? ArrowDown : ArrowUp;
-    sortIcon = <Icon svgIcon={arrow} size={IconSize.XXSmall}></Icon>;
-  }
+  const renderSortIcon = (): JSX.Element | undefined =>
+    sortDir && (
+      <div className={tableStyles['table__head-cell-sort-icon-wrapper']}>
+        <Icon svgIcon={sortDir == SortDirection.asc ? ArrowDown : ArrowUp} size={IconSize.XXSmall} />
+      </div>
+    );
+
+  const getSortDirection = (): React.AriaAttributes['aria-sort'] => {
+    switch (sortDir) {
+      case SortDirection.asc:
+        return 'ascending';
+      case SortDirection.desc:
+        return 'descending';
+    }
+  };
 
   return (
-    <th
-      scope="col"
-      role="button"
-      tabIndex={tabIndex === undefined ? 0 : tabIndex}
-      className={tableHeadCellClass}
-      onClick={onClick}
-      onKeyPress={e => e.key === 'Enter' && onClick && onClick()}
-    >
-      <div className={tableStyles['table__head-cell-sort-icon-wrapper']}>{sortIcon}</div>
-      {children}
+    <th scope="col" className={sortableClasses} aria-sort={getSortDirection()}>
+      <button type="button" onClick={onClick} className={tableStyles['table__sort-button']} aria-pressed={sortDir ? !!sortDir : undefined}>
+        {renderSortIcon()}
+        {children}
+      </button>
     </th>
   );
 };

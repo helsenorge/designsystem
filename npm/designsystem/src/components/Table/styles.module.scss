@@ -45,11 +45,15 @@ table tbody tr {
   padding: 0.5rem 0.75rem;
   border: 1px solid $neutral500;
 
+  &--sortable {
+    position: relative;
+  }
+
   &--sortable:hover {
     background-color: $blueberry100;
     cursor: pointer;
   }
-  &--sortable:focus {
+  &--sortable:focus-within {
     outline: 3px solid $black;
     outline-offset: -3px;
   }
@@ -127,6 +131,17 @@ table tbody tr {
         border-bottom: 1px solid $neutral100;
       }
     }
+  }
+}
+.table__sort-button {
+  all: unset;
+  &:after {
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }
 

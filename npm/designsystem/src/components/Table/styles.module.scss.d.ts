@@ -25,6 +25,7 @@ export type Styles = {
   'table__head-cell-sort-icon-wrapper': string;
   'table__row--expandable': string;
   'table__row--expandable--selected': string;
+  'table__sort-button': string;
   'table--collapse2col': string;
 };
 
