@@ -103,7 +103,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
         </FormGroup>
       );
 
-      const error = screen.getByText('error error!');
+      const error = screen.getByRole('alert');
       expect(error).toBeVisible();
 
       const formGroup = screen.getByRole('group').parentElement;

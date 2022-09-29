@@ -104,7 +104,11 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         </Title>
       )}
       <div className={formGroupClasses}>
-        {error && <p className={errorStyles}>{error}</p>}
+        {error && (
+          <p role={'alert'} className={errorStyles}>
+            {error}
+          </p>
+        )}
         {htmlMarkup === 'div' && (
           <div id={props.title} className={formGroupStyles['field-set']}>
             {props.legend && <h5 className={legendClasses}>{props.legend}</h5>}
