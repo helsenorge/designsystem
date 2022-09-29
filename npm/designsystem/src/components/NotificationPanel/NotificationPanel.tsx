@@ -79,14 +79,14 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     labelId,
     testId,
   } = props;
-  const uuid = useUuid();
+  const uuid = useUuid(labelId);
 
   const renderContent = (): JSX.Element => {
     const contentClasses = classNames(styles['notification-panel__content'], styles[`notification-panel__content--${variant}`]);
 
     return (
-      <div className={contentClasses} id={!label ? labelId || uuid : undefined}>
-        {label && <h1 className={styles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} id={labelId || uuid} />}
+      <div className={contentClasses} id={!label ? uuid : undefined}>
+        {label && <h1 className={styles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} id={uuid} />}
         {children}
       </div>
     );
@@ -107,10 +107,10 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     className
   );
 
-  const ariaLabelAttributes = getAriaLabelAttributes({ label, id: labelId || uuid });
+  const ariaLabelAttributes = getAriaLabelAttributes({ label, id: uuid });
 
   return (
-    <FluidWrapper>
+    <FluidWrapper fluid={fluid} variant={variant} shadow={shadow}>
       <section
         ref={ref}
         data-testid={testId}
