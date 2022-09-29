@@ -44,6 +44,8 @@ interface NotificationPanelProps {
   label?: string;
   /** Close button aria-label */
   ariaLabelCloseBtn?: string;
+  /** Custom id for the label */
+  labelId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -64,15 +66,27 @@ const FluidWrapper: React.FC<WrapFluidProps> = ({ fluid, variant, shadow, childr
 };
 
 const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProps>((props, ref) => {
-  const { children, variant = 'info', shadow = false, dismissable = false, onClick, label, fluid = false, size, className, testId } = props;
+  const {
+    children,
+    variant = 'info',
+    shadow = false,
+    dismissable = false,
+    onClick,
+    label,
+    fluid = false,
+    size,
+    className,
+    labelId,
+    testId,
+  } = props;
   const uuid = useUuid();
 
   const renderContent = (): JSX.Element => {
     const contentClasses = classNames(styles['notification-panel__content'], styles[`notification-panel__content--${variant}`]);
 
     return (
-      <div className={contentClasses} id={!label ? uuid : undefined}>
-        {label && <h1 className={styles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} id={uuid} />}
+      <div className={contentClasses} id={!label ? labelId || uuid : undefined}>
+        {label && <h1 className={styles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} id={labelId || uuid} />}
         {children}
       </div>
     );
@@ -93,7 +107,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     className
   );
 
-  const ariaLabelAttributes = getAriaLabelAttributes({ label, id: uuid });
+  const ariaLabelAttributes = getAriaLabelAttributes({ label, id: labelId || uuid });
 
   return (
     <FluidWrapper>
