@@ -32,6 +32,18 @@ export default {
       options: FormVariant,
       defaultValue: FormVariant.normal,
     },
+    name: {
+      control: 'string',
+      defaultValue: '',
+    },
+    value: {
+      control: 'string',
+      defaultValue: '',
+    },
+    required: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
 } as ComponentMeta<typeof Checkbox>;
 

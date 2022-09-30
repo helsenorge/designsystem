@@ -62,6 +62,18 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    autoComplete: {
+      control: 'string',
+      defaultValue: '',
+    },
+    name: {
+      control: 'string',
+      defaultValue: '',
+    },
+    required: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
 } as ComponentMeta<typeof Input>;
 
