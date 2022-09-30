@@ -238,7 +238,7 @@ $with-icons:
     }
   }
   @each $icon-class, $size-class, $pl, $pr, $pld, $prd, $svgml, $svgmr, $svgmld, $svgmrd in $with-icons {
-    &__#{$icon-class} {
+    &--#{$size-class} &__#{$icon-class} {
       margin-left: $svgml;
       margin-right: $svgmr;
 
