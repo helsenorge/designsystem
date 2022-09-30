@@ -12,6 +12,8 @@ import PaperPlane from '../Icons/PaperPlane';
 import AlarmClock from '../Icons/AlarmClock';
 import Title from '../Title/Title';
 
+import { longLoremText } from '../../utils/loremtext';
+
 export default {
   title: 'Components/ExpanderList',
   component: ExpanderList,
@@ -45,6 +47,10 @@ export default {
       control: 'boolean',
       defaultValue: true,
     },
+    sticky: {
+      control: 'boolean',
+      defaultValue: false,
+    },
     large: {
       control: 'boolean',
       defaultValue: false,
@@ -73,6 +79,21 @@ export const Default: ComponentStory<typeof ExpanderList> = (args: any) => (
         hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.
       </ExpanderList.Expander>
     </ExpanderList>
+    <p>Teksten under er for å kunne teste sticky oppførsel :-)</p>
+    <ul>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+      <li>{longLoremText}</li>
+    </ul>
   </div>
 );
 

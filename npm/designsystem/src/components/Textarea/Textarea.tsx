@@ -151,6 +151,12 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     }
   }, []);
 
+  let progress = 0;
+  if (max) {
+    progress = textareaInput.toString().length / max;
+  }
+
+  const ariaLevel = progress > 0.95 ? 'polite' : 'off';
   const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
 
   return (
@@ -181,7 +187,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
         />
       </div>
       {max && (
-        <div className={counterTextClass} style={{ maxWidth }}>
+        <div aria-live={ariaLevel} aria-atomic={'true'} className={counterTextClass} style={{ maxWidth }}>
           <p>{`${textareaInput.toString().length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
         </div>
       )}

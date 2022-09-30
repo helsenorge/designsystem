@@ -5,6 +5,9 @@ class ResizeObserver {
   unobserve() {
     // do nothing
   }
+  disconnect() {
+    // do nothing
+  }
 }
 
 Object.defineProperty(window, 'ResizeObserver', {

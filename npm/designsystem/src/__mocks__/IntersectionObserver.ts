@@ -5,6 +5,9 @@ class IntersectionObserver {
   unobserve(): void {
     // do nothing
   }
+  disconnect(): void {
+    // do nothing
+  }
 }
 
 Object.defineProperty(window, 'IntersectionObserver', {

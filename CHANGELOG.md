@@ -1,3 +1,23 @@
+## [1.7.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.6.0&targetVersion=GTv1.7.0) (2022-09-29)
+
+
+### Features
+
+*  notificationpanel støtter custom labelId ([d5f28ee](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/d5f28ee2b68637f10546cd35991b623e8266c0c3))
+
+
+### Bug Fixes
+
+*  fluid notificationpanel tar hensyn til fluid/variant/shadow-props igjen ([a19afba](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/a19afba44068d3c8be15812d90711ace51a9a778))
+*  form feilmeldinger leses opp av skjermleser ([d57305f](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/d57305fd740c0553a395923c20dbd1f1235136f5)), closes [#227757](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/227757)
+
+## [1.6.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.5.1&targetVersion=GTv1.6.0) (2022-09-22)
+
+
+### Features
+
+*  expanderlist kan være sticky ([0c78cf5](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/0c78cf53e302bdeac62c35c2ba2bf188e848975b)), closes [#284516](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/284516)
+
 ## 2.0.0-beta.5 (2022-09-21)
 
 

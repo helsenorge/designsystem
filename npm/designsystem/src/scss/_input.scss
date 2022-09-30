@@ -26,6 +26,7 @@
 }
 
 @mixin content-wrapper {
+  display: flex;
   font-size: $font-size-sm;
   width: 100%;
   border: $neutral700 2px solid;
