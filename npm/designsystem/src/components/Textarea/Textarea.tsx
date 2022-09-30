@@ -2,13 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import cn from 'classnames';
 
 import styles from './styles.module.scss';
-import { HTMLTextareaProps, FormMode, AnalyticsId } from '../../constants';
+import { FormMode, AnalyticsId } from '../../constants';
 import { uuid } from '../../utils/uuid';
 import { AVERAGE_CHARACTER_WIDTH_PX } from '../Input';
 
-interface TextareaProps extends HTMLTextareaProps {
-  /** initial value for textarea */
-  defaultValue?: string;
+interface TextareaProps
+  extends Pick<
+    React.InputHTMLAttributes<HTMLTextAreaElement>,
+    'autoFocus' | 'disabled' | 'name' | 'autoComplete' | 'placeholder' | 'readOnly' | 'required' | 'defaultValue'
+  > {
   /** max character limit in textarea  */
   maxCharacters?: number;
   /** The text is displayed in the end of the text-counter */
@@ -67,7 +69,13 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     errorText,
     afterLabelChildren,
     belowLabelChildren,
-    ...restProps
+    autoFocus,
+    disabled,
+    name,
+    autoComplete,
+    placeholder,
+    readOnly,
+    required,
   } = props;
 
   const [rows, setRows] = useState(minRows);
@@ -107,7 +115,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
 
   const onDark = mode === FormMode.ondark;
   const onBlueberry = mode === FormMode.onblueberry;
-  const textHasError = max && textareaInput.length > max;
+  const textHasError = max && textareaInput.toString().length > max;
   const onError = mode === FormMode.oninvalid || errorText || textHasError;
 
   const textareaWrapperClass = cn(styles.textarea, {
@@ -163,12 +171,18 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
           ref={ref}
           onChange={handleChange}
           aria-invalid={!!onError}
-          {...restProps}
+          autoFocus={autoFocus}
+          disabled={disabled}
+          name={name}
+          autoComplete={autoComplete}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          required={required}
         />
       </div>
       {max && (
         <div className={counterTextClass} style={{ maxWidth }}>
-          <p>{`${textareaInput.length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
+          <p>{`${textareaInput.toString().length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
         </div>
       )}
     </div>

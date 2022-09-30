@@ -109,4 +109,67 @@ describe('Gitt at Input skal vises', (): void => {
       expect(contentWrapper).toHaveClass('content-wrapper content-wrapper--invalid');
     });
   });
+
+  describe('Når disabled er satt', (): void => {
+    test('Så er input disabled', (): void => {
+      render(<Input label="En fin label" disabled />);
+
+      const input = screen.getByLabelText('En fin label');
+      expect(input).toBeDisabled();
+    });
+  });
+
+  describe('Når readOnly er satt', (): void => {
+    test('Så er input readOnly', (): void => {
+      render(<Input label="En fin label" readOnly />);
+
+      const input = screen.getByLabelText('En fin label');
+      expect(input).toHaveAttribute('readonly', '');
+    });
+  });
+
+  describe('Når autoComplete er satt til on', (): void => {
+    test('Så har input autoComplete=on', (): void => {
+      render(<Input label="En fin label" autoComplete="on" />);
+
+      const input = screen.getByLabelText('En fin label');
+      expect(input).toHaveAttribute('autoComplete', 'on');
+    });
+  });
+
+  describe('Når name-prop er satt', (): void => {
+    test('Så har input riktig name', (): void => {
+      render(<Input label="En fin label" name="custom-name" />);
+
+      const input = screen.getByLabelText('En fin label');
+      expect(input).toHaveAttribute('name', 'custom-name');
+    });
+  });
+
+  describe('Når placeholder-prop er satt', (): void => {
+    test('Så har input riktig placeholder', (): void => {
+      render(<Input label="En fin label" placeholder="custom-placeholder" />);
+
+      const input = screen.getByPlaceholderText('custom-placeholder');
+      expect(input).toBeVisible();
+    });
+  });
+
+  describe('Når defaultValue-prop er satt', (): void => {
+    test('Så har input riktig value', (): void => {
+      render(<Input label="En fin label" defaultValue="custom-value" />);
+
+      const input = screen.getByLabelText('En fin label');
+      expect(input).toHaveValue('custom-value');
+    });
+  });
+
+  describe('Når required er satt', (): void => {
+    test('Så er input required', (): void => {
+      render(<Input label="En fin label" required />);
+
+      const input = screen.getByLabelText('En fin label');
+      expect(input).toBeRequired();
+    });
+  });
 });

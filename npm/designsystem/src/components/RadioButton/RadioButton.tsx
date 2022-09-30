@@ -6,23 +6,16 @@ import { uuid } from '../../utils/uuid';
 import radioButtonStyles from './styles.module.scss';
 import { AnalyticsId, FormMode, FormVariant } from '../../constants';
 
-export interface RadioButtonProps {
+export interface RadioButtonProps
+  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'defaultChecked' | 'required'> {
   /** Adds custom classes to the element. */
   className?: string;
-  /** Sets radioButton as checked by default */
-  defaultChecked?: boolean;
-  /** Disables the radioButton */
-  disabled?: boolean;
   /** The label text next to the radioButton */
   label: string;
   /** input id of the radioButton */
   inputId?: string;
   /** Changes the visuals of the radioButton */
   mode?: keyof typeof FormMode;
-  /** Unique identifyer for the input tag */
-  name?: string;
-  /** Return value for the radioButton */
-  value?: string;
   /** Changes the visuals of the radioButton */
   variant?: keyof typeof FormVariant;
   /** Activates Error style for the radioButton - This is can be true while errorText is empty, when in a FormGroup */
@@ -46,6 +39,8 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     errorText,
     error = !!errorText,
     value = label,
+    testId,
+    required,
   } = props;
   const invalid = error || mode === FormMode.oninvalid;
   const onDark = mode === FormMode.ondark;
@@ -78,7 +73,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   });
 
   return (
-    <div data-testid={props.testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
+    <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
       {errorText && <p className={errorStyles}>{errorText}</p>}
       <label htmlFor={inputId} className={radioButtonLabelClasses}>
         <input
@@ -91,6 +86,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
           ref={ref}
           aria-invalid={error}
           defaultChecked={defaultChecked}
+          required={required}
         />
         {label}
       </label>
