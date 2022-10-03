@@ -1,13 +1,15 @@
 import { addons } from '@storybook/addons';
 import { create } from '@storybook/theming/create';
+
+import { palette } from '../src/theme/palette';
+
 import logo from './hnd-logo.svg';
 
-/* TODO: Make use of palette from DS. Got a weird error that I think stems from the custom webpack config which crashed the build */
 const hndsTheme = create({
   base: 'light',
-  colorSecondary: '#188097',
-  appBg: '#E4F7F9',
-  brandUrl: 'https://helsenorge.design',
+  colorSecondary: palette.blueberry500,
+  appBg: palette.blueberry50,
+  brandUrl: 'https://designsystem-storybook.netlify.app',
   brandImage: logo,
 });
 

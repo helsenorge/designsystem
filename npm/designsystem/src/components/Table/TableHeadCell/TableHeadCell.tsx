@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import tableStyles from './styles.module.scss';
-import Icon, { IconSize } from '../Icons';
-import ArrowUp from '../Icons/ArrowUp';
-import ArrowDown from '../Icons/ArrowDown';
+import tableStyles from '../styles.module.scss';
+import Icon, { IconSize } from '../../Icons';
+import ArrowUp from '../../Icons/ArrowUp';
+import ArrowDown from '../../Icons/ArrowDown';
 
 export enum SortDirection {
   asc = 'asc',

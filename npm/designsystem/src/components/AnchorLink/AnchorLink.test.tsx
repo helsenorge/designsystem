@@ -67,7 +67,7 @@ describe('Gitt at AnchorLink skal rendres', (): void => {
   });
 
   describe('Når htmlMarkup er button', () => {
-    test('Skal kalles onClick-handler når man klikker på knappen', () => {
+    test('Skal kalles onClick-handler når man klikker på knappen', async () => {
       const onClickMock = jest.fn();
       render(
         <AnchorLink htmlMarkup="button" onClick={onClickMock} href="#">
@@ -76,13 +76,13 @@ describe('Gitt at AnchorLink skal rendres', (): void => {
       );
 
       const link = screen.getByRole('button', { name: 'Lenketekst' });
-      userEvent.click(link);
+      await userEvent.click(link);
       expect(onClickMock).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('Når htmlMarkup er a', () => {
-    test('Skal kalles onClick-handler når man klikker på knappen', () => {
+    test('Skal kalles onClick-handler når man klikker på knappen', async () => {
       const onClickMock = jest.fn();
       render(
         <AnchorLink htmlMarkup="a" onClick={onClickMock} href="#">
@@ -91,7 +91,7 @@ describe('Gitt at AnchorLink skal rendres', (): void => {
       );
 
       const link = screen.getByRole('link', { name: 'Lenketekst' });
-      userEvent.click(link);
+      await userEvent.click(link);
       expect(onClickMock).toHaveBeenCalledTimes(1);
     });
   });

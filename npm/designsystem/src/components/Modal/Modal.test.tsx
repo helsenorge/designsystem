@@ -178,7 +178,7 @@ describe('Gitt at en modal skal vises ', (): void => {
   });
 
   describe(`Når en bruker tabber flere ganger inne i en Modal`, (): void => {
-    it('Så skal man fanges inne i modalen når man tabber', (): void => {
+    it('Så skal man fanges inne i modalen når man tabber', async (): Promise<void> => {
       const onClose = jest.fn();
       const onSuccess = jest.fn();
 
@@ -196,19 +196,19 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const buttons = screen.getAllByRole('button');
-      userEvent.tab();
+      await userEvent.tab();
       expect(buttons[0]).toHaveFocus();
-      userEvent.tab();
+      await userEvent.tab();
       expect(buttons[1]).toHaveFocus();
-      userEvent.tab();
+      await userEvent.tab();
       expect(buttons[2]).toHaveFocus();
-      userEvent.tab();
+      await userEvent.tab();
       expect(buttons[0]).toHaveFocus();
     });
   });
 
   describe(`Når en modal har knapperad nederst (CTA), og en bruker trykker utenfor modalen`, (): void => {
-    it('Så skal modalen ikke lukkes', (): void => {
+    it('Så skal modalen ikke lukkes', async (): Promise<void> => {
       const onClose = jest.fn();
       const onSuccess = jest.fn();
 
@@ -225,21 +225,21 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       const dialog = screen.getByTestId('testid');
 
-      userEvent.click(dialog);
+      await userEvent.click(dialog);
 
       expect(onClose).not.toHaveBeenCalled();
     });
   });
 
   describe(`Når en modal ikke har knapperad nederst (CTA), og en bruker trykker utenfor modalen`, (): void => {
-    it('Så skal modalen lukkes', (): void => {
+    it('Så skal modalen lukkes', async (): Promise<void> => {
       const onClose = jest.fn();
 
       render(<Modal title="Hei der" onClose={onClose} variant={ModalVariants.error} testId="testid" />);
 
       const dialog = screen.getByTestId('testid');
 
-      userEvent.click(dialog);
+      await userEvent.click(dialog);
 
       expect(onClose).toHaveBeenCalled();
     });

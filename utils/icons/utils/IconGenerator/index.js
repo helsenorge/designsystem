@@ -1,5 +1,5 @@
-import puppeteer from 'puppeteer';
-import IconGenerator from './IconGenerator';
+import puppeteer from "puppeteer";
+import IconGenerator from "./IconGenerator.js";
 
 (async () => {
   let browser;

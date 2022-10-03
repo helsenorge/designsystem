@@ -1,11 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
-import tableStyles from './styles.module.scss';
-import Icon from '../Icons';
-import Button from '../Button';
-import ChevronDown from '../Icons/ChevronDown';
-import ChevronUp from '../Icons/ChevronUp';
-import { palette } from '../../theme/palette';
+import tableStyles from '../styles.module.scss';
+import Icon from '../../Icons';
+import Button from '../../Button';
+import ChevronDown from '../../Icons/ChevronDown';
+import ChevronUp from '../../Icons/ChevronUp';
+import { palette } from '../../../theme/palette';
 
 export interface Props {
   /** Adds custom classes to the element. */

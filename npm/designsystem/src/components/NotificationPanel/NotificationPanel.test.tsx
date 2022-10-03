@@ -12,7 +12,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
   });
 
   describe('Når panelet skal kunne lukkes', () => {
-    test('Så kalles onClick-handler når man klikker på lukkeknappen', (): void => {
+    test('Så kalles onClick-handler når man klikker på lukkeknappen', async (): Promise<void> => {
       const mockClose = jest.fn();
 
       render(
@@ -22,13 +22,13 @@ describe('Gitt at NotificationPanel skal vises', () => {
       );
 
       const closeButton = screen.getByRole('button', { name: 'Lukk denne beskjeden' });
-      userEvent.click(closeButton);
+      await userEvent.click(closeButton);
       expect(mockClose).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('Når panelet kan lukkes', () => {
-    test('Så kalles onClick-handleren når man klikker på knappen', (): void => {
+    test('Så kalles onClick-handleren når man klikker på knappen', async (): Promise<void> => {
       const mockOnClick = jest.fn();
       const { container } = render(
         <NotificationPanel dismissable onClick={mockOnClick}>
@@ -38,7 +38,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
       expect(container).toMatchSnapshot();
 
       const closeButton = screen.getByRole('button');
-      userEvent.click(closeButton);
+      await userEvent.click(closeButton);
 
       expect(mockOnClick).toHaveBeenCalledTimes(1);
     });
@@ -54,14 +54,14 @@ describe('Gitt at NotificationPanel skal vises', () => {
   });
 
   describe('Når bruker klikker på tab', (): void => {
-    test('Så får lukkeknappen fokus først', (): void => {
+    test('Så får lukkeknappen fokus først', async (): Promise<void> => {
       render(
         <NotificationPanel dismissable>
           Some text here for testing.<a href="/">Lenke</a>
         </NotificationPanel>
       );
 
-      userEvent.tab();
+      await userEvent.tab();
 
       const closeButton = screen.getByRole('button', { name: 'Lukk' });
 

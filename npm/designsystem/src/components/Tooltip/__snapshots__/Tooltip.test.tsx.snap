@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Gitt at Tooltip rendres  Når komponenten får en tekst Så rendres den riktig 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>

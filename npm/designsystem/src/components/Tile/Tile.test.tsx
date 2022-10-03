@@ -49,7 +49,7 @@ describe('Gitt at Tile skal vises', (): void => {
     });
   });
   describe('Når htmlMarkup er a', () => {
-    test('Skal kalles onClick-handler når man klikker på knappen', () => {
+    test('Skal kalles onClick-handler når man klikker på knappen', async () => {
       const onClickMock = jest.fn();
       render(
         <Tile
@@ -62,12 +62,12 @@ describe('Gitt at Tile skal vises', (): void => {
       );
 
       const tile = screen.getByRole('link', { name: 'Lenketekst' });
-      userEvent.click(tile);
+      await userEvent.click(tile);
       expect(onClickMock).toHaveBeenCalledTimes(1);
     });
   });
   describe('Når htmlMarkup er button', () => {
-    test('Skal kalles onClick-handler når man klikker på knappen', () => {
+    test('Skal kalles onClick-handler når man klikker på knappen', async () => {
       const onClickMock = jest.fn();
       render(
         <Tile
@@ -79,7 +79,7 @@ describe('Gitt at Tile skal vises', (): void => {
       );
 
       const tile = screen.getByRole('button', { name: 'Lenketekst' });
-      userEvent.click(tile);
+      await userEvent.click(tile);
       expect(onClickMock).toHaveBeenCalledTimes(1);
     });
   });

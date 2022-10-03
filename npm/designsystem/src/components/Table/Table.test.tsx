@@ -35,7 +35,7 @@ describe('Gitt at Table skal vises', (): void => {
 });
 describe('Gitt at Table kan sorteres', (): void => {
   describe('Når klikker for å sortere', (): void => {
-    it('Så har tabellheader og knapper for å sortere riktige aria-egenskaper', (): void => {
+    it('Så har tabellheader og knapper for å sortere riktige aria-egenskaper', async (): Promise<void> => {
       const SortableTable: React.FC = () => {
         const [sortDirection, setSortDirection] = useState(SortDirection.asc);
         const [sortColumn, setSortColumn] = useState('');
@@ -99,25 +99,25 @@ describe('Gitt at Table kan sorteres', (): void => {
       expect(sortButton2).not.toHaveAttribute('aria-pressed');
       expect(columnHeader2).not.toHaveAttribute('aria-sort');
 
-      userEvent.click(sortButton1);
+      await userEvent.click(sortButton1);
       expect(sortButton1).toHaveAttribute('aria-pressed', 'true');
       expect(columnHeader1).toHaveAttribute('aria-sort', 'ascending');
       expect(sortButton2).not.toHaveAttribute('aria-pressed');
       expect(columnHeader2).not.toHaveAttribute('aria-sort');
 
-      userEvent.click(sortButton1);
+      await userEvent.click(sortButton1);
       expect(sortButton1).toHaveAttribute('aria-pressed', 'true');
       expect(columnHeader1).toHaveAttribute('aria-sort', 'descending');
       expect(sortButton2).not.toHaveAttribute('aria-pressed');
       expect(columnHeader2).not.toHaveAttribute('aria-sort');
 
-      userEvent.click(sortButton2);
+      await userEvent.click(sortButton2);
       expect(sortButton1).not.toHaveAttribute('aria-pressed');
       expect(columnHeader1).not.toHaveAttribute('aria-sort');
       expect(sortButton2).toHaveAttribute('aria-pressed', 'true');
       expect(columnHeader2).toHaveAttribute('aria-sort', 'ascending');
 
-      userEvent.click(sortButton2);
+      await userEvent.click(sortButton2);
       expect(sortButton1).not.toHaveAttribute('aria-pressed');
       expect(columnHeader1).not.toHaveAttribute('aria-sort');
       expect(sortButton2).toHaveAttribute('aria-pressed', 'true');

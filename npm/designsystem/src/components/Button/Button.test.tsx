@@ -104,7 +104,7 @@ describe('Gitt at button skal vises', (): void => {
   });
 
   describe('Når button rendres som button med onClick-handler', () => {
-    test('Så kalles onClick-handleren når man klikker på knappen', () => {
+    test('Så kalles onClick-handleren når man klikker på knappen', async () => {
       const handleClick = jest.fn();
 
       render(
@@ -115,14 +115,14 @@ describe('Gitt at button skal vises', (): void => {
 
       const link = screen.getByRole('button', { name: 'Lenketekst' });
 
-      userEvent.click(link);
+      await userEvent.click(link);
 
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('Når button rendres som lenke med onClick-handler', () => {
-    test('Så kalles onClick-handleren når man klikker på knappen', () => {
+    test('Så kalles onClick-handleren når man klikker på knappen', async () => {
       const handleClick = jest.fn();
 
       render(
@@ -133,7 +133,7 @@ describe('Gitt at button skal vises', (): void => {
 
       const link = screen.getByRole('link', { name: 'Lenketekst' });
 
-      userEvent.click(link);
+      await userEvent.click(link);
 
       expect(handleClick).toHaveBeenCalledTimes(1);
     });

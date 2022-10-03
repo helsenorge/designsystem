@@ -1,11 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
-import tableStyles from './styles.module.scss';
+import tableStyles from '../styles.module.scss';
 
-import Button from '../Button';
-import Icon from '../Icons';
-import ChevronUp from '../Icons/ChevronUp';
-import ChevronDown from '../Icons/ChevronDown';
+import Button from '../../Button';
+import Icon from '../../Icons';
+import ChevronUp from '../../Icons/ChevronUp';
+import ChevronDown from '../../Icons/ChevronDown';
 
 export interface Props {
   /** Sets if expanded row can be expanded */

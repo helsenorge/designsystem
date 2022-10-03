@@ -63,7 +63,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
   });
 
   describe('Når onLinkClick er satt', (): void => {
-    it('Så vises ekstra knapp med onLinkClick callback riktig', (): void => {
+    it('Så vises ekstra knapp med onLinkClick callback riktig', async (): Promise<void> => {
       const onLinkClick = jest.fn();
       render(
         <HelpBubble controllerRef={controllerRef} showBubble linkText={'Egen link tekst'} onLinkClick={onLinkClick} testId="test01">
@@ -73,7 +73,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
 
       const allButtons = screen.getAllByRole('button');
       const link = screen.getByText('Egen link tekst');
-      userEvent.click(link);
+      await userEvent.click(link);
 
       expect(allButtons.length).toBe(2);
       expect(link).toBeInTheDocument();
@@ -83,7 +83,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
   });
 
   describe('Når linkUrl er satt', (): void => {
-    it('Så vises ekstra knapp med linkUrl riktig', (): void => {
+    it('Så vises ekstra knapp med linkUrl riktig', async (): Promise<void> => {
       render(
         <HelpBubble controllerRef={controllerRef} showBubble linkText={'Egen link tekst'} linkUrl={'/'} testId="test01">
           {'Test tekst'}
@@ -91,7 +91,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
       );
 
       const link = screen.getByText('Egen link tekst');
-      userEvent.click(link);
+      await userEvent.click(link);
 
       expect(link).toBeInTheDocument();
       expect(link).toHaveClass('anchorlink');
@@ -114,7 +114,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
   });
 
   describe('Når onClose er satt', (): void => {
-    it('Så kalles onClose callback riktig', (): void => {
+    it('Så kalles onClose callback riktig', async (): Promise<void> => {
       const onClose = jest.fn();
       render(
         <HelpBubble controllerRef={controllerRef} onClose={onClose} showBubble testId="test01">
@@ -123,7 +123,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
       );
 
       const close = screen.getByRole('button');
-      userEvent.click(close);
+      await userEvent.click(close);
 
       expect(onClose).toHaveBeenCalledTimes(1);
     });

@@ -1,6 +1,6 @@
 @import './font-settings';
 @import './palette';
-@import 'breakpoints';
+@import './breakpoints';
 
 body {
   font-family: 'Source Sans Pro', Arial, Verdana, sans-serif;
@@ -8,7 +8,7 @@ body {
   color: $black;
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
-  @include media-breakpoint-up(md) {
+  @media (min-width: map-get($grid-breakpoints, md)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
   }

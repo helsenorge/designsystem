@@ -29,7 +29,7 @@ describe('Gitt at Validation skal vises', () => {
 
       const submit = screen.getByText('Send inn');
 
-      userEvent.click(submit);
+      await userEvent.click(submit);
 
       const error = await screen.findAllByText('Du må velge et alternativ');
       const error2 = await screen.findByText('Du må velge to alternativ');
@@ -50,7 +50,7 @@ describe('Gitt at Validation skal vises', () => {
 
       const submit = screen.getByText('Send inn');
 
-      userEvent.click(submit);
+      await userEvent.click(submit);
 
       const errorSummary = await screen.findByText('Sjekk at alt er riktig utfylt');
 
@@ -64,7 +64,7 @@ describe('Gitt at Validation skal vises', () => {
 
       const submit = screen.getByText('Send inn');
 
-      userEvent.click(submit);
+      await userEvent.click(submit);
 
       const error = await screen.findAllByText('Du må velge et alternativ');
       const error2 = await screen.findByText('Du må velge to alternativ');
@@ -84,14 +84,14 @@ describe('Gitt at Validation skal vises', () => {
       const radiobutton1 = screen.getByLabelText('Radiobutton 1');
       const textarea1 = screen.getByLabelText('Skriv din historie her');
       const input1 = screen.getByLabelText('Skriv inn din tekst');
-      userEvent.click(checkbox1);
-      userEvent.click(checkbox4);
-      userEvent.click(checkbox5);
-      userEvent.click(radiobutton1);
+      await userEvent.click(checkbox1);
+      await userEvent.click(checkbox4);
+      await userEvent.click(checkbox5);
+      await userEvent.click(radiobutton1);
       fireEvent.change(textarea1, { target: { value: 'Endring.' } });
       fireEvent.change(input1, { target: { value: 'Ny tekst' } });
 
-      userEvent.click(submit);
+      await userEvent.click(submit);
 
       await waitFor(() => {
         expect(error[0]).not.toBeInTheDocument();

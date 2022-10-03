@@ -1,18 +1,20 @@
 import { theme } from '../src/theme';
 import { breakpoints } from '../src/theme/grid';
 
+import '../src/scss/helsenorge.scss';
+
 function createBackgroundColors() {
   const placeholder = '#4A412A';
   let backgroundColors = [];
   Object.keys(theme.palette)
-    .filter((palette) => theme.palette[palette] !== placeholder)
-    .map((palette) => backgroundColors.push({ name: palette, value: theme.palette[palette] }));
+    .filter(palette => theme.palette[palette] !== placeholder)
+    .map(palette => backgroundColors.push({ name: palette, value: theme.palette[palette] }));
   return backgroundColors;
 }
 
 function createCustomViewPorts() {
   let viewPorts = [];
-  Object.keys(breakpoints).map((bp) => {
+  Object.keys(breakpoints).map(bp => {
     const breakpointPixels = breakpoints[bp];
     let type = 'mobile';
     if (breakpointPixels >= breakpoints['lg']) {

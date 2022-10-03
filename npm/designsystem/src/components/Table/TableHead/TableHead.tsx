@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import tableStyles from './styles.module.scss';
+import tableStyles from '../styles.module.scss';
 
 export enum HeaderCategory {
   normal = 'normal',

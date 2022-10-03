@@ -3,9 +3,9 @@ import React from 'react';
 import { AnalyticsId, IconSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
 
-type SvgIcon = React.FC<SvgPathProps>;
+export type SvgIcon = React.FC<SvgPathProps>;
 
-interface IconProps {
+export interface IconProps {
   /* Sets which icon should be displayed. */
   svgIcon: SvgIcon;
   /* aria-label for the <svg> element. Used as <title> tag. */
@@ -26,7 +26,7 @@ interface IconProps {
   testId?: string;
 }
 
-interface SvgPathProps {
+export interface SvgPathProps {
   size: IconSize;
   isHovered: boolean;
 }
@@ -51,7 +51,7 @@ export const getIcon = (
   return isHovered ? normalHover : normal;
 };
 
-const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGElement>) => {
+export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGElement>) => {
   const {
     svgIcon,
     ariaLabel,
@@ -96,4 +96,4 @@ const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGE
 
 Icon.displayName = 'Icon';
 
-export { Icon, IconProps, SvgPathProps, SvgIcon };
+export default Icon;
