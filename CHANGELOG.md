@@ -1,3 +1,10 @@
+## 2.0.0-beta.7 (2022-10-03)
+
+
+### Bug Fixes
+
+*  process.env.NODE_ENV er med i publisert kode ([93d4e5f](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/93d4e5fd8415d9814bf9552852a479da6bb566a2))
+
 ## 2.0.0-beta.6 (2022-10-03)
 
 
