@@ -121,7 +121,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     htmlMarkup === 'button'
       ? useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>)
       : useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
-  const testEnv = process.env.NODE_ENV === 'test';
+  const testEnv = process['env']?.NODE_ENV === 'test';
   const buttonContentRef = useRef<HTMLDivElement>(null);
   const buttonContentSize = useSize(buttonContentRef);
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
