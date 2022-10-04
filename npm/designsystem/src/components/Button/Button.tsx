@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
+import { isTest } from '../../utils/environment';
 import { getColor } from '../../theme/currys/color';
 import Icon, { IconProps, IconSize } from './../Icons/';
 import { useHover } from '../../hooks/useHover';
@@ -121,7 +122,6 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     htmlMarkup === 'button'
       ? useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>)
       : useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
-  const testEnv = process['env']?.NODE_ENV === 'test';
   const buttonContentRef = useRef<HTMLDivElement>(null);
   const buttonContentSize = useSize(buttonContentRef);
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
@@ -167,7 +167,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   });
 
   useEffect(() => {
-    checkOnlyIconAria(onlyIcon, ariaLabel, testEnv);
+    checkOnlyIconAria(onlyIcon, ariaLabel, isTest());
   }, []);
 
   const renderIcon = (
