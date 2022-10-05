@@ -1,0 +1,19 @@
+{
+  "source": ["data/design-tokens.json"],
+  "platforms": {
+    "scss": {
+      "transformGroup": "scss",
+      "buildPath": "src/scss/",
+      "files": [
+        {
+          "destination": "_figma-tokens.scss",
+          "format": "scss/variables",
+          "options": {
+            "outputReferences": true,
+            "showFileHeader": true
+          }
+        }
+      ]
+    }
+  }
+}

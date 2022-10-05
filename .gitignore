@@ -2,6 +2,7 @@ types
 coverage
 bundle-stats.json
 
+data/
 dist/
 lib/
 lib_npm/
