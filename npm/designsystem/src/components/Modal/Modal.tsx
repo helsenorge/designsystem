@@ -35,9 +35,9 @@ export interface ModalProps {
   title: string;
   /** id of the modal title */
   titleId?: string;
-  /** Description of the modal */
+  /** Description of the modal. Will not render if the modal has children. */
   description?: string;
-  /** Changes the visual representation of the modal. Description will not render if children prop is provided */
+  /** Changes the visual representation of the modal */
   variant?: keyof typeof ModalVariants;
   /** Change width of the modal (default: large) */
   size?: keyof typeof ModalSize;
@@ -47,9 +47,9 @@ export interface ModalProps {
   noCloseButton?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /**Primary button text */
+  /** Primary button text */
   primaryButtonText?: string;
-  /**Secondary button text */
+  /** Secondary button text */
   secondaryButtonText?: string;
   /** Sets the aria-label of the modal */
   ariaLabel?: string;
@@ -67,11 +67,11 @@ export interface ModalProps {
   zIndex?: number;
   /** Function is called when user clicks primary button */
   onSuccess?: () => void;
-  /** Function is called when user clicks secondary button */
+  /** Function is called when user clicks secondary button, clicks escape or outside the modal */
   onClose?: () => void;
   /** When enabled the component will be rendered in the bottom of document.body */
   printable?: boolean;
-  /** When enabled the events for closing the modal won't be added */
+  /** If disabled, clicking escape or outside the modal will not close it */
   disableCloseEvents?: boolean;
 }
 
@@ -122,14 +122,14 @@ const Modal = (props: ModalProps): JSX.Element => {
   const bottomContentVisible = useIsVisible(bottomContent);
   const contentIsScrollable = modalContentRef.current && modalContentRef.current.scrollHeight > modalContentRef.current.clientHeight;
 
-  function keyListener(e: KeyboardEvent): void {
+  function handleKeyboardEvent(e: KeyboardEvent): void {
     if (e.key === 'Escape' && props.onClose) {
       e.stopPropagation();
       props.onClose();
     }
   }
 
-  function handleClick(event: MouseEvent): void {
+  function handleClickEvent(event: MouseEvent): void {
     if (event.target && overlayRef.current === event.target && props.onClose) {
       event.stopPropagation();
       props.onClose();
@@ -159,18 +159,18 @@ const Modal = (props: ModalProps): JSX.Element => {
     const overlayElement = overlayRef.current;
     initFocus.current?.focus();
     disableBodyScroll();
-    if (!props.disableCloseEvents && overlayElement && !showActions) {
-      overlayElement.addEventListener('keydown', keyListener);
-      overlayElement.addEventListener('click', handleClick);
+    if (!props.disableCloseEvents && overlayElement) {
+      overlayElement.addEventListener('keydown', handleKeyboardEvent);
+      overlayElement.addEventListener('click', handleClickEvent);
     }
     return (): void => {
       enableBodyScroll();
-      if (!props.disableCloseEvents && overlayElement && !showActions) {
-        overlayElement.removeEventListener('keydown', keyListener);
-        overlayElement.removeEventListener('click', handleClick);
+      if (!props.disableCloseEvents && overlayElement) {
+        overlayElement.removeEventListener('keydown', handleKeyboardEvent);
+        overlayElement.removeEventListener('click', handleClickEvent);
       }
     };
-  }, []);
+  }, [props.disableCloseEvents]);
 
   const dialogClasses = cn(
     props.className,

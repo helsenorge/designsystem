@@ -227,7 +227,7 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       await userEvent.click(dialog);
 
-      expect(onClose).not.toHaveBeenCalled();
+      expect(onClose).toHaveBeenCalled();
     });
   });
 
@@ -246,7 +246,7 @@ describe('Gitt at en modal skal vises ', (): void => {
   });
 
   describe(`Når en modal har knapperad nederst (CTA), og en bruker trykker Escape`, (): void => {
-    it('Så skal modalen ikke lukkes', (): void => {
+    it('Så skal modalen lukkes', (): void => {
       const onClose = jest.fn();
       const onSuccess = jest.fn();
 
@@ -261,11 +261,11 @@ describe('Gitt at en modal skal vises ', (): void => {
         />
       );
 
-      const dialog = screen.getByTestId('dialog-container');
+      const dialog = screen.getByTestId('testid');
 
       fireEvent.keyDown(dialog, { key: 'Escape' });
 
-      expect(onClose).not.toBeCalled();
+      expect(onClose).toBeCalled();
     });
   });
 
