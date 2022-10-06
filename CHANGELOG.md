@@ -1,3 +1,19 @@
+## 2.0.0-beta.8 (2022-10-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* Tidligere måtte man fjerne onSuccess-prop for at escape/klikk utenfor skulle lukke. Om du ønsker å hindre at modalen kan lukkes på denne måten, bruk disableCloseEvents
+
+### Features
+
+*  figma tokens fetches og genereres ([d6a37dc](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/d6a37dcacbe708be9bc6456d3c417601c858ab26)), closes [#282801](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282801)
+
+
+### Bug Fixes
+
+*  modal kan lukkes med escape/klikk utenfor ([3cd81a2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/3cd81a2e51cf738658ef96615896c7eba0c52a32)), closes [#284930](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/284930)
+
 ## 2.0.0-beta.7 (2022-10-03)
 
 
@@ -96,7 +112,7 @@
 
 *  expanderlist kan være sticky ([0c78cf5](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/0c78cf53e302bdeac62c35c2ba2bf188e848975b)), closes [#284516](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/284516)
 
-## [1.5.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.5.0&targetVersion=GTv1.5.1) (2022-09-21)
+### [1.5.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.5.0&targetVersion=GTv1.5.1) (2022-09-21)
 
 
 ### Bug Fixes
@@ -123,14 +139,14 @@
 *  button i panel har unik label ([a37ef06](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/a37ef06b7ff967d4bb372d5c9e0e181e25c912c8))
 *  skjul detaljer-knapp fjernet fra ekspandert Panel ([011b0ac](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/011b0ac12c50e19e8e88812f73e9285d3371940d))
 
-## [1.3.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.1&targetVersion=GTv1.3.2) (2022-09-08)
+### [1.3.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.1&targetVersion=GTv1.3.2) (2022-09-08)
 
 
 ### Bug Fixes
 
 *  slider beholder riktig posisjon/verdi hvis den endrer størrelse ([afa1d0a](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/afa1d0af335c4e2450962904f042768badbc18fd)), closes [#279639](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/279639)
 
-## [1.3.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.0&targetVersion=GTv1.3.1) (2022-09-02)
+### [1.3.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.3.0&targetVersion=GTv1.3.1) (2022-09-02)
 
 
 ### Bug Fixes
@@ -155,14 +171,14 @@
 *  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 *  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 
-## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
+### [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
 
 ### Features
 
 *  highlightbox oppdatert styling ([98c44aa](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/98c44aa68e6bbea5c9853a5807e66c0ed6be67d0)), closes [#280715](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/280715)
 
-## [1.2.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.0&targetVersion=GTv1.2.1) (2022-08-29)
+### [1.2.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.0&targetVersion=GTv1.2.1) (2022-08-29)
 
 ## [1.2.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.1.0&targetVersion=GTv1.2.0) (2022-08-29)
 
@@ -186,7 +202,7 @@
 *  ikke vis scrolleindikator mens innholdet lastes ([ad6f7d2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ad6f7d21cafcdfaf39c6d0afb04be057e290678c))
 *  tabell med horisontal scroll viser hele borderen ([6c5cb02](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/6c5cb0208967986902a5c62a3e3171d4b1f50e36))
 
-## [1.0.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.0.0-betahelpbubble3&targetVersion=GTv1.0.1) (2022-08-12)
+### [1.0.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.0.0-betahelpbubble3&targetVersion=GTv1.0.1) (2022-08-12)
 
 
 ### ⚠ BREAKING CHANGES
