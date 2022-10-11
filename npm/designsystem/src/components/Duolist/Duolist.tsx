@@ -36,7 +36,7 @@ interface DuolistGroupProps {
   term: string;
 }
 
-export const DuolistGroup = React.forwardRef<HTMLElement, DuolistGroupProps>(props => {
+export const DuolistGroup: React.FC<DuolistGroupProps> = props => {
   const { boldColumn = 'first', description, term } = props;
 
   const firstBold = boldColumn === 'first';
@@ -50,9 +50,9 @@ export const DuolistGroup = React.forwardRef<HTMLElement, DuolistGroupProps>(pro
       <dd className={ddClassNames}>{description}</dd>
     </>
   );
-});
+};
 
-export const Duolist = React.forwardRef<HTMLDivElement, DuolistProps>(props => {
+export const Duolist: React.FC<DuolistProps> = props => {
   const { boldColumn, border = 'no-border', label, variant = 'normal', children, className, testId } = props;
 
   const hasBorder = border === 'border';
@@ -89,6 +89,6 @@ export const Duolist = React.forwardRef<HTMLDivElement, DuolistProps>(props => {
       </dl>
     </div>
   );
-});
+};
 
 export default Duolist;

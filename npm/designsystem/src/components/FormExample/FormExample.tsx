@@ -11,6 +11,7 @@ import { FormVariant } from '../../constants';
 import Input from '../Input';
 import Hospital from '../Icons/Hospital';
 import FormLayout, { FormLayoutColumns } from '../FormLayout';
+import { isTest } from '../../utils/environment';
 
 interface FormExampleProps {
   exampleType: FormExampleVariants;
@@ -164,7 +165,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     <form
       onSubmit={handleSubmit(data => {
         // eslint-disable-next-line no-console
-        console.log(data);
+        !isTest() && console.log(data);
       })}
     >
       <Validation variant={props.variant} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
