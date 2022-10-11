@@ -28,7 +28,7 @@
     "generate:tsdefinitions": "tsc --emitDeclarationOnly",
     "generate:componentdata": "node scripts/componentdata.js",
     "create-npmrc": "node scripts/createNpmrc.js",
-    "pregenerate:figmatokens": "git -C ../../../designtokens pull git@github.com:helsenorge/designtokens.git",
+    "pregenerate:figmatokens": "git -C ../../../designtokens pull https://github.com/helsenorge/designtokens.git",
     "generate:figmatokens": "token-transformer ../../../designtokens/tokens.json data/design-tokens.json hn-designsystem --resolveReferences=false",
     "postgenerate:figmatokens": "style-dictionary build --config figma-token.config.json",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx}",

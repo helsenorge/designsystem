@@ -9,20 +9,13 @@
       "npmClient": "npm"
     },
     "version": {
-      "allowBranch": [
-        "master"
-      ],
-      "ignoreChanges": [
-        "CHANGELOG.md"
-      ]
+      "allowBranch": ["master"],
+      "ignoreChanges": ["CHANGELOG.md"]
     },
     "publish": {
       "scope": "@helsenorge/*",
       "registry": "https://pkgs.dev.azure.com/nhnfelles/_packaging/Helsenorge/npm/registry/"
     }
   },
-  "packages": [
-    "npm/*",
-    "web"
-  ]
+  "packages": ["npm/*", "web"]
 }
