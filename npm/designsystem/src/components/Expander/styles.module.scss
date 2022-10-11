@@ -7,6 +7,10 @@
   position: relative;
   width: 100%;
 
+  &:focus-within {
+    z-index: 1;
+  }
+
   @media print {
     border: 1px solid $black;
   }

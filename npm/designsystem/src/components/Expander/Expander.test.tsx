@@ -6,7 +6,7 @@ import Calendar from '../Icons/Calendar';
 
 describe('Gitt at Expander skal vises vanlig', (): void => {
   describe('Når Expanderen vises', (): void => {
-    test('Så kan man klikke for å ekspandere innholdet', (): void => {
+    test('Så kan man klikke for å ekspandere innholdet', async (): Promise<void> => {
       render(
         <Expander title={'Knapp'}>
           <h1>Innhold i expander</h1>
@@ -15,7 +15,7 @@ describe('Gitt at Expander skal vises vanlig', (): void => {
       const expander = screen.getByRole('button', { name: 'Knapp' });
       expect(expander).toHaveAttribute('aria-expanded', 'false');
 
-      userEvent.click(expander);
+      await userEvent.click(expander);
       expect(expander).toHaveAttribute('aria-expanded', 'true');
       expect(screen.getByRole('heading', { name: 'Innhold i expander' })).toBeInTheDocument();
     });
@@ -30,7 +30,7 @@ describe('Gitt at Expander skal vises vanlig', (): void => {
 });
 describe('Gitt at Expander skal vises som ekspandert', (): void => {
   describe('Når Expanderen vises', (): void => {
-    test('Så vises innholdet ekspandert fra starten av', (): void => {
+    test('Så vises innholdet ekspandert fra starten av', async (): Promise<void> => {
       render(
         <Expander title={'Knapp'} expanded>
           <h1>Innhold i expander</h1>
@@ -60,14 +60,14 @@ describe('Gitt at Expander skal vises som large, med farge og ikon', (): void =>
 });
 describe('Gitt at Expander har onExpand-callback', (): void => {
   describe('Når man klikker på expanderen to ganger', (): void => {
-    test('Så kalles callback først med true og så med false', (): void => {
+    test('Så kalles callback først med true og så med false', async (): Promise<void> => {
       const handleExpand = jest.fn();
       render(<Expander title={'Knapp'} testId={'knapp'} onExpand={handleExpand}></Expander>);
 
       const expander = screen.getByTestId('knapp');
 
-      userEvent.click(expander);
-      userEvent.click(expander);
+      await userEvent.click(expander);
+      await userEvent.click(expander);
 
       expect(handleExpand).toHaveBeenCalledTimes(2);
       expect(handleExpand).toHaveBeenNthCalledWith(1, true);
@@ -77,13 +77,13 @@ describe('Gitt at Expander har onExpand-callback', (): void => {
 });
 describe('Gitt at Expander har onExpand-callback og expanded satt til true', (): void => {
   describe('Når man klikker på expanderen én gang', (): void => {
-    test('Så kalles callback først med true og så med false', (): void => {
+    test('Så kalles callback først med true og så med false', async (): Promise<void> => {
       const handleExpand = jest.fn();
       render(<Expander title={'Knapp'} testId={'knapp'} onExpand={handleExpand} expanded></Expander>);
 
       const expander = screen.getByTestId('knapp');
 
-      userEvent.click(expander);
+      await userEvent.click(expander);
 
       expect(handleExpand).toHaveBeenCalledTimes(2);
       expect(handleExpand).toHaveBeenNthCalledWith(1, true);
@@ -93,7 +93,7 @@ describe('Gitt at Expander har onExpand-callback og expanded satt til true', ():
 });
 describe('Gitt at Expander vises med et fokuserbart element', (): void => {
   describe('Når Expanderen vises', (): void => {
-    test('Så kan man tabbe til elementet etter at ekspanderen er åpnet', (): void => {
+    test('Så kan man tabbe til elementet etter at ekspanderen er åpnet', async (): Promise<void> => {
       render(
         <Expander title={'Knapp'}>
           <button>En knapp til</button>
@@ -102,8 +102,8 @@ describe('Gitt at Expander vises med et fokuserbart element', (): void => {
 
       const expander = screen.getByRole('button', { name: 'Knapp' });
 
-      userEvent.click(expander);
-      userEvent.tab();
+      await userEvent.click(expander);
+      await userEvent.tab();
       const focusableButton = screen.getByRole('button', { name: 'En knapp til' });
       expect(focusableButton).toHaveFocus();
     });

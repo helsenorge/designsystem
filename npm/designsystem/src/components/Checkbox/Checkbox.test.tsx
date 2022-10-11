@@ -122,4 +122,49 @@ describe('Gitt at Checkbox skal vises', (): void => {
       expect(wrapper.className).toBe('checkbox-wrapper checkbox-wrapper--with-error');
     });
   });
+
+  describe('Når name-prop er satt', (): void => {
+    test('Så har input riktig name', (): void => {
+      render(<Checkbox label="En fin label" name="custom-name" />);
+
+      const checkbox = screen.getByLabelText('En fin label');
+      expect(checkbox).toHaveAttribute('name', 'custom-name');
+    });
+  });
+
+  describe('Når value-prop er satt', (): void => {
+    test('Så har input riktig value', (): void => {
+      render(<Checkbox label="En fin label" value="custom-value" />);
+
+      const checkbox = screen.getByLabelText('En fin label');
+      expect(checkbox).toHaveAttribute('value', 'custom-value');
+    });
+  });
+
+  describe('Når required er satt', (): void => {
+    test('Så er input required', (): void => {
+      render(<Checkbox label="En fin label" required />);
+
+      const checkbox = screen.getByLabelText('En fin label');
+      expect(checkbox).toBeRequired();
+    });
+  });
+
+  describe('Når disabled er satt', (): void => {
+    test('Så er input disabled', (): void => {
+      render(<Checkbox label="En fin label" disabled />);
+
+      const checkbox = screen.getByLabelText('En fin label');
+      expect(checkbox).toBeDisabled();
+    });
+  });
+
+  describe('Når checked er satt', (): void => {
+    test('Så er input checked', (): void => {
+      render(<Checkbox label="En fin label" checked />);
+
+      const checkbox = screen.getByLabelText('En fin label');
+      expect(checkbox).toHaveAttribute('checked', '');
+    });
+  });
 });

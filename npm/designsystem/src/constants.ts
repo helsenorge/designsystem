@@ -27,22 +27,6 @@ export interface HTMLButtonProps {
   id?: string;
 }
 
-export interface HTMLTextareaProps {
-  autoFocus?: boolean;
-  disabled?: boolean;
-  form?: string;
-  formNoValidate?: boolean;
-  formTarget?: string;
-  name?: string;
-  id?: string;
-  autocomplete?: 'off' | 'on';
-  placeholder?: string;
-  readonly?: boolean;
-  required?: boolean;
-  spellcheck?: 'true' | 'default' | 'false';
-  'aria-invalid'?: boolean;
-}
-
 export type AnchorTarget = '_self' | '_blank' | '_parent' | '_top';
 
 export interface HTMLAnchorProps {

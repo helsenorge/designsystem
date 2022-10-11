@@ -9,17 +9,15 @@ import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 
 import styles from './styles.module.scss';
 
-export interface InputProps {
-  /** initial value for input */
-  defaultValue?: string;
-  /** Text for the placeholder */
-  placeholder?: string;
+export interface InputProps
+  extends Pick<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'disabled' | 'readOnly' | 'autoComplete' | 'name' | 'placeholder' | 'defaultValue' | 'required'
+  > {
   /**  HMTL Input type */
   type?: keyof typeof InputTypes;
   /** input id */
   inputId?: string;
-  /** Unique identifyer for the input tag */
-  name?: string;
   /** Width of input field in characters (approximate) */
   width?: number;
   /** If true, the component will be transparent. */
@@ -40,12 +38,6 @@ export interface InputProps {
   errorText?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** Disables the input field */
-  disabled?: boolean;
-  /** Om input feltet er readOnly */
-  readOnly?: boolean;
-  /** attribute autocomplete,  */
-  autocomplete?: string;
   /** Component shown after label */
   afterLabelChildren?: React.ReactNode;
   /** Component shown under label */
@@ -90,11 +82,11 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     testId,
     disabled,
     readOnly,
-    autocomplete,
+    autoComplete,
     afterLabelChildren,
     belowLabelChildren,
     width,
-    ...restProps
+    required,
   } = props;
   const breakpoint = useBreakpoint();
   const contentWrapperRef = useRef<HTMLDivElement>(null);
@@ -168,8 +160,8 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
           disabled={disabled}
           placeholder={placeholder}
           readOnly={readOnly}
-          autoComplete={autocomplete || 'off'}
-          {...restProps}
+          autoComplete={autoComplete || 'off'}
+          required={required}
         />
         {iconRight && renderIcon()}
       </div>

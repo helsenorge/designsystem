@@ -8,7 +8,7 @@ import '../../__mocks__/uuid';
 
 describe('Gitt at Dropdown skal vises vanlig', (): void => {
   describe('Når Dropdownen har vanlig innhold', (): void => {
-    test('Så kan man klikke og se innholdet', (): void => {
+    test('Så kan man klikke og se innholdet', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
           <h2>Innhold i Dropdown</h2>
@@ -17,7 +17,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
 
       const button = screen.getByRole('button', { name: 'Knapp' });
 
-      userEvent.click(button);
+      await userEvent.click(button);
 
       const options = screen.getByLabelText('Ta et valg');
       expect(options).toHaveFocus();
@@ -38,7 +38,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   });
 
   describe('Når Dropdownen har lukkeknapp', (): void => {
-    test('Så kan man lukke dropdownen med knappen', (): void => {
+    test('Så kan man lukke dropdownen med knappen', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp" closeText="Lukk">
           <h2>Innhold i Dropdown</h2>
@@ -47,10 +47,10 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
 
       const button = screen.getByRole('button', { name: 'Knapp' });
       expect(button).toHaveAttribute('aria-expanded', 'false');
-      userEvent.click(button);
+      await userEvent.click(button);
       expect(button).toHaveAttribute('aria-expanded', 'true');
       const close = screen.getByRole('button', { name: 'Lukk' });
-      userEvent.click(close);
+      await userEvent.click(close);
       expect(close).toHaveAttribute('aria-expanded', 'false');
     });
   });
@@ -82,7 +82,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   });
 
   describe('Når Dropdownen har noCloseButton prop', (): void => {
-    test('Så er det ingen lukkeknapp', (): void => {
+    test('Så er det ingen lukkeknapp', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp" closeText="Lukk" noCloseButton>
           <h2>Innhold i Dropdown</h2>
@@ -90,7 +90,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
       );
 
       const button = screen.getByRole('button', { name: 'Knapp' });
-      userEvent.click(button);
+      await userEvent.click(button);
 
       const close = screen.queryByRole('button', { name: 'Lukk' });
       expect(close).not.toBeInTheDocument();
@@ -98,7 +98,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   });
 
   describe('Når man klikker utenfor dropdownen mens den er åpen', (): void => {
-    test('Så lukkes Dropdownen', (): void => {
+    test('Så lukkes Dropdownen', async (): Promise<void> => {
       render(
         <>
           <button>Knapp utenfor dropdown</button>
@@ -112,29 +112,29 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
       expect(button).toHaveAttribute('aria-expanded', 'true');
 
       const outsideButton = screen.getByRole('button', { name: 'Knapp utenfor dropdown' });
-      userEvent.click(outsideButton);
+      await userEvent.click(outsideButton);
 
       expect(button).toHaveAttribute('aria-expanded', 'false');
     });
   });
 
   describe('Når man klikker på Escape mens Dropdown er åpen', (): void => {
-    test('Så lukkes Dropdownen', (): void => {
+    test('Så lukkes Dropdownen', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
           <h2>Innhold i Dropdown</h2>
         </Dropdown>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
-      userEvent.click(button);
-      userEvent.keyboard('{esc}');
+      await userEvent.click(button);
+      await userEvent.keyboard('{Escape}');
 
       expect(button).toHaveAttribute('aria-expanded', 'false');
     });
   });
 
   describe('Når man klikker på Enter mens Dropdown er lukket', (): void => {
-    test('Så åpnes Dropdownen', (): void => {
+    test('Så åpnes Dropdownen', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
           <h2>Innhold i Dropdown</h2>
@@ -142,16 +142,16 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
       // Åpne og lukke dropdownen slik at fokus er på knappen før vi klikker på tastaturet
-      userEvent.click(button);
-      userEvent.click(button);
-      userEvent.keyboard('{enter}');
+      await userEvent.click(button);
+      await userEvent.click(button);
+      await userEvent.keyboard('{enter}');
 
       expect(button).toHaveAttribute('aria-expanded', 'true');
     });
   });
 
   describe('Når man klikker på Home mens Dropdown er åpen', (): void => {
-    test('Så flyttes fokus til første radioknapp, og man kan bruke tastaturet for å gå nedover, men ikke oppover', (): void => {
+    test('Så flyttes fokus til første radioknapp, og man kan bruke tastaturet for å gå nedover, men ikke oppover', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
           <RadioButton label="Førstevalg" inputId="radio-1" value="radio-1" />
@@ -160,23 +160,23 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
         </Dropdown>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
-      userEvent.click(button);
-      userEvent.keyboard('{home}');
+      await userEvent.click(button);
+      await userEvent.keyboard('{home}');
 
       const radio1 = screen.getByLabelText('Førstevalg');
       expect(radio1).toHaveFocus();
 
-      userEvent.keyboard('{arrowup}');
+      await userEvent.keyboard('{arrowup}');
       expect(radio1).toHaveFocus();
 
-      userEvent.keyboard('{arrowdown}');
+      await userEvent.keyboard('{arrowdown}');
       const radio2 = screen.getByLabelText('Andrevalg');
       expect(radio2).toHaveFocus();
     });
   });
 
   describe('Når man klikker på End mens Dropdown er åpen', (): void => {
-    test('Så flyttes fokus til sist radioknapp, og man kan bruke tastaturet for å gå oppover, men ikke nedover', (): void => {
+    test('Så flyttes fokus til sist radioknapp, og man kan bruke tastaturet for å gå oppover, men ikke nedover', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
           <RadioButton label="Førstevalg" inputId="radio-1" value="radio-1" />
@@ -185,16 +185,16 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
         </Dropdown>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
-      userEvent.click(button);
-      userEvent.keyboard('{end}');
+      await userEvent.click(button);
+      await userEvent.keyboard('{end}');
 
       const radio3 = screen.getByLabelText('Tredjevalg');
       expect(radio3).toHaveFocus();
 
-      userEvent.keyboard('{arrowdown}');
+      await userEvent.keyboard('{arrowdown}');
       expect(radio3).toHaveFocus();
 
-      userEvent.keyboard('{arrowup}');
+      await userEvent.keyboard('{arrowup}');
 
       const radio2 = screen.getByLabelText('Andrevalg');
       expect(radio2).toHaveFocus();

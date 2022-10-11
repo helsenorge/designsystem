@@ -1,0 +1,23 @@
+{
+  "name": "@helsenorge/icongenerator",
+  "version": "1.0.0",
+  "description": "Script for å generere fil med info om ikoner",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "confluence:icons": "node utils/IconGenerator/index.js",
+    "generate:icons": "node scripts/iconGenerator.js generate"
+  },
+  "author": "Helsenorge",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@svgr/core": "^6.4.0",
+    "@svgr/hast-util-to-babel-ast": "^6.4.0",
+    "async": "^3.2.4",
+    "fs-extra": "^10.1.0",
+    "puppeteer": "^17.1.3",
+    "svg-parser": "^2.0.4",
+    "yargs": "^17.6.0"
+  }
+}

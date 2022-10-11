@@ -11,22 +11,22 @@ trigger:
       - feature/*
   tags:
     include:
-      - "v*"
+      - 'v*'
 
 pool:
   name: Helsenorge_LinuxScaleSetAgents
 
 variables:
   - name: node_version
-    value: 16.x
+    value: 16.15
   - name: project_name
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
     value: .
   - name: sonarqube_endpoint
-    value: "https://sonarqube.int-hn.nhn.no"
+    value: 'https://sonarqube.int-hn.nhn.no'
   - name: Github.Username
-    value: "larskrj"
+    value: 'larskrj'
 
 stages:
   # stage build, test and analyze
@@ -42,52 +42,36 @@ stages:
             displayName: Sonarqube Prepare
             inputs:
               SonarQube: $(sonarqube_endpoint)
-              scannerMode: "CLI"
+              scannerMode: 'CLI'
               cliProjectKey: $(project_name)
               cliProjectName: $(project_name)
               configMode: manual
 
           # Set node version
           - task: UseNode@1
-            displayName: "Use Node version"
+            displayName: 'Use Node version'
             inputs:
               version: $(node_version)
 
           # npm tasks
           # autenticate
           - task: npmAuthenticate@0
-            displayName: "npm Authenticate .npmrc"
+            displayName: 'npm Authenticate .npmrc'
             inputs:
-              workingFile: npm/designsystem/.npmrc
+              workingFile: $(working_directory)/.npmrc
 
           - task: Npm@1
-            displayName: "npm i (install lerna)"
+            displayName: 'npm i (install lerna)'
             inputs:
               command: install
               workingDir: $(working_directory)
 
           - task: Npm@1
-            displayName: "npm bootstrap (ci)"
+            displayName: 'npm bootstrap (ci)'
             inputs:
               command: custom
               workingDir: $(working_directory)
-              customCommand: "run bootstrap:ci"
-
-          - task: Npm@1
-            displayName: "npm audit (prod)"
-            inputs:
-              command: custom
-              workingDir: npm/designsystem
-              customCommand: "audit --registry=https://registry.npmjs.org/ --only=prod --audit-level=moderate --package-lock-only"
-            continueOnError: true
-
-          - task: Npm@1
-            displayName: "npm audit"
-            inputs:
-              command: custom
-              workingDir: npm/designsystem
-              customCommand: "audit --registry=https://registry.npmjs.org/ --audit-level=high --package-lock-only"
-            continueOnError: true
+              customCommand: 'run bootstrap'
 
           # Lint commit message
           - bash: |
@@ -100,37 +84,53 @@ stages:
             displayName: Extract pull request title
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
+          - bash: |
+              echo "${PR_TITLE}" | npx commitlint -V
+            env:
+              PR_TITLE: $(Pr.Title)
+            displayName: Lint pull request title
+            condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+
+          # audit
+          - task: Npm@1
+            displayName: 'npm audit (prod)'
+            inputs:
+              command: custom
+              workingDir: npm/designsystem
+              customCommand: 'audit --registry=https://registry.npmjs.org/ --only=prod --audit-level=moderate --package-lock-only'
+            continueOnError: true
+
+          - task: Npm@1
+            displayName: 'npm audit'
+            inputs:
+              command: custom
+              workingDir: npm/designsystem
+              customCommand: 'audit --registry=https://registry.npmjs.org/ --audit-level=high --package-lock-only'
+            continueOnError: true
+
           - task: Npm@1
             displayName: prettier
             inputs:
               command: custom
               workingDir: $(working_directory)
-              customCommand: "run format:ci"
+              customCommand: 'run prettier'
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
+          # test
           - task: Npm@1
             displayName: test
             inputs:
               command: custom
               workingDir: $(working_directory)
-              customCommand: "run test"
+              customCommand: 'run test'
 
+          # build
           - task: Npm@1
             displayName: build
             inputs:
               command: custom
               workingDir: $(working_directory)
-              customCommand: "run build"
-
-          - task: Npm@1
-            displayName: "build (for npmjs publishing only)"
-            inputs:
-              command: custom
-              workingDir: npm/designsystem
-              customCommand: "run copy:libnpmjs"
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')))
+              customCommand: 'run build'
 
           # Run Code Analysis task
           - task: SonarQubeAnalyze@4
@@ -138,9 +138,9 @@ stages:
 
           # Test results
           - task: PublishTestResults@2
-            displayName: "Publish Test Results $(project_directory)/test-report.xml"
+            displayName: 'Publish Test Results $(project_directory)/test-report.xml'
             inputs:
-              testResultsFiles: "$(project_directory)/test-report.xml"
+              testResultsFiles: '$(project_directory)/test-report.xml'
             condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
           - task: PublishCodeCoverageResults@1
             displayName: 'Publish code coverage from $(Build.SourcesDirectory)\$(project_directory)\coverage\cobertura-coverage.xml'
@@ -149,81 +149,119 @@ stages:
               summaryFileLocation: '$(Build.SourcesDirectory)\$(project_directory)\coverage\cobertura-coverage.xml'
             condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
 
-          - task: Npm@1
-            displayName: "publish designsystem to Helsnorge-registry (latest)"
+          # Nullstill alle endringer fra tester o.l. før publisering
+          - script: 'git reset --hard'
+            displayName: 'git reset --hard'
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
+
+          - task: npmAuthenticate@0
+            displayName: 'npm Authenticate .npmrc'
             inputs:
-              command: publish
-              workingDir: npm/designsystem/lib
+              workingFile: .npmrc
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
+
+          - script: 'git update-index --assume-unchanged .npmrc'
+            displayName: 'Ignore changes to .npmrc'
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
+
+          # Publiser nye versjoner
+          - task: Npm@1
+            displayName: 'publish designsystem to Helsnorge-registry (latest)'
+            inputs:
+              command: custom
+              verbose: false
+              customCommand: 'run publish:latest'
+              workingDir: $(working_directory)
               publishRegistry: useFeed
-              publishFeed: "926a1f6a-72f8-4464-b9be-a7978dee78b0"
+              publishFeed: '926a1f6a-72f8-4464-b9be-a7978dee78b0'
             continueOnError: true
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')))
 
           - task: Npm@1
-            displayName: "publish designsystem to Helsnorge-registry (beta)"
+            displayName: 'publish designsystem to Helsnorge-registry (beta)'
             inputs:
-              customCommand: "publish --tag=beta"
-              workingDir: npm/designsystem/lib
+              command: custom
+              verbose: false
+              customCommand: 'run publish:beta'
+              workingDir: $(working_directory)
+              publishRegistry: useFeed
+              publishFeed: '926a1f6a-72f8-4464-b9be-a7978dee78b0'
             continueOnError: true
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'), contains(variables['Build.SourceBranch'], 'beta'))
 
           - task: Npm@1
-            displayName: "publish designsystem to NPM (latest)"
+            displayName: 'create .npmrc (for npmjs publishing only)'
+            inputs:
+              command: custom
+              workingDir: npm/designsystem
+              customCommand: 'run create-npmrc'
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')))
+
+          - task: Npm@1
+            displayName: 'publish designsystem to NPM (latest)'
             inputs:
               command: publish
-              workingDir: "npm/designsystem/lib_npm"
-              publishEndpoint: "npmjs connection (mai 2022)"
+              workingDir: npm/designsystem/lib
+              publishEndpoint: 'npmjs connection (mai 2022)'
             continueOnError: true
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')))
 
           - task: Npm@1
-            displayName: "build storybook"
+            displayName: 'build storybook'
             inputs:
               command: custom
               workingDir: npm/designsystem
-              customCommand: "run build-storybook"
+              customCommand: 'run build-storybook'
             condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              in(variables['Build.SourceBranch'], 'refs/heads/master', 'refs/heads/feature/next'))
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), in(variables['Build.SourceBranch'],
+              'refs/heads/master', 'refs/heads/feature/next'))
 
           - task: Npm@1
-            displayName: "deploy storybook (master)"
+            displayName: 'deploy storybook (master)'
             inputs:
               command: custom
               workingDir: $(working_directory)
-              customCommand: "run deploy:storybook"
+              customCommand: 'run deploy:storybook'
             env:
               NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
             condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
+              'refs/heads/master'))
 
           - task: Npm@1
-            displayName: "deploy storybook (next)"
+            displayName: 'deploy storybook (next)'
             inputs:
               command: custom
               workingDir: $(working_directory)
-              customCommand: "run deploy:storybook:next"
+              customCommand: 'run deploy:storybook:next'
             env:
               NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
             condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              eq(variables['Build.SourceBranch'], 'refs/heads/feature/next'))
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
+              'refs/heads/feature/next'))
 
           - task: Npm@1
-            displayName: "deploy documentation (master)"
+            displayName: 'deploy documentation (master)'
             inputs:
               command: custom
               workingDir: $(working_directory)
-              customCommand: "run deploy:documentation"
+              customCommand: 'run deploy:documentation'
             env:
               NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
             condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
+              'refs/heads/master'))

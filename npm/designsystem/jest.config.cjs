@@ -4,7 +4,11 @@ module.exports = {
   coverageReporters: ['cobertura', 'lcov'],
   collectCoverage: true,
   coverageDirectory: '<rootDir>/coverage',
-  collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx,ts,tsx}', '!<rootDir>/src/components/Icons/[^Icon]*'],
+  collectCoverageFrom: [
+    '<rootDir>/src/**/*.{js,jsx,ts,tsx}',
+    '!<rootDir>/src/components/Icons/**/*',
+    '<rootDir>/src/components/Icons/Icon.tsx',
+  ],
   coveragePathIgnorePatterns: ['.stories.tsx', '.d.ts', 'index.ts'],
   testEnvironment: 'jsdom',
   moduleNameMapper: {
@@ -17,5 +21,6 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/scripts/fileTransformer.cjs',
   },
   setupFilesAfterEnv: ['./src/utils/tests/setup-test.ts'],
-  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
+  // Unngå warning om jest-haste-map: Haste module naming collision
+  modulePathIgnorePatterns: ['lib'],
 };

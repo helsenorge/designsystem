@@ -215,7 +215,7 @@ describe('Gitt at Panel skal vises', (): void => {
   });
 
   describe('Gitt at panelet har en expand knapp, og gitt at knappen trykkes', (): void => {
-    test('Så vises detalje-området', (): void => {
+    test('Så vises detalje-området', async (): Promise<void> => {
       render(
         <Panel title="Dette er en tittel" renderChildrenWhenClosed>
           <div>{'Details'}</div>
@@ -228,11 +228,11 @@ describe('Gitt at Panel skal vises', (): void => {
 
       const panelDetails = screen.getByTestId('panel-details');
 
-      userEvent.click(btnDetails);
+      await userEvent.click(btnDetails);
       expect(screen.getByText('Details')).toBeVisible();
       expect(panelDetails).toHaveClass('panel-details--open');
 
-      userEvent.click(btnDetails);
+      await userEvent.click(btnDetails);
       expect(panelDetails).not.toHaveClass('panel-details--open');
     });
   });
@@ -265,7 +265,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Gitt at panelet har onExpand-callback', (): void => {
     describe('Når man klikker på panelet to ganger', (): void => {
-      test('Så kalles callback først med true og så med false', (): void => {
+      test('Så kalles callback først med true og så med false', async (): Promise<void> => {
         const handleExpand = jest.fn();
         render(
           <Panel title={'Dette er en tittel'} onExpand={handleExpand}>
@@ -275,8 +275,8 @@ describe('Gitt at Panel skal vises', (): void => {
 
         const button = screen.getAllByTestId('expand')[0];
 
-        userEvent.click(button);
-        userEvent.click(button);
+        await userEvent.click(button);
+        await userEvent.click(button);
 
         expect(handleExpand).toHaveBeenCalledTimes(2);
         expect(handleExpand).toHaveBeenNthCalledWith(1, true);
@@ -286,7 +286,7 @@ describe('Gitt at Panel skal vises', (): void => {
   });
   describe('Gitt at panelet har onExpand-callback og expanded satt til true', (): void => {
     describe('Når man klikker på panelet én gang', (): void => {
-      test('Så kalles callback først med true og så med false', (): void => {
+      test('Så kalles callback først med true og så med false', async (): Promise<void> => {
         const handleExpand = jest.fn();
         render(
           <Panel title={'Dette er en tittel'} onExpand={handleExpand} expanded>
@@ -296,7 +296,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
         const button = screen.getAllByTestId('expand')[0];
 
-        userEvent.click(button);
+        await userEvent.click(button);
 
         expect(handleExpand).toHaveBeenCalledTimes(2);
         expect(handleExpand).toHaveBeenNthCalledWith(1, true);
@@ -307,7 +307,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Gitt at containerAsButton er true', (): void => {
     describe('Når man klikker på knappen for å vise detaljer', (): void => {
-      test('Så vises detaljer-området', (): void => {
+      test('Så vises detaljer-området', async (): Promise<void> => {
         render(
           <Panel testId="panel-test" containerAsButton title="Dette er en tittel" renderChildrenWhenClosed>
             <div>{'Details'}</div>
@@ -319,7 +319,7 @@ describe('Gitt at Panel skal vises', (): void => {
         expect(button).toBeVisible();
         expect(button).toHaveAttribute('aria-expanded', 'false');
 
-        userEvent.click(button);
+        await userEvent.click(button);
 
         expect(screen.getByText('Details')).toBeVisible();
       });
@@ -340,18 +340,18 @@ describe('Gitt at Panel skal vises', (): void => {
   });
 
   describe('Gitt at panelet skal vise lenke som knapp med onClick', () => {
-    test('Så kalles onClick-handler når man klikker på knappen', () => {
+    test('Så kalles onClick-handler når man klikker på knappen', async () => {
       const onClickMock = jest.fn();
       render(<Panel buttonText="Lenke til mer" buttonOnClick={onClickMock} buttonHtmlMarkup="button" />);
 
       const link = screen.getByRole('button', { name: 'Lenke til mer' });
-      userEvent.click(link);
+      await userEvent.click(link);
       expect(onClickMock).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('Gitt at panelet skal vise lenke som a med onClick', () => {
-    test('Så kalles onClick-handler når man klikker på lenken', () => {
+    test('Så kalles onClick-handler når man klikker på lenken', async () => {
       const onClickMock = jest.fn();
       render(<Panel buttonText="Lenke til mer" buttonOnClick={onClickMock} buttonHtmlMarkup="a" url="#" />);
 
@@ -359,7 +359,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
       expect(link).toHaveAttribute('href', '#');
 
-      userEvent.click(link);
+      await userEvent.click(link);
       expect(onClickMock).toHaveBeenCalledTimes(1);
     });
   });

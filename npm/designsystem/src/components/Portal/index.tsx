@@ -23,7 +23,7 @@ export default function Portal({ children, parent, className, testId }: PortalPr
   // On mount function
   React.useEffect(() => {
     // work out target in the DOM based on parent prop
-    const target = parent && parent.appendChild ? parent : document.body;
+    const target = parent && !!parent.appendChild ? parent : document.body;
     // Default classes
     const classList = ['portal-container'];
     // If className prop is present add each class the classList

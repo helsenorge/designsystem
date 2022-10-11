@@ -38,7 +38,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       expect(button2).toHaveAttribute('aria-expanded', 'false');
     });
 
-    it('så kan man åpne den andre expanderen', (): void => {
+    it('så kan man åpne den andre expanderen', async (): Promise<void> => {
       render(
         <ExpanderList isOpen={true}>
           <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
@@ -49,14 +49,14 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       const button2 = screen.getByRole('button', { name: 'Title 2' });
       expect(button2).toHaveAttribute('aria-expanded', 'false');
 
-      userEvent.click(button2);
+      await userEvent.click(button2);
 
       expect(button2).toHaveAttribute('aria-expanded', 'true');
       const text2 = screen.getByText('Text 2');
       expect(text2).toBeInTheDocument();
     });
 
-    it('så kan man lukke den første', (): void => {
+    it('så kan man lukke den første', async (): Promise<void> => {
       render(
         <ExpanderList isOpen={true}>
           <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
@@ -70,7 +70,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       const text1 = screen.getByText('Text 1');
       expect(text1).toBeInTheDocument();
 
-      userEvent.click(button1);
+      await userEvent.click(button1);
 
       expect(button1).toHaveAttribute('aria-expanded', 'false');
     });
@@ -141,11 +141,11 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       render(<ExpanderListTest />);
 
       const expander = screen.getByRole('button', { name: 'Title 1' });
-      userEvent.click(expander);
+      await userEvent.click(expander);
       expect(expander).toHaveAttribute('aria-expanded', 'true');
 
       const button = screen.getByRole('button', { name: 'knapp' });
-      userEvent.click(button);
+      await userEvent.click(button);
 
       expect(expander).toHaveAttribute('aria-expanded', 'true');
     });
@@ -169,11 +169,11 @@ describe('Gitt ExpanderList blir rendret', (): void => {
         render(<ExpanderListTest />);
 
         const expander = screen.getByRole('button', { name: 'Title 1' });
-        userEvent.click(expander);
+        await userEvent.click(expander);
         expect(expander).toHaveAttribute('aria-expanded', 'true');
 
         const button = screen.getByRole('button', { name: 'knapp' });
-        userEvent.click(button);
+        await userEvent.click(button);
 
         expect(expander).toHaveAttribute('aria-expanded', 'true');
       });
@@ -207,12 +207,12 @@ describe('Gitt ExpanderList blir rendret', (): void => {
         const expander2 = screen.getByRole('button', { name: 'Title 2' });
         expect(expander2).toHaveAttribute('aria-expanded', 'false');
 
-        userEvent.click(screen.getByRole('button', { name: 'Åpne' }));
+        await userEvent.click(screen.getByRole('button', { name: 'Åpne' }));
 
         expect(expander1).toHaveAttribute('aria-expanded', 'false');
         expect(expander2).toHaveAttribute('aria-expanded', 'true');
 
-        userEvent.click(screen.getByRole('button', { name: 'Lukk' }));
+        await userEvent.click(screen.getByRole('button', { name: 'Lukk' }));
         expect(expander1).toHaveAttribute('aria-expanded', 'false');
         expect(expander2).toHaveAttribute('aria-expanded', 'false');
       });
@@ -220,7 +220,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
   });
 
   describe('Når man klikker på en expander', (): void => {
-    it('Sjekk Expander bakgrunnsfarge når musepeker trykker på den', (): void => {
+    it('Sjekk Expander bakgrunnsfarge når musepeker trykker på den', async (): Promise<void> => {
       render(
         <div
           style={{
@@ -238,13 +238,13 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       );
 
       const button = screen.getByRole('button', { name: 'Title 1' });
-      userEvent.click(button);
+      await userEvent.click(button);
       expect(button).toHaveClass('expander-list-link expander-list-link--blueberry');
     });
   });
 
   describe('Når accordion er true', (): void => {
-    test('Så vises bare en tekst om gangen', (): void => {
+    test('Så vises bare en tekst om gangen', async (): Promise<void> => {
       render(
         <ExpanderList accordion={true}>
           <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
@@ -254,7 +254,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       );
 
       const button1 = screen.getByRole('button', { name: 'Title 1' });
-      userEvent.click(button1);
+      await userEvent.click(button1);
 
       expect(button1).toHaveAttribute('aria-expanded', 'true');
 
@@ -263,7 +263,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       expect(text1).toBeInTheDocument();
 
       const button2 = screen.getByRole('button', { name: 'Title 2' });
-      userEvent.click(button2);
+      await userEvent.click(button2);
 
       expect(button1).toHaveAttribute('aria-expanded', 'false');
       expect(button2).toHaveAttribute('aria-expanded', 'true');
@@ -275,7 +275,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
   });
 
   describe('Når accordion er true og expanderen er utenfor viewport etter at man klikker på den', (): void => {
-    test('Så scroller nettleseren slik at expanderen blir synlig', (): void => {
+    test('Så scroller nettleseren slik at expanderen blir synlig', async (): Promise<void> => {
       const mockScrollIntoView = jest.fn();
       window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
       const mockIsElementInViewport = jest.spyOn(ViewportUtils, 'isElementInViewport');
@@ -290,7 +290,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       );
 
       const title1 = screen.getByRole('button', { name: 'Title 3' });
-      userEvent.click(title1);
+      await userEvent.click(title1);
 
       expect(mockScrollIntoView).toHaveBeenCalledTimes(1);
       expect(mockScrollIntoView).toHaveBeenCalledWith();
@@ -328,7 +328,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
   });
   describe('Gitt at ExpanderList har expander med onExpand-callback', (): void => {
     describe('Når man klikker på ekspanderen tre ganger', (): void => {
-      test('Så kalles callbacken med true, false og true', (): void => {
+      test('Så kalles callbacken med true, false og true', async (): Promise<void> => {
         const handleExpand = jest.fn();
         render(
           <ExpanderList>
@@ -340,9 +340,9 @@ describe('Gitt ExpanderList blir rendret', (): void => {
 
         const expander = screen.getByText('Title 1');
 
-        userEvent.click(expander);
-        userEvent.click(expander);
-        userEvent.click(expander);
+        await userEvent.click(expander);
+        await userEvent.click(expander);
+        await userEvent.click(expander);
         expect(handleExpand).toHaveBeenCalledTimes(3);
         expect(handleExpand).toHaveBeenNthCalledWith(1, true);
         expect(handleExpand).toHaveBeenNthCalledWith(2, false);
@@ -352,7 +352,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
   });
   describe('Gitt at ExpanderList har Expander med onExpand-callback og isOpen satt til true', (): void => {
     describe('Når man klikker på expanderen én gang', (): void => {
-      test('Så kalles callback først med true og så med false', (): void => {
+      test('Så kalles callback først med true og så med false', async (): Promise<void> => {
         const handleExpand = jest.fn();
         render(
           <ExpanderList isOpen>
@@ -364,7 +364,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
 
         const expander = screen.getByText('Title 1');
 
-        userEvent.click(expander);
+        await userEvent.click(expander);
         expect(handleExpand).toHaveBeenCalledTimes(2);
         expect(handleExpand).toHaveBeenNthCalledWith(1, true);
         expect(handleExpand).toHaveBeenNthCalledWith(2, false);

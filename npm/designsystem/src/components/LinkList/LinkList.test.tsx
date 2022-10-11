@@ -53,7 +53,7 @@ describe('Gitt at LinkList skal vises', (): void => {
 });
 describe('Gitt at linkene skal være buttons med onClick-handler', () => {
   describe('Når man klikker på linkene', () => {
-    test('Så kalles onClick-handlerne', () => {
+    test('Så kalles onClick-handlerne', async () => {
       const mockClick1 = jest.fn();
       const mockClick2 = jest.fn();
 
@@ -69,17 +69,17 @@ describe('Gitt at linkene skal være buttons med onClick-handler', () => {
       );
 
       const link1 = screen.getByRole('button', { name: 'Link 1' });
-      userEvent.click(link1);
+      await userEvent.click(link1);
       expect(mockClick1).toHaveBeenCalledTimes(1);
       const link2 = screen.getByRole('button', { name: 'Link 2' });
-      userEvent.click(link2);
+      await userEvent.click(link2);
       expect(mockClick2).toHaveBeenCalledTimes(1);
     });
   });
 });
 describe('Gitt at linkene skal være vanlige lenker med onClick-handler', () => {
   describe('Når man klikker på linkene', () => {
-    test('Så kalles onClick-handlerne', () => {
+    test('Så kalles onClick-handlerne', async () => {
       const mockClick1 = jest.fn();
       const mockClick2 = jest.fn();
 
@@ -95,10 +95,10 @@ describe('Gitt at linkene skal være vanlige lenker med onClick-handler', () => 
       );
 
       const link1 = screen.getByRole('link', { name: 'Link 1' });
-      userEvent.click(link1);
+      await userEvent.click(link1);
       expect(mockClick1).toHaveBeenCalledTimes(1);
       const link2 = screen.getByRole('link', { name: 'Link 2' });
-      userEvent.click(link2);
+      await userEvent.click(link2);
       expect(mockClick2).toHaveBeenCalledTimes(1);
     });
   });

@@ -12,6 +12,7 @@ export type Styles = {
   'expander-list-link__title': string;
   'expander-list-link__title--jsx': string;
   'expander-list-link__title--string': string;
+  'expander-list-link--absolute': string;
   'expander-list-link--banana': string;
   'expander-list-link--blueberry': string;
   'expander-list-link--cherry': string;
@@ -21,6 +22,7 @@ export type Styles = {
   'expander-list-link--large': string;
   'expander-list-link--neutral': string;
   'expander-list-link--plum': string;
+  'expander-list-link--sticky': string;
   'expander-list-link--white': string;
 };
 

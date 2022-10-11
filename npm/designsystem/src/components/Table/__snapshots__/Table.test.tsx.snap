@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gitt at Tabel skal vises Når den skal vises Så vises en tabell 1`] = `
+exports[`Gitt at Table skal vises Når den skal vises Så vises en tabell 1`] = `
 <div>
   <div
     class="horizontalscroll"

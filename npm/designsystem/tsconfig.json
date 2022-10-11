@@ -8,15 +8,17 @@
     "jsx": "react",
     "declaration": true,
     "declarationMap": true,
-    "declarationDir": "types/",
+    "declarationDir": "types",
     "emitDecoratorMetadata": true,
-    "types": ["jest", "node", "react"]
+    "types": ["jest", "node", "react"],
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": [
     ".storybook/**/*",
     "lib",
-    "lib_OLD",
     "node_modules",
     "scripts",
     "src/utils",

@@ -104,4 +104,76 @@ describe('Gitt at Textarea skal vises', (): void => {
       expect(textarea).toHaveAttribute('id', 'testing');
     });
   });
+
+  describe('Når autoFocus er satt', (): void => {
+    test('Så er textarea focus', (): void => {
+      render(<Textarea label="En fin label" autoFocus />);
+
+      const textarea = screen.getByLabelText('En fin label');
+      expect(textarea).toHaveFocus();
+    });
+  });
+
+  describe('Når disabled er satt', (): void => {
+    test('Så er textarea disabled', (): void => {
+      render(<Textarea label="En fin label" disabled />);
+
+      const textarea = screen.getByLabelText('En fin label');
+      expect(textarea).toBeDisabled();
+    });
+  });
+
+  describe('Når readOnly er satt', (): void => {
+    test('Så er textarea readOnly', (): void => {
+      render(<Textarea label="En fin label" readOnly />);
+
+      const textarea = screen.getByLabelText('En fin label');
+      expect(textarea).toHaveAttribute('readonly', '');
+    });
+  });
+
+  describe('Når autoComplete er satt til on', (): void => {
+    test('Så har textarea autoComplete=on', (): void => {
+      render(<Textarea label="En fin label" autoComplete="on" />);
+
+      const textarea = screen.getByLabelText('En fin label');
+      expect(textarea).toHaveAttribute('autoComplete', 'on');
+    });
+  });
+
+  describe('Når name-prop er satt', (): void => {
+    test('Så har textarea riktig name', (): void => {
+      render(<Textarea label="En fin label" name="custom-name" />);
+
+      const textarea = screen.getByLabelText('En fin label');
+      expect(textarea).toHaveAttribute('name', 'custom-name');
+    });
+  });
+
+  describe('Når placeholder-prop er satt', (): void => {
+    test('Så har textarea riktig placeholder', (): void => {
+      render(<Textarea label="En fin label" placeholder="custom-placeholder" />);
+
+      const textarea = screen.getByPlaceholderText('custom-placeholder');
+      expect(textarea).toBeVisible();
+    });
+  });
+
+  describe('Når defaultValue-prop er satt', (): void => {
+    test('Så har textarea riktig value', (): void => {
+      render(<Textarea label="En fin label" defaultValue="custom-value" />);
+
+      const textarea = screen.getByLabelText('En fin label');
+      expect(textarea).toHaveValue('custom-value');
+    });
+  });
+
+  describe('Når required er satt', (): void => {
+    test('Så er textarea required', (): void => {
+      render(<Textarea label="En fin label" required />);
+
+      const textarea = screen.getByLabelText('En fin label');
+      expect(textarea).toBeRequired();
+    });
+  });
 });

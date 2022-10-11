@@ -1,5 +1,7 @@
+import { isTest } from './environment';
+
 export const uuid = (): string => {
-  if (process.env.NODE_ENV === 'test') {
+  if (isTest()) {
     return 'test';
   }
   return 'bxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[x]/g, function (c) {

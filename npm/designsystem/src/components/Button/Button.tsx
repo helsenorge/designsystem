@@ -1,80 +1,92 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
+import { isTest } from '../../utils/environment';
 import { getColor } from '../../theme/currys/color';
-import { IconProps, IconSize } from './../Icons/';
-import Loader from '../Loader';
-import { PaletteNames } from '../../theme/palette';
+import Icon, { IconProps, IconSize } from './../Icons/';
 import { useHover } from '../../hooks/useHover';
 import { useIcons } from '../../hooks/useIcons';
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { breakpoints } from '../../theme/grid';
 import classNames from 'classnames';
 
 import buttonStyles from './styles.module.scss';
+import ArrowRight from '../Icons/ArrowRight';
+import { useSize } from '../../hooks/useSize';
 
-export type ButtonIntents = 'primary' | 'warning' | 'danger';
-export type ButtonIntentsColors = 'blueberry' | 'banana' | 'cherry' | 'neutral' | 'white';
+export type ButtonConcept = 'normal' | 'destructive';
+export type ButtonVariant = 'fill' | 'outline' | 'borderless';
+export type ButtonSize = 'medium' | 'large';
+export type ButtonMode = 'onlight' | 'ondark';
 export type ButtonTags = 'button' | 'a';
-export type ButtonVariants = 'fill' | 'outline' | 'borderless';
-
-interface IntentToColor {
-  primary: ButtonIntentsColors;
-  warning: ButtonIntentsColors;
-  danger: ButtonIntentsColors;
-}
-
-export const intentToColor: IntentToColor = {
-  primary: 'blueberry',
-  warning: 'banana',
-  danger: 'cherry',
-};
 
 export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
+  /** Sets the aria-label of the button, use when the button only includes an icon */
+  ariaLabel?: string;
   /** Gives a unique id to the button */
   id?: string;
   /** Sets the content of the button. */
   children: React.ReactNode;
+  /** Adds custom classes to the wrapper element. */
+  wrapperClassName?: string;
   /** Adds custom classes to the element. */
   className?: string;
-  /** Makes the button scale to full width of its parent element. */
-  fluid?: boolean;
+  /** Enables an arrow icon to the right inside the button (Not available in borderless variant) */
+  arrow?: boolean;
   /** Changes the intent of the button. Mostly changes the color profile. */
-  intent?: ButtonIntents;
-  /** Changes the color presentation for different backgrounds. */
-  inverted?: boolean;
-  /** Changes the underlying element of the button. */
-  htmlMarkup?: ButtonTags;
-  /** Button type. Default: button */
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  /** Changes the size of the button to large. */
-  large?: boolean;
-  /** Sets the button into a loading state displaying <Loader /> as content. */
-  loading?: boolean;
-  /** Function that is called when clicked */
-  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null) => void;
-  /** Changes the visual representation of the button. */
-  variant?: ButtonVariants;
+  concept?: ButtonConcept;
   /** Disables text wrapping and enables ellipsis. */
   ellipsis?: boolean;
+  /** Makes the button scale to full width of its parent element. */
+  fluid?: boolean;
+  /** Changes the underlying element of the button. */
+  htmlMarkup?: ButtonTags;
+  /** Changes the button colors for different backgrounds. */
+  mode?: ButtonMode;
+  /** Function that is called when clicked */
+  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null) => void;
+  /** Changes the button colors for different backgrounds. (Large not available in borderless variant) */
+  size?: ButtonSize;
+  /** Changes the visual representation of the button. */
+  variant?: ButtonVariant;
+  /** Specifies the focus order relative to the other buttons or controls on the page  */
+  tabIndex?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** Indicates that its element can be focused, avoid using values greater than 0 */
-  tabIndex?: number;
+  /** Button type. Default: button */
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 
-const getIconColor = (fill: boolean, disabled: boolean, intent: ButtonIntents, inverted: boolean, hovered: boolean): string => {
-  if (disabled) return getColor('neutral', 600);
-  if ((fill && !inverted) || (!fill && inverted)) return 'white';
-  if (intent === 'warning' && !inverted) return getColor(intentToColor[intent], hovered ? 800 : 700);
-  return getColor(intentToColor[intent], hovered ? 700 : 600);
-};
+const getIconColor = (
+  fill: boolean,
+  borderless: boolean,
+  disabled: boolean,
+  concept: ButtonConcept,
+  ondark: boolean,
+  mobile: boolean
+): string => {
+  if (mobile && disabled) {
+    return !ondark || fill ? getColor('neutral', !borderless ? 700 : 500) : getColor('white');
+  }
+  if (disabled) {
+    return !ondark || fill ? getColor('neutral', 500) : `${getColor('white')}b3`;
+  }
+  if ((fill && !ondark) || (!fill && ondark)) {
+    return 'white';
+  }
 
-const getLargeIconSize = (large: boolean, breakpoint: Breakpoint): IconSize => {
-  const mobile = breakpoint < breakpoints.md;
+  return concept === 'normal' ? getColor('blueberry', 600) : getColor('cherry', 500);
+};
+const getLargeIconSize = (large: boolean, mobile: boolean): IconSize => {
   if (mobile && large) return IconSize.Small;
   if (large) return IconSize.Medium;
   return IconSize.XSmall;
+};
+
+const checkOnlyIconAria = (onlyIcon: boolean, ariaLabel: string | undefined, testEnv: boolean) => {
+  if (!testEnv && onlyIcon && (ariaLabel === undefined || ariaLabel === '')) {
+    throw new Error('Fyll inn ariaLabel prop på Button uten tekst for å opprettholde UU krav');
+  }
 };
 
 const Button = React.forwardRef(function ButtonForwardedRef(
@@ -82,24 +94,26 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   ref: React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>
 ) {
   const {
+    ariaLabel,
     id,
     children,
-    className = '',
-    fluid = false,
-    intent = 'primary',
-    inverted = false,
-    htmlMarkup = 'button',
-    type = 'button',
-    onClick,
-    large = false,
-    loading = false,
-    variant = 'fill',
+    wrapperClassName,
+    className,
+    arrow = false,
+    concept = 'normal',
     disabled = false,
     ellipsis = false,
+    fluid = false,
+    htmlMarkup = 'button',
+    mode = 'onlight',
+    onClick,
+    size = 'medium',
+    variant = 'fill',
+    href,
     tabIndex,
     testId,
-    href,
     target,
+    type = 'button',
     ...restProps
   } = props;
 
@@ -108,98 +122,99 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     htmlMarkup === 'button'
       ? useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>)
       : useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
-  const iconColor = getIconColor(variant === 'fill', disabled, intent, inverted, isHovered);
+  const buttonContentRef = useRef<HTMLDivElement>(null);
+  const buttonContentSize = useSize(buttonContentRef);
+  const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
+  const bothIcons = leftIcon && (rightIcon || arrow) && !onlyIcon;
+  const onDark = mode === 'ondark';
   const breakpoint = useBreakpoint();
-  const fillVariant = variant === 'fill';
+  const mobile = breakpoint < breakpoints.md;
+  const destructive = concept === 'destructive' && !disabled;
   const outlineVariant = variant === 'outline';
   const borderlessVariant = variant === 'borderless';
-  const warningIntent = intent === 'warning';
-  const dangerIntent = intent === 'danger';
-  const hasIcon = !!(leftIcon || rightIcon) && !loading;
+  const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, mobile);
+  const hasArrow = arrow && !borderlessVariant;
+  const large = size === 'large' && !destructive && !borderlessVariant;
   const rest = { ...(restProps as React.HtmlHTMLAttributes<HTMLButtonElement>) };
 
+  const buttonWrapperClasses = classNames(
+    buttonStyles['button-wrapper'],
+    { [buttonStyles['button-wrapper--fluid']]: fluid || ellipsis },
+    wrapperClassName
+  );
   const buttonClasses = classNames(
     buttonStyles.button,
     {
-      [buttonStyles['button--fluid']]: fluid,
+      [buttonStyles['button--destructive']]: destructive,
+      [buttonStyles['button--normal']]: !large,
       [buttonStyles['button--large']]: large,
-      [buttonStyles[`button--warning`]]: warningIntent,
-      [buttonStyles[`button--danger`]]: dangerIntent,
-      [buttonStyles[`button--inverted`]]: inverted,
-      [buttonStyles['button--fill']]: fillVariant,
       [buttonStyles['button--outline']]: outlineVariant,
       [buttonStyles['button--borderless']]: borderlessVariant,
-      [buttonStyles['button--with-icon']]: hasIcon,
-      [buttonStyles['button--ellipsis']]: ellipsis,
+      [buttonStyles['button--left-icon']]: leftIcon && !onlyIcon,
+      [buttonStyles['button--right-icon']]: rightIcon && !onlyIcon,
+      [buttonStyles['button--both-icons']]: bothIcons,
+      [buttonStyles['button--only-icon']]: onlyIcon,
+      [buttonStyles['button--arrow']]: hasArrow,
+      [buttonStyles['button--on-dark']]: onDark,
     },
     className
   );
-
-  const contentClasses = classNames(buttonStyles.button__content, {
-    [buttonStyles['button__content--warning']]: warningIntent,
-    [buttonStyles['button__content--danger']]: dangerIntent,
-    [buttonStyles['button__content--fill']]: fillVariant,
-    [buttonStyles['button__content--borderless']]: borderlessVariant,
-    [buttonStyles['button__content--outline']]: outlineVariant,
-    [buttonStyles['button__content--with-icon']]: hasIcon && !borderlessVariant,
-    [buttonStyles['button__content--large']]: large,
-    [buttonStyles['button__content--ellipsis']]: ellipsis,
-    [buttonStyles['button__content--inverted']]: inverted,
-    [buttonStyles['button__content--fluid']]: fluid,
+  const buttonTextClasses = classNames(buttonStyles['button__text'], {
+    [buttonStyles['button__text--ellipsis']]: ellipsis,
+  });
+  const diagonalClasses = classNames(buttonStyles['diagonal'], {
+    [buttonStyles['diagonal--on-dark']]: onDark,
   });
 
-  const leftFluidContentClasses = classNames(buttonStyles['button__left-fluid-content'], {
-    [buttonStyles['button__left-fluid-content--with-icon']]: hasIcon,
-    [buttonStyles['button__left-fluid-content--large']]: large,
-  });
+  useEffect(() => {
+    checkOnlyIconAria(onlyIcon, ariaLabel, isTest());
+  }, []);
 
-  function renderIcon(
+  const renderIcon = (
     iconElement: React.ReactElement<IconProps> | {} | undefined | null,
-    size: number,
-    iconColor: string,
-    hover: boolean
-  ): React.ReactElement<IconProps> | React.Component<IconProps> | null {
+    iconSize: number,
+    iconClassName?: string
+  ): React.ReactElement<IconProps> | React.Component<IconProps> | null => {
     const color =
       iconElement && (iconElement as React.ReactElement<IconProps>).props && (iconElement as React.ReactElement<IconProps>).props.color
         ? (iconElement as React.ReactElement<IconProps>).props.color
         : iconColor;
     return iconElement && Object.keys(iconElement).length > 0
-      ? React.cloneElement(iconElement as React.ReactElement<IconProps>, { size, color, isHovered: hover })
+      ? React.cloneElement(iconElement as React.ReactElement<IconProps>, { size: iconSize, color, isHovered, className: iconClassName })
       : null;
-  }
+  };
 
   const renderButtonContent = () => {
-    return restChildren ? <span className={contentClasses}>{restChildren}</span> : null;
+    let angle;
+    let diagonalWidth;
+    if (buttonContentSize) {
+      angle = Math.atan2(buttonContentSize.height, buttonContentSize.width);
+      diagonalWidth = Math.sqrt(Math.pow(buttonContentSize.width, 2) + Math.pow(buttonContentSize.height, 2));
+    }
+
+    return (
+      <div className={buttonTextClasses} ref={buttonContentRef}>
+        {disabled && borderlessVariant && (
+          <div className={diagonalClasses}>
+            <div style={{ transform: `rotate(${angle}rad)`, width: diagonalWidth }} className={buttonStyles['diagonal__line']} />
+          </div>
+        )}
+        <span>{onlyIcon ? ariaLabel : restChildren}</span>
+      </div>
+    );
   };
 
   const renderbuttonContentWrapper = () => {
     return (
-      <span className={buttonStyles['content-wrapper']}>
-        {loading ? (
-          <div className={buttonStyles['button__left-fluid-content']}>
-            <Loader
-              testId={'test-id-loader'}
-              color={variant === 'fill' && !inverted ? 'white' : (intentToColor[intent] as PaletteNames)}
-              size="tiny"
-            />
-          </div>
-        ) : (
-          <>
-            {fluid ? (
-              <div className={leftFluidContentClasses}>
-                {renderIcon(leftIcon, getLargeIconSize(large, breakpoint), iconColor, isHovered)}
-                {renderButtonContent()}
-              </div>
-            ) : (
-              <>
-                {renderIcon(leftIcon, getLargeIconSize(large, breakpoint), iconColor, isHovered)}
-                {renderButtonContent()}
-              </>
-            )}
-            {renderIcon(rightIcon, IconSize.XSmall, iconColor, isHovered)}
-          </>
-        )}
-      </span>
+      <>
+        <div className={buttonClasses}>
+          {renderIcon(leftIcon, getLargeIconSize(large, mobile), !onlyIcon ? buttonStyles['button__left-icon'] : undefined)}
+          {renderButtonContent()}
+          {hasArrow
+            ? renderIcon(<Icon svgIcon={ArrowRight} />, getLargeIconSize(large, mobile), buttonStyles['button__arrow'])
+            : renderIcon(rightIcon, getLargeIconSize(large, mobile), buttonStyles['button__right-icon'])}
+        </div>
+      </>
     );
   };
 
@@ -212,7 +227,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           disabled={disabled}
           data-testid={testId}
           data-analyticsid={AnalyticsId.Button}
-          className={buttonClasses}
+          className={buttonWrapperClasses}
           ref={hoverRef as React.ForwardedRef<HTMLButtonElement>}
           tabIndex={tabIndex}
           type={type}
@@ -227,7 +242,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           onClick={onClick}
           data-testid={testId}
           data-analyticsid={AnalyticsId.Button}
-          className={buttonClasses}
+          className={buttonWrapperClasses}
           href={href}
           target={target}
           rel={target === '_blank' ? 'noopener noreferrer' : props.rel}

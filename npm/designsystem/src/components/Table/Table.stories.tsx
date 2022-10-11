@@ -175,6 +175,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
                         e && e.stopPropagation();
                         console.log('show detail bubble');
                       }}
+                      ariaLabel={'eksempel aria'}
                     >
                       <Icon svgIcon={VerticalDots}></Icon>
                     </Button>

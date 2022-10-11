@@ -22,7 +22,7 @@ describe('Gitt at Tag skal vises vanlig', (): void => {
 
 describe('Gitt at Tag skal vises som remove-knapp', (): void => {
   describe('Når man klikker på knappen', (): void => {
-    test('Så kalles click-funksjonen', (): void => {
+    test('Så kalles click-funksjonen', async (): Promise<void> => {
       const mockClickHandler = jest.fn();
 
       render(
@@ -35,7 +35,7 @@ describe('Gitt at Tag skal vises som remove-knapp', (): void => {
 
       expect(tag).toBeVisible();
 
-      userEvent.click(tag);
+      await userEvent.click(tag);
 
       expect(mockClickHandler).toHaveBeenCalledTimes(1);
     });
@@ -44,7 +44,7 @@ describe('Gitt at Tag skal vises som remove-knapp', (): void => {
 
 describe('Gitt at Tag skal vises som undo-knapp', (): void => {
   describe('Når man klikker på knappen', (): void => {
-    test('Så kalles click-funksjonen', (): void => {
+    test('Så kalles click-funksjonen', async (): Promise<void> => {
       const mockClickHandler = jest.fn();
 
       render(
@@ -57,7 +57,7 @@ describe('Gitt at Tag skal vises som undo-knapp', (): void => {
 
       expect(tag).toBeVisible();
 
-      userEvent.click(tag);
+      await userEvent.click(tag);
 
       expect(mockClickHandler).toHaveBeenCalledTimes(1);
     });

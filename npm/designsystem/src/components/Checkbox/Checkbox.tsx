@@ -10,23 +10,16 @@ import { getColor } from '../../theme/currys/color';
 import checkboxStyles from './styles.module.scss';
 import { AnalyticsId, FormMode, FormVariant, IconSize } from '../../constants';
 
-export interface CheckboxProps {
+export interface CheckboxProps
+  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'checked' | 'required'> {
   /** Adds custom classes to the element. */
   className?: string;
-  /** Sets checkbox as checked */
-  checked?: boolean;
-  /** Disables the checkbox */
-  disabled?: boolean;
   /** The label text next to the checkbox */
   label: string;
   /** input id of the checkbox */
   inputId?: string;
   /** Changes the visuals of the checkbox */
   mode?: keyof typeof FormMode;
-  /** Unique identifyer for the input tag */
-  name?: string;
-  /** Return value for the checkbox */
-  value?: string;
   /** Changes the visuals of the checkbox */
   variant?: keyof typeof FormVariant;
   /** Activates Error style for the checkbox - This is can be true while errorText is empty, when in a FormGroup */
@@ -50,6 +43,8 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     errorText,
     error = !!errorText,
     value = label,
+    testId,
+    required,
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
   const invalid = error || mode === FormMode.oninvalid;
@@ -90,7 +85,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   }, [checked]);
 
   return (
-    <div data-testid={props.testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
+    <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
       {errorText && <p className={errorStyles}>{errorText}</p>}
       <label htmlFor={inputId} className={checkboxLabelClasses}>
         <input
@@ -106,6 +101,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           value={value}
           ref={ref}
           aria-invalid={error}
+          required={required}
         />
         <span className={checkboxIconWrapperClasses}>
           {isChecked && <Icon color={iconColor} className={checkboxStyles['checkbox__icon']} svgIcon={Check} size={IconSize.XSmall} />}
