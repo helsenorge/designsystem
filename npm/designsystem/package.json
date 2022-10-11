@@ -28,7 +28,7 @@
     "postbuild": "npm-run-all generate:cssdefinitions generate:tsdefinitions copy:npmcontent copy:scss",
     "publish:package": "npm publish ./lib --tag=beta",
     "clean": "rimraf lib lib_npm types",
-    "pregenerate:figmatokens": "git -C ../../../designtokens pull git@github.com:helsenorge/designtokens.git",
+    "pregenerate:figmatokens": "git -C ../../../designtokens pull https://github.com/helsenorge/designtokens.git",
     "generate:figmatokens": "token-transformer ../../../designtokens/tokens.json data/design-tokens.json hn-designsystem --resolveReferences=false",
     "postgenerate:figmatokens": "style-dictionary build --config figma-token.config.json",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|ts|tsx)\"",
