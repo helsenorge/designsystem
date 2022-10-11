@@ -66,7 +66,7 @@ CMS.registerEditorComponent({
   // Pattern to identify a block as being an instance of this component
   pattern: /^image-custom (\S+)$/,
   // Function to extract data elements from the regexp match
-  fromBlock: function (match) {
+  fromBlock: function(match) {
     return {
       image: match[2],
       alt: match[1],
@@ -75,11 +75,11 @@ CMS.registerEditorComponent({
     };
   },
   // Function to create an img block from an instance of this component
-  toBlock: function (obj) {
+  toBlock: function(obj) {
     return `<img class="${obj.type}" src="${obj.image}" title="${obj.title}" alt="${obj.alt}" />`;
   },
   // Preview output for this component
-  toPreview: function (obj) {
+  toPreview: function(obj) {
     return `<img class="${obj.type}" src="${obj.image}" title="${obj.title}" alt="${obj.alt}" />`;
   },
 });

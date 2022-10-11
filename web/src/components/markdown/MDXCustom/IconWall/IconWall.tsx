@@ -115,9 +115,12 @@ function IconWall() {
   const filterIcons = (iconImport: IconImport, index: number) => {
     if (filterProps.filter) {
       const filterAlternativenames = iconImport.alternativeName.toLowerCase().includes(filterProps.filter.toLowerCase());
-      const filterCategories = iconImport.categories
-        .split(',')
-        .some(e => e.toLowerCase().trim().includes(filterProps.filter.toLowerCase()));
+      const filterCategories = iconImport.categories.split(',').some(e =>
+        e
+          .toLowerCase()
+          .trim()
+          .includes(filterProps.filter.toLowerCase())
+      );
 
       if (iconImport.name.toLowerCase().includes(filterProps.filter.toLowerCase()) || filterAlternativenames || filterCategories) {
         return iconImport;
