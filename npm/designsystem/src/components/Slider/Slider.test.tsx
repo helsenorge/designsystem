@@ -1,8 +1,11 @@
 import React from 'react';
 import { fireEvent, render, screen, createEvent } from '@testing-library/react';
 import { Slider } from './Slider';
+import { useSize } from '../../hooks/useSize';
 
 import * as utils from './SliderUtils';
+
+jest.mock('../../hooks/useSize');
 
 type FakeMouseEventInit = {
   bubbles?: boolean;
@@ -140,6 +143,7 @@ describe('Gitt at SliderUtils funksjoner skal kjøres', (): void => {
       expect(mouseDown.preventDefault).toHaveBeenCalledTimes(1);
     });
   });
+});
 
   describe('Når getMousePosition funksjonen blir kalt', (): void => {
     test('Så kan musens posisjon hentes', () => {
@@ -245,5 +249,162 @@ describe('Gitt at SliderUtils funksjoner skal kjøres', (): void => {
       const component = screen.getByTestId('bare-tester');
       expect(component).toBeVisible();
     });
+  });
+
+  describe('Når tastaturet brukes for å bevege trackeren', (): void => {
+    test('Så settes verdien riktig', () => {
+      // Sørge for at useSize annenhver gang gir forskjellige bredder til trackerwidth som er strekken og Sliderwidth som er rundingen
+      let odd = false;
+      useSize.mockImplementation(() => {
+        odd = !odd;
+        return odd ? { width: 480 } : { width: 32 };
+      });
+
+      const step = 10;
+      render(<Slider step={step} />);
+
+      const sliderElement = screen.getByRole('slider');
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '50');
+
+      fireEvent.keyDown(sliderElement, { key: 'ArrowRight', code: 'ArrowRight' });
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '60');
+
+      fireEvent.keyDown(sliderElement, { key: 'ArrowLeft', code: 'ArrowLeft' });
+      fireEvent.keyDown(sliderElement, { key: 'ArrowLeft', code: 'ArrowLeft' });
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '40');
+    });
+  });
+
+  describe('Når musen brukes for å bevege trackeren', (): void => {
+    test('Så sjekker den mousePosition og beregner riktig verdi', () => {
+      const calculateSliderTranslateMock = jest.spyOn(utils, 'calculateSliderTranslate');
+      const getMousePositionMock = jest.spyOn(utils, 'getMousePosition');
+
+      // Sørge for at useSize annenhver gang gir forskjellige bredder til trackerwidth som er strekken og Sliderwidth som er rundingen
+      let odd = false;
+      useSize.mockImplementation(() => {
+        odd = !odd;
+        return odd ? { width: 500 } : { width: 40 };
+      });
+      const getBoundingClientRect = jest.fn().mockReturnValueOnce({ left: 100, right: 900 }).mockReturnValueOnce({ left: 150, right: 850 });
+      window.HTMLDivElement.prototype.getBoundingClientRect = getBoundingClientRect;
+
+      const step = 10;
+      render(<Slider step={step} />);
+
+      const sliderElement = screen.getByRole('slider');
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '50');
+      const trackerElement = screen.getByTestId('tracker');
+
+      const mouseDown = getMouseEvent('mousedown', {
+        pageX: 400,
+      });
+
+      fireEvent(trackerElement, mouseDown);
+      // sjekker at getMousePosition kalles
+      expect(getMousePositionMock).toHaveBeenCalled();
+      // sjekker at funksjonen kalles med riktig mousePosition: 400
+      expect(calculateSliderTranslateMock.mock.calls[0][0]).toBe(400);
+      // sjekker at funksjonen kalles med riktig slider størrelse: 40px
+      expect(calculateSliderTranslateMock.mock.calls[0][2]).toBe(40);
+      // sjekker at verdien er beregnet riktig
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '100');
+    });
+  });
+
+  describe('Når musen brukes for å bevege trackeren', (): void => {
+    test('Så er posisjonen uendret så lenge musen ikke er trykket', () => {
+      // Sørge for at useSize annenhver gang gir forskjellige bredder til trackerwidth som er strekken og Sliderwidth som er rundingen
+      let odd = false;
+      useSize.mockImplementation(() => {
+        odd = !odd;
+        return odd ? { width: 500 } : { width: 40 };
+      });
+      const stopEventMock = jest.spyOn(utils, 'stopEvent');
+
+      const step = 10;
+      render(<Slider step={step} />);
+
+      const sliderElement = screen.getByRole('slider');
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '50');
+      const trackerElement = screen.getByTestId('tracker');
+
+      const mouseMove = getMouseEvent('mousemove', {
+        pageX: 400,
+      });
+
+      fireEvent(trackerElement, mouseMove);
+      expect(stopEventMock).toHaveBeenCalled();
+
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '50');
+    });
+  });
+
+  describe('Når musen er ferdig brukt etter bevegelse av trackeren', (): void => {
+    test('Så stoppes det eventene og posisjonen er uendret', () => {
+      const stopEventMock = jest.spyOn(utils, 'stopEvent');
+      const removeMouseListenersMock = jest.spyOn(utils, 'removeMouseListeners');
+      const removeTouchListenersMock = jest.spyOn(utils, 'removeTouchListeners');
+
+      const step = 10;
+      render(<Slider step={step} />);
+
+      const sliderElement = screen.getByRole('slider');
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '50');
+      const trackerElement = screen.getByTestId('tracker');
+
+      const mouseUp = getMouseEvent('mouseup', {
+        pageX: 400,
+      });
+      fireEvent(trackerElement, mouseUp);
+      expect(stopEventMock).toHaveBeenCalled();
+      expect(removeMouseListenersMock).toHaveBeenCalled();
+      expect(removeTouchListenersMock).toHaveBeenCalled();
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '50');
+    });
+  });
+
+  describe('Når touch brukes for å bevege trackeren', (): void => {
+    test('Så sjekker den touch position og beregner riktig verdi', () => {
+      const calculateSliderTranslateMock = jest.spyOn(utils, 'calculateSliderTranslate');
+      const getMousePositionMock = jest.spyOn(utils, 'getMousePosition');
+
+      const step = 10;
+      render(<Slider step={step} />);
+
+      const sliderElement = screen.getByRole('slider');
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '50');
+      const trackerElement = screen.getByTestId('tracker');
+
+      const touchStart = getMouseEvent('touchstart', {
+        touches: [{ pageX: 400 }],
+      });
+      fireEvent(trackerElement, touchStart);
+      // sjekker at getMousePosition kalles
+      expect(getMousePositionMock).toHaveBeenCalled();
+      // sjekker at funksjonen kalles med riktig mousePosition: 400
+      expect(calculateSliderTranslateMock.mock.calls[1][0]).toBe(400);
+      // sjekker at funksjonen kalles med riktig slider størrelse: 700px
+      expect(calculateSliderTranslateMock.mock.calls[1][2]).toBe(40);
+      // sjekker at verdien er beregnet riktig
+      expect(sliderElement).toHaveAttribute('aria-valuenow', '100');
+    });
+  });
+  describe('Gitt at SliderElement er posisjonert', (): void => {
+  test('Så er sliderElement posisjonert riktig', () => {
+    const getBoundingClientRect = jest.fn().mockReturnValueOnce({ left: 100, right: 500 }).mockReturnValueOnce({ left: 150, right: 450 });
+    window.HTMLDivElement.prototype.getBoundingClientRect = getBoundingClientRect;
+
+    let odd = false;
+
+    useSize.mockImplementation(() => {
+      odd = !odd;
+      return odd ? { width: 500 } : { width: 100 };
+    });
+    const step = 10;
+    render(<Slider step={step} />);
+
+    const sliderElement = screen.getByRole('slider');
+    expect(sliderElement).toHaveAttribute('aria-valuenow', '50');
   });
 });
