@@ -92,6 +92,7 @@ export enum AnalyticsId {
   Panel = 'panel',
   PanelList = 'panel-list',
   Portal = 'portal',
+  Progressbar = 'progressbar',
   RadioButton = 'radio-button',
   Slider = 'slider',
   Spacer = 'spacer',
