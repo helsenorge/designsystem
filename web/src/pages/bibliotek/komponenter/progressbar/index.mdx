@@ -1,0 +1,48 @@
+---
+title: Progressbar
+path: /bibliotek/komponenter/progressbar
+date: 2022-1013
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/Progressbar/componentdata.json';
+import Progressbar from '@helsenorge/designsystem-react/components/Progressbar';
+
+<MDXCustom.Preamble>
+  Som innbygger vil jeg kunne se hvor jeg befinner meg i en stegvisning eller prosess slik at jeg ikke mister motivasjonen og slik at jeg
+  får en følelse av at det jeg gjør bringer med nærmere målet.
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent fullWidth stack scope={{ Progressbar }}>{`
+<Progressbar label="Steg for steg" />
+`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
+
+### Start
+
+<MDXCustom.LiveComponent fullWidth stack scope={{ Progressbar }}>{`
+<Progressbar label="Prikker" value={1} min={1} max={10} />
+`}</MDXCustom.LiveComponent>
+
+### Midt
+
+<MDXCustom.LiveComponent fullWidth stack scope={{ Progressbar }}>{`
+<Progressbar label="Prikker" value={5} min={1} max={10} />
+`}</MDXCustom.LiveComponent>
+
+### Slutt
+
+<MDXCustom.LiveComponent fullWidth stack scope={{ Progressbar }}>{`
+<Progressbar label="Prikker" value={10} min={1} max={10} />
+`}</MDXCustom.LiveComponent>
+
+### Tall
+
+<MDXCustom.LiveComponent fullWidth stack scope={{ Progressbar }}>{`
+<Progressbar label="Tall" value={50} min={1} max={100} />
+`}</MDXCustom.LiveComponent>

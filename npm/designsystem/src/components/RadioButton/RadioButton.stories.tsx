@@ -32,11 +32,11 @@ export default {
       defaultValue: FormVariant.normal,
     },
     name: {
-      control: 'string',
+      control: 'text',
       defaultValue: '',
     },
     value: {
-      control: 'string',
+      control: 'text',
       defaultValue: '',
     },
     required: {

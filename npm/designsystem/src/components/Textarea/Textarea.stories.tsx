@@ -72,11 +72,11 @@ export default {
       defaultValue: false,
     },
     autoComplete: {
-      control: 'string',
+      control: 'text',
       defaultValue: '',
     },
     name: {
-      control: 'string',
+      control: 'text',
       defaultValue: '',
     },
     required: {
