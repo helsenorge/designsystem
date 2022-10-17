@@ -79,5 +79,11 @@ $dotOffset: calc($progressbarPaddingX + $dotSize / 2);
     &--completed {
       background-color: $blueberry50;
     }
+    &--left {
+      left: $dotOffset;
+    }
+    &--right {
+      right: $dotOffset;
+    }
   }
 }

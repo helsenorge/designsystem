@@ -65,15 +65,15 @@ describe('Progressbar', (): void => {
       });
     });
     describe('Når progressbar ikke har plass til tre prikker', (): void => {
-      test('Så vises tall i stedet for prikker', (): void => {
+      test('Så vises tall og to prikker', (): void => {
         useSize.mockReturnValue({ width: 83 });
         render(<Progressbar ariaLabel="Steg for steg" />);
 
         const number = screen.getByText('0/2');
         expect(number).toBeVisible();
 
-        const dots = screen.queryByTestId('dot');
-        expect(dots).not.toBeInTheDocument();
+        const dots = screen.getAllByTestId('dot');
+        expect(dots).toHaveLength(2);
       });
     });
   });
@@ -121,15 +121,15 @@ describe('Progressbar', (): void => {
       });
     });
     describe('Når progressbar ikke har plass til ti prikker', (): void => {
-      test('Så vises tall i stedet for prikker', (): void => {
+      test('Så vises tall og to prikker', (): void => {
         useSize.mockReturnValue({ width: 279 });
         render(<Progressbar ariaLabel="Steg for steg" min={1} max={10} />);
 
         const number = screen.getByText('1/10');
         expect(number).toBeVisible();
 
-        const dots = screen.queryByTestId('dot');
-        expect(dots).not.toBeInTheDocument();
+        const dots = screen.getAllByTestId('dot');
+        expect(dots).toHaveLength(2);
       });
     });
   });
