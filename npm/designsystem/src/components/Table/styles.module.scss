@@ -178,6 +178,9 @@ table tbody tr {
 }
 
 .table__head-cell {
+  // Fix for firefox hover feil
+  background-clip: padding-box;
+
   height: 3.625rem;
   font-size: $font-size-sm;
   line-height: 1.5rem;
@@ -186,7 +189,6 @@ table tbody tr {
   font-weight: 200;
   padding: 0.5rem 0.75rem;
   border: 1px solid $neutral500;
-  background-clip: padding-box;
 
   &--sortable {
     position: relative;
