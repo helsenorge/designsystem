@@ -4,8 +4,6 @@ export type Styles = {
   'progressbar__dot--completed': string;
   progressbar__marker: string;
   progressbar__number: string;
-  'progressbar--completed': string;
-  'progressbar--progress': string;
   'progressbar-wrapper': string;
 };
 

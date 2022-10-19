@@ -5,6 +5,7 @@ export type Styles = {
   'horizontalscroll__indicator--right': string;
   'horizontalscroll__indicator--visible': string;
   horizontalscroll__viewport: string;
+  'horizontalscroll__viewport--overflow': string;
 };
 
 export type ClassNames = keyof Styles;
