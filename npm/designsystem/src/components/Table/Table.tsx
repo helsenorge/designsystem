@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import classNames from 'classnames';
 
 import tableStyles from './styles.module.scss';
 
 import { AnalyticsId } from '../../constants';
 import HorizontalScroll from '../HorizontalScroll';
+import { useSize } from '../../hooks/useSize';
 
 export enum SmallViewportVariant {
   /**
@@ -37,6 +38,8 @@ export const Table = function Table({
   children,
   smallViewportVariant = SmallViewportVariant.horizontalscroll,
 }: Props) {
+  const tableRef = useRef<HTMLTableElement>(null);
+  const { width: tableWidth = 0 } = useSize(tableRef) || {};
   const tableClass = classNames(
     tableStyles['table'],
     { [tableStyles['table--collapse2col']]: smallViewportVariant === SmallViewportVariant.block },
@@ -44,8 +47,8 @@ export const Table = function Table({
   );
 
   return (
-    <HorizontalScroll>
-      <table className={tableClass} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Table}>
+    <HorizontalScroll childWidth={tableWidth}>
+      <table className={tableClass} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Table} ref={tableRef}>
         {children}
       </table>
     </HorizontalScroll>

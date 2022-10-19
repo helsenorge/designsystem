@@ -6,10 +6,10 @@ $gradient: rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.27) 18%, transparent;
   transform: translateZ(0); // Gjør at position: fixed på child-elementer er relativ til denne parenten
   &__viewport {
     display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    // overflow-settingene har en tendens til å klippe 1px av innholdet
-    padding: 1px;
+    &--overflow {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
   }
   &__indicator {
     position: fixed;
