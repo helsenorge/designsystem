@@ -1,3 +1,18 @@
+## [2.1.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.0.0&targetVersion=GTv2.1.0) (2022-10-20)
+
+
+### Features
+
+*  progressbar ([961f4ce](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/961f4ce75ff34cf8e237b3bf584ff7ba613b3461)), closes [#286349](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/286349)
+
+
+### Bug Fixes
+
+*  expanderlist focus jsx fiks ([474dc5c](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/474dc5c72639fd5d41101916fe7fd05bfdafe677)), closes [#285115](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/285115)
+*  setter background-clip på th i table ([7f65224](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/7f65224a296c99dac71da2b8843d2e244beac259))
+*  setter background-clip på th i table ([3279386](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/32793866162d3e95ea61a6156907b2edea798de6))
+*  tabell har bare overflow:hidden når den er for liten ([b8b3c8a](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/b8b3c8a8532e8bfd4f0415213480895de72398df)), closes [#286994](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/286994)
+
 ## [2.0.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.8.0&targetVersion=GTv2.0.0) (2022-10-11)
 
 ## 2.0.0-beta.8 (2022-10-06)
@@ -75,7 +90,7 @@
 
 ## 2.0.0-beta.1 (2022-09-15)
 
-## 2.0.0-beta.0 (2022-09-15)
+## 2.0.0-beta.0 (2022-09-12)
 
 
 ### Features
@@ -177,8 +192,8 @@
 
 ### Bug Fixes
 
-*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 *  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
+*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 
 ## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
