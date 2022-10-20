@@ -41,7 +41,6 @@ export const parameters = {
     default: 'white',
     values: createBackgroundColors(),
   },
-  layout: 'centered',
   viewport: {
     viewports: createCustomViewPorts(),
   },
