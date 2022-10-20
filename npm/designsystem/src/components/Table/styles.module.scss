@@ -178,6 +178,9 @@ table tbody tr {
 }
 
 .table__head-cell {
+  // Fix for firefox hover feil
+  background-clip: padding-box;
+
   height: 3.625rem;
   font-size: $font-size-sm;
   line-height: 1.5rem;
