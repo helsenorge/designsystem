@@ -20,6 +20,7 @@ import {
 import Icon from '../Icons';
 import VerticalDots from '../Icons/VerticalDots';
 import { longLoremText } from '../../utils/loremtext';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Table',
@@ -42,7 +43,7 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
   const data = getFastlegeData(SortDirection.asc, '');
 
   return (
-    <div className="container" style={{ backgroundColor: 'white' }}>
+    <GridExample>
       <Table smallViewportVariant={args.viewportVariant}>
         <TableHead category={args.headerCategory}>
           <TableRow rowKey="head">
@@ -60,7 +61,7 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
           ))}
         </TableBody>
       </Table>
-    </div>
+    </GridExample>
   );
 };
 
@@ -68,7 +69,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
   const data = getFastlegeData(SortDirection.asc, '');
 
   return (
-    <div style={{ width: '20rem' }}>
+    <GridExample>
       <p>{longLoremText}</p>
       <Table smallViewportVariant={SmallViewportVariant.horizontalscroll}>
         <TableHead category={args.headerCategory}>
@@ -88,7 +89,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
         </TableBody>
       </Table>
       <p>{longLoremText}</p>
-    </div>
+    </GridExample>
   );
 };
 
@@ -115,7 +116,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
   };
 
   return (
-    <div className="container" style={{ backgroundColor: 'white' }}>
+    <GridExample>
       <Table smallViewportVariant={SmallViewportVariant.block}>
         <TableHead category={HeaderCategory.sortable}>
           <TableRow rowKey="head">
@@ -202,13 +203,13 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
           ))}
         </TableBody>
       </Table>
-    </div>
+    </GridExample>
   );
 };
 
 export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
   return (
-    <div className="container" style={{ backgroundColor: 'white' }}>
+    <GridExample>
       <Table smallViewportVariant={SmallViewportVariant.horizontalscroll}>
         <TableHead category={HeaderCategory.normal}>
           <TableRow rowKey="0">
@@ -267,7 +268,7 @@ export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
           </TableRow>
         </TableBody>
       </Table>
-    </div>
+    </GridExample>
   );
 };
 

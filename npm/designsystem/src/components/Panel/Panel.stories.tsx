@@ -10,6 +10,7 @@ import Icon, { IconSize } from '../Icons';
 import Envelope from '../Icons/Envelope';
 import Attachment from '../Icons/Attachment';
 import Button from '../Button';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Panel',
@@ -73,7 +74,7 @@ export default {
 } as ComponentMeta<typeof Panel>;
 
 export const Default: ComponentStory<typeof Panel> = (args: any) => (
-  <div style={{ width: '90vw', padding: '1vw', backgroundColor: 'white' }}>
+  <GridExample>
     <Panel
       {...args}
       contentA={<div>{'Noe innhold'}</div>}
@@ -103,11 +104,11 @@ export const Default: ComponentStory<typeof Panel> = (args: any) => (
         </p>
       </div>
     </Panel>
-  </div>
+  </GridExample>
 );
 
 export const ContentAAndB: ComponentStory<typeof Panel> = (args: any) => (
-  <div style={{ width: '90vw', padding: '1vw', backgroundColor: 'white' }}>
+  <GridExample>
     <Panel
       {...args}
       contentA={<div style={{ background: '#748999', height: 180 }}>{'Content A'}</div>}
@@ -137,11 +138,11 @@ export const ContentAAndB: ComponentStory<typeof Panel> = (args: any) => (
         </p>
       </div>
     </Panel>
-  </div>
+  </GridExample>
 );
 
 export const ContentAAndBWithIconAndUrl: ComponentStory<typeof Panel> = (args: any) => (
-  <div style={{ width: '90vw', padding: '1vw', backgroundColor: 'white' }}>
+  <GridExample>
     <Panel
       {...args}
       contentA={<div style={{ background: '#748999', height: 250 }}>{'Content A'}</div>}
@@ -156,11 +157,11 @@ export const ContentAAndBWithIconAndUrl: ComponentStory<typeof Panel> = (args: a
       target={'_blank'}
       icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
     />
-  </div>
+  </GridExample>
 );
 
 export const IconAndDetails: ComponentStory<typeof Panel> = () => (
-  <div style={{ width: '90vw', padding: '1vw', backgroundColor: 'white' }}>
+  <GridExample>
     <Panel title={'Medisinsk fødselsregister (MFR)'} icon={<Icon svgIcon={Envelope} size={IconSize.XSmall} />}>
       <p>
         {
@@ -168,11 +169,11 @@ export const IconAndDetails: ComponentStory<typeof Panel> = () => (
         }
       </p>
     </Panel>
-  </div>
+  </GridExample>
 );
 
 export const AvatarAndDetails: ComponentStory<typeof Panel> = () => (
-  <div style={{ width: '90vw', padding: '1vw', backgroundColor: 'white' }}>
+  <GridExample>
     <Panel title={'Medisinsk fødselsregister (MFR)'} icon={<Avatar variant="black">{'Line Danser'}</Avatar>}>
       <div>
         <Button htmlMarkup="a" target="_blank" href="https://www.facebook.com/people/Line-Danser/100007422643849/">
@@ -181,17 +182,17 @@ export const AvatarAndDetails: ComponentStory<typeof Panel> = () => (
         <span>{' Lorem culpa esse dolore cillum minim qui minim aliquip eu laborum voluptate.'}</span>
       </div>
     </Panel>
-  </div>
+  </GridExample>
 );
 
 export const Status: ComponentStory<typeof Panel> = (args: any) => (
-  <div style={{ width: '90vw', padding: '1vw', backgroundColor: 'white' }}>
+  <GridExample>
     <Panel status={args.status} statusMessage={args.statusMessage} title={args.title} url={'https://www.helsenorge.no/'} />
-  </div>
+  </GridExample>
 );
 
 export const AsButton: ComponentStory<typeof Panel> = (args: any) => (
-  <div style={{ width: '90vw', padding: '1vw', backgroundColor: 'white' }}>
+  <GridExample>
     <Panel
       title={'Medisinsk fødselsregister (MFR)'}
       icon={<Avatar variant="black">{'Line Danser'}</Avatar>}
@@ -199,19 +200,19 @@ export const AsButton: ComponentStory<typeof Panel> = (args: any) => (
       buttonOnClick={action('Button clicked!')}
       buttonHtmlMarkup="button"
     />
-  </div>
+  </GridExample>
 );
 
 export const WithCallback: ComponentStory<typeof Panel> = (args: any) => (
-  <div style={{ width: '40rem' }}>
+  <GridExample>
     <Panel {...args} title={'Medisinsk fødselsregister (MFR)'} onExpand={isExpanded => console.log(isExpanded)}>
       <p>Sjekk nettleserkonsollen</p>
     </Panel>
-  </div>
+  </GridExample>
 );
 
 export const NotClickable: ComponentStory<typeof Panel> = (args: any) => (
-  <div style={{ width: '40rem' }}>
+  <GridExample>
     <Panel {...args} title={'Medisinsk fødselsregister (MFR)'}></Panel>
-  </div>
+  </GridExample>
 );

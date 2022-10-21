@@ -3,6 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Spacer from './Spacer';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Spacer',
@@ -10,7 +11,7 @@ export default {
 } as ComponentMeta<typeof Spacer>;
 
 export const Default: ComponentStory<typeof Spacer> = () => (
-  <div style={{ width: '20rem' }}>
+  <GridExample>
     <p>{'4xs'}</p>
     <div style={{ backgroundColor: 'lightgray', marginBottom: '0.25rem' }}>
       <Spacer size={'4xs'} />
@@ -63,5 +64,5 @@ export const Default: ComponentStory<typeof Spacer> = () => (
     <div style={{ backgroundColor: 'lightgray', marginBottom: '0.25rem' }}>
       <Spacer size={'6xl'} />
     </div>
-  </div>
+  </GridExample>
 );

@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import RadioButton from './RadioButton';
 import { FormMode, FormVariant } from '../../constants';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/RadioButton',
@@ -47,12 +48,7 @@ export default {
 } as ComponentMeta<typeof RadioButton>;
 
 export const Default: ComponentStory<typeof RadioButton> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-      padding: '1rem',
-    }}
-  >
+  <GridExample>
     <RadioButton {...args} />
-  </div>
+  </GridExample>
 );

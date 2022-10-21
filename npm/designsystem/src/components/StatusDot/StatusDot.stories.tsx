@@ -3,6 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import StatusDot, { StatusDotVariant } from './StatusDot';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/StatusDot',
@@ -21,13 +22,13 @@ export default {
 } as ComponentMeta<typeof StatusDot>;
 
 export const Default: ComponentStory<typeof StatusDot> = (args: any) => (
-  <div style={{ width: '20rem' }}>
+  <GridExample>
     <StatusDot {...args} />
-  </div>
+  </GridExample>
 );
 
 export const AllVariants: ComponentStory<typeof StatusDot> = () => (
-  <div style={{ width: '20rem' }}>
+  <GridExample>
     <p>{'info'}</p>
     <StatusDot variant={StatusDotVariant.info} text="Info" />
     <p>{'warning'}</p>
@@ -48,5 +49,5 @@ export const AllVariants: ComponentStory<typeof StatusDot> = () => (
     <StatusDot variant={StatusDotVariant.noaccess} text="No Access" />
     <p>{'info no text'}</p>
     <StatusDot variant={StatusDotVariant.info} text="" />
-  </div>
+  </GridExample>
 );

@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import Slider from './Slider';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Slider',
@@ -32,7 +33,7 @@ export default {
 } as ComponentMeta<typeof Slider>;
 
 export const Default: ComponentStory<typeof Slider> = (args: any) => (
-  <div style={{ width: '30rem' }}>
+  <GridExample>
     <Slider onChange={action('Slider')} {...args} />
-  </div>
+  </GridExample>
 );

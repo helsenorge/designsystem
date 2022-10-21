@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import Close from './Close';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Close',
@@ -20,4 +21,8 @@ export default {
   },
 } as ComponentMeta<typeof Close>;
 
-export const Default: ComponentStory<typeof Close> = (args: any) => <Close {...args} onClick={action('button-click')} />;
+export const Default: ComponentStory<typeof Close> = (args: any) => (
+  <GridExample>
+    <Close {...args} onClick={action('button-click')} />
+  </GridExample>
+);

@@ -5,6 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import { FormMode, FormVariant } from '../../constants';
 import Checkbox from './Checkbox';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Checkbox',
@@ -48,11 +49,7 @@ export default {
 } as ComponentMeta<typeof Checkbox>;
 
 export const Default: ComponentStory<typeof Checkbox> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <Checkbox {...args} />
-  </div>
+  </GridExample>
 );

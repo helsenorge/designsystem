@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { allPaletteNames } from '../../../.storybook/knobs';
 import Badge from './Badge';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Badge',
@@ -21,4 +22,8 @@ export default {
   },
 } as ComponentMeta<typeof Badge>;
 
-export const Default: ComponentStory<typeof Badge> = (args: any) => <Badge {...args}>{args.children}</Badge>;
+export const Default: ComponentStory<typeof Badge> = (args: any) => (
+  <GridExample>
+    <Badge {...args}>{args.children}</Badge>
+  </GridExample>
+);

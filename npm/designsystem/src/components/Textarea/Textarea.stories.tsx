@@ -5,6 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Textarea from './Textarea';
 import Hospital from '../Icons/Hospital';
 import Icon, { IconSize } from '../Icons';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Textarea',
@@ -87,13 +88,13 @@ export default {
 } as ComponentMeta<typeof Textarea>;
 
 export const Default: ComponentStory<typeof Textarea> = (args: any) => (
-  <div style={{ width: '20rem' }}>
+  <GridExample>
     <Textarea {...args} />
-  </div>
+  </GridExample>
 );
 
 export const MaxCharacters: ComponentStory<typeof Textarea> = (args: any) => (
-  <div style={{ paddingTop: 50 }}>
+  <GridExample>
     <div style={{ display: 'flex', width: '50rem' }}>
       <Textarea {...args} maxCharacters={10} marginBottom />
     </div>
@@ -105,11 +106,11 @@ export const MaxCharacters: ComponentStory<typeof Textarea> = (args: any) => (
     <div style={{ width: '20rem' }}>
       <Textarea {...args} maxCharacters={100} defaultValue="test" />
     </div>
-  </div>
+  </GridExample>
 );
 
 export const ChildrenAfterLabel: ComponentStory<typeof Textarea> = (args: any) => (
-  <div style={{ width: '20rem' }}>
+  <GridExample>
     <Textarea {...args} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>} />
-  </div>
+  </GridExample>
 );

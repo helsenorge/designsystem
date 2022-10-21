@@ -9,6 +9,7 @@ import Dog from '../Icons/Dog';
 import VerticalDots from '../Icons/VerticalDots';
 import Title from '../Title';
 import { getColor } from '../../theme/currys/color';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Button',
@@ -51,15 +52,15 @@ const myRef6: React.RefObject<HTMLButtonElement> = React.createRef();
 const myRef7: React.RefObject<HTMLButtonElement> = React.createRef();
 
 export const Default: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ width: '15rem' }}>
+  <GridExample>
     <Button {...args} onClick={action('Button clicked')}>
       {args.children}
     </Button>
-  </div>
+  </GridExample>
 );
 
 export const Concepts: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ width: '15rem' }}>
+  <GridExample>
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Concepts'}
     </Title>
@@ -71,11 +72,11 @@ export const Concepts: ComponentStory<typeof Button> = (args: any) => (
     <Button {...args} onClick={action('Button clicked')} concept={'destructive'}>
       {args.children}
     </Button>
-  </div>
+  </GridExample>
 );
 
 export const Icons: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ width: '15rem' }}>
+  <GridExample>
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Icons'}
     </Title>
@@ -105,11 +106,11 @@ export const Icons: ComponentStory<typeof Button> = (args: any) => (
     <Button {...args} ariaLabel={'Verticaldots button'} ref={myRef5} onClick={action('Button clicked')}>
       <Icon svgIcon={VerticalDots} />
     </Button>
-  </div>
+  </GridExample>
 );
 
 export const Sizes: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ width: '15rem' }}>
+  <GridExample>
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Sizes'}
     </Title>
@@ -122,11 +123,11 @@ export const Sizes: ComponentStory<typeof Button> = (args: any) => (
       {args.children}
       <Icon svgIcon={Dog} />
     </Button>
-  </div>
+  </GridExample>
 );
 
 export const Variants: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ width: '15rem' }}>
+  <GridExample>
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Variants'}
     </Title>
@@ -143,11 +144,11 @@ export const Variants: ComponentStory<typeof Button> = (args: any) => (
     <Button {...args} onClick={action('Button clicked')} variant={'borderless'}>
       {args.children}
     </Button>
-  </div>
+  </GridExample>
 );
 
 export const DarkMode: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ minWidth: '15rem' }}>
+  <GridExample>
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'DarkMode'}
     </Title>
@@ -178,11 +179,11 @@ export const DarkMode: ComponentStory<typeof Button> = (args: any) => (
         {args.children}
       </Button>
     </div>
-  </div>
+  </GridExample>
 );
 
 export const Disabled: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ width: '15rem' }}>
+  <GridExample>
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Disabled'}
     </Title>
@@ -205,11 +206,11 @@ export const Disabled: ComponentStory<typeof Button> = (args: any) => (
       <Icon svgIcon={Dog} />
       {'Button long text'}
     </Button>
-  </div>
+  </GridExample>
 );
 
 export const Fluid: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ width: '30rem' }}>
+  <GridExample>
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Fluid'}
     </Title>
@@ -234,11 +235,11 @@ export const Fluid: ComponentStory<typeof Button> = (args: any) => (
       <Icon svgIcon={Dog} />
       {args.children}
     </Button>
-  </div>
+  </GridExample>
 );
 
 export const Ellipsis: ComponentStory<typeof Button> = (args: any) => (
-  <div style={{ width: '10rem' }}>
+  <GridExample>
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Ellipsis'}
     </Title>
@@ -251,7 +252,7 @@ export const Ellipsis: ComponentStory<typeof Button> = (args: any) => (
       <Icon svgIcon={Dog} />
       {'Alt for mye tekst her'}
     </Button>
-  </div>
+  </GridExample>
 );
 
 export const AllVariants: ComponentStory<typeof Button> = (args: any) => (

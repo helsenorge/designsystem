@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import AnchorLink from './AnchorLink';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/AnchorLink',
@@ -21,7 +22,7 @@ export default {
 } as ComponentMeta<typeof AnchorLink>;
 
 export const Default: ComponentStory<typeof AnchorLink> = (args: any) => (
-  <div style={{ width: '20rem' }}>
+  <GridExample>
     <AnchorLink {...args} target={'_self'}>
       {args.children}
     </AnchorLink>
@@ -32,11 +33,11 @@ export const Default: ComponentStory<typeof AnchorLink> = (args: any) => (
         'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
       }
     </AnchorLink>
-  </div>
+  </GridExample>
 );
 
 export const External: ComponentStory<typeof AnchorLink> = (args: any) => (
-  <div style={{ width: '20rem' }}>
+  <GridExample>
     <AnchorLink {...args} target={'_blank'}>
       {args.children}
     </AnchorLink>
@@ -47,11 +48,11 @@ export const External: ComponentStory<typeof AnchorLink> = (args: any) => (
         'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
       }
     </AnchorLink>
-  </div>
+  </GridExample>
 );
 
 export const AsButton: ComponentStory<typeof AnchorLink> = (args: any) => (
-  <div style={{ width: '20rem' }}>
+  <GridExample>
     <p style={{ fontSize: '1.25rem' }}>
       Dette er først en{' '}
       <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
@@ -67,5 +68,5 @@ export const AsButton: ComponentStory<typeof AnchorLink> = (args: any) => (
       </AnchorLink>{' '}
       button-lenke
     </p>
-  </div>
+  </GridExample>
 );
