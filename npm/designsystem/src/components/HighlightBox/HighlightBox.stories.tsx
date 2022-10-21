@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import HighlightBox, { HighlightBoxSize } from './HighlightBox';
 import PdfFile from '../Icons/PdfFile';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/HighlightBox',
@@ -33,15 +34,15 @@ export default {
 } as ComponentMeta<typeof HighlightBox>;
 
 export const Default: ComponentStory<typeof HighlightBox> = (args: any) => (
-  <div>
+  <GridExample>
     <HighlightBox {...args}>{args.children}</HighlightBox>
-  </div>
+  </GridExample>
 );
 
 export const WithIcon: ComponentStory<typeof HighlightBox> = (args: any) => (
-  <div>
+  <GridExample>
     <HighlightBox {...args} svgIcon={PdfFile}>
       {args.children}
     </HighlightBox>
-  </div>
+  </GridExample>
 );

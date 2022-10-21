@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Title from './Title';
 import { allTitleTags, allTitleAppearances } from '../../../.storybook/knobs';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Title',
@@ -31,13 +32,13 @@ export default {
 } as ComponentMeta<typeof Title>;
 
 export const Default: ComponentStory<typeof Title> = (args: any) => (
-  <div style={{ width: '20rem' }}>
+  <GridExample>
     <Title {...args}>{args.children}</Title>
-  </div>
+  </GridExample>
 );
 
 export const AllAppearances: ComponentStory<typeof Title> = (args: any) => (
-  <div>
+  <GridExample>
     <Title {...args} appearance="titleFeature">
       {`${args.children} (feature)`}
     </Title>
@@ -56,5 +57,5 @@ export const AllAppearances: ComponentStory<typeof Title> = (args: any) => (
     <Title {...args} appearance="title5">
       {`${args.children} (title5)`}
     </Title>
-  </div>
+  </GridExample>
 );

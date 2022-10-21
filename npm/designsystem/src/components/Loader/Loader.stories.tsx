@@ -6,6 +6,7 @@ import { allPaletteNames } from '../../../.storybook/knobs';
 import Loader, { Overlay } from './Loader';
 import Title from '../Title/Title';
 import Button from '../Button/Button';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Loader',
@@ -19,30 +20,38 @@ export default {
   },
 } as ComponentMeta<typeof Loader>;
 
-export const Default: ComponentStory<typeof Loader> = (args: any) => <Loader {...args} />;
+export const Default: ComponentStory<typeof Loader> = (args: any) => (
+  <GridExample>
+    <Loader {...args} />
+  </GridExample>
+);
 
 export const AllSizes: ComponentStory<typeof Loader> = (args: any) => (
-  <div style={{ display: 'grid', gridGap: '2rem' }}>
-    <Loader {...args} size={'tiny'} />
-    <Loader {...args} size={'small'} />
-    <Loader {...args} size={'medium'} />
-    <Loader {...args} size={'large'} />
-  </div>
+  <GridExample>
+    <div style={{ display: 'grid', gridGap: '2rem' }}>
+      <Loader {...args} size={'tiny'} />
+      <Loader {...args} size={'small'} />
+      <Loader {...args} size={'medium'} />
+      <Loader {...args} size={'large'} />
+    </div>
+  </GridExample>
 );
 
 export const LoaderIsCentered: ComponentStory<typeof Loader> = (args: any) => (
-  <div style={{ width: 300, background: 'white' }}>
-    <Loader {...args} center />
-  </div>
+  <GridExample>
+    <div style={{ background: 'white' }}>
+      <Loader {...args} center />
+    </div>
+  </GridExample>
 );
 
 export const Inline: ComponentStory<typeof Loader> = (args: any) => (
-  <div>
+  <GridExample>
     <Title htmlMarkup="span" appearance="title1">
       {'Søker'}
     </Title>
     <Loader {...args} color="black" inline size="tiny" />
-  </div>
+  </GridExample>
 );
 
 export const OverlayScreen: ComponentStory<typeof Loader> = (args: any) => (

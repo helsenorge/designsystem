@@ -9,6 +9,7 @@ import LinkList from './LinkList';
 import Icon from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/LinkList',
@@ -40,11 +41,7 @@ export default {
 } as ComponentMeta<typeof LinkList>;
 
 export const Default: ComponentStory<typeof LinkList> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <LinkList {...args}>
       <LinkList.Link>Innhold A-Å</LinkList.Link>
       <LinkList.Link>
@@ -52,28 +49,20 @@ export const Default: ComponentStory<typeof LinkList> = (args: any) => (
         bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
       </LinkList.Link>
     </LinkList>
-  </div>
+  </GridExample>
 );
 
 export const WithIcon: ComponentStory<typeof LinkList> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <LinkList {...args}>
       <LinkList.Link icon={<Icon svgIcon={AlarmClock} />}>Innhold A-Å</LinkList.Link>
       <LinkList.Link icon={<Icon svgIcon={PaperPlane} />}>English</LinkList.Link>
     </LinkList>
-  </div>
+  </GridExample>
 );
 
 export const AsButton: ComponentStory<typeof LinkList> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <LinkList {...args}>
       <LinkList.Link htmlMarkup="button" onClick={action('Link 1 clicked')}>
         Innhold A-Å
@@ -83,5 +72,5 @@ export const AsButton: ComponentStory<typeof LinkList> = (args: any) => (
         bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
       </LinkList.Link>
     </LinkList>
-  </div>
+  </GridExample>
 );

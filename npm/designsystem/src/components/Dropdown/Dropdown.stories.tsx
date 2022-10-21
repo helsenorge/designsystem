@@ -6,6 +6,7 @@ import { action } from '@storybook/addon-actions';
 import Dropdown, { DropdownMode } from './Dropdown';
 import Checkbox from '../Checkbox';
 import RadioButton from '../RadioButton';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Dropdown',
@@ -52,7 +53,7 @@ export default {
 } as ComponentMeta<typeof Dropdown>;
 
 export const RadioButtonChildren: ComponentStory<typeof Dropdown> = (args: any) => (
-  <div style={{ width: '60rem' }}>
+  <GridExample>
     <Dropdown {...args} onToggle={action('onToggle')}>
       <RadioButton label="Valg 1" name="radiobutton" />
       <RadioButton label="Valg 2" name="radiobutton" />
@@ -64,11 +65,11 @@ export const RadioButtonChildren: ComponentStory<typeof Dropdown> = (args: any) 
       <RadioButton label="Valg 8" name="radiobutton" />
       <RadioButton label="Valg 9" name="radiobutton" />
     </Dropdown>
-  </div>
+  </GridExample>
 );
 
 export const CheckboxChildren: ComponentStory<typeof Dropdown> = (args: any) => (
-  <div style={{ width: '60rem' }}>
+  <GridExample>
     <Dropdown {...args} onToggle={action('onToggle')}>
       <Checkbox label="Valg 1" name="checkbox" />
       <Checkbox label="Valg 2" name="checkbox" />
@@ -80,11 +81,11 @@ export const CheckboxChildren: ComponentStory<typeof Dropdown> = (args: any) => 
       <Checkbox label="Valg 8" name="checkbox" />
       <Checkbox label="Valg 9" name="checkbox" />
     </Dropdown>
-  </div>
+  </GridExample>
 );
 
 export const CustomContent: ComponentStory<typeof Dropdown> = (args: any) => (
-  <div style={{ width: '60rem' }}>
+  <GridExample>
     <Dropdown {...args} onToggle={action('onToggle')}>
       <div style={{ padding: '1rem' }}>
         {
@@ -92,5 +93,5 @@ export const CustomContent: ComponentStory<typeof Dropdown> = (args: any) => (
         }
       </div>
     </Dropdown>
-  </div>
+  </GridExample>
 );

@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { allPaletteNames } from '../../../.storybook/knobs';
 
 import Logo from './Logo';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Logo',
@@ -25,6 +26,14 @@ export default {
   },
 } as ComponentMeta<typeof Logo>;
 
-export const Default: ComponentStory<typeof Logo> = (args: any) => <Logo {...args} />;
+export const Default: ComponentStory<typeof Logo> = (args: any) => (
+  <GridExample>
+    <Logo {...args} />
+  </GridExample>
+);
 
-export const Byline: ComponentStory<typeof Logo> = (args: any) => <Logo {...args} byline />;
+export const Byline: ComponentStory<typeof Logo> = (args: any) => (
+  <GridExample>
+    <Logo {...args} byline />
+  </GridExample>
+);

@@ -7,6 +7,7 @@ import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
 import Icon from '../Icons';
 import HelpSign from '../Icons/HelpSign';
 import loremText from '../../utils/loremtext';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/HelpBubble',
@@ -33,7 +34,7 @@ export const Default: ComponentStory<typeof HelpBubble> = (args: any) => {
   const controllerRef = useRef<SVGSVGElement>(null);
 
   return (
-    <div>
+    <GridExample>
       <span>{loremText + loremText + loremText + loremText}</span>
       <div style={{ position: 'relative', display: 'inline' }}>
         <Icon ref={controllerRef} svgIcon={HelpSign} />
@@ -42,7 +43,7 @@ export const Default: ComponentStory<typeof HelpBubble> = (args: any) => {
         </HelpBubble>
       </div>
       <span>{loremText + loremText + loremText + loremText}</span>
-    </div>
+    </GridExample>
   );
 };
 
@@ -50,7 +51,7 @@ export const OnText: ComponentStory<typeof HelpBubble> = (args: any) => {
   const controllerRef = useRef<HTMLSpanElement>(null);
 
   return (
-    <div>
+    <GridExample>
       <span>{loremText + loremText + loremText + loremText}</span>
       <div style={{ position: 'relative', display: 'inline' }}>
         <span ref={controllerRef} style={{ display: 'inline-block', color: 'red' }}>
@@ -61,6 +62,6 @@ export const OnText: ComponentStory<typeof HelpBubble> = (args: any) => {
         </HelpBubble>
       </div>
       <span>{loremText + loremText + loremText + loremText}</span>
-    </div>
+    </GridExample>
   );
 };

@@ -13,6 +13,7 @@ import AlarmClock from '../Icons/AlarmClock';
 import Title from '../Title/Title';
 
 import { longLoremText } from '../../utils/loremtext';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/ExpanderList',
@@ -59,11 +60,7 @@ export default {
 } as ComponentMeta<typeof ExpanderList>;
 
 export const Default: ComponentStory<typeof ExpanderList> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <ExpanderList {...args}>
       <ExpanderList.Expander title="Kognitiv terapi">
         Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger
@@ -94,16 +91,12 @@ export const Default: ComponentStory<typeof ExpanderList> = (args: any) => (
       <li>{longLoremText}</li>
       <li>{longLoremText}</li>
     </ul>
-  </div>
+  </GridExample>
 );
 
 export const MultipleOpenExpanders: ComponentStory<typeof ExpanderList> = (args: any) => {
   return (
-    <div
-      style={{
-        width: '40rem',
-      }}
-    >
+    <GridExample>
       <ExpanderList {...args}>
         <ExpanderList.Expander title="Kognitiv terapi" expanded>
           Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger
@@ -119,16 +112,12 @@ export const MultipleOpenExpanders: ComponentStory<typeof ExpanderList> = (args:
           hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.
         </ExpanderList.Expander>
       </ExpanderList>
-    </div>
+    </GridExample>
   );
 };
 
 export const WithIcon: ComponentStory<typeof ExpanderList> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <ExpanderList {...args}>
       <ExpanderList.Expander icon={<Icon svgIcon={Avatar} />} title="Kognitiv terapi">
         Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger
@@ -144,15 +133,11 @@ export const WithIcon: ComponentStory<typeof ExpanderList> = (args: any) => (
         hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.
       </ExpanderList.Expander>
     </ExpanderList>
-  </div>
+  </GridExample>
 );
 
 export const WithLinkList: ComponentStory<typeof ExpanderList> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <ExpanderList {...args}>
       <ExpanderList.Expander title="Kognitiv terapi">
         <LinkList color="cherry">
@@ -162,15 +147,11 @@ export const WithLinkList: ComponentStory<typeof ExpanderList> = (args: any) => 
         </LinkList>
       </ExpanderList.Expander>
     </ExpanderList>
-  </div>
+  </GridExample>
 );
 
 export const AsAccordion: ComponentStory<typeof ExpanderList> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <p>
       Nær 1,6 million mennesker i Norge tilhører grupper med økt risiko for komplikasjoner av influensa. Det er anslått at det i
       gjennomsnitt dør 900 personer i Norge årlig som følge av sykdommen. Influensavaksine kan beskytte mange av disse.
@@ -255,32 +236,24 @@ export const AsAccordion: ComponentStory<typeof ExpanderList> = (args: any) => (
         </p>
       </ExpanderList.Expander>
     </ExpanderList>
-  </div>
+  </GridExample>
 );
 
 export const WithCallback: ComponentStory<typeof ExpanderList> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <ExpanderList {...args}>
       <ExpanderList.Expander title="Kognitiv terapi" onExpand={isExpanded => console.log(isExpanded)}>
         <p>Sjekk nettleserkonsollen</p>
       </ExpanderList.Expander>
     </ExpanderList>
-  </div>
+  </GridExample>
 );
 
 export const InteractiveChildren: ComponentStory<typeof ExpanderList> = (args: any) => {
   const [text, setText] = React.useState('knapp');
   const [isExpanded, setIsExpanded] = React.useState(false);
   return (
-    <div
-      style={{
-        width: '40rem',
-      }}
-    >
+    <GridExample>
       <ExpanderList>
         <ExpanderList.Expander title={'Expander 1'}>
           <button onClick={() => setText('oppdatert knapp')}>{text}</button>
@@ -291,16 +264,12 @@ export const InteractiveChildren: ComponentStory<typeof ExpanderList> = (args: a
       </ExpanderList>
 
       <button onClick={() => setIsExpanded(!isExpanded)}>{isExpanded ? 'Lukk' : 'Åpne'} Expander 2</button>
-    </div>
+    </GridExample>
   );
 };
 
 export const JsxTitle: ComponentStory<typeof ExpanderList> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <ExpanderList>
       <ExpanderList.Expander
         title={
@@ -315,5 +284,5 @@ export const JsxTitle: ComponentStory<typeof ExpanderList> = (args: any) => (
       </ExpanderList.Expander>
       <ExpanderList.Expander title={<Title appearance="title3">Fastlege</Title>}>{'Hei'}</ExpanderList.Expander>
     </ExpanderList>
-  </div>
+  </GridExample>
 );

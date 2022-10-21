@@ -3,6 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import NotificationPanel from './NotificationPanel';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/NotificationPanel',
@@ -38,24 +39,24 @@ export default {
 } as ComponentMeta<typeof NotificationPanel>;
 
 export const Default: ComponentStory<typeof NotificationPanel> = (args: any) => (
-  <div style={{ width: args.fluid ? '100vw' : '1400px' }}>
+  <GridExample>
     <NotificationPanel {...args}>
       {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
       <a href="/test" target="_blank" rel="noopener noreferrer">
         {'Les mer'}
       </a>
     </NotificationPanel>
-  </div>
+  </GridExample>
 );
 
 export const SimplifiedLabelOnly: ComponentStory<typeof NotificationPanel> = (args: any) => (
-  <div style={{ width: args.fluid ? '100vw' : '80rem' }}>
+  <GridExample>
     <NotificationPanel {...args} />
-  </div>
+  </GridExample>
 );
 
 export const AllVariants: ComponentStory<typeof NotificationPanel> = (args: any) => (
-  <div className="container">
+  <GridExample>
     <div className="row">
       <div className={'col-12'}>
         <NotificationPanel {...args} variant={'info'}>
@@ -104,5 +105,5 @@ export const AllVariants: ComponentStory<typeof NotificationPanel> = (args: any)
         </NotificationPanel>
       </div>
     </div>
-  </div>
+  </GridExample>
 );

@@ -3,17 +3,18 @@ import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { useResizeObserver } from './useResizeObserver';
+import GridExample from '../components/GridExample';
 
 const ResizeObserverExample: React.FC = () => {
   const ref = useRef<HTMLPreElement>(null);
   const size = useResizeObserver(ref);
 
   return (
-    <div style={{ width: '50vw' }}>
+    <GridExample>
       <pre ref={ref} style={{ width: '100%', border: '1px solid black', padding: '1rem' }}>
         {JSON.stringify(size?.toJSON(), null, 2)}
       </pre>
-    </div>
+    </GridExample>
   );
 };
 
