@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
 import { FormVariant } from '../../constants';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Validation',
@@ -18,51 +19,31 @@ export default {
 } as ComponentMeta<typeof FormExample>;
 
 export const FormGroup: ComponentStory<typeof FormExample> = (args: any) => (
-  <div
-    style={{
-      width: '50vw',
-    }}
-  >
+  <GridExample>
     <FormExample {...args} exampleType={FormExampleVariants.formgroup} />
-  </div>
+  </GridExample>
 );
 
 export const Checkbox: ComponentStory<typeof FormExample> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <FormExample {...args} exampleType={FormExampleVariants.checkbox} />
-  </div>
+  </GridExample>
 );
 
 export const Radiobutton: ComponentStory<typeof FormExample> = (args: any) => (
-  <div
-    style={{
-      width: '40rem',
-    }}
-  >
+  <GridExample>
     <FormExample {...args} exampleType={FormExampleVariants.radiobutton} />
-  </div>
+  </GridExample>
 );
 
 export const Textarea: ComponentStory<typeof FormExample> = (args: any) => (
-  <div
-    style={{
-      width: '90vw',
-    }}
-  >
+  <GridExample>
     <FormExample {...args} exampleType={FormExampleVariants.textarea} />
-  </div>
+  </GridExample>
 );
 
 export const Input: ComponentStory<typeof FormExample> = (args: any) => (
-  <div
-    style={{
-      width: '90vw',
-    }}
-  >
+  <GridExample>
     <FormExample {...args} exampleType={FormExampleVariants.input} />
-  </div>
+  </GridExample>
 );

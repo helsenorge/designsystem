@@ -61,6 +61,8 @@ $dotOffset: calc($progressbarPaddingX + $dotSize / 2);
   }
 
   &__number {
+    min-width: 2.5rem;
+    text-align: right;
     margin-left: getSpacer(xs);
     font-size: $font-size-xs;
     line-height: $lineheight-size-xs;
@@ -78,6 +80,12 @@ $dotOffset: calc($progressbarPaddingX + $dotSize / 2);
     transition: background-color $transition;
     &--completed {
       background-color: $blueberry50;
+    }
+    &--left {
+      left: $dotOffset;
+    }
+    &--right {
+      right: $dotOffset;
     }
   }
 }

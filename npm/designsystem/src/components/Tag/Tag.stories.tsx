@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 
 import Tag, { TagAction, TagSize, TagVariant } from './Tag';
 import LawBook from '../Icons/LawBook';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Tag',
@@ -38,23 +39,23 @@ export default {
 } as ComponentMeta<typeof Tag>;
 
 export const Default: ComponentStory<typeof Tag> = (args: any) => (
-  <div style={{ width: '40rem' }}>
+  <GridExample>
     <Tag {...args}>{args.children}</Tag>
-  </div>
+  </GridExample>
 );
 
 export const WithIcon: ComponentStory<typeof Tag> = (args: any) => (
-  <div style={{ width: '40rem' }}>
+  <GridExample>
     <Tag {...args} svgIcon={LawBook}>
       {args.children}
     </Tag>
-  </div>
+  </GridExample>
 );
 
 export const Action: ComponentStory<typeof Tag> = (args: any) => (
-  <div style={{ width: '40rem' }}>
+  <GridExample>
     <Tag {...args} svgIcon={LawBook} onClick={action('Tag clicked')}>
       {args.children}
     </Tag>
-  </div>
+  </GridExample>
 );

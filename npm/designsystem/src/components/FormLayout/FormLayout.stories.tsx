@@ -6,6 +6,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import RadioButton from '../RadioButton/RadioButton';
 import FormGroup from '../FormGroup';
 import FormLayout, { FormLayoutColumns } from './FormLayout';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/FormLayout',
@@ -24,11 +25,7 @@ export default {
 } as ComponentMeta<typeof FormLayout>;
 
 export const CheckboxChildren: ComponentStory<typeof FormLayout> = (args: any) => (
-  <div
-    style={{
-      width: '90vw',
-    }}
-  >
+  <GridExample>
     <FormGroup title={'Her kan du styre maks antall kolonner'} legend={'Antallet er basert på hvor mange som har plass'}>
       <FormLayout {...args}>
         <Checkbox inputId={'Checkbox1'} label={'Checkbox hei'} />
@@ -39,15 +36,11 @@ export const CheckboxChildren: ComponentStory<typeof FormLayout> = (args: any) =
         <Checkbox inputId={'Checkbox6'} label={'Checkbox jadada'} />
       </FormLayout>
     </FormGroup>
-  </div>
+  </GridExample>
 );
 
 export const RadioButtonChildren: ComponentStory<typeof FormGroup> = (args: any) => (
-  <div
-    style={{
-      width: '90vw',
-    }}
-  >
+  <GridExample>
     <FormGroup
       title={'Her kan du styre maks antall kolonner'}
       legend={'Antallet er basert på hvor mange som har plass'}
@@ -66,5 +59,5 @@ export const RadioButtonChildren: ComponentStory<typeof FormGroup> = (args: any)
         <RadioButton inputId={'RadioButton6'} label={'RadioButton 6'} />
       </FormLayout>
     </FormGroup>
-  </div>
+  </GridExample>
 );

@@ -6,6 +6,7 @@ import Expander, { ExpanderSize } from './Expander';
 import Loader from '../Loader';
 import { Overlay } from '../Loader/Loader';
 import LawBook from '../Icons/LawBook';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Expander',
@@ -64,7 +65,7 @@ setTimeout(() => {
 }, 100);
 
 export const DefaultSmall: ComponentStory<typeof Expander> = (args: any) => (
-  <div style={{ width: '40rem' }}>
+  <GridExample>
     <p>
       {
         'I selvhjelpsprogrammet Co-mestring lærer du om milde til moderate psykiske reaksjoner på korona-situasjonen, og du vil få kunnskap og verktøy for å håndtere dette. Du får daglig lese tekst og gjøre øvelser som du kan bruke for å øve på å håndtere hverdagen.I selvhjelpsprogrammet Co-mestring lærer du om milde til moderate psykiske reaksjoner på korona-situasjonen, og du vil få kunnskap og verktøy for å håndtere dette. Du får daglig lese tekst og gjøre øvelser som du kan bruke for å øve på å håndtere hverdagen.'
@@ -132,35 +133,35 @@ export const DefaultSmall: ComponentStory<typeof Expander> = (args: any) => (
         'I selvhjelpsprogrammet Co-mestring lærer du om milde til moderate psykiske reaksjoner på korona-situasjonen, og du vil få kunnskap og verktøy for å håndtere dette. Du får daglig lese tekst og gjøre øvelser som du kan bruke for å øve på å håndtere hverdagen.I selvhjelpsprogrammet Co-mestring lærer du om milde til moderate psykiske reaksjoner på korona-situasjonen, og du vil få kunnskap og verktøy for å håndtere dette. Du får daglig lese tekst og gjøre øvelser som du kan bruke for å øve på å håndtere hverdagen.'
       }
     </p>
-  </div>
+  </GridExample>
 );
 
 export const Large: ComponentStory<typeof Expander> = (args: any) => (
-  <div style={{ width: '40rem' }}>
+  <GridExample>
     <Expander {...args}>{args.children}</Expander>
-  </div>
+  </GridExample>
 );
 
 export const WithIcon: ComponentStory<typeof Expander> = (args: any) => (
-  <div style={{ width: '40rem' }}>
+  <GridExample>
     <Expander {...args} svgIcon={LawBook}>
       {args.children}
     </Expander>
-  </div>
+  </GridExample>
 );
 
 export const WithLoader: ComponentStory<typeof Expander> = (args: any) => (
-  <div style={{ width: '40rem' }}>
+  <GridExample>
     <Expander {...args} svgIcon={LawBook}>
       <Loader overlay={Overlay.parent} />
     </Expander>
-  </div>
+  </GridExample>
 );
 
 export const WithCallback: ComponentStory<typeof Expander> = (args: any) => (
-  <div style={{ width: '40rem' }}>
+  <GridExample>
     <Expander {...args} svgIcon={LawBook} onExpand={isExpanded => console.log(isExpanded)}>
       <p>Sjekk nettleserkonsollen</p>
     </Expander>
-  </div>
+  </GridExample>
 );

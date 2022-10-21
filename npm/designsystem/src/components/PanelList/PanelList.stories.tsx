@@ -3,6 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Panel, { PanelVariant } from '../Panel';
 import PanelList from '../PanelList';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/PanelList',
@@ -17,7 +18,7 @@ export default {
 } as ComponentMeta<typeof PanelList>;
 
 export const Default: ComponentStory<typeof PanelList> = (args: any) => (
-  <div style={{ width: '90vw', padding: '1vw', backgroundColor: 'white' }}>
+  <GridExample>
     <PanelList {...args}>
       <Panel title="Overskrift 1">
         {
@@ -40,5 +41,5 @@ export const Default: ComponentStory<typeof PanelList> = (args: any) => (
         }
       </Panel>
     </PanelList>
-  </div>
+  </GridExample>
 );

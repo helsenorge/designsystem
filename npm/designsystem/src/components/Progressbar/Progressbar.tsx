@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { useSize } from '../../hooks/useSize';
 
 import DotList from './DotList';
+import Dot from './Dot';
 import { getMaximumDots, getDistanceBetweenDots, getMarkerPosition, getAllowedValues, getValidatedProps } from './utils';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { AnalyticsId } from '../../constants';
@@ -47,7 +48,7 @@ const Progressbar: React.FC<ProgressbarProps> = ({ ariaLabelledById, ariaLabel, 
   const distanceBetweenDots = getDistanceBetweenDots(progressbarWidth, allowedValues.length);
   const markerPosition = getMarkerPosition(distanceBetweenDots, index);
 
-  const showDots = allowedValues.length <= maximumDots;
+  const showAllDots = allowedValues.length <= maximumDots;
   const isCompleted = validatedValue === validatedMax;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
@@ -68,10 +69,16 @@ const Progressbar: React.FC<ProgressbarProps> = ({ ariaLabelledById, ariaLabel, 
         data-testid={testId}
         data-analyticsid={AnalyticsId.Progressbar}
       >
-        {showDots && <DotList allowedValues={allowedValues} currentValue={validatedValue} distanceBetweenDots={distanceBetweenDots} />}
+        {showAllDots && <DotList allowedValues={allowedValues} currentValue={validatedValue} distanceBetweenDots={distanceBetweenDots} />}
+        {!showAllDots && (
+          <>
+            <Dot completed={validatedValue > validatedMin} position="left" />
+            <Dot completed={validatedValue === validatedMax} position="right" />
+          </>
+        )}
         <span className={styles.progressbar__marker} style={{ left: `${markerPosition}px` }} />
       </span>
-      {!showDots && <span className={styles.progressbar__number}>{`${validatedValue}/${validatedMax}`}</span>}
+      {!showAllDots && <span className={styles.progressbar__number}>{`${validatedValue}/${validatedMax}`}</span>}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Tooltip from './Tooltip';
 import TooltipExample from '../TooltipExample';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Tooltip',
@@ -21,7 +22,7 @@ export default {
 } as ComponentMeta<typeof Tooltip>;
 
 export const Default: ComponentStory<typeof Tooltip> = (args: any) => (
-  <div>
+  <GridExample>
     <TooltipExample {...args} />
-  </div>
+  </GridExample>
 );

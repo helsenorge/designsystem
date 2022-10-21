@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Breakpoint } from '../../hooks/useBreakpoint';
 import { BreakpointProps, withBreakpoint } from './withBreakpoint';
+import GridExample from '../../components/GridExample';
 
 const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
   const description = breakpoint && `Breakpoint er nå ${Breakpoint[breakpoint]} (${breakpoint}px)`;
@@ -11,9 +12,9 @@ const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
   console.log(description);
 
   return (
-    <div>
+    <GridExample>
       <p>{description}</p>
-    </div>
+    </GridExample>
   );
 };
 
