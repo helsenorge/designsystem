@@ -183,10 +183,10 @@ table tbody tr {
 
   height: 3.625rem;
   font-size: $font-size-sm;
-  line-height: 1.5rem;
+  line-height: $lineheight-size-xs;
   text-align: left;
   vertical-align: bottom;
-  font-weight: 200;
+  font-weight: 700;
   padding: 0.5rem 0.75rem;
   border: 1px solid $neutral500;
 
@@ -212,8 +212,8 @@ table tbody tr {
     padding: 1rem;
     height: 5.5rem;
     font-size: $font-size-md;
-    line-height: 1.75rem;
-    font-weight: 200;
+    line-height: $lineheight-size-sm;
+    font-weight: 700;
   }
 }
 
