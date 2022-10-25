@@ -1,4 +1,4 @@
-import writeFileSync from "fs";
+import { writeFileSync } from 'fs';
 class IconGenerator {
   constructor(browser, page) {
     this.browser = browser;
@@ -6,34 +6,29 @@ class IconGenerator {
 
     this.list = {};
     this.iconGenerator = [];
-    this.url =
-      "https://confluence.atlassian.nhn.no/display/HR2/Ikoner+og+bruk+i+blokker";
+    this.url = 'https://confluence.atlassian.nhn.no/display/HR2/Ikoner+og+bruk+i+blokker';
   }
 
   // Henter ut alle ikonnavn, og kategorier fra confluence og legger det inne i filen AdditionalIconInformation.js
   async main() {
-    await this.page.goto(this.url, { waitUntil: "domcontentloaded" });
-    await this.page.waitFor(40000);
+    await this.page.goto(this.url, { waitUntil: 'domcontentloaded' });
+    await this.page.waitForTimeout(40000);
 
     this.iconGenerator = await this.page.evaluate(() =>
-      Array.from(
-        document.querySelectorAll(
-          "tbody > tr > td:nth-child(2), td:nth-child(3), td:nth-child(6), td:nth-child(7)"
-        )
-      ).map((item) => item.innerText)
+      Array.from(document.querySelectorAll('tbody > tr > td:nth-child(2), td:nth-child(3), td:nth-child(6), td:nth-child(7)')).map(
+        item => item.innerText
+      )
     );
 
     let counter = 0;
-    let key = "";
+    let key = '';
 
     try {
       this.iconGenerator.forEach((item, index) => {
         item = item.trim();
         if (counter === 0) {
           key = this.iconGenerator[index + 1].trim().toLowerCase();
-          this.list[key] = this.list[key]
-            ? this.list[key]
-            : { alternativeName: item };
+          this.list[key] = this.list[key] ? this.list[key] : { alternativeName: item };
           counter++;
           return;
         }
@@ -49,8 +44,8 @@ class IconGenerator {
             categories: this.list[key].categories
               ? this.list[key].categories.includes(item)
                 ? this.list[key].categories
-                : this.list[key].categories.concat(", " + item)
-              : item || "",
+                : this.list[key].categories.concat(', ' + item)
+              : item || '',
           };
           counter++;
           return;
@@ -62,7 +57,7 @@ class IconGenerator {
                 ...this.list[key],
                 categories: this.list[key].categories.includes(item)
                   ? this.list[key].categories
-                  : this.list[key].categories.concat(", " + item),
+                  : this.list[key].categories.concat(', ' + item),
               };
             }
           } else {
@@ -85,11 +80,11 @@ class IconGenerator {
     try {
       console.log(this.list);
       writeFileSync(
-        "../designsystem/src/components/Icons/AdditionalIconInformation.js",
-        "module.exports = " + JSON.stringify(this.list)
+        '../../npm/designsystem/src/components/Icons/AdditionalIconInformation.js',
+        'export default ' + JSON.stringify(this.list)
       );
     } catch (e) {
-      console.log("ERROR", e);
+      console.log('ERROR', e);
     }
   }
 }
