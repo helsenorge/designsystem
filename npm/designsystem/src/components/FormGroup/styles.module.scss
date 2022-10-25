@@ -9,48 +9,19 @@
       color: $white;
     }
   }
-
-  &__errors {
-    font-size: $font-size-sm;
-    font-weight: 600;
-    color: $cherry500;
-    margin-top: 0;
-  }
 }
 
 .form-group-wrapper:last-of-type {
   padding-bottom: 0;
 }
 
-.form-group {
-  padding: 0 0 getSpacer(m);
-
-  @media (min-width: map-get($grid-breakpoints, md)) {
-    padding: 0 0 getSpacer(l);
-  }
-
-  &--invalid {
-    padding-top: getSpacer(s);
-    margin-left: getSpacer(xs) * -1;
-    margin-right: getSpacer(xs) * -1;
-    padding-left: getSpacer(2xs);
-    padding-right: getSpacer(xs);
-    background-color: $cherry100;
-    border-left: getSpacer(3xs) solid $cherry500;
-
-    @media (min-width: map-get($grid-breakpoints, md)) {
-      margin-left: (getSpacer(m) + 0.25rem) * -1;
-      margin-right: (getSpacer(m) + 0.25rem) * -1;
-      padding-left: getSpacer(m);
-      padding-right: getSpacer(m);
-    }
-  }
-}
-
 .field-set {
   border: none;
   padding: 0;
   margin: 0;
+  > div {
+    padding-bottom: 0;
+  }
 
   &__legend {
     font-size: $font-size-md;

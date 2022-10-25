@@ -107,8 +107,11 @@ describe('Gitt at FormGroup skal vises', (): void => {
       expect(error).toBeVisible();
 
       const formGroup = screen.getByRole('group').parentElement;
-      const formGroupWrapper = formGroup.parentElement;
-      expect(formGroup.className).toBe('form-group form-group--invalid');
+      const errorWrapper = formGroup?.parentElement;
+      const formGroupWrapper = errorWrapper?.parentElement;
+
+      expect(formGroup.className).toBe('form-group');
+      expect(errorWrapper.className).toBe('error-wrapper error-wrapper--with-error');
       expect(formGroupWrapper.className).toBe('form-group-wrapper form-group-wrapper--invalid');
     });
   });

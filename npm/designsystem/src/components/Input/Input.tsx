@@ -7,6 +7,8 @@ import Icon, { IconSize, SvgIcon } from '../Icons';
 import { getColor } from '../../theme/currys';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 
+import ErrorWrapper from '../ErrorWrapper';
+
 import styles from './styles.module.scss';
 
 export interface InputProps
@@ -97,9 +99,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const bigForm = variant === FormVariant.bigform;
   const isTransparent = transparent && mode !== FormMode.ondark && !onError;
 
-  const inputWrapperClass = cn(styles['input-wrapper'], {
-    [styles['input-wrapper--invalid']]: errorText,
-  });
+  const inputWrapperClass = cn(styles['input-wrapper']);
 
   const labelWrapperClass = cn(styles['input-wrapper__label-wrapper'], {
     [styles['input-wrapper__label-wrapper--on-dark']]: onDark,
@@ -139,33 +139,35 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
 
   return (
-    <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass}>
-      {label && (
-        <div className={labelWrapperClass}>
-          <label htmlFor={inputId}>{label}</label>
-          {afterLabelChildren && <div className={styles['input-wrapper__after-label-children']}>{afterLabelChildren}</div>}
+    <ErrorWrapper errorText={errorText}>
+      <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass}>
+        {label && (
+          <div className={labelWrapperClass}>
+            <label htmlFor={inputId}>{label}</label>
+            {afterLabelChildren && <div className={styles['input-wrapper__after-label-children']}>{afterLabelChildren}</div>}
+          </div>
+        )}
+        {belowLabelChildren && <div>{belowLabelChildren}</div>}
+        <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>
+          {!iconRight && renderIcon()}
+          <input
+            name={name}
+            type={type}
+            defaultValue={defaultValue}
+            id={inputId}
+            className={inputClass}
+            ref={ref}
+            aria-invalid={!!onError}
+            disabled={disabled}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            autoComplete={autoComplete || 'off'}
+            required={required}
+          />
+          {iconRight && renderIcon()}
         </div>
-      )}
-      {belowLabelChildren && <div>{belowLabelChildren}</div>}
-      <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>
-        {!iconRight && renderIcon()}
-        <input
-          name={name}
-          type={type}
-          defaultValue={defaultValue}
-          id={inputId}
-          className={inputClass}
-          ref={ref}
-          aria-invalid={!!onError}
-          disabled={disabled}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          autoComplete={autoComplete || 'off'}
-          required={required}
-        />
-        {iconRight && renderIcon()}
       </div>
-    </div>
+    </ErrorWrapper>
   );
 });
 
