@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import { FormMode, AnalyticsId } from '../../constants';
 import { uuid } from '../../utils/uuid';
 import { AVERAGE_CHARACTER_WIDTH_PX } from '../Input';
+import ErrorWrapper from '../ErrorWrapper';
 
 interface TextareaProps
   extends Pick<
@@ -120,7 +121,6 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
 
   const textareaWrapperClass = cn(styles.textarea, {
     [styles['textarea--gutterBottom']]: gutterBottom,
-    [styles[`textarea--invalid`]]: errorText,
   });
 
   const labelWrapperClass = cn(styles['textarea__label-wrapper'], {
@@ -160,38 +160,40 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
 
   return (
-    <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
-      {label && (
-        <div className={labelWrapperClass}>
-          <label htmlFor={textareaId}>{label}</label>
-          {afterLabelChildren && <div className={styles['textarea__after-label-children']}>{afterLabelChildren}</div>}
+    <ErrorWrapper errorText={errorText}>
+      <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
+        {label && (
+          <div className={labelWrapperClass}>
+            <label htmlFor={textareaId}>{label}</label>
+            {afterLabelChildren && <div className={styles['textarea__after-label-children']}>{afterLabelChildren}</div>}
+          </div>
+        )}
+        {belowLabelChildren && <div>{belowLabelChildren}</div>}
+        <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
+          <textarea
+            rows={rows}
+            defaultValue={defaultValue}
+            id={textareaId}
+            className={textareaClass}
+            ref={ref}
+            onChange={handleChange}
+            aria-invalid={!!onError}
+            autoFocus={autoFocus}
+            disabled={disabled}
+            name={name}
+            autoComplete={autoComplete}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            required={required}
+          />
         </div>
-      )}
-      {belowLabelChildren && <div>{belowLabelChildren}</div>}
-      <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
-        <textarea
-          rows={rows}
-          defaultValue={defaultValue}
-          id={textareaId}
-          className={textareaClass}
-          ref={ref}
-          onChange={handleChange}
-          aria-invalid={!!onError}
-          autoFocus={autoFocus}
-          disabled={disabled}
-          name={name}
-          autoComplete={autoComplete}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          required={required}
-        />
+        {max && (
+          <div aria-live={ariaLevel} aria-atomic={'true'} className={counterTextClass} style={{ maxWidth }}>
+            <p>{`${textareaInput.toString().length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
+          </div>
+        )}
       </div>
-      {max && (
-        <div aria-live={ariaLevel} aria-atomic={'true'} className={counterTextClass} style={{ maxWidth }}>
-          <p>{`${textareaInput.toString().length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
-        </div>
-      )}
-    </div>
+    </ErrorWrapper>
   );
 });
 

@@ -36,9 +36,9 @@ describe('Gitt at Validation skal vises', () => {
       const errorSummary = screen.getByText('Sjekk at alt er riktig utfylt');
 
       expect(error.length).toBe(2);
-      expect(error[0].className).toBe('form-group-wrapper__errors');
+      expect(error[0].className).toBe('error-wrapper__errors');
       expect(error2).toBeVisible();
-      expect(error2.className).toBe('form-group-wrapper__errors');
+      expect(error2.className).toBe('error-wrapper__errors');
       expect(errorSummary).toBeVisible();
       expect(errorSummary.className).toBe('validation__errors');
     });

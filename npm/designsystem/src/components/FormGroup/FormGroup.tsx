@@ -9,6 +9,7 @@ import RadioButton, { RadioButtonProps } from '../RadioButton/RadioButton';
 import Input, { InputProps } from '../Input/Input';
 import Title from '../Title';
 import FormLayout, { FormLayoutProps } from '../FormLayout';
+import ErrorWrapper from '../ErrorWrapper';
 
 export type FormGroupTags = 'fieldset' | 'div';
 
@@ -51,12 +52,8 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     [formGroupStyles['form-group-wrapper__title--on-dark']]: onDark && !error,
     [formGroupStyles['form-group-wrapper__title--bigform']]: bigform,
   });
-  const formGroupClasses = classNames(formGroupStyles['form-group'], {
-    [formGroupStyles['form-group--invalid']]: error,
-  });
-  const errorStyles = classNames(formGroupStyles['form-group-wrapper__errors'], {
-    [formGroupStyles['form-group-wrapper__errors--bigform']]: bigform,
-  });
+  const formGroupClasses = classNames(formGroupStyles['form-group']);
+
   const legendClasses = classNames(formGroupStyles['field-set__legend'], {
     [formGroupStyles['field-set__legend--on-dark']]: onDark && !error,
     [formGroupStyles['field-set__legend--bigform']]: bigform,
@@ -103,25 +100,22 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
           {props.title}
         </Title>
       )}
-      <div className={formGroupClasses}>
-        {error && (
-          <p role={'alert'} className={errorStyles}>
-            {error}
-          </p>
-        )}
-        {htmlMarkup === 'div' && (
-          <div id={props.title} className={formGroupStyles['field-set']}>
-            {props.legend && <h5 className={legendClasses}>{props.legend}</h5>}
-            {React.Children.map(props.children, mapFormComponent)}
-          </div>
-        )}
-        {htmlMarkup === 'fieldset' && (
-          <fieldset name={props.title} className={formGroupStyles['field-set']}>
-            {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
-            {React.Children.map(props.children, mapFormComponent)}
-          </fieldset>
-        )}
-      </div>
+      <ErrorWrapper errorText={error}>
+        <div className={formGroupClasses}>
+          {htmlMarkup === 'div' && (
+            <div id={props.title} className={formGroupStyles['field-set']}>
+              {props.legend && <h5 className={legendClasses}>{props.legend}</h5>}
+              {React.Children.map(props.children, mapFormComponent)}
+            </div>
+          )}
+          {htmlMarkup === 'fieldset' && (
+            <fieldset name={props.title} className={formGroupStyles['field-set']}>
+              {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
+              {React.Children.map(props.children, mapFormComponent)}
+            </fieldset>
+          )}
+        </div>
+      </ErrorWrapper>
     </div>
   );
 });

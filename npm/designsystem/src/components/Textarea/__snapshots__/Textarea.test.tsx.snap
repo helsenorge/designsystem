@@ -3,27 +3,31 @@
 exports[`Gitt at Textarea skal vises Når Textarea rendres Så vises Textarea 1`] = `
 <div>
   <div
-    class="textarea"
-    data-analyticsid="textarea"
+    class="error-wrapper"
   >
     <div
-      class="textarea__label-wrapper"
+      class="textarea"
+      data-analyticsid="textarea"
     >
-      <label
-        for="test"
+      <div
+        class="textarea__label-wrapper"
       >
-        Skriv din historie
-      </label>
-    </div>
-    <div
-      class="content-wrapper"
-    >
-      <textarea
-        aria-invalid="false"
-        class="content-wrapper__input"
-        id="test"
-        rows="3"
-      />
+        <label
+          for="test"
+        >
+          Skriv din historie
+        </label>
+      </div>
+      <div
+        class="content-wrapper"
+      >
+        <textarea
+          aria-invalid="false"
+          class="content-wrapper__input"
+          id="test"
+          rows="3"
+        />
+      </div>
     </div>
   </div>
 </div>

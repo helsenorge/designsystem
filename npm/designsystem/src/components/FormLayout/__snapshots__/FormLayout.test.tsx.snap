@@ -15,114 +15,118 @@ exports[`Gitt at FormLayout skal vises Når FormLayout rendres Så vises FormLay
       One amazing title
     </h4>
     <div
-      class="form-group"
+      class="error-wrapper"
     >
-      <fieldset
-        class="field-set"
-        name="One amazing title"
+      <div
+        class="form-group"
       >
-        <legend
-          class="field-set__legend"
+        <fieldset
+          class="field-set"
+          name="One amazing title"
         >
-          Check out these checkboxes!
-        </legend>
-        <div
-          class="form-layout-container"
-          data-analyticsid="form-layout"
-          style="--min-col-width: 300px;"
-        >
+          <legend
+            class="field-set__legend"
+          >
+            Check out these checkboxes!
+          </legend>
           <div
-            class="form-layout-child"
+            class="form-layout-container"
+            data-analyticsid="form-layout"
+            style="--min-col-width: 300px;"
           >
             <div
-              class="checkbox-wrapper"
-              data-analyticsid="checkbox"
+              class="form-layout-child"
             >
-              <label
-                class="checkbox-label"
-                for="Checkbox1"
+              <div
+                class="checkbox-wrapper"
+                data-analyticsid="checkbox"
               >
-                <input
-                  aria-invalid="false"
-                  class="checkbox"
-                  id="Checkbox1"
-                  name="valueOf"
-                  type="checkbox"
-                  value="Checkbox 1"
-                />
-                <span
-                  class="checkbox__icon-wrapper"
-                />
-                <span
-                  class="checkbox-label__text"
+                <label
+                  class="checkbox-label"
+                  for="Checkbox1"
                 >
-                  Checkbox 1
-                </span>
-              </label>
+                  <input
+                    aria-invalid="false"
+                    class="checkbox"
+                    id="Checkbox1"
+                    name="valueOf"
+                    type="checkbox"
+                    value="Checkbox 1"
+                  />
+                  <span
+                    class="checkbox__icon-wrapper"
+                  />
+                  <span
+                    class="checkbox-label__text"
+                  >
+                    Checkbox 1
+                  </span>
+                </label>
+              </div>
             </div>
-          </div>
-          <div
-            class="form-layout-child"
-          >
             <div
-              class="checkbox-wrapper"
-              data-analyticsid="checkbox"
+              class="form-layout-child"
             >
-              <label
-                class="checkbox-label"
-                for="Checkbox2"
+              <div
+                class="checkbox-wrapper"
+                data-analyticsid="checkbox"
               >
-                <input
-                  aria-invalid="false"
-                  class="checkbox"
-                  id="Checkbox2"
-                  name="valueOf"
-                  type="checkbox"
-                  value="Checkbox 2"
-                />
-                <span
-                  class="checkbox__icon-wrapper"
-                />
-                <span
-                  class="checkbox-label__text"
+                <label
+                  class="checkbox-label"
+                  for="Checkbox2"
                 >
-                  Checkbox 2
-                </span>
-              </label>
+                  <input
+                    aria-invalid="false"
+                    class="checkbox"
+                    id="Checkbox2"
+                    name="valueOf"
+                    type="checkbox"
+                    value="Checkbox 2"
+                  />
+                  <span
+                    class="checkbox__icon-wrapper"
+                  />
+                  <span
+                    class="checkbox-label__text"
+                  >
+                    Checkbox 2
+                  </span>
+                </label>
+              </div>
             </div>
-          </div>
-          <div
-            class="form-layout-child"
-          >
             <div
-              class="checkbox-wrapper"
-              data-analyticsid="checkbox"
+              class="form-layout-child"
             >
-              <label
-                class="checkbox-label"
-                for="Checkbox3"
+              <div
+                class="checkbox-wrapper"
+                data-analyticsid="checkbox"
               >
-                <input
-                  aria-invalid="false"
-                  class="checkbox"
-                  id="Checkbox3"
-                  name="valueOf"
-                  type="checkbox"
-                  value="Checkbox 3"
-                />
-                <span
-                  class="checkbox__icon-wrapper"
-                />
-                <span
-                  class="checkbox-label__text"
+                <label
+                  class="checkbox-label"
+                  for="Checkbox3"
                 >
-                  Checkbox 3
-                </span>
-              </label>
+                  <input
+                    aria-invalid="false"
+                    class="checkbox"
+                    id="Checkbox3"
+                    name="valueOf"
+                    type="checkbox"
+                    value="Checkbox 3"
+                  />
+                  <span
+                    class="checkbox__icon-wrapper"
+                  />
+                  <span
+                    class="checkbox-label__text"
+                  >
+                    Checkbox 3
+                  </span>
+                </label>
+              </div>
             </div>
           </div>
-        </div>
-      </fieldset>
+        </fieldset>
+      </div>
     </div>
   </div>
 </div>
