@@ -1,3 +1,17 @@
+## [2.2.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.1.0&targetVersion=GTv2.2.0) (2022-10-25)
+
+
+### Features
+
+*  input og textarea kan vise valideringsfeil uten bruk av formgroup ([dc44f8e](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/dc44f8ebd187bd20a62d544256f9902f2c39925f)), closes [#283315](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/283315)
+
+
+### Bug Fixes
+
+*  bold font i tabell-header ([ba90898](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ba908981f6bb2c9b5bce2f1ac6da0201263d2ecd)), closes [#287872](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/287872)
+*  nummerert visning har minimum 40px bredde ([5422e28](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/5422e28ef4aac66b3a32fd02c3ea14fcf899937b))
+*  progressbar uten alle prikker har to prikker (venstre og høyre) ([cf6d20f](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/cf6d20fec7916831dea260eab98d578665fe6a85))
+
 ## [2.1.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.0.0&targetVersion=GTv2.1.0) (2022-10-20)
 
 
@@ -90,7 +104,7 @@
 
 ## 2.0.0-beta.1 (2022-09-15)
 
-## 2.0.0-beta.0 (2022-09-12)
+## 2.0.0-beta.0 (2022-09-15)
 
 
 ### Features
@@ -192,8 +206,8 @@
 
 ### Bug Fixes
 
-*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 *  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
+*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 
 ## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
