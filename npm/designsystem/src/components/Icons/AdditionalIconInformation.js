@@ -256,7 +256,8 @@ export default {
   supportingperson: { alternativeName: 'Ledsager', categories: 'Samvalg, Personer' },
   syringe: { alternativeName: 'Sprøyte', categories: 'Samvalg, Generisk' },
   car: { alternativeName: 'Bil', categories: 'Kjøretøy' },
-  group: { alternativeName: '', categories: '' },
-  checkfill: { alternativeName: '', categories: '' },
+  group: { alternativeName: 'Gruppe', categories: 'Personer' },
+  checkfill: { alternativeName: 'Utfylt sjekkboks', categories: 'System' },
+  personalplan: { alternativeName: 'Behandlingsplan', categories: 'Tjeneste' },
   '': { alternativeName: '', categories: '' },
 };
