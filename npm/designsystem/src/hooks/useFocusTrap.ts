@@ -1,65 +1,40 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getDocumentActiveElement } from './focus-utils';
-import { FOCUSABLE_SELECTORS } from './useFocusToggle';
+import { useFocusableElements } from './useFocusableElements';
 
-export function useFocusTrap(): React.MutableRefObject<HTMLDivElement | null> {
-  const elRef = useRef<HTMLDivElement>(null);
+/**
+ * Lås fokus til et bestemt element. Bruker vil bare kunne tabbe mellom fokuserbare elementer innenfor elementet.
+ * @param ref Alle barn av dette elementet vil være fokuserbare, elementer utenfor vil ikke det
+ * @param trapFocus Om fokus skal "trappes" innenfor elementet eller ikke. Default=true.
+ */
+export const useFocusTrap = (ref: React.RefObject<HTMLElement>, trapFocus: boolean = true): void => {
+  const focusableElementList = useFocusableElements(ref);
 
-  function handleFocus(e: KeyboardEvent): void {
-    const node = elRef.current;
-    const isTabPressed = e.key === 'Tab';
+  const handleKeyboardEvent = (e: KeyboardEvent): void => {
+    if (trapFocus && ref.current && focusableElementList && e.key === 'Tab') {
+      const activeElement = getDocumentActiveElement(ref.current);
+      const firstElement = focusableElementList[0];
+      const lastElement = focusableElementList.length === 1 ? firstElement : focusableElementList[focusableElementList.length - 1];
 
-    if (!node || !isTabPressed) {
-      return;
-    }
-
-    const activeElement = getDocumentActiveElement(node);
-
-    const focusElements = node?.querySelectorAll(FOCUSABLE_SELECTORS),
-      firstFocusableEl = focusElements[0] as unknown as HTMLElement,
-      lastFocusableEl = focusElements.length === 1 ? firstFocusableEl : (focusElements[focusElements.length - 1] as unknown as HTMLElement);
-
-    if (e.shiftKey) {
-      /* shift + tab */
-      if (activeElement === firstFocusableEl) {
-        lastFocusableEl.focus();
+      if (e.shiftKey && activeElement === firstElement) {
+        /* shift + tab */
+        lastElement.focus();
         e.preventDefault();
-      }
-    } /* tab */ else {
-      if (activeElement === lastFocusableEl) {
-        firstFocusableEl.focus();
+      } else if (!e.shiftKey && activeElement === lastElement) {
+        /* tab */
+        firstElement.focus();
         e.preventDefault();
       }
     }
-  }
-
-  function handleClick(e: MouseEvent): void {
-    const node = elRef.current;
-
-    if (!node) {
-      return;
-    }
-
-    const focusElements = node.querySelectorAll(
-      'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-    ) as unknown as HTMLElement[];
-    if (focusElements.length === 1) {
-      focusElements[0].focus();
-      e.preventDefault();
-    }
-  }
+  };
 
   useEffect(() => {
-    const node = elRef.current as unknown as HTMLElement;
-    node.addEventListener('keydown', handleFocus);
-    node.addEventListener('click', handleClick);
-    return (): void => {
-      node.removeEventListener('keydown', handleFocus);
-      node.removeEventListener('click', handleClick);
-    };
-  }, []);
+    ref.current?.addEventListener('keydown', handleKeyboardEvent);
 
-  return elRef;
-}
+    return (): void => {
+      ref.current?.removeEventListener('keydown', handleKeyboardEvent);
+    };
+  }, [ref, trapFocus, focusableElementList]); // focusableElementList må være med som dependency for at handleKeyboardEvent skal få oppdatert state
+};
 
 export default useFocusTrap;

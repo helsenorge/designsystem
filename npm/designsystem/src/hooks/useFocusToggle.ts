@@ -1,51 +1,15 @@
-import React, { useEffect, useState } from 'react';
-
-// Fra https://github.com/KittyGiraudel/focusable-selectors
-export const FOCUSABLE_SELECTORS = [
-  'a[href]:not([tabindex^="-"])',
-  'area[href]:not([tabindex^="-"])',
-  'input:not([type="hidden"]):not([type="radio"]):not([disabled]):not([tabindex^="-"])',
-  'input[type="radio"]:not([disabled]):not([tabindex^="-"])',
-  'select:not([disabled]):not([tabindex^="-"])',
-  'textarea:not([disabled]):not([tabindex^="-"])',
-  'button:not([disabled]):not([tabindex^="-"])',
-  'iframe:not([tabindex^="-"])',
-  'audio[controls]:not([tabindex^="-"])',
-  'video[controls]:not([tabindex^="-"])',
-  '[contenteditable]:not([tabindex^="-"])',
-  '[tabindex]:not([tabindex^="-"])',
-].join(',');
+import React, { useEffect } from 'react';
+import { useFocusableElements } from './useFocusableElements';
 
 /**
  * Skru av og på fokus på fokuserbare elementer slik at de kan være en del av DOMen, men samtidig
  * ikke kunne fokuseres/tabbes til med tastaturet.
- *
- * Bruker MutationObserver slik at eventuelle nye elementer som legges til også vil miste/få fokus.
- *
  * @param ref Alle barn av dette elementet vil sjekkes for om de er fokuserbare
  * @param allowFocus Om elementene skal være fokuserbare eller ikke
- * @returns Liste med potensielt fokuserbare elementer
+ * @returns void
  */
-export const useFocusToggle = (ref: React.RefObject<HTMLElement>, allowFocus?: boolean): NodeListOf<HTMLElement> | undefined => {
-  const [focusableElementList, setFocusableElementList] = useState<NodeListOf<HTMLElement>>();
-
-  useEffect(() => {
-    const handleMutationChange = () => {
-      const elementList = ref.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS);
-      setFocusableElementList(elementList);
-    };
-
-    const mutationObserver = new MutationObserver(handleMutationChange);
-    if (ref?.current) {
-      mutationObserver.observe(ref.current, { subtree: true, childList: true });
-    }
-
-    handleMutationChange();
-
-    return (): void => {
-      mutationObserver.disconnect();
-    };
-  }, [ref]);
+export const useFocusToggle = (ref: React.RefObject<HTMLElement>, allowFocus?: boolean): void => {
+  const focusableElementList = useFocusableElements(ref);
 
   useEffect(() => {
     const TABINDEX_ATTRIBUTE_NAME = 'tabindex';
@@ -71,7 +35,5 @@ export const useFocusToggle = (ref: React.RefObject<HTMLElement>, allowFocus?: b
         el.tabIndex = -1;
       });
     }
-  }, [allowFocus, focusableElementList]);
-
-  return focusableElementList;
+  }, [ref, allowFocus, focusableElementList]);
 };

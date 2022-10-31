@@ -1,12 +1,8 @@
 export type Styles = {
-  'field-set': string;
-  'field-set__legend': string;
-  'field-set__legend--on-dark': string;
-  'form-group': string;
-  'form-group--invalid': string;
-  'form-group-wrapper': string;
-  'form-group-wrapper__errors': string;
-  'form-group-wrapper__title--on-dark': string;
+  'error-wrapper': string;
+  'error-wrapper__error-text': string;
+  'error-wrapper__errors': string;
+  'error-wrapper--with-error': string;
 };
 
 export type ClassNames = keyof Styles;
