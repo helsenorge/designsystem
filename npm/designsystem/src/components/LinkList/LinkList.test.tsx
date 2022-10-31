@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Icon from '../Icons';
@@ -48,6 +48,36 @@ describe('Gitt at LinkList skal vises', (): void => {
       expect(component).toBeVisible();
       expect(anchor).toHaveAttribute('target', '_blank');
       expect(anchor).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+  });
+  describe('Når linkRef er satt på LinkList.Link', (): void => {
+    test('Så er elementet tilgjengelig gjennom ref.current', async (): Promise<void> => {
+      const mockListener = jest.fn();
+
+      const LinkListWithRef: React.FC = () => {
+        const ref = useRef<HTMLButtonElement>(null);
+
+        useEffect(() => {
+          ref.current?.addEventListener('click', () => {
+            mockListener();
+          });
+        }, [ref]);
+
+        return (
+          <LinkList color={'neutral'}>
+            <LinkList.Link linkRef={ref} htmlMarkup={'button'}>
+              {'Innhold A-Å'}
+            </LinkList.Link>
+          </LinkList>
+        );
+      };
+
+      render(<LinkListWithRef />);
+
+      const button = screen.getByRole('button');
+      await userEvent.click(button);
+
+      expect(mockListener).toHaveBeenCalledTimes(1);
     });
   });
 });
