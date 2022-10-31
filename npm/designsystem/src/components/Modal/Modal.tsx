@@ -8,7 +8,7 @@ import Icon, { IconSize } from '../Icons';
 import styles from './styles.module.scss';
 import AlertSignStroke from '../Icons/AlertSignStroke';
 import AlertSignFill from '../Icons/AlertSignFill';
-import FocusTrap from '../../hooks/useFocusTrap';
+import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsVisible } from '../../hooks/useIsVisible';
 import Title from '../Title/Title';
 import { uuid } from '../../utils/uuid';
@@ -117,6 +117,8 @@ const Modal = (props: ModalProps): JSX.Element => {
   const initFocus = React.useRef<HTMLDivElement>(null);
   const topContent = React.useRef<HTMLDivElement>(null);
   const modalContentRef = React.useRef<HTMLDivElement>(null);
+  const dialogRef = React.useRef<HTMLDivElement>(null);
+  useFocusTrap(dialogRef);
   const topContentVisible = useIsVisible(topContent);
   const bottomContent = React.useRef<HTMLDivElement>(null);
   const bottomContentVisible = useIsVisible(bottomContent);
@@ -194,8 +196,8 @@ const Modal = (props: ModalProps): JSX.Element => {
         data-analyticsid={AnalyticsId.Modal}
         style={{ zIndex: props.zIndex }}
       >
-        <div className={styles.align} ref={FocusTrap()}>
-          <div className={dialogClasses} role="dialog" aria-label={ariaLabel} aria-labelledby={ariaLabelledBy}>
+        <div className={styles.align}>
+          <div className={dialogClasses} role="dialog" aria-label={ariaLabel} aria-labelledby={ariaLabelledBy} ref={dialogRef}>
             <div tabIndex={tabIndex} ref={initFocus} onBlur={(): void => setTabIndex(-1)} />
             <div
               className={cn(styles['modal__shadow'], styles['modal__shadow--top'], {

@@ -54,7 +54,7 @@ export const Default: ComponentStory<typeof Modal> = (args: any) => (
   </GridExample>
 );
 
-export const MoodalWithIcon: ComponentStory<typeof Modal> = (args: any) => (
+export const ModalWithIcon: ComponentStory<typeof Modal> = (args: any) => (
   <GridExample>
     <Modal {...args} icon={<Icon svgIcon={Envelope} />} onClose={action('Close')} onSuccess={action('Success')} />
   </GridExample>
