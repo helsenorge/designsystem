@@ -52,6 +52,10 @@ export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement | HTML
   target?: LinkAnchorTargets;
   /** HTML markup for link. Default: a */
   htmlMarkup?: LinkTags;
+  /**
+   * Ref for lenke/knapp
+   */
+  linkRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -64,12 +68,13 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
     icon,
     size = 'medium',
     chevron = false,
+    linkRef,
     testId,
     target,
     htmlMarkup = 'a',
     ...restProps
   } = props;
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement | HTMLAnchorElement>();
+  const { hoverRef, isHovered } = useHover<HTMLButtonElement | HTMLAnchorElement>(linkRef);
   const breakpoint = useBreakpoint();
 
   const hasIcon = size !== 'small' && !!(chevron || icon);

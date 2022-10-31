@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -60,6 +60,29 @@ export const WithIcon: ComponentStory<typeof LinkList> = (args: any) => (
     </LinkList>
   </GridExample>
 );
+
+export const WithRef: ComponentStory<typeof LinkList> = (args: any) => {
+  const ref = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    ref.current?.addEventListener('click', () => {
+      action('Link clicked');
+    });
+  }, [ref]);
+
+  return (
+    <GridExample>
+      <LinkList {...args}>
+        <LinkList.Link icon={<Icon svgIcon={AlarmClock} />} linkRef={ref} htmlMarkup={'button'}>
+          {'Innhold A-Å'}
+        </LinkList.Link>
+        <LinkList.Link icon={<Icon svgIcon={PaperPlane} />} htmlMarkup={'button'}>
+          {'English'}
+        </LinkList.Link>
+      </LinkList>
+    </GridExample>
+  );
+};
 
 export const AsButton: ComponentStory<typeof LinkList> = (args: any) => (
   <GridExample>
