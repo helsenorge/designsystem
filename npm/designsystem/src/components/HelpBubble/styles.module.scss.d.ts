@@ -3,16 +3,16 @@ export type Styles = {
   anchorlink__icon: string;
   'anchorlink-wrapper': string;
   helpbubble: string;
-  'helpbubble__child-wrapper': string;
-  'helpbubble__child-wrapper--no-close-button': string;
-  'helpbubble__close-wrapper': string;
-  'helpbubble__link-button': string;
-  'helpbubble__link-button__icon': string;
-  'helpbubble--initial-render': string;
-  'helpbubble-arrow': string;
-  'helpbubble-arrow--initial-render': string;
-  'helpbubble-arrow--over': string;
-  'helpbubble-arrow--under': string;
+  helpbubble__arrow: string;
+  'helpbubble__arrow--over': string;
+  'helpbubble__arrow--under': string;
+  'helpbubble__arrow--visible': string;
+  helpbubble__close: string;
+  helpbubble__content: string;
+  'helpbubble__content--close': string;
+  helpbubble__link: string;
+  helpbubble__link__icon: string;
+  'helpbubble--visible': string;
 };
 
 export type ClassNames = keyof Styles;

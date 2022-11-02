@@ -5,7 +5,8 @@ import { debounce } from '../utils/debounce';
  * Lytt på endringer i størrelse på et element
  *
  * @param ref Element som skal observeres.
- * @returns Object med høyde, bredde, x og y til elementet
+ * @returns Object med høyde, bredde, x og y til elementet. Merk at objektet bare oppdates når høyde eller bredde endres, ikke når
+ * posisjonen (x og y) endres.
  */
 export const useSize = (ref?: React.RefObject<HTMLElement>) => {
   const [size, setSize] = useState<DOMRect>();
@@ -44,7 +45,7 @@ export const useSize = (ref?: React.RefObject<HTMLElement>) => {
         events.forEach(eventName => window.removeEventListener(eventName, debouncedCallback));
       };
     }
-  }, [ref]);
+  }, [ref?.current]);
 
   return size;
 };

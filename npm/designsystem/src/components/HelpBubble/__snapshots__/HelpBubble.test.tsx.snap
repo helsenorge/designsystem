@@ -3,19 +3,18 @@
 exports[`Gitt at HelpBubble skal vises Når den skal vises vanlig Så vises HelpBubble som vanlig 1`] = `
 <div>
   <div
-    class="helpbubble"
+    class="helpbubble helpbubble--visible"
     data-analyticsid="help-bubble"
     data-testid="test01"
     role="tooltip"
-    style="left: 0px; top: 0px; width: 0px;"
   >
     <div
-      class="helpbubble__child-wrapper"
+      class="helpbubble__content helpbubble__content--close"
     >
       Test tekst
     </div>
     <div
-      class="helpbubble__close-wrapper"
+      class="helpbubble__close"
     >
       <button
         aria-label="Lukk"
@@ -43,8 +42,7 @@ exports[`Gitt at HelpBubble skal vises Når den skal vises vanlig Så vises Help
     </div>
   </div>
   <div
-    class="helpbubble-arrow helpbubble-arrow--under"
-    style="left: 0px; top: 0px;"
+    class="helpbubble__arrow helpbubble__arrow--visible"
   />
 </div>
 `;
