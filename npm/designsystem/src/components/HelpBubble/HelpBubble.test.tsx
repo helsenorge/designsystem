@@ -1,15 +1,50 @@
-import React from 'react';
-import { screen, render } from '@testing-library/react';
-import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
+import React, { useRef } from 'react';
+import { screen, render, waitFor } from '@testing-library/react';
+import HelpBubble, { HelpBubbleProps, HelpBubbleVariant } from './HelpBubble';
 import userEvent from '@testing-library/user-event';
 
-const controllerRef = jest.fn();
+const dummyDomRect = {
+  height: 100,
+  width: 100,
+  top: 0,
+  left: 0,
+  right: 100,
+  bottom: 100,
+};
+
+jest.mock('../../hooks/useSize', () => ({
+  useSize: jest.fn().mockReturnValue(dummyDomRect),
+}));
+jest.mock('../../hooks/useIsVisible', () => ({
+  useIsVisible: jest.fn().mockReturnValue(true),
+}));
+
+const HelpBubleWithController: React.FC<Omit<HelpBubbleProps, 'controllerRef'>> = props => {
+  const controllerRef = useRef<HTMLSpanElement>(null);
+
+  return (
+    <>
+      <span ref={controllerRef}>{'Test'}</span>
+      <HelpBubble {...props} controllerRef={controllerRef} />
+    </>
+  );
+};
 
 describe('Gitt at HelpBubble skal vises', (): void => {
+  const originalWindow = global.document['window'];
+
+  beforeAll(() => {
+    window.HTMLDivElement.prototype.getBoundingClientRect = jest.fn().mockReturnValue(dummyDomRect);
+  });
+
+  afterAll(() => {
+    global.document['window'] = originalWindow;
+  });
+
   describe('Når den skal vises vanlig', (): void => {
     it('Så vises HelpBubble som vanlig', (): void => {
       const { container } = render(
-        <HelpBubble controllerRef={controllerRef} showBubble testId="test01">
+        <HelpBubble controllerRef={jest.fn()} showBubble testId="test01">
           {'Test tekst'}
         </HelpBubble>
       );
@@ -23,7 +58,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
       expect(closeButton).toBeInTheDocument();
 
       expect(bubble).toHaveClass('helpbubble');
-      expect(child).toHaveClass('helpbubble__child-wrapper');
+      expect(child).toHaveClass('helpbubble__content');
       expect(closeButton).toHaveClass('close close--small');
 
       expect(container).toMatchSnapshot();
@@ -31,34 +66,34 @@ describe('Gitt at HelpBubble skal vises', (): void => {
   });
 
   describe('Når variant er positionbelow', (): void => {
-    it('Så vises HelpBubble riktig', (): void => {
+    it('Så vises HelpBubble riktig', async (): Promise<void> => {
       render(
-        <HelpBubble controllerRef={controllerRef} variant={HelpBubbleVariant.positionbelow} showBubble testId="test01">
+        <HelpBubleWithController variant={HelpBubbleVariant.positionbelow} showBubble testId="test01">
           {'Test tekst'}
-        </HelpBubble>
+        </HelpBubleWithController>
       );
 
       const bubble = screen.getByTestId('test01');
       const arrow = bubble.nextSibling;
 
       expect(bubble).toHaveClass('helpbubble');
-      expect(arrow).toHaveClass('helpbubble-arrow helpbubble-arrow--over');
+      await waitFor(() => expect(arrow).toHaveClass('helpbubble__arrow helpbubble__arrow--visible helpbubble__arrow--over'));
     });
   });
 
   describe('Når variant er positionabove', (): void => {
-    it('Så vises HelpBubble riktig', (): void => {
+    it('Så vises HelpBubble riktig', async (): Promise<void> => {
       render(
-        <HelpBubble controllerRef={controllerRef} variant={HelpBubbleVariant.positionabove} showBubble testId="test01">
+        <HelpBubleWithController variant={HelpBubbleVariant.positionabove} showBubble testId="test01">
           {'Test tekst'}
-        </HelpBubble>
+        </HelpBubleWithController>
       );
 
       const bubble = screen.getByTestId('test01');
       const arrow = bubble.nextSibling;
 
       expect(bubble).toHaveClass('helpbubble');
-      expect(arrow).toHaveClass('helpbubble-arrow helpbubble-arrow--under');
+      await waitFor(() => expect(arrow).toHaveClass('helpbubble__arrow helpbubble__arrow--visible helpbubble__arrow--under'));
     });
   });
 
@@ -66,9 +101,9 @@ describe('Gitt at HelpBubble skal vises', (): void => {
     it('Så vises ekstra knapp med onLinkClick callback riktig', async (): Promise<void> => {
       const onLinkClick = jest.fn();
       render(
-        <HelpBubble controllerRef={controllerRef} showBubble linkText={'Egen link tekst'} onLinkClick={onLinkClick} testId="test01">
+        <HelpBubleWithController showBubble linkText={'Egen link tekst'} onLinkClick={onLinkClick} testId="test01">
           {'Test tekst'}
-        </HelpBubble>
+        </HelpBubleWithController>
       );
 
       const allButtons = screen.getAllByRole('button');
@@ -77,7 +112,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
 
       expect(allButtons.length).toBe(2);
       expect(link).toBeInTheDocument();
-      expect(link).toHaveClass('helpbubble__link-button');
+      expect(link).toHaveClass('helpbubble__link');
       expect(onLinkClick).toHaveBeenCalledTimes(1);
     });
   });
@@ -85,9 +120,9 @@ describe('Gitt at HelpBubble skal vises', (): void => {
   describe('Når linkUrl er satt', (): void => {
     it('Så vises ekstra knapp med linkUrl riktig', async (): Promise<void> => {
       render(
-        <HelpBubble controllerRef={controllerRef} showBubble linkText={'Egen link tekst'} linkUrl={'/'} testId="test01">
+        <HelpBubleWithController showBubble linkText={'Egen link tekst'} linkUrl={'/'} testId="test01">
           {'Test tekst'}
-        </HelpBubble>
+        </HelpBubleWithController>
       );
 
       const link = screen.getByText('Egen link tekst');
@@ -102,9 +137,9 @@ describe('Gitt at HelpBubble skal vises', (): void => {
   describe('Når onLinkClick og linkUrl ikke er satt', (): void => {
     it('Så vises ikke ekstra knapp for link', (): void => {
       render(
-        <HelpBubble controllerRef={controllerRef} showBubble testId="test01">
+        <HelpBubleWithController showBubble testId="test01">
           {'Test tekst'}
-        </HelpBubble>
+        </HelpBubleWithController>
       );
 
       const allButtons = screen.getAllByRole('button');
@@ -117,9 +152,9 @@ describe('Gitt at HelpBubble skal vises', (): void => {
     it('Så kalles onClose callback riktig', async (): Promise<void> => {
       const onClose = jest.fn();
       render(
-        <HelpBubble controllerRef={controllerRef} onClose={onClose} showBubble testId="test01">
+        <HelpBubleWithController onClose={onClose} showBubble testId="test01">
           {'Test tekst'}
-        </HelpBubble>
+        </HelpBubleWithController>
       );
 
       const close = screen.getByRole('button');
@@ -133,11 +168,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
 describe('Gitt at HelpBubble ikke skal vises', (): void => {
   describe('Når den rendres', (): void => {
     it('Så vises HelpBubble ikke', (): void => {
-      render(
-        <HelpBubble controllerRef={controllerRef} testId="test01">
-          {'Test tekst'}
-        </HelpBubble>
-      );
+      render(<HelpBubleWithController testId="test01">{'Test tekst'}</HelpBubleWithController>);
 
       const bubble = screen.queryByTestId('test01');
       const child = screen.queryByText('Test tekst');

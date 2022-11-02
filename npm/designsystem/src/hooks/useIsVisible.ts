@@ -11,7 +11,7 @@ import { useIntersectionObserver } from './useIntersectionObserver';
  * @returns true hvis objektet er synlig lik threshold eller mer, false hvis ikke
  */
 export const useIsVisible = (
-  ref: React.RefObject<HTMLElement>,
+  ref: React.RefObject<Element>,
   threshold = 1,
   options?: IntersectionObserverInit,
   initial = false
@@ -19,7 +19,7 @@ export const useIsVisible = (
   const [isVisible, setIsVisible] = useState(initial);
 
   const handleIntersectChange: IntersectionObserverCallback = entries => {
-    setIsVisible(entries[0].intersectionRatio >= threshold);
+    setIsVisible(threshold === 0 ? entries[0].intersectionRatio !== threshold : entries[0].intersectionRatio >= threshold);
   };
 
   useIntersectionObserver(ref, handleIntersectChange, { threshold, ...options });

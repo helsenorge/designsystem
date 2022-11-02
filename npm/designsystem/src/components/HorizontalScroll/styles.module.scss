@@ -3,7 +3,7 @@
 $gradient: rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.27) 18%, transparent;
 
 .horizontalscroll {
-  transform: translateZ(0); // Gjør at position: fixed på child-elementer er relativ til denne parenten
+  position: relative;
   &__viewport {
     display: flex;
     &--overflow {
@@ -12,7 +12,7 @@ $gradient: rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.27) 18%, transparent;
     }
   }
   &__indicator {
-    position: fixed;
+    position: absolute;
     width: 23px;
     top: 0;
     height: 100%;

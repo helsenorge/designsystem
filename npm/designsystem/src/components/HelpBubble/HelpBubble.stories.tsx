@@ -6,8 +6,9 @@ import { action } from '@storybook/addon-actions';
 import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
 import Icon from '../Icons';
 import HelpSign from '../Icons/HelpSign';
-import loremText from '../../utils/loremtext';
+import loremText, { longLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
+import Table, { SmallViewportVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell } from '../Table';
 
 export default {
   title: 'Components/HelpBubble',
@@ -62,6 +63,58 @@ export const OnText: ComponentStory<typeof HelpBubble> = (args: any) => {
         </HelpBubble>
       </div>
       <span>{loremText + loremText + loremText + loremText}</span>
+    </GridExample>
+  );
+};
+
+export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
+  const controllerRef = useRef<SVGSVGElement>(null);
+
+  return (
+    <GridExample>
+      <p>{longLoremText}</p>
+      <Table smallViewportVariant={SmallViewportVariant.horizontalscroll}>
+        <TableHead category={args.headerCategory}>
+          <TableRow key="head">
+            <TableHeadCell>Fastlege</TableHeadCell>
+            <TableHeadCell>Fastlegekontor</TableHeadCell>
+            <TableHeadCell>Ledige plasser</TableHeadCell>
+            <TableHeadCell>Antall på venteliste</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell dataLabel="navn">Line Danser</TableCell>
+            <TableCell dataLabel="kontor">Røtvedt</TableCell>
+            <TableCell dataLabel="ledige">1</TableCell>
+            <TableCell dataLabel="antall">
+              <Icon ref={controllerRef} svgIcon={HelpSign} />
+              <HelpBubble {...args} onClose={action('Bubble closed')} controllerRef={controllerRef}>
+                <div>{args.children}</div>
+              </HelpBubble>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell dataLabel="navn">Line Danser</TableCell>
+            <TableCell dataLabel="kontor">Røtvedt</TableCell>
+            <TableCell dataLabel="ledige">1</TableCell>
+            <TableCell dataLabel="antall">200</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell dataLabel="navn">Line Danser</TableCell>
+            <TableCell dataLabel="kontor">Røtvedt</TableCell>
+            <TableCell dataLabel="ledige">1</TableCell>
+            <TableCell dataLabel="antall">200</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell dataLabel="navn">Line Danser</TableCell>
+            <TableCell dataLabel="kontor">Røtvedt</TableCell>
+            <TableCell dataLabel="ledige">1</TableCell>
+            <TableCell dataLabel="antall">200</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      <p>{longLoremText}</p>
     </GridExample>
   );
 };

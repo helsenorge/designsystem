@@ -15,32 +15,32 @@
   line-height: $lineheight-size-sm;
   background-color: $white;
   z-index: 3;
-  visibility: visible;
+  visibility: hidden;
+
+  &--visible {
+    visibility: visible;
+  }
 
   border: getSpacer(4xs) solid $plum600;
   border-radius: 9px;
   box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.15);
-
-  &--initial-render {
-    visibility: hidden;
-  }
 
   @media (min-width: map-get($grid-breakpoints, lg)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
   }
 
-  &__child-wrapper {
+  &__content {
     display: flex;
     width: max-content;
     flex-direction: column;
     align-items: flex-start;
     overflow-wrap: anywhere;
     row-gap: getSpacer(2xs);
-    padding: getSpacer(s) 0 getSpacer(m) getSpacer(s);
+    padding: getSpacer(s) getSpacer(s) getSpacer(m) getSpacer(s);
 
-    &--no-close-button {
-      padding: getSpacer(s) getSpacer(s) getSpacer(m);
+    &--close {
+      padding-right: 0;
     }
 
     > p {
@@ -48,38 +48,39 @@
     }
   }
 
-  &__link-button {
+  &__link {
     all: unset;
     @include anchorlink;
   }
 
-  &__close-wrapper {
+  &__close {
     padding: getSpacer(2xs) getSpacer(2xs) 0px 0px;
   }
-}
 
-.helpbubble-arrow {
-  width: 0;
-  height: 0;
-  position: fixed;
-  border-style: solid;
-  border-color: transparent;
-  z-index: 4;
-
-  &--over {
-    border-width: 10px 10px;
-    border-bottom-color: $white;
-    -webkit-filter: drop-shadow($plum600 0px 2px 6px 2px);
-    filter: drop-shadow(0px -0.185rem 0px $plum600);
-  }
-  &--under {
-    border-width: 10px 10px;
-    border-top-color: $white;
-    -webkit-filter: drop-shadow($plum600 0px 2px 6px 2px);
-    filter: drop-shadow(0px 0.2rem 0px $plum600);
-  }
-
-  &--initial-render {
+  &__arrow {
     visibility: hidden;
+    width: 0;
+    height: 0;
+    position: fixed;
+    border-style: solid;
+    border-color: transparent;
+    z-index: 4;
+
+    &--visible {
+      visibility: visible;
+    }
+
+    &--over {
+      border-width: 10px 10px;
+      border-bottom-color: $white;
+      -webkit-filter: drop-shadow($plum600 0px 2px 6px 2px);
+      filter: drop-shadow(0px -0.185rem 0px $plum600);
+    }
+    &--under {
+      border-width: 10px 10px;
+      border-top-color: $white;
+      -webkit-filter: drop-shadow($plum600 0px 2px 6px 2px);
+      filter: drop-shadow(0px 0.2rem 0px $plum600);
+    }
   }
 }
