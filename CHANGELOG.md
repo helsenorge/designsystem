@@ -1,3 +1,16 @@
+## [2.4.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.3.0&targetVersion=GTv2.4.0) (2022-11-05)
+
+
+### Features
+
+*  linklist.link har prop for linkRef ([b86370c](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/b86370ccb3576c44c7ade357022b801d1407a9af)), closes [#287467](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/287467)
+
+
+### Bug Fixes
+
+*  hjelpeboble plasseres riktig i scrollbar tabell ([6b96b04](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/6b96b046782494e2b2586cb158874e46602c5249)), closes [#288142](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/288142)
+*  modal setter fokus automatisk til første fokuserbare element ([88bb15c](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/88bb15cd9de0fb0f2a78db7a4621da1e16f31374)), closes [#286778](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/286778)
+
 ## [2.3.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.2.1&targetVersion=GTv2.3.0) (2022-10-31)
 
 
