@@ -33,7 +33,7 @@ export const useFocusableElements = (ref: React.RefObject<HTMLElement>): NodeLis
 
     const mutationObserver = new MutationObserver(handleMutationChange);
     if (ref?.current) {
-      mutationObserver.observe(ref.current, { subtree: true, childList: true, attributeFilter: ['tabindex', 'type', 'disabled', 'href'] }); // Observer de samme attributtene som i FOCUSABLE_SELECTORS
+      mutationObserver.observe(ref.current, { subtree: true, childList: true });
     }
 
     handleMutationChange();
