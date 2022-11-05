@@ -196,7 +196,6 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const buttons = screen.getAllByRole('button');
-      await userEvent.tab();
       expect(buttons[0]).toHaveFocus();
       await userEvent.tab();
       expect(buttons[1]).toHaveFocus();

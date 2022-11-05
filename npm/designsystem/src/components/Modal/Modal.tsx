@@ -113,12 +113,10 @@ const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): JS
 };
 
 const Modal = (props: ModalProps): JSX.Element => {
-  const [tabIndex, setTabIndex] = React.useState(0);
-  const initFocus = React.useRef<HTMLDivElement>(null);
   const topContent = React.useRef<HTMLDivElement>(null);
   const modalContentRef = React.useRef<HTMLDivElement>(null);
   const dialogRef = React.useRef<HTMLDivElement>(null);
-  useFocusTrap(dialogRef);
+  useFocusTrap(dialogRef, true, true);
   const topContentVisible = useIsVisible(topContent);
   const bottomContent = React.useRef<HTMLDivElement>(null);
   const bottomContentVisible = useIsVisible(bottomContent);
@@ -159,7 +157,6 @@ const Modal = (props: ModalProps): JSX.Element => {
 
   useEffect(() => {
     const overlayElement = overlayRef.current;
-    initFocus.current?.focus();
     disableBodyScroll();
     if (!props.disableCloseEvents && overlayElement) {
       overlayElement.addEventListener('keydown', handleKeyboardEvent);
@@ -198,7 +195,6 @@ const Modal = (props: ModalProps): JSX.Element => {
       >
         <div className={styles.align}>
           <div className={dialogClasses} role="dialog" aria-label={ariaLabel} aria-labelledby={ariaLabelledBy} ref={dialogRef}>
-            <div tabIndex={tabIndex} ref={initFocus} onBlur={(): void => setTabIndex(-1)} />
             <div
               className={cn(styles['modal__shadow'], styles['modal__shadow--top'], {
                 [styles['modal__shadow--show']]: !topContentVisible && contentIsScrollable,
