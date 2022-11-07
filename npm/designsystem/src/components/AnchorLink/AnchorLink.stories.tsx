@@ -9,6 +9,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/AnchorLink',
   component: AnchorLink,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'AnchorLink kan bli brukt som et komponent for \\<a\\> tag eller \\<button\\> tag som skal ha en anchorlink styling.<br>.anchorlink-wrapper kan også bli brukt når det ikke er kontroll over markup som kommer inn.',
+      },
+    },
+  },
   argTypes: {
     children: {
       control: 'text',

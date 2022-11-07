@@ -21,6 +21,13 @@ const ResizeObserverExample: React.FC = () => {
 export default {
   title: 'Hooks/ResizeObserver',
   component: ResizeObserverExample,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Lytt på endringer i størrelse på et element. Bruker ResizeObserver-APIet.',
+      },
+    },
+  },
 } as ComponentMeta<typeof ResizeObserverExample>;
 
 export const Default: ComponentStory<typeof ResizeObserverExample> = () => <ResizeObserverExample />;

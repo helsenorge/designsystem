@@ -9,6 +9,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/TagList',
   component: TagList,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Som innbygger vil jeg kunne ta stilling til flere Tager med informasjon i en liste slik at jeg effektivt kan scanne gjennom nøkkelinformasjon for elementer i listen og gjennomføre mine oppgaver.',
+      },
+    },
+  },
 } as ComponentMeta<typeof TagList>;
 
 export const Default: ComponentStory<typeof TagList> = (args: any) => (

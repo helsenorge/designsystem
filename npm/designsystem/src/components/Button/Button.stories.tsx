@@ -14,6 +14,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Button',
   component: Button,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Button [Knapp] benyttes for å la innbygger initiere en handling eller hendelse. Knapper lar innbygger vite hva som vil skje om man trykker på dem.',
+      },
+    },
+  },
   argTypes: {
     children: {
       control: 'text',

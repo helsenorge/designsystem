@@ -17,6 +17,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Modal',
   component: Modal,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'En Modal informerer brukere om en oppgave og kan inneholde kritisk informasjon, kreve beslutninger eller involvere flere oppgaver. En modal har tre varianter normal, warning og error',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

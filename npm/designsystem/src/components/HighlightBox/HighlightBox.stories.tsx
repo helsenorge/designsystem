@@ -9,6 +9,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/HighlightBox',
   component: HighlightBox,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'HighlightBox hjelper innbygger å oppfatte viktigere innhold, der hvor det er behov for å utheve et innholdsområde fremfor annet innhold på samme side',
+      },
+    },
+  },
   argTypes: {
     children: {
       control: 'text',

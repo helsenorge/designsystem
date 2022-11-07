@@ -11,6 +11,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Dropdown',
   component: Dropdown,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Som innbygger ønsker jeg å kunne gjøre ett eller flere valg i en liste der hvor det ikke er plass til å vise listen i grensesnittet',
+      },
+    },
+  },
   argTypes: {
     label: {
       control: 'text',

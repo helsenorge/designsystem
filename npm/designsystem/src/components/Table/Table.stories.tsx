@@ -25,6 +25,13 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Table',
   component: Table,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Som innbygger vil jeg se og sammenligne tabulære data slik at jeg kan forstå informasjonen jeg trenger.',
+      },
+    },
+  },
   argTypes: {
     smallViewportVariant: {
       control: 'select',

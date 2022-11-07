@@ -18,6 +18,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/ExpanderList',
   component: ExpanderList,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'ExpanderList er en liste av elementer som skjuler detaljinformasjon når den ikke trengs, og gjør den lett tilgjengelig i kontekst når den trengs.',
+      },
+    },
+  },
   argTypes: {
     isOpen: {
       control: 'boolean',

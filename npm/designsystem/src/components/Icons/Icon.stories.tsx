@@ -11,6 +11,13 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Icon',
   component: Icon,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Icon lar deg vise et av flere ikoner i ulike størrelser og farger',
+      },
+    },
+  },
   argTypes: {
     color: {
       control: 'text',

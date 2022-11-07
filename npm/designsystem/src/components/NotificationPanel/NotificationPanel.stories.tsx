@@ -8,6 +8,13 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/NotificationPanel',
   component: NotificationPanel,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Et NotificationPanel lar deg vise viktig informasjon avskilt fra bakgrunnen med ulike farger og ikoner',
+      },
+    },
+  },
   argTypes: {
     shadow: {
       control: 'boolean',

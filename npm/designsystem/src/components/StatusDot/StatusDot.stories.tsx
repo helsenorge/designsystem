@@ -8,6 +8,13 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/StatusDot',
   component: StatusDot,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Viser en status i en kompakt og på en scanbar måte. Støtter en farget prikk og ikon.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

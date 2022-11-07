@@ -26,6 +26,13 @@ const IsVisibleExample: React.FC = (args: any) => {
 export default {
   title: 'Hooks/IsVisible',
   component: IsVisibleExample,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Sjekk om et HTML-element er synlig i vinduet, eller ikke.',
+      },
+    },
+  },
   argTypes: {
     threshold: {
       control: 'number',

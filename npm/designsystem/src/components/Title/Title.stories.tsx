@@ -9,6 +9,13 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Title',
   component: Title,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Som innbygger vil jeg kunne vise titler i ulike størrelser og html markup.',
+      },
+    },
+  },
   argTypes: {
     children: {
       control: 'text',

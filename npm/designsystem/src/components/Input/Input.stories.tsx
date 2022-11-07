@@ -11,6 +11,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Input',
   component: Input,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Som innbygger vil jeg kunne skrive inn korte tekster slik at jeg kan gjøre mine oppgaver.<br><br>Bruksområde: For å la innbygger skrive inn en tekst (enkeltlinje, begrenset mengde)',
+      },
+    },
+  },
   argTypes: {
     defaultValue: {
       control: 'text',

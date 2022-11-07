@@ -9,6 +9,14 @@ import Progressbar from './Progressbar';
 export default {
   title: 'Components/Progressbar',
   component: Progressbar,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Som innbygger vil jeg kunne se hvor jeg befinner meg i en stegvisning eller prosess slik at jeg ikke mister motivasjonen og slik at jeg får en følelse av at det jeg gjør bringer med nærmere målet.',
+      },
+    },
+  },
   argTypes: {
     ariaLabel: {
       control: 'text',

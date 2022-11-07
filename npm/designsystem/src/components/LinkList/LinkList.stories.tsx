@@ -14,6 +14,13 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/LinkList',
   component: LinkList,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Et komponent som lar deg vise en rekke lenker i et listeformat',
+      },
+    },
+  },
   argTypes: {
     chevron: {
       control: 'boolean',
