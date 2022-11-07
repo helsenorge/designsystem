@@ -70,12 +70,14 @@ describe('Gitt at Validation skal vises', () => {
       const error2 = await screen.findByText('Du må velge to alternativ');
       const error3 = await screen.findByText('Det kan ikke legges inn mer enn 40 tegn');
       const error4 = await screen.findByText('Du må skrive noe her');
+      const error5 = await screen.findByText('Du må velge "Option 2"');
       const errorSummary = screen.getByText('Sjekk at alt er riktig utfylt');
 
       expect(error.length).toBe(2);
       expect(error2).toBeVisible();
       expect(error3).toBeVisible();
       expect(error4).toBeVisible();
+      expect(error5).toBeVisible();
       expect(errorSummary).toBeVisible();
 
       const checkbox1 = screen.getByLabelText('Checkbox 1');
@@ -84,12 +86,14 @@ describe('Gitt at Validation skal vises', () => {
       const radiobutton1 = screen.getByLabelText('Radiobutton 1');
       const textarea1 = screen.getByLabelText('Skriv din historie her');
       const input1 = screen.getByLabelText('Skriv inn din tekst');
+      const select1 = screen.getByRole('combobox');
       await userEvent.click(checkbox1);
       await userEvent.click(checkbox4);
       await userEvent.click(checkbox5);
       await userEvent.click(radiobutton1);
       fireEvent.change(textarea1, { target: { value: 'Endring.' } });
       fireEvent.change(input1, { target: { value: 'Ny tekst' } });
+      fireEvent.change(select1.children[1], { target: { selected: true } });
 
       await userEvent.click(submit);
 
@@ -98,6 +102,7 @@ describe('Gitt at Validation skal vises', () => {
         expect(error2).not.toBeInTheDocument();
         expect(error3).not.toBeInTheDocument();
         expect(error4).not.toBeInTheDocument();
+        expect(error5).not.toBeInTheDocument();
         expect(errorSummary).not.toBeInTheDocument();
       });
     });

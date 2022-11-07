@@ -1,0 +1,125 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/font-settings.scss';
+
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  &__label-wrapper {
+    display: inline-flex;
+    align-items: center;
+    line-height: getSpacer(m);
+    font-size: $font-size-sm;
+    font-weight: 600;
+    padding-bottom: getSpacer(xs);
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      line-height: getSpacer(l);
+      font-size: $font-size-md;
+    }
+
+    &--on-dark {
+      color: $white;
+    }
+  }
+
+  &__after-label-children {
+    padding-left: 0.75rem;
+  }
+}
+
+.select-inner-wrapper {
+  // Grid brukes til å kunne plassere custom ikon fritt over select elementet
+  display: inline-grid;
+  background-color: $white;
+  align-items: center;
+  // Andre kolonne her styrer plassering av select ikonet
+  grid-template-columns: 1fr 2.8rem;
+
+  &--transparent {
+    background-color: transparent;
+  }
+
+  &:hover {
+    background: $neutral50;
+  }
+  &--on-blueberry {
+    &:hover {
+      background-color: $blueberry50;
+    }
+  }
+  &--invalid {
+    &:hover {
+      background-color: $cherry50;
+    }
+  }
+  &--disabled {
+    background: $neutral50;
+
+    &:hover {
+      background: $neutral50;
+    }
+  }
+}
+
+.select {
+  /* Pil fjernes for browsere utenom IE */
+  appearance: none;
+
+  height: 2.5rem;
+  align-items: center;
+  background-color: transparent;
+  grid-column: 1 / 3;
+  grid-row: 1;
+  padding-left: getSpacer(xs);
+  border: none;
+  outline: $neutral700 solid 2px;
+  outline-offset: -2px;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
+  border-radius: 0;
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    height: 3.125rem;
+    font-size: $font-size-md;
+  }
+
+  &--on-blueberry {
+    outline-color: $blueberry500;
+  }
+  &--invalid {
+    outline-color: $cherry500;
+  }
+
+  :hover > & {
+    outline-width: 3px;
+    outline-offset: -1px;
+  }
+  &:focus {
+    outline: $black solid 4px;
+    outline-offset: -2px;
+  }
+
+  &:disabled {
+    outline: $neutral500 solid 2px;
+    outline-offset: -2px;
+  }
+
+  & > option {
+    background: $white;
+    font-family: inherit;
+    font-size: $font-size-sm;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      font-size: $font-size-md;
+    }
+  }
+}
+
+.select-arrow {
+  grid-column: 2;
+  grid-row: 1;
+}

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import cn from 'classnames';
 
-import { FormMode, FormVariant, AnalyticsId } from '../../constants';
+import { FormMode, FormVariant, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
 import { uuid } from '../../utils/uuid';
 import Icon, { IconSize, SvgIcon } from '../Icons';
 import { getColor } from '../../theme/currys';
@@ -55,8 +55,6 @@ export enum InputTypes {
   tel = 'tel',
   url = 'url',
 }
-
-export const AVERAGE_CHARACTER_WIDTH_PX = 12;
 
 const getInputMaxWidth = (characters: number, hasIcon: boolean, iconSize: number): string => {
   const paddingWidth = hasIcon ? '1.5rem' : '2rem';

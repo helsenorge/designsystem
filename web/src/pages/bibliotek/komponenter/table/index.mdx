@@ -5,7 +5,7 @@ date: 2022-06-27
 ---
 
 import MDXCustom from '../../../../components/markdown/MDXCustom';
-import * as propData from '@helsenorge/designsystem-react/components/Table/componentdata.json';;
+import * as propData from '@helsenorge/designsystem-react/components/Table/componentdata.json';
 
 import {
   Table,
@@ -18,7 +18,7 @@ import {
   TableRow,
   TableExpandedRow,
   SortDirection,
-  TableExpanderCell
+  TableExpanderCell,
 } from '@helsenorge/designsystem-react/components/Table';
 
 # Table
@@ -31,7 +31,19 @@ import {
 
 <MDXCustom.LiveComponent
   fullWidth
-  scope={{ Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, TextAlign, TableExpanderCell, TableExpandedRow, SortDirection, HeaderCategory }}
+  scope={{
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeadCell,
+    TableRow,
+    TextAlign,
+    TableExpanderCell,
+    TableExpandedRow,
+    SortDirection,
+    HeaderCategory,
+  }}
 >
   {`
     <Table>
@@ -45,7 +57,8 @@ import {
         </TableHead>
         <TableBody>
           <TableRow rowKey="1">
-            <TableExpanderCell exanded />
+            <TableExpanderCell hideDetailsText="Skjul detaljer"
+                  showDetailsText="Vis detaljer" exanded />
             <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
             <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>           
             <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
@@ -56,7 +69,8 @@ import {
             <h3>Innhold i exanded row</h3>
           </TableExpandedRow>
           <TableRow rowKey="2">
-            <TableExpanderCell />
+            <TableExpanderCell hideDetailsText="Skjul detaljer"
+                  showDetailsText="Vis detaljer" />
             <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
             <TableCell dataLabel="Beskrivelse">Enda en ganske lang beskrivelse...</TableCell>           
             <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
@@ -77,7 +91,19 @@ import {
 
 <MDXCustom.LiveComponent
   fullWidth
-  scope={{ Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, TextAlign, TableExpanderCell, TableExpandedRow, SortDirection, HeaderCategory }}
+  scope={{
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeadCell,
+    TableRow,
+    TextAlign,
+    TableExpanderCell,
+    TableExpandedRow,
+    SortDirection,
+    HeaderCategory,
+  }}
 >
   {`
     <Table viewportVariant={"horizontalscroll"}>
@@ -91,7 +117,8 @@ import {
         </TableHead>
         <TableBody>
           <TableRow key="1">
-            <TableExpanderCell exanded />
+            <TableExpanderCell hideDetailsText="Skjul detaljer"
+                  showDetailsText="Vis detaljer" exanded />
             <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
             <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>           
             <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
@@ -102,7 +129,8 @@ import {
             <h3>Innhold i exanded row</h3>
           </TableExpandedRow>
           <TableRow key="2">
-            <TableExpanderCell />
+            <TableExpanderCell hideDetailsText="Skjul detaljer"
+                  showDetailsText="Vis detaljer" />
             <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
             <TableCell dataLabel="Beskrivelse">Enda en ganske lang beskrivelse...</TableCell>           
             <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
