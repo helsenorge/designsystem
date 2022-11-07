@@ -146,6 +146,10 @@
           "path": "/bibliotek/komponenter/radiobutton"
         },
         {
+          "label": "Select",
+          "path": "/bibliotek/komponenter/select"
+        },
+        {
           "label": "Spacer",
           "path": "/bibliotek/komponenter/spacer"
         },

@@ -12,6 +12,8 @@ export enum ZIndex {
   ExpanderTrigger = 10000,
 }
 
+export const AVERAGE_CHARACTER_WIDTH_PX = 12;
+
 export interface HTMLButtonProps {
   autoFocus?: boolean;
   disabled?: boolean;
@@ -94,6 +96,7 @@ export enum AnalyticsId {
   Portal = 'portal',
   Progressbar = 'progressbar',
   RadioButton = 'radio-button',
+  Select = 'select',
   Slider = 'slider',
   Spacer = 'spacer',
   StatusDot = 'status-dot',

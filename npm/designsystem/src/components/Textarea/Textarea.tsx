@@ -2,9 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import cn from 'classnames';
 
 import styles from './styles.module.scss';
-import { FormMode, AnalyticsId } from '../../constants';
+import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode } from '../../constants';
 import { uuid } from '../../utils/uuid';
-import { AVERAGE_CHARACTER_WIDTH_PX } from '../Input';
 import ErrorWrapper from '../ErrorWrapper';
 
 interface TextareaProps

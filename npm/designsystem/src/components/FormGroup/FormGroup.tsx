@@ -10,6 +10,7 @@ import Input, { InputProps } from '../Input/Input';
 import Title from '../Title';
 import FormLayout, { FormLayoutProps } from '../FormLayout';
 import ErrorWrapper from '../ErrorWrapper';
+import Select, { SelectProps } from '../Select';
 
 export type FormGroupTags = 'fieldset' | 'div';
 
@@ -87,6 +88,13 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         name: name ?? input.valueOf.name,
         mode,
         variant,
+        error: !!error,
+      });
+    } else if ((child as React.ReactElement<SelectProps>).type === Select) {
+      let select = (child as React.ReactElement<SelectProps>).type === Select;
+      return React.cloneElement(child as React.ReactElement<SelectProps>, {
+        name: name ?? select.valueOf.name,
+        mode,
         error: !!error,
       });
     }

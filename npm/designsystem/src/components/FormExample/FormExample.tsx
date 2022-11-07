@@ -12,6 +12,7 @@ import Input from '../Input';
 import Hospital from '../Icons/Hospital';
 import FormLayout, { FormLayoutColumns } from '../FormLayout';
 import { isTest } from '../../utils/environment';
+import Select from '../Select';
 
 interface FormExampleProps {
   exampleType: FormExampleVariants;
@@ -24,21 +25,28 @@ export enum FormExampleVariants {
   radiobutton = 'radiobutton',
   textarea = 'textarea',
   input = 'input',
+  select = 'select',
 }
 
 export const FormExample = (props: FormExampleProps): JSX.Element => {
   const { exampleType = FormExampleVariants.formgroup } = props;
-  const { register, handleSubmit, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const field1 = 'field1';
   const field2 = 'field2';
   const field3 = 'field3';
   const field4 = 'field4';
   const field5 = 'field5';
-  const allErrors = errors[field1] || errors[field2] || errors[field3] || errors[field4] || errors[field5];
+  const field6 = 'field6';
+  const allErrors = errors[field1] || errors[field2] || errors[field3] || errors[field4] || errors[field5] || errors[field6];
   const errorMessage = 'Du må velge et alternativ';
   const errorMessage2 = 'Du må velge to alternativ';
   const errorMessage3 = 'Det kan ikke legges inn mer enn 40 tegn';
   const errorMessage4 = 'Du må skrive noe her';
+  const errorMessage5 = 'Du må velge "Option 2"';
 
   const allCheckBoxes = [
     <Checkbox key={0} inputId="checkbox1" label={'Checkbox 1'} ref={register({ required: errorMessage })} />,
@@ -48,6 +56,9 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
 
   const requireTwo = (value: Array<string>): true | string => {
     return value.length >= 2 || errorMessage2;
+  };
+  const requireSelect = (value: Array<string>): true | string => {
+    return value.toString() === 'Option 2' || errorMessage5;
   };
 
   const getFormExample = () => {
@@ -104,6 +115,13 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         <FormGroup name={field5} key={4} variant={props.variant} error={errors[field5] ? errors[field5].message : undefined}>
           <Input label={'Skriv inn din tekst'} placeholder={'Skriv noe!'} icon={Hospital} ref={register({ required: errorMessage4 })} />
         </FormGroup>,
+        <FormGroup name={field6} key={5} variant={props.variant} error={errors[field6] ? errors[field6].message : undefined}>
+          <Select label={'Skriv inn din tekst'} ref={register({ validate: requireSelect })}>
+            <option value={'Option 1'}>{'Option 1'}</option>
+            <option value={'Option 2'}>{'Option 2'}</option>
+            <option value={'Option 3'}>{'Option 3'}</option>
+          </Select>
+        </FormGroup>,
       ];
     } else if (exampleType === FormExampleVariants.checkbox) {
       return (
@@ -153,6 +171,19 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           icon={Hospital}
           ref={register({ required: errorMessage4 })}
         />
+      );
+    } else if (exampleType === FormExampleVariants.select) {
+      return (
+        <Select
+          name={field6}
+          errorText={errors[field6] ? errors[field6].message : undefined}
+          label={'Skriv inn din tekst'}
+          ref={register({ validate: requireSelect })}
+        >
+          <option value={'Option 1'}>{'Option 1'}</option>
+          <option value={'Option 2'}>{'Option 2'}</option>
+          <option value={'Option 3'}>{'Option 3'}</option>
+        </Select>
       );
     }
   };
