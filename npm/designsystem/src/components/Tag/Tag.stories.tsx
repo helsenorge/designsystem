@@ -10,6 +10,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Tag',
   component: Tag,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Som innbygger vil jeg kunne se metadata for innhold i grensenittet på Helsenorge slik at jeg raskt kan scanne og differensiere flere typer innhold.',
+      },
+    },
+  },
   argTypes: {
     children: {
       control: 'text',

@@ -23,6 +23,13 @@ const ExampleWithBreakpoint = withBreakpoint(Example);
 export default {
   title: 'Hooks/withBreakpoint',
   component: ExampleWithBreakpoint,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Hentet fra https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35834#issuecomment-497605842',
+      },
+    },
+  },
 } as ComponentMeta<typeof ExampleWithBreakpoint>;
 
 export const Default: ComponentStory<typeof ExampleWithBreakpoint> = () => <ExampleWithBreakpoint />;

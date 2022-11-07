@@ -15,6 +15,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Panel',
   component: Panel,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Som innbygger vil jeg se formatterte data på et avgrenset område som gjør det scanbart og tilgjengelig, og som kan være en inngang til mer informasjon, slik at jeg kan løse oppgavene mine.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

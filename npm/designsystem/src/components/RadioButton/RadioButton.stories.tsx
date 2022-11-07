@@ -9,6 +9,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/RadioButton',
   component: RadioButton,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'RadioButton lar brukeren velge et av flere valg i en liste. RadioButton kan brukes frittstående, som en del av en FormGroup eller direkte i et Validation komponent.',
+      },
+    },
+  },
   argTypes: {
     label: {
       control: 'text',

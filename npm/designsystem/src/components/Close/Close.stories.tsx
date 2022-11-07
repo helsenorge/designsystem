@@ -9,6 +9,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Close',
   component: Close,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Close er en spesiell variant av Button tenkt til bruk ved lukking av modal vinduer, error meldinger eller andre informasjon bokser. Komponentet har unike layout regler, og burde derfor ikke brukes utenfor disse spesielle scenarioene.',
+      },
+    },
+  },
   argTypes: {
     testId: {
       control: 'text',

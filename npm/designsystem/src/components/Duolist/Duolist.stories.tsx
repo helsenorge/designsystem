@@ -10,6 +10,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Duolist',
   component: Duolist,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Som innbygger vil jeg kunne se utlisting av parvise dataelementer bestående av parameternavn og parameterverdi ("name/value pairs") slik at jeg kan scanne listen raskt for å se hvilke verdier som gjelder for hvlke elementer.',
+      },
+    },
+  },
 } as ComponentMeta<typeof Duolist>;
 
 export const Default: ComponentStory<typeof Duolist> = (args: any) => (

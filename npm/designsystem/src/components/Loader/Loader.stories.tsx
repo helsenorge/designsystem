@@ -11,6 +11,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Loader',
   component: Loader,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Loader benyttes for å vise innbygger at det lastes ned innhold, slik at innbygger må vente til innholdet er lastet ferdig.',
+      },
+    },
+  },
   argTypes: {
     color: {
       control: 'select',

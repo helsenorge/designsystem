@@ -13,6 +13,13 @@ import Table, { SmallViewportVariant, TableHead, TableRow, TableHeadCell, TableB
 export default {
   title: 'Components/HelpBubble',
   component: HelpBubble,
+  parameters: {
+    docs: {
+      description: {
+        component: 'HelpBubble [Hjelpeboble] er en liten popup som lar innbygger lese et tekstinnhold som utdyper det som ble trykket på.',
+      },
+    },
+  },
   argTypes: {
     children: {
       control: 'text',

@@ -9,6 +9,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Slider',
   component: Slider,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Slider inneholder en interaktiv slider som kan styres via mus/touch og tastatur interaksjon. Verdien kan returneres via onChange propen som blir gitt inn.',
+      },
+    },
+  },
   argTypes: {
     title: {
       control: 'text',

@@ -11,6 +11,13 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Expander',
   component: Expander,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Expander skjuler detaljinformasjon når den ikke trengs, og gjør den lett tilgjengelig i kontekst når den trengs.',
+      },
+    },
+  },
   argTypes: {
     children: {
       control: 'text',

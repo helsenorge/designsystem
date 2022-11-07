@@ -8,6 +8,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Spacer',
   component: Spacer,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Brukes til å legge til luft i layout og mellom komponenter. For mer fleksibilitet med marginer og padding kan getSpacer funksjonen importeres og brukes fra scss ressursene.',
+      },
+    },
+  },
 } as ComponentMeta<typeof Spacer>;
 
 export const Default: ComponentStory<typeof Spacer> = () => (

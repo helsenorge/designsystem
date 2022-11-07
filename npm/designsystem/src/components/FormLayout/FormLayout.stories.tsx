@@ -11,6 +11,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/FormLayout',
   component: FormLayout,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Et kolonne komponent som kan legges inne i en FormGroup. Det wrapper flere Checkboxer eller Radiobuttons, og lar deg styre kolonne layout',
+      },
+    },
+  },
   argTypes: {
     maxColumns: {
       control: 'select',

@@ -14,6 +14,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/FormGroup',
   component: FormGroup,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Et fieldset komponent ment for bruk i forms. Det kan være frittstående eller ligge i et Validation komponent. Dette komponentet wrapper input komponenter som f.eks. Checkbox og RadioButton.',
+      },
+    },
+  },
   argTypes: {
     title: {
       control: 'text',

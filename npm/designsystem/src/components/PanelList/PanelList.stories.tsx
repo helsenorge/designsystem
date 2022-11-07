@@ -8,6 +8,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/PanelList',
   component: PanelList,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Som innbygger vil jeg kunne ta stilling til flere paneler med informasjon i en liste slik at jeg effektivt kan scanne gjennom nøkkelinformasjon for elementer i listen og gjennomføre mine oppgaver.',
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',

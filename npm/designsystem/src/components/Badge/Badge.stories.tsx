@@ -9,6 +9,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Badge',
   component: Badge,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Badge [Markør] lar innbygger oppfatte at det er et antall nye elementer som har kommet til i et område siden sist gang innbygger besøkte området.',
+      },
+    },
+  },
   argTypes: {
     children: {
       control: 'text',

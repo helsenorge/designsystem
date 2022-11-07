@@ -11,6 +11,13 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Tile',
   component: Tile,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Som innbygger vil jeg kunne vise knapp og link innhold i ulike layouts og formater.',
+      },
+    },
+  },
   argTypes: {
     fixed: {
       control: 'boolean',

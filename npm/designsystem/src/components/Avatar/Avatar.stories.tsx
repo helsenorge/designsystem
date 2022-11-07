@@ -8,6 +8,14 @@ import GridExample from '../GridExample';
 export default {
   title: 'Components/Avatar',
   component: Avatar,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Avatar lar innbygger oppfatte en representasjon, f.eks. hvem man er logget inn som, hvem man handler på vegne av eller hvem som er avsender eller mottaker av en melding',
+      },
+    },
+  },
   argTypes: {
     children: {
       control: 'text',
