@@ -33,7 +33,7 @@
     "postgenerate:figmatokens": "style-dictionary build --config figma-token.config.json",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
     "lint:fix": "npm run lint -- --fix",
-    "prettier": "prettier --check src/**/*.{js,jsx,ts,tsx,css,scss,md,json}",
+    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
     "prettier:fix": "npm run prettier -- --write",
     "pretypecheck": "tsc -v",
     "typecheck": "tsc --noEmit",
