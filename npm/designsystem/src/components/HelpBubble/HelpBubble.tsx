@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { AnalyticsId } from '../../constants';
 import { useInterval } from '../../hooks/useInterval';
@@ -76,6 +76,12 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
 
   useInterval(updateControllerSize, 500);
   useLayoutEvent(updateControllerSize, ['scroll', 'resize'], 10);
+
+  useEffect(() => {
+    if (showBubble) {
+      updateControllerSize();
+    }
+  }, [showBubble]);
 
   if (!showBubble) {
     return null;
