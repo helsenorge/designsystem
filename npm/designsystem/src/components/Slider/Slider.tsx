@@ -21,6 +21,7 @@ import { AnalyticsId } from '../../constants';
 import { useSize } from '../../hooks/useSize';
 
 interface SliderProps {
+  //test
   /**	Sets the title of the slider. */
   title?: string;
   /** Adds the left hand label to the element. */
