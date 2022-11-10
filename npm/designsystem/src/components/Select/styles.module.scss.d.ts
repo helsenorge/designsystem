@@ -3,11 +3,11 @@ export type Styles = {
   'select--invalid': string;
   'select--on-blueberry': string;
   'select-arrow': string;
-  'select-grid': string;
-  'select-grid--disabled': string;
-  'select-grid--invalid': string;
-  'select-grid--on-blueberry': string;
-  'select-grid--transparent': string;
+  'select-inner-wrapper': string;
+  'select-inner-wrapper--disabled': string;
+  'select-inner-wrapper--invalid': string;
+  'select-inner-wrapper--on-blueberry': string;
+  'select-inner-wrapper--transparent': string;
   'select-wrapper': string;
   'select-wrapper__after-label-children': string;
   'select-wrapper__label-wrapper': string;

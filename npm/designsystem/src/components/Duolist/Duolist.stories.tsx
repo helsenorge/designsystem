@@ -6,6 +6,7 @@ import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 import Duolist, { DuolistGroup } from './Duolist';
 import Title from '../Title';
 import GridExample from '../GridExample';
+import AnchorLink from '../AnchorLink';
 
 export default {
   title: 'Components/Duolist',
@@ -18,12 +19,34 @@ export default {
       },
     },
   },
+  argTypes: {
+    descriptionWidth: {
+      control: 'number',
+    },
+  },
 } as ComponentMeta<typeof Duolist>;
 
 export const Default: ComponentStory<typeof Duolist> = (args: any) => (
   <GridExample>
     <Duolist {...args}>
       <DuolistGroup term={'test term'} description={'kort tekst'} />
+      <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
+      <DuolistGroup term={'test term'} description={'test description'} />
+    </Duolist>
+  </GridExample>
+);
+
+const descriptionWithLink = (
+  <>
+    {'Her er en link: '} <AnchorLink href={'https://www.helsenorge.no'}>{'Anchorlink test'}</AnchorLink>
+  </>
+);
+
+export const DescriptionWithLink: ComponentStory<typeof Duolist> = (args: any) => (
+  <GridExample>
+    <Duolist {...args}>
+      <DuolistGroup term={'test term'} description={descriptionWithLink} />
       <DuolistGroup term={'test term lang'} description={shortLoremText} />
       <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
       <DuolistGroup term={'test term'} description={'test description'} />
@@ -75,24 +98,41 @@ export const BoldColumn: ComponentStory<typeof Duolist> = (args: any) => (
   <GridExample>
     <Duolist {...args}>
       <DuolistGroup term={'test term'} description={'kort tekst'} />
-      <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      <DuolistGroup boldColumn={'second'} term={'test term lang'} description={shortLoremText} />
       <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
-      <DuolistGroup term={'test term'} description={'test description'} />
+      <DuolistGroup boldColumn={'second'} term={'test term'} description={'test description'} />
     </Duolist>
     <br />
     <br />
     <Duolist boldColumn="second" {...args}>
       <DuolistGroup term={'test term'} description={'kort tekst'} />
       <DuolistGroup term={'test term lang'} description={shortLoremText} />
-      <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
+      <DuolistGroup boldColumn={'first'} term={'test term enda lenger'} description={mediumLoremText} />
       <DuolistGroup term={'test term'} description={'test description'} />
     </Duolist>
   </GridExample>
 );
 
-export const AllVariants: ComponentStory<typeof Duolist> = (args: any) => (
+export const DescriptionWidth: ComponentStory<typeof Duolist> = (args: any) => (
+  <GridExample>
+    <Duolist descriptionWidth={40} {...args}>
+      <DuolistGroup term={'Her er en test term'} description={mediumLoremText} />
+    </Duolist>
+    <Duolist descriptionWidth={60} {...args}>
+      <DuolistGroup term={'Her er en test term'} description={mediumLoremText} />
+    </Duolist>
+    <Duolist descriptionWidth={80} {...args}>
+      <DuolistGroup term={'Her er en test term'} description={mediumLoremText} />
+    </Duolist>
+  </GridExample>
+);
+
+export const AllExamples: ComponentStory<typeof Duolist> = (args: any) => (
   <GridExample>
     <Default {...args} />
+    <br />
+    <br />
+    <DescriptionWithLink {...args} />
     <br />
     <br />
     <WithLabel {...args} />
@@ -105,5 +145,8 @@ export const AllVariants: ComponentStory<typeof Duolist> = (args: any) => (
     <br />
     <br />
     <BoldColumn {...args} />
+    <br />
+    <br />
+    <DescriptionWidth {...args} />
   </GridExample>
 );

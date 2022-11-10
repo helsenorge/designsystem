@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Duolist, { DuolistGroup } from './Duolist';
 import Title from '../Title';
+import AnchorLink from '../AnchorLink';
 
 describe('Gitt at Duolist skal vises', (): void => {
   describe('Når Duolist skal vises vanlig', (): void => {
@@ -94,14 +95,46 @@ describe('Gitt at Duolist skal vises', (): void => {
         <Duolist boldColumn="second">
           <DuolistGroup term={'test term 1'} description={'test description 1'} />
           <DuolistGroup term={'test term 2'} description={'test description 2'} />
+          <DuolistGroup boldColumn={'first'} term={'test term 3'} description={'test description 3'} />
         </Duolist>
       );
 
-      const duoListTerm = screen.getByText('test term 1');
-      const duoListDescription = screen.getByText('test description 1');
+      const duoListTerm1 = screen.getByText('test term 1');
+      const duoListDescription1 = screen.getByText('test description 1');
+      const duoListTerm2 = screen.getByText('test term 2');
+      const duoListDescription2 = screen.getByText('test description 2');
+      const duoListTerm3 = screen.getByText('test term 3');
+      const duoListDescription3 = screen.getByText('test description 3');
 
-      expect(duoListTerm.className).toBe('duolist__dt');
-      expect(duoListDescription).toHaveClass('duolist__dd duolist__dd--bold');
+      expect(duoListTerm1.className).toBe('duolist__dt');
+      expect(duoListDescription1).toHaveClass('duolist__dd duolist__dd--bold');
+      expect(duoListTerm2.className).toBe('duolist__dt');
+      expect(duoListDescription2).toHaveClass('duolist__dd duolist__dd--bold');
+      expect(duoListTerm3.className).toBe('duolist__dt duolist__dt--bold');
+      expect(duoListDescription3).toHaveClass('duolist__dd');
+    });
+  });
+
+  describe('Når Duolist vises med anchorlink', (): void => {
+    test('Så rendres det riktig', (): void => {
+      render(
+        <Duolist testId={'test01'} border="border">
+          <DuolistGroup
+            term={'test term 1'}
+            description={
+              <>
+                {'test description 1'} + <AnchorLink>{'test link 1'}</AnchorLink>
+              </>
+            }
+          />
+          <DuolistGroup term={'test term 2'} description={'test description 2'} />
+        </Duolist>
+      );
+
+      const link = screen.getByText('test link 1');
+
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveClass('anchorlink');
     });
   });
 });

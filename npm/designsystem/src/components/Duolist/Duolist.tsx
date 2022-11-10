@@ -25,15 +25,17 @@ interface DuolistProps {
   className?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Width of the description column in percentage */
+  descriptionWidth?: number;
 }
 
 interface DuolistGroupProps {
   /** Determines which column is bold */
   boldColumn?: BoldColumn;
-  /** Sets text of the <dd> tag. */
-  description: string;
-  /** Sets text of the <dt> tag. */
-  term: string;
+  /** Sets content of the <dd> tag. */
+  description: React.ReactNode;
+  /** Sets content of the <dt> tag. */
+  term: React.ReactNode;
 }
 
 export const DuolistGroup: React.FC<DuolistGroupProps> = props => {
@@ -53,7 +55,7 @@ export const DuolistGroup: React.FC<DuolistGroupProps> = props => {
 };
 
 export const Duolist: React.FC<DuolistProps> = props => {
-  const { boldColumn, border = 'no-border', label, variant = 'normal', children, className, testId } = props;
+  const { boldColumn, border = 'no-border', descriptionWidth, label, variant = 'normal', children, className, testId } = props;
 
   const hasBorder = border === 'border';
   const hasLines = variant === 'line';
@@ -71,6 +73,7 @@ export const Duolist: React.FC<DuolistProps> = props => {
   const duolistClasses = classNames(duolistStyles.duolist, {
     [duolistStyles['duolist--line']]: hasLines,
   });
+  const duolistColumnStyle = descriptionWidth ? descriptionWidth + '%' : 'minmax(60%, 1fr)';
 
   return (
     <div className={duolistWrapperClasses} data-testid={testId} data-analyticsid={AnalyticsId.Duolist}>
@@ -80,10 +83,13 @@ export const Duolist: React.FC<DuolistProps> = props => {
           <Spacer />
         </>
       )}
-      <dl className={duolistClasses}>
+      <dl style={{ gridTemplateColumns: `auto ${duolistColumnStyle}` }} className={duolistClasses}>
         {React.Children.map(children, (child: React.ReactNode | React.ReactElement<DuolistGroupProps>) => {
-          if ((child as React.ReactElement<DuolistGroupProps>).type === DuolistGroup) {
-            return React.cloneElement(child as React.ReactElement<DuolistGroupProps>, { boldColumn });
+          const duolistGroup = child as React.ReactElement<DuolistGroupProps>;
+          if (duolistGroup.type === DuolistGroup) {
+            return React.cloneElement(child as React.ReactElement<DuolistGroupProps>, {
+              boldColumn: duolistGroup.props.boldColumn ?? boldColumn,
+            });
           }
         })}
       </dl>

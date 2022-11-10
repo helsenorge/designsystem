@@ -18,7 +18,6 @@
   font-size: $font-size-sm;
   margin: 0;
   display: grid;
-  grid-template-columns: auto minmax(60%, 1fr);
 
   @media (min-width: map-get($grid-breakpoints, sm)) {
     font-size: $font-size-md;

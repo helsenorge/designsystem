@@ -9,6 +9,7 @@ exports[`Gitt at Duolist skal vises Når Duolist skal vises vanlig Så rendres d
   >
     <dl
       class="duolist"
+      style="grid-template-columns: auto minmax(60%, 1fr);"
     >
       <dt
         class="duolist__dt duolist__dt--bold"
