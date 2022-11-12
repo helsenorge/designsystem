@@ -1,134 +1,117 @@
-import React, { useContext, useState, useEffect, useRef, ReactChild, ReactChildren, ReactNode } from 'react';
-import { AnalyticsId } from '../../constants';
-import { useUuid } from '../../hooks/useUuid';
+import React, { useContext, useState, useEffect, useRef } from 'react';
+import { useDelayedState } from '../../hooks/useDelayedState';
 
+import { useUuid } from '../../hooks/useUuid';
 import HelpBubble from '../HelpBubble';
 
-import tooltipstyles from './styles.module.scss';
+import TooltipWord from './TooltipWord';
+
+const HOVER_DELAY_MS = 200;
 
 export interface TooltipProps {
-  /**Ordet som skal ha en tilhørende hjelpeblubb */
-  children: ReactNode;
-  /**Teksten som skal vises i hjelpeblubben */
-  description: ReactNode;
-  /**Valgfri test-id */
+  /** Ordet som skal ha en tilhørende tooltip */
+  children: string;
+  /** Teksten som skal vises i tooltip */
+  description: React.ReactNode;
+  /** Valgfri test-id */
   testId?: string;
 }
 
-export const Tooltip: React.FC<TooltipProps> = (props: TooltipProps): JSX.Element => {
-  const { children, description, testId } = props;
-
-  const HOVER_DELAY = 200;
-
-  const ariaDescribedBy = `help-bubble-${useUuid()}`;
-  const node = useRef<HTMLDivElement>(null);
-  const firstRender = useRef(true);
-  const anyTooltipIsOpen = useTooltipOpen();
-  const toggleTooltipIsOpen = useTooltipOpenToggle();
-  const [visTooltip, setVisTooltip] = useState(false);
-  const [hoverVisTooltip, setHoverVisTooltip] = useState(false);
-  const [delayHandler, setDelayHandler] = useState<number | null>(null);
+export const Tooltip: React.FC<TooltipProps> = ({ children, description, testId }) => {
+  const helpBubbleId = useUuid();
+  const wordRef = useRef<HTMLSpanElement>(null);
+  const { currentTooltip, setCurrentTooltip } = useContext(TooltipOpenContext);
+  const [{ showTooltip, keepOpen }, setShowTooltipDelayed, setShowTooltip] = useDelayedState(
+    { showTooltip: false, keepOpen: false },
+    HOVER_DELAY_MS
+  );
 
   useEffect(() => {
-    if (!firstRender.current) toggleTooltipIsOpen();
-    if (firstRender.current) firstRender.current = false;
-  }, [visTooltip]);
+    if (!setCurrentTooltip) {
+      return;
+    }
+    if (showTooltip) {
+      setCurrentTooltip(helpBubbleId);
+    } else {
+      setCurrentTooltip(undefined);
+    }
+  }, [showTooltip]);
 
-  const handleClick = (): void => {
-    if (!hoverVisTooltip) {
-      setVisTooltip(false);
+  useEffect(() => {
+    if (currentTooltip !== helpBubbleId && typeof currentTooltip !== 'undefined') {
+      setShowTooltip(prevState => ({ showTooltip: false, keepOpen: prevState.keepOpen }));
+    }
+  }, [currentTooltip]);
+
+  const handleDocumentClick = (): void => {
+    if (!showTooltip) {
+      setShowTooltip({ showTooltip: false, keepOpen: false });
     }
   };
 
-  const handleMouseEnter = (): void => {
-    if (!anyTooltipIsOpen) {
-      setDelayHandler(
-        window.setTimeout(() => {
-          setHoverVisTooltip(true);
-        }, HOVER_DELAY)
-      );
-    }
-  };
-
-  const handleMouseLeave = (): void => {
-    setHoverVisTooltip(false);
-    delayHandler && clearTimeout(delayHandler);
-  };
-
   useEffect(() => {
-    document.addEventListener('mouseup', handleClick);
+    document.addEventListener('mouseup', handleDocumentClick);
     return (): void => {
-      document.removeEventListener('mouseup', handleClick);
-      delayHandler && clearTimeout(delayHandler);
+      document.removeEventListener('mouseup', handleDocumentClick);
     };
   }, []);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
-    if (e.key === 'Enter') {
-      hoverVisTooltip ? setVisTooltip(false) : setVisTooltip(!visTooltip);
-      setHoverVisTooltip(false);
-    }
-    if (e.key === 'Escape') {
-      setVisTooltip(false);
-      setHoverVisTooltip(false);
+  const handleTooltipClick = (): void => {
+    setShowTooltip(prevState => ({ showTooltip: !prevState.showTooltip, keepOpen: !prevState.keepOpen }));
+  };
+
+  const handleFocus = (): void => {
+    if (!currentTooltip) {
+      setShowTooltipDelayed(prevState => ({ showTooltip: true, keepOpen: prevState.keepOpen }));
     }
   };
 
-  const handleTooltipClick = () => {
-    setVisTooltip(!visTooltip);
-    setHoverVisTooltip(false);
+  const handleBlur = (): void => {
+    setShowTooltip(prevState => ({ showTooltip: false, keepOpen: prevState.keepOpen }));
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>): void => {
+    if (e.key === 'Enter') {
+      setShowTooltip(prevState => ({ showTooltip: !prevState.showTooltip, keepOpen: !prevState.keepOpen }));
+    }
+    if (e.key === 'Escape') {
+      setShowTooltip({ showTooltip: false, keepOpen: false });
+    }
   };
 
   return (
     <>
-      <span
-        className={tooltipstyles.word}
-        ref={node}
-        tabIndex={0}
-        onClick={(): void => handleTooltipClick()}
-        onMouseEnter={(): void => handleMouseEnter()}
-        onMouseLeave={(): void => handleMouseLeave()}
-        onFocus={(): void => handleMouseEnter()}
-        onBlur={(): void => handleMouseLeave()}
+      <TooltipWord
+        ref={wordRef}
+        onClick={handleTooltipClick}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         onKeyDown={handleKeyDown}
-        aria-describedby={ariaDescribedBy}
-        data-testid={testId}
-        data-analyticsid={AnalyticsId.Tooltip}
+        ariaDescribedById={helpBubbleId}
+        testId={testId}
       >
         {children}
-      </span>
-      <HelpBubble helpBubbleId={ariaDescribedBy} controllerRef={node} showBubble={visTooltip || hoverVisTooltip} noCloseButton>
+      </TooltipWord>
+      <HelpBubble helpBubbleId={helpBubbleId} controllerRef={wordRef} role="tooltip" showBubble={showTooltip || keepOpen}>
         {description}
       </HelpBubble>
     </>
   );
 };
 
-const TooltipOpenContext = React.createContext(false);
-const TooltipOpenToggleContext = React.createContext(() => {});
-
-interface ContextProps {
-  children: ReactChild | ReactChildren;
-}
-export const useTooltipOpen = () => {
-  return useContext(TooltipOpenContext);
-};
-export const useTooltipOpenToggle = () => {
-  return useContext(TooltipOpenToggleContext);
+export type TooltipContext = {
+  currentTooltip?: string;
+  setCurrentTooltip?: (id?: string) => void;
 };
 
-export const TooltipOpenProvider = ({ children }: ContextProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+const TooltipOpenContext = React.createContext<TooltipContext>({
+  currentTooltip: undefined,
+});
 
-  const tooltipIsOpen = () => {
-    setIsOpen(prevIsOpen => !prevIsOpen);
-  };
+export const TooltipOpenProvider: React.FC = ({ children }) => {
+  const [currentTooltip, setCurrentTooltip] = useState<string>();
 
-  return (
-    <TooltipOpenContext.Provider value={isOpen}>
-      <TooltipOpenToggleContext.Provider value={tooltipIsOpen}>{children}</TooltipOpenToggleContext.Provider>
-    </TooltipOpenContext.Provider>
-  );
+  return <TooltipOpenContext.Provider value={{ currentTooltip, setCurrentTooltip }}>{children}</TooltipOpenContext.Provider>;
 };
 
 export default Tooltip;

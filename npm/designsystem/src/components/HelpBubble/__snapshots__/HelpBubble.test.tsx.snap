@@ -6,13 +6,7 @@ exports[`Gitt at HelpBubble skal vises Når den skal vises vanlig Så vises Help
     class="helpbubble helpbubble--visible"
     data-analyticsid="help-bubble"
     data-testid="test01"
-    role="tooltip"
   >
-    <div
-      class="helpbubble__content helpbubble__content--close"
-    >
-      Test tekst
-    </div>
     <div
       class="helpbubble__close"
     >
@@ -40,9 +34,14 @@ exports[`Gitt at HelpBubble skal vises Når den skal vises vanlig Så vises Help
         </svg>
       </button>
     </div>
+    <div
+      class="helpbubble__content helpbubble__content--close"
+    >
+      Test tekst
+    </div>
   </div>
   <div
-    class="helpbubble__arrow helpbubble__arrow--visible"
+    class="helpbubble__arrow"
   />
 </div>
 `;

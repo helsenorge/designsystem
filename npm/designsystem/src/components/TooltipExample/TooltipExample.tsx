@@ -9,6 +9,7 @@ const TooltipExample: React.FC<TooltipProps> = props => {
       <>
         <Tooltip {...props}>{'Et tooltip her.'}</Tooltip>
         {' ' + longLoremText}
+        <button>{'Knapp'}</button>
         {'Dette er '}
         <Tooltip {...props}>{props.children}</Tooltip>
         {' som skal ha nærmere forklaring.'}

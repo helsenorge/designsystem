@@ -77,7 +77,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
       const arrow = bubble.nextSibling;
 
       expect(bubble).toHaveClass('helpbubble');
-      await waitFor(() => expect(arrow).toHaveClass('helpbubble__arrow helpbubble__arrow--visible helpbubble__arrow--over'));
+      await waitFor(() => expect(arrow).toHaveClass('helpbubble__arrow helpbubble__arrow--over'));
     });
   });
 
@@ -93,7 +93,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
       const arrow = bubble.nextSibling;
 
       expect(bubble).toHaveClass('helpbubble');
-      await waitFor(() => expect(arrow).toHaveClass('helpbubble__arrow helpbubble__arrow--visible helpbubble__arrow--under'));
+      await waitFor(() => expect(arrow).toHaveClass('helpbubble__arrow helpbubble__arrow--under'));
     });
   });
 

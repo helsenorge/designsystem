@@ -2,13 +2,13 @@ import React, { useRef } from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { useResizeObserver } from './useResizeObserver';
+import { useSize } from './useSize';
 import GridExample from '../components/GridExample';
 import HighlightBox from '../components/HighlightBox';
 
-const UseResizeObserverExample: React.FC = () => {
+const UseSizeExample: React.FC = () => {
   const ref = useRef<HTMLPreElement>(null);
-  const size = useResizeObserver(ref);
+  const size = useSize(ref);
 
   return (
     <GridExample>
@@ -20,15 +20,15 @@ const UseResizeObserverExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useResizeObserver',
-  component: UseResizeObserverExample,
+  title: 'Hooks/useSize',
+  component: UseSizeExample,
   parameters: {
     docs: {
       description: {
-        component: 'Lytt på endringer i størrelse på et element. Bruker ResizeObserver-APIet.',
+        component: 'Lytt på endringer i størrelse på et element.',
       },
     },
   },
-} as ComponentMeta<typeof UseResizeObserverExample>;
+} as ComponentMeta<typeof UseSizeExample>;
 
-export const Default: ComponentStory<typeof UseResizeObserverExample> = () => <UseResizeObserverExample />;
+export const Default: ComponentStory<typeof UseSizeExample> = () => <UseSizeExample />;

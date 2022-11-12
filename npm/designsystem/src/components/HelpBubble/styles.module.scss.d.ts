@@ -6,7 +6,6 @@ export type Styles = {
   helpbubble__arrow: string;
   'helpbubble__arrow--over': string;
   'helpbubble__arrow--under': string;
-  'helpbubble__arrow--visible': string;
   helpbubble__close: string;
   helpbubble__content: string;
   'helpbubble__content--close': string;

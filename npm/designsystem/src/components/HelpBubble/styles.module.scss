@@ -5,6 +5,7 @@
 @import '../AnchorLink/styles.module.scss';
 
 .helpbubble {
+  $bubble: &;
   display: flex;
   position: fixed;
   align-items: flex-start !important;
@@ -17,8 +18,16 @@
   z-index: 3;
   visibility: hidden;
 
+  & + &__arrow {
+    visibility: hidden;
+  }
+
   &--visible {
     visibility: visible;
+
+    & + #{$bubble}__arrow {
+      visibility: visible;
+    }
   }
 
   border: getSpacer(4xs) solid $plum600;
@@ -31,6 +40,7 @@
   }
 
   &__content {
+    order: 1;
     display: flex;
     width: max-content;
     flex-direction: column;
@@ -54,21 +64,17 @@
   }
 
   &__close {
+    order: 2;
     padding: getSpacer(2xs) getSpacer(2xs) 0px 0px;
   }
 
   &__arrow {
-    visibility: hidden;
     width: 0;
     height: 0;
     position: fixed;
     border-style: solid;
     border-color: transparent;
     z-index: 4;
-
-    &--visible {
-      visibility: visible;
-    }
 
     &--over {
       border-width: 10px 10px;

@@ -1,19 +1,21 @@
 import * as React from 'react';
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Tooltip from './Tooltip';
 
 describe('Gitt at Tooltip rendres ', () => {
   describe('Når komponenten får en tekst', () => {
     it('Så rendres den riktig', () => {
-      const wrapper = render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
+      const { container } = render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
 
       const word = screen.getByText('ordet');
 
       expect(word).toBeInTheDocument();
       expect(word).toHaveClass('word');
-      expect(wrapper).toMatchSnapshot();
+
+      expect(container).toMatchSnapshot();
     });
   });
 
@@ -22,9 +24,9 @@ describe('Gitt at Tooltip rendres ', () => {
       render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
 
       const word = screen.getByText('ordet');
-      fireEvent.click(word);
+      await userEvent.click(word);
 
-      const helpBubble = await screen.findByText('beskrivelse av ordet');
+      const helpBubble = screen.getByRole('tooltip', { name: 'beskrivelse av ordet' });
       expect(helpBubble).toBeInTheDocument();
     });
   });
@@ -34,9 +36,9 @@ describe('Gitt at Tooltip rendres ', () => {
       render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
 
       const word = screen.getByText('ordet');
-      fireEvent.mouseOver(word);
+      await userEvent.hover(word);
 
-      const helpBubble = await screen.findByText('beskrivelse av ordet');
+      const helpBubble = screen.getByRole('tooltip', { name: 'beskrivelse av ordet' });
       expect(helpBubble).toBeInTheDocument();
     });
   });
@@ -46,29 +48,26 @@ describe('Gitt at Tooltip rendres ', () => {
       render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
 
       const word = screen.getByText('ordet');
-      fireEvent.focus(word);
 
-      const helpBubble = await screen.findByText('beskrivelse av ordet');
+      await userEvent.tab();
+      expect(word).toHaveFocus();
+
+      const helpBubble = screen.getByRole('tooltip', { name: 'beskrivelse av ordet' });
       expect(helpBubble).toBeInTheDocument();
     });
   });
 
   describe('Når det trykkes mens HelpBubble er åpen', () => {
     it('Så skjules HelpBubble', async () => {
-      render(
-        <Tooltip description={'beskrivelse av ordet'} testId={'test01'}>
-          {'ordet'}
-        </Tooltip>
-      );
+      render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
 
       const word = screen.getByText('ordet');
-      fireEvent.click(word);
+      await userEvent.click(word);
 
-      const helpBubble = await screen.findByText('beskrivelse av ordet');
-      fireEvent.mouseUp(helpBubble);
-      const helpBubble2 = screen.queryByText('beskrivelse av ordet');
+      const helpBubble = screen.getByRole('tooltip');
+      await userEvent.click(helpBubble);
 
-      expect(helpBubble2).not.toBeInTheDocument();
+      expect(helpBubble).not.toHaveClass('helpbubble--visible');
     });
   });
 });

@@ -2,22 +2,20 @@ import React, { useRef } from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { useIsVisible } from './useIsVisible';
+import { useIntersectionObserver } from './useIntersectionObserver';
 import { longLoremText } from '../utils/loremtext';
 import GridExample from '../components/GridExample';
 import Button from '../components/Button';
 
-const UseIsVisibleExample: React.FC = (args: any) => {
+const UseIntersectionObserverExample: React.FC = () => {
   const ref = useRef<HTMLButtonElement>(null);
-  const isVisible = useIsVisible(ref, args.threshold);
+  useIntersectionObserver(ref, entries => console.log(entries));
 
   return (
     <GridExample>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
-      <Button ref={ref} disabled={!isVisible}>
-        Knappen er {isVisible ? 'synlig' : 'ikke synlig'}
-      </Button>
+      <Button ref={ref}>Sjekk console</Button>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
     </GridExample>
@@ -25,8 +23,8 @@ const UseIsVisibleExample: React.FC = (args: any) => {
 };
 
 export default {
-  title: 'Hooks/useIsVisible',
-  component: UseIsVisibleExample,
+  title: 'Hooks/useIntersectionObserver',
+  component: UseIntersectionObserverExample,
   parameters: {
     docs: {
       description: {
@@ -40,6 +38,6 @@ export default {
       defaultValue: 0.5,
     },
   },
-} as ComponentMeta<typeof UseIsVisibleExample>;
+} as ComponentMeta<typeof UseIntersectionObserverExample>;
 
-export const Default: ComponentStory<typeof UseIsVisibleExample> = (args: any) => <UseIsVisibleExample {...args} />;
+export const Default: ComponentStory<typeof UseIntersectionObserverExample> = (args: any) => <UseIntersectionObserverExample {...args} />;

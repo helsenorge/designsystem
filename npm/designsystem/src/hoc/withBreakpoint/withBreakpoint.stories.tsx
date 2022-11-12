@@ -21,12 +21,12 @@ const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
 const ExampleWithBreakpoint = withBreakpoint(Example);
 
 export default {
-  title: 'Hooks/withBreakpoint',
+  title: 'HOC/withBreakpoint',
   component: ExampleWithBreakpoint,
   parameters: {
     docs: {
       description: {
-        component: 'Hentet fra https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35834#issuecomment-497605842',
+        component: 'Send inn nåværende breakpoint som en prop til en React-komponent.',
       },
     },
   },
