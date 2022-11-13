@@ -1,3 +1,17 @@
+## [2.5.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.4.0&targetVersion=GTv2.5.0) (2022-11-13)
+
+
+### Features
+
+*  duolist custom breddeforhold, bold per gruppe og mulighet for reactnode som dt og dd ([8c1db38](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/8c1db382e7006faf478bd2d93eb72a28fadf4e43)), closes [#285932](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/285932)
+*  nytt komponent Select ([70b540f](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/70b540fc0791cf8e94f974cbf4b4d63990d435ae)), closes [#260924](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260924)
+
+
+### Bug Fixes
+
+*  oppdater posisjon i helpbubble med én gang den vises ([ad297fe](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ad297feeac1e0aa457121c4b6b369c1d57b53087)), closes [#285111](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/285111)
+*  uu-forbedringer i tooltip og helpbubble ([be42f12](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/be42f12169779530f92d75dc7d64a06c41b38866)), closes [#285111](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/285111)
+
 ## [2.4.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.3.0&targetVersion=GTv2.4.0) (2022-11-05)
 
 
