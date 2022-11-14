@@ -62,9 +62,7 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
         </TableHead>
         <TableBody>
           {data.map((fastlege, i: number) => (
-            <>
-              <TableRow rowKey={'row' + i}>{getFastlegeDataCells(fastlege)}</TableRow>
-            </>
+            <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
           ))}
         </TableBody>
       </Table>
@@ -89,9 +87,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
         </TableHead>
         <TableBody>
           {data.map((fastlege, i: number) => (
-            <>
-              <TableRow key={'row' + i}>{getFastlegeDataCells(fastlege)}</TableRow>
-            </>
+            <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
           ))}
         </TableBody>
       </Table>
@@ -157,7 +153,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
         </TableHead>
         <TableBody className="test1">
           {data.map((fastlege, i: number) => (
-            <>
+            <React.Fragment key={i}>
               <TableRow
                 onClick={() => {
                   toggleExpand(i);
@@ -166,7 +162,6 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
                 expanded={expanded[i]}
                 hideDetailsText="Skjul detaljer"
                 showDetailsText="Vis detaljer"
-                rowKey={'row' + i}
               >
                 <TableExpanderCell
                   expanded={expanded[i]}
@@ -206,7 +201,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
                 <p>Spesialist i allmennnmedisin</p>
                 <p>Startet som fastlege i {fastlege.Avtaledato.substring(0, 4)}.</p>
               </TableExpandedRow>
-            </>
+            </React.Fragment>
           ))}
         </TableBody>
       </Table>

@@ -1,32 +1,33 @@
 import { useRef, useEffect, useState, RefObject } from 'react';
 
-/** ref: Reference object for the trigger of the hover state
- *
- *  condition: Additional boolean condition to trigger the useEffect checking for hover.
- *
- *  includeFocus: If focusing the ref should count as a hover or not. True by default.
+/**
+ * Få vite når et element hovres over eller mottar fokus.
+ * @param ref Element som skal observeres
+ * @returns Objekt med ref og om objekt er hovered/focused
  */
-export const useHover = <T extends HTMLElement | SVGElement>(ref?: RefObject<T>, condition?: boolean, includeFocus: boolean = true) => {
+export const useHover = <T extends HTMLElement | SVGElement>(ref?: RefObject<T>): { hoverRef: RefObject<T>; isHovered: boolean } => {
   const hoverRef = ref ? ref : useRef<T>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
-    const { current: element } = hoverRef;
+    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseLeave = () => setIsHovered(false);
+    const handleFocusIn = () => setIsFocused(true);
+    const handleFocusOut = () => setIsFocused(false);
 
-    const handleInEvent = () => setIsHovered(true);
-
-    const handleOutEvent = () => setIsHovered(false);
-
-    const inEventList = ['mouseenter', includeFocus ? 'focusin' : ''];
-    const outEventList = ['mouseleave', includeFocus ? 'focusout' : ''];
-    inEventList.forEach(eventName => element?.addEventListener(eventName, handleInEvent));
-    outEventList.forEach(eventName => element?.addEventListener(eventName, handleOutEvent));
+    hoverRef.current?.addEventListener('mouseenter', handleMouseEnter);
+    hoverRef.current?.addEventListener('mouseleave', handleMouseLeave);
+    hoverRef.current?.addEventListener('focusin', handleFocusIn);
+    hoverRef.current?.addEventListener('focusout', handleFocusOut);
 
     return (): void => {
-      inEventList.forEach(eventName => element?.removeEventListener(eventName, handleInEvent));
-      outEventList.forEach(eventName => element?.removeEventListener(eventName, handleOutEvent));
+      hoverRef.current?.removeEventListener('mouseenter', handleMouseEnter);
+      hoverRef.current?.removeEventListener('mouseleave', handleMouseLeave);
+      hoverRef.current?.removeEventListener('focusin', handleFocusIn);
+      hoverRef.current?.removeEventListener('focusout', handleFocusOut);
     };
-  }, [hoverRef, condition]);
+  }, [hoverRef]);
 
-  return { hoverRef, isHovered };
+  return { hoverRef, isHovered: isHovered || isFocused };
 };

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useFocusableElements } from './useFocusableElements';
+import { useElementList } from './useElementList';
+import { FOCUSABLE_SELECTORS } from './useFocusableElements';
 
 /**
  * Skru av og på fokus på fokuserbare elementer slik at de kan være en del av DOMen, men samtidig
@@ -9,7 +10,8 @@ import { useFocusableElements } from './useFocusableElements';
  * @returns void
  */
 export const useFocusToggle = (ref: React.RefObject<HTMLElement>, allowFocus?: boolean): void => {
-  const focusableElementList = useFocusableElements(ref);
+  // Kan ikke lytte på endringer i attributter, fordi det vil føre til en loop når vi endrer dem etterpå
+  const focusableElementList = useElementList(ref, FOCUSABLE_SELECTORS, { attributes: false });
 
   useEffect(() => {
     const TABINDEX_ATTRIBUTE_NAME = 'tabindex';

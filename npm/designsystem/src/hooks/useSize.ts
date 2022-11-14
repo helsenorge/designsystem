@@ -45,7 +45,7 @@ export const useSize = (ref?: React.RefObject<HTMLElement>) => {
         events.forEach(eventName => window.removeEventListener(eventName, debouncedCallback));
       };
     }
-  }, [ref?.current]);
+  }, [ref]);
 
   return size;
 };

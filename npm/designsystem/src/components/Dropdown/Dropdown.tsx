@@ -126,19 +126,14 @@ const Dropdown: React.FC<DropdownProps> = props => {
     }
   };
 
-  useKeyboardEvent(
-    'keydown',
-    dropdownRef,
-    [
-      KeyboardEventKey.ArrowDown,
-      KeyboardEventKey.ArrowUp,
-      KeyboardEventKey.End,
-      KeyboardEventKey.Enter,
-      KeyboardEventKey.Escape,
-      KeyboardEventKey.Home,
-    ],
-    handleKeyboardNavigation
-  );
+  useKeyboardEvent(dropdownRef, handleKeyboardNavigation, [
+    KeyboardEventKey.ArrowDown,
+    KeyboardEventKey.ArrowUp,
+    KeyboardEventKey.End,
+    KeyboardEventKey.Enter,
+    KeyboardEventKey.Escape,
+    KeyboardEventKey.Home,
+  ]);
 
   useOutsideEvent(dropdownRef, () => isOpen && handleClose());
 

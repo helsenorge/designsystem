@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getDocumentActiveElement } from './focus-utils';
+import { getDocumentActiveElement } from '../utils/focus';
 import { useFocusableElements } from './useFocusableElements';
 
 /**

@@ -9,19 +9,14 @@ import { KeyboardEventKey } from '../constants';
 
 const UseKeyboardEventExample: React.FC = (args: any) => {
   const ref = useRef<HTMLTextAreaElement>(null);
-  useKeyboardEvent(
-    'keydown',
-    ref,
-    [
-      KeyboardEventKey.ArrowDown,
-      KeyboardEventKey.ArrowUp,
-      KeyboardEventKey.End,
-      KeyboardEventKey.Enter,
-      KeyboardEventKey.Escape,
-      KeyboardEventKey.Home,
-    ],
-    e => console.log(`Du trykker på ${e.key}`)
-  );
+  useKeyboardEvent(ref, e => console.log(`Du trykker på ${e.key}`), [
+    KeyboardEventKey.ArrowDown,
+    KeyboardEventKey.ArrowUp,
+    KeyboardEventKey.End,
+    KeyboardEventKey.Enter,
+    KeyboardEventKey.Escape,
+    KeyboardEventKey.Home,
+  ]);
 
   return (
     <GridExample>

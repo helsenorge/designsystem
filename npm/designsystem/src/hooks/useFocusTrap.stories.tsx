@@ -28,7 +28,7 @@ const UseFocusTrapExample: React.FC = () => {
       <Button onClick={toggleAutofocus}>Slå av/på autofokus</Button>
       <p>Autofokus er {autofocus ? 'på' : 'av'}</p>
       <Spacer />
-      <HighlightBox color="blueberry">
+      <HighlightBox color="blueberry" size="fluid">
         <div ref={ref}>
           <div>
             <Button>Knapp 1</Button>

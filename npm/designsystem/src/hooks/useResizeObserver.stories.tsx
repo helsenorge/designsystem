@@ -12,7 +12,7 @@ const UseResizeObserverExample: React.FC = () => {
 
   return (
     <GridExample>
-      <HighlightBox color="blueberry">
+      <HighlightBox color="blueberry" size="fluid">
         <pre ref={ref}>{JSON.stringify(size?.toJSON(), null, 2)}</pre>
       </HighlightBox>
     </GridExample>

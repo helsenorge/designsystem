@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
 
-type PickByValue<T, V> = Pick<T, { [K in keyof T]: T[K] extends V ? K : never }[keyof T]>;
-
 type OutsideEvents = keyof PickByValue<HTMLElementEventMap, MouseEvent | FocusEvent>;
 
 /**
@@ -27,5 +25,5 @@ export const useOutsideEvent = (
     return () => {
       events.forEach(eventName => document.removeEventListener(eventName, handleOutsideEvent));
     };
-  });
+  }, [ref, handleClick, events]);
 };

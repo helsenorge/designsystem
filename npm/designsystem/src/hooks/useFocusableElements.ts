@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useElementList } from './useElementList';
 
 // Fra https://github.com/KittyGiraudel/focusable-selectors
 export const FOCUSABLE_SELECTORS = [
@@ -22,26 +22,5 @@ export const FOCUSABLE_SELECTORS = [
  * @param ref Element som skal observeres
  * @returns Liste med fokuserbare HTML-elementer
  */
-export const useFocusableElements = (ref: React.RefObject<HTMLElement>): NodeListOf<HTMLElement> | undefined => {
-  const [focusableElementList, setFocusableElementList] = useState<NodeListOf<HTMLElement>>();
-
-  useEffect(() => {
-    const handleMutationChange = () => {
-      const elementList = ref.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS);
-      setFocusableElementList(elementList);
-    };
-
-    const mutationObserver = new MutationObserver(handleMutationChange);
-    if (ref?.current) {
-      mutationObserver.observe(ref.current, { subtree: true, childList: true });
-    }
-
-    handleMutationChange();
-
-    return (): void => {
-      mutationObserver.disconnect();
-    };
-  }, [ref]);
-
-  return focusableElementList;
-};
+export const useFocusableElements = (ref: React.RefObject<HTMLElement>): NodeListOf<HTMLElement> | undefined =>
+  useElementList(ref, FOCUSABLE_SELECTORS);

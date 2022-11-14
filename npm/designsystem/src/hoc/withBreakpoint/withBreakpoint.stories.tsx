@@ -7,7 +7,7 @@ import { BreakpointProps, withBreakpoint } from './withBreakpoint';
 import GridExample from '../../components/GridExample';
 
 const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
-  const description = breakpoint && `Breakpoint er nå ${Breakpoint[breakpoint]} (${breakpoint}px)`;
+  const description = `Breakpoint er nå ${Breakpoint[breakpoint]} (${breakpoint}px)`;
 
   console.log(description);
 

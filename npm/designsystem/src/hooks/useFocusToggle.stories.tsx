@@ -22,7 +22,7 @@ const UseFocusToggleExample: React.FC = () => {
       <p>Fokus er {allowFocus ? 'lov' : 'ikke lov'}</p>
       <Button onClick={toggleAllowFocus}>Slå av/på fokus</Button>
       <Spacer />
-      <HighlightBox>
+      <HighlightBox color="blueberry" size="fluid">
         <div ref={ref}>
           <div>
             <Button>Knapp 1</Button>
