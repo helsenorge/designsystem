@@ -1,3 +1,16 @@
+## [2.6.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.5.0&targetVersion=GTv2.6.0) (2022-11-15)
+
+
+### Features
+
+*  helpbubble kan ta imot ref ([ae2dfcb](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ae2dfcb5325dd31da97c032c502a8c433a8a13b4)), closes [#285111](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/285111)
+*  react-hook-form 7 støtte ([bd50e9d](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/bd50e9d616faec405a441661169db559bcf00783)), closes [#287912](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/287912)
+
+
+### Bug Fixes
+
+*  useSize trigges ved endring i ref igjen ([c374772](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/c374772117d019d77ad725add65f20f869a876b9)), closes [#285111](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/285111)
+
 ## [2.5.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.4.0&targetVersion=GTv2.5.0) (2022-11-13)
 
 
