@@ -78,7 +78,7 @@
     "react": "^17.0.2",
     "react-docgen-typescript": "^2.2.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^6.15.8",
+    "react-hook-form": "^7.0.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",

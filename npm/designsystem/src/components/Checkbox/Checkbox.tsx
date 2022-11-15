@@ -11,7 +11,7 @@ import checkboxStyles from './styles.module.scss';
 import { AnalyticsId, FormMode, FormVariant, IconSize } from '../../constants';
 
 export interface CheckboxProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'checked' | 'required'> {
+  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'checked' | 'required' | 'onChange'> {
   /** Adds custom classes to the element. */
   className?: string;
   /** The label text next to the checkbox */
@@ -45,6 +45,8 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     value = label,
     testId,
     required,
+    onChange,
+    ...rest
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
   const invalid = error || mode === FormMode.oninvalid;
@@ -84,6 +86,14 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     setIsChecked(checked);
   }, [checked]);
 
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if (onChange) {
+      onChange(e);
+    }
+
+    setIsChecked(!isChecked);
+  };
+
   return (
     <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
       {errorText && <p className={errorStyles}>{errorText}</p>}
@@ -95,13 +105,12 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           type="checkbox"
           checked={isChecked}
           disabled={disabled}
-          onChange={(): void => {
-            setIsChecked(!isChecked);
-          }}
           value={value}
           ref={ref}
           aria-invalid={error}
           required={required}
+          onChange={onChangeHandler}
+          {...rest}
         />
         <span className={checkboxIconWrapperClasses}>
           {isChecked && <Icon color={iconColor} className={checkboxStyles['checkbox__icon']} svgIcon={Check} size={IconSize.XSmall} />}

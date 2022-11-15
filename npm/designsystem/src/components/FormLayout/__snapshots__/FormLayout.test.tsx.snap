@@ -49,7 +49,7 @@ exports[`Gitt at FormLayout skal vises Når FormLayout rendres Så vises FormLay
                     aria-invalid="false"
                     class="checkbox"
                     id="Checkbox1"
-                    name="valueOf"
+                    name="Checkbox1"
                     type="checkbox"
                     value="Checkbox 1"
                   />
@@ -79,7 +79,7 @@ exports[`Gitt at FormLayout skal vises Når FormLayout rendres Så vises FormLay
                     aria-invalid="false"
                     class="checkbox"
                     id="Checkbox2"
-                    name="valueOf"
+                    name="Checkbox2"
                     type="checkbox"
                     value="Checkbox 2"
                   />
@@ -109,7 +109,7 @@ exports[`Gitt at FormLayout skal vises Når FormLayout rendres Så vises FormLay
                     aria-invalid="false"
                     class="checkbox"
                     id="Checkbox3"
-                    name="valueOf"
+                    name="Checkbox3"
                     type="checkbox"
                     value="Checkbox 3"
                   />

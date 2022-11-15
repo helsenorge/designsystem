@@ -60,40 +60,39 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     [formGroupStyles['field-set__legend--bigform']]: bigform,
   });
 
+  const isComponent = <T,>(element: {} | null | undefined, type: React.ForwardRefExoticComponent<T>): element is React.ReactElement<T> =>
+    React.isValidElement<T>(element) && (element as React.ReactElement).type === type;
+
   const mapFormComponent = (child: React.ReactNode): React.ReactNode => {
-    if ((child as React.ReactElement<FormLayoutProps>).type === FormLayout) {
+    if (isComponent<FormGroupProps>(child, FormLayout)) {
       return React.cloneElement(child as React.ReactElement<FormLayoutProps>, {
         variant,
         mapHelper: mapFormComponent,
       });
-    } else if ((child as React.ReactElement<CheckboxProps>).type === Checkbox) {
-      let checkbox = (child as React.ReactElement<CheckboxProps>).type === Checkbox;
+    } else if (isComponent<CheckboxProps>(child, Checkbox)) {
       return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
-        name: name ?? checkbox.valueOf.name,
+        name: name ?? child.props.name,
         mode,
         variant,
         error: !!error,
       });
-    } else if ((child as React.ReactElement<RadioButtonProps>).type === RadioButton) {
-      let radioButton = (child as React.ReactElement<RadioButtonProps>).type === RadioButton;
+    } else if (isComponent<RadioButtonProps>(child, RadioButton)) {
       return React.cloneElement(child as React.ReactElement<RadioButtonProps>, {
-        name: name ?? radioButton.valueOf.name,
+        name: name ?? child.props.name,
         mode,
         variant,
         error: !!error,
       });
-    } else if ((child as React.ReactElement<InputProps>).type === Input) {
-      let input = (child as React.ReactElement<InputProps>).type === Input;
+    } else if (isComponent<InputProps>(child, Input)) {
       return React.cloneElement(child as React.ReactElement<InputProps>, {
-        name: name ?? input.valueOf.name,
+        name: name ?? child.props.name,
         mode,
         variant,
         error: !!error,
       });
-    } else if ((child as React.ReactElement<SelectProps>).type === Select) {
-      let select = (child as React.ReactElement<SelectProps>).type === Select;
+    } else if (isComponent<SelectProps>(child, Select)) {
       return React.cloneElement(child as React.ReactElement<SelectProps>, {
-        name: name ?? select.valueOf.name,
+        name: name ?? child.props.name,
         mode,
         error: !!error,
       });

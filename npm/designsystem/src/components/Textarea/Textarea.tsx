@@ -9,7 +9,7 @@ import ErrorWrapper from '../ErrorWrapper';
 interface TextareaProps
   extends Pick<
     React.InputHTMLAttributes<HTMLTextAreaElement>,
-    'autoFocus' | 'disabled' | 'name' | 'autoComplete' | 'placeholder' | 'readOnly' | 'required' | 'defaultValue'
+    'autoFocus' | 'disabled' | 'name' | 'autoComplete' | 'placeholder' | 'readOnly' | 'required' | 'defaultValue' | 'onChange'
   > {
   /** max character limit in textarea  */
   maxCharacters?: number;
@@ -76,6 +76,8 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     placeholder,
     readOnly,
     required,
+    onChange,
+    ...rest
   } = props;
 
   const [rows, setRows] = useState(minRows);
@@ -158,6 +160,13 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const ariaLevel = progress > 0.95 ? 'polite' : 'off';
   const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
 
+  const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (onChange) {
+      onChange(e);
+    }
+    handleChange(e);
+  };
+
   return (
     <ErrorWrapper errorText={errorText}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
@@ -175,7 +184,6 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             id={textareaId}
             className={textareaClass}
             ref={ref}
-            onChange={handleChange}
             aria-invalid={!!onError}
             autoFocus={autoFocus}
             disabled={disabled}
@@ -184,6 +192,8 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             placeholder={placeholder}
             readOnly={readOnly}
             required={required}
+            onChange={onChangeHandler}
+            {...rest}
           />
         </div>
         {max && (

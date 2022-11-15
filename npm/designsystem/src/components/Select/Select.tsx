@@ -65,6 +65,7 @@ export const Select = React.forwardRef((props: SelectProps, ref: React.Ref<HTMLS
     width,
     required,
     value,
+    ...rest
   } = props;
 
   const uuid = useUuid(selectId);
@@ -114,6 +115,7 @@ export const Select = React.forwardRef((props: SelectProps, ref: React.Ref<HTMLS
             ref={ref}
             required={required}
             value={value}
+            {...rest}
           >
             {children}
           </select>

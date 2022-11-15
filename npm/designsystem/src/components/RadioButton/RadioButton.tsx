@@ -41,6 +41,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     value = label,
     testId,
     required,
+    ...rest
   } = props;
   const invalid = error || mode === FormMode.oninvalid;
   const onDark = mode === FormMode.ondark;
@@ -87,6 +88,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
           aria-invalid={error}
           defaultChecked={defaultChecked}
           required={required}
+          {...rest}
         />
         {label}
       </label>

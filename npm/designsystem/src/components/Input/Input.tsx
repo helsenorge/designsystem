@@ -87,6 +87,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     belowLabelChildren,
     width,
     required,
+    ...rest
   } = props;
   const breakpoint = useBreakpoint();
   const contentWrapperRef = useRef<HTMLDivElement>(null);
@@ -161,6 +162,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
             readOnly={readOnly}
             autoComplete={autoComplete || 'off'}
             required={required}
+            {...rest}
           />
           {iconRight && renderIcon()}
         </div>

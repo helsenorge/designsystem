@@ -41,18 +41,12 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   const field4 = 'field4';
   const field5 = 'field5';
   const field6 = 'field6';
-  const allErrors = errors[field1] || errors[field2] || errors[field3] || errors[field4] || errors[field5] || errors[field6];
+  const allErrors = errors.field1 || errors.field2 || errors.field3 || errors.field4 || errors.field5 || errors.field6;
   const errorMessage = 'Du må velge et alternativ';
   const errorMessage2 = 'Du må velge to alternativ';
   const errorMessage3 = 'Det kan ikke legges inn mer enn 40 tegn';
   const errorMessage4 = 'Du må skrive noe her';
   const errorMessage5 = 'Du må velge "Option 2"';
-
-  const allCheckBoxes = [
-    <Checkbox key={0} inputId="checkbox1" label={'Checkbox 1'} ref={register({ required: errorMessage })} />,
-    <Checkbox key={1} inputId="checkbox2" label={'Checkbox 2'} ref={register({ required: errorMessage })} />,
-    <Checkbox key={2} inputId="checkbox3" label={'Checkbox 3'} ref={register({ required: errorMessage })} />,
-  ];
 
   const requireTwo = (value: Array<string>): true | string => {
     return value.length >= 2 || errorMessage2;
@@ -63,14 +57,19 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
 
   const getFormExample = () => {
     if (exampleType === FormExampleVariants.formgroup) {
+      const allCheckBoxes = [
+        <Checkbox key={0} inputId="checkbox1" label={'Checkbox 1'} {...register(field1, { required: errorMessage })} />,
+        <Checkbox key={1} inputId="checkbox2" label={'Checkbox 2'} {...register(field1, { required: errorMessage })} />,
+        <Checkbox key={2} inputId="checkbox3" label={'Checkbox 3'} {...register(field1, { required: errorMessage })} />,
+      ];
+
       return [
         <FormGroup
           key={0}
           title={'Gruppe tittel'}
           legend={'Velg minst en'}
-          error={errors[field1] ? errors[field1].message : undefined}
+          error={errors.field1 ? (errors.field1.message as string) : undefined}
           variant={props.variant}
-          name={field1}
         >
           <FormLayout maxColumns={FormLayoutColumns.two}>
             {allCheckBoxes.map(check => {
@@ -81,26 +80,19 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         <FormGroup
           key={1}
           legend={'Velg minst to'}
-          error={errors[field2] ? errors[field2].message : undefined}
+          error={errors.field2 ? (errors.field2.message as string) : undefined}
           variant={props.variant}
-          name={field2}
         >
-          <Checkbox inputId="checkbox4" label={'Checkbox 4'} ref={register({ validate: requireTwo })} />
-          <Checkbox inputId="checkbox5" label={'Checkbox 5'} ref={register({ validate: requireTwo })} />
-          <Checkbox inputId="checkbox6" label={'Checkbox 6'} ref={register({ validate: requireTwo })} />
+          <Checkbox inputId="checkbox4" label={'Checkbox 4'} {...register(field2, { validate: requireTwo })} />
+          <Checkbox inputId="checkbox5" label={'Checkbox 5'} {...register(field2, { validate: requireTwo })} />
+          <Checkbox inputId="checkbox6" label={'Checkbox 6'} {...register(field2, { validate: requireTwo })} />
         </FormGroup>,
-        <FormGroup
-          key={2}
-          legend={'Velg en'}
-          error={errors[field3] ? errors[field3].message : undefined}
-          variant={props.variant}
-          name={field3}
-        >
-          <RadioButton inputId="radiobutton1" label={'Radiobutton 1'} ref={register({ required: errorMessage })} />
-          <RadioButton inputId="radiobutton2" label={'Radiobutton 2'} ref={register({ required: errorMessage })} />
-          <RadioButton inputId="radiobutton3" label={'Radiobutton 3'} ref={register({ required: errorMessage })} />
+        <FormGroup key={2} legend={'Velg en'} error={errors.field3 ? (errors.field3.message as string) : undefined} variant={props.variant}>
+          <RadioButton inputId="radiobutton1" label={'Radiobutton 1'} {...register(field3, { required: errorMessage })} />
+          <RadioButton inputId="radiobutton2" label={'Radiobutton 2'} {...register(field3, { required: errorMessage })} />
+          <RadioButton inputId="radiobutton3" label={'Radiobutton 3'} {...register(field3, { required: errorMessage })} />
         </FormGroup>,
-        <FormGroup key={3} error={errors[field4] ? errors[field4].message : undefined}>
+        <FormGroup key={3} error={errors.field4 ? (errors.field4.message as string) : undefined}>
           <Textarea
             defaultValue={`Dette er en test \n\n Hello \n\n test \n\n test test`}
             grow
@@ -108,15 +100,19 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             minRows={5}
             label="Skriv din historie her"
             textareaId="textarea1"
-            name={field4}
-            ref={register({ maxLength: { value: 40, message: errorMessage3 } })}
+            {...register(field4, { maxLength: { value: 40, message: errorMessage3 } })}
           />
         </FormGroup>,
-        <FormGroup name={field5} key={4} variant={props.variant} error={errors[field5] ? errors[field5].message : undefined}>
-          <Input label={'Skriv inn din tekst'} placeholder={'Skriv noe!'} icon={Hospital} ref={register({ required: errorMessage4 })} />
+        <FormGroup key={4} variant={props.variant} error={errors.field5 ? (errors.field5.message as string) : undefined}>
+          <Input
+            label={'Skriv inn din tekst'}
+            placeholder={'Skriv noe!'}
+            icon={Hospital}
+            {...register(field5, { required: errorMessage4 })}
+          />
         </FormGroup>,
-        <FormGroup name={field6} key={5} variant={props.variant} error={errors[field6] ? errors[field6].message : undefined}>
-          <Select label={'Skriv inn din tekst'} ref={register({ validate: requireSelect })}>
+        <FormGroup key={5} variant={props.variant} error={errors.field6 ? (errors.field6.message as string) : undefined}>
+          <Select label={'Skriv inn din tekst'} {...register(field6, { validate: requireSelect })}>
             <option value={'Option 1'}>{'Option 1'}</option>
             <option value={'Option 2'}>{'Option 2'}</option>
             <option value={'Option 3'}>{'Option 3'}</option>
@@ -126,24 +122,21 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     } else if (exampleType === FormExampleVariants.checkbox) {
       return (
         <Checkbox
-          name={field1}
           inputId="checkbox1"
           label={'Checkbox 1'}
-          errorText={errors[field1] ? errors[field1].message : undefined}
+          errorText={errors.field1 ? (errors.field1.message as string) : undefined}
           variant={props.variant}
-          ref={register({ required: errorMessage })}
+          {...register(field1, { required: errorMessage })}
         />
       );
     } else if (exampleType === FormExampleVariants.radiobutton) {
       return (
         <RadioButton
-          name={field3}
           inputId="radiobutton1"
           label={'Radiobutton 1'}
-          error={errors[field3] ? errors[field3].message : undefined}
-          errorText={errors[field3] ? errors[field3].message : undefined}
+          errorText={errors.field3 ? (errors.field3.message as string) : undefined}
           variant={props.variant}
-          ref={register({ required: errorMessage })}
+          {...register(field3, { required: errorMessage })}
         />
       );
     } else if (exampleType === FormExampleVariants.textarea) {
@@ -153,11 +146,10 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           grow
           maxCharacters={40}
           minRows={5}
-          errorText={errors[field4] ? errors[field4].message : undefined}
+          errorText={errors.field4 ? (errors.field4.message as string) : undefined}
           label="Skriv din historie her"
           textareaId="textarea1"
-          name={field4}
-          ref={register({ maxLength: { value: 40, message: errorMessage3 } })}
+          {...register(field4, { maxLength: { value: 40, message: errorMessage3 } })}
         />
       );
     } else if (exampleType === FormExampleVariants.input) {
@@ -166,19 +158,17 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           inputId="input1"
           label={'Skriv inn din tekst'}
           placeholder={'Skriv noe!'}
-          name={field5}
-          errorText={errors[field5] ? errors[field5].message : undefined}
+          errorText={errors.field5 ? (errors.field5.message as string) : undefined}
           icon={Hospital}
-          ref={register({ required: errorMessage4 })}
+          {...register(field5, { required: errorMessage4 })}
         />
       );
     } else if (exampleType === FormExampleVariants.select) {
       return (
         <Select
-          name={field6}
-          errorText={errors[field6] ? errors[field6].message : undefined}
+          errorText={errors.field6 ? (errors.field6.message as string) : undefined}
           label={'Skriv inn din tekst'}
-          ref={register({ validate: requireSelect })}
+          {...register(field6, { validate: requireSelect })}
         >
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>

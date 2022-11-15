@@ -93,7 +93,7 @@ describe('Gitt at Validation skal vises', () => {
       await userEvent.click(radiobutton1);
       fireEvent.change(textarea1, { target: { value: 'Endring.' } });
       fireEvent.change(input1, { target: { value: 'Ny tekst' } });
-      fireEvent.change(select1.children[1], { target: { selected: true } });
+      fireEvent.change(select1, { target: { value: 'Option 2' } });
 
       await userEvent.click(submit);
 
