@@ -9,6 +9,8 @@ import HelpSign from '../Icons/HelpSign';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 import Table, { SmallViewportVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell } from '../Table';
+import Button from '../Button';
+import { useToggle } from '../../hooks/useToggle';
 
 export default {
   title: 'Components/HelpBubble',
@@ -47,6 +49,32 @@ export const Default: ComponentStory<typeof HelpBubble> = (args: any) => {
       <div style={{ position: 'relative', display: 'inline' }}>
         <Icon ref={controllerRef} svgIcon={HelpSign} />
         <HelpBubble {...args} onLinkClick={action('Mer hjelp clicked')} onClose={action('Bubble closed')} controllerRef={controllerRef}>
+          {args.children}
+        </HelpBubble>
+      </div>
+      <span>{loremText + loremText + loremText + loremText}</span>
+    </GridExample>
+  );
+};
+
+export const Toggle: ComponentStory<typeof HelpBubble> = (args: any) => {
+  const controllerRef = useRef<HTMLButtonElement>(null);
+  const { value, toggleValue } = useToggle(false);
+
+  return (
+    <GridExample>
+      <span>{loremText + loremText + loremText + loremText}</span>
+      <div style={{ position: 'relative', display: 'inline' }}>
+        <Button ref={controllerRef} onClick={toggleValue}>
+          {'Åpne'}
+        </Button>
+        <HelpBubble
+          {...args}
+          onLinkClick={action('Mer hjelp clicked')}
+          onClose={action('Bubble closed')}
+          controllerRef={controllerRef}
+          showBubble={value}
+        >
           {args.children}
         </HelpBubble>
       </div>
