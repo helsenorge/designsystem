@@ -8,11 +8,13 @@ import Button from '../components/Button';
 
 const UseOutsideEventExample: React.FC = () => {
   const ref = useRef<HTMLButtonElement>(null);
-  useOutsideEvent(ref, () => console.log('Du klikket utenfor'));
+  useOutsideEvent(ref, event =>
+    console.log(`Du klikket på ${(event.target as HTMLElement).tagName} ${(event.target as HTMLElement).tagName}`)
+  );
 
   return (
     <GridExample>
-      <Button ref={ref}>Knapp</Button>
+      <Button ref={ref}>{'Knapp'}</Button>
       <p>{'Klikk her og sjekk console'}</p>
     </GridExample>
   );

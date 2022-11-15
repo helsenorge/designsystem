@@ -6,6 +6,7 @@ import { useInterval } from '../../hooks/useInterval';
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
 import { useSize } from '../../hooks/useSize';
+import { mergeRefs } from '../../utils/refs';
 import AnchorLink from '../AnchorLink';
 import Close from '../Close';
 
@@ -51,7 +52,7 @@ export interface HelpBubbleProps {
   testId?: string;
 }
 
-const HelpBubble: React.FC<HelpBubbleProps> = props => {
+const HelpBubble = React.forwardRef<HTMLDivElement, HelpBubbleProps>((props, ref) => {
   const {
     helpBubbleId,
     children,
@@ -142,7 +143,7 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
     <>
       <div
         id={helpBubbleId}
-        ref={bubbleRef}
+        ref={mergeRefs([ref, bubbleRef])}
         className={helpBubbleClasses}
         style={bubbleStyle}
         data-testid={testId}
@@ -158,6 +159,8 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
       <div ref={arrowRef} className={arrowClasses} style={arrowStyle} />
     </>
   );
-};
+});
+
+HelpBubble.displayName = 'HelpBubble';
 
 export default HelpBubble;

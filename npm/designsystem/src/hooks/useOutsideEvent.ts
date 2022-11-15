@@ -10,12 +10,12 @@ type OutsideEvents = keyof PickByValue<HTMLElementEventMap, MouseEvent | FocusEv
  */
 export const useOutsideEvent = (
   ref: React.RefObject<HTMLElement>,
-  handleClick: () => void,
+  handleClick: (event: HTMLElementEventMap[OutsideEvents]) => void,
   events: OutsideEvents[] = ['mousedown']
 ): void => {
   const handleOutsideEvent = (event: HTMLElementEventMap[OutsideEvents]): void => {
     if (!ref.current?.contains(event.target as Node)) {
-      handleClick();
+      handleClick(event);
     }
   };
 
