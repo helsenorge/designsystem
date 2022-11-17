@@ -12,7 +12,7 @@ import {
   useHover,
   useKeyboardEvent,
   useOutsideEvent,
-  useResizeObserver,
+  useSize,
   useToggle,
   useUuid,
 } from '../..';
@@ -76,7 +76,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
   const inputRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
   const [currentIndex, setCurrentIndex] = useState<number>();
-  const { width: buttonWidth } = useResizeObserver(buttonRef) || {};
+  const { width: buttonWidth } = useSize(buttonRef) || {};
   const labelId = useUuid();
   const toggleLabelId = useUuid();
   const optionIdPrefix = useUuid();

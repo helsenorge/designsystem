@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { debounce } from '../utils/debounce';
 
 /**
@@ -8,12 +8,19 @@ import { debounce } from '../utils/debounce';
  * @returns Object med høyde, bredde, x og y til elementet. Merk at objektet bare oppdates når høyde eller bredde endres, ikke når
  * posisjonen (x og y) endres.
  */
-export const useSize = (ref?: React.RefObject<HTMLElement>) => {
+export const useSize = (ref?: React.RefObject<HTMLElement>): DOMRect | undefined => {
+  const ticking = useRef(false);
   const [size, setSize] = useState<DOMRect>();
   useEffect(() => {
     if (typeof ResizeObserver !== 'undefined') {
       const resizeObserver = new ResizeObserver(entries => {
-        setSize(entries[0].target.getBoundingClientRect());
+        if (!ticking.current) {
+          window.requestAnimationFrame(() => {
+            setSize(entries[0].target.getBoundingClientRect());
+            ticking.current = false;
+          });
+        }
+        ticking.current = true;
       });
       if (ref?.current) {
         resizeObserver.observe(ref?.current);

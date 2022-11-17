@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 /**
  * Lytt på endringer i størrelse på et element. Bruker ResizeObserver-APIet.
@@ -7,10 +7,17 @@ import { useEffect, useState } from 'react';
  * @returns Object med høyde, bredde, x og y til elementet
  */
 export const useResizeObserver = (ref?: React.RefObject<HTMLElement>): DOMRect | undefined => {
+  const ticking = useRef(false);
   const [size, setSize] = useState<DOMRect>();
   useEffect(() => {
     const resizeObserver = new ResizeObserver(entries => {
-      setSize(entries[0].target.getBoundingClientRect());
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          setSize(entries[0].target.getBoundingClientRect());
+          ticking.current = false;
+        });
+      }
+      ticking.current = true;
     });
     if (ref?.current) {
       resizeObserver.observe(ref?.current);
