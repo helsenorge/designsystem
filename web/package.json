@@ -1,7 +1,7 @@
 {
   "name": "designsystem-docs",
   "private": true,
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "The official documentation for Helsenorge's Design System",
   "repository": {
     "type": "tfs",
@@ -27,7 +27,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@helsenorge/designsystem-react": "^2.6.0",
+    "@helsenorge/designsystem-react": "^2.6.1",
     "@hot-loader/react-dom": "^16.14.0",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
