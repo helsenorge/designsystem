@@ -177,6 +177,28 @@ describe('Gitt at en modal skal vises ', (): void => {
     });
   });
 
+  describe(`Når modalen vises`, (): void => {
+    it('Så har den fått fokus', async (): Promise<void> => {
+      const onClose = jest.fn();
+      const onSuccess = jest.fn();
+
+      render(
+        <>
+          <Modal
+            title="Hei der"
+            onClose={onClose}
+            onSuccess={onSuccess}
+            secondaryButtonText="Avbryt"
+            variant={ModalVariants.error}
+            testId="testid"
+          />
+        </>
+      );
+
+      const modal = screen.getByRole('dialog');
+      expect(modal).toHaveFocus();
+    });
+  });
   describe(`Når en bruker tabber flere ganger inne i en Modal`, (): void => {
     it('Så skal man fanges inne i modalen når man tabber', async (): Promise<void> => {
       const onClose = jest.fn();
@@ -196,6 +218,7 @@ describe('Gitt at en modal skal vises ', (): void => {
       );
 
       const buttons = screen.getAllByRole('button');
+      await userEvent.tab();
       expect(buttons[0]).toHaveFocus();
       await userEvent.tab();
       expect(buttons[1]).toHaveFocus();

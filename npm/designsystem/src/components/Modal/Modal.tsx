@@ -116,7 +116,7 @@ const Modal = (props: ModalProps): JSX.Element => {
   const topContent = React.useRef<HTMLDivElement>(null);
   const modalContentRef = React.useRef<HTMLDivElement>(null);
   const dialogRef = React.useRef<HTMLDivElement>(null);
-  useFocusTrap(dialogRef, true, true);
+  useFocusTrap(dialogRef, true);
   const topContentVisible = useIsVisible(topContent);
   const bottomContent = React.useRef<HTMLDivElement>(null);
   const bottomContentVisible = useIsVisible(bottomContent);
@@ -171,6 +171,10 @@ const Modal = (props: ModalProps): JSX.Element => {
     };
   }, [props.disableCloseEvents]);
 
+  useEffect(() => {
+    dialogRef.current?.focus();
+  }, []);
+
   const dialogClasses = cn(
     props.className,
     styles.modal,
@@ -194,7 +198,15 @@ const Modal = (props: ModalProps): JSX.Element => {
         style={{ zIndex: props.zIndex }}
       >
         <div className={styles.align}>
-          <div className={dialogClasses} role="dialog" aria-label={ariaLabel} aria-labelledby={ariaLabelledBy} ref={dialogRef}>
+          <div
+            className={dialogClasses}
+            role="dialog"
+            aria-modal="true"
+            tabIndex={-1}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
+            ref={dialogRef}
+          >
             <div
               className={cn(styles['modal__shadow'], styles['modal__shadow--top'], {
                 [styles['modal__shadow--show']]: !topContentVisible && contentIsScrollable,

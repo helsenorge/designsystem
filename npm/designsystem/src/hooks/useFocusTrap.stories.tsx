@@ -11,22 +11,16 @@ import HighlightBox from '../components/HighlightBox';
 const UseFocusTrapExample: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [trap, setTrap] = useState(false);
-  const [autofocus, setAutoFocus] = useState(false);
-  useFocusTrap(ref, trap, autofocus);
+  useFocusTrap(ref, trap);
 
   const toggleTrap = () => {
     setTrap(!trap);
-  };
-  const toggleAutofocus = () => {
-    setAutoFocus(!autofocus);
   };
 
   return (
     <GridExample>
       <Button onClick={toggleTrap}>Slå av/på fokusfelle</Button>
       <p>Fokusfelle er {trap ? 'på' : 'av'}</p>
-      <Button onClick={toggleAutofocus}>Slå av/på autofokus</Button>
-      <p>Autofokus er {autofocus ? 'på' : 'av'}</p>
       <Spacer />
       <HighlightBox color="blueberry" size="fluid">
         <div ref={ref}>

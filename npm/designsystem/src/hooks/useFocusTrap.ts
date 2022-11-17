@@ -6,9 +6,8 @@ import { useFocusableElements } from './useFocusableElements';
  * Lås fokus til et bestemt element. Bruker vil bare kunne tabbe mellom fokuserbare elementer innenfor elementet.
  * @param ref Alle barn av dette elementet vil være fokuserbare, elementer utenfor vil ikke det
  * @param trapFocus Om fokus skal "trappes" innenfor elementet eller ikke. Default=true.
- * @param autofocus Om fokus automatisk skal settes til første fokuserbare element. Default=false.
  */
-export const useFocusTrap = (ref: React.RefObject<HTMLElement>, trapFocus: boolean = true, autofocus: boolean = false): void => {
+export const useFocusTrap = (ref: React.RefObject<HTMLElement>, trapFocus: boolean = true): void => {
   const focusableElementList = useFocusableElements(ref);
 
   const handleKeyboardEvent = (e: KeyboardEvent): void => {
@@ -30,16 +29,12 @@ export const useFocusTrap = (ref: React.RefObject<HTMLElement>, trapFocus: boole
   };
 
   useEffect(() => {
-    if (autofocus && trapFocus && focusableElementList?.length) {
-      focusableElementList[0].focus();
-    }
-
     ref.current?.addEventListener('keydown', handleKeyboardEvent);
 
     return (): void => {
       ref.current?.removeEventListener('keydown', handleKeyboardEvent);
     };
-  }, [ref, trapFocus, autofocus, focusableElementList]); // focusableElementList må være med som dependency for at handleKeyboardEvent skal få oppdatert state
+  }, [ref, trapFocus, focusableElementList]); // focusableElementList må være med som dependency for at handleKeyboardEvent skal få oppdatert state
 };
 
 export default useFocusTrap;
