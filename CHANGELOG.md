@@ -1,3 +1,10 @@
+## [2.6.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.6.0&targetVersion=GTv2.6.1) (2022-11-17)
+
+
+### Bug Fixes
+
+*  resizeobserver logger ikke feil om loop limit exceeded ([afece3a](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/afece3a3f40763f6520e09c2398b5928eaf9fa82)), closes [#288871](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/288871)
+
 ## [2.6.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.5.0&targetVersion=GTv2.6.0) (2022-11-15)
 
 
