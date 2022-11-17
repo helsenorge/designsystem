@@ -1,3 +1,10 @@
+## [2.6.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.6.1&targetVersion=GTv2.6.2) (2022-11-17)
+
+
+### Bug Fixes
+
+*  modal setter fokus til seg selv kun én gang når den først vises ([a293206](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/a293206cbd23a4524054198239eb00f2ee454a39)), closes [#289818](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/289818)
+
 ## [2.6.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.6.0&targetVersion=GTv2.6.1) (2022-11-17)
 
 
