@@ -259,5 +259,12 @@ export default {
   group: { alternativeName: 'Gruppe', categories: 'Personer' },
   checkfill: { alternativeName: 'Utfylt sjekkboks', categories: 'System' },
   personalplan: { alternativeName: 'Behandlingsplan', categories: 'Tjeneste' },
-  '': { alternativeName: '', categories: '' },
+  emoticonannoyed: { alternativeName: 'Emoji Irritert', categories: 'Generisk' },
+  emoticondelighted: { alternativeName: 'Emoji Lykkelig', categories: 'Generisk' },
+  emoticondisappointed: { alternativeName: 'Emoji Skuffet', categories: 'Generisk' },
+  emoticonhappy: { alternativeName: 'Emoji Glad', categories: 'Generisk' },
+  emoticonmeh: { alternativeName: 'Emoji Nøytral', categories: 'Generisk' },
+  sortdown: { alternativeName: 'Sortere ned', categories: 'System' },
+  sortup: { alternativeName: 'Sortere opp', categories: 'System' },
+  filter: { alternativeName: 'Filter', categories: 'System' },
 };
