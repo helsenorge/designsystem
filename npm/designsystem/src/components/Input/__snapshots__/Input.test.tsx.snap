@@ -19,16 +19,20 @@ exports[`Gitt at Input skal vises Når Input rendres Så vises Input 1`] = `
         </label>
       </div>
       <div
-        class="content-wrapper"
+        class="input-wrapper__after-content-wrapper"
       >
-        <input
-          aria-invalid="false"
-          autocomplete="off"
-          class="content-wrapper__input"
-          id="test"
-          type="text"
-          value=""
-        />
+        <div
+          class="content-wrapper"
+        >
+          <input
+            aria-invalid="false"
+            autocomplete="off"
+            class="content-wrapper__input"
+            id="test"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   </div>

@@ -190,3 +190,107 @@ export const Select: ComponentStory<typeof FormExample> = (args: any) => (
     <FormExample {...args} exampleType={FormExampleVariants.select} />
   </GridExample>
 );
+
+export const DateTime: ComponentStory<typeof FormExample> = (args: any) => (
+  <GridExample>
+    <FormExample {...args} exampleType={FormExampleVariants.date} />
+  </GridExample>
+);
+
+DateTime.parameters = {
+  docs: {
+    source: {
+      code: `Eksempel på validation med react-hook-form 7:
+      const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm();
+
+      const defaultDate = new Date();
+      const minDate = new Date();
+      minDate.setDate(defaultDate.getDate() - 5);
+      const maxDate = new Date();
+      maxDate.setDate(defaultDate.getDate() + 5);
+
+      const field1 = 'field1';
+      const field2 = 'field2';
+      const field3 = 'field3';
+      
+      const errorMessage1 = \`Du må velge dato mellom \${minDate.toLocaleDateString('nb')} og \${maxDate.toLocaleDateString('nb')}\`;
+      const errorMessage2 = \`Du må skrive inn tidspunkt mellom \${minDate.toLocaleTimeString('nb', {
+        hour: '2-digit',
+        minute: '2-digit',
+      })} og \${maxDate.toLocaleTimeString('nb', {
+        hour: '2-digit',
+        minute: '2-digit',
+      })}\`;
+
+      const requireDate = (value: Date, min: Date, max: Date): true | string => {
+        const dateValue = new Date(value);
+        return (!!value && dateValue.getTime() >= min.getTime() && dateValue.getTime() <= max.getTime()) || errorMessage1;
+      };
+      const requireTime = (hour: number, minute: number): true | string => {
+        const validTime = // Validering av time og minutt her
+        return validTime || errorMessage2;
+      };
+      
+      const currentError = errors.field1 || errors.field2 || errors.field3;
+      return (
+        <>
+        <form onSubmit={handleSubmit(data => {
+          console.log(data);
+        })}
+        >
+          <Validation errorSummary={currentError ? 'Sjekk at alt er riktig utfylt' : undefined}>
+          <FormGroup
+            legend={'Velg en dato og et klokkeslett'}
+            fieldsetClassName={styles['fieldset--flex']}
+            error={currentError ? (currentError.message as string) : undefined}
+          >
+            <Input
+              className={styles['date-picker--spacing']}
+              label={'dato'}
+              width={20}
+              type={'date'}
+              defaultValue={defaultDate.toLocaleDateString('en-CA')}
+              min={minDate.toLocaleDateString('en-CA')}
+              max={maxDate.toLocaleDateString('en-CA')}
+              {...register(field1, { validate: (value): true | string => requireDate(value, minDate, maxDate) })}
+            />
+            <FormGroup htmlMarkup={'div'} fieldsetClassName={styles['fieldset--flex-time']}>
+              <Input
+                labelId={'time-label-id'}
+                afterInputChildren={<span style={{ padding: '0 1rem' }}>{':'}</span>}
+                label={'klokke'}
+                width={4}
+                type={'number'}
+                defaultValue={defaultDate.toLocaleTimeString('nb', {
+                  hour: '2-digit',
+                })}
+                max={23}
+                min={0}
+                // Må oppdateres med validering som tar hensyn til timer og minutter i sammenheng med hverandre
+                {...register(field2, { validate: (value): true | string => requireTime(value, /* minute value her */) })}
+              />
+              <Input
+                aria-labelledby={'time-label-id'}
+                width={4}
+                type={'number'}
+                defaultValue={defaultDate.toLocaleTimeString('nb', {
+                  minute: '2-digit',
+                })}
+                max={59}
+                min={0}
+                // Må oppdateres med validering som tar hensyn til timer og minutter i sammenheng med hverandre
+                {...register(field3, { validate: (value): true | string => requireTime(/* hour value her */, value) })}
+              />
+            </FormGroup>
+          </FormGroup>
+          </Validation>
+        <Button type="submit">{'Send inn'}</Button>
+        </form>`,
+      language: 'tsx',
+    },
+  },
+};

@@ -14,12 +14,26 @@ import styles from './styles.module.scss';
 export interface InputProps
   extends Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
-    'disabled' | 'readOnly' | 'autoComplete' | 'name' | 'placeholder' | 'defaultValue' | 'required'
+    | 'disabled'
+    | 'readOnly'
+    | 'autoComplete'
+    | 'name'
+    | 'placeholder'
+    | 'defaultValue'
+    | 'required'
+    | 'value'
+    | 'min'
+    | 'max'
+    | 'aria-labelledby'
   > {
+  /** Adds custom classes to the element. */
+  className?: string;
   /**  HMTL Input type */
   type?: keyof typeof InputTypes;
   /** input id */
   inputId?: string;
+  /** label id */
+  labelId?: string;
   /** Width of input field in characters (approximate) */
   width?: number;
   /** If true, the component will be transparent. */
@@ -42,6 +56,8 @@ export interface InputProps
   testId?: string;
   /** Component shown after label */
   afterLabelChildren?: React.ReactNode;
+  /** Component shown after input */
+  afterInputChildren?: React.ReactNode;
   /** Component shown under label */
   belowLabelChildren?: React.ReactNode;
 }
@@ -54,6 +70,8 @@ export enum InputTypes {
   search = 'search',
   tel = 'tel',
   url = 'url',
+  date = 'date',
+  time = 'time',
 }
 
 const getInputMaxWidth = (characters: number, hasIcon: boolean, iconSize: number): string => {
@@ -66,10 +84,12 @@ const getInputMaxWidth = (characters: number, hasIcon: boolean, iconSize: number
 
 const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputElement>) => {
   const {
+    className,
     defaultValue,
     placeholder,
     type = InputTypes.text,
     inputId = uuid(),
+    labelId,
     name,
     transparent = false,
     icon,
@@ -84,6 +104,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     readOnly,
     autoComplete,
     afterLabelChildren,
+    afterInputChildren,
     belowLabelChildren,
     width,
     required,
@@ -98,7 +119,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const bigForm = variant === FormVariant.bigform;
   const isTransparent = transparent && mode !== FormMode.ondark && !onError;
 
-  const inputWrapperClass = cn(styles['input-wrapper']);
+  const inputWrapperClass = cn(styles['input-wrapper'], className);
 
   const labelWrapperClass = cn(styles['input-wrapper__label-wrapper'], {
     [styles['input-wrapper__label-wrapper--on-dark']]: onDark,
@@ -142,29 +163,35 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass}>
         {label && (
           <div className={labelWrapperClass}>
-            <label htmlFor={inputId}>{label}</label>
+            <label id={labelId ?? undefined} htmlFor={inputId}>
+              {label}
+            </label>
             {afterLabelChildren && <div className={styles['input-wrapper__after-label-children']}>{afterLabelChildren}</div>}
           </div>
         )}
         {belowLabelChildren && <div>{belowLabelChildren}</div>}
-        <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>
-          {!iconRight && renderIcon()}
-          <input
-            name={name}
-            type={type}
-            defaultValue={defaultValue}
-            id={inputId}
-            className={inputClass}
-            ref={ref}
-            aria-invalid={!!onError}
-            disabled={disabled}
-            placeholder={placeholder}
-            readOnly={readOnly}
-            autoComplete={autoComplete || 'off'}
-            required={required}
-            {...rest}
-          />
-          {iconRight && renderIcon()}
+        <div className={styles['input-wrapper__after-content-wrapper']}>
+          <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>
+            {!iconRight && renderIcon()}
+            <input
+              name={name}
+              type={type}
+              defaultValue={defaultValue}
+              id={inputId}
+              className={inputClass}
+              ref={ref}
+              aria-labelledby={props['aria-labelledby'] ?? undefined}
+              aria-invalid={!!onError}
+              disabled={disabled}
+              placeholder={placeholder}
+              readOnly={readOnly}
+              autoComplete={autoComplete || 'off'}
+              required={required}
+              {...rest}
+            />
+            {iconRight && renderIcon()}
+          </div>
+          {afterInputChildren}
         </div>
       </div>
     </ErrorWrapper>

@@ -23,6 +23,8 @@ export interface FormGroupProps {
   children?: React.ReactNode;
   /** Adds custom classes to the element. */
   className?: string;
+  /** Adds custom classes to the fieldset element. */
+  fieldsetClassName?: string;
   /** Changes the visuals of the formgroup */
   mode?: keyof typeof FormMode;
   /** Changes the visuals of the formgroup */
@@ -35,10 +37,21 @@ export interface FormGroupProps {
   name?: string;
   /** Sets div instead of fieldset tag */
   htmlMarkup?: FormGroupTags;
+  /** Renders the error component (Default: true) */
+  renderError?: boolean;
 }
 
 export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-  const { className, mode = FormMode.onwhite, variant = FormVariant.normal, error, name, htmlMarkup = 'fieldset' } = props;
+  const {
+    className,
+    fieldsetClassName,
+    mode = FormMode.onwhite,
+    variant = FormVariant.normal,
+    error,
+    name,
+    htmlMarkup = 'fieldset',
+    renderError = true,
+  } = props;
   const onDark = mode === FormMode.ondark;
   const bigform = variant === FormVariant.bigform;
   const formGroupWrapperClasses = classNames(
@@ -60,6 +73,8 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     [formGroupStyles['field-set__legend--bigform']]: bigform,
   });
 
+  const fieldsetClasses = classNames(formGroupStyles['field-set'], fieldsetClassName);
+
   const isComponent = <T,>(element: {} | null | undefined, type: React.ForwardRefExoticComponent<T>): element is React.ReactElement<T> =>
     React.isValidElement<T>(element) && (element as React.ReactElement).type === type;
 
@@ -68,6 +83,13 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
       return React.cloneElement(child as React.ReactElement<FormLayoutProps>, {
         variant,
         mapHelper: mapFormComponent,
+      });
+    } else if (isComponent<FormGroupProps>(child, FormGroup)) {
+      return React.cloneElement(child, {
+        mode,
+        variant,
+        error,
+        renderError: false,
       });
     } else if (isComponent<CheckboxProps>(child, Checkbox)) {
       return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
@@ -100,6 +122,25 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     return child;
   };
 
+  const formGroupContent = () => {
+    return (
+      <div className={formGroupClasses}>
+        {htmlMarkup === 'div' && (
+          <div id={props.title} className={fieldsetClasses}>
+            {props.legend && <h5 className={legendClasses}>{props.legend}</h5>}
+            {React.Children.map(props.children, mapFormComponent)}
+          </div>
+        )}
+        {htmlMarkup === 'fieldset' && (
+          <fieldset name={props.title} className={fieldsetClasses}>
+            {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
+            {React.Children.map(props.children, mapFormComponent)}
+          </fieldset>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div data-testid={props.testId} data-analyticsid={AnalyticsId.FormGroup} className={formGroupWrapperClasses} ref={ref} tabIndex={-1}>
       {props.title && (
@@ -107,22 +148,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
           {props.title}
         </Title>
       )}
-      <ErrorWrapper errorText={error}>
-        <div className={formGroupClasses}>
-          {htmlMarkup === 'div' && (
-            <div id={props.title} className={formGroupStyles['field-set']}>
-              {props.legend && <h5 className={legendClasses}>{props.legend}</h5>}
-              {React.Children.map(props.children, mapFormComponent)}
-            </div>
-          )}
-          {htmlMarkup === 'fieldset' && (
-            <fieldset name={props.title} className={formGroupStyles['field-set']}>
-              {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
-              {React.Children.map(props.children, mapFormComponent)}
-            </fieldset>
-          )}
-        </div>
-      </ErrorWrapper>
+      {renderError ? <ErrorWrapper errorText={error}>{formGroupContent()}</ErrorWrapper> : formGroupContent()}
     </div>
   );
 });
