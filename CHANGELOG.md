@@ -1,3 +1,10 @@
+## [2.7.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.6.2&targetVersion=GTv2.7.0) (2022-11-30)
+
+
+### Features
+
+*  oppdatert med støtte for datetime i input felt ([d01eab1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/d01eab1e976887bb7b22d27108bbc47e06e04316)), closes [#288759](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/288759)
+
 ## [2.6.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.6.1&targetVersion=GTv2.6.2) (2022-11-17)
 
 
@@ -172,7 +179,7 @@
 
 ## 2.0.0-beta.1 (2022-09-15)
 
-## 2.0.0-beta.0 (2022-09-15)
+## 2.0.0-beta.0 (2022-09-12)
 
 
 ### Features
