@@ -1,3 +1,10 @@
+## [2.8.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.7.0&targetVersion=GTv2.8.0) (2022-12-01)
+
+
+### Features
+
+*  notificationpanel kan ha role="alert" ([3912130](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/39121300e3d70414433c4b64911a830bbc01cb52)), closes [#290688](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/290688)
+
 ## [2.7.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.6.2&targetVersion=GTv2.7.0) (2022-11-30)
 
 
