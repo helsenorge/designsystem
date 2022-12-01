@@ -42,6 +42,11 @@ export default {
       options: ['info', 'warn', 'alert', 'crisis'],
       defaultValue: 'alert',
     },
+    role: {
+      control: 'select',
+      options: ['', 'alert'],
+      defaultValue: '',
+    },
   },
 } as ComponentMeta<typeof NotificationPanel>;
 

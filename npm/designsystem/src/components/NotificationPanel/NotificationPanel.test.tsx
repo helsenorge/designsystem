@@ -122,4 +122,13 @@ describe('Gitt at NotificationPanel skal vises', () => {
       expect(title).toHaveAttribute('id', 'sidetittel');
     });
   });
+
+  describe('Når role er alert', (): void => {
+    test('Så har komponenten riktig rolle', (): void => {
+      render(<NotificationPanel role="alert">Warning!</NotificationPanel>);
+
+      const component = screen.getByRole('alert', { name: 'Warning!' });
+      expect(component).toBeVisible();
+    });
+  });
 });

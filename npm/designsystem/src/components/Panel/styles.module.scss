@@ -126,7 +126,7 @@
     display: flex;
     flex-direction: column;
     @media (min-width: map-get($grid-breakpoints, lg)) {
-      align-self: end;
+      align-self: flex-end;
     }
 
     &--layout3 {
@@ -134,7 +134,7 @@
       align-self: initial;
       flex-direction: column;
       @media (min-width: map-get($grid-breakpoints, lg)) {
-        align-self: end;
+        align-self: flex-end;
       }
     }
     &--padding-top {
@@ -144,7 +144,7 @@
 
   &__details-btn {
     @media (min-width: map-get($grid-breakpoints, lg)) {
-      align-self: end;
+      align-self: flex-end;
     }
   }
 

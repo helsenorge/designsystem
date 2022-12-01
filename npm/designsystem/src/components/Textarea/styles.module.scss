@@ -21,7 +21,7 @@
 
   &__counter-wrapper {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     padding-top: getSpacer(2xs);
     padding-right: 2px;
     font-size: $font-size-sm;

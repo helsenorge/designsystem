@@ -46,6 +46,8 @@ interface NotificationPanelProps {
   ariaLabelCloseBtn?: string;
   /** Custom id for the label */
   labelId?: string;
+  /** Custom role for the panel */
+  role?: 'alert';
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -77,6 +79,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     size,
     className,
     labelId,
+    role,
     testId,
   } = props;
   const uuid = useUuid(labelId);
@@ -113,6 +116,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     <FluidWrapper fluid={fluid} variant={variant} shadow={shadow}>
       <section
         ref={ref}
+        role={role}
         data-testid={testId}
         data-analyticsid={AnalyticsId.NotificationPanel}
         className={notificationPanelClasses}

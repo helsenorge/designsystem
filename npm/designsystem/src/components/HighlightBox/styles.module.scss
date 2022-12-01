@@ -138,7 +138,7 @@
         @include make-col-ready();
         @include make-col(2);
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         margin-right: 0;
         padding-right: getSpacer(s);
       }
