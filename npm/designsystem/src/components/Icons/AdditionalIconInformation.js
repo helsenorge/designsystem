@@ -264,7 +264,10 @@ export default {
   emoticondisappointed: { alternativeName: 'Emoji Skuffet', categories: 'Generisk' },
   emoticonhappy: { alternativeName: 'Emoji Glad', categories: 'Generisk' },
   emoticonmeh: { alternativeName: 'Emoji Nøytral', categories: 'Generisk' },
-  sortdown: { alternativeName: 'Sortere ned', categories: 'System' },
-  sortup: { alternativeName: 'Sortere opp', categories: 'System' },
-  filter: { alternativeName: 'Filter', categories: 'System' },
+  sortdown: { alternativeName: 'Sortere ned', categories: 'System, Generisk' },
+  sortup: { alternativeName: 'Sortere opp', categories: 'System, Generisk' },
+  filter: { alternativeName: 'Filter', categories: 'System, Generisk' },
+  personcancel: { alternativeName: 'Person Avbryt', categories: 'Generisk, Tjeneste' },
+  travelroute: { alternativeName: 'Reiserute', categories: 'Generisk, Tjeneste' },
+  coins: { alternativeName: 'Mynter', categories: 'Generisk, Tjeneste' },
 };
