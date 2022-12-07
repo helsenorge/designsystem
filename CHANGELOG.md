@@ -1,3 +1,10 @@
+## [2.9.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.9.0&targetVersion=GTv2.9.1) (2022-12-07)
+
+
+### Bug Fixes
+
+*  personcancel ikon fiks ([0bb783c](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/0bb783cfb466212a2e9fb362909533b62a45d81d)), closes [#290817](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/290817)
+
 ## [2.9.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.8.0&targetVersion=GTv2.9.0) (2022-12-06)
 
 
