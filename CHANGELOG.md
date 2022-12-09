@@ -1,3 +1,10 @@
+## [2.9.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.9.1&targetVersion=GTv2.9.2) (2022-12-09)
+
+
+### Bug Fixes
+
+*  personcancel og travelroute ikon farge fiks ([6423c92](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/6423c921af461a556502adcb74a91ec0acf98bcf))
+
 ## [2.9.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.9.0&targetVersion=GTv2.9.1) (2022-12-07)
 
 
