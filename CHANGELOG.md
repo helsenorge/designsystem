@@ -1,3 +1,10 @@
+## [2.9.3](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.9.2&targetVersion=GTv2.9.3) (2022-12-13)
+
+
+### Features
+
+*  eksporterer NotificationPanel props ([f052b76](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/f052b765807809a98a88e2d536b87cf388d15e56)), closes [#288630](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/288630)
+
 ## [2.9.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.9.1&targetVersion=GTv2.9.2) (2022-12-09)
 
 
