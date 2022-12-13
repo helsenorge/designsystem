@@ -23,7 +23,7 @@ const variantToIconMap = {
   crisis: <Icon svgIcon={AlertSignFill} color={palette.banana200} hoverColor={palette.banana200} />,
 };
 
-interface NotificationPanelProps {
+export interface NotificationPanelProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** Adds inner child elements. */
