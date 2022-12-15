@@ -64,6 +64,18 @@ export const Default: ComponentStory<typeof NotificationPanel> = (args: any) => 
 export const SimplifiedLabelOnly: ComponentStory<typeof NotificationPanel> = (args: any) => (
   <GridExample>
     <NotificationPanel {...args} />
+    <br />
+    <NotificationPanel {...args} label={undefined}>
+      <span>{'Consequat culpa fugiat ullamco magna in aliquip proident.'}</span>
+    </NotificationPanel>
+    <br />
+    <NotificationPanel {...args} label={undefined}>
+      <span>
+        {
+          'Sunt elit veniam velit sint dolor exercitation Lorem qui commodo reprehenderit id. Ut sunt nostrud quis aute. Cillum aute eu aute velit nisi aute dolor.'
+        }
+      </span>
+    </NotificationPanel>
   </GridExample>
 );
 
