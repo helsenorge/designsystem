@@ -10,13 +10,14 @@
   width: inherit;
 
   &--has-children {
-    padding: getSpacer(2xs) getSpacer(s) getSpacer(m) getSpacer(2xs);
+    padding: getSpacer(2xs) getSpacer(s) getSpacer(2xs) getSpacer(2xs);
     #{$panel}__icon {
       margin-top: getSpacer(2xs);
       margin-right: getSpacer(2xs);
     }
     #{$panel}__content {
       margin-top: getSpacer(s);
+      margin-bottom: getSpacer(s);
     }
     @media (min-width: map-get($grid-breakpoints, md)) {
       padding-left: getSpacer(s);
