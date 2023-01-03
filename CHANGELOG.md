@@ -1,3 +1,10 @@
+## [2.10.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.10.0&targetVersion=GTv2.10.1) (2023-01-03)
+
+
+### Bug Fixes
+
+*  listheader mapping fikset ved null child ([e62f9f8](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/e62f9f8cdb9af731434f79a56efadb6207e06588))
+
 ## [2.10.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.9.3&targetVersion=GTv2.10.0) (2023-01-03)
 
 
