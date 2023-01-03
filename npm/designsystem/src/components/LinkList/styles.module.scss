@@ -9,17 +9,21 @@
   width: inherit;
   margin: 0;
 
-  & > :nth-child(n) {
-    border-bottom: 1px solid $neutral500;
-  }
-  &--hastopborder {
-    & > :first-child {
-      border-top: 1px solid $neutral500;
+  &__list-item {
+    &--line {
+      border-bottom: 1px solid $neutral500;
+      &:first-of-type {
+        border-top: 1px solid $neutral500;
+      }
     }
-  }
-  &--nobottomborder {
-    & > :last-child {
-      border-bottom: 0;
+    &--outline {
+      border-top: getSpacer(2xs) $neutral100 solid;
+      border-left: getSpacer(2xs) $neutral100 solid;
+      border-right: getSpacer(2xs) $neutral100 solid;
+
+      &:last-of-type {
+        border-bottom: getSpacer(2xs) $neutral50 solid;
+      }
     }
   }
 
@@ -27,9 +31,9 @@
     display: flex;
     min-height: 4rem;
     text-decoration: none;
-    align-items: center;
     color: $black;
     cursor: pointer;
+
     &--button {
       width: 100%;
       background: none;
@@ -37,117 +41,86 @@
       text-align: left;
       box-sizing: border-box;
     }
+    &:hover {
+      color: $blueberry700;
+    }
+    &--fill {
+      margin: getSpacer(s) 0;
+      background-color: $neutral50;
+    }
+
     &--small {
-      padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
       font-size: $font-size-xs;
       line-height: $lineheight-size-xs;
     }
     &--medium {
-      padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
       font-size: $font-size-sm;
       line-height: $lineheight-size-sm;
     }
     &--large {
-      padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
       font-size: $font-size-md;
       line-height: $lineheight-size-md;
     }
     @media (min-width: map-get($grid-breakpoints, md)) {
       &--small {
-        padding-left: getSpacer(2xs);
-        padding-right: getSpacer(2xs);
         font-size: $font-size-sm;
         line-height: $lineheight-size-sm;
       }
       &--medium {
-        padding-left: getSpacer(2xs);
-        padding-right: getSpacer(2xs);
         font-size: $font-size-md;
         line-height: $lineheight-size-md;
       }
       &--large {
-        padding-left: getSpacer(2xs);
-        padding-right: getSpacer(2xs);
         font-size: $font-size-lg;
         line-height: $lineheight-size-lg;
       }
     }
 
     &--banana {
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: $banana100;
       }
     }
     &--blueberry {
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: $blueberry100;
       }
     }
     &--cherry {
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: $cherry100;
       }
     }
     &--kiwi {
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: $kiwi100;
       }
     }
     &--neutral,
     &--black {
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: $neutral100;
       }
     }
     &--plum {
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: $plum100;
       }
     }
     &--black {
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: $black;
         color: $white;
       }
     }
     &--white {
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: $neutral50;
       }
     }
-
     &:focus {
-      outline: none;
+      outline: getSpacer(4xs) solid $black;
+      outline-offset: -1px;
     }
-  }
-
-  &__content {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid transparent;
-    :focus > & {
-      border-color: $black;
-    }
-  }
-
-  &__icon {
-    display: flex;
-    align-items: center;
-    margin-right: getSpacer(2xs);
-  }
-
-  &__chevron {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    padding-left: getSpacer(2xs);
   }
 }

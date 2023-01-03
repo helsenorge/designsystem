@@ -11,6 +11,7 @@ import Title from '../Title';
 import FormLayout, { FormLayoutProps } from '../FormLayout';
 import ErrorWrapper from '../ErrorWrapper';
 import Select, { SelectProps } from '../Select';
+import { isComponent } from '../../utils/component';
 
 export type FormGroupTags = 'fieldset' | 'div';
 
@@ -74,9 +75,6 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   });
 
   const fieldsetClasses = classNames(formGroupStyles['field-set'], fieldsetClassName);
-
-  const isComponent = <T,>(element: {} | null | undefined, type: React.ForwardRefExoticComponent<T>): element is React.ReactElement<T> =>
-    React.isValidElement<T>(element) && (element as React.ReactElement).type === type;
 
   const mapFormComponent = (child: React.ReactNode): React.ReactNode => {
     if (isComponent<FormGroupProps>(child, FormLayout)) {

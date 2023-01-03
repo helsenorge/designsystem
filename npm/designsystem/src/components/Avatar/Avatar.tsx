@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 import { palette } from '../../theme/palette';
 import { AnalyticsId } from '../../constants';
 
-interface AvatarProps {
+export interface AvatarProps {
   /** Name to display in the avatar. Will be truncated to the first two characters. */
   children: string;
   /** Displays a check icon to indicated the selected state. */
@@ -20,8 +20,8 @@ interface AvatarProps {
   /** Sets the data-testid attribute. */
   testId?: string;
 }
-
-const Avatar = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, ref: React.ForwardedRef<HTMLElement>) {
+export type AvatarType = React.ForwardRefExoticComponent<AvatarProps & React.RefAttributes<HTMLElement>>;
+const Avatar: AvatarType = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, ref: React.ForwardedRef<HTMLElement>) {
   const { children, className = '', selected = false, variant = 'normal', testId } = props;
   const truncatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
   return (

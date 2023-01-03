@@ -7,7 +7,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
     data-analyticsid="expander-list"
   >
     <li
-      class="expander-list__item expander-list__item--top"
+      class="expander-list__item expander-list__item--top expander-list__item--line"
     >
       <button
         aria-expanded="false"
@@ -16,31 +16,35 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         id="testid-200-0"
         type="button"
       >
-        <span
-          class="expander-list-link__title expander-list-link__title--string"
+        <div
+          class="list-header"
         >
-          ExpanderList 1
-        </span>
-        <span
-          class="expander-list-link__chevron"
-        >
-          <svg
-            aria-hidden="true"
-            class="hnds-style-icon"
-            data-analyticsid="icon"
-            fill="black"
-            focusable="false"
-            height="38"
-            role="presentation"
-            style="min-width: 38px; min-height: 38px;"
-            viewBox="0 0 48 48"
-            width="38"
+          <span
+            class="list-header__content list-header__content--string list-header__content--spacing"
           >
-            <path
-              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-            />
-          </svg>
-        </span>
+            ExpanderList 1
+          </span>
+          <span
+            class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
+          >
+            <svg
+              aria-hidden="true"
+              class="hnds-style-icon"
+              data-analyticsid="icon"
+              fill="black"
+              focusable="false"
+              height="38"
+              role="presentation"
+              style="min-width: 38px; min-height: 38px;"
+              viewBox="0 0 48 48"
+              width="38"
+            >
+              <path
+                d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+              />
+            </svg>
+          </span>
+        </div>
       </button>
     </li>
   </ul>
@@ -49,7 +53,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
     data-analyticsid="expander-list"
   >
     <li
-      class="expander-list__item expander-list__item--top"
+      class="expander-list__item expander-list__item--top expander-list__item--line"
     >
       <button
         aria-expanded="false"
@@ -58,31 +62,35 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         id="testid-202-0"
         type="button"
       >
-        <span
-          class="expander-list-link__title expander-list-link__title--string"
+        <div
+          class="list-header"
         >
-          ExpanderList 2
-        </span>
-        <span
-          class="expander-list-link__chevron"
-        >
-          <svg
-            aria-hidden="true"
-            class="hnds-style-icon"
-            data-analyticsid="icon"
-            fill="black"
-            focusable="false"
-            height="38"
-            role="presentation"
-            style="min-width: 38px; min-height: 38px;"
-            viewBox="0 0 48 48"
-            width="38"
+          <span
+            class="list-header__content list-header__content--string list-header__content--spacing"
           >
-            <path
-              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-            />
-          </svg>
-        </span>
+            ExpanderList 2
+          </span>
+          <span
+            class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
+          >
+            <svg
+              aria-hidden="true"
+              class="hnds-style-icon"
+              data-analyticsid="icon"
+              fill="black"
+              focusable="false"
+              height="38"
+              role="presentation"
+              style="min-width: 38px; min-height: 38px;"
+              viewBox="0 0 48 48"
+              width="38"
+            >
+              <path
+                d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+              />
+            </svg>
+          </span>
+        </div>
       </button>
     </li>
   </ul>
@@ -96,7 +104,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
     data-analyticsid="expander-list"
   >
     <li
-      class="expander-list__item expander-list__item--top"
+      class="expander-list__item expander-list__item--top expander-list__item--line"
     >
       <button
         aria-expanded="false"
@@ -105,35 +113,39 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         id="testid-1-0"
         type="button"
       >
-        <span
-          class="expander-list-link__title expander-list-link__title--string"
+        <div
+          class="list-header"
         >
-          Title 1
-        </span>
-        <span
-          class="expander-list-link__chevron"
-        >
-          <svg
-            aria-hidden="true"
-            class="hnds-style-icon"
-            data-analyticsid="icon"
-            fill="black"
-            focusable="false"
-            height="38"
-            role="presentation"
-            style="min-width: 38px; min-height: 38px;"
-            viewBox="0 0 48 48"
-            width="38"
+          <span
+            class="list-header__content list-header__content--string list-header__content--spacing"
           >
-            <path
-              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-            />
-          </svg>
-        </span>
+            Title 1
+          </span>
+          <span
+            class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
+          >
+            <svg
+              aria-hidden="true"
+              class="hnds-style-icon"
+              data-analyticsid="icon"
+              fill="black"
+              focusable="false"
+              height="38"
+              role="presentation"
+              style="min-width: 38px; min-height: 38px;"
+              viewBox="0 0 48 48"
+              width="38"
+            >
+              <path
+                d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+              />
+            </svg>
+          </span>
+        </div>
       </button>
     </li>
     <li
-      class="expander-list__item"
+      class="expander-list__item expander-list__item--line"
     >
       <button
         aria-expanded="false"
@@ -142,35 +154,39 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         id="testid-1-1"
         type="button"
       >
-        <span
-          class="expander-list-link__title expander-list-link__title--string"
+        <div
+          class="list-header"
         >
-          Title 2
-        </span>
-        <span
-          class="expander-list-link__chevron"
-        >
-          <svg
-            aria-hidden="true"
-            class="hnds-style-icon"
-            data-analyticsid="icon"
-            fill="black"
-            focusable="false"
-            height="38"
-            role="presentation"
-            style="min-width: 38px; min-height: 38px;"
-            viewBox="0 0 48 48"
-            width="38"
+          <span
+            class="list-header__content list-header__content--string list-header__content--spacing"
           >
-            <path
-              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-            />
-          </svg>
-        </span>
+            Title 2
+          </span>
+          <span
+            class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
+          >
+            <svg
+              aria-hidden="true"
+              class="hnds-style-icon"
+              data-analyticsid="icon"
+              fill="black"
+              focusable="false"
+              height="38"
+              role="presentation"
+              style="min-width: 38px; min-height: 38px;"
+              viewBox="0 0 48 48"
+              width="38"
+            >
+              <path
+                d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+              />
+            </svg>
+          </span>
+        </div>
       </button>
     </li>
     <li
-      class="expander-list__item"
+      class="expander-list__item expander-list__item--line"
     >
       <button
         aria-expanded="false"
@@ -179,31 +195,35 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
         id="testid-1-2"
         type="button"
       >
-        <span
-          class="expander-list-link__title expander-list-link__title--string"
+        <div
+          class="list-header"
         >
-          Title 3
-        </span>
-        <span
-          class="expander-list-link__chevron"
-        >
-          <svg
-            aria-hidden="true"
-            class="hnds-style-icon"
-            data-analyticsid="icon"
-            fill="black"
-            focusable="false"
-            height="38"
-            role="presentation"
-            style="min-width: 38px; min-height: 38px;"
-            viewBox="0 0 48 48"
-            width="38"
+          <span
+            class="list-header__content list-header__content--string list-header__content--spacing"
           >
-            <path
-              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-            />
-          </svg>
-        </span>
+            Title 3
+          </span>
+          <span
+            class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
+          >
+            <svg
+              aria-hidden="true"
+              class="hnds-style-icon"
+              data-analyticsid="icon"
+              fill="black"
+              focusable="false"
+              height="38"
+              role="presentation"
+              style="min-width: 38px; min-height: 38px;"
+              viewBox="0 0 48 48"
+              width="38"
+            >
+              <path
+                d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+              />
+            </svg>
+          </span>
+        </div>
       </button>
     </li>
   </ul>
@@ -217,7 +237,7 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
     data-analyticsid="expander-list"
   >
     <li
-      class="expander-list__item expander-list__item--top expander-list__item--jsx"
+      class="expander-list__item expander-list__item--top expander-list__item--line expander-list__item--jsx"
     >
       <button
         aria-expanded="false"
@@ -226,11 +246,11 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
         id="testid-208-0"
         type="button"
       >
-        <span
-          class="expander-list-link__title expander-list-link__title--jsx"
+        <div
+          class="list-header list-header--for-element-content list-header--top-align-content"
         >
           <span
-            style="display: flex; align-items: center; justify-content: space-between; width: 100%;"
+            class="list-header__content list-header__content--element list-header__content--spacing"
           >
             <h1
               class="title title--title3"
@@ -256,31 +276,31 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
               />
             </svg>
           </span>
-        </span>
-        <span
-          class="expander-list-link__chevron"
-        >
-          <svg
-            aria-hidden="true"
-            class="hnds-style-icon"
-            data-analyticsid="icon"
-            fill="black"
-            focusable="false"
-            height="38"
-            role="presentation"
-            style="min-width: 38px; min-height: 38px;"
-            viewBox="0 0 48 48"
-            width="38"
+          <span
+            class="list-header__chevron list-header__chevron--right list-header__chevron--medium"
           >
-            <path
-              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-            />
-          </svg>
-        </span>
+            <svg
+              aria-hidden="true"
+              class="hnds-style-icon"
+              data-analyticsid="icon"
+              fill="black"
+              focusable="false"
+              height="38"
+              role="presentation"
+              style="min-width: 38px; min-height: 38px;"
+              viewBox="0 0 48 48"
+              width="38"
+            >
+              <path
+                d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+              />
+            </svg>
+          </span>
+        </div>
       </button>
     </li>
     <li
-      class="expander-list__item expander-list__item--jsx"
+      class="expander-list__item expander-list__item--line expander-list__item--jsx"
     >
       <button
         aria-expanded="false"
@@ -289,37 +309,35 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
         id="testid-208-1"
         type="button"
       >
-        <span
-          class="expander-list-link__title expander-list-link__title--jsx"
+        <div
+          class="list-header list-header--for-element-content"
         >
-          <h1
-            class="title title--title3"
-            data-analyticsid="title"
-            style="margin-top: 0rem; margin-bottom: 0rem;"
+          <span
+            class="list-header__content list-header__content--element list-header__content--spacing"
           >
             ExpanderList 2
-          </h1>
-        </span>
-        <span
-          class="expander-list-link__chevron"
-        >
-          <svg
-            aria-hidden="true"
-            class="hnds-style-icon"
-            data-analyticsid="icon"
-            fill="black"
-            focusable="false"
-            height="38"
-            role="presentation"
-            style="min-width: 38px; min-height: 38px;"
-            viewBox="0 0 48 48"
-            width="38"
+          </span>
+          <span
+            class="list-header__chevron list-header__chevron--right list-header__chevron--medium"
           >
-            <path
-              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-            />
-          </svg>
-        </span>
+            <svg
+              aria-hidden="true"
+              class="hnds-style-icon"
+              data-analyticsid="icon"
+              fill="black"
+              focusable="false"
+              height="38"
+              role="presentation"
+              style="min-width: 38px; min-height: 38px;"
+              viewBox="0 0 48 48"
+              width="38"
+            >
+              <path
+                d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+              />
+            </svg>
+          </span>
+        </div>
       </button>
     </li>
   </ul>

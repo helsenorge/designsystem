@@ -1,0 +1,149 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_font-settings.scss';
+@import '../../scss/_palette.scss';
+
+.list-header {
+  display: flex;
+  width: 100%;
+  padding-right: getSpacer(2xs);
+  padding-left: getSpacer(2xs);
+  text-align: left;
+  align-items: center;
+
+  &--for-element-content {
+    align-content: flex-start;
+    padding-top: getSpacer(s);
+    padding-bottom: getSpacer(s);
+  }
+  &--top-align-content {
+    align-items: flex-start;
+  }
+
+  &__content {
+    border-bottom: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &--string {
+      margin: getSpacer(xs) 0;
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        margin: getSpacer(s) 0;
+      }
+    }
+    &--element {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    &--spacing {
+      margin-left: getSpacer(s);
+    }
+    :focus > & {
+      border-color: $black;
+    }
+  }
+
+  &__icon,
+  &__avatar {
+    display: flex;
+    align-items: center;
+
+    &--for-element-content {
+      &--medium {
+        height: $lineheight-size-sm;
+      }
+      &--large {
+        height: $lineheight-size-md;
+      }
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        &--medium {
+          height: $lineheight-size-md;
+        }
+        &--large {
+          height: $lineheight-size-lg;
+        }
+      }
+    }
+  }
+
+  &__icon {
+    &--for-string-content {
+      margin: getSpacer(3xs) getSpacer(2xs) getSpacer(3xs) 0;
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        margin: getSpacer(2xs) getSpacer(2xs) getSpacer(2xs) 0;
+      }
+    }
+    &--for-element-content {
+      margin: 0 getSpacer(2xs) 0 0;
+    }
+  }
+
+  &__avatar {
+    &--for-string-content {
+      margin: getSpacer(3xs) getSpacer(s) getSpacer(3xs) 0;
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        margin: getSpacer(2xs) getSpacer(s) getSpacer(2xs) 0;
+      }
+    }
+    &--for-element-content {
+      margin: 0 getSpacer(s) 0 0;
+    }
+  }
+
+  &__chevron,
+  &__badge {
+    display: flex;
+    align-items: center;
+    padding-left: getSpacer(2xs);
+    &--for-string-content {
+      margin: getSpacer(3xs) 0 getSpacer(3xs) auto;
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        margin: getSpacer(2xs) 0 getSpacer(2xs) auto;
+      }
+    }
+    &--right {
+      margin-left: auto;
+      margin-right: getSpacer(2xs);
+    }
+    //Height needs to be same as line-height
+    &--small {
+      height: $lineheight-size-xs;
+    }
+    &--medium {
+      height: $lineheight-size-sm;
+    }
+    &--large {
+      height: $lineheight-size-md;
+    }
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      &--small {
+        height: $lineheight-size-sm;
+      }
+      &--medium {
+        height: $lineheight-size-md;
+      }
+      &--large {
+        height: $lineheight-size-lg;
+      }
+    }
+  }
+}
+
+.statusDot {
+  padding: 1rem;
+}
+.text-wrapper {
+  display: flex;
+  align-items: flex-start;
+  font-size: 20px;
+  font-weight: 400;
+
+  &--sub-level {
+    font-size: 18px;
+  }
+  &__text--emphasised {
+    font-weight: 600;
+  }
+}

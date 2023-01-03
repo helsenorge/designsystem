@@ -5,7 +5,6 @@ export type Styles = {
   'badge--cherry': string;
   'badge--kiwi': string;
   'badge--neutral': string;
-  'badge--oversized': string;
   'badge--plum': string;
   'badge--white': string;
 };

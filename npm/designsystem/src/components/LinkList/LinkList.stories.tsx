@@ -6,10 +6,15 @@ import { action } from '@storybook/addon-actions';
 import { allPaletteNames } from '../../../.storybook/knobs';
 import { allLinkListSizes } from '../../../.storybook/knobs';
 import LinkList from './LinkList';
+import ListHeaderText from '../ListHeader/ListHeaderText/ListHeaderText';
 import Icon from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
 import GridExample from '../GridExample';
+import Avatar from '../Avatar';
+import Badge from '../Badge';
+import { StatusDotVariant } from '../StatusDot';
+import ListHeader from '../ListHeader/ListHeader';
 
 export default {
   title: 'Components/LinkList',
@@ -50,8 +55,8 @@ export default {
 export const Default: ComponentStory<typeof LinkList> = (args: any) => (
   <GridExample>
     <LinkList {...args}>
-      <LinkList.Link>Innhold A-Å</LinkList.Link>
-      <LinkList.Link>
+      <LinkList.Link href="/">Innhold A-Å</LinkList.Link>
+      <LinkList.Link href="/">
         Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
         bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
       </LinkList.Link>
@@ -59,11 +64,122 @@ export const Default: ComponentStory<typeof LinkList> = (args: any) => (
   </GridExample>
 );
 
-export const WithIcon: ComponentStory<typeof LinkList> = (args: any) => (
+export const WithIconAndChevron: ComponentStory<typeof LinkList> = (args: any) => (
   <GridExample>
-    <LinkList {...args}>
-      <LinkList.Link icon={<Icon svgIcon={AlarmClock} />}>Innhold A-Å</LinkList.Link>
-      <LinkList.Link icon={<Icon svgIcon={PaperPlane} />}>English</LinkList.Link>
+    <LinkList {...args} chevron>
+      <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
+        Innhold A-Å
+      </LinkList.Link>
+      <LinkList.Link href="/" icon={<Icon svgIcon={PaperPlane} />}>
+        Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
+        bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
+      </LinkList.Link>
+    </LinkList>
+  </GridExample>
+);
+
+export const WithListHeaderComp: ComponentStory<typeof LinkList> = (args: any) => (
+  <GridExample>
+    <LinkList {...args} chevron>
+      <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
+        <ListHeader>
+          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ListHeaderText
+            {...args}
+            subText
+            statusDotVariant={StatusDotVariant.alert}
+            firstText={'Statdot og uthevet skrift'}
+            firstTextEmphasised
+            secondText=""
+          />
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href="/" icon={<Icon svgIcon={PaperPlane} />}>
+        <ListHeader>
+          <span>
+            Ved å gi LinkList.Link et <span style={{ fontWeight: 'bold' }}>JSX.Element</span> kan man gjøre deler av teksten{' '}
+            <span style={{ fontWeight: 'bold' }}>bold.</span> Nå midstiller ikoner seg i forhold til øverste linje.
+          </span>
+        </ListHeader>
+      </LinkList.Link>
+    </LinkList>
+  </GridExample>
+);
+export const WithAvatarAndBadge: ComponentStory<typeof LinkList> = (args: any) => (
+  <GridExample>
+    <LinkList {...args} chevron>
+      <LinkList.Link href="/">
+        <ListHeader>
+          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <Avatar>Line Danser</Avatar>
+          <Badge color="blueberry">10000</Badge>
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href="/">
+        <ListHeader>
+          LinkListText
+          <Badge color="blueberry">Ny</Badge>
+          <Avatar>Line Danser</Avatar>
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href="/">
+        <ListHeader>
+          Test Test Eu et minim esse do eiusmod eu cillum et aute enim. Quis ea reprehenderit veniam est ullamco laboris culpa fugiat duis
+          voluptate ullamco fugiat. Ullamco Lorem occaecat adipisicing duis aliquip.
+          <Badge color="blueberry">10000</Badge>
+        </ListHeader>
+      </LinkList.Link>
+    </LinkList>
+  </GridExample>
+);
+export const VariantLine: ComponentStory<typeof LinkList> = (args: any) => (
+  <GridExample>
+    <LinkList {...args} chevron variant="line">
+      <LinkList.Link href="/">
+        <ListHeader>
+          <ListHeaderText firstText="Variant: line" />
+          <ListHeaderText firstText="This i standard variant" subText />
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href="/">Gives the listelements lines</LinkList.Link>
+      <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
+        <ListHeader>
+          <ListHeaderText firstText='Linklist (level 1) "line" visual priority'></ListHeaderText>
+        </ListHeader>
+      </LinkList.Link>
+    </LinkList>
+  </GridExample>
+);
+export const VariantOutline: ComponentStory<typeof LinkList> = (args: any) => (
+  <GridExample>
+    <LinkList {...args} chevron variant="outline">
+      <LinkList.Link href="/">Variant: Outline</LinkList.Link>
+      <LinkList.Link href="/">Gives the listelements outline</LinkList.Link>
+      <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
+        <ListHeader>
+          <ListHeaderText firstText='Linklist (level 2) "outline" visual priority'></ListHeaderText>
+        </ListHeader>
+      </LinkList.Link>
+    </LinkList>
+  </GridExample>
+);
+export const VariantFill: ComponentStory<typeof LinkList> = (args: any) => (
+  <GridExample>
+    <LinkList {...args} chevron variant="fill">
+      <LinkList.Link href="/">
+        <ListHeader>
+          <ListHeaderText firstText="Variant: fill" />
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href="/">Gives the listelements fill</LinkList.Link>
+      <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
+        <ListHeader>
+          <ListHeaderText firstText='Linklist (level 3) "fill" visual priority'></ListHeaderText>
+        </ListHeader>
+      </LinkList.Link>
     </LinkList>
   </GridExample>
 );
@@ -80,10 +196,10 @@ export const WithRef: ComponentStory<typeof LinkList> = (args: any) => {
   return (
     <GridExample>
       <LinkList {...args}>
-        <LinkList.Link icon={<Icon svgIcon={AlarmClock} />} linkRef={ref} htmlMarkup={'button'}>
+        <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />} linkRef={ref} htmlMarkup={'button'}>
           {'Innhold A-Å'}
         </LinkList.Link>
-        <LinkList.Link icon={<Icon svgIcon={PaperPlane} />} htmlMarkup={'button'}>
+        <LinkList.Link href="/" icon={<Icon svgIcon={PaperPlane} />} htmlMarkup={'button'}>
           {'English'}
         </LinkList.Link>
       </LinkList>

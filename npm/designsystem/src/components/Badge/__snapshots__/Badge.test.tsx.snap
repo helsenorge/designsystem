@@ -3,7 +3,7 @@
 exports[`displays text 1`] = `
 <div>
   <span
-    class="badge badge--oversized badge--black"
+    class="badge badge--black"
     data-analyticsid="badge"
   >
     123

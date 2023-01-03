@@ -11,29 +11,37 @@
 
   &__item {
     border: 0;
-    border-bottom: 1px solid $neutral500;
     position: relative;
 
-    &--top {
-      border-top: 1px solid $neutral500;
+    &--line {
+      border-bottom: 1px solid $neutral500;
+      &:first-of-type {
+        border-top: 1px solid $neutral500;
+      }
     }
+    &--outline {
+      border-top: getSpacer(2xs) $neutral100 solid;
+      border-left: getSpacer(2xs) $neutral100 solid;
+      border-right: getSpacer(2xs) $neutral100 solid;
 
-    &--no-bottom {
-      border-bottom: 0;
+      &:last-of-type {
+        border-bottom: getSpacer(2xs) $neutral50 solid;
+      }
     }
   }
 }
 
 .expander-list-link {
-  padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
+  padding: 0;
+  position: relative;
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
+
   @media (min-width: map-get($grid-breakpoints, md)) {
-    padding-left: getSpacer(2xs);
-    padding-right: getSpacer(2xs);
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
   }
+
   display: flex;
   cursor: pointer;
   font-weight: 600;
@@ -49,78 +57,48 @@
 
   &--banana {
     background-color: $banana100;
-
-    &:hover,
-    &:focus {
-      background-color: $banana100;
-    }
   }
   &--blueberry {
     background-color: $blueberry100;
-
-    &:hover,
-    &:focus {
-      background-color: $blueberry100;
-    }
   }
   &--cherry {
     background-color: $cherry100;
-
-    &:hover,
-    &:focus {
-      background-color: $cherry100;
-    }
   }
   &--kiwi {
     background-color: $kiwi100;
-
-    &:hover,
-    &:focus {
-      background-color: $kiwi100;
-    }
   }
   &--neutral {
     background-color: $neutral100;
-
-    &:hover,
-    &:focus {
-      background-color: $neutral100;
-    }
   }
   &--plum {
     background-color: $plum100;
-
-    &:hover,
-    &:focus {
-      background-color: $plum100;
-    }
   }
   &--white {
     background-color: $neutral50;
+  }
 
-    &:hover,
-    &:focus {
+  &--closed:not(:hover, .expander-list-link--fill) {
+    background-color: transparent;
+  }
+  &--closed#{&}--fill {
+    margin: getSpacer(s) 0;
+
+    &:not(:hover) {
       background-color: $neutral50;
     }
   }
 
-  &--closed:not(:hover, :focus) {
-    background-color: transparent;
+  &:hover {
+    color: $blueberry700;
   }
 
   &:focus {
-    outline: none;
+    outline: getSpacer(4xs) solid $black;
   }
 
   &--large {
     font-size: $font-size-lg;
     line-height: $lineheight-size-lg;
-  }
-
-  &--jsx {
-    &:focus {
-      box-shadow: 0px 3px 0px $neutral500, 0px -3px 0px $neutral500;
-    }
   }
 
   &--sticky {
@@ -130,23 +108,6 @@
   &--absolute {
     position: absolute;
     bottom: 0;
-  }
-
-  &__title {
-    color: $black;
-    display: flex;
-    align-items: center;
-    text-align: left;
-    &--string {
-      border-bottom: 1px solid transparent;
-
-      :focus > & {
-        border-color: $black;
-      }
-    }
-    &--jsx {
-      width: 100%;
-    }
   }
 
   &__icon {

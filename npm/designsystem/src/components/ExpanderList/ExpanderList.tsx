@@ -1,12 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { PaletteNames } from '../../theme/palette';
-import Icon, { IconSize } from '../Icons';
-import ChevronUp from '../Icons/ChevronUp';
-import ChevronDown from '../Icons/ChevronDown';
 import { useHover } from '../../hooks/useHover';
 import { usePrevious } from '../../hooks/usePrevious';
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { isElementInViewport } from '../../utils/viewport';
 
 import classNames from 'classnames';
@@ -17,18 +13,25 @@ import { useUuid } from '../../hooks/useUuid';
 import { useSticky } from '../../hooks/useSticky';
 
 import { mergeRefs } from '../../utils/refs';
+import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
+import ChevronUp from '../Icons/ChevronUp';
+import ChevronDown from '../Icons/ChevronDown';
 
 export type ExpanderListColors = PaletteNames;
-export type ExpanderType = React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>>;
+export interface ExpanderType extends React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>> {
+  ListHeader?: ListHeaderType;
+}
 
 export interface ExpanderListCompound extends React.ForwardRefExoticComponent<ExpanderListProps & React.RefAttributes<HTMLUListElement>> {
   Expander: ExpanderType;
 }
 
+export type ExpanderListVariant = 'line' | 'outline' | 'fill';
+
 interface ExpanderListProps {
   /** Toggles accordion functionality for the expanders. */
   accordion?: boolean;
-  /** Toggles the bottom border of the last child element. */
+  /** @deprecated Skal fases ut - Brukes ikke lenger. */
   bottomBorder?: boolean;
   /** Items in the ExpanderList */
   children: React.ReactNode;
@@ -45,12 +48,14 @@ interface ExpanderListProps {
   isOpen?: boolean;
   /** Whether to render children when closed (in which case they are hidden with CSS). Default: false */
   renderChildrenWhenClosed?: boolean;
-  /** Toggles the top border of the first child element. */
+  /** @deprecated Skal fases ut - Brukes ikke lenger. */
   topBorder?: boolean;
   /** Stick expander trigger to top of screen while scrolling down */
   sticky?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Sets visual priority */
+  variant?: ExpanderListVariant;
 }
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -73,7 +78,7 @@ type ExpanderProps = Modify<
     onExpand?: (isExpanded: boolean) => void;
   }
 > &
-  Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'sticky'>;
+  Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'sticky' | 'variant'>;
 
 const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((props, ref) => {
   const {
@@ -91,33 +96,30 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     handleExpanderClick,
     onExpand,
     renderChildrenWhenClosed,
+    variant = 'line',
   } = props;
   const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
   const previousIsExpanded = usePrevious(isExpanded);
   const expanderRef = useRef<HTMLLIElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const { isHovered } = useHover(triggerRef);
-  const breakpoint = useBreakpoint();
 
   const { isOutsideWindow, isLeavingWindow, offsetHeight, contentWidth } = useSticky(expanderRef, triggerRef);
-
   const isSticky = sticky && isExpanded && isOutsideWindow;
-
   const isJsxTitle = typeof title === 'object';
 
-  const itemClasses = classNames(className, { [expanderListStyles['expander-list__item--jsx']]: isJsxTitle });
+  const itemClasses = classNames(className, {
+    [expanderListStyles['expander-list__item--' + variant]]: variant,
+    [expanderListStyles['expander-list__item--jsx']]: isJsxTitle,
+  });
 
   const expanderClasses = classNames(expanderListStyles['expander-list-link'], expanderListStyles[`expander-list-link--${color}`], {
+    [expanderListStyles['expander-list-link--fill']]: variant === 'fill',
     [expanderListStyles['expander-list-link--closed']]: !isExpanded,
     [expanderListStyles['expander-list-link--large']]: large,
     [expanderListStyles['expander-list-link--jsx']]: isJsxTitle,
     [expanderListStyles['expander-list-link--sticky']]: isSticky && !isLeavingWindow,
     [expanderListStyles['expander-list-link--absolute']]: isSticky && isLeavingWindow,
-  });
-
-  const titleClasses = classNames(expanderListStyles['expander-list-link__title'], {
-    [expanderListStyles['expander-list-link__title--string']]: !isJsxTitle,
-    [expanderListStyles['expander-list-link__title--jsx']]: isJsxTitle,
   });
 
   useEffect(() => {
@@ -166,18 +168,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
           width: isSticky && contentWidth ? `${contentWidth}px` : undefined,
         }}
       >
-        {icon && (
-          <span className={expanderListStyles['expander-list-link__icon']}>
-            {React.cloneElement(icon, {
-              size: breakpoint === Breakpoint.xs ? IconSize.XSmall : IconSize.Small,
-              isHovered,
-            })}
-          </span>
-        )}
-        <span className={titleClasses}>{title}</span>
-        <span className={expanderListStyles['expander-list-link__chevron']}>
-          <Icon size={IconSize.XSmall} svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} />
-        </span>
+        {renderListHeader(title, isExpanded ? ChevronUp : ChevronDown, isHovered, large ? 'large' : 'medium', icon)}
       </button>
       {renderContent()}
     </li>
@@ -203,6 +194,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     bottomBorder = true,
     sticky = false,
     testId,
+    variant,
   } = props;
   const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
@@ -276,6 +268,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
             className: expanderItemClass,
             handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${uuid}-${index}`),
             renderChildrenWhenClosed,
+            variant,
           });
         }
         return child;

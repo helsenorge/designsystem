@@ -14,6 +14,10 @@ import Title from '../Title/Title';
 
 import { longLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
+import ListHeaderText from '../ListHeader/ListHeaderText';
+import Badge from '../Badge';
+import StatusDot, { StatusDotVariant } from '../StatusDot';
+import ListHeader from '../ListHeader/ListHeader';
 
 export default {
   title: 'Components/ExpanderList',
@@ -101,6 +105,98 @@ export const Default: ComponentStory<typeof ExpanderList> = (args: any) => (
     </ul>
   </GridExample>
 );
+
+export const VariantLine: ComponentStory<typeof ExpanderList> = (args: any) => (
+  <GridExample>
+    <ExpanderList {...args} chevron variant="line">
+      <ExpanderList.Expander title={'Variant: line'}>test</ExpanderList.Expander>
+      <ExpanderList.Expander title={'Gives the ExpanderList lines'}>test</ExpanderList.Expander>
+    </ExpanderList>
+  </GridExample>
+);
+export const VariantOutline: ComponentStory<typeof ExpanderList> = (args: any) => (
+  <GridExample>
+    <ExpanderList {...args} chevron variant="outline">
+      <ExpanderList.Expander title={'Variant: Outline'}>test</ExpanderList.Expander>
+      <ExpanderList.Expander title={'Gives the ExpanderList outline'}>test</ExpanderList.Expander>
+    </ExpanderList>
+  </GridExample>
+);
+export const VariantFill: ComponentStory<typeof ExpanderList> = (args: any) => (
+  <GridExample>
+    <ExpanderList {...args} chevron variant="fill">
+      <ExpanderList.Expander title={'Variant: fill'}>test</ExpanderList.Expander>
+      <ExpanderList.Expander title={'Gives the listelements fill'}>Gives the ExpanderList fill</ExpanderList.Expander>
+    </ExpanderList>
+  </GridExample>
+);
+
+export const WithListHeaderComp: ComponentStory<typeof ExpanderList> = (args: any) => {
+  const listHeader = (
+    <ListHeader>
+      <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+      <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+      <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+      <ListHeaderText
+        {...args}
+        subText
+        statusDot
+        statusDotVariant={StatusDotVariant.alert}
+        firstText={'Statdot og uthevet skrift'}
+        firstTextEmphasised
+        secondText=""
+      />
+    </ListHeader>
+  );
+
+  const listHeader2 = (
+    <ListHeader>
+      <span>
+        Ved å gi ExpanderList.Expander et <span style={{ fontWeight: 'bold' }}>JSX.Element</span> kan man gjøre deler av teksten{' '}
+        <span style={{ fontWeight: 'bold' }}>bold.</span> Nå midstiller ikoner seg i forhold til øverste linje.
+      </span>
+    </ListHeader>
+  );
+
+  return (
+    <GridExample>
+      <ExpanderList {...args} chevron>
+        <ExpanderList.Expander title={listHeader} icon={<Icon svgIcon={AlarmClock} />}>
+          test
+        </ExpanderList.Expander>
+        <ExpanderList.Expander title={listHeader2} icon={<Icon svgIcon={PaperPlane} />}>
+          test
+        </ExpanderList.Expander>
+      </ExpanderList>
+    </GridExample>
+  );
+};
+export const WithAvatarAndBadge: ComponentStory<typeof ExpanderList> = (args: any) => {
+  const listHeader = (
+    <ListHeader>
+      <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+      <AvatarComponent>Line Danser</AvatarComponent>
+      <Badge color="blueberry">10000</Badge>
+    </ListHeader>
+  );
+
+  const listHeader2 = (
+    <ListHeader>
+      ExpanderListText
+      <Badge color="blueberry">Ny</Badge>
+      <AvatarComponent>Line Danser</AvatarComponent>
+    </ListHeader>
+  );
+
+  return (
+    <GridExample>
+      <ExpanderList {...args} chevron>
+        <ExpanderList.Expander title={listHeader}>test</ExpanderList.Expander>
+        <ExpanderList.Expander title={listHeader2}>test</ExpanderList.Expander>
+      </ExpanderList>
+    </GridExample>
+  );
+};
 
 export const MultipleOpenExpanders: ComponentStory<typeof ExpanderList> = (args: any) => {
   return (
@@ -284,13 +380,22 @@ export const JsxTitle: ComponentStory<typeof ExpanderList> = (args: any) => (
           <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
             <AvatarComponent>{'Tittel'}</AvatarComponent>
             <Title appearance="title3">Fastlege</Title>
-            <Icon svgIcon={Avatar} />
           </span>
         }
       >
         {'Hei'}
       </ExpanderList.Expander>
       <ExpanderList.Expander title={<Title appearance="title3">Fastlege</Title>}>{'Hei'}</ExpanderList.Expander>
+      <ExpanderList.Expander
+        title={
+          <div>
+            <div>{'Tittel'}</div>
+            <StatusDot variant={'noaccess'} text={'Status tekst'} />
+          </div>
+        }
+      >
+        {'Hei'}
+      </ExpanderList.Expander>
     </ExpanderList>
   </GridExample>
 );

@@ -40,7 +40,9 @@ const Spacer = React.forwardRef(function SpacerForwardedRef(props: StatusDotProp
   const dotClasses = classNames(statusDotStyles['statusdot__dot'], [
     hasIcon ? statusDotStyles[`statusdot__dot--icon`] : statusDotStyles[`statusdot__dot--${variant}`],
   ]);
-  const labelClasses = classNames(statusDotStyles['statusdot__label'], { [statusDotStyles[`statusdot__label--icon`]]: hasIcon });
+  const labelClasses = classNames(statusDotStyles['statusdot__label'], {
+    [statusDotStyles[`statusdot__label--icon`]]: hasIcon,
+  });
   let svgIcon: JSX.Element | null = null;
 
   if (variant === StatusDotVariant.recurring) {

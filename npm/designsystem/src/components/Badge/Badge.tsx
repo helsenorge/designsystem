@@ -9,7 +9,7 @@ import { AnalyticsId } from '../../constants';
 export type BadgeColors = PaletteNames;
 export type BadgeChildren = string | number;
 
-interface BadgeProps {
+export interface BadgeProps {
   /** Sets the content of the badge. */
   children: BadgeChildren;
   /** Adds custom classes to the element. */
@@ -19,14 +19,12 @@ interface BadgeProps {
   /** Sets the data-testid attribute. */
   testId?: string;
 }
-
-const Badge = React.forwardRef(function BadgeForwardedRef(props: BadgeProps, ref: React.ForwardedRef<HTMLElement>) {
+export type BadgeType = React.ForwardRefExoticComponent<BadgeProps & React.RefAttributes<HTMLElement>>;
+const Badge: BadgeType = React.forwardRef(function BadgeForwardedRef(props: BadgeProps, ref: React.ForwardedRef<HTMLElement>) {
   const { children, className = '', color = 'black', testId } = props;
-  const oversized = children.toString().length > 2;
   const badgeClasses = classNames(
     badgeStyles.badge,
     {
-      [badgeStyles['badge--oversized']]: oversized,
       [badgeStyles['badge--black']]: color === 'black',
       [badgeStyles['badge--white']]: color === 'white',
       [badgeStyles['badge--blueberry']]: color === 'blueberry',
