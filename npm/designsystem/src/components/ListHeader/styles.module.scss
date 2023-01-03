@@ -40,7 +40,8 @@
     &--spacing {
       margin-left: getSpacer(s);
     }
-    :focus > & {
+    :focus > &,
+    :focus-visible > & {
       border-color: $black;
     }
   }

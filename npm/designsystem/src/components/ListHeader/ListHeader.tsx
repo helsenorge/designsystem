@@ -73,6 +73,7 @@ export const mapChildren = (
   let remainingChildren: Array<any> = [];
 
   React.Children.map(children, (child: React.ReactNode | React.ReactElement<string>) => {
+    if (child === null) return;
     if ((child as React.ReactElement<AvatarType>).type === Avatar) {
       avatarChild = child as AvatarProps;
     } else if ((child as React.ReactElement<ListHeaderTextType>).type === ListHeaderText) {

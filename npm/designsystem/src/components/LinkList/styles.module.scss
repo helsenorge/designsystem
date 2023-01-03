@@ -118,7 +118,8 @@
         background-color: $neutral50;
       }
     }
-    &:focus {
+    &:focus,
+    &:focus-visible {
       outline: getSpacer(4xs) solid $black;
       outline-offset: -1px;
     }
