@@ -1,3 +1,15 @@
+## [2.10.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.9.3&targetVersion=GTv2.10.0) (2023-01-03)
+
+
+### Features
+
+*  nytt komponent linkheader og linkheadertext som brukes i expanderlist og linklist ([5842ffe](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/5842ffe5d547d9f34b61c2409c9aeb957fcb947f)), closes [#289118](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/289118)
+
+
+### Bug Fixes
+
+*  oneliner får ikke unødvendig spacing ([4f1ac33](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/4f1ac33b8405c89f625939454e2600cf9eb2e0a3))
+
 ## [2.9.3](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.9.2&targetVersion=GTv2.9.3) (2022-12-13)
 
 
