@@ -33,6 +33,24 @@ export const Default: ComponentStory<typeof Select> = (args: any) => (
     </Select>
   </>
 );
+export const DefaultValue: ComponentStory<typeof Select> = (args: any) => (
+  <>
+    <Select defaultValue={'Option 2'} {...args} label={'Velg noe'} name={'select name 1'}>
+      <option value={'Option 1'}>{'Option 1'}</option>
+      <option value={'Option 2'}>{'Option 2'}</option>
+      <option value={'Option 3'}>{'Option 3'}</option>
+    </Select>
+  </>
+);
+export const Disabled: ComponentStory<typeof Select> = (args: any) => (
+  <>
+    <Select {...args} disabled label={'Velg noe'} name={'select name 1'}>
+      <option value={'Option 1'}>{'Option 1'}</option>
+      <option value={'Option 2'}>{'Option 2'}</option>
+      <option value={'Option 3'}>{'Option 3'}</option>
+    </Select>
+  </>
+);
 
 export const Concepts: ComponentStory<typeof Select> = (args: any) => (
   <div style={{ backgroundColor: palette.blueberry100, padding: '2rem' }}>
@@ -95,6 +113,8 @@ export const Width: ComponentStory<typeof Select> = (args: any) => (
 export const AllExamples: ComponentStory<typeof Select> = (args: any) => (
   <>
     <Default {...args} />
+    <DefaultValue {...args} />
+    <Disabled {...args} />
     <Concepts {...args} />
     <Modes {...args} />
     <Width {...args} />

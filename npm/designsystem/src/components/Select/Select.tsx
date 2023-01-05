@@ -35,6 +35,8 @@ export interface SelectProps extends Pick<React.SelectHTMLAttributes<HTMLSelectE
   selectId?: string;
   /** Width of select in characters (approximate) */
   width?: number;
+  /** Gives defaultvalue to the comp. Preferred over selected prop on option by react */
+  defaultValue?: string | number;
 }
 
 const getSelectMaxWidth = (characters: number): string => {
@@ -65,6 +67,7 @@ export const Select = React.forwardRef((props: SelectProps, ref: React.Ref<HTMLS
     width,
     required,
     value,
+    defaultValue,
     ...rest
   } = props;
 
@@ -114,7 +117,9 @@ export const Select = React.forwardRef((props: SelectProps, ref: React.Ref<HTMLS
             disabled={disabled}
             ref={ref}
             required={required}
+            aria-required={!!required}
             value={value}
+            defaultValue={defaultValue}
             {...rest}
           >
             {children}

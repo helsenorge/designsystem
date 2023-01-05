@@ -39,6 +39,7 @@ exports[`Gitt at Select skal vises Når Select rendres Så vises Select 1`] = `
         </svg>
         <select
           aria-invalid="false"
+          aria-required="false"
           class="select"
           id="test01"
           name="test01"

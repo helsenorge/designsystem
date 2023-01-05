@@ -141,6 +141,7 @@ describe('Gitt at Select skal vises', (): void => {
       );
 
       const select = screen.getByRole('combobox');
+      expect(select).toHaveAttribute('aria-required', 'true');
       expect(select).toBeRequired();
     });
   });
