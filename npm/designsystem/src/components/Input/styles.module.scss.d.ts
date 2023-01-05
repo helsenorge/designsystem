@@ -11,7 +11,6 @@ export type Styles = {
   'content-wrapper--transparent': string;
   'content-wrapper--with-icon': string;
   'input-wrapper': string;
-  'input-wrapper__after-content-wrapper': string;
   'input-wrapper__after-label-children': string;
   'input-wrapper__label-wrapper': string;
   'input-wrapper__label-wrapper--on-dark': string;

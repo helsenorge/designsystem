@@ -8,11 +8,6 @@
   @include input-wrapper;
 
   margin: getSpacer(l) 0;
-
-  &__after-content-wrapper {
-    display: flex;
-    align-items: center;
-  }
 }
 
 .input-wrapper:first-of-type {

@@ -105,3 +105,8 @@ export const ChildrenAfterLabel: ComponentStory<typeof Input> = (args: any) => (
     <Input {...args} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>} />
   </GridExample>
 );
+export const AfterInputChildren: ComponentStory<typeof Input> = (args: any) => (
+  <GridExample>
+    <Input {...args} afterInputChildren={<div style={{ marginTop: '1rem' }}>*Ikke oppgi personsensitiv informasjon</div>} />
+  </GridExample>
+);

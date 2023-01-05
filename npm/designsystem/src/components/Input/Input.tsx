@@ -25,6 +25,9 @@ export interface InputProps
     | 'min'
     | 'max'
     | 'aria-labelledby'
+    | 'onChange'
+    | 'onKeyDown'
+    | 'autoFocus'
   > {
   /** Adds custom classes to the element. */
   className?: string;
@@ -108,6 +111,9 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     belowLabelChildren,
     width,
     required,
+    onChange,
+    onKeyDown,
+    autoFocus,
     ...rest
   } = props;
   const breakpoint = useBreakpoint();
@@ -155,7 +161,6 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
       input.focus();
     }
   };
-
   const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
 
   return (
@@ -170,29 +175,31 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
           </div>
         )}
         {belowLabelChildren && <div>{belowLabelChildren}</div>}
-        <div className={styles['input-wrapper__after-content-wrapper']}>
-          <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>
-            {!iconRight && renderIcon()}
-            <input
-              name={name}
-              type={type}
-              defaultValue={defaultValue}
-              id={inputId}
-              className={inputClass}
-              ref={ref}
-              aria-labelledby={props['aria-labelledby'] ?? undefined}
-              aria-invalid={!!onError}
-              disabled={disabled}
-              placeholder={placeholder}
-              readOnly={readOnly}
-              autoComplete={autoComplete || 'off'}
-              required={required}
-              {...rest}
-            />
-            {iconRight && renderIcon()}
-          </div>
-          {afterInputChildren}
+
+        <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>
+          {!iconRight && renderIcon()}
+          <input
+            onChange={onChange}
+            onKeyDown={onKeyDown}
+            name={name}
+            type={type}
+            defaultValue={defaultValue}
+            id={inputId}
+            className={inputClass}
+            ref={ref}
+            aria-labelledby={props['aria-labelledby'] ?? undefined}
+            aria-invalid={!!onError}
+            disabled={disabled}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            autoComplete={autoComplete || 'off'}
+            required={required}
+            autoFocus={autoFocus}
+            {...rest}
+          />
+          {iconRight && renderIcon()}
         </div>
+        {afterInputChildren}
       </div>
     </ErrorWrapper>
   );
