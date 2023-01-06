@@ -16,7 +16,7 @@
     padding-left: getSpacer(2xs);
     padding-right: getSpacer(xs);
     background-color: $cherry100;
-    border-left: getSpacer(3xs) solid $cherry500;
+    border-left: getSpacer(3xs) solid $cherry600;
 
     @media (min-width: map-get($grid-breakpoints, md)) {
       margin-left: (getSpacer(m) + 0.25rem) * -1;
@@ -30,15 +30,7 @@
     line-height: 1.875rem;
     font-size: $font-size-sm;
     font-weight: 600;
-    color: $cherry500;
-    margin-top: 0;
-  }
-
-  &__error-text {
-    font-size: $font-size-sm;
-    line-height: $font-size-sm;
-    font-weight: 600;
-    color: $cherry500;
+    color: $cherry600;
     margin-top: 0;
   }
 }
