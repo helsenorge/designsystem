@@ -1,3 +1,16 @@
+## [2.11.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.10.1&targetVersion=GTv2.11.1) (2023-01-06)
+
+
+### Features
+
+*  legger til props til Input ([7951a84](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/7951a84f5af1dc7c432456e3ebf26d4227774cf8)), closes [#222638](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/222638)
+* **designsystem:**  aria-required for select ([4415849](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/4415849b74a53565a7af459091a915e0f6d01d90)), closes [#291043](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/291043)
+
+
+### Bug Fixes
+
+*  endrer farge på tekst. Gir bedre kontrast ([e29be2b](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/e29be2b7dc784ea57daabb20d7ce08c8a017708e)), closes [#290655](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/290655)
+
 ## [2.10.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.10.0&targetVersion=GTv2.10.1) (2023-01-03)
 
 
@@ -233,7 +246,7 @@
 
 ## 2.0.0-beta.1 (2022-09-15)
 
-## 2.0.0-beta.0 (2022-09-12)
+## 2.0.0-beta.0 (2022-09-15)
 
 
 ### Features
@@ -335,8 +348,8 @@
 
 ### Bug Fixes
 
-*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 *  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
+*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 
 ## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
