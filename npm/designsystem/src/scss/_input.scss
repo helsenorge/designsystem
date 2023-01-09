@@ -98,12 +98,12 @@
     }
   }
   &--invalid {
-    border-color: $cherry500;
+    border-color: $cherry600;
 
     &:hover {
       background: $cherry100;
-      border-color: $cherry500;
-      box-shadow: 0px 0px 0px 2px $cherry500;
+      border-color: $cherry600;
+      box-shadow: 0px 0px 0px 2px $cherry600;
     }
     &:focus-within {
       background: $white;

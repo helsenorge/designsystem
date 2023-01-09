@@ -13,7 +13,6 @@ export type Styles = {
   'textarea__counter-wrapper': string;
   'textarea__counter-wrapper--invalid': string;
   'textarea__counter-wrapper--on-dark': string;
-  'textarea__error-text': string;
   'textarea__label-wrapper': string;
   'textarea__label-wrapper--on-dark': string;
   'textarea--gutterBottom': string;

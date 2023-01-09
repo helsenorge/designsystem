@@ -6,7 +6,7 @@
 .radio-button-errors {
   font-size: $font-size-sm;
   font-weight: 600;
-  color: $cherry500;
+  color: $cherry600;
   margin-top: 0;
 }
 
@@ -18,7 +18,7 @@
     padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
     background-color: $cherry100;
     margin-left: -0.75rem;
-    border-left: 0.25rem solid $cherry500;
+    border-left: 0.25rem solid $cherry600;
 
     @media (min-width: map-get($grid-breakpoints, md)) {
       padding: getSpacer(s) getSpacer(m) getSpacer(l);
@@ -166,14 +166,14 @@
   }
 
   &--invalid {
-    color: $cherry500;
+    color: $cherry600;
 
     &:hover {
       background-color: $cherry100;
     }
 
     &:checked {
-      color: $cherry500;
+      color: $cherry600;
 
       &:hover {
         background-color: $cherry100;
@@ -232,6 +232,6 @@
   }
 
   &--invalid:checked::before {
-    background-color: $cherry500;
+    background-color: $cherry600;
   }
 }

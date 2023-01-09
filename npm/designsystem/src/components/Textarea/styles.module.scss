@@ -7,14 +7,6 @@
 .textarea {
   @include input-wrapper;
 
-  &__error-text {
-    font-size: $font-size-sm;
-    line-height: $font-size-sm;
-    font-weight: 600;
-    color: $cherry500;
-    margin-top: 0;
-  }
-
   &--gutterBottom {
     margin-bottom: getSpacer(s);
   }
@@ -40,7 +32,7 @@
       color: $white;
     }
     &--invalid {
-      color: $cherry500;
+      color: $cherry600;
       font-weight: 600;
     }
   }

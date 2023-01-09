@@ -6,7 +6,7 @@
 .checkbox-errors {
   font-size: $font-size-sm;
   font-weight: 600;
-  color: $cherry500;
+  color: $cherry600;
   margin-top: 0;
 }
 
@@ -16,7 +16,7 @@
   &--with-error {
     padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
     background-color: $cherry100;
-    border-left: 0.25rem solid $cherry500;
+    border-left: 0.25rem solid $cherry600;
 
     @media (min-width: map-get($grid-breakpoints, md)) {
       padding: getSpacer(s) getSpacer(m) getSpacer(l);
@@ -155,14 +155,14 @@
     }
 
     &--invalid {
-      color: $cherry500;
+      color: $cherry600;
 
       :hover > & {
         background-color: $cherry100;
       }
 
       &.checkbox__icon-wrapper--checked {
-        color: $cherry500;
+        color: $cherry600;
       }
 
       :active > & {
