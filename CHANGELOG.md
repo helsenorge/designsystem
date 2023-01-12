@@ -1,3 +1,11 @@
+## [2.11.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.11.1&targetVersion=GTv2.11.2) (2023-01-12)
+
+
+### Bug Fixes
+
+*  endrer kontrastfarge ([7aae4c3](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/7aae4c3239afe9187d7515ca2d8bd9e5f9808425)), closes [#290655](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/290655)
+*  listheader mapping tar hensyn til undefined recursive children ([429e51b](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/429e51bf7eebbafeef19ca5d76c72957ab9ab402)), closes [#293178](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/293178)
+
 ## [2.11.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.10.1&targetVersion=GTv2.11.1) (2023-01-06)
 
 
@@ -246,7 +254,7 @@
 
 ## 2.0.0-beta.1 (2022-09-15)
 
-## 2.0.0-beta.0 (2022-09-15)
+## 2.0.0-beta.0 (2022-09-12)
 
 
 ### Features
@@ -348,8 +356,8 @@
 
 ### Bug Fixes
 
-*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 *  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
+*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 
 ## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
