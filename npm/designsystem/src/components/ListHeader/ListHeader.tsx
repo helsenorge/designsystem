@@ -73,7 +73,7 @@ export const mapChildren = (
   let remainingChildren: Array<any> = [];
 
   React.Children.map(children, (child: React.ReactNode | React.ReactElement<string>) => {
-    if (child === null) return;
+    if (child === null || typeof child === 'undefined') return;
     if ((child as React.ReactElement<AvatarType>).type === Avatar) {
       avatarChild = child as AvatarProps;
     } else if ((child as React.ReactElement<ListHeaderTextType>).type === ListHeaderText) {
@@ -91,8 +91,9 @@ export const mapChildren = (
   // Slik opprettholder vi stylingen i tilfeller hvor vertikaler har wrappet elementer i en parent span eller div.
   const hasSpecialChildren =
     avatarChild !== undefined || listHeaderTextChildren.length > 0 || (badgeChild !== undefined && stringChildren.length > 0);
+  const noRemainingRecursiveChildren = remainingChildren.length === 0 || typeof remainingChildren[0]?.props?.children === 'undefined';
 
-  return isJsxChild || hasSpecialChildren || remainingChildren.length === 0
+  return isJsxChild || hasSpecialChildren || noRemainingRecursiveChildren
     ? { avatarChild, listHeaderTextChildren, badgeChild, stringChildren, remainingChildren }
     : mapChildren(remainingChildren[0]?.props?.children, true);
 };
