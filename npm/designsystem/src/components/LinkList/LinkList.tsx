@@ -111,12 +111,12 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
           target={target}
           {...restProps}
         >
-          {renderListHeader(children, ChevronRight, isHovered, size, icon)}
+          {renderListHeader(children, 'span', ChevronRight, isHovered, size, icon)}
         </a>
       )}
       {htmlMarkup === 'button' && (
         <button className={linkClasses} ref={hoverRef as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
-          {renderListHeader(children, ChevronRight, isHovered, size, icon)}
+          {renderListHeader(children, 'span', ChevronRight, isHovered, size, icon)}
         </button>
       )}
     </li>

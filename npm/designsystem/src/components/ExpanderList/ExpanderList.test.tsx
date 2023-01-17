@@ -396,6 +396,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       const { container } = render(
         <ExpanderList>
           <ExpanderList.Expander
+            titleHtmlMarkup="span"
             title={
               <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
                 <Title appearance="title3">ExpanderList 1</Title>

@@ -9,6 +9,7 @@ import styles from './styles.module.scss';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import Icon, { IconSize, SvgIcon } from '../Icons';
 import { isComponent } from '../../utils/component';
+import { TitleTags } from '../Title';
 
 export type ListHeaderSize = 'small' | 'medium' | 'large';
 
@@ -20,6 +21,7 @@ export interface ListHeaderType extends React.ForwardRefExoticComponent<ListHead
 
 export const renderListHeader = (
   element: React.ReactNode,
+  titleHtmlMarkup: TitleTags,
   chevronIcon: SvgIcon,
   isHovered: boolean,
   size: ListHeaderSize,
@@ -33,7 +35,7 @@ export const renderListHeader = (
         size: size,
       })
     : element && (
-        <ListHeader chevronIcon={chevronIcon} icon={icon} isHovered={isHovered} size={size}>
+        <ListHeader titleHtmlMarkup={titleHtmlMarkup} chevronIcon={chevronIcon} icon={icon} isHovered={isHovered} size={size}>
           {element}
         </ListHeader>
       );
@@ -46,6 +48,8 @@ export interface ListHeaderProps {
   chevronIcon?: SvgIcon;
   /** Children to be rendered inside of ListHeader */
   children: React.ReactNode;
+  /** Changes the underlying element of the title. Default: h2*/
+  titleHtmlMarkup?: TitleTags;
   /** icon to be rendered inside of ListHeader */
   icon?: React.ReactElement;
   /** whether or not the parent is hovered */
@@ -99,7 +103,7 @@ export const mapChildren = (
 };
 
 export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderProps, ref: React.Ref<HTMLLIElement>) => {
-  const { className = '', chevronIcon, children, icon, isHovered, size, testId } = props;
+  const { className = '', titleHtmlMarkup = 'h2', chevronIcon, children, icon, isHovered, size, testId } = props;
   const breakpoint = useBreakpoint();
   const showChevronAndIcon = size !== 'small' && !!(chevronIcon || icon);
   const contentIsString = typeof children === 'string';
@@ -142,7 +146,7 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
     [styles['list-header__avatar--for-element-content']]: !contentIsString,
     [styles['list-header__avatar--for-element-content--' + size]]: !contentIsString && size,
   });
-
+  const CustomTag = titleHtmlMarkup;
   return (
     <div data-testid={testId} className={listLabelClasses}>
       {showChevronAndIcon && icon && (
@@ -154,11 +158,14 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
         </span>
       )}
       {size !== 'small' && mappedChildren.avatarChild && <span className={avatarClasses}>{mappedChildren.avatarChild}</span>}
-      <span className={contentClasses}>
+      <div className={contentClasses}>
         {mappedChildren.listHeaderTextChildren}
-        {mappedChildren.stringChildren}
+        {!!mappedChildren.stringChildren.length && (
+          <CustomTag className={styles['list-header__title']}>{mappedChildren.stringChildren}</CustomTag>
+        )}
         {mappedChildren.remainingChildren}
-      </span>
+      </div>
+
       {mappedChildren.badgeChild && <span className={badgeClasses}>{mappedChildren.badgeChild}</span>}
       {showChevronAndIcon && chevronIcon && (
         <span className={chevronClasses}>

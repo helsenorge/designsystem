@@ -46,11 +46,15 @@ exports[`displays a list of links 1`] = `
               </g>
             </svg>
           </span>
-          <span
+          <div
             class="list-header__content list-header__content--string"
           >
-            Link 1
-          </span>
+            <span
+              class="list-header__title"
+            >
+              Link 1
+            </span>
+          </div>
           <span
             class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
           >
@@ -84,11 +88,15 @@ exports[`displays a list of links 1`] = `
         <div
           class="list-header"
         >
-          <span
+          <div
             class="list-header__content list-header__content--string list-header__content--spacing"
           >
-            Link 2
-          </span>
+            <span
+              class="list-header__title"
+            >
+              Link 2
+            </span>
+          </div>
           <span
             class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
           >
@@ -122,11 +130,15 @@ exports[`displays a list of links 1`] = `
         <div
           class="list-header"
         >
-          <span
+          <div
             class="list-header__content list-header__content--string list-header__content--spacing"
           >
-            Link 3
-          </span>
+            <span
+              class="list-header__title"
+            >
+              Link 3
+            </span>
+          </div>
           <span
             class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
           >

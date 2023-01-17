@@ -134,7 +134,7 @@ export const VariantFill: ComponentStory<typeof ExpanderList> = (args: any) => (
 export const WithListHeaderComp: ComponentStory<typeof ExpanderList> = (args: any) => {
   const listHeader = (
     <ListHeader>
-      <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+      <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" titleHtmlMarkup="h2" />
       <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
       <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
       <ListHeaderText
@@ -149,22 +149,10 @@ export const WithListHeaderComp: ComponentStory<typeof ExpanderList> = (args: an
     </ListHeader>
   );
 
-  const listHeader2 = (
-    <ListHeader>
-      <span>
-        Ved å gi ExpanderList.Expander et <span style={{ fontWeight: 'bold' }}>JSX.Element</span> kan man gjøre deler av teksten{' '}
-        <span style={{ fontWeight: 'bold' }}>bold.</span> Nå midstiller ikoner seg i forhold til øverste linje.
-      </span>
-    </ListHeader>
-  );
-
   return (
     <GridExample>
       <ExpanderList {...args} chevron>
         <ExpanderList.Expander title={listHeader} icon={<Icon svgIcon={AlarmClock} />}>
-          test
-        </ExpanderList.Expander>
-        <ExpanderList.Expander title={listHeader2} icon={<Icon svgIcon={PaperPlane} />}>
           test
         </ExpanderList.Expander>
       </ExpanderList>

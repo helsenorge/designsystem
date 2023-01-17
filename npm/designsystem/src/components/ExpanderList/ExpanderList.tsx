@@ -16,6 +16,7 @@ import { mergeRefs } from '../../utils/refs';
 import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
 import ChevronUp from '../Icons/ChevronUp';
 import ChevronDown from '../Icons/ChevronDown';
+import { TitleTags } from '../Title';
 
 export type ExpanderListColors = PaletteNames;
 export interface ExpanderType extends React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>> {
@@ -65,6 +66,8 @@ type ExpanderProps = Modify<
   {
     id?: string;
     title: JSX.Element | string;
+    /** Changes the underlying element of the title. Default: span*/
+    titleHtmlMarkup?: TitleTags;
     children: React.ReactNode;
     className?: string;
     color?: ExpanderListColors;
@@ -90,6 +93,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     icon,
     large = false,
     title,
+    titleHtmlMarkup = 'span',
     expanded = false,
     sticky,
     testId,
@@ -168,7 +172,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
           width: isSticky && contentWidth ? `${contentWidth}px` : undefined,
         }}
       >
-        {renderListHeader(title, isExpanded ? ChevronUp : ChevronDown, isHovered, large ? 'large' : 'medium', icon)}
+        {renderListHeader(title, titleHtmlMarkup, isExpanded ? ChevronUp : ChevronDown, isHovered, large ? 'large' : 'medium', icon)}
       </button>
       {renderContent()}
     </li>

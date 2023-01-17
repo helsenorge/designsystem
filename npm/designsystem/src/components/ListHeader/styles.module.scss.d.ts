@@ -26,6 +26,7 @@ export type Styles = {
   'list-header__icon--for-element-content--large': string;
   'list-header__icon--for-element-content--medium': string;
   'list-header__icon--for-string-content': string;
+  'list-header__title': string;
   'list-header--for-element-content': string;
   'list-header--top-align-content': string;
   statusDot: string;
