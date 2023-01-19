@@ -143,6 +143,7 @@
   }
 
   &__details-btn {
+    align-self: flex-start;
     @media (min-width: map-get($grid-breakpoints, lg)) {
       align-self: flex-end;
     }
