@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Title as DocsTitle, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
 import { allPaletteNames } from '../../../.storybook/knobs';
 
 import Loader, { Overlay } from './Loader';
@@ -17,6 +18,15 @@ export default {
         component:
           'Loader benyttes for å vise innbygger at det lastes ned innhold, slik at innbygger må vente til innholdet er lastet ferdig.',
       },
+      page: () => (
+        <>
+          <DocsTitle />
+          <Subtitle />
+          <Description />
+          <Primary />
+          <ArgsTable story={PRIMARY_STORY} />
+        </>
+      ),
     },
   },
   argTypes: {

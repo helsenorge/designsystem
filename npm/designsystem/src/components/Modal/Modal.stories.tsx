@@ -2,6 +2,7 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
 
 import Modal, { ModalSize } from './Modal';
 import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
@@ -23,6 +24,15 @@ export default {
         component:
           'En Modal informerer brukere om en oppgave og kan inneholde kritisk informasjon, kreve beslutninger eller involvere flere oppgaver. En modal har tre varianter normal, warning og error',
       },
+      page: () => (
+        <>
+          <Title />
+          <Subtitle />
+          <Description />
+          <Primary />
+          <ArgsTable story={PRIMARY_STORY} />
+        </>
+      ),
     },
   },
   argTypes: {
@@ -58,7 +68,7 @@ export default {
 
 export const Default: ComponentStory<typeof Modal> = (args: any) => (
   <GridExample>
-    <Modal {...args} onClose={action('Close')} onSuccess={action('Success')} />
+    <ButtonWithModal buttonText={'Åpne modal'} {...args} onSuccess={action('Success')} />
   </GridExample>
 );
 
@@ -131,12 +141,6 @@ export const WithVerticalImage: ComponentStory<typeof Modal> = (args: any) => (
 export const ModalWithoutCloseButton: ComponentStory<typeof Modal> = (args: any) => (
   <GridExample>
     <Modal {...args} noCloseButton onClose={action('Close')} onSuccess={action('Success')} />
-  </GridExample>
-);
-
-export const ModalWithStateExample: ComponentStory<typeof Modal> = (args: any) => (
-  <GridExample>
-    <ButtonWithModal buttonText={'Åpne modal'} {...args} noCloseButton onSuccess={action('Success')} />
   </GridExample>
 );
 
