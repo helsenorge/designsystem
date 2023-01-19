@@ -18,8 +18,7 @@
   }
 
   &__track {
-    height: 2px;
-    background-color: $black;
+    border-top: 2px solid $black;
     width: 100%;
     position: relative;
     top: 1rem;
