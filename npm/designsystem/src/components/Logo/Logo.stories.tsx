@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { allPaletteNames } from '../../../.storybook/knobs';
+import { allLogoPaletteNames } from '../../../.storybook/knobs';
 
 import Logo from './Logo';
 import GridExample from '../GridExample';
@@ -19,8 +19,8 @@ export default {
   argTypes: {
     color: {
       control: 'select',
-      options: allPaletteNames,
-      defaultValue: 'blueberry',
+      options: allLogoPaletteNames,
+      defaultValue: 'black',
     },
     size: {
       control: 'number',
@@ -49,16 +49,13 @@ export const Sizes: ComponentStory<typeof Logo> = (args: any) => (
 
 export const Colors: ComponentStory<typeof Logo> = (args: any) => (
   <GridExample>
-    <Logo {...args} color={'blueberry'} />
-    <Logo {...args} color={'banana'} />
     <Logo {...args} color={'black'} />
-    <Logo {...args} color={'cherry'} />
-    <Logo {...args} color={'kiwi'} />
-    <Logo {...args} color={'neutral'} />
-    <Logo {...args} color={'plum'} />
     <Logo {...args} color={'white'} />
   </GridExample>
 );
+Colors.parameters = {
+  backgrounds: { default: 'neutral400' },
+};
 
 export const Byline: ComponentStory<typeof Logo> = (args: any) => (
   <GridExample>

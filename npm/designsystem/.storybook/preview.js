@@ -3,7 +3,7 @@ import { breakpoints } from '../src/theme/grid';
 
 import '../src/scss/helsenorge.scss';
 
-function createBackgroundColors() {
+export function createBackgroundColors() {
   const placeholder = '#4A412A';
   let backgroundColors = [];
   Object.keys(theme.palette)

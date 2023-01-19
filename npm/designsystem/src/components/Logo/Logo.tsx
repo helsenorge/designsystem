@@ -3,7 +3,7 @@ import { AnalyticsId } from '../../constants';
 import { getColor } from '../../theme/currys/color';
 import { PaletteNames } from '../../theme/palette';
 
-type LogoColor = PaletteNames;
+type LogoColor = 'black' | 'white';
 
 interface LogoProps {
   /** Changes the size of the logo. */
