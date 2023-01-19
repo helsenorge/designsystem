@@ -137,4 +137,13 @@ describe('Gitt at Duolist skal vises', (): void => {
       expect(link).toHaveClass('anchorlink');
     });
   });
+  describe('Når Duolist child er null', (): void => {
+    test('Så kastes det ikke en feilmelding', (): void => {
+      render(
+        <Duolist testId={'test01'} border="border">
+          {false && <DuolistGroup term={'test term 1'} description={'test description 1'} />}
+        </Duolist>
+      );
+    });
+  });
 });

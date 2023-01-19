@@ -85,6 +85,7 @@ export const Duolist: React.FC<DuolistProps> = props => {
       )}
       <dl style={{ gridTemplateColumns: `auto ${duolistColumnStyle}` }} className={duolistClasses}>
         {React.Children.map(children, (child: React.ReactNode | React.ReactElement<DuolistGroupProps>) => {
+          if (child === null || typeof child === 'undefined') return;
           const duolistGroup = child as React.ReactElement<DuolistGroupProps>;
           if (duolistGroup.type === DuolistGroup) {
             return React.cloneElement(child as React.ReactElement<DuolistGroupProps>, {
