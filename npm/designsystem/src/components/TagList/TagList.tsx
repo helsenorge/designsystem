@@ -11,9 +11,11 @@ interface TagListPropsProps {
 
 const TagList: React.FC<TagListPropsProps> = ({ children, testId }) => {
   return (
-    <div className={styles['tag-list']} data-testid={testId} data-analyticsid={AnalyticsId.TagList}>
-      {children}
-    </div>
+    <ul className={styles['tag-list']} data-testid={testId} data-analyticsid={AnalyticsId.TagList}>
+      {React.Children.map(children, child => (
+        <li className={styles['tag-list__item']}>{child}</li>
+      ))}
+    </ul>
   );
 };
 
