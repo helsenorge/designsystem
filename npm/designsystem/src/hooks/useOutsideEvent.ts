@@ -14,7 +14,7 @@ export const useOutsideEvent = (
   events: OutsideEvents[] = ['mousedown']
 ): void => {
   const handleOutsideEvent = (event: HTMLElementEventMap[OutsideEvents]): void => {
-    if (!ref.current?.contains(event.target as Node)) {
+    if (ref.current && !event.composedPath().includes(ref.current)) {
       handleClick(event);
     }
   };
