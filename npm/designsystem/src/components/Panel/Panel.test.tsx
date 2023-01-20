@@ -93,6 +93,18 @@ describe('Gitt at Panel skal vises', (): void => {
     });
   });
 
+  describe('Når title og  buttonAriaLabel-prop er satt', (): void => {
+    test('Så har knappen som brukes for å ekspandere riktig navn', (): void => {
+      render(
+        <Panel title="Medisinsk fødselsregister" buttonText="Vis detaljer" buttonAriaLabel="Helt egen tekst på knappen">
+          <p>Mer tekst</p>
+        </Panel>
+      );
+      const button = screen.getByRole('button', { name: 'Helt egen tekst på knappen' });
+      expect(button).toBeVisible();
+    });
+  });
+
   describe('Når titleHtmlMarkup-prop er satt', (): void => {
     test('Så er tittel satt til ønsket overskriftsnivå', (): void => {
       render(<Panel title="Tittel" titleHtmlMarkup="h3" />);

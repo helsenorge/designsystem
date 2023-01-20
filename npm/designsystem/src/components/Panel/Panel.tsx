@@ -254,6 +254,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     const ariaLabelAttributes = getAriaLabelAttributes({
       label: buttonAriaLabel,
       id: (buttonAriaLabelledById && `${buttonTextId} ${buttonAriaLabelledById}`) || (title && titleId && `${buttonTextId} ${titleId}`),
+      prefer: 'label',
     });
 
     const commonProps: Partial<ButtonProps> & AriaLabelAttributes = {
