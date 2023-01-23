@@ -235,3 +235,26 @@
     background-color: $cherry600;
   }
 }
+/******** RESET *********/
+@mixin reset-radio-button() {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  & + label {
+    cursor: pointer;
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+  }
+}
