@@ -1,3 +1,21 @@
+## [2.12.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.11.3&targetVersion=GTv2.12.0) (2023-01-23)
+
+
+### Features
+
+*  gir vertikaler mulighet til å hente reset styling for radio button fra designsystemet ([868df37](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/868df372ab03638f25d2747d829e99248436528e)), closes [#292456](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292456)
+*  panel med buttonAriaLabel bruker det som aria-label selv om title er satt ([23caab9](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/23caab91b8b4ac50df54dc34930618b2fd3583be)), closes [#293470](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/293470) [#293729](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/293729)
+
+
+### Bug Fixes
+
+*  duolist null child kaster ikke feilmelding ([7668bd2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/7668bd26ffc077727fae2e1f1eaf2b371b81af80)), closes [#292617](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292617)
+*  logo kan bare være hvit og svart ([c46dcc1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/c46dcc17e13189973fef4691ab1b75c3442f6ab4)), closes [#293148](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/293148)
+*  panel detail button pil plassert riktig ([21782d8](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/21782d80502afdd9415c1e3ba9eca092f063157e)), closes [#287921](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/287921)
+*  taglist har nå role=list med listitems ([62be09d](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/62be09de17a946e1339f27792878c19c9e72be7f)), closes [#290367](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/290367)
+*  useOutsideEvent fungerer i web components ([ffe9b7f](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/ffe9b7ffc67e04f6b8d7232b0a6829a380d112d6)), closes [#293729](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/293729)
+*  vis slider på utskrift ([aa60206](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/aa60206364af351c33045f22d5a9379276e814bf)), closes [#281560](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/281560)
+
 ## [2.11.3](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.11.2&targetVersion=GTv2.11.3) (2023-01-17)
 
 
