@@ -127,6 +127,18 @@ export const DescriptionWidth: ComponentStory<typeof Duolist> = (args: any) => (
   </GridExample>
 );
 
+export const NonFormatted: ComponentStory<typeof Duolist> = (args: any) => (
+  <GridExample>
+    <Duolist format="non-formatted" {...args}>
+      <DuolistGroup term={'Her er en test term'} description={mediumLoremText} />
+      <DuolistGroup term={'Her er en test term nr 2'} description={mediumLoremText} />
+    </Duolist>
+    <Duolist format="non-formatted" separator=" - " {...args}>
+      <DuolistGroup term={'Custom separator'} description={mediumLoremText} />
+    </Duolist>
+  </GridExample>
+);
+
 export const AllExamples: ComponentStory<typeof Duolist> = (args: any) => (
   <GridExample>
     <Default {...args} />

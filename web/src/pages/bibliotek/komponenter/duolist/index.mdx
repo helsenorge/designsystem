@@ -6,7 +6,7 @@ date: 2021-12-22
 
 import MDXCustom from '../../../../components/markdown/MDXCustom';
 import * as propData from '@helsenorge/designsystem-react/components/Duolist/componentdata.json';
-import Duolist, {DuolistGroup} from '@helsenorge/designsystem-react/components/Duolist';
+import Duolist, { DuolistGroup } from '@helsenorge/designsystem-react/components/Duolist';
 import Title from '@helsenorge/designsystem-react/components/Title';
 
 # DuoList
@@ -82,6 +82,20 @@ import Title from '@helsenorge/designsystem-react/components/Title';
     <DuolistGroup term={'test term enda lenger'} description={'Fugiat consectetur aute ad enim reprehenderit sunt laboris duis id non duis.'} />
     <DuolistGroup term={'test term'} description={'test description'} />
   </Duolist>
+`}</MDXCustom.LiveComponent>
+
+## nonformatted
+
+<MDXCustom.LiveComponent stack scope={{ Duolist, DuolistGroup }}>{`
+    <Duolist format="non-formatted">
+      <DuolistGroup term={'Her er en test term'} description={'Esse nulla est culpa ut consectetur enim est excepteur anim id mollit.'} />
+    </Duolist>
+`}</MDXCustom.LiveComponent>
+
+<MDXCustom.LiveComponent stack scope={{ Duolist, DuolistGroup }}>{`
+    <Duolist format="non-formatted" separator=" - ">
+      <DuolistGroup term={'Custom separator'} description={'Esse nulla est culpa ut consectetur enim est excepteur anim id mollit.'} />
+    </Duolist>
 `}</MDXCustom.LiveComponent>
 
 ## Bruk

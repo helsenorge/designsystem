@@ -146,4 +146,55 @@ describe('Gitt at Duolist skal vises', (): void => {
       );
     });
   });
+  describe('Når Duolist format er satt til non-formatted', (): void => {
+    test('Så rendrer den riktig', (): void => {
+      render(
+        <Duolist testId={'test01'} format={'non-formatted'}>
+          <DuolistGroup term={'test term 1'} description={'test description 1'} />
+        </Duolist>
+      );
+
+      const duoList = screen.getByTestId('test01').children[0];
+      const dt = screen.getByText('test term 1');
+      const dd = screen.getByText('test description 1');
+      const duolistContentWrapper = dd.parentElement;
+      const separator = dt.getAttribute('data-separator');
+
+      expect(duoList.className).toBe('duolist duolist--non-formatted');
+      expect(dt.className).toBe('duolist__dt duolist__dt--non-formatted');
+      expect(dd.className).toBe('duolist__dd duolist__dd--non-formatted');
+      expect(duolistContentWrapper?.className).toBe('duolist__content-wrapper');
+      expect(separator).toBe(': ');
+    });
+  });
+
+  describe('Når Duolist separator er satt med format non-formatted', (): void => {
+    test('Så settes den ønskede separatoren', (): void => {
+      render(
+        <Duolist testId={'test01'} format={'non-formatted'} separator=" - ">
+          <DuolistGroup term={'test term 1'} description={'test description 1'} />
+        </Duolist>
+      );
+
+      const dt = screen.getByText('test term 1');
+      const separator = dt.getAttribute('data-separator');
+
+      expect(separator).toBe(' - ');
+    });
+  });
+
+  describe('Når Duolist separator er satt med format formatted', (): void => {
+    test('Så settes det ikke en separator', (): void => {
+      render(
+        <Duolist testId={'test01'} separator=" - ">
+          <DuolistGroup term={'test term 1'} description={'test description 1'} />
+        </Duolist>
+      );
+
+      const dt = screen.getByText('test term 1');
+      const separator = dt.getAttribute('data-separator');
+
+      expect(separator).toBe(null);
+    });
+  });
 });

@@ -23,6 +23,10 @@
     font-size: $font-size-md;
   }
 
+  &__content-wrapper {
+    display: inline-block;
+  }
+
   &__dt,
   &__dd {
     line-height: $lineheight-size-md;
@@ -36,6 +40,10 @@
       font-weight: 600;
       line-height: $lineheight-size-sm;
     }
+
+    &--non-formatted {
+      display: inline;
+    }
   }
 
   &__dt {
@@ -43,6 +51,14 @@
 
     @media (min-width: map-get($grid-breakpoints, sm)) {
       padding-right: 2.6669rem;
+    }
+
+    &--non-formatted {
+      padding-right: 0;
+    }
+    &--non-formatted#{&}::after {
+      content: attr(data-separator);
+      font-weight: 400;
     }
   }
 
@@ -60,5 +76,9 @@
       padding-bottom: getSpacer(2xs);
       border-bottom: 0.062rem solid $neutral200;
     }
+  }
+
+  &--non-formatted {
+    display: unset;
   }
 }
