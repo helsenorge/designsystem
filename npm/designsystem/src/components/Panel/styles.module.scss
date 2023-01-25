@@ -20,9 +20,6 @@
   @media (min-width: map-get($grid-breakpoints, md)) {
     padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
   }
-  @media (min-width: map-get($grid-breakpoints, lg)) {
-    padding: getSpacer(l) getSpacer(m) getSpacer(l) getSpacer(m);
-  }
 }
 
 @mixin hover-and-focus-effects($background-color, $box-shadow-color) {
@@ -69,6 +66,11 @@
 
   &__icon {
     padding-right: getSpacer(s);
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      padding-right: getSpacer(l);
+    }
+
     &--right {
       padding-left: getSpacer(s);
     }

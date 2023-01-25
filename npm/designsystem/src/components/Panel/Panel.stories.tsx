@@ -170,7 +170,7 @@ export const ContentAAndBWithIconAndUrl: ComponentStory<typeof Panel> = (args: a
 
 export const IconAndDetails: ComponentStory<typeof Panel> = () => (
   <GridExample>
-    <Panel title={'Medisinsk fødselsregister (MFR)'} icon={<Icon svgIcon={Envelope} size={IconSize.XSmall} />}>
+    <Panel title={'Medisinsk fødselsregister (MFR)'} icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}>
       <p>
         {
           'Dolor sit nisi exercitation esse sint et excepteur commodo officia qui exercitation. Ad excepteur laboris laboris Lorem. Occaecat aliquip cupidatat pariatur enim est eiusmod laboris ea nulla dolore ullamco dolore nostrud proident. Irure in eu irure excepteur sit exercitation aliquip deserunt adipisicing ullamco nulla elit culpa culpa.'
