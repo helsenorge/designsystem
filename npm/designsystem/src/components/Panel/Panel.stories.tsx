@@ -196,6 +196,17 @@ export const AvatarAndDetails: ComponentStory<typeof Panel> = () => (
 export const Status: ComponentStory<typeof Panel> = (args: any) => (
   <GridExample>
     <Panel status={args.status} statusMessage={args.statusMessage} title={args.title} url={'https://www.helsenorge.no/'} />
+    <br />
+    <Panel
+      status={'new'}
+      statusMessage={'4 nye'}
+      title={'Dette er en veldig lang tittel for å wrappe badge (4)'}
+      url={'https://www.helsenorge.no/'}
+    />
+    <br />
+    <Panel status={'error'} statusMessage={'1'} title={args.title} url={'https://www.helsenorge.no/'} />
+    <br />
+    <Panel status={'draft'} statusMessage={'1'} title={args.title} url={'https://www.helsenorge.no/'} />
   </GridExample>
 );
 

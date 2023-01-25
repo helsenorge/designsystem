@@ -40,7 +40,7 @@
   box-sizing: border-box;
 
   &__container {
-    @media (min-width: map-get($grid-breakpoints, sm)) {
+    @media (min-width: map-get($grid-breakpoints, md)) {
       display: flex;
       flex-direction: row;
       flex: 1;
@@ -77,7 +77,8 @@
   }
 
   &__badge {
-    margin-left: getSpacer(2xs);
+    display: inline-block;
+    vertical-align: text-bottom;
   }
 
   &__content-left {
@@ -314,9 +315,17 @@
   }
 
   &__title-container {
-    display: flex;
-    align-items: center;
+    display: inline-block;
     padding-bottom: getSpacer(s);
+  }
+
+  &__title {
+    vertical-align: top;
+    display: inline;
+
+    &--badge {
+      padding-right: getSpacer(2xs);
+    }
   }
 
   &--layout3a {

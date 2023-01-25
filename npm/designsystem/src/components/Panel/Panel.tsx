@@ -188,6 +188,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   const titleId = useUuid();
   const buttonTextId = useUuid();
   const breakpoint = useBreakpoint();
+  const hasBadge = statusMessage && status === PanelStatus.new;
 
   useEffect(() => {
     if (expanded !== isExpanded) {
@@ -249,6 +250,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   });
 
   const panelActionBtnClass = classNames(panelStyles['panel__details-btn']);
+  const titleClasses = classNames(panelStyles['panel-content-a__title'], { [panelStyles['panel-content-a__title--badge']]: hasBadge });
 
   const renderDetailsButton = (): JSX.Element => {
     const ariaLabelAttributes = getAriaLabelAttributes({
@@ -318,13 +320,15 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
             <StatusText status={status} statusMessage={statusMessage} />
             {title && (
               <div className={panelStyles['panel-content-a__title-container']}>
-                <Title appearance="title3" htmlMarkup={titleHtmlMarkup} id={titleId}>
+                <Title appearance="title3" htmlMarkup={titleHtmlMarkup} id={titleId} className={titleClasses}>
                   {title}
                 </Title>
-                {statusMessage && status === PanelStatus.new && (
-                  <Badge color="blueberry" testId="badge-status" className={panelStyles.panel__badge}>
-                    {statusMessage}
-                  </Badge>
+                {hasBadge && (
+                  <div className={panelStyles.panel__badge}>
+                    <Badge color="blueberry" testId="badge-status">
+                      {statusMessage}
+                    </Badge>
+                  </div>
                 )}
               </div>
             )}

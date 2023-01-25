@@ -153,8 +153,12 @@ describe('Gitt at Panel skal vises', (): void => {
     test('Så vises panel i new visning og Badge vises med statusMessage', (): void => {
       render(<Panel testId="panel-test-status" status="new" statusMessage="1 ny" title="Dette er en tittel" />);
       const panel = screen.getByTestId('panel-test-status');
-      expect(panel.firstChild).toHaveClass('panel panel--fill panel--new panel--status');
+      const title = screen.getByText('Dette er en tittel');
       const badge = screen.getByTestId('badge-status');
+
+      expect(panel.firstChild).toHaveClass('panel panel--fill panel--new panel--status');
+      expect(title).toHaveClass('panel-content-a__title panel-content-a__title--badge');
+      expect(badge.parentElement).toHaveClass('panel__badge');
       expect(badge.innerHTML).toEqual('1 ny');
     });
   });
