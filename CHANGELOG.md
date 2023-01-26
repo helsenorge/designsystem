@@ -1,3 +1,17 @@
+## [2.13.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.12.0&targetVersion=GTv2.13.0) (2023-01-26)
+
+
+### Features
+
+*  duolist nonformatted format lagt til ([6bbdb76](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/6bbdb76cd2dda87e8e7389ee7129936ae0253bc0)), closes [#292725](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292725)
+*  panel status badge wrapper nå med title tekst ([d008826](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/d00882610a68cf00d6a3a39d3bb7bf6c5807526a)), closes [#292773](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292773)
+*  slider har støtte for ariaLabel ([e4960e1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/e4960e1e7f01fde1be4689ccae3ce8d23a72eea2)), closes [#293573](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/293573)
+
+
+### Bug Fixes
+
+*  panel spacing desktop fikset ([074afe7](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/074afe7dc54f71eb068b51eaed20277b8c51f6ec)), closes [#292769](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292769)
+
 ## [2.12.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.11.3&targetVersion=GTv2.12.0) (2023-01-23)
 
 
@@ -279,7 +293,7 @@
 
 ## 2.0.0-beta.1 (2022-09-15)
 
-## 2.0.0-beta.0 (2022-09-15)
+## 2.0.0-beta.0 (2022-09-12)
 
 
 ### Features
