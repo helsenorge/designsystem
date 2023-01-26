@@ -9,47 +9,42 @@ exports[`Gitt at Slider skal vises Når slider rendres Så vises slider riktig 1
     <h3
       class="title title--title3"
       data-analyticsid="title"
+      id="slider-test-1"
       style="margin-top: 1.5rem; margin-bottom: 1.5rem;"
     >
-      This is a title
+      Hvor viktig er det for deg?
     </h3>
     <div
       class="slider__track-wrapper"
-      data-testid="tracker"
     >
       <div
         class="slider__track"
       />
       <div
-        aria-label="This is a title left right "
+        aria-disabled="false"
+        aria-labelledby="slider-test-1 slider-test-2 slider-test-3"
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="50"
-        class="slider__trigger"
+        class="slider__marker"
         role="slider"
         style="left: 0px;"
         tabindex="0"
-      >
-        <div
-          class="slider__trigger-inner"
-        />
-      </div>
+      />
     </div>
     <span
       class="slider__options"
     >
-      <p
-        aria-hidden="true"
-        class="slider__text"
+      <span
+        id="slider-test-2"
       >
-        left
-      </p>
-      <p
-        aria-hidden="true"
-        class="slider__text"
+        Ikke viktig
+      </span>
+      <span
+        id="slider-test-3"
       >
-        right
-      </p>
+        Viktig
+      </span>
     </span>
   </div>
 </div>

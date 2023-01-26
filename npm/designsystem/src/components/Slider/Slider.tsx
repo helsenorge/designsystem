@@ -3,22 +3,27 @@ import classNames from 'classnames';
 
 import Title from '../Title';
 
-import {
-  stopEvent,
-  getMousePosition,
-  calculateSliderPositionBasedOnValue,
-  calculateValueBasedOnSliderPosition,
-  calculateChangeOfPosition,
-  calculateSliderTranslate,
-  addMouseListeners,
-  addTouchListeners,
-  removeMouseListeners,
-  removeTouchListeners,
-} from './SliderUtils';
-
-import SliderStyles from './styles.module.scss';
+import styles from './styles.module.scss';
 import { AnalyticsId } from '../../constants';
 import { useSize } from '../../hooks/useSize';
+import { useUuid } from '../../hooks/useUuid';
+import { getAriaLabelAttributes } from '../../utils/accessibility';
+
+const useSafeNumberValue = (initial: number, min: number, max: number): [number, (value: number) => void] => {
+  const [value, setValue] = useState(initial);
+
+  const setSafeValue = (newValue: number): void => {
+    if (newValue > max) {
+      setValue(max);
+    } else if (newValue < min) {
+      setValue(min);
+    } else {
+      setValue(newValue);
+    }
+  };
+
+  return [value, setSafeValue];
+};
 
 interface SliderProps {
   /**	Sets the title of the slider. */
@@ -27,8 +32,8 @@ interface SliderProps {
   labelLeft?: string;
   /** Adds the right hand label to the element. */
   labelRight?: string;
-  /**	Decides the number of steps for each movement of the slider. */
-  step?: number;
+  /**	Sets aria-label of the slider. */
+  ariaLabel?: string;
   /** Disables the slider element. */
   disabled?: boolean;
   /** Function to be called when the value state has changed. */
@@ -37,43 +42,54 @@ interface SliderProps {
   testId?: string;
 }
 
-export const Slider = React.forwardRef(function SliderForwardedRef(props: SliderProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { title, labelLeft, labelRight, disabled = false, step = 1, onChange, testId } = props;
-  const [value, setValue] = useState(50);
-  const [isMouseDown, setIsMouseDown] = useState(false);
+const MAX_VALUE = 100;
+const MIN_VALUE = 0;
+const STEP = 1;
+const LARGE_STEP = 10;
 
-  const [sliderXPos, setSliderXPos] = useState(0);
-  const [sliderTemporaryXPos, setSliderTemporaryXPos] = useState(0);
-  const trackerRef = ref ? (ref as React.RefObject<HTMLDivElement>) : useRef<HTMLDivElement>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const { width: trackerWidth } = useSize(trackerRef) || { width: 0 };
-  const { width: sliderWidth } = useSize(sliderRef) || { width: 0 };
-  const min = 0;
-  const max = 100;
+export const Slider: React.FC<SliderProps> = ({ title, ariaLabel, labelLeft, labelRight, disabled = false, onChange, testId }) => {
+  const [isMoving, setIsMoving] = useState(false);
+  const [value, setValue] = useSafeNumberValue((MAX_VALUE - MIN_VALUE) / 2, MIN_VALUE, MAX_VALUE);
+  const titleId = useUuid();
+  const labelLeftId = useUuid();
+  const labelRightId = useUuid();
+  const trackRef = useRef<HTMLDivElement>(null);
+  const markerRef = useRef<HTMLDivElement>(null);
+  const { width: trackWidth } = useSize(trackRef) || { width: 0 };
+  const { width: markerWidth } = useSize(markerRef) || { width: 0 };
 
-  const moveMouseEvent = (evt: MouseEvent) => {
-    onMouseMove(evt);
-  };
-  const mouseUpEvent = (evt: MouseEvent) => {
-    onMouseUp(evt);
-  };
-  const moveTouchEvent = (evt: TouchEvent) => {
-    onMouseMove(evt);
-  };
-  const touchUpEvent = (evt: TouchEvent) => {
-    onMouseUp(evt);
+  useEffect(() => {
+    const handlePointerUp = (): void => {
+      setIsMoving(false);
+    };
+
+    document.addEventListener('pointerup', handlePointerUp);
+
+    return () => {
+      document.removeEventListener('pointerup', handlePointerUp);
+    };
+  }, []);
+
+  const getValueBasedOnMarkerPosition = (markerPosition: number): number => {
+    const trackPosition = trackRef.current?.getBoundingClientRect().x ?? 0;
+
+    return Math.round(((markerPosition - trackPosition) / trackWidth) * (MAX_VALUE - MIN_VALUE));
   };
 
   useEffect(() => {
-    setSliderXPos(calculateSliderPositionBasedOnValue(value, trackerWidth, sliderWidth, min, max));
-  }, [value, trackerWidth, sliderWidth]);
+    const handlePointerMove = (e: PointerEvent): void => {
+      if (!disabled && isMoving) {
+        const newValue = getValueBasedOnMarkerPosition(e.clientX);
+        setValue(newValue);
+      }
+    };
 
-  useEffect(() => {
-    if (isMouseDown) {
-      addMouseListeners(moveMouseEvent, mouseUpEvent);
-      addTouchListeners(moveTouchEvent, touchUpEvent);
-    }
-  }, [isMouseDown]);
+    document.addEventListener('pointermove', handlePointerMove);
+
+    return () => {
+      document.removeEventListener('pointermove', handlePointerMove);
+    };
+  }, [isMoving]);
 
   useEffect(() => {
     if (!disabled && onChange) {
@@ -81,98 +97,128 @@ export const Slider = React.forwardRef(function SliderForwardedRef(props: Slider
     }
   }, [value]);
 
-  const onKeyDown = (evt: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = e => {
     if (disabled) return;
-    const size: number = max - min;
-    const pixelPerSize: number = (trackerWidth - sliderWidth) / size;
-    if (evt.key === 'ArrowRight' || evt.key === 'ArrowDown') {
-      updateSliderPosition(step * pixelPerSize);
+
+    let flag = false;
+
+    switch (e.key) {
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        setValue(value - STEP);
+        flag = true;
+        break;
+      case 'PageDown':
+        setValue(value - LARGE_STEP);
+        flag = true;
+        break;
+      case 'ArrowRight':
+      case 'ArrowUp':
+        setValue(value + STEP);
+        flag = true;
+        break;
+      case 'PageUp':
+        setValue(value + LARGE_STEP);
+        flag = true;
+        break;
+      case 'Home':
+        setValue(MIN_VALUE);
+        flag = true;
+        break;
+      case 'End':
+        setValue(MAX_VALUE);
+        flag = true;
+        break;
+      default:
+        break;
     }
-    if (evt.key === 'ArrowLeft' || evt.key === 'ArrowUp') {
-      updateSliderPosition(-step * pixelPerSize);
+
+    if (flag) {
+      e.preventDefault();
+      e.stopPropagation();
     }
   };
 
-  const onMouseOrTouchDown = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void => {
+  const handleTrackClick: React.MouseEventHandler<HTMLDivElement> = e => {
     if (disabled) return;
-    const updatedMousePosition: number = getMousePosition(e);
-    calculateSliderTranslate(updatedMousePosition, sliderRef.current, sliderWidth, updateSliderPosition);
-    setIsMouseDown(true);
-    setSliderTemporaryXPos(updatedMousePosition);
-    sliderRef.current?.focus();
-    stopEvent(e);
+
+    const newValue = getValueBasedOnMarkerPosition(e.clientX);
+    setValue(newValue);
+    markerRef.current?.focus();
   };
 
-  const onMouseUp = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void => {
+  const handlePointerDown: React.PointerEventHandler<HTMLDivElement> = e => {
     if (disabled) return;
-    setIsMouseDown(false);
-    removeMouseListeners(moveMouseEvent, mouseUpEvent);
-    removeTouchListeners(moveTouchEvent, touchUpEvent);
-    stopEvent(e);
+
+    setIsMoving(true);
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    markerRef.current?.focus();
   };
 
-  const onMouseMove = (e: MouseEvent | React.MouseEvent<{}> | TouchEvent | React.TouchEvent<{}>): void => {
-    if (disabled || !isMouseDown) return;
-    const updatedMousePosition: number = getMousePosition(e);
-    const diff: number = updatedMousePosition - sliderTemporaryXPos;
-    updateSliderPosition(diff);
-    stopEvent(e);
+  const markerXPos = ((trackWidth - markerWidth) / (MAX_VALUE - MIN_VALUE)) * value;
+
+  const getAriaLabeledById = (): string | undefined => {
+    if (title && labelLeft && labelRight) {
+      return [titleId, labelLeftId, labelRightId].join(' ');
+    }
+    if (title && labelLeft) {
+      return [titleId, labelLeftId].join(' ');
+    }
+    if (title && labelRight) {
+      return [titleId, labelRightId].join(' ');
+    }
+    if (title) {
+      return titleId;
+    }
   };
 
-  const updateSliderPosition = (diff: number): void => {
-    if (diff === 0) return;
-    const updatedSliderPos: number = calculateChangeOfPosition(diff, trackerWidth, sliderWidth, sliderXPos);
-    setSliderXPos(updatedSliderPos);
-    setSliderTemporaryXPos(updatedSliderPos + diff);
-    setValue(calculateValueBasedOnSliderPosition(updatedSliderPos, trackerWidth, sliderWidth, step, min, max));
-  };
+  const ariaLabelAttributes = getAriaLabelAttributes({
+    label: ariaLabel,
+    id: getAriaLabeledById(),
+    prefer: 'label',
+  });
 
   return (
-    <div className={SliderStyles.slider} data-testid={testId} data-analyticsid={AnalyticsId.Slider}>
+    <div className={styles.slider} data-testid={testId} data-analyticsid={AnalyticsId.Slider}>
       {title && (
-        <Title htmlMarkup={'h3'} margin={1.5} appearance={'title3'}>
+        <Title htmlMarkup={'h3'} margin={1.5} appearance={'title3'} id={titleId}>
           {title}
         </Title>
       )}
       <div
-        ref={trackerRef}
-        className={classNames(SliderStyles['slider__track-wrapper'], disabled ? SliderStyles['slider__track-wrapper--disabled'] : '')}
-        onMouseDown={onMouseOrTouchDown}
-        onTouchStart={onMouseOrTouchDown}
-        data-testid={'tracker'}
+        ref={trackRef}
+        className={classNames(styles['slider__track-wrapper'], disabled && styles['slider__track-wrapper--disabled'])}
+        onClick={handleTrackClick}
+        onPointerDown={handlePointerDown}
       >
-        <div className={classNames(SliderStyles.slider__track, disabled ? SliderStyles['slider__track--disabled'] : '')} />
+        <div className={classNames(styles.slider__track, disabled && styles['slider__track--disabled'])} />
         <div
-          ref={sliderRef}
-          className={classNames(SliderStyles.slider__trigger, disabled ? SliderStyles['slider__trigger--disabled'] : '')}
-          style={{
-            left: `${sliderXPos}px`,
-          }}
-          onKeyDown={onKeyDown}
           role={'slider'}
+          ref={markerRef}
+          className={classNames(styles.slider__marker, disabled && styles['slider__marker--disabled'])}
+          style={{
+            left: `${markerXPos}px`,
+          }}
+          onKeyDown={handleKeyDown}
           aria-valuenow={value}
-          aria-valuemin={min}
-          aria-valuemax={max}
-          aria-label={`${title ? title + ' ' : ''}${labelLeft ? labelLeft + ' ' : ''}${labelRight ? labelRight + ' ' : ''}`}
-          tabIndex={disabled ? -1 : 0}
-        >
-          <div
-            className={classNames(SliderStyles['slider__trigger-inner'], disabled ? SliderStyles['slider__trigger-inner--disabled'] : '')}
-          />
-        </div>
+          aria-valuemin={MIN_VALUE}
+          aria-valuemax={MAX_VALUE}
+          tabIndex={disabled ? undefined : 0}
+          aria-disabled={disabled}
+          {...ariaLabelAttributes}
+        />
       </div>
       {(labelLeft || labelRight) && (
-        <span className={SliderStyles.slider__options}>
-          <p className={SliderStyles.slider__text} aria-hidden={true}>
-            {labelLeft}
-          </p>
-          <p className={SliderStyles.slider__text} aria-hidden={true}>
-            {labelRight}
-          </p>
+        <span className={styles.slider__options}>
+          <span id={labelLeftId}>{labelLeft}</span>
+          <span id={labelRightId}>{labelRight}</span>
         </span>
       )}
     </div>
   );
-});
+};
 
 export default Slider;

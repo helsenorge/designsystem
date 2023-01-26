@@ -6,10 +6,10 @@ export type Styles = {
   'slider__track--disabled': string;
   'slider__track-wrapper': string;
   'slider__track-wrapper--disabled': string;
-  slider__trigger: string;
-  'slider__trigger--disabled': string;
-  'slider__trigger-inner': string;
-  'slider__trigger-inner--disabled': string;
+  slider__marker: string;
+  'slider__marker--disabled': string;
+  'slider__marker-inner': string;
+  'slider__marker-inner--disabled': string;
 };
 
 export type ClassNames = keyof Styles;

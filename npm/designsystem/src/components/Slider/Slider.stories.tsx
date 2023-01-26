@@ -24,14 +24,14 @@ export default {
     },
     labelLeft: {
       control: 'text',
-      defaultValue: 'Skjeldent',
+      defaultValue: 'Sjeldent',
     },
     labelRight: {
       control: 'text',
       defaultValue: 'Ofte',
     },
-    step: {
-      control: { type: 'range', min: 1, max: 100, defaultValue: 1 },
+    ariaLabel: {
+      control: 'text',
     },
     disabled: {
       control: 'boolean',
