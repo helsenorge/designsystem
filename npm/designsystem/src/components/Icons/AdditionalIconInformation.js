@@ -270,4 +270,8 @@ export default {
   personcancel: { alternativeName: 'Person Avbryt', categories: 'Generisk, Tjeneste' },
   travelroute: { alternativeName: 'Reiserute', categories: 'Generisk, Tjeneste' },
   coins: { alternativeName: 'Mynter', categories: 'Generisk, Tjeneste' },
+  hearthands: { alternativeName: 'Hjertehender', categories: 'System, Generisk' },
+  trianglex: { alternativeName: 'TriangelX', categories: 'System, Generisk' },
+  login: { alternativeName: 'Logg inn', categories: 'System, Generisk' },
+  logout: { alternativeName: 'Logg ut', categories: 'System, Generisk' },
 };
