@@ -83,11 +83,7 @@ export default {
 
 export const Default: ComponentStory<typeof Panel> = (args: any) => (
   <GridExample>
-    <Panel
-      {...args}
-      contentA={<div>{'Noe innhold'}</div>}
-      icon={args.useicon ? <Icon svgIcon={Attachment} size={IconSize.XSmall} /> : undefined}
-    >
+    <Panel {...args} contentA={'Noe innhold'} icon={args.useicon ? <Icon svgIcon={Attachment} size={IconSize.XSmall} /> : undefined}>
       <div>
         <Title appearance="title2">{'E-resept'}</Title>
         <p style={{ whiteSpace: 'pre-line' }}>
