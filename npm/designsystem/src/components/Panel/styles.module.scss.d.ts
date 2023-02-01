@@ -34,6 +34,8 @@ export type Styles = {
   'panel--white': string;
   'panel--with-icon': string;
   'panel-content-a': string;
+  'panel-content-a__title': string;
+  'panel-content-a__title--badge': string;
   'panel-content-a__title-container': string;
   'panel-content-a--layout3a': string;
   'panel-content-a--layout3b': string;
