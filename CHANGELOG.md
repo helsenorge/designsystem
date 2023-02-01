@@ -1,3 +1,15 @@
+## [2.14.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.13.0&targetVersion=GTv2.14.0) (2023-02-01)
+
+
+### Features
+
+*  ikoner for ny login logout hjertehender og error notification ([8fd3e28](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/8fd3e289ccd3934f84d5d11def33a9c1b527708d))
+
+
+### Bug Fixes
+
+*  panel inline title blir inline med contentA ([3345db0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/3345db0457a512c0edd28d25339cdaf4955ca54b)), closes [#294847](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/294847)
+
 ## [2.13.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.12.0&targetVersion=GTv2.13.0) (2023-01-26)
 
 
@@ -395,8 +407,8 @@
 
 ### Bug Fixes
 
-*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 *  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
+*  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
 
 ## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
