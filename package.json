@@ -37,7 +37,7 @@
 		"eslint-plugin-react": "7.17.0",
 		"fs-extra": "^8.1.0",
 		"husky": "^4.0.3",
-		"lerna": "^3.22.1",
+		"lerna": "^6.4.1",
 		"lint-staged": "^9.5.0",
 		"rimraf": "^3.0.0",
 		"typescript": "~3.8.3"
