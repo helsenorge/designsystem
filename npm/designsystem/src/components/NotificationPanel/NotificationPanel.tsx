@@ -89,7 +89,11 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
 
     return (
       <div className={contentClasses} id={!label ? uuid : undefined}>
-        {label && <h1 className={styles['notification-panel__label']} dangerouslySetInnerHTML={{ __html: label }} id={uuid} />}
+        {label && (
+          <h1 className={styles['notification-panel__label']} id={uuid}>
+            {label}
+          </h1>
+        )}
         {children}
       </div>
     );
