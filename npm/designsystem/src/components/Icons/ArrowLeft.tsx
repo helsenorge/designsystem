@@ -2,13 +2,17 @@ import React from 'react';
 import { getIcon, SvgPathProps } from './Icon';
 
 const ArrowLeft: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
-  const normal = <path d="M20.925 5.929l1.142 1.377L9.023 23.027h33.048v1.948H9.023l13.044 15.717-1.142 1.379-14.996-18.07z" />;
+  const normal = <path d="m20.925 9.929 1.142 1.377-10.044 11.721h27.048v1.947H12.023l10.044 11.718-1.142 1.379L8.93 24 20.925 9.929Z" />;
 
-  const normalHover = <path d="M17.925 5.929l1.142 1.377L6.023 23.027h36.048v1.948H6.023l13.044 15.717-1.142 1.379-14.996-18.07z" />;
+  const normalHover = (
+    <path d="m14.925 9.929 1.142 1.377-10.044 11.72h36.048v1.947H6.023l10.044 11.718-1.142 1.379L2.93 24 14.925 9.929Z" />
+  );
 
-  const xSmall = <path d="M20.925 5.929l1.443 1.739-12.53 15.103h32.233v2.46H9.838l12.53 15.099-1.443 1.741-14.996-18.07z" />;
+  const xSmall = <path d="m20.925 9.718 1.443 1.739L12.364 22.77h27.18v2.46h-27.18l10.004 11.308-1.443 1.742L8.455 24l12.47-14.283Z" />;
 
-  const xSmallHover = <path d="M17.135 5.929l1.443 1.739-12.53 15.103h36.023v2.46H6.048l12.53 15.099-1.443 1.741-14.996-18.07z" />;
+  const xSmallHover = (
+    <path d="m14.61 9.719 1.442 1.739L6.048 22.772h36.023v2.46H6.048L16.052 36.54l-1.443 1.741-12.47-14.28L14.61 9.719Z" />
+  );
 
   return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
 };
