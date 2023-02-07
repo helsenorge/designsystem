@@ -2,14 +2,16 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import statusDotStyles from './styles.module.scss';
-import { AnalyticsId } from '../../constants';
-import { Icon } from '../Icons/Icon';
-import Undo from '../Icons/Undo';
-import { getColor } from '../../theme/currys';
-import Group from '../Icons/Group';
-import NoAccess from '../Icons/NoAccess';
 import { IconSize } from '../..';
+import { AnalyticsId } from '../../constants';
+import { getColor } from '../../theme/currys';
+import Attachment from '../Icons/Attachment';
+import Group from '../Icons/Group';
+import { Icon } from '../Icons/Icon';
+import NoAccess from '../Icons/NoAccess';
+import Undo from '../Icons/Undo';
+
+import styles from './styles.module.scss';
 
 export enum StatusDotVariant {
   info = 'info',
@@ -21,7 +23,26 @@ export enum StatusDotVariant {
   recurring = 'recurring',
   group = 'group',
   noaccess = 'noaccess',
+  attachment = 'attachment',
 }
+
+export interface StatusDotIconProps {
+  variant?: keyof typeof StatusDotVariant;
+}
+
+const StatusDotIcon: React.FC<StatusDotIconProps> = ({ variant }) => {
+  if (variant === StatusDotVariant.recurring) {
+    return <Icon size={IconSize.XXSmall} svgIcon={Undo} />;
+  } else if (variant === StatusDotVariant.group) {
+    return <Icon size={IconSize.XXSmall} svgIcon={Group} />;
+  } else if (variant === StatusDotVariant.noaccess) {
+    return <Icon size={IconSize.XXSmall} svgIcon={NoAccess} color={getColor('cherry', 600)} />;
+  } else if (variant === StatusDotVariant.attachment) {
+    return <Icon size={IconSize.XXSmall} svgIcon={Attachment} />;
+  }
+
+  return null;
+};
 
 export interface StatusDotProps {
   /** Visual variants for the statusdot */
@@ -30,35 +51,33 @@ export interface StatusDotProps {
   text: string;
   /** Adds custom classes to the element. */
   className?: string;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
-const Spacer = React.forwardRef(function SpacerForwardedRef(props: StatusDotProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { variant = StatusDotVariant.info, text, className } = props;
-  const hasIcon = variant === StatusDotVariant.recurring || variant === StatusDotVariant.group || variant === StatusDotVariant.noaccess;
-  const isCancelled = variant === StatusDotVariant.cancelled;
-  const statusDotClasses = classNames(statusDotStyles['statusdot'], { [statusDotStyles['statusdot--cancelled']]: isCancelled }, className);
-  const dotClasses = classNames(statusDotStyles['statusdot__dot'], [
-    hasIcon ? statusDotStyles[`statusdot__dot--icon`] : statusDotStyles[`statusdot__dot--${variant}`],
-  ]);
-  const labelClasses = classNames(statusDotStyles['statusdot__label'], {
-    [statusDotStyles[`statusdot__label--icon`]]: hasIcon,
-  });
-  let svgIcon: JSX.Element | null = null;
+const StatusDot: React.FC<StatusDotProps> = props => {
+  const { variant = StatusDotVariant.info, text, className, testId } = props;
 
-  if (variant === StatusDotVariant.recurring) {
-    svgIcon = <Icon size={IconSize.XXSmall} svgIcon={Undo} />;
-  } else if (variant === StatusDotVariant.group) {
-    svgIcon = <Icon size={IconSize.XXSmall} svgIcon={Group} />;
-  } else if (variant === StatusDotVariant.noaccess) {
-    svgIcon = <Icon size={IconSize.XXSmall} svgIcon={NoAccess} color={getColor('cherry', 600)} />;
-  }
+  const hasIcon =
+    variant === StatusDotVariant.recurring ||
+    variant === StatusDotVariant.group ||
+    variant === StatusDotVariant.noaccess ||
+    variant === StatusDotVariant.attachment;
+
+  const isCancelled = variant === StatusDotVariant.cancelled;
+
+  const statusDotClasses = classNames(styles['statusdot'], isCancelled && styles['statusdot--cancelled'], className);
+  const dotClasses = classNames(styles['statusdot__dot'], hasIcon ? styles[`statusdot__dot--icon`] : styles[`statusdot__dot--${variant}`]);
+  const labelClasses = classNames(styles['statusdot__label'], hasIcon && styles[`statusdot__label--icon`]);
 
   return (
-    <div className={statusDotClasses} data-analyticsid={AnalyticsId.StatusDot}>
-      <span className={dotClasses}>{svgIcon}</span>
+    <div className={statusDotClasses} data-testid={testId} data-analyticsid={AnalyticsId.StatusDot}>
+      <span className={dotClasses}>
+        <StatusDotIcon variant={variant} />
+      </span>
       <span className={labelClasses}>{text}</span>
     </div>
   );
-});
+};
 
-export default Spacer;
+export default StatusDot;
