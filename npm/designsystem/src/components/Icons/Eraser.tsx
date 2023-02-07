@@ -24,7 +24,7 @@ const Eraser: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.
     <path d="M33.475 28.523l-9.513-9.513 8.09-8.09 9.53 9.496-8.107 8.107zm-8.47 8.47a.955.955 0 01-.451.188H19.17a.95.95 0 01-.457-.189l-4.628-4.59a2.464 2.464 0 01-.728-1.757c0-.663.258-1.287.728-1.757l8.626-8.626 9.513 9.511-7.22 7.22zm18.006-17.65L33.12 9.49a1.523 1.523 0 00-2.143.002L12.835 27.637a4.224 4.224 0 00-1.245 3.008c0 1.137.442 2.205 1.248 3.01l4.63 4.593c.41.405 1.126.701 1.703.701H33.2v-1.768h-5.88l15.693-15.695c.286-.287.444-.668.442-1.074a1.506 1.506 0 00-.444-1.07zm-7.222 19.606h2.943v-1.768H35.79v1.768z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Eraser;

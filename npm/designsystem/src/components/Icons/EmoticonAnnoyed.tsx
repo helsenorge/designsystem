@@ -20,7 +20,7 @@ const EmoticonAnnoyed: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathPro
     </>
   );
 
-  return getIcon(size, isHovered, normal, normalHover);
+  return getIcon({ size, isHovered, normal, normalHover });
 };
 
 export default EmoticonAnnoyed;

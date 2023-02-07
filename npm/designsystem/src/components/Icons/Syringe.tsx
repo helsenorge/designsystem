@@ -17,7 +17,7 @@ const Syringe: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX
     />
   );
 
-  return getIcon(IconSize.Medium, isHovered, normal, normalHover);
+  return getIcon({ size: IconSize.Medium, isHovered, normal, normalHover });
 };
 
 export default Syringe;

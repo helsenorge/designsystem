@@ -10,7 +10,7 @@ const ChevronDown: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps):
 
   const xSmallHover = <path d="M25 13v20.083l9.951-10.013 1.419 1.409L23.999 36.93 11.63 24.479l1.419-1.409L23 33.085V13z" />;
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default ChevronDown;

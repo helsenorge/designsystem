@@ -17,7 +17,7 @@ const AcupunctureBack: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathPro
     />
   );
 
-  return getIcon(IconSize.Medium, isHovered, normal, normalHover);
+  return getIcon({ size: IconSize.Medium, isHovered, normal, normalHover });
 };
 
 export default AcupunctureBack;

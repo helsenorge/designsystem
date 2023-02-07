@@ -17,7 +17,7 @@ const SupportingPerson: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathPr
     />
   );
 
-  return getIcon(IconSize.Medium, isHovered, normal, normalHover);
+  return getIcon({ size: IconSize.Medium, isHovered, normal, normalHover });
 };
 
 export default SupportingPerson;

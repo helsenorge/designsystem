@@ -39,7 +39,7 @@ const SortDown: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JS
     </>
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover });
 };
 
 export default SortDown;

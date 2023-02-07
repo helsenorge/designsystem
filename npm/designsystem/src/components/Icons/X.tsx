@@ -26,7 +26,7 @@ const X: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Eleme
     <path d="M39.0362 10.9454 37.0562 8.9654 24.0002 22.0194 10.9442 8.9654 8.9642 10.9454 22.0202 23.9994 8.9642 37.0554 10.9442 39.0354 24.0002 25.9814 37.0562 39.0354 39.0362 37.0554 25.9802 23.9994" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover });
 };
 
 export default X;

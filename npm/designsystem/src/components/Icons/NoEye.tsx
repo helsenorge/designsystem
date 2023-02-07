@@ -26,7 +26,7 @@ const NoEye: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.E
       fillRule="evenodd"
     />
   );
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default NoEye;

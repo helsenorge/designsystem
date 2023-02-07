@@ -16,7 +16,7 @@ const Play: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.El
     <path fillRule={'evenodd'} d="M18.554 14.01L33.863 24l-15.31 9.99V14.01zm-2.527-4.665v29.312l22.458-14.656L16.027 9.345z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Play;

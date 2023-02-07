@@ -7,7 +7,7 @@ const Minus: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.E
   const xSmall = <path d="M14.179 22.737h19.642v2.526H14.179z" />;
   const xSmallHover = <path d="M11.653 22.737h24.694v2.526H11.653z" />;
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Minus;

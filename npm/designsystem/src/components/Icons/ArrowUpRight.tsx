@@ -10,7 +10,7 @@ const ArrowUpRight: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
 
   const xSmallHover = <path d="M22.076 11.122v1.769h11.736L14.819 31.884l1.252 1.25 19.015-19.015v11.782h1.769V11.122z" />;
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default ArrowUpRight;

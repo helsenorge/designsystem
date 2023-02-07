@@ -12,7 +12,7 @@ const ChevronRight: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
     <path d="M25.98 11.103l12.977 12.896L25.98 36.897l-1.78-1.794 9.899-9.841-20.204.001v-2.526l20.204-.001-9.899-9.839z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default ChevronRight;

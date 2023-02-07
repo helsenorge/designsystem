@@ -27,7 +27,7 @@ const ExitFullScreen: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProp
     <path d="M33.005 15.94l2.526-2.525-1.25-1.25-1.263 1.262-1.264 1.263-4.445 4.445v-5.917h-1.768v8.938h8.977v-1.77H28.56l4.445-4.445zM13.219 27.352h5.958l-5.71 5.708-1.262 1.263 1.25 1.25 6.973-6.97v5.916h1.768v-8.935H13.22v1.768z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default ExitFullScreen;

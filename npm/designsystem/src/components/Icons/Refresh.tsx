@@ -18,7 +18,7 @@ const Refresh: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX
     <path d="M41.79 22.152l-3.285 2.99a14.26 14.26 0 00-4.131-10.877c-5.544-5.546-14.566-5.546-20.11 0-5.545 5.544-5.545 14.566 0 20.11a14.24 14.24 0 0010.079 4.155c2.707 0 5.425-.765 7.8-2.333l-.834-1.265c-5.007 3.304-11.724 2.618-15.974-1.629-4.952-4.954-4.952-13.014 0-17.967 4.954-4.951 13.013-4.951 17.968 0 2.671 2.67 3.985 6.407 3.646 10.146l-3.318-3.32-1.074 1.07 4.906 4.908 5.35-4.867-1.022-1.12z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Refresh;

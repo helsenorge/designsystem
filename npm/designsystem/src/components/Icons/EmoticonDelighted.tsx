@@ -16,7 +16,7 @@ const EmoticonDelighted: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathP
     </>
   );
 
-  return getIcon(size, isHovered, normal, normalHover);
+  return getIcon({ size, isHovered, normal, normalHover });
 };
 
 export default EmoticonDelighted;

@@ -26,7 +26,7 @@ const SpeechBubble: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
       fillRule="evenodd"
     />
   );
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default SpeechBubble;

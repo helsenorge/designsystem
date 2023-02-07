@@ -58,7 +58,7 @@ const PersonCancel: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
     </>
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default PersonCancel;

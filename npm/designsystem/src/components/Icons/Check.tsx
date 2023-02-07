@@ -7,7 +7,7 @@ const Check: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.E
   const xSmall = <path d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z" />;
   const xSmallHover = <path d="M22.504 31.578l-7.816-8.124 1.82-1.75 5.996 6.229 16.321-16.956 1.821 1.752z" />;
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Check;

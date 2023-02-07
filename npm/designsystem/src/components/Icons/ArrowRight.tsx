@@ -14,7 +14,7 @@ const ArrowRight: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): 
     <path d="m33.39 9.719-1.442 1.739 10.004 11.314H5.929v2.46h36.023L31.948 36.54l1.443 1.741 12.47-14.28L33.39 9.719Z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default ArrowRight;

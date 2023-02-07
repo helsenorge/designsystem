@@ -44,7 +44,7 @@ const Undo: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.El
     ></path>
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover });
 };
 
 export default Undo;
