@@ -1,22 +1,37 @@
 @import '../../scss/_palette.scss';
+@import '../../scss/_font-settings';
 
 .avatar {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3rem;
-  height: 3rem;
-  font-size: 1.5rem;
   font-weight: 600;
   background-color: $blueberry500;
   color: $white;
+
   &--selected {
     background-color: transparent;
   }
+
   &--black {
     background-color: $neutral900;
   }
+
   &--selected#{&}--black {
     background-color: transparent;
+  }
+
+  &--xsmall {
+    width: 2.375rem;
+    height: 2.375rem;
+    font-size: $font-size-md;
+    line-height: $lineheight-size-md;
+  }
+
+  &--small {
+    width: 3rem;
+    height: 3rem;
+    font-size: $font-size-lg;
+    line-height: $lineheight-size-lg;
   }
 }
