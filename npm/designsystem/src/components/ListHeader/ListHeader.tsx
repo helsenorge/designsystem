@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-import Avatar, { AvatarProps, AvatarType } from '../Avatar';
+import Avatar, { AvatarProps, AvatarSize, AvatarType } from '../Avatar';
 import Badge, { BadgeProps, BadgeType } from '../Badge';
 import ListHeaderText, { ListHeaderTextProps, ListHeaderTextType } from './ListHeaderText/ListHeaderText';
 
@@ -26,19 +26,22 @@ export const renderListHeader = (
   isHovered: boolean,
   size: ListHeaderSize,
   icon?: React.ReactElement
-) => {
-  return isComponent<ListHeaderProps>(element, ListHeader)
-    ? React.cloneElement(element as React.ReactElement<ListHeaderProps>, {
-        chevronIcon: chevronIcon,
-        icon: icon,
-        isHovered: isHovered,
-        size: size,
-      })
-    : element && (
-        <ListHeader titleHtmlMarkup={titleHtmlMarkup} chevronIcon={chevronIcon} icon={icon} isHovered={isHovered} size={size}>
-          {element}
-        </ListHeader>
-      );
+): JSX.Element | undefined => {
+  if (isComponent<ListHeaderProps>(element, ListHeader)) {
+    return React.cloneElement(element, {
+      chevronIcon,
+      icon,
+      isHovered,
+      size,
+    });
+  }
+  if (element) {
+    return (
+      <ListHeader titleHtmlMarkup={titleHtmlMarkup} chevronIcon={chevronIcon} icon={icon} isHovered={isHovered} size={size}>
+        {element}
+      </ListHeader>
+    );
+  }
 };
 
 export interface ListHeaderProps {
@@ -64,26 +67,26 @@ export const mapChildren = (
   children: React.ReactNode,
   isJsxChild = false
 ): {
-  avatarChild?: AvatarProps;
-  listHeaderTextChildren: Array<ListHeaderTextProps>;
-  badgeChild?: BadgeProps;
+  avatarChild?: React.ReactElement<AvatarProps>;
+  listHeaderTextChildren: Array<React.ReactElement<ListHeaderTextProps>>;
+  badgeChild?: React.ReactElement<BadgeProps>;
   stringChildren: Array<string>;
   remainingChildren: Array<any>;
 } => {
-  let avatarChild: AvatarProps | undefined = undefined;
-  let listHeaderTextChildren: Array<ListHeaderTextProps> = [];
-  let badgeChild: BadgeProps | undefined = undefined;
-  let stringChildren: Array<string> = [];
-  let remainingChildren: Array<any> = [];
+  let avatarChild: React.ReactElement<AvatarProps> | undefined;
+  let badgeChild: React.ReactElement<BadgeProps> | undefined;
+  const listHeaderTextChildren: Array<React.ReactElement<ListHeaderTextProps>> = [];
+  const stringChildren: Array<string> = [];
+  const remainingChildren: Array<any> = [];
 
-  React.Children.map(children, (child: React.ReactNode | React.ReactElement<string>) => {
+  React.Children.forEach(children, child => {
     if (child === null || typeof child === 'undefined') return;
-    if ((child as React.ReactElement<AvatarType>).type === Avatar) {
-      avatarChild = child as AvatarProps;
-    } else if ((child as React.ReactElement<ListHeaderTextType>).type === ListHeaderText) {
-      listHeaderTextChildren.push(child as ListHeaderTextProps);
-    } else if ((child as React.ReactElement<BadgeType>).type === Badge) {
-      badgeChild = child as BadgeProps;
+    if (isComponent<AvatarProps>(child, Avatar)) {
+      avatarChild = child;
+    } else if (isComponent<ListHeaderTextProps>(child, ListHeaderText)) {
+      listHeaderTextChildren.push(child);
+    } else if (isComponent<BadgeProps>(child, Badge)) {
+      badgeChild = child;
     } else if (typeof child === 'string') {
       stringChildren.push(child);
     } else {
@@ -157,7 +160,9 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
           })}
         </span>
       )}
-      {size !== 'small' && mappedChildren.avatarChild && <span className={avatarClasses}>{mappedChildren.avatarChild}</span>}
+      {size !== 'small' && mappedChildren.avatarChild && (
+        <span className={avatarClasses}>{React.cloneElement(mappedChildren.avatarChild, { size: AvatarSize.xsmall })}</span>
+      )}
       <div className={contentClasses}>
         {mappedChildren.listHeaderTextChildren}
         {!!mappedChildren.stringChildren.length && (

@@ -103,16 +103,12 @@
   &__badge {
     display: flex;
     align-items: center;
-    padding-left: getSpacer(2xs);
+    margin-left: getSpacer(2xs);
     &--for-string-content {
       margin: getSpacer(3xs) 0 getSpacer(3xs) auto;
       @media (min-width: map-get($grid-breakpoints, md)) {
         margin: getSpacer(2xs) 0 getSpacer(2xs) auto;
       }
-    }
-    &--right {
-      margin-left: auto;
-      margin-right: getSpacer(2xs);
     }
     //Height needs to be same as line-height
     &--small {
