@@ -44,7 +44,7 @@ export default {
     },
     role: {
       control: 'select',
-      options: ['', 'alert'],
+      options: ['', 'alert', 'region'],
       defaultValue: '',
     },
   },

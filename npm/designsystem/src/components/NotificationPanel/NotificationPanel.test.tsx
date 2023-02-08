@@ -124,10 +124,63 @@ describe('Gitt at NotificationPanel skal vises', () => {
   });
 
   describe('Når role er alert', (): void => {
-    test('Så har komponenten riktig rolle', (): void => {
+    test('Så har komponenten role=alert', (): void => {
       render(<NotificationPanel role="alert">Warning!</NotificationPanel>);
 
       const component = screen.getByRole('alert', { name: 'Warning!' });
+      expect(component).toBeVisible();
+    });
+  });
+
+  describe('Når role ikke har satt', (): void => {
+    test('Så har komponenten role=region', (): void => {
+      render(<NotificationPanel>Important!</NotificationPanel>);
+
+      const component = screen.getByRole('region', { name: 'Important!' });
+      expect(component).toBeVisible();
+    });
+  });
+
+  describe('Når variant er alert', (): void => {
+    test('Så har komponenten role=alert', (): void => {
+      render(<NotificationPanel variant="alert">Danger!</NotificationPanel>);
+
+      const component = screen.getByRole('alert', { name: 'Danger!' });
+      expect(component).toBeVisible();
+    });
+  });
+
+  describe('Når variant er alert og role er region', (): void => {
+    test('Så har komponenten role=region', (): void => {
+      render(
+        <NotificationPanel variant="alert" role="region">
+          Danger!
+        </NotificationPanel>
+      );
+
+      const component = screen.getByRole('region', { name: 'Danger!' });
+      expect(component).toBeVisible();
+    });
+  });
+
+  describe('Når variant er crisis', (): void => {
+    test('Så har komponenten role=alert', (): void => {
+      render(<NotificationPanel variant="crisis">Crisis!</NotificationPanel>);
+
+      const component = screen.getByRole('alert', { name: 'Crisis!' });
+      expect(component).toBeVisible();
+    });
+  });
+
+  describe('Når variant er crisis og role er region', (): void => {
+    test('Så har komponenten role=region', (): void => {
+      render(
+        <NotificationPanel variant="crisis" role="region">
+          Crisis!
+        </NotificationPanel>
+      );
+
+      const component = screen.getByRole('region', { name: 'Crisis!' });
       expect(component).toBeVisible();
     });
   });

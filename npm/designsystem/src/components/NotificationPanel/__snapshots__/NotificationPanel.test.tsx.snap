@@ -6,6 +6,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
     aria-labelledby="test"
     class="notification-panel notification-panel--info notification-panel--has-children notification-panel--dismissable"
     data-analyticsid="notification-panel"
+    role="region"
   >
     <span
       class="notification-panel__icon"
@@ -70,6 +71,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet vises med default pro
     aria-labelledby="test"
     class="notification-panel notification-panel--info notification-panel--has-children"
     data-analyticsid="notification-panel"
+    role="region"
   >
     <span
       class="notification-panel__icon"
