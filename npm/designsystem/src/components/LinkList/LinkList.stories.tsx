@@ -31,6 +31,10 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    variant: {
+      control: 'select',
+      options: ['line', 'outline', 'fill'],
+    },
     size: {
       control: 'select',
       options: allLinkListSizes,
