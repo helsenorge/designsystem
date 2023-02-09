@@ -18,7 +18,7 @@ const Pause: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.E
 
   const xSmallHover = <path d="M26.817 34.355h3.998V13.383h-3.998v20.972zm-9.894 0h3.997V13.383h-3.997v20.972z" />;
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Pause;

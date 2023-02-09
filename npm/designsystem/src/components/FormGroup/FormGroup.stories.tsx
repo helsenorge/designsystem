@@ -10,6 +10,8 @@ import { FormMode, FormVariant } from '../../constants';
 import Coronavirus from '../Icons/Coronavirus';
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import GridExample from '../GridExample';
+import Spacer from '../../components/Spacer';
+import './formGroup.stories.scss';
 
 export default {
   title: 'Components/FormGroup',
@@ -107,6 +109,32 @@ export const DivTagTrue: ComponentStory<typeof FormGroup> = (args: any) => (
         <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
         <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
         <RadioButton inputId={'RadioButton3'} label={'RadioButton 3'} />
+      </FormGroup>
+    </div>
+  </GridExample>
+);
+export const CustomErrorWrapperClass: ComponentStory<typeof FormGroup> = (args: any) => (
+  <GridExample>
+    <div
+      style={{
+        background: mapToBackgoundColor(args.mode),
+      }}
+    >
+      <FormGroup
+        htmlMarkup="div"
+        {...args}
+        legend={'ErrorWrapperClass gir mulighet til å style ErrorWrapper som ligger rundt form'}
+        errorWrapperclassName="error-wrapper-class--no-bottom-margin"
+      >
+        <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
+        <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
+        <RadioButton inputId={'RadioButton3'} label={'Legg merke til avstand ned til border'} />
+      </FormGroup>
+      <Spacer size="2xs" />
+      <FormGroup htmlMarkup="div" {...args} errorWrapperclassName="error-wrapper-class">
+        <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
+        <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
+        <RadioButton inputId={'RadioButton3'} label={'Med standard avstand ned til border'} />
       </FormGroup>
     </div>
   </GridExample>

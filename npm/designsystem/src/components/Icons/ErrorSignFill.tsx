@@ -18,7 +18,7 @@ const ErrorSignFill: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps
     <path d="M24.896 18.926v7.213a.891.891 0 01-1.782 0v-7.213a.89.89 0 111.782 0zm.5 14.103a1.39 1.39 0 11-2.782-.001 1.39 1.39 0 012.782.001zM6.613 39.725h34.774L24.11 8.275 6.613 39.725z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default ErrorSignFill;

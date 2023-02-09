@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import cn from 'classnames';
 
 import { FormMode, FormVariant, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
@@ -8,6 +8,7 @@ import { getColor } from '../../theme/currys';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 
 import ErrorWrapper from '../ErrorWrapper';
+import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';
 
@@ -63,6 +64,10 @@ export interface InputProps
   afterInputChildren?: React.ReactNode;
   /** Component shown under label */
   belowLabelChildren?: React.ReactNode;
+  /** max character limit in input  */
+  maxCharacters?: number;
+  /** The text is displayed in the end of the text-counter */
+  maxText?: string;
 }
 
 export enum InputTypes {
@@ -114,14 +119,18 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     onChange,
     onKeyDown,
     autoFocus,
+    maxCharacters,
+    maxText,
     ...rest
   } = props;
   const breakpoint = useBreakpoint();
   const contentWrapperRef = useRef<HTMLDivElement>(null);
+  const [input, setInput] = useState(defaultValue || '');
 
   const onDark = mode === FormMode.ondark;
   const onBlueberry = mode === FormMode.onblueberry;
-  const onError = mode === FormMode.oninvalid || errorText || error;
+  const maxCharactersExceeded = !!maxCharacters && input.toString().length > maxCharacters;
+  const onError = mode === FormMode.oninvalid || !!errorText || !!error || maxCharactersExceeded;
   const bigForm = variant === FormVariant.bigform;
   const isTransparent = transparent && mode !== FormMode.ondark && !onError;
 
@@ -161,6 +170,18 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
       input.focus();
     }
   };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setInput(e.target.value);
+  };
+
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e);
+    }
+    handleChange(e);
+  };
+
   const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
 
   return (
@@ -179,7 +200,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
         <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>
           {!iconRight && renderIcon()}
           <input
-            onChange={onChange}
+            onChange={onChangeHandler}
             onKeyDown={onKeyDown}
             name={name}
             type={type}
@@ -199,6 +220,9 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
           />
           {iconRight && renderIcon()}
         </div>
+        {maxCharacters && (
+          <MaxCharacters maxCharacters={maxCharacters} length={input.toString().length} maxText={maxText} mode={mode} maxWidth={maxWidth} />
+        )}
         {afterInputChildren}
       </div>
     </ErrorWrapper>

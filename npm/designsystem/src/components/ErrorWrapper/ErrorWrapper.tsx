@@ -8,17 +8,21 @@ export interface ErrorWrapperProps {
   errorText?: string;
   /** Form component */
   children?: React.ReactNode;
+  /** Adds custom classes to the element. */
+  className?: string;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 export const ErrorWrapper: React.FC<ErrorWrapperProps> = props => {
-  const { errorText } = props;
+  const { errorText, className, testId } = props;
 
-  const withErrorStyle = cn(styles['error-wrapper'], { [styles[`error-wrapper--with-error`]]: errorText });
+  const withErrorStyle = cn(styles['error-wrapper'], className, { [styles[`error-wrapper--with-error`]]: errorText });
 
   const errorStyles = cn(styles['error-wrapper__errors']);
 
   return (
-    <div className={withErrorStyle}>
+    <div className={withErrorStyle} data-testid={testId || 'error-wrapper-testid'}>
       {errorText && (
         <p role="alert" className={errorStyles}>
           {errorText}

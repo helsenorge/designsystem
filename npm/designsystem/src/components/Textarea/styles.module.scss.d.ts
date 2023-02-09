@@ -10,9 +10,6 @@ export type Styles = {
   'content-wrapper--transparent': string;
   textarea: string;
   'textarea__after-label-children': string;
-  'textarea__counter-wrapper': string;
-  'textarea__counter-wrapper--invalid': string;
-  'textarea__counter-wrapper--on-dark': string;
   'textarea__label-wrapper': string;
   'textarea__label-wrapper--on-dark': string;
   'textarea--gutterBottom': string;

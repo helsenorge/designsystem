@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Input, { InputTypes } from './Input';
 import { FormMode, FormVariant } from '../../constants';
 import Hospital from '../Icons/Hospital';
@@ -170,6 +171,39 @@ describe('Gitt at Input skal vises', (): void => {
 
       const input = screen.getByLabelText('En fin label');
       expect(input).toBeRequired();
+    });
+  });
+
+  describe('Når antall tegn skal vises', (): void => {
+    describe('Når man skriver', (): void => {
+      test('Så endres teksten og antall tegn', async (): Promise<void> => {
+        render(<Input label={'Skriv din historie her'} maxCharacters={50} />);
+
+        const input = screen.getByLabelText('Skriv din historie her');
+
+        expect(screen.getByText('0/50 tegn')).toBeVisible();
+
+        await userEvent.type(input, 'Jeg tester teksten her.');
+
+        expect(input).toHaveValue('Jeg tester teksten her.');
+        expect(screen.getByText('23/50 tegn')).toBeVisible();
+      });
+    });
+
+    describe('Når man skriver for mange tegn', (): void => {
+      test('Så indikeres det at input er ugyldig', async (): Promise<void> => {
+        render(<Input label={'Skriv din historie her'} maxCharacters={10} />);
+
+        const input = screen.getByLabelText('Skriv din historie her');
+
+        expect(screen.getByText('0/10 tegn')).toBeVisible();
+
+        await userEvent.type(input, 'Jeg tester teksten her.');
+
+        expect(input).toHaveValue('Jeg tester teksten her.');
+        expect(screen.getByText('23/10 tegn')).toBeVisible();
+        expect(input).toHaveAttribute('aria-invalid', 'true');
+      });
     });
   });
 });

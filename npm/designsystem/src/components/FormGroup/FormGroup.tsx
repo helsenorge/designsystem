@@ -24,6 +24,8 @@ export interface FormGroupProps {
   children?: React.ReactNode;
   /** Adds custom classes to the element. */
   className?: string;
+  /** Adds custom classes to the errorWrapper. */
+  errorWrapperClassName?: string;
   /** Adds custom classes to the fieldset element. */
   fieldsetClassName?: string;
   /** Changes the visuals of the formgroup */
@@ -34,6 +36,8 @@ export interface FormGroupProps {
   error?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Sets the data-testid attribute for the error-wrapper. */
+  errorWrapperTestId?: string;
   /** Unique identifyer for the child input tags */
   name?: string;
   /** Sets div instead of fieldset tag */
@@ -52,6 +56,8 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     name,
     htmlMarkup = 'fieldset',
     renderError = true,
+    errorWrapperClassName,
+    errorWrapperTestId,
   } = props;
   const onDark = mode === FormMode.ondark;
   const bigform = variant === FormVariant.bigform;
@@ -146,7 +152,13 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
           {props.title}
         </Title>
       )}
-      {renderError ? <ErrorWrapper errorText={error}>{formGroupContent()}</ErrorWrapper> : formGroupContent()}
+      {renderError ? (
+        <ErrorWrapper className={errorWrapperClassName} errorText={error} testId={errorWrapperTestId}>
+          {formGroupContent()}
+        </ErrorWrapper>
+      ) : (
+        formGroupContent()
+      )}
     </div>
   );
 });

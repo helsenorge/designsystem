@@ -9,13 +9,11 @@ export type Styles = {
   'list-header__badge--for-string-content': string;
   'list-header__badge--large': string;
   'list-header__badge--medium': string;
-  'list-header__badge--right': string;
   'list-header__badge--small': string;
   'list-header__chevron': string;
   'list-header__chevron--for-string-content': string;
   'list-header__chevron--large': string;
   'list-header__chevron--medium': string;
-  'list-header__chevron--right': string;
   'list-header__chevron--small': string;
   'list-header__content': string;
   'list-header__content--element': string;

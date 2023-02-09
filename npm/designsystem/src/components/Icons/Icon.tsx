@@ -31,16 +31,18 @@ export interface SvgPathProps {
   isHovered: boolean;
 }
 
-export const getIcon = (
-  size: IconSize,
-  isHovered: boolean,
-  normal: JSX.Element,
-  normalHover: JSX.Element,
-  xSmall?: JSX.Element,
-  xSmallHover?: JSX.Element,
-  xxSmall?: JSX.Element,
-  xxSmallHover?: JSX.Element
-): JSX.Element => {
+interface IconConfig {
+  size: IconSize;
+  isHovered: boolean;
+  normal: JSX.Element;
+  normalHover: JSX.Element;
+  xSmall?: JSX.Element;
+  xSmallHover?: JSX.Element;
+  xxSmall?: JSX.Element;
+  xxSmallHover?: JSX.Element;
+}
+
+export const getIcon = ({ size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover }: IconConfig): JSX.Element => {
   if (size <= IconSize.XXSmall && xxSmall && xxSmallHover) {
     return isHovered ? xxSmallHover : xxSmall;
   }

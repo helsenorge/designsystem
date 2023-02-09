@@ -24,7 +24,7 @@ const Group: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.E
     />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, normal, normalHover, xxSmall, xxSmall);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall: normal, xSmallHover: normalHover, xxSmall, xxSmallHover: xxSmall });
 };
 
 export default Group;

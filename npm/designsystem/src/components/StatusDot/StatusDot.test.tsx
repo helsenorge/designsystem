@@ -4,37 +4,84 @@ import { render, screen } from '@testing-library/react';
 
 describe('Gitt at StatusDot rendres ', () => {
   describe('Når komponenten får en tekst', () => {
-    it('Så skal teskten vises til innbygger', () => {
+    it('Så skal teksten vises til innbygger', () => {
       render(<StatusDot variant="warning" text="Eksempeltekst" />);
-      expect(screen.queryByText('Eksempeltekst')).toBeTruthy();
+
+      const text = screen.getByText('Eksempeltekst');
+      expect(text).toBeVisible();
     });
   });
-  describe('Når StatusDot har type="recurring".', () => {
+  describe('Når StatusDot er variant="recurring".', () => {
     it('Så skal komponenten ha en SVG-fil.', () => {
-      render(<StatusDot variant="recurring" text="Test Text" />);
-      expect(screen.queryByText('Test Text').parentElement.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(screen.queryByText('Test Text').parentElement.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+      const { container } = render(<StatusDot variant="recurring" text="Eksempeltekst" testId={'statusdot'} />);
 
-      render(<StatusDot variant="group" text="Test Text2" />);
-      expect(screen.queryByText('Test Text2').parentElement.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(screen.queryByText('Test Text2').parentElement.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+      const text = screen.getByText('Eksempeltekst');
+      expect(text).toBeVisible();
 
-      render(<StatusDot variant="noaccess" text="Test Text3" />);
-      expect(screen.queryByText('Test Text3').parentElement.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(screen.queryByText('Test Text3').parentElement.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+      const statusdot = screen.getByTestId('statusdot');
+      expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
+      expect(statusdot.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+
+      expect(container).toMatchSnapshot();
     });
   });
-  describe('Når StatusDot har en av de andre typene', () => {
-    it('Så skal komponenten ikke ha en tilhørende SVG-fil og samsvarende klassenavn', () => {
-      render(<StatusDot variant="info" text="text1" />);
-      render(<StatusDot variant="warning" text="text2" />);
-      render(<StatusDot variant="alert" text="text3" />);
-      render(<StatusDot variant="transparent" text="text4" />);
+  describe('Når StatusDot er variant="group".', () => {
+    it('Så skal komponenten ha en SVG-fil.', () => {
+      const { container } = render(<StatusDot variant="group" text="Eksempeltekst" testId={'statusdot'} />);
 
-      const dot1 = screen.queryByText('text1').parentElement.firstElementChild;
-      const dot2 = screen.queryByText('text2').parentElement.firstElementChild;
-      const dot3 = screen.queryByText('text3').parentElement.firstElementChild;
-      const dot4 = screen.queryByText('text4').parentElement.firstElementChild;
+      const text = screen.getByText('Eksempeltekst');
+      expect(text).toBeVisible();
+
+      const statusdot = screen.getByTestId('statusdot');
+      expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
+      expect(statusdot.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+
+      expect(container).toMatchSnapshot();
+    });
+  });
+  describe('Når StatusDot er variant="noaccess".', () => {
+    it('Så skal komponenten ha en SVG-fil.', () => {
+      const { container } = render(<StatusDot variant="noaccess" text="Eksempeltekst" testId={'statusdot'} />);
+
+      const text = screen.getByText('Eksempeltekst');
+      expect(text).toBeVisible();
+
+      const statusdot = screen.getByTestId('statusdot');
+      expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
+      expect(statusdot.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+
+      expect(container).toMatchSnapshot();
+    });
+  });
+  describe('Når StatusDot er variant="attachment".', () => {
+    it('Så skal komponenten ha en SVG-fil.', () => {
+      const { container } = render(<StatusDot variant="attachment" text="Eksempeltekst" testId={'statusdot'} />);
+
+      const text = screen.getByText('Eksempeltekst');
+      expect(text).toBeVisible();
+
+      const statusdot = screen.getByTestId('statusdot');
+      expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
+      expect(statusdot.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+
+      expect(container).toMatchSnapshot();
+    });
+  });
+  describe('Når StatusDot er en av de andre variantene', () => {
+    it('Så skal komponenten ikke ha en tilhørende SVG-fil og samsvarende klassenavn', () => {
+      render(
+        <>
+          <StatusDot variant="info" text="text1" testId={'statusdot1'} />
+          <StatusDot variant="warning" text="text2" testId={'statusdot2'} />
+          <StatusDot variant="alert" text="text3" testId={'statusdot3'} />
+          <StatusDot variant="transparent" text="text4" testId={'statusdot4'} />
+        </>
+      );
+
+      const dot1 = screen.getByTestId('statusdot1').firstElementChild;
+      const dot2 = screen.getByTestId('statusdot2').firstElementChild;
+      const dot3 = screen.getByTestId('statusdot3').firstElementChild;
+      const dot4 = screen.getByTestId('statusdot4').firstElementChild;
 
       expect(dot1.className).toBe('statusdot__dot statusdot__dot--info');
       expect(dot2.className).toBe('statusdot__dot statusdot__dot--warning');

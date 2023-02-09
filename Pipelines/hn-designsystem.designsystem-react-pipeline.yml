@@ -23,8 +23,12 @@ variables:
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
     value: .
+  - name: package_directory
+    value: npm/designsystem
   - name: sonarqube_endpoint
     value: 'https://sonarqube.int-hn.nhn.no'
+  - name: BROWSERSLIST_IGNORE_OLD_DATA
+    value: true
   - name: Github.Username
     value: 'larskrj'
 
@@ -38,7 +42,7 @@ stages:
         displayName: Build, Test and Analyze
         steps:
           # Prepare Sonarqube
-          - task: SonarQubePrepare@4
+          - task: SonarQubePrepare@5
             displayName: Sonarqube Prepare
             inputs:
               SonarQube: $(sonarqube_endpoint)
@@ -46,6 +50,14 @@ stages:
               cliProjectKey: $(project_name)
               cliProjectName: $(project_name)
               configMode: manual
+              extraProperties: |
+                sonar.sources=$(package_directory)/
+                sonar.tests=$(package_directory)/
+                sonar.test.inclusions=$(package_directory)/**/*.test.tsx
+                sonar.exclusions=**/*.test.tsx
+                sonar.coverage.exclusions=**/__*__/**/*,**/*.config.js,*.stories.tsx
+                sonar.javascript.lcov.reportPaths=$(package_directory)/coverage/lcov.info
+                sonar.typescript.tsconfigPath=$(package_directory)/tsconfig.json
 
           # Set node version
           - task: UseNode@1
@@ -61,9 +73,9 @@ stages:
               workingFile: $(working_directory)/.npmrc
 
           - task: Npm@1
-            displayName: 'npm i (install lerna)'
+            displayName: 'npm ci (install lerna)'
             inputs:
-              command: install
+              command: ci
               workingDir: $(working_directory)
 
           - task: Npm@1
@@ -124,6 +136,19 @@ stages:
               workingDir: $(working_directory)
               customCommand: 'run test'
 
+          # Test results
+          - task: PublishTestResults@2
+            displayName: 'Publish test results'
+            inputs:
+              testResultsFiles: '$(package_directory)/test-report.xml'
+            condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+          - task: PublishCodeCoverageResults@1
+            displayName: 'Publish code coverage'
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: '$(package_directory)/coverage/cobertura-coverage.xml'
+            condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+
           # build
           - task: Npm@1
             displayName: build
@@ -133,21 +158,13 @@ stages:
               customCommand: 'run build'
 
           # Run Code Analysis task
-          - task: SonarQubeAnalyze@4
+          - task: SonarQubeAnalyze@5
             displayName: Sonarqube Analyze
 
-          # Test results
-          - task: PublishTestResults@2
-            displayName: 'Publish Test Results $(project_directory)/test-report.xml'
+          # Publish Quality Gate Result task
+          - task: SonarQubePublish@5
             inputs:
-              testResultsFiles: '$(project_directory)/test-report.xml'
-            condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-          - task: PublishCodeCoverageResults@1
-            displayName: 'Publish code coverage from $(Build.SourcesDirectory)\$(project_directory)\coverage\cobertura-coverage.xml'
-            inputs:
-              codeCoverageTool: Cobertura
-              summaryFileLocation: '$(Build.SourcesDirectory)\$(project_directory)\coverage\cobertura-coverage.xml'
-            condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+              pollingTimeoutSec: '300'
 
           # Nullstill alle endringer fra tester o.l. før publisering
           - script: 'git reset --hard'

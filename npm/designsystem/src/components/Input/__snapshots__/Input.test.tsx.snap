@@ -4,6 +4,7 @@ exports[`Gitt at Input skal vises Når Input rendres Så vises Input 1`] = `
 <div>
   <div
     class="error-wrapper"
+    data-testid="error-wrapper-testid"
   >
     <div
       class="input-wrapper"

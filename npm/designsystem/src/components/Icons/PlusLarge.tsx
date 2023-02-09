@@ -10,7 +10,7 @@ const PlusLarge: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): J
 
   const xSmallHover = <path d="M24.83 22.323V5.043h-2.506v17.28H5.043v2.506h17.281V42.11h2.506V24.829h17.28v-2.506z" />;
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default PlusLarge;

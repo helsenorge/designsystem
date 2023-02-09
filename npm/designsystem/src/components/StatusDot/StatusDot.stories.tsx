@@ -54,6 +54,8 @@ export const AllVariants: ComponentStory<typeof StatusDot> = () => (
     <StatusDot variant={StatusDotVariant.group} text="Group" />
     <p>{'no access'}</p>
     <StatusDot variant={StatusDotVariant.noaccess} text="No Access" />
+    <p>{'attachment'}</p>
+    <StatusDot variant={StatusDotVariant.attachment} text="Attachment" />
     <p>{'info no text'}</p>
     <StatusDot variant={StatusDotVariant.info} text="" />
   </GridExample>

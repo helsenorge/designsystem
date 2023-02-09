@@ -37,7 +37,7 @@ const Change: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.
     />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmall);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover: xxSmall });
 };
 
 export default Change;

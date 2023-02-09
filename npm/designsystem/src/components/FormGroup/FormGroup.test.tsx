@@ -46,6 +46,27 @@ describe('Gitt at FormGroup skal vises', (): void => {
       expect(checkbox.className).toBe('checkbox-label checkbox-label--on-blueberry');
     });
   });
+  describe('Når errorWrapperClass settes', (): void => {
+    test('Så er stylingen satt riktig på errorWrapper', (): void => {
+      render(
+        <FormGroup
+          errorWrapperClassName="custom-wrapper-class"
+          title={'One amazing title'}
+          legend={'Check out these checkboxes!'}
+          mode={'onblueberry'}
+          errorWrapperTestId="error-wrapper-testid-1"
+        >
+          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
+          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
+          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+        </FormGroup>
+      );
+
+      const errorWrapperWithCustomClassName = screen.getByTestId('error-wrapper-testid-1');
+      expect(errorWrapperWithCustomClassName).toBeVisible();
+      expect(errorWrapperWithCustomClassName.className).toBe('error-wrapper custom-wrapper-class');
+    });
+  });
 
   describe('Når variant settes', (): void => {
     test('Så er stylingen satt riktig på FormGroup children', (): void => {

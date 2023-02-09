@@ -83,6 +83,13 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    maxCharacters: {
+      control: 'number',
+    },
+    maxText: {
+      control: 'text',
+      defaultValue: 'tegn',
+    },
   },
 } as ComponentMeta<typeof Input>;
 
@@ -100,6 +107,22 @@ export const MultipleExamples: ComponentStory<typeof Input> = (args: any) => (
   </GridExample>
 );
 
+export const MaxCharacters: ComponentStory<typeof Input> = (args: any) => (
+  <GridExample>
+    <div style={{ display: 'flex', width: '50rem' }}>
+      <Input {...args} maxCharacters={10} marginBottom />
+    </div>
+
+    <div style={{ display: 'flex', width: '40rem' }}>
+      <Input {...args} maxCharacters={100} />
+    </div>
+
+    <div style={{ width: '20rem' }}>
+      <Input {...args} maxCharacters={100} defaultValue="test" />
+    </div>
+  </GridExample>
+);
+
 export const ChildrenAfterLabel: ComponentStory<typeof Input> = (args: any) => (
   <GridExample>
     <Input {...args} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>} />
@@ -108,5 +131,6 @@ export const ChildrenAfterLabel: ComponentStory<typeof Input> = (args: any) => (
 export const AfterInputChildren: ComponentStory<typeof Input> = (args: any) => (
   <GridExample>
     <Input {...args} afterInputChildren={<div style={{ marginTop: '1rem' }}>*Ikke oppgi personsensitiv informasjon</div>} />
+    <Input {...args} afterInputChildren={'Tekst uten innsendt div'} />
   </GridExample>
 );

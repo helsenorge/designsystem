@@ -29,7 +29,7 @@ const Gallery: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX
       d="M29.615 38.963h9.347v-9.347h-9.347v9.347zm-2.274 2.274h13.895V27.342H27.34v13.895zM9.038 38.963h9.347v-9.347H9.038v9.347zm-2.274 2.274H20.66V27.342H6.764v13.895zm2.274-22.853h9.347V9.037H9.038v9.347zm-2.274 2.274H20.66V6.763H6.764v13.895zm22.85-2.274h9.348V9.037h-9.347v9.347zm-2.273 2.274h13.895V6.763H27.34v13.895z"
     />
   );
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Gallery;

@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode } from '../../constants';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
+import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 interface TextareaProps
   extends Pick<
@@ -53,7 +54,7 @@ const getTextareaMaxWidth = (characters: number): string => {
 
 const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
   const {
-    maxCharacters: max,
+    maxCharacters,
     maxText,
     width,
     testId,
@@ -108,17 +109,10 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    if (grow) {
-      resizeHeight(event.target);
-    }
-    setTextareaInput(event.target.value);
-  };
-
   const onDark = mode === FormMode.ondark;
   const onBlueberry = mode === FormMode.onblueberry;
-  const textHasError = max && textareaInput.toString().length > max;
-  const onError = mode === FormMode.oninvalid || errorText || textHasError;
+  const maxCharactersExceeded = !!maxCharacters && textareaInput.toString().length > maxCharacters;
+  const onError = mode === FormMode.oninvalid || !!errorText || maxCharactersExceeded;
 
   const textareaWrapperClass = cn(styles.textarea, {
     [styles['textarea--gutterBottom']]: gutterBottom,
@@ -140,11 +134,6 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     [styles[`content-wrapper__input--disabled`]]: props.disabled,
   });
 
-  const counterTextClass = cn(styles['textarea__counter-wrapper'], {
-    [styles[`textarea__counter-wrapper--on-dark`]]: onDark,
-    [styles[`textarea__counter-wrapper--invalid`]]: onError,
-  });
-
   useEffect(() => {
     if (grow && referanse.current?.children && referanse.current?.children[0]) {
       const textarea = referanse.current?.children[0] as HTMLTextAreaElement;
@@ -152,13 +141,12 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     }
   }, []);
 
-  let progress = 0;
-  if (max) {
-    progress = textareaInput.toString().length / max;
-  }
-
-  const ariaLevel = progress > 0.95 ? 'polite' : 'off';
-  const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    if (grow) {
+      resizeHeight(e.target);
+    }
+    setTextareaInput(e.target.value);
+  };
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (onChange) {
@@ -166,6 +154,8 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     }
     handleChange(e);
   };
+
+  const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
 
   return (
     <ErrorWrapper errorText={errorText}>
@@ -196,10 +186,14 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             {...rest}
           />
         </div>
-        {max && (
-          <div aria-live={ariaLevel} aria-atomic={'true'} className={counterTextClass} style={{ maxWidth }}>
-            <p>{`${textareaInput.toString().length}/${max} ${maxText ? maxText : 'tegn'}`}</p>
-          </div>
+        {maxCharacters && (
+          <MaxCharacters
+            maxCharacters={maxCharacters}
+            length={textareaInput.toString().length}
+            maxText={maxText}
+            mode={mode}
+            maxWidth={maxWidth}
+          />
         )}
       </div>
     </ErrorWrapper>

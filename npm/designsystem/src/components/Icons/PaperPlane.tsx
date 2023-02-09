@@ -18,7 +18,7 @@ const PaperPlane: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): 
     <path d="M45.21 8.814l.244-.036-.174.234-.07-.198zM30.372 28.936l-12.973-9.499L44.562 9.97l-14.19 18.966zm-13.717 1.902v-10.31l7.707 5.644-7.707 4.666zM9.825 13.89l33.109-4.75-26.828 9.35-6.28-4.6zm-3.391-.846l8.901 6.518V33.18l10.18-6.163 5.132 3.757L48.418 7.02 6.434 13.044z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default PaperPlane;

@@ -24,7 +24,7 @@ const NoFilter: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JS
     <path d="M35.04 16.89c0 .275-.112.544-.307.736l-9.288 9.135v8.265l-3.154 2.923V26.76l-1.732-1.703L30.835 14.6h4.205v2.292zm-15.374 7.29l-6.663-6.555a1.033 1.033 0 01-.307-.734v-2.292H29.08l-9.413 9.58zm12.907-11.35l1.881-1.914-.893-.878-2.743 2.793H10.927v4.06c0 .746.305 1.474.836 1.995l6.664 6.555-6.816 6.937.893.88 6.816-6.938 1.203 1.182v14.496l6.692-6.2v-8.296l8.759-8.617c.53-.521.835-1.249.835-1.994v-4.06h-4.236z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default NoFilter;

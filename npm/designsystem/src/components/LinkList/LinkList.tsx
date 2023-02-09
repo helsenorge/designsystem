@@ -87,7 +87,8 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
   const { hoverRef, isHovered } = useHover<HTMLButtonElement | HTMLAnchorElement>(linkRef);
 
   const liClasses = cn(LinkListStyles['link-list__list-item'], {
-    [LinkListStyles['link-list__list-item--' + variant]]: variant,
+    [LinkListStyles['link-list__list-item--line']]: variant === 'line',
+    [LinkListStyles['link-list__list-item--outline']]: variant === 'outline',
   });
   const linkClasses = cn(
     LinkListStyles['link-list__anchor'],

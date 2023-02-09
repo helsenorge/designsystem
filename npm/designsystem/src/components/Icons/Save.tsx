@@ -26,7 +26,7 @@ const Save: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.El
     <path d="M23.217 12v17.694l-7.15-6.71-1.103 1.175 9.13 8.57 9.078-8.722-1.114-1.162-7.23 6.943V12h-1.61zM36.404 27.52v8.456H11.598v-8.456H9.986v10.067h28.028V27.52h-1.61z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Save;

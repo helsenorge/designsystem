@@ -3,7 +3,7 @@
 exports[`Gitt at Avatar skal vises Når selected er false Så vises teksten i Avatar-komponenten 1`] = `
 <div>
   <span
-    class="avatar"
+    class="avatar avatar--small"
     data-analyticsid="avatar"
   >
     Li
@@ -14,7 +14,7 @@ exports[`Gitt at Avatar skal vises Når selected er false Så vises teksten i Av
 exports[`Gitt at Avatar skal vises Når selected er true Så vises ikke teksten 1`] = `
 <div>
   <span
-    class="avatar avatar--selected"
+    class="avatar avatar--selected avatar--small"
     data-analyticsid="avatar"
   >
     <svg
@@ -40,7 +40,7 @@ exports[`Gitt at Avatar skal vises Når selected er true Så vises ikke teksten 
 exports[`Gitt at Avatar skal vises Når variant er black Så skal komponenten være svart 1`] = `
 <div>
   <span
-    class="avatar avatar--black"
+    class="avatar avatar--black avatar--small"
     data-analyticsid="avatar"
   >
     Ba
@@ -51,7 +51,7 @@ exports[`Gitt at Avatar skal vises Når variant er black Så skal komponenten v�
 exports[`Gitt at Avatar skal vises Når variant er black og selected Så skal bakgrunnen være transparent og fargen på ikon er svart 1`] = `
 <div>
   <span
-    class="avatar avatar--selected avatar--black"
+    class="avatar avatar--selected avatar--black avatar--small"
     data-analyticsid="avatar"
   >
     <svg

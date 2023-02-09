@@ -16,7 +16,7 @@ const Menu: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.El
     <path d="M37.88 32.475v2.273H10.105v-2.273H37.88zm0-10.106v2.274H10.105v-2.274H37.88zm0-9.737v2.273H10.105v-2.273H37.88z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Menu;

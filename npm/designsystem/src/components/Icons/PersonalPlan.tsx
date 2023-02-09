@@ -28,7 +28,7 @@ const PersonalPlan: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
     </>
   );
 
-  return getIcon(size, isHovered, normal, normalHover);
+  return getIcon({ size, isHovered, normal, normalHover });
 };
 
 export default PersonalPlan;

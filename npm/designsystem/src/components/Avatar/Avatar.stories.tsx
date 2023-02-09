@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Avatar from './Avatar';
+import Avatar, { AvatarSize } from './Avatar';
 import GridExample from '../GridExample';
 
 export default {
@@ -24,6 +24,11 @@ export default {
     selected: {
       control: 'boolean',
       defaultValue: false,
+    },
+    size: {
+      control: 'select',
+      options: AvatarSize,
+      defaultValue: AvatarSize.small,
     },
   },
 } as ComponentMeta<typeof Avatar>;

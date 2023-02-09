@@ -16,6 +16,7 @@ exports[`Gitt at FormGroup skal vises Når FormGroup rendres Så vises FormGroup
     </h4>
     <div
       class="error-wrapper"
+      data-testid="error-wrapper-testid"
     >
       <div
         class="form-group"

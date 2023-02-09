@@ -18,7 +18,7 @@ const Envelope: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JS
     <path d="M40.959 34.904L29.412 23.305 40.96 12.978v21.926zm-33.54.804l11.503-11.556 4.773 4.27 4.775-4.273 11.507 11.56H7.418zm-.641-22.42L17.98 23.31 6.778 34.56V13.288zm2.79-1.259v2.06l-2.303-2.06h2.303zm1.263-4.416h26.074v7.296l-13.21 11.817L10.831 15.22V7.613zM38.17 12.03h1.956l-1.956 1.75v-1.75zm0-1.263V6.35h-28.6v4.416H5.514V36.97h36.707V10.766H38.17z" />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Envelope;

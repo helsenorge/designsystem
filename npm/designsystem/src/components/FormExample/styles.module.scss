@@ -1,7 +1,7 @@
 @import '../../scss/_spacers.scss';
 @import '../../scss/_breakpoints.scss';
 
-.fieldset--flex {
+.date-time {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -10,18 +10,24 @@
     flex-direction: row;
     align-items: flex-end;
   }
-}
 
-.fieldset--flex-time {
-  display: flex;
-  align-items: flex-end;
-  padding-top: getSpacer(m);
-
-  @media (min-width: map-get($grid-breakpoints, sm)) {
-    padding-top: 0;
+  &__date-picker {
+    padding-right: getSpacer(l);
   }
-}
 
-.date-picker--spacing {
-  padding-right: getSpacer(l);
+  &__time-wrapper {
+    display: flex;
+    align-items: flex-end;
+    padding-top: getSpacer(m);
+
+    @media (min-width: map-get($grid-breakpoints, sm)) {
+      padding-top: 0;
+    }
+  }
+
+  &__time-separator {
+    margin-bottom: getSpacer(xs);
+    margin-right: getSpacer(xs);
+    margin-left: getSpacer(2xs);
+  }
 }

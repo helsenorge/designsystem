@@ -29,7 +29,7 @@ const CheckFill: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): J
       d="m21.887 32.488-5.484-5.713 1.81-1.737 3.674 3.826 11.409-11.867 1.823 1.75-13.232 13.74ZM24 8C15.157 8 8 15.16 8 23.994 8 32.84 15.157 40 24 40c8.83 0 16-7.16 16-16.006C40 15.16 32.83 8 24 8Z"
     />
   );
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default CheckFill;

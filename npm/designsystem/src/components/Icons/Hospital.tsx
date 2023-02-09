@@ -30,7 +30,7 @@ const Hospital: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JS
     />
   );
 
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Hospital;

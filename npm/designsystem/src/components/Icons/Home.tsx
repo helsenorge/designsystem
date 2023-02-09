@@ -29,7 +29,7 @@ const Home: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.El
       fillRule="evenodd"
     ></path>
   );
-  return getIcon(size, isHovered, normal, normalHover, xSmall, xSmallHover);
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Home;
