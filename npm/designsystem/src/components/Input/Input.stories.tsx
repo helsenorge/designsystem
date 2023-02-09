@@ -83,6 +83,13 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    maxCharacters: {
+      control: 'number',
+    },
+    maxText: {
+      control: 'text',
+      defaultValue: 'tegn',
+    },
   },
 } as ComponentMeta<typeof Input>;
 
@@ -97,6 +104,22 @@ export const MultipleExamples: ComponentStory<typeof Input> = (args: any) => (
     <Input {...args} icon={args.showicon ? Hospital : undefined} />
     <Input {...args} icon={args.showicon ? Hospital : undefined} />
     <Input {...args} icon={args.showicon ? Hospital : undefined} />
+  </GridExample>
+);
+
+export const MaxCharacters: ComponentStory<typeof Input> = (args: any) => (
+  <GridExample>
+    <div style={{ display: 'flex', width: '50rem' }}>
+      <Input {...args} maxCharacters={10} marginBottom />
+    </div>
+
+    <div style={{ display: 'flex', width: '40rem' }}>
+      <Input {...args} maxCharacters={100} />
+    </div>
+
+    <div style={{ width: '20rem' }}>
+      <Input {...args} maxCharacters={100} defaultValue="test" />
+    </div>
   </GridExample>
 );
 

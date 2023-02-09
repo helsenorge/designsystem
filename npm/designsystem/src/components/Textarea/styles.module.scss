@@ -10,32 +10,6 @@
   &--gutterBottom {
     margin-bottom: getSpacer(s);
   }
-
-  &__counter-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: getSpacer(2xs);
-    padding-right: 2px;
-    font-size: $font-size-sm;
-    line-height: 28px;
-
-    @media (min-width: map-get($grid-breakpoints, md)) {
-      line-height: 30px;
-      font-size: $font-size-md;
-    }
-
-    p {
-      margin: 0;
-    }
-
-    &--on-dark {
-      color: $white;
-    }
-    &--invalid {
-      color: $cherry600;
-      font-weight: 600;
-    }
-  }
 }
 
 .content-wrapper {

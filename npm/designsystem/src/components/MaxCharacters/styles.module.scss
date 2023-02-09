@@ -1,0 +1,26 @@
+@import '../../scss/_spacers.scss';
+@import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
+@import '../../scss/_font-settings.scss';
+
+.max-characters {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: getSpacer(2xs);
+  padding-right: 2px;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    line-height: $lineheight-size-md;
+    font-size: $font-size-md;
+  }
+
+  &--on-dark {
+    color: $white;
+  }
+  &--invalid {
+    color: $cherry600;
+    font-weight: 600;
+  }
+}

@@ -6,6 +6,7 @@ import Textarea from './Textarea';
 import Hospital from '../Icons/Hospital';
 import Icon, { IconSize } from '../Icons';
 import GridExample from '../GridExample';
+import { FormMode } from '../../constants';
 
 export default {
   title: 'Components/Textarea',
@@ -29,11 +30,16 @@ export default {
     },
     maxText: {
       control: 'text',
-      defaultValue: 'chars',
+      defaultValue: 'tegn',
     },
     width: {
       control: 'number',
       defaultValue: undefined,
+    },
+    mode: {
+      control: 'select',
+      options: FormMode,
+      defaultValue: FormMode.onwhite,
     },
     defaultValue: {
       control: 'text',

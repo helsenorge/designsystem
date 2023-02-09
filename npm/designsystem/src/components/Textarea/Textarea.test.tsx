@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Textarea from './Textarea';
 import { FormMode } from '../../constants';
 
@@ -45,23 +46,6 @@ describe('Gitt at Textarea skal vises', (): void => {
     });
   });
 
-  describe('Når textarea endres med ny tekst og antall tegn skal vises', (): void => {
-    test('Så endres teksten og antall tegn', (): void => {
-      render(<Textarea label={'Skriv din historie her'} maxCharacters={50} />);
-
-      const textarea1 = screen.getByLabelText('Skriv din historie her');
-
-      expect(screen.getByText('0/50 tegn')).toBeVisible();
-
-      fireEvent.change(textarea1, { target: { value: 'Jeg tester teksten her.' } });
-
-      const input = screen.getByRole('textbox');
-
-      expect(input).toHaveValue('Jeg tester teksten her.');
-      expect(screen.getByText('23/50 tegn')).toBeVisible();
-    });
-  });
-
   describe('Når textarea har en default value', (): void => {
     test('Så skal default verdien vises', (): void => {
       render(<Textarea label={'Skriv din historie her'} defaultValue="Min historie" />);
@@ -75,24 +59,6 @@ describe('Gitt at Textarea skal vises', (): void => {
       render(<Textarea label={'Skriv din historie her'} placeholder="Fin placeholder" />);
       const input = screen.getByPlaceholderText('Fin placeholder');
       expect(input).toBeVisible();
-    });
-  });
-
-  describe('Når textarea har en gått over maksgrensen', (): void => {
-    test('Så skal textarea vise at input er ugyldig', (): void => {
-      render(<Textarea label={'Skriv din historie her'} grow maxCharacters={10} />);
-
-      const textarea1 = screen.getByLabelText('Skriv din historie her');
-
-      expect(screen.getByText('0/10 tegn')).toBeVisible();
-
-      fireEvent.change(textarea1, { target: { value: 'Jeg tester teksten her.' } });
-
-      expect(screen.getByText('23/10 tegn')).toBeVisible();
-
-      const contentWrapper = screen.getByRole('textbox').parentElement;
-
-      expect(contentWrapper.className).toEqual('content-wrapper content-wrapper--invalid');
     });
   });
 
@@ -174,6 +140,39 @@ describe('Gitt at Textarea skal vises', (): void => {
 
       const textarea = screen.getByLabelText('En fin label');
       expect(textarea).toBeRequired();
+    });
+  });
+
+  describe('Når antall tegn skal vises', (): void => {
+    describe('Når man skriver', (): void => {
+      test('Så endres teksten og antall tegn', async (): Promise<void> => {
+        render(<Textarea label={'Skriv din historie her'} maxCharacters={50} />);
+
+        const input = screen.getByLabelText('Skriv din historie her');
+
+        expect(screen.getByText('0/50 tegn')).toBeVisible();
+
+        await userEvent.type(input, 'Jeg tester teksten her.');
+
+        expect(input).toHaveValue('Jeg tester teksten her.');
+        expect(screen.getByText('23/50 tegn')).toBeVisible();
+      });
+    });
+
+    describe('Når man skriver for mange tegn', (): void => {
+      test('Så indikeres det at input er ugyldig', async (): Promise<void> => {
+        render(<Textarea label={'Skriv din historie her'} maxCharacters={10} />);
+
+        const input = screen.getByLabelText('Skriv din historie her');
+
+        expect(screen.getByText('0/10 tegn')).toBeVisible();
+
+        await userEvent.type(input, 'Jeg tester teksten her.');
+
+        expect(input).toHaveValue('Jeg tester teksten her.');
+        expect(screen.getByText('23/10 tegn')).toBeVisible();
+        expect(input).toHaveAttribute('aria-invalid', 'true');
+      });
     });
   });
 });
