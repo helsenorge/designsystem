@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gitt at StatusDot rendres  Når StatusDot har type="attachment". Så skal komponenten ha en SVG-fil. 1`] = `
+exports[`Gitt at StatusDot rendres  Når StatusDot er variant="attachment". Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
   <div
     class="statusdot"
@@ -23,7 +23,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot har type="attachment". Så sk
         width="24"
       >
         <path
-          d="M12 4.586c-1.798 0-3.27 1.384-3.27 3.1v11.23h1.005V7.686c0-1.148 1.009-2.095 2.265-2.095 1.257 0 2.265.947 2.265 2.094V17.6c0 .5-.355.81-.868.81s-.861-.341-.861-.81V9.467H11.53v8.132c0 1.14.833 1.815 1.867 1.815s1.874-.83 1.874-1.815V7.685c0-1.715-1.473-3.1-3.271-3.1Z"
+          d="M24 9.172c-3.597 0-6.542 2.768-6.542 6.199v22.46h2.01v-22.46c0-2.295 2.019-4.189 4.531-4.189 2.514 0 4.53 1.894 4.53 4.189v19.827c0 1-.709 1.62-1.735 1.62-1.026 0-1.723-.682-1.723-1.62V18.934H23.06v16.264c0 2.282 1.668 3.63 3.735 3.63 2.068 0 3.748-1.661 3.748-3.63V15.371c0-3.43-2.945-6.2-6.543-6.2Z"
         />
       </svg>
     </span>
@@ -36,7 +36,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot har type="attachment". Så sk
 </div>
 `;
 
-exports[`Gitt at StatusDot rendres  Når StatusDot har type="group". Så skal komponenten ha en SVG-fil. 1`] = `
+exports[`Gitt at StatusDot rendres  Når StatusDot er variant="group". Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
   <div
     class="statusdot"
@@ -74,7 +74,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot har type="group". Så skal ko
 </div>
 `;
 
-exports[`Gitt at StatusDot rendres  Når StatusDot har type="noaccess". Så skal komponenten ha en SVG-fil. 1`] = `
+exports[`Gitt at StatusDot rendres  Når StatusDot er variant="noaccess". Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
   <div
     class="statusdot"
@@ -111,7 +111,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot har type="noaccess". Så skal
 </div>
 `;
 
-exports[`Gitt at StatusDot rendres  Når StatusDot har type="recurring". Så skal komponenten ha en SVG-fil. 1`] = `
+exports[`Gitt at StatusDot rendres  Når StatusDot er variant="recurring". Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
   <div
     class="statusdot"
