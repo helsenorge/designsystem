@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
-import { isTest } from '../../utils/environment';
+import { isTest, isProd } from '../../utils/environment';
 import { getColor } from '../../theme/currys/color';
 import Icon, { IconProps, IconSize } from './../Icons/';
 import { useHover } from '../../hooks/useHover';
@@ -83,8 +83,8 @@ const getLargeIconSize = (large: boolean, mobile: boolean): IconSize => {
   return IconSize.XSmall;
 };
 
-const checkOnlyIconAria = (onlyIcon: boolean, ariaLabel: string | undefined, testEnv: boolean) => {
-  if (!testEnv && onlyIcon && (ariaLabel === undefined || ariaLabel === '')) {
+const checkOnlyIconAria = (onlyIcon: boolean, ariaLabel: string | undefined, devEnv: boolean) => {
+  if (devEnv && onlyIcon && (ariaLabel === undefined || ariaLabel === '')) {
     throw new Error('Fyll inn ariaLabel prop på Button uten tekst for å opprettholde UU krav');
   }
 };
@@ -167,7 +167,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   });
 
   useEffect(() => {
-    checkOnlyIconAria(onlyIcon, ariaLabel, isTest());
+    checkOnlyIconAria(onlyIcon, ariaLabel, !isTest() && !isProd());
   }, []);
 
   const renderIcon = (
