@@ -1,3 +1,24 @@
+## [2.15.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.14.0&targetVersion=GTv2.15.0) (2023-02-09)
+
+
+### Features
+
+*  avatar har størrelse small og xsmall ([86a7dd4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/86a7dd41d42588bc962137914bcb3f9e74863f3b))
+*  button ariaLabel mangel kaster bare error i dev ([89596fa](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/89596faeda26e45a32e759013edbda522c8ac4d9)), closes [#289312](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/289312)
+*  input har støtte for å telle antall tegn ([65eef57](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/65eef57f5dfddd4c5054a83cd821f477958c6df1)), closes [#291991](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/291991)
+*  legger til errorwrapper class ([5ca3378](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/5ca3378be19533b753db41a20f17243c4e231b52)), closes [#292556](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292556)
+*  statusdot har attachment-variant ([dd27e68](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/dd27e68d6c888e8e2c65b8001c513d5e906319f2))
+*  SupportingPerson xs ikon ([138b3b5](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/138b3b5d0d264d6c6cc2f659e63fc09bc3f67669)), closes [#293547](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/293547)
+
+
+### Bug Fixes
+
+*  date-time eksempel colon fiks ([02f0331](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/02f03310626bf74878aba5889884c681bdde4fcd))
+*  linklist-item har ikke class=undefined når type=fill ([b54ca6a](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/b54ca6a454c80ee331e608a3a163c3eaebabdb2f)), closes [#294599](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/294599)
+*  listheader med avatar er default størrelse xsmall ([e67d447](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/e67d447ee7cc05a3d61263765556a34c8ef28d6b))
+*  login icon fill-rule fikset ([62dcd0f](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/62dcd0fc158d3699f51446c3304907a6ca4aa976))
+*  oppdatert geometri i ikonene til arrowleft og arrowright ([20ab9c5](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/20ab9c5cc60e11860dd2c046be6e2cdbf20060fb)), closes [#293341](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/293341)
+
 ## [2.14.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.13.0&targetVersion=GTv2.14.0) (2023-02-01)
 
 
@@ -305,7 +326,7 @@
 
 ## 2.0.0-beta.1 (2022-09-15)
 
-## 2.0.0-beta.0 (2022-09-12)
+## 2.0.0-beta.0 (2022-09-15)
 
 
 ### Features
@@ -407,8 +428,8 @@
 
 ### Bug Fixes
 
-*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 *  panel har avstand fra tittel til badge ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
+*  økt kontrast på understreking av lenker ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 
 ## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
