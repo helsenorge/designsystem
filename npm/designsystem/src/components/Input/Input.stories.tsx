@@ -131,5 +131,6 @@ export const ChildrenAfterLabel: ComponentStory<typeof Input> = (args: any) => (
 export const AfterInputChildren: ComponentStory<typeof Input> = (args: any) => (
   <GridExample>
     <Input {...args} afterInputChildren={<div style={{ marginTop: '1rem' }}>*Ikke oppgi personsensitiv informasjon</div>} />
+    <Input {...args} afterInputChildren={'Tekst uten innsendt div'} />
   </GridExample>
 );

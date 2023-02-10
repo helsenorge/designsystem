@@ -235,11 +235,11 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         <>
           <FormGroup
             legend={'Velg en dato og et klokkeslett'}
-            fieldsetClassName={styles['fieldset--flex']}
+            fieldsetClassName={styles['date-time']}
             error={currentError ? (currentError.message as string) : undefined}
           >
             <Input
-              className={styles['date-picker--spacing']}
+              className={styles['date-time__date-picker']}
               label={'dato'}
               width={20}
               type={'date'}
@@ -248,10 +248,9 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
               max={maxDate.toLocaleDateString('en-CA')}
               {...register(field7, { validate: (value): true | string => requireDate(value, minDate, maxDate) })}
             />
-            <FormGroup htmlMarkup={'div'} fieldsetClassName={styles['fieldset--flex-time']}>
+            <FormGroup htmlMarkup={'div'} fieldsetClassName={styles['date-time__time-wrapper']}>
               <Input
                 labelId={'time-label-id'}
-                afterInputChildren={<span style={{ padding: '0 1rem' }}>{':'}</span>}
                 label={'klokke'}
                 width={4}
                 type={'number'}
@@ -263,6 +262,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
                 // Må oppdateres med validering som tar hensyn til timer og minutter i sammenheng med hverandre
                 {...register(field8, { validate: (value): true | string => requireTime(value, value) })}
               />
+              <span className={styles['date-time__time-separator']}>{':'}</span>
               <Input
                 aria-labelledby={'time-label-id'}
                 width={4}
