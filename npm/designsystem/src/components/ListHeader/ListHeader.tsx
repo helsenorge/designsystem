@@ -131,7 +131,6 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
   });
   const chevronClasses = cn(styles['list-header__chevron'], {
     [styles['list-header__chevron--for-string-content']]: contentIsString,
-    [styles['list-header__chevron--right']]: !mappedChildren.badgeChild,
     [styles['list-header__chevron--' + size]]: !contentIsString && size,
   });
   const contentClasses = cn(styles['list-header__content'], {
