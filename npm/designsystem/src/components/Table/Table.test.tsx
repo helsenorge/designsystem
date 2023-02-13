@@ -1,25 +1,59 @@
 import React, { useState } from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen, render, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { SmallViewportVariant, Table, TableBody, TableHead, TableHeadCell, TableCell, TableRow, HeaderCategory, SortDirection } from './';
+import {
+  SmallViewportVariant,
+  Table,
+  TableBody,
+  TableHead,
+  TableHeadCell,
+  TableCell,
+  TableRow,
+  HeaderCategory,
+  SortDirection,
+  TableExpanderCell,
+  TableExpandedRow,
+} from './';
+
+import * as SizeUtils from '../../hooks/useSize';
+import * as BreakpointUtils from '../../hooks/useBreakpoint';
+import * as DeviceUtils from '../../utils/device';
+
+const mockUseBreakpoint = jest.fn();
+jest.spyOn(BreakpointUtils, 'useBreakpoint').mockImplementation(mockUseBreakpoint);
+
+const mockUseSize = jest.fn();
+jest.spyOn(SizeUtils, 'useSize').mockImplementation(mockUseSize);
+
+const mockIsTouchDevice = jest.fn();
+jest.spyOn(DeviceUtils, 'isTouchDevice').mockImplementation(mockIsTouchDevice);
+
+const TableContents: React.FC = () => (
+  <>
+    <TableHead category={HeaderCategory.normal}>
+      <TableRow>
+        <TableHeadCell>Navn</TableHeadCell>
+        <TableHeadCell>Beskrivelse</TableHeadCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      <TableRow>
+        <TableCell dataLabel="Navn">Hans Nilsen</TableCell>
+        <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>
+      </TableRow>
+    </TableBody>
+  </>
+);
 
 describe('Gitt at Table skal vises', (): void => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   describe('Når den skal vises', (): void => {
     it('Så vises en tabell', (): void => {
       const { container } = render(
         <Table smallViewportVariant={SmallViewportVariant.horizontalscroll} testId="test01">
-          <TableHead category={HeaderCategory.normal}>
-            <TableRow rowKey="0">
-              <TableHeadCell>Navn</TableHeadCell>
-              <TableHeadCell>Beskrivelse</TableHeadCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow rowKey="1">
-              <TableCell dataLabel="Navn">Hans Nilsen</TableCell>
-              <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>
-            </TableRow>
-          </TableBody>
+          <TableContents />
         </Table>
       );
 
@@ -33,6 +67,290 @@ describe('Gitt at Table skal vises', (): void => {
     });
   });
 });
+
+describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): void => {
+  describe('Når touch er støttet', (): void => {
+    describe('Når breakpoint er md', (): void => {
+      it('Så vises en tabell med responsiv visning', (): void => {
+        mockIsTouchDevice.mockReturnValue(true);
+        mockUseBreakpoint.mockReturnValue(768);
+        const { container } = render(
+          <Table smallViewportVariant={{ variant: SmallViewportVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+            <TableContents />
+          </Table>
+        );
+
+        expect(container).toMatchSnapshot();
+
+        const table = screen.getByTestId('test-table');
+        expect(table.className).toBe('table');
+
+        const horizontallScroll = screen.getByTestId('horizontal-scroll');
+        expect(horizontallScroll).toBeInTheDocument();
+      });
+
+      it('Så kan horizontalscroll tabbes til', async (): Promise<void> => {
+        mockUseBreakpoint.mockReturnValue(768);
+        render(
+          <Table smallViewportVariant={{ variant: SmallViewportVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+            <TableContents />
+          </Table>
+        );
+
+        await userEvent.tab();
+
+        const horizontallScroll = screen.getByTestId('horizontal-scroll');
+        expect(horizontallScroll.childNodes[0]).toHaveFocus();
+      });
+    });
+    describe('Når breakpoint er lg', (): void => {
+      it('Så vises en tabell uten responsiv visning', (): void => {
+        mockIsTouchDevice.mockReturnValue(true);
+        mockUseBreakpoint.mockReturnValue(769);
+        const { container } = render(
+          <Table smallViewportVariant={{ variant: SmallViewportVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+            <TableContents />
+          </Table>
+        );
+
+        expect(container).toMatchSnapshot();
+
+        const table = screen.getByTestId('test-table');
+        expect(table.className).toBe('table');
+
+        const horizontallScroll = screen.queryByTestId('horizontal-scroll');
+        expect(horizontallScroll).not.toBeInTheDocument();
+      });
+    });
+  });
+  describe('Når touch ikke er støttet', (): void => {
+    describe('Når ingen fallback er definert', (): void => {
+      it('Så vises en tabell uten responsiv visning', (): void => {
+        mockIsTouchDevice.mockReturnValue(false);
+        mockUseBreakpoint.mockReturnValue(768);
+        const { container } = render(
+          <Table smallViewportVariant={{ variant: SmallViewportVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+            <TableContents />
+          </Table>
+        );
+
+        expect(container).toMatchSnapshot();
+
+        const table = screen.getByTestId('test-table');
+        expect(table.className).toBe('table');
+
+        const horizontallScroll = screen.queryByTestId('horizontal-scroll');
+        expect(horizontallScroll).not.toBeInTheDocument();
+      });
+    });
+    describe('Når fallback er block', (): void => {
+      it('Så vises en tabell med responsiv visning', (): void => {
+        mockIsTouchDevice.mockReturnValue(false);
+        mockUseBreakpoint.mockReturnValue(768);
+        const { container } = render(
+          <Table
+            smallViewportVariant={{
+              variant: SmallViewportVariant.horizontalscroll,
+              breakpoint: 'md',
+              fallbackVariant: SmallViewportVariant.block,
+            }}
+            testId="test-table"
+          >
+            <TableContents />
+          </Table>
+        );
+
+        expect(container).toMatchSnapshot();
+
+        const table = screen.getByTestId('test-table');
+        expect(table.className).toBe('table table--block-md');
+
+        const horizontallScroll = screen.queryByTestId('horizontal-scroll');
+        expect(horizontallScroll).not.toBeInTheDocument();
+      });
+    });
+    describe('Når fallback er centeredoverflow', (): void => {
+      describe('Når tabell er bredere enn skjermen', (): void => {
+        it('Så vises en tabell uten responsiv visning', (): void => {
+          mockIsTouchDevice.mockReturnValue(false);
+          const originalInnerWidth = window.innerWidth;
+          window.innerWidth = 564;
+          mockUseBreakpoint.mockReturnValue(564);
+          mockUseSize.mockReturnValue({ width: 1025 });
+          const { container } = render(
+            <Table
+              smallViewportVariant={{
+                variant: SmallViewportVariant.horizontalscroll,
+                breakpoint: 'md',
+                fallbackVariant: SmallViewportVariant.centeredoverflow,
+              }}
+              testId="test-table"
+            >
+              <TableContents />
+            </Table>
+          );
+
+          expect(container).toMatchSnapshot();
+
+          const table = screen.getByTestId('test-table');
+          expect(table.className).toBe('table');
+
+          const horizontallScroll = screen.queryByTestId('horizontal-scroll');
+          expect(horizontallScroll).not.toBeInTheDocument();
+
+          window.innerWidth = originalInnerWidth;
+        });
+      });
+    });
+  });
+});
+
+describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): void => {
+  describe('Når breakpoint er lg', (): void => {
+    describe('Når tabell er smalere enn skjermen', (): void => {
+      it('Så vises en tabell med responsiv visning', (): void => {
+        const originalInnerWidth = window.innerWidth;
+        window.innerWidth = 1024;
+        mockUseBreakpoint.mockReturnValue(1024);
+        mockUseSize.mockReturnValue({ width: 1024 });
+        const { container } = render(
+          <Table smallViewportVariant={{ variant: SmallViewportVariant.centeredoverflow, breakpoint: 'lg' }} testId="test-table">
+            <TableContents />
+          </Table>
+        );
+
+        expect(container).toMatchSnapshot();
+
+        const table = screen.getByTestId('test-table');
+        expect(table.className).toBe('table table--centeredoverflow-lg');
+
+        window.innerWidth = originalInnerWidth;
+      });
+    });
+  });
+  describe('Når tabell er bredere enn skjermen', (): void => {
+    describe('Når ingen fallback er definert', (): void => {
+      it('Så vises en tabell uten responsiv visning', (): void => {
+        const originalInnerWidth = window.innerWidth;
+        window.innerWidth = 564;
+        mockUseBreakpoint.mockReturnValue(564);
+        mockUseSize.mockReturnValue({ width: 1025 });
+
+        const { container } = render(
+          <Table smallViewportVariant={{ variant: SmallViewportVariant.centeredoverflow, breakpoint: 'lg' }} testId="test-table">
+            <TableContents />
+          </Table>
+        );
+
+        expect(container).toMatchSnapshot();
+
+        const table = screen.getByTestId('test-table');
+        expect(table.className).toBe('table');
+
+        window.innerWidth = originalInnerWidth;
+      });
+    });
+    describe('Når fallback er block', (): void => {
+      it('Så vises en tabell med responsiv visning', (): void => {
+        const originalInnerWidth = window.innerWidth;
+        window.innerWidth = 564;
+        mockUseBreakpoint.mockReturnValue(564);
+        mockUseSize.mockReturnValue({ width: 1025 });
+
+        const { container } = render(
+          <Table
+            smallViewportVariant={{
+              variant: SmallViewportVariant.centeredoverflow,
+              breakpoint: 'lg',
+              fallbackVariant: SmallViewportVariant.block,
+            }}
+            testId="test-table"
+          >
+            <TableContents />
+          </Table>
+        );
+
+        expect(container).toMatchSnapshot();
+
+        const table = screen.getByTestId('test-table');
+        expect(table.className).toBe('table table--block-lg');
+
+        window.innerWidth = originalInnerWidth;
+      });
+    });
+  });
+  describe('Når fallback er horizontalscroll', (): void => {
+    describe('Når touch ikke er støttet', (): void => {
+      it('Så vises en tabell uten responsiv visning', (): void => {
+        mockIsTouchDevice.mockReturnValue(false);
+        const originalInnerWidth = window.innerWidth;
+        window.innerWidth = 564;
+        mockUseBreakpoint.mockReturnValue(564);
+        mockUseSize.mockReturnValue({ width: 1025 });
+
+        const { container } = render(
+          <Table
+            smallViewportVariant={{
+              variant: SmallViewportVariant.centeredoverflow,
+              breakpoint: 'lg',
+              fallbackVariant: SmallViewportVariant.horizontalscroll,
+            }}
+            testId="test-table"
+          >
+            <TableContents />
+          </Table>
+        );
+
+        expect(container).toMatchSnapshot();
+
+        const table = screen.getByTestId('test-table');
+        expect(table.className).toBe('table');
+
+        window.innerWidth = originalInnerWidth;
+      });
+    });
+  });
+});
+
+describe('Når den skal vises med blokk-visning på md skjerm', (): void => {
+  describe('Når breakpoint er md', (): void => {
+    it('Så vises en tabell', (): void => {
+      mockUseBreakpoint.mockReturnValue(768);
+      const { container } = render(
+        <Table smallViewportVariant={{ variant: SmallViewportVariant.block, breakpoint: 'md' }} testId="test-table">
+          <TableContents />
+        </Table>
+      );
+
+      expect(container).toMatchSnapshot();
+
+      const table = screen.getByTestId('test-table');
+      expect(table.className).toBe('table table--block-md');
+
+      const horizontallScroll = screen.queryByTestId('horizontal-scroll');
+      expect(horizontallScroll).not.toBeInTheDocument();
+    });
+  });
+  describe('Når breakpoint er lg', (): void => {
+    it('Så vises en tabell uten responsiv visning', (): void => {
+      mockUseBreakpoint.mockReturnValue(769);
+      const { container } = render(
+        <Table smallViewportVariant={{ variant: SmallViewportVariant.block, breakpoint: 'md' }} testId="test-table">
+          <TableContents />
+        </Table>
+      );
+
+      expect(container).toMatchSnapshot();
+
+      const table = screen.getByTestId('test-table');
+      expect(table.className).toBe('table');
+
+      const horizontallScroll = screen.queryByTestId('horizontal-scroll');
+      expect(horizontallScroll).not.toBeInTheDocument();
+    });
+  });
+});
+
 describe('Gitt at Table kan sorteres', (): void => {
   describe('Når klikker for å sortere', (): void => {
     it('Så har tabellheader og knapper for å sortere riktige aria-egenskaper', async (): Promise<void> => {
@@ -52,7 +370,7 @@ describe('Gitt at Table kan sorteres', (): void => {
         return (
           <Table>
             <TableHead category={HeaderCategory.sortable}>
-              <TableRow rowKey="head">
+              <TableRow>
                 <TableHeadCell
                   sortable
                   sortDir={sortColumn === 'Fastlegekontor' ? sortDirection : undefined}
@@ -70,11 +388,11 @@ describe('Gitt at Table kan sorteres', (): void => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow rowKey="1">
+              <TableRow>
                 <TableCell dataLabel="Fastlegekontor">Rodeløkka</TableCell>
                 <TableCell dataLabel="LedigePlasser">10</TableCell>
               </TableRow>
-              <TableRow rowKey="2">
+              <TableRow>
                 <TableCell dataLabel="Fastlegekontor">Stovner</TableCell>
                 <TableCell dataLabel="LedigePlasser">5</TableCell>
               </TableRow>
@@ -122,6 +440,95 @@ describe('Gitt at Table kan sorteres', (): void => {
       expect(columnHeader1).not.toHaveAttribute('aria-sort');
       expect(sortButton2).toHaveAttribute('aria-pressed', 'true');
       expect(columnHeader2).toHaveAttribute('aria-sort', 'descending');
+    });
+  });
+});
+
+describe('Gitt at Table kan ekspanderes', (): void => {
+  describe('Når man klikker for å ekspandere', (): void => {
+    it('Så vises ekspandert rad, og man kan lukke den igjen', async (): Promise<void> => {
+      const ExpandableTable: React.FC = () => {
+        const [expanded, setExpanded] = useState(new Array(2).fill(false));
+        const toggleExpand = (index: number) => {
+          const newExpanded = [...expanded];
+          newExpanded[index] = !expanded[index];
+          setExpanded(newExpanded);
+        };
+
+        return (
+          <Table>
+            <TableHead category={HeaderCategory.sortable}>
+              <TableRow>
+                <TableHeadCell />
+                <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Ledige plasser</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow
+                onClick={() => {
+                  toggleExpand(0);
+                }}
+                expandable
+                expanded={expanded[0]}
+                hideDetailsText="Skjul detaljer"
+                showDetailsText="Vis detaljer"
+              >
+                <TableExpanderCell
+                  expanded={expanded[0]}
+                  expandableRowId={'0'}
+                  hideDetailsText="Skjul detaljer"
+                  showDetailsText="Vis detaljer"
+                />
+                <TableCell dataLabel="Fastlegekontor">Rodeløkka</TableCell>
+                <TableCell dataLabel="LedigePlasser">10</TableCell>
+              </TableRow>
+              <TableExpandedRow
+                numberOfColumns={3}
+                expanded={expanded[0]}
+                toggleClick={() => {
+                  toggleExpand(0);
+                }}
+                hideDetailsText={'Skjul detaljer om Rodeløkka'}
+              >
+                <p>Her er mer info om Rodeløkka</p>
+              </TableExpandedRow>
+            </TableBody>
+          </Table>
+        );
+      };
+
+      render(<ExpandableTable />);
+
+      const rows = screen.getAllByRole('row');
+      expect(rows).toHaveLength(3);
+
+      const expanderButtons = within(rows[1]).getAllByRole('button', { name: 'Vis detaljer' });
+      expect(expanderButtons).toHaveLength(2);
+
+      const [desktopButton, mobileButton] = expanderButtons;
+
+      expect(desktopButton).toHaveAttribute('aria-expanded', 'false');
+      expect(desktopButton).toHaveAttribute('aria-controls', '0');
+      expect(mobileButton).toHaveAttribute('aria-expanded', 'false');
+      expect(mobileButton).not.toHaveAttribute('aria-controls');
+
+      await userEvent.click(desktopButton);
+
+      expect(desktopButton).toHaveAttribute('aria-expanded', 'true');
+      expect(mobileButton).toHaveAttribute('aria-expanded', 'true');
+
+      const expandedRowText = screen.getByText('Her er mer info om Rodeløkka');
+      expect(expandedRowText).toBeVisible();
+
+      const hideButton = screen.getByRole('button', { name: 'Skjul detaljer om Rodeløkka' });
+      expect(hideButton).toBeVisible();
+      expect(hideButton).toHaveAttribute('aria-expanded', 'true');
+
+      await userEvent.click(hideButton);
+      expect(hideButton).toHaveAttribute('aria-expanded', 'false');
+      expect(desktopButton).toHaveAttribute('aria-expanded', 'false');
+      expect(mobileButton).toHaveAttribute('aria-expanded', 'false');
     });
   });
 });

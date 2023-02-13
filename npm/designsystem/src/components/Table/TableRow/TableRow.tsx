@@ -1,11 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import tableStyles from '../styles.module.scss';
-
-import Button from '../../Button';
-import Icon from '../../Icons';
-import ChevronUp from '../../Icons/ChevronUp';
-import ChevronDown from '../../Icons/ChevronDown';
+import TableExpanderCellMobile from '../TableExpanderCell/TableExpanderCellMobile';
 
 export interface Props {
   /** Sets if expanded row can be expanded */
@@ -26,7 +22,7 @@ export interface Props {
   children?: React.ReactNode;
 }
 
-export const TableRow = function TableRow({
+export const TableRow: React.FC<Props> = ({
   rowKey,
   hideDetailsText,
   showDetailsText,
@@ -35,7 +31,7 @@ export const TableRow = function TableRow({
   onClick,
   className,
   children,
-}: Props) {
+}) => {
   const tableRowClass = classNames(
     tableStyles['table-row'],
     {
@@ -44,37 +40,18 @@ export const TableRow = function TableRow({
     },
     className
   );
-  let expandablerButtonMobile: JSX.Element | null = null;
-  if (expandable) {
-    const expandableKeyMobile = `expandableMobile`;
-    // Extra column to appear on smaller screens
-    const expanderCellMobileClass = classNames(tableStyles['table__cell'], tableStyles['table__expander-cell-mobile'], {
-      [tableStyles['table__expander-cell-mobile--expanded']]: expanded,
-    });
-
-    const expanderButtonMobileClass = classNames(tableStyles['table__expander-button-mobile'], {
-      [tableStyles['table__expander-button-mobile--expanded']]: expanded,
-    });
-    expandablerButtonMobile = (
-      <td key={expandableKeyMobile} className={expanderCellMobileClass}>
-        <Button
-          aria-expanded={expanded}
-          variant="borderless"
-          className={expanderButtonMobileClass}
-          onClick={() => {
-            onClick && onClick();
-          }}
-        >
-          <Icon svgIcon={expanded ? ChevronUp : ChevronDown} /> {expanded ? hideDetailsText : showDetailsText}
-        </Button>
-      </td>
-    );
-  }
 
   return (
     <tr className={tableRowClass} onClick={onClick} key={rowKey}>
       {children}
-      {expandablerButtonMobile}
+      {expandable && (
+        <TableExpanderCellMobile
+          expanded={expanded}
+          onClick={onClick}
+          hideDetailsText={hideDetailsText}
+          showDetailsText={showDetailsText}
+        />
+      )}
     </tr>
   );
 };

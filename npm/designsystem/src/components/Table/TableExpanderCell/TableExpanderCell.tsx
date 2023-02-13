@@ -5,7 +5,6 @@ import Icon from '../../Icons';
 import Button from '../../Button';
 import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
-import { palette } from '../../../theme/palette';
 
 export interface Props {
   /** Adds custom classes to the element. */
@@ -31,14 +30,14 @@ export const TableExpanderCell = function TableExpanderCell({
   const icon = expanded ? ChevronUp : ChevronDown;
 
   return (
-    <td className={tableCellClass} aria-controls={expandableRowId} aria-label={expanded ? hideDetailsText : showDetailsText}>
+    <td className={tableCellClass}>
       <Button
         variant="borderless"
         aria-expanded={expanded}
         aria-controls={expandableRowId}
         ariaLabel={expanded ? hideDetailsText : showDetailsText}
       >
-        <Icon svgIcon={icon} color={palette.blueberry500}></Icon>
+        <Icon svgIcon={icon} />
       </Button>
     </td>
   );

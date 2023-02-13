@@ -1,4 +1,5 @@
 @import '../../scss/_breakpoints.scss';
+@import '../../scss/_palette.scss';
 
 $gradient: rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.27) 18%, transparent;
 
@@ -6,6 +7,10 @@ $gradient: rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.27) 18%, transparent;
   position: relative;
   &__viewport {
     display: flex;
+    &:focus-visible {
+      outline: getSpacer(4xs) solid $black;
+      outline-offset: -1px;
+    }
     &--overflow {
       overflow-x: auto;
       overflow-y: hidden;

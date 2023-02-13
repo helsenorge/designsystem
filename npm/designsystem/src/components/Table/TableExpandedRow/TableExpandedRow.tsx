@@ -44,12 +44,7 @@ export const TableExpandedRow = function TableExpandedRow({
       <td colSpan={numberOfColumns} className={tableCellClass}>
         <div className={containerClass}>
           {children}
-          <Button
-            className={tableStyles['table__expanded-row-button']}
-            variant={'borderless'}
-            onClick={toggleClick}
-            tabIndex={expanded ? 0 : -1}
-          >
+          <Button variant={'borderless'} onClick={toggleClick} aria-expanded={expanded} tabIndex={expanded ? 0 : -1}>
             {hideDetailsText}
             <Icon svgIcon={ChevronUp} />
           </Button>

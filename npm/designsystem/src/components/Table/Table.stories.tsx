@@ -51,9 +51,9 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
 
   return (
     <GridExample>
-      <Table smallViewportVariant={args.viewportVariant}>
+      <Table {...args}>
         <TableHead category={args.headerCategory}>
-          <TableRow rowKey="head">
+          <TableRow>
             <TableHeadCell>Fastlege</TableHeadCell>
             <TableHeadCell>Fastlegekontor</TableHeadCell>
             <TableHeadCell>Ledige plasser</TableHeadCell>
@@ -70,15 +70,117 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
   );
 };
 
+export const CenteredOverflow: ComponentStory<typeof Table> = (args: any) => {
+  const data = getFastlegeData(SortDirection.asc, '');
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-8 offset-2">
+          <p>{longLoremText}</p>
+          <Table {...args} smallViewportVariant={{ breakpoint: 'lg', variant: SmallViewportVariant.centeredoverflow }}>
+            <TableHead category={args.headerCategory}>
+              <TableRow>
+                <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Ledige plasser</TableHeadCell>
+                <TableHeadCell>Antall på venteliste</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((fastlege, i: number) => (
+                <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <p>{longLoremText}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
+  const data = getFastlegeData(SortDirection.asc, '');
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-8 offset-lg-2">
+          <p>{longLoremText}</p>
+          <Table
+            {...args}
+            smallViewportVariant={{
+              breakpoint: 'lg',
+              variant: SmallViewportVariant.horizontalscroll,
+            }}
+          >
+            <TableHead category={args.headerCategory}>
+              <TableRow>
+                <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Ledige plasser</TableHeadCell>
+                <TableHeadCell>Antall på venteliste</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((fastlege, i: number) => (
+                <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <p>{longLoremText}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+export const HorizontalScrollWithFallback: ComponentStory<typeof Table> = (args: any) => {
+  const data = getFastlegeData(SortDirection.asc, '');
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-8 offset-lg-2">
+          <p>{longLoremText}</p>
+          <Table
+            {...args}
+            smallViewportVariant={{
+              breakpoint: 'lg',
+              variant: SmallViewportVariant.horizontalscroll,
+              fallbackVariant: SmallViewportVariant.block,
+            }}
+          >
+            <TableHead category={args.headerCategory}>
+              <TableRow>
+                <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Ledige plasser</TableHeadCell>
+                <TableHeadCell>Antall på venteliste</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((fastlege, i: number) => (
+                <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <p>{longLoremText}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const Block: ComponentStory<typeof Table> = (args: any) => {
   const data = getFastlegeData(SortDirection.asc, '');
 
   return (
     <GridExample>
       <p>{longLoremText}</p>
-      <Table smallViewportVariant={SmallViewportVariant.horizontalscroll}>
+      <Table {...args} smallViewportVariant={{ breakpoint: 'lg', variant: SmallViewportVariant.block }}>
         <TableHead category={args.headerCategory}>
-          <TableRow key="head">
+          <TableRow>
             <TableHeadCell>Fastlege</TableHeadCell>
             <TableHeadCell>Fastlegekontor</TableHeadCell>
             <TableHeadCell>Ledige plasser</TableHeadCell>
@@ -93,6 +195,42 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
       </Table>
       <p>{longLoremText}</p>
     </GridExample>
+  );
+};
+
+export const BreakpointConfig: ComponentStory<typeof Table> = (args: any) => {
+  const data = getFastlegeData(SortDirection.asc, '');
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-8 offset-lg-2">
+          <p>{longLoremText}</p>
+          <Table
+            {...args}
+            smallViewportVariant={[
+              { breakpoint: 'sm', variant: SmallViewportVariant.block },
+              { breakpoint: 'xl', variant: SmallViewportVariant.centeredoverflow, fallbackVariant: SmallViewportVariant.horizontalscroll },
+            ]}
+          >
+            <TableHead category={args.headerCategory}>
+              <TableRow>
+                <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Ledige plasser</TableHeadCell>
+                <TableHeadCell>Antall på venteliste</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((fastlege, i: number) => (
+                <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <p>{longLoremText}</p>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -120,9 +258,9 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
 
   return (
     <GridExample>
-      <Table smallViewportVariant={SmallViewportVariant.block}>
+      <Table {...args}>
         <TableHead category={HeaderCategory.sortable}>
-          <TableRow rowKey="head">
+          <TableRow>
             <TableHeadCell />
             <TableHeadCell sortable sortDir={sortColumn === 'Fastlege' ? sortDirection : undefined} onClick={() => clickSort('Fastlege')}>
               Navn, alder og kjønn på fastlegenfastlegenfastlegenfastlegenfastlegenfastlegenfastlegenfastlegen
@@ -212,9 +350,9 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
 export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
   return (
     <GridExample>
-      <Table smallViewportVariant={SmallViewportVariant.horizontalscroll}>
+      <Table {...args} smallViewportVariant={{ breakpoint: 'lg', variant: SmallViewportVariant.horizontalscroll }}>
         <TableHead category={HeaderCategory.normal}>
-          <TableRow rowKey="0">
+          <TableRow>
             <TableHeadCell>Navn</TableHeadCell>
             <TableHeadCell>Beskrivelse</TableHeadCell>
             <TableHeadCell>Mer info</TableHeadCell>
@@ -224,7 +362,7 @@ export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow rowKey="1">
+          <TableRow>
             <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
             <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>
             <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
@@ -238,7 +376,7 @@ export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
               12.12.2020
             </TableCell>
           </TableRow>
-          <TableRow rowKey="2">
+          <TableRow>
             <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
             <TableCell dataLabel="Beskrivelse">Enda en ganske lang beskrivelse...</TableCell>
             <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
@@ -252,7 +390,7 @@ export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
               12.12.2020
             </TableCell>
           </TableRow>
-          <TableRow rowKey="3">
+          <TableRow>
             <TableCell dataLabel="Navn">Ole Nilsen</TableCell>
             <TableCell dataLabel="Beskrivelse" nowrap>
               En-ganske-lang-tekst-uten-noen-mellomrom
