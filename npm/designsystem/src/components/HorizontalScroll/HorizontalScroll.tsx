@@ -12,9 +12,11 @@ interface HorizontalScrollProps {
    * Bredden på elementet som potensielt vil scrolle horisontalt i px
    */
   childWidth: number;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
-export const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ children, childWidth }) => {
+export const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ children, childWidth, testId }) => {
   const viewportRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
@@ -26,8 +28,8 @@ export const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ children, ch
   const viewportClasses = classNames(styles.horizontalscroll__viewport, isOverflowing && styles['horizontalscroll__viewport--overflow']);
 
   return (
-    <div className={styles.horizontalscroll}>
-      <div className={viewportClasses} ref={viewportRef}>
+    <div className={styles.horizontalscroll} data-testid={testId}>
+      <div className={viewportClasses} ref={viewportRef} tabIndex={0}>
         <div
           className={classNames(
             styles.horizontalscroll__indicator,

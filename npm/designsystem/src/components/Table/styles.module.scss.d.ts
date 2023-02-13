@@ -26,7 +26,18 @@ export type Styles = {
   'table__row--expandable': string;
   'table__row--expandable--selected': string;
   'table__sort-button': string;
-  'table--collapse2col': string;
+  'table--block-lg': string;
+  'table--block-md': string;
+  'table--block-sm': string;
+  'table--block-xl': string;
+  'table--block-xs': string;
+  'table--block-xxs': string;
+  'table--centeredoverflow-lg': string;
+  'table--centeredoverflow-md': string;
+  'table--centeredoverflow-sm': string;
+  'table--centeredoverflow-xl': string;
+  'table--centeredoverflow-xs': string;
+  'table--centeredoverflow-xxs': string;
 };
 
 export type ClassNames = keyof Styles;

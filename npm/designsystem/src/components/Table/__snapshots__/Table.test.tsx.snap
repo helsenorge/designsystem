@@ -4,9 +4,11 @@ exports[`Gitt at Table skal vises Når den skal vises Så vises en tabell 1`] = 
 <div>
   <div
     class="horizontalscroll"
+    data-testid="horizontal-scroll"
   >
     <div
       class="horizontalscroll__viewport"
+      tabindex="0"
     >
       <div
         class="horizontalscroll__indicator horizontalscroll__indicator--left"
@@ -62,5 +64,562 @@ exports[`Gitt at Table skal vises Når den skal vises Så vises en tabell 1`] = 
       <div />
     </div>
   </div>
+</div>
+`;
+
+exports[`Når den skal vises med blokk-visning på md skjerm Når breakpoint er lg Så vises en tabell uten responsiv visning 1`] = `
+<div>
+  <table
+    class="table"
+    data-analyticsid="table"
+    data-testid="test-table"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Når den skal vises med blokk-visning på md skjerm Når breakpoint er md Så vises en tabell 1`] = `
+<div>
+  <table
+    class="table table--block-md"
+    data-analyticsid="table"
+    data-testid="test-table"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når breakpoint er lg Når tabell er smalere enn skjermen Så vises en tabell med responsiv visning 1`] = `
+<div>
+  <table
+    class="table table--centeredoverflow-lg"
+    data-analyticsid="table"
+    data-testid="test-table"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når fallback er horizontalscroll Når touch ikke er støttet Så vises en tabell uten responsiv visning 1`] = `
+<div>
+  <table
+    class="table"
+    data-analyticsid="table"
+    data-testid="test-table"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tabell er bredere enn skjermen Når fallback er block Så vises en tabell med responsiv visning 1`] = `
+<div>
+  <table
+    class="table table--block-lg"
+    data-analyticsid="table"
+    data-testid="test-table"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tabell er bredere enn skjermen Når ingen fallback er definert Så vises en tabell uten responsiv visning 1`] = `
+<div>
+  <table
+    class="table"
+    data-analyticsid="table"
+    data-testid="test-table"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når touch er støttet Når breakpoint er lg Så vises en tabell uten responsiv visning 1`] = `
+<div>
+  <table
+    class="table"
+    data-analyticsid="table"
+    data-testid="test-table"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når touch er støttet Når breakpoint er md Så vises en tabell med responsiv visning 1`] = `
+<div>
+  <div
+    class="horizontalscroll"
+    data-testid="horizontal-scroll"
+  >
+    <div
+      class="horizontalscroll__viewport"
+      tabindex="0"
+    >
+      <div
+        class="horizontalscroll__indicator horizontalscroll__indicator--left"
+      />
+      <div
+        class="horizontalscroll__indicator horizontalscroll__indicator--right"
+      />
+      <div />
+      <table
+        class="table"
+        data-analyticsid="table"
+        data-testid="test-table"
+      >
+        <thead
+          class="table__head table__head--normal"
+        >
+          <tr
+            class="table-row"
+          >
+            <th
+              class="table__head-cell"
+              scope="col"
+            >
+              Navn
+            </th>
+            <th
+              class="table__head-cell"
+              scope="col"
+            >
+              Beskrivelse
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="table-row"
+          >
+            <td
+              class="table__cell"
+              data-label="Navn"
+            >
+              Hans Nilsen
+            </td>
+            <td
+              class="table__cell"
+              data-label="Beskrivelse"
+            >
+              En ganske lang beskrivelse...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når touch ikke er støttet Når fallback er block Så vises en tabell med responsiv visning 1`] = `
+<div>
+  <table
+    class="table table--block-md"
+    data-analyticsid="table"
+    data-testid="test-table"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når touch ikke er støttet Når fallback er centeredoverflow Når tabell er bredere enn skjermen Så vises en tabell uten responsiv visning 1`] = `
+<div>
+  <table
+    class="table"
+    data-analyticsid="table"
+    data-testid="test-table"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når touch ikke er støttet Når ingen fallback er definert Så vises en tabell uten responsiv visning 1`] = `
+<div>
+  <table
+    class="table"
+    data-analyticsid="table"
+    data-testid="test-table"
+  >
+    <thead
+      class="table__head table__head--normal"
+    >
+      <tr
+        class="table-row"
+      >
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;

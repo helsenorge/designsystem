@@ -48,7 +48,7 @@ import {
   {`
     <Table>
         <TableHead category={HeaderCategory.sortable}>
-          <TableRow rowKey="0">
+          <TableRow>
             <TableHeadCell></TableHeadCell>
             <TableHeadCell sortable sortDir={SortDirection.asc}>Navn</TableHeadCell>
             <TableHeadCell sortable>Beskrivelse</TableHeadCell>           
@@ -56,7 +56,7 @@ import {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow rowKey="1">
+          <TableRow>
             <TableExpanderCell hideDetailsText="Skjul detaljer"
                   showDetailsText="Vis detaljer" exanded />
             <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
@@ -68,7 +68,7 @@ import {
           <TableExpandedRow expanded numberOfColumns={4} hideDetailsText={"Skjul"}>
             <h3>Innhold i exanded row</h3>
           </TableExpandedRow>
-          <TableRow rowKey="2">
+          <TableRow>
             <TableExpanderCell hideDetailsText="Skjul detaljer"
                   showDetailsText="Vis detaljer" />
             <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
