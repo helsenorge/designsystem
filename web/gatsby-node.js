@@ -1,4 +1,5 @@
 const path = require('path');
+
 const { createFilePath } = require('gatsby-source-filesystem');
 
 exports.createPages = ({ actions, graphql }) => {
@@ -64,7 +65,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     },
     resolve: {
       alias: {
-        react: path.resolve('./node_modules/react'),
+        react: path.resolve('../node_modules/react'),
         'react-dom': path.resolve('./node_modules/@hot-loader/react-dom'),
       },
     },

@@ -3,17 +3,14 @@ import { breakpoints } from '../src/theme/grid';
 
 import '../src/scss/helsenorge.scss';
 
-export function createBackgroundColors() {
-  const placeholder = '#4A412A';
-  let backgroundColors = [];
+const placeholder = '#4A412A';
+
+const createBackgroundColors = () =>
   Object.keys(theme.palette)
     .filter(palette => theme.palette[palette] !== placeholder)
-    .map(palette => backgroundColors.push({ name: palette, value: theme.palette[palette] }));
-  return backgroundColors;
-}
+    .map(palette => ({ name: palette, value: theme.palette[palette] }));
 
-function createCustomViewPorts() {
-  let viewPorts = [];
+const createCustomViewPorts = () =>
   Object.keys(breakpoints).map(bp => {
     const breakpointPixels = breakpoints[bp];
     let type = 'mobile';
@@ -23,18 +20,15 @@ function createCustomViewPorts() {
       type = 'tablet';
     }
 
-    viewPorts.push({
+    return {
       name: bp,
       styles: {
         width: `${bp === 'xxs' ? 320 : breakpointPixels}px`,
         height: '100%',
         type,
       },
-    });
+    };
   });
-
-  return viewPorts;
-}
 
 export const parameters = {
   backgrounds: {

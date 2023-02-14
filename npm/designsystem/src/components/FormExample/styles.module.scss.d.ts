@@ -1,7 +1,8 @@
 export type Styles = {
-  'date-picker--spacing': string;
-  'fieldset--flex': string;
-  'fieldset--flex-time': string;
+  'date-time': string;
+  'date-time__date-picker': string;
+  'date-time__time-separator': string;
+  'date-time__time-wrapper': string;
 };
 
 export type ClassNames = keyof Styles;

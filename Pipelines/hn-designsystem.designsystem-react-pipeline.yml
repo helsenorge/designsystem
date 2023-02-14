@@ -18,7 +18,7 @@ pool:
 
 variables:
   - name: node_version
-    value: 16.15
+    value: 16.18.0
   - name: project_name
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
@@ -31,6 +31,8 @@ variables:
     value: true
   - name: Github.Username
     value: 'larskrj'
+  - name: HUSKY
+    value: 0
 
 stages:
   # stage build, test and analyze
@@ -72,18 +74,12 @@ stages:
             inputs:
               workingFile: $(working_directory)/.npmrc
 
+          # ci / install
           - task: Npm@1
-            displayName: 'npm ci (install lerna)'
+            displayName: npm ci
             inputs:
               command: ci
               workingDir: $(working_directory)
-
-          - task: Npm@1
-            displayName: 'npm bootstrap (ci)'
-            inputs:
-              command: custom
-              workingDir: $(working_directory)
-              customCommand: 'run bootstrap'
 
           # Lint commit message
           - bash: |
@@ -109,7 +105,7 @@ stages:
             inputs:
               command: custom
               workingDir: npm/designsystem
-              customCommand: 'audit --registry=https://registry.npmjs.org/ --only=prod --audit-level=moderate --package-lock-only'
+              customCommand: 'audit --registry=https://registry.npmjs.org/ --omit=dev --audit-level=moderate --package-lock-only'
             continueOnError: true
 
           - task: Npm@1
@@ -166,28 +162,13 @@ stages:
             inputs:
               pollingTimeoutSec: '300'
 
-          # Nullstill alle endringer fra tester o.l. før publisering
-          - script: 'git reset --hard'
-            displayName: 'git reset --hard'
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
-
-          - task: npmAuthenticate@0
-            displayName: 'npm Authenticate .npmrc'
-            inputs:
-              workingFile: .npmrc
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
-
+          # Publiser nye versjoner
           - script: 'git update-index --assume-unchanged .npmrc'
             displayName: 'Ignore changes to .npmrc'
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'))
 
-          # Publiser nye versjoner
           - task: Npm@1
             displayName: 'publish designsystem to Helsnorge-registry (latest)'
             inputs:
@@ -200,7 +181,8 @@ stages:
             continueOnError: true
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')))
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')),
+              not(contains(variables['Build.SourceBranch'], '-')))
 
           - task: Npm@1
             displayName: 'publish designsystem to Helsnorge-registry (beta)'
@@ -217,26 +199,19 @@ stages:
               contains(variables['Build.SourceBranch'], 'refs/tags/v'), contains(variables['Build.SourceBranch'], 'beta'))
 
           - task: Npm@1
-            displayName: 'create .npmrc (for npmjs publishing only)'
-            inputs:
-              command: custom
-              workingDir: npm/designsystem
-              customCommand: 'run create-npmrc'
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')))
-
-          - task: Npm@1
             displayName: 'publish designsystem to NPM (latest)'
             inputs:
               command: publish
               workingDir: npm/designsystem/lib
+              publishRegistry: useExternalRegistry
               publishEndpoint: 'npmjs connection (mai 2022)'
             continueOnError: true
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')))
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')),
+              not(contains(variables['Build.SourceBranch'], '-')))
 
+          # Deploy Storybook
           - task: Npm@1
             displayName: 'build storybook'
             inputs:
@@ -251,7 +226,7 @@ stages:
             displayName: 'deploy storybook (master)'
             inputs:
               command: custom
-              workingDir: $(working_directory)
+              workingDir: npm/designsystem
               customCommand: 'run deploy:storybook'
             env:
               NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
@@ -263,7 +238,7 @@ stages:
             displayName: 'deploy storybook (next)'
             inputs:
               command: custom
-              workingDir: $(working_directory)
+              workingDir: npm/designsystem
               customCommand: 'run deploy:storybook:next'
             env:
               NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
@@ -271,11 +246,12 @@ stages:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
               'refs/heads/feature/next'))
 
+          # Deploy documentation
           - task: Npm@1
             displayName: 'deploy documentation (master)'
             inputs:
               command: custom
-              workingDir: $(working_directory)
+              workingDir: web
               customCommand: 'run deploy:documentation'
             env:
               NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)

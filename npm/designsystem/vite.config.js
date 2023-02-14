@@ -26,7 +26,6 @@ export default defineConfig({
         peerDepsExternal(),
         copy({
           targets: [
-            { src: '.npmrc', dest: OUTPUT_DIRECTORY },
             { src: '*.md', dest: OUTPUT_DIRECTORY },
             { src: '../../CHANGELOG.md', dest: OUTPUT_DIRECTORY },
           ],

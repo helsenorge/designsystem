@@ -13,6 +13,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   moduleNameMapper: {
     '\\.scss$': 'identity-obj-proxy',
+    '^react($|/.+)': ['<rootDir>/node_modules/react$1', 'react$1'],
   },
   transformIgnorePatterns: ['node_modules/', '\\.snap'],
   transform: {

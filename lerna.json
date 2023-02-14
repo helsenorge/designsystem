@@ -2,12 +2,6 @@
   "version": "2.15.0",
   "npmClient": "npm",
   "command": {
-    "run": {
-      "npmClient": "npm"
-    },
-    "add": {
-      "npmClient": "npm"
-    },
     "version": {
       "allowBranch": ["master"],
       "ignoreChanges": ["CHANGELOG.md"]
@@ -17,5 +11,6 @@
       "registry": "https://pkgs.dev.azure.com/nhnfelles/_packaging/Helsenorge/npm/registry/"
     }
   },
-  "packages": ["npm/*", "web"]
+  "useWorkspaces": true,
+  "useNx": true
 }
