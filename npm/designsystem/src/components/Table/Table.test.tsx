@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { screen, render, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
-  SmallViewportVariant,
+  ResponsiveTableVariant,
   Table,
   TableBody,
   TableHead,
@@ -52,7 +52,7 @@ describe('Gitt at Table skal vises', (): void => {
   describe('Når den skal vises', (): void => {
     it('Så vises en tabell', (): void => {
       const { container } = render(
-        <Table smallViewportVariant={SmallViewportVariant.horizontalscroll} testId="test01">
+        <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'sm' }} testId="test01">
           <TableContents />
         </Table>
       );
@@ -64,6 +64,9 @@ describe('Gitt at Table skal vises', (): void => {
       expect(child).toHaveClass('table__cell');
 
       expect(container).toMatchSnapshot();
+
+      const horizontallScroll = screen.queryByTestId('horizontal-scroll');
+      expect(horizontallScroll).not.toBeInTheDocument();
     });
   });
 });
@@ -75,7 +78,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
         mockIsTouchDevice.mockReturnValue(true);
         mockUseBreakpoint.mockReturnValue(768);
         const { container } = render(
-          <Table smallViewportVariant={{ variant: SmallViewportVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+          <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
             <TableContents />
           </Table>
         );
@@ -92,7 +95,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
       it('Så kan horizontalscroll tabbes til', async (): Promise<void> => {
         mockUseBreakpoint.mockReturnValue(768);
         render(
-          <Table smallViewportVariant={{ variant: SmallViewportVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+          <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
             <TableContents />
           </Table>
         );
@@ -108,7 +111,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
         mockIsTouchDevice.mockReturnValue(true);
         mockUseBreakpoint.mockReturnValue(769);
         const { container } = render(
-          <Table smallViewportVariant={{ variant: SmallViewportVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+          <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
             <TableContents />
           </Table>
         );
@@ -129,7 +132,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
         mockIsTouchDevice.mockReturnValue(false);
         mockUseBreakpoint.mockReturnValue(768);
         const { container } = render(
-          <Table smallViewportVariant={{ variant: SmallViewportVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+          <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
             <TableContents />
           </Table>
         );
@@ -149,10 +152,10 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
         mockUseBreakpoint.mockReturnValue(768);
         const { container } = render(
           <Table
-            smallViewportVariant={{
-              variant: SmallViewportVariant.horizontalscroll,
+            breakpointConfig={{
+              variant: ResponsiveTableVariant.horizontalscroll,
               breakpoint: 'md',
-              fallbackVariant: SmallViewportVariant.block,
+              fallbackVariant: ResponsiveTableVariant.block,
             }}
             testId="test-table"
           >
@@ -179,10 +182,10 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
           mockUseSize.mockReturnValue({ width: 1025 });
           const { container } = render(
             <Table
-              smallViewportVariant={{
-                variant: SmallViewportVariant.horizontalscroll,
+              breakpointConfig={{
+                variant: ResponsiveTableVariant.horizontalscroll,
                 breakpoint: 'md',
-                fallbackVariant: SmallViewportVariant.centeredoverflow,
+                fallbackVariant: ResponsiveTableVariant.centeredoverflow,
               }}
               testId="test-table"
             >
@@ -214,7 +217,7 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
         mockUseBreakpoint.mockReturnValue(1024);
         mockUseSize.mockReturnValue({ width: 1024 });
         const { container } = render(
-          <Table smallViewportVariant={{ variant: SmallViewportVariant.centeredoverflow, breakpoint: 'lg' }} testId="test-table">
+          <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'lg' }} testId="test-table">
             <TableContents />
           </Table>
         );
@@ -237,7 +240,7 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
         mockUseSize.mockReturnValue({ width: 1025 });
 
         const { container } = render(
-          <Table smallViewportVariant={{ variant: SmallViewportVariant.centeredoverflow, breakpoint: 'lg' }} testId="test-table">
+          <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'lg' }} testId="test-table">
             <TableContents />
           </Table>
         );
@@ -259,10 +262,10 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
 
         const { container } = render(
           <Table
-            smallViewportVariant={{
-              variant: SmallViewportVariant.centeredoverflow,
+            breakpointConfig={{
+              variant: ResponsiveTableVariant.centeredoverflow,
               breakpoint: 'lg',
-              fallbackVariant: SmallViewportVariant.block,
+              fallbackVariant: ResponsiveTableVariant.block,
             }}
             testId="test-table"
           >
@@ -290,10 +293,10 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
 
         const { container } = render(
           <Table
-            smallViewportVariant={{
-              variant: SmallViewportVariant.centeredoverflow,
+            breakpointConfig={{
+              variant: ResponsiveTableVariant.centeredoverflow,
               breakpoint: 'lg',
-              fallbackVariant: SmallViewportVariant.horizontalscroll,
+              fallbackVariant: ResponsiveTableVariant.horizontalscroll,
             }}
             testId="test-table"
           >
@@ -317,7 +320,7 @@ describe('Når den skal vises med blokk-visning på md skjerm', (): void => {
     it('Så vises en tabell', (): void => {
       mockUseBreakpoint.mockReturnValue(768);
       const { container } = render(
-        <Table smallViewportVariant={{ variant: SmallViewportVariant.block, breakpoint: 'md' }} testId="test-table">
+        <Table breakpointConfig={{ variant: ResponsiveTableVariant.block, breakpoint: 'md' }} testId="test-table">
           <TableContents />
         </Table>
       );
@@ -335,7 +338,7 @@ describe('Når den skal vises med blokk-visning på md skjerm', (): void => {
     it('Så vises en tabell uten responsiv visning', (): void => {
       mockUseBreakpoint.mockReturnValue(769);
       const { container } = render(
-        <Table smallViewportVariant={{ variant: SmallViewportVariant.block, breakpoint: 'md' }} testId="test-table">
+        <Table breakpointConfig={{ variant: ResponsiveTableVariant.block, breakpoint: 'md' }} testId="test-table">
           <TableContents />
         </Table>
       );

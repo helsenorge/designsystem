@@ -7,11 +7,11 @@ import { AnalyticsId } from '../../constants';
 import HorizontalScroll from '../HorizontalScroll';
 import { useSize } from '../../hooks/useSize';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
-import { getBackwardsCompatibleConfig, getCurrentConfig, getBreakpointClass, isOldFormat } from './utils';
+import { getCurrentConfig, getBreakpointClass } from './utils';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
 
-export enum SmallViewportVariant {
-  /** No handling responsive behaviour. This will be the default in v3.0.0. */
+export enum ResponsiveTableVariant {
+  /** No handling responsive behaviour. Default. */
   none = 'none',
   /** Overflow parent container to the left and right while remaining centered horizontally. */
   centeredoverflow = 'centeredoverflow',
@@ -25,9 +25,9 @@ export interface BreakpointConfig {
   /** Breakpoint at which responsive behaviour will be applied. The table component uses a "desktop first" approach. */
   breakpoint: keyof typeof Breakpoint;
   /** Desired behaviour on this breakpoint and all smaller screens. */
-  variant: keyof typeof SmallViewportVariant;
+  variant: keyof typeof ResponsiveTableVariant;
   /** If variant is horizontallscroll, use a fallback instead of device is not a touch device. */
-  fallbackVariant?: keyof typeof SmallViewportVariant;
+  fallbackVariant?: keyof typeof ResponsiveTableVariant;
 }
 
 export interface Props {
@@ -36,8 +36,7 @@ export interface Props {
   /** Id used for testing */
   testId?: string;
   /** Customize how the table behaves on various screen widths */
-  /** @deprecated Rename to breakpointConfig in v3.0.0 and drop support for SmallViewPortVariant */
-  smallViewportVariant?: SmallViewportVariant | BreakpointConfig | BreakpointConfig[];
+  breakpointConfig?: BreakpointConfig | BreakpointConfig[];
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the content of the table. Use TableHead and TableBody */
@@ -49,7 +48,7 @@ export const Table: React.FC<Props> = ({
   testId,
   className,
   children,
-  smallViewportVariant: breakpointConfig = SmallViewportVariant.horizontalscroll,
+  breakpointConfig = { variant: ResponsiveTableVariant.none, breakpoint: 'xl' },
 }) => {
   const tableRef = useRef<HTMLTableElement>(null);
   const breakpoint = useBreakpoint();
@@ -57,9 +56,7 @@ export const Table: React.FC<Props> = ({
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useLayoutEvent(() => setWindowWidth(window.innerWidth), ['resize'], 100);
 
-  const currentConfig = isOldFormat(breakpointConfig)
-    ? getBackwardsCompatibleConfig(breakpointConfig)
-    : getCurrentConfig(breakpointConfig, breakpoint, tableWidth, windowWidth);
+  const currentConfig = getCurrentConfig(breakpointConfig, breakpoint, tableWidth, windowWidth);
   const breakpointClass = getBreakpointClass(currentConfig);
   const tableClass = classNames(styles.table, breakpointClass, className);
 
@@ -69,7 +66,7 @@ export const Table: React.FC<Props> = ({
     </table>
   );
 
-  const useHorizontalScroll = currentConfig?.variant === SmallViewportVariant.horizontalscroll && !currentConfig?.fallbackVariant;
+  const useHorizontalScroll = currentConfig?.variant === ResponsiveTableVariant.horizontalscroll && !currentConfig?.fallbackVariant;
 
   if (useHorizontalScroll) {
     return (

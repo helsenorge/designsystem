@@ -1,6 +1,6 @@
 import { Breakpoint } from '../../hooks/useBreakpoint';
 import { isTouchDevice } from '../../utils/device';
-import { BreakpointConfig, SmallViewportVariant } from './Table';
+import { BreakpointConfig, ResponsiveTableVariant } from './Table';
 
 import styles from './styles.module.scss';
 
@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
  * @returns true om breakpoint bruker CSS
  */
 const configUsesCss = (config: BreakpointConfig): boolean =>
-  config.variant === SmallViewportVariant.centeredoverflow || config.variant === SmallViewportVariant.block;
+  config.variant === ResponsiveTableVariant.centeredoverflow || config.variant === ResponsiveTableVariant.block;
 
 /**
  * Lag klassenavn for CSS-config
@@ -75,45 +75,45 @@ export const getCurrentConfig = (
   }
 
   if (
-    breakpointConfig.variant === SmallViewportVariant.centeredoverflow &&
+    breakpointConfig.variant === ResponsiveTableVariant.centeredoverflow &&
     !canUseCenteredOverflow &&
-    breakpointConfig.fallbackVariant === SmallViewportVariant.horizontalscroll
+    breakpointConfig.fallbackVariant === ResponsiveTableVariant.horizontalscroll
   ) {
     return {
-      variant: canUseHorizontalScroll ? SmallViewportVariant.horizontalscroll : SmallViewportVariant.none,
+      variant: canUseHorizontalScroll ? ResponsiveTableVariant.horizontalscroll : ResponsiveTableVariant.none,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
 
   if (
-    breakpointConfig.variant === SmallViewportVariant.centeredoverflow &&
+    breakpointConfig.variant === ResponsiveTableVariant.centeredoverflow &&
     !canUseCenteredOverflow &&
-    breakpointConfig.fallbackVariant !== SmallViewportVariant.centeredoverflow
+    breakpointConfig.fallbackVariant !== ResponsiveTableVariant.centeredoverflow
   ) {
     return {
-      variant: breakpointConfig.fallbackVariant ?? SmallViewportVariant.none,
+      variant: breakpointConfig.fallbackVariant ?? ResponsiveTableVariant.none,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
 
   if (
-    breakpointConfig.variant === SmallViewportVariant.horizontalscroll &&
+    breakpointConfig.variant === ResponsiveTableVariant.horizontalscroll &&
     !canUseHorizontalScroll &&
-    breakpointConfig.fallbackVariant === SmallViewportVariant.centeredoverflow
+    breakpointConfig.fallbackVariant === ResponsiveTableVariant.centeredoverflow
   ) {
     return {
-      variant: canUseCenteredOverflow ? SmallViewportVariant.centeredoverflow : SmallViewportVariant.none,
+      variant: canUseCenteredOverflow ? ResponsiveTableVariant.centeredoverflow : ResponsiveTableVariant.none,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
 
   if (
-    breakpointConfig.variant === SmallViewportVariant.horizontalscroll &&
+    breakpointConfig.variant === ResponsiveTableVariant.horizontalscroll &&
     !canUseHorizontalScroll &&
-    breakpointConfig.fallbackVariant !== SmallViewportVariant.horizontalscroll
+    breakpointConfig.fallbackVariant !== ResponsiveTableVariant.horizontalscroll
   ) {
     return {
-      variant: breakpointConfig.fallbackVariant ?? SmallViewportVariant.none,
+      variant: breakpointConfig.fallbackVariant ?? ResponsiveTableVariant.none,
       breakpoint: breakpointConfig.breakpoint,
     };
   }
@@ -128,15 +128,3 @@ export const getCurrentConfig = (
  */
 export const getBreakpointClass = (config?: BreakpointConfig): string | undefined =>
   config && configUsesCss(config) ? mapConfigToClass(config) : undefined;
-
-/** @deprecated Midlertidig, fjernes i v3.0.0 */
-export const isOldFormat = (x: unknown): x is SmallViewportVariant =>
-  (x as SmallViewportVariant) === SmallViewportVariant.block || (x as SmallViewportVariant) === SmallViewportVariant.horizontalscroll;
-
-/** @deprecated Midlertidig, fjernes i v3.0.0 */
-export const getBackwardsCompatibleConfig = (variant: SmallViewportVariant): BreakpointConfig => {
-  return {
-    breakpoint: 'sm',
-    variant,
-  };
-};

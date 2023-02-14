@@ -2,68 +2,50 @@
 
 exports[`Gitt at Table skal vises Når den skal vises Så vises en tabell 1`] = `
 <div>
-  <div
-    class="horizontalscroll"
-    data-testid="horizontal-scroll"
+  <table
+    class="table"
+    data-analyticsid="table"
+    data-testid="test01"
   >
-    <div
-      class="horizontalscroll__viewport"
-      tabindex="0"
+    <thead
+      class="table__head table__head--normal"
     >
-      <div
-        class="horizontalscroll__indicator horizontalscroll__indicator--left"
-      />
-      <div
-        class="horizontalscroll__indicator horizontalscroll__indicator--right"
-      />
-      <div />
-      <table
-        class="table"
-        data-analyticsid="table"
-        data-testid="test01"
+      <tr
+        class="table-row"
       >
-        <thead
-          class="table__head table__head--normal"
+        <th
+          class="table__head-cell"
+          scope="col"
         >
-          <tr
-            class="table-row"
-          >
-            <th
-              class="table__head-cell"
-              scope="col"
-            >
-              Navn
-            </th>
-            <th
-              class="table__head-cell"
-              scope="col"
-            >
-              Beskrivelse
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            class="table-row"
-          >
-            <td
-              class="table__cell"
-              data-label="Navn"
-            >
-              Hans Nilsen
-            </td>
-            <td
-              class="table__cell"
-              data-label="Beskrivelse"
-            >
-              En ganske lang beskrivelse...
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div />
-    </div>
-  </div>
+          Navn
+        </th>
+        <th
+          class="table__head-cell"
+          scope="col"
+        >
+          Beskrivelse
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="table-row"
+      >
+        <td
+          class="table__cell"
+          data-label="Navn"
+        >
+          Hans Nilsen
+        </td>
+        <td
+          class="table__cell"
+          data-label="Beskrivelse"
+        >
+          En ganske lang beskrivelse...
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;
 
