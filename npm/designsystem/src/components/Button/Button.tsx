@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { AriaAttributes, useEffect, useRef } from 'react';
 
 import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
 import { isTest, isProd } from '../../utils/environment';
@@ -20,7 +20,7 @@ export type ButtonSize = 'medium' | 'large';
 export type ButtonMode = 'onlight' | 'ondark';
 export type ButtonTags = 'button' | 'a';
 
-export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps {
+export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttributes {
   /** Sets the aria-label of the button, use when the button only includes an icon */
   ariaLabel?: string;
   /** Gives a unique id to the button */
@@ -135,7 +135,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, mobile);
   const hasArrow = arrow && !borderlessVariant;
   const large = size === 'large' && !destructive && !borderlessVariant;
-  const rest = { ...(restProps as React.HtmlHTMLAttributes<HTMLButtonElement>) };
+  const rest = { ...restProps };
 
   const buttonWrapperClasses = classNames(
     buttonStyles['button-wrapper'],

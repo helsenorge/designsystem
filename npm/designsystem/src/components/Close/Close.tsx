@@ -16,24 +16,26 @@ export interface CloseProps {
   ariaLabel?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Sets a different color to the icon. Blueberry600 is default  */
+  color?: string;
 }
 
-const Close = (props: CloseProps): JSX.Element => {
+const Close = ({ small, onClick, ariaLabel = 'Lukk', testId, color = palette.blueberry600 }: CloseProps): JSX.Element => {
   const breakpoint = useBreakpoint();
 
-  const iconSize = breakpoint === Breakpoint.xs || props.small ? 38 : 48;
-  const closeClasses = classNames(styles.close, { [styles['close--small']]: props.small });
+  const iconSize = breakpoint === Breakpoint.xs || small ? 38 : 48;
+  const closeClasses = classNames(styles.close, { [styles['close--small']]: small });
 
   return (
     <button
-      data-testid={props.testId}
+      data-testid={testId}
       data-analyticsid={AnalyticsId.Close}
       className={closeClasses}
-      aria-label={props.ariaLabel || 'Lukk'}
-      onClick={props.onClick}
+      aria-label={ariaLabel}
+      onClick={onClick}
       type="button"
     >
-      <Icon svgIcon={X} color={palette.blueberry600} size={iconSize} />
+      <Icon svgIcon={X} color={color} size={iconSize} />
     </button>
   );
 };

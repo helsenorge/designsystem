@@ -69,6 +69,36 @@ describe('Gitt at NotificationPanel skal vises', () => {
     });
   });
 
+  describe('Når bruker klikker på expand', (): void => {
+    test('Så vises innholdet i expander', async (): Promise<void> => {
+      render(
+        <NotificationPanel expanderButtonClosedText="Close" expanderButtonText="Open" expanderChildren="Expanded Content">
+          Some text here for testing.<a href="/">Lenke</a>
+        </NotificationPanel>
+      );
+
+      const expandButton = screen.getByTestId('expand');
+      await userEvent.click(expandButton);
+      expect(await screen.findByText('Expanded Content')).toBeInTheDocument();
+    });
+  });
+
+  describe('Når bruker ser compact-variant', (): void => {
+    test('Så vises innhold', async (): Promise<void> => {
+      const { container } = render(
+        <>
+          <NotificationPanel compactVariant="basic">
+            Some text here for testing.<a href="/">Lenke</a>
+          </NotificationPanel>
+          <NotificationPanel compactVariant="outline">
+            Some text here for testing.<a href="/">Lenke</a>
+          </NotificationPanel>
+        </>
+      );
+      expect(container).toMatchSnapshot();
+    });
+  });
+
   describe('Når panelet har label og tekstlig innhold', (): void => {
     test('Så er panelet tilgjengelig via label', (): void => {
       render(<NotificationPanel label="Overskrift">Some text here for testing</NotificationPanel>);
@@ -159,28 +189,6 @@ describe('Gitt at NotificationPanel skal vises', () => {
       );
 
       const component = screen.getByRole('region', { name: 'Danger!' });
-      expect(component).toBeVisible();
-    });
-  });
-
-  describe('Når variant er crisis', (): void => {
-    test('Så har komponenten role=alert', (): void => {
-      render(<NotificationPanel variant="crisis">Crisis!</NotificationPanel>);
-
-      const component = screen.getByRole('alert', { name: 'Crisis!' });
-      expect(component).toBeVisible();
-    });
-  });
-
-  describe('Når variant er crisis og role er region', (): void => {
-    test('Så har komponenten role=region', (): void => {
-      render(
-        <NotificationPanel variant="crisis" role="region">
-          Crisis!
-        </NotificationPanel>
-      );
-
-      const component = screen.getByRole('region', { name: 'Crisis!' });
       expect(component).toBeVisible();
     });
   });

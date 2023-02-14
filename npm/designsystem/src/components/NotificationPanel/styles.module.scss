@@ -8,44 +8,39 @@
   $panel: &;
   display: flex;
   width: inherit;
+  padding: getSpacer(2xs) getSpacer(s) getSpacer(2xs) getSpacer(2xs);
+  box-shadow: 0.25rem 0.25rem 0.375rem rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
 
-  &--has-children {
-    padding: getSpacer(2xs) getSpacer(s) getSpacer(2xs) getSpacer(2xs);
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    padding-left: getSpacer(s);
+    padding-right: getSpacer(m);
     #{$panel}__icon {
-      margin-top: getSpacer(2xs);
-      margin-right: getSpacer(2xs);
-    }
-    #{$panel}__content {
-      margin-top: getSpacer(s);
-      margin-bottom: getSpacer(s);
-    }
-    @media (min-width: map-get($grid-breakpoints, md)) {
-      padding-left: getSpacer(s);
-      padding-right: getSpacer(m);
-      #{$panel}__icon {
-        margin-right: getSpacer(m);
-      }
+      margin-right: getSpacer(m);
     }
   }
-  &--label-only {
-    align-items: center;
-    padding: getSpacer(m) getSpacer(s) getSpacer(m) getSpacer(2xs);
-    #{$panel}__icon {
-      display: flex;
-      margin-right: getSpacer(2xs);
-    }
+  &__compact {
+    width: fit-content;
+    font-weight: 600;
+    font-size: $font-size-xs;
+    line-height: 1.25rem;
+    box-shadow: none;
     @media (min-width: map-get($grid-breakpoints, md)) {
-      padding: getSpacer(l) getSpacer(m) getSpacer(l) getSpacer(s);
-      #{$panel}__icon {
-        margin-right: getSpacer(s);
-      }
+      padding-left: getSpacer(2xs);
+      padding-right: getSpacer(s);
     }
+    &--basic {
+      font-weight: 400;
+    }
+    &--outline {
+      border: none;
+    }
+  }
+  #{$panel}__icon {
+    margin-right: getSpacer(2xs);
   }
   &--dismissable {
     padding: getSpacer(2xs) getSpacer(2xs) getSpacer(m) getSpacer(2xs);
-  }
-  &--dismissable#{&}--has-children {
-    padding-left: getSpacer(s);
   }
   &--small {
     max-width: map-get($grid-breakpoints, sm);
@@ -57,22 +52,48 @@
     max-width: map-get($grid-breakpoints, lg);
   }
   &--info {
-    background-color: $kiwi50;
+    border: 0.125rem solid $blueberry700;
+    background-color: $blueberry50;
+  }
+  &--info.notification-panel__compact {
+    box-shadow: none;
+    background-color: transparent;
+  }
+  &--info.notification-panel__compact--basic {
+    border: none;
   }
   &--warn {
+    border: 0.125rem solid $banana700;
     background-color: $banana50;
   }
+  &--warn.notification-panel__compact {
+    box-shadow: none;
+    background-color: transparent;
+  }
+  &--warn.notification-panel__compact--basic {
+    border: none;
+  }
   &--alert {
-    background-color: $cherry100;
+    border: 0.125rem solid $cherry700;
+    background-color: $cherry50;
   }
-  &--alert#{&}--label-only {
-    color: $cherry500;
+  &--alert.notification-panel__compact {
+    box-shadow: none;
+    background-color: transparent;
   }
-  &--crisis {
-    background-color: $black;
+  &--alert.notification-panel__compact--basic {
+    border: none;
   }
-  &--shadow {
-    box-shadow: 0 0.3rem getSpacer(2xs) -0.1rem rgba(0, 0, 0, 0.15);
+  &--success {
+    border: 0.125rem solid $kiwi900;
+    background-color: $kiwi50;
+  }
+  &--success.notification-panel__compact {
+    box-shadow: none;
+    background-color: transparent;
+  }
+  &--success.notification-panel__compact--basic {
+    border: none;
   }
 
   &__close {
@@ -80,55 +101,52 @@
     margin-left: auto;
     padding-left: getSpacer(2xs);
   }
-
   &__content {
-    max-width: 772px;
-    p {
-      margin: 0;
-    }
-
+    align-self: center;
     a {
       @include anchorlink;
       @include anchorlink-icon;
     }
-
-    &--crisis {
-      color: $banana200;
-      a {
-        color: $white;
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.2);
-          color: $white;
-        }
-        &:focus {
-          background-color: $white;
-          color: $black;
-          border-color: $white;
-        }
-        &[target='_blank'] {
-          &:after {
-            content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48' fill='%23bdbab9'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
-          }
-
-          &:focus {
-            &:after {
-              content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='38px' height='38px' viewBox='0 0 48 48'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
-            }
-          }
-        }
-      }
-    }
+  }
+  &__children.notification-panel__label-and-content--spacing {
+    font-weight: 500;
   }
 
-  &__label {
-    font-size: $font-size-sm;
+  &__label,
+  &__children {
+    font-size: $font-size-xs;
     line-height: $lineheight-size-xs;
-    font-weight: 600;
     margin: 0;
     @media (min-width: map-get($grid-breakpoints, md)) {
-      font-size: $font-size-md;
-      line-height: $lineheight-size-md;
+      font-size: $font-size-sm;
+      line-height: 1.625rem;
     }
+  }
+  &__label {
+    font-weight: 700;
+    margin: getSpacer(2xs) 0 0 0;
+    &__compact {
+      font-weight: 600;
+      font-size: $font-size-xs;
+      line-height: 1.25rem;
+    }
+    &__compact--basic {
+      font-weight: 400;
+    }
+  }
+  &__label--no-content {
+    margin: 0;
+    font-weight: 600;
+  }
+  &__children {
+    font-weight: 600;
+    padding: getSpacer(3xs) 0;
+  }
+  &__icon {
+    line-height: 0;
+  }
+  &--with-content {
+    padding-bottom: getSpacer(xs);
   }
 }
 
@@ -136,20 +154,4 @@
   display: flex;
   justify-content: center;
   width: 100%;
-
-  &--info {
-    background-color: $kiwi50;
-  }
-  &--warn {
-    background-color: $banana50;
-  }
-  &--alert {
-    background-color: $cherry100;
-  }
-  &--crisis {
-    background-color: $black;
-  }
-  &--shadow {
-    box-shadow: 0 0.3rem getSpacer(2xs) -0.1rem rgba(0, 0, 0, 0.15);
-  }
 }
