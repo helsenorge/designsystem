@@ -1,8 +1,8 @@
 const banana = {
-  banana50: '#FCF2BF',
-  banana100: '#F9EA9F',
-  banana200: '#F5E080',
-  banana300: '#F1D460',
+  banana50: '#FDF8DF',
+  banana100: '#FCF2BF',
+  banana200: '#F9EA9F',
+  banana300: '#F5E080',
   banana400: '#EBC840',
   banana500: '#DDAB06',
   banana600: '#C59302',
