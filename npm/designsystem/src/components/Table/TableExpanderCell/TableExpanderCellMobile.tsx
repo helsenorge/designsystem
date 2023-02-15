@@ -9,9 +9,9 @@ import { Props } from '../TableRow/TableRow';
 
 import tableStyles from '../styles.module.scss';
 
-type TableExpanderCellMobile = Pick<Props, 'expanded' | 'onClick' | 'hideDetailsText' | 'showDetailsText'>;
+type TableExpanderCellMobileProps = Pick<Props, 'expanded' | 'onClick' | 'hideDetailsText' | 'showDetailsText'>;
 
-const TableExpanderCellMobile: React.FC<TableExpanderCellMobile> = ({ expanded, onClick, hideDetailsText, showDetailsText }) => {
+const TableExpanderCellMobile: React.FC<TableExpanderCellMobileProps> = ({ expanded, onClick, hideDetailsText, showDetailsText }) => {
   const cellClass = classNames(tableStyles.table__cell, tableStyles['table__expander-cell-mobile'], {
     [tableStyles['table__expander-cell-mobile--expanded']]: expanded,
   });
