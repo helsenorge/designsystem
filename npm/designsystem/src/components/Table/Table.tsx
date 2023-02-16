@@ -1,14 +1,15 @@
 import React, { useRef, useState } from 'react';
+
 import classNames from 'classnames';
 
-import styles from './styles.module.scss';
-
-import { AnalyticsId } from '../../constants';
-import HorizontalScroll from '../HorizontalScroll';
-import { useSize } from '../../hooks/useSize';
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { getCurrentConfig, getBreakpointClass } from './utils';
+import { AnalyticsId } from '../../constants';
+import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
+import { useSize } from '../../hooks/useSize';
+import HorizontalScroll from '../HorizontalScroll';
+
+import styles from './styles.module.scss';
 
 export enum ResponsiveTableVariant {
   /** No handling responsive behaviour. Default. */

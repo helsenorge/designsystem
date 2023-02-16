@@ -1,3 +1,18 @@
+## [2.16.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.15.0&targetVersion=GTv2.16.0) (2023-02-15)
+
+
+### Features
+
+*  tabell har mulighet for flere responsive visninger ([6b0f202](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/6b0f202af5009f79d6c035aab16ff6ca7cf903bb)), closes [#288929](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/288929)
+
+
+### Bug Fixes
+
+*  fixer bruk av Formgroup i storybook ([61bddf7](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/61bddf795d86e56ada7d39de30127434745c4ed4)), closes [#292556](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292556)
+*  fjern klasse som ikke brukes ([8544a30](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/8544a304383cac0b3b586bb74097ee64bb9e6dee)), closes [#294599](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/294599)
+*  panelactionbtn er plassert i lik linje med datetime ([7b1fc4d](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/7b1fc4d33ccc430dad760e7e0f3f2f051932c2d5)), closes [#292669](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292669)
+*  styling specificity ([cb35c03](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/cb35c03e173b2ae6896844f2f1f370eca6659688)), closes [#292556](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292556)
+
 ## [2.15.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.14.0&targetVersion=GTv2.15.0) (2023-02-09)
 
 

@@ -18,7 +18,7 @@ pool:
 
 variables:
   - name: node_version
-    value: 16.18.0
+    value: 16.19
   - name: project_name
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
@@ -29,8 +29,6 @@ variables:
     value: 'https://sonarqube.int-hn.nhn.no'
   - name: BROWSERSLIST_IGNORE_OLD_DATA
     value: true
-  - name: Github.Username
-    value: 'larskrj'
   - name: HUSKY
     value: 0
 
@@ -258,3 +256,17 @@ stages:
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
               'refs/heads/master'))
+  # Copy to Github
+  - stage:
+    displayName: 'Github'
+    condition:
+      and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
+      'refs/heads/master'))
+    jobs:
+      - job:
+        displayName: 'Copy to Github'
+        steps:
+          - bash: |
+              git push --prune https://$(Github.PAT)@github.com/helsenorge/designsystem \
+                  +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+            displayName: 'Copy to Github'

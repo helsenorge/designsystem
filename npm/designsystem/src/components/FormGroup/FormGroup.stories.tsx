@@ -124,14 +124,14 @@ export const CustomErrorWrapperClass: ComponentStory<typeof FormGroup> = (args: 
         htmlMarkup="div"
         {...args}
         legend={'ErrorWrapperClass gir mulighet til å style ErrorWrapper som ligger rundt form'}
-        errorWrapperclassName="error-wrapper-class--no-bottom-margin"
+        errorWrapperClassName="error-wrapper-class--no-bottom-margin"
       >
         <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
         <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
         <RadioButton inputId={'RadioButton3'} label={'Legg merke til avstand ned til border'} />
       </FormGroup>
       <Spacer size="2xs" />
-      <FormGroup htmlMarkup="div" {...args} errorWrapperclassName="error-wrapper-class">
+      <FormGroup htmlMarkup="div" {...args} errorWrapperClassName="error-wrapper-class">
         <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
         <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
         <RadioButton inputId={'RadioButton3'} label={'Med standard avstand ned til border'} />

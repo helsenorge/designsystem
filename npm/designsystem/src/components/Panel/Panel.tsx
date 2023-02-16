@@ -15,7 +15,6 @@ import { palette } from '../../theme/palette';
 import Pencil from '../Icons/Pencil';
 import Calendar from '../Icons/Calendar';
 import Watch from '../Icons/Watch';
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useUuid } from '../../hooks/useUuid';
 import { usePrevious } from '../../hooks/usePrevious';
 import { AriaLabelAttributes, getAriaLabelAttributes } from '../../utils/accessibility';
@@ -187,7 +186,6 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   const previousIsExpanded = usePrevious(isExpanded);
   const titleId = useUuid();
   const buttonTextId = useUuid();
-  const breakpoint = useBreakpoint();
   const hasBadge = statusMessage && status === PanelStatus.new;
 
   useEffect(() => {
@@ -333,13 +331,12 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
               </div>
             )}
             {contentA}
-            {breakpoint >= Breakpoint.lg && <DateTime date={date} time={time} />}
           </div>
           <div className={panelContentRightClass}>
             {contentB && <div className={panelContentBClass}>{contentB}</div>}
             {(children || url || date || time || buttonOnClick) && (
               <div className={btnContainerClass}>
-                {breakpoint < Breakpoint.lg && <DateTime date={date} time={time} />}
+                {<DateTime date={date} time={time} />}
                 {(children || url || buttonOnClick) && <div className={panelActionBtnClass}>{renderDetailsButton()}</div>}
               </div>
             )}

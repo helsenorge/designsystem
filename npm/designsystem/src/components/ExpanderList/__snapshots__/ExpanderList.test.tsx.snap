@@ -29,7 +29,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
             </span>
           </div>
           <span
-            class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
+            class="list-header__chevron list-header__chevron--for-string-content"
           >
             <svg
               aria-hidden="true"
@@ -79,7 +79,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
             </span>
           </div>
           <span
-            class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
+            class="list-header__chevron list-header__chevron--for-string-content"
           >
             <svg
               aria-hidden="true"
@@ -134,7 +134,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
             </span>
           </div>
           <span
-            class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
+            class="list-header__chevron list-header__chevron--for-string-content"
           >
             <svg
               aria-hidden="true"
@@ -179,7 +179,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
             </span>
           </div>
           <span
-            class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
+            class="list-header__chevron list-header__chevron--for-string-content"
           >
             <svg
               aria-hidden="true"
@@ -224,7 +224,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
             </span>
           </div>
           <span
-            class="list-header__chevron list-header__chevron--for-string-content list-header__chevron--right"
+            class="list-header__chevron list-header__chevron--for-string-content"
           >
             <svg
               aria-hidden="true"
@@ -297,7 +297,7 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
             </svg>
           </div>
           <span
-            class="list-header__chevron list-header__chevron--right list-header__chevron--medium"
+            class="list-header__chevron list-header__chevron--medium"
           >
             <svg
               aria-hidden="true"
@@ -342,7 +342,7 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
             </span>
           </div>
           <span
-            class="list-header__chevron list-header__chevron--right list-header__chevron--medium"
+            class="list-header__chevron list-header__chevron--medium"
           >
             <svg
               aria-hidden="true"

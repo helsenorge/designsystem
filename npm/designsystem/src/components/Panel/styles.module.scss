@@ -127,7 +127,6 @@
 
   &__btn-container {
     display: flex;
-    flex-direction: column;
     @media (min-width: map-get($grid-breakpoints, lg)) {
       align-self: flex-end;
     }
@@ -149,6 +148,7 @@
     align-self: flex-start;
     @media (min-width: map-get($grid-breakpoints, lg)) {
       align-self: flex-end;
+      margin-left: auto;
     }
   }
 
