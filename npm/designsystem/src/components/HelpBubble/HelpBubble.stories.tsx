@@ -8,7 +8,7 @@ import Icon from '../Icons';
 import HelpSign from '../Icons/HelpSign';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
-import Table, { SmallViewportVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell } from '../Table';
+import Table, { ResponsiveTableVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell } from '../Table';
 import Button from '../Button';
 import { useToggle } from '../../hooks/useToggle';
 
@@ -108,7 +108,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
   return (
     <GridExample>
       <p>{longLoremText}</p>
-      <Table smallViewportVariant={SmallViewportVariant.horizontalscroll}>
+      <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}>
         <TableHead category={args.headerCategory}>
           <TableRow key="head">
             <TableHeadCell>Fastlege</TableHeadCell>

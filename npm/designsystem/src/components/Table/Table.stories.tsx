@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Button from '../Button';
 import { Title } from '../Title';
 import {
-  SmallViewportVariant,
+  ResponsiveTableVariant,
   Table,
   TableBody,
   TableHead,
@@ -33,10 +33,20 @@ export default {
     },
   },
   argTypes: {
-    smallViewportVariant: {
+    breakpoint: {
       control: 'select',
-      options: SmallViewportVariant,
-      defaultValue: SmallViewportVariant.block,
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      defaultValue: 'xl',
+    },
+    variant: {
+      control: 'select',
+      options: ResponsiveTableVariant,
+      defaultValue: ResponsiveTableVariant.none,
+    },
+    fallbackVariant: {
+      control: 'select',
+      options: ResponsiveTableVariant,
+      defaultValue: ResponsiveTableVariant.none,
     },
     headerCategory: {
       control: 'select',
@@ -50,23 +60,28 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
   const data = getFastlegeData(SortDirection.asc, '');
 
   return (
-    <GridExample>
-      <Table {...args}>
-        <TableHead category={args.headerCategory}>
-          <TableRow>
-            <TableHeadCell>Fastlege</TableHeadCell>
-            <TableHeadCell>Fastlegekontor</TableHeadCell>
-            <TableHeadCell>Ledige plasser</TableHeadCell>
-            <TableHeadCell>Antall på venteliste</TableHeadCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((fastlege, i: number) => (
-            <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </GridExample>
+    <div className="container">
+      <div className="row">
+        <div className="col-8 offset-2">
+          <p>{longLoremText}</p>
+          <Table {...args} breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}>
+            <TableHead category={args.headerCategory}>
+              <TableRow>
+                <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Ledige plasser</TableHeadCell>
+                <TableHeadCell>Antall på venteliste</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((fastlege, i: number) => (
+                <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -78,7 +93,10 @@ export const CenteredOverflow: ComponentStory<typeof Table> = (args: any) => {
       <div className="row">
         <div className="col-8 offset-2">
           <p>{longLoremText}</p>
-          <Table {...args} smallViewportVariant={{ breakpoint: 'lg', variant: SmallViewportVariant.centeredoverflow }}>
+          <Table
+            {...args}
+            breakpointConfig={{ breakpoint: 'lg', variant: ResponsiveTableVariant.centeredoverflow, fallbackVariant: args.fallbackVariant }}
+          >
             <TableHead category={args.headerCategory}>
               <TableRow>
                 <TableHeadCell>Fastlege</TableHeadCell>
@@ -110,9 +128,10 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
           <p>{longLoremText}</p>
           <Table
             {...args}
-            smallViewportVariant={{
+            breakpointConfig={{
               breakpoint: 'lg',
-              variant: SmallViewportVariant.horizontalscroll,
+              variant: ResponsiveTableVariant.horizontalscroll,
+              fallbackVariant: args.fallbackVariant,
             }}
           >
             <TableHead category={args.headerCategory}>
@@ -145,10 +164,10 @@ export const HorizontalScrollWithFallback: ComponentStory<typeof Table> = (args:
           <p>{longLoremText}</p>
           <Table
             {...args}
-            smallViewportVariant={{
+            breakpointConfig={{
               breakpoint: 'lg',
-              variant: SmallViewportVariant.horizontalscroll,
-              fallbackVariant: SmallViewportVariant.block,
+              variant: ResponsiveTableVariant.horizontalscroll,
+              fallbackVariant: ResponsiveTableVariant.block,
             }}
           >
             <TableHead category={args.headerCategory}>
@@ -178,7 +197,10 @@ export const Block: ComponentStory<typeof Table> = (args: any) => {
   return (
     <GridExample>
       <p>{longLoremText}</p>
-      <Table {...args} smallViewportVariant={{ breakpoint: 'lg', variant: SmallViewportVariant.block }}>
+      <Table
+        {...args}
+        breakpointConfig={{ breakpoint: 'lg', variant: ResponsiveTableVariant.block, fallbackVariant: args.fallbackVariant }}
+      >
         <TableHead category={args.headerCategory}>
           <TableRow>
             <TableHeadCell>Fastlege</TableHeadCell>
@@ -208,9 +230,13 @@ export const BreakpointConfig: ComponentStory<typeof Table> = (args: any) => {
           <p>{longLoremText}</p>
           <Table
             {...args}
-            smallViewportVariant={[
-              { breakpoint: 'sm', variant: SmallViewportVariant.block },
-              { breakpoint: 'xl', variant: SmallViewportVariant.centeredoverflow, fallbackVariant: SmallViewportVariant.horizontalscroll },
+            breakpointConfig={[
+              { breakpoint: 'sm', variant: ResponsiveTableVariant.block },
+              {
+                breakpoint: 'xl',
+                variant: ResponsiveTableVariant.centeredoverflow,
+                fallbackVariant: ResponsiveTableVariant.horizontalscroll,
+              },
             ]}
           >
             <TableHead category={args.headerCategory}>
@@ -258,7 +284,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
 
   return (
     <GridExample>
-      <Table {...args}>
+      <Table {...args} breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}>
         <TableHead category={HeaderCategory.sortable}>
           <TableRow>
             <TableHeadCell />
@@ -350,7 +376,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
 export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
   return (
     <GridExample>
-      <Table {...args} smallViewportVariant={{ breakpoint: 'lg', variant: SmallViewportVariant.horizontalscroll }}>
+      <Table {...args} breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}>
         <TableHead category={HeaderCategory.normal}>
           <TableRow>
             <TableHeadCell>Navn</TableHeadCell>
@@ -578,8 +604,8 @@ function getFastlegeData(sortDirection: SortDirection, sortColumn: string): Arra
       AntallPaVenteliste: 57,
     },
   ].sort((a, b) => {
-    let first = sortDirection === SortDirection.asc ? a : b;
-    let next = sortDirection === SortDirection.asc ? b : a;
+    const first = sortDirection === SortDirection.asc ? a : b;
+    const next = sortDirection === SortDirection.asc ? b : a;
 
     if (sortColumn === 'Fastlegekontor') {
       return first.Legekontor.Navn > next.Legekontor.Navn ? 1 : -1;
