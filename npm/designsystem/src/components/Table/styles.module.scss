@@ -148,12 +148,12 @@ table tbody tr {
 
   @each $breakpoint in map-keys($grid-breakpoints) {
     &--centeredoverflow-#{$breakpoint} {
-      @include media-breakpoint-down($breakpoint) {
+      @include media-breakpoint-down(breakpoint-next($breakpoint)) {
         @include centeredoverflow;
       }
     }
     &--block-#{$breakpoint} {
-      @include media-breakpoint-down($breakpoint) {
+      @include media-breakpoint-down(breakpoint-next($breakpoint)) {
         @include block;
       }
     }
