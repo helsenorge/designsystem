@@ -8,11 +8,8 @@ export type Styles = {
   'table__cell-expander': string;
   'table__expanded-row': string;
   'table__expanded-row--expanded': string;
-  'table__expanded-row-button': string;
   'table__expanded-row-container': string;
   'table__expanded-row-container--open': string;
-  'table__expander-button-mobile': string;
-  'table__expander-button-mobile--expanded': string;
   'table__expander-cell-mobile': string;
   'table__expander-cell-mobile--expanded': string;
   table__head: string;
