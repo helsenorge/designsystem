@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -6,7 +6,6 @@ import { getCurrentConfig, getBreakpointClass } from './utils';
 import { AnalyticsId } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
-import { useSize } from '../../hooks/useSize';
 import HorizontalScroll from '../HorizontalScroll';
 
 import styles from './styles.module.scss';
@@ -44,20 +43,46 @@ export interface Props {
   children: React.ReactNode;
 }
 
-export const Table: React.FC<Props> = ({
-  id,
-  testId,
-  className,
-  children,
-  breakpointConfig = { variant: ResponsiveTableVariant.none, breakpoint: 'xl' },
-}) => {
+export const defaultConfig: BreakpointConfig[] = [
+  {
+    breakpoint: 'xl',
+    variant: ResponsiveTableVariant.centeredoverflow,
+    fallbackVariant: ResponsiveTableVariant.horizontalscroll,
+  },
+];
+
+export const simpleConfig: BreakpointConfig[] = [
+  {
+    breakpoint: 'xl',
+    variant: ResponsiveTableVariant.centeredoverflow,
+    fallbackVariant: ResponsiveTableVariant.horizontalscroll,
+  },
+  {
+    breakpoint: 'sm',
+    variant: ResponsiveTableVariant.centeredoverflow,
+    fallbackVariant: ResponsiveTableVariant.block,
+  },
+];
+
+export const Table: React.FC<Props> = ({ id, testId, className, children, breakpointConfig = defaultConfig }) => {
+  const [currentConfig, setCurrentConfig] = useState<BreakpointConfig>();
+  const [tableWidth, setTableWidth] = useState<number>(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const tableRef = useRef<HTMLTableElement>(null);
   const breakpoint = useBreakpoint();
-  const { width: tableWidth = 0 } = useSize(tableRef) || {};
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    setCurrentConfig(getCurrentConfig(breakpointConfig, breakpoint, tableWidth, windowWidth));
+  }, [breakpointConfig, breakpoint, tableWidth, windowWidth]);
+
+  useEffect(() => {
+    if (currentConfig?.variant === ResponsiveTableVariant.centeredoverflow) {
+      setTableWidth(tableRef.current?.getBoundingClientRect().width ?? 0);
+    }
+  }, [currentConfig]);
+
   useLayoutEvent(() => setWindowWidth(window.innerWidth), ['resize'], 100);
 
-  const currentConfig = getCurrentConfig(breakpointConfig, breakpoint, tableWidth, windowWidth);
   const breakpointClass = getBreakpointClass(currentConfig);
   const tableClass = classNames(styles.table, breakpointClass, className);
 
@@ -67,9 +92,7 @@ export const Table: React.FC<Props> = ({
     </table>
   );
 
-  const useHorizontalScroll = currentConfig?.variant === ResponsiveTableVariant.horizontalscroll && !currentConfig?.fallbackVariant;
-
-  if (useHorizontalScroll) {
+  if (currentConfig?.variant === ResponsiveTableVariant.horizontalscroll) {
     return (
       <HorizontalScroll childWidth={tableWidth} testId="horizontal-scroll">
         {table}

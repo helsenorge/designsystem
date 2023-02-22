@@ -1,6 +1,6 @@
+import { BreakpointConfig, ResponsiveTableVariant } from './Table';
 import { Breakpoint } from '../../hooks/useBreakpoint';
 import { isTouchDevice } from '../../utils/device';
-import { BreakpointConfig, ResponsiveTableVariant } from './Table';
 
 import styles from './styles.module.scss';
 
@@ -58,14 +58,14 @@ const getConfigForBreakpoint = (config: BreakpointConfig | BreakpointConfig[], b
  * @param config Konfigurasjon for responsiv oppførsel
  * @param breakpoint Nåværende breakpoint
  * @param tableWidth Bredde på tabell i px
- * @returns Konfigurasjon for responsiv oppførsel
+ * @returns Konfigurasjon for responsiv oppførsel uten fallbackVariant
  */
 export const getCurrentConfig = (
   config: BreakpointConfig | BreakpointConfig[],
   breakpoint: Breakpoint,
   tableWidth: number,
   windowWidth: number
-): BreakpointConfig | undefined => {
+): Omit<BreakpointConfig, 'fallbackVariant'> | undefined => {
   const breakpointConfig = getConfigForBreakpoint(config, breakpoint);
   const canUseHorizontalScroll = isTouchDevice();
   const canUseCenteredOverflow = tableWidth <= windowWidth;

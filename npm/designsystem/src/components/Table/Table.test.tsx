@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import { screen, render, within, waitFor } from '@testing-library/react';
+
+import { screen, render, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import * as BreakpointUtils from '../../hooks/useBreakpoint';
+import * as DeviceUtils from '../../utils/device';
+
 import {
   ResponsiveTableVariant,
   Table,
@@ -15,15 +20,11 @@ import {
   TableExpandedRow,
 } from './';
 
-import * as SizeUtils from '../../hooks/useSize';
-import * as BreakpointUtils from '../../hooks/useBreakpoint';
-import * as DeviceUtils from '../../utils/device';
-
 const mockUseBreakpoint = jest.fn();
 jest.spyOn(BreakpointUtils, 'useBreakpoint').mockImplementation(mockUseBreakpoint);
 
-const mockUseSize = jest.fn();
-jest.spyOn(SizeUtils, 'useSize').mockImplementation(mockUseSize);
+const mockGetBoundingClientRect = jest.fn();
+window.HTMLElement.prototype.getBoundingClientRect = mockGetBoundingClientRect;
 
 const mockIsTouchDevice = jest.fn();
 jest.spyOn(DeviceUtils, 'isTouchDevice').mockImplementation(mockIsTouchDevice);
@@ -32,14 +33,14 @@ const TableContents: React.FC = () => (
   <>
     <TableHead category={HeaderCategory.normal}>
       <TableRow>
-        <TableHeadCell>Navn</TableHeadCell>
-        <TableHeadCell>Beskrivelse</TableHeadCell>
+        <TableHeadCell>{'Navn'}</TableHeadCell>
+        <TableHeadCell>{'Beskrivelse'}</TableHeadCell>
       </TableRow>
     </TableHead>
     <TableBody>
       <TableRow>
-        <TableCell dataLabel="Navn">Hans Nilsen</TableCell>
-        <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>
+        <TableCell dataLabel="Navn">{'Hans Nilsen'}</TableCell>
+        <TableCell dataLabel="Beskrivelse">{'En ganske lang beskrivelse...'}</TableCell>
       </TableRow>
     </TableBody>
   </>
@@ -179,7 +180,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
           const originalInnerWidth = window.innerWidth;
           window.innerWidth = 564;
           mockUseBreakpoint.mockReturnValue(564);
-          mockUseSize.mockReturnValue({ width: 1025 });
+          mockGetBoundingClientRect.mockReturnValue({ width: 1025 });
           const { container } = render(
             <Table
               breakpointConfig={{
@@ -215,7 +216,7 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
         const originalInnerWidth = window.innerWidth;
         window.innerWidth = 1024;
         mockUseBreakpoint.mockReturnValue(1024);
-        mockUseSize.mockReturnValue({ width: 1024 });
+        mockGetBoundingClientRect.mockReturnValue({ width: 1024 });
         const { container } = render(
           <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'lg' }} testId="test-table">
             <TableContents />
@@ -237,7 +238,7 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
         const originalInnerWidth = window.innerWidth;
         window.innerWidth = 564;
         mockUseBreakpoint.mockReturnValue(564);
-        mockUseSize.mockReturnValue({ width: 1025 });
+        mockGetBoundingClientRect.mockReturnValue({ width: 1025 });
 
         const { container } = render(
           <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'lg' }} testId="test-table">
@@ -258,7 +259,7 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
         const originalInnerWidth = window.innerWidth;
         window.innerWidth = 564;
         mockUseBreakpoint.mockReturnValue(564);
-        mockUseSize.mockReturnValue({ width: 1025 });
+        mockGetBoundingClientRect.mockReturnValue({ width: 1025 });
 
         const { container } = render(
           <Table
@@ -289,7 +290,7 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
         const originalInnerWidth = window.innerWidth;
         window.innerWidth = 564;
         mockUseBreakpoint.mockReturnValue(564);
-        mockUseSize.mockReturnValue({ width: 1025 });
+        mockGetBoundingClientRect.mockReturnValue({ width: 1025 });
 
         const { container } = render(
           <Table
@@ -379,25 +380,25 @@ describe('Gitt at Table kan sorteres', (): void => {
                   sortDir={sortColumn === 'Fastlegekontor' ? sortDirection : undefined}
                   onClick={() => clickSort('Fastlegekontor')}
                 >
-                  Fastlegekontor
+                  {'Fastlegekontor'}
                 </TableHeadCell>
                 <TableHeadCell
                   sortable
                   sortDir={sortColumn === 'LedigePlasser' ? sortDirection : undefined}
                   onClick={() => clickSort('LedigePlasser')}
                 >
-                  Ledige plasser
+                  {'Ledige plasser'}
                 </TableHeadCell>
               </TableRow>
             </TableHead>
             <TableBody>
               <TableRow>
-                <TableCell dataLabel="Fastlegekontor">Rodeløkka</TableCell>
-                <TableCell dataLabel="LedigePlasser">10</TableCell>
+                <TableCell dataLabel="Fastlegekontor">{'Rodeløkka'}</TableCell>
+                <TableCell dataLabel="LedigePlasser">{'10'}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell dataLabel="Fastlegekontor">Stovner</TableCell>
-                <TableCell dataLabel="LedigePlasser">5</TableCell>
+                <TableCell dataLabel="Fastlegekontor">{'Stovner'}</TableCell>
+                <TableCell dataLabel="LedigePlasser">{'5'}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -463,8 +464,8 @@ describe('Gitt at Table kan ekspanderes', (): void => {
             <TableHead category={HeaderCategory.sortable}>
               <TableRow>
                 <TableHeadCell />
-                <TableHeadCell>Fastlegekontor</TableHeadCell>
-                <TableHeadCell>Ledige plasser</TableHeadCell>
+                <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+                <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -483,8 +484,8 @@ describe('Gitt at Table kan ekspanderes', (): void => {
                   hideDetailsText="Skjul detaljer"
                   showDetailsText="Vis detaljer"
                 />
-                <TableCell dataLabel="Fastlegekontor">Rodeløkka</TableCell>
-                <TableCell dataLabel="LedigePlasser">10</TableCell>
+                <TableCell dataLabel="Fastlegekontor">{'Rodeløkka'}</TableCell>
+                <TableCell dataLabel="LedigePlasser">{'10'}</TableCell>
               </TableRow>
               <TableExpandedRow
                 numberOfColumns={3}
@@ -494,7 +495,7 @@ describe('Gitt at Table kan ekspanderes', (): void => {
                 }}
                 hideDetailsText={'Skjul detaljer om Rodeløkka'}
               >
-                <p>Her er mer info om Rodeløkka</p>
+                <p>{'Her er mer info om Rodeløkka'}</p>
               </TableExpandedRow>
             </TableBody>
           </Table>

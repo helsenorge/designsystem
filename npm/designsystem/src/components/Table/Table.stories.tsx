@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+
+import { longLoremText } from '../../utils/loremtext';
 import Button from '../Button';
+import GridExample from '../GridExample';
+import Icon from '../Icons';
+import VerticalDots from '../Icons/VerticalDots';
 import { Title } from '../Title';
+
 import {
   ResponsiveTableVariant,
   Table,
@@ -16,11 +22,9 @@ import {
   TableExpanderCell,
   SortDirection,
   TextAlign,
+  defaultConfig,
+  simpleConfig,
 } from './';
-import Icon from '../Icons';
-import VerticalDots from '../Icons/VerticalDots';
-import { longLoremText } from '../../utils/loremtext';
-import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Table',
@@ -68,7 +72,10 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
             <TableHead category={args.headerCategory}>
               <TableRow>
                 <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Alder</TableHeadCell>
+                <TableHeadCell>Kjønn</TableHeadCell>
                 <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Adresse</TableHeadCell>
                 <TableHeadCell>Ledige plasser</TableHeadCell>
                 <TableHeadCell>Antall på venteliste</TableHeadCell>
               </TableRow>
@@ -85,95 +92,27 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
   );
 };
 
-export const CenteredOverflow: ComponentStory<typeof Table> = (args: any) => {
-  const data = getFastlegeData(SortDirection.asc, '');
-
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col-8 offset-2">
-          <p>{longLoremText}</p>
-          <Table
-            {...args}
-            breakpointConfig={{ breakpoint: 'lg', variant: ResponsiveTableVariant.centeredoverflow, fallbackVariant: args.fallbackVariant }}
-          >
-            <TableHead category={args.headerCategory}>
-              <TableRow>
-                <TableHeadCell>Fastlege</TableHeadCell>
-                <TableHeadCell>Fastlegekontor</TableHeadCell>
-                <TableHeadCell>Ledige plasser</TableHeadCell>
-                <TableHeadCell>Antall på venteliste</TableHeadCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((fastlege, i: number) => (
-                <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
-              ))}
-            </TableBody>
-          </Table>
-          <p>{longLoremText}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
+export const DefaultResponsiveConfig: ComponentStory<typeof Table> = (args: any) => {
   const data = getFastlegeData(SortDirection.asc, '');
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-lg-8 offset-lg-2">
+          <Title appearance="title3">
+            {
+              'Config for standard og komplekse tabeller, og tabeller hvor det er er i brukerens interesse å kryss-indeksere eller sammenligne verdier fremfor å bare finne riktig rad.'
+            }
+          </Title>
           <p>{longLoremText}</p>
-          <Table
-            {...args}
-            breakpointConfig={{
-              breakpoint: 'lg',
-              variant: ResponsiveTableVariant.horizontalscroll,
-              fallbackVariant: args.fallbackVariant,
-            }}
-          >
+          <Table {...args} breakpointConfig={defaultConfig}>
             <TableHead category={args.headerCategory}>
               <TableRow>
                 <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Alder</TableHeadCell>
+                <TableHeadCell>Kjønn</TableHeadCell>
                 <TableHeadCell>Fastlegekontor</TableHeadCell>
-                <TableHeadCell>Ledige plasser</TableHeadCell>
-                <TableHeadCell>Antall på venteliste</TableHeadCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((fastlege, i: number) => (
-                <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
-              ))}
-            </TableBody>
-          </Table>
-          <p>{longLoremText}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-export const HorizontalScrollWithFallback: ComponentStory<typeof Table> = (args: any) => {
-  const data = getFastlegeData(SortDirection.asc, '');
-
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-8 offset-lg-2">
-          <p>{longLoremText}</p>
-          <Table
-            {...args}
-            breakpointConfig={{
-              breakpoint: 'lg',
-              variant: ResponsiveTableVariant.horizontalscroll,
-              fallbackVariant: ResponsiveTableVariant.block,
-            }}
-          >
-            <TableHead category={args.headerCategory}>
-              <TableRow>
-                <TableHeadCell>Fastlege</TableHeadCell>
-                <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Adresse</TableHeadCell>
                 <TableHeadCell>Ledige plasser</TableHeadCell>
                 <TableHeadCell>Antall på venteliste</TableHeadCell>
               </TableRow>
@@ -191,58 +130,23 @@ export const HorizontalScrollWithFallback: ComponentStory<typeof Table> = (args:
   );
 };
 
-export const Block: ComponentStory<typeof Table> = (args: any) => {
-  const data = getFastlegeData(SortDirection.asc, '');
-
-  return (
-    <GridExample>
-      <p>{longLoremText}</p>
-      <Table
-        {...args}
-        breakpointConfig={{ breakpoint: 'lg', variant: ResponsiveTableVariant.block, fallbackVariant: args.fallbackVariant }}
-      >
-        <TableHead category={args.headerCategory}>
-          <TableRow>
-            <TableHeadCell>Fastlege</TableHeadCell>
-            <TableHeadCell>Fastlegekontor</TableHeadCell>
-            <TableHeadCell>Ledige plasser</TableHeadCell>
-            <TableHeadCell>Antall på venteliste</TableHeadCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((fastlege, i: number) => (
-            <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <p>{longLoremText}</p>
-    </GridExample>
-  );
-};
-
-export const BreakpointConfig: ComponentStory<typeof Table> = (args: any) => {
+export const SimpleResponsiveConfig: ComponentStory<typeof Table> = (args: any) => {
   const data = getFastlegeData(SortDirection.asc, '');
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-lg-8 offset-lg-2">
+          <Title appearance="title3">{'Config for enkle tabeller (<3 kolonner og <5 rader og lite innhold i hver kolonne)'}</Title>
           <p>{longLoremText}</p>
-          <Table
-            {...args}
-            breakpointConfig={[
-              { breakpoint: 'sm', variant: ResponsiveTableVariant.block },
-              {
-                breakpoint: 'xl',
-                variant: ResponsiveTableVariant.centeredoverflow,
-                fallbackVariant: ResponsiveTableVariant.horizontalscroll,
-              },
-            ]}
-          >
+          <Table {...args} breakpointConfig={simpleConfig}>
             <TableHead category={args.headerCategory}>
               <TableRow>
                 <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Alder</TableHeadCell>
+                <TableHeadCell>Kjønn</TableHeadCell>
                 <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Adresse</TableHeadCell>
                 <TableHeadCell>Ledige plasser</TableHeadCell>
                 <TableHeadCell>Antall på venteliste</TableHeadCell>
               </TableRow>
@@ -284,35 +188,42 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
 
   return (
     <GridExample>
-      <Table {...args} breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}>
+      <Table {...args} breakpointConfig={defaultConfig}>
         <TableHead category={HeaderCategory.sortable}>
           <TableRow>
             <TableHeadCell />
             <TableHeadCell sortable sortDir={sortColumn === 'Fastlege' ? sortDirection : undefined} onClick={() => clickSort('Fastlege')}>
-              Navn, alder og kjønn på fastlegenfastlegenfastlegenfastlegenfastlegenfastlegenfastlegenfastlegen
+              {'Navn'}
             </TableHeadCell>
+            <TableHeadCell sortable sortDir={sortColumn === 'Alder' ? sortDirection : undefined} onClick={() => clickSort('Alder')}>
+              {'Alder'}
+            </TableHeadCell>
+            <TableHeadCell>{'Kjønn'}</TableHeadCell>
             <TableHeadCell
               sortable
               sortDir={sortColumn === 'Fastlegekontor' ? sortDirection : undefined}
               onClick={() => clickSort('Fastlegekontor')}
             >
-              Fastlegekontor
+              {'Fastlegekontor'}
+            </TableHeadCell>
+            <TableHeadCell sortable sortDir={sortColumn === 'Adresse' ? sortDirection : undefined} onClick={() => clickSort('Adresse')}>
+              {'Adresse'}
             </TableHeadCell>
             <TableHeadCell
               sortable
               sortDir={sortColumn === 'LedigePlasser' ? sortDirection : undefined}
               onClick={() => clickSort('LedigePlasser')}
             >
-              Ledige plasser
+              {'Ledige plasser'}
             </TableHeadCell>
             <TableHeadCell
               sortable
               sortDir={sortColumn === 'AntallPaVenteliste' ? sortDirection : undefined}
               onClick={() => clickSort('AntallPaVenteliste')}
             >
-              Antall på venteliste
+              {'Antall på venteliste'}
             </TableHeadCell>
-            <TableHeadCell>Handling</TableHeadCell>
+            <TableHeadCell>{'Handling'}</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody className="test1">
@@ -376,7 +287,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
 export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
   return (
     <GridExample>
-      <Table {...args} breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}>
+      <Table {...args} breakpointConfig={defaultConfig}>
         <TableHead category={HeaderCategory.normal}>
           <TableRow>
             <TableHeadCell>Navn</TableHeadCell>
@@ -467,14 +378,11 @@ export interface Fastlege {
 function getFastlegeDataCells(fastlege: FastlegeAvtale): React.ReactNode {
   return (
     <>
-      <TableCell dataLabel="Fastlege">
-        {fastlege.Fastlege.Etternavn + ', ' + fastlege.Fastlege.Fornavn}
-        <br />
-        {fastlege.Fastlege.Alder + ' år, ' + fastlege.Fastlege.Kjonn}{' '}
-      </TableCell>
-      <TableCell dataLabel="Fastlegekontor">
-        {fastlege.Legekontor.Navn + ', ' + fastlege.Legekontor.Adresse}fastlegenfastlegenfastlegenfastlegenfastlegenfastlegenfastlegen
-      </TableCell>
+      <TableCell dataLabel="Fastlege">{fastlege.Fastlege.Etternavn + ', ' + fastlege.Fastlege.Fornavn}</TableCell>
+      <TableCell dataLabel="Alder">{`${fastlege.Fastlege.Alder} år`}</TableCell>
+      <TableCell dataLabel="Kjønn">{fastlege.Fastlege.Kjonn}</TableCell>
+      <TableCell dataLabel="Fastlegekontor">{fastlege.Legekontor.Navn}</TableCell>
+      <TableCell dataLabel="Adresse">{fastlege.Legekontor.Adresse}</TableCell>
       <TableCell dataLabel="Ledige plasser">{fastlege.LedigePlasser + ' av ' + fastlege.AntallPlasser}</TableCell>
       <TableCell dataLabel="Antall på venteliste">
         {fastlege.AntallPaVenteliste > 0 ? fastlege.AntallPaVenteliste : 'Har ikke venteliste'}
@@ -498,8 +406,8 @@ function getFastlegeData(sortDirection: SortDirection, sortColumn: string): Arra
       },
       Delelistelege: null,
       Legekontor: {
-        Navn: 'Regnbuen Legekontor',
-        Adresse: 'Vestre Kjennervei 2B',
+        Navn: 'Regnbuen Legekontor',
+        Adresse: 'Vestre Kjennervei 2B',
       },
       Avtaledato: '2017-01-01T00:00:00',
       Valgbar: false,
@@ -521,8 +429,8 @@ function getFastlegeData(sortDirection: SortDirection, sortColumn: string): Arra
       },
       Delelistelege: null,
       Legekontor: {
-        Navn: 'Sylling Helsesenter DA',
-        Adresse: 'Meieribakken 1',
+        Navn: 'Sylling Helsesenter DA',
+        Adresse: 'Meieribakken 1',
       },
       Avtaledato: '2022-04-19T00:00:00',
       Valgbar: true,
@@ -546,7 +454,7 @@ function getFastlegeData(sortDirection: SortDirection, sortColumn: string): Arra
       Delelistelege: null,
       Legekontor: {
         Navn: 'Heiaklinikken',
-        Adresse: 'Gamle drammensvei 98',
+        Adresse: 'Gamle drammensvei 98',
       },
       Avtaledato: '2015-08-01T00:00:00',
       Valgbar: false,
@@ -569,7 +477,7 @@ function getFastlegeData(sortDirection: SortDirection, sortColumn: string): Arra
       },
       Delelistelege: null,
       Legekontor: {
-        Navn: 'Lierbyen Legesenter',
+        Navn: 'Lierbyen Legesenter',
         Adresse: 'Bruveien 2',
       },
       Avtaledato: '2001-06-01T00:00:00',
@@ -593,8 +501,8 @@ function getFastlegeData(sortDirection: SortDirection, sortColumn: string): Arra
       },
       Delelistelege: null,
       Legekontor: {
-        Navn: 'Lierbyen Legesenter',
-        Adresse: 'Bruveien 2',
+        Navn: 'Lierbyen Legesenter',
+        Adresse: 'Bruveien 2',
       },
       Avtaledato: '2012-07-01T00:00:00',
       Valgbar: false,
