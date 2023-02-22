@@ -1,7 +1,7 @@
 import React from 'react';
 import { getIcon, SvgPathProps } from './Icon';
 
-const UnspecifiedFile: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const File: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
       fillRule={'evenodd'}
@@ -33,4 +33,4 @@ const UnspecifiedFile: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathPro
   return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
-export default UnspecifiedFile;
+export default File;
