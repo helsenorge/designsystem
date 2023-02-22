@@ -1,3 +1,31 @@
+## 3.0.0-beta.0 (2023-02-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* smallViewportVariant endrer navn til breakpointConfig. Table har ingen standard responsiv oppførsel.
+* Tidligere måtte man spesifisere role="alert" som prop selv, det vil si at man kan ha brukt variant alert/crisis for det rent visuelle uten å få innholdet automatisk lest opp.
+* NotificationPanel bruker ikke dangerouslySetInnerHTML for å sette label mer. Ved behov må man gjøre dette selv som bruker av komponenten.
+
+### Features
+
+*  notificationPanel - nytt design ([2770165](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/27701653e83fda36e1314ba7b376982d7fdbb731)), closes [#292726](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292726)
+*  notificationpanel har automatisk role=alert om variant er alert eller crisis ([b9ab235](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/b9ab2356ee9589c97af5f13eae21b182f0693dda)), closes [#295272](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/295272)
+*  nye farger fra design ([031f202](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/031f2029f30340675ffac6a42f234b8b2ecb25b6)), closes [#292726](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292726)
+*  tabell har mulighet for flere responsive visninger ([1cbaa62](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/1cbaa62d1fdfbd407dd90746960e2a597f37a123)), closes [#288929](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/288929)
+*  table har to gjenbrukbare configer for ulike breakpoints ([a6ac619](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/a6ac6196cc351041a13e08c68058754447b236be)), closes [#296512](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/296512)
+
+
+### Bug Fixes
+
+*  table bruker neste breakpoint i bootstrap 5 ([458f59a](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/458f59a2bbfb690abc40fcb95925349ae6c03427))
+
+
+### Code Refactoring
+
+*  fjern deprecated options i Table ([49fbced](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/49fbcedca0b8c93c314b6a1e86ed8558918777db))
+*  notificationpanel bruker ikke dangerouslySetInnerHTML ([75c8fc3](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/75c8fc3f636f299ad1bde80ce0b66bedd50b655e)), closes [#294226](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/294226)
+
 ## [2.16.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.15.0&targetVersion=GTv2.16.0) (2023-02-15)
 
 
