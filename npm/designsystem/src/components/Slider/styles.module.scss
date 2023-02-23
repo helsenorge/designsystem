@@ -11,6 +11,7 @@
   &__track-wrapper {
     width: 100%;
     cursor: pointer;
+    touch-action: none;
 
     &--disabled {
       cursor: default;
