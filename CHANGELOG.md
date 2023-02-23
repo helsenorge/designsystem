@@ -1,3 +1,17 @@
+## [2.17.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.16.1&targetVersion=GTv2.17.0) (2023-02-23)
+
+
+### Features
+
+*  avrunder tag ([193ea63](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/193ea6391ced4b2c4c626c79298d8693f197fd27)), closes [#296200](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/296200)
+*  nytt ikon ([9ee93b8](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/9ee93b84c5a399c3cf1d45f5ee909e2b5f43bd97)), closes [#296600](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/296600)
+*  nytt ikon - unspecifiedFile ([e628a45](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/e628a4567e00a24c3c16bf3e1bab68dcd879398d)), closes [#296600](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/296600)
+
+
+### Bug Fixes
+
+*  Panel vises riktig på mobilvisning ([82790a2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/82790a2365ba09f9c4e1fe4d9d624cdab62eef76)), closes [#296298](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/296298)
+
 ## [2.16.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.16.0&targetVersion=GTv2.16.1) (2023-02-16)
 
 
@@ -348,7 +362,7 @@
 
 ## 2.0.0-beta.1 (2022-09-15)
 
-## 2.0.0-beta.0 (2022-09-12)
+## 2.0.0-beta.0 (2022-09-15)
 
 
 ### Features
