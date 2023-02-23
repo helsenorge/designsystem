@@ -657,6 +657,7 @@ export const allSvgIcons = [
   { module: ExitFullScreen, name: 'ExitFullScreen', alternativeName: 'Gå ut av fullskjermvisning', categories: 'System' },
   { module: Eye, name: 'Eye', alternativeName: 'Øye', categories: 'Sykdom, Anatomi' },
   { module: Facebook, name: 'Facebook', alternativeName: 'Facebook', categories: 'Sosiale medier' },
+  { module: File, name: 'File', alternativeName: 'Fil', categories: 'Filtyper' },
   { module: Female, name: 'Female', alternativeName: 'Kvinne- tegn', categories: 'Generisk' },
   { module: FemaleDoctor, name: 'FemaleDoctor', alternativeName: 'Kvinnelig lege', categories: 'Tjeneste, Personer' },
   { module: Ferry, name: 'Ferry', alternativeName: 'Ferje', categories: 'Kjøretøy' },
