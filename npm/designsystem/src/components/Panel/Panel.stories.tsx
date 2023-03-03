@@ -111,6 +111,35 @@ export const Default: ComponentStory<typeof Panel> = (args: any) => (
   </GridExample>
 );
 
+export const ContentA: ComponentStory<typeof Panel> = (args: any) => (
+  <GridExample>
+    <Panel contentA={<div style={{ background: '#748999', height: 180 }}>{'Content A'}</div>}>
+      <div>
+        <Title appearance="title2">{'E-resept'}</Title>
+        <p style={{ whiteSpace: 'pre-line' }}>
+          {`
+      Legemiddel: Aerius Mikst 0,5 mg/ml
+
+      Dosering: 1 tablett daglig
+
+      Virkestoff: Cetrizin
+      ATC-kode:R06AX27
+      Pakningsstørrelse: 120ml
+
+
+      Antall: 1
+      Forskrevet av: Diana Dips, Testsykehuset HF
+      Forskrevet dato: 27.09.2020
+      Gyldig til: 20.09.2021
+      Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+      Antall utlevering: 1 (Se utleveringer på denne resepten)
+      Refusjonshjemmel: §5-14 §2 (blå resept)
+      Resepten er hentet fra: Reseptformidleren`}
+        </p>
+      </div>
+    </Panel>
+  </GridExample>
+);
 export const ContentAAndB: ComponentStory<typeof Panel> = (args: any) => (
   <GridExample>
     <Panel
