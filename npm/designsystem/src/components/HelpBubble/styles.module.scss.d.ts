@@ -3,9 +3,6 @@ export type Styles = {
   anchorlink__icon: string;
   'anchorlink-wrapper': string;
   helpbubble: string;
-  helpbubble__arrow: string;
-  'helpbubble__arrow--over': string;
-  'helpbubble__arrow--under': string;
   helpbubble__close: string;
   helpbubble__content: string;
   'helpbubble__content--close': string;

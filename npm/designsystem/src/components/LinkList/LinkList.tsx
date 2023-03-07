@@ -25,7 +25,7 @@ export interface CompoundComponent extends React.ForwardRefExoticComponent<LinkL
   Link: LinkType;
 }
 
-interface LinkListProps {
+export interface LinkListProps {
   /** Items in the LinkList */
   children: React.ReactNode;
   /** Adds custom classes to the element. */
@@ -101,7 +101,6 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
     },
     className
   );
-
   return (
     <li className={liClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
       {htmlMarkup === 'a' && (
@@ -112,12 +111,12 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
           target={target}
           {...restProps}
         >
-          {renderListHeader(children, 'span', ChevronRight, isHovered, size, icon)}
+          {renderListHeader(children, 'span', isHovered, size, chevron ? ChevronRight : undefined, icon)}
         </a>
       )}
       {htmlMarkup === 'button' && (
         <button className={linkClasses} ref={hoverRef as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
-          {renderListHeader(children, 'span', ChevronRight, isHovered, size, icon)}
+          {renderListHeader(children, 'span', isHovered, size, chevron ? ChevronRight : undefined, icon)}
         </button>
       )}
     </li>

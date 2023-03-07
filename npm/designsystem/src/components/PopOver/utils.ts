@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { HelpBubbleVariant } from './HelpBubble';
+import { PopOverVariant } from './PopOver';
 
 type HorizontalPosition = 'left' | 'right' | 'floating';
 type BubblePosition = 'leftabove' | 'leftbelow' | 'rightabove' | 'rightbelow' | 'floatingabove' | 'floatingbelow';
@@ -27,15 +27,15 @@ const ARROW_HORIZONTAL_MARGIN_PX = 12;
 export const getVerticalPosition = (
   controllerSize: DOMRect,
   bubbleSize: DOMRect,
-  variant: keyof typeof HelpBubbleVariant
-): keyof typeof HelpBubbleVariant => {
-  if (variant !== HelpBubbleVariant.positionautomatic) {
+  variant: keyof typeof PopOverVariant
+): keyof typeof PopOverVariant => {
+  if (variant !== PopOverVariant.positionautomatic) {
     return variant;
   }
   if (controllerSize.top > bubbleSize.height + BUBBLE_VERTICAL_OFFSET_PX) {
-    return HelpBubbleVariant.positionabove;
+    return PopOverVariant.positionabove;
   } else {
-    return HelpBubbleVariant.positionbelow;
+    return PopOverVariant.positionbelow;
   }
 };
 
@@ -178,25 +178,25 @@ const getArrowRightPx = (controllerSize: DOMRect): number => getControllerRightC
  * @param variant Ønsket plassering av hjelpeboblen (over/under)
  * @returns Beste mulige plassering av hjelpeboblen
  */
-const getBubblePosition = (controllerSize: DOMRect, bubbleSize: DOMRect, variant: keyof typeof HelpBubbleVariant): BubblePosition => {
+const getBubblePosition = (controllerSize: DOMRect, bubbleSize: DOMRect, variant: keyof typeof PopOverVariant): BubblePosition => {
   const horizontalPosition = getHorizontalPosition(controllerSize, bubbleSize);
   const verticalPosition = getVerticalPosition(controllerSize, bubbleSize, variant);
 
   if (horizontalPosition === 'left') {
-    if (verticalPosition === HelpBubbleVariant.positionabove) {
+    if (verticalPosition === PopOverVariant.positionabove) {
       return 'leftabove';
     }
     return 'leftbelow';
   }
 
   if (horizontalPosition === 'right') {
-    if (verticalPosition === HelpBubbleVariant.positionabove) {
+    if (verticalPosition === PopOverVariant.positionabove) {
       return 'rightabove';
     }
     return 'rightbelow';
   }
 
-  if (verticalPosition === HelpBubbleVariant.positionabove) {
+  if (verticalPosition === PopOverVariant.positionabove) {
     return 'floatingabove';
   }
 
@@ -210,7 +210,7 @@ const getBubblePosition = (controllerSize: DOMRect, bubbleSize: DOMRect, variant
  * @param variant Ønsket plassering av hjelpeboblen (over/under)
  * @returns CSSProperties som plasserer hjelpeboblen riktig
  */
-export const getBubbleStyle = (controllerSize: DOMRect, bubbleSize: DOMRect, variant: keyof typeof HelpBubbleVariant): CSSProperties => {
+export const getBubbleStyle = (controllerSize: DOMRect, bubbleSize: DOMRect, variant: keyof typeof PopOverVariant): CSSProperties => {
   const bubblePosition = getBubblePosition(controllerSize, bubbleSize, variant);
   const bubbleWidth = !getBubbleFitsInWindow() ? getBubbleWidth() : undefined;
 
@@ -248,7 +248,7 @@ export const getBubbleStyle = (controllerSize: DOMRect, bubbleSize: DOMRect, var
 export const getArrowStyle = (
   bubbleStyle: CSSProperties,
   controllerSize: DOMRect,
-  verticalPosition: keyof typeof HelpBubbleVariant
+  verticalPosition: keyof typeof PopOverVariant
 ): CSSProperties => {
   const leftPx = getArrowLeftPx(controllerSize);
   const rightPx = getArrowRightPx(controllerSize);
@@ -256,7 +256,7 @@ export const getArrowStyle = (
   const minRightPx = (bubbleStyle.right as number) + ARROW_HORIZONTAL_MARGIN_PX;
 
   if (bubbleStyle.right) {
-    if (verticalPosition === HelpBubbleVariant.positionabove) {
+    if (verticalPosition === PopOverVariant.positionabove) {
       return {
         right: rightPx > minRightPx ? rightPx : minRightPx,
         top: getArrowTopxPx(controllerSize),
@@ -269,7 +269,7 @@ export const getArrowStyle = (
     };
   }
 
-  if (verticalPosition === HelpBubbleVariant.positionabove) {
+  if (verticalPosition === PopOverVariant.positionabove) {
     return {
       left: leftPx > minLeftPx ? leftPx : minLeftPx,
       top: getArrowTopxPx(controllerSize),

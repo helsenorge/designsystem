@@ -49,51 +49,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
         </HelpBubble>
       );
 
-      const bubble = screen.getByTestId('test01');
-      const child = screen.getByText('Test tekst');
-      const closeButton = screen.getByRole('button');
-
-      expect(bubble).toBeInTheDocument();
-      expect(child).toBeInTheDocument();
-      expect(closeButton).toBeInTheDocument();
-
-      expect(bubble).toHaveClass('helpbubble');
-      expect(child).toHaveClass('helpbubble__content');
-      expect(closeButton).toHaveClass('close close--small');
-
       expect(container).toMatchSnapshot();
-    });
-  });
-
-  describe('Når variant er positionbelow', (): void => {
-    it('Så vises HelpBubble riktig', async (): Promise<void> => {
-      render(
-        <HelpBubleWithController variant={HelpBubbleVariant.positionbelow} showBubble testId="test01">
-          {'Test tekst'}
-        </HelpBubleWithController>
-      );
-
-      const bubble = screen.getByTestId('test01');
-      const arrow = bubble.nextSibling;
-
-      expect(bubble).toHaveClass('helpbubble');
-      await waitFor(() => expect(arrow).toHaveClass('helpbubble__arrow helpbubble__arrow--over'));
-    });
-  });
-
-  describe('Når variant er positionabove', (): void => {
-    it('Så vises HelpBubble riktig', async (): Promise<void> => {
-      render(
-        <HelpBubleWithController variant={HelpBubbleVariant.positionabove} showBubble testId="test01">
-          {'Test tekst'}
-        </HelpBubleWithController>
-      );
-
-      const bubble = screen.getByTestId('test01');
-      const arrow = bubble.nextSibling;
-
-      expect(bubble).toHaveClass('helpbubble');
-      await waitFor(() => expect(arrow).toHaveClass('helpbubble__arrow helpbubble__arrow--under'));
     });
   });
 

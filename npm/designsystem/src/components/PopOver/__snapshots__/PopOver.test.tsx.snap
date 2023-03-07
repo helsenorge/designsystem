@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at PopOver skal vises Når den skal vises vanlig Så vises PopOver som vanlig 1`] = `
+<div>
+  <div
+    class="popover popover--visible"
+    data-analyticsid="pop-over"
+    data-testid="test01"
+  >
+    Test tekst
+  </div>
+  <div
+    class="popover__arrow"
+  />
+</div>
+`;

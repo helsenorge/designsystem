@@ -138,6 +138,14 @@
           "path": "/bibliotek/komponenter/panel-list"
         },
         {
+          "label": "PopMenu",
+          "path": "/bibliotek/komponenter/pop-menu"
+        },
+        {
+          "label": "PopOver",
+          "path": "/bibliotek/komponenter/pop-over"
+        },
+        {
           "label": "Progressbar",
           "path": "/bibliotek/komponenter/progressbar"
         },
