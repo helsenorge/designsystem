@@ -78,6 +78,10 @@
           "path": "/bibliotek/komponenter/expander"
         },
         {
+          "label": "ExpanderHierarchy",
+          "path": "/bibliotek/komponenter/expander-hierarchy"
+        },
+        {
           "label": "ExpanderList",
           "path": "/bibliotek/komponenter/expander-list"
         },

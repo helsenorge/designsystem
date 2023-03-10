@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
 import classNames from 'classnames';
 
-import panelStyles from './styles.module.scss';
-import Title, { TitleTags } from '../Title';
-import Button, { ButtonProps, ButtonTags } from '../Button';
 import { AnchorTarget, AnalyticsId } from '../../constants';
-
-import Icon, { IconSize, SvgPathProps } from '../Icons';
-import ChevronDown from '../Icons/ChevronDown';
-import ChevronUp from '../Icons/ChevronUp';
-import ArrowRight from '../Icons/ArrowRight';
-import AlertSignFill from '../Icons/AlertSignFill';
-import { palette } from '../../theme/palette';
-import Pencil from '../Icons/Pencil';
-import Calendar from '../Icons/Calendar';
-import Watch from '../Icons/Watch';
+import { useExpand } from '../../hooks/useExpand';
 import { useUuid } from '../../hooks/useUuid';
-import { usePrevious } from '../../hooks/usePrevious';
+import { palette } from '../../theme/palette';
 import { AriaLabelAttributes, getAriaLabelAttributes } from '../../utils/accessibility';
 import Badge from '../Badge';
+import Button, { ButtonProps, ButtonTags } from '../Button';
+import Icon, { IconSize, SvgPathProps } from '../Icons';
+import AlertSignFill from '../Icons/AlertSignFill';
+import ArrowRight from '../Icons/ArrowRight';
+import Calendar from '../Icons/Calendar';
+import ChevronDown from '../Icons/ChevronDown';
+import ChevronUp from '../Icons/ChevronUp';
+import Pencil from '../Icons/Pencil';
+import Watch from '../Icons/Watch';
+import Title, { TitleTags } from '../Title';
+
+import panelStyles from './styles.module.scss';
 
 export enum PanelStatus {
   normal = 'normal',
@@ -182,23 +183,10 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     renderChildrenWhenClosed = false,
   } = props;
 
-  const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
-  const previousIsExpanded = usePrevious(isExpanded);
+  const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
   const titleId = useUuid();
   const buttonTextId = useUuid();
   const hasBadge = statusMessage && status === PanelStatus.new;
-
-  useEffect(() => {
-    if (expanded !== isExpanded) {
-      setIsExpanded(expanded);
-    }
-  }, [expanded]);
-
-  useEffect(() => {
-    if (onExpand && isExpanded !== !!previousIsExpanded) {
-      onExpand(isExpanded);
-    }
-  }, [isExpanded, onExpand]);
 
   const layout3 = [PanelLayout.layout3a.toString(), PanelLayout.layout3b.toString(), PanelLayout.layout3c.toString()].includes(layout);
 
@@ -265,7 +253,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
       ...ariaLabelAttributes,
     };
 
-    if (!!children) {
+    if (children) {
       return (
         <Button testId="expand" aria-expanded={isExpanded} {...commonProps}>
           <span id={buttonTextId}>{isExpanded ? buttonTextClose : buttonText}</span>

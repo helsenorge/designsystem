@@ -1,0 +1,147 @@
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/spacers';
+@import '../../scss/title';
+
+.expander {
+  $item: &;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeIn 150ms linear forwards;
+  }
+
+  &:first-of-type {
+    border-top: 1px solid $neutral500;
+  }
+
+  &__button {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    border-bottom: 1px solid $neutral500;
+    padding: getSpacer(xs) 0 getSpacer(xs) 0;
+
+    @media (min-width: map-get($grid-breakpoints, lg)) {
+      flex-direction: row-reverse;
+      justify-content: start;
+      padding: getSpacer(s) getSpacer(s) getSpacer(s) getSpacer(2xs);
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $neutral100;
+    }
+
+    &:focus {
+      text-decoration: underline;
+      outline: getSpacer(4xs) solid $black;
+    }
+
+    &[aria-expanded='true'] {
+      background-color: $neutral100;
+      border-bottom: none;
+
+      + #{$item}__content {
+        display: block;
+      }
+    }
+
+    @media print {
+      &--print {
+        background-color: $neutral100;
+        + #{$item}__content {
+          display: block;
+        }
+      }
+    }
+
+    &--2-and-lower {
+      padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        padding: getSpacer(xs) getSpacer(s) getSpacer(xs) getSpacer(2xs);
+      }
+    }
+  }
+
+  &__title {
+    margin: 0;
+
+    &--1 {
+      @include title2;
+    }
+
+    &--2 {
+      @include title3;
+    }
+
+    &--3 {
+      @include title4;
+    }
+
+    &--4-and-lower {
+      @include title5;
+    }
+  }
+
+  &__content {
+    display: none;
+    border-bottom: 1px solid $neutral500;
+    padding-top: getSpacer(m);
+    padding-left: getSpacer(2xs);
+    padding-bottom: getSpacer(m);
+
+    &--1 {
+      padding-top: getSpacer(xl);
+    }
+
+    &--1,
+    &--2 {
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        padding-left: getSpacer(2xl);
+      }
+    }
+
+    &--3-and-lower {
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        padding-left: getSpacer(xl);
+      }
+    }
+  }
+
+  &__icon {
+    margin-left: getSpacer(s);
+
+    &--2-and-lower {
+      margin-left: getSpacer(xs);
+    }
+
+    @media (min-width: map-get($grid-breakpoints, lg)) {
+      margin-left: 0;
+      margin-right: getSpacer(s);
+    }
+
+    &--3-and-lower {
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        margin-right: getSpacer(xs);
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    max-height: 0;
+  }
+  99% {
+    max-height: 24rem;
+  }
+  100% {
+    opacity: 1;
+    max-height: none;
+  }
+}

@@ -47,7 +47,9 @@ $dotOffset: calc($progressbarPaddingX + $dotSize / 2);
   border-radius: 4px;
   background: linear-gradient(to right, $blueberry600, $blueberry600 $dotOffset, $blueberry50 $dotOffset, $blueberry50), $blueberry600;
   background-repeat: no-repeat;
-  transition: background-position $transition;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: background-position $transition;
+  }
 
   &__marker {
     position: absolute;
@@ -57,7 +59,9 @@ $dotOffset: calc($progressbarPaddingX + $dotSize / 2);
     background-color: $white;
     border: 6px solid $blueberry600;
     border-radius: 50%;
-    transition: left $transition;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: left $transition;
+    }
   }
 
   &__number {
@@ -77,7 +81,9 @@ $dotOffset: calc($progressbarPaddingX + $dotSize / 2);
     height: $dotSize;
     background-color: $blueberry600;
     border-radius: 50%;
-    transition: background-color $transition;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: background-color $transition;
+    }
     &--completed {
       background-color: $blueberry50;
     }

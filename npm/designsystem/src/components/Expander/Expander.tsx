@@ -1,16 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Icon, { IconSize, SvgIcon } from '../Icons';
-import { useHover } from '../../hooks/useHover';
-import { usePrevious } from '../../hooks/usePrevious';
-import { PaletteNames } from '../../theme/palette';
+import React, { useRef } from 'react';
 
-import styles from './styles.module.scss';
 import classNames from 'classnames';
+
+import { AnalyticsId, ZIndex } from '../../constants';
+import { useExpand } from '../../hooks/useExpand';
+import { useHover } from '../../hooks/useHover';
+import { useSticky } from '../../hooks/useSticky';
+import { PaletteNames } from '../../theme/palette';
+import Button from '../Button';
+import Icon, { IconSize, SvgIcon } from '../Icons';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
-import Button from '../Button';
-import { useSticky } from '../../hooks/useSticky';
-import { AnalyticsId, ZIndex } from '../../constants';
+
+import styles from './styles.module.scss';
 
 export enum ExpanderSize {
   small = 'small',
@@ -58,26 +60,13 @@ const Expander: React.FC<ExpanderProps> = props => {
     onExpand,
     renderChildrenWhenClosed = false,
   } = props;
-  const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
-  const previousIsExpanded = usePrevious(isExpanded);
+  const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const { isHovered } = useHover(triggerRef);
   const { isOutsideWindow, isLeavingWindow, offsetHeight, contentWidth } = useSticky(expanderRef, triggerRef);
 
   const isSticky = sticky && isExpanded && isOutsideWindow;
-
-  useEffect(() => {
-    if (expanded !== isExpanded) {
-      setIsExpanded(expanded);
-    }
-  }, [expanded]);
-
-  useEffect(() => {
-    if (onExpand && isExpanded !== !!previousIsExpanded) {
-      onExpand(isExpanded);
-    }
-  }, [isExpanded, onExpand]);
 
   const renderChevron = (align: 'left' | 'right') => (
     <span className={classNames(styles['expander__icon'], styles[`expander__icon--${align}`])}>

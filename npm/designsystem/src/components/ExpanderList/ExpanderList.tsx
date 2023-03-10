@@ -1,22 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { PaletteNames } from '../../theme/palette';
-import { useHover } from '../../hooks/useHover';
-import { usePrevious } from '../../hooks/usePrevious';
-import { isElementInViewport } from '../../utils/viewport';
-
 import classNames from 'classnames';
 
-import expanderListStyles from './styles.module.scss';
 import { AnalyticsId, ZIndex } from '../../constants';
-import { useUuid } from '../../hooks/useUuid';
+import { useExpand } from '../../hooks/useExpand';
+import { useHover } from '../../hooks/useHover';
 import { useSticky } from '../../hooks/useSticky';
-
+import { useUuid } from '../../hooks/useUuid';
+import { PaletteNames } from '../../theme/palette';
 import { mergeRefs } from '../../utils/refs';
-import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
-import ChevronUp from '../Icons/ChevronUp';
+import { isElementInViewport } from '../../utils/viewport';
 import ChevronDown from '../Icons/ChevronDown';
+import ChevronUp from '../Icons/ChevronUp';
+import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
 import { TitleTags } from '../Title';
+
+import expanderListStyles from './styles.module.scss';
 
 export type ExpanderListColors = PaletteNames;
 export interface ExpanderType extends React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>> {
@@ -102,8 +101,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     renderChildrenWhenClosed,
     variant = 'line',
   } = props;
-  const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
-  const previousIsExpanded = usePrevious(isExpanded);
+  const [isExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLLIElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const { isHovered } = useHover(triggerRef);
@@ -125,18 +123,6 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     [expanderListStyles['expander-list-link--sticky']]: isSticky && !isLeavingWindow,
     [expanderListStyles['expander-list-link--absolute']]: isSticky && isLeavingWindow,
   });
-
-  useEffect(() => {
-    if (expanded !== isExpanded) {
-      setIsExpanded(expanded);
-    }
-  }, [expanded]);
-
-  useEffect(() => {
-    if (onExpand && isExpanded !== !!previousIsExpanded) {
-      onExpand(isExpanded);
-    }
-  }, [isExpanded, onExpand]);
 
   const renderContent = () => {
     if (!renderChildrenWhenClosed && !isExpanded) {
@@ -281,6 +267,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   );
 }) as ExpanderListCompound;
 
+ExpanderList.displayName = 'ExpanderList';
 ExpanderList.Expander = Expander;
 Expander.displayName = 'ExpanderList.Expander';
 

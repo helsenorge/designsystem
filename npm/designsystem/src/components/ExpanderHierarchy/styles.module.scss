@@ -1,0 +1,17 @@
+@import '../../scss/_palette.scss';
+@import '../../scss/_spacers.scss';
+@import '../../scss/_title.scss';
+
+.expanderhierarchy {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &--2 {
+    margin-top: getSpacer(xl);
+  }
+
+  &--3-and-lower {
+    margin-top: getSpacer(m);
+  }
+}

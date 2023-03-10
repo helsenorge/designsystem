@@ -1,0 +1,71 @@
+---
+title: ExpanderHierarchy
+path: /bibliotek/komponenter/expanderhierarchy
+date: 2023-03-09
+---
+
+import MDXCustom from '../../../../components/markdown/MDXCustom';
+import * as propData from '@helsenorge/designsystem-react/components/ExpanderHierarchy/componentdata.json';
+import ExpanderHierarchy from '@helsenorge/designsystem-react/components/ExpanderHierarchy';
+
+# ExpanderHierarchy
+
+<MDXCustom.Preamble>
+  ExpanderHierarchy allows the creation of a single list of items which can be used as triggers to expand areas within the list to display
+  arbitrary content
+</MDXCustom.Preamble>
+
+## Preview
+
+<MDXCustom.LiveComponent scope={{ ExpanderHierarchy }}>{`
+  <div style={{width: '30rem'}}>
+    <ExpanderHierarchy>
+      <ExpanderHierarchy.Expander title="Cognitive therapy">
+        Some major content/text about certain illness here.
+        <ExpanderHierarchy>
+          <ExpanderHierarchy.Expander title="Cognitive therapy">
+            Some major content/text about certain illness here.
+            <ExpanderHierarchy>
+              <ExpanderHierarchy.Expander title="Cognitive therapy">
+                Some major content/text about certain illness here.
+                <ExpanderHierarchy>
+                <ExpanderHierarchy.Expander title="Cognitive therapy">
+                  Some major content/text about certain illness here.
+                </ExpanderHierarchy.Expander>
+                <ExpanderHierarchy.Expander title="Health anxiety">
+                  Some major content/text about certain illness here.
+                </ExpanderHierarchy.Expander>
+                <ExpanderHierarchy.Expander title="Brain damage">
+                  Some major content/text about certain illness here.
+                </ExpanderHierarchy.Expander>
+              </ExpanderHierarchy>
+              </ExpanderHierarchy.Expander>
+              <ExpanderHierarchy.Expander title="Health anxiety">
+                Some major content/text about certain illness here.
+              </ExpanderHierarchy.Expander>
+              <ExpanderHierarchy.Expander title="Brain damage">
+                Some major content/text about certain illness here.
+              </ExpanderHierarchy.Expander>
+            </ExpanderHierarchy>
+          </ExpanderHierarchy.Expander>
+          <ExpanderHierarchy.Expander title="Health anxiety">
+            Some major content/text about certain illness here.
+          </ExpanderHierarchy.Expander>
+          <ExpanderHierarchy.Expander title="Brain damage">
+            Some major content/text about certain illness here.
+          </ExpanderHierarchy.Expander>
+        </ExpanderHierarchy>
+      </ExpanderHierarchy.Expander>
+      <ExpanderHierarchy.Expander title="Health anxiety">
+        Some major content/text about certain illness here.
+      </ExpanderHierarchy.Expander>
+      <ExpanderHierarchy.Expander title="Brain damage">
+        Some major content/text about certain illness here.
+      </ExpanderHierarchy.Expander>
+    </ExpanderHierarchy>
+  </div>
+`}</MDXCustom.LiveComponent>
+
+## Properties
+
+<MDXCustom.ComponentProps propData={{ propData }} />
