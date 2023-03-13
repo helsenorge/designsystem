@@ -166,6 +166,11 @@ stages:
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'))
+          - script: 'git update-index --assume-unchanged web/src/components/markdown/MDXCustom/IconWall/allIconsImports.tsx'
+            displayName: 'Ignore changes to allIconsImports.tsx'
+            condition:
+              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
+              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
 
           - task: Npm@1
             displayName: 'publish designsystem to Helsnorge-registry (latest)'
