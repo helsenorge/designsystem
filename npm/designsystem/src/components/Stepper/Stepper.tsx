@@ -9,13 +9,13 @@ import { getAriaLabelAttributes } from '../../utils/accessibility';
 
 import styles from './styles.module.scss';
 
-export interface ProgressbarProps {
+export interface StepperProps {
   /**
-   * Sets aria-label of the progressbar. ariaLabel or ariaLabelledById MUST be set!
+   * Sets aria-label of the stepper. ariaLabel or ariaLabelledById MUST be set!
    */
   ariaLabel?: string;
   /**
-   * Sets aria-labelledby of the progressbar. ariaLabel or ariaLabelledById MUST be set!
+   * Sets aria-labelledby of the stepper. ariaLabel or ariaLabelledById MUST be set!
    */
   ariaLabelledById?: string;
   /**
@@ -34,17 +34,17 @@ export interface ProgressbarProps {
   testId?: string;
 }
 
-const Progressbar: React.FC<ProgressbarProps> = ({ ariaLabelledById, ariaLabel, value, min = 0, max = 2, testId }) => {
+const Stepper: React.FC<StepperProps> = ({ ariaLabelledById, ariaLabel, value, min = 0, max = 2, testId }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const ref = useRef<HTMLSpanElement>(null);
   const { width: wrapperWidth = 0 } = useSize(wrapperRef) || {};
-  const { width: progressbarWidth = 0 } = useSize(ref) || {};
+  const { width: stepperWidth = 0 } = useSize(ref) || {};
 
   const { validatedValue, validatedMin, validatedMax } = getValidatedProps(value, min, max);
   const allowedValues = getAllowedValues(validatedMin, validatedMax);
   const index = allowedValues.indexOf(validatedValue);
   const maximumDots = getMaximumDots(wrapperWidth);
-  const distanceBetweenDots = getDistanceBetweenDots(progressbarWidth, allowedValues.length);
+  const distanceBetweenDots = getDistanceBetweenDots(stepperWidth, allowedValues.length);
   const markerPosition = getMarkerPosition(distanceBetweenDots, index);
 
   const showAllDots = allowedValues.length <= maximumDots;
@@ -53,20 +53,20 @@ const Progressbar: React.FC<ProgressbarProps> = ({ ariaLabelledById, ariaLabel, 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
 
   return (
-    <div className={styles['progressbar-wrapper']} ref={wrapperRef}>
+    <div className={styles['stepper-wrapper']} ref={wrapperRef}>
       <span
         role="progressbar"
         {...ariaLabelAttributes}
         aria-valuenow={validatedValue}
         aria-valuemin={validatedMin}
         aria-valuemax={validatedMax}
-        className={styles.progressbar}
+        className={styles.stepper}
         style={{
-          backgroundPositionX: `${isCompleted ? progressbarWidth : markerPosition}px`,
+          backgroundPositionX: `${isCompleted ? stepperWidth : markerPosition}px`,
         }}
         ref={ref}
         data-testid={testId}
-        data-analyticsid={AnalyticsId.Progressbar}
+        data-analyticsid={AnalyticsId.Stepper}
       >
         {showAllDots && <DotList allowedValues={allowedValues} currentValue={validatedValue} distanceBetweenDots={distanceBetweenDots} />}
         {!showAllDots && (
@@ -75,11 +75,11 @@ const Progressbar: React.FC<ProgressbarProps> = ({ ariaLabelledById, ariaLabel, 
             <Dot completed={validatedValue === validatedMax} position="right" />
           </>
         )}
-        <span className={styles.progressbar__marker} style={{ left: `${markerPosition}px` }} />
+        <span className={styles.stepper__marker} style={{ left: `${markerPosition}px` }} />
       </span>
-      {!showAllDots && <span className={styles.progressbar__number}>{`${validatedValue}/${validatedMax}`}</span>}
+      {!showAllDots && <span className={styles.stepper__number}>{`${validatedValue}/${validatedMax}`}</span>}
     </div>
   );
 };
 
-export default Progressbar;
+export default Stepper;

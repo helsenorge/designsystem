@@ -98,7 +98,7 @@ export enum AnalyticsId {
   PopMenu = 'pop-menu',
   PopOver = 'pop-over',
   Portal = 'portal',
-  Progressbar = 'progressbar',
+  Stepper = 'stepper',
   RadioButton = 'radio-button',
   Select = 'select',
   Slider = 'slider',

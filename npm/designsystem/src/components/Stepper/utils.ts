@@ -9,9 +9,9 @@ const MARKER_DOT_MIN_DISTANCE_PX = 4;
 const MARKER_WIDTH_PX = 24;
 
 /**
- * Horisontal padding på progressbar
+ * Horisontal padding på stepper
  */
-export const PROGRESS_BAR_PADDING_X_PX = 8;
+export const STEPPER_PADDING_X_PX = 8;
 
 /**
  * Valider at minimum-verdi er innenfor gyldig område
@@ -46,24 +46,23 @@ export const getValidatedValue = (value: number | undefined, min: number, max: n
 
 /**
  * Finn antall prikker det er plass til
- * @param progressbarWidth Bredde på progressbar
+ * @param stepperWidth Bredde på stepper
  * @returns Antall prikker
  */
-export const getMaximumDots = (progressbarWidth: number): number =>
-  Math.floor(progressbarWidth / (MARKER_WIDTH_PX + MARKER_DOT_MIN_DISTANCE_PX));
+export const getMaximumDots = (stepperWidth: number): number => Math.floor(stepperWidth / (MARKER_WIDTH_PX + MARKER_DOT_MIN_DISTANCE_PX));
 
 /**
  * Beregn riktig distance mellom prikker
- * @param progressbarWidth Bredde på progressbar
+ * @param stepperWidth Bredde på stepper
  * @param dots Antall prikker som skal vises
  * @returns Distanse mellom prikker
  */
-export const getDistanceBetweenDots = (progressbarWidth: number, dots: number): number => (progressbarWidth - MARKER_WIDTH_PX) / (dots - 1);
+export const getDistanceBetweenDots = (stepperWidth: number, dots: number): number => (stepperWidth - MARKER_WIDTH_PX) / (dots - 1);
 
 /**
  * Beregn riktig plassering av markør
  * @param distanceBetweenDots Distanse mellom prikker
- * @param index Nåværende verdi i progressbar
+ * @param index Nåværende verdi i stepper
  * @returns Plassering til markør fra venstre
  */
 export const getMarkerPosition = (distanceBetweenDots: number, index: number): number => distanceBetweenDots * index;
