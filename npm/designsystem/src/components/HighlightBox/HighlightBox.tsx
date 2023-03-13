@@ -1,11 +1,13 @@
 import React from 'react';
+
 import classNames from 'classnames';
+
+import { useBreakpoint, Breakpoint } from '../..';
+import { AnalyticsId } from '../../constants';
 import { PaletteNames } from '../../theme/palette';
+import Icon, { SvgIcon, IconSize } from '../Icons';
 
 import styles from './styles.module.scss';
-import { AnalyticsId } from '../../constants';
-import Icon, { SvgIcon, IconSize } from '../Icons';
-import { useBreakpoint, Breakpoint } from '../..';
 
 export type HighlightBoxColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cherry' | 'neutral' | 'kiwi' | 'plum'>;
 

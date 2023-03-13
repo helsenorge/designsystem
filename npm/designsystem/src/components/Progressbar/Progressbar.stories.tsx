@@ -2,9 +2,9 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
+import Progressbar from './Progressbar';
 import Grid from '../GridExample';
 
-import Progressbar from './Progressbar';
 
 export default {
   title: 'Components/Progressbar',

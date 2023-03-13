@@ -3,8 +3,8 @@ import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { useOutsideEvent } from './useOutsideEvent';
-import GridExample from '../components/GridExample';
 import Button from '../components/Button';
+import GridExample from '../components/GridExample';
 
 const UseOutsideEventExample: React.FC = () => {
   const ref = useRef<HTMLButtonElement>(null);

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Tile from './Tile';
+import GridExample from '../GridExample';
 import Icon, { IconSize } from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
-import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Tile',

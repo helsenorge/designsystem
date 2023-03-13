@@ -1,21 +1,23 @@
 import React, { useRef, useState } from 'react';
-import Icon from '../Icons';
-import VerticalDots from '../Icons/VerticalDots';
+
+import classNames from 'classnames';
 
 import { AnalyticsId, IconSize } from '../../constants';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
+import { useHover } from '../../hooks/useHover';
+import { useOutsideEvent } from '../../hooks/useOutsideEvent';
+import { getColor } from '../../theme/currys';
+import { breakpoints } from '../../theme/grid';
+import { isComponent } from '../../utils/component';
 import Close from '../Close';
-
+import Icon from '../Icons';
+import VerticalDots from '../Icons/VerticalDots';
 import PopOver from '../PopOver';
 
 import styles from './styles.module.scss';
-import classNames from 'classnames';
-import { getColor } from '../../theme/currys';
-import { useBreakpoint } from '../../hooks/useBreakpoint';
-import { breakpoints } from '../../theme/grid';
+
+
 import LinkList, { LinkListProps } from '../LinkList';
-import { isComponent } from '../../utils/component';
-import { useOutsideEvent } from '../../hooks/useOutsideEvent';
-import { useHover } from '../../hooks/useHover';
 
 export enum PopMenuVariant {
   onWhite = 'on-white',

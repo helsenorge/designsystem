@@ -2,9 +2,9 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
+import Checkbox from './Checkbox';
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import { FormMode, FormVariant } from '../../constants';
-import Checkbox from './Checkbox';
 import GridExample from '../GridExample';
 
 export default {

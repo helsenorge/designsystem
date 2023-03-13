@@ -1,5 +1,7 @@
 import React from 'react';
+
 import classNames from 'classnames';
+
 import tableStyles from '../styles.module.scss';
 import TableExpanderCellMobile from '../TableExpanderCell/TableExpanderCellMobile';
 

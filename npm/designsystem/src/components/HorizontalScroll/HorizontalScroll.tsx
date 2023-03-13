@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
+
 import classNames from 'classnames';
+
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useSize } from '../../hooks/useSize';
+
 import styles from './styles.module.scss';
 
 // Scrolle-indikator vises/skjules når det er x px igjen til venstre eller høyre side

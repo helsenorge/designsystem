@@ -3,10 +3,10 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Expander, { ExpanderSize } from './Expander';
+import GridExample from '../GridExample';
+import LawBook from '../Icons/LawBook';
 import Loader from '../Loader';
 import { Overlay } from '../Loader/Loader';
-import LawBook from '../Icons/LawBook';
-import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Expander',

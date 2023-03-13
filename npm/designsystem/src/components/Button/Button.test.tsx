@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import Button from './Button';
 import Icon from '../Icons';
 import Check from '../Icons/Check';

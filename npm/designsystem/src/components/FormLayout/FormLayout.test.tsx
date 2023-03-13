@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
+
+import FormLayout, { FormLayoutColumns } from './FormLayout';
 import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from '../FormGroup';
 import RadioButton from '../RadioButton';
-import FormLayout, { FormLayoutColumns } from './FormLayout';
 
 describe('Gitt at FormLayout skal vises', (): void => {
   describe('Når FormLayout rendres', (): void => {

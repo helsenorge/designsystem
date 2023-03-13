@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
+
 import cn from 'classnames';
 
-import styles from './styles.module.scss';
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode } from '../../constants';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
+
+import styles from './styles.module.scss';
 
 interface TextareaProps
   extends Pick<

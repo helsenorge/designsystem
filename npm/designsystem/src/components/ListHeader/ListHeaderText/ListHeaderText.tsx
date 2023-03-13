@@ -1,10 +1,10 @@
 import React from 'react';
+
 import cn from 'classnames';
 
 import StatusDot, { StatusDotVariant } from '../../StatusDot';
-
-import styles from '../styles.module.scss';
 import { TitleTags } from '../../Title';
+import styles from '../styles.module.scss';
 
 export type ListHeaderTextType = React.ForwardRefExoticComponent<ListHeaderTextProps & React.RefAttributes<HTMLLIElement>>;
 

@@ -2,8 +2,8 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { allPaletteNames } from '../../../.storybook/knobs';
 import Badge from './Badge';
+import { allPaletteNames } from '../../../.storybook/knobs';
 import GridExample from '../GridExample';
 
 export default {

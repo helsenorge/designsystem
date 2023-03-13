@@ -1,5 +1,6 @@
-import classNames from 'classnames';
 import React from 'react';
+
+import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
 import { useIsVisible } from '../../hooks/useIsVisible';

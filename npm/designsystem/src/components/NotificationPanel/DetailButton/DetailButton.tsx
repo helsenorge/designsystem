@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+
+import classNames from 'classnames';
+
+import { AnalyticsId } from '../../../constants';
+import { useUuid } from '../../../hooks/useUuid';
 import { AriaLabelAttributes, getAriaLabelAttributes } from '../../../utils/accessibility';
 import Button, { ButtonProps } from '../../Button';
-import { useUuid } from '../../../hooks/useUuid';
 import Icon from '../../Icons';
-import ChevronUp from '../../Icons/ChevronUp';
 import ChevronDown from '../../Icons/ChevronDown';
-import classNames from 'classnames';
-import { AnalyticsId } from '../../../constants';
+import ChevronUp from '../../Icons/ChevronUp';
+
+
 import styles from './styles.module.scss';
 
 type Props = {

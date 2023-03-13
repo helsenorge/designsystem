@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Dropdown, { DropdownMode } from './Dropdown';
 import Checkbox from '../Checkbox';
-import RadioButton from '../RadioButton';
 import GridExample from '../GridExample';
+import RadioButton from '../RadioButton';
 
 export default {
   title: 'Components/Dropdown',

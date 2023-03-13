@@ -1,8 +1,10 @@
 import '@testing-library/jest-dom';
 import React from 'react';
+
 import { screen, render, fireEvent } from '@testing-library/react';
-import Modal, { ModalVariants } from './Modal';
 import userEvent from '@testing-library/user-event';
+
+import Modal, { ModalVariants } from './Modal';
 
 describe('Gitt at en modal skal vises ', (): void => {
   describe('Når en modal skal vise kun tittel og lukkeknapp', (): void => {

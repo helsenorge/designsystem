@@ -3,8 +3,8 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import NotificationPanel from './NotificationPanel';
-import GridExample from '../GridExample';
 import { getColor } from '../../theme/currys';
+import GridExample from '../GridExample';
 
 export default {
   title: 'Components/NotificationPanel',

@@ -3,9 +3,9 @@ import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { useSticky } from './useSticky';
-import { longLoremText, shortLoremText } from '../utils/loremtext';
-import GridExample from '../components/GridExample';
 import Button from '../components/Button';
+import GridExample from '../components/GridExample';
+import { longLoremText, shortLoremText } from '../utils/loremtext';
 
 const UseStickyExample: React.FC = () => {
   const contentRef = useRef<HTMLButtonElement>(null);

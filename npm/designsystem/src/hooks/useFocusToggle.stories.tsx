@@ -3,10 +3,10 @@ import React, { useState, useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { useFocusToggle } from './useFocusToggle';
-import GridExample from '../components/GridExample';
 import Button from '../components/Button';
-import Spacer from '../components/Spacer';
+import GridExample from '../components/GridExample';
 import HighlightBox from '../components/HighlightBox';
+import Spacer from '../components/Spacer';
 
 const UseFocusToggleExample: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);

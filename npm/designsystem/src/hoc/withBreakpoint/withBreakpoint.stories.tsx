@@ -2,9 +2,9 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Breakpoint } from '../../hooks/useBreakpoint';
 import { BreakpointProps, withBreakpoint } from './withBreakpoint';
 import GridExample from '../../components/GridExample';
+import { Breakpoint } from '../../hooks/useBreakpoint';
 
 const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
   const description = `Breakpoint er nå ${Breakpoint[breakpoint]} (${breakpoint}px)`;

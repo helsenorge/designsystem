@@ -1,9 +1,12 @@
 import React from 'react';
 
-import styles from './styles.module.scss';
+import classNames from 'classnames';
+
 import { AnalyticsId } from '../../constants';
 import Panel, { PanelProps, PanelVariant } from '../Panel';
-import classNames from 'classnames';
+
+import styles from './styles.module.scss';
+
 
 interface PanelListProps {
   /** Panels to render inside the PanelList */

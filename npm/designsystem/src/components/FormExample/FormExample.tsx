@@ -1,18 +1,19 @@
 import React from 'react';
+
 import { useForm } from 'react-hook-form';
 
-import Validation from '../Validation';
-import FormGroup from '../FormGroup/FormGroup';
-import Checkbox from '../Checkbox';
-import Button from '../Button';
-import RadioButton from '../RadioButton';
-import Textarea from '../Textarea';
 import { FormVariant } from '../../constants';
-import Input from '../Input';
-import Hospital from '../Icons/Hospital';
-import FormLayout, { FormLayoutColumns } from '../FormLayout';
 import { isTest } from '../../utils/environment';
+import Button from '../Button';
+import Checkbox from '../Checkbox';
+import FormGroup from '../FormGroup/FormGroup';
+import FormLayout, { FormLayoutColumns } from '../FormLayout';
+import Hospital from '../Icons/Hospital';
+import Input from '../Input';
+import RadioButton from '../RadioButton';
 import Select from '../Select';
+import Textarea from '../Textarea';
+import Validation from '../Validation';
 
 import styles from './styles.module.scss';
 

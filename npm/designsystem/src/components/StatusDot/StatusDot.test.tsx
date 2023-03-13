@@ -1,6 +1,8 @@
 import * as React from 'react';
-import StatusDot from '.';
+
 import { render, screen } from '@testing-library/react';
+
+import StatusDot from '.';
 
 describe('Gitt at StatusDot rendres ', () => {
   describe('Når komponenten får en tekst', () => {

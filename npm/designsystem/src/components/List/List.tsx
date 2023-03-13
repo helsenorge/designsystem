@@ -2,8 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import listStyles from './styles.module.scss';
 import { AnalyticsId } from '../../constants';
+
+import listStyles from './styles.module.scss';
 
 interface ListProps {
   children: React.ReactNode[];

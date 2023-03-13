@@ -2,10 +2,10 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import { AnalyticsId, FormVariant } from '../../constants';
 import FormGroup, { FormGroupProps } from '../FormGroup/FormGroup';
 
 import validationStyles from './styles.module.scss';
-import { AnalyticsId, FormVariant } from '../../constants';
 
 interface ValidationProps {
   /** text placed in the legend tag of the fieldset */

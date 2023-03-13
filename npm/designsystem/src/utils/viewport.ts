@@ -1,5 +1,5 @@
 export const isElementInViewport = (el: HTMLElement): boolean => {
-  var { top, left, bottom, right } = el.getBoundingClientRect();
+  const { top, left, bottom, right } = el.getBoundingClientRect();
 
   return (
     top >= 0 &&

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { useLayoutEvent } from './useLayoutEvent';
 
 interface UseStickReturnValues {

@@ -3,8 +3,8 @@ import React, { useState, useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { useFocusableElements } from './useFocusableElements';
-import GridExample from '../components/GridExample';
 import Button from '../components/Button';
+import GridExample from '../components/GridExample';
 import Spacer from '../components/Spacer';
 
 const UseFocusableElementsExample: React.FC = () => {

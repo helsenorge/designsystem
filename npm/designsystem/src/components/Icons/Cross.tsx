@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { SvgPathProps } from './Icon';
 
 // TODO: This should be removed. This will cause a breaking change if people use it.

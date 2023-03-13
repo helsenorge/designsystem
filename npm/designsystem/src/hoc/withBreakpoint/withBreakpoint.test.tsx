@@ -1,11 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { BreakpointProps, withBreakpoint } from './withBreakpoint';
-import { Breakpoint } from '../../hooks/useBreakpoint';
-import { when } from 'jest-when';
-import { screen as themeScreen } from '../../theme/grid';
 
+import { render, screen } from '@testing-library/react';
+import { when } from 'jest-when';
+
+import { BreakpointProps, withBreakpoint } from './withBreakpoint';
 import { mockWindowMatchMedia } from '../../__mocks__/matchMedia';
+import { Breakpoint } from '../../hooks/useBreakpoint';
+import { screen as themeScreen } from '../../theme/grid';
 
 const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
   return <>{`${Breakpoint[breakpoint]}/${breakpoint}`}</>;

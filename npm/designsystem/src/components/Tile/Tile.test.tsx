@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import Tile from './Tile';
-import Icon from '../Icons';
 import { IconSize } from '../../constants';
+import Icon from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
 
 test('displays tile', (): void => {

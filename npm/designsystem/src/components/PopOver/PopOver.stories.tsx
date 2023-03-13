@@ -1,16 +1,16 @@
 import React, { useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import PopOver, { PopOverVariant } from './PopOver';
+import { useToggle } from '../../hooks/useToggle';
+import loremText, { longLoremText } from '../../utils/loremtext';
+import Button from '../Button';
+import GridExample from '../GridExample';
 import Icon from '../Icons';
 import HelpSign from '../Icons/HelpSign';
-import loremText, { longLoremText } from '../../utils/loremtext';
-import GridExample from '../GridExample';
 import Table, { SmallViewportVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell } from '../Table';
-import Button from '../Button';
-import { useToggle } from '../../hooks/useToggle';
 
 export default {
   title: 'Components/PopOver',

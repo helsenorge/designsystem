@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
+
 import MaxCharacters from './MaxCharacters';
 
 describe('Gitt at MaxCharacters skal vises', (): void => {

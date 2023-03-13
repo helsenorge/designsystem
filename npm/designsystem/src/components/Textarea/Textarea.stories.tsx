@@ -3,10 +3,10 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Textarea from './Textarea';
-import Hospital from '../Icons/Hospital';
-import Icon, { IconSize } from '../Icons';
-import GridExample from '../GridExample';
 import { FormMode } from '../../constants';
+import GridExample from '../GridExample';
+import Icon, { IconSize } from '../Icons';
+import Hospital from '../Icons/Hospital';
 
 export default {
   title: 'Components/Textarea',

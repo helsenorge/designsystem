@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { render, screen, fireEvent } from '@testing-library/react';
-import Checkbox from '../Checkbox/Checkbox';
+
 import FormGroup from './FormGroup';
+import Checkbox from '../Checkbox/Checkbox';
 import RadioButton from '../RadioButton';
 
 describe('Gitt at FormGroup skal vises', (): void => {

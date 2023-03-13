@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { getIcon, SvgPathProps } from './Icon';
 
 const Watch: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {

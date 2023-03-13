@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { SvgPathProps } from './Icon';
 
 const GenderIdentity: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): JSX.Element => {

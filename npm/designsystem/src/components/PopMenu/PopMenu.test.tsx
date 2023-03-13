@@ -1,8 +1,10 @@
 import '@testing-library/jest-dom';
 import React from 'react';
+
 import { screen, render, fireEvent } from '@testing-library/react';
-import PopMenu from './PopMenu';
 import userEvent from '@testing-library/user-event';
+
+import PopMenu from './PopMenu';
 import LinkList from '../LinkList';
 
 const container = (

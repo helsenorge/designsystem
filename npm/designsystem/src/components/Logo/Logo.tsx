@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { AnalyticsId } from '../../constants';
 import { getColor } from '../../theme/currys/color';
 import { PaletteNames } from '../../theme/palette';

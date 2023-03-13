@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { SvgPathProps } from './Icon';
 
 const Quarrel: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): JSX.Element => {

@@ -1,13 +1,15 @@
 import React from 'react';
+
 import cn from 'classnames';
 
-import { PaletteNames } from '../../theme/palette';
+import { AnalyticsId } from '../../constants';
 import { useHover } from '../../hooks/useHover';
+import { PaletteNames } from '../../theme/palette';
+import ChevronRight from '../Icons/ChevronRight';
+import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
 
 import LinkListStyles from './styles.module.scss';
-import { AnalyticsId } from '../../constants';
-import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
-import ChevronRight from '../Icons/ChevronRight';
+
 
 export type LinkListSize = 'small' | 'medium' | 'large';
 

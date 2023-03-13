@@ -2,8 +2,8 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
 import { FormVariant } from '../../constants';
+import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
 import GridExample from '../GridExample';
 
 export default {

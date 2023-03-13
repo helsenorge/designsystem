@@ -2,16 +2,17 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import formGroupStyles from './styles.module.scss';
-import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import { AnalyticsId, FormMode, FormVariant } from '../../constants';
-import RadioButton, { RadioButtonProps } from '../RadioButton/RadioButton';
-import Input, { InputProps } from '../Input/Input';
-import Title from '../Title';
-import FormLayout, { FormLayoutProps } from '../FormLayout';
-import ErrorWrapper from '../ErrorWrapper';
-import Select, { SelectProps } from '../Select';
 import { isComponent } from '../../utils/component';
+import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
+import ErrorWrapper from '../ErrorWrapper';
+import FormLayout, { FormLayoutProps } from '../FormLayout';
+import Input, { InputProps } from '../Input/Input';
+import RadioButton, { RadioButtonProps } from '../RadioButton/RadioButton';
+import Select, { SelectProps } from '../Select';
+import Title from '../Title';
+
+import formGroupStyles from './styles.module.scss';
 
 export type FormGroupTags = 'fieldset' | 'div';
 

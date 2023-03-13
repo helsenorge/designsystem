@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Slider from './Slider';
 import GridExample from '../GridExample';

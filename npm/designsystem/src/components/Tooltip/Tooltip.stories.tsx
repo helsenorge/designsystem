@@ -3,8 +3,8 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Tooltip, { TooltipOpenProvider } from './Tooltip';
-import TooltipExample from '../TooltipExample';
 import GridExample from '../GridExample';
+import TooltipExample from '../TooltipExample';
 
 export default {
   title: 'Components/Tooltip',

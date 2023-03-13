@@ -1,12 +1,14 @@
 import React from 'react';
+
 import classNames from 'classnames';
 
-import { AnalyticsId, HTMLAnchorProps } from '../../constants';
 import { TitleTags } from './../Title/Title';
+import { AnalyticsId, HTMLAnchorProps } from '../../constants';
+import { useHover } from '../../hooks/useHover';
 import { IconSize } from '../Icons';
 
 import tileStyles from './styles.module.scss';
-import { useHover } from '../../hooks/useHover';
+
 
 export type TileTags = 'button' | 'a';
 

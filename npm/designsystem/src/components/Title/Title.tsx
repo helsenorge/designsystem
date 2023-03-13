@@ -1,8 +1,10 @@
 import React from 'react';
+
 import classNames from 'classnames';
 
-import titleStyles from './styles.module.scss';
 import { AnalyticsId } from '../../constants';
+
+import titleStyles from './styles.module.scss';
 
 export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span';
 export type TitleAppearances = 'titleFeature' | 'title1' | 'title2' | 'title3' | 'title4' | 'title5';

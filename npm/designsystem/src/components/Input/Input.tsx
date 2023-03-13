@@ -1,13 +1,13 @@
 import React, { useRef, useState } from 'react';
+
 import cn from 'classnames';
 
 import { FormMode, FormVariant, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
-import { uuid } from '../../utils/uuid';
-import Icon, { IconSize, SvgIcon } from '../Icons';
-import { getColor } from '../../theme/currys';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
-
+import { getColor } from '../../theme/currys';
+import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
+import Icon, { IconSize, SvgIcon } from '../Icons';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';

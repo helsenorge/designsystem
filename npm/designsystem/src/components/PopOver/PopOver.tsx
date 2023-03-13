@@ -1,6 +1,8 @@
-import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 
+import classNames from 'classnames';
+
+import { getArrowStyle, getBubbleStyle, getVerticalPosition } from './utils';
 import { AnalyticsId } from '../../constants';
 import { useInterval } from '../../hooks/useInterval';
 import { useIsVisible } from '../../hooks/useIsVisible';
@@ -9,7 +11,6 @@ import { useSize } from '../../hooks/useSize';
 import { mergeRefs } from '../../utils/refs';
 
 import styles from './styles.module.scss';
-import { getArrowStyle, getBubbleStyle, getVerticalPosition } from './utils';
 
 export enum PopOverVariant {
   positionautomatic = 'positionautomatic',

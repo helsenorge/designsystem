@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Title as DocsTitle, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import { allPaletteNames } from '../../../.storybook/knobs';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Loader, { Overlay } from './Loader';
-import Title from '../Title/Title';
+import { allPaletteNames } from '../../../.storybook/knobs';
 import Button from '../Button/Button';
 import GridExample from '../GridExample';
+import Title from '../Title/Title';
 
 export default {
   title: 'Components/Loader',

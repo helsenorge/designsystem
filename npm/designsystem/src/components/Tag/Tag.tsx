@@ -1,14 +1,15 @@
 import React from 'react';
+
 import cn from 'classnames';
 
-import Icon, { IconSize, SvgIcon } from '../Icons';
-import { palette, PaletteNames } from '../../theme/palette';
-
-import styles from './styles.module.scss';
+import { AnalyticsId } from '../../constants';
 import { useHover } from '../../hooks/useHover';
+import { palette, PaletteNames } from '../../theme/palette';
+import Icon, { IconSize, SvgIcon } from '../Icons';
 import Undo from '../Icons/Undo';
 import X from '../Icons/X';
-import { AnalyticsId } from '../../constants';
+
+import styles from './styles.module.scss';
 
 export enum TagSize {
   medium = 'medium',

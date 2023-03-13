@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { breakpoints, screen } from '../theme/grid';
 
 export enum Breakpoint {

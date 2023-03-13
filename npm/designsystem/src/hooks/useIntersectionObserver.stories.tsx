@@ -3,9 +3,9 @@ import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { useIntersectionObserver } from './useIntersectionObserver';
-import { longLoremText } from '../utils/loremtext';
-import GridExample from '../components/GridExample';
 import Button from '../components/Button';
+import GridExample from '../components/GridExample';
+import { longLoremText } from '../utils/loremtext';
 
 const UseIntersectionObserverExample: React.FC = () => {
   const ref = useRef<HTMLButtonElement>(null);

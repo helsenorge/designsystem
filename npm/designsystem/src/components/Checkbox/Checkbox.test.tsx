@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, screen, fireEvent } from '@testing-library/react';
+
 import Checkbox from './Checkbox';
 import { FormMode, FormVariant } from '../../constants';
 

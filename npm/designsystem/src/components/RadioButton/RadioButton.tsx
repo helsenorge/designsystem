@@ -1,10 +1,11 @@
 import React from 'react';
 
 import classNames from 'classnames';
+
+import { AnalyticsId, FormMode, FormVariant } from '../../constants';
 import { uuid } from '../../utils/uuid';
 
 import radioButtonStyles from './styles.module.scss';
-import { AnalyticsId, FormMode, FormVariant } from '../../constants';
 
 export interface RadioButtonProps
   extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'defaultChecked' | 'required'> {

@@ -1,12 +1,16 @@
 import React from 'react';
+
+import classNames from 'classnames';
+
+import { AnalyticsId } from '../../constants';
+import { useHover } from '../../hooks/useHover';
+import { getColor } from '../../theme/currys';
 import Icon, { IconSize } from '../Icons';
 import ArrowUpRight from '../Icons/ArrowUpRight';
-import { getColor } from '../../theme/currys';
-import { useHover } from '../../hooks/useHover';
 
 import AnchorLinkStyles from './styles.module.scss';
-import classNames from 'classnames';
-import { AnalyticsId } from '../../constants';
+
+
 
 export type AnchorLinkTargets = '_self' | '_blank' | '_parent';
 

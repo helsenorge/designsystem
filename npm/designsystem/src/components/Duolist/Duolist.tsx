@@ -1,10 +1,12 @@
 import React from 'react';
+
 import classNames from 'classnames';
 
-import duolistStyles from './styles.module.scss';
 import { AnalyticsId } from '../../constants';
-import { TitleProps } from '../Title';
 import Spacer from '../Spacer';
+import { TitleProps } from '../Title';
+
+import duolistStyles from './styles.module.scss';
 
 export type DuolistVariants = 'normal' | 'line';
 export type BoldColumn = 'first' | 'second' | 'none';

@@ -2,8 +2,6 @@ import React, { useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
-import Icon from '../Icons';
-
 import {
   AnalyticsId,
   IconSize,
@@ -16,10 +14,11 @@ import {
   useToggle,
   useUuid,
 } from '../..';
+import Button from '../Button';
+import Icon from '../Icons';
+import PlusSmall from '../Icons/PlusSmall';
 
 import styles from './styles.module.scss';
-import PlusSmall from '../Icons/PlusSmall';
-import Button from '../Button';
 
 export enum DropdownMode {
   onwhite = 'onwhite',

@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Panel, { PanelStatus, PanelVariant } from './Panel';
 import Avatar from '../Avatar';
-import Title from '../Title';
-import Icon, { IconSize } from '../Icons';
-import Envelope from '../Icons/Envelope';
-import Attachment from '../Icons/Attachment';
 import Button from '../Button';
 import GridExample from '../GridExample';
+import Icon, { IconSize } from '../Icons';
+import Attachment from '../Icons/Attachment';
+import Envelope from '../Icons/Envelope';
+import Title from '../Title';
 
 export default {
   title: 'Components/Panel',

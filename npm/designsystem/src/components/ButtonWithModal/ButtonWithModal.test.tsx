@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
+
 import ButtonWithModal from './ButtonWithModal';
 
 describe('Gitt at ButtonWithModal skal vises', (): void => {

@@ -2,11 +2,12 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Icon, { IconSize } from '.';
-import ExampleSvgIcon from './Undo';
 import Search from './Search';
-import Spacer from '../Spacer';
+import ExampleSvgIcon from './Undo';
 import GridExample from '../GridExample';
+import Spacer from '../Spacer';
+
+import Icon, { IconSize } from '.';
 
 export default {
   title: 'Components/Icon',

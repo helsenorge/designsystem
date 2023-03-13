@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, screen, within } from '@testing-library/react';
+
 import TagList from './TagList';
 import Tag from '../Tag';
 

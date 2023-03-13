@@ -2,15 +2,15 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Checkbox from '../Checkbox/Checkbox';
-import RadioButton from '../RadioButton/RadioButton';
-import Input from '../Input/Input';
 import FormGroup from './FormGroup';
-import { FormMode, FormVariant } from '../../constants';
-import Coronavirus from '../Icons/Coronavirus';
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
-import GridExample from '../GridExample';
 import Spacer from '../../components/Spacer';
+import { FormMode, FormVariant } from '../../constants';
+import Checkbox from '../Checkbox/Checkbox';
+import GridExample from '../GridExample';
+import Coronavirus from '../Icons/Coronavirus';
+import Input from '../Input/Input';
+import RadioButton from '../RadioButton/RadioButton';
 import './formGroup.stories.scss';
 
 export default {

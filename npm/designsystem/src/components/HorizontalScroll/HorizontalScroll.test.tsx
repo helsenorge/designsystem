@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
+
 import HorizontalScroll from './HorizontalScroll';
 
 describe('Gitt at HorizontalScroll skal rendres', (): void => {

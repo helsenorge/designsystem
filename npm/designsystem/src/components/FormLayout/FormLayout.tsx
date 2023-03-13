@@ -2,8 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import formGroupStyles from './styles.module.scss';
 import { AnalyticsId, FormVariant } from '../../constants';
+
+import formGroupStyles from './styles.module.scss';
 
 export enum FormLayoutColumns {
   one = 'one',

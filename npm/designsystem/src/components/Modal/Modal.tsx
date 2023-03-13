@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react';
+
 import cn from 'classnames';
 
-import { palette } from '../../theme/palette';
-import Button from '../Button';
-import Icon, { IconSize } from '../Icons';
-
-import styles from './styles.module.scss';
-import AlertSignStroke from '../Icons/AlertSignStroke';
-import AlertSignFill from '../Icons/AlertSignFill';
+import { AnalyticsId, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsVisible } from '../../hooks/useIsVisible';
-import Title from '../Title/Title';
+import { palette } from '../../theme/palette';
 import { uuid } from '../../utils/uuid';
+import Button from '../Button';
 import Close from '../Close';
+import Icon, { IconSize } from '../Icons';
+import AlertSignFill from '../Icons/AlertSignFill';
+import AlertSignStroke from '../Icons/AlertSignStroke';
 import CheckOutline from '../Icons/CheckOutline';
 import Portal from '../Portal';
-import { AnalyticsId, ZIndex } from '../../constants';
+import Title from '../Title/Title';
+
+import styles from './styles.module.scss';
 
 export enum ModalVariants {
   normal = 'normal',

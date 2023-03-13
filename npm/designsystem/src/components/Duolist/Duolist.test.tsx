@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
+
 import Duolist, { DuolistGroup } from './Duolist';
-import Title from '../Title';
 import AnchorLink from '../AnchorLink';
+import Title from '../Title';
 
 describe('Gitt at Duolist skal vises', (): void => {
   describe('Når Duolist skal vises vanlig', (): void => {

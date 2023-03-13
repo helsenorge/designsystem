@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 import React, { useState } from 'react';
+
 import Button from '../Button';
 import Modal, { ModalProps } from '../Modal/Modal';
 

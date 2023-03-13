@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
+
 import { screen, render, waitFor } from '@testing-library/react';
-import HelpBubble, { HelpBubbleProps, HelpBubbleVariant } from './HelpBubble';
 import userEvent from '@testing-library/user-event';
+
+import HelpBubble, { HelpBubbleProps, HelpBubbleVariant } from './HelpBubble';
 
 const dummyDomRect = {
   height: 100,

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { screen, render } from '@testing-library/react';
+
 import Avatar from './Avatar';
 
 describe('Gitt at Avatar skal vises', (): void => {

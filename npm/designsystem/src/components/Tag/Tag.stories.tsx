@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Tag, { TagAction, TagSize, TagVariant } from './Tag';
-import LawBook from '../Icons/LawBook';
 import GridExample from '../GridExample';
+import LawBook from '../Icons/LawBook';
 
 export default {
   title: 'Components/Tag',

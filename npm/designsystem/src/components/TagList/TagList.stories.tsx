@@ -3,8 +3,8 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import TagList from './TagList';
-import Tag from '../Tag';
 import GridExample from '../GridExample';
+import Tag from '../Tag';
 
 export default {
   title: 'Components/TagList',

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, screen, within } from '@testing-library/react';
+
 import { Icon } from './Icon';
 import Undo from './Undo';
 import { IconSize } from '../../constants';

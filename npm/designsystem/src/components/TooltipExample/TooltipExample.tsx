@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Tooltip, { TooltipProps, TooltipOpenProvider } from '../Tooltip';
 import longLoremText from '../../utils/loremtext';
+import Tooltip, { TooltipProps, TooltipOpenProvider } from '../Tooltip';
 
 const TooltipExample: React.FC<TooltipProps> = props => {
   return (

@@ -1,12 +1,14 @@
 import React from 'react';
+
 import { screen, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import Panel from './Panel';
+import * as uuidUtils from '../../utils/uuid';
+import Avatar from '../Avatar';
 import { Icon, IconSize } from '../Icons';
 import Calendar from '../Icons/Calendar';
-import Avatar from '../Avatar';
 
-import * as uuidUtils from '../../utils/uuid';
 
 describe('Gitt at Panel skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {

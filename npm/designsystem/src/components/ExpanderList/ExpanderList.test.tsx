@@ -1,11 +1,13 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import ExpanderList from './ExpanderList';
+import * as ViewportUtils from '../../utils/viewport';
 import Icon from '../Icons';
 import Avatar from '../Icons/Avatar';
 import Title from '../Title/Title';
-import * as ViewportUtils from '../../utils/viewport';
 import '../../__mocks__/uuid';
 
 describe('Gitt ExpanderList blir rendret', (): void => {

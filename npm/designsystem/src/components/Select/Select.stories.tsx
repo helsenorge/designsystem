@@ -2,8 +2,8 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { palette } from '../../theme/palette';
 import Select from './Select';
+import { palette } from '../../theme/palette';
 
 export default {
   title: 'Components/Select',

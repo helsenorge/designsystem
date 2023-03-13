@@ -4,9 +4,9 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Input, { InputTypes } from './Input';
 import { FormMode, FormVariant } from '../../constants';
-import Hospital from '../Icons/Hospital';
-import Icon, { IconSize } from '../Icons';
 import GridExample from '../GridExample';
+import Icon, { IconSize } from '../Icons';
+import Hospital from '../Icons/Hospital';
 
 export default {
   title: 'Components/Input',

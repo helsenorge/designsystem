@@ -1,6 +1,8 @@
 import React from 'react';
-import { IconSize } from '.';
+
 import { getIcon, SvgPathProps } from './Icon';
+
+import { IconSize } from '.';
 
 const SupportingPerson: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
@@ -22,7 +24,7 @@ const SupportingPerson: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathPr
       <path
         fillRule="evenodd"
         d="M10.497 14.576a5.735 5.735 0 0 1 5.735-5.734h.379a5.735 5.735 0 0 1 5.734 5.734v.17H17.95a2.899 2.899 0 0 1-2.9-2.898H13.8v.063a2.836 2.836 0 0 1-2.836 2.836h-.467v-.17Zm0 1.421v1.813a5.735 5.735 0 0 0 5.735 5.735h.379a5.735 5.735 0 0 0 5.734-5.735v-1.812H17.95a4.15 4.15 0 0 1-3.51-1.937 4.083 4.083 0 0 1-3.476 1.937h-.467Zm5.735-8.924a7.503 7.503 0 0 0-7.503 7.503v3.234a7.503 7.503 0 0 0 7.503 7.503h.379a7.503 7.503 0 0 0 7.503-7.503v-3.234a7.503 7.503 0 0 0-7.503-7.503h-.38Zm10.585 4.978a5.798 5.798 0 0 1 5.798-5.798h.378a5.798 5.798 0 0 1 5.798 5.798v.17h-4.459a2.899 2.899 0 0 1-2.899-2.898h-1.25v.063a2.836 2.836 0 0 1-2.836 2.836h-.53v-.17Zm0 1.421v1.813a5.798 5.798 0 0 0 5.798 5.798h.378a5.798 5.798 0 0 0 5.798-5.798v-1.813h-4.459a4.15 4.15 0 0 1-3.51-1.936 4.087 4.087 0 0 1-3.475 1.936h-.53Zm5.798-8.86a7.44 7.44 0 0 0-7.44 7.44v3.233a7.44 7.44 0 0 0 7.44 7.44h.378a7.44 7.44 0 0 0 7.44-7.44v-3.234a7.44 7.44 0 0 0-7.44-7.44h-.378Z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       />
       <path
         fillRule="evenodd"

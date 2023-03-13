@@ -3,8 +3,8 @@ import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { useHover } from './useHover';
-import GridExample from '../components/GridExample';
 import Button from '../components/Button';
+import GridExample from '../components/GridExample';
 
 const UseHoverExample: React.FC = () => {
   const ref = useRef<HTMLButtonElement>(null);

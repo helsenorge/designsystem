@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
+
 import List from './List';
 
 test('displays a list of 4 elements', (): void => {

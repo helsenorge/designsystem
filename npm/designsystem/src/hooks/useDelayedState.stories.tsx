@@ -3,8 +3,8 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { useDelayedState } from './useDelayedState';
-import GridExample from '../components/GridExample';
 import Button from '../components/Button';
+import GridExample from '../components/GridExample';
 
 const UseDelayedStateExample: React.FC = (args: any) => {
   const [state, setDelayedState, setState] = useDelayedState('', args.delay);

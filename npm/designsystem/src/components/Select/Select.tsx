@@ -2,13 +2,14 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import selectStyles from './styles.module.scss';
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode, IconSize } from '../../constants';
-import Icon from '../Icons';
-import ChevronDown from '../Icons/ChevronDown';
+import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import ErrorWrapper from '../ErrorWrapper';
-import { useUuid } from '../../hooks/useUuid';
+import Icon from '../Icons';
+import ChevronDown from '../Icons/ChevronDown';
+
+import selectStyles from './styles.module.scss';
 
 type SelectConcept = 'normal' | 'transparent';
 

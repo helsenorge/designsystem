@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Button from './Button';
+import { getColor } from '../../theme/currys/color';
+import GridExample from '../GridExample';
 import Icon from '../Icons';
 import Dog from '../Icons/Dog';
 import VerticalDots from '../Icons/VerticalDots';
 import Title from '../Title';
-import { getColor } from '../../theme/currys/color';
-import GridExample from '../GridExample';
 
 export default {
   title: 'Components/Button',

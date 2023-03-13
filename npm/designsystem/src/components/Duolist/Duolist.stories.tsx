@@ -2,11 +2,11 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 import Duolist, { DuolistGroup } from './Duolist';
-import Title from '../Title';
-import GridExample from '../GridExample';
+import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
+import GridExample from '../GridExample';
+import Title from '../Title';
 
 export default {
   title: 'Components/Duolist',

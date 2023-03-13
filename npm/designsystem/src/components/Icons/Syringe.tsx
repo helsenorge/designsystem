@@ -1,6 +1,8 @@
 import React from 'react';
-import { IconSize } from '.';
+
 import { getIcon, SvgPathProps } from './Icon';
+
+import { IconSize } from '.';
 
 const Syringe: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (

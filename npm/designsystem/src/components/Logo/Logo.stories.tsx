@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { allLogoPaletteNames } from '../../../.storybook/knobs';
 
 import Logo from './Logo';
+import { allLogoPaletteNames } from '../../../.storybook/knobs';
 import GridExample from '../GridExample';
 
 export default {

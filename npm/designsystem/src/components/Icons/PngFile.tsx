@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { SvgPathProps } from './Icon';
 
 const PngFile: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {

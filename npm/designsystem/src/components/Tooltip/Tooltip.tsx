@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { useDelayedState } from '../../hooks/useDelayedState';
 
+import TooltipWord from './TooltipWord';
+import { useDelayedState } from '../../hooks/useDelayedState';
 import { useUuid } from '../../hooks/useUuid';
 import HelpBubble from '../HelpBubble';
 
-import TooltipWord from './TooltipWord';
 
 const HOVER_DELAY_MS = 200;
 

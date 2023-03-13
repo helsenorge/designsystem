@@ -2,22 +2,21 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { allPaletteNames } from '../../../.storybook/knobs';
 import ExpanderList from './ExpanderList';
-import LinkList from '../LinkList';
-import Icon from '../Icons';
-import Avatar from '../Icons/Avatar';
-import AvatarComponent from '../Avatar';
-import PaperPlane from '../Icons/PaperPlane';
-import AlarmClock from '../Icons/AlarmClock';
-import Title from '../Title/Title';
-
+import { allPaletteNames } from '../../../.storybook/knobs';
 import { longLoremText } from '../../utils/loremtext';
-import GridExample from '../GridExample';
-import ListHeaderText from '../ListHeader/ListHeaderText';
+import AvatarComponent from '../Avatar';
 import Badge from '../Badge';
-import StatusDot, { StatusDotVariant } from '../StatusDot';
+import GridExample from '../GridExample';
+import Icon from '../Icons';
+import AlarmClock from '../Icons/AlarmClock';
+import Avatar from '../Icons/Avatar';
+import PaperPlane from '../Icons/PaperPlane';
+import LinkList from '../LinkList';
 import ListHeader from '../ListHeader/ListHeader';
+import ListHeaderText from '../ListHeader/ListHeaderText';
+import StatusDot, { StatusDotVariant } from '../StatusDot';
+import Title from '../Title/Title';
 
 export default {
   title: 'Components/ExpanderList',

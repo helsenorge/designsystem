@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { getDocumentActiveElement } from '../utils/focus';
+
 import { useFocusableElements } from './useFocusableElements';
+import { getDocumentActiveElement } from '../utils/focus';
 
 /**
  * Lås fokus til et bestemt element. Bruker vil bare kunne tabbe mellom fokuserbare elementer innenfor elementet.

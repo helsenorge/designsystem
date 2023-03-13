@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import Input, { InputTypes } from './Input';
 import { FormMode, FormVariant } from '../../constants';
 import Hospital from '../Icons/Hospital';

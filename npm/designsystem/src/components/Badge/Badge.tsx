@@ -1,10 +1,11 @@
 import React from 'react';
+
 import classNames from 'classnames';
 
+import { AnalyticsId } from '../../constants';
 import { PaletteNames } from '../../theme/palette';
 
 import badgeStyles from './styles.module.scss';
-import { AnalyticsId } from '../../constants';
 
 export type BadgeColors = PaletteNames;
 export type BadgeChildren = string | number;

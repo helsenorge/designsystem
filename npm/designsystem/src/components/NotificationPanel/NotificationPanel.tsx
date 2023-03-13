@@ -1,19 +1,21 @@
 import React from 'react';
+
 import classNames from 'classnames';
 
-import styles from './styles.module.scss';
-import Close from '../Close';
+import { DetailButton } from './DetailButton/DetailButton';
 import { AnalyticsId, IconSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
+import { getColor } from '../../theme/currys';
 import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import Close from '../Close';
 import Icon from '../Icons';
 import CheckFill from '../Icons/CheckFill';
-import InfoSignFill from '../Icons/InfoSignFill';
 import ErrorSignFill from '../Icons/ErrorSignFill';
+import InfoSignFill from '../Icons/InfoSignFill';
 import TriangleX from '../Icons/TriangleX';
-import { DetailButton } from './DetailButton/DetailButton';
-import { getColor } from '../../theme/currys';
+
+import styles from './styles.module.scss';
 
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'success';
 export type NotificationCompactVariants = 'basic' | 'outline';
@@ -95,7 +97,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         svgIcon={InfoSignFill}
         color={palette.blueberry700}
         hoverColor={palette.blueberry700}
-        size={!!compactVariant ? IconSize.XSmall : IconSize.Small}
+        size={compactVariant ? IconSize.XSmall : IconSize.Small}
       />
     ),
     warn: (
@@ -103,7 +105,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         svgIcon={ErrorSignFill}
         color={palette.banana700}
         hoverColor={palette.banana700}
-        size={!!compactVariant ? IconSize.XSmall : IconSize.Small}
+        size={compactVariant ? IconSize.XSmall : IconSize.Small}
       />
     ),
     alert: (
@@ -111,7 +113,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         svgIcon={TriangleX}
         color={palette.cherry700}
         hoverColor={palette.cherry700}
-        size={!!compactVariant ? IconSize.XSmall : IconSize.Small}
+        size={compactVariant ? IconSize.XSmall : IconSize.Small}
       />
     ),
     success: (
@@ -119,7 +121,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         svgIcon={CheckFill}
         color={palette.kiwi900}
         hoverColor={palette.kiwi900}
-        size={!!compactVariant ? IconSize.XSmall : IconSize.Small}
+        size={compactVariant ? IconSize.XSmall : IconSize.Small}
       />
     ),
   };

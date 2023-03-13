@@ -1,5 +1,5 @@
-import { PaletteNames, PaletteDepths } from '../palette';
 import { theme } from '..';
+import { PaletteNames, PaletteDepths } from '../palette';
 
 const isComplementary = (name: PaletteNames) => name === 'black' || name === 'white';
 

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
-import { uuid } from '../../utils/uuid';
 
-import Check from '../Icons/Check';
-import Icon from '../Icons';
+import { AnalyticsId, FormMode, FormVariant, IconSize } from '../../constants';
 import { getColor } from '../../theme/currys/color';
+import { uuid } from '../../utils/uuid';
+import Icon from '../Icons';
+import Check from '../Icons/Check';
 
 import checkboxStyles from './styles.module.scss';
-import { AnalyticsId, FormMode, FormVariant, IconSize } from '../../constants';
+
 
 export interface CheckboxProps
   extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'checked' | 'required' | 'onChange'> {

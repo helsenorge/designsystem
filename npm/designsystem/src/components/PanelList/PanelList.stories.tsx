@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+
+import GridExample from '../GridExample';
 import Panel, { PanelVariant } from '../Panel';
 import PanelList from '../PanelList';
-import GridExample from '../GridExample';
 
 export default {
   title: 'Components/PanelList',

@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 
-import { useSize } from '../../hooks/useSize';
 
-import DotList from './DotList';
 import Dot from './Dot';
+import DotList from './DotList';
 import { getMaximumDots, getDistanceBetweenDots, getMarkerPosition, getAllowedValues, getValidatedProps } from './utils';
-import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { AnalyticsId } from '../../constants';
+import { useSize } from '../../hooks/useSize';
+import { getAriaLabelAttributes } from '../../utils/accessibility';
 
 import styles from './styles.module.scss';
 

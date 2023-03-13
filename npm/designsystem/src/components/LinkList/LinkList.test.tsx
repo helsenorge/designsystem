@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from 'react';
+
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import LinkList from './LinkList';
 import Icon from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
-import LinkList from './LinkList';
 
 test('displays a list of links', (): void => {
   const { container } = render(

@@ -1,15 +1,16 @@
 import React from 'react';
+
 import cn from 'classnames';
 
+import ListHeaderText, { ListHeaderTextProps, ListHeaderTextType } from './ListHeaderText/ListHeaderText';
+import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { isComponent } from '../../utils/component';
 import Avatar, { AvatarProps, AvatarSize, AvatarType } from '../Avatar';
 import Badge, { BadgeProps, BadgeType } from '../Badge';
-import ListHeaderText, { ListHeaderTextProps, ListHeaderTextType } from './ListHeaderText/ListHeaderText';
+import Icon, { IconSize, SvgIcon } from '../Icons';
+import { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
-import Icon, { IconSize, SvgIcon } from '../Icons';
-import { isComponent } from '../../utils/component';
-import { TitleTags } from '../Title';
 
 export type ListHeaderSize = 'small' | 'medium' | 'large';
 

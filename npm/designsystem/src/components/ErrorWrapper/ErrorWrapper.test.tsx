@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
+
 import ErrorWrapper from './ErrorWrapper';
 
 describe('Gitt at det skal vises en valideringsfeil', (): void => {

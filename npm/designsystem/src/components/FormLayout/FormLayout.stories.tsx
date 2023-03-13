@@ -2,11 +2,11 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Checkbox from '../Checkbox/Checkbox';
-import RadioButton from '../RadioButton/RadioButton';
-import FormGroup from '../FormGroup';
 import FormLayout, { FormLayoutColumns } from './FormLayout';
+import Checkbox from '../Checkbox/Checkbox';
+import FormGroup from '../FormGroup';
 import GridExample from '../GridExample';
+import RadioButton from '../RadioButton/RadioButton';
 
 export default {
   title: 'Components/FormLayout',

@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 import classNames from 'classnames';
+
+import { AnalyticsId } from '../../constants';
+import { PaletteNames } from '../../theme/palette';
 import { uuid } from '../../utils/uuid';
 
-import { PaletteNames } from '../../theme/palette';
 import loaderStyles from './styles.module.scss';
-import { AnalyticsId } from '../../constants';
+
 
 export type LoaderColors = PaletteNames;
 export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';

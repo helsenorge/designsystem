@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Modal, { ModalSize } from './Modal';
-import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
 import { ModalVariants } from './Modal';
-import Button from '../Button';
-import Checkbox from '../Checkbox';
-import Slider from '../Slider';
-import Icon from '../Icons';
 import { IconSize } from '../../constants';
-import Envelope from '../Icons/Envelope';
+import Button from '../Button';
+import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
+import Checkbox from '../Checkbox';
 import GridExample from '../GridExample';
+import Icon from '../Icons';
+import Envelope from '../Icons/Envelope';
+import Slider from '../Slider';
 
 export default {
   title: 'Components/Modal',

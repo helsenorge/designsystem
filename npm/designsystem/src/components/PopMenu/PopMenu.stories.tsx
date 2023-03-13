@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 import { PopMenu, PopMenuVariant } from './PopMenu';
-import { LinkList } from '../LinkList';
 import GridExample from '../GridExample';
+import { LinkList } from '../LinkList';
 import { PopOverVariant } from '../PopOver';
+
 import styles from './story.module.scss';
 
 export default {

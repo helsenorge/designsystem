@@ -1,12 +1,14 @@
 import React from 'react';
+
+import cn from 'classnames';
+
+import { AnalyticsId } from '../../constants';
+import { palette } from '../../theme/palette';
 import Icon, { IconSize } from '../Icons';
 import Check from '../Icons/Check';
-import cn from 'classnames';
 
 import styles from './styles.module.scss';
 
-import { palette } from '../../theme/palette';
-import { AnalyticsId } from '../../constants';
 
 export enum AvatarSize {
   xsmall = 'xsmall',

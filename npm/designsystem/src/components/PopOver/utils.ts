@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react';
+
 import { PopOverVariant } from './PopOver';
 
 type HorizontalPosition = 'left' | 'right' | 'floating';

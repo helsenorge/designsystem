@@ -1,10 +1,11 @@
 import React from 'react';
 
 import classNames from 'classnames';
+
 import { SpacerSizes } from './../../theme/spacers';
+import { AnalyticsId } from '../../constants';
 
 import spacerStyles from './styles.module.scss';
-import { AnalyticsId } from '../../constants';
 
 interface SpacerProps {
   /** Sets the size of the spacer. */

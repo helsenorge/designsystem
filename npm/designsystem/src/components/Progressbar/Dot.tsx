@@ -1,5 +1,6 @@
-import classNames from 'classnames';
 import React from 'react';
+
+import classNames from 'classnames';
 
 import { PROGRESS_BAR_PADDING_X_PX } from './utils';
 

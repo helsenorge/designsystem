@@ -1,7 +1,10 @@
 import React from 'react';
-import { FormMode } from '../../constants';
-import styles from './styles.module.scss';
+
 import classNames from 'classnames';
+
+import { FormMode } from '../../constants';
+
+import styles from './styles.module.scss';
 
 interface MaxCharactersProps {
   /** Current input length */

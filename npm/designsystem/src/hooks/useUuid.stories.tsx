@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { useUuid } from './useUuid';
-import GridExample from '../components/GridExample';
 import Button from '../components/Button';
+import GridExample from '../components/GridExample';
 
 const UseUuidExample: React.FC = () => {
   const [count, setCount] = useState(0);

@@ -1,20 +1,20 @@
 import React, { useRef, useEffect } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
+import LinkList from './LinkList';
 import { allPaletteNames } from '../../../.storybook/knobs';
 import { allLinkListSizes } from '../../../.storybook/knobs';
-import LinkList from './LinkList';
-import ListHeaderText from '../ListHeader/ListHeaderText/ListHeaderText';
+import Avatar from '../Avatar';
+import Badge from '../Badge';
+import GridExample from '../GridExample';
 import Icon from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
-import GridExample from '../GridExample';
-import Avatar from '../Avatar';
-import Badge from '../Badge';
-import { StatusDotVariant } from '../StatusDot';
 import ListHeader from '../ListHeader/ListHeader';
+import ListHeaderText from '../ListHeader/ListHeaderText/ListHeaderText';
+import { StatusDotVariant } from '../StatusDot';
 
 export default {
   title: 'Components/LinkList',

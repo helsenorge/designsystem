@@ -3,9 +3,9 @@ import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { useIsVisible } from './useIsVisible';
-import { longLoremText } from '../utils/loremtext';
-import GridExample from '../components/GridExample';
 import Button from '../components/Button';
+import GridExample from '../components/GridExample';
+import { longLoremText } from '../utils/loremtext';
 
 const UseIsVisibleExample: React.FC = (args: any) => {
   const ref = useRef<HTMLButtonElement>(null);

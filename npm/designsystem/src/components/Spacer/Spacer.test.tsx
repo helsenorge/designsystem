@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
+
 import Spacer from './Spacer';
 
 test('displays default spacer', (): void => {

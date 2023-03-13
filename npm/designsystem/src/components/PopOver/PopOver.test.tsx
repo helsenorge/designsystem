@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
+
 import { screen, render, waitFor } from '@testing-library/react';
+
 import PopOver, { PopOverProps, PopOverVariant } from './PopOver';
 
 const dummyDomRect = {

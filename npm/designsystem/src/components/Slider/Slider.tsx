@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
+
 import classNames from 'classnames';
 
-import Title from '../Title';
 
-import styles from './styles.module.scss';
 import { AnalyticsId } from '../../constants';
 import { useSize } from '../../hooks/useSize';
 import { useUuid } from '../../hooks/useUuid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import Title from '../Title';
+
+import styles from './styles.module.scss';
 
 const useSafeNumberValue = (initial: number, min: number, max: number): [number, (value: number) => void] => {
   const [value, setValue] = useState(initial);
