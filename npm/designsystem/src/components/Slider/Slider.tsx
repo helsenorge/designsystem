@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import classNames from 'classnames';
 
-
 import { AnalyticsId } from '../../constants';
 import { useSize } from '../../hooks/useSize';
 import { useUuid } from '../../hooks/useUuid';

@@ -16,7 +16,6 @@ import PopOver from '../PopOver';
 
 import styles from './styles.module.scss';
 
-
 import LinkList, { LinkListProps } from '../LinkList';
 
 export enum PopMenuVariant {

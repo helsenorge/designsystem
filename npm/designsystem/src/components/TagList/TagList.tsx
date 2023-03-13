@@ -4,7 +4,6 @@ import { AnalyticsId } from '../../constants';
 
 import styles from './styles.module.scss';
 
-
 interface TagListPropsProps {
   /** Sets the data-testid attribute on the expander button. */
   testId?: string;

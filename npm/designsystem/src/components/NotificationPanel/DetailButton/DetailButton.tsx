@@ -10,7 +10,6 @@ import Icon from '../../Icons';
 import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
 
-
 import styles from './styles.module.scss';
 
 type Props = {

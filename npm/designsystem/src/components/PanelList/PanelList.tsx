@@ -7,7 +7,6 @@ import Panel, { PanelProps, PanelVariant } from '../Panel';
 
 import styles from './styles.module.scss';
 
-
 interface PanelListProps {
   /** Panels to render inside the PanelList */
   children?: React.ReactNode;

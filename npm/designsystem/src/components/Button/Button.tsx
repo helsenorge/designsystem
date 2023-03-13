@@ -15,7 +15,6 @@ import ArrowRight from '../Icons/ArrowRight';
 
 import buttonStyles from './styles.module.scss';
 
-
 export type ButtonConcept = 'normal' | 'destructive';
 export type ButtonVariant = 'fill' | 'outline' | 'borderless';
 export type ButtonSize = 'medium' | 'large';

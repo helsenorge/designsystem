@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 
-
 import Dot from './Dot';
 import DotList from './DotList';
 import { getMaximumDots, getDistanceBetweenDots, getMarkerPosition, getAllowedValues, getValidatedProps } from './utils';

@@ -8,7 +8,6 @@ import { uuid } from '../../utils/uuid';
 
 import loaderStyles from './styles.module.scss';
 
-
 export type LoaderColors = PaletteNames;
 export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';
 export enum Overlay {

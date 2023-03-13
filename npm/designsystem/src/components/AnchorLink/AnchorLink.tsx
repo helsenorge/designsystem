@@ -10,8 +10,6 @@ import ArrowUpRight from '../Icons/ArrowUpRight';
 
 import AnchorLinkStyles from './styles.module.scss';
 
-
-
 export type AnchorLinkTargets = '_self' | '_blank' | '_parent';
 
 export type AnchorLinkTags = 'a' | 'button';

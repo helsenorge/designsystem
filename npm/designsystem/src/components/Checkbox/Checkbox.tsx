@@ -10,7 +10,6 @@ import Check from '../Icons/Check';
 
 import checkboxStyles from './styles.module.scss';
 
-
 export interface CheckboxProps
   extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'checked' | 'required' | 'onChange'> {
   /** Adds custom classes to the element. */

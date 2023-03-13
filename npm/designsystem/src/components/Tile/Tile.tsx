@@ -9,7 +9,6 @@ import { IconSize } from '../Icons';
 
 import tileStyles from './styles.module.scss';
 
-
 export type TileTags = 'button' | 'a';
 
 interface TileProps extends HTMLAnchorProps {

@@ -9,7 +9,6 @@ import Avatar from '../Avatar';
 import { Icon, IconSize } from '../Icons';
 import Calendar from '../Icons/Calendar';
 
-
 describe('Gitt at Panel skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {

@@ -5,7 +5,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Progressbar from './Progressbar';
 import Grid from '../GridExample';
 
-
 export default {
   title: 'Components/Progressbar',
   component: Progressbar,

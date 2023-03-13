@@ -5,7 +5,6 @@ import { useDelayedState } from '../../hooks/useDelayedState';
 import { useUuid } from '../../hooks/useUuid';
 import HelpBubble from '../HelpBubble';
 
-
 const HOVER_DELAY_MS = 200;
 
 export interface TooltipProps {

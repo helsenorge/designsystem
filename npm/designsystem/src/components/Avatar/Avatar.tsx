@@ -9,7 +9,6 @@ import Check from '../Icons/Check';
 
 import styles from './styles.module.scss';
 
-
 export enum AvatarSize {
   xsmall = 'xsmall',
   small = 'small',

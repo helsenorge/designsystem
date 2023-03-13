@@ -10,7 +10,6 @@ import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
 
 import LinkListStyles from './styles.module.scss';
 
-
 export type LinkListSize = 'small' | 'medium' | 'large';
 
 export type LinkAnchorTargets = '_self' | '_blank' | '_parent';
