@@ -2,8 +2,6 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from './Icon';
 
-import { IconSize } from '.';
-
 const SupportingPerson: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (
     <path
