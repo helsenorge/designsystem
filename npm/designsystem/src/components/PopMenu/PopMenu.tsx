@@ -12,11 +12,10 @@ import { isComponent } from '../../utils/component';
 import Close from '../Close';
 import Icon from '../Icons';
 import VerticalDots from '../Icons/VerticalDots';
+import LinkList, { LinkListProps } from '../LinkList';
 import PopOver from '../PopOver';
 
 import styles from './styles.module.scss';
-
-import LinkList, { LinkListProps } from '../LinkList';
 
 export enum PopMenuVariant {
   onWhite = 'on-white',
