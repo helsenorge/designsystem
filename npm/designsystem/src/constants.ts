@@ -95,6 +95,8 @@ export enum AnalyticsId {
   NotificationPanel = 'notification-panel',
   Panel = 'panel',
   PanelList = 'panel-list',
+  PopMenu = 'pop-menu',
+  PopOver = 'pop-over',
   Portal = 'portal',
   Progressbar = 'progressbar',
   RadioButton = 'radio-button',

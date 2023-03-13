@@ -272,7 +272,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
 
   const btnContainerClass = classNames(panelStyles['panel__btn-container'], {
     [panelStyles['panel__btn-container--layout3']]: layout3,
-    [panelStyles['panel__btn-container--padding-top']]: contentB,
+    [panelStyles['panel__btn-container--padding-top']]: contentA || contentB,
   });
 
   const renderContent = () => {

@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gitt at en PopMenu vises  Når den rendrer Så skal den kun vises 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="pop-menu-button"
+        data-analyticsid="pop-menu"
+      >
+        <button
+          aria-label="Se mer"
+          class="pop-menu-button pop-menu-button--on-white"
+          data-testid="open-btn"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="hnds-style-icon test"
+            data-analyticsid="icon"
+            fill="#000000"
+            focusable="false"
+            height="48"
+            role="presentation"
+            style="min-width: 48px; min-height: 48px;"
+            viewBox="0 0 48 48"
+            width="48"
+          >
+            <path
+              d="M23.5 16.934c1.045 0 1.9-.855 1.9-1.9s-.855-1.9-1.9-1.9-1.9.855-1.9 1.9.855 1.9 1.9 1.9zm0 8.465c1.045 0 1.9-.855 1.9-1.9s-.855-1.9-1.9-1.9-1.9.855-1.9 1.9.855 1.9 1.9 1.9zm0 8.465c1.045 0 1.9-.855 1.9-1.9s-.855-1.9-1.9-1.9-1.9.855-1.9 1.9.855 1.9 1.9 1.9z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="pop-menu-button"
+      data-analyticsid="pop-menu"
+    >
+      <button
+        aria-label="Se mer"
+        class="pop-menu-button pop-menu-button--on-white"
+        data-testid="open-btn"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="hnds-style-icon test"
+          data-analyticsid="icon"
+          fill="#000000"
+          focusable="false"
+          height="48"
+          role="presentation"
+          style="min-width: 48px; min-height: 48px;"
+          viewBox="0 0 48 48"
+          width="48"
+        >
+          <path
+            d="M23.5 16.934c1.045 0 1.9-.855 1.9-1.9s-.855-1.9-1.9-1.9-1.9.855-1.9 1.9.855 1.9 1.9 1.9zm0 8.465c1.045 0 1.9-.855 1.9-1.9s-.855-1.9-1.9-1.9-1.9.855-1.9 1.9.855 1.9 1.9 1.9zm0 8.465c1.045 0 1.9-.855 1.9-1.9s-.855-1.9-1.9-1.9-1.9.855-1.9 1.9.855 1.9 1.9 1.9z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

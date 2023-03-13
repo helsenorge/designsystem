@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Tooltip from './Tooltip';
+import Tooltip, { TooltipOpenProvider } from './Tooltip';
 import TooltipExample from '../TooltipExample';
 import GridExample from '../GridExample';
 
@@ -32,5 +32,12 @@ export default {
 export const Default: ComponentStory<typeof Tooltip> = (args: any) => (
   <GridExample>
     <TooltipExample {...args} />
+  </GridExample>
+);
+export const SingleExample: ComponentStory<typeof Tooltip> = (args: any) => (
+  <GridExample>
+    <TooltipOpenProvider>
+      <Tooltip {...args} />
+    </TooltipOpenProvider>
   </GridExample>
 );

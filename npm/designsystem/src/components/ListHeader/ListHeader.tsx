@@ -22,9 +22,9 @@ export interface ListHeaderType extends React.ForwardRefExoticComponent<ListHead
 export const renderListHeader = (
   element: React.ReactNode,
   titleHtmlMarkup: TitleTags,
-  chevronIcon: SvgIcon,
   isHovered: boolean,
   size: ListHeaderSize,
+  chevronIcon?: SvgIcon,
   icon?: React.ReactElement
 ): JSX.Element | undefined => {
   if (isComponent<ListHeaderProps>(element, ListHeader)) {

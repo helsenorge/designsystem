@@ -157,13 +157,11 @@ describe('Gitt at Duolist skal vises', (): void => {
       const duoList = screen.getByTestId('test01').children[0];
       const dt = screen.getByText('test term 1');
       const dd = screen.getByText('test description 1');
-      const duolistContentWrapper = dd.parentElement;
       const separator = dt.getAttribute('data-separator');
 
       expect(duoList.className).toBe('duolist duolist--non-formatted');
       expect(dt.className).toBe('duolist__dt duolist__dt--non-formatted');
       expect(dd.className).toBe('duolist__dd duolist__dd--non-formatted');
-      expect(duolistContentWrapper?.className).toBe('duolist__content-wrapper');
       expect(separator).toBe(': ');
     });
   });

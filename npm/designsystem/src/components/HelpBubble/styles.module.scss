@@ -7,32 +7,14 @@
 .helpbubble {
   $bubble: &;
   display: flex;
-  position: fixed;
   align-items: flex-start !important;
-  max-width: 373px;
   text-align: start;
   font-family: inherit;
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
-  background-color: $white;
-  z-index: 3;
-  visibility: hidden;
-
-  & + &__arrow {
-    visibility: hidden;
-  }
-
   &--visible {
     visibility: visible;
-
-    & + #{$bubble}__arrow {
-      visibility: visible;
-    }
   }
-
-  border: getSpacer(4xs) solid $plum600;
-  border-radius: 9px;
-  box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.15);
 
   @media (min-width: map-get($grid-breakpoints, lg)) {
     font-size: $font-size-md;
@@ -42,7 +24,6 @@
   &__content {
     order: 1;
     display: flex;
-    width: max-content;
     flex-direction: column;
     align-items: flex-start;
     overflow-wrap: anywhere;
@@ -66,27 +47,5 @@
   &__close {
     order: 2;
     padding: getSpacer(2xs) getSpacer(2xs) 0px 0px;
-  }
-
-  &__arrow {
-    width: 0;
-    height: 0;
-    position: fixed;
-    border-style: solid;
-    border-color: transparent;
-    z-index: 3;
-
-    &--over {
-      border-width: 10px 10px;
-      border-bottom-color: $white;
-      -webkit-filter: drop-shadow($plum600 0px 2px 6px 2px);
-      filter: drop-shadow(0px -0.185rem 0px $plum600);
-    }
-    &--under {
-      border-width: 10px 10px;
-      border-top-color: $white;
-      -webkit-filter: drop-shadow($plum600 0px 2px 6px 2px);
-      filter: drop-shadow(0px 0.2rem 0px $plum600);
-    }
   }
 }

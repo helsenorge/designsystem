@@ -3,45 +3,50 @@
 exports[`Gitt at HelpBubble skal vises Når den skal vises vanlig Så vises HelpBubble som vanlig 1`] = `
 <div>
   <div
-    class="helpbubble helpbubble--visible"
-    data-analyticsid="help-bubble"
+    class="popover popover--visible"
+    data-analyticsid="pop-over"
     data-testid="test01"
   >
     <div
-      class="helpbubble__close"
+      class="helpbubble helpbubble--visible"
+      data-analyticsid="help-bubble"
     >
-      <button
-        aria-label="Lukk"
-        class="close close--small"
-        data-analyticsid="close"
-        type="button"
+      <div
+        class="helpbubble__close"
       >
-        <svg
-          aria-hidden="true"
-          class="hnds-style-icon"
-          data-analyticsid="icon"
-          fill="#126F87"
-          focusable="false"
-          height="38"
-          role="presentation"
-          style="min-width: 38px; min-height: 38px;"
-          viewBox="0 0 48 48"
-          width="38"
+        <button
+          aria-label="Lukk"
+          class="close close--small"
+          data-analyticsid="close"
+          type="button"
         >
-          <path
-            d="M25.773 24l10.432-10.432-1.772-1.773-10.432 10.433-10.433-10.433-1.773 1.772L22.229 24 11.795 34.433l1.773 1.772 10.433-10.433 10.432 10.433 1.772-1.773z"
-          />
-        </svg>
-      </button>
-    </div>
-    <div
-      class="helpbubble__content helpbubble__content--close"
-    >
-      Test tekst
+          <svg
+            aria-hidden="true"
+            class="hnds-style-icon"
+            data-analyticsid="icon"
+            fill="#126F87"
+            focusable="false"
+            height="38"
+            role="presentation"
+            style="min-width: 38px; min-height: 38px;"
+            viewBox="0 0 48 48"
+            width="38"
+          >
+            <path
+              d="M25.773 24l10.432-10.432-1.772-1.773-10.432 10.433-10.433-10.433-1.773 1.772L22.229 24 11.795 34.433l1.773 1.772 10.433-10.433 10.432 10.433 1.772-1.773z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="helpbubble__content helpbubble__content--close"
+      >
+        Test tekst
+      </div>
     </div>
   </div>
   <div
-    class="helpbubble__arrow"
+    class="popover__arrow"
   />
 </div>
 `;

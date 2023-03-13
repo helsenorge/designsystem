@@ -38,7 +38,7 @@ describe('Gitt at Tooltip rendres ', () => {
       const word = screen.getByText('ordet');
       await userEvent.hover(word);
 
-      const helpBubble = screen.getByRole('tooltip', { name: 'beskrivelse av ordet' });
+      const helpBubble = await screen.findByRole('tooltip', { name: 'beskrivelse av ordet' });
       expect(helpBubble).toBeInTheDocument();
     });
   });
@@ -52,7 +52,7 @@ describe('Gitt at Tooltip rendres ', () => {
       await userEvent.tab();
       expect(word).toHaveFocus();
 
-      const helpBubble = screen.getByRole('tooltip', { name: 'beskrivelse av ordet' });
+      const helpBubble = await screen.findByRole('tooltip', { name: 'beskrivelse av ordet' });
       expect(helpBubble).toBeInTheDocument();
     });
   });

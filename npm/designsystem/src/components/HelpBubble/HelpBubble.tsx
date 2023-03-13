@@ -1,23 +1,15 @@
 import classNames from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 import { AnalyticsId } from '../../constants';
-import { useInterval } from '../../hooks/useInterval';
 import { useIsVisible } from '../../hooks/useIsVisible';
-import { useLayoutEvent } from '../../hooks/useLayoutEvent';
-import { useSize } from '../../hooks/useSize';
-import { mergeRefs } from '../../utils/refs';
 import AnchorLink from '../AnchorLink';
 import Close from '../Close';
+import PopOver, { PopOverVariant } from '../PopOver';
 
 import styles from './styles.module.scss';
-import { getArrowStyle, getBubbleStyle, getVerticalPosition } from './utils';
 
-export enum HelpBubbleVariant {
-  positionautomatic = 'positionautomatic',
-  positionbelow = 'positionbelow',
-  positionabove = 'positionabove',
-}
+export const HelpBubbleVariant = PopOverVariant;
 
 type HelpBubbleRole = 'tooltip';
 
@@ -52,13 +44,12 @@ export interface HelpBubbleProps {
   testId?: string;
 }
 
-const HelpBubble = React.forwardRef<HTMLDivElement, HelpBubbleProps>((props, ref) => {
+const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubbleProps>((props, ref) => {
   const {
     helpBubbleId,
     children,
     controllerRef,
     className = '',
-    variant = HelpBubbleVariant.positionautomatic,
     showBubble,
     noCloseButton,
     linkText = 'Mer hjelp',
@@ -67,31 +58,12 @@ const HelpBubble = React.forwardRef<HTMLDivElement, HelpBubbleProps>((props, ref
     onClose,
     closeAriaLabel,
     role,
-    testId,
   } = props;
 
-  const bubbleRef = useRef<HTMLDivElement>(null);
-  const arrowRef = useRef<HTMLDivElement>(null);
-  const bubbleSize = useSize(bubbleRef);
-  const [controllerSize, setControllerSize] = useState<DOMRect>();
   const controllerisVisible = useIsVisible(controllerRef, 0);
-
-  const updateControllerSize = (): void => {
-    setControllerSize(controllerRef.current?.getBoundingClientRect());
-  };
-
-  useInterval(updateControllerSize, 500);
-  useLayoutEvent(updateControllerSize, ['scroll', 'resize'], 10);
-
-  useEffect(() => {
-    if (showBubble) {
-      updateControllerSize();
-    }
-  }, [showBubble]);
-
   const isTooltip = role === 'tooltip';
 
-  if (!showBubble && !isTooltip) {
+  if (!showBubble) {
     return null;
   }
 
@@ -100,17 +72,10 @@ const HelpBubble = React.forwardRef<HTMLDivElement, HelpBubbleProps>((props, ref
     { [styles['helpbubble--visible']]: (!isTooltip && controllerisVisible) || (isTooltip && showBubble) },
     className
   );
-  const verticalPosition = controllerSize && bubbleSize && getVerticalPosition(controllerSize, bubbleSize, variant);
-  const arrowClasses = classNames(styles.helpbubble__arrow, {
-    [styles['helpbubble__arrow--over']]: verticalPosition === HelpBubbleVariant.positionbelow,
-    [styles['helpbubble__arrow--under']]: verticalPosition === HelpBubbleVariant.positionabove,
-  });
+
   const contentClasses = classNames(styles.helpbubble__content, {
     [styles['helpbubble__content--close']]: !noCloseButton && !isTooltip,
   });
-
-  const bubbleStyle = controllerSize && bubbleSize && getBubbleStyle(controllerSize, bubbleSize, variant);
-  const arrowStyle = bubbleStyle && controllerSize && verticalPosition && getArrowStyle(bubbleStyle, controllerSize, verticalPosition);
 
   const renderLink = (): JSX.Element | undefined => {
     // Det er ikke tillatt med interaktive/fokuserbare elementer i role="tooltip"
@@ -140,24 +105,15 @@ const HelpBubble = React.forwardRef<HTMLDivElement, HelpBubbleProps>((props, ref
   };
 
   return (
-    <>
-      <div
-        id={helpBubbleId}
-        ref={mergeRefs([ref, bubbleRef])}
-        className={helpBubbleClasses}
-        style={bubbleStyle}
-        data-testid={testId}
-        data-analyticsid={AnalyticsId.HelpBubble}
-        role={role}
-      >
+    <PopOver {...props} ref={ref}>
+      <div id={helpBubbleId} className={helpBubbleClasses} data-analyticsid={AnalyticsId.HelpBubble}>
         {renderCloseButton()}
         <div className={contentClasses}>
           {children}
           {renderLink()}
         </div>
       </div>
-      <div ref={arrowRef} className={arrowClasses} style={arrowStyle} />
-    </>
+    </PopOver>
   );
 });
 

@@ -74,7 +74,7 @@ export const DuolistGroup: React.FC<DuolistGroupProps> = props => {
     );
   };
 
-  return nonFormatted ? <div className={duolistStyles['duolist__content-wrapper']}>{renderContent()}</div> : <>{renderContent()}</>;
+  return nonFormatted ? <div>{renderContent()}</div> : <>{renderContent()}</>;
 };
 
 export const Duolist: React.FC<DuolistProps> = props => {

@@ -10,20 +10,5 @@ exports[`Gitt at Tooltip rendres  Når komponenten får en tekst Så rendres den
   >
     ordet
   </span>
-  <div
-    class="helpbubble"
-    data-analyticsid="help-bubble"
-    id="test"
-    role="tooltip"
-  >
-    <div
-      class="helpbubble__content"
-    >
-      beskrivelse av ordet
-    </div>
-  </div>
-  <div
-    class="helpbubble__arrow"
-  />
 </div>
 `;

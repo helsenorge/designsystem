@@ -2,6 +2,9 @@
 @import '../../scss/_breakpoints.scss';
 @import '../../scss/_palette.scss';
 
+$underline-width: 0.0625rem;
+$focus-width: 0.15rem;
+
 @mixin anchorlink-hover {
   cursor: pointer;
   color: $blueberry700;
@@ -9,10 +12,8 @@
   border-bottom-color: $blueberry600;
 }
 @mixin anchorlink-focus {
-  padding: 0 0 0.15rem 0;
   outline: none;
-  border: 0.15rem solid $black;
-  margin-top: -0.075rem;
+  border: $focus-width solid $black;
 }
 
 @mixin anchorlink {
@@ -24,8 +25,10 @@
   text-align: left;
   text-decoration: none;
   color: $blueberry600;
-  padding: 0.15rem;
-  border-bottom: 1px solid $neutral700;
+  border: $focus-width solid transparent;
+  border-bottom-color: $neutral700;
+  border-bottom-width: $underline-width;
+  padding-bottom: calc($focus-width - $underline-width);
 
   &:hover {
     @include anchorlink-hover;

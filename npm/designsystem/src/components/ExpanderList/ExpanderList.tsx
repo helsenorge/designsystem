@@ -158,7 +158,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
           width: isSticky && contentWidth ? `${contentWidth}px` : undefined,
         }}
       >
-        {renderListHeader(title, titleHtmlMarkup, isExpanded ? ChevronUp : ChevronDown, isHovered, large ? 'large' : 'medium', icon)}
+        {renderListHeader(title, titleHtmlMarkup, isHovered, large ? 'large' : 'medium', isExpanded ? ChevronUp : ChevronDown, icon)}
       </button>
       {renderContent()}
     </li>
