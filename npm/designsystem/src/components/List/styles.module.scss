@@ -26,6 +26,10 @@
               &::marker {
                 font-size: 1rem;
               }
+
+              > #{$list}--bullet {
+                list-style-type: '– ';
+              }
             }
           }
         }
