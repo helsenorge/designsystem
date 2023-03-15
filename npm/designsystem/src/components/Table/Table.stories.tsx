@@ -137,7 +137,7 @@ export const SimpleResponsiveConfig: ComponentStory<typeof Table> = (args: any) 
     <div className="container">
       <div className="row">
         <div className="col-lg-8 offset-lg-2">
-          <Title appearance="title3">{'Config for enkle tabeller (<3 kolonner og <5 rader og lite innhold i hver kolonne)'}</Title>
+          <Title appearance="title3">{'Config for enkle tabeller (< 5 kolonner og < 10 rader og lite innhold i hver kolonne)'}</Title>
           <p>{longLoremText}</p>
           <Table {...args} breakpointConfig={simpleConfig}>
             <TableHead category={args.headerCategory}>
