@@ -49,6 +49,7 @@ const TableContents: React.FC = () => (
 describe('Gitt at Table skal vises', (): void => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockGetBoundingClientRect.mockReturnValue({ width: 0 });
   });
   describe('Når den skal vises', (): void => {
     it('Så vises en tabell', (): void => {

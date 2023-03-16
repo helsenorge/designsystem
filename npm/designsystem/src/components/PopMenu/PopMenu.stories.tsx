@@ -3,9 +3,11 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { PopMenu, PopMenuVariant } from './PopMenu';
+import longLoremText from '../../utils/loremtext';
 import GridExample from '../GridExample';
 import { LinkList } from '../LinkList';
 import { PopOverVariant } from '../PopOver';
+import Table, { HeaderCategory, ResponsiveTableVariant, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
 
 import styles from './story.module.scss';
 
@@ -34,19 +36,19 @@ export default {
   },
 } as ComponentMeta<typeof PopMenu>;
 
-export const Default: ComponentStory<typeof PopMenu> = (args: any) => (
+export const Default: ComponentStory<typeof PopMenu> = args => (
   <GridExample>
     <div className={styles['story-wrapper']}>
       <PopMenu {...args}>
         <LinkList testId="linkList-tester" chevron={false}>
           <LinkList.Link tabIndex={0} href="/">
-            Link 1
+            {'Link 1'}
           </LinkList.Link>
           <LinkList.Link tabIndex={0} href="/">
-            Link 2
+            {'Link 2'}
           </LinkList.Link>
           <LinkList.Link tabIndex={0} href="/">
-            Link 3
+            {'Link 3'}
           </LinkList.Link>
         </LinkList>
       </PopMenu>
@@ -54,3 +56,62 @@ export const Default: ComponentStory<typeof PopMenu> = (args: any) => (
     </div>
   </GridExample>
 );
+
+export const HorizontalScroll: ComponentStory<typeof Table> = args => {
+  return (
+    <GridExample>
+      <p>{longLoremText}</p>
+      <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}>
+        <TableHead category={HeaderCategory.normal}>
+          <TableRow key="head">
+            <TableHeadCell>{'Fastlege'}</TableHeadCell>
+            <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+            <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+            <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
+            <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
+            <TableCell dataLabel="ledige">{'1'}</TableCell>
+            <TableCell dataLabel="antall">
+              <PopMenu {...args}>
+                <LinkList testId="linkList-tester" chevron={false}>
+                  <LinkList.Link tabIndex={0} href="/">
+                    {'Link 1'}
+                  </LinkList.Link>
+                  <LinkList.Link tabIndex={0} href="/">
+                    {'Link 2'}
+                  </LinkList.Link>
+                  <LinkList.Link tabIndex={0} href="/">
+                    {'Link 3'}
+                  </LinkList.Link>
+                </LinkList>
+              </PopMenu>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
+            <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
+            <TableCell dataLabel="ledige">{'1'}</TableCell>
+            <TableCell dataLabel="antall">{'200'}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
+            <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
+            <TableCell dataLabel="ledige">{'1'}</TableCell>
+            <TableCell dataLabel="antall">{'200'}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
+            <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
+            <TableCell dataLabel="ledige">{'1'}</TableCell>
+            <TableCell dataLabel="antall">{'200'}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      <p>{longLoremText}</p>
+    </GridExample>
+  );
+};
