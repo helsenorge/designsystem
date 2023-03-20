@@ -150,8 +150,8 @@
           "path": "/bibliotek/komponenter/pop-over"
         },
         {
-          "label": "Progressbar",
-          "path": "/bibliotek/komponenter/progressbar"
+          "label": "Stepper",
+          "path": "/bibliotek/komponenter/stepper"
         },
         {
           "label": "RadioButton",

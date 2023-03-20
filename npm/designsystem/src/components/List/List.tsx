@@ -4,28 +4,47 @@ import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
 
-import listStyles from './styles.module.scss';
+import styles from './styles.module.scss';
 
-interface ListProps {
-  children: React.ReactNode[];
+export type ListVariant = 'bullet' | 'dashed' | 'numbered' | 'alphabetical';
+
+export interface ItemProps {
+  children: React.ReactNode;
+}
+
+type ItemType = React.FC<ItemProps>;
+
+const Item: ItemType = ({ children }: ItemProps) => <li className={styles.list__item}>{children}</li>;
+
+export interface ListProps {
+  /** List contents */
+  children: React.ReactNode;
+  /** Changes the visual representation of the list. */
+  variant?: ListVariant;
+  /** Adds margin above/below list */
+  margin?: boolean;
+  /** Adds className to list element */
   className?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
-function List(props: ListProps) {
-  const { children, className, testId } = props;
-  return (
-    <ul className={classNames(listStyles.list, className)} data-testid={testId} data-analyticsid={AnalyticsId.List}>
-      {children.map((child: React.ReactNode, index: number) => {
-        return (
-          <li className={listStyles.list__item} key={index}>
-            {child}
-          </li>
-        );
-      })}
-    </ul>
-  );
+export interface ListCompound extends React.FC<ListProps> {
+  Item: ItemType;
 }
+
+const List: ListCompound = ({ children, className, testId, variant = 'bullet', margin }: ListProps) => {
+  const CustomTag = ['numbered', 'alphabetical'].includes(variant) ? 'ol' : 'ul';
+
+  const listClasses = classNames(styles.list, styles[`list--${variant}`], margin && styles['list--margin'], className);
+
+  return (
+    <CustomTag className={listClasses} data-testid={testId} data-analyticsid={AnalyticsId.List}>
+      {children}
+    </CustomTag>
+  );
+};
+
+List.Item = Item;
 
 export default List;

@@ -10,7 +10,7 @@ import Button from '../Button';
 import GridExample from '../GridExample';
 import Icon from '../Icons';
 import HelpSign from '../Icons/HelpSign';
-import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell } from '../Table';
+import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, ResponsiveTableVariant } from '../Table';
 
 export default {
   title: 'Components/PopOver',
@@ -85,7 +85,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
   return (
     <GridExample>
       <p>{longLoremText}</p>
-      <Table>
+      <Table breakpointConfig={{ breakpoint: 'xl', variant: ResponsiveTableVariant.horizontalscroll }}>
         <TableHead category={args.headerCategory}>
           <TableRow key="head">
             <TableHeadCell>Fastlege</TableHeadCell>

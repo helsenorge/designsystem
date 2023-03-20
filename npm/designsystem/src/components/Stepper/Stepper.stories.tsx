@@ -2,12 +2,12 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Progressbar from './Progressbar';
+import Stepper from './Stepper';
 import Grid from '../GridExample';
 
 export default {
-  title: 'Components/Progressbar',
-  component: Progressbar,
+  title: 'Components/Stepper',
+  component: Stepper,
   parameters: {
     docs: {
       description: {
@@ -34,16 +34,16 @@ export default {
       control: 'number',
     },
   },
-} as ComponentMeta<typeof Progressbar>;
+} as ComponentMeta<typeof Stepper>;
 
-export const Dots: ComponentStory<typeof Progressbar> = (args: any) => (
+export const Dots: ComponentStory<typeof Stepper> = (args: any) => (
   <Grid>
-    <Progressbar {...args} />
+    <Stepper {...args} />
   </Grid>
 );
 
-export const Smooth: ComponentStory<typeof Progressbar> = (args: any) => (
+export const Smooth: ComponentStory<typeof Stepper> = (args: any) => (
   <Grid>
-    <Progressbar min={1} max={100} {...args} />
+    <Stepper min={1} max={100} {...args} />
   </Grid>
 );

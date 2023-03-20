@@ -3,7 +3,7 @@
 @import '../../scss/_palette.scss';
 @import '../../scss/_font-settings.scss';
 
-.progressbar-wrapper {
+.stepper-wrapper {
   display: flex;
   align-items: center;
   min-height: getSpacer(l);
@@ -25,25 +25,25 @@ $markerSize: 24px;
 $dotSize: 8px;
 
 /**
- * Høyde på progressbar
+ * Høyde på stepper
  */
-$progressbarHeight: 12px;
+$stepperHeight: 12px;
 
 /**
- * Horisontal padding på progressbar
+ * Horisontal padding på stepper
  */
-$progressbarPaddingX: 8px;
+$stepperPaddingX: 8px;
 
 /**
- * Avstand fra venstre kant av progressbar til midten av første prikk
+ * Avstand fra venstre kant av stepper til midten av første prikk
  */
-$dotOffset: calc($progressbarPaddingX + $dotSize / 2);
+$dotOffset: calc($stepperPaddingX + $dotSize / 2);
 
-.progressbar {
+.stepper {
   flex-grow: 1;
   position: relative;
   display: block;
-  height: $progressbarHeight;
+  height: $stepperHeight;
   border-radius: 4px;
   background: linear-gradient(to right, $blueberry600, $blueberry600 $dotOffset, $blueberry50 $dotOffset, $blueberry50), $blueberry600;
   background-repeat: no-repeat;
@@ -55,7 +55,7 @@ $dotOffset: calc($progressbarPaddingX + $dotSize / 2);
     position: absolute;
     width: $markerSize;
     height: $markerSize;
-    top: calc(($progressbarHeight - $markerSize) / 2);
+    top: calc(($stepperHeight - $markerSize) / 2);
     background-color: $white;
     border: 6px solid $blueberry600;
     border-radius: 50%;
@@ -76,7 +76,7 @@ $dotOffset: calc($progressbarPaddingX + $dotSize / 2);
 
   &__dot {
     position: absolute;
-    top: calc(($progressbarHeight - $dotSize) / 2);
+    top: calc(($stepperHeight - $dotSize) / 2);
     width: $dotSize;
     height: $dotSize;
     background-color: $blueberry600;

@@ -1,11 +1,57 @@
-@import '../../scss/_palette.scss';
+@import '../../scss/spacers';
 
 .list {
-  width: 100%;
-  list-style: none;
-  padding: 0 1rem 0 0.5rem;
+  $list: &;
+
+  margin-top: 0;
+  margin-bottom: 0;
+
+  &--margin {
+    margin-top: getSpacer(s);
+    margin-bottom: getSpacer(s);
+  }
+
+  &--bullet {
+    list-style-type: disc;
+
+    > #{$list}__item {
+      > #{$list}--bullet {
+        list-style-type: circle;
+
+        > #{$list}__item {
+          > #{$list}--bullet {
+            list-style-type: '⬥ ';
+
+            > #{$list}__item {
+              &::marker {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--dashed {
+    list-style-type: '– ';
+  }
+
+  &--numbered {
+    list-style-type: decimal;
+  }
+
+  &--alphabetical {
+    list-style-type: lower-alpha;
+  }
 
   &__item {
-    border-bottom: 1px solid $neutral600;
+    > #{$list} {
+      margin-top: getSpacer(2xs);
+    }
+  }
+
+  &__item:not(:last-child) {
+    margin-bottom: getSpacer(2xs);
   }
 }

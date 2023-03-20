@@ -1,38 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`displays a list of 4 elements 1`] = `
+exports[`Gitt at List skal vises Når komponenten har fire elementer Så vises fire liste-elementer 1`] = `
 <div>
   <ul
-    class="list"
+    class="list list--bullet"
     data-analyticsid="list"
   >
     <li
       class="list__item"
     >
-      <h1>
-        Tjeneste 1
-      </h1>
+      Tjeneste 1
     </li>
     <li
       class="list__item"
     >
-      <h1>
-        Tjeneste 2
-      </h1>
+      Tjeneste 2
     </li>
     <li
       class="list__item"
     >
-      <h1>
-        Tjeneste 3
-      </h1>
+      Tjeneste 3
     </li>
     <li
       class="list__item"
     >
-      <h1>
-        Tjeneste 4
-      </h1>
+      Tjeneste 4
     </li>
   </ul>
 </div>
