@@ -1,3 +1,5 @@
+## 3.0.1-beta.1 (2023-03-20)
+
 ## 3.0.1-beta.0 (2023-03-20)
 
 ## [3.0.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.17.0&targetVersion=GTv3.0.0) (2023-03-13)
