@@ -3,8 +3,10 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import NotificationPanel from './NotificationPanel';
+import ServiceMessage from './ServiceMessage/ServiceMessage';
 import { getColor } from '../../theme/currys';
 import GridExample from '../GridExample';
+import styles from './stories.module.scss';
 
 export default {
   title: 'Components/NotificationPanel',
@@ -17,10 +19,6 @@ export default {
     },
   },
   argTypes: {
-    shadow: {
-      control: 'boolean',
-      defaultValue: false,
-    },
     dismissable: {
       control: 'boolean',
       defaultValue: false,
@@ -165,6 +163,18 @@ export const Dismissable: ComponentStory<typeof NotificationPanel> = (args: any)
     <NotificationPanel {...args} label={'Dismissable'} dismissable>
       {'Dette er dismissesable'}
     </NotificationPanel>
+    <div style={{ margin: '1rem' }} />
+    <NotificationPanel
+      {...args}
+      label={'Dismissable'}
+      dismissable
+      expanderChildren={'Dette er innhold i expanderen. Dette innholdet er åpnet fra start'}
+      expanderButtonText="Vis mindre"
+      expanderButtonClosedText="Vis mer"
+      expanderOpenFromStart
+    >
+      {'Dette er dismissesable'}
+    </NotificationPanel>
   </GridExample>
 );
 export const Compact: ComponentStory<typeof NotificationPanel> = (args: any) => (
@@ -200,5 +210,21 @@ export const WithSetWidth: ComponentStory<typeof NotificationPanel> = (args: any
         <NotificationPanel {...args} size="large" label={'Size: large'}></NotificationPanel>
       </div>
     </div>
+  </GridExample>
+);
+export const AsServiceMessage: ComponentStory<typeof NotificationPanel> = (args: any) => (
+  <GridExample container={false}>
+    <ServiceMessage
+      {...args}
+      serviceMessageLabel={'Driftsmelding'}
+      serviceMessageInfo={
+        'Her er det noe som dessverre ikke stemmer i våre systemer. Prøv igjen senere!  Vi jobber hard for å løse problemet for deg.'
+      }
+      onDismiss={() => console.log('consider this component closed')}
+      serviceMessageExtraInfo={'Alternativ ekstrainformasjon som må skrives kan legges inn her.'}
+      serviceMessageCloseBtnText="Lukk"
+      serviceMessageReadMoreText="Les mer om dette her"
+      serviceMessageReadMoreUrl="/"
+    />
   </GridExample>
 );

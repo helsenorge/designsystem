@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -16,14 +16,22 @@ import InfoSignFill from '../Icons/InfoSignFill';
 import TriangleX from '../Icons/TriangleX';
 
 import styles from './styles.module.scss';
+import serviceMessageStyles from './ServiceMessage/styles.module.scss';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
+import { breakpoints } from '../../theme/grid';
+import { useHover } from '../../hooks/useHover';
+import ChevronUp from '../Icons/ChevronUp';
+import ChevronDown from '../Icons/ChevronDown';
 
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'success';
 export type NotificationCompactVariants = 'basic' | 'outline';
-export type NotificationPanelSizes = 'small' | 'medium' | 'large';
+export type NotificationPanelSizes = 'small' | 'medium' | 'large' | 'full';
 
 export interface NotificationPanelProps {
   /** Adds custom classes to the element. */
   className?: string;
+  /** Adds custom classes to all content inside the container. */
+  contentClassName?: string;
   /** Adds inner child elements. */
   children?: React.ReactNode;
   /** Adds inner expander elements. */
@@ -50,6 +58,10 @@ export interface NotificationPanelProps {
   label?: string;
   /** Close button aria-label */
   ariaLabelCloseBtn?: string;
+  /** Gives a special design for serviceMessage */
+  isServiceMessage?: boolean;
+  /** Only for ServiceMessage Provides an expander in the top right corner */
+  serviceMessageExpander?: boolean;
   /** Custom id for the label */
   labelId?: string;
   /** Custom role for the panel. Default is "region". If variant is alert or crisis, the aria role will be set to "alert" unless the role-prop is also set. */
@@ -81,23 +93,28 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     expanderButtonText,
     expanderButtonClosedText,
     expanderOpenFromStart = false,
+    isServiceMessage = false,
+    serviceMessageExpander,
     compactVariant,
     label,
     fluid = false,
     size,
     className,
+    contentClassName,
     labelId,
     role,
     testId,
   } = props;
   const uuid = useUuid(labelId);
+  const breakpoint = useBreakpoint();
+  const mobile = breakpoint < breakpoints.md;
   const variantToIconMap = {
     info: (
       <Icon
         svgIcon={InfoSignFill}
         color={palette.blueberry700}
         hoverColor={palette.blueberry700}
-        size={compactVariant ? IconSize.XSmall : IconSize.Small}
+        size={compactVariant || mobile ? IconSize.XSmall : IconSize.Small}
       />
     ),
     warn: (
@@ -105,7 +122,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         svgIcon={ErrorSignFill}
         color={palette.banana700}
         hoverColor={palette.banana700}
-        size={compactVariant ? IconSize.XSmall : IconSize.Small}
+        size={compactVariant || mobile ? IconSize.XSmall : IconSize.Small}
       />
     ),
     alert: (
@@ -113,7 +130,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         svgIcon={TriangleX}
         color={palette.cherry700}
         hoverColor={palette.cherry700}
-        size={compactVariant ? IconSize.XSmall : IconSize.Small}
+        size={compactVariant || mobile ? IconSize.XSmall : IconSize.Small}
       />
     ),
     success: (
@@ -127,24 +144,16 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
   };
   const renderContent = (): JSX.Element => {
     const contentClasses = classNames(styles['notification-panel__content']);
-    const labelClasses = classNames(styles['notification-panel__label'], {
-      [styles['notification-panel__label--no-content']]: !children && !expanderChildren,
-      [styles['notification-panel__label__compact']]: !!compactVariant,
-      [styles['notification-panel__label__compact--basic']]: compactVariant === 'basic',
-    });
+
     const childrenClasses = classNames(styles['notification-panel__children'], {
       [styles['notification-panel__label-and-content--spacing']]: label,
     });
 
     return (
       <div className={contentClasses} id={!label ? uuid : undefined}>
-        {label && (
-          <h1 className={labelClasses} id={uuid}>
-            {label}
-          </h1>
-        )}
-        {children && !compactVariant && <div className={childrenClasses}>{children}</div>}
-        {expanderChildren && expanderButtonText && expanderButtonClosedText && !compactVariant && (
+        {children && !compactVariant && !isServiceMessage && <div className={childrenClasses}>{children}</div>}
+        {children && isServiceMessage && isExpanded && children}
+        {!isServiceMessage && expanderChildren && expanderButtonText && expanderButtonClosedText && !compactVariant && (
           <DetailButton
             expanderOpenFromStart={expanderOpenFromStart}
             content={expanderChildren}
@@ -155,9 +164,29 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
       </div>
     );
   };
+  const [isExpanded, setIsExpanded] = useState<boolean>(expanderOpenFromStart);
+  const openExpanderRef = useRef<HTMLButtonElement>(null);
+  const { isHovered: openExpanderIsHoveredRef } = useHover(openExpanderRef);
+  const iconSize = mobile ? IconSize.XSmall : IconSize.Small;
+  const expanderButtonClasses = classNames(
+    serviceMessageStyles['service-message__expander-button'],
+    serviceMessageStyles['service-message__expander-button--open']
+  );
 
+  const topRightExpander = (
+    <button
+      className={expanderButtonClasses}
+      aria-label="expander"
+      data-testid="service-message-expander"
+      onClick={(): void => setIsExpanded(!isExpanded)}
+      ref={openExpanderRef}
+    >
+      <Icon size={iconSize} svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={openExpanderIsHoveredRef} />
+    </button>
+  );
   const notificationPanelClasses = classNames(
     styles['notification-panel'],
+    'container',
     styles[`notification-panel--${variant}`],
     {
       [styles[`notification-panel--${size}`]]: !!size,
@@ -167,9 +196,17 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
       [styles['notification-panel--has-children']]: !!children,
       [styles['notification-panel--with-content']]: expanderChildren || (label && children),
       [styles['notification-panel--dismissable']]: dismissable,
+      [styles['notification-panel__service-message']]: isServiceMessage,
+      [styles['notification-panel__service-message--border']]: isServiceMessage,
     },
     className
   );
+  const labelClasses = classNames(styles['notification-panel__label'], styles['notification-panel__content'], {
+    [styles['notification-panel__label--service-message']]: isServiceMessage,
+    [styles['notification-panel__label--no-content']]: !children && !expanderChildren,
+    [styles['notification-panel__label__compact']]: !!compactVariant,
+    [styles['notification-panel__label__compact--basic']]: compactVariant === 'basic',
+  });
   const ariaLabelAttributes = getAriaLabelAttributes({ label, id: uuid });
 
   const ariaRole = role || (variant === 'alert' && 'alert') || 'region';
@@ -184,13 +221,23 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         className={notificationPanelClasses}
         {...ariaLabelAttributes}
       >
-        <span className={styles['notification-panel__icon']}>{variantToIconMap[variant]}</span>
-        {dismissable && (
-          <span className={styles['notification-panel__close']}>
-            <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} color={getColor('black')} />
-          </span>
-        )}
-        {renderContent()}
+        <div className={classNames('container', styles['notification-panel__container'])}>
+          <span className={styles['notification-panel__icon']}>{variantToIconMap[variant]}</span>
+          {!isServiceMessage && dismissable && (
+            <span className={styles['notification-panel__close']}>
+              <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} color={getColor('black')} />
+            </span>
+          )}
+          <div className={classNames(contentClassName, styles['notification-panel__container__content--flex'])}>
+            {label && (
+              <h1 className={labelClasses} id={uuid}>
+                {label}
+              </h1>
+            )}
+            {renderContent()}
+          </div>
+          {!dismissable && serviceMessageExpander && topRightExpander}
+        </div>
       </section>
     </FluidWrapper>
   );

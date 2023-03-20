@@ -1,7 +1,16 @@
+import classNames from 'classnames';
 import React from 'react';
 
-export const GridExample: React.FC = ({ children }) => (
-  <div className="container">
+interface GridExampleProps {
+  container?: boolean;
+}
+
+export const GridExample: React.FC<GridExampleProps> = ({ children, container = true }) => (
+  <div
+    className={classNames({
+      ['container']: !!container,
+    })}
+  >
     <div className="row">
       <div className="col">{children}</div>
     </div>

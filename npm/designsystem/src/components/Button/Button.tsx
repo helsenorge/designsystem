@@ -134,7 +134,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const outlineVariant = variant === 'outline';
   const borderlessVariant = variant === 'borderless';
   const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, mobile);
-  const hasArrow = arrow && !borderlessVariant;
+  const hasArrow = arrow;
   const large = size === 'large' && !destructive && !borderlessVariant;
   const rest = { ...restProps };
 
