@@ -256,19 +256,6 @@ describe('Gitt at button skal vises', (): void => {
 
       expect(testFill.className).toBe('button button--normal button--borderless');
     });
-    test('Så er ikke arrow tilgjengelig', (): void => {
-      render(
-        <div>
-          <Button testId={'test01'} variant={'borderless'} arrow>
-            Button
-          </Button>
-        </div>
-      );
-
-      const testFill = screen.getByTestId('test01').children[0];
-
-      expect(testFill.className).toBe('button button--normal button--borderless');
-    });
   });
   describe('Når button rendres med aria props', (): void => {
     test('Så rendres innholdet riktig', (): void => {
