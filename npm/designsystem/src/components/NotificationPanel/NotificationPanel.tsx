@@ -4,24 +4,24 @@ import classNames from 'classnames';
 
 import { DetailButton } from './DetailButton/DetailButton';
 import { AnalyticsId, IconSize } from '../../constants';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
+import { useHover } from '../../hooks/useHover';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
+import { breakpoints } from '../../theme/grid';
 import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import Close from '../Close';
 import Icon from '../Icons';
 import CheckFill from '../Icons/CheckFill';
+import ChevronDown from '../Icons/ChevronDown';
+import ChevronUp from '../Icons/ChevronUp';
 import ErrorSignFill from '../Icons/ErrorSignFill';
 import InfoSignFill from '../Icons/InfoSignFill';
 import TriangleX from '../Icons/TriangleX';
+import serviceMessageStyles from '../ServiceMessage/styles.module.scss';
 
 import styles from './styles.module.scss';
-import serviceMessageStyles from './ServiceMessage/styles.module.scss';
-import { useBreakpoint } from '../../hooks/useBreakpoint';
-import { breakpoints } from '../../theme/grid';
-import { useHover } from '../../hooks/useHover';
-import ChevronUp from '../Icons/ChevronUp';
-import ChevronDown from '../Icons/ChevronDown';
 
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'success';
 export type NotificationCompactVariants = 'basic' | 'outline';

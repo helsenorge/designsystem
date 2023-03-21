@@ -201,6 +201,9 @@
       }
     }
   }
+  &__service-message:not(:first-of-type) {
+    border-top: none;
+  }
 }
 
 .fluid-wrapper {

@@ -1,24 +1,25 @@
 import React, { useRef } from 'react';
+
 import classNames from 'classnames';
 
-import styles from './styles.module.scss';
+import { useHover } from '../../hooks/useHover';
+import { getColor } from '../../theme/currys';
+import Icon, { IconSize } from '../Icons';
+import Forward from '../Icons/Forward';
+import X from '../Icons/X';
+import NotificationPanel from '../NotificationPanel';
 
-import Icon, { IconSize } from '../../Icons';
-import NotificationPanel, { NotificationPanelProps } from '../NotificationPanel';
-import { useHover } from '../../../hooks/useHover';
-import { getColor } from '../../../theme/currys';
-import X from '../../Icons/X';
-import Forward from '../../Icons/Forward';
+import styles from './styles.module.scss';
 
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'success';
 export type NotificationCompactVariants = 'basic' | 'outline';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large' | 'full';
 
-export interface ServiceMessageProps extends NotificationPanelProps {
+export interface ServiceMessageProps {
   /** Sets a label for the notification panel. */
   serviceMessageLabel: string;
   /** function that runs on dismiss */
-  onDismiss: () => void;
+  onDismiss?: () => void;
   /** Adds class to inner element. Alowing to pass in container width to the content only */
   innerElementClass?: string;
   /** Makes expander be open from start. */
@@ -59,7 +60,7 @@ const ServiceMessage: React.FC<ServiceMessageProps> = (props: ServiceMessageProp
   const hasExpander = !!serviceMessageInfo || !!serviceMessageExtraInfo;
   const closeButtonClasses = classNames(styles['service-message__bottom-row__button'], styles['service-message__bottom-row__close-button']);
 
-  const ButtonRow = () => {
+  const ButtonRow = (): JSX.Element => {
     const readMoreRef = useRef<HTMLAnchorElement>(null);
     const { isHovered: readMoreHoverRefIsHovered } = useHover(readMoreRef);
     const xRef = useRef<HTMLButtonElement>(null);
@@ -81,7 +82,6 @@ const ServiceMessage: React.FC<ServiceMessageProps> = (props: ServiceMessageProp
 
   return (
     <NotificationPanel
-      {...props}
       label={serviceMessageLabel}
       expanderOpenFromStart={expanderOpenFromStart}
       dismissable={dismissable}
