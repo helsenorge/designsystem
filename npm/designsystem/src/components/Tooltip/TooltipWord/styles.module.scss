@@ -1,10 +1,10 @@
-@import '../../../scss/_palette.scss';
-@import '../../../scss/_spacers.scss';
+@import '../../../scss/palette';
+@import '../../../scss/spacers';
 
 .word {
+  all: unset;
   position: relative;
   display: inline-block;
-  -webkit-text-decoration: underline dashed $plum400;
   text-decoration: underline 0.15rem dashed $plum400;
   cursor: help;
 

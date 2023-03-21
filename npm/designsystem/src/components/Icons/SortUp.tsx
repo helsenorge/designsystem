@@ -28,8 +28,8 @@ const SortUp: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.
 
   const xxSmall = (
     <>
-      <path fillRule={'evenodd'} d="m17.79 13.842 1.42-1.409L12 5.159l-7.21 7.274 1.42 1.409L12 7.999l5.79 5.843Z" />;
-      <path d="M11 7h2v13h-2V7Z" />;
+      <path fillRule={'evenodd'} d="m17.79 13.842 1.42-1.409L12 5.159l-7.21 7.274 1.42 1.409L12 7.999l5.79 5.843Z" />
+      <path d="M11 7h2v13h-2V7Z" />
     </>
   );
 

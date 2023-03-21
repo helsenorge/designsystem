@@ -12,13 +12,13 @@ const UseElementListExample: React.FC = () => {
   const [hasClass, setHasClass] = useState(true);
   const elements = useElementList(ref, '.custom-button');
 
-  const toggleClass = () => {
+  const toggleClass = (): void => {
     setHasClass(!hasClass);
   };
 
   return (
     <GridExample>
-      <p>Knapper med klassen "custom-button":</p>
+      <p>{'Knapper med klassen "custom-button":'}</p>
       <ul>
         {elements &&
           [...elements].map((element, index) => (
@@ -27,20 +27,20 @@ const UseElementListExample: React.FC = () => {
             </li>
           ))}
       </ul>
-      <Button onClick={toggleClass}>Slå av/på klassen "custom-button" på knapp nr 1</Button>
+      <Button onClick={toggleClass}>{'Slå av/på klassen "custom-button" på knapp nr 1'}</Button>
       <Spacer />
 
       <div ref={ref}>
         <div>
-          <Button className={hasClass ? 'custom-button' : ''}>Knapp 1</Button>
+          <Button className={hasClass ? 'custom-button' : ''}>{'Knapp 1'}</Button>
         </div>
         <Spacer />
         <div>
-          <Button className="custom-button">Knapp 2</Button>
+          <Button className="custom-button">{'Knapp 2'}</Button>
         </div>
         <Spacer />
         <div>
-          <Button className="custom-button">Knapp 3</Button>
+          <Button className="custom-button">{'Knapp 3'}</Button>
         </div>
       </div>
     </GridExample>

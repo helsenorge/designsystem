@@ -21,12 +21,11 @@ export interface TooltipWordProps {
   testId?: string;
 }
 
-const TooltipWord = React.forwardRef<HTMLSpanElement, TooltipWordProps>(
+const TooltipWord = React.forwardRef<HTMLButtonElement, TooltipWordProps>(
   ({ children, onClick, onFocus, onBlur, onKeyDown, testId, ariaDescribedById }, ref) => (
-    <span
+    <button
       className={styles.word}
       ref={ref}
-      tabIndex={0}
       onClick={onClick}
       onMouseEnter={onFocus}
       onMouseLeave={onBlur}
@@ -38,7 +37,7 @@ const TooltipWord = React.forwardRef<HTMLSpanElement, TooltipWordProps>(
       data-analyticsid={AnalyticsId.Tooltip}
     >
       {children}
-    </span>
+    </button>
   )
 );
 

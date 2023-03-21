@@ -57,7 +57,7 @@ export interface TitleMargin {
   marginBottom: number;
 }
 
-export const instanceOfTitleMargin = (margin: any): margin is TitleMargin => {
+export const instanceOfTitleMargin = (margin: unknown): margin is TitleMargin => {
   return Object.prototype.hasOwnProperty.call(margin, 'marginTop') && Object.prototype.hasOwnProperty.call(margin, 'marginBottom');
 };
 

@@ -159,7 +159,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const iconColor = disabled ? getColor('neutral', 500) : getColor('black');
   const iconSize = breakpoint === Breakpoint.xs || !bigForm ? IconSize.XSmall : IconSize.Small;
 
-  const renderIcon = () => {
+  const renderIcon = (): React.ReactNode => {
     return icon !== undefined ? <Icon color={iconColor} size={iconSize} svgIcon={icon} /> : null;
   };
 
@@ -172,14 +172,10 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setInput(e.target.value);
-  };
-
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange(e);
     }
-    handleChange(e);
+    setInput(e.target.value);
   };
 
   const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
@@ -197,10 +193,12 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
         )}
         {belowLabelChildren && <div>{belowLabelChildren}</div>}
 
+        {/* input-elementet tillater keyboard-interaksjon */}
+        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
         <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>
           {!iconRight && renderIcon()}
           <input
-            onChange={onChangeHandler}
+            onChange={handleChange}
             onKeyDown={onKeyDown}
             name={name}
             type={type}
@@ -215,6 +213,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
             readOnly={readOnly}
             autoComplete={autoComplete || 'off'}
             required={required}
+            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autoFocus}
             {...rest}
           />
@@ -228,5 +227,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     </ErrorWrapper>
   );
 });
+
+Input.displayName = 'Input';
 
 export default Input;

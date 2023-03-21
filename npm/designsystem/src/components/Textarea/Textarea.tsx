@@ -177,6 +177,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             className={textareaClass}
             ref={ref}
             aria-invalid={!!onError}
+            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autoFocus}
             disabled={disabled}
             name={name}
@@ -201,5 +202,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     </ErrorWrapper>
   );
 });
+
+Textarea.displayName = 'Textarea';
 
 export default Textarea;

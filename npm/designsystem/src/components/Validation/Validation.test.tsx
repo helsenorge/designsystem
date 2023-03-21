@@ -10,8 +10,8 @@ describe('Gitt at Validation skal vises', () => {
     test('Så vises den riktig', () => {
       render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
-      const validation = screen.getByText('Gruppe tittel').parentElement.parentElement;
-      expect(validation.className).toBe('validation');
+      const validation = screen.getByText('Gruppe tittel').parentElement?.parentElement;
+      expect(validation?.className).toBe('validation');
     });
   });
 
@@ -100,10 +100,20 @@ describe('Gitt at Validation skal vises', () => {
 
       await waitFor(() => {
         expect(error[0]).not.toBeInTheDocument();
+      });
+      await waitFor(() => {
         expect(error2).not.toBeInTheDocument();
+      });
+      await waitFor(() => {
         expect(error3).not.toBeInTheDocument();
+      });
+      await waitFor(() => {
         expect(error4).not.toBeInTheDocument();
+      });
+      await waitFor(() => {
         expect(error5).not.toBeInTheDocument();
+      });
+      await waitFor(() => {
         expect(errorSummary).not.toBeInTheDocument();
       });
     });

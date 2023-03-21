@@ -52,6 +52,7 @@ exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold S
         tabindex="-1"
       >
         <li
+          aria-selected="false"
           class="dropdown__input"
           id="testid-19-0"
           role="option"

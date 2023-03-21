@@ -71,14 +71,15 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
     if (isComponent<LinkListProps>(children, LinkList)) {
       return (
         <PopOver
-          children={children}
           testId={popOverTestId}
           className={classNames(styles['pop-menu__pop-over'], popOverClassName)}
           arrowClassName={styles['pop-menu__pop-over-arrow']}
           controllerRef={closeRef}
           closeOnClickOutside
           popOverRef={popOverRef}
-        />
+        >
+          {children}
+        </PopOver>
       );
     }
   };

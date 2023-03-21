@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import ListHeaderText, { ListHeaderTextProps, ListHeaderTextType } from './ListHeaderText/ListHeaderText';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
-import { isComponent } from '../../utils/component';
+import { isComponent, isComponentWithChildren } from '../../utils/component';
 import Avatar, { AvatarProps, AvatarSize, AvatarType } from '../Avatar';
 import Badge, { BadgeProps, BadgeType } from '../Badge';
 import Icon, { IconSize, SvgIcon } from '../Icons';
@@ -64,21 +64,22 @@ export interface ListHeaderProps {
   testId?: string;
 }
 
-export const mapChildren = (
-  children: React.ReactNode,
-  isJsxChild = false
-): {
+interface ListHeaderChildren {
   avatarChild?: React.ReactElement<AvatarProps>;
-  listHeaderTextChildren: Array<React.ReactElement<ListHeaderTextProps>>;
+  listHeaderTextChildren: React.ReactElement<ListHeaderTextProps>[];
   badgeChild?: React.ReactElement<BadgeProps>;
-  stringChildren: Array<string>;
-  remainingChildren: Array<any>;
-} => {
+  stringChildren: string[];
+  remainingChildren: React.ReactNode[];
+}
+
+type ChildrenMapper = (children: React.ReactNode, isJsxChild?: boolean) => ListHeaderChildren | undefined;
+
+export const mapChildren: ChildrenMapper = (children, isJsxChild = false) => {
   let avatarChild: React.ReactElement<AvatarProps> | undefined;
   let badgeChild: React.ReactElement<BadgeProps> | undefined;
-  const listHeaderTextChildren: Array<React.ReactElement<ListHeaderTextProps>> = [];
-  const stringChildren: Array<string> = [];
-  const remainingChildren: Array<any> = [];
+  const listHeaderTextChildren: React.ReactElement<ListHeaderTextProps>[] = [];
+  const stringChildren: string[] = [];
+  const remainingChildren: React.ReactNode[] = [];
 
   React.Children.forEach(children, child => {
     if (child === null || typeof child === 'undefined') return;
@@ -99,11 +100,17 @@ export const mapChildren = (
   // Slik opprettholder vi stylingen i tilfeller hvor vertikaler har wrappet elementer i en parent span eller div.
   const hasSpecialChildren =
     avatarChild !== undefined || listHeaderTextChildren.length > 0 || (badgeChild !== undefined && stringChildren.length > 0);
-  const noRemainingRecursiveChildren = remainingChildren.length === 0 || typeof remainingChildren[0]?.props?.children === 'undefined';
+  const noRemainingRecursiveChildren =
+    remainingChildren.length === 0 ||
+    (isComponentWithChildren(remainingChildren[0]) && typeof remainingChildren[0]?.props?.children === 'undefined');
 
-  return isJsxChild || hasSpecialChildren || noRemainingRecursiveChildren
-    ? { avatarChild, listHeaderTextChildren, badgeChild, stringChildren, remainingChildren }
-    : mapChildren(remainingChildren[0]?.props?.children, true);
+  if (isJsxChild || hasSpecialChildren || noRemainingRecursiveChildren) {
+    return { avatarChild, listHeaderTextChildren, badgeChild, stringChildren, remainingChildren };
+  }
+
+  if (isComponentWithChildren(remainingChildren[0])) {
+    return mapChildren(remainingChildren[0]?.props?.children, true);
+  }
 };
 
 export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderProps, ref: React.Ref<HTMLLIElement>) => {
@@ -113,9 +120,9 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
   const contentIsString = typeof children === 'string';
   const mappedChildren = mapChildren(children);
   const topAlignContent =
-    mappedChildren.avatarChild ||
-    (mappedChildren.listHeaderTextChildren && mappedChildren.listHeaderTextChildren.length > 0) ||
-    (mappedChildren.remainingChildren && mappedChildren.remainingChildren.length > 0);
+    mappedChildren?.avatarChild ||
+    (mappedChildren?.listHeaderTextChildren && mappedChildren.listHeaderTextChildren.length > 0) ||
+    (mappedChildren?.remainingChildren && mappedChildren?.remainingChildren.length > 0);
 
   const listLabelClasses = cn(
     styles['list-header'],
@@ -137,7 +144,7 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
   const contentClasses = cn(styles['list-header__content'], {
     [styles['list-header__content--string']]: contentIsString,
     [styles['list-header__content--element']]: !contentIsString,
-    [styles['list-header__content--spacing']]: !mappedChildren.avatarChild && !icon,
+    [styles['list-header__content--spacing']]: !mappedChildren?.avatarChild && !icon,
   });
   const iconClasses = cn(styles['list-header__icon'], {
     [styles['list-header__icon--for-string-content']]: contentIsString,
@@ -160,18 +167,18 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
           })}
         </span>
       )}
-      {size !== 'small' && mappedChildren.avatarChild && (
+      {size !== 'small' && mappedChildren?.avatarChild && (
         <span className={avatarClasses}>{React.cloneElement(mappedChildren.avatarChild, { size: AvatarSize.xsmall })}</span>
       )}
       <div className={contentClasses}>
-        {mappedChildren.listHeaderTextChildren}
-        {!!mappedChildren.stringChildren.length && (
+        {mappedChildren?.listHeaderTextChildren}
+        {!!mappedChildren?.stringChildren.length && (
           <CustomTag className={styles['list-header__title']}>{mappedChildren.stringChildren}</CustomTag>
         )}
-        {mappedChildren.remainingChildren}
+        {mappedChildren?.remainingChildren}
       </div>
 
-      {mappedChildren.badgeChild && <span className={badgeClasses}>{mappedChildren.badgeChild}</span>}
+      {mappedChildren?.badgeChild && <span className={badgeClasses}>{mappedChildren.badgeChild}</span>}
       {showChevronAndIcon && chevronIcon && (
         <span className={chevronClasses}>
           <Icon svgIcon={chevronIcon} isHovered={isHovered} size={IconSize.XSmall} />
@@ -180,5 +187,7 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
     </div>
   );
 });
+
+ListHeader.displayName = 'ListHeader';
 
 export default ListHeader;

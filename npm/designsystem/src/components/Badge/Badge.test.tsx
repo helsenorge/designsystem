@@ -7,8 +7,8 @@ import Badge from './Badge';
 const badgeNumber = 123;
 
 test('displays text', (): void => {
-  const { container, getByText } = render(<Badge>{badgeNumber}</Badge>);
-  expect(getByText(badgeNumber.toString())).toBeInTheDocument();
+  const { container } = render(<Badge>{badgeNumber}</Badge>);
+  expect(screen.getByText(badgeNumber.toString())).toBeInTheDocument();
   expect(container).toMatchSnapshot();
 });
 

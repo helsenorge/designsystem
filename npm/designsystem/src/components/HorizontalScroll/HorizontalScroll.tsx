@@ -32,6 +32,8 @@ export const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ children, ch
 
   return (
     <div className={styles.horizontalscroll} data-testid={testId}>
+      {/* viewport-diven må ta tabIndex for å løse et annet UU-problem, at div med overflow: scroll må kunne navigeres med keyboard. */}
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
       <div className={viewportClasses} ref={viewportRef} tabIndex={0}>
         <div
           className={classNames(

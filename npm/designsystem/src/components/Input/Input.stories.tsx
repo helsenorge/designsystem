@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Input, { InputTypes } from './Input';
+import Input, { InputProps, InputTypes } from './Input';
 import { FormMode, FormVariant } from '../../constants';
 import GridExample from '../GridExample';
 import Icon, { IconSize } from '../Icons';
@@ -93,44 +93,44 @@ export default {
   },
 } as ComponentMeta<typeof Input>;
 
-export const Default: ComponentStory<typeof Input> = (args: any) => (
+export const Default: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
   <GridExample>
-    <Input {...args} icon={args.showicon ? Hospital : undefined} />
+    <Input {...rest} icon={showicon ? Hospital : undefined} />
   </GridExample>
 );
 
-export const MultipleExamples: ComponentStory<typeof Input> = (args: any) => (
+export const MultipleExamples: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
   <GridExample>
-    <Input {...args} icon={args.showicon ? Hospital : undefined} />
-    <Input {...args} icon={args.showicon ? Hospital : undefined} />
-    <Input {...args} icon={args.showicon ? Hospital : undefined} />
+    <Input {...rest} icon={showicon ? Hospital : undefined} />
+    <Input {...rest} icon={showicon ? Hospital : undefined} />
+    <Input {...rest} icon={showicon ? Hospital : undefined} />
   </GridExample>
 );
 
-export const MaxCharacters: ComponentStory<typeof Input> = (args: any) => (
+export const MaxCharacters: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
   <GridExample>
     <div style={{ display: 'flex', width: '50rem' }}>
-      <Input {...args} maxCharacters={10} marginBottom />
+      <Input {...rest} maxCharacters={10} />
     </div>
 
     <div style={{ display: 'flex', width: '40rem' }}>
-      <Input {...args} maxCharacters={100} />
+      <Input {...rest} maxCharacters={100} />
     </div>
 
     <div style={{ width: '20rem' }}>
-      <Input {...args} maxCharacters={100} defaultValue="test" />
+      <Input {...rest} maxCharacters={100} defaultValue="test" />
     </div>
   </GridExample>
 );
 
-export const ChildrenAfterLabel: ComponentStory<typeof Input> = (args: any) => (
+export const ChildrenAfterLabel: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
   <GridExample>
-    <Input {...args} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>} />
+    <Input {...rest} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>} />
   </GridExample>
 );
-export const AfterInputChildren: ComponentStory<typeof Input> = (args: any) => (
+export const AfterInputChildren: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
   <GridExample>
-    <Input {...args} afterInputChildren={<div style={{ marginTop: '1rem' }}>*Ikke oppgi personsensitiv informasjon</div>} />
-    <Input {...args} afterInputChildren={'Tekst uten innsendt div'} />
+    <Input {...rest} afterInputChildren={<div style={{ marginTop: '1rem' }}>*Ikke oppgi personsensitiv informasjon</div>} />
+    <Input {...rest} afterInputChildren={'Tekst uten innsendt div'} />
   </GridExample>
 );

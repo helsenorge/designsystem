@@ -18,7 +18,7 @@ export interface TooltipProps {
 
 export const Tooltip: React.FC<TooltipProps> = ({ children, description, testId }) => {
   const helpBubbleId = useUuid();
-  const wordRef = useRef<HTMLSpanElement>(null);
+  const wordRef = useRef<HTMLButtonElement>(null);
   const { currentTooltip, setCurrentTooltip } = useContext(TooltipOpenContext);
   const [{ showTooltip, keepOpen }, setShowTooltipDelayed, setShowTooltip] = useDelayedState(
     { showTooltip: false, keepOpen: false },

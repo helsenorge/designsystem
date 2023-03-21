@@ -86,7 +86,6 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
           disabled={disabled}
           value={value}
           ref={ref}
-          aria-invalid={error}
           defaultChecked={defaultChecked}
           required={required}
           {...rest}
@@ -96,5 +95,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     </div>
   );
 });
+
+RadioButton.displayName = 'RadioButton';
 
 export default RadioButton;

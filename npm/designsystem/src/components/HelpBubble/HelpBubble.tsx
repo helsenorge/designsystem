@@ -106,8 +106,8 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
   };
 
   return (
-    <PopOver {...props} ref={ref}>
-      <div id={helpBubbleId} className={helpBubbleClasses} data-analyticsid={AnalyticsId.HelpBubble}>
+    <PopOver id={helpBubbleId} {...props} ref={ref}>
+      <div className={helpBubbleClasses} data-analyticsid={AnalyticsId.HelpBubble}>
         {renderCloseButton()}
         <div className={contentClasses}>
           {children}

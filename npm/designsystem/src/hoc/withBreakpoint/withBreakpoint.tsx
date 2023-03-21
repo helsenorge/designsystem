@@ -11,7 +11,7 @@ export function withBreakpoint<P extends BreakpointProps, C extends React.Compon
   Component: C & React.ComponentType<P>
 ): React.ForwardRefExoticComponent<Omit<React.ComponentPropsWithoutRef<C> & { ref?: React.Ref<InstanceType<C>> }, keyof BreakpointProps>>;
 
-export function withBreakpoint<P extends BreakpointProps & { ref?: React.Ref<any> }>(
+export function withBreakpoint<P extends BreakpointProps & { ref?: React.Ref<unknown> }>(
   Component: React.ForwardRefExoticComponent<P>
 ): React.ForwardRefExoticComponent<Omit<P, keyof BreakpointProps>>;
 

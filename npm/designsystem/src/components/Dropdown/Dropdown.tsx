@@ -189,7 +189,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
           ref={optionsRef}
         >
           {React.Children.map(children, (child, index) => (
-            <li className={styles.dropdown__input} role="option" id={`${optionIdPrefix}-${index}`}>
+            <li className={styles.dropdown__input} role="option" id={`${optionIdPrefix}-${index}`} aria-selected={index === currentIndex}>
               {React.cloneElement(child as React.ReactElement, { ref: inputRefList.current?.[index] })}
             </li>
           ))}

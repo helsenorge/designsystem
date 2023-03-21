@@ -72,9 +72,8 @@ describe('Gitt at Slider skal vises', (): void => {
     test('Så deaktiveres slideren', (): void => {
       render(<Slider disabled={true} />);
 
-      const slider = screen.getByRole('slider');
-      expect(slider).toHaveAttribute('aria-disabled', 'true');
-      expect(slider).toHaveClass('slider__marker--disabled');
+      const slider = screen.queryByRole('slider');
+      expect(slider).not.toBeInTheDocument();
     });
   });
 

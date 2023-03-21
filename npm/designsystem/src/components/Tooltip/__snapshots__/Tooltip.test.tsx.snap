@@ -2,13 +2,12 @@
 
 exports[`Gitt at Tooltip rendres  Når komponenten får en tekst Så rendres den riktig 1`] = `
 <div>
-  <span
+  <button
     aria-describedby="test"
     class="word"
     data-analyticsid="tooltip"
-    tabindex="0"
   >
     ordet
-  </span>
+  </button>
 </div>
 `;

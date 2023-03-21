@@ -189,6 +189,8 @@ export const Slider: React.FC<SliderProps> = ({ title, ariaLabel, labelLeft, lab
           {title}
         </Title>
       )}
+      {/* Komponenten er tilgjengelig for mus/keyboard gjennom bruk av slideren */}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
       <div
         ref={trackRef}
         className={classNames(styles['slider__track-wrapper'], disabled && styles['slider__track-wrapper--disabled'])}
@@ -197,7 +199,7 @@ export const Slider: React.FC<SliderProps> = ({ title, ariaLabel, labelLeft, lab
       >
         <div className={classNames(styles.slider__track, disabled && styles['slider__track--disabled'])} />
         <div
-          role={'slider'}
+          role={disabled ? undefined : 'slider'}
           ref={markerRef}
           className={classNames(styles.slider__marker, disabled && styles['slider__marker--disabled'])}
           style={{

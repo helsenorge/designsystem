@@ -106,6 +106,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     const minTime = minDate.toLocaleTimeString('nb');
     const maxTime = maxDate.toLocaleTimeString('nb');
     const valueTime = newDate.toLocaleTimeString('nb');
+    // eslint-disable-next-line no-console
     console.log('value', valueTime);
     return (!!newDate && valueTime >= minTime && valueTime <= maxTime) || errorMessage7;
   };
