@@ -4,7 +4,7 @@
     "npm/*",
     "web"
   ],
-  "version": "3.0.1-beta.2",
+  "version": "1.0.0",
   "description": "NPM pakke og dokumentasjon for Helsenorges designsystem",
   "repository": {
     "type": "tfs",
