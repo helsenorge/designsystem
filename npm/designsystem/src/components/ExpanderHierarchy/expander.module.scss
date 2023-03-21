@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
 @import '../../scss/spacers';
@@ -5,8 +6,9 @@
 
 .expander {
   $item: &;
+
   @media (prefers-reduced-motion: no-preference) {
-    animation: fadeIn 150ms linear forwards;
+    animation: fade-in 150ms linear forwards;
   }
 
   &:first-of-type {
@@ -25,7 +27,7 @@
     border-bottom: 1px solid $neutral500;
     padding: getSpacer(xs) 0 getSpacer(xs) 0;
 
-    @media (min-width: map-get($grid-breakpoints, lg)) {
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       flex-direction: row-reverse;
       justify-content: start;
       padding: getSpacer(s) getSpacer(s) getSpacer(s) getSpacer(2xs);
@@ -61,7 +63,8 @@
 
     &--2-and-lower {
       padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         padding: getSpacer(xs) getSpacer(s) getSpacer(xs) getSpacer(2xs);
       }
     }
@@ -100,13 +103,13 @@
 
     &--1,
     &--2 {
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         padding-left: getSpacer(2xl);
       }
     }
 
     &--3-and-lower {
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         padding-left: getSpacer(xl);
       }
     }
@@ -119,27 +122,29 @@
       margin-left: getSpacer(xs);
     }
 
-    @media (min-width: map-get($grid-breakpoints, lg)) {
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       margin-left: 0;
       margin-right: getSpacer(s);
     }
 
     &--3-and-lower {
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         margin-right: getSpacer(xs);
       }
     }
   }
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
   0% {
     opacity: 0;
     max-height: 0;
   }
+
   99% {
     max-height: 24rem;
   }
+
   100% {
     opacity: 1;
     max-height: none;

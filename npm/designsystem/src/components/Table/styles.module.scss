@@ -1,8 +1,9 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
-@import '../../scss/_grid.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/grid';
 
 /* fix outline for Safari */
 table tbody tr {
@@ -47,12 +48,10 @@ table tbody tr {
     background-color: $blueberry800;
     text-decoration: underline;
   }
+
   td {
     position: relative;
-    padding-left: 40%;
-    padding-right: 0;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    padding: 0.75rem 0 0.75rem 40%;
     float: left;
     clear: both;
     width: 100%;
@@ -90,6 +89,7 @@ table tbody tr {
 
   .table__expanded-row {
     display: none;
+
     &--expanded {
       display: block;
     }
@@ -98,25 +98,28 @@ table tbody tr {
   .table__cell {
     border-top: 0;
     border-bottom: 0;
-
     outline: 0;
 
     &--center {
       text-align: left;
     }
+
     &--right {
       text-align: left;
     }
   }
+
   .table__cell:first-child {
     border-collapse: collapse;
     border-top: 1px solid $neutral500;
   }
+
   .table__expanded-row {
     .table__cell:first-child {
       border-top: 0;
     }
   }
+
   .table__row--expandable {
     .table__cell:nth-child(2) {
       border-collapse: collapse;
@@ -130,6 +133,7 @@ table tbody tr {
 
   .table__expander-cell-mobile {
     border-bottom: 1px solid $neutral500;
+
     &--expanded {
       border-bottom: 0;
     }
@@ -166,9 +170,11 @@ table tbody tr {
 
 .table__head {
   background: $blueberry50;
+
   &--normal {
     background: $neutral50;
   }
+
   &--transparent {
     background: transparent;
   }
@@ -177,7 +183,7 @@ table tbody tr {
     background: $blueberry50;
   }
 
-  @media (min-width: map-get($grid-breakpoints, lg)) {
+  @media (min-width: map.get($grid-breakpoints, lg)) {
     height: 6.125rem;
   }
 }
@@ -185,7 +191,6 @@ table tbody tr {
 .table__head-cell {
   // Fix for firefox hover feil
   background-clip: padding-box;
-
   height: 3.625rem;
   font-size: $font-size-sm;
   line-height: $lineheight-size-xs;
@@ -203,6 +208,7 @@ table tbody tr {
     background-color: $blueberry100;
     cursor: pointer;
   }
+
   &--sortable:focus-within {
     outline: 3px solid $black;
     outline-offset: -3px;
@@ -213,7 +219,8 @@ table tbody tr {
     text-decoration-thickness: 1px;
     text-underline-offset: 0.3125rem;
   }
-  @media (min-width: map-get($grid-breakpoints, lg)) {
+
+  @media (min-width: map.get($grid-breakpoints, lg)) {
     padding: 1rem;
     height: 5.5rem;
     font-size: $font-size-md;
@@ -237,14 +244,16 @@ table tbody tr {
   &--center {
     text-align: center;
   }
+
   &--right {
     text-align: right;
   }
+
   &--nowrap {
     white-space: nowrap;
   }
 
-  @media (min-width: map-get($grid-breakpoints, lg)) {
+  @media (min-width: map.get($grid-breakpoints, lg)) {
     padding: 1rem;
     height: 3.625rem;
     font-size: $font-size-sm;
@@ -263,34 +272,37 @@ table tbody tr {
   &--selected {
     background: $neutral100;
   }
+
   &:hover {
     cursor: pointer;
     background: $blueberry50;
   }
 }
+
 .table__expanded-row {
   display: none;
+
   &--expanded {
     display: table-row;
   }
 
   &-container {
     padding: 0.5rem;
-    @media (min-width: map-get($grid-breakpoints, lg)) {
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       &--open {
         border-bottom: 1px solid $neutral100;
       }
     }
   }
 }
+
 .table__sort-button {
   all: unset;
-  &:after {
-    bottom: 0;
+
+  &::after {
+    inset: 0;
     content: '';
-    left: 0;
     position: absolute;
-    right: 0;
-    top: 0;
   }
 }

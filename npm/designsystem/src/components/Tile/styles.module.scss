@@ -1,6 +1,7 @@
-@import '../../scss/_palette.scss';
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
+@use 'sass:map';
+@import '../../scss/palette';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
 
 @mixin tile-title {
   overflow-wrap: break-word;
@@ -13,7 +14,7 @@
   margin: 0;
   margin-left: 0.5rem;
 
-  @media (min-width: map-get($grid-breakpoints, sm)) {
+  @media (min-width: map.get($grid-breakpoints, sm)) {
     font-size: 1.25rem;
     margin-top: 1rem;
   }
@@ -48,17 +49,19 @@
   }
 
   &--compact {
-    padding: 1.5rem 1rem 1.5rem 1rem;
+    padding: 1.5rem 1rem;
   }
 
   svg {
     flex-shrink: 0;
   }
+
   &:hover,
   &:active,
   &:focus {
     background-color: $neutral100;
   }
+
   &:focus {
     box-shadow: 0 0 0 6px $neutral600;
   }
@@ -66,11 +69,13 @@
   &--highlighted {
     background-color: $blueberry500;
     color: $white;
+
     &:hover,
     &:active,
     &:focus {
       background-color: $blueberry700;
     }
+
     &:focus {
       box-shadow: 0 0 0 6px $blueberry700;
     }
@@ -105,7 +110,7 @@
   align-items: center;
   padding-bottom: 0.5rem;
 
-  @media (min-width: map-get($grid-breakpoints, sm)) {
+  @media (min-width: map.get($grid-breakpoints, sm)) {
     flex-direction: column;
     align-items: start;
 

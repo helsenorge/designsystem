@@ -1,5 +1,7 @@
-@import '../../scss/_palette.scss';
-@import '../../scss/_breakpoints.scss';
+@use 'sass:map';
+@import '../../scss/palette';
+@import '../../scss/breakpoints';
+
 .pop-menu-button {
   padding: 0;
   border: 0;
@@ -16,15 +18,17 @@
     box-shadow: none;
     outline: none;
   }
+
   :focus > .pop-menu-button {
     box-shadow: none;
   }
 }
 
-//overrides
+// overrides
 :focus > .pop-menu-button:hover {
   box-shadow: none;
 }
+
 html :focus > .pop-menu-button {
   box-shadow: none;
   border: solid;
@@ -34,66 +38,81 @@ html :focus > .pop-menu-button {
   &:focus {
     background-color: transparent;
   }
+
   &:active {
     background-color: $neutral50;
     border: none;
   }
+
   &:hover {
     background-color: $neutral50;
   }
+
   &:active:hover {
     background-color: transparent;
   }
+
   &:active:focus {
     background-color: $neutral50;
     border: 0.1875rem solid $black;
   }
 }
+
 .pop-menu-button--on-gray {
   &:focus {
     background-color: transparent;
   }
+
   &:active {
     background-color: $neutral100;
     border: none;
   }
+
   &:hover {
     background-color: $neutral100;
   }
+
   &:active:hover {
     background-color: transparent;
   }
+
   &:active:focus {
     background-color: $neutral100;
     border: 0.1875rem solid $black;
   }
 }
+
 .pop-menu-button--on-blueberry {
   &:focus {
     background-color: transparent;
   }
+
   &:active {
     background-color: $blueberry100;
     border: none;
   }
+
   &:hover {
     background-color: $blueberry100;
   }
+
   &:active:hover {
     background-color: transparent;
   }
+
   &:active:focus {
     background-color: $blueberry100;
     border: 0.1875rem solid $black;
   }
 }
+
 .pop-menu__pop-over {
   width: 20.875rem;
   width: 26.125rem;
-  border: 0.125rem solid rgb(24, 128, 151);
-  box-shadow: 0px 0px 0.3125rem 0px rgba(0, 0, 0, 0.5);
+  border: 0.125rem solid rgb(24 128 151);
+  box-shadow: 0 0 0.3125rem 0 rgb(0 0 0 / 50%);
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     width: 26.125rem;
   }
 
@@ -104,6 +123,7 @@ html :focus > .pop-menu-button {
       border-top-right-radius: 0.5625rem;
     }
   }
+
   li:last-of-type {
     a:hover,
     a:focus {
@@ -112,6 +132,7 @@ html :focus > .pop-menu-button {
     }
   }
 }
+
 .pop-menu__pop-over-arrow {
-  filter: drop-shadow(0px -0.185rem 0px rgb(24, 128, 151));
+  filter: drop-shadow(0 -0.185rem 0 rgb(24 128 151));
 }

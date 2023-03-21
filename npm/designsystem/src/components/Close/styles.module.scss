@@ -1,34 +1,42 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_breakpoints.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/palette';
+@import '../../scss/breakpoints';
+
 .close {
   display: flex;
   align-items: center;
   justify-content: center;
-  @media (max-width: map-get($grid-breakpoints, sm)) {
+
+  @media (max-width: map.get($grid-breakpoints, sm)) {
     height: 2.375rem;
     width: 2.375rem;
   }
+
   height: 3rem;
   width: 3rem;
   padding: 0;
   border: 0;
   background-color: transparent;
   cursor: pointer;
+
   &:hover,
   &:active {
-    background-color: rgba(88, 170, 187, 0.1);
+    background-color: rgb(88 170 187 / 10%);
   }
+
   &:focus {
-    box-shadow: 0px 0px 0px 2px $black;
+    box-shadow: 0 0 0 2px $black;
     background-color: transparent;
     border-radius: 0;
     border: 0;
     outline: none;
   }
+
   &:hover {
-    background-color: rgba(88, 170, 187, 0.1);
+    background-color: rgb(88 170 187 / 10%);
   }
+
   &--small {
     height: auto;
     width: auto;

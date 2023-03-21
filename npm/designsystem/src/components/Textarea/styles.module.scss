@@ -1,8 +1,8 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
-@import '../../scss/_input.scss';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/input';
 
 .textarea {
   @include input-wrapper;
@@ -14,6 +14,7 @@
 
 .content-wrapper {
   @include content-wrapper;
+
   &__input {
     line-height: 28px;
     height: auto;

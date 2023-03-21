@@ -1,6 +1,5 @@
-$black: #000000;
-$white: #ffffff;
-
+$black: #000;
+$white: #fff;
 $banana50: #fdf8df;
 $banana100: #fcf2bf;
 $banana200: #f9ea9f;
@@ -11,7 +10,6 @@ $banana600: #c59302;
 $banana700: #ab7c00;
 $banana800: #916500;
 $banana900: #764f00;
-
 $blueberry50: #e4f7f9;
 $blueberry100: #cae7ed;
 $blueberry200: #afdae3;
@@ -22,7 +20,6 @@ $blueberry600: #126f87;
 $blueberry700: #08667c;
 $blueberry800: #06596c;
 $blueberry900: #084350;
-
 $cherry50: #fff2ea;
 $cherry100: #f7e1d2;
 $cherry200: #eec0a5;
@@ -33,7 +30,6 @@ $cherry600: #b62e1c;
 $cherry700: #a31f0e;
 $cherry800: #912112;
 $cherry900: #7e1c0e;
-
 $kiwi50: #e6f8ee;
 $kiwi100: #c2edd6;
 $kiwi200: #9de2bf;
@@ -44,7 +40,6 @@ $kiwi600: #10b172;
 $kiwi700: #0ca161;
 $kiwi800: #099150;
 $kiwi900: #078141;
-
 $neutral50: #f5f3f3;
 $neutral100: #eae7e7;
 $neutral200: #d6d4d3;
@@ -55,7 +50,6 @@ $neutral600: #7d7c79;
 $neutral700: #62625f;
 $neutral800: #474745;
 $neutral900: #2b2c2b;
-
 $plum50: #efe4fd;
 $plum100: #d7bdf9;
 $plum200: #bf98f3;
@@ -66,10 +60,8 @@ $plum600: #6a2abf;
 $plum700: #5b22a6;
 $plum800: #4c1b8c;
 $plum900: #3c1471;
-
 $inverted-hover: #ffffff0d;
-$transparentGrey: rgba(102, 102, 102, 0.75);
-
+$transparent-grey: rgb(102 102 102 / 75%);
 $palette-map: (
   'banana50': $banana50,
   'banana100': $banana100,

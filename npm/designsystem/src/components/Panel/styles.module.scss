@@ -1,7 +1,8 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
 
 .panel-wrapper {
   width: 100%;
@@ -10,14 +11,15 @@
 @mixin panel-padding {
   padding: getSpacer(s) getSpacer(s) getSpacer(s) getSpacer(s);
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     padding: getSpacer(l) getSpacer(m) getSpacer(l) getSpacer(l);
   }
 }
 
 @mixin panel-padding-icon {
   padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
-  @media (min-width: map-get($grid-breakpoints, md)) {
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
     padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
   }
 }
@@ -28,26 +30,27 @@
   }
 
   &:focus {
-    box-shadow: inset 0px 0px 0px 3px $box-shadow-color;
+    box-shadow: inset 0 0 0 3px $box-shadow-color;
   }
 }
 
 .panel {
   @include panel-padding;
+
   outline: none;
   position: relative;
   width: 100%;
   box-sizing: border-box;
 
   &__container {
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       display: flex;
       flex-direction: row;
       flex: 1;
     }
 
     &--layout3 {
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         display: flex;
         flex-direction: row;
       }
@@ -61,13 +64,14 @@
   &--with-icon {
     display: flex;
     flex-direction: row;
+
     @include panel-padding-icon;
   }
 
   &__icon {
     padding-right: getSpacer(s);
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding-right: getSpacer(l);
     }
 
@@ -91,7 +95,8 @@
     &--layout1 {
       display: flex;
       flex-direction: column;
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         flex-direction: row;
       }
     }
@@ -99,7 +104,8 @@
     &--layout2 {
       display: flex;
       flex-direction: column;
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         max-width: 200px;
       }
     }
@@ -108,7 +114,8 @@
       display: flex;
       flex-direction: column;
       padding-left: 0;
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         flex-direction: row;
         padding-left: getSpacer(m);
       }
@@ -117,9 +124,11 @@
     &--layout3a {
       flex: 0.4;
     }
+
     &--layout3b {
       flex: 0.55;
     }
+
     &--layout3c {
       flex: 0.65;
     }
@@ -128,7 +137,8 @@
   &__btn-container {
     display: flex;
     flex-direction: column;
-    @media (min-width: map-get($grid-breakpoints, lg)) {
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       align-self: flex-end;
       flex-direction: row;
     }
@@ -137,10 +147,12 @@
       display: flex;
       align-self: initial;
       flex-direction: column;
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         align-self: flex-end;
       }
     }
+
     &--padding-top {
       padding-top: getSpacer(s);
     }
@@ -148,7 +160,8 @@
 
   &__details-btn {
     align-self: flex-start;
-    @media (min-width: map-get($grid-breakpoints, lg)) {
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       align-self: flex-end;
       margin-left: auto;
     }
@@ -156,13 +169,11 @@
 
   &__expand {
     position: unset;
-    &:after {
-      bottom: 0;
+
+    &::after {
+      inset: 0;
       content: '';
-      left: 0;
       position: absolute;
-      right: 0;
-      top: 0;
     }
   }
 
@@ -192,7 +203,7 @@
   }
 
   &--white#{&}--selected {
-    box-shadow: inset 0px 0px 0px 6px $neutral100;
+    box-shadow: inset 0 0 0 6px $neutral100;
   }
 
   &--stroke {
@@ -201,6 +212,7 @@
 
   &--stroke#{&}--clickable {
     @include hover-and-focus-effects($neutral50, $neutral100);
+
     &:focus {
       border-color: $neutral600;
     }
@@ -236,7 +248,7 @@
     cursor: pointer;
   }
 
-  //Panel status
+  // Panel status
   &--status {
     &::before {
       content: '';
@@ -248,6 +260,7 @@
       border-left-style: solid;
     }
   }
+
   &--new {
     &::before {
       border-left-color: $blueberry600;
@@ -271,23 +284,28 @@
 .panel-details {
   background-color: $neutral50;
   display: none;
+
   @include panel-padding;
 
   @media print {
     display: flex;
     flex-direction: column;
   }
+
   &--open {
     display: flex;
     flex-direction: column;
   }
+
   &--line {
     background: $white;
     border-bottom: 1px solid $neutral500;
   }
+
   &--white {
     background: $white;
   }
+
   &--with-icon {
     @include panel-padding-icon;
   }
@@ -298,6 +316,7 @@
   color: $cherry500;
   display: flex;
   margin-bottom: getSpacer(2xs);
+
   span {
     padding-left: 5px;
     align-self: center;
@@ -308,11 +327,12 @@
     color: $blueberry800;
   }
 }
+
 .panel-content-a {
   flex: 1;
   padding-right: 0;
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     padding-right: getSpacer(m);
   }
 
@@ -332,9 +352,11 @@
   &--layout3a {
     flex: 0.6;
   }
+
   &--layout3b {
     flex: 0.45;
   }
+
   &--layout3c {
     flex: 0.35;
   }
@@ -344,19 +366,21 @@
   flex: 1;
   padding-top: getSpacer(s);
 
-  @media (min-width: map-get($grid-breakpoints, lg)) {
+  @media (min-width: map.get($grid-breakpoints, lg)) {
     padding-top: 0;
   }
 
   &--layout1 {
     padding-top: getSpacer(s);
     padding-left: 0;
-    @media (min-width: map-get($grid-breakpoints, md)) {
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding-right: getSpacer(m);
     }
   }
+
   &--layout3 {
-    @media (min-width: map-get($grid-breakpoints, lg)) {
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       padding-right: getSpacer(m);
     }
   }
@@ -366,7 +390,7 @@
   display: flex;
   flex-direction: column;
 
-  @media (min-width: map-get($grid-breakpoints, lg)) {
+  @media (min-width: map.get($grid-breakpoints, lg)) {
     padding-top: getSpacer(xs);
     flex-direction: row;
   }
@@ -376,7 +400,7 @@
     align-items: center;
     padding-bottom: getSpacer(2xs);
 
-    @media (min-width: map-get($grid-breakpoints, lg)) {
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       padding-top: 0;
       padding-right: getSpacer(m);
       padding-bottom: 0;

@@ -1,7 +1,8 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_font-settings.scss';
-@import '../../scss/_palette.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/font-settings';
+@import '../../scss/palette';
 
 .expander-list {
   list-style: none;
@@ -15,10 +16,12 @@
 
     &--line {
       border-bottom: 1px solid $neutral500;
+
       &:first-of-type {
         border-top: 1px solid $neutral500;
       }
     }
+
     &--outline {
       border-top: getSpacer(2xs) $neutral100 solid;
       border-left: getSpacer(2xs) $neutral100 solid;
@@ -37,7 +40,7 @@
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
   }
@@ -58,21 +61,27 @@
   &--banana {
     background-color: $banana100;
   }
+
   &--blueberry {
     background-color: $blueberry100;
   }
+
   &--cherry {
     background-color: $cherry100;
   }
+
   &--kiwi {
     background-color: $kiwi100;
   }
+
   &--neutral {
     background-color: $neutral100;
   }
+
   &--plum {
     background-color: $plum100;
   }
+
   &--white {
     background-color: $neutral50;
   }
@@ -106,6 +115,7 @@
     position: fixed;
     top: 0;
   }
+
   &--absolute {
     position: absolute;
     bottom: 0;
@@ -138,7 +148,8 @@
 
     &--padding {
       padding: getSpacer(m) 0 getSpacer(m) 0;
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding-left: getSpacer(2xs);
         padding-right: getSpacer(2xs);
       }

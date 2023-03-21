@@ -1,9 +1,8 @@
+@use 'sass:map';
 @import 'spacers';
 
-$grid-gutter-width: map-get($spacers, 5);
-
+$grid-gutter-width: map.get($spacers, 5);
 $grid-columns: 12;
-
 $grid-breakpoints: (
   xxs: 0,
   xs: 360px,
@@ -12,13 +11,11 @@ $grid-breakpoints: (
   lg: 1088px,
   xl: 1450px,
 );
-
 $grid-max-breakpoints: (
-  xs: map-get($grid-breakpoints, sm) - 0.02,
-  sm: map-get($grid-breakpoints, md) - 0.02,
-  md: map-get($grid-breakpoints, lg) - 0.02,
+  xs: map.get($grid-breakpoints, sm) - 0.02,
+  sm: map.get($grid-breakpoints, md) - 0.02,
+  md: map.get($grid-breakpoints, lg) - 0.02,
 );
-
 $container-max-widths: (
   sm: 528px,
   md: 612px,

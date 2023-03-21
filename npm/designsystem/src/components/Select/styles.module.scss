@@ -1,7 +1,8 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/font-settings.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
 
 .select-wrapper {
   display: flex;
@@ -15,7 +16,7 @@
     font-weight: 600;
     padding-bottom: getSpacer(xs);
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       line-height: getSpacer(l);
       font-size: $font-size-md;
     }
@@ -35,6 +36,7 @@
   display: inline-grid;
   background-color: $white;
   align-items: center;
+
   // Andre kolonne her styrer plassering av select ikonet
   grid-template-columns: 1fr 2.8rem;
 
@@ -45,16 +47,19 @@
   &:hover {
     background: $neutral50;
   }
+
   &--on-blueberry {
     &:hover {
       background-color: $blueberry50;
     }
   }
+
   &--invalid {
     &:hover {
       background-color: $cherry50;
     }
   }
+
   &--disabled {
     background: $neutral50;
 
@@ -67,7 +72,6 @@
 .select {
   /* Pil fjernes for browsere utenom IE */
   appearance: none;
-
   height: 2.5rem;
   align-items: center;
   background-color: transparent;
@@ -82,7 +86,7 @@
   line-height: $lineheight-size-sm;
   border-radius: 0;
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     height: 3.125rem;
     font-size: $font-size-md;
   }
@@ -90,6 +94,7 @@
   &--on-blueberry {
     outline-color: $blueberry500;
   }
+
   &--invalid {
     outline-color: $cherry600;
   }
@@ -98,6 +103,7 @@
     outline-width: 3px;
     outline-offset: -1px;
   }
+
   &:focus {
     outline: $black solid 4px;
     outline-offset: -2px;
@@ -113,7 +119,7 @@
     font-family: inherit;
     font-size: $font-size-sm;
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       font-size: $font-size-md;
     }
   }

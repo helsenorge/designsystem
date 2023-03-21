@@ -1,5 +1,5 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
 
 .form-layout-container {
   // Settes med harde verdier fordi calc() lenger nede ikke støtter getSpacer()
@@ -22,12 +22,15 @@
   &--two {
     flex-basis: calc(50% - var(--column-gap));
   }
+
   &--three {
     flex-basis: calc(33% - var(--column-gap));
   }
+
   &--four {
     flex-basis: calc(25% - var(--column-gap));
   }
+
   &--five {
     flex-basis: calc(20% - var(--column-gap));
   }

@@ -1,13 +1,14 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_grid.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/grid';
 
 @mixin content-wrapper-with-icon-flex {
   display: flex;
   flex-direction: column;
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     flex-direction: row;
   }
 }
@@ -15,7 +16,7 @@
 @mixin content-wrapper-with-icon-padding {
   padding-top: getSpacer(s);
 
-  @media (min-width: map-get($grid-breakpoints, xl)) {
+  @media (min-width: map.get($grid-breakpoints, xl)) {
     padding-top: getSpacer(m);
   }
 }
@@ -31,7 +32,7 @@
     @each $color in $colors {
       &#{$box}--#{$color} {
         #{$box}__content-wrapper {
-          background-color: map-get($palette-map, #{$color}50);
+          background-color: map.get($palette-map, #{$color}50);
         }
       }
     }
@@ -50,7 +51,7 @@
     @each $color in $colors {
       &#{$box}--#{$color} {
         @include media-breakpoint-down(xs) {
-          background-color: map-get($palette-map, #{$color}50);
+          background-color: map.get($palette-map, #{$color}50);
         }
       }
     }
@@ -65,10 +66,12 @@
   &--medium {
     #{$box}__content-wrapper {
       padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
       }
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         padding: getSpacer(l);
       }
     }
@@ -78,7 +81,8 @@
     #{$box}__content-wrapper {
       padding-top: getSpacer(m);
       padding-bottom: getSpacer(l);
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         padding-top: getSpacer(l);
         padding-bottom: getSpacer(xl);
       }
@@ -89,13 +93,13 @@
   &--fluid {
     padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
 
-    @media (min-width: map-get($grid-breakpoints, lg)) {
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
     }
 
     @each $color in $colors {
       &#{$box}--#{$color} {
-        background-color: map-get($palette-map, #{$color}50);
+        background-color: map.get($palette-map, #{$color}50);
       }
     }
     &#{$box}--white {
@@ -108,7 +112,7 @@
       @include content-wrapper-with-icon-flex;
       @include content-wrapper-with-icon-padding;
 
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         padding-left: getSpacer(m);
       }
     }
@@ -120,13 +124,16 @@
     }
     #{$box}__content-wrapper {
       @include content-wrapper-with-icon-padding;
-      @media (min-width: map-get($grid-breakpoints, sm)) {
+
+      @media (min-width: map.get($grid-breakpoints, sm)) {
         padding-left: getSpacer(s);
       }
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding-left: getSpacer(m);
       }
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         padding-left: 0;
         padding-top: getSpacer(l);
         padding-bottom: getSpacer(xl);
@@ -134,9 +141,10 @@
     }
 
     #{$box}__icon {
-      @media (min-width: map-get($grid-breakpoints, lg)) {
-        @include make-col-ready();
+      @media (min-width: map.get($grid-breakpoints, lg)) {
+        @include make-col-ready;
         @include make-col(2);
+
         display: flex;
         justify-content: flex-end;
         margin-right: 0;
@@ -145,15 +153,15 @@
     }
 
     #{$box}__content {
-      @media (min-width: map-get($grid-breakpoints, lg)) {
-        @include make-col-ready();
+      @media (min-width: map.get($grid-breakpoints, lg)) {
+        @include make-col-ready;
         @include make-col(8);
       }
     }
   }
 
   &__content {
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       margin-top: 0.625rem;
     }
   }
@@ -168,37 +176,38 @@
     margin-right: getSpacer(s);
     margin-bottom: getSpacer(2xs);
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       margin-bottom: 0;
     }
   }
 
   &__row {
-    @include make-row();
+    @include make-row;
   }
 
   &__col {
-    @include make-col-ready();
+    @include make-col-ready;
     @include make-col(12);
 
     &--offset {
-      @media (min-width: map-get($grid-breakpoints, sm)) {
+      @media (min-width: map.get($grid-breakpoints, sm)) {
         @include make-col(10);
         @include make-col-offset(1);
       }
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         @include make-col(8);
         @include make-col-offset(2);
       }
     }
 
     &--large-with-icon {
-      @media (min-width: map-get($grid-breakpoints, sm)) {
+      @media (min-width: map.get($grid-breakpoints, sm)) {
         @include make-col(11);
         @include make-col-offset(0);
       }
 
-      @media (min-width: map-get($grid-breakpoints, lg)) {
+      @media (min-width: map.get($grid-breakpoints, lg)) {
         @include make-col(12);
       }
     }

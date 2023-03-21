@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import 'palette';
 @import 'breakpoints';
 
@@ -14,10 +15,11 @@
   }
 
   body {
-    min-width: map-get($grid-breakpoints, lg) !important;
+    min-width: map.get($grid-breakpoints, lg) !important;
   }
+
   .container {
-    min-width: map-get($grid-breakpoints, lg) !important;
+    min-width: map.get($grid-breakpoints, lg) !important;
   }
 
   abbr[title]::after {
@@ -60,120 +62,158 @@
   }
 
   .col-print-1 {
-    max-width: 8.33333%;
+    max-width: 8.3333%;
   }
+
   .col-print-2 {
-    max-width: 16.66667%;
+    max-width: 16.6667%;
   }
+
   .col-print-3 {
     max-width: 25%;
   }
+
   .col-print-4 {
-    max-width: 33.33333%;
+    max-width: 33.3333%;
   }
+
   .col-print-5 {
-    max-width: 41.66667%;
+    max-width: 41.6667%;
   }
+
   .col-print-6 {
     max-width: 50%;
   }
+
   .col-print-7 {
-    max-width: 58.33333%;
+    max-width: 58.3333%;
   }
+
   .col-print-8 {
-    max-width: 66.66667%;
+    max-width: 66.6667%;
   }
+
   .col-print-9 {
     max-width: 75%;
   }
+
   .col-print-10 {
-    max-width: 83.33333%;
+    max-width: 83.3333%;
   }
+
   .col-print-11 {
-    max-width: 91.66667%;
+    max-width: 91.6667%;
   }
+
   .col-print-12 {
     max-width: 100%;
   }
+
   .order-print-first {
     order: -1;
   }
+
   .order-print-last {
     order: 13;
   }
+
   .order-print-0 {
     order: 0;
   }
+
   .order-print-1 {
     order: 1;
   }
+
   .order-print-2 {
     order: 2;
   }
+
   .order-print-3 {
     order: 3;
   }
+
   .order-print-4 {
     order: 4;
   }
+
   .order-print-5 {
     order: 5;
   }
+
   .order-print-6 {
     order: 6;
   }
+
   .order-print-7 {
     order: 7;
   }
+
   .order-print-8 {
     order: 8;
   }
+
   .order-print-9 {
     order: 9;
   }
+
   .order-print-10 {
     order: 10;
   }
+
   .order-print-11 {
     order: 11;
   }
+
   .order-print-12 {
     order: 12;
   }
+
   .offset-print-0 {
     margin-left: 0;
   }
+
   .offset-print-1 {
-    margin-left: 8.33333%;
+    margin-left: 8.3333%;
   }
+
   .offset-print-2 {
-    margin-left: 16.66667%;
+    margin-left: 16.6667%;
   }
+
   .offset-print-3 {
     margin-left: 25%;
   }
+
   .offset-print-4 {
-    margin-left: 33.33333%;
+    margin-left: 33.3333%;
   }
+
   .offset-print-5 {
-    margin-left: 41.66667%;
+    margin-left: 41.6667%;
   }
+
   .offset-print-6 {
     margin-left: 50%;
   }
+
   .offset-print-7 {
-    margin-left: 58.33333%;
+    margin-left: 58.3333%;
   }
+
   .offset-print-8 {
-    margin-left: 66.66667%;
+    margin-left: 66.6667%;
   }
+
   .offset-print-9 {
     margin-left: 75%;
   }
+
   .offset-print-10 {
-    margin-left: 83.33333%;
+    margin-left: 83.3333%;
   }
+
   .offset-print-11 {
-    margin-left: 91.66667%;
+    margin-left: 91.6667%;
   }
 }

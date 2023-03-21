@@ -1,18 +1,16 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_font-settings.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/palette';
+@import '../../scss/breakpoints';
+@import '../../scss/font-settings';
 
 .modal-overlay {
-  background: rgba(51, 51, 51, 0.75);
+  background: rgb(51 51 51 / 75%);
   display: flex;
   align-items: center;
   justify-content: center;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
 
   @media print {
     position: absolute;
@@ -32,7 +30,7 @@
 
 .modal {
   pointer-events: auto;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 50%);
   background-color: $white;
   animation: open 200ms 1;
 
@@ -40,6 +38,7 @@
     &--error {
       color: $cherry600;
     }
+
     &--success {
       color: $kiwi900;
     }
@@ -48,6 +47,7 @@
   &__iconWrapper {
     padding-right: getSpacer(xs);
   }
+
   &__afterTitleChildren {
     padding-left: getSpacer(xs);
   }
@@ -59,12 +59,15 @@
   &--normal {
     background-color: $white;
   }
+
   &--error {
     background-color: $cherry100;
   }
+
   &--warning {
     background-color: $banana50;
   }
+
   &--success {
     background-color: $kiwi50;
   }
@@ -72,16 +75,19 @@
   &--large {
     width: calc(100vw - 0.75rem);
     padding-bottom: getSpacer(l);
-    @media (max-width: map-get($grid-breakpoints, sm)) {
+
+    @media (max-width: map.get($grid-breakpoints, sm)) {
       p {
         font-size: 1.125rem;
       }
     }
-    @media (min-width: map-get($grid-breakpoints, md)) {
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding-bottom: getSpacer(xl);
       width: 612px;
     }
-    @media (min-width: map-get($grid-breakpoints, lg)) {
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       width: 696px;
     }
   }
@@ -89,10 +95,12 @@
   &--medium {
     width: calc(100vw - 0.75rem);
     padding-bottom: getSpacer(m);
-    @media (min-width: map-get($grid-breakpoints, md)) {
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
       width: 335px;
     }
-    @media (min-width: map-get($grid-breakpoints, lg)) {
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       width: 515px;
     }
   }
@@ -103,7 +111,8 @@
 
   &--image {
     padding: 0;
-    @media (min-width: map-get($grid-breakpoints, md)) {
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
       max-height: calc(100vh - 24px);
       max-width: calc(100vw - 24px);
       width: 100%;
@@ -119,13 +128,13 @@
   }
 
   &__shadow--top {
-    //box-shadow: 0 3px 8px 4px grey;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45702030812324934) 100%);
+    // box-shadow: 0 3px 8px 4px grey;
+    background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 45.7%) 100%);
   }
 
   &__shadow--bottom {
-    //box-shadow: 0 -3px 8px 4px grey;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45702030812324934) 100%);
+    // box-shadow: 0 -3px 8px 4px grey;
+    background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 45.7%) 100%);
     margin-top: -16px;
   }
 
@@ -166,13 +175,16 @@
     &__scroll {
       &--large {
         padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
-        @media (min-width: map-get($grid-breakpoints, md)) {
+
+        @media (min-width: map.get($grid-breakpoints, md)) {
           padding: getSpacer(xl) getSpacer(xl) getSpacer(2xs) getSpacer(xl);
         }
       }
+
       &--medium {
         padding: getSpacer(l) getSpacer(m) getSpacer(2xs) getSpacer(m);
-        @media (min-width: map-get($grid-breakpoints, md)) {
+
+        @media (min-width: map.get($grid-breakpoints, md)) {
           padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
         }
       }
@@ -184,6 +196,7 @@
     &__title {
       display: flex;
       align-items: center;
+
       div {
         display: flex;
         justify-content: center;
@@ -194,6 +207,7 @@
     &__imageWrapper {
       line-height: 0;
       text-align: center;
+
       img {
         max-height: calc(100vh - 185px);
         max-width: calc(100vw - 57px);
@@ -220,10 +234,12 @@
 
     &--large {
       padding: getSpacer(l) getSpacer(m) 0 getSpacer(m);
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding: getSpacer(l) getSpacer(xl) 0 getSpacer(xl);
       }
     }
+
     &--medium {
       padding: getSpacer(m) getSpacer(m) 0 getSpacer(m);
     }

@@ -1,7 +1,8 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_font-settings.scss';
-@import '../../scss/_palette.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/font-settings';
+@import '../../scss/palette';
 
 .list-header {
   display: flex;
@@ -16,9 +17,11 @@
     padding-top: getSpacer(s);
     padding-bottom: getSpacer(s);
   }
+
   &--top-align-content {
     align-items: flex-start;
   }
+
   &__title {
     font-size: inherit;
     font-weight: inherit;
@@ -26,6 +29,7 @@
     padding: 0;
     margin: 0;
   }
+
   &__content {
     border-bottom: 1px solid transparent;
     display: flex;
@@ -34,18 +38,22 @@
 
     &--string {
       margin: getSpacer(xs) 0;
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         margin: getSpacer(s) 0;
       }
     }
+
     &--element {
       display: flex;
       align-items: flex-start;
       flex-direction: column;
     }
+
     &--spacing {
       margin-left: getSpacer(s);
     }
+
     :focus > &,
     :focus-visible > & {
       border-color: $black;
@@ -61,13 +69,16 @@
       &--medium {
         height: $lineheight-size-sm;
       }
+
       &--large {
         height: $lineheight-size-md;
       }
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         &--medium {
           height: $lineheight-size-md;
         }
+
         &--large {
           height: $lineheight-size-lg;
         }
@@ -78,10 +89,12 @@
   &__icon {
     &--for-string-content {
       margin: getSpacer(3xs) getSpacer(2xs) getSpacer(3xs) 0;
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         margin: getSpacer(2xs) getSpacer(2xs) getSpacer(2xs) 0;
       }
     }
+
     &--for-element-content {
       margin: 0 getSpacer(2xs) 0 0;
     }
@@ -90,10 +103,12 @@
   &__avatar {
     &--for-string-content {
       margin: getSpacer(3xs) getSpacer(s) getSpacer(3xs) 0;
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         margin: getSpacer(2xs) getSpacer(s) getSpacer(2xs) 0;
       }
     }
+
     &--for-element-content {
       margin: 0 getSpacer(s) 0 0;
     }
@@ -104,29 +119,37 @@
     display: flex;
     align-items: center;
     margin-left: getSpacer(2xs);
+
     &--for-string-content {
       margin: getSpacer(3xs) 0 getSpacer(3xs) auto;
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         margin: getSpacer(2xs) 0 getSpacer(2xs) auto;
       }
     }
-    //Height needs to be same as line-height
+
+    // Height needs to be same as line-height
     &--small {
       height: $lineheight-size-xs;
     }
+
     &--medium {
       height: $lineheight-size-sm;
     }
+
     &--large {
       height: $lineheight-size-md;
     }
-    @media (min-width: map-get($grid-breakpoints, md)) {
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
       &--small {
         height: $lineheight-size-sm;
       }
+
       &--medium {
         height: $lineheight-size-md;
       }
+
       &--large {
         height: $lineheight-size-lg;
       }
@@ -137,6 +160,7 @@
 .statusDot {
   padding: 1rem;
 }
+
 .text-wrapper {
   display: flex;
   align-items: flex-start;
@@ -146,6 +170,7 @@
   &--sub-level {
     font-size: 18px;
   }
+
   &__text--emphasised {
     font-weight: 600;
   }

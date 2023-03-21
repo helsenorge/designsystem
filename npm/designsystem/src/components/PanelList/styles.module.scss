@@ -1,13 +1,14 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
 
 .panel-list {
   &__panel:not(:last-child) {
     margin-bottom: getSpacer(2xs);
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       margin-bottom: getSpacer(s);
     }
   }

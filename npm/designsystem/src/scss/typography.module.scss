@@ -1,12 +1,13 @@
+@use 'sass:map';
 @import './spacers';
 @import './breakpoints';
-@import './fonts.scss';
+@import './fonts';
 @import './palette';
-@import './title.scss';
+@import './title';
 
 /*
 Denne filen er ment til å importeres som en css module:
-import designsystemtypography from './scss/_typography.scss'
+import designsystemtypography from './scss/typography.scss'
 <div className={designsystemtypography.title1}></div>
 */
 
@@ -43,7 +44,8 @@ import designsystemtypography from './scss/_typography.scss'
   font-size: 1.375rem;
   line-height: getSpacer(l);
   font-weight: 600;
-  @media (min-width: map-get($grid-breakpoints, md)) {
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: getSpacer(m);
   }
 }
@@ -52,7 +54,8 @@ import designsystemtypography from './scss/_typography.scss'
   font-size: $font-size-md;
   line-height: 1.625rem;
   font-weight: 600;
-  @media (min-width: map-get($grid-breakpoints, md)) {
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: getSpacer(m);
     line-height: $lineheight-size-md;
   }
@@ -61,7 +64,8 @@ import designsystemtypography from './scss/_typography.scss'
 .label {
   font-size: $font-size-sm;
   line-height: getSpacer(m);
-  @media (min-width: map-get($grid-breakpoints, md)) {
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-sm;
   }
@@ -70,7 +74,8 @@ import designsystemtypography from './scss/_typography.scss'
 .table {
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
-  @media (min-width: map-get($grid-breakpoints, md)) {
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-md;
   }
 }
@@ -78,7 +83,8 @@ import designsystemtypography from './scss/_typography.scss'
 .strong {
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
-  @media (min-width: map-get($grid-breakpoints, md)) {
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
   }
@@ -87,7 +93,8 @@ import designsystemtypography from './scss/_typography.scss'
 .form {
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
-  @media (min-width: map-get($grid-breakpoints, md)) {
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-md;
   }
 }
@@ -110,7 +117,6 @@ import designsystemtypography from './scss/_typography.scss'
 .anchorlink-wrapper {
   a {
     display: inline;
-    -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
     overflow-wrap: break-word;
     word-break: break-word;
@@ -126,15 +132,16 @@ import designsystemtypography from './scss/_typography.scss'
       background-color: $blueberry50;
       border-bottom-color: $blueberry600;
     }
+
     &:focus {
-      padding: 0 0 0.15rem 0;
+      padding: 0 0 0.15rem;
       outline: none;
       border: 0.15rem solid $black;
     }
 
     &[target='_blank'] {
-      /* external styling legge til icon*/
-      &:after {
+      /* external styling legge til icon */
+      &::after {
         content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='38px' height='38px' viewBox='0 0 48 48' fill='%2308667c'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
         display: inline-block;
         vertical-align: bottom;

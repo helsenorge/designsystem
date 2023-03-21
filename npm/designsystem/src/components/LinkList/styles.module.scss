@@ -1,7 +1,8 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_font-settings.scss';
-@import '../../scss/_palette.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/font-settings';
+@import '../../scss/palette';
 
 .link-list {
   list-style: none;
@@ -12,10 +13,12 @@
   &__list-item {
     &--line {
       border-bottom: 1px solid $neutral500;
+
       &:first-of-type {
         border-top: 1px solid $neutral500;
       }
     }
+
     &--outline {
       border-top: getSpacer(2xs) $neutral100 solid;
       border-left: getSpacer(2xs) $neutral100 solid;
@@ -41,9 +44,11 @@
       text-align: left;
       box-sizing: border-box;
     }
+
     &:hover {
       color: $blueberry700;
     }
+
     &--fill {
       margin: getSpacer(s) 0;
       background-color: $neutral50;
@@ -53,23 +58,28 @@
       font-size: $font-size-xs;
       line-height: $lineheight-size-xs;
     }
+
     &--medium {
       font-size: $font-size-sm;
       line-height: $lineheight-size-sm;
     }
+
     &--large {
       font-size: $font-size-md;
       line-height: $lineheight-size-md;
     }
-    @media (min-width: map-get($grid-breakpoints, md)) {
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
       &--small {
         font-size: $font-size-sm;
         line-height: $lineheight-size-sm;
       }
+
       &--medium {
         font-size: $font-size-md;
         line-height: $lineheight-size-md;
       }
+
       &--large {
         font-size: $font-size-lg;
         line-height: $lineheight-size-lg;
@@ -81,43 +91,51 @@
         background-color: $banana100;
       }
     }
+
     &--blueberry {
       &:hover {
         background-color: $blueberry100;
       }
     }
+
     &--cherry {
       &:hover {
         background-color: $cherry100;
       }
     }
+
     &--kiwi {
       &:hover {
         background-color: $kiwi100;
       }
     }
+
     &--neutral,
     &--black {
       &:hover {
         background-color: $neutral100;
       }
     }
+
     &--plum {
       &:hover {
         background-color: $plum100;
       }
     }
+
     &--black {
       &:hover {
         background-color: $black;
         color: $white;
       }
     }
+
     &--white {
       &:hover {
         background-color: $neutral50;
       }
     }
+
     &:focus,
     &:focus-visible {
       outline: getSpacer(4xs) solid $black;

@@ -1,22 +1,25 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
-@import '../AnchorLink/styles.module.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../AnchorLink/styles.module';
 
 .helpbubble {
   $bubble: &;
+
   display: flex;
   align-items: flex-start !important;
   text-align: start;
   font-family: inherit;
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
+
   &--visible {
     visibility: visible;
   }
 
-  @media (min-width: map-get($grid-breakpoints, lg)) {
+  @media (min-width: map.get($grid-breakpoints, lg)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
   }
@@ -41,11 +44,12 @@
 
   &__link {
     all: unset;
+
     @include anchorlink;
   }
 
   &__close {
     order: 2;
-    padding: getSpacer(2xs) getSpacer(2xs) 0px 0px;
+    padding: getSpacer(2xs) getSpacer(2xs) 0 0;
   }
 }

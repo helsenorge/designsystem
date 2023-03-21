@@ -1,21 +1,25 @@
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
 
-$gradient: rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.27) 18%, transparent;
+$gradient: rgb(0 0 0 / 27%), rgb(0 0 0 / 27%) 18%, transparent;
 
 .horizontalscroll {
   position: relative;
+
   &__viewport {
     display: flex;
+
     &:focus-visible {
       outline: getSpacer(4xs) solid $black;
       outline-offset: -1px;
     }
+
     &--overflow {
       overflow-x: auto;
       overflow-y: hidden;
     }
   }
+
   &__indicator {
     position: absolute;
     width: 23px;
@@ -23,14 +27,17 @@ $gradient: rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.27) 18%, transparent;
     height: 100%;
     opacity: 0;
     transition: opacity 0.25s ease-in-out;
+
     &--left {
       left: 0;
       background: linear-gradient(to right, $gradient);
     }
+
     &--right {
       right: 0;
       background: linear-gradient(to left, $gradient);
     }
+
     &--visible {
       opacity: 1;
     }

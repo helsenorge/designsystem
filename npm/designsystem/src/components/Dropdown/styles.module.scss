@@ -1,14 +1,15 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
-@import '../../scss/_screen-reader.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/screen-reader';
 
 .dropdown {
   position: relative;
 
   &__label {
-    @include sr-only();
+    @include sr-only;
   }
 
   &__toggle {
@@ -24,7 +25,7 @@
     font-size: $font-size-sm;
     line-height: 1.3rem; // Custom fordi teksten skal henge bedre sammen om den går over to linjer
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: getSpacer(3xs) getSpacer(3xs) getSpacer(3xs) getSpacer(s);
       font-size: $font-size-md;
       line-height: 1.5rem;
@@ -43,10 +44,12 @@
     &--on-grey {
       border-color: $neutral700;
       background-color: $white;
+
       &:hover {
         background-color: $neutral50;
         box-shadow: 0 0 0 1px $neutral700;
       }
+
       &:focus {
         border-color: $black;
         box-shadow: 0 0 0 1px $black;
@@ -56,10 +59,12 @@
     &--on-blueberry {
       border-color: $blueberry500;
       background-color: $white;
+
       &:hover {
         background-color: $blueberry50;
         box-shadow: 0 0 0 1px $blueberry500;
       }
+
       &:focus {
         border-color: $black;
         box-shadow: 0 0 0 1px $black;
@@ -69,10 +74,12 @@
     &--on-cherry {
       border-color: $cherry500;
       background-color: $white;
+
       &:hover {
         background-color: $cherry50;
         box-shadow: 0 0 0 1px $cherry500;
       }
+
       &:focus {
         border-color: $black;
         box-shadow: 0 0 0 1px $black;
@@ -82,6 +89,7 @@
     &--open#{&}--on-white,
     &--open#{&}--on-grey {
       background-color: $neutral50;
+
       &:hover {
         background-color: $white;
       }
@@ -89,6 +97,7 @@
 
     &--open#{&}--on-blueberry {
       background-color: $blueberry50;
+
       &:hover {
         background-color: $white;
       }
@@ -96,6 +105,7 @@
 
     &--open#{&}--on-cherry {
       background-color: $cherry50;
+
       &:hover {
         background-color: $white;
       }
@@ -125,6 +135,7 @@
 
     &--transparent#{&}--open#{&}--on-grey {
       background-color: $neutral100;
+
       &:hover {
         background-color: transparent;
       }
@@ -132,6 +143,7 @@
 
     &--transparent#{&}--open#{&}--on-blueberry {
       background-color: $blueberry100;
+
       &:hover {
         background-color: transparent;
       }
@@ -139,6 +151,7 @@
 
     &--transparent#{&}--open#{&}--on-cherry {
       background-color: $cherry100;
+
       &:hover {
         background-color: transparent;
       }
@@ -150,7 +163,8 @@
 
     &__label {
       padding: getSpacer(3xs) 0;
-      @media (min-width: map-get($grid-breakpoints, md)) {
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding: getSpacer(2xs) 0;
       }
     }
@@ -166,10 +180,12 @@
     background-color: $white;
     margin-top: getSpacer(2xs);
     box-shadow: 0 0 0 2px $blueberry500;
+
     &--open {
       display: block;
     }
   }
+
   &__options {
     overflow-x: hidden;
     overflow-y: auto;
@@ -177,19 +193,24 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    @media (min-width: map-get($grid-breakpoints, md)) {
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
       max-height: 464px;
     }
   }
+
   &__close {
     padding: getSpacer(s);
   }
+
   &__input {
     border-bottom: 1px solid $neutral300;
     padding: getSpacer(2xs) getSpacer(s) getSpacer(2xs) getSpacer(s);
-    @media (min-width: map-get($grid-breakpoints, md)) {
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: getSpacer(s);
     }
+
     &:last-child {
       border-bottom: none;
     }

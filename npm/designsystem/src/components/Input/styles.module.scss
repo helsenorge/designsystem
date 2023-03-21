@@ -1,8 +1,9 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
-@import '../../scss/_input.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/input';
 
 .input-wrapper {
   @include input-wrapper;
@@ -27,7 +28,7 @@
   &--with-icon {
     padding: 1px 0;
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: 0.375rem 0;
     }
   }
@@ -44,7 +45,7 @@
       height: 2.5rem;
     }
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       line-height: 1.625rem;
       height: 2.125rem;
       font-size: $font-size-md;

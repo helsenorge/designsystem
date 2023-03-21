@@ -1,4 +1,4 @@
-@import '../../scss/_palette.scss';
+@import '../../scss/palette';
 
 .badge {
   display: flex;
@@ -17,21 +17,27 @@
     color: $black;
     background-color: $white;
   }
+
   &--blueberry {
     background-color: $blueberry500;
   }
+
   &--banana {
     background-color: $banana500;
   }
+
   &--cherry {
     background-color: $cherry500;
   }
+
   &--kiwi {
     background-color: $kiwi500;
   }
+
   &--neutral {
     background-color: $neutral500;
   }
+
   &--plum {
     background-color: $plum500;
   }

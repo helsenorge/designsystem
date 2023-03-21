@@ -1,7 +1,8 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/font-settings.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
 
 .checkbox-errors {
   font-size: $font-size-sm;
@@ -18,7 +19,7 @@
     background-color: $cherry100;
     border-left: 0.25rem solid $cherry600;
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: getSpacer(s) getSpacer(m) getSpacer(l);
     }
   }
@@ -51,7 +52,7 @@
     display: flex;
   }
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-md;
   }
 
@@ -85,7 +86,7 @@
     background-color: $white;
   }
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     &--bigform {
       padding: 1.68rem getSpacer(l);
     }
@@ -93,12 +94,9 @@
 }
 
 .checkbox {
-  width: 0px;
+  width: 0;
   margin: 0;
-
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -o-appearance: none;
+  appearance: none;
 
   &__icon-wrapper {
     display: flex;
@@ -172,9 +170,11 @@
 
     &--disabled {
       color: $neutral400;
+
       &.checkbox__icon-wrapper--checked {
         color: $neutral400;
       }
+
       :hover > & {
         box-shadow: 0 0 0 getSpacer(4xs);
         background-color: transparent;

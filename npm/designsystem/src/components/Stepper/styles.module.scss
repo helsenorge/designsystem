@@ -1,13 +1,15 @@
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_spacers.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
+@use 'sass:map';
+@import '../../scss/breakpoints';
+@import '../../scss/spacers';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
 
 .stepper-wrapper {
   display: flex;
   align-items: center;
   min-height: getSpacer(l);
-  @media (min-width: map-get($grid-breakpoints, md)) {
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
     min-height: getSpacer(xl);
   }
 }
@@ -17,48 +19,50 @@ $transition: 0.4s linear 0s;
 /**
  * Bredde og høyde på markør
  */
-$markerSize: 24px;
+$marker-size: 24px;
 
 /**
  * Bredde og høyde på prikk
  */
-$dotSize: 8px;
+$dot-size: 8px;
 
 /**
  * Høyde på stepper
  */
-$stepperHeight: 12px;
+$stepper-height: 12px;
 
 /**
  * Horisontal padding på stepper
  */
-$stepperPaddingX: 8px;
+$stepper-padding-x: 8px;
 
 /**
  * Avstand fra venstre kant av stepper til midten av første prikk
  */
-$dotOffset: calc($stepperPaddingX + $dotSize / 2);
+$dot-offset: calc($stepper-padding-x + $dot-size / 2);
 
 .stepper {
   flex-grow: 1;
   position: relative;
   display: block;
-  height: $stepperHeight;
+  height: $stepper-height;
   border-radius: 4px;
-  background: linear-gradient(to right, $blueberry600, $blueberry600 $dotOffset, $blueberry50 $dotOffset, $blueberry50), $blueberry600;
+  background: linear-gradient(to right, $blueberry600, $blueberry600 $dot-offset, $blueberry50 $dot-offset, $blueberry50), $blueberry600;
   background-repeat: no-repeat;
+
   @media (prefers-reduced-motion: no-preference) {
     transition: background-position $transition;
   }
 
   &__marker {
     position: absolute;
-    width: $markerSize;
-    height: $markerSize;
-    top: calc(($stepperHeight - $markerSize) / 2);
+    width: $marker-size;
+    height: $marker-size;
+    top: calc(($stepper-height - $marker-size) / 2);
     background-color: $white;
     border: 6px solid $blueberry600;
     border-radius: 50%;
+
     @media (prefers-reduced-motion: no-preference) {
       transition: left $transition;
     }
@@ -76,22 +80,26 @@ $dotOffset: calc($stepperPaddingX + $dotSize / 2);
 
   &__dot {
     position: absolute;
-    top: calc(($stepperHeight - $dotSize) / 2);
-    width: $dotSize;
-    height: $dotSize;
+    top: calc(($stepper-height - $dot-size) / 2);
+    width: $dot-size;
+    height: $dot-size;
     background-color: $blueberry600;
     border-radius: 50%;
+
     @media (prefers-reduced-motion: no-preference) {
       transition: background-color $transition;
     }
+
     &--completed {
       background-color: $blueberry50;
     }
+
     &--left {
-      left: $dotOffset;
+      left: $dot-offset;
     }
+
     &--right {
-      right: $dotOffset;
+      right: $dot-offset;
     }
   }
 }

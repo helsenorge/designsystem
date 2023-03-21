@@ -1,36 +1,42 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_font-settings.scss';
-@import '../../scss/_palette.scss';
-@import '../AnchorLink/styles.module.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/font-settings';
+@import '../../scss/palette';
+@import '../AnchorLink/styles.module';
 
 .notification-panel {
   $panel: &;
+
   display: flex;
   padding: getSpacer(2xs) getSpacer(s) getSpacer(2xs) getSpacer(2xs);
-  box-shadow: 0.25rem 0.25rem 0.375rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0.25rem 0.25rem 0.375rem rgb(0 0 0 / 15%);
   border-radius: 0.25rem;
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     padding-left: getSpacer(s);
     padding-right: getSpacer(m);
     #{$panel}__icon {
       margin-right: getSpacer(m);
     }
   }
+
   &__compact {
     width: fit-content;
     font-weight: 600;
     font-size: $font-size-xs;
     line-height: 1.25rem;
     box-shadow: none;
-    @media (min-width: map-get($grid-breakpoints, md)) {
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding-left: getSpacer(2xs);
       padding-right: getSpacer(s);
     }
+
     &--basic {
       font-weight: 400;
     }
+
     &--outline {
       border: none;
     }
@@ -38,59 +44,75 @@
   #{$panel}__icon {
     margin-right: getSpacer(2xs);
   }
+
   &--dismissable {
     padding: getSpacer(2xs) getSpacer(2xs) getSpacer(m) getSpacer(2xs);
   }
+
   &--small {
-    max-width: map-get($grid-breakpoints, sm);
+    max-width: map.get($grid-breakpoints, sm);
   }
+
   &--medium {
-    max-width: map-get($grid-breakpoints, md);
+    max-width: map.get($grid-breakpoints, md);
   }
+
   &--large {
-    max-width: map-get($grid-breakpoints, lg);
+    max-width: map.get($grid-breakpoints, lg);
   }
+
   &--info {
     border: 0.125rem solid $blueberry700;
     background-color: $blueberry50;
   }
+
   &--info.notification-panel__compact {
     box-shadow: none;
     background-color: transparent;
   }
+
   &--info.notification-panel__compact--basic {
     border: none;
   }
+
   &--warn {
     border: 0.125rem solid $banana700;
     background-color: $banana50;
   }
+
   &--warn.notification-panel__compact {
     box-shadow: none;
     background-color: transparent;
   }
+
   &--warn.notification-panel__compact--basic {
     border: none;
   }
+
   &--alert {
     border: 0.125rem solid $cherry700;
     background-color: $cherry50;
   }
+
   &--alert.notification-panel__compact {
     box-shadow: none;
     background-color: transparent;
   }
+
   &--alert.notification-panel__compact--basic {
     border: none;
   }
+
   &--success {
     border: 0.125rem solid $kiwi900;
     background-color: $kiwi50;
   }
+
   &--success.notification-panel__compact {
     box-shadow: none;
     background-color: transparent;
   }
+
   &--success.notification-panel__compact--basic {
     border: none;
   }
@@ -100,13 +122,16 @@
     margin-left: auto;
     padding-left: getSpacer(2xs);
   }
+
   &__content {
     align-self: center;
+
     a {
       @include anchorlink;
       @include anchorlink-icon;
     }
   }
+
   &__children.notification-panel__label-and-content--spacing {
     font-weight: 500;
   }
@@ -116,34 +141,42 @@
     font-size: $font-size-xs;
     line-height: $lineheight-size-xs;
     margin: 0;
-    @media (min-width: map-get($grid-breakpoints, md)) {
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
       font-size: $font-size-sm;
       line-height: 1.625rem;
     }
   }
+
   &__label {
     font-weight: 700;
     margin: getSpacer(2xs) 0 0 0;
+
     &__compact {
       font-weight: 600;
       font-size: $font-size-xs;
       line-height: 1.25rem;
     }
+
     &__compact--basic {
       font-weight: 400;
     }
   }
+
   &__label--no-content {
     margin: 0;
     font-weight: 600;
   }
+
   &__children {
     font-weight: 600;
     padding: getSpacer(3xs) 0;
   }
+
   &__icon {
     line-height: 0;
   }
+
   &--with-content {
     padding-bottom: getSpacer(xs);
   }

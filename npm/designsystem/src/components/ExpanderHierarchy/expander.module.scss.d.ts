@@ -15,7 +15,7 @@ export type Styles = {
   'expander__title--2': string;
   'expander__title--3': string;
   'expander__title--4-and-lower': string;
-  fadeIn: string;
+  'fade-in': string;
 };
 
 export type ClassNames = keyof Styles;

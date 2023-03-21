@@ -1,6 +1,7 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
 
 $underline-width: 0.0625rem;
 $focus-width: 0.15rem;
@@ -11,6 +12,7 @@ $focus-width: 0.15rem;
   background-color: $blueberry50;
   border-bottom-color: $blueberry600;
 }
+
 @mixin anchorlink-focus {
   outline: none;
   border: $focus-width solid $black;
@@ -18,7 +20,6 @@ $focus-width: 0.15rem;
 
 @mixin anchorlink {
   display: inline;
-  -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -33,6 +34,7 @@ $focus-width: 0.15rem;
   &:hover {
     @include anchorlink-hover;
   }
+
   &:focus {
     @include anchorlink-focus;
   }
@@ -50,14 +52,15 @@ $focus-width: 0.15rem;
   font-size: 1.125rem;
   line-height: 1.875rem;
   font-weight: 400;
-  @media (min-width: map-get($grid-breakpoints, md)) {
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: 1.25rem;
   }
 }
 
 @mixin anchorlink-icon {
   &[target='_blank'] {
-    &:after {
+    &::after {
       content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='38px' height='38px' viewBox='0 0 48 48' fill='%2308667c'><polygon points='33.305,14.659,33.305,29.205,32.005,29.205,32.005,16.948,15.804,33.149,14.885,32.229,31.155,15.959,18.761,15.96,18.761,14.659' /></svg>");
       display: inline-block;
       vertical-align: bottom;
@@ -75,9 +78,11 @@ $focus-width: 0.15rem;
 
 .anchorlink-wrapper {
   all: unset;
+
   &:hover > span {
     @include anchorlink-hover;
   }
+
   &:focus > span {
     @include anchorlink-focus;
   }

@@ -1,7 +1,7 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/font-settings.scss';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
 
 .form-group-wrapper {
   &__title {
@@ -19,6 +19,7 @@
   border: none;
   padding: 0;
   margin: 0;
+
   > div {
     padding-bottom: 0;
   }

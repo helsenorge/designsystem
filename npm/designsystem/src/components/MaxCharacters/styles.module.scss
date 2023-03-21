@@ -1,7 +1,8 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
 
 .max-characters {
   display: flex;
@@ -11,7 +12,7 @@
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     line-height: $lineheight-size-md;
     font-size: $font-size-md;
   }
@@ -19,6 +20,7 @@
   &--on-dark {
     color: $white;
   }
+
   &--invalid {
     color: $cherry600;
     font-weight: 600;

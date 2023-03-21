@@ -1,4 +1,5 @@
-@import '../../scss/_breakpoints.scss';
+@use 'sass:map';
+@import '../../scss/breakpoints';
 @import '../../scss/font-settings';
 @import '../../scss/palette';
 @import '../../scss/spacers';
@@ -8,6 +9,7 @@
     padding: getSpacer(s) getSpacer(s) getSpacer(l);
     border: 0.062rem solid $neutral500;
   }
+
   &--extra-padding-top {
     padding-top: getSpacer(xl);
     padding-bottom: getSpacer(xl);
@@ -19,7 +21,7 @@
   margin: 0;
   display: grid;
 
-  @media (min-width: map-get($grid-breakpoints, sm)) {
+  @media (min-width: map.get($grid-breakpoints, sm)) {
     font-size: $font-size-md;
   }
 
@@ -45,7 +47,7 @@
   &__dt {
     padding-right: getSpacer(l);
 
-    @media (min-width: map-get($grid-breakpoints, sm)) {
+    @media (min-width: map.get($grid-breakpoints, sm)) {
       padding-right: 2.6669rem;
     }
 

@@ -1,11 +1,13 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
-@import '../AnchorLink/styles.module.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../AnchorLink/styles.module';
 
 .popover {
   $popover: &;
+
   display: flex;
   position: fixed;
   align-items: flex-start !important;
@@ -32,9 +34,9 @@
 
   border: getSpacer(4xs) solid $plum600;
   border-radius: 0.5625rem;
-  box-shadow: 0 0.125rem 1.125rem 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.125rem 1.125rem 0 rgb(0 0 0 / 15%);
 
-  @media (min-width: map-get($grid-breakpoints, lg)) {
+  @media (min-width: map.get($grid-breakpoints, lg)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
   }
@@ -48,16 +50,17 @@
     z-index: 3;
 
     &--over {
-      border-width: 0.625rem 0.625rem;
+      border-width: 0.625rem;
       border-bottom-color: $white;
-      -webkit-filter: drop-shadow($plum600 0px 0.125rem 0.375rem 0.125rem);
-      filter: drop-shadow(0px -0.185rem 0px $plum600);
+      filter: drop-shadow($plum600 0 0.125rem 0.375rem 0.125rem);
+      filter: drop-shadow(0 -0.185rem 0 $plum600);
     }
+
     &--under {
-      border-width: 0.625rem 0.625rem;
+      border-width: 0.625rem;
       border-top-color: $white;
-      -webkit-filter: drop-shadow($plum600 0px 0.125rem 0.375rem 0.125rem);
-      filter: drop-shadow(0px 0.2rem 0px $plum600);
+      filter: drop-shadow($plum600 0 0.125rem 0.375rem 0.125rem);
+      filter: drop-shadow(0 0.2rem 0 $plum600);
     }
   }
 }

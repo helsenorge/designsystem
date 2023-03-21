@@ -1,7 +1,8 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/font-settings.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
 
 .radio-button-errors {
   font-size: $font-size-sm;
@@ -20,7 +21,7 @@
     margin-left: -0.75rem;
     border-left: 0.25rem solid $cherry600;
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: getSpacer(s) getSpacer(m) getSpacer(l);
     }
   }
@@ -49,7 +50,7 @@
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-md;
   }
 
@@ -83,7 +84,7 @@
     background-color: $white;
   }
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     &--bigform {
       padding: 1.68rem getSpacer(l);
     }
@@ -91,10 +92,7 @@
 }
 
 .radio-button {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -o-appearance: none;
-
+  appearance: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -191,8 +189,8 @@
 
   &--disabled {
     cursor: default;
-
     color: $neutral400;
+
     &:checked {
       color: $neutral400;
 
@@ -201,6 +199,7 @@
         background-color: transparent;
       }
     }
+
     &:hover {
       box-shadow: 0 0 0 getSpacer(4xs);
       background-color: transparent;
@@ -235,6 +234,7 @@
     background-color: $cherry600;
   }
 }
+
 /******** RESET *********/
 @mixin reset-radio-button() {
   border: 0;
@@ -253,8 +253,6 @@
     font-weight: 400;
     margin: 0;
     word-break: break-word;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
     hyphens: auto;
   }
 }

@@ -1,13 +1,12 @@
-@import '../../scss/_spacers.scss';
-@import '../../scss/_breakpoints.scss';
-@import '../../scss/_palette.scss';
-@import '../../scss/_font-settings.scss';
-@import '../../scss/screen-reader.scss';
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/screen-reader';
 
 $dark-mode-disabled-transparrent: #ffffffb3;
-
-$with-icons: 
-// icon-class, size-class, padding-left, padding-right, padding-left desktop, padding-right desktop, svg-margin-left, svg-margin-right, svg-margin-left desktop, svg-margin-right desktop
+$with-icons: // icon-class, size-class, padding-left, padding-right, padding-left desktop, padding-right desktop, svg-margin-left, svg-margin-right, svg-margin-left desktop, svg-margin-right desktop
   'left-icon' 'normal' getSpacer(4xs) getSpacer(xs) getSpacer(xs) getSpacer(m) 0 getSpacer(3xs) 0 getSpacer(2xs),
   'right-icon' 'normal' getSpacer(xs) getSpacer(4xs) getSpacer(m) getSpacer(xs) getSpacer(3xs) 0 getSpacer(2xs) 0,
   'left-icon' 'large' getSpacer(xs) getSpacer(m) getSpacer(s) getSpacer(l) 0 getSpacer(2xs) 0 getSpacer(xs),
@@ -23,6 +22,7 @@ $with-icons:
   outline: none;
   box-shadow: 0 0 0 getSpacer(3xs) $black;
 }
+
 @mixin focus-shadow-on-dark {
   box-shadow: 0 0 0 getSpacer(3xs) $white;
 }
@@ -33,6 +33,7 @@ $with-icons:
   &:hover {
     background-color: $background-color;
   }
+
   :disabled > & {
     background-color: transparent;
   }
@@ -52,7 +53,7 @@ $with-icons:
   :disabled > & {
     outline-color: $neutral700;
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       outline-color: $neutral500;
     }
   }
@@ -60,14 +61,17 @@ $with-icons:
 
 @mixin outline-text($color) {
   color: $color;
+
   :disabled > & {
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       color: $neutral700;
     }
   }
 }
+
 @mixin borderless-text($color) {
   color: $color;
+
   :disabled > & {
     color: $neutral700;
   }
@@ -79,15 +83,18 @@ $with-icons:
   &:hover {
     box-shadow: none;
   }
+
   &:hover,
   :focus > & {
     background-color: $background-color;
   }
+
   :focus > & {
     @include focus-shadow-on-dark;
 
     &:hover {
       @include focus-shadow-on-dark;
+
       background-color: $white;
     }
   }
@@ -126,7 +133,7 @@ $with-icons:
     outline-color: $white;
 
     :disabled > & {
-      @media (min-width: map-get($grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         outline-color: $dark-mode-disabled-transparrent;
       }
     }
@@ -148,7 +155,7 @@ $with-icons:
     color: $white;
 
     :disabled > & {
-      @media (min-width: map-get($grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         color: $dark-mode-disabled-transparrent;
       }
     }
@@ -166,7 +173,7 @@ $with-icons:
   padding: getSpacer(2xs) 0;
   margin: getSpacer(2xs) * -1 0;
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     padding: 0;
     margin: 0;
   }
@@ -207,11 +214,12 @@ $with-icons:
     outline-offset: getSpacer(4xs) * -1;
     background-color: $neutral200;
   }
+
   :disabled > & &__text {
     color: $neutral800;
   }
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     min-height: 3.125rem;
     padding: 0 getSpacer(l);
     font-size: $font-size-md;
@@ -221,7 +229,7 @@ $with-icons:
     min-height: 3.625rem;
     padding: 0 getSpacer(l);
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       min-height: 4.5rem;
     }
   }
@@ -231,18 +239,19 @@ $with-icons:
       padding-left: $pl;
       padding-right: $pr;
 
-      @media (min-width: map-get($grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding-left: $pld;
         padding-right: $prd;
       }
     }
   }
+
   @each $icon-class, $size-class, $pl, $pr, $pld, $prd, $svgml, $svgmr, $svgmld, $svgmrd in $with-icons {
     &--#{$size-class} &__#{$icon-class} {
       margin-left: $svgml;
       margin-right: $svgmr;
 
-      @media (min-width: map-get($grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         margin-left: $svgmld;
         margin-right: $svgmrd;
       }
@@ -277,6 +286,7 @@ $with-icons:
   &--borderless:not(.button--only-icon) {
     padding: 0 getSpacer(3xs);
   }
+
   &--borderless {
     &:hover {
       box-shadow: none;
@@ -289,6 +299,7 @@ $with-icons:
 
   :focus > & {
     @include focus-shadow;
+
     &:hover {
       @include focus-shadow;
     }
@@ -298,7 +309,7 @@ $with-icons:
     color: $white;
     margin: 0 auto 0 0;
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       margin: 0 auto 0 0;
     }
 
@@ -308,23 +319,26 @@ $with-icons:
       text-overflow: ellipsis;
     }
   }
+
   &--outline &__text {
     @include outline-text($blueberry600);
   }
   &--outline#{&}--destructive &__text {
     @include outline-text($cherry600);
   }
+
   &--borderless &__text {
     @include borderless-text($blueberry600);
   }
   &--borderless#{&}--destructive &__text {
     @include borderless-text($cherry600);
   }
+
   &--only-icon &__text {
-    @include sr-only();
+    @include sr-only;
   }
 
-  @include on-dark();
+  @include on-dark;
 }
 
 .diagonal {
@@ -339,7 +353,7 @@ $with-icons:
   &--on-dark &__line {
     border-color: $white;
 
-    @media (min-width: map-get($grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       border-color: $dark-mode-disabled-transparrent;
     }
   }
