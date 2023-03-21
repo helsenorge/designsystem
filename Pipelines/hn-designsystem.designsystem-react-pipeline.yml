@@ -122,6 +122,22 @@ stages:
               customCommand: 'run prettier'
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
+          - task: Npm@1
+            displayName: stylelint
+            inputs:
+              command: custom
+              workingDir: $(working_directory)
+              customCommand: 'run stylelint'
+            condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+
+          - task: Npm@1
+            displayName: eslint
+            inputs:
+              command: custom
+              workingDir: $(working_directory)
+              customCommand: 'run eslint'
+            condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+
           # test
           - task: Npm@1
             displayName: test

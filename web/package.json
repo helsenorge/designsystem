@@ -20,8 +20,6 @@
     "build": "gatsby build",
     "deploy:documentation": "netlify deploy --site 3eb86f35-9926-4654-8937-33464387f516 --dir public --prod",
     "clean": "gatsby clean",
-    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
-    "lint:fix": "npm run lint -- --fix",
     "prettier": "prettier --check src/**/*.{js,jsx,ts,tsx,css,scss,md,json}",
     "prettier:fix": "npm run prettier -- --write",
     "pretypecheck": "tsc -v",
