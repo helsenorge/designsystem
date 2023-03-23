@@ -3,10 +3,9 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
-import { useIsVisible } from '../../hooks/useIsVisible';
 import AnchorLink from '../AnchorLink';
 import Close from '../Close';
-import PopOver, { PopOverVariant } from '../PopOver';
+import PopOver, { PopOverProps, PopOverVariant } from '../PopOver';
 
 import styles from './styles.module.scss';
 
@@ -14,7 +13,7 @@ export const HelpBubbleVariant = PopOverVariant;
 
 type HelpBubbleRole = 'tooltip';
 
-export interface HelpBubbleProps {
+export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'variant' | 'controllerRef' | 'role'> {
   /** Id of the HelpBubble */
   helpBubbleId?: string;
   /** Content shown inside HelpBubble. Note that if role="tooltip", you must not include interactive/focusable elements. */
@@ -47,32 +46,30 @@ export interface HelpBubbleProps {
 
 const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubbleProps>((props, ref) => {
   const {
-    helpBubbleId,
     children,
-    controllerRef,
     className = '',
-    showBubble,
     noCloseButton,
     linkText = 'Mer hjelp',
     linkUrl,
     onLinkClick,
     onClose,
     closeAriaLabel,
+    // Props passed on to PopOver
+    showBubble,
+    helpBubbleId,
+    variant,
+    controllerRef,
     role,
+    testId,
   } = props;
 
-  const controllerisVisible = useIsVisible(controllerRef, 0);
   const isTooltip = role === 'tooltip';
 
-  if (!showBubble) {
+  if (!showBubble && !isTooltip) {
     return null;
   }
 
-  const helpBubbleClasses = classNames(
-    styles.helpbubble,
-    { [styles['helpbubble--visible']]: (!isTooltip && controllerisVisible) || (isTooltip && showBubble) },
-    className
-  );
+  const helpBubbleClasses = classNames(styles.helpbubble, className);
 
   const contentClasses = classNames(styles.helpbubble__content, {
     [styles['helpbubble__content--close']]: !noCloseButton && !isTooltip,
@@ -106,7 +103,15 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
   };
 
   return (
-    <PopOver id={helpBubbleId} {...props} ref={ref}>
+    <PopOver
+      id={helpBubbleId}
+      variant={variant}
+      controllerRef={controllerRef}
+      role={role}
+      ref={ref}
+      show={isTooltip && showBubble}
+      testId={testId}
+    >
       <div className={helpBubbleClasses} data-analyticsid={AnalyticsId.HelpBubble}>
         {renderCloseButton()}
         <div className={contentClasses}>

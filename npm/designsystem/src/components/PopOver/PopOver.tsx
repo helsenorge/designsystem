@@ -29,18 +29,20 @@ export interface PopOverProps {
   controllerRef: React.RefObject<HTMLElement | SVGSVGElement>;
   /** Ref for the element the PopOver is placed upon */
   popOverRef?: React.RefObject<HTMLDivElement>;
+  /** Show the popover. Only applies when role=tooltip. Default: false. */
+  show?: boolean;
   /** Adds custom classes to the element. */
   className?: string;
   /** Adds custom classes to the arrow element. */
   arrowClassName?: string;
   /** Determines the placement of the popover. Default: automatic positioning. */
   variant?: keyof typeof PopOverVariant;
-  /** Sets role of the PopOver element. If set to "tooltip",  */
+  /** Sets role of the PopOver element */
   role?: PopOverRole;
+  /** Closes popover on click outside the bubble. */
+  closeOnClickOutside?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** Closes bubble on click outside the bubble. */
-  closeOnClickOutside?: boolean;
 }
 
 const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((props, ref) => {
@@ -49,6 +51,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((
     children,
     controllerRef,
     popOverRef,
+    show = false,
     className = '',
     variant = PopOverVariant.positionautomatic,
     role,
@@ -75,11 +78,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((
 
   const isTooltip = role === 'tooltip';
 
-  const popOverClasses = classNames(
-    styles.popover,
-    { [styles['popover--visible']]: (!isTooltip && controllerisVisible) || isTooltip },
-    className
-  );
+  const popOverClasses = classNames(styles.popover, { [styles['popover--visible']]: isTooltip ? show : controllerisVisible }, className);
   const verticalPosition = controllerSize && bubbleSize && getVerticalPosition(controllerSize, bubbleSize, variant);
   const arrowClasses = classNames(styles.popover__arrow, arrowClassName, {
     [styles['popover__arrow--over']]: verticalPosition === PopOverVariant.positionbelow,

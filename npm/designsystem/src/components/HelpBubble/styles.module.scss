@@ -15,10 +15,6 @@
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
 
-  &--visible {
-    visibility: visible;
-  }
-
   @media (min-width: map.get($grid-breakpoints, lg)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;

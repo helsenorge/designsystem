@@ -5,15 +5,18 @@ import userEvent from '@testing-library/user-event';
 
 import Tooltip from './Tooltip';
 
-describe('Gitt at Tooltip rendres ', () => {
+describe('Gitt at Tooltip skal vises ', () => {
   describe('Når komponenten får en tekst', () => {
-    it('Så rendres den riktig', () => {
-      const { container } = render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
+    it('Så vises beskrivelsen', () => {
+      render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
 
       const word = screen.getByText('ordet');
+      expect(word).toBeVisible();
+      expect(word).toHaveAccessibleDescription('beskrivelse av ordet');
+    });
 
-      expect(word).toBeInTheDocument();
-      expect(word).toHaveClass('word');
+    it('Så rendres den riktig', () => {
+      const { container } = render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
 
       expect(container).toMatchSnapshot();
     });
