@@ -1,3 +1,12 @@
+## [3.0.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv3.0.0&targetVersion=GTv3.0.1) (2023-03-23)
+
+
+### Bug Fixes
+
+*  bullet-list nivå 4 og lavere skal ha dashed stil ([bbcb855](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/bbcb8559dca4d31ab8b066048f4d922486632b91)), closes [#285187](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/285187)
+*  table med horizontalscroll har begrenset bredde ([94e7166](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/94e716624cdd2a2f9a0a3b875b3c67a06442cb8b)), closes [#298409](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/298409)
+*  tooltip er en del av dom ([aedea69](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/aedea69524558a38a0d45536aa4c625971fb9f76)), closes [#298402](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/298402) [#298403](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/298403)
+
 ## [3.0.0](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv2.17.0&targetVersion=GTv3.0.0) (2023-03-13)
 
 
