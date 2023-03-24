@@ -8,7 +8,6 @@ export type Styles = {
   'helpbubble__content--close': string;
   helpbubble__link: string;
   helpbubble__link__icon: string;
-  'helpbubble--visible': string;
 };
 
 export type ClassNames = keyof Styles;
