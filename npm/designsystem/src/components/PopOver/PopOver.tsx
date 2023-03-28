@@ -39,8 +39,6 @@ export interface PopOverProps {
   variant?: keyof typeof PopOverVariant;
   /** Sets role of the PopOver element */
   role?: PopOverRole;
-  /** Closes popover on click outside the bubble. */
-  closeOnClickOutside?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
 }

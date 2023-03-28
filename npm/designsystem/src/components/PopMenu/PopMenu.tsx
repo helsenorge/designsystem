@@ -75,7 +75,6 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
           className={classNames(styles['pop-menu__pop-over'], popOverClassName)}
           arrowClassName={styles['pop-menu__pop-over-arrow']}
           controllerRef={closeRef}
-          closeOnClickOutside
           popOverRef={popOverRef}
         >
           {children}

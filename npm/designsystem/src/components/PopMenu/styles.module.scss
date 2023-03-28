@@ -134,5 +134,5 @@ html :focus > .pop-menu-button {
 }
 
 .pop-menu__pop-over-arrow {
-  filter: drop-shadow(0 -0.185rem 0 rgb(24 128 151));
+  --drop-shadow-color: rgb(24 128 151);
 }

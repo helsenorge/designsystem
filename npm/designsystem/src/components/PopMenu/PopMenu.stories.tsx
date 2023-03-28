@@ -38,6 +38,7 @@ export default {
 
 export const Default: ComponentStory<typeof PopMenu> = args => (
   <GridExample>
+    <p>{longLoremText}</p>
     <div className={styles['story-wrapper']}>
       <PopMenu {...args}>
         <LinkList testId="linkList-tester" chevron={false}>
@@ -54,6 +55,7 @@ export const Default: ComponentStory<typeof PopMenu> = args => (
       </PopMenu>
       <div>{'PopMenuVariant: ' + args.popMenuVariant}</div>
     </div>
+    <p>{longLoremText}</p>
   </GridExample>
 );
 
