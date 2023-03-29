@@ -359,30 +359,35 @@ export const InteractiveChildren: ComponentStory<typeof ExpanderList> = (args: a
   );
 };
 
-export const JsxTitle: ComponentStory<typeof ExpanderList> = (args: any) => (
-  <GridExample>
-    <ExpanderList>
-      <ExpanderList.Expander
-        title={
-          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-            <AvatarComponent>{'Tittel'}</AvatarComponent>
-            <Title appearance="title3">Fastlege</Title>
-          </span>
-        }
-      >
-        {'Hei'}
-      </ExpanderList.Expander>
-      <ExpanderList.Expander title={<Title appearance="title3">Fastlege</Title>}>{'Hei'}</ExpanderList.Expander>
-      <ExpanderList.Expander
-        title={
-          <div>
-            <div>{'Tittel'}</div>
-            <StatusDot variant={'noaccess'} text={'Status tekst'} />
-          </div>
-        }
-      >
-        {'Hei'}
-      </ExpanderList.Expander>
-    </ExpanderList>
-  </GridExample>
-);
+export const JsxTitle: ComponentStory<typeof ExpanderList> = (args: any) => {
+  const TestTitle: React.FC = () => <div>{'Dette er en JSX-tittel'}</div>;
+
+  return (
+    <GridExample>
+      <ExpanderList>
+        <ExpanderList.Expander title={<TestTitle />}>{'Hei'}</ExpanderList.Expander>
+        <ExpanderList.Expander
+          title={
+            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+              <AvatarComponent>{'Tittel'}</AvatarComponent>
+              <Title appearance="title3">Fastlege</Title>
+            </span>
+          }
+        >
+          {'Hei'}
+        </ExpanderList.Expander>
+        <ExpanderList.Expander title={<Title appearance="title3">Fastlege</Title>}>{'Hei'}</ExpanderList.Expander>
+        <ExpanderList.Expander
+          title={
+            <div>
+              <div>{'Tittel'}</div>
+              <StatusDot variant={'noaccess'} text={'Status tekst'} />
+            </div>
+          }
+        >
+          {'Hei'}
+        </ExpanderList.Expander>
+      </ExpanderList>
+    </GridExample>
+  );
+};

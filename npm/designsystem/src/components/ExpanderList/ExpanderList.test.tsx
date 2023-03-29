@@ -461,4 +461,24 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       expect(child).not.toBeInTheDocument();
     });
   });
+  describe('Når title er en react-komponent uten children', (): void => {
+    test('Så vises tittelen', (): void => {
+      const TestTitle: React.FC = () => (
+        <div>
+          <h1>{'Dette er en tittel'}</h1>
+        </div>
+      );
+
+      render(
+        <ExpanderList>
+          <ExpanderList.Expander title={<TestTitle />}>
+            <span data-testid="test">{'Test'}</span>
+          </ExpanderList.Expander>
+        </ExpanderList>
+      );
+
+      const title = screen.getByRole('heading', { name: 'Dette er en tittel' });
+      expect(title).toBeVisible();
+    });
+  });
 });
