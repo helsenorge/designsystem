@@ -1,0 +1,319 @@
+@import '../../scss/spacers';
+@import '../../scss/palette';
+@import '../../scss/breakpoints';
+@import '../../scss/font-settings';
+@import '../../scss/grid';
+
+.service-message {
+  font-family: 'Source Sans Pro', Arial, Verdana, sans-serif;
+
+  &__wrapper {
+    padding: getSpacer(3xs) getSpacer(xs);
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      padding: getSpacer(2xs) getSpacer(l);
+    }
+
+    &--inner {
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        @include make-container;
+        @include make-container-max-widths;
+      }
+    }
+
+    &--success {
+      background-color: $kiwi50;
+
+      &:hover {
+        background-color: rgb(51 190 132 / 10%);
+      }
+
+      &--expanded {
+        border-bottom: 0.0625rem solid $kiwi900;
+      }
+    }
+
+    &--info {
+      background-color: $blueberry50;
+
+      &:hover {
+        background-color: rgb(24 128 151 / 10%);
+      }
+
+      &--expanded {
+        border-bottom: 0.0625rem solid $blueberry700;
+      }
+    }
+
+    &--warn {
+      background-color: $banana50;
+
+      &:hover {
+        background-color: rgb(221 171 6 / 10%);
+      }
+
+      &--expanded {
+        border-bottom: 0.0625rem solid $banana700;
+      }
+    }
+
+    &--alert {
+      background-color: $cherry50;
+
+      &:hover {
+        background-color: rgb(200 53 33 / 10%);
+      }
+
+      &--expanded {
+        border-bottom: 0.0625rem solid $cherry700;
+      }
+    }
+
+    &__border {
+      &--success {
+        border: 0.0625rem solid $kiwi900;
+      }
+
+      &--info {
+        border: 0.0625rem solid $blueberry700;
+      }
+
+      &--warn {
+        border: 0.0625rem solid $banana700;
+      }
+
+      &--alert {
+        border: 0.0625rem solid $cherry700;
+      }
+    }
+
+    &__btn {
+      background-color: transparent;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &--width {
+        width: 100%;
+      }
+
+      &--not-first {
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-left-color: transparent;
+      }
+
+      &:focus {
+        border: none;
+        outline: 0.125rem solid #000;
+        outline-offset: -2px;
+
+        // offset colliding border.
+        margin-top: -1px;
+        padding-top: 0.375rem;
+        padding-bottom: 0.3125rem;
+
+        @media (min-width: map-get($grid-breakpoints, md)) {
+          padding-top: 0.625rem;
+          padding-bottom: 0.5625rem;
+        }
+      }
+
+      &--first {
+        border-right-color: transparent;
+        border-left-color: transparent;
+
+        @media (max-width: map-get($grid-breakpoints, lg)) {
+          border-top-color: transparent;
+        }
+
+        &:focus {
+          padding-top: 0.3125rem;
+          padding-bottom: 0.3125rem;
+          margin-top: 0;
+
+          @media (min-width: map-get($grid-breakpoints, md)) {
+            padding-top: 0.5625rem;
+            padding-bottom: 0.5625rem;
+          }
+        }
+      }
+
+      &--expanded {
+        border-bottom-color: transparent;
+      }
+    }
+  }
+
+  &__content {
+    display: block;
+    margin: 0 3.75rem;
+    font-size: $font-size-xs;
+    line-height: 1.25rem;
+    padding: getSpacer(3xs) 0 getSpacer(xs) 0;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      margin: 0 getSpacer(4xl);
+    }
+
+    @media (min-width: map-get($grid-breakpoints, lg)) {
+      padding: getSpacer(2xs) 0 getSpacer(s) 0;
+      margin: 0 4.5625rem;
+    }
+
+    &__info {
+      display: block;
+      font-size: $font-size-xs;
+      line-height: 1.25rem;
+
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        padding-top: getSpacer(xs);
+        line-height: 1.625rem;
+        font-size: $font-size-sm;
+      }
+
+      &--smaller {
+        display: block;
+        font-size: 0.875rem;
+        padding-top: getSpacer(2xs);
+        line-height: 1.25rem;
+
+        @media (min-width: map-get($grid-breakpoints, lg)) {
+          padding-top: getSpacer(xs);
+          font-size: $font-size-xs;
+          line-height: $lineheight-size-xs;
+        }
+      }
+    }
+
+    &--spacing {
+      @media (min-width: map-get($grid-breakpoints, lg)) {
+        padding: 0 getSpacer(l);
+      }
+    }
+  }
+
+  &__icon {
+    &--signal {
+      display: flex;
+      align-items: center;
+      margin-right: getSpacer(2xs);
+
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        margin-right: getSpacer(m);
+      }
+    }
+
+    &--expander {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__label {
+    text-align: left;
+    font-weight: 700;
+    font-size: $font-size-xs;
+    line-height: 1.25rem;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      font-size: $font-size-sm;
+    }
+  }
+
+  &__top-row {
+    line-height: $lineheight-size-xs;
+    align-items: center;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+      font-size: $font-size-sm;
+      line-height: 1.25rem;
+    }
+
+    &--container {
+      display: flex;
+      width: 100%;
+      align-items: center;
+    }
+  }
+
+  &__bottom-row {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column wrap;
+    padding: getSpacer(2xs) 0 0 0;
+    gap: getSpacer(2xs);
+
+    @media (min-width: map-get($grid-breakpoints, sm)) {
+      flex-direction: row;
+    }
+
+    @media (min-width: map-get($grid-breakpoints, lg)) {
+      padding: getSpacer(s) 0 0 0;
+    }
+
+    &--only-close-button {
+      @media (min-width: map-get($grid-breakpoints, sm)) {
+        flex-direction: row-reverse;
+      }
+    }
+
+    &__button {
+      display: flex;
+      align-items: center;
+      border: none;
+      white-space: nowrap;
+      overflow: initial;
+      text-overflow: clip;
+      width: fit-content;
+      color: $blueberry700;
+      font-weight: 600;
+      font-size: $font-size-xs;
+      line-height: 1.25rem;
+      background-color: transparent;
+      text-decoration: none;
+      height: 2.375rem;
+
+      &:hover,
+      &:active {
+        background-color: rgb(88 170 187 / 10%);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px $black;
+        background-color: transparent;
+        border-radius: 0;
+        border: 0;
+        outline: none;
+      }
+
+      svg {
+        margin-left: getSpacer(xs);
+      }
+    }
+
+    &__close-button {
+      padding: 0;
+
+      @media (min-width: map-get($grid-max-breakpoints, xs)) {
+        padding: getSpacer(2xs);
+      }
+
+      &--top {
+        margin-left: auto;
+        padding: 0;
+
+        svg {
+          margin-left: 0;
+        }
+      }
+    }
+
+    &__read-more-btn {
+      &--spacing {
+        padding: 0;
+      }
+    }
+  }
+}
