@@ -1,3 +1,11 @@
+## [3.1.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv3.1.1&targetVersion=GTv3.1.2) (2023-03-31)
+
+### Bug Fixes
+
+- styling av service message
+  ([4fd8e7d](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/4fd8e7dc23a7a6a469befda007cc846ed91640e2)), closes
+  [#292736](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/292736)
+
 ## [3.1.1](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv3.1.0&targetVersion=GTv3.1.1) (2023-03-30)
 
 ### Features
