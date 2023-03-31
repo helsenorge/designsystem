@@ -65,13 +65,6 @@ exports[`Gitt at ServiceMessage skal vises Når komponenten vises med default pr
         </button>
       </span>
     </span>
-    <div
-      class="service-message__content--spacing"
-    >
-      <div
-        class="service-message__wrapper--inner service-message__content__wrapper"
-      />
-    </div>
   </div>
 </div>
 `;

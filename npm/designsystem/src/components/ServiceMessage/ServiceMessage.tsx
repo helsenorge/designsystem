@@ -117,12 +117,9 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
     hasExpander && setIsExpanded(!isExpanded);
   };
 
-  const anchorlinkClasses = classNames(
-    styles['service-message__bottom-row__button'],
-    styles['service-message__bottom-row__read-more-btn--spacing']
-  );
+  const anchorlinkClasses = classNames(styles['service-message__bottom-row__button']);
   const urlField = !!url && !!urlTitle;
-  const closeButtonClasses = classNames(styles['service-message__bottom-row__button'], styles['service-message__bottom-row__close-button']);
+  const closeButtonClasses = classNames(styles['service-message__bottom-row__button']);
   const bottomRowClasses = classNames(styles['service-message__bottom-row'], {
     [styles['service-message__bottom-row--only-close-button']]: !urlField,
   });
@@ -175,9 +172,13 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
       <CustomTag className={wrapperClasses} onClick={tagClicked} aria-expanded={hasExpander && isExpanded} data-testid={testId}>
         <TopRow />
       </CustomTag>
-      <div className={styles['service-message__content--spacing']}>
-        <div className={contentWrapperClasses}>{hasExpander && isExpanded && <Content />}</div>
-      </div>
+      {hasExpander && isExpanded && (
+        <div className={styles['service-message__content--spacing']}>
+          <div className={contentWrapperClasses}>
+            <Content />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

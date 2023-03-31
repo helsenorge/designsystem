@@ -2,9 +2,7 @@ export type Styles = {
   'service-message': string;
   'service-message__bottom-row': string;
   'service-message__bottom-row__button': string;
-  'service-message__bottom-row__close-button': string;
   'service-message__bottom-row__close-button--top': string;
-  'service-message__bottom-row__read-more-btn--spacing': string;
   'service-message__bottom-row--only-close-button': string;
   'service-message__content': string;
   'service-message__content__info': string;

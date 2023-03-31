@@ -39,7 +39,7 @@ export default {
     },
     urlTitle: {
       control: 'text',
-      defaultValue: 'Les mer',
+      defaultValue: 'Du kan henvises fra sykehuset eller fra din fastlege (helsedirektoratet.no)',
     },
     url: {
       control: 'text',

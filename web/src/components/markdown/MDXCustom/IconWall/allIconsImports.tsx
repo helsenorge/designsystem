@@ -190,6 +190,8 @@ import FemaleDoctor_ from '@helsenorge/designsystem-react/components/Icons/Femal
 export const FemaleDoctor = FemaleDoctor_;
 import Ferry_ from '@helsenorge/designsystem-react/components/Icons/Ferry';
 export const Ferry = Ferry_;
+import File_ from '@helsenorge/designsystem-react/components/Icons/File';
+export const File = File_;
 import Filter_ from '@helsenorge/designsystem-react/components/Icons/Filter';
 export const Filter = Filter_;
 import FingerBleed_ from '@helsenorge/designsystem-react/components/Icons/FingerBleed';
@@ -522,8 +524,6 @@ import Undo_ from '@helsenorge/designsystem-react/components/Icons/Undo';
 export const Undo = Undo_;
 import UniProsthesis_ from '@helsenorge/designsystem-react/components/Icons/UniProsthesis';
 export const UniProsthesis = UniProsthesis_;
-import File_ from '@helsenorge/designsystem-react/components/Icons/File';
-export const File = File_;
 import Upload_ from '@helsenorge/designsystem-react/components/Icons/Upload';
 export const Upload = Upload_;
 import UserOrganization_ from '@helsenorge/designsystem-react/components/Icons/UserOrganization';
@@ -657,10 +657,10 @@ export const allSvgIcons = [
   { module: ExitFullScreen, name: 'ExitFullScreen', alternativeName: 'Gå ut av fullskjermvisning', categories: 'System' },
   { module: Eye, name: 'Eye', alternativeName: 'Øye', categories: 'Sykdom, Anatomi' },
   { module: Facebook, name: 'Facebook', alternativeName: 'Facebook', categories: 'Sosiale medier' },
-  { module: File, name: 'File', alternativeName: 'Fil', categories: 'Filtyper' },
   { module: Female, name: 'Female', alternativeName: 'Kvinne- tegn', categories: 'Generisk' },
   { module: FemaleDoctor, name: 'FemaleDoctor', alternativeName: 'Kvinnelig lege', categories: 'Tjeneste, Personer' },
   { module: Ferry, name: 'Ferry', alternativeName: 'Ferje', categories: 'Kjøretøy' },
+  { module: File, name: 'File', alternativeName: '', categories: '' },
   { module: Filter, name: 'Filter', alternativeName: 'Filter', categories: 'System, Generisk' },
   { module: FingerBleed, name: 'FingerBleed', alternativeName: 'Finger som blør', categories: 'Sykdom, Behandling' },
   { module: FirstAidKit, name: 'FirstAidKit', alternativeName: 'Førstehjelpsskrin', categories: 'Giftinformasjonen, Behandling' },
