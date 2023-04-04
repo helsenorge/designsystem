@@ -113,7 +113,7 @@ export const Default: ComponentStory<typeof Panel> = (args: any) => (
 
 export const ContentA: ComponentStory<typeof Panel> = (args: any) => (
   <GridExample>
-    <Panel contentA={<div style={{ background: '#748999', height: 180 }}>{'Content A'}</div>}>
+    <Panel {...args} contentA={<div style={{ background: '#748999', height: 180 }}>{'Content A'}</div>}>
       <div>
         <Title appearance="title2">{'E-resept'}</Title>
         <p style={{ whiteSpace: 'pre-line' }}>

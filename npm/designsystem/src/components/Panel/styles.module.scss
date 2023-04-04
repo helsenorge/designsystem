@@ -138,9 +138,11 @@
     display: flex;
     flex-direction: column;
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
-      align-self: flex-end;
-      flex-direction: row;
+    &--no-content-b {
+      @media (min-width: map.get($grid-breakpoints, lg)) {
+        align-self: flex-end;
+        flex-direction: row;
+      }
     }
 
     &--layout3 {

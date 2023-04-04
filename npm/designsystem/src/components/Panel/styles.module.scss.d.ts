@@ -5,6 +5,7 @@ export type Styles = {
   panel__badge: string;
   'panel__btn-container': string;
   'panel__btn-container--layout3': string;
+  'panel__btn-container--no-content-b': string;
   'panel__btn-container--padding-top': string;
   panel__container: string;
   'panel__container--grow': string;
