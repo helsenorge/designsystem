@@ -71,17 +71,17 @@ exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold S
           data-analyticsid="button"
           type="button"
         >
-          <div
+          <span
             class="button button--normal"
           >
-            <div
+            <span
               class="button__text"
             >
               <span>
                 Lukk
               </span>
-            </div>
-          </div>
+            </span>
+          </span>
         </button>
       </div>
     </div>

@@ -6,7 +6,7 @@ exports[`displays tile 1`] = `
     class="tile"
     data-analyticsid="tile"
   >
-    <div
+    <span
       class="title-wrapper"
     >
       <svg
@@ -40,7 +40,7 @@ exports[`displays tile 1`] = `
       >
         Title
       </span>
-    </div>
+    </span>
     <p
       class="tile__description"
     >

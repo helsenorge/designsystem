@@ -185,7 +185,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       : null;
   };
 
-  const renderButtonContent = () => {
+  const renderButtonContent = (): JSX.Element => {
     let angle;
     let diagonalWidth;
     if (buttonContentSize) {
@@ -194,30 +194,26 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     }
 
     return (
-      <div className={buttonTextClasses} ref={buttonContentRef}>
+      <span className={buttonTextClasses} ref={buttonContentRef}>
         {disabled && borderlessVariant && (
-          <div className={diagonalClasses}>
-            <div style={{ transform: `rotate(${angle}rad)`, width: diagonalWidth }} className={buttonStyles['diagonal__line']} />
-          </div>
+          <span className={diagonalClasses}>
+            <span style={{ transform: `rotate(${angle}rad)`, width: diagonalWidth }} className={buttonStyles['diagonal__line']} />
+          </span>
         )}
         <span>{onlyIcon ? ariaLabel : restChildren}</span>
-      </div>
+      </span>
     );
   };
 
-  const renderbuttonContentWrapper = () => {
-    return (
-      <>
-        <div className={buttonClasses}>
-          {renderIcon(leftIcon, getLargeIconSize(large, mobile), !onlyIcon ? buttonStyles['button__left-icon'] : undefined)}
-          {renderButtonContent()}
-          {hasArrow
-            ? renderIcon(<Icon svgIcon={ArrowRight} />, getLargeIconSize(large, mobile), buttonStyles['button__arrow'])
-            : renderIcon(rightIcon, getLargeIconSize(large, mobile), buttonStyles['button__right-icon'])}
-        </div>
-      </>
-    );
-  };
+  const renderbuttonContentWrapper = (): JSX.Element => (
+    <span className={buttonClasses}>
+      {renderIcon(leftIcon, getLargeIconSize(large, mobile), !onlyIcon ? buttonStyles['button__left-icon'] : undefined)}
+      {renderButtonContent()}
+      {hasArrow
+        ? renderIcon(<Icon svgIcon={ArrowRight} />, getLargeIconSize(large, mobile), buttonStyles['button__arrow'])
+        : renderIcon(rightIcon, getLargeIconSize(large, mobile), buttonStyles['button__right-icon'])}
+    </span>
+  );
 
   return (
     <>

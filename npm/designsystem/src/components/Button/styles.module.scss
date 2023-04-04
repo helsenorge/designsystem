@@ -342,9 +342,11 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 }
 
 .diagonal {
+  display: block;
   transform: matrix(-1, 0, 0, 1, 0, 0);
 
   &__line {
+    display: block;
     border-bottom: getSpacer(4xs) dashed $neutral500;
     transform-origin: top left;
     position: absolute;

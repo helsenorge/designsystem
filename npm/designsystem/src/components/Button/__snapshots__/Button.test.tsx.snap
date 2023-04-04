@@ -7,17 +7,17 @@ exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
     data-analyticsid="button"
     type="button"
   >
-    <div
+    <span
       class="button button--normal"
     >
-      <div
+      <span
         class="button__text"
       >
         <span>
           Button
         </span>
-      </div>
-    </div>
+      </span>
+    </span>
   </button>
 </div>
 `;
@@ -29,7 +29,7 @@ exports[`Gitt at button skal vises Når button rendres kun med ikon Så innehold
     data-analyticsid="button"
     type="button"
   >
-    <div
+    <span
       class="button button--normal button--only-icon"
     >
       <svg
@@ -48,14 +48,14 @@ exports[`Gitt at button skal vises Når button rendres kun med ikon Så innehold
           d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z"
         />
       </svg>
-      <div
+      <span
         class="button__text"
       >
         <span>
           Check me
         </span>
-      </div>
-    </div>
+      </span>
+    </span>
   </button>
 </div>
 `;
@@ -67,7 +67,7 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
     data-analyticsid="button"
     type="button"
   >
-    <div
+    <span
       class="button button--normal button--left-icon button--right-icon button--both-icons"
     >
       <svg
@@ -86,13 +86,13 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
           d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z"
         />
       </svg>
-      <div
+      <span
         class="button__text"
       >
         <span>
           Button
         </span>
-      </div>
+      </span>
       <svg
         aria-hidden="true"
         class="hnds-style-icon button__right-icon"
@@ -109,7 +109,7 @@ exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikon
           d="M22.504 31.578l-9.781-10.162 1.822-1.752 7.959 8.269 14.265-14.819 1.821 1.752z"
         />
       </svg>
-    </div>
+    </span>
   </button>
 </div>
 `;

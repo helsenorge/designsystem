@@ -85,10 +85,10 @@ export const Tile = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Tile
 
   const renderContent = () => (
     <>
-      <div className={tileTitleWrapperClasses}>
+      <span className={tileTitleWrapperClasses}>
         {React.cloneElement(icon, { size: IconSize.Medium, isHovered, color: highlighted ? 'white' : 'black' })}
         {React.cloneElement(title, { highlighted: highlighted, compact: compact })}
-      </div>
+      </span>
       {description ? <p className={tileStyles.tile__description}>{description}</p> : null}
     </>
   );
