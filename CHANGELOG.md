@@ -1,3 +1,20 @@
+## [3.1.3](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv3.1.2&targetVersion=GTv3.1.3) (2023-04-11)
+
+### Bug Fixes
+
+- eksport av PopMenu
+  ([857d136](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/857d136c0e5608cf3087315107b4e265289b412f)), closes
+  [#260926](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/260926)
+- html-validering i flere komponenter
+  ([cd61d5c](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/cd61d5c77f931e67507d3666a9ea9bd681fca1dd)), closes
+  [#298931](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/298931)
+- panel med content a, b og datetime har riktig plassering av datetime på stor skjerm
+  ([74adbca](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/74adbca810aa08cacc76c7e01fb6164d941f917a)), closes
+  [#297532](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/297532)
+- statusdot transparent har bedre kontrast mot bakgrunn
+  ([2015054](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/20150540118e1d4d67a3847b1a3c182ebfb77ef1)), closes
+  [#298938](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/298938)
+
 ## [3.1.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv3.1.1&targetVersion=GTv3.1.2) (2023-03-31)
 
 ### Bug Fixes
@@ -697,12 +714,12 @@
 
 ### Bug Fixes
 
-- økt kontrast på understreking av lenker
-  ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
-  [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 - panel har avstand fra tittel til badge
   ([09034c4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
   [#282359](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/282359)
+- økt kontrast på understreking av lenker
+  ([50b7fa4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
+  [#229049](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/229049)
 
 ## [1.2.2](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
