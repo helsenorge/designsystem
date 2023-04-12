@@ -76,7 +76,6 @@ export const Table: React.FC<Props> = ({ id, testId, className, children, breakp
   }, [breakpointConfig, breakpoint, tableWidth, windowWidth]);
 
   useEffect(() => {
-    setTableWidth(tableRef.current?.getBoundingClientRect().width ?? 0);
     if (
       currentConfig?.variant === ResponsiveTableVariant.centeredoverflow ||
       currentConfig?.variant === ResponsiveTableVariant.horizontalscroll
