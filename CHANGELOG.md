@@ -1,3 +1,11 @@
+## [3.1.4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv3.1.3&targetVersion=GTv3.1.4) (2023-04-12)
+
+### Bug Fixes
+
+- unngå at tabellen hopper mellom ulike visninger på små skjermer
+  ([5531200](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/553120095afa9185dce3e2fea6c770f4654eefbf)), closes
+  [#300068](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/300068)
+
 ## [3.1.3](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv3.1.2&targetVersion=GTv3.1.3) (2023-04-11)
 
 ### Bug Fixes
