@@ -117,3 +117,86 @@ export const HorizontalScroll: ComponentStory<typeof Table> = args => {
     </GridExample>
   );
 };
+
+export const CenteredOverflow: ComponentStory<typeof Table> = (args: any) => {
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-8 offset-2">
+          <p>{longLoremText}</p>
+          <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'xl' }}>
+            <TableHead category={args.headerCategory}>
+              <TableRow key="head">
+                <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Alder</TableHeadCell>
+                <TableHeadCell>Kjønn</TableHeadCell>
+                <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Adresse</TableHeadCell>
+                <TableHeadCell>Ledige plasser</TableHeadCell>
+                <TableHeadCell>Antall på venteliste</TableHeadCell>
+                <TableHeadCell>Handlinger</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+                <TableCell dataLabel="Alder">35 år</TableCell>
+                <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+                <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+                <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+                <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+                <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                <TableCell dataLabel="Handlinger">
+                  <PopMenu {...args}>
+                    <LinkList testId="linkList-tester" chevron={false}>
+                      <LinkList.Link tabIndex={0} href="/">
+                        {'Link 1'}
+                      </LinkList.Link>
+                      <LinkList.Link tabIndex={0} href="/">
+                        {'Link 2'}
+                      </LinkList.Link>
+                      <LinkList.Link tabIndex={0} href="/">
+                        {'Link 3'}
+                      </LinkList.Link>
+                    </LinkList>
+                  </PopMenu>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+                <TableCell dataLabel="Alder">35 år</TableCell>
+                <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+                <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+                <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+                <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+                <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                <TableCell dataLabel="Handlinger">{''}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+                <TableCell dataLabel="Alder">35 år</TableCell>
+                <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+                <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+                <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+                <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+                <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                <TableCell dataLabel="Handlinger">{''}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+                <TableCell dataLabel="Alder">35 år</TableCell>
+                <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+                <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+                <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+                <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+                <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                <TableCell dataLabel="Handlinger">{''}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+          <p>{longLoremText}</p>
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -153,6 +153,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når bre
     class="table table--centeredoverflow-lg"
     data-analyticsid="table"
     data-testid="test-table"
+    style="left: -8px;"
   >
     <thead
       class="table__head table__head--normal"
@@ -202,6 +203,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når fal
     class="table"
     data-analyticsid="table"
     data-testid="test-table"
+    style=""
   >
     <thead
       class="table__head table__head--normal"
@@ -251,6 +253,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tab
     class="table table--block-lg"
     data-analyticsid="table"
     data-testid="test-table"
+    style=""
   >
     <thead
       class="table__head table__head--normal"
@@ -300,6 +303,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tab
     class="table"
     data-analyticsid="table"
     data-testid="test-table"
+    style=""
   >
     <thead
       class="table__head table__head--normal"
@@ -514,6 +518,7 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
     class="table"
     data-analyticsid="table"
     data-testid="test-table"
+    style=""
   >
     <thead
       class="table__head table__head--normal"

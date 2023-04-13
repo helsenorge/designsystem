@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { BreakpointConfig, ResponsiveTableVariant } from './Table';
 import { Breakpoint } from '../../hooks/useBreakpoint';
 import { isTouchDevice } from '../../utils/device';
@@ -128,3 +130,15 @@ export const getCurrentConfig = (
  */
 export const getBreakpointClass = (config?: BreakpointConfig): string | undefined =>
   config && configUsesCss(config) ? mapConfigToClass(config) : undefined;
+
+/**
+ * Finn riktig posisjon for horisontal sentrering av tabell som skal vises "centeredoverflow"
+ * @param parentWidth Bredde på element som tabellen ligger i
+ * @param tableWidth Bredde på tabellen
+ * @returns Styling som posisjonerer tabellen riktig
+ */
+export const getCenteredOverflowTableStyle = (parentWidth: number, tableWidth: number): React.CSSProperties => {
+  const COLUMN_GUTTER_WIDTH_PX = 8;
+
+  return { left: `${(parentWidth - tableWidth) / 2 - COLUMN_GUTTER_WIDTH_PX}px` };
+};

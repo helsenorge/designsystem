@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
-import { getCurrentConfig, getBreakpointClass } from './utils';
+import { getCurrentConfig, getBreakpointClass, getCenteredOverflowTableStyle } from './utils';
 import { AnalyticsId } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
@@ -67,6 +67,7 @@ export const simpleConfig: BreakpointConfig[] = [
 export const Table: React.FC<Props> = ({ id, testId, className, children, breakpointConfig = defaultConfig }) => {
   const [currentConfig, setCurrentConfig] = useState<BreakpointConfig>();
   const [tableWidth, setTableWidth] = useState<number>(0);
+  const [parentWidth, setParentWidth] = useState<number>(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const tableRef = useRef<HTMLTableElement>(null);
   const breakpoint = useBreakpoint();
@@ -82,15 +83,21 @@ export const Table: React.FC<Props> = ({ id, testId, className, children, breakp
     ) {
       setTableWidth(tableRef.current?.getBoundingClientRect().width ?? 0);
     }
+    if (currentConfig?.variant === ResponsiveTableVariant.centeredoverflow) {
+      setParentWidth(tableRef.current?.parentElement?.getBoundingClientRect().width ?? 0);
+    }
   }, [currentConfig]);
 
   useLayoutEvent(() => setWindowWidth(window.innerWidth), ['resize'], 100);
+
+  const tableStyle =
+    currentConfig?.variant === ResponsiveTableVariant.centeredoverflow ? getCenteredOverflowTableStyle(parentWidth, tableWidth) : undefined;
 
   const breakpointClass = getBreakpointClass(currentConfig);
   const tableClass = classNames(styles.table, breakpointClass, className);
 
   const table = (
-    <table className={tableClass} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Table} ref={tableRef}>
+    <table className={tableClass} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Table} ref={tableRef} style={tableStyle}>
       {children}
     </table>
   );

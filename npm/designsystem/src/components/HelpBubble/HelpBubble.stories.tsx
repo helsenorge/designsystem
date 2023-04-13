@@ -112,17 +112,25 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
         <TableHead category={args.headerCategory}>
           <TableRow key="head">
             <TableHeadCell>Fastlege</TableHeadCell>
+            <TableHeadCell>Alder</TableHeadCell>
+            <TableHeadCell>Kjønn</TableHeadCell>
             <TableHeadCell>Fastlegekontor</TableHeadCell>
+            <TableHeadCell>Adresse</TableHeadCell>
             <TableHeadCell>Ledige plasser</TableHeadCell>
             <TableHeadCell>Antall på venteliste</TableHeadCell>
+            <TableHeadCell>Handlinger</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell dataLabel="navn">Line Danser</TableCell>
-            <TableCell dataLabel="kontor">Røtvedt</TableCell>
-            <TableCell dataLabel="ledige">1</TableCell>
-            <TableCell dataLabel="antall">
+            <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+            <TableCell dataLabel="Alder">35 år</TableCell>
+            <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+            <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+            <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+            <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+            <TableCell dataLabel="Antall på venteliste">53</TableCell>
+            <TableCell dataLabel="Handlinger">
               <Icon ref={controllerRef} svgIcon={HelpSign} />
               <HelpBubble {...args} onClose={action('Bubble closed')} controllerRef={controllerRef}>
                 <div>{args.children}</div>
@@ -130,26 +138,111 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell dataLabel="navn">Line Danser</TableCell>
-            <TableCell dataLabel="kontor">Røtvedt</TableCell>
-            <TableCell dataLabel="ledige">1</TableCell>
-            <TableCell dataLabel="antall">200</TableCell>
+            <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+            <TableCell dataLabel="Alder">35 år</TableCell>
+            <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+            <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+            <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+            <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+            <TableCell dataLabel="Antall på venteliste">53</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell dataLabel="navn">Line Danser</TableCell>
-            <TableCell dataLabel="kontor">Røtvedt</TableCell>
-            <TableCell dataLabel="ledige">1</TableCell>
-            <TableCell dataLabel="antall">200</TableCell>
+            <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+            <TableCell dataLabel="Alder">35 år</TableCell>
+            <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+            <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+            <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+            <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+            <TableCell dataLabel="Antall på venteliste">53</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell dataLabel="navn">Line Danser</TableCell>
-            <TableCell dataLabel="kontor">Røtvedt</TableCell>
-            <TableCell dataLabel="ledige">1</TableCell>
-            <TableCell dataLabel="antall">200</TableCell>
+            <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+            <TableCell dataLabel="Alder">35 år</TableCell>
+            <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+            <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+            <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+            <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+            <TableCell dataLabel="Antall på venteliste">53</TableCell>
           </TableRow>
         </TableBody>
       </Table>
       <p>{longLoremText}</p>
     </GridExample>
+  );
+};
+
+export const CenteredOverflow: ComponentStory<typeof Table> = (args: any) => {
+  const controllerRef = useRef<SVGSVGElement>(null);
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-8 offset-2">
+          <p>{longLoremText}</p>
+          <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'xl' }}>
+            <TableHead category={args.headerCategory}>
+              <TableRow key="head">
+                <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Alder</TableHeadCell>
+                <TableHeadCell>Kjønn</TableHeadCell>
+                <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Adresse</TableHeadCell>
+                <TableHeadCell>Ledige plasser</TableHeadCell>
+                <TableHeadCell>Antall på venteliste</TableHeadCell>
+                <TableHeadCell>Handlinger</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+                <TableCell dataLabel="Alder">35 år</TableCell>
+                <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+                <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+                <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+                <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+                <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                <TableCell dataLabel="Handlinger">
+                  <Icon ref={controllerRef} svgIcon={HelpSign} />
+                  <HelpBubble {...args} onClose={action('Bubble closed')} controllerRef={controllerRef}>
+                    <div>{args.children}</div>
+                  </HelpBubble>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+                <TableCell dataLabel="Alder">35 år</TableCell>
+                <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+                <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+                <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+                <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+                <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                <TableCell dataLabel="Handlinger">{''}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+                <TableCell dataLabel="Alder">35 år</TableCell>
+                <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+                <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+                <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+                <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+                <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                <TableCell dataLabel="Handlinger">{''}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell dataLabel="Fastlege">Line Danser</TableCell>
+                <TableCell dataLabel="Alder">35 år</TableCell>
+                <TableCell dataLabel="Kjønn">Kvinne</TableCell>
+                <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
+                <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
+                <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
+                <TableCell dataLabel="Antall på venteliste">53</TableCell>
+                <TableCell dataLabel="Handlinger">{''}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+          <p>{longLoremText}</p>
+        </div>
+      </div>
+    </div>
   );
 };
