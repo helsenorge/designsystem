@@ -1,3 +1,11 @@
+## [3.1.5](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv3.1.4&targetVersion=GTv3.1.5) (2023-04-13)
+
+### Bug Fixes
+
+- popmenu og helpbubble i centeredoverflow-tabell plasseres riktig
+  ([1adbd97](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/commit/1adbd97598a1c93fffa421892ca99c1852b91bef)), closes
+  [#300128](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/issues/300128)
+
 ## [3.1.4](https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem/branchCompare?baseVersion=GTv3.1.3&targetVersion=GTv3.1.4) (2023-04-12)
 
 ### Bug Fixes
