@@ -132,16 +132,6 @@
     &--layout3c {
       flex: 0.65;
     }
-
-    &--reverse {
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        min-width: 200px;
-      }
-
-      @media (max-width: map.get($grid-breakpoints, sm)) {
-        padding-bottom: getSpacer(s);
-      }
-    }
   }
 
   &__btn-container {
@@ -376,10 +366,7 @@
 
 .panel-content-b {
   flex: 1;
-
-  @media (max-width: map.get($grid-breakpoints, sm)) {
-    padding-top: getSpacer(s);
-  }
+  padding-top: getSpacer(s);
 
   @media (min-width: map.get($grid-breakpoints, lg)) {
     padding-top: 0;
@@ -398,10 +385,6 @@
     @media (min-width: map.get($grid-breakpoints, lg)) {
       padding-right: getSpacer(m);
     }
-  }
-
-  &--reverse {
-    padding-top: 0;
   }
 }
 
