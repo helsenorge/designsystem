@@ -78,6 +78,10 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    contentBFirst: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
 } as ComponentMeta<typeof Panel>;
 

@@ -71,6 +71,8 @@ export interface PanelProps {
   contentA?: React.ReactNode | string;
   /** Panel section B content*/
   contentB?: React.ReactNode | string;
+  /** Sets content-B before content-A*/
+  contentBFirst?: boolean;
   /** Panel button text */
   buttonText?: string;
   /** Panel button close text */
@@ -156,6 +158,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     children,
     contentA,
     contentB,
+    contentBFirst,
     className,
     testId,
     title,
@@ -228,11 +231,13 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel__content-right--layout3a']]: contentB && layout === PanelLayout.layout3a,
     [panelStyles['panel__content-right--layout3b']]: contentB && layout === PanelLayout.layout3b,
     [panelStyles['panel__content-right--layout3c']]: contentB && layout === PanelLayout.layout3c,
+    [panelStyles['panel__content-right--reverse']]: contentBFirst,
   });
 
   const panelContentBClass = classNames(panelStyles['panel-content-b'], {
     [panelStyles['panel-content-b--layout1']]: layout === PanelLayout.layout1,
     [panelStyles['panel-content-b--layout3']]: layout3,
+    [panelStyles['panel-content-b--reverse']]: contentBFirst,
   });
 
   const panelActionBtnClass = classNames(panelStyles['panel__details-btn']);
@@ -276,7 +281,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel__btn-container--padding-top']]: contentA || contentB,
   });
 
-  const renderContent = () => {
+  const renderContent = (): JSX.Element | null => {
     if (!children) {
       return null;
     }
@@ -298,6 +303,17 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     );
   };
 
+  const contentBElement = (
+    <div className={panelContentRightClass}>
+      {contentB && <div className={panelContentBClass}>{contentB}</div>}
+      {(children || url || date || time || buttonOnClick) && (
+        <div className={btnContainerClass}>
+          {<DateTime date={date} time={time} />}
+          {(children || url || buttonOnClick) && <div className={panelActionBtnClass}>{renderDetailsButton()}</div>}
+        </div>
+      )}
+    </div>
+  );
   return (
     <div ref={ref} data-testid={testId} className={panelWrapperClass} data-analyticsid={AnalyticsId.Panel}>
       <div className={panelClasses}>
@@ -319,17 +335,9 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
                 )}
               </div>
             )}
-            {contentA}
+            {contentBFirst ? contentBElement : contentA}
           </div>
-          <div className={panelContentRightClass}>
-            {contentB && <div className={panelContentBClass}>{contentB}</div>}
-            {(children || url || date || time || buttonOnClick) && (
-              <div className={btnContainerClass}>
-                {<DateTime date={date} time={time} />}
-                {(children || url || buttonOnClick) && <div className={panelActionBtnClass}>{renderDetailsButton()}</div>}
-              </div>
-            )}
-          </div>
+          {contentBFirst ? <div className={panelStyles['panel__content-right--reverse']}>{contentA}</div> : contentBElement}
         </div>
         {icon && iconRight && <div className={panelStyles['panel__icon--right']}>{icon}</div>}
       </div>
