@@ -78,6 +78,10 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    prioritiseMetaDataInContentB: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
 } as ComponentMeta<typeof Panel>;
 
