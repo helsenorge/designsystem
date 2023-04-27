@@ -26,12 +26,27 @@
     }
   }
 
-  &--with-error#{&}--bigform {
+  &--with-error#{&}__bigform {
     padding: getSpacer(m) getSpacer(m);
   }
 
-  &--bigform {
+  &__bigform {
     margin: getSpacer(2xs) 0 getSpacer(2xs) 0;
+
+    &--focused {
+      box-shadow: 0 0 0 getSpacer(3xs);
+      color: $neutral500;
+    }
+    &--focused#{&}--on-blueberry {
+      color: $blueberry500;
+    }
+
+    &--focused#{&}--selected {
+      color: $blueberry900;
+    }
+    &--focused#{&}--invalid {
+      color: $cherry400;
+    }
   }
 }
 
@@ -49,6 +64,7 @@
   cursor: pointer;
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
+  color: $black;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-md;
@@ -67,25 +83,93 @@
     color: $neutral400;
   }
 
-  &--bigform {
+  &__bigform {
     padding: getSpacer(s);
     background-color: $neutral50;
+
+    &:hover {
+      background-color: $neutral100;
+    }
+
+    &--on-blueberry {
+      background-color: $white;
+
+      &:focus {
+        background-color: $white;
+      }
+
+      &:hover {
+        background-color: $blueberry100;
+      }
+    }
+
+    &--on-grey {
+      background-color: $white;
+
+      &:hover {
+        background-color: $neutral100;
+      }
+
+      &:focus {
+        background-color: $white;
+      }
+    }
   }
 
-  &--bigform#{&}--on-blueberry {
-    background-color: $blueberry50;
-  }
-
-  &--bigform#{&}--on-dark {
+  &__bigform#{&}--on-dark {
     background-color: $blueberry800;
   }
-
-  &--bigform#{&}--invalid {
+  &__bigform#{&}--invalid {
     background-color: $white;
+
+    &:hover {
+      background-color: $cherry100;
+    }
+  }
+  &__bigform#{&}__bigform--selected-invalid {
+    background-color: $cherry100;
+    color: $black;
+
+    &:hover {
+      background-color: $cherry200;
+    }
+  }
+
+  &__bigform#{&}__bigform--disabled {
+    background-color: $neutral50;
+
+    &:hover {
+      background-color: $neutral50;
+    }
+
+    &:focus {
+      background-color: $neutral50;
+    }
+  }
+  &__bigform#{&}__bigform--on-grey,
+  &__bigform#{&}__bigform--on-blueberry {
+    background-color: $white;
+
+    &:hover {
+      background-color: $white;
+    }
+
+    &:focus {
+      background-color: $white;
+    }
+  }
+
+  &__bigform--selected {
+    background-color: $blueberry500;
+    color: $white;
+
+    &:hover {
+      background-color: $blueberry600;
+    }
   }
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    &--bigform {
+    &__bigform {
       padding: 1.68rem getSpacer(l);
     }
   }
@@ -105,14 +189,7 @@
   min-width: 1.5rem;
   color: $neutral700;
   box-shadow: 0 0 0 getSpacer(4xs);
-
-  &:checked {
-    color: $blueberry500;
-
-    &:hover {
-      background-color: $blueberry50;
-    }
-  }
+  outline: none;
 
   &:focus {
     box-shadow: 0 0 0 getSpacer(3xs);
@@ -127,6 +204,20 @@
   :active > & {
     box-shadow: 0 0 0 getSpacer(3xs);
     color: $black;
+  }
+
+  &:checked {
+    color: $blueberry500;
+
+    &:hover {
+      box-shadow: 0 0 0 getSpacer(4xs);
+      background-color: $blueberry50;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 getSpacer(3xs);
+      color: $black;
+    }
   }
 
   &--on-blueberry {
@@ -145,12 +236,8 @@
       box-shadow: 0 0 0 getSpacer(3xs);
     }
 
-    &:checked {
-      color: $blueberry200;
-
-      &:hover {
-        background-color: $inverted-hover;
-      }
+    &:focus {
+      color: $white;
     }
 
     :active > & {
@@ -158,8 +245,16 @@
       color: $white;
     }
 
-    &:focus {
-      color: $white;
+    &:checked {
+      color: $blueberry200;
+
+      &:hover {
+        background-color: $inverted-hover;
+      }
+
+      &:focus {
+        color: $white;
+      }
     }
   }
 
@@ -170,14 +265,6 @@
       background-color: $cherry100;
     }
 
-    &:checked {
-      color: $cherry600;
-
-      &:hover {
-        background-color: $cherry100;
-      }
-    }
-
     &:active {
       color: $black;
     }
@@ -185,28 +272,41 @@
     &:focus {
       color: $black;
     }
+
+    &:checked {
+      color: $cherry600;
+
+      &:hover {
+        background-color: $cherry100;
+      }
+    }
   }
 
   &--disabled {
     cursor: default;
     color: $neutral400;
+    background-color: $neutral50;
+
+    &:hover {
+      box-shadow: 0 0 0 getSpacer(4xs);
+      background-color: $neutral50;
+    }
+
+    :hover > & {
+      background-color: $neutral50;
+    }
+
+    &:active {
+      color: $neutral400;
+    }
 
     &:checked {
       color: $neutral400;
 
       &:hover {
         box-shadow: 0 0 0 getSpacer(4xs);
-        background-color: transparent;
+        background-color: $neutral50;
       }
-    }
-
-    &:hover {
-      box-shadow: 0 0 0 getSpacer(4xs);
-      background-color: transparent;
-    }
-
-    &:active {
-      color: $neutral400;
     }
   }
 
@@ -215,8 +315,8 @@
     content: '';
     display: flex;
     background-color: $blueberry500;
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 0.875rem;
+    height: 0.875rem;
     border-radius: 10rem;
   }
 
@@ -232,6 +332,72 @@
 
   &--invalid:checked::before {
     background-color: $cherry600;
+  }
+
+  &__bigform {
+    &:checked {
+      outline: none;
+      color: $blueberry100;
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 getSpacer(3xs);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 getSpacer(3xs);
+      color: $black;
+    }
+
+    &:focus:checked {
+      color: $white;
+    }
+
+    &:checked::before {
+      background-color: $blueberry100;
+    }
+
+    &:checked:hover {
+      box-shadow: 0 0 0 getSpacer(4xs);
+      background-color: unset;
+    }
+
+    &:checked:hover:focus {
+      box-shadow: 0 0 0 getSpacer(3xs);
+      color: $white;
+    }
+
+    &--invalid {
+      &:checked {
+        color: $cherry500;
+      }
+
+      &:checked::before {
+        background-color: $cherry500;
+      }
+
+      &:checked:hover {
+        background-color: transparent;
+      }
+
+      &:checked:focus {
+        color: $black;
+      }
+
+      &:checked:focus:hover {
+        color: $black;
+      }
+    }
+
+    &--disabled {
+      &:hover {
+        box-shadow: 0 0 0 getSpacer(4xs);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 getSpacer(4xs);
+      }
+    }
   }
 }
 

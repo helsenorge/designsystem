@@ -3,7 +3,6 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Checkbox from './Checkbox';
-import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import { FormMode, FormVariant } from '../../constants';
 import GridExample from '../GridExample';
 
@@ -56,8 +55,27 @@ export default {
   },
 } as ComponentMeta<typeof Checkbox>;
 
-export const Default: ComponentStory<typeof Checkbox> = (args: any) => (
+export const Default: ComponentStory<typeof Checkbox> = args => (
   <GridExample>
-    <Checkbox {...args} />
+    <Checkbox {...args} label="onwhite" mode="onwhite" />
+    <Checkbox {...args} label="ongrey" mode="ongrey" />
+    <Checkbox {...args} label="onblueberry" mode="onblueberry" />
+    <Checkbox {...args} label="oninvalid" mode="oninvalid" />
+    <Checkbox {...args} label="onwhite - disabled" mode="onwhite" disabled />
+    <span style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
+      <Checkbox {...args} label="ondark" mode="ondark" />
+    </span>
+  </GridExample>
+);
+export const BigForm: ComponentStory<typeof Checkbox> = args => (
+  <GridExample>
+    <span style={{ backgroundColor: '#EAE7E7', display: 'block', marginTop: '1rem', padding: '1rem' }}>
+      <Checkbox {...args} variant="bigform" label="onwhite" mode="onwhite" />
+      <Checkbox {...args} variant="bigform" label="ongrey" mode="ongrey" />
+      <Checkbox {...args} variant="bigform" label="onblueberry" mode="onblueberry" />
+      <Checkbox {...args} variant="bigform" label="oninvalid" mode="oninvalid" />
+      <Checkbox {...args} variant="bigform" label="onwhite - disabled" mode="onwhite" disabled />
+      <Checkbox {...args} variant="bigform" label="onwhite - disabled - checked" checked mode="onwhite" disabled />
+    </span>
   </GridExample>
 );

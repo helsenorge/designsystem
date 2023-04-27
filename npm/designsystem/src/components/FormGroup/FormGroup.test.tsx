@@ -45,7 +45,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       const checkbox = screen.getByText('Checkbox 1').parentElement;
       expect(checkbox).toBeVisible();
-      expect(checkbox.className).toBe('checkbox-label checkbox-label--on-blueberry');
+      expect(checkbox.className).toBe('checkbox-label');
     });
   });
   describe('Når errorWrapperClass settes', (): void => {
@@ -82,7 +82,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       const checkbox = screen.getByText('Checkbox 1').parentElement;
       expect(checkbox).toBeVisible();
-      expect(checkbox.className).toBe('checkbox-label checkbox-label--bigform');
+      expect(checkbox.className).toBe('checkbox-label checkbox-label--bigform checkbox-label__big-form--on-white');
     });
   });
 

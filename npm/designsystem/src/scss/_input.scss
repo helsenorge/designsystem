@@ -54,6 +54,12 @@
     }
   }
 
+  &:focus-within {
+    background: $white;
+    border-color: $neutral900;
+    box-shadow: 0 0 0 2px $neutral900;
+  }
+
   &:hover {
     background: $neutral50;
     border-color: $neutral700;
@@ -63,12 +69,6 @@
       border-color: $black;
       box-shadow: 0 0 0 2px $black;
     }
-  }
-
-  &:focus-within {
-    background: $white;
-    border-color: $neutral900;
-    box-shadow: 0 0 0 2px $neutral900;
   }
 
   &--on-blueberry {

@@ -50,18 +50,24 @@
 
   &__text {
     display: flex;
+    color: $black;
+
+    &__big-form {
+      &--checked {
+        color: $white;
+      }
+      &--checked#{&}--invalid {
+        color: $black;
+      }
+    }
+
+    &--disabled {
+      color: $neutral700;
+    }
   }
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-md;
-  }
-
-  &--on-dark {
-    color: $white;
-  }
-
-  &--invalid {
-    color: $black;
   }
 
   &--disabled {
@@ -69,21 +75,114 @@
     color: $neutral400;
   }
 
-  &--bigform {
-    padding: getSpacer(s);
-    background-color: $neutral50;
+  &__big-form {
+    &--focus {
+      box-shadow: 0 0 0 getSpacer(3xs);
+    }
+
+    &--on-white {
+      background-color: $neutral50;
+
+      :hover > & {
+        background-color: $neutral100;
+      }
+    }
+    &--on-white#{&}--focus {
+      color: $neutral500;
+    }
+
+    &--on-grey {
+      background-color: $white;
+
+      :hover > & {
+        background-color: $neutral100;
+      }
+    }
+
+    &--on-grey#{&}--focus {
+      color: $neutral500;
+      background-color: $white;
+    }
+
+    &--on-blueberry {
+      background-color: $white;
+
+      :hover > & {
+        background-color: $blueberry100;
+      }
+    }
+    &--on-blueberry#{&}--focus {
+      color: $blueberry500;
+      background-color: $white;
+    }
+
+    &--on-invalid {
+      background-color: $white;
+
+      :hover > & {
+        background-color: $cherry100;
+      }
+    }
+    &--on-invalid#{&}--focus {
+      color: $cherry400;
+      background-color: $white;
+    }
+
+    &--disabled {
+      background-color: $neutral50;
+
+      :hover > & {
+        background-color: $neutral50;
+      }
+    }
+
+    &--checked {
+      background-color: $blueberry500;
+
+      :hover > & {
+        background-color: $blueberry600;
+      }
+    }
+    &--checked#{&}--focus {
+      color: $blueberry900;
+      background-color: $blueberry500;
+    }
+
+    &--checked#{&}--on-invalid {
+      background-color: $cherry100;
+
+      :hover > & {
+        background-color: $cherry200;
+      }
+    }
+
+    &--checked#{&}--on-invalid#{&}--focus {
+      color: $cherry400;
+    }
+
+    &--checked#{&}--disabled {
+      background-color: $neutral50;
+
+      :hover > & {
+        background-color: $neutral50;
+      }
+    }
+
+    &--disabled#{&}--white {
+      background-color: $white;
+
+      :hover > & {
+        background-color: $white;
+      }
+    }
   }
 
-  &--bigform#{&}--on-blueberry {
-    background-color: $blueberry50;
+  &--bigform {
+    padding: getSpacer(s);
   }
 
   &--bigform#{&}--on-dark {
     background-color: $blueberry800;
-  }
-
-  &--bigform#{&}--invalid {
-    background-color: $white;
   }
 
   @media (min-width: map.get($grid-breakpoints, md)) {
@@ -107,24 +206,18 @@
     width: 1.625rem;
     min-height: 1.625rem;
     min-width: 1.625rem;
-    color: $neutral700;
     box-shadow: 0 0 0 getSpacer(4xs);
 
     :hover > & {
       box-shadow: 0 0 0 getSpacer(3xs);
-      background-color: $neutral100;
     }
 
-    :active > & {
-      box-shadow: 0 0 0 getSpacer(3xs);
-      color: $black;
-    }
-
-    &--checked {
-      color: $blueberry500;
+    &--on-white,
+    &--on-grey {
+      color: $neutral700;
 
       :hover > & {
-        background-color: $blueberry50;
+        background-color: $neutral100;
       }
     }
 
@@ -136,52 +229,94 @@
       }
     }
 
-    &--on-dark {
-      color: $neutral200;
-
-      :hover > & {
-        background-color: $inverted-hover;
-      }
-
-      &.checkbox__icon-wrapper--checked {
-        color: $blueberry200;
-      }
-
-      :active > & {
-        color: $white;
-      }
-    }
-
-    &--invalid {
-      color: $cherry600;
+    &--on-invalid {
+      color: $cherry500;
 
       :hover > & {
         background-color: $cherry100;
       }
+    }
 
-      &.checkbox__icon-wrapper--checked {
-        color: $cherry600;
-      }
+    &--on-dark {
+      color: $neutral200;
 
-      :active > & {
-        color: $black;
+      :hover > & {
+        background-color: #ffffff1a;
       }
     }
 
     &--disabled {
-      color: $neutral400;
-
-      &.checkbox__icon-wrapper--checked {
-        color: $neutral400;
-      }
+      color: $neutral600;
+      background-color: $neutral50;
 
       :hover > & {
         box-shadow: 0 0 0 getSpacer(4xs);
-        background-color: transparent;
+        background-color: $neutral50;
       }
+    }
 
-      :active > & {
-        color: $neutral400;
+    &__regular {
+      &--checked {
+        background-color: $blueberry500;
+        color: $blueberry500;
+        box-shadow: 0 0 0 getSpacer(4xs);
+
+        :hover > & {
+          background-color: $blueberry600;
+          color: $blueberry600;
+          box-shadow: 0 0 0 getSpacer(4xs);
+        }
+      }
+      &--checked#{&}--invalid {
+        background-color: $cherry500;
+        color: $cherry500;
+        box-shadow: 0 0 0 getSpacer(4xs);
+
+        :hover > & {
+          background-color: $cherry600;
+          color: $cherry600;
+          box-shadow: 0 0 0 getSpacer(4xs);
+        }
+      }
+      &--checked#{&}--on-dark {
+        background-color: $blueberry50;
+        color: $blueberry50;
+        box-shadow: 0 0 0 getSpacer(4xs);
+
+        :hover > & {
+          background-color: $blueberry200;
+          color: $blueberry200;
+          box-shadow: 0 0 0 getSpacer(4xs);
+        }
+      }
+    }
+
+    &__big-form {
+      &--checked {
+        background-color: $blueberry50;
+        box-shadow: none;
+
+        :hover > & {
+          background-color: $blueberry200;
+          box-shadow: none;
+        }
+      }
+      &--checked#{&}--invalid {
+        background-color: $cherry500;
+
+        :hover > & {
+          background-color: $cherry600;
+        }
+      }
+      &--checked#{&}--disabled {
+        color: $neutral600;
+        background-color: $neutral50;
+        box-shadow: 0 0 0 getSpacer(4xs);
+
+        :hover > & {
+          background-color: $neutral50;
+          box-shadow: 0 0 0 getSpacer(4xs);
+        }
       }
     }
   }
@@ -193,6 +328,7 @@
   }
 
   &:focus {
+    /* stylelint-disable-next-line */
     & + .checkbox__icon-wrapper {
       box-shadow: 0 0 0 getSpacer(3xs);
       color: $black;
@@ -203,6 +339,25 @@
 
       &--invalid {
         color: $black;
+      }
+
+      &__big-form {
+        &--checked {
+          background-color: $blueberry200;
+          box-shadow: 0 0 0 getSpacer(3xs);
+          color: $white;
+
+          // komboklasser fungerer ikke i nested struktur
+          &--invalid {
+            background-color: $cherry500;
+            color: $black;
+          }
+
+          &--disabled {
+            color: $neutral700;
+            background-color: $neutral50;
+          }
+        }
       }
     }
   }

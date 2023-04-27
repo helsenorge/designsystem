@@ -39,7 +39,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
       render(<Checkbox label={'Check me out!'} mode={FormMode.onblueberry} />);
 
       const label = screen.getByText('Check me out!').parentElement;
-      expect(label.className).toBe('checkbox-label checkbox-label--on-blueberry');
+      expect(label.className).toBe('checkbox-label');
     });
   });
   describe('Når mode er onDark', (): void => {
@@ -67,7 +67,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
       const checkIcon = screen.getByText('Check me out!').parentElement.children[1];
 
       expect(checkIcon).toBeVisible();
-      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--checked');
+      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper__regular--checked');
     });
   });
 
@@ -81,7 +81,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       const checkIcon = label.children[1];
 
-      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--checked');
+      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper__regular--checked');
 
       fireEvent.click(screen.getByText('Check me out!'));
 
@@ -97,8 +97,8 @@ describe('Gitt at Checkbox skal vises', (): void => {
       const label = screen.getByText('Check me out!').parentElement;
       const checkIcon = label.children[1];
 
-      expect(label.className).toBe('checkbox-label checkbox-label--invalid');
-      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--invalid');
+      expect(label.className).toBe('checkbox-label');
+      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-invalid checkbox__icon-wrapper--invalid');
 
       // Ytre styling
       const wrapper = label.parentElement;
@@ -116,8 +116,8 @@ describe('Gitt at Checkbox skal vises', (): void => {
       const label = screen.getByText('Check me out!').parentElement;
       const checkIcon = label.children[1];
 
-      expect(label.className).toBe('checkbox-label checkbox-label--invalid');
-      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--invalid');
+      expect(label.className).toBe('checkbox-label');
+      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-invalid checkbox__icon-wrapper--invalid');
 
       // Ytre styling
       const wrapper = label.parentElement;

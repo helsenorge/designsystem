@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId, FormMode, FormVariant } from '../../constants';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { uuid } from '../../utils/uuid';
 
 import radioButtonStyles from './styles.module.scss';
 
 export interface RadioButtonProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'defaultChecked' | 'required'> {
+  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'defaultChecked' | 'required' | 'onChange'> {
   /** Adds custom classes to the element. */
   className?: string;
   /** The label text next to the radioButton */
@@ -31,6 +32,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const {
     className,
     defaultChecked = false,
+    onChange,
     disabled,
     label,
     inputId = uuid(),
@@ -47,18 +49,29 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const invalid = error || mode === FormMode.oninvalid;
   const onDark = mode === FormMode.ondark;
   const onBlueberry = mode === FormMode.onblueberry;
+  const onGrey = mode === FormMode.ongrey;
+  const onCherry = mode === FormMode.oninvalid;
   const bigform = variant === FormVariant.bigform;
-
+  const [checked, changeChecked] = useState<boolean>(defaultChecked);
+  const { refObject, isFocused } = usePseudoClasses(ref as React.RefObject<HTMLInputElement>);
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
     [radioButtonStyles['radio-button-wrapper--with-error']]: errorText,
-    [radioButtonStyles['radio-button-wrapper--bigform']]: bigform,
+    [radioButtonStyles['radio-button-wrapper__bigform']]: bigform,
+    [radioButtonStyles['radio-button-wrapper__bigform--focused']]: bigform && isFocused,
+    [radioButtonStyles['radio-button-wrapper__bigform--selected']]: bigform && checked && isFocused,
+    [radioButtonStyles['radio-button-wrapper__bigform--invalid']]: bigform && onCherry && isFocused,
+    [radioButtonStyles['radio-button-wrapper__bigform--on-blueberry']]: bigform && onBlueberry && isFocused,
   });
   const radioButtonLabelClasses = classNames(radioButtonStyles['radio-button-label'], {
     [radioButtonStyles['radio-button-label--disabled']]: disabled,
     [radioButtonStyles['radio-button-label--on-dark']]: onDark,
-    [radioButtonStyles['radio-button-label--on-blueberry']]: onBlueberry,
     [radioButtonStyles['radio-button-label--invalid']]: invalid,
-    [radioButtonStyles['radio-button-label--bigform']]: bigform,
+    [radioButtonStyles['radio-button-label__bigform']]: bigform,
+    [radioButtonStyles['radio-button-label__bigform--on-grey']]: bigform && onGrey && !checked,
+    [radioButtonStyles['radio-button-label__bigform--on-blueberry']]: onBlueberry && !checked && bigform,
+    [radioButtonStyles['radio-button-label__bigform--selected']]: bigform && checked && !onCherry,
+    [radioButtonStyles['radio-button-label__bigform--disabled']]: bigform && disabled,
+    [radioButtonStyles['radio-button-label__bigform--selected-invalid']]: bigform && checked && onCherry,
   });
   const radioButtonClasses = classNames(
     radioButtonStyles['radio-button'],
@@ -67,13 +80,18 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
       [radioButtonStyles['radio-button--disabled']]: disabled,
       [radioButtonStyles['radio-button--on-blueberry']]: onBlueberry,
       [radioButtonStyles['radio-button--invalid']]: invalid,
+      [radioButtonStyles['radio-button__bigform']]: bigform,
+      [radioButtonStyles['radio-button__bigform--disabled']]: bigform && disabled,
+      [radioButtonStyles['radio-button__bigform--invalid']]: bigform && invalid,
     },
     className
   );
-  const errorStyles = classNames(radioButtonStyles['radio-button-errors'], {
-    [radioButtonStyles['radio-button-errors--bigform']]: bigform,
-  });
+  const errorStyles = classNames(radioButtonStyles['radio-button-errors']);
 
+  const change = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    changeChecked(true);
+    onChange && onChange(e);
+  };
   return (
     <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
       {errorText && <p className={errorStyles}>{errorText}</p>}
@@ -85,10 +103,11 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
           type="radio"
           disabled={disabled}
           value={value}
-          ref={ref}
+          ref={refObject}
           defaultChecked={defaultChecked}
           required={required}
           {...rest}
+          onChange={(e): void => change(e)}
         />
         {label}
       </label>

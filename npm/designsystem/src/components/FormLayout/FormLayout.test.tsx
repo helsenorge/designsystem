@@ -78,7 +78,7 @@ describe('Gitt at FormLayout skal vises', (): void => {
 
       const checkbox = screen.getByText('Checkbox 1').parentElement;
       expect(checkbox).toBeVisible();
-      expect(checkbox.className).toBe('checkbox-label checkbox-label--bigform');
+      expect(checkbox.className).toBe('checkbox-label checkbox-label--bigform checkbox-label__big-form--on-white');
     });
   });
 

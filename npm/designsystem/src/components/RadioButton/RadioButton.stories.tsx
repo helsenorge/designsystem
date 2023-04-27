@@ -55,7 +55,7 @@ export default {
   },
 } as ComponentMeta<typeof RadioButton>;
 
-export const Default: ComponentStory<typeof RadioButton> = (args: any) => (
+export const Default: ComponentStory<typeof RadioButton> = args => (
   <GridExample>
     <RadioButton {...args} />
   </GridExample>

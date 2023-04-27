@@ -55,7 +55,7 @@ exports[`Gitt at FormLayout skal vises Når FormLayout rendres Så vises FormLay
                     value="Checkbox 1"
                   />
                   <span
-                    class="checkbox__icon-wrapper"
+                    class="checkbox__icon-wrapper checkbox__icon-wrapper--on-white"
                   />
                   <span
                     class="checkbox-label__text"
@@ -85,7 +85,7 @@ exports[`Gitt at FormLayout skal vises Når FormLayout rendres Så vises FormLay
                     value="Checkbox 2"
                   />
                   <span
-                    class="checkbox__icon-wrapper"
+                    class="checkbox__icon-wrapper checkbox__icon-wrapper--on-white"
                   />
                   <span
                     class="checkbox-label__text"
@@ -115,7 +115,7 @@ exports[`Gitt at FormLayout skal vises Når FormLayout rendres Så vises FormLay
                     value="Checkbox 3"
                   />
                   <span
-                    class="checkbox__icon-wrapper"
+                    class="checkbox__icon-wrapper checkbox__icon-wrapper--on-white"
                   />
                   <span
                     class="checkbox-label__text"
