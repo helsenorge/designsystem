@@ -87,12 +87,15 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     [checkboxStyles['checkbox__icon-wrapper--on-dark']]: onDark,
     [checkboxStyles['checkbox__icon-wrapper--on-blueberry']]: onBlueberry,
     [checkboxStyles['checkbox__icon-wrapper--invalid']]: onInvalid,
+    [checkboxStyles['checkbox__icon-wrapper__big-form--invalid']]: bigform && isChecked && onInvalid,
+    [checkboxStyles['checkbox__icon-wrapper__big-form--disabled']]: disabled && bigform && isChecked,
     [checkboxStyles['checkbox__icon-wrapper__big-form--checked--invalid']]: bigform && isChecked && onInvalid,
     [checkboxStyles['checkbox__icon-wrapper__big-form--checked--disabled']]: disabled && bigform && isChecked,
   });
   const labelClasses = classNames(checkboxStyles['checkbox-label__text'], {
     [checkboxStyles['checkbox-label__text__big-form--checked']]: bigform && isChecked,
     [checkboxStyles['checkbox-label__text__big-form--invalid']]: bigform && isChecked && onInvalid,
+    [checkboxStyles['checkbox-label__text--on-dark']]: onDark,
     [checkboxStyles['checkbox-label__text--disabled']]: disabled,
   });
   const errorStyles = classNames(checkboxStyles['checkbox-errors']);

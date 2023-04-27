@@ -52,12 +52,19 @@
     display: flex;
     color: $black;
 
+    &--on-dark {
+      color: $white;
+    }
+
     &__big-form {
       &--checked {
         color: $white;
       }
       &--checked#{&}--invalid {
         color: $black;
+      }
+      &--checked#{&}--disabled {
+        color: $neutral700;
       }
     }
 

@@ -146,12 +146,23 @@
       background-color: $neutral50;
     }
   }
-  &__bigform#{&}__bigform--on-grey,
+  &__bigform#{&}__bigform--on-grey {
+    background-color: $white;
+
+    &:hover {
+      background-color: $neutral100;
+    }
+
+    &:focus {
+      background-color: $white;
+    }
+  }
+
   &__bigform#{&}__bigform--on-blueberry {
     background-color: $white;
 
     &:hover {
-      background-color: $white;
+      background-color: $blueberry100;
     }
 
     &:focus {

@@ -29,8 +29,10 @@ export type Styles = {
   'checkbox-label__big-form--white': string;
   'checkbox-label__text': string;
   'checkbox-label__text__big-form--checked': string;
+  'checkbox-label__text__big-form--disabled': string;
   'checkbox-label__text__big-form--invalid': string;
   'checkbox-label__text--disabled': string;
+  'checkbox-label__text--on-dark': string;
   'checkbox-label--bigform': string;
   'checkbox-label--disabled': string;
   'checkbox-label--on-dark': string;
