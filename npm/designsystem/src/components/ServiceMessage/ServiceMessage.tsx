@@ -155,6 +155,9 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
       </span>
     );
   };
+  const outerBackgroundClass = classNames({
+    [styles[`service-message__outer-wrapper--${variant}`]]: variant,
+  });
   const backgroundClass = classNames({
     [styles[`service-message__wrapper--${variant}`]]: variant,
     [styles[`service-message__wrapper--${variant}--expanded`]]: isExpanded && variant,
@@ -168,17 +171,19 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
     [styles['service-message__wrapper__btn--not-first']]: !first,
   });
   return (
-    <div className={backgroundClass} role={ariaRole} {...ariaLabelAttributes}>
-      <CustomTag className={wrapperClasses} onClick={tagClicked} aria-expanded={hasExpander && isExpanded} data-testid={testId}>
-        <TopRow />
-      </CustomTag>
-      {hasExpander && isExpanded && (
-        <div className={styles['service-message__content--spacing']}>
-          <div className={contentWrapperClasses}>
-            <Content />
+    <div className={outerBackgroundClass}>
+      <div className={backgroundClass} role={ariaRole} {...ariaLabelAttributes}>
+        <CustomTag className={wrapperClasses} onClick={tagClicked} aria-expanded={hasExpander && isExpanded} data-testid={testId}>
+          <TopRow />
+        </CustomTag>
+        {hasExpander && isExpanded && (
+          <div className={styles['service-message__content--spacing']}>
+            <div className={contentWrapperClasses}>
+              <Content />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

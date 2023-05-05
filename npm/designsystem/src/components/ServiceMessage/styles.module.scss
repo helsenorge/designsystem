@@ -7,6 +7,24 @@
 .service-message {
   font-family: 'Source Sans Pro', Arial, Verdana, sans-serif;
 
+  &__outer-wrapper {
+    &--success {
+      background-color: $kiwi50;
+    }
+
+    &--info {
+      background-color: $blueberry50;
+    }
+
+    &--warn {
+      background-color: $banana50;
+    }
+
+    &--alert {
+      background-color: $cherry50;
+    }
+  }
+
   &__wrapper {
     padding: getSpacer(3xs) getSpacer(xs);
 

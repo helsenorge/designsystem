@@ -11,6 +11,10 @@ export type Styles = {
   'service-message__icon--expander': string;
   'service-message__icon--signal': string;
   'service-message__label': string;
+  'service-message__outer-wrapper--alert': string;
+  'service-message__outer-wrapper--info': string;
+  'service-message__outer-wrapper--success': string;
+  'service-message__outer-wrapper--warn': string;
   'service-message__top-row': string;
   'service-message__top-row--container': string;
   'service-message__wrapper': string;
