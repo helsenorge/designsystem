@@ -35,6 +35,5 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 .env
 .cache
-web/public/
 # Local Netlify folder
 .netlify

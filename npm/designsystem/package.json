@@ -4,8 +4,8 @@
   "version": "3.1.5",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
-    "type": "tfs",
-    "url": "https://dev.azure.com/nhnfelles/Helsenorge/_git/HN-Designsystem"
+    "type": "git",
+    "url": "https://github.com/helsenorge/designsystem"
   },
   "homepage": "https://helsenorge.design",
   "author": "Helsenorge",

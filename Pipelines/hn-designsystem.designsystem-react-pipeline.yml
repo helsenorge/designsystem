@@ -178,8 +178,8 @@ stages:
               pollingTimeoutSec: '300'
 
           # Sjekk at alle filer i branchen er commited
-          - script: 'git update-index --assume-unchanged .npmrc web/src/components/markdown/MDXCustom/IconWall/allIconsImports.tsx'
-            displayName: 'Ignore changes to .npmrc and allIconsImports.tsx'
+          - script: 'git update-index --assume-unchanged .npmrc'
+            displayName: 'Ignore changes to .npmrc'
           - script: 'git diff --exit-code'
             displayName: 'Check for uncommited changes'
 
@@ -211,19 +211,6 @@ stages:
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'), contains(variables['Build.SourceBranch'], 'beta'))
-
-          - task: Npm@1
-            displayName: 'publish designsystem to NPM (latest)'
-            inputs:
-              command: publish
-              workingDir: npm/designsystem/lib
-              publishRegistry: useExternalRegistry
-              publishEndpoint: 'npmjs connection (mai 2022)'
-            continueOnError: true
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'), not(contains(variables['Build.SourceBranch'], 'beta')),
-              not(contains(variables['Build.SourceBranch'], '-')))
 
           # Deploy Storybook
           - task: Npm@1
@@ -260,18 +247,6 @@ stages:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
               'refs/heads/feature/next'))
 
-          # Deploy documentation
-          - task: Npm@1
-            displayName: 'deploy documentation (master)'
-            inputs:
-              command: custom
-              workingDir: web
-              customCommand: 'run deploy:documentation'
-            env:
-              NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
-              'refs/heads/master'))
   # Copy to Github
   - stage:
     displayName: 'Github'

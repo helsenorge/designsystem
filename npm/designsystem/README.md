@@ -59,11 +59,3 @@ const App: React.FC = () => {
 
 export default App;
 ```
-
-## 📓 Documentation
-
-A more detailed getting started manual can be viewed [here](https://helsenorge.design/pattern-library). For a full overview of all the
-available components and their specification, head over [here](https://helsenorge.design/pattern-library/components)
-
-To read the full design system documentation head over to our web page [Helsenorge Design](https://helsenorge.design/). Here you can read
-about our use of design principles, design language, patterns, compositions, live code examples and techincal component specifications.
