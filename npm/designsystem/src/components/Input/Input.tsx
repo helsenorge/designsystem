@@ -25,6 +25,7 @@ export interface InputProps
     | 'value'
     | 'min'
     | 'max'
+    | 'aria-describedby'
     | 'aria-labelledby'
     | 'onChange'
     | 'onKeyDown'
@@ -207,6 +208,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
             className={inputClass}
             ref={ref}
             aria-labelledby={props['aria-labelledby'] ?? undefined}
+            aria-describedby={props['aria-describedby'] ?? undefined}
             aria-invalid={!!onError}
             disabled={disabled}
             placeholder={placeholder}

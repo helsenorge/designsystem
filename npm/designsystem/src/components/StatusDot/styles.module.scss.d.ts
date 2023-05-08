@@ -9,6 +9,7 @@ export type Styles = {
   'statusdot__dot--transparent': string;
   'statusdot__dot--warning': string;
   'statusdot__label--icon': string;
+  'statusdot__label--on-dark': string;
   'statusdot--cancelled': string;
 };
 

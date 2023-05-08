@@ -12,7 +12,10 @@ import Check from '../Icons/Check';
 import checkboxStyles from './styles.module.scss';
 
 export interface CheckboxProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'checked' | 'required' | 'onChange'> {
+  extends Pick<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'required' | 'onChange'
+  > {
   /** Adds custom classes to the element. */
   className?: string;
   /** The label text next to the checkbox */
@@ -130,6 +133,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           disabled={disabled}
           value={value}
           ref={refObject}
+          aria-describedby={props['aria-describedby'] ?? undefined}
           aria-invalid={error}
           required={required}
           onChange={onChangeHandler}

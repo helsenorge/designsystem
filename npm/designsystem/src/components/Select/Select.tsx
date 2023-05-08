@@ -13,7 +13,8 @@ import selectStyles from './styles.module.scss';
 
 type SelectConcept = 'normal' | 'transparent';
 
-export interface SelectProps extends Pick<React.SelectHTMLAttributes<HTMLSelectElement>, 'name' | 'disabled' | 'required' | 'value'> {
+export interface SelectProps
+  extends Pick<React.SelectHTMLAttributes<HTMLSelectElement>, 'aria-describedby' | 'name' | 'disabled' | 'required' | 'value'> {
   /** Component shown after label */
   afterLabelChildren?: React.ReactNode;
   /** Sets the content of the select element. */
@@ -118,6 +119,7 @@ export const Select = React.forwardRef((props: SelectProps, ref: React.Ref<HTMLS
             disabled={disabled}
             ref={ref}
             required={required}
+            aria-describedby={props['aria-describedby'] ?? undefined}
             aria-required={!!required}
             value={value}
             defaultValue={defaultValue}

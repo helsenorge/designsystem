@@ -13,6 +13,11 @@ import Undo from '../Icons/Undo';
 
 import styles from './styles.module.scss';
 
+export enum StatusDotModes {
+  onwhite = 'onwhite',
+  ondark = 'ondark',
+}
+
 export enum StatusDotVariant {
   info = 'info',
   warning = 'warning',
@@ -27,6 +32,7 @@ export enum StatusDotVariant {
 }
 
 export interface StatusDotIconProps {
+  /** The variant defines style formatting and what icon to use */
   variant?: keyof typeof StatusDotVariant;
 }
 
@@ -45,6 +51,10 @@ const StatusDotIcon: React.FC<StatusDotIconProps> = ({ variant }) => {
 };
 
 export interface StatusDotProps {
+  /** id that is placed on the wrapper */
+  id?: string;
+  /** Defines the color mode, onwhite, ondark etc. */
+  mode?: keyof typeof StatusDotModes;
   /** Visual variants for the statusdot */
   variant?: keyof typeof StatusDotVariant;
   /** Text placed to the right of the statusdot */
@@ -56,7 +66,7 @@ export interface StatusDotProps {
 }
 
 const StatusDot: React.FC<StatusDotProps> = props => {
-  const { variant = StatusDotVariant.info, text, className, testId } = props;
+  const { id, mode = StatusDotModes.onwhite, variant = StatusDotVariant.info, text, className, testId } = props;
 
   const hasIcon =
     variant === StatusDotVariant.recurring ||
@@ -68,10 +78,14 @@ const StatusDot: React.FC<StatusDotProps> = props => {
 
   const statusDotClasses = classNames(styles['statusdot'], isCancelled && styles['statusdot--cancelled'], className);
   const dotClasses = classNames(styles['statusdot__dot'], hasIcon ? styles[`statusdot__dot--icon`] : styles[`statusdot__dot--${variant}`]);
-  const labelClasses = classNames(styles['statusdot__label'], hasIcon && styles[`statusdot__label--icon`]);
+  const labelClasses = classNames(
+    styles['statusdot__label'],
+    hasIcon && styles['statusdot__label--icon'],
+    mode === StatusDotModes.ondark && styles['statusdot__label--on-dark']
+  );
 
   return (
-    <div className={statusDotClasses} data-testid={testId} data-analyticsid={AnalyticsId.StatusDot}>
+    <div id={id} className={statusDotClasses} data-testid={testId} data-analyticsid={AnalyticsId.StatusDot}>
       <span className={dotClasses}>
         <StatusDotIcon variant={variant} />
       </span>

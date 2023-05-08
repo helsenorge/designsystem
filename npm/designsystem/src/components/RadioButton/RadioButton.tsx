@@ -9,7 +9,10 @@ import { uuid } from '../../utils/uuid';
 import radioButtonStyles from './styles.module.scss';
 
 export interface RadioButtonProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'value' | 'disabled' | 'defaultChecked' | 'required' | 'onChange'> {
+  extends Pick<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'aria-describedby' | 'name' | 'value' | 'disabled' | 'defaultChecked' | 'required' | 'onChange'
+  > {
   /** Adds custom classes to the element. */
   className?: string;
   /** The label text next to the radioButton */
@@ -105,6 +108,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
           value={value}
           ref={refObject}
           defaultChecked={defaultChecked}
+          aria-describedby={props['aria-describedby'] ?? undefined}
           required={required}
           {...rest}
           onChange={(e): void => change(e)}

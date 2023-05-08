@@ -1,5 +1,7 @@
-@import '../../scss/palette';
+@use 'sass:map';
 @import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
 @import '../../scss/font-settings';
 @import '../../scss/screen-reader';
 
@@ -7,9 +9,14 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  font-size: $font-size-sm;
+  font-size: $font-size-xs;
+  line-height: $lineheight-size-xs;
   font-weight: 400;
-  line-height: $lineheight-size-sm;
+
+  @media (min-width: map.get($grid-breakpoints, sm)) {
+    font-size: $font-size-sm;
+    line-height: $lineheight-size-sm;
+  }
 
   &--cancelled {
     color: $cherry600;
@@ -55,6 +62,10 @@
   &__label {
     &--icon {
       margin-left: getSpacer(m);
+    }
+
+    &--on-dark {
+      color: $white;
     }
   }
 }

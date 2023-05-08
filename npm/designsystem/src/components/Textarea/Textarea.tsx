@@ -12,7 +12,16 @@ import styles from './styles.module.scss';
 interface TextareaProps
   extends Pick<
     React.InputHTMLAttributes<HTMLTextAreaElement>,
-    'autoFocus' | 'disabled' | 'name' | 'autoComplete' | 'placeholder' | 'readOnly' | 'required' | 'defaultValue' | 'onChange'
+    | 'aria-describedby'
+    | 'autoFocus'
+    | 'disabled'
+    | 'name'
+    | 'autoComplete'
+    | 'placeholder'
+    | 'readOnly'
+    | 'required'
+    | 'defaultValue'
+    | 'onChange'
   > {
   /** max character limit in textarea  */
   maxCharacters?: number;
@@ -176,6 +185,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             id={textareaId}
             className={textareaClass}
             ref={ref}
+            aria-describedby={props['aria-describedby'] ?? undefined}
             aria-invalid={!!onError}
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autoFocus}
