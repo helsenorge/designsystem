@@ -1,3 +1,10 @@
+## [3.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv3.1.6&targetVersion=GTv3.2.0) (2023-05-09)
+
+### Features
+
+- nytt komponent label ([ab2ea36](https://github.com/helsenorge/designsystem/commit/ab2ea3668231e5b37793fef3ce527444844d6d4e)), closes
+  [#274702](https://github.com/helsenorge/designsystem/issues/274702)
+
 ## [3.1.6](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv3.1.5&targetVersion=GTv3.1.6) (2023-05-05)
 
 ### Features
@@ -704,12 +711,12 @@
 
 ### Bug Fixes
 
-- økt kontrast på understreking av lenker
-  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
-  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 - panel har avstand fra tittel til badge
   ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
   [#282359](https://github.com/helsenorge/designsystem/issues/282359)
+- økt kontrast på understreking av lenker
+  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
+  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
