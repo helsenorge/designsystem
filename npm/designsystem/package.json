@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
-  "version": "3.1.6",
+  "version": "3.2.0",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
