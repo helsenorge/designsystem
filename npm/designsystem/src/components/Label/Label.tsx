@@ -66,7 +66,9 @@ export const renderLabel = (label: React.ReactNode, inputId: string, mode: FormM
             mode: mode,
             disabled,
           })
-        : typeof label === 'string' && <Label labelTexts={[{ text: label }]} htmlFor={inputId} mode={mode} disabled={disabled} />}
+        : typeof label === 'string' && (
+            <Label labelTexts={[{ text: label, type: 'semibold' }]} htmlFor={inputId} mode={mode} disabled={disabled} />
+          )}
     </>
   );
 };
