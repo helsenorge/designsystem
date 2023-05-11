@@ -1,3 +1,10 @@
+## 4.0.1-beta.0 (2023-05-11)
+
+### Bug Fixes
+
+- standard formatering for label string er satt til semibold
+  ([fe83c12](https://github.com/helsenorge/designsystem/commit/fe83c12baddd3f5014a9397c4c3710f071d9bf24))
+
 ## 4.0.0-beta.0 (2023-05-11)
 
 ### Features
