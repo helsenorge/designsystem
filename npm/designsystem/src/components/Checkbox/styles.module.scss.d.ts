@@ -36,6 +36,7 @@ export type Styles = {
   'checkbox-label--bigform': string;
   'checkbox-label--disabled': string;
   'checkbox-label--on-dark': string;
+  'checkbox-sublabel-wrapper': string;
   'checkbox-wrapper': string;
   'checkbox-wrapper--bigform': string;
   'checkbox-wrapper--with-error': string;

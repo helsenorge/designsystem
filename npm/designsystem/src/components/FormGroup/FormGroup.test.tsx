@@ -1,23 +1,22 @@
 import React from 'react';
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import FormGroup from './FormGroup';
 import Checkbox from '../Checkbox/Checkbox';
+import Label from '../Label';
 import RadioButton from '../RadioButton';
 
 describe('Gitt at FormGroup skal vises', (): void => {
   describe('Når FormGroup rendres', (): void => {
     test('Så vises FormGroup', (): void => {
-      const { container } = render(
+      render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
-          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+          <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
         </FormGroup>
       );
-
-      expect(container).toMatchSnapshot();
 
       const title = screen.getByText('One amazing title');
       expect(title).toBeVisible();
@@ -29,7 +28,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       const wrapper = title.parentElement;
       expect(wrapper).toBeVisible();
-      expect(wrapper.className).toBe('form-group-wrapper');
+      expect(wrapper?.className).toBe('form-group-wrapper');
     });
   });
 
@@ -37,15 +36,15 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så er stylingen satt riktig på FormGroup children', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} mode={'onblueberry'}>
-          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+          <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
         </FormGroup>
       );
 
-      const checkbox = screen.getByText('Checkbox 1').parentElement;
+      const checkbox = screen.getByText('Checkbox 1').parentElement?.parentElement?.parentElement;
       expect(checkbox).toBeVisible();
-      expect(checkbox.className).toBe('checkbox-label');
+      expect(checkbox?.className).toBe('checkbox-label');
     });
   });
   describe('Når errorWrapperClass settes', (): void => {
@@ -58,9 +57,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
           mode={'onblueberry'}
           errorWrapperTestId="error-wrapper-testid-1"
         >
-          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+          <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
         </FormGroup>
       );
 
@@ -74,15 +73,15 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så er stylingen satt riktig på FormGroup children', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} variant={'bigform'}>
-          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+          <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
         </FormGroup>
       );
 
-      const checkbox = screen.getByText('Checkbox 1').parentElement;
+      const checkbox = screen.getByText('Checkbox 1').parentElement?.parentElement?.parentElement;
       expect(checkbox).toBeVisible();
-      expect(checkbox.className).toBe('checkbox-label checkbox-label--bigform checkbox-label__big-form--on-white');
+      expect(checkbox?.className).toBe('checkbox-label checkbox-label--bigform checkbox-label__big-form--on-white');
     });
   });
 
@@ -90,9 +89,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så rendres de', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
-          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+          <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
         </FormGroup>
       );
 
@@ -105,9 +104,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så rendres de', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
-          <RadioButton inputId={'Radiobutton1'} label={'Radiobutton 1'} />
-          <RadioButton inputId={'Radiobutton2'} label={'Radiobutton 2'} />
-          <RadioButton inputId={'Radiobutton3'} label={'Radiobutton 3'} />
+          <RadioButton inputId={'Radiobutton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+          <RadioButton inputId={'Radiobutton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+          <RadioButton inputId={'Radiobutton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
         </FormGroup>
       );
 
@@ -120,9 +119,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så rendres error melding og styling', (): void => {
       render(
         <FormGroup error={'error error!'} title={'One amazing title'} legend={'Check out these checkboxes!'}>
-          <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-          <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-          <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+          <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
         </FormGroup>
       );
 
@@ -133,9 +132,9 @@ describe('Gitt at FormGroup skal vises', (): void => {
       const errorWrapper = formGroup?.parentElement;
       const formGroupWrapper = errorWrapper?.parentElement;
 
-      expect(formGroup.className).toBe('form-group');
-      expect(errorWrapper.className).toBe('error-wrapper error-wrapper--with-error');
-      expect(formGroupWrapper.className).toBe('form-group-wrapper form-group-wrapper--invalid');
+      expect(formGroup?.className).toBe('form-group');
+      expect(errorWrapper?.className).toBe('error-wrapper error-wrapper--with-error');
+      expect(formGroupWrapper?.className).toBe('form-group-wrapper form-group-wrapper--invalid');
     });
   });
 });

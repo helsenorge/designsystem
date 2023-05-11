@@ -34,9 +34,9 @@ export default {
           return value.length >= 2 || errorMessage2;
         };
         const allCheckBoxes = [
-          <Checkbox key={0} inputId="checkbox1" label={'Checkbox 1'} {...register(field1, { required: errorMessage })} />,
-          <Checkbox key={1} inputId="checkbox2" label={'Checkbox 2'} {...register(field1, { required: errorMessage })} />,
-          <Checkbox key={2} inputId="checkbox3" label={'Checkbox 3'} {...register(field1, { required: errorMessage })} />,
+          <Checkbox key={0} inputId="checkbox1" label={<Label labelTexts={[{ text: 'Checkbox 1'}]} />} {...register(field1, { required: errorMessage })} />,
+          <Checkbox key={1} inputId="checkbox2" label={<Label labelTexts={[{ text: 'Checkbox 2'}]} />} {...register(field1, { required: errorMessage })} />,
+          <Checkbox key={2} inputId="checkbox3" label={<Label labelTexts={[{ text: 'Checkbox 3'}]} />} {...register(field1, { required: errorMessage })} />,
         ];
 
         <form onSubmit={handleSubmit(data => {
@@ -62,14 +62,14 @@ export default {
         legend={'Velg minst to'}
         error={errors.field2 ? (errors.field2.message as string) : undefined}
         variant={props.variant}>
-        <Checkbox inputId="checkbox4" label={'Checkbox 4'} {...register(field2, { validate: requireTwo })} />
-        <Checkbox inputId="checkbox5" label={'Checkbox 5'} {...register(field2, { validate: requireTwo })} />
-        <Checkbox inputId="checkbox6" label={'Checkbox 6'} {...register(field2, { validate: requireTwo })} />
+        <Checkbox inputId="checkbox4" label={<Label labelTexts={[{ text: 'Checkbox 4'}]} />} {...register(field2, { validate: requireTwo })} />
+        <Checkbox inputId="checkbox5" label={<Label labelTexts={[{ text: 'Checkbox 5'}]} />} {...register(field2, { validate: requireTwo })} />
+        <Checkbox inputId="checkbox6" label={<Label labelTexts={[{ text: 'Checkbox 6'}]} />} {...register(field2, { validate: requireTwo })} />
         </FormGroup>
         <FormGroup key={2} legend={'Velg en'} error={errors.field3 ? (errors.field3.message as string) : undefined} variant={props.variant}>
-          <RadioButton inputId="radiobutton1" label={'Radiobutton 1'} {...register(field3, { required: errorMessage })} />
-          <RadioButton inputId="radiobutton2" label={'Radiobutton 2'} {...register(field3, { required: errorMessage })} />
-          <RadioButton inputId="radiobutton3" label={'Radiobutton 3'} {...register(field3, { required: errorMessage })} />
+          <RadioButton inputId="radiobutton1" label={<Label labelTexts={[{ text: 'Radiobutton 1'}]} />} {...register(field3, { required: errorMessage })} />
+          <RadioButton inputId="radiobutton2" label={<Label labelTexts={[{ text: 'Radiobutton 2'}]} />} {...register(field3, { required: errorMessage })} />
+          <RadioButton inputId="radiobutton3" label={<Label labelTexts={[{ text: 'Radiobutton 3'}]} />} {...register(field3, { required: errorMessage })} />
         </FormGroup>
         </Validation>
         <Button type="submit">{'Send inn'}</Button>
@@ -92,9 +92,9 @@ Eksempel på validation med react-hook-form 6:
             return value.length >= 2 || errorMessage2;
           };
           const allCheckBoxes = [
-            <Checkbox key={0} inputId="checkbox1" label={'Checkbox 1'} ref={register({ required: errorMessage })} />,
-            <Checkbox key={1} inputId="checkbox2" label={'Checkbox 2'} ref={register({ required: errorMessage })} />,
-            <Checkbox key={2} inputId="checkbox3" label={'Checkbox 3'} ref={register({ required: errorMessage })} />,
+            <Checkbox key={0} inputId="checkbox1" label={<Label labelTexts={[{ text: 'Checkbox 1'}]} />} ref={register({ required: errorMessage })} />,
+            <Checkbox key={1} inputId="checkbox2" label={<Label labelTexts={[{ text: 'Checkbox 2'}]} />} ref={register({ required: errorMessage })} />,
+            <Checkbox key={2} inputId="checkbox3" label={<Label labelTexts={[{ text: 'Checkbox 3'}]} />} ref={register({ required: errorMessage })} />,
           ];
 
         <form onSubmit={handleSubmit(data => {
@@ -123,9 +123,9 @@ Eksempel på validation med react-hook-form 6:
           variant={props.variant}
           name={field2}
         >
-          <Checkbox inputId="checkbox4" label={'Checkbox 4'} ref={register({ validate: requireTwo })} />
-          <Checkbox inputId="checkbox5" label={'Checkbox 5'} ref={register({ validate: requireTwo })} />
-          <Checkbox inputId="checkbox6" label={'Checkbox 6'} ref={register({ validate: requireTwo })} />
+          <Checkbox inputId="checkbox4" label={<Label labelTexts={[{ text: 'Checkbox 4'}]} />} ref={register({ validate: requireTwo })} />
+          <Checkbox inputId="checkbox5" label={<Label labelTexts={[{ text: 'Checkbox 5'}]} />} ref={register({ validate: requireTwo })} />
+          <Checkbox inputId="checkbox6" label={<Label labelTexts={[{ text: 'Checkbox 6'}]} />} ref={register({ validate: requireTwo })} />
         </FormGroup>
         <FormGroup
           key={2}
@@ -134,9 +134,9 @@ Eksempel på validation med react-hook-form 6:
           variant={props.variant}
           name={field3}
         >
-          <RadioButton inputId="radiobutton1" label={'Radiobutton 1'} ref={register({ required: errorMessage })} />
-          <RadioButton inputId="radiobutton2" label={'Radiobutton 2'} ref={register({ required: errorMessage })} />
-          <RadioButton inputId="radiobutton3" label={'Radiobutton 3'} ref={register({ required: errorMessage })} />
+          <RadioButton inputId="radiobutton1" label={<Label labelTexts={[{ text: 'Radiobutton 1'}]} />} ref={register({ required: errorMessage })} />
+          <RadioButton inputId="radiobutton2" label={<Label labelTexts={[{ text: 'Radiobutton 2'}]} />} ref={register({ required: errorMessage })} />
+          <RadioButton inputId="radiobutton3" label={<Label labelTexts={[{ text: 'Radiobutton 3'}]} />} ref={register({ required: errorMessage })} />
         </FormGroup>
         </Validation>
         <Button type="submit">{'Send inn'}</Button>
@@ -250,7 +250,7 @@ DateTime.parameters = {
           >
             <Input
               className={styles['date-picker--spacing']}
-              label={'dato'}
+              label={<Label labelTexts={[{ text: 'dato'}]} />}
               width={20}
               type={'date'}
               defaultValue={defaultDate.toLocaleDateString('en-CA')}
@@ -262,7 +262,7 @@ DateTime.parameters = {
               <Input
                 labelId={'time-label-id'}
                 afterInputChildren={<span style={{ padding: '0 1rem' }}>{':'}</span>}
-                label={'klokke'}
+                label={<Label labelTexts={[{ text: 'klokke'}]} />}
                 width={4}
                 type={'number'}
                 defaultValue={defaultDate.toLocaleTimeString('nb', {

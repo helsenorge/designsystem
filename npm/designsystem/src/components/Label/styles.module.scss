@@ -6,6 +6,24 @@
 
 .label-wrapper {
   margin-bottom: getSpacer(2xs);
+  line-height: $lineheight-size-xs;
+
+  @media (min-width: map.get($grid-breakpoints, sm)) {
+    line-height: $lineheight-size-sm;
+  }
+
+  &--no-bottom-margin {
+    margin-bottom: 0;
+  }
+
+  &--after-label-children {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.label-content-wrapper {
+  display: flex;
 }
 
 .label {
@@ -41,4 +59,8 @@
   &::after {
     content: ' ';
   }
+}
+
+.after-label-children {
+  padding-left: getSpacer(xs);
 }

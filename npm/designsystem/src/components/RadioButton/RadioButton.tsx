@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { AnalyticsId, FormMode, FormVariant } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { uuid } from '../../utils/uuid';
+import { getLabelText, renderLabelAsParent } from '../Label';
 
 import radioButtonStyles from './styles.module.scss';
 
@@ -15,8 +16,8 @@ export interface RadioButtonProps
   > {
   /** Adds custom classes to the element. */
   className?: string;
-  /** The label text next to the radioButton */
-  label: string;
+  /** The <Label/> next to the radioButton - sublabels kan ikke kombineres med bigform variant */
+  label: React.ReactNode;
   /** input id of the radioButton */
   inputId?: string;
   /** Changes the visuals of the radioButton */
@@ -44,7 +45,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     variant,
     errorText,
     error = !!errorText,
-    value = label,
+    value = getLabelText(label),
     testId,
     required,
     ...rest
@@ -95,10 +96,10 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     changeChecked(true);
     onChange && onChange(e);
   };
-  return (
-    <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
-      {errorText && <p className={errorStyles}>{errorText}</p>}
-      <label htmlFor={inputId} className={radioButtonLabelClasses}>
+
+  const getLabelContent = (): React.ReactNode => {
+    return (
+      <>
         <input
           id={inputId}
           name={name}
@@ -113,8 +114,24 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
           {...rest}
           onChange={(e): void => change(e)}
         />
-        {label}
-      </label>
+      </>
+    );
+  };
+
+  return (
+    <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
+      {errorText && <p className={errorStyles}>{errorText}</p>}
+      {renderLabelAsParent(
+        label,
+        getLabelContent(),
+        inputId,
+        mode as FormMode,
+        disabled,
+        radioButtonLabelClasses,
+        undefined,
+        radioButtonStyles['radiobutton-sublabel-wrapper'],
+        bigform
+      )}
     </div>
   );
 });

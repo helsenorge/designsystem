@@ -5,6 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import RadioButton from './RadioButton';
 import { FormMode, FormVariant } from '../../constants';
 import GridExample from '../GridExample';
+import Label from '../Label';
 
 export default {
   title: 'Components/RadioButton',
@@ -57,6 +58,24 @@ export default {
 
 export const Default: ComponentStory<typeof RadioButton> = args => (
   <GridExample>
-    <RadioButton {...args} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'Radio onwhite' }]} />} mode={'onwhite'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} mode={'ongrey'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} mode={'onblueberry'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} mode={'oninvalid'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} mode={'onwhite'} disabled />
+    <span style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
+      <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} mode={'ondark'} />
+    </span>
+  </GridExample>
+);
+
+export const BigForm: ComponentStory<typeof RadioButton> = args => (
+  <GridExample>
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} variant={'bigform'} mode={'onwhite'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} variant={'bigform'} mode={'ongrey'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} variant={'bigform'} mode={'onblueberry'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} variant={'bigform'} mode={'oninvalid'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} variant={'bigform'} mode={'onwhite'} disabled />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} variant={'bigform'} mode={'ondark'} />
   </GridExample>
 );

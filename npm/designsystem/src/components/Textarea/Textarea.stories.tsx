@@ -7,6 +7,7 @@ import { FormMode } from '../../constants';
 import GridExample from '../GridExample';
 import Icon, { IconSize } from '../Icons';
 import Hospital from '../Icons/Hospital';
+import Label from '../Label/Label';
 
 export default {
   title: 'Components/Textarea',
@@ -58,10 +59,6 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
-    label: {
-      control: 'text',
-      defaultValue: 'Skriv inn din tekst',
-    },
     minRows: {
       control: 'number',
       defaultValue: 3,
@@ -103,28 +100,31 @@ export default {
 
 export const Default: ComponentStory<typeof Textarea> = (args: any) => (
   <GridExample>
-    <Textarea {...args} />
+    <Textarea {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} />
   </GridExample>
 );
 
 export const MaxCharacters: ComponentStory<typeof Textarea> = (args: any) => (
   <GridExample>
-    <div style={{ display: 'flex', width: '50rem' }}>
-      <Textarea {...args} maxCharacters={10} marginBottom />
-    </div>
-
-    <div style={{ display: 'flex', width: '40rem' }}>
-      <Textarea {...args} maxCharacters={100} />
-    </div>
-
-    <div style={{ width: '20rem' }}>
-      <Textarea {...args} maxCharacters={100} defaultValue="test" />
-    </div>
-  </GridExample>
-);
-
-export const ChildrenAfterLabel: ComponentStory<typeof Textarea> = (args: any) => (
-  <GridExample>
-    <Textarea {...args} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>} />
+    <Textarea
+      {...args}
+      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+      maxCharacters={50}
+      marginBottom
+      width={50}
+    />
+    <Textarea
+      {...args}
+      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+      maxCharacters={100}
+      width={100}
+    />
+    <Textarea
+      {...args}
+      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+      maxCharacters={100}
+      defaultValue="test"
+      width={100}
+    />
   </GridExample>
 );

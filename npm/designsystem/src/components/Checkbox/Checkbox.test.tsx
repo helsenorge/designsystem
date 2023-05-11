@@ -4,130 +4,131 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import Checkbox from './Checkbox';
 import { FormMode, FormVariant } from '../../constants';
+import Label from '../Label';
 
 describe('Gitt at Checkbox skal vises', (): void => {
   describe('Når Checkbox rendres', (): void => {
     test('Så vises Checkbox', (): void => {
-      const { container } = render(<Checkbox inputId={'test01'} label={'Check me out!'} />);
+      render(<Checkbox inputId={'test01'} label={<Label labelTexts={[{ text: 'Check me out!' }]} />} />);
 
-      expect(container).toMatchSnapshot();
-
-      const label = screen.getByText('Check me out!').parentElement;
+      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
       expect(label).toBeVisible();
-      expect(label.className).toBe('checkbox-label');
+      expect(label?.className).toBe('checkbox-label');
 
       const input = screen.getByRole('checkbox');
       expect(input).toBeVisible();
       expect(input.className).toBe('checkbox');
 
-      const checkIconWrapper = label.children[1];
-      expect(checkIconWrapper.className).toBe('checkbox__icon-wrapper');
+      const checkIconWrapper = screen.getByRole('checkbox')?.parentElement?.children[1];
+      expect(checkIconWrapper?.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-white');
     });
   });
 
   describe('Når disabled er true', (): void => {
     test('Så vises Checkbox som disabled', (): void => {
-      render(<Checkbox label={'Check me out!'} disabled />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} disabled />);
 
-      const label = screen.getByText('Check me out!').parentElement;
-      expect(label.className).toBe('checkbox-label checkbox-label--disabled');
+      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      expect(label?.className).toBe('checkbox-label checkbox-label--disabled');
     });
   });
 
   describe('Når mode er onBlueberry', (): void => {
     test('Så vises Checkbox med onBlueberry styling', (): void => {
-      render(<Checkbox label={'Check me out!'} mode={FormMode.onblueberry} />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} mode={FormMode.onblueberry} />);
 
-      const label = screen.getByText('Check me out!').parentElement;
-      expect(label.className).toBe('checkbox-label');
+      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      expect(label?.className).toBe('checkbox-label');
     });
   });
   describe('Når mode er onDark', (): void => {
     test('Så vises Checkbox med onDark styling', (): void => {
-      render(<Checkbox label={'Check me out!'} mode={FormMode.ondark} />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} mode={FormMode.ondark} />);
 
-      const label = screen.getByText('Check me out!').parentElement;
-      expect(label.className).toBe('checkbox-label checkbox-label--on-dark');
+      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      expect(label?.className).toBe('checkbox-label checkbox-label--on-dark');
     });
   });
 
   describe('Når formvariant er bigform', (): void => {
     test('Så vises Checkbox med bigform styling', (): void => {
-      render(<Checkbox label={'Check me out!'} variant={FormVariant.bigform} />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} variant={FormVariant.bigform} />);
 
-      const label = screen.getByText('Check me out!').parentElement;
-      expect(label.className).toBe('checkbox-label checkbox-label--bigform');
+      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      expect(label?.className).toBe('checkbox-label checkbox-label--bigform checkbox-label__big-form--on-white');
     });
   });
 
   describe('Når startChecked er true', (): void => {
     test('Så vises Checkbox med checkmark ikon', (): void => {
-      render(<Checkbox label={'Check me out!'} checked />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} checked />);
 
-      const checkIcon = screen.getByText('Check me out!').parentElement.children[1];
+      const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
       expect(checkIcon).toBeVisible();
-      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper__regular--checked');
+      expect(checkIcon?.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-white checkbox__icon-wrapper__regular--checked');
     });
   });
 
   describe('Når checkbox trykkes på', (): void => {
     test('Så vises Checkbox med checkmark ikon', (): void => {
-      render(<Checkbox label={'Check me out!'} />);
-
-      const label = screen.getByText('Check me out!').parentElement;
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} />);
 
       fireEvent.click(screen.getByText('Check me out!'));
 
-      const checkIcon = label.children[1];
+      const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
-      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper__regular--checked');
+      expect(checkIcon?.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-white checkbox__icon-wrapper__regular--checked');
 
       fireEvent.click(screen.getByText('Check me out!'));
 
-      expect(checkIcon.className).toBe('checkbox__icon-wrapper');
+      expect(checkIcon?.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-white');
     });
   });
 
   describe('Når checkbox får satt error', (): void => {
     test('Så vises Checkbox med indre error styling, uten ytre error styling', (): void => {
-      render(<Checkbox label={'Check me out!'} error />);
+      render(<Checkbox testId={'test01'} label={<Label labelTexts={[{ text: 'Check me out!' }]} />} error />);
 
       // Indre styling
-      const label = screen.getByText('Check me out!').parentElement;
-      const checkIcon = label.children[1];
+      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
-      expect(label.className).toBe('checkbox-label');
-      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-invalid checkbox__icon-wrapper--invalid');
+      expect(label?.className).toBe('checkbox-label');
+      expect(checkIcon?.className).toBe(
+        'checkbox__icon-wrapper checkbox__icon-wrapper--on-white checkbox__icon-wrapper--on-invalid checkbox__icon-wrapper--invalid'
+      );
 
       // Ytre styling
-      const wrapper = label.parentElement;
-      expect(wrapper.className).toBe('checkbox-wrapper');
+      const wrapper = screen.getByTestId('test01');
+      expect(wrapper?.className).toBe('checkbox-wrapper');
     });
   });
 
   describe('Når checkbox får satt errorText', (): void => {
     test('Så vises Checkbox med errormelding i tilleg til indre og ytre error styling', (): void => {
-      render(<Checkbox label={'Check me out!'} errorText={'error error!'} />);
+      render(<Checkbox testId={'test01'} label={<Label labelTexts={[{ text: 'Check me out!' }]} />} errorText={'error error!'} />);
 
       expect(screen.getByText('error error!')).toBeVisible();
 
       // Indre styling
-      const label = screen.getByText('Check me out!').parentElement;
-      const checkIcon = label.children[1];
+      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
-      expect(label.className).toBe('checkbox-label');
-      expect(checkIcon.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-invalid checkbox__icon-wrapper--invalid');
+      expect(label?.className).toBe('checkbox-label');
+      expect(checkIcon?.className).toBe(
+        'checkbox__icon-wrapper checkbox__icon-wrapper--on-white checkbox__icon-wrapper--on-invalid checkbox__icon-wrapper--invalid'
+      );
 
       // Ytre styling
-      const wrapper = label.parentElement;
-      expect(wrapper.className).toBe('checkbox-wrapper checkbox-wrapper--with-error');
+      const wrapper = screen.getByTestId('test01');
+      expect(wrapper?.className).toBe('checkbox-wrapper checkbox-wrapper--with-error');
     });
   });
 
   describe('Når name-prop er satt', (): void => {
     test('Så har input riktig name', (): void => {
-      render(<Checkbox label="En fin label" name="custom-name" />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'En fin label' }]} />} name="custom-name" />);
 
       const checkbox = screen.getByLabelText('En fin label');
       expect(checkbox).toHaveAttribute('name', 'custom-name');
@@ -136,7 +137,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når value-prop er satt', (): void => {
     test('Så har input riktig value', (): void => {
-      render(<Checkbox label="En fin label" value="custom-value" />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'En fin label' }]} />} value="custom-value" />);
 
       const checkbox = screen.getByLabelText('En fin label');
       expect(checkbox).toHaveAttribute('value', 'custom-value');
@@ -145,7 +146,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når required er satt', (): void => {
     test('Så er input required', (): void => {
-      render(<Checkbox label="En fin label" required />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'En fin label' }]} />} required />);
 
       const checkbox = screen.getByLabelText('En fin label');
       expect(checkbox).toBeRequired();
@@ -154,7 +155,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når disabled er satt', (): void => {
     test('Så er input disabled', (): void => {
-      render(<Checkbox label="En fin label" disabled />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'En fin label' }]} />} disabled />);
 
       const checkbox = screen.getByLabelText('En fin label');
       expect(checkbox).toBeDisabled();
@@ -163,7 +164,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når checked er satt', (): void => {
     test('Så er input checked', (): void => {
-      render(<Checkbox label="En fin label" checked />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'En fin label' }]} />} checked />);
 
       const checkbox = screen.getByLabelText('En fin label');
       expect(checkbox).toHaveAttribute('checked', '');

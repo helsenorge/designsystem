@@ -10,6 +10,7 @@ import FormGroup from '../FormGroup/FormGroup';
 import FormLayout, { FormLayoutColumns } from '../FormLayout';
 import Hospital from '../Icons/Hospital';
 import Input from '../Input';
+import Label from '../Label';
 import RadioButton from '../RadioButton';
 import Select from '../Select';
 import Textarea from '../Textarea';
@@ -114,9 +115,24 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   const getFormExample = () => {
     if (exampleType === FormExampleVariants.formgroup) {
       const allCheckBoxes = [
-        <Checkbox key={0} inputId="checkbox1" label={'Checkbox 1'} {...register(field1, { required: errorMessage })} />,
-        <Checkbox key={1} inputId="checkbox2" label={'Checkbox 2'} {...register(field1, { required: errorMessage })} />,
-        <Checkbox key={2} inputId="checkbox3" label={'Checkbox 3'} {...register(field1, { required: errorMessage })} />,
+        <Checkbox
+          key={0}
+          inputId="checkbox1"
+          label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />}
+          {...register(field1, { required: errorMessage })}
+        />,
+        <Checkbox
+          key={1}
+          inputId="checkbox2"
+          label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />}
+          {...register(field1, { required: errorMessage })}
+        />,
+        <Checkbox
+          key={2}
+          inputId="checkbox3"
+          label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />}
+          {...register(field1, { required: errorMessage })}
+        />,
       ];
 
       return [
@@ -139,14 +155,38 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           error={errors.field2 ? (errors.field2.message as string) : undefined}
           variant={props.variant}
         >
-          <Checkbox inputId="checkbox4" label={'Checkbox 4'} {...register(field2, { validate: requireTwo })} />
-          <Checkbox inputId="checkbox5" label={'Checkbox 5'} {...register(field2, { validate: requireTwo })} />
-          <Checkbox inputId="checkbox6" label={'Checkbox 6'} {...register(field2, { validate: requireTwo })} />
+          <Checkbox
+            inputId="checkbox4"
+            label={<Label labelTexts={[{ text: 'Checkbox 4' }]} />}
+            {...register(field2, { validate: requireTwo })}
+          />
+          <Checkbox
+            inputId="checkbox5"
+            label={<Label labelTexts={[{ text: 'Checkbox 5' }]} />}
+            {...register(field2, { validate: requireTwo })}
+          />
+          <Checkbox
+            inputId="checkbox6"
+            label={<Label labelTexts={[{ text: 'Checkbox 6' }]} />}
+            {...register(field2, { validate: requireTwo })}
+          />
         </FormGroup>,
         <FormGroup key={2} legend={'Velg en'} error={errors.field3 ? (errors.field3.message as string) : undefined} variant={props.variant}>
-          <RadioButton inputId="radiobutton1" label={'Radiobutton 1'} {...register(field3, { required: errorMessage })} />
-          <RadioButton inputId="radiobutton2" label={'Radiobutton 2'} {...register(field3, { required: errorMessage })} />
-          <RadioButton inputId="radiobutton3" label={'Radiobutton 3'} {...register(field3, { required: errorMessage })} />
+          <RadioButton
+            inputId="radiobutton1"
+            label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />}
+            {...register(field3, { required: errorMessage })}
+          />
+          <RadioButton
+            inputId="radiobutton2"
+            label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />}
+            {...register(field3, { required: errorMessage })}
+          />
+          <RadioButton
+            inputId="radiobutton3"
+            label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />}
+            {...register(field3, { required: errorMessage })}
+          />
         </FormGroup>,
         <FormGroup key={3} error={errors.field4 ? (errors.field4.message as string) : undefined}>
           <Textarea
@@ -154,21 +194,24 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             grow
             maxCharacters={40}
             minRows={5}
-            label="Skriv din historie her"
+            label={<Label labelTexts={[{ text: 'Skriv din historie her', type: 'semibold' }]} />}
             textareaId="textarea1"
             {...register(field4, { maxLength: { value: 40, message: errorMessage3 } })}
           />
         </FormGroup>,
         <FormGroup key={4} variant={props.variant} error={errors.field5 ? (errors.field5.message as string) : undefined}>
           <Input
-            label={'Skriv inn din tekst'}
+            label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
             placeholder={'Skriv noe!'}
             icon={Hospital}
             {...register(field5, { required: errorMessage4 })}
           />
         </FormGroup>,
         <FormGroup key={5} variant={props.variant} error={errors.field6 ? (errors.field6.message as string) : undefined}>
-          <Select label={'Skriv inn din tekst'} {...register(field6, { validate: requireSelect })}>
+          <Select
+            label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+            {...register(field6, { validate: requireSelect })}
+          >
             <option value={'Option 1'}>{'Option 1'}</option>
             <option value={'Option 2'}>{'Option 2'}</option>
             <option value={'Option 3'}>{'Option 3'}</option>
@@ -179,7 +222,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       return (
         <Checkbox
           inputId="checkbox1"
-          label={'Checkbox 1'}
+          label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />}
           errorText={errors.field1 ? (errors.field1.message as string) : undefined}
           variant={props.variant}
           {...register(field1, { required: errorMessage })}
@@ -189,7 +232,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       return (
         <RadioButton
           inputId="radiobutton1"
-          label={'Radiobutton 1'}
+          label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />}
           errorText={errors.field3 ? (errors.field3.message as string) : undefined}
           variant={props.variant}
           {...register(field3, { required: errorMessage })}
@@ -203,7 +246,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           maxCharacters={40}
           minRows={5}
           errorText={errors.field4 ? (errors.field4.message as string) : undefined}
-          label="Skriv din historie her"
+          label={<Label labelTexts={[{ text: 'Skriv din historie her', type: 'semibold' }]} />}
           textareaId="textarea1"
           {...register(field4, { maxLength: { value: 40, message: errorMessage3 } })}
         />
@@ -211,8 +254,8 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     } else if (exampleType === FormExampleVariants.input) {
       return (
         <Input
-          inputId="input1"
-          label={'Skriv inn din tekst'}
+          inputId={'input1'}
+          label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
           placeholder={'Skriv noe!'}
           errorText={errors.field5 ? (errors.field5.message as string) : undefined}
           icon={Hospital}
@@ -223,7 +266,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       return (
         <Select
           errorText={errors.field6 ? (errors.field6.message as string) : undefined}
-          label={'Skriv inn din tekst'}
+          label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
           {...register(field6, { validate: requireSelect })}
         >
           <option value={'Option 1'}>{'Option 1'}</option>
@@ -242,7 +285,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           >
             <Input
               className={styles['date-time__date-picker']}
-              label={'dato'}
+              label={<Label labelTexts={[{ text: 'dato', type: 'semibold' }]} />}
               width={20}
               type={'date'}
               defaultValue={defaultDate.toLocaleDateString('en-CA')}
@@ -252,8 +295,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             />
             <FormGroup htmlMarkup={'div'} fieldsetClassName={styles['date-time__time-wrapper']}>
               <Input
-                labelId={'time-label-id'}
-                label={'klokke'}
+                label={<Label labelId={'time-label-id'} labelTexts={[{ text: 'klokke', type: 'semibold' }]} />}
                 width={4}
                 type={'number'}
                 defaultValue={defaultDate.toLocaleTimeString('nb', {

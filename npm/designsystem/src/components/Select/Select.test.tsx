@@ -4,23 +4,21 @@ import { render, screen } from '@testing-library/react';
 
 import Select from './Select';
 import { FormMode } from '../../constants';
+import Label from '../Label';
 
 describe('Gitt at Select skal vises', (): void => {
   describe('Når Select rendres', (): void => {
     test('Så vises Select', (): void => {
-      const { container } = render(
-        <Select selectId={'test01'} label={'Label test'}>
+      render(
+        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />}>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
         </Select>
       );
 
-      expect(container).toMatchSnapshot();
-
       const label = screen.getByText('Label test').parentElement;
       expect(label).toBeVisible();
-      expect(label).toHaveClass('select-wrapper__label-wrapper');
 
       const select = screen.getByRole('combobox');
       expect(select).toBeVisible();
@@ -35,7 +33,7 @@ describe('Gitt at Select skal vises', (): void => {
   describe('Når disabled er true', (): void => {
     test('Så vises Select som disabled', (): void => {
       render(
-        <Select disabled selectId={'test01'} label={'Label test'}>
+        <Select disabled selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />}>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
@@ -50,7 +48,7 @@ describe('Gitt at Select skal vises', (): void => {
   describe('Når mode er onBlueberry', (): void => {
     test('Så vises Select med onBlueberry styling', (): void => {
       render(
-        <Select selectId={'test01'} label={'Label test'} mode={FormMode.onblueberry}>
+        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} mode={FormMode.onblueberry}>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
@@ -64,25 +62,11 @@ describe('Gitt at Select skal vises', (): void => {
       expect(selectGrid).toHaveClass('select-inner-wrapper select-inner-wrapper--on-blueberry');
     });
   });
-  describe('Når mode er onDark', (): void => {
-    test('Så vises Select med onDark styling', (): void => {
-      render(
-        <Select selectId={'test01'} label={'Label test'} mode={FormMode.ondark}>
-          <option value={'Option 1'}>{'Option 1'}</option>
-          <option value={'Option 2'}>{'Option 2'}</option>
-          <option value={'Option 3'}>{'Option 3'}</option>
-        </Select>
-      );
-
-      const label = screen.getByText('Label test').parentElement;
-      expect(label).toHaveClass('select-wrapper__label-wrapper select-wrapper__label-wrapper--on-dark');
-    });
-  });
 
   describe('Når Select får satt error', (): void => {
     test('Så vises Select med indre error styling, uten ytre error styling', (): void => {
       render(
-        <Select selectId={'test01'} label={'Label test'} error>
+        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} error>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
@@ -100,7 +84,7 @@ describe('Gitt at Select skal vises', (): void => {
   describe('Når select får satt errorText', (): void => {
     test('Så vises Select med errormelding i tilleg til error styling', (): void => {
       render(
-        <Select selectId={'test01'} label={'Label test'} errorText={'error error!'}>
+        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} errorText={'error error!'}>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
@@ -120,7 +104,7 @@ describe('Gitt at Select skal vises', (): void => {
   describe('Når name-prop er satt', (): void => {
     test('Så har Select riktig name', (): void => {
       render(
-        <Select selectId={'test01'} label={'Label test'} name={'custom-name'}>
+        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} name={'custom-name'}>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
@@ -135,7 +119,7 @@ describe('Gitt at Select skal vises', (): void => {
   describe('Når required er satt', (): void => {
     test('Så er Select required', (): void => {
       render(
-        <Select selectId={'test01'} label={'Label test'} required>
+        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} required>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
@@ -151,7 +135,7 @@ describe('Gitt at Select skal vises', (): void => {
   describe('Når et option er satt til selected true', (): void => {
     test('Så er det satt som default Select option', (): void => {
       render(
-        <Select selectId={'test01'} label={'Label test'}>
+        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />}>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option selected={true} value={'Option 2'}>
             {'Option 2'}

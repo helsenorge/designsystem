@@ -5,8 +5,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Input, { InputProps, InputTypes } from './Input';
 import { FormMode, FormVariant } from '../../constants';
 import GridExample from '../GridExample';
-import Icon, { IconSize } from '../Icons';
 import Hospital from '../Icons/Hospital';
+import Label from '../Label/Label';
 
 export default {
   title: 'Components/Input',
@@ -55,10 +55,6 @@ export default {
       options: FormMode,
       defaultValue: FormMode.onwhite,
     },
-    label: {
-      control: 'text',
-      defaultValue: 'Skriv inn din tekst',
-    },
     showicon: {
       control: 'boolean',
       defaultValue: true,
@@ -93,44 +89,66 @@ export default {
   },
 } as ComponentMeta<typeof Input>;
 
-export const Default: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
-  <GridExample>
-    <Input {...rest} icon={showicon ? Hospital : undefined} />
-  </GridExample>
-);
+export const Default: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => {
+  const inputId = 'input-testid';
+
+  return (
+    <GridExample>
+      <Input
+        {...rest}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
+        inputId={inputId}
+        icon={showicon ? Hospital : undefined}
+      />
+    </GridExample>
+  );
+};
 
 export const MultipleExamples: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
   <GridExample>
-    <Input {...rest} icon={showicon ? Hospital : undefined} />
-    <Input {...rest} icon={showicon ? Hospital : undefined} />
-    <Input {...rest} icon={showicon ? Hospital : undefined} />
+    <Input
+      {...rest}
+      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+      icon={showicon ? Hospital : undefined}
+    />
+    <Input
+      {...rest}
+      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+      icon={showicon ? Hospital : undefined}
+    />
+    <Input
+      {...rest}
+      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+      icon={showicon ? Hospital : undefined}
+    />
   </GridExample>
 );
 
 export const MaxCharacters: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
   <GridExample>
-    <div style={{ display: 'flex', width: '50rem' }}>
-      <Input {...rest} maxCharacters={10} />
-    </div>
-
-    <div style={{ display: 'flex', width: '40rem' }}>
-      <Input {...rest} maxCharacters={100} />
-    </div>
-
-    <div style={{ width: '20rem' }}>
-      <Input {...rest} maxCharacters={100} defaultValue="test" />
-    </div>
+    <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={10} width={10} />
+    <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={50} width={50} />
+    <Input
+      {...rest}
+      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+      maxCharacters={50}
+      width={50}
+      defaultValue="test"
+    />
   </GridExample>
 );
 
-export const ChildrenAfterLabel: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
-  <GridExample>
-    <Input {...rest} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={Hospital}></Icon>} />
-  </GridExample>
-);
 export const AfterInputChildren: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
   <GridExample>
-    <Input {...rest} afterInputChildren={<div style={{ marginTop: '1rem' }}>*Ikke oppgi personsensitiv informasjon</div>} />
-    <Input {...rest} afterInputChildren={'Tekst uten innsendt div'} />
+    <Input
+      {...rest}
+      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+      afterInputChildren={<div style={{ marginTop: '1rem' }}>{'*Ikke oppgi personsensitiv informasjon'}</div>}
+    />
+    <Input
+      {...rest}
+      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+      afterInputChildren={'Tekst uten innsendt div'}
+    />
   </GridExample>
 );

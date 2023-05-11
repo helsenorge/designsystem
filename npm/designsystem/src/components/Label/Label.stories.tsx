@@ -4,11 +4,17 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Label, { LabelProps, LabelText } from './Label';
 import { Sublabel } from './SubLabel';
-import { FormMode } from '../../constants';
+import { IconSize } from '../../constants';
 import { getColor } from '../../theme/currys';
+import Checkbox from '../Checkbox';
 import GridExample from '../GridExample';
+import Icon from '../Icons';
+import HelpSign from '../Icons/HelpSign';
 import Input from '../Input';
+import RadioButton from '../RadioButton/RadioButton';
+import Select from '../Select';
 import StatusDot from '../StatusDot';
+import Textarea from '../Textarea';
 
 export default {
   title: 'Components/Label',
@@ -25,35 +31,71 @@ export default {
 } as ComponentMeta<typeof Label>;
 
 export const Default: ComponentStory<typeof Label> = ({ ...args }: LabelProps & { showicon?: boolean }) => {
-  const inputId = 'input-testid';
-  const sublabelId = 'sublabel-testid';
+  const sublabelId1 = 'sublabel-testid1';
+  const statusDotId1 = 'statusdot-testid1';
+  const sublabelId2 = 'sublabel-testid2';
+  const statusDotId2 = 'statusdot-testid2';
+  const sublabelId3 = 'sublabel-testid3';
+  const statusDotId3 = 'statusdot-testid3';
+
   const sublabelTexts: LabelText[] = [
     { text: 'This is a normal sublabel', type: 'normal' },
     { text: 'Emphasised sublabel', type: 'semibold', hideFromScreenReader: true },
   ];
-  const statusDotId = 'statusdot-testid';
 
   return (
     <GridExample>
-      <Label
-        {...args}
-        labelTexts={[
-          { text: 'Semibold label', type: 'semibold' },
-          { text: 'normal label', type: 'normal' },
-          { text: 'semibold returns', type: 'semibold' },
-          { text: 'this is hidden from screen readers', type: 'normal', hideFromScreenReader: true },
-        ]}
-        sublabel={<Sublabel id={sublabelId} sublabelTexts={sublabelTexts} />}
-        statusDot={<StatusDot id={statusDotId} text={'Statusdot text'} variant={'alert'} />}
-        htmlFor={inputId}
+      <Input
+        label={
+          <Label
+            {...args}
+            labelTexts={[
+              { text: 'Semibold label', type: 'semibold' },
+              { text: 'normal label' },
+              { text: 'semibold returns', type: 'semibold' },
+              { text: 'this is hidden from screen readers', hideFromScreenReader: true },
+            ]}
+            sublabel={<Sublabel id={sublabelId1} sublabelTexts={sublabelTexts} />}
+            statusDot={<StatusDot id={statusDotId1} text={'Statusdot text'} variant={'alert'} />}
+          />
+        }
+        aria-describedby={sublabelId1 + ' ' + statusDotId1}
       />
-      <Input aria-describedby={sublabelId + ' ' + statusDotId} inputId={inputId} />
+      <Checkbox
+        label={
+          <Label
+            {...args}
+            labelTexts={[
+              { text: 'Semibold label', type: 'semibold' },
+              { text: 'normal label' },
+              { text: 'semibold returns', type: 'semibold' },
+            ]}
+            sublabel={<Sublabel id={sublabelId2} sublabelTexts={sublabelTexts} />}
+            statusDot={<StatusDot id={statusDotId2} text={'Statusdot text'} variant={'alert'} />}
+          />
+        }
+        aria-describedby={sublabelId2 + ' ' + statusDotId2}
+      />
+      <RadioButton
+        label={
+          <Label
+            {...args}
+            labelTexts={[
+              { text: 'Semibold label', type: 'semibold' },
+              { text: 'normal label' },
+              { text: 'semibold returns', type: 'semibold' },
+            ]}
+            sublabel={<Sublabel id={sublabelId3} sublabelTexts={sublabelTexts} />}
+            statusDot={<StatusDot id={statusDotId3} text={'Statusdot text'} variant={'alert'} />}
+          />
+        }
+        aria-describedby={sublabelId3 + ' ' + statusDotId3}
+      />
     </GridExample>
   );
 };
 
 export const OnDark: ComponentStory<typeof Label> = ({ ...args }: LabelProps & { showicon?: boolean }) => {
-  const inputId = 'input-testid';
   const sublabelId = 'sublabel-testid';
   const sublabelTexts: LabelText[] = [
     { text: 'normal sublabel with a pretty long text', type: 'normal' },
@@ -64,21 +106,52 @@ export const OnDark: ComponentStory<typeof Label> = ({ ...args }: LabelProps & {
   return (
     <GridExample>
       <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 600) }}>
-        <Label
-          {...args}
-          mode={FormMode.ondark}
-          labelTexts={[
-            { text: 'Semibold label', type: 'semibold' },
-            { text: 'normal label', type: 'normal' },
-            { text: 'semibold returns', type: 'semibold' },
-            { text: 'another normal label', type: 'normal' },
-          ]}
-          sublabel={<Sublabel id={sublabelId} sublabelTexts={sublabelTexts} />}
-          statusDot={<StatusDot id={statusDotId} text={'Statusdot text'} variant={'alert'} />}
-          htmlFor={inputId}
+        <Input
+          label={
+            <Label
+              {...args}
+              labelTexts={[
+                { text: 'Semibold label', type: 'semibold' },
+                { text: 'normal label', type: 'normal' },
+                { text: 'semibold returns', type: 'semibold' },
+                { text: 'another normal label', type: 'normal' },
+              ]}
+              sublabel={<Sublabel id={sublabelId} sublabelTexts={sublabelTexts} />}
+              statusDot={<StatusDot id={statusDotId} text={'Statusdot text'} variant={'alert'} />}
+            />
+          }
+          mode={'ondark'}
+          aria-describedby={sublabelId + ' ' + statusDotId}
         />
-        <Input mode={'ondark'} aria-describedby={sublabelId + ' ' + statusDotId} inputId={inputId} />
       </div>
     </GridExample>
   );
 };
+
+export const ChildrenAfterLabel: ComponentStory<typeof Label> = ({ ...args }: LabelProps & { showicon?: boolean }) => (
+  <GridExample>
+    <Input
+      {...args}
+      label={
+        <Label
+          labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]}
+          afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={HelpSign} />}
+        />
+      }
+    />
+  </GridExample>
+);
+
+export const LabelAsString: ComponentStory<typeof Label> = ({ showicon, ...rest }: LabelProps & { showicon?: boolean }) => (
+  <GridExample>
+    <Input {...rest} label={'Test label'} />
+    <Textarea {...rest} label={'Test label'} />
+    <Select {...rest} label={'Test label'}>
+      <option value={'Option 1'}>{'Option 1'}</option>
+      <option value={'Option 2'}>{'Option 2'}</option>
+      <option value={'Option 3'}>{'Option 3'}</option>
+    </Select>
+    <Checkbox {...rest} label={'Test label'} />
+    <RadioButton {...rest} label={'Test label'} />
+  </GridExample>
+);

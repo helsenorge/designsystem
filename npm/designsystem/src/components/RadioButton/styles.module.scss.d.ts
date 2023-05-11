@@ -25,6 +25,7 @@ export type Styles = {
   'radio-button-wrapper__bigform--on-blueberry': string;
   'radio-button-wrapper__bigform--selected': string;
   'radio-button-wrapper--with-error': string;
+  'radiobutton-sublabel-wrapper': string;
 };
 
 export type ClassNames = keyof Styles;
