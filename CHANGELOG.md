@@ -1,3 +1,5 @@
+## 3.2.1-beta.0 (2023-05-11)
+
 ## [3.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv3.1.6&targetVersion=GTv3.2.0) (2023-05-09)
 
 ### Features
