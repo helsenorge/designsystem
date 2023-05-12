@@ -41,23 +41,23 @@
     "test": "lerna run test"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.4",
-    "@commitlint/config-conventional": "^17.4.4",
-    "@helsenorge/eslint-config": "^27.1.2",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@helsenorge/eslint-config": "^27.2.1",
     "conventional-changelog-cli": "^2.2.2",
     "husky": "^8.0.3",
-    "lerna": "^6.5.1",
-    "lint-staged": "^13.2.0",
-    "netlify-cli": "^12.14.0",
+    "lerna": "^6.6.2",
+    "lint-staged": "^13.2.2",
+    "netlify-cli": "^15.0.2",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^4.4.0",
+    "rimraf": "^5.0.0",
     "typescript": "~4.9.5"
   },
   "overrides": {
     "jsonwebtoken": "^9.0.0"
   },
   "engines": {
-    "node": "^16.11.0",
-    "npm": "^8.3.0"
+    "node": "^16 || ^18",
+    "npm": "^9.5.0"
   }
 }
