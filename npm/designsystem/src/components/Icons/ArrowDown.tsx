@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from './Icon';
 
-const ArrowDown: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const ArrowDown: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path
       transform="rotate(270,26.17,26.17)"

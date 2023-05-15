@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from './Icon';
 
-const MobilePhone: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const MobilePhone: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path d="M27.195 7.68H22.86a.497.497 0 100 .993h4.334a.495.495 0 100-.992zm6.28 31.68a2.557 2.557 0 01-2.555 2.554H17.08a2.556 2.556 0 01-2.554-2.553V8.64a2.557 2.557 0 012.553-2.555H30.92a2.558 2.558 0 012.555 2.555v30.72zM30.92 4.786H17.08a3.859 3.859 0 00-3.854 3.855v30.72a3.858 3.858 0 003.853 3.855H30.92a3.859 3.859 0 003.855-3.854V8.64a3.859 3.859 0 00-3.854-3.855zm-9.265 3.393a.425.425 0 10-.85-.001.425.425 0 00.85 0zM24 39.774a1.521 1.521 0 111.52-1.522c0 .839-.681 1.522-1.52 1.522zm0-4.042a2.524 2.524 0 00-2.52 2.52A2.524 2.524 0 0024 40.774a2.524 2.524 0 002.52-2.522 2.524 2.524 0 00-2.52-2.52z" />
   );

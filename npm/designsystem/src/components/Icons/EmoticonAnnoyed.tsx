@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from './Icon';
 
-const EmoticonAnnoyed: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const EmoticonAnnoyed: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <>
       <path d="M24.85 4.56A19.65 19.65 0 1 0 44.5 24.21 19.68 19.68 0 0 0 24.85 4.56Zm0 38A18.35 18.35 0 1 1 43.2 24.21a18.37 18.37 0 0 1-18.35 18.35Z" />

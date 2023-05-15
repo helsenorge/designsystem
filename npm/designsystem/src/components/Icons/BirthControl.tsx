@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SvgPathProps } from './Icon';
 
-const BirthControl: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): JSX.Element => {
+const BirthControl: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path
       fillRule={'evenodd'}

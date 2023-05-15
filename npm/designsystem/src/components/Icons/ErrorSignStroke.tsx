@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from './Icon';
 
-const ErrorSignStroke: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const ErrorSignStroke: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path d="M24.003 31.578a1.394 1.394 0 100 2.788 1.394 1.394 0 000-2.788zm.098-20.19l14.687 26.735H9.227L24.1 11.388zm.008-2.929L6.816 39.541h34.367L24.109 8.459zm-.106 21.033c.494 0 .893-.4.893-.893v-7.228a.893.893 0 00-1.786 0v7.228c0 .493.4.893.893.893z" />
   );

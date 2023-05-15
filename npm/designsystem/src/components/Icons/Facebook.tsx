@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SvgPathProps } from './Icon';
 
-const Facebook: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const Facebook: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path d="M40.179 38.445c0 .981-.751 1.733-1.733 1.733h-8.667v-10.4h5.777v-6.934h-5.777v-2.889c0-.347.23-.577.577-.577h5.779v-6.934H29.72c-3.872.346-6.876 3.64-6.876 7.511v2.89h-4.623v6.933h4.623v10.4H9.555a1.703 1.703 0 01-1.733-1.733V9.555c0-.983.75-1.734 1.733-1.734h28.89c.983 0 1.734.751 1.734 1.733v28.891zm-16.18 1.733V28.622h-4.621V24H24v-4.045c0-3.294 2.543-6.068 5.779-6.357h5.2v4.623h-4.623c-.982 0-1.733.751-1.733 1.734V24H34.4v4.622h-5.778v11.556H24zM41.336 9.554a2.861 2.861 0 00-2.89-2.889H9.556a2.86 2.86 0 00-2.89 2.89v28.89a2.86 2.86 0 002.89 2.89h28.891a2.861 2.861 0 002.889-2.89V9.555z" />
   );

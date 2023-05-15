@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from './Icon';
 
-const AlarmClock: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const AlarmClock: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <g fillRule="evenodd">
       <path d="M24.65 25.937h-4.88v-1.3h3.58v-4.862h1.3zM16.272 36.651l-.954-.883 2.632-2.845.954.883zM31.728 36.651l-2.632-2.845.954-.883 2.632 2.845z" />

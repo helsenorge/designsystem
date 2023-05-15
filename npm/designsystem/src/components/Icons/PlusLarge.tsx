@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from './Icon';
 
-const PlusLarge: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const PlusLarge: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = <path d="M24.992 23.008V9.328h-1.983v13.68H9.328v1.983h13.681v13.681h1.983V24.991h13.68v-1.983z" />;
 
   const normalHover = <path d="M24.992 23.008V7.327h-1.983v15.681H7.327v1.983h15.682v15.681h1.983V24.991h15.68v-1.983z" />;

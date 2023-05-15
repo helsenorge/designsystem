@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SvgPathProps } from './Icon';
 
-const FloppyDisk: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): JSX.Element => {
+const FloppyDisk: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path
       fillRule={'evenodd'}

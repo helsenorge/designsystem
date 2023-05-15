@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from './Icon';
 
-const VerticalDots: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const VerticalDots: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path d="M23.5 16.934c1.045 0 1.9-.855 1.9-1.9s-.855-1.9-1.9-1.9-1.9.855-1.9 1.9.855 1.9 1.9 1.9zm0 8.465c1.045 0 1.9-.855 1.9-1.9s-.855-1.9-1.9-1.9-1.9.855-1.9 1.9.855 1.9 1.9 1.9zm0 8.465c1.045 0 1.9-.855 1.9-1.9s-.855-1.9-1.9-1.9-1.9.855-1.9 1.9.855 1.9 1.9 1.9z" />
   );

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SvgPathProps } from './Icon';
 
-const Instagram: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const Instagram: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <g>
       <path d="M40.339 34.885a5.642 5.642 0 01-5.636 5.635H13.882a5.642 5.642 0 01-5.635-5.635v-20.82a5.642 5.642 0 015.635-5.637h20.82a5.642 5.642 0 015.637 5.636v20.821zM34.703 7.13H13.882c-3.824 0-6.936 3.11-6.936 6.935v20.821c0 3.824 3.112 6.935 6.936 6.935h20.82c3.825 0 6.938-3.11 6.938-6.935v-20.82c0-3.826-3.113-6.936-6.937-6.936z" />

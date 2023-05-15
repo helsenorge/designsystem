@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SvgPathProps } from './Icon';
 
-const MentalHealthAdult: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const MentalHealthAdult: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <g>
       <path d="M36.3 26.616a.823.823 0 01-.705.387h-1.858v2.04c0 2.923-2.376 5.3-5.298 5.3h-.65v5.184H15.646V34.13c0-2.601-.918-4.415-1.889-6.336-1.078-2.133-2.192-4.338-2.192-7.971 0-5.459 4.221-11.351 11.043-11.351 5.395 0 11.128 4.056 11.128 11.572v.143l2.617 5.625a.824.824 0 01-.053.804m1.231-1.353l-2.494-5.365C34.965 11.631 28.6 7.172 22.61 7.172c-6.807 0-12.345 5.675-12.345 12.651 0 3.942 1.24 6.395 2.333 8.558.938 1.855 1.748 3.458 1.748 5.749v6.698H29.09v-5.217a6.608 6.608 0 005.948-6.568v-.74h.557a2.13 2.13 0 001.801-.989 2.126 2.126 0 00.136-2.051" />

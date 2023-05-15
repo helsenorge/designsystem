@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SvgPathProps } from './Icon';
 
-const DataExchange: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): JSX.Element => {
+const DataExchange: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path
       fillRule={'evenodd'}

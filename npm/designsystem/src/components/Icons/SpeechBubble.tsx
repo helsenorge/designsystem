@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from './Icon';
 
-const SpeechBubble: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const SpeechBubble: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path
       d="M14.003 25.497H27.96v-1.301H14.003v1.3Zm0-4.572h19.602v-1.301H14.003v1.3Zm25.08 7.662A2.818 2.818 0 0 1 36.27 31.4h-4.996v3.33l-5.178-3.33H11.73a2.818 2.818 0 0 1-2.816-2.814V17.234a2.818 2.818 0 0 1 2.816-2.814h24.538a2.817 2.817 0 0 1 2.815 2.814v11.353ZM36.27 13.119H11.73a4.121 4.121 0 0 0-4.116 4.115v11.353a4.121 4.121 0 0 0 4.116 4.115h13.982l6.86 4.41v-4.41h3.696a4.12 4.12 0 0 0 4.115-4.115V17.234a4.12 4.12 0 0 0-4.115-4.115Z"

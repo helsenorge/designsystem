@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from './Icon';
 
-const Eraser: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const Eraser: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <g>
       <path d="M28.747 30.364L17.984 19.601l.919-.919 10.763 10.763zM15.743 38.846h17.708v-1.3H15.743zM36.04 38.846h2.944v-1.3H36.04z" />
