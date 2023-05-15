@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv3.2.0&targetVersion=GTv3.2.1) (2023-05-15)
+
+### Features
+
+- nye ikoner ([9694a00](https://github.com/helsenorge/designsystem/commit/9694a0061f412d16241f8be9e051805711ec2cee)), closes
+  [#301797](https://github.com/helsenorge/designsystem/issues/301797)
+
 ## [3.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv3.1.6&targetVersion=GTv3.2.0) (2023-05-09)
 
 ### Features
@@ -711,12 +718,12 @@
 
 ### Bug Fixes
 
-- panel har avstand fra tittel til badge
-  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
-  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 - økt kontrast på understreking av lenker
   ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
   [#229049](https://github.com/helsenorge/designsystem/issues/229049)
+- panel har avstand fra tittel til badge
+  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
+  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
