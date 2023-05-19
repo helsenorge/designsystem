@@ -2,7 +2,17 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
+import Candle from './Candle';
+import FallingLeaf from './FallingLeaf';
+import Graph from './Graph';
+import GroupTwins from './GroupTwins';
+import HandsAndHeart from './HandsAndHeart';
+import HealthcarePerson from './HealthcarePerson';
+import HealthcarePersonell from './HealthcarePersonell';
+import IconWallComponent from './IconWall';
+import LegalDocument from './LegalDocument';
 import Search from './Search';
+import Tombstone from './Tombstone';
 import ExampleSvgIcon from './Undo';
 import GridExample from '../GridExample';
 import Spacer from '../Spacer';
@@ -77,3 +87,12 @@ export const Accessibility: ComponentStory<typeof Icon> = (args: any) => (
     <Icon {...args} svgIcon={Search} size={IconSize.Small} />
   </GridExample>
 );
+
+export const IconWall: ComponentStory<typeof Icon> = (args: any) => {
+  return (
+    <IconWallComponent
+      {...args}
+      svgIcons={[HandsAndHeart, Tombstone, Candle, LegalDocument, FallingLeaf, Graph, GroupTwins, HealthcarePerson, HealthcarePersonell]}
+    />
+  );
+};
