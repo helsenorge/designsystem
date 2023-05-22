@@ -66,12 +66,6 @@ stages:
               version: $(node_version)
 
           # npm tasks
-          # autenticate
-          - task: npmAuthenticate@0
-            displayName: 'npm Authenticate .npmrc'
-            inputs:
-              workingFile: $(working_directory)/.npmrc
-
           # ci / install
           - task: Npm@1
             displayName: npm ci
@@ -177,6 +171,15 @@ stages:
             inputs:
               pollingTimeoutSec: '300'
 
+          # autenticate
+          - script:
+              'echo "registry=https://pkgs.dev.azure.com/nhnfelles/_packaging/Helsenorge/npm/registry/" >>  $(working_directory)/.npmrc'
+            displayName: 'Add Helsenorge-registry to .npmrc'
+          - task: npmAuthenticate@0
+            displayName: 'npm Authenticate .npmrc'
+            inputs:
+              workingFile: $(working_directory)/.npmrc
+
           # Sjekk at alle filer i branchen er commited
           - script: 'git update-index --assume-unchanged .npmrc'
             displayName: 'Ignore changes to .npmrc'
@@ -184,7 +187,7 @@ stages:
             displayName: 'Check for uncommited changes'
 
           - task: Npm@1
-            displayName: 'publish designsystem to Helsnorge-registry (latest)'
+            displayName: 'publish designsystem to Helsenorge-registry (latest)'
             inputs:
               command: custom
               verbose: false
@@ -199,7 +202,7 @@ stages:
               not(contains(variables['Build.SourceBranch'], '-')))
 
           - task: Npm@1
-            displayName: 'publish designsystem to Helsnorge-registry (beta)'
+            displayName: 'publish designsystem to Helsenorge-registry (beta)'
             inputs:
               command: custom
               verbose: false
