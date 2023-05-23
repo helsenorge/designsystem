@@ -40,7 +40,7 @@ export const Default: ComponentStory<typeof Label> = ({ ...args }: LabelProps & 
 
   const sublabelTexts: LabelText[] = [
     { text: 'This is a normal sublabel', type: 'normal' },
-    { text: 'Emphasised sublabel', type: 'semibold', hideFromScreenReader: true },
+    { text: 'Semibold sublabel - hidden from screen reader', type: 'semibold', hideFromScreenReader: true },
   ];
 
   return (
