@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode } from '../../constants';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
+import { renderLabel } from '../Label';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';
@@ -38,7 +39,7 @@ interface TextareaProps
   /** Changes the visuals of the textarea */
   mode?: keyof typeof FormMode;
   /** Label of the input */
-  label?: string;
+  label?: React.ReactNode;
   /** id of the textarea */
   textareaId?: string;
   /** max rows */
@@ -49,10 +50,6 @@ interface TextareaProps
   grow?: boolean;
   /** Error text to show above the component */
   errorText?: string;
-  /** Component shown after label */
-  afterLabelChildren?: React.ReactNode;
-  /** Component shown under label */
-  belowLabelChildren?: React.ReactNode;
 }
 
 const getTextareaMaxWidth = (characters: number): string => {
@@ -72,15 +69,13 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     defaultValue,
     marginBottom: gutterBottom,
     transparent,
-    mode,
+    mode = FormMode.onwhite,
     label,
     textareaId = uuid(),
     minRows = 3,
     maxRows = 10,
     grow,
     errorText,
-    afterLabelChildren,
-    belowLabelChildren,
     autoFocus,
     disabled,
     name,
@@ -129,10 +124,6 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     [styles['textarea--gutterBottom']]: gutterBottom,
   });
 
-  const labelWrapperClass = cn(styles['textarea__label-wrapper'], {
-    [styles[`textarea__label-wrapper--on-dark`]]: onDark,
-  });
-
   const contentWrapperClass = cn(styles['content-wrapper'], {
     [styles['content-wrapper--transparent']]: transparent,
     [styles['content-wrapper--on-blueberry']]: onBlueberry,
@@ -159,7 +150,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     setTextareaInput(e.target.value);
   };
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     if (onChange) {
       onChange(e);
     }
@@ -171,13 +162,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   return (
     <ErrorWrapper errorText={errorText}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
-        {label && (
-          <div className={labelWrapperClass}>
-            <label htmlFor={textareaId}>{label}</label>
-            {afterLabelChildren && <div className={styles['textarea__after-label-children']}>{afterLabelChildren}</div>}
-          </div>
-        )}
-        {belowLabelChildren && <div>{belowLabelChildren}</div>}
+        {renderLabel(label, textareaId, mode as FormMode, disabled)}
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
           <textarea
             rows={rows}

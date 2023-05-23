@@ -3,6 +3,9 @@
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
 @import '../../scss/font-settings';
+@import '../../scss/screen-reader';
+
+$checkbox-icon-size: 1.625rem;
 
 .checkbox-errors {
   font-size: $font-size-sm;
@@ -45,11 +48,8 @@
   display: flex;
   align-items: flex-start;
   cursor: pointer;
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
 
   &__text {
-    display: flex;
     color: $black;
 
     &--on-dark {
@@ -73,13 +73,8 @@
     }
   }
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: $font-size-md;
-  }
-
   &--disabled {
     cursor: default;
-    color: $neutral400;
   }
 
   &__big-form {
@@ -200,19 +195,17 @@
 }
 
 .checkbox {
-  width: 0;
-  margin: 0;
-  appearance: none;
+  @include sr-only;
 
   &__icon-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: getSpacer(4xs) getSpacer(s) getSpacer(4xs) getSpacer(4xs);
-    height: 1.625rem;
-    width: 1.625rem;
-    min-height: 1.625rem;
-    min-width: 1.625rem;
+    height: $checkbox-icon-size;
+    width: $checkbox-icon-size;
+    min-height: $checkbox-icon-size;
+    min-width: $checkbox-icon-size;
     box-shadow: 0 0 0 getSpacer(4xs);
 
     :hover > & {
@@ -368,4 +361,12 @@
       }
     }
   }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.checkbox-sublabel-wrapper {
+  padding-left: 2.8rem;
 }

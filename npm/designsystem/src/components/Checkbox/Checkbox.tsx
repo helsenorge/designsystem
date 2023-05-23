@@ -8,6 +8,7 @@ import { getColor } from '../../theme/currys/color';
 import { uuid } from '../../utils/uuid';
 import Icon from '../Icons';
 import Check from '../Icons/Check';
+import { getLabelText, renderLabelAsParent } from '../Label';
 
 import checkboxStyles from './styles.module.scss';
 
@@ -18,8 +19,8 @@ export interface CheckboxProps
   > {
   /** Adds custom classes to the element. */
   className?: string;
-  /** The label text next to the checkbox */
-  label: string;
+  /** The <Label/> next to the checkbox - sublabels kan ikke kombineres med bigform variant */
+  label: React.ReactNode;
   /** input id of the checkbox */
   inputId?: string;
   /** Changes the visuals of the checkbox */
@@ -41,12 +42,12 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     disabled,
     label,
     inputId = uuid(),
-    mode,
+    mode = FormMode.onwhite,
     name = inputId,
     variant,
     errorText,
     error = !!errorText,
-    value = label,
+    value = getLabelText(label),
     testId,
     required,
     onChange,
@@ -95,7 +96,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     [checkboxStyles['checkbox__icon-wrapper__big-form--checked--invalid']]: bigform && isChecked && onInvalid,
     [checkboxStyles['checkbox__icon-wrapper__big-form--checked--disabled']]: disabled && bigform && isChecked,
   });
-  const labelClasses = classNames(checkboxStyles['checkbox-label__text'], {
+  const labelTextClasses = classNames(checkboxStyles['checkbox-label__text'], {
     [checkboxStyles['checkbox-label__text__big-form--checked']]: bigform && isChecked,
     [checkboxStyles['checkbox-label__text__big-form--invalid']]: bigform && isChecked && onInvalid,
     [checkboxStyles['checkbox-label__text--on-dark']]: onDark,
@@ -120,10 +121,9 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     setIsChecked(!isChecked);
   };
 
-  return (
-    <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
-      {errorText && <p className={errorStyles}>{errorText}</p>}
-      <label htmlFor={inputId} className={checkboxLabelClasses}>
+  const getLabelContent = (): React.ReactNode => {
+    return (
+      <>
         <input
           id={inputId}
           name={name}
@@ -142,8 +142,24 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
         <span className={checkboxIconWrapperClasses}>
           {isChecked && <Icon color={iconColor} className={checkboxStyles['checkbox__icon']} svgIcon={Check} size={IconSize.XSmall} />}
         </span>
-        <span className={labelClasses}>{label}</span>
-      </label>
+      </>
+    );
+  };
+
+  return (
+    <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
+      {errorText && <p className={errorStyles}>{errorText}</p>}
+      {renderLabelAsParent(
+        label,
+        getLabelContent(),
+        inputId,
+        mode as FormMode,
+        disabled,
+        checkboxLabelClasses,
+        labelTextClasses,
+        checkboxStyles['checkbox-sublabel-wrapper'],
+        bigform
+      )}
     </div>
   );
 });

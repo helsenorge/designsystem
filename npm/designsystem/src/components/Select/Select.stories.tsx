@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Select from './Select';
 import { palette } from '../../theme/palette';
+import Label from '../Label';
 
 export default {
   title: 'Components/Select',
@@ -26,7 +27,7 @@ export default {
 
 export const Default: ComponentStory<typeof Select> = (args: any) => (
   <>
-    <Select {...args} label={'Velg noe'} name={'select name 1'}>
+    <Select {...args} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
@@ -35,7 +36,12 @@ export const Default: ComponentStory<typeof Select> = (args: any) => (
 );
 export const DefaultValue: ComponentStory<typeof Select> = (args: any) => (
   <>
-    <Select defaultValue={'Option 2'} {...args} label={'Velg noe'} name={'select name 1'}>
+    <Select
+      defaultValue={'Option 2'}
+      {...args}
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
@@ -44,7 +50,7 @@ export const DefaultValue: ComponentStory<typeof Select> = (args: any) => (
 );
 export const Disabled: ComponentStory<typeof Select> = (args: any) => (
   <>
-    <Select {...args} disabled label={'Velg noe'} name={'select name 1'}>
+    <Select {...args} disabled label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
@@ -54,13 +60,18 @@ export const Disabled: ComponentStory<typeof Select> = (args: any) => (
 
 export const Concepts: ComponentStory<typeof Select> = (args: any) => (
   <div style={{ backgroundColor: palette.blueberry100, padding: '2rem' }}>
-    <Select {...args} concept={'normal'} label={'Velg noe'} name={'select name 1'}>
+    <Select {...args} concept={'normal'} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
     </Select>
 
-    <Select {...args} concept={'transparent'} label={'Velg noe'} name={'select name 1'}>
+    <Select
+      {...args}
+      concept={'transparent'}
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
@@ -70,23 +81,23 @@ export const Concepts: ComponentStory<typeof Select> = (args: any) => (
 
 export const Modes: ComponentStory<typeof Select> = (args: any) => (
   <>
-    <Select {...args} mode={'onwhite'} label={'Velg noe'} name={'select name 1'}>
+    <Select {...args} mode={'onwhite'} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
     </Select>
 
-    <Select {...args} mode={'ongrey'} label={'Velg noe'} name={'select name 1'}>
+    <Select {...args} mode={'ongrey'} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
     </Select>
-    <Select {...args} mode={'onblueberry'} label={'Velg noe'} name={'select name 1'}>
+    <Select {...args} mode={'onblueberry'} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
     </Select>
-    <Select {...args} mode={'oninvalid'} label={'Velg noe'} name={'select name 1'}>
+    <Select {...args} mode={'oninvalid'} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
@@ -96,13 +107,13 @@ export const Modes: ComponentStory<typeof Select> = (args: any) => (
 
 export const Width: ComponentStory<typeof Select> = (args: any) => (
   <>
-    <Select {...args} label={'Velg noe'} name={'select name 1'}>
+    <Select {...args} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
     </Select>
 
-    <Select {...args} width={20} label={'Velg noe'} name={'select name 1'}>
+    <Select {...args} width={20} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>

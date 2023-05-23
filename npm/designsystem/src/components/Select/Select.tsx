@@ -8,6 +8,7 @@ import { getColor } from '../../theme/currys';
 import ErrorWrapper from '../ErrorWrapper';
 import Icon from '../Icons';
 import ChevronDown from '../Icons/ChevronDown';
+import { renderLabel } from '../Label';
 
 import selectStyles from './styles.module.scss';
 
@@ -24,7 +25,7 @@ export interface SelectProps
   /** Changes the visuals of the component */
   concept?: SelectConcept;
   /** The label text above the select */
-  label?: string;
+  label?: React.ReactNode;
   /** Changes the visuals of the component */
   mode?: keyof typeof FormMode;
   /** Activates Error style for the select component - This is can be true while errorText is empty, when in a FormGroup */
@@ -52,7 +53,7 @@ const getIconColor = (invalid: boolean, disabled: boolean) => {
   return disabled ? getColor('neutral', 500) : getColor(iconColor, 600);
 };
 
-export const Select = React.forwardRef((props: SelectProps, ref: React.Ref<HTMLSelectElement>) => {
+export const Select = React.forwardRef(function SelectForwardedRef(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
   const {
     afterLabelChildren,
     className,
@@ -64,7 +65,7 @@ export const Select = React.forwardRef((props: SelectProps, ref: React.Ref<HTMLS
     label,
     selectId,
     name = selectId,
-    mode,
+    mode = FormMode.onwhite,
     testId,
     width,
     required,
@@ -76,13 +77,8 @@ export const Select = React.forwardRef((props: SelectProps, ref: React.Ref<HTMLS
   const uuid = useUuid(selectId);
   const onBlueberry = mode === 'onblueberry';
   const invalid = mode === 'oninvalid' || !!errorText || !!error;
-  const onDark = mode === 'ondark';
   const iconColor = getIconColor(invalid, !!disabled);
   const maxWidth = width ? getSelectMaxWidth(width) : undefined;
-
-  const selectLabelClasses = classNames(selectStyles['select-wrapper__label-wrapper'], {
-    [selectStyles['select-wrapper__label-wrapper--on-dark']]: onDark,
-  });
 
   const selectInnerWrapperClasses = classNames(
     selectStyles['select-inner-wrapper'],
@@ -103,12 +99,7 @@ export const Select = React.forwardRef((props: SelectProps, ref: React.Ref<HTMLS
   return (
     <ErrorWrapper errorText={errorText}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectStyles['select-wrapper']} style={{ maxWidth }}>
-        {label && (
-          <div className={selectLabelClasses}>
-            <label htmlFor={uuid}>{label}</label>
-            {afterLabelChildren && <div className={selectStyles['select-wrapper__after-label-children']}>{afterLabelChildren}</div>}
-          </div>
-        )}
+        {renderLabel(label, uuid, mode as FormMode, disabled)}
         <div className={selectInnerWrapperClasses}>
           <Icon className={selectStyles['select-arrow']} svgIcon={ChevronDown} color={iconColor} size={IconSize.XSmall} />
           <select

@@ -12,6 +12,7 @@ import Coronavirus from '../Icons/Coronavirus';
 import Input from '../Input/Input';
 import RadioButton from '../RadioButton/RadioButton';
 import './formGroup.stories.scss';
+import Label from '../Label';
 
 export default {
   title: 'Components/FormGroup',
@@ -58,9 +59,9 @@ export const CheckboxChildren: ComponentStory<typeof FormGroup> = (args: any) =>
       }}
     >
       <FormGroup {...args}>
-        <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-        <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-        <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+        <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+        <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+        <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
       </FormGroup>
     </div>
   </GridExample>
@@ -74,9 +75,9 @@ export const RadioButtonChildren: ComponentStory<typeof FormGroup> = (args: any)
       }}
     >
       <FormGroup {...args}>
-        <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
-        <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
-        <RadioButton inputId={'RadioButton3'} label={'RadioButton 3'} />
+        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
       </FormGroup>
     </div>
   </GridExample>
@@ -90,9 +91,9 @@ export const InputChildren: ComponentStory<typeof FormGroup> = (args: any) => (
       }}
     >
       <FormGroup {...args}>
-        <Input label={'Input 1'} />
-        <Input icon={Coronavirus} label={'Input 2'} />
-        <Input icon={Coronavirus} iconRight label={'Input 3'} />
+        <Input label={<Label labelTexts={[{ text: 'Input 1' }]} />} />
+        <Input icon={Coronavirus} label={<Label labelTexts={[{ text: 'Input 2' }]} />} />
+        <Input icon={Coronavirus} iconRight label={<Label labelTexts={[{ text: 'Input 3' }]} />} />
       </FormGroup>
     </div>
   </GridExample>
@@ -106,9 +107,9 @@ export const DivTagTrue: ComponentStory<typeof FormGroup> = (args: any) => (
       }}
     >
       <FormGroup htmlMarkup="div" {...args}>
-        <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
-        <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
-        <RadioButton inputId={'RadioButton3'} label={'RadioButton 3'} />
+        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
       </FormGroup>
     </div>
   </GridExample>
@@ -126,15 +127,15 @@ export const CustomErrorWrapperClass: ComponentStory<typeof FormGroup> = (args: 
         legend={'ErrorWrapperClass gir mulighet til å style ErrorWrapper som ligger rundt form'}
         errorWrapperClassName="error-wrapper-class--no-bottom-margin"
       >
-        <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
-        <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
-        <RadioButton inputId={'RadioButton3'} label={'Legg merke til avstand ned til border'} />
+        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Legg merke til avstand ned til border' }]} />} />
       </FormGroup>
       <Spacer size="2xs" />
       <FormGroup htmlMarkup="div" {...args} errorWrapperClassName="error-wrapper-class">
-        <RadioButton inputId={'RadioButton1'} label={'RadioButton 1'} />
-        <RadioButton inputId={'RadioButton2'} label={'RadioButton 2'} />
-        <RadioButton inputId={'RadioButton3'} label={'Med standard avstand ned til border'} />
+        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Med standard avstand ned til border' }]} />} />
       </FormGroup>
     </div>
   </GridExample>

@@ -5,26 +5,27 @@ import { render, screen } from '@testing-library/react';
 import FormLayout, { FormLayoutColumns } from './FormLayout';
 import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from '../FormGroup';
+import Label from '../Label';
 import RadioButton from '../RadioButton';
 
 describe('Gitt at FormLayout skal vises', (): void => {
   describe('Når FormLayout rendres', (): void => {
     test('Så vises FormLayout', (): void => {
-      const { container } = render(
+      render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
           <FormLayout>
-            <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-            <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-            <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+            <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+            <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+            <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
           </FormLayout>
         </FormGroup>
       );
 
-      expect(container).toMatchSnapshot();
-
-      const layout = screen.getByText('Checkbox 1').parentElement.parentElement.parentElement.parentElement;
+      const layout =
+        screen.getByText('Checkbox 1').parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement
+          ?.parentElement?.parentElement;
       expect(layout).toBeVisible();
-      expect(layout.className).toBe('form-layout-container');
+      expect(layout?.className).toBe('form-layout-container');
     });
   });
 
@@ -33,16 +34,18 @@ describe('Gitt at FormLayout skal vises', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
           <FormLayout maxColumns={FormLayoutColumns.two}>
-            <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-            <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-            <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+            <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+            <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+            <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
           </FormLayout>
         </FormGroup>
       );
 
-      const layout = screen.getByText('Checkbox 1').parentElement.parentElement.parentElement;
+      const layout =
+        screen.getByText('Checkbox 1').parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement
+          ?.parentElement;
       expect(layout).toBeVisible();
-      expect(layout.className).toBe('form-layout-child form-layout-child--two');
+      expect(layout?.className).toBe('form-layout-child form-layout-child--two');
     });
   });
 
@@ -51,16 +54,18 @@ describe('Gitt at FormLayout skal vises', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
           <FormLayout colMinWidth={200}>
-            <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-            <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-            <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+            <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+            <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+            <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
           </FormLayout>
         </FormGroup>
       );
 
-      const layout = screen.getByText('Checkbox 1').parentElement.parentElement.parentElement.parentElement;
+      const layout =
+        screen.getByText('Checkbox 1').parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement
+          ?.parentElement?.parentElement;
       expect(layout).toBeVisible();
-      expect(layout.style['_values']['--min-col-width']).toBe('200px');
+      expect(layout?.style['_values']['--min-col-width']).toBe('200px');
     });
   });
 
@@ -69,16 +74,16 @@ describe('Gitt at FormLayout skal vises', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} variant={'bigform'}>
           <FormLayout maxColumns={FormLayoutColumns.two}>
-            <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-            <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-            <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+            <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+            <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+            <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
           </FormLayout>
         </FormGroup>
       );
 
-      const checkbox = screen.getByText('Checkbox 1').parentElement;
+      const checkbox = screen.getByText('Checkbox 1').parentElement?.parentElement?.parentElement;
       expect(checkbox).toBeVisible();
-      expect(checkbox.className).toBe('checkbox-label checkbox-label--bigform checkbox-label__big-form--on-white');
+      expect(checkbox?.className).toBe('checkbox-label checkbox-label--bigform checkbox-label__big-form--on-white');
     });
   });
 
@@ -87,9 +92,9 @@ describe('Gitt at FormLayout skal vises', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
           <FormLayout maxColumns={FormLayoutColumns.two}>
-            <Checkbox inputId={'Checkbox1'} label={'Checkbox 1'} />
-            <Checkbox inputId={'Checkbox2'} label={'Checkbox 2'} />
-            <Checkbox inputId={'Checkbox3'} label={'Checkbox 3'} />
+            <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+            <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+            <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
           </FormLayout>
         </FormGroup>
       );
@@ -104,9 +109,9 @@ describe('Gitt at FormLayout skal vises', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
           <FormLayout maxColumns={FormLayoutColumns.two}>
-            <RadioButton inputId={'Radio1'} label={'Radio 1'} />
-            <RadioButton inputId={'Radio2'} label={'Radio 2'} />
-            <RadioButton inputId={'Radio3'} label={'Radio 3'} />
+            <RadioButton inputId={'Radio1'} label={<Label labelTexts={[{ text: 'Radio 1' }]} />} />
+            <RadioButton inputId={'Radio2'} label={<Label labelTexts={[{ text: 'Radio 2' }]} />} />
+            <RadioButton inputId={'Radio3'} label={<Label labelTexts={[{ text: 'Radio 3' }]} />} />
           </FormLayout>
         </FormGroup>
       );

@@ -8,6 +8,7 @@ import { getColor } from '../../theme/currys';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icons';
+import { renderLabel } from '../Label';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';
@@ -37,8 +38,6 @@ export interface InputProps
   type?: keyof typeof InputTypes;
   /** input id */
   inputId?: string;
-  /** label id */
-  labelId?: string;
   /** Width of input field in characters (approximate) */
   width?: number;
   /** If true, the component will be transparent. */
@@ -52,19 +51,15 @@ export interface InputProps
   /** Changes the visuals of the input */
   variant?: keyof typeof FormVariant;
   /** Label of the input */
-  label?: string;
+  label?: React.ReactNode;
   /** Activates Error style for the input */
   error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** Component shown after label */
-  afterLabelChildren?: React.ReactNode;
   /** Component shown after input */
   afterInputChildren?: React.ReactNode;
-  /** Component shown under label */
-  belowLabelChildren?: React.ReactNode;
   /** max character limit in input  */
   maxCharacters?: number;
   /** The text is displayed in the end of the text-counter */
@@ -98,12 +93,11 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     placeholder,
     type = InputTypes.text,
     inputId = uuid(),
-    labelId,
     name,
     transparent = false,
     icon,
     iconRight,
-    mode,
+    mode = FormMode.onwhite,
     variant,
     label,
     error,
@@ -112,9 +106,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     disabled,
     readOnly,
     autoComplete,
-    afterLabelChildren,
     afterInputChildren,
-    belowLabelChildren,
     width,
     required,
     onChange,
@@ -136,11 +128,6 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const isTransparent = transparent && mode !== FormMode.ondark && !onError;
 
   const inputWrapperClass = cn(styles['input-wrapper'], className);
-
-  const labelWrapperClass = cn(styles['input-wrapper__label-wrapper'], {
-    [styles['input-wrapper__label-wrapper--on-dark']]: onDark,
-    [styles['input-wrapper__label-wrapper--disabled']]: disabled,
-  });
 
   const contentWrapperClass = cn(styles['content-wrapper'], {
     [styles['content-wrapper--transparent']]: isTransparent,
@@ -184,16 +171,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   return (
     <ErrorWrapper errorText={errorText}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass}>
-        {label && (
-          <div className={labelWrapperClass}>
-            <label id={labelId ?? undefined} htmlFor={inputId}>
-              {label}
-            </label>
-            {afterLabelChildren && <div className={styles['input-wrapper__after-label-children']}>{afterLabelChildren}</div>}
-          </div>
-        )}
-        {belowLabelChildren && <div>{belowLabelChildren}</div>}
-
+        {renderLabel(label, inputId, mode as FormMode, disabled)}
         {/* input-elementet tillater keyboard-interaksjon */}
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
         <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>

@@ -5,6 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Checkbox from './Checkbox';
 import { FormMode, FormVariant } from '../../constants';
 import GridExample from '../GridExample';
+import Label from '../Label/Label';
 
 export default {
   title: 'Components/Checkbox',
@@ -18,10 +19,6 @@ export default {
     },
   },
   argTypes: {
-    label: {
-      control: 'text',
-      defaultValue: 'Jeg er frisk!',
-    },
     checked: {
       control: 'boolean',
       defaultValue: false,
@@ -57,25 +54,33 @@ export default {
 
 export const Default: ComponentStory<typeof Checkbox> = args => (
   <GridExample>
-    <Checkbox {...args} label="onwhite" mode="onwhite" />
-    <Checkbox {...args} label="ongrey" mode="ongrey" />
-    <Checkbox {...args} label="onblueberry" mode="onblueberry" />
-    <Checkbox {...args} label="oninvalid" mode="oninvalid" />
-    <Checkbox {...args} label="onwhite - disabled" mode="onwhite" disabled />
+    <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} mode="onwhite" />
+    <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} mode="ongrey" />
+    <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} mode="onblueberry" />
+    <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} mode="oninvalid" />
+    <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} mode="onwhite" disabled />
     <span style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
-      <Checkbox {...args} label="ondark" mode="ondark" />
+      <Checkbox {...args} label={<Label mode={'ondark'} labelTexts={[{ text: 'ondark' }]} />} mode="ondark" />
     </span>
   </GridExample>
 );
+
 export const BigForm: ComponentStory<typeof Checkbox> = args => (
   <GridExample>
     <span style={{ backgroundColor: '#EAE7E7', display: 'block', marginTop: '1rem', padding: '1rem' }}>
-      <Checkbox {...args} variant="bigform" label="onwhite" mode="onwhite" />
-      <Checkbox {...args} variant="bigform" label="ongrey" mode="ongrey" />
-      <Checkbox {...args} variant="bigform" label="onblueberry" mode="onblueberry" />
-      <Checkbox {...args} variant="bigform" label="oninvalid" mode="oninvalid" />
-      <Checkbox {...args} variant="bigform" label="onwhite - disabled" mode="onwhite" disabled />
-      <Checkbox {...args} variant="bigform" label="onwhite - disabled - checked" checked mode="onwhite" disabled />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} variant="bigform" mode="onwhite" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} variant="bigform" mode="ongrey" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} variant="bigform" mode="onblueberry" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} variant="bigform" mode="oninvalid" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} variant="bigform" mode="onwhite" disabled />
+      <Checkbox
+        {...args}
+        label={<Label mode={'ondark'} labelTexts={[{ text: 'onwhite - disabled - checked' }]} />}
+        variant="bigform"
+        checked
+        mode="onwhite"
+        disabled
+      />
     </span>
   </GridExample>
 );

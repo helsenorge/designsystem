@@ -13,6 +13,7 @@ import Checkbox from '../Checkbox';
 import GridExample from '../GridExample';
 import Icon from '../Icons';
 import Envelope from '../Icons/Envelope';
+import Label from '../Label';
 import Slider from '../Slider';
 
 export default {
@@ -152,8 +153,8 @@ export const ModalWithDisabledButton: ComponentStory<typeof Modal> = (args: any)
       {open && (
         <Modal {...args} onClose={() => isOpen(!open)}>
           <div>
-            <Checkbox label="Checkbox 1" />
-            <Checkbox label="Checkbox 2" />
+            <Checkbox label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+            <Checkbox label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
             <p>Vanlig tekst</p>
             <Button disabled>Ok</Button>
           </div>

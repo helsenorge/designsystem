@@ -6,6 +6,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Dropdown, { DropdownMode } from './Dropdown';
 import Checkbox from '../Checkbox';
 import GridExample from '../GridExample';
+import Label from '../Label';
 import RadioButton from '../RadioButton';
 
 export default {
@@ -63,15 +64,15 @@ export default {
 export const RadioButtonChildren: ComponentStory<typeof Dropdown> = (args: any) => (
   <GridExample>
     <Dropdown {...args} onToggle={action('onToggle')}>
-      <RadioButton label="Valg 1" name="radiobutton" />
-      <RadioButton label="Valg 2" name="radiobutton" />
-      <RadioButton label="Valg 3" name="radiobutton" />
-      <RadioButton label="Valg 4" name="radiobutton" />
-      <RadioButton label="Valg 5" name="radiobutton" />
-      <RadioButton label="Valg 6" name="radiobutton" />
-      <RadioButton label="Valg 7" name="radiobutton" />
-      <RadioButton label="Valg 8" name="radiobutton" />
-      <RadioButton label="Valg 9" name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 1' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 2' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 3' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 4' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 5' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 6' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 7' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 8' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 9' }]} />} name="radiobutton" />
     </Dropdown>
   </GridExample>
 );
@@ -79,15 +80,15 @@ export const RadioButtonChildren: ComponentStory<typeof Dropdown> = (args: any) 
 export const CheckboxChildren: ComponentStory<typeof Dropdown> = (args: any) => (
   <GridExample>
     <Dropdown {...args} onToggle={action('onToggle')}>
-      <Checkbox label="Valg 1" name="checkbox" />
-      <Checkbox label="Valg 2" name="checkbox" />
-      <Checkbox label="Valg 3" name="checkbox" />
-      <Checkbox label="Valg 4" name="checkbox" />
-      <Checkbox label="Valg 5" name="checkbox" />
-      <Checkbox label="Valg 6" name="checkbox" />
-      <Checkbox label="Valg 7" name="checkbox" />
-      <Checkbox label="Valg 8" name="checkbox" />
-      <Checkbox label="Valg 9" name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 1' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 2' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 3' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 4' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 5' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 6' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 7' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 8' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 9' }]} />} name="checkbox" />
     </Dropdown>
   </GridExample>
 );

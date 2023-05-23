@@ -2,28 +2,6 @@
 
 @mixin input-wrapper {
   width: 100%;
-
-  &__label-wrapper {
-    display: inline-flex;
-    align-items: center;
-    line-height: getSpacer(m);
-    font-size: $font-size-sm;
-    font-weight: 600;
-    padding-bottom: getSpacer(xs);
-
-    @media (min-width: map.get($grid-breakpoints, md)) {
-      line-height: getSpacer(l);
-      font-size: $font-size-md;
-    }
-
-    &--on-dark {
-      color: $white;
-    }
-  }
-
-  &__after-label-children {
-    padding-left: 0.75rem;
-  }
 }
 
 @mixin content-wrapper {
