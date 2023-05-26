@@ -14,7 +14,7 @@ export interface Props {
   compactDataRendering?: CompactDataRendering;
 }
 
-export const TableBody = ({ className, children, compactDataRendering = CompactDataRendering.notCompact }: Props): JSX.Element => {
+export const TableBody = ({ className, children, compactDataRendering = CompactDataRendering.notCompact }: Props): React.Element => {
   const tableBodyClasses = classNames(tableStyles['table-body'], className);
   return (
     <tbody className={tableBodyClasses}>

@@ -31,7 +31,7 @@ export const TableExpanderCell = ({
   expanded,
   className,
   compactDataRendering = CompactDataRendering.notCompact,
-}: Props): JSX.Element => {
+}: Props): React.Element => {
   const tableCellClass = classNames(tableStyles['table__cell'], tableStyles['table__cell-expander'], className, {
     [tableStyles['table__cell--compact']]: compactDataRendering === CompactDataRendering.compact,
   });

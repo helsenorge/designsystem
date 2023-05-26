@@ -35,7 +35,7 @@ export const TableHeadCell = ({
   children,
   sortDir,
   compactDataRendering = CompactDataRendering.notCompact,
-}: Props): JSX.Element => {
+}: Props): React.Element => {
   const tableHeadCellDefaultClass = classNames(tableStyles['table__head-cell'], className, {
     [tableStyles['table__head-cell--compact']]: compactDataRendering === CompactDataRendering.compact,
   });
@@ -55,7 +55,7 @@ export const TableHeadCell = ({
     className
   );
 
-  const renderSortIcon = (): JSX.Element | undefined =>
+  const renderSortIcon = (): React.Element | undefined =>
     sortDir && (
       <div className={tableStyles['table__head-cell-sort-icon-wrapper']}>
         <Icon svgIcon={sortDir == SortDirection.asc ? ArrowDown : ArrowUp} size={IconSize.XXSmall} />

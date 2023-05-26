@@ -33,7 +33,7 @@ export const TableCell = ({
   children,
   className,
   compactDataRendering = CompactDataRendering.notCompact,
-}: Props): JSX.Element => {
+}: Props): React.Element => {
   const tableCellClass = classNames(
     tableStyles['table__cell'],
     { [tableStyles['go']]: compactDataRendering === CompactDataRendering.compact },

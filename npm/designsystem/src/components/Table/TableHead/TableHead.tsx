@@ -22,7 +22,7 @@ export interface Props {
   compactDataRendering?: CompactDataRendering;
 }
 
-export const TableHead = ({ category, className, children, compactDataRendering }: Props): JSX.Element => {
+export const TableHead = ({ category, className, children, compactDataRendering }: Props): React.Element => {
   const tableHeadClass = classNames(
     tableStyles['table__head'],
     {
