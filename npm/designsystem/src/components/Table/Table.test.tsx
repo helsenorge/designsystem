@@ -18,6 +18,7 @@ import {
   SortDirection,
   TableExpanderCell,
   TableExpandedRow,
+  ModeType,
 } from './';
 
 const mockUseBreakpoint = jest.fn();
@@ -39,7 +40,9 @@ const TableContents: React.FC = () => (
     </TableHead>
     <TableBody>
       <TableRow>
-        <TableCell dataLabel="Navn">{'Hans Nilsen'}</TableCell>
+        <TableCell testId={'table-cell'} dataLabel="Navn">
+          {'Hans Nilsen'}
+        </TableCell>
         <TableCell dataLabel="Beskrivelse">{'En ganske lang beskrivelse...'}</TableCell>
       </TableRow>
     </TableBody>
@@ -355,7 +358,47 @@ describe('Når den skal vises med blokk-visning på md skjerm', (): void => {
     });
   });
 });
+describe('Gitt at table skal vises i compact-modus', (): void => {
+  describe('når table render med children og compact er gitt til table', (): void => {
+    it('Så vises den i compact-modus', (): void => {
+      render(
+        <Table mode={ModeType.compact}>
+          <TableHead category={HeaderCategory.normal}>
+            <TableRow>
+              <TableHeadCell>{'Navn'}</TableHeadCell>
+              <TableHeadCell>{'Beskrivelse'}</TableHeadCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell testId={'table-cell'} dataLabel="Navn">
+                {'Hans Nilsen'}
+              </TableCell>
+              <TableCell dataLabel="Beskrivelse">{'En ganske lang beskrivelse...'}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
 
+      const table = screen.getByTestId('table-cell');
+      expect(table.className).toBe('table__cell table__cell--compact');
+    });
+  });
+});
+describe('Gitt at table-cell rendres', (): void => {
+  describe('når compact satt', (): void => {
+    it('Så vises den i compact-modus', (): void => {
+      render(
+        <TableCell mode={ModeType.compact} testId={'table-cell'} dataLabel="Navn">
+          {'Hans Nilsen'}
+        </TableCell>
+      );
+
+      const table = screen.getByTestId('table-cell');
+      expect(table.className).toBe('table__cell table__cell--compact');
+    });
+  });
+});
 describe('Gitt at Table kan sorteres', (): void => {
   describe('Når klikker for å sortere', (): void => {
     it('Så har tabellheader og knapper for å sortere riktige aria-egenskaper', async (): Promise<void> => {

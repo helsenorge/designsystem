@@ -24,7 +24,7 @@ import {
   TextAlign,
   defaultConfig,
   simpleConfig,
-  CompactDataRendering,
+  ModeType,
 } from './';
 
 export default {
@@ -58,10 +58,10 @@ export default {
       options: HeaderCategory,
       defaultValue: HeaderCategory.normal,
     },
-    compactDataRendering: {
+    mode: {
       control: 'select',
-      options: CompactDataRendering,
-      defaultValue: CompactDataRendering.notCompact,
+      options: ModeType,
+      defaultValue: ModeType.normal,
     },
   },
 } as ComponentMeta<typeof Table>;
@@ -106,7 +106,7 @@ export const Comapct: ComponentStory<typeof Table> = (args: any) => {
         <div className="col-8 offset-2">
           <Table
             {...args}
-            compactDataRendering={CompactDataRendering.compact}
+            mode={ModeType.compact}
             breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}
           >
             <TableHead category={args.headerCategory}>

@@ -36,6 +36,7 @@ exports[`Gitt at Table skal vises Når den skal vises Så vises en tabell 1`] = 
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -87,6 +88,7 @@ exports[`Når den skal vises med blokk-visning på md skjerm Når breakpoint er 
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -138,6 +140,7 @@ exports[`Når den skal vises med blokk-visning på md skjerm Når breakpoint er 
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -190,6 +193,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når bre
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -242,6 +246,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når fal
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -294,6 +299,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tab
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -346,6 +352,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tab
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -397,6 +404,7 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -463,6 +471,7 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
             <td
               class="table__cell"
               data-label="Navn"
+              data-testid="table-cell"
             >
               Hans Nilsen
             </td>
@@ -517,6 +526,7 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -569,6 +579,7 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -620,6 +631,7 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>

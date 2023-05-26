@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import tableStyles from '../styles.module.scss';
-import { CompactDataRendering } from '../Table';
+import { ModeType } from '../Table';
 
 export enum HeaderCategory {
   normal = 'normal',
@@ -19,24 +19,24 @@ export interface Props {
   /** Sets the content of the thead. Add table rows  */
   children: React.ReactNode;
   /** For display with less space. Discouraged to use together with interactive elements. */
-  compactDataRendering?: CompactDataRendering;
+  mode?: ModeType;
 }
 
-export const TableHead = ({ category, className, children, compactDataRendering }: Props): React.JSX => {
+export const TableHead = ({ category, className, children, mode }: Props): React.JSX.Element => {
   const tableHeadClass = classNames(
     tableStyles['table__head'],
     {
       [tableStyles['table__head--normal']]: category === HeaderCategory.normal,
       [tableStyles['table__head--transparent']]: category === HeaderCategory.transparent,
       [tableStyles['table__head--sortable']]: category == HeaderCategory.sortable,
-      [tableStyles['table__head--compact']]: compactDataRendering == CompactDataRendering.compact,
+      [tableStyles['table__head--compact']]: mode == ModeType.compact,
     },
     className
   );
 
   return (
     <thead className={tableHeadClass}>
-      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { compactDataRendering }))}
+      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { mode }))}
     </thead>
   );
 };

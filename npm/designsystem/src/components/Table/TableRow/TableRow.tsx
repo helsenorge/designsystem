@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import tableStyles from '../styles.module.scss';
-import { CompactDataRendering } from '../Table';
+import { ModeType } from '../Table';
 import TableExpanderCellMobile from '../TableExpanderCell/TableExpanderCellMobile';
 
 export interface Props {
@@ -24,7 +24,7 @@ export interface Props {
   /** Sets the cells of the table row element.  */
   children?: React.ReactNode;
   /** For display with less space. Discouraged to use together with interactive elements. */
-  compactDataRendering?: CompactDataRendering;
+  mode?: ModeType;
 }
 
 export const TableRow: React.FC<Props> = ({
@@ -36,7 +36,7 @@ export const TableRow: React.FC<Props> = ({
   onClick,
   className,
   children,
-  compactDataRendering = CompactDataRendering.notCompact,
+  mode = ModeType.normal,
 }) => {
   const tableRowClass = classNames(
     tableStyles['table-row'],
@@ -49,14 +49,14 @@ export const TableRow: React.FC<Props> = ({
 
   return (
     <tr className={tableRowClass} onClick={onClick} key={rowKey}>
-      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { compactDataRendering }))}
+      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { mode }))}
       {expandable && (
         <TableExpanderCellMobile
           expanded={expanded}
           onClick={onClick}
           hideDetailsText={hideDetailsText}
           showDetailsText={showDetailsText}
-          compactDataRendering={compactDataRendering}
+          mode={mode}
         />
       )}
     </tr>

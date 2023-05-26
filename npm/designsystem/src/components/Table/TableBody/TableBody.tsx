@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import tableStyles from '../styles.module.scss';
-import { CompactDataRendering } from '../Table';
+import { ModeType } from '../Table';
 
 export interface Props {
   /** Adds custom classes to the element. */
@@ -11,14 +11,14 @@ export interface Props {
   /** Sets the content of the table body. Use TableRows */
   children?: React.ReactNode;
   /** For display with less space. Discouraged to use together with interactive elements. */
-  compactDataRendering?: CompactDataRendering;
+  mode?: ModeType;
 }
 
-export const TableBody = ({ className, children, compactDataRendering = CompactDataRendering.notCompact }: Props): React.JSX => {
+export const TableBody = ({ className, children, mode = ModeType.normal }: Props): React.JSX.Element => {
   const tableBodyClasses = classNames(tableStyles['table-body'], className);
   return (
     <tbody className={tableBodyClasses}>
-      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { compactDataRendering }))}
+      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { mode }))}
     </tbody>
   );
 };

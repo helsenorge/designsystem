@@ -6,7 +6,7 @@ import Icon, { IconSize } from '../../Icons';
 import ArrowDown from '../../Icons/ArrowDown';
 import ArrowUp from '../../Icons/ArrowUp';
 import tableStyles from '../styles.module.scss';
-import { CompactDataRendering } from '../Table';
+import { ModeType } from '../Table';
 
 export enum SortDirection {
   asc = 'asc',
@@ -25,19 +25,12 @@ export interface Props {
   /** Sets the content of the td element.  */
   children?: React.ReactNode;
   /** For display with less space. Discouraged to use together with interactive elements. */
-  compactDataRendering?: CompactDataRendering;
+  mode?: ModeType;
 }
 
-export const TableHeadCell = ({
-  sortable,
-  onClick,
-  className,
-  children,
-  sortDir,
-  compactDataRendering = CompactDataRendering.notCompact,
-}: Props): React.JSX => {
+export const TableHeadCell = ({ sortable, onClick, className, children, sortDir, mode = ModeType.normal }: Props): React.JSX.Element => {
   const tableHeadCellDefaultClass = classNames(tableStyles['table__head-cell'], className, {
-    [tableStyles['table__head-cell--compact']]: compactDataRendering === CompactDataRendering.compact,
+    [tableStyles['table__head-cell--compact']]: mode === ModeType.compact,
   });
 
   if (!sortable) {
@@ -55,7 +48,7 @@ export const TableHeadCell = ({
     className
   );
 
-  const renderSortIcon = (): React.JSX | undefined =>
+  const renderSortIcon = (): React.JSX.Element | undefined =>
     sortDir && (
       <div className={tableStyles['table__head-cell-sort-icon-wrapper']}>
         <Icon svgIcon={sortDir == SortDirection.asc ? ArrowDown : ArrowUp} size={IconSize.XXSmall} />

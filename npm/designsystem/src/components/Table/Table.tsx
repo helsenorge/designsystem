@@ -20,9 +20,9 @@ export enum ResponsiveTableVariant {
   /** Collapse to two columns. */
   block = 'block',
 }
-export enum CompactDataRendering {
+export enum ModeType {
   compact = 'compact',
-  notCompact = 'notCompact',
+  normal = 'normal',
 }
 export interface BreakpointConfig {
   /** Breakpoint at which responsive behaviour will be applied. The table component uses a "desktop first" approach. */
@@ -45,7 +45,7 @@ export interface Props {
   /** Sets the content of the table. Use TableHead and TableBody */
   children: React.ReactNode;
   /** For display with less space. Discouraged to use together with interactive elements. */
-  compactDataRendering?: CompactDataRendering;
+  mode?: ModeType;
 }
 
 export const defaultConfig: BreakpointConfig[] = [
@@ -69,14 +69,7 @@ export const simpleConfig: BreakpointConfig[] = [
   },
 ];
 
-export const Table: React.FC<Props> = ({
-  id,
-  testId,
-  className,
-  children,
-  breakpointConfig = defaultConfig,
-  compactDataRendering = CompactDataRendering.notCompact,
-}) => {
+export const Table: React.FC<Props> = ({ id, testId, className, children, breakpointConfig = defaultConfig, mode = ModeType.normal }) => {
   const [currentConfig, setCurrentConfig] = useState<BreakpointConfig>();
   const [tableWidth, setTableWidth] = useState<number>(0);
   const [parentWidth, setParentWidth] = useState<number>(0);
@@ -110,7 +103,7 @@ export const Table: React.FC<Props> = ({
 
   const table = (
     <table className={tableClass} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Table} ref={tableRef} style={tableStyle}>
-      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { compactDataRendering }))}
+      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { mode }))}
     </table>
   );
 
