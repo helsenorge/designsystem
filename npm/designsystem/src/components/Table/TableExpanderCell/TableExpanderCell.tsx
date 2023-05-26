@@ -7,6 +7,7 @@ import Icon from '../../Icons';
 import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
 import tableStyles from '../styles.module.scss';
+import { CompactDataRendering } from '../Table';
 
 export interface Props {
   /** Adds custom classes to the element. */
@@ -19,16 +20,21 @@ export interface Props {
   hideDetailsText: string;
   /** Text for show button used for aria label. */
   showDetailsText: string;
+  /** For display with less space. Discouraged to use together with interactive elements. */
+  compactDataRendering?: CompactDataRendering;
 }
 
-export const TableExpanderCell = function TableExpanderCell({
+export const TableExpanderCell = ({
   expandableRowId,
   hideDetailsText,
   showDetailsText,
   expanded,
   className,
-}: Props) {
-  const tableCellClass = classNames(tableStyles['table__cell'], tableStyles['table__cell-expander'], className);
+  compactDataRendering = CompactDataRendering.notCompact,
+}: Props): JSX.Element => {
+  const tableCellClass = classNames(tableStyles['table__cell'], tableStyles['table__cell-expander'], className, {
+    [tableStyles['table__cell--compact']]: compactDataRendering === CompactDataRendering.compact,
+  });
   const icon = expanded ? ChevronUp : ChevronDown;
 
   return (

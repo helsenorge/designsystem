@@ -1,3 +1,5 @@
+// Kan fjernes når konvensjonen for BEM er tillatt.
+/* stylelint-disable selector-class-pattern */
 @use 'sass:map';
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
@@ -6,7 +8,7 @@
 @import '../../scss/grid';
 
 /* fix outline for Safari */
-table tbody tr {
+table .table-body .table-row {
   outline: 3px solid transparent;
 }
 
@@ -26,14 +28,14 @@ table tbody tr {
   display: block;
   clear: both;
 
-  tbody,
-  tr,
-  th,
-  td {
+  .table-body,
+  .table-row,
+  .table__head-cell,
+  .table__cell {
     display: block;
   }
 
-  tr {
+  .table-row {
     clear: both;
   }
 
@@ -41,24 +43,35 @@ table tbody tr {
     max-width: 100%;
   }
 
-  th:focus {
+  .table__head-cell:focus {
     outline: none;
     background-color: $blueberry800;
     text-decoration: underline;
   }
 
-  td {
+  .table__cell {
     position: relative;
     padding: 0.75rem 0 0.75rem 40%;
     float: left;
     clear: both;
     width: 100%;
+    border-top: 0;
+    border-bottom: 0;
+    outline: 0;
+
+    &--center {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: left;
+    }
 
     &:not(.expandable-container) {
       font-weight: 400;
     }
 
-    /* Get data from the td-tag attribute "data-label"   and use this to populate :before content */
+    /* Get data from the td-tag attribute "data-label" and use this to populate :before content */
     &::before {
       content: attr(data-label);
       position: relative;
@@ -78,33 +91,16 @@ table tbody tr {
 
   .table__expander-cell-mobile {
     padding-left: 0.75rem;
-  }
-
-  .table__expanded-row td {
-    text-align: left;
-    padding: 0.75rem;
-  }
-
-  .table__expanded-row {
-    display: none;
+    border-bottom: 1px solid $neutral500;
 
     &--expanded {
-      display: block;
+      border-bottom: 0;
     }
   }
 
-  .table__cell {
-    border-top: 0;
-    border-bottom: 0;
-    outline: 0;
-
-    &--center {
-      text-align: left;
-    }
-
-    &--right {
-      text-align: left;
-    }
+  .table__expanded-row .table__cell {
+    text-align: left;
+    padding: 0.75rem;
   }
 
   .table__cell:first-child {
@@ -113,6 +109,12 @@ table tbody tr {
   }
 
   .table__expanded-row {
+    display: none;
+
+    &--expanded {
+      display: block;
+    }
+
     .table__cell:first-child {
       border-top: 0;
     }
@@ -123,24 +125,14 @@ table tbody tr {
       border-collapse: collapse;
       border-top: 1px solid $neutral500;
     }
-  }
 
-  tr:last-child .table__cell:last-child {
-    border-bottom: 1px solid $neutral500;
-  }
-
-  .table__expander-cell-mobile {
-    border-bottom: 1px solid $neutral500;
-
-    &--expanded {
-      border-bottom: 0;
-    }
-  }
-
-  .table__row--expandable {
     &:focus-within {
       outline: none;
     }
+  }
+
+  .table-row:last-child .table__cell:last-child {
+    border-bottom: 1px solid $neutral500;
   }
 }
 
@@ -184,6 +176,14 @@ table tbody tr {
   @media (min-width: map.get($grid-breakpoints, lg)) {
     height: 6.125rem;
   }
+
+  &--compact {
+    height: unset;
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
+      height: unset;
+    }
+  }
 }
 
 .table__head-cell {
@@ -225,6 +225,20 @@ table tbody tr {
     line-height: $lineheight-size-sm;
     font-weight: 700;
   }
+
+  &--compact {
+    padding: getSpacer(2xs) getSpacer(3xs) getSpacer(4xs) getSpacer(3xs);
+    line-height: 18px;
+    font-size: 14px;
+    height: unset;
+
+    @media (min-width: map.get($grid-breakpoints, sm)) {
+      padding: getSpacer(s) getSpacer(3xs) getSpacer(3xs) getSpacer(3xs);
+      line-height: 20px;
+      font-size: 16px;
+      height: unset;
+    }
+  }
 }
 
 .table__head-cell-sort-icon-wrapper {
@@ -256,6 +270,14 @@ table tbody tr {
     height: 3.625rem;
     font-size: $font-size-sm;
     line-height: 1.75rem;
+  }
+
+  &--compact {
+    padding: getSpacer(4xs) getSpacer(3xs);
+
+    @media (min-width: map.get($grid-breakpoints, sm)) {
+      padding: getSpacer(3xs);
+    }
   }
 }
 
