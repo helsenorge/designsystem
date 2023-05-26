@@ -33,7 +33,7 @@ export const TableExpandedRow = ({
   children,
   className,
   compactDataRendering = CompactDataRendering.notCompact,
-}: Props): React.Element => {
+}: Props): React.JSX => {
   const tableRowClass = classNames(
     tableStyles['table__expanded-row'],
     { [tableStyles['table__expanded-row--expanded']]: expanded },
