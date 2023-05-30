@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import tableStyles from '../styles.module.scss';
+import { ModeType } from '../Table';
 import TableExpanderCellMobile from '../TableExpanderCell/TableExpanderCellMobile';
 
 export interface Props {
@@ -22,6 +23,8 @@ export interface Props {
   className?: string;
   /** Sets the cells of the table row element.  */
   children?: React.ReactNode;
+  /** For display with less space. Discouraged to use together with interactive elements. */
+  mode?: ModeType;
 }
 
 export const TableRow: React.FC<Props> = ({
@@ -33,6 +36,7 @@ export const TableRow: React.FC<Props> = ({
   onClick,
   className,
   children,
+  mode = ModeType.normal,
 }) => {
   const tableRowClass = classNames(
     tableStyles['table-row'],
@@ -45,13 +49,14 @@ export const TableRow: React.FC<Props> = ({
 
   return (
     <tr className={tableRowClass} onClick={onClick} key={rowKey}>
-      {children}
+      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { mode }))}
       {expandable && (
         <TableExpanderCellMobile
           expanded={expanded}
           onClick={onClick}
           hideDetailsText={hideDetailsText}
           showDetailsText={showDetailsText}
+          mode={mode}
         />
       )}
     </tr>

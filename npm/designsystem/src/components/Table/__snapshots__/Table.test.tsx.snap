@@ -27,13 +27,16 @@ exports[`Gitt at Table skal vises Når den skal vises Så vises en tabell 1`] = 
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -76,13 +79,16 @@ exports[`Når den skal vises med blokk-visning på md skjerm Når breakpoint er 
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -125,13 +131,16 @@ exports[`Når den skal vises med blokk-visning på md skjerm Når breakpoint er 
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -175,13 +184,16 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når bre
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -225,13 +237,16 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når fal
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -275,13 +290,16 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tab
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -325,13 +343,16 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tab
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -374,13 +395,16 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -438,13 +462,16 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody
+          class="table-body"
+        >
           <tr
             class="table-row"
           >
             <td
               class="table__cell"
               data-label="Navn"
+              data-testid="table-cell"
             >
               Hans Nilsen
             </td>
@@ -490,13 +517,16 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -540,13 +570,16 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>
@@ -589,13 +622,16 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody
+      class="table-body"
+    >
       <tr
         class="table-row"
       >
         <td
           class="table__cell"
           data-label="Navn"
+          data-testid="table-cell"
         >
           Hans Nilsen
         </td>

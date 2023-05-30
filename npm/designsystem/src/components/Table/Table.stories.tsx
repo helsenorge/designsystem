@@ -24,6 +24,7 @@ import {
   TextAlign,
   defaultConfig,
   simpleConfig,
+  ModeType,
 } from './';
 
 export default {
@@ -56,6 +57,11 @@ export default {
       control: 'select',
       options: HeaderCategory,
       defaultValue: HeaderCategory.normal,
+    },
+    mode: {
+      control: 'select',
+      options: ModeType,
+      defaultValue: ModeType.normal,
     },
   },
 } as ComponentMeta<typeof Table>;
@@ -91,7 +97,50 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
     </div>
   );
 };
+export const Comapct: ComponentStory<typeof Table> = (args: any) => {
+  const data = getFastlegeData(SortDirection.asc, '');
 
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-8 offset-2">
+          <Table
+            {...args}
+            mode={ModeType.compact}
+            breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}
+          >
+            <TableHead category={args.headerCategory}>
+              <TableRow>
+                <TableHeadCell>Fastlege</TableHeadCell>
+                <TableHeadCell>Alder</TableHeadCell>
+                <TableHeadCell>Kjønn</TableHeadCell>
+                <TableHeadCell>Fastlegekontor</TableHeadCell>
+                <TableHeadCell>Adresse</TableHeadCell>
+                <TableHeadCell>Ledig</TableHeadCell>
+                <TableHeadCell>Antall</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((fastlege, i: number) => (
+                <TableRow key={i}>
+                  <TableCell dataLabel="Fastlege">{fastlege.Fastlege.Etternavn + ', ' + fastlege.Fastlege.Fornavn}</TableCell>
+                  <TableCell dataLabel="Alder">{`${fastlege.Fastlege.Alder} år`}</TableCell>
+                  <TableCell dataLabel="Kjønn">{fastlege.Fastlege.Kjonn}</TableCell>
+                  <TableCell dataLabel="Fastlegekontor">{fastlege.Legekontor.Navn}</TableCell>
+                  <TableCell dataLabel="Adresse">{fastlege.Legekontor.Adresse}</TableCell>
+                  <TableCell dataLabel="Ledige plasser">{fastlege.LedigePlasser + ' av ' + fastlege.AntallPlasser}</TableCell>
+                  <TableCell dataLabel="Antall på venteliste">
+                    {fastlege.AntallPaVenteliste > 0 ? fastlege.AntallPaVenteliste : 'Har ikke venteliste'}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+    </div>
+  );
+};
 export const DefaultResponsiveConfig: ComponentStory<typeof Table> = (args: any) => {
   const data = getFastlegeData(SortDirection.asc, '');
 
@@ -375,7 +424,7 @@ export interface Fastlege {
   Kjonn: string;
 }
 
-function getFastlegeDataCells(fastlege: FastlegeAvtale): React.ReactNode {
+const getFastlegeDataCells = (fastlege: FastlegeAvtale): React.ReactNode => {
   return (
     <>
       <TableCell dataLabel="Fastlege">{fastlege.Fastlege.Etternavn + ', ' + fastlege.Fastlege.Fornavn}</TableCell>
@@ -389,7 +438,7 @@ function getFastlegeDataCells(fastlege: FastlegeAvtale): React.ReactNode {
       </TableCell>
     </>
   );
-}
+};
 
 function getFastlegeData(sortDirection: SortDirection, sortColumn: string): Array<FastlegeAvtale> {
   return [

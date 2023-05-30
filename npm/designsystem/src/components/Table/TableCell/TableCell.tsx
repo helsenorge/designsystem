@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import tableStyles from '../styles.module.scss';
+import { ModeType } from '../Table';
 
 export enum TextAlign {
   left = 'left',
@@ -21,11 +22,24 @@ export interface Props {
   className?: string;
   /** Sets the content of the table cell */
   children: React.ReactNode;
+  /** For display with less space. Discouraged to use together with interactive elements. */
+  mode?: ModeType;
+  /** For test purposes */
+  testId?: string;
 }
 
-export const TableCell = function TableCell({ nowrap = false, textAlign = TextAlign.left, dataLabel, children, className }: Props) {
+export const TableCell = ({
+  nowrap = false,
+  textAlign = TextAlign.left,
+  dataLabel,
+  children,
+  className,
+  testId,
+  mode = ModeType.normal,
+}: Props): React.JSX.Element => {
   const tableCellClass = classNames(
     tableStyles['table__cell'],
+    { [tableStyles['table__cell--compact']]: mode === ModeType.compact },
     { [tableStyles['table__cell--nowrap']]: nowrap },
     { [tableStyles['table__cell--center']]: textAlign === 'center' },
     { [tableStyles['table__cell--right']]: textAlign === 'right' },
@@ -33,7 +47,7 @@ export const TableCell = function TableCell({ nowrap = false, textAlign = TextAl
   );
 
   return (
-    <td className={tableCellClass} data-label={dataLabel}>
+    <td className={tableCellClass} data-label={dataLabel} data-testid={testId}>
       {children}
     </td>
   );
