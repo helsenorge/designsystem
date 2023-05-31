@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
+import replace from '@rollup/plugin-replace';
 import copy from 'rollup-plugin-copy';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import replace from '@rollup/plugin-replace';
+import { defineConfig } from 'vite';
 
 import { entries } from './scripts/entries';
 
@@ -48,6 +48,7 @@ export default defineConfig({
             name,
             type,
             description,
+            repository,
             homepage,
             version,
             author,
@@ -59,6 +60,7 @@ export default defineConfig({
             name,
             type,
             description,
+            repository,
             homepage,
             version,
             author,
