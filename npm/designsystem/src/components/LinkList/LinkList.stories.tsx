@@ -74,7 +74,7 @@ export const WithIconAndChevron: ComponentStory<typeof LinkList> = (args: any) =
       <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
         Innhold A-Å
       </LinkList.Link>
-      <LinkList.Link href="/" icon={<Icon svgIcon={PaperPlane} />}>
+      <LinkList.Link htmlMarkup="button" href="/" icon={<Icon svgIcon={PaperPlane} />}>
         Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
         bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
       </LinkList.Link>

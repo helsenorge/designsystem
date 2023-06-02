@@ -43,6 +43,7 @@
       border: none;
       text-align: left;
       box-sizing: border-box;
+      padding: 0;
     }
 
     &:hover {
@@ -110,8 +111,7 @@
       }
     }
 
-    &--neutral,
-    &--black {
+    &--neutral {
       &:hover {
         background-color: $neutral100;
       }
