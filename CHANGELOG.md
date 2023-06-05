@@ -1,3 +1,5 @@
+## [4.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.0.1&targetVersion=GTv4.1.0) (2023-06-05)
+
 ## [4.0.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.0.0&targetVersion=GTv4.0.1) (2023-05-30)
 
 ## [4.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv3.2.1&targetVersion=GTv4.0.0) (2023-05-23)
