@@ -235,7 +235,7 @@ table .table-body .table-row {
     @media (min-width: map.get($grid-breakpoints, sm)) {
       padding: getSpacer(s) getSpacer(3xs) getSpacer(3xs) getSpacer(3xs);
       line-height: 20px;
-      font-size: 16px;
+      font-size: $font-size-xs;
       height: unset;
     }
   }
@@ -274,9 +274,11 @@ table .table-body .table-row {
 
   &--compact {
     padding: getSpacer(4xs) getSpacer(3xs);
+    font-size: 14px;
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
       padding: getSpacer(3xs);
+      font-size: $font-size-xs;
     }
   }
 }
