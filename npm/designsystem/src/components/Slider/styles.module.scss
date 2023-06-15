@@ -43,10 +43,9 @@
     z-index: 9;
     outline: none;
     cursor: pointer;
-    transform: scale(1);
 
     &:focus-within {
-      box-shadow: 0 0 0 0.15rem $black;
+      outline: 0.15rem solid $black;
     }
 
     &::after {
