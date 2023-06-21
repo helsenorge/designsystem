@@ -1,3 +1,18 @@
+## [4.1.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.1.0&targetVersion=GTv4.1.1) (2023-06-21)
+
+### Bug Fixes
+
+- endret box-shadow til outline på slider fokus
+  ([6d0280e](https://github.com/helsenorge/designsystem/commit/6d0280e8b9904e43256c304c22224122e25707b2)), closes
+  [#302183](https://github.com/helsenorge/designsystem/issues/302183)
+- removed hardcode color in LegalDocument icon
+  ([43a6b97](https://github.com/helsenorge/designsystem/commit/43a6b9789ec0238d9d296e3fa425f9a2d6a85c4d)), closes
+  [#302955](https://github.com/helsenorge/designsystem/issues/302955)
+- **slider:** correct outline size on focus, fix clipping in fx
+  ([38701a8](https://github.com/helsenorge/designsystem/commit/38701a82ac78d79fa3fcb1c805bdd98f92ac5007))
+- **slider:** correct outline size on focus, fix clipping in fx
+  ([0d6d190](https://github.com/helsenorge/designsystem/commit/0d6d19096970707eeeb82e96a4b4a3f1607db33d))
+
 ## [4.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.0.1&targetVersion=GTv4.1.0) (2023-06-05)
 
 ## [4.0.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.0.0&targetVersion=GTv4.0.1) (2023-05-30)
