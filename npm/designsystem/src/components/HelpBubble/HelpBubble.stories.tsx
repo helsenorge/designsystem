@@ -57,6 +57,30 @@ export const Default: ComponentStory<typeof HelpBubble> = (args: any) => {
   );
 };
 
+export const Link: ComponentStory<typeof HelpBubble> = (args: any) => {
+  const controllerRef = useRef<SVGSVGElement>(null);
+
+  return (
+    <GridExample>
+      <span>{loremText + loremText + loremText + loremText}</span>
+      <div style={{ position: 'relative', display: 'inline' }}>
+        <Icon ref={controllerRef} svgIcon={HelpSign} />
+        <HelpBubble
+          {...args}
+          linkTarget="_blank"
+          linkText="Helsenorge"
+          linkUrl="https://www.helsenorge.no"
+          onClose={action('Bubble closed')}
+          controllerRef={controllerRef}
+        >
+          {args.children}
+        </HelpBubble>
+      </div>
+      <span>{loremText + loremText + loremText + loremText}</span>
+    </GridExample>
+  );
+};
+
 export const Toggle: ComponentStory<typeof HelpBubble> = (args: any) => {
   const controllerRef = useRef<HTMLButtonElement>(null);
   const { value, toggleValue } = useToggle(false);

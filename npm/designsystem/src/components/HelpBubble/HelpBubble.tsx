@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
-import AnchorLink from '../AnchorLink';
+import AnchorLink, { AnchorLinkTargets } from '../AnchorLink';
 import Close from '../Close';
 import PopOver, { PopOverProps, PopOverVariant } from '../PopOver';
 
@@ -32,6 +32,8 @@ export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'varian
   linkText?: string;
   /** Url the link leads to */
   linkUrl?: string;
+  /** Sets the target type of the link. _blank adds an arrow icon at the end of the link */
+  linkTarget?: AnchorLinkTargets;
   /** Function is called when link is clicked */
   onLinkClick?: () => void;
   /** Function is called when user clicks the button */
@@ -51,6 +53,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     noCloseButton,
     linkText = 'Mer hjelp',
     linkUrl,
+    linkTarget,
     onLinkClick,
     onClose,
     closeAriaLabel,
@@ -87,7 +90,11 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
         </button>
       );
     } else if (linkUrl && linkText) {
-      return <AnchorLink href={linkUrl}>{linkText}</AnchorLink>;
+      return (
+        <AnchorLink href={linkUrl} target={linkTarget}>
+          {linkText}
+        </AnchorLink>
+      );
     }
   };
 

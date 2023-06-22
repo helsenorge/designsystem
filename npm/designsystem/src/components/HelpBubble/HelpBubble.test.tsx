@@ -91,6 +91,25 @@ describe('Gitt at HelpBubble skal vises', (): void => {
       expect(link).toHaveAttribute('href', '/');
     });
   });
+  describe('Når linkUrl og target er satt', (): void => {
+    it('Så vises ekstra knapp med linkUrl riktig', async (): Promise<void> => {
+      render(
+        <HelpBubleWithController
+          showBubble
+          linkText={'Helsenorge'}
+          linkUrl={'https://www.helsenorge.no'}
+          linkTarget="_blank"
+          testId="test01"
+        >
+          {'Test tekst'}
+        </HelpBubleWithController>
+      );
+
+      const link = screen.getByText('Helsenorge');
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute('target', '_blank');
+    });
+  });
 
   describe('Når onLinkClick og linkUrl ikke er satt', (): void => {
     it('Så vises ikke ekstra knapp for link', (): void => {
