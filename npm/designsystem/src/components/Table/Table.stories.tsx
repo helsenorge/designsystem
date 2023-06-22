@@ -311,7 +311,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
               </TableRow>
 
               <TableExpandedRow
-                numberOfColumns={6}
+                numberOfColumns={9}
                 expanded={expanded[i]}
                 toggleClick={() => {
                   toggleExpand(i);
