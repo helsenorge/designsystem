@@ -137,7 +137,11 @@ export const getBreakpointClass = (config?: BreakpointConfig): string | undefine
  * @param tableWidth Bredde på tabellen
  * @returns Styling som posisjonerer tabellen riktig
  */
-export const getCenteredOverflowTableStyle = (parentWidth: number, tableWidth: number): React.CSSProperties => {
+export const getCenteredOverflowTableStyle = (parentWidth: number, tableWidth: number): React.CSSProperties | undefined => {
+  if (parentWidth === tableWidth) {
+    return;
+  }
+
   const COLUMN_GUTTER_WIDTH_PX = 8;
 
   return { left: `${(parentWidth - tableWidth) / 2 - COLUMN_GUTTER_WIDTH_PX}px` };
