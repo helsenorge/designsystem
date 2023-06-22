@@ -1,3 +1,16 @@
+## [4.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.1.1&targetVersion=GTv4.2.0) (2023-06-22)
+
+### Features
+
+- helpbubble støtter linktarget for å kunne åpne linker i ny fane
+  ([0ead627](https://github.com/helsenorge/designsystem/commit/0ead627d761bce7a67d1165c633f415a73d6b43e)), closes
+  [#300167](https://github.com/helsenorge/designsystem/issues/300167)
+
+### Bug Fixes
+
+- tabell som har plass i bredden blir ikke plassert til venstre unødvendig
+  ([ffbacbb](https://github.com/helsenorge/designsystem/commit/ffbacbb5ba58fceb5b2a47ef7a5148172bdd49e4))
+
 ## [4.1.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.1.0&targetVersion=GTv4.1.1) (2023-06-21)
 
 ### Bug Fixes
@@ -752,12 +765,12 @@
 
 ### Bug Fixes
 
-- økt kontrast på understreking av lenker
-  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
-  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 - panel har avstand fra tittel til badge
   ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
   [#282359](https://github.com/helsenorge/designsystem/issues/282359)
+- økt kontrast på understreking av lenker
+  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
+  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
