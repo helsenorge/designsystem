@@ -1,3 +1,11 @@
+## [4.2.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.2.0&targetVersion=GTv4.2.1) (2023-06-26)
+
+### Bug Fixes
+
+- skjul ekstra ekspander i block-visning av table på mobil
+  ([550bd65](https://github.com/helsenorge/designsystem/commit/550bd65ca2264900a2a4939a033a48f59aa8df8e)), closes
+  [#305303](https://github.com/helsenorge/designsystem/issues/305303)
+
 ## [4.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.1.1&targetVersion=GTv4.2.0) (2023-06-22)
 
 ### Features
