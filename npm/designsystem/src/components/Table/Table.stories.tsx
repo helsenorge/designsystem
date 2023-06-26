@@ -97,7 +97,7 @@ export const Default: ComponentStory<typeof Table> = (args: any) => {
     </div>
   );
 };
-export const Comapct: ComponentStory<typeof Table> = (args: any) => {
+export const Compact: ComponentStory<typeof Table> = (args: any) => {
   const data = getFastlegeData(SortDirection.asc, '');
 
   return (
@@ -237,7 +237,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
 
   return (
     <GridExample>
-      <Table {...args} breakpointConfig={defaultConfig}>
+      <Table {...args} breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}>
         <TableHead category={HeaderCategory.sortable}>
           <TableRow>
             <TableHeadCell />

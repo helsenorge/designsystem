@@ -17,10 +17,6 @@ table .table-body .table-row {
 }
 
 @mixin block {
-  .table__cell-expander {
-    display: none;
-  }
-
   .table__head {
     display: none;
   }
@@ -33,6 +29,10 @@ table .table-body .table-row {
   .table__head-cell,
   .table__cell {
     display: block;
+  }
+
+  .table__cell-expander {
+    display: none;
   }
 
   .table-row {
