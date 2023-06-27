@@ -80,17 +80,17 @@ const Dropdown: React.FC<DropdownProps> = props => {
   const toggleLabelId = useUuid();
   const optionIdPrefix = useUuid();
 
-  const handleOpen = () => {
+  const handleOpen = (): void => {
     toggleIsOpen();
     optionsRef.current?.focus();
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     toggleIsOpen();
     buttonRef.current?.focus();
   };
 
-  const handleKeyboardNavigation = (event: KeyboardEvent) => {
+  const handleKeyboardNavigation = (event: KeyboardEvent): void => {
     event.preventDefault();
 
     if (!inputRefList.current) {

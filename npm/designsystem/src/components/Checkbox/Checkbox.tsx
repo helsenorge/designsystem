@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { AnalyticsId, FormMode, FormVariant, IconSize } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys/color';
+import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
 import Icon from '../Icons';
 import Check from '../Icons/Check';
@@ -60,7 +61,9 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   const onInvalid = error || mode === FormMode.oninvalid;
   const onDark = mode === FormMode.ondark;
   const bigform = variant === FormVariant.bigform;
-  const { refObject, isFocused } = usePseudoClasses(ref as React.RefObject<HTMLInputElement>);
+  const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
+  const mergedRefs = mergeRefs([ref, refObject]);
+
   const checkboxWrapperClasses = classNames(checkboxStyles['checkbox-wrapper'], {
     [checkboxStyles['checkbox-wrapper--with-error']]: errorText,
     [checkboxStyles['checkbox-wrapper--bigform']]: bigform,
@@ -132,7 +135,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           checked={isChecked}
           disabled={disabled}
           value={value}
-          ref={refObject}
+          ref={mergedRefs}
           aria-describedby={props['aria-describedby'] ?? undefined}
           aria-invalid={error}
           required={required}

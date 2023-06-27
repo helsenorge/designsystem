@@ -164,4 +164,6 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   );
 });
 
+FormGroup.displayName = 'FormGroup';
+
 export default FormGroup;

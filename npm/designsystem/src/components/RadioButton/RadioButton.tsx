@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { AnalyticsId, FormMode, FormVariant } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
+import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
 import { getLabelText, renderLabelAsParent } from '../Label';
 
@@ -57,7 +58,9 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const onCherry = mode === FormMode.oninvalid;
   const bigform = variant === FormVariant.bigform;
   const [checked, changeChecked] = useState<boolean>(defaultChecked);
-  const { refObject, isFocused } = usePseudoClasses(ref as React.RefObject<HTMLInputElement>);
+  const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
+  const mergedRefs = mergeRefs([ref, refObject]);
+
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
     [radioButtonStyles['radio-button-wrapper--with-error']]: errorText,
     [radioButtonStyles['radio-button-wrapper__bigform']]: bigform,
@@ -93,7 +96,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const errorStyles = classNames(radioButtonStyles['radio-button-errors']);
 
   const change = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    changeChecked(true);
+    changeChecked(e.target.checked);
     onChange && onChange(e);
   };
 
@@ -105,7 +108,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
       type="radio"
       disabled={disabled}
       value={value}
-      ref={refObject}
+      ref={mergedRefs}
       defaultChecked={defaultChecked}
       aria-describedby={props['aria-describedby'] ?? undefined}
       required={required}
