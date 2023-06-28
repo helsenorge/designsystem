@@ -1,3 +1,11 @@
+## [4.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.2.1&targetVersion=GTv4.2.2) (2023-06-28)
+
+### Bug Fixes
+
+- checkbox og radiobutton sine refs merges riktig
+  ([7fe16a6](https://github.com/helsenorge/designsystem/commit/7fe16a632e9a5f905474cdaa62316d2acb350ebe)), closes
+  [#304617](https://github.com/helsenorge/designsystem/issues/304617) [#305272](https://github.com/helsenorge/designsystem/issues/305272)
+
 ## [4.2.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.2.0&targetVersion=GTv4.2.1) (2023-06-26)
 
 ### Bug Fixes
@@ -773,12 +781,12 @@
 
 ### Bug Fixes
 
-- panel har avstand fra tittel til badge
-  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
-  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 - økt kontrast på understreking av lenker
   ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
   [#229049](https://github.com/helsenorge/designsystem/issues/229049)
+- panel har avstand fra tittel til badge
+  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
+  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
