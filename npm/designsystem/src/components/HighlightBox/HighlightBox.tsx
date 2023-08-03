@@ -10,7 +10,7 @@ import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
 
-export type HighlightBoxColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cherry' | 'neutral' | 'kiwi' | 'plum'>;
+export type HighlightBoxColors = Extract<PaletteNames, 'white' | 'neutral' | 'blueberry' | 'cherry'>;
 
 export enum HighlightBoxSize {
   medium = 'medium',
