@@ -333,6 +333,135 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
   );
 };
 
+export const NestedExpandableBlockTables: ComponentStory<typeof Table> = (args: any) => {
+  const [expanded, setExpanded] = useState(new Array(5).fill(false));
+  const [sortDirection, setSortDirection] = useState(SortDirection.asc);
+  const [sortColumn, setSortColumn] = useState('');
+
+  const data = getFastlegeData(sortDirection, sortColumn);
+
+  const clickSort = (column: string) => {
+    if (column == sortColumn) {
+      setSortDirection(sortDirection === SortDirection.asc ? SortDirection.desc : SortDirection.asc);
+    } else {
+      setSortColumn(column);
+      setSortDirection(SortDirection.asc);
+    }
+  };
+
+  const toggleExpand = (index: number) => {
+    const newExpanded = [...expanded];
+    newExpanded[index] = !expanded[index];
+    setExpanded(newExpanded);
+  };
+
+  return (
+    <GridExample>
+      <Table breakpointConfig={{ breakpoint: 'xs', variant: 'block' }}>
+        <TableHead category={HeaderCategory.sortable}>
+          <TableRow>
+            <TableHeadCell />
+            <TableHeadCell sortable sortDir={sortColumn === 'Fastlege' ? sortDirection : undefined} onClick={() => clickSort('Fastlege')}>
+              {'Navn'}
+            </TableHeadCell>
+            <TableHeadCell sortable sortDir={sortColumn === 'Alder' ? sortDirection : undefined} onClick={() => clickSort('Alder')}>
+              {'Alder'}
+            </TableHeadCell>
+            <TableHeadCell>{'Kjønn'}</TableHeadCell>
+            <TableHeadCell
+              sortable
+              sortDir={sortColumn === 'Fastlegekontor' ? sortDirection : undefined}
+              onClick={() => clickSort('Fastlegekontor')}
+            >
+              {'Fastlegekontor'}
+            </TableHeadCell>
+            <TableHeadCell sortable sortDir={sortColumn === 'Adresse' ? sortDirection : undefined} onClick={() => clickSort('Adresse')}>
+              {'Adresse'}
+            </TableHeadCell>
+            <TableHeadCell
+              sortable
+              sortDir={sortColumn === 'LedigePlasser' ? sortDirection : undefined}
+              onClick={() => clickSort('LedigePlasser')}
+            >
+              {'Ledige plasser'}
+            </TableHeadCell>
+            <TableHeadCell
+              sortable
+              sortDir={sortColumn === 'AntallPaVenteliste' ? sortDirection : undefined}
+              onClick={() => clickSort('AntallPaVenteliste')}
+            >
+              {'Antall på venteliste'}
+            </TableHeadCell>
+            <TableHeadCell>{'Handling'}</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody className="test1">
+          {data.map((fastlege, i: number) => (
+            <React.Fragment key={i}>
+              <TableRow
+                onClick={() => {
+                  toggleExpand(i);
+                }}
+                expandable
+                expanded={expanded[i]}
+                hideDetailsText="Skjul detaljer"
+                showDetailsText="Vis detaljer"
+              >
+                <TableExpanderCell
+                  expanded={expanded[i]}
+                  expandableRowId={i.toString()}
+                  hideDetailsText="Skjul detaljer"
+                  showDetailsText="Vis detaljer"
+                ></TableExpanderCell>
+                {getFastlegeDataCells(fastlege)}
+                {
+                  <TableCell dataLabel="Handling" textAlign={TextAlign.center}>
+                    <Button
+                      variant="borderless"
+                      onClick={e => {
+                        e && e.stopPropagation();
+                        console.log('show detail bubble');
+                      }}
+                      ariaLabel={'eksempel aria'}
+                    >
+                      <Icon svgIcon={VerticalDots}></Icon>
+                    </Button>
+                  </TableCell>
+                }
+              </TableRow>
+
+              <TableExpandedRow
+                numberOfColumns={9}
+                expanded={expanded[i]}
+                toggleClick={() => {
+                  toggleExpand(i);
+                }}
+                hideDetailsText={'Skjul ' + fastlege.Fastlege.Fornavn + ' ' + fastlege.Fastlege.Etternavn}
+              >
+                <Table breakpointConfig={{ breakpoint: 'xs', variant: 'block' }}>
+                  <TableHead category={HeaderCategory.normal}>
+                    <TableRow>
+                      <TableHeadCell>{'Navn'}</TableHeadCell>
+                      <TableHeadCell>{'Alder'}</TableHeadCell>
+                      <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+                      <TableHeadCell>{'Adresse'}</TableHeadCell>
+                      <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+                      <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>{getFastlegeDataCells(fastlege)}</TableRow>
+                  </TableBody>
+                </Table>
+              </TableExpandedRow>
+            </React.Fragment>
+          ))}
+        </TableBody>
+      </Table>
+    </GridExample>
+  );
+};
+
 export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
   return (
     <GridExample>

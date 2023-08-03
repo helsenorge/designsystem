@@ -98,7 +98,7 @@ table .table-body .table-row {
     }
   }
 
-  .table__expanded-row .table__cell {
+  .table__expanded-row > .table__cell {
     text-align: left;
     padding: 0.75rem;
   }
@@ -115,7 +115,7 @@ table .table-body .table-row {
       display: block;
     }
 
-    .table__cell:first-child {
+    > .table__cell:first-child {
       border-top: 0;
     }
   }
