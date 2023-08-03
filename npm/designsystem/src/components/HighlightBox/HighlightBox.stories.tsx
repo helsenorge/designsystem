@@ -24,7 +24,7 @@ export default {
     },
     color: {
       control: 'select',
-      options: ['white', 'blueberry', 'cherry', 'neutral', 'kiwi', 'plum'],
+      options: ['white', 'neutral', 'blueberry', 'cherry'],
       defaultValue: 'white',
     },
     size: {

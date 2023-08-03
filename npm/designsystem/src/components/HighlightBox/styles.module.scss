@@ -23,7 +23,7 @@
 
 .highlightbox {
   $box: &;
-  $colors: 'blueberry', 'cherry', 'neutral', 'kiwi', 'plum';
+  $colors: 'neutral', 'blueberry', 'cherry';
 
   // Medium og large har bakgrunnsfarge på den indre wrapperen
   // slik at bakgrunnsfargen ikke går helt ut i kantene
@@ -61,6 +61,15 @@
         background-color: $white;
       }
     }
+    #{$box}__content-wrapper {
+      padding-top: getSpacer(m);
+      padding-bottom: getSpacer(l);
+
+      @media (min-width: map.get($grid-breakpoints, lg)) {
+        padding-top: getSpacer(l);
+        padding-bottom: getSpacer(xl);
+      }
+    }
   }
 
   &--medium {
@@ -73,18 +82,6 @@
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
         padding: getSpacer(l);
-      }
-    }
-  }
-
-  &--large {
-    #{$box}__content-wrapper {
-      padding-top: getSpacer(m);
-      padding-bottom: getSpacer(l);
-
-      @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-top: getSpacer(l);
-        padding-bottom: getSpacer(xl);
       }
     }
   }
