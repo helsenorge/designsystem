@@ -92,7 +92,7 @@ export const renderLabelAsParent = (
             mode: mode,
             children: children,
             disabled,
-            labelClassName: labelClassName,
+            labelClassName: cn(labelClassName, label.props.labelClassName),
             labelTextClassName: labelTextClassName,
             sublabelWrapperClassName: sublabelWrapperClassName,
             sublabel: bigform ? undefined : label.props.sublabel,
