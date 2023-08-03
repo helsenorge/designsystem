@@ -10,11 +10,9 @@ export type Styles = {
   'highlightbox--cherry': string;
   'highlightbox--fluid': string;
   'highlightbox--has-icon': string;
-  'highlightbox--kiwi': string;
   'highlightbox--large': string;
   'highlightbox--medium': string;
   'highlightbox--neutral': string;
-  'highlightbox--plum': string;
   'highlightbox--white': string;
 };
 
