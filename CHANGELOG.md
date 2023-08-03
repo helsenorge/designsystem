@@ -1,3 +1,11 @@
+## [4.2.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.2.2&targetVersion=GTv4.2.3) (2023-08-03)
+
+### Bug Fixes
+
+- labelclassname kan naa brukes av vertikaler
+  ([8bdecee](https://github.com/helsenorge/designsystem/commit/8bdeceedb29c6e75a20ffae10ae7dbe1a10b48c8)), closes
+  [#306322](https://github.com/helsenorge/designsystem/issues/306322)
+
 ## [4.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.2.1&targetVersion=GTv4.2.2) (2023-06-28)
 
 ### Bug Fixes
