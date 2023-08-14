@@ -1,0 +1,41 @@
+@import '../../scss/palette';
+
+.dictionarytrigger {
+  all: unset;
+  cursor: help;
+  line-height: initial;
+  padding-bottom: 6px;
+  margin-bottom: -6px;
+  background-color: transparent;
+
+  // The background svg consists of a circle with empty space to the right, making up a dotted pattern when repeated horizontally
+  background-image: url("data:image/svg+xml,<svg width='8' height='3' viewBox='0 0 8 3' xmlns='http://www.w3.org/2000/svg'><circle cx='1.5' cy='1.5' r='1.5' fill='%236A2ABF' /></svg>");
+  background-position: bottom left;
+  background-repeat: repeat-x;
+
+  &:hover {
+    background-color: rgba-to-rgb(rgba($plum600, 0.1), $white);
+    background-image: url("data:image/svg+xml,<svg width='8' height='3' viewBox='0 0 8 3' xmlns='http://www.w3.org/2000/svg'><circle cx='1.5' cy='1.5' r='1.5' fill='%236A2ABF' /></svg>");
+  }
+
+  &:focus-visible {
+    padding-bottom: 3px;
+    margin-bottom: -3px;
+    outline: 2px solid $black;
+    background-image: none;
+  }
+
+  &[aria-expanded='true'] {
+    background-color: rgba-to-rgb(rgba($plum600, 0.1), $white);
+    background-image: url("data:image/svg+xml,<svg width='8' height='3' viewBox='0 0 8 3' xmlns='http://www.w3.org/2000/svg'><circle cx='1.5' cy='1.5' r='1.5' fill='%236A2ABF' /></svg>");
+
+    &:hover,
+    &:focus-visible {
+      background-color: rgba-to-rgb(rgba($plum600, 0.2), $white);
+    }
+
+    &:focus-visible {
+      background-image: none;
+    }
+  }
+}
