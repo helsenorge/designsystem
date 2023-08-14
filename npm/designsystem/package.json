@@ -42,7 +42,8 @@
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:update": "jest --u"
+    "test:update": "jest --u",
+    "new": "node scripts/new-component.js"
   },
   "peerDependencies": {
     "bootstrap": "^4.6.2",
