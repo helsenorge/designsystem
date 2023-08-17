@@ -113,6 +113,7 @@ export enum AnalyticsId {
   Tile = 'tile',
   Title = 'title',
   Tooltip = 'tooltip',
+  Trigger = 'trigger',
   Validation = 'validation',
 }
 

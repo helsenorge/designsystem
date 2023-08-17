@@ -127,3 +127,18 @@ $palette-map: (
   'black': $black,
   'white': $white,
 );
+
+/**
+* Konverter en gjennomsiktig farge til en ugjennomsiktig farge ved å simulere fargen plassert
+* på en bakgrunnsfarge (f.eks. 50% gjennomsiktig $blueberry200 på hvit bakgrunn).
+* 
+* Fra https://makandracards.com/makandra/42500-sass-how-to-convert-an-rgba-color-to-its-rgb-look-alike
+* 
+* @param $rgba Farge med alpha-verdi, f.eks. rgba(black, 0.67)
+* @param $background Bakgrunnsfarge. Default: $white
+* 
+* @returns Farge uten gjennomsiktighet
+*/
+@function rgba-to-rgb($rgba, $background: $white) {
+  @return mix(rgb(red($rgba), green($rgba), blue($rgba)), $background, alpha($rgba) * 100%);
+}

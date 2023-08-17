@@ -6,11 +6,9 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
-import Button from '../Button';
 import GridExample from '../GridExample';
-import Icon from '../Icons';
-import HelpSign from '../Icons/HelpSign';
 import Table, { ResponsiveTableVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell } from '../Table';
+import Trigger from '../Trigger/Trigger';
 
 export default {
   title: 'Components/HelpBubble',
@@ -41,30 +39,30 @@ export default {
 } as ComponentMeta<typeof HelpBubble>;
 
 export const Default: ComponentStory<typeof HelpBubble> = (args: any) => {
-  const controllerRef = useRef<SVGSVGElement>(null);
+  const controllerRef = useRef<HTMLButtonElement>(null);
 
   return (
     <GridExample>
-      <span>{loremText + loremText + loremText + loremText}</span>
+      <span>{loremText + loremText + loremText + loremText} </span>
       <div style={{ position: 'relative', display: 'inline' }}>
-        <Icon ref={controllerRef} svgIcon={HelpSign} />
+        <Trigger ref={controllerRef} ariaLabel="Hjelp" />
         <HelpBubble {...args} onLinkClick={action('Mer hjelp clicked')} onClose={action('Bubble closed')} controllerRef={controllerRef}>
           {args.children}
         </HelpBubble>
       </div>
-      <span>{loremText + loremText + loremText + loremText}</span>
+      <span> {loremText + loremText + loremText + loremText}</span>
     </GridExample>
   );
 };
 
 export const Link: ComponentStory<typeof HelpBubble> = (args: any) => {
-  const controllerRef = useRef<SVGSVGElement>(null);
+  const controllerRef = useRef<HTMLButtonElement>(null);
 
   return (
     <GridExample>
-      <span>{loremText + loremText + loremText + loremText}</span>
+      <span>{loremText + loremText + loremText + loremText} </span>
       <div style={{ position: 'relative', display: 'inline' }}>
-        <Icon ref={controllerRef} svgIcon={HelpSign} />
+        <Trigger ref={controllerRef} ariaLabel="Hjelp" />
         <HelpBubble
           {...args}
           linkTarget="_blank"
@@ -76,7 +74,7 @@ export const Link: ComponentStory<typeof HelpBubble> = (args: any) => {
           {args.children}
         </HelpBubble>
       </div>
-      <span>{loremText + loremText + loremText + loremText}</span>
+      <span> {loremText + loremText + loremText + loremText}</span>
     </GridExample>
   );
 };
@@ -87,11 +85,9 @@ export const Toggle: ComponentStory<typeof HelpBubble> = (args: any) => {
 
   return (
     <GridExample>
-      <span>{loremText + loremText + loremText + loremText}</span>
+      <span>{loremText + loremText + loremText + loremText} </span>
       <div style={{ position: 'relative', display: 'inline' }}>
-        <Button ref={controllerRef} onClick={toggleValue}>
-          {'Åpne'}
-        </Button>
+        <Trigger ref={controllerRef} onClick={toggleValue} ariaLabel="Åpne" />
         <HelpBubble
           {...args}
           onLinkClick={action('Mer hjelp clicked')}
@@ -102,7 +98,7 @@ export const Toggle: ComponentStory<typeof HelpBubble> = (args: any) => {
           {args.children}
         </HelpBubble>
       </div>
-      <span>{loremText + loremText + loremText + loremText}</span>
+      <span> {loremText + loremText + loremText + loremText}</span>
     </GridExample>
   );
 };
@@ -127,7 +123,7 @@ export const OnText: ComponentStory<typeof HelpBubble> = (args: any) => {
 };
 
 export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
-  const controllerRef = useRef<SVGSVGElement>(null);
+  const controllerRef = useRef<HTMLButtonElement>(null);
 
   return (
     <GridExample>
@@ -155,7 +151,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
             <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
             <TableCell dataLabel="Antall på venteliste">53</TableCell>
             <TableCell dataLabel="Handlinger">
-              <Icon ref={controllerRef} svgIcon={HelpSign} />
+              <Trigger ref={controllerRef} ariaLabel="Hjelp" />
               <HelpBubble {...args} onClose={action('Bubble closed')} controllerRef={controllerRef}>
                 <div>{args.children}</div>
               </HelpBubble>
@@ -169,6 +165,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
             <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
             <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
             <TableCell dataLabel="Antall på venteliste">53</TableCell>
+            <TableCell dataLabel="Handlinger">{''}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell dataLabel="Fastlege">Line Danser</TableCell>
@@ -178,6 +175,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
             <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
             <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
             <TableCell dataLabel="Antall på venteliste">53</TableCell>
+            <TableCell dataLabel="Handlinger">{''}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell dataLabel="Fastlege">Line Danser</TableCell>
@@ -187,6 +185,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
             <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
             <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
             <TableCell dataLabel="Antall på venteliste">53</TableCell>
+            <TableCell dataLabel="Handlinger">{''}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -196,7 +195,7 @@ export const HorizontalScroll: ComponentStory<typeof Table> = (args: any) => {
 };
 
 export const CenteredOverflow: ComponentStory<typeof Table> = (args: any) => {
-  const controllerRef = useRef<SVGSVGElement>(null);
+  const controllerRef = useRef<HTMLButtonElement>(null);
 
   return (
     <div className="container">
@@ -226,7 +225,7 @@ export const CenteredOverflow: ComponentStory<typeof Table> = (args: any) => {
                 <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
                 <TableCell dataLabel="Antall på venteliste">53</TableCell>
                 <TableCell dataLabel="Handlinger">
-                  <Icon ref={controllerRef} svgIcon={HelpSign} />
+                  <Trigger ref={controllerRef} ariaLabel="Hjelp" />
                   <HelpBubble {...args} onClose={action('Bubble closed')} controllerRef={controllerRef}>
                     <div>{args.children}</div>
                   </HelpBubble>
