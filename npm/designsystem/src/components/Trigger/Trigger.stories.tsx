@@ -25,7 +25,7 @@ export default {
     },
     variant: {
       control: 'select',
-      options: ['help', 'info'],
+      options: ['help'], //['help', 'info'],
       defaultValue: 'help',
     },
     size: {
@@ -63,11 +63,11 @@ export const HelpTrigger: ComponentStory<typeof Trigger> = (args: any) => (
   </GridExample>
 );
 
-export const InfoTrigger: ComponentStory<typeof Trigger> = (args: any) => (
-  <GridExample>
-    <Trigger {...args} onClick={action('Trigger clicked!')} variant="info" />
-  </GridExample>
-);
+// export const InfoTrigger: ComponentStory<typeof Trigger> = (args: any) => (
+//   <GridExample>
+//     <Trigger {...args} onClick={action('Trigger clicked!')} variant="info" />
+//   </GridExample>
+// );
 
 export const OnDark: ComponentStory<typeof Trigger> = (args: any) => (
   <GridExample>
