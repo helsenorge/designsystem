@@ -25,7 +25,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som larg
         class="highlightbox__col"
       >
         <div
-          class="highlightbox__content-wrapper"
+          class="highlightbox__content-wrapper highlightbox__content-wrapper"
         >
           <div
             class="highlightbox__row"
