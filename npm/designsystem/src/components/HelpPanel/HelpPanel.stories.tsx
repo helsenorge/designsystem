@@ -3,7 +3,6 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import HelpPanel from './HelpPanel';
-import HandWaving from '../Icons/HandWaving';
 
 export default {
   title: 'Components/HelpPanel',
@@ -26,21 +25,12 @@ export default {
       options: ['small', 'medium', 'large'],
       defaultValue: 'medium',
     },
-    htmlMarkup: {
-      control: 'select',
-      options: ['div', 'nav', 'section', 'article', 'span'],
-      defaultValue: 'div',
-    },
   },
 } as ComponentMeta<typeof HelpPanel>;
 
 export const Default: ComponentStory<typeof HelpPanel> = args => (
-  <HelpPanel {...args} title="Test tittel" svgIcon={HandWaving}>
+  <HelpPanel {...args} title="Test tittel">
     {args.children}
   </HelpPanel>
 );
-export const WithoutTitle: ComponentStory<typeof HelpPanel> = args => (
-  <HelpPanel {...args} svgIcon={HandWaving}>
-    {args.children}
-  </HelpPanel>
-);
+export const WithoutTitle: ComponentStory<typeof HelpPanel> = args => <HelpPanel {...args}>{args.children}</HelpPanel>;

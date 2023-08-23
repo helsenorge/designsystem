@@ -1,18 +1,16 @@
 import React from 'react';
 
-import HighlightBox, { HighlightBoxSize, HighlightBoxTags } from '../HighlightBox';
-import { SvgIcon } from '../Icons';
-import Title from '../Title';
+import HighlightBox, { HighlightBoxSize } from '../HighlightBox';
+import HandWaving from '../Icons/HandWaving';
+import Title, { TitleProps } from '../Title';
 
 interface HelpPanelProps {
   /** What's in the box? */
   children: React.ReactNode;
   /** Changes the size. Default: medium */
   size?: keyof typeof HighlightBoxSize;
-  /** Adds an icon to the highlightbox. */
-  svgIcon: SvgIcon;
-  /** Changes the underlying element. Default: div */
-  htmlMarkup?: HighlightBoxTags;
+  /**  */
+  titleHtmlMarkup: TitleProps;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the data-testid attribute. */
@@ -21,20 +19,22 @@ interface HelpPanelProps {
   title?: string;
 }
 
-const HelpPanel: React.FC<HelpPanelProps> = ({ className, testId, size, htmlMarkup, children, svgIcon, title }) => {
+const HelpPanel: React.FC<HelpPanelProps> = ({
+  className,
+  testId,
+  size,
+  titleHtmlMarkup = { testId: 'titleId', htmlMarkup: 'h2', appearance: 'title4' },
+  children,
+  title,
+}) => {
   return (
     <HighlightBox
       className={className}
       testId={testId}
       size={size}
-      htmlMarkup={htmlMarkup}
-      svgIcon={svgIcon}
+      svgIcon={HandWaving}
       color="plum"
-      afterIconElement={
-        <Title testId="titleId" htmlMarkup="h4" appearance="title4">
-          {title}
-        </Title>
-      }
+      afterIconElement={title && <Title {...titleHtmlMarkup}>{title}</Title>}
     >
       {children}
     </HighlightBox>

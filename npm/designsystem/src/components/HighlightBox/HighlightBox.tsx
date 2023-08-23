@@ -95,14 +95,16 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
         <>
           <div className={styles.highlightbox__icon}>
             <Icon svgIcon={svgIcon} size={iconSize} />
-            <div className={styles['highlightbox__after-icon-content']}>
-              <div hidden={!mobile} aria-hidden="true">
-                {afterIconElement}
+            {afterIconElement && (
+              <div className={styles['highlightbox__after-icon-content']}>
+                <div hidden={!mobile} aria-hidden="true">
+                  {afterIconElement}
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className={styles.highlightbox__content}>
-            <div hidden={mobile}>{afterIconElement}</div>
+            {afterIconElement && <div hidden={mobile}>{afterIconElement}</div>}
             {children}
           </div>
         </>
