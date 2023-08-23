@@ -10,7 +10,7 @@ describe('Gitt at HelpPanel skal rendres', (): void => {
   describe('Når HelpPanel skal vises vanlig', (): void => {
     test('Så rendres HelpPanel riktig', (): void => {
       render(
-        <HelpPanel testId="helppanel" title="Tittel" svgIcon={HandWaving}>
+        <HelpPanel testId="helppanel" title="Tittel">
           {'Melding'}
         </HelpPanel>
       );
@@ -32,11 +32,7 @@ describe('Gitt at HelpPanel skal rendres', (): void => {
   });
   describe('Når HelpPanel skal vises uten tittel', (): void => {
     test('Så rendres HelpPanel riktig', (): void => {
-      render(
-        <HelpPanel testId="helppanel" svgIcon={HandWaving}>
-          {'Melding'}
-        </HelpPanel>
-      );
+      render(<HelpPanel testId="helppanel">{'Melding'}</HelpPanel>);
 
       const panel = screen.getByTestId('helppanel');
       expect(panel).toBeVisible();

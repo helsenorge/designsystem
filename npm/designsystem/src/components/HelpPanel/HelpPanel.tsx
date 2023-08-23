@@ -10,7 +10,7 @@ interface HelpPanelProps {
   /** Changes the size. Default: medium */
   size?: keyof typeof HighlightBoxSize;
   /**  */
-  titleHtmlMarkup: TitleProps;
+  titleHtmlMarkup?: TitleProps;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the data-testid attribute. */
