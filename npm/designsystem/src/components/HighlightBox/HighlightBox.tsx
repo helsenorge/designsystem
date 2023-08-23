@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { useBreakpoint, Breakpoint } from '../..';
 import { AnalyticsId } from '../../constants';
+import { breakpoints } from '../../theme/grid';
 import { PaletteNames } from '../../theme/palette';
 import Icon, { SvgIcon, IconSize } from '../Icons';
 
@@ -37,6 +38,8 @@ interface HighlightBoxProps {
   className?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Element that is set after the icon-element in the DOM, often a title-element */
+  afterIconElement?: React.ReactNode;
 }
 
 interface WrapperProps {
@@ -61,7 +64,16 @@ const ContentWrapper: React.FC = ({ children }) => (
 );
 
 const HighlightBox: React.FC<HighlightBoxProps> = props => {
-  const { children, color = 'white', size = HighlightBoxSize.medium, testId, svgIcon, htmlMarkup = 'div', className } = props;
+  const {
+    children,
+    color = 'white',
+    size = HighlightBoxSize.medium,
+    testId,
+    svgIcon,
+    htmlMarkup = 'div',
+    className,
+    afterIconElement,
+  } = props;
   const breakpoint = useBreakpoint();
 
   const containerClassName = classNames(
@@ -76,12 +88,23 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
   const renderContent = () => {
     if (svgIcon) {
       const iconSize = size === HighlightBoxSize.large && breakpoint && breakpoint >= Breakpoint.md ? IconSize.Medium : IconSize.Small;
+
+      const mobile = breakpoint < breakpoints.md;
+
       return (
         <>
           <div className={styles.highlightbox__icon}>
             <Icon svgIcon={svgIcon} size={iconSize} />
+            <div className={styles['highlightbox__after-icon-content']}>
+              <div hidden={!mobile} aria-hidden="true">
+                {afterIconElement}
+              </div>
+            </div>
           </div>
-          <div className={styles.highlightbox__content}>{children}</div>
+          <div className={styles.highlightbox__content}>
+            <div hidden={mobile}>{afterIconElement}</div>
+            {children}
+          </div>
         </>
       );
     }

@@ -5,6 +5,7 @@ export type Styles = {
   highlightbox__content: string;
   'highlightbox__content-wrapper': string;
   highlightbox__icon: string;
+  'highlightbox__after-icon-content': string;
   highlightbox__row: string;
   'highlightbox--blueberry': string;
   'highlightbox--cherry': string;

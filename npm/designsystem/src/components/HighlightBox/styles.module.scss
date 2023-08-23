@@ -166,6 +166,12 @@
     }
   }
 
+  &__after-icon-content {
+    padding-left: getSpacer(s);
+    display: flex;
+    align-items: center;
+  }
+
   &--has-icon#{&}--fluid {
     @include content-wrapper-with-icon-flex;
     @include content-wrapper-with-icon-padding;
