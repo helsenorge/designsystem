@@ -166,10 +166,13 @@
     }
   }
 
-  &__after-icon-content {
+  &__title {
     padding-left: getSpacer(s);
     display: flex;
     align-items: center;
+    &--hidden {
+      display: none;
+    }
   }
 
   &--has-icon#{&}--fluid {

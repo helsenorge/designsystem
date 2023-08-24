@@ -7,6 +7,7 @@ import { AnalyticsId } from '../../constants';
 import { breakpoints } from '../../theme/grid';
 import { PaletteNames } from '../../theme/palette';
 import Icon, { SvgIcon, IconSize } from '../Icons';
+import Title, { TitleProps } from '../Title';
 
 import styles from './styles.module.scss';
 
@@ -39,7 +40,9 @@ interface HighlightBoxProps {
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Element that is set after the icon-element in the DOM, often a title-element */
-  afterIconElement?: React.ReactNode;
+  title?: string;
+  /** Markup props for title */
+  titleHtmlMarkup?: TitleProps;
 }
 
 interface WrapperProps {
@@ -72,9 +75,12 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
     svgIcon,
     htmlMarkup = 'div',
     className,
-    afterIconElement,
+    title,
+    titleHtmlMarkup = { testId: 'titleId', htmlMarkup: 'h2', appearance: 'title4' },
   } = props;
   const breakpoint = useBreakpoint();
+
+  const mobile = breakpoint < breakpoints.md;
 
   const containerClassName = classNames(
     styles['highlightbox'],
@@ -85,26 +91,28 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
     className
   );
 
+  const titleElementClassName = classNames(styles['highlightbox__title'], {
+    [styles['highlightbox__title--hidden']]: !mobile,
+  });
+
   const renderContent = () => {
     if (svgIcon) {
       const iconSize = size === HighlightBoxSize.large && breakpoint && breakpoint >= Breakpoint.md ? IconSize.Medium : IconSize.Small;
 
-      const mobile = breakpoint < breakpoints.md;
+      const titleElement = <Title {...titleHtmlMarkup}>{title}</Title>;
 
       return (
         <>
           <div className={styles.highlightbox__icon}>
             <Icon svgIcon={svgIcon} size={iconSize} />
-            {afterIconElement && (
-              <div className={styles['highlightbox__after-icon-content']}>
-                <div hidden={!mobile} aria-hidden="true">
-                  {afterIconElement}
-                </div>
+            {title && (
+              <div aria-hidden="true" className={titleElementClassName}>
+                {titleElement}
               </div>
             )}
           </div>
           <div className={styles.highlightbox__content}>
-            {afterIconElement && <div hidden={mobile}>{afterIconElement}</div>}
+            {title && <div hidden={mobile}>{titleElement}</div>}
             {children}
           </div>
         </>
