@@ -47,7 +47,7 @@ export interface PanelProps {
   children?: React.ReactNode;
   /** Title of the panel */
   title?: string;
-  /** Changes the underlying element of the title. Default: h2*/
+  /** Changes the underlying element of the title. Default: h2 */
   titleHtmlMarkup?: TitleTags;
   /** Adds custom classes to the element. */
   className?: string;
@@ -105,7 +105,7 @@ export interface PanelProps {
   /** Whether to render children when closed (in which case they are hidden with CSS). Default: false */
   renderChildrenWhenClosed?: boolean;
   /** Whether panel is focusable or not */
-  focusable: boolean;
+  focusable?: boolean;
 }
 
 const StatusText: React.FC<{ status?: keyof typeof PanelStatus; statusMessage?: string }> = ({ status, statusMessage }) => {
@@ -325,7 +325,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   return (
     <div
       // eslint-disable-next-line no-constant-condition
-      tabIndex={{ focusable } ? -1 : undefined}
+      tabIndex={focusable ? -1 : undefined}
       ref={ref}
       data-testid={testId}
       className={panelWrapperClass}
