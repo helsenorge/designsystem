@@ -1,3 +1,14 @@
+## [4.3.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.3.0&targetVersion=GTv4.3.1) (2023-08-28)
+
+### Bug Fixes
+
+- gjorde panel focusable optional og focus border er fjernet
+  ([2fbda76](https://github.com/helsenorge/designsystem/commit/2fbda7641ed3b62ef62029611bce3b669f453a42)), closes
+  [#307802](https://github.com/helsenorge/designsystem/issues/307802)
+- windows high contrast mode checkbox og radiobutton er synlige
+  ([54acf09](https://github.com/helsenorge/designsystem/commit/54acf09210b713e4ba996a10f2fe08783e66102c)), closes
+  [#307340](https://github.com/helsenorge/designsystem/issues/307340)
+
 ## [4.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.2.4&targetVersion=GTv4.3.0) (2023-08-23)
 
 ### Features
