@@ -43,7 +43,7 @@ export default {
     },
     name: {
       control: 'text',
-      defaultValue: '',
+      defaultValue: 'radio',
     },
     value: {
       control: 'text',
@@ -63,9 +63,9 @@ export const Default: ComponentStory<typeof RadioButton> = args => (
     <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} mode={'onblueberry'} />
     <RadioButton {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} mode={'oninvalid'} />
     <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} mode={'onwhite'} disabled />
-    <span style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
+    <div style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} mode={'ondark'} />
-    </span>
+    </div>
   </GridExample>
 );
 

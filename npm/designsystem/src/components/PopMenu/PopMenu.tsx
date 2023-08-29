@@ -66,6 +66,8 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   const breakpoint = useBreakpoint();
   const mobile = breakpoint < breakpoints.md;
   useOutsideEvent(popOverRef, () => setIsOpen(!isOpen));
+  const { isHovered: openButtonIsHovered } = useHover(openRef);
+  const mobileIconSize = mobile ? IconSize.XSmall : IconSize.Small;
 
   const renderChildren = () => {
     if (isComponent<LinkListProps>(children, LinkList)) {
@@ -82,40 +84,35 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
       );
     }
   };
-  const openButton = () => {
-    const openButtonIsHovered = useHover(openRef).isHovered;
-    const mobileIconSize = mobile ? IconSize.XSmall : IconSize.Small;
-    return (
-      <button
-        ref={openRef}
-        data-testid={openButtonTestId}
-        className={buttonClasses}
-        aria-label={openButtonAriaLabel || 'Se mer'}
-        onClick={() => setIsOpen(true)}
-        type="button"
-      >
-        <Icon svgIcon={VerticalDots} className="test" color={getColor('black')} size={mobileIconSize} isHovered={openButtonIsHovered} />
-      </button>
-    );
-  };
-  const closeButton = () => {
-    const closeIsHovered = useHover(closeRef).isHovered;
-    return (
-      <Close
-        ariaLabel={closeButtonAriaLabel}
-        color="black"
-        className={buttonClasses}
-        testId={closeButtonTestId}
-        ref={closeRef}
-        onClick={() => setIsOpen(false)}
-        small={mobile}
-        isHovered={closeIsHovered}
-      />
-    );
-  };
+
+  const openButton = (
+    <button
+      ref={openRef}
+      data-testid={openButtonTestId}
+      className={buttonClasses}
+      aria-label={openButtonAriaLabel || 'Se mer'}
+      onClick={(): void => setIsOpen(true)}
+      type="button"
+    >
+      <Icon svgIcon={VerticalDots} className="test" color={getColor('black')} size={mobileIconSize} isHovered={openButtonIsHovered} />
+    </button>
+  );
+
+  const closeButton = (
+    <Close
+      ariaLabel={closeButtonAriaLabel}
+      color="black"
+      className={buttonClasses}
+      testId={closeButtonTestId}
+      ref={closeRef}
+      onClick={(): void => setIsOpen(false)}
+      small={mobile}
+    />
+  );
+
   return (
     <div className={classNames(styles['pop-menu-button'], popMenuClassName)} data-analyticsid={AnalyticsId.PopMenu}>
-      {!isOpen ? openButton() : closeButton()}
+      {!isOpen ? openButton : closeButton}
       {isOpen && renderChildren()}
     </div>
   );

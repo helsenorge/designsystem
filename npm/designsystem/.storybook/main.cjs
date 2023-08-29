@@ -12,6 +12,7 @@ module.exports = {
     '@storybook/addon-controls',
     '@storybook/addon-docs',
     '@storybook/addon-viewport',
+    'storybook-addon-html-validator',
   ],
   features: {
     storyStoreV7: true,

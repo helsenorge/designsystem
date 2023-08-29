@@ -39,7 +39,7 @@ export default {
     },
     name: {
       control: 'text',
-      defaultValue: '',
+      defaultValue: 'checkbox',
     },
     value: {
       control: 'text',
@@ -59,15 +59,15 @@ export const Default: ComponentStory<typeof Checkbox> = args => (
     <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} mode="onblueberry" />
     <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} mode="oninvalid" />
     <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} mode="onwhite" disabled />
-    <span style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
+    <div style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
       <Checkbox {...args} label={<Label mode={'ondark'} labelTexts={[{ text: 'ondark' }]} />} mode="ondark" />
-    </span>
+    </div>
   </GridExample>
 );
 
 export const BigForm: ComponentStory<typeof Checkbox> = args => (
   <GridExample>
-    <span style={{ backgroundColor: '#EAE7E7', display: 'block', marginTop: '1rem', padding: '1rem' }}>
+    <div style={{ backgroundColor: '#EAE7E7', display: 'block', marginTop: '1rem', padding: '1rem' }}>
       <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} variant="bigform" mode="onwhite" />
       <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} variant="bigform" mode="ongrey" />
       <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} variant="bigform" mode="onblueberry" />
@@ -81,6 +81,6 @@ export const BigForm: ComponentStory<typeof Checkbox> = args => (
         mode="onwhite"
         disabled
       />
-    </span>
+    </div>
   </GridExample>
 );

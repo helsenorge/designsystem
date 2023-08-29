@@ -10,6 +10,7 @@ import { breakpoints } from '../../theme/grid';
 import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { AnchorLinkTargets } from '../AnchorLink';
+import Close from '../Close';
 import Icon, { IconSize } from '../Icons';
 import CheckFill from '../Icons/CheckFill';
 import ChevronDown from '../Icons/ChevronDown';
@@ -23,12 +24,126 @@ import { NotificationPanelVariants } from '../NotificationPanel';
 
 import styles from './styles.module.scss';
 
+interface LabelProps {
+  label: string;
+  variant: NotificationPanelVariants;
+  id: string;
+  hasExpander: boolean;
+  isExpanded: boolean;
+  dismissable: boolean;
+  onExpand: () => void;
+  onDismiss?: () => void;
+  closeBtnText?: string;
+}
+
+const Label: React.FC<LabelProps> = ({ label, variant, id, hasExpander, isExpanded, dismissable, onExpand, onDismiss, closeBtnText }) => {
+  const breakpoint = useBreakpoint();
+  const { isHovered, hoverRef } = useHover<HTMLDivElement>();
+
+  const iconSize = breakpoint < breakpoints.lg ? IconSize.XSmall : IconSize.Small;
+  const variantToIconMap = {
+    info: (
+      <Icon svgIcon={InfoSignFill} color={palette.blueberry700} hoverColor={palette.blueberry700} size={iconSize} isHovered={isHovered} />
+    ),
+    warn: <Icon svgIcon={ErrorSignFill} color={palette.banana700} hoverColor={palette.banana700} size={iconSize} isHovered={isHovered} />,
+    alert: <Icon svgIcon={TriangleX} color={palette.cherry700} hoverColor={palette.cherry700} size={iconSize} isHovered={isHovered} />,
+    success: <Icon svgIcon={CheckFill} color={palette.kiwi900} hoverColor={palette.kiwi900} size={iconSize} isHovered={isHovered} />,
+  };
+  const CustomTag = hasExpander ? 'button' : 'span';
+
+  const labelContainerClasses = classNames(
+    styles['service-message__label-container'],
+    styles[`service-message__label-container--${variant}`],
+    hasExpander && styles[`service-message__label-container--has-expander`]
+  );
+
+  return (
+    <div className={labelContainerClasses} ref={hoverRef}>
+      <div className={styles['service-message__container']}>
+        <div className={styles['service-message__row']}>
+          <div className={styles['service-message__col']}>
+            <div className={styles['service-message__label']}>
+              {variantToIconMap[variant]}
+              <h1 className={styles['service-message__title']} id={id}>
+                <CustomTag
+                  className={styles['service-message__toggle']}
+                  onClick={hasExpander ? onExpand : undefined}
+                  aria-expanded={hasExpander ? isExpanded : undefined}
+                >
+                  {label}
+                </CustomTag>
+              </h1>
+              {hasExpander && <Icon size={iconSize} svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} />}
+              {!hasExpander && dismissable && (
+                <Close onClick={onDismiss} ariaLabel={closeBtnText} className={styles['service-message__close']} />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface ContentProps {
+  info?: string;
+  extraInfo?: string;
+  urlTitle?: string;
+  url?: string;
+  target?: AnchorLinkTargets;
+  dismissable: boolean;
+  onDismiss?: () => void;
+  closeBtnText?: string;
+}
+
+const Content: React.FC<ContentProps> = ({ info, extraInfo, urlTitle, url, target, dismissable, closeBtnText, onDismiss }) => {
+  const { hoverRef: readMoreRef, isHovered: readMoreHoverRefIsHovered } = useHover<HTMLAnchorElement>();
+  const { hoverRef: closeButtonRef, isHovered: closeButtonIsHovered } = useHover<HTMLButtonElement>();
+
+  const hasUrl = url && urlTitle;
+
+  return (
+    <div className={styles['service-message__container']}>
+      <div className={styles['service-message__row']}>
+        <div className={styles['service-message__col']}>
+          <div className={styles['service-message__content']}>
+            {info && <p className={styles['service-message__info']}>{info}</p>}
+            {extraInfo && (
+              <p className={classNames(styles['service-message__info'], styles['service-message__info--extra'])}>{extraInfo}</p>
+            )}
+            <div className={styles['service-message__actions']}>
+              {hasUrl && (
+                <a className={styles['service-message__action']} href={url} ref={readMoreRef} target={target}>
+                  {urlTitle}
+                  <Icon size={IconSize.XSmall} svgIcon={Forward} color={getColor('blueberry', 700)} isHovered={readMoreHoverRefIsHovered} />
+                </a>
+              )}
+
+              {dismissable && (
+                <button
+                  ref={closeButtonRef}
+                  className={classNames(styles['service-message__action'], styles['service-message__action--close'])}
+                  aria-label={closeBtnText}
+                  onClick={onDismiss}
+                >
+                  {closeBtnText}
+                  <Icon size={IconSize.XSmall} svgIcon={X} color={getColor('blueberry', 700)} isHovered={closeButtonIsHovered} />
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export interface ServiceMessageProps {
   /** Sets a label for the notification panel. */
   label: string;
-  /** String displayed in service-message when expended*/
+  /** String displayed in service-message when expanded */
   info?: string;
-  /** String displayed in service-message when expended, with a smaller font*/
+  /** String displayed in service-message when expanded, with a smaller font */
   extraInfo?: string;
   /** function that runs on dismiss */
   onDismiss?: () => void;
@@ -48,9 +163,13 @@ export interface ServiceMessageProps {
   variant?: NotificationPanelVariants;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** First of its type. Used to remove border-top */
+  /**
+   * First of its type. Used to remove border-top
+   * @deprecated Har ingen effekt på komponenten
+   */
   first?: boolean;
 }
+
 const ServiceMessage: React.FC<ServiceMessageProps> = ({
   label,
   dismissable = true,
@@ -61,129 +180,53 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
   url,
   target = '_self',
   closeBtnText = 'fjern melding',
-  first = false,
   expanderOpenFromStart = false,
   variant = 'alert',
   testId,
-}: ServiceMessageProps) => {
-  const hasExpander = !!info || !!extraInfo;
-
-  const CustomTag = hasExpander ? 'button' : 'span';
-  const breakpoint = useBreakpoint();
-  const desktop = breakpoint < breakpoints.lg;
-  const iconSize = desktop ? IconSize.XSmall : IconSize.Small;
-  const uuid = useUuid();
-  const ariaRole = variant === 'alert' ? 'alert' : 'region';
-  const ariaLabelAttributes = getAriaLabelAttributes({ label, id: uuid });
-
+}) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(expanderOpenFromStart);
 
-  const variantToIconMap = {
-    info: <Icon svgIcon={InfoSignFill} color={palette.blueberry700} hoverColor={palette.blueberry700} size={iconSize} />,
-    warn: <Icon svgIcon={ErrorSignFill} color={palette.banana700} hoverColor={palette.banana700} size={iconSize} />,
-    alert: <Icon svgIcon={TriangleX} color={palette.cherry700} hoverColor={palette.cherry700} size={iconSize} />,
-    success: <Icon svgIcon={CheckFill} color={palette.kiwi900} hoverColor={palette.kiwi900} size={iconSize} />,
-  };
-  const topTowClasses = classNames(styles['service-message__top-row--container'], styles['service-message__wrapper--inner']);
-  const topTowCloseButtonClasses = classNames(
-    styles['service-message__bottom-row__button'],
-    styles['service-message__bottom-row__close-button--top']
-  );
-  const TopRow = (): JSX.Element => {
-    const hoverRefObject = useHover<HTMLButtonElement>();
-    const { isHovered, hoverRef } = hoverRefObject;
-    const xRef = useRef<HTMLButtonElement>(null);
-    const { isHovered: xRefIsHovered } = useHover(xRef);
-    return (
-      <span className={topTowClasses} ref={hoverRef}>
-        <span className={styles['service-message__icon--signal']}>{variantToIconMap[variant]}</span>
-        <h1 className={styles['service-message__label']} id={uuid}>
-          {label}
-        </h1>
-        {hasExpander && (
-          <span className={styles['service-message__icon--expander']}>
-            <Icon size={iconSize} svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} />
-          </span>
-        )}
-        {!hasExpander && dismissable && (
-          <button ref={xRef} className={topTowCloseButtonClasses} aria-label={closeBtnText} onClick={onDismiss}>
-            <Icon size={iconSize} svgIcon={X} color={getColor('blueberry', 700)} isHovered={xRefIsHovered} />
-          </button>
-        )}
-      </span>
-    );
-  };
-  const tagClicked = (): void => {
+  const labelId = useUuid();
+  const hasExpander = !!info || !!extraInfo;
+
+  const ariaRole = variant === 'alert' ? 'alert' : 'region';
+  const ariaLabelAttributes = getAriaLabelAttributes({ label, id: labelId });
+
+  const handleClick = (): void => {
     hasExpander && setIsExpanded(!isExpanded);
   };
 
-  const anchorlinkClasses = classNames(styles['service-message__bottom-row__button']);
-  const urlField = !!url && !!urlTitle;
-  const closeButtonClasses = classNames(styles['service-message__bottom-row__button']);
-  const bottomRowClasses = classNames(styles['service-message__bottom-row'], {
-    [styles['service-message__bottom-row--only-close-button']]: !urlField,
-  });
-  const ButtonRow = (): JSX.Element => {
-    const readMoreRef = useRef<HTMLAnchorElement>(null);
-    const { isHovered: readMoreHoverRefIsHovered } = useHover(readMoreRef);
-    const xRef = useRef<HTMLButtonElement>(null);
-    const { isHovered: xRefIsHovered } = useHover(xRef);
-    return (
-      <div className={bottomRowClasses}>
-        {urlField && (
-          <a className={anchorlinkClasses} href={url} ref={readMoreRef} target={target}>
-            {urlTitle}
-            <Icon size={IconSize.XSmall} svgIcon={Forward} color={getColor('blueberry', 700)} isHovered={readMoreHoverRefIsHovered} />
-          </a>
-        )}
+  const classes = classNames(
+    styles['service-message'],
+    styles[`service-message--${variant}`],
+    isExpanded && styles[`service-message--expanded`]
+  );
 
-        {dismissable && (
-          <button ref={xRef} className={closeButtonClasses} aria-label={closeBtnText} onClick={onDismiss}>
-            {closeBtnText}
-            <Icon size={IconSize.XSmall} svgIcon={X} color={getColor('blueberry', 700)} isHovered={xRefIsHovered} />
-          </button>
-        )}
-      </div>
-    );
-  };
-  const Content = (): JSX.Element => {
-    return (
-      <span className={styles['service-message__content']}>
-        {!!info && <span className={styles['service-message__content__info']}>{info}</span>}
-        {!!extraInfo && <span className={styles['service-message__content__info--smaller']}>{extraInfo}</span>}
-        <ButtonRow />
-      </span>
-    );
-  };
-  const outerBackgroundClass = classNames({
-    [styles[`service-message__outer-wrapper--${variant}`]]: variant,
-  });
-  const backgroundClass = classNames({
-    [styles[`service-message__wrapper--${variant}`]]: variant,
-    [styles[`service-message__wrapper--${variant}--expanded`]]: isExpanded && variant,
-  });
-  const contentWrapperClasses = classNames(styles['service-message__wrapper--inner'], styles['service-message__content__wrapper']);
-  const wrapperClasses = classNames(styles['service-message__wrapper'], styles['service-message__wrapper__btn'], {
-    [styles['service-message__wrapper__btn--width']]: hasExpander,
-    [styles[`service-message__wrapper__border--${variant}`]]: variant,
-    [styles['service-message__wrapper__btn--expanded']]: isExpanded,
-    [styles['service-message__wrapper__btn--first']]: first,
-    [styles['service-message__wrapper__btn--not-first']]: !first,
-  });
   return (
-    <div className={outerBackgroundClass}>
-      <div className={backgroundClass} role={ariaRole} {...ariaLabelAttributes}>
-        <CustomTag className={wrapperClasses} onClick={tagClicked} aria-expanded={hasExpander && isExpanded} data-testid={testId}>
-          <TopRow />
-        </CustomTag>
-        {hasExpander && isExpanded && (
-          <div className={styles['service-message__content--spacing']}>
-            <div className={contentWrapperClasses}>
-              <Content />
-            </div>
-          </div>
-        )}
-      </div>
+    <div className={classes} role={ariaRole} {...ariaLabelAttributes} data-testid={testId}>
+      <Label
+        label={label}
+        variant={variant}
+        id={labelId}
+        hasExpander={hasExpander}
+        isExpanded={isExpanded}
+        dismissable={dismissable}
+        onExpand={handleClick}
+        onDismiss={onDismiss}
+        closeBtnText={closeBtnText}
+      />
+      {hasExpander && isExpanded && (
+        <Content
+          info={info}
+          extraInfo={extraInfo}
+          urlTitle={urlTitle}
+          url={url}
+          target={target}
+          dismissable={dismissable}
+          onDismiss={onDismiss}
+          closeBtnText={closeBtnText}
+        />
+      )}
     </div>
   );
 };
