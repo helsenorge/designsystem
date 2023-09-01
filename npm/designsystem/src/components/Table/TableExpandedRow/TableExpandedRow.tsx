@@ -51,7 +51,7 @@ export const TableExpandedRow = ({
     <tr className={tableRowClass}>
       <td colSpan={numberOfColumns} className={tableCellClass}>
         <div className={containerClass}>
-          {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { mode }))}
+          {React.Children.map(children, child => React.isValidElement<Props>(child) && React.cloneElement(child, { mode }))}
           <Button variant={'borderless'} onClick={toggleClick} aria-expanded={expanded} tabIndex={expanded ? 0 : -1}>
             {hideDetailsText}
             <Icon svgIcon={ChevronUp} />
