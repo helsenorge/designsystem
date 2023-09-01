@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   core: { builder: '@storybook/builder-vite' },
-  stories: ['../**/*.stories.@(tsx)'],
+  stories: ['../src/**/*.stories.@(tsx)', '../../datepicker/src/**/*.stories.@(tsx)'],
   framework: '@storybook/react',
   addons: [
     '@storybook/addon-a11y',

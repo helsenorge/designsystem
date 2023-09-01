@@ -1,0 +1,32 @@
+{
+  "name": "@helsenorge/datepicker",
+  "sideEffects": false,
+  "version": "4.3.1",
+  "description": "The official Helsenorge datepicker.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helsenorge/designsystem"
+  },
+  "homepage": "https://helsenorge.design",
+  "author": "Helsenorge",
+  "maintainers": [
+    "ROX"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "directory": "lib",
+    "access": "public"
+  },
+  "scripts": {},
+  "peerDependencies": {
+    "@helsenorge/designsystem-react": "^4.0.0"
+  },
+  "dependencies": {
+    "@helsenorge/designsystem-react": "^4.3.1",
+    "react-datepicker": "^4.16.0"
+  },
+  "devDependencies": {
+    "@types/react-datepicker": "^4.15.0"
+  }
+}
