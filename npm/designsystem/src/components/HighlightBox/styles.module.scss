@@ -3,6 +3,7 @@
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
 @import '../../scss/grid';
+@import '../../scss/screen-reader';
 
 @mixin content-wrapper-with-icon-flex {
   display: flex;
@@ -166,15 +167,6 @@
     }
   }
 
-  &__title {
-    padding-left: getSpacer(s);
-    display: flex;
-    align-items: center;
-    &--hidden {
-      display: none;
-    }
-  }
-
   &--has-icon#{&}--fluid {
     @include content-wrapper-with-icon-flex;
     @include content-wrapper-with-icon-padding;
@@ -220,5 +212,19 @@
         @include make-col(12);
       }
     }
+  }
+}
+
+.mobile {
+  display: flex;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    @include sr-only;
+  }
+}
+.desktop {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
   }
 }

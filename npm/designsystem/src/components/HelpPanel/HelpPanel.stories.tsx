@@ -22,7 +22,7 @@ export default {
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['fluid', 'medium', 'large'],
       defaultValue: 'medium',
     },
   },

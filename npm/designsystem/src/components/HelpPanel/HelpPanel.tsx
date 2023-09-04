@@ -1,7 +1,11 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 import HighlightBox, { HighlightBoxSize } from '../HighlightBox';
 import HandWaving from '../Icons/HandWaving';
+
+import styles from './styles.module.scss';
 
 interface HelpPanelProps {
   /** What's in the box? */
@@ -17,8 +21,17 @@ interface HelpPanelProps {
 }
 
 const HelpPanel: React.FC<HelpPanelProps> = ({ className, testId, size, children, title }) => {
+  const helpPanelClassName = classNames(styles['help-panel'], className);
+
   return (
-    <HighlightBox className={className} testId={testId} size={size} svgIcon={HandWaving} color="plum" title={title}>
+    <HighlightBox
+      className={helpPanelClassName}
+      contentWrapperClassName={styles['help-panel']}
+      testId={testId}
+      size={size}
+      svgIcon={HandWaving}
+      title={title}
+    >
       {children}
     </HighlightBox>
   );
