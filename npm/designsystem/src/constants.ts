@@ -73,6 +73,7 @@ export enum AnalyticsId {
   Button = 'button',
   Checkbox = 'checkbox',
   Close = 'close',
+  DictionaryTrigger = 'dictionary-trigger',
   Dropdown = 'dropdown',
   Duolist = 'duolist',
   Expander = 'expander',
@@ -113,6 +114,7 @@ export enum AnalyticsId {
   Tile = 'tile',
   Title = 'title',
   Tooltip = 'tooltip',
+  Trigger = 'trigger',
   Validation = 'validation',
 }
 

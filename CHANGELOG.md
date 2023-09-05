@@ -1,3 +1,28 @@
+## [4.3.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.3.0&targetVersion=GTv4.3.1) (2023-08-28)
+
+### Bug Fixes
+
+- gjorde panel focusable optional og focus border er fjernet
+  ([2fbda76](https://github.com/helsenorge/designsystem/commit/2fbda7641ed3b62ef62029611bce3b669f453a42)), closes
+  [#307802](https://github.com/helsenorge/designsystem/issues/307802)
+- windows high contrast mode checkbox og radiobutton er synlige
+  ([54acf09](https://github.com/helsenorge/designsystem/commit/54acf09210b713e4ba996a10f2fe08783e66102c)), closes
+  [#307340](https://github.com/helsenorge/designsystem/issues/307340)
+
+## [4.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.2.4&targetVersion=GTv4.3.0) (2023-08-23)
+
+### Features
+
+- trigger-komponent ([5c0ded6](https://github.com/helsenorge/designsystem/commit/5c0ded6f8d71bddb780160d2f3124fd89686730e))
+- trigger/hjelpetrigger/infotrigger ([7c66b8b](https://github.com/helsenorge/designsystem/commit/7c66b8b03569cc596e1263b9d1da048654d45d50)),
+  closes [#301136](https://github.com/helsenorge/designsystem/issues/301136)
+
+### Bug Fixes
+
+- lagt til focusable feature i panel
+  ([050d90f](https://github.com/helsenorge/designsystem/commit/050d90f0796718b58dd0e3965721c0df38a684c5)), closes
+  [#305821](https://github.com/helsenorge/designsystem/issues/305821)
+
 ## [4.2.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.2.3&targetVersion=GTv4.2.4) (2023-08-03)
 
 ### Bug Fixes

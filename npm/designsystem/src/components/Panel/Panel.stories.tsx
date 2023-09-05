@@ -82,6 +82,10 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    focusable: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
 } as ComponentMeta<typeof Panel>;
 
@@ -231,6 +235,7 @@ export const Status: ComponentStory<typeof Panel> = (args: any) => (
       statusMessage={'4 nye'}
       title={'Dette er en veldig lang tittel for å wrappe badge (4)'}
       url={'https://www.helsenorge.no/'}
+      focusable={args.focusable}
     />
     <br />
     <Panel status={'error'} statusMessage={'1'} title={args.title} url={'https://www.helsenorge.no/'} />

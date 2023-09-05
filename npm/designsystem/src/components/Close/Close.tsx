@@ -4,7 +4,9 @@ import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { useHover } from '../../hooks/useHover';
 import { palette } from '../../theme/palette';
+import { mergeRefs } from '../../utils/refs';
 import Icon from '../Icons';
 import X from '../Icons/X';
 
@@ -23,13 +25,12 @@ export interface CloseProps {
   className?: string;
   /** Gives color to the svg */
   color?: string;
-  /** Gives hovered effect to X icon */
-  isHovered?: boolean;
 }
 
 const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, ref: React.ForwardedRef<HTMLButtonElement>) {
-  const { small, testId, ariaLabel = 'Lukk', onClick, className, color = palette.blueberry600, isHovered } = props;
+  const { small, testId, ariaLabel = 'Lukk', onClick, className, color = palette.blueberry600 } = props;
   const breakpoint = useBreakpoint();
+  const { hoverRef, isHovered } = useHover();
 
   const iconSize = breakpoint === Breakpoint.xs || small ? 38 : 48;
 
@@ -37,7 +38,7 @@ const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, re
 
   return (
     <button
-      ref={ref}
+      ref={mergeRefs([ref, hoverRef])}
       data-testid={testId}
       data-analyticsid={AnalyticsId.Close}
       className={closeClasses}

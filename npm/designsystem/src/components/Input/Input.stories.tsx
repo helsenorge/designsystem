@@ -73,7 +73,7 @@ export default {
     },
     name: {
       control: 'text',
-      defaultValue: '',
+      defaultValue: 'input',
     },
     required: {
       control: 'boolean',

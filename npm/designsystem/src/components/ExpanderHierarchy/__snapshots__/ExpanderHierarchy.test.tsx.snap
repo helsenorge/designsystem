@@ -9,34 +9,34 @@ exports[`ExpanderHierarchy gitt at ExpanderHierarchy har en Expander når kompon
     <li
       class="expander"
     >
-      <button
-        aria-expanded="false"
-        class="expander__button expander__button--print"
-        data-analyticsid="expander-hierarchy-expander"
-        type="button"
+      <h2
+        class="expander__title expander__title--1 expander__title--print"
       >
-        <h2
-          class="expander__title expander__title--1"
+        <button
+          aria-expanded="false"
+          class="expander__button expander__button--print"
+          data-analyticsid="expander-hierarchy-expander"
+          type="button"
         >
           Nivå 1
-        </h2>
-        <svg
-          aria-hidden="true"
-          class="hnds-style-icon expander__icon"
-          data-analyticsid="icon"
-          fill="black"
-          focusable="false"
-          height="38"
-          role="presentation"
-          style="min-width: 38px; min-height: 38px;"
-          viewBox="0 0 48 48"
-          width="38"
-        >
-          <path
-            d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-          />
-        </svg>
-      </button>
+          <svg
+            aria-hidden="true"
+            class="hnds-style-icon expander__icon"
+            data-analyticsid="icon"
+            fill="black"
+            focusable="false"
+            height="38"
+            role="presentation"
+            style="min-width: 38px; min-height: 38px;"
+            viewBox="0 0 48 48"
+            width="38"
+          >
+            <path
+              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+            />
+          </svg>
+        </button>
+      </h2>
       <div
         class="expander__content expander__content--1"
       >
@@ -56,34 +56,34 @@ exports[`ExpanderHierarchy gitt at ExpanderHierarchy har en Expander når kompon
     <li
       class="expander"
     >
-      <button
-        aria-expanded="false"
-        class="expander__button"
-        data-analyticsid="expander-hierarchy-expander"
-        type="button"
+      <h2
+        class="expander__title expander__title--1"
       >
-        <h2
-          class="expander__title expander__title--1"
+        <button
+          aria-expanded="false"
+          class="expander__button"
+          data-analyticsid="expander-hierarchy-expander"
+          type="button"
         >
           Nivå 1
-        </h2>
-        <svg
-          aria-hidden="true"
-          class="hnds-style-icon expander__icon"
-          data-analyticsid="icon"
-          fill="black"
-          focusable="false"
-          height="38"
-          role="presentation"
-          style="min-width: 38px; min-height: 38px;"
-          viewBox="0 0 48 48"
-          width="38"
-        >
-          <path
-            d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
-          />
-        </svg>
-      </button>
+          <svg
+            aria-hidden="true"
+            class="hnds-style-icon expander__icon"
+            data-analyticsid="icon"
+            fill="black"
+            focusable="false"
+            height="38"
+            role="presentation"
+            style="min-width: 38px; min-height: 38px;"
+            viewBox="0 0 48 48"
+            width="38"
+          >
+            <path
+              d="M32.577 17.885l1.793 1.779-10.371 10.451L13.63 19.664l1.793-1.779 8.576 8.644z"
+            />
+          </svg>
+        </button>
+      </h2>
       <div
         class="expander__content expander__content--1"
       >

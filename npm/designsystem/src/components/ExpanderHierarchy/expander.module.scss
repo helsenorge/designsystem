@@ -46,18 +46,11 @@
     &[aria-expanded='true'] {
       background-color: $neutral100;
       border-bottom: none;
-
-      + #{$item}__content {
-        display: block;
-      }
     }
 
     @media print {
       &--print {
         background-color: $neutral100;
-        + #{$item}__content {
-          display: block;
-        }
       }
     }
 
@@ -87,6 +80,20 @@
 
     &--4-and-lower {
       @include title5;
+    }
+
+    &--expanded {
+      + #{$item}__content {
+        display: block;
+      }
+    }
+
+    @media print {
+      &--print {
+        + #{$item}__content {
+          display: block;
+        }
+      }
     }
   }
 

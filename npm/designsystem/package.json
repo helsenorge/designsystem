@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
-  "version": "4.2.4",
+  "version": "5.0.0-beta.0",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -42,7 +42,8 @@
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:update": "jest --u"
+    "test:update": "jest --u",
+    "new": "node scripts/new-component.js"
   },
   "peerDependencies": {
     "bootstrap": "^4.6.2",
@@ -94,5 +95,8 @@
     "typed-scss-modules": "^7.1.0",
     "typescript": "~4.9.5",
     "vite": "^4.2.1"
+  },
+  "dependencies": {
+    "storybook-addon-html-validator": "^0.0.12"
   }
 }
