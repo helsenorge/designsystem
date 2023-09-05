@@ -49,7 +49,7 @@ export const TableRow: React.FC<Props> = ({
 
   return (
     <tr className={tableRowClass} onClick={onClick} key={rowKey}>
-      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { mode }))}
+      {React.Children.map(children, child => React.isValidElement<Props>(child) && React.cloneElement(child, { mode }))}
       {expandable && (
         <TableExpanderCellMobile
           expanded={expanded}

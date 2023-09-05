@@ -158,7 +158,7 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
   });
   const CustomTag = titleHtmlMarkup;
   return (
-    <span data-testid={testId} className={listLabelClasses}>
+    <div data-testid={testId} className={listLabelClasses}>
       {showChevronAndIcon && icon && (
         <span className={iconClasses}>
           {React.cloneElement(icon, {
@@ -170,13 +170,13 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
       {size !== 'small' && mappedChildren?.avatarChild && (
         <span className={avatarClasses}>{React.cloneElement(mappedChildren.avatarChild, { size: AvatarSize.xsmall })}</span>
       )}
-      <span className={contentClasses}>
+      <div className={contentClasses}>
         {mappedChildren?.listHeaderTextChildren}
         {!!mappedChildren?.stringChildren.length && (
           <CustomTag className={styles['list-header__title']}>{mappedChildren.stringChildren}</CustomTag>
         )}
         {mappedChildren?.remainingChildren}
-      </span>
+      </div>
 
       {mappedChildren?.badgeChild && <span className={badgeClasses}>{mappedChildren.badgeChild}</span>}
       {showChevronAndIcon && chevronIcon && (
@@ -184,7 +184,7 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
           <Icon svgIcon={chevronIcon} isHovered={isHovered} size={IconSize.XSmall} />
         </span>
       )}
-    </span>
+    </div>
   );
 });
 

@@ -3,71 +3,80 @@
 exports[`Gitt at ServiceMessage skal vises Når komponenten vises med default props Så rendres komponenten riktig 1`] = `
 <div>
   <div
-    class="service-message__outer-wrapper--alert"
+    aria-labelledby="test"
+    class="service-message service-message--alert"
+    role="alert"
   >
     <div
-      aria-labelledby="test"
-      class="service-message__wrapper--alert"
-      role="alert"
+      class="service-message__label-container service-message__label-container--alert"
     >
-      <span
-        aria-expanded="false"
-        class="service-message__wrapper service-message__wrapper__btn service-message__wrapper__border--alert service-message__wrapper__btn--not-first"
+      <div
+        class="service-message__container"
       >
-        <span
-          class="service-message__top-row--container service-message__wrapper--inner"
+        <div
+          class="service-message__row"
         >
-          <span
-            class="service-message__icon--signal"
+          <div
+            class="service-message__col"
           >
-            <svg
-              aria-hidden="true"
-              class="hnds-style-icon"
-              data-analyticsid="icon"
-              fill="#A31F0E"
-              focusable="false"
-              height="48"
-              role="presentation"
-              style="min-width: 48px; min-height: 48px;"
-              viewBox="0 0 48 48"
-              width="48"
+            <div
+              class="service-message__label"
             >
-              <path
-                clip-rule="evenodd"
-                d="m24 7 19 33.712H5L24 7Zm-5.792 17.951a1.185 1.185 0 1 1 1.676-1.675l4.01 4.01 3.895-3.895a1.19 1.19 0 0 1 1.683 1.683l-3.895 3.895 4.387 4.387a1.185 1.185 0 0 1-1.675 1.675l-4.387-4.386-4.503 4.502a1.19 1.19 0 0 1-1.683-1.683l4.503-4.502-4.01-4.011Z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-          <h1
-            class="service-message__label"
-            id="test"
-          >
-            Some text here for testing.
-          </h1>
-          <button
-            aria-label="fjern melding"
-            class="service-message__bottom-row__button service-message__bottom-row__close-button--top"
-          >
-            <svg
-              aria-hidden="true"
-              class="hnds-style-icon"
-              data-analyticsid="icon"
-              fill="#08667C"
-              focusable="false"
-              height="48"
-              role="presentation"
-              style="min-width: 48px; min-height: 48px;"
-              viewBox="0 0 48 48"
-              width="48"
-            >
-              <path
-                d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z"
-              />
-            </svg>
-          </button>
-        </span>
-      </span>
+              <svg
+                aria-hidden="true"
+                class="hnds-style-icon"
+                data-analyticsid="icon"
+                fill="#A31F0E"
+                focusable="false"
+                height="48"
+                role="presentation"
+                style="min-width: 48px; min-height: 48px;"
+                viewBox="0 0 48 48"
+                width="48"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="m24 7 19 33.712H5L24 7Zm-5.792 17.951a1.185 1.185 0 1 1 1.676-1.675l4.01 4.01 3.895-3.895a1.19 1.19 0 0 1 1.683 1.683l-3.895 3.895 4.387 4.387a1.185 1.185 0 0 1-1.675 1.675l-4.387-4.386-4.503 4.502a1.19 1.19 0 0 1-1.683-1.683l4.503-4.502-4.01-4.011Z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              <h1
+                class="service-message__title"
+                id="test"
+              >
+                <span
+                  class="service-message__toggle"
+                >
+                  Some text here for testing.
+                </span>
+              </h1>
+              <button
+                aria-label="fjern melding"
+                class="close service-message__close"
+                data-analyticsid="close"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="hnds-style-icon"
+                  data-analyticsid="icon"
+                  fill="#126F87"
+                  focusable="false"
+                  height="48"
+                  role="presentation"
+                  style="min-width: 48px; min-height: 48px;"
+                  viewBox="0 0 48 48"
+                  width="48"
+                >
+                  <path
+                    d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

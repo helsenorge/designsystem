@@ -15,6 +15,8 @@ export type Styles = {
   'expander__title--2': string;
   'expander__title--3': string;
   'expander__title--4-and-lower': string;
+  'expander__title--expanded': string;
+  'expander__title--print': string;
   'fade-in': string;
 };
 

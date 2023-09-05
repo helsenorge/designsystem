@@ -208,6 +208,13 @@ $checkbox-icon-size: 1.625rem;
     min-width: $checkbox-icon-size;
     box-shadow: 0 0 0 getSpacer(4xs);
 
+    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      background-color: #000 !important;
+      color: #fff !important;
+    }
+
     :hover > & {
       box-shadow: 0 0 0 getSpacer(3xs);
     }
@@ -325,6 +332,12 @@ $checkbox-icon-size: 1.625rem;
     position: relative;
     top: 0.1rem;
     right: 0.05rem;
+
+    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      fill: #fff;
+    }
   }
 
   &:focus {

@@ -89,7 +89,7 @@ export default {
     },
     name: {
       control: 'text',
-      defaultValue: '',
+      defaultValue: 'textarea',
     },
     required: {
       control: 'boolean',

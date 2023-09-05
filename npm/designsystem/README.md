@@ -1,61 +1,19 @@
-# `designsystem-react`
-
-<h1>OUTDATED -> should refer to confluence for now</h1>
+# Helsenorge Designsystem - Frankenstein
 
 <a href="https://www.npmjs.com/package/@helsenorge/designsystem-react/v/latest">
     <img src="https://img.shields.io/npm/v/@helsenorge/designsystem-react/latest" />
 </a>
-<a href="https://www.npmjs.com/package/@helsenorge/designsystem-react/v/next">
-    <img src="https://img.shields.io/npm/v/@helsenorge/designsystem-react/next" />
-</a>
 
-## 👋 Introduction
+Helsenorge Designsystem, also known as Frankenstein, is a collection of React components that are used on https://www.helsenorge.no/ today.
 
-**TODO: Add introduction text**
+The repository also contains a set of hooks and utility functions. We also offer stylesheets for our breakpoints, spacers, typography and
+color palette.
 
-## 🚀 Quick start
+## Questions
 
-To install and use our React components simply run the following commands in your favorite terminal:
+Questions about the code or project can be askes at [ROX Slack channel](https://norskhelsenett.slack.com/archives/CS70UT0R0) or as issues on
+GitHub.
 
-### yarn
+## Documentation
 
-```bash
-yarn add @helsenorge/designsystem-react
-```
-
-### npm
-
-```npm
-npm install @helsenorge/designsystem-react
-```
-
-### Usage example
-
-This is example takes basis in the file `App.tsx/js` from the out-of-the-box project using CRA.
-
-```typescript
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-import { CommonButton } from '@helsenorge/designsystem-react';
-
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-      <CommonButton>Hello world!</CommonButton>
-    </div>
-  );
-};
-
-export default App;
-```
+To view all the available components in isolation, please view our storybook page here: https://designsystem-storybook.netlify.app

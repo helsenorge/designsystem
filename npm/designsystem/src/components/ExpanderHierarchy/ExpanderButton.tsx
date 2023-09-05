@@ -38,7 +38,9 @@ const ExpanderButton: React.FC<ExpanderButtonProps> = ({ htmlMarkup = 'h2', leve
   const titleClasses = classNames(
     styles.expander__title,
     level <= 3 && styles[`expander__title--${level}`],
-    level > 3 && styles[`expander__title--4-and-lower`]
+    level > 3 && styles[`expander__title--4-and-lower`],
+    isExpanded && styles['expander__title--expanded'],
+    print && styles['expander__title--print']
   );
 
   const iconClasses = classNames(
@@ -48,18 +50,20 @@ const ExpanderButton: React.FC<ExpanderButtonProps> = ({ htmlMarkup = 'h2', leve
   );
 
   return (
-    <button
-      type="button"
-      onClick={handleClick}
-      className={buttonClasses}
-      aria-expanded={isExpanded}
-      ref={hoverRef}
-      data-testid={testId}
-      data-analyticsid={AnalyticsId.ExpanderHierarchyExpander}
-    >
-      <CustomTag className={titleClasses}>{children}</CustomTag>
-      <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} className={iconClasses} size={IconSize.XSmall} />
-    </button>
+    <CustomTag className={titleClasses}>
+      <button
+        type="button"
+        onClick={handleClick}
+        className={buttonClasses}
+        aria-expanded={isExpanded}
+        ref={hoverRef}
+        data-testid={testId}
+        data-analyticsid={AnalyticsId.ExpanderHierarchyExpander}
+      >
+        {children}
+        <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} className={iconClasses} size={IconSize.XSmall} />
+      </button>
+    </CustomTag>
   );
 };
 

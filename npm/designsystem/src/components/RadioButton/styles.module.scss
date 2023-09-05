@@ -324,6 +324,12 @@
     width: 0.875rem;
     height: 0.875rem;
     border-radius: 10rem;
+
+    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      background-color: #fff !important;
+    }
   }
 
   &--on-dark:checked::before {
@@ -404,6 +410,13 @@
         box-shadow: 0 0 0 getSpacer(4xs);
       }
     }
+  }
+
+  // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    color: #fff !important;
+    background-color: transparent !important;
   }
 }
 

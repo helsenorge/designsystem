@@ -103,7 +103,7 @@ export const Table: React.FC<Props> = ({ id, testId, className, children, breakp
 
   const table = (
     <table className={tableClass} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Table} ref={tableRef} style={tableStyle}>
-      {React.Children.map(children, child => React.cloneElement(child as React.ReactElement<Props>, { mode }))}
+      {React.Children.map(children, child => React.isValidElement<Props>(child) && React.cloneElement(child, { mode }))}
     </table>
   );
 

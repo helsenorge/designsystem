@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { action } from '@storybook/addon-actions';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import ServiceMessage from './ServiceMessage';
@@ -79,30 +80,22 @@ export const Default: ComponentStory<typeof ServiceMessage> = (args: any) => (
     <ServiceMessage {...args} expanderOpenFromStart={false} variant="warn" />
   </>
 );
-export const ReadMore: ComponentStory<typeof ServiceMessage> = (args: any) => (
-  <>
-    <ServiceMessage {...args} dismissable={false} />
-  </>
+export const ReadMore: ComponentStory<typeof ServiceMessage> = (args: any) => <ServiceMessage {...args} dismissable={false} />;
+export const DismissableWithContent: ComponentStory<typeof ServiceMessage> = (args: any) => (
+  <ServiceMessage
+    label={'Dismissable with content'}
+    info="You can dismiss!"
+    extraInfo="If you like"
+    url={undefined}
+    urlTitle={undefined}
+    dismissable={true}
+    onDismiss={action('Dismiss clicked')}
+  />
 );
-export const DismissInExpander: ComponentStory<typeof ServiceMessage> = (args: any) => (
-  <>
-    <ServiceMessage
-      label={'Dismiss inside expander'}
-      info="You can dismiss!"
-      extraInfo="If you like"
-      url={undefined}
-      urlTitle={undefined}
-      dismissable={true}
-    />
-  </>
+export const DismissableLabelOnly: ComponentStory<typeof ServiceMessage> = (args: any) => (
+  <ServiceMessage label={'Dismissable label only'} variant="alert" dismissable={true} onDismiss={action('Dismiss clicked')} />
 );
-export const LabelOnlyAndDisissable: ComponentStory<typeof ServiceMessage> = (args: any) => (
-  <>
-    <ServiceMessage label={'Label and dismiss'} variant="alert" onDismiss={() => 0} dismissable={true} />
-  </>
-);
-export const LabelOnlyNonDisissable: ComponentStory<typeof ServiceMessage> = (args: any) => (
-  <>
-    <ServiceMessage label={'Label and dismiss'} variant="alert" dismissable={false} />
-  </>
+
+export const LabelOnly: ComponentStory<typeof ServiceMessage> = (args: any) => (
+  <ServiceMessage label={'Label only'} variant="alert" dismissable={false} />
 );
