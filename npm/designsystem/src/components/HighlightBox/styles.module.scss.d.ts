@@ -1,4 +1,5 @@
 export type Styles = {
+  desktop: string;
   highlightbox__col: string;
   'highlightbox__col--large-with-icon': string;
   'highlightbox__col--offset': string;
@@ -14,6 +15,7 @@ export type Styles = {
   'highlightbox--medium': string;
   'highlightbox--neutral': string;
   'highlightbox--white': string;
+  mobile: string;
 };
 
 export type ClassNames = keyof Styles;
