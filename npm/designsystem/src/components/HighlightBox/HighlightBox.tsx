@@ -4,10 +4,9 @@ import classNames from 'classnames';
 
 import { useBreakpoint, Breakpoint } from '../..';
 import { AnalyticsId } from '../../constants';
-import { breakpoints } from '../../theme/grid';
 import { PaletteNames } from '../../theme/palette';
 import Icon, { SvgIcon, IconSize } from '../Icons';
-import Title, { TitleProps } from '../Title';
+import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
 
@@ -44,7 +43,7 @@ interface HighlightBoxProps {
   /** Element that is set after the icon-element in the DOM, often a title-element */
   title?: string;
   /** Markup props for title */
-  titleHtmlMarkup?: TitleProps;
+  titleHtmlMarkup?: TitleTags;
 }
 
 interface WrapperProps {
@@ -89,11 +88,9 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
     className,
     contentWrapperClassName,
     title,
-    titleHtmlMarkup = { testId: 'titleId', htmlMarkup: 'h2', appearance: 'title4' },
+    titleHtmlMarkup = 'h2',
   } = props;
   const breakpoint = useBreakpoint();
-
-  const mobile = breakpoint < breakpoints.md;
 
   const containerClassName = classNames(
     styles['highlightbox'],
@@ -104,15 +101,15 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
     className
   );
 
-  const titleElementClassName = classNames(styles['highlightbox__title'], {
-    [styles['highlightbox__title--hidden']]: !mobile,
-  });
-
   const renderContent = () => {
     if (svgIcon) {
       const iconSize = size === HighlightBoxSize.large && breakpoint && breakpoint >= Breakpoint.md ? IconSize.Medium : IconSize.Small;
 
-      const titleElement = <Title {...titleHtmlMarkup}>{title}</Title>;
+      const titleElement = (
+        <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance="title4">
+          {title}
+        </Title>
+      );
 
       return (
         <>
