@@ -121,7 +121,11 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
             {title && <div className={styles['mobile']}>{titleElement}</div>}
           </div>
           <div className={styles.highlightbox__content}>
-            {title && <div className={styles['desktop']}>{titleElement}</div>}
+            {title && (
+              <div className={styles['desktop']} aria-hidden="true">
+                {titleElement}
+              </div>
+            )}
             {children}
           </div>
         </>
