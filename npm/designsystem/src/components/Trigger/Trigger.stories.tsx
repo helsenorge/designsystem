@@ -25,7 +25,7 @@ export default {
     },
     variant: {
       control: 'select',
-      options: ['help'], //['help', 'info'],
+      options: ['help'], //['help', 'info'], @todo Åpne for info igjen når design er klart
       defaultValue: 'help',
     },
     size: {
@@ -41,6 +41,11 @@ export default {
     selected: {
       control: 'boolean',
       defaultValue: false,
+    },
+    htmlMarkup: {
+      control: 'select',
+      options: ['button', 'span'],
+      defaultValue: 'button',
     },
   },
 } as ComponentMeta<typeof Trigger>;

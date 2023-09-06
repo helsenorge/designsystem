@@ -32,53 +32,56 @@
 
   @each $variant, $color in $variant-map {
     &--#{$variant} {
-      box-shadow: inset 0 0 0 1.5px map.get($palette-map, #{$color}600);
+      box-shadow: inset 0 0 0 1.6px map.get($palette-map, #{$color}600);
 
-      &:hover {
-        box-shadow: inset 0 0 0 1.5px map.get($palette-map, #{$color}800);
-        background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}600), 0.1));
+      &:hover,
+      &#{$trigger}--hovered {
+        box-shadow: inset 0 0 0 1.6px map.get($palette-map, #{$color}800);
+        background-color: rgba(map.get($palette-map, #{$color}600), 0.1);
       }
 
       &:focus-visible {
-        box-shadow: inset 0 0 0 1.5px $black;
-        outline: 1.5px solid $black;
+        box-shadow: inset 0 0 0 1.6px $black;
+        outline: 1.6px solid $black;
       }
 
-      &#{$trigger}[aria-expanded='true'] {
-        box-shadow: inset 0 0 0 1.5px map.get($palette-map, #{$color}800);
-        background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}600), 0.1));
+      &#{$trigger}--selected {
+        box-shadow: inset 0 0 0 1.6px map.get($palette-map, #{$color}800);
+        background-color: rgba(map.get($palette-map, #{$color}600), 0.1);
 
-        &:hover {
-          background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}600), 0.2));
+        &:hover,
+        &#{$trigger}--hovered {
+          background-color: rgba(map.get($palette-map, #{$color}600), 0.2);
         }
 
         &:focus {
-          background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}600), 0.1));
+          background-color: rgba(map.get($palette-map, #{$color}600), 0.1);
         }
       }
     }
   }
 
   &--ondark {
-    box-shadow: inset 0 0 0 1.5px $white;
+    box-shadow: inset 0 0 0 1.6px $white;
 
     &:hover {
-      background-color: rgba-to-rgb(rgba($plum50, 0.2), $plum600);
+      background-color: rgba($plum50, 0.2);
     }
 
     &:focus-visible {
-      outline: 1.5px solid $white;
+      outline: 1.6px solid $white;
     }
 
-    &#{$trigger}[aria-expanded='true'] {
-      background-color: rgba-to-rgb(rgba($plum50, 0.1), $plum600);
+    &#{$trigger}--selected {
+      background-color: rgba($plum50, 0.1);
 
-      &:hover {
-        background-color: rgba-to-rgb(rgba($plum50, 0.2), $plum600);
+      &:hover,
+      &#{$trigger}--hovered {
+        background-color: rgba($plum50, 0.2);
       }
 
       &:focus-visible {
-        background-color: rgba-to-rgb(rgba($plum50, 0.1), $plum600);
+        background-color: rgba($plum50, 0.1);
       }
     }
   }
