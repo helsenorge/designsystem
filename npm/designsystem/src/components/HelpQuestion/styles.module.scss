@@ -1,0 +1,49 @@
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+
+.helpquestion {
+  display: inline-flex;
+  align-items: center;
+  text-align: left;
+  gap: getSpacer(xs);
+  padding: getSpacer(xs);
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: $plum600;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-xs;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    gap: getSpacer(s);
+    font-size: $font-size-md;
+    line-height: $lineheight-size-sm;
+  }
+
+  &:hover {
+    color: $plum800;
+    background-color: rgba($plum600, 0.1);
+  }
+
+  &:focus-visible {
+    box-shadow: inset 0 0 0 3px $black;
+  }
+
+  &--selected {
+    color: $plum800;
+    background-color: rgba($plum600, 0.1);
+
+    &:hover {
+      background-color: rgba($plum600, 0.2);
+    }
+
+    &:focus-visible {
+      background-color: rgba($plum600, 0.1);
+    }
+  }
+}

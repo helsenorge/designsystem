@@ -117,4 +117,13 @@ describe('Gitt at Trigger skal vises', () => {
       expect(trigger).toHaveAttribute('data-triggerid', 'default');
     });
   });
+  describe('Når htmlMarkup=span', () => {
+    it('Så kan den finnes med testid', async () => {
+      render(<Trigger htmlMarkup="span" testId="trigger" />);
+
+      const trigger = screen.getByTestId('trigger');
+
+      expect(trigger).toBeVisible();
+    });
+  });
 });

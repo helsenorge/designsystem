@@ -12,6 +12,8 @@ import Icon, { SvgIcon } from '../Icons';
 
 import styles from './styles.module.scss';
 
+export type TriggerTags = 'button' | 'span';
+
 export type TriggerVariant = 'help'; // @todo Support variant='info' in later version
 
 export type TriggerSize = 'medium' | 'large';
@@ -43,6 +45,14 @@ export interface TriggerProps extends Pick<React.InputHTMLAttributes<HTMLButtonE
    * Indicates that the trigger is in use.
    */
   selected?: boolean;
+  /**
+   * Indicates that the trigger is hovered. Used in combination with htmlMarkup=span to force visual hover state.
+   */
+  isHovered?: boolean;
+  /**
+   * Changes the underlying element of the trigger. If set to span, the trigger will be a non-interactive icon. Default: button
+   */
+  htmlMarkup?: TriggerTags;
   /**
    * Classname will be applied to the button element.
    */
@@ -81,22 +91,46 @@ const getIconColor = (mode: TriggerMode, variant: TriggerVariant, isActive: bool
 
 const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
   (
-    { ariaLabel, ariaLabelledById, variant = 'help', mode = 'onlight', size = 'medium', selected = false, className, testId, ...rest },
+    {
+      ariaLabel,
+      ariaLabelledById,
+      variant = 'help',
+      mode = 'onlight',
+      size = 'medium',
+      selected = false,
+      isHovered,
+      htmlMarkup = 'button',
+      className,
+      testId,
+      ...rest
+    },
     ref
   ) => {
-    const { isHovered, hoverRef } = useHover<HTMLButtonElement>();
+    const { isHovered: buttonIsHovered, hoverRef } = useHover<HTMLButtonElement>();
 
     const triggerClasses = classNames(
       styles.trigger,
       mode === 'onlight' && styles[`trigger--${variant}`], // variants look the same when mode=ondark
       styles[`trigger--${mode}`],
       styles[`trigger--${size}`],
+      isHovered && styles[`trigger--hovered`],
+      selected && styles[`trigger--selected`],
       className
     );
 
-    const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
+    const iconColor = getIconColor(mode, variant, isHovered || buttonIsHovered || selected);
 
-    const iconColor = getIconColor(mode, variant, isHovered || selected);
+    const icon = <Icon svgIcon={iconMap[variant]} size={iconSizeMap[size]} color={iconColor} isHovered={isHovered || buttonIsHovered} />;
+
+    if (htmlMarkup === 'span') {
+      return (
+        <span data-testid={testId} data-analyticsid={AnalyticsId.Trigger} className={triggerClasses}>
+          {icon}
+        </span>
+      );
+    }
+
+    const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
 
     return (
       <button
@@ -110,7 +144,7 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
         {...ariaLabelAttributes}
         {...rest}
       >
-        <Icon svgIcon={iconMap[variant]} size={iconSizeMap[size]} color={iconColor} isHovered={isHovered} />
+        {icon}
       </button>
     );
   }

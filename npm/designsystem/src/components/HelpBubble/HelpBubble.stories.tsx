@@ -9,6 +9,7 @@ import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import DictionaryTrigger from '../DictionaryTrigger/DictionaryTrigger';
 import GridExample from '../GridExample';
+import HelpQuestion from '../HelpQuestion';
 import Table, { ResponsiveTableVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell } from '../Table';
 import Trigger from '../Trigger/Trigger';
 
@@ -153,6 +154,24 @@ export const AsTooltip: ComponentStory<typeof HelpBubble> = (args: any) => {
         {args.children}
       </HelpBubble>
       {loremText + loremText + loremText + loremText}
+    </GridExample>
+  );
+};
+
+export const WithHelpQuestion: ComponentStory<typeof HelpBubble> = (args: any) => {
+  const controllerRef = useRef<HTMLButtonElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <GridExample>
+      <p>{loremText + loremText + loremText + loremText}</p>
+      <HelpQuestion ref={controllerRef} selected={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
+        {'Helsebiblioteket'}
+      </HelpQuestion>
+      <HelpBubble {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
+        {args.children}
+      </HelpBubble>
+      <p>{loremText + loremText + loremText + loremText}</p>
     </GridExample>
   );
 };
