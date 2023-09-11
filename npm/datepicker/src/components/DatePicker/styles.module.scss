@@ -1,3 +1,97 @@
-.datepicker {
-  // todo
+@import '../../../../designsystem/src/scss/spacers';
+@import '../../../../designsystem/src/scss/palette';
+@import '../../../../designsystem/src/scss/font-settings';
+
+.datepicker-wrapper {
+  position: absolute;
+}
+
+// Overstyrer klasser til datedaypicker pakken https://github.com/gpbl/react-day-picker/blob/main/src/style.css
+.root {
+  --rdp-cell-size: 40px;
+  --rdp-caption-font-size: 18px;
+  --rdp-accent-color: #00f;
+  --rdp-background-color: #e7edff;
+  --rdp-accent-color-dark: #3003e1;
+  --rdp-background-color-dark: #180270;
+  --rdp-outline: 2px solid var(--rdp-accent-color); /* Outline border for focused elements */
+  --rdp-outline-selected: 3px solid var(--rdp-accent-color); /* Outline border for focused _and_ selected elements */
+
+  background-color: $white;
+  padding: getSpacer(s);
+  border: 1px solid $blueberry700;
+}
+
+.day {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  font-family: inherit;
+  color: $blueberry700;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--rdp-cell-size);
+  max-width: var(--rdp-cell-size);
+  height: var(--rdp-cell-size);
+  margin: 0;
+  border: 2px solid transparent;
+  border-radius: 0;
+
+  &:focus-visible:not([disabled]) {
+    background-color: $neutral100;
+    color: $blueberry600;
+    border: 2px solid $black;
+    outline: none;
+  }
+
+  /* stylelint-disable-next-line */
+  &:hover:not([disabled]):not(._day_selected) {
+    background-color: $neutral100;
+  }
+
+  &--today {
+    background-color: $white;
+    color: $black;
+  }
+
+  /* stylelint-disable-next-line */
+  &--disabled:not(.day_selected) {
+    opacity: 1 !important;
+    color: $neutral300;
+  }
+}
+
+/* stylelint-disable-next-line */
+.day_selected {
+  background-color: $blueberry600;
+  color: $white;
+}
+
+/* stylelint-disable-next-line */
+.day:hover {
+  background-color: $neutral100;
+}
+
+/* stylelint-disable-next-line */
+.nav_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--rdp-cell-size);
+  height: var(--rdp-cell-size);
+  padding: 0.25em;
+  border-radius: 0;
+
+  /* stylelint-disable-next-line */
+  &:focus-visible:not([disabled]) {
+    border: 2px solid $black;
+    background-color: $neutral100;
+  }
+
+  /* stylelint-disable-next-line */
+  &:hover:not([disabled]):not(.day_selected) {
+    background-color: $neutral100;
+  }
 }

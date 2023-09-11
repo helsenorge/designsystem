@@ -28,6 +28,7 @@ export interface InputProps
     | 'max'
     | 'aria-describedby'
     | 'aria-labelledby'
+    | 'onClick'
     | 'onChange'
     | 'onKeyDown'
     | 'autoFocus'
