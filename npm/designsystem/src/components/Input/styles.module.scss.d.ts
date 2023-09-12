@@ -1,6 +1,7 @@
 export type Styles = {
   'content-wrapper': string;
   'content-wrapper__input': string;
+  'content-wrapper__input__icon': string;
   'content-wrapper__input--bigform': string;
   'content-wrapper__input--disabled': string;
   'content-wrapper--bigform': string;

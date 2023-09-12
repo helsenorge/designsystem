@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { format } from 'date-fns';
-import { ActiveModifiers, DayPicker, SelectSingleEventHandler } from 'react-day-picker';
+import { format, isValid, parse } from 'date-fns';
+import { ActiveModifiers, DateRange, DayPicker, SelectRangeEventHandler, SelectSingleEventHandler } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 // TODO: FIKS IMPORT fra designsystem pakke
@@ -16,12 +16,13 @@ import { isMutableRefObject, mergeRefs } from '../../../../designsystem/src/util
 
 import styles from './styles.module.scss';
 
-export type dateFormats = 'dd/MM/yyyy';
+export type DateFormats = 'dd.MM.yyyy';
+export type DateModes = 'single' | 'range';
 
 interface DatePickerProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'defaultValue' | 'value' | 'aria-describedby'> {
+  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'defaultValue' | 'aria-describedby' | 'onChange'> {
   /** Sets the date of the component */
-  dateFormat?: dateFormats;
+  dateFormat?: DateFormats;
   /** Sets the date of the component */
   dateValue?: Date;
   /** Sets the current month */
@@ -32,27 +33,33 @@ interface DatePickerProps
   errorText?: string;
   /** Label of the input */
   label?: React.ReactNode;
-  /** callback that is triggered when field loses focus */
-  onDateBlur?: (date?: Date | null) => void;
-  /** onChange callback that is triggered on date changes */
-  onDateChange?: (date?: Date | null) => void;
+  /** Sets the mode of the datepicker - single or range picker */
+  mode?: DateModes;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
-  const { dateFormat = 'dd/MM/yyyy', dateValue, defaultMonth, error, errorText, label, onDateBlur, onDateChange, testId, ...rest } = props;
+  const { dateFormat = 'dd.MM.yyyy', dateValue, defaultMonth, error, errorText, label, mode = 'single', onChange, testId, ...rest } = props;
 
   const [dateState, setDateState] = useState<Date | undefined>(dateValue);
+  const [dateRangeState, setDateRangeState] = useState<DateRange | undefined>();
+  const [inputValue, setInputValue] = useState<string>(dateState ? format(dateState, dateFormat) : '');
+  const [inputToValue, setInputToValue] = useState<string>('');
   const [month, setMonth] = useState<Date | undefined>(defaultMonth);
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
+  const [focusDatePicker, setFocusDatePicker] = useState<boolean>(false);
 
   const datepickerWrapperRef = React.useRef<HTMLDivElement>(null);
   const { refObject } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
   useOutsideEvent(datepickerWrapperRef, () => setDatePickerOpen(false));
 
-  ///////////
+  React.useEffect(() => {
+    !datePickerOpen && setFocusDatePicker(false);
+  }, [datePickerOpen]);
+
+  /////////// TODO: Posisjonering av datepicker
   // const arrowRef = useRef<HTMLDivElement>(null);
   const bubbleSize = useSize(datepickerWrapperRef);
   const [controllerSize, setControllerSize] = useState<DOMRect>();
@@ -77,22 +84,34 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
 
   const bubbleStyle = controllerSize && bubbleSize && getBubbleStyle(controllerSize, bubbleSize);
   // const arrowStyle = bubbleStyle && controllerSize && verticalPosition && getArrowStyle(bubbleStyle, controllerSize, verticalPosition);
-  ///////////
+  /////////// TODO:
 
-  React.useEffect(() => {
-    if (!datePickerOpen && onDateBlur) {
-      onDateBlur(dateState);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>): void => {
+    if (e.key === ' ') {
+      e.stopPropagation();
+      setFocusDatePicker(true);
+      setDatePickerOpen(true);
     }
-  }, [datePickerOpen]);
-
-  React.useEffect(() => {
-    if (refObject.current) {
-      const event = new Event('change', { bubbles: true });
-      refObject.current.dispatchEvent(event);
+    if (e.key === 'Escape') {
+      setDatePickerOpen(false);
     }
-  }, [dateState]);
+  };
 
-  const onChangeHandler: SelectSingleEventHandler = (
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setInputValue(event.currentTarget.value);
+    const newDate = parse(event.currentTarget.value, dateFormat, new Date());
+
+    if (isValid(newDate)) {
+      setDateState(newDate);
+      setMonth(newDate);
+    } else {
+      setDateState(undefined);
+    }
+
+    onChange && onChange(event);
+  };
+
+  const handleSingleDatePickerSelect: SelectSingleEventHandler = (
     date: Date | undefined,
     selectedDay: Date,
     activeModifiers: ActiveModifiers,
@@ -101,11 +120,27 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
     setDateState(date);
 
     if (refObject.current) {
-      date && (refObject.current.value = format(date, dateFormat));
+      setInputValue(date ? format(date, dateFormat) : '');
+      setDatePickerOpen(false);
+      refObject.current.focus();
     }
+  };
 
-    setDatePickerOpen(false);
-    onDateChange && onDateChange(date);
+  const handleRangeDatePickerSelect: SelectRangeEventHandler = (
+    range: DateRange | undefined,
+    selectedDay: Date,
+    activeModifiers: ActiveModifiers,
+    e: React.MouseEvent
+  ): void => {
+    setDateRangeState(range);
+
+    if (refObject.current) {
+      setInputValue(range?.from ? format(range?.from, dateFormat) : '');
+      setInputToValue(range?.to ? format(range?.to, dateFormat) : '');
+      // TODO: FIKS FIKS
+      // setDatePickerOpen(false);
+      // refObject.current.focus();
+    }
   };
 
   const datePickerClassNames = {
@@ -113,43 +148,83 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
     ...styles,
   };
 
-  const customInput = (
+  const renderInput = (value: string): React.ReactNode => (
     <Input
-      defaultValue={dateState ? format(dateState, dateFormat) : ''}
+      error={error}
+      errorText={errorText}
       label={label}
-      onClick={e => setDatePickerOpen(true)}
-      onKeyDown={e => setDatePickerOpen(true)}
+      onClick={(): void => setDatePickerOpen(true)}
+      onKeyDown={handleKeyDown}
       type="text"
-      width={8}
       iconRight
       icon={Calendar}
       ref={mergedRefs}
-      error={error}
-      errorText={errorText}
+      value={value}
+      width={8}
       {...rest}
+      onChange={handleInputChange}
     />
   );
 
+  const renderSingleDatePicker = (): React.ReactNode => {
+    return (
+      mode === 'single' && (
+        <DayPicker
+          /* captionLayout="dropdown"
+          fromYear={2015}
+          toYear={2025} */
+          initialFocus={focusDatePicker}
+          fromDate={new Date()}
+          month={month}
+          mode={mode}
+          selected={dateState}
+          onSelect={handleSingleDatePickerSelect}
+          onMonthChange={setMonth}
+          classNames={datePickerClassNames}
+          modifiersClassNames={{ today: styles['day--today'], selected: styles['day_selected'], disabled: styles['day--disabled'] }}
+        />
+      )
+    );
+  };
+
+  const renderRangeDatePicker = (): React.ReactNode => {
+    return (
+      mode === 'range' && (
+        <DayPicker
+          /* captionLayout="dropdown"
+          fromYear={2015}
+          toYear={2025} */
+          initialFocus={focusDatePicker}
+          fromDate={new Date()}
+          month={month}
+          mode={mode}
+          selected={dateRangeState}
+          onSelect={handleRangeDatePickerSelect}
+          onMonthChange={setMonth}
+          classNames={datePickerClassNames}
+          modifiersClassNames={{
+            today: styles['day--today'],
+            selected: styles['day_selected'],
+            disabled: styles['day--disabled'],
+            range_start: styles['day--today'],
+          }}
+        />
+      )
+    );
+  };
+
   return (
     <div data-testid={testId}>
-      {customInput}
+      <span className={styles['input-wrapper']}>
+        {renderInput(inputValue)}
+        {mode === 'range' && renderInput(inputToValue)}
+      </span>
       <div className={styles['datepicker-wrapper']} ref={datepickerWrapperRef} style={bubbleStyle}>
         {datePickerOpen && (
-          <DayPicker
-            /* captionLayout="dropdown"
-            fromYear={2015}
-            toYear={2025} */
-            initialFocus
-            fromDate={new Date()}
-            month={month}
-            mode="single"
-            selected={dateState}
-            onSelect={onChangeHandler}
-            onMonthChange={setMonth}
-            classNames={datePickerClassNames}
-            modifiersClassNames={{ today: styles['day--today'], selected: styles['day_selected'], disabled: styles['day--disabled'] }}
-            {...rest}
-          />
+          <>
+            {renderSingleDatePicker()}
+            {renderRangeDatePicker()}
+          </>
         )}
       </div>
     </div>

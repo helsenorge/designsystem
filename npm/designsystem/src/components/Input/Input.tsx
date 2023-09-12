@@ -93,7 +93,6 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     defaultValue,
     placeholder,
     type = InputTypes.text,
-    inputId = uuid(),
     name,
     transparent = false,
     icon,
@@ -119,6 +118,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   } = props;
   const breakpoint = useBreakpoint();
   const contentWrapperRef = useRef<HTMLDivElement>(null);
+  const [inputId] = useState(props.inputId || uuid());
   const [input, setInput] = useState(defaultValue || '');
 
   const onDark = mode === FormMode.ondark;
@@ -149,14 +149,19 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const iconSize = breakpoint === Breakpoint.xs || !bigForm ? IconSize.XSmall : IconSize.Small;
 
   const renderIcon = (): React.ReactNode => {
-    return icon !== undefined ? <Icon color={iconColor} size={iconSize} svgIcon={icon} /> : null;
+    return icon !== undefined ? (
+      <Icon className={styles['content-wrapper__input__icon']} color={iconColor} size={iconSize} svgIcon={icon} />
+    ) : null;
   };
 
-  const handleClick = (): void => {
+  // eslint-disable-next-line
+  const handleClick = (e: React.MouseEvent<any>): void => {
     if (contentWrapperRef && contentWrapperRef.current && icon) {
       const selectedChild = iconRight ? 0 : 1;
       const input = contentWrapperRef.current.children[selectedChild] as HTMLInputElement;
       input.focus();
+
+      props.onClick && props.onClick(e);
     }
   };
 

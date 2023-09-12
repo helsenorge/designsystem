@@ -6,16 +6,16 @@
   position: absolute;
 }
 
+.input-wrapper {
+  display: flex;
+  gap: getSpacer(m);
+}
+
 // Overstyrer klasser til datedaypicker pakken https://github.com/gpbl/react-day-picker/blob/main/src/style.css
 .root {
   --rdp-cell-size: 40px;
   --rdp-caption-font-size: 18px;
-  --rdp-accent-color: #00f;
   --rdp-background-color: #e7edff;
-  --rdp-accent-color-dark: #3003e1;
-  --rdp-background-color-dark: #180270;
-  --rdp-outline: 2px solid var(--rdp-accent-color); /* Outline border for focused elements */
-  --rdp-outline-selected: 3px solid var(--rdp-accent-color); /* Outline border for focused _and_ selected elements */
 
   background-color: $white;
   padding: getSpacer(s);
