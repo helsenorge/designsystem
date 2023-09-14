@@ -6,19 +6,41 @@
 @import '../../scss/screen-reader';
 
 .step {
+  &--has-sticky-buttons {
+    position: relative;
+  }
+
   &__stepper {
     margin-bottom: getSpacer(m);
   }
 
   &__content {
-    margin-bottom: getSpacer(m);
+    &--no-navigation {
+      margin-bottom: getSpacer(m);
+    }
   }
 
   &__navigation {
+    padding-top: getSpacer(m);
+    padding-bottom: getSpacer(s);
     display: flex;
     flex-wrap: wrap;
     column-gap: getSpacer(l);
     row-gap: getSpacer(m);
+
+    &--hidden {
+      display: none;
+    }
+
+    &--has-sticky-buttons {
+      position: absolute;
+      bottom: 0;
+    }
+
+    &--is-sticky {
+      background-color: $white;
+      position: fixed;
+    }
   }
 
   &__buttons {
