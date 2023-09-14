@@ -39,8 +39,10 @@ export interface FormGroupProps {
   testId?: string;
   /** Sets the data-testid attribute for the error-wrapper. */
   errorWrapperTestId?: string;
-  /** Unique identifyer for the child input tags */
+  /** Unique name for the child input element */
   name?: string;
+  /** Unique name for the fieldset */
+  fieldsetName?: string;
   /** Sets div instead of fieldset tag */
   htmlMarkup?: FormGroupTags;
   /** Renders the error component (Default: true) */
@@ -131,13 +133,13 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     return (
       <div className={formGroupClasses}>
         {htmlMarkup === 'div' && (
-          <div id={props.title} className={fieldsetClasses}>
+          <div className={fieldsetClasses}>
             {props.legend && <h5 className={legendClasses}>{props.legend}</h5>}
             {React.Children.map(props.children, mapFormComponent)}
           </div>
         )}
         {htmlMarkup === 'fieldset' && (
-          <fieldset name={props.title} className={fieldsetClasses}>
+          <fieldset name={props.fieldsetName} className={fieldsetClasses}>
             {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
             {React.Children.map(props.children, mapFormComponent)}
           </fieldset>

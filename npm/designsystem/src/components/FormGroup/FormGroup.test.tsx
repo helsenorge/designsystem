@@ -137,4 +137,21 @@ describe('Gitt at FormGroup skal vises', (): void => {
       expect(formGroupWrapper?.className).toBe('form-group-wrapper form-group-wrapper--invalid');
     });
   });
+
+  describe('Når fieldsetName er satt', (): void => {
+    test('Så har fieldset name-attributtet satt', (): void => {
+      render(
+        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} fieldsetName="choices">
+          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+          <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
+        </FormGroup>
+      );
+
+      const fieldset = screen.getByRole('group', { name: 'Check out these checkboxes!' });
+
+      expect(fieldset).toBeVisible();
+      expect(fieldset).toHaveAttribute('name', 'choices');
+    });
+  });
 });
