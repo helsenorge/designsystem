@@ -289,7 +289,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
               >
                 <TableExpanderCell
                   expanded={expanded[i]}
-                  expandableRowId={i.toString()}
+                  expandableRowId={`SortableAndExpandable-${i}`}
                   hideDetailsText="Skjul detaljer"
                   showDetailsText="Vis detaljer"
                 ></TableExpanderCell>
@@ -311,6 +311,7 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
               </TableRow>
 
               <TableExpandedRow
+                id={`SortableAndExpandable-${i}`}
                 numberOfColumns={9}
                 expanded={expanded[i]}
                 toggleClick={() => {
@@ -409,7 +410,7 @@ export const NestedExpandableBlockTables: ComponentStory<typeof Table> = (args: 
               >
                 <TableExpanderCell
                   expanded={expanded[i]}
-                  expandableRowId={i.toString()}
+                  expandableRowId={`NestedExpandableBlockTables-${i}`}
                   hideDetailsText="Skjul detaljer"
                   showDetailsText="Vis detaljer"
                 ></TableExpanderCell>
@@ -431,6 +432,7 @@ export const NestedExpandableBlockTables: ComponentStory<typeof Table> = (args: 
               </TableRow>
 
               <TableExpandedRow
+                id={`NestedExpandableBlockTables-${i}`}
                 numberOfColumns={9}
                 expanded={expanded[i]}
                 toggleClick={() => {

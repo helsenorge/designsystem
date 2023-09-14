@@ -36,7 +36,7 @@ export const TableHead = ({ category, className, children, mode }: Props): React
 
   return (
     <thead className={tableHeadClass}>
-      {React.Children.map(children, child => React.isValidElement<Props>(child) && React.cloneElement(child, { mode }))}
+      {React.Children.map(children, child => React.isValidElement<{ mode?: ModeType }>(child) && React.cloneElement(child, { mode }))}
     </thead>
   );
 };

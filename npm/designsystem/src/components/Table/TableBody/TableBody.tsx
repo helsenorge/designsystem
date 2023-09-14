@@ -18,7 +18,7 @@ export const TableBody = ({ className, children, mode = ModeType.normal }: Props
   const tableBodyClasses = classNames(tableStyles['table-body'], className);
   return (
     <tbody className={tableBodyClasses}>
-      {React.Children.map(children, child => React.isValidElement<Props>(child) && React.cloneElement(child, { mode }))}
+      {React.Children.map(children, child => React.isValidElement<{ mode?: ModeType }>(child) && React.cloneElement(child, { mode }))}
     </tbody>
   );
 };
