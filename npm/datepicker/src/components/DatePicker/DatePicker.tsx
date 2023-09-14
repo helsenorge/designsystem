@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { format, isValid, parse } from 'date-fns';
-import { ActiveModifiers, DateRange, DayPicker, SelectRangeEventHandler, SelectSingleEventHandler } from 'react-day-picker';
+import { ActiveModifiers, DayPicker, SelectSingleEventHandler } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 // TODO: FIKS IMPORT fra designsystem pakke
@@ -17,10 +17,8 @@ import { isMutableRefObject, mergeRefs } from '../../../../designsystem/src/util
 import styles from './styles.module.scss';
 
 export type DateFormats = 'dd.MM.yyyy';
-export type DateModes = 'single' | 'range';
 
-interface DatePickerProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'defaultValue' | 'aria-describedby' | 'onChange'> {
+interface DatePickerProps extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onChange'> {
   /** Sets the date of the component */
   dateFormat?: DateFormats;
   /** Sets the date of the component */
@@ -33,19 +31,15 @@ interface DatePickerProps
   errorText?: string;
   /** Label of the input */
   label?: React.ReactNode;
-  /** Sets the mode of the datepicker - single or range picker */
-  mode?: DateModes;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
-  const { dateFormat = 'dd.MM.yyyy', dateValue, defaultMonth, error, errorText, label, mode = 'single', onChange, testId, ...rest } = props;
+  const { dateFormat = 'dd.MM.yyyy', dateValue, defaultMonth, error, errorText, label, onChange, testId, ...rest } = props;
 
   const [dateState, setDateState] = useState<Date | undefined>(dateValue);
-  const [dateRangeState, setDateRangeState] = useState<DateRange | undefined>();
   const [inputValue, setInputValue] = useState<string>(dateState ? format(dateState, dateFormat) : '');
-  const [inputToValue, setInputToValue] = useState<string>('');
   const [month, setMonth] = useState<Date | undefined>(defaultMonth);
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
   const [focusDatePicker, setFocusDatePicker] = useState<boolean>(false);
@@ -126,105 +120,46 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
     }
   };
 
-  const handleRangeDatePickerSelect: SelectRangeEventHandler = (
-    range: DateRange | undefined,
-    selectedDay: Date,
-    activeModifiers: ActiveModifiers,
-    e: React.MouseEvent
-  ): void => {
-    setDateRangeState(range);
-
-    if (refObject.current) {
-      setInputValue(range?.from ? format(range?.from, dateFormat) : '');
-      setInputToValue(range?.to ? format(range?.to, dateFormat) : '');
-      // TODO: FIKS FIKS
-      // setDatePickerOpen(false);
-      // refObject.current.focus();
-    }
-  };
-
   const datePickerClassNames = {
     ...reactdaypickerstyles,
     ...styles,
   };
 
-  const renderInput = (value: string): React.ReactNode => (
-    <Input
-      error={error}
-      errorText={errorText}
-      label={label}
-      onClick={(): void => setDatePickerOpen(true)}
-      onKeyDown={handleKeyDown}
-      type="text"
-      iconRight
-      icon={Calendar}
-      ref={mergedRefs}
-      value={value}
-      width={8}
-      {...rest}
-      onChange={handleInputChange}
-    />
-  );
-
-  const renderSingleDatePicker = (): React.ReactNode => {
-    return (
-      mode === 'single' && (
-        <DayPicker
-          /* captionLayout="dropdown"
-          fromYear={2015}
-          toYear={2025} */
-          initialFocus={focusDatePicker}
-          fromDate={new Date()}
-          month={month}
-          mode={mode}
-          selected={dateState}
-          onSelect={handleSingleDatePickerSelect}
-          onMonthChange={setMonth}
-          classNames={datePickerClassNames}
-          modifiersClassNames={{ today: styles['day--today'], selected: styles['day_selected'], disabled: styles['day--disabled'] }}
-        />
-      )
-    );
-  };
-
-  const renderRangeDatePicker = (): React.ReactNode => {
-    return (
-      mode === 'range' && (
-        <DayPicker
-          /* captionLayout="dropdown"
-          fromYear={2015}
-          toYear={2025} */
-          initialFocus={focusDatePicker}
-          fromDate={new Date()}
-          month={month}
-          mode={mode}
-          selected={dateRangeState}
-          onSelect={handleRangeDatePickerSelect}
-          onMonthChange={setMonth}
-          classNames={datePickerClassNames}
-          modifiersClassNames={{
-            today: styles['day--today'],
-            selected: styles['day_selected'],
-            disabled: styles['day--disabled'],
-            range_start: styles['day--today'],
-          }}
-        />
-      )
-    );
-  };
-
   return (
     <div data-testid={testId}>
       <span className={styles['input-wrapper']}>
-        {renderInput(inputValue)}
-        {mode === 'range' && renderInput(inputToValue)}
+        <Input
+          error={error}
+          errorText={errorText}
+          label={label}
+          onClick={(): void => setDatePickerOpen(true)}
+          onKeyDown={handleKeyDown}
+          type="text"
+          iconRight
+          icon={Calendar}
+          ref={mergedRefs}
+          value={inputValue}
+          width={8}
+          {...rest}
+          onChange={handleInputChange}
+        />
       </span>
       <div className={styles['datepicker-wrapper']} ref={datepickerWrapperRef} style={bubbleStyle}>
         {datePickerOpen && (
-          <>
-            {renderSingleDatePicker()}
-            {renderRangeDatePicker()}
-          </>
+          <DayPicker
+            /* captionLayout="dropdown"
+          fromYear={2015}
+          toYear={2025} */
+            initialFocus={focusDatePicker}
+            fromDate={new Date()}
+            month={month}
+            mode="single"
+            selected={dateState}
+            onSelect={handleSingleDatePickerSelect}
+            onMonthChange={setMonth}
+            classNames={datePickerClassNames}
+            modifiersClassNames={{ today: styles['day--today'], selected: styles['day_selected'], disabled: styles['day--disabled'] }}
+          />
         )}
       </div>
     </div>
