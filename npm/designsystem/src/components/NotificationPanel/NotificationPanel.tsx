@@ -170,9 +170,9 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     },
     className
   );
-  const ariaLabelAttributes = getAriaLabelAttributes({ label, id: uuid });
 
   const ariaRole = role || (variant === 'alert' && 'alert') || undefined;
+  const ariaLabelAttributes = ariaRole ? getAriaLabelAttributes({ label, id: uuid }) : undefined;
 
   return (
     <FluidWrapper fluid={fluid} variant={variant}>

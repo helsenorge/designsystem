@@ -3,7 +3,6 @@
 exports[`Gitt at NotificationPanel skal vises N책r bruker ser compact-variant S책 vises innhold 1`] = `
 <div>
   <div
-    aria-labelledby="test"
     class="notification-panel notification-panel--info notification-panel__compact notification-panel__compact--basic notification-panel--has-children"
     data-analyticsid="notification-panel"
   >
@@ -33,7 +32,6 @@ exports[`Gitt at NotificationPanel skal vises N책r bruker ser compact-variant S�
     />
   </div>
   <div
-    aria-labelledby="test"
     class="notification-panel notification-panel--info notification-panel__compact notification-panel__compact--outline notification-panel--has-children"
     data-analyticsid="notification-panel"
   >
@@ -68,7 +66,6 @@ exports[`Gitt at NotificationPanel skal vises N책r bruker ser compact-variant S�
 exports[`Gitt at NotificationPanel skal vises N책r panelet kan lukkes S책 kalles onClick-handleren n책r man klikker p책 knappen 1`] = `
 <div>
   <div
-    aria-labelledby="test"
     class="notification-panel notification-panel--info notification-panel--has-children notification-panel--dismissable"
     data-analyticsid="notification-panel"
   >
@@ -136,7 +133,6 @@ exports[`Gitt at NotificationPanel skal vises N책r panelet kan lukkes S책 kalles
 exports[`Gitt at NotificationPanel skal vises N책r panelet vises med default props S책 rendres komponenten riktig 1`] = `
 <div>
   <div
-    aria-labelledby="test"
     class="notification-panel notification-panel--info notification-panel--has-children"
     data-analyticsid="notification-panel"
   >
