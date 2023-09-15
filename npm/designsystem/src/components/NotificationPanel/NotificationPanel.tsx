@@ -52,7 +52,7 @@ export interface NotificationPanelProps {
   ariaLabelCloseBtn?: string;
   /** Custom id for the label */
   labelId?: string;
-  /** Custom role for the panel. Default is "region". If variant is alert or crisis, the aria role will be set to "alert" unless the role-prop is also set. */
+  /** Custom role for the panel. Default is no role. If variant is alert or crisis, the aria role will be set to "alert" unless the role-prop is also set. */
   role?: 'region' | 'alert';
   /** Sets the data-testid attribute. */
   testId?: string;
@@ -172,11 +172,11 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
   );
   const ariaLabelAttributes = getAriaLabelAttributes({ label, id: uuid });
 
-  const ariaRole = role || (variant === 'alert' && 'alert') || 'region';
+  const ariaRole = role || (variant === 'alert' && 'alert') || undefined;
 
   return (
     <FluidWrapper fluid={fluid} variant={variant}>
-      <section
+      <div
         ref={ref}
         role={ariaRole}
         data-testid={testId}
@@ -191,7 +191,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
           </span>
         )}
         {renderContent()}
-      </section>
+      </div>
     </FluidWrapper>
   );
 });
