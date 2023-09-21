@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Step from './Step';
+import { mediumLoremText, longLoremText } from '../../utils/loremtext';
 import Button from '../Button';
 import GridExample from '../GridExample';
 import Stepper from '../Stepper';
@@ -18,7 +19,12 @@ export default {
       },
     },
   },
-  argTypes: {},
+  argTypes: {
+    stickyButtons: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+  },
 } as ComponentMeta<typeof Step>;
 
 const MIN = 1;
@@ -54,7 +60,45 @@ export const Default: ComponentStory<typeof Step> = args => {
         forwardButton={currentStep < MAX ? <Button onClick={forward}>{currentStep < MAX ? 'Neste' : 'Ferdig'}</Button> : undefined}
         cancelButton={currentStep < MAX ? <Button>{'Avbryt'}</Button> : undefined}
       >
-        <p>{currentStep < MAX ? 'Hei' : 'Ferdig!'}</p>
+        <span>{currentStep < MAX ? mediumLoremText + longLoremText : 'Ferdig!'}</span>
+      </Step>
+    </GridExample>
+  );
+};
+
+export const StickyButtons: ComponentStory<typeof Step> = args => {
+  const { currentStep, back, forward } = useStep();
+
+  return (
+    <GridExample>
+      <Step
+        {...args}
+        stepper={<Stepper min={MIN} max={MAX} value={currentStep} ariaLabel={`Steg ${currentStep}/${MAX}`} />}
+        backButton={currentStep > MIN && currentStep < MAX ? <Button onClick={back}>{'Tilbake'}</Button> : undefined}
+        forwardButton={currentStep < MAX ? <Button onClick={forward}>{currentStep < MAX ? 'Neste' : 'Ferdig'}</Button> : undefined}
+        cancelButton={currentStep < MAX ? <Button>{'Avbryt'}</Button> : undefined}
+        stickyButtons
+      >
+        <span>{mediumLoremText + longLoremText}</span>
+      </Step>
+      <p>{mediumLoremText}</p>
+    </GridExample>
+  );
+};
+export const StickyButtonsNoSiblings: ComponentStory<typeof Step> = args => {
+  const { currentStep, back, forward } = useStep();
+
+  return (
+    <GridExample>
+      <Step
+        {...args}
+        stepper={<Stepper min={MIN} max={MAX} value={currentStep} ariaLabel={`Steg ${currentStep}/${MAX}`} />}
+        backButton={currentStep > MIN && currentStep < MAX ? <Button onClick={back}>{'Tilbake'}</Button> : undefined}
+        forwardButton={currentStep < MAX ? <Button onClick={forward}>{currentStep < MAX ? 'Neste' : 'Ferdig'}</Button> : undefined}
+        cancelButton={currentStep < MAX ? <Button>{'Avbryt'}</Button> : undefined}
+        stickyButtons
+      >
+        <span>{mediumLoremText + longLoremText}</span>
       </Step>
     </GridExample>
   );
@@ -77,7 +121,7 @@ export const AdditionalButtons: ComponentStory<typeof Step> = args => {
         ]}
         cancelButton={currentStep < MAX ? <Button>{'Avbryt'}</Button> : undefined}
       >
-        <p>{currentStep < MAX ? 'Hei' : 'Ferdig!'}</p>
+        <span>{currentStep < MAX ? 'Hei' : 'Ferdig!'}</span>
       </Step>
     </GridExample>
   );
@@ -103,7 +147,7 @@ export const Locked: ComponentStory<typeof Step> = args => {
         }
         cancelButton={<Button>{'Avbryt'}</Button>}
       >
-        <p>{currentStep < MAX ? 'Hei' : 'Ferdig!'}</p>
+        <span>{currentStep < MAX ? 'Hei' : 'Ferdig!'}</span>
       </Step>
     </GridExample>
   );

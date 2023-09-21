@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/datepicker",
   "sideEffects": false,
-  "version": "4.3.1",
+  "version": "4.4.0",
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",
@@ -23,8 +23,7 @@
     "@helsenorge/designsystem-react": "^4.0.0"
   },
   "dependencies": {
-    "@helsenorge/designsystem-react": "^4.3.1",
-    "react-datepicker": "^4.16.0",
+    "@helsenorge/designsystem-react": "^4.4.0",
     "react-day-picker": "^8.8.1"
   },
   "devDependencies": {

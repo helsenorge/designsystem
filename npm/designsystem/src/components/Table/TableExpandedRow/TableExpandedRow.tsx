@@ -23,6 +23,8 @@ export interface Props {
   children: React.ReactNode;
   /** For display with less space. Discouraged to use together with interactive elements. */
   mode?: ModeType;
+  /** Row id. For use with aria-controls. */
+  id?: string;
 }
 
 export const TableExpandedRow = ({
@@ -33,6 +35,7 @@ export const TableExpandedRow = ({
   children,
   className,
   mode = ModeType.normal,
+  id,
 }: Props): React.JSX.Element => {
   const tableRowClass = classNames(
     tableStyles['table__expanded-row'],
@@ -48,10 +51,10 @@ export const TableExpandedRow = ({
   });
 
   return (
-    <tr className={tableRowClass}>
+    <tr className={tableRowClass} id={id}>
       <td colSpan={numberOfColumns} className={tableCellClass}>
         <div className={containerClass}>
-          {React.Children.map(children, child => React.isValidElement<Props>(child) && React.cloneElement(child, { mode }))}
+          {React.Children.map(children, child => React.isValidElement(child) && React.cloneElement(child))}
           <Button variant={'borderless'} onClick={toggleClick} aria-expanded={expanded} tabIndex={expanded ? 0 : -1}>
             {hideDetailsText}
             <Icon svgIcon={ChevronUp} />

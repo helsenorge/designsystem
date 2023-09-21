@@ -1,3 +1,31 @@
+## [4.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.3.1&targetVersion=GTv4.4.0) (2023-09-15)
+
+### Features
+
+- helpquestion ([a402a67](https://github.com/helsenorge/designsystem/commit/a402a6728a9273ca89b1e87c4972ab97c8ab2712)), closes
+  [#301149](https://github.com/helsenorge/designsystem/issues/301149)
+- step støtter sticky knapper ([5be5ed3](https://github.com/helsenorge/designsystem/commit/5be5ed35a13fad559e400c2ecae5f439e2bb48fd)),
+  closes [#307046](https://github.com/helsenorge/designsystem/issues/307046)
+- tableExpandedRow støtter id for bruk med aria-controls og html-validering
+  ([968475c](https://github.com/helsenorge/designsystem/commit/968475c4403211caa9ed994b27c10f188e11d752)), closes
+  [#308148](https://github.com/helsenorge/designsystem/issues/308148)
+
+### Bug Fixes
+
+- dropdown content havner nå over relative innhold på siden
+  ([16418c7](https://github.com/helsenorge/designsystem/commit/16418c78eea3a333abac52858f31ee75c83a6cee)), closes
+  [#309133](https://github.com/helsenorge/designsystem/issues/309133)
+- expander large story riktig prop verdi
+  ([5b206e6](https://github.com/helsenorge/designsystem/commit/5b206e6528291d3eb8bb74a1c872348560409e34)), closes
+  [#309218](https://github.com/helsenorge/designsystem/issues/309218)
+- html-feil i logo ([508496c](https://github.com/helsenorge/designsystem/commit/508496c8113e2e19dac48ba3b9b13edce83f1b8d)), closes
+  [#308144](https://github.com/helsenorge/designsystem/issues/308144)
+- html-valideringsfeil ([df9d87d](https://github.com/helsenorge/designsystem/commit/df9d87d2492108812b17092462d56d87499bda92)), closes
+  [#291948](https://github.com/helsenorge/designsystem/issues/291948)
+- table elementer kan rendres etter conditions
+  ([c2742e8](https://github.com/helsenorge/designsystem/commit/c2742e8c8d17dfd69cac2e9b3f8e8979f232b9db)), closes
+  [#308272](https://github.com/helsenorge/designsystem/issues/308272)
+
 ## [4.3.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.3.0&targetVersion=GTv4.3.1) (2023-08-28)
 
 ### Bug Fixes
@@ -822,12 +850,12 @@
 
 ### Bug Fixes
 
-- økt kontrast på understreking av lenker
-  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
-  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 - panel har avstand fra tittel til badge
   ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
   [#282359](https://github.com/helsenorge/designsystem/issues/282359)
+- økt kontrast på understreking av lenker
+  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
+  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 

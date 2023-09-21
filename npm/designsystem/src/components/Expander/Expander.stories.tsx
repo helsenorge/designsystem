@@ -145,7 +145,9 @@ export const DefaultSmall: ComponentStory<typeof Expander> = (args: any) => (
 
 export const Large: ComponentStory<typeof Expander> = (args: any) => (
   <GridExample>
-    <Expander {...args}>{args.children}</Expander>
+    <Expander {...args} size={ExpanderSize.large}>
+      {args.children}
+    </Expander>
   </GridExample>
 );
 

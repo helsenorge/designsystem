@@ -18,7 +18,7 @@ const UseStickyExample: React.FC = () => {
       <p ref={stickyRef} style={{ position: isOutsideWindow ? 'sticky' : 'relative', top: 0, background: 'white' }}>
         {isOutsideWindow ? 'Sticky posisjon' : 'Vanlig posisjon'}
       </p>
-      <Button ref={contentRef}>Knapp</Button>
+      <Button ref={contentRef}>{'Knapp'}</Button>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
     </GridExample>
