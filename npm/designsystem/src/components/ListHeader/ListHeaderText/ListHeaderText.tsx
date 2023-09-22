@@ -54,7 +54,7 @@ export const ListHeaderText: ListHeaderTextType = React.forwardRef((props: ListH
   const CustomTag = titleHtmlMarkup;
 
   return (
-    <div data-testid={testId} className={headerTextWrapperClasses}>
+    <span data-testid={testId} className={headerTextWrapperClasses}>
       {statusDotVariant !== undefined && (
         <span>
           <StatusDot text={''} variant={statusDotVariant} />
@@ -64,8 +64,10 @@ export const ListHeaderText: ListHeaderTextType = React.forwardRef((props: ListH
         <span className={firstHeaderTextSegmentClasses}>{firstText}</span>
         {secondText && <span className={secondHeaderTextSegmentClasses}>{secondText}</span>}
       </CustomTag>
-    </div>
+    </span>
   );
 });
+
+ListHeaderText.displayName = 'ListHeaderText';
 
 export default ListHeaderText;

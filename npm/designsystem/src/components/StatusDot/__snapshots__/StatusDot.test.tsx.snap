@@ -2,7 +2,7 @@
 
 exports[`Gitt at StatusDot rendres  Når StatusDot er variant="attachment". Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
-  <div
+  <span
     class="statusdot"
     data-analyticsid="status-dot"
     data-testid="statusdot"
@@ -32,13 +32,13 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="attachment". Så 
     >
       Eksempeltekst
     </span>
-  </div>
+  </span>
 </div>
 `;
 
 exports[`Gitt at StatusDot rendres  Når StatusDot er variant="group". Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
-  <div
+  <span
     class="statusdot"
     data-analyticsid="status-dot"
     data-testid="statusdot"
@@ -70,13 +70,13 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="group". Så skal 
     >
       Eksempeltekst
     </span>
-  </div>
+  </span>
 </div>
 `;
 
 exports[`Gitt at StatusDot rendres  Når StatusDot er variant="noaccess". Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
-  <div
+  <span
     class="statusdot"
     data-analyticsid="status-dot"
     data-testid="statusdot"
@@ -107,13 +107,13 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="noaccess". Så sk
     >
       Eksempeltekst
     </span>
-  </div>
+  </span>
 </div>
 `;
 
 exports[`Gitt at StatusDot rendres  Når StatusDot er variant="recurring". Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
-  <div
+  <span
     class="statusdot"
     data-analyticsid="status-dot"
     data-testid="statusdot"
@@ -144,6 +144,6 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="recurring". Så s
     >
       Eksempeltekst
     </span>
-  </div>
+  </span>
 </div>
 `;

@@ -74,7 +74,7 @@ export const WithIconAndChevron: ComponentStory<typeof LinkList> = (args: any) =
       <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
         Innhold A-Å
       </LinkList.Link>
-      <LinkList.Link htmlMarkup="button" href="/" icon={<Icon svgIcon={PaperPlane} />}>
+      <LinkList.Link htmlMarkup="button" icon={<Icon svgIcon={PaperPlane} />}>
         Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
         bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
       </LinkList.Link>
@@ -101,11 +101,13 @@ export const WithListHeaderComp: ComponentStory<typeof LinkList> = (args: any) =
         </ListHeader>
       </LinkList.Link>
       <LinkList.Link href="/" icon={<Icon svgIcon={PaperPlane} />}>
-        <ListHeader>
-          <span>
-            Ved å gi LinkList.Link et <span style={{ fontWeight: 'bold' }}>JSX.Element</span> kan man gjøre deler av teksten{' '}
-            <span style={{ fontWeight: 'bold' }}>bold.</span> Nå midstiller ikoner seg i forhold til øverste linje.
-          </span>
+        <ListHeader titleHtmlMarkup="span">
+          <>
+            <span>
+              Ved å gi LinkList.Link et <span style={{ fontWeight: 'bold' }}>JSX.Element</span> kan man gjøre deler av teksten
+              <span style={{ fontWeight: 'bold' }}>bold.</span> Nå midstiller ikoner seg i forhold til øverste linje.
+            </span>
+          </>
         </ListHeader>
       </LinkList.Link>
     </LinkList>
@@ -123,14 +125,14 @@ export const WithAvatarAndBadge: ComponentStory<typeof LinkList> = (args: any) =
         </ListHeader>
       </LinkList.Link>
       <LinkList.Link href="/">
-        <ListHeader>
+        <ListHeader titleHtmlMarkup="span">
           LinkListText
           <Badge color="blueberry">Ny</Badge>
           <Avatar>Line Danser</Avatar>
         </ListHeader>
       </LinkList.Link>
       <LinkList.Link href="/">
-        <ListHeader>
+        <ListHeader titleHtmlMarkup="span">
           Test Test Eu et minim esse do eiusmod eu cillum et aute enim. Quis ea reprehenderit veniam est ullamco laboris culpa fugiat duis
           voluptate ullamco fugiat. Ullamco Lorem occaecat adipisicing duis aliquip.
           <Badge color="blueberry">10000</Badge>
@@ -200,10 +202,10 @@ export const WithRef: ComponentStory<typeof LinkList> = (args: any) => {
   return (
     <GridExample>
       <LinkList {...args}>
-        <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />} linkRef={ref} htmlMarkup={'button'}>
+        <LinkList.Link icon={<Icon svgIcon={AlarmClock} />} linkRef={ref} htmlMarkup={'button'}>
           {'Innhold A-Å'}
         </LinkList.Link>
-        <LinkList.Link href="/" icon={<Icon svgIcon={PaperPlane} />} htmlMarkup={'button'}>
+        <LinkList.Link icon={<Icon svgIcon={PaperPlane} />} htmlMarkup={'button'}>
           {'English'}
         </LinkList.Link>
       </LinkList>
