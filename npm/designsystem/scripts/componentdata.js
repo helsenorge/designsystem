@@ -1,6 +1,7 @@
-import glob from 'glob';
 import fs from 'fs';
 import { dirname, join, basename, extname } from 'path';
+
+import { globSync } from 'glob';
 import docgen from 'react-docgen-typescript';
 
 import { alwaysIgnore } from './entries.js';
@@ -25,7 +26,7 @@ const filterComponent = file => {
   return true;
 };
 
-const components = glob.sync(`src/components/**/*.tsx`, { ignore: alwaysIgnore }).filter(filterComponent);
+const components = globSync(`src/components/**/*.tsx`, { ignore: alwaysIgnore }).filter(filterComponent);
 
 const writeComponentData = () =>
   components.forEach(file => {
