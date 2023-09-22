@@ -13,7 +13,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         aria-expanded="false"
         class="expander-list-link expander-list-link--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
-        id="testid-200-0"
+        id="testid-177-0"
         type="button"
       >
         <span
@@ -63,7 +63,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
         aria-expanded="false"
         class="expander-list-link expander-list-link--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
-        id="testid-202-0"
+        id="testid-179-0"
         type="button"
       >
         <span
@@ -263,7 +263,7 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
         aria-expanded="false"
         class="expander-list-link expander-list-link--neutral expander-list-link--closed expander-list-link--jsx"
         data-analyticsid="expander-list-expander"
-        id="testid-208-0"
+        id="testid-185-0"
         type="button"
       >
         <span
@@ -326,7 +326,7 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
         aria-expanded="false"
         class="expander-list-link expander-list-link--neutral expander-list-link--closed expander-list-link--jsx"
         data-analyticsid="expander-list-expander"
-        id="testid-208-1"
+        id="testid-185-1"
         type="button"
       >
         <span

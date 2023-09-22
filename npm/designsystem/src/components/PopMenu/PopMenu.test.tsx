@@ -1,8 +1,10 @@
 import '@testing-library/jest-dom';
 import React from 'react';
 
-import { screen, render, fireEvent } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import '../../__mocks__/useOutsideEvent';
 
 import PopMenu from './PopMenu';
 import LinkList from '../LinkList';
@@ -11,13 +13,13 @@ const container = (
   <PopMenu openButtonTestId="open-btn" closeButtonTestId="close-btn" popOverTestId="popover">
     <LinkList testId="linkList-tester" chevron={false}>
       <LinkList.Link tabIndex={0} href="/">
-        Link 1
+        {'Link 1'}
       </LinkList.Link>
       <LinkList.Link tabIndex={0} href="/">
-        Link 2
+        {'Link 2'}
       </LinkList.Link>
       <LinkList.Link tabIndex={0} href="/">
-        Link 3
+        {'Link 3'}
       </LinkList.Link>
     </LinkList>
   </PopMenu>
