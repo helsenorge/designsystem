@@ -29,7 +29,7 @@ export default {
     },
     href: {
       control: 'text',
-      defaultValue: 'https://vg.no',
+      defaultValue: 'https://www.helsenorge.no',
     },
     description: {
       control: 'text',
@@ -54,7 +54,7 @@ export const External: ComponentStory<typeof Tile> = (args: any) => (
     <Tile
       {...args}
       icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-      href={'https://helsenorge.no'}
+      href={'https://www.helsenorge.no'}
       title={<Tile.Title htmlMarkup={'h1'}>{'External'}</Tile.Title>}
     />
   </GridExample>
@@ -70,79 +70,78 @@ export const WrappedContainer: ComponentStory<typeof Tile> = (args: any) => (
       }}
     >
       <Tile
-        href="https://helsenorge.no"
+        href="https://www.helsenorge.no"
         icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-        title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
       Hvor du ringer fra.
       Telefonnummer du ringer fra.
       Beskriv situasjonen og symptomer."
       />
       <Tile
-        href="https://helsenorge.no"
+        href="https://www.helsenorge.no"
         icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-        title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
       Hvor du ringer fra.
       Telefonnummer du ringer fra.
       Beskriv situasjonen og symptomer."
       />
       <Tile
-        href="https://helsenorge.no"
+        href="https://www.helsenorge.no"
         icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-        title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
       Hvor du ringer fra.
       Telefonnummer du ringer fra.
       Beskriv situasjonen og symptomer."
       />
       <Tile
-        href="https://helsenorge.no"
+        href="https://www.helsenorge.no"
         icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-        title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
       Hvor du ringer fra.
       Telefonnummer du ringer fra.
       Beskriv situasjonen og symptomer."
       />
       <Tile
-        href="https://helsenorge.no"
+        href="https://www.helsenorge.no"
         icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-        title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
       Hvor du ringer fra.
       Telefonnummer du ringer fra.
       Beskriv situasjonen og symptomer."
       />
       <Tile
-        href="https://helsenorge.no"
+        href="https://www.helsenorge.no"
         icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-        title={<Tile.Title>Hva skal du si når du ringer 113?</Tile.Title>}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
       Hvor du ringer fra.
       Telefonnummer du ringer fra.
       Beskriv situasjonen og symptomer."
       />
       <Tile
-        href="https://helsenorge.no"
+        href="https://www.helsenorge.no"
         icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-        title={<Tile.Title>Europeisk helsetrygdekort (nav)</Tile.Title>}
+        title={<Tile.Title>{'Europeisk helsetrygdekort (nav)'}</Tile.Title>}
       />
       <Tile
-        href="https://helsenorge.no"
+        href="https://www.helsenorge.no"
         icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-        title={<Tile.Title>Europeisk helsetrygdekort (nav)</Tile.Title>}
+        title={<Tile.Title>{'Europeisk helsetrygdekort (nav)'}</Tile.Title>}
       />
     </div>
   </GridExample>
 );
 
-export const AsButton: ComponentStory<typeof Tile> = (args: any) => (
+export const WithOnClick: ComponentStory<typeof Tile> = (args: any) => (
   <GridExample>
     <Tile
       {...args}
       onClick={action('Tile clicked!')}
-      htmlMarkup="button"
       icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
       title={<Tile.Title htmlMarkup={'h1'}>{'External'}</Tile.Title>}
     />

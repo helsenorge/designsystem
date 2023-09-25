@@ -13,7 +13,7 @@ exports[`displays a list of links 1`] = `
       <a
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
       >
-        <div
+        <span
           class="list-header"
         >
           <span
@@ -46,7 +46,7 @@ exports[`displays a list of links 1`] = `
               </g>
             </svg>
           </span>
-          <div
+          <span
             class="list-header__content list-header__content--string"
           >
             <span
@@ -54,8 +54,8 @@ exports[`displays a list of links 1`] = `
             >
               Link 1
             </span>
-          </div>
-        </div>
+          </span>
+        </span>
       </a>
     </li>
     <li
@@ -65,10 +65,10 @@ exports[`displays a list of links 1`] = `
       <a
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
       >
-        <div
+        <span
           class="list-header"
         >
-          <div
+          <span
             class="list-header__content list-header__content--string list-header__content--spacing"
           >
             <span
@@ -76,8 +76,8 @@ exports[`displays a list of links 1`] = `
             >
               Link 2
             </span>
-          </div>
-        </div>
+          </span>
+        </span>
       </a>
     </li>
     <li
@@ -87,10 +87,10 @@ exports[`displays a list of links 1`] = `
       <a
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
       >
-        <div
+        <span
           class="list-header"
         >
-          <div
+          <span
             class="list-header__content list-header__content--string list-header__content--spacing"
           >
             <span
@@ -98,8 +98,8 @@ exports[`displays a list of links 1`] = `
             >
               Link 3
             </span>
-          </div>
-        </div>
+          </span>
+        </span>
       </a>
     </li>
   </ul>

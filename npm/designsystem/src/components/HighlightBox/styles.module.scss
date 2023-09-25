@@ -3,6 +3,7 @@
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
 @import '../../scss/grid';
+@import '../../scss/screen-reader';
 
 @mixin content-wrapper-with-icon-flex {
   display: flex;
@@ -23,7 +24,7 @@
 
 .highlightbox {
   $box: &;
-  $colors: 'blueberry', 'cherry', 'neutral', 'kiwi', 'plum';
+  $colors: 'neutral', 'blueberry', 'cherry';
 
   // Medium og large har bakgrunnsfarge på den indre wrapperen
   // slik at bakgrunnsfargen ikke går helt ut i kantene
@@ -61,6 +62,15 @@
         background-color: $white;
       }
     }
+    #{$box}__content-wrapper {
+      padding-top: getSpacer(m);
+      padding-bottom: getSpacer(l);
+
+      @media (min-width: map.get($grid-breakpoints, lg)) {
+        padding-top: getSpacer(l);
+        padding-bottom: getSpacer(xl);
+      }
+    }
   }
 
   &--medium {
@@ -73,18 +83,6 @@
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
         padding: getSpacer(l);
-      }
-    }
-  }
-
-  &--large {
-    #{$box}__content-wrapper {
-      padding-top: getSpacer(m);
-      padding-bottom: getSpacer(l);
-
-      @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-top: getSpacer(l);
-        padding-bottom: getSpacer(xl);
       }
     }
   }
@@ -211,5 +209,22 @@
         @include make-col(12);
       }
     }
+  }
+}
+
+.mobile {
+  display: flex;
+  align-items: center;
+
+  @media screen and (width >= 768px) {
+    @include sr-only;
+  }
+}
+
+.desktop {
+  display: none;
+
+  @media screen and (width >= 768px) {
+    display: flex;
   }
 }

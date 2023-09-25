@@ -1,3 +1,35 @@
+## [5.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.4.0&targetVersion=GTv5.0.0) (2023-09-25)
+
+### ⚠ BREAKING CHANGES
+
+- role=region må settes via prop
+- name/id settes ikke lenger default til verdien av title. Man må sette name/id selv om man trenger det.
+- fjernet mulighet for at Tile kan være button
+
+### Features
+
+- formgroup har prop for fieldset name
+  ([625f843](https://github.com/helsenorge/designsystem/commit/625f843aa947601f7edaa82f388f6c22cda00851)), closes
+  [#308141](https://github.com/helsenorge/designsystem/issues/308141)
+- helppanel ([e2e8f23](https://github.com/helsenorge/designsystem/commit/e2e8f2319626be54174c129f59f83e42603dd237))
+
+### Bug Fixes
+
+- expanderList/LinkList (ListHeader) HtmlValidering i story
+  ([72b12a3](https://github.com/helsenorge/designsystem/commit/72b12a3a5570e6f73fb69045cbe90d0572fd5da6)), closes
+  [#308137](https://github.com/helsenorge/designsystem/issues/308137)
+- highlightbox har ikke lenger fargene kiwi/plum
+  ([8852e6c](https://github.com/helsenorge/designsystem/commit/8852e6cd07abf4995518ffcea6fb2bb5b421b84e)), closes
+  [#305259](https://github.com/helsenorge/designsystem/issues/305259)
+- html i Tile validerer ([f0a9f37](https://github.com/helsenorge/designsystem/commit/f0a9f3739f39fa33d2feb1d78812958730c09f33)), closes
+  [#308149](https://github.com/helsenorge/designsystem/issues/308149)
+- ikke bruk aria-attributter med mindre NotificationPanel har role
+  ([8f1b09b](https://github.com/helsenorge/designsystem/commit/8f1b09b48a4840c8a8ce0efb7abdbed05de62a8e)), closes
+  [#309176](https://github.com/helsenorge/designsystem/issues/309176)
+- notificationpanel er ikke region som default
+  ([00103ce](https://github.com/helsenorge/designsystem/commit/00103ce8a237f0222966f3a25f80f2222fbecf37)), closes
+  [#309176](https://github.com/helsenorge/designsystem/issues/309176)
+
 ## [4.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.3.1&targetVersion=GTv4.4.0) (2023-09-15)
 
 ### Features

@@ -133,7 +133,7 @@ export const VariantFill: ComponentStory<typeof ExpanderList> = (args: any) => (
 export const WithListHeaderComp: ComponentStory<typeof ExpanderList> = (args: any) => {
   const listHeader = (
     <ListHeader>
-      <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" titleHtmlMarkup="h2" />
+      <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
       <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
       <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
       <ListHeaderText
@@ -168,7 +168,7 @@ export const WithAvatarAndBadge: ComponentStory<typeof ExpanderList> = (args: an
   );
 
   const listHeader2 = (
-    <ListHeader>
+    <ListHeader titleHtmlMarkup="span">
       ExpanderListText
       <Badge color="blueberry">Ny</Badge>
       <AvatarComponent>Line Danser</AvatarComponent>
@@ -360,7 +360,7 @@ export const InteractiveChildren: ComponentStory<typeof ExpanderList> = (args: a
 };
 
 export const JsxTitle: ComponentStory<typeof ExpanderList> = (args: any) => {
-  const TestTitle: React.FC = () => <div>{'Dette er en JSX-tittel'}</div>;
+  const TestTitle: React.FC = () => <span>{'Dette er en JSX-tittel'}</span>;
 
   return (
     <GridExample>
@@ -370,7 +370,9 @@ export const JsxTitle: ComponentStory<typeof ExpanderList> = (args: any) => {
           title={
             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
               <AvatarComponent>{'Tittel'}</AvatarComponent>
-              <Title appearance="title3">Fastlege</Title>
+              <Title htmlMarkup="span" appearance="title3">
+                Fastlege
+              </Title>
             </span>
           }
         >
@@ -380,7 +382,7 @@ export const JsxTitle: ComponentStory<typeof ExpanderList> = (args: any) => {
         <ExpanderList.Expander
           title={
             <div>
-              <div>{'Tittel'}</div>
+              <span>{'Tittel'}</span>
               <StatusDot variant={'noaccess'} text={'Status tekst'} />
             </div>
           }

@@ -6,10 +6,11 @@ import { useBreakpoint, Breakpoint } from '../..';
 import { AnalyticsId } from '../../constants';
 import { PaletteNames } from '../../theme/palette';
 import Icon, { SvgIcon, IconSize } from '../Icons';
+import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
 
-export type HighlightBoxColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cherry' | 'neutral' | 'kiwi' | 'plum'>;
+export type HighlightBoxColors = Extract<PaletteNames, 'white' | 'neutral' | 'blueberry' | 'cherry'>;
 
 export enum HighlightBoxSize {
   medium = 'medium',
@@ -35,8 +36,14 @@ interface HighlightBoxProps {
   htmlMarkup?: HighlightBoxTags;
   /** Adds custom classes to the element. */
   className?: string;
+  /** Adds custom classes to the content-wrapper */
+  contentWrapperClassName?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Element that is set after the icon-element in the DOM, often a title-element */
+  title?: string;
+  /** Markup props for title */
+  titleHtmlMarkup?: TitleTags;
 }
 
 interface WrapperProps {
@@ -54,14 +61,35 @@ const Wrapper: React.FC<WrapperProps> = ({ className, size, children }) => (
   </div>
 );
 
-const ContentWrapper: React.FC = ({ children }) => (
-  <div className={styles['highlightbox__content-wrapper']}>
-    <div className={classNames(styles.highlightbox__row)}>{children}</div>
-  </div>
-);
+interface ContentWrapperProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const ContentWrapper: React.FC<ContentWrapperProps> = props => {
+  const { children, className } = props;
+  const contentWrapperClasses = classNames(styles['highlightbox__content-wrapper'], className);
+
+  return (
+    <div className={contentWrapperClasses}>
+      <div className={classNames(styles.highlightbox__row)}>{children}</div>
+    </div>
+  );
+};
 
 const HighlightBox: React.FC<HighlightBoxProps> = props => {
-  const { children, color = 'white', size = HighlightBoxSize.medium, testId, svgIcon, htmlMarkup = 'div', className } = props;
+  const {
+    children,
+    color = 'white',
+    size = HighlightBoxSize.medium,
+    testId,
+    svgIcon,
+    htmlMarkup = 'div',
+    className,
+    contentWrapperClassName,
+    title,
+    titleHtmlMarkup = 'h2',
+  } = props;
   const breakpoint = useBreakpoint();
 
   const containerClassName = classNames(
@@ -76,12 +104,27 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
   const renderContent = () => {
     if (svgIcon) {
       const iconSize = size === HighlightBoxSize.large && breakpoint && breakpoint >= Breakpoint.md ? IconSize.Medium : IconSize.Small;
+
+      const titleElement = (
+        <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance="title4">
+          {title}
+        </Title>
+      );
+
       return (
         <>
           <div className={styles.highlightbox__icon}>
             <Icon svgIcon={svgIcon} size={iconSize} />
+            {title && <div className={styles['mobile']}>{titleElement}</div>}
           </div>
-          <div className={styles.highlightbox__content}>{children}</div>
+          <div className={styles.highlightbox__content}>
+            {title && (
+              <div className={styles['desktop']} aria-hidden="true">
+                {titleElement}
+              </div>
+            )}
+            {children}
+          </div>
         </>
       );
     }
@@ -91,10 +134,12 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
 
   const CustomTag = htmlMarkup;
 
+  const contentWrapperClasses = classNames(styles['highlightbox__content-wrapper'], contentWrapperClassName);
+
   if (size === HighlightBoxSize.medium) {
     return (
       <Wrapper className={containerClassName} size={size}>
-        <CustomTag className={styles['highlightbox__content-wrapper']} data-testid={testId} data-analyticsid={AnalyticsId.HighlightBox}>
+        <CustomTag className={contentWrapperClasses} data-testid={testId} data-analyticsid={AnalyticsId.HighlightBox}>
           {renderContent()}
         </CustomTag>
       </Wrapper>
@@ -104,7 +149,7 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
   if (size === HighlightBoxSize.large && svgIcon) {
     return (
       <Wrapper className={containerClassName} size={size}>
-        <ContentWrapper>
+        <ContentWrapper className={contentWrapperClasses}>
           <CustomTag
             className={classNames(styles.highlightbox__col, styles['highlightbox__col--large-with-icon'])}
             data-testid={testId}
@@ -120,7 +165,7 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
   if (size === HighlightBoxSize.large) {
     return (
       <Wrapper className={containerClassName} size={size}>
-        <ContentWrapper>
+        <ContentWrapper className={contentWrapperClasses}>
           <CustomTag
             className={classNames(styles.highlightbox__col, styles['highlightbox__col--offset'])}
             data-testid={testId}

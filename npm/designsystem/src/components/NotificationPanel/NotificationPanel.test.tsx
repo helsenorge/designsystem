@@ -101,57 +101,63 @@ describe('Gitt at NotificationPanel skal vises', () => {
     });
   });
 
-  describe('Når panelet har label og tekstlig innhold', (): void => {
-    test('Så er panelet tilgjengelig via label', (): void => {
-      render(<NotificationPanel label="Overskrift">Some text here for testing</NotificationPanel>);
+  describe('Når role er region', (): void => {
+    describe('Når panelet har label og tekstlig innhold', (): void => {
+      test('Så er panelet tilgjengelig via label', (): void => {
+        render(
+          <NotificationPanel role="region" label="Overskrift">
+            Some text here for testing
+          </NotificationPanel>
+        );
 
-      const panel = screen.getByRole('region', { name: 'Overskrift' });
-      expect(panel).toBeInTheDocument();
+        const panel = screen.getByRole('region', { name: 'Overskrift' });
+        expect(panel).toBeInTheDocument();
+      });
     });
-  });
 
-  describe('Når panelet har bare rent tekstlig innhold', (): void => {
-    test('Så er panelet tilgjengelig via teksten i panelet', (): void => {
-      render(<NotificationPanel>Some text here for testing</NotificationPanel>);
+    describe('Når panelet har bare rent tekstlig innhold', (): void => {
+      test('Så er panelet tilgjengelig via teksten i panelet', (): void => {
+        render(<NotificationPanel role="region">Some text here for testing</NotificationPanel>);
 
-      const panel = screen.getByRole('region', { name: 'Some text here for testing' });
-      expect(panel).toBeInTheDocument();
+        const panel = screen.getByRole('region', { name: 'Some text here for testing' });
+        expect(panel).toBeInTheDocument();
+      });
     });
-  });
 
-  describe('Når panelet JSX som innhold, og ikke ariaLabel eller label', (): void => {
-    test('Så er panelet tilgjengelig via teksten i panelet', (): void => {
-      render(
-        <NotificationPanel>
-          <p>Some text here for testing</p>
-        </NotificationPanel>
-      );
+    describe('Når panelet JSX som innhold, og ikke ariaLabel eller label', (): void => {
+      test('Så er panelet tilgjengelig via teksten i panelet', (): void => {
+        render(
+          <NotificationPanel role="region">
+            <p>Some text here for testing</p>
+          </NotificationPanel>
+        );
 
-      const panel = screen.getByRole('region', { name: 'Some text here for testing' });
-      expect(panel).toBeInTheDocument();
+        const panel = screen.getByRole('region', { name: 'Some text here for testing' });
+        expect(panel).toBeInTheDocument();
+      });
     });
-  });
 
-  describe('Når panelet har label og labelId', (): void => {
-    test('Så er panelet tilgjengelig via label', (): void => {
-      render(
-        <NotificationPanel label="Overskrift" labelId={'sidetittel'}>
-          Some text here for testing
-        </NotificationPanel>
-      );
+    describe('Når panelet har label og labelId', (): void => {
+      test('Så er panelet tilgjengelig via label', (): void => {
+        render(
+          <NotificationPanel role="region" label="Overskrift" labelId={'sidetittel'}>
+            Some text here for testing
+          </NotificationPanel>
+        );
 
-      const panel = screen.getByRole('region', { name: 'Overskrift' });
-      expect(panel).toBeInTheDocument();
-    });
-    test('Så bruker label labelId som id', (): void => {
-      render(
-        <NotificationPanel label="Overskrift" labelId={'sidetittel'}>
-          Some text here for testing
-        </NotificationPanel>
-      );
+        const panel = screen.getByRole('region', { name: 'Overskrift' });
+        expect(panel).toBeInTheDocument();
+      });
+      test('Så bruker label labelId som id', (): void => {
+        render(
+          <NotificationPanel role="region" label="Overskrift" labelId={'sidetittel'}>
+            Some text here for testing
+          </NotificationPanel>
+        );
 
-      const title = screen.getByRole('heading', { name: 'Overskrift' });
-      expect(title).toHaveAttribute('id', 'sidetittel');
+        const title = screen.getByRole('heading', { name: 'Overskrift' });
+        expect(title).toHaveAttribute('id', 'sidetittel');
+      });
     });
   });
 
@@ -165,11 +171,11 @@ describe('Gitt at NotificationPanel skal vises', () => {
   });
 
   describe('Når role ikke har satt', (): void => {
-    test('Så har komponenten role=region', (): void => {
+    test('Så har komponenten ikke role=region', (): void => {
       render(<NotificationPanel>Important!</NotificationPanel>);
 
-      const component = screen.getByRole('region', { name: 'Important!' });
-      expect(component).toBeVisible();
+      const component = screen.queryByRole('region');
+      expect(component).not.toBeInTheDocument();
     });
   });
 

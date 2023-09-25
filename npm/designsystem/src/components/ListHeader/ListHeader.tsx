@@ -68,6 +68,7 @@ interface ListHeaderChildren {
   avatarChild?: React.ReactElement<AvatarProps>;
   listHeaderTextChildren: React.ReactElement<ListHeaderTextProps>[];
   badgeChild?: React.ReactElement<BadgeProps>;
+  elementChild?: React.ReactElement;
   stringChildren: string[];
   remainingChildren: React.ReactNode[];
 }
@@ -158,7 +159,7 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
   });
   const CustomTag = titleHtmlMarkup;
   return (
-    <div data-testid={testId} className={listLabelClasses}>
+    <span data-testid={testId} className={listLabelClasses}>
       {showChevronAndIcon && icon && (
         <span className={iconClasses}>
           {React.cloneElement(icon, {
@@ -170,13 +171,13 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
       {size !== 'small' && mappedChildren?.avatarChild && (
         <span className={avatarClasses}>{React.cloneElement(mappedChildren.avatarChild, { size: AvatarSize.xsmall })}</span>
       )}
-      <div className={contentClasses}>
+      <span className={contentClasses}>
         {mappedChildren?.listHeaderTextChildren}
         {!!mappedChildren?.stringChildren.length && (
           <CustomTag className={styles['list-header__title']}>{mappedChildren.stringChildren}</CustomTag>
         )}
         {mappedChildren?.remainingChildren}
-      </div>
+      </span>
 
       {mappedChildren?.badgeChild && <span className={badgeClasses}>{mappedChildren.badgeChild}</span>}
       {showChevronAndIcon && chevronIcon && (
@@ -184,7 +185,7 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
           <Icon svgIcon={chevronIcon} isHovered={isHovered} size={IconSize.XSmall} />
         </span>
       )}
-    </div>
+    </span>
   );
 });
 

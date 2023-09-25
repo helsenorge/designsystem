@@ -133,9 +133,9 @@ export const CustomErrorWrapperClass: ComponentStory<typeof FormGroup> = (args: 
       </FormGroup>
       <Spacer size="2xs" />
       <FormGroup htmlMarkup="div" {...args} errorWrapperClassName="error-wrapper-class">
-        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Med standard avstand ned til border' }]} />} />
+        <RadioButton inputId={'RadioButton4'} label={<Label labelTexts={[{ text: 'Radiobutton 4' }]} />} />
+        <RadioButton inputId={'RadioButton5'} label={<Label labelTexts={[{ text: 'Radiobutton 5' }]} />} />
+        <RadioButton inputId={'RadioButton6'} label={<Label labelTexts={[{ text: 'Med standard avstand ned til border' }]} />} />
       </FormGroup>
     </div>
   </GridExample>

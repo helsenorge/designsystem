@@ -1,4 +1,4 @@
-import glob from 'glob';
+import { globSync } from 'glob';
 
 const getEntryName = name => {
   return name.replace(/^src\//, '').replace(/\.tsx?$/, '');
@@ -25,9 +25,9 @@ export const alwaysIgnore = [
   '**/utils/**/*',
 ];
 
-const components = glob.sync(`src/components/**/index.{ts,tsx}`, { ignore: alwaysIgnore });
-const icons = glob.sync(`src/components/Icons/*.tsx`, { ignore: alwaysIgnore });
-const hooksAndExtras = glob.sync(`src/**/*.{ts,tsx}`, { ignore: [...alwaysIgnore, 'src/components/**/*'] });
-const utils = glob.sync(`src/utils/*.ts`);
+const components = globSync(`src/components/**/index.{ts,tsx}`, { ignore: alwaysIgnore });
+const icons = globSync(`src/components/Icons/*.tsx`, { ignore: alwaysIgnore });
+const hooksAndExtras = globSync(`src/**/*.{ts,tsx}`, { ignore: [...alwaysIgnore, 'src/components/**/*'] });
+const utils = globSync(`src/utils/*.ts`);
 
 export const entries = [...components, ...icons, ...hooksAndExtras, ...utils].sort((a, b) => a.localeCompare(b)).reduce(createEntries, {});

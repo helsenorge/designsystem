@@ -1,5 +1,5 @@
 {
-  "version": "4.4.0",
+  "version": "5.0.0",
   "npmClient": "npm",
   "command": {
     "version": {
@@ -10,7 +10,5 @@
       "scope": "@helsenorge/*",
       "registry": "https://pkgs.dev.azure.com/nhnfelles/_packaging/Helsenorge/npm/registry/"
     }
-  },
-  "useWorkspaces": true,
-  "useNx": true
+  }
 }

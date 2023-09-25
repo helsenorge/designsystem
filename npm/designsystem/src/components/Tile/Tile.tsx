@@ -3,15 +3,14 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { TitleTags } from './../Title/Title';
-import { AnalyticsId, HTMLAnchorProps } from '../../constants';
+import { AnalyticsId } from '../../constants';
 import { useHover } from '../../hooks/useHover';
+import { mergeRefs } from '../../utils/refs';
 import { IconSize } from '../Icons';
 
 import tileStyles from './styles.module.scss';
 
-export type TileTags = 'button' | 'a';
-
-interface TileProps extends HTMLAnchorProps {
+interface TileProps extends Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target' | 'onClick' | 'rel'> {
   /** Adds custom classes to the element. */
   className?: string;
   /**	Sets the icon to be displayed inside the tile. */
@@ -24,10 +23,6 @@ interface TileProps extends HTMLAnchorProps {
   description?: string;
   /** Sets a fixed max and min width for the tile. */
   fixed?: boolean;
-  /** Called when the tile is clicked on. */
-  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  /** HTML markup for tile. Default: a */
-  htmlMarkup?: TileTags;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -63,11 +58,11 @@ const Title = React.forwardRef<HTMLHeadingElement, TileTitleProps>((props, ref) 
   );
 });
 
-export const Tile = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, TileProps>((props, ref) => {
-  const { icon, title, className = '', description, fixed = false, highlighted = false, testId, htmlMarkup = 'a', ...restProps } = props;
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement | HTMLAnchorElement>(
-    ref as React.RefObject<HTMLButtonElement | HTMLAnchorElement>
-  );
+Title.displayName = 'Title';
+
+export const Tile = React.forwardRef<HTMLAnchorElement, TileProps>((props, ref) => {
+  const { icon, title, className = '', description, fixed = false, highlighted = false, testId, target, rel, href, onClick } = props;
+  const { hoverRef, isHovered } = useHover<HTMLAnchorElement>();
   const compact = !description;
   const tileClasses = classNames(
     tileStyles.tile,
@@ -75,7 +70,6 @@ export const Tile = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Tile
       [tileStyles['tile--fixed']]: fixed,
       [tileStyles['tile--compact']]: compact,
       [tileStyles['tile--highlighted']]: highlighted,
-      [tileStyles['tile--button']]: htmlMarkup === 'button',
     },
     className
   );
@@ -83,43 +77,27 @@ export const Tile = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Tile
     [tileStyles['title-wrapper--compact']]: compact,
   });
 
-  const renderContent = () => (
-    <>
-      <span className={tileTitleWrapperClasses}>
+  return (
+    <a
+      ref={mergeRefs([ref, hoverRef])}
+      href={href}
+      target={target}
+      rel={target === '_blank' ? 'noopener noreferrer' : rel}
+      className={tileClasses}
+      data-testid={testId}
+      data-analyticsid={AnalyticsId.Tile}
+      onClick={onClick}
+    >
+      <div className={tileTitleWrapperClasses}>
         {React.cloneElement(icon, { size: IconSize.Medium, isHovered, color: highlighted ? 'white' : 'black' })}
         {React.cloneElement(title, { highlighted: highlighted, compact: compact })}
-      </span>
-      {description ? <p className={tileStyles.tile__description}>{description}</p> : null}
-    </>
-  );
-
-  const commonProps = {
-    className: tileClasses,
-    ['data-testid']: testId,
-    ['data-analyticsid']: AnalyticsId.Tile,
-    ...restProps,
-  };
-
-  return (
-    <>
-      {htmlMarkup === 'a' && (
-        <a
-          ref={hoverRef as React.RefObject<HTMLAnchorElement>}
-          rel={props.target === '_blank' ? 'noopener noreferrer' : props.rel}
-          {...commonProps}
-        >
-          {renderContent()}
-        </a>
-      )}
-      {htmlMarkup === 'button' && (
-        <button ref={hoverRef as React.RefObject<HTMLButtonElement>} type="button" {...commonProps}>
-          {renderContent()}
-        </button>
-      )}
-    </>
+      </div>
+      {description && <p className={tileStyles.tile__description}>{description}</p>}
+    </a>
   );
 }) as TileCompound;
 
+Tile.displayName = 'Tile';
 Tile.Title = Title;
 
 export default Tile;

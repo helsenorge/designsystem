@@ -9,8 +9,12 @@ import Icon from '../Icons';
 import AlarmClock from '../Icons/AlarmClock';
 
 test('displays tile', (): void => {
-  const { container, getByText } = render(
-    <Tile icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />} title={<Tile.Title>Title</Tile.Title>} description="Description" />
+  const { container } = render(
+    <Tile
+      icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+      title={<Tile.Title>{'Title'}</Tile.Title>}
+      description="Description"
+    />
   );
   expect(container).toMatchSnapshot();
 });
@@ -21,7 +25,7 @@ describe('Gitt at Tile skal vises', (): void => {
       render(
         <Tile
           icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>Title</Tile.Title>}
+          title={<Tile.Title>{'Title'}</Tile.Title>}
           description="Description"
           testId="bare-tester"
         />
@@ -37,7 +41,7 @@ describe('Gitt at Tile skal vises', (): void => {
       render(
         <Tile
           icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>Title</Tile.Title>}
+          title={<Tile.Title>{'Title'}</Tile.Title>}
           description="Description"
           target="_blank"
           testId="tester-rel"
@@ -50,37 +54,19 @@ describe('Gitt at Tile skal vises', (): void => {
       expect(component).toHaveAttribute('rel', 'noopener noreferrer');
     });
   });
-  describe('Når htmlMarkup er a', () => {
+  describe('Når onClick er satt', () => {
     test('Skal kalles onClick-handler når man klikker på knappen', async () => {
       const onClickMock = jest.fn();
       render(
         <Tile
           icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>Lenketekst</Tile.Title>}
-          htmlMarkup="a"
+          title={<Tile.Title>{'Lenketekst'}</Tile.Title>}
           onClick={onClickMock}
           href="#"
         />
       );
 
       const tile = screen.getByRole('link', { name: 'Lenketekst' });
-      await userEvent.click(tile);
-      expect(onClickMock).toHaveBeenCalledTimes(1);
-    });
-  });
-  describe('Når htmlMarkup er button', () => {
-    test('Skal kalles onClick-handler når man klikker på knappen', async () => {
-      const onClickMock = jest.fn();
-      render(
-        <Tile
-          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>Lenketekst</Tile.Title>}
-          htmlMarkup="button"
-          onClick={onClickMock}
-        />
-      );
-
-      const tile = screen.getByRole('button', { name: 'Lenketekst' });
       await userEvent.click(tile);
       expect(onClickMock).toHaveBeenCalledTimes(1);
     });
