@@ -1,0 +1,447 @@
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+
+.radio-button-errors {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $cherry600;
+  margin-top: 0;
+}
+
+.radio-button-wrapper {
+  cursor: pointer;
+  margin: getSpacer(s) 0;
+
+  &--with-error {
+    padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
+    background-color: $cherry100;
+    margin-left: -0.75rem;
+    border-left: 0.25rem solid $cherry600;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      padding: getSpacer(s) getSpacer(m) getSpacer(l);
+    }
+  }
+
+  &--with-error#{&}__bigform {
+    padding: getSpacer(m) getSpacer(m);
+  }
+
+  &__bigform {
+    margin: getSpacer(2xs) 0 getSpacer(2xs) 0;
+
+    &--focused {
+      box-shadow: 0 0 0 getSpacer(3xs);
+      color: $neutral500;
+    }
+    &--focused#{&}--on-blueberry {
+      color: $blueberry500;
+    }
+
+    &--focused#{&}--selected {
+      color: $blueberry900;
+    }
+    &--focused#{&}--invalid {
+      color: $cherry400;
+    }
+  }
+}
+
+.radio-button-wrapper:first-of-type {
+  margin-top: 0;
+}
+
+.radio-button-wrapper:last-of-type {
+  margin-bottom: 0;
+}
+
+.radio-button-label {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  line-height: $lineheight-size-sm;
+  color: $black;
+
+  &--on-dark {
+    color: $white;
+  }
+
+  &--invalid {
+    color: $black;
+  }
+
+  &--disabled {
+    cursor: default;
+    color: $neutral700;
+  }
+
+  &__bigform {
+    padding: getSpacer(s);
+    background-color: $neutral50;
+
+    &:hover {
+      background-color: $neutral100;
+    }
+
+    &--on-blueberry {
+      background-color: $white;
+
+      &:focus {
+        background-color: $white;
+      }
+
+      &:hover {
+        background-color: $blueberry100;
+      }
+    }
+
+    &--on-grey {
+      background-color: $white;
+
+      &:hover {
+        background-color: $neutral100;
+      }
+
+      &:focus {
+        background-color: $white;
+      }
+    }
+  }
+
+  &__bigform#{&}--on-dark {
+    background-color: $blueberry800;
+  }
+  &__bigform#{&}--invalid {
+    background-color: $white;
+
+    &:hover {
+      background-color: $cherry100;
+    }
+  }
+  &__bigform#{&}__bigform--selected-invalid {
+    background-color: $cherry100;
+    color: $black;
+
+    &:hover {
+      background-color: $cherry200;
+    }
+  }
+
+  &__bigform#{&}__bigform--disabled {
+    background-color: $neutral50;
+
+    &:hover {
+      background-color: $neutral50;
+    }
+
+    &:focus {
+      background-color: $neutral50;
+    }
+  }
+  &__bigform#{&}__bigform--on-grey {
+    background-color: $white;
+
+    &:hover {
+      background-color: $neutral100;
+    }
+
+    &:focus {
+      background-color: $white;
+    }
+  }
+
+  &__bigform#{&}__bigform--on-blueberry {
+    background-color: $white;
+
+    &:hover {
+      background-color: $blueberry100;
+    }
+
+    &:focus {
+      background-color: $white;
+    }
+  }
+
+  &__bigform--selected {
+    background-color: $blueberry500;
+    color: $white;
+
+    &:hover {
+      background-color: $blueberry600;
+    }
+  }
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    &__bigform {
+      padding: 1.68rem getSpacer(l);
+    }
+  }
+}
+
+.radio-button {
+  appearance: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rem;
+  margin: 0 getSpacer(s) 0 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  color: $neutral700;
+  box-shadow: 0 0 0 getSpacer(4xs);
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 0 0 getSpacer(3xs);
+    color: $black;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 getSpacer(3xs);
+    background-color: $neutral100;
+  }
+
+  :active > & {
+    box-shadow: 0 0 0 getSpacer(3xs);
+    color: $black;
+  }
+
+  &:checked {
+    color: $blueberry500;
+
+    &:hover {
+      box-shadow: 0 0 0 getSpacer(4xs);
+      background-color: $blueberry50;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 getSpacer(3xs);
+      color: $black;
+    }
+  }
+
+  &--on-blueberry {
+    color: $blueberry500;
+
+    :hover > & {
+      background-color: $blueberry100;
+    }
+  }
+
+  &--on-dark {
+    color: $neutral200;
+
+    &:hover {
+      background-color: $inverted-hover;
+      box-shadow: 0 0 0 getSpacer(3xs);
+    }
+
+    &:focus {
+      color: $white;
+    }
+
+    :active > & {
+      box-shadow: 0 0 0 getSpacer(3xs);
+      color: $white;
+    }
+
+    &:checked {
+      color: $blueberry200;
+
+      &:hover {
+        background-color: $inverted-hover;
+      }
+
+      &:focus {
+        color: $white;
+      }
+    }
+  }
+
+  &--invalid {
+    color: $cherry600;
+
+    &:hover {
+      background-color: $cherry100;
+    }
+
+    &:active {
+      color: $black;
+    }
+
+    &:focus {
+      color: $black;
+    }
+
+    &:checked {
+      color: $cherry600;
+
+      &:hover {
+        background-color: $cherry100;
+      }
+    }
+  }
+
+  &--disabled {
+    cursor: default;
+    color: $neutral600;
+    background-color: $neutral50;
+
+    &:hover {
+      box-shadow: 0 0 0 getSpacer(4xs);
+      background-color: $neutral50;
+    }
+
+    :hover > & {
+      background-color: $neutral50;
+    }
+
+    &:active {
+      color: $neutral600;
+    }
+
+    &:checked {
+      color: $neutral600;
+
+      &:hover {
+        box-shadow: 0 0 0 getSpacer(4xs);
+        background-color: $neutral50;
+      }
+    }
+  }
+
+  // :before er dot i RadioButton
+  &:checked::before {
+    content: '';
+    display: flex;
+    background-color: $blueberry500;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 10rem;
+
+    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      background-color: #fff !important;
+    }
+  }
+
+  &--on-dark:checked::before {
+    background-color: $blueberry200;
+  }
+
+  &--disabled:checked::before {
+    box-shadow: 0 0 0 0;
+    background-color: $neutral400;
+    color: $neutral600;
+  }
+
+  &--invalid:checked::before {
+    background-color: $cherry600;
+  }
+
+  &__bigform {
+    &:checked {
+      outline: none;
+      color: $blueberry100;
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 getSpacer(3xs);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 getSpacer(3xs);
+      color: $black;
+    }
+
+    &:focus:checked {
+      color: $white;
+    }
+
+    &:checked::before {
+      background-color: $blueberry100;
+    }
+
+    &:checked:hover {
+      box-shadow: 0 0 0 getSpacer(4xs);
+      background-color: unset;
+    }
+
+    &:checked:hover:focus {
+      box-shadow: 0 0 0 getSpacer(3xs);
+      color: $white;
+    }
+
+    &--invalid {
+      &:checked {
+        color: $cherry500;
+      }
+
+      &:checked::before {
+        background-color: $cherry500;
+      }
+
+      &:checked:hover {
+        background-color: transparent;
+      }
+
+      &:checked:focus {
+        color: $black;
+      }
+
+      &:checked:focus:hover {
+        color: $black;
+      }
+    }
+
+    &--disabled {
+      &:hover {
+        box-shadow: 0 0 0 getSpacer(4xs);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 getSpacer(4xs);
+      }
+    }
+  }
+
+  // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    color: #fff !important;
+    background-color: transparent !important;
+  }
+}
+
+.radiobutton-sublabel-wrapper {
+  padding-left: 2.7rem;
+}
+
+/******** RESET *********/
+@mixin reset-radio-button() {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  & + label {
+    cursor: pointer;
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
