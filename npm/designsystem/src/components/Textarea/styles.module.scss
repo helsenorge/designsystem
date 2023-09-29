@@ -12,8 +12,8 @@
   }
 }
 
-.content-wrapper {
-  @include content-wrapper;
+.input-container {
+  @include input-container;
 
   &__input {
     line-height: 28px;

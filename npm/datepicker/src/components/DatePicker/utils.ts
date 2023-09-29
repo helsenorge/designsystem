@@ -6,15 +6,15 @@ type HorizontalPosition = 'left' | 'right' | 'floating';
 type BubblePosition = 'leftabove' | 'leftbelow' | 'rightabove' | 'rightbelow' | 'floatingabove' | 'floatingbelow';
 
 /** Bredde på hjelpeboble */
-const BUBBLE_WIDTH_PX = 373;
+const BUBBLE_WIDTH_PX = 329;
 /** Hjelpeboblen skal holde avstand til venstre/høyre kant på vinduet */
 const WINDOW_MARGIN_PX = 12;
 /** Vertikal avstand fra hjelpeboble til kontroller */
-const BUBBLE_VERTICAL_OFFSET_PX = 16;
+const BUBBLE_VERTICAL_OFFSET_PX = 26;
 /** Høyde/bredde på pil */
 const ARROW_WIDTH_PX = 20;
 /** Avstand fra pil til hjelpeboble */
-const ARROW_VERTICAL_OFFSET_PX = 4;
+const ARROW_VERTICAL_OFFSET_PX = 9;
 /** Pilen skal holde avstand til venstre/høyre kant av hjelpeboblen */
 const ARROW_HORIZONTAL_MARGIN_PX = 12;
 
@@ -149,21 +149,14 @@ const getBubbleFitsInWindow = (): boolean => {
  * @param controllerSize DOMRect for controlleren
  * @returns "Top" for pilen i px
  */
-const getArrowTopxPx = (controllerSize: DOMRect): number => controllerSize.top - BUBBLE_VERTICAL_OFFSET_PX - ARROW_VERTICAL_OFFSET_PX;
+const getArrowTopxPx = (controllerSize: DOMRect): number => controllerSize.top - BUBBLE_VERTICAL_OFFSET_PX - ARROW_VERTICAL_OFFSET_PX + 5;
 
 /**
  * Finn horisontal plassering av pilen i forhold til venstre kant av vinduet
  * @param controllerSize DOMRect for controlleren
  * @returns Venstre kant av pilen i px
  */
-const getArrowLeftPx = (controllerSize: DOMRect): number => getControllerLeftCenterPx(controllerSize) - ARROW_WIDTH_PX / 2;
-
-/**
- * Finn horisontal plassering av pilen
- * @param controllerSize DOMRect for controlleren
- * @returns Venstre kant av pilen i px
- */
-const getArrowRightPx = (controllerSize: DOMRect): number => getControllerRightCenterPx(controllerSize) - ARROW_WIDTH_PX / 2;
+const getArrowLeftPx = (): number => 55 - ARROW_WIDTH_PX / 2;
 
 /**
  * Finn riktig plassering av hjelpeboblen
@@ -244,22 +237,21 @@ export const getArrowStyle = (
   controllerSize: DOMRect,
   verticalPosition: keyof typeof PopOverVariant
 ): CSSProperties => {
-  const leftPx = getArrowLeftPx(controllerSize);
-  const rightPx = getArrowRightPx(controllerSize);
+  const leftPx = getArrowLeftPx();
   const minLeftPx = (bubbleStyle.left as number) + ARROW_HORIZONTAL_MARGIN_PX;
   const minRightPx = (bubbleStyle.right as number) + ARROW_HORIZONTAL_MARGIN_PX;
 
   if (bubbleStyle.right) {
     if (verticalPosition === PopOverVariant.positionabove) {
       return {
-        right: rightPx > minRightPx ? rightPx : minRightPx,
+        right: leftPx > minRightPx ? leftPx : minRightPx,
         top: getArrowTopxPx(controllerSize),
       };
     }
 
     return {
-      right: rightPx > minRightPx ? rightPx : minRightPx,
-      top: controllerSize.bottom,
+      right: leftPx > minRightPx ? leftPx : minRightPx,
+      top: controllerSize.bottom + ARROW_VERTICAL_OFFSET_PX,
     };
   }
 
@@ -272,6 +264,6 @@ export const getArrowStyle = (
 
   return {
     left: leftPx > minLeftPx ? leftPx : minLeftPx,
-    top: controllerSize.bottom,
+    top: controllerSize.bottom + ARROW_VERTICAL_OFFSET_PX,
   };
 };

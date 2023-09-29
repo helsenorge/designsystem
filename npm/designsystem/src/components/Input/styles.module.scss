@@ -20,7 +20,13 @@
 }
 
 .content-wrapper {
-  @include content-wrapper;
+  display: flex;
+  position: relative;
+  width: fit-content;
+}
+
+.input-container {
+  @include input-container;
 
   padding: 0.5rem 0;
   align-items: center;

@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import { format, isValid, parse } from 'date-fns';
-import { ActiveModifiers, DayPicker, SelectSingleEventHandler } from 'react-day-picker';
-import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
+import { nb } from 'date-fns/locale';
+import { ActiveModifiers, DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
 
-// TODO: FIKS IMPORT fra designsystem pakke
-
-import { getBubbleStyle } from './utils';
-import { useLayoutEvent, useOutsideEvent, useSize } from '../../../../designsystem/src';
+import DatePickerPopup from './DatePickerPopup';
+import { useKeyboardEvent, KeyboardEventKey } from '../../../../designsystem/src';
+import { useOutsideEvent } from '../../../../designsystem/src';
+import Button from '../../../../designsystem/src/components/Button';
+import Icon from '../../../../designsystem/src/components/Icons';
 import Calendar from '../../../../designsystem/src/components/Icons/Calendar';
 import Input from '../../../../designsystem/src/components/Input';
-import { useInterval } from '../../../../designsystem/src/hooks/useInterval';
 import { usePseudoClasses } from '../../../../designsystem/src/hooks/usePseudoClasses';
 import { isMutableRefObject, mergeRefs } from '../../../../designsystem/src/utils/refs';
 
@@ -18,78 +18,98 @@ import styles from './styles.module.scss';
 
 export type DateFormats = 'dd.MM.yyyy';
 
-interface DatePickerProps extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onChange'> {
+export interface DatePickerProps
+  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onChange'>,
+    Pick<DayPickerSingleProps, 'dir' | 'initialFocus'> {
+  /** Adds custom classes to the element. */
+  className?: string;
+  /** Sets aria-label on the button that opens the datepicker dialogue */
+  dateButtonAriaLabel?: string;
   /** Sets the date of the component */
   dateFormat?: DateFormats;
   /** Sets the date of the component */
   dateValue?: Date;
   /** Sets the current month */
   defaultMonth?: Date;
+  /** Disables the days in the datepicker */
+  disableDays?: Date[];
+  /** Disables weekends in the datepicker */
+  disableWeekends?: boolean;
   /** Activates Error style for the input */
   error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
+  /** Content to be rendered in the footer of the datepicker popup */
+  footerContent?: React.ReactNode;
   /** Label of the input */
   label?: React.ReactNode;
+  /** Sets the locale of the datepicker */
+  locale?: Locale;
+  /** Maximum date allowed to be selected */
+  maxDate?: Date;
+  /** Minimum date allowed to be selected */
+  minDate?: Date;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
-  const { dateFormat = 'dd.MM.yyyy', dateValue, defaultMonth, error, errorText, label, onChange, testId, ...rest } = props;
+  const {
+    className,
+    dateButtonAriaLabel,
+    dateFormat = 'dd.MM.yyyy',
+    dateValue,
+    defaultMonth,
+    dir,
+    disableDays = [],
+    disableWeekends,
+    error,
+    errorText,
+    footerContent,
+    label,
+    locale = nb,
+    maxDate,
+    minDate,
+    onChange,
+    testId,
+    ...rest
+  } = props;
 
   const [dateState, setDateState] = useState<Date | undefined>(dateValue);
   const [inputValue, setInputValue] = useState<string>(dateState ? format(dateState, dateFormat) : '');
   const [month, setMonth] = useState<Date | undefined>(defaultMonth);
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
-  const [focusDatePicker, setFocusDatePicker] = useState<boolean>(false);
-
-  const datepickerWrapperRef = React.useRef<HTMLDivElement>(null);
+  const [returnInputFocus, setReturnInputFocus] = useState<boolean>(false);
+  const weekendMatcher: DayOfWeek = {
+    dayOfWeek: [0, 6],
+  };
+  const [disabledDays] = useState<(Date | DayOfWeek)[]>(disableWeekends ? [...disableDays, weekendMatcher] : disableDays);
+  const inputWrapperRef = useRef<HTMLDivElement>(null);
+  const datepickerWrapperRef = useRef<HTMLDivElement>(null);
   const { refObject } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
-  useOutsideEvent(datepickerWrapperRef, () => setDatePickerOpen(false));
-
-  React.useEffect(() => {
-    !datePickerOpen && setFocusDatePicker(false);
-  }, [datePickerOpen]);
-
-  /////////// TODO: Posisjonering av datepicker
-  // const arrowRef = useRef<HTMLDivElement>(null);
-  const bubbleSize = useSize(datepickerWrapperRef);
-  const [controllerSize, setControllerSize] = useState<DOMRect>();
-  // const controllerisVisible = useIsVisible(refObject, 0);
-
-  const updateControllerSize = (): void => {
-    setControllerSize(refObject.current?.getBoundingClientRect());
-  };
-
-  useInterval(updateControllerSize, 500);
-  useLayoutEvent(updateControllerSize, ['scroll', 'resize'], 10);
-
-  React.useEffect(() => {
-    updateControllerSize();
-  }, []);
-
-  // const verticalPosition = controllerSize && bubbleSize && getVerticalPosition(controllerSize, bubbleSize);
-  // const arrowClasses = classNames(styles.popover__arrow, arrowClassName, {
-  //   [styles['popover__arrow--over']]: verticalPosition === PopOverVariant.positionbelow,
-  //   [styles['popover__arrow--under']]: verticalPosition === PopOverVariant.positionabove,
-  // });
-
-  const bubbleStyle = controllerSize && bubbleSize && getBubbleStyle(controllerSize, bubbleSize);
-  // const arrowStyle = bubbleStyle && controllerSize && verticalPosition && getArrowStyle(bubbleStyle, controllerSize, verticalPosition);
-  /////////// TODO:
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>): void => {
-    if (e.key === ' ') {
-      e.stopPropagation();
-      setFocusDatePicker(true);
-      setDatePickerOpen(true);
+  useOutsideEvent(datepickerWrapperRef, e => {
+    const targetAsNode = e.target as Node;
+    if (!inputWrapperRef?.current?.contains(targetAsNode)) {
+      setDatePickerOpen(false);
     }
-    if (e.key === 'Escape') {
+  });
+
+  React.useEffect(() => {
+    if (returnInputFocus && refObject.current) {
+      refObject.current.focus();
+    }
+  }, [returnInputFocus]);
+
+  const handleKeyDown = (e: KeyboardEvent): void => {
+    if (e.key === KeyboardEventKey.Escape) {
+      refObject?.current && refObject.current.focus();
       setDatePickerOpen(false);
     }
   };
+
+  useKeyboardEvent(datepickerWrapperRef, handleKeyDown, [KeyboardEventKey.Escape]);
+  useKeyboardEvent(inputWrapperRef, handleKeyDown, [KeyboardEventKey.Escape]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(event.currentTarget.value);
@@ -105,6 +125,14 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
     onChange && onChange(event);
   };
 
+  const handleInputFocus = (): void => {
+    if (!returnInputFocus) {
+      setDatePickerOpen(true);
+    } else {
+      setReturnInputFocus(false);
+    }
+  };
+
   const handleSingleDatePickerSelect: SelectSingleEventHandler = (
     date: Date | undefined,
     selectedDay: Date,
@@ -112,56 +140,65 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
     e: React.MouseEvent
   ): void => {
     setDateState(date);
+    setReturnInputFocus(true);
 
     if (refObject.current) {
       setInputValue(date ? format(date, dateFormat) : '');
       setDatePickerOpen(false);
-      refObject.current.focus();
     }
   };
 
-  const datePickerClassNames = {
-    ...reactdaypickerstyles,
-    ...styles,
+  const handleButtonClick = (
+    e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null | undefined
+  ) => {
+    e?.stopPropagation();
+    setDatePickerOpen(!datePickerOpen);
   };
 
   return (
-    <div data-testid={testId}>
-      <span className={styles['input-wrapper']}>
+    <div className={className} data-testid={testId}>
+      <div className={styles['date-input-wrapper']}>
         <Input
           error={error}
           errorText={errorText}
+          inputWrapperRef={inputWrapperRef}
           label={label}
-          onClick={(): void => setDatePickerOpen(true)}
-          onKeyDown={handleKeyDown}
+          onFocus={handleInputFocus}
           type="text"
-          iconRight
-          icon={Calendar}
           ref={mergedRefs}
           value={inputValue}
-          width={8}
+          width={12}
           {...rest}
           onChange={handleInputChange}
+          rightOfInput={
+            <Button
+              ariaLabel={dateButtonAriaLabel ?? 'Velg dato'}
+              onClick={handleButtonClick}
+              tabIndex={datePickerOpen ? -1 : 0}
+              variant={'borderless'}
+              wrapperClassName={styles['date-button']}
+            >
+              {<Icon color={'black'} svgIcon={Calendar} />}
+            </Button>
+          }
         />
-      </span>
-      <div className={styles['datepicker-wrapper']} ref={datepickerWrapperRef} style={bubbleStyle}>
-        {datePickerOpen && (
-          <DayPicker
-            /* captionLayout="dropdown"
-          fromYear={2015}
-          toYear={2025} */
-            initialFocus={focusDatePicker}
-            fromDate={new Date()}
-            month={month}
-            mode="single"
-            selected={dateState}
-            onSelect={handleSingleDatePickerSelect}
-            onMonthChange={setMonth}
-            classNames={datePickerClassNames}
-            modifiersClassNames={{ today: styles['day--today'], selected: styles['day_selected'], disabled: styles['day--disabled'] }}
-          />
-        )}
       </div>
+      {datePickerOpen && (
+        <DatePickerPopup
+          dir={dir}
+          disabled={disabledDays}
+          datepickerWrapperRef={datepickerWrapperRef}
+          footer={footerContent}
+          fromDate={minDate}
+          toDate={maxDate}
+          inputRef={refObject}
+          locale={locale}
+          month={month}
+          selected={dateState}
+          onSelect={handleSingleDatePickerSelect}
+          onMonthChange={setMonth}
+        />
+      )}
     </div>
   );
 });
