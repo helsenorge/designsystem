@@ -19,7 +19,7 @@ export interface RadioGroupButtonProps
   /** The <Label/> next to the radioButton - sublabels kan ikke kombineres med bigform variant */
   label: React.ReactNode;
   /** input id of the radioButton */
-  inputId: string;
+  inputId?: string;
   /** Changes the visuals of the radioButton */
   mode?: keyof typeof FormMode;
   /** Changes the visuals of the radioButton */
@@ -33,7 +33,7 @@ export const RadioGroupButton = React.forwardRef((props: RadioGroupButtonProps, 
     className,
     disabled,
     label,
-    inputId,
+    inputId = '0',
     mode = FormMode.onwhite,
     name,
     variant,

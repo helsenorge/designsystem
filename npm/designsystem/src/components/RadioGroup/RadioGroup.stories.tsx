@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { useForm } from 'react-hook-form';
 
 import RadioGroup from './RadioGroup';
 import RadioGroupButton from './RadioGroupButton';
@@ -17,16 +18,56 @@ export default {
       },
     },
   },
-  argTypes: {},
+  argTypes: {
+    id: {
+      defaultValue: 'test',
+      description: 'ID for gruppe',
+    },
+  },
 } as ComponentMeta<typeof RadioGroup>;
 
 export const Default: ComponentStory<typeof RadioGroup> = (args: any) => (
   <GridExample>
-    <RadioGroup id="Test" {...args}>
-      <RadioGroupButton {...args} label={<Label labelTexts={[{ text: 'Radio onwhite' }]} />} mode="onwhite" />
-      <RadioGroupButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} mode="ongrey" />
-      <RadioGroupButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} mode="onblueberry" checked />
-      <RadioGroupButton {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} mode="onwhite" disabled />
+    <RadioGroup defaultCheckedRadioButton={1} {...args}>
+      <RadioGroupButton label={<Label labelTexts={[{ text: `Label onwhite` }]} />} mode="onwhite" />
+      <RadioGroupButton label={<Label labelTexts={[{ text: 'Label ongrey' }]} />} mode="ongrey" />
+      <RadioGroupButton label={<Label labelTexts={[{ text: 'Label onblueberry' }]} />} mode="onblueberry" checked />
+      <RadioGroupButton label={<Label labelTexts={[{ text: 'Label onwhite - disabled' }]} />} mode="onwhite" disabled />
     </RadioGroup>
   </GridExample>
 );
+
+export const ReactHookForm: ComponentStory<typeof RadioGroup> = (args: any) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = data => console.log(data);
+  console.log(errors);
+
+  return (
+    <GridExample>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <RadioGroup {...args}>
+          <RadioGroupButton {...register('Testform')} label={<Label labelTexts={[{ text: 'Label onwhite' }]} />} mode="onwhite" />
+          <RadioGroupButton {...register('Testform')} label={<Label labelTexts={[{ text: 'Label ongrey' }]} />} mode="ongrey" />
+          <RadioGroupButton
+            {...register('Testform')}
+            label={<Label labelTexts={[{ text: 'Label onblueberry' }]} />}
+            mode="onblueberry"
+            checked
+          />
+          <RadioGroupButton
+            {...register('Testform')}
+            label={<Label labelTexts={[{ text: 'Label onwhite - disabled' }]} />}
+            mode="onwhite"
+            disabled
+          />
+        </RadioGroup>
+        <button type="submit">Bekreft</button>
+      </form>
+    </GridExample>
+  );
+};

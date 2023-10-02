@@ -17,7 +17,9 @@ export interface RadioGroupProps {
   name: string;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** Checked item */
+  /** Default checked item */
+  defaultCheckedRadioButton: number;
+  /** Returns checked item */
   onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
