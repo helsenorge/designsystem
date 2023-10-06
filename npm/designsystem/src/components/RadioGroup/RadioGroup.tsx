@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -27,6 +27,7 @@ const RadioGroup = React.forwardRef((props: RadioGroupProps, ref: React.Ref<HTML
   const { id, className, children, testId, onChange } = props;
 
   const [checkedRadioButton, setCheckedRadioButton] = useState<HTMLInputElement>();
+  const inputRefList = useRef(React.Children.map(children, () => React.createRef<HTMLInputElement>()));
 
   const onChangeRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCheckedRadioButton(event.target);
@@ -40,7 +41,8 @@ const RadioGroup = React.forwardRef((props: RadioGroupProps, ref: React.Ref<HTML
       {React.Children.map(children, (child, index) => {
         if (isComponent<RadioGroupButtonProps>(child, RadioGroupButton)) {
           const inputId = `${id}-${index}`;
-          return React.cloneElement(child, {
+          return React.cloneElement(child as React.ReactElement, {
+            ref: inputRefList.current?.[index],
             inputId: inputId,
             name: id,
             checked:

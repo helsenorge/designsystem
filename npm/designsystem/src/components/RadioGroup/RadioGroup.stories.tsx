@@ -31,18 +31,19 @@ export const Default: ComponentStory<typeof RadioGroup> = (args: any) => (
     <RadioGroup defaultCheckedRadioButton={1} {...args}>
       <RadioGroupButton label={<Label labelTexts={[{ text: `Label onwhite` }]} />} mode="onwhite" />
       <RadioGroupButton label={<Label labelTexts={[{ text: 'Label ongrey' }]} />} mode="ongrey" />
-      <RadioGroupButton label={<Label labelTexts={[{ text: 'Label onblueberry' }]} />} mode="onblueberry" checked />
+      <RadioGroupButton label={<Label labelTexts={[{ text: 'Label onblueberry' }]} />} mode="onblueberry" />
       <RadioGroupButton label={<Label labelTexts={[{ text: 'Label onwhite - disabled' }]} />} mode="onwhite" disabled />
     </RadioGroup>
   </GridExample>
 );
 
 export const ReactHookForm: ComponentStory<typeof RadioGroup> = (args: any) => {
+  const form = useForm({ mode: 'onChange' });
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = form;
 
   const onSubmit = data => console.log(data);
   console.log(errors);
@@ -50,7 +51,7 @@ export const ReactHookForm: ComponentStory<typeof RadioGroup> = (args: any) => {
   return (
     <GridExample>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <RadioGroup {...args}>
+        <RadioGroup onChange={onSubmit} {...args}>
           <RadioGroupButton {...register('Testform')} label={<Label labelTexts={[{ text: 'Label onwhite' }]} />} mode="onwhite" />
           <RadioGroupButton {...register('Testform')} label={<Label labelTexts={[{ text: 'Label ongrey' }]} />} mode="ongrey" />
           <RadioGroupButton
@@ -67,6 +68,7 @@ export const ReactHookForm: ComponentStory<typeof RadioGroup> = (args: any) => {
           />
         </RadioGroup>
         <button type="submit">Bekreft</button>
+        <pre>{JSON.stringify(form.watch(), null, 2)}</pre>
       </form>
     </GridExample>
   );
