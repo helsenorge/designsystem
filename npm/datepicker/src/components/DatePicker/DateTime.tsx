@@ -75,7 +75,7 @@ const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInpu
         error={error}
         errorText={errorText}
         label={label}
-        max={timeUnit === 'hours' ? 24 : 59}
+        max={timeUnit === 'hours' ? 23 : 59}
         min={0}
         type="number"
         ref={mergedRefs}

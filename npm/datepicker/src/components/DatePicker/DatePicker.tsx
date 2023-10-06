@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { ActiveModifiers, DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
+import { DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
 
 import DatePickerPopup from './DatePickerPopup';
 import { useKeyboardEvent, KeyboardEventKey } from '../../../../designsystem/src';
@@ -12,6 +12,7 @@ import Icon from '../../../../designsystem/src/components/Icons';
 import Calendar from '../../../../designsystem/src/components/Icons/Calendar';
 import Input from '../../../../designsystem/src/components/Input';
 import { usePseudoClasses } from '../../../../designsystem/src/hooks/usePseudoClasses';
+import { isMobileUA } from '../../../../designsystem/src/utils/mobile';
 import { isMutableRefObject, mergeRefs } from '../../../../designsystem/src/utils/refs';
 
 import styles from './styles.module.scss';
@@ -25,7 +26,7 @@ export interface DatePickerProps
   className?: string;
   /** Sets aria-label on the button that opens the datepicker dialogue */
   dateButtonAriaLabel?: string;
-  /** Sets the date of the component */
+  /** Sets the format of the date - only applies for desktop use. Native mobile date fields base their formats on the device */
   dateFormat?: DateFormats;
   /** Sets the date of the component */
   dateValue?: Date;
@@ -41,6 +42,8 @@ export interface DatePickerProps
   errorText?: string;
   /** Content to be rendered in the footer of the datepicker popup */
   footerContent?: React.ReactNode;
+  /** Whether or not we should render the native mobile datepicker */
+  isMobile?: boolean;
   /** Label of the input */
   label?: React.ReactNode;
   /** Sets the locale of the datepicker */
@@ -66,6 +69,7 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
     error,
     errorText,
     footerContent,
+    isMobile = isMobileUA(),
     label,
     locale = nb,
     maxDate,
@@ -83,7 +87,7 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
   const weekendMatcher: DayOfWeek = {
     dayOfWeek: [0, 6],
   };
-  const [disabledDays] = useState<(Date | DayOfWeek)[]>(disableWeekends ? [...disableDays, weekendMatcher] : disableDays);
+  const disabledDays: (Date | DayOfWeek)[] = disableWeekends ? [...disableDays, weekendMatcher] : disableDays;
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const datepickerWrapperRef = useRef<HTMLDivElement>(null);
   const { refObject } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
@@ -96,20 +100,27 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
   });
 
   React.useEffect(() => {
+    setInputValue(dateValue ? format(dateValue, dateFormat) : '');
+
+    if (isValid(dateValue)) {
+      setDateState(dateValue);
+      setMonth(dateValue);
+    }
+  }, [dateValue]);
+
+  React.useEffect(() => {
     if (returnInputFocus && refObject.current) {
       refObject.current.focus();
     }
   }, [returnInputFocus]);
 
-  const handleKeyDown = (e: KeyboardEvent): void => {
-    if (e.key === KeyboardEventKey.Escape) {
-      refObject?.current && refObject.current.focus();
-      setDatePickerOpen(false);
-    }
+  const handleEscapeKeyDown = (): void => {
+    refObject?.current && refObject.current.focus();
+    setDatePickerOpen(false);
   };
 
-  useKeyboardEvent(datepickerWrapperRef, handleKeyDown, [KeyboardEventKey.Escape]);
-  useKeyboardEvent(inputWrapperRef, handleKeyDown, [KeyboardEventKey.Escape]);
+  useKeyboardEvent(datepickerWrapperRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
+  useKeyboardEvent(inputWrapperRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(event.currentTarget.value);
@@ -133,12 +144,7 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
     }
   };
 
-  const handleSingleDatePickerSelect: SelectSingleEventHandler = (
-    date: Date | undefined,
-    selectedDay: Date,
-    activeModifiers: ActiveModifiers,
-    e: React.MouseEvent
-  ): void => {
+  const handleSingleDatePickerSelect: SelectSingleEventHandler = (date: Date | undefined): void => {
     setDateState(date);
     setReturnInputFocus(true);
 
@@ -150,13 +156,29 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
 
   const handleButtonClick = (
     e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null | undefined
-  ) => {
+  ): void => {
     e?.stopPropagation();
     setDatePickerOpen(!datePickerOpen);
   };
 
-  return (
-    <div className={className} data-testid={testId}>
+  const renderMobile = (): React.ReactNode => (
+    <Input
+      error={error}
+      errorText={errorText}
+      label={label}
+      max={maxDate ? format(maxDate, 'yyyy-MM-dd') : ''}
+      min={minDate ? format(minDate, 'yyyy-MM-dd') : ''}
+      type="date"
+      ref={mergedRefs}
+      value={inputValue}
+      width={14}
+      {...rest}
+      onChange={handleInputChange}
+    />
+  );
+
+  const renderDesktop = (): React.ReactNode => (
+    <>
       <div className={styles['date-input-wrapper']}>
         <Input
           error={error}
@@ -199,6 +221,12 @@ const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTML
           onMonthChange={setMonth}
         />
       )}
+    </>
+  );
+
+  return (
+    <div className={className} data-testid={testId}>
+      {isMobile ? renderMobile() : renderDesktop()}
     </div>
   );
 });

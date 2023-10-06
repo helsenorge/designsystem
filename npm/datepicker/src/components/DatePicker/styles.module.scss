@@ -7,7 +7,7 @@
 .date-time-picker-wrapper {
   display: flex;
   align-items: flex-end;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
 
   @media (min-width: map.get($grid-breakpoints, sm)) {
     flex-flow: row nowrap;

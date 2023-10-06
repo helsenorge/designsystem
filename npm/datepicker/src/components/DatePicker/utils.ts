@@ -38,15 +38,15 @@ export const getVerticalPosition = (controllerSize: DOMRect, bubbleSize: DOMRect
  * @param controllerSize DOMRect for controlleren
  * @returns Horisontalt senter av controlleren i px
  */
-const getControllerLeftCenterPx = (controllerSize: DOMRect): number => controllerSize.left + controllerSize.width / 2;
+const getControllerLeftEdgePx = (controllerSize: DOMRect): number => controllerSize.left + controllerSize.width / 4;
 
 /**
  * Finn horisontalt midtpunkt på kontrolleren i forhold til høyre kant av vinduet
  * @param controllerSize DOMRect for controlleren
  * @returns Horisontalt senter av controlleren i px
  */
-const getControllerRightCenterPx = (controllerSize: DOMRect): number =>
-  document.documentElement.clientWidth - controllerSize.right + controllerSize.width / 2;
+const getControllerRightEdgePx = (controllerSize: DOMRect): number =>
+  document.documentElement.clientWidth - controllerSize.right + controllerSize.width / 4;
 
 /**
  * Finn venstre kant av hjelpeboblen i forhold til kontrolleren
@@ -54,11 +54,6 @@ const getControllerRightCenterPx = (controllerSize: DOMRect): number =>
  * @param bubbleSize DOMRect for hjelpeboblen
  * @returns Venstre kant av hjelpeboblen i px
  */
-const getBubbleLeftPx = (controllerSize: DOMRect, bubbleSize: DOMRect): number => {
-  const controllerHorizontalCenterPx = getControllerLeftCenterPx(controllerSize);
-
-  return controllerHorizontalCenterPx - bubbleSize.width / 2;
-};
 
 /**
  * Finn høyre kant av hjelpeboblen i forhold til kontrolleren
@@ -67,9 +62,7 @@ const getBubbleLeftPx = (controllerSize: DOMRect, bubbleSize: DOMRect): number =
  * @returns Høyre kant av hjelpeboblen i px
  */
 const getBubbleRightPx = (controllerSize: DOMRect, bubbleSize: DOMRect): number => {
-  const bubbleLeftPx = getBubbleLeftPx(controllerSize, bubbleSize);
-
-  return bubbleLeftPx + bubbleSize.width;
+  return controllerSize.left + bubbleSize.width;
 };
 
 /**
@@ -78,10 +71,8 @@ const getBubbleRightPx = (controllerSize: DOMRect, bubbleSize: DOMRect): number 
  * @param bubbleSize DOMRect for hjelpeboblen
  * @returns true dersom venstre kant er innenfor vinduet
  */
-const getBubbleLeftVisible = (controllerSize: DOMRect, bubbleSize: DOMRect): boolean => {
-  const bubbleLeftPx = getBubbleLeftPx(controllerSize, bubbleSize);
-
-  return bubbleLeftPx > WINDOW_MARGIN_PX;
+const getBubbleLeftVisible = (controllerSize: DOMRect): boolean => {
+  return controllerSize.left > WINDOW_MARGIN_PX;
 };
 
 /**
@@ -106,7 +97,7 @@ const getHorizontalPosition = (controllerSize: DOMRect, bubbleSize: DOMRect): Ho
   if (!getBubbleRightIsVisible(controllerSize, bubbleSize)) {
     return 'right';
   }
-  if (!getBubbleLeftVisible(controllerSize, bubbleSize)) {
+  if (!getBubbleLeftVisible(controllerSize)) {
     return 'left';
   }
 
@@ -156,7 +147,14 @@ const getArrowTopxPx = (controllerSize: DOMRect): number => controllerSize.top -
  * @param controllerSize DOMRect for controlleren
  * @returns Venstre kant av pilen i px
  */
-const getArrowLeftPx = (): number => 55 - ARROW_WIDTH_PX / 2;
+const getArrowLeftPx = (controllerSize: DOMRect): number => getControllerLeftEdgePx(controllerSize) - ARROW_WIDTH_PX / 2;
+
+/**
+ * Finn horisontal plassering av pilen
+ * @param controllerSize DOMRect for controlleren
+ * @returns Venstre kant av pilen i px
+ */
+const getArrowRightPx = (controllerSize: DOMRect): number => getControllerRightEdgePx(controllerSize) - ARROW_WIDTH_PX / 2;
 
 /**
  * Finn riktig plassering av hjelpeboblen
@@ -219,10 +217,10 @@ export const getBubbleStyle = (controllerSize: DOMRect, bubbleSize: DOMRect): CS
   }
 
   if (bubblePosition === 'floatingbelow') {
-    return { left: getBubbleLeftPx(controllerSize, bubbleSize), top: getBubbleBelowPx(controllerSize), width: bubbleWidth };
+    return { left: controllerSize.left, top: getBubbleBelowPx(controllerSize), width: bubbleWidth };
   }
 
-  return { left: getBubbleLeftPx(controllerSize, bubbleSize), top: getBubbleAbovePx(controllerSize, bubbleSize), width: bubbleWidth };
+  return { left: controllerSize.left, top: getBubbleAbovePx(controllerSize, bubbleSize), width: bubbleWidth };
 };
 
 /**
@@ -237,20 +235,21 @@ export const getArrowStyle = (
   controllerSize: DOMRect,
   verticalPosition: keyof typeof PopOverVariant
 ): CSSProperties => {
-  const leftPx = getArrowLeftPx();
+  const leftPx = getArrowLeftPx(controllerSize);
+  const rightPx = getArrowRightPx(controllerSize);
   const minLeftPx = (bubbleStyle.left as number) + ARROW_HORIZONTAL_MARGIN_PX;
   const minRightPx = (bubbleStyle.right as number) + ARROW_HORIZONTAL_MARGIN_PX;
 
   if (bubbleStyle.right) {
     if (verticalPosition === PopOverVariant.positionabove) {
       return {
-        right: leftPx > minRightPx ? leftPx : minRightPx,
+        right: rightPx > minRightPx ? rightPx : minRightPx,
         top: getArrowTopxPx(controllerSize),
       };
     }
 
     return {
-      right: leftPx > minRightPx ? leftPx : minRightPx,
+      right: rightPx > minRightPx ? rightPx : minRightPx,
       top: controllerSize.bottom + ARROW_VERTICAL_OFFSET_PX,
     };
   }
