@@ -20,7 +20,7 @@ interface DateTimePickerWrapperProps {
   testId?: string;
 }
 
-const DateTimePickerWrapper: React.FC<DateTimePickerWrapperProps> = props => {
+export const DateTimePickerWrapper: React.FC<DateTimePickerWrapperProps> = props => {
   const { children, errorText, testId } = props;
 
   const mapDateComponents = (child: React.ReactNode): React.ReactNode => {

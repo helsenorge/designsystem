@@ -23,7 +23,7 @@ export interface DateTimeProps
   testId?: string;
 }
 
-const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInputElement>) => {
+export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInputElement>) => {
   const { defaultValue, error, errorText, label, onChange, timeUnit, testId, ...rest } = props;
 
   const formatAsTwoDigits = (value: string | number): string => {

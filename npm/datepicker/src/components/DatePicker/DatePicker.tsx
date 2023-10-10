@@ -4,11 +4,12 @@ import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
 
+import Icon from '@helsenorge/designsystem-react/components/Icons';
+
 import DatePickerPopup from './DatePickerPopup';
 import { useKeyboardEvent, KeyboardEventKey } from '../../../../designsystem/src';
 import { useOutsideEvent } from '../../../../designsystem/src';
 import Button from '../../../../designsystem/src/components/Button';
-import Icon from '../../../../designsystem/src/components/Icons';
 import Calendar from '../../../../designsystem/src/components/Icons/Calendar';
 import Input from '../../../../designsystem/src/components/Input';
 import { usePseudoClasses } from '../../../../designsystem/src/hooks/usePseudoClasses';
@@ -56,7 +57,7 @@ export interface DatePickerProps
   testId?: string;
 }
 
-const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
+export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
   const {
     className,
     dateButtonAriaLabel,
