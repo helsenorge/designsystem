@@ -4,12 +4,11 @@ import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
 
-import Icon from '@helsenorge/designsystem-react/components/Icons';
-
 import DatePickerPopup from './DatePickerPopup';
 import { useKeyboardEvent, KeyboardEventKey } from '../../../../designsystem/src';
 import { useOutsideEvent } from '../../../../designsystem/src';
 import Button from '../../../../designsystem/src/components/Button';
+import Icon from '../../../../designsystem/src/components/Icons';
 import Calendar from '../../../../designsystem/src/components/Icons/Calendar';
 import Input from '../../../../designsystem/src/components/Input';
 import { usePseudoClasses } from '../../../../designsystem/src/hooks/usePseudoClasses';
@@ -21,7 +20,7 @@ import styles from './styles.module.scss';
 export type DateFormats = 'dd.MM.yyyy';
 
 export interface DatePickerProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onChange'>,
+  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby'>,
     Pick<DayPickerSingleProps, 'dir' | 'initialFocus'> {
   /** Adds custom classes to the element. */
   className?: string;
@@ -53,6 +52,8 @@ export interface DatePickerProps
   maxDate?: Date;
   /** Minimum date allowed to be selected */
   minDate?: Date;
+  /** Minimum date allowed to be selected */
+  onChange?: (date: Date | undefined) => void;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -134,7 +135,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       setDateState(undefined);
     }
 
-    onChange && onChange(event);
+    onChange && onChange(newDate);
   };
 
   const handleInputFocus = (): void => {
@@ -153,6 +154,8 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       setInputValue(date ? format(date, dateFormat) : '');
       setDatePickerOpen(false);
     }
+
+    onChange && onChange(date);
   };
 
   const handleButtonClick = (

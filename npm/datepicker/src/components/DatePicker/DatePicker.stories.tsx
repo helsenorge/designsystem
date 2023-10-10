@@ -83,6 +83,37 @@ export const Default: ComponentStory<typeof DatePicker> = (args: DatePickerProps
   );
 };
 
+export const DateRangePicker: ComponentStory<typeof DatePicker> = (args: DatePickerProps) => {
+  const [startDate] = React.useState(new Date());
+  const [fromDate, setFromDate] = React.useState<Date | undefined>();
+  const [toDate, setToDate] = React.useState<Date | undefined>();
+
+  return (
+    <GridExample>
+      <DateTimePickerWrapper>
+        <DatePicker
+          {...args}
+          dateValue={startDate}
+          label={<Label labelTexts={[{ text: 'Fra dato', type: 'semibold' }]} />}
+          maxDate={toDate}
+          onChange={(date: Date | undefined): void => {
+            setFromDate(date);
+          }}
+        />
+        <DatePicker
+          {...args}
+          dateValue={startDate}
+          label={<Label labelTexts={[{ text: 'Til dato', type: 'semibold' }]} />}
+          minDate={fromDate}
+          onChange={(date: Date | undefined): void => {
+            setToDate(date);
+          }}
+        />
+      </DateTimePickerWrapper>
+    </GridExample>
+  );
+};
+
 export const DateAndTime: ComponentStory<typeof DatePicker> = (args: DatePickerProps) => {
   const [startDate] = React.useState(new Date());
 
@@ -263,7 +294,9 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
     console.log('Validating date: ', value);
     let validateResult = validateMinMaxDate(value, minDate, maxDate, `Datoen må være etter ${minDate} og før ${maxDate}`);
     validateResult =
-      typeof validateResult !== 'string' ? validateDisabledDates(value, [disabledDate], `Datoen kan ikke være ${disabledDate}`) : true;
+      typeof validateResult !== 'string'
+        ? validateDisabledDates(value, [disabledDate], `Datoen kan ikke være ${disabledDate}`)
+        : validateResult;
 
     return validateResult;
   };
