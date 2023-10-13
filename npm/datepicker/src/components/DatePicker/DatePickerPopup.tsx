@@ -30,10 +30,6 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
   const controllerisVisible = useIsVisible(inputRef, 0);
   useFocusTrap(datepickerWrapperRef, true);
 
-  const renderFooterContent = (): JSX.Element => {
-    return <span className={styles['footer-wrapper']}>{footer}</span>;
-  };
-
   const updateControllerSize = (): void => {
     setControllerSize(inputRef.current?.getBoundingClientRect());
   };
@@ -71,7 +67,7 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
           classNames={datePickerClassNames}
           mode={'single'}
           modifiersClassNames={{ today: styles['day--today'], selected: styles['day_selected'], disabled: styles['day--disabled'] }}
-          footer={renderFooterContent()}
+          footer={<span className={styles['footer-wrapper']}>{footer}</span>}
           fixedWeeks
           {...rest}
         />

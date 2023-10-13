@@ -17,7 +17,7 @@ import { isMutableRefObject, mergeRefs } from '../../../../designsystem/src/util
 
 import styles from './styles.module.scss';
 
-export type DateFormats = 'dd.MM.yyyy';
+export type DateFormat = 'dd.MM.yyyy';
 
 export interface DatePickerProps
   extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby'>,
@@ -27,7 +27,7 @@ export interface DatePickerProps
   /** Sets aria-label on the button that opens the datepicker dialogue */
   dateButtonAriaLabel?: string;
   /** Sets the format of the date - only applies for desktop use. Native mobile date fields base their formats on the device */
-  dateFormat?: DateFormats;
+  dateFormat?: DateFormat;
   /** Sets the date of the component */
   dateValue?: Date;
   /** Sets the current month */
@@ -52,7 +52,7 @@ export interface DatePickerProps
   maxDate?: Date;
   /** Minimum date allowed to be selected */
   minDate?: Date;
-  /** Minimum date allowed to be selected */
+  /** onChange callback trigges ved endring i valgt dato */
   onChange?: (date: Date | undefined) => void;
   /** Sets the data-testid attribute. */
   testId?: string;

@@ -6,7 +6,7 @@ import { isMutableRefObject, mergeRefs } from '../../../../designsystem/src/util
 
 import styles from './styles.module.scss';
 
-export type TimeUnits = 'hours' | 'minutes';
+export type TimeUnit = 'hours' | 'minutes';
 
 export interface DateTimeProps
   extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'aria-labelledby' | 'onChange'> {
@@ -18,28 +18,28 @@ export interface DateTimeProps
   /** Label of the input */
   label?: React.ReactNode;
   /** Sets the unit of time for the input field */
-  timeUnit: TimeUnits;
+  timeUnit: TimeUnit;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
+const formatAsTwoDigits = (value: string | number): string => {
+  const stringValue = String(value);
+  return stringValue.length === 1 ? '0' + stringValue : stringValue;
+};
+
+const isNumericString = (str: string): boolean => {
+  return !str || (/^\d+$/.test(str) && str.length <= 2);
+};
+
 export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInputElement>) => {
   const { defaultValue, error, errorText, label, onChange, timeUnit, testId, ...rest } = props;
-
-  const formatAsTwoDigits = (value: string | number): string => {
-    const stringValue = String(value);
-    return stringValue.length === 1 ? '0' + stringValue : stringValue;
-  };
 
   const [inputValue, setInputValue] = useState<number | string | undefined>(
     typeof defaultValue !== 'undefined' ? formatAsTwoDigits(defaultValue) : ''
   );
   const { refObject } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
-
-  const isNumericString = (str: string): boolean => {
-    return !str || (/^\d+$/.test(str) && str.length <= 2);
-  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
