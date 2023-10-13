@@ -3,7 +3,6 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ar } from 'date-fns/locale';
 import { useForm } from 'react-hook-form';
-// TODO: FIKS IMPORT - hent fra designsystem pakken ikke lokale filplasseringer
 
 import DatePicker, { DatePickerProps } from './DatePicker';
 import DateTime from './DateTime';
@@ -84,7 +83,6 @@ export const Default: ComponentStory<typeof DatePicker> = (args: DatePickerProps
 };
 
 export const DateRangePicker: ComponentStory<typeof DatePicker> = (args: DatePickerProps) => {
-  const [startDate] = React.useState(new Date());
   const [fromDate, setFromDate] = React.useState<Date | undefined>();
   const [toDate, setToDate] = React.useState<Date | undefined>();
 
@@ -93,7 +91,6 @@ export const DateRangePicker: ComponentStory<typeof DatePicker> = (args: DatePic
       <DateTimePickerWrapper>
         <DatePicker
           {...args}
-          dateValue={startDate}
           label={<Label labelTexts={[{ text: 'Fra dato', type: 'semibold' }]} />}
           maxDate={toDate}
           onChange={(date: Date | undefined): void => {
@@ -102,7 +99,6 @@ export const DateRangePicker: ComponentStory<typeof DatePicker> = (args: DatePic
         />
         <DatePicker
           {...args}
-          dateValue={startDate}
           label={<Label labelTexts={[{ text: 'Til dato', type: 'semibold' }]} />}
           minDate={fromDate}
           onChange={(date: Date | undefined): void => {
@@ -210,44 +206,12 @@ export const Locale: ComponentStory<typeof DatePicker> = (args: DatePickerProps)
   );
 };
 
-export const NativeDatePicker: ComponentStory<typeof DatePicker> = (args: DatePickerProps) => {
-  const [startDate] = React.useState(new Date());
-  const minDate = new Date();
-  const maxDate = new Date();
-  minDate.setDate(startDate.getDate() - 30);
-  maxDate.setDate(startDate.getDate() + 30);
-
-  return (
-    <GridExample>
-      <DateTimePickerWrapper>
-        <DatePicker
-          {...args}
-          dateValue={startDate}
-          disableWeekends
-          footerContent={<Icon size={38} svgIcon={Calendar} />}
-          isMobile
-          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }]} />}
-          maxDate={maxDate}
-          minDate={minDate}
-        />
-        <DateTime
-          defaultValue={12}
-          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
-          timeUnit={'hours'}
-        />
-        <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
-      </DateTimePickerWrapper>
-    </GridExample>
-  );
-};
-
 export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePickerProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
-    clearErrors,
   } = useForm({ mode: 'all' });
 
   const [startDate] = React.useState(new Date());

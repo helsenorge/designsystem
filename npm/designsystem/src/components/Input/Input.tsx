@@ -4,8 +4,8 @@ import cn from 'classnames';
 
 import { FormMode, FormVariant, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
-import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icons';
 import { renderLabel } from '../Label';
@@ -126,7 +126,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   } = props;
   const breakpoint = useBreakpoint();
   const inputContainerRef = useRef<HTMLDivElement>(null);
-  const [inputId] = useState(props.inputId || uuid());
+  const inputId = useUuid(props.inputId);
   const [input, setInput] = useState(defaultValue || '');
 
   const onDark = mode === FormMode.ondark;

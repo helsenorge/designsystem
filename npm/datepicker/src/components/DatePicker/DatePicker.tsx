@@ -42,8 +42,6 @@ export interface DatePickerProps
   errorText?: string;
   /** Content to be rendered in the footer of the datepicker popup */
   footerContent?: React.ReactNode;
-  /** Whether or not we should render the native mobile datepicker */
-  isMobile?: boolean;
   /** Label of the input */
   label?: React.ReactNode;
   /** Sets the locale of the datepicker */
@@ -71,7 +69,6 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     error,
     errorText,
     footerContent,
-    isMobile = isMobileUA(),
     label,
     locale = nb,
     maxDate,
@@ -230,7 +227,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
 
   return (
     <div className={className} data-testid={testId}>
-      {isMobile ? renderMobile() : renderDesktop()}
+      {isMobileUA() ? renderMobile() : renderDesktop()}
     </div>
   );
 });

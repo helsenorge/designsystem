@@ -20,6 +20,7 @@
   },
   "scripts": {
     "build": "vite build",
+    "clean": "rimraf lib types",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:update": "jest --u"
