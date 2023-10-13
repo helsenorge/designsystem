@@ -4,6 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import RadioButton from './RadioButton';
 import { FormMode, FormVariant } from '../../constants';
+import FormGroup from '../FormGroup';
 import Label from '../Label';
 
 describe('Gitt at RadioButton skal vises', (): void => {
@@ -55,6 +56,28 @@ describe('Gitt at RadioButton skal vises', (): void => {
 
       const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
       expect(label).toHaveClass('radio-button-label radio-button-label__bigform');
+    });
+  });
+
+  describe('Når formvariant er bigform', (): void => {
+    test('Så vises RadioButton checked state riktig styling', (): void => {
+      render(
+        <FormGroup legend={'onwhite'} name="radio1" mode={'onwhite'} variant={'bigform'}>
+          <RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} />
+          <RadioButton label={<Label labelTexts={[{ text: 'Radio2' }]} />} />
+        </FormGroup>
+      );
+
+      const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
+      fireEvent.click(screen.getByText('Radio1'));
+
+      expect(label).toHaveClass('radio-button-label radio-button-label__bigform radio-button-label__bigform--selected');
+
+      const label2 = screen.getByText('Radio2').parentElement?.parentElement?.parentElement;
+      fireEvent.click(screen.getByText('Radio2'));
+
+      expect(label).toHaveClass('radio-button-label radio-button-label__bigform');
+      expect(label2).toHaveClass('radio-button-label radio-button-label__bigform radio-button-label__bigform--selected');
     });
   });
 

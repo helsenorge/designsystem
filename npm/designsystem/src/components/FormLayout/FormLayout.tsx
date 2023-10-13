@@ -28,7 +28,7 @@ export interface FormLayoutProps {
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Function that helps map the form children */
-  mapHelper?: (child: React.ReactNode) => React.ReactNode;
+  mapHelper?: (child: React.ReactNode, index: number) => React.ReactNode;
 }
 
 export const FormLayout = React.forwardRef((props: FormLayoutProps, ref: React.ForwardedRef<HTMLElement>) => {
@@ -51,11 +51,13 @@ export const FormLayout = React.forwardRef((props: FormLayoutProps, ref: React.F
 
   return (
     <div data-testid={props.testId} data-analyticsid={AnalyticsId.FormLayout} style={cssVariable} className={formLayoutContainerClasses}>
-      {React.Children.map(props.children, (child: React.ReactNode) => {
-        return <div className={formLayoutChildClasses}>{mapHelper ? mapHelper(child) : child}</div>;
+      {React.Children.map(props.children, (child: React.ReactNode, index: number) => {
+        return <div className={formLayoutChildClasses}>{mapHelper ? mapHelper(child, index) : child}</div>;
       })}
     </div>
   );
 });
+
+FormLayout.displayName = 'FormLayout';
 
 export default FormLayout;
