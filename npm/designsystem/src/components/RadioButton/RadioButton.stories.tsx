@@ -4,6 +4,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import RadioButton from './RadioButton';
 import { FormMode, FormVariant } from '../../constants';
+import { getColor } from '../../theme/currys';
+import FormGroup from '../FormGroup';
 import GridExample from '../GridExample';
 import Label from '../Label';
 
@@ -71,11 +73,26 @@ export const Default: ComponentStory<typeof RadioButton> = args => (
 
 export const BigForm: ComponentStory<typeof RadioButton> = args => (
   <GridExample>
-    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} variant={'bigform'} mode={'onwhite'} />
-    <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} variant={'bigform'} mode={'ongrey'} />
-    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} variant={'bigform'} mode={'onblueberry'} />
+    <FormGroup legend={'onwhite'} name="radio1" mode={'onwhite'} variant={'bigform'}>
+      <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} />
+      <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} />
+    </FormGroup>
+    <FormGroup legend={'ongrey'} name="radio2" mode={'ongrey'} variant={'bigform'}>
+      <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} />
+      <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} />
+    </FormGroup>
+    <FormGroup legend={'onblueberry'} name="radio3" mode={'onblueberry'} variant={'bigform'}>
+      <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} />
+      <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} />
+    </FormGroup>
+    <div style={{ background: getColor('blueberry', 500), padding: '2rem' }}>
+      <FormGroup legend={'ondark'} name="radio4" mode={'ondark'} variant={'bigform'}>
+        <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} />
+        <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} />
+      </FormGroup>
+    </div>
+
     <RadioButton {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} variant={'bigform'} mode={'oninvalid'} />
     <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} variant={'bigform'} mode={'onwhite'} disabled />
-    <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} variant={'bigform'} mode={'ondark'} />
   </GridExample>
 );
