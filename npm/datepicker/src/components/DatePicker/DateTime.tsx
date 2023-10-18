@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import Input from '../../../../designsystem/src/components/Input';
-import { usePseudoClasses } from '../../../../designsystem/src/hooks/usePseudoClasses';
-import { isMutableRefObject, mergeRefs } from '../../../../designsystem/src/utils/refs';
+import Input from '@helsenorge/designsystem-react/components/Input';
+import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
+import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
 import styles from './styles.module.scss';
 

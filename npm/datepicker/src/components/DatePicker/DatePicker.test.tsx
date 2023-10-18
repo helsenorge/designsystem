@@ -2,8 +2,9 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 
+import Label from '@helsenorge/designsystem-react/components/Label';
+
 import DatePicker from './DatePicker';
-import Label from '../../../../designsystem/src/components/Label';
 
 describe('Gitt at DatePicker skal vises', (): void => {
   describe('Når DatePicker vises', (): void => {

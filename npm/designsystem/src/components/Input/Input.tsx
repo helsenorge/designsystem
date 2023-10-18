@@ -180,7 +180,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     setInput(e.target.value);
   };
 
-  const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
+  const widthStyling = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
 
   return (
     <ErrorWrapper errorText={errorText}>
@@ -189,7 +189,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
         {/* input-elementet tillater keyboard-interaksjon */}
         <div className={styles['content-wrapper']}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-          <div onClick={handleClick} ref={inputContainerRef} className={inputContainer} style={{ maxWidth }}>
+          <div onClick={handleClick} ref={inputContainerRef} className={inputContainer} style={{ width: widthStyling }}>
             {!iconRight && renderIcon()}
             <input
               onChange={handleChange}
@@ -217,7 +217,13 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
           {rightOfInput}
         </div>
         {maxCharacters && (
-          <MaxCharacters maxCharacters={maxCharacters} length={input.toString().length} maxText={maxText} mode={mode} maxWidth={maxWidth} />
+          <MaxCharacters
+            maxCharacters={maxCharacters}
+            length={input.toString().length}
+            maxText={maxText}
+            mode={mode}
+            maxWidth={widthStyling}
+          />
         )}
         {afterInputChildren}
       </div>

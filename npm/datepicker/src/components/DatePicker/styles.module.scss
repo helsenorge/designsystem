@@ -1,8 +1,8 @@
 @use 'sass:map';
-@import '../../../../designsystem/src/scss/spacers';
-@import '../../../../designsystem/src/scss/breakpoints';
-@import '../../../../designsystem/src/scss/palette';
-@import '../../../../designsystem/src/scss/font-settings';
+@import '@helsenorge/designsystem-react/scss/spacers';
+@import '@helsenorge/designsystem-react/scss/breakpoints';
+@import '@helsenorge/designsystem-react/scss/palette';
+@import '@helsenorge/designsystem-react/scss/font-settings';
 
 .date-time-picker-wrapper {
   display: flex;

@@ -2,10 +2,11 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import ErrorWrapper from '@helsenorge/designsystem-react/components/ErrorWrapper';
+import { isComponent } from '@helsenorge/designsystem-react/utils/component';
+
 import DatePicker, { DatePickerProps } from './DatePicker';
 import DateTime, { DateTimeProps } from './DateTime';
-import ErrorWrapper from '../../../../designsystem/src/components/ErrorWrapper';
-import { isComponent } from '../../../../designsystem/src/utils/component';
 
 import styles from './styles.module.scss';
 

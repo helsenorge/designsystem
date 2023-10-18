@@ -2,18 +2,20 @@ import React, { useState, useRef } from 'react';
 
 import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
+import { ActiveModifiers, DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
+
+import Button from '@helsenorge/designsystem-react/components/Button';
+import Icon from '@helsenorge/designsystem-react/components/Icons';
+import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
+import Input from '@helsenorge/designsystem-react/components/Input';
+import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
+import { isMobileUA } from '@helsenorge/designsystem-react/utils/mobile';
+import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
+
+import { useOutsideEvent } from '@helsenorge/designsystem-react';
+import { useKeyboardEvent, KeyboardEventKey } from '@helsenorge/designsystem-react';
 
 import DatePickerPopup from './DatePickerPopup';
-import { useKeyboardEvent, KeyboardEventKey } from '../../../../designsystem/src';
-import { useOutsideEvent } from '../../../../designsystem/src';
-import Button from '../../../../designsystem/src/components/Button';
-import Icon from '../../../../designsystem/src/components/Icons';
-import Calendar from '../../../../designsystem/src/components/Icons/Calendar';
-import Input from '../../../../designsystem/src/components/Input';
-import { usePseudoClasses } from '../../../../designsystem/src/hooks/usePseudoClasses';
-import { isMobileUA } from '../../../../designsystem/src/utils/mobile';
-import { isMutableRefObject, mergeRefs } from '../../../../designsystem/src/utils/refs';
 
 import styles from './styles.module.scss';
 
@@ -51,7 +53,7 @@ export interface DatePickerProps
   /** Minimum date allowed to be selected */
   minDate?: Date;
   /** onChange callback trigges ved endring i valgt dato */
-  onChange?: (date: Date | undefined) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>, date: Date | undefined) => void;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -132,7 +134,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       setDateState(undefined);
     }
 
-    onChange && onChange(newDate);
+    onChange && onChange(event, newDate);
   };
 
   const handleInputFocus = (): void => {
@@ -143,7 +145,12 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     }
   };
 
-  const handleSingleDatePickerSelect: SelectSingleEventHandler = (date: Date | undefined): void => {
+  const handleSingleDatePickerSelect: SelectSingleEventHandler = (
+    date: Date | undefined,
+    selectedDay: Date,
+    activeModifiers: ActiveModifiers,
+    e: React.MouseEvent<Element, MouseEvent>
+  ): void => {
     setDateState(date);
     setReturnInputFocus(true);
 
@@ -152,7 +159,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       setDatePickerOpen(false);
     }
 
-    onChange && onChange(date);
+    onChange && onChange(e, date);
   };
 
   const handleButtonClick = (
@@ -162,7 +169,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     setDatePickerOpen(!datePickerOpen);
   };
 
-  const renderMobile = (): React.ReactNode => (
+  const renderMobile = (
     <Input
       error={error}
       errorText={errorText}
@@ -178,7 +185,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     />
   );
 
-  const renderDesktop = (): React.ReactNode => (
+  const renderDesktop = (
     <>
       <div className={styles['date-input-wrapper']}>
         <Input
@@ -227,7 +234,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
 
   return (
     <div className={className} data-testid={testId}>
-      {isMobileUA() ? renderMobile() : renderDesktop()}
+      {isMobileUA() ? renderMobile : renderDesktop}
     </div>
   );
 });

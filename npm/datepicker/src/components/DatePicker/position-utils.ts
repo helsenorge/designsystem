@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 
-import { PopOverVariant } from '../../../../designsystem/src/components/PopOver';
+import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 
 type HorizontalPosition = 'left' | 'right' | 'floating';
 type BubblePosition = 'leftabove' | 'leftbelow' | 'rightabove' | 'rightbelow' | 'floatingabove' | 'floatingbelow';

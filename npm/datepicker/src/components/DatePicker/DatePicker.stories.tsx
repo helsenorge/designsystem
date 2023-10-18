@@ -4,6 +4,13 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ar } from 'date-fns/locale';
 import { useForm } from 'react-hook-form';
 
+import Button from '@helsenorge/designsystem-react/components/Button';
+import GridExample from '@helsenorge/designsystem-react/components/GridExample';
+import Icon from '@helsenorge/designsystem-react/components/Icons';
+import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
+import Label from '@helsenorge/designsystem-react/components/Label';
+import Validation from '@helsenorge/designsystem-react/components/Validation';
+
 import DatePicker, { DatePickerProps } from './DatePicker';
 import DateTime from './DateTime';
 import DateTimePickerWrapper from './DateTimePickerWrapper';
@@ -12,12 +19,6 @@ import {
   validateMinMaxDate as validateMinMaxDate,
   validateMinTimeMaxTime as validateMinMaxTime,
 } from './validate-utils';
-import Button from '../../../../designsystem/src/components/Button';
-import GridExample from '../../../../designsystem/src/components/GridExample';
-import Icon from '../../../../designsystem/src/components/Icons';
-import Calendar from '../../../../designsystem/src/components/Icons/Calendar';
-import Label from '../../../../designsystem/src/components/Label';
-import Validation from '../../../../designsystem/src/components/Validation';
 
 export default {
   title: 'Components/DatePicker',
