@@ -1,3 +1,18 @@
+## 6.0.0-beta.0 (2023-10-18)
+
+### ⚠ BREAKING CHANGES
+
+- Ikon-komponent er flyttet fra components/Icons/Icon til components/Icon/Icon
+
+Ikonene ligger fortsatt i components/Icons, f.eks. components/Icons/Minus
+
+Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da bør det bare være ikoner der.
+
+### Features
+
+- lazy loading av ikoner ([f688e78](https://github.com/helsenorge/designsystem/commit/f688e78a955bb43a2efa92b72b208c582dbfdd1d)), closes
+  [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+
 ## [5.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.4.0&targetVersion=GTv5.0.0) (2023-09-25)
 
 ### ⚠ BREAKING CHANGES
