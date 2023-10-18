@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Textarea from './Textarea';
 import { FormMode } from '../../constants';
 import GridExample from '../GridExample';
-import Icon, { IconSize } from '../Icons';
+import Icon, { IconSize } from '../Icon';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 

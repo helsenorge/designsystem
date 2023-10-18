@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Button from '../../Button';
-import Icon from '../../Icons';
+import Icon from '../../Icon';
 import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
 import tableStyles from '../styles.module.scss';

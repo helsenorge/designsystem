@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SvgPathProps } from './Icon';
+import { SvgPathProps } from '../Icon';
 
 const HelpingHand: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (

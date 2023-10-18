@@ -9,7 +9,7 @@ import { palette } from '../../theme/palette';
 import { uuid } from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
-import Icon, { IconSize } from '../Icons';
+import Icon, { IconSize } from '../Icon';
 import AlertSignFill from '../Icons/AlertSignFill';
 import AlertSignStroke from '../Icons/AlertSignStroke';
 import CheckOutline from '../Icons/CheckOutline';

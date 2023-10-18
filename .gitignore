@@ -26,10 +26,6 @@ log.txt
 node_modules/
 $RECYCLE.BIN/
 
-componentsEntries.json
-componentdata.json
-allconsImports.tsx
-
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate

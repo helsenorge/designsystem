@@ -11,7 +11,7 @@ import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { AnchorLinkTargets } from '../AnchorLink';
 import Close from '../Close';
-import Icon, { IconSize } from '../Icons';
+import Icon, { IconSize } from '../Icon';
 import CheckFill from '../Icons/CheckFill';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from '../Icon';
 
 const Play: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = <path fillRule={'evenodd'} d="M19.81 15.507L32.825 24 19.81 32.493V15.507zm-2-3.693v24.373L36.484 24 17.81 11.814z" />;

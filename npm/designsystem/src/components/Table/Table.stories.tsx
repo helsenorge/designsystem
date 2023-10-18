@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { longLoremText } from '../../utils/loremtext';
 import Button from '../Button';
 import GridExample from '../GridExample';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import VerticalDots from '../Icons/VerticalDots';
 import { Title } from '../Title';
 

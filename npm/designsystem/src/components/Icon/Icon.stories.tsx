@@ -2,22 +2,21 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Candle from './Candle';
-import FallingLeaf from './FallingLeaf';
-import Graph from './Graph';
-import GroupTwins from './GroupTwins';
-import HandsAndHeart from './HandsAndHeart';
-import HealthcarePerson from './HealthcarePerson';
-import HealthcarePersonell from './HealthcarePersonell';
-import IconWallComponent from './IconWall';
-import LegalDocument from './LegalDocument';
-import Search from './Search';
-import Tombstone from './Tombstone';
-import ExampleSvgIcon from './Undo';
 import GridExample from '../GridExample';
+import Candle from '../Icons/Candle';
+import FallingLeaf from '../Icons/FallingLeaf';
+import Graph from '../Icons/Graph';
+import GroupTwins from '../Icons/GroupTwins';
+import HandsAndHeart from '../Icons/HandsAndHeart';
+import HealthcarePerson from '../Icons/HealthcarePerson';
+import HealthcarePersonell from '../Icons/HealthcarePersonell';
+import LegalDocument from '../Icons/LegalDocument';
+import Search from '../Icons/Search';
+import Tombstone from '../Icons/Tombstone';
+import ExampleSvgIcon from '../Icons/Undo';
 import Spacer from '../Spacer';
 
-import Icon, { IconSize } from '.';
+import Icon, { IconSize, SvgIcon } from '.';
 
 export default {
   title: 'Components/Icon',
@@ -89,10 +88,18 @@ export const Accessibility: ComponentStory<typeof Icon> = (args: any) => (
 );
 
 export const IconWall: ComponentStory<typeof Icon> = (args: any) => {
+  const svgIcons = [HandsAndHeart, Tombstone, Candle, LegalDocument, FallingLeaf, Graph, GroupTwins, HealthcarePerson, HealthcarePersonell];
   return (
-    <IconWallComponent
-      {...args}
-      svgIcons={[HandsAndHeart, Tombstone, Candle, LegalDocument, FallingLeaf, Graph, GroupTwins, HealthcarePerson, HealthcarePersonell]}
-    />
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', columnGap: '2rem', rowGap: '2rem' }}>
+      {svgIcons &&
+        svgIcons.map((svgIcon, index) => {
+          return (
+            <div style={{ display: 'flex', flexDirection: 'column' }} key={index}>
+              <Icon svgIcon={svgIcon as SvgIcon} />
+              {svgIcon.name}
+            </div>
+          );
+        })}
+    </div>
   );
 };

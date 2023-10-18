@@ -2,7 +2,7 @@ import React, { AriaAttributes, useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
-import Icon, { IconProps, IconSize } from './../Icons/';
+import Icon, { IconProps, IconSize } from './../Icon';
 import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { useHover } from '../../hooks/useHover';

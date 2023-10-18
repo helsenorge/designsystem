@@ -6,7 +6,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Button from './Button';
 import { getColor } from '../../theme/currys/color';
 import GridExample from '../GridExample';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import Dog from '../Icons/Dog';
 import VerticalDots from '../Icons/VerticalDots';
 import Title from '../Title';

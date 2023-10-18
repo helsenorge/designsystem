@@ -9,7 +9,7 @@ import { allLinkListSizes } from '../../../.storybook/knobs';
 import Avatar from '../Avatar';
 import Badge from '../Badge';
 import GridExample from '../GridExample';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
 import ListHeader from '../ListHeader/ListHeader';

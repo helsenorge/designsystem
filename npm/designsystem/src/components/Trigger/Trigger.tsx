@@ -8,7 +8,7 @@ import { useHover } from '../../hooks/useHover';
 import { getColor } from '../../theme/currys';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
-import Icon, { SvgIcon } from '../Icons';
+import Icon, { SvgIcon } from '../Icon';
 
 import styles from './styles.module.scss';
 

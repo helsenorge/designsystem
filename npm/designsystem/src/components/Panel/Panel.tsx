@@ -9,7 +9,7 @@ import { palette } from '../../theme/palette';
 import { AriaLabelAttributes, getAriaLabelAttributes } from '../../utils/accessibility';
 import Badge from '../Badge';
 import Button, { ButtonProps, ButtonTags } from '../Button';
-import Icon, { IconSize, SvgPathProps } from '../Icons';
+import Icon, { IconSize, SvgPathProps } from '../Icon';
 import AlertSignFill from '../Icons/AlertSignFill';
 import ArrowRight from '../Icons/ArrowRight';
 import Calendar from '../Icons/Calendar';

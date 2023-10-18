@@ -15,7 +15,7 @@ import {
   useUuid,
 } from '../..';
 import Button from '../Button';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import PlusSmall from '../Icons/PlusSmall';
 
 import styles from './styles.module.scss';

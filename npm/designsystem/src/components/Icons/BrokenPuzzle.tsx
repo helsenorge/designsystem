@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SvgPathProps } from './Icon';
+import { SvgPathProps } from '../Icon';
 
 const BrokenPuzzle: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (

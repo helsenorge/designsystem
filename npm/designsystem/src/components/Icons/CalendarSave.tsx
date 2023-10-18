@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from '../Icon';
 
 const CalendarSave: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (

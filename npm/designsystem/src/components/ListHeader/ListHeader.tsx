@@ -7,7 +7,7 @@ import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { isComponent, isComponentWithChildren } from '../../utils/component';
 import Avatar, { AvatarProps, AvatarSize, AvatarType } from '../Avatar';
 import Badge, { BadgeProps, BadgeType } from '../Badge';
-import Icon, { IconSize, SvgIcon } from '../Icons';
+import Icon, { IconSize, SvgIcon } from '../Icon';
 import { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';

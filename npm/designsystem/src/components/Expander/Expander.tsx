@@ -8,7 +8,7 @@ import { useHover } from '../../hooks/useHover';
 import { useSticky } from '../../hooks/useSticky';
 import { PaletteNames } from '../../theme/palette';
 import Button from '../Button';
-import Icon, { IconSize, SvgIcon } from '../Icons';
+import Icon, { IconSize, SvgIcon } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
 

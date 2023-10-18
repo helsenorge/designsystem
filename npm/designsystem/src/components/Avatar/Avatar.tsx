@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { AnalyticsId } from '../../constants';
 import { palette } from '../../theme/palette';
-import Icon, { IconSize } from '../Icons';
+import Icon, { IconSize } from '../Icon';
 import Check from '../Icons/Check';
 
 import styles from './styles.module.scss';

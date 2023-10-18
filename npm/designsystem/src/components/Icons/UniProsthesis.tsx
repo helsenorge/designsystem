@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SvgPathProps } from './Icon';
+import { SvgPathProps } from '../Icon';
 
 const UniProsthesis: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (

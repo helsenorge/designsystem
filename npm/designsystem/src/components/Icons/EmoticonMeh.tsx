@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from '../Icon';
 
 const EmoticonMeh: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (

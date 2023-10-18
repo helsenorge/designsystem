@@ -6,7 +6,7 @@ import { AnalyticsId } from '../../../constants';
 import { useUuid } from '../../../hooks/useUuid';
 import { AriaLabelAttributes, getAriaLabelAttributes } from '../../../utils/accessibility';
 import Button, { ButtonProps } from '../../Button';
-import Icon from '../../Icons';
+import Icon from '../../Icon';
 import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
 

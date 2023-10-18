@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Tile from './Tile';
 import GridExample from '../GridExample';
-import Icon, { IconSize } from '../Icons';
+import Icon, { IconSize } from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 
 export default {

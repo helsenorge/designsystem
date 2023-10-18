@@ -16,7 +16,6 @@
   ],
   "license": "MIT",
   "scripts": {
-    "prebuild": "lerna run generate:componentdata",
     "build": "lerna run build",
     "version:latest": "lerna version",
     "version:beta": "lerna version --preid=beta --allow-branch=*/* --force-publish=*",

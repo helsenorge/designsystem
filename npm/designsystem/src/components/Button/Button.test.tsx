@@ -4,7 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Button from './Button';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import Check from '../Icons/Check';
 
 describe('Gitt at button skal vises', (): void => {

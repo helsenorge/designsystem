@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import Icon, { IconSize } from '../../Icons';
+import Icon, { IconSize } from '../../Icon';
 import ArrowDown from '../../Icons/ArrowDown';
 import ArrowUp from '../../Icons/ArrowUp';
 import tableStyles from '../styles.module.scss';

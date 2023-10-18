@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { AnalyticsId } from '../../constants';
 import { useHover } from '../../hooks/useHover';
 import { palette, PaletteNames } from '../../theme/palette';
-import Icon, { IconSize, SvgIcon } from '../Icons';
+import Icon, { IconSize, SvgIcon } from '../Icon';
 import Undo from '../Icons/Undo';
 import X from '../Icons/X';
 

@@ -10,7 +10,7 @@ import { getColor } from '../../theme/currys';
 import { breakpoints } from '../../theme/grid';
 import { isComponent } from '../../utils/component';
 import Close from '../Close';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import VerticalDots from '../Icons/VerticalDots';
 import LinkList, { LinkListProps } from '../LinkList';
 import PopOver from '../PopOver';

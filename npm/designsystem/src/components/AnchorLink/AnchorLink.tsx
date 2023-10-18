@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { AnalyticsId } from '../../constants';
 import { useHover } from '../../hooks/useHover';
 import { getColor } from '../../theme/currys';
-import Icon, { IconSize } from '../Icons';
+import Icon, { IconSize } from '../Icon';
 import ArrowUpRight from '../Icons/ArrowUpRight';
 
 import AnchorLinkStyles from './styles.module.scss';

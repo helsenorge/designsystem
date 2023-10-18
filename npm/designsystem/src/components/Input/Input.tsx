@@ -7,7 +7,7 @@ import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { getColor } from '../../theme/currys';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
-import Icon, { IconSize, SvgIcon } from '../Icons';
+import Icon, { IconSize, SvgIcon } from '../Icon';
 import { renderLabel } from '../Label';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 

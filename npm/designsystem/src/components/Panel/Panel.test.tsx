@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { screen, render, fireEvent } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Panel from './Panel';
 import * as uuidUtils from '../../utils/uuid';
 import Avatar from '../Avatar';
-import { Icon, IconSize } from '../Icons';
+import { Icon, IconSize } from '../Icon';
 import Calendar from '../Icons/Calendar';
 
 describe('Gitt at Panel skal vises', (): void => {

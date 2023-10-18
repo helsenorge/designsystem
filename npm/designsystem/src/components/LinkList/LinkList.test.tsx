@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import LinkList from './LinkList';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 
 test('displays a list of links', (): void => {

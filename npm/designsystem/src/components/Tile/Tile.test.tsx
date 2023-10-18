@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import Tile from './Tile';
 import { IconSize } from '../../constants';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 
 test('displays tile', (): void => {

@@ -6,7 +6,7 @@ import { TitleTags } from './../Title/Title';
 import { AnalyticsId } from '../../constants';
 import { useHover } from '../../hooks/useHover';
 import { mergeRefs } from '../../utils/refs';
-import { IconSize } from '../Icons';
+import { IconSize } from '../Icon';
 
 import tileStyles from './styles.module.scss';
 

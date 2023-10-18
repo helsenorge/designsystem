@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SvgPathProps, getIcon } from './Icon';
+import { SvgPathProps, getIcon } from '../Icon';
 
 const Candle: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getIcon, SvgPathProps } from './Icon';
+import { getIcon, SvgPathProps } from '../Icon';
 
 const SortDown: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = <path d="M25 13v20.083l9.95-10.013 1.42 1.409L24 36.929 11.63 24.48l1.42-1.409L23 33.085V13h2Z" fillRule={'evenodd'} />;

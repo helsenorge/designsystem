@@ -20,8 +20,6 @@ export interface IconProps {
   hoverColor?: string;
   /* Adds custom classes to the element. */
   className?: string;
-  /* Use a custom hover icon. */
-  hoverType?: SvgIcon;
   /* Swaps the displayed icon to the hover version and changes its color. */
   isHovered?: boolean;
   /** Sets the data-testid attribute. */

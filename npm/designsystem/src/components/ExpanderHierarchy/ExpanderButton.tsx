@@ -6,7 +6,7 @@ import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { useHover } from '../../hooks/useHover';
 import { ExpanderHierarchyCommonProps } from '../ExpanderHierarchy';
-import Icon, { IconSize } from '../Icons';
+import Icon, { IconSize } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
 

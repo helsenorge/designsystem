@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import { IconSize } from '../..';
 import { AnalyticsId } from '../../constants';
 import { getColor } from '../../theme/currys';
+import { Icon } from '../Icon';
 import Attachment from '../Icons/Attachment';
 import Group from '../Icons/Group';
-import { Icon } from '../Icons/Icon';
 import NoAccess from '../Icons/NoAccess';
 import Undo from '../Icons/Undo';
 

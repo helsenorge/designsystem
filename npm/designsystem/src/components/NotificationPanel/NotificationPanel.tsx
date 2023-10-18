@@ -9,7 +9,7 @@ import { getColor } from '../../theme/currys';
 import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import Close from '../Close';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import CheckFill from '../Icons/CheckFill';
 import ErrorSignFill from '../Icons/ErrorSignFill';
 import InfoSignFill from '../Icons/InfoSignFill';

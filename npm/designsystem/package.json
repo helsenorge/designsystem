@@ -26,7 +26,6 @@
     "clean": "rimraf lib types",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\"",
     "generate:tsdefinitions": "tsc --emitDeclarationOnly",
-    "generate:componentdata": "node scripts/componentdata.js",
     "pregenerate:figmatokens": "git -C ../../../designtokens pull https://github.com/helsenorge/designtokens.git",
     "generate:figmatokens": "token-transformer ../../../designtokens/tokens.json data/design-tokens.json hn-designsystem --resolveReferences=false",
     "postgenerate:figmatokens": "style-dictionary build --config figma-token.config.json",

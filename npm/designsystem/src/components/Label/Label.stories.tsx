@@ -8,7 +8,7 @@ import { IconSize } from '../../constants';
 import { getColor } from '../../theme/currys';
 import Checkbox from '../Checkbox';
 import GridExample from '../GridExample';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
 import Input from '../Input';
 import RadioButton from '../RadioButton/RadioButton';

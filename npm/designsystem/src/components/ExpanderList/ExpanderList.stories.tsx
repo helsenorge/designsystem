@@ -8,7 +8,7 @@ import { longLoremText } from '../../utils/loremtext';
 import AvatarComponent from '../Avatar';
 import Badge from '../Badge';
 import GridExample from '../GridExample';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import Avatar from '../Icons/Avatar';
 import PaperPlane from '../Icons/PaperPlane';

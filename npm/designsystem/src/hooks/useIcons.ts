@@ -1,4 +1,4 @@
-import { IconProps } from '../components/Icons';
+import { IconProps } from '../components/Icon';
 
 export const useIcons = (children: React.ReactNode[]): Array<React.ReactElement<IconProps> | React.ReactNode | {} | undefined | null> => {
   let leftIcon: React.ReactElement<IconProps> | undefined | null = null;

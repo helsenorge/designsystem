@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import ExpanderList from './ExpanderList';
 import * as ViewportUtils from '../../utils/viewport';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import Avatar from '../Icons/Avatar';
 import Title from '../Title/Title';
 import '../../__mocks__/uuid';

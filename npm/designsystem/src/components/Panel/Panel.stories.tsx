@@ -7,7 +7,7 @@ import Panel, { PanelStatus, PanelVariant } from './Panel';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import GridExample from '../GridExample';
-import Icon, { IconSize } from '../Icons';
+import Icon, { IconSize } from '../Icon';
 import Attachment from '../Icons/Attachment';
 import Envelope from '../Icons/Envelope';
 import Title from '../Title';

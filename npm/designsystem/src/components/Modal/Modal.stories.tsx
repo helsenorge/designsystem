@@ -11,7 +11,7 @@ import Button from '../Button';
 import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
 import Checkbox from '../Checkbox';
 import GridExample from '../GridExample';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import Envelope from '../Icons/Envelope';
 import Label from '../Label';
 import Slider from '../Slider';

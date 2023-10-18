@@ -8,7 +8,7 @@ import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import Button from '../Button';
 import GridExample from '../GridExample';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
 import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, ResponsiveTableVariant } from '../Table';
 

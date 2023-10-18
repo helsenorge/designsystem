@@ -7,7 +7,7 @@ import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys/color';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import Check from '../Icons/Check';
 import { getLabelText, renderLabelAsParent } from '../Label';
 

@@ -7,7 +7,7 @@ import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useHover } from '../../hooks/useHover';
 import { palette } from '../../theme/palette';
 import { mergeRefs } from '../../utils/refs';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import X from '../Icons/X';
 
 import styles from './styles.module.scss';

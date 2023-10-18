@@ -6,7 +6,7 @@ import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode, IconSize } from '../
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import ErrorWrapper from '../ErrorWrapper';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import { renderLabel } from '../Label';
 
