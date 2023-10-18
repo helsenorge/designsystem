@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Select from './Select';
 import { FormMode } from '../../constants';
@@ -132,20 +133,30 @@ describe('Gitt at Select skal vises', (): void => {
     });
   });
 
-  describe('Når et option er satt til selected true', (): void => {
-    test('Så er det satt som default Select option', (): void => {
+  describe('Når value og onChange er satt', (): void => {
+    test('Så har select riktig value, og onChange kalles når man endrer', async (): Promise<void> => {
+      const handleChange = jest.fn();
+
       render(
-        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />}>
+        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} value={'Option 2'} onChange={handleChange}>
           <option value={'Option 1'}>{'Option 1'}</option>
-          <option selected={true} value={'Option 2'}>
-            {'Option 2'}
-          </option>
+          <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
         </Select>
       );
 
+      expect(handleChange).not.toHaveBeenCalled();
+
       const select = screen.getByRole('combobox');
       expect(select).toHaveValue('Option 2');
+
+      await userEvent.selectOptions(select, 'Option 1');
+
+      expect(handleChange).toHaveBeenCalledTimes(1);
+
+      await userEvent.selectOptions(select, 'Option 3');
+
+      expect(handleChange).toHaveBeenCalledTimes(2);
     });
   });
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { action } from '@storybook/addon-actions';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Select from './Select';
@@ -27,7 +28,12 @@ export default {
 
 export const Default: ComponentStory<typeof Select> = (args: any) => (
   <>
-    <Select {...args} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
+    <Select
+      {...args}
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+      onChange={action('onChange called')}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
@@ -41,6 +47,7 @@ export const DefaultValue: ComponentStory<typeof Select> = (args: any) => (
       {...args}
       label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
       name={'select name 1'}
+      onChange={action('onChange called')}
     >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
@@ -50,7 +57,13 @@ export const DefaultValue: ComponentStory<typeof Select> = (args: any) => (
 );
 export const Disabled: ComponentStory<typeof Select> = (args: any) => (
   <>
-    <Select {...args} disabled label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
+    <Select
+      {...args}
+      disabled
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+      onChange={action('onChange called')}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
@@ -60,7 +73,13 @@ export const Disabled: ComponentStory<typeof Select> = (args: any) => (
 
 export const Concepts: ComponentStory<typeof Select> = (args: any) => (
   <div style={{ backgroundColor: palette.blueberry100, padding: '2rem' }}>
-    <Select {...args} concept={'normal'} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
+    <Select
+      {...args}
+      concept={'normal'}
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+      onChange={action('onChange called')}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
@@ -71,6 +90,7 @@ export const Concepts: ComponentStory<typeof Select> = (args: any) => (
       concept={'transparent'}
       label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
       name={'select name 1'}
+      onChange={action('onChange called')}
     >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
@@ -81,23 +101,47 @@ export const Concepts: ComponentStory<typeof Select> = (args: any) => (
 
 export const Modes: ComponentStory<typeof Select> = (args: any) => (
   <>
-    <Select {...args} mode={'onwhite'} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
+    <Select
+      {...args}
+      mode={'onwhite'}
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+      onChange={action('onChange called')}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
     </Select>
 
-    <Select {...args} mode={'ongrey'} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
+    <Select
+      {...args}
+      mode={'ongrey'}
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+      onChange={action('onChange called')}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
     </Select>
-    <Select {...args} mode={'onblueberry'} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
+    <Select
+      {...args}
+      mode={'onblueberry'}
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+      onChange={action('onChange called')}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
     </Select>
-    <Select {...args} mode={'oninvalid'} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
+    <Select
+      {...args}
+      mode={'oninvalid'}
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+      onChange={action('onChange called')}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
@@ -107,13 +151,24 @@ export const Modes: ComponentStory<typeof Select> = (args: any) => (
 
 export const Width: ComponentStory<typeof Select> = (args: any) => (
   <>
-    <Select {...args} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
+    <Select
+      {...args}
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+      onChange={action('onChange called')}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
     </Select>
 
-    <Select {...args} width={20} label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />} name={'select name 1'}>
+    <Select
+      {...args}
+      width={20}
+      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+      name={'select name 1'}
+      onChange={action('onChange called')}
+    >
       <option value={'Option 1'}>{'Option 1'}</option>
       <option value={'Option 2'}>{'Option 2'}</option>
       <option value={'Option 3'}>{'Option 3'}</option>
