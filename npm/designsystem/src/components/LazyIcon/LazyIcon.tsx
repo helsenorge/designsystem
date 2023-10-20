@@ -18,7 +18,18 @@ export const LazyIcon: React.FC<LazyIconProps> = ({ iconName, size = IconSize.Sm
     return null;
   }
 
-  const fallback = <span style={{ display: 'inline-block', width: `${size}px`, height: `${size}px` }} data-testid={'fallback'} />;
+  const fallback = (
+    <svg
+      data-testid={'fallback'}
+      role={'presentation'}
+      focusable={false}
+      aria-hidden={true}
+      viewBox="0 0 48 48"
+      style={{ minWidth: size, minHeight: size }}
+      width={size}
+      height={size}
+    />
+  );
 
   return (
     <ErrorBoundary fallback={fallback} reset={iconName}>
