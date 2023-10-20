@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 export type TimeUnit = 'hours' | 'minutes';
 
 export interface DateTimeProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'aria-labelledby' | 'onChange'> {
+  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'aria-labelledby' | 'onChange' | 'disabled'> {
   defaultValue?: number;
   /** Activates Error style for the input */
   error?: boolean;

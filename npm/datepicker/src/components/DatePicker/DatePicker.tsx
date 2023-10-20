@@ -8,12 +8,12 @@ import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icons';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Input from '@helsenorge/designsystem-react/components/Input';
+import { KeyboardEventKey } from '@helsenorge/designsystem-react/constants';
+import { useKeyboardEvent } from '@helsenorge/designsystem-react/hooks/useKeyboardEvent';
+import { useOutsideEvent } from '@helsenorge/designsystem-react/hooks/useOutsideEvent';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
 import { isMobileUA } from '@helsenorge/designsystem-react/utils/mobile';
 import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
-
-import { useOutsideEvent } from '@helsenorge/designsystem-react';
-import { useKeyboardEvent, KeyboardEventKey } from '@helsenorge/designsystem-react';
 
 import DatePickerPopup from './DatePickerPopup';
 

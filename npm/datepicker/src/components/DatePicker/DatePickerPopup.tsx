@@ -5,10 +5,11 @@ import { DayPicker, DayPickerSingleProps } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
+import { useFocusTrap } from '@helsenorge/designsystem-react/hooks/useFocusTrap';
 import { useInterval } from '@helsenorge/designsystem-react/hooks/useInterval';
-
-import { useFocusTrap, useIsVisible } from '@helsenorge/designsystem-react';
-import { useLayoutEvent, useSize } from '@helsenorge/designsystem-react';
+import { useIsVisible } from '@helsenorge/designsystem-react/hooks/useIsVisible';
+import { useLayoutEvent } from '@helsenorge/designsystem-react/hooks/useLayoutEvent';
+import { useSize } from '@helsenorge/designsystem-react/hooks/useSize';
 
 import { getArrowStyle, getBubbleStyle, getVerticalPosition } from './position-utils';
 

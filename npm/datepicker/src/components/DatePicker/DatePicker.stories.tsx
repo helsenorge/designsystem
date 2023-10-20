@@ -94,7 +94,7 @@ export const DateRangePicker: ComponentStory<typeof DatePicker> = (args: DatePic
           {...args}
           label={<Label labelTexts={[{ text: 'Fra dato', type: 'semibold' }]} />}
           maxDate={toDate}
-          onChange={(date: Date | undefined): void => {
+          onChange={(event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>, date: Date | undefined): void => {
             setFromDate(date);
           }}
         />
@@ -102,7 +102,7 @@ export const DateRangePicker: ComponentStory<typeof DatePicker> = (args: DatePic
           {...args}
           label={<Label labelTexts={[{ text: 'Til dato', type: 'semibold' }]} />}
           minDate={fromDate}
-          onChange={(date: Date | undefined): void => {
+          onChange={(event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>, date: Date | undefined): void => {
             setToDate(date);
           }}
         />
@@ -191,7 +191,6 @@ export const FooterContent: ComponentStory<typeof DatePicker> = (args: DatePicke
 };
 
 export const Locale: ComponentStory<typeof DatePicker> = (args: DatePickerProps) => {
-  console.log(ar);
   return (
     <GridExample>
       <DatePicker
@@ -229,6 +228,7 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
 
   const requireHour = (hours: number): true | string => {
     const minutes = getValues(datetimeminute);
+    // eslint-disable-next-line no-console
     console.log('Validating time: ', hours, minutes);
 
     const validateResult = validateMinMaxTime(
@@ -243,6 +243,7 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
 
   const requireMinute = (minutes: number): true | string => {
     const hours = getValues(datetimehour);
+    // eslint-disable-next-line no-console
     console.log('Validating time: ', hours, minutes);
 
     const validateResult = validateMinMaxTime(
@@ -256,6 +257,7 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
   };
 
   const requireDate = (value: Date): true | string => {
+    // eslint-disable-next-line no-console
     console.log('Validating date: ', value);
     let validateResult = validateMinMaxDate(value, minDate, maxDate, `Datoen må være etter ${minDate} og før ${maxDate}`);
     validateResult =
@@ -266,7 +268,8 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
     return validateResult;
   };
 
-  const onSubmit = data => {
+  const onSubmit = (data): void => {
+    // eslint-disable-next-line no-console
     console.log('Date submitted', data);
   };
 
