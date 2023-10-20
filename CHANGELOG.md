@@ -1,3 +1,11 @@
+## 6.0.0-beta.3 (2023-10-20)
+
+### Bug Fixes
+
+- lazy icons fallback tar like mye plass som ikon
+  ([d5207c8](https://github.com/helsenorge/designsystem/commit/d5207c8f538cd8a111356af9e4913f29ed032f58)), closes
+  [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+
 ## 6.0.0-beta.2 (2023-10-18)
 
 ## 6.0.0-beta.1 (2023-10-18)
