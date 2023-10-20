@@ -29,21 +29,16 @@
     "test:update": "jest --u"
   },
   "peerDependencies": {
-    "@helsenorge/designsystem-react": "^5.0.0",
-    "bootstrap": "^4.6.2",
-    "classnames": "^2.3.2",
-    "normalize.css": "^8.0.1",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "@helsenorge/designsystem-react": "^5.0.0"
   },
   "dependencies": {
-    "@helsenorge/designsystem-react": "^5.0.0",
     "react-day-picker": "^8.8.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.20",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.22.15",
+    "@helsenorge/designsystem-react": "^5.0.0",
     "@rollup/plugin-replace": "^5.0.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^12.1.5",
