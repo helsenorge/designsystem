@@ -21,7 +21,7 @@ const UseOutsideEventExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useOutsideEvent',
+  title: '@helsenorge∕designsystem-react/Hooks/useOutsideEvent',
   component: UseOutsideEventExample,
   parameters: {
     docs: {

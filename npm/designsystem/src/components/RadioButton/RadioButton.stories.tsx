@@ -10,7 +10,7 @@ import GridExample from '../GridExample';
 import Label from '../Label';
 
 export default {
-  title: 'Components/RadioButton',
+  title: '@helsenorge∕designsystem-react/Components/RadioButton',
   component: RadioButton,
   parameters: {
     docs: {

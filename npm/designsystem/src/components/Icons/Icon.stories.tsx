@@ -20,7 +20,7 @@ import Spacer from '../Spacer';
 import Icon, { IconSize } from '.';
 
 export default {
-  title: 'Components/Icon',
+  title: '@helsenorge∕designsystem-react/Components/Icon',
   component: Icon,
   parameters: {
     docs: {

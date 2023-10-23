@@ -14,7 +14,7 @@ import Table, { ResponsiveTableVariant, TableHead, TableRow, TableHeadCell, Tabl
 import Trigger from '../Trigger/Trigger';
 
 export default {
-  title: 'Components/HelpBubble',
+  title: '@helsenorge∕designsystem-react/Components/HelpBubble',
   component: HelpBubble,
   parameters: {
     docs: {

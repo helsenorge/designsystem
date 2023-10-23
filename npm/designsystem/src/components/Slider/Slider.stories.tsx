@@ -7,7 +7,7 @@ import Slider from './Slider';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/Slider',
+  title: '@helsenorge∕designsystem-react/Components/Slider',
   component: Slider,
   parameters: {
     docs: {

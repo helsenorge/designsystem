@@ -7,7 +7,7 @@ import { getColor } from '../../theme/currys';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/NotificationPanel',
+  title: '@helsenorge∕designsystem-react/Components/NotificationPanel',
   component: NotificationPanel,
   parameters: {
     docs: {

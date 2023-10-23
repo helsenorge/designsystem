@@ -7,7 +7,7 @@ import Panel, { PanelVariant } from '../Panel';
 import PanelList from '../PanelList';
 
 export default {
-  title: 'Components/PanelList',
+  title: '@helsenorge∕designsystem-react/Components/PanelList',
   component: PanelList,
   parameters: {
     docs: {

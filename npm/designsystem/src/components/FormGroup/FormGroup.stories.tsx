@@ -15,7 +15,7 @@ import './formGroup.stories.scss';
 import Label from '../Label';
 
 export default {
-  title: 'Components/FormGroup',
+  title: '@helsenorge∕designsystem-react/Components/FormGroup',
   component: FormGroup,
   parameters: {
     docs: {

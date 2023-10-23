@@ -23,7 +23,7 @@ const UseDelayedStateExample: React.FC = (args: any) => {
 };
 
 export default {
-  title: 'Hooks/useDelayedState',
+  title: '@helsenorge∕designsystem-react/Hooks/useDelayedState',
   component: UseDelayedStateExample,
   parameters: {
     docs: {

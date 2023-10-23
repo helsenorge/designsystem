@@ -7,7 +7,7 @@ import { allPaletteNames } from '../../../.storybook/knobs';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/Badge',
+  title: '@helsenorge∕designsystem-react/Components/Badge',
   component: Badge,
   parameters: {
     docs: {

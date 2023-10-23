@@ -13,7 +13,7 @@ import Envelope from '../Icons/Envelope';
 import Title from '../Title';
 
 export default {
-  title: 'Components/Panel',
+  title: '@helsenorge∕designsystem-react/Components/Panel',
   component: Panel,
   parameters: {
     docs: {

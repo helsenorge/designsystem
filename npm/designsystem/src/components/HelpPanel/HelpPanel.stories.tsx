@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import HelpPanel from './HelpPanel';
 
 export default {
-  title: 'Components/HelpPanel',
+  title: '@helsenorge∕designsystem-react/Components/HelpPanel',
   component: HelpPanel,
   parameters: {
     docs: {

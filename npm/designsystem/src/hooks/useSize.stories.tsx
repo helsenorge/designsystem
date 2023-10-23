@@ -20,7 +20,7 @@ const UseSizeExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useSize',
+  title: '@helsenorge∕designsystem-react/Hooks/useSize',
   component: UseSizeExample,
   parameters: {
     docs: {

@@ -8,7 +8,7 @@ import { mediumLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/Trigger',
+  title: '@helsenorge∕designsystem-react/Components/Trigger',
   component: Trigger,
   parameters: {
     docs: {

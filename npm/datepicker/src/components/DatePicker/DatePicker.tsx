@@ -53,7 +53,7 @@ export interface DatePickerProps
   /** Minimum date allowed to be selected */
   minDate?: Date;
   /** onChange callback trigges ved endring i valgt dato */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>, date: Date | undefined) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>, date: Date | string | undefined) => void;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -123,9 +123,9 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   useKeyboardEvent(datepickerWrapperRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
   useKeyboardEvent(inputWrapperRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, inputFormat: string): void => {
     setInputValue(event.currentTarget.value);
-    const newDate = parse(event.currentTarget.value, dateFormat, new Date());
+    const newDate = parse(event.currentTarget.value, inputFormat, new Date());
 
     if (isValid(newDate)) {
       setDateState(newDate);
@@ -134,7 +134,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       setDateState(undefined);
     }
 
-    onChange && onChange(event, newDate);
+    onChange && onChange(event, event.currentTarget.value);
   };
 
   const handleInputFocus = (): void => {
@@ -181,7 +181,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       value={inputValue}
       width={14}
       {...rest}
-      onChange={handleInputChange}
+      onChange={e => handleInputChange(e, 'yyyy-MM-dd')}
     />
   );
 
@@ -199,7 +199,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           value={inputValue}
           width={12}
           {...rest}
-          onChange={handleInputChange}
+          onChange={e => handleInputChange(e, dateFormat)}
           rightOfInput={
             <Button
               ariaLabel={dateButtonAriaLabel ?? 'Velg dato'}

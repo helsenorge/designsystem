@@ -16,7 +16,7 @@ const UseIntervalExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useInterval',
+  title: '@helsenorge∕designsystem-react/Hooks/useInterval',
   component: UseIntervalExample,
   parameters: {
     docs: {

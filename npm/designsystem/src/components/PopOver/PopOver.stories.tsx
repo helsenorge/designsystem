@@ -13,7 +13,7 @@ import HelpSign from '../Icons/HelpSign';
 import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, ResponsiveTableVariant } from '../Table';
 
 export default {
-  title: 'Components/PopOver',
+  title: '@helsenorge∕designsystem-react/Components/PopOver',
   component: PopOver,
   parameters: {
     docs: {

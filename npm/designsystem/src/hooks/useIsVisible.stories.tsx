@@ -25,7 +25,7 @@ const UseIsVisibleExample: React.FC = (args: any) => {
 };
 
 export default {
-  title: 'Hooks/useIsVisible',
+  title: '@helsenorge∕designsystem-react/Hooks/useIsVisible',
   component: UseIsVisibleExample,
   parameters: {
     docs: {

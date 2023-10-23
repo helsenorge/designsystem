@@ -7,7 +7,7 @@ import GridExample from '../GridExample';
 import Tag from '../Tag';
 
 export default {
-  title: 'Components/TagList',
+  title: '@helsenorge∕designsystem-react/Components/TagList',
   component: TagList,
   parameters: {
     docs: {

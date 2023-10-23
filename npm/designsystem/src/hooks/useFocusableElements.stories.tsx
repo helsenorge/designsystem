@@ -48,7 +48,7 @@ const UseFocusableElementsExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useFocusableElements',
+  title: '@helsenorge∕designsystem-react/Hooks/useFocusableElements',
   component: UseFocusableElementsExample,
   parameters: {
     docs: {

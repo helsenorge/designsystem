@@ -17,7 +17,7 @@ import StatusDot from '../StatusDot';
 import Textarea from '../Textarea';
 
 export default {
-  title: 'Components/Label',
+  title: '@helsenorge∕designsystem-react/Components/Label',
   component: Label,
   parameters: {
     docs: {

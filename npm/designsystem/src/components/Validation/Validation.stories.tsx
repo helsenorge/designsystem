@@ -7,7 +7,7 @@ import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/Validation',
+  title: '@helsenorge∕designsystem-react/Components/Validation',
   component: FormExample,
   parameters: {
     docs: {

@@ -6,7 +6,7 @@ import Stepper from './Stepper';
 import Grid from '../GridExample';
 
 export default {
-  title: 'Components/Stepper',
+  title: '@helsenorge∕designsystem-react/Components/Stepper',
   component: Stepper,
   parameters: {
     docs: {

@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   core: { builder: '@storybook/builder-vite' },
-  stories: ['../src/**/*.stories.@(tsx)', '../../datepicker/src/**/*.stories.@(tsx)'],
+  stories: ['../../datepicker/src/**/*.stories.@(tsx)', '../src/**/*.stories.@(tsx)'],
   framework: '@storybook/react',
   addons: [
     '@storybook/addon-a11y',
@@ -18,5 +18,13 @@ module.exports = {
     storyStoreV7: true,
     buildStoriesJson: true,
     modernInlineRender: true,
+  },
+  viteFinal: async config => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@helsenorge/designsystem-react': path.resolve(__dirname, '../src'),
+    };
+
+    return config;
   },
 };

@@ -7,7 +7,7 @@ import { allTitleTags, allTitleAppearances } from '../../../.storybook/knobs';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/Title',
+  title: '@helsenorge∕designsystem-react/Components/Title',
   component: Title,
   parameters: {
     docs: {

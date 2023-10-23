@@ -23,7 +23,7 @@ const UseIntersectionObserverExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useIntersectionObserver',
+  title: '@helsenorge∕designsystem-react/Hooks/useIntersectionObserver',
   component: UseIntersectionObserverExample,
   parameters: {
     docs: {

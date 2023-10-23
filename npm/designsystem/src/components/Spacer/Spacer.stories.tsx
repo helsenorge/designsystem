@@ -6,7 +6,7 @@ import Spacer from './Spacer';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/Spacer',
+  title: '@helsenorge∕designsystem-react/Components/Spacer',
   component: Spacer,
   parameters: {
     docs: {

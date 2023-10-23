@@ -18,7 +18,7 @@ const UseBreakpointExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useBreakpoint',
+  title: '@helsenorge∕designsystem-react/Hooks/useBreakpoint',
   component: UseBreakpointExample,
   parameters: {
     docs: {

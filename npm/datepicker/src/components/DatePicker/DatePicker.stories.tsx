@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { parse } from 'date-fns';
 import { ar } from 'date-fns/locale';
 import { useForm } from 'react-hook-form';
 
@@ -21,7 +22,7 @@ import {
 } from './validate-utils';
 
 export default {
-  title: 'Components/DatePicker',
+  title: '@helsenorge∕datepicker/DatePicker',
   component: DatePicker,
   parameters: {
     docs: {
@@ -256,7 +257,7 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
     return validateResult;
   };
 
-  const requireDate = (value: Date): true | string => {
+  const requireDate = (value: string): true | string => {
     // eslint-disable-next-line no-console
     console.log('Validating date: ', value);
     let validateResult = validateMinMaxDate(value, minDate, maxDate, `Datoen må være etter ${minDate} og før ${maxDate}`);
