@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { FormVariant } from '../../constants';
+import { FormSize } from '../../constants';
 import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
 import GridExample from '../GridExample';
 
@@ -49,7 +49,7 @@ export default {
           title={'Gruppe tittel'}
           legend={'Velg minst en'}
           error={errors.field1 ? (errors.field1.message as string) : undefined}
-          variant={props.variant}
+          size={props.size}
         >
           <FormLayout maxColumns={FormLayoutColumns.two}>
             {allCheckBoxes.map(check => {
@@ -61,12 +61,12 @@ export default {
         key={1}
         legend={'Velg minst to'}
         error={errors.field2 ? (errors.field2.message as string) : undefined}
-        variant={props.variant}>
+        size={props.size}>
         <Checkbox inputId="checkbox4" label={<Label labelTexts={[{ text: 'Checkbox 4'}]} />} {...register(field2, { validate: requireTwo })} />
         <Checkbox inputId="checkbox5" label={<Label labelTexts={[{ text: 'Checkbox 5'}]} />} {...register(field2, { validate: requireTwo })} />
         <Checkbox inputId="checkbox6" label={<Label labelTexts={[{ text: 'Checkbox 6'}]} />} {...register(field2, { validate: requireTwo })} />
         </FormGroup>
-        <FormGroup key={2} legend={'Velg en'} error={errors.field3 ? (errors.field3.message as string) : undefined} variant={props.variant}>
+        <FormGroup key={2} legend={'Velg en'} error={errors.field3 ? (errors.field3.message as string) : undefined} size={props.size}>
           <RadioButton inputId="radiobutton1" label={<Label labelTexts={[{ text: 'Radiobutton 1'}]} />} {...register(field3, { required: errorMessage })} />
           <RadioButton inputId="radiobutton2" label={<Label labelTexts={[{ text: 'Radiobutton 2'}]} />} {...register(field3, { required: errorMessage })} />
           <RadioButton inputId="radiobutton3" label={<Label labelTexts={[{ text: 'Radiobutton 3'}]} />} {...register(field3, { required: errorMessage })} />
@@ -107,7 +107,7 @@ Eksempel på validation med react-hook-form 6:
         title={'Gruppe tittel'}
         legend={'Velg minst en'}
         error={errors[field1] ? errors[field1].message : undefined}
-        variant={props.variant}
+        size={props.size}
         name={field1}
         >
         <FormLayout maxColumns={FormLayoutColumns.two}>
@@ -120,7 +120,7 @@ Eksempel på validation med react-hook-form 6:
           key={1}
           legend={'Velg minst to'}
           error={errors[field2] ? errors[field2].message : undefined}
-          variant={props.variant}
+          size={props.size}
           name={field2}
         >
           <Checkbox inputId="checkbox4" label={<Label labelTexts={[{ text: 'Checkbox 4'}]} />} ref={register({ validate: requireTwo })} />
@@ -131,7 +131,7 @@ Eksempel på validation med react-hook-form 6:
           key={2}
           legend={'Velg en'}
           error={errors[field3] ? errors[field3].message : undefined}
-          variant={props.variant}
+          size={props.size}
           name={field3}
         >
           <RadioButton inputId="radiobutton1" label={<Label labelTexts={[{ text: 'Radiobutton 1'}]} />} ref={register({ required: errorMessage })} />
@@ -147,10 +147,10 @@ Eksempel på validation med react-hook-form 6:
     },
   },
   argTypes: {
-    variant: {
+    size: {
       control: 'select',
-      options: FormVariant,
-      defaultValue: FormVariant.normal,
+      options: FormSize,
+      defaultValue: FormSize.medium,
     },
   },
 } as ComponentMeta<typeof FormExample>;

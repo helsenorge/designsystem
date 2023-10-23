@@ -5,7 +5,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import FormGroup from './FormGroup';
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import Spacer from '../../components/Spacer';
-import { FormMode, FormVariant } from '../../constants';
+import { FormMode, FormSize } from '../../constants';
 import Checkbox from '../Checkbox/Checkbox';
 import GridExample from '../GridExample';
 import Coronavirus from '../Icons/Coronavirus';
@@ -39,10 +39,10 @@ export default {
       options: FormMode,
       defaultValue: FormMode.onwhite,
     },
-    variant: {
+    size: {
       control: 'select',
-      options: FormVariant,
-      defaultValue: FormVariant.normal,
+      options: FormSize,
+      defaultValue: FormSize.medium,
     },
     name: {
       control: 'text',

@@ -3,7 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import RadioButton from './RadioButton';
-import { FormMode, FormVariant } from '../../constants';
+import { FormMode, FormSize } from '../../constants';
 import GridExample from '../GridExample';
 import Label from '../Label';
 
@@ -36,10 +36,10 @@ export default {
       options: FormMode,
       defaultValue: FormMode.onwhite,
     },
-    variant: {
+    size: {
       control: 'select',
-      options: FormVariant,
-      defaultValue: FormVariant.normal,
+      options: FormSize,
+      defaultValue: FormSize.medium,
     },
     name: {
       control: 'text',
@@ -69,13 +69,13 @@ export const Default: ComponentStory<typeof RadioButton> = args => (
   </GridExample>
 );
 
-export const BigForm: ComponentStory<typeof RadioButton> = args => (
+export const Large: ComponentStory<typeof RadioButton> = args => (
   <GridExample>
-    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} variant={'bigform'} mode={'onwhite'} />
-    <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} variant={'bigform'} mode={'ongrey'} />
-    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} variant={'bigform'} mode={'onblueberry'} />
-    <RadioButton {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} variant={'bigform'} mode={'oninvalid'} />
-    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} variant={'bigform'} mode={'onwhite'} disabled />
-    <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} variant={'bigform'} mode={'ondark'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} size={'large'} mode={'onwhite'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} size={'large'} mode={'ongrey'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} size={'large'} mode={'onblueberry'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} size={'large'} mode={'oninvalid'} />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} size={'large'} mode={'onwhite'} disabled />
+    <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} size={'large'} mode={'ondark'} />
   </GridExample>
 );

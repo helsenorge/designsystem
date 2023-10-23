@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import cn from 'classnames';
 
-import { FormMode, FormVariant, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
+import { FormMode, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { getColor } from '../../theme/currys';
 import { uuid } from '../../utils/uuid';
@@ -50,7 +50,7 @@ export interface InputProps
   /** Changes the color profile of the input */
   mode?: keyof typeof FormMode;
   /** Changes the visuals of the input */
-  variant?: keyof typeof FormVariant;
+  size?: keyof typeof FormSize;
   /** Label of the input */
   label?: React.ReactNode;
   /** Activates Error style for the input */
@@ -99,7 +99,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     icon,
     iconRight,
     mode = FormMode.onwhite,
-    variant,
+    size,
     label,
     error,
     errorText,
@@ -125,7 +125,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const onBlueberry = mode === FormMode.onblueberry;
   const maxCharactersExceeded = !!maxCharacters && input.toString().length > maxCharacters;
   const onError = mode === FormMode.oninvalid || !!errorText || !!error || maxCharactersExceeded;
-  const bigForm = variant === FormVariant.bigform;
+  const isLarge = size === FormSize.large;
   const isTransparent = transparent && mode !== FormMode.ondark && !onError;
 
   const inputWrapperClass = cn(styles['input-wrapper'], className);
@@ -135,18 +135,18 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     [styles['content-wrapper--on-blueberry']]: onBlueberry,
     [styles['content-wrapper--on-dark']]: onDark,
     [styles['content-wrapper--invalid']]: onError,
-    [styles['content-wrapper--bigform']]: bigForm,
+    [styles['content-wrapper--large']]: isLarge,
     [styles['content-wrapper--disabled']]: disabled,
     [styles['content-wrapper--with-icon']]: icon,
   });
 
   const inputClass = cn(styles['content-wrapper__input'], {
-    [styles['content-wrapper__input--bigform']]: bigForm,
+    [styles['content-wrapper__input--large']]: isLarge,
     [styles['content-wrapper__input--disabled']]: disabled,
   });
 
   const iconColor = disabled ? getColor('neutral', 500) : getColor('black');
-  const iconSize = breakpoint === Breakpoint.xs || !bigForm ? IconSize.XSmall : IconSize.Small;
+  const iconSize = breakpoint === Breakpoint.xs || !isLarge ? IconSize.XSmall : IconSize.Small;
 
   const renderIcon = (): React.ReactNode => {
     if (!icon) {

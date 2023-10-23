@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import { FormVariant } from '../../constants';
+import { FormSize } from '../../constants';
 import { isTest } from '../../utils/environment';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
@@ -20,7 +20,7 @@ import styles from './styles.module.scss';
 
 interface FormExampleProps {
   exampleType: FormExampleVariants;
-  variant?: keyof typeof FormVariant;
+  size?: keyof typeof FormSize;
 }
 
 export enum FormExampleVariants {
@@ -141,7 +141,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           title={'Gruppe tittel'}
           legend={'Velg minst en'}
           error={errors.field1 ? (errors.field1.message as string) : undefined}
-          variant={props.variant}
+          size={props.size}
         >
           <FormLayout maxColumns={FormLayoutColumns.two}>
             {allCheckBoxes.map(check => {
@@ -149,12 +149,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             })}
           </FormLayout>
         </FormGroup>,
-        <FormGroup
-          key={1}
-          legend={'Velg minst to'}
-          error={errors.field2 ? (errors.field2.message as string) : undefined}
-          variant={props.variant}
-        >
+        <FormGroup key={1} legend={'Velg minst to'} error={errors.field2 ? (errors.field2.message as string) : undefined} size={props.size}>
           <Checkbox
             inputId="checkbox4"
             label={<Label labelTexts={[{ text: 'Checkbox 4' }]} />}
@@ -171,7 +166,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             {...register(field2, { validate: requireTwo })}
           />
         </FormGroup>,
-        <FormGroup key={2} legend={'Velg en'} error={errors.field3 ? (errors.field3.message as string) : undefined} variant={props.variant}>
+        <FormGroup key={2} legend={'Velg en'} error={errors.field3 ? (errors.field3.message as string) : undefined} size={props.size}>
           <RadioButton
             inputId="radiobutton1"
             label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />}
@@ -199,7 +194,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             {...register(field4, { maxLength: { value: 40, message: errorMessage3 } })}
           />
         </FormGroup>,
-        <FormGroup key={4} variant={props.variant} error={errors.field5 ? (errors.field5.message as string) : undefined}>
+        <FormGroup key={4} size={props.size} error={errors.field5 ? (errors.field5.message as string) : undefined}>
           <Input
             label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
             placeholder={'Skriv noe!'}
@@ -207,7 +202,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             {...register(field5, { required: errorMessage4 })}
           />
         </FormGroup>,
-        <FormGroup key={5} variant={props.variant} error={errors.field6 ? (errors.field6.message as string) : undefined}>
+        <FormGroup key={5} size={props.size} error={errors.field6 ? (errors.field6.message as string) : undefined}>
           <Select
             label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
             {...register(field6, { validate: requireSelect })}
@@ -224,7 +219,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           inputId="checkbox1"
           label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />}
           errorText={errors.field1 ? (errors.field1.message as string) : undefined}
-          variant={props.variant}
+          size={props.size}
           {...register(field1, { required: errorMessage })}
         />
       );
@@ -234,7 +229,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           inputId="radiobutton1"
           label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />}
           errorText={errors.field3 ? (errors.field3.message as string) : undefined}
-          variant={props.variant}
+          size={props.size}
           {...register(field3, { required: errorMessage })}
         />
       );
@@ -334,7 +329,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         !isTest() && console.log(data);
       })}
     >
-      <Validation variant={props.variant} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
+      <Validation size={props.size} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
         {getFormExample()}
       </Validation>
       <Button type="submit">{'Send inn'}</Button>

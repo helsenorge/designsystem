@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormMode, FormVariant } from '../../constants';
+import { AnalyticsId, FormMode, FormSize } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
@@ -17,14 +17,14 @@ export interface RadioButtonProps
   > {
   /** Adds custom classes to the element. */
   className?: string;
-  /** The <Label/> next to the radioButton - sublabels kan ikke kombineres med bigform variant */
+  /** The <Label/> next to the radioButton - sublabels kan ikke kombineres med large variant */
   label: React.ReactNode;
   /** input id of the radioButton */
   inputId?: string;
   /** Changes the visuals of the radioButton */
   mode?: keyof typeof FormMode;
   /** Changes the visuals of the radioButton */
-  variant?: keyof typeof FormVariant;
+  size?: keyof typeof FormSize;
   /** Activates Error style for the radioButton - This is can be true while errorText is empty, when in a FormGroup */
   error?: boolean;
   /** Error text to show above the component */
@@ -43,7 +43,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     inputId = uuid(),
     mode = FormMode.onwhite,
     name = inputId,
-    variant,
+    size,
     errorText,
     error = !!errorText,
     value = getLabelText(label),
@@ -56,29 +56,29 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const onBlueberry = mode === FormMode.onblueberry;
   const onGrey = mode === FormMode.ongrey;
   const onCherry = mode === FormMode.oninvalid;
-  const bigform = variant === FormVariant.bigform;
+  const isLarge = size === FormSize.large;
   const [checked, changeChecked] = useState<boolean>(defaultChecked);
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
 
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
     [radioButtonStyles['radio-button-wrapper--with-error']]: errorText,
-    [radioButtonStyles['radio-button-wrapper__bigform']]: bigform,
-    [radioButtonStyles['radio-button-wrapper__bigform--focused']]: bigform && isFocused,
-    [radioButtonStyles['radio-button-wrapper__bigform--selected']]: bigform && checked && isFocused,
-    [radioButtonStyles['radio-button-wrapper__bigform--invalid']]: bigform && onCherry && isFocused,
-    [radioButtonStyles['radio-button-wrapper__bigform--on-blueberry']]: bigform && onBlueberry && isFocused,
+    [radioButtonStyles['radio-button-wrapper__large']]: isLarge,
+    [radioButtonStyles['radio-button-wrapper__large--focused']]: isLarge && isFocused,
+    [radioButtonStyles['radio-button-wrapper__large--selected']]: isLarge && checked && isFocused,
+    [radioButtonStyles['radio-button-wrapper__large--invalid']]: isLarge && onCherry && isFocused,
+    [radioButtonStyles['radio-button-wrapper__large--on-blueberry']]: isLarge && onBlueberry && isFocused,
   });
   const radioButtonLabelClasses = classNames(radioButtonStyles['radio-button-label'], {
     [radioButtonStyles['radio-button-label--disabled']]: disabled,
     [radioButtonStyles['radio-button-label--on-dark']]: onDark,
     [radioButtonStyles['radio-button-label--invalid']]: invalid,
-    [radioButtonStyles['radio-button-label__bigform']]: bigform,
-    [radioButtonStyles['radio-button-label__bigform--on-grey']]: bigform && onGrey && !checked,
-    [radioButtonStyles['radio-button-label__bigform--on-blueberry']]: onBlueberry && !checked && bigform,
-    [radioButtonStyles['radio-button-label__bigform--selected']]: bigform && checked && !onCherry,
-    [radioButtonStyles['radio-button-label__bigform--disabled']]: bigform && disabled,
-    [radioButtonStyles['radio-button-label__bigform--selected-invalid']]: bigform && checked && onCherry,
+    [radioButtonStyles['radio-button-label__large']]: isLarge,
+    [radioButtonStyles['radio-button-label__large--on-grey']]: isLarge && onGrey && !checked,
+    [radioButtonStyles['radio-button-label__large--on-blueberry']]: onBlueberry && !checked && isLarge,
+    [radioButtonStyles['radio-button-label__large--selected']]: isLarge && checked && !onCherry,
+    [radioButtonStyles['radio-button-label__large--disabled']]: isLarge && disabled,
+    [radioButtonStyles['radio-button-label__large--selected-invalid']]: isLarge && checked && onCherry,
   });
   const radioButtonClasses = classNames(
     radioButtonStyles['radio-button'],
@@ -87,9 +87,9 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
       [radioButtonStyles['radio-button--disabled']]: disabled,
       [radioButtonStyles['radio-button--on-blueberry']]: onBlueberry,
       [radioButtonStyles['radio-button--invalid']]: invalid,
-      [radioButtonStyles['radio-button__bigform']]: bigform,
-      [radioButtonStyles['radio-button__bigform--disabled']]: bigform && disabled,
-      [radioButtonStyles['radio-button__bigform--invalid']]: bigform && invalid,
+      [radioButtonStyles['radio-button__large']]: isLarge,
+      [radioButtonStyles['radio-button__large--disabled']]: isLarge && disabled,
+      [radioButtonStyles['radio-button__large--invalid']]: isLarge && invalid,
     },
     className
   );
@@ -129,7 +129,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
         radioButtonLabelClasses,
         undefined,
         radioButtonStyles['radiobutton-sublabel-wrapper'],
-        bigform
+        isLarge
       )}
     </div>
   );

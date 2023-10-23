@@ -3,7 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Input, { InputProps, InputTypes } from './Input';
-import { FormMode, FormVariant } from '../../constants';
+import { FormMode, FormSize } from '../../constants';
 import GridExample from '../GridExample';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
@@ -32,10 +32,10 @@ export default {
       control: 'number',
       defaultValue: undefined,
     },
-    variant: {
+    size: {
       control: 'select',
-      options: FormVariant,
-      defaultValue: FormVariant.normal,
+      options: FormSize,
+      defaultValue: FormSize.medium,
     },
     transparent: {
       control: 'boolean',

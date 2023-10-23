@@ -5,7 +5,7 @@ export type Styles = {
   'form-layout-child--three': string;
   'form-layout-child--two': string;
   'form-layout-container': string;
-  'form-layout-container--bigform': string;
+  'form-layout-container--large': string;
 };
 
 export type ClassNames = keyof Styles;

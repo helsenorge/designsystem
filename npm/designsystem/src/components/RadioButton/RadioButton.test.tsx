@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import RadioButton from './RadioButton';
-import { FormMode, FormVariant } from '../../constants';
+import { FormMode, FormSize } from '../../constants';
 import Label from '../Label';
 
 describe('Gitt at RadioButton skal vises', (): void => {
@@ -49,12 +49,12 @@ describe('Gitt at RadioButton skal vises', (): void => {
     });
   });
 
-  describe('Når formvariant er bigform', (): void => {
-    test('Så vises RadioButton med bigform styling', (): void => {
-      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} variant={FormVariant.bigform} />);
+  describe('Når size er large', (): void => {
+    test('Så vises RadioButton med large styling', (): void => {
+      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} size={FormSize.large} />);
 
       const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
-      expect(label).toHaveClass('radio-button-label radio-button-label__bigform');
+      expect(label).toHaveClass('radio-button-label radio-button-label__large');
     });
   });
 

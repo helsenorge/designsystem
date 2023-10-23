@@ -69,10 +69,10 @@ describe('Gitt at FormGroup skal vises', (): void => {
     });
   });
 
-  describe('Når variant settes', (): void => {
+  describe('Når size er large', (): void => {
     test('Så er stylingen satt riktig på FormGroup children', (): void => {
       render(
-        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} variant={'bigform'}>
+        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} size={'large'}>
           <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
           <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
           <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
@@ -81,7 +81,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       const checkbox = screen.getByText('Checkbox 1').parentElement?.parentElement?.parentElement;
       expect(checkbox).toBeVisible();
-      expect(checkbox?.className).toBe('checkbox-label checkbox-label--bigform checkbox-label__big-form--on-white');
+      expect(checkbox?.className).toBe('checkbox-label checkbox-label--large checkbox-label__large--on-white');
     });
   });
 

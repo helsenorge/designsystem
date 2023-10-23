@@ -3,7 +3,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Checkbox from './Checkbox';
-import { FormMode, FormVariant } from '../../constants';
+import { FormMode, FormSize } from '../../constants';
 import GridExample from '../GridExample';
 import Label from '../Label/Label';
 
@@ -32,10 +32,10 @@ export default {
       options: FormMode,
       defaultValue: FormMode.onwhite,
     },
-    variant: {
+    size: {
       control: 'select',
-      options: FormVariant,
-      defaultValue: FormVariant.normal,
+      options: FormSize,
+      defaultValue: FormSize.medium,
     },
     name: {
       control: 'text',
@@ -65,18 +65,18 @@ export const Default: ComponentStory<typeof Checkbox> = args => (
   </GridExample>
 );
 
-export const BigForm: ComponentStory<typeof Checkbox> = args => (
+export const Large: ComponentStory<typeof Checkbox> = args => (
   <GridExample>
     <div style={{ backgroundColor: '#EAE7E7', display: 'block', marginTop: '1rem', padding: '1rem' }}>
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} variant="bigform" mode="onwhite" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} variant="bigform" mode="ongrey" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} variant="bigform" mode="onblueberry" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} variant="bigform" mode="oninvalid" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} variant="bigform" mode="onwhite" disabled />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} size="large" mode="onwhite" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} size="large" mode="ongrey" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} size="large" mode="onblueberry" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} size="large" mode="oninvalid" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} size="large" mode="onwhite" disabled />
       <Checkbox
         {...args}
         label={<Label mode={'ondark'} labelTexts={[{ text: 'onwhite - disabled - checked' }]} />}
-        variant="bigform"
+        size="large"
         checked
         mode="onwhite"
         disabled

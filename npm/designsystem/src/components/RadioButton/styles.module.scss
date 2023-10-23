@@ -26,11 +26,11 @@
     }
   }
 
-  &--with-error#{&}__bigform {
+  &--with-error#{&}__large {
     padding: getSpacer(m) getSpacer(m);
   }
 
-  &__bigform {
+  &__large {
     margin: getSpacer(2xs) 0 getSpacer(2xs) 0;
 
     &--focused {
@@ -78,7 +78,7 @@
     color: $neutral700;
   }
 
-  &__bigform {
+  &__large {
     padding: getSpacer(s);
     background-color: $neutral50;
 
@@ -111,17 +111,17 @@
     }
   }
 
-  &__bigform#{&}--on-dark {
+  &__large#{&}--on-dark {
     background-color: $blueberry800;
   }
-  &__bigform#{&}--invalid {
+  &__large#{&}--invalid {
     background-color: $white;
 
     &:hover {
       background-color: $cherry100;
     }
   }
-  &__bigform#{&}__bigform--selected-invalid {
+  &__large#{&}__large--selected-invalid {
     background-color: $cherry100;
     color: $black;
 
@@ -130,7 +130,7 @@
     }
   }
 
-  &__bigform#{&}__bigform--disabled {
+  &__large#{&}__large--disabled {
     background-color: $neutral50;
 
     &:hover {
@@ -141,7 +141,7 @@
       background-color: $neutral50;
     }
   }
-  &__bigform#{&}__bigform--on-grey {
+  &__large#{&}__large--on-grey {
     background-color: $white;
 
     &:hover {
@@ -153,7 +153,7 @@
     }
   }
 
-  &__bigform#{&}__bigform--on-blueberry {
+  &__large#{&}__large--on-blueberry {
     background-color: $white;
 
     &:hover {
@@ -165,7 +165,7 @@
     }
   }
 
-  &__bigform--selected {
+  &__large--selected {
     background-color: $blueberry500;
     color: $white;
 
@@ -175,7 +175,7 @@
   }
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    &__bigform {
+    &__large {
       padding: 1.68rem getSpacer(l);
     }
   }
@@ -346,7 +346,7 @@
     background-color: $cherry600;
   }
 
-  &__bigform {
+  &__large {
     &:checked {
       outline: none;
       color: $blueberry100;

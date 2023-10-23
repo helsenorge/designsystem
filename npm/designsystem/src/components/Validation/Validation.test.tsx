@@ -45,9 +45,9 @@ describe('Gitt at Validation skal vises', () => {
     });
   });
 
-  describe('Når error vises med variant prop satt til bigform', () => {
+  describe('Når error vises med variant prop satt til large', () => {
     test('Så vises errorSummary med riktig styling', async () => {
-      render(<FormExample variant={'bigform'} exampleType={FormExampleVariants.formgroup} />);
+      render(<FormExample size={'large'} exampleType={FormExampleVariants.formgroup} />);
 
       const submit = screen.getByText('Send inn');
 

@@ -10,7 +10,7 @@
   row-gap: getSpacer(s);
   column-gap: var(--column-gap);
 
-  &--bigform {
+  &--large {
     row-gap: getSpacer(2xs);
   }
 }

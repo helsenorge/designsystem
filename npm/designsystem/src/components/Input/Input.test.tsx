@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Input, { InputTypes } from './Input';
-import { FormMode, FormVariant } from '../../constants';
+import { FormMode, FormSize } from '../../constants';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label';
 
@@ -55,12 +55,12 @@ describe('Gitt at Input skal vises', (): void => {
       expect(contentWrapper).toHaveClass('content-wrapper content-wrapper--transparent');
     });
   });
-  describe('Når formvariant er bigform', (): void => {
-    test('Så vises Input med bigform styling', (): void => {
-      render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} variant={FormVariant.bigform} />);
+  describe('Når size er large', (): void => {
+    test('Så vises Input med large styling', (): void => {
+      render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} size={FormSize.large} />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
-      expect(contentWrapper).toHaveClass('content-wrapper content-wrapper--bigform');
+      expect(contentWrapper).toHaveClass('content-wrapper content-wrapper--large');
     });
   });
 

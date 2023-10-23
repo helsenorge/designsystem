@@ -82,7 +82,7 @@ export const renderLabelAsParent = (
   labelClassName?: string,
   labelTextClassName?: string,
   sublabelWrapperClassName?: string,
-  bigform?: boolean
+  large?: boolean
 ): React.ReactNode => {
   return (
     <>
@@ -95,8 +95,8 @@ export const renderLabelAsParent = (
             labelClassName: cn(labelClassName, label.props.labelClassName),
             labelTextClassName: labelTextClassName,
             sublabelWrapperClassName: sublabelWrapperClassName,
-            sublabel: bigform ? undefined : label.props.sublabel,
-            statusDot: bigform ? undefined : label.props.statusDot,
+            sublabel: large ? undefined : label.props.sublabel,
+            statusDot: large ? undefined : label.props.statusDot,
           })
         : typeof label === 'string' && (
             <Label

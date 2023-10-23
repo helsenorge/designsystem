@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormVariant } from '../../constants';
+import { AnalyticsId, FormSize } from '../../constants';
 import FormGroup, { FormGroupProps } from '../FormGroup/FormGroup';
 
 import validationStyles from './styles.module.scss';
@@ -15,18 +15,18 @@ interface ValidationProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** Changes the visuals of the formgroup */
-  variant?: keyof typeof FormVariant;
+  size?: keyof typeof FormSize;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
-export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLElement>) => {
+export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const { errorSummary, className } = props;
   const validationClasses = classNames(validationStyles['validation'], className);
 
   return (
     <>
-      <div data-testid={props.testId} data-analyticsid={AnalyticsId.Validation} className={validationClasses}>
+      <div data-testid={props.testId} data-analyticsid={AnalyticsId.Validation} className={validationClasses} ref={ref}>
         {React.Children.map(props.children, (child: React.ReactNode) => {
           if ((child as React.ReactElement<FormGroupProps>).type === FormGroup) {
             return React.cloneElement(child as React.ReactElement<FormGroupProps>, {
@@ -40,5 +40,7 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
     </>
   );
 });
+
+Validation.displayName = 'Validation';
 
 export default Validation;

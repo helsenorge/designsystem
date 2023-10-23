@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormMode, FormVariant, IconSize } from '../../constants';
+import { AnalyticsId, FormMode, FormSize, IconSize } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys/color';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
@@ -20,14 +20,14 @@ export interface CheckboxProps
   > {
   /** Adds custom classes to the element. */
   className?: string;
-  /** The <Label/> next to the checkbox - sublabels kan ikke kombineres med bigform variant */
+  /** The <Label/> next to the checkbox - sublabels kan ikke kombineres med large variant */
   label: React.ReactNode;
   /** input id of the checkbox */
   inputId?: string;
   /** Changes the visuals of the checkbox */
   mode?: keyof typeof FormMode;
   /** Changes the visuals of the checkbox */
-  variant?: keyof typeof FormVariant;
+  size?: keyof typeof FormSize;
   /** Activates Error style for the checkbox - This is can be true while errorText is empty, when in a FormGroup */
   error?: boolean;
   /** Error text to show above the component */
@@ -45,7 +45,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     inputId = uuid(),
     mode = FormMode.onwhite,
     name = inputId,
-    variant,
+    size,
     errorText,
     error = !!errorText,
     value = getLabelText(label),
@@ -60,25 +60,25 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   const onBlueberry = mode === FormMode.onblueberry;
   const onInvalid = error || mode === FormMode.oninvalid;
   const onDark = mode === FormMode.ondark;
-  const bigform = variant === FormVariant.bigform;
+  const large = size === FormSize.large;
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
 
   const checkboxWrapperClasses = classNames(checkboxStyles['checkbox-wrapper'], {
     [checkboxStyles['checkbox-wrapper--with-error']]: errorText,
-    [checkboxStyles['checkbox-wrapper--bigform']]: bigform,
+    [checkboxStyles['checkbox-wrapper--large']]: large,
   });
   const checkboxLabelClasses = classNames(checkboxStyles['checkbox-label'], {
     [checkboxStyles['checkbox-label--disabled']]: disabled,
     [checkboxStyles['checkbox-label--on-dark']]: onDark,
-    [checkboxStyles['checkbox-label--bigform']]: bigform,
-    [checkboxStyles['checkbox-label__big-form--checked']]: bigform && isChecked,
-    [checkboxStyles['checkbox-label__big-form--focus']]: bigform && isFocused,
-    [checkboxStyles['checkbox-label__big-form--on-white']]: bigform && onWhite,
-    [checkboxStyles['checkbox-label__big-form--on-grey']]: bigform && onGrey,
-    [checkboxStyles['checkbox-label__big-form--on-blueberry']]: bigform && onBlueberry,
-    [checkboxStyles['checkbox-label__big-form--on-invalid']]: bigform && onInvalid,
-    [checkboxStyles['checkbox-label__big-form--disabled']]: bigform && disabled,
+    [checkboxStyles['checkbox-label--large']]: large,
+    [checkboxStyles['checkbox-label__large--checked']]: large && isChecked,
+    [checkboxStyles['checkbox-label__large--focus']]: large && isFocused,
+    [checkboxStyles['checkbox-label__large--on-white']]: large && onWhite,
+    [checkboxStyles['checkbox-label__large--on-grey']]: large && onGrey,
+    [checkboxStyles['checkbox-label__large--on-blueberry']]: large && onBlueberry,
+    [checkboxStyles['checkbox-label__large--on-invalid']]: large && onInvalid,
+    [checkboxStyles['checkbox-label__large--disabled']]: large && disabled,
   });
   const checkboxClasses = classNames(checkboxStyles.checkbox, className);
   const checkboxIconWrapperClasses = classNames(checkboxStyles['checkbox__icon-wrapper'], {
@@ -86,30 +86,30 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     [checkboxStyles['checkbox__icon-wrapper--on-grey']]: onGrey,
     [checkboxStyles['checkbox__icon-wrapper--on-invalid']]: onInvalid,
     [checkboxStyles['checkbox__icon-wrapper--disabled']]: disabled,
-    [checkboxStyles['checkbox__icon-wrapper__regular--checked']]: !bigform && isChecked,
-    [checkboxStyles['checkbox__icon-wrapper__regular--invalid']]: !bigform && isChecked && onInvalid,
-    [checkboxStyles['checkbox__icon-wrapper__regular--on-dark']]: !bigform && isChecked && onDark,
-    [checkboxStyles['checkbox__icon-wrapper__big-form--checked']]: bigform && isChecked,
-    [checkboxStyles['checkbox__icon-wrapper__big-form--invalid']]: bigform && onInvalid,
+    [checkboxStyles['checkbox__icon-wrapper__regular--checked']]: !large && isChecked,
+    [checkboxStyles['checkbox__icon-wrapper__regular--invalid']]: !large && isChecked && onInvalid,
+    [checkboxStyles['checkbox__icon-wrapper__regular--on-dark']]: !large && isChecked && onDark,
+    [checkboxStyles['checkbox__icon-wrapper__large--checked']]: large && isChecked,
+    [checkboxStyles['checkbox__icon-wrapper__large--invalid']]: large && onInvalid,
     [checkboxStyles['checkbox__icon-wrapper--on-dark']]: onDark,
     [checkboxStyles['checkbox__icon-wrapper--on-blueberry']]: onBlueberry,
     [checkboxStyles['checkbox__icon-wrapper--invalid']]: onInvalid,
-    [checkboxStyles['checkbox__icon-wrapper__big-form--invalid']]: bigform && isChecked && onInvalid,
-    [checkboxStyles['checkbox__icon-wrapper__big-form--disabled']]: disabled && bigform && isChecked,
-    [checkboxStyles['checkbox__icon-wrapper__big-form--checked--invalid']]: bigform && isChecked && onInvalid,
-    [checkboxStyles['checkbox__icon-wrapper__big-form--checked--disabled']]: disabled && bigform && isChecked,
+    [checkboxStyles['checkbox__icon-wrapper__large--invalid']]: large && isChecked && onInvalid,
+    [checkboxStyles['checkbox__icon-wrapper__large--disabled']]: disabled && large && isChecked,
+    [checkboxStyles['checkbox__icon-wrapper__large--checked--invalid']]: large && isChecked && onInvalid,
+    [checkboxStyles['checkbox__icon-wrapper__large--checked--disabled']]: disabled && large && isChecked,
   });
   const labelTextClasses = classNames(checkboxStyles['checkbox-label__text'], {
-    [checkboxStyles['checkbox-label__text__big-form--checked']]: bigform && isChecked,
-    [checkboxStyles['checkbox-label__text__big-form--invalid']]: bigform && isChecked && onInvalid,
+    [checkboxStyles['checkbox-label__text__large--checked']]: large && isChecked,
+    [checkboxStyles['checkbox-label__text__large--invalid']]: large && isChecked && onInvalid,
     [checkboxStyles['checkbox-label__text--on-dark']]: onDark,
     [checkboxStyles['checkbox-label__text--disabled']]: disabled,
   });
   const errorStyles = classNames(checkboxStyles['checkbox-errors']);
 
   let iconColor = getColor('white');
-  if (onDark || (bigform && isChecked)) iconColor = getColor('blueberry', 900);
-  if (onInvalid && bigform && isChecked) iconColor = getColor('white');
+  if (onDark || (large && isChecked)) iconColor = getColor('blueberry', 900);
+  if (onInvalid && large && isChecked) iconColor = getColor('white');
   if (disabled) iconColor = getColor('neutral', 400);
 
   useEffect(() => {
@@ -161,7 +161,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
         checkboxLabelClasses,
         labelTextClasses,
         checkboxStyles['checkbox-sublabel-wrapper'],
-        bigform
+        large
       )}
     </div>
   );

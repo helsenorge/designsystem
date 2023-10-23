@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormMode, FormVariant } from '../../constants';
+import { AnalyticsId, FormMode, FormSize } from '../../constants';
 import { isComponent } from '../../utils/component';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import ErrorWrapper from '../ErrorWrapper';
@@ -32,7 +32,7 @@ export interface FormGroupProps {
   /** Changes the visuals of the formgroup */
   mode?: keyof typeof FormMode;
   /** Changes the visuals of the formgroup */
-  variant?: keyof typeof FormVariant;
+  size?: keyof typeof FormSize;
   /** Error message */
   error?: string;
   /** Sets the data-testid attribute. */
@@ -54,7 +54,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     className,
     fieldsetClassName,
     mode = FormMode.onwhite,
-    variant = FormVariant.normal,
+    size = FormSize.medium,
     error,
     name,
     htmlMarkup = 'fieldset',
@@ -63,7 +63,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     errorWrapperTestId,
   } = props;
   const onDark = mode === FormMode.ondark;
-  const bigform = variant === FormVariant.bigform;
+  const isLarge = size === FormSize.large;
   const formGroupWrapperClasses = classNames(
     formGroupStyles['form-group-wrapper'],
     {
@@ -74,13 +74,13 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   );
   const titleClasses = classNames(formGroupStyles['form-group-wrapper__title'], {
     [formGroupStyles['form-group-wrapper__title--on-dark']]: onDark && !error,
-    [formGroupStyles['form-group-wrapper__title--bigform']]: bigform,
+    [formGroupStyles['form-group-wrapper__title--large']]: isLarge,
   });
   const formGroupClasses = classNames(formGroupStyles['form-group']);
 
   const legendClasses = classNames(formGroupStyles['field-set__legend'], {
     [formGroupStyles['field-set__legend--on-dark']]: onDark && !error,
-    [formGroupStyles['field-set__legend--bigform']]: bigform,
+    [formGroupStyles['field-set__legend--large']]: isLarge,
   });
 
   const fieldsetClasses = classNames(formGroupStyles['field-set'], fieldsetClassName);
@@ -88,13 +88,13 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   const mapFormComponent = (child: React.ReactNode): React.ReactNode => {
     if (isComponent<FormGroupProps>(child, FormLayout)) {
       return React.cloneElement(child as React.ReactElement<FormLayoutProps>, {
-        variant,
+        size,
         mapHelper: mapFormComponent,
       });
     } else if (isComponent<FormGroupProps>(child, FormGroup)) {
       return React.cloneElement(child, {
         mode,
-        variant,
+        size,
         error,
         renderError: false,
       });
@@ -102,21 +102,21 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
       return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
         name: name ?? child.props.name,
         mode,
-        variant,
+        size,
         error: !!error,
       });
     } else if (isComponent<RadioButtonProps>(child, RadioButton)) {
       return React.cloneElement(child as React.ReactElement<RadioButtonProps>, {
         name: name ?? child.props.name,
         mode,
-        variant,
+        size,
         error: !!error,
       });
     } else if (isComponent<InputProps>(child, Input)) {
       return React.cloneElement(child as React.ReactElement<InputProps>, {
         name: name ?? child.props.name,
         mode,
-        variant,
+        size,
         error: !!error,
       });
     } else if (isComponent<SelectProps>(child, Select)) {

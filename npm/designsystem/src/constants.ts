@@ -61,9 +61,9 @@ export enum FormMode {
   oninvalid = 'oninvalid',
 }
 
-export enum FormVariant {
-  normal = 'normal',
-  bigform = 'bigform',
+export enum FormSize {
+  medium = 'medium',
+  large = 'large',
 }
 
 export enum AnalyticsId {

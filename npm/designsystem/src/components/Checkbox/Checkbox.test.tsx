@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import Checkbox from './Checkbox';
-import { FormMode, FormVariant } from '../../constants';
+import { FormMode, FormSize } from '../../constants';
 import Label from '../Label';
 
 describe('Gitt at Checkbox skal vises', (): void => {
@@ -50,12 +50,12 @@ describe('Gitt at Checkbox skal vises', (): void => {
     });
   });
 
-  describe('Når formvariant er bigform', (): void => {
-    test('Så vises Checkbox med bigform styling', (): void => {
-      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} variant={FormVariant.bigform} />);
+  describe('Når size er large', (): void => {
+    test('Så vises Checkbox med large styling', (): void => {
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} size={FormSize.large} />);
 
       const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
-      expect(label?.className).toBe('checkbox-label checkbox-label--bigform checkbox-label__big-form--on-white');
+      expect(label?.className).toBe('checkbox-label checkbox-label--large checkbox-label__large--on-white');
     });
   });
 
