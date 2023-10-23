@@ -133,6 +133,14 @@ stages:
               customCommand: 'run eslint'
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
+          # build
+          - task: Npm@1
+            displayName: build
+            inputs:
+              command: custom
+              workingDir: $(working_directory)
+              customCommand: 'run build'
+
           # test
           - task: Npm@1
             displayName: test
@@ -153,14 +161,6 @@ stages:
               codeCoverageTool: Cobertura
               summaryFileLocation: '$(package_directory)/coverage/cobertura-coverage.xml'
             condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-
-          # build
-          - task: Npm@1
-            displayName: build
-            inputs:
-              command: custom
-              workingDir: $(working_directory)
-              customCommand: 'run build'
 
           # Run Code Analysis task
           - task: SonarQubeAnalyze@5
