@@ -18,13 +18,15 @@ export default defineConfig({
     rollupOptions: {
       preserveEntrySignatures: 'strict',
       input: entries,
-      external: [/.module.scss/],
+      external: [/.module.scss/, 'react-hook-form'],
       output: {
         format: 'es',
         sourcemap: true,
         entryFileNames: '[name].js',
         chunkFileNames: '[name].js',
         assetFileNames: '[name].[ext]',
+        preserveModules: true,
+        preserveModulesRoot: 'src',
       },
       plugins: [
         peerDepsExternal(),

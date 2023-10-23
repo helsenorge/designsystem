@@ -11,6 +11,7 @@ import Button from '../Button';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
+import LazyIcon from '../LazyIcon';
 
 import styles from './styles.module.scss';
 
@@ -31,7 +32,7 @@ interface ExpanderProps {
   /** Sets the background of the expander. Requires size=ExpanderSize.large. */
   color?: ExpanderColors;
   /** Adds an icon to the expander trigger. Requires size=ExpanderSize.large. */
-  svgIcon?: SvgIcon;
+  svgIcon?: SvgIcon | string;
   /** Opens or closes the expander */
   expanded?: boolean;
   /** Removes border to the left of the content. Requires size=ExpanderSize.small. */
@@ -101,7 +102,11 @@ const Expander: React.FC<ExpanderProps> = props => {
       {size === ExpanderSize.small && renderChevron('left')}
       {icon && (
         <span className={classNames(styles['expander__icon'], styles['expander__icon--left'])}>
-          <Icon svgIcon={icon} size={IconSize.XSmall} isHovered={isHovered} />
+          {typeof icon === 'string' ? (
+            <LazyIcon iconName={icon} size={IconSize.XSmall} isHovered={isHovered} />
+          ) : (
+            <Icon svgIcon={icon} size={IconSize.XSmall} isHovered={isHovered} />
+          )}
         </span>
       )}
       {title}

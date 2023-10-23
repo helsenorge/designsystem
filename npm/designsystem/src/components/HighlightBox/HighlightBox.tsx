@@ -6,6 +6,7 @@ import { useBreakpoint, Breakpoint } from '../..';
 import { AnalyticsId } from '../../constants';
 import { PaletteNames } from '../../theme/palette';
 import Icon, { SvgIcon, IconSize } from '../Icon';
+import LazyIcon from '../LazyIcon';
 import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
@@ -31,7 +32,7 @@ interface HighlightBoxProps {
   /** Changes the size. Default: medium */
   size?: keyof typeof HighlightBoxSize;
   /** Adds an icon to the highlightbox. */
-  svgIcon?: SvgIcon;
+  svgIcon?: SvgIcon | string;
   /** Changes the underlying element. Default: div */
   htmlMarkup?: HighlightBoxTags;
   /** Adds custom classes to the element. */
@@ -114,7 +115,7 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
       return (
         <>
           <div className={styles.highlightbox__icon}>
-            <Icon svgIcon={svgIcon} size={iconSize} />
+            {typeof svgIcon === 'string' ? <LazyIcon iconName={svgIcon} size={iconSize} /> : <Icon svgIcon={svgIcon} size={iconSize} />}
             {title && <div className={styles['mobile']}>{titleElement}</div>}
           </div>
           <div className={styles.highlightbox__content}>

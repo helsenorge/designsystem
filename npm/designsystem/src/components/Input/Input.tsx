@@ -9,6 +9,7 @@ import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import { renderLabel } from '../Label';
+import LazyIcon from '../LazyIcon';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';
@@ -43,7 +44,7 @@ export interface InputProps
   /** If true, the component will be transparent. */
   transparent?: boolean;
   /** Icon to be displayed next to the input field */
-  icon?: SvgIcon;
+  icon?: SvgIcon | string;
   /** Places the icon to the right */
   iconRight?: boolean;
   /** Changes the color profile of the input */
@@ -148,7 +149,15 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const iconSize = breakpoint === Breakpoint.xs || !bigForm ? IconSize.XSmall : IconSize.Small;
 
   const renderIcon = (): React.ReactNode => {
-    return icon !== undefined ? <Icon color={iconColor} size={iconSize} svgIcon={icon} /> : null;
+    if (!icon) {
+      return;
+    }
+
+    if (typeof icon === 'string') {
+      return <LazyIcon iconName={icon} color={iconColor} size={iconSize} />;
+    }
+
+    return <Icon svgIcon={icon} color={iconColor} size={iconSize} />;
   };
 
   const handleClick = (): void => {

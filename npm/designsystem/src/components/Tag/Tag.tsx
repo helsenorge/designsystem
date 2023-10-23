@@ -8,6 +8,7 @@ import { palette, PaletteNames } from '../../theme/palette';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import Undo from '../Icons/Undo';
 import X from '../Icons/X';
+import LazyIcon from '../LazyIcon';
 
 import styles from './styles.module.scss';
 
@@ -37,7 +38,7 @@ interface TagProps {
   /** Sets the background of the tag. Not used if action is "undo". Default: blueberry */
   color?: TagColors;
   /** Adds an icon to the tag. Not shown if action is set. */
-  svgIcon?: SvgIcon;
+  svgIcon?: SvgIcon | string;
   /* Changes the appearance of the tag. Not used if action is "undo". Default: normal */
   variant?: keyof typeof TagVariant;
   /* Makes the tag a clickable button that performs an action. onClick must also be set. */
@@ -102,7 +103,12 @@ const Tag: React.FC<TagProps> = props => {
 
   return (
     <span className={tagClasses} data-testid={testId} data-analyticsid={AnalyticsId.Tag}>
-      {svgIcon && <Icon svgIcon={svgIcon} size={IconSize.XXSmall} color={palette[`${color}800`]} className={styles.tag__icon} />}
+      {svgIcon &&
+        (typeof svgIcon === 'string' ? (
+          <LazyIcon iconName={svgIcon} size={IconSize.XXSmall} color={palette[`${color}800`]} className={styles.tag__icon} />
+        ) : (
+          <Icon svgIcon={svgIcon} size={IconSize.XXSmall} color={palette[`${color}800`]} className={styles.tag__icon} />
+        ))}
       {children}
     </span>
   );
