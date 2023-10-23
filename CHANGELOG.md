@@ -1,3 +1,10 @@
+## 6.0.0-beta.4 (2023-10-23)
+
+### Features
+
+- komponenter støtter lazyicon ([0148ee6](https://github.com/helsenorge/designsystem/commit/0148ee6b3c72dedadbecb21105a729af1487a445)),
+  closes [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+
 ## 6.0.0-beta.3 (2023-10-20)
 
 ### Bug Fixes
