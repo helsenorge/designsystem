@@ -26,7 +26,7 @@ const UseKeyboardEventExample: React.FC = (args: any) => {
 };
 
 export default {
-  title: 'Hooks/useKeyboardEvent',
+  title: '@helsenorge∕designsystem-react/Hooks/useKeyboardEvent',
   component: UseKeyboardEventExample,
   parameters: {
     docs: {

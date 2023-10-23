@@ -19,7 +19,7 @@ import StatusDot, { StatusDotVariant } from '../StatusDot';
 import Title from '../Title/Title';
 
 export default {
-  title: 'Components/ExpanderList',
+  title: '@helsenorge∕designsystem-react/Components/ExpanderList',
   component: ExpanderList,
   parameters: {
     docs: {

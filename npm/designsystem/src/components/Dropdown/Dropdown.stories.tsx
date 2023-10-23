@@ -10,7 +10,7 @@ import Label from '../Label';
 import RadioButton from '../RadioButton';
 
 export default {
-  title: 'Components/Dropdown',
+  title: '@helsenorge∕designsystem-react/Components/Dropdown',
   component: Dropdown,
   parameters: {
     docs: {

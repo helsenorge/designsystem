@@ -99,6 +99,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     }
   }
 
+  /* stylelint-disable-next-line */
   :disabled > & {
     background-color: $dark-mode-disabled-transparrent;
   }
@@ -184,6 +185,10 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   &:disabled {
     cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: none;
   }
 }
 
@@ -283,10 +288,12 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     @include outline($cherry700, $cherry50);
   }
 
+  /* stylelint-disable-next-line */
   &--borderless:not(.button--only-icon) {
     padding: 0 getSpacer(3xs);
   }
 
+  /* stylelint-disable-next-line */
   &--borderless {
     &:hover {
       box-shadow: none;
@@ -305,6 +312,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     }
   }
 
+  /* stylelint-disable-next-line */
   &__text {
     color: $white;
     margin: 0 auto 0 0;
@@ -320,6 +328,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     }
   }
 
+  /* stylelint-disable-next-line */
   &--outline &__text {
     @include outline-text($blueberry600);
   }
@@ -327,6 +336,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     @include outline-text($cherry600);
   }
 
+  /* stylelint-disable-next-line */
   &--borderless &__text {
     @include borderless-text($blueberry600);
   }
@@ -334,6 +344,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     @include borderless-text($cherry600);
   }
 
+  /* stylelint-disable-next-line */
   &--only-icon &__text {
     @include sr-only;
   }

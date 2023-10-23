@@ -9,7 +9,7 @@ import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 
 export default {
-  title: 'Components/Input',
+  title: '@helsenorge∕designsystem-react/Components/Input',
   component: Input,
   parameters: {
     docs: {

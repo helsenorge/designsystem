@@ -4,8 +4,8 @@ import cn from 'classnames';
 
 import { FormMode, FormVariant, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
-import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icons';
 import { renderLabel } from '../Label';
@@ -28,7 +28,10 @@ export interface InputProps
     | 'max'
     | 'aria-describedby'
     | 'aria-labelledby'
+    | 'onBlur'
+    | 'onClick'
     | 'onChange'
+    | 'onFocus'
     | 'onKeyDown'
     | 'autoFocus'
   > {
@@ -46,6 +49,8 @@ export interface InputProps
   icon?: SvgIcon;
   /** Places the icon to the right */
   iconRight?: boolean;
+  /** Ref that is placed on the inputWrapper */
+  inputWrapperRef?: React.RefObject<HTMLDivElement>;
   /** Changes the color profile of the input */
   mode?: keyof typeof FormMode;
   /** Changes the visuals of the input */
@@ -60,6 +65,8 @@ export interface InputProps
   testId?: string;
   /** Component shown after input */
   afterInputChildren?: React.ReactNode;
+  /** Component shown to the right of input */
+  rightOfInput?: React.ReactNode;
   /** max character limit in input  */
   maxCharacters?: number;
   /** The text is displayed in the end of the text-counter */
@@ -92,11 +99,11 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     defaultValue,
     placeholder,
     type = InputTypes.text,
-    inputId = uuid(),
     name,
     transparent = false,
     icon,
     iconRight,
+    inputWrapperRef,
     mode = FormMode.onwhite,
     variant,
     label,
@@ -107,6 +114,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     readOnly,
     autoComplete,
     afterInputChildren,
+    rightOfInput,
     width,
     required,
     onChange,
@@ -117,7 +125,8 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     ...rest
   } = props;
   const breakpoint = useBreakpoint();
-  const contentWrapperRef = useRef<HTMLDivElement>(null);
+  const inputContainerRef = useRef<HTMLDivElement>(null);
+  const inputId = useUuid(props.inputId);
   const [input, setInput] = useState(defaultValue || '');
 
   const onDark = mode === FormMode.ondark;
@@ -129,33 +138,38 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
 
   const inputWrapperClass = cn(styles['input-wrapper'], className);
 
-  const contentWrapperClass = cn(styles['content-wrapper'], {
-    [styles['content-wrapper--transparent']]: isTransparent,
-    [styles['content-wrapper--on-blueberry']]: onBlueberry,
-    [styles['content-wrapper--on-dark']]: onDark,
-    [styles['content-wrapper--invalid']]: onError,
-    [styles['content-wrapper--bigform']]: bigForm,
-    [styles['content-wrapper--disabled']]: disabled,
-    [styles['content-wrapper--with-icon']]: icon,
+  const inputContainer = cn(styles['input-container'], {
+    [styles['input-container--transparent']]: isTransparent,
+    [styles['input-container--on-blueberry']]: onBlueberry,
+    [styles['input-container--on-dark']]: onDark,
+    [styles['input-container--invalid']]: onError,
+    [styles['input-container--bigform']]: bigForm,
+    [styles['input-container--disabled']]: disabled,
+    [styles['input-container--with-icon']]: icon,
   });
 
-  const inputClass = cn(styles['content-wrapper__input'], {
-    [styles['content-wrapper__input--bigform']]: bigForm,
-    [styles['content-wrapper__input--disabled']]: disabled,
+  const inputClass = cn(styles['input-container__input'], {
+    [styles['input-container__input--bigform']]: bigForm,
+    [styles['input-container__input--disabled']]: disabled,
   });
 
   const iconColor = disabled ? getColor('neutral', 500) : getColor('black');
   const iconSize = breakpoint === Breakpoint.xs || !bigForm ? IconSize.XSmall : IconSize.Small;
 
   const renderIcon = (): React.ReactNode => {
-    return icon !== undefined ? <Icon color={iconColor} size={iconSize} svgIcon={icon} /> : null;
+    return icon !== undefined ? (
+      <Icon className={styles['input-container__input__icon']} color={iconColor} size={iconSize} svgIcon={icon} />
+    ) : null;
   };
 
-  const handleClick = (): void => {
-    if (contentWrapperRef && contentWrapperRef.current && icon) {
+  // eslint-disable-next-line
+  const handleClick = (e: React.MouseEvent<any>): void => {
+    if (inputContainerRef && inputContainerRef.current && icon) {
       const selectedChild = iconRight ? 0 : 1;
-      const input = contentWrapperRef.current.children[selectedChild] as HTMLInputElement;
+      const input = inputContainerRef.current.children[selectedChild] as HTMLInputElement;
       input.focus();
+
+      props.onClick && props.onClick(e);
     }
   };
 
@@ -166,41 +180,50 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     setInput(e.target.value);
   };
 
-  const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
+  const widthStyling = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
 
   return (
     <ErrorWrapper errorText={errorText}>
-      <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass}>
+      <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
         {renderLabel(label, inputId, mode as FormMode, disabled)}
         {/* input-elementet tillater keyboard-interaksjon */}
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-        <div onClick={handleClick} ref={contentWrapperRef} className={contentWrapperClass} style={{ maxWidth }}>
-          {!iconRight && renderIcon()}
-          <input
-            onChange={handleChange}
-            onKeyDown={onKeyDown}
-            name={name}
-            type={type}
-            defaultValue={defaultValue}
-            id={inputId}
-            className={inputClass}
-            ref={ref}
-            aria-labelledby={props['aria-labelledby'] ?? undefined}
-            aria-describedby={props['aria-describedby'] ?? undefined}
-            aria-invalid={!!onError}
-            disabled={disabled}
-            placeholder={placeholder}
-            readOnly={readOnly}
-            autoComplete={autoComplete || 'off'}
-            required={required}
-            // eslint-disable-next-line jsx-a11y/no-autofocus
-            autoFocus={autoFocus}
-            {...rest}
-          />
-          {iconRight && renderIcon()}
+        <div className={styles['content-wrapper']}>
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
+          <div onClick={handleClick} ref={inputContainerRef} className={inputContainer} style={{ width: widthStyling }}>
+            {!iconRight && renderIcon()}
+            <input
+              onChange={handleChange}
+              onKeyDown={onKeyDown}
+              name={name}
+              type={type}
+              defaultValue={defaultValue}
+              id={inputId}
+              className={inputClass}
+              ref={ref}
+              aria-labelledby={props['aria-labelledby'] ?? undefined}
+              aria-describedby={props['aria-describedby'] ?? undefined}
+              aria-invalid={!!onError}
+              disabled={disabled}
+              placeholder={placeholder}
+              readOnly={readOnly}
+              autoComplete={autoComplete || 'off'}
+              required={required}
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus={autoFocus}
+              {...rest}
+            />
+            {iconRight && renderIcon()}
+          </div>
+          {rightOfInput}
         </div>
         {maxCharacters && (
-          <MaxCharacters maxCharacters={maxCharacters} length={input.toString().length} maxText={maxText} mode={mode} maxWidth={maxWidth} />
+          <MaxCharacters
+            maxCharacters={maxCharacters}
+            length={input.toString().length}
+            maxText={maxText}
+            mode={mode}
+            maxWidth={widthStyling}
+          />
         )}
         {afterInputChildren}
       </div>

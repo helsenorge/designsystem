@@ -20,7 +20,7 @@ const UseResizeObserverExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useResizeObserver',
+  title: '@helsenorge∕designsystem-react/Hooks/useResizeObserver',
   component: UseResizeObserverExample,
   parameters: {
     docs: {

@@ -9,7 +9,7 @@ import Loader from '../Loader';
 import { Overlay } from '../Loader/Loader';
 
 export default {
-  title: 'Components/Expander',
+  title: '@helsenorge∕designsystem-react/Components/Expander',
   component: Expander,
   parameters: {
     docs: {

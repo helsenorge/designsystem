@@ -16,7 +16,7 @@ const UseLayoutEventExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useLayoutEvent',
+  title: '@helsenorge∕designsystem-react/Hooks/useLayoutEvent',
   component: UseLayoutEventExample,
   parameters: {
     docs: {

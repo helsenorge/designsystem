@@ -7,7 +7,7 @@ import Close from './Close';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/Close',
+  title: '@helsenorge∕designsystem-react/Components/Close',
   component: Close,
   parameters: {
     docs: {

@@ -22,7 +22,7 @@ const UseUuidExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useUuid',
+  title: '@helsenorge∕designsystem-react/Hooks/useUuid',
   component: UseUuidExample,
   parameters: {
     docs: {

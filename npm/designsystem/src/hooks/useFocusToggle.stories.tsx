@@ -42,7 +42,7 @@ const UseFocusToggleExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useFocusToggle',
+  title: '@helsenorge∕designsystem-react/Hooks/useFocusToggle',
   component: UseFocusToggleExample,
   parameters: {
     docs: {

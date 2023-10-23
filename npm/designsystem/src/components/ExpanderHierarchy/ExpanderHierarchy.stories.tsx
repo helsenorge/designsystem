@@ -7,7 +7,7 @@ import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/ExpanderHierarchy',
+  title: '@helsenorge∕designsystem-react/Components/ExpanderHierarchy',
   component: ExpanderHierarchy,
   parameters: {
     docs: {

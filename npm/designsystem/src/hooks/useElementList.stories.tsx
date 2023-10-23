@@ -48,7 +48,7 @@ const UseElementListExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useElementList',
+  title: '@helsenorge∕designsystem-react/Hooks/useElementList',
   component: UseElementListExample,
   parameters: {
     docs: {

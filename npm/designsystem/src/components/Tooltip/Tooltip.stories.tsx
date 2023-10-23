@@ -7,7 +7,7 @@ import GridExample from '../GridExample';
 import TooltipExample from '../TooltipExample';
 
 export default {
-  title: 'Components/Tooltip',
+  title: '@helsenorge∕designsystem-react/Components/Tooltip',
   component: Tooltip,
   parameters: {
     docs: {

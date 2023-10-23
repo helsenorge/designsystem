@@ -17,7 +17,7 @@ describe('Gitt at Textarea skal vises', (): void => {
 
       const input = screen.getByRole('textbox');
       expect(input).toBeVisible();
-      expect(input.className).toBe('content-wrapper__input');
+      expect(input.className).toBe('input-container__input');
     });
   });
 
@@ -35,7 +35,7 @@ describe('Gitt at Textarea skal vises', (): void => {
       render(<Textarea label={<Label labelTexts={[{ text: 'Skriv din historie' }]} />} mode={FormMode.onblueberry} />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
-      expect(contentWrapper?.className).toBe('content-wrapper content-wrapper--on-blueberry');
+      expect(contentWrapper?.className).toBe('input-container input-container--on-blueberry');
     });
   });
   describe('Når mode er ondark', (): void => {
@@ -43,7 +43,7 @@ describe('Gitt at Textarea skal vises', (): void => {
       render(<Textarea label={<Label labelTexts={[{ text: 'Skriv din historie' }]} />} mode={FormMode.ondark} />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
-      expect(contentWrapper?.className).toBe('content-wrapper content-wrapper--on-dark');
+      expect(contentWrapper?.className).toBe('input-container input-container--on-dark');
     });
   });
 

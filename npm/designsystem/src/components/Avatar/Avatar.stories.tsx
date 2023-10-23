@@ -6,7 +6,7 @@ import Avatar, { AvatarSize } from './Avatar';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/Avatar',
+  title: '@helsenorge∕designsystem-react/Components/Avatar',
   component: Avatar,
   parameters: {
     docs: {

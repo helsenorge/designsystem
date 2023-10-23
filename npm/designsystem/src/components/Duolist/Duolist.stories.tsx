@@ -9,7 +9,7 @@ import GridExample from '../GridExample';
 import Title from '../Title';
 
 export default {
-  title: 'Components/Duolist',
+  title: '@helsenorge∕designsystem-react/Components/Duolist',
   component: Duolist,
   parameters: {
     docs: {

@@ -6,7 +6,7 @@ import StatusDot, { StatusDotVariant } from './StatusDot';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/StatusDot',
+  title: '@helsenorge∕designsystem-react/Components/StatusDot',
   component: StatusDot,
   parameters: {
     docs: {

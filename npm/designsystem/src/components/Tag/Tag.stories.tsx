@@ -8,7 +8,7 @@ import GridExample from '../GridExample';
 import LawBook from '../Icons/LawBook';
 
 export default {
-  title: 'Components/Tag',
+  title: '@helsenorge∕designsystem-react/Components/Tag',
   component: Tag,
   parameters: {
     docs: {

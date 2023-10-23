@@ -12,7 +12,7 @@ import VerticalDots from '../Icons/VerticalDots';
 import Title from '../Title';
 
 export default {
-  title: 'Components/Button',
+  title: '@helsenorge∕designsystem-react/Components/Button',
   component: Button,
   parameters: {
     docs: {

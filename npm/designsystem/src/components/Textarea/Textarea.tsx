@@ -124,16 +124,16 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     [styles['textarea--gutterBottom']]: gutterBottom,
   });
 
-  const contentWrapperClass = cn(styles['content-wrapper'], {
-    [styles['content-wrapper--transparent']]: transparent,
-    [styles['content-wrapper--on-blueberry']]: onBlueberry,
-    [styles['content-wrapper--on-dark']]: onDark,
-    [styles['content-wrapper--invalid']]: onError,
-    [styles['content-wrapper--disabled']]: props.disabled,
+  const contentWrapperClass = cn(styles['input-container'], {
+    [styles['input-container--transparent']]: transparent,
+    [styles['input-container--on-blueberry']]: onBlueberry,
+    [styles['input-container--on-dark']]: onDark,
+    [styles['input-container--invalid']]: onError,
+    [styles['input-container--disabled']]: props.disabled,
   });
 
-  const textareaClass = cn(styles['content-wrapper__input'], {
-    [styles[`content-wrapper__input--disabled`]]: props.disabled,
+  const textareaClass = cn(styles['input-container__input'], {
+    [styles[`input-container__input--disabled`]]: props.disabled,
   });
 
   useEffect(() => {

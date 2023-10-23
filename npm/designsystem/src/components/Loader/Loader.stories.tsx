@@ -10,7 +10,7 @@ import GridExample from '../GridExample';
 import Title from '../Title/Title';
 
 export default {
-  title: 'Components/Loader',
+  title: '@helsenorge∕designsystem-react/Components/Loader',
   component: Loader,
   parameters: {
     docs: {

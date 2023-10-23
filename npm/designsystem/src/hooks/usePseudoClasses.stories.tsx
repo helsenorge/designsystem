@@ -22,7 +22,7 @@ const UsePseudoClassesExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/usePseudoClasses',
+  title: '@helsenorge∕designsystem-react/Hooks/usePseudoClasses',
   component: UsePseudoClassesExample,
   parameters: {
     docs: {
