@@ -1,3 +1,19 @@
+## 6.0.0-beta.5 (2023-10-24)
+
+### ⚠ BREAKING CHANGES
+
+- props endret fra variant til size. bigform er nå large. normal er nå medium.
+
+### Reverts
+
+- legg tilbake additionaliconinformation
+  ([0b46b2c](https://github.com/helsenorge/designsystem/commit/0b46b2cbb029e9d85d021d477ef49bf24788c0d8))
+
+### Code Refactoring
+
+- formvariant heter nå formsize ([a8ef22c](https://github.com/helsenorge/designsystem/commit/a8ef22c9b4efdf063d4a861946f6407b60a5a580)),
+  closes [#305247](https://github.com/helsenorge/designsystem/issues/305247)
+
 ## 6.0.0-beta.4 (2023-10-23)
 
 ### Features
