@@ -2,11 +2,11 @@ import React, { AriaAttributes, useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
-import Icon, { IconProps, IconSize } from './../Icon';
+import Icon, { IconSize } from './../Icon';
 import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { useHover } from '../../hooks/useHover';
-import { useIcons } from '../../hooks/useIcons';
+import { BaseIconElement, useIcons } from '../../hooks/useIcons';
 import { useSize } from '../../hooks/useSize';
 import { getColor } from '../../theme/currys/color';
 import { breakpoints } from '../../theme/grid';
@@ -171,17 +171,14 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     checkOnlyIconAria(onlyIcon, ariaLabel, !isTest() && !isProd());
   }, []);
 
-  const renderIcon = (
-    iconElement: React.ReactElement<IconProps> | {} | undefined | null,
-    iconSize: number,
-    iconClassName?: string
-  ): React.ReactElement<IconProps> | React.Component<IconProps> | null => {
-    const color =
-      iconElement && (iconElement as React.ReactElement<IconProps>).props && (iconElement as React.ReactElement<IconProps>).props.color
-        ? (iconElement as React.ReactElement<IconProps>).props.color
-        : iconColor;
-    return iconElement && Object.keys(iconElement).length > 0
-      ? React.cloneElement(iconElement as React.ReactElement<IconProps>, { size: iconSize, color, isHovered, className: iconClassName })
+  const renderIcon = (iconElement: BaseIconElement | null, iconSize: number, iconClassName?: string): BaseIconElement | null => {
+    return iconElement
+      ? React.cloneElement(iconElement, {
+          size: iconSize,
+          color: iconElement?.props.color ? iconElement.props.color : iconColor,
+          isHovered,
+          className: iconClassName,
+        })
       : null;
   };
 

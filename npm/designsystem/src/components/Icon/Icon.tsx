@@ -7,9 +7,7 @@ import { useUuid } from '../../hooks/useUuid';
 
 export type SvgIcon = React.FC<SvgPathProps>;
 
-export interface IconProps {
-  /* Sets which icon should be displayed. */
-  svgIcon: SvgIcon;
+export interface BaseIconProps {
   /* aria-label for the <svg> element. Used as <title> tag. */
   ariaLabel?: string;
   /* Changes the size of the icon. */
@@ -24,6 +22,11 @@ export interface IconProps {
   isHovered?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
+}
+
+export interface IconProps extends BaseIconProps {
+  /* Sets which icon should be displayed. */
+  svgIcon: SvgIcon;
 }
 
 export interface SvgPathProps {

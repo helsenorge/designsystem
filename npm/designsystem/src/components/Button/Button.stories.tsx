@@ -9,6 +9,7 @@ import GridExample from '../GridExample';
 import Icon from '../Icon';
 import Dog from '../Icons/Dog';
 import VerticalDots from '../Icons/VerticalDots';
+import LazyIcon from '../LazyIcon';
 import Title from '../Title';
 
 export default {
@@ -113,6 +114,39 @@ export const Icons: ComponentStory<typeof Button> = (args: any) => (
     <br />
     <Button {...args} ariaLabel={'Verticaldots button'} ref={myRef5} onClick={action('Button clicked')}>
       <Icon svgIcon={VerticalDots} />
+    </Button>
+  </GridExample>
+);
+export const LazyIcons: ComponentStory<typeof Button> = (args: any) => (
+  <GridExample>
+    <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
+      {'Icons'}
+    </Title>
+    <Button {...args} ref={myRef1} onClick={action('Button clicked')}>
+      <LazyIcon iconName={'Dog'} />
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} ref={myRef2} onClick={action('Button clicked')}>
+      {args.children}
+      <LazyIcon iconName={'Dog'} />
+    </Button>
+    <br />
+    <br />
+    <Button {...args} ref={myRef3} onClick={action('Button clicked')} arrow>
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} ref={myRef4} onClick={action('Button clicked')} arrow>
+      <LazyIcon iconName={'Dog'} />
+      {args.children}
+    </Button>
+    <br />
+    <br />
+    <Button {...args} ariaLabel={'Verticaldots button'} ref={myRef5} onClick={action('Button clicked')}>
+      <LazyIcon iconName={'VerticalDots'} />
     </Button>
   </GridExample>
 );

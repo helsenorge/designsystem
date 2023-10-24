@@ -6,6 +6,7 @@ import { AnalyticsId } from '../../constants';
 import { useHover } from '../../hooks/useHover';
 import { palette, PaletteNames } from '../../theme/palette';
 import Icon, { IconSize, SvgIcon } from '../Icon';
+import { IconName } from '../Icons/IconNames';
 import Undo from '../Icons/Undo';
 import X from '../Icons/X';
 import LazyIcon from '../LazyIcon';
@@ -38,7 +39,7 @@ interface TagProps {
   /** Sets the background of the tag. Not used if action is "undo". Default: blueberry */
   color?: TagColors;
   /** Adds an icon to the tag. Not shown if action is set. */
-  svgIcon?: SvgIcon | string;
+  svgIcon?: SvgIcon | IconName;
   /* Changes the appearance of the tag. Not used if action is "undo". Default: normal */
   variant?: keyof typeof TagVariant;
   /* Makes the tag a clickable button that performs an action. onClick must also be set. */

@@ -11,6 +11,7 @@ import Button from '../Button';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
+import { IconName } from '../Icons/IconNames';
 import LazyIcon from '../LazyIcon';
 
 import styles from './styles.module.scss';
@@ -32,7 +33,7 @@ interface ExpanderProps {
   /** Sets the background of the expander. Requires size=ExpanderSize.large. */
   color?: ExpanderColors;
   /** Adds an icon to the expander trigger. Requires size=ExpanderSize.large. */
-  svgIcon?: SvgIcon | string;
+  svgIcon?: SvgIcon | IconName;
   /** Opens or closes the expander */
   expanded?: boolean;
   /** Removes border to the left of the content. Requires size=ExpanderSize.small. */

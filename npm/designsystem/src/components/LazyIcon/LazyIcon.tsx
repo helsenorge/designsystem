@@ -1,16 +1,17 @@
 import React, { lazy, Suspense } from 'react';
 
 import ErrorBoundary from './ErrorBoundary';
-import Icon, { IconProps, IconSize, SvgIcon } from '../Icon';
+import Icon, { BaseIconProps, IconSize, SvgIcon } from '../Icon';
+import { IconName } from '../Icons/IconNames';
 
-export type LazyIconProps = Omit<IconProps, 'svgIcon'> & {
+export interface LazyIconProps extends BaseIconProps {
   // Navnet på ikonet som skal vises. Tilsvarer filnavnet til ikonet i Icons-mappen
-  iconName: string;
-};
+  iconName: IconName;
+}
 
 const isServerSide = (): boolean => typeof document === 'undefined';
 
-export const lazyLoadIcon = (iconName: string): React.LazyExoticComponent<SvgIcon> =>
+export const lazyLoadIcon = (iconName: IconName): React.LazyExoticComponent<SvgIcon> =>
   lazy<SvgIcon>(() => import(`../Icons/${iconName}.tsx`));
 
 export const LazyIcon: React.FC<LazyIconProps> = ({ iconName, size = IconSize.Small, ...rest }) => {

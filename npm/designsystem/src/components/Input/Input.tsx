@@ -8,6 +8,7 @@ import { getColor } from '../../theme/currys';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icon';
+import { IconName } from '../Icons/IconNames';
 import { renderLabel } from '../Label';
 import LazyIcon from '../LazyIcon';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
@@ -44,7 +45,7 @@ export interface InputProps
   /** If true, the component will be transparent. */
   transparent?: boolean;
   /** Icon to be displayed next to the input field */
-  icon?: SvgIcon | string;
+  icon?: SvgIcon | IconName;
   /** Places the icon to the right */
   iconRight?: boolean;
   /** Changes the color profile of the input */

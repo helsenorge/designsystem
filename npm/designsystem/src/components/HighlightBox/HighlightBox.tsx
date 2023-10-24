@@ -6,6 +6,7 @@ import { useBreakpoint, Breakpoint } from '../..';
 import { AnalyticsId } from '../../constants';
 import { PaletteNames } from '../../theme/palette';
 import Icon, { SvgIcon, IconSize } from '../Icon';
+import { IconName } from '../Icons/IconNames';
 import LazyIcon from '../LazyIcon';
 import Title, { TitleTags } from '../Title';
 
@@ -32,7 +33,7 @@ interface HighlightBoxProps {
   /** Changes the size. Default: medium */
   size?: keyof typeof HighlightBoxSize;
   /** Adds an icon to the highlightbox. */
-  svgIcon?: SvgIcon | string;
+  svgIcon?: SvgIcon | IconName;
   /** Changes the underlying element. Default: div */
   htmlMarkup?: HighlightBoxTags;
   /** Adds custom classes to the element. */

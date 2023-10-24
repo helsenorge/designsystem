@@ -1,14 +1,23 @@
-import { IconProps } from '../components/Icon';
+import Icon, { BaseIconProps, IconProps } from '../components/Icon';
+import LazyIcon, { LazyIconProps } from '../components/LazyIcon';
+import { isComponent } from '../utils/component';
 
-export const useIcons = (children: React.ReactNode[]): Array<React.ReactElement<IconProps> | React.ReactNode | {} | undefined | null> => {
-  let leftIcon: React.ReactElement<IconProps> | undefined | null = null;
-  let rightIcon: React.ReactElement<IconProps> | undefined | null = null;
+export type BaseIconElement = React.ReactElement<BaseIconProps>;
 
-  if ((children[0] as React.ReactElement<IconProps>)?.props?.svgIcon !== undefined) {
-    leftIcon = children.shift() as React.ReactElement<IconProps>;
+export const useIcons = (children: React.ReactNode[]): [BaseIconElement | null, BaseIconElement | null, React.ReactNode[] | null] => {
+  let leftIcon: BaseIconElement | null = null;
+  let rightIcon: BaseIconElement | null = null;
+
+  const firstChild = children[0];
+  if (isComponent<IconProps>(firstChild, Icon) || isComponent<LazyIconProps>(firstChild, LazyIcon)) {
+    leftIcon = firstChild;
+    children.shift();
   }
-  if ((children[children.length - 1] as React.ReactElement<IconProps>)?.props?.svgIcon !== undefined) {
-    rightIcon = children.pop() as React.ReactElement<IconProps>;
+
+  const lastChild = children[children.length - 1];
+  if (isComponent<IconProps>(lastChild, Icon) || isComponent<LazyIconProps>(lastChild, LazyIcon)) {
+    rightIcon = lastChild;
+    children.pop();
   }
   const restChildren = children.filter(child => child);
 
