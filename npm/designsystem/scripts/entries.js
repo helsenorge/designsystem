@@ -26,7 +26,7 @@ export const alwaysIgnore = [
 ];
 
 const components = globSync(`src/components/**/index.{ts,tsx}`, { ignore: alwaysIgnore });
-const icons = globSync(`src/components/Icons/*.tsx`, { ignore: alwaysIgnore });
+const icons = globSync(`src/components/Icons/*.{ts,tsx}`, { ignore: alwaysIgnore });
 const hooksAndExtras = globSync(`src/**/*.{ts,tsx}`, { ignore: [...alwaysIgnore, 'src/components/**/*'] });
 const utils = globSync(`src/utils/*.ts`);
 

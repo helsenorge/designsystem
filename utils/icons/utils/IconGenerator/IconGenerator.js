@@ -9,7 +9,7 @@ class IconGenerator {
     this.url = 'https://confluence.atlassian.nhn.no/display/HR2/Ikoner+og+bruk+i+blokker';
   }
 
-  // Henter ut alle ikonnavn, og kategorier fra confluence og legger det inne i filen AdditionalIconInformation.js
+  // Henter ut alle ikonnavn, og kategorier fra confluence og legger det inne i filen AdditionalIconInformation.ts
   async main() {
     await this.page.goto(this.url, { waitUntil: 'domcontentloaded' });
     await this.page.waitForTimeout(40000);
@@ -80,7 +80,7 @@ class IconGenerator {
     try {
       console.log(this.list);
       writeFileSync(
-        '../../npm/designsystem/src/components/Icons/AdditionalIconInformation.js',
+        '../../npm/designsystem/src/components/Icons/AdditionalIconInformation.ts',
         'export default ' + JSON.stringify(this.list)
       );
     } catch (e) {
