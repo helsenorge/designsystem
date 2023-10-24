@@ -1,3 +1,11 @@
+## 6.0.0-beta.6 (2023-10-24)
+
+### Features
+
+- typesikkerhet ved lazy loading av ikoner
+  ([0d3f3fb](https://github.com/helsenorge/designsystem/commit/0d3f3fb734e503bd26429a8e84477bd53480dd93)), closes
+  [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+
 ## 6.0.0-beta.5 (2023-10-24)
 
 ### ⚠ BREAKING CHANGES
