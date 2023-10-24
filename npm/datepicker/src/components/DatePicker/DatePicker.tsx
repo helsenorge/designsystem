@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { format, isValid, parse } from 'date-fns';
+import { format, isValid, parse, subYears, addYears } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { ActiveModifiers, DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
 
@@ -22,7 +22,7 @@ import styles from './styles.module.scss';
 export type DateFormat = 'dd.MM.yyyy';
 
 export interface DatePickerProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby'>,
+  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur'>,
     Pick<DayPickerSingleProps, 'dir' | 'initialFocus'> {
   /** Adds custom classes to the element. */
   className?: string;
@@ -73,8 +73,9 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     footerContent,
     label,
     locale = nb,
-    maxDate,
-    minDate,
+    maxDate = addYears(new Date(), 1),
+    minDate = subYears(new Date(), 1),
+    onBlur,
     onChange,
     testId,
     ...rest
@@ -151,15 +152,28 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     activeModifiers: ActiveModifiers,
     e: React.MouseEvent<Element, MouseEvent>
   ): void => {
-    setDateState(date);
     setReturnInputFocus(true);
 
+    if (!date) {
+      setDatePickerOpen(false);
+      return;
+    }
+
+    setDateState(date);
+
     if (refObject.current) {
-      setInputValue(date ? format(date, dateFormat) : '');
+      setInputValue(format(date, dateFormat));
       setDatePickerOpen(false);
     }
 
     onChange && onChange(e, date);
+  };
+
+  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    if (!datepickerWrapperRef.current?.contains(e.relatedTarget as Node)) {
+      setDatePickerOpen(false);
+    }
+    onBlur && onBlur(e);
   };
 
   const handleButtonClick = (
@@ -181,6 +195,9 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       value={inputValue}
       width={14}
       {...rest}
+      onBlur={e => {
+        onBlur && onBlur(e);
+      }}
       onChange={e => handleInputChange(e, 'yyyy-MM-dd')}
     />
   );
@@ -199,6 +216,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           value={inputValue}
           width={12}
           {...rest}
+          onBlur={handleInputBlur}
           onChange={e => handleInputChange(e, dateFormat)}
           rightOfInput={
             <Button
