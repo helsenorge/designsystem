@@ -59,10 +59,10 @@ describe('Gitt at RadioButton skal vises', (): void => {
     });
   });
 
-  describe('Når formvariant er bigform', (): void => {
+  describe('Når size er large', (): void => {
     test('Så vises RadioButton checked state riktig styling', (): void => {
       render(
-        <FormGroup legend={'onwhite'} name="radio1" mode={'onwhite'} variant={'bigform'}>
+        <FormGroup legend={'onwhite'} name="radio1" mode={'onwhite'} size={'large'}>
           <RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} />
           <RadioButton label={<Label labelTexts={[{ text: 'Radio2' }]} />} />
         </FormGroup>
@@ -71,13 +71,13 @@ describe('Gitt at RadioButton skal vises', (): void => {
       const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
       fireEvent.click(screen.getByText('Radio1'));
 
-      expect(label).toHaveClass('radio-button-label radio-button-label__bigform radio-button-label__bigform--selected');
+      expect(label).toHaveClass('radio-button-label radio-button-label__large radio-button-label__large--selected');
 
       const label2 = screen.getByText('Radio2').parentElement?.parentElement?.parentElement;
       fireEvent.click(screen.getByText('Radio2'));
 
-      expect(label).toHaveClass('radio-button-label radio-button-label__bigform');
-      expect(label2).toHaveClass('radio-button-label radio-button-label__bigform radio-button-label__bigform--selected');
+      expect(label).toHaveClass('radio-button-label radio-button-label__large');
+      expect(label2).toHaveClass('radio-button-label radio-button-label__large radio-button-label__large--selected');
     });
   });
 

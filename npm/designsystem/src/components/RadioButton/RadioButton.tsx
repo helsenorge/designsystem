@@ -35,15 +35,15 @@ export interface RadioButtonProps
   testId?: string;
 }
 
-export const getRadioLabelClasses = (radioId: string, mode: FormMode, bigform: boolean, checkedRadioId?: string): string | undefined => {
+export const getRadioLabelClasses = (radioId: string, mode: FormMode, large: boolean, checkedRadioId?: string): string | undefined => {
   const onCherry = mode === 'oninvalid';
   const checked = radioId === checkedRadioId;
 
   return classNames({
-    [radioButtonStyles['radio-button-label__bigform--on-grey']]: bigform && mode === 'ongrey' && !checked,
-    [radioButtonStyles['radio-button-label__bigform--on-blueberry']]: mode === 'onblueberry' && !checked && bigform,
-    [radioButtonStyles['radio-button-label__bigform--selected']]: bigform && checked && !onCherry,
-    [radioButtonStyles['radio-button-label__bigform--selected-invalid']]: bigform && checked && onCherry,
+    [radioButtonStyles['radio-button-label__large--on-grey']]: large && mode === 'ongrey' && !checked,
+    [radioButtonStyles['radio-button-label__large--on-blueberry']]: mode === 'onblueberry' && !checked && large,
+    [radioButtonStyles['radio-button-label__large--selected']]: large && checked && !onCherry,
+    [radioButtonStyles['radio-button-label__large--selected-invalid']]: large && checked && onCherry,
   });
 };
 
