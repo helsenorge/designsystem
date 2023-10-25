@@ -1,3 +1,9 @@
+## [5.0.0-datepicker-beta-4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.0.0-datepicker-beta-3&targetVersion=GTv5.0.0-datepicker-beta-4) (2023-10-25)
+
+### Bug Fixes
+
+- fikset bygg ([9922776](https://github.com/helsenorge/designsystem/commit/992277651bdf919e9f3844f80b6b10cb0eceb40d))
+
 ## [5.0.0-datepicker-beta-3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.0.0-datepicker-beta-2&targetVersion=GTv5.0.0-datepicker-beta-3) (2023-10-25)
 
 ## [5.0.0-datepicker-beta-2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.0.0&targetVersion=GTv5.0.0-datepicker-beta-2) (2023-10-25)
