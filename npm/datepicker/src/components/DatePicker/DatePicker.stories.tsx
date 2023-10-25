@@ -1,13 +1,12 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { parse } from 'date-fns';
 import { ar } from 'date-fns/locale';
 import { useForm } from 'react-hook-form';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import GridExample from '@helsenorge/designsystem-react/components/GridExample';
-import Icon from '@helsenorge/designsystem-react/components/Icons';
+import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Label from '@helsenorge/designsystem-react/components/Label';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
