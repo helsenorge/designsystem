@@ -13,6 +13,7 @@ import Input from '../Input';
 import Label from '../Label';
 import RadioButton from '../RadioButton';
 import Select from '../Select';
+import Spacer from '../Spacer';
 import Textarea from '../Textarea';
 import Validation from '../Validation';
 
@@ -332,6 +333,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       <Validation size={props.size} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
         {getFormExample()}
       </Validation>
+      <Spacer />
       <Button type="submit">{'Send inn'}</Button>
     </form>
   );
