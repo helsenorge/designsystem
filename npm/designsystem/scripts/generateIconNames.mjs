@@ -12,9 +12,11 @@ const iconNameList = iconList
   .map(path => parse(path).name)
   .map(name => `'${name}'`)
   .sort((a, b) => a.localeCompare(b))
-  .join('| ');
+  .join(',');
 
-const contents = `export type IconName = ${iconNameList};`;
+const contents = `export const IconList = [${iconNameList}] as const;
+
+export type IconName = (typeof IconList)[number];`;
 
 const options = await prettier.resolveConfig(OUTPUT_FILE);
 
