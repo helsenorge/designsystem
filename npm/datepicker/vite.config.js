@@ -32,7 +32,10 @@ export default defineConfig({
           hook: 'writeBundle',
         }),
         copy({
-          targets: [{ src: 'src/components/**/*.module.scss*', dest: OUTPUT_DIRECTORY }],
+          targets: [
+            { src: 'src/components/**/*.module.scss*', dest: OUTPUT_DIRECTORY },
+            { src: 'types/**/*.d.ts*', dest: OUTPUT_DIRECTORY + '/components/DatePicker' },
+          ],
           hook: 'writeBundle',
           flatten: false,
         }),
