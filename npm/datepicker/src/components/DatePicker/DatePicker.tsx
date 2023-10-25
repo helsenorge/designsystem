@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { format, isValid, parse, subYears, addYears } from 'date-fns';
+import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { ActiveModifiers, DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
 
@@ -73,8 +73,8 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     footerContent,
     label,
     locale = nb,
-    maxDate = addYears(new Date(), 1),
-    minDate = subYears(new Date(), 1),
+    maxDate,
+    minDate,
     onBlur,
     onChange,
     testId,
