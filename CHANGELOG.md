@@ -1,3 +1,12 @@
+## 6.0.0-beta.7 (2023-10-25)
+
+### Bug Fixes
+
+- datepicker ux endringer etter feedback
+  ([db17354](https://github.com/helsenorge/designsystem/commit/db173541a1c0c5f1dc4c9b8fe42c6df3763e13e3)), closes
+  [#306637](https://github.com/helsenorge/designsystem/issues/306637)
+- ikon-import ([c3d3ae1](https://github.com/helsenorge/designsystem/commit/c3d3ae18b3792918953f6f447500888b019f3444))
+
 ## 6.0.0-beta.6 (2023-10-24)
 
 ### Features
@@ -11,6 +20,11 @@
 ### ⚠ BREAKING CHANGES
 
 - props endret fra variant til size. bigform er nå large. normal er nå medium.
+
+### Features
+
+- nytt komponent datepicker ([59d3193](https://github.com/helsenorge/designsystem/commit/59d3193992d1c98b4f38a12d9aae03909f0653b0)), closes
+  [#306637](https://github.com/helsenorge/designsystem/issues/306637)
 
 ### Reverts
 
@@ -55,6 +69,14 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 - lazy loading av ikoner ([f688e78](https://github.com/helsenorge/designsystem/commit/f688e78a955bb43a2efa92b72b208c582dbfdd1d)), closes
   [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+- select støtter onChange ([3439471](https://github.com/helsenorge/designsystem/commit/3439471cbe7481ee8a0db1b8a2aca0071a379f43)), closes
+  [#309850](https://github.com/helsenorge/designsystem/issues/309850)
+
+### Bug Fixes
+
+- radiobutton bigform checked styling
+  ([1cf5580](https://github.com/helsenorge/designsystem/commit/1cf5580270313614719d92fbb1a01dab5881d742)), closes
+  [#305272](https://github.com/helsenorge/designsystem/issues/305272)
 
 ## [5.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.4.0&targetVersion=GTv5.0.0) (2023-09-25)
 
