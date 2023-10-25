@@ -1,3 +1,21 @@
+## [5.0.0-datepicker-beta-2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.0.0&targetVersion=GTv5.0.0-datepicker-beta-2) (2023-10-25)
+
+### Features
+
+- nytt komponent datepicker ([59d3193](https://github.com/helsenorge/designsystem/commit/59d3193992d1c98b4f38a12d9aae03909f0653b0)), closes
+  [#306637](https://github.com/helsenorge/designsystem/issues/306637)
+- select støtter onChange ([3439471](https://github.com/helsenorge/designsystem/commit/3439471cbe7481ee8a0db1b8a2aca0071a379f43)), closes
+  [#309850](https://github.com/helsenorge/designsystem/issues/309850)
+
+### Bug Fixes
+
+- datepicker ux endringer etter feedback
+  ([ec32437](https://github.com/helsenorge/designsystem/commit/ec32437dda99f265d2ef9125517cebea1f1316d8))
+- pr feedback ([a40651e](https://github.com/helsenorge/designsystem/commit/a40651ef7bc52e0f60a74699e41183c96f6e0db4))
+- radiobutton bigform checked styling
+  ([1cf5580](https://github.com/helsenorge/designsystem/commit/1cf5580270313614719d92fbb1a01dab5881d742)), closes
+  [#305272](https://github.com/helsenorge/designsystem/issues/305272)
+
 ## [5.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.4.0&targetVersion=GTv5.0.0) (2023-09-25)
 
 ### ⚠ BREAKING CHANGES
