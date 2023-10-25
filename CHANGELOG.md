@@ -1,3 +1,5 @@
+## [5.0.0-datepicker-beta-3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.0.0-datepicker-beta-2&targetVersion=GTv5.0.0-datepicker-beta-3) (2023-10-25)
+
 ## [5.0.0-datepicker-beta-2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.0.0&targetVersion=GTv5.0.0-datepicker-beta-2) (2023-10-25)
 
 ### Features
