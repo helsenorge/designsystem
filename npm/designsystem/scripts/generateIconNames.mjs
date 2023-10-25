@@ -2,7 +2,7 @@ import { writeFileSync } from 'fs';
 import { parse } from 'path';
 
 import { glob } from 'glob';
-import * as prettier from 'prettier';
+import prettier from 'prettier';
 
 const OUTPUT_FILE = 'src/components/Icons/IconNames.ts';
 
