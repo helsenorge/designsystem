@@ -15,7 +15,10 @@ import selectStyles from './styles.module.scss';
 type SelectConcept = 'normal' | 'transparent';
 
 export interface SelectProps
-  extends Pick<React.SelectHTMLAttributes<HTMLSelectElement>, 'aria-describedby' | 'name' | 'disabled' | 'required' | 'value'> {
+  extends Pick<
+    React.SelectHTMLAttributes<HTMLSelectElement>,
+    'aria-describedby' | 'name' | 'disabled' | 'required' | 'value' | 'onChange'
+  > {
   /** Component shown after label */
   afterLabelChildren?: React.ReactNode;
   /** Sets the content of the select element. */

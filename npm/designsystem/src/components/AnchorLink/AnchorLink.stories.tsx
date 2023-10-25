@@ -7,7 +7,7 @@ import AnchorLink from './AnchorLink';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/AnchorLink',
+  title: '@helsenorge∕designsystem-react/Components/AnchorLink',
   component: AnchorLink,
   parameters: {
     docs: {

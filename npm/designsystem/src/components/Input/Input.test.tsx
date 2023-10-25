@@ -18,7 +18,7 @@ describe('Gitt at Input skal vises', (): void => {
 
       const input = screen.getByRole('textbox');
       expect(input).toBeVisible();
-      expect(input).toHaveClass('content-wrapper__input');
+      expect(input).toHaveClass('input-container__input');
     });
   });
 
@@ -36,7 +36,7 @@ describe('Gitt at Input skal vises', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} mode={FormMode.onblueberry} />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
-      expect(contentWrapper).toHaveClass('content-wrapper content-wrapper--on-blueberry');
+      expect(contentWrapper).toHaveClass('input-container input-container--on-blueberry');
     });
   });
   describe('Når mode er ondark', (): void => {
@@ -44,7 +44,7 @@ describe('Gitt at Input skal vises', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} mode={FormMode.ondark} />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
-      expect(contentWrapper).toHaveClass('content-wrapper content-wrapper--on-dark');
+      expect(contentWrapper).toHaveClass('input-container input-container--on-dark');
     });
   });
   describe('Når transparent er true', (): void => {
@@ -52,7 +52,7 @@ describe('Gitt at Input skal vises', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} transparent />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
-      expect(contentWrapper).toHaveClass('content-wrapper content-wrapper--transparent');
+      expect(contentWrapper).toHaveClass('input-container input-container--transparent');
     });
   });
   describe('Når size er large', (): void => {
@@ -60,7 +60,7 @@ describe('Gitt at Input skal vises', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} size={FormSize.large} />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
-      expect(contentWrapper).toHaveClass('content-wrapper content-wrapper--large');
+      expect(contentWrapper).toHaveClass('input-container input-container--large');
     });
   });
 
@@ -108,7 +108,7 @@ describe('Gitt at Input skal vises', (): void => {
     test('Så skal invalid styling brukes', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} error />);
       const contentWrapper = screen.getByRole('textbox').parentElement;
-      expect(contentWrapper).toHaveClass('content-wrapper content-wrapper--invalid');
+      expect(contentWrapper).toHaveClass('input-container input-container--invalid');
     });
   });
 

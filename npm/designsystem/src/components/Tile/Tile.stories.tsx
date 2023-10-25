@@ -9,7 +9,7 @@ import Icon, { IconSize } from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 
 export default {
-  title: 'Components/Tile',
+  title: '@helsenorge∕designsystem-react/Components/Tile',
   component: Tile,
   parameters: {
     docs: {

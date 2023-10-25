@@ -28,7 +28,7 @@ import {
 } from './';
 
 export default {
-  title: 'Components/Table',
+  title: '@helsenorge∕designsystem-react/Components/Table',
   component: Table,
   parameters: {
     docs: {

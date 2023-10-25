@@ -10,7 +10,7 @@ import GridExample from '../GridExample';
 import Stepper from '../Stepper';
 
 export default {
-  title: 'Components/Step',
+  title: '@helsenorge∕designsystem-react/Components/Step',
   component: Step,
   parameters: {
     docs: {

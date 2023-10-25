@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId, FormMode, FormSize } from '../../constants';
 import { isComponent } from '../../utils/component';
+import uuid from '../../utils/uuid';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import ErrorWrapper from '../ErrorWrapper';
 import FormLayout, { FormLayoutProps } from '../FormLayout';
 import Input, { InputProps } from '../Input/Input';
-import RadioButton, { RadioButtonProps } from '../RadioButton/RadioButton';
+import RadioButton, { RadioButtonProps, getRadioLabelClasses } from '../RadioButton/RadioButton';
 import Select, { SelectProps } from '../Select';
 import Title from '../Title';
 
@@ -62,6 +63,8 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     errorWrapperClassName,
     errorWrapperTestId,
   } = props;
+  const [checkedRadioId, setCheckedRadioId] = useState<string>();
+  const [radioGroupId] = useState<string>(uuid());
   const onDark = mode === FormMode.ondark;
   const isLarge = size === FormSize.large;
   const formGroupWrapperClasses = classNames(
@@ -85,7 +88,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
 
   const fieldsetClasses = classNames(formGroupStyles['field-set'], fieldsetClassName);
 
-  const mapFormComponent = (child: React.ReactNode): React.ReactNode => {
+  const mapFormComponent = (child: React.ReactNode, index: number): React.ReactNode => {
     if (isComponent<FormGroupProps>(child, FormLayout)) {
       return React.cloneElement(child as React.ReactElement<FormLayoutProps>, {
         size,
@@ -106,11 +109,18 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         error: !!error,
       });
     } else if (isComponent<RadioButtonProps>(child, RadioButton)) {
+      const radioId = typeof child.props.inputId === 'undefined' ? radioGroupId + index : child.props.inputId;
       return React.cloneElement(child as React.ReactElement<RadioButtonProps>, {
+        inputId: radioId,
         name: name ?? child.props.name,
         mode,
         size,
+        onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+          setCheckedRadioId(event.target.id);
+          child.props.onChange && child.props.onChange(event);
+        },
         error: !!error,
+        labelClassNames: getRadioLabelClasses(radioId, mode as FormMode, isLarge, checkedRadioId),
       });
     } else if (isComponent<InputProps>(child, Input)) {
       return React.cloneElement(child as React.ReactElement<InputProps>, {
@@ -129,7 +139,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     return child;
   };
 
-  const formGroupContent = () => {
+  const formGroupContent = (): React.ReactNode => {
     return (
       <div className={formGroupClasses}>
         {htmlMarkup === 'div' && (

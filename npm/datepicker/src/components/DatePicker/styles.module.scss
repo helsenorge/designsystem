@@ -1,3 +1,284 @@
-.datepicker {
-  // todo
+@use 'sass:map';
+@import '@helsenorge/designsystem-react/scss/spacers';
+@import '@helsenorge/designsystem-react/scss/breakpoints';
+@import '@helsenorge/designsystem-react/scss/palette';
+@import '@helsenorge/designsystem-react/scss/font-settings';
+
+.date-time-picker-wrapper {
+  display: flex;
+  align-items: flex-end;
+  flex-flow: row wrap;
+
+  @media (min-width: map.get($grid-breakpoints, sm)) {
+    flex-flow: row nowrap;
+  }
+
+  &__date-picker {
+    flex: 100%;
+    margin-right: getSpacer(l);
+
+    @media (min-width: map.get($grid-breakpoints, sm)) {
+      flex: unset;
+    }
+  }
 }
+
+.time-separator {
+  display: flex;
+  align-items: center;
+  padding: 0 getSpacer(2xs);
+}
+
+.datepicker-popup-container {
+  position: fixed;
+  visibility: hidden;
+  z-index: 10;
+
+  &--visible {
+    visibility: visible;
+  }
+}
+
+.datepicker-popup-arrow {
+  --drop-shadow-color: #{$blueberry500};
+
+  width: 0;
+  height: 0;
+  position: fixed;
+  visibility: hidden;
+  border-style: solid;
+  border-color: transparent;
+  z-index: 10;
+
+  &--visible {
+    visibility: visible;
+  }
+
+  &--over {
+    border-width: 0.625rem;
+    border-bottom-color: $white;
+    filter: drop-shadow(var(--drop-shadow-color) 0 0.125rem 0.375rem 0.125rem);
+    filter: drop-shadow(0 -0.185rem 0 var(--drop-shadow-color));
+  }
+
+  &--under {
+    border-width: 0.625rem;
+    border-top-color: $white;
+    filter: drop-shadow(var(--drop-shadow-color) 0 0.125rem 0.375rem 0.125rem);
+    filter: drop-shadow(0 0.2rem 0 var(--drop-shadow-color));
+  }
+}
+
+.date-button {
+  position: absolute;
+  z-index: 10;
+  right: 0.1rem;
+  top: 0.1rem;
+}
+
+.footer-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+// Overstyrer klasser til datedaypicker pakken https://github.com/gpbl/react-day-picker/blob/main/src/style.css
+/* stylelint-disable */
+.root {
+  --rdp-cell-size: getSpacer(l);
+  --rdp-background-color: #e7edff;
+
+  background-color: $white;
+  padding: getSpacer(s) getSpacer(s) getSpacer(xs);
+  border: 2px solid $blueberry500;
+}
+
+.month {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  margin: 0 getSpacer(3xs) * -1 getSpacer(4xs) * -1;
+  border-spacing: getSpacer(3xs) getSpacer(4xs);
+  border-collapse: separate;
+
+  @media (min-width: map.get($grid-breakpoints, sm)) {
+    margin: 0 getSpacer(xs) * -1 getSpacer(3xs) * -1;
+    border-spacing: getSpacer(xs) getSpacer(3xs);
+  }
+}
+
+.head_cell {
+  color: $neutral700;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: $font-size-sm;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.day {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $blueberry600;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: getSpacer(l);
+  max-width: getSpacer(l);
+  height: getSpacer(l);
+  margin: 0;
+  border: 2px solid transparent;
+  border-radius: 0;
+
+  &:focus-visible:not([disabled]),
+  &:focus:not([disabled]) {
+    background-color: $neutral100;
+    color: $blueberry600;
+    text-decoration: underline 2px $blueberry600;
+    outline: none;
+  }
+
+  &:hover:not([disabled]):not(._day_selected) {
+    background-color: $neutral100;
+  }
+
+  &--today {
+    background-color: $blueberry100;
+    color: $blueberry600;
+
+    &:hover:not([disabled]):not(._day_selected) {
+      background-color: $blueberry200;
+    }
+
+    &:focus-visible:not([disabled]),
+    &:focus:not([disabled]) {
+      background-color: $blueberry200;
+      text-decoration: underline 2px $blueberry600;
+      outline: none;
+    }
+  }
+
+  &--disabled:not(.day_selected) {
+    opacity: 1 !important;
+    color: $neutral400;
+
+    &:hover {
+      background-color: $white;
+    }
+  }
+}
+
+.day_selected {
+  background-color: $blueberry500;
+  color: $white;
+
+  &:hover:not([disabled]):not(._day_selected) {
+    background-color: $blueberry700;
+  }
+
+  &:focus-visible:not([disabled]),
+  &:focus:not([disabled]) {
+    background-color: $blueberry700;
+    color: $white;
+    text-decoration: underline 2px $white;
+    outline: none;
+  }
+}
+
+.day:hover {
+  background-color: $neutral100;
+}
+
+.dropdown {
+  appearance: none;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+  border: none;
+  background-color: transparent;
+  font-size: $font-size-sm;
+  line-height: inherit;
+  text-transform: capitalize;
+
+  &:disabled {
+    opacity: unset;
+    color: unset;
+  }
+
+  &:focus-visible:not([disabled]) + .caption_label,
+  &:focus:not([disabled]) + .caption_label {
+    box-shadow: 0 0 0 4px $neutral900;
+    border-radius: 0;
+  }
+}
+
+.caption_label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  white-space: nowrap;
+  color: currentColor;
+  border: 2px solid transparent;
+  font-size: $font-size-sm;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+}
+
+.dropdown_month,
+.dropdown_year {
+  color: $blueberry600;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-transform: capitalize;
+  font-size: $font-size-md;
+  font-weight: 600;
+}
+
+.dropdown_month {
+  margin-right: getSpacer(2xs);
+}
+
+.nav_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  padding: 0.25em;
+  border-radius: 0;
+
+  &[disabled] {
+    margin-left: getSpacer(xs);
+  }
+
+  &:focus-visible:not([disabled]),
+  &:focus:not([disabled]) {
+    box-shadow: 0 0 0 4px $neutral900;
+    background-color: $neutral100;
+  }
+
+  &:hover:not([disabled]):not(.day_selected) {
+    background-color: $neutral100;
+  }
+}
+
+.nav_button_next,
+.nav_button_next[disabled],
+.nav_button_next[disabled]:not(.day_selected) {
+  margin-left: getSpacer(2xs);
+}
+/* stylelint-enable */

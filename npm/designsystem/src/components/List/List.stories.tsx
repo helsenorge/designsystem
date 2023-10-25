@@ -8,7 +8,7 @@ import { mediumLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/List',
+  title: '@helsenorge∕designsystem-react/Components/List',
   component: List,
   parameters: {
     docs: {

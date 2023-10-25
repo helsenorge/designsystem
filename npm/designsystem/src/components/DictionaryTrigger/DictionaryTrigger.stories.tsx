@@ -8,7 +8,7 @@ import { mediumLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/DictionaryTrigger',
+  title: '@helsenorge∕designsystem-react/Components/DictionaryTrigger',
   component: DictionaryTrigger,
   parameters: {
     docs: {

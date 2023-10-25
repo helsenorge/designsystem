@@ -6,7 +6,7 @@ import HighlightBox, { HighlightBoxSize } from './HighlightBox';
 import PdfFile from '../Icons/PdfFile';
 
 export default {
-  title: 'Components/HighlightBox',
+  title: '@helsenorge∕designsystem-react/Components/HighlightBox',
   component: HighlightBox,
   parameters: {
     docs: {

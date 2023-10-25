@@ -215,13 +215,16 @@
 .mobile {
   display: flex;
   align-items: center;
-  @media screen and (min-width: 768px) {
+
+  @media screen and (width >= 768px) {
     @include sr-only;
   }
 }
+
 .desktop {
   display: none;
-  @media screen and (min-width: 768px) {
+
+  @media screen and (width >= 768px) {
     display: flex;
   }
 }

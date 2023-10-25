@@ -1,4 +1,7 @@
 module.exports = {
+  env: {
+    node: true,
+  },
   root: true,
   extends: ['@helsenorge/eslint-config'],
   overrides: [

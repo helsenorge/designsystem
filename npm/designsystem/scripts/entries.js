@@ -1,7 +1,7 @@
 import { globSync } from 'glob';
 
 const getEntryName = name => {
-  return name.replace(/^src\//, '').replace(/\.tsx?$/, '');
+  return name.replace(/^src[/\\]/, '').replace(/\.tsx?$/, '');
 };
 
 const createEntries = (entryList, entry) => {

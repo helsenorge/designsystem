@@ -10,7 +10,7 @@ import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 
 export default {
-  title: 'Components/Textarea',
+  title: '@helsenorge∕designsystem-react/Components/Textarea',
   component: Textarea,
   parameters: {
     docs: {

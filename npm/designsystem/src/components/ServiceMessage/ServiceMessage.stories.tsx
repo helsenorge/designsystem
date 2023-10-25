@@ -6,7 +6,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import ServiceMessage from './ServiceMessage';
 
 export default {
-  title: 'Components/ServiceMessage',
+  title: '@helsenorge∕designsystem-react/Components/ServiceMessage',
   component: ServiceMessage,
   parameters: {
     docs: {

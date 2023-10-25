@@ -26,7 +26,7 @@ const UseStickyExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useSticky',
+  title: '@helsenorge∕designsystem-react/Hooks/useSticky',
   component: UseStickyExample,
   parameters: {
     docs: {

@@ -8,7 +8,7 @@ import GridExample from '../GridExample';
 import Label from '../Label/Label';
 
 export default {
-  title: 'Components/Checkbox',
+  title: '@helsenorge∕designsystem-react/Components/Checkbox',
   component: Checkbox,
   parameters: {
     docs: {

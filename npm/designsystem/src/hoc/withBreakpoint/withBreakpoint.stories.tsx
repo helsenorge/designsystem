@@ -21,7 +21,7 @@ const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
 const ExampleWithBreakpoint = withBreakpoint(Example);
 
 export default {
-  title: 'HOC/withBreakpoint',
+  title: '@helsenorge∕designsystem-react/HOC/withBreakpoint',
   component: ExampleWithBreakpoint,
   parameters: {
     docs: {

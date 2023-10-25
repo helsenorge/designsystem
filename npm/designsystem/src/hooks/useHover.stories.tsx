@@ -19,7 +19,7 @@ const UseHoverExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useHover',
+  title: '@helsenorge∕designsystem-react/Hooks/useHover',
   component: UseHoverExample,
   parameters: {
     docs: {

@@ -42,7 +42,7 @@ const UseFocusTrapExample: React.FC = () => {
 };
 
 export default {
-  title: 'Hooks/useFocusTrap',
+  title: '@helsenorge∕designsystem-react/Hooks/useFocusTrap',
   component: UseFocusTrapExample,
   parameters: {
     docs: {

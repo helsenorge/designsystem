@@ -7,7 +7,7 @@ import { allLogoPaletteNames } from '../../../.storybook/knobs';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/Logo',
+  title: '@helsenorge∕designsystem-react/Components/Logo',
   component: Logo,
   parameters: {
     docs: {
