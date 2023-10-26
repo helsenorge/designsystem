@@ -1,3 +1,23 @@
+## [5.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.0.0&targetVersion=GTv5.1.0) (2023-10-26)
+
+### Features
+
+- nytt komponent datepicker ([59d3193](https://github.com/helsenorge/designsystem/commit/59d3193992d1c98b4f38a12d9aae03909f0653b0)), closes
+  [#306637](https://github.com/helsenorge/designsystem/issues/306637)
+- select støtter onChange ([3439471](https://github.com/helsenorge/designsystem/commit/3439471cbe7481ee8a0db1b8a2aca0071a379f43)), closes
+  [#309850](https://github.com/helsenorge/designsystem/issues/309850)
+
+### Bug Fixes
+
+- datepicker ux endringer etter feedback
+  ([db17354](https://github.com/helsenorge/designsystem/commit/db173541a1c0c5f1dc4c9b8fe42c6df3763e13e3)), closes
+  [#306637](https://github.com/helsenorge/designsystem/issues/306637)
+- radiobutton bigform checked styling
+  ([1cf5580](https://github.com/helsenorge/designsystem/commit/1cf5580270313614719d92fbb1a01dab5881d742)), closes
+  [#305272](https://github.com/helsenorge/designsystem/issues/305272)
+- vite bygg og dependencies ([2e45dcd](https://github.com/helsenorge/designsystem/commit/2e45dcd23494ae77341cff0b02c6517011ca4cbe)), closes
+  [#306637](https://github.com/helsenorge/designsystem/issues/306637)
+
 ## [5.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.4.0&targetVersion=GTv5.0.0) (2023-09-25)
 
 ### ⚠ BREAKING CHANGES
