@@ -16,8 +16,6 @@ import Select from '../Select';
 import Textarea from '../Textarea';
 import Validation from '../Validation';
 
-import styles from './styles.module.scss';
-
 interface FormExampleProps {
   exampleType: FormExampleVariants;
   variant?: keyof typeof FormVariant;
@@ -30,7 +28,6 @@ export enum FormExampleVariants {
   textarea = 'textarea',
   input = 'input',
   select = 'select',
-  date = 'date',
 }
 
 export const FormExample = (props: FormExampleProps): JSX.Element => {
@@ -62,9 +59,6 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   const field4 = 'field4';
   const field5 = 'field5';
   const field6 = 'field6';
-  const field7 = 'field7';
-  const field8 = 'field8';
-  const field9 = 'field9';
   const allErrors =
     errors.field1 ||
     errors.field2 ||
@@ -94,22 +88,6 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   };
   const requireSelect = (value: Array<string>): true | string => {
     return value.toString() === 'Option 2' || errorMessage5;
-  };
-  const requireDate = (value: Date, min: Date, max: Date): true | string => {
-    const dateValue = new Date(value);
-    return (!!value && dateValue.getTime() >= min.getTime() && dateValue.getTime() <= max.getTime()) || errorMessage6;
-  };
-  const requireTime = (hour: number, minute: number): true | string => {
-    const newDate = new Date();
-    newDate.setHours(hour);
-    newDate.setMinutes(minute);
-    newDate.setSeconds(0);
-    const minTime = minDate.toLocaleTimeString('nb');
-    const maxTime = maxDate.toLocaleTimeString('nb');
-    const valueTime = newDate.toLocaleTimeString('nb');
-    // eslint-disable-next-line no-console
-    console.log('value', valueTime);
-    return (!!newDate && valueTime >= minTime && valueTime <= maxTime) || errorMessage7;
   };
 
   const getFormExample = () => {
@@ -273,55 +251,6 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
         </Select>
-      );
-    } else if (exampleType === FormExampleVariants.date) {
-      const currentError = errors.field7 || errors.field8 || errors.field9;
-      return (
-        <>
-          <FormGroup
-            legend={'Velg en dato og et klokkeslett'}
-            fieldsetClassName={styles['date-time']}
-            error={currentError ? (currentError.message as string) : undefined}
-          >
-            <Input
-              className={styles['date-time__date-picker']}
-              label={<Label labelTexts={[{ text: 'dato', type: 'semibold' }]} />}
-              width={20}
-              type={'date'}
-              defaultValue={defaultDate.toLocaleDateString('en-CA')}
-              min={minDate.toLocaleDateString('en-CA')}
-              max={maxDate.toLocaleDateString('en-CA')}
-              {...register(field7, { validate: (value): true | string => requireDate(value, minDate, maxDate) })}
-            />
-            <FormGroup htmlMarkup={'div'} fieldsetClassName={styles['date-time__time-wrapper']}>
-              <Input
-                label={<Label labelId={'time-label-id'} labelTexts={[{ text: 'klokke', type: 'semibold' }]} />}
-                width={4}
-                type={'number'}
-                defaultValue={defaultDate.toLocaleTimeString('nb', {
-                  hour: '2-digit',
-                })}
-                max={23}
-                min={0}
-                // Må oppdateres med validering som tar hensyn til timer og minutter i sammenheng med hverandre
-                {...register(field8, { validate: (value): true | string => requireTime(value, value) })}
-              />
-              <span className={styles['date-time__time-separator']}>{':'}</span>
-              <Input
-                aria-labelledby={'time-label-id'}
-                width={4}
-                type={'number'}
-                defaultValue={defaultDate.toLocaleTimeString('nb', {
-                  minute: '2-digit',
-                })}
-                max={59}
-                min={0}
-                // Må oppdateres med validering som tar hensyn til timer og minutter i sammenheng med hverandre
-                {...register(field9, { validate: (value): true | string => requireTime(7, value) })}
-              />
-            </FormGroup>
-          </FormGroup>
-        </>
       );
     }
   };
