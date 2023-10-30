@@ -1,3 +1,13 @@
+## [5.1.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.0&targetVersion=GTv5.1.1) (2023-10-30)
+
+### Bug Fixes
+
+- input type number base inkrementering verdi
+  ([6b8113e](https://github.com/helsenorge/designsystem/commit/6b8113ea73653981cfe80f7012508b7ee77279e8)), closes
+  [#312174](https://github.com/helsenorge/designsystem/issues/312174)
+- input width fikset ([07a4c52](https://github.com/helsenorge/designsystem/commit/07a4c52cbfa04b1a19cf983227eb28968607baeb)), closes
+  [#312326](https://github.com/helsenorge/designsystem/issues/312326)
+
 ## [5.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.0.0&targetVersion=GTv5.1.0) (2023-10-26)
 
 ### Features
