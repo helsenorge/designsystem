@@ -37,6 +37,8 @@ export interface InputProps
     | 'onKeyDown'
     | 'autoFocus'
   > {
+  /** The number at which the input field starts when you increment or decrement it */
+  baseIncrementValue?: number;
   /** Adds custom classes to the element. */
   className?: string;
   /**  HMTL Input type */
@@ -105,9 +107,11 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     transparent = false,
     icon,
     iconRight,
+    inputId,
     inputWrapperRef,
     mode = FormMode.onwhite,
     size,
+    baseIncrementValue,
     label,
     error,
     errorText,
@@ -128,8 +132,11 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   } = props;
   const breakpoint = useBreakpoint();
   const inputContainerRef = useRef<HTMLDivElement>(null);
-  const inputId = useUuid(props.inputId);
+  const inputIdState = useUuid(inputId);
   const [input, setInput] = useState(defaultValue || '');
+  const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
+  const numKeyPressed = useRef<boolean>(false);
+  const numRegex = /^[0-9]$/;
 
   const onDark = mode === FormMode.ondark;
   const onBlueberry = mode === FormMode.onblueberry;
@@ -182,10 +189,40 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newValue = getIncrementValue(e);
+
     if (onChange) {
       onChange(e);
     }
-    setInput(e.target.value);
+
+    setInput(newValue);
+    setPrevValue(newValue);
+  };
+
+  // Hvis bruker endrer number value med 1 og det skal startes på en annen verdi enn 0
+  const getIncrementValue = (e: React.ChangeEvent<HTMLInputElement>): string => {
+    if (typeof baseIncrementValue === 'undefined' || type !== 'number') return e.target.value;
+
+    const valueAsNumber = Number(e.target.value);
+
+    if (!prevValue && !numKeyPressed.current && (valueAsNumber === 1 || valueAsNumber === -1)) {
+      e.target.value = baseIncrementValue + '';
+    }
+
+    return e.target.value;
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (numRegex.test(e.key)) {
+      numKeyPressed.current = true;
+    }
+    onKeyDown && onKeyDown(e);
+  };
+
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (numRegex.test(e.key)) {
+      numKeyPressed.current = false;
+    }
   };
 
   const widthStyling = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
@@ -193,19 +230,20 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   return (
     <ErrorWrapper errorText={errorText}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
-        {renderLabel(label, inputId, mode as FormMode, disabled)}
+        {renderLabel(label, inputIdState, mode as FormMode, disabled)}
         {/* input-elementet tillater keyboard-interaksjon */}
-        <div className={styles['content-wrapper']}>
+        <div className={styles['content-wrapper']} style={{ width: widthStyling }}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-          <div onClick={handleClick} ref={inputContainerRef} className={inputContainer} style={{ width: widthStyling }}>
+          <div onClick={handleClick} ref={inputContainerRef} className={inputContainer}>
             {!iconRight && renderIcon()}
             <input
               onChange={handleChange}
-              onKeyDown={onKeyDown}
+              onKeyDown={handleKeyDown}
+              onKeyUp={handleKeyUp}
               name={name}
               type={type}
               defaultValue={defaultValue}
-              id={inputId}
+              id={inputIdState}
               className={inputClass}
               ref={ref}
               aria-labelledby={props['aria-labelledby'] ?? undefined}

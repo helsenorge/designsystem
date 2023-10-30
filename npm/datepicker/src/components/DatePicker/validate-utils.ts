@@ -1,4 +1,4 @@
-import { isWithinInterval, isSameDay, parse, isValid, format } from 'date-fns';
+import { isWithinInterval, isSameDay, parse, isValid } from 'date-fns';
 
 export const parseInputDate = (dateString: string): Date | null => {
   const possibleFormats = ['yyyy-MM-dd', 'dd.MM.yyyy'];
