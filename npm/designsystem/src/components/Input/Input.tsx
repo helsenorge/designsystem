@@ -224,9 +224,9 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
         {renderLabel(label, inputIdState, mode as FormMode, disabled)}
         {/* input-elementet tillater keyboard-interaksjon */}
-        <div className={styles['content-wrapper']}>
+        <div className={styles['content-wrapper']} style={{ width: widthStyling }}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-          <div onClick={handleClick} ref={inputContainerRef} className={inputContainer} style={{ width: widthStyling }}>
+          <div onClick={handleClick} ref={inputContainerRef} className={inputContainer}>
             {!iconRight && renderIcon()}
             <input
               onChange={handleChange}
