@@ -13,7 +13,7 @@ export default defineConfig({
     outDir: OUTPUT_DIRECTORY,
     rollupOptions: {
       preserveEntrySignatures: 'strict',
-      input: { DatePicker: path.resolve(__dirname, 'src/components/DatePicker/index.ts') },
+      input: { 'components\\DatePicker\\index': path.resolve(__dirname, 'src/components/DatePicker/index.ts') },
       external: [/.module.scss/],
       output: {
         format: 'es',

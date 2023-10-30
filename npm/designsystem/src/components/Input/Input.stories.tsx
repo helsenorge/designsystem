@@ -152,3 +152,20 @@ export const AfterInputChildren: ComponentStory<typeof Input> = ({ showicon, ...
     />
   </GridExample>
 );
+
+export const BaseIncrementValue: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => {
+  const inputId = 'input-testid';
+
+  return (
+    <GridExample>
+      <Input
+        {...rest}
+        type={'number'}
+        baseIncrementValue={1990}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
+        inputId={inputId}
+        icon={showicon ? Hospital : undefined}
+      />
+    </GridExample>
+  );
+};
