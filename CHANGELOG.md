@@ -1,3 +1,5 @@
+## [5.1.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.1&targetVersion=GTv5.1.2) (2023-10-31)
+
 ## [5.1.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.0&targetVersion=GTv5.1.1) (2023-10-30)
 
 ### Bug Fixes
