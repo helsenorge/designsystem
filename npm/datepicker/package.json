@@ -1,6 +1,7 @@
 {
   "name": "@helsenorge/datepicker",
   "sideEffects": false,
+  "private": false,
   "version": "5.1.2",
   "description": "The official Helsenorge datepicker.",
   "repository": {
