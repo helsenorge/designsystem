@@ -1,3 +1,10 @@
+## [5.1.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.3&targetVersion=GTv5.1.4) (2023-11-01)
+
+### Bug Fixes
+
+- input width fikset for mobil ([a3663f3](https://github.com/helsenorge/designsystem/commit/a3663f35126d42d501839ad9257deaf106bfa838)),
+  closes [#312554](https://github.com/helsenorge/designsystem/issues/312554)
+
 ## [5.1.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.2&targetVersion=GTv5.1.3) (2023-10-31)
 
 ## [5.1.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.1&targetVersion=GTv5.1.2) (2023-10-31)
