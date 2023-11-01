@@ -23,6 +23,11 @@
   display: flex;
   position: relative;
   width: 100%;
+
+  &__right-of-input {
+    display: flex;
+    position: relative;
+  }
 }
 
 .input-container {
