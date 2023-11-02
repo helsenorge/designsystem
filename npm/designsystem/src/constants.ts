@@ -106,6 +106,8 @@ export enum AnalyticsId {
   Slider = 'slider',
   Spacer = 'spacer',
   StatusDot = 'status-dot',
+  Step = 'step',
+  StepButtons = 'step-buttons',
   Stepper = 'stepper',
   Sublabel = 'sublabel',
   Table = 'table',

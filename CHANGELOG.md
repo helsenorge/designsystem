@@ -1,3 +1,10 @@
+## 5.2.0-beta.0 (2023-11-02)
+
+### Bug Fixes
+
+- eksporter StepProps ([eb90925](https://github.com/helsenorge/designsystem/commit/eb90925e0eeb25da6bab1bed83765399b9a0c540)), closes
+  [#310680](https://github.com/helsenorge/designsystem/issues/310680)
+
 ## [5.1.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.3&targetVersion=GTv5.1.4) (2023-11-01)
 
 ### Bug Fixes

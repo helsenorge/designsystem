@@ -77,7 +77,7 @@ import ${componentName} from './${componentName}';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/${componentName}',
+  title: '@helsenorge∕designsystem-react/Components/${componentName}',
   component: ${componentName},
   parameters: {
     docs: {
