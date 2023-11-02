@@ -1,4 +1,4 @@
-## 5.2.0-beta.0 (2023-11-02)
+## [5.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.4&targetVersion=GTv5.2.0) (2023-11-02)
 
 ### Bug Fixes
 
