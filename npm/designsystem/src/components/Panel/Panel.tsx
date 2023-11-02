@@ -195,7 +195,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   const hasBadge = statusMessage && status === PanelStatus.new;
   const layout3 = [PanelLayout.layout3a.toString(), PanelLayout.layout3b.toString(), PanelLayout.layout3c.toString()].includes(layout);
 
-  const panelWrapperClass = classNames(panelStyles['panel-wrapper'], className);
+  const panelWrapperClasses = classNames(panelStyles['panel-wrapper'], className);
 
   const panelClasses = classNames(panelStyles.panel, {
     [panelStyles['panel--fill']]: variant === PanelVariant.fill,
@@ -213,7 +213,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel--clickable']]: children || url || onExpand || buttonOnClick || containerAsButton,
   });
 
-  const panelContainer = classNames({
+  const panelContainerClasses = classNames({
     [panelStyles['panel__container']]: layout === PanelLayout.layout2 && contentB,
     [panelStyles['panel__container--layout1']]: layout === PanelLayout.layout1 && contentB,
     [panelStyles['panel__container--layout2']]: layout === PanelLayout.layout2 && contentB,
@@ -222,7 +222,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel__container--prioritiseMetaDataInContentB']]: prioritiseMetaDataInContentB,
   });
 
-  const panelContentLeftClass = classNames({
+  const panelContentLeftClasses = classNames({
     [panelStyles['panel-content-a']]: layout === PanelLayout.layout2,
     [panelStyles['panel-content-a--layout3a']]: layout === PanelLayout.layout3a,
     [panelStyles['panel-content-a--layout3b']]: layout === PanelLayout.layout3b,
@@ -230,7 +230,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel-content-a--non-prioritiseMetaDataInContentB']]: !prioritiseMetaDataInContentB,
   });
 
-  const panelContentRightClass = classNames({
+  const panelContentRightClasses = classNames({
     [panelStyles['panel__content-right--layout1']]: contentB && layout === PanelLayout.layout1,
     [panelStyles['panel__content-right--layout2']]: contentB && layout === PanelLayout.layout2,
     [panelStyles['panel__content-right--layout3']]: contentB && layout3,
@@ -240,14 +240,13 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel__content-right--prioritiseMetaDataInContentB']]: prioritiseMetaDataInContentB,
   });
 
-  const panelContentBClass = classNames(panelStyles['panel-content-b'], {
+  const panelContentBClasses = classNames(panelStyles['panel-content-b'], {
     [panelStyles['panel-content-b--layout1']]: layout === PanelLayout.layout1,
     [panelStyles['panel-content-b--layout2']]: layout === PanelLayout.layout2,
     [panelStyles['panel-content-b--layout3']]: layout3,
     [panelStyles['panel-content-b--prioritiseMetaDataInContentB']]: prioritiseMetaDataInContentB,
   });
 
-  const panelActionBtnClass = classNames(panelStyles['panel__details-btn']);
   const titleClasses = classNames(panelStyles['panel-content-a__title'], { [panelStyles['panel-content-a__title--badge']]: hasBadge });
 
   const renderDetailsButton = (): JSX.Element => {
@@ -289,10 +288,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   });
 
   const renderContent = (): JSX.Element | null => {
-    if (!children) {
-      return null;
-    }
-    if (!renderChildrenWhenClosed && !isExpanded) {
+    if (!children || (!renderChildrenWhenClosed && !isExpanded)) {
       return null;
     }
 
@@ -311,12 +307,12 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   };
 
   const contentBElement = (
-    <div className={panelContentRightClass}>
-      {contentB && <div className={panelContentBClass}>{contentB}</div>}
+    <div className={panelContentRightClasses}>
+      {contentB && <div className={panelContentBClasses}>{contentB}</div>}
       {(children || url || date || time || buttonOnClick) && (
         <div className={btnContainerClass}>
           {<DateTime date={date} time={time} />}
-          {(children || url || buttonOnClick) && <div className={panelActionBtnClass}>{renderDetailsButton()}</div>}
+          {(children || url || buttonOnClick) && <div className={panelStyles['panel__details-btn']}>{renderDetailsButton()}</div>}
         </div>
       )}
     </div>
@@ -328,14 +324,14 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
       tabIndex={focusable ? -1 : undefined}
       ref={ref}
       data-testid={testId}
-      className={panelWrapperClass}
+      className={panelWrapperClasses}
       data-analyticsid={AnalyticsId.Panel}
     >
       <div className={panelClasses}>
         {icon && !iconRight && <div className={panelStyles.panel__icon}>{icon}</div>}
-        <div className={panelContainer}>
+        <div className={panelContainerClasses}>
           {prioritiseMetaDataInContentB && contentBElement}
-          <div className={panelContentLeftClass}>
+          <div className={panelContentLeftClasses}>
             <StatusText status={status} statusMessage={statusMessage} />
             {title && (
               <div className={panelStyles['panel-content-a__title-container']}>
