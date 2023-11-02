@@ -8,7 +8,7 @@ import { StepperProps } from '../Stepper';
 
 import styles from './styles.module.scss';
 
-interface StepProps {
+export interface StepProps {
   /** Stepper viser fremdriften */
   stepper?: React.ReactElement<StepperProps>;
   /** Innhold i steget */
