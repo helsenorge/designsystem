@@ -1,50 +1,30 @@
-import * as React from 'react';
+import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 
+import StepButtons from './StepButtons';
 import Button from '../Button';
-import Stepper from '../Stepper';
 
-import Step from '.';
+describe('Gitt at StepButtons skal vises', (): void => {
+  describe('Når StepButtons ikke har knapper', () => {
+    it('Så vises ingen knapper', () => {
+      render(<StepButtons />);
 
-describe('Gitt at Step rendres ', () => {
-  describe('Når Step ikke har knapper', () => {
-    it('Så vises bare innholdet', () => {
-      render(
-        <Step>
-          <p>{'Hei'}</p>
-        </Step>
-      );
-
-      const text = screen.getByText('Hei');
-      expect(text).toBeVisible();
+      const text = screen.queryByRole('button');
+      expect(text).not.toBeInTheDocument();
     });
   });
-  describe('Når Step har testId', () => {
+  describe('Når StepButtons har testId', () => {
     it('Så kan komponenten hentes med testId', () => {
-      render(
-        <Step testId="step">
-          <p>{'Hei'}</p>
-        </Step>
-      );
+      render(<StepButtons testId="step-buttons" forwardButton={<Button>{'Neste'}</Button>} />);
 
-      const text = screen.getByTestId('step');
+      const text = screen.getByTestId('step-buttons');
       expect(text).toBeVisible();
     });
   });
   describe('Når Step ikke har tilbakeknapp', () => {
     it('Så vises en progressbar, innhold i stegvisning og alle knapper er tilgjengelige', () => {
-      render(
-        <Step
-          stepper={<Stepper ariaLabel={`Steg 1/4`} />}
-          forwardButton={<Button>{'Neste'}</Button>}
-          cancelButton={<Button>{'Avbryt'}</Button>}
-        >
-          <p>{'Hei'}</p>
-        </Step>
-      );
-      const progressbar = screen.getByRole('progressbar', { name: 'Steg 1/4' });
-      expect(progressbar).toBeVisible();
+      render(<StepButtons forwardButton={<Button>{'Neste'}</Button>} cancelButton={<Button>{'Avbryt'}</Button>} />);
 
       const button = screen.getByRole('button', { name: 'Neste' });
       expect(button).toBeVisible();
@@ -54,24 +34,15 @@ describe('Gitt at Step rendres ', () => {
     });
   });
 
-  describe('Når Step har tilbakeknapp', () => {
+  describe('Når StepButtons har tilbakeknapp', () => {
     it('Så vises en progressbar, innhold i stegvisning og alle knapper er tilgjengelige', () => {
       render(
-        <Step
-          stepper={<Stepper ariaLabel={`Steg 2/4`} />}
+        <StepButtons
           backButton={<Button>{'Tilbake'}</Button>}
           forwardButton={<Button>{'Neste'}</Button>}
           cancelButton={<Button>{'Avbryt'}</Button>}
-        >
-          <p>{'Hei'}</p>
-        </Step>
+        />
       );
-
-      const progressbar = screen.getByRole('progressbar', { name: 'Steg 2/4' });
-      expect(progressbar).toBeVisible();
-
-      const text = screen.getByText('Hei');
-      expect(text).toBeVisible();
 
       const backButton = screen.getByRole('button', { name: 'Tilbake' });
       expect(backButton).toBeVisible();
@@ -84,11 +55,10 @@ describe('Gitt at Step rendres ', () => {
     });
   });
 
-  describe('Når Step har ekstra knapp', () => {
+  describe('Når StepButtons har ekstra knapp', () => {
     it('Så er knappen tilgjengelig', () => {
       render(
-        <Step
-          stepper={<Stepper ariaLabel={`Steg 1/4`} />}
+        <StepButtons
           backButton={<Button>{'Tilbake'}</Button>}
           forwardButton={<Button>{'Neste'}</Button>}
           additionalButtons={[
@@ -97,9 +67,7 @@ describe('Gitt at Step rendres ', () => {
             </Button>,
           ]}
           cancelButton={<Button>{'Avbryt'}</Button>}
-        >
-          <p>{'Hei'}</p>
-        </Step>
+        />
       );
 
       const button = screen.getByRole('button', { name: 'Fjern' });

@@ -89,6 +89,12 @@ export default {
   },
 } as ComponentMeta<typeof Panel>;
 
+const contentExample = (content: 'A' | 'B' | 'C') => (
+  <div style={{ background: '#e0e7ec', height: 180, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    {<p style={{ fontSize: '3rem', fontWeight: '400', color: '#b0bfca' }}>{content}</p>}
+  </div>
+);
+
 export const Default: ComponentStory<typeof Panel> = (args: any) => (
   <GridExample>
     <Panel {...args} contentA={'Noe innhold'} icon={args.useicon ? <Icon svgIcon={Attachment} size={IconSize.XSmall} /> : undefined}>
@@ -121,7 +127,7 @@ export const Default: ComponentStory<typeof Panel> = (args: any) => (
 
 export const ContentA: ComponentStory<typeof Panel> = (args: any) => (
   <GridExample>
-    <Panel {...args} contentA={<div style={{ background: '#748999', height: 180 }}>{'Content A'}</div>}>
+    <Panel {...args} contentA={contentExample('A')}>
       <div>
         <Title appearance="title2">{'E-resept'}</Title>
         <p style={{ whiteSpace: 'pre-line' }}>
@@ -150,13 +156,113 @@ export const ContentA: ComponentStory<typeof Panel> = (args: any) => (
 );
 export const ContentAAndB: ComponentStory<typeof Panel> = (args: any) => (
   <GridExample>
-    <Panel
-      {...args}
-      contentA={<div style={{ background: '#748999', height: 180 }}>{'Content A'}</div>}
-      contentB={<div style={{ background: '#748999', height: 100 }}>{'Content B'}</div>}
-    >
+    <Panel {...args} title={'Layout1'} layout={'layout1'} contentA={contentExample('A')} contentB={contentExample('B')}>
       <div>
-        <Title appearance="title2">{'E-resept'}</Title>
+        <Title appearance="title2">{'Layout1'}</Title>
+        <p style={{ whiteSpace: 'pre-line' }}>
+          {`
+      Legemiddel: Aerius Mikst 0,5 mg/ml
+
+      Dosering: 1 tablett daglig
+
+      Virkestoff: Cetrizin
+      ATC-kode:R06AX27
+      Pakningsstørrelse: 120ml
+
+
+      Antall: 1
+      Forskrevet av: Diana Dips, Testsykehuset HF
+      Forskrevet dato: 27.09.2020
+      Gyldig til: 20.09.2021
+      Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+      Antall utlevering: 1 (Se utleveringer på denne resepten)
+      Refusjonshjemmel: §5-14 §2 (blå resept)
+      Resepten er hentet fra: Reseptformidleren`}
+        </p>
+      </div>
+    </Panel>
+    <br />
+    <Panel {...args} title={'Layout2'} layout={'layout2'} contentA={contentExample('A')} contentB={contentExample('B')}>
+      <div>
+        <Title appearance="title2">{'Layout2'}</Title>
+        <p style={{ whiteSpace: 'pre-line' }}>
+          {`
+      Legemiddel: Aerius Mikst 0,5 mg/ml
+
+      Dosering: 1 tablett daglig
+
+      Virkestoff: Cetrizin
+      ATC-kode:R06AX27
+      Pakningsstørrelse: 120ml
+
+
+      Antall: 1
+      Forskrevet av: Diana Dips, Testsykehuset HF
+      Forskrevet dato: 27.09.2020
+      Gyldig til: 20.09.2021
+      Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+      Antall utlevering: 1 (Se utleveringer på denne resepten)
+      Refusjonshjemmel: §5-14 §2 (blå resept)
+      Resepten er hentet fra: Reseptformidleren`}
+        </p>
+      </div>
+    </Panel>
+    <br />
+    <Panel {...args} title={'Layout3a'} layout={'layout3a'} contentA={contentExample('A')} contentB={contentExample('B')}>
+      <div>
+        <Title appearance="title2">{'Layout3a'}</Title>
+        <p style={{ whiteSpace: 'pre-line' }}>
+          {`
+      Legemiddel: Aerius Mikst 0,5 mg/ml
+
+      Dosering: 1 tablett daglig
+
+      Virkestoff: Cetrizin
+      ATC-kode:R06AX27
+      Pakningsstørrelse: 120ml
+
+
+      Antall: 1
+      Forskrevet av: Diana Dips, Testsykehuset HF
+      Forskrevet dato: 27.09.2020
+      Gyldig til: 20.09.2021
+      Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+      Antall utlevering: 1 (Se utleveringer på denne resepten)
+      Refusjonshjemmel: §5-14 §2 (blå resept)
+      Resepten er hentet fra: Reseptformidleren`}
+        </p>
+      </div>
+    </Panel>
+    <br />
+    <Panel {...args} title={'Layout3b'} layout={'layout3b'} contentA={contentExample('A')} contentB={contentExample('B')}>
+      <div>
+        <Title appearance="title2">{'Layout3b'}</Title>
+        <p style={{ whiteSpace: 'pre-line' }}>
+          {`
+      Legemiddel: Aerius Mikst 0,5 mg/ml
+
+      Dosering: 1 tablett daglig
+
+      Virkestoff: Cetrizin
+      ATC-kode:R06AX27
+      Pakningsstørrelse: 120ml
+
+
+      Antall: 1
+      Forskrevet av: Diana Dips, Testsykehuset HF
+      Forskrevet dato: 27.09.2020
+      Gyldig til: 20.09.2021
+      Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+      Antall utlevering: 1 (Se utleveringer på denne resepten)
+      Refusjonshjemmel: §5-14 §2 (blå resept)
+      Resepten er hentet fra: Reseptformidleren`}
+        </p>
+      </div>
+    </Panel>
+    <br />
+    <Panel {...args} title={'Layout3c'} layout={'layout3c'} contentA={contentExample('A')} contentB={contentExample('B')}>
+      <div>
+        <Title appearance="title2">{'Layout3c'}</Title>
         <p style={{ whiteSpace: 'pre-line' }}>
           {`
       Legemiddel: Aerius Mikst 0,5 mg/ml
@@ -186,17 +292,60 @@ export const ContentAAndBWithIconAndUrl: ComponentStory<typeof Panel> = (args: a
   <GridExample>
     <Panel
       {...args}
-      contentA={<div style={{ background: '#748999', height: 250 }}>{'Content A'}</div>}
-      contentB={
-        <div style={{ background: '#748999' }}>
-          {
-            'Lorem ipsum er opprinnelig et lettere redigert utdrag fra De finibus bonorum et malorum av Cicero. Opprinnelig begynte avsnittet: Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli'
-          }
-        </div>
-      }
+      icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
       url={'https://www.helsenorge.no/'}
       target={'_blank'}
+      title={'Layout1'}
+      layout={'layout1'}
+      contentA={contentExample('A')}
+      contentB={contentExample('B')}
+    />
+    <br />
+    <Panel
+      {...args}
       icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
+      url={'https://www.helsenorge.no/'}
+      target={'_blank'}
+      title={'Layout2'}
+      layout={'layout2'}
+      contentA={contentExample('A')}
+      contentB={contentExample('B')}
+    />
+
+    <br />
+    <Panel
+      {...args}
+      icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
+      url={'https://www.helsenorge.no/'}
+      target={'_blank'}
+      title={'Layout3a'}
+      layout={'layout3a'}
+      contentA={contentExample('A')}
+      contentB={contentExample('B')}
+    />
+
+    <br />
+    <Panel
+      {...args}
+      icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
+      url={'https://www.helsenorge.no/'}
+      target={'_blank'}
+      title={'Layout3b'}
+      layout={'layout3b'}
+      contentA={contentExample('A')}
+      contentB={contentExample('B')}
+    />
+
+    <br />
+    <Panel
+      {...args}
+      icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
+      url={'https://www.helsenorge.no/'}
+      target={'_blank'}
+      title={'Layout3c'}
+      layout={'layout3c'}
+      contentA={contentExample('A')}
+      contentB={contentExample('B')}
     />
   </GridExample>
 );

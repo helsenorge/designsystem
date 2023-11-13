@@ -1,67 +1,12 @@
 @use 'sass:map';
 @import '../../scss/spacers';
-@import '../../scss/breakpoints';
-@import '../../scss/palette';
-@import '../../scss/font-settings';
-@import '../../scss/screen-reader';
 
 .step {
-  &--has-sticky-buttons {
-    position: relative;
-  }
-
   &__stepper {
     margin-bottom: getSpacer(m);
   }
 
   &__content {
-    &--no-navigation {
-      margin-bottom: getSpacer(m);
-    }
-  }
-
-  &__navigation {
-    padding-top: getSpacer(m);
-    padding-bottom: getSpacer(s);
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: getSpacer(l);
-    row-gap: getSpacer(m);
-
-    &--hidden {
-      display: none;
-    }
-
-    &--has-sticky-buttons {
-      position: absolute;
-      bottom: 0;
-    }
-
-    &--is-sticky {
-      background-color: $white;
-      position: fixed;
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    gap: getSpacer(s);
-
-    @media (max-width: map.get($grid-max-breakpoints, xs)) {
-      width: 100%;
-    }
-
-    &--additional {
-      flex-wrap: wrap;
-    }
-  }
-
-  &__button {
-    &--back,
-    &--forward {
-      @media (max-width: map.get($grid-max-breakpoints, xs)) {
-        width: 50%;
-      }
-    }
+    margin-bottom: getSpacer(s);
   }
 }

@@ -1,14 +1,15 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import classNames from 'classnames';
 
-import { useSticky } from '../../hooks/useSticky';
+import { AnalyticsId } from '../../constants';
 import { ButtonProps } from '../Button';
+import StepButtons from '../StepButtons';
 import { StepperProps } from '../Stepper';
 
 import styles from './styles.module.scss';
 
-interface StepProps {
+export interface StepProps {
   /** Stepper viser fremdriften */
   stepper?: React.ReactElement<StepperProps>;
   /** Innhold i steget */
@@ -23,6 +24,8 @@ interface StepProps {
   cancelButton?: React.ReactElement<ButtonProps>;
   /** Knappene vil vises sticky nederst på skjermen dersom innholdet i Step tar mer plass enn vinduet. Default: false  */
   stickyButtons?: boolean;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 const Step: React.FC<StepProps> = ({
@@ -33,64 +36,23 @@ const Step: React.FC<StepProps> = ({
   additionalButtons,
   cancelButton,
   stickyButtons = false,
+  testId,
 }) => {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const navigationRef = useRef<HTMLDivElement>(null);
-  const { isOutsideWindow, offsetHeight, contentWidth } = useSticky(contentRef, navigationRef, 'bottom');
-
-  const isSticky = stickyButtons && isOutsideWindow;
   const hasNavigation = backButton || forwardButton || additionalButtons || cancelButton;
 
-  const contentClasses = classNames(!hasNavigation && styles['step__content--no-navigation']);
-  const navigationClasses = classNames(
-    styles.step__navigation,
-    !hasNavigation && styles['step__navigation--hidden'],
-    stickyButtons && styles['step__navigation--has-sticky-buttons'],
-    isSticky && styles['step__navigation--is-sticky']
-  );
-
   return (
-    <div className={classNames(stickyButtons && styles['step--has-sticky-buttons'])}>
+    <div data-testid={testId} data-analyticsid={AnalyticsId.Step}>
       {stepper && <div className={styles.step__stepper}>{stepper}</div>}
-      <div
-        className={contentClasses}
-        ref={contentRef}
-        style={{ paddingBottom: stickyButtons && offsetHeight ? `${offsetHeight}px` : undefined }}
-      >
-        {children}
-      </div>
-      <div
-        className={navigationClasses}
-        ref={navigationRef}
-        style={{
-          width: stickyButtons && contentWidth ? `${contentWidth}px` : undefined,
-        }}
-      >
-        {(backButton || forwardButton) && (
-          <div className={classNames(styles.step__buttons, styles['step__buttons--navigation'])}>
-            {backButton &&
-              React.cloneElement(backButton, {
-                variant: 'outline',
-                wrapperClassName: classNames(styles['step__button--back']),
-              })}
-            {forwardButton &&
-              React.cloneElement(forwardButton, {
-                variant: 'fill',
-                wrapperClassName: classNames(styles['step__button--forward']),
-              })}
-          </div>
-        )}
-        {additionalButtons && (
-          <div className={classNames(styles.step__buttons, styles['step__buttons--additional'])}>{additionalButtons}</div>
-        )}
-        {cancelButton && (
-          <div className={styles.step__buttons}>
-            {React.cloneElement(cancelButton, {
-              variant: 'borderless',
-            })}
-          </div>
-        )}
-      </div>
+      <div className={styles.step__content}>{children}</div>
+      {hasNavigation && (
+        <StepButtons
+          backButton={backButton}
+          forwardButton={forwardButton}
+          additionalButtons={additionalButtons}
+          cancelButton={cancelButton}
+          sticky={stickyButtons}
+        />
+      )}
     </div>
   );
 };

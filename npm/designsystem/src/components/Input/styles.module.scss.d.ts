@@ -1,5 +1,6 @@
 export type Styles = {
   'content-wrapper': string;
+  'content-wrapper__right-of-input': string;
   'input-container': string;
   'input-container__input': string;
   'input-container__input__icon': string;

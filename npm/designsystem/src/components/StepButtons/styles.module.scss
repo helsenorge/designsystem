@@ -1,0 +1,42 @@
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/screen-reader';
+
+.stepbuttons {
+  margin-top: getSpacer(m);
+  margin-bottom: getSpacer(s);
+  display: flex;
+  flex-wrap: wrap;
+  gap: getSpacer(m) getSpacer(l);
+
+  &--has-sticky-buttons {
+    background-color: $white;
+    position: sticky;
+    bottom: 0;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: getSpacer(s);
+
+    @media (max-width: map.get($grid-max-breakpoints, xs)) {
+      width: 100%;
+    }
+
+    &--additional {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__button {
+    &--back,
+    &--forward {
+      @media (max-width: map.get($grid-max-breakpoints, xs)) {
+        width: 50%;
+      }
+    }
+  }
+}
