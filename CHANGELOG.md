@@ -1,3 +1,69 @@
+## 6.0.0-beta.9 (2023-11-13)
+
+## 6.0.0-beta.7 (2023-10-25)
+
+### Bug Fixes
+
+- ikon-import ([c3d3ae1](https://github.com/helsenorge/designsystem/commit/c3d3ae18b3792918953f6f447500888b019f3444))
+
+## 6.0.0-beta.6 (2023-10-24)
+
+### Features
+
+- typesikkerhet ved lazy loading av ikoner
+  ([0d3f3fb](https://github.com/helsenorge/designsystem/commit/0d3f3fb734e503bd26429a8e84477bd53480dd93)), closes
+  [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+
+## 6.0.0-beta.5 (2023-10-24)
+
+### ⚠ BREAKING CHANGES
+
+- props endret fra variant til size. bigform er nå large. normal er nå medium.
+
+### Reverts
+
+- legg tilbake additionaliconinformation
+  ([0b46b2c](https://github.com/helsenorge/designsystem/commit/0b46b2cbb029e9d85d021d477ef49bf24788c0d8))
+
+### Code Refactoring
+
+- formvariant heter nå formsize ([a8ef22c](https://github.com/helsenorge/designsystem/commit/a8ef22c9b4efdf063d4a861946f6407b60a5a580)),
+  closes [#305247](https://github.com/helsenorge/designsystem/issues/305247)
+
+## 6.0.0-beta.4 (2023-10-23)
+
+### Features
+
+- komponenter støtter lazyicon ([0148ee6](https://github.com/helsenorge/designsystem/commit/0148ee6b3c72dedadbecb21105a729af1487a445)),
+  closes [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+
+## 6.0.0-beta.3 (2023-10-20)
+
+### Bug Fixes
+
+- lazy icons fallback tar like mye plass som ikon
+  ([d5207c8](https://github.com/helsenorge/designsystem/commit/d5207c8f538cd8a111356af9e4913f29ed032f58)), closes
+  [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+
+## 6.0.0-beta.2 (2023-10-18)
+
+## 6.0.0-beta.1 (2023-10-18)
+
+## 6.0.0-beta.0 (2023-10-18)
+
+### ⚠ BREAKING CHANGES
+
+- Ikon-komponent er flyttet fra components/Icons/Icon til components/Icon/Icon
+
+Ikonene ligger fortsatt i components/Icons, f.eks. components/Icons/Minus
+
+Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da bør det bare være ikoner der.
+
+### Features
+
+- lazy loading av ikoner ([f688e78](https://github.com/helsenorge/designsystem/commit/f688e78a955bb43a2efa92b72b208c582dbfdd1d)), closes
+  [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+
 ## [5.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.4&targetVersion=GTv5.2.0) (2023-11-02)
 
 ### Bug Fixes
