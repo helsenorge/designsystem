@@ -54,10 +54,6 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
-    iconRight: {
-      control: 'boolean',
-      defaultValue: false,
-    },
     containerAsButton: {
       control: 'boolean',
       defaultValue: false,
@@ -78,10 +74,6 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
-    prioritiseMetaDataInContentB: {
-      control: 'boolean',
-      defaultValue: false,
-    },
     focusable: {
       control: 'boolean',
       defaultValue: false,
@@ -89,9 +81,9 @@ export default {
   },
 } as ComponentMeta<typeof Panel>;
 
-const contentExample = (content: 'A' | 'B' | 'C') => (
+const contentExample = (content: 'Header' | 'A' | 'B' | 'C') => (
   <div style={{ background: '#e0e7ec', height: 180, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    {<p style={{ fontSize: '3rem', fontWeight: '400', color: '#b0bfca' }}>{content}</p>}
+    {<p style={{ fontSize: '3rem', fontWeight: '400', color: 'black' }}>{content}</p>}
   </div>
 );
 
@@ -347,6 +339,42 @@ export const ContentAAndBWithIconAndUrl: ComponentStory<typeof Panel> = (args: a
       contentA={contentExample('A')}
       contentB={contentExample('B')}
     />
+  </GridExample>
+);
+
+export const ContentHeader: ComponentStory<typeof Panel> = (args: any) => (
+  <GridExample>
+    <Panel
+      {...args}
+      title={'Content in preContainer'}
+      contentA={contentExample('A')}
+      contentB={contentExample('B')}
+      contentHeader={contentExample('Header')}
+    >
+      <div>
+        <Title appearance="title2">{'Layout1'}</Title>
+        <p style={{ whiteSpace: 'pre-line' }}>
+          {`
+      Legemiddel: Aerius Mikst 0,5 mg/ml
+
+      Dosering: 1 tablett daglig
+
+      Virkestoff: Cetrizin
+      ATC-kode:R06AX27
+      Pakningsstørrelse: 120ml
+
+
+      Antall: 1
+      Forskrevet av: Diana Dips, Testsykehuset HF
+      Forskrevet dato: 27.09.2020
+      Gyldig til: 20.09.2021
+      Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+      Antall utlevering: 1 (Se utleveringer på denne resepten)
+      Refusjonshjemmel: §5-14 §2 (blå resept)
+      Resepten er hentet fra: Reseptformidleren`}
+        </p>
+      </div>
+    </Panel>
   </GridExample>
 );
 
