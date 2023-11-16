@@ -16,7 +16,7 @@ export interface CloseProps {
   /** Keeps the icon small for all screen sizes */
   small?: boolean;
   /** Function is called when user clicks the button */
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   /** Sets the aria-label of the button */
   ariaLabel?: string;
   /** Sets the data-testid attribute. */
