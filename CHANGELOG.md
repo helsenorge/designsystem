@@ -1,3 +1,18 @@
+## [5.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.2.0&targetVersion=GTv5.3.0) (2023-11-17)
+
+### Features
+
+- panel refaktorering og contentHeader prop
+  ([42b0a03](https://github.com/helsenorge/designsystem/commit/42b0a03fa1f7d28ca966f3105dcaded49bcd886d)), closes
+  [#304524](https://github.com/helsenorge/designsystem/issues/304524) [#304573](https://github.com/helsenorge/designsystem/issues/304573)
+  [#304575](https://github.com/helsenorge/designsystem/issues/304575) [#304590](https://github.com/helsenorge/designsystem/issues/304590)
+
+### Bug Fixes
+
+- popmenu knapp stopper event propagation
+  ([baa56a1](https://github.com/helsenorge/designsystem/commit/baa56a1780c027db01989ff0cd9b14fce6faab99)), closes
+  [#313765](https://github.com/helsenorge/designsystem/issues/313765)
+
 ## [5.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.4&targetVersion=GTv5.2.0) (2023-11-02)
 
 ### Bug Fixes
