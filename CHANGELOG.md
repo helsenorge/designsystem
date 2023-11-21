@@ -1,3 +1,10 @@
+## [5.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.3.0&targetVersion=GTv5.4.0) (2023-11-21)
+
+### Features
+
+- lagt til nye ikoner ([924fc90](https://github.com/helsenorge/designsystem/commit/924fc903960165211519760412e1de3bb65b85de)), closes
+  [#312799](https://github.com/helsenorge/designsystem/issues/312799)
+
 ## [5.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.2.0&targetVersion=GTv5.3.0) (2023-11-17)
 
 ### Features
