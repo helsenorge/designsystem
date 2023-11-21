@@ -5,10 +5,11 @@
 @import '../../scss/font-settings';
 @import '../../scss/screen-reader';
 
+$status-dot-size: 0.937rem;
 .statusdot {
   position: relative;
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   font-size: $font-size-xs;
   line-height: $lineheight-size-xs;
   font-weight: 400;
@@ -26,10 +27,17 @@
     top: getSpacer(3xs);
     margin-right: getSpacer(2xs);
     border-radius: 10rem;
+    margin-top: 0.28rem;
+
+    @media (min-width: map.get($grid-breakpoints, sm)) {
+      margin-top: 0.45rem;
+    }
 
     &:not(#{&}--icon) {
-      width: 0.937rem;
-      height: 0.937rem;
+      width: $status-dot-size;
+      height: $status-dot-size;
+      min-width: $status-dot-size;
+      min-height: $status-dot-size;
     }
 
     &--info {
