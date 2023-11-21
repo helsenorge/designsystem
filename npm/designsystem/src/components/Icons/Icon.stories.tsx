@@ -2,16 +2,27 @@ import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
+import Braille from './Braille';
 import Candle from './Candle';
+import Ear from './Ear';
+import EarDeaf from './EarDeaf';
+import EarHearingAid from './EarHearingAid';
+import EarVolume from './EarVolume';
+import EmergencyCall from './EmergencyCall';
 import FallingLeaf from './FallingLeaf';
+import Glasses from './Glasses';
 import Graph from './Graph';
 import GroupTwins from './GroupTwins';
 import HandsAndHeart from './HandsAndHeart';
 import HealthcarePerson from './HealthcarePerson';
 import HealthcarePersonell from './HealthcarePersonell';
+import HearingProtection from './HearingProtection';
+import HTMLFile from './HTMLFile';
 import IconWallComponent from './IconWall';
 import LegalDocument from './LegalDocument';
+import ScreenReader from './ScreenReader';
 import Search from './Search';
+import Sun from './Sun';
 import Tombstone from './Tombstone';
 import ExampleSvgIcon from './Undo';
 import GridExample from '../GridExample';
@@ -92,7 +103,28 @@ export const IconWall: ComponentStory<typeof Icon> = (args: any) => {
   return (
     <IconWallComponent
       {...args}
-      svgIcons={[HandsAndHeart, Tombstone, Candle, LegalDocument, FallingLeaf, Graph, GroupTwins, HealthcarePerson, HealthcarePersonell]}
+      svgIcons={[
+        HandsAndHeart,
+        Tombstone,
+        Candle,
+        LegalDocument,
+        FallingLeaf,
+        Graph,
+        GroupTwins,
+        HealthcarePerson,
+        HealthcarePersonell,
+        Braille,
+        Glasses,
+        EarDeaf,
+        EarHearingAid,
+        EarVolume,
+        Ear,
+        EmergencyCall,
+        HearingProtection,
+        HTMLFile,
+        ScreenReader,
+        Sun,
+      ]}
     />
   );
 };
