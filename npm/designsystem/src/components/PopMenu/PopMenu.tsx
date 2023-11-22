@@ -85,13 +85,18 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
     }
   };
 
+  const handleOnClick = (isOpen: boolean, e?: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+    e && e.stopPropagation();
+    setIsOpen(isOpen);
+  };
+
   const openButton = (
     <button
       ref={openRef}
       data-testid={openButtonTestId}
       className={buttonClasses}
       aria-label={openButtonAriaLabel || 'Se mer'}
-      onClick={(): void => setIsOpen(true)}
+      onClick={(e?: React.MouseEvent<HTMLElement, MouseEvent>) => handleOnClick(true, e)}
       type="button"
     >
       <Icon svgIcon={VerticalDots} className="test" color={getColor('black')} size={mobileIconSize} isHovered={openButtonIsHovered} />
@@ -105,7 +110,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
       className={buttonClasses}
       testId={closeButtonTestId}
       ref={closeRef}
-      onClick={(): void => setIsOpen(false)}
+      onClick={(e?: React.MouseEvent<HTMLElement, MouseEvent>) => handleOnClick(false, e)}
       small={mobile}
     />
   );

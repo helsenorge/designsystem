@@ -3,20 +3,14 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import GridExample from '../GridExample';
-import Candle from '../Icons/Candle';
-import FallingLeaf from '../Icons/FallingLeaf';
-import Graph from '../Icons/Graph';
-import GroupTwins from '../Icons/GroupTwins';
-import HandsAndHeart from '../Icons/HandsAndHeart';
-import HealthcarePerson from '../Icons/HealthcarePerson';
-import HealthcarePersonell from '../Icons/HealthcarePersonell';
-import LegalDocument from '../Icons/LegalDocument';
+import additionalIconInformation from '../Icons/AdditionalIconInformation';
+import { IconList } from '../Icons/IconNames';
 import Search from '../Icons/Search';
-import Tombstone from '../Icons/Tombstone';
 import ExampleSvgIcon from '../Icons/Undo';
+import LazyIcon from '../LazyIcon';
 import Spacer from '../Spacer';
 
-import Icon, { IconSize, SvgIcon } from '.';
+import Icon, { IconSize } from '.';
 
 export default {
   title: '@helsenorge∕designsystem-react/Components/Icon',
@@ -88,18 +82,27 @@ export const Accessibility: ComponentStory<typeof Icon> = (args: any) => (
 );
 
 export const IconWall: ComponentStory<typeof Icon> = (args: any) => {
-  const svgIcons = [HandsAndHeart, Tombstone, Candle, LegalDocument, FallingLeaf, Graph, GroupTwins, HealthcarePerson, HealthcarePersonell];
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', columnGap: '2rem', rowGap: '2rem' }}>
-      {svgIcons &&
-        svgIcons.map((svgIcon, index) => {
-          return (
-            <div style={{ display: 'flex', flexDirection: 'column' }} key={index}>
-              <Icon svgIcon={svgIcon as SvgIcon} />
-              {svgIcon.name}
+      {IconList.map((iconName, index) => {
+        const additionalInfo = additionalIconInformation[iconName.toLowerCase()];
+
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} key={index}>
+            <LazyIcon iconName={iconName} {...args} />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span>{iconName}</span>
+              {additionalInfo && (
+                <>
+                  <span style={{ fontSize: '1rem' }}>{'(' + additionalInfo.alternativeName + ')'}</span>
+                  <Spacer />
+                  <span style={{ fontSize: '1rem' }}>{additionalInfo.categories}</span>
+                </>
+              )}
             </div>
-          );
-        })}
+          </div>
+        );
+      })}
     </div>
   );
 };

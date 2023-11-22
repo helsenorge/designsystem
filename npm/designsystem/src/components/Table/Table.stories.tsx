@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { longLoremText } from '../../utils/loremtext';
-import Button from '../Button';
 import GridExample from '../GridExample';
-import Icon from '../Icon';
-import VerticalDots from '../Icons/VerticalDots';
+import LinkList from '../LinkList';
+import PopMenu from '../PopMenu';
 import { Title } from '../Title';
 
 import {
@@ -296,16 +295,12 @@ export const SortableAndExpandable: ComponentStory<typeof Table> = (args: any) =
                 {getFastlegeDataCells(fastlege)}
                 {
                   <TableCell dataLabel="Handling" textAlign={TextAlign.center}>
-                    <Button
-                      variant="borderless"
-                      onClick={e => {
-                        e && e.stopPropagation();
-                        console.log('show detail bubble');
-                      }}
-                      ariaLabel={'eksempel aria'}
-                    >
-                      <Icon svgIcon={VerticalDots}></Icon>
-                    </Button>
+                    <PopMenu>
+                      <LinkList chevron={false}>
+                        <LinkList.Link>{'Åpne'}</LinkList.Link>
+                        <LinkList.Link>{'Lagre'}</LinkList.Link>
+                      </LinkList>
+                    </PopMenu>
                   </TableCell>
                 }
               </TableRow>
@@ -417,16 +412,12 @@ export const NestedExpandableBlockTables: ComponentStory<typeof Table> = (args: 
                 {getFastlegeDataCells(fastlege)}
                 {
                   <TableCell dataLabel="Handling" textAlign={TextAlign.center}>
-                    <Button
-                      variant="borderless"
-                      onClick={e => {
-                        e && e.stopPropagation();
-                        console.log('show detail bubble');
-                      }}
-                      ariaLabel={'eksempel aria'}
-                    >
-                      <Icon svgIcon={VerticalDots}></Icon>
-                    </Button>
+                    <PopMenu>
+                      <LinkList chevron={false}>
+                        <LinkList.Link>{'Åpne'}</LinkList.Link>
+                        <LinkList.Link>{'Lagre'}</LinkList.Link>
+                      </LinkList>
+                    </PopMenu>
                   </TableCell>
                 }
               </TableRow>

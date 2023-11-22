@@ -17,6 +17,7 @@ pool:
   name: Helsenorge_LinuxScaleSetAgents
 
 variables:
+  - group: DependencyTrack
   - name: node_version
     value: 18
   - name: project_name
@@ -133,6 +134,10 @@ stages:
               customCommand: 'run eslint'
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
+          - template: Templates/Build/pre-build.yml@templates
+            parameters:
+              project_name: $(project_name)
+
           # build
           - task: Npm@1
             displayName: build
@@ -140,6 +145,11 @@ stages:
               command: custom
               workingDir: $(working_directory)
               customCommand: 'run build'
+
+          - template: Templates/Build/post-build-frontend.yml@templates
+            parameters:
+              project_name: $(project_name)
+              webappfolder: $(working_directory)
 
           # test
           - task: Npm@1

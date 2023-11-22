@@ -124,15 +124,6 @@ describe('Gitt at Panel skal vises', (): void => {
     });
   });
 
-  describe('Når icon er satt og iconRight er aktiv', (): void => {
-    test('Så skal komponenten vise ikon på høyre side', (): void => {
-      render(<Panel testId="bare-tester" iconRight icon={<Icon testId="icon-testid" svgIcon={Calendar} size={IconSize.XSmall} />} />);
-      const icon = screen.getByTestId('icon-testid');
-      expect(icon).toBeVisible();
-      expect(icon.parentElement).toHaveClass('panel__icon--right');
-    });
-  });
-
   describe('Når Avatar er satt', (): void => {
     test('Så skal komponenten vise Avatar', (): void => {
       render(<Panel icon={<Avatar testId="avatar-test">{'Anne Brun'}</Avatar>} />);
@@ -158,7 +149,7 @@ describe('Gitt at Panel skal vises', (): void => {
       const badge = screen.getByTestId('badge-status');
 
       expect(panel.firstChild).toHaveClass('panel panel--fill panel--new panel--status');
-      expect(title).toHaveClass('panel-content-a__title panel-content-a__title--badge');
+      expect(title).toHaveClass('title title--title3 title-container__title title-container__title--badge');
       expect(badge.parentElement).toHaveClass('panel__badge');
       expect(badge.innerHTML).toEqual('1 ny');
     });

@@ -44,68 +44,72 @@ export enum PanelLayout {
 }
 
 export interface PanelProps {
-  children?: React.ReactNode;
-  /** Title of the panel */
-  title?: string;
-  /** Changes the underlying element of the title. Default: h2 */
-  titleHtmlMarkup?: TitleTags;
   /** Adds custom classes to the element. */
   className?: string;
-  /** Sets the data-testid attribute. */
-  testId?: string;
-  /** Displays a status on the left side: defualt normal */
-  status?: keyof typeof PanelStatus;
-  /** Displayed on top of the panel with a status icon */
-  statusMessage?: string;
-  /** Changes the visual representation of the panel. */
-  variant?: keyof typeof PanelVariant;
-  /** Url to details, renders as a button with anchor tag */
-  url?: string;
-  /** target used in the button: default is _self */
-  target?: AnchorTarget;
-  /** Icon displayed in title */
-  icon?: React.ReactNode;
-  /** Display icon on right */
-  iconRight?: boolean;
   /** Panel section A content */
   contentA?: React.ReactNode | string;
-  /** Panel section B content*/
+  /** Panel section B content */
   contentB?: React.ReactNode | string;
-  /** A version of panel that prioritises content-B visually and audibly */
-  prioritiseMetaDataInContentB?: boolean;
+  /** Content for a container that renders above A and B regardless of layout */
+  contentHeader?: React.ReactNode;
+  /** Container acts as a button, clicking anywhere triggers a panel button click */
+  containerAsButton?: boolean;
+  /** Panel children */
+  children?: React.ReactNode;
+  /** Displays date with icon */
+  date?: string;
+  /** Expands or collapses the panel */
+  expanded?: boolean;
+  /** Whether the panel can be focused */
+  focusable?: boolean;
+  /** Icon displayed in title */
+  icon?: React.ReactNode;
   /** Panel button text */
   buttonText?: string;
   /** Panel button close text */
   buttonTextClose?: string;
   /** HTML markup for panel button. Default: a */
   buttonHtmlMarkup?: ButtonTags;
-  /** Callback when panel button is clicked  */
+  /** Callback when the panel button is clicked */
   buttonOnClick?: ButtonProps['onClick'];
   /** Panel button is aria-labelledby the text in the button itself + the element set in buttonAriaLabelledById. Default: auto-generated id for title (if title is set). */
   buttonAriaLabelledById?: string;
   /** Panel button aria label */
   buttonAriaLabel?: string;
-  /** Show close button in bottom of Panel Expand */
-  /** @deprecated Has no effect anymore due to accessbility reasons. No close button is shown in expanded content. Will be removed in 2.0.0 */
-  showCloseButtonInExpand?: boolean;
-  /** Layout (see description) */
+  /** Layout of the panel */
   layout?: keyof typeof PanelLayout;
-  /** Clicking anywhere on the container will trigger a click on the panel's button */
-  containerAsButton?: boolean;
-  /** Displays time with icon */
-  time?: string;
-  /** Displays date with icon */
-  date?: string;
   /** Removes top border when variant is "line" */
   noTopBorder?: boolean;
-  /** Opens or closes the panel */
-  expanded?: boolean;
-  /** Called when panel is open/closed. */
+  /** Called when the panel is opened/closed */
   onExpand?: (isExpanded: boolean) => void;
   /** Whether to render children when closed (in which case they are hidden with CSS). Default: false */
   renderChildrenWhenClosed?: boolean;
-  /** Whether panel is focusable or not */
-  focusable?: boolean;
+  /** Displays a status on the left side: default normal */
+  status?: keyof typeof PanelStatus;
+  /** Displayed on top of the panel with a status icon */
+  statusMessage?: string;
+  /** Sets the data-testid attribute for testing purposes */
+  testId?: string;
+  /** Displays time with icon */
+  time?: string;
+  /** Title of the panel */
+  title?: string;
+  /** Changes the underlying element of the title. Default: h2 */
+  titleHtmlMarkup?: TitleTags;
+  /** Changes the visual representation of the panel */
+  variant?: keyof typeof PanelVariant;
+  /** URL to details, renders as a button with anchor tag */
+  url?: string;
+  /** target used in the button: default is _self */
+  target?: AnchorTarget;
+  /** @deprecated Has no effect anymore due to accessibility reasons. No close button is shown in expanded content. Will be removed in 2.0.0 */
+  showCloseButtonInExpand?: boolean;
+}
+
+export interface LayoutProps
+  extends Pick<PanelProps, 'contentA' | 'contentB' | 'contentHeader' | 'icon' | 'layout' | 'status' | 'statusMessage'> {
+  ctaContainer?: React.ReactNode;
+  titleElement: React.ReactNode;
 }
 
 const StatusText: React.FC<{ status?: keyof typeof PanelStatus; statusMessage?: string }> = ({ status, statusMessage }) => {
@@ -132,6 +136,11 @@ const StatusText: React.FC<{ status?: keyof typeof PanelStatus; statusMessage?: 
   return null;
 };
 
+const PreContainer: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
+  if (typeof children === 'undefined') return null;
+  return <div className={panelStyles['header-container']}>{children}</div>;
+};
+
 const DateTime: React.FC<{ date?: string; time?: string }> = ({ date, time }) => {
   if (date || time) {
     return (
@@ -155,46 +164,150 @@ const DateTime: React.FC<{ date?: string; time?: string }> = ({ date, time }) =>
   return null;
 };
 
+const PanelLayout1: React.FC<LayoutProps> = ({
+  contentA,
+  contentB,
+  contentHeader,
+  ctaContainer,
+  icon,
+  status,
+  statusMessage,
+  titleElement,
+}) => {
+  const panelLayoutClasses = classNames(panelStyles['panel__layout-1'], {
+    [panelStyles['panel__layout-1--with-icon']]: icon,
+  });
+  const iconClasses = classNames(panelStyles.panel__icon, panelStyles['panel__icon--layout-1'], {
+    [panelStyles['panel__icon--no-content']]: !contentA && !contentB,
+  });
+
+  return (
+    <div className={panelLayoutClasses}>
+      <StatusText status={status} statusMessage={statusMessage} />
+      <PreContainer>{contentHeader}</PreContainer>
+      {icon && <div className={iconClasses}>{icon}</div>}
+      <div className={panelStyles['panel__layout-1__content-a']}>
+        {titleElement}
+        {contentA}
+      </div>
+      {contentB && <div>{contentB}</div>}
+      {ctaContainer}
+    </div>
+  );
+};
+
+const PanelLayout2: React.FC<LayoutProps> = ({
+  contentA,
+  contentB,
+  contentHeader,
+  ctaContainer,
+  icon,
+  status,
+  statusMessage,
+  titleElement,
+}) => {
+  const panelLayoutClasses = classNames(panelStyles['panel__layout-2'], {
+    [panelStyles['panel__layout-2--with-icon']]: icon,
+  });
+  const iconClasses = classNames(panelStyles.panel__icon, panelStyles['panel__icon--layout-2'], {
+    [panelStyles['panel__icon--no-content']]: !contentA && !contentB,
+  });
+  const lastColumnClass = panelStyles['panel__layout-2__last-column'];
+
+  return (
+    <div className={panelLayoutClasses}>
+      <StatusText status={status} statusMessage={statusMessage} />
+      <PreContainer>{contentHeader}</PreContainer>
+      {icon && <div className={iconClasses}>{icon}</div>}
+      <div className={panelStyles['panel__layout-2__content-a']}>
+        {titleElement}
+        {contentA}
+      </div>
+      {contentB && <div className={lastColumnClass}>{contentB}</div>}
+      {ctaContainer && <div className={lastColumnClass}>{ctaContainer}</div>}
+    </div>
+  );
+};
+
+const PanelLayout3: React.FC<LayoutProps> = ({
+  contentA,
+  contentB,
+  contentHeader,
+  ctaContainer,
+  icon,
+  layout,
+  status,
+  statusMessage,
+  titleElement,
+}) => {
+  const layoutClasses = classNames(panelStyles['panel__layout-3'], {
+    [panelStyles['panel__layout-3--with-icon']]: icon,
+    [panelStyles['panel__layout-3--a']]: layout === PanelLayout.layout3a,
+    [panelStyles['panel__layout-3--b']]: layout === PanelLayout.layout3b,
+    [panelStyles['panel__layout-3--c']]: layout === PanelLayout.layout3c,
+  });
+  const iconClasses = classNames(panelStyles.panel__icon, panelStyles['panel__icon--layout-3'], {
+    [panelStyles['panel__icon--no-content']]: !contentA && !contentB,
+  });
+
+  return (
+    <div className={layoutClasses}>
+      <StatusText status={status} statusMessage={statusMessage} />
+      <PreContainer>{contentHeader}</PreContainer>
+      {icon && <div className={iconClasses}>{icon}</div>}
+      <div>
+        {titleElement}
+        {contentA}
+      </div>
+      <div className={panelStyles['panel__layout-3__last-column']}>
+        {contentB && <div className={panelStyles['panel__layout-3__last-column__content-b']}>{contentB}</div>}
+        {ctaContainer}
+      </div>
+    </div>
+  );
+};
+
 const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
   const {
+    buttonAriaLabel,
+    buttonAriaLabelledById,
+    buttonText = 'Se detaljer',
+    buttonTextClose = 'Skjul detaljer',
+    buttonHtmlMarkup = 'a',
+    buttonOnClick,
     children,
+    className,
+    containerAsButton = false,
     contentA,
     contentB,
-    prioritiseMetaDataInContentB,
-    className,
+    contentHeader,
+    date,
+    expanded = false,
+    focusable = false,
+    icon,
+    layout = PanelLayout.layout2,
+    noTopBorder,
+    onExpand,
+    renderChildrenWhenClosed = false,
+    status = PanelStatus.normal,
+    statusMessage,
+    target = '_self',
     testId,
+    time,
     title,
     titleHtmlMarkup = 'h2',
     url,
-    target = '_self',
-    icon,
-    iconRight = false,
     variant = PanelVariant.fill,
-    status = PanelStatus.normal,
-    statusMessage,
-    buttonText = 'Se detaljer',
-    buttonTextClose = 'Skjul detaljer',
-    buttonAriaLabelledById,
-    buttonAriaLabel,
-    layout = PanelLayout.layout2,
-    containerAsButton = false,
-    date,
-    time,
-    noTopBorder,
-    buttonOnClick,
-    buttonHtmlMarkup = 'a',
-    expanded = false,
-    onExpand,
-    renderChildrenWhenClosed = false,
-    focusable = false,
   } = props;
 
   const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
   const titleId = useUuid();
   const buttonTextId = useUuid();
   const hasBadge = statusMessage && status === PanelStatus.new;
-  const layout3 = [PanelLayout.layout3a.toString(), PanelLayout.layout3b.toString(), PanelLayout.layout3c.toString()].includes(layout);
-
+  const noContentB = typeof contentB === 'undefined';
+  const layout1 = layout === 'layout1' || noContentB;
+  const layout2 = !noContentB && layout === 'layout2';
+  const layout3 = !noContentB && (layout === 'layout3a' || layout === 'layout3b' || layout === 'layout3c');
   const panelWrapperClasses = classNames(panelStyles['panel-wrapper'], className);
 
   const panelClasses = classNames(panelStyles.panel, {
@@ -213,43 +326,24 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     [panelStyles['panel--clickable']]: children || url || onExpand || buttonOnClick || containerAsButton,
   });
 
-  const panelContainerClasses = classNames({
-    [panelStyles['panel__container']]: layout === PanelLayout.layout2 && contentB,
-    [panelStyles['panel__container--layout1']]: layout === PanelLayout.layout1 && contentB,
-    [panelStyles['panel__container--layout2']]: layout === PanelLayout.layout2 && contentB,
-    [panelStyles['panel__container--layout3']]: layout3 && contentB,
-    [panelStyles['panel__container--grow']]: icon,
-    [panelStyles['panel__container--prioritiseMetaDataInContentB']]: prioritiseMetaDataInContentB,
-  });
+  const renderCTAContainer = () => {
+    const hasButton = children || url || buttonOnClick;
+    const btnContainerClasses = classNames(panelStyles['panel__btn-container'], {
+      [panelStyles['panel__btn-container--no-content-b']]: noContentB,
+      [panelStyles['panel__btn-container--no-button']]: !hasButton,
+    });
 
-  const panelContentLeftClasses = classNames({
-    [panelStyles['panel-content-a']]: layout === PanelLayout.layout2,
-    [panelStyles['panel-content-a--layout3a']]: layout === PanelLayout.layout3a,
-    [panelStyles['panel-content-a--layout3b']]: layout === PanelLayout.layout3b,
-    [panelStyles['panel-content-a--layout3c']]: layout === PanelLayout.layout3c,
-    [panelStyles['panel-content-a--non-prioritiseMetaDataInContentB']]: !prioritiseMetaDataInContentB,
-  });
+    return (
+      (hasButton || date || time) && (
+        <div className={btnContainerClasses}>
+          {<DateTime date={date} time={time} />}
+          {hasButton && <div className={panelStyles['panel__details-btn']}>{renderDetailsButton()}</div>}
+        </div>
+      )
+    );
+  };
 
-  const panelContentRightClasses = classNames({
-    [panelStyles['panel__content-right--layout1']]: contentB && layout === PanelLayout.layout1,
-    [panelStyles['panel__content-right--layout2']]: contentB && layout === PanelLayout.layout2,
-    [panelStyles['panel__content-right--layout3']]: contentB && layout3,
-    [panelStyles['panel__content-right--layout3a']]: contentB && layout === PanelLayout.layout3a,
-    [panelStyles['panel__content-right--layout3b']]: contentB && layout === PanelLayout.layout3b,
-    [panelStyles['panel__content-right--layout3c']]: contentB && layout === PanelLayout.layout3c,
-    [panelStyles['panel__content-right--prioritiseMetaDataInContentB']]: prioritiseMetaDataInContentB,
-  });
-
-  const panelContentBClasses = classNames(panelStyles['panel-content-b'], {
-    [panelStyles['panel-content-b--layout1']]: layout === PanelLayout.layout1,
-    [panelStyles['panel-content-b--layout2']]: layout === PanelLayout.layout2,
-    [panelStyles['panel-content-b--layout3']]: layout3,
-    [panelStyles['panel-content-b--prioritiseMetaDataInContentB']]: prioritiseMetaDataInContentB,
-  });
-
-  const titleClasses = classNames(panelStyles['panel-content-a__title'], { [panelStyles['panel-content-a__title--badge']]: hasBadge });
-
-  const renderDetailsButton = (): JSX.Element => {
+  const renderDetailsButton = (): React.ReactNode => {
     const ariaLabelAttributes = getAriaLabelAttributes({
       label: buttonAriaLabel,
       id: (buttonAriaLabelledById && `${buttonTextId} ${buttonAriaLabelledById}`) || (title && titleId && `${buttonTextId} ${titleId}`),
@@ -281,13 +375,7 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     );
   };
 
-  const btnContainerClass = classNames(panelStyles['panel__btn-container'], {
-    [panelStyles['panel__btn-container--layout3']]: layout3,
-    [panelStyles['panel__btn-container--no-content-b']]: !contentB,
-    [panelStyles['panel__btn-container--padding-top']]: contentA || contentB,
-  });
-
-  const renderContent = (): JSX.Element | null => {
+  const renderContent = (): React.ReactNode | null => {
     if (!children || (!renderChildrenWhenClosed && !isExpanded)) {
       return null;
     }
@@ -306,17 +394,42 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     );
   };
 
-  const contentBElement = (
-    <div className={panelContentRightClasses}>
-      {contentB && <div className={panelContentBClasses}>{contentB}</div>}
-      {(children || url || date || time || buttonOnClick) && (
-        <div className={btnContainerClass}>
-          {<DateTime date={date} time={time} />}
-          {(children || url || buttonOnClick) && <div className={panelStyles['panel__details-btn']}>{renderDetailsButton()}</div>}
+  const renderTitle = () => {
+    const titleContainerClasses = classNames(panelStyles['title-container'], {
+      [panelStyles['title-container--no-content-a']]: !contentA,
+    });
+    const titleClasses = classNames(panelStyles['title-container__title'], {
+      [panelStyles['title-container__title--badge']]: hasBadge,
+    });
+
+    return (
+      title && (
+        <div className={titleContainerClasses}>
+          <Title appearance="title3" htmlMarkup={titleHtmlMarkup} id={titleId} className={titleClasses}>
+            {title}
+          </Title>
+          {hasBadge && (
+            <div className={panelStyles.panel__badge}>
+              <Badge color="blueberry" testId="badge-status">
+                {statusMessage}
+              </Badge>
+            </div>
+          )}
         </div>
-      )}
-    </div>
-  );
+      )
+    );
+  };
+
+  const layoutProps: LayoutProps = {
+    contentA: contentA,
+    contentB: contentB,
+    contentHeader: contentHeader,
+    ctaContainer: renderCTAContainer(),
+    icon: icon,
+    status: status,
+    statusMessage: statusMessage,
+    titleElement: renderTitle(),
+  };
 
   return (
     <div
@@ -328,30 +441,9 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
       data-analyticsid={AnalyticsId.Panel}
     >
       <div className={panelClasses}>
-        {icon && !iconRight && <div className={panelStyles.panel__icon}>{icon}</div>}
-        <div className={panelContainerClasses}>
-          {prioritiseMetaDataInContentB && contentBElement}
-          <div className={panelContentLeftClasses}>
-            <StatusText status={status} statusMessage={statusMessage} />
-            {title && (
-              <div className={panelStyles['panel-content-a__title-container']}>
-                <Title appearance="title3" htmlMarkup={titleHtmlMarkup} id={titleId} className={titleClasses}>
-                  {title}
-                </Title>
-                {hasBadge && (
-                  <div className={panelStyles.panel__badge}>
-                    <Badge color="blueberry" testId="badge-status">
-                      {statusMessage}
-                    </Badge>
-                  </div>
-                )}
-              </div>
-            )}
-            {contentA}
-          </div>
-          {!prioritiseMetaDataInContentB && contentBElement}
-        </div>
-        {icon && iconRight && <div className={panelStyles['panel__icon--right']}>{icon}</div>}
+        {layout1 && <PanelLayout1 {...layoutProps} />}
+        {layout2 && <PanelLayout2 {...layoutProps} />}
+        {layout3 && <PanelLayout3 {...layoutProps} layout={layout} />}
       </div>
       {renderContent()}
     </div>
