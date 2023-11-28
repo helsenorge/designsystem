@@ -1,7 +1,7 @@
 {
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
-  "version": "4.5.0-slider-beta.0",
+  "version": "4.5.0-slider-beta-0",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
