@@ -13,7 +13,7 @@ export default {
     docs: {
       description: {
         component:
-          'Slider inneholder en interaktiv slider som kan styres via mus/touch og tastatur interaksjon. Verdien kan returneres via onChange propen som blir gitt inn.',
+          'Slider inneholder en interaktiv slider som kan styres med mus/touch og tastatur interaksjon. Verdien kan returneres via onChange propen som blir gitt inn.',
       },
     },
   },
