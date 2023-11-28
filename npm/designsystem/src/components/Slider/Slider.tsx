@@ -26,6 +26,11 @@ const useSafeNumberValue = (initial: number, min: number, max: number): [number,
   return [value, setSafeValue];
 };
 
+export type SliderStep = {
+  label?: number | string;
+  emojiUniCode?: string;
+};
+
 interface SliderProps {
   /**	Sets the title of the slider. */
   title?: string;
@@ -37,27 +42,43 @@ interface SliderProps {
   ariaLabel?: string;
   /** Disables the slider element. */
   disabled?: boolean;
+  /** Sets the minimum allowed value on the slider - this overrides the use of steps prop for minValue/maxValue. */
+  minValue?: number;
+  /** Sets the maximum allowed value on the slider - this overrides the use of steps prop for minValue/maxValue. */
+  maxValue?: number;
   /** Function to be called when the value state has changed. */
   onChange?: (value: number) => void;
+  /** Sets the steps data for the slider */
+  steps?: SliderStep[];
+  /** Sets the step to move per point in the slider */
+  step?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
-const MAX_VALUE = 100;
-const MIN_VALUE = 0;
-const STEP = 1;
-const LARGE_STEP = 10;
-
-export const Slider: React.FC<SliderProps> = ({ title, ariaLabel, labelLeft, labelRight, disabled = false, onChange, testId }) => {
+export const Slider: React.FC<SliderProps> = ({
+  title,
+  ariaLabel,
+  labelLeft,
+  labelRight,
+  disabled = false,
+  onChange,
+  steps,
+  step = 1,
+  minValue = 0,
+  maxValue = steps ? steps.length - 1 : 100,
+  testId,
+}) => {
   const [isMoving, setIsMoving] = useState(false);
-  const [value, setValue] = useSafeNumberValue((MAX_VALUE - MIN_VALUE) / 2, MIN_VALUE, MAX_VALUE);
+  const [value, setValue] = useSafeNumberValue((maxValue - minValue) / 2 + minValue, minValue, maxValue);
+
   const titleId = useUuid();
   const labelLeftId = useUuid();
   const labelRightId = useUuid();
   const trackRef = useRef<HTMLDivElement>(null);
   const markerRef = useRef<HTMLDivElement>(null);
   const { width: trackWidth } = useSize(trackRef) || { width: 0 };
-  const { width: markerWidth } = useSize(markerRef) || { width: 0 };
+  const largeStep = step * 10;
 
   useEffect(() => {
     const handlePointerUp = (): void => {
@@ -74,7 +95,23 @@ export const Slider: React.FC<SliderProps> = ({ title, ariaLabel, labelLeft, lab
   const getValueBasedOnMarkerPosition = (markerPosition: number): number => {
     const trackPosition = trackRef.current?.getBoundingClientRect().x ?? 0;
 
-    return Math.round(((markerPosition - trackPosition) / trackWidth) * (MAX_VALUE - MIN_VALUE));
+    // Calculate the normalized position (0 to 1) of the marker along the track
+    const normalizedPosition = (markerPosition - trackPosition) / trackWidth;
+
+    // Calculate the value range
+    const valueRange = maxValue - minValue;
+
+    // Calculate the value without considering the step
+    let value = normalizedPosition * valueRange + minValue;
+
+    // Adjust the value to account for the step increment
+    const stepCount = Math.round(value / step);
+    value = stepCount * step;
+
+    // Optional: Clamp the value within minValue and maxValue if necessary
+    value = Math.max(minValue, Math.min(maxValue, value));
+
+    return value;
   };
 
   useEffect(() => {
@@ -106,28 +143,28 @@ export const Slider: React.FC<SliderProps> = ({ title, ariaLabel, labelLeft, lab
     switch (e.key) {
       case 'ArrowLeft':
       case 'ArrowDown':
-        setValue(value - STEP);
+        setValue(value - step);
         flag = true;
         break;
       case 'PageDown':
-        setValue(value - LARGE_STEP);
+        setValue(value - largeStep);
         flag = true;
         break;
       case 'ArrowRight':
       case 'ArrowUp':
-        setValue(value + STEP);
+        setValue(value + step);
         flag = true;
         break;
       case 'PageUp':
-        setValue(value + LARGE_STEP);
+        setValue(value + largeStep);
         flag = true;
         break;
       case 'Home':
-        setValue(MIN_VALUE);
+        setValue(minValue);
         flag = true;
         break;
       case 'End':
-        setValue(MAX_VALUE);
+        setValue(maxValue);
         flag = true;
         break;
       default:
@@ -159,7 +196,7 @@ export const Slider: React.FC<SliderProps> = ({ title, ariaLabel, labelLeft, lab
     markerRef.current?.focus();
   };
 
-  const markerXPos = ((trackWidth - markerWidth) / (MAX_VALUE - MIN_VALUE)) * value;
+  const markerXPos = maxValue !== minValue ? (trackWidth / (maxValue - minValue)) * (value - minValue) : 0;
 
   const getAriaLabeledById = (): string | undefined => {
     if (title && labelLeft && labelRight) {
@@ -182,37 +219,83 @@ export const Slider: React.FC<SliderProps> = ({ title, ariaLabel, labelLeft, lab
     prefer: 'label',
   });
 
+  const getXPostionStyling = (index: number, stepsLength: number): { left: string } => {
+    return { left: `${(index / (stepsLength - 1)) * 100}%` };
+  };
+
+  const renderEmojies = (): React.ReactNode => {
+    return (
+      <div className={styles['slider__emoji-container']}>
+        {steps?.map((step, index) => {
+          return (
+            step.emojiUniCode && (
+              <div key={index} className={styles['slider__emoji']} style={getXPostionStyling(index, steps.length)}>
+                {String.fromCodePoint(parseInt(step.emojiUniCode, 16))}
+              </div>
+            )
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderSteps = (): React.ReactNode => {
+    return steps?.map((_step, index) => {
+      return <div key={index} className={styles['slider__track__step']} style={getXPostionStyling(index, steps.length)} />;
+    });
+  };
+
+  const renderStepLabels = (): React.ReactNode => {
+    return (
+      <div className={styles['slider__value-container']}>
+        {steps?.map((step, index) => {
+          return (
+            typeof step.label !== 'undefined' && (
+              <div key={index} className={styles['slider__value']} style={getXPostionStyling(index, steps.length)}>
+                {step.label}
+              </div>
+            )
+          );
+        })}
+      </div>
+    );
+  };
+
   return (
     <div className={styles.slider} data-testid={testId} data-analyticsid={AnalyticsId.Slider}>
       {title && (
-        <Title htmlMarkup={'h3'} margin={1.5} appearance={'title3'} id={titleId}>
+        <Title className={styles['slider__title']} htmlMarkup={'h3'} margin={0} appearance={'title3'} id={titleId}>
           {title}
         </Title>
       )}
-      {/* Komponenten er tilgjengelig for mus/keyboard gjennom bruk av slideren */}
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-      <div
-        ref={trackRef}
-        className={classNames(styles['slider__track-wrapper'], disabled && styles['slider__track-wrapper--disabled'])}
-        onClick={handleTrackClick}
-        onPointerDown={handlePointerDown}
-      >
-        <div className={classNames(styles.slider__track, disabled && styles['slider__track--disabled'])} />
+      <div className={styles['slider__content-container']}>
+        {renderEmojies()}
+        {/* Komponenten er tilgjengelig for mus/keyboard gjennom bruk av slideren */}
+        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
         <div
-          role={disabled ? undefined : 'slider'}
-          ref={markerRef}
-          className={classNames(styles.slider__marker, disabled && styles['slider__marker--disabled'])}
-          style={{
-            left: `${markerXPos}px`,
-          }}
-          onKeyDown={handleKeyDown}
-          aria-valuenow={value}
-          aria-valuemin={MIN_VALUE}
-          aria-valuemax={MAX_VALUE}
-          tabIndex={disabled ? undefined : 0}
-          aria-disabled={disabled}
-          {...ariaLabelAttributes}
-        />
+          ref={trackRef}
+          className={classNames(styles['slider__track-wrapper'], disabled && styles['slider__track-wrapper--disabled'])}
+          onClick={handleTrackClick}
+          onPointerDown={handlePointerDown}
+        >
+          <div className={classNames(styles.slider__track, disabled && styles['slider__track--disabled'])}>{renderSteps()}</div>
+          <div
+            role={disabled ? undefined : 'slider'}
+            ref={markerRef}
+            className={classNames(styles.slider__marker, disabled && styles['slider__marker--disabled'])}
+            style={{
+              left: `${markerXPos}px`,
+            }}
+            onKeyDown={handleKeyDown}
+            aria-valuenow={value}
+            aria-valuemin={minValue}
+            aria-valuemax={maxValue}
+            tabIndex={disabled ? undefined : 0}
+            aria-disabled={disabled}
+            {...ariaLabelAttributes}
+          />
+        </div>
+        {renderStepLabels()}
       </div>
       {(labelLeft || labelRight) && (
         <span className={styles.slider__options}>
