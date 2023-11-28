@@ -1,3 +1,9 @@
+## 4.5.0-slider-beta.0 (2023-11-28)
+
+### Features
+
+- slider endringer! ([cbf479c](https://github.com/helsenorge/designsystem/commit/cbf479cea5e4308e591d2b6d184c630364cdd37d))
+
 ## [4.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.3.1&targetVersion=GTv4.4.0) (2023-09-15)
 
 ### Features
