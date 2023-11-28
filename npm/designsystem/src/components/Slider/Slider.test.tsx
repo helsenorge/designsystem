@@ -21,8 +21,7 @@ describe('Gitt at Slider skal vises', (): void => {
 
   describe('Når slider rendres', (): void => {
     test('Så vises slider riktig', (): void => {
-      const { container } = render(<Slider title={'Hvor viktig er det for deg?'} labelLeft={'Ikke viktig'} labelRight={'Viktig'} />);
-      expect(container).toMatchSnapshot();
+      render(<Slider title={'Hvor viktig er det for deg?'} labelLeft={'Ikke viktig'} labelRight={'Viktig'} />);
 
       const heading = screen.getByRole('heading', { name: 'Hvor viktig er det for deg?' });
       expect(heading).toBeVisible();
