@@ -1,3 +1,5 @@
+## 4.5.0-beta.0 (2023-11-28)
+
 ## [4.5.0-slider-beta-0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv4.4.0&targetVersion=GTv4.5.0-slider-beta-0) (2023-11-28)
 
 ## 4.5.0-slider-beta.0 (2023-11-28)
