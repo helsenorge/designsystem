@@ -103,6 +103,7 @@ export enum AnalyticsId {
   Portal = 'portal',
   RadioButton = 'radio-button',
   Select = 'select',
+  SharingStatus = 'sharing-status',
   Slider = 'slider',
   Spacer = 'spacer',
   StatusDot = 'status-dot',

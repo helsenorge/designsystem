@@ -1,0 +1,74 @@
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/screen-reader';
+
+$dot-size: 1.765rem;
+.sharing-status {
+  display: inline-flex;
+  align-items: center;
+  font-size: $font-size-sm;
+  line-height: 1.25rem;
+  font-weight: 600;
+  gap: getSpacer(2xs);
+
+  &__dot {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10rem;
+    width: $dot-size;
+    height: $dot-size;
+    min-width: $dot-size;
+    min-height: $dot-size;
+
+    &--kiwi {
+      background: $kiwi900;
+    }
+
+    &--cherry {
+      background: $cherry500;
+    }
+
+    &--neutral {
+      background: $neutral700;
+    }
+
+    &--blueberry {
+      background: $blueberry500;
+    }
+
+    &--banana {
+      background: $banana700;
+    }
+  }
+
+  &__label {
+    white-space: nowrap;
+    &--wrap {
+      white-space: normal;
+    }
+
+    &--kiwi {
+      color: $kiwi900;
+    }
+
+    &--cherry {
+      color: $cherry500;
+    }
+
+    &--neutral {
+      color: $neutral700;
+    }
+
+    &--blueberry {
+      color: $blueberry500;
+    }
+
+    &--banana {
+      color: $banana700;
+    }
+  }
+}
