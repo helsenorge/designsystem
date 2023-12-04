@@ -286,6 +286,7 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
               (errors.datetimehour?.message as string) ||
               (errors.datetimeminute?.message as string)
             }
+            legend={'Datepicker legend'}
           >
             <DatePicker
               {...args}

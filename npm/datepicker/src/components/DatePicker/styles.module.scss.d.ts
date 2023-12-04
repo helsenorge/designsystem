@@ -4,6 +4,7 @@ export type Styles = {
   'date-button': string;
   'date-time-picker-wrapper': string;
   'date-time-picker-wrapper__date-picker': string;
+  'date-time-picker-wrapper__legend': string;
   'datepicker-popup-arrow': string;
   'datepicker-popup-arrow--over': string;
   'datepicker-popup-arrow--under': string;

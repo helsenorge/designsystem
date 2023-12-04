@@ -17,12 +17,14 @@ interface DateTimePickerWrapperProps {
   children?: React.ReactNode;
   /** Error text to show above the component */
   errorText?: string;
+  /** text placed in the legend tag of the fieldset */
+  legend?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
-export const DateTimePickerWrapper: React.FC<DateTimePickerWrapperProps> = props => {
-  const { children, errorText, testId } = props;
+export const DateTimePickerWrapper = React.forwardRef((props: DateTimePickerWrapperProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+  const { children, errorText, legend, testId } = props;
 
   const mapDateComponents = (child: React.ReactNode): React.ReactNode => {
     if (isComponent<DatePickerProps>(child, DatePicker)) {
@@ -39,13 +41,20 @@ export const DateTimePickerWrapper: React.FC<DateTimePickerWrapperProps> = props
   };
 
   return (
-    <ErrorWrapper errorText={errorText}>
-      <div className={styles['date-time-picker-wrapper']} data-testid={testId}>
-        {React.Children.map(children, mapDateComponents)}
-      </div>
-    </ErrorWrapper>
+    <div ref={ref} tabIndex={-1}>
+      <ErrorWrapper errorText={errorText}>
+        {props.legend ? (
+          <fieldset className={styles['date-time-picker-wrapper']} data-testid={testId}>
+            {props.legend && <legend className={styles['date-time-picker-wrapper__legend']}>{legend}</legend>}
+            {React.Children.map(children, mapDateComponents)}
+          </fieldset>
+        ) : (
+          <div className={styles['date-time-picker-wrapper']}>{React.Children.map(children, mapDateComponents)}</div>
+        )}
+      </ErrorWrapper>
+    </div>
   );
-};
+});
 
 DateTimePickerWrapper.displayName = 'DateTimePickerWrapper';
 
