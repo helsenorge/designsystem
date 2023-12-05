@@ -1,14 +1,10 @@
 {
-  "version": "5.4.1",
+  "version": "5.5.0",
   "npmClient": "npm",
   "command": {
     "version": {
-      "allowBranch": [
-        "master"
-      ],
-      "ignoreChanges": [
-        "CHANGELOG.md"
-      ]
+      "allowBranch": ["master"],
+      "ignoreChanges": ["CHANGELOG.md"]
     },
     "publish": {
       "scope": "@helsenorge/*",
