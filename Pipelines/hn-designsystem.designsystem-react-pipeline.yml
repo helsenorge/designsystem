@@ -60,6 +60,12 @@ stages:
                 sonar.javascript.lcov.reportPaths=$(package_directory)/coverage/lcov.info
                 sonar.typescript.tsconfigPath=$(package_directory)/tsconfig.json
 
+          # Install node version
+          - task: NodeTool@0
+            displayName: 'Install node version'
+            inputs:
+              versionSpec: $(node_version)
+
           # Set node version
           - task: UseNode@1
             displayName: 'Use Node version'

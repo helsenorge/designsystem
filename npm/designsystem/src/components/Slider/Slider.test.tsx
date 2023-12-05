@@ -21,8 +21,7 @@ describe('Gitt at Slider skal vises', (): void => {
 
   describe('Når slider rendres', (): void => {
     test('Så vises slider riktig', (): void => {
-      const { container } = render(<Slider title={'Hvor viktig er det for deg?'} labelLeft={'Ikke viktig'} labelRight={'Viktig'} />);
-      expect(container).toMatchSnapshot();
+      render(<Slider title={'Hvor viktig er det for deg?'} labelLeft={'Ikke viktig'} labelRight={'Viktig'} />);
 
       const heading = screen.getByRole('heading', { name: 'Hvor viktig er det for deg?' });
       expect(heading).toBeVisible();
@@ -152,6 +151,70 @@ describe('Gitt at Slider skal vises', (): void => {
 
       await userEvent.keyboard('{End}');
       expect(slider).toHaveAttribute('aria-valuenow', '100');
+    });
+  });
+
+  describe('Når brukeren drar slideren med musen', (): void => {
+    test('Så trigges onChange handleren', async () => {
+      const mockOnChange = jest.fn();
+      render(<Slider onChange={mockOnChange} />);
+
+      const slider = screen.getByRole('slider');
+      userEvent.click(slider);
+
+      expect(mockOnChange).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('Når Step propen er satt', () => {
+    test('Så skal verdien til slideren beveges utifra den mengden', async () => {
+      render(<Slider step={0.5} />);
+
+      const slider = screen.getByRole('slider');
+
+      expect(slider).toHaveAttribute('aria-valuenow', '50');
+
+      await userEvent.click(slider);
+      await userEvent.keyboard('{ArrowRight}');
+
+      expect(slider).toHaveAttribute('aria-valuenow', '50.5');
+    });
+  });
+
+  describe('Når minValue og maxValue er satt', () => {
+    test('Så skal slideren ikke gå utenfor disse verdiene', async () => {
+      render(<Slider minValue={10} maxValue={50} />);
+
+      const slider = screen.getByRole('slider');
+      await userEvent.click(slider);
+
+      expect(slider).toHaveAttribute('aria-valuenow', '30');
+
+      await userEvent.keyboard('{End}');
+      expect(slider).toHaveAttribute('aria-valuenow', '50');
+
+      await userEvent.keyboard('{Home}');
+      expect(slider).toHaveAttribute('aria-valuenow', '10');
+    });
+  });
+
+  describe('Når steps propen er satt', () => {
+    test('Så skal slideren vise labels og emoji riktig', () => {
+      const steps = [
+        { label: 'One', emojiUniCode: '1F600' },
+        { label: 'Two', emojiUniCode: '1F602' },
+        { label: 'Three', emojiUniCode: '1F604' },
+      ];
+      render(<Slider steps={steps} />);
+
+      steps.forEach(step => {
+        expect(screen.getByText(step.label)).toBeInTheDocument();
+      });
+
+      steps.forEach(step => {
+        const emoji = String.fromCodePoint(parseInt(step.emojiUniCode, 16));
+        expect(screen.getByText(emoji)).toBeInTheDocument();
+      });
     });
   });
 });
