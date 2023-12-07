@@ -1,0 +1,26 @@
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+
+.emptystate {
+  background-color: $neutral50;
+  display: flex;
+  gap: getSpacer(m);
+  padding: getSpacer(m);
+  align-items: center;
+  border-radius: 16px;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    gap: getSpacer(l);
+    padding: getSpacer(xl);
+  }
+
+  &__illustration {
+    min-width: 101px;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      min-width: 151px;
+    }
+  }
+}
