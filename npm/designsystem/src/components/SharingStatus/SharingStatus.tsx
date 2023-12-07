@@ -19,14 +19,14 @@ export interface SharingStatusProps {
   icon: SvgIcon;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** Text placed to the right of the sharingstatus */
-  text: string;
+  /** Sets the text placed to the right of the sharingstatus */
+  children: string;
   /** turn on and off word wrapping */
   wrapText?: boolean;
 }
 
 const SharingStatus: React.FC<SharingStatusProps> = props => {
-  const { color = 'blueberry', icon, text, className, testId, wrapText } = props;
+  const { color = 'blueberry', icon, children, className, testId, wrapText } = props;
 
   const sharingStatusClasses = classNames(styles['sharing-status'], className);
   const dotClasses = classNames(styles['sharing-status__dot'], styles[`sharing-status__dot--${color}`]);
@@ -39,7 +39,7 @@ const SharingStatus: React.FC<SharingStatusProps> = props => {
       <span className={dotClasses}>
         <Icon color={palette.white} svgIcon={icon} size={IconSize.XXSmall} />
       </span>
-      <span className={labelClasses}>{text}</span>
+      <span className={labelClasses}>{children}</span>
     </span>
   );
 };

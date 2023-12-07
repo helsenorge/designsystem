@@ -9,7 +9,7 @@ import SharingStatus from '.';
 describe('Gitt at SharingStatus rendres ', () => {
   describe('Når komponentet får en tekst', () => {
     it('Så skal teksten vises til innbygger', () => {
-      render(<SharingStatus icon={Eye} text="Eksempeltekst" />);
+      render(<SharingStatus icon={Eye}>{'Eksempeltekst'}</SharingStatus>);
 
       const text = screen.getByText('Eksempeltekst');
       expect(text).toBeVisible();
@@ -19,7 +19,7 @@ describe('Gitt at SharingStatus rendres ', () => {
 
   describe('Når komponentet vises', () => {
     it('Så skal innbygger se ikonet', () => {
-      render(<SharingStatus icon={Eye} text="Eksempeltekst" />);
+      render(<SharingStatus icon={Eye}>{'Eksempeltekst'}</SharingStatus>);
 
       const icon = screen.getByRole('presentation', { hidden: true });
       expect(icon).toBeVisible();
@@ -28,7 +28,11 @@ describe('Gitt at SharingStatus rendres ', () => {
 
   describe('Når SharingStatus er av color="kiwi"', () => {
     it('Så skal ikonet og teksten ha fargen "kiwi"', () => {
-      render(<SharingStatus icon={Eye} color={'kiwi'} text="Eksempeltekst" testId={'sharingStatus'} />);
+      render(
+        <SharingStatus icon={Eye} color={'kiwi'} testId={'sharingStatus'}>
+          {'Eksempeltekst'}
+        </SharingStatus>
+      );
 
       const text = screen.getByText('Eksempeltekst');
       expect(text).toBeVisible();
@@ -45,7 +49,11 @@ describe('Gitt at SharingStatus rendres ', () => {
 
   describe('Når SharingStatus er av color="cherry"', () => {
     it('Så skal ikonet og teksten ha fargen "cherry"', () => {
-      render(<SharingStatus icon={Eye} color={'cherry'} text="Eksempeltekst" testId={'sharingStatus'} />);
+      render(
+        <SharingStatus icon={Eye} color={'cherry'} testId={'sharingStatus'}>
+          {'Eksempeltekst'}
+        </SharingStatus>
+      );
 
       const text = screen.getByText('Eksempeltekst');
       expect(text).toBeVisible();
@@ -62,7 +70,11 @@ describe('Gitt at SharingStatus rendres ', () => {
 
   describe('Når SharingStatus er av color="neutral"', () => {
     it('Så skal ikonet og teksten ha fargen "neutral"', () => {
-      render(<SharingStatus icon={Eye} color={'neutral'} text="Eksempeltekst" testId={'sharingStatus'} />);
+      render(
+        <SharingStatus icon={Eye} color={'neutral'} testId={'sharingStatus'}>
+          {'Eksempeltekst'}
+        </SharingStatus>
+      );
 
       const text = screen.getByText('Eksempeltekst');
       expect(text).toBeVisible();
@@ -79,7 +91,11 @@ describe('Gitt at SharingStatus rendres ', () => {
 
   describe('Når SharingStatus er av color="blueberry"', () => {
     it('Så skal ikonet og teksten ha fargen "blueberry"', () => {
-      render(<SharingStatus icon={Eye} color={'blueberry'} text="Eksempeltekst" testId={'sharingStatus'} />);
+      render(
+        <SharingStatus icon={Eye} color={'blueberry'} testId={'sharingStatus'}>
+          {'Eksempeltekst'}
+        </SharingStatus>
+      );
 
       const text = screen.getByText('Eksempeltekst');
       expect(text).toBeVisible();
@@ -96,7 +112,11 @@ describe('Gitt at SharingStatus rendres ', () => {
 
   describe('Når SharingStatus er av color="banana"', () => {
     it('Så skal ikonet og teksten ha fargen "banana"', () => {
-      render(<SharingStatus icon={Eye} color={'banana'} text="Eksempeltekst" testId={'sharingStatus'} />);
+      render(
+        <SharingStatus icon={Eye} color={'banana'} testId={'sharingStatus'}>
+          {'Eksempeltekst'}
+        </SharingStatus>
+      );
 
       const text = screen.getByText('Eksempeltekst');
       expect(text).toBeVisible();
@@ -113,7 +133,11 @@ describe('Gitt at SharingStatus rendres ', () => {
 
   describe('Når SharingStatus er satt til wrapText="true"', () => {
     it('Så skal en lang tekst wrappe', () => {
-      render(<SharingStatus icon={Eye} text="Eksempeltekst" wrapText={true} testId={'sharingStatus'} />);
+      render(
+        <SharingStatus icon={Eye} wrapText={true} testId={'sharingStatus'}>
+          {'Eksempeltekst'}
+        </SharingStatus>
+      );
 
       const text = screen.getByText('Eksempeltekst');
       expect(text).toBeVisible();
@@ -125,7 +149,11 @@ describe('Gitt at SharingStatus rendres ', () => {
 
   describe('Når SharingStatus vises', () => {
     it('Så skal ikke teksten wrappe', () => {
-      render(<SharingStatus icon={Eye} text="Eksempeltekst" testId={'sharingStatus'} />);
+      render(
+        <SharingStatus icon={Eye} testId={'sharingStatus'}>
+          {'Eksempeltekst'}
+        </SharingStatus>
+      );
 
       const text = screen.getByText('Eksempeltekst');
       expect(text).toBeVisible();
