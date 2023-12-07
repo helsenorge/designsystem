@@ -22,11 +22,9 @@ export default {
   argTypes: {
     defaultValue: {
       control: 'text',
-      defaultValue: '',
     },
     placeholder: {
       control: 'text',
-      defaultValue: 'Skriv inn tekst her',
     },
     width: {
       control: 'number',

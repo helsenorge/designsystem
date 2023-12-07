@@ -5,8 +5,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Textarea from './Textarea';
 import { FormMode } from '../../constants';
 import GridExample from '../GridExample';
-import Icon, { IconSize } from '../Icons';
-import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 
 export default {
@@ -23,7 +21,6 @@ export default {
   argTypes: {
     placeholder: {
       control: 'text',
-      defaultValue: 'Dette er en placeholder',
     },
     maxCharacters: {
       control: 'number',
@@ -44,8 +41,6 @@ export default {
     },
     defaultValue: {
       control: 'text',
-      defaultValue:
-        'Førstehjelp de første minuttene etter at en akutt sykdom eller skade har oppstått er livsviktig og minsker risikoen for langtidsskader.',
     },
     testId: {
       control: 'text',

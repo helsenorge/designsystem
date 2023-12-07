@@ -206,5 +206,20 @@ describe('Gitt at Input skal vises', (): void => {
         expect(input).toHaveAttribute('aria-invalid', 'true');
       });
     });
+
+    describe('Når defaultValue endres', (): void => {
+      test('Så oppdateres antall tegn', (): void => {
+        const { rerender } = render(<Input label={'Skriv din historie her'} maxCharacters={10} />);
+
+        expect(screen.getByText('0/10 tegn')).toBeVisible();
+
+        rerender(<Input label={'Skriv din historie her'} maxCharacters={10} defaultValue={'foo'} />);
+
+        expect(screen.getByText('3/10 tegn')).toBeVisible();
+
+        const input = screen.getByLabelText('Skriv din historie her');
+        expect(input).toHaveValue('foo');
+      });
+    });
   });
 });
