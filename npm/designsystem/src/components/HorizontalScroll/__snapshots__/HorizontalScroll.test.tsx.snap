@@ -6,8 +6,7 @@ exports[`Gitt at HorizontalScroll skal rendres Når HorizontalScroll skal vises 
     class="horizontalscroll"
   >
     <div
-      class="horizontalscroll__viewport"
-      tabindex="0"
+      class="horizontalscroll__viewport horizontalscroll__viewport--overflow"
     >
       <div
         class="horizontalscroll__indicator horizontalscroll__indicator--left"

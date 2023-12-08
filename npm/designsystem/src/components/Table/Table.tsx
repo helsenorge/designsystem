@@ -6,6 +6,7 @@ import { getCurrentConfig, getBreakpointClass, getCenteredOverflowTableStyle } f
 import { AnalyticsId } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
+import { getAriaLabelAttributes } from '../../utils/accessibility';
 import HorizontalScroll from '../HorizontalScroll';
 
 import styles from './styles.module.scss';
@@ -46,6 +47,10 @@ export interface Props {
   children: React.ReactNode;
   /** For display with less space. Discouraged to use together with interactive elements. */
   mode?: ModeType;
+  /** Sets aria-label of the horizontal scroll container. scrollAriaLabel or scrollAriaLabelledById MUST be set if horizontal scrolling is enabled! */
+  scrollAriaLabel?: string;
+  /** Sets aria-labelledby of the horizontal scroll container. scrollAriaLabel or scrollAriaLabelledById MUST be set if horizontal scrolling is enabled! */
+  scrollAriaLabelledById?: string;
 }
 
 export const defaultConfig: BreakpointConfig[] = [
@@ -69,7 +74,16 @@ export const simpleConfig: BreakpointConfig[] = [
   },
 ];
 
-export const Table: React.FC<Props> = ({ id, testId, className, children, breakpointConfig = defaultConfig, mode = ModeType.normal }) => {
+export const Table: React.FC<Props> = ({
+  id,
+  testId,
+  className,
+  children,
+  breakpointConfig = defaultConfig,
+  mode = ModeType.normal,
+  scrollAriaLabel,
+  scrollAriaLabelledById,
+}) => {
   const [currentConfig, setCurrentConfig] = useState<BreakpointConfig>();
   const [tableWidth, setTableWidth] = useState<number>(0);
   const [parentWidth, setParentWidth] = useState<number>(0);
@@ -107,9 +121,11 @@ export const Table: React.FC<Props> = ({ id, testId, className, children, breakp
     </table>
   );
 
+  const ariaLabelAttributes = getAriaLabelAttributes({ label: scrollAriaLabel, id: scrollAriaLabelledById });
+
   if (currentConfig?.variant === ResponsiveTableVariant.horizontalscroll) {
     return (
-      <HorizontalScroll childWidth={tableWidth} testId="horizontal-scroll">
+      <HorizontalScroll childWidth={tableWidth} testId="horizontal-scroll" {...ariaLabelAttributes}>
         {table}
       </HorizontalScroll>
     );

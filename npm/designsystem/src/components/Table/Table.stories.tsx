@@ -62,6 +62,13 @@ export default {
       options: ModeType,
       defaultValue: ModeType.normal,
     },
+    scrollAriaLabel: {
+      control: 'text',
+      defaultValue: 'Fastleger',
+    },
+    scrollAriaLabelledById: {
+      control: 'text',
+    },
   },
 } as ComponentMeta<typeof Table>;
 

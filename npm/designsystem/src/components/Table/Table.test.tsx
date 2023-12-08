@@ -57,7 +57,11 @@ describe('Gitt at Table skal vises', (): void => {
   describe('Når den skal vises', (): void => {
     it('Så vises en tabell', (): void => {
       const { container } = render(
-        <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'sm' }} testId="test01">
+        <Table
+          breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'sm' }}
+          testId="test01"
+          scrollAriaLabel="Fastleger"
+        >
           <TableContents />
         </Table>
       );
@@ -83,7 +87,11 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
         mockIsTouchDevice.mockReturnValue(true);
         mockUseBreakpoint.mockReturnValue(768);
         const { container } = render(
-          <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+          <Table
+            breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}
+            testId="test-table"
+            scrollAriaLabel="Fastleger"
+          >
             <TableContents />
           </Table>
         );
@@ -93,22 +101,26 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
         const table = screen.getByTestId('test-table');
         expect(table.className).toBe('table');
 
-        const horizontallScroll = screen.getByTestId('horizontal-scroll');
+        const horizontallScroll = screen.getByLabelText('Fastleger');
         expect(horizontallScroll).toBeInTheDocument();
       });
 
       it('Så kan horizontalscroll tabbes til', async (): Promise<void> => {
         mockUseBreakpoint.mockReturnValue(768);
         render(
-          <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+          <Table
+            breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}
+            testId="test-table"
+            scrollAriaLabel="Fastleger"
+          >
             <TableContents />
           </Table>
         );
 
         await userEvent.tab();
 
-        const horizontallScroll = screen.getByTestId('horizontal-scroll');
-        expect(horizontallScroll.childNodes[0]).toHaveFocus();
+        const horizontallScroll = screen.getByLabelText('Fastleger');
+        expect(horizontallScroll).toHaveFocus();
       });
     });
     describe('Når breakpoint er lg', (): void => {
@@ -116,7 +128,11 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
         mockIsTouchDevice.mockReturnValue(true);
         mockUseBreakpoint.mockReturnValue(769);
         const { container } = render(
-          <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+          <Table
+            breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}
+            testId="test-table"
+            scrollAriaLabel="Fastleger"
+          >
             <TableContents />
           </Table>
         );
@@ -137,7 +153,11 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
         mockIsTouchDevice.mockReturnValue(false);
         mockUseBreakpoint.mockReturnValue(768);
         const { container } = render(
-          <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }} testId="test-table">
+          <Table
+            breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}
+            testId="test-table"
+            scrollAriaLabel="Fastleger"
+          >
             <TableContents />
           </Table>
         );
@@ -163,6 +183,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
               fallbackVariant: ResponsiveTableVariant.block,
             }}
             testId="test-table"
+            scrollAriaLabel="Fastleger"
           >
             <TableContents />
           </Table>
@@ -193,6 +214,7 @@ describe('Når den skal vises med horizontalscroll-visning på md skjerm', (): v
                 fallbackVariant: ResponsiveTableVariant.centeredoverflow,
               }}
               testId="test-table"
+              scrollAriaLabel="Fastleger"
             >
               <TableContents />
             </Table>
@@ -304,6 +326,7 @@ describe('Når den skal vises med centeredoverflow-visning på lg skjerm', (): v
               fallbackVariant: ResponsiveTableVariant.horizontalscroll,
             }}
             testId="test-table"
+            scrollAriaLabel="Fastleger"
           >
             <TableContents />
           </Table>

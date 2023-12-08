@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useSize } from '../../hooks/useSize';
+import { AriaLabelAttributes } from '../../utils/accessibility';
 
 import styles from './styles.module.scss';
 
@@ -19,7 +20,7 @@ interface HorizontalScrollProps {
   testId?: string;
 }
 
-export const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ children, childWidth, testId }) => {
+export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttributes> = ({ children, childWidth, testId, ...rest }) => {
   const viewportRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
@@ -29,12 +30,19 @@ export const HorizontalScroll: React.FC<HorizontalScrollProps> = ({ children, ch
 
   const isOverflowing = childWidth > viewPortWidth;
   const viewportClasses = classNames(styles.horizontalscroll__viewport, isOverflowing && styles['horizontalscroll__viewport--overflow']);
+  const hasAriaAttributes = rest['aria-label'] || rest['aria-labelledby'];
 
   return (
     <div className={styles.horizontalscroll} data-testid={testId}>
       {/* viewport-diven må ta tabIndex for å løse et annet UU-problem, at div med overflow: scroll må kunne navigeres med keyboard. */}
-      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
-      <div className={viewportClasses} ref={viewportRef} tabIndex={0}>
+      {/* Enten aria-label eller aria-labelledbyid må settes */}
+      <div
+        className={viewportClasses}
+        ref={viewportRef}
+        tabIndex={hasAriaAttributes ? 0 : undefined}
+        role={hasAriaAttributes ? 'region' : undefined}
+        {...rest}
+      >
         <div
           className={classNames(
             styles.horizontalscroll__indicator,
