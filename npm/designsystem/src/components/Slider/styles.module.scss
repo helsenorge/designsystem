@@ -55,7 +55,6 @@ $mark-size: getSpacer(l);
   &__track {
     padding: 0 getSpacer(s);
     border-top: 2px solid $black;
-    width: 100%;
     position: relative;
     top: $track-height-offset;
 
@@ -82,7 +81,7 @@ $mark-size: getSpacer(l);
     height: $mark-size;
     background-color: $white;
     border: 0.15rem solid $black;
-    border-radius: 1rem;
+    border-radius: 10rem;
     position: absolute;
     z-index: 9;
     outline: none;
@@ -97,7 +96,7 @@ $mark-size: getSpacer(l);
       width: 1.25rem;
       height: 1.25rem;
       border: 0.1rem solid $black;
-      border-radius: 1rem;
+      border-radius: 10rem;
       background-color: $blueberry600;
 
       :hover > &,

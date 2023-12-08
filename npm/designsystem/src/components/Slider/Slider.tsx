@@ -196,6 +196,21 @@ export const Slider: React.FC<SliderProps> = ({
 
   const markerXPos = maxValue !== minValue ? (trackWidth / (maxValue - minValue)) * (value - minValue) : 0;
 
+  const getAriaValueText = (): string | undefined => {
+    const stepIndex = steps ? Math.round((value - minValue) / step) : null;
+
+    if (steps && stepIndex !== null && stepIndex >= 0 && stepIndex < steps.length) {
+      const step = steps[stepIndex];
+      const emojiCode = step.emojiUniCode;
+      const emojiAsText = emojiCode ? safelyReturnEmoji(emojiCode) : undefined;
+      const label = typeof step.label !== 'undefined' ? step.label.toString() : undefined;
+
+      return emojiAsText && label ? `${emojiAsText} ${label}` : emojiAsText || label;
+    }
+
+    return undefined;
+  };
+
   const getAriaLabeledById = (): string | undefined => {
     if (title && labelLeft && labelRight) {
       return [titleId, labelLeftId, labelRightId].join(' ');
@@ -221,14 +236,27 @@ export const Slider: React.FC<SliderProps> = ({
     return { left: `${(index / (stepsLength - 1)) * 100}%` };
   };
 
+  const safelyReturnEmoji = (code: string): string => {
+    try {
+      return String.fromCodePoint(parseInt(code, 16));
+    } catch (e) {
+      return code;
+    }
+  };
+
   const renderEmojies = (): React.ReactNode => {
     return (
       <div className={styles['slider__emoji-container']}>
         {steps?.map((step, index) => {
           return (
             step.emojiUniCode && (
-              <div key={'emoji' + index} className={styles['slider__emoji']} style={getXPostionStyling(index, steps.length)}>
-                {String.fromCodePoint(parseInt(step.emojiUniCode, 16))}
+              <div
+                aria-hidden={true}
+                key={'emoji' + index}
+                className={styles['slider__emoji']}
+                style={getXPostionStyling(index, steps.length)}
+              >
+                {safelyReturnEmoji(step.emojiUniCode)}
               </div>
             )
           );
@@ -249,7 +277,12 @@ export const Slider: React.FC<SliderProps> = ({
         {steps?.map((step, index) => {
           return (
             typeof step.label !== 'undefined' && (
-              <div key={'label' + index} className={styles['slider__value']} style={getXPostionStyling(index, steps.length)}>
+              <div
+                aria-hidden={true}
+                key={'label' + index}
+                className={styles['slider__value']}
+                style={getXPostionStyling(index, steps.length)}
+              >
                 {step.label}
               </div>
             )
@@ -286,6 +319,7 @@ export const Slider: React.FC<SliderProps> = ({
             }}
             onKeyDown={handleKeyDown}
             aria-valuenow={value}
+            aria-valuetext={getAriaValueText()}
             aria-valuemin={minValue}
             aria-valuemax={maxValue}
             tabIndex={disabled ? undefined : 0}

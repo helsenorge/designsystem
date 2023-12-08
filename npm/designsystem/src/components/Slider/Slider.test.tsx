@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Slider } from './Slider';
@@ -199,13 +199,15 @@ describe('Gitt at Slider skal vises', (): void => {
   });
 
   describe('Når steps propen er satt', () => {
-    test('Så skal slideren vise labels og emoji riktig', () => {
+    test('Så skal slideren vise labels og emoji riktig', async () => {
       const steps = [
         { label: 'One', emojiUniCode: '1F600' },
         { label: 'Two', emojiUniCode: '1F602' },
         { label: 'Three', emojiUniCode: '1F604' },
       ];
       render(<Slider steps={steps} />);
+
+      const slider = screen.getByRole('slider');
 
       steps.forEach(step => {
         expect(screen.getByText(step.label)).toBeInTheDocument();
@@ -215,6 +217,8 @@ describe('Gitt at Slider skal vises', (): void => {
         const emoji = String.fromCodePoint(parseInt(step.emojiUniCode, 16));
         expect(screen.getByText(emoji)).toBeInTheDocument();
       });
+
+      await waitFor(() => expect(slider).toHaveAttribute('aria-valuetext', String.fromCodePoint(parseInt('1F602', 16)) + ' ' + 'Two'));
     });
   });
 });
