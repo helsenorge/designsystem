@@ -1,3 +1,17 @@
+## [5.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.7.0&targetVersion=GTv5.8.0) (2023-12-08)
+
+### Features
+
+- emptystate ([7e1d9a8](https://github.com/helsenorge/designsystem/commit/7e1d9a87a75009ebd7a5b313fbed946c905fdabc))
+
+### Bug Fixes
+
+- anchorlink har ikke hardkodet font-size/line-height
+  ([687bac1](https://github.com/helsenorge/designsystem/commit/687bac112e20f8e5c09c5b99623401baf01d5bd4))
+- slider aria fix for emoji og step labels
+  ([1ca0c1e](https://github.com/helsenorge/designsystem/commit/1ca0c1e8b979357ec2544248a2c4657ed25509fe)), closes
+  [#313810](https://github.com/helsenorge/designsystem/issues/313810) [#310765](https://github.com/helsenorge/designsystem/issues/310765)
+
 ## [5.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.6.0&targetVersion=GTv5.7.0) (2023-12-08)
 
 ### Features
