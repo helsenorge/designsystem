@@ -20,12 +20,16 @@ export const usePseudoClasses = <T extends HTMLElement | SVGElement>(
 
     refObject.current?.addEventListener('mouseenter', handleMouseEnter);
     refObject.current?.addEventListener('mouseleave', handleMouseLeave);
+    refObject.current?.addEventListener('pointerenter', handleMouseEnter);
+    refObject.current?.addEventListener('pointerleave', handleMouseLeave);
     refObject.current?.addEventListener('focusin', handleFocusIn);
     refObject.current?.addEventListener('focusout', handleFocusOut);
 
     return (): void => {
       refObject.current?.removeEventListener('mouseenter', handleMouseEnter);
       refObject.current?.removeEventListener('mouseleave', handleMouseLeave);
+      refObject.current?.removeEventListener('pointerenter', handleMouseEnter);
+      refObject.current?.removeEventListener('pointerleave', handleMouseLeave);
       refObject.current?.removeEventListener('focusin', handleFocusIn);
       refObject.current?.removeEventListener('focusout', handleFocusOut);
     };
