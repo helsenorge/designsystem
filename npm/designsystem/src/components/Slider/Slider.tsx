@@ -32,6 +32,7 @@ const useSafeNumberValue = (initial: number, min: number, max: number): [number,
 
 export type SliderStep = {
   label?: number | string;
+  /** Start emojicode with &# - otherwise it will render as a regular string */
   emojiUniCode?: string;
 };
 
@@ -238,7 +239,13 @@ export const Slider: React.FC<SliderProps> = ({
 
   const safelyReturnEmoji = (code: string): string => {
     try {
-      return String.fromCodePoint(parseInt(code, 16));
+      const regex = /^&#\d+/;
+      if (regex.test(code)) {
+        const emojiWithoutRegex = code.replace(/^&#/, '');
+        return String.fromCodePoint(parseInt(emojiWithoutRegex, 16));
+      } else {
+        return code;
+      }
     } catch (e) {
       return code;
     }
