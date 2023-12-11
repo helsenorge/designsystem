@@ -1,3 +1,18 @@
+## [5.9.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.8.0&targetVersion=GTv5.9.0) (2023-12-11)
+
+### Features
+
+- promopanel ([a190968](https://github.com/helsenorge/designsystem/commit/a190968285e95e09c20590cbdf14799165affb30)), closes
+  [#315387](https://github.com/helsenorge/designsystem/issues/315387)
+
+### Bug Fixes
+
+- label kan og sendes inn til emoji ([6d5d680](https://github.com/helsenorge/designsystem/commit/6d5d680d31b0c797230f3539305659bc073ddb3a)),
+  closes [#310765](https://github.com/helsenorge/designsystem/issues/310765)
+- tabellheader med sortering har ikke underline
+  ([f191991](https://github.com/helsenorge/designsystem/commit/f191991cb9e3f32bda2df281b703833d12dfb5db)), closes
+  [#315407](https://github.com/helsenorge/designsystem/issues/315407)
+
 ## [5.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.7.0&targetVersion=GTv5.8.0) (2023-12-08)
 
 ### Features
