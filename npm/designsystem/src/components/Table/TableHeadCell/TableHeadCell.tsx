@@ -45,12 +45,7 @@ export const TableHeadCell = ({ sortable, onClick, className, children, sortDir,
     );
   }
 
-  const sortableClasses = classNames(
-    tableHeadCellDefaultClass,
-    tableStyles['table__head-cell--sortable'],
-    { [tableStyles['table__head-cell--sorted']]: sortDir },
-    className
-  );
+  const sortableClasses = classNames(tableHeadCellDefaultClass, tableStyles['table__head-cell--sortable'], className);
 
   const renderSortIcon = (): React.JSX.Element | undefined =>
     sortDir && (

@@ -43,12 +43,6 @@ table .table-body .table-row {
     max-width: 100%;
   }
 
-  .table__head-cell:focus {
-    outline: none;
-    background-color: $blueberry800;
-    text-decoration: underline;
-  }
-
   .table__cell {
     position: relative;
     padding: 0.75rem 0 0.75rem 40%;
@@ -210,12 +204,6 @@ table .table-body .table-row {
   &--sortable:focus-within {
     outline: 3px solid $black;
     outline-offset: -3px;
-  }
-
-  &--sorted {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.3125rem;
   }
 
   @media (min-width: map.get($grid-breakpoints, lg)) {
