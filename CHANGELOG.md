@@ -1,3 +1,10 @@
+## [5.9.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.9.0&targetVersion=GTv5.9.1) (2023-12-11)
+
+### Bug Fixes
+
+- promopanel har position=relative ([360a762](https://github.com/helsenorge/designsystem/commit/360a762ec3ce63cfe870f6cd7300af9fb9b83a5e)),
+  closes [#315387](https://github.com/helsenorge/designsystem/issues/315387)
+
 ## [5.9.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.8.0&targetVersion=GTv5.9.0) (2023-12-11)
 
 ### Features
