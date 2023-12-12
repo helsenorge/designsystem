@@ -1,3 +1,10 @@
+## [5.9.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.9.1&targetVersion=GTv5.9.2) (2023-12-12)
+
+### Bug Fixes
+
+- slider forenklet emojirendring ([9df0d90](https://github.com/helsenorge/designsystem/commit/9df0d90e58c16f0609ce2c0de6c770f10420e7eb)),
+  closes [#313810](https://github.com/helsenorge/designsystem/issues/313810)
+
 ## [5.9.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.9.0&targetVersion=GTv5.9.1) (2023-12-11)
 
 ### Bug Fixes
