@@ -32,7 +32,6 @@ const useSafeNumberValue = (initial: number, min: number, max: number): [number,
 
 export type SliderStep = {
   label?: number | string;
-  /** Start emojicode with &# - otherwise it will render as a regular string */
   emojiUniCode?: string;
 };
 
@@ -203,10 +202,9 @@ export const Slider: React.FC<SliderProps> = ({
     if (steps && stepIndex !== null && stepIndex >= 0 && stepIndex < steps.length) {
       const step = steps[stepIndex];
       const emojiCode = step.emojiUniCode;
-      const emojiAsText = emojiCode ? safelyReturnEmoji(emojiCode) : undefined;
       const label = typeof step.label !== 'undefined' ? step.label.toString() : undefined;
 
-      return emojiAsText && label ? `${emojiAsText} ${label}` : emojiAsText || label;
+      return emojiCode && label ? `${emojiCode} ${label}` : emojiCode || label;
     }
 
     return undefined;
@@ -237,20 +235,6 @@ export const Slider: React.FC<SliderProps> = ({
     return { left: `${(index / (stepsLength - 1)) * 100}%` };
   };
 
-  const safelyReturnEmoji = (code: string): string => {
-    try {
-      const regex = /^&#\d+/;
-      if (regex.test(code)) {
-        const emojiWithoutRegex = code.replace(/^&#/, '');
-        return String.fromCodePoint(parseInt(emojiWithoutRegex, 16));
-      } else {
-        return code;
-      }
-    } catch (e) {
-      return code;
-    }
-  };
-
   const renderEmojies = (): React.ReactNode => {
     return (
       <div className={styles['slider__emoji-container']}>
@@ -263,7 +247,7 @@ export const Slider: React.FC<SliderProps> = ({
                 className={styles['slider__emoji']}
                 style={getXPostionStyling(index, steps.length)}
               >
-                {safelyReturnEmoji(step.emojiUniCode)}
+                {step.emojiUniCode}
               </div>
             )
           );

@@ -201,9 +201,9 @@ describe('Gitt at Slider skal vises', (): void => {
   describe('Når steps propen er satt', () => {
     test('Så skal slideren vise labels og emoji riktig', async () => {
       const steps = [
-        { label: 'One', emojiUniCode: '&#1F600' },
-        { label: 'Two', emojiUniCode: '&#1F602' },
-        { label: 'Three', emojiUniCode: '&#1F604' },
+        { label: 'One', emojiUniCode: '🙁' },
+        { label: 'Two', emojiUniCode: '😐' },
+        { label: 'Three', emojiUniCode: '🙂' },
       ];
       render(<Slider steps={steps} />);
 
@@ -214,12 +214,10 @@ describe('Gitt at Slider skal vises', (): void => {
       });
 
       steps.forEach(step => {
-        const emojiString = step.emojiUniCode.replace(/^&#/, '');
-        const emoji = String.fromCodePoint(parseInt(emojiString, 16));
-        expect(screen.getByText(emoji)).toBeInTheDocument();
+        expect(screen.getByText(step.emojiUniCode)).toBeInTheDocument();
       });
 
-      await waitFor(() => expect(slider).toHaveAttribute('aria-valuetext', String.fromCodePoint(parseInt('1F602', 16)) + ' ' + 'Two'));
+      await waitFor(() => expect(slider).toHaveAttribute('aria-valuetext', '😐 ' + 'Two'));
     });
   });
 });

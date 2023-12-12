@@ -68,7 +68,7 @@ export const StepLabel: ComponentStory<typeof Slider> = (args: any) => {
 };
 
 export const StepEmoji: ComponentStory<typeof Slider> = (args: any) => {
-  const sliderData: SliderStep[] = [{ emojiUniCode: '&#1f641' }, { emojiUniCode: '&#1f610' }, { emojiUniCode: '&#1f642' }];
+  const sliderData: SliderStep[] = [{ emojiUniCode: '🙁' }, { emojiUniCode: '😐' }, { emojiUniCode: '🙂' }];
 
   return (
     <GridExample>
@@ -79,11 +79,11 @@ export const StepEmoji: ComponentStory<typeof Slider> = (args: any) => {
 
 export const CombinedData: ComponentStory<typeof Slider> = (args: any) => {
   const sliderData: SliderStep[] = [
-    { label: -1.0, emojiUniCode: '&#1f621' },
-    { label: -0.5, emojiUniCode: '&#1f641' },
-    { label: 0, emojiUniCode: '&#1f610' },
-    { label: 0.5, emojiUniCode: '&#1f642' },
-    { label: 1.0, emojiUniCode: '&#1f601' },
+    { label: -1.0, emojiUniCode: '😔' },
+    { label: -0.5, emojiUniCode: '🙁' },
+    { label: 0, emojiUniCode: '😐' },
+    { label: 0.5, emojiUniCode: '🙂' },
+    { label: 1.0, emojiUniCode: '😃' },
   ];
 
   return (
