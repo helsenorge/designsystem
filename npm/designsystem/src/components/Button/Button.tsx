@@ -44,7 +44,7 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttri
   htmlMarkup?: ButtonTags;
   /** Changes the button colors for different backgrounds. */
   mode?: ButtonMode;
-  /** Callback når Button mister fokus */
+  /** Function that is called when the Button loses focus */
   onBlur?: () => void;
   /** Function that is called when clicked */
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null) => void;
