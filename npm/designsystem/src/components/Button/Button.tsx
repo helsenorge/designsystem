@@ -44,6 +44,8 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttri
   htmlMarkup?: ButtonTags;
   /** Changes the button colors for different backgrounds. */
   mode?: ButtonMode;
+  /** Callback når Button mister fokus */
+  onBlur?: () => void;
   /** Function that is called when clicked */
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null) => void;
   /** Changes the button colors for different backgrounds. (Large not available in borderless variant) */
@@ -107,6 +109,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     fluid = false,
     htmlMarkup = 'button',
     mode = 'onlight',
+    onBlur,
     onClick,
     size = 'medium',
     variant = 'fill',
@@ -220,6 +223,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       {htmlMarkup === 'button' && (
         <button
           id={id}
+          onBlur={onBlur}
           onClick={onClick}
           disabled={disabled}
           data-testid={testId}
@@ -236,6 +240,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       {htmlMarkup === 'a' && (
         <a
           id={id}
+          onBlur={onBlur}
           onClick={onClick}
           data-testid={testId}
           data-analyticsid={AnalyticsId.Button}

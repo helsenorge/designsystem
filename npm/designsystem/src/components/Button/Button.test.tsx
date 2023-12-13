@@ -105,6 +105,25 @@ describe('Gitt at button skal vises', (): void => {
     });
   });
 
+  describe('Når button rendres som button med onBlur-handler', () => {
+    test('Så kalles onBlur-handleren når man klikker på knappen', async () => {
+      const handleBlur = jest.fn();
+
+      render(
+        <Button onBlur={handleBlur} htmlMarkup="button">
+          Lenketekst
+        </Button>
+      );
+
+      const link = screen.getByRole('button', { name: 'Lenketekst' });
+
+      await userEvent.click(link);
+      await userEvent.tab();
+
+      expect(handleBlur).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('Når button rendres som button med onClick-handler', () => {
     test('Så kalles onClick-handleren når man klikker på knappen', async () => {
       const handleClick = jest.fn();
