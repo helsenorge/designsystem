@@ -1,3 +1,16 @@
+## [5.10.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.9.2&targetVersion=GTv5.10.0) (2023-12-13)
+
+### Features
+
+- button onblur lagt til ([e30e815](https://github.com/helsenorge/designsystem/commit/e30e8152dcac4341af0879e6b5379b6c992701b2)), closes
+  [#315943](https://github.com/helsenorge/designsystem/issues/315943)
+
+### Bug Fixes
+
+- input og textarea har ikke defaultValue som default
+  ([2f0a39d](https://github.com/helsenorge/designsystem/commit/2f0a39da5a85558488fdb14280888ceb1a3f49ec)), closes
+  [#309847](https://github.com/helsenorge/designsystem/issues/309847)
+
 ## [5.9.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.9.1&targetVersion=GTv5.9.2) (2023-12-12)
 
 ### Bug Fixes
