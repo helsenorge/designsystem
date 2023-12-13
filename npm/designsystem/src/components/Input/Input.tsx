@@ -98,7 +98,7 @@ const getInputMaxWidth = (characters: number, hasIcon: boolean, iconSize: number
 const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputElement>) => {
   const {
     className,
-    defaultValue = '',
+    defaultValue,
     placeholder,
     type = InputTypes.text,
     name,
@@ -131,13 +131,13 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const breakpoint = useBreakpoint();
   const inputContainerRef = useRef<HTMLDivElement>(null);
   const inputIdState = useUuid(inputId);
-  const [input, setInput] = useState(defaultValue);
+  const [input, setInput] = useState(defaultValue || '');
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
   const numKeyPressed = useRef<boolean>(false);
   const numRegex = /^[0-9]$/;
 
   useEffect(() => {
-    setInput(defaultValue);
+    setInput(defaultValue || '');
   }, [defaultValue]);
 
   const onDark = mode === FormMode.ondark;

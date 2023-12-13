@@ -66,7 +66,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     maxText,
     width,
     testId,
-    defaultValue = '',
+    defaultValue,
     marginBottom: gutterBottom,
     transparent,
     mode = FormMode.onwhite,
@@ -88,11 +88,11 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   } = props;
 
   const [rows, setRows] = useState(minRows);
-  const [textareaInput, setTextareaInput] = useState(defaultValue);
+  const [textareaInput, setTextareaInput] = useState(defaultValue || '');
   const referanse = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setTextareaInput(defaultValue);
+    setTextareaInput(defaultValue || '');
   }, [defaultValue]);
 
   const resizeHeight = (target: HTMLTextAreaElement): void => {
