@@ -47,7 +47,7 @@ export default {
     },
     hoverColor: {
       control: 'text',
-      defaultValue: 'gray',
+      defaultValue: 'black',
     },
     isHovered: {
       control: 'boolean',
