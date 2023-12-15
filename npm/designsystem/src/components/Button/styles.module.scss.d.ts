@@ -1,6 +1,7 @@
 export type Styles = {
   button: string;
   button__arrow: string;
+  'button__arrow--both-icons': string;
   'button__both-icons': string;
   'button__left-icon': string;
   'button__only-icon': string;
@@ -8,6 +9,7 @@ export type Styles = {
   button__text: string;
   'button__text--ellipsis': string;
   'button--arrow': string;
+  'button--arrow--both-icons': string;
   'button--borderless': string;
   'button--both-icons': string;
   'button--destructive': string;

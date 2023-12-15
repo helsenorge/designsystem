@@ -213,7 +213,11 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       {renderIcon(leftIcon, getLargeIconSize(large, mobile), !onlyIcon ? buttonStyles['button__left-icon'] : undefined)}
       {renderButtonContent()}
       {hasArrow
-        ? renderIcon(<Icon svgIcon={ArrowRight} />, getLargeIconSize(large, mobile), buttonStyles['button__arrow'])
+        ? renderIcon(
+            <Icon svgIcon={ArrowRight} />,
+            getLargeIconSize(large, mobile),
+            classNames(buttonStyles['button__arrow'], { [buttonStyles['button__arrow--both-icons']]: bothIcons })
+          )
         : renderIcon(rightIcon, getLargeIconSize(large, mobile), buttonStyles['button__right-icon'])}
     </span>
   );

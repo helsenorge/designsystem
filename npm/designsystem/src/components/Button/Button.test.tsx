@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import Button from './Button';
 import Icon from '../Icons';
 import Check from '../Icons/Check';
+import Dog from '../Icons/Dog';
 
 describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres', (): void => {
@@ -73,6 +74,23 @@ describe('Gitt at button skal vises', (): void => {
 
       expect(button).toBeVisible();
       expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe('Når button rendres med to ikoner', (): void => {
+    test('Så skal button ha to ikoner ', (): void => {
+      render(
+        <Button arrow testId="test">
+          <Icon svgIcon={Dog} />
+          Button
+        </Button>
+      );
+
+      const text = screen.getByText('Button');
+      const button = screen.getByTestId('test');
+
+      expect(text).toBeVisible();
+      expect(button.firstElementChild?.className).toBe('button button--normal button--left-icon button--both-icons button--arrow');
     });
   });
 

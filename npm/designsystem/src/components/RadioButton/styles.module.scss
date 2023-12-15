@@ -238,7 +238,7 @@
     color: $neutral200;
 
     &:hover {
-      background-color: $inverted-hover;
+      background-color: $inverted-hover-old;
       box-shadow: 0 0 0 getSpacer(3xs);
     }
 
@@ -255,7 +255,7 @@
       color: $blueberry200;
 
       &:hover {
-        background-color: $inverted-hover;
+        background-color: $inverted-hover-old;
       }
 
       &:focus {
