@@ -1,3 +1,12 @@
+## [5.11.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.10.0&targetVersion=GTv5.11.0) (2023-12-18)
+
+### Bug Fixes
+
+- justeringer på button ([927e486](https://github.com/helsenorge/designsystem/commit/927e486876be4cbe2bb6c9b6d022e032439a2a11)), closes
+  [#308138](https://github.com/helsenorge/designsystem/issues/308138)
+- oppdatert metadata til ikoner ([3b3510b](https://github.com/helsenorge/designsystem/commit/3b3510bb19da59156adb077e15137eb855cb1722)),
+  closes [#316105](https://github.com/helsenorge/designsystem/issues/316105)
+
 ## [5.10.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.9.2&targetVersion=GTv5.10.0) (2023-12-13)
 
 ### Features
