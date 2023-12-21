@@ -35,10 +35,6 @@ export interface LinkListProps {
   color?: LinkListColors;
   /** Toggles chevron icon on or off. */
   chevron?: boolean;
-  /** @deprecated Skal fases ut - Brukes ikke lenger. */
-  bottomBorder?: boolean;
-  /** @deprecated Skal fases ut - Brukes ikke lenger. */
-  topBorder?: boolean;
   /** Changes size of the LinkList. */
   size?: LinkListSize;
   /** Sets the data-testid attribute. */

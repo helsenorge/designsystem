@@ -163,11 +163,6 @@ export interface ServiceMessageProps {
   variant?: NotificationPanelVariants;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /**
-   * First of its type. Used to remove border-top
-   * @deprecated Har ingen effekt på komponenten
-   */
-  first?: boolean;
 }
 
 const ServiceMessage: React.FC<ServiceMessageProps> = ({

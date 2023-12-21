@@ -30,10 +30,6 @@ export default {
     },
   },
   argTypes: {
-    isOpen: {
-      control: 'boolean',
-      defaultValue: false,
-    },
     renderChildrenWhenClosed: {
       control: 'boolean',
       defaultValue: false,
@@ -50,14 +46,6 @@ export default {
       control: 'select',
       options: allPaletteNames,
       defaultValue: 'blueberry',
-    },
-    topBorder: {
-      control: 'boolean',
-      defaultValue: true,
-    },
-    bottomBorder: {
-      control: 'boolean',
-      defaultValue: true,
     },
     sticky: {
       control: 'boolean',

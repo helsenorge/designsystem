@@ -102,8 +102,6 @@ export interface PanelProps {
   url?: string;
   /** target used in the button: default is _self */
   target?: AnchorTarget;
-  /** @deprecated Has no effect anymore due to accessibility reasons. No close button is shown in expanded content. Will be removed in 2.0.0 */
-  showCloseButtonInExpand?: boolean;
 }
 
 export interface LayoutProps

@@ -14,7 +14,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
   describe('Når det er tre expandere og accordion er false', (): void => {
     it('Sjekk at ExpanderList sitt snapshot matcher', (): void => {
       const { container } = render(
-        <ExpanderList isOpen={false} accordion={false} childPadding={true} color={'blueberry'}>
+        <ExpanderList accordion={false} childPadding={true} color={'blueberry'}>
           <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
           <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
           <ExpanderList.Expander title="Title 3">Text 2</ExpanderList.Expander>
@@ -24,11 +24,13 @@ describe('Gitt ExpanderList blir rendret', (): void => {
     });
   });
 
-  describe('Når det er to expandere og isOpen er true', (): void => {
+  describe('Når det er to expandere og den første er expanded', (): void => {
     it('så er den første expanderen åpen, og den andre ikke åpen', async (): Promise<void> => {
       render(
-        <ExpanderList isOpen={true}>
-          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
+        <ExpanderList>
+          <ExpanderList.Expander title="Title 1" expanded>
+            Text 1
+          </ExpanderList.Expander>
           <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
         </ExpanderList>
       );
@@ -42,8 +44,10 @@ describe('Gitt ExpanderList blir rendret', (): void => {
 
     it('så kan man åpne den andre expanderen', async (): Promise<void> => {
       render(
-        <ExpanderList isOpen={true}>
-          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
+        <ExpanderList>
+          <ExpanderList.Expander title="Title 1" expanded>
+            Text 1
+          </ExpanderList.Expander>
           <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
         </ExpanderList>
       );
@@ -60,13 +64,15 @@ describe('Gitt ExpanderList blir rendret', (): void => {
 
     it('så kan man lukke den første', async (): Promise<void> => {
       render(
-        <ExpanderList isOpen={true}>
-          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
+        <ExpanderList>
+          <ExpanderList.Expander title="Title 1" expanded>
+            Text 1
+          </ExpanderList.Expander>
           <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
         </ExpanderList>
       );
 
-      const button1 = screen.queryByRole('button', { name: 'Title 1' });
+      const button1 = screen.getByRole('button', { name: 'Title 1' });
       expect(button1).toHaveAttribute('aria-expanded', 'true');
 
       const text1 = screen.getByText('Text 1');
@@ -229,7 +235,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
             width: '40rem',
           }}
         >
-          <ExpanderList isOpen={false} accordion={false} childPadding={true} color={'blueberry'}>
+          <ExpanderList accordion={false} childPadding={true} color={'blueberry'}>
             <ExpanderList.Expander testId="test01" title="Title 1">
               Text 1
             </ExpanderList.Expander>
@@ -352,13 +358,13 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       });
     });
   });
-  describe('Gitt at ExpanderList har Expander med onExpand-callback og isOpen satt til true', (): void => {
+  describe('Gitt at ExpanderList har Expander med onExpand-callback og den første er expanded', (): void => {
     describe('Når man klikker på expanderen én gang', (): void => {
       test('Så kalles callback først med true og så med false', async (): Promise<void> => {
         const handleExpand = jest.fn();
         render(
-          <ExpanderList isOpen>
-            <ExpanderList.Expander title="Title 1" onExpand={handleExpand}>
+          <ExpanderList>
+            <ExpanderList.Expander title="Title 1" onExpand={handleExpand} expanded>
               Text 1
             </ExpanderList.Expander>
           </ExpanderList>

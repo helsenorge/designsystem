@@ -7,7 +7,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
     data-analyticsid="expander-list"
   >
     <li
-      class="expander-list__item expander-list__item--top expander-list__item--line"
+      class="expander-list__item expander-list__item--line"
     >
       <button
         aria-expanded="false"
@@ -57,7 +57,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
     data-analyticsid="expander-list"
   >
     <li
-      class="expander-list__item expander-list__item--top expander-list__item--line"
+      class="expander-list__item expander-list__item--line"
     >
       <button
         aria-expanded="false"
@@ -112,7 +112,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
     data-analyticsid="expander-list"
   >
     <li
-      class="expander-list__item expander-list__item--top expander-list__item--line"
+      class="expander-list__item expander-list__item--line"
     >
       <button
         aria-expanded="false"
@@ -257,7 +257,7 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
     data-analyticsid="expander-list"
   >
     <li
-      class="expander-list__item expander-list__item--top expander-list__item--line expander-list__item--jsx"
+      class="expander-list__item expander-list__item--line expander-list__item--jsx"
     >
       <button
         aria-expanded="false"

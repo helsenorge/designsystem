@@ -31,8 +31,6 @@ export type ExpanderListVariant = 'line' | 'outline' | 'fill';
 interface ExpanderListProps {
   /** Toggles accordion functionality for the expanders. */
   accordion?: boolean;
-  /** @deprecated Skal fases ut - Brukes ikke lenger. */
-  bottomBorder?: boolean;
   /** Items in the ExpanderList */
   children: React.ReactNode;
   /** Toggles padding of child elements */
@@ -43,13 +41,8 @@ interface ExpanderListProps {
   color?: ExpanderListColors;
   /** Changes the font size. */
   large?: boolean;
-  /** Opens the first item in the list. */
-  /** @deprecated Skal fases ut til fordel for å bruke expanded-prop på første ExpanderList.Expander */
-  isOpen?: boolean;
   /** Whether to render children when closed (in which case they are hidden with CSS). Default: false */
   renderChildrenWhenClosed?: boolean;
-  /** @deprecated Skal fases ut - Brukes ikke lenger. */
-  topBorder?: boolean;
   /** Stick expander trigger to top of screen while scrolling down */
   sticky?: boolean;
   /** Sets the data-testid attribute. */
@@ -175,13 +168,10 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     children,
     childPadding = true,
     large,
-    isOpen = false,
     renderChildrenWhenClosed = false,
     color,
     className = '',
     accordion = false,
-    topBorder = true,
-    bottomBorder = true,
     sticky = false,
     testId,
     variant,
@@ -189,21 +179,12 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
   const uuid = useUuid();
-  const childCount = React.Children.count(children);
   const expanderListClasses = classNames(expanderListStyles['expander-list'], className);
 
   function handleExpanderClick(event: React.MouseEvent<HTMLElement, MouseEvent>, id: string): void {
     setActiveExpander(prevState => (accordion ? { [id]: !prevState?.[id] } : { ...prevState, [id]: !prevState?.[id] }));
     setLatestExpander(event.currentTarget);
   }
-
-  /** Returns the class modifier top when we want to show the top border and no-bottom when we don't want to show the bottom border */
-  const getExpanderItemClass = (index: number) => {
-    return classNames(expanderListStyles['expander-list__item'], {
-      [expanderListStyles['expander-list__item--top']]: index === 0 && topBorder,
-      [expanderListStyles['expander-list__item--no-bottom']]: index === childCount - 1 && !bottomBorder,
-    });
-  };
 
   const getExpanderId = (index: number) => `${uuid}-${index}`;
 
@@ -214,28 +195,19 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   }, [accordion, latestExpander]);
 
   useEffect(() => {
-    if (isOpen) {
-      const id = getExpanderId(0);
-      setActiveExpander(prevState => (accordion ? { [id]: !prevState?.[id] } : { ...prevState, [id]: !prevState?.[id] }));
-    }
-  }, [isOpen]);
+    const newActiveExpander = React.Children.map(children, child => {
+      if (isExpanderComponent(child)) {
+        return child;
+      }
+    })?.reduce((acc, child, index) => {
+      // Expanded-status skal bare settes dersom prop er satt av den som bruker komponenten
+      if (typeof child.props.expanded !== 'undefined') {
+        acc[getExpanderId(index)] = child.props.expanded;
+      }
+      return acc;
+    }, {} as ActiveExpander);
 
-  useEffect(() => {
-    if (!isOpen) {
-      const newActiveExpander = React.Children.map(children, child => {
-        if (isExpanderComponent(child)) {
-          return child;
-        }
-      })?.reduce((acc, child, index) => {
-        // Expanded-status skal bare settes dersom prop er satt av den som bruker komponenten
-        if (typeof child.props.expanded !== 'undefined') {
-          acc[getExpanderId(index)] = child.props.expanded;
-        }
-        return acc;
-      }, {} as ActiveExpander);
-
-      setActiveExpander({ ...activeExpander, ...newActiveExpander });
-    }
+    setActiveExpander({ ...activeExpander, ...newActiveExpander });
   }, [children]);
 
   return (
@@ -244,7 +216,6 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
         if (isExpanderComponent(child)) {
           const id = getExpanderId(index);
           const expanded = activeExpander?.[id];
-          const expanderItemClass = getExpanderItemClass(index);
 
           return React.cloneElement(child as React.ReactElement<ExpanderProps>, {
             id,
@@ -255,7 +226,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
             large,
             sticky,
             'aria-expanded': expanded,
-            className: expanderItemClass,
+            className: expanderListStyles['expander-list__item'],
             handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${uuid}-${index}`),
             renderChildrenWhenClosed,
             variant,

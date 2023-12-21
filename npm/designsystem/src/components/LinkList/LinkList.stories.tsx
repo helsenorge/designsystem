@@ -45,14 +45,6 @@ export default {
       options: allPaletteNames,
       defaultValue: 'blueberry',
     },
-    topBorder: {
-      control: 'boolean',
-      defaultValue: true,
-    },
-    bottomBorder: {
-      control: 'boolean',
-      defaultValue: true,
-    },
   },
 } as ComponentMeta<typeof LinkList>;
 
