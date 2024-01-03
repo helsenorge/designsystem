@@ -51,14 +51,7 @@ import designsystemtypography from './scss/typography.scss'
 }
 
 .legend {
-  font-size: $font-size-md;
-  line-height: 1.625rem;
-  font-weight: 600;
-
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: getSpacer(m);
-    line-height: $lineheight-size-md;
-  }
+  @include legend;
 }
 
 .label {

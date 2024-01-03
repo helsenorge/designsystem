@@ -3,6 +3,8 @@
 @import './breakpoints';
 @import './font-settings';
 
+// @todo rename denne filen til font-mixins e.l.
+
 @mixin title-feature {
   font-size: 2.375rem;
   line-height: 2.875rem;
@@ -61,5 +63,16 @@
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-sm;
+  }
+}
+
+@mixin legend {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }

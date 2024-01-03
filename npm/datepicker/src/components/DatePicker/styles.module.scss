@@ -3,6 +3,7 @@
 @import '@helsenorge/designsystem-react/scss/breakpoints';
 @import '@helsenorge/designsystem-react/scss/palette';
 @import '@helsenorge/designsystem-react/scss/font-settings';
+@import '@helsenorge/designsystem-react/scss/title';
 
 .date-time-picker-wrapper {
   display: flex;
@@ -26,8 +27,8 @@
   }
 
   &__legend {
-    font-size: $font-size-md;
-    font-weight: 600;
+    @include legend;
+
     margin-bottom: getSpacer(m);
     margin-top: 0;
   }

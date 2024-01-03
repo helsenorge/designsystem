@@ -1,7 +1,7 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
+@import '../../scss/title';
 
 .form-group-wrapper {
   &__title {
@@ -25,8 +25,8 @@
   }
 
   &__legend {
-    font-size: $font-size-md;
-    font-weight: 600;
+    @include legend;
+
     margin-bottom: getSpacer(m);
     margin-top: 0;
 
