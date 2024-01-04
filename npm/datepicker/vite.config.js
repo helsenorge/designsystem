@@ -6,6 +6,8 @@ import generatePackageJson from 'rollup-plugin-generate-package-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { defineConfig } from 'vite';
 
+import { entries } from './scripts/entries';
+
 const OUTPUT_DIRECTORY = 'lib';
 
 export default defineConfig({
@@ -13,7 +15,7 @@ export default defineConfig({
     outDir: OUTPUT_DIRECTORY,
     rollupOptions: {
       preserveEntrySignatures: 'strict',
-      input: { 'components\\DatePicker\\index': path.resolve(__dirname, 'src/components/DatePicker/index.ts') },
+      input: entries,
       external: [/.module.scss/],
       output: {
         format: 'es',
@@ -34,7 +36,7 @@ export default defineConfig({
         copy({
           targets: [
             { src: 'src/components/**/*.module.scss*', dest: OUTPUT_DIRECTORY },
-            { src: 'types/**/*.d.ts*', dest: OUTPUT_DIRECTORY + '/components/DatePicker' },
+            { src: 'types/**/*.d.ts*', dest: OUTPUT_DIRECTORY },
           ],
           hook: 'writeBundle',
           flatten: false,
