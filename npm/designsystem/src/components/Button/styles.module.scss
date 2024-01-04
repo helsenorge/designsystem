@@ -293,6 +293,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   /* stylelint-disable-next-line */
   &--borderless {
     border-radius: 0;
+
     &:hover {
       box-shadow: none;
     }
@@ -314,6 +315,10 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &__text {
     color: $white;
     margin: 0 auto 0 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       margin: 0 auto 0 0;
@@ -352,13 +357,16 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
 .diagonal {
   display: block;
-  transform: matrix(-1, 0, 0, 1, 0, 0);
+  transform: matrix(-1, 0, 0, 1, -8, 2);
+  position: absolute;
+  width: 3.7rem;
+  height: 2.25rem;
 
   &__line {
     display: block;
     border-bottom: getSpacer(4xs) dashed $neutral500;
     transform-origin: top left;
-    position: absolute;
+    transform: rotate(37.4deg);
   }
 
   &--on-dark &__line {

@@ -189,18 +189,11 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   };
 
   const renderButtonContent = (): JSX.Element => {
-    let angle;
-    let diagonalWidth;
-    if (buttonContentSize) {
-      angle = Math.atan2(buttonContentSize.height, buttonContentSize.width);
-      diagonalWidth = Math.sqrt(Math.pow(buttonContentSize.width, 2) + Math.pow(buttonContentSize.height, 2));
-    }
-
     return (
       <span className={buttonTextClasses} ref={buttonContentRef}>
         {disabled && borderlessVariant && (
           <span className={diagonalClasses}>
-            <span style={{ transform: `rotate(${angle}rad)`, width: diagonalWidth }} className={buttonStyles['diagonal__line']} />
+            <span className={buttonStyles['diagonal__line']} />
           </span>
         )}
         <span>{onlyIcon ? ariaLabel : restChildren}</span>
