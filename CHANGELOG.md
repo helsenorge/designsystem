@@ -1,3 +1,17 @@
+## [5.12.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.11.0&targetVersion=GTv5.12.0) (2024-01-04)
+
+### Bug Fixes
+
+- datepicker eksporterer funksjoner riktig
+  ([46285e5](https://github.com/helsenorge/designsystem/commit/46285e5e4cacf0f1fa224fcaa42eb75b73ce24e1)), closes
+  [#315273](https://github.com/helsenorge/designsystem/issues/315273)
+- justert fontstørrelse på legend i form
+  ([afd858b](https://github.com/helsenorge/designsystem/commit/afd858b850330bb13d0dca6b11aae50f7e1cd17c)), closes
+  [#316149](https://github.com/helsenorge/designsystem/issues/316149)
+- sentrere tekst på notificationpanel
+  ([5188c22](https://github.com/helsenorge/designsystem/commit/5188c22bbdd920479655eab87dd19657b84ed27e)), closes
+  [#311338](https://github.com/helsenorge/designsystem/issues/311338)
+
 ## [5.11.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.10.0&targetVersion=GTv5.11.0) (2023-12-18)
 
 ### Bug Fixes
