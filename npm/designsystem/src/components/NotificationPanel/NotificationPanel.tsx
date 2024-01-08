@@ -134,6 +134,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     });
     const childrenClasses = classNames(styles['notification-panel__children'], {
       [styles['notification-panel__label-and-content--spacing']]: label,
+      [styles['notification-panel__children--expander-no-label']]: expanderChildren && !label,
     });
 
     return (

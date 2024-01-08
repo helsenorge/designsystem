@@ -1,76 +1,148 @@
-## 6.0.0-beta.10 (2023-11-22)
+## [5.12.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.11.0&targetVersion=GTv5.12.0) (2024-01-04)
+
+### Bug Fixes
+
+- datepicker eksporterer funksjoner riktig
+  ([46285e5](https://github.com/helsenorge/designsystem/commit/46285e5e4cacf0f1fa224fcaa42eb75b73ce24e1)), closes
+  [#315273](https://github.com/helsenorge/designsystem/issues/315273)
+- justert fontstørrelse på legend i form
+  ([afd858b](https://github.com/helsenorge/designsystem/commit/afd858b850330bb13d0dca6b11aae50f7e1cd17c)), closes
+  [#316149](https://github.com/helsenorge/designsystem/issues/316149)
+- sentrere tekst på notificationpanel
+  ([5188c22](https://github.com/helsenorge/designsystem/commit/5188c22bbdd920479655eab87dd19657b84ed27e)), closes
+  [#311338](https://github.com/helsenorge/designsystem/issues/311338)
+
+## [5.11.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.10.0&targetVersion=GTv5.11.0) (2023-12-18)
+
+### Bug Fixes
+
+- justeringer på button ([927e486](https://github.com/helsenorge/designsystem/commit/927e486876be4cbe2bb6c9b6d022e032439a2a11)), closes
+  [#308138](https://github.com/helsenorge/designsystem/issues/308138)
+- oppdatert metadata til ikoner ([3b3510b](https://github.com/helsenorge/designsystem/commit/3b3510bb19da59156adb077e15137eb855cb1722)),
+  closes [#316105](https://github.com/helsenorge/designsystem/issues/316105)
+
+## [5.10.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.9.2&targetVersion=GTv5.10.0) (2023-12-13)
 
 ### Features
 
-- iconwall med alle ikoner og siste master merge
-  ([8007aec](https://github.com/helsenorge/designsystem/commit/8007aec989f53a4dc23d712852fcbc0e1adf0d7e)), closes
+- button onblur lagt til ([e30e815](https://github.com/helsenorge/designsystem/commit/e30e8152dcac4341af0879e6b5379b6c992701b2)), closes
+  [#315943](https://github.com/helsenorge/designsystem/issues/315943)
+
+### Bug Fixes
+
+- input og textarea har ikke defaultValue som default
+  ([2f0a39d](https://github.com/helsenorge/designsystem/commit/2f0a39da5a85558488fdb14280888ceb1a3f49ec)), closes
+  [#309847](https://github.com/helsenorge/designsystem/issues/309847)
+
+## [5.9.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.9.1&targetVersion=GTv5.9.2) (2023-12-12)
+
+### Bug Fixes
+
+- slider forenklet emojirendring ([9df0d90](https://github.com/helsenorge/designsystem/commit/9df0d90e58c16f0609ce2c0de6c770f10420e7eb)),
+  closes [#313810](https://github.com/helsenorge/designsystem/issues/313810)
+
+## [5.9.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.9.0&targetVersion=GTv5.9.1) (2023-12-11)
+
+### Bug Fixes
+
+- promopanel har position=relative ([360a762](https://github.com/helsenorge/designsystem/commit/360a762ec3ce63cfe870f6cd7300af9fb9b83a5e)),
+  closes [#315387](https://github.com/helsenorge/designsystem/issues/315387)
+
+## [5.9.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.8.0&targetVersion=GTv5.9.0) (2023-12-11)
+
+### Features
+
+- promopanel ([a190968](https://github.com/helsenorge/designsystem/commit/a190968285e95e09c20590cbdf14799165affb30)), closes
+  [#315387](https://github.com/helsenorge/designsystem/issues/315387)
+
+### Bug Fixes
+
+- label kan og sendes inn til emoji ([6d5d680](https://github.com/helsenorge/designsystem/commit/6d5d680d31b0c797230f3539305659bc073ddb3a)),
+  closes [#310765](https://github.com/helsenorge/designsystem/issues/310765)
+- tabellheader med sortering har ikke underline
+  ([f191991](https://github.com/helsenorge/designsystem/commit/f191991cb9e3f32bda2df281b703833d12dfb5db)), closes
+  [#315407](https://github.com/helsenorge/designsystem/issues/315407)
+
+## [5.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.7.0&targetVersion=GTv5.8.0) (2023-12-08)
+
+### Features
+
+- emptystate ([7e1d9a8](https://github.com/helsenorge/designsystem/commit/7e1d9a87a75009ebd7a5b313fbed946c905fdabc))
+
+### Bug Fixes
+
+- anchorlink har ikke hardkodet font-size/line-height
+  ([687bac1](https://github.com/helsenorge/designsystem/commit/687bac112e20f8e5c09c5b99623401baf01d5bd4))
+- slider aria fix for emoji og step labels
+  ([1ca0c1e](https://github.com/helsenorge/designsystem/commit/1ca0c1e8b979357ec2544248a2c4657ed25509fe)), closes
+  [#313810](https://github.com/helsenorge/designsystem/issues/313810) [#310765](https://github.com/helsenorge/designsystem/issues/310765)
+
+## [5.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.6.0&targetVersion=GTv5.7.0) (2023-12-08)
+
+### Features
+
+- tabell med horizontal scroll støtter aria-atributter
+  ([5f0fb2c](https://github.com/helsenorge/designsystem/commit/5f0fb2cd1c86c7ee6348f3ddd144b823a10fe6be)), closes
+  [#314191](https://github.com/helsenorge/designsystem/issues/314191)
+
+## [5.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.5.0&targetVersion=GTv5.6.0) (2023-12-07)
+
+### Features
+
+- legg til default tekst på sharingstatus
+  ([8c8385d](https://github.com/helsenorge/designsystem/commit/8c8385da218e2c0213b95cab7cf97075d0207393)), closes
+  [#315571](https://github.com/helsenorge/designsystem/issues/315571)
+
+### Bug Fixes
+
+- defaultValue i input og textarea oppdaterer antall tegn
+  ([5799a7d](https://github.com/helsenorge/designsystem/commit/5799a7d0ee39c789f0eb22b9569c962faa595ebb)), closes
+  [#309847](https://github.com/helsenorge/designsystem/issues/309847)
+- tom tabell-celle i head er td, ikke th
+  ([548f1bb](https://github.com/helsenorge/designsystem/commit/548f1bb5e28138fda3be750a2e3a00aab7ddba0a)), closes
+  [#313691](https://github.com/helsenorge/designsystem/issues/313691)
+
+## [5.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.4.1&targetVersion=GTv5.5.0) (2023-12-05)
+
+### Features
+
+- datetimepickerwrapper får legend prop
+  ([739df6c](https://github.com/helsenorge/designsystem/commit/739df6c35a31c2ad8cb2ee259cb0701540b68d7e))
+- opprett ny komponent sharingstatus
+  ([bd8fc70](https://github.com/helsenorge/designsystem/commit/bd8fc70397f2b58825f50f7bb391746faa5c59ee)), closes
+  [#312652](https://github.com/helsenorge/designsystem/issues/312652)
+- slider ny funksjonalitet ([2e7a269](https://github.com/helsenorge/designsystem/commit/2e7a269af5422a710224504a418720b40c534840)), closes
+  [#310765](https://github.com/helsenorge/designsystem/issues/310765)
+
+## [5.4.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.4.0&targetVersion=GTv5.4.1) (2023-11-24)
+
+### Bug Fixes
+
+- endret plassering på statusdot og at statusdot forblir rund
+  ([562726f](https://github.com/helsenorge/designsystem/commit/562726ff8b186753b0f0dd98735b335603a2fcd3)), closes
+  [#311236](https://github.com/helsenorge/designsystem/issues/311236)
+
+## [5.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.3.0&targetVersion=GTv5.4.0) (2023-11-21)
+
+### Features
+
+- lagt til nye ikoner ([924fc90](https://github.com/helsenorge/designsystem/commit/924fc903960165211519760412e1de3bb65b85de)), closes
   [#312799](https://github.com/helsenorge/designsystem/issues/312799)
 
-## 6.0.0-beta.9 (2023-11-13)
+## [5.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.2.0&targetVersion=GTv5.3.0) (2023-11-17)
 
-## 6.0.0-beta.7 (2023-10-25)
+### Features
+
+- panel refaktorering og contentHeader prop
+  ([42b0a03](https://github.com/helsenorge/designsystem/commit/42b0a03fa1f7d28ca966f3105dcaded49bcd886d)), closes
+  [#304524](https://github.com/helsenorge/designsystem/issues/304524) [#304573](https://github.com/helsenorge/designsystem/issues/304573)
+  [#304575](https://github.com/helsenorge/designsystem/issues/304575) [#304590](https://github.com/helsenorge/designsystem/issues/304590)
 
 ### Bug Fixes
 
-- ikon-import ([c3d3ae1](https://github.com/helsenorge/designsystem/commit/c3d3ae18b3792918953f6f447500888b019f3444))
-
-## 6.0.0-beta.6 (2023-10-24)
-
-### Features
-
-- typesikkerhet ved lazy loading av ikoner
-  ([0d3f3fb](https://github.com/helsenorge/designsystem/commit/0d3f3fb734e503bd26429a8e84477bd53480dd93)), closes
-  [#301359](https://github.com/helsenorge/designsystem/issues/301359)
-
-## 6.0.0-beta.5 (2023-10-24)
-
-### ⚠ BREAKING CHANGES
-
-- props endret fra variant til size. bigform er nå large. normal er nå medium.
-
-### Reverts
-
-- legg tilbake additionaliconinformation
-  ([0b46b2c](https://github.com/helsenorge/designsystem/commit/0b46b2cbb029e9d85d021d477ef49bf24788c0d8))
-
-### Code Refactoring
-
-- formvariant heter nå formsize ([a8ef22c](https://github.com/helsenorge/designsystem/commit/a8ef22c9b4efdf063d4a861946f6407b60a5a580)),
-  closes [#305247](https://github.com/helsenorge/designsystem/issues/305247)
-
-## 6.0.0-beta.4 (2023-10-23)
-
-### Features
-
-- komponenter støtter lazyicon ([0148ee6](https://github.com/helsenorge/designsystem/commit/0148ee6b3c72dedadbecb21105a729af1487a445)),
-  closes [#301359](https://github.com/helsenorge/designsystem/issues/301359)
-
-## 6.0.0-beta.3 (2023-10-20)
-
-### Bug Fixes
-
-- lazy icons fallback tar like mye plass som ikon
-  ([d5207c8](https://github.com/helsenorge/designsystem/commit/d5207c8f538cd8a111356af9e4913f29ed032f58)), closes
-  [#301359](https://github.com/helsenorge/designsystem/issues/301359)
-
-## 6.0.0-beta.2 (2023-10-18)
-
-## 6.0.0-beta.1 (2023-10-18)
-
-## 6.0.0-beta.0 (2023-10-18)
-
-### ⚠ BREAKING CHANGES
-
-- Ikon-komponent er flyttet fra components/Icons/Icon til components/Icon/Icon
-
-Ikonene ligger fortsatt i components/Icons, f.eks. components/Icons/Minus
-
-Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da bør det bare være ikoner der.
-
-### Features
-
-- lazy loading av ikoner ([f688e78](https://github.com/helsenorge/designsystem/commit/f688e78a955bb43a2efa92b72b208c582dbfdd1d)), closes
-  [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+- popmenu knapp stopper event propagation
+  ([baa56a1](https://github.com/helsenorge/designsystem/commit/baa56a1780c027db01989ff0cd9b14fce6faab99)), closes
+  [#313765](https://github.com/helsenorge/designsystem/issues/313765)
 
 ## [5.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.1.4&targetVersion=GTv5.2.0) (2023-11-02)
 

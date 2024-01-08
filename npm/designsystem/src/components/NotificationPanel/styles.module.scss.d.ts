@@ -5,6 +5,7 @@ export type Styles = {
   'fluid-wrapper': string;
   'notification-panel': string;
   'notification-panel__children': string;
+  'notification-panel__children--expander-no-label': string;
   'notification-panel__close': string;
   'notification-panel__compact': string;
   'notification-panel__compact--basic': string;

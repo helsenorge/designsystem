@@ -8,7 +8,7 @@ module.exports = {
   coveragePathIgnorePatterns: ['.stories.tsx', '.d.ts', 'index.ts'],
   testEnvironment: 'jsdom',
   moduleNameMapper: {
-    '\\.module\\.css$': '<rootDir>/src/__mocks__/styleMock.js',
+    '\\.module\\.css$': '<rootDir>/src/__mocks__/styleMock.ts',
     '\\.scss$': 'identity-obj-proxy',
     '^react($|/.+)': ['<rootDir>/node_modules/react$1', 'react$1'],
   },

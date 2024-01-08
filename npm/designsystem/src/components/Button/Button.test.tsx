@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import Button from './Button';
 import Icon from '../Icon';
 import Check from '../Icons/Check';
+import Dog from '../Icons/Dog';
 
 describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres', (): void => {
@@ -76,6 +77,23 @@ describe('Gitt at button skal vises', (): void => {
     });
   });
 
+  describe('Når button rendres med to ikoner', (): void => {
+    test('Så skal button ha to ikoner ', (): void => {
+      render(
+        <Button arrow testId="test">
+          <Icon svgIcon={Dog} />
+          Button
+        </Button>
+      );
+
+      const text = screen.getByText('Button');
+      const button = screen.getByTestId('test');
+
+      expect(text).toBeVisible();
+      expect(button.firstElementChild?.className).toBe('button button--normal button--left-icon button--both-icons button--arrow');
+    });
+  });
+
   describe('Når button rendres med ellipsis på', (): void => {
     test('Så brukes ellipsis på overflødig tekst', (): void => {
       render(
@@ -102,6 +120,25 @@ describe('Gitt at button skal vises', (): void => {
 
       const buttonWrapper = screen.getByTestId('test01');
       expect(buttonWrapper.className).toBe('button-wrapper button-wrapper--fluid');
+    });
+  });
+
+  describe('Når button rendres som button med onBlur-handler', () => {
+    test('Så kalles onBlur-handleren når man klikker på knappen', async () => {
+      const handleBlur = jest.fn();
+
+      render(
+        <Button onBlur={handleBlur} htmlMarkup="button">
+          Lenketekst
+        </Button>
+      );
+
+      const link = screen.getByRole('button', { name: 'Lenketekst' });
+
+      await userEvent.click(link);
+      await userEvent.tab();
+
+      expect(handleBlur).toHaveBeenCalledTimes(1);
     });
   });
 

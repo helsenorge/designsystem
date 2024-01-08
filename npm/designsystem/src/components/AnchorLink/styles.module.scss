@@ -48,16 +48,6 @@ $focus-width: 0.15rem;
   }
 }
 
-@mixin anchorlink-font {
-  font-size: 1.125rem;
-  line-height: 1.875rem;
-  font-weight: 400;
-
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: 1.25rem;
-  }
-}
-
 @mixin anchorlink-icon {
   &[target='_blank'] {
     &::after {
@@ -73,7 +63,6 @@ $focus-width: 0.15rem;
 
 .anchorlink {
   @include anchorlink;
-  @include anchorlink-font;
 }
 
 .anchorlink-wrapper {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -137,6 +137,10 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
   const numKeyPressed = useRef<boolean>(false);
   const numRegex = /^[0-9]$/;
+
+  useEffect(() => {
+    setInput(defaultValue || '');
+  }, [defaultValue]);
 
   const onDark = mode === FormMode.ondark;
   const onBlueberry = mode === FormMode.onblueberry;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SvgPathProps } from '../Icon';
+import { getIcon, SvgPathProps } from '../Icon';
 
 const ScreenReader: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
@@ -37,7 +37,7 @@ const ScreenReader: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
     </>
   );
 
-  return isHovered ? normalHover : normal;
+  return getIcon({ size, isHovered, normal, normalHover });
 };
 
 export default ScreenReader;

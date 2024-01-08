@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { longLoremText } from '../../utils/loremtext';
+import AnchorLink from '../AnchorLink';
 import GridExample from '../GridExample';
 import LinkList from '../LinkList';
 import PopMenu from '../PopMenu';
@@ -61,6 +62,13 @@ export default {
       control: 'select',
       options: ModeType,
       defaultValue: ModeType.normal,
+    },
+    scrollAriaLabel: {
+      control: 'text',
+      defaultValue: 'Fastleger',
+    },
+    scrollAriaLabelledById: {
+      control: 'text',
     },
   },
 } as ComponentMeta<typeof Table>;
@@ -624,7 +632,7 @@ function getFastlegeData(sortDirection: SortDirection, sortColumn: string): Arra
       },
       Delelistelege: null,
       Legekontor: {
-        Navn: 'Heiaklinikken',
+        Navn: <AnchorLink href="/">{'Heiaklinikken'}</AnchorLink>,
         Adresse: 'Gamle drammensvei 98',
       },
       Avtaledato: '2015-08-01T00:00:00',

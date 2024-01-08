@@ -423,7 +423,9 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
     data-testid="horizontal-scroll"
   >
     <div
+      aria-label="Fastleger"
       class="horizontalscroll__viewport"
+      role="region"
       tabindex="0"
     >
       <div

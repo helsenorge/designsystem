@@ -44,6 +44,8 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttri
   htmlMarkup?: ButtonTags;
   /** Changes the button colors for different backgrounds. */
   mode?: ButtonMode;
+  /** Function that is called when the Button loses focus */
+  onBlur?: () => void;
   /** Function that is called when clicked */
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null) => void;
   /** Changes the button colors for different backgrounds. (Large not available in borderless variant) */
@@ -107,6 +109,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     fluid = false,
     htmlMarkup = 'button',
     mode = 'onlight',
+    onBlur,
     onClick,
     size = 'medium',
     variant = 'fill',
@@ -183,18 +186,11 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   };
 
   const renderButtonContent = (): JSX.Element => {
-    let angle;
-    let diagonalWidth;
-    if (buttonContentSize) {
-      angle = Math.atan2(buttonContentSize.height, buttonContentSize.width);
-      diagonalWidth = Math.sqrt(Math.pow(buttonContentSize.width, 2) + Math.pow(buttonContentSize.height, 2));
-    }
-
     return (
       <span className={buttonTextClasses} ref={buttonContentRef}>
         {disabled && borderlessVariant && (
           <span className={diagonalClasses}>
-            <span style={{ transform: `rotate(${angle}rad)`, width: diagonalWidth }} className={buttonStyles['diagonal__line']} />
+            <span className={buttonStyles['diagonal__line']} />
           </span>
         )}
         <span>{onlyIcon ? ariaLabel : restChildren}</span>
@@ -207,7 +203,11 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       {renderIcon(leftIcon, getLargeIconSize(large, mobile), !onlyIcon ? buttonStyles['button__left-icon'] : undefined)}
       {renderButtonContent()}
       {hasArrow
-        ? renderIcon(<Icon svgIcon={ArrowRight} />, getLargeIconSize(large, mobile), buttonStyles['button__arrow'])
+        ? renderIcon(
+            <Icon svgIcon={ArrowRight} />,
+            getLargeIconSize(large, mobile),
+            classNames(buttonStyles['button__arrow'], { [buttonStyles['button__arrow--both-icons']]: bothIcons })
+          )
         : renderIcon(rightIcon, getLargeIconSize(large, mobile), buttonStyles['button__right-icon'])}
     </span>
   );
@@ -217,6 +217,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       {htmlMarkup === 'button' && (
         <button
           id={id}
+          onBlur={onBlur}
           onClick={onClick}
           disabled={disabled}
           data-testid={testId}
@@ -233,6 +234,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       {htmlMarkup === 'a' && (
         <a
           id={id}
+          onBlur={onBlur}
           onClick={onClick}
           data-testid={testId}
           data-analyticsid={AnalyticsId.Button}

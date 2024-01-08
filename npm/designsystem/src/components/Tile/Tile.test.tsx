@@ -7,6 +7,8 @@ import Tile from './Tile';
 import { IconSize } from '../../constants';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
+import Eye from '../Icons/Eye';
+import SharingStatus from '../SharingStatus';
 
 test('displays tile', (): void => {
   const { container } = render(
@@ -69,6 +71,20 @@ describe('Gitt at Tile skal vises', (): void => {
       const tile = screen.getByRole('link', { name: 'Lenketekst' });
       await userEvent.click(tile);
       expect(onClickMock).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('Når react children er satt', () => {
+    test('Skal finnes children', async () => {
+      render(
+        <Tile icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />} title={<Tile.Title>{'Lenketekst'}</Tile.Title>} href="#">
+          <SharingStatus icon={Eye} color={'kiwi'}>
+            {'Eksempel på React Child'}
+          </SharingStatus>
+        </Tile>
+      );
+
+      const child = screen.getByText('Eksempel på React Child');
+      expect(child).toBeVisible();
     });
   });
 });

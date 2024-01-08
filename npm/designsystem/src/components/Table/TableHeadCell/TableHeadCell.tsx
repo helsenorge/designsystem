@@ -33,6 +33,10 @@ export const TableHeadCell = ({ sortable, onClick, className, children, sortDir,
     [tableStyles['table__head-cell--compact']]: mode === ModeType.compact,
   });
 
+  if (!sortable && !children) {
+    return <td className={tableHeadCellDefaultClass}></td>;
+  }
+
   if (!sortable) {
     return (
       <th scope="col" className={tableHeadCellDefaultClass}>
@@ -41,12 +45,7 @@ export const TableHeadCell = ({ sortable, onClick, className, children, sortDir,
     );
   }
 
-  const sortableClasses = classNames(
-    tableHeadCellDefaultClass,
-    tableStyles['table__head-cell--sortable'],
-    { [tableStyles['table__head-cell--sorted']]: sortDir },
-    className
-  );
+  const sortableClasses = classNames(tableHeadCellDefaultClass, tableStyles['table__head-cell--sortable'], className);
 
   const renderSortIcon = (): React.JSX.Element | undefined =>
     sortDir && (

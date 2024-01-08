@@ -11,6 +11,7 @@ import { IconSize } from '../Icon';
 import tileStyles from './styles.module.scss';
 
 interface TileProps extends Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target' | 'onClick' | 'rel'> {
+  children?: React.ReactNode;
   /** Adds custom classes to the element. */
   className?: string;
   /**	Sets the icon to be displayed inside the tile. */
@@ -61,7 +62,20 @@ const Title = React.forwardRef<HTMLHeadingElement, TileTitleProps>((props, ref) 
 Title.displayName = 'Title';
 
 export const Tile = React.forwardRef<HTMLAnchorElement, TileProps>((props, ref) => {
-  const { icon, title, className = '', description, fixed = false, highlighted = false, testId, target, rel, href, onClick } = props;
+  const {
+    children,
+    icon,
+    title,
+    className = '',
+    description,
+    fixed = false,
+    highlighted = false,
+    testId,
+    target,
+    rel,
+    href,
+    onClick,
+  } = props;
   const { hoverRef, isHovered } = useHover<HTMLAnchorElement>();
   const compact = !description;
   const tileClasses = classNames(
@@ -93,6 +107,7 @@ export const Tile = React.forwardRef<HTMLAnchorElement, TileProps>((props, ref) 
         {React.cloneElement(title, { highlighted: highlighted, compact: compact })}
       </div>
       {description && <p className={tileStyles.tile__description}>{description}</p>}
+      {children && <div className={tileStyles.tile__children}>{children}</div>}
     </a>
   );
 }) as TileCompound;

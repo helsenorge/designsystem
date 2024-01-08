@@ -15,8 +15,7 @@ $gradient: rgb(0 0 0 / 27%), rgb(0 0 0 / 27%) 18%, transparent;
     }
 
     &--overflow {
-      overflow-x: auto;
-      overflow-y: hidden;
+      overflow: auto hidden;
     }
   }
 

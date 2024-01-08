@@ -171,6 +171,14 @@
   &__children {
     font-weight: 600;
     padding: getSpacer(3xs) 0;
+
+    &--expander-no-label {
+      margin: getSpacer(2xs) 0 0 0;
+
+      @media (max-width: map.get($grid-breakpoints, lg)) {
+        padding-top: 0;
+      }
+    }
   }
 
   &__icon {

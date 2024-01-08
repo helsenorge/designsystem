@@ -91,6 +91,10 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const [textareaInput, setTextareaInput] = useState(defaultValue || '');
   const referanse = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    setTextareaInput(defaultValue || '');
+  }, [defaultValue]);
+
   const resizeHeight = (target: HTMLTextAreaElement): void => {
     const textareaLineHeight = 28;
 

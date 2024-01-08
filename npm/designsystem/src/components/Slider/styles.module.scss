@@ -2,13 +2,47 @@
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
 
+$track-height-offset: 1rem;
+$mark-size: getSpacer(l);
+
 .slider {
+  display: flex;
+  flex-direction: column;
+  row-gap: getSpacer(s);
   width: 100%;
   padding: getSpacer(m) 0;
   position: relative;
   outline: none !important;
 
+  &__title {
+    grid-column: 1 / -1;
+  }
+
+  &__content-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: getSpacer(s);
+    padding: 0 getSpacer(s);
+  }
+
+  &__emoji-container,
+  &__value-container {
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+
+  &__emoji,
+  &__value {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 0;
+    transform: translateX(-50%);
+  }
+
   &__track-wrapper {
+    height: $mark-size;
     width: 100%;
     cursor: pointer;
     touch-action: none;
@@ -19,13 +53,23 @@
   }
 
   &__track {
+    padding: 0 getSpacer(s);
     border-top: 2px solid $black;
-    width: 100%;
     position: relative;
-    top: 1rem;
+    top: $track-height-offset;
 
     &--disabled {
       border-color: $neutral600;
+    }
+
+    &__step {
+      position: absolute;
+      left: -1px;
+      width: 2px;
+      height: getSpacer(xs);
+      bottom: 0;
+      top: (calc($track-height-offset / 2) * -1) + 0.05rem;
+      background-color: $black;
     }
   }
 
@@ -33,13 +77,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2rem;
-    height: 2rem;
+    width: $mark-size;
+    height: $mark-size;
     background-color: $white;
     border: 0.15rem solid $black;
-    border-radius: 1rem;
-    position: relative;
-    top: -0.05rem;
+    border-radius: 10rem;
+    position: absolute;
     z-index: 9;
     outline: none;
     cursor: pointer;
@@ -53,7 +96,7 @@
       width: 1.25rem;
       height: 1.25rem;
       border: 0.1rem solid $black;
-      border-radius: 1rem;
+      border-radius: 10rem;
       background-color: $blueberry600;
 
       :hover > &,

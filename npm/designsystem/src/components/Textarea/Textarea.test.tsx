@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Textarea from './Textarea';
@@ -10,7 +10,7 @@ import Label from '../Label';
 describe('Gitt at Textarea skal vises', (): void => {
   describe('Når Textarea rendres', (): void => {
     test('Så vises Textarea', (): void => {
-      const { container } = render(<Textarea label={<Label labelTexts={[{ text: 'Skriv din historie' }]} />} />);
+      render(<Textarea label={<Label labelTexts={[{ text: 'Skriv din historie' }]} />} />);
 
       const label = screen.getByText('Skriv din historie');
       expect(label).toBeVisible();
@@ -173,6 +173,21 @@ describe('Gitt at Textarea skal vises', (): void => {
         expect(input).toHaveValue('Jeg tester teksten her.');
         expect(screen.getByText('23/10 tegn')).toBeVisible();
         expect(input).toHaveAttribute('aria-invalid', 'true');
+      });
+    });
+
+    describe('Når defaultValue endres', (): void => {
+      test('Så oppdateres antall tegn', (): void => {
+        const { rerender } = render(<Textarea label={'Skriv din historie her'} maxCharacters={10} />);
+
+        expect(screen.getByText('0/10 tegn')).toBeVisible();
+
+        rerender(<Textarea label={'Skriv din historie her'} maxCharacters={10} defaultValue={'foo'} />);
+
+        expect(screen.getByText('3/10 tegn')).toBeVisible();
+
+        const input = screen.getByLabelText('Skriv din historie her');
+        expect(input).toHaveValue('foo');
       });
     });
   });

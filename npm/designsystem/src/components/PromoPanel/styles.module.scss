@@ -1,0 +1,115 @@
+@use 'sass:map';
+@import '../../scss/palette';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+
+$colors: 'neutral', 'blueberry', 'cherry';
+
+.promopanel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding-left: getSpacer(s);
+  padding-right: getSpacer(s);
+  transition: background-color 0.15s ease-in-out;
+
+  &:focus-within {
+    box-shadow: 0 0 0 2px $black, inset 0 0 0 2px $black;
+  }
+
+  @media (min-width: map.get($grid-breakpoints, xs)) {
+    padding-left: 0;
+  }
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    padding-right: getSpacer(l);
+  }
+
+  &--no-illustration {
+    padding-left: getSpacer(s);
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      padding-left: getSpacer(l);
+    }
+  }
+
+  @each $color in $colors {
+    &--#{$color} {
+      background-color: map.get($palette-map, #{$color}50);
+
+      &:hover {
+        background-color: map.get($palette-map, #{$color}100);
+      }
+    }
+  }
+
+  &__illustration {
+    display: none;
+    flex-shrink: 0;
+
+    @media (min-width: map.get($grid-breakpoints, xs)) {
+      display: inline;
+      width: 120px;
+      height: auto;
+    }
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      width: 156px;
+    }
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
+      width: 180px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: getSpacer(3xs);
+    max-width: 696px;
+    padding-top: getSpacer(m);
+    padding-bottom: getSpacer(m);
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      gap: getSpacer(2xs);
+      padding-top: getSpacer(l);
+      padding-bottom: getSpacer(l);
+    }
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
+      padding-top: getSpacer(xl);
+      padding-bottom: getSpacer(xl);
+    }
+
+    a,
+    button {
+      all: unset;
+      cursor: pointer;
+
+      &::after {
+        inset: 0;
+        content: '';
+        position: absolute;
+      }
+    }
+  }
+
+  &__icon {
+    margin-left: auto;
+    padding-left: getSpacer(s);
+
+    @media (min-width: map.get($grid-breakpoints, xs)) {
+      display: none;
+    }
+
+    @media (min-width: map.get($grid-breakpoints, sm)) {
+      display: block;
+    }
+
+    @media (min-width: map.get($grid-breakpoints, lg)) {
+      padding-left: getSpacer(l);
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SvgPathProps } from '../Icon';
+import { getIcon, SvgPathProps } from '../Icon';
 
 const EarHearingAid: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
@@ -14,7 +14,7 @@ const EarHearingAid: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps
     </>
   );
 
-  return isHovered ? normalHover : normal;
+  return getIcon({ size, isHovered, normal, normalHover });
 };
 
 export default EarHearingAid;

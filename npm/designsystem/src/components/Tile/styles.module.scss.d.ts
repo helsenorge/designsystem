@@ -1,5 +1,6 @@
 export type Styles = {
   tile: string;
+  tile__children: string;
   tile__description: string;
   tile__title: string;
   'tile__title--compact': string;

@@ -62,7 +62,7 @@ const myRef7: React.RefObject<HTMLButtonElement> = React.createRef();
 
 export const Default: ComponentStory<typeof Button> = (args: any) => (
   <GridExample>
-    <Button {...args} onClick={action('Button clicked')}>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       {args.children}
     </Button>
   </GridExample>
@@ -73,12 +73,12 @@ export const Concepts: ComponentStory<typeof Button> = (args: any) => (
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Concepts'}
     </Title>
-    <Button {...args} onClick={action('Button clicked')} concept={'normal'}>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} concept={'normal'}>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} onClick={action('Button clicked')} concept={'destructive'}>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} concept={'destructive'}>
       {args.children}
     </Button>
   </GridExample>
@@ -89,30 +89,30 @@ export const Icons: ComponentStory<typeof Button> = (args: any) => (
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Icons'}
     </Title>
-    <Button {...args} ref={myRef1} onClick={action('Button clicked')}>
+    <Button {...args} ref={myRef1} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       <Icon svgIcon={Dog} />
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} ref={myRef2} onClick={action('Button clicked')}>
+    <Button {...args} ref={myRef2} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       {args.children}
       <Icon svgIcon={Dog} />
     </Button>
     <br />
     <br />
-    <Button {...args} ref={myRef3} onClick={action('Button clicked')} arrow>
+    <Button {...args} ref={myRef3} onBlur={action('Button blurred')} onClick={action('Button clicked')} arrow>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} ref={myRef4} onClick={action('Button clicked')} arrow>
+    <Button {...args} ref={myRef4} onBlur={action('Button blurred')} onClick={action('Button clicked')} arrow>
       <Icon svgIcon={Dog} />
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} ariaLabel={'Verticaldots button'} ref={myRef5} onClick={action('Button clicked')}>
+    <Button {...args} ariaLabel={'Verticaldots button'} ref={myRef5} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       <Icon svgIcon={VerticalDots} />
     </Button>
   </GridExample>
@@ -156,12 +156,12 @@ export const Sizes: ComponentStory<typeof Button> = (args: any) => (
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Sizes'}
     </Title>
-    <Button size={'medium'} {...args} ref={myRef6} onClick={action('Button clicked')}>
+    <Button size={'medium'} {...args} ref={myRef6} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button size={'large'} {...args} ref={myRef7} onClick={action('Button clicked')}>
+    <Button size={'large'} {...args} ref={myRef7} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       {args.children}
       <Icon svgIcon={Dog} />
     </Button>
@@ -173,17 +173,17 @@ export const Variants: ComponentStory<typeof Button> = (args: any) => (
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Variants'}
     </Title>
-    <Button {...args} onClick={action('Button clicked')} variant={'fill'}>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'}>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} onClick={action('Button clicked')} variant={'outline'}>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'outline'}>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} onClick={action('Button clicked')} variant={'borderless'}>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'}>
       {args.children}
     </Button>
   </GridExample>
@@ -195,28 +195,28 @@ export const DarkMode: ComponentStory<typeof Button> = (args: any) => (
       {'DarkMode'}
     </Title>
     <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 600) }}>
-      <Button {...args} onClick={action('Button clicked')} variant={'fill'} mode={'ondark'}>
+      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'} mode={'ondark'}>
         {args.children}
       </Button>
       <br />
       <br />
-      <Button {...args} onClick={action('Button clicked')} mode={'ondark'}>
+      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} mode={'ondark'}>
         <Icon svgIcon={Dog} />
         {args.children}
       </Button>
       <br />
       <br />
-      <Button {...args} onClick={action('Button clicked')} variant={'outline'} mode={'ondark'}>
+      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'outline'} mode={'ondark'}>
         {args.children}
       </Button>
       <br />
       <br />
-      <Button {...args} onClick={action('Button clicked')} variant={'borderless'} mode={'ondark'}>
+      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'} mode={'ondark'}>
         {args.children}
       </Button>
       <br />
       <br />
-      <Button {...args} onClick={action('Button clicked')} variant={'borderless'} mode={'ondark'}>
+      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'} mode={'ondark'}>
         <Icon svgIcon={Dog} />
         {args.children}
       </Button>
@@ -229,22 +229,22 @@ export const Disabled: ComponentStory<typeof Button> = (args: any) => (
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Disabled'}
     </Title>
-    <Button {...args} onClick={action('Button clicked')} variant={'fill'} disabled>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'} disabled>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} onClick={action('Button clicked')} variant={'outline'} disabled>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'outline'} disabled>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} onClick={action('Button clicked')} variant={'borderless'} disabled>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'} disabled>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} onClick={action('Button clicked')} variant={'borderless'} disabled>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'} disabled>
       <Icon svgIcon={Dog} />
       {'Button long text'}
     </Button>
@@ -256,24 +256,24 @@ export const Fluid: ComponentStory<typeof Button> = (args: any) => (
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Fluid'}
     </Title>
-    <Button {...args} fluid onClick={action('Button clicked')}>
+    <Button {...args} fluid onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} fluid onClick={action('Button clicked')}>
+    <Button {...args} fluid onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       <Icon svgIcon={Dog} />
       {args.children}
     </Button>
     <br />
     <br />
-    <Button {...args} fluid onClick={action('Button clicked')}>
+    <Button {...args} fluid onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       {args.children}
       <Icon svgIcon={Dog} />
     </Button>
     <br />
     <br />
-    <Button {...args} arrow fluid onClick={action('Button clicked')}>
+    <Button {...args} arrow fluid onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       <Icon svgIcon={Dog} />
       {args.children}
     </Button>
@@ -285,12 +285,12 @@ export const Ellipsis: ComponentStory<typeof Button> = (args: any) => (
     <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
       {'Ellipsis'}
     </Title>
-    <Button {...args} ellipsis onClick={action('Button clicked')}>
+    <Button {...args} ellipsis onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       {'Alt for mye tekst her'}
     </Button>
     <br />
     <br />
-    <Button {...args} ellipsis onClick={action('Button clicked')}>
+    <Button {...args} ellipsis onBlur={action('Button blurred')} onClick={action('Button clicked')}>
       <Icon svgIcon={Dog} />
       {'Alt for mye tekst her'}
     </Button>

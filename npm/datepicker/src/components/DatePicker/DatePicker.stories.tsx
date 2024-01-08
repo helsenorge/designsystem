@@ -214,7 +214,11 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
     getValues,
   } = useForm({ mode: 'all' });
 
-  const [startDate] = React.useState(new Date());
+  const dateString = '30.11.2023';
+  const formatString = 'dd.MM.yyyy';
+
+  const parsedDate = parse(dateString, formatString, new Date());
+  const [startDate] = React.useState(parsedDate);
   const minDate = new Date();
   const maxDate = new Date();
   const disabledDate = new Date();
@@ -233,9 +237,9 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
 
     const validateResult = validateMinMaxTime(
       { hour: hours, minute: minutes },
+      'Tidspunkt må være innenfor 10:00 og 13:30',
       { hour: 10, minute: 0 },
-      { hour: 13, minute: 30 },
-      'Tidspunkt må være innenfor 10:00 og 13:30'
+      { hour: 13, minute: 30 }
     );
 
     return validateResult;
@@ -248,9 +252,9 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
 
     const validateResult = validateMinMaxTime(
       { hour: hours, minute: minutes },
+      'Tidspunkt må være innenfor 10:00 og 13:30',
       { hour: 10, minute: 0 },
-      { hour: 13, minute: 30 },
-      'Tidspunkt må være innenfor 10:00 og 13:30'
+      { hour: 13, minute: 30 }
     );
 
     return validateResult;
@@ -259,7 +263,7 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
   const requireDate = (value: string): true | string => {
     // eslint-disable-next-line no-console
     console.log('Validating date: ', value);
-    let validateResult = validateMinMaxDate(value, minDate, maxDate, `Datoen må være etter ${minDate} og før ${maxDate}`);
+    let validateResult = validateMinMaxDate(value, `Datoen må være etter ${minDate} og før ${maxDate}`, minDate, maxDate);
     validateResult =
       typeof validateResult !== 'string'
         ? validateDisabledDates(value, [disabledDate], `Datoen kan ikke være ${disabledDate}`)
@@ -285,6 +289,7 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
               (errors.datetimehour?.message as string) ||
               (errors.datetimeminute?.message as string)
             }
+            legend={'Datepicker legend'}
           >
             <DatePicker
               {...args}

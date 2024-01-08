@@ -21,7 +21,6 @@ export type Styles = {
   'table__head-cell': string;
   'table__head-cell--compact': string;
   'table__head-cell--sortable': string;
-  'table__head-cell--sorted': string;
   'table__head-cell-sort-icon-wrapper': string;
   'table__row--expandable': string;
   'table__row--expandable--selected': string;

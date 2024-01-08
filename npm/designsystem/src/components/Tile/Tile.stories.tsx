@@ -7,6 +7,8 @@ import Tile from './Tile';
 import GridExample from '../GridExample';
 import Icon, { IconSize } from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
+import Eye from '../Icons/Eye';
+import SharingStatus from '../SharingStatus';
 
 export default {
   title: '@helsenorge∕designsystem-react/Components/Tile',
@@ -145,5 +147,23 @@ export const WithOnClick: ComponentStory<typeof Tile> = (args: any) => (
       icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
       title={<Tile.Title htmlMarkup={'h1'}>{'External'}</Tile.Title>}
     />
+  </GridExample>
+);
+
+export const ReactChildren: ComponentStory<typeof Tile> = (args: any) => (
+  <GridExample>
+    <Tile
+      href="https://www.helsenorge.no"
+      icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+      title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
+      description="Hva du heter.
+      Hvor du ringer fra.
+      Telefonnummer du ringer fra.
+      Beskriv situasjonen og symptomer."
+    >
+      <SharingStatus icon={Eye} color={'kiwi'}>
+        {'Eksempel på React Child'}
+      </SharingStatus>
+    </Tile>
   </GridExample>
 );

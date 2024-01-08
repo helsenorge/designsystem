@@ -3,11 +3,15 @@
 @import '@helsenorge/designsystem-react/scss/breakpoints';
 @import '@helsenorge/designsystem-react/scss/palette';
 @import '@helsenorge/designsystem-react/scss/font-settings';
+@import '@helsenorge/designsystem-react/scss/title';
 
 .date-time-picker-wrapper {
   display: flex;
   align-items: flex-end;
   flex-flow: row wrap;
+  border: none;
+  padding: 0;
+  margin: 0;
 
   @media (min-width: map.get($grid-breakpoints, sm)) {
     flex-flow: row nowrap;
@@ -20,6 +24,13 @@
     @media (min-width: map.get($grid-breakpoints, sm)) {
       flex: unset;
     }
+  }
+
+  &__legend {
+    @include legend;
+
+    margin-bottom: getSpacer(m);
+    margin-top: 0;
   }
 }
 
