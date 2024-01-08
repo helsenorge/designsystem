@@ -19,7 +19,7 @@ pool:
 variables:
   - group: DependencyTrack
   - name: node_version
-    value: 18
+    value: 20
   - name: project_name
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
