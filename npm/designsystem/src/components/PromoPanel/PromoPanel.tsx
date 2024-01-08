@@ -8,7 +8,7 @@ import { useHover } from '../../hooks/useHover';
 import { getColor } from '../../theme/currys/color';
 import { PaletteNames } from '../../theme/palette';
 import { AnchorLinkTags, AnchorLinkTargets } from '../AnchorLink';
-import Icon from '../Icons';
+import Icon from '../Icon';
 import ArrowRight from '../Icons/ArrowRight';
 import ArrowUpRight from '../Icons/ArrowUpRight';
 import { IllustrationProps } from '../Illustration/Illustration';

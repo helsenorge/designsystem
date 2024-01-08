@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { AnalyticsId, IconSize } from '../../constants';
 import { PaletteNames, palette } from '../../theme/palette';
-import Icon, { SvgIcon } from '../Icons/Icon';
+import Icon, { SvgIcon } from '../Icon';
 
 import styles from './styles.module.scss';
 
