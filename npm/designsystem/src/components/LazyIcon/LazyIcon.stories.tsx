@@ -8,7 +8,7 @@ import { shortLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
 export default {
-  title: 'Components/LazyIcon',
+  title: '@helsenorge∕designsystem-react/Components/LazyIcon',
   component: LazyIcon,
   parameters: {
     docs: {
