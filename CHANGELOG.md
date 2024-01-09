@@ -1,3 +1,10 @@
+## [5.13.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.12.0&targetVersion=GTv5.13.0) (2024-01-09)
+
+### Features
+
+- tile stotter react children ([161a49a](https://github.com/helsenorge/designsystem/commit/161a49ae1ec4ec165bcf565b870b1f608f8fe90c)),
+  closes [#310764](https://github.com/helsenorge/designsystem/issues/310764)
+
 ## [5.12.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.11.0&targetVersion=GTv5.12.0) (2024-01-04)
 
 ### Bug Fixes
