@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { parse } from 'date-fns';
 import { ar } from 'date-fns/locale';
 import { useForm } from 'react-hook-form';
 
@@ -263,7 +264,7 @@ export const ValidateDateTime: ComponentStory<typeof DatePicker> = (args: DatePi
   const requireDate = (value: string): true | string => {
     // eslint-disable-next-line no-console
     console.log('Validating date: ', value);
-    let validateResult = validateMinMaxDate(value, `Datoen må være etter ${minDate} og før ${maxDate}`, minDate, maxDate);
+    let validateResult = validateMinMaxDate(value, `Datoen må være fra ${minDate} og til ${maxDate}`, minDate, maxDate);
     validateResult =
       typeof validateResult !== 'string'
         ? validateDisabledDates(value, [disabledDate], `Datoen kan ikke være ${disabledDate}`)

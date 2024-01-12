@@ -2,6 +2,7 @@ export type Styles = {
   _day_selected: string;
   caption_label: string;
   'date-button': string;
+  'date-button__inner': string;
   'date-time-picker-wrapper': string;
   'date-time-picker-wrapper__date-picker': string;
   'date-time-picker-wrapper__legend': string;

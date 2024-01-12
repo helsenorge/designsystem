@@ -82,9 +82,17 @@
 
 .date-button {
   position: absolute;
-  z-index: 10;
+  z-index: 9;
   right: 0.1rem;
   top: 0.1rem;
+
+  &__inner {
+    min-height: 2.5rem;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      min-height: 3.125rem;
+    }
+  }
 }
 
 .footer-wrapper {

@@ -225,6 +225,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
               tabIndex={datePickerOpen ? -1 : 0}
               variant={'borderless'}
               wrapperClassName={styles['date-button']}
+              className={styles['date-button__inner']}
             >
               {<Icon color={'black'} svgIcon={Calendar} />}
             </Button>

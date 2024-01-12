@@ -27,9 +27,15 @@ export const validateMinMaxDate = (date: string, errorMessage: string, minDate?:
     return 'Invalid date format';
   }
 
-  if (hasMinDate && !hasMaxDate && isAfter(formattedDate, minDate)) return true;
-  else if (hasMaxDate && !hasMinDate && isBefore(formattedDate, maxDate)) return true;
-  else if (hasMinDate && hasMaxDate && isWithinInterval(formattedDate, { start: minDate, end: maxDate })) {
+  if (hasMinDate && !hasMaxDate && (isSameDay(formattedDate, minDate) || isAfter(formattedDate, minDate))) return true;
+  else if (hasMaxDate && !hasMinDate && (isSameDay(formattedDate, maxDate) || isBefore(formattedDate, maxDate))) return true;
+  else if (
+    hasMinDate &&
+    hasMaxDate &&
+    (isSameDay(formattedDate, minDate) ||
+      isSameDay(formattedDate, maxDate) ||
+      isWithinInterval(formattedDate, { start: minDate, end: maxDate }))
+  ) {
     return true;
   }
 
