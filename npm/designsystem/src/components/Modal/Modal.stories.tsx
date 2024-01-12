@@ -117,7 +117,7 @@ export const Scroll: ComponentStory<typeof Modal> = (args: any) => (
 
 export const WithHorizontalImage4By3: ComponentStory<typeof Modal> = (args: any) => (
   <GridExample>
-    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={''}>
+    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With horizontal image 4x3'}>
       <img src="http://fakeimg.pl/1200x800?text=jpg&font=lobster" alt="" />
     </Modal>
   </GridExample>
@@ -125,7 +125,7 @@ export const WithHorizontalImage4By3: ComponentStory<typeof Modal> = (args: any)
 
 export const WithHorizontalImage16By9: ComponentStory<typeof Modal> = (args: any) => (
   <GridExample>
-    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={''}>
+    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With horizontal image 16x9'}>
       <img src="http://fakeimg.pl/1600x900?text=jpg&font=lobster" alt="" />
     </Modal>
   </GridExample>
@@ -133,7 +133,7 @@ export const WithHorizontalImage16By9: ComponentStory<typeof Modal> = (args: any
 
 export const WithVerticalImage: ComponentStory<typeof Modal> = (args: any) => (
   <GridExample>
-    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={''}>
+    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With vertical image'}>
       <img src="http://fakeimg.pl/600x1000?text=jpg&font=lobster" alt="" />
     </Modal>
   </GridExample>
