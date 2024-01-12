@@ -65,7 +65,7 @@ export const RadioButtonChildren: ComponentStory<typeof Dropdown> = (args: any) 
   <GridExample>
     <Dropdown {...args} onToggle={action('onToggle')}>
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 1' }]} />} name="radiobutton" />
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 2' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 2 VeldigLangtOrdSomErForBredt' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 3' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 4' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 5' }]} />} name="radiobutton" />
@@ -81,7 +81,7 @@ export const CheckboxChildren: ComponentStory<typeof Dropdown> = (args: any) => 
   <GridExample>
     <Dropdown {...args} onToggle={action('onToggle')}>
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 1' }]} />} name="checkbox" />
-      <Checkbox label={<Label labelTexts={[{ text: 'Valg 2' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 2 VeldigLangtOrdSomErForBredt' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 3' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 4' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 5' }]} />} name="checkbox" />

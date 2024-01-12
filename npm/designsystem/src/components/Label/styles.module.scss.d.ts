@@ -1,6 +1,7 @@
 export type Styles = {
   'after-label-children': string;
   label: string;
+  label__texts: string;
   'label--on-dark': string;
   'label--semibold': string;
   'label--sublabel': string;

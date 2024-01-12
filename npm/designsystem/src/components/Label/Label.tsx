@@ -163,7 +163,7 @@ const Label: FunctionComponent<LabelProps> = ({
         <label className={labelClassName} id={labelId} htmlFor={htmlFor} data-testid={testId} data-analyticsid={AnalyticsId.Label}>
           <span className={styles['label-content-wrapper']}>
             {children}
-            <span>{mapLabels()}</span>
+            <span className={styles.label__texts}>{mapLabels()}</span>
           </span>
         </label>
         <div className={sublabelWrapperClassName}>

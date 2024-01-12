@@ -181,6 +181,7 @@
     margin-top: getSpacer(2xs);
     box-shadow: 0 0 0 2px $blueberry500;
     z-index: 1;
+    overflow-wrap: break-word;
 
     &--open {
       display: block;
@@ -188,8 +189,7 @@
   }
 
   &__options {
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden auto;
     max-height: 384px;
     list-style: none;
     padding: 0;

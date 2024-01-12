@@ -24,6 +24,7 @@
 
 .label-content-wrapper {
   display: flex;
+  min-width: 0;
 }
 
 .label {
@@ -58,6 +59,10 @@
 
   &::after {
     content: ' ';
+  }
+
+  &__texts {
+    min-width: 0;
   }
 }
 
