@@ -1,13 +1,24 @@
+## 6.0.0-beta.14 (2024-01-24)
+
+### Features
+
+- lagt til ikonsøk i ikonwall story ([26b0446](https://github.com/helsenorge/designsystem/commit/26b044688c29a530c5605c1d938d208c8adc9e0c)),
+  closes [#311212](https://github.com/helsenorge/designsystem/issues/311212)
+
+### Bug Fixes
+
+- datepicker styling feil og validering tweak
+  ([7bbdaa8](https://github.com/helsenorge/designsystem/commit/7bbdaa8e933d9ebbcc48d11647b3a8d6033502e9)), closes
+  [#316824](https://github.com/helsenorge/designsystem/issues/316824)
+- lange ord i dropdown havner på ny linje
+  ([a69ab16](https://github.com/helsenorge/designsystem/commit/a69ab167e99e2e408d6168ef710f9e8aa4f7615a)), closes
+  [#313017](https://github.com/helsenorge/designsystem/issues/313017)
+
 ## 6.0.0-beta.13 (2024-01-08)
 
 ## 6.0.0-beta.12 (2024-01-08)
 
 ## 6.0.0-beta.11 (2024-01-08)
-
-### Features
-
-- tile stotter react children ([161a49a](https://github.com/helsenorge/designsystem/commit/161a49ae1ec4ec165bcf565b870b1f608f8fe90c)),
-  closes [#310764](https://github.com/helsenorge/designsystem/issues/310764)
 
 ## 6.0.0-beta.10 (2023-11-22)
 
@@ -82,6 +93,13 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 - lazy loading av ikoner ([f688e78](https://github.com/helsenorge/designsystem/commit/f688e78a955bb43a2efa92b72b208c582dbfdd1d)), closes
   [#301359](https://github.com/helsenorge/designsystem/issues/301359)
+
+## [5.13.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.12.0&targetVersion=GTv5.13.0) (2024-01-09)
+
+### Features
+
+- tile stotter react children ([161a49a](https://github.com/helsenorge/designsystem/commit/161a49ae1ec4ec165bcf565b870b1f608f8fe90c)),
+  closes [#310764](https://github.com/helsenorge/designsystem/issues/310764)
 
 ## [5.12.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.11.0&targetVersion=GTv5.12.0) (2024-01-04)
 
