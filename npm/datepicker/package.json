@@ -30,7 +30,7 @@
     "test:update": "jest --u"
   },
   "peerDependencies": {
-    "@helsenorge/designsystem-react": "^6.0.0-beta"
+    "@helsenorge/designsystem-react": "^6.0.0"
   },
   "dependencies": {
     "classnames": "^2.5.1",
@@ -43,7 +43,7 @@
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@helsenorge/designsystem-react": "^6.0.0-beta.14",
+    "@helsenorge/designsystem-react": "^6.0.0",
     "@rollup/plugin-replace": "^5.0.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^12.1.5",
