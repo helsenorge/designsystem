@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import LazyIcon from './LazyIcon';
 import { IconSize } from '../../constants';
+import { useHover } from '../../hooks/useHover';
 import { shortLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
@@ -26,9 +27,12 @@ export default {
 } as ComponentMeta<typeof LazyIcon>;
 
 export const Default: ComponentStory<typeof LazyIcon> = (args: any) => {
+  const { hoverRef, isHovered } = useHover<HTMLDivElement>();
   return (
     <GridExample>
-      <LazyIcon {...args} size={IconSize.XLarge} />
+      <div ref={hoverRef}>
+        <LazyIcon {...args} size={IconSize.XLarge} isHovered={isHovered} />
+      </div>
       <p>{shortLoremText}</p>
     </GridExample>
   );

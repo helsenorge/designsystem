@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useMemo } from 'react';
 
 import ErrorBoundary from './ErrorBoundary';
 import Icon, { BaseIconProps, IconSize, SvgIcon } from '../Icon';
@@ -15,6 +15,8 @@ export const lazyLoadIcon = (iconName: IconName): React.LazyExoticComponent<SvgI
   lazy<SvgIcon>(() => import(`../Icons/${iconName}.tsx`));
 
 export const LazyIcon: React.FC<LazyIconProps> = ({ iconName, size = IconSize.Small, ...rest }) => {
+  const icon = useMemo(() => lazyLoadIcon(iconName), [iconName]);
+
   if (isServerSide()) {
     return null;
   }
@@ -35,7 +37,7 @@ export const LazyIcon: React.FC<LazyIconProps> = ({ iconName, size = IconSize.Sm
   return (
     <ErrorBoundary fallback={fallback} reset={iconName}>
       <Suspense fallback={fallback}>
-        <Icon svgIcon={lazyLoadIcon(iconName)} size={size} {...rest} />
+        <Icon svgIcon={icon} size={size} {...rest} />
       </Suspense>
     </ErrorBoundary>
   );
