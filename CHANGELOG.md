@@ -1,3 +1,13 @@
+## [6.0.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.0.0&targetVersion=GTv6.0.1) (2024-02-01)
+
+### Bug Fixes
+
+- lazyicon blinker ikke ved hover ([b61887c](https://github.com/helsenorge/designsystem/commit/b61887c40f4f59764a349331290709f9af0ba8c4)),
+  closes [#318240](https://github.com/helsenorge/designsystem/issues/318240)
+- rydder opp i datepicker dependencies
+  ([1d871e1](https://github.com/helsenorge/designsystem/commit/1d871e1071e659f2c11754e9719710a8c0a269f7)), closes
+  [#309420](https://github.com/helsenorge/designsystem/issues/309420)
+
 ## [6.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.13.0&targetVersion=GTv6.0.0) (2024-01-26)
 
 ## 6.0.0-beta.14 (2024-01-24)
