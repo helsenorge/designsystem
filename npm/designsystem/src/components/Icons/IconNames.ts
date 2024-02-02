@@ -1,3 +1,5 @@
+/** AUTO-GENERATED - DO NOT CHANGE MANUALLY **/
+
 export const IconList = [
   'ActiveMonitoring',
   'AcupunctureBack',

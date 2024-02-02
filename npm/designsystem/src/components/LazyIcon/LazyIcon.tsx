@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useMemo } from 'react';
 
 import ErrorBoundary from './ErrorBoundary';
+import { isServerSide } from './utils';
 import Icon, { BaseIconProps, IconSize, SvgIcon } from '../Icon';
 import { IconName } from '../Icons/IconNames';
 
@@ -8,8 +9,6 @@ export interface LazyIconProps extends BaseIconProps {
   // Navnet på ikonet som skal vises. Tilsvarer filnavnet til ikonet i Icons-mappen
   iconName: IconName;
 }
-
-const isServerSide = (): boolean => typeof document === 'undefined';
 
 export const lazyLoadIcon = (iconName: IconName): React.LazyExoticComponent<SvgIcon> =>
   lazy<SvgIcon>(() => import(`../Icons/${iconName}.tsx`));

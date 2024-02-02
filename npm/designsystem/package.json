@@ -21,11 +21,12 @@
   },
   "scripts": {
     "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook",
-    "prebuild": "npm-run-all clean generate:iconnames generate:cssdefinitions generate:tsdefinitions",
+    "prebuild": "npm-run-all clean generate:iconnames generate:illustrationnames generate:cssdefinitions generate:tsdefinitions",
     "build": "vite build",
     "build-storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook -o dist",
     "clean": "rimraf lib types",
     "generate:iconnames": "node scripts/generateIconNames.mjs",
+    "generate:illustrationnames": "node scripts/generateIllustrationNames.mjs",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\"",
     "generate:tsdefinitions": "tsc --emitDeclarationOnly",
     "pregenerate:figmatokens": "git -C ../../../designtokens pull https://github.com/helsenorge/designtokens.git",

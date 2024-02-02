@@ -14,7 +14,9 @@ const iconNameList = iconList
   .sort((a, b) => a.localeCompare(b))
   .join(',');
 
-const contents = `export const IconList = [${iconNameList}] as const;
+const contents = `/** AUTO-GENERATED - DO NOT CHANGE MANUALLY **/
+
+export const IconList = [${iconNameList}] as const;
 
 export type IconName = (typeof IconList)[number];`;
 

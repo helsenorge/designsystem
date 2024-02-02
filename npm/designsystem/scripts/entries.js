@@ -27,7 +27,10 @@ export const alwaysIgnore = [
 
 const components = globSync(`src/components/**/index.{ts,tsx}`, { ignore: alwaysIgnore });
 const icons = globSync(`src/components/Icons/*.{ts,tsx}`, { ignore: alwaysIgnore });
+const illustrations = globSync(`src/components/Illustrations/*.{ts,tsx}`, { ignore: alwaysIgnore });
 const hooksAndExtras = globSync(`src/**/*.{ts,tsx}`, { ignore: [...alwaysIgnore, 'src/components/**/*'] });
 const utils = globSync(`src/utils/*.ts`);
 
-export const entries = [...components, ...icons, ...hooksAndExtras, ...utils].sort((a, b) => a.localeCompare(b)).reduce(createEntries, {});
+export const entries = [...components, ...icons, ...illustrations, ...hooksAndExtras, ...utils]
+  .sort((a, b) => a.localeCompare(b))
+  .reduce(createEntries, {});

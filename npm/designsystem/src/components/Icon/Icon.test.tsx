@@ -6,8 +6,6 @@ import { IconSize } from '../../constants';
 import { Icon } from '../Icon';
 import Undo from '../Icons/Undo';
 
-/* Should test all icons */
-
 describe('Gitt at icon skal vises', (): void => {
   describe('Når icon rendres med default størrelse', (): void => {
     test('Så vises riktig icon', (): void => {

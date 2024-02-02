@@ -88,6 +88,7 @@ export enum AnalyticsId {
   HelpQuestion = 'help-question',
   HighlightBox = 'highlight-box',
   Icon = 'icon',
+  Illustration = 'Illustration',
   Input = 'input',
   Label = 'label',
   Link = 'link',
