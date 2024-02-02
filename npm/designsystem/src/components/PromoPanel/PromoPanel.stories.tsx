@@ -35,6 +35,11 @@ export default {
       options: ['neutral', 'blueberry', 'cherry'],
       defaultValue: 'neutral',
     },
+    illustration: {
+      control: 'select',
+      options: ['', 'Doctor', 'HealthcarePersonnel'],
+      defaultValue: 'Doctor',
+    },
   },
 } as ComponentMeta<typeof PromoPanel>;
 

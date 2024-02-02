@@ -47,20 +47,9 @@ $colors: 'neutral', 'blueberry', 'cherry';
 
   &__illustration {
     display: none;
-    flex-shrink: 0;
 
     @media (min-width: map.get($grid-breakpoints, xs)) {
       display: inline;
-      width: 120px;
-      height: auto;
-    }
-
-    @media (min-width: map.get($grid-breakpoints, md)) {
-      width: 156px;
-    }
-
-    @media (min-width: map.get($grid-breakpoints, lg)) {
-      width: 180px;
     }
   }
 

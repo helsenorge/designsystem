@@ -11,7 +11,7 @@ import { AnchorLinkTags, AnchorLinkTargets } from '../AnchorLink';
 import Icon from '../Icon';
 import ArrowRight from '../Icons/ArrowRight';
 import ArrowUpRight from '../Icons/ArrowUpRight';
-import { IllustrationProps } from '../Illustration/Illustration';
+import LazyIllustration from '../LazyIllustration';
 import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
@@ -24,7 +24,7 @@ interface PromoPanelProps {
   /** Used as the link text if title is not set. */
   children?: string;
   /** Illustration element */
-  illustration?: React.FC<IllustrationProps>;
+  illustration?: 'Doctor' | 'HealthcarePersonnel';
   /** Changes the underlying element of the title. */
   titleHtmlMarkup?: TitleTags;
   /** Changes the background color. Default: white */
@@ -96,10 +96,27 @@ const PromoPanel: React.FC<PromoPanelProps> = props => {
     </PromoPanelLink>
   );
 
+  const illustrationSize = ((): number => {
+    if (breakpoint >= Breakpoint.lg) {
+      return 180;
+    }
+    if (breakpoint >= Breakpoint.md) {
+      return 156;
+    }
+
+    return 120;
+  })();
+
   return (
     <div className={promoPanelClasses} data-testid={props.testId} data-analyticsid={AnalyticsId.PromoPanel} ref={hoverRef}>
-      {React.isValidElement<IllustrationProps>(props.illustration) &&
-        React.cloneElement(props.illustration, { className: styles.promopanel__illustration })}
+      {props.illustration && (
+        <LazyIllustration
+          illustrationName={props.illustration}
+          size={illustrationSize}
+          color={color}
+          className={styles.promopanel__illustration}
+        />
+      )}
       <div className={styles.promopanel__content}>
         {props.title && (
           <Title htmlMarkup={titleHtmlMarkup} appearance={'title3'}>
