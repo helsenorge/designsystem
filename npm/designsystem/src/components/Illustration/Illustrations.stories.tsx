@@ -9,7 +9,7 @@ import Spacer from '../Spacer';
 import Title from '../Title';
 
 export default {
-  title: '@helsenorge∕designsystem-react/Components/Illustrations',
+  title: '@helsenorge∕designsystem-react/Components/Illustration',
   component: LazyIllustration,
   parameters: {
     docs: {
@@ -39,7 +39,7 @@ export default {
   },
 } as ComponentMeta<typeof LazyIllustration>;
 
-export const Default: ComponentStory<typeof LazyIllustration> = (args: any) => {
+export const IllustrationWall: ComponentStory<typeof LazyIllustration> = (args: any) => {
   const filtered = IllustrationList.filter(x =>
     args.illustrationName ? x.toLowerCase().includes(args.illustrationName.toLowerCase()) : true
   );
