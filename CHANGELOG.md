@@ -1,3 +1,11 @@
+## [6.1.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.1.0&targetVersion=GTv6.1.1) (2024-02-06)
+
+### Bug Fixes
+
+- datepicker dependencies tatt tilbake
+  ([3a7a1e0](https://github.com/helsenorge/designsystem/commit/3a7a1e0b3f44f4c5456941ad5902000a0985da51)), closes
+  [#318830](https://github.com/helsenorge/designsystem/issues/318830)
+
 ## [6.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.0.1&targetVersion=GTv6.1.0) (2024-02-06)
 
 ### Features
