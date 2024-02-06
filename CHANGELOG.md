@@ -1,3 +1,11 @@
+## [6.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.0.1&targetVersion=GTv6.1.0) (2024-02-06)
+
+### Features
+
+- illustration- og lazyillustration-komponenter
+  ([c2a5662](https://github.com/helsenorge/designsystem/commit/c2a5662bd5c76f55484870d131cef6bc26f1d1b4))
+- promopanel støtter illustrasjoner ([ccb2cb7](https://github.com/helsenorge/designsystem/commit/ccb2cb7c35993adb1be0537906216501a6947ec7))
+
 ## [6.0.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.0.0&targetVersion=GTv6.0.1) (2024-02-01)
 
 ### Bug Fixes
