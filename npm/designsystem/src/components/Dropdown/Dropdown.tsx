@@ -172,10 +172,10 @@ const Dropdown: React.FC<DropdownProps> = props => {
           {placeholder}
         </span>
         <Icon
-          color={disabled ? theme.palette.neutral500 : theme.palette.blueberry600}
+          color={disabled ? theme.palette.neutral700 : theme.palette.blueberry600}
           svgIcon={PlusSmall}
           className={styles.dropdown__icon}
-          isHovered={isHovered}
+          isHovered={!disabled && isHovered}
           size={IconSize.XSmall}
         />
       </button>

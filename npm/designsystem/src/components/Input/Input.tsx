@@ -166,7 +166,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     [styles['input-container__input--disabled']]: disabled,
   });
 
-  const iconColor = disabled ? getColor('neutral', 500) : getColor('black');
+  const iconColor = disabled ? getColor('neutral', 700) : getColor('black');
   const iconSize = breakpoint === Breakpoint.xs || !isLarge ? IconSize.XSmall : IconSize.Small;
 
   const renderIcon = (): React.ReactNode => {

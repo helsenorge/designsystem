@@ -39,10 +39,11 @@
   }
 
   &--disabled {
-    background: $neutral50;
+    color: $neutral700;
+    background: transparent;
 
     &:hover {
-      background: $neutral50;
+      background: transparent;
     }
   }
 }
@@ -88,7 +89,7 @@
   }
 
   &:disabled {
-    outline: $neutral500 solid 2px;
+    outline: $neutral600 dashed 2px;
     outline-offset: -2px;
   }
 

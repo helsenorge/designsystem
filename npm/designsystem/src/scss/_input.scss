@@ -8,7 +8,7 @@
   display: flex;
   font-size: $font-size-sm;
   width: 100%;
-  border: $neutral700 2px solid;
+  border: 2px solid $neutral700;
   outline: none;
   background: $white;
 
@@ -119,13 +119,14 @@
   }
 
   &--disabled {
-    background: $neutral50;
-    border-color: $neutral500;
-    color: $neutral500;
+    background: transparent;
+    border-color: $neutral600;
+    border-style: dashed;
+    color: $neutral700;
 
     &:hover {
-      background: $neutral50;
-      border-color: $neutral500;
+      background: transparent;
+      border-color: $neutral600;
       box-shadow: none;
     }
   }
@@ -149,7 +150,7 @@
     }
 
     &--disabled {
-      color: $neutral500;
+      color: $neutral700;
     }
 
     &:first-child {

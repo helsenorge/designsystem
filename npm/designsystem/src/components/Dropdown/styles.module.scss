@@ -36,8 +36,11 @@
     }
 
     &:disabled {
-      background-color: $neutral50;
-      border-color: $neutral500;
+      cursor: initial;
+      color: $neutral700;
+      background-color: transparent;
+      border-color: $neutral600;
+      border-style: dashed;
     }
 
     &--on-white,
