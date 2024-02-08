@@ -50,5 +50,5 @@ stages:
               scriptType: pscore
               scriptLocation: inlineScript
               inlineScript: |
-                az storage remove --account-name $(accountName) --container '$(container)' --path npm/designsystem/dist/$(branchName) --recursive
+                az storage remove --account-name $(accountName) --container '$(container)' --name npm/designsystem/dist/$(branchName) --recursive
                 az storage azcopy blob upload --account-name $(accountName) --container '$(container)' --source npm/designsystem/dist/* --recursive
