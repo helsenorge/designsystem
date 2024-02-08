@@ -1,0 +1,54 @@
+trigger:
+  branches:
+    include:
+      - master
+      - feature/*
+
+pool:
+  name: Helsenorge_LinuxScaleSetAgents
+
+variables:
+  - name: node_version
+    value: 20
+  - name: HUSKY
+    value: 0
+  - name: branchName
+    value: $[ replace(variables['Build.SourceBranch'], 'refs/heads/', '') ]
+  - name: accountName
+    value: frankensteinstorybook
+  - name: container
+    value: $web
+
+stages:
+  - stage:
+    displayName: Deploy Storybook
+    jobs:
+      - job:
+        displayName: Deploy Storybook
+        steps:
+          - task: UseNode@1
+            displayName: Use Node version
+            inputs:
+              version: $(node_version)
+
+          - task: Npm@1
+            displayName: Install dependencies
+            inputs:
+              command: ci
+
+          - task: Npm@1
+            displayName: Build Storybook
+            inputs:
+              command: custom
+              workingDir: npm/designsystem
+              customCommand: run build-storybook -- -o dist/$(branchName)
+
+          - task: AzureCLI@2
+            displayName: Copy to Azure Storage account
+            inputs:
+              azureSubscription: $(AZURE_SUBSCRIPTION)
+              scriptType: pscore
+              scriptLocation: inlineScript
+              inlineScript: |
+                az storage remove --account-name $(accountName) --container '$(container)' --path npm/designsystem/dist/$(branchName) --recursive
+                az storage azcopy blob upload --account-name $(accountName) --container '$(container)' --source npm/designsystem/dist/* --recursive

@@ -231,41 +231,6 @@ stages:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'), contains(variables['Build.SourceBranch'], 'beta'))
 
-          # Deploy Storybook
-          - task: Npm@1
-            displayName: 'build storybook'
-            inputs:
-              command: custom
-              workingDir: npm/designsystem
-              customCommand: 'run build-storybook'
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), in(variables['Build.SourceBranch'],
-              'refs/heads/master', 'refs/heads/feature/next'))
-
-          - task: Npm@1
-            displayName: 'deploy storybook (master)'
-            inputs:
-              command: custom
-              workingDir: npm/designsystem
-              customCommand: 'run deploy:storybook'
-            env:
-              NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
-              'refs/heads/master'))
-
-          - task: Npm@1
-            displayName: 'deploy storybook (next)'
-            inputs:
-              command: custom
-              workingDir: npm/designsystem
-              customCommand: 'run deploy:storybook:next'
-            env:
-              NETLIFY_AUTH_TOKEN: $(Netlify.Auth.Token)
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
-              'refs/heads/feature/next'))
-
   # Copy to Github
   - stage:
     displayName: 'Github'
