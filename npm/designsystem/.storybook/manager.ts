@@ -9,7 +9,7 @@ const hndsTheme = create({
   base: 'light',
   colorSecondary: palette.blueberry500,
   appBg: palette.blueberry50,
-  brandUrl: 'https://designsystem-storybook.netlify.app',
+  brandUrl: 'https://frankensteinstorybook.z1.web.core.windows.net/master/',
   brandImage: logo,
 });
 

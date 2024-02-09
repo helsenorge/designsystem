@@ -32,8 +32,6 @@
     "pregenerate:figmatokens": "git -C ../../../designtokens pull https://github.com/helsenorge/designtokens.git",
     "generate:figmatokens": "token-transformer ../../../designtokens/tokens.json data/design-tokens.json hn-designsystem --resolveReferences=false",
     "postgenerate:figmatokens": "style-dictionary build --config figma-token.config.json",
-    "deploy:storybook": "netlify deploy --site 69e5c387-fee4-47d2-9498-67068981bee7 --dir dist --prod",
-    "deploy:storybook:next": "netlify deploy --site 69e5c387-fee4-47d2-9498-67068981bee7 --dir dist --alias next",
     "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "eslint:fix": "npm run eslint -- --fix",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",

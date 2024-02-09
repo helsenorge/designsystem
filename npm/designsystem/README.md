@@ -16,4 +16,5 @@ GitHub.
 
 ## Documentation
 
-To view all the available components in isolation, please view our storybook page here: https://designsystem-storybook.netlify.app
+To view all the available components in isolation, please view our storybook page here:
+https://frankensteinstorybook.z1.web.core.windows.net/master/
