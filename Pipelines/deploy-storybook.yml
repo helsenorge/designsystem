@@ -41,7 +41,7 @@ stages:
             inputs:
               command: custom
               workingDir: npm/designsystem
-              customCommand: run build-storybook -- -o dist/$(branchName)
+              customCommand: run build-storybook -- -o dist/$(branchName) -- --base /$(branchName)/
 
           - task: AzureCLI@2
             displayName: Copy to Azure Storage account
