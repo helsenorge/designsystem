@@ -7,7 +7,6 @@ import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { useHover } from '../../hooks/useHover';
 import { BaseIconElement, useIcons } from '../../hooks/useIcons';
-import { useSize } from '../../hooks/useSize';
 import { getColor } from '../../theme/currys/color';
 import { breakpoints } from '../../theme/grid';
 import { isTest, isProd } from '../../utils/environment';
@@ -127,7 +126,6 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       ? useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>)
       : useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
   const buttonContentRef = useRef<HTMLDivElement>(null);
-  const buttonContentSize = useSize(buttonContentRef);
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
   const bothIcons = leftIcon && (rightIcon || arrow) && !onlyIcon;
   const onDark = mode === 'ondark';
