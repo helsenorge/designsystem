@@ -1,3 +1,14 @@
+## [6.1.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.1.1&targetVersion=GTv6.1.2) (2024-02-12)
+
+### Bug Fixes
+
+- datepicker date-fns gjøres external
+  ([36d749c](https://github.com/helsenorge/designsystem/commit/36d749cfd83f16ac45d8fd8eb0bf5b31d7b02b7d)), closes
+  [#318830](https://github.com/helsenorge/designsystem/issues/318830)
+- input, textarea, dropdown og select har dashed border når disabled
+  ([5f5c4ca](https://github.com/helsenorge/designsystem/commit/5f5c4ca5a12d41f0413da4319e24fb8c0e6c7437)), closes
+  [#308128](https://github.com/helsenorge/designsystem/issues/308128)
+
 ## [6.1.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.1.0&targetVersion=GTv6.1.1) (2024-02-06)
 
 ### Bug Fixes
