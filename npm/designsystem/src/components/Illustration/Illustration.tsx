@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { getIllustration } from './utils';
 import { AnalyticsId } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
+import { getIllustration } from '../../utils/illustration';
 
 export type IllustrationColor = 'neutral' | 'cherry' | 'blueberry';
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { getIcon, SvgPathProps } from '../Icon';
+import { getIcon } from '../../utils/icon';
+import { SvgPathProps } from '../Icon';
 
 const QrCode: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
   const normal = (

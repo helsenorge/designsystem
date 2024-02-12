@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { getIcon, SvgPathProps } from '../Icon';
+import { getIcon } from '../../utils/icon';
+import { SvgPathProps } from '../Icon';
 
 const ChevronLeft: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = <path d="M30.66 32.951l-1.409 1.42L18.8 24l10.451-10.37 1.409 1.42L21.64 24z" />;

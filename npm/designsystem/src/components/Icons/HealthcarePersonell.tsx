@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { SvgPathProps, getIcon } from '../Icon';
+import { getIcon } from '../../utils/icon';
+import { SvgPathProps } from '../Icon';
 
 const HealthcarePersonell: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (

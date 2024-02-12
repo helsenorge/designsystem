@@ -2,8 +2,8 @@ import React from 'react';
 
 import DoctorMedium from './DoctorMedium';
 import DoctorSmall from './DoctorSmall';
+import { getIllustration } from '../../utils/illustration';
 import { SvgIllustrationProps } from '../Illustration';
-import { getIllustration } from '../Illustration/utils';
 
 export interface Palette {
   hair: string;

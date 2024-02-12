@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { getIcon, SvgPathProps, IconSize } from '../Icon';
+import { getIcon } from '../../utils/icon';
+import { SvgPathProps } from '../Icon';
 
 const Syringe: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
@@ -17,7 +18,7 @@ const Syringe: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): Rea
     />
   );
 
-  return getIcon({ size: IconSize.Medium, isHovered, normal, normalHover });
+  return getIcon({ size, isHovered, normal, normalHover });
 };
 
 export default Syringe;

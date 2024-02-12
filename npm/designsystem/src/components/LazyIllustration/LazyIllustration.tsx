@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useMemo } from 'react';
 
+import { getIllustration } from '../../utils/illustration';
 import Illustration, { BaseIllustrationProps, SvgIllustration } from '../Illustration';
-import { getIllustration } from '../Illustration/utils';
 import { IllustrationName, IllustrationSizeList } from '../Illustrations/IllustrationNames';
 import ErrorBoundary from '../LazyIcon/ErrorBoundary';
 import { isServerSide } from '../LazyIcon/utils';

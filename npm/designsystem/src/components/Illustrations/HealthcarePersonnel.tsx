@@ -2,8 +2,8 @@ import React from 'react';
 
 import HealthcarePersonnelMedium from './HealthcarePersonnelMedium';
 import HealthcarePersonnelSmall from './HealthcarePersonnelSmall';
+import { getIllustration } from '../../utils/illustration';
 import { SvgIllustrationProps } from '../Illustration';
-import { getIllustration } from '../Illustration/utils';
 
 const HealthcarePersonnel: React.FC<SvgIllustrationProps> = ({ size = 512, color }) => {
   const medium = <HealthcarePersonnelMedium color={color} />;
