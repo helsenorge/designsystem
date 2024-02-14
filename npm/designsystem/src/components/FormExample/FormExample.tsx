@@ -60,29 +60,12 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   const field4 = 'field4';
   const field5 = 'field5';
   const field6 = 'field6';
-  const allErrors =
-    errors.field1 ||
-    errors.field2 ||
-    errors.field3 ||
-    errors.field4 ||
-    errors.field5 ||
-    errors.field6 ||
-    errors.field7 ||
-    errors.field8 ||
-    errors.field9;
+
   const errorMessage = 'Du må velge et alternativ';
   const errorMessage2 = 'Du må velge to alternativ';
   const errorMessage3 = 'Det kan ikke legges inn mer enn 40 tegn';
   const errorMessage4 = 'Du må skrive noe her';
   const errorMessage5 = 'Du må velge "Option 2"';
-  const errorMessage6 = `Du må velge dato mellom ${minDate.toLocaleDateString('nb')} og ${maxDate.toLocaleDateString('nb')}`;
-  const errorMessage7 = `Du må skrive inn tidspunkt mellom ${minDate.toLocaleTimeString('nb', {
-    hour: '2-digit',
-    minute: '2-digit',
-  })} og ${maxDate.toLocaleTimeString('nb', {
-    hour: '2-digit',
-    minute: '2-digit',
-  })}`;
 
   const requireTwo = (value: Array<string>): true | string => {
     return value.length >= 2 || errorMessage2;
@@ -120,6 +103,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           title={'Gruppe tittel'}
           legend={'Velg minst en'}
           error={errors.field1 ? (errors.field1.message as string) : undefined}
+          errorTextId="error"
           size={props.size}
         >
           <FormLayout maxColumns={FormLayoutColumns.two}>
@@ -128,7 +112,13 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             })}
           </FormLayout>
         </FormGroup>,
-        <FormGroup key={1} legend={'Velg minst to'} error={errors.field2 ? (errors.field2.message as string) : undefined} size={props.size}>
+        <FormGroup
+          key={1}
+          legend={'Velg minst to'}
+          error={errors.field2 ? (errors.field2.message as string) : undefined}
+          size={props.size}
+          errorTextId="error1"
+        >
           <Checkbox
             inputId="checkbox4"
             label={<Label labelTexts={[{ text: 'Checkbox 4' }]} />}
@@ -145,7 +135,13 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             {...register(field2, { validate: requireTwo })}
           />
         </FormGroup>,
-        <FormGroup key={2} legend={'Velg en'} error={errors.field3 ? (errors.field3.message as string) : undefined} size={props.size}>
+        <FormGroup
+          key={2}
+          legend={'Velg en'}
+          error={errors.field3 ? (errors.field3.message as string) : undefined}
+          size={props.size}
+          errorTextId="error2"
+        >
           <RadioButton
             inputId="radiobutton1"
             label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />}
@@ -162,7 +158,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             {...register(field3, { required: errorMessage })}
           />
         </FormGroup>,
-        <FormGroup key={3} error={errors.field4 ? (errors.field4.message as string) : undefined}>
+        <FormGroup key={3} error={errors.field4 ? (errors.field4.message as string) : undefined} errorTextId="error3">
           <Textarea
             defaultValue={`Dette er en test \n\n Hello \n\n test \n\n test test`}
             grow
@@ -173,17 +169,19 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             {...register(field4, { maxLength: { value: 40, message: errorMessage3 } })}
           />
         </FormGroup>,
-        <FormGroup key={4} size={props.size} error={errors.field5 ? (errors.field5.message as string) : undefined}>
+        <FormGroup key={4} size={props.size} error={errors.field5 ? (errors.field5.message as string) : undefined} errorTextId="error4">
           <Input
             label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
             placeholder={'Skriv noe!'}
             icon={Hospital}
+            inputId="input1"
             {...register(field5, { required: errorMessage4 })}
           />
         </FormGroup>,
-        <FormGroup key={5} size={props.size} error={errors.field6 ? (errors.field6.message as string) : undefined}>
+        <FormGroup key={5} size={props.size} error={errors.field6 ? (errors.field6.message as string) : undefined} errorTextId="error5">
           <Select
-            label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+            selectId="select1"
+            label={<Label labelTexts={[{ text: 'Velg et alternativ', type: 'semibold' }]} />}
             {...register(field6, { validate: requireSelect })}
           >
             <option value={'Option 1'}>{'Option 1'}</option>
@@ -240,7 +238,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       return (
         <Select
           errorText={errors.field6 ? (errors.field6.message as string) : undefined}
-          label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+          label={<Label labelTexts={[{ text: 'Velg et alternativ', type: 'semibold' }]} />}
           {...register(field6, { validate: requireSelect })}
         >
           <option value={'Option 1'}>{'Option 1'}</option>
@@ -251,6 +249,23 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     }
   };
 
+  const errorSummary = () => {
+    const keys = Object.keys(errors);
+
+    if (keys.length > 0) {
+      return (
+        <>
+          <p>{'Sjekk at alt er riktig utfylt:'}</p>
+          {keys.map(key => (
+            <p key={key}>{errors[key]?.message}</p>
+          ))}
+        </>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <form
       noValidate
@@ -259,7 +274,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         !isTest() && console.log(data);
       })}
     >
-      <Validation size={props.size} errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
+      <Validation size={props.size} errorSummary={errorSummary()}>
         {getFormExample()}
       </Validation>
       <Spacer />

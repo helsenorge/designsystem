@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { FormExample, FormExampleVariants } from '../FormExample/FormExample';
@@ -32,16 +32,15 @@ describe('Gitt at Validation skal vises', () => {
 
       await userEvent.click(submit);
 
-      const error = await screen.findAllByText('Du må velge et alternativ');
-      const error2 = await screen.findByText('Du må velge to alternativ');
-      const errorSummary = screen.getByText('Sjekk at alt er riktig utfylt');
+      const checkbox1 = screen.getByLabelText('Checkbox 1');
+      expect(checkbox1).toHaveAccessibleDescription('Du må velge et alternativ');
+      const checkbox4 = screen.getByLabelText('Checkbox 4');
+      expect(checkbox4).toHaveAccessibleDescription('Du må velge to alternativ');
+      const errorSummary = screen.getByRole('alert');
 
-      expect(error.length).toBe(2);
-      expect(error[0].className).toBe('error-wrapper__errors');
-      expect(error2).toBeVisible();
-      expect(error2.className).toBe('error-wrapper__errors');
       expect(errorSummary).toBeVisible();
-      expect(errorSummary.className).toBe('validation__errors');
+      expect(errorSummary).toHaveTextContent('Sjekk at alt er riktig utfylt');
+      expect(errorSummary.className).toBe('validation__summary validation__summary--visible');
     });
   });
 
@@ -53,9 +52,9 @@ describe('Gitt at Validation skal vises', () => {
 
       await userEvent.click(submit);
 
-      const errorSummary = await screen.findByText('Sjekk at alt er riktig utfylt');
+      const errorSummary = screen.getByRole('alert');
 
-      expect(errorSummary.className).toBe('validation__errors');
+      expect(errorSummary.className).toBe('validation__summary validation__summary--visible');
     });
   });
 
@@ -67,27 +66,40 @@ describe('Gitt at Validation skal vises', () => {
 
       await userEvent.click(submit);
 
-      const error = await screen.findAllByText('Du må velge et alternativ');
-      const error2 = await screen.findByText('Du må velge to alternativ');
-      const error3 = await screen.findByText('Det kan ikke legges inn mer enn 40 tegn');
-      const error4 = await screen.findByText('Du må skrive noe her');
-      const error5 = await screen.findByText('Du må velge "Option 2"');
-      const errorSummary = screen.getByText('Sjekk at alt er riktig utfylt');
-
-      expect(error.length).toBe(2);
-      expect(error2).toBeVisible();
-      expect(error3).toBeVisible();
-      expect(error4).toBeVisible();
-      expect(error5).toBeVisible();
-      expect(errorSummary).toBeVisible();
-
       const checkbox1 = screen.getByLabelText('Checkbox 1');
+      expect(checkbox1).toHaveAccessibleDescription('Du må velge et alternativ');
+      const checkbox2 = screen.getByLabelText('Checkbox 2');
+      expect(checkbox2).toHaveAccessibleDescription('Du må velge et alternativ');
+      const checkbox3 = screen.getByLabelText('Checkbox 3');
+      expect(checkbox3).toHaveAccessibleDescription('Du må velge et alternativ');
+
       const checkbox4 = screen.getByLabelText('Checkbox 4');
+      expect(checkbox4).toHaveAccessibleDescription('Du må velge to alternativ');
       const checkbox5 = screen.getByLabelText('Checkbox 5');
+      expect(checkbox5).toHaveAccessibleDescription('Du må velge to alternativ');
+      const checkbox6 = screen.getByLabelText('Checkbox 6');
+      expect(checkbox6).toHaveAccessibleDescription('Du må velge to alternativ');
+
       const radiobutton1 = screen.getByLabelText('Radiobutton 1');
+      expect(radiobutton1).toHaveAccessibleDescription('Du må velge et alternativ');
+      const radiobutton2 = screen.getByLabelText('Radiobutton 2');
+      expect(radiobutton2).toHaveAccessibleDescription('Du må velge et alternativ');
+      const radiobutton3 = screen.getByLabelText('Radiobutton 3');
+      expect(radiobutton3).toHaveAccessibleDescription('Du må velge et alternativ');
+
       const textarea1 = screen.getByLabelText('Skriv din historie her');
+      expect(textarea1).toHaveAccessibleDescription('');
+
       const input1 = screen.getByLabelText('Skriv inn din tekst');
-      const select1 = screen.getByRole('combobox');
+      expect(input1).toHaveAccessibleDescription('Du må skrive noe her');
+
+      const select1 = screen.getByLabelText('Velg et alternativ');
+      expect(select1).toHaveAccessibleDescription('Du må velge "Option 2"');
+
+      const errorSummary = screen.getByRole('alert');
+      expect(errorSummary).toBeVisible();
+      expect(errorSummary).toHaveTextContent('Sjekk at alt er riktig utfylt');
+
       await userEvent.click(checkbox1);
       await userEvent.click(checkbox4);
       await userEvent.click(checkbox5);
@@ -98,24 +110,20 @@ describe('Gitt at Validation skal vises', () => {
 
       await userEvent.click(submit);
 
-      await waitFor(() => {
-        expect(error[0]).not.toBeInTheDocument();
-      });
-      await waitFor(() => {
-        expect(error2).not.toBeInTheDocument();
-      });
-      await waitFor(() => {
-        expect(error3).not.toBeInTheDocument();
-      });
-      await waitFor(() => {
-        expect(error4).not.toBeInTheDocument();
-      });
-      await waitFor(() => {
-        expect(error5).not.toBeInTheDocument();
-      });
-      await waitFor(() => {
-        expect(errorSummary).not.toBeInTheDocument();
-      });
+      expect(checkbox1).toHaveAccessibleDescription('');
+      expect(checkbox2).toHaveAccessibleDescription('');
+      expect(checkbox3).toHaveAccessibleDescription('');
+      expect(checkbox4).toHaveAccessibleDescription('');
+      expect(checkbox5).toHaveAccessibleDescription('');
+      expect(checkbox6).toHaveAccessibleDescription('');
+      expect(radiobutton1).toHaveAccessibleDescription('');
+      expect(radiobutton2).toHaveAccessibleDescription('');
+      expect(radiobutton3).toHaveAccessibleDescription('');
+      expect(textarea1).toHaveAccessibleDescription('');
+      expect(input1).toHaveAccessibleDescription('');
+      expect(select1).toHaveAccessibleDescription('');
+      expect(errorSummary).toBeEmptyDOMElement();
+      expect(errorSummary.className).toBe('validation__summary');
     });
   });
 });

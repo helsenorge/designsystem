@@ -65,6 +65,8 @@ export interface InputProps
   error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
+  /** Error text id */
+  errorTextId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Component shown after input */
@@ -115,6 +117,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     label,
     error,
     errorText,
+    errorTextId,
     testId,
     disabled,
     readOnly,
@@ -136,6 +139,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const [input, setInput] = useState(defaultValue || '');
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
   const numKeyPressed = useRef<boolean>(false);
+  const errorTextUuid = useUuid(errorTextId);
   const numRegex = /^[0-9]$/;
 
   useEffect(() => {
@@ -232,7 +236,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
 
   return (
-    <ErrorWrapper errorText={errorText}>
+    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
         {renderLabel(label, inputIdState, mode as FormMode, disabled)}
         {/* input-elementet tillater keyboard-interaksjon */}
@@ -251,7 +255,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
               className={inputClass}
               ref={ref}
               aria-labelledby={props['aria-labelledby'] ?? undefined}
-              aria-describedby={props['aria-describedby'] ?? undefined}
+              aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
               aria-invalid={!!onError}
               disabled={disabled}
               placeholder={placeholder}

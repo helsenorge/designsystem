@@ -3,11 +3,14 @@
 @import '../../scss/font-settings';
 
 .validation {
-  &__errors {
+  &__summary {
     font-size: $font-size-sm;
     font-weight: 600;
     color: $cherry600;
-    margin: getSpacer(l) 0 getSpacer(s);
+
+    &--visible {
+      margin: getSpacer(l) 0 getSpacer(s);
+    }
   }
 }
 

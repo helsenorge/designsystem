@@ -4,7 +4,6 @@ exports[`Gitt at det skal ikke vises en valideringsfeil Når ErrorWrapper rendre
 <div>
   <div
     class="error-wrapper"
-    data-testid="error-wrapper-testid"
   />
 </div>
 `;
@@ -13,11 +12,9 @@ exports[`Gitt at det skal vises en valideringsfeil Når ErrorWrapper rendres Så
 <div>
   <div
     class="error-wrapper error-wrapper--with-error"
-    data-testid="error-wrapper-testid"
   >
     <p
       class="error-wrapper__errors"
-      role="alert"
     >
       Dette er en feil
     </p>

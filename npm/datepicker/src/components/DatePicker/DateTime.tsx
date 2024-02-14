@@ -15,10 +15,14 @@ export interface DateTimeProps
   error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
+  /** Error text id */
+  errorTextId?: string;
   /** Label of the input */
   label?: React.ReactNode;
   /** Sets the unit of time for the input field */
   timeUnit: TimeUnit;
+  /** input id of the checkbox */
+  inputId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -33,7 +37,7 @@ const isNumericString = (str: string): boolean => {
 };
 
 export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInputElement>) => {
-  const { defaultValue, error, errorText, label, onChange, timeUnit, testId, ...rest } = props;
+  const { defaultValue, error, errorText, errorTextId, label, onChange, timeUnit, inputId, testId, ...rest } = props;
 
   const [inputValue, setInputValue] = useState<number | string | undefined>(
     typeof defaultValue !== 'undefined' ? formatAsTwoDigits(defaultValue) : ''
@@ -72,8 +76,10 @@ export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<H
   return (
     <div data-testid={testId}>
       <Input
+        inputId={inputId}
         error={error}
         errorText={errorText}
+        errorTextId={errorTextId}
         label={label}
         max={timeUnit === 'hours' ? 23 : 59}
         min={0}

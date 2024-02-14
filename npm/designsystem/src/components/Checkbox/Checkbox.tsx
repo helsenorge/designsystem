@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { AnalyticsId, FormMode, FormSize, IconSize } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
+import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys/color';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
@@ -32,6 +33,8 @@ export interface CheckboxProps
   error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
+  /** Error text id */
+  errorTextId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -48,6 +51,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     size,
     errorText,
     error = !!errorText,
+    errorTextId,
     value = getLabelText(label),
     testId,
     required,
@@ -55,6 +59,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     ...rest
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
+  const errorTextUuid = useUuid(errorTextId);
   const onWhite = mode === FormMode.onwhite;
   const onGrey = mode === FormMode.ongrey;
   const onBlueberry = mode === FormMode.onblueberry;
@@ -136,7 +141,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           disabled={disabled}
           value={value}
           ref={mergedRefs}
-          aria-describedby={props['aria-describedby'] ?? undefined}
+          aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
           aria-invalid={error}
           required={required}
           onChange={onChangeHandler}
@@ -151,7 +156,11 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
 
   return (
     <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
-      {errorText && <p className={errorStyles}>{errorText}</p>}
+      {errorText && (
+        <p className={errorStyles} id={errorTextUuid}>
+          {errorText}
+        </p>
+      )}
       {renderLabelAsParent(
         label,
         getLabelContent(),

@@ -92,12 +92,13 @@ describe('Gitt at Select skal vises', (): void => {
         </Select>
       );
 
-      expect(screen.getByText('error error!')).toBeVisible();
+      const select = screen.getByLabelText('Label test');
 
-      const select = screen.getByRole('combobox');
+      expect(select).toHaveAccessibleDescription('error error!');
+      expect(select).toHaveClass('select select--invalid');
+
       const wrapper = select?.parentElement;
 
-      expect(select).toHaveClass('select select--invalid');
       expect(wrapper).toHaveClass('select-inner-wrapper select-inner-wrapper--invalid');
     });
   });

@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId, FormMode, FormSize } from '../../constants';
+import { useUuid } from '../../hooks/useUuid';
 import { isComponent } from '../../utils/component';
-import uuid from '../../utils/uuid';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import ErrorWrapper from '../ErrorWrapper';
 import FormLayout, { FormLayoutProps } from '../FormLayout';
@@ -36,6 +36,8 @@ export interface FormGroupProps {
   size?: keyof typeof FormSize;
   /** Error message */
   error?: string;
+  /** Error text id */
+  errorTextId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Sets the data-testid attribute for the error-wrapper. */
@@ -57,6 +59,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     mode = FormMode.onwhite,
     size = FormSize.medium,
     error,
+    errorTextId,
     name,
     htmlMarkup = 'fieldset',
     renderError = true,
@@ -64,7 +67,8 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     errorWrapperTestId,
   } = props;
   const [checkedRadioId, setCheckedRadioId] = useState<string>();
-  const [radioGroupId] = useState<string>(uuid());
+  const radioGroupId = useUuid();
+  const errorTextUuid = useUuid(errorTextId);
   const onDark = mode === FormMode.ondark;
   const isLarge = size === FormSize.large;
   const formGroupWrapperClasses = classNames(
@@ -89,8 +93,8 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   const fieldsetClasses = classNames(formGroupStyles['field-set'], fieldsetClassName);
 
   const mapFormComponent = (child: React.ReactNode, index: number): React.ReactNode => {
-    if (isComponent<FormGroupProps>(child, FormLayout)) {
-      return React.cloneElement(child as React.ReactElement<FormLayoutProps>, {
+    if (isComponent<FormLayoutProps>(child, FormLayout)) {
+      return React.cloneElement(child, {
         size,
         mapHelper: mapFormComponent,
       });
@@ -100,17 +104,19 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         size,
         error,
         renderError: false,
+        errorTextId: errorTextUuid,
       });
     } else if (isComponent<CheckboxProps>(child, Checkbox)) {
-      return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
+      return React.cloneElement(child, {
         name: name ?? child.props.name,
         mode,
         size,
         error: !!error,
+        errorTextId: errorTextUuid,
       });
     } else if (isComponent<RadioButtonProps>(child, RadioButton)) {
       const radioId = typeof child.props.inputId === 'undefined' ? radioGroupId + index : child.props.inputId;
-      return React.cloneElement(child as React.ReactElement<RadioButtonProps>, {
+      return React.cloneElement(child, {
         inputId: radioId,
         name: name ?? child.props.name,
         mode,
@@ -120,20 +126,23 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
           child.props.onChange && child.props.onChange(event);
         },
         error: !!error,
+        errorTextId: errorTextUuid,
         labelClassNames: getRadioLabelClasses(radioId, mode as FormMode, isLarge, checkedRadioId),
       });
     } else if (isComponent<InputProps>(child, Input)) {
-      return React.cloneElement(child as React.ReactElement<InputProps>, {
+      return React.cloneElement(child, {
         name: name ?? child.props.name,
         mode,
         size,
         error: !!error,
+        errorTextId: errorTextUuid,
       });
     } else if (isComponent<SelectProps>(child, Select)) {
-      return React.cloneElement(child as React.ReactElement<SelectProps>, {
+      return React.cloneElement(child, {
         name: name ?? child.props.name,
         mode,
         error: !!error,
+        errorTextId: errorTextUuid,
       });
     }
     return child;
@@ -166,7 +175,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         </Title>
       )}
       {renderError ? (
-        <ErrorWrapper className={errorWrapperClassName} errorText={error} testId={errorWrapperTestId}>
+        <ErrorWrapper className={errorWrapperClassName} errorText={error} testId={errorWrapperTestId} errorTextId={errorTextUuid}>
           {formGroupContent()}
         </ErrorWrapper>
       ) : (

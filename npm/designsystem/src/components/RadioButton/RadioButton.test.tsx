@@ -118,9 +118,13 @@ describe('Gitt at RadioButton skal vises', (): void => {
 
   describe('Når RadioButton får satt errorText', (): void => {
     test('Så vises RadioButton med errormelding i tilleg til indre og ytre error styling', (): void => {
-      render(<RadioButton testId={'test01'} label={<Label labelTexts={[{ text: 'Radio1' }]} />} errorText={'error error!'} />);
+      render(
+        <RadioButton testId={'test01'} inputId="radio01" label={<Label labelTexts={[{ text: 'Radio1' }]} />} errorText={'error error!'} />
+      );
 
-      expect(screen.getByText('error error!')).toBeVisible();
+      const radioButton = screen.getByLabelText('Radio1');
+
+      expect(radioButton).toHaveAccessibleDescription('error error!');
 
       // Indre styling
       const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;

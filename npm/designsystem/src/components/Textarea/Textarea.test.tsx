@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Textarea from './Textarea';
@@ -189,6 +189,15 @@ describe('Gitt at Textarea skal vises', (): void => {
         const input = screen.getByLabelText('Skriv din historie her');
         expect(input).toHaveValue('foo');
       });
+    });
+  });
+  describe('Når Textarea har en feilmelding', (): void => {
+    test('Så er feilmelding knyttet sammen med inputfeltet', (): void => {
+      render(<Textarea label={'Navn'} textareaId="navn" errorText="Navn må fylles ut" />);
+
+      const input = screen.getByLabelText('Navn');
+
+      expect(input).toHaveAccessibleDescription('Navn må fylles ut');
     });
   });
 });

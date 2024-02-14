@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import cn from 'classnames';
 
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode } from '../../constants';
+import { useUuid } from '../../hooks/useUuid';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import { renderLabel } from '../Label';
@@ -50,6 +51,8 @@ interface TextareaProps
   grow?: boolean;
   /** Error text to show above the component */
   errorText?: string;
+  /** Error text id */
+  errorTextId?: string;
 }
 
 const getTextareaMaxWidth = (characters: number): string => {
@@ -76,6 +79,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     maxRows = 10,
     grow,
     errorText,
+    errorTextId,
     autoFocus,
     disabled,
     name,
@@ -90,6 +94,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const [rows, setRows] = useState(minRows);
   const [textareaInput, setTextareaInput] = useState(defaultValue || '');
   const referanse = useRef<HTMLDivElement>(null);
+  const errorTextUuid = useUuid(errorTextId);
 
   useEffect(() => {
     setTextareaInput(defaultValue || '');
@@ -164,7 +169,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
 
   return (
-    <ErrorWrapper errorText={errorText}>
+    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
         {renderLabel(label, textareaId, mode as FormMode, disabled)}
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
@@ -174,7 +179,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             id={textareaId}
             className={textareaClass}
             ref={ref}
-            aria-describedby={props['aria-describedby'] ?? undefined}
+            aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
             aria-invalid={!!onError}
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autoFocus}

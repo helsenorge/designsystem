@@ -35,6 +35,8 @@ export interface SelectProps
   error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
+  /** Error text id */
+  errorTextId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** select id of the select element */
@@ -65,6 +67,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     disabled,
     error,
     errorText,
+    errorTextId,
     label,
     selectId,
     name = selectId,
@@ -78,6 +81,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
   } = props;
 
   const uuid = useUuid(selectId);
+  const errorTextUuid = useUuid(errorTextId);
   const onBlueberry = mode === 'onblueberry';
   const invalid = mode === 'oninvalid' || !!errorText || !!error;
   const iconColor = getIconColor(invalid, !!disabled);
@@ -100,7 +104,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
   });
 
   return (
-    <ErrorWrapper errorText={errorText}>
+    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectStyles['select-wrapper']} style={{ maxWidth }}>
         {renderLabel(label, uuid, mode as FormMode, disabled)}
         <div className={selectInnerWrapperClasses}>
@@ -113,7 +117,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
             disabled={disabled}
             ref={ref}
             required={required}
-            aria-describedby={props['aria-describedby'] ?? undefined}
+            aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
             aria-required={!!required}
             value={value}
             defaultValue={defaultValue}

@@ -34,10 +34,11 @@ describe('Gitt at DatePicker skal vises', (): void => {
     });
 
     it('Så skal errorText vises riktig', () => {
-      render(<DatePicker errorText="Vennligst velg en gyldig dato" />);
-      const error = screen.getByText('Vennligst velg en gyldig dato');
-      expect(error).toBeInTheDocument();
-      expect(error).toHaveClass('error-wrapper__errors');
+      render(<DatePicker label="Velg dato" inputId="datepicker" errorText="Vennligst velg en gyldig dato" />);
+
+      const datePicker = screen.getByLabelText('Velg dato');
+
+      expect(datePicker).toHaveAccessibleDescription('Vennligst velg en gyldig dato');
     });
 
     it('Så skal label vises riktig', () => {
@@ -101,8 +102,11 @@ describe('Gitt at DatePicker skal vises', (): void => {
     });
 
     it('Så skal error meldingen vises riktig', () => {
-      render(<DateTime timeUnit="hours" error errorText="Invalid date and time" />);
-      expect(screen.getByText('Invalid date and time')).toBeInTheDocument();
+      render(<DateTime timeUnit="hours" error label="Time" inputId="datetime" errorText="Invalid date and time" />);
+
+      const dateTime = screen.getByLabelText('Time');
+
+      expect(dateTime).toHaveAccessibleDescription('Invalid date and time');
     });
   });
   describe('Når DateTimePickerWrapper rendres', () => {
@@ -122,17 +126,17 @@ describe('Gitt at DatePicker skal vises', (): void => {
     it('Så skal DateTimePickerWrapper children rendres riktig med error tekst og styling', () => {
       render(
         <DateTimePickerWrapper errorText="Some error">
-          <DatePicker label="Date" />
-          <DateTime label="Time" timeUnit="hours" />
+          <DatePicker label="Date" inputId="datepicker" />
+          <DateTime label="Time" inputId="datetime" timeUnit="hours" />
         </DateTimePickerWrapper>
       );
 
-      const errorMessage = screen.getByText('Some error');
-      expect(errorMessage).toBeInTheDocument();
-      expect(errorMessage).toHaveClass('error-wrapper__errors');
-
       const datePicker = screen.getByLabelText('Date');
       const dateTime = screen.getByLabelText('Time');
+
+      expect(datePicker).toHaveAccessibleDescription('Some error');
+      expect(dateTime).toHaveAccessibleDescription('Some error');
+
       expect(datePicker).toBeInTheDocument();
       expect(datePicker.closest('div')).toHaveClass('input-container input-container--invalid');
       expect(dateTime).toBeInTheDocument();

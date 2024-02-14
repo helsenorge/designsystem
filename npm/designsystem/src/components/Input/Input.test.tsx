@@ -112,6 +112,16 @@ describe('Gitt at Input skal vises', (): void => {
     });
   });
 
+  describe('Når Input har en feilmelding', (): void => {
+    test('Så er feilmelding knyttet sammen med inputfeltet', (): void => {
+      render(<Input label={'Navn'} inputId="navn" errorText="Navn må fylles ut" />);
+
+      const input = screen.getByLabelText('Navn');
+
+      expect(input).toHaveAccessibleDescription('Navn må fylles ut');
+    });
+  });
+
   describe('Når disabled er satt', (): void => {
     test('Så er input disabled', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'En fin label' }]} />} disabled />);

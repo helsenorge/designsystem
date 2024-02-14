@@ -8,8 +8,8 @@ import FormGroup, { FormGroupProps } from '../FormGroup/FormGroup';
 import validationStyles from './styles.module.scss';
 
 interface ValidationProps {
-  /** text placed in the legend tag of the fieldset */
-  errorSummary?: string;
+  /** Summary of form errors. Every change will be announced by screen readers. */
+  errorSummary?: React.ReactNode;
   /** Items in the Validation compontent */
   children?: React.ReactNode;
   /** Adds custom classes to the element. */
@@ -21,8 +21,7 @@ interface ValidationProps {
 }
 
 export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-  const { errorSummary, className } = props;
-  const validationClasses = classNames(validationStyles['validation'], className);
+  const validationClasses = classNames(validationStyles['validation'], props.className);
 
   return (
     <>
@@ -30,13 +29,18 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
         {React.Children.map(props.children, (child: React.ReactNode) => {
           if ((child as React.ReactElement<FormGroupProps>).type === FormGroup) {
             return React.cloneElement(child as React.ReactElement<FormGroupProps>, {
-              className: errorSummary ? validationStyles['form-group-wrapper--error-sibling'] : '',
+              className: props.errorSummary ? validationStyles['form-group-wrapper--error-sibling'] : '',
             });
           }
           return child;
         })}
       </div>
-      {errorSummary && <p className={validationStyles['validation__errors']}>{errorSummary}</p>}
+      <div
+        role="alert"
+        className={classNames(validationStyles.validation__summary, props.errorSummary && validationStyles['validation__summary--visible'])}
+      >
+        {props.errorSummary}
+      </div>
     </>
   );
 });

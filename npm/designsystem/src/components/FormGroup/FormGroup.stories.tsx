@@ -7,12 +7,13 @@ import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import Spacer from '../../components/Spacer';
 import { FormMode, FormSize } from '../../constants';
 import Checkbox from '../Checkbox/Checkbox';
+import FormLayout from '../FormLayout';
 import GridExample from '../GridExample';
 import Coronavirus from '../Icons/Coronavirus';
 import Input from '../Input/Input';
+import Label from '../Label';
 import RadioButton from '../RadioButton/RadioButton';
 import './formGroup.stories.scss';
-import Label from '../Label';
 
 export default {
   title: '@helsenorge∕designsystem-react/Components/FormGroup',
@@ -94,6 +95,23 @@ export const InputChildren: ComponentStory<typeof FormGroup> = (args: any) => (
         <Input label={<Label labelTexts={[{ text: 'Input 1' }]} />} />
         <Input icon={Coronavirus} label={<Label labelTexts={[{ text: 'Input 2' }]} />} />
         <Input icon={Coronavirus} iconRight label={<Label labelTexts={[{ text: 'Input 3' }]} />} />
+      </FormGroup>
+    </div>
+  </GridExample>
+);
+export const FormLayoutChildren: ComponentStory<typeof FormGroup> = (args: any) => (
+  <GridExample>
+    <div
+      style={{
+        background: mapToBackgoundColor(args.mode),
+      }}
+    >
+      <FormGroup {...args}>
+        <FormLayout maxColumns={'two'}>
+          <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+          <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+          <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+        </FormLayout>
       </FormGroup>
     </div>
   </GridExample>
