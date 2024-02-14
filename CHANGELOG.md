@@ -1,3 +1,11 @@
+## [6.1.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.1.2&targetVersion=GTv6.1.3) (2024-02-14)
+
+### Bug Fixes
+
+- promopanel har ikke lenger lg breakpoint
+  ([2c332e5](https://github.com/helsenorge/designsystem/commit/2c332e5a17aca128d09a293a56daf484a2a26d53)), closes
+  [#319556](https://github.com/helsenorge/designsystem/issues/319556)
+
 ## [6.1.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.1.1&targetVersion=GTv6.1.2) (2024-02-12)
 
 ### Bug Fixes
