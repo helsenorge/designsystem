@@ -97,9 +97,6 @@ const PromoPanel: React.FC<PromoPanelProps> = props => {
   );
 
   const illustrationSize = ((): number => {
-    if (breakpoint >= Breakpoint.lg) {
-      return 180;
-    }
     if (breakpoint >= Breakpoint.md) {
       return 156;
     }

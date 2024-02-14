@@ -67,11 +67,6 @@ $colors: 'neutral', 'blueberry', 'cherry';
       padding-bottom: getSpacer(l);
     }
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
-      padding-top: getSpacer(xl);
-      padding-bottom: getSpacer(xl);
-    }
-
     a,
     button {
       all: unset;
@@ -95,10 +90,6 @@ $colors: 'neutral', 'blueberry', 'cherry';
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
       display: block;
-    }
-
-    @media (min-width: map.get($grid-breakpoints, lg)) {
-      padding-left: getSpacer(l);
     }
   }
 }
