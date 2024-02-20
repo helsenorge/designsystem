@@ -220,4 +220,30 @@ describe('Gitt at Slider skal vises', (): void => {
       await waitFor(() => expect(slider).toHaveAttribute('aria-valuetext', '😐 ' + 'Two'));
     });
   });
+  describe('Når selected propen er satt til false', () => {
+    test('Så skal slideren ikke gi en value til onChange under oppstart', async (): Promise<void> => {
+      const mockOnChange = jest.fn();
+      render(<Slider onChange={mockOnChange} selected={false} />);
+
+      await waitFor(() => {
+        expect(mockOnChange).toHaveBeenCalledTimes(0);
+      });
+    });
+
+    test('Så skal slideren ta hensyn til videre endringer av propen', async (): Promise<void> => {
+      const mockOnChange = jest.fn();
+
+      const { rerender } = render(<Slider onChange={mockOnChange} selected={false} />);
+
+      await waitFor(() => {
+        expect(mockOnChange).toHaveBeenCalledTimes(0);
+      });
+
+      rerender(<Slider onChange={mockOnChange} selected={true} />);
+
+      await waitFor(() => {
+        expect(mockOnChange).toHaveBeenCalledTimes(1);
+      });
+    });
+  });
 });

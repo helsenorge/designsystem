@@ -52,7 +52,9 @@ interface SliderProps {
   maxValue?: number;
   /** Function to be called when the value state has changed. */
   onChange?: (value: number) => void;
-  /** Sets the steps data for the slider*/
+  /** If set to false will only trigger onChange once a user interaction has been made, updates to this prop will be taken into account - true by default */
+  selected?: boolean;
+  /** Sets the steps data for the slider */
   steps?: SliderStep[];
   /** Sets the step to move per point in the slider */
   step?: number;
@@ -71,9 +73,11 @@ export const Slider: React.FC<SliderProps> = ({
   step = 1,
   minValue = 0,
   maxValue = steps ? steps.length - 1 : 100,
+  selected = true,
   testId,
 }) => {
   const [isMoving, setIsMoving] = useState(false);
+  const [selectedState, setSelectedState] = useState(selected);
   const [value, setValue] = useSafeNumberValue((maxValue - minValue) / 2 + minValue, minValue, maxValue);
 
   const titleId = useUuid();
@@ -128,10 +132,22 @@ export const Slider: React.FC<SliderProps> = ({
   }, [isMoving]);
 
   useEffect(() => {
-    if (!disabled && onChange) {
+    if (!disabled && selectedState && onChange) {
       onChange(value);
     }
-  }, [value]);
+  }, [value, selectedState]);
+
+  useEffect(() => {
+    if (selected !== selectedState) {
+      setSelectedState(selected);
+    }
+  }, [selected]);
+
+  const handleSelected = (): void => {
+    if (selectedState === false) {
+      setSelectedState(true);
+    }
+  };
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = e => {
     if (disabled) return;
@@ -170,6 +186,7 @@ export const Slider: React.FC<SliderProps> = ({
     }
 
     if (flag) {
+      handleSelected();
       e.preventDefault();
       e.stopPropagation();
     }
@@ -178,6 +195,7 @@ export const Slider: React.FC<SliderProps> = ({
   const handleTrackClick: React.MouseEventHandler<HTMLDivElement> = e => {
     if (disabled) return;
 
+    handleSelected();
     const newValue = getValueBasedOnMarkerPosition(e.clientX);
     setValue(newValue);
     markerRef.current?.focus();
@@ -304,7 +322,10 @@ export const Slider: React.FC<SliderProps> = ({
           <div
             role={disabled ? undefined : 'slider'}
             ref={markerRef}
-            className={classNames(styles.slider__marker, disabled && styles['slider__marker--disabled'])}
+            className={classNames(styles.slider__marker, {
+              [styles['slider__marker--disabled']]: disabled,
+              [styles['slider__marker--selected']]: selectedState,
+            })}
             style={{
               left: `${markerXPos}px`,
             }}
