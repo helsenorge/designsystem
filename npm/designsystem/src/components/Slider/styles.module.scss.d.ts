@@ -5,6 +5,7 @@ export type Styles = {
   'slider__emoji-container': string;
   slider__marker: string;
   'slider__marker--disabled': string;
+  'slider__marker--selected': string;
   slider__options: string;
   slider__title: string;
   slider__track: string;
