@@ -24,7 +24,7 @@ export default {
     },
     children: {
       control: 'text',
-      defaultValue: 'Se hvilke tjenester fastlegen og kommunen tilbyr',
+      defaultValue: 'Kontakt fastlegen og se alle tjenestene',
     },
     href: {
       control: 'text',
