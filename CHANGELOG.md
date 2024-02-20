@@ -1,3 +1,10 @@
+## [6.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.1.3&targetVersion=GTv6.2.0) (2024-02-20)
+
+### Features
+
+- slider selected prop lagt til ([1109d39](https://github.com/helsenorge/designsystem/commit/1109d399778120742c387ff69a389e95bbe2d143)),
+  closes [#319626](https://github.com/helsenorge/designsystem/issues/319626)
+
 ## [6.1.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.1.2&targetVersion=GTv6.1.3) (2024-02-14)
 
 ### Bug Fixes
