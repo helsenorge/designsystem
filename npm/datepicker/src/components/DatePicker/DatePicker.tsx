@@ -22,7 +22,7 @@ import styles from './styles.module.scss';
 export type DateFormat = 'dd.MM.yyyy';
 
 export interface DatePickerProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur'>,
+  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur' | 'autoComplete'>,
     Pick<DayPickerSingleProps, 'dir' | 'initialFocus'> {
   /** Adds custom classes to the element. */
   className?: string;
@@ -78,6 +78,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     onBlur,
     onChange,
     testId,
+    autoComplete = 'off',
     ...rest
   } = props;
 
@@ -199,6 +200,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
         onBlur && onBlur(e);
       }}
       onChange={e => handleInputChange(e, 'yyyy-MM-dd')}
+      autoComplete={autoComplete ? autoComplete : undefined}
     />
   );
 
@@ -230,6 +232,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
               {<Icon color={'black'} svgIcon={Calendar} />}
             </Button>
           }
+          autoComplete={autoComplete ? autoComplete : undefined}
         />
       </div>
       {datePickerOpen && (

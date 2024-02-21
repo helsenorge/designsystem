@@ -159,4 +159,29 @@ describe('Gitt at Select skal vises', (): void => {
       expect(handleChange).toHaveBeenCalledTimes(2);
     });
   });
+
+  describe('Når autocomplete ikke er satt', (): void => {
+    test('Så er autocomplete=off', (): void => {
+      render(
+        <Select label={'En fin label'}>
+          <option value={'Option 1'}>{'Option 1'}</option>
+        </Select>
+      );
+
+      const select = screen.getByLabelText('En fin label');
+      expect(select).toHaveAttribute('autocomplete', 'off');
+    });
+  });
+  describe('Når autocomplete er satt', (): void => {
+    test('Så er autocomplete riktig verdi', (): void => {
+      render(
+        <Select label={'En fin label'} autoComplete="name">
+          <option value={'Option 1'}>{'Option 1'}</option>
+        </Select>
+      );
+
+      const select = screen.getByLabelText('En fin label');
+      expect(select).toHaveAttribute('autocomplete', 'name');
+    });
+  });
 });

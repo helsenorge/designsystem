@@ -130,12 +130,23 @@ describe('Gitt at Input skal vises', (): void => {
     });
   });
 
-  describe('Når autoComplete er satt til on', (): void => {
-    test('Så har input autoComplete=on', (): void => {
-      render(<Input label={<Label labelTexts={[{ text: 'En fin label' }]} />} autoComplete="on" />);
+  describe('Når autocomplete ikke er satt', (): void => {
+    test('Så er autocomplete=off', (): void => {
+      render(<Input label={<Label labelTexts={[{ text: 'En fin label' }]} />} />);
 
       const input = screen.getByLabelText('En fin label');
-      expect(input).toHaveAttribute('autoComplete', 'on');
+
+      expect(input).toHaveAttribute('autocomplete', 'off');
+    });
+  });
+
+  describe('Når autocomplete er satt', (): void => {
+    test('Så er autocomplete riktig verdi', (): void => {
+      render(<Input label={<Label labelTexts={[{ text: 'En fin label' }]} />} autoComplete="name" />);
+
+      const input = screen.getByLabelText('En fin label');
+
+      expect(input).toHaveAttribute('autocomplete', 'name');
     });
   });
 

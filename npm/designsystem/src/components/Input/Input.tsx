@@ -118,7 +118,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     testId,
     disabled,
     readOnly,
-    autoComplete,
+    autoComplete = 'off',
     afterInputChildren,
     rightOfInput,
     width,
