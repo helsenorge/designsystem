@@ -83,7 +83,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     autoFocus,
     disabled,
     name,
-    autoComplete,
+    autoComplete = 'off',
     placeholder,
     readOnly,
     required,

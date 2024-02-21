@@ -97,14 +97,11 @@ const PromoPanel: React.FC<PromoPanelProps> = props => {
   );
 
   const illustrationSize = ((): number => {
-    if (breakpoint >= Breakpoint.lg) {
-      return 180;
-    }
     if (breakpoint >= Breakpoint.md) {
       return 156;
     }
 
-    return 120;
+    return 110;
   })();
 
   return (
@@ -125,15 +122,14 @@ const PromoPanel: React.FC<PromoPanelProps> = props => {
         )}
         {!props.title ? promoPanelLink : props.children}
       </div>
-      <div className={styles.promopanel__icon}>
-        <Icon
-          svgIcon={props.target === '_blank' ? ArrowUpRight : ArrowRight}
-          size={breakpoint >= Breakpoint.md ? IconSize.Small : IconSize.XSmall}
-          isHovered={isHovered}
-          color={getColor('blueberry', 500)}
-          hoverColor={getColor('blueberry', 600)}
-        />
-      </div>
+      <Icon
+        className={styles.promopanel__icon}
+        svgIcon={props.target === '_blank' ? ArrowUpRight : ArrowRight}
+        size={breakpoint >= Breakpoint.md ? IconSize.Small : IconSize.XSmall}
+        isHovered={isHovered}
+        color={getColor('blueberry', 500)}
+        hoverColor={getColor('blueberry', 600)}
+      />
     </div>
   );
 };

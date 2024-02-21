@@ -91,17 +91,19 @@ $mark-size: getSpacer(l);
       outline: 0.15rem solid $black;
     }
 
-    &::after {
-      content: '';
-      width: 1.25rem;
-      height: 1.25rem;
-      border: 0.1rem solid $black;
-      border-radius: 10rem;
-      background-color: $blueberry600;
+    &--selected {
+      &::after {
+        content: '';
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 0.1rem solid $black;
+        border-radius: 10rem;
+        background-color: $blueberry600;
 
-      :hover > &,
-      :focus > & {
-        background-color: $blueberry700;
+        :hover > &,
+        :focus > & {
+          background-color: $blueberry700;
+        }
       }
     }
 

@@ -35,6 +35,9 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    selected: {
+      control: 'boolean',
+    },
     step: {
       control: 'number',
     },
@@ -44,6 +47,12 @@ export default {
 export const Default: ComponentStory<typeof Slider> = (args: any) => (
   <GridExample>
     <Slider onChange={action('Slider')} labelLeft={'Skjeldent'} labelRight={'Ofte'} {...args} />
+  </GridExample>
+);
+
+export const NotSelected: ComponentStory<typeof Slider> = (args: any) => (
+  <GridExample>
+    <Slider onChange={action('Slider')} labelLeft={'Skjeldent'} labelRight={'Ofte'} selected={false} {...args} />
   </GridExample>
 );
 

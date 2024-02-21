@@ -98,13 +98,23 @@ describe('Gitt at Textarea skal vises', (): void => {
       expect(textarea).toHaveAttribute('readonly', '');
     });
   });
-
-  describe('Når autoComplete er satt til on', (): void => {
-    test('Så har textarea autoComplete=on', (): void => {
-      render(<Textarea label={<Label labelTexts={[{ text: 'En fin label' }]} />} autoComplete="on" />);
+  describe('Når autocomplete ikke er satt', (): void => {
+    test('Så er autocomplete=off', (): void => {
+      render(<Textarea label={<Label labelTexts={[{ text: 'En fin label' }]} />} />);
 
       const textarea = screen.getByLabelText('En fin label');
-      expect(textarea).toHaveAttribute('autoComplete', 'on');
+
+      expect(textarea).toHaveAttribute('autocomplete', 'off');
+    });
+  });
+
+  describe('Når autocomplete er satt', (): void => {
+    test('Så er autocomplete riktig verdi', (): void => {
+      render(<Textarea label={<Label labelTexts={[{ text: 'En fin label' }]} />} autoComplete="name" />);
+
+      const textarea = screen.getByLabelText('En fin label');
+
+      expect(textarea).toHaveAttribute('autocomplete', 'name');
     });
   });
 

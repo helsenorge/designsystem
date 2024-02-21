@@ -12,7 +12,7 @@ $colors: 'neutral', 'blueberry', 'cherry';
   align-items: center;
   border-radius: 8px;
   padding-left: getSpacer(s);
-  padding-right: getSpacer(s);
+  padding-right: getSpacer(2xs);
   transition: background-color 0.15s ease-in-out;
 
   &:focus-within {
@@ -21,6 +21,10 @@ $colors: 'neutral', 'blueberry', 'cherry';
 
   @media (min-width: map.get($grid-breakpoints, xs)) {
     padding-left: 0;
+  }
+
+  @media (min-width: map.get($grid-breakpoints, sm)) {
+    padding-right: getSpacer(s);
   }
 
   @media (min-width: map.get($grid-breakpoints, md)) {
@@ -56,8 +60,8 @@ $colors: 'neutral', 'blueberry', 'cherry';
   &__content {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     gap: getSpacer(3xs);
-    max-width: 696px;
     padding-top: getSpacer(m);
     padding-bottom: getSpacer(m);
 
@@ -65,11 +69,6 @@ $colors: 'neutral', 'blueberry', 'cherry';
       gap: getSpacer(2xs);
       padding-top: getSpacer(l);
       padding-bottom: getSpacer(l);
-    }
-
-    @media (min-width: map.get($grid-breakpoints, lg)) {
-      padding-top: getSpacer(xl);
-      padding-bottom: getSpacer(xl);
     }
 
     a,
@@ -86,19 +85,14 @@ $colors: 'neutral', 'blueberry', 'cherry';
   }
 
   &__icon {
-    margin-left: auto;
-    padding-left: getSpacer(s);
-
-    @media (min-width: map.get($grid-breakpoints, xs)) {
-      display: none;
-    }
+    margin-left: getSpacer(xs);
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
-      display: block;
+      margin-left: getSpacer(s);
     }
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      padding-left: getSpacer(l);
+      margin-left: getSpacer(l);
     }
   }
 }

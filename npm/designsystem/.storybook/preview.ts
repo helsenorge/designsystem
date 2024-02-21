@@ -31,6 +31,7 @@ const createCustomViewPorts = () =>
   });
 
 export const parameters = {
+  layout: 'fullscreen',
   backgrounds: {
     default: 'white',
     values: createBackgroundColors(),

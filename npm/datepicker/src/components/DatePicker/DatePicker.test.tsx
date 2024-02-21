@@ -69,6 +69,26 @@ describe('Gitt at DatePicker skal vises', (): void => {
       fireEvent.change(input, { target: { value: '01.01.2022' } });
       expect(handleChange).toHaveBeenCalledTimes(1);
     });
+
+    describe('Når autocomplete ikke er satt', (): void => {
+      test('Så er autocomplete=off', (): void => {
+        render(<DatePicker label={'Velg dato'} />);
+
+        const input = screen.getByLabelText('Velg dato');
+
+        expect(input).toHaveAttribute('autocomplete', 'off');
+      });
+    });
+
+    describe('Når autocomplete er satt', (): void => {
+      test('Så er autocomplete riktig verdi', (): void => {
+        render(<DatePicker label={'Velg dato'} autoComplete="bday" />);
+
+        const input = screen.getByLabelText('Velg dato');
+
+        expect(input).toHaveAttribute('autocomplete', 'bday');
+      });
+    });
   });
   describe('Når DateTime rendres', () => {
     it('Så skal label vises riktig', () => {
@@ -107,6 +127,26 @@ describe('Gitt at DatePicker skal vises', (): void => {
       const dateTime = screen.getByLabelText('Time');
 
       expect(dateTime).toHaveAccessibleDescription('Invalid date and time');
+    });
+  });
+
+  describe('Når autocomplete ikke er satt', (): void => {
+    test('Så er autocomplete=off', (): void => {
+      render(<DateTime timeUnit="hours" label={'Velg klokkeslett'} />);
+
+      const input = screen.getByLabelText('Velg klokkeslett');
+
+      expect(input).toHaveAttribute('autocomplete', 'off');
+    });
+  });
+
+  describe('Når autocomplete er satt', (): void => {
+    test('Så er autocomplete riktig verdi', (): void => {
+      render(<DateTime timeUnit="hours" label={'Velg klokkeslett'} autoComplete="custom" />);
+
+      const input = screen.getByLabelText('Velg klokkeslett');
+
+      expect(input).toHaveAttribute('autocomplete', 'custom');
     });
   });
   describe('Når DateTimePickerWrapper rendres', () => {

@@ -9,7 +9,10 @@ import styles from './styles.module.scss';
 export type TimeUnit = 'hours' | 'minutes';
 
 export interface DateTimeProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'aria-labelledby' | 'onChange' | 'disabled'> {
+  extends Pick<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'name' | 'aria-describedby' | 'aria-labelledby' | 'onChange' | 'disabled' | 'autoComplete'
+  > {
   defaultValue?: number;
   /** Activates Error style for the input */
   error?: boolean;
@@ -37,7 +40,7 @@ const isNumericString = (str: string): boolean => {
 };
 
 export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInputElement>) => {
-  const { defaultValue, error, errorText, errorTextId, label, onChange, timeUnit, inputId, testId, ...rest } = props;
+  const { defaultValue, error, errorText, errorTextId, label, onChange, timeUnit, testId, autoComplete = 'off', ...rest } = props;
 
   const [inputValue, setInputValue] = useState<number | string | undefined>(
     typeof defaultValue !== 'undefined' ? formatAsTwoDigits(defaultValue) : ''
@@ -92,6 +95,7 @@ export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<H
         onBlur={handleInputBlur}
         rightOfInput={renderTimeSeparator()}
         onKeyDown={handleInputOnKeyDown}
+        autoComplete={autoComplete ? autoComplete : undefined}
       />
     </div>
   );

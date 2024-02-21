@@ -17,7 +17,7 @@ type SelectConcept = 'normal' | 'transparent';
 export interface SelectProps
   extends Pick<
     React.SelectHTMLAttributes<HTMLSelectElement>,
-    'aria-describedby' | 'name' | 'disabled' | 'required' | 'value' | 'onChange'
+    'aria-describedby' | 'name' | 'disabled' | 'required' | 'value' | 'onChange' | 'autoComplete'
   > {
   /** Component shown after label */
   afterLabelChildren?: React.ReactNode;
@@ -77,6 +77,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     required,
     value,
     defaultValue,
+    autoComplete = 'off',
     ...rest
   } = props;
 
@@ -121,6 +122,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
             aria-required={!!required}
             value={value}
             defaultValue={defaultValue}
+            autoComplete={autoComplete ? autoComplete : undefined}
             {...rest}
           >
             {children}

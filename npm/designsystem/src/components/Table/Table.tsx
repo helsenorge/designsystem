@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { getCurrentConfig, getBreakpointClass, getCenteredOverflowTableStyle } from './utils';
 import { AnalyticsId } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { useIsVisible } from '../../hooks/useIsVisible';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import HorizontalScroll from '../HorizontalScroll';
@@ -89,6 +90,7 @@ export const Table: React.FC<Props> = ({
   const [parentWidth, setParentWidth] = useState<number>(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const tableRef = useRef<HTMLTableElement>(null);
+  const tableIsVisible = useIsVisible(tableRef, 0);
   const breakpoint = useBreakpoint();
 
   useEffect(() => {
@@ -105,9 +107,15 @@ export const Table: React.FC<Props> = ({
     if (currentConfig?.variant === ResponsiveTableVariant.centeredoverflow) {
       setParentWidth(tableRef.current?.parentElement?.getBoundingClientRect().width ?? 0);
     }
-  }, [currentConfig]);
+  }, [currentConfig, breakpoint]);
 
   useLayoutEvent(() => setWindowWidth(window.innerWidth), ['resize'], 100);
+
+  useEffect(() => {
+    if (tableWidth === 0 && tableIsVisible) {
+      setTableWidth(tableRef.current?.getBoundingClientRect().width ?? 0);
+    }
+  }, [tableWidth, tableIsVisible]);
 
   const tableStyle =
     currentConfig?.variant === ResponsiveTableVariant.centeredoverflow ? getCenteredOverflowTableStyle(parentWidth, tableWidth) : undefined;
