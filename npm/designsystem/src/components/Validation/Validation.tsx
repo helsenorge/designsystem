@@ -32,12 +32,12 @@ interface ValidationProps {
 
 export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const hasErrors = props.errors || props.errorSummary;
-  const validationClasses = classNames(styles['validation'], props.className);
   const formGroupClasses = hasErrors ? styles['form-group-wrapper--error-sibling'] : '';
+  const summaryClasses = classNames(styles['validation-errors'], props.errorSummary && styles['validation-errors--visible']);
 
   return (
     <>
-      <div data-testid={props.testId} data-analyticsid={AnalyticsId.Validation} className={validationClasses} ref={ref}>
+      <div data-testid={props.testId} data-analyticsid={AnalyticsId.Validation} className={props.className} ref={ref}>
         {React.Children.map(props.children, (child: React.ReactNode) => {
           if (isComponent<FormGroupProps>(child, FormGroup)) {
             return React.cloneElement(child, {
@@ -49,7 +49,7 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
         })}
       </div>
       <ValidationSummary errorTitle={props.errorTitle} errors={props.errors}>
-        {<div className={styles.validation__summary}>{props.errorSummary}</div>}
+        {<div className={summaryClasses}>{props.errorSummary}</div>}
       </ValidationSummary>
     </>
   );

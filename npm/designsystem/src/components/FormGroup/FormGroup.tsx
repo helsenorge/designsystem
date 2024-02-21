@@ -139,7 +139,6 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         errorTextId: errorTextUuid,
       });
     } else if (isComponent<TextareaProps>(child, Textarea)) {
-      // @todo test
       return React.cloneElement(child, {
         name: name ?? child.props.name,
         mode,

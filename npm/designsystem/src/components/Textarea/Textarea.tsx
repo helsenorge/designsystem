@@ -50,7 +50,7 @@ export interface TextareaProps
   /** auto-grows until maxRows */
   grow?: boolean;
   /** Activates Error style for the input */
-  error?: boolean; // @todo test
+  error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
   /** Error text id */

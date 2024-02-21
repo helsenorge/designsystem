@@ -1,7 +1,5 @@
 import React from 'react';
 
-import classNames from 'classnames';
-
 import ErrorList from './ErrorList';
 import { ValidationErrors } from './types';
 import { useUuid } from '../../hooks/useUuid';
@@ -25,14 +23,8 @@ const ValidationSummary: React.FC<ValidationSummaryProps> = props => {
   const titleId = useUuid();
 
   return (
-    <div
-      role={'alert'}
-      aria-live={'polite'}
-      aria-relevant={'all'}
-      aria-labelledby={titleId}
-      className={classNames(styles.validation__errors, props.errors && styles['validation__errors--visible'])}
-    >
-      {props.errors && Object.entries(props.errors).length > 0 && (
+    <div role={'alert'} aria-live={'polite'} aria-relevant={'all'} aria-labelledby={titleId} className={styles['validation-summary']}>
+      {!!props.errors && Object.entries(props.errors).length > 0 && (
         <>
           <Title appearance="title4" id={titleId} htmlMarkup={errorTitleHtmlMarkup} margin={{ marginTop: 0, marginBottom: 1 }}>
             {props.errorTitle}
