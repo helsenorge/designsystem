@@ -33,7 +33,7 @@ interface ValidationProps {
 export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const hasErrors = props.errors || props.errorSummary;
   const formGroupClasses = hasErrors ? styles['form-group-wrapper--error-sibling'] : '';
-  const summaryClasses = classNames(styles['validation-errors'], props.errorSummary && styles['validation-errors--visible']);
+  const errorClasses = classNames(styles['validation-errors'], props.errorSummary && styles['validation-errors--visible']);
 
   return (
     <>
@@ -49,7 +49,7 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
         })}
       </div>
       <ValidationSummary errorTitle={props.errorTitle} errors={props.errors}>
-        {<div className={summaryClasses}>{props.errorSummary}</div>}
+        {<div className={errorClasses}>{props.errorSummary}</div>}
       </ValidationSummary>
     </>
   );

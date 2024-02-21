@@ -2,7 +2,7 @@
 @import '../../scss/palette';
 @import '../../scss/font-settings';
 
-.validation-errors {
+.validation-summary {
   color: $cherry600;
 
   &--visible {
@@ -10,9 +10,13 @@
   }
 }
 
-.validation-summary {
+.validation-errors {
   font-size: $font-size-sm;
   font-weight: 600;
+
+  &--visible {
+    margin: getSpacer(l) 0 getSpacer(s);
+  }
 }
 
 .form-group-wrapper {
