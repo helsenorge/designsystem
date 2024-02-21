@@ -6,3 +6,4 @@ import '../../__mocks__/ResizeObserver';
 import '../../__mocks__/useLayoutEvent';
 import '../../__mocks__/useSize';
 import '../../__mocks__/useHover';
+import '../../__mocks__/usePseudoClasses';
