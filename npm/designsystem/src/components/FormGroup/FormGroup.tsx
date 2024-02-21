@@ -11,6 +11,7 @@ import FormLayout, { FormLayoutProps } from '../FormLayout';
 import Input, { InputProps } from '../Input/Input';
 import RadioButton, { RadioButtonProps, getRadioLabelClasses } from '../RadioButton/RadioButton';
 import Select, { SelectProps } from '../Select';
+import Textarea, { TextareaProps } from '../Textarea';
 import Title from '../Title';
 
 import formGroupStyles from './styles.module.scss';
@@ -134,6 +135,14 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         name: name ?? child.props.name,
         mode,
         size,
+        error: !!error,
+        errorTextId: errorTextUuid,
+      });
+    } else if (isComponent<TextareaProps>(child, Textarea)) {
+      // @todo test
+      return React.cloneElement(child, {
+        name: name ?? child.props.name,
+        mode,
         error: !!error,
         errorTextId: errorTextUuid,
       });

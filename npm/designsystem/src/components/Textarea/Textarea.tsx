@@ -11,7 +11,7 @@ import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';
 
-interface TextareaProps
+export interface TextareaProps
   extends Pick<
     React.InputHTMLAttributes<HTMLTextAreaElement>,
     | 'aria-describedby'
@@ -49,6 +49,8 @@ interface TextareaProps
   minRows?: number;
   /** auto-grows until maxRows */
   grow?: boolean;
+  /** Activates Error style for the input */
+  error?: boolean; // @todo test
   /** Error text to show above the component */
   errorText?: string;
   /** Error text id */
@@ -78,6 +80,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     minRows = 3,
     maxRows = 10,
     grow,
+    error,
     errorText,
     errorTextId,
     autoFocus,
@@ -127,7 +130,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const onDark = mode === FormMode.ondark;
   const onBlueberry = mode === FormMode.onblueberry;
   const maxCharactersExceeded = !!maxCharacters && textareaInput.toString().length > maxCharacters;
-  const onError = mode === FormMode.oninvalid || !!errorText || maxCharactersExceeded;
+  const onError = mode === FormMode.oninvalid || !!errorText || !!error || maxCharactersExceeded;
 
   const textareaWrapperClass = cn(styles.textarea, {
     [styles['textarea--gutterBottom']]: gutterBottom,
