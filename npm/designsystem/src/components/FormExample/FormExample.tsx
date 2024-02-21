@@ -31,13 +31,22 @@ export enum FormExampleVariants {
   select = 'select',
 }
 
+interface FormExampleData {
+  field1: string;
+  field2: string[];
+  field3: string;
+  field4: string;
+  field5: string;
+  field6: string[];
+}
+
 export const FormExample = (props: FormExampleProps): JSX.Element => {
   const { exampleType = FormExampleVariants.formgroup } = props;
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormExampleData>();
 
   const defaultDate = new Date();
   defaultDate.setHours(0);
@@ -102,7 +111,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           key={0}
           title={'Gruppe tittel'}
           legend={'Velg minst en'}
-          error={errors.field1 ? (errors.field1.message as string) : undefined}
+          error={errors.field1 ? errors.field1.message : undefined}
           errorTextId="error"
           size={props.size}
         >
@@ -115,7 +124,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         <FormGroup
           key={1}
           legend={'Velg minst to'}
-          error={errors.field2 ? (errors.field2.message as string) : undefined}
+          error={errors.field2 ? errors.field2.message : undefined}
           size={props.size}
           errorTextId="error1"
         >
@@ -195,7 +204,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         <Checkbox
           inputId="checkbox1"
           label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />}
-          errorText={errors.field1 ? (errors.field1.message as string) : undefined}
+          errorText={errors.field1 ? errors.field1.message : undefined}
           size={props.size}
           {...register(field1, { required: errorMessage })}
         />
@@ -205,7 +214,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         <RadioButton
           inputId="radiobutton1"
           label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />}
-          errorText={errors.field3 ? (errors.field3.message as string) : undefined}
+          errorText={errors.field3 ? errors.field3.message : undefined}
           size={props.size}
           {...register(field3, { required: errorMessage })}
         />
@@ -217,7 +226,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           grow
           maxCharacters={40}
           minRows={5}
-          errorText={errors.field4 ? (errors.field4.message as string) : undefined}
+          errorText={errors.field4 ? errors.field4.message : undefined}
           label={<Label labelTexts={[{ text: 'Skriv din historie her', type: 'semibold' }]} />}
           textareaId="textarea1"
           {...register(field4, { maxLength: { value: 40, message: errorMessage3 } })}
@@ -229,7 +238,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           inputId={'input1'}
           label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
           placeholder={'Skriv noe!'}
-          errorText={errors.field5 ? (errors.field5.message as string) : undefined}
+          errorText={errors.field5 ? errors.field5.message : undefined}
           icon={Hospital}
           {...register(field5, { required: errorMessage4 })}
         />
@@ -237,7 +246,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     } else if (exampleType === FormExampleVariants.select) {
       return (
         <Select
-          errorText={errors.field6 ? (errors.field6.message as string) : undefined}
+          errorText={errors.field6 ? errors.field6.message : undefined}
           label={<Label labelTexts={[{ text: 'Velg et alternativ', type: 'semibold' }]} />}
           {...register(field6, { validate: requireSelect })}
         >
@@ -249,23 +258,6 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     }
   };
 
-  const errorSummary = () => {
-    const keys = Object.keys(errors);
-
-    if (keys.length > 0) {
-      return (
-        <>
-          <p>{'Sjekk at alt er riktig utfylt:'}</p>
-          {keys.map(key => (
-            <p key={key}>{errors[key]?.message}</p>
-          ))}
-        </>
-      );
-    }
-
-    return null;
-  };
-
   return (
     <form
       noValidate
@@ -274,7 +266,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         !isTest() && console.log(data);
       })}
     >
-      <Validation size={props.size} errorSummary={errorSummary()}>
+      <Validation size={props.size} errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
         {getFormExample()}
       </Validation>
       <Spacer />

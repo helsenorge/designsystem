@@ -14,6 +14,12 @@ export type AnchorLinkTargets = '_self' | '_blank' | '_parent';
 
 export type AnchorLinkTags = 'a' | 'button';
 
+export type AnchorLinkOnClickEvent =
+  | React.MouseEvent<HTMLElement, MouseEvent>
+  | React.FormEvent<{}>
+  | React.KeyboardEvent<HTMLUListElement>
+  | null;
+
 interface AnchorLinkProps {
   /** Sets the content of the <a> tag */
   children: React.ReactNode;
@@ -28,7 +34,7 @@ interface AnchorLinkProps {
   /** HTML markup for anchor link. Default: a */
   htmlMarkup?: AnchorLinkTags;
   /** Function that is called when clicked */
-  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null) => void;
+  onClick?: (e?: AnchorLinkOnClickEvent) => void;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
