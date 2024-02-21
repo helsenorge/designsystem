@@ -66,6 +66,10 @@ export default {
     minDate: {
       control: 'date',
     },
+    autoComplete: {
+      control: 'text',
+      defaultValue: '',
+    },
   },
 } as ComponentMeta<typeof DatePicker>;
 
