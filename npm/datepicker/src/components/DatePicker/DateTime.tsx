@@ -40,7 +40,7 @@ const isNumericString = (str: string): boolean => {
 };
 
 export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInputElement>) => {
-  const { defaultValue, error, errorText, errorTextId, label, onChange, timeUnit, testId, autoComplete = 'off', ...rest } = props;
+  const { defaultValue, error, errorText, errorTextId, label, onChange, timeUnit, testId, inputId, autoComplete = 'off', ...rest } = props;
 
   const [inputValue, setInputValue] = useState<number | string | undefined>(
     typeof defaultValue !== 'undefined' ? formatAsTwoDigits(defaultValue) : ''
