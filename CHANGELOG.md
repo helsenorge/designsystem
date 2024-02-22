@@ -1,3 +1,20 @@
+## [6.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.2.0&targetVersion=GTv6.3.0) (2024-02-22)
+
+### Features
+
+- select og datepicker støtter autoComplete-attributt
+  ([84c34af](https://github.com/helsenorge/designsystem/commit/84c34afd23a5d236573f5b3b3480175708fb9ecc)), closes
+  [#314727](https://github.com/helsenorge/designsystem/issues/314727) [#314932](https://github.com/helsenorge/designsystem/issues/314932)
+
+### Bug Fixes
+
+- badge er inline-flex og skalerer ikke til full bredde
+  ([ac485e9](https://github.com/helsenorge/designsystem/commit/ac485e923223e7a92ede0743e924a2c39c40bbb8))
+- spacing i promopanel ([60a00bd](https://github.com/helsenorge/designsystem/commit/60a00bdb88d3b35b2e7b1449832674a9bf35ee46))
+- tabell endrer responsiv oppførsel når den vises
+  ([0c21208](https://github.com/helsenorge/designsystem/commit/0c212084cfa5161842dbb0339ae85c82e3c42046)), closes
+  [#315245](https://github.com/helsenorge/designsystem/issues/315245)
+
 ## [6.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.1.3&targetVersion=GTv6.2.0) (2024-02-20)
 
 ### Features
