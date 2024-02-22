@@ -1,3 +1,9 @@
+## 6.3.0-beta.1 (2024-02-22)
+
+### Bug Fixes
+
+- inputId i DateTime ([d49af54](https://github.com/helsenorge/designsystem/commit/d49af544d9279f990c306aef02ef0d4c9bcadf4b))
+
 ## 6.3.0-beta.0 (2024-02-21)
 
 ### Features
