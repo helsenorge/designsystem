@@ -15,7 +15,7 @@ describe('Gitt at Validation skal vises', () => {
 
       const alert = screen.getByRole('alert');
       expect(alert).toBeVisible();
-      expect(alert).toHaveTextContent('');
+      expect(alert).toBeEmptyDOMElement();
     });
   });
 
@@ -102,7 +102,7 @@ describe('Gitt at Validation skal vises', () => {
 
       const alert = screen.getByRole('alert');
       expect(alert).toBeVisible();
-      expect(alert).toHaveTextContent('');
+      expect(alert).toBeEmptyDOMElement();
     });
   });
 
@@ -223,7 +223,7 @@ describe('Gitt at Validation skal vises', () => {
         expect(story).toHaveAccessibleDescription('');
         expect(name).toHaveAccessibleDescription('');
         expect(monster).toHaveAccessibleDescription('');
-        expect(errorSummary).toHaveTextContent('');
+        expect(errorSummary).toBeEmptyDOMElement();
         expect(errorSummary.className).toBe('validation-summary');
       });
     });

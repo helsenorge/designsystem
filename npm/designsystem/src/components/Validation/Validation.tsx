@@ -49,7 +49,7 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
         })}
       </div>
       <ValidationSummary errorTitle={props.errorTitle} errors={props.errors}>
-        {<div className={errorClasses}>{props.errorSummary}</div>}
+        {props.errorSummary && <div className={errorClasses}>{props.errorSummary}</div>}
       </ValidationSummary>
     </>
   );
