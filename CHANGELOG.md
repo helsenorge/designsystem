@@ -1,3 +1,17 @@
+## [5.14.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.13.0&targetVersion=GTv5.14.0) (2024-02-26)
+
+### Features
+
+- slider selected prop lagt til ([7ea39c1](https://github.com/helsenorge/designsystem/commit/7ea39c1c8ebc96a409f17bffe8395fc939a322ee)),
+  closes [#319626](https://github.com/helsenorge/designsystem/issues/319626)
+
+## [5.13.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.12.0&targetVersion=GTv5.13.0) (2024-01-09)
+
+### Features
+
+- tile stotter react children ([161a49a](https://github.com/helsenorge/designsystem/commit/161a49ae1ec4ec165bcf565b870b1f608f8fe90c)),
+  closes [#310764](https://github.com/helsenorge/designsystem/issues/310764)
+
 ## [5.12.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv5.11.0&targetVersion=GTv5.12.0) (2024-01-04)
 
 ### Bug Fixes
