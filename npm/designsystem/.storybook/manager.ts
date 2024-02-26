@@ -3,9 +3,9 @@ import { create } from '@storybook/theming/create';
 
 import { palette } from '../src/theme/palette';
 
-import logo from './hnd-logo.svg';
+import logo from './frankenstein-storybook.svg';
 
-const hndsTheme = create({
+const theme = create({
   base: 'light',
   colorSecondary: palette.blueberry500,
   appBg: palette.blueberry50,
@@ -14,5 +14,5 @@ const hndsTheme = create({
 });
 
 addons.setConfig({
-  theme: hndsTheme,
+  theme,
 });
