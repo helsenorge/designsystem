@@ -6,7 +6,7 @@
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/helsenorge/designsystem"
+    "url": "git+https://github.com/helsenorge/designsystem.git"
   },
   "homepage": "https://helsenorge.design",
   "author": "Helsenorge",
@@ -90,13 +90,11 @@
     "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "sass": "^1.70.0",
+    "storybook-addon-html-validator": "^0.0.14",
     "style-dictionary": "^3.9.2",
     "token-transformer": "^0.0.33",
     "typed-scss-modules": "^7.1.4",
     "typescript": "~4.9.5",
     "vite": "^4.5.2"
-  },
-  "dependencies": {
-    "storybook-addon-html-validator": "^0.0.12"
   }
 }

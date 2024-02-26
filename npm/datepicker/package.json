@@ -6,7 +6,7 @@
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/helsenorge/designsystem"
+    "url": "git+https://github.com/helsenorge/designsystem.git"
   },
   "homepage": "https://helsenorge.design",
   "author": "Helsenorge",
