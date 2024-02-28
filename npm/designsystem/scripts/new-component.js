@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 
 const ask = str => new Promise(resolve => rl.question(str, resolve));
 
-const componentName = await ask('Hva skal komponenten hete? ');
+const componentName = await ask('Hva skal komponenten hete? Eksempel: PromoPanel ');
 
 if (!/^[A-Z][a-z][a-zA-Z]+$/.test(componentName)) {
   throw Error('Navnet må bruke PascalCase Button eller SpecialButton');
