@@ -35,7 +35,7 @@ export interface BreakpointConfig {
   fallbackVariant?: keyof typeof ResponsiveTableVariant;
 }
 
-export interface Props {
+export interface Props extends Omit<React.ComponentPropsWithoutRef<'table'>, 'style'> {
   /** Unique ID */
   id?: string;
   /** Id used for testing */
@@ -84,6 +84,7 @@ export const Table: React.FC<Props> = ({
   mode = ModeType.normal,
   scrollAriaLabel,
   scrollAriaLabelledById,
+  ...rest
 }) => {
   const [currentConfig, setCurrentConfig] = useState<BreakpointConfig>();
   const [tableWidth, setTableWidth] = useState<number>(0);
@@ -124,7 +125,15 @@ export const Table: React.FC<Props> = ({
   const tableClass = classNames(styles.table, breakpointClass, className);
 
   const table = (
-    <table className={tableClass} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Table} ref={tableRef} style={tableStyle}>
+    <table
+      className={tableClass}
+      id={id}
+      data-testid={testId}
+      data-analyticsid={AnalyticsId.Table}
+      ref={tableRef}
+      style={tableStyle}
+      {...rest}
+    >
       {React.Children.map(children, child => React.isValidElement<{ mode?: ModeType }>(child) && React.cloneElement(child, { mode }))}
     </table>
   );

@@ -528,6 +528,53 @@ export const ExtraData: ComponentStory<typeof Table> = (args: any) => {
   );
 };
 
+export const Irregular: ComponentStory<typeof Table> = (args: any) => {
+  return (
+    <GridExample>
+      <Table breakpointConfig={defaultConfig}>
+        <colgroup>
+          <col />
+          <col span={2}></col>
+          <col span={2}></col>
+        </colgroup>
+        <TableHead>
+          <TableRow>
+            <TableCell rowSpan={2}></TableCell>
+            <TableHeadCell colSpan={2} scope="colgroup">
+              {'Mars'}
+            </TableHeadCell>
+            <TableHeadCell colSpan={2} scope="colgroup">
+              {'Venus'}
+            </TableHeadCell>
+          </TableRow>
+          <TableRow>
+            <TableHeadCell scope="col">{'Produced'}</TableHeadCell>
+            <TableHeadCell scope="col">{'Sold'}</TableHeadCell>
+            <TableHeadCell scope="col">{'Produced'}</TableHeadCell>
+            <TableHeadCell scope="col">{'Sold'}</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableHeadCell scope="row">{'Teddy Bears'}</TableHeadCell>
+            <TableCell>{'50,000'}</TableCell>
+            <TableCell>{'30,000'}</TableCell>
+            <TableCell>{'100,000'}</TableCell>
+            <TableCell>{'80,000'}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableHeadCell scope="row">{'Board Games'}</TableHeadCell>
+            <TableCell>{'10,000'}</TableCell>
+            <TableCell>{'5,000'}</TableCell>
+            <TableCell>{'12,000'}</TableCell>
+            <TableCell>{'9,000'}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </GridExample>
+  );
+};
+
 export interface Legekontor {
   Navn: string;
   Adresse: string;

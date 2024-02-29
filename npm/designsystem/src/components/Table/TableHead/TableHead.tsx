@@ -11,9 +11,9 @@ export enum HeaderCategory {
   sortable = 'sortable',
 }
 
-export interface Props {
-  /** Header category for styling */
-  category: HeaderCategory;
+export interface Props extends Omit<React.ComponentPropsWithoutRef<'thead'>, 'style'> {
+  /** Header category for styling. Default: normal */
+  category?: HeaderCategory;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the content of the thead. Add table rows  */
@@ -22,7 +22,7 @@ export interface Props {
   mode?: ModeType;
 }
 
-export const TableHead = ({ category, className, children, mode }: Props): React.JSX.Element => {
+export const TableHead: React.FC<Props> = ({ category = HeaderCategory.normal, className, children, mode, ...rest }) => {
   const tableHeadClass = classNames(
     tableStyles['table__head'],
     {
@@ -35,7 +35,7 @@ export const TableHead = ({ category, className, children, mode }: Props): React
   );
 
   return (
-    <thead className={tableHeadClass}>
+    <thead className={tableHeadClass} {...rest}>
       {React.Children.map(children, child => React.isValidElement<{ mode?: ModeType }>(child) && React.cloneElement(child, { mode }))}
     </thead>
   );

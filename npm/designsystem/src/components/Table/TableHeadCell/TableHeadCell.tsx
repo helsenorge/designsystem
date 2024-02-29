@@ -13,7 +13,7 @@ export enum SortDirection {
   desc = 'desc',
 }
 
-export interface Props {
+export interface Props extends Omit<React.ComponentPropsWithoutRef<'th'>, 'style'> {
   /** Sets if column for head cell should be sortable*/
   sortable?: boolean;
   /** Sort direction  */
@@ -28,7 +28,16 @@ export interface Props {
   mode?: ModeType;
 }
 
-export const TableHeadCell = ({ sortable, onClick, className, children, sortDir, mode = ModeType.normal }: Props): React.JSX.Element => {
+export const TableHeadCell: React.FC<Props> = ({
+  sortable,
+  onClick,
+  className,
+  children,
+  sortDir,
+  mode = ModeType.normal,
+  scope = 'col',
+  ...rest
+}) => {
   const tableHeadCellDefaultClass = classNames(tableStyles['table__head-cell'], className, {
     [tableStyles['table__head-cell--compact']]: mode === ModeType.compact,
   });
@@ -39,7 +48,7 @@ export const TableHeadCell = ({ sortable, onClick, className, children, sortDir,
 
   if (!sortable) {
     return (
-      <th scope="col" className={tableHeadCellDefaultClass}>
+      <th scope={scope} className={tableHeadCellDefaultClass} {...rest}>
         {children}
       </th>
     );
@@ -64,7 +73,7 @@ export const TableHeadCell = ({ sortable, onClick, className, children, sortDir,
   };
 
   return (
-    <th scope="col" className={sortableClasses} aria-sort={getSortDirection()}>
+    <th scope={scope} className={sortableClasses} aria-sort={getSortDirection()} {...rest}>
       <button type="button" onClick={onClick} className={tableStyles['table__sort-button']} aria-pressed={sortDir ? !!sortDir : undefined}>
         {renderSortIcon()}
         {children}

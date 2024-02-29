@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import tableStyles from '../styles.module.scss';
 import { ModeType } from '../Table';
 
-export interface Props {
+export interface Props extends Omit<React.ComponentPropsWithoutRef<'tbody'>, 'style'> {
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the content of the table body. Use TableRows */
@@ -14,10 +14,10 @@ export interface Props {
   mode?: ModeType;
 }
 
-export const TableBody = ({ className, children, mode = ModeType.normal }: Props): React.JSX.Element => {
+export const TableBody: React.FC<Props> = ({ className, children, mode = ModeType.normal, ...rest }) => {
   const tableBodyClasses = classNames(tableStyles['table-body'], className);
   return (
-    <tbody className={tableBodyClasses}>
+    <tbody className={tableBodyClasses} {...rest}>
       {React.Children.map(children, child => React.isValidElement<{ mode?: ModeType }>(child) && React.cloneElement(child, { mode }))}
     </tbody>
   );
