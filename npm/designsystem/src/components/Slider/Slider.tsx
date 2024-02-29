@@ -24,7 +24,7 @@ const useSafeNumberValue = (initial: number, min: number, max: number): [number,
   };
 
   useEffect(() => {
-    setValue((max - min) / 2 + min);
+    setSafeValue(initial);
   }, [min, max]);
 
   return [value, setSafeValue];
@@ -60,6 +60,8 @@ interface SliderProps {
   step?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Sets the value of the slider */
+  value?: number;
 }
 
 export const Slider: React.FC<SliderProps> = ({
@@ -75,10 +77,15 @@ export const Slider: React.FC<SliderProps> = ({
   maxValue = steps ? steps.length - 1 : 100,
   selected = true,
   testId,
+  value,
 }) => {
   const [isMoving, setIsMoving] = useState(false);
-  const [selectedState, setSelectedState] = useState(selected);
-  const [value, setValue] = useSafeNumberValue((maxValue - minValue) / 2 + minValue, minValue, maxValue);
+  const [selectedState, setSelectedState] = useState(typeof value === 'undefined' ? selected : true);
+  const [valueState, setValueState] = useSafeNumberValue(
+    typeof value === 'undefined' ? (maxValue - minValue) / 2 + minValue : value,
+    minValue,
+    maxValue
+  );
 
   const titleId = useUuid();
   const labelLeftId = useUuid();
@@ -120,7 +127,7 @@ export const Slider: React.FC<SliderProps> = ({
     const handlePointerMove = (e: PointerEvent): void => {
       if (!disabled && isMoving) {
         const newValue = getValueBasedOnMarkerPosition(e.clientX);
-        setValue(newValue);
+        setValueState(newValue);
       }
     };
 
@@ -132,13 +139,19 @@ export const Slider: React.FC<SliderProps> = ({
   }, [isMoving]);
 
   useEffect(() => {
-    if (!disabled && selectedState && onChange) {
-      onChange(value);
+    if (value !== valueState && typeof value !== 'undefined') {
+      setValueState(value);
     }
-  }, [value, selectedState]);
+  }, [value]);
 
   useEffect(() => {
-    if (selected !== selectedState) {
+    if (!disabled && selectedState && onChange) {
+      onChange(valueState);
+    }
+  }, [valueState, selectedState]);
+
+  useEffect(() => {
+    if (typeof value === 'undefined' && selected !== selectedState) {
       setSelectedState(selected);
     }
   }, [selected]);
@@ -157,28 +170,28 @@ export const Slider: React.FC<SliderProps> = ({
     switch (e.key) {
       case 'ArrowLeft':
       case 'ArrowDown':
-        setValue(value - step);
+        setValueState(valueState - step);
         flag = true;
         break;
       case 'PageDown':
-        setValue(value - largeStep);
+        setValueState(valueState - largeStep);
         flag = true;
         break;
       case 'ArrowRight':
       case 'ArrowUp':
-        setValue(value + step);
+        setValueState(valueState + step);
         flag = true;
         break;
       case 'PageUp':
-        setValue(value + largeStep);
+        setValueState(valueState + largeStep);
         flag = true;
         break;
       case 'Home':
-        setValue(minValue);
+        setValueState(minValue);
         flag = true;
         break;
       case 'End':
-        setValue(maxValue);
+        setValueState(maxValue);
         flag = true;
         break;
       default:
@@ -195,9 +208,8 @@ export const Slider: React.FC<SliderProps> = ({
   const handleTrackClick: React.MouseEventHandler<HTMLDivElement> = e => {
     if (disabled) return;
 
-    handleSelected();
     const newValue = getValueBasedOnMarkerPosition(e.clientX);
-    setValue(newValue);
+    setValueState(newValue);
     markerRef.current?.focus();
   };
 
@@ -205,6 +217,7 @@ export const Slider: React.FC<SliderProps> = ({
     if (disabled) return;
 
     setIsMoving(true);
+    handleSelected();
 
     e.preventDefault();
     e.stopPropagation();
@@ -212,10 +225,10 @@ export const Slider: React.FC<SliderProps> = ({
     markerRef.current?.focus();
   };
 
-  const markerXPos = maxValue !== minValue ? (trackWidth / (maxValue - minValue)) * (value - minValue) : 0;
+  const markerXPos = maxValue !== minValue ? (trackWidth / (maxValue - minValue)) * (valueState - minValue) : 0;
 
   const getAriaValueText = (): string | undefined => {
-    const stepIndex = steps ? Math.round((value - minValue) / step) : null;
+    const stepIndex = steps ? Math.round((valueState - minValue) / step) : null;
 
     if (steps && stepIndex !== null && stepIndex >= 0 && stepIndex < steps.length) {
       const step = steps[stepIndex];
@@ -249,7 +262,7 @@ export const Slider: React.FC<SliderProps> = ({
     prefer: 'label',
   });
 
-  const getXPostionStyling = (index: number, stepsLength: number): { left: string } => {
+  const getXPositionStyling = (index: number, stepsLength: number): { left: string } => {
     return { left: `${(index / (stepsLength - 1)) * 100}%` };
   };
 
@@ -263,7 +276,7 @@ export const Slider: React.FC<SliderProps> = ({
                 aria-hidden={true}
                 key={'emoji' + index}
                 className={styles['slider__emoji']}
-                style={getXPostionStyling(index, steps.length)}
+                style={getXPositionStyling(index, steps.length)}
               >
                 {step.emojiUniCode}
               </div>
@@ -276,7 +289,7 @@ export const Slider: React.FC<SliderProps> = ({
 
   const renderSteps = (): React.ReactNode => {
     return steps?.map((_step, index) => {
-      return <div key={'step' + index} className={styles['slider__track__step']} style={getXPostionStyling(index, steps.length)} />;
+      return <div key={'step' + index} className={styles['slider__track__step']} style={getXPositionStyling(index, steps.length)} />;
     });
   };
 
@@ -290,7 +303,7 @@ export const Slider: React.FC<SliderProps> = ({
                 aria-hidden={true}
                 key={'label' + index}
                 className={styles['slider__value']}
-                style={getXPostionStyling(index, steps.length)}
+                style={getXPositionStyling(index, steps.length)}
               >
                 {step.label}
               </div>
@@ -330,7 +343,7 @@ export const Slider: React.FC<SliderProps> = ({
               left: `${markerXPos}px`,
             }}
             onKeyDown={handleKeyDown}
-            aria-valuenow={value}
+            aria-valuenow={valueState}
             aria-valuetext={getAriaValueText()}
             aria-valuemin={minValue}
             aria-valuemax={maxValue}
