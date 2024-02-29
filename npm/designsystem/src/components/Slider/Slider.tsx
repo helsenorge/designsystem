@@ -140,6 +140,7 @@ export const Slider: React.FC<SliderProps> = ({
 
   useEffect(() => {
     if (value !== valueState && typeof value !== 'undefined') {
+      handleSelected();
       setValueState(value);
     }
   }, [value]);
