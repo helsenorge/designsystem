@@ -41,6 +41,9 @@ export default {
     step: {
       control: 'number',
     },
+    value: {
+      control: 'number',
+    },
   },
 } as ComponentMeta<typeof Slider>;
 
