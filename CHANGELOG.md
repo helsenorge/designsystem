@@ -1,3 +1,19 @@
+## [6.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.3.0&targetVersion=GTv6.4.0) (2024-02-29)
+
+### Features
+
+- slider har fatt value prop og fiks til selected state
+  ([645ca82](https://github.com/helsenorge/designsystem/commit/645ca8291d85705f7e9cf3a372376cb4e53dc4cd)), closes
+  [#321070](https://github.com/helsenorge/designsystem/issues/321070)
+- table-komponenter støtter alle vanlige html-attributter
+  ([0810650](https://github.com/helsenorge/designsystem/commit/08106504e1441a9c8916c41fbca31accf0beade2)), closes
+  [#321166](https://github.com/helsenorge/designsystem/issues/321166)
+
+### Bug Fixes
+
+- slider value prop oppdaterer og selectedstate
+  ([e510bd7](https://github.com/helsenorge/designsystem/commit/e510bd7a1ef3fe89eaa4cbd6af614291d055cbb8))
+
 ## [6.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.2.0&targetVersion=GTv6.3.0) (2024-02-22)
 
 ### Features
