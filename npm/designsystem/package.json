@@ -49,8 +49,8 @@
     "bootstrap": "^4.6.2",
     "classnames": "^2.3.2",
     "normalize.css": "^8.0.1",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react": ">=17",
+    "react-dom": ">=17"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.8",
