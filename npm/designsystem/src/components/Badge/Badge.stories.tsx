@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Badge from './Badge';
 import { allPaletteNames } from '../../../.storybook/knobs';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Badge',
   component: Badge,
   parameters: {
@@ -17,21 +17,29 @@ export default {
       },
     },
   },
+  args: {
+    children: '1',
+    color: 'blueberry',
+  },
   argTypes: {
     children: {
       control: 'text',
-      defaultValue: '1',
     },
     color: {
       control: 'select',
       options: allPaletteNames,
-      defaultValue: 'blueberry',
     },
   },
-} as ComponentMeta<typeof Badge>;
+} satisfies Meta<typeof Badge>;
 
-export const Default: ComponentStory<typeof Badge> = (args: any) => (
-  <GridExample>
-    <Badge {...args}>{args.children}</Badge>
-  </GridExample>
-);
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <Badge {...args} />
+    </GridExample>
+  ),
+};

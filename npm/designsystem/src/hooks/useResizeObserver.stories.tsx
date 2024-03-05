@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useResizeObserver } from './useResizeObserver';
 import GridExample from '../components/GridExample';
@@ -19,7 +19,7 @@ const UseResizeObserverExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useResizeObserver',
   component: UseResizeObserverExample,
   parameters: {
@@ -29,6 +29,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseResizeObserverExample>;
+} satisfies Meta<typeof UseResizeObserverExample>;
 
-export const Default: ComponentStory<typeof UseResizeObserverExample> = () => <UseResizeObserverExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseResizeObserverExample /> };

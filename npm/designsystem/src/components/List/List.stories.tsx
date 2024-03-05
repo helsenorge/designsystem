@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { Title as DocsTitle, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import List from './List';
 import { mediumLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/List',
   component: List,
   parameters: {
@@ -26,178 +26,195 @@ export default {
       ),
     },
   },
+  args: {
+    children: '',
+    variant: 'bullet',
+    margin: false,
+  },
   argTypes: {
     variant: {
       control: 'select',
       options: ['bullet', 'dashed', 'numbered', 'alphabetical'],
-      defaultValue: 'bullet',
     },
     margin: {
       control: 'boolean',
-      defaultValue: false,
     },
   },
-} as ComponentMeta<typeof List>;
+} satisfies Meta<typeof List>;
 
-export const Default: ComponentStory<typeof List> = args => (
-  <GridExample>
-    <List {...args}>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>
-        {mediumLoremText}
-        <List variant={args.variant}>
-          <List.Item>{mediumLoremText}</List.Item>
-          <List.Item>{mediumLoremText}</List.Item>
-          <List.Item>{mediumLoremText}</List.Item>
-          <List.Item>
-            {mediumLoremText}
-            <List variant={args.variant}>
-              <List.Item>{mediumLoremText}</List.Item>
-              <List.Item>{mediumLoremText}</List.Item>
-              <List.Item>{mediumLoremText}</List.Item>
-              <List.Item>
-                {mediumLoremText}
-                <List variant={args.variant}>
-                  <List.Item>{mediumLoremText}</List.Item>
-                  <List.Item>{mediumLoremText}</List.Item>
-                  <List.Item>{mediumLoremText}</List.Item>
-                  <List.Item>
-                    {mediumLoremText}
-                    <List variant={args.variant}>
-                      <List.Item>{mediumLoremText}</List.Item>
-                      <List.Item>{mediumLoremText}</List.Item>
-                      <List.Item>{mediumLoremText}</List.Item>
-                      <List.Item>{mediumLoremText}</List.Item>
-                    </List>
-                  </List.Item>
-                </List>
-              </List.Item>
-            </List>
-          </List.Item>
-        </List>
-      </List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-    </List>
-  </GridExample>
-);
+export default meta;
 
-export const Bullet: ComponentStory<typeof List> = () => (
-  <GridExample>
-    <List variant="bullet">
-      <List.Item>
-        {mediumLoremText}
-        <List variant="bullet">
-          <List.Item>
-            {mediumLoremText}
-            <List variant="bullet">
-              <List.Item>
-                {mediumLoremText}
-                <List variant="bullet">
-                  <List.Item>{mediumLoremText}</List.Item>
-                  <List.Item>{mediumLoremText}</List.Item>
-                </List>
-              </List.Item>
-              <List.Item>{mediumLoremText}</List.Item>
-            </List>
-          </List.Item>
-          <List.Item>{mediumLoremText}</List.Item>
-        </List>
-      </List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-    </List>
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
 
-export const Dashed: ComponentStory<typeof List> = () => (
-  <GridExample>
-    <List variant="dashed">
-      <List.Item>
-        {mediumLoremText}
-        <List variant="dashed">
-          <List.Item>
-            {mediumLoremText}
-            <List variant="dashed">
-              <List.Item>
-                {mediumLoremText}
-                <List variant="dashed">
-                  <List.Item>{mediumLoremText}</List.Item>
-                  <List.Item>{mediumLoremText}</List.Item>
-                </List>
-              </List.Item>
-              <List.Item>{mediumLoremText}</List.Item>
-            </List>
-          </List.Item>
-          <List.Item>{mediumLoremText}</List.Item>
-        </List>
-      </List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-    </List>
-  </GridExample>
-);
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <List {...args}>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>
+          {mediumLoremText}
+          <List variant={args.variant}>
+            <List.Item>{mediumLoremText}</List.Item>
+            <List.Item>{mediumLoremText}</List.Item>
+            <List.Item>{mediumLoremText}</List.Item>
+            <List.Item>
+              {mediumLoremText}
+              <List variant={args.variant}>
+                <List.Item>{mediumLoremText}</List.Item>
+                <List.Item>{mediumLoremText}</List.Item>
+                <List.Item>{mediumLoremText}</List.Item>
+                <List.Item>
+                  {mediumLoremText}
+                  <List variant={args.variant}>
+                    <List.Item>{mediumLoremText}</List.Item>
+                    <List.Item>{mediumLoremText}</List.Item>
+                    <List.Item>{mediumLoremText}</List.Item>
+                    <List.Item>
+                      {mediumLoremText}
+                      <List variant={args.variant}>
+                        <List.Item>{mediumLoremText}</List.Item>
+                        <List.Item>{mediumLoremText}</List.Item>
+                        <List.Item>{mediumLoremText}</List.Item>
+                        <List.Item>{mediumLoremText}</List.Item>
+                      </List>
+                    </List.Item>
+                  </List>
+                </List.Item>
+              </List>
+            </List.Item>
+          </List>
+        </List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+      </List>
+    </GridExample>
+  ),
+};
 
-export const Numbered: ComponentStory<typeof List> = () => (
-  <GridExample>
-    <List variant="numbered">
-      <List.Item>
-        {mediumLoremText}
-        <List variant="numbered">
-          <List.Item>
-            {mediumLoremText}
-            <List variant="numbered">
-              <List.Item>
-                {mediumLoremText}
-                <List variant="numbered">
-                  <List.Item>{mediumLoremText}</List.Item>
-                  <List.Item>{mediumLoremText}</List.Item>
-                </List>
-              </List.Item>
-              <List.Item>{mediumLoremText}</List.Item>
-            </List>
-          </List.Item>
-          <List.Item>{mediumLoremText}</List.Item>
-        </List>
-      </List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-    </List>
-  </GridExample>
-);
+export const Bullet: Story = {
+  render: () => (
+    <GridExample>
+      <List variant="bullet">
+        <List.Item>
+          {mediumLoremText}
+          <List variant="bullet">
+            <List.Item>
+              {mediumLoremText}
+              <List variant="bullet">
+                <List.Item>
+                  {mediumLoremText}
+                  <List variant="bullet">
+                    <List.Item>{mediumLoremText}</List.Item>
+                    <List.Item>{mediumLoremText}</List.Item>
+                  </List>
+                </List.Item>
+                <List.Item>{mediumLoremText}</List.Item>
+              </List>
+            </List.Item>
+            <List.Item>{mediumLoremText}</List.Item>
+          </List>
+        </List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+      </List>
+    </GridExample>
+  ),
+};
 
-export const Nested: ComponentStory<typeof List> = () => (
-  <GridExample>
-    <List variant="numbered">
-      <List.Item>
-        {mediumLoremText}
-        <List variant="bullet">
-          <List.Item>
-            {mediumLoremText}
-            <List variant="alphabetical">
-              <List.Item>
-                {mediumLoremText}
-                <List variant="dashed">
-                  <List.Item>{mediumLoremText}</List.Item>
-                  <List.Item>{mediumLoremText}</List.Item>
-                </List>
-              </List.Item>
-              <List.Item>{mediumLoremText}</List.Item>
-            </List>
-          </List.Item>
-          <List.Item>{mediumLoremText}</List.Item>
-        </List>
-      </List.Item>
-      <List.Item>{mediumLoremText}</List.Item>
-    </List>
-  </GridExample>
-);
+export const Dashed: Story = {
+  render: () => (
+    <GridExample>
+      <List variant="dashed">
+        <List.Item>
+          {mediumLoremText}
+          <List variant="dashed">
+            <List.Item>
+              {mediumLoremText}
+              <List variant="dashed">
+                <List.Item>
+                  {mediumLoremText}
+                  <List variant="dashed">
+                    <List.Item>{mediumLoremText}</List.Item>
+                    <List.Item>{mediumLoremText}</List.Item>
+                  </List>
+                </List.Item>
+                <List.Item>{mediumLoremText}</List.Item>
+              </List>
+            </List.Item>
+            <List.Item>{mediumLoremText}</List.Item>
+          </List>
+        </List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+      </List>
+    </GridExample>
+  ),
+};
+
+export const Numbered: Story = {
+  render: () => (
+    <GridExample>
+      <List variant="numbered">
+        <List.Item>
+          {mediumLoremText}
+          <List variant="numbered">
+            <List.Item>
+              {mediumLoremText}
+              <List variant="numbered">
+                <List.Item>
+                  {mediumLoremText}
+                  <List variant="numbered">
+                    <List.Item>{mediumLoremText}</List.Item>
+                    <List.Item>{mediumLoremText}</List.Item>
+                  </List>
+                </List.Item>
+                <List.Item>{mediumLoremText}</List.Item>
+              </List>
+            </List.Item>
+            <List.Item>{mediumLoremText}</List.Item>
+          </List>
+        </List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+      </List>
+    </GridExample>
+  ),
+};
+
+export const Nested: Story = {
+  render: () => (
+    <GridExample>
+      <List variant="numbered">
+        <List.Item>
+          {mediumLoremText}
+          <List variant="bullet">
+            <List.Item>
+              {mediumLoremText}
+              <List variant="alphabetical">
+                <List.Item>
+                  {mediumLoremText}
+                  <List variant="dashed">
+                    <List.Item>{mediumLoremText}</List.Item>
+                    <List.Item>{mediumLoremText}</List.Item>
+                  </List>
+                </List.Item>
+                <List.Item>{mediumLoremText}</List.Item>
+              </List>
+            </List.Item>
+            <List.Item>{mediumLoremText}</List.Item>
+          </List>
+        </List.Item>
+        <List.Item>{mediumLoremText}</List.Item>
+      </List>
+    </GridExample>
+  ),
+};

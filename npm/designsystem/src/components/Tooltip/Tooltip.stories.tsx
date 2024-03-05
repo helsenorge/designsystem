@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Tooltip, { TooltipOpenProvider } from './Tooltip';
 import GridExample from '../GridExample';
 import TooltipExample from '../TooltipExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Tooltip',
   component: Tooltip,
   parameters: {
@@ -17,27 +17,34 @@ export default {
       },
     },
   },
+  args: { children: 'ordet', description: 'Dette er tekst som skal fylle HelpBubble' },
   argTypes: {
     children: {
       control: 'text',
-      defaultValue: 'ordet',
     },
     description: {
       control: 'text',
-      defaultValue: 'Dette er tekst som skal fylle HelpBubble',
     },
   },
-} as ComponentMeta<typeof Tooltip>;
+} satisfies Meta<typeof Tooltip>;
 
-export const Default: ComponentStory<typeof Tooltip> = (args: any) => (
-  <GridExample>
-    <TooltipExample {...args} />
-  </GridExample>
-);
-export const SingleExample: ComponentStory<typeof Tooltip> = (args: any) => (
-  <GridExample>
-    <TooltipOpenProvider>
-      <Tooltip {...args} />
-    </TooltipOpenProvider>
-  </GridExample>
-);
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <TooltipExample {...args} />
+    </GridExample>
+  ),
+};
+export const SingleExample: Story = {
+  render: args => (
+    <GridExample>
+      <TooltipOpenProvider>
+        <Tooltip {...args} />
+      </TooltipOpenProvider>
+    </GridExample>
+  ),
+};

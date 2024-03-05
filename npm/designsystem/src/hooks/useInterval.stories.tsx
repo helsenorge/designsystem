@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useInterval } from './useInterval';
 import GridExample from '../components/GridExample';
@@ -15,7 +15,7 @@ const UseIntervalExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useInterval',
   component: UseIntervalExample,
   parameters: {
@@ -25,6 +25,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseIntervalExample>;
+} satisfies Meta<typeof UseIntervalExample>;
 
-export const Default: ComponentStory<typeof UseIntervalExample> = () => <UseIntervalExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseIntervalExample /> };

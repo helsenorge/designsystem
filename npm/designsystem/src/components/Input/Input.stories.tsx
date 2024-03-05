@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Input, { InputProps, InputTypes } from './Input';
 import { FormMode, FormSize } from '../../constants';
@@ -8,7 +8,11 @@ import GridExample from '../GridExample';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 
-export default {
+type InputWithAndCustomArgs = React.ComponentProps<typeof Input> & {
+  showIcon: boolean;
+};
+
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Input',
   component: Input,
   parameters: {
@@ -19,6 +23,21 @@ export default {
       },
     },
   },
+  args: {
+    width: undefined,
+    size: FormSize.medium,
+    transparent: false,
+    type: InputTypes.text,
+    disabled: false,
+    mode: FormMode.onwhite,
+    showIcon: true,
+    iconRight: false,
+    readOnly: false,
+    autoComplete: '',
+    name: 'input',
+    required: false,
+    maxText: 'tegn',
+  },
   argTypes: {
     defaultValue: {
       control: 'text',
@@ -28,142 +47,143 @@ export default {
     },
     width: {
       control: 'number',
-      defaultValue: undefined,
     },
     size: {
       control: 'select',
       options: FormSize,
-      defaultValue: FormSize.medium,
     },
     transparent: {
       control: 'boolean',
-      defaultValue: false,
     },
     type: {
       control: 'select',
       options: InputTypes,
-      defaultValue: InputTypes.text,
     },
     disabled: {
       control: 'boolean',
-      defaultValue: false,
     },
     mode: {
       control: 'select',
       options: FormMode,
-      defaultValue: FormMode.onwhite,
     },
-    showicon: {
+    showIcon: {
       control: 'boolean',
-      defaultValue: true,
     },
     iconRight: {
       control: 'boolean',
-      defaultValue: false,
     },
     readOnly: {
       control: 'boolean',
-      defaultValue: false,
     },
     autoComplete: {
       control: 'text',
-      defaultValue: '',
     },
     name: {
       control: 'text',
-      defaultValue: 'input',
     },
     required: {
       control: 'boolean',
-      defaultValue: false,
     },
     maxCharacters: {
       control: 'number',
     },
     maxText: {
       control: 'text',
-      defaultValue: 'tegn',
     },
   },
-} as ComponentMeta<typeof Input>;
+} satisfies Meta<InputWithAndCustomArgs>;
 
-export const Default: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => {
-  const inputId = 'input-testid';
+export default meta;
 
-  return (
-    <GridExample>
-      <Input
-        {...rest}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
-        inputId={inputId}
-        icon={showicon ? Hospital : undefined}
-      />
-    </GridExample>
-  );
+type Story = StoryObj<InputWithAndCustomArgs>;
+
+export const Default: Story = {
+  render: ({ showIcon, ...rest }) => {
+    const inputId = 'input-testid';
+
+    return (
+      <GridExample>
+        <Input
+          {...rest}
+          label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
+          inputId={inputId}
+          icon={showIcon ? Hospital : undefined}
+        />
+      </GridExample>
+    );
+  },
 };
 
-export const MultipleExamples: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
-  <GridExample>
-    <Input
-      {...rest}
-      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-      icon={showicon ? Hospital : undefined}
-    />
-    <Input
-      {...rest}
-      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-      icon={showicon ? Hospital : undefined}
-    />
-    <Input
-      {...rest}
-      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-      icon={showicon ? Hospital : undefined}
-    />
-  </GridExample>
-);
-
-export const MaxCharacters: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
-  <GridExample>
-    <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={10} width={10} />
-    <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={50} width={50} />
-    <Input
-      {...rest}
-      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-      maxCharacters={50}
-      width={50}
-      defaultValue="test"
-    />
-  </GridExample>
-);
-
-export const AfterInputChildren: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => (
-  <GridExample>
-    <Input
-      {...rest}
-      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-      afterInputChildren={<div style={{ marginTop: '1rem' }}>{'*Ikke oppgi personsensitiv informasjon'}</div>}
-    />
-    <Input
-      {...rest}
-      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-      afterInputChildren={'Tekst uten innsendt div'}
-    />
-  </GridExample>
-);
-
-export const BaseIncrementValue: ComponentStory<typeof Input> = ({ showicon, ...rest }: InputProps & { showicon?: boolean }) => {
-  const inputId = 'input-testid';
-
-  return (
+export const MultipleExamples: Story = {
+  render: ({ showIcon, ...rest }) => (
     <GridExample>
       <Input
         {...rest}
-        type={'number'}
-        baseIncrementValue={1990}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
-        inputId={inputId}
-        icon={showicon ? Hospital : undefined}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        icon={showIcon ? Hospital : undefined}
+      />
+      <Input
+        {...rest}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        icon={showIcon ? Hospital : undefined}
+      />
+      <Input
+        {...rest}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        icon={showIcon ? Hospital : undefined}
       />
     </GridExample>
-  );
+  ),
+};
+
+export const MaxCharacters: Story = {
+  render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => (
+    <GridExample>
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={10} width={10} />
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={50} width={50} />
+      <Input
+        {...rest}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        maxCharacters={50}
+        width={50}
+        defaultValue="test"
+      />
+    </GridExample>
+  ),
+};
+
+export const AfterInputChildren: Story = {
+  render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => (
+    <GridExample>
+      <Input
+        {...rest}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        afterInputChildren={<div style={{ marginTop: '1rem' }}>{'*Ikke oppgi personsensitiv informasjon'}</div>}
+      />
+      <Input
+        {...rest}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        afterInputChildren={'Tekst uten innsendt div'}
+      />
+    </GridExample>
+  ),
+};
+
+export const BaseIncrementValue: Story = {
+  render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => {
+    const inputId = 'input-testid';
+
+    return (
+      <GridExample>
+        <Input
+          {...rest}
+          type={'number'}
+          baseIncrementValue={1990}
+          label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
+          inputId={inputId}
+          icon={showIcon ? Hospital : undefined}
+        />
+      </GridExample>
+    );
+  },
 };

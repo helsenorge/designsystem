@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import GridExample from '../GridExample';
 import Panel, { PanelVariant } from '../Panel';
 import PanelList from '../PanelList';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/PanelList',
   component: PanelList,
   parameters: {
@@ -17,38 +17,46 @@ export default {
       },
     },
   },
+  args: {
+    variant: PanelVariant.fill,
+  },
   argTypes: {
     variant: {
       control: 'select',
       options: PanelVariant,
-      defaultValue: PanelVariant.fill,
     },
   },
-} as ComponentMeta<typeof PanelList>;
+} satisfies Meta<typeof PanelList>;
 
-export const Default: ComponentStory<typeof PanelList> = (args: any) => (
-  <GridExample>
-    <PanelList {...args}>
-      <Panel title="Overskrift 1">
-        {
-          'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
-        }
-      </Panel>
-      <Panel title="Overskrift 2">
-        {
-          'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
-        }
-      </Panel>
-      <Panel title="Overskrift 3">
-        {
-          'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
-        }
-      </Panel>
-      <Panel title="Overskrift 4">
-        {
-          'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
-        }
-      </Panel>
-    </PanelList>
-  </GridExample>
-);
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <PanelList {...args}>
+        <Panel title="Overskrift 1">
+          {
+            'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
+          }
+        </Panel>
+        <Panel title="Overskrift 2">
+          {
+            'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
+          }
+        </Panel>
+        <Panel title="Overskrift 3">
+          {
+            'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
+          }
+        </Panel>
+        <Panel title="Overskrift 4">
+          {
+            'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
+          }
+        </Panel>
+      </PanelList>
+    </GridExample>
+  ),
+};

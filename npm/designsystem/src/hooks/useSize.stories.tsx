@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useSize } from './useSize';
 import GridExample from '../components/GridExample';
@@ -19,7 +19,7 @@ const UseSizeExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useSize',
   component: UseSizeExample,
   parameters: {
@@ -29,6 +29,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseSizeExample>;
+} satisfies Meta<typeof UseSizeExample>;
 
-export const Default: ComponentStory<typeof UseSizeExample> = () => <UseSizeExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseSizeExample /> };

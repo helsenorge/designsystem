@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import HighlightBox from '../HighlightBox';
 import { IllustrationList } from '../Illustrations/IllustrationNames';
@@ -8,7 +8,11 @@ import LazyIllustration from '../LazyIllustration';
 import Spacer from '../Spacer';
 import Title from '../Title';
 
-export default {
+type IllustrationWallWithAndCustomArgs = React.ComponentProps<typeof LazyIllustration> & {
+  query: string;
+};
+
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Illustration',
   component: LazyIllustration,
   parameters: {
@@ -18,45 +22,50 @@ export default {
       },
     },
   },
+  args: {
+    size: 200,
+    color: 'neutral',
+    ariaLabel: '',
+  },
   argTypes: {
-    illustrationName: {
+    query: {
       control: 'text',
-      defaultValue: '',
     },
     size: {
       control: 'number',
-      defaultValue: 200,
     },
     color: {
       control: 'select',
       options: ['neutral', 'blueberry', 'cherry'],
-      defaultValue: 'neutral',
     },
     ariaLabel: {
       control: 'text',
-      defaultValue: '',
     },
   },
-} as ComponentMeta<typeof LazyIllustration>;
+} satisfies Meta<IllustrationWallWithAndCustomArgs>;
 
-export const IllustrationWall: ComponentStory<typeof LazyIllustration> = (args: any) => {
-  const filtered = IllustrationList.filter(x =>
-    args.illustrationName ? x.toLowerCase().includes(args.illustrationName.toLowerCase()) : true
-  );
+export default meta;
 
-  return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-      {filtered.map(illustrationName => (
-        <div key={illustrationName}>
-          <Title htmlMarkup="h2" appearance="title5">
-            {illustrationName}
-          </Title>
-          <Spacer />
-          <HighlightBox color={args.color} size={'fluid'}>
-            <LazyIllustration color={args.color} size={args.size} illustrationName={illustrationName} />
-          </HighlightBox>
-        </div>
-      ))}
-    </div>
-  );
+type Story = StoryObj<IllustrationWallWithAndCustomArgs>;
+
+export const IllustrationWall: Story = {
+  render: args => {
+    const filtered = IllustrationList.filter(x => (args.query ? x.toLowerCase().includes(args.query.toLowerCase()) : true));
+
+    return (
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+        {filtered.map(illustrationName => (
+          <div key={illustrationName}>
+            <Title htmlMarkup="h2" appearance="title5">
+              {illustrationName}
+            </Title>
+            <Spacer />
+            <HighlightBox color={args.color} size={'fluid'}>
+              <LazyIllustration color={args.color} size={args.size} illustrationName={illustrationName} />
+            </HighlightBox>
+          </div>
+        ))}
+      </div>
+    );
+  },
 };

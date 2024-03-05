@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useSticky } from './useSticky';
 import Button from '../components/Button';
@@ -25,7 +25,7 @@ const UseStickyExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useSticky',
   component: UseStickyExample,
   parameters: {
@@ -35,6 +35,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseStickyExample>;
+} satisfies Meta<typeof UseStickyExample>;
 
-export const Default: ComponentStory<typeof UseStickyExample> = () => <UseStickyExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseStickyExample /> };

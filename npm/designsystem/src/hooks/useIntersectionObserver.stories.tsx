@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { useIntersectionObserver } from './useIntersectionObserver';
 import Button from '../components/Button';
@@ -22,7 +22,7 @@ const UseIntersectionObserverExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useIntersectionObserver',
   component: UseIntersectionObserverExample,
   parameters: {
@@ -32,12 +32,10 @@ export default {
       },
     },
   },
-  argTypes: {
-    threshold: {
-      control: 'number',
-      defaultValue: 0.5,
-    },
-  },
-} as ComponentMeta<typeof UseIntersectionObserverExample>;
+} satisfies Meta<typeof UseIntersectionObserverExample>;
 
-export const Default: ComponentStory<typeof UseIntersectionObserverExample> = (args: any) => <UseIntersectionObserverExample {...args} />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseIntersectionObserverExample /> };

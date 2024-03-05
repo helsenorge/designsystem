@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Close from './Close';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Close',
   component: Close,
   parameters: {
@@ -17,20 +17,31 @@ export default {
       },
     },
   },
+  args: {
+    ariaLabel: '',
+    testId: '',
+  },
   argTypes: {
-    testId: {
-      control: 'text',
-      defaultValue: '',
-    },
     ariaLabel: {
       control: 'text',
-      defaultValue: '',
+    },
+    testId: {
+      control: 'text',
     },
   },
-} as ComponentMeta<typeof Close>;
+} satisfies Meta<typeof Close>;
 
-export const Default: ComponentStory<typeof Close> = (args: any) => (
-  <GridExample>
-    <Close {...args} onClick={action('button-click')} />
-  </GridExample>
-);
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    onClick: action('button-click'),
+  },
+  render: args => (
+    <GridExample>
+      <Close {...args} />
+    </GridExample>
+  ),
+};

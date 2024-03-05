@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { BreakpointProps, withBreakpoint } from './withBreakpoint';
 import GridExample from '../../components/GridExample';
@@ -20,7 +20,7 @@ const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
 
 const ExampleWithBreakpoint = withBreakpoint(Example);
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/HOC/withBreakpoint',
   component: ExampleWithBreakpoint,
   parameters: {
@@ -30,6 +30,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ExampleWithBreakpoint>;
+} satisfies Meta<typeof ExampleWithBreakpoint>;
 
-export const Default: ComponentStory<typeof ExampleWithBreakpoint> = () => <ExampleWithBreakpoint />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <ExampleWithBreakpoint /> };

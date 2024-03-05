@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useElementList } from './useElementList';
 import Button from '../components/Button';
@@ -47,7 +47,7 @@ const UseElementListExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useElementList',
   component: UseElementListExample,
   parameters: {
@@ -57,6 +57,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseElementListExample>;
+} satisfies Meta<typeof UseElementListExample>;
 
-export const Default: ComponentStory<typeof UseElementListExample> = () => <UseElementListExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseElementListExample /> };

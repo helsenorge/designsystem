@@ -15,6 +15,7 @@ module.exports = {
     {
       files: ['*.stories.tsx'],
       rules: {
+        'react/prop-types': 'off',
         'no-console': 'warn',
       },
     },

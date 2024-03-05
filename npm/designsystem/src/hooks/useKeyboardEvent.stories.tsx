@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useKeyboardEvent } from './useKeyboardEvent';
 import GridExample from '../components/GridExample';
 import Textarea from '../components/Textarea';
 import { KeyboardEventKey } from '../constants';
 
-const UseKeyboardEventExample: React.FC = (args: any) => {
+const UseKeyboardEventExample: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
   useKeyboardEvent(ref, e => console.log(`Du trykker på ${e.key}`), [
     KeyboardEventKey.ArrowDown,
@@ -25,7 +25,7 @@ const UseKeyboardEventExample: React.FC = (args: any) => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useKeyboardEvent',
   component: UseKeyboardEventExample,
   parameters: {
@@ -35,6 +35,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseKeyboardEventExample>;
+} satisfies Meta<typeof UseKeyboardEventExample>;
 
-export const Default: ComponentStory<typeof UseKeyboardEventExample> = () => <UseKeyboardEventExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseKeyboardEventExample /> };

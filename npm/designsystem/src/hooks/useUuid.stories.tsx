@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useUuid } from './useUuid';
 import Button from '../components/Button';
@@ -21,7 +21,7 @@ const UseUuidExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useUuid',
   component: UseUuidExample,
   parameters: {
@@ -31,6 +31,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseUuidExample>;
+} satisfies Meta<typeof UseUuidExample>;
 
-export const Default: ComponentStory<typeof UseUuidExample> = () => <UseUuidExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseUuidExample /> };

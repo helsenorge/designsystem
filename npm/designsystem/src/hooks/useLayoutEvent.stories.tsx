@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useLayoutEvent } from './useLayoutEvent';
 import GridExample from '../components/GridExample';
@@ -15,7 +15,7 @@ const UseLayoutEventExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useLayoutEvent',
   component: UseLayoutEventExample,
   parameters: {
@@ -25,6 +25,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseLayoutEventExample>;
+} satisfies Meta<typeof UseLayoutEventExample>;
 
-export const Default: ComponentStory<typeof UseLayoutEventExample> = () => <UseLayoutEventExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseLayoutEventExample /> };

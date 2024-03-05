@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { shortLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
@@ -8,7 +8,7 @@ import HighlightBox from '../HighlightBox';
 
 import LazyIllustration from './';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/LazyIllustration',
   component: LazyIllustration,
   parameters: {
@@ -18,34 +18,42 @@ export default {
       },
     },
   },
+  args: {
+    illustrationName: 'Doctor',
+    size: 512,
+    color: 'neutral',
+    ariaLabel: '',
+  },
   argTypes: {
     illustrationName: {
       control: 'text',
-      defaultValue: 'Doctor',
     },
     size: {
       control: 'number',
-      defaultValue: 512,
     },
     color: {
       control: 'select',
       options: ['neutral', 'blueberry', 'cherry'],
-      defaultValue: 'neutral',
     },
     ariaLabel: {
       control: 'text',
-      defaultValue: '',
     },
   },
-} as ComponentMeta<typeof LazyIllustration>;
+} satisfies Meta<typeof LazyIllustration>;
 
-export const Default: ComponentStory<typeof LazyIllustration> = (args: any) => {
-  return (
-    <GridExample>
-      <HighlightBox color={args.color} size={'fluid'}>
-        <LazyIllustration color={args.color} size={args.size} illustrationName={args.illustrationName} />
-        <p>{shortLoremText}</p>
-      </HighlightBox>
-    </GridExample>
-  );
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => {
+    return (
+      <GridExample>
+        <HighlightBox color={args.color} size={'fluid'}>
+          <LazyIllustration color={args.color} size={args.size} illustrationName={args.illustrationName} />
+          <p>{shortLoremText}</p>
+        </HighlightBox>
+      </GridExample>
+    );
+  },
 };
