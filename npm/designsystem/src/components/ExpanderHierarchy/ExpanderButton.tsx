@@ -37,7 +37,7 @@ const ExpanderButton: React.FC<ExpanderButtonProps> = ({ htmlMarkup = 'h2', leve
 
   const titleClasses = classNames(
     styles.expander__title,
-    level <= 3 && styles[`expander__title--${level}`],
+    (level === 1 || level === 2 || level === 3) && styles[`expander__title--${level}`],
     level > 3 && styles[`expander__title--4-and-lower`],
     isExpanded && styles['expander__title--expanded'],
     print && styles['expander__title--print']

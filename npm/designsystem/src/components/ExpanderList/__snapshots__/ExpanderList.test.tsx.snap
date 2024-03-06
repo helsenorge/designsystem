@@ -257,11 +257,11 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
     data-analyticsid="expander-list"
   >
     <li
-      class="expander-list__item expander-list__item--line expander-list__item--jsx"
+      class="expander-list__item expander-list__item--line"
     >
       <button
         aria-expanded="false"
-        class="expander-list-link expander-list-link--neutral expander-list-link--closed expander-list-link--jsx"
+        class="expander-list-link expander-list-link--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-185-0"
         type="button"
@@ -320,11 +320,11 @@ exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expandere
       </button>
     </li>
     <li
-      class="expander-list__item expander-list__item--line expander-list__item--jsx"
+      class="expander-list__item expander-list__item--line"
     >
       <button
         aria-expanded="false"
-        class="expander-list-link expander-list-link--neutral expander-list-link--closed expander-list-link--jsx"
+        class="expander-list-link expander-list-link--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-185-1"
         type="button"

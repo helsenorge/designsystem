@@ -448,7 +448,7 @@ export const Status: Story = {
 };
 
 export const AsButton: Story = {
-  render: args => (
+  render: () => (
     <GridExample>
       <Panel
         title={'Medisinsk fødselsregister (MFR)'}

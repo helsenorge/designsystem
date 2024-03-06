@@ -11,7 +11,7 @@ describe('Gitt at Validation skal vises', () => {
       render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
       const validation = screen.getByText('Gruppe tittel').parentElement?.parentElement;
-      expect(validation?.className).toBe('validation');
+      expect(validation).toBeVisible();
     });
   });
 

@@ -6,7 +6,7 @@ import StatusDot, { StatusDotVariant } from '../../StatusDot';
 import { TitleTags } from '../../Title';
 import styles from '../styles.module.scss';
 
-export type ListHeaderTextType = React.ForwardRefExoticComponent<ListHeaderTextProps & React.RefAttributes<HTMLLIElement>>;
+export type ListHeaderTextType = React.FC<ListHeaderTextProps>;
 
 export interface ListHeaderTextProps {
   /** The first text in the ListHeaderText Component */
@@ -29,7 +29,7 @@ export interface ListHeaderTextProps {
   titleHtmlMarkup?: TitleTags;
 }
 
-export const ListHeaderText: ListHeaderTextType = React.forwardRef((props: ListHeaderTextProps, ref: React.Ref<HTMLLIElement>) => {
+export const ListHeaderText: ListHeaderTextType = props => {
   const {
     firstText,
     firstTextEmphasised = false,
@@ -66,7 +66,7 @@ export const ListHeaderText: ListHeaderTextType = React.forwardRef((props: ListH
       </CustomTag>
     </span>
   );
-});
+};
 
 ListHeaderText.displayName = 'ListHeaderText';
 

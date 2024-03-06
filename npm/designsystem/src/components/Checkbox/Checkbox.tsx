@@ -157,7 +157,6 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
         getLabelContent(),
         inputId,
         mode as FormMode,
-        disabled,
         checkboxLabelClasses,
         labelTextClasses,
         checkboxStyles['checkbox-sublabel-wrapper'],

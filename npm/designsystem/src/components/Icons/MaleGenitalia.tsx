@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SvgPathProps } from '../Icon';
 
-const MaleGenitalia: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
+const MaleGenitalia: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path d="M30.334 30.164v-9.182h-1.301v12.923H19.22V20.982H17.92v9.26c-4.916-1.594-7.718-5.162-7.718-9.902 0-7.193 6.19-13.045 13.798-13.045s13.798 5.852 13.798 13.045c0 4.723-2.644 8.182-7.464 9.824M24.777 42.14v-2.772h-1.3v2.772c-2.396-.322-4.256-2.358-4.256-4.841v-2.094h9.812v2.094c0 2.483-1.86 4.519-4.256 4.84M24 5.997c-8.325 0-15.1 6.435-15.1 14.344 0 5.48 3.28 9.565 9.02 11.269v5.69a6.214 6.214 0 006.207 6.206 6.214 6.214 0 006.207-6.206v-5.763c5.578-1.75 8.765-5.806 8.765-11.196 0-7.91-6.774-14.344-15.1-14.344" />
   );

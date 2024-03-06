@@ -28,7 +28,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="attachment". Så 
       </svg>
     </span>
     <span
-      class="statusdot__label statusdot__label--icon"
+      class="statusdot__label--icon"
     >
       Eksempeltekst
     </span>
@@ -66,7 +66,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="group". Så skal 
       </svg>
     </span>
     <span
-      class="statusdot__label statusdot__label--icon"
+      class="statusdot__label--icon"
     >
       Eksempeltekst
     </span>
@@ -103,7 +103,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="noaccess". Så sk
       </svg>
     </span>
     <span
-      class="statusdot__label statusdot__label--icon"
+      class="statusdot__label--icon"
     >
       Eksempeltekst
     </span>
@@ -140,7 +140,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="recurring". Så s
       </svg>
     </span>
     <span
-      class="statusdot__label statusdot__label--icon"
+      class="statusdot__label--icon"
     >
       Eksempeltekst
     </span>

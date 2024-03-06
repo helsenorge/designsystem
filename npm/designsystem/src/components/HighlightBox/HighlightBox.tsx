@@ -22,10 +22,10 @@ export enum HighlightBoxSize {
 
 export type HighlightBoxTags = Exclude<
   keyof HTMLElementTagNameMap,
-  'dir' | 'font' | 'frame' | 'frameset' | 'marquee' | 'applet' | 'basefont'
+  'dir' | 'font' | 'frame' | 'frameset' | 'marquee' | 'applet' | 'basefont' | 'search'
 >;
 
-interface HighlightBoxProps {
+export interface HighlightBoxProps {
   /** What's in the box? */
   children: React.ReactNode;
   /** Changes the background color. Default: white */
@@ -95,7 +95,6 @@ const HighlightBox: React.FC<HighlightBoxProps> = props => {
   const breakpoint = useBreakpoint();
 
   const containerClassName = classNames(
-    styles['highlightbox'],
     styles[`highlightbox--${color}`],
     styles[`highlightbox--${size}`],
     svgIcon && styles['highlightbox--has-icon'],

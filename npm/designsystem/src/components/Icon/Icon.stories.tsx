@@ -112,7 +112,7 @@ export const IconWall: Story = {
       const lowerCaseSearchText = searchText.toLowerCase();
 
       return Object.keys(additionalIconInformation).filter(key => {
-        const value = additionalIconInformation[key];
+        const value = additionalIconInformation[key as keyof typeof additionalIconInformation];
         const matchKey = key.toLowerCase().includes(lowerCaseSearchText);
         const matchAlternativeName = value.alternativeName.toLowerCase().includes(lowerCaseSearchText);
         const matchCategories = value.categories.toLowerCase().includes(lowerCaseSearchText);
@@ -158,7 +158,7 @@ export const IconWall: Story = {
             label={'Velg størrelse'}
             defaultValue={iconSizeKeys[3]}
             onChange={e => {
-              setIconSize(IconSize[e.currentTarget.value]);
+              setIconSize(parseInt(e.currentTarget.value, 10));
             }}
           >
             {iconSizeKeys.map((size, index) => {
@@ -167,7 +167,7 @@ export const IconWall: Story = {
           </Select>
           <Checkbox
             label={'Hover'}
-            onChange={e => {
+            onChange={() => {
               setIsHovered(!isHovered);
             }}
           />
@@ -182,7 +182,7 @@ export const IconWall: Story = {
           }}
         >
           {filteredIcons.map((iconName, index) => {
-            const additionalInfo = additionalIconInformation[iconName.toLowerCase()];
+            const additionalInfo = additionalIconInformation[iconName.toLowerCase() as keyof typeof additionalIconInformation];
 
             return (
               <div

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { format, isValid, parse } from 'date-fns';
+import { Locale, format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { ActiveModifiers, DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
 
@@ -149,8 +149,8 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
 
   const handleSingleDatePickerSelect: SelectSingleEventHandler = (
     date: Date | undefined,
-    selectedDay: Date,
-    activeModifiers: ActiveModifiers,
+    _selectedDay: Date,
+    _activeModifiers: ActiveModifiers,
     e: React.MouseEvent<Element, MouseEvent>
   ): void => {
     setReturnInputFocus(true);
@@ -206,7 +206,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
 
   const renderDesktop = (
     <>
-      <div className={styles['date-input-wrapper']}>
+      <div>
         <Input
           error={error}
           errorText={errorText}

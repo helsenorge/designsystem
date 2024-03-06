@@ -234,7 +234,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   return (
     <ErrorWrapper errorText={errorText}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
-        {renderLabel(label, inputIdState, mode as FormMode, disabled)}
+        {renderLabel(label, inputIdState, mode as FormMode)}
         {/* input-elementet tillater keyboard-interaksjon */}
         <div className={styles['content-wrapper']}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}

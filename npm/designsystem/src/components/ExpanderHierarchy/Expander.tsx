@@ -36,7 +36,7 @@ const Expander: ExpanderType = ({
 }: ExpanderProps) => {
   const contentClasses = classNames(
     styles.expander__content,
-    level <= 2 && styles[`expander__content--${level}`],
+    (level === 1 || level === 2) && styles[`expander__content--${level}`],
     level > 2 && styles[`expander__content--3-and-lower`]
   );
 

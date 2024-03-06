@@ -13,7 +13,7 @@ export type BoldColumn = 'first' | 'second' | 'none';
 export type Border = 'no-border' | 'border';
 export type Formats = 'formatted' | 'non-formatted';
 
-interface DuolistProps {
+export interface DuolistProps {
   /** Determines which column is bold */
   boldColumn?: BoldColumn;
   /** Label of the Duolist */
@@ -36,7 +36,7 @@ interface DuolistProps {
   descriptionWidth?: number;
 }
 
-interface DuolistGroupProps {
+export interface DuolistGroupProps {
   /** Determines which column is bold */
   boldColumn?: BoldColumn;
   /** Sets content of the <dd> tag. */
@@ -99,7 +99,6 @@ export const Duolist: React.FC<DuolistProps> = props => {
   const nonFormatted = format === 'non-formatted';
 
   const duolistWrapperClasses = classNames(
-    duolistStyles['duolist-wrapper'],
     {
       [duolistStyles['duolist-wrapper--border']]: hasBorder,
       [duolistStyles['duolist-wrapper--extra-padding-top']]: extraPaddingTop,

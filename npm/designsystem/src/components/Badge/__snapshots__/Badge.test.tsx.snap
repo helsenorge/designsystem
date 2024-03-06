@@ -3,7 +3,7 @@
 exports[`Gitt at Badge skal vises Når Badge har tekst Så vises teksten 1`] = `
 <div>
   <span
-    class="badge badge--black"
+    class="badge"
     data-analyticsid="badge"
   >
     123

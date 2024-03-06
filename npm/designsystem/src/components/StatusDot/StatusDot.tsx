@@ -79,7 +79,6 @@ const StatusDot: React.FC<StatusDotProps> = props => {
   const statusDotClasses = classNames(styles['statusdot'], isCancelled && styles['statusdot--cancelled'], className);
   const dotClasses = classNames(styles['statusdot__dot'], hasIcon ? styles[`statusdot__dot--icon`] : styles[`statusdot__dot--${variant}`]);
   const labelClasses = classNames(
-    styles['statusdot__label'],
     hasIcon && styles['statusdot__label--icon'],
     mode === StatusDotModes.ondark && styles['statusdot__label--on-dark']
   );

@@ -26,7 +26,6 @@ const Badge: BadgeType = React.forwardRef(function BadgeForwardedRef(props: Badg
   const badgeClasses = classNames(
     badgeStyles.badge,
     {
-      [badgeStyles['badge--black']]: color === 'black',
       [badgeStyles['badge--white']]: color === 'white',
       [badgeStyles['badge--blueberry']]: color === 'blueberry',
       [badgeStyles['badge--banana']]: color === 'banana',

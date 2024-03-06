@@ -1,18 +1,22 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "lib": ["dom", "dom.iterable", "es2017", "esnext"],
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "module": "esnext",
-    "target": "es2017",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react",
+
+    /* Linting */
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "emitDecoratorMetadata": true,
-    "jsx": "react"
-  },
-  "exclude": ["node_modules", "scripts"]
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  }
 }

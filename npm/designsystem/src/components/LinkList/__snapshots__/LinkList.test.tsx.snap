@@ -7,7 +7,7 @@ exports[`displays a list of links 1`] = `
     data-analyticsid="link-list"
   >
     <li
-      class="link-list__list-item link-list__list-item--line"
+      class="link-list__list-item--line"
       data-analyticsid="link"
     >
       <a
@@ -59,7 +59,7 @@ exports[`displays a list of links 1`] = `
       </a>
     </li>
     <li
-      class="link-list__list-item link-list__list-item--line"
+      class="link-list__list-item--line"
       data-analyticsid="link"
     >
       <a
@@ -81,7 +81,7 @@ exports[`displays a list of links 1`] = `
       </a>
     </li>
     <li
-      class="link-list__list-item link-list__list-item--line"
+      class="link-list__list-item--line"
       data-analyticsid="link"
     >
       <a

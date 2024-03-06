@@ -11,6 +11,7 @@ const OUTPUT_DIRECTORY = 'lib';
 export default defineConfig({
   build: {
     outDir: OUTPUT_DIRECTORY,
+    sourcemap: true,
     lib: {
       entry: 'index.js',
       formats: ['es'],
@@ -21,7 +22,6 @@ export default defineConfig({
       external: [/.module.scss/, 'react-hook-form'],
       output: {
         format: 'es',
-        sourcemap: true,
         entryFileNames: '[name].js',
         chunkFileNames: '[name].js',
         assetFileNames: '[name].[ext]',
@@ -44,7 +44,6 @@ export default defineConfig({
             { src: 'src/components/**/*.module.scss*', dest: OUTPUT_DIRECTORY },
             { src: 'src/components/**/componentdata.json*', dest: OUTPUT_DIRECTORY },
             { src: 'src/components/Icons/AdditionalIconInformation.js', dest: OUTPUT_DIRECTORY },
-            { src: 'types/**/*.d.ts*', dest: OUTPUT_DIRECTORY },
           ],
           hook: 'writeBundle',
           flatten: false,

@@ -103,7 +103,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
   return (
     <ErrorWrapper errorText={errorText}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectStyles['select-wrapper']} style={{ maxWidth }}>
-        {renderLabel(label, uuid, mode as FormMode, disabled)}
+        {renderLabel(label, uuid, mode as FormMode)}
         <div className={selectInnerWrapperClasses}>
           <Icon className={selectStyles['select-arrow']} svgIcon={ChevronDown} color={iconColor} size={IconSize.XSmall} />
           <select

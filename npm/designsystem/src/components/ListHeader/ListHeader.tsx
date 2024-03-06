@@ -14,7 +14,7 @@ import styles from './styles.module.scss';
 
 export type ListHeaderSize = 'small' | 'medium' | 'large';
 
-export interface ListHeaderType extends React.ForwardRefExoticComponent<ListHeaderProps & React.RefAttributes<HTMLLIElement>> {
+export interface ListHeaderType extends React.FC<ListHeaderProps> {
   Avatar?: AvatarType;
   Badge?: BadgeType;
   ListHeaderText?: ListHeaderTextType;
@@ -114,7 +114,7 @@ export const mapChildren: ChildrenMapper = (children, isJsxChild = false) => {
   }
 };
 
-export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderProps, ref: React.Ref<HTMLLIElement>) => {
+export const ListHeader: ListHeaderType = props => {
   const { className = '', titleHtmlMarkup = 'h2', chevronIcon, children, icon, isHovered, size, testId } = props;
   const breakpoint = useBreakpoint();
   const showChevronAndIcon = size !== 'small' && !!(chevronIcon || icon);
@@ -133,30 +133,37 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
     },
     className
   );
-  const badgeClasses = cn(styles['list-header__badge'], {
-    [styles['list-header__badge--for-string-content']]: contentIsString,
-    [styles['list-header__badge--right']]: !contentIsString,
-    [styles['list-header__badge--' + size]]: !contentIsString && size,
-  });
-  const chevronClasses = cn(styles['list-header__chevron'], {
+  const badgeClasses = cn(
+    styles['list-header__badge'],
+    {
+      [styles['list-header__badge--for-string-content']]: contentIsString,
+    },
+    !contentIsString && size && styles[`list-header__badge--${size}`]
+  );
+  const chevronClasses = cn(styles['list-header__chevron'], !contentIsString && size && styles[`list-header__chevron--${size}`], {
     [styles['list-header__chevron--for-string-content']]: contentIsString,
-    [styles['list-header__chevron--' + size]]: !contentIsString && size,
   });
   const contentClasses = cn(styles['list-header__content'], {
     [styles['list-header__content--string']]: contentIsString,
     [styles['list-header__content--element']]: !contentIsString,
     [styles['list-header__content--spacing']]: !mappedChildren?.avatarChild && !icon,
   });
-  const iconClasses = cn(styles['list-header__icon'], {
-    [styles['list-header__icon--for-string-content']]: contentIsString,
-    [styles['list-header__icon--for-element-content']]: !contentIsString,
-    [styles['list-header__icon--for-element-content--' + size]]: !contentIsString && size,
-  });
-  const avatarClasses = cn(styles['list-header__avatar'], {
-    [styles['list-header__avatar--for-string-content']]: contentIsString,
-    [styles['list-header__avatar--for-element-content']]: !contentIsString,
-    [styles['list-header__avatar--for-element-content--' + size]]: !contentIsString && size,
-  });
+  const iconClasses = cn(
+    styles['list-header__icon'],
+    !contentIsString && size && (size === 'medium' || size === 'large') && styles[`list-header__icon--for-element-content--${size}`],
+    {
+      [styles['list-header__icon--for-string-content']]: contentIsString,
+      [styles['list-header__icon--for-element-content']]: !contentIsString,
+    }
+  );
+  const avatarClasses = cn(
+    styles['list-header__avatar'],
+    !contentIsString && size && (size === 'medium' || size === 'large') && styles[`list-header__avatar--for-element-content--${size}`],
+    {
+      [styles['list-header__avatar--for-string-content']]: contentIsString,
+      [styles['list-header__avatar--for-element-content']]: !contentIsString,
+    }
+  );
   const CustomTag = titleHtmlMarkup;
   return (
     <span data-testid={testId} className={listLabelClasses}>
@@ -187,7 +194,7 @@ export const ListHeader: ListHeaderType = React.forwardRef((props: ListHeaderPro
       )}
     </span>
   );
-});
+};
 
 ListHeader.displayName = 'ListHeader';
 

@@ -16,7 +16,7 @@ export type LabelText = {
   type?: 'semibold' | 'normal';
 };
 
-export interface LabelProps extends Pick<React.InputHTMLAttributes<HTMLLabelElement>, 'disabled'> {
+export interface LabelProps {
   /** Component shown after label - discourage use of this */
   afterLabelChildren?: React.ReactNode;
   /** Adds custom classes to the element. */
@@ -57,18 +57,15 @@ export const getLabelText = (label: React.ReactNode): string => {
   return allLabelText;
 };
 
-export const renderLabel = (label: React.ReactNode, inputId: string, mode: FormMode, disabled?: boolean): React.ReactNode => {
+export const renderLabel = (label: React.ReactNode, inputId: string, mode: FormMode): React.ReactNode => {
   return (
     <>
       {label && isComponent<LabelProps>(label, Label)
         ? React.cloneElement(label, {
             htmlFor: inputId,
             mode: mode,
-            disabled,
           })
-        : typeof label === 'string' && (
-            <Label labelTexts={[{ text: label, type: 'semibold' }]} htmlFor={inputId} mode={mode} disabled={disabled} />
-          )}
+        : typeof label === 'string' && <Label labelTexts={[{ text: label, type: 'semibold' }]} htmlFor={inputId} mode={mode} />}
     </>
   );
 };
@@ -78,7 +75,6 @@ export const renderLabelAsParent = (
   children: React.ReactNode,
   inputId: string,
   mode: FormMode,
-  disabled?: boolean,
   labelClassName?: string,
   labelTextClassName?: string,
   sublabelWrapperClassName?: string,
@@ -91,7 +87,6 @@ export const renderLabelAsParent = (
             htmlFor: inputId,
             mode: mode,
             children: children,
-            disabled,
             labelClassName: cn(labelClassName, label.props.labelClassName),
             labelTextClassName: labelTextClassName,
             sublabelWrapperClassName: sublabelWrapperClassName,
@@ -103,7 +98,6 @@ export const renderLabelAsParent = (
               labelTexts={[{ text: label }]}
               htmlFor={inputId}
               mode={mode}
-              disabled={disabled}
               labelClassName={labelClassName}
               labelTextClassName={labelTextClassName}
               sublabelWrapperClassName={sublabelWrapperClassName}
@@ -119,7 +113,6 @@ const Label: FunctionComponent<LabelProps> = ({
   afterLabelChildren,
   children,
   className,
-  disabled,
   htmlFor,
   labelClassName,
   labelTextClassName,
@@ -145,7 +138,6 @@ const Label: FunctionComponent<LabelProps> = ({
         {
           [styles['label--semibold']]: labelText.type === 'semibold',
           [styles['label--on-dark']]: mode === FormMode.ondark,
-          [styles['label--disabled']]: disabled,
         },
         labelTextClassName
       );
@@ -159,7 +151,7 @@ const Label: FunctionComponent<LabelProps> = ({
 
   return (
     <div className={labelWrapperClasses}>
-      <div className={styles['label-wrapper__inner']}>
+      <div>
         <label className={labelClassName} id={labelId} htmlFor={htmlFor} data-testid={testId} data-analyticsid={AnalyticsId.Label}>
           <span className={styles['label-content-wrapper']}>
             {children}

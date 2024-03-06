@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -53,7 +53,6 @@ const Label: React.FC<LabelProps> = ({ label, variant, id, hasExpander, isExpand
 
   const labelContainerClasses = classNames(
     styles['service-message__label-container'],
-    styles[`service-message__label-container--${variant}`],
     hasExpander && styles[`service-message__label-container--has-expander`]
   );
 
@@ -191,11 +190,7 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
     hasExpander && setIsExpanded(!isExpanded);
   };
 
-  const classes = classNames(
-    styles['service-message'],
-    styles[`service-message--${variant}`],
-    isExpanded && styles[`service-message--expanded`]
-  );
+  const classes = classNames(styles['service-message'], styles[`service-message--${variant}`]);
 
   return (
     <div className={classes} role={ariaRole} {...ariaLabelAttributes} data-testid={testId}>

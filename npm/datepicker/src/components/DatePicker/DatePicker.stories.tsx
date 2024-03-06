@@ -108,10 +108,10 @@ export const DateRangePicker: Story = {
             label={<Label labelTexts={[{ text: 'Fra dato', type: 'semibold' }]} />}
             maxDate={toDate}
             onChange={(
-              event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
-              date: Date | undefined
+              _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
+              date: string | Date | undefined
             ): void => {
-              setFromDate(date);
+              date instanceof Date && setFromDate(date);
             }}
           />
           <DatePicker
@@ -119,10 +119,10 @@ export const DateRangePicker: Story = {
             label={<Label labelTexts={[{ text: 'Til dato', type: 'semibold' }]} />}
             minDate={fromDate}
             onChange={(
-              event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
-              date: Date | undefined
+              _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
+              date: string | Date | undefined
             ): void => {
-              setToDate(date);
+              date instanceof Date && setToDate(date);
             }}
           />
         </DateTimePickerWrapper>
@@ -236,6 +236,12 @@ export const Locale: Story = {
   },
 };
 
+interface DateForm {
+  datepicker: string;
+  datetimehour: number;
+  datetimeminute: number;
+}
+
 export const ValidateDateTime: Story = {
   render: (args: DatePickerProps) => {
     const {
@@ -243,7 +249,7 @@ export const ValidateDateTime: Story = {
       handleSubmit,
       formState: { errors },
       getValues,
-    } = useForm({ mode: 'all' });
+    } = useForm<DateForm>({ mode: 'all' });
 
     const dateString = '30.11.2023';
     const formatString = 'dd.MM.yyyy';
@@ -303,7 +309,7 @@ export const ValidateDateTime: Story = {
       return validateResult;
     };
 
-    const onSubmit = (data): void => {
+    const onSubmit = (data: DateForm): void => {
       // eslint-disable-next-line no-console
       console.log('Date submitted', data);
     };

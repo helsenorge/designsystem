@@ -31,7 +31,7 @@ export const StepButtons: React.FC<StepButtonsProps> = props => {
     return (
       <div className={navigationClasses} data-testid={testId} data-analyticsid={AnalyticsId.StepButtons}>
         {(backButton || forwardButton) && (
-          <div className={classNames(styles.stepbuttons__buttons, styles['stepbuttons__buttons--navigation'])}>
+          <div className={styles.stepbuttons__buttons}>
             {backButton &&
               React.cloneElement(backButton, {
                 variant: 'outline',

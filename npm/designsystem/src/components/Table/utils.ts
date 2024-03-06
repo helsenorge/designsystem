@@ -19,7 +19,8 @@ const configUsesCss = (config: BreakpointConfig): boolean =>
  * @param config Konfigurasjon for responsiv oppførsel
  * @returns CSS-klassenavn
  */
-const mapConfigToClass = (config: BreakpointConfig): string => styles[`table--${config.variant}-${config.breakpoint}`];
+const mapConfigToClass = (config: BreakpointConfig): string =>
+  config.variant === 'centeredoverflow' || config.variant === 'block' ? styles[`table--${config.variant}-${config.breakpoint}`] : '';
 
 /**
  * Sorter konfigurasjon etter breakpoints, fra største til minste

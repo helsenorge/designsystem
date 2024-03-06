@@ -382,7 +382,6 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
       [panelStyles['panel-details--open']]: isExpanded,
       [panelStyles['panel-details--line']]: variant === PanelVariant.line,
       [panelStyles['panel-details--white']]: variant === PanelVariant.white,
-      [panelStyles['panel-details--with-icon']]: icon,
     });
 
     return (

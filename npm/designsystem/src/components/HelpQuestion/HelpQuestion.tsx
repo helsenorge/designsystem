@@ -9,7 +9,7 @@ import Trigger from '../Trigger';
 
 import styles from './styles.module.scss';
 
-interface HelpQuestionProps extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'aria-controls'> {
+export interface HelpQuestionProps extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'aria-controls'> {
   /**
    * Help question contents
    */

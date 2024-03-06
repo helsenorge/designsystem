@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SvgPathProps } from '../Icon';
 
-const Window: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
+const Window: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path d="M39.386 8.475l.033 29.72h1.68v1.3H6.902v-1.3H8.58l-.033-29.72h30.839zm-1.3 1.3H9.85l.03 28.42h28.24l-.032-28.42zm-1.453 1.453v25.835H24.788v-9.858h-1.642v9.858H11.301V11.228h25.332zm-1.3 15.977h-9.245v8.558h9.245v-8.558zm-13.487-.001h-9.245v8.558h9.245v-8.558zm13.487-12.253H12.601v10.953h22.732V14.951zm0-2.422H12.601v1.121h22.732v-1.121z" />
   );

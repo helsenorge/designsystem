@@ -22,7 +22,7 @@ interface ValidationProps {
 
 export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const { errorSummary, className } = props;
-  const validationClasses = classNames(validationStyles['validation'], className);
+  const validationClasses = classNames(className);
 
   return (
     <>

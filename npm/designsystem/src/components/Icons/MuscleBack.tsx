@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SvgPathProps } from '../Icon';
 
-const MuscleBack: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
+const MuscleBack: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <g>
       <path d="M17.265 24.155v1.301c4.298 0 6.32-7.466 6.405-7.784l-1.256-.332c-.502 1.895-2.404 6.815-5.15 6.815" />

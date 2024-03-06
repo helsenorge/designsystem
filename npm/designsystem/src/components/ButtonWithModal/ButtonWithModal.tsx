@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import React, { useState } from 'react';
 
 import Button from '../Button';
@@ -11,7 +10,7 @@ interface ModalWithButtonProps extends ModalProps {
   testId?: string;
 }
 
-const ModalWithButton = React.forwardRef(function ModalForwardedRef(props: ModalWithButtonProps, ref: React.ForwardedRef<HTMLElement>) {
+const ModalWithButton: React.FC<ModalWithButtonProps> = props => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -20,6 +19,6 @@ const ModalWithButton = React.forwardRef(function ModalForwardedRef(props: Modal
       {showModal && <Modal {...props} onClose={() => setShowModal(false)} />}
     </div>
   );
-});
+};
 
 export default ModalWithButton;

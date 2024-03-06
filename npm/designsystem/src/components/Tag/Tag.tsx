@@ -31,7 +31,7 @@ export enum TagVariant {
 
 export type TagColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'cherry' | 'banana' | 'kiwi' | 'plum'>;
 
-interface TagProps {
+export interface TagProps {
   /** Sets the text of the tag */
   children: string;
   /** Sets the size of the tag. Default: small */
@@ -60,7 +60,7 @@ const ActionTag: React.FC<ActionTagProps> = props => {
   const tagClasses = cn(
     styles.tag,
     styles[`tag--${size}`],
-    styles[`tag--${action}`],
+    action === 'undo' && styles[`tag--${action}`],
     styles['tag--has-action'],
     action === 'remove' && [styles[`tag--${color}`], styles[`tag--${variant}`]]
   );

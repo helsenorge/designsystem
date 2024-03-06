@@ -101,21 +101,23 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
 
   const { isOutsideWindow, isLeavingWindow, offsetHeight, contentWidth } = useSticky(expanderRef, triggerRef);
   const isSticky = sticky && isExpanded && isOutsideWindow;
-  const isJsxTitle = typeof title === 'object';
 
-  const itemClasses = classNames(className, {
-    [expanderListStyles['expander-list__item--' + variant]]: variant,
-    [expanderListStyles['expander-list__item--jsx']]: isJsxTitle,
-  });
+  const itemClasses = classNames(
+    className,
+    (variant === 'line' || variant === 'outline') && expanderListStyles[`expander-list__item--${variant}`]
+  );
 
-  const expanderClasses = classNames(expanderListStyles['expander-list-link'], expanderListStyles[`expander-list-link--${color}`], {
-    [expanderListStyles['expander-list-link--fill']]: variant === 'fill',
-    [expanderListStyles['expander-list-link--closed']]: !isExpanded,
-    [expanderListStyles['expander-list-link--large']]: large,
-    [expanderListStyles['expander-list-link--jsx']]: isJsxTitle,
-    [expanderListStyles['expander-list-link--sticky']]: isSticky && !isLeavingWindow,
-    [expanderListStyles['expander-list-link--absolute']]: isSticky && isLeavingWindow,
-  });
+  const expanderClasses = classNames(
+    expanderListStyles['expander-list-link'],
+    color !== 'black' && expanderListStyles[`expander-list-link--${color}`],
+    {
+      [expanderListStyles['expander-list-link--fill']]: variant === 'fill',
+      [expanderListStyles['expander-list-link--closed']]: !isExpanded,
+      [expanderListStyles['expander-list-link--large']]: large,
+      [expanderListStyles['expander-list-link--sticky']]: isSticky && !isLeavingWindow,
+      [expanderListStyles['expander-list-link--absolute']]: isSticky && isLeavingWindow,
+    }
+  );
 
   const renderContent = () => {
     if (!renderChildrenWhenClosed && !isExpanded) {

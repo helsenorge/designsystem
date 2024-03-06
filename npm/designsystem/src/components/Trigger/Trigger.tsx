@@ -111,7 +111,7 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
     const triggerClasses = classNames(
       styles.trigger,
       mode === 'onlight' && styles[`trigger--${variant}`], // variants look the same when mode=ondark
-      styles[`trigger--${mode}`],
+      mode === 'ondark' && styles[`trigger--${mode}`],
       styles[`trigger--${size}`],
       isHovered && styles[`trigger--hovered`],
       selected && styles[`trigger--selected`],

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
-import Label, { LabelProps, LabelText } from './Label';
+import Label, { LabelText } from './Label';
 import { Sublabel } from './SubLabel';
 import { IconSize } from '../../constants';
 import { getColor } from '../../theme/currys';

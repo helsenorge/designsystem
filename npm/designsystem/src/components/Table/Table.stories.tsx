@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
-import { Breakpoint } from '../../hooks/useBreakpoint';
 import { longLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
 import GridExample from '../GridExample';
@@ -365,7 +364,7 @@ export const SortableAndExpandable: Story = {
 };
 
 export const NestedExpandableBlockTables: Story = {
-  render: args => {
+  render: () => {
     const [expanded, setExpanded] = useState(new Array(5).fill(false));
     const [sortDirection, setSortDirection] = useState(SortDirection.asc);
     const [sortColumn, setSortColumn] = useState('');
@@ -560,7 +559,7 @@ export const ExtraData: Story = {
 };
 
 export const Irregular: Story = {
-  render: args => {
+  render: () => {
     return (
       <GridExample>
         <Table breakpointConfig={defaultConfig}>

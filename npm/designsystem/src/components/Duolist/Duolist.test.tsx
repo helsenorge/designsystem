@@ -31,7 +31,6 @@ describe('Gitt at Duolist skal vises', (): void => {
       expect(dlGroupDescription1).toBeInTheDocument();
       expect(dlGroupDescription2).toBeInTheDocument();
 
-      expect(duoListWrapper).toHaveClass('duolist-wrapper');
       expect(duoList).toHaveClass('duolist');
       expect(dlGroupTerm1).toHaveClass('duolist__dt duolist__dt--bold');
       expect(dlGroupDescription1.className).toBe('duolist__dd');

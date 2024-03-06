@@ -1,5 +1,3 @@
-import path from 'path';
-
 import replace from '@rollup/plugin-replace';
 import copy from 'rollup-plugin-copy';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
@@ -13,13 +11,17 @@ const OUTPUT_DIRECTORY = 'lib';
 export default defineConfig({
   build: {
     outDir: OUTPUT_DIRECTORY,
+    sourcemap: true,
+    lib: {
+      entry: 'index.js',
+      formats: ['es'],
+    },
     rollupOptions: {
       preserveEntrySignatures: 'strict',
       input: entries,
       external: [/.module.scss/],
       output: {
         format: 'es',
-        sourcemap: true,
         entryFileNames: '[name].js',
         chunkFileNames: '[name].js',
         assetFileNames: '[name].[ext]',

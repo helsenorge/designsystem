@@ -43,7 +43,6 @@ export const TableRow: React.FC<Props> = ({
     tableStyles['table-row'],
     {
       [tableStyles['table__row--expandable']]: expandable,
-      [tableStyles['table__row--expanded']]: expanded,
     },
     className
   );

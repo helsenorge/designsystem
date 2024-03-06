@@ -1,30 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "lib",
-    "sourceMap": false,
-    "inlineSourceMap": false,
-    "allowJs": false,
-    "jsx": "react",
-    "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "types",
-    "emitDecoratorMetadata": true,
-    "types": ["jest", "node", "react"],
-    "isolatedModules": true,
-    "useDefineForClassFields": true,
-    "skipLibCheck": true
-  },
-  "include": ["src/**/*"],
-  "exclude": [
-    ".storybook/**/*",
-    "lib",
-    "node_modules",
-    "scripts",
-    "src/utils",
-    "**/__snapshots__",
-    "**/__snapshots__/*",
-    "**/*.stories.tsx",
-    "**/*.test.tsx"
-  ]
+  "include": ["src"],
+  "exclude": ["**/*.test.snap.tsx", "**/*.test.tsx"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

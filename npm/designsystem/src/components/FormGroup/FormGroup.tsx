@@ -67,23 +67,13 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   const [radioGroupId] = useState<string>(uuid());
   const onDark = mode === FormMode.ondark;
   const isLarge = size === FormSize.large;
-  const formGroupWrapperClasses = classNames(
-    formGroupStyles['form-group-wrapper'],
-    {
-      [formGroupStyles['form-group-wrapper--on-dark']]: onDark,
-      [formGroupStyles['form-group-wrapper--invalid']]: error,
-    },
-    className
-  );
-  const titleClasses = classNames(formGroupStyles['form-group-wrapper__title'], {
+  const formGroupWrapperClasses = classNames(formGroupStyles['form-group-wrapper'], className);
+  const titleClasses = classNames({
     [formGroupStyles['form-group-wrapper__title--on-dark']]: onDark && !error,
-    [formGroupStyles['form-group-wrapper__title--large']]: isLarge,
   });
-  const formGroupClasses = classNames(formGroupStyles['form-group']);
 
   const legendClasses = classNames(formGroupStyles['field-set__legend'], {
     [formGroupStyles['field-set__legend--on-dark']]: onDark && !error,
-    [formGroupStyles['field-set__legend--large']]: isLarge,
   });
 
   const fieldsetClasses = classNames(formGroupStyles['field-set'], fieldsetClassName);
@@ -141,7 +131,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
 
   const formGroupContent = (): React.ReactNode => {
     return (
-      <div className={formGroupClasses}>
+      <div>
         {htmlMarkup === 'div' && (
           <div className={fieldsetClasses}>
             {props.legend && <h5 className={legendClasses}>{props.legend}</h5>}

@@ -7,7 +7,7 @@ import Panel, { PanelProps, PanelVariant } from '../Panel';
 
 import styles from './styles.module.scss';
 
-interface PanelListProps {
+export interface PanelListProps {
   /** Panels to render inside the PanelList */
   children?: React.ReactNode;
   /** Changes the visual representation of the panel. Default: fill */
@@ -30,7 +30,7 @@ const PanelList = React.forwardRef(function BadgeForwardedRef(props: PanelListPr
     });
 
   return (
-    <div ref={ref} data-testid={testId} className={styles['panel-list']} data-analyticsid={AnalyticsId.PanelList}>
+    <div ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.PanelList}>
       {React.Children.map(children, (child, index) => (isPanelComponent(child) ? renderPanel(child, index === 0) : child))}
     </div>
   );

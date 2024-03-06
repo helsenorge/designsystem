@@ -8,7 +8,7 @@ exports[`Gitt at ServiceMessage skal vises Når komponenten vises med default pr
     role="alert"
   >
     <div
-      class="service-message__label-container service-message__label-container--alert"
+      class="service-message__label-container"
     >
       <div
         class="service-message__container"

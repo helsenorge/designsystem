@@ -38,7 +38,7 @@ export interface LoaderProps {
   ariaLabel?: string;
 }
 
-const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, ref: React.ForwardedRef<HTMLElement>) {
+const Loader: React.FC<LoaderProps> = props => {
   const {
     overlay,
     color = overlay ? 'black' : 'neutral',
@@ -66,7 +66,7 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
   const isMedium = size === 'medium';
   const isLarge = size === 'large';
 
-  const loaderWrapperClasses = classNames(loaderStyles['loader-wrapper'], {
+  const loaderWrapperClasses = classNames({
     [loaderStyles['loader-wrapper--center']]: center,
     [loaderStyles['loader-wrapper--overlay']]: overlay,
     [loaderStyles['loader-wrapper--overlay-screen']]: overlay === Overlay.screen,
@@ -132,6 +132,6 @@ const Loader = React.forwardRef(function LoaderForwardedRef(props: LoaderProps, 
       )}
     </div>
   );
-});
+};
 
 export default Loader;

@@ -3,7 +3,7 @@
 exports[`Gitt at Duolist skal vises Når Duolist skal vises vanlig Så rendres den som den skal 1`] = `
 <div>
   <div
-    class="duolist-wrapper"
+    class=""
     data-analyticsid="duolist"
     data-testid="test01"
   >

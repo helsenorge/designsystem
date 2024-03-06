@@ -46,9 +46,7 @@ export const TableExpandedRow = ({
     [tableStyles['table__cell--compact']]: mode === ModeType.compact,
   });
 
-  const containerClass = classNames(tableStyles['table__expanded-row-container'], {
-    [tableStyles['table__expanded-row-container--expanded']]: expanded,
-  });
+  const containerClass = classNames(tableStyles['table__expanded-row-container']);
 
   return (
     <tr className={tableRowClass} id={id}>

@@ -6,7 +6,7 @@ import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
 
-interface EmptyStateProps {
+export interface EmptyStateProps {
   /** Text content */
   children: React.ReactNode;
   /** Markup props for title. Default: h2 */

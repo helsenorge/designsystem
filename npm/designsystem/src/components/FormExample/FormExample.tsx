@@ -17,7 +17,7 @@ import Spacer from '../Spacer';
 import Textarea from '../Textarea';
 import Validation from '../Validation';
 
-interface FormExampleProps {
+export interface FormExampleProps {
   exampleType: FormExampleVariants;
   size?: keyof typeof FormSize;
 }
@@ -75,14 +75,6 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   const errorMessage3 = 'Det kan ikke legges inn mer enn 40 tegn';
   const errorMessage4 = 'Du må skrive noe her';
   const errorMessage5 = 'Du må velge "Option 2"';
-  const errorMessage6 = `Du må velge dato mellom ${minDate.toLocaleDateString('nb')} og ${maxDate.toLocaleDateString('nb')}`;
-  const errorMessage7 = `Du må skrive inn tidspunkt mellom ${minDate.toLocaleTimeString('nb', {
-    hour: '2-digit',
-    minute: '2-digit',
-  })} og ${maxDate.toLocaleTimeString('nb', {
-    hour: '2-digit',
-    minute: '2-digit',
-  })}`;
 
   const requireTwo = (value: Array<string>): true | string => {
     return value.length >= 2 || errorMessage2;

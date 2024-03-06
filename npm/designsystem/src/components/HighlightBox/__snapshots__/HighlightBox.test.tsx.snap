@@ -3,7 +3,7 @@
 exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som fluid Så rendres HighlightBox riktig 1`] = `
 <div>
   <div
-    class="highlightbox highlightbox--blueberry highlightbox--fluid"
+    class="highlightbox--blueberry highlightbox--fluid"
   >
     <p>
       Avsnitt
@@ -15,7 +15,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som flui
 exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som large Så rendres HighlightBox riktig 1`] = `
 <div>
   <div
-    class="highlightbox highlightbox--blueberry highlightbox--large container"
+    class="highlightbox--blueberry highlightbox--large container"
     data-testid="highlightbox-wrapper"
   >
     <div
@@ -49,7 +49,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som larg
 exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som medium Så rendres HighlightBox riktig 1`] = `
 <div>
   <div
-    class="highlightbox highlightbox--blueberry highlightbox--medium container"
+    class="highlightbox--blueberry highlightbox--medium container"
     data-testid="highlightbox-wrapper"
   >
     <div

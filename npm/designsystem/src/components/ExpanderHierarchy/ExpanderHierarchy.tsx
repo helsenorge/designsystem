@@ -37,7 +37,7 @@ const ExpanderHierarchy: ExpanderHierarchyCompound = ({
 }: ExpanderHierarchyProps) => {
   const listClasses = classNames(
     styles.expanderhierarchy,
-    styles[`expanderhierarchy--${level}`],
+    level === 2 && styles[`expanderhierarchy--${level}`],
     level > 2 && styles[`expanderhierarchy--3-and-lower`]
   );
 

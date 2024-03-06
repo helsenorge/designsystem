@@ -22,7 +22,7 @@ describe('Gitt at StatusDot rendres ', () => {
 
       const statusdot = screen.getByTestId('statusdot');
       expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(statusdot.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+      expect(statusdot.lastElementChild.className).toBe('statusdot__label--icon');
 
       expect(container).toMatchSnapshot();
     });
@@ -36,7 +36,7 @@ describe('Gitt at StatusDot rendres ', () => {
 
       const statusdot = screen.getByTestId('statusdot');
       expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(statusdot.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+      expect(statusdot.lastElementChild.className).toBe('statusdot__label--icon');
 
       expect(container).toMatchSnapshot();
     });
@@ -50,7 +50,7 @@ describe('Gitt at StatusDot rendres ', () => {
 
       const statusdot = screen.getByTestId('statusdot');
       expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(statusdot.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+      expect(statusdot.lastElementChild.className).toBe('statusdot__label--icon');
 
       expect(container).toMatchSnapshot();
     });
@@ -64,7 +64,7 @@ describe('Gitt at StatusDot rendres ', () => {
 
       const statusdot = screen.getByTestId('statusdot');
       expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(statusdot.lastElementChild.className).toBe('statusdot__label statusdot__label--icon');
+      expect(statusdot.lastElementChild.className).toBe('statusdot__label--icon');
 
       expect(container).toMatchSnapshot();
     });

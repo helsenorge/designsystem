@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SvgPathProps } from '../Icon';
 
-const CheckOutline: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
+const CheckOutline: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path
       d="m9.16 23.421 2.883-2.773 8.262 8.584L35.958 12.97l2.882 2.774-18.536 19.257-11.143-11.58zm26.744-13.279-15.6 16.206-8.206-8.529-5.766 5.547 13.973 14.518 21.362-22.193-5.764-5.549z"

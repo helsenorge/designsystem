@@ -20,7 +20,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       const title = screen.getByText('One amazing title');
       expect(title).toBeVisible();
-      expect(title.className).toBe('title title--title4 form-group-wrapper__title');
+      expect(title.className).toBe('title title--title4');
 
       const legend = screen.getByText('Check out these checkboxes!');
       expect(legend).toBeVisible();
@@ -132,9 +132,8 @@ describe('Gitt at FormGroup skal vises', (): void => {
       const errorWrapper = formGroup?.parentElement;
       const formGroupWrapper = errorWrapper?.parentElement;
 
-      expect(formGroup?.className).toBe('form-group');
       expect(errorWrapper?.className).toBe('error-wrapper error-wrapper--with-error');
-      expect(formGroupWrapper?.className).toBe('form-group-wrapper form-group-wrapper--invalid');
+      expect(formGroupWrapper?.className).toBe('form-group-wrapper');
     });
   });
 

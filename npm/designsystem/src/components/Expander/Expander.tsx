@@ -23,7 +23,7 @@ export enum ExpanderSize {
 
 export type ExpanderColors = Extract<PaletteNames, 'banana' | 'blueberry' | 'cherry' | 'kiwi' | 'neutral' | 'plum' | 'white'>;
 
-interface ExpanderProps {
+export interface ExpanderProps {
   /** Sets the trigger title */
   title: string;
   /** Sets the expanded content */
@@ -78,7 +78,7 @@ const Expander: React.FC<ExpanderProps> = props => {
 
   const triggerClassName = classNames(
     styles['expander__trigger'],
-    styles[`expander__trigger--${size}`],
+    size === ExpanderSize.large && styles[`expander__trigger--${size}`],
     size === ExpanderSize.large && styles[`expander__trigger--${color || 'neutral'}`],
     size === ExpanderSize.large && icon && styles['expander__trigger--icon'],
     isExpanded && styles['expander__trigger--expanded'],

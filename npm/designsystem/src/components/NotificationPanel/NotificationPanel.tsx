@@ -58,13 +58,13 @@ export interface NotificationPanelProps {
   testId?: string;
 }
 
-type WrapFluidProps = Pick<NotificationPanelProps, 'fluid' | 'variant'> & {
+type WrapFluidProps = Pick<NotificationPanelProps, 'fluid'> & {
   children: React.ReactElement;
 };
 
-const FluidWrapper: React.FC<WrapFluidProps> = ({ fluid, variant, children }) => {
+const FluidWrapper: React.FC<WrapFluidProps> = ({ fluid, children }) => {
   if (fluid) {
-    const fluidClasses = classNames(styles['fluid-wrapper'], { [styles[`fluid-wrapper--${variant}`]]: variant });
+    const fluidClasses = classNames(styles['fluid-wrapper']);
 
     return <div className={fluidClasses}>{children}</div>;
   }
@@ -160,12 +160,11 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
   const notificationPanelClasses = classNames(
     styles['notification-panel'],
     styles[`notification-panel--${variant}`],
+    size && styles[`notification-panel--${size}`],
     {
-      [styles[`notification-panel--${size}`]]: !!size,
       [styles['notification-panel__compact']]: !!compactVariant,
       [styles['notification-panel__compact--basic']]: compactVariant === 'basic',
       [styles['notification-panel__compact--outline']]: compactVariant === 'outline',
-      [styles['notification-panel--has-children']]: !!children,
       [styles['notification-panel--with-content']]: expanderChildren || (label && children),
       [styles['notification-panel--dismissable']]: dismissable,
     },
@@ -176,7 +175,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
   const ariaLabelAttributes = ariaRole ? getAriaLabelAttributes({ label, id: uuid }) : undefined;
 
   return (
-    <FluidWrapper fluid={fluid} variant={variant}>
+    <FluidWrapper fluid={fluid}>
       <div
         ref={ref}
         role={ariaRole}

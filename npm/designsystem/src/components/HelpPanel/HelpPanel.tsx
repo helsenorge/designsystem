@@ -7,7 +7,7 @@ import HandWaving from '../Icons/HandWaving';
 
 import styles from './styles.module.scss';
 
-interface HelpPanelProps {
+export interface HelpPanelProps {
   /** What's in the box? */
   children: React.ReactNode;
   /** Changes the size. Default: medium */

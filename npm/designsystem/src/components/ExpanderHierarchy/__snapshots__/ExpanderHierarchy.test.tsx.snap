@@ -3,7 +3,7 @@
 exports[`ExpanderHierarchy gitt at ExpanderHierarchy har en Expander når komponenten rendres med print=true så ser den riktig ut 1`] = `
 <div>
   <ul
-    class="expanderhierarchy expanderhierarchy--1"
+    class="expanderhierarchy"
     data-analyticsid="expander-hierarchy"
   >
     <li
@@ -50,7 +50,7 @@ exports[`ExpanderHierarchy gitt at ExpanderHierarchy har en Expander når kompon
 exports[`ExpanderHierarchy gitt at ExpanderHierarchy har en Expander når komponenten rendres så ser den riktig ut 1`] = `
 <div>
   <ul
-    class="expanderhierarchy expanderhierarchy--1"
+    class="expanderhierarchy"
     data-analyticsid="expander-hierarchy"
   >
     <li

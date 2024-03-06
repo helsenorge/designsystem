@@ -139,7 +139,6 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
         getLabelContent(),
         inputId,
         mode as FormMode,
-        disabled,
         radioButtonLabelClasses,
         undefined,
         radioButtonStyles['radiobutton-sublabel-wrapper'],

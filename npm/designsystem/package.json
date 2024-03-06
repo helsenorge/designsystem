@@ -21,14 +21,16 @@
   },
   "scripts": {
     "start": "storybook dev",
-    "prebuild": "npm-run-all clean generate:iconnames generate:illustrationnames generate:cssdefinitions generate:tsdefinitions",
+    "prebuild": "npm-run-all clean generate:iconnames generate:illustrationnames generate:cssdefinitions",
     "build": "vite build",
+    "postbuild": "npm run generate:tsdefinitions",
     "build-storybook": "storybook build -o dist",
     "clean": "rimraf lib types",
     "generate:iconnames": "node scripts/generateIconNames.mjs",
     "generate:illustrationnames": "node scripts/generateIllustrationNames.mjs",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\"",
-    "generate:tsdefinitions": "tsc --emitDeclarationOnly",
+    "generate:tsdefinitions": "tsc --declaration --emitDeclarationOnly --declarationDir types",
+    "postgenerate:tsdefinitions": "copyfiles -u 2 \"./types/src/**/*.d.ts\" lib -E",
     "pregenerate:figmatokens": "git -C ../../../designtokens pull https://github.com/helsenorge/designtokens.git",
     "generate:figmatokens": "token-transformer ../../../designtokens/tokens.json data/design-tokens.json hn-designsystem --resolveReferences=false",
     "postgenerate:figmatokens": "style-dictionary build --config figma-token.config.json",
@@ -72,9 +74,10 @@
     "@types/jest": "^29.5.12",
     "@types/react": "^17.0.76",
     "@types/react-dom": "^17.0.25",
-    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "bootstrap": "^4.6.2",
     "classnames": "^2.5.1",
+    "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "glob": "^10.3.10",
     "identity-obj-proxy": "^3.0.0",
@@ -93,8 +96,8 @@
     "storybook": "^7.6.17",
     "style-dictionary": "^3.9.2",
     "token-transformer": "^0.0.33",
-    "typed-scss-modules": "^7.1.4",
-    "typescript": "~4.9.5",
-    "vite": "^4.5.2"
+    "typed-scss-modules": "^8.0.0",
+    "typescript": "~5.3.3",
+    "vite": "^5.1.5"
   }
 }

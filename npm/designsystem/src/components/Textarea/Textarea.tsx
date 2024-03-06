@@ -10,7 +10,7 @@ import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';
 
-interface TextareaProps
+export interface TextareaProps
   extends Pick<
     React.InputHTMLAttributes<HTMLTextAreaElement>,
     | 'aria-describedby'
@@ -166,7 +166,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   return (
     <ErrorWrapper errorText={errorText}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
-        {renderLabel(label, textareaId, mode as FormMode, disabled)}
+        {renderLabel(label, textareaId, mode as FormMode)}
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
           <textarea
             rows={rows}

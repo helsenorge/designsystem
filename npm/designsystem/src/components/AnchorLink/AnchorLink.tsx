@@ -14,7 +14,7 @@ export type AnchorLinkTargets = '_self' | '_blank' | '_parent';
 
 export type AnchorLinkTags = 'a' | 'button';
 
-interface AnchorLinkProps {
+export interface AnchorLinkProps {
   /** Sets the content of the <a> tag */
   children: React.ReactNode;
   /** URL to link to */

@@ -24,7 +24,15 @@
     "build": "vite build",
     "clean": "rimraf lib types",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\"",
-    "generate:tsdefinitions": "tsc --emitDeclarationOnly",
+    "generate:tsdefinitions": "tsc --declaration --emitDeclarationOnly --declarationDir types",
+    "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "eslint:fix": "npm run eslint -- --fix",
+    "stylelint": "stylelint \"src/**/*.{css,scss}\"",
+    "stylelint:fix": "npm run stylelint -- --fix",
+    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
+    "prettier:fix": "npm run prettier -- --write",
+    "pretypecheck": "tsc -v",
+    "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:update": "jest --u"
@@ -40,7 +48,7 @@
     "react-day-picker": "^8.10.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.23.8",
+    "@babel/preset-env": "^7.24.0",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
     "@helsenorge/designsystem-react": "^6.4.0",
@@ -48,11 +56,11 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^14.5.2",
-    "@types/jest": "^29.5.11",
-    "@types/react": "^17.0.75",
-    "@types/react-datepicker": "^4.19.5",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^17.0.76",
+    "@types/react-datepicker": "^6.0.3",
     "@types/react-dom": "^17.0.25",
-    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "babel-jest": "^29.7.0",
     "bootstrap": "^4.6.2",
     "classnames": "^2.5.1",
@@ -61,12 +69,12 @@
     "jest-when": "^3.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.49.3",
+    "react-hook-form": "^7.51.0",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "typed-scss-modules": "^7.1.4",
-    "typescript": "~4.9.5",
-    "vite": "^4.5.2"
+    "typed-scss-modules": "^8.0.0",
+    "typescript": "~5.3.3",
+    "vite": "^5.1.5"
   }
 }

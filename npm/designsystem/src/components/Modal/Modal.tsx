@@ -179,8 +179,8 @@ const Modal = (props: ModalProps): JSX.Element => {
   const dialogClasses = cn(
     props.className,
     styles.modal,
-    styles[`modal--${props.variant}`],
-    styles[`modal--${props.size}`],
+    props.variant && styles[`modal--${props.variant}`],
+    props.size && styles[`modal--${props.size}`],
     contentIsScrollable && !showActions && styles['modal--no-actions']
   );
 
@@ -227,7 +227,7 @@ const Modal = (props: ModalProps): JSX.Element => {
                 </div>
               )}
               <div
-                className={cn(styles[`modal__contentWrapper__scroll--${props.size}`], {
+                className={cn(props.size && styles[`modal__contentWrapper__scroll--${props.size}`], {
                   [styles['modal__contentWrapper__scroll--image']]: imageView,
                 })}
               >
@@ -256,7 +256,7 @@ const Modal = (props: ModalProps): JSX.Element => {
               })}
             />
             {showActions && (
-              <div className={cn(styles['modal__call-to-action'], styles[`modal__call-to-action--${props.size}`])}>
+              <div className={cn(styles['modal__call-to-action'], props.size && styles[`modal__call-to-action--${props.size}`])}>
                 {props.onSuccess && <Button onClick={props.onSuccess}>{props.primaryButtonText}</Button>}
                 {props.secondaryButtonText && props.secondaryButtonText?.length > 0 && (
                   <Button variant="borderless" onClick={props.onClose}>
