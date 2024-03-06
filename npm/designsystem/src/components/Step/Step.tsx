@@ -1,7 +1,5 @@
 import React from 'react';
 
-import classNames from 'classnames';
-
 import { AnalyticsId } from '../../constants';
 import { ButtonProps } from '../Button';
 import StepButtons from '../StepButtons';

@@ -19,7 +19,7 @@ interface DuolistProps {
   /** Label of the Duolist */
   border?: Border;
   /** Label of the Duolist */
-  label?: TitleProps;
+  label?: React.ReactElement<TitleProps>;
   /** Formatted or non-formatted visual variants */
   format?: Formats;
   /** Character separator for non-formatted format */
