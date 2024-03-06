@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { screen, render, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi as jest } from 'vitest';
 
 import * as BreakpointUtils from '../../hooks/useBreakpoint';
 import * as DeviceUtils from '../../utils/device';

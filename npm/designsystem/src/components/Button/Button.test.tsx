@@ -2,6 +2,7 @@ import React from 'react';
 
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi as jest } from 'vitest';
 
 import Button from './Button';
 import Icon from '../Icon';

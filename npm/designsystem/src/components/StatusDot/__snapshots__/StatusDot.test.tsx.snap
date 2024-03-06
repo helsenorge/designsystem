@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at StatusDot rendres  Når StatusDot er variant="attachment". Så skal komponenten ha en SVG-fil. 1`] = `
+exports[`Gitt at StatusDot rendres  > Når StatusDot er variant="attachment". > Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
   <span
     class="statusdot"
@@ -36,7 +36,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="attachment". Så 
 </div>
 `;
 
-exports[`Gitt at StatusDot rendres  Når StatusDot er variant="group". Så skal komponenten ha en SVG-fil. 1`] = `
+exports[`Gitt at StatusDot rendres  > Når StatusDot er variant="group". > Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
   <span
     class="statusdot"
@@ -74,7 +74,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="group". Så skal 
 </div>
 `;
 
-exports[`Gitt at StatusDot rendres  Når StatusDot er variant="noaccess". Så skal komponenten ha en SVG-fil. 1`] = `
+exports[`Gitt at StatusDot rendres  > Når StatusDot er variant="noaccess". > Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
   <span
     class="statusdot"
@@ -111,7 +111,7 @@ exports[`Gitt at StatusDot rendres  Når StatusDot er variant="noaccess". Så sk
 </div>
 `;
 
-exports[`Gitt at StatusDot rendres  Når StatusDot er variant="recurring". Så skal komponenten ha en SVG-fil. 1`] = `
+exports[`Gitt at StatusDot rendres  > Når StatusDot er variant="recurring". > Så skal komponenten ha en SVG-fil. 1`] = `
 <div>
   <span
     class="statusdot"

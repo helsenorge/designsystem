@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at icon skal vises Når icon rendres med Large størrelse Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med Large størrelse > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -22,7 +22,7 @@ exports[`Gitt at icon skal vises Når icon rendres med Large størrelse Så vise
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med Large størrelse og isHovered Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med Large størrelse og isHovered > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -44,7 +44,7 @@ exports[`Gitt at icon skal vises Når icon rendres med Large størrelse og isHov
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med Medium størrelse Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med Medium størrelse > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -66,7 +66,7 @@ exports[`Gitt at icon skal vises Når icon rendres med Medium størrelse Så vis
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med Medium størrelse og isHovered Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med Medium størrelse og isHovered > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -88,7 +88,7 @@ exports[`Gitt at icon skal vises Når icon rendres med Medium størrelse og isHo
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med Small størrelse Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med Small størrelse > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -110,7 +110,7 @@ exports[`Gitt at icon skal vises Når icon rendres med Small størrelse Så vise
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med Small størrelse og isHovered Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med Small størrelse og isHovered > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -132,7 +132,7 @@ exports[`Gitt at icon skal vises Når icon rendres med Small størrelse og isHov
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med XLarge størrelse Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med XLarge størrelse > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -154,7 +154,7 @@ exports[`Gitt at icon skal vises Når icon rendres med XLarge størrelse Så vis
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med XLarge størrelse og isHovered Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med XLarge størrelse og isHovered > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -176,7 +176,7 @@ exports[`Gitt at icon skal vises Når icon rendres med XLarge størrelse og isHo
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med XSmall størrelse Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med XSmall størrelse > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -198,7 +198,7 @@ exports[`Gitt at icon skal vises Når icon rendres med XSmall størrelse Så vis
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med XSmall størrelse og isHovered Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med XSmall størrelse og isHovered > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -220,7 +220,7 @@ exports[`Gitt at icon skal vises Når icon rendres med XSmall størrelse og isHo
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med XXSmall størrelse Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med XXSmall størrelse > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -242,7 +242,7 @@ exports[`Gitt at icon skal vises Når icon rendres med XXSmall størrelse Så vi
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med XXSmall størrelse og isHovered Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med XXSmall størrelse og isHovered > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -264,7 +264,7 @@ exports[`Gitt at icon skal vises Når icon rendres med XXSmall størrelse og isH
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med default størrelse Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med default størrelse > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -286,7 +286,7 @@ exports[`Gitt at icon skal vises Når icon rendres med default størrelse Så vi
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med default størrelse og isHovered Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med default størrelse og isHovered > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -308,7 +308,7 @@ exports[`Gitt at icon skal vises Når icon rendres med default størrelse og isH
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med mindre enn XSmall størrelse Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med mindre enn XSmall størrelse > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -330,7 +330,7 @@ exports[`Gitt at icon skal vises Når icon rendres med mindre enn XSmall større
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med mindre enn XSmall størrelse og isHovered Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med mindre enn XSmall størrelse og isHovered > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -352,7 +352,7 @@ exports[`Gitt at icon skal vises Når icon rendres med mindre enn XSmall større
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med mindre enn XXSmall størrelse Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med mindre enn XXSmall størrelse > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"
@@ -374,7 +374,7 @@ exports[`Gitt at icon skal vises Når icon rendres med mindre enn XXSmall størr
 </div>
 `;
 
-exports[`Gitt at icon skal vises Når icon rendres med mindre enn XXSmall størrelse og isHovered Så vises riktig icon 1`] = `
+exports[`Gitt at icon skal vises > Når icon rendres med mindre enn XXSmall størrelse og isHovered > Så vises riktig icon 1`] = `
 <div>
   <svg
     aria-hidden="true"

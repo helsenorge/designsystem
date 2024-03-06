@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som fluid Så rendres HighlightBox riktig 1`] = `
+exports[`Gitt at HighlightBox skal rendres > Når HighlightBox skal vises som fluid > Så rendres HighlightBox riktig 1`] = `
 <div>
   <div
     class="highlightbox--blueberry highlightbox--fluid"
@@ -12,7 +12,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som flui
 </div>
 `;
 
-exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som large Så rendres HighlightBox riktig 1`] = `
+exports[`Gitt at HighlightBox skal rendres > Når HighlightBox skal vises som large > Så rendres HighlightBox riktig 1`] = `
 <div>
   <div
     class="highlightbox--blueberry highlightbox--large container"
@@ -46,7 +46,7 @@ exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som larg
 </div>
 `;
 
-exports[`Gitt at HighlightBox skal rendres Når HighlightBox skal vises som medium Så rendres HighlightBox riktig 1`] = `
+exports[`Gitt at HighlightBox skal rendres > Når HighlightBox skal vises som medium > Så rendres HighlightBox riktig 1`] = `
 <div>
   <div
     class="highlightbox--blueberry highlightbox--medium container"

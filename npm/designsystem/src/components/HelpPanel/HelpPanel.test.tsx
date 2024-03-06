@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { toBeVisible } from '@testing-library/jest-dom/matchers';
-import { getByDisplayValue, render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { vi as jest } from 'vitest';
 
 import HelpPanel from './HelpPanel';
 import * as BreakpointUtils from '../../hooks/useBreakpoint';
-import HandWaving from '../Icons/HandWaving';
 
 const mockUseBreakpoint = jest.fn();
 jest.spyOn(BreakpointUtils, 'useBreakpoint').mockImplementation(mockUseBreakpoint);

@@ -1,3 +1,5 @@
+import { vi as jest } from 'vitest';
+
 import * as uuidUtils from '../utils/uuid';
 
 const testId = {

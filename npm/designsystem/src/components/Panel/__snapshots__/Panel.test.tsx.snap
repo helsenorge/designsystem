@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at Panel skal vises Gitt at status er draft og statusMessage er satt Så vises panel i draft visning og statusMessage vises med ikon 1`] = `
+exports[`Gitt at Panel skal vises > Gitt at status er draft og statusMessage er satt > Så vises panel i draft visning og statusMessage vises med ikon 1`] = `
 <div
   class="status-message"
   data-testid="display-status"
@@ -28,7 +28,7 @@ exports[`Gitt at Panel skal vises Gitt at status er draft og statusMessage er sa
 </div>
 `;
 
-exports[`Gitt at Panel skal vises Gitt at status er error og statusMessage er satt Så vises panel i error visning og statusMessage vises med ikon 1`] = `
+exports[`Gitt at Panel skal vises > Gitt at status er error og statusMessage er satt > Så vises panel i error visning og statusMessage vises med ikon 1`] = `
 <div
   class="status-message"
   data-testid="display-status"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme dokument Så har expanderne forskjellige IDer 1`] = `
+exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme dokument > Så har expanderne forskjellige IDer 1`] = `
 <div>
   <ul
     class="expander-list"
@@ -105,7 +105,7 @@ exports[`Gitt ExpanderList blir rendret Når det er to ExpanderList i samme doku
 </div>
 `;
 
-exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion er false Sjekk at ExpanderList sitt snapshot matcher 1`] = `
+exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion er false > Sjekk at ExpanderList sitt snapshot matcher 1`] = `
 <div>
   <ul
     class="expander-list"
@@ -250,7 +250,7 @@ exports[`Gitt ExpanderList blir rendret Når det er tre expandere og accordion e
 </div>
 `;
 
-exports[`Gitt ExpanderList blir rendret Når title er JSX Så fungerer expanderen 1`] = `
+exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expanderen 1`] = `
 <div>
   <ul
     class="expander-list"

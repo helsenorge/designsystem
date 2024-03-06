@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold Så ser Dropdown ut slik den skal 1`] = `
+exports[`Gitt at Dropdown skal vises vanlig > Når Dropdownen har vanlig innhold > Så ser Dropdown ut slik den skal 1`] = `
 <div>
   <div
     class="dropdown"
@@ -44,6 +44,7 @@ exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold S
     </button>
     <div
       class="dropdown__content"
+      style="width: 100px;"
     >
       <ul
         aria-labelledby="testid-9"

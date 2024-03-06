@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
+import { vi as jest } from 'vitest';
 
 import Close from './Close';
 

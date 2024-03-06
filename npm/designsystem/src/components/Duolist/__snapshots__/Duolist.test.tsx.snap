@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at Duolist skal vises Når Duolist skal vises vanlig Så rendres den som den skal 1`] = `
+exports[`Gitt at Duolist skal vises > Når Duolist skal vises vanlig > Så rendres den som den skal 1`] = `
 <div>
   <div
     class=""

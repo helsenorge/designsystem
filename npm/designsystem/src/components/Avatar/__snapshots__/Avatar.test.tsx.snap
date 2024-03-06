@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at Avatar skal vises Når selected er false Så vises teksten i Avatar-komponenten 1`] = `
+exports[`Gitt at Avatar skal vises > Når selected er false > Så vises teksten i Avatar-komponenten 1`] = `
 <div>
   <span
     class="avatar avatar--small"
@@ -11,7 +11,7 @@ exports[`Gitt at Avatar skal vises Når selected er false Så vises teksten i Av
 </div>
 `;
 
-exports[`Gitt at Avatar skal vises Når selected er true Så vises ikke teksten 1`] = `
+exports[`Gitt at Avatar skal vises > Når selected er true > Så vises ikke teksten 1`] = `
 <div>
   <span
     class="avatar avatar--selected avatar--small"
@@ -37,7 +37,7 @@ exports[`Gitt at Avatar skal vises Når selected er true Så vises ikke teksten 
 </div>
 `;
 
-exports[`Gitt at Avatar skal vises Når variant er black Så skal komponenten være svart 1`] = `
+exports[`Gitt at Avatar skal vises > Når variant er black > Så skal komponenten være svart 1`] = `
 <div>
   <span
     class="avatar avatar--black avatar--small"
@@ -48,7 +48,7 @@ exports[`Gitt at Avatar skal vises Når variant er black Så skal komponenten v�
 </div>
 `;
 
-exports[`Gitt at Avatar skal vises Når variant er black og selected Så skal bakgrunnen være transparent og fargen på ikon er svart 1`] = `
+exports[`Gitt at Avatar skal vises > Når variant er black og selected > Så skal bakgrunnen være transparent og fargen på ikon er svart 1`] = `
 <div>
   <span
     class="avatar avatar--selected avatar--black avatar--small"

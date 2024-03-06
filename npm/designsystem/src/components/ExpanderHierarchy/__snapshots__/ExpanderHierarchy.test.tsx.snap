@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ExpanderHierarchy gitt at ExpanderHierarchy har en Expander når komponenten rendres med print=true så ser den riktig ut 1`] = `
+exports[`ExpanderHierarchy > gitt at ExpanderHierarchy har en Expander > når komponenten rendres > så ser den riktig ut 1`] = `
 <div>
   <ul
     class="expanderhierarchy"
@@ -10,11 +10,11 @@ exports[`ExpanderHierarchy gitt at ExpanderHierarchy har en Expander når kompon
       class="expander"
     >
       <h2
-        class="expander__title expander__title--1 expander__title--print"
+        class="expander__title expander__title--1"
       >
         <button
           aria-expanded="false"
-          class="expander__button expander__button--print"
+          class="expander__button"
           data-analyticsid="expander-hierarchy-expander"
           type="button"
         >
@@ -47,7 +47,7 @@ exports[`ExpanderHierarchy gitt at ExpanderHierarchy har en Expander når kompon
 </div>
 `;
 
-exports[`ExpanderHierarchy gitt at ExpanderHierarchy har en Expander når komponenten rendres så ser den riktig ut 1`] = `
+exports[`ExpanderHierarchy > gitt at ExpanderHierarchy har en Expander > når komponenten rendres med print=true > så ser den riktig ut 1`] = `
 <div>
   <ul
     class="expanderhierarchy"
@@ -57,11 +57,11 @@ exports[`ExpanderHierarchy gitt at ExpanderHierarchy har en Expander når kompon
       class="expander"
     >
       <h2
-        class="expander__title expander__title--1"
+        class="expander__title expander__title--1 expander__title--print"
       >
         <button
           aria-expanded="false"
-          class="expander__button"
+          class="expander__button expander__button--print"
           data-analyticsid="expander-hierarchy-expander"
           type="button"
         >

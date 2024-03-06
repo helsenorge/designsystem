@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at NotificationPanel skal vises Når bruker ser compact-variant Så vises innhold 1`] = `
+exports[`Gitt at NotificationPanel skal vises > Når bruker ser compact-variant > Så vises innhold 1`] = `
 <div>
   <div
     class="notification-panel notification-panel--info notification-panel__compact notification-panel__compact--basic"
@@ -63,7 +63,7 @@ exports[`Gitt at NotificationPanel skal vises Når bruker ser compact-variant S�
 </div>
 `;
 
-exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles onClick-handleren når man klikker på knappen 1`] = `
+exports[`Gitt at NotificationPanel skal vises > Når panelet kan lukkes > Så kalles onClick-handleren når man klikker på knappen 1`] = `
 <div>
   <div
     class="notification-panel notification-panel--info notification-panel--dismissable"
@@ -130,7 +130,7 @@ exports[`Gitt at NotificationPanel skal vises Når panelet kan lukkes Så kalles
 </div>
 `;
 
-exports[`Gitt at NotificationPanel skal vises Når panelet vises med default props Så rendres komponenten riktig 1`] = `
+exports[`Gitt at NotificationPanel skal vises > Når panelet vises med default props > Så rendres komponenten riktig 1`] = `
 <div>
   <div
     class="notification-panel notification-panel--info"

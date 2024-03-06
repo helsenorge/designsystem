@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at Badge skal vises Når Badge har tekst Så vises teksten 1`] = `
+exports[`Gitt at Badge skal vises > Når Badge har tekst > Så vises teksten 1`] = `
 <div>
   <span
     class="badge"

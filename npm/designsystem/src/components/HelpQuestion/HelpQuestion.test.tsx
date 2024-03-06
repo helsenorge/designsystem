@@ -2,9 +2,9 @@ import React from 'react';
 
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi as jest } from 'vitest';
 
 import HelpQuestion from './HelpQuestion';
-
 describe('Gitt at HelpQuestion skal vises', (): void => {
   describe('Når HelpQuestion vises', (): void => {
     test('Så vises HelpQuestion', (): void => {

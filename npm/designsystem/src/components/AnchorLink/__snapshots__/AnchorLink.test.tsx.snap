@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises med className og id Så rendres AnchorLink riktig 1`] = `
+exports[`Gitt at AnchorLink skal rendres > Gitt at AnchorLink skal vises med className og id > Så rendres AnchorLink riktig 1`] = `
 <div>
   <a
     class="anchorlink custom-classname"
@@ -13,7 +13,7 @@ exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises med class
 </div>
 `;
 
-exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises som external Så rendres AnchorLink riktig 1`] = `
+exports[`Gitt at AnchorLink skal rendres > Gitt at AnchorLink skal vises som external > Så rendres AnchorLink riktig 1`] = `
 <div>
   <a
     class="anchorlink"
@@ -42,7 +42,7 @@ exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises som exter
 </div>
 `;
 
-exports[`Gitt at AnchorLink skal rendres Gitt at AnchorLink skal vises vanlig Så rendres AnchorLink riktig 1`] = `
+exports[`Gitt at AnchorLink skal rendres > Gitt at AnchorLink skal vises vanlig > Så rendres AnchorLink riktig 1`] = `
 <div>
   <a
     class="anchorlink"

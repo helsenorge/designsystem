@@ -1,8 +1,8 @@
-import '@testing-library/jest-dom';
 import React from 'react';
 
 import { screen, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi as jest } from 'vitest';
 
 import Modal, { ModalVariants } from './Modal';
 

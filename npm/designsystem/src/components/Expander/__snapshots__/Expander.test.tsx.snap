@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at Expander skal vises som large, med farge og ikon Når Expanderen vises Så rendres expanderen som den skal 1`] = `
+exports[`Gitt at Expander skal vises som large, med farge og ikon > Når Expanderen vises > Så rendres expanderen som den skal 1`] = `
 <div>
   <div
     class="expander"

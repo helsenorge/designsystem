@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
+exports[`Gitt at button skal vises > Når button rendres > Så vises button 1`] = `
 <div>
   <button
     class="button-wrapper"
@@ -22,7 +22,7 @@ exports[`Gitt at button skal vises Når button rendres Så vises button 1`] = `
 </div>
 `;
 
-exports[`Gitt at button skal vises Når button rendres kun med ikon Så inneholder knappen bare ikon, og ariaLabel kan leses 1`] = `
+exports[`Gitt at button skal vises > Når button rendres kun med ikon > Så inneholder knappen bare ikon, og ariaLabel kan leses 1`] = `
 <div>
   <button
     class="button-wrapper"
@@ -60,7 +60,7 @@ exports[`Gitt at button skal vises Når button rendres kun med ikon Så innehold
 </div>
 `;
 
-exports[`Gitt at button skal vises Når button rendres med ikoner Så vises ikonene 1`] = `
+exports[`Gitt at button skal vises > Når button rendres med ikoner > Så vises ikonene 1`] = `
 <div>
   <button
     class="button-wrapper"

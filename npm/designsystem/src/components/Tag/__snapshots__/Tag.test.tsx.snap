@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at Tag skal vises vanlig Når Tagen vises Så ser den ut slik den skal 1`] = `
+exports[`Gitt at Tag skal vises vanlig > Når Tagen vises > Så ser den ut slik den skal 1`] = `
 <div>
   <span
     class="tag tag--medium tag--blueberry tag--normal"

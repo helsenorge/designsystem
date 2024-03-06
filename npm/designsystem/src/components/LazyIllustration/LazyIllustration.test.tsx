@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { vi as jest } from 'vitest';
 
 import LazyIllustration from './';
 

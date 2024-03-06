@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at det skal ikke vises en valideringsfeil Når ErrorWrapper rendres Så vises ikke valideringsfeil 1`] = `
+exports[`Gitt at det skal ikke vises en valideringsfeil > Når ErrorWrapper rendres > Så vises ikke valideringsfeil 1`] = `
 <div>
   <div
     class="error-wrapper"
@@ -9,7 +9,7 @@ exports[`Gitt at det skal ikke vises en valideringsfeil Når ErrorWrapper rendre
 </div>
 `;
 
-exports[`Gitt at det skal vises en valideringsfeil Når ErrorWrapper rendres Så vises Valideringsfeilen 1`] = `
+exports[`Gitt at det skal vises en valideringsfeil > Når ErrorWrapper rendres > Så vises Valideringsfeilen 1`] = `
 <div>
   <div
     class="error-wrapper error-wrapper--with-error"

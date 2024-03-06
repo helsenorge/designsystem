@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at List skal vises Når komponenten har fire elementer Så vises fire liste-elementer 1`] = `
+exports[`Gitt at List skal vises > Når komponenten har fire elementer > Så vises fire liste-elementer 1`] = `
 <div>
   <ul
     class="list list--bullet"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at Title skal rendres Gitt at Title skal vises vanlig Så rendres Title riktig 1`] = `
+exports[`Gitt at Title skal rendres > Gitt at Title skal vises vanlig > Så rendres Title riktig 1`] = `
 <div>
   <h1
     class="title title--title1"

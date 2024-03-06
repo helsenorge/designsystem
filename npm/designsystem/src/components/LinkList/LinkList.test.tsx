@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi as jest } from 'vitest';
 
 import LinkList from './LinkList';
 import Icon from '../Icon';

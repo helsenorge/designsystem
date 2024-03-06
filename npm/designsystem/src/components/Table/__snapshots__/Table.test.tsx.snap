@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at Table skal vises Når den skal vises Så vises en tabell 1`] = `
+exports[`Gitt at Table skal vises > Når den skal vises > Så vises en tabell 1`] = `
 <div>
   <table
     class="table"
@@ -52,7 +52,7 @@ exports[`Gitt at Table skal vises Når den skal vises Så vises en tabell 1`] = 
 </div>
 `;
 
-exports[`Når den skal vises med blokk-visning på md skjerm Når breakpoint er lg Så vises en tabell uten responsiv visning 1`] = `
+exports[`Når den skal vises med blokk-visning på md skjerm > Når breakpoint er lg > Så vises en tabell uten responsiv visning 1`] = `
 <div>
   <table
     class="table"
@@ -104,7 +104,7 @@ exports[`Når den skal vises med blokk-visning på md skjerm Når breakpoint er 
 </div>
 `;
 
-exports[`Når den skal vises med blokk-visning på md skjerm Når breakpoint er md Så vises en tabell 1`] = `
+exports[`Når den skal vises med blokk-visning på md skjerm > Når breakpoint er md > Så vises en tabell 1`] = `
 <div>
   <table
     class="table table--block-md"
@@ -156,7 +156,7 @@ exports[`Når den skal vises med blokk-visning på md skjerm Når breakpoint er 
 </div>
 `;
 
-exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når breakpoint er lg Når tabell er smalere enn skjermen Så vises en tabell med responsiv visning 1`] = `
+exports[`Når den skal vises med centeredoverflow-visning på lg skjerm > Når breakpoint er lg > Når tabell er smalere enn skjermen > Så vises en tabell med responsiv visning 1`] = `
 <div>
   <table
     class="table table--centeredoverflow-lg"
@@ -208,7 +208,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når bre
 </div>
 `;
 
-exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når fallback er horizontalscroll Når touch ikke er støttet Så vises en tabell uten responsiv visning 1`] = `
+exports[`Når den skal vises med centeredoverflow-visning på lg skjerm > Når fallback er horizontalscroll > Når touch ikke er støttet > Så vises en tabell uten responsiv visning 1`] = `
 <div>
   <table
     class="table"
@@ -260,7 +260,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når fal
 </div>
 `;
 
-exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tabell er bredere enn skjermen Når fallback er block Så vises en tabell med responsiv visning 1`] = `
+exports[`Når den skal vises med centeredoverflow-visning på lg skjerm > Når tabell er bredere enn skjermen > Når fallback er block > Så vises en tabell med responsiv visning 1`] = `
 <div>
   <table
     class="table table--block-lg"
@@ -312,7 +312,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tab
 </div>
 `;
 
-exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tabell er bredere enn skjermen Når ingen fallback er definert Så vises en tabell uten responsiv visning 1`] = `
+exports[`Når den skal vises med centeredoverflow-visning på lg skjerm > Når tabell er bredere enn skjermen > Når ingen fallback er definert > Så vises en tabell uten responsiv visning 1`] = `
 <div>
   <table
     class="table"
@@ -364,7 +364,7 @@ exports[`Når den skal vises med centeredoverflow-visning på lg skjerm Når tab
 </div>
 `;
 
-exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når touch er støttet Når breakpoint er lg Så vises en tabell uten responsiv visning 1`] = `
+exports[`Når den skal vises med horizontalscroll-visning på md skjerm > Når touch er støttet > Når breakpoint er lg > Så vises en tabell uten responsiv visning 1`] = `
 <div>
   <table
     class="table"
@@ -416,7 +416,7 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
 </div>
 `;
 
-exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når touch er støttet Når breakpoint er md Så vises en tabell med responsiv visning 1`] = `
+exports[`Når den skal vises med horizontalscroll-visning på md skjerm > Når touch er støttet > Når breakpoint er md > Så vises en tabell med responsiv visning 1`] = `
 <div>
   <div
     class="horizontalscroll"
@@ -488,7 +488,7 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
 </div>
 `;
 
-exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når touch ikke er støttet Når fallback er block Så vises en tabell med responsiv visning 1`] = `
+exports[`Når den skal vises med horizontalscroll-visning på md skjerm > Når touch ikke er støttet > Når fallback er block > Så vises en tabell med responsiv visning 1`] = `
 <div>
   <table
     class="table table--block-md"
@@ -540,7 +540,7 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
 </div>
 `;
 
-exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når touch ikke er støttet Når fallback er centeredoverflow Når tabell er bredere enn skjermen Så vises en tabell uten responsiv visning 1`] = `
+exports[`Når den skal vises med horizontalscroll-visning på md skjerm > Når touch ikke er støttet > Når fallback er centeredoverflow > Når tabell er bredere enn skjermen > Så vises en tabell uten responsiv visning 1`] = `
 <div>
   <table
     class="table"
@@ -592,7 +592,7 @@ exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når tou
 </div>
 `;
 
-exports[`Når den skal vises med horizontalscroll-visning på md skjerm Når touch ikke er støttet Når ingen fallback er definert Så vises en tabell uten responsiv visning 1`] = `
+exports[`Når den skal vises med horizontalscroll-visning på md skjerm > Når touch ikke er støttet > Når ingen fallback er definert > Så vises en tabell uten responsiv visning 1`] = `
 <div>
   <table
     class="table"

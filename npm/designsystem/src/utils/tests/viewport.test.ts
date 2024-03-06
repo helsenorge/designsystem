@@ -1,3 +1,5 @@
+import { vi as jest } from 'vitest';
+
 import { isElementInViewport } from '../viewport';
 
 const originalInnerHeight = window.innerHeight;

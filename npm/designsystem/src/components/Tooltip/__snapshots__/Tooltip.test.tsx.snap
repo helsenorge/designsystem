@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at Tooltip skal vises  Når komponenten får en tekst Så rendres den riktig 1`] = `
+exports[`Gitt at Tooltip skal vises  > Når komponenten får en tekst > Så rendres den riktig 1`] = `
 <div>
   <button
     aria-describedby="test"
@@ -14,6 +14,7 @@ exports[`Gitt at Tooltip skal vises  Når komponenten får en tekst Så rendres 
     data-analyticsid="pop-over"
     id="test"
     role="tooltip"
+    style="right: 12px; top: 16px; width: -24px;"
   >
     <div
       class="helpbubble"
@@ -27,7 +28,8 @@ exports[`Gitt at Tooltip skal vises  Når komponenten får en tekst Så rendres 
     </div>
   </div>
   <div
-    class="popover__arrow"
+    class="popover__arrow popover__arrow--over"
+    style="right: 24px; top: 0px;"
   />
 </div>
 `;

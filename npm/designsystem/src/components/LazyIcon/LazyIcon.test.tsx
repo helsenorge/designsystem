@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { vi as jest } from 'vitest';
 
 import LazyIcon from '../LazyIcon';
-
 describe('Gitt at LazyIcon skal vises', (): void => {
   beforeAll(() => {
     jest.spyOn(console, 'error').mockImplementation(() => {

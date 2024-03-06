@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at en PopMenu vises  Når den rendrer Så skal den kun vises 1`] = `
+exports[`Gitt at en PopMenu vises  > Når den rendrer > Så skal den kun vises 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>

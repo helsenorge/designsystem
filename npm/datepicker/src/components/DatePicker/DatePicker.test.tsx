@@ -2,6 +2,7 @@ import React from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import { parse } from 'date-fns';
+import { vi as jest } from 'vitest';
 
 import DatePicker from './DatePicker';
 import DateTime from './DateTime';

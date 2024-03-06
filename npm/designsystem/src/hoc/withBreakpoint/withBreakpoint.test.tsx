@@ -2,6 +2,7 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 import { when } from 'jest-when';
+import { vi as jest } from 'vitest';
 
 import { BreakpointProps, withBreakpoint } from './withBreakpoint';
 import { mockWindowMatchMedia } from '../../__mocks__/matchMedia';

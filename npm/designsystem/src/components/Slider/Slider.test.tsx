@@ -2,6 +2,7 @@ import React from 'react';
 
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi as jest } from 'vitest';
 
 import { Slider } from './Slider';
 
@@ -32,7 +33,7 @@ describe('Gitt at Slider skal vises', (): void => {
       const optionRight = screen.getByText('Viktig');
       expect(optionRight).toBeVisible();
 
-      const slider = screen.getByRole('slider', { name: 'Hvor viktig er det for deg? Ikke viktig Viktig' });
+      const slider = screen.getByRole('slider', { name: 'Hvor viktig er det for deg?' });
       expect(slider).toHaveClass('slider__marker');
     });
   });
