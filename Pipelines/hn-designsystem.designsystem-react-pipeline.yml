@@ -28,8 +28,6 @@ variables:
     value: npm/designsystem
   - name: sonarqube_endpoint
     value: 'https://sonarqube.int-hn.nhn.no'
-  - name: BROWSERSLIST_IGNORE_OLD_DATA
-    value: true
   - name: HUSKY
     value: 0
 
