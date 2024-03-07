@@ -33,3 +33,4 @@ UserInterfaceState.xcuserstate
 .cache
 .nx
 test-report.xml
+.nyc_output

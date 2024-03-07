@@ -24,8 +24,8 @@ variables:
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
     value: .
-  - name: package_directory
-    value: npm/designsystem
+  - name: packages_directory
+    value: npm
   - name: sonarqube_endpoint
     value: 'https://sonarqube.int-hn.nhn.no'
   - name: HUSKY
@@ -50,13 +50,13 @@ stages:
               cliProjectName: $(project_name)
               configMode: manual
               extraProperties: |
-                sonar.sources=$(package_directory)/
-                sonar.tests=$(package_directory)/
-                sonar.test.inclusions=$(package_directory)/**/*.test.tsx
+                sonar.sources=$(packages_directory)/
+                sonar.tests=$(packages_directory)/
+                sonar.test.inclusions=$(packages_directory)/**/*.test.tsx
                 sonar.exclusions=**/*.test.tsx
                 sonar.coverage.exclusions=**/__*__/**/*,**/*.config.js,*.stories.tsx
-                sonar.javascript.lcov.reportPaths=$(package_directory)/coverage/lcov.info
-                sonar.typescript.tsconfigPath=$(package_directory)/tsconfig.json
+                sonar.javascript.lcov.reportPaths=$(working_directory)/coverage/lcov.info
+                sonar.typescript.tsconfigPath=$(working_directory)/tsconfig.json
 
           # Install node version
           - task: NodeTool@0
@@ -167,13 +167,14 @@ stages:
           - task: PublishTestResults@2
             displayName: 'Publish test results'
             inputs:
-              testResultsFiles: '$(package_directory)/test-report.xml'
+              testResultsFiles: 'npm/*/test-report.xml'
+              mergeTestResults: true
             condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
           - task: PublishCodeCoverageResults@1
             displayName: 'Publish code coverage'
             inputs:
               codeCoverageTool: Cobertura
-              summaryFileLocation: '$(package_directory)/coverage/cobertura-coverage.xml'
+              summaryFileLocation: 'npm/*/coverage/cobertura-coverage.xml'
             condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
 
           # Run Code Analysis task

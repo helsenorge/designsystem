@@ -11,7 +11,7 @@ export default defineConfig({
       },
     },
     coverage: {
-      reporter: ['cobertura', 'lcov', 'json'],
+      reporter: ['cobertura', 'json'],
     },
     reporters: ['junit'],
     outputFile: {
