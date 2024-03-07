@@ -8,7 +8,7 @@
 .input-wrapper {
   @include input-wrapper;
 
-  margin: getSpacer(l) 0;
+  margin: getSpacer('l') 0;
 }
 
 .input-wrapper:first-of-type {
@@ -47,12 +47,12 @@
   }
 
   &--with-icon#{&}--large {
-    padding: getSpacer(2xs) 0;
+    padding: getSpacer('2xs') 0;
   }
 
   &__input {
-    line-height: getSpacer(m);
-    height: getSpacer(m);
+    line-height: getSpacer('m');
+    height: getSpacer('m');
 
     &--large {
       height: 2.5rem;

@@ -19,7 +19,7 @@
 
   &__date-picker {
     flex: 100%;
-    margin-right: getSpacer(l);
+    margin-right: getSpacer('l');
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
       flex: unset;
@@ -29,7 +29,7 @@
   &__legend {
     @include legend;
 
-    margin-bottom: getSpacer(m);
+    margin-bottom: getSpacer('m');
     margin-top: 0;
   }
 }
@@ -37,7 +37,7 @@
 .time-separator {
   display: flex;
   align-items: center;
-  padding: 0 getSpacer(2xs);
+  padding: 0 getSpacer('2xs');
 }
 
 .datepicker-popup-container {
@@ -104,11 +104,11 @@
 // Overstyrer klasser til datedaypicker pakken https://github.com/gpbl/react-day-picker/blob/main/src/style.css
 /* stylelint-disable */
 .root {
-  --rdp-cell-size: getSpacer(l);
+  --rdp-cell-size: getSpacer('l');
   --rdp-background-color: #e7edff;
 
   background-color: $white;
-  padding: getSpacer(s) getSpacer(s) getSpacer(xs);
+  padding: getSpacer('s') getSpacer('s') getSpacer('xs');
   border: 2px solid $blueberry500;
 }
 
@@ -118,13 +118,13 @@
 
 .table {
   width: 100%;
-  margin: 0 getSpacer(3xs) * -1 getSpacer(4xs) * -1;
-  border-spacing: getSpacer(3xs) getSpacer(4xs);
+  margin: 0 getSpacer('3xs') * -1 getSpacer('4xs') * -1;
+  border-spacing: getSpacer('3xs') getSpacer('4xs');
   border-collapse: separate;
 
   @media (min-width: map.get($grid-breakpoints, sm)) {
-    margin: 0 getSpacer(xs) * -1 getSpacer(3xs) * -1;
-    border-spacing: getSpacer(xs) getSpacer(3xs);
+    margin: 0 getSpacer('xs') * -1 getSpacer('3xs') * -1;
+    border-spacing: getSpacer('xs') getSpacer('3xs');
   }
 }
 
@@ -146,9 +146,9 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: getSpacer(l);
-  max-width: getSpacer(l);
-  height: getSpacer(l);
+  width: getSpacer('l');
+  max-width: getSpacer('l');
+  height: getSpacer('l');
   margin: 0;
   border: 2px solid transparent;
   border-radius: 0;
@@ -268,7 +268,7 @@
 }
 
 .dropdown_month {
-  margin-right: getSpacer(2xs);
+  margin-right: getSpacer('2xs');
 }
 
 .nav_button {
@@ -281,7 +281,7 @@
   border-radius: 0;
 
   &[disabled] {
-    margin-left: getSpacer(xs);
+    margin-left: getSpacer('xs');
   }
 
   &:focus-visible:not([disabled]),
@@ -298,6 +298,6 @@
 .nav_button_next,
 .nav_button_next[disabled],
 .nav_button_next[disabled]:not(.day_selected) {
-  margin-left: getSpacer(2xs);
+  margin-left: getSpacer('2xs');
 }
 /* stylelint-enable */

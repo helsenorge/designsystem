@@ -5,18 +5,18 @@
 @import '../../scss/font-settings';
 
 @mixin panel-padding {
-  padding: getSpacer(s) getSpacer(s) getSpacer(s) getSpacer(s);
+  padding: getSpacer('s') getSpacer('s') getSpacer('s') getSpacer('s');
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    padding: getSpacer(l) getSpacer(m) getSpacer(l) getSpacer(l);
+    padding: getSpacer('l') getSpacer('m') getSpacer('l') getSpacer('l');
   }
 }
 
 @mixin panel-padding-icon {
-  padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
+  padding: getSpacer('m') getSpacer('s') getSpacer('l') getSpacer('s');
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
+    padding: getSpacer('m') getSpacer('m') getSpacer('l') getSpacer('m');
   }
 }
 
@@ -30,8 +30,8 @@
   }
 }
 
-$layout-sm-gap: getSpacer(s);
-$layout-md-col-gap: getSpacer(m);
+$layout-sm-gap: getSpacer('s');
+$layout-md-col-gap: getSpacer('m');
 
 .panel-wrapper {
   width: 100%;
@@ -173,13 +173,13 @@ $layout-md-col-gap: getSpacer(m);
     &--layout-2 {
       @media (min-width: map.get($grid-breakpoints, md)) {
         grid-row: span 2;
-        padding-right: getSpacer(2xs);
+        padding-right: getSpacer('2xs');
       }
     }
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
       grid-row: span 2;
-      padding-right: getSpacer(2xs);
+      padding-right: getSpacer('2xs');
     }
 
     &--layout-3 {
@@ -334,7 +334,7 @@ $layout-md-col-gap: getSpacer(m);
 }
 
 .title-container {
-  padding-bottom: getSpacer(s);
+  padding-bottom: getSpacer('s');
 
   &--no-content-a {
     padding-bottom: 0;
@@ -345,7 +345,7 @@ $layout-md-col-gap: getSpacer(m);
     display: inline;
 
     &--badge {
-      padding-right: getSpacer(2xs);
+      padding-right: getSpacer('2xs');
     }
   }
 }
@@ -380,7 +380,7 @@ $layout-md-col-gap: getSpacer(m);
   font-size: $font-size-sm;
   color: $cherry500;
   display: flex;
-  margin-bottom: getSpacer(2xs) * -1;
+  margin-bottom: getSpacer('2xs') * -1;
   grid-column: 1 / -1;
 
   span {
@@ -403,23 +403,23 @@ $layout-md-col-gap: getSpacer(m);
   flex-direction: column;
 
   @media (min-width: map.get($grid-breakpoints, lg)) {
-    padding-top: getSpacer(xs);
+    padding-top: getSpacer('xs');
     flex-direction: row;
   }
 
   &__icon {
     display: flex;
     align-items: center;
-    padding-bottom: getSpacer(2xs);
+    padding-bottom: getSpacer('2xs');
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
       padding-top: 0;
-      padding-right: getSpacer(m);
+      padding-right: getSpacer('m');
       padding-bottom: 0;
     }
 
     span {
-      padding-left: getSpacer(2xs);
+      padding-left: getSpacer('2xs');
       font-size: $font-size-sm;
     }
   }

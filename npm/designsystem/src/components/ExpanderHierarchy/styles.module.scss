@@ -8,10 +8,10 @@
   margin: 0;
 
   &--2 {
-    margin-top: getSpacer(xl);
+    margin-top: getSpacer('xl');
   }
 
   &--3-and-lower {
-    margin-top: getSpacer(m);
+    margin-top: getSpacer('m');
   }
 }

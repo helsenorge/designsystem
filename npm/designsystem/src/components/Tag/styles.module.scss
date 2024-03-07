@@ -110,7 +110,7 @@
   }
 
   &--medium {
-    padding: 0 getSpacer(xs);
+    padding: 0 getSpacer('xs');
     min-height: 26px;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
@@ -118,28 +118,28 @@
     }
 
     &#{$tag}--has-icon {
-      padding: 0 getSpacer(xs) 0 6px;
+      padding: 0 getSpacer('xs') 0 6px;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(4xs) getSpacer(xs) getSpacer(4xs) 6px;
+        padding: getSpacer('4xs') getSpacer('xs') getSpacer('4xs') 6px;
       }
     }
 
     &#{$tag}--has-action {
-      padding: 0 getSpacer(3xs) 0 getSpacer(xs);
+      padding: 0 getSpacer('3xs') 0 getSpacer('xs');
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(4xs) getSpacer(3xs) getSpacer(4xs) getSpacer(xs);
+        padding: getSpacer('4xs') getSpacer('3xs') getSpacer('4xs') getSpacer('xs');
       }
     }
 
     #{$tag}__icon {
-      margin-right: getSpacer(4xs);
+      margin-right: getSpacer('4xs');
     }
   }
 
   &--large {
-    padding: 0 getSpacer(xs);
+    padding: 0 getSpacer('xs');
     min-height: 30px;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
@@ -147,26 +147,26 @@
     }
 
     &#{$tag}--has-icon {
-      padding: getSpacer(4xs) getSpacer(xs) getSpacer(4xs) 6px;
+      padding: getSpacer('4xs') getSpacer('xs') getSpacer('4xs') 6px;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(3xs) getSpacer(xs) getSpacer(3xs) getSpacer(2xs);
+        padding: getSpacer('3xs') getSpacer('xs') getSpacer('3xs') getSpacer('2xs');
       }
     }
 
     &#{$tag}--has-action {
-      padding: getSpacer(4xs) getSpacer(3xs) getSpacer(4xs) getSpacer(xs);
+      padding: getSpacer('4xs') getSpacer('3xs') getSpacer('4xs') getSpacer('xs');
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(3xs) getSpacer(2xs) getSpacer(3xs) getSpacer(xs);
+        padding: getSpacer('3xs') getSpacer('2xs') getSpacer('3xs') getSpacer('xs');
       }
     }
 
     #{$tag}__icon {
-      margin-right: getSpacer(4xs);
+      margin-right: getSpacer('4xs');
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        margin-right: getSpacer(3xs);
+        margin-right: getSpacer('3xs');
       }
     }
   }

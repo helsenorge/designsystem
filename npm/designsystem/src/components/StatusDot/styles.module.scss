@@ -25,8 +25,8 @@ $status-dot-size: 0.937rem;
   }
 
   &__dot {
-    top: getSpacer(3xs);
-    margin-right: getSpacer(2xs);
+    top: getSpacer('3xs');
+    margin-right: getSpacer('2xs');
     border-radius: 10rem;
     margin-top: 0.28rem;
 
@@ -64,13 +64,13 @@ $status-dot-size: 0.937rem;
 
     &--icon {
       position: absolute;
-      margin: getSpacer(4xs) * -1 0 0 getSpacer(3xs) * -1;
+      margin: getSpacer('4xs') * -1 0 0 getSpacer('3xs') * -1;
     }
   }
 
   &__label {
     &--icon {
-      margin-left: getSpacer(m);
+      margin-left: getSpacer('m');
     }
 
     &--on-dark {

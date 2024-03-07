@@ -56,7 +56,7 @@
   background-color: transparent;
   grid-column: 1 / 3;
   grid-row: 1;
-  padding-left: getSpacer(xs);
+  padding-left: getSpacer('xs');
   border: none;
   outline: $neutral700 solid 2px;
   outline-offset: -2px;

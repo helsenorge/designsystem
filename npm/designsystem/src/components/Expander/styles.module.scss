@@ -21,22 +21,22 @@
     align-items: center;
 
     &--left {
-      margin-right: getSpacer(2xs);
+      margin-right: getSpacer('2xs');
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        margin-right: getSpacer(s);
+        margin-right: getSpacer('s');
       }
     }
 
     &--right {
       margin-left: auto;
-      padding-left: getSpacer(2xs);
+      padding-left: getSpacer('2xs');
     }
   }
 
   &__button {
     position: relative;
-    padding-right: getSpacer(s);
+    padding-right: getSpacer('s');
     text-align: left;
 
     &:hover {
@@ -68,18 +68,18 @@
 
     &--large {
       width: 100%;
-      padding: getSpacer(xs) getSpacer(2xs) getSpacer(xs) getSpacer(s);
+      padding: getSpacer('xs') getSpacer('2xs') getSpacer('xs') getSpacer('s');
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(xs) getSpacer(s) getSpacer(xs) getSpacer(l);
+        padding: getSpacer('xs') getSpacer('s') getSpacer('xs') getSpacer('l');
       }
     }
 
     &--icon {
-      padding-left: getSpacer(2xs);
+      padding-left: getSpacer('2xs');
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding-left: getSpacer(s);
+        padding-left: getSpacer('s');
       }
     }
 
@@ -162,11 +162,11 @@
     }
 
     &--small {
-      margin-top: getSpacer(s);
+      margin-top: getSpacer('s');
     }
 
     &--nested-line {
-      padding-left: getSpacer(s);
+      padding-left: getSpacer('s');
       border-left: solid 3px $neutral200;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
@@ -178,10 +178,10 @@
     }
 
     &--large {
-      padding: getSpacer(s) getSpacer(m) getSpacer(l) getSpacer(s);
+      padding: getSpacer('s') getSpacer('m') getSpacer('l') getSpacer('s');
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(m) getSpacer(l) getSpacer(xl) getSpacer(l);
+        padding: getSpacer('m') getSpacer('l') getSpacer('xl') getSpacer('l');
       }
       &#{$content}--icon {
         @media (min-width: map.get($grid-breakpoints, md)) {

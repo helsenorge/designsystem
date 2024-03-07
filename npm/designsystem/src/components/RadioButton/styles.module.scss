@@ -13,28 +13,28 @@
 
 .radio-button-wrapper {
   cursor: pointer;
-  margin: getSpacer(s) 0;
+  margin: getSpacer('s') 0;
 
   &--with-error {
-    padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
+    padding: getSpacer('s') getSpacer('2xs') getSpacer('m');
     background-color: $cherry100;
     margin-left: -0.75rem;
     border-left: 0.25rem solid $cherry600;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      padding: getSpacer(s) getSpacer(m) getSpacer(l);
+      padding: getSpacer('s') getSpacer('m') getSpacer('l');
     }
   }
 
   &--with-error#{&}__large {
-    padding: getSpacer(m) getSpacer(m);
+    padding: getSpacer('m') getSpacer('m');
   }
 
   &__large {
-    margin: getSpacer(2xs) 0 getSpacer(2xs) 0;
+    margin: getSpacer('2xs') 0 getSpacer('2xs') 0;
 
     &--focused {
-      box-shadow: 0 0 0 getSpacer(3xs);
+      box-shadow: 0 0 0 getSpacer('3xs');
       color: $neutral500;
     }
     &--focused#{&}--on-blueberry {
@@ -79,7 +79,7 @@
   }
 
   &__large {
-    padding: getSpacer(s);
+    padding: getSpacer('s');
     background-color: $neutral50;
 
     &:hover {
@@ -176,7 +176,7 @@
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     &__large {
-      padding: 1.68rem getSpacer(l);
+      padding: 1.68rem getSpacer('l');
     }
   }
 }
@@ -188,27 +188,27 @@
   justify-content: center;
   align-items: center;
   border-radius: 10rem;
-  margin: 0 getSpacer(s) 0 0;
+  margin: 0 getSpacer('s') 0 0;
   height: 1.5rem;
   width: 1.5rem;
   min-height: 1.5rem;
   min-width: 1.5rem;
   color: $neutral700;
-  box-shadow: 0 0 0 getSpacer(4xs);
+  box-shadow: 0 0 0 getSpacer('4xs');
   outline: none;
 
   &:focus {
-    box-shadow: 0 0 0 getSpacer(3xs);
+    box-shadow: 0 0 0 getSpacer('3xs');
     color: $black;
   }
 
   &:hover {
-    box-shadow: 0 0 0 getSpacer(3xs);
+    box-shadow: 0 0 0 getSpacer('3xs');
     background-color: $neutral100;
   }
 
   :active > & {
-    box-shadow: 0 0 0 getSpacer(3xs);
+    box-shadow: 0 0 0 getSpacer('3xs');
     color: $black;
   }
 
@@ -216,12 +216,12 @@
     color: $blueberry500;
 
     &:hover {
-      box-shadow: 0 0 0 getSpacer(4xs);
+      box-shadow: 0 0 0 getSpacer('4xs');
       background-color: $blueberry50;
     }
 
     &:focus {
-      box-shadow: 0 0 0 getSpacer(3xs);
+      box-shadow: 0 0 0 getSpacer('3xs');
       color: $black;
     }
   }
@@ -239,7 +239,7 @@
 
     &:hover {
       background-color: $inverted-hover-old;
-      box-shadow: 0 0 0 getSpacer(3xs);
+      box-shadow: 0 0 0 getSpacer('3xs');
     }
 
     &:focus {
@@ -247,7 +247,7 @@
     }
 
     :active > & {
-      box-shadow: 0 0 0 getSpacer(3xs);
+      box-shadow: 0 0 0 getSpacer('3xs');
       color: $white;
     }
 
@@ -294,7 +294,7 @@
     background-color: $neutral50;
 
     &:hover {
-      box-shadow: 0 0 0 getSpacer(4xs);
+      box-shadow: 0 0 0 getSpacer('4xs');
       background-color: $neutral50;
     }
 
@@ -310,7 +310,7 @@
       color: $neutral600;
 
       &:hover {
-        box-shadow: 0 0 0 getSpacer(4xs);
+        box-shadow: 0 0 0 getSpacer('4xs');
         background-color: $neutral50;
       }
     }
@@ -353,11 +353,11 @@
     }
 
     &:hover {
-      box-shadow: 0 0 0 getSpacer(3xs);
+      box-shadow: 0 0 0 getSpacer('3xs');
     }
 
     &:focus {
-      box-shadow: 0 0 0 getSpacer(3xs);
+      box-shadow: 0 0 0 getSpacer('3xs');
       color: $black;
     }
 
@@ -370,12 +370,12 @@
     }
 
     &:checked:hover {
-      box-shadow: 0 0 0 getSpacer(4xs);
+      box-shadow: 0 0 0 getSpacer('4xs');
       background-color: unset;
     }
 
     &:checked:hover:focus {
-      box-shadow: 0 0 0 getSpacer(3xs);
+      box-shadow: 0 0 0 getSpacer('3xs');
       color: $white;
     }
 
@@ -403,11 +403,11 @@
 
     &--disabled {
       &:hover {
-        box-shadow: 0 0 0 getSpacer(4xs);
+        box-shadow: 0 0 0 getSpacer('4xs');
       }
 
       &:focus {
-        box-shadow: 0 0 0 getSpacer(4xs);
+        box-shadow: 0 0 0 getSpacer('4xs');
       }
     }
   }

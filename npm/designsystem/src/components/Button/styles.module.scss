@@ -7,25 +7,25 @@
 
 $dark-mode-disabled-transparrent: #ffffffb3;
 $with-icons: // icon-class, size-class, padding-left, padding-right, padding-left desktop, padding-right desktop, svg-margin-left, svg-margin-right, svg-margin-left desktop, svg-margin-right desktop
-  'left-icon' 'normal' getSpacer('xs') getSpacer(s) getSpacer(xs) getSpacer(m) 0 getSpacer(3xs) 0 getSpacer(2xs),
-  'right-icon' 'normal' getSpacer(s) getSpacer(xs) getSpacer(m) getSpacer(xs) getSpacer(3xs) 0 getSpacer(2xs) 0,
-  'left-icon' 'large' getSpacer(xs) getSpacer(m) getSpacer(s) getSpacer(l) 0 getSpacer(2xs) 0 getSpacer(xs),
-  'right-icon' 'large' getSpacer(m) getSpacer(xs) getSpacer(l) getSpacer(s) getSpacer(2xs) 0 getSpacer(xs) 0,
-  'arrow' 'normal' getSpacer(s) getSpacer(xs) getSpacer(m) getSpacer(xs) getSpacer(m) 0 getSpacer(l) 0,
-  'arrow' 'large' getSpacer(m) getSpacer(xs) getSpacer(l) getSpacer(xs) getSpacer(l) 0 getSpacer(xl) 0,
-  'arrow--both-icons' 'normal' 0 0 0 0 getSpacer(s) 0 getSpacer(m) 0,
-  'arrow--both-icons' 'large' 0 0 0 0 getSpacer(m) 0 getSpacer(l) 0,
+  'left-icon' 'normal' getSpacer('xs') getSpacer('s') getSpacer('xs') getSpacer('m') 0 getSpacer('3xs') 0 getSpacer('2xs'),
+  'right-icon' 'normal' getSpacer('s') getSpacer('xs') getSpacer('m') getSpacer('xs') getSpacer('3xs') 0 getSpacer('2xs') 0,
+  'left-icon' 'large' getSpacer('xs') getSpacer('m') getSpacer('s') getSpacer('l') 0 getSpacer('2xs') 0 getSpacer('xs'),
+  'right-icon' 'large' getSpacer('m') getSpacer('xs') getSpacer('l') getSpacer('s') getSpacer('2xs') 0 getSpacer('xs') 0,
+  'arrow' 'normal' getSpacer('s') getSpacer('xs') getSpacer('m') getSpacer('xs') getSpacer('m') 0 getSpacer('l') 0,
+  'arrow' 'large' getSpacer('m') getSpacer('xs') getSpacer('l') getSpacer('xs') getSpacer('l') 0 getSpacer('xl') 0,
+  'arrow--both-icons' 'normal' 0 0 0 0 getSpacer('s') 0 getSpacer('m') 0,
+  'arrow--both-icons' 'large' 0 0 0 0 getSpacer('m') 0 getSpacer('l') 0,
   'only-icon' 'normal' 0.062rem 0.062rem 0.375rem 0.375rem 0 0 0 0,
-  'only-icon' 'large' 0.312rem 0.312rem getSpacer(3xs) getSpacer(3xs) 0 0 0 0,
-  'both-icons' 'normal' getSpacer(xs) getSpacer(xs) getSpacer(xs) getSpacer(xs) 0 0 0 0,
-  'both-icons' 'large' getSpacer(xs) getSpacer(xs) getSpacer(xs) getSpacer(xs) 0 0 0 0;
+  'only-icon' 'large' 0.312rem 0.312rem getSpacer('3xs') getSpacer('3xs') 0 0 0 0,
+  'both-icons' 'normal' getSpacer('xs') getSpacer('xs') getSpacer('xs') getSpacer('xs') 0 0 0 0,
+  'both-icons' 'large' getSpacer('xs') getSpacer('xs') getSpacer('xs') getSpacer('xs') 0 0 0 0;
 
 @mixin focus-shadow {
   box-shadow: 0 0 0 getSpacer('3xs') $black;
 }
 
 @mixin focus-shadow-on-dark {
-  box-shadow: 0 0 0 getSpacer(3xs) $white;
+  box-shadow: 0 0 0 getSpacer('3xs') $white;
 }
 
 @mixin outline-borderless($background-color) {
@@ -41,8 +41,8 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 }
 
 @mixin outline($ouline-color, $hover-outline-color) {
-  outline: getSpacer(4xs) solid $ouline-color;
-  outline-offset: getSpacer(4xs) * -1;
+  outline: getSpacer('4xs') solid $ouline-color;
+  outline-offset: getSpacer('4xs') * -1;
 
   &:hover {
     box-shadow: none;
@@ -187,7 +187,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 .button {
   display: inline-flex;
   background-color: $blueberry500;
-  padding: 0 getSpacer(m);
+  padding: 0 getSpacer('m');
   font-size: $font-size-sm;
   font-weight: 600;
   font-family: inherit;
@@ -203,13 +203,13 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   &:hover {
     background-color: $blueberry700;
-    box-shadow: 0 0 0 getSpacer(3xs) $blueberry700;
+    box-shadow: 0 0 0 getSpacer('3xs') $blueberry700;
   }
 
   :disabled > & {
     pointer-events: none;
-    outline: getSpacer(4xs) dashed $neutral700;
-    outline-offset: getSpacer(4xs) * -1;
+    outline: getSpacer('4xs') dashed $neutral700;
+    outline-offset: getSpacer('4xs') * -1;
     background-color: $neutral200;
   }
 
@@ -219,19 +219,19 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     min-height: 3.125rem;
-    padding: 0 getSpacer(l);
+    padding: 0 getSpacer('l');
     font-size: $font-size-md;
     line-height: 1.5rem;
   }
 
   &--large {
     min-height: 3.5rem;
-    padding: 0 getSpacer(l);
+    padding: 0 getSpacer('l');
     font-size: 1.3125rem;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       min-height: 4.5rem;
-      padding: 0 getSpacer(xl);
+      padding: 0 getSpacer('xl');
       font-size: $font-size-lg;
       line-height: 1.5rem;
     }
@@ -266,7 +266,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
     &:hover {
       background-color: $cherry700;
-      box-shadow: 0 0 0 getSpacer(3xs) $cherry700;
+      box-shadow: 0 0 0 getSpacer('3xs') $cherry700;
     }
   }
 
@@ -288,7 +288,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   /* stylelint-disable-next-line */
   &--borderless:not(.button--only-icon) {
-    padding: 0 getSpacer(3xs);
+    padding: 0 getSpacer('3xs');
   }
 
   /* stylelint-disable-next-line */
@@ -365,7 +365,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   &__line {
     display: block;
-    border-bottom: getSpacer(4xs) dashed $neutral500;
+    border-bottom: getSpacer('4xs') dashed $neutral500;
     transform-origin: top left;
     transform: rotate(37.4deg);
   }

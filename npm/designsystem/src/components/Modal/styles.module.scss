@@ -45,11 +45,11 @@
   }
 
   &__iconWrapper {
-    padding-right: getSpacer(xs);
+    padding-right: getSpacer('xs');
   }
 
   &__afterTitleChildren {
-    padding-left: getSpacer(xs);
+    padding-left: getSpacer('xs');
   }
 
   p {
@@ -74,7 +74,7 @@
 
   &--large {
     width: calc(100vw - 0.75rem);
-    padding-bottom: getSpacer(l);
+    padding-bottom: getSpacer('l');
 
     @media (max-width: map.get($grid-breakpoints, sm)) {
       p {
@@ -83,7 +83,7 @@
     }
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      padding-bottom: getSpacer(xl);
+      padding-bottom: getSpacer('xl');
       width: 612px;
     }
 
@@ -94,7 +94,7 @@
 
   &--medium {
     width: calc(100vw - 0.75rem);
-    padding-bottom: getSpacer(m);
+    padding-bottom: getSpacer('m');
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       width: 335px;
@@ -153,8 +153,8 @@
 
     &__close {
       position: absolute;
-      right: getSpacer(3xs);
-      top: getSpacer(3xs);
+      right: getSpacer('3xs');
+      top: getSpacer('3xs');
     }
   }
 
@@ -175,22 +175,22 @@
 
     &__scroll {
       &--large {
-        padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
+        padding: getSpacer('xl') getSpacer('m') getSpacer('2xs') getSpacer('m');
 
         @media (min-width: map.get($grid-breakpoints, md)) {
-          padding: getSpacer(xl) getSpacer(xl) getSpacer(2xs) getSpacer(xl);
+          padding: getSpacer('xl') getSpacer('xl') getSpacer('2xs') getSpacer('xl');
         }
       }
 
       &--medium {
-        padding: getSpacer(l) getSpacer(m) getSpacer(2xs) getSpacer(m);
+        padding: getSpacer('l') getSpacer('m') getSpacer('2xs') getSpacer('m');
 
         @media (min-width: map.get($grid-breakpoints, md)) {
-          padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
+          padding: getSpacer('xl') getSpacer('m') getSpacer('2xs') getSpacer('m');
         }
       }
       &--large#{&}--image {
-        padding: getSpacer(xl) getSpacer(2xs) getSpacer(l) getSpacer(2xs);
+        padding: getSpacer('xl') getSpacer('2xs') getSpacer('l') getSpacer('2xs');
       }
     }
 
@@ -217,7 +217,7 @@
 
     &__imageDescription {
       font-size: $font-size-xs;
-      padding-top: getSpacer(s);
+      padding-top: getSpacer('s');
       display: block;
     }
   }
@@ -234,15 +234,15 @@
     }
 
     &--large {
-      padding: getSpacer(l) getSpacer(m) 0 getSpacer(m);
+      padding: getSpacer('l') getSpacer('m') 0 getSpacer('m');
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(l) getSpacer(xl) 0 getSpacer(xl);
+        padding: getSpacer('l') getSpacer('xl') 0 getSpacer('xl');
       }
     }
 
     &--medium {
-      padding: getSpacer(m) getSpacer(m) 0 getSpacer(m);
+      padding: getSpacer('m') getSpacer('m') 0 getSpacer('m');
     }
   }
 

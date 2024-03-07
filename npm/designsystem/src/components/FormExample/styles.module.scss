@@ -12,13 +12,13 @@
   }
 
   &__date-picker {
-    padding-right: getSpacer(l);
+    padding-right: getSpacer('l');
   }
 
   &__time-wrapper {
     display: flex;
     align-items: flex-end;
-    padding-top: getSpacer(m);
+    padding-top: getSpacer('m');
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
       padding-top: 0;
@@ -26,8 +26,8 @@
   }
 
   &__time-separator {
-    margin-bottom: getSpacer(xs);
-    margin-right: getSpacer(xs);
-    margin-left: getSpacer(2xs);
+    margin-bottom: getSpacer('xs');
+    margin-right: getSpacer('xs');
+    margin-left: getSpacer('2xs');
   }
 }

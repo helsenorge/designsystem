@@ -3,14 +3,14 @@
 @import '../../scss/palette';
 
 $track-height-offset: 1rem;
-$mark-size: getSpacer(l);
+$mark-size: getSpacer('l');
 
 .slider {
   display: flex;
   flex-direction: column;
-  row-gap: getSpacer(s);
+  row-gap: getSpacer('s');
   width: 100%;
-  padding: getSpacer(m) 0;
+  padding: getSpacer('m') 0;
   position: relative;
   outline: none !important;
 
@@ -21,8 +21,8 @@ $mark-size: getSpacer(l);
   &__content-container {
     display: flex;
     flex-direction: column;
-    row-gap: getSpacer(s);
-    padding: 0 getSpacer(s);
+    row-gap: getSpacer('s');
+    padding: 0 getSpacer('s');
   }
 
   &__emoji-container,
@@ -53,7 +53,7 @@ $mark-size: getSpacer(l);
   }
 
   &__track {
-    padding: 0 getSpacer(s);
+    padding: 0 getSpacer('s');
     border-top: 2px solid $black;
     position: relative;
     top: $track-height-offset;
@@ -66,7 +66,7 @@ $mark-size: getSpacer(l);
       position: absolute;
       left: -1px;
       width: 2px;
-      height: getSpacer(xs);
+      height: getSpacer('xs');
       bottom: 0;
       top: (calc($track-height-offset / 2) * -1) + 0.05rem;
       background-color: $black;

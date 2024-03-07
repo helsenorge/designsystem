@@ -6,11 +6,11 @@
 @import '../../scss/screen-reader';
 
 .stepbuttons {
-  margin-top: getSpacer(m);
-  margin-bottom: getSpacer(s);
+  margin-top: getSpacer('m');
+  margin-bottom: getSpacer('s');
   display: flex;
   flex-wrap: wrap;
-  gap: getSpacer(m) getSpacer(l);
+  gap: getSpacer('m') getSpacer('l');
 
   &--has-sticky-buttons {
     background-color: $white;
@@ -20,7 +20,7 @@
 
   &__buttons {
     display: flex;
-    gap: getSpacer(s);
+    gap: getSpacer('s');
 
     @media (max-width: map.get($grid-max-breakpoints, xs)) {
       width: 100%;

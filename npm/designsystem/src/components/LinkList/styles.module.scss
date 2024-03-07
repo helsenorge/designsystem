@@ -20,12 +20,12 @@
     }
 
     &--outline {
-      border-top: getSpacer(2xs) $neutral100 solid;
-      border-left: getSpacer(2xs) $neutral100 solid;
-      border-right: getSpacer(2xs) $neutral100 solid;
+      border-top: getSpacer('2xs') $neutral100 solid;
+      border-left: getSpacer('2xs') $neutral100 solid;
+      border-right: getSpacer('2xs') $neutral100 solid;
 
       &:last-of-type {
-        border-bottom: getSpacer(2xs) $neutral50 solid;
+        border-bottom: getSpacer('2xs') $neutral50 solid;
       }
     }
   }
@@ -51,7 +51,7 @@
     }
 
     &--fill {
-      margin: getSpacer(s) 0;
+      margin: getSpacer('s') 0;
       background-color: $neutral50;
     }
 
@@ -138,7 +138,7 @@
 
     &:focus,
     &:focus-visible {
-      outline: getSpacer(4xs) solid $black;
+      outline: getSpacer('4xs') solid $black;
       outline-offset: -1px;
     }
   }

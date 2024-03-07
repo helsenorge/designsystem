@@ -215,13 +215,13 @@ table .table-body .table-row {
   }
 
   &--compact {
-    padding: getSpacer(2xs) getSpacer(3xs) getSpacer(4xs) getSpacer(3xs);
+    padding: getSpacer('2xs') getSpacer('3xs') getSpacer('4xs') getSpacer('3xs');
     line-height: 18px;
     font-size: 14px;
     height: unset;
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
-      padding: getSpacer(s) getSpacer(3xs) getSpacer(3xs) getSpacer(3xs);
+      padding: getSpacer('s') getSpacer('3xs') getSpacer('3xs') getSpacer('3xs');
       line-height: 20px;
       font-size: $font-size-xs;
       height: unset;
@@ -261,11 +261,11 @@ table .table-body .table-row {
   }
 
   &--compact {
-    padding: getSpacer(4xs) getSpacer(3xs);
+    padding: getSpacer('4xs') getSpacer('3xs');
     font-size: 14px;
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
-      padding: getSpacer(3xs);
+      padding: getSpacer('3xs');
       font-size: $font-size-xs;
     }
   }
@@ -274,7 +274,7 @@ table .table-body .table-row {
 .table__cell-expander {
   text-align: center;
   width: min-content;
-  padding: 0 getSpacer(3xs);
+  padding: 0 getSpacer('3xs');
   vertical-align: middle;
 }
 
