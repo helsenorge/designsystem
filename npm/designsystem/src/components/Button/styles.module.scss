@@ -7,7 +7,7 @@
 
 $dark-mode-disabled-transparrent: #ffffffb3;
 $with-icons: // icon-class, size-class, padding-left, padding-right, padding-left desktop, padding-right desktop, svg-margin-left, svg-margin-right, svg-margin-left desktop, svg-margin-right desktop
-  'left-icon' 'normal' getSpacer(xs) getSpacer(s) getSpacer(xs) getSpacer(m) 0 getSpacer(3xs) 0 getSpacer(2xs),
+  'left-icon' 'normal' getSpacer('xs') getSpacer(s) getSpacer(xs) getSpacer(m) 0 getSpacer(3xs) 0 getSpacer(2xs),
   'right-icon' 'normal' getSpacer(s) getSpacer(xs) getSpacer(m) getSpacer(xs) getSpacer(3xs) 0 getSpacer(2xs) 0,
   'left-icon' 'large' getSpacer(xs) getSpacer(m) getSpacer(s) getSpacer(l) 0 getSpacer(2xs) 0 getSpacer(xs),
   'right-icon' 'large' getSpacer(m) getSpacer(xs) getSpacer(l) getSpacer(s) getSpacer(2xs) 0 getSpacer(xs) 0,

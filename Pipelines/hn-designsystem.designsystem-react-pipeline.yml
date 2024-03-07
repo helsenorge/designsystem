@@ -53,7 +53,7 @@ stages:
                 sonar.sources=$(packages_directory)/
                 sonar.tests=$(packages_directory)/
                 sonar.test.inclusions=$(packages_directory)/**/*.test.tsx
-                sonar.exclusions=**/*.test.tsx
+                sonar.exclusions=**/*.test.tsx,**/*.stories.tsx
                 sonar.coverage.exclusions=**/__*__/**/*,**/*.config.js,**/*.config.ts,**/*.stories.tsx,**/Icons/*.tsx,**/Illustrations/*.tsx,**/Icons/*.ts,**/Illustrations/*.ts,**/components/*/index.ts,**/components/*/*/index.ts
                 sonar.javascript.lcov.reportPaths=$(working_directory)/coverage/lcov.info
                 sonar.typescript.tsconfigPath=$(working_directory)/tsconfig-sonarqube.json
