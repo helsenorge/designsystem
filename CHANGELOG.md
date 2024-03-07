@@ -1,8 +1,18 @@
+## 7.0.0-beta.1 (2024-03-07)
+
 ## 7.0.0-beta.0 (2024-03-07)
 
 ### Features
 
 - ts5, oppdater alle pakker ([d93bf76](https://github.com/helsenorge/designsystem/commit/d93bf76212b41b47aef279478b2af76705be2713))
+
+## [6.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.4.0&targetVersion=GTv6.5.0) (2024-03-07)
+
+### Features
+
+- dropdown stotter eksterne refs for children
+  ([10cc1ba](https://github.com/helsenorge/designsystem/commit/10cc1bac51b6e499fd94b3eaa6e0d68e8ab4d605)), closes
+  [#309420](https://github.com/helsenorge/designsystem/issues/309420)
 
 ## [6.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.3.0&targetVersion=GTv6.4.0) (2024-02-29)
 
