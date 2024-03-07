@@ -19,7 +19,7 @@ export default defineConfig({
     rollupOptions: {
       preserveEntrySignatures: 'strict',
       input: entries,
-      external: [/.module.scss/, 'react-hook-form'],
+      external: [/.module.scss/, 'react-hook-form', 'vitest'],
       output: {
         format: 'es',
         entryFileNames: '[name].js',
@@ -75,10 +75,10 @@ export default defineConfig({
             sideEffects,
           }),
         }),
-        // rollup har begynt å legge til ?used på slutten av styles.module.scss når vi behandler
-        // dem som external.
+        // .module.scss
         replace({
-          '.module.scss?used': '.module.scss',
+          '../npm/designsystem/src/components/': '',
+          delimiters: ['', ''],
           preventAssignment: true,
         }),
       ],
