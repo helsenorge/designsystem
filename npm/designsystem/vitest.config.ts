@@ -10,5 +10,12 @@ export default defineConfig({
         classNameStrategy: 'non-scoped',
       },
     },
+    coverage: {
+      reporter: ['cobertura', 'lcov', 'json'],
+    },
+    reporters: ['junit'],
+    outputFile: {
+      junit: 'test-report.xml',
+    },
   },
 });

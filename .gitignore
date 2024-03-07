@@ -32,3 +32,4 @@ UserInterfaceState.xcuserstate
 .env
 .cache
 .nx
+test-report.xml
