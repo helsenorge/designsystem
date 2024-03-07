@@ -24,7 +24,7 @@
     "build": "vite build",
     "clean": "rimraf lib types",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\"",
-    "generate:tsdefinitions": "tsc --declaration --emitDeclarationOnly --declarationDir types",
+    "generate:tsdefinitions": "tsc --noEmit false --declaration --emitDeclarationOnly --declarationDir types",
     "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "eslint:fix": "npm run eslint -- --fix",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",

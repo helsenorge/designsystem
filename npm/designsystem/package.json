@@ -29,7 +29,7 @@
     "generate:iconnames": "node scripts/generateIconNames.mjs",
     "generate:illustrationnames": "node scripts/generateIllustrationNames.mjs",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\"",
-    "generate:tsdefinitions": "tsc --declaration --emitDeclarationOnly --declarationDir types",
+    "generate:tsdefinitions": "tsc --noEmit false --declaration --emitDeclarationOnly --declarationDir types",
     "postgenerate:tsdefinitions": "copyfiles -u 2 \"./types/src/**/*.d.ts\" lib -E",
     "pregenerate:figmatokens": "git -C ../../../designtokens pull https://github.com/helsenorge/designtokens.git",
     "generate:figmatokens": "token-transformer ../../../designtokens/tokens.json data/design-tokens.json hn-designsystem --resolveReferences=false",
