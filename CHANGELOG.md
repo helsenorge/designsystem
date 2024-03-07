@@ -1,3 +1,9 @@
+## 7.0.0-beta.0 (2024-03-07)
+
+### Features
+
+- ts5, oppdater alle pakker ([d93bf76](https://github.com/helsenorge/designsystem/commit/d93bf76212b41b47aef279478b2af76705be2713))
+
 ## [6.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.3.0&targetVersion=GTv6.4.0) (2024-02-29)
 
 ### Features
