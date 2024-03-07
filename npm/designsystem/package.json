@@ -28,7 +28,7 @@
     "clean": "rimraf lib types",
     "generate:iconnames": "node scripts/generateIconNames.mjs",
     "generate:illustrationnames": "node scripts/generateIllustrationNames.mjs",
-    "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\"",
+    "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\" --nameFormat none --exportType default --includePaths node_modules ../../node_modules",
     "generate:tsdefinitions": "tsc --noEmit false --declaration --emitDeclarationOnly --declarationDir types",
     "postgenerate:tsdefinitions": "copyfiles -u 2 \"./types/src/**/*.d.ts\" lib -E",
     "pregenerate:figmatokens": "git -C ../../../designtokens pull https://github.com/helsenorge/designtokens.git",
