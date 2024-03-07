@@ -26,8 +26,8 @@
     "postbuild": "npm run generate:tsdefinitions",
     "build-storybook": "storybook build -o dist",
     "clean": "rimraf lib types",
-    "generate:iconnames": "node scripts/generateIconNames.mjs",
-    "generate:illustrationnames": "node scripts/generateIllustrationNames.mjs",
+    "generate:iconnames": "node __scripts__/generateIconNames.mjs",
+    "generate:illustrationnames": "node __scripts__/generateIllustrationNames.mjs",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\" --nameFormat none --exportType default --includePaths node_modules ../../node_modules",
     "generate:tsdefinitions": "tsc --noEmit false --declaration --emitDeclarationOnly --declarationDir types",
     "postgenerate:tsdefinitions": "copyfiles -u 2 \"./types/src/**/*.d.ts\" lib -E",
@@ -43,7 +43,7 @@
     "pretypecheck": "tsc -v",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
-    "new": "node scripts/new-component.js"
+    "new": "node __scripts__/new-component.js"
   },
   "peerDependencies": {
     "bootstrap": "^4.6.2",

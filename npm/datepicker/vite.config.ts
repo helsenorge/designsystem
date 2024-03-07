@@ -4,7 +4,7 @@ import generatePackageJson from 'rollup-plugin-generate-package-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { defineConfig } from 'vite';
 
-import { entries } from './scripts/entries';
+import { entries } from './__scripts__/entries';
 
 const OUTPUT_DIRECTORY = 'lib';
 
