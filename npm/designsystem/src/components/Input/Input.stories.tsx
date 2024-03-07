@@ -137,12 +137,12 @@ export const MultipleExamples: Story = {
 };
 
 export const MaxCharacters: Story = {
-  render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => (
+  render: args => (
     <GridExample>
-      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={10} width={10} />
-      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={50} width={50} />
+      <Input {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={10} width={10} />
+      <Input {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={50} width={50} />
       <Input
-        {...rest}
+        {...args}
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
         maxCharacters={50}
         width={50}
@@ -153,15 +153,15 @@ export const MaxCharacters: Story = {
 };
 
 export const AfterInputChildren: Story = {
-  render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => (
+  render: args => (
     <GridExample>
       <Input
-        {...rest}
+        {...args}
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
         afterInputChildren={<div style={{ marginTop: '1rem' }}>{'*Ikke oppgi personsensitiv informasjon'}</div>}
       />
       <Input
-        {...rest}
+        {...args}
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
         afterInputChildren={'Tekst uten innsendt div'}
       />
@@ -170,7 +170,7 @@ export const AfterInputChildren: Story = {
 };
 
 export const BaseIncrementValue: Story = {
-  render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => {
+  render: ({ showIcon, ...rest }) => {
     const inputId = 'input-testid';
 
     return (

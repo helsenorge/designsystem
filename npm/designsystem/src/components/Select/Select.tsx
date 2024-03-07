@@ -19,8 +19,6 @@ export interface SelectProps
     React.SelectHTMLAttributes<HTMLSelectElement>,
     'aria-describedby' | 'name' | 'disabled' | 'required' | 'value' | 'onChange' | 'autoComplete'
   > {
-  /** Component shown after label */
-  afterLabelChildren?: React.ReactNode;
   /** Sets the content of the select element. */
   children: React.ReactNode;
   /** Adds custom classes to the element. */
@@ -58,7 +56,6 @@ const getIconColor = (invalid: boolean, disabled: boolean) => {
 
 export const Select = React.forwardRef(function SelectForwardedRef(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
   const {
-    afterLabelChildren,
     className,
     children,
     concept = 'normal',

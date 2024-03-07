@@ -39,7 +39,7 @@ describe('Gitt at button skal vises', (): void => {
 
   describe('Når button rendres med id', (): void => {
     test('Så blir id satt', (): void => {
-      const { container } = render(
+      render(
         <Button id="id123" testId={'test01'}>
           Button
         </Button>

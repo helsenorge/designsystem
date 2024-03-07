@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 
-import { screen, render, waitFor } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi as jest } from 'vitest';
 
-import HelpBubble, { HelpBubbleProps, HelpBubbleVariant } from './HelpBubble';
+import HelpBubble, { HelpBubbleProps } from './HelpBubble';
 
 const dummyDomRect = {
   height: 100,

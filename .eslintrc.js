@@ -4,6 +4,9 @@ module.exports = {
   },
   root: true,
   extends: ['@helsenorge/eslint-config'],
+  rules: {
+    'react/prop-types': 'off',
+  },
   overrides: [
     {
       files: ['*.stories.tsx', '*.test.tsx'],
@@ -15,7 +18,6 @@ module.exports = {
     {
       files: ['*.stories.tsx'],
       rules: {
-        'react/prop-types': 'off',
         'no-console': 'warn',
       },
     },

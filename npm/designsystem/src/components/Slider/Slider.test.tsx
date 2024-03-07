@@ -161,7 +161,7 @@ describe('Gitt at Slider skal vises', (): void => {
       render(<Slider onChange={mockOnChange} />);
 
       const slider = screen.getByRole('slider');
-      userEvent.click(slider);
+      await userEvent.click(slider);
 
       expect(mockOnChange).toHaveBeenCalledTimes(1);
     });
