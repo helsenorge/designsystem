@@ -1,3 +1,11 @@
+## [6.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.4.0&targetVersion=GTv6.5.0) (2024-03-07)
+
+### Features
+
+- dropdown stotter eksterne refs for children
+  ([10cc1ba](https://github.com/helsenorge/designsystem/commit/10cc1bac51b6e499fd94b3eaa6e0d68e8ab4d605)), closes
+  [#309420](https://github.com/helsenorge/designsystem/issues/309420)
+
 ## [6.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.3.0&targetVersion=GTv6.4.0) (2024-02-29)
 
 ### Features
