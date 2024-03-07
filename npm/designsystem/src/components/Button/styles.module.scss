@@ -21,7 +21,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   'both-icons' 'large' getSpacer(xs) getSpacer(xs) getSpacer(xs) getSpacer(xs) 0 0 0 0;
 
 @mixin focus-shadow {
-  box-shadow: 0 0 0 getSpacer(3xs) $black;
+  box-shadow: 0 0 0 getSpacer('3xs') $black;
 }
 
 @mixin focus-shadow-on-dark {
