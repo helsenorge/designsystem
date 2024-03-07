@@ -56,7 +56,7 @@ stages:
                 sonar.exclusions=**/*.test.tsx
                 sonar.coverage.exclusions=**/__*__/**/*,**/*.config.js,**/*.config.ts,**/*.stories.tsx,**/Icons/*.tsx,**/Illustrations/*.tsx,**/Icons/*.ts,**/Illustrations/*.ts,**/components/*/index.ts,**/components/*/*/index.ts
                 sonar.javascript.lcov.reportPaths=$(working_directory)/coverage/lcov.info
-                sonar.typescript.tsconfigPath=$(working_directory)/tsconfig.json
+                sonar.typescript.tsconfigPath=$(working_directory)/tsconfig-sonarqube.json
 
           # Install node version
           - task: NodeTool@0
