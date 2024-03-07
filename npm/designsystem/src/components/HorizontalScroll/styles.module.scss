@@ -1,7 +1,10 @@
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
 
-$gradient: rgb(0 0 0 / 27%), rgb(0 0 0 / 27%) 18%, transparent;
+$gradient:
+  rgb(0 0 0 / 27%),
+  rgb(0 0 0 / 27%) 18%,
+  transparent;
 
 .horizontalscroll {
   position: relative;

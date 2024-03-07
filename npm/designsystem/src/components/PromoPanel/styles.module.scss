@@ -16,7 +16,9 @@ $colors: 'neutral', 'blueberry', 'cherry';
   transition: background-color 0.15s ease-in-out;
 
   &:focus-within {
-    box-shadow: 0 0 0 2px $black, inset 0 0 0 2px $black;
+    box-shadow:
+      0 0 0 2px $black,
+      inset 0 0 0 2px $black;
   }
 
   @media (min-width: map.get($grid-breakpoints, xs)) {
