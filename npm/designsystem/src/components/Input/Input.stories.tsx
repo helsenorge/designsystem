@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
-import Input, { InputProps, InputTypes } from './Input';
+import Input, { InputTypes } from './Input';
 import { FormMode, FormSize } from '../../constants';
 import GridExample from '../GridExample';
 import Hospital from '../Icons/Hospital';
