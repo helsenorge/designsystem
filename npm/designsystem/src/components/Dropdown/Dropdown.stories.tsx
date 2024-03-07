@@ -2,6 +2,7 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { useForm } from 'react-hook-form';
 
 import Dropdown, { DropdownMode } from './Dropdown';
 import Checkbox from '../Checkbox';
@@ -104,3 +105,25 @@ export const CustomContent: ComponentStory<typeof Dropdown> = (args: any) => (
     </Dropdown>
   </GridExample>
 );
+
+export const EksternChildrenRefs: ComponentStory<typeof Dropdown> = (args: any) => {
+  const { register, watch } = useForm();
+
+  const checkboxChanging = watch(['checkbox.1', 'checkbox.2', 'checkbox.3']);
+
+  React.useEffect(() => {
+    action('Checked')(checkboxChanging);
+  }, [checkboxChanging]);
+
+  return (
+    <GridExample>
+      <Dropdown {...args} onToggle={action('onToggle')}>
+        <form>
+          <Checkbox {...register('checkbox.1')} label={<Label labelTexts={[{ text: 'Valg 1' }]} />} />
+          <Checkbox {...register('checkbox.2')} label={<Label labelTexts={[{ text: 'Valg 2' }]} />} />
+          <Checkbox {...register('checkbox.3')} label={<Label labelTexts={[{ text: 'Valg 3' }]} />} />
+        </form>
+      </Dropdown>
+    </GridExample>
+  );
+};
