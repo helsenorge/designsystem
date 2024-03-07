@@ -14,6 +14,7 @@ import {
   useToggle,
   useUuid,
 } from '../..';
+import { mergeRefs } from '../../utils/refs';
 import Button from '../Button';
 import Icon from '../Icon';
 import PlusSmall from '../Icons/PlusSmall';
@@ -151,6 +152,14 @@ const Dropdown: React.FC<DropdownProps> = props => {
 
   const contentClasses = classNames(styles.dropdown__content, isOpen && styles['dropdown__content--open']);
 
+  const renderChildren = React.Children.map(children, (child, index) => (
+    <li className={styles.dropdown__input} role="option" id={`${optionIdPrefix}-${index}`} aria-selected={index === currentIndex}>
+      {React.isValidElement(child) && inputRefList.current && inputRefList.current[index]
+        ? React.cloneElement(child as React.ReactElement, { ref: mergeRefs([child.props.ref, inputRefList.current[index]]) })
+        : child}
+    </li>
+  ));
+
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
       <span id={labelId} className={styles.dropdown__label}>
@@ -188,11 +197,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
           aria-activedescendant={typeof currentIndex !== 'undefined' ? `${optionIdPrefix}-${currentIndex}` : undefined}
           ref={optionsRef}
         >
-          {React.Children.map(children, (child, index) => (
-            <li className={styles.dropdown__input} role="option" id={`${optionIdPrefix}-${index}`} aria-selected={index === currentIndex}>
-              {React.cloneElement(child as React.ReactElement, { ref: inputRefList.current?.[index] })}
-            </li>
-          ))}
+          {renderChildren}
         </ul>
         {!noCloseButton && (
           <div className={styles.dropdown__close}>
