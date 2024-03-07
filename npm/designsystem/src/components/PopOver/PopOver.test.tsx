@@ -80,7 +80,7 @@ describe('Gitt at PopOver skal vises', (): void => {
   });
 
   describe('Når variant er positionabove', (): void => {
-    it.only('Så vises PopOver riktig', async (): Promise<void> => {
+    it('Så vises PopOver riktig', async (): Promise<void> => {
       render(
         <PopOverWithController variant={PopOverVariant.positionabove} testId="test01">
           {'Test tekst'}
