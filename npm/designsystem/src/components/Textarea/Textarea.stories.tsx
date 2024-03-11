@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Textarea from './Textarea';
 import { FormMode } from '../../constants';
 import GridExample from '../GridExample';
 import Label from '../Label/Label';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Textarea',
   component: Textarea,
   parameters: {
@@ -18,108 +18,118 @@ export default {
       },
     },
   },
+  args: {
+    maxCharacters: 150,
+    maxText: 'tegn',
+    width: undefined,
+    mode: FormMode.onwhite,
+    testId: '123-test',
+    transparent: false,
+    disabled: false,
+    minRows: 3,
+    maxRows: 15,
+    grow: true,
+    errorText: '',
+    autoFocus: false,
+    readOnly: false,
+    autoComplete: '',
+    name: 'textarea',
+    required: false,
+  },
   argTypes: {
     placeholder: {
       control: 'text',
     },
     maxCharacters: {
       control: 'number',
-      defaultValue: 150,
     },
     maxText: {
       control: 'text',
-      defaultValue: 'tegn',
     },
     width: {
       control: 'number',
-      defaultValue: undefined,
     },
     mode: {
       control: 'select',
       options: FormMode,
-      defaultValue: FormMode.onwhite,
     },
     defaultValue: {
       control: 'text',
     },
     testId: {
       control: 'text',
-      defaultValue: '123-test',
     },
     transparent: {
       control: 'boolean',
-      defaultValue: false,
     },
     disabled: {
       control: 'boolean',
-      defaultValue: false,
     },
     minRows: {
       control: 'number',
-      defaultValue: 3,
     },
     maxRows: {
       control: 'number',
-      defaultValue: 15,
     },
     grow: {
       control: 'boolean',
-      defaultValue: true,
     },
     errorText: {
       control: 'text',
-      defaultValue: '',
     },
     autoFocus: {
       control: 'boolean',
-      defaultValue: false,
     },
     readOnly: {
       control: 'boolean',
-      defaultValue: false,
     },
     autoComplete: {
       control: 'text',
-      defaultValue: '',
     },
     name: {
       control: 'text',
-      defaultValue: 'textarea',
     },
     required: {
       control: 'boolean',
-      defaultValue: false,
     },
   },
-} as ComponentMeta<typeof Textarea>;
+} satisfies Meta<typeof Textarea>;
 
-export const Default: ComponentStory<typeof Textarea> = (args: any) => (
-  <GridExample>
-    <Textarea {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} />
-  </GridExample>
-);
+export default meta;
 
-export const MaxCharacters: ComponentStory<typeof Textarea> = (args: any) => (
-  <GridExample>
-    <Textarea
-      {...args}
-      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-      maxCharacters={50}
-      marginBottom
-      width={50}
-    />
-    <Textarea
-      {...args}
-      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-      maxCharacters={100}
-      width={100}
-    />
-    <Textarea
-      {...args}
-      label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-      maxCharacters={100}
-      defaultValue="test"
-      width={100}
-    />
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <Textarea {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} />
+    </GridExample>
+  ),
+};
+
+export const MaxCharacters: Story = {
+  render: args => (
+    <GridExample>
+      <Textarea
+        {...args}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        maxCharacters={50}
+        marginBottom
+        width={50}
+      />
+      <Textarea
+        {...args}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        maxCharacters={100}
+        width={100}
+      />
+      <Textarea
+        {...args}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        maxCharacters={100}
+        defaultValue="test"
+        width={100}
+      />
+    </GridExample>
+  ),
+};

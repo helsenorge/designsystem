@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import HelpPanel from './HelpPanel';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/HelpPanel',
   component: HelpPanel,
   parameters: {
@@ -14,23 +14,33 @@ export default {
       },
     },
   },
+  args: {
+    children:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis neque sed accumsan pellentesque. Pellentesque eu ex finibus lectus congue hendrerit quis vel justo.',
+    size: 'medium',
+  },
   argTypes: {
     children: {
       control: 'text',
-      defaultValue:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis neque sed accumsan pellentesque. Pellentesque eu ex finibus lectus congue hendrerit quis vel justo.',
     },
     size: {
       control: 'select',
       options: ['fluid', 'medium', 'large'],
-      defaultValue: 'medium',
     },
   },
-} as ComponentMeta<typeof HelpPanel>;
+} satisfies Meta<typeof HelpPanel>;
 
-export const Default: ComponentStory<typeof HelpPanel> = args => (
-  <HelpPanel {...args} title="Test tittel">
-    {args.children}
-  </HelpPanel>
-);
-export const WithoutTitle: ComponentStory<typeof HelpPanel> = args => <HelpPanel {...args}>{args.children}</HelpPanel>;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    title: 'Test tittel',
+  },
+  render: args => <HelpPanel {...args} />,
+};
+
+export const WithoutTitle: Story = {
+  render: args => <HelpPanel {...args} />,
+};

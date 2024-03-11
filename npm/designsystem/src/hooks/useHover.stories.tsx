@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useHover } from './useHover';
 import Button from '../components/Button';
@@ -18,7 +18,7 @@ const UseHoverExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useHover',
   component: UseHoverExample,
   parameters: {
@@ -28,6 +28,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseHoverExample>;
+} satisfies Meta<typeof UseHoverExample>;
 
-export const Default: ComponentStory<typeof UseHoverExample> = () => <UseHoverExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseHoverExample /> };

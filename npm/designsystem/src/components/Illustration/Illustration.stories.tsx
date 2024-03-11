@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Illustration from './Illustration';
 import GridExample from '../GridExample';
 import HighlightBox from '../HighlightBox';
 import Doctor from '../Illustrations/Doctor';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Illustration',
   component: Illustration,
   parameters: {
@@ -17,27 +17,38 @@ export default {
       },
     },
   },
+  args: {
+    size: 512,
+    color: 'neutral',
+    ariaLabel: '',
+  },
   argTypes: {
     size: {
       control: 'number',
-      defaultValue: 512,
     },
     color: {
       control: 'select',
       options: ['neutral', 'blueberry', 'cherry'],
-      defaultValue: 'neutral',
     },
     ariaLabel: {
       control: 'text',
-      defaultValue: '',
     },
   },
-} as ComponentMeta<typeof Illustration>;
+} satisfies Meta<typeof Illustration>;
 
-export const Default: ComponentStory<typeof Illustration> = (args: any) => (
-  <GridExample>
-    <HighlightBox color={args.color} size={'fluid'}>
-      <Illustration {...args} illustration={Doctor} />
-    </HighlightBox>
-  </GridExample>
-);
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    illustration: Doctor,
+  },
+  render: args => (
+    <GridExample>
+      <HighlightBox color={args.color} size={'fluid'}>
+        <Illustration {...args} />
+      </HighlightBox>
+    </GridExample>
+  ),
+};

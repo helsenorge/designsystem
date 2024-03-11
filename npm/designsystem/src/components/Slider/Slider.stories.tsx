@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Slider, { SliderStep } from './Slider';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Slider',
   component: Slider,
   parameters: {
@@ -17,10 +17,13 @@ export default {
       },
     },
   },
+  args: {
+    title: 'Hvor ofte sykler du til jobb?',
+    disabled: false,
+  },
   argTypes: {
     title: {
       control: 'text',
-      defaultValue: 'Hvor ofte sykler du til jobb?',
     },
     labelLeft: {
       control: 'text',
@@ -33,7 +36,6 @@ export default {
     },
     disabled: {
       control: 'boolean',
-      defaultValue: false,
     },
     selected: {
       control: 'boolean',
@@ -45,72 +47,88 @@ export default {
       control: 'number',
     },
   },
-} as ComponentMeta<typeof Slider>;
+} satisfies Meta<typeof Slider>;
 
-export const Default: ComponentStory<typeof Slider> = (args: any) => (
-  <GridExample>
-    <Slider onChange={action('Slider')} labelLeft={'Skjeldent'} labelRight={'Ofte'} {...args} />
-  </GridExample>
-);
+export default meta;
 
-export const NotSelected: ComponentStory<typeof Slider> = (args: any) => (
-  <GridExample>
-    <Slider onChange={action('Slider')} labelLeft={'Skjeldent'} labelRight={'Ofte'} selected={false} {...args} />
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
 
-export const Steps: ComponentStory<typeof Slider> = (args: any) => {
-  const sliderData: SliderStep[] = new Array(9).fill({});
-
-  return (
+export const Default: Story = {
+  render: args => (
     <GridExample>
-      <Slider onChange={action('Slider')} steps={sliderData} {...args} />
+      <Slider onChange={action('Slider')} labelLeft={'Skjeldent'} labelRight={'Ofte'} {...args} />
     </GridExample>
-  );
+  ),
 };
 
-export const StepLabel: ComponentStory<typeof Slider> = (args: any) => {
-  const sliderData: SliderStep[] = [{ label: -1.0 }, { label: -0.5 }, { label: 0 }, { label: 0.5 }, { label: 1.0 }];
-
-  return (
+export const NotSelected: Story = {
+  render: args => (
     <GridExample>
-      <Slider onChange={action('Slider')} steps={sliderData} minValue={-1.0} maxValue={1.0} step={0.5} {...args} />
+      <Slider onChange={action('Slider')} labelLeft={'Skjeldent'} labelRight={'Ofte'} selected={false} {...args} />
     </GridExample>
-  );
+  ),
 };
 
-export const StepEmoji: ComponentStory<typeof Slider> = (args: any) => {
-  const sliderData: SliderStep[] = [{ emojiUniCode: '🙁' }, { emojiUniCode: '😐' }, { emojiUniCode: '🙂' }];
+export const Steps: Story = {
+  render: args => {
+    const sliderData: SliderStep[] = new Array(9).fill({});
 
-  return (
-    <GridExample>
-      <Slider onChange={action('Slider')} steps={sliderData} {...args} />
-    </GridExample>
-  );
+    return (
+      <GridExample>
+        <Slider onChange={action('Slider')} steps={sliderData} {...args} />
+      </GridExample>
+    );
+  },
 };
 
-export const CombinedData: ComponentStory<typeof Slider> = (args: any) => {
-  const sliderData: SliderStep[] = [
-    { label: -1.0, emojiUniCode: '😔' },
-    { label: -0.5, emojiUniCode: '🙁' },
-    { label: 0, emojiUniCode: '😐' },
-    { label: 0.5, emojiUniCode: '🙂' },
-    { label: 1.0, emojiUniCode: '😃' },
-  ];
+export const StepLabel: Story = {
+  render: args => {
+    const sliderData: SliderStep[] = [{ label: -1.0 }, { label: -0.5 }, { label: 0 }, { label: 0.5 }, { label: 1.0 }];
 
-  return (
-    <GridExample>
-      <Slider
-        onChange={action('Slider')}
-        steps={sliderData}
-        labelLeft={'Min'}
-        labelRight={'Max'}
-        title={'Hvordan føler du deg?'}
-        minValue={-1.0}
-        maxValue={1.0}
-        step={0.5}
-        {...args}
-      />
-    </GridExample>
-  );
+    return (
+      <GridExample>
+        <Slider onChange={action('Slider')} steps={sliderData} minValue={-1.0} maxValue={1.0} step={0.5} {...args} />
+      </GridExample>
+    );
+  },
+};
+
+export const StepEmoji: Story = {
+  render: args => {
+    const sliderData: SliderStep[] = [{ emojiUniCode: '🙁' }, { emojiUniCode: '😐' }, { emojiUniCode: '🙂' }];
+
+    return (
+      <GridExample>
+        <Slider onChange={action('Slider')} steps={sliderData} {...args} />
+      </GridExample>
+    );
+  },
+};
+
+export const CombinedData: Story = {
+  render: args => {
+    const sliderData: SliderStep[] = [
+      { label: -1.0, emojiUniCode: '😔' },
+      { label: -0.5, emojiUniCode: '🙁' },
+      { label: 0, emojiUniCode: '😐' },
+      { label: 0.5, emojiUniCode: '🙂' },
+      { label: 1.0, emojiUniCode: '😃' },
+    ];
+
+    return (
+      <GridExample>
+        <Slider
+          onChange={action('Slider')}
+          steps={sliderData}
+          labelLeft={'Min'}
+          labelRight={'Max'}
+          title={'Hvordan føler du deg?'}
+          minValue={-1.0}
+          maxValue={1.0}
+          step={0.5}
+          {...args}
+        />
+      </GridExample>
+    );
+  },
 };

@@ -1,12 +1,17 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import ExpanderHierarchy from './ExpanderHierarchy';
 import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
-export default {
+type ExpanderHierarchyWithAndCustomArgs = React.ComponentProps<typeof ExpanderHierarchy> & {
+  title: string;
+  expanded: boolean;
+};
+
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/ExpanderHierarchy',
   component: ExpanderHierarchy,
   parameters: {
@@ -17,72 +22,80 @@ export default {
       },
     },
   },
+  args: {
+    title: 'Nivå',
+    htmlMarkup: 'h2',
+    expanded: false,
+    print: false,
+  },
   argTypes: {
     title: {
       control: 'text',
-      defaultValue: 'Nivå',
     },
     htmlMarkup: {
       control: 'select',
       options: ['h2', 'h3', 'h4', 'h5', 'h6'],
-      defaultValue: 'h2',
     },
     expanded: {
       control: 'boolean',
-      defaultValue: false,
     },
     print: {
       control: 'boolean',
-      defaultValue: false,
     },
   },
-} as ComponentMeta<typeof ExpanderHierarchy & typeof ExpanderHierarchy.Expander>;
+} satisfies Meta<ExpanderHierarchyWithAndCustomArgs>;
 
-export const Default: ComponentStory<typeof ExpanderHierarchy & typeof ExpanderHierarchy.Expander> = args => (
-  <GridExample>
-    <ExpanderHierarchy {...args}>
-      <ExpanderHierarchy.Expander title={`${args.title} (1)`} expanded={args.expanded}>
-        {shortLoremText}
-        <ExpanderHierarchy>
-          <ExpanderHierarchy.Expander title={`${args.title} (2)`} expanded={args.expanded}>
-            {mediumLoremText}
-            <ExpanderHierarchy>
-              <ExpanderHierarchy.Expander title={`${args.title} (3)`} expanded={args.expanded}>
-                {mediumLoremText}
-                <ExpanderHierarchy>
-                  <ExpanderHierarchy.Expander title={`${args.title} (4)`} expanded={args.expanded}>
-                    {mediumLoremText}
-                    <ExpanderHierarchy>
-                      <ExpanderHierarchy.Expander title={`${args.title} (5)`} expanded={args.expanded}>
-                        {mediumLoremText}
-                        <ExpanderHierarchy>
-                          <ExpanderHierarchy.Expander title={`${args.title} (6)`} expanded={args.expanded}>
-                            {mediumLoremText}{' '}
-                            <ExpanderHierarchy>
-                              <ExpanderHierarchy.Expander title={`${args.title} (7)`} expanded={args.expanded}>
-                                {mediumLoremText}
-                              </ExpanderHierarchy.Expander>
-                            </ExpanderHierarchy>
-                          </ExpanderHierarchy.Expander>
-                        </ExpanderHierarchy>
-                      </ExpanderHierarchy.Expander>
-                    </ExpanderHierarchy>
-                  </ExpanderHierarchy.Expander>
-                </ExpanderHierarchy>
-              </ExpanderHierarchy.Expander>
-            </ExpanderHierarchy>
-          </ExpanderHierarchy.Expander>
-          <ExpanderHierarchy.Expander title={`${args.title} (2)`} expanded={args.expanded}>
-            {mediumLoremText}
-          </ExpanderHierarchy.Expander>
-          <ExpanderHierarchy.Expander title={`${args.title} (2)`} expanded={args.expanded}>
-            {mediumLoremText}
-          </ExpanderHierarchy.Expander>
-          <ExpanderHierarchy.Expander title={`${args.title} (2)`} expanded={args.expanded}>
-            {mediumLoremText}
-          </ExpanderHierarchy.Expander>
-        </ExpanderHierarchy>
-      </ExpanderHierarchy.Expander>
-    </ExpanderHierarchy>
-  </GridExample>
-);
+export default meta;
+
+type Story = StoryObj<ExpanderHierarchyWithAndCustomArgs>;
+
+export const Default: Story = {
+  render: ({ title, expanded, ...args }) => (
+    <GridExample>
+      <ExpanderHierarchy {...args}>
+        <ExpanderHierarchy.Expander title={`${title} (1)`} expanded={expanded}>
+          {shortLoremText}
+          <ExpanderHierarchy>
+            <ExpanderHierarchy.Expander title={`${title} (2)`} expanded={expanded}>
+              {mediumLoremText}
+              <ExpanderHierarchy>
+                <ExpanderHierarchy.Expander title={`${title} (3)`} expanded={expanded}>
+                  {mediumLoremText}
+                  <ExpanderHierarchy>
+                    <ExpanderHierarchy.Expander title={`${title} (4)`} expanded={expanded}>
+                      {mediumLoremText}
+                      <ExpanderHierarchy>
+                        <ExpanderHierarchy.Expander title={`${title} (5)`} expanded={expanded}>
+                          {mediumLoremText}
+                          <ExpanderHierarchy>
+                            <ExpanderHierarchy.Expander title={`${title} (6)`} expanded={expanded}>
+                              {mediumLoremText}{' '}
+                              <ExpanderHierarchy>
+                                <ExpanderHierarchy.Expander title={`${title} (7)`} expanded={expanded}>
+                                  {mediumLoremText}
+                                </ExpanderHierarchy.Expander>
+                              </ExpanderHierarchy>
+                            </ExpanderHierarchy.Expander>
+                          </ExpanderHierarchy>
+                        </ExpanderHierarchy.Expander>
+                      </ExpanderHierarchy>
+                    </ExpanderHierarchy.Expander>
+                  </ExpanderHierarchy>
+                </ExpanderHierarchy.Expander>
+              </ExpanderHierarchy>
+            </ExpanderHierarchy.Expander>
+            <ExpanderHierarchy.Expander title={`${title} (2)`} expanded={expanded}>
+              {mediumLoremText}
+            </ExpanderHierarchy.Expander>
+            <ExpanderHierarchy.Expander title={`${title} (2)`} expanded={expanded}>
+              {mediumLoremText}
+            </ExpanderHierarchy.Expander>
+            <ExpanderHierarchy.Expander title={`${title} (2)`} expanded={expanded}>
+              {mediumLoremText}
+            </ExpanderHierarchy.Expander>
+          </ExpanderHierarchy>
+        </ExpanderHierarchy.Expander>
+      </ExpanderHierarchy>
+    </GridExample>
+  ),
+};

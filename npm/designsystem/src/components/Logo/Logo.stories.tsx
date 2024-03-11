@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Logo from './Logo';
 import { allLogoPaletteNames } from '../../../.storybook/knobs';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Logo',
   component: Logo,
   parameters: {
@@ -16,49 +16,66 @@ export default {
       },
     },
   },
+  args: {
+    color: 'black',
+    size: 300,
+    byline: false,
+  },
   argTypes: {
     color: {
       control: 'select',
       options: allLogoPaletteNames,
-      defaultValue: 'black',
     },
     size: {
       control: 'number',
-      defaultValue: 300,
     },
     byline: {
       control: 'boolean',
-      defaultValue: false,
     },
   },
-} as ComponentMeta<typeof Logo>;
+} satisfies Meta<typeof Logo>;
 
-export const Default: ComponentStory<typeof Logo> = (args: any) => (
-  <GridExample>
-    <Logo {...args} />
-  </GridExample>
-);
+export default meta;
 
-export const Sizes: ComponentStory<typeof Logo> = (args: any) => (
-  <GridExample>
-    <Logo {...args} size={100} />
-    <Logo {...args} size={200} />
-    <Logo {...args} size={300} />
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
 
-export const Colors: ComponentStory<typeof Logo> = (args: any) => (
-  <GridExample>
-    <Logo {...args} color={'black'} />
-    <Logo {...args} color={'white'} />
-  </GridExample>
-);
-Colors.parameters = {
-  backgrounds: { default: 'neutral400' },
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <Logo {...args} />
+    </GridExample>
+  ),
 };
 
-export const Byline: ComponentStory<typeof Logo> = (args: any) => (
-  <GridExample>
-    <Logo {...args} byline />
-  </GridExample>
-);
+export const Sizes: Story = {
+  render: args => (
+    <GridExample>
+      <Logo {...args} size={100} />
+      <Logo {...args} size={200} />
+      <Logo {...args} size={300} />
+    </GridExample>
+  ),
+};
+
+export const Colors: Story = {
+  parameters: {
+    backgrounds: { default: 'neutral400' },
+  },
+  render: args => (
+    <GridExample>
+      <Logo {...args} color={'black'} />
+      <Logo {...args} color={'white'} />
+    </GridExample>
+  ),
+};
+
+export const Byline: Story = {
+  args: {
+    byline: true,
+  },
+  render: args => (
+    <GridExample>
+      <Logo {...args} />
+    </GridExample>
+  ),
+};

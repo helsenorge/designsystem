@@ -1,7 +1,7 @@
-// .storybook/main.js
-const path = require('path');
-const yargs = require('yargs');
-const { hideBin } = require('yargs/helpers');
+import type { StorybookConfig } from '@storybook/react-vite';
+import path from 'path';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
 const { base } = yargs(hideBin(process.argv).filter(x => x !== '--'))
   .options({
@@ -12,10 +12,16 @@ const { base } = yargs(hideBin(process.argv).filter(x => x !== '--'))
   })
   .parseSync();
 
-module.exports = {
-  core: { builder: '@storybook/builder-vite' },
+const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(tsx)', '../../datepicker/src/**/*.stories.@(tsx)'],
-  framework: '@storybook/react',
+
+  framework: {
+    name: '@storybook/react-vite',
+    options: {
+      strictMode: true,
+    },
+  },
+
   addons: [
     '@storybook/addon-a11y',
     '@storybook/addon-actions',
@@ -23,21 +29,11 @@ module.exports = {
     '@storybook/addon-controls',
     '@storybook/addon-docs',
     '@storybook/addon-viewport',
-    'storybook-addon-html-validator',
+    // 'storybook-addon-html-validator', @todo https://github.com/dimafirsov/storybook-html-validator/issues/15
   ],
-  features: {
-    storyStoreV7: true,
-    buildStoriesJson: true,
-    modernInlineRender: true,
-  },
+
   // Oppsett for å serve storybook fra subfolder hentet fra: https://github.com/storybookjs/storybook/issues/1291
   // This is to change configurations of building process of storybook's main frame
-  managerWebpack: (config, { configType }) => {
-    if (configType === 'PRODUCTION') {
-      config.output.publicPath = base;
-    }
-    return config;
-  },
   managerHead: (head, { configType }) => {
     const injections = [
       `<link rel="shortcut icon" type="image/x-icon" href="${base}favicon.ico">`, // This set icon for your site.
@@ -45,10 +41,12 @@ module.exports = {
     ];
     return configType === 'PRODUCTION' ? `${head}${injections.join('')}` : head;
   },
+
   async viteFinal(config, { configType }) {
     if (configType === 'PRODUCTION') {
       config.base = base;
     }
+    config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,
       '@helsenorge/designsystem-react': path.resolve(__dirname, '../src'),
@@ -56,4 +54,10 @@ module.exports = {
 
     return config;
   },
+
+  docs: {
+    autodocs: true,
+  },
 };
+
+export default config;

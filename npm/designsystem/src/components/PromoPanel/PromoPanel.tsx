@@ -18,7 +18,7 @@ import styles from './styles.module.scss';
 
 export type PromoPanelColors = Extract<PaletteNames, 'neutral' | 'blueberry' | 'cherry'>;
 
-interface PromoPanelProps {
+export interface PromoPanelProps {
   /** Used as the link text if set. title or children must be set for the link to have accessible text. */
   title?: string;
   /** Used as the link text if title is not set. */

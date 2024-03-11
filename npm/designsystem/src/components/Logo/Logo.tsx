@@ -6,7 +6,7 @@ import { getColor } from '../../theme/currys/color';
 
 type LogoColor = 'black' | 'white';
 
-interface LogoProps {
+export interface LogoProps {
   /** Changes the size of the logo. */
   size?: number;
   /** Adds custom classes to the element. */

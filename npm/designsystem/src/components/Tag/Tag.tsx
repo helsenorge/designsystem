@@ -31,7 +31,7 @@ export enum TagVariant {
 
 export type TagColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'cherry' | 'banana' | 'kiwi' | 'plum'>;
 
-interface TagProps {
+export interface TagProps {
   /** Sets the text of the tag */
   children: string;
   /** Sets the size of the tag. Default: small */

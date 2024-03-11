@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Tag, { TagAction, TagSize, TagVariant } from './Tag';
 import GridExample from '../GridExample';
 import LawBook from '../Icons/LawBook';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Tag',
   component: Tag,
   parameters: {
@@ -18,52 +18,67 @@ export default {
       },
     },
   },
+  args: {
+    children: 'Tekst',
+    size: TagSize.medium,
+    color: 'blueberry',
+    variant: TagVariant.normal,
+    action: TagAction.remove,
+  },
   argTypes: {
     children: {
       control: 'text',
-      defaultValue: 'Tekst',
     },
     size: {
       control: 'select',
       options: TagSize,
-      defaultValue: TagSize.medium,
     },
     color: {
       control: 'select',
       options: ['blueberry', 'neutral', 'cherry', 'banana', 'kiwi', 'plum'],
-      defaultValue: 'blueberry',
     },
     variant: {
       control: 'select',
       options: TagVariant,
-      defaultValue: TagVariant.normal,
     },
     action: {
       control: 'select',
       options: TagAction,
-      defaultValue: TagAction.remove,
     },
   },
-} as ComponentMeta<typeof Tag>;
+} satisfies Meta<typeof Tag>;
 
-export const Default: ComponentStory<typeof Tag> = (args: any) => (
-  <GridExample>
-    <Tag {...args}>{args.children}</Tag>
-  </GridExample>
-);
+export default meta;
 
-export const WithIcon: ComponentStory<typeof Tag> = (args: any) => (
-  <GridExample>
-    <Tag {...args} svgIcon={LawBook}>
-      {args.children}
-    </Tag>
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
 
-export const Action: ComponentStory<typeof Tag> = (args: any) => (
-  <GridExample>
-    <Tag {...args} svgIcon={LawBook} onClick={action('Tag clicked')}>
-      {args.children}
-    </Tag>
-  </GridExample>
-);
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <Tag {...args} />
+    </GridExample>
+  ),
+};
+
+export const WithIcon: Story = {
+  args: {
+    svgIcon: LawBook,
+  },
+  render: args => (
+    <GridExample>
+      <Tag {...args} />
+    </GridExample>
+  ),
+};
+
+export const Action: Story = {
+  args: {
+    svgIcon: LawBook,
+    onClick: action('Tag clicked'),
+  },
+  render: args => (
+    <GridExample>
+      <Tag {...args} />
+    </GridExample>
+  ),
+};

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import LazyIcon from './LazyIcon';
 import { IconSize } from '../../constants';
@@ -8,7 +8,7 @@ import { useHover } from '../../hooks/useHover';
 import { shortLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/LazyIcon',
   component: LazyIcon,
   parameters: {
@@ -18,22 +18,33 @@ export default {
       },
     },
   },
+  args: {
+    iconName: 'Hospital',
+  },
   argTypes: {
     iconName: {
       control: 'text',
-      defaultValue: 'Hospital',
     },
   },
-} as ComponentMeta<typeof LazyIcon>;
+} satisfies Meta<typeof LazyIcon>;
 
-export const Default: ComponentStory<typeof LazyIcon> = (args: any) => {
-  const { hoverRef, isHovered } = useHover<HTMLDivElement>();
-  return (
-    <GridExample>
-      <div ref={hoverRef}>
-        <LazyIcon {...args} size={IconSize.XLarge} isHovered={isHovered} />
-      </div>
-      <p>{shortLoremText}</p>
-    </GridExample>
-  );
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    size: IconSize.XLarge,
+  },
+  render: args => {
+    const { hoverRef, isHovered } = useHover<HTMLDivElement>();
+    return (
+      <GridExample>
+        <div ref={hoverRef}>
+          <LazyIcon {...args} isHovered={isHovered} />
+        </div>
+        <p>{shortLoremText}</p>
+      </GridExample>
+    );
+  },
 };

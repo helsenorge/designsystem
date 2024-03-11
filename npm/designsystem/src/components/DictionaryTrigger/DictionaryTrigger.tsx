@@ -6,7 +6,7 @@ import { AnalyticsId } from '../../constants';
 
 import styles from './styles.module.scss';
 
-interface DictionaryTriggerProps extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'onFocus' | 'onBlur'> {
+export interface DictionaryTriggerProps extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'onFocus' | 'onBlur'> {
   /**
    * Sets the content of the trigger.
    */

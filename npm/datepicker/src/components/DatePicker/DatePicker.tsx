@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { format, isValid, parse } from 'date-fns';
+import { Locale, format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { ActiveModifiers, DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
 

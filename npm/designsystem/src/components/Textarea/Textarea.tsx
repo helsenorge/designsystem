@@ -10,7 +10,7 @@ import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';
 
-interface TextareaProps
+export interface TextareaProps
   extends Pick<
     React.InputHTMLAttributes<HTMLTextAreaElement>,
     | 'aria-describedby'

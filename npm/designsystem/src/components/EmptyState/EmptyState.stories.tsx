@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import EmptyState from './EmptyState';
 import AnchorLink from '../AnchorLink';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/EmptyState',
   component: EmptyState,
   parameters: {
@@ -17,26 +17,36 @@ export default {
       },
     },
   },
+  args: {
+    children: 'Du har ingen rekvirerte reiser',
+  },
   argTypes: {
     children: {
       control: 'text',
-      defaultValue: 'Du har ingen rekvirerte reiser',
     },
   },
-} as ComponentMeta<typeof EmptyState>;
+} satisfies Meta<typeof EmptyState>;
 
-export const Default: ComponentStory<typeof EmptyState> = (args: any) => (
-  <GridExample>
-    <EmptyState {...args} />
-  </GridExample>
-);
+export default meta;
 
-export const WithAnchorLink: ComponentStory<typeof EmptyState> = (args: any) => (
-  <GridExample>
-    <EmptyState {...args}>
-      {'Du har ingen verktøy enda. Gå til '}
-      <AnchorLink href="/">{'Alle verktøy'}</AnchorLink>
-      {' for å finne verktøy.'}
-    </EmptyState>
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <EmptyState {...args} />
+    </GridExample>
+  ),
+};
+
+export const WithAnchorLink: Story = {
+  render: args => (
+    <GridExample>
+      <EmptyState {...args}>
+        {'Du har ingen verktøy enda. Gå til '}
+        <AnchorLink href="/">{'Alle verktøy'}</AnchorLink>
+        {' for å finne verktøy.'}
+      </EmptyState>
+    </GridExample>
+  ),
+};

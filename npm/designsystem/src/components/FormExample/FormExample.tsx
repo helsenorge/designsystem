@@ -17,7 +17,7 @@ import Spacer from '../Spacer';
 import Textarea from '../Textarea';
 import Validation from '../Validation';
 
-interface FormExampleProps {
+export interface FormExampleProps {
   exampleType: FormExampleVariants;
   size?: keyof typeof FormSize;
 }

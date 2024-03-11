@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Title from './Title';
 import { allTitleTags, allTitleAppearances } from '../../../.storybook/knobs';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Title',
   component: Title,
   parameters: {
@@ -16,53 +16,63 @@ export default {
       },
     },
   },
+  args: {
+    children: 'Title',
+    htmlMarkup: 'h1',
+    margin: 0,
+    appearance: 'title1',
+  },
   argTypes: {
     children: {
       control: 'text',
-      defaultValue: 'Title',
     },
     htmlMarkup: {
       control: 'select',
       options: allTitleTags,
-      defaultValue: 'h1',
     },
     margin: {
       control: 'number',
-      defaultValue: 0,
     },
     appearance: {
       control: 'select',
       options: allTitleAppearances,
-      defaultValue: 'title1',
     },
   },
-} as ComponentMeta<typeof Title>;
+} satisfies Meta<typeof Title>;
 
-export const Default: ComponentStory<typeof Title> = (args: any) => (
-  <GridExample>
-    <Title {...args}>{args.children}</Title>
-  </GridExample>
-);
+export default meta;
 
-export const AllAppearances: ComponentStory<typeof Title> = (args: any) => (
-  <GridExample>
-    <Title {...args} appearance="titleFeature">
-      {`${args.children} (feature)`}
-    </Title>
-    <Title {...args} appearance="title1">
-      {`${args.children} (title1)`}
-    </Title>
-    <Title {...args} appearance="title2">
-      {`${args.children} (title2)`}
-    </Title>
-    <Title {...args} appearance="title3">
-      {`${args.children} (title3)`}
-    </Title>
-    <Title {...args} appearance="title4">
-      {`${args.children} (title4)`}
-    </Title>
-    <Title {...args} appearance="title5">
-      {`${args.children} (title5)`}
-    </Title>
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <Title {...args} />
+    </GridExample>
+  ),
+};
+
+export const AllAppearances: Story = {
+  render: args => (
+    <GridExample>
+      <Title {...args} appearance="titleFeature">
+        {args.children} {'(feature)'}
+      </Title>
+      <Title {...args} appearance="title1">
+        {args.children} {'(title1)'}
+      </Title>
+      <Title {...args} appearance="title2">
+        {args.children} {'(title2)'}
+      </Title>
+      <Title {...args} appearance="title3">
+        {args.children} {'(title3)'}
+      </Title>
+      <Title {...args} appearance="title4">
+        {args.children} {'(title4)'}
+      </Title>
+      <Title {...args} appearance="title5">
+        {args.children} {'(title5)'}
+      </Title>
+    </GridExample>
+  ),
+};

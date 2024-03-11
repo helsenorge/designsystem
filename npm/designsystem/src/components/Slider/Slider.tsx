@@ -35,7 +35,7 @@ export type SliderStep = {
   emojiUniCode?: string;
 };
 
-interface SliderProps {
+export interface SliderProps {
   /**	Sets the title of the slider. */
   title?: string;
   /** Adds the left hand label to the element. */

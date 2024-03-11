@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Avatar, { AvatarSize } from './Avatar';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Avatar',
   component: Avatar,
   parameters: {
@@ -16,33 +16,44 @@ export default {
       },
     },
   },
+  args: {
+    children: 'Line Danser',
+    selected: false,
+    size: AvatarSize.small,
+  },
   argTypes: {
     children: {
       control: 'text',
-      defaultValue: 'Line Danser',
     },
     selected: {
       control: 'boolean',
-      defaultValue: false,
     },
     size: {
       control: 'select',
       options: AvatarSize,
-      defaultValue: AvatarSize.small,
     },
   },
-} as ComponentMeta<typeof Avatar>;
+} satisfies Meta<typeof Avatar>;
 
-export const Default: ComponentStory<typeof Avatar> = (args: any) => (
-  <GridExample>
-    <Avatar {...args}>{args.children}</Avatar>
-  </GridExample>
-);
+export default meta;
 
-export const Inverted: ComponentStory<typeof Avatar> = (args: any) => (
-  <GridExample>
-    <Avatar {...args} variant={'black'}>
-      {args.children}
-    </Avatar>
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <Avatar {...args} />
+    </GridExample>
+  ),
+};
+
+export const Inverted: Story = {
+  args: {
+    variant: 'black',
+  },
+  render: args => (
+    <GridExample>
+      <Avatar {...args} />
+    </GridExample>
+  ),
+};

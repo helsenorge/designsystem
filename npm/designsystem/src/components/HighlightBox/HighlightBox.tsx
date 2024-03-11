@@ -25,7 +25,7 @@ export type HighlightBoxTags = Exclude<
   'dir' | 'font' | 'frame' | 'frameset' | 'marquee' | 'applet' | 'basefont'
 >;
 
-interface HighlightBoxProps {
+export interface HighlightBoxProps {
   /** What's in the box? */
   children: React.ReactNode;
   /** Changes the background color. Default: white */

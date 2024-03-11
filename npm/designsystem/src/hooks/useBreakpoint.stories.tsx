@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { Breakpoint, useBreakpoint } from './useBreakpoint';
 import GridExample from '../components/GridExample';
@@ -17,7 +17,7 @@ const UseBreakpointExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useBreakpoint',
   component: UseBreakpointExample,
   parameters: {
@@ -27,6 +27,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseBreakpointExample>;
+} satisfies Meta<typeof UseBreakpointExample>;
 
-export const Default: ComponentStory<typeof UseBreakpointExample> = () => <UseBreakpointExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseBreakpointExample /> };

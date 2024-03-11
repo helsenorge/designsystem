@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useFocusToggle } from './useFocusToggle';
 import Button from '../components/Button';
@@ -41,7 +41,7 @@ const UseFocusToggleExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useFocusToggle',
   component: UseFocusToggleExample,
   parameters: {
@@ -52,6 +52,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseFocusToggleExample>;
+} satisfies Meta<typeof UseFocusToggleExample>;
 
-export const Default: ComponentStory<typeof UseFocusToggleExample> = () => <UseFocusToggleExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseFocusToggleExample /> };

@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import PromoPanel from './PromoPanel';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/PromoPanel',
   component: PromoPanel,
   parameters: {
@@ -17,40 +17,53 @@ export default {
       },
     },
   },
+  args: {
+    title: 'Fastlegen din',
+    children: 'Kontakt fastlegen og se alle tjenestene',
+    href: '/',
+    color: 'neutral',
+    illustration: 'Doctor',
+  },
   argTypes: {
     title: {
       control: 'text',
-      defaultValue: 'Fastlegen din',
     },
     children: {
       control: 'text',
-      defaultValue: 'Kontakt fastlegen og se alle tjenestene',
     },
     href: {
       control: 'text',
-      defaultValue: '/',
     },
     color: {
       control: 'select',
       options: ['neutral', 'blueberry', 'cherry'],
-      defaultValue: 'neutral',
     },
     illustration: {
       control: 'select',
       options: ['', 'Doctor', 'HealthcarePersonnel'],
-      defaultValue: 'Doctor',
     },
   },
-} as ComponentMeta<typeof PromoPanel>;
+} satisfies Meta<typeof PromoPanel>;
 
-export const Default: ComponentStory<typeof PromoPanel> = (args: any) => (
-  <GridExample>
-    <PromoPanel {...args} />
-  </GridExample>
-);
+export default meta;
 
-export const CustomLinkComponent: ComponentStory<typeof PromoPanel> = (args: any) => (
-  <GridExample>
-    <PromoPanel {...args} linkComponent={<a href="/testest" />} />
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <PromoPanel {...args} />
+    </GridExample>
+  ),
+};
+
+export const CustomLinkComponent: Story = {
+  args: {
+    linkComponent: <a href="/testest" />,
+  },
+  render: args => (
+    <GridExample>
+      <PromoPanel {...args} />
+    </GridExample>
+  ),
+};

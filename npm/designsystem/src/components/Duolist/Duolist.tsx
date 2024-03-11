@@ -13,13 +13,13 @@ export type BoldColumn = 'first' | 'second' | 'none';
 export type Border = 'no-border' | 'border';
 export type Formats = 'formatted' | 'non-formatted';
 
-interface DuolistProps {
+export interface DuolistProps {
   /** Determines which column is bold */
   boldColumn?: BoldColumn;
   /** Label of the Duolist */
   border?: Border;
   /** Label of the Duolist */
-  label?: TitleProps;
+  label?: React.ReactElement<TitleProps>;
   /** Formatted or non-formatted visual variants */
   format?: Formats;
   /** Character separator for non-formatted format */

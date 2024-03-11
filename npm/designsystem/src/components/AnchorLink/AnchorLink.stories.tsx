@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import AnchorLink from './AnchorLink';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/AnchorLink',
   component: AnchorLink,
   parameters: {
@@ -17,64 +17,76 @@ export default {
       },
     },
   },
+  args: {
+    children: 'Anchorlink tekst',
+    href: '/test',
+  },
   argTypes: {
     children: {
       control: 'text',
-      defaultValue: 'Anchorlink tekst',
     },
     href: {
       control: 'text',
-      defaultValue: '/test',
     },
   },
-} as ComponentMeta<typeof AnchorLink>;
+} satisfies Meta<typeof AnchorLink>;
 
-export const Default: ComponentStory<typeof AnchorLink> = (args: any) => (
-  <GridExample>
-    <AnchorLink {...args} target={'_self'}>
-      {args.children}
-    </AnchorLink>
-    <br />
-    <br />
-    <AnchorLink {...args} target={'_self'}>
-      {
-        'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
-      }
-    </AnchorLink>
-  </GridExample>
-);
+export default meta;
 
-export const External: ComponentStory<typeof AnchorLink> = (args: any) => (
-  <GridExample>
-    <AnchorLink {...args} target={'_blank'}>
-      {args.children}
-    </AnchorLink>
-    <br />
-    <br />
-    <AnchorLink {...args} target={'_blank'}>
-      {
-        'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
-      }
-    </AnchorLink>
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
 
-export const AsButton: ComponentStory<typeof AnchorLink> = (args: any) => (
-  <GridExample>
-    <p style={{ fontSize: '1.25rem' }}>
-      Dette er først en{' '}
-      <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
-        vanlig lenke i løpende tekst
-      </AnchorLink>{' '}
-      og nå kommer en
-      <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
-        button-lenke i løpende tekst som går over flere linjer
-      </AnchorLink>{' '}
-      og til slutt en{' '}
-      <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
-        kort
-      </AnchorLink>{' '}
-      button-lenke
-    </p>
-  </GridExample>
-);
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <AnchorLink {...args} target={'_self'}>
+        {args.children}
+      </AnchorLink>
+      <br />
+      <br />
+      <AnchorLink {...args} target={'_self'}>
+        {
+          'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
+        }
+      </AnchorLink>
+    </GridExample>
+  ),
+};
+
+export const External: Story = {
+  render: args => (
+    <GridExample>
+      <AnchorLink {...args} target={'_blank'}>
+        {args.children}
+      </AnchorLink>
+      <br />
+      <br />
+      <AnchorLink {...args} target={'_blank'}>
+        {
+          'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
+        }
+      </AnchorLink>
+    </GridExample>
+  ),
+};
+
+export const AsButton: Story = {
+  render: args => (
+    <GridExample>
+      <p style={{ fontSize: '1.25rem' }}>
+        Dette er først en{' '}
+        <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
+          vanlig lenke i løpende tekst
+        </AnchorLink>{' '}
+        og nå kommer en
+        <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
+          button-lenke i løpende tekst som går over flere linjer
+        </AnchorLink>{' '}
+        og til slutt en{' '}
+        <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
+          kort
+        </AnchorLink>{' '}
+        button-lenke
+      </p>
+    </GridExample>
+  ),
+};

@@ -23,7 +23,7 @@ export enum ExpanderSize {
 
 export type ExpanderColors = Extract<PaletteNames, 'banana' | 'blueberry' | 'cherry' | 'kiwi' | 'neutral' | 'plum' | 'white'>;
 
-interface ExpanderProps {
+export interface ExpanderProps {
   /** Sets the trigger title */
   title: string;
   /** Sets the expanded content */

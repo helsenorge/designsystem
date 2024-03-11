@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Stepper from './Stepper';
-import Grid from '../GridExample';
+import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Stepper',
   component: Stepper,
   parameters: {
@@ -16,10 +16,12 @@ export default {
       },
     },
   },
+  args: {
+    ariaLabel: 'Steg for steg',
+  },
   argTypes: {
     ariaLabel: {
       control: 'text',
-      defaultValue: 'Steg for steg',
     },
     ariaLabelledById: {
       control: 'text',
@@ -34,16 +36,28 @@ export default {
       control: 'number',
     },
   },
-} as ComponentMeta<typeof Stepper>;
+} satisfies Meta<typeof Stepper>;
 
-export const Dots: ComponentStory<typeof Stepper> = (args: any) => (
-  <Grid>
-    <Stepper {...args} />
-  </Grid>
-);
+export default meta;
 
-export const Smooth: ComponentStory<typeof Stepper> = (args: any) => (
-  <Grid>
-    <Stepper min={1} max={100} {...args} />
-  </Grid>
-);
+type Story = StoryObj<typeof meta>;
+
+export const Dots: Story = {
+  render: args => (
+    <GridExample>
+      <Stepper {...args} />
+    </GridExample>
+  ),
+};
+
+export const Smooth: Story = {
+  args: {
+    min: 1,
+    max: 100,
+  },
+  render: args => (
+    <GridExample>
+      <Stepper {...args} />
+    </GridExample>
+  ),
+};

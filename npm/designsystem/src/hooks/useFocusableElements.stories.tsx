@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useFocusableElements } from './useFocusableElements';
 import Button from '../components/Button';
@@ -47,7 +47,7 @@ const UseFocusableElementsExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useFocusableElements',
   component: UseFocusableElementsExample,
   parameters: {
@@ -58,6 +58,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseFocusableElementsExample>;
+} satisfies Meta<typeof UseFocusableElementsExample>;
 
-export const Default: ComponentStory<typeof UseFocusableElementsExample> = () => <UseFocusableElementsExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseFocusableElementsExample /> };

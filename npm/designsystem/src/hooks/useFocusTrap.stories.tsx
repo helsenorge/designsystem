@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useFocusTrap } from './useFocusTrap';
 import Button from '../components/Button';
@@ -13,7 +13,7 @@ const UseFocusTrapExample: React.FC = () => {
   const [trap, setTrap] = useState(false);
   useFocusTrap(ref, trap);
 
-  const toggleTrap = () => {
+  const toggleTrap = (): void => {
     setTrap(!trap);
   };
 
@@ -41,7 +41,7 @@ const UseFocusTrapExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useFocusTrap',
   component: UseFocusTrapExample,
   parameters: {
@@ -51,6 +51,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseFocusTrapExample>;
+} satisfies Meta<typeof UseFocusTrapExample>;
 
-export const Default: ComponentStory<typeof UseFocusTrapExample> = () => <UseFocusTrapExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseFocusTrapExample /> };

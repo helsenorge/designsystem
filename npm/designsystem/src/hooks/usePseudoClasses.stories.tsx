@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { usePseudoClasses } from './usePseudoClasses';
 import Button from '../components/Button';
@@ -21,7 +21,7 @@ const UsePseudoClassesExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/usePseudoClasses',
   component: UsePseudoClassesExample,
   parameters: {
@@ -31,6 +31,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UsePseudoClassesExample>;
+} satisfies Meta<typeof UsePseudoClassesExample>;
 
-export const Default: ComponentStory<typeof UsePseudoClassesExample> = () => <UsePseudoClassesExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UsePseudoClassesExample /> };

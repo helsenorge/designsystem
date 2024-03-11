@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import HelpQuestion from './HelpQuestion';
 import { mediumLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/HelpQuestion',
   component: HelpQuestion,
   parameters: {
@@ -17,26 +17,35 @@ export default {
       },
     },
   },
+  args: {
+    children: 'Hvordan finner jeg HPR-nummer?',
+    selected: false,
+  },
   argTypes: {
     children: {
       control: 'text',
-      defaultValue: 'Hvordan finner jeg HPR-nummer?',
     },
     selected: {
       control: 'boolean',
-      defaultValue: false,
     },
   },
-} as ComponentMeta<typeof HelpQuestion>;
+} satisfies Meta<typeof HelpQuestion>;
 
-export const Default: ComponentStory<typeof HelpQuestion> = (args: any) => (
-  <GridExample>
-    <div>{mediumLoremText}</div>
-    <div>
-      <HelpQuestion {...args} onClick={action('Trigger clicked!')}>
-        {args.children}
-      </HelpQuestion>
-    </div>
-    <div>{mediumLoremText}</div>
-  </GridExample>
-);
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    onClick: action('Trigger clicked!'),
+  },
+  render: args => (
+    <GridExample>
+      <div>{mediumLoremText}</div>
+      <div>
+        <HelpQuestion {...args} />
+      </div>
+      <div>{mediumLoremText}</div>
+    </GridExample>
+  ),
+};

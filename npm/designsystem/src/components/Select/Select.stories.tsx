@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import Select from './Select';
 import { palette } from '../../theme/palette';
 import GridExample from '../GridExample';
 import Label from '../Label';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/Select',
   component: Select,
   parameters: {
@@ -19,69 +19,100 @@ export default {
       },
     },
   },
+  args: {
+    children: (
+      <>
+        <option value={'Option 1'}>{'Option 1'}</option>
+        <option value={'Option 2'}>{'Option 2'}</option>
+        <option value={'Option 3'}>{'Option 3'}</option>
+      </>
+    ),
+    label: <Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />,
+    name: 'select name 1',
+    onChange: action('onChange called'),
+    disabled: false,
+    autoComplete: '',
+  },
   argTypes: {
     disabled: {
       control: 'boolean',
-      defaultValue: false,
     },
     autoComplete: {
       control: 'text',
-      defaultValue: '',
     },
   },
-} as ComponentMeta<typeof Select>;
+} satisfies Meta<typeof Select>;
 
-export const Default: ComponentStory<typeof Select> = (args: any) => (
-  <GridExample>
-    <Select
-      {...args}
-      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-      name={'select name 1'}
-      onChange={action('onChange called')}
-    >
-      <option value={'Option 1'}>{'Option 1'}</option>
-      <option value={'Option 2'}>{'Option 2'}</option>
-      <option value={'Option 3'}>{'Option 3'}</option>
-    </Select>
-  </GridExample>
-);
-export const DefaultValue: ComponentStory<typeof Select> = (args: any) => (
-  <GridExample>
-    <Select
-      defaultValue={'Option 2'}
-      {...args}
-      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-      name={'select name 1'}
-      onChange={action('onChange called')}
-    >
-      <option value={'Option 1'}>{'Option 1'}</option>
-      <option value={'Option 2'}>{'Option 2'}</option>
-      <option value={'Option 3'}>{'Option 3'}</option>
-    </Select>
-  </GridExample>
-);
-export const Disabled: ComponentStory<typeof Select> = (args: any) => (
-  <GridExample>
-    <Select
-      {...args}
-      disabled
-      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-      name={'select name 1'}
-      onChange={action('onChange called')}
-    >
-      <option value={'Option 1'}>{'Option 1'}</option>
-      <option value={'Option 2'}>{'Option 2'}</option>
-      <option value={'Option 3'}>{'Option 3'}</option>
-    </Select>
-  </GridExample>
-);
+export default meta;
 
-export const Concepts: ComponentStory<typeof Select> = (args: any) => (
-  <GridExample>
-    <div style={{ backgroundColor: palette.blueberry100, padding: '2rem' }}>
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <GridExample>
+      <Select {...args} />
+    </GridExample>
+  ),
+};
+export const DefaultValue: Story = {
+  args: {
+    defaultValue: 'Option 2',
+  },
+  render: args => (
+    <GridExample>
+      <Select {...args} />
+    </GridExample>
+  ),
+};
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+  render: args => (
+    <GridExample>
+      <Select {...args} />
+    </GridExample>
+  ),
+};
+
+export const Concepts: Story = {
+  render: args => (
+    <GridExample>
+      <div style={{ backgroundColor: palette.blueberry100, padding: '2rem' }}>
+        <Select
+          {...args}
+          concept={'normal'}
+          label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+          name={'select name 1'}
+          onChange={action('onChange called')}
+        >
+          <option value={'Option 1'}>{'Option 1'}</option>
+          <option value={'Option 2'}>{'Option 2'}</option>
+          <option value={'Option 3'}>{'Option 3'}</option>
+        </Select>
+
+        <Select
+          {...args}
+          concept={'transparent'}
+          label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+          name={'select name 1'}
+          onChange={action('onChange called')}
+        >
+          <option value={'Option 1'}>{'Option 1'}</option>
+          <option value={'Option 2'}>{'Option 2'}</option>
+          <option value={'Option 3'}>{'Option 3'}</option>
+        </Select>
+      </div>
+    </GridExample>
+  ),
+};
+
+export const Modes: Story = {
+  render: args => (
+    <GridExample>
       <Select
         {...args}
-        concept={'normal'}
+        mode={'onwhite'}
         label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
@@ -93,7 +124,7 @@ export const Concepts: ComponentStory<typeof Select> = (args: any) => (
 
       <Select
         {...args}
-        concept={'transparent'}
+        mode={'ongrey'}
         label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
@@ -102,94 +133,57 @@ export const Concepts: ComponentStory<typeof Select> = (args: any) => (
         <option value={'Option 2'}>{'Option 2'}</option>
         <option value={'Option 3'}>{'Option 3'}</option>
       </Select>
-    </div>
-  </GridExample>
-);
+      <Select
+        {...args}
+        mode={'onblueberry'}
+        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        name={'select name 1'}
+        onChange={action('onChange called')}
+      >
+        <option value={'Option 1'}>{'Option 1'}</option>
+        <option value={'Option 2'}>{'Option 2'}</option>
+        <option value={'Option 3'}>{'Option 3'}</option>
+      </Select>
+      <Select
+        {...args}
+        mode={'oninvalid'}
+        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        name={'select name 1'}
+        onChange={action('onChange called')}
+      >
+        <option value={'Option 1'}>{'Option 1'}</option>
+        <option value={'Option 2'}>{'Option 2'}</option>
+        <option value={'Option 3'}>{'Option 3'}</option>
+      </Select>
+    </GridExample>
+  ),
+};
 
-export const Modes: ComponentStory<typeof Select> = (args: any) => (
-  <GridExample>
-    <Select
-      {...args}
-      mode={'onwhite'}
-      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-      name={'select name 1'}
-      onChange={action('onChange called')}
-    >
-      <option value={'Option 1'}>{'Option 1'}</option>
-      <option value={'Option 2'}>{'Option 2'}</option>
-      <option value={'Option 3'}>{'Option 3'}</option>
-    </Select>
+export const Width: Story = {
+  render: args => (
+    <GridExample>
+      <Select
+        {...args}
+        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        name={'select name 1'}
+        onChange={action('onChange called')}
+      >
+        <option value={'Option 1'}>{'Option 1'}</option>
+        <option value={'Option 2'}>{'Option 2'}</option>
+        <option value={'Option 3'}>{'Option 3'}</option>
+      </Select>
 
-    <Select
-      {...args}
-      mode={'ongrey'}
-      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-      name={'select name 1'}
-      onChange={action('onChange called')}
-    >
-      <option value={'Option 1'}>{'Option 1'}</option>
-      <option value={'Option 2'}>{'Option 2'}</option>
-      <option value={'Option 3'}>{'Option 3'}</option>
-    </Select>
-    <Select
-      {...args}
-      mode={'onblueberry'}
-      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-      name={'select name 1'}
-      onChange={action('onChange called')}
-    >
-      <option value={'Option 1'}>{'Option 1'}</option>
-      <option value={'Option 2'}>{'Option 2'}</option>
-      <option value={'Option 3'}>{'Option 3'}</option>
-    </Select>
-    <Select
-      {...args}
-      mode={'oninvalid'}
-      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-      name={'select name 1'}
-      onChange={action('onChange called')}
-    >
-      <option value={'Option 1'}>{'Option 1'}</option>
-      <option value={'Option 2'}>{'Option 2'}</option>
-      <option value={'Option 3'}>{'Option 3'}</option>
-    </Select>
-  </GridExample>
-);
-
-export const Width: ComponentStory<typeof Select> = (args: any) => (
-  <GridExample>
-    <Select
-      {...args}
-      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-      name={'select name 1'}
-      onChange={action('onChange called')}
-    >
-      <option value={'Option 1'}>{'Option 1'}</option>
-      <option value={'Option 2'}>{'Option 2'}</option>
-      <option value={'Option 3'}>{'Option 3'}</option>
-    </Select>
-
-    <Select
-      {...args}
-      width={20}
-      label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-      name={'select name 1'}
-      onChange={action('onChange called')}
-    >
-      <option value={'Option 1'}>{'Option 1'}</option>
-      <option value={'Option 2'}>{'Option 2'}</option>
-      <option value={'Option 3'}>{'Option 3'}</option>
-    </Select>
-  </GridExample>
-);
-
-export const AllExamples: ComponentStory<typeof Select> = (args: any) => (
-  <GridExample>
-    <Default {...args} />
-    <DefaultValue {...args} />
-    <Disabled {...args} />
-    <Concepts {...args} />
-    <Modes {...args} />
-    <Width {...args} />
-  </GridExample>
-);
+      <Select
+        {...args}
+        width={20}
+        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        name={'select name 1'}
+        onChange={action('onChange called')}
+      >
+        <option value={'Option 1'}>{'Option 1'}</option>
+        <option value={'Option 2'}>{'Option 2'}</option>
+        <option value={'Option 3'}>{'Option 3'}</option>
+      </Select>
+    </GridExample>
+  ),
+};

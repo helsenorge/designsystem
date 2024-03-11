@@ -23,7 +23,7 @@
     "prebuild": "npm-run-all clean generate:cssdefinitions generate:tsdefinitions",
     "build": "vite build",
     "clean": "rimraf lib types",
-    "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\"",
+    "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\" --nameFormat none --exportType default --includePaths node_modules ../../node_modules",
     "generate:tsdefinitions": "tsc --emitDeclarationOnly",
     "test": "jest",
     "test:watch": "jest --watch",

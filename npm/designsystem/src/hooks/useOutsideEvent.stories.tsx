@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { useOutsideEvent } from './useOutsideEvent';
 import Button from '../components/Button';
@@ -20,7 +20,7 @@ const UseOutsideEventExample: React.FC = () => {
   );
 };
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Hooks/useOutsideEvent',
   component: UseOutsideEventExample,
   parameters: {
@@ -30,6 +30,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UseOutsideEventExample>;
+} satisfies Meta<typeof UseOutsideEventExample>;
 
-export const Default: ComponentStory<typeof UseOutsideEventExample> = () => <UseOutsideEventExample />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = { render: () => <UseOutsideEventExample /> };

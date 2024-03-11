@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import DictionaryTrigger from './DictionaryTrigger';
 import { mediumLoremText } from '../../utils/loremtext';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/DictionaryTrigger',
   component: DictionaryTrigger,
   parameters: {
@@ -18,28 +18,44 @@ export default {
       },
     },
   },
+  args: {
+    children: 'Helsebiblioteket',
+    selected: false,
+  },
   argTypes: {
     children: {
       control: 'text',
-      defaultValue: 'Helsebiblioteket',
     },
     selected: {
       control: 'boolean',
-      defaultValue: false,
     },
   },
-} as ComponentMeta<typeof DictionaryTrigger>;
+} satisfies Meta<typeof DictionaryTrigger>;
 
-export const Default: ComponentStory<typeof DictionaryTrigger> = (args: any) => (
-  <GridExample>
-    <DictionaryTrigger {...args} onClick={action('Trigger clicked!')} />
-  </GridExample>
-);
+export default meta;
 
-export const NextToText: ComponentStory<typeof DictionaryTrigger> = (args: any) => (
-  <GridExample>
-    <div>
-      {mediumLoremText} <DictionaryTrigger {...args} onClick={action('Trigger clicked!')} /> {mediumLoremText}
-    </div>
-  </GridExample>
-);
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    onClick: action('Trigger clicked!'),
+  },
+  render: args => (
+    <GridExample>
+      <DictionaryTrigger {...args} />
+    </GridExample>
+  ),
+};
+
+export const NextToText: Story = {
+  args: {
+    onClick: action('Trigger clicked!'),
+  },
+  render: args => (
+    <GridExample>
+      <div>
+        {mediumLoremText} <DictionaryTrigger {...args} /> {mediumLoremText}
+      </div>
+    </GridExample>
+  ),
+};

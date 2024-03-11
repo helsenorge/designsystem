@@ -7,7 +7,7 @@ import { AnalyticsId } from '../../constants';
 
 import spacerStyles from './styles.module.scss';
 
-interface SpacerProps {
+export interface SpacerProps {
   /** Sets the size of the spacer. */
   size?: SpacerSizes;
   /** Adds custom classes to the element. */
