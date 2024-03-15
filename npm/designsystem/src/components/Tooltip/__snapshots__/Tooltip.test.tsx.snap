@@ -14,6 +14,7 @@ exports[`Gitt at Tooltip skal vises  Når komponenten får en tekst Så rendres 
     data-analyticsid="pop-over"
     id="test"
     role="tooltip"
+    style="z-index: 11000;"
   >
     <div
       class="helpbubble"
@@ -28,6 +29,7 @@ exports[`Gitt at Tooltip skal vises  Når komponenten får en tekst Så rendres 
   </div>
   <div
     class="popover__arrow"
+    style="z-index: 11000;"
   />
 </div>
 `;

@@ -6,6 +6,7 @@ import {
   AnalyticsId,
   IconSize,
   KeyboardEventKey,
+  ZIndex,
   theme,
   useHover,
   useKeyboardEvent,
@@ -53,6 +54,8 @@ export interface DropdownProps {
   disabled?: boolean;
   /** Sets the data-testid attribute on the dropdown button. */
   testId?: string;
+  /** Overrides the default z-index of the DropDownContent */
+  zIndex?: number;
 }
 
 const Dropdown: React.FC<DropdownProps> = props => {
@@ -69,6 +72,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
     fluid = false,
     testId,
     disabled,
+    zIndex = ZIndex.PopOver,
   } = props;
   const dropdownRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
@@ -167,7 +171,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
       </span>
       <button
         type="button"
-        onClick={() => !isOpen && handleOpen()}
+        onClick={(): false | void => !isOpen && handleOpen()}
         className={toggleClasses}
         ref={buttonRef}
         data-testid={testId}
@@ -188,7 +192,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
           size={IconSize.XSmall}
         />
       </button>
-      <div className={contentClasses} style={{ width: fluid ? '100%' : `${buttonWidth}px` }}>
+      <div className={contentClasses} style={{ width: fluid ? '100%' : `${buttonWidth}px`, zIndex: zIndex }}>
         <ul
           className={styles.dropdown__options}
           role="listbox"

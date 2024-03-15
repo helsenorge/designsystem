@@ -49,6 +49,8 @@ interface ExpanderListProps {
   testId?: string;
   /** Sets visual priority */
   variant?: ExpanderListVariant;
+  /** Overrides the default z-index of the expander header */
+  zIndex?: number;
 }
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -71,6 +73,8 @@ type ExpanderProps = Modify<
     handleExpanderClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
     /** Called when expander is open/closed. */
     onExpand?: (isExpanded: boolean) => void;
+    /** Overrides the default z-index of the expander header */
+    zIndex?: number;
   }
 > &
   Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'sticky' | 'variant'>;
@@ -93,6 +97,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     onExpand,
     renderChildrenWhenClosed,
     variant = 'line',
+    zIndex,
   } = props;
   const [isExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLLIElement>(null);
@@ -117,7 +122,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     [expanderListStyles['expander-list-link--absolute']]: isSticky && isLeavingWindow,
   });
 
-  const renderContent = () => {
+  const renderContent = (): React.ReactNode => {
     if (!renderChildrenWhenClosed && !isExpanded) {
       return null;
     }
@@ -147,7 +152,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
         ref={triggerRef}
         aria-expanded={isExpanded}
         style={{
-          zIndex: isHovered || isSticky ? ZIndex.ExpanderTrigger : undefined,
+          zIndex: isHovered || isSticky ? zIndex : undefined,
           width: isSticky && contentWidth ? `${contentWidth}px` : undefined,
         }}
       >
@@ -175,6 +180,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     sticky = false,
     testId,
     variant,
+    zIndex = ZIndex.ExpanderTrigger,
   } = props;
   const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
@@ -186,7 +192,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     setLatestExpander(event.currentTarget);
   }
 
-  const getExpanderId = (index: number) => `${uuid}-${index}`;
+  const getExpanderId = (index: number): string => `${uuid}-${index}`;
 
   useEffect(() => {
     if (accordion && latestExpander && !isElementInViewport(latestExpander)) {
@@ -230,6 +236,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
             handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${uuid}-${index}`),
             renderChildrenWhenClosed,
             variant,
+            zIndex: zIndex,
           });
         }
         return child;

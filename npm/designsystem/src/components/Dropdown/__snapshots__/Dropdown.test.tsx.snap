@@ -44,6 +44,7 @@ exports[`Gitt at Dropdown skal vises vanlig Når Dropdownen har vanlig innhold S
     </button>
     <div
       class="dropdown__content"
+      style="z-index: 11000;"
     >
       <ul
         aria-labelledby="testid-9"
