@@ -1,3 +1,11 @@
+## [6.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.5.0&targetVersion=GTv6.6.0) (2024-03-15)
+
+### Features
+
+- zindex med prop lagt til i datepicker dropdown expander og popover
+  ([915fabc](https://github.com/helsenorge/designsystem/commit/915fabcb890fe3d339d874a74701fbadb606dcc9)), closes
+  [#309420](https://github.com/helsenorge/designsystem/issues/309420)
+
 ## [6.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.4.0&targetVersion=GTv6.5.0) (2024-03-07)
 
 ### Features
