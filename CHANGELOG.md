@@ -1,3 +1,10 @@
+## 6.6.1-beta.0 (2024-03-18)
+
+### Bug Fixes
+
+- datepicker styling eksporteres riktig
+  ([80c2c4d](https://github.com/helsenorge/designsystem/commit/80c2c4d9e75c1e9bf834aaf4cbaa4a7dfa7c6539))
+
 ## [6.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.5.0&targetVersion=GTv6.6.0) (2024-03-15)
 
 ### Features
