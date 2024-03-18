@@ -1,3 +1,10 @@
+## 6.6.2-beta.0 (2024-03-18)
+
+### Bug Fixes
+
+- datepicker styling eksporteres riktig
+  ([67f0f5e](https://github.com/helsenorge/designsystem/commit/67f0f5e3245f60c4fc98e10e1a27a8c191865af6))
+
 ## 6.6.1-beta-styling.0 (2024-03-18)
 
 ### Bug Fixes
