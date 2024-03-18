@@ -1,5 +1,3 @@
-import path from 'path';
-
 import replace from '@rollup/plugin-replace';
 import copy from 'rollup-plugin-copy';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
@@ -72,6 +70,7 @@ export default defineConfig({
         // dem som external.
         replace({
           '.module.scss?used': '.module.scss',
+          '.module.css?used': '.module.css',
           preventAssignment: true,
         }),
       ],
