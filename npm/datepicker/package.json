@@ -2,7 +2,7 @@
   "name": "@helsenorge/datepicker",
   "sideEffects": false,
   "private": false,
-  "version": "6.6.1-beta.0",
+  "version": "6.6.0",
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",
@@ -34,14 +34,16 @@
     "classnames": "^2.5.1",
     "date-fns": "^3.3.1",
     "react": "^17.0.2",
-    "react-day-picker": "^8.10.0",
     "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "react-day-picker": "^8.10.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@helsenorge/designsystem-react": "^6.6.1-beta.0",
+    "@helsenorge/designsystem-react": "^6.6.0",
     "@rollup/plugin-replace": "^5.0.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^12.1.5",

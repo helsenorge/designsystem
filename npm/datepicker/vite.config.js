@@ -14,7 +14,7 @@ export default defineConfig({
     rollupOptions: {
       preserveEntrySignatures: 'strict',
       input: entries,
-      external: [/.module.scss/],
+      external: [/.module.scss/, /react-day-picker\/dist\/style\.module\.css/],
       output: {
         format: 'es',
         sourcemap: true,
