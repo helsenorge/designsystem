@@ -1,3 +1,11 @@
+## [6.6.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.6.0&targetVersion=GTv6.6.1) (2024-03-19)
+
+### Bug Fixes
+
+- reactdaypicker styling eksporterer riktig
+  ([45352f0](https://github.com/helsenorge/designsystem/commit/45352f099804e22af77d6ee5c8e903865151ed2d)), closes
+  [#322222](https://github.com/helsenorge/designsystem/issues/322222)
+
 ## [6.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.5.0&targetVersion=GTv6.6.0) (2024-03-15)
 
 ### Features
