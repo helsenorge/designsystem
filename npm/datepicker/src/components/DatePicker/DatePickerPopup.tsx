@@ -11,8 +11,6 @@ import { useIsVisible } from '@helsenorge/designsystem-react/hooks/useIsVisible'
 import { useLayoutEvent } from '@helsenorge/designsystem-react/hooks/useLayoutEvent';
 import { useSize } from '@helsenorge/designsystem-react/hooks/useSize';
 
-import { ZIndex } from '@helsenorge/designsystem-react';
-
 import { getArrowStyle, getBubbleStyle, getVerticalPosition } from './position-utils';
 
 import styles from './styles.module.scss';
