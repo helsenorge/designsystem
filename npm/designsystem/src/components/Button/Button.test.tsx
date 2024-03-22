@@ -370,4 +370,45 @@ describe('Gitt at button skal vises', (): void => {
       expect(button).toHaveAttribute('type', 'submit');
     });
   });
+  describe('Når Button har type displayRightArrowForAccessibility satt til true', (): void => {
+    test('Så får den → character lagt til', (): void => {
+      render(
+        <Button testId={'knapp'} displayRightArrowForAccessibility variant="borderless">
+          {'Tekst'}
+        </Button>
+      );
+
+      const buttonArrow = screen.getByText('→');
+
+      expect(buttonArrow).toBeInTheDocument();
+    });
+  });
+  describe('Når Button har type displayRightArrowForAccessibility satt til true og button props som ikke støtter det', (): void => {
+    test('Så får den ikke → character lagt til', (): void => {
+      render(
+        <>
+          <Button testId={'knapp'} displayRightArrowForAccessibility variant="outline">
+            {'Tekst'}
+          </Button>
+          <Button testId={'knapp'} displayRightArrowForAccessibility>
+            {'Tekst'}
+          </Button>
+          <Button testId={'knapp'} displayRightArrowForAccessibility fluid>
+            {'Tekst'}
+          </Button>
+          <Button testId={'knapp'} displayRightArrowForAccessibility>
+            <Icon svgIcon={Check} />
+            {'Tekst'}
+          </Button>
+          <Button testId={'knapp'} displayRightArrowForAccessibility arrow>
+            {'Tekst'}
+          </Button>
+        </>
+      );
+
+      const buttonArrow = screen.queryByText('→');
+
+      expect(buttonArrow).not.toBeInTheDocument();
+    });
+  });
 });

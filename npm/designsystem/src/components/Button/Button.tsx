@@ -140,7 +140,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, mobile);
   const hasArrow = arrow && !borderlessVariant;
   const large = size === 'large' && !destructive && !borderlessVariant;
-  const hasUURightArrow = displayRightArrowForAccessibility && !fluid && !leftIcon && !rightIcon && !hasArrow;
+  const hasUURightArrow = displayRightArrowForAccessibility && !fluid && !leftIcon && !rightIcon && !hasArrow && borderlessVariant;
   const rest = { ...restProps };
 
   const buttonWrapperClasses = classNames(
