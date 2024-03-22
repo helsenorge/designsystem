@@ -10,9 +10,8 @@ exports[`Gitt at en PopMenu vises  Når den rendrer Så skal den kun vises 1`] =
         data-analyticsid="pop-menu"
       >
         <button
-          aria-label="Se mer"
+          aria-label="Vis meny"
           class="pop-menu-button pop-menu-button--on-white"
-          data-testid="open-btn"
           type="button"
         >
           <svg
@@ -41,9 +40,8 @@ exports[`Gitt at en PopMenu vises  Når den rendrer Så skal den kun vises 1`] =
       data-analyticsid="pop-menu"
     >
       <button
-        aria-label="Se mer"
+        aria-label="Vis meny"
         class="pop-menu-button pop-menu-button--on-white"
-        data-testid="open-btn"
         type="button"
       >
         <svg

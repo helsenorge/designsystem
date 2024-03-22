@@ -12,7 +12,7 @@ import { isComponent } from '../../utils/component';
 import Close from '../Close';
 import Icon from '../Icon';
 import VerticalDots from '../Icons/VerticalDots';
-import LinkList, { LinkListProps } from '../LinkList';
+import LinkList, { LinkListProps, LinkProps } from '../LinkList';
 import PopOver from '../PopOver';
 
 import styles from './styles.module.scss';
@@ -69,6 +69,11 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   const { isHovered: openButtonIsHovered } = useHover(openRef);
   const mobileIconSize = mobile ? IconSize.XSmall : IconSize.Small;
 
+  const handleClick = (cb?: () => void): void => {
+    setIsOpen(false);
+    cb && cb();
+  };
+
   const renderChildren = () => {
     if (isComponent<LinkListProps>(children, LinkList)) {
       return (
@@ -79,7 +84,18 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
           controllerRef={closeRef}
           popOverRef={popOverRef}
         >
-          {children}
+          {React.Children.map(children, child =>
+            React.cloneElement(child, {
+              children: React.Children.map(child.props.children, child =>
+                isComponent<LinkProps>(child, LinkList.Link)
+                  ? React.cloneElement(child, {
+                      onClick: (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) =>
+                        handleClick(() => child.props.onClick && child.props.onClick(event)),
+                    })
+                  : child
+              ),
+            })
+          )}
         </PopOver>
       );
     }
@@ -96,7 +112,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
       data-testid={openButtonTestId}
       className={buttonClasses}
       aria-label={openButtonAriaLabel || 'Se mer'}
-      onClick={(e?: React.MouseEvent<HTMLElement, MouseEvent>) => handleOnClick(true, e)}
+      onClick={(e): void => handleOnClick(true, e)}
       type="button"
     >
       <Icon svgIcon={VerticalDots} className="test" color={getColor('black')} size={mobileIconSize} isHovered={openButtonIsHovered} />
@@ -110,7 +126,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
       className={buttonClasses}
       testId={closeButtonTestId}
       ref={closeRef}
-      onClick={(e?: React.MouseEvent<HTMLElement, MouseEvent>) => handleOnClick(false, e)}
+      onClick={(e): void => handleOnClick(false, e)}
       small={mobile}
     />
   );
