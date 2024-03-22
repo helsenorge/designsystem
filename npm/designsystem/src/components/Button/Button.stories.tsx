@@ -322,3 +322,19 @@ export const Ellipsis: Story = {
     </GridExample>
   ),
 };
+
+export const UURightArrow: Story = {
+  render: args => (
+    <GridExample>
+      <Button
+        {...args}
+        variant="borderless"
+        displayRightArrowForAccessibility
+        onBlur={action('Button blurred')}
+        onClick={action('Button clicked')}
+      >
+        {'Button'}
+      </Button>
+    </GridExample>
+  ),
+};

@@ -27,6 +27,8 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttri
   id?: string;
   /** Sets the content of the button. */
   children: React.ReactNode;
+  /** Displays a right arrow character when Button is borderless, not fluid and without an icon */
+  displayRightArrowForAccessibility?: boolean;
   /** Adds custom classes to the wrapper element. */
   wrapperClassName?: string;
   /** Adds custom classes to the element. */
@@ -99,6 +101,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     ariaLabel,
     id,
     children,
+    displayRightArrowForAccessibility,
     wrapperClassName,
     className,
     arrow = false,
@@ -137,6 +140,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, mobile);
   const hasArrow = arrow && !borderlessVariant;
   const large = size === 'large' && !destructive && !borderlessVariant;
+  const hasUURightArrow = displayRightArrowForAccessibility && !fluid && !leftIcon && !rightIcon && !hasArrow;
   const rest = { ...restProps };
 
   const buttonWrapperClasses = classNames(
@@ -207,6 +211,11 @@ const Button = React.forwardRef(function ButtonForwardedRef(
             classNames(buttonStyles['button__arrow'], { [buttonStyles['button__arrow--both-icons']]: bothIcons })
           )
         : renderIcon(rightIcon, getLargeIconSize(large, mobile), buttonStyles['button__right-icon'])}
+      {hasUURightArrow && (
+        <span style={{ color: iconColor }} className={buttonStyles['button__right-unicode-arrow']}>
+          {'  →'}
+        </span>
+      )}
     </span>
   );
 
