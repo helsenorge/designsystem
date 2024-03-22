@@ -7,10 +7,6 @@
 .expander {
   $item: &;
 
-  @media (prefers-reduced-motion: no-preference) {
-    animation: fade-in 150ms linear forwards;
-  }
-
   &:first-of-type {
     border-top: 1px solid $neutral500;
   }
@@ -139,21 +135,5 @@
         margin-right: getSpacer(xs);
       }
     }
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    max-height: 0;
-  }
-
-  99% {
-    max-height: 24rem;
-  }
-
-  100% {
-    opacity: 1;
-    max-height: none;
   }
 }
