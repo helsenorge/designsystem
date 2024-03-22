@@ -8,8 +8,8 @@
   display: inline-flex;
   align-items: center;
   text-align: left;
-  gap: getSpacer('xs');
-  padding: getSpacer('xs');
+  gap: getSpacer('2xs');
+  padding: getSpacer('xs') getSpacer('xs') getSpacer('xs') getSpacer('3xs');
   border: 0;
   outline: none;
   background-color: transparent;
@@ -20,7 +20,7 @@
   line-height: $lineheight-size-xs;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    gap: getSpacer('s');
+    gap: getSpacer('2xs');
     font-size: $font-size-md;
     line-height: $lineheight-size-sm;
   }

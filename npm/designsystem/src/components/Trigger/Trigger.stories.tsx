@@ -5,6 +5,7 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Trigger from './Trigger';
 import { mediumLoremText } from '../../utils/loremtext';
+import Button from '../Button';
 import GridExample from '../GridExample';
 
 const meta = {
@@ -92,7 +93,17 @@ export const NextToText: Story = {
   render: args => (
     <GridExample>
       <div>
-        {mediumLoremText} <Trigger {...args} onClick={action('Trigger clicked!')} variant="help" /> {mediumLoremText}
+        {mediumLoremText}
+        <Trigger {...args} onClick={action('Trigger clicked!')} variant="help" />
+        {mediumLoremText}
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <h2>{'Overskrift 2'}</h2>
+        <Trigger {...args} onClick={action('Trigger clicked!')} variant="help" />
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <Button>{'Knapp'}</Button>
+        <Trigger {...args} onClick={action('Trigger clicked!')} variant="help" />
       </div>
     </GridExample>
   ),

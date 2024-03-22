@@ -1,9 +1,15 @@
 @use 'sass:map';
 @import '../../scss/palette';
+@import '../../scss/icon';
+
+$trigger-medium-size: 24.18px;
+$trigger-medium-click-area: 44px;
+$trigger-large-size: 30.61px;
 
 .trigger {
   $trigger: &;
 
+  position: relative;
   vertical-align: text-bottom;
   display: inline-flex;
   align-items: center;
@@ -16,13 +22,27 @@
   cursor: pointer;
 
   &--medium {
-    height: 24.18px;
-    width: 24.18px;
+    height: $trigger-medium-size;
+    width: $trigger-medium-size;
+    margin-left: calc((map.get($icon-sizes, xs) - $trigger-medium-size) / 2);
+    margin-right: calc((map.get($icon-sizes, xs) - $trigger-medium-size) / 2);
+
+    &::after {
+      // Increase the clickable area
+      content: '';
+      position: absolute;
+      left: calc(($trigger-medium-click-area - $trigger-medium-size) / -2);
+      top: calc(($trigger-medium-click-area - $trigger-medium-size) / -2);
+      width: $trigger-medium-click-area;
+      height: $trigger-medium-click-area;
+    }
   }
 
   &--large {
-    height: 30.61px;
-    width: 30.61px;
+    height: $trigger-large-size;
+    width: $trigger-large-size;
+    margin-left: calc((map.get($icon-sizes, sm) - $trigger-large-size) / 2);
+    margin-right: calc((map.get($icon-sizes, sm) - $trigger-large-size) / 2);
   }
 
   $variant-map: (
