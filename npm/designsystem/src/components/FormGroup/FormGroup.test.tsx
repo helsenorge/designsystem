@@ -3,9 +3,13 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import FormGroup from './FormGroup';
-import Checkbox from '../Checkbox/Checkbox';
+import Checkbox from '../Checkbox';
+import FormLayout from '../FormLayout';
+import Input from '../Input';
 import Label from '../Label';
 import RadioButton from '../RadioButton';
+import Select from '../Select';
+import Textarea from '../Textarea';
 
 describe('Gitt at FormGroup skal vises', (): void => {
   describe('Når FormGroup rendres', (): void => {
@@ -125,8 +129,8 @@ describe('Gitt at FormGroup skal vises', (): void => {
         </FormGroup>
       );
 
-      const error = screen.getByRole('alert');
-      expect(error).toBeVisible();
+      const checkbox = screen.getByLabelText('Checkbox 1');
+      expect(checkbox).toHaveAccessibleDescription('error error!');
 
       const formGroup = screen.getByRole('group').parentElement;
       const errorWrapper = formGroup?.parentElement;
@@ -134,6 +138,96 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       expect(errorWrapper?.className).toBe('error-wrapper error-wrapper--with-error');
       expect(formGroupWrapper?.className).toBe('form-group-wrapper');
+    });
+    describe('Når children er Checkbox', (): void => {
+      test('Så er feilmelding knyttet til Checkbox', (): void => {
+        render(
+          <FormGroup error={'error error!'}>
+            <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+          </FormGroup>
+        );
+
+        const input = screen.getByLabelText('Checkbox 1');
+        expect(input).toHaveAccessibleDescription('error error!');
+      });
+    });
+    describe('Når children er RadioButton', (): void => {
+      test('Så er feilmelding knyttet til RadioButton', (): void => {
+        render(
+          <FormGroup error={'error error!'}>
+            <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'RadioButton 1' }]} />} />
+          </FormGroup>
+        );
+
+        const input = screen.getByLabelText('RadioButton 1');
+        expect(input).toHaveAccessibleDescription('error error!');
+      });
+    });
+    describe('Når children er Input', (): void => {
+      test('Så er feilmelding knyttet til Input', (): void => {
+        render(
+          <FormGroup error={'error error!'}>
+            <Input inputId={'Input1'} label={<Label labelTexts={[{ text: 'Input 1' }]} />} />
+          </FormGroup>
+        );
+
+        const input = screen.getByLabelText('Input 1');
+        expect(input).toHaveAccessibleDescription('error error!');
+      });
+    });
+    describe('Når children er TextArea', (): void => {
+      test('Så er feilmelding knyttet til TextArea', (): void => {
+        render(
+          <FormGroup error={'error error!'}>
+            <Textarea textareaId={'TextArea1'} label={<Label labelTexts={[{ text: 'TextArea 1' }]} />} />
+          </FormGroup>
+        );
+
+        const input = screen.getByLabelText('TextArea 1');
+        expect(input).toHaveAccessibleDescription('error error!');
+      });
+    });
+    describe('Når children er Select', (): void => {
+      test('Så er feilmelding knyttet til Select', (): void => {
+        render(
+          <FormGroup error={'error error!'}>
+            <Select selectId={'Select1'} label={<Label labelTexts={[{ text: 'Select 1' }]} />}>
+              <option value={'Option 1'}>{'Option 1'}</option>
+            </Select>
+          </FormGroup>
+        );
+
+        const input = screen.getByLabelText('Select 1');
+        expect(input).toHaveAccessibleDescription('error error!');
+      });
+    });
+    describe('Når children er FormGroup med Input', (): void => {
+      test('Så er feilmelding knyttet til Input', (): void => {
+        render(
+          <FormGroup error={'error error!'}>
+            <FormGroup>
+              <Input inputId={'Input1'} label={<Label labelTexts={[{ text: 'Input 1' }]} />} />
+            </FormGroup>
+          </FormGroup>
+        );
+
+        const input = screen.getByLabelText('Input 1');
+        expect(input).toHaveAccessibleDescription('error error!');
+      });
+    });
+    describe('Når children er FormLayout med Input', (): void => {
+      test('Så er feilmelding knyttet til Input', (): void => {
+        render(
+          <FormGroup error={'error error!'}>
+            <FormLayout>
+              <Input inputId={'Input1'} label={<Label labelTexts={[{ text: 'Input 1' }]} />} />
+            </FormLayout>
+          </FormGroup>
+        );
+
+        const input = screen.getByLabelText('Input 1');
+        expect(input).toHaveAccessibleDescription('error error!');
+      });
     });
   });
 

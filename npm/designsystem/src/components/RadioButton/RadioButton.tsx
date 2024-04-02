@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { AnalyticsId, FormMode, FormSize } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
+import { useUuid } from '../../hooks/useUuid';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
 import { getLabelText, renderLabelAsParent } from '../Label';
@@ -31,6 +32,8 @@ export interface RadioButtonProps
   error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
+  /** Error text id */
+  errorTextId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -60,6 +63,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     size,
     errorText,
     error = !!errorText,
+    errorTextId,
     value = getLabelText(label),
     testId,
     required,
@@ -74,6 +78,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const [checked, changeChecked] = useState<boolean>(defaultChecked);
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
+  const errorTextUuid = useUuid(errorTextId);
 
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
     [radioButtonStyles['radio-button-wrapper--with-error']]: errorText,
@@ -124,7 +129,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
       value={value}
       ref={mergedRefs}
       defaultChecked={defaultChecked}
-      aria-describedby={props['aria-describedby'] ?? undefined}
+      aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
       required={required}
       {...rest}
       onChange={(e): void => change(e)}
@@ -133,7 +138,11 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
 
   return (
     <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
-      {errorText && <p className={errorStyles}>{errorText}</p>}
+      {errorText && (
+        <p className={errorStyles} id={errorTextUuid}>
+          {errorText}
+        </p>
+      )}
       {renderLabelAsParent(
         label,
         getLabelContent(),

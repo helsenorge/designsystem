@@ -42,10 +42,14 @@ export interface DatePickerProps
   error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
+  /** Error text id */
+  errorTextId?: string;
   /** Content to be rendered in the footer of the datepicker popup */
   footerContent?: React.ReactNode;
   /** Label of the input */
   label?: React.ReactNode;
+  /** Input element id */
+  inputId?: string;
   /** Sets the locale of the datepicker */
   locale?: Locale;
   /** Maximum date allowed to be selected */
@@ -70,8 +74,10 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     disableWeekends,
     error,
     errorText,
+    errorTextId,
     footerContent,
     label,
+    inputId,
     locale = nb,
     maxDate,
     minDate,
@@ -188,6 +194,8 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     <Input
       error={error}
       errorText={errorText}
+      errorTextId={errorTextId}
+      inputId={inputId}
       label={label}
       max={maxDate ? format(maxDate, 'yyyy-MM-dd') : ''}
       min={minDate ? format(minDate, 'yyyy-MM-dd') : ''}
@@ -210,6 +218,8 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
         <Input
           error={error}
           errorText={errorText}
+          errorTextId={errorTextId}
+          inputId={inputId}
           inputWrapperRef={inputWrapperRef}
           label={label}
           onFocus={handleInputFocus}

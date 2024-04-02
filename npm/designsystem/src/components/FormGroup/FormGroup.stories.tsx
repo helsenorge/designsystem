@@ -7,6 +7,7 @@ import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import Spacer from '../../components/Spacer';
 import { FormMode, FormSize } from '../../constants';
 import Checkbox from '../Checkbox/Checkbox';
+import FormLayout from '../FormLayout';
 import GridExample from '../GridExample';
 import Coronavirus from '../Icons/Coronavirus';
 import Input from '../Input/Input';
@@ -128,6 +129,7 @@ export const DivTagTrue: Story = {
     </GridExample>
   ),
 };
+
 export const CustomErrorWrapperClass: Story = {
   render: args => (
     <GridExample>
@@ -151,6 +153,26 @@ export const CustomErrorWrapperClass: Story = {
           <RadioButton inputId={'RadioButton4'} label={<Label labelTexts={[{ text: 'Radiobutton 4' }]} />} />
           <RadioButton inputId={'RadioButton5'} label={<Label labelTexts={[{ text: 'Radiobutton 5' }]} />} />
           <RadioButton inputId={'RadioButton6'} label={<Label labelTexts={[{ text: 'Med standard avstand ned til border' }]} />} />
+        </FormGroup>
+      </div>
+    </GridExample>
+  ),
+};
+
+export const FormLayoutChildren: Story = {
+  render: args => (
+    <GridExample>
+      <div
+        style={{
+          background: mapToBackgoundColor(args.mode as FormMode),
+        }}
+      >
+        <FormGroup {...args}>
+          <FormLayout maxColumns={'two'}>
+            <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+            <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+            <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+          </FormLayout>
         </FormGroup>
       </div>
     </GridExample>

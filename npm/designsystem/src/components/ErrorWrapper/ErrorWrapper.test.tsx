@@ -10,12 +10,8 @@ describe('Gitt at det skal vises en valideringsfeil', (): void => {
       const { container } = render(<ErrorWrapper errorText="Dette er en feil" />);
 
       expect(container).toMatchSnapshot();
-      const errorText = screen.getByRole('alert');
+      const errorText = screen.getByText('Dette er en feil');
       expect(errorText).toBeVisible();
-      expect(errorText.className).toBe('error-wrapper__errors');
-      expect(errorText.textContent).toBe('Dette er en feil');
-
-      expect(errorText.parentElement.className).toBe('error-wrapper error-wrapper--with-error');
     });
   });
 });

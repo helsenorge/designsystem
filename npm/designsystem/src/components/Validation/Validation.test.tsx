@@ -1,120 +1,230 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { ValidationErrors } from './types';
+import Validation from './Validation';
 import { FormExample, FormExampleVariants } from '../FormExample/FormExample';
+import Input from '../Input';
 
 describe('Gitt at Validation skal vises', () => {
   describe('Når Validation rendres', () => {
-    test('Så vises den riktig', () => {
-      render(<FormExample exampleType={FormExampleVariants.formgroup} />);
+    test('Så vises tomt felt for oppsummering av feil', () => {
+      render(<Validation />);
 
-      const validation = screen.getByText('Gruppe tittel').parentElement?.parentElement;
-      expect(validation).toBeVisible();
+      const alert = screen.getByRole('alert');
+      expect(alert).toBeVisible();
+      expect(alert).toBeEmptyDOMElement();
     });
   });
 
-  describe('Når Validation rendres med children', () => {
-    test('Så vises children', () => {
-      render(<FormExample exampleType={FormExampleVariants.formgroup} />);
+  describe('Når Validation har errorTitle og errors', () => {
+    test('Så vises oppsummering av feil i en alert', () => {
+      render(<Validation errorTitle="Du må fikse dette:" errors={{ feil1: { message: 'For lang tekst' } }} />);
 
-      const formGroup = screen.getByText('Gruppe tittel').parentElement;
-      expect(formGroup).toBeVisible();
+      const alert = screen.getByRole('alert', { name: 'Du må fikse dette:' });
+      expect(alert).toBeVisible();
+
+      const errorMessage = within(alert).getByText('For lang tekst');
+      expect(errorMessage).toBeVisible();
     });
   });
 
-  describe('Når Submit knapp trykkes på', () => {
-    test('Så vises error', async () => {
-      render(<FormExample exampleType={FormExampleVariants.formgroup} />);
+  describe('Når Validation har errorTitle og errors med referanse til et element', () => {
+    test('Så vises oppsummering av feil i en alert med lenke til feilen', async () => {
+      const Example: React.FC = () => {
+        const inputRef = useRef<HTMLInputElement>(null);
+        const [errors, setErrors] = useState<ValidationErrors>();
 
-      const submit = screen.getByText('Send inn');
+        useEffect(() => {
+          inputRef.current && setErrors({ feil1: { message: 'For lang tekst', ref: inputRef.current } });
+        }, [inputRef.current]);
 
-      await userEvent.click(submit);
+        return (
+          <Validation errorTitle="Du må fikse dette:" errors={errors}>
+            <Input ref={inputRef} errorTextId="error1" inputId="input1" />
+          </Validation>
+        );
+      };
 
-      const error = await screen.findAllByText('Du må velge et alternativ');
-      const error2 = await screen.findByText('Du må velge to alternativ');
-      const errorSummary = screen.getByText('Sjekk at alt er riktig utfylt');
+      render(<Example />);
 
-      expect(error.length).toBe(2);
-      expect(error[0].className).toBe('error-wrapper__errors');
-      expect(error2).toBeVisible();
-      expect(error2.className).toBe('error-wrapper__errors');
+      const alert = screen.getByRole('alert', { name: 'Du må fikse dette:' });
+      expect(alert).toBeVisible();
+
+      const errorMessage = await within(alert).findByRole('link', { name: 'For lang tekst' });
+      expect(errorMessage).toBeVisible();
+      expect(errorMessage).toHaveAttribute('href', '#feil1');
+    });
+  });
+
+  describe('Når Validation har errorTitle og errors der message er JSX', () => {
+    test('Så vises oppsummering av feil i en alert med JSX children', async () => {
+      render(<Validation errorTitle="Du må fikse dette:" errors={{ feil1: { message: <a href="/feilmelding">{'Feilmelding'}</a> } }} />);
+
+      const alert = screen.getByRole('alert', { name: 'Du må fikse dette:' });
+      expect(alert).toBeVisible();
+
+      const errorMessage = await within(alert).findByRole('link', { name: 'Feilmelding' });
+      expect(errorMessage).toBeVisible();
+      expect(errorMessage).toHaveAttribute('href', '/feilmelding');
+    });
+  });
+
+  describe('Når Validation har errorTitle, errors og errorSummary', () => {
+    test('Så vises all teksten i en alert', () => {
+      render(<Validation errorTitle="Du må fikse dette:" errors={{ feil1: { message: 'For lang tekst' } }} errorSummary="feilmelding" />);
+
+      const alert = screen.getByRole('alert', { name: 'Du må fikse dette:' });
+      expect(alert).toBeVisible();
+
+      const errorMessage = within(alert).getByText('For lang tekst');
+      expect(errorMessage).toBeVisible();
+      const errorSummary = within(alert).getByText('feilmelding');
       expect(errorSummary).toBeVisible();
-      expect(errorSummary.className).toBe('validation__errors');
     });
   });
 
-  describe('Når error vises med variant prop satt til large', () => {
-    test('Så vises errorSummary med riktig styling', async () => {
-      render(<FormExample size={'large'} exampleType={FormExampleVariants.formgroup} />);
+  describe('Når Validation har errorSummary', () => {
+    test('Så vises oppsummering av feil i en alert', () => {
+      render(<Validation errorSummary="feilmelding" />);
 
-      const submit = screen.getByText('Send inn');
-
-      await userEvent.click(submit);
-
-      const errorSummary = await screen.findByText('Sjekk at alt er riktig utfylt');
-
-      expect(errorSummary.className).toBe('validation__errors');
+      const alert = screen.getByRole('alert');
+      expect(alert).toBeVisible();
+      expect(alert).toHaveTextContent('feilmelding');
     });
   });
 
-  describe('Når validation krav blir møtt', () => {
-    test('Så fjernes error', async () => {
-      render(<FormExample exampleType={FormExampleVariants.formgroup} />);
+  describe('Når Validation har errorTitle, men ingen errors', () => {
+    test('Så vises tomt felt for oppsummering av feil', () => {
+      render(<Validation errorTitle="Du må fikse dette:" />);
 
-      const submit = screen.getByText('Send inn');
+      const alert = screen.getByRole('alert');
+      expect(alert).toBeVisible();
+      expect(alert).toBeEmptyDOMElement();
+    });
+  });
 
-      await userEvent.click(submit);
+  describe('Når Validation inneholder skjema', () => {
+    describe('Når Validation rendres', () => {
+      test('Så vises den riktig', () => {
+        render(<FormExample exampleType={FormExampleVariants.formgroup} />);
 
-      const error = await screen.findAllByText('Du må velge et alternativ');
-      const error2 = await screen.findByText('Du må velge to alternativ');
-      const error3 = await screen.findByText('Det kan ikke legges inn mer enn 40 tegn');
-      const error4 = await screen.findByText('Du må skrive noe her');
-      const error5 = await screen.findByText('Du må velge "Option 2"');
-      const errorSummary = screen.getByText('Sjekk at alt er riktig utfylt');
-
-      expect(error.length).toBe(2);
-      expect(error2).toBeVisible();
-      expect(error3).toBeVisible();
-      expect(error4).toBeVisible();
-      expect(error5).toBeVisible();
-      expect(errorSummary).toBeVisible();
-
-      const checkbox1 = screen.getByLabelText('Checkbox 1');
-      const checkbox4 = screen.getByLabelText('Checkbox 4');
-      const checkbox5 = screen.getByLabelText('Checkbox 5');
-      const radiobutton1 = screen.getByLabelText('Radiobutton 1');
-      const textarea1 = screen.getByLabelText('Skriv din historie her');
-      const input1 = screen.getByLabelText('Skriv inn din tekst');
-      const select1 = screen.getByRole('combobox');
-      await userEvent.click(checkbox1);
-      await userEvent.click(checkbox4);
-      await userEvent.click(checkbox5);
-      await userEvent.click(radiobutton1);
-      fireEvent.change(textarea1, { target: { value: 'Endring.' } });
-      fireEvent.change(input1, { target: { value: 'Ny tekst' } });
-      fireEvent.change(select1, { target: { value: 'Option 2' } });
-
-      await userEvent.click(submit);
-
-      await waitFor(() => {
-        expect(error[0]).not.toBeInTheDocument();
+        const validation = screen.getByText('FormGroup-tittel').parentElement?.parentElement;
+        expect(validation?.className).toBe('');
       });
-      await waitFor(() => {
-        expect(error2).not.toBeInTheDocument();
+    });
+
+    describe('Når Validation rendres med children', () => {
+      test('Så vises children', () => {
+        render(<FormExample exampleType={FormExampleVariants.formgroup} />);
+
+        const formGroup = screen.getByText('FormGroup-tittel').parentElement;
+        expect(formGroup).toBeVisible();
       });
-      await waitFor(() => {
-        expect(error3).not.toBeInTheDocument();
+    });
+
+    describe('Når Submit knapp trykkes på', () => {
+      test('Så vises error', async () => {
+        render(<FormExample exampleType={FormExampleVariants.formgroup} />);
+
+        const submit = screen.getByText('Send inn');
+
+        await userEvent.click(submit);
+
+        const checkbox1 = screen.getByLabelText('Blueberry');
+        expect(checkbox1).toHaveAccessibleDescription('Du må velge minst én farge');
+        const checkbox4 = screen.getByLabelText('Small');
+        expect(checkbox4).toHaveAccessibleDescription('Du må velge minst to størrelser');
+
+        const errorSummary = screen.getByRole('alert');
+        expect(errorSummary).toBeVisible();
+        expect(errorSummary).toHaveTextContent('Sjekk at alt er riktig utfylt');
+        expect(errorSummary.className).toBe('validation-summary validation-summary--visible');
       });
-      await waitFor(() => {
-        expect(error4).not.toBeInTheDocument();
+    });
+
+    describe('Når error vises med variant prop satt til large', () => {
+      test('Så vises errorSummary med riktig styling', async () => {
+        render(<FormExample size={'large'} exampleType={FormExampleVariants.formgroup} />);
+
+        const submit = screen.getByText('Send inn');
+
+        await userEvent.click(submit);
+
+        const errorSummary = screen.getByRole('alert');
+
+        expect(errorSummary.className).toBe('validation-summary validation-summary--visible');
       });
-      await waitFor(() => {
-        expect(error5).not.toBeInTheDocument();
-      });
-      await waitFor(() => {
-        expect(errorSummary).not.toBeInTheDocument();
+    });
+
+    describe('Når validation krav blir møtt', () => {
+      test('Så fjernes error', async () => {
+        render(<FormExample exampleType={FormExampleVariants.formgroup} />);
+
+        const submit = screen.getByText('Send inn');
+
+        await userEvent.click(submit);
+
+        const blueberry = screen.getByLabelText('Blueberry');
+        expect(blueberry).toHaveAccessibleDescription('Du må velge minst én farge');
+        const cherry = screen.getByLabelText('Cherry');
+        expect(cherry).toHaveAccessibleDescription('Du må velge minst én farge');
+        const neutral = screen.getByLabelText('Neutral');
+        expect(neutral).toHaveAccessibleDescription('Du må velge minst én farge');
+
+        const small = screen.getByLabelText('Small');
+        expect(small).toHaveAccessibleDescription('Du må velge minst to størrelser');
+        const medium = screen.getByLabelText('Medium');
+        expect(medium).toHaveAccessibleDescription('Du må velge minst to størrelser');
+        const large = screen.getByLabelText('Large');
+        expect(large).toHaveAccessibleDescription('Du må velge minst to størrelser');
+
+        const left = screen.getByLabelText('Venstre');
+        expect(left).toHaveAccessibleDescription('Du må velge minst én plassering');
+        const right = screen.getByLabelText('Høyre');
+        expect(right).toHaveAccessibleDescription('Du må velge minst én plassering');
+        const center = screen.getByLabelText('Midten');
+        expect(center).toHaveAccessibleDescription('Du må velge minst én plassering');
+
+        const story = screen.getByLabelText('Historie');
+        expect(story).toHaveAccessibleDescription('Historien må være på maks 40 tegn');
+
+        const name = screen.getByLabelText('Navn');
+        expect(name).toHaveAccessibleDescription('Navn må fylles ut');
+
+        const monster = screen.getByLabelText('Velg et monster');
+        expect(monster).toHaveAccessibleDescription('Du må velge "Frankenstein"');
+
+        const errorSummary = screen.getByRole('alert');
+        expect(errorSummary).toBeVisible();
+        expect(errorSummary).toHaveTextContent('Sjekk at alt er riktig utfylt');
+
+        await userEvent.click(blueberry);
+        await userEvent.click(small);
+        await userEvent.click(medium);
+        await userEvent.click(left);
+        fireEvent.change(story, { target: { value: 'Endring.' } });
+        fireEvent.change(name, { target: { value: 'Ny tekst' } });
+        await userEvent.selectOptions(monster, 'Frankenstein');
+
+        await userEvent.click(submit);
+
+        expect(blueberry).toHaveAccessibleDescription('');
+        expect(cherry).toHaveAccessibleDescription('');
+        expect(neutral).toHaveAccessibleDescription('');
+        expect(small).toHaveAccessibleDescription('');
+        expect(medium).toHaveAccessibleDescription('');
+        expect(large).toHaveAccessibleDescription('');
+        expect(left).toHaveAccessibleDescription('');
+        expect(right).toHaveAccessibleDescription('');
+        expect(center).toHaveAccessibleDescription('');
+        expect(story).toHaveAccessibleDescription('');
+        expect(name).toHaveAccessibleDescription('');
+        expect(monster).toHaveAccessibleDescription('');
+        expect(errorSummary).toBeEmptyDOMElement();
+        expect(errorSummary.className).toBe('validation-summary');
       });
     });
   });

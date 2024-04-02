@@ -201,4 +201,22 @@ describe('Gitt at Textarea skal vises', (): void => {
       });
     });
   });
+
+  describe('Når Textarea har en error', (): void => {
+    test('Så skal invalid styling brukes', (): void => {
+      render(<Textarea label={'Skriv noe'} error />);
+      const contentWrapper = screen.getByRole('textbox').parentElement;
+      expect(contentWrapper).toHaveClass('input-container input-container--invalid');
+    });
+  });
+
+  describe('Når Textarea har en feilmelding', (): void => {
+    test('Så er feilmelding knyttet sammen med inputfeltet', (): void => {
+      render(<Textarea label={'Navn'} textareaId="navn" errorText="Navn må fylles ut" />);
+
+      const input = screen.getByLabelText('Navn');
+
+      expect(input).toHaveAccessibleDescription('Navn må fylles ut');
+    });
+  });
 });

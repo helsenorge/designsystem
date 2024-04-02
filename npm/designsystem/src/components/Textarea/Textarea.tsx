@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import cn from 'classnames';
 
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode } from '../../constants';
+import { useUuid } from '../../hooks/useUuid';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import { renderLabel } from '../Label';
@@ -48,8 +49,12 @@ export interface TextareaProps
   minRows?: number;
   /** auto-grows until maxRows */
   grow?: boolean;
+  /** Activates Error style for the input */
+  error?: boolean;
   /** Error text to show above the component */
   errorText?: string;
+  /** Error text id */
+  errorTextId?: string;
 }
 
 const getTextareaMaxWidth = (characters: number): string => {
@@ -75,7 +80,9 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     minRows = 3,
     maxRows = 10,
     grow,
+    error,
     errorText,
+    errorTextId,
     autoFocus,
     disabled,
     name,
@@ -90,6 +97,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const [rows, setRows] = useState(minRows);
   const [textareaInput, setTextareaInput] = useState(defaultValue || '');
   const referanse = useRef<HTMLDivElement>(null);
+  const errorTextUuid = useUuid(errorTextId);
 
   useEffect(() => {
     setTextareaInput(defaultValue || '');
@@ -122,7 +130,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const onDark = mode === FormMode.ondark;
   const onBlueberry = mode === FormMode.onblueberry;
   const maxCharactersExceeded = !!maxCharacters && textareaInput.toString().length > maxCharacters;
-  const onError = mode === FormMode.oninvalid || !!errorText || maxCharactersExceeded;
+  const onError = mode === FormMode.oninvalid || !!errorText || !!error || maxCharactersExceeded;
 
   const textareaWrapperClass = cn(styles.textarea, {
     [styles['textarea--gutterBottom']]: gutterBottom,
@@ -164,7 +172,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
 
   return (
-    <ErrorWrapper errorText={errorText}>
+    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
         {renderLabel(label, textareaId, mode as FormMode)}
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
@@ -174,7 +182,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             id={textareaId}
             className={textareaClass}
             ref={ref}
-            aria-describedby={props['aria-describedby'] ?? undefined}
+            aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
             aria-invalid={!!onError}
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autoFocus}

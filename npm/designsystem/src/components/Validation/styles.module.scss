@@ -2,12 +2,20 @@
 @import '../../scss/palette';
 @import '../../scss/font-settings';
 
-.validation {
-  &__errors {
-    font-size: $font-size-sm;
-    font-weight: 600;
-    color: $cherry600;
-    margin: getSpacer('l') 0 getSpacer('s');
+.validation-summary {
+  color: $cherry600;
+
+  &--visible {
+    margin: getSpacer(l) 0 getSpacer(s);
+  }
+}
+
+.validation-errors {
+  font-size: $font-size-sm;
+  font-weight: 600;
+
+  &--visible {
+    margin: getSpacer(l) 0 getSpacer(s);
   }
 }
 

@@ -107,9 +107,18 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når checkbox får satt errorText', (): void => {
     test('Så vises Checkbox med errormelding i tilleg til indre og ytre error styling', (): void => {
-      render(<Checkbox testId={'test01'} label={<Label labelTexts={[{ text: 'Check me out!' }]} />} errorText={'error error!'} />);
+      render(
+        <Checkbox
+          testId={'test01'}
+          inputId="checkbox"
+          label={<Label labelTexts={[{ text: 'Check me out!' }]} />}
+          errorText={'error error!'}
+        />
+      );
 
-      expect(screen.getByText('error error!')).toBeVisible();
+      const checkbox = screen.getByLabelText('Check me out!');
+
+      expect(checkbox).toHaveAccessibleDescription('error error!');
 
       // Indre styling
       const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
