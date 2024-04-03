@@ -112,12 +112,12 @@ export const Icons: Story = {
       </Button>
       <br />
       <br />
-      <Button {...args} ref={myRef3} onBlur={action('Button blurred')} onClick={action('Button clicked')} arrow>
+      <Button {...args} ref={myRef3} onBlur={action('Button blurred')} onClick={action('Button clicked')} arrow="icon">
         {args.children}
       </Button>
       <br />
       <br />
-      <Button {...args} ref={myRef4} onBlur={action('Button blurred')} onClick={action('Button clicked')} arrow>
+      <Button {...args} ref={myRef4} onBlur={action('Button blurred')} onClick={action('Button clicked')} arrow="icon">
         <Icon svgIcon={Dog} />
         {args.children}
       </Button>
@@ -138,6 +138,7 @@ export const LazyIcons: Story = {
       <Button {...args} ref={myRef1} onClick={action('Button clicked')}>
         <LazyIcon iconName={'Dog'} />
         {args.children}
+        <Icon svgIcon={Dog} />
       </Button>
       <br />
       <br />
@@ -147,12 +148,12 @@ export const LazyIcons: Story = {
       </Button>
       <br />
       <br />
-      <Button {...args} ref={myRef3} onClick={action('Button clicked')} arrow>
+      <Button {...args} ref={myRef3} onClick={action('Button clicked')} arrow="icon">
         {args.children}
       </Button>
       <br />
       <br />
-      <Button {...args} ref={myRef4} onClick={action('Button clicked')} arrow>
+      <Button {...args} ref={myRef4} onClick={action('Button clicked')} arrow="icon">
         <LazyIcon iconName={'Dog'} />
         {args.children}
       </Button>
@@ -296,7 +297,7 @@ export const Fluid: Story = {
       </Button>
       <br />
       <br />
-      <Button {...args} arrow fluid onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+      <Button {...args} arrow="icon" fluid onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         <Icon svgIcon={Dog} />
         {args.children}
       </Button>
@@ -318,6 +319,22 @@ export const Ellipsis: Story = {
       <Button {...args} ellipsis onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         <Icon svgIcon={Dog} />
         {'Alt for mye tekst her'}
+      </Button>
+    </GridExample>
+  ),
+};
+
+export const UURightArrow: Story = {
+  render: args => (
+    <GridExample>
+      <Button
+        {...args}
+        variant="borderless"
+        arrow="accessibility-character"
+        onBlur={action('Button blurred')}
+        onClick={action('Button clicked')}
+      >
+        {'Button'}
       </Button>
     </GridExample>
   ),

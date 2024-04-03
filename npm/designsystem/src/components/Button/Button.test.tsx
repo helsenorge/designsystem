@@ -81,7 +81,7 @@ describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres med to ikoner', (): void => {
     test('Så skal button ha to ikoner ', (): void => {
       render(
-        <Button arrow testId="test">
+        <Button arrow="icon" testId="test">
           <Icon svgIcon={Dog} />
           Button
         </Button>
@@ -294,10 +294,10 @@ describe('Gitt at button skal vises', (): void => {
 
       expect(testFill.className).toBe('button button--normal button--borderless');
     });
-    test('Så er ikke arrow tilgjengelig', (): void => {
+    test('Så er ikke arrow som icon tilgjengelig', (): void => {
       render(
         <div>
-          <Button testId={'test01'} variant={'borderless'} arrow>
+          <Button testId={'test01'} variant={'borderless'} arrow="icon">
             Button
           </Button>
         </div>
@@ -369,6 +369,44 @@ describe('Gitt at button skal vises', (): void => {
       const button = screen.getByTestId('knapp');
 
       expect(button).toHaveAttribute('type', 'submit');
+    });
+  });
+  describe('Når Button har type arrow er satt til accessibility-character', (): void => {
+    test('Så får den → character lagt til', (): void => {
+      render(
+        <Button testId={'knapp'} arrow="accessibility-character" variant="borderless">
+          {'Tekst'}
+        </Button>
+      );
+
+      const buttonArrow = screen.getByText('→');
+
+      expect(buttonArrow).toBeInTheDocument();
+    });
+  });
+  describe('Når Button har type arrow er satt til accessibility-character og button props som ikke støtter det', (): void => {
+    test('Så får den ikke → character lagt til', (): void => {
+      render(
+        <>
+          <Button testId={'knapp'} arrow="accessibility-character" variant="outline">
+            {'Tekst'}
+          </Button>
+          <Button testId={'knapp'} arrow="accessibility-character">
+            {'Tekst'}
+          </Button>
+          <Button testId={'knapp'} arrow="accessibility-character" fluid>
+            {'Tekst'}
+          </Button>
+          <Button testId={'knapp'} arrow="accessibility-character">
+            <Icon svgIcon={Check} />
+            {'Tekst'}
+          </Button>
+        </>
+      );
+
+      const buttonArrow = screen.queryByText('→');
+
+      expect(buttonArrow).not.toBeInTheDocument();
     });
   });
 });

@@ -19,6 +19,7 @@ export type ButtonVariant = 'fill' | 'outline' | 'borderless';
 export type ButtonSize = 'medium' | 'large';
 export type ButtonMode = 'onlight' | 'ondark';
 export type ButtonTags = 'button' | 'a';
+export type ButtonArrows = 'icon' | 'accessibility-character';
 
 export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttributes {
   /** Sets the aria-label of the button, use when the button only includes an icon */
@@ -32,7 +33,7 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttri
   /** Adds custom classes to the element. */
   className?: string;
   /** Enables an arrow icon to the right inside the button (Not available in borderless variant) */
-  arrow?: boolean;
+  arrow?: ButtonArrows;
   /** Changes the intent of the button. Mostly changes the color profile. */
   concept?: ButtonConcept;
   /** Disables text wrapping and enables ellipsis. */
@@ -85,7 +86,7 @@ const getLargeIconSize = (large: boolean, mobile: boolean): IconSize => {
   return IconSize.XSmall;
 };
 
-const checkOnlyIconAria = (onlyIcon: boolean, ariaLabel: string | undefined, devEnv: boolean) => {
+const checkOnlyIconAria = (onlyIcon: boolean, ariaLabel: string | undefined, devEnv: boolean): void => {
   if (devEnv && onlyIcon && (ariaLabel === undefined || ariaLabel === '')) {
     throw new Error('Fyll inn ariaLabel prop på Button uten tekst for å opprettholde UU krav');
   }
@@ -101,7 +102,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     children,
     wrapperClassName,
     className,
-    arrow = false,
+    arrow,
     concept = 'normal',
     disabled = false,
     ellipsis = false,
@@ -135,8 +136,9 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const outlineVariant = variant === 'outline';
   const borderlessVariant = variant === 'borderless';
   const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, mobile);
-  const hasArrow = arrow && !borderlessVariant;
+  const hasArrow = arrow === 'icon' && !borderlessVariant;
   const large = size === 'large' && !destructive && !borderlessVariant;
+  const hasUURightArrow = arrow === 'accessibility-character' && !fluid && !leftIcon && !rightIcon && !hasArrow && borderlessVariant;
   const rest = { ...restProps };
 
   const buttonWrapperClasses = classNames(
@@ -207,6 +209,11 @@ const Button = React.forwardRef(function ButtonForwardedRef(
             classNames(buttonStyles['button__arrow'], { [buttonStyles['button__arrow--both-icons']]: bothIcons })
           )
         : renderIcon(rightIcon, getLargeIconSize(large, mobile), buttonStyles['button__right-icon'])}
+      {hasUURightArrow && (
+        <span style={{ color: iconColor }} className={buttonStyles['button__right-unicode-arrow']}>
+          {'  →'}
+        </span>
+      )}
     </span>
   );
 
