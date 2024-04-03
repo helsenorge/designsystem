@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 
 import { getArrowStyle, getBubbleStyle, getVerticalPosition } from './utils';
-import { AnalyticsId } from '../../constants';
+import { AnalyticsId, ZIndex } from '../../constants';
 import { useInterval } from '../../hooks/useInterval';
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
@@ -41,6 +41,8 @@ export interface PopOverProps {
   role?: PopOverRole;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Overrides the default z-index of PopOver */
+  zIndex?: number;
 }
 
 const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((props, ref) => {
@@ -55,6 +57,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((
     role,
     testId,
     arrowClassName,
+    zIndex = ZIndex.PopOver,
   } = props;
 
   const bubbleRef = popOverRef || useRef<HTMLDivElement>(null);
@@ -92,14 +95,14 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((
         id={id}
         ref={mergeRefs([ref, bubbleRef])}
         className={popOverClasses}
-        style={bubbleStyle}
+        style={{ ...bubbleStyle, zIndex }}
         data-testid={testId}
         data-analyticsid={AnalyticsId.PopOver}
         role={role}
       >
         {children}
       </div>
-      <div ref={arrowRef} className={arrowClasses} style={arrowStyle} />
+      <div ref={arrowRef} className={arrowClasses} style={{ ...arrowStyle, zIndex }} />
     </>
   );
 });

@@ -23,10 +23,11 @@ interface DatePickerPopupProps
   datepickerWrapperRef: React.RefObject<HTMLDivElement>;
   inputRef: React.RefObject<HTMLInputElement>;
   testId?: string;
+  zIndex?: number;
 }
 
 const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
-  const { datepickerWrapperRef, footer, inputRef, testId, ...rest } = props;
+  const { datepickerWrapperRef, footer, inputRef, testId, zIndex, ...rest } = props;
   const arrowRef = useRef<HTMLDivElement>(null);
   const [controllerSize, setControllerSize] = useState<DOMRect>();
   const bubbleSize = useSize(datepickerWrapperRef);
@@ -64,7 +65,7 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
 
   return (
     <>
-      <div className={datepickerPopupContainerClasses} data-testid={testId} ref={datepickerWrapperRef} style={bubbleStyle}>
+      <div className={datepickerPopupContainerClasses} data-testid={testId} ref={datepickerWrapperRef} style={{ ...bubbleStyle, zIndex }}>
         <DayPicker
           captionLayout="dropdown-buttons"
           classNames={datePickerClassNames}
@@ -75,7 +76,7 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
           {...rest}
         />
       </div>
-      <div ref={arrowRef} className={popupArrowClasses} style={arrowStyle} />
+      <div ref={arrowRef} className={popupArrowClasses} style={{ ...arrowStyle, zIndex }} />
     </>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
-import Input, { InputTypes } from './Input';
+import Input, { InputProps, InputTypes } from './Input';
 import { FormMode, FormSize } from '../../constants';
 import GridExample from '../GridExample';
 import Hospital from '../Icons/Hospital';
@@ -137,12 +137,13 @@ export const MultipleExamples: Story = {
 };
 
 export const MaxCharacters: Story = {
-  render: args => (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => (
     <GridExample>
-      <Input {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={10} width={10} />
-      <Input {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={50} width={50} />
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={10} width={10} />
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={50} width={50} />
       <Input
-        {...args}
+        {...rest}
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
         maxCharacters={50}
         width={50}
@@ -153,15 +154,16 @@ export const MaxCharacters: Story = {
 };
 
 export const AfterInputChildren: Story = {
-  render: args => (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => (
     <GridExample>
       <Input
-        {...args}
+        {...rest}
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
         afterInputChildren={<div style={{ marginTop: '1rem' }}>{'*Ikke oppgi personsensitiv informasjon'}</div>}
       />
       <Input
-        {...args}
+        {...rest}
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
         afterInputChildren={'Tekst uten innsendt div'}
       />
@@ -170,7 +172,7 @@ export const AfterInputChildren: Story = {
 };
 
 export const BaseIncrementValue: Story = {
-  render: ({ showIcon, ...rest }) => {
+  render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => {
     const inputId = 'input-testid';
 
     return (

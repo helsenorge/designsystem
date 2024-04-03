@@ -19,7 +19,7 @@ export default defineConfig({
     rollupOptions: {
       preserveEntrySignatures: 'strict',
       input: entries,
-      external: [/.module.scss/],
+      external: [/.module.scss/, /react-day-picker\/dist\/style\.module\.css/],
       output: {
         format: 'es',
         entryFileNames: '[name].js',
@@ -74,6 +74,7 @@ export default defineConfig({
         // dem som external.
         replace({
           '.module.scss?used': '.module.scss',
+          '.module.css?used': '.module.css',
           preventAssignment: true,
         }),
       ],

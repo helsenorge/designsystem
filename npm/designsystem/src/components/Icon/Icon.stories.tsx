@@ -45,7 +45,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Icon>;
 
 export const Default: Story = {
   args: {
@@ -101,8 +101,9 @@ export const Accessibility: Story = {
   ),
 };
 
-export const IconWall: Story = {
-  args: { svgIcon: Search },
+type LazyIconStory = StoryObj<typeof LazyIcon>;
+
+export const IconWall: LazyIconStory = {
   render: args => {
     const [searchText, setSearchText] = React.useState<string | undefined>();
     const [iconSize, setIconSize] = React.useState<IconSize>(IconSize.Medium);
@@ -189,7 +190,7 @@ export const IconWall: Story = {
                 style={{ display: 'flex', width: 'fit-content', minWidth: '10rem', flexDirection: 'column', alignItems: 'center' }}
                 key={index}
               >
-                <LazyIcon iconName={iconName as IconName} {...args} size={iconSize} isHovered={isHovered} />
+                <LazyIcon {...args} iconName={iconName as IconName} size={iconSize} isHovered={isHovered} />
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <span>{iconName}</span>
                   {additionalInfo && (

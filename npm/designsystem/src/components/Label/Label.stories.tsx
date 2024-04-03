@@ -157,17 +157,18 @@ export const ChildrenAfterLabel: Story = {
 };
 
 export const LabelAsString: Story = {
-  render: args => (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  render: ({ showIcon, ...rest }) => (
     <GridExample>
-      <Input {...args} label={'Test label'} />
-      <Textarea {...args} label={'Test label'} />
-      <Select {...args} label={'Test label'}>
+      <Input {...rest} label={'Test label'} />
+      <Textarea {...rest} label={'Test label'} />
+      <Select {...rest} label={'Test label'}>
         <option value={'Option 1'}>{'Option 1'}</option>
         <option value={'Option 2'}>{'Option 2'}</option>
         <option value={'Option 3'}>{'Option 3'}</option>
       </Select>
-      <Checkbox {...args} label={'Test label'} />
-      <RadioButton {...args} label={'Test label'} />
+      <Checkbox {...rest} label={'Test label'} />
+      <RadioButton {...rest} label={'Test label'} />
     </GridExample>
   ),
 };

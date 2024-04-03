@@ -8,7 +8,7 @@ import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Input from '@helsenorge/designsystem-react/components/Input';
-import { KeyboardEventKey } from '@helsenorge/designsystem-react/constants';
+import { KeyboardEventKey, ZIndex } from '@helsenorge/designsystem-react/constants';
 import { useKeyboardEvent } from '@helsenorge/designsystem-react/hooks/useKeyboardEvent';
 import { useOutsideEvent } from '@helsenorge/designsystem-react/hooks/useOutsideEvent';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
@@ -60,6 +60,8 @@ export interface DatePickerProps
   onChange?: (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>, date: Date | string | undefined) => void;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Overrides the default z-index of DatePicker */
+  zIndex?: number;
 }
 
 export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
@@ -85,6 +87,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     onChange,
     testId,
     autoComplete = 'off',
+    zIndex = ZIndex.PopOver,
     ...rest
   } = props;
 
@@ -259,6 +262,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           selected={dateState}
           onSelect={handleSingleDatePickerSelect}
           onMonthChange={setMonth}
+          zIndex={zIndex}
         />
       )}
     </>

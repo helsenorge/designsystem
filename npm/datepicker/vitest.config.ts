@@ -13,7 +13,7 @@ export default defineConfig({
     coverage: {
       reporter: ['cobertura', 'json'],
     },
-    reporters: ['junit'],
+    reporters: ['default', 'junit'],
     outputFile: {
       junit: 'test-report.xml',
     },

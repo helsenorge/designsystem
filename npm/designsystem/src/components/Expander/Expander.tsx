@@ -46,6 +46,8 @@ export interface ExpanderProps {
   renderChildrenWhenClosed?: boolean;
   /** Sets the data-testid attribute on the expander button. */
   testId?: string;
+  /** Overrides the default z-index of the expander header */
+  zIndex?: number;
 }
 
 const Expander: React.FC<ExpanderProps> = props => {
@@ -61,6 +63,7 @@ const Expander: React.FC<ExpanderProps> = props => {
     testId,
     onExpand,
     renderChildrenWhenClosed = false,
+    zIndex = ZIndex.ExpanderTrigger,
   } = props;
   const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLDivElement>(null);
@@ -70,7 +73,7 @@ const Expander: React.FC<ExpanderProps> = props => {
 
   const isSticky = sticky && isExpanded && isOutsideWindow;
 
-  const renderChevron = (align: 'left' | 'right') => (
+  const renderChevron = (align: 'left' | 'right'): React.ReactNode => (
     <span className={classNames(styles['expander__icon'], styles[`expander__icon--${align}`])}>
       <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} size={IconSize.XSmall} isHovered={isHovered} />
     </span>
@@ -86,17 +89,17 @@ const Expander: React.FC<ExpanderProps> = props => {
     isSticky && isLeavingWindow && styles['expander__trigger--absolute']
   );
 
-  const renderTrigger = () => (
+  const renderTrigger = (): React.ReactNode => (
     <button
       type="button"
       className={triggerClassName}
       style={{
-        zIndex: isHovered || isSticky ? ZIndex.ExpanderTrigger : undefined,
+        zIndex: isHovered || isSticky ? zIndex : undefined,
         width: isSticky && contentWidth ? `${contentWidth}px` : undefined,
       }}
       aria-expanded={isExpanded}
       ref={triggerRef}
-      onClick={() => setIsExpanded(!isExpanded)}
+      onClick={(): void => setIsExpanded(!isExpanded)}
       data-testid={testId}
       data-analyticsid={AnalyticsId.Expander}
     >
@@ -122,13 +125,13 @@ const Expander: React.FC<ExpanderProps> = props => {
     isSticky && isLeavingWindow && styles['expander__button--absolute']
   );
 
-  const renderButton = () => (
+  const renderButton = (): React.ReactNode => (
     <Button
       variant="borderless"
       className={buttonClassName}
       aria-expanded={isExpanded}
       ref={triggerRef}
-      onClick={() => setIsExpanded(!isExpanded)}
+      onClick={(): void => setIsExpanded(!isExpanded)}
       testId={testId}
       data-analyticsid={AnalyticsId.Expander}
     >
@@ -137,7 +140,7 @@ const Expander: React.FC<ExpanderProps> = props => {
     </Button>
   );
 
-  const renderContent = () => {
+  const renderContent = (): React.ReactNode => {
     if (!renderChildrenWhenClosed && !isExpanded) {
       return null;
     }

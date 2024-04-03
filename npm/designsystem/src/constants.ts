@@ -9,7 +9,9 @@ export enum IconSize {
 
 export enum ZIndex {
   Modal = 1300000,
+  PopOver = 11000,
   ExpanderTrigger = 10000,
+  // TODO: Skille mellom ExpanderTrigger isSticky og isHovered? Skulle tro isHovered trenger vesentlig mindre z-index
 }
 
 export const AVERAGE_CHARACTER_WIDTH_PX = 12;

@@ -36,7 +36,7 @@ await writeFile(
 
 import styles from './styles.module.scss';
 
-interface ${componentName}Props {
+export interface ${componentName}Props {
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -71,12 +71,12 @@ await writeFile(
   `${componentDirectory}/${componentName}.stories.tsx`,
   `import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import ${componentName} from './${componentName}';
 import GridExample from '../GridExample';
 
-export default {
+const meta = {
   title: '@helsenorge∕designsystem-react/Components/${componentName}',
   component: ${componentName},
   parameters: {
@@ -86,14 +86,22 @@ export default {
       },
     },
   },
+  args: {},
   argTypes: {},
-} as ComponentMeta<typeof ${componentName}>;
+} satisfies Meta<typeof ${componentName}>;
 
-export const Default: ComponentStory<typeof ${componentName}> = (args: any) => (
-  <GridExample>
-    <${componentName} {...args} />
-  </GridExample>
-);
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {},
+  render: args => (
+    <GridExample>
+      <${componentName} {...args} />
+    </GridExample>
+  ),
+};
 `
 );
 

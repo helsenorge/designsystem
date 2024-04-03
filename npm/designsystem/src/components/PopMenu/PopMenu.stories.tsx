@@ -36,17 +36,21 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const handleClick = (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>): void => {
+  event.preventDefault();
+};
+
 export const Default: Story = {
   args: {
     children: (
-      <LinkList testId="linkList-tester" chevron={false}>
-        <LinkList.Link tabIndex={0} href="/">
+      <LinkList chevron={false}>
+        <LinkList.Link onClick={handleClick} href="#">
           {'Link 1'}
         </LinkList.Link>
-        <LinkList.Link tabIndex={0} href="/">
+        <LinkList.Link onClick={handleClick} href="#">
           {'Link 2'}
         </LinkList.Link>
-        <LinkList.Link tabIndex={0} href="/">
+        <LinkList.Link onClick={handleClick} href="#">
           {'Link 3'}
         </LinkList.Link>
       </LinkList>
@@ -67,14 +71,14 @@ export const Default: Story = {
 export const HorizontalScroll: Story = {
   args: {
     children: (
-      <LinkList testId="linkList-tester" chevron={false}>
-        <LinkList.Link tabIndex={0} href="/">
+      <LinkList chevron={false}>
+        <LinkList.Link onClick={handleClick} href="#">
           {'Link 1'}
         </LinkList.Link>
-        <LinkList.Link tabIndex={0} href="/">
+        <LinkList.Link onClick={handleClick} href="#">
           {'Link 2'}
         </LinkList.Link>
-        <LinkList.Link tabIndex={0} href="/">
+        <LinkList.Link onClick={handleClick} href="#">
           {'Link 3'}
         </LinkList.Link>
       </LinkList>
@@ -131,14 +135,14 @@ export const HorizontalScroll: Story = {
 export const CenteredOverflow: Story = {
   args: {
     children: (
-      <LinkList testId="linkList-tester" chevron={false}>
-        <LinkList.Link tabIndex={0} href="/">
+      <LinkList chevron={false}>
+        <LinkList.Link onClick={handleClick} href="#">
           {'Link 1'}
         </LinkList.Link>
-        <LinkList.Link tabIndex={0} href="/">
+        <LinkList.Link onClick={handleClick} href="#">
           {'Link 2'}
         </LinkList.Link>
-        <LinkList.Link tabIndex={0} href="/">
+        <LinkList.Link onClick={handleClick} href="#">
           {'Link 3'}
         </LinkList.Link>
       </LinkList>
