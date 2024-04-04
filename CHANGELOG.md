@@ -1,3 +1,20 @@
+## 7.0.0-beta.3 (2024-04-04)
+
+### Features
+
+- button arrow prop endres til aa stotte accessibility-character
+  ([e516b86](https://github.com/helsenorge/designsystem/commit/e516b869cd48f301b3ab0242548ef33c07c0da1c)), closes
+  [#320171](https://github.com/helsenorge/designsystem/issues/320171)
+- skjermleser leser oppsummerende feilmelding i validation automatisk
+  ([0c9fc3a](https://github.com/helsenorge/designsystem/commit/0c9fc3aa1f9dd2d245a9037b568bce58d6d7455c)), closes
+  [#316622](https://github.com/helsenorge/designsystem/issues/316622)
+
+### Bug Fixes
+
+- trigger har riktig avstand til andre elementer og større klikkflate i medium størrelse
+  ([c9d566f](https://github.com/helsenorge/designsystem/commit/c9d566fefe6ff0797925e7c90ebfe17e48de041e)), closes
+  [#322394](https://github.com/helsenorge/designsystem/issues/322394)
+
 ## 7.0.0-beta.2 (2024-03-07)
 
 ## 7.0.0-beta.1 (2024-03-07)
