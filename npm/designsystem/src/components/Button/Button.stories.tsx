@@ -185,29 +185,6 @@ export const Sizes: Story = {
   ),
 };
 
-export const Variants: Story = {
-  render: args => (
-    <GridExample>
-      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'Variants'}
-      </Title>
-      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'}>
-        {args.children}
-      </Button>
-      <br />
-      <br />
-      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'outline'}>
-        {args.children}
-      </Button>
-      <br />
-      <br />
-      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'}>
-        {args.children}
-      </Button>
-    </GridExample>
-  ),
-};
-
 export const DarkMode: Story = {
   render: args => (
     <GridExample>
@@ -299,6 +276,23 @@ export const Fluid: Story = {
       <br />
       <Button {...args} arrow="icon" fluid onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         <Icon svgIcon={Dog} />
+      </Button>
+    </GridExample>
+  ),
+};
+
+export const Variants: Story = {
+  render: args => (
+    <GridExample>
+      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
+        {'Variants'}
+      </Title>
+      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'}>
+        {args.children}
+      </Button>
+      <br />
+      <br />
+      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'outline'}>
         {args.children}
       </Button>
     </GridExample>
