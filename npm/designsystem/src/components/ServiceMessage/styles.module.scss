@@ -83,12 +83,12 @@
 
   &__label-container {
     position: relative;
-    padding-top: getSpacer('3xs');
-    padding-bottom: getSpacer('3xs');
+    padding-top: getSpacer(3xs);
+    padding-bottom: getSpacer(3xs);
 
     @media (min-width: map-get($grid-breakpoints, lg)) {
-      padding-top: getSpacer('2xs');
-      padding-bottom: getSpacer('2xs');
+      padding-top: getSpacer(2xs);
+      padding-bottom: getSpacer(2xs);
     }
 
     &--has-expander:has(:focus-visible) {
@@ -100,10 +100,10 @@
     display: flex;
     width: 100%;
     align-items: center;
-    gap: getSpacer('2xs');
+    gap: getSpacer(2xs);
 
     @media (min-width: map-get($grid-breakpoints, md)) {
-      gap: getSpacer('m');
+      gap: getSpacer(m);
     }
   }
 
@@ -130,21 +130,21 @@
   }
 
   &__content {
-    margin-left: calc(38px + getSpacer('2xs'));
-    margin-right: calc(38px + getSpacer('2xs'));
-    padding-top: getSpacer('xs');
-    padding-bottom: getSpacer('xs');
+    margin-left: calc(38px + getSpacer(2xs));
+    margin-right: calc(38px + getSpacer(2xs));
+    padding-top: getSpacer(xs);
+    padding-bottom: getSpacer(xs);
 
     @media (min-width: map-get($grid-breakpoints, md)) {
-      margin-left: calc(38px + getSpacer('m'));
-      margin-right: calc(38px + getSpacer('m'));
+      margin-left: calc(38px + getSpacer(m));
+      margin-right: calc(38px + getSpacer(m));
     }
 
     @media (min-width: map-get($grid-breakpoints, lg)) {
-      margin-left: calc(48px + getSpacer('m'));
-      margin-right: calc(48px + getSpacer('m'));
-      padding-top: getSpacer('2xs');
-      padding-bottom: getSpacer('s');
+      margin-left: calc(48px + getSpacer(m));
+      margin-right: calc(48px + getSpacer(m));
+      padding-top: getSpacer(2xs);
+      padding-bottom: getSpacer(s);
     }
   }
 
@@ -154,17 +154,17 @@
     margin: 0;
 
     @media (min-width: map-get($grid-breakpoints, lg)) {
-      margin-top: getSpacer('xs');
+      margin-top: getSpacer(xs);
       line-height: 1.625rem;
       font-size: $font-size-sm;
     }
 
     &--extra {
       font-size: 0.875rem;
-      margin-top: getSpacer('2xs');
+      margin-top: getSpacer(2xs);
 
       @media (min-width: map-get($grid-breakpoints, lg)) {
-        margin-top: getSpacer('xs');
+        margin-top: getSpacer(xs);
         font-size: $font-size-xs;
         line-height: $lineheight-size-xs;
       }
@@ -175,15 +175,15 @@
     display: flex;
     justify-content: space-between;
     flex-flow: column wrap;
-    gap: getSpacer('2xs');
-    margin-top: getSpacer('2xs');
+    gap: getSpacer(2xs);
+    margin-top: getSpacer(2xs);
 
     @media (min-width: map-get($grid-breakpoints, sm)) {
       flex-direction: row;
     }
 
     @media (min-width: map-get($grid-breakpoints, lg)) {
-      margin-top: getSpacer('s');
+      margin-top: getSpacer(s);
     }
   }
 
@@ -200,7 +200,7 @@
     text-decoration: none;
     padding: 0.5rem;
     margin-left: -0.5rem;
-    gap: getSpacer('xs');
+    gap: getSpacer(xs);
 
     &:hover,
     &:active {

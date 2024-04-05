@@ -8,7 +8,7 @@
   @include input-wrapper;
 
   &--gutterBottom {
-    margin-bottom: getSpacer('s');
+    margin-bottom: getSpacer(s);
   }
 }
 

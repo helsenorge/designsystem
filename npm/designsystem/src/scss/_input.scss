@@ -21,14 +21,14 @@
   }
 
   &--large {
-    padding: getSpacer('2xs') 0;
+    padding: getSpacer(2xs) 0;
 
     svg:first-of-type {
-      padding-left: getSpacer('2xs');
+      padding-left: getSpacer(2xs);
     }
 
     svg:last-of-type {
-      padding-right: getSpacer('2xs');
+      padding-right: getSpacer(2xs);
     }
   }
 
@@ -135,7 +135,7 @@
     line-height: 1.625rem;
     font-family: inherit;
     font-size: $font-size-sm;
-    padding: 0 getSpacer('2xs');
+    padding: 0 getSpacer(2xs);
     border: none;
     outline: none;
     background-color: transparent;
@@ -154,11 +154,11 @@
     }
 
     &:first-child {
-      padding-left: getSpacer('s');
+      padding-left: getSpacer(s);
     }
 
     &:last-child {
-      padding-right: getSpacer('s');
+      padding-right: getSpacer(s);
     }
   }
 }

@@ -20,13 +20,13 @@
     border-radius: 0;
     border-width: 2px;
     border-style: solid;
-    padding: 0 getSpacer('3xs') 0 getSpacer('s');
+    padding: 0 getSpacer(3xs) 0 getSpacer(s);
     font-family: inherit;
     font-size: $font-size-sm;
     line-height: 1.3rem; // Custom fordi teksten skal henge bedre sammen om den går over to linjer
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      padding: getSpacer('3xs') getSpacer('3xs') getSpacer('3xs') getSpacer('s');
+      padding: getSpacer(3xs) getSpacer(3xs) getSpacer(3xs) getSpacer(s);
       font-size: $font-size-md;
       line-height: 1.5rem;
     }
@@ -165,23 +165,23 @@
     }
 
     &__label {
-      padding: getSpacer('3xs') 0;
+      padding: getSpacer(3xs) 0;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer('2xs') 0;
+        padding: getSpacer(2xs) 0;
       }
     }
   }
 
   &__icon {
-    margin-left: getSpacer('2xs');
+    margin-left: getSpacer(2xs);
   }
 
   &__content {
     display: none;
     position: absolute;
     background-color: $white;
-    margin-top: getSpacer('2xs');
+    margin-top: getSpacer(2xs);
     box-shadow: 0 0 0 2px $blueberry500;
     z-index: 1;
     overflow-wrap: break-word;
@@ -204,15 +204,15 @@
   }
 
   &__close {
-    padding: getSpacer('s');
+    padding: getSpacer(s);
   }
 
   &__input {
     border-bottom: 1px solid $neutral300;
-    padding: getSpacer('2xs') getSpacer('s') getSpacer('2xs') getSpacer('s');
+    padding: getSpacer(2xs) getSpacer(s) getSpacer(2xs) getSpacer(s);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      padding: getSpacer('s');
+      padding: getSpacer(s);
     }
 
     &:last-child {

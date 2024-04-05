@@ -7,7 +7,7 @@
 .max-characters {
   display: flex;
   justify-content: flex-end;
-  padding-top: getSpacer('2xs');
+  padding-top: getSpacer(2xs);
   padding-right: 2px;
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;

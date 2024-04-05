@@ -7,10 +7,10 @@
 
   display: flex;
   flex-wrap: wrap;
-  gap: getSpacer('s') var(--column-gap);
+  gap: getSpacer(s) var(--column-gap);
 
   &--large {
-    row-gap: getSpacer('2xs');
+    row-gap: getSpacer(2xs);
   }
 }
 

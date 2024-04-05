@@ -23,12 +23,12 @@
     }
 
     &--outline {
-      border-top: getSpacer('2xs') $neutral100 solid;
-      border-left: getSpacer('2xs') $neutral100 solid;
-      border-right: getSpacer('2xs') $neutral100 solid;
+      border-top: getSpacer(2xs) $neutral100 solid;
+      border-left: getSpacer(2xs) $neutral100 solid;
+      border-right: getSpacer(2xs) $neutral100 solid;
 
       &:last-of-type {
-        border-bottom: getSpacer('2xs') $neutral50 solid;
+        border-bottom: getSpacer(2xs) $neutral50 solid;
       }
     }
   }
@@ -90,7 +90,7 @@
     background-color: transparent;
   }
   &--closed#{&}--fill {
-    margin: getSpacer('s') 0;
+    margin: getSpacer(s) 0;
 
     &:not(:hover) {
       background-color: $neutral50;
@@ -103,7 +103,7 @@
 
   &:focus,
   &:focus-visible {
-    outline: getSpacer('4xs') solid $black;
+    outline: getSpacer(4xs) solid $black;
   }
 
   &--large {
@@ -124,14 +124,14 @@
   &__icon {
     display: flex;
     align-items: center;
-    margin-right: getSpacer('2xs');
+    margin-right: getSpacer(2xs);
   }
 
   &__chevron {
     display: flex;
     align-items: center;
     margin-left: auto;
-    padding-left: getSpacer('2xs');
+    padding-left: getSpacer(2xs);
   }
 
   &__main-content {
@@ -147,11 +147,11 @@
     }
 
     &--padding {
-      padding: getSpacer('m') 0 getSpacer('m') 0;
+      padding: getSpacer(m) 0 getSpacer(m) 0;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding-left: getSpacer('2xs');
-        padding-right: getSpacer('2xs');
+        padding-left: getSpacer(2xs);
+        padding-right: getSpacer(2xs);
       }
     }
   }

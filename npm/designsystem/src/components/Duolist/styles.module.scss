@@ -6,13 +6,13 @@
 
 .duolist-wrapper {
   &--border {
-    padding: getSpacer('s') getSpacer('s') getSpacer('l');
+    padding: getSpacer(s) getSpacer(s) getSpacer(l);
     border: 0.062rem solid $neutral500;
   }
 
   &--extra-padding-top {
-    padding-top: getSpacer('xl');
-    padding-bottom: getSpacer('xl');
+    padding-top: getSpacer(xl);
+    padding-bottom: getSpacer(xl);
   }
 }
 
@@ -28,7 +28,7 @@
   &__dt,
   &__dd {
     line-height: $lineheight-size-md;
-    padding-bottom: getSpacer('2xs');
+    padding-bottom: getSpacer(2xs);
 
     &:last-of-type {
       padding-bottom: 0;
@@ -45,7 +45,7 @@
   }
 
   &__dt {
-    padding-right: getSpacer('l');
+    padding-right: getSpacer(l);
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
       padding-right: 2.6669rem;
@@ -66,12 +66,12 @@
 
   &--line &__dt,
   &--line &__dd {
-    padding-top: getSpacer('2xs');
-    padding-bottom: getSpacer('2xs');
+    padding-top: getSpacer(2xs);
+    padding-bottom: getSpacer(2xs);
     border-top: 0.062rem solid $neutral200;
 
     &:last-of-type {
-      padding-bottom: getSpacer('2xs');
+      padding-bottom: getSpacer(2xs);
       border-bottom: 0.062rem solid $neutral200;
     }
   }

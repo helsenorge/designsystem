@@ -5,7 +5,7 @@
 @import '../../scss/font-settings';
 
 .label-wrapper {
-  margin-bottom: getSpacer('2xs');
+  margin-bottom: getSpacer(2xs);
   line-height: $lineheight-size-xs;
 
   @media (min-width: map.get($grid-breakpoints, sm)) {
@@ -67,5 +67,5 @@
 }
 
 .after-label-children {
-  padding-left: getSpacer('xs');
+  padding-left: getSpacer(xs);
 }

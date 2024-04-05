@@ -6,14 +6,14 @@
 .emptystate {
   background-color: $neutral50;
   display: flex;
-  gap: getSpacer('m');
-  padding: getSpacer('m');
+  gap: getSpacer(m);
+  padding: getSpacer(m);
   align-items: center;
   border-radius: 16px;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    gap: getSpacer('l');
-    padding: getSpacer('xl');
+    gap: getSpacer(l);
+    padding: getSpacer(xl);
   }
 
   &__illustration {

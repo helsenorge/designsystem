@@ -15,24 +15,24 @@ $checkbox-icon-size: 1.625rem;
 }
 
 .checkbox-wrapper {
-  margin: getSpacer('s') 0;
+  margin: getSpacer(s) 0;
 
   &--with-error {
-    padding: getSpacer('s') getSpacer('2xs') getSpacer('m');
+    padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
     background-color: $cherry100;
     border-left: 0.25rem solid $cherry600;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      padding: getSpacer('s') getSpacer('m') getSpacer('l');
+      padding: getSpacer(s) getSpacer(m) getSpacer(l);
     }
   }
 
   &--with-error#{&}--large {
-    padding: getSpacer('m') getSpacer('m');
+    padding: getSpacer(m) getSpacer(m);
   }
 
   &--large {
-    margin: getSpacer('2xs') 0 getSpacer('2xs') 0;
+    margin: getSpacer(2xs) 0 getSpacer(2xs) 0;
   }
 }
 
@@ -79,7 +79,7 @@ $checkbox-icon-size: 1.625rem;
 
   &__large {
     &--focus {
-      box-shadow: 0 0 0 getSpacer('3xs');
+      box-shadow: 0 0 0 getSpacer(3xs);
     }
 
     &--on-white {
@@ -180,7 +180,7 @@ $checkbox-icon-size: 1.625rem;
   }
 
   &--large {
-    padding: getSpacer('s');
+    padding: getSpacer(s);
   }
 
   &--large#{&}--on-dark {
@@ -189,7 +189,7 @@ $checkbox-icon-size: 1.625rem;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     &--large {
-      padding: 1.68rem getSpacer('l');
+      padding: 1.68rem getSpacer(l);
     }
   }
 }
@@ -201,12 +201,12 @@ $checkbox-icon-size: 1.625rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: getSpacer('4xs') getSpacer('s') getSpacer('4xs') getSpacer('4xs');
+    margin: getSpacer(4xs) getSpacer(s) getSpacer(4xs) getSpacer(4xs);
     height: $checkbox-icon-size;
     width: $checkbox-icon-size;
     min-height: $checkbox-icon-size;
     min-width: $checkbox-icon-size;
-    box-shadow: 0 0 0 getSpacer('4xs');
+    box-shadow: 0 0 0 getSpacer(4xs);
 
     // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
     @media (forced-colors: active) {
@@ -216,7 +216,7 @@ $checkbox-icon-size: 1.625rem;
     }
 
     :hover > & {
-      box-shadow: 0 0 0 getSpacer('3xs');
+      box-shadow: 0 0 0 getSpacer(3xs);
     }
 
     &--on-white,
@@ -257,7 +257,7 @@ $checkbox-icon-size: 1.625rem;
       background-color: $neutral50;
 
       :hover > & {
-        box-shadow: 0 0 0 getSpacer('4xs');
+        box-shadow: 0 0 0 getSpacer(4xs);
         background-color: $neutral50;
       }
     }
@@ -266,34 +266,34 @@ $checkbox-icon-size: 1.625rem;
       &--checked {
         background-color: $blueberry500;
         color: $blueberry500;
-        box-shadow: 0 0 0 getSpacer('4xs');
+        box-shadow: 0 0 0 getSpacer(4xs);
 
         :hover > & {
           background-color: $blueberry600;
           color: $blueberry600;
-          box-shadow: 0 0 0 getSpacer('4xs');
+          box-shadow: 0 0 0 getSpacer(4xs);
         }
       }
       &--checked#{&}--invalid {
         background-color: $cherry500;
         color: $cherry500;
-        box-shadow: 0 0 0 getSpacer('4xs');
+        box-shadow: 0 0 0 getSpacer(4xs);
 
         :hover > & {
           background-color: $cherry600;
           color: $cherry600;
-          box-shadow: 0 0 0 getSpacer('4xs');
+          box-shadow: 0 0 0 getSpacer(4xs);
         }
       }
       &--checked#{&}--on-dark {
         background-color: $blueberry50;
         color: $blueberry50;
-        box-shadow: 0 0 0 getSpacer('4xs');
+        box-shadow: 0 0 0 getSpacer(4xs);
 
         :hover > & {
           background-color: $blueberry200;
           color: $blueberry200;
-          box-shadow: 0 0 0 getSpacer('4xs');
+          box-shadow: 0 0 0 getSpacer(4xs);
         }
       }
     }
@@ -318,11 +318,11 @@ $checkbox-icon-size: 1.625rem;
       &--checked#{&}--disabled {
         color: $neutral600;
         background-color: $neutral50;
-        box-shadow: 0 0 0 getSpacer('4xs');
+        box-shadow: 0 0 0 getSpacer(4xs);
 
         :hover > & {
           background-color: $neutral50;
-          box-shadow: 0 0 0 getSpacer('4xs');
+          box-shadow: 0 0 0 getSpacer(4xs);
         }
       }
     }
@@ -343,7 +343,7 @@ $checkbox-icon-size: 1.625rem;
   &:focus {
     /* stylelint-disable-next-line */
     & + .checkbox__icon-wrapper {
-      box-shadow: 0 0 0 getSpacer('3xs');
+      box-shadow: 0 0 0 getSpacer(3xs);
       color: $black;
 
       &--on-dark {
@@ -357,7 +357,7 @@ $checkbox-icon-size: 1.625rem;
       &__large {
         &--checked {
           background-color: $blueberry200;
-          box-shadow: 0 0 0 getSpacer('3xs');
+          box-shadow: 0 0 0 getSpacer(3xs);
           color: $white;
 
           // komboklasser fungerer ikke i nested struktur

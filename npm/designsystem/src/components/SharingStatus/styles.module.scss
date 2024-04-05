@@ -13,7 +13,7 @@ $dot-size: 1.765rem;
   font-size: $font-size-sm;
   line-height: 1.25rem;
   font-weight: 600;
-  gap: getSpacer('2xs');
+  gap: getSpacer(2xs);
 
   &__dot {
     display: inline-flex;

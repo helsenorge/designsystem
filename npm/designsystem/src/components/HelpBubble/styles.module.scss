@@ -26,8 +26,8 @@
     flex-direction: column;
     align-items: flex-start;
     overflow-wrap: anywhere;
-    row-gap: getSpacer('2xs');
-    padding: getSpacer('s') getSpacer('s') getSpacer('m') getSpacer('s');
+    row-gap: getSpacer(2xs);
+    padding: getSpacer(s) getSpacer(s) getSpacer(m) getSpacer(s);
 
     &--close {
       padding-right: 0;
@@ -46,6 +46,6 @@
 
   &__close {
     order: 2;
-    padding: getSpacer('2xs') getSpacer('2xs') 0 0;
+    padding: getSpacer(2xs) getSpacer(2xs) 0 0;
   }
 }

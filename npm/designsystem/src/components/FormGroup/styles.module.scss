@@ -27,7 +27,7 @@
   &__legend {
     @include legend;
 
-    margin-bottom: getSpacer('m');
+    margin-bottom: getSpacer(m);
     margin-top: 0;
 
     &--on-dark {

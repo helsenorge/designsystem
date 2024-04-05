@@ -21,12 +21,12 @@
     cursor: pointer;
     background-color: transparent;
     border-bottom: 1px solid $neutral500;
-    padding: getSpacer('xs') 0 getSpacer('xs') 0;
+    padding: getSpacer(xs) 0 getSpacer(xs) 0;
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
       flex-direction: row-reverse;
       justify-content: start;
-      padding: getSpacer('s') getSpacer('s') getSpacer('s') getSpacer('2xs');
+      padding: getSpacer(s) getSpacer(s) getSpacer(s) getSpacer(2xs);
     }
 
     &:hover,
@@ -36,7 +36,7 @@
 
     &:focus {
       text-decoration: underline;
-      outline: getSpacer('4xs') solid $black;
+      outline: getSpacer(4xs) solid $black;
     }
 
     &[aria-expanded='true'] {
@@ -51,10 +51,10 @@
     }
 
     &--2-and-lower {
-      padding: getSpacer('2xs') 0 getSpacer('2xs') 0;
+      padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding: getSpacer('xs') getSpacer('s') getSpacer('xs') getSpacer('2xs');
+        padding: getSpacer(xs) getSpacer(s) getSpacer(xs) getSpacer(2xs);
       }
     }
   }
@@ -96,43 +96,43 @@
   &__content {
     display: none;
     border-bottom: 1px solid $neutral500;
-    padding-top: getSpacer('m');
-    padding-left: getSpacer('2xs');
-    padding-bottom: getSpacer('m');
+    padding-top: getSpacer(m);
+    padding-left: getSpacer(2xs);
+    padding-bottom: getSpacer(m);
 
     &--1 {
-      padding-top: getSpacer('xl');
+      padding-top: getSpacer(xl);
     }
 
     &--1,
     &--2 {
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-left: getSpacer('2xl');
+        padding-left: getSpacer(2xl);
       }
     }
 
     &--3-and-lower {
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-left: getSpacer('xl');
+        padding-left: getSpacer(xl);
       }
     }
   }
 
   &__icon {
-    margin-left: getSpacer('s');
+    margin-left: getSpacer(s);
 
     &--2-and-lower {
-      margin-left: getSpacer('xs');
+      margin-left: getSpacer(xs);
     }
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
       margin-left: 0;
-      margin-right: getSpacer('s');
+      margin-right: getSpacer(s);
     }
 
     &--3-and-lower {
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        margin-right: getSpacer('xs');
+        margin-right: getSpacer(xs);
       }
     }
   }

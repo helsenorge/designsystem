@@ -42,11 +42,11 @@ import designsystemtypography from './scss/typography.scss'
 
 .preamble {
   font-size: 1.375rem;
-  line-height: getSpacer('l');
+  line-height: getSpacer(l);
   font-weight: 600;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: getSpacer('m');
+    font-size: getSpacer(m);
   }
 }
 
@@ -56,7 +56,7 @@ import designsystemtypography from './scss/typography.scss'
 
 .label {
   font-size: $font-size-sm;
-  line-height: getSpacer('m');
+  line-height: getSpacer(m);
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: $font-size-md;
@@ -99,7 +99,7 @@ import designsystemtypography from './scss/typography.scss'
 
 .image-caption {
   font-size: $spacer;
-  line-height: getSpacer('m');
+  line-height: getSpacer(m);
 }
 
 .image-credit {

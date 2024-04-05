@@ -9,15 +9,15 @@
   $panel: &;
 
   display: flex;
-  padding: getSpacer('2xs') getSpacer('s') getSpacer('2xs') getSpacer('2xs');
+  padding: getSpacer(2xs) getSpacer(s) getSpacer(2xs) getSpacer(2xs);
   box-shadow: 0.25rem 0.25rem 0.375rem rgb(0 0 0 / 15%);
   border-radius: 0.25rem;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    padding-left: getSpacer('s');
-    padding-right: getSpacer('m');
+    padding-left: getSpacer(s);
+    padding-right: getSpacer(m);
     #{$panel}__icon {
-      margin-right: getSpacer('m');
+      margin-right: getSpacer(m);
     }
   }
 
@@ -29,8 +29,8 @@
     box-shadow: none;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      padding-left: getSpacer('2xs');
-      padding-right: getSpacer('s');
+      padding-left: getSpacer(2xs);
+      padding-right: getSpacer(s);
     }
 
     &--basic {
@@ -42,11 +42,11 @@
     }
   }
   #{$panel}__icon {
-    margin-right: getSpacer('2xs');
+    margin-right: getSpacer(2xs);
   }
 
   &--dismissable {
-    padding: getSpacer('2xs') getSpacer('2xs') getSpacer('m') getSpacer('2xs');
+    padding: getSpacer(2xs) getSpacer(2xs) getSpacer(m) getSpacer(2xs);
   }
 
   &--small {
@@ -120,7 +120,7 @@
   &__close {
     order: 1;
     margin-left: auto;
-    padding-left: getSpacer('2xs');
+    padding-left: getSpacer(2xs);
   }
 
   &__content {
@@ -150,7 +150,7 @@
 
   &__label {
     font-weight: 700;
-    margin: getSpacer('2xs') 0 0 0;
+    margin: getSpacer(2xs) 0 0 0;
 
     &__compact {
       font-weight: 600;
@@ -170,10 +170,10 @@
 
   &__children {
     font-weight: 600;
-    padding: getSpacer('3xs') 0;
+    padding: getSpacer(3xs) 0;
 
     &--expander-no-label {
-      margin: getSpacer('2xs') 0 0 0;
+      margin: getSpacer(2xs) 0 0 0;
 
       @media (max-width: map.get($grid-breakpoints, lg)) {
         padding-top: 0;
@@ -186,7 +186,7 @@
   }
 
   &--with-content {
-    padding-bottom: getSpacer('xs');
+    padding-bottom: getSpacer(xs);
   }
 }
 

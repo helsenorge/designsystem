@@ -7,10 +7,10 @@
 .stepper-wrapper {
   display: flex;
   align-items: center;
-  min-height: getSpacer('l');
+  min-height: getSpacer(l);
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    min-height: getSpacer('xl');
+    min-height: getSpacer(xl);
   }
 }
 
@@ -71,7 +71,7 @@ $dot-offset: calc($stepper-padding-x + $dot-size / 2);
   &__number {
     min-width: 2.5rem;
     text-align: right;
-    margin-left: getSpacer('xs');
+    margin-left: getSpacer(xs);
     font-size: $font-size-xs;
     line-height: $lineheight-size-xs;
     font-weight: 700;

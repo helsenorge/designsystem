@@ -7,15 +7,15 @@
 .list-header {
   display: flex;
   width: 100%;
-  padding-right: getSpacer('2xs');
-  padding-left: getSpacer('2xs');
+  padding-right: getSpacer(2xs);
+  padding-left: getSpacer(2xs);
   text-align: left;
   align-items: center;
 
   &--for-element-content {
     align-content: flex-start;
-    padding-top: getSpacer('s');
-    padding-bottom: getSpacer('s');
+    padding-top: getSpacer(s);
+    padding-bottom: getSpacer(s);
   }
 
   &--top-align-content {
@@ -37,10 +37,10 @@
     width: 100%;
 
     &--string {
-      margin: getSpacer('xs') 0;
+      margin: getSpacer(xs) 0;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        margin: getSpacer('s') 0;
+        margin: getSpacer(s) 0;
       }
     }
 
@@ -51,7 +51,7 @@
     }
 
     &--spacing {
-      margin-left: getSpacer('s');
+      margin-left: getSpacer(s);
     }
 
     :focus > &,
@@ -88,29 +88,29 @@
 
   &__icon {
     &--for-string-content {
-      margin: getSpacer('3xs') getSpacer('2xs') getSpacer('3xs') 0;
+      margin: getSpacer(3xs) getSpacer(2xs) getSpacer(3xs) 0;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        margin: getSpacer('2xs') getSpacer('2xs') getSpacer('2xs') 0;
+        margin: getSpacer(2xs) getSpacer(2xs) getSpacer(2xs) 0;
       }
     }
 
     &--for-element-content {
-      margin: 0 getSpacer('2xs') 0 0;
+      margin: 0 getSpacer(2xs) 0 0;
     }
   }
 
   &__avatar {
     &--for-string-content {
-      margin: getSpacer('3xs') getSpacer('s') getSpacer('3xs') 0;
+      margin: getSpacer(3xs) getSpacer(s) getSpacer(3xs) 0;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        margin: getSpacer('2xs') getSpacer('s') getSpacer('2xs') 0;
+        margin: getSpacer(2xs) getSpacer(s) getSpacer(2xs) 0;
       }
     }
 
     &--for-element-content {
-      margin: 0 getSpacer('s') 0 0;
+      margin: 0 getSpacer(s) 0 0;
     }
   }
 
@@ -118,13 +118,13 @@
   &__badge {
     display: flex;
     align-items: center;
-    margin-left: getSpacer('2xs');
+    margin-left: getSpacer(2xs);
 
     &--for-string-content {
-      margin: getSpacer('3xs') 0 getSpacer('3xs') auto;
+      margin: getSpacer(3xs) 0 getSpacer(3xs) auto;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        margin: getSpacer('2xs') 0 getSpacer('2xs') auto;
+        margin: getSpacer(2xs) 0 getSpacer(2xs) auto;
       }
     }
 

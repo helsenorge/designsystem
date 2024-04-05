@@ -7,8 +7,8 @@
   margin-bottom: 0;
 
   &--margin {
-    margin-top: getSpacer('s');
-    margin-bottom: getSpacer('s');
+    margin-top: getSpacer(s);
+    margin-bottom: getSpacer(s);
   }
 
   &--bullet {
@@ -51,11 +51,11 @@
 
   &__item {
     > #{$list} {
-      margin-top: getSpacer('2xs');
+      margin-top: getSpacer(2xs);
     }
   }
 
   &__item:not(:last-child) {
-    margin-bottom: getSpacer('2xs');
+    margin-bottom: getSpacer(2xs);
   }
 }

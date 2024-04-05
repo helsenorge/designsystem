@@ -14,7 +14,7 @@
   }
 
   &__content {
-    padding: getSpacer('3xs') 0;
+    padding: getSpacer(3xs) 0;
     font-size: $font-size-xs;
     line-height: $lineheight-size-xs;
   }
@@ -24,7 +24,7 @@ html .notification-panel__detail.notification-panel__detail-button {
   text-decoration: underline;
   text-decoration-color: $blueberry600;
   margin-left: -0.25rem;
-  padding: 0 0 0 getSpacer('3xs');
+  padding: 0 0 0 getSpacer(3xs);
   white-space: nowrap;
   overflow: initial;
   text-overflow: clip;
