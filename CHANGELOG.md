@@ -1,3 +1,11 @@
+## 7.0.0-beta.5 (2024-04-05)
+
+### Reverts
+
+- bruk getSpacer på gamlemåten pga trøbbel i core-frontend
+  ([15b45fa](https://github.com/helsenorge/designsystem/commit/15b45fa5b8a56afb5befb4954aede3c2a3f518eb))
+- react 17+ som peerdependency ([73fcee0](https://github.com/helsenorge/designsystem/commit/73fcee033cf6e17e0c35b7096cc7976bb6217fdb))
+
 ## 7.0.0-beta.3 (2024-04-04)
 
 ### Features
