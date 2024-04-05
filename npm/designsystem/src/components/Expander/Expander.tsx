@@ -28,6 +28,8 @@ export interface ExpanderProps {
   title: string;
   /** Sets the expanded content */
   children?: React.ReactNode;
+  /** Sets classnames on the content area */
+  contentClassNames?: string;
   /** Sets the size of the expander. Default: ExpanderSize.small */
   size?: ExpanderSize;
   /** Sets the background of the expander. Requires size=ExpanderSize.large. */
@@ -56,6 +58,7 @@ const Expander: React.FC<ExpanderProps> = props => {
     children,
     size = ExpanderSize.small,
     color,
+    contentClassNames,
     svgIcon: icon,
     expanded = false,
     noNestedLine = false,
@@ -151,7 +154,8 @@ const Expander: React.FC<ExpanderProps> = props => {
       size === ExpanderSize.large && styles[`expander__content--${color || 'neutral'}`],
       size === ExpanderSize.large && icon && styles['expander__content--icon'],
       isExpanded && styles['expander__content--expanded'],
-      size === ExpanderSize.small && !noNestedLine && styles['expander__content--nested-line']
+      size === ExpanderSize.small && !noNestedLine && styles['expander__content--nested-line'],
+      contentClassNames
     );
 
     return <div className={contentClassName}>{children}</div>;
