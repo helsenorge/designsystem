@@ -1,4 +1,12 @@
+## 7.0.0-beta.6 (2024-04-05)
+
 ## 7.0.0-beta.5 (2024-04-05)
+
+### Features
+
+- expander ny prop contentclassnames
+  ([d83abda](https://github.com/helsenorge/designsystem/commit/d83abdaaf321131398450dbb5ea163a8ce61f54f)), closes
+  [#309420](https://github.com/helsenorge/designsystem/issues/309420)
 
 ### Reverts
 
@@ -32,6 +40,34 @@
 ### Features
 
 - ts5, oppdater alle pakker ([d93bf76](https://github.com/helsenorge/designsystem/commit/d93bf76212b41b47aef279478b2af76705be2713))
+
+## [6.6.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.6.1&targetVersion=GTv6.6.2) (2024-04-03)
+
+### Bug Fixes
+
+- fjern ikke-fungerende animasjon ([fa2f140](https://github.com/helsenorge/designsystem/commit/fa2f14035ef093eaedbbc3a6baf00857b355e851)),
+  closes [#313072](https://github.com/helsenorge/designsystem/issues/313072)
+- iconwall fungerer igjen ([5538068](https://github.com/helsenorge/designsystem/commit/55380689ee7b806c28dfcc84718bf161e1e89e83)), closes
+  [#322532](https://github.com/helsenorge/designsystem/issues/322532)
+- popmenu lukkes automatisk ved klikk på linker i menyen
+  ([e6693bb](https://github.com/helsenorge/designsystem/commit/e6693bb3dc2e47aa56555fad6dbeb812bceb91ea)), closes
+  [#321671](https://github.com/helsenorge/designsystem/issues/321671)
+
+## [6.6.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.6.0&targetVersion=GTv6.6.1) (2024-03-19)
+
+### Bug Fixes
+
+- reactdaypicker styling eksporterer riktig
+  ([45352f0](https://github.com/helsenorge/designsystem/commit/45352f099804e22af77d6ee5c8e903865151ed2d)), closes
+  [#322222](https://github.com/helsenorge/designsystem/issues/322222)
+
+## [6.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.5.0&targetVersion=GTv6.6.0) (2024-03-15)
+
+### Features
+
+- zindex med prop lagt til i datepicker dropdown expander og popover
+  ([915fabc](https://github.com/helsenorge/designsystem/commit/915fabcb890fe3d339d874a74701fbadb606dcc9)), closes
+  [#309420](https://github.com/helsenorge/designsystem/issues/309420)
 
 ## [6.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.4.0&targetVersion=GTv6.5.0) (2024-03-07)
 
