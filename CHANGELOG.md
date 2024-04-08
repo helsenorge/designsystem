@@ -1,3 +1,5 @@
+## [7.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.6.2&targetVersion=GTv7.0.0) (2024-04-08)
+
 ## 7.0.0-beta.7 (2024-04-05)
 
 ## 7.0.0-beta.6 (2024-04-05)
