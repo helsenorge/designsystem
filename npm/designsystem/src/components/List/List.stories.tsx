@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Title as DocsTitle, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Title as DocsTitle, Subtitle, Description, Primary, ArgTypes } from '@storybook/addon-docs';
 import { Meta, StoryObj } from '@storybook/react';
 
 import List from './List';
@@ -21,7 +21,7 @@ const meta = {
           <Subtitle />
           <Description />
           <Primary />
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={List} />
         </>
       ),
     },

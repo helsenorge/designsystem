@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { Title, Subtitle, Description, Primary, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
+import { Title, Subtitle, Description, Primary, ArgTypes } from '@storybook/addon-docs';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Modal, { ModalSize } from './Modal';
@@ -31,7 +31,7 @@ const meta = {
           <Subtitle />
           <Description />
           <Primary />
-          <ArgsTable story={PRIMARY_STORY} />
+          <ArgTypes of={Modal} />
         </>
       ),
     },

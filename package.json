@@ -42,8 +42,8 @@
     "posttest": "node ./scripts/aggregate-packages-coverage.cjs && nyc report --reporter lcov"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3",
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
     "@helsenorge/eslint-config": "^30.0.2",
     "@lerna/legacy-package-management": "^8.1.2",
     "conventional-changelog-cli": "^4.1.0",
