@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Button from './Button';
+import Docs from '../../docs';
 import { getColor } from '../../theme/currys/color';
 import GridExample from '../GridExample';
 import Icon from '../Icon';
@@ -21,6 +22,7 @@ const meta = {
         component:
           'Button [Knapp] benyttes for å la innbygger initiere en handling eller hendelse. Knapper lar innbygger vite hva som vil skje om man trykker på dem.',
       },
+      page: (): React.JSX.Element => <Docs component={Button} />,
     },
   },
   args: {
