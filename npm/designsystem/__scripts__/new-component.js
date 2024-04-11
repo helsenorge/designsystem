@@ -74,7 +74,6 @@ await writeFile(
 import { StoryObj, Meta } from '@storybook/react';
 
 import ${componentName} from './${componentName}';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/${componentName}',
@@ -97,9 +96,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {},
   render: args => (
-    <GridExample>
       <${componentName} {...args} />
-    </GridExample>
   ),
 };
 `

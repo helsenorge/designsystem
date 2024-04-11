@@ -2,7 +2,6 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
-import GridExample from '../GridExample';
 import Panel, { PanelVariant } from '../Panel';
 import PanelList from '../PanelList';
 
@@ -34,29 +33,27 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => (
-    <GridExample>
-      <PanelList {...args}>
-        <Panel title="Overskrift 1">
-          {
-            'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
-          }
-        </Panel>
-        <Panel title="Overskrift 2">
-          {
-            'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
-          }
-        </Panel>
-        <Panel title="Overskrift 3">
-          {
-            'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
-          }
-        </Panel>
-        <Panel title="Overskrift 4">
-          {
-            'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
-          }
-        </Panel>
-      </PanelList>
-    </GridExample>
+    <PanelList {...args}>
+      <Panel title="Overskrift 1">
+        {
+          'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
+        }
+      </Panel>
+      <Panel title="Overskrift 2">
+        {
+          'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
+        }
+      </Panel>
+      <Panel title="Overskrift 3">
+        {
+          'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
+        }
+      </Panel>
+      <Panel title="Overskrift 4">
+        {
+          'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
+        }
+      </Panel>
+    </PanelList>
   ),
 };

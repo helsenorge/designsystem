@@ -8,7 +8,6 @@ import Spacer from '../../components/Spacer';
 import { FormMode, FormSize } from '../../constants';
 import Checkbox from '../Checkbox/Checkbox';
 import FormLayout from '../FormLayout';
-import GridExample from '../GridExample';
 import Coronavirus from '../Icons/Coronavirus';
 import Input from '../Input/Input';
 import Label from '../Label';
@@ -60,121 +59,109 @@ type Story = StoryObj<typeof meta>;
 
 export const CheckboxChildren: Story = {
   render: args => (
-    <GridExample>
-      <div
-        style={{
-          background: mapToBackgoundColor(args.mode as FormMode),
-        }}
-      >
-        <FormGroup {...args}>
-          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
-          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
-          <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
-        </FormGroup>
-      </div>
-    </GridExample>
+    <div
+      style={{
+        background: mapToBackgoundColor(args.mode as FormMode),
+      }}
+    >
+      <FormGroup {...args}>
+        <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+        <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+        <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
+      </FormGroup>
+    </div>
   ),
 };
 
 export const RadioButtonChildren: Story = {
   render: args => (
-    <GridExample>
-      <div
-        style={{
-          background: mapToBackgoundColor(args.mode as FormMode),
-        }}
-      >
-        <FormGroup {...args}>
-          <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-          <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-          <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
-        </FormGroup>
-      </div>
-    </GridExample>
+    <div
+      style={{
+        background: mapToBackgoundColor(args.mode as FormMode),
+      }}
+    >
+      <FormGroup {...args}>
+        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+      </FormGroup>
+    </div>
   ),
 };
 
 export const InputChildren: Story = {
   render: args => (
-    <GridExample>
-      <div
-        style={{
-          background: mapToBackgoundColor(args.mode as FormMode),
-        }}
-      >
-        <FormGroup {...args}>
-          <Input label={<Label labelTexts={[{ text: 'Input 1' }]} />} />
-          <Input icon={Coronavirus} label={<Label labelTexts={[{ text: 'Input 2' }]} />} />
-          <Input icon={Coronavirus} iconRight label={<Label labelTexts={[{ text: 'Input 3' }]} />} />
-        </FormGroup>
-      </div>
-    </GridExample>
+    <div
+      style={{
+        background: mapToBackgoundColor(args.mode as FormMode),
+      }}
+    >
+      <FormGroup {...args}>
+        <Input label={<Label labelTexts={[{ text: 'Input 1' }]} />} />
+        <Input icon={Coronavirus} label={<Label labelTexts={[{ text: 'Input 2' }]} />} />
+        <Input icon={Coronavirus} iconRight label={<Label labelTexts={[{ text: 'Input 3' }]} />} />
+      </FormGroup>
+    </div>
   ),
 };
 
 export const DivTagTrue: Story = {
   render: args => (
-    <GridExample>
-      <div
-        style={{
-          background: mapToBackgoundColor(args.mode as FormMode),
-        }}
-      >
-        <FormGroup htmlMarkup="div" {...args}>
-          <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-          <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-          <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
-        </FormGroup>
-      </div>
-    </GridExample>
+    <div
+      style={{
+        background: mapToBackgoundColor(args.mode as FormMode),
+      }}
+    >
+      <FormGroup htmlMarkup="div" {...args}>
+        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+      </FormGroup>
+    </div>
   ),
 };
 
 export const CustomErrorWrapperClass: Story = {
   render: args => (
-    <GridExample>
-      <div
-        style={{
-          background: mapToBackgoundColor(args.mode as FormMode),
-        }}
+    <div
+      style={{
+        background: mapToBackgoundColor(args.mode as FormMode),
+      }}
+    >
+      <FormGroup
+        htmlMarkup="div"
+        {...args}
+        legend={'ErrorWrapperClass gir mulighet til å style ErrorWrapper som ligger rundt form'}
+        errorWrapperClassName="error-wrapper-class--no-bottom-margin"
       >
-        <FormGroup
-          htmlMarkup="div"
-          {...args}
-          legend={'ErrorWrapperClass gir mulighet til å style ErrorWrapper som ligger rundt form'}
-          errorWrapperClassName="error-wrapper-class--no-bottom-margin"
-        >
-          <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-          <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-          <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Legg merke til avstand ned til border' }]} />} />
-        </FormGroup>
-        <Spacer size="2xs" />
-        <FormGroup htmlMarkup="div" {...args} errorWrapperClassName="error-wrapper-class">
-          <RadioButton inputId={'RadioButton4'} label={<Label labelTexts={[{ text: 'Radiobutton 4' }]} />} />
-          <RadioButton inputId={'RadioButton5'} label={<Label labelTexts={[{ text: 'Radiobutton 5' }]} />} />
-          <RadioButton inputId={'RadioButton6'} label={<Label labelTexts={[{ text: 'Med standard avstand ned til border' }]} />} />
-        </FormGroup>
-      </div>
-    </GridExample>
+        <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+        <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+        <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Legg merke til avstand ned til border' }]} />} />
+      </FormGroup>
+      <Spacer size="2xs" />
+      <FormGroup htmlMarkup="div" {...args} errorWrapperClassName="error-wrapper-class">
+        <RadioButton inputId={'RadioButton4'} label={<Label labelTexts={[{ text: 'Radiobutton 4' }]} />} />
+        <RadioButton inputId={'RadioButton5'} label={<Label labelTexts={[{ text: 'Radiobutton 5' }]} />} />
+        <RadioButton inputId={'RadioButton6'} label={<Label labelTexts={[{ text: 'Med standard avstand ned til border' }]} />} />
+      </FormGroup>
+    </div>
   ),
 };
 
 export const FormLayoutChildren: Story = {
   render: args => (
-    <GridExample>
-      <div
-        style={{
-          background: mapToBackgoundColor(args.mode as FormMode),
-        }}
-      >
-        <FormGroup {...args}>
-          <FormLayout maxColumns={'two'}>
-            <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
-            <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
-            <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
-          </FormLayout>
-        </FormGroup>
-      </div>
-    </GridExample>
+    <div
+      style={{
+        background: mapToBackgoundColor(args.mode as FormMode),
+      }}
+    >
+      <FormGroup {...args}>
+        <FormLayout maxColumns={'two'}>
+          <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
+          <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
+          <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
+        </FormLayout>
+      </FormGroup>
+    </div>
   ),
 };

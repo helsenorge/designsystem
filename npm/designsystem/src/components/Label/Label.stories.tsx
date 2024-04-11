@@ -7,7 +7,6 @@ import { Sublabel } from './SubLabel';
 import { IconSize } from '../../constants';
 import { getColor } from '../../theme/currys';
 import Checkbox from '../Checkbox';
-import GridExample from '../GridExample';
 import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
 import Input from '../Input';
@@ -53,7 +52,7 @@ export const Default: Story = {
     ];
 
     return (
-      <GridExample>
+      <>
         <Input
           label={
             <Label
@@ -100,7 +99,7 @@ export const Default: Story = {
           }
           aria-describedby={sublabelId3 + ' ' + statusDotId3}
         />
-      </GridExample>
+      </>
     );
   },
 };
@@ -115,51 +114,47 @@ export const OnDark: Story = {
     const statusDotId = 'statusdot-testid';
 
     return (
-      <GridExample>
-        <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 600) }}>
-          <Input
-            label={
-              <Label
-                {...args}
-                labelTexts={[
-                  { text: 'Semibold label', type: 'semibold' },
-                  { text: 'normal label', type: 'normal' },
-                  { text: 'semibold returns', type: 'semibold' },
-                  { text: 'another normal label', type: 'normal' },
-                ]}
-                sublabel={<Sublabel id={sublabelId} sublabelTexts={sublabelTexts} />}
-                statusDot={<StatusDot id={statusDotId} text={'Statusdot text'} variant={'alert'} />}
-              />
-            }
-            mode={'ondark'}
-            aria-describedby={sublabelId + ' ' + statusDotId}
-          />
-        </div>
-      </GridExample>
+      <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 600) }}>
+        <Input
+          label={
+            <Label
+              {...args}
+              labelTexts={[
+                { text: 'Semibold label', type: 'semibold' },
+                { text: 'normal label', type: 'normal' },
+                { text: 'semibold returns', type: 'semibold' },
+                { text: 'another normal label', type: 'normal' },
+              ]}
+              sublabel={<Sublabel id={sublabelId} sublabelTexts={sublabelTexts} />}
+              statusDot={<StatusDot id={statusDotId} text={'Statusdot text'} variant={'alert'} />}
+            />
+          }
+          mode={'ondark'}
+          aria-describedby={sublabelId + ' ' + statusDotId}
+        />
+      </div>
     );
   },
 };
 
 export const ChildrenAfterLabel: Story = {
   render: args => (
-    <GridExample>
-      <Input
-        {...args}
-        label={
-          <Label
-            labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]}
-            afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={HelpSign} />}
-          />
-        }
-      />
-    </GridExample>
+    <Input
+      {...args}
+      label={
+        <Label
+          labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]}
+          afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={HelpSign} />}
+        />
+      }
+    />
   ),
 };
 
 export const LabelAsString: Story = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   render: ({ showIcon, ...rest }) => (
-    <GridExample>
+    <>
       <Input {...rest} label={'Test label'} />
       <Textarea {...rest} label={'Test label'} />
       <Select {...rest} label={'Test label'}>
@@ -169,6 +164,6 @@ export const LabelAsString: Story = {
       </Select>
       <Checkbox {...rest} label={'Test label'} />
       <RadioButton {...rest} label={'Test label'} />
-    </GridExample>
+    </>
   ),
 };

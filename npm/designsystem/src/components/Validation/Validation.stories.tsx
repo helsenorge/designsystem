@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import { FormSize } from '../../constants';
 import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/Validation',
@@ -165,64 +164,40 @@ export const FormGroup: Story = {
   args: {
     exampleType: FormExampleVariants.formgroup,
   },
-  render: args => (
-    <GridExample>
-      <FormExample {...args} />
-    </GridExample>
-  ),
+  render: args => <FormExample {...args} />,
 };
 
 export const Checkbox: Story = {
   args: {
     exampleType: FormExampleVariants.checkbox,
   },
-  render: args => (
-    <GridExample>
-      <FormExample {...args} />
-    </GridExample>
-  ),
+  render: args => <FormExample {...args} />,
 };
 
 export const Radiobutton: Story = {
   args: {
     exampleType: FormExampleVariants.radiobutton,
   },
-  render: args => (
-    <GridExample>
-      <FormExample {...args} />
-    </GridExample>
-  ),
+  render: args => <FormExample {...args} />,
 };
 
 export const Textarea: Story = {
   args: {
     exampleType: FormExampleVariants.textarea,
   },
-  render: args => (
-    <GridExample>
-      <FormExample {...args} />
-    </GridExample>
-  ),
+  render: args => <FormExample {...args} />,
 };
 
 export const Input: Story = {
   args: {
     exampleType: FormExampleVariants.input,
   },
-  render: args => (
-    <GridExample>
-      <FormExample {...args} />
-    </GridExample>
-  ),
+  render: args => <FormExample {...args} />,
 };
 
 export const Select: Story = {
   args: {
     exampleType: FormExampleVariants.select,
   },
-  render: args => (
-    <GridExample>
-      <FormExample {...args} />
-    </GridExample>
-  ),
+  render: args => <FormExample {...args} />,
 };

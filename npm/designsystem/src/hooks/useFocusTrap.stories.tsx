@@ -4,7 +4,6 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { useFocusTrap } from './useFocusTrap';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 import HighlightBox from '../components/HighlightBox';
 import Spacer from '../components/Spacer';
 
@@ -18,7 +17,7 @@ const UseFocusTrapExample: React.FC = () => {
   };
 
   return (
-    <GridExample>
+    <>
       <Button onClick={toggleTrap}>Slå av/på fokusfelle</Button>
       <p>Fokusfelle er {trap ? 'på' : 'av'}</p>
       <Spacer />
@@ -37,7 +36,7 @@ const UseFocusTrapExample: React.FC = () => {
           </div>
         </div>
       </HighlightBox>
-    </GridExample>
+    </>
   );
 };
 

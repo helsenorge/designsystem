@@ -29,6 +29,7 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-controls'),
     getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@storybook/addon-viewport'),
+    getAbsolutePath('@storybook/addon-toolbars'),
     // getAbsolutePath('storybook-addon-html-validator'), @todo https://github.com/dimafirsov/storybook-html-validator/issues/15
   ],
 

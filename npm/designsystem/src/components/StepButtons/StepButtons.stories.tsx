@@ -5,7 +5,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import StepButtons from './StepButtons';
 import Button from '../Button';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/StepButtons',
@@ -31,11 +30,7 @@ export const Default: Story = {
     cancelButton: <Button>{'Avbryt'}</Button>,
   },
   render: args => {
-    return (
-      <GridExample>
-        <StepButtons {...args} />
-      </GridExample>
-    );
+    return <StepButtons {...args} />;
   },
 };
 
@@ -51,10 +46,6 @@ export const AdditionalButtons: Story = {
     ],
   },
   render: args => {
-    return (
-      <GridExample>
-        <StepButtons {...args} />
-      </GridExample>
-    );
+    return <StepButtons {...args} />;
   },
 };

@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import NotificationPanel from './NotificationPanel';
 import { getColor } from '../../theme/currys';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/NotificationPanel',
@@ -54,16 +53,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <NotificationPanel {...args} label="Label only"></NotificationPanel>
-    </GridExample>
-  ),
+  render: args => <NotificationPanel {...args} label="Label only"></NotificationPanel>,
 };
 
 export const WithoutLabel: Story = {
   render: args => (
-    <GridExample>
+    <>
       <NotificationPanel {...args}>
         <span>{'Eksempel med label'}</span>
       </NotificationPanel>
@@ -81,13 +76,13 @@ export const WithoutLabel: Story = {
       >
         <span>{'Eksempel uten label. Nå får innhold en font-vekt som ligner mer på label'}</span>
       </NotificationPanel>
-    </GridExample>
+    </>
   ),
 };
 
 export const AllVariants: Story = {
   render: args => (
-    <GridExample>
+    <>
       <div className="row">
         <div className={'col-12'}>
           <NotificationPanel {...args} variant={'info'}>
@@ -134,13 +129,13 @@ export const AllVariants: Story = {
           </NotificationPanel>
         </div>
       </div>
-    </GridExample>
+    </>
   ),
 };
 
 export const Expander: Story = {
   render: args => (
-    <GridExample>
+    <>
       <div className="row mt-6">
         <div className={'col-12'}>
           <NotificationPanel
@@ -168,41 +163,37 @@ export const Expander: Story = {
           </NotificationPanel>
         </div>
       </div>
-    </GridExample>
+    </>
   ),
 };
 export const Dismissable: Story = {
   render: args => (
-    <GridExample>
-      <NotificationPanel {...args} label={'Dismissable'} dismissable>
-        {'Dette er dismissesable'}
-      </NotificationPanel>
-    </GridExample>
+    <NotificationPanel {...args} label={'Dismissable'} dismissable>
+      {'Dette er dismissesable'}
+    </NotificationPanel>
   ),
 };
 
 export const Compact: Story = {
   render: args => (
-    <GridExample>
-      <div style={{ backgroundColor: getColor('blueberry', 50), padding: '3rem' }}>
-        <div className="row mt-6">
-          <div className={'col-12'}>
-            <NotificationPanel {...args} label={'Compact - basic'} compactVariant={'basic'}></NotificationPanel>{' '}
-          </div>
-        </div>
-        <div className="row mt-6">
-          <div className={'col-12'}>
-            <NotificationPanel {...args} label={'Compact - outline'} compactVariant={'outline'}></NotificationPanel>
-          </div>
+    <div style={{ backgroundColor: getColor('blueberry', 50), padding: '3rem' }}>
+      <div className="row mt-6">
+        <div className={'col-12'}>
+          <NotificationPanel {...args} label={'Compact - basic'} compactVariant={'basic'}></NotificationPanel>{' '}
         </div>
       </div>
-    </GridExample>
+      <div className="row mt-6">
+        <div className={'col-12'}>
+          <NotificationPanel {...args} label={'Compact - outline'} compactVariant={'outline'}></NotificationPanel>
+        </div>
+      </div>
+    </div>
   ),
 };
 
 export const WithSetWidth: Story = {
   render: args => (
-    <GridExample>
+    <>
       <div className="row mt-6">
         <div className={'col-12'}>
           <NotificationPanel {...args} size="small" label={'Size: small'}></NotificationPanel>{' '}
@@ -218,6 +209,6 @@ export const WithSetWidth: Story = {
           <NotificationPanel {...args} size="large" label={'Size: large'}></NotificationPanel>
         </div>
       </div>
-    </GridExample>
+    </>
   ),
 };

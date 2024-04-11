@@ -5,7 +5,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Select from './Select';
 import { palette } from '../../theme/palette';
-import GridExample from '../GridExample';
 import Label from '../Label';
 
 const meta = {
@@ -48,68 +47,54 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <Select {...args} />
-    </GridExample>
-  ),
+  render: args => <Select {...args} />,
 };
 export const DefaultValue: Story = {
   args: {
     defaultValue: 'Option 2',
   },
-  render: args => (
-    <GridExample>
-      <Select {...args} />
-    </GridExample>
-  ),
+  render: args => <Select {...args} />,
 };
 export const Disabled: Story = {
   args: {
     disabled: true,
   },
-  render: args => (
-    <GridExample>
-      <Select {...args} />
-    </GridExample>
-  ),
+  render: args => <Select {...args} />,
 };
 
 export const Concepts: Story = {
   render: args => (
-    <GridExample>
-      <div style={{ backgroundColor: palette.blueberry100, padding: '2rem' }}>
-        <Select
-          {...args}
-          concept={'normal'}
-          label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-          name={'select name 1'}
-          onChange={action('onChange called')}
-        >
-          <option value={'Option 1'}>{'Option 1'}</option>
-          <option value={'Option 2'}>{'Option 2'}</option>
-          <option value={'Option 3'}>{'Option 3'}</option>
-        </Select>
+    <div style={{ backgroundColor: palette.blueberry100, padding: '2rem' }}>
+      <Select
+        {...args}
+        concept={'normal'}
+        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        name={'select name 1'}
+        onChange={action('onChange called')}
+      >
+        <option value={'Option 1'}>{'Option 1'}</option>
+        <option value={'Option 2'}>{'Option 2'}</option>
+        <option value={'Option 3'}>{'Option 3'}</option>
+      </Select>
 
-        <Select
-          {...args}
-          concept={'transparent'}
-          label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-          name={'select name 1'}
-          onChange={action('onChange called')}
-        >
-          <option value={'Option 1'}>{'Option 1'}</option>
-          <option value={'Option 2'}>{'Option 2'}</option>
-          <option value={'Option 3'}>{'Option 3'}</option>
-        </Select>
-      </div>
-    </GridExample>
+      <Select
+        {...args}
+        concept={'transparent'}
+        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        name={'select name 1'}
+        onChange={action('onChange called')}
+      >
+        <option value={'Option 1'}>{'Option 1'}</option>
+        <option value={'Option 2'}>{'Option 2'}</option>
+        <option value={'Option 3'}>{'Option 3'}</option>
+      </Select>
+    </div>
   ),
 };
 
 export const Modes: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Select
         {...args}
         mode={'onwhite'}
@@ -121,7 +106,6 @@ export const Modes: Story = {
         <option value={'Option 2'}>{'Option 2'}</option>
         <option value={'Option 3'}>{'Option 3'}</option>
       </Select>
-
       <Select
         {...args}
         mode={'ongrey'}
@@ -155,13 +139,13 @@ export const Modes: Story = {
         <option value={'Option 2'}>{'Option 2'}</option>
         <option value={'Option 3'}>{'Option 3'}</option>
       </Select>
-    </GridExample>
+    </>
   ),
 };
 
 export const Width: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Select
         {...args}
         label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
@@ -172,7 +156,6 @@ export const Width: Story = {
         <option value={'Option 2'}>{'Option 2'}</option>
         <option value={'Option 3'}>{'Option 3'}</option>
       </Select>
-
       <Select
         {...args}
         width={20}
@@ -184,6 +167,6 @@ export const Width: Story = {
         <option value={'Option 2'}>{'Option 2'}</option>
         <option value={'Option 3'}>{'Option 3'}</option>
       </Select>
-    </GridExample>
+    </>
   ),
 };

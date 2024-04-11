@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import EmptyState from './EmptyState';
 import AnchorLink from '../AnchorLink';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/EmptyState',
@@ -32,21 +31,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <EmptyState {...args} />
-    </GridExample>
-  ),
+  render: args => <EmptyState {...args} />,
 };
 
 export const WithAnchorLink: Story = {
   render: args => (
-    <GridExample>
-      <EmptyState {...args}>
-        {'Du har ingen verktøy enda. Gå til '}
-        <AnchorLink href="/">{'Alle verktøy'}</AnchorLink>
-        {' for å finne verktøy.'}
-      </EmptyState>
-    </GridExample>
+    <EmptyState {...args}>
+      {'Du har ingen verktøy enda. Gå til '}
+      <AnchorLink href="/">{'Alle verktøy'}</AnchorLink>
+      {' for å finne verktøy.'}
+    </EmptyState>
   ),
 };

@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Textarea from './Textarea';
 import { FormMode } from '../../constants';
-import GridExample from '../GridExample';
 import Label from '../Label/Label';
 
 const meta = {
@@ -100,16 +99,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <Textarea {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} />
-    </GridExample>
-  ),
+  render: args => <Textarea {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} />,
 };
 
 export const MaxCharacters: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Textarea
         {...args}
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
@@ -130,6 +125,6 @@ export const MaxCharacters: Story = {
         defaultValue="test"
         width={100}
       />
-    </GridExample>
+    </>
   ),
 };

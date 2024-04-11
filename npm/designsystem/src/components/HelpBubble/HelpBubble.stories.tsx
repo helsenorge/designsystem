@@ -8,7 +8,6 @@ import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import DictionaryTrigger from '../DictionaryTrigger/DictionaryTrigger';
-import GridExample from '../GridExample';
 import HelpQuestion from '../HelpQuestion';
 import Table, { ResponsiveTableVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell, HeaderCategory } from '../Table';
 import Trigger from '../Trigger/Trigger';
@@ -57,7 +56,7 @@ export const Default: Story = {
     const controllerRef = useRef<HTMLButtonElement>(null);
 
     return (
-      <GridExample>
+      <>
         <span>{loremText + loremText + loremText + loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <Trigger ref={controllerRef} ariaLabel="Hjelp" />
@@ -66,7 +65,7 @@ export const Default: Story = {
           </HelpBubble>
         </div>
         <span> {loremText + loremText + loremText + loremText}</span>
-      </GridExample>
+      </>
     );
   },
 };
@@ -82,7 +81,7 @@ export const Link: Story = {
     const controllerRef = useRef<HTMLButtonElement>(null);
 
     return (
-      <GridExample>
+      <>
         <span>{loremText + loremText + loremText + loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <Trigger ref={controllerRef} ariaLabel="Hjelp" />
@@ -91,7 +90,7 @@ export const Link: Story = {
           </HelpBubble>
         </div>
         <span> {loremText + loremText + loremText + loremText}</span>
-      </GridExample>
+      </>
     );
   },
 };
@@ -106,7 +105,7 @@ export const Toggle: Story = {
     const { value, toggleValue } = useToggle(false);
 
     return (
-      <GridExample>
+      <>
         <span>{loremText + loremText + loremText + loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <Trigger ref={controllerRef} onClick={toggleValue} ariaLabel="Åpne" />
@@ -115,7 +114,7 @@ export const Toggle: Story = {
           </HelpBubble>
         </div>
         <span> {loremText + loremText + loremText + loremText}</span>
-      </GridExample>
+      </>
     );
   },
 };
@@ -128,7 +127,7 @@ export const OnText: Story = {
     useOutsideEvent(bubbleRef, () => setIsOpen(false));
 
     return (
-      <GridExample>
+      <>
         {loremText + loremText + loremText + loremText}
         <DictionaryTrigger ref={controllerRef} selected={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
           {'Helsebiblioteket'}
@@ -137,7 +136,7 @@ export const OnText: Story = {
           {args.children}
         </HelpBubble>
         {loremText + loremText + loremText + loremText}
-      </GridExample>
+      </>
     );
   },
 };
@@ -152,7 +151,7 @@ export const AsTooltip: Story = {
     useOutsideEvent(bubbleRef, () => isOpen && setIsOpen(false));
 
     return (
-      <GridExample>
+      <>
         {loremText + loremText + loremText + loremText}
         <DictionaryTrigger
           ref={controllerRef}
@@ -167,7 +166,7 @@ export const AsTooltip: Story = {
           {args.children}
         </HelpBubble>
         {loremText + loremText + loremText + loremText}
-      </GridExample>
+      </>
     );
   },
 };
@@ -178,7 +177,7 @@ export const WithHelpQuestion: Story = {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-      <GridExample>
+      <>
         <p>{loremText + loremText + loremText + loremText}</p>
         <HelpQuestion ref={controllerRef} selected={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
           {'Helsebiblioteket'}
@@ -187,7 +186,7 @@ export const WithHelpQuestion: Story = {
           {args.children}
         </HelpBubble>
         <p>{loremText + loremText + loremText + loremText}</p>
-      </GridExample>
+      </>
     );
   },
 };
@@ -200,7 +199,7 @@ export const HorizontalScroll: Story = {
     const controllerRef = useRef<HTMLButtonElement>(null);
 
     return (
-      <GridExample>
+      <>
         <p>{longLoremText}</p>
         <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}>
           <TableHead category={HeaderCategory.normal}>
@@ -264,7 +263,7 @@ export const HorizontalScroll: Story = {
           </TableBody>
         </Table>
         <p>{longLoremText}</p>
-      </GridExample>
+      </>
     );
   },
 };

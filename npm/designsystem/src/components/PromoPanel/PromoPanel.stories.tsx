@@ -4,7 +4,6 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import PromoPanel from './PromoPanel';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/PromoPanel',
@@ -50,20 +49,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <PromoPanel {...args} />
-    </GridExample>
-  ),
+  render: args => <PromoPanel {...args} />,
 };
 
 export const CustomLinkComponent: Story = {
   args: {
     linkComponent: <a href="/testest" />,
   },
-  render: args => (
-    <GridExample>
-      <PromoPanel {...args} />
-    </GridExample>
-  ),
+  render: args => <PromoPanel {...args} />,
 };

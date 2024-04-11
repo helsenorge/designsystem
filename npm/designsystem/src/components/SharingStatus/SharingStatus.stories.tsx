@@ -3,7 +3,6 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import SharingStatus from './SharingStatus';
-import GridExample from '../GridExample';
 import Eye from '../Icons/Eye';
 import Globe from '../Icons/Globe';
 import Group from '../Icons/Group';
@@ -42,11 +41,7 @@ export const Default: Story = {
   args: {
     icon: Eye,
   },
-  render: args => (
-    <GridExample>
-      <SharingStatus {...args} />
-    </GridExample>
-  ),
+  render: args => <SharingStatus {...args} />,
 };
 
 export const WrapText: Story = {
@@ -54,7 +49,7 @@ export const WrapText: Story = {
     icon: Eye,
   },
   render: args => (
-    <GridExample>
+    <>
       <SharingStatus {...args} wrapText={false}>
         {'Wrap text satt til false Labore sunt eiusmod duis ut. '}
       </SharingStatus>
@@ -64,7 +59,7 @@ export const WrapText: Story = {
           {'Wrap text satt til true Labore sunt eiusmod duis ut. '}
         </SharingStatus>
       </div>
-    </GridExample>
+    </>
   ),
 };
 
@@ -73,7 +68,7 @@ export const DifferentIcons: Story = {
     icon: Eye,
   },
   render: args => (
-    <GridExample>
+    <>
       <SharingStatus {...args} wrapText={false}>
         {'Eye'}
       </SharingStatus>
@@ -89,7 +84,7 @@ export const DifferentIcons: Story = {
       <SharingStatus {...args} icon={Globe} wrapText={false}>
         {'Globe'}
       </SharingStatus>
-    </GridExample>
+    </>
   ),
 };
 
@@ -98,7 +93,7 @@ export const AllColors: Story = {
     icon: Eye,
   },
   render: args => (
-    <GridExample>
+    <>
       <SharingStatus {...args} color={'kiwi'}>
         {'Kiwi'}
       </SharingStatus>
@@ -118,6 +113,6 @@ export const AllColors: Story = {
       <SharingStatus {...args} color={'banana'}>
         {'Banana'}
       </SharingStatus>
-    </GridExample>
+    </>
   ),
 };

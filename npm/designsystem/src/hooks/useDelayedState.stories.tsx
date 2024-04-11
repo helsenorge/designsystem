@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import { useDelayedState } from './useDelayedState';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 
 interface UseDelayedStateExampleProps {
   delay: number;
@@ -19,10 +18,10 @@ const UseDelayedStateExample: React.FC<UseDelayedStateExampleProps> = props => {
   };
 
   return (
-    <GridExample>
+    <>
       <Button onClick={handleClick}>Vis tekst om {props.delay} ms</Button>
       <p>{state}</p>
-    </GridExample>
+    </>
   );
 };
 

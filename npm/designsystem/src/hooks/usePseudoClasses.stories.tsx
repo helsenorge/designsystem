@@ -4,20 +4,19 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { usePseudoClasses } from './usePseudoClasses';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 
 const UsePseudoClassesExample: React.FC = () => {
   const ref = useRef<HTMLButtonElement>(null);
   const { isHovered, isFocused } = usePseudoClasses(ref);
 
   return (
-    <GridExample>
+    <>
       <Button ref={ref}>{'Knapp'}</Button>
       <p>
         {'Knappen har hover/fokus: '}
         {isHovered ? 'hover' : isFocused ? 'fokus' : 'nei'}
       </p>
-    </GridExample>
+    </>
   );
 };
 

@@ -3,7 +3,6 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Illustration from './Illustration';
-import GridExample from '../GridExample';
 import HighlightBox from '../HighlightBox';
 import Doctor from '../Illustrations/Doctor';
 
@@ -45,10 +44,8 @@ export const Default: Story = {
     illustration: Doctor,
   },
   render: args => (
-    <GridExample>
-      <HighlightBox color={args.color} size={'fluid'}>
-        <Illustration {...args} />
-      </HighlightBox>
-    </GridExample>
+    <HighlightBox color={args.color} size={'fluid'}>
+      <Illustration {...args} />
+    </HighlightBox>
   ),
 };

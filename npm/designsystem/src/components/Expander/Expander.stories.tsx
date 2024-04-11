@@ -3,7 +3,6 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Expander, { ExpanderSize } from './Expander';
-import GridExample from '../GridExample';
 import LawBook from '../Icons/LawBook';
 import Loader from '../Loader';
 import { Overlay } from '../Loader/Loader';
@@ -65,7 +64,7 @@ type Story = StoryObj<typeof meta>;
 
 export const DefaultSmall: Story = {
   render: args => (
-    <GridExample>
+    <>
       <p>
         {
           'I selvhjelpsprogrammet Co-mestring lærer du om milde til moderate psykiske reaksjoner på korona-situasjonen, og du vil få kunnskap og verktøy for å håndtere dette. Du får daglig lese tekst og gjøre øvelser som du kan bruke for å øve på å håndtere hverdagen.I selvhjelpsprogrammet Co-mestring lærer du om milde til moderate psykiske reaksjoner på korona-situasjonen, og du vil få kunnskap og verktøy for å håndtere dette. Du får daglig lese tekst og gjøre øvelser som du kan bruke for å øve på å håndtere hverdagen.'
@@ -133,7 +132,7 @@ export const DefaultSmall: Story = {
           'I selvhjelpsprogrammet Co-mestring lærer du om milde til moderate psykiske reaksjoner på korona-situasjonen, og du vil få kunnskap og verktøy for å håndtere dette. Du får daglig lese tekst og gjøre øvelser som du kan bruke for å øve på å håndtere hverdagen.I selvhjelpsprogrammet Co-mestring lærer du om milde til moderate psykiske reaksjoner på korona-situasjonen, og du vil få kunnskap og verktøy for å håndtere dette. Du får daglig lese tekst og gjøre øvelser som du kan bruke for å øve på å håndtere hverdagen.'
         }
       </p>
-    </GridExample>
+    </>
   ),
 };
 
@@ -141,11 +140,7 @@ export const Large: Story = {
   args: {
     size: ExpanderSize.large,
   },
-  render: args => (
-    <GridExample>
-      <Expander {...args}>{args.children}</Expander>
-    </GridExample>
-  ),
+  render: args => <Expander {...args}>{args.children}</Expander>,
 };
 
 export const WithIcon: Story = {
@@ -153,20 +148,14 @@ export const WithIcon: Story = {
     svgIcon: LawBook,
     size: ExpanderSize.large,
   },
-  render: args => (
-    <GridExample>
-      <Expander {...args}>{args.children}</Expander>
-    </GridExample>
-  ),
+  render: args => <Expander {...args}>{args.children}</Expander>,
 };
 
 export const WithLoader: Story = {
   render: args => (
-    <GridExample>
-      <Expander {...args}>
-        <Loader overlay={Overlay.parent} />
-      </Expander>
-    </GridExample>
+    <Expander {...args}>
+      <Loader overlay={Overlay.parent} />
+    </Expander>
   ),
 };
 
@@ -175,10 +164,8 @@ export const WithCallback: Story = {
     onExpand: isExpanded => console.log(isExpanded),
   },
   render: args => (
-    <GridExample>
-      <Expander {...args}>
-        <p>Sjekk nettleserkonsollen</p>
-      </Expander>
-    </GridExample>
+    <Expander {...args}>
+      <p>Sjekk nettleserkonsollen</p>
+    </Expander>
   ),
 };

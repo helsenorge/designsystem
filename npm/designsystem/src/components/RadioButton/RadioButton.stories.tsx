@@ -6,7 +6,6 @@ import RadioButton from './RadioButton';
 import { FormMode, FormSize } from '../../constants';
 import { getColor } from '../../theme/currys';
 import FormGroup from '../FormGroup';
-import GridExample from '../GridExample';
 import Label from '../Label';
 
 const meta = {
@@ -66,7 +65,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => (
-    <GridExample>
+    <>
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'Radio onwhite' }]} />} mode={'onwhite'} />
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} mode={'ongrey'} />
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} mode={'onblueberry'} />
@@ -75,13 +74,13 @@ export const Default: Story = {
       <div style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
         <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} mode={'ondark'} />
       </div>
-    </GridExample>
+    </>
   ),
 };
 
 export const Large: Story = {
   render: args => (
-    <GridExample>
+    <>
       <FormGroup legend={'onwhite'} name="radio1" mode={'onwhite'} size={'large'}>
         <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} />
         <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} />
@@ -100,9 +99,8 @@ export const Large: Story = {
           <RadioButton {...args} label={<Label labelTexts={[{ text: 'ondark' }]} />} />
         </FormGroup>
       </div>
-
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} size={'large'} mode={'oninvalid'} />
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} size={'large'} mode={'onwhite'} disabled />
-    </GridExample>
+    </>
   ),
 };

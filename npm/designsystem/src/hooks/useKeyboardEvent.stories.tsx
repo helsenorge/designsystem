@@ -3,7 +3,6 @@ import React, { useRef } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { useKeyboardEvent } from './useKeyboardEvent';
-import GridExample from '../components/GridExample';
 import Textarea from '../components/Textarea';
 import { KeyboardEventKey } from '../constants';
 
@@ -18,11 +17,7 @@ const UseKeyboardEventExample: React.FC = () => {
     KeyboardEventKey.Home,
   ]);
 
-  return (
-    <GridExample>
-      <Textarea ref={ref} defaultValue="Trykk på enter og sjekk console" />
-    </GridExample>
-  );
+  return <Textarea ref={ref} defaultValue="Trykk på enter og sjekk console" />;
 };
 
 const meta = {

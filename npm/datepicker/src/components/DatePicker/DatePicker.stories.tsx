@@ -6,7 +6,6 @@ import { ar } from 'date-fns/locale';
 import { useForm } from 'react-hook-form';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
-import GridExample from '@helsenorge/designsystem-react/components/GridExample';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Label from '@helsenorge/designsystem-react/components/Label';
@@ -81,16 +80,14 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => {
     return (
-      <GridExample>
-        <DatePicker
-          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
-          {...args}
-          dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
-          disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
-          maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
-          minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
-        />
-      </GridExample>
+      <DatePicker
+        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        {...args}
+        dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
+        disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
+        maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
+        minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
+      />
     );
   },
 };
@@ -101,32 +98,30 @@ export const DateRangePicker: Story = {
     const [toDate, setToDate] = React.useState<Date | undefined>();
 
     return (
-      <GridExample>
-        <DateTimePickerWrapper>
-          <DatePicker
-            {...args}
-            label={<Label labelTexts={[{ text: 'Fra dato', type: 'semibold' }]} />}
-            maxDate={toDate}
-            onChange={(
-              _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
-              date: string | Date | undefined
-            ): void => {
-              date instanceof Date && setFromDate(date);
-            }}
-          />
-          <DatePicker
-            {...args}
-            label={<Label labelTexts={[{ text: 'Til dato', type: 'semibold' }]} />}
-            minDate={fromDate}
-            onChange={(
-              _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
-              date: string | Date | undefined
-            ): void => {
-              date instanceof Date && setToDate(date);
-            }}
-          />
-        </DateTimePickerWrapper>
-      </GridExample>
+      <DateTimePickerWrapper>
+        <DatePicker
+          {...args}
+          label={<Label labelTexts={[{ text: 'Fra dato', type: 'semibold' }]} />}
+          maxDate={toDate}
+          onChange={(
+            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
+            date: string | Date | undefined
+          ): void => {
+            date instanceof Date && setFromDate(date);
+          }}
+        />
+        <DatePicker
+          {...args}
+          label={<Label labelTexts={[{ text: 'Til dato', type: 'semibold' }]} />}
+          minDate={fromDate}
+          onChange={(
+            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
+            date: string | Date | undefined
+          ): void => {
+            date instanceof Date && setToDate(date);
+          }}
+        />
+      </DateTimePickerWrapper>
     );
   },
 };
@@ -136,21 +131,19 @@ export const DateAndTime: Story = {
     const [startDate] = React.useState(new Date());
 
     return (
-      <GridExample>
-        <DateTimePickerWrapper>
-          <DatePicker
-            {...args}
-            dateValue={startDate}
-            label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
-          />
-          <DateTime
-            defaultValue={12}
-            label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
-            timeUnit={'hours'}
-          />
-          <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
-        </DateTimePickerWrapper>
-      </GridExample>
+      <DateTimePickerWrapper>
+        <DatePicker
+          {...args}
+          dateValue={startDate}
+          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        />
+        <DateTime
+          defaultValue={12}
+          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
+          timeUnit={'hours'}
+        />
+        <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
+      </DateTimePickerWrapper>
     );
   },
 };
@@ -164,16 +157,14 @@ export const MinMaxDays: Story = {
     maxDate.setDate(startDate.getDate() + 15);
 
     return (
-      <GridExample>
-        <DatePicker
-          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
-          {...args}
-          disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
-          dateValue={startDate}
-          maxDate={maxDate}
-          minDate={minDate}
-        />
-      </GridExample>
+      <DatePicker
+        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        {...args}
+        disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
+        dateValue={startDate}
+        maxDate={maxDate}
+        minDate={minDate}
+      />
     );
   },
 };
@@ -185,17 +176,15 @@ export const DisabledDays: Story = {
     disabledDate.setDate(startDate.getDate() - 3);
 
     return (
-      <GridExample>
-        <DatePicker
-          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
-          {...args}
-          disableDays={[disabledDate]}
-          disableWeekends
-          dateValue={startDate}
-          maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
-          minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
-        />
-      </GridExample>
+      <DatePicker
+        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        {...args}
+        disableDays={[disabledDate]}
+        disableWeekends
+        dateValue={startDate}
+        maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
+        minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
+      />
     );
   },
 };
@@ -203,17 +192,15 @@ export const DisabledDays: Story = {
 export const FooterContent: Story = {
   render: (args: DatePickerProps) => {
     return (
-      <GridExample>
-        <DatePicker
-          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
-          {...args}
-          footerContent={<Icon size={38} svgIcon={Calendar} />}
-          dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
-          disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
-          maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
-          minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
-        />
-      </GridExample>
+      <DatePicker
+        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        {...args}
+        footerContent={<Icon size={38} svgIcon={Calendar} />}
+        dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
+        disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
+        maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
+        minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
+      />
     );
   },
 };
@@ -221,17 +208,15 @@ export const FooterContent: Story = {
 export const Locale: Story = {
   render: (args: DatePickerProps) => {
     return (
-      <GridExample>
-        <DatePicker
-          label={<Label labelTexts={[{ text: 'Date', type: 'semibold' }, { text: '(dd.mm.yyyy)' }]} />}
-          {...args}
-          dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
-          disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
-          maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
-          minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
-          locale={ar}
-        />
-      </GridExample>
+      <DatePicker
+        label={<Label labelTexts={[{ text: 'Date', type: 'semibold' }, { text: '(dd.mm.yyyy)' }]} />}
+        {...args}
+        dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
+        disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
+        maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
+        minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
+        locale={ar}
+      />
     );
   },
 };
@@ -315,52 +300,50 @@ export const ValidateDateTime: Story = {
     };
 
     return (
-      <GridExample>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Validation
-            errorSummary={errors.datepicker || errors.datetimehour || errors.datetimeminute ? 'Sjekk at alt er riktig utfylt' : undefined}
-          >
-            <DateTimePickerWrapper
-              errorText={
-                (errors.datepicker?.message as string) ||
-                (errors.datetimehour?.message as string) ||
-                (errors.datetimeminute?.message as string)
-              }
-              legend={'Datepicker legend'}
-            >
-              <DatePicker
-                {...args}
-                dateValue={startDate}
-                disableDays={[disabledDate]}
-                disableWeekends
-                footerContent={<Icon size={38} svgIcon={Calendar} />}
-                label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
-                maxDate={maxDate}
-                minDate={minDate}
-                {...register(datepicker, { validate: requireDate })}
-              />
-              <DateTime
-                defaultValue={12}
-                label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
-                timeUnit={'hours'}
-                {...register(datetimehour, { validate: requireHour })}
-              />
-              <DateTime
-                defaultValue={0}
-                aria-labelledby={'label01'}
-                timeUnit={'minutes'}
-                {...register(datetimeminute, { validate: requireMinute })}
-              />
-            </DateTimePickerWrapper>
-          </Validation>
-          <Button type="submit">{'Send inn'}</Button>
-          <div>
-            {
-              'Sunt et ullamco deserunt tempor ad id incididunt quis sint ea do culpa. Minim laboris voluptate id dolor consequat fugiat tempor laboris magna in Lorem ex. Fugiat velit amet cillum sint adipisicing nulla laborum nisi dolor non duis voluptate.Esse irure duis proident veniam enim consectetur duis deserunt sit esse in irure fugiat fugiat. Officia pariatur voluptate Lorem ullamco adipisicing ex sit ex mollit labore deserunt aliqua velit cillum. Aliqua incididunt pariatur labore ea dolore. Voluptate veniam nulla velit enim veniam excepteur dolor qui quis anim est minim. Voluptate laboris id ex pariatur laboris sunt sunt et nostrud adipisicing elit quis culpa.Mollit tempor commodo est excepteur commodo dolore laborum in. Officia ipsum tempor ullamco incididunt labore sint commodo nulla mollit esse cupidatat cupidatat. Sit exercitation excepteur non do reprehenderit ipsum. Aute adipisicing excepteur consectetur ea proident pariatur non. Duis fugiat qui consectetur laborum eu aute fugiat reprehenderit sit aute. Sunt et ullamco deserunt tempor ad id incididunt quis sint ea do culpa. Minim laboris voluptate id dolor consequat fugiat tempor laboris magna in Lorem ex. Fugiat velit amet cillum sint adipisicing nulla laborum nisi dolor non duis voluptate.Esse irure duis proident veniam enim consectetur duis deserunt sit esse in irure fugiat fugiat. Officia pariatur voluptate Lorem ullamco adipisicing ex sit ex mollit labore deserunt aliqua velit cillum. Aliqua incididunt pariatur labore ea dolore. Voluptate veniam nulla velit enim veniam excepteur dolor qui quis anim est minim. Voluptate laboris id ex pariatur laboris sunt sunt et nostrud adipisicing elit quis culpa.Mollit tempor commodo est excepteur commodo dolore laborum in. Officia ipsum tempor ullamco incididunt labore sint commodo nulla mollit esse cupidatat cupidatat. Sit exercitation excepteur non do reprehenderit ipsum. Aute adipisicing excepteur consectetur ea proident pariatur non. Duis fugiat qui consectetur laborum eu aute fugiat reprehenderit sit aute.'
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Validation
+          errorSummary={errors.datepicker || errors.datetimehour || errors.datetimeminute ? 'Sjekk at alt er riktig utfylt' : undefined}
+        >
+          <DateTimePickerWrapper
+            errorText={
+              (errors.datepicker?.message as string) ||
+              (errors.datetimehour?.message as string) ||
+              (errors.datetimeminute?.message as string)
             }
-          </div>
-        </form>
-      </GridExample>
+            legend={'Datepicker legend'}
+          >
+            <DatePicker
+              {...args}
+              dateValue={startDate}
+              disableDays={[disabledDate]}
+              disableWeekends
+              footerContent={<Icon size={38} svgIcon={Calendar} />}
+              label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+              maxDate={maxDate}
+              minDate={minDate}
+              {...register(datepicker, { validate: requireDate })}
+            />
+            <DateTime
+              defaultValue={12}
+              label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
+              timeUnit={'hours'}
+              {...register(datetimehour, { validate: requireHour })}
+            />
+            <DateTime
+              defaultValue={0}
+              aria-labelledby={'label01'}
+              timeUnit={'minutes'}
+              {...register(datetimeminute, { validate: requireMinute })}
+            />
+          </DateTimePickerWrapper>
+        </Validation>
+        <Button type="submit">{'Send inn'}</Button>
+        <div>
+          {
+            'Sunt et ullamco deserunt tempor ad id incididunt quis sint ea do culpa. Minim laboris voluptate id dolor consequat fugiat tempor laboris magna in Lorem ex. Fugiat velit amet cillum sint adipisicing nulla laborum nisi dolor non duis voluptate.Esse irure duis proident veniam enim consectetur duis deserunt sit esse in irure fugiat fugiat. Officia pariatur voluptate Lorem ullamco adipisicing ex sit ex mollit labore deserunt aliqua velit cillum. Aliqua incididunt pariatur labore ea dolore. Voluptate veniam nulla velit enim veniam excepteur dolor qui quis anim est minim. Voluptate laboris id ex pariatur laboris sunt sunt et nostrud adipisicing elit quis culpa.Mollit tempor commodo est excepteur commodo dolore laborum in. Officia ipsum tempor ullamco incididunt labore sint commodo nulla mollit esse cupidatat cupidatat. Sit exercitation excepteur non do reprehenderit ipsum. Aute adipisicing excepteur consectetur ea proident pariatur non. Duis fugiat qui consectetur laborum eu aute fugiat reprehenderit sit aute. Sunt et ullamco deserunt tempor ad id incididunt quis sint ea do culpa. Minim laboris voluptate id dolor consequat fugiat tempor laboris magna in Lorem ex. Fugiat velit amet cillum sint adipisicing nulla laborum nisi dolor non duis voluptate.Esse irure duis proident veniam enim consectetur duis deserunt sit esse in irure fugiat fugiat. Officia pariatur voluptate Lorem ullamco adipisicing ex sit ex mollit labore deserunt aliqua velit cillum. Aliqua incididunt pariatur labore ea dolore. Voluptate veniam nulla velit enim veniam excepteur dolor qui quis anim est minim. Voluptate laboris id ex pariatur laboris sunt sunt et nostrud adipisicing elit quis culpa.Mollit tempor commodo est excepteur commodo dolore laborum in. Officia ipsum tempor ullamco incididunt labore sint commodo nulla mollit esse cupidatat cupidatat. Sit exercitation excepteur non do reprehenderit ipsum. Aute adipisicing excepteur consectetur ea proident pariatur non. Duis fugiat qui consectetur laborum eu aute fugiat reprehenderit sit aute.'
+          }
+        </div>
+      </form>
     );
   },
 };

@@ -6,7 +6,6 @@ import { StoryObj, Meta } from '@storybook/react';
 import Trigger from './Trigger';
 import { mediumLoremText } from '../../utils/loremtext';
 import Button from '../Button';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/Trigger',
@@ -59,7 +58,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => (
-    <GridExample>
+    <>
       {args.mode === 'ondark' ? (
         <div style={{ backgroundColor: '#6a2abf', padding: '2rem' }}>
           <Trigger {...args} onClick={action('Trigger clicked!')} />
@@ -67,31 +66,25 @@ export const Default: Story = {
       ) : (
         <Trigger {...args} onClick={action('Trigger clicked!')} />
       )}
-    </GridExample>
+    </>
   ),
 };
 
 export const HelpTrigger: Story = {
-  render: args => (
-    <GridExample>
-      <Trigger {...args} onClick={action('Trigger clicked!')} variant="help" />
-    </GridExample>
-  ),
+  render: args => <Trigger {...args} onClick={action('Trigger clicked!')} variant="help" />,
 };
 
 export const OnDark: Story = {
   render: args => (
-    <GridExample>
-      <div style={{ backgroundColor: '#6a2abf', padding: '2rem' }}>
-        <Trigger {...args} onClick={action('Trigger clicked!')} mode="ondark" />
-      </div>
-    </GridExample>
+    <div style={{ backgroundColor: '#6a2abf', padding: '2rem' }}>
+      <Trigger {...args} onClick={action('Trigger clicked!')} mode="ondark" />
+    </div>
   ),
 };
 
 export const NextToText: Story = {
   render: args => (
-    <GridExample>
+    <>
       <div>
         {mediumLoremText}
         <Trigger {...args} onClick={action('Trigger clicked!')} variant="help" />
@@ -105,6 +98,6 @@ export const NextToText: Story = {
         <Button>{'Knapp'}</Button>
         <Trigger {...args} onClick={action('Trigger clicked!')} variant="help" />
       </div>
-    </GridExample>
+    </>
   ),
 };

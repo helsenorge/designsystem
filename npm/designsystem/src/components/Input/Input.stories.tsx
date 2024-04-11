@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Input, { InputProps, InputTypes } from './Input';
 import { FormMode, FormSize } from '../../constants';
-import GridExample from '../GridExample';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 
@@ -102,21 +101,19 @@ export const Default: Story = {
     const inputId = 'input-testid';
 
     return (
-      <GridExample>
-        <Input
-          {...rest}
-          label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
-          inputId={inputId}
-          icon={showIcon ? Hospital : undefined}
-        />
-      </GridExample>
+      <Input
+        {...rest}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
+        inputId={inputId}
+        icon={showIcon ? Hospital : undefined}
+      />
     );
   },
 };
 
 export const MultipleExamples: Story = {
   render: ({ showIcon, ...rest }) => (
-    <GridExample>
+    <>
       <Input
         {...rest}
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
@@ -132,14 +129,14 @@ export const MultipleExamples: Story = {
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
         icon={showIcon ? Hospital : undefined}
       />
-    </GridExample>
+    </>
   ),
 };
 
 export const MaxCharacters: Story = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => (
-    <GridExample>
+    <>
       <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={10} width={10} />
       <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={50} width={50} />
       <Input
@@ -149,14 +146,14 @@ export const MaxCharacters: Story = {
         width={50}
         defaultValue="test"
       />
-    </GridExample>
+    </>
   ),
 };
 
 export const AfterInputChildren: Story = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => (
-    <GridExample>
+    <>
       <Input
         {...rest}
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
@@ -167,7 +164,7 @@ export const AfterInputChildren: Story = {
         label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
         afterInputChildren={'Tekst uten innsendt div'}
       />
-    </GridExample>
+    </>
   ),
 };
 
@@ -176,16 +173,14 @@ export const BaseIncrementValue: Story = {
     const inputId = 'input-testid';
 
     return (
-      <GridExample>
-        <Input
-          {...rest}
-          type={'number'}
-          baseIncrementValue={1990}
-          label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
-          inputId={inputId}
-          icon={showIcon ? Hospital : undefined}
-        />
-      </GridExample>
+      <Input
+        {...rest}
+        type={'number'}
+        baseIncrementValue={1990}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
+        inputId={inputId}
+        icon={showIcon ? Hospital : undefined}
+      />
     );
   },
 };

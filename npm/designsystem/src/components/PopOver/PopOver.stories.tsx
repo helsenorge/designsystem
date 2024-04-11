@@ -6,7 +6,6 @@ import PopOver, { PopOverVariant } from './PopOver';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import Button from '../Button';
-import GridExample from '../GridExample';
 import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
 import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, ResponsiveTableVariant, HeaderCategory } from '../Table';
@@ -47,7 +46,7 @@ export const Default: Story = {
     const controllerRef = useRef<SVGSVGElement>(null);
 
     return (
-      <GridExample>
+      <>
         <span>{loremText + loremText + loremText + loremText}</span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <Icon ref={controllerRef} svgIcon={HelpSign} />
@@ -56,7 +55,7 @@ export const Default: Story = {
           </PopOver>
         </div>
         <span>{loremText + loremText + loremText + loremText}</span>
-      </GridExample>
+      </>
     );
   },
 };
@@ -67,7 +66,7 @@ export const Toggle: Story = {
     const { value, toggleValue } = useToggle(false);
 
     return (
-      <GridExample>
+      <>
         <span>{loremText + loremText + loremText + loremText}</span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <Button ref={controllerRef} onClick={toggleValue}>
@@ -80,7 +79,7 @@ export const Toggle: Story = {
           )}
         </div>
         <span>{loremText + loremText + loremText + loremText}</span>
-      </GridExample>
+      </>
     );
   },
 };
@@ -90,7 +89,7 @@ export const HorizontalScroll: Story = {
     const controllerRef = useRef<SVGSVGElement>(null);
 
     return (
-      <GridExample>
+      <>
         <p>{longLoremText}</p>
         <Table breakpointConfig={{ breakpoint: 'xl', variant: ResponsiveTableVariant.horizontalscroll }}>
           <TableHead category={HeaderCategory.normal}>
@@ -134,7 +133,7 @@ export const HorizontalScroll: Story = {
           </TableBody>
         </Table>
         <p>{longLoremText}</p>
-      </GridExample>
+      </>
     );
   },
 };

@@ -3,7 +3,6 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import StatusDot, { StatusDotVariant } from './StatusDot';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/StatusDot',
@@ -35,9 +34,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <StatusDot {...args} />
-    </GridExample>
-  ),
+  render: args => <StatusDot {...args} />,
 };

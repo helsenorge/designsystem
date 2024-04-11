@@ -3,18 +3,13 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { Breakpoint, useBreakpoint } from './useBreakpoint';
-import GridExample from '../components/GridExample';
 
 const UseBreakpointExample: React.FC = () => {
   const breakpoint = useBreakpoint();
 
   const description = `Breakpoint er nå ${Breakpoint[breakpoint]} (${breakpoint}px)`;
 
-  return (
-    <GridExample>
-      <p>{description}</p>
-    </GridExample>
-  );
+  return <p>{description}</p>;
 };
 
 const meta = {

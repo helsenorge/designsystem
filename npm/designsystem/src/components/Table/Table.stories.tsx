@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import { longLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
-import GridExample from '../GridExample';
 import LinkList from '../LinkList';
 import PopMenu from '../PopMenu';
 import { Title } from '../Title';
@@ -268,97 +267,95 @@ export const SortableAndExpandable: Story = {
     };
 
     return (
-      <GridExample>
-        <Table {...args} breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}>
-          <TableHead category={HeaderCategory.sortable}>
-            <TableRow>
-              <TableHeadCell />
-              <TableHeadCell sortable sortDir={sortColumn === 'Fastlege' ? sortDirection : undefined} onClick={() => clickSort('Fastlege')}>
-                {'Navn'}
-              </TableHeadCell>
-              <TableHeadCell sortable sortDir={sortColumn === 'Alder' ? sortDirection : undefined} onClick={() => clickSort('Alder')}>
-                {'Alder'}
-              </TableHeadCell>
-              <TableHeadCell>{'Kjønn'}</TableHeadCell>
-              <TableHeadCell
-                sortable
-                sortDir={sortColumn === 'Fastlegekontor' ? sortDirection : undefined}
-                onClick={() => clickSort('Fastlegekontor')}
+      <Table {...args} breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}>
+        <TableHead category={HeaderCategory.sortable}>
+          <TableRow>
+            <TableHeadCell />
+            <TableHeadCell sortable sortDir={sortColumn === 'Fastlege' ? sortDirection : undefined} onClick={() => clickSort('Fastlege')}>
+              {'Navn'}
+            </TableHeadCell>
+            <TableHeadCell sortable sortDir={sortColumn === 'Alder' ? sortDirection : undefined} onClick={() => clickSort('Alder')}>
+              {'Alder'}
+            </TableHeadCell>
+            <TableHeadCell>{'Kjønn'}</TableHeadCell>
+            <TableHeadCell
+              sortable
+              sortDir={sortColumn === 'Fastlegekontor' ? sortDirection : undefined}
+              onClick={() => clickSort('Fastlegekontor')}
+            >
+              {'Fastlegekontor'}
+            </TableHeadCell>
+            <TableHeadCell sortable sortDir={sortColumn === 'Adresse' ? sortDirection : undefined} onClick={() => clickSort('Adresse')}>
+              {'Adresse'}
+            </TableHeadCell>
+            <TableHeadCell
+              sortable
+              sortDir={sortColumn === 'LedigePlasser' ? sortDirection : undefined}
+              onClick={() => clickSort('LedigePlasser')}
+            >
+              {'Ledige plasser'}
+            </TableHeadCell>
+            <TableHeadCell
+              sortable
+              sortDir={sortColumn === 'AntallPaVenteliste' ? sortDirection : undefined}
+              onClick={() => clickSort('AntallPaVenteliste')}
+            >
+              {'Antall på venteliste'}
+            </TableHeadCell>
+            <TableHeadCell>{'Handling'}</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody className="test1">
+          {data.map((fastlege, i: number) => (
+            <React.Fragment key={i}>
+              <TableRow
+                onClick={() => {
+                  toggleExpand(i);
+                }}
+                expandable
+                expanded={expanded[i]}
+                hideDetailsText="Skjul detaljer"
+                showDetailsText="Vis detaljer"
               >
-                {'Fastlegekontor'}
-              </TableHeadCell>
-              <TableHeadCell sortable sortDir={sortColumn === 'Adresse' ? sortDirection : undefined} onClick={() => clickSort('Adresse')}>
-                {'Adresse'}
-              </TableHeadCell>
-              <TableHeadCell
-                sortable
-                sortDir={sortColumn === 'LedigePlasser' ? sortDirection : undefined}
-                onClick={() => clickSort('LedigePlasser')}
-              >
-                {'Ledige plasser'}
-              </TableHeadCell>
-              <TableHeadCell
-                sortable
-                sortDir={sortColumn === 'AntallPaVenteliste' ? sortDirection : undefined}
-                onClick={() => clickSort('AntallPaVenteliste')}
-              >
-                {'Antall på venteliste'}
-              </TableHeadCell>
-              <TableHeadCell>{'Handling'}</TableHeadCell>
-            </TableRow>
-          </TableHead>
-          <TableBody className="test1">
-            {data.map((fastlege, i: number) => (
-              <React.Fragment key={i}>
-                <TableRow
-                  onClick={() => {
-                    toggleExpand(i);
-                  }}
-                  expandable
+                <TableExpanderCell
                   expanded={expanded[i]}
+                  expandableRowId={`SortableAndExpandable-${i}`}
                   hideDetailsText="Skjul detaljer"
                   showDetailsText="Vis detaljer"
-                >
-                  <TableExpanderCell
-                    expanded={expanded[i]}
-                    expandableRowId={`SortableAndExpandable-${i}`}
-                    hideDetailsText="Skjul detaljer"
-                    showDetailsText="Vis detaljer"
-                  ></TableExpanderCell>
-                  {getFastlegeDataCells(fastlege)}
-                  {
-                    <TableCell dataLabel="Handling" textAlign={TextAlign.center}>
-                      <PopMenu>
-                        <LinkList chevron={false}>
-                          <LinkList.Link>{'Åpne'}</LinkList.Link>
-                          <LinkList.Link>{'Lagre'}</LinkList.Link>
-                        </LinkList>
-                      </PopMenu>
-                    </TableCell>
-                  }
-                </TableRow>
+                ></TableExpanderCell>
+                {getFastlegeDataCells(fastlege)}
+                {
+                  <TableCell dataLabel="Handling" textAlign={TextAlign.center}>
+                    <PopMenu>
+                      <LinkList chevron={false}>
+                        <LinkList.Link>{'Åpne'}</LinkList.Link>
+                        <LinkList.Link>{'Lagre'}</LinkList.Link>
+                      </LinkList>
+                    </PopMenu>
+                  </TableCell>
+                }
+              </TableRow>
 
-                <TableExpandedRow
-                  id={`SortableAndExpandable-${i}`}
-                  numberOfColumns={9}
-                  expanded={expanded[i]}
-                  toggleClick={() => {
-                    toggleExpand(i);
-                  }}
-                  hideDetailsText={'Skjul ' + fastlege.Fastlege.Fornavn + ' ' + fastlege.Fastlege.Etternavn}
-                >
-                  <Title htmlMarkup="h4" appearance="title4">
-                    {fastlege.Fastlege.Fornavn + ' ' + fastlege.Fastlege.Etternavn}
-                  </Title>
-                  <p>Godkjent som lege i {fastlege.Fastlege.Autorisert}</p>
-                  <p>Spesialist i allmennnmedisin</p>
-                  <p>Startet som fastlege i {fastlege.Avtaledato.substring(0, 4)}.</p>
-                </TableExpandedRow>
-              </React.Fragment>
-            ))}
-          </TableBody>
-        </Table>
-      </GridExample>
+              <TableExpandedRow
+                id={`SortableAndExpandable-${i}`}
+                numberOfColumns={9}
+                expanded={expanded[i]}
+                toggleClick={() => {
+                  toggleExpand(i);
+                }}
+                hideDetailsText={'Skjul ' + fastlege.Fastlege.Fornavn + ' ' + fastlege.Fastlege.Etternavn}
+              >
+                <Title htmlMarkup="h4" appearance="title4">
+                  {fastlege.Fastlege.Fornavn + ' ' + fastlege.Fastlege.Etternavn}
+                </Title>
+                <p>Godkjent som lege i {fastlege.Fastlege.Autorisert}</p>
+                <p>Spesialist i allmennnmedisin</p>
+                <p>Startet som fastlege i {fastlege.Avtaledato.substring(0, 4)}.</p>
+              </TableExpandedRow>
+            </React.Fragment>
+          ))}
+        </TableBody>
+      </Table>
     );
   },
 };
@@ -387,106 +384,104 @@ export const NestedExpandableBlockTables: Story = {
     };
 
     return (
-      <GridExample>
-        <Table breakpointConfig={{ breakpoint: 'xs', variant: 'block' }}>
-          <TableHead category={HeaderCategory.sortable}>
-            <TableRow>
-              <TableHeadCell />
-              <TableHeadCell sortable sortDir={sortColumn === 'Fastlege' ? sortDirection : undefined} onClick={() => clickSort('Fastlege')}>
-                {'Navn'}
-              </TableHeadCell>
-              <TableHeadCell sortable sortDir={sortColumn === 'Alder' ? sortDirection : undefined} onClick={() => clickSort('Alder')}>
-                {'Alder'}
-              </TableHeadCell>
-              <TableHeadCell>{'Kjønn'}</TableHeadCell>
-              <TableHeadCell
-                sortable
-                sortDir={sortColumn === 'Fastlegekontor' ? sortDirection : undefined}
-                onClick={() => clickSort('Fastlegekontor')}
+      <Table breakpointConfig={{ breakpoint: 'xs', variant: 'block' }}>
+        <TableHead category={HeaderCategory.sortable}>
+          <TableRow>
+            <TableHeadCell />
+            <TableHeadCell sortable sortDir={sortColumn === 'Fastlege' ? sortDirection : undefined} onClick={() => clickSort('Fastlege')}>
+              {'Navn'}
+            </TableHeadCell>
+            <TableHeadCell sortable sortDir={sortColumn === 'Alder' ? sortDirection : undefined} onClick={() => clickSort('Alder')}>
+              {'Alder'}
+            </TableHeadCell>
+            <TableHeadCell>{'Kjønn'}</TableHeadCell>
+            <TableHeadCell
+              sortable
+              sortDir={sortColumn === 'Fastlegekontor' ? sortDirection : undefined}
+              onClick={() => clickSort('Fastlegekontor')}
+            >
+              {'Fastlegekontor'}
+            </TableHeadCell>
+            <TableHeadCell sortable sortDir={sortColumn === 'Adresse' ? sortDirection : undefined} onClick={() => clickSort('Adresse')}>
+              {'Adresse'}
+            </TableHeadCell>
+            <TableHeadCell
+              sortable
+              sortDir={sortColumn === 'LedigePlasser' ? sortDirection : undefined}
+              onClick={() => clickSort('LedigePlasser')}
+            >
+              {'Ledige plasser'}
+            </TableHeadCell>
+            <TableHeadCell
+              sortable
+              sortDir={sortColumn === 'AntallPaVenteliste' ? sortDirection : undefined}
+              onClick={() => clickSort('AntallPaVenteliste')}
+            >
+              {'Antall på venteliste'}
+            </TableHeadCell>
+            <TableHeadCell>{'Handling'}</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody className="test1">
+          {data.map((fastlege, i: number) => (
+            <React.Fragment key={i}>
+              <TableRow
+                onClick={() => {
+                  toggleExpand(i);
+                }}
+                expandable
+                expanded={expanded[i]}
+                hideDetailsText="Skjul detaljer"
+                showDetailsText="Vis detaljer"
               >
-                {'Fastlegekontor'}
-              </TableHeadCell>
-              <TableHeadCell sortable sortDir={sortColumn === 'Adresse' ? sortDirection : undefined} onClick={() => clickSort('Adresse')}>
-                {'Adresse'}
-              </TableHeadCell>
-              <TableHeadCell
-                sortable
-                sortDir={sortColumn === 'LedigePlasser' ? sortDirection : undefined}
-                onClick={() => clickSort('LedigePlasser')}
-              >
-                {'Ledige plasser'}
-              </TableHeadCell>
-              <TableHeadCell
-                sortable
-                sortDir={sortColumn === 'AntallPaVenteliste' ? sortDirection : undefined}
-                onClick={() => clickSort('AntallPaVenteliste')}
-              >
-                {'Antall på venteliste'}
-              </TableHeadCell>
-              <TableHeadCell>{'Handling'}</TableHeadCell>
-            </TableRow>
-          </TableHead>
-          <TableBody className="test1">
-            {data.map((fastlege, i: number) => (
-              <React.Fragment key={i}>
-                <TableRow
-                  onClick={() => {
-                    toggleExpand(i);
-                  }}
-                  expandable
+                <TableExpanderCell
                   expanded={expanded[i]}
+                  expandableRowId={`NestedExpandableBlockTables-${i}`}
                   hideDetailsText="Skjul detaljer"
                   showDetailsText="Vis detaljer"
-                >
-                  <TableExpanderCell
-                    expanded={expanded[i]}
-                    expandableRowId={`NestedExpandableBlockTables-${i}`}
-                    hideDetailsText="Skjul detaljer"
-                    showDetailsText="Vis detaljer"
-                  ></TableExpanderCell>
-                  {getFastlegeDataCells(fastlege)}
-                  {
-                    <TableCell dataLabel="Handling" textAlign={TextAlign.center}>
-                      <PopMenu>
-                        <LinkList chevron={false}>
-                          <LinkList.Link>{'Åpne'}</LinkList.Link>
-                          <LinkList.Link>{'Lagre'}</LinkList.Link>
-                        </LinkList>
-                      </PopMenu>
-                    </TableCell>
-                  }
-                </TableRow>
+                ></TableExpanderCell>
+                {getFastlegeDataCells(fastlege)}
+                {
+                  <TableCell dataLabel="Handling" textAlign={TextAlign.center}>
+                    <PopMenu>
+                      <LinkList chevron={false}>
+                        <LinkList.Link>{'Åpne'}</LinkList.Link>
+                        <LinkList.Link>{'Lagre'}</LinkList.Link>
+                      </LinkList>
+                    </PopMenu>
+                  </TableCell>
+                }
+              </TableRow>
 
-                <TableExpandedRow
-                  id={`NestedExpandableBlockTables-${i}`}
-                  numberOfColumns={9}
-                  expanded={expanded[i]}
-                  toggleClick={() => {
-                    toggleExpand(i);
-                  }}
-                  hideDetailsText={'Skjul ' + fastlege.Fastlege.Fornavn + ' ' + fastlege.Fastlege.Etternavn}
-                >
-                  <Table breakpointConfig={{ breakpoint: 'xs', variant: 'block' }}>
-                    <TableHead category={HeaderCategory.normal}>
-                      <TableRow>
-                        <TableHeadCell>{'Navn'}</TableHeadCell>
-                        <TableHeadCell>{'Alder'}</TableHeadCell>
-                        <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
-                        <TableHeadCell>{'Adresse'}</TableHeadCell>
-                        <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
-                        <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow>{getFastlegeDataCells(fastlege)}</TableRow>
-                    </TableBody>
-                  </Table>
-                </TableExpandedRow>
-              </React.Fragment>
-            ))}
-          </TableBody>
-        </Table>
-      </GridExample>
+              <TableExpandedRow
+                id={`NestedExpandableBlockTables-${i}`}
+                numberOfColumns={9}
+                expanded={expanded[i]}
+                toggleClick={() => {
+                  toggleExpand(i);
+                }}
+                hideDetailsText={'Skjul ' + fastlege.Fastlege.Fornavn + ' ' + fastlege.Fastlege.Etternavn}
+              >
+                <Table breakpointConfig={{ breakpoint: 'xs', variant: 'block' }}>
+                  <TableHead category={HeaderCategory.normal}>
+                    <TableRow>
+                      <TableHeadCell>{'Navn'}</TableHeadCell>
+                      <TableHeadCell>{'Alder'}</TableHeadCell>
+                      <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+                      <TableHeadCell>{'Adresse'}</TableHeadCell>
+                      <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+                      <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>{getFastlegeDataCells(fastlege)}</TableRow>
+                  </TableBody>
+                </Table>
+              </TableExpandedRow>
+            </React.Fragment>
+          ))}
+        </TableBody>
+      </Table>
     );
   },
 };
@@ -494,66 +489,64 @@ export const NestedExpandableBlockTables: Story = {
 export const ExtraData: Story = {
   render: args => {
     return (
-      <GridExample>
-        <Table {...args} breakpointConfig={defaultConfig}>
-          <TableHead category={HeaderCategory.normal}>
-            <TableRow>
-              <TableHeadCell>Navn</TableHeadCell>
-              <TableHeadCell>Beskrivelse</TableHeadCell>
-              <TableHeadCell>Mer info</TableHeadCell>
-              <TableHeadCell>Lenke</TableHeadCell>
-              <TableHeadCell>Antall</TableHeadCell>
-              <TableHeadCell>Dato</TableHeadCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
-              <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>
-              <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
-              <TableCell dataLabel="Lenke">
-                <a href="#test">Lenke til test</a>
-              </TableCell>
-              <TableCell dataLabel="Antall" textAlign={TextAlign.right} nowrap>
-                11 234.12
-              </TableCell>
-              <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
-                12.12.2020
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
-              <TableCell dataLabel="Beskrivelse">Enda en ganske lang beskrivelse...</TableCell>
-              <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
-              <TableCell dataLabel="Lenke">
-                <a href="#test">Lenke til test</a>
-              </TableCell>
-              <TableCell dataLabel="Antall" textAlign={TextAlign.right} nowrap>
-                1 234.12
-              </TableCell>
-              <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
-                12.12.2020
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell dataLabel="Navn">Ole Nilsen</TableCell>
-              <TableCell dataLabel="Beskrivelse" nowrap>
-                En-ganske-lang-tekst-uten-noen-mellomrom
-              </TableCell>
-              <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
-              <TableCell dataLabel="Lenke">
-                <a href="#test">Lenke til test</a>
-              </TableCell>
-              <TableCell dataLabel="Antall" textAlign={TextAlign.right} nowrap>
-                124.12
-              </TableCell>
-              <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
-                12.12.2020
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </GridExample>
+      <Table {...args} breakpointConfig={defaultConfig}>
+        <TableHead category={HeaderCategory.normal}>
+          <TableRow>
+            <TableHeadCell>Navn</TableHeadCell>
+            <TableHeadCell>Beskrivelse</TableHeadCell>
+            <TableHeadCell>Mer info</TableHeadCell>
+            <TableHeadCell>Lenke</TableHeadCell>
+            <TableHeadCell>Antall</TableHeadCell>
+            <TableHeadCell>Dato</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
+            <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>
+            <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
+            <TableCell dataLabel="Lenke">
+              <a href="#test">Lenke til test</a>
+            </TableCell>
+            <TableCell dataLabel="Antall" textAlign={TextAlign.right} nowrap>
+              11 234.12
+            </TableCell>
+            <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
+              12.12.2020
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
+            <TableCell dataLabel="Beskrivelse">Enda en ganske lang beskrivelse...</TableCell>
+            <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
+            <TableCell dataLabel="Lenke">
+              <a href="#test">Lenke til test</a>
+            </TableCell>
+            <TableCell dataLabel="Antall" textAlign={TextAlign.right} nowrap>
+              1 234.12
+            </TableCell>
+            <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
+              12.12.2020
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell dataLabel="Navn">Ole Nilsen</TableCell>
+            <TableCell dataLabel="Beskrivelse" nowrap>
+              En-ganske-lang-tekst-uten-noen-mellomrom
+            </TableCell>
+            <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
+            <TableCell dataLabel="Lenke">
+              <a href="#test">Lenke til test</a>
+            </TableCell>
+            <TableCell dataLabel="Antall" textAlign={TextAlign.right} nowrap>
+              124.12
+            </TableCell>
+            <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
+              12.12.2020
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
   },
 };
@@ -561,48 +554,46 @@ export const ExtraData: Story = {
 export const Irregular: Story = {
   render: () => {
     return (
-      <GridExample>
-        <Table breakpointConfig={defaultConfig}>
-          <colgroup>
-            <col />
-            <col span={2}></col>
-            <col span={2}></col>
-          </colgroup>
-          <TableHead>
-            <TableRow>
-              <TableCell rowSpan={2}></TableCell>
-              <TableHeadCell colSpan={2} scope="colgroup">
-                {'Mars'}
-              </TableHeadCell>
-              <TableHeadCell colSpan={2} scope="colgroup">
-                {'Venus'}
-              </TableHeadCell>
-            </TableRow>
-            <TableRow>
-              <TableHeadCell scope="col">{'Produced'}</TableHeadCell>
-              <TableHeadCell scope="col">{'Sold'}</TableHeadCell>
-              <TableHeadCell scope="col">{'Produced'}</TableHeadCell>
-              <TableHeadCell scope="col">{'Sold'}</TableHeadCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableHeadCell scope="row">{'Teddy Bears'}</TableHeadCell>
-              <TableCell>{'50,000'}</TableCell>
-              <TableCell>{'30,000'}</TableCell>
-              <TableCell>{'100,000'}</TableCell>
-              <TableCell>{'80,000'}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableHeadCell scope="row">{'Board Games'}</TableHeadCell>
-              <TableCell>{'10,000'}</TableCell>
-              <TableCell>{'5,000'}</TableCell>
-              <TableCell>{'12,000'}</TableCell>
-              <TableCell>{'9,000'}</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </GridExample>
+      <Table breakpointConfig={defaultConfig}>
+        <colgroup>
+          <col />
+          <col span={2}></col>
+          <col span={2}></col>
+        </colgroup>
+        <TableHead>
+          <TableRow>
+            <TableCell rowSpan={2}></TableCell>
+            <TableHeadCell colSpan={2} scope="colgroup">
+              {'Mars'}
+            </TableHeadCell>
+            <TableHeadCell colSpan={2} scope="colgroup">
+              {'Venus'}
+            </TableHeadCell>
+          </TableRow>
+          <TableRow>
+            <TableHeadCell scope="col">{'Produced'}</TableHeadCell>
+            <TableHeadCell scope="col">{'Sold'}</TableHeadCell>
+            <TableHeadCell scope="col">{'Produced'}</TableHeadCell>
+            <TableHeadCell scope="col">{'Sold'}</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableHeadCell scope="row">{'Teddy Bears'}</TableHeadCell>
+            <TableCell>{'50,000'}</TableCell>
+            <TableCell>{'30,000'}</TableCell>
+            <TableCell>{'100,000'}</TableCell>
+            <TableCell>{'80,000'}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableHeadCell scope="row">{'Board Games'}</TableHeadCell>
+            <TableCell>{'10,000'}</TableCell>
+            <TableCell>{'5,000'}</TableCell>
+            <TableCell>{'12,000'}</TableCell>
+            <TableCell>{'9,000'}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
   },
 };

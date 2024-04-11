@@ -4,7 +4,6 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Tag, { TagAction, TagSize, TagVariant } from './Tag';
-import GridExample from '../GridExample';
 import LawBook from '../Icons/LawBook';
 
 const meta = {
@@ -53,22 +52,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <Tag {...args} />
-    </GridExample>
-  ),
+  render: args => <Tag {...args} />,
 };
 
 export const WithIcon: Story = {
   args: {
     svgIcon: LawBook,
   },
-  render: args => (
-    <GridExample>
-      <Tag {...args} />
-    </GridExample>
-  ),
+  render: args => <Tag {...args} />,
 };
 
 export const Action: Story = {
@@ -76,9 +67,5 @@ export const Action: Story = {
     svgIcon: LawBook,
     onClick: action('Tag clicked'),
   },
-  render: args => (
-    <GridExample>
-      <Tag {...args} />
-    </GridExample>
-  ),
+  render: args => <Tag {...args} />,
 };

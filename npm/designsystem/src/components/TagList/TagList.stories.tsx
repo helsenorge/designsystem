@@ -3,7 +3,6 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import TagList from './TagList';
-import GridExample from '../GridExample';
 import Tag from '../Tag';
 
 const meta = {
@@ -25,13 +24,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <GridExample>
-      <TagList>
-        <Tag>{'Læring'}</Tag>
-        <Tag>{'Psykisk helse'}</Tag>
-        <Tag>{'Fysisk helse'}</Tag>
-        <Tag>{'Livsstil'}</Tag>
-      </TagList>
-    </GridExample>
+    <TagList>
+      <Tag>{'Læring'}</Tag>
+      <Tag>{'Psykisk helse'}</Tag>
+      <Tag>{'Fysisk helse'}</Tag>
+      <Tag>{'Livsstil'}</Tag>
+    </TagList>
   ),
 };

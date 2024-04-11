@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import { useIsVisible } from './useIsVisible';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 import { longLoremText } from '../utils/loremtext';
 
 interface UseIsVisibleExampleProps {
@@ -16,7 +15,7 @@ const UseIsVisibleExample: React.FC<UseIsVisibleExampleProps> = props => {
   const isVisible = useIsVisible(ref, props.threshold);
 
   return (
-    <GridExample>
+    <>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
       <Button ref={ref} disabled={!isVisible}>
@@ -24,7 +23,7 @@ const UseIsVisibleExample: React.FC<UseIsVisibleExampleProps> = props => {
       </Button>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
-    </GridExample>
+    </>
   );
 };
 

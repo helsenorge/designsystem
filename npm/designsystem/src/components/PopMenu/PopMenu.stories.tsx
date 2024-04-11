@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import { PopMenu, PopMenuVariant } from './PopMenu';
 import longLoremText from '../../utils/loremtext';
-import GridExample from '../GridExample';
 import { LinkList } from '../LinkList';
 import Table, { HeaderCategory, ResponsiveTableVariant, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
 
@@ -57,14 +56,14 @@ export const Default: Story = {
     ),
   },
   render: args => (
-    <GridExample>
+    <>
       <p>{longLoremText}</p>
       <div className={styles['story-wrapper']}>
         <PopMenu {...args}></PopMenu>
         <div>{'PopMenuVariant: ' + args.popMenuVariant}</div>
       </div>
       <p>{longLoremText}</p>
-    </GridExample>
+    </>
   ),
 };
 
@@ -86,7 +85,7 @@ export const HorizontalScroll: Story = {
   },
   render: args => {
     return (
-      <GridExample>
+      <>
         <p>{longLoremText}</p>
         <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}>
           <TableHead category={HeaderCategory.normal}>
@@ -127,7 +126,7 @@ export const HorizontalScroll: Story = {
           </TableBody>
         </Table>
         <p>{longLoremText}</p>
-      </GridExample>
+      </>
     );
   },
 };

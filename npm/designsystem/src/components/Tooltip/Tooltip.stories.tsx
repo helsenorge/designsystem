@@ -3,7 +3,6 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Tooltip, { TooltipOpenProvider } from './Tooltip';
-import GridExample from '../GridExample';
 import TooltipExample from '../TooltipExample';
 
 const meta = {
@@ -33,18 +32,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <TooltipExample {...args} />
-    </GridExample>
-  ),
+  render: args => <TooltipExample {...args} />,
 };
 export const SingleExample: Story = {
   render: args => (
-    <GridExample>
-      <TooltipOpenProvider>
-        <Tooltip {...args} />
-      </TooltipOpenProvider>
-    </GridExample>
+    <TooltipOpenProvider>
+      <Tooltip {...args} />
+    </TooltipOpenProvider>
   ),
 };

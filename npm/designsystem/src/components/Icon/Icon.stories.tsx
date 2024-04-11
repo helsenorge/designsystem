@@ -3,7 +3,6 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Checkbox from '../Checkbox';
-import GridExample from '../GridExample';
 import additionalIconInformation from '../Icons/AdditionalIconInformation';
 import { IconList, IconName } from '../Icons/IconNames';
 import Search from '../Icons/Search';
@@ -53,34 +52,32 @@ export const Default: Story = {
   },
   render: args => {
     return (
-      <GridExample>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div>
-            <p>{'XLarge'}</p>
-            <Icon {...args} size={IconSize.XLarge} />
-          </div>
-          <div>
-            <p>{'Large'}</p>
-            <Icon {...args} svgIcon={ExampleSvgIcon} size={IconSize.Large} />
-          </div>
-          <div>
-            <p>{'Medium'}</p>
-            <Icon {...args} svgIcon={ExampleSvgIcon} size={IconSize.Medium} />
-          </div>
-          <div>
-            <p>{'Small'}</p>
-            <Icon {...args} svgIcon={ExampleSvgIcon} size={IconSize.Small} />
-          </div>
-          <div>
-            <p>{'XSmall'}</p>
-            <Icon {...args} svgIcon={ExampleSvgIcon} size={IconSize.XSmall} />
-          </div>
-          <div>
-            <p>{'XXSmall'}</p>
-            <Icon {...args} svgIcon={ExampleSvgIcon} size={IconSize.XXSmall} />
-          </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div>
+          <p>{'XLarge'}</p>
+          <Icon {...args} size={IconSize.XLarge} />
         </div>
-      </GridExample>
+        <div>
+          <p>{'Large'}</p>
+          <Icon {...args} svgIcon={ExampleSvgIcon} size={IconSize.Large} />
+        </div>
+        <div>
+          <p>{'Medium'}</p>
+          <Icon {...args} svgIcon={ExampleSvgIcon} size={IconSize.Medium} />
+        </div>
+        <div>
+          <p>{'Small'}</p>
+          <Icon {...args} svgIcon={ExampleSvgIcon} size={IconSize.Small} />
+        </div>
+        <div>
+          <p>{'XSmall'}</p>
+          <Icon {...args} svgIcon={ExampleSvgIcon} size={IconSize.XSmall} />
+        </div>
+        <div>
+          <p>{'XXSmall'}</p>
+          <Icon {...args} svgIcon={ExampleSvgIcon} size={IconSize.XXSmall} />
+        </div>
+      </div>
     );
   },
 };
@@ -91,13 +88,13 @@ export const Accessibility: Story = {
     size: IconSize.Small,
   },
   render: args => (
-    <GridExample>
+    <>
       <p>{'aria-label'}</p>
       <Icon {...args} ariaLabel="Search" />
       <Spacer size="4xs" />
       <p>{'ingen aria-label'}</p>
       <Icon {...args} />
-    </GridExample>
+    </>
   ),
 };
 
