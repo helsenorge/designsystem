@@ -10,7 +10,6 @@ import { IconSize } from '../../constants';
 import Button from '../Button';
 import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
 import Checkbox from '../Checkbox';
-import GridExample from '../GridExample';
 import Icon from '../Icon';
 import Envelope from '../Icons/Envelope';
 import Label from '../Label';
@@ -74,42 +73,31 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <ButtonWithModal buttonText={'Åpne modal'} {...args} onSuccess={action('Success')} />
-    </GridExample>
-  ),
+  render: args => <ButtonWithModal buttonText={'Åpne modal'} {...args} onSuccess={action('Success')} />,
 };
 
 export const ModalWithIcon: Story = {
-  render: args => (
-    <GridExample>
-      <Modal {...args} icon={<Icon svgIcon={Envelope} />} onClose={action('Close')} onSuccess={action('Success')} />
-    </GridExample>
-  ),
+  render: args => <Modal {...args} icon={<Icon svgIcon={Envelope} />} onClose={action('Close')} onSuccess={action('Success')} />,
 };
 
 export const ModalWithChildrenAfterTitle: Story = {
   render: args => (
-    <GridExample>
-      <Modal
-        {...args}
-        afterTitleChildren={<Icon svgIcon={Envelope} size={IconSize.Small} />}
-        onClose={action('Close')}
-        onSuccess={action('Success')}
-      />
-    </GridExample>
+    <Modal
+      {...args}
+      afterTitleChildren={<Icon svgIcon={Envelope} size={IconSize.Small} />}
+      onClose={action('Close')}
+      onSuccess={action('Success')}
+    />
   ),
 };
 
 export const Scroll: Story = {
   render: args => (
-    <GridExample>
-      <Modal
-        {...args}
-        onClose={action('Close')}
-        onSuccess={action('Success')}
-        description={`Er frukt egentlig så sunt, og hvor mye frukt kan man spise? Hvilken frukt er den sunneste? 
+    <Modal
+      {...args}
+      onClose={action('Close')}
+      onSuccess={action('Success')}
+      description={`Er frukt egentlig så sunt, og hvor mye frukt kan man spise? Hvilken frukt er den sunneste? 
       
       Frukt er en viktig kilde til antioksidanter, mineraler, vitaminer og fiber, og er en særlig god kilde til vitamin C. Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. Et høyt inntak av fiberrike matvarer som frukt, grønnsaker, bær og fullkorn er assosiert med lavere risiko for tykktarmskreft.  
 
@@ -124,54 +112,43 @@ export const Scroll: Story = {
       Nyere forskning viser også at fiber er god mat for de gode tarmbakteriene som hjelper med å holde oss friske.  
       
       De siste årene har det vært stilt spørsmål om frukt egentlig er så sunt på grunn av fruktens karbohydratinnhold. Noen lurer også på om man kan legge på seg av frukt. Det korte svaret er at frukt er sunt, karbohydratinnholdet er ikke noe friske mennesker behøver å bekymre seg over og nei - det er nok ikke frukten som er syndebukken. Norske kostholdsundersøkelser viser at vi fortsatt spiser mindre frukt og grønt enn anbefalt.`}
-      />
-    </GridExample>
+    />
   ),
 };
 
 export const WithHorizontalImage4By3: Story = {
   render: args => (
-    <GridExample>
-      <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With horizontal image 4x3'}>
-        <img src="http://fakeimg.pl/1200x800?text=jpg&font=lobster" alt="" />
-      </Modal>
-    </GridExample>
+    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With horizontal image 4x3'}>
+      <img src="http://fakeimg.pl/1200x800?text=jpg&font=lobster" alt="" />
+    </Modal>
   ),
 };
 
 export const WithHorizontalImage16By9: Story = {
   render: args => (
-    <GridExample>
-      <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With horizontal image 16x9'}>
-        <img src="http://fakeimg.pl/1600x900?text=jpg&font=lobster" alt="" />
-      </Modal>
-    </GridExample>
+    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With horizontal image 16x9'}>
+      <img src="http://fakeimg.pl/1600x900?text=jpg&font=lobster" alt="" />
+    </Modal>
   ),
 };
 
 export const WithVerticalImage: Story = {
   render: args => (
-    <GridExample>
-      <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With vertical image'}>
-        <img src="http://fakeimg.pl/600x1000?text=jpg&font=lobster" alt="" />
-      </Modal>
-    </GridExample>
+    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With vertical image'}>
+      <img src="http://fakeimg.pl/600x1000?text=jpg&font=lobster" alt="" />
+    </Modal>
   ),
 };
 
 export const ModalWithoutCloseButton: Story = {
-  render: args => (
-    <GridExample>
-      <Modal {...args} noCloseButton onClose={action('Close')} onSuccess={action('Success')} />
-    </GridExample>
-  ),
+  render: args => <Modal {...args} noCloseButton onClose={action('Close')} onSuccess={action('Success')} />,
 };
 
 export const ModalWithDisabledButton: Story = {
   render: args => {
     const [open, isOpen] = React.useState(false);
     return (
-      <GridExample>
+      <>
         <Button onClick={(): void => isOpen(!open)}>{'Åpne modal'}</Button>
         {open && (
           <Modal {...args} onClose={() => isOpen(!open)}>
@@ -183,33 +160,25 @@ export const ModalWithDisabledButton: Story = {
             </div>
           </Modal>
         )}
-      </GridExample>
+      </>
     );
   },
 };
 
 export const ModalWithOnlyTitle: Story = {
-  render: () => (
-    <GridExample>
-      <ButtonWithModal buttonText={'Åpne modal'} title={'Er du sikker på at du vil?'} noCloseButton />
-    </GridExample>
-  ),
+  render: () => <ButtonWithModal buttonText={'Åpne modal'} title={'Er du sikker på at du vil?'} noCloseButton />,
 };
 
 export const ModalWithOnlyTitleAndNoCloseEvent: Story = {
-  render: () => (
-    <GridExample>
-      <ButtonWithModal buttonText={'Åpne modal'} title={'Er du sikker på at du vil?'} noCloseButton disableCloseEvents />
-    </GridExample>
-  ),
+  render: () => <ButtonWithModal buttonText={'Åpne modal'} title={'Er du sikker på at du vil?'} noCloseButton disableCloseEvents />,
 };
 
 export const ModalInBottomOfPage: Story = {
   render: args => (
-    <GridExample>
+    <>
       <div style={{ minHeight: '200vh' }}></div>
       <ButtonWithModal buttonText={'Åpne modal'} {...args} />
-    </GridExample>
+    </>
   ),
 };
 
@@ -222,7 +191,7 @@ export const ModalWithCustomContent: Story = {
     const [burger, setBurger] = React.useState(initBurger);
 
     return (
-      <GridExample>
+      <>
         <Button onClick={(): void => isOpen(!open)}>{'Bestill frukt'}</Button>
         {burger > 0 && (
           <p style={{ color: 'red' }}>
@@ -252,14 +221,14 @@ export const ModalWithCustomContent: Story = {
             </div>
           </Modal>
         )}
-      </GridExample>
+      </>
     );
   },
 };
 
 export const PrintModal: Story = {
   render: args => (
-    <GridExample>
+    <>
       <p>{'En tilfeldig string'}</p>
       <div style={{ minHeight: '100vh', backgroundColor: 'lavender' }}></div>
       <ButtonWithModal
@@ -287,6 +256,6 @@ export const PrintModal: Story = {
       />
       <div style={{ minHeight: '1200vh', width: '100%' }}></div>
       <p>{'A random string: bottom'}</p>
-    </GridExample>
+    </>
   ),
 };

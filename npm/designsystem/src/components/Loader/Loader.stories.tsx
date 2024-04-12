@@ -5,7 +5,6 @@ import { StoryObj, Meta } from '@storybook/react';
 import Loader, { Overlay } from './Loader';
 import { allPaletteNames } from '../../../.storybook/knobs';
 import Button from '../Button/Button';
-import GridExample from '../GridExample';
 import Title from '../Title/Title';
 
 const meta = {
@@ -35,23 +34,17 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <Loader {...args} />
-    </GridExample>
-  ),
+  render: args => <Loader {...args} />,
 };
 
 export const AllSizes: Story = {
   render: args => (
-    <GridExample>
-      <div style={{ display: 'grid', gridGap: '2rem' }}>
-        <Loader {...args} size={'tiny'} />
-        <Loader {...args} size={'small'} />
-        <Loader {...args} size={'medium'} />
-        <Loader {...args} size={'large'} />
-      </div>
-    </GridExample>
+    <div style={{ display: 'grid', gridGap: '2rem' }}>
+      <Loader {...args} size={'tiny'} />
+      <Loader {...args} size={'small'} />
+      <Loader {...args} size={'medium'} />
+      <Loader {...args} size={'large'} />
+    </div>
   ),
 };
 
@@ -60,11 +53,9 @@ export const LoaderIsCentered: Story = {
     center: true,
   },
   render: args => (
-    <GridExample>
-      <div style={{ background: 'white' }}>
-        <Loader {...args} />
-      </div>
-    </GridExample>
+    <div style={{ background: 'white' }}>
+      <Loader {...args} />
+    </div>
   ),
 };
 
@@ -75,12 +66,12 @@ export const Inline: Story = {
     size: 'tiny',
   },
   render: args => (
-    <GridExample>
+    <>
       <Title htmlMarkup="span" appearance="title1">
         {'Søker'}
       </Title>
       <Loader {...args} />
-    </GridExample>
+    </>
   ),
 };
 

@@ -4,13 +4,12 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Button from './Button';
+import Docs from '../../docs';
 import { getColor } from '../../theme/currys/color';
-import GridExample from '../GridExample';
 import Icon from '../Icon';
 import Dog from '../Icons/Dog';
 import VerticalDots from '../Icons/VerticalDots';
 import LazyIcon from '../LazyIcon';
-import Title from '../Title';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/Button',
@@ -21,6 +20,7 @@ const meta = {
         component:
           'Button [Knapp] benyttes for å la innbygger initiere en handling eller hendelse. Knapper lar innbygger vite hva som vil skje om man trykker på dem.',
       },
+      page: (): React.JSX.Element => <Docs component={Button} />,
     },
   },
   args: {
@@ -68,20 +68,15 @@ const myRef7: React.RefObject<HTMLButtonElement> = React.createRef();
 
 export const Default: Story = {
   render: args => (
-    <GridExample>
-      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
-        {args.children}
-      </Button>
-    </GridExample>
+    <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+      {args.children}
+    </Button>
   ),
 };
 
 export const Concepts: Story = {
   render: args => (
-    <GridExample>
-      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'Concepts'}
-      </Title>
+    <>
       <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} concept={'normal'}>
         {args.children}
       </Button>
@@ -90,16 +85,13 @@ export const Concepts: Story = {
       <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} concept={'destructive'}>
         {args.children}
       </Button>
-    </GridExample>
+    </>
   ),
 };
 
 export const Icons: Story = {
   render: args => (
-    <GridExample>
-      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'Icons'}
-      </Title>
+    <>
       <Button {...args} ref={myRef1} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         <Icon svgIcon={Dog} />
         {args.children}
@@ -126,15 +118,12 @@ export const Icons: Story = {
       <Button {...args} ariaLabel={'Verticaldots button'} ref={myRef5} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         <Icon svgIcon={VerticalDots} />
       </Button>
-    </GridExample>
+    </>
   ),
 };
 export const LazyIcons: Story = {
   render: args => (
-    <GridExample>
-      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'Icons'}
-      </Title>
+    <>
       <Button {...args} ref={myRef1} onClick={action('Button clicked')}>
         <LazyIcon iconName={'Dog'} />
         {args.children}
@@ -162,16 +151,13 @@ export const LazyIcons: Story = {
       <Button {...args} ariaLabel={'Verticaldots button'} ref={myRef5} onClick={action('Button clicked')}>
         <LazyIcon iconName={'VerticalDots'} />
       </Button>
-    </GridExample>
+    </>
   ),
 };
 
 export const Sizes: Story = {
   render: args => (
-    <GridExample>
-      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'Sizes'}
-      </Title>
+    <>
       <Button size={'medium'} {...args} ref={myRef6} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         {args.children}
       </Button>
@@ -181,16 +167,13 @@ export const Sizes: Story = {
         {args.children}
         <Icon svgIcon={Dog} />
       </Button>
-    </GridExample>
+    </>
   ),
 };
 
 export const DarkMode: Story = {
   render: args => (
-    <GridExample>
-      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'DarkMode'}
-      </Title>
+    <>
       <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 600) }}>
         <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'} mode={'ondark'}>
           {args.children}
@@ -218,16 +201,13 @@ export const DarkMode: Story = {
           {args.children}
         </Button>
       </div>
-    </GridExample>
+    </>
   ),
 };
 
 export const Disabled: Story = {
   render: args => (
-    <GridExample>
-      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'Disabled'}
-      </Title>
+    <>
       <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'} disabled>
         {args.children}
       </Button>
@@ -247,16 +227,13 @@ export const Disabled: Story = {
         <Icon svgIcon={Dog} />
         {'Button long text'}
       </Button>
-    </GridExample>
+    </>
   ),
 };
 
 export const Fluid: Story = {
   render: args => (
-    <GridExample>
-      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'Fluid'}
-      </Title>
+    <>
       <Button {...args} fluid onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         {args.children}
       </Button>
@@ -276,17 +253,15 @@ export const Fluid: Story = {
       <br />
       <Button {...args} arrow="icon" fluid onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         <Icon svgIcon={Dog} />
+        {args.children}
       </Button>
-    </GridExample>
+    </>
   ),
 };
 
 export const Variants: Story = {
   render: args => (
-    <GridExample>
-      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'Variants'}
-      </Title>
+    <>
       <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'}>
         {args.children}
       </Button>
@@ -295,16 +270,13 @@ export const Variants: Story = {
       <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'outline'}>
         {args.children}
       </Button>
-    </GridExample>
+    </>
   ),
 };
 
 export const Ellipsis: Story = {
   render: args => (
-    <GridExample>
-      <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'Ellipsis'}
-      </Title>
+    <>
       <Button {...args} ellipsis onBlur={action('Button blurred')} onClick={action('Button clicked')}>
         {'Alt for mye tekst her'}
       </Button>
@@ -314,22 +286,20 @@ export const Ellipsis: Story = {
         <Icon svgIcon={Dog} />
         {'Alt for mye tekst her'}
       </Button>
-    </GridExample>
+    </>
   ),
 };
 
 export const UURightArrow: Story = {
   render: args => (
-    <GridExample>
-      <Button
-        {...args}
-        variant="borderless"
-        arrow="accessibility-character"
-        onBlur={action('Button blurred')}
-        onClick={action('Button clicked')}
-      >
-        {'Button'}
-      </Button>
-    </GridExample>
+    <Button
+      {...args}
+      variant="borderless"
+      arrow="accessibility-character"
+      onBlur={action('Button blurred')}
+      onClick={action('Button clicked')}
+    >
+      {'Button'}
+    </Button>
   ),
 };

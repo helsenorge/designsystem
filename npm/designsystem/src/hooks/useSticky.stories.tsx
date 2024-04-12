@@ -4,7 +4,6 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { useSticky } from './useSticky';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 import { longLoremText, shortLoremText } from '../utils/loremtext';
 
 const UseStickyExample: React.FC = () => {
@@ -13,7 +12,7 @@ const UseStickyExample: React.FC = () => {
   const { isOutsideWindow } = useSticky(contentRef, stickyRef);
 
   return (
-    <GridExample>
+    <>
       <p>{shortLoremText}</p>
       <p ref={stickyRef} style={{ position: isOutsideWindow ? 'sticky' : 'relative', top: 0, background: 'white' }}>
         {isOutsideWindow ? 'Sticky posisjon' : 'Vanlig posisjon'}
@@ -21,7 +20,7 @@ const UseStickyExample: React.FC = () => {
       <Button ref={contentRef}>{'Knapp'}</Button>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
-    </GridExample>
+    </>
   );
 };
 

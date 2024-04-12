@@ -12,33 +12,21 @@
   padding: 0 0.375rem;
   color: $white;
   background-color: $black;
-
-  &--white {
-    color: $black;
-    background-color: $white;
-  }
+  border: 1px solid;
 
   &--blueberry {
     background-color: $blueberry500;
-  }
-
-  &--banana {
-    background-color: $banana500;
+    border-color: $blueberry600;
   }
 
   &--cherry {
     background-color: $cherry500;
-  }
-
-  &--kiwi {
-    background-color: $kiwi500;
+    border-color: $cherry600;
   }
 
   &--neutral {
-    background-color: $neutral500;
-  }
-
-  &--plum {
-    background-color: $plum500;
+    color: $black;
+    background-color: transparent;
+    border-color: $neutral600;
   }
 }

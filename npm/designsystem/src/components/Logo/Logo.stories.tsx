@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Logo from './Logo';
 import { allLogoPaletteNames } from '../../../.storybook/knobs';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/Logo',
@@ -40,20 +39,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <Logo {...args} />
-    </GridExample>
-  ),
+  render: args => <Logo {...args} />,
 };
 
 export const Sizes: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Logo {...args} size={100} />
       <Logo {...args} size={200} />
       <Logo {...args} size={300} />
-    </GridExample>
+    </>
   ),
 };
 
@@ -62,10 +57,10 @@ export const Colors: Story = {
     backgrounds: { default: 'neutral400' },
   },
   render: args => (
-    <GridExample>
+    <>
       <Logo {...args} color={'black'} />
       <Logo {...args} color={'white'} />
-    </GridExample>
+    </>
   ),
 };
 
@@ -73,9 +68,5 @@ export const Byline: Story = {
   args: {
     byline: true,
   },
-  render: args => (
-    <GridExample>
-      <Logo {...args} />
-    </GridExample>
-  ),
+  render: args => <Logo {...args} />,
 };

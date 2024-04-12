@@ -4,7 +4,6 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { useOutsideEvent } from './useOutsideEvent';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 
 const UseOutsideEventExample: React.FC = () => {
   const ref = useRef<HTMLButtonElement>(null);
@@ -13,10 +12,10 @@ const UseOutsideEventExample: React.FC = () => {
   );
 
   return (
-    <GridExample>
+    <>
       <Button ref={ref}>{'Knapp'}</Button>
       <p>{'Klikk her og sjekk console'}</p>
-    </GridExample>
+    </>
   );
 };
 

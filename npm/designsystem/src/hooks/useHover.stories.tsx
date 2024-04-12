@@ -4,17 +4,16 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { useHover } from './useHover';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 
 const UseHoverExample: React.FC = () => {
   const ref = useRef<HTMLButtonElement>(null);
   const { isHovered } = useHover(ref);
 
   return (
-    <GridExample>
+    <>
       <Button ref={ref}>Knapp</Button>
       <p>Knappen har hover/fokus: {isHovered ? 'ja' : 'nei'}</p>
-    </GridExample>
+    </>
   );
 };
 

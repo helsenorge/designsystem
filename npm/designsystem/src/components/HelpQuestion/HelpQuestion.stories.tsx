@@ -5,7 +5,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import HelpQuestion from './HelpQuestion';
 import { mediumLoremText } from '../../utils/loremtext';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/HelpQuestion',
@@ -40,12 +39,12 @@ export const Default: Story = {
     onClick: action('Trigger clicked!'),
   },
   render: args => (
-    <GridExample>
+    <>
       <div>{mediumLoremText}</div>
       <div>
         <HelpQuestion {...args} />
       </div>
       <div>{mediumLoremText}</div>
-    </GridExample>
+    </>
   ),
 };

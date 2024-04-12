@@ -4,7 +4,6 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Close from './Close';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/Close',
@@ -39,9 +38,5 @@ export const Default: Story = {
   args: {
     onClick: action('button-click'),
   },
-  render: args => (
-    <GridExample>
-      <Close {...args} />
-    </GridExample>
-  ),
+  render: args => <Close {...args} />,
 };

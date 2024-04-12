@@ -5,7 +5,6 @@ import { StoryObj, Meta } from '@storybook/react';
 import Duolist, { DuolistGroup } from './Duolist';
 import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
-import GridExample from '../GridExample';
 import Title from '../Title';
 
 const meta = {
@@ -35,14 +34,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => (
-    <GridExample>
-      <Duolist {...args}>
-        <DuolistGroup term={'test term'} description={'kort tekst'} />
-        <DuolistGroup term={'test term lang'} description={shortLoremText} />
-        <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
-        <DuolistGroup term={'test term'} description={'test description'} />
-      </Duolist>
-    </GridExample>
+    <Duolist {...args}>
+      <DuolistGroup term={'test term'} description={'kort tekst'} />
+      <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
+      <DuolistGroup term={'test term'} description={'test description'} />
+    </Duolist>
   ),
 };
 
@@ -54,34 +51,30 @@ const descriptionWithLink = (
 
 export const DescriptionWithLink: Story = {
   render: args => (
-    <GridExample>
-      <Duolist {...args}>
-        <DuolistGroup term={'test term'} description={descriptionWithLink} />
-        <DuolistGroup term={'test term lang'} description={shortLoremText} />
-        <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
-        <DuolistGroup term={'test term'} description={'test description'} />
-      </Duolist>
-    </GridExample>
+    <Duolist {...args}>
+      <DuolistGroup term={'test term'} description={descriptionWithLink} />
+      <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
+      <DuolistGroup term={'test term'} description={'test description'} />
+    </Duolist>
   ),
 };
 
 export const WithLabel: Story = {
   render: args => (
-    <GridExample>
-      <Duolist
-        {...args}
-        label={
-          <Title appearance="title3" htmlMarkup="h3">
-            {'Test label'}
-          </Title>
-        }
-      >
-        <DuolistGroup term={'test term'} description={'kort tekst'} />
-        <DuolistGroup term={'test term lang'} description={shortLoremText} />
-        <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
-        <DuolistGroup term={'test term'} description={'test description'} />
-      </Duolist>
-    </GridExample>
+    <Duolist
+      {...args}
+      label={
+        <Title appearance="title3" htmlMarkup="h3">
+          {'Test label'}
+        </Title>
+      }
+    >
+      <DuolistGroup term={'test term'} description={'kort tekst'} />
+      <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
+      <DuolistGroup term={'test term'} description={'test description'} />
+    </Duolist>
   ),
 };
 
@@ -90,14 +83,12 @@ export const WithLines: Story = {
     variant: 'line',
   },
   render: args => (
-    <GridExample>
-      <Duolist {...args}>
-        <DuolistGroup term={'test term'} description={'kort tekst'} />
-        <DuolistGroup term={'test term lang'} description={shortLoremText} />
-        <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
-        <DuolistGroup term={'test term'} description={'test description'} />
-      </Duolist>
-    </GridExample>
+    <Duolist {...args}>
+      <DuolistGroup term={'test term'} description={'kort tekst'} />
+      <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
+      <DuolistGroup term={'test term'} description={'test description'} />
+    </Duolist>
   ),
 };
 
@@ -106,20 +97,18 @@ export const WithBorder: Story = {
     border: 'border',
   },
   render: args => (
-    <GridExample>
-      <Duolist {...args}>
-        <DuolistGroup term={'test term'} description={'kort tekst'} />
-        <DuolistGroup term={'test term lang'} description={shortLoremText} />
-        <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
-        <DuolistGroup term={'test term'} description={'test description'} />
-      </Duolist>
-    </GridExample>
+    <Duolist {...args}>
+      <DuolistGroup term={'test term'} description={'kort tekst'} />
+      <DuolistGroup term={'test term lang'} description={shortLoremText} />
+      <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
+      <DuolistGroup term={'test term'} description={'test description'} />
+    </Duolist>
   ),
 };
 
 export const BoldColumn: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Duolist {...args}>
         <DuolistGroup term={'test term'} description={'kort tekst'} />
         <DuolistGroup boldColumn={'second'} term={'test term lang'} description={shortLoremText} />
@@ -134,13 +123,13 @@ export const BoldColumn: Story = {
         <DuolistGroup boldColumn={'first'} term={'test term enda lenger'} description={mediumLoremText} />
         <DuolistGroup term={'test term'} description={'test description'} />
       </Duolist>
-    </GridExample>
+    </>
   ),
 };
 
 export const DescriptionWidth: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Duolist descriptionWidth={40} {...args}>
         <DuolistGroup term={'Her er en test term'} description={mediumLoremText} />
       </Duolist>
@@ -150,13 +139,13 @@ export const DescriptionWidth: Story = {
       <Duolist descriptionWidth={80} {...args}>
         <DuolistGroup term={'Her er en test term'} description={mediumLoremText} />
       </Duolist>
-    </GridExample>
+    </>
   ),
 };
 
 export const NonFormatted: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Duolist format="non-formatted" {...args}>
         <DuolistGroup term={'Her er en test term'} description={mediumLoremText} />
         <DuolistGroup term={'Her er en test term nr 2'} description={mediumLoremText} />
@@ -164,6 +153,6 @@ export const NonFormatted: Story = {
       <Duolist format="non-formatted" separator=" - " {...args}>
         <DuolistGroup term={'Custom separator'} description={mediumLoremText} />
       </Duolist>
-    </GridExample>
+    </>
   ),
 };

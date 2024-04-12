@@ -4,7 +4,6 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { useFocusableElements } from './useFocusableElements';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 import Spacer from '../components/Spacer';
 
 const UseFocusableElementsExample: React.FC = () => {
@@ -17,7 +16,7 @@ const UseFocusableElementsExample: React.FC = () => {
   };
 
   return (
-    <GridExample>
+    <>
       <p>Fokuserbare elementer:</p>
       <ul>
         {elements &&
@@ -29,7 +28,6 @@ const UseFocusableElementsExample: React.FC = () => {
       </ul>
       <Button onClick={toggleAllowFocus}>Slå av/på fokus på knapp nr 1</Button>
       <Spacer />
-
       <div ref={ref}>
         <div>
           <Button disabled={!allowFocus}>Knapp 1</Button>
@@ -43,7 +41,7 @@ const UseFocusableElementsExample: React.FC = () => {
           <Button>Knapp 3</Button>
         </div>
       </div>
-    </GridExample>
+    </>
   );
 };
 

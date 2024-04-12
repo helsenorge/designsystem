@@ -1,6 +1,9 @@
+import React from 'react';
+
 import { theme } from '../src/theme';
 import { breakpoints } from '../src/theme/grid';
-
+import { Preview } from '@storybook/react';
+import GridExample from '../src/components/GridExample';
 import '../src/scss/helsenorge.scss';
 
 const placeholder = '#4A412A';
@@ -40,3 +43,30 @@ export const parameters = {
     viewports: createCustomViewPorts(),
   },
 };
+
+const preview: Preview = {
+  globalTypes: {
+    layout: {
+      description: 'Grid layout',
+      defaultValue: 'helsenorge',
+      toolbar: {
+        icon: 'component',
+        items: [
+          { value: 'helsenorge', title: 'Helsenorge grid' },
+          { value: 'padding', title: 'Padding' },
+          { value: 'none', title: 'None' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  decorators: [
+    (Story, context) => (
+      <GridExample gridLayout={context.globals.layout}>
+        <Story />
+      </GridExample>
+    ),
+  ],
+};
+
+export default preview;

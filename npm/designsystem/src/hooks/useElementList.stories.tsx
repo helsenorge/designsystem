@@ -4,7 +4,6 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { useElementList } from './useElementList';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 import Spacer from '../components/Spacer';
 
 const UseElementListExample: React.FC = () => {
@@ -17,7 +16,7 @@ const UseElementListExample: React.FC = () => {
   };
 
   return (
-    <GridExample>
+    <>
       <p>{'Knapper med klassen "custom-button":'}</p>
       <ul>
         {elements &&
@@ -29,7 +28,6 @@ const UseElementListExample: React.FC = () => {
       </ul>
       <Button onClick={toggleClass}>{'Slå av/på klassen "custom-button" på knapp nr 1'}</Button>
       <Spacer />
-
       <div ref={ref}>
         <div>
           <Button className={hasClass ? 'custom-button' : ''}>{'Knapp 1'}</Button>
@@ -43,7 +41,7 @@ const UseElementListExample: React.FC = () => {
           <Button className="custom-button">{'Knapp 3'}</Button>
         </div>
       </div>
-    </GridExample>
+    </>
   );
 };
 

@@ -8,7 +8,6 @@ import { allPaletteNames } from '../../../.storybook/knobs';
 import { allLinkListSizes } from '../../../.storybook/knobs';
 import Avatar from '../Avatar';
 import Badge from '../Badge';
-import GridExample from '../GridExample';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
@@ -57,15 +56,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => (
-    <GridExample>
-      <LinkList {...args}>
-        <LinkList.Link href="/">Innhold A-Å</LinkList.Link>
-        <LinkList.Link href="/">
-          Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse
-          og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
-        </LinkList.Link>
-      </LinkList>
-    </GridExample>
+    <LinkList {...args}>
+      <LinkList.Link href="/">Innhold A-Å</LinkList.Link>
+      <LinkList.Link href="/">
+        Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
+        bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
+      </LinkList.Link>
+    </LinkList>
   ),
 };
 
@@ -74,17 +71,15 @@ export const WithIconAndChevron: Story = {
     chevron: true,
   },
   render: args => (
-    <GridExample>
-      <LinkList {...args}>
-        <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
-          Innhold A-Å
-        </LinkList.Link>
-        <LinkList.Link htmlMarkup="button" icon={<Icon svgIcon={PaperPlane} />}>
-          Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse
-          og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
-        </LinkList.Link>
-      </LinkList>
-    </GridExample>
+    <LinkList {...args}>
+      <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
+        Innhold A-Å
+      </LinkList.Link>
+      <LinkList.Link htmlMarkup="button" icon={<Icon svgIcon={PaperPlane} />}>
+        Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
+        bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
+      </LinkList.Link>
+    </LinkList>
   ),
 };
 
@@ -93,34 +88,32 @@ export const WithListHeaderComp: Story = {
     chevron: true,
   },
   render: args => (
-    <GridExample>
-      <LinkList {...args}>
-        <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
-          <ListHeader>
-            <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-            <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-            <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-            <ListHeaderText
-              subText
-              statusDotVariant={StatusDotVariant.alert}
-              firstText={'Statdot og uthevet skrift'}
-              firstTextEmphasised
-              secondText=""
-            />
-          </ListHeader>
-        </LinkList.Link>
-        <LinkList.Link href="/" icon={<Icon svgIcon={PaperPlane} />}>
-          <ListHeader titleHtmlMarkup="span">
-            <>
-              <span>
-                Ved å gi LinkList.Link et <span style={{ fontWeight: 'bold' }}>JSX.Element</span> kan man gjøre deler av teksten
-                <span style={{ fontWeight: 'bold' }}>bold.</span> Nå midstiller ikoner seg i forhold til øverste linje.
-              </span>
-            </>
-          </ListHeader>
-        </LinkList.Link>
-      </LinkList>
-    </GridExample>
+    <LinkList {...args}>
+      <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
+        <ListHeader>
+          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ListHeaderText
+            subText
+            statusDotVariant={StatusDotVariant.alert}
+            firstText={'Statdot og uthevet skrift'}
+            firstTextEmphasised
+            secondText=""
+          />
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href="/" icon={<Icon svgIcon={PaperPlane} />}>
+        <ListHeader titleHtmlMarkup="span">
+          <>
+            <span>
+              Ved å gi LinkList.Link et <span style={{ fontWeight: 'bold' }}>JSX.Element</span> kan man gjøre deler av teksten
+              <span style={{ fontWeight: 'bold' }}>bold.</span> Nå midstiller ikoner seg i forhold til øverste linje.
+            </span>
+          </>
+        </ListHeader>
+      </LinkList.Link>
+    </LinkList>
   ),
 };
 export const WithAvatarAndBadge: Story = {
@@ -128,32 +121,30 @@ export const WithAvatarAndBadge: Story = {
     chevron: true,
   },
   render: args => (
-    <GridExample>
-      <LinkList {...args}>
-        <LinkList.Link href="/">
-          <ListHeader>
-            <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-            <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-            <Avatar>Line Danser</Avatar>
-            <Badge color="blueberry">10000</Badge>
-          </ListHeader>
-        </LinkList.Link>
-        <LinkList.Link href="/">
-          <ListHeader titleHtmlMarkup="span">
-            LinkListText
-            <Badge color="blueberry">Ny</Badge>
-            <Avatar>Line Danser</Avatar>
-          </ListHeader>
-        </LinkList.Link>
-        <LinkList.Link href="/">
-          <ListHeader titleHtmlMarkup="span">
-            Test Test Eu et minim esse do eiusmod eu cillum et aute enim. Quis ea reprehenderit veniam est ullamco laboris culpa fugiat duis
-            voluptate ullamco fugiat. Ullamco Lorem occaecat adipisicing duis aliquip.
-            <Badge color="blueberry">10000</Badge>
-          </ListHeader>
-        </LinkList.Link>
-      </LinkList>
-    </GridExample>
+    <LinkList {...args}>
+      <LinkList.Link href="/">
+        <ListHeader>
+          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <Avatar>Line Danser</Avatar>
+          <Badge color="blueberry">10000</Badge>
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href="/">
+        <ListHeader titleHtmlMarkup="span">
+          LinkListText
+          <Badge color="blueberry">Ny</Badge>
+          <Avatar>Line Danser</Avatar>
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href="/">
+        <ListHeader titleHtmlMarkup="span">
+          Test Test Eu et minim esse do eiusmod eu cillum et aute enim. Quis ea reprehenderit veniam est ullamco laboris culpa fugiat duis
+          voluptate ullamco fugiat. Ullamco Lorem occaecat adipisicing duis aliquip.
+          <Badge color="blueberry">10000</Badge>
+        </ListHeader>
+      </LinkList.Link>
+    </LinkList>
   ),
 };
 export const VariantLine: Story = {
@@ -162,22 +153,20 @@ export const VariantLine: Story = {
     variant: 'line',
   },
   render: args => (
-    <GridExample>
-      <LinkList {...args}>
-        <LinkList.Link href="/">
-          <ListHeader>
-            <ListHeaderText firstText="Variant: line" />
-            <ListHeaderText firstText="This i standard variant" subText />
-          </ListHeader>
-        </LinkList.Link>
-        <LinkList.Link href="/">Gives the listelements lines</LinkList.Link>
-        <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
-          <ListHeader>
-            <ListHeaderText firstText='Linklist (level 1) "line" visual priority'></ListHeaderText>
-          </ListHeader>
-        </LinkList.Link>
-      </LinkList>
-    </GridExample>
+    <LinkList {...args}>
+      <LinkList.Link href="/">
+        <ListHeader>
+          <ListHeaderText firstText="Variant: line" />
+          <ListHeaderText firstText="This i standard variant" subText />
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href="/">Gives the listelements lines</LinkList.Link>
+      <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
+        <ListHeader>
+          <ListHeaderText firstText='Linklist (level 1) "line" visual priority'></ListHeaderText>
+        </ListHeader>
+      </LinkList.Link>
+    </LinkList>
   ),
 };
 export const VariantOutline: Story = {
@@ -186,17 +175,15 @@ export const VariantOutline: Story = {
     variant: 'outline',
   },
   render: args => (
-    <GridExample>
-      <LinkList {...args}>
-        <LinkList.Link href="/">Variant: Outline</LinkList.Link>
-        <LinkList.Link href="/">Gives the listelements outline</LinkList.Link>
-        <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
-          <ListHeader>
-            <ListHeaderText firstText='Linklist (level 2) "outline" visual priority'></ListHeaderText>
-          </ListHeader>
-        </LinkList.Link>
-      </LinkList>
-    </GridExample>
+    <LinkList {...args}>
+      <LinkList.Link href="/">Variant: Outline</LinkList.Link>
+      <LinkList.Link href="/">Gives the listelements outline</LinkList.Link>
+      <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
+        <ListHeader>
+          <ListHeaderText firstText='Linklist (level 2) "outline" visual priority'></ListHeaderText>
+        </ListHeader>
+      </LinkList.Link>
+    </LinkList>
   ),
 };
 export const VariantFill: Story = {
@@ -205,21 +192,19 @@ export const VariantFill: Story = {
     variant: 'fill',
   },
   render: args => (
-    <GridExample>
-      <LinkList {...args}>
-        <LinkList.Link href="/">
-          <ListHeader>
-            <ListHeaderText firstText="Variant: fill" />
-          </ListHeader>
-        </LinkList.Link>
-        <LinkList.Link href="/">Gives the listelements fill</LinkList.Link>
-        <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
-          <ListHeader>
-            <ListHeaderText firstText='Linklist (level 3) "fill" visual priority'></ListHeaderText>
-          </ListHeader>
-        </LinkList.Link>
-      </LinkList>
-    </GridExample>
+    <LinkList {...args}>
+      <LinkList.Link href="/">
+        <ListHeader>
+          <ListHeaderText firstText="Variant: fill" />
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href="/">Gives the listelements fill</LinkList.Link>
+      <LinkList.Link href="/" icon={<Icon svgIcon={AlarmClock} />}>
+        <ListHeader>
+          <ListHeaderText firstText='Linklist (level 3) "fill" visual priority'></ListHeaderText>
+        </ListHeader>
+      </LinkList.Link>
+    </LinkList>
   ),
 };
 
@@ -234,32 +219,28 @@ export const WithRef: Story = {
     }, [ref]);
 
     return (
-      <GridExample>
-        <LinkList {...args}>
-          <LinkList.Link icon={<Icon svgIcon={AlarmClock} />} linkRef={ref} htmlMarkup={'button'}>
-            {'Innhold A-Å'}
-          </LinkList.Link>
-          <LinkList.Link icon={<Icon svgIcon={PaperPlane} />} htmlMarkup={'button'}>
-            {'English'}
-          </LinkList.Link>
-        </LinkList>
-      </GridExample>
+      <LinkList {...args}>
+        <LinkList.Link icon={<Icon svgIcon={AlarmClock} />} linkRef={ref} htmlMarkup={'button'}>
+          {'Innhold A-Å'}
+        </LinkList.Link>
+        <LinkList.Link icon={<Icon svgIcon={PaperPlane} />} htmlMarkup={'button'}>
+          {'English'}
+        </LinkList.Link>
+      </LinkList>
     );
   },
 };
 
 export const AsButton: Story = {
   render: args => (
-    <GridExample>
-      <LinkList {...args}>
-        <LinkList.Link htmlMarkup="button" onClick={action('Link 1 clicked')}>
-          Innhold A-Å
-        </LinkList.Link>
-        <LinkList.Link htmlMarkup="button" onClick={action('Link 2 clicked')}>
-          Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse
-          og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
-        </LinkList.Link>
-      </LinkList>
-    </GridExample>
+    <LinkList {...args}>
+      <LinkList.Link htmlMarkup="button" onClick={action('Link 1 clicked')}>
+        Innhold A-Å
+      </LinkList.Link>
+      <LinkList.Link htmlMarkup="button" onClick={action('Link 2 clicked')}>
+        Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
+        bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
+      </LinkList.Link>
+    </LinkList>
   ),
 };

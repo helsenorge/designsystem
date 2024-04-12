@@ -3,7 +3,6 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Stepper from './Stepper';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/Stepper',
@@ -43,11 +42,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Dots: Story = {
-  render: args => (
-    <GridExample>
-      <Stepper {...args} />
-    </GridExample>
-  ),
+  render: args => <Stepper {...args} />,
 };
 
 export const Smooth: Story = {
@@ -55,9 +50,5 @@ export const Smooth: Story = {
     min: 1,
     max: 100,
   },
-  render: args => (
-    <GridExample>
-      <Stepper {...args} />
-    </GridExample>
-  ),
+  render: args => <Stepper {...args} />,
 };

@@ -6,7 +6,6 @@ import LazyIcon from './LazyIcon';
 import { IconSize } from '../../constants';
 import { useHover } from '../../hooks/useHover';
 import { shortLoremText } from '../../utils/loremtext';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/LazyIcon',
@@ -39,12 +38,12 @@ export const Default: Story = {
   render: args => {
     const { hoverRef, isHovered } = useHover<HTMLDivElement>();
     return (
-      <GridExample>
+      <>
         <div ref={hoverRef}>
           <LazyIcon {...args} isHovered={isHovered} />
         </div>
         <p>{shortLoremText}</p>
-      </GridExample>
+      </>
     );
   },
 };

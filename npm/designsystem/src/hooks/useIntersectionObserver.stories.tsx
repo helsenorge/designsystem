@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import { useIntersectionObserver } from './useIntersectionObserver';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 import { longLoremText } from '../utils/loremtext';
 
 const UseIntersectionObserverExample: React.FC = () => {
@@ -12,13 +11,13 @@ const UseIntersectionObserverExample: React.FC = () => {
   useIntersectionObserver(ref, entries => console.log(entries));
 
   return (
-    <GridExample>
+    <>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
       <Button ref={ref}>Sjekk console</Button>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
-    </GridExample>
+    </>
   );
 };
 

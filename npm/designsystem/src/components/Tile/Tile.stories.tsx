@@ -4,7 +4,6 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Tile from './Tile';
-import GridExample from '../GridExample';
 import Icon, { IconSize } from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import Eye from '../Icons/Eye';
@@ -52,11 +51,7 @@ export const Default: Story = {
     icon: <Icon size={IconSize.Medium} svgIcon={AlarmClock} />,
     title: <Tile.Title htmlMarkup={'h1'}>{'Inbox'}</Tile.Title>,
   },
-  render: args => (
-    <GridExample>
-      <Tile {...args} />
-    </GridExample>
-  ),
+  render: args => <Tile {...args} />,
 };
 
 export const External: Story = {
@@ -65,89 +60,83 @@ export const External: Story = {
     href: 'https://www.helsenorge.no',
     title: <Tile.Title htmlMarkup={'h1'}>{'External'}</Tile.Title>,
   },
-  render: args => (
-    <GridExample>
-      <Tile {...args} />
-    </GridExample>
-  ),
+  render: args => <Tile {...args} />,
 };
 
 export const WrappedContainer: StoryObj = {
   render: () => (
-    <GridExample>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 33.3%)',
-          gridGap: '1.5rem',
-        }}
-      >
-        <Tile
-          href="https://www.helsenorge.no"
-          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
-          description="Hva du heter.
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 33.3%)',
+        gridGap: '1.5rem',
+      }}
+    >
+      <Tile
+        href="https://www.helsenorge.no"
+        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
+        description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
-        />
-        <Tile
-          href="https://www.helsenorge.no"
-          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
-          description="Hva du heter.
+      />
+      <Tile
+        href="https://www.helsenorge.no"
+        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
+        description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
-        />
-        <Tile
-          href="https://www.helsenorge.no"
-          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
-          description="Hva du heter.
+      />
+      <Tile
+        href="https://www.helsenorge.no"
+        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
+        description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
-        />
-        <Tile
-          href="https://www.helsenorge.no"
-          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
-          description="Hva du heter.
+      />
+      <Tile
+        href="https://www.helsenorge.no"
+        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
+        description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
-        />
-        <Tile
-          href="https://www.helsenorge.no"
-          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
-          description="Hva du heter.
+      />
+      <Tile
+        href="https://www.helsenorge.no"
+        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
+        description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
-        />
-        <Tile
-          href="https://www.helsenorge.no"
-          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
-          description="Hva du heter.
+      />
+      <Tile
+        href="https://www.helsenorge.no"
+        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
+        description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
-        />
-        <Tile
-          href="https://www.helsenorge.no"
-          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>{'Europeisk helsetrygdekort (nav)'}</Tile.Title>}
-        />
-        <Tile
-          href="https://www.helsenorge.no"
-          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-          title={<Tile.Title>{'Europeisk helsetrygdekort (nav)'}</Tile.Title>}
-        />
-      </div>
-    </GridExample>
+      />
+      <Tile
+        href="https://www.helsenorge.no"
+        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        title={<Tile.Title>{'Europeisk helsetrygdekort (nav)'}</Tile.Title>}
+      />
+      <Tile
+        href="https://www.helsenorge.no"
+        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        title={<Tile.Title>{'Europeisk helsetrygdekort (nav)'}</Tile.Title>}
+      />
+    </div>
   ),
 };
 
@@ -157,11 +146,7 @@ export const WithOnClick: Story = {
     icon: <Icon size={IconSize.Medium} svgIcon={AlarmClock} />,
     title: <Tile.Title htmlMarkup={'h1'}>{'External'}</Tile.Title>,
   },
-  render: args => (
-    <GridExample>
-      <Tile {...args} />
-    </GridExample>
-  ),
+  render: args => <Tile {...args} />,
 };
 
 export const ReactChildren: Story = {
@@ -172,12 +157,10 @@ export const ReactChildren: Story = {
     description: 'Hva du heter. Hvor du ringer fra. Telefonnummer du ringer fra. Beskriv situasjonen og symptomer.',
   },
   render: args => (
-    <GridExample>
-      <Tile {...args}>
-        <SharingStatus icon={Eye} color={'kiwi'}>
-          {'Eksempel på React Child'}
-        </SharingStatus>
-      </Tile>
-    </GridExample>
+    <Tile {...args}>
+      <SharingStatus icon={Eye} color={'kiwi'}>
+        {'Eksempel på React Child'}
+      </SharingStatus>
+    </Tile>
   ),
 };

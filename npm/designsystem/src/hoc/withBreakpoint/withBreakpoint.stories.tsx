@@ -3,7 +3,6 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { BreakpointProps, withBreakpoint } from './withBreakpoint';
-import GridExample from '../../components/GridExample';
 import { Breakpoint } from '../../hooks/useBreakpoint';
 
 const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
@@ -11,11 +10,7 @@ const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {
 
   console.log(description);
 
-  return (
-    <GridExample>
-      <p>{description}</p>
-    </GridExample>
-  );
+  return <p>{description}</p>;
 };
 
 const ExampleWithBreakpoint = withBreakpoint(Example);

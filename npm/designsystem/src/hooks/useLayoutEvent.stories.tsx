@@ -3,16 +3,11 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { useLayoutEvent } from './useLayoutEvent';
-import GridExample from '../components/GridExample';
 
 const UseLayoutEventExample: React.FC = () => {
   useLayoutEvent(() => console.log('Vinduet endret størrelse', ['resize']));
 
-  return (
-    <GridExample>
-      <p>{'Sjekk console'}</p>
-    </GridExample>
-  );
+  return <p>{'Sjekk console'}</p>;
 };
 
 const meta = {

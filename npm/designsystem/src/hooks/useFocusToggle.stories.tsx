@@ -4,7 +4,6 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { useFocusToggle } from './useFocusToggle';
 import Button from '../components/Button';
-import GridExample from '../components/GridExample';
 import HighlightBox from '../components/HighlightBox';
 import Spacer from '../components/Spacer';
 
@@ -18,7 +17,7 @@ const UseFocusToggleExample: React.FC = () => {
   };
 
   return (
-    <GridExample>
+    <>
       <p>Fokus er {allowFocus ? 'lov' : 'ikke lov'}</p>
       <Button onClick={toggleAllowFocus}>Slå av/på fokus</Button>
       <Spacer />
@@ -37,7 +36,7 @@ const UseFocusToggleExample: React.FC = () => {
           </div>
         </div>
       </HighlightBox>
-    </GridExample>
+    </>
   );
 };
 

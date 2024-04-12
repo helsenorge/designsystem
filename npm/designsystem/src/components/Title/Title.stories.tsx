@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Title from './Title';
 import { allTitleTags, allTitleAppearances } from '../../../.storybook/knobs';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/Title',
@@ -45,16 +44,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
-    <GridExample>
-      <Title {...args} />
-    </GridExample>
-  ),
+  render: args => <Title {...args} />,
 };
 
 export const AllAppearances: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Title {...args} appearance="titleFeature">
         {args.children} {'(feature)'}
       </Title>
@@ -73,6 +68,6 @@ export const AllAppearances: Story = {
       <Title {...args} appearance="title5">
         {args.children} {'(title5)'}
       </Title>
-    </GridExample>
+    </>
   ),
 };

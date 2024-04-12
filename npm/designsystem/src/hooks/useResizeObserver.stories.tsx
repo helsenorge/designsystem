@@ -3,7 +3,6 @@ import React, { useRef } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { useResizeObserver } from './useResizeObserver';
-import GridExample from '../components/GridExample';
 import HighlightBox from '../components/HighlightBox';
 
 const UseResizeObserverExample: React.FC = () => {
@@ -11,11 +10,9 @@ const UseResizeObserverExample: React.FC = () => {
   const size = useResizeObserver(ref);
 
   return (
-    <GridExample>
-      <HighlightBox color="blueberry" size="fluid">
-        <pre ref={ref}>{JSON.stringify(size?.toJSON(), null, 2)}</pre>
-      </HighlightBox>
-    </GridExample>
+    <HighlightBox color="blueberry" size="fluid">
+      <pre ref={ref}>{JSON.stringify(size?.toJSON(), null, 2)}</pre>
+    </HighlightBox>
   );
 };
 

@@ -3,7 +3,6 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import { shortLoremText } from '../../utils/loremtext';
-import GridExample from '../GridExample';
 import HighlightBox from '../HighlightBox';
 
 import LazyIllustration from './';
@@ -48,12 +47,10 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => {
     return (
-      <GridExample>
-        <HighlightBox color={args.color} size={'fluid'}>
-          <LazyIllustration color={args.color} size={args.size} illustrationName={args.illustrationName} />
-          <p>{shortLoremText}</p>
-        </HighlightBox>
-      </GridExample>
+      <HighlightBox color={args.color} size={'fluid'}>
+        <LazyIllustration color={args.color} size={args.size} illustrationName={args.illustrationName} />
+        <p>{shortLoremText}</p>
+      </HighlightBox>
     );
   },
 };

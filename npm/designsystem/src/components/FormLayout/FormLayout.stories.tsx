@@ -5,7 +5,6 @@ import { StoryObj, Meta } from '@storybook/react';
 import FormLayout, { FormLayoutColumns } from './FormLayout';
 import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from '../FormGroup';
-import GridExample from '../GridExample';
 import Label from '../Label';
 import RadioButton from '../RadioButton/RadioButton';
 
@@ -41,24 +40,22 @@ type Story = StoryObj<typeof meta>;
 
 export const CheckboxChildren: Story = {
   render: args => (
-    <GridExample>
-      <FormGroup title={'Her kan du styre maks antall kolonner'} legend={'Antallet er basert på hvor mange som har plass'}>
-        <FormLayout {...args}>
-          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox hei' }]} />} />
-          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox lalalala' }]} />} />
-          <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox asdadasd afasasfaa' }]} />} />
-          <Checkbox inputId={'Checkbox4'} label={<Label labelTexts={[{ text: 'Checkbox hmm' }]} />} />
-          <Checkbox inputId={'Checkbox5'} label={<Label labelTexts={[{ text: 'Checkbox' }]} />} />
-          <Checkbox inputId={'Checkbox6'} label={<Label labelTexts={[{ text: 'Checkbox jadada' }]} />} />
-        </FormLayout>
-      </FormGroup>
-    </GridExample>
+    <FormGroup title={'Her kan du styre maks antall kolonner'} legend={'Antallet er basert på hvor mange som har plass'}>
+      <FormLayout {...args}>
+        <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox hei' }]} />} />
+        <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox lalalala' }]} />} />
+        <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox asdadasd afasasfaa' }]} />} />
+        <Checkbox inputId={'Checkbox4'} label={<Label labelTexts={[{ text: 'Checkbox hmm' }]} />} />
+        <Checkbox inputId={'Checkbox5'} label={<Label labelTexts={[{ text: 'Checkbox' }]} />} />
+        <Checkbox inputId={'Checkbox6'} label={<Label labelTexts={[{ text: 'Checkbox jadada' }]} />} />
+      </FormLayout>
+    </FormGroup>
   ),
 };
 
 export const RadioButtonChildren: Story = {
   render: args => (
-    <GridExample>
+    <>
       <FormGroup
         title={'Her kan du styre maks antall kolonner'}
         legend={'Antallet er basert på hvor mange som har plass'}
@@ -77,6 +74,6 @@ export const RadioButtonChildren: Story = {
           <RadioButton inputId={'RadioButton6'} label={<Label labelTexts={[{ text: 'Radiobutton 6' }]} />} />
         </FormLayout>
       </FormGroup>
-    </GridExample>
+    </>
   ),
 };

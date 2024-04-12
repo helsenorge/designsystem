@@ -5,7 +5,6 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import DictionaryTrigger from './DictionaryTrigger';
 import { mediumLoremText } from '../../utils/loremtext';
-import GridExample from '../GridExample';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/DictionaryTrigger',
@@ -40,11 +39,7 @@ export const Default: Story = {
   args: {
     onClick: action('Trigger clicked!'),
   },
-  render: args => (
-    <GridExample>
-      <DictionaryTrigger {...args} />
-    </GridExample>
-  ),
+  render: args => <DictionaryTrigger {...args} />,
 };
 
 export const NextToText: Story = {
@@ -52,10 +47,8 @@ export const NextToText: Story = {
     onClick: action('Trigger clicked!'),
   },
   render: args => (
-    <GridExample>
-      <div>
-        {mediumLoremText} <DictionaryTrigger {...args} /> {mediumLoremText}
-      </div>
-    </GridExample>
+    <div>
+      {mediumLoremText} <DictionaryTrigger {...args} /> {mediumLoremText}
+    </div>
   ),
 };

@@ -7,7 +7,7 @@ import { PaletteNames } from '../../theme/palette';
 
 import badgeStyles from './styles.module.scss';
 
-export type BadgeColors = PaletteNames;
+export type BadgeColors = Extract<PaletteNames, 'blueberry' | 'cherry' | 'neutral'>;
 export type BadgeChildren = string | number;
 
 export interface BadgeProps {
@@ -22,17 +22,13 @@ export interface BadgeProps {
 }
 export type BadgeType = React.ForwardRefExoticComponent<BadgeProps & React.RefAttributes<HTMLElement>>;
 const Badge: BadgeType = React.forwardRef(function BadgeForwardedRef(props: BadgeProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { children, className = '', color = 'black', testId } = props;
+  const { children, className = '', color = 'blueberry', testId } = props;
   const badgeClasses = classNames(
     badgeStyles.badge,
     {
-      [badgeStyles['badge--white']]: color === 'white',
       [badgeStyles['badge--blueberry']]: color === 'blueberry',
-      [badgeStyles['badge--banana']]: color === 'banana',
       [badgeStyles['badge--cherry']]: color === 'cherry',
-      [badgeStyles['badge--kiwi']]: color === 'kiwi',
       [badgeStyles['badge--neutral']]: color === 'neutral',
-      [badgeStyles['badge--plum']]: color === 'plum',
     },
     className
   );

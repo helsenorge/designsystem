@@ -6,7 +6,6 @@ import { StoryObj, Meta } from '@storybook/react';
 import Panel, { PanelStatus, PanelVariant } from './Panel';
 import Avatar from '../Avatar';
 import Button from '../Button';
-import GridExample from '../GridExample';
 import Icon, { IconSize } from '../Icon';
 import Attachment from '../Icons/Attachment';
 import Envelope from '../Icons/Envelope';
@@ -99,12 +98,11 @@ const contentExample = (content: 'Header' | 'A' | 'B' | 'C') => (
 
 export const Default: Story = {
   render: args => (
-    <GridExample>
-      <Panel {...args} contentA={'Noe innhold'} icon={args.useIcon ? <Icon svgIcon={Attachment} size={IconSize.XSmall} /> : undefined}>
-        <div>
-          <Title appearance="title2">{'E-resept'}</Title>
-          <p style={{ whiteSpace: 'pre-line' }}>
-            {`
+    <Panel {...args} contentA={'Noe innhold'} icon={args.useIcon ? <Icon svgIcon={Attachment} size={IconSize.XSmall} /> : undefined}>
+      <div>
+        <Title appearance="title2">{'E-resept'}</Title>
+        <p style={{ whiteSpace: 'pre-line' }}>
+          {`
       Legemiddel: Aerius Mikst 0,5 mg/ml
 
       Dosering: 1 tablett daglig
@@ -122,21 +120,19 @@ export const Default: Story = {
       Antall utlevering: 1 (Se utleveringer på denne resepten)
       Refusjonshjemmel: §5-14 §2 (blå resept)
       Resepten er hentet fra: Reseptformidleren`}
-          </p>
-        </div>
-      </Panel>
-    </GridExample>
+        </p>
+      </div>
+    </Panel>
   ),
 };
 
 export const ContentA: Story = {
   render: args => (
-    <GridExample>
-      <Panel {...args} contentA={contentExample('A')}>
-        <div>
-          <Title appearance="title2">{'E-resept'}</Title>
-          <p style={{ whiteSpace: 'pre-line' }}>
-            {`
+    <Panel {...args} contentA={contentExample('A')}>
+      <div>
+        <Title appearance="title2">{'E-resept'}</Title>
+        <p style={{ whiteSpace: 'pre-line' }}>
+          {`
         Legemiddel: Aerius Mikst 0,5 mg/ml
 
         Dosering: 1 tablett daglig
@@ -154,15 +150,14 @@ export const ContentA: Story = {
         Antall utlevering: 1 (Se utleveringer på denne resepten)
         Refusjonshjemmel: §5-14 §2 (blå resept)
         Resepten er hentet fra: Reseptformidleren`}
-          </p>
-        </div>
-      </Panel>
-    </GridExample>
+        </p>
+      </div>
+    </Panel>
   ),
 };
 export const ContentAAndB: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Panel {...args} title={'Layout1'} layout={'layout1'} contentA={contentExample('A')} contentB={contentExample('B')}>
         <div>
           <Title appearance="title2">{'Layout1'}</Title>
@@ -292,13 +287,13 @@ export const ContentAAndB: Story = {
           </p>
         </div>
       </Panel>
-    </GridExample>
+    </>
   ),
 };
 
 export const ContentAAndBWithIconAndUrl: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Panel
         {...args}
         icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
@@ -320,7 +315,6 @@ export const ContentAAndBWithIconAndUrl: Story = {
         contentA={contentExample('A')}
         contentB={contentExample('B')}
       />
-
       <br />
       <Panel
         {...args}
@@ -332,7 +326,6 @@ export const ContentAAndBWithIconAndUrl: Story = {
         contentA={contentExample('A')}
         contentB={contentExample('B')}
       />
-
       <br />
       <Panel
         {...args}
@@ -344,7 +337,6 @@ export const ContentAAndBWithIconAndUrl: Story = {
         contentA={contentExample('A')}
         contentB={contentExample('B')}
       />
-
       <br />
       <Panel
         {...args}
@@ -356,24 +348,23 @@ export const ContentAAndBWithIconAndUrl: Story = {
         contentA={contentExample('A')}
         contentB={contentExample('B')}
       />
-    </GridExample>
+    </>
   ),
 };
 
 export const ContentHeader: Story = {
   render: args => (
-    <GridExample>
-      <Panel
-        {...args}
-        title={'Content in preContainer'}
-        contentA={contentExample('A')}
-        contentB={contentExample('B')}
-        contentHeader={contentExample('Header')}
-      >
-        <div>
-          <Title appearance="title2">{'Layout1'}</Title>
-          <p style={{ whiteSpace: 'pre-line' }}>
-            {`
+    <Panel
+      {...args}
+      title={'Content in preContainer'}
+      contentA={contentExample('A')}
+      contentB={contentExample('B')}
+      contentHeader={contentExample('Header')}
+    >
+      <div>
+        <Title appearance="title2">{'Layout1'}</Title>
+        <p style={{ whiteSpace: 'pre-line' }}>
+          {`
         Legemiddel: Aerius Mikst 0,5 mg/ml
 
         Dosering: 1 tablett daglig
@@ -391,45 +382,40 @@ export const ContentHeader: Story = {
         Antall utlevering: 1 (Se utleveringer på denne resepten)
         Refusjonshjemmel: §5-14 §2 (blå resept)
         Resepten er hentet fra: Reseptformidleren`}
-          </p>
-        </div>
-      </Panel>
-    </GridExample>
+        </p>
+      </div>
+    </Panel>
   ),
 };
 
 export const IconAndDetails: Story = {
   render: () => (
-    <GridExample>
-      <Panel title={'Medisinsk fødselsregister (MFR)'} icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}>
-        <p>
-          {
-            'Dolor sit nisi exercitation esse sint et excepteur commodo officia qui exercitation. Ad excepteur laboris laboris Lorem. Occaecat aliquip cupidatat pariatur enim est eiusmod laboris ea nulla dolore ullamco dolore nostrud proident. Irure in eu irure excepteur sit exercitation aliquip deserunt adipisicing ullamco nulla elit culpa culpa.'
-          }
-        </p>
-      </Panel>
-    </GridExample>
+    <Panel title={'Medisinsk fødselsregister (MFR)'} icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}>
+      <p>
+        {
+          'Dolor sit nisi exercitation esse sint et excepteur commodo officia qui exercitation. Ad excepteur laboris laboris Lorem. Occaecat aliquip cupidatat pariatur enim est eiusmod laboris ea nulla dolore ullamco dolore nostrud proident. Irure in eu irure excepteur sit exercitation aliquip deserunt adipisicing ullamco nulla elit culpa culpa.'
+        }
+      </p>
+    </Panel>
   ),
 };
 
 export const AvatarAndDetails: Story = {
   render: () => (
-    <GridExample>
-      <Panel title={'Medisinsk fødselsregister (MFR)'} icon={<Avatar variant="black">{'Line Danser'}</Avatar>}>
-        <div>
-          <Button htmlMarkup="a" target="_blank" href="https://www.facebook.com/people/Line-Danser/100007422643849/">
-            {'Line Danser'}
-          </Button>
-          <span>{' Lorem culpa esse dolore cillum minim qui minim aliquip eu laborum voluptate.'}</span>
-        </div>
-      </Panel>
-    </GridExample>
+    <Panel title={'Medisinsk fødselsregister (MFR)'} icon={<Avatar variant="black">{'Line Danser'}</Avatar>}>
+      <div>
+        <Button htmlMarkup="a" target="_blank" href="https://www.facebook.com/people/Line-Danser/100007422643849/">
+          {'Line Danser'}
+        </Button>
+        <span>{' Lorem culpa esse dolore cillum minim qui minim aliquip eu laborum voluptate.'}</span>
+      </div>
+    </Panel>
   ),
 };
 
 export const Status: Story = {
   render: args => (
-    <GridExample>
+    <>
       <Panel status={args.status} statusMessage={args.statusMessage} title={args.title} url={'https://www.helsenorge.no/'} />
       <br />
       <Panel
@@ -443,38 +429,30 @@ export const Status: Story = {
       <Panel status={'error'} statusMessage={'1'} title={args.title} url={'https://www.helsenorge.no/'} />
       <br />
       <Panel status={'draft'} statusMessage={'1'} title={args.title} url={'https://www.helsenorge.no/'} />
-    </GridExample>
+    </>
   ),
 };
 
 export const AsButton: Story = {
   render: () => (
-    <GridExample>
-      <Panel
-        title={'Medisinsk fødselsregister (MFR)'}
-        icon={<Avatar variant="black">{'Line Danser'}</Avatar>}
-        buttonText="Lenke til mer"
-        buttonOnClick={action('Button clicked!')}
-        buttonHtmlMarkup="button"
-      />
-    </GridExample>
+    <Panel
+      title={'Medisinsk fødselsregister (MFR)'}
+      icon={<Avatar variant="black">{'Line Danser'}</Avatar>}
+      buttonText="Lenke til mer"
+      buttonOnClick={action('Button clicked!')}
+      buttonHtmlMarkup="button"
+    />
   ),
 };
 
 export const WithCallback: Story = {
   render: args => (
-    <GridExample>
-      <Panel {...args} title={'Medisinsk fødselsregister (MFR)'} onExpand={isExpanded => console.log(isExpanded)}>
-        <p>Sjekk nettleserkonsollen</p>
-      </Panel>
-    </GridExample>
+    <Panel {...args} title={'Medisinsk fødselsregister (MFR)'} onExpand={isExpanded => console.log(isExpanded)}>
+      <p>Sjekk nettleserkonsollen</p>
+    </Panel>
   ),
 };
 
 export const NotClickable: Story = {
-  render: args => (
-    <GridExample>
-      <Panel {...args} title={'Medisinsk fødselsregister (MFR)'}></Panel>
-    </GridExample>
-  ),
+  render: args => <Panel {...args} title={'Medisinsk fødselsregister (MFR)'}></Panel>,
 };
