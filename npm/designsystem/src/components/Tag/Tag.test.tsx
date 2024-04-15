@@ -1,86 +1,61 @@
 import React from 'react';
 
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import Tag from './Tag';
 
-describe('Gitt at Tag skal vises vanlig', (): void => {
-  describe('Når Tagen vises', (): void => {
+describe('Gitt at Tag skal vises', (): void => {
+  describe('Når Tagen vises vanlig', (): void => {
     test('Så er teksten synlig', (): void => {
-      render(<Tag>Tekst</Tag>);
+      render(<Tag>{'Tekst'}</Tag>);
 
       const tag = screen.getByText('Tekst');
 
       expect(tag).toBeVisible();
     });
-    test('Så ser den ut slik den skal', (): void => {
-      const { container } = render(<Tag>Tekst</Tag>);
-
-      expect(container).toMatchSnapshot();
-    });
   });
-});
-
-describe('Gitt at Tag skal vises som remove-knapp', (): void => {
-  describe('Når man klikker på knappen', (): void => {
-    test('Så kalles click-funksjonen', async (): Promise<void> => {
-      const mockClickHandler = jest.fn();
-
+  describe('Når Tag har ulike farger', (): void => {
+    test('Så rendres klassene riktig', (): void => {
       render(
-        <Tag action="remove" onClick={mockClickHandler}>
-          Knapp
-        </Tag>
+        <div>
+          <Tag color="banana" testId="banana">
+            {'Tekst'}
+          </Tag>
+          <Tag color="blueberry" testId="blueberry">
+            {'Tekst'}
+          </Tag>
+          <Tag color="cherry" testId="cherry">
+            {'Tekst'}
+          </Tag>
+          <Tag color="kiwi" testId="kiwi">
+            {'Tekst'}
+          </Tag>
+          <Tag color="neutral" testId="neutral">
+            {'Tekst'}
+          </Tag>
+          <Tag color="plum" testId="plum">
+            {'Tekst'}
+          </Tag>
+        </div>
       );
 
-      const tag = screen.getByRole('button', { name: 'Knapp' });
+      const testBanana = screen.getByTestId('banana');
+      expect(testBanana.className).toContain('tag--banana');
 
-      expect(tag).toBeVisible();
+      const testBlueberry = screen.getByTestId('blueberry');
+      expect(testBlueberry.className).toContain('tag--blueberry');
 
-      await userEvent.click(tag);
+      const testCherry = screen.getByTestId('cherry');
+      expect(testCherry.className).toContain('tag--cherry');
 
-      expect(mockClickHandler).toHaveBeenCalledTimes(1);
-    });
-  });
-});
+      const testKiwi = screen.getByTestId('kiwi');
+      expect(testKiwi.className).toContain('tag--kiwi');
 
-describe('Gitt at Tag skal vises som undo-knapp', (): void => {
-  describe('Når man klikker på knappen', (): void => {
-    test('Så kalles click-funksjonen', async (): Promise<void> => {
-      const mockClickHandler = jest.fn();
+      const testNeutral = screen.getByTestId('neutral');
+      expect(testNeutral.className).toContain('tag--neutral');
 
-      render(
-        <Tag action="undo" onClick={mockClickHandler}>
-          Knapp
-        </Tag>
-      );
-
-      const tag = screen.getByRole('button', { name: 'Knapp' });
-
-      expect(tag).toBeVisible();
-
-      await userEvent.click(tag);
-
-      expect(mockClickHandler).toHaveBeenCalledTimes(1);
-    });
-  });
-  describe('Når onClick ikke er definert', (): void => {
-    test('Så vises ikke tagen som knapp likevel', (): void => {
-      render(<Tag action="undo">Knapp</Tag>);
-
-      const tag = screen.queryByRole('button');
-
-      expect(tag).not.toBeInTheDocument();
-    });
-  });
-  describe('Når action ikke er definert', (): void => {
-    test('Så vises ikke tagen som knapp likevel', (): void => {
-      render(<Tag onClick={jest.fn()}>Knapp</Tag>);
-
-      const tag = screen.queryByRole('button');
-
-      expect(tag).not.toBeInTheDocument();
+      const testPlum = screen.getByTestId('plum');
+      expect(testPlum.className).toContain('tag--plum');
     });
   });
 });

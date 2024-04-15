@@ -1,0 +1,98 @@
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+
+.chip {
+  $chip: &;
+
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  border-width: 1px;
+  border-style: solid;
+  background-color: transparent;
+
+  // komponenten bruker ekstra liten font-size og line-height
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  font-weight: 600;
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: inherit;
+
+  $colors: 'blueberry', 'neutral', 'cherry', 'banana', 'kiwi', 'plum';
+
+  @each $color in $colors {
+    &--#{$color},
+    // Sørg for at fargene overstyrer dersom chip har type=button
+    &--#{$color}[type='button'] {
+      // banana og kiwi har unntak fra hovedregelen
+      @if $color == 'banana' {
+        color: map.get($palette-map, #{$color}900);
+        border-color: map.get($palette-map, #{$color}300);
+      } @else if $color == 'kiwi' {
+        color: map.get($palette-map, #{$color}900);
+        border-color: map.get($palette-map, #{$color}200);
+      } @else {
+        color: map.get($palette-map, #{$color}800);
+        border-color: map.get($palette-map, #{$color}200);
+      }
+
+      &#{$chip}--normal {
+        &:hover {
+          background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}200), 0.2));
+        }
+      }
+
+      &#{$chip}--oncolor {
+        background-color: transparent;
+
+        &:hover {
+          background-color: map.get($palette-map, #{$color}100);
+          border-color: map.get($palette-map, #{$color}100);
+        }
+
+        &:focus {
+          background-color: $white;
+          border-color: $white;
+          box-shadow: 0 0 0 3px $black;
+        }
+      }
+
+      &#{$chip}--emphasised {
+        background-color: map.get($palette-map, #{$color}50);
+
+        &:hover {
+          @if $color == 'banana' {
+            background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}300), 0.5));
+          } @else {
+            background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}200), 0.5));
+          }
+        }
+      }
+    }
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $black;
+    box-shadow: inset 0 0 0 2px $black;
+  }
+
+  &#{$chip}--undo {
+    text-decoration: line-through;
+  }
+
+  &--medium {
+    padding: 0 getSpacer(3xs) 0 getSpacer(xs);
+    min-height: 1.875rem;
+  }
+
+  &--large {
+    padding: getSpacer(4xs) getSpacer(3xs) getSpacer(4xs) getSpacer(xs);
+    min-height: 20.875rem;
+  }
+}

@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
-import Tag, { TagAction, TagSize, TagVariant } from './Tag';
+import Tag, { TagSize, TagVariant } from './Tag';
 import LawBook from '../Icons/LawBook';
 
 const meta = {
@@ -12,8 +11,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          'Som innbygger vil jeg kunne se metadata for innhold i grensenittet på Helsenorge slik at jeg raskt kan scanne og differensiere flere typer innhold.',
+        component: 'Tags brukes til å framheve og tydeliggjøre en kategori eller tjenestetype.',
       },
     },
   },
@@ -22,7 +20,6 @@ const meta = {
     size: TagSize.medium,
     color: 'blueberry',
     variant: TagVariant.normal,
-    action: TagAction.remove,
   },
   argTypes: {
     children: {
@@ -40,10 +37,6 @@ const meta = {
       control: 'select',
       options: TagVariant,
     },
-    action: {
-      control: 'select',
-      options: TagAction,
-    },
   },
 } satisfies Meta<typeof Tag>;
 
@@ -58,14 +51,6 @@ export const Default: Story = {
 export const WithIcon: Story = {
   args: {
     svgIcon: LawBook,
-  },
-  render: args => <Tag {...args} />,
-};
-
-export const Action: Story = {
-  args: {
-    svgIcon: LawBook,
-    onClick: action('Tag clicked'),
   },
   render: args => <Tag {...args} />,
 };

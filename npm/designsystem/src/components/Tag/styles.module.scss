@@ -21,11 +21,6 @@
   font-weight: 600;
   border-radius: 100px;
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: $font-size-xs;
-    line-height: 1.25rem;
-  }
-
   $colors: 'blueberry', 'neutral', 'cherry', 'banana', 'kiwi', 'plum';
 
   @each $color in $colors {
@@ -44,93 +39,18 @@
         border-color: map.get($palette-map, #{$color}200);
       }
 
-      &#{$tag}--normal {
-        &#{$tag}--has-action {
-          &:hover {
-            background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}200), 0.2));
-          }
-        }
-      }
-
-      &#{$tag}--oncolor {
-        background-color: transparent;
-        &#{$tag}--has-action {
-          &:hover {
-            background-color: map.get($palette-map, #{$color}100);
-            border-color: map.get($palette-map, #{$color}100);
-          }
-
-          &:focus {
-            background-color: $white;
-            border-color: $white;
-            box-shadow: 0 0 0 3px $black;
-          }
-        }
-      }
-
       &#{$tag}--emphasised {
-        @if $color == 'banana' {
-          background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}300), 0.4));
-        } @else {
-          background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}200), 0.4));
-        }
-        &#{$tag}--has-action {
-          &:hover {
-            @if $color == 'banana' {
-              background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}300), 0.5));
-            } @else {
-              background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}200), 0.5));
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &--has-action[type='button'] {
-    cursor: pointer;
-    font-family: inherit;
-
-    &:focus {
-      outline: none;
-      border-color: $black;
-      box-shadow: inset 0 0 0 2px $black;
-    }
-    &#{$tag}--undo {
-      color: $blueberry800;
-      background-color: $blueberry100;
-      border-color: $blueberry100;
-      text-decoration: line-through;
-
-      &:hover {
-        background-color: $white;
-        border-color: $blueberry200;
+        background-color: map.get($palette-map, #{$color}50);
       }
     }
   }
 
   &--medium {
     padding: 0 getSpacer(xs);
-    min-height: 26px;
-
-    @media (min-width: map.get($grid-breakpoints, md)) {
-      min-height: 30px;
-    }
+    min-height: 1.625rem;
 
     &#{$tag}--has-icon {
-      padding: 0 getSpacer(xs) 0 6px;
-
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(4xs) getSpacer(xs) getSpacer(4xs) 6px;
-      }
-    }
-
-    &#{$tag}--has-action {
-      padding: 0 getSpacer(3xs) 0 getSpacer(xs);
-
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(4xs) getSpacer(3xs) getSpacer(4xs) getSpacer(xs);
-      }
+      padding: 0 getSpacer(xs) 0 0.375rem;
     }
 
     #{$tag}__icon {
@@ -140,34 +60,14 @@
 
   &--large {
     padding: 0 getSpacer(xs);
-    min-height: 30px;
-
-    @media (min-width: map.get($grid-breakpoints, md)) {
-      min-height: 34px;
-    }
+    min-height: 1.875rem;
 
     &#{$tag}--has-icon {
-      padding: getSpacer(4xs) getSpacer(xs) getSpacer(4xs) 6px;
-
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(3xs) getSpacer(xs) getSpacer(3xs) getSpacer(2xs);
-      }
-    }
-
-    &#{$tag}--has-action {
-      padding: getSpacer(4xs) getSpacer(3xs) getSpacer(4xs) getSpacer(xs);
-
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(3xs) getSpacer(2xs) getSpacer(3xs) getSpacer(xs);
-      }
+      padding: getSpacer(4xs) getSpacer(xs) getSpacer(4xs) 0.375rem;
     }
 
     #{$tag}__icon {
       margin-right: getSpacer(4xs);
-
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        margin-right: getSpacer(3xs);
-      }
     }
   }
 }

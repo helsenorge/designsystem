@@ -3,12 +3,9 @@ import React from 'react';
 import cn from 'classnames';
 
 import { AnalyticsId } from '../../constants';
-import { useHover } from '../../hooks/useHover';
 import { palette, PaletteNames } from '../../theme/palette';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import { IconName } from '../Icons/IconNames';
-import Undo from '../Icons/Undo';
-import X from '../Icons/X';
 import LazyIcon from '../LazyIcon';
 
 import styles from './styles.module.scss';
@@ -16,11 +13,6 @@ import styles from './styles.module.scss';
 export enum TagSize {
   medium = 'medium',
   large = 'large',
-}
-
-export enum TagAction {
-  remove = 'remove',
-  undo = 'undo',
 }
 
 export enum TagVariant {
@@ -34,73 +26,25 @@ export type TagColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'cherry'
 export interface TagProps {
   /** Sets the text of the tag */
   children: string;
-  /** Sets the size of the tag. Default: small */
+  /** Sets the size of the tag. Default: medium */
   size?: keyof typeof TagSize;
-  /** Sets the background of the tag. Not used if action is "undo". Default: blueberry */
+  /** Sets the background of the tag. Default: blueberry */
   color?: TagColors;
-  /** Adds an icon to the tag. Not shown if action is set. */
+  /** Adds an icon to the tag. */
   svgIcon?: SvgIcon | IconName;
-  /* Changes the appearance of the tag. Not used if action is "undo". Default: normal */
+  /* Changes the appearance of the tag. Default: normal */
   variant?: keyof typeof TagVariant;
-  /* Makes the tag a clickable button that performs an action. onClick must also be set. */
-  action?: keyof typeof TagAction;
-  /* Called when action is set and the tag is clicked on. action must also be set. */
-  onClick?: () => void;
   /** Sets the data-testid attribute on the expander button. */
   testId?: string;
 }
 
-type ActionTagProps = Required<Pick<TagProps, 'children' | 'size' | 'color' | 'variant' | 'action' | 'onClick'>> & Pick<TagProps, 'testId'>;
-
-const ActionTag: React.FC<ActionTagProps> = props => {
-  const { children, size, color, variant, action, onClick, testId } = props;
-
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
-
-  const tagClasses = cn(
-    styles.tag,
-    styles[`tag--${size}`],
-    action === 'undo' && styles[`tag--${action}`],
-    styles['tag--has-action'],
-    action === 'remove' && [styles[`tag--${color}`], styles[`tag--${variant}`]]
-  );
-
-  const getActionIcon = (): SvgIcon => {
-    switch (action) {
-      case 'remove':
-        return X;
-      case 'undo':
-        return Undo;
-    }
-  };
-
-  return (
-    <button className={tagClasses} onClick={onClick} ref={hoverRef} type="button" data-testid={testId} data-analyticsid={AnalyticsId.Tag}>
-      {children}
-      <Icon
-        svgIcon={getActionIcon()}
-        size={IconSize.XXSmall}
-        color={palette[`${action === 'undo' ? 'blueberry' : color}800`]}
-        isHovered={isHovered}
-      />
-    </button>
-  );
-};
-
 const Tag: React.FC<TagProps> = props => {
-  const { children, size = TagSize.medium, color = 'blueberry', svgIcon, variant = 'normal', action, onClick, testId } = props;
+  const { children, size = TagSize.medium, color = 'blueberry', svgIcon, variant = 'normal', testId } = props;
 
-  const tagClasses = cn(styles.tag, styles[`tag--${size}`], styles[`tag--${color}`], styles[`tag--${variant}`], {
+  const tagClasses = cn(styles.tag, styles[`tag--${size}`], styles[`tag--${color}`], {
     [styles['tag--has-icon']]: svgIcon,
+    [styles['tag--emphasised']]: variant == TagVariant.emphasised,
   });
-
-  if (action && onClick) {
-    return (
-      <ActionTag size={size} color={color} variant={variant} action={action} onClick={onClick} testId={testId}>
-        {children}
-      </ActionTag>
-    );
-  }
 
   return (
     <span className={tagClasses} data-testid={testId} data-analyticsid={AnalyticsId.Tag}>

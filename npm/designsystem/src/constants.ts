@@ -74,6 +74,7 @@ export enum AnalyticsId {
   Badge = 'badge',
   Button = 'button',
   Checkbox = 'checkbox',
+  Chip = 'chip',
   Close = 'close',
   DictionaryTrigger = 'dictionary-trigger',
   Dropdown = 'dropdown',
