@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import PopOver, { PopOverVariant } from './PopOver';
+import Docs from '../../docs';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import Button from '../Button';
@@ -17,6 +18,11 @@ const meta = {
     docs: {
       description: {
         component: 'PopOver er en liten popup som lar innbygger lese et tekstinnhold som utdyper det som ble trykket på.',
+      },
+      page: (): React.JSX.Element => <Docs component={PopOver} />,
+      story: {
+        inline: false,
+        height: '40rem',
       },
     },
   },
@@ -47,14 +53,14 @@ export const Default: Story = {
 
     return (
       <>
-        <span>{loremText + loremText + loremText + loremText}</span>
+        <span>{loremText}</span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <Icon ref={controllerRef} svgIcon={HelpSign} />
           <PopOver {...args} controllerRef={controllerRef}>
             <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
           </PopOver>
         </div>
-        <span>{loremText + loremText + loremText + loremText}</span>
+        <span>{loremText + loremText}</span>
       </>
     );
   },
@@ -67,7 +73,7 @@ export const Toggle: Story = {
 
     return (
       <>
-        <span>{loremText + loremText + loremText + loremText}</span>
+        <span>{loremText}</span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <Button ref={controllerRef} onClick={toggleValue}>
             {'Åpne'}
@@ -78,7 +84,7 @@ export const Toggle: Story = {
             </PopOver>
           )}
         </div>
-        <span>{loremText + loremText + loremText + loremText}</span>
+        <span>{loremText}</span>
       </>
     );
   },

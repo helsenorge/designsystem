@@ -18,6 +18,10 @@ const meta = {
         component:
           'Som innbygger vil jeg kunne hente fram og velge handlingsalternativer for et element også der det ikke er plass til å vise disse valgene åpent i grensesnittet, slik at jeg kan foreta valg som gjelder i kontekst av akkurat dette ene elementet.',
       },
+      story: {
+        inline: false,
+        iframeHeight: '40rem',
+      },
     },
   },
   args: {

@@ -18,6 +18,10 @@ const meta = {
         component:
           'Som innbygger ønsker jeg å kunne gjøre ett eller flere valg i en liste der hvor det ikke er plass til å vise listen i grensesnittet',
       },
+      story: {
+        inline: false,
+        iframeHeight: '40rem',
+      },
     },
   },
   args: {

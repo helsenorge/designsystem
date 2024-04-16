@@ -24,6 +24,10 @@ const meta = {
         component:
           'En Modal informerer brukere om en oppgave og kan inneholde kritisk informasjon, kreve beslutninger eller involvere flere oppgaver. En modal har tre varianter normal, warning og error',
       },
+      story: {
+        inline: false,
+        iframeHeight: '40rem',
+      },
       page: () => (
         <>
           <Title />
