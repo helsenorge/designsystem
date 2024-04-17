@@ -1,3 +1,14 @@
+## [7.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.0.0&targetVersion=GTv7.1.0) (2024-04-17)
+
+### Features
+
+- badge innstramming av tilgjengelige farger
+  ([193ec66](https://github.com/helsenorge/designsystem/commit/193ec6633394354505a60147668800269b51feae)), closes
+  [#308135](https://github.com/helsenorge/designsystem/issues/308135)
+- ny default breddehåndtering for Dropdown
+  ([6078613](https://github.com/helsenorge/designsystem/commit/6078613bf8bae571eb582f9778b8c4a494d3339d)), closes
+  [#323389](https://github.com/helsenorge/designsystem/issues/323389)
+
 ## [7.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.6.2&targetVersion=GTv7.0.0) (2024-04-08)
 
 ## 7.0.0-beta.7 (2024-04-05)
@@ -1349,12 +1360,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- panel har avstand fra tittel til badge
-  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
-  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 - økt kontrast på understreking av lenker
   ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
   [#229049](https://github.com/helsenorge/designsystem/issues/229049)
+- panel har avstand fra tittel til badge
+  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
+  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
