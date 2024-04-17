@@ -2,7 +2,7 @@
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
   "private": false,
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -59,8 +59,8 @@
     "@storybook/addon-backgrounds": "^8.0.6",
     "@storybook/addon-controls": "^8.0.6",
     "@storybook/addon-docs": "^8.0.6",
-    "@storybook/addon-viewport": "^8.0.6",
     "@storybook/addon-toolbars": "^8.0.6",
+    "@storybook/addon-viewport": "^8.0.6",
     "@storybook/react": "^8.0.6",
     "@storybook/react-vite": "^8.0.6",
     "@testing-library/jest-dom": "^5.17.0",
