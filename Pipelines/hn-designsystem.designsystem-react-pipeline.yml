@@ -1,9 +1,3 @@
-resources:
-  repositories:
-    - repository: templates #internt navn på repo, brukes i referanser
-      type: git #type repo (les mer i dokumentasjon)
-      name: HN-AzureDevopsPipelines #Navn på repo som inneholder templates
-
 trigger:
   branches:
     include:
@@ -17,7 +11,6 @@ pool:
   name: Helsenorge_LinuxScaleSetAgents
 
 variables:
-  - group: DependencyTrack
   - name: node_version
     value: 20
   - name: project_name
@@ -101,7 +94,7 @@ stages:
             displayName: 'npm audit (prod)'
             inputs:
               command: custom
-              workingDir: npm/designsystem
+              workingDir: $(working_directory)
               customCommand: 'audit --registry=https://registry.npmjs.org/ --omit=dev --audit-level=moderate --package-lock-only'
             continueOnError: true
 
@@ -109,7 +102,7 @@ stages:
             displayName: 'npm audit'
             inputs:
               command: custom
-              workingDir: npm/designsystem
+              workingDir: $(working_directory)
               customCommand: 'audit --registry=https://registry.npmjs.org/ --audit-level=high --package-lock-only'
             continueOnError: true
 
@@ -138,10 +131,6 @@ stages:
               customCommand: 'run eslint'
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
-          - template: Templates/Build/pre-build.yml@templates
-            parameters:
-              project_name: $(project_name)
-
           # build
           - task: Npm@1
             displayName: build
@@ -149,11 +138,6 @@ stages:
               command: custom
               workingDir: $(working_directory)
               customCommand: 'run build'
-
-          - template: Templates/Build/post-build-frontend.yml@templates
-            parameters:
-              project_name: $(project_name)
-              webappfolder: $(working_directory)
 
           # test
           - task: Npm@1
