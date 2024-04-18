@@ -14,6 +14,9 @@ const Docs = <T,>(props: DocsProps<T>): React.JSX.Element => {
     return <ArgTypes of={props.component} />;
   }
 
+  var url = window.location != window.parent.location ? document.referrer : document.location.href;
+  console.log(url);
+
   return (
     <>
       <Title />
