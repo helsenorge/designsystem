@@ -7,7 +7,7 @@ interface DocsProps<T> {
 }
 
 export const isSupernova = (): boolean =>
-  window.parent.location.hostname === 'frankenstein.helsenorge.design' || window.location.search.includes('isSupernova');
+  window.parent.location.toString().startsWith('https://frankenstein.helsenorge.design') || window.location.search.includes('isSupernova');
 
 const Docs = <T,>(props: DocsProps<T>): React.JSX.Element => {
   if (isSupernova()) {
