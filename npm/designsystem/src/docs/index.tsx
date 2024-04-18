@@ -6,16 +6,15 @@ interface DocsProps<T> {
   component: T;
 }
 
-export const isSupernova = (): boolean =>
-  window.location.ancestorOrigins.contains('https://frankenstein.helsenorge.design') || window.location.search.includes('isSupernova');
+export const isSupernova = (): boolean => {
+  const url = window.location != window.parent.location ? document.referrer : document.location.href;
+  return url.startsWith('https://frankenstein.helsenorge.design') || window.location.search.includes('isSupernova');
+};
 
 const Docs = <T,>(props: DocsProps<T>): React.JSX.Element => {
   if (isSupernova()) {
     return <ArgTypes of={props.component} />;
   }
-
-  var url = window.location != window.parent.location ? document.referrer : document.location.href;
-  console.log(url);
 
   return (
     <>
