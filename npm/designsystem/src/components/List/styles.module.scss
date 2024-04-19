@@ -20,6 +20,8 @@
 
         > #{$list}__item {
           > #{$list}--bullet {
+            // for å beholde utseende disables warning på whitespace her
+            /* stylelint-disable-next-line no-irregular-whitespace */
             list-style-type: '⬥ ';
 
             > #{$list}__item {
@@ -28,6 +30,8 @@
               }
 
               > #{$list}--bullet {
+                // for å beholde utseende disables warning på whitespace her
+                /* stylelint-disable-next-line no-irregular-whitespace */
                 list-style-type: '– ';
               }
             }
@@ -38,6 +42,8 @@
   }
 
   &--dashed {
+    // for å beholde utseende disables warning på whitespace her
+    /* stylelint-disable-next-line no-irregular-whitespace */
     list-style-type: '– ';
   }
 

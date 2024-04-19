@@ -121,7 +121,6 @@ stages:
               workingDir: $(working_directory)
               customCommand: 'run stylelint'
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
-            continueOnError: true # @todo Fjern når stylelint-feil er rettet
 
           - task: Npm@1
             displayName: eslint
