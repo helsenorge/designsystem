@@ -1,3 +1,20 @@
+## [7.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.1.0&targetVersion=GTv7.2.0) (2024-04-19)
+
+### Features
+
+- knappen i dropdown skal ikke være fluid
+  ([a3abe2b](https://github.com/helsenorge/designsystem/commit/a3abe2bf5a57e62302b5e4f1a1f1b609452effd0)), closes
+  [#323389](https://github.com/helsenorge/designsystem/issues/323389)
+
+### Bug Fixes
+
+- bruk supernova-sjekk som funker i ff
+  ([afae2a9](https://github.com/helsenorge/designsystem/commit/afae2a90d9e453be054016b5922aa378500f91cc))
+- oppdater sjekk for om vi er i superNova
+  ([b20a776](https://github.com/helsenorge/designsystem/commit/b20a776f293953d78ccab6e40d687bab67676a28))
+- oppdater sjekk for om vi er i superNova
+  ([167d572](https://github.com/helsenorge/designsystem/commit/167d572261a91fd60a8c432d4d990356a610115f))
+
 ## [7.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.0.0&targetVersion=GTv7.1.0) (2024-04-17)
 
 ### Features
