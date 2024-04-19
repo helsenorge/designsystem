@@ -1,3 +1,13 @@
+## [7.2.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.2.0&targetVersion=GTv7.2.1) (2024-04-19)
+
+### Bug Fixes
+
+- i button med accessibility-character-arrow er pilen skjult for skjermleser
+  ([0a8fd28](https://github.com/helsenorge/designsystem/commit/0a8fd28f16234ff8ca620c5b086d22b080a2cb17)), closes
+  [#273312](https://github.com/helsenorge/designsystem/issues/273312)
+- width satt feil på popmenu ([fb4dc2d](https://github.com/helsenorge/designsystem/commit/fb4dc2d7af645e640a44f7800318f2ffcc64f195)), closes
+  [#323102](https://github.com/helsenorge/designsystem/issues/323102)
+
 ## [7.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.1.0&targetVersion=GTv7.2.0) (2024-04-19)
 
 ### Features
@@ -1377,12 +1387,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- økt kontrast på understreking av lenker
-  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
-  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 - panel har avstand fra tittel til badge
   ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
   [#282359](https://github.com/helsenorge/designsystem/issues/282359)
+- økt kontrast på understreking av lenker
+  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
+  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
