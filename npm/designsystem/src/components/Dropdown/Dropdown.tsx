@@ -203,7 +203,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
         </ul>
         {!noCloseButton && (
           <div className={styles.dropdown__close}>
-            <Button onClick={handleClose} fluid aria-expanded={isOpen}>
+            <Button onClick={handleClose} aria-expanded={isOpen}>
               {closeText}
             </Button>
           </div>

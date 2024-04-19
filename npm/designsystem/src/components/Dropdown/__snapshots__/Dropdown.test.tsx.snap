@@ -68,7 +68,7 @@ exports[`Gitt at Dropdown skal vises vanlig > Når Dropdownen har vanlig innhold
       >
         <button
           aria-expanded="false"
-          class="button-wrapper button-wrapper--fluid"
+          class="button-wrapper"
           data-analyticsid="button"
           type="button"
         >
