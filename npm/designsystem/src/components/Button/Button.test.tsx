@@ -383,6 +383,17 @@ describe('Gitt at button skal vises', (): void => {
 
       expect(buttonArrow).toBeInTheDocument();
     });
+    test('Så er → skjult for skjermlesere', (): void => {
+      render(
+        <Button testId={'knapp'} arrow="accessibility-character" variant="borderless">
+          {'Tekst'}
+        </Button>
+      );
+
+      const buttonArrow = screen.getByRole('button', { name: 'Tekst' });
+
+      expect(buttonArrow).toBeVisible();
+    });
   });
   describe('Når Button har type arrow er satt til accessibility-character og button props som ikke støtter det', (): void => {
     test('Så får den ikke → character lagt til', (): void => {
