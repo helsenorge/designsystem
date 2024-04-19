@@ -2,7 +2,7 @@
   "name": "@helsenorge/datepicker",
   "sideEffects": false,
   "private": false,
-  "version": "7.2.0",
+  "version": "7.2.1",
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",
@@ -46,7 +46,7 @@
     "react-day-picker": "^8.10.0"
   },
   "devDependencies": {
-    "@helsenorge/designsystem-react": "^7.2.0",
+    "@helsenorge/designsystem-react": "^7.2.1",
     "@rollup/plugin-replace": "^5.0.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^12.1.5",
