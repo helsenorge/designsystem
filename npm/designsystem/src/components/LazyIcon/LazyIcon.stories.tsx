@@ -4,6 +4,7 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import LazyIcon from './LazyIcon';
 import { IconSize } from '../../constants';
+import Docs from '../../docs';
 import { useHover } from '../../hooks/useHover';
 import { shortLoremText } from '../../utils/loremtext';
 
@@ -12,6 +13,7 @@ const meta = {
   component: LazyIcon,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={LazyIcon} />,
       description: {
         component: 'LazyIcon lar deg vise et av flere ikoner i ulike størrelser og farger',
       },

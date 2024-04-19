@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Tag, { TagAction, TagSize, TagVariant } from './Tag';
+import Docs from '../../docs';
 import LawBook from '../Icons/LawBook';
 
 const meta = {
@@ -11,6 +12,7 @@ const meta = {
   component: Tag,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Tag} />,
       description: {
         component:
           'Som innbygger vil jeg kunne se metadata for innhold i grensenittet på Helsenorge slik at jeg raskt kan scanne og differensiere flere typer innhold.',

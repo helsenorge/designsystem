@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import { PopMenu, PopMenuVariant } from './PopMenu';
+import Docs from '../../docs';
 import longLoremText from '../../utils/loremtext';
 import { LinkList } from '../LinkList';
 import Table, { HeaderCategory, ResponsiveTableVariant, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
@@ -14,6 +15,7 @@ const meta = {
   component: PopMenu,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={PopMenu} />,
       description: {
         component:
           'Som innbygger vil jeg kunne hente fram og velge handlingsalternativer for et element også der det ikke er plass til å vise disse valgene åpent i grensesnittet, slik at jeg kan foreta valg som gjelder i kontekst av akkurat dette ene elementet.',

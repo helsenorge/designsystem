@@ -4,6 +4,7 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import ExpanderList from './ExpanderList';
 import { allPaletteNames } from '../../../.storybook/knobs';
+import Docs from '../../docs';
 import { longLoremText } from '../../utils/loremtext';
 import AvatarComponent from '../Avatar';
 import Badge from '../Badge';
@@ -22,6 +23,7 @@ const meta = {
   component: ExpanderList,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={ExpanderList} />,
       description: {
         component:
           'ExpanderList er en liste av elementer som skjuler detaljinformasjon når den ikke trengs, og gjør den lett tilgjengelig i kontekst når den trengs.',

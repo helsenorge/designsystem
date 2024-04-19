@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Duolist, { DuolistGroup } from './Duolist';
+import Docs from '../../docs';
 import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
 import Title from '../Title';
@@ -12,6 +13,7 @@ const meta = {
   component: Duolist,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Duolist} />,
       description: {
         component:
           'Som innbygger vil jeg kunne se utlisting av parvise dataelementer bestående av parameternavn og parameterverdi ("name/value pairs") slik at jeg kan scanne listen raskt for å se hvilke verdier som gjelder for hvlke elementer.',

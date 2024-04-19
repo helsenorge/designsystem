@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { Title, Subtitle, Description, Primary, ArgTypes } from '@storybook/addon-docs';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Modal, { ModalSize } from './Modal';
 import { ModalVariants } from './Modal';
 import { IconSize } from '../../constants';
+import Docs from '../../docs';
 import Button from '../Button';
 import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
 import Checkbox from '../Checkbox';
@@ -28,15 +28,7 @@ const meta = {
         inline: false,
         iframeHeight: '40rem',
       },
-      page: () => (
-        <>
-          <Title />
-          <Subtitle />
-          <Description />
-          <Primary />
-          <ArgTypes of={Modal} />
-        </>
-      ),
+      page: (): React.JSX.Element => <Docs component={Modal} hideStories />,
     },
   },
   args: {

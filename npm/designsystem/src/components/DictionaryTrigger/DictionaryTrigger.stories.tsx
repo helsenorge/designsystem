@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import DictionaryTrigger from './DictionaryTrigger';
+import Docs from '../../docs';
 import { mediumLoremText } from '../../utils/loremtext';
 
 const meta = {
@@ -11,6 +12,7 @@ const meta = {
   component: DictionaryTrigger,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={DictionaryTrigger} />,
       description: {
         component:
           'DictionaryTrigger benyttes til å markere ord i løpende tekst på en gjenkjennelig måte, og skal trigge en HelpBubble med ordforklaring når den aktiveres.',

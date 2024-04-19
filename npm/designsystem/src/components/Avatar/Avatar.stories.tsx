@@ -3,12 +3,14 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import Avatar, { AvatarSize } from './Avatar';
+import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/Avatar',
   component: Avatar,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Avatar} />,
       description: {
         component:
           'Avatar lar innbygger oppfatte en representasjon, f.eks. hvem man er logget inn som, hvem man handler på vegne av eller hvem som er avsender eller mottaker av en melding',

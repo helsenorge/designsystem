@@ -4,12 +4,14 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Slider, { SliderStep } from './Slider';
+import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/Slider',
   component: Slider,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Slider} />,
       description: {
         component:
           'Slider inneholder en interaktiv slider som kan styres via mus/touch og tastatur interaksjon. Verdien kan returneres via onChange propen som blir gitt inn.',

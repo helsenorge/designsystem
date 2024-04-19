@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import TagList from './TagList';
+import Docs from '../../docs';
 import Tag from '../Tag';
 
 const meta = {
@@ -10,6 +11,7 @@ const meta = {
   component: TagList,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={TagList} />,
       description: {
         component:
           'Som innbygger vil jeg kunne ta stilling til flere Tager med informasjon i en liste slik at jeg effektivt kan scanne gjennom nøkkelinformasjon for elementer i listen og gjennomføre mine oppgaver.',

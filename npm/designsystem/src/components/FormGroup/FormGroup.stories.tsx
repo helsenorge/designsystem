@@ -6,6 +6,7 @@ import FormGroup from './FormGroup';
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import Spacer from '../../components/Spacer';
 import { FormMode, FormSize } from '../../constants';
+import Docs from '../../docs';
 import Checkbox from '../Checkbox/Checkbox';
 import FormLayout from '../FormLayout';
 import Coronavirus from '../Icons/Coronavirus';
@@ -19,6 +20,7 @@ const meta = {
   component: FormGroup,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={FormGroup} />,
       description: {
         component:
           'Et fieldset komponent ment for bruk i forms. Det kan være frittstående eller ligge i et Validation komponent. Dette komponentet wrapper input komponenter som f.eks. Checkbox og RadioButton.',

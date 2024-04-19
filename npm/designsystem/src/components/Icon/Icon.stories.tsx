@@ -2,6 +2,7 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
+import Docs from '../../docs';
 import Checkbox from '../Checkbox';
 import additionalIconInformation from '../Icons/AdditionalIconInformation';
 import { IconList, IconName } from '../Icons/IconNames';
@@ -19,6 +20,7 @@ const meta = {
   component: Icon,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Icon} />,
       description: {
         component: 'Icon lar deg vise et av flere ikoner i ulike størrelser og farger',
       },

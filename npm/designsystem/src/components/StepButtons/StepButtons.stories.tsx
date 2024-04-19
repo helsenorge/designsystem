@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import StepButtons from './StepButtons';
+import Docs from '../../docs';
 import Button from '../Button';
 
 const meta = {
@@ -11,6 +12,7 @@ const meta = {
   component: StepButtons,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={StepButtons} />,
       description: {
         component: 'Beskrivelse av StepButtons',
       },

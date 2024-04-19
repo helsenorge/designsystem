@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import NotificationPanel from './NotificationPanel';
+import Docs from '../../docs';
 import { getColor } from '../../theme/currys';
 
 const meta = {
@@ -10,6 +11,7 @@ const meta = {
   component: NotificationPanel,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={NotificationPanel} />,
       description: {
         component: 'Et NotificationPanel lar deg vise viktig informasjon avskilt fra bakgrunnen med ulike farger og ikoner',
       },

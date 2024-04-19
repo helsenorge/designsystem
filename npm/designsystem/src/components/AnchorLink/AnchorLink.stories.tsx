@@ -4,12 +4,14 @@ import { action } from '@storybook/addon-actions';
 import { Meta, StoryObj } from '@storybook/react';
 
 import AnchorLink from './AnchorLink';
+import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/AnchorLink',
   component: AnchorLink,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={AnchorLink} />,
       description: {
         component:
           'AnchorLink kan bli brukt som et komponent for \\<a\\> tag eller \\<button\\> tag som skal ha en anchorlink styling.<br>.anchorlink-wrapper kan også bli brukt når det ikke er kontroll over markup som kommer inn.',

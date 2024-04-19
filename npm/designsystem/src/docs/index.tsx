@@ -4,6 +4,7 @@ import { Title, Subtitle, Description, Primary, ArgTypes, Stories } from '@story
 
 interface DocsProps<T> {
   component: T;
+  hideStories?: boolean;
 }
 
 export const isSupernova = (): boolean => {
@@ -16,14 +17,24 @@ const Docs = <T,>(props: DocsProps<T>): React.JSX.Element => {
     return <ArgTypes of={props.component} />;
   }
 
+  const searchParams = new URLSearchParams(window.location.search);
+  const newWindowUrl = `${window.location.pathname}?id=${searchParams.get('id')}&viewMode=docs`;
+
   return (
     <>
-      <Title />
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Title />
+        <div>
+          <a target="_blank" href={newWindowUrl} rel="noreferrer">
+            {'Åpne i ny fane'}
+          </a>
+        </div>
+      </div>
       <Subtitle />
       <Description />
       <Primary />
       <ArgTypes of={props.component} />
-      <Stories />
+      {!props.hideStories && <Stories />}
     </>
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Title as DocsTitle, Subtitle, Description, Primary, ArgTypes } from '@storybook/addon-docs';
 import { Meta, StoryObj } from '@storybook/react';
 
 import List from './List';
+import Docs from '../../docs';
 import { mediumLoremText } from '../../utils/loremtext';
 
 const meta = {
@@ -14,15 +14,7 @@ const meta = {
       description: {
         component: 'Strukturert visning av punktvise data',
       },
-      page: () => (
-        <>
-          <DocsTitle />
-          <Subtitle />
-          <Description />
-          <Primary />
-          <ArgTypes of={List} />
-        </>
-      ),
+      page: (): React.JSX.Element => <Docs component={List} hideStories />,
     },
   },
   args: {

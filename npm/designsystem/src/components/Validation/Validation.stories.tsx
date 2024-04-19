@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import { FormSize } from '../../constants';
+import Docs from '../../docs';
 import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
 
 const meta = {
@@ -10,6 +11,7 @@ const meta = {
   component: FormExample,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={FormExample} />,
       description: {
         component:
           'Som innbygger skal jeg informeres om feil eller mangler i informasjon jeg har lagt inn slik at jeg forstår hvor jeg kan rette feilene og hva som er galt eller mangler.<br>Wrapper enten FormGroup eller et individuelt form input komponent.',

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
+import Docs from '../../docs';
 import { shortLoremText } from '../../utils/loremtext';
 import HighlightBox from '../HighlightBox';
 
@@ -12,6 +13,7 @@ const meta = {
   component: LazyIllustration,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={LazyIllustration} />,
       description: {
         component: 'LazyIllustration lar deg vise en av flere illustrasjoner i ulike størrelser og farger',
       },

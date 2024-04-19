@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
+import Docs from '../../docs';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
@@ -17,6 +18,7 @@ const meta = {
   component: HelpBubble,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={HelpBubble} />,
       description: {
         component: 'HelpBubble [Hjelpeboble] er en liten popup som lar innbygger lese et tekstinnhold som utdyper det som ble trykket på.',
       },

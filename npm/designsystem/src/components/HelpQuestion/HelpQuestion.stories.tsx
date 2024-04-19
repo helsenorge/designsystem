@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import HelpQuestion from './HelpQuestion';
+import Docs from '../../docs';
 import { mediumLoremText } from '../../utils/loremtext';
 
 const meta = {
@@ -11,6 +12,7 @@ const meta = {
   component: HelpQuestion,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={HelpQuestion} />,
       description: {
         component: 'Mulighet for å aktivere hjelp i form av svar på et konkret spørsmål.',
       },

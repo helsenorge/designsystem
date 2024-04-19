@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import HighlightBox, { HighlightBoxSize } from './HighlightBox';
+import Docs from '../../docs';
 import PdfFile from '../Icons/PdfFile';
 
 const meta = {
@@ -10,6 +11,7 @@ const meta = {
   component: HighlightBox,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={HighlightBox} />,
       description: {
         component:
           'HighlightBox hjelper innbygger å oppfatte viktigere innhold, der hvor det er behov for å utheve et innholdsområde fremfor annet innhold på samme side',

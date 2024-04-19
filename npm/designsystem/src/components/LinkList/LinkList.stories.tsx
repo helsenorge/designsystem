@@ -6,6 +6,7 @@ import { StoryObj, Meta } from '@storybook/react';
 import LinkList from './LinkList';
 import { allPaletteNames } from '../../../.storybook/knobs';
 import { allLinkListSizes } from '../../../.storybook/knobs';
+import Docs from '../../docs';
 import Avatar from '../Avatar';
 import Badge from '../Badge';
 import Icon from '../Icon';
@@ -20,6 +21,7 @@ const meta = {
   component: LinkList,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={LinkList} />,
       description: {
         component: 'Et komponent som lar deg vise en rekke lenker i et listeformat',
       },

@@ -3,12 +3,14 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import StatusDot, { StatusDotVariant } from './StatusDot';
+import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/StatusDot',
   component: StatusDot,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={StatusDot} />,
       description: {
         component: 'Viser en status i en kompakt og på en scanbar måte. Støtter en farget prikk og ikon.',
       },

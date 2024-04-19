@@ -2,6 +2,7 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
+import Docs from '../../docs';
 import Panel, { PanelVariant } from '../Panel';
 import PanelList from '../PanelList';
 
@@ -10,6 +11,7 @@ const meta = {
   component: PanelList,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={PanelList} />,
       description: {
         component:
           'Som innbygger vil jeg kunne ta stilling til flere paneler med informasjon i en liste slik at jeg effektivt kan scanne gjennom nøkkelinformasjon for elementer i listen og gjennomføre mine oppgaver.',

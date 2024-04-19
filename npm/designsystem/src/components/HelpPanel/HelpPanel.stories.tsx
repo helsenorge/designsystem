@@ -3,12 +3,14 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import HelpPanel from './HelpPanel';
+import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge∕designsystem-react/Components/HelpPanel',
   component: HelpPanel,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={HelpPanel} />,
       description: {
         component: 'HelpPanel er et komponent som skal innholde hjelpetekst til brukeren.',
       },

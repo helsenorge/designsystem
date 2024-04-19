@@ -10,6 +10,7 @@ import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Label from '@helsenorge/designsystem-react/components/Label';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
+import Docs from '@helsenorge/designsystem-react/docs';
 
 import DatePicker, { DatePickerProps } from './DatePicker';
 import DateTime from './DateTime';
@@ -25,6 +26,7 @@ const meta = {
   component: DatePicker,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={DatePicker} />,
       description: {
         component: 'Som innbygger ønsker jeg å kunne velge dato og tidspunkt for tjenestene på helsenorge.',
       },

@@ -5,6 +5,7 @@ import { StoryObj, Meta } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
 import Dropdown, { DropdownMode } from './Dropdown';
+import Docs from '../../docs';
 import Checkbox from '../Checkbox';
 import Label from '../Label';
 import RadioButton from '../RadioButton';
@@ -14,6 +15,7 @@ const meta = {
   component: Dropdown,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Dropdown} />,
       description: {
         component:
           'Som innbygger ønsker jeg å kunne gjøre ett eller flere valg i en liste der hvor det ikke er plass til å vise listen i grensesnittet',

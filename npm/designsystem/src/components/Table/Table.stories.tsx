@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
+import Docs from '../../docs';
 import { longLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
 import LinkList from '../LinkList';
@@ -38,6 +39,7 @@ const meta = {
   component: Table,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Table} />,
       description: {
         component: 'Som innbygger vil jeg se og sammenligne tabulære data slik at jeg kan forstå informasjonen jeg trenger.',
       },

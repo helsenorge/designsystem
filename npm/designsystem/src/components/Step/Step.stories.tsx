@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Step from './Step';
+import Docs from '../../docs';
 import { mediumLoremText, longLoremText } from '../../utils/loremtext';
 import Button from '../Button';
 import StepButtons from '../StepButtons';
@@ -14,6 +15,7 @@ const meta = {
   component: Step,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Step} />,
       description: {
         component: 'Stegvisning skal gi en konsistent ramme rundt navigasjon mellom 2 eller flere steg.',
       },

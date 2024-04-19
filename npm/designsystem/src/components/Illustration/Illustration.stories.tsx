@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Illustration from './Illustration';
+import Docs from '../../docs';
 import HighlightBox from '../HighlightBox';
 import Doctor from '../Illustrations/Doctor';
 
@@ -11,6 +12,7 @@ const meta = {
   component: Illustration,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Illustration} />,
       description: {
         component: 'Illustration lar deg vise en av flere illustrasjoner i ulike størrelser og farger',
       },
