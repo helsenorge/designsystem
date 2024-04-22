@@ -1,3 +1,12 @@
+## [7.3.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.3.0&targetVersion=GTv7.3.1) (2024-04-22)
+
+### Bug Fixes
+
+- arrow får egen klasse for å toggle visibility
+  ([52525a4](https://github.com/helsenorge/designsystem/commit/52525a4d45b6b2e97ac553922fa1ec41032cc778)), closes
+  [#323182](https://github.com/helsenorge/designsystem/issues/323182)
+- wrapperclassname fikser type ([fe42184](https://github.com/helsenorge/designsystem/commit/fe42184cc3bbffbcdc106def06a1a283f70bb32a))
+
 ## [7.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.2.1&targetVersion=GTv7.3.0) (2024-04-22)
 
 ### Features
