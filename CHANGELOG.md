@@ -1,3 +1,11 @@
+## [7.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.2.1&targetVersion=GTv7.3.0) (2024-04-22)
+
+### Features
+
+- **designsystem:** select får wrapperclassname prop
+  ([61a1a8c](https://github.com/helsenorge/designsystem/commit/61a1a8c4323c2150ee97d21a7325de6c72cc5198)), closes
+  [#323789](https://github.com/helsenorge/designsystem/issues/323789)
+
 ## [7.2.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.2.0&targetVersion=GTv7.2.1) (2024-04-19)
 
 ### Bug Fixes
