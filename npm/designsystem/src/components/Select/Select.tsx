@@ -43,6 +43,8 @@ export interface SelectProps
   width?: number;
   /** Gives defaultvalue to the comp. Preferred over selected prop on option by react */
   defaultValue?: string | number;
+  /** Adds custom classes to the wrapper tag */
+  wrapperClassName?: boolean;
 }
 
 const getSelectMaxWidth = (characters: number): string => {
@@ -75,6 +77,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     value,
     defaultValue,
     autoComplete = 'off',
+    wrapperClassName,
     ...rest
   } = props;
 
@@ -101,9 +104,11 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     [selectStyles['select--invalid']]: invalid,
   });
 
+  const selectWrapperClasses = classNames(selectStyles['select-wrapper'], wrapperClassName);
+
   return (
     <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
-      <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectStyles['select-wrapper']} style={{ maxWidth }}>
+      <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectWrapperClasses} style={{ maxWidth }}>
         {renderLabel(label, uuid, mode as FormMode)}
         <div className={selectInnerWrapperClasses}>
           <Icon className={selectStyles['select-arrow']} svgIcon={ChevronDown} color={iconColor} size={IconSize.XSmall} />
