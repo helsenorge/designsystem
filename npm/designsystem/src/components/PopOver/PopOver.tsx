@@ -84,6 +84,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((
   const arrowClasses = classNames(styles.popover__arrow, arrowClassName, {
     [styles['popover__arrow--over']]: verticalPosition === PopOverVariant.positionbelow,
     [styles['popover__arrow--under']]: verticalPosition === PopOverVariant.positionabove,
+    [styles['popover__arrow--visible']]: isTooltip ? show : controllerisVisible,
   });
 
   const bubbleStyle = controllerSize && bubbleSize && getBubbleStyle(controllerSize, bubbleSize, variant);
