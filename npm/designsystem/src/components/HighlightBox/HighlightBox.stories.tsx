@@ -7,7 +7,7 @@ import Docs from '../../docs';
 import PdfFile from '../Icons/PdfFile';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/HighlightBox',
+  title: '@helsenorge/designsystem-react/Components/HighlightBox',
   component: HighlightBox,
   parameters: {
     docs: {

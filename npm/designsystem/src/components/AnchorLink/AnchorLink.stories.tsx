@@ -7,7 +7,7 @@ import AnchorLink from './AnchorLink';
 import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/AnchorLink',
+  title: '@helsenorge/designsystem-react/Components/AnchorLink',
   component: AnchorLink,
   parameters: {
     docs: {

@@ -6,7 +6,7 @@ import Spacer from './Spacer';
 import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Spacer',
+  title: '@helsenorge/designsystem-react/Components/Spacer',
   component: Spacer,
   parameters: {
     docs: {

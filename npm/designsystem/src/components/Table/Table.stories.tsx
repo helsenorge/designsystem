@@ -35,7 +35,7 @@ type TableWithAndCustomArgs = React.ComponentProps<typeof Table> & {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Table',
+  title: '@helsenorge/designsystem-react/Components/Table',
   component: Table,
   parameters: {
     docs: {

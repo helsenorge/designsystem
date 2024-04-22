@@ -8,7 +8,7 @@ import Docs from '../../docs';
 import Label from '../Label/Label';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Textarea',
+  title: '@helsenorge/designsystem-react/Components/Textarea',
   component: Textarea,
   parameters: {
     docs: {

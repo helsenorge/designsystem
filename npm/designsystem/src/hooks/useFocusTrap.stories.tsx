@@ -41,7 +41,7 @@ const UseFocusTrapExample: React.FC = () => {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Hooks/useFocusTrap',
+  title: '@helsenorge/designsystem-react/Hooks/useFocusTrap',
   component: UseFocusTrapExample,
   parameters: {
     docs: {

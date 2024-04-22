@@ -12,7 +12,7 @@ type ExpanderHierarchyWithAndCustomArgs = React.ComponentProps<typeof ExpanderHi
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/ExpanderHierarchy',
+  title: '@helsenorge/designsystem-react/Components/ExpanderHierarchy',
   component: ExpanderHierarchy,
   parameters: {
     docs: {

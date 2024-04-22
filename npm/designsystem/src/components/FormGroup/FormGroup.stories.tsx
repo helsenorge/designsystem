@@ -16,7 +16,7 @@ import RadioButton from '../RadioButton/RadioButton';
 import './formGroup.stories.scss';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/FormGroup',
+  title: '@helsenorge/designsystem-react/Components/FormGroup',
   component: FormGroup,
   parameters: {
     docs: {

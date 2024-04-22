@@ -6,7 +6,7 @@ import Avatar, { AvatarSize } from './Avatar';
 import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Avatar',
+  title: '@helsenorge/designsystem-react/Components/Avatar',
   component: Avatar,
   parameters: {
     docs: {

@@ -25,7 +25,7 @@ const UseStickyExample: React.FC = () => {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Hooks/useSticky',
+  title: '@helsenorge/designsystem-react/Hooks/useSticky',
   component: UseStickyExample,
   parameters: {
     docs: {

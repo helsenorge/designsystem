@@ -46,7 +46,7 @@ const UseElementListExample: React.FC = () => {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Hooks/useElementList',
+  title: '@helsenorge/designsystem-react/Hooks/useElementList',
   component: UseElementListExample,
   parameters: {
     docs: {

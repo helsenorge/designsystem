@@ -6,7 +6,7 @@ import StatusDot, { StatusDotVariant } from './StatusDot';
 import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/StatusDot',
+  title: '@helsenorge/designsystem-react/Components/StatusDot',
   component: StatusDot,
   parameters: {
     docs: {

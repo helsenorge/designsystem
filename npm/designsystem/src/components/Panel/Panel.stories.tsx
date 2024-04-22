@@ -17,7 +17,7 @@ type PanelWithAndCustomArgs = React.ComponentProps<typeof Panel> & {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Panel',
+  title: '@helsenorge/designsystem-react/Components/Panel',
   component: Panel,
   parameters: {
     docs: {

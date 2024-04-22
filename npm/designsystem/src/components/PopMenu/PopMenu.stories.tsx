@@ -11,7 +11,7 @@ import Table, { HeaderCategory, ResponsiveTableVariant, TableBody, TableCell, Ta
 import styles from './story.module.scss';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/PopMenu',
+  title: '@helsenorge/designsystem-react/Components/PopMenu',
   component: PopMenu,
   parameters: {
     docs: {

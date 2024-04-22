@@ -17,7 +17,7 @@ import ListHeaderText from '../ListHeader/ListHeaderText/ListHeaderText';
 import { StatusDotVariant } from '../StatusDot';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/LinkList',
+  title: '@helsenorge/designsystem-react/Components/LinkList',
   component: LinkList,
   parameters: {
     docs: {
