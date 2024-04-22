@@ -44,7 +44,7 @@ export interface SelectProps
   /** Gives defaultvalue to the comp. Preferred over selected prop on option by react */
   defaultValue?: string | number;
   /** Adds custom classes to the wrapper tag */
-  wrapperClassName?: boolean;
+  wrapperClassName?: string;
 }
 
 const getSelectMaxWidth = (characters: number): string => {
