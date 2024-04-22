@@ -9,7 +9,7 @@ import Button from '../Button/Button';
 import Title from '../Title/Title';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Loader',
+  title: '@helsenorge/designsystem-react/Components/Loader',
   component: Loader,
   parameters: {
     docs: {

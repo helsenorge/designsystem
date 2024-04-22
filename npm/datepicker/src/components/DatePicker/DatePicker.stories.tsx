@@ -22,7 +22,7 @@ import {
 } from './validate-utils';
 
 const meta = {
-  title: '@helsenorge∕datepicker/DatePicker',
+  title: '@helsenorge/datepicker/DatePicker',
   component: DatePicker,
   parameters: {
     docs: {

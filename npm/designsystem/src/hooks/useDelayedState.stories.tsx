@@ -26,7 +26,7 @@ const UseDelayedStateExample: React.FC<UseDelayedStateExampleProps> = props => {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Hooks/useDelayedState',
+  title: '@helsenorge/designsystem-react/Hooks/useDelayedState',
   component: UseDelayedStateExample,
   parameters: {
     docs: {

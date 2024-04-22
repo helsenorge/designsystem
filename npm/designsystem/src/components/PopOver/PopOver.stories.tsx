@@ -12,7 +12,7 @@ import HelpSign from '../Icons/HelpSign';
 import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, ResponsiveTableVariant, HeaderCategory } from '../Table';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/PopOver',
+  title: '@helsenorge/designsystem-react/Components/PopOver',
   component: PopOver,
   parameters: {
     docs: {

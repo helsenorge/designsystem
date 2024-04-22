@@ -21,7 +21,7 @@ type LabelWithAndCustomArgs = React.ComponentProps<typeof Label> & {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Label',
+  title: '@helsenorge/designsystem-react/Components/Label',
   component: Label,
   parameters: {
     docs: {

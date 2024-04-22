@@ -16,7 +16,7 @@ import Spacer from '../Spacer';
 import Icon, { IconSize } from '.';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Icon',
+  title: '@helsenorge/designsystem-react/Components/Icon',
   component: Icon,
   parameters: {
     docs: {

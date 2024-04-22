@@ -11,7 +11,7 @@ import NoEye from '../Icons/NoEye';
 import Spacer from '../Spacer';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/SharingStatus',
+  title: '@helsenorge/designsystem-react/Components/SharingStatus',
   component: SharingStatus,
   parameters: {
     docs: {

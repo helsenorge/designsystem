@@ -7,7 +7,7 @@ import Slider, { SliderStep } from './Slider';
 import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Slider',
+  title: '@helsenorge/designsystem-react/Components/Slider',
   component: Slider,
   parameters: {
     docs: {

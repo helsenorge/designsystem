@@ -7,7 +7,7 @@ import { allTitleTags, allTitleAppearances } from '../../../.storybook/knobs';
 import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Title',
+  title: '@helsenorge/designsystem-react/Components/Title',
   component: Title,
   parameters: {
     docs: {

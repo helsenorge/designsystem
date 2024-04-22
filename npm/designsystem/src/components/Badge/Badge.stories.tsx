@@ -7,7 +7,7 @@ import Docs from '../../docs';
 import Title from '../Title';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Badge',
+  title: '@helsenorge/designsystem-react/Components/Badge',
   component: Badge,
   parameters: {
     docs: {

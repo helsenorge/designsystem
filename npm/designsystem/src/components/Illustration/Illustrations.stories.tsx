@@ -14,7 +14,7 @@ type IllustrationWallWithAndCustomArgs = React.ComponentProps<typeof LazyIllustr
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Illustration',
+  title: '@helsenorge/designsystem-react/Components/Illustration',
   component: LazyIllustration,
   parameters: {
     docs: {

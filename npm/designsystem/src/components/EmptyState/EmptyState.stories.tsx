@@ -7,7 +7,7 @@ import Docs from '../../docs';
 import AnchorLink from '../AnchorLink';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/EmptyState',
+  title: '@helsenorge/designsystem-react/Components/EmptyState',
   component: EmptyState,
   parameters: {
     docs: {

@@ -16,7 +16,7 @@ import Label from '../Label';
 import Slider from '../Slider';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Modal',
+  title: '@helsenorge/designsystem-react/Components/Modal',
   component: Modal,
   parameters: {
     docs: {

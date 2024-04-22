@@ -9,7 +9,7 @@ import { mediumLoremText } from '../../utils/loremtext';
 import Button from '../Button';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Trigger',
+  title: '@helsenorge/designsystem-react/Components/Trigger',
   component: Trigger,
   parameters: {
     docs: {

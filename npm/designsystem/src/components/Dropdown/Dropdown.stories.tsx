@@ -11,7 +11,7 @@ import Label from '../Label';
 import RadioButton from '../RadioButton';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Dropdown',
+  title: '@helsenorge/designsystem-react/Components/Dropdown',
   component: Dropdown,
   parameters: {
     docs: {

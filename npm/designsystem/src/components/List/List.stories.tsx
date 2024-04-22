@@ -7,7 +7,7 @@ import Docs from '../../docs';
 import { mediumLoremText } from '../../utils/loremtext';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/List',
+  title: '@helsenorge/designsystem-react/Components/List',
   component: List,
   parameters: {
     docs: {

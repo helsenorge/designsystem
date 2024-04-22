@@ -9,7 +9,7 @@ import { useHover } from '../../hooks/useHover';
 import { shortLoremText } from '../../utils/loremtext';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/LazyIcon',
+  title: '@helsenorge/designsystem-react/Components/LazyIcon',
   component: LazyIcon,
   parameters: {
     docs: {

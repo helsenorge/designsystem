@@ -8,7 +8,7 @@ import Docs from '../../docs';
 import { mediumLoremText } from '../../utils/loremtext';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/HelpQuestion',
+  title: '@helsenorge/designsystem-react/Components/HelpQuestion',
   component: HelpQuestion,
   parameters: {
     docs: {

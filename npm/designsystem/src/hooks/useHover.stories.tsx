@@ -18,7 +18,7 @@ const UseHoverExample: React.FC = () => {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Hooks/useHover',
+  title: '@helsenorge/designsystem-react/Hooks/useHover',
   component: UseHoverExample,
   parameters: {
     docs: {
