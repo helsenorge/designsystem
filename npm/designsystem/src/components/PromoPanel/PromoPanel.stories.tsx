@@ -21,7 +21,8 @@ const meta = {
   args: {
     title: 'Fastlegen din',
     children: 'Kontakt fastlegen og se alle tjenestene',
-    href: '/',
+    href: 'https://www.helsenorge.no',
+    target: '_parent',
     color: 'neutral',
     illustration: 'Doctor',
   },
@@ -56,7 +57,7 @@ export const Default: Story = {
 
 export const CustomLinkComponent: Story = {
   args: {
-    linkComponent: <a href="/testest" />,
+    linkComponent: <a href={'https://www.helsenorge.no'} target="_blank" rel="noreferrer" />,
   },
   render: args => <PromoPanel {...args} />,
 };

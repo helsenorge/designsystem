@@ -20,7 +20,7 @@ const meta = {
   },
   args: {
     children: 'Anchorlink tekst',
-    href: '/test',
+    href: 'https://www.helsenorge.no',
   },
   argTypes: {
     children: {
@@ -39,12 +39,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => (
     <>
-      <AnchorLink {...args} target={'_self'}>
+      <AnchorLink {...args} target={'_parent'}>
         {args.children}
       </AnchorLink>
       <br />
       <br />
-      <AnchorLink {...args} target={'_self'}>
+      <AnchorLink {...args} target={'_parent'}>
         {
           'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
         }

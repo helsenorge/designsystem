@@ -704,7 +704,11 @@ function getFastlegeData(sortDirection: SortDirection, sortColumn: string): Arra
       },
       Delelistelege: null,
       Legekontor: {
-        Navn: <AnchorLink href="/">{'Heiaklinikken'}</AnchorLink>,
+        Navn: (
+          <AnchorLink href={'https://www.helsenorge.no'} target={'_blank'}>
+            {'Heiaklinikken'}
+          </AnchorLink>
+        ),
         Adresse: 'Gamle drammensvei 98',
       },
       Avtaledato: '2015-08-01T00:00:00',

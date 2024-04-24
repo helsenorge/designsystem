@@ -40,7 +40,9 @@ export const WithAnchorLink: Story = {
   render: args => (
     <EmptyState {...args}>
       {'Du har ingen verktøy enda. Gå til '}
-      <AnchorLink href="/">{'Alle verktøy'}</AnchorLink>
+      <AnchorLink href={'https://www.helsenorge.no'} target="_blank">
+        {'Alle verktøy'}
+      </AnchorLink>
       {' for å finne verktøy.'}
     </EmptyState>
   ),
