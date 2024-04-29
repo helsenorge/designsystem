@@ -9,9 +9,11 @@ import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { getColor } from '../../theme/currys';
 import { breakpoints } from '../../theme/grid';
 import { isComponent } from '../../utils/component';
-import Close from '../Close';
-import Icon from '../Icon';
+import Icon, { SvgIcon } from '../Icon';
+import { IconName } from '../Icons/IconNames';
 import VerticalDots from '../Icons/VerticalDots';
+import X from '../Icons/X';
+import LazyIcon from '../LazyIcon';
 import LinkList, { LinkListProps, LinkProps } from '../LinkList';
 import PopOver from '../PopOver';
 
@@ -21,6 +23,11 @@ export enum PopMenuVariant {
   onWhite = 'on-white',
   onGray = 'on-gray',
   onBlueberry = 'on-blueberry',
+}
+
+export enum PopMenuLabelPosition {
+  right = 'right',
+  left = 'left',
 }
 
 export interface PopMenuProps {
@@ -42,12 +49,19 @@ export interface PopMenuProps {
   openButtonAriaLabel?: string;
   /** Sets the arial-label attribute for the closeButton. */
   closeButtonAriaLabel?: string;
+  /** Sets the icon on the trigger button. */
+  svgIcon?: SvgIcon | IconName;
+  /** Optional text next to the trigger button. */
+  labelText?: string;
+  /** Placement of the label text relative to the trigger button. */
+  labelTextPosition?: PopMenuLabelPosition;
 }
 
 export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const openRef = useRef<HTMLButtonElement>(null);
+  const triggerButtonRef = useRef<HTMLButtonElement>(null);
+  const iconRef = useRef<HTMLDivElement>(null);
   const popOverRef = useRef<HTMLDivElement>(null);
+  const outerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const {
     children,
@@ -59,14 +73,21 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
     popMenuVariant = PopMenuVariant.onWhite,
     openButtonAriaLabel,
     closeButtonAriaLabel,
+    svgIcon,
+    labelText,
+    labelTextPosition = PopMenuLabelPosition.right,
   } = props;
   const buttonClasses = classNames(styles['pop-menu-button'], {
     [styles[`pop-menu-button--${popMenuVariant}`]]: popMenuVariant,
   });
   const breakpoint = useBreakpoint();
   const mobile = breakpoint < breakpoints.md;
-  useOutsideEvent(popOverRef, () => setIsOpen(!isOpen));
-  const { isHovered: openButtonIsHovered } = useHover(openRef);
+
+  useOutsideEvent(outerRef, () => {
+    setIsOpen(false);
+  });
+
+  const { isHovered: triggerButtonIsHovered } = useHover(triggerButtonRef);
   const mobileIconSize = mobile ? IconSize.XSmall : IconSize.Small;
 
   const handleClick = (cb?: () => void): void => {
@@ -81,7 +102,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
           testId={popOverTestId}
           className={classNames(styles['pop-menu__pop-over'], popOverClassName)}
           arrowClassName={styles['pop-menu__pop-over-arrow']}
-          controllerRef={closeRef}
+          controllerRef={iconRef}
           popOverRef={popOverRef}
         >
           {React.Children.map(children, child =>
@@ -101,39 +122,45 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
     }
   };
 
-  const handleOnClick = (isOpen: boolean, e?: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+  const toggleOpenOnClick = (e?: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     e && e.stopPropagation();
-    setIsOpen(isOpen);
+    setIsOpen(!isOpen);
   };
 
-  const openButton = (
+  const iconComponent =
+    svgIcon && typeof svgIcon === 'string' ? (
+      <LazyIcon iconName={svgIcon} size={IconSize.XSmall} isHovered={triggerButtonIsHovered} />
+    ) : (
+      svgIcon && <Icon svgIcon={svgIcon} size={IconSize.XSmall} isHovered={triggerButtonIsHovered} />
+    );
+
+  const openIcon = svgIcon ? (
+    iconComponent
+  ) : (
+    <Icon svgIcon={svgIcon ?? VerticalDots} color={getColor('black')} size={mobileIconSize} isHovered={triggerButtonIsHovered} />
+  );
+
+  const closeIcon = <Icon svgIcon={X} color={getColor('black')} size={mobileIconSize} isHovered={triggerButtonIsHovered} />;
+
+  const triggerButton = (
     <button
-      ref={openRef}
-      data-testid={openButtonTestId}
+      ref={triggerButtonRef}
+      data-testid={isOpen ? closeButtonTestId : openButtonTestId}
       className={buttonClasses}
-      aria-label={openButtonAriaLabel || 'Se mer'}
-      onClick={(e): void => handleOnClick(true, e)}
+      aria-label={isOpen ? closeButtonAriaLabel : openButtonAriaLabel}
+      aria-expanded={isOpen}
+      onClick={toggleOpenOnClick}
       type="button"
     >
-      <Icon svgIcon={VerticalDots} className="test" color={getColor('black')} size={mobileIconSize} isHovered={openButtonIsHovered} />
+      {labelText && labelTextPosition == PopMenuLabelPosition.left && <span>{labelText}</span>}
+      {<div ref={iconRef}>{isOpen ? closeIcon : openIcon}</div>}
+      {labelText && labelTextPosition == PopMenuLabelPosition.right && <span>{labelText}</span>}
     </button>
   );
 
-  const closeButton = (
-    <Close
-      ariaLabel={closeButtonAriaLabel}
-      color="black"
-      className={buttonClasses}
-      testId={closeButtonTestId}
-      ref={closeRef}
-      onClick={(e): void => handleOnClick(false, e)}
-      small={mobile}
-    />
-  );
-
   return (
-    <div className={classNames(styles['pop-menu-button'], popMenuClassName)} data-analyticsid={AnalyticsId.PopMenu}>
-      {!isOpen ? openButton : closeButton}
+    <div ref={outerRef} className={classNames(styles['pop-menu-button'], popMenuClassName)} data-analyticsid={AnalyticsId.PopMenu}>
+      {triggerButton}
       {isOpen && renderChildren()}
     </div>
   );

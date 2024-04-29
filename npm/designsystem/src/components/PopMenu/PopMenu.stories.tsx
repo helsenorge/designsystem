@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
-import { PopMenu, PopMenuVariant } from './PopMenu';
+import { PopMenu, PopMenuLabelPosition, PopMenuVariant } from './PopMenu';
 import Docs from '../../docs';
 import longLoremText from '../../utils/loremtext';
 import { LinkList } from '../LinkList';
@@ -33,6 +33,10 @@ const meta = {
     popMenuVariant: {
       control: 'select',
       options: PopMenuVariant,
+    },
+    labelTextPosition: {
+      control: 'select',
+      options: PopMenuLabelPosition,
     },
   },
 } satisfies Meta<typeof PopMenu>;
@@ -66,6 +70,63 @@ export const Default: Story = {
       <p>{longLoremText}</p>
       <div className={styles['story-wrapper']}>
         <PopMenu {...args}></PopMenu>
+        <div>{'PopMenuVariant: ' + args.popMenuVariant}</div>
+      </div>
+      <p>{longLoremText}</p>
+    </>
+  ),
+};
+export const CustomIcon: Story = {
+  args: {
+    svgIcon: 'InfoSignStroke',
+    children: (
+      <LinkList chevron={false}>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 1'}
+        </LinkList.Link>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 2'}
+        </LinkList.Link>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 3'}
+        </LinkList.Link>
+      </LinkList>
+    ),
+  },
+  render: args => (
+    <>
+      <p>{longLoremText}</p>
+      <div className={styles['story-wrapper']}>
+        <PopMenu {...args}></PopMenu>
+        <div>{'PopMenuVariant: ' + args.popMenuVariant}</div>
+      </div>
+      <p>{longLoremText}</p>
+    </>
+  ),
+};
+export const WithLabel: Story = {
+  args: {
+    children: (
+      <LinkList chevron={false}>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 1'}
+        </LinkList.Link>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 2'}
+        </LinkList.Link>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 3'}
+        </LinkList.Link>
+      </LinkList>
+    ),
+    labelText: 'Label',
+    labelTextPosition: PopMenuLabelPosition.left,
+  },
+  render: args => (
+    <>
+      <p>{longLoremText}</p>
+      <div className={styles['story-wrapper']}>
+        <PopMenu {...args} />
         <div>{'PopMenuVariant: ' + args.popMenuVariant}</div>
       </div>
       <p>{longLoremText}</p>

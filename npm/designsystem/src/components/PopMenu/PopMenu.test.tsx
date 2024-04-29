@@ -33,17 +33,18 @@ describe('Gitt at en PopMenu vises ', (): void => {
   describe('Når man trykker på åpne/lukke-knappen', (): void => {
     it('Så skal popover åpnes/lukkes', async (): Promise<void> => {
       render(container);
-      const btnOpen = screen.getByTestId('open-btn');
-      expect(btnOpen).toBeInTheDocument();
-      await userEvent.click(btnOpen);
-      expect(btnOpen).not.toBeInTheDocument();
-      const btnClose = screen.getByTestId('close-btn');
-      expect(btnClose).toBeInTheDocument();
+      const triggerBtn = screen.getByTestId('open-btn');
+      expect(triggerBtn).toBeInTheDocument();
+      expect(triggerBtn).toHaveAttribute('aria-expanded', 'false');
+
+      await userEvent.click(triggerBtn);
+      expect(triggerBtn).toHaveAttribute('aria-expanded', 'true');
       const popOver = screen.getByTestId('popover');
       expect(popOver).toBeInTheDocument();
-      await userEvent.click(btnClose);
-      expect(btnClose).not.toBeInTheDocument();
+
+      await userEvent.click(triggerBtn);
       expect(popOver).not.toBeInTheDocument();
+      expect(triggerBtn).toHaveAttribute('aria-expanded', 'false');
     });
   });
 });
