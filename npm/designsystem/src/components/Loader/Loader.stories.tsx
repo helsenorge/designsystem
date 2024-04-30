@@ -4,14 +4,16 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Loader, { Overlay } from './Loader';
 import { allPaletteNames } from '../../../.storybook/knobs';
+import Docs from '../../docs';
 import Button from '../Button/Button';
 import Title from '../Title/Title';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Loader',
+  title: '@helsenorge/designsystem-react/Components/Loader',
   component: Loader,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Loader} />,
       description: {
         component:
           'Loader benyttes for å vise innbygger at det lastes ned innhold, slik at innbygger må vente til innholdet er lastet ferdig.',

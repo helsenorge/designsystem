@@ -4,12 +4,14 @@ import { action } from '@storybook/addon-actions';
 import { Meta, StoryObj } from '@storybook/react';
 
 import AnchorLink from './AnchorLink';
+import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/AnchorLink',
+  title: '@helsenorge/designsystem-react/Components/AnchorLink',
   component: AnchorLink,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={AnchorLink} />,
       description: {
         component:
           'AnchorLink kan bli brukt som et komponent for \\<a\\> tag eller \\<button\\> tag som skal ha en anchorlink styling.<br>.anchorlink-wrapper kan også bli brukt når det ikke er kontroll over markup som kommer inn.',
@@ -18,7 +20,7 @@ const meta = {
   },
   args: {
     children: 'Anchorlink tekst',
-    href: '/test',
+    href: 'https://www.helsenorge.no',
   },
   argTypes: {
     children: {
@@ -37,12 +39,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => (
     <>
-      <AnchorLink {...args} target={'_self'}>
+      <AnchorLink {...args} target={'_parent'}>
         {args.children}
       </AnchorLink>
       <br />
       <br />
-      <AnchorLink {...args} target={'_self'}>
+      <AnchorLink {...args} target={'_parent'}>
         {
           'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
         }

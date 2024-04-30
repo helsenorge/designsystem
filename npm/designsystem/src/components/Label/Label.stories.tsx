@@ -5,6 +5,7 @@ import { StoryObj, Meta } from '@storybook/react';
 import Label, { LabelText } from './Label';
 import { Sublabel } from './SubLabel';
 import { IconSize } from '../../constants';
+import Docs from '../../docs';
 import { getColor } from '../../theme/currys';
 import Checkbox from '../Checkbox';
 import Icon from '../Icon';
@@ -20,10 +21,11 @@ type LabelWithAndCustomArgs = React.ComponentProps<typeof Label> & {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Label',
+  title: '@helsenorge/designsystem-react/Components/Label',
   component: Label,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Label} />,
       description: {
         component:
           'Som en innbygger vil jeg kunne se flere dataelementer gruppert i en og samme label på en konsistent måte slik at jeg mer effektivt kan scanne og forstå valgene jeg skal kunne gjøre. \n\n <b>For å sette opp aria-label riktig med Label komponentet:</b> \n\n Gi input feltet sin id til id propen til Label. Gi Input feltet sin aria-describedby prop eventuelle sublabel/statusdot id(er). Du kan skjule bestemte label/sublabel tekster for skjermlesere ved hjelp av hideFromScreenReader property per tekst.',

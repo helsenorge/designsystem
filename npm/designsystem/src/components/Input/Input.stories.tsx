@@ -4,6 +4,7 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Input, { InputProps, InputTypes } from './Input';
 import { FormMode, FormSize } from '../../constants';
+import Docs from '../../docs';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 
@@ -12,10 +13,11 @@ type InputWithAndCustomArgs = React.ComponentProps<typeof Input> & {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Input',
+  title: '@helsenorge/designsystem-react/Components/Input',
   component: Input,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Input} />,
       description: {
         component:
           'Som innbygger vil jeg kunne skrive inn korte tekster slik at jeg kan gjøre mine oppgaver.<br><br>Bruksområde: For å la innbygger skrive inn en tekst (enkeltlinje, begrenset mengde)',

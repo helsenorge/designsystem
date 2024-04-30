@@ -132,6 +132,7 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
   );
 }) as CompoundComponent;
 
+LinkList.displayName = 'LinkList';
 LinkList.Link = Link;
 Link.displayName = 'LinkList.Link';
 

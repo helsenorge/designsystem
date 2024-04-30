@@ -4,15 +4,17 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import RadioButton from './RadioButton';
 import { FormMode, FormSize } from '../../constants';
+import Docs from '../../docs';
 import { getColor } from '../../theme/currys';
 import FormGroup from '../FormGroup';
 import Label from '../Label';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/RadioButton',
+  title: '@helsenorge/designsystem-react/Components/RadioButton',
   component: RadioButton,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={RadioButton} />,
       description: {
         component:
           'RadioButton lar brukeren velge et av flere valg i en liste. RadioButton kan brukes frittstående, som en del av en FormGroup eller direkte i et Validation komponent.',

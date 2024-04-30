@@ -4,13 +4,15 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Checkbox from './Checkbox';
 import { FormMode, FormSize } from '../../constants';
+import Docs from '../../docs';
 import Label from '../Label/Label';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Checkbox',
+  title: '@helsenorge/designsystem-react/Components/Checkbox',
   component: Checkbox,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Checkbox} />,
       description: {
         component:
           'Som innbygger vil jeg kunne se om noe er valgt eller ikke, og velge om dette noe skal være valgt eller ikke valgt, og se en umiddelbart oppdatert representasjon av valget jeg har gjort slik at jeg vet hva som gjelder for valget. <br><br>Checkbox kan brukes frittstående, som en del av en FormGroup eller direkte i et Validation komponent.',

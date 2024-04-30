@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
+import Docs from '../../docs';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
@@ -13,12 +14,17 @@ import Table, { ResponsiveTableVariant, TableHead, TableRow, TableHeadCell, Tabl
 import Trigger from '../Trigger/Trigger';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/HelpBubble',
+  title: '@helsenorge/designsystem-react/Components/HelpBubble',
   component: HelpBubble,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={HelpBubble} />,
       description: {
         component: 'HelpBubble [Hjelpeboble] er en liten popup som lar innbygger lese et tekstinnhold som utdyper det som ble trykket på.',
+      },
+      story: {
+        inline: false,
+        iframeHeight: '40rem',
       },
     },
   },
@@ -57,14 +63,14 @@ export const Default: Story = {
 
     return (
       <>
-        <span>{loremText + loremText + loremText + loremText} </span>
+        <span>{loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <Trigger ref={controllerRef} ariaLabel="Hjelp" />
           <HelpBubble {...args} controllerRef={controllerRef}>
             {args.children}
           </HelpBubble>
         </div>
-        <span> {loremText + loremText + loremText + loremText}</span>
+        <span> {loremText + loremText}</span>
       </>
     );
   },
@@ -82,14 +88,14 @@ export const Link: Story = {
 
     return (
       <>
-        <span>{loremText + loremText + loremText + loremText} </span>
+        <span>{loremText + loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <Trigger ref={controllerRef} ariaLabel="Hjelp" />
           <HelpBubble {...args} controllerRef={controllerRef}>
             {args.children}
           </HelpBubble>
         </div>
-        <span> {loremText + loremText + loremText + loremText}</span>
+        <span> {loremText + loremText}</span>
       </>
     );
   },
@@ -106,14 +112,14 @@ export const Toggle: Story = {
 
     return (
       <>
-        <span>{loremText + loremText + loremText + loremText} </span>
+        <span>{loremText + loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <Trigger ref={controllerRef} onClick={toggleValue} ariaLabel="Åpne" />
           <HelpBubble {...args} controllerRef={controllerRef} showBubble={value}>
             {args.children}
           </HelpBubble>
         </div>
-        <span> {loremText + loremText + loremText + loremText}</span>
+        <span> {loremText + loremText}</span>
       </>
     );
   },
@@ -128,14 +134,14 @@ export const OnText: Story = {
 
     return (
       <>
-        {loremText + loremText + loremText + loremText}
+        {loremText + loremText}
         <DictionaryTrigger ref={controllerRef} selected={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
           {'Helsebiblioteket'}
         </DictionaryTrigger>{' '}
         <HelpBubble ref={bubbleRef} {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
           {args.children}
         </HelpBubble>
-        {loremText + loremText + loremText + loremText}
+        {loremText + loremText}
       </>
     );
   },
@@ -152,7 +158,7 @@ export const AsTooltip: Story = {
 
     return (
       <>
-        {loremText + loremText + loremText + loremText}
+        {loremText + loremText}
         <DictionaryTrigger
           ref={controllerRef}
           selected={isOpen}
@@ -165,7 +171,7 @@ export const AsTooltip: Story = {
         <HelpBubble ref={bubbleRef} {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
           {args.children}
         </HelpBubble>
-        {loremText + loremText + loremText + loremText}
+        {loremText + loremText}
       </>
     );
   },
@@ -178,14 +184,14 @@ export const WithHelpQuestion: Story = {
 
     return (
       <>
-        <p>{loremText + loremText + loremText + loremText}</p>
+        <p>{loremText + loremText}</p>
         <HelpQuestion ref={controllerRef} selected={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
           {'Helsebiblioteket'}
         </HelpQuestion>
         <HelpBubble {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
           {args.children}
         </HelpBubble>
-        <p>{loremText + loremText + loremText + loremText}</p>
+        <p>{loremText + loremText}</p>
       </>
     );
   },

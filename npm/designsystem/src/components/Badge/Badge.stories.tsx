@@ -3,13 +3,15 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import Badge from './Badge';
+import Docs from '../../docs';
 import Title from '../Title';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Badge',
+  title: '@helsenorge/designsystem-react/Components/Badge',
   component: Badge,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Badge} />,
       description: {
         component:
           'Badge [Markør] lar innbygger oppfatte at det er et antall nye elementer som har kommet til i et område siden sist gang innbygger besøkte området.',

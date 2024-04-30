@@ -1,28 +1,20 @@
 import React from 'react';
 
-import { Title as DocsTitle, Subtitle, Description, Primary, ArgTypes } from '@storybook/addon-docs';
 import { Meta, StoryObj } from '@storybook/react';
 
 import List from './List';
+import Docs from '../../docs';
 import { mediumLoremText } from '../../utils/loremtext';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/List',
+  title: '@helsenorge/designsystem-react/Components/List',
   component: List,
   parameters: {
     docs: {
       description: {
         component: 'Strukturert visning av punktvise data',
       },
-      page: () => (
-        <>
-          <DocsTitle />
-          <Subtitle />
-          <Description />
-          <Primary />
-          <ArgTypes of={List} />
-        </>
-      ),
+      page: (): React.JSX.Element => <Docs component={List} hideStories />,
     },
   },
   args: {

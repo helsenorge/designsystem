@@ -3,12 +3,14 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import Spacer from './Spacer';
+import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Spacer',
+  title: '@helsenorge/designsystem-react/Components/Spacer',
   component: Spacer,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Spacer} />,
       description: {
         component:
           'Brukes til å legge til luft i layout og mellom komponenter. For mer fleksibilitet med marginer og padding kan getSpacer funksjonen importeres og brukes fra scss ressursene.',

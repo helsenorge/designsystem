@@ -21,7 +21,7 @@ const UseUuidExample: React.FC = () => {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Hooks/useUuid',
+  title: '@helsenorge/designsystem-react/Hooks/useUuid',
   component: UseUuidExample,
   parameters: {
     docs: {

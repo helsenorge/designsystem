@@ -11,7 +11,6 @@ import {
   useHover,
   useKeyboardEvent,
   useOutsideEvent,
-  useSize,
   useToggle,
   useUuid,
 } from '../..';
@@ -30,9 +29,9 @@ export enum DropdownMode {
 }
 
 export interface DropdownProps {
-  /** Label for dropdown. Synlig for skjermlesere.  */
+  /** Label for dropdown. Visible for screen readers  */
   label: string;
-  /** Tekst på knappen som åpner dropdownen */
+  /** Text on the trigger button that opens the dropdown */
   placeholder: string;
   /** Sets the dropdown content */
   children: React.ReactNode;
@@ -40,19 +39,19 @@ export interface DropdownProps {
   closeText?: string;
   /** No close button */
   noCloseButton?: boolean;
-  /** Called when dropdown is open/closed. */
+  /** Called when dropdown is open/closed */
   onToggle?: (isOpen: boolean) => void;
-  /** Om dropdown er åpen */
+  /** Whether the dropdown is open or not */
   open?: boolean;
   /** Changes the visuals of the dropdown */
   mode?: keyof typeof DropdownMode;
-  /** Makes the background transparent */
+  /** Makes the background of the trigger transparent */
   transparent?: boolean;
-  /** Makes the background transparent */
+  /** Makes the width of the full component adjust to its parent */
   fluid?: boolean;
   /** Makes the dropdown disabled */
   disabled?: boolean;
-  /** Sets the data-testid attribute on the dropdown button. */
+  /** Sets the data-testid attribute on the dropdown button */
   testId?: string;
   /** Overrides the default z-index of the DropDownContent */
   zIndex?: number;
@@ -80,7 +79,6 @@ const Dropdown: React.FC<DropdownProps> = props => {
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
   const inputRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
   const [currentIndex, setCurrentIndex] = useState<number>();
-  const { width: buttonWidth } = useSize(buttonRef) || {};
   const labelId = useUuid();
   const toggleLabelId = useUuid();
   const optionIdPrefix = useUuid();
@@ -192,7 +190,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
           size={IconSize.XSmall}
         />
       </button>
-      <div className={contentClasses} style={{ width: fluid ? '100%' : `${buttonWidth}px`, zIndex: zIndex }}>
+      <div className={contentClasses} style={{ width: fluid ? '100%' : `auto`, zIndex: zIndex }}>
         <ul
           className={styles.dropdown__options}
           role="listbox"
@@ -205,7 +203,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
         </ul>
         {!noCloseButton && (
           <div className={styles.dropdown__close}>
-            <Button onClick={handleClose} fluid aria-expanded={isOpen}>
+            <Button onClick={handleClose} aria-expanded={isOpen}>
               {closeText}
             </Button>
           </div>

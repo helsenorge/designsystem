@@ -44,7 +44,7 @@ exports[`Gitt at Dropdown skal vises vanlig > Når Dropdownen har vanlig innhold
     </button>
     <div
       class="dropdown__content"
-      style="width: 100px; z-index: 11000;"
+      style="width: auto; z-index: 11000;"
     >
       <ul
         aria-labelledby="testid-9"
@@ -68,7 +68,7 @@ exports[`Gitt at Dropdown skal vises vanlig > Når Dropdownen har vanlig innhold
       >
         <button
           aria-expanded="false"
-          class="button-wrapper button-wrapper--fluid"
+          class="button-wrapper"
           data-analyticsid="button"
           type="button"
         >

@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { Title, Subtitle, Description, Primary, ArgTypes } from '@storybook/addon-docs';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Modal, { ModalSize } from './Modal';
 import { ModalVariants } from './Modal';
 import { IconSize } from '../../constants';
+import Docs from '../../docs';
 import Button from '../Button';
 import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
 import Checkbox from '../Checkbox';
@@ -16,7 +16,7 @@ import Label from '../Label';
 import Slider from '../Slider';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Modal',
+  title: '@helsenorge/designsystem-react/Components/Modal',
   component: Modal,
   parameters: {
     docs: {
@@ -24,15 +24,11 @@ const meta = {
         component:
           'En Modal informerer brukere om en oppgave og kan inneholde kritisk informasjon, kreve beslutninger eller involvere flere oppgaver. En modal har tre varianter normal, warning og error',
       },
-      page: () => (
-        <>
-          <Title />
-          <Subtitle />
-          <Description />
-          <Primary />
-          <ArgTypes of={Modal} />
-        </>
-      ),
+      story: {
+        inline: false,
+        iframeHeight: '40rem',
+      },
+      page: (): React.JSX.Element => <Docs component={Modal} hideStories />,
     },
   },
   args: {

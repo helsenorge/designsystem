@@ -17,7 +17,7 @@ const UseSizeExample: React.FC = () => {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Hooks/useSize',
+  title: '@helsenorge/designsystem-react/Hooks/useSize',
   component: UseSizeExample,
   parameters: {
     docs: {

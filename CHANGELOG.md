@@ -1,4 +1,57 @@
-## 7.0.1-beta.0 (2024-04-09)
+## [7.3.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.3.0&targetVersion=GTv7.3.1) (2024-04-22)
+
+### Bug Fixes
+
+- arrow får egen klasse for å toggle visibility
+  ([52525a4](https://github.com/helsenorge/designsystem/commit/52525a4d45b6b2e97ac553922fa1ec41032cc778)), closes
+  [#323182](https://github.com/helsenorge/designsystem/issues/323182)
+- wrapperclassname fikser type ([fe42184](https://github.com/helsenorge/designsystem/commit/fe42184cc3bbffbcdc106def06a1a283f70bb32a))
+
+## [7.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.2.1&targetVersion=GTv7.3.0) (2024-04-22)
+
+### Features
+
+- **designsystem:** select får wrapperclassname prop
+  ([61a1a8c](https://github.com/helsenorge/designsystem/commit/61a1a8c4323c2150ee97d21a7325de6c72cc5198)), closes
+  [#323789](https://github.com/helsenorge/designsystem/issues/323789)
+
+## [7.2.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.2.0&targetVersion=GTv7.2.1) (2024-04-19)
+
+### Bug Fixes
+
+- i button med accessibility-character-arrow er pilen skjult for skjermleser
+  ([0a8fd28](https://github.com/helsenorge/designsystem/commit/0a8fd28f16234ff8ca620c5b086d22b080a2cb17)), closes
+  [#273312](https://github.com/helsenorge/designsystem/issues/273312)
+- width satt feil på popmenu ([fb4dc2d](https://github.com/helsenorge/designsystem/commit/fb4dc2d7af645e640a44f7800318f2ffcc64f195)), closes
+  [#323102](https://github.com/helsenorge/designsystem/issues/323102)
+
+## [7.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.1.0&targetVersion=GTv7.2.0) (2024-04-19)
+
+### Features
+
+- knappen i dropdown skal ikke være fluid
+  ([a3abe2b](https://github.com/helsenorge/designsystem/commit/a3abe2bf5a57e62302b5e4f1a1f1b609452effd0)), closes
+  [#323389](https://github.com/helsenorge/designsystem/issues/323389)
+
+### Bug Fixes
+
+- bruk supernova-sjekk som funker i ff
+  ([afae2a9](https://github.com/helsenorge/designsystem/commit/afae2a90d9e453be054016b5922aa378500f91cc))
+- oppdater sjekk for om vi er i superNova
+  ([b20a776](https://github.com/helsenorge/designsystem/commit/b20a776f293953d78ccab6e40d687bab67676a28))
+- oppdater sjekk for om vi er i superNova
+  ([167d572](https://github.com/helsenorge/designsystem/commit/167d572261a91fd60a8c432d4d990356a610115f))
+
+## [7.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.0.0&targetVersion=GTv7.1.0) (2024-04-17)
+
+### Features
+
+- badge innstramming av tilgjengelige farger
+  ([193ec66](https://github.com/helsenorge/designsystem/commit/193ec6633394354505a60147668800269b51feae)), closes
+  [#308135](https://github.com/helsenorge/designsystem/issues/308135)
+- ny default breddehåndtering for Dropdown
+  ([6078613](https://github.com/helsenorge/designsystem/commit/6078613bf8bae571eb582f9778b8c4a494d3339d)), closes
+  [#323389](https://github.com/helsenorge/designsystem/issues/323389)
 
 ## [7.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.6.2&targetVersion=GTv7.0.0) (2024-04-08)
 

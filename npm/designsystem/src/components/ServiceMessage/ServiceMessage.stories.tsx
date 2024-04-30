@@ -4,12 +4,14 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import ServiceMessage from './ServiceMessage';
+import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/ServiceMessage',
+  title: '@helsenorge/designsystem-react/Components/ServiceMessage',
   component: ServiceMessage,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={ServiceMessage} />,
       description: {
         component:
           'ServiceMessage lar brukeren velge et av flere valg i en liste. ServiceMessage kan brukes frittstående, som en del av en FormGroup eller direkte i et Validation komponent.',
@@ -23,8 +25,8 @@ const meta = {
     dismissable: true,
     expanderOpenFromStart: true,
     urlTitle: 'Du kan henvises fra sykehuset eller fra din fastlege (helsedirektoratet.no)',
-    url: '/',
-    target: '_self',
+    url: 'https://www.helsenorge.no',
+    target: '_parent',
     closeBtnText: 'fjern melding',
     variant: 'alert',
     testId: 'test',

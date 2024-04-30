@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
+import Docs from '../../docs';
 import { longLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
 import LinkList from '../LinkList';
@@ -34,10 +35,11 @@ type TableWithAndCustomArgs = React.ComponentProps<typeof Table> & {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Table',
+  title: '@helsenorge/designsystem-react/Components/Table',
   component: Table,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Table} />,
       description: {
         component: 'Som innbygger vil jeg se og sammenligne tabulære data slik at jeg kan forstå informasjonen jeg trenger.',
       },
@@ -702,7 +704,11 @@ function getFastlegeData(sortDirection: SortDirection, sortColumn: string): Arra
       },
       Delelistelege: null,
       Legekontor: {
-        Navn: <AnchorLink href="/">{'Heiaklinikken'}</AnchorLink>,
+        Navn: (
+          <AnchorLink href={'https://www.helsenorge.no'} target={'_blank'}>
+            {'Heiaklinikken'}
+          </AnchorLink>
+        ),
         Adresse: 'Gamle drammensvei 98',
       },
       Avtaledato: '2015-08-01T00:00:00',

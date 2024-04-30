@@ -11,27 +11,27 @@
   justify-content: center;
   align-items: center;
   height: 3rem;
-  width: 3rem;
+  min-width: 3rem;
 
   &:focus {
     border: 0.1875rem solid $black;
     box-shadow: none;
     outline: none;
   }
-
-  :focus > .pop-menu-button {
-    box-shadow: none;
-  }
-}
-
-// overrides
-:focus > .pop-menu-button:hover {
-  box-shadow: none;
 }
 
 html :focus > .pop-menu-button {
   box-shadow: none;
   border: solid;
+}
+
+.pop-menu-button :focus > .pop-menu-button {
+  box-shadow: none;
+}
+
+// overrides
+:focus > .pop-menu-button:hover {
+  box-shadow: none;
 }
 
 .pop-menu-button--on-white {
@@ -108,7 +108,6 @@ html :focus > .pop-menu-button {
 
 .pop-menu__pop-over {
   width: 20.875rem;
-  width: 26.125rem;
   border: 0.125rem solid rgb(24 128 151);
   box-shadow: 0 0 0.3125rem 0 rgb(0 0 0 / 50%);
 

@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Panel, { PanelStatus, PanelVariant } from './Panel';
+import Docs from '../../docs';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
@@ -16,10 +17,11 @@ type PanelWithAndCustomArgs = React.ComponentProps<typeof Panel> & {
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Panel',
+  title: '@helsenorge/designsystem-react/Components/Panel',
   component: Panel,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Panel} />,
       description: {
         component:
           'Som innbygger vil jeg se formatterte data på et avgrenset område som gjør det scanbart og tilgjengelig, og som kan være en inngang til mer informasjon, slik at jeg kan løse oppgavene mine.',

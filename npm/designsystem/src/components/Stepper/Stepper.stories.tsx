@@ -3,12 +3,14 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Stepper from './Stepper';
+import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Stepper',
+  title: '@helsenorge/designsystem-react/Components/Stepper',
   component: Stepper,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Stepper} />,
       description: {
         component:
           'Som innbygger vil jeg kunne se hvor jeg befinner meg i en stegvisning eller prosess slik at jeg ikke mister motivasjonen og slik at jeg får en følelse av at det jeg gjør bringer med nærmere målet.',

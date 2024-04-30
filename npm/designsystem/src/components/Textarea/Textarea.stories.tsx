@@ -4,13 +4,15 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Textarea from './Textarea';
 import { FormMode } from '../../constants';
+import Docs from '../../docs';
 import Label from '../Label/Label';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Textarea',
+  title: '@helsenorge/designsystem-react/Components/Textarea',
   component: Textarea,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Textarea} />,
       description: {
         component:
           'Som innbygger vil jeg kunne skrive inn en lengre tekst og ha plass til å se flere linjer av teksten jeg skriver inn slik at jeg kan beholde oversikten og redigere teksten uten for stor ulempe.',

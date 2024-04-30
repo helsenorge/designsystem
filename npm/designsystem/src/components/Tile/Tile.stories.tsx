@@ -4,16 +4,18 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Tile from './Tile';
+import Docs from '../../docs';
 import Icon, { IconSize } from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import Eye from '../Icons/Eye';
 import SharingStatus from '../SharingStatus';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Tile',
+  title: '@helsenorge/designsystem-react/Components/Tile',
   component: Tile,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Tile} />,
       description: {
         component: 'Som innbygger vil jeg kunne vise knapp og link innhold i ulike layouts og formater.',
       },

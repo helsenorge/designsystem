@@ -3,13 +3,15 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import NotificationPanel from './NotificationPanel';
+import Docs from '../../docs';
 import { getColor } from '../../theme/currys';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/NotificationPanel',
+  title: '@helsenorge/designsystem-react/Components/NotificationPanel',
   component: NotificationPanel,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={NotificationPanel} />,
       description: {
         component: 'Et NotificationPanel lar deg vise viktig informasjon avskilt fra bakgrunnen med ulike farger og ikoner',
       },
@@ -89,7 +91,9 @@ export const AllVariants: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.`}
-              <a href="/">{'Les mer om dine rettigheter her.'}</a>
+              <a href={'https://www.helsenorge.no'} target="_parent">
+                {'Les mer om dine rettigheter her.'}
+              </a>
             </div>
           </NotificationPanel>
         </div>
@@ -100,7 +104,7 @@ export const AllVariants: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
-              <a href="/" target="_blank" rel="noopener noreferrer">
+              <a href={'https://www.helsenorge.no'} target="_blank" rel="noopener noreferrer">
                 {'Les mer om dine rettigheter her (external).'}
               </a>
             </div>
@@ -113,7 +117,9 @@ export const AllVariants: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
-              <a href="/">{'Les mer om dine rettigheter her.'}</a>
+              <a href={'https://www.helsenorge.no'} target="_parent">
+                {'Les mer om dine rettigheter her.'}
+              </a>
             </div>
           </NotificationPanel>
         </div>
@@ -124,7 +130,9 @@ export const AllVariants: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
-              <a href="/">{'Les mer om dine rettigheter her.'}</a>
+              <a href={'https://www.helsenorge.no'} target="_parent">
+                {'Les mer om dine rettigheter her.'}
+              </a>
             </div>
           </NotificationPanel>
         </div>

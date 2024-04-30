@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import ExpanderHierarchy from './ExpanderHierarchy';
+import Docs from '../../docs';
 import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 
 type ExpanderHierarchyWithAndCustomArgs = React.ComponentProps<typeof ExpanderHierarchy> & {
@@ -11,10 +12,11 @@ type ExpanderHierarchyWithAndCustomArgs = React.ComponentProps<typeof ExpanderHi
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/ExpanderHierarchy',
+  title: '@helsenorge/designsystem-react/Components/ExpanderHierarchy',
   component: ExpanderHierarchy,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={ExpanderHierarchy} />,
       description: {
         component:
           'ExpanderList allows the creation of a single list of items which can be used as triggers to expand areas within the list to display arbitrary content.',

@@ -210,7 +210,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           )
         : renderIcon(rightIcon, getLargeIconSize(large, mobile), buttonStyles['button__right-icon'])}
       {hasUURightArrow && (
-        <span style={{ color: iconColor }} className={buttonStyles['button__right-unicode-arrow']}>
+        <span style={{ color: iconColor }} className={buttonStyles['button__right-unicode-arrow']} aria-hidden>
           {'  →'}
         </span>
       )}

@@ -2,7 +2,8 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
-import { PopMenu, PopMenuVariant } from './PopMenu';
+import { PopMenu, PopMenuLabelPosition, PopMenuVariant } from './PopMenu';
+import Docs from '../../docs';
 import longLoremText from '../../utils/loremtext';
 import { LinkList } from '../LinkList';
 import Table, { HeaderCategory, ResponsiveTableVariant, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
@@ -10,13 +11,18 @@ import Table, { HeaderCategory, ResponsiveTableVariant, TableBody, TableCell, Ta
 import styles from './story.module.scss';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/PopMenu',
+  title: '@helsenorge/designsystem-react/Components/PopMenu',
   component: PopMenu,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={PopMenu} />,
       description: {
         component:
           'Som innbygger vil jeg kunne hente fram og velge handlingsalternativer for et element også der det ikke er plass til å vise disse valgene åpent i grensesnittet, slik at jeg kan foreta valg som gjelder i kontekst av akkurat dette ene elementet.',
+      },
+      story: {
+        inline: false,
+        iframeHeight: '40rem',
       },
     },
   },
@@ -27,6 +33,10 @@ const meta = {
     popMenuVariant: {
       control: 'select',
       options: PopMenuVariant,
+    },
+    labelTextPosition: {
+      control: 'select',
+      options: PopMenuLabelPosition,
     },
   },
 } satisfies Meta<typeof PopMenu>;
@@ -60,6 +70,63 @@ export const Default: Story = {
       <p>{longLoremText}</p>
       <div className={styles['story-wrapper']}>
         <PopMenu {...args}></PopMenu>
+        <div>{'PopMenuVariant: ' + args.popMenuVariant}</div>
+      </div>
+      <p>{longLoremText}</p>
+    </>
+  ),
+};
+export const CustomIcon: Story = {
+  args: {
+    svgIcon: 'InfoSignStroke',
+    children: (
+      <LinkList chevron={false}>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 1'}
+        </LinkList.Link>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 2'}
+        </LinkList.Link>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 3'}
+        </LinkList.Link>
+      </LinkList>
+    ),
+  },
+  render: args => (
+    <>
+      <p>{longLoremText}</p>
+      <div className={styles['story-wrapper']}>
+        <PopMenu {...args}></PopMenu>
+        <div>{'PopMenuVariant: ' + args.popMenuVariant}</div>
+      </div>
+      <p>{longLoremText}</p>
+    </>
+  ),
+};
+export const WithLabel: Story = {
+  args: {
+    children: (
+      <LinkList chevron={false}>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 1'}
+        </LinkList.Link>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 2'}
+        </LinkList.Link>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 3'}
+        </LinkList.Link>
+      </LinkList>
+    ),
+    labelText: 'Label',
+    labelTextPosition: PopMenuLabelPosition.left,
+  },
+  render: args => (
+    <>
+      <p>{longLoremText}</p>
+      <div className={styles['story-wrapper']}>
+        <PopMenu {...args} />
         <div>{'PopMenuVariant: ' + args.popMenuVariant}</div>
       </div>
       <p>{longLoremText}</p>

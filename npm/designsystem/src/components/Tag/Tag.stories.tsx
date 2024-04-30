@@ -3,13 +3,15 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Tag, { TagSize, TagVariant } from './Tag';
+import Docs from '../../docs';
 import LawBook from '../Icons/LawBook';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Tag',
+  title: '@helsenorge/designsystem-react/Components/Tag',
   component: Tag,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Tag} />,
       description: {
         component: 'Tags brukes til å framheve og tydeliggjøre en kategori eller tjenestetype.',
       },

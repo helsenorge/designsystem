@@ -25,25 +25,6 @@
     font-size: $font-size-md;
   }
 
-  &__dt,
-  &__dd {
-    line-height: $lineheight-size-md;
-    padding-bottom: getSpacer(2xs);
-
-    &:last-of-type {
-      padding-bottom: 0;
-    }
-
-    &--bold {
-      font-weight: 600;
-      line-height: $lineheight-size-sm;
-    }
-
-    &--non-formatted {
-      display: inline;
-    }
-  }
-
   &__dt {
     padding-right: getSpacer(l);
 
@@ -62,6 +43,25 @@
 
   &__dd {
     margin-inline-start: 0;
+  }
+
+  &__dt,
+  &__dd {
+    line-height: $lineheight-size-md;
+    padding-bottom: getSpacer(2xs);
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+
+    &--bold {
+      font-weight: 600;
+      line-height: $lineheight-size-sm;
+    }
+
+    &--non-formatted {
+      display: inline;
+    }
   }
 
   &--line &__dt,

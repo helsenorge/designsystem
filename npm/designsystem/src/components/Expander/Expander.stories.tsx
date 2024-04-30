@@ -3,15 +3,17 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Expander, { ExpanderSize } from './Expander';
+import Docs from '../../docs';
 import LawBook from '../Icons/LawBook';
 import Loader from '../Loader';
 import { Overlay } from '../Loader/Loader';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Expander',
+  title: '@helsenorge/designsystem-react/Components/Expander',
   component: Expander,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Expander} />,
       description: {
         component: 'Expander skjuler detaljinformasjon når den ikke trengs, og gjør den lett tilgjengelig i kontekst når den trengs.',
       },

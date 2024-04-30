@@ -2,6 +2,7 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
+import Docs from '../../docs';
 import HighlightBox from '../HighlightBox';
 import { IllustrationList } from '../Illustrations/IllustrationNames';
 import LazyIllustration from '../LazyIllustration';
@@ -13,10 +14,11 @@ type IllustrationWallWithAndCustomArgs = React.ComponentProps<typeof LazyIllustr
 };
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Illustration',
+  title: '@helsenorge/designsystem-react/Components/Illustration',
   component: LazyIllustration,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={LazyIllustration} />,
       description: {
         component: 'LazyIllustration lar deg vise et av flere ikoner i ulike størrelser og farger',
       },

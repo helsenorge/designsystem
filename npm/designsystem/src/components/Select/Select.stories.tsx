@@ -4,14 +4,16 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Select from './Select';
+import Docs from '../../docs';
 import { palette } from '../../theme/palette';
 import Label from '../Label';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Select',
+  title: '@helsenorge/designsystem-react/Components/Select',
   component: Select,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Select} />,
       description: {
         component:
           'Som innbygger vil jeg kunne se hva som er valgt av et liste med skjulte valgalternativer, og åpne den skjulte listen og gjøre andre valg dersom jeg ønsker det, slik at jeg kan løse mine oppgaver. <br><br>Nytteverdi: Lar innbygger velge ETT blant flere alternativer <br>Bruksområde: Brukes når innbygger skal kunne velge ett enkelt valg under en etikett, men plassen som er til rådighet for kontrollen bare rommer ett valg. ',

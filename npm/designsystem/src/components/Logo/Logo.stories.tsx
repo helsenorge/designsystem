@@ -4,12 +4,14 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Logo from './Logo';
 import { allLogoPaletteNames } from '../../../.storybook/knobs';
+import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Logo',
+  title: '@helsenorge/designsystem-react/Components/Logo',
   component: Logo,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Logo} />,
       description: {
         component: 'Et komponent som lar deg vise logoen til helsenorge i ulike varianter',
       },

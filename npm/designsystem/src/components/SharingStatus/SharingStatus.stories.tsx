@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import SharingStatus from './SharingStatus';
+import Docs from '../../docs';
 import Eye from '../Icons/Eye';
 import Globe from '../Icons/Globe';
 import Group from '../Icons/Group';
@@ -10,10 +11,11 @@ import NoEye from '../Icons/NoEye';
 import Spacer from '../Spacer';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/SharingStatus',
+  title: '@helsenorge/designsystem-react/Components/SharingStatus',
   component: SharingStatus,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={SharingStatus} />,
       description: {
         component:
           'Som innbygger vil jeg tydelig kunne se hvem som har tilgang til enkelte av mine tjenester (ved fullmakt eller pga ungdomsrettigheter) og enkelt-dokumenter/resepter/mm, slik at jeg blir påminnet om hvilke delingsforhold som gjelder og ikke forveksler statusmeldinger med delingsstatuser.',

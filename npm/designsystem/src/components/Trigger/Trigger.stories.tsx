@@ -4,14 +4,16 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Trigger from './Trigger';
+import Docs from '../../docs';
 import { mediumLoremText } from '../../utils/loremtext';
 import Button from '../Button';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Trigger',
+  title: '@helsenorge/designsystem-react/Components/Trigger',
   component: Trigger,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Trigger} />,
       description: {
         component:
           'Hjelpetrigger/Infotrigger lar innbygger se at hjelp finnes for et område eller en detalj, og tillater innbygger å be om hjelp ved behov. Brukes der hvor innbygger skal kunne be om assistanse”',

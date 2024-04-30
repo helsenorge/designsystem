@@ -74,15 +74,17 @@ await writeFile(
 import { StoryObj, Meta } from '@storybook/react';
 
 import ${componentName} from './${componentName}';
+import Docs from '../../docs';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/${componentName}',
+  title: '@helsenorge/designsystem-react/Components/${componentName}',
   component: ${componentName},
   parameters: {
     docs: {
       description: {
         component: 'Beskrivelse av ${componentName}',
       },
+      page: (): React.JSX.Element => <Docs component={${componentName}} />,
     },
   },
   args: {},

@@ -3,16 +3,18 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import FormLayout, { FormLayoutColumns } from './FormLayout';
+import Docs from '../../docs';
 import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from '../FormGroup';
 import Label from '../Label';
 import RadioButton from '../RadioButton/RadioButton';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/FormLayout',
+  title: '@helsenorge/designsystem-react/Components/FormLayout',
   component: FormLayout,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={FormLayout} />,
       description: {
         component:
           'Et kolonne komponent som kan legges inne i en FormGroup. Det wrapper flere Checkboxer eller Radiobuttons, og lar deg styre kolonne layout',

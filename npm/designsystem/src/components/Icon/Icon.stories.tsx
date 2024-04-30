@@ -2,6 +2,7 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
+import Docs from '../../docs';
 import Checkbox from '../Checkbox';
 import additionalIconInformation from '../Icons/AdditionalIconInformation';
 import { IconList, IconName } from '../Icons/IconNames';
@@ -15,10 +16,11 @@ import Spacer from '../Spacer';
 import Icon, { IconSize } from '.';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Icon',
+  title: '@helsenorge/designsystem-react/Components/Icon',
   component: Icon,
   parameters: {
     docs: {
+      page: (): React.JSX.Element => <Docs component={Icon} />,
       description: {
         component: 'Icon lar deg vise et av flere ikoner i ulike størrelser og farger',
       },

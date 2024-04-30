@@ -1,6 +1,8 @@
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
 
+// Disables fordi stylelint og prettier er uenige
+/* stylelint-disable-next-line scss/dollar-variable-colon-space-after */
 $gradient:
   rgb(0 0 0 / 27%),
   rgb(0 0 0 / 27%) 18%,
