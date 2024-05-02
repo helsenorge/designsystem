@@ -120,7 +120,9 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
             disabled={disabled}
             ref={ref}
             required={required}
-            aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
+            aria-describedby={[props['aria-describedby'], (!!props.errorText || props.errorTextId) && errorTextUuid]
+              .filter(Boolean)
+              .join(' ')}
             aria-required={!!required}
             value={value}
             defaultValue={defaultValue}

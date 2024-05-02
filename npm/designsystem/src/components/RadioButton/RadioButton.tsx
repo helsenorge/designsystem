@@ -129,7 +129,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
       value={value}
       ref={mergedRefs}
       defaultChecked={defaultChecked}
-      aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
+      aria-describedby={[props['aria-describedby'], (!!props.errorText || props.errorTextId) && errorTextUuid].filter(Boolean).join(' ')}
       required={required}
       {...rest}
       onChange={(e): void => change(e)}

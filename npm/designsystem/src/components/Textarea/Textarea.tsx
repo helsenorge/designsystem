@@ -182,7 +182,9 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             id={textareaId}
             className={textareaClass}
             ref={ref}
-            aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
+            aria-describedby={[props['aria-describedby'], (!!props.errorText || props.errorTextId) && errorTextUuid]
+              .filter(Boolean)
+              .join(' ')}
             aria-invalid={!!onError}
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autoFocus}

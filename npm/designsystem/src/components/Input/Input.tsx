@@ -255,7 +255,9 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
               className={inputClass}
               ref={ref}
               aria-labelledby={props['aria-labelledby'] ?? undefined}
-              aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
+              aria-describedby={[props['aria-describedby'], (!!props.errorText || props.errorTextId) && errorTextUuid]
+                .filter(Boolean)
+                .join(' ')}
               aria-invalid={!!onError}
               disabled={disabled}
               placeholder={placeholder}
