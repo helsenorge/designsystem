@@ -6,6 +6,7 @@ import { AnalyticsId, FormMode, FormSize, IconSize } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys/color';
+import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
 import Icon from '../Icon';
@@ -141,9 +142,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           disabled={disabled}
           value={value}
           ref={mergedRefs}
-          aria-describedby={[props['aria-describedby'], (!!props.errorText || props.errorTextId) && errorTextUuid]
-            .filter(Boolean)
-            .join(' ')}
+          aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
           aria-invalid={error}
           required={required}
           onChange={onChangeHandler}

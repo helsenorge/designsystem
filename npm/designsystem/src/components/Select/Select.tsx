@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode, IconSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
+import { getAriaDescribedBy } from '../../utils/accessibility';
 import ErrorWrapper from '../ErrorWrapper';
 import Icon from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
@@ -120,9 +121,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
             disabled={disabled}
             ref={ref}
             required={required}
-            aria-describedby={[props['aria-describedby'], (!!props.errorText || props.errorTextId) && errorTextUuid]
-              .filter(Boolean)
-              .join(' ')}
+            aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
             aria-required={!!required}
             value={value}
             defaultValue={defaultValue}
