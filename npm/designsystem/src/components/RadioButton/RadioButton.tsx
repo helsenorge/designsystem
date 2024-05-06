@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { AnalyticsId, FormMode, FormSize } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useUuid } from '../../hooks/useUuid';
+import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
 import { getLabelText, renderLabelAsParent } from '../Label';
@@ -129,7 +130,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
       value={value}
       ref={mergedRefs}
       defaultChecked={defaultChecked}
-      aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
+      aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
       required={required}
       {...rest}
       onChange={(e): void => change(e)}
