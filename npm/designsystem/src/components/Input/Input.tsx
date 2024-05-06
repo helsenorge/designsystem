@@ -6,6 +6,7 @@ import { FormMode, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
+import { getAriaDescribedBy } from '../../utils/accessibility';
 import ErrorWrapper from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import { IconName } from '../Icons/IconNames';
@@ -255,7 +256,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
               className={inputClass}
               ref={ref}
               aria-labelledby={props['aria-labelledby'] ?? undefined}
-              aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
+              aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
               aria-invalid={!!onError}
               disabled={disabled}
               placeholder={placeholder}

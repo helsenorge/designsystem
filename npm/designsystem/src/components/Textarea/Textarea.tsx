@@ -4,6 +4,7 @@ import cn from 'classnames';
 
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
+import { getAriaDescribedBy } from '../../utils/accessibility';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper from '../ErrorWrapper';
 import { renderLabel } from '../Label';
@@ -182,7 +183,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             id={textareaId}
             className={textareaClass}
             ref={ref}
-            aria-describedby={[props['aria-describedby'] || '', errorTextUuid].join(' ')}
+            aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
             aria-invalid={!!onError}
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autoFocus}
