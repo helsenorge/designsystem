@@ -3,16 +3,16 @@ import React, { useRef } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { useSize } from './useSize';
-import HighlightBox from '../components/HighlightBox';
+import HighlightPanel from '../components/HighlightPanel';
 
 const UseSizeExample: React.FC = () => {
   const ref = useRef<HTMLPreElement>(null);
   const size = useSize(ref);
 
   return (
-    <HighlightBox color="blueberry" size="fluid">
+    <HighlightPanel color="blueberry" size="fluid">
       <pre ref={ref}>{JSON.stringify(size?.toJSON(), null, 2)}</pre>
-    </HighlightBox>
+    </HighlightPanel>
   );
 };
 

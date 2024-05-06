@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import HighlightBox, { HighlightBoxSize } from '../HighlightBox';
+import HighlightPanel, { HighlightPanelSize } from '../HighlightPanel';
 import HandWaving from '../Icons/HandWaving';
 
 import styles from './styles.module.scss';
@@ -11,7 +11,7 @@ export interface HelpPanelProps {
   /** What's in the box? */
   children: React.ReactNode;
   /** Changes the size. Default: medium */
-  size?: keyof typeof HighlightBoxSize;
+  size?: keyof typeof HighlightPanelSize;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets the data-testid attribute. */
@@ -24,7 +24,7 @@ const HelpPanel: React.FC<HelpPanelProps> = ({ className, testId, size, children
   const helpPanelClassName = classNames(styles['help-panel'], className);
 
   return (
-    <HighlightBox
+    <HighlightPanel
       className={helpPanelClassName}
       contentWrapperClassName={styles['help-panel']}
       testId={testId}
@@ -33,7 +33,7 @@ const HelpPanel: React.FC<HelpPanelProps> = ({ className, testId, size, children
       title={title}
     >
       {children}
-    </HighlightBox>
+    </HighlightPanel>
   );
 };
 

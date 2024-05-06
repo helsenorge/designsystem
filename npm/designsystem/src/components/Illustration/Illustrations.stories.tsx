@@ -3,7 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Docs from '../../docs';
-import HighlightBox from '../HighlightBox';
+import HighlightPanel from '../HighlightPanel';
 import { IllustrationList } from '../Illustrations/IllustrationNames';
 import LazyIllustration from '../LazyIllustration';
 import Spacer from '../Spacer';
@@ -62,9 +62,9 @@ export const IllustrationWall: Story = {
               {illustrationName}
             </Title>
             <Spacer />
-            <HighlightBox color={args.color} size={'fluid'}>
+            <HighlightPanel color={args.color} size={'fluid'}>
               <LazyIllustration color={args.color} size={args.size} illustrationName={illustrationName} />
-            </HighlightBox>
+            </HighlightPanel>
           </div>
         ))}
       </div>

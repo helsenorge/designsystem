@@ -1,0 +1,73 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Gitt at HighlightPanel skal rendres > Når HighlightPanel skal vises som fluid > Så rendres HighlightPanel riktig 1`] = `
+<div>
+  <div
+    class="highlightpanel--blueberry highlightpanel--fluid"
+  >
+    <p>
+      Avsnitt
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Gitt at HighlightPanel skal rendres > Når HighlightPanel skal vises som large > Så rendres HighlightPanel riktig 1`] = `
+<div>
+  <div
+    class="highlightpanel--blueberry highlightpanel--large container"
+    data-testid="highlightpanel-wrapper"
+  >
+    <div
+      class="highlightpanel__row"
+    >
+      <div
+        class="highlightpanel__col"
+      >
+        <div
+          class="highlightpanel__content-wrapper highlightpanel__content-wrapper"
+        >
+          <div
+            class="highlightpanel__row"
+          >
+            <div
+              class="highlightpanel__col highlightpanel__col--offset"
+              data-analyticsid="highlight-panel"
+            >
+              <p>
+                Avsnitt
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Gitt at HighlightPanel skal rendres > Når HighlightPanel skal vises som medium > Så rendres HighlightPanel riktig 1`] = `
+<div>
+  <div
+    class="highlightpanel--blueberry highlightpanel--medium container"
+    data-testid="highlightpanel-wrapper"
+  >
+    <div
+      class="highlightpanel__row"
+    >
+      <div
+        class="highlightpanel__col highlightpanel__col--offset"
+      >
+        <div
+          class="highlightpanel__content-wrapper"
+          data-analyticsid="highlight-panel"
+        >
+          <p>
+            Avsnitt
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

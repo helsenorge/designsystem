@@ -4,7 +4,7 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Illustration from './Illustration';
 import Docs from '../../docs';
-import HighlightBox from '../HighlightBox';
+import HighlightPanel from '../HighlightPanel';
 import Doctor from '../Illustrations/Doctor';
 
 const meta = {
@@ -46,8 +46,8 @@ export const Default: Story = {
     illustration: Doctor,
   },
   render: args => (
-    <HighlightBox color={args.color} size={'fluid'}>
+    <HighlightPanel color={args.color} size={'fluid'}>
       <Illustration {...args} />
-    </HighlightBox>
+    </HighlightPanel>
   ),
 };

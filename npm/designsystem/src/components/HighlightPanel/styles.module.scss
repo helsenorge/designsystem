@@ -22,8 +22,8 @@
   }
 }
 
-.highlightbox {
-  $box: &;
+.highlightpanel {
+  $panel: &;
   $colors: 'neutral', 'blueberry', 'cherry';
 
   // Medium og large har bakgrunnsfarge på den indre wrapperen
@@ -31,8 +31,8 @@
   &--medium,
   &--large {
     @each $color in $colors {
-      &#{$box}--#{$color} {
-        #{$box}__content-wrapper {
+      &#{$panel}--#{$color} {
+        #{$panel}__content-wrapper {
           background-color: var(--color-base-background-#{$color});
           border: 1px solid var(--color-base-border-#{$color});
         }
@@ -40,8 +40,8 @@
     }
 
     // Hvit har sin egen regel siden den ikke har valører
-    &#{$box}--white {
-      #{$box}__content-wrapper {
+    &#{$panel}--white {
+      #{$panel}__content-wrapper {
         background-color: var(--color-base-background-white);
         border: 1px solid var(--color-base-border-onlight-subtle);
       }
@@ -52,19 +52,19 @@
   // slik at bakgrunnsfargen går helt ut til skjermkanten
   &--large {
     @each $color in $colors {
-      &#{$box}--#{$color} {
+      &#{$panel}--#{$color} {
         @include media-breakpoint-down(xs) {
           background-color: var(--color-base-background-#{$color});
         }
       }
     }
 
-    &#{$box}--white {
+    &#{$panel}--white {
       @include media-breakpoint-down(xs) {
         background-color: var(--color-base-background-white);
       }
     }
-    #{$box}__content-wrapper {
+    #{$panel}__content-wrapper {
       padding-top: getSpacer(m);
       padding-bottom: getSpacer(l);
 
@@ -76,7 +76,7 @@
   }
 
   &--medium {
-    #{$box}__content-wrapper {
+    #{$panel}__content-wrapper {
       padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
 
       @media (min-width: map.get($grid-breakpoints, md)) {
@@ -98,19 +98,19 @@
     }
 
     @each $color in $colors {
-      &#{$box}--#{$color} {
+      &#{$panel}--#{$color} {
         background-color: var(--color-base-background-#{$color});
         border: 1px solid var(--color-base-border-#{$color});
       }
     }
-    &#{$box}--white {
+    &#{$panel}--white {
       background-color: var(--color-base-background-white);
       border: 1px solid var(--color-base-border-onlight-subtle);
     }
   }
 
   &--has-icon#{&}--medium {
-    #{$box}__content-wrapper {
+    #{$panel}__content-wrapper {
       @include content-wrapper-with-icon-flex;
       @include content-wrapper-with-icon-padding;
 
@@ -121,10 +121,10 @@
   }
 
   &--has-icon#{&}--large {
-    #{$box}__col {
+    #{$panel}__col {
       @include content-wrapper-with-icon-flex;
     }
-    #{$box}__content-wrapper {
+    #{$panel}__content-wrapper {
       @include content-wrapper-with-icon-padding;
 
       @media (min-width: map.get($grid-breakpoints, sm)) {
@@ -142,7 +142,7 @@
       }
     }
 
-    #{$box}__icon {
+    #{$panel}__icon {
       @media (min-width: map.get($grid-breakpoints, lg)) {
         @include make-col-ready;
         @include make-col(2);
@@ -154,7 +154,7 @@
       }
     }
 
-    #{$box}__content {
+    #{$panel}__content {
       @media (min-width: map.get($grid-breakpoints, lg)) {
         @include make-col-ready;
         @include make-col(8);

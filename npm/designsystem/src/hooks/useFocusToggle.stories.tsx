@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { useFocusToggle } from './useFocusToggle';
 import Button from '../components/Button';
-import HighlightBox from '../components/HighlightBox';
+import HighlightPanel from '../components/HighlightPanel';
 import Spacer from '../components/Spacer';
 
 const UseFocusToggleExample: React.FC = () => {
@@ -21,7 +21,7 @@ const UseFocusToggleExample: React.FC = () => {
       <p>Fokus er {allowFocus ? 'lov' : 'ikke lov'}</p>
       <Button onClick={toggleAllowFocus}>Slå av/på fokus</Button>
       <Spacer />
-      <HighlightBox color="blueberry" size="fluid">
+      <HighlightPanel color="blueberry" size="fluid">
         <div ref={ref}>
           <div>
             <Button>Knapp 1</Button>
@@ -35,7 +35,7 @@ const UseFocusToggleExample: React.FC = () => {
             <Button>Knapp 3</Button>
           </div>
         </div>
-      </HighlightBox>
+      </HighlightPanel>
     </>
   );
 };

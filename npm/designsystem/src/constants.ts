@@ -89,7 +89,7 @@ export enum AnalyticsId {
   FormLayout = 'form-layout',
   HelpBubble = 'help-bubble',
   HelpQuestion = 'help-question',
-  HighlightBox = 'highlight-box',
+  HighlightPanel = 'highlight-panel',
   Icon = 'icon',
   Illustration = 'Illustration',
   Input = 'input',

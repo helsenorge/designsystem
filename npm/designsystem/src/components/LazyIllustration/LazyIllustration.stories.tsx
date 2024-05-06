@@ -4,7 +4,7 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Docs from '../../docs';
 import { shortLoremText } from '../../utils/loremtext';
-import HighlightBox from '../HighlightBox';
+import HighlightPanel from '../HighlightPanel';
 
 import LazyIllustration from './';
 
@@ -49,10 +49,10 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => {
     return (
-      <HighlightBox color={args.color} size={'fluid'}>
+      <HighlightPanel color={args.color} size={'fluid'}>
         <LazyIllustration color={args.color} size={args.size} illustrationName={args.illustrationName} />
         <p>{shortLoremText}</p>
-      </HighlightBox>
+      </HighlightPanel>
     );
   },
 };

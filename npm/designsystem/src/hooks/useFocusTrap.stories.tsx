@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { useFocusTrap } from './useFocusTrap';
 import Button from '../components/Button';
-import HighlightBox from '../components/HighlightBox';
+import HighlightPanel from '../components/HighlightPanel';
 import Spacer from '../components/Spacer';
 
 const UseFocusTrapExample: React.FC = () => {
@@ -21,7 +21,7 @@ const UseFocusTrapExample: React.FC = () => {
       <Button onClick={toggleTrap}>Slå av/på fokusfelle</Button>
       <p>Fokusfelle er {trap ? 'på' : 'av'}</p>
       <Spacer />
-      <HighlightBox color="blueberry" size="fluid">
+      <HighlightPanel color="blueberry" size="fluid">
         <div ref={ref}>
           <div>
             <Button>Knapp 1</Button>
@@ -35,7 +35,7 @@ const UseFocusTrapExample: React.FC = () => {
             <Button>Knapp 3</Button>
           </div>
         </div>
-      </HighlightBox>
+      </HighlightPanel>
     </>
   );
 };
