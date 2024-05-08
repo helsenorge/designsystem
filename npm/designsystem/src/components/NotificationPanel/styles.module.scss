@@ -21,9 +21,8 @@
     }
   }
 
-  &__compact {
+  &--compact {
     width: fit-content;
-    font-weight: 600;
     font-size: $font-size-xs;
     line-height: 1.25rem;
     box-shadow: none;
@@ -31,10 +30,6 @@
     @media (min-width: map.get($grid-breakpoints, md)) {
       padding-left: getSpacer(2xs);
       padding-right: getSpacer(s);
-    }
-
-    &--basic {
-      font-weight: 400;
     }
 
     &--outline {
@@ -66,12 +61,12 @@
     background-color: $blueberry50;
   }
 
-  &--info.notification-panel__compact {
+  &--info#{&}--compact {
     box-shadow: none;
     background-color: transparent;
   }
 
-  &--info.notification-panel__compact--basic {
+  &--info#{&}--compact--basic {
     border: none;
   }
 
@@ -80,12 +75,12 @@
     background-color: $banana50;
   }
 
-  &--warn.notification-panel__compact {
+  &--warn#{&}--compact {
     box-shadow: none;
     background-color: transparent;
   }
 
-  &--warn.notification-panel__compact--basic {
+  &--warn#{&}--compact--basic {
     border: none;
   }
 
@@ -94,12 +89,12 @@
     background-color: $cherry50;
   }
 
-  &--alert.notification-panel__compact {
+  &--alert#{&}--compact {
     box-shadow: none;
     background-color: transparent;
   }
 
-  &--alert.notification-panel__compact--basic {
+  &--alert#{&}--compact--basic {
     border: none;
   }
 
@@ -108,12 +103,12 @@
     background-color: $kiwi50;
   }
 
-  &--success.notification-panel__compact {
+  &--success#{&}--compact {
     box-shadow: none;
     background-color: transparent;
   }
 
-  &--success.notification-panel__compact--basic {
+  &--success#{&}--compact--basic {
     border: none;
   }
 
@@ -132,10 +127,6 @@
     }
   }
 
-  &__children.notification-panel__label-and-content--spacing {
-    font-weight: 500;
-  }
-
   &__label,
   &__children {
     font-size: $font-size-xs;
@@ -152,25 +143,32 @@
     font-weight: 700;
     margin: getSpacer(2xs) 0 0 0;
 
-    &__compact {
-      font-weight: 600;
+    &--compact {
       font-size: $font-size-xs;
       line-height: 1.25rem;
     }
 
-    &__compact--basic {
-      font-weight: 400;
+    &--no-content {
+      margin: 0;
     }
-  }
 
-  &__label--no-content {
-    margin: 0;
-    font-weight: 600;
+    &--compact,
+    &--no-content {
+      font-weight: 600;
+    }
+
+    &--outline {
+      font-weight: 500;
+    }
   }
 
   &__children {
     font-weight: 600;
     padding: getSpacer(3xs) 0;
+
+    &--with-label {
+      font-weight: 500;
+    }
 
     &--expander-no-label {
       margin: getSpacer(2xs) 0 0 0;
@@ -178,6 +176,10 @@
       @media (max-width: map.get($grid-breakpoints, lg)) {
         padding-top: 0;
       }
+    }
+
+    &--outline {
+      font-weight: 500;
     }
   }
 

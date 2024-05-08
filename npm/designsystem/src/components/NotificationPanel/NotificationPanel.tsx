@@ -126,15 +126,17 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     ),
   };
   const renderContent = (): JSX.Element => {
+    const outlineVariant = compactVariant === 'outline';
     const contentClasses = classNames(styles['notification-panel__content']);
     const labelClasses = classNames(styles['notification-panel__label'], {
       [styles['notification-panel__label--no-content']]: !children && !expanderChildren,
-      [styles['notification-panel__label__compact']]: !!compactVariant,
-      [styles['notification-panel__label__compact--basic']]: compactVariant === 'basic',
+      [styles['notification-panel__label--compact']]: !!compactVariant,
+      [styles['notification-panel__label--outline']]: outlineVariant,
     });
     const childrenClasses = classNames(styles['notification-panel__children'], {
-      [styles['notification-panel__label-and-content--spacing']]: label,
+      [styles['notification-panel__children--with-label']]: label,
       [styles['notification-panel__children--expander-no-label']]: expanderChildren && !label,
+      [styles['notification-panel__children--outline']]: outlineVariant,
     });
 
     return (
@@ -144,7 +146,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
             {label}
           </h1>
         )}
-        {children && !compactVariant && <div className={childrenClasses}>{children}</div>}
+        {children && <div className={childrenClasses}>{children}</div>}
         {expanderChildren && expanderButtonText && expanderButtonClosedText && !compactVariant && (
           <DetailButton
             expanderOpenFromStart={expanderOpenFromStart}
@@ -162,9 +164,9 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     styles[`notification-panel--${variant}`],
     size && styles[`notification-panel--${size}`],
     {
-      [styles['notification-panel__compact']]: !!compactVariant,
-      [styles['notification-panel__compact--basic']]: compactVariant === 'basic',
-      [styles['notification-panel__compact--outline']]: compactVariant === 'outline',
+      [styles['notification-panel--compact']]: !!compactVariant,
+      [styles['notification-panel--compact--basic']]: compactVariant === 'basic',
+      [styles['notification-panel--compact--outline']]: compactVariant === 'outline',
       [styles['notification-panel--with-content']]: expanderChildren || (label && children),
       [styles['notification-panel--dismissable']]: dismissable,
     },
