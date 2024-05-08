@@ -17,6 +17,7 @@ import TriangleX from '../Icons/TriangleX';
 
 import styles from './styles.module.scss';
 
+export type LabelTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span';
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'success';
 export type NotificationCompactVariants = 'basic' | 'outline';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
@@ -34,6 +35,8 @@ export interface NotificationPanelProps {
   expanderButtonClosedText?: string;
   /** Makes expander be open from start. */
   expanderOpenFromStart?: boolean;
+  /** Changes the underlying element of the label. */
+  htmlMarkup?: LabelTags;
   /** Changes the visual representation of the notification panel. */
   variant?: NotificationPanelVariants;
   /** Makes the panel more compact. Available in basic and outline. */
