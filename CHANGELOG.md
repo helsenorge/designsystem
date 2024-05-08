@@ -1,3 +1,11 @@
+## [7.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.4.0&targetVersion=GTv7.5.0) (2024-05-08)
+
+### Features
+
+- **notificationpanel:** compactmode kan nå vise children
+  ([8056e4a](https://github.com/helsenorge/designsystem/commit/8056e4a95ed03caecd05b69bedbb5c16f6ba1f4a)), closes
+  [#324320](https://github.com/helsenorge/designsystem/issues/324320)
+
 ## [7.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.3.1&targetVersion=GTv7.4.0) (2024-05-07)
 
 ### Features
