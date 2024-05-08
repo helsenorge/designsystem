@@ -1,3 +1,5 @@
+## [6.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.6.3&targetVersion=GTv6.7.0) (2024-05-08)
+
 ## [6.6.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv6.6.2&targetVersion=GTv6.6.3) (2024-05-08)
 
 ### Features
