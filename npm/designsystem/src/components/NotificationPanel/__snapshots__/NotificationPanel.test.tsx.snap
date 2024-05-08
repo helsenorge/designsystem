@@ -88,7 +88,7 @@ exports[`Gitt at NotificationPanel skal vises N책r bruker ser compact-variant S�
 exports[`Gitt at NotificationPanel skal vises N책r panelet kan lukkes S책 kalles onClick-handleren n책r man klikker p책 knappen 1`] = `
 <div>
   <div
-    class="notification-panel notification-panel--info notification-panel--has-children notification-panel--dismissable"
+    class="notification-panel notification-panel--info notification-panel--dismissable"
     data-analyticsid="notification-panel"
   >
     <span
@@ -155,7 +155,7 @@ exports[`Gitt at NotificationPanel skal vises N책r panelet kan lukkes S책 kalles
 exports[`Gitt at NotificationPanel skal vises N책r panelet vises med default props S책 rendres komponenten riktig 1`] = `
 <div>
   <div
-    class="notification-panel notification-panel--info notification-panel--has-children"
+    class="notification-panel notification-panel--info"
     data-analyticsid="notification-panel"
   >
     <span
