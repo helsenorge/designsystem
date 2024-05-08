@@ -3,7 +3,7 @@
 exports[`Gitt at NotificationPanel skal vises Når bruker ser compact-variant Så vises innhold 1`] = `
 <div>
   <div
-    class="notification-panel notification-panel--info notification-panel__compact notification-panel__compact--basic notification-panel--has-children"
+    class="notification-panel notification-panel--info notification-panel--compact notification-panel--compact--basic"
     data-analyticsid="notification-panel"
   >
     <span
@@ -29,10 +29,21 @@ exports[`Gitt at NotificationPanel skal vises Når bruker ser compact-variant S�
     <div
       class="notification-panel__content"
       id="test"
-    />
+    >
+      <div
+        class="notification-panel__children"
+      >
+        Some text here for testing.
+        <a
+          href="/"
+        >
+          Lenke
+        </a>
+      </div>
+    </div>
   </div>
   <div
-    class="notification-panel notification-panel--info notification-panel__compact notification-panel__compact--outline notification-panel--has-children"
+    class="notification-panel notification-panel--info notification-panel--compact notification-panel--compact--outline"
     data-analyticsid="notification-panel"
   >
     <span
@@ -58,7 +69,18 @@ exports[`Gitt at NotificationPanel skal vises Når bruker ser compact-variant S�
     <div
       class="notification-panel__content"
       id="test"
-    />
+    >
+      <div
+        class="notification-panel__children notification-panel__children--outline"
+      >
+        Some text here for testing.
+        <a
+          href="/"
+        >
+          Lenke
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 `;
