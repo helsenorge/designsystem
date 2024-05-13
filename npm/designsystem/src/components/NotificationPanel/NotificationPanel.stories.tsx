@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import NotificationPanel from './NotificationPanel';
+import { allTitleTags } from '../../../.storybook/knobs';
 import Docs from '../../docs';
 import { getColor } from '../../theme/currys';
 
@@ -22,6 +23,7 @@ const meta = {
     size: 'large',
     fluid: false,
     label: 'Det har skjedd noe galt. Prøv igjen senere.',
+    labelHtmlMarkup: 'h1',
     variant: 'alert',
     role: undefined,
   },
@@ -38,6 +40,10 @@ const meta = {
     },
     label: {
       control: 'text',
+    },
+    labelHtmlMarkup: {
+      control: 'select',
+      options: allTitleTags,
     },
     variant: {
       control: 'select',
