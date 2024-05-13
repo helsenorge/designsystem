@@ -1,3 +1,30 @@
+## [7.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.4.0&targetVersion=GTv7.5.0) (2024-05-08)
+
+### Features
+
+- **notificationpanel:** compactmode kan nå vise children
+  ([8056e4a](https://github.com/helsenorge/designsystem/commit/8056e4a95ed03caecd05b69bedbb5c16f6ba1f4a)), closes
+  [#324320](https://github.com/helsenorge/designsystem/issues/324320)
+
+## [7.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.3.1&targetVersion=GTv7.4.0) (2024-05-07)
+
+### Features
+
+- bruk Supernova tokens ([4f75387](https://github.com/helsenorge/designsystem/commit/4f753874252ebf8d4a12950ba52996eb9f3abc32)), closes
+  [#318458](https://github.com/helsenorge/designsystem/issues/318458)
+- mulighet for å gi en tekst på popmenu knapp i tillegg til ikon
+  ([80b232b](https://github.com/helsenorge/designsystem/commit/80b232b4c1bbc1bdd64f711767c6576a01958f56)), closes
+  [#323182](https://github.com/helsenorge/designsystem/issues/323182)
+
+### Bug Fixes
+
+- ikke unødvendig mellomrom i aria-describedby
+  ([0053898](https://github.com/helsenorge/designsystem/commit/0053898bf559a39a401a38194e23550d99bee859)), closes
+  [#324479](https://github.com/helsenorge/designsystem/issues/324479)
+- skjemakomponenter har ikke tom aria-describedby
+  ([186db10](https://github.com/helsenorge/designsystem/commit/186db100d5a3303316d9e40196d64fb06136a58c)), closes
+  [#324479](https://github.com/helsenorge/designsystem/issues/324479)
+
 ## [7.3.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.3.0&targetVersion=GTv7.3.1) (2024-04-22)
 
 ### Bug Fixes

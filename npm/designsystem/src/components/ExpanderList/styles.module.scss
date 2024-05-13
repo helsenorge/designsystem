@@ -89,8 +89,13 @@
   &--closed:not(:hover, .expander-list-link--fill) {
     background-color: transparent;
   }
+
+  &--fill {
+    margin-top: getSpacer(s);
+  }
+
   &--closed#{&}--fill {
-    margin: getSpacer(s) 0;
+    margin-bottom: getSpacer(s);
 
     &:not(:hover) {
       background-color: $neutral50;
