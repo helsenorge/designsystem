@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import NotificationPanel from './NotificationPanel';
+import { allTitleTags } from '../../../.storybook/knobs';
 import Docs from '../../docs';
 import { getColor } from '../../theme/currys';
 
@@ -22,6 +23,7 @@ const meta = {
     size: 'large',
     fluid: false,
     label: 'Det har skjedd noe galt. Prøv igjen senere.',
+    labelHtmlMarkup: 'h1',
     variant: 'alert',
     role: undefined,
   },
@@ -38,6 +40,10 @@ const meta = {
     },
     label: {
       control: 'text',
+    },
+    labelHtmlMarkup: {
+      control: 'select',
+      options: allTitleTags,
     },
     variant: {
       control: 'select',
@@ -193,6 +199,39 @@ export const Compact: Story = {
       <div className="row mt-6">
         <div className={'col-12'}>
           <NotificationPanel {...args} label={'Compact - outline'} compactVariant={'outline'}></NotificationPanel>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const CompactWithChildren: Story = {
+  render: args => (
+    <div style={{ backgroundColor: getColor('blueberry', 50), padding: '3rem' }}>
+      <div className="row mt-6">
+        <div className={'col-12'}>
+          <NotificationPanel {...args} label={undefined} compactVariant={'basic'}>
+            <div>
+              {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
+              periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.`}
+              <a href={'https://www.helsenorge.no'} target="_parent">
+                {'Les mer om dine rettigheter her.'}
+              </a>
+            </div>
+          </NotificationPanel>{' '}
+        </div>
+      </div>
+      <div className="row mt-6">
+        <div className={'col-12'}>
+          <NotificationPanel {...args} label={undefined} compactVariant={'outline'}>
+            <div>
+              {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
+              periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.`}
+              <a href={'https://www.helsenorge.no'} target="_parent">
+                {'Les mer om dine rettigheter her.'}
+              </a>
+            </div>
+          </NotificationPanel>
         </div>
       </div>
     </div>

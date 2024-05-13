@@ -20,6 +20,7 @@ import styles from './styles.module.scss';
 export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'success';
 export type NotificationCompactVariants = 'basic' | 'outline';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
+export type LabelTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span';
 
 export interface NotificationPanelProps {
   /** Adds custom classes to the element. */
@@ -48,6 +49,8 @@ export interface NotificationPanelProps {
   fluid?: boolean;
   /** Sets a label for the notification panel. */
   label?: string;
+  /** Changes the underlying element of the label. */
+  labelHtmlMarkup?: LabelTags;
   /** Close button aria-label */
   ariaLabelCloseBtn?: string;
   /** Custom id for the label */
@@ -83,6 +86,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     expanderOpenFromStart = false,
     compactVariant,
     label,
+    labelHtmlMarkup = 'h1',
     fluid = false,
     size,
     className,
@@ -126,25 +130,28 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     ),
   };
   const renderContent = (): JSX.Element => {
+    const outlineVariant = compactVariant === 'outline';
     const contentClasses = classNames(styles['notification-panel__content']);
     const labelClasses = classNames(styles['notification-panel__label'], {
       [styles['notification-panel__label--no-content']]: !children && !expanderChildren,
-      [styles['notification-panel__label__compact']]: !!compactVariant,
-      [styles['notification-panel__label__compact--basic']]: compactVariant === 'basic',
+      [styles['notification-panel__label--compact']]: !!compactVariant,
+      [styles['notification-panel__label--outline']]: outlineVariant,
     });
     const childrenClasses = classNames(styles['notification-panel__children'], {
-      [styles['notification-panel__label-and-content--spacing']]: label,
+      [styles['notification-panel__children--with-label']]: label,
       [styles['notification-panel__children--expander-no-label']]: expanderChildren && !label,
+      [styles['notification-panel__children--outline']]: outlineVariant,
     });
+    const CustomTag = labelHtmlMarkup;
 
     return (
       <div className={contentClasses} id={!label ? uuid : undefined}>
         {label && (
-          <h1 className={labelClasses} id={uuid}>
+          <CustomTag className={labelClasses} id={uuid}>
             {label}
-          </h1>
+          </CustomTag>
         )}
-        {children && !compactVariant && <div className={childrenClasses}>{children}</div>}
+        {children && <div className={childrenClasses}>{children}</div>}
         {expanderChildren && expanderButtonText && expanderButtonClosedText && !compactVariant && (
           <DetailButton
             expanderOpenFromStart={expanderOpenFromStart}
@@ -162,9 +169,9 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     styles[`notification-panel--${variant}`],
     size && styles[`notification-panel--${size}`],
     {
-      [styles['notification-panel__compact']]: !!compactVariant,
-      [styles['notification-panel__compact--basic']]: compactVariant === 'basic',
-      [styles['notification-panel__compact--outline']]: compactVariant === 'outline',
+      [styles['notification-panel--compact']]: !!compactVariant,
+      [styles['notification-panel--compact--basic']]: compactVariant === 'basic',
+      [styles['notification-panel--compact--outline']]: compactVariant === 'outline',
       [styles['notification-panel--with-content']]: expanderChildren || (label && children),
       [styles['notification-panel--dismissable']]: dismissable,
     },
