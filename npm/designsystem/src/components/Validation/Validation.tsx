@@ -31,22 +31,27 @@ interface ValidationProps {
 }
 
 export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-  const hasErrors = props.errors || props.errorSummary;
-  const formGroupClasses = hasErrors ? styles['form-group-wrapper--error-sibling'] : '';
-  const errorClasses = classNames(styles['validation-errors'], props.errorSummary && styles['validation-errors--visible']);
+  const errorClasses = classNames(styles['validation__errors'], props.errorSummary && styles['validation__errors--visible']);
+
+  const renderChild = (child: React.ReactNode): React.ReactNode => {
+    if (isComponent<FormGroupProps>(child, FormGroup)) {
+      return React.cloneElement(child, {
+        errorWrapperClassName: styles['validation__error-wrapper'],
+      });
+    }
+    if (React.isValidElement(child) && child.type === React.Fragment) {
+      return React.Children.map(child.props.children, (child: React.ReactNode) => {
+        return renderChild(child);
+      });
+    }
+
+    return child;
+  };
 
   return (
     <>
       <div data-testid={props.testId} data-analyticsid={AnalyticsId.Validation} className={props.className} ref={ref}>
-        {React.Children.map(props.children, (child: React.ReactNode) => {
-          if (isComponent<FormGroupProps>(child, FormGroup)) {
-            return React.cloneElement(child, {
-              className: formGroupClasses,
-            });
-          }
-
-          return child;
-        })}
+        {React.Children.map(props.children, (child: React.ReactNode) => renderChild(child))}
       </div>
       <ValidationSummary errorTitle={props.errorTitle} errors={props.errors}>
         {props.errorSummary && <div className={errorClasses}>{props.errorSummary}</div>}

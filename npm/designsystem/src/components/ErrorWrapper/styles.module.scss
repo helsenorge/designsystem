@@ -5,12 +5,6 @@
 @import '../../scss/font-settings';
 
 .error-wrapper {
-  padding-bottom: getSpacer(m);
-
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    padding-bottom: getSpacer(l);
-  }
-
   &--with-error {
     padding-top: getSpacer(s);
     margin-left: getSpacer(xs) * -1;

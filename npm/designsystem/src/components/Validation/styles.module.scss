@@ -1,26 +1,32 @@
+@use 'sass:map';
+@import '../../scss/breakpoints';
 @import '../../scss/spacers';
 @import '../../scss/palette';
 @import '../../scss/font-settings';
 
-.validation-summary {
-  color: $cherry600;
+.validation {
+  &__error-wrapper {
+    padding-bottom: getSpacer(m);
 
-  &--visible {
-    margin: getSpacer(l) 0 getSpacer(s);
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      padding-bottom: getSpacer(l);
+    }
   }
-}
 
-.validation-errors {
-  font-size: $font-size-sm;
-  font-weight: 600;
+  &__summary {
+    color: $cherry600;
 
-  &--visible {
-    margin: getSpacer(l) 0 getSpacer(s);
+    &--visible {
+      margin: getSpacer(l) 0 getSpacer(s);
+    }
   }
-}
 
-.form-group-wrapper {
-  &--error-sibling {
-    padding-bottom: 0 !important;
+  &__errors {
+    font-size: $font-size-sm;
+    font-weight: 600;
+
+    &--visible {
+      margin: getSpacer(l) 0 getSpacer(s);
+    }
   }
 }

@@ -69,7 +69,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
 
       const errorWrapperWithCustomClassName = screen.getByTestId('error-wrapper-testid-1');
       expect(errorWrapperWithCustomClassName).toBeVisible();
-      expect(errorWrapperWithCustomClassName.className).toBe('error-wrapper custom-wrapper-class');
+      expect(errorWrapperWithCustomClassName.className).toBe('custom-wrapper-class');
     });
   });
 
@@ -136,7 +136,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
       const errorWrapper = formGroup?.parentElement;
       const formGroupWrapper = errorWrapper?.parentElement;
 
-      expect(errorWrapper?.className).toBe('error-wrapper error-wrapper--with-error');
+      expect(errorWrapper?.className).toBe('error-wrapper--with-error');
       expect(formGroupWrapper?.className).toBe('form-group-wrapper');
     });
     describe('Når children er Checkbox', (): void => {

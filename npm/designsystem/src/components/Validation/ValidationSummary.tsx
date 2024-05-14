@@ -25,8 +25,8 @@ const ValidationSummary: React.FC<ValidationSummaryProps> = props => {
   const titleId = useUuid();
 
   const summaryClasses = classNames(
-    styles['validation-summary'],
-    !!props.errors && Object.entries(props.errors).length > 0 && styles['validation-summary--visible']
+    styles['validation__summary'],
+    !!props.errors && Object.entries(props.errors).length > 0 && styles['validation__summary--visible']
   );
 
   return (

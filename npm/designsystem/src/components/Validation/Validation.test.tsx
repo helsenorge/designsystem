@@ -141,7 +141,7 @@ describe('Gitt at Validation skal vises', () => {
         const errorSummary = screen.getByRole('alert');
         expect(errorSummary).toBeVisible();
         expect(errorSummary).toHaveTextContent('Sjekk at alt er riktig utfylt');
-        expect(errorSummary.className).toBe('validation-summary validation-summary--visible');
+        expect(errorSummary.className).toBe('validation__summary validation__summary--visible');
       });
     });
 
@@ -155,7 +155,7 @@ describe('Gitt at Validation skal vises', () => {
 
         const errorSummary = screen.getByRole('alert');
 
-        expect(errorSummary.className).toBe('validation-summary validation-summary--visible');
+        expect(errorSummary.className).toBe('validation__summary validation__summary--visible');
       });
     });
 
@@ -224,7 +224,7 @@ describe('Gitt at Validation skal vises', () => {
         expect(name).toHaveAccessibleDescription('');
         expect(monster).toHaveAccessibleDescription('');
         expect(errorSummary).toBeEmptyDOMElement();
-        expect(errorSummary.className).toBe('validation-summary');
+        expect(errorSummary.className).toBe('validation__summary');
       });
     });
   });

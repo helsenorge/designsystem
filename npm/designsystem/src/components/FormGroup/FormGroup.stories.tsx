@@ -134,7 +134,7 @@ export const CustomErrorWrapperClass: Story = {
         htmlMarkup="div"
         {...args}
         legend={'ErrorWrapperClass gir mulighet til å style ErrorWrapper som ligger rundt form'}
-        errorWrapperClassName="error-wrapper-class--no-bottom-margin"
+        errorWrapperClassName="error-wrapper-class--with-bottom-margin"
       >
         <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
         <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />

@@ -1,5 +1,7 @@
-html .error-wrapper-class--no-bottom-margin {
-  padding-bottom: 0;
+@import '../../scss/breakpoints';
+
+html .error-wrapper-class--with-bottom-margin {
+  padding-bottom: getSpacer(m);
   border: 2px dashed black;
 }
 

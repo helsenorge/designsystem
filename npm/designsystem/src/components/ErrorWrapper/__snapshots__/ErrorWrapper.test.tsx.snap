@@ -3,7 +3,7 @@
 exports[`Gitt at det skal ikke vises en valideringsfeil > Når ErrorWrapper rendres > Så vises ikke valideringsfeil 1`] = `
 <div>
   <div
-    class="error-wrapper"
+    class=""
   />
 </div>
 `;
@@ -11,7 +11,7 @@ exports[`Gitt at det skal ikke vises en valideringsfeil > Når ErrorWrapper rend
 exports[`Gitt at det skal vises en valideringsfeil > Når ErrorWrapper rendres > Så vises Valideringsfeilen 1`] = `
 <div>
   <div
-    class="error-wrapper error-wrapper--with-error"
+    class="error-wrapper--with-error"
   >
     <p
       class="error-wrapper__errors"

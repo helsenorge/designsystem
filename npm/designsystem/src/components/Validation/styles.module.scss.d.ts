@@ -1,9 +1,9 @@
 export type Styles = {
-  'form-group-wrapper--error-sibling': string;
-  'validation-errors': string;
-  'validation-errors--visible': string;
-  'validation-summary': string;
-  'validation-summary--visible': string;
+  'validation__error-wrapper': string;
+  validation__errors: string;
+  'validation__errors--visible': string;
+  validation__summary: string;
+  'validation__summary--visible': string;
 };
 
 export type ClassNames = keyof Styles;
