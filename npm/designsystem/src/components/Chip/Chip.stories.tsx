@@ -6,7 +6,7 @@ import { StoryObj, Meta } from '@storybook/react';
 import Chip, { ChipAction, ChipSize, ChipVariant } from './Chip';
 
 const meta = {
-  title: '@helsenorge∕designsystem-react/Components/Chip',
+  title: '@helsenorge/designsystem-react/Components/Chip',
   component: Chip,
   parameters: {
     docs: {
