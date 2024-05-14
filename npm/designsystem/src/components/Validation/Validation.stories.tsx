@@ -44,7 +44,7 @@ const meta = {
                 console.log(data);
               })}
         >
-        <Validation errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
+        <Validation errors={allErrors} errorTitle={'Sjekk at alt er riktig utfylt'}>
         <FormGroup
           key={0}
           title={'Gruppe tittel'}
@@ -102,7 +102,7 @@ Eksempel på validation med react-hook-form 6:
               console.log(data);
             })}
         >
-        <Validation errorSummary={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
+        <Validation errors={allErrors} errorTitle={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
         <FormGroup
         key={0}
         title={'Gruppe tittel'}

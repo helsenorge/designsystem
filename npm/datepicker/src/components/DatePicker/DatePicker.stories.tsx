@@ -302,10 +302,8 @@ export const ValidateDateTime: Story = {
     };
 
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Validation
-          errorSummary={errors.datepicker || errors.datetimehour || errors.datetimeminute ? 'Sjekk at alt er riktig utfylt' : undefined}
-        >
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Validation errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
           <DateTimePickerWrapper
             errorText={
               (errors.datepicker?.message as string) ||

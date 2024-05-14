@@ -72,27 +72,15 @@ describe('Gitt at Validation skal vises', () => {
     });
   });
 
-  describe('Når Validation har errorTitle, errors og errorSummary', () => {
+  describe('Når Validation har errorTitle og errors', () => {
     test('Så vises all teksten i en alert', () => {
-      render(<Validation errorTitle="Du må fikse dette:" errors={{ feil1: { message: 'For lang tekst' } }} errorSummary="feilmelding" />);
+      render(<Validation errorTitle="Du må fikse dette:" errors={{ feil1: { message: 'For lang tekst' } }} />);
 
       const alert = screen.getByRole('alert', { name: 'Du må fikse dette:' });
       expect(alert).toBeVisible();
 
       const errorMessage = within(alert).getByText('For lang tekst');
       expect(errorMessage).toBeVisible();
-      const errorSummary = within(alert).getByText('feilmelding');
-      expect(errorSummary).toBeVisible();
-    });
-  });
-
-  describe('Når Validation har errorSummary', () => {
-    test('Så vises oppsummering av feil i en alert', () => {
-      render(<Validation errorSummary="feilmelding" />);
-
-      const alert = screen.getByRole('alert');
-      expect(alert).toBeVisible();
-      expect(alert).toHaveTextContent('feilmelding');
     });
   });
 
