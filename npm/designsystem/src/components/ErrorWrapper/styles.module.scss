@@ -5,6 +5,7 @@
 @import '../../scss/font-settings';
 
 .error-wrapper {
+  position: relative;
   padding-bottom: getSpacer(m);
 
   @media (min-width: map.get($grid-breakpoints, md)) {
