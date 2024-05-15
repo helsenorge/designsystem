@@ -1,3 +1,20 @@
+## [7.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.5.0&targetVersion=GTv7.6.0) (2024-05-15)
+
+### Features
+
+- **notificationpanel:** legg til prop for å sette html tag for label
+  ([ebd331a](https://github.com/helsenorge/designsystem/commit/ebd331a75f04099c4ad7e552ff70df8751675734)), closes
+  [#324952](https://github.com/helsenorge/designsystem/issues/324952)
+
+### Bug Fixes
+
+- skjemaelementer med error styling overlapper utifra dom rekkefølge
+  ([b07b7d6](https://github.com/helsenorge/designsystem/commit/b07b7d69391b3e4296e8a8cde8b8d312f835cb03)), closes
+  [#324846](https://github.com/helsenorge/designsystem/issues/324846)
+- **expanderlist:** fiks så variant fill ikke mister margin top ved åpning av expander
+  ([d277c97](https://github.com/helsenorge/designsystem/commit/d277c97660aa8334a44b1183445f55f2037b2263)), closes
+  [#324823](https://github.com/helsenorge/designsystem/issues/324823)
+
 ## [7.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.4.0&targetVersion=GTv7.5.0) (2024-05-08)
 
 ### Features
