@@ -53,11 +53,11 @@
     text-align: left;
 
     &:hover {
-      background-color: $blueberry50;
+      background-color: var(--color-action-background-transparent-onlight-hover);
     }
 
     &--expanded {
-      background-color: $blueberry50;
+      background-color: var(--color-action-background-transparent-onlight-hover);
     }
   }
 
