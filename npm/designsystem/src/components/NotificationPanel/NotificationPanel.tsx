@@ -2,13 +2,13 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { DetailButton } from './DetailButton/DetailButton';
 import { AnalyticsId, IconSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import Close from '../Close';
+import Expander from '../Expander';
 import Icon from '../Icon';
 import CheckFill from '../Icons/CheckFill';
 import ErrorSignFill from '../Icons/ErrorSignFill';
@@ -144,6 +144,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     });
     const CustomTag = labelHtmlMarkup;
 
+    const [expanderOpen, setExpanderOpen] = React.useState(expanderOpenFromStart);
     return (
       <div className={contentClasses} id={!label ? uuid : undefined}>
         {label && (
@@ -153,12 +154,14 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         )}
         {children && <div className={childrenClasses}>{children}</div>}
         {expanderChildren && expanderButtonText && expanderButtonClosedText && !compactVariant && (
-          <DetailButton
-            expanderOpenFromStart={expanderOpenFromStart}
-            content={expanderChildren}
-            buttonText={expanderButtonText}
-            buttonClosedText={expanderButtonClosedText}
-          />
+          <Expander
+            title={expanderOpen ? expanderButtonText : expanderButtonClosedText}
+            onExpand={setExpanderOpen}
+            expanded={expanderOpen}
+            testId="expand"
+          >
+            {expanderChildren}
+          </Expander>
         )}
       </div>
     );
