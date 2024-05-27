@@ -95,6 +95,7 @@ export const AsButton: Story = {
 
 export const UnderlineTesting: Story = {
   args: {
+    children: 'Standard lugargnom',
     style: {
       textDecorationThickness: '0.0625rem',
       textUnderlineOffset: '0.1rem',
@@ -105,28 +106,28 @@ export const UnderlineTesting: Story = {
     <>
       <p>{'Default, gitt font og browser'}</p>
       <AnchorLink {...args} target={'_parent'}>
-        {'Standard lugargnom'}
+        {args.children}
       </AnchorLink>
       <br />
       <p>{'Med tykkelse lik tidligere (0.0625rem):'}</p>
       <AnchorLink {...args} target={'_parent'} style={{ textDecorationThickness: '0.0625rem' }}>
-        {'Standard lugargnom'}
+        {args.children}
       </AnchorLink>
       <br />
       <p>{'Med plassering av underline "under"'}</p>
       <AnchorLink {...args} target={'_parent'} style={{ textDecorationThickness: '0.0625rem', textUnderlinePosition: 'under' }}>
-        {'Standard lugargnom'}
+        {args.children}
       </AnchorLink>
       <br />
       <p>{'Med underline offset (0.1rem):'}</p>
       <AnchorLink {...args} target={'_parent'} style={{ textDecorationThickness: '0.0625rem', textUnderlineOffset: '0.1rem' }}>
-        {'Standard lugargnom'}
+        {args.children}
       </AnchorLink>
       <br />
       <br />
       <p>{'Med interaktive verdier (endre "style"-objektet i "Controls"-fanen):'}</p>
       <AnchorLink {...args} target={'_parent'} style={args.style}>
-        {'Standard lugargnom'}
+        {args.children}
       </AnchorLink>
     </>
   ),
