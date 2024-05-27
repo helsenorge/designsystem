@@ -24,7 +24,7 @@ const meta = {
     fluid: false,
     label: 'Det har skjedd noe galt. Prøv igjen senere.',
     labelHtmlMarkup: 'h1',
-    variant: 'alert',
+    variant: 'error',
     role: undefined,
   },
   argTypes: {
@@ -47,7 +47,7 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: ['info', 'warn', 'alert'],
+      options: ['info', 'warn', 'error', 'success'],
     },
     role: {
       control: 'select',
@@ -119,7 +119,7 @@ export const AllVariants: Story = {
       </div>
       <div className="row mt-6">
         <div className={'col-12'}>
-          <NotificationPanel {...args} variant={'alert'}>
+          <NotificationPanel {...args} variant={'error'}>
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}

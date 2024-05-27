@@ -98,6 +98,20 @@
     border: none;
   }
 
+  &--error {
+    border: 0.125rem solid $cherry700;
+    background-color: $cherry50;
+  }
+
+  &--error#{&}--compact {
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  &--error#{&}--compact--basic {
+    border: none;
+  }
+
   &--success {
     border: 0.125rem solid $kiwi900;
     background-color: $kiwi50;

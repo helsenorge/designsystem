@@ -4,7 +4,7 @@ exports[`Gitt at ServiceMessage skal vises > Når komponenten vises med default 
 <div>
   <div
     aria-labelledby="test"
-    class="service-message service-message--alert"
+    class="service-message service-message--error"
     role="alert"
   >
     <div

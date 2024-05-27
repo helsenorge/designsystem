@@ -7,18 +7,14 @@ import { useHover } from '../../hooks/useHover';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { breakpoints } from '../../theme/grid';
-import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { AnchorLinkTargets } from '../AnchorLink';
+import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
 import Icon, { IconSize } from '../Icon';
-import CheckFill from '../Icons/CheckFill';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
-import ErrorSignFill from '../Icons/ErrorSignFill';
 import Forward from '../Icons/Forward';
-import InfoSignFill from '../Icons/InfoSignFill';
-import TriangleX from '../Icons/TriangleX';
 import X from '../Icons/X';
 import { NotificationPanelVariants } from '../NotificationPanel';
 
@@ -41,14 +37,6 @@ const Label: React.FC<LabelProps> = ({ label, variant, id, hasExpander, isExpand
   const { isHovered, hoverRef } = useHover<HTMLDivElement>();
 
   const iconSize = breakpoint < breakpoints.lg ? IconSize.XSmall : IconSize.Small;
-  const variantToIconMap = {
-    info: (
-      <Icon svgIcon={InfoSignFill} color={palette.blueberry700} hoverColor={palette.blueberry700} size={iconSize} isHovered={isHovered} />
-    ),
-    warn: <Icon svgIcon={ErrorSignFill} color={palette.banana700} hoverColor={palette.banana700} size={iconSize} isHovered={isHovered} />,
-    alert: <Icon svgIcon={TriangleX} color={palette.cherry700} hoverColor={palette.cherry700} size={iconSize} isHovered={isHovered} />,
-    success: <Icon svgIcon={CheckFill} color={palette.kiwi900} hoverColor={palette.kiwi900} size={iconSize} isHovered={isHovered} />,
-  };
   const CustomTag = hasExpander ? 'button' : 'span';
 
   const labelContainerClasses = classNames(
@@ -62,7 +50,7 @@ const Label: React.FC<LabelProps> = ({ label, variant, id, hasExpander, isExpand
         <div className={styles['service-message__row']}>
           <div className={styles['service-message__col']}>
             <div className={styles['service-message__label']}>
-              {variantToIconMap[variant]}
+              <NotificationBadge variant={variant == 'alert' ? 'error' : variant} size={iconSize} isHovered={isHovered} />
               <h1 className={styles['service-message__title']} id={id}>
                 <CustomTag
                   className={styles['service-message__toggle']}
@@ -175,7 +163,7 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
   target = '_self',
   closeBtnText = 'fjern melding',
   expanderOpenFromStart = false,
-  variant = 'alert',
+  variant = 'error',
   testId,
 }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(expanderOpenFromStart);
@@ -183,7 +171,7 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
   const labelId = useUuid();
   const hasExpander = !!info || !!extraInfo;
 
-  const ariaRole = variant === 'alert' ? 'alert' : 'region';
+  const ariaRole = variant === 'alert' || variant === 'error' ? 'alert' : 'region';
   const ariaLabelAttributes = getAriaLabelAttributes({ label, id: labelId });
 
   const handleClick = (): void => {

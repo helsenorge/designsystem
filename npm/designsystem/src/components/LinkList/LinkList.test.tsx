@@ -5,15 +5,18 @@ import userEvent from '@testing-library/user-event';
 import { vi as jest } from 'vitest';
 
 import LinkList from './LinkList';
+import Badge from '../Badge';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
+import ListHeader from '../ListHeader/ListHeader';
+import ListHeaderText from '../ListHeader/ListHeaderText/ListHeaderText';
 
 test('displays a list of links', (): void => {
   const { container } = render(
     <LinkList color="cherry">
-      <LinkList.Link icon={<Icon svgIcon={AlarmClock} />}>Link 1</LinkList.Link>
-      <LinkList.Link>Link 2</LinkList.Link>
-      <LinkList.Link>Link 3</LinkList.Link>
+      <LinkList.Link icon={<Icon svgIcon={AlarmClock} />}>{'Link 1'}</LinkList.Link>
+      <LinkList.Link>{'Link 2'}</LinkList.Link>
+      <LinkList.Link>{'Link 3'}</LinkList.Link>
     </LinkList>
   );
   expect(container).toMatchSnapshot();
@@ -24,9 +27,9 @@ describe('Gitt at LinkList skal vises', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
       render(
         <LinkList testId="bare-tester">
-          <LinkList.Link>Link 1</LinkList.Link>
-          <LinkList.Link>Link 2</LinkList.Link>
-          <LinkList.Link>Link 3</LinkList.Link>
+          <LinkList.Link>{'Link 1'}</LinkList.Link>
+          <LinkList.Link>{'Link 2'}</LinkList.Link>
+          <LinkList.Link>{'Link 3'}</LinkList.Link>
         </LinkList>
       );
 
@@ -39,10 +42,10 @@ describe('Gitt at LinkList skal vises', (): void => {
       render(
         <LinkList>
           <LinkList.Link testId="tester-rel" target="_blank">
-            Ekstern lenke
+            {'Ekstern lenke'}
           </LinkList.Link>
-          <LinkList.Link>Link 2</LinkList.Link>
-          <LinkList.Link>Link 3</LinkList.Link>
+          <LinkList.Link>{'Link 2'}</LinkList.Link>
+          <LinkList.Link>{'Link 3'}</LinkList.Link>
         </LinkList>
       );
 
@@ -93,10 +96,10 @@ describe('Gitt at linkene skal være buttons med onClick-handler', () => {
       render(
         <LinkList color="neutral">
           <LinkList.Link htmlMarkup="button" onClick={mockClick1}>
-            Link 1
+            {'Link 1'}
           </LinkList.Link>
           <LinkList.Link htmlMarkup="button" onClick={mockClick2}>
-            Link 2
+            {'Link 2'}
           </LinkList.Link>
         </LinkList>
       );
@@ -119,10 +122,10 @@ describe('Gitt at linkene skal være vanlige lenker med onClick-handler', () => 
       render(
         <LinkList color="neutral">
           <LinkList.Link htmlMarkup="a" onClick={mockClick1} href="#">
-            Link 1
+            {'Link 1'}
           </LinkList.Link>
           <LinkList.Link htmlMarkup="a" onClick={mockClick2} href="#">
-            Link 2
+            {'Link 2'}
           </LinkList.Link>
         </LinkList>
       );
@@ -133,6 +136,56 @@ describe('Gitt at linkene skal være vanlige lenker med onClick-handler', () => 
       const link2 = screen.getByRole('link', { name: 'Link 2' });
       await userEvent.click(link2);
       expect(mockClick2).toHaveBeenCalledTimes(1);
+    });
+  });
+});
+
+describe('Gitt at linkene skal ha badges', () => {
+  describe('Når badge har tekst', () => {
+    test('Så vises badge', async () => {
+      render(
+        <LinkList testId="bare-tester">
+          <LinkList.Link>
+            <ListHeader>
+              <ListHeaderText firstText="Link 1" />
+              <Badge type="string" testId="badge">
+                {'Badge'}
+              </Badge>
+            </ListHeader>
+          </LinkList.Link>
+        </LinkList>
+      );
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+      const badge = screen.getByTestId('badge');
+      expect(badge).toBeVisible();
+    });
+  });
+  describe('Når Link har 2 badges', () => {
+    test('Så vises begge', async () => {
+      render(
+        <LinkList testId="bare-tester">
+          <LinkList.Link>
+            <ListHeader>
+              <ListHeaderText firstText="Link 1" />
+              <Badge type="string" testId="first">
+                {'Badge 1'}
+              </Badge>
+              <Badge type="string" testId="second">
+                {'Badge 2'}
+              </Badge>
+            </ListHeader>
+          </LinkList.Link>
+        </LinkList>
+      );
+
+      const component = screen.getByTestId('bare-tester');
+      expect(component).toBeVisible();
+      const firstBadge = screen.getByTestId('first');
+      expect(firstBadge).toBeVisible();
+      const secondBadge = screen.getByTestId('second');
+      expect(secondBadge).toBeVisible();
     });
   });
 });

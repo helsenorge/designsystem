@@ -20,6 +20,7 @@ export type Styles = {
   'notification-panel--compact--basic': string;
   'notification-panel--compact--outline': string;
   'notification-panel--dismissable': string;
+  'notification-panel--error': string;
   'notification-panel--info': string;
   'notification-panel--large': string;
   'notification-panel--medium': string;

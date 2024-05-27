@@ -5,19 +5,14 @@ import classNames from 'classnames';
 import { AnalyticsId, IconSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
-import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
 import Expander from '../Expander';
-import Icon from '../Icon';
-import CheckFill from '../Icons/CheckFill';
-import ErrorSignFill from '../Icons/ErrorSignFill';
-import InfoSignFill from '../Icons/InfoSignFill';
-import TriangleX from '../Icons/TriangleX';
 
 import styles from './styles.module.scss';
 
-export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'success';
+export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'error' | 'success';
 export type NotificationCompactVariants = 'basic' | 'outline';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
 export type LabelTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span';
@@ -95,40 +90,6 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     testId,
   } = props;
   const uuid = useUuid(labelId);
-  const variantToIconMap = {
-    info: (
-      <Icon
-        svgIcon={InfoSignFill}
-        color={palette.blueberry700}
-        hoverColor={palette.blueberry700}
-        size={compactVariant ? IconSize.XSmall : IconSize.Small}
-      />
-    ),
-    warn: (
-      <Icon
-        svgIcon={ErrorSignFill}
-        color={palette.banana700}
-        hoverColor={palette.banana700}
-        size={compactVariant ? IconSize.XSmall : IconSize.Small}
-      />
-    ),
-    alert: (
-      <Icon
-        svgIcon={TriangleX}
-        color={palette.cherry700}
-        hoverColor={palette.cherry700}
-        size={compactVariant ? IconSize.XSmall : IconSize.Small}
-      />
-    ),
-    success: (
-      <Icon
-        svgIcon={CheckFill}
-        color={palette.kiwi900}
-        hoverColor={palette.kiwi900}
-        size={compactVariant ? IconSize.XSmall : IconSize.Small}
-      />
-    ),
-  };
   const renderContent = (): JSX.Element => {
     const outlineVariant = compactVariant === 'outline';
     const contentClasses = classNames(styles['notification-panel__content']);
@@ -181,7 +142,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     className
   );
 
-  const ariaRole = role || (variant === 'alert' && 'alert') || undefined;
+  const ariaRole = role || ((variant === 'alert' || variant === 'error') && 'alert') || undefined;
   const ariaLabelAttributes = ariaRole ? getAriaLabelAttributes({ label, id: uuid }) : undefined;
 
   return (
@@ -194,7 +155,11 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         className={notificationPanelClasses}
         {...ariaLabelAttributes}
       >
-        <span className={styles['notification-panel__icon']}>{variantToIconMap[variant]}</span>
+        <NotificationBadge
+          variant={variant == 'alert' ? 'error' : variant}
+          size={compactVariant ? IconSize.XSmall : IconSize.Small}
+          className={styles['notification-panel__icon']}
+        />
         {dismissable && (
           <span className={styles['notification-panel__close']}>
             <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} color={getColor('black')} />

@@ -60,11 +60,12 @@ export const Default: Story = {
   render: args => (
     <LinkList {...args}>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        Innhold A-Å
+        {'Innhold A-Å'}
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
-        bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
+        {
+          'Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)'
+        }
       </LinkList.Link>
     </LinkList>
   ),
@@ -77,11 +78,12 @@ export const WithIconAndChevron: Story = {
   render: args => (
     <LinkList {...args}>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
-        Innhold A-Å
+        {'Innhold A-Å'}
       </LinkList.Link>
       <LinkList.Link htmlMarkup="button" icon={<Icon svgIcon={PaperPlane} />}>
-        Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
-        bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
+        {
+          'Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)'
+        }
       </LinkList.Link>
     </LinkList>
   ),
@@ -111,8 +113,10 @@ export const WithListHeaderComp: Story = {
         <ListHeader titleHtmlMarkup="span">
           <>
             <span>
-              Ved å gi LinkList.Link et <span style={{ fontWeight: 'bold' }}>JSX.Element</span> kan man gjøre deler av teksten
-              <span style={{ fontWeight: 'bold' }}>bold.</span> Nå midstiller ikoner seg i forhold til øverste linje.
+              {'Ved å gi LinkList.Link et '}
+              <span style={{ fontWeight: 'bold' }}>{'JSX.Element'}</span> {'kan man gjøre deler av teksten '}
+              <span style={{ fontWeight: 'bold' }}>{'bold.'}</span>
+              {' Nå midstiller ikoner seg i forhold til øverste linje.'}
             </span>
           </>
         </ListHeader>
@@ -120,6 +124,7 @@ export const WithListHeaderComp: Story = {
     </LinkList>
   ),
 };
+
 export const WithAvatarAndBadge: Story = {
   args: {
     chevron: true,
@@ -130,22 +135,23 @@ export const WithAvatarAndBadge: Story = {
         <ListHeader>
           <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
           <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-          <Avatar>Line Danser</Avatar>
-          <Badge color="blueberry">10000</Badge>
+          <Avatar>{'Line Danser'}</Avatar>
+          <Badge color="blueberry">{'10000'}</Badge>
         </ListHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
         <ListHeader titleHtmlMarkup="span">
-          LinkListText
-          <Badge color="blueberry">Ny</Badge>
-          <Avatar>Line Danser</Avatar>
+          {'LinkListText'}
+          <Badge color="blueberry">{'Ny'}</Badge>
+          <Avatar>{'Line Danser'}</Avatar>
         </ListHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
         <ListHeader titleHtmlMarkup="span">
-          Test Test Eu et minim esse do eiusmod eu cillum et aute enim. Quis ea reprehenderit veniam est ullamco laboris culpa fugiat duis
-          voluptate ullamco fugiat. Ullamco Lorem occaecat adipisicing duis aliquip.
-          <Badge color="blueberry">10000</Badge>
+          {
+            'Test Test Eu et minim esse do eiusmod eu cillum et aute enim. Quis ea reprehenderit veniam est ullamco laboris culpa fugiat duis voluptate ullamco fugiat. Ullamco Lorem occaecat adipisicing duis aliquip.'
+          }
+          <Badge color="blueberry">{'10000'}</Badge>
         </ListHeader>
       </LinkList.Link>
     </LinkList>
@@ -165,7 +171,7 @@ export const VariantLine: Story = {
         </ListHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        Gives the listelements lines
+        {'Gives the listelements lines'}
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
         <ListHeader>
@@ -183,10 +189,10 @@ export const VariantOutline: Story = {
   render: args => (
     <LinkList {...args}>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        Variant: Outline
+        {'Variant: Outline'}
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        Gives the listelements outline
+        {'Gives the listelements outline'}
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
         <ListHeader>
@@ -209,7 +215,7 @@ export const VariantFill: Story = {
         </ListHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        Gives the listelements fill
+        {'Gives the listelements fill'}
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
         <ListHeader>
@@ -247,11 +253,56 @@ export const AsButton: Story = {
   render: args => (
     <LinkList {...args}>
       <LinkList.Link htmlMarkup="button" onClick={action('Link 1 clicked')}>
-        Innhold A-Å
+        {'Innhold A-Å'}
       </LinkList.Link>
       <LinkList.Link htmlMarkup="button" onClick={action('Link 2 clicked')}>
-        Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og
-        bidra til en god fordøyelse. (Eksempel på wrapping av tekst)
+        {
+          'Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)'
+        }
+      </LinkList.Link>
+    </LinkList>
+  ),
+};
+
+export const WithNotificationBadge: Story = {
+  args: {
+    chevron: true,
+  },
+  render: args => (
+    <LinkList {...args}>
+      <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
+        <ListHeader>
+          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <Badge type="notification" notificationVariant="info" />
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
+        <ListHeader titleHtmlMarkup="span">
+          {'LinkListText'}
+          <Badge type="notification" notificationVariant="warn" />
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
+        <ListHeader titleHtmlMarkup="span">
+          {
+            'Test Test Eu et minim esse do eiusmod eu cillum et aute enim. Quis ea reprehenderit veniam est ullamco laboris culpa fugiat duis voluptate ullamco fugiat. Ullamco Lorem occaecat adipisicing duis aliquip.'
+          }
+          <Badge type="notification" notificationVariant="error" />
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
+        <ListHeader titleHtmlMarkup="span">
+          {'LinkListText'}
+          <Badge type="notification" notificationVariant="success" />
+        </ListHeader>
+      </LinkList.Link>
+      <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
+        <ListHeader titleHtmlMarkup="span">
+          {'LinkListText'}
+          <Badge type="notification" notificationVariant="success" />
+          <Badge type="string">{'100'}</Badge>
+        </ListHeader>
       </LinkList.Link>
     </LinkList>
   ),
