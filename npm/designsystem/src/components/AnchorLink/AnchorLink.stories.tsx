@@ -100,6 +100,7 @@ export const UnderlineTesting: Story = {
       textDecorationThickness: '0.0625rem',
       textUnderlineOffset: '0.1rem',
       textUnderlinePosition: 'auto',
+      textDecorationColor: 'auto',
     },
   },
   render: args => (
