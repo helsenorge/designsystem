@@ -37,6 +37,8 @@ export interface AnchorLinkProps {
   onClick?: (e?: AnchorLinkOnClickEvent) => void;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** NB: Fjern før merge */
+  style?: React.CSSProperties;
 }
 
 const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, AnchorLinkProps>((props, ref) => {
@@ -54,7 +56,7 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
     onClick,
   };
 
-  const renderContent = () => (
+  const renderContent = (): React.JSX.Element => (
     <>
       {children}
       {external && (
@@ -80,6 +82,7 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
           rel={external ? 'noopener noreferrer' : undefined}
           ref={hoverRef as React.RefObject<HTMLAnchorElement>}
           {...commonProps}
+          style={props.style}
         >
           {renderContent()}
         </a>
@@ -90,6 +93,7 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
           className={AnchorLinkStyles['anchorlink-wrapper']}
           ref={hoverRef as React.RefObject<HTMLButtonElement>}
           {...commonProps}
+          style={props.style}
         >
           <span className={anchorClasses}>{renderContent()}</span>
         </button>
@@ -97,5 +101,7 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
     </>
   );
 });
+
+AnchorLink.displayName = 'AnchorLink';
 
 export default AnchorLink;

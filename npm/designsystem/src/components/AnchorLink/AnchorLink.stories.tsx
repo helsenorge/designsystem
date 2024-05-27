@@ -29,6 +29,9 @@ const meta = {
     href: {
       control: 'text',
     },
+    style: {
+      control: 'object',
+    },
   },
 } satisfies Meta<typeof AnchorLink>;
 
@@ -73,19 +76,58 @@ export const External: Story = {
 export const AsButton: Story = {
   render: args => (
     <p style={{ fontSize: '1.25rem' }}>
-      Dette er først en{' '}
+      {'Dette er først en '}
       <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
-        vanlig lenke i løpende tekst
-      </AnchorLink>{' '}
-      og nå kommer en
+        {'vanlig lenke i løpende tekst'}
+      </AnchorLink>
+      {' og nå kommer en'}
       <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
-        button-lenke i løpende tekst som går over flere linjer
-      </AnchorLink>{' '}
-      og til slutt en{' '}
+        {'button-lenke i løpende tekst som går over flere linjer'}
+      </AnchorLink>
+      {' og til slutt en '}
       <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
-        kort
-      </AnchorLink>{' '}
-      button-lenke
+        {'kort'}
+      </AnchorLink>
+      {' button-lenke'}
     </p>
+  ),
+};
+
+export const UnderlineTesting: Story = {
+  args: {
+    style: {
+      textDecorationThickness: '0.0625rem',
+      textUnderlineOffset: '0.1rem',
+      textUnderlinePosition: 'auto',
+    },
+  },
+  render: args => (
+    <>
+      <p>{'Default, gitt font og browser'}</p>
+      <AnchorLink {...args} target={'_parent'}>
+        {'Standard lugargnom'}
+      </AnchorLink>
+      <br />
+      <p>{'Med tykkelse lik tidligere (0.0625rem):'}</p>
+      <AnchorLink {...args} target={'_parent'} style={{ textDecorationThickness: '0.0625rem' }}>
+        {'Standard lugargnom'}
+      </AnchorLink>
+      <br />
+      <p>{'Med plassering av underline "under"'}</p>
+      <AnchorLink {...args} target={'_parent'} style={{ textDecorationThickness: '0.0625rem', textUnderlinePosition: 'under' }}>
+        {'Standard lugargnom'}
+      </AnchorLink>
+      <br />
+      <p>{'Med underline offset (0.1rem):'}</p>
+      <AnchorLink {...args} target={'_parent'} style={{ textDecorationThickness: '0.0625rem', textUnderlineOffset: '0.1rem' }}>
+        {'Standard lugargnom'}
+      </AnchorLink>
+      <br />
+      <br />
+      <p>{'Med interaktive verdier (endre "style"-objektet i "Controls"-fanen):'}</p>
+      <AnchorLink {...args} target={'_parent'} style={args.style}>
+        {'Standard lugargnom'}
+      </AnchorLink>
+    </>
   ),
 };
