@@ -1,3 +1,23 @@
+## [7.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.6.0&targetVersion=GTv7.7.0) (2024-05-28)
+
+### Features
+
+- ny type notification Badge og tillates flere badges i ListHeader
+  ([0768e0a](https://github.com/helsenorge/designsystem/commit/0768e0ae1d137f17ecfa92aa2b708ca52862e6b2)), closes
+  [#325119](https://github.com/helsenorge/designsystem/issues/325119)
+- **expander:** bruk token på bakgrunn for liten expander
+  ([73d8531](https://github.com/helsenorge/designsystem/commit/73d8531a52ed5a6387af8fa84045a0afd620eb38)), closes
+  [#324989](https://github.com/helsenorge/designsystem/issues/324989)
+- **notificationpanel:** bruk Expander-komponent i NotificationPanel
+  ([e8d4e8d](https://github.com/helsenorge/designsystem/commit/e8d4e8d776333f243cddba8f15742dd6f271bb3d)), closes
+  [#324989](https://github.com/helsenorge/designsystem/issues/324989)
+
+### Bug Fixes
+
+- **expander:** manglende import av supernova stylesheet
+  ([077ec2d](https://github.com/helsenorge/designsystem/commit/077ec2d1f59ce80076deeae5bc7911f7a9a2e431)), closes
+  [#324989](https://github.com/helsenorge/designsystem/issues/324989)
+
 ## [7.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.5.0&targetVersion=GTv7.6.0) (2024-05-15)
 
 ### Features
@@ -1448,12 +1468,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- panel har avstand fra tittel til badge
-  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
-  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 - økt kontrast på understreking av lenker
   ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
   [#229049](https://github.com/helsenorge/designsystem/issues/229049)
+- panel har avstand fra tittel til badge
+  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
+  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
