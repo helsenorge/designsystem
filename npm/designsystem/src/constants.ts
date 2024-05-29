@@ -132,6 +132,10 @@ export enum KeyboardEventKey {
   Escape = 'Escape',
   ArrowDown = 'ArrowDown',
   ArrowUp = 'ArrowUp',
+  ArrowRight = 'ArrowRight',
+  ArrowLeft = 'ArrowLeft',
   Home = 'Home',
   End = 'End',
+  Space = ' ',
+  Tab = 'Tab',
 }
