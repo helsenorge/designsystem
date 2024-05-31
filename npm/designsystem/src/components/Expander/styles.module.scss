@@ -83,6 +83,7 @@
     &--large {
       width: 100%;
       padding: getSpacer(xs) getSpacer(2xs) getSpacer(xs) getSpacer(s);
+      cursor: pointer;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
         padding: getSpacer(xs) getSpacer(s) getSpacer(xs) getSpacer(l);
