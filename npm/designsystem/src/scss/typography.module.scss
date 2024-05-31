@@ -114,20 +114,22 @@ import designsystemtypography from './scss/typography.scss'
     overflow-wrap: break-word;
     word-break: break-word;
     text-align: left;
-    text-decoration: none;
     color: $blueberry600;
-    padding: 0.15rem;
-    border-bottom: 1px solid $neutral700;
+    border: $focus-width solid transparent;
+    text-decoration: underline;
+    text-underline-offset: 0.16rem;
+    text-decoration-color: $blueberry400;
+    text-decoration-thickness: $underline-width;
+    padding: 0.1rem;
 
     &:hover {
       cursor: pointer;
       color: $blueberry700;
       background-color: $blueberry50;
-      border-bottom-color: $blueberry600;
+      text-decoration-color: $blueberry600;
     }
 
     &:focus {
-      padding: 0 0 0.15rem;
       outline: none;
       border: 0.15rem solid $black;
     }
