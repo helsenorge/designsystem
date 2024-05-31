@@ -112,9 +112,8 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   });
 
   React.useEffect(() => {
-    setInputValue(dateValue ? format(dateValue, dateFormat) : '');
-
     if (isValid(dateValue)) {
+      setInputValue(dateValue ? format(dateValue, dateFormat) : '');
       setDateState(dateValue);
       setMonth(dateValue);
     }
