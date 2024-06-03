@@ -56,7 +56,7 @@ export interface DatePickerProps
   maxDate?: Date;
   /** Minimum date allowed to be selected */
   minDate?: Date;
-  /** onChange callback trigges ved endring i valgt dato */
+  /** onChange callback triggered by change in chosen date */
   onChange?: (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>, date: Date | string | undefined) => void;
   /** Sets the data-testid attribute. */
   testId?: string;

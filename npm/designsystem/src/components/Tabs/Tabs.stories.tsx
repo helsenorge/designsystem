@@ -1,41 +1,22 @@
 import React from 'react';
 
-import { Title, Subtitle, Description, Primary, ArgTypes, Stories } from '@storybook/addon-docs';
 import { StoryObj, Meta } from '@storybook/react';
 
 import Tab from './Tab';
 import Tabs from './Tabs';
-import { isSupernova } from '../../docs';
+import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Tabs',
   component: Tabs,
+  subcomponents: { Tab },
   parameters: {
     docs: {
       description: {
         component:
           'Som en innbygger vil jeg kunne velge å skifte mellom å se flere større innholdsområder på siden slik at jeg kan rydde unna innhold og funksjoner som ikke omhandler det jeg ønsker å gjøre.',
       },
-      page: (): React.JSX.Element => {
-        if (isSupernova()) {
-          return <ArgTypes of={Tabs} />;
-        }
-
-        return (
-          <>
-            <Title />
-            <Subtitle />
-            <Description />
-            <Primary />
-            <h2>{'Props'}</h2>
-            <h3>{'Tabs'}</h3>
-            <ArgTypes />
-            <h3>{'Tabs.Tab'}</h3>
-            <ArgTypes of={Tab} />
-            <Stories />
-          </>
-        );
-      },
+      page: (): React.JSX.Element => <Docs component={Tabs} />,
     },
   },
   args: {

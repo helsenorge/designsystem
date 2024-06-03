@@ -18,24 +18,40 @@ const meta = {
     },
   },
   args: {
-    children: '',
     variant: 'bullet',
     margin: false,
+    className: '',
+    testId: '',
   },
   argTypes: {
     variant: {
       control: 'select',
       options: ['bullet', 'dashed', 'numbered', 'alphabetical'],
+      description: 'Changes the visual representation of the list.',
+      defaultValue: 'bullet',
     },
     margin: {
       control: 'boolean',
+      description: 'Adds margin above/below list',
+    },
+    children: {
+      control: 'object',
+      description: 'List contents',
+    },
+    className: {
+      control: 'string',
+      description: 'Adds className to list element.',
+    },
+    testId: {
+      control: 'string',
+      description: 'Sets the data-testid attribute.',
     },
   },
 } satisfies Meta<typeof List>;
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof List>;
 
 export const Default: Story = {
   render: args => (
