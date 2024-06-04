@@ -1,3 +1,9 @@
+## [7.8.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.8.0&targetVersion=GTv7.8.1) (2024-06-04)
+
+### Bug Fixes
+
+- typography sass fil feiler ([e47c50b](https://github.com/helsenorge/designsystem/commit/e47c50b6dc48c0b463642b571483ccceb97abb53))
+
 ## [7.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.7.0&targetVersion=GTv7.8.0) (2024-06-04)
 
 ### Features
