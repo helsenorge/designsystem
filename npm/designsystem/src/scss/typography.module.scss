@@ -115,11 +115,11 @@ import designsystemtypography from './scss/typography.scss'
     word-break: break-word;
     text-align: left;
     color: $blueberry600;
-    border: $focus-width solid transparent;
+    border: 0.15rem solid transparent;
     text-decoration: underline;
     text-underline-offset: 0.16rem;
     text-decoration-color: $blueberry400;
-    text-decoration-thickness: $underline-width;
+    text-decoration-thickness: 0.0625rem;
     padding: 0.1rem;
 
     &:hover {
