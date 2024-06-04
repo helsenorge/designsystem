@@ -1,3 +1,27 @@
+## [7.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.7.0&targetVersion=GTv7.8.0) (2024-06-04)
+
+### Features
+
+- **anchorlink:** sett underline med text decoration istedenfor border
+  ([d3a8a53](https://github.com/helsenorge/designsystem/commit/d3a8a532094fec1187770beb570336edad0f47d0)), closes
+  [#324794](https://github.com/helsenorge/designsystem/issues/324794)
+- **button:** ny prop textposition ([fb5fdba](https://github.com/helsenorge/designsystem/commit/fb5fdba4cd5390fdb8e9dd2a4c21c4180b282e50)),
+  closes [#325052](https://github.com/helsenorge/designsystem/issues/325052)
+- **tabs:** ny komponent ([50eae16](https://github.com/helsenorge/designsystem/commit/50eae16394ccf26eff226563940fb18f5f84728b)), closes
+  [#297427](https://github.com/helsenorge/designsystem/issues/297427)
+
+### Bug Fixes
+
+- **button:** ikke hover effekt på ikon ved disabled
+  ([ea79c60](https://github.com/helsenorge/designsystem/commit/ea79c605adcf77d6bfa4cb6ad9ab8ba88fba9166)), closes
+  [#325454](https://github.com/helsenorge/designsystem/issues/325454)
+- **datepicker:** datevalue valideres riktig før den settes
+  ([ec5422e](https://github.com/helsenorge/designsystem/commit/ec5422e1e744af6b4315e16edc5dfa2c066df54a)), closes
+  [#325330](https://github.com/helsenorge/designsystem/issues/325330)
+- **expander:** cursor pointer på expander large
+  ([2239314](https://github.com/helsenorge/designsystem/commit/2239314c0c582680f9bba0e19562433f534a202b)), closes
+  [#325072](https://github.com/helsenorge/designsystem/issues/325072)
+
 ## [7.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.6.0&targetVersion=GTv7.7.0) (2024-05-28)
 
 ### Features
