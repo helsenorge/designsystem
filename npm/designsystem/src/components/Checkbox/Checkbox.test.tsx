@@ -101,7 +101,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       // Ytre styling
       const wrapper = screen.getByTestId('test01');
-      expect(wrapper?.className).toBe('checkbox-wrapper');
+      expect(wrapper?.className).toBe('');
     });
   });
 
@@ -131,7 +131,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       // Ytre styling
       const wrapper = screen.getByTestId('test01');
-      expect(wrapper?.className).toBe('checkbox-wrapper checkbox-wrapper--with-error');
+      expect(wrapper?.className).toBe('checkbox-wrapper--with-error');
     });
   });
 

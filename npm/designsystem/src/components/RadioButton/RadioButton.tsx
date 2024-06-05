@@ -8,6 +8,7 @@ import { useUuid } from '../../hooks/useUuid';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
+import ErrorWrapper from '../ErrorWrapper';
 import { getLabelText, renderLabelAsParent } from '../Label';
 
 import radioButtonStyles from './styles.module.scss';
@@ -113,7 +114,6 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     },
     className
   );
-  const errorStyles = classNames(radioButtonStyles['radio-button-errors']);
 
   const change = (e: React.ChangeEvent<HTMLInputElement>): void => {
     changeChecked(e.target.checked);
@@ -138,23 +138,20 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   );
 
   return (
-    <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
-      {errorText && (
-        <p className={errorStyles} id={errorTextUuid}>
-          {errorText}
-        </p>
-      )}
-      {renderLabelAsParent(
-        label,
-        getLabelContent(),
-        inputId,
-        mode as FormMode,
-        radioButtonLabelClasses,
-        undefined,
-        radioButtonStyles['radiobutton-sublabel-wrapper'],
-        isLarge
-      )}
-    </div>
+    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
+      <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
+        {renderLabelAsParent(
+          label,
+          getLabelContent(),
+          inputId,
+          mode as FormMode,
+          radioButtonLabelClasses,
+          undefined,
+          radioButtonStyles['radiobutton-sublabel-wrapper'],
+          isLarge
+        )}
+      </div>
+    </ErrorWrapper>
   );
 });
 

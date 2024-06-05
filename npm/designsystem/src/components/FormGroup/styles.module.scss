@@ -19,6 +19,9 @@
   border: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-flow: column;
+  gap: getSpacer(s);
 
   > div {
     padding-bottom: 0;

@@ -13,7 +13,6 @@
 
 .radio-button-wrapper {
   cursor: pointer;
-  margin: getSpacer(s) 0;
 
   &--with-error {
     padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
@@ -48,14 +47,6 @@
       color: $cherry400;
     }
   }
-}
-
-.radio-button-wrapper:first-of-type {
-  margin-top: 0;
-}
-
-.radio-button-wrapper:last-of-type {
-  margin-bottom: 0;
 }
 
 .radio-button-label {

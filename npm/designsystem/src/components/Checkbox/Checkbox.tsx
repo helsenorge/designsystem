@@ -9,6 +9,7 @@ import { getColor } from '../../theme/currys/color';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
+import ErrorWrapper from '../ErrorWrapper';
 import Icon from '../Icon';
 import Check from '../Icons/Check';
 import { getLabelText, renderLabelAsParent } from '../Label';
@@ -70,7 +71,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
 
-  const checkboxWrapperClasses = classNames(checkboxStyles['checkbox-wrapper'], {
+  const checkboxWrapperClasses = classNames({
     [checkboxStyles['checkbox-wrapper--with-error']]: errorText,
     [checkboxStyles['checkbox-wrapper--large']]: large,
   });
@@ -111,7 +112,6 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     [checkboxStyles['checkbox-label__text--on-dark']]: onDark,
     [checkboxStyles['checkbox-label__text--disabled']]: disabled,
   });
-  const errorStyles = classNames(checkboxStyles['checkbox-errors']);
 
   let iconColor = getColor('white');
   if (onDark || (large && isChecked)) iconColor = getColor('blueberry', 900);
@@ -156,23 +156,20 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   };
 
   return (
-    <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
-      {errorText && (
-        <p className={errorStyles} id={errorTextUuid}>
-          {errorText}
-        </p>
-      )}
-      {renderLabelAsParent(
-        label,
-        getLabelContent(),
-        inputId,
-        mode as FormMode,
-        checkboxLabelClasses,
-        labelTextClasses,
-        checkboxStyles['checkbox-sublabel-wrapper'],
-        large
-      )}
-    </div>
+    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
+      <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
+        {renderLabelAsParent(
+          label,
+          getLabelContent(),
+          inputId,
+          mode as FormMode,
+          checkboxLabelClasses,
+          labelTextClasses,
+          checkboxStyles['checkbox-sublabel-wrapper'],
+          large
+        )}
+      </div>
+    </ErrorWrapper>
   );
 });
 
