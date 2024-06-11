@@ -28,7 +28,7 @@ const meta = {
     url: 'https://www.helsenorge.no',
     target: '_parent',
     closeBtnText: 'fjern melding',
-    variant: 'alert',
+    variant: 'error',
     testId: 'test',
   },
   argTypes: {
@@ -62,7 +62,7 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: ['info', 'warn', 'alert', 'success'],
+      options: ['info', 'warn', 'error', 'success'],
     },
     testId: {
       control: 'text',
@@ -108,10 +108,10 @@ export const DismissableWithContent: Story = {
 };
 export const DismissableLabelOnly: Story = {
   render: () => (
-    <ServiceMessage label={'Dismissable label only'} variant="alert" dismissable={true} onDismiss={action('Dismiss clicked')} />
+    <ServiceMessage label={'Dismissable label only'} variant="error" dismissable={true} onDismiss={action('Dismiss clicked')} />
   ),
 };
 
 export const LabelOnly: Story = {
-  render: () => <ServiceMessage label={'Label only'} variant="alert" dismissable={false} />,
+  render: () => <ServiceMessage label={'Label only'} variant="error" dismissable={false} />,
 };

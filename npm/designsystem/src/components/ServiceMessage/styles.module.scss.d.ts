@@ -16,6 +16,7 @@ export type Styles = {
   'service-message__title': string;
   'service-message__toggle': string;
   'service-message--alert': string;
+  'service-message--error': string;
   'service-message--info': string;
   'service-message--success': string;
   'service-message--warn': string;

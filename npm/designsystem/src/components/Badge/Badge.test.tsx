@@ -13,6 +13,18 @@ describe('Gitt at Badge skal vises', (): void => {
       expect(badgeNumber).toBeVisible();
     });
   });
+  describe('Når Badge er av type notification', (): void => {
+    test('Så vises ikke teksten', (): void => {
+      render(
+        <Badge type="notification" notificationVariant="info">
+          {123}
+        </Badge>
+      );
+
+      const text = screen.queryByText('123');
+      expect(text).not.toBeInTheDocument();
+    });
+  });
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
       render(<Badge testId="bare-tester">123</Badge>);

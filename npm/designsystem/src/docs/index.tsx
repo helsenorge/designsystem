@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Title, Subtitle, Description, Primary, ArgTypes, Stories } from '@storybook/addon-docs';
+import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } from '@storybook/addon-docs';
 
 interface DocsProps<T> {
   component: T;
@@ -14,7 +14,7 @@ export const isSupernova = (): boolean => {
 
 const Docs = <T,>(props: DocsProps<T>): React.JSX.Element => {
   if (isSupernova()) {
-    return <ArgTypes of={props.component} />;
+    return <ArgTypes />;
   }
 
   const searchParams = new URLSearchParams(window.location.search);
@@ -33,7 +33,7 @@ const Docs = <T,>(props: DocsProps<T>): React.JSX.Element => {
       <Subtitle />
       <Description />
       <Primary />
-      <ArgTypes of={props.component} />
+      <Controls />
       {!props.hideStories && <Stories />}
     </>
   );

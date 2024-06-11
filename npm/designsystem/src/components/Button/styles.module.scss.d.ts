@@ -8,6 +8,7 @@ export type Styles = {
   'button__right-icon': string;
   'button__right-unicode-arrow': string;
   button__text: string;
+  'button__text--centered-mobile': string;
   'button__text--ellipsis': string;
   'button--arrow': string;
   'button--arrow--both-icons': string;

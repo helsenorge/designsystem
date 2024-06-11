@@ -1,3 +1,70 @@
+## [7.8.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.8.0&targetVersion=GTv7.8.1) (2024-06-04)
+
+### Bug Fixes
+
+- typography sass fil feiler ([e47c50b](https://github.com/helsenorge/designsystem/commit/e47c50b6dc48c0b463642b571483ccceb97abb53))
+
+## [7.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.7.0&targetVersion=GTv7.8.0) (2024-06-04)
+
+### Features
+
+- **anchorlink:** sett underline med text decoration istedenfor border
+  ([d3a8a53](https://github.com/helsenorge/designsystem/commit/d3a8a532094fec1187770beb570336edad0f47d0)), closes
+  [#324794](https://github.com/helsenorge/designsystem/issues/324794)
+- **button:** ny prop textposition ([fb5fdba](https://github.com/helsenorge/designsystem/commit/fb5fdba4cd5390fdb8e9dd2a4c21c4180b282e50)),
+  closes [#325052](https://github.com/helsenorge/designsystem/issues/325052)
+- **tabs:** ny komponent ([50eae16](https://github.com/helsenorge/designsystem/commit/50eae16394ccf26eff226563940fb18f5f84728b)), closes
+  [#297427](https://github.com/helsenorge/designsystem/issues/297427)
+
+### Bug Fixes
+
+- **button:** ikke hover effekt på ikon ved disabled
+  ([ea79c60](https://github.com/helsenorge/designsystem/commit/ea79c605adcf77d6bfa4cb6ad9ab8ba88fba9166)), closes
+  [#325454](https://github.com/helsenorge/designsystem/issues/325454)
+- **datepicker:** datevalue valideres riktig før den settes
+  ([ec5422e](https://github.com/helsenorge/designsystem/commit/ec5422e1e744af6b4315e16edc5dfa2c066df54a)), closes
+  [#325330](https://github.com/helsenorge/designsystem/issues/325330)
+- **expander:** cursor pointer på expander large
+  ([2239314](https://github.com/helsenorge/designsystem/commit/2239314c0c582680f9bba0e19562433f534a202b)), closes
+  [#325072](https://github.com/helsenorge/designsystem/issues/325072)
+
+## [7.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.6.0&targetVersion=GTv7.7.0) (2024-05-28)
+
+### Features
+
+- ny type notification Badge og tillates flere badges i ListHeader
+  ([0768e0a](https://github.com/helsenorge/designsystem/commit/0768e0ae1d137f17ecfa92aa2b708ca52862e6b2)), closes
+  [#325119](https://github.com/helsenorge/designsystem/issues/325119)
+- **expander:** bruk token på bakgrunn for liten expander
+  ([73d8531](https://github.com/helsenorge/designsystem/commit/73d8531a52ed5a6387af8fa84045a0afd620eb38)), closes
+  [#324989](https://github.com/helsenorge/designsystem/issues/324989)
+- **notificationpanel:** bruk Expander-komponent i NotificationPanel
+  ([e8d4e8d](https://github.com/helsenorge/designsystem/commit/e8d4e8d776333f243cddba8f15742dd6f271bb3d)), closes
+  [#324989](https://github.com/helsenorge/designsystem/issues/324989)
+
+### Bug Fixes
+
+- **expander:** manglende import av supernova stylesheet
+  ([077ec2d](https://github.com/helsenorge/designsystem/commit/077ec2d1f59ce80076deeae5bc7911f7a9a2e431)), closes
+  [#324989](https://github.com/helsenorge/designsystem/issues/324989)
+
+## [7.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.5.0&targetVersion=GTv7.6.0) (2024-05-15)
+
+### Features
+
+- **notificationpanel:** legg til prop for å sette html tag for label
+  ([ebd331a](https://github.com/helsenorge/designsystem/commit/ebd331a75f04099c4ad7e552ff70df8751675734)), closes
+  [#324952](https://github.com/helsenorge/designsystem/issues/324952)
+
+### Bug Fixes
+
+- skjemaelementer med error styling overlapper utifra dom rekkefølge
+  ([b07b7d6](https://github.com/helsenorge/designsystem/commit/b07b7d69391b3e4296e8a8cde8b8d312f835cb03)), closes
+  [#324846](https://github.com/helsenorge/designsystem/issues/324846)
+- **expanderlist:** fiks så variant fill ikke mister margin top ved åpning av expander
+  ([d277c97](https://github.com/helsenorge/designsystem/commit/d277c97660aa8334a44b1183445f55f2037b2263)), closes
+  [#324823](https://github.com/helsenorge/designsystem/issues/324823)
+
 ## [7.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.4.0&targetVersion=GTv7.5.0) (2024-05-08)
 
 ### Features
@@ -1431,12 +1498,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- panel har avstand fra tittel til badge
-  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
-  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 - økt kontrast på understreking av lenker
   ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
   [#229049](https://github.com/helsenorge/designsystem/issues/229049)
+- panel har avstand fra tittel til badge
+  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
+  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 

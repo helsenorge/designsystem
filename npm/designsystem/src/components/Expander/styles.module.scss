@@ -3,6 +3,7 @@
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
 @import '../../scss/font-settings';
+@import '../../scss/supernova/styles/colors';
 
 .expander {
   position: relative;
@@ -53,11 +54,11 @@
     text-align: left;
 
     &:hover {
-      background-color: $blueberry50;
+      background-color: var(--color-action-background-transparent-onlight-hover);
     }
 
     &--expanded {
-      background-color: $blueberry50;
+      background-color: var(--color-action-background-transparent-onlight-hover);
     }
   }
 
@@ -82,6 +83,7 @@
     &--large {
       width: 100%;
       padding: getSpacer(xs) getSpacer(2xs) getSpacer(xs) getSpacer(s);
+      cursor: pointer;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
         padding: getSpacer(xs) getSpacer(s) getSpacer(xs) getSpacer(l);

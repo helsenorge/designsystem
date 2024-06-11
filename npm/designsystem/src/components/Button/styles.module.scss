@@ -330,6 +330,12 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    &--centered-mobile {
+      @media (max-width: map.get($grid-max-breakpoints, xs)) {
+        width: 100%;
+      }
+    }
   }
 
   &__right-unicode-arrow {

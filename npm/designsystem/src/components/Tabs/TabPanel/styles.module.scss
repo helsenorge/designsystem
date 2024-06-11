@@ -1,0 +1,37 @@
+@use 'sass:map';
+@import '../../../scss/spacers';
+@import '../../../scss/palette';
+@import '../../../scss/font-settings';
+@import '../../../scss/breakpoints';
+@import '../../../scss/supernova/styles/colors';
+
+.tab-panel {
+  $tab-panel: &;
+
+  border-top: 1px solid var(--color-action-border-onlight-focus);
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+
+  $colors: 'blueberry', 'neutral', 'white';
+
+  &--normal {
+    padding: 0;
+  }
+
+  &--framed {
+    padding: 2rem;
+    border: 1px solid var(--color-action-border-onlight-focus);
+    border-radius: 0.5rem;
+
+    &#{$tab-panel}--first {
+      border-radius: 0 0.5rem 0.5rem;
+    }
+
+    @each $color in $colors {
+      &#{$tab-panel}--#{$color} {
+        background-color: var(--color-base-background-#{$color});
+      }
+    }
+  }
+}

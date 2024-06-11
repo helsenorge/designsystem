@@ -22,6 +22,12 @@ const meta = {
     },
   },
   args: {
+    title: (
+      <Tile.Title htmlMarkup={'h1'} className={''} highlighted={false} compact={false}>
+        {'Inbox'}
+      </Tile.Title>
+    ),
+    icon: <Icon size={IconSize.Medium} svgIcon={AlarmClock} />,
     fixed: false,
     highlighted: false,
     href: 'https://www.helsenorge.no',
@@ -29,17 +35,39 @@ const meta = {
       'Førstehjelp de første minuttene etter at en akutt sykdom eller skade har oppstått er livsviktig og minsker risikoen for langtidsskader.',
   },
   argTypes: {
-    fixed: {
-      control: 'boolean',
+    children: {
+      control: 'text',
+    },
+    className: {
+      control: 'text',
+      description: 'Adds custom classes to the element.',
+    },
+    icon: {
+      control: 'object',
+      description: 'Sets the icon to be displayed inside the tile.',
+    },
+    title: {
+      control: 'object',
+      description: 'Sets the title to be displayed inside the tile.',
     },
     highlighted: {
       control: 'boolean',
+      description: 'Toggles the highlighted style of the tile.',
+    },
+    description: {
+      control: 'text',
+      description: 'Sets the description to be displayed inside the tile.',
+    },
+    fixed: {
+      control: 'boolean',
+      description: 'Sets a fixed max and min width for the tile.',
     },
     href: {
       control: 'text',
     },
-    description: {
+    testId: {
       control: 'text',
+      description: 'Sets the data-testid attribute.',
     },
   },
 } satisfies Meta<typeof Tile>;
@@ -49,10 +77,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    icon: <Icon size={IconSize.Medium} svgIcon={AlarmClock} />,
-    title: <Tile.Title htmlMarkup={'h1'}>{'Inbox'}</Tile.Title>,
-  },
   render: args => <Tile {...args} />,
 };
 

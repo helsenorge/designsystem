@@ -2,27 +2,34 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId } from '../../constants';
+import NotificationBadge, { BadgeNotificationVariant } from './NotificationBadge';
+import { AnalyticsId, IconSize } from '../../constants';
 import { PaletteNames } from '../../theme/palette';
 
 import badgeStyles from './styles.module.scss';
 
 export type BadgeColors = Extract<PaletteNames, 'blueberry' | 'cherry' | 'neutral'>;
 export type BadgeChildren = string | number;
+export type BadgeVariant = 'string' | 'notification';
 
 export interface BadgeProps {
   /** Sets the content of the badge. */
-  children: BadgeChildren;
+  children?: BadgeChildren;
   /** Adds custom classes to the element. */
   className?: string;
   /** Changes the badge background color. */
   color?: BadgeColors;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Changes the type of the badge. Default: string */
+  type?: BadgeVariant;
+  /** Type of notification badge. Only works if type is 'notification'. */
+  notificationVariant?: BadgeNotificationVariant;
 }
+
 export type BadgeType = React.ForwardRefExoticComponent<BadgeProps & React.RefAttributes<HTMLElement>>;
 const Badge: BadgeType = React.forwardRef(function BadgeForwardedRef(props: BadgeProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { children, className = '', color = 'blueberry', testId } = props;
+  const { children, className = '', color = 'blueberry', testId, type = 'string', notificationVariant = 'info' } = props;
   const badgeClasses = classNames(
     badgeStyles.badge,
     {
@@ -32,6 +39,18 @@ const Badge: BadgeType = React.forwardRef(function BadgeForwardedRef(props: Badg
     },
     className
   );
+
+  if (type === 'notification' && notificationVariant !== undefined) {
+    return (
+      <NotificationBadge
+        variant={notificationVariant}
+        size={IconSize.XSmall}
+        className={className}
+        testId={testId}
+        data-analyticsid={AnalyticsId.Badge}
+      />
+    );
+  }
 
   return (
     <span className={badgeClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Badge}>

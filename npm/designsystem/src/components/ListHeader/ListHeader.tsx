@@ -5,6 +5,7 @@ import cn from 'classnames';
 import ListHeaderText, { ListHeaderTextProps, ListHeaderTextType } from './ListHeaderText/ListHeaderText';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { isComponent, isComponentWithChildren } from '../../utils/component';
+import uuid from '../../utils/uuid';
 import Avatar, { AvatarProps, AvatarSize, AvatarType } from '../Avatar';
 import Badge, { BadgeProps, BadgeType } from '../Badge';
 import Icon, { IconSize, SvgIcon } from '../Icon';
@@ -67,7 +68,7 @@ export interface ListHeaderProps {
 interface ListHeaderChildren {
   avatarChild?: React.ReactElement<AvatarProps>;
   listHeaderTextChildren: React.ReactElement<ListHeaderTextProps>[];
-  badgeChild?: React.ReactElement<BadgeProps>;
+  badgeChildren?: React.ReactElement<BadgeProps>[];
   elementChild?: React.ReactElement;
   stringChildren: string[];
   remainingChildren: React.ReactNode[];
@@ -77,7 +78,7 @@ type ChildrenMapper = (children: React.ReactNode, isJsxChild?: boolean) => ListH
 
 export const mapChildren: ChildrenMapper = (children, isJsxChild = false) => {
   let avatarChild: React.ReactElement<AvatarProps> | undefined;
-  let badgeChild: React.ReactElement<BadgeProps> | undefined;
+  const badgeChildren: React.ReactElement<BadgeProps>[] = [];
   const listHeaderTextChildren: React.ReactElement<ListHeaderTextProps>[] = [];
   const stringChildren: string[] = [];
   const remainingChildren: React.ReactNode[] = [];
@@ -89,7 +90,7 @@ export const mapChildren: ChildrenMapper = (children, isJsxChild = false) => {
     } else if (isComponent<ListHeaderTextProps>(child, ListHeaderText)) {
       listHeaderTextChildren.push(child);
     } else if (isComponent<BadgeProps>(child, Badge)) {
-      badgeChild = child;
+      badgeChildren.push(child);
     } else if (typeof child === 'string') {
       stringChildren.push(child);
     } else {
@@ -100,13 +101,13 @@ export const mapChildren: ChildrenMapper = (children, isJsxChild = false) => {
   // Dette og recursive mapChildren under(gjøres en gang) er for å passe på at jsx children også sjekkes for Avatar og liknende innhold.
   // Slik opprettholder vi stylingen i tilfeller hvor vertikaler har wrappet elementer i en parent span eller div.
   const hasSpecialChildren =
-    avatarChild !== undefined || listHeaderTextChildren.length > 0 || (badgeChild !== undefined && stringChildren.length > 0);
+    avatarChild !== undefined || listHeaderTextChildren.length > 0 || (badgeChildren !== undefined && stringChildren.length > 0);
   const noRemainingRecursiveChildren =
     remainingChildren.length === 0 ||
     (isComponentWithChildren(remainingChildren[0]) && typeof remainingChildren[0]?.props?.children === 'undefined');
 
   if (isJsxChild || hasSpecialChildren || noRemainingRecursiveChildren) {
-    return { avatarChild, listHeaderTextChildren, badgeChild, stringChildren, remainingChildren };
+    return { avatarChild, listHeaderTextChildren, badgeChildren, stringChildren, remainingChildren };
   }
 
   if (isComponentWithChildren(remainingChildren[0])) {
@@ -186,7 +187,15 @@ export const ListHeader: ListHeaderType = props => {
         {mappedChildren?.remainingChildren}
       </span>
 
-      {mappedChildren?.badgeChild && <span className={badgeClasses}>{mappedChildren.badgeChild}</span>}
+      {mappedChildren?.badgeChildren &&
+        mappedChildren.badgeChildren.map(badgeChild => {
+          const id = uuid();
+          return (
+            <span key={id} className={badgeClasses}>
+              {badgeChild}
+            </span>
+          );
+        })}
       {showChevronAndIcon && chevronIcon && (
         <span className={chevronClasses}>
           <Icon svgIcon={chevronIcon} isHovered={isHovered} size={IconSize.XSmall} />

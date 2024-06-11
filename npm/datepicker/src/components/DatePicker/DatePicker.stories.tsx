@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 import { parse } from 'date-fns';
-import { ar } from 'date-fns/locale';
+import { ar, nb } from 'date-fns/locale';
 import { useForm } from 'react-hook-form';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
@@ -30,44 +30,99 @@ const meta = {
       description: {
         component: 'Som innbygger ønsker jeg å kunne velge dato og tidspunkt for tjenestene på helsenorge.',
       },
+      story: {
+        inline: false,
+        iframeHeight: '30rem',
+      },
     },
   },
   args: {
     dateButtonAriaLabel: 'Open datepicker',
     dateFormat: 'dd.MM.yyyy',
     disableWeekends: false,
+    disableDays: [],
+    locale: nb,
     error: false,
     errorText: '',
-    autoComplete: '',
+    autoComplete: 'off',
   },
   argTypes: {
+    className: {
+      control: 'text',
+      description: 'Adds custom classes to the element.',
+    },
     dateButtonAriaLabel: {
       control: 'text',
+      description: 'Sets aria-label on the button that opens the datepicker dialogue',
     },
     dateFormat: {
       control: 'select',
       options: ['dd.MM.yyyy'],
+      description: 'Sets the format of the date - only applies for desktop use. Native mobile date fields base their formats on the device',
     },
     dateValue: {
       control: 'date',
+      description: 'Sets the date of the component',
+    },
+    defaultMonth: {
+      control: 'date',
+      description: 'Sets the current month',
     },
     disableDays: {
       control: 'date',
+      description: 'Disables the days in the datepicker',
     },
     disableWeekends: {
       control: 'boolean',
+      description: 'Disables weekends in the datepicker',
     },
     error: {
       control: 'boolean',
+      description: 'Activates Error style for the input',
     },
     errorText: {
       control: 'text',
+      description: 'Error text to show above the component',
+    },
+    errorTextId: {
+      control: 'text',
+      description: 'Error text id',
+    },
+    footerContent: {
+      control: 'object',
+      description: 'Content to be rendered in the footer of the datepicker popup',
+    },
+    label: {
+      control: 'object',
+      description: 'Label of the input',
+    },
+    inputId: {
+      control: 'text',
+      description: 'Input element id',
+    },
+    locale: {
+      control: 'object',
+      description: 'Sets the locale of the datepicker',
     },
     maxDate: {
       control: 'date',
+      description: 'Maximum date allowed to be selected',
     },
     minDate: {
       control: 'date',
+      description: 'Minimum date allowed to be selected',
+    },
+    onChange: {
+      action: 'onChange',
+      description: 'onChange callback triggered by change in chosen date.',
+    },
+    testId: {
+      control: 'text',
+      description: 'Sets the data-testid attribute.',
+    },
+    zIndex: {
+      control: 'number',
+      description: 'Overrides the default z-index of DatePicker',
     },
     autoComplete: {
       control: 'text',
@@ -208,6 +263,9 @@ export const FooterContent: Story = {
 };
 
 export const Locale: Story = {
+  args: {
+    locale: ar,
+  },
   render: (args: DatePickerProps) => {
     return (
       <DatePicker
@@ -217,7 +275,7 @@ export const Locale: Story = {
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
         maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
         minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
-        locale={ar}
+        locale={args.locale}
       />
     );
   },
