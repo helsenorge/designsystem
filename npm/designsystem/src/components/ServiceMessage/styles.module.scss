@@ -54,19 +54,6 @@
     }
   }
 
-  &--alert {
-    background-color: $cherry50;
-
-    &:hover {
-      background-color: rgba-to-rgb(rgba($cherry500, 0.1), $cherry50);
-    }
-
-    &#{$servicemessage},
-    &#{$servicemessage}__label-container {
-      border-color: $cherry700;
-    }
-  }
-
   &--error {
     background-color: $cherry50;
 

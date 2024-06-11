@@ -50,7 +50,7 @@ const Label: React.FC<LabelProps> = ({ label, variant, id, hasExpander, isExpand
         <div className={styles['service-message__row']}>
           <div className={styles['service-message__col']}>
             <div className={styles['service-message__label']}>
-              <NotificationBadge variant={variant == 'alert' ? 'error' : variant} size={iconSize} isHovered={isHovered} />
+              <NotificationBadge variant={variant} size={iconSize} isHovered={isHovered} />
               <h1 className={styles['service-message__title']} id={id}>
                 <CustomTag
                   className={styles['service-message__toggle']}
@@ -171,7 +171,7 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
   const labelId = useUuid();
   const hasExpander = !!info || !!extraInfo;
 
-  const ariaRole = variant === 'alert' || variant === 'error' ? 'alert' : 'region';
+  const ariaRole = variant === 'error' ? 'alert' : 'region';
   const ariaLabelAttributes = getAriaLabelAttributes({ label, id: labelId });
 
   const handleClick = (): void => {

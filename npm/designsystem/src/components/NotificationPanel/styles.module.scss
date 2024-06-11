@@ -84,20 +84,6 @@
     border: none;
   }
 
-  &--alert {
-    border: 0.125rem solid $cherry700;
-    background-color: $cherry50;
-  }
-
-  &--alert#{&}--compact {
-    box-shadow: none;
-    background-color: transparent;
-  }
-
-  &--alert#{&}--compact--basic {
-    border: none;
-  }
-
   &--error {
     border: 0.125rem solid $cherry700;
     background-color: $cherry50;

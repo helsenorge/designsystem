@@ -180,19 +180,19 @@ describe('Gitt at NotificationPanel skal vises', () => {
     });
   });
 
-  describe('Når variant er alert', (): void => {
+  describe('Når variant er error', (): void => {
     test('Så har komponenten role=alert', (): void => {
-      render(<NotificationPanel variant="alert">Danger!</NotificationPanel>);
+      render(<NotificationPanel variant="error">Danger!</NotificationPanel>);
 
       const component = screen.getByRole('alert', { name: 'Danger!' });
       expect(component).toBeVisible();
     });
   });
 
-  describe('Når variant er alert og role er region', (): void => {
+  describe('Når variant er error og role er region', (): void => {
     test('Så har komponenten role=region', (): void => {
       render(
-        <NotificationPanel variant="alert" role="region">
+        <NotificationPanel variant="error" role="region">
           Danger!
         </NotificationPanel>
       );

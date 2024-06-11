@@ -15,7 +15,6 @@ export type Styles = {
   'notification-panel__label--compact': string;
   'notification-panel__label--no-content': string;
   'notification-panel__label--outline': string;
-  'notification-panel--alert': string;
   'notification-panel--compact': string;
   'notification-panel--compact--basic': string;
   'notification-panel--compact--outline': string;

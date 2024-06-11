@@ -12,7 +12,7 @@ import Expander from '../Expander';
 
 import styles from './styles.module.scss';
 
-export type NotificationPanelVariants = 'info' | 'warn' | 'alert' | 'error' | 'success';
+export type NotificationPanelVariants = 'info' | 'warn' | 'error' | 'success';
 export type NotificationCompactVariants = 'basic' | 'outline';
 export type NotificationPanelSizes = 'small' | 'medium' | 'large';
 export type LabelTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span';
@@ -142,7 +142,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     className
   );
 
-  const ariaRole = role || ((variant === 'alert' || variant === 'error') && 'alert') || undefined;
+  const ariaRole = role || (variant === 'error' && 'alert') || undefined;
   const ariaLabelAttributes = ariaRole ? getAriaLabelAttributes({ label, id: uuid }) : undefined;
 
   return (
@@ -156,7 +156,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         {...ariaLabelAttributes}
       >
         <NotificationBadge
-          variant={variant == 'alert' ? 'error' : variant}
+          variant={variant}
           size={compactVariant ? IconSize.XSmall : IconSize.Small}
           className={styles['notification-panel__icon']}
         />
