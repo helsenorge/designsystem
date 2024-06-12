@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId } from '../../constants';
+import { AnalyticsId, ZIndex } from '../../constants';
 import { PaletteNames } from '../../theme/palette';
 import { uuid } from '../../utils/uuid';
 
@@ -110,7 +110,7 @@ const Loader: React.FC<LoaderProps> = props => {
   }, []);
 
   return (
-    <div className={loaderWrapperClasses} ref={wrapperRef}>
+    <div className={loaderWrapperClasses} ref={wrapperRef} style={overlay === Overlay.screen ? { zIndex: ZIndex.OverlayScreen } : {}}>
       {display && (
         <div
           data-testid={testId}
