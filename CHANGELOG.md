@@ -1,3 +1,10 @@
+## [7.9.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.8.1&targetVersion=GTv7.9.0) (2024-06-12)
+
+### Bug Fixes
+
+- fiks brekking av ord i dropdown ([d10a776](https://github.com/helsenorge/designsystem/commit/d10a776b66763d2c92c9bfeb0b5988687e235577)),
+  closes [#327108](https://github.com/helsenorge/designsystem/issues/327108)
+
 ## [7.8.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.8.0&targetVersion=GTv7.8.1) (2024-06-04)
 
 ### Bug Fixes
