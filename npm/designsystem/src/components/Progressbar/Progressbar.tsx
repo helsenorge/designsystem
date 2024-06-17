@@ -92,6 +92,7 @@ const Progressbar: React.FC<ProgressbarProps> = ({
       role="progressbar"
       aria-valuenow={value}
       aria-label={ariaLabel}
+      aria-live="polite"
       style={overlay === Overlay.screen ? { zIndex: ZIndex.OverlayScreen } : {}}
     >
       <svg
