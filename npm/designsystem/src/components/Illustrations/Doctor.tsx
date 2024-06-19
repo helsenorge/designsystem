@@ -10,9 +10,9 @@ export interface Palette {
   shirt: string;
 }
 
-const Doctor: React.FC<SvgIllustrationProps> = ({ size = 512, color }) => {
-  const medium = <DoctorMedium color={color} />;
-  const small = <DoctorSmall color={color} />;
+const Doctor: React.FC<SvgIllustrationProps> = ({ size = 512, color, ...rest }) => {
+  const medium = <DoctorMedium color={color} {...rest} />;
+  const small = <DoctorSmall color={color} {...rest} />;
 
   return getIllustration({ size, medium, small });
 };

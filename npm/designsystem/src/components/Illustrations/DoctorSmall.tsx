@@ -3,7 +3,7 @@ import React from 'react';
 import { Palette } from './Doctor';
 import { BaseSvgIllustrationProps } from '../Illustration';
 
-const DoctorSmall: React.FC<BaseSvgIllustrationProps> = ({ color }) => {
+const DoctorSmall: React.FC<BaseSvgIllustrationProps> = ({ color, svgProperties, title }) => {
   const palette = ((): Palette => {
     switch (color) {
       case 'blueberry':
@@ -25,7 +25,8 @@ const DoctorSmall: React.FC<BaseSvgIllustrationProps> = ({ color }) => {
   })();
 
   return (
-    <>
+    <svg {...svgProperties}>
+      {title}
       <g clipPath="url(#Color=Blueberry, Size=Small__a)">
         <path
           d="m83.57 54.35 1.077 5.542-3.489-1.694-1.334-3.283-.308-3.694 4.053 3.13Zm-.616-8.824 2.719 3.95 2.463-.462.82-1.436 2.207-5.798 1.129-2.668 4.925 2.668 3.848 1.283 4.926.975 4.617-.308 4.208-1.385 3.026-1.386.924-1.847v-2.155l-.924-3.642-1.59-2.874-2.257-3.54-2.36-3.027-3.438-3.13L104.965 19h-5.029l-3.848 1.026-4.617 1.95-3.335 1.898-3.13 1.129h-2.72l-2.462.82-1.95 1.9-1.436 2.718-1.283 4.002.257 3.387 2.462 4.515.719 2.873 1.898-1.488 2.463 1.796Z"
@@ -56,7 +57,7 @@ const DoctorSmall: React.FC<BaseSvgIllustrationProps> = ({ color }) => {
           <path fill="#fff" d="M0 0h200v200H0z" />
         </clipPath>
       </defs>
-    </>
+    </svg>
   );
 };
 
