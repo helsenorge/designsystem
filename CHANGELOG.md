@@ -1,3 +1,18 @@
+## [7.10.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.9.0&targetVersion=GTv7.10.0) (2024-06-19)
+
+### Features
+
+- illustrasjon facialrecongitionfingerprint lagt til
+  ([64bff31](https://github.com/helsenorge/designsystem/commit/64bff313fa89b1602dd5198fa773d9baa29b0a32)), closes
+  [#320973](https://github.com/helsenorge/designsystem/issues/320973)
+- **progressbar:** ny komponent ([9cdbd1b](https://github.com/helsenorge/designsystem/commit/9cdbd1bad9a701ed4a68bd84bb959b6785d518bd)),
+  closes [#297459](https://github.com/helsenorge/designsystem/issues/297459)
+
+### Bug Fixes
+
+- **progressbar:** bedre uu ([1f2bcf0](https://github.com/helsenorge/designsystem/commit/1f2bcf01cd1fa88a5b4765013a17ec2e5ca05a67)), closes
+  [#297459](https://github.com/helsenorge/designsystem/issues/297459)
+
 ## [7.9.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.8.1&targetVersion=GTv7.9.0) (2024-06-12)
 
 ### Bug Fixes
