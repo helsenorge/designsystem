@@ -1,3 +1,11 @@
+## [7.11.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.10.0&targetVersion=GTv7.11.0) (2024-06-20)
+
+### Features
+
+- **button:** textposition prop får centered type
+  ([46d7ae0](https://github.com/helsenorge/designsystem/commit/46d7ae09e6ac1ec954355ed81c7d17f3786a01e8)), closes
+  [#320973](https://github.com/helsenorge/designsystem/issues/320973)
+
 ## [7.10.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.9.0&targetVersion=GTv7.10.0) (2024-06-19)
 
 ### Features
