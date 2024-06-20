@@ -124,24 +124,24 @@ describe('Gitt at button skal vises', (): void => {
     });
   });
 
-  describe('Når button rendres med fluid og textPosition som centered-mobile', (): void => {
+  describe('Når button rendres med fluid og textPosition som centered', (): void => {
     test('Så settes riktige klasse på text', (): void => {
       render(
-        <Button testId={'test01'} fluid={true} textPosition={'centered-mobile'}>
+        <Button testId={'test01'} fluid={true} textPosition={'centered'}>
           Button text
           <Icon svgIcon={Check} />
         </Button>
       );
 
       const buttonText = screen.getByText('Button text').parentElement;
-      expect(buttonText?.className).toBe('button__text button__text--centered-mobile');
+      expect(buttonText?.className).toBe('button__text button__text--centered');
     });
   });
 
-  describe('Når button rendres uten fluid og textPosition som centered-mobile', (): void => {
+  describe('Når button rendres uten fluid og textPosition som centered', (): void => {
     test('Så settes riktige klasse på text', (): void => {
       render(
-        <Button testId={'test01'} textPosition={'centered-mobile'}>
+        <Button testId={'test01'} textPosition={'centered'}>
           Button text
           <Icon svgIcon={Check} />
         </Button>

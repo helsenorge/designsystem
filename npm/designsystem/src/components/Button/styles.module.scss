@@ -331,10 +331,8 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
       text-overflow: ellipsis;
     }
 
-    &--centered-mobile {
-      @media (max-width: map.get($grid-max-breakpoints, xs)) {
-        width: 100%;
-      }
+    &--centered {
+      width: 100%;
     }
   }
 
