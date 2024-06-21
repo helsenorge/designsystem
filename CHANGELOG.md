@@ -1,3 +1,11 @@
+## [7.12.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.11.0&targetVersion=GTv7.12.0) (2024-06-21)
+
+### Features
+
+- **datepicker:** lagt til disabled prop
+  ([178326d](https://github.com/helsenorge/designsystem/commit/178326d934c0f6a0b916de1c868bac7363ba2960)), closes
+  [#327974](https://github.com/helsenorge/designsystem/issues/327974)
+
 ## [7.11.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.10.0&targetVersion=GTv7.11.0) (2024-06-20)
 
 ### Features
