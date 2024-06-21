@@ -39,6 +39,7 @@ const meta = {
   args: {
     dateButtonAriaLabel: 'Open datepicker',
     dateFormat: 'dd.MM.yyyy',
+    disabled: false,
     disableWeekends: false,
     disableDays: [],
     locale: nb,

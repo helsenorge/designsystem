@@ -183,7 +183,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     return iconElement
       ? React.cloneElement(iconElement, {
           size: iconSize,
-          color: iconElement?.props.color ? iconElement.props.color : iconColor,
+          color: iconElement?.props.color && !disabled ? iconElement.props.color : iconColor,
           isHovered: !disabled && isHovered,
           className: iconClassName,
         })
