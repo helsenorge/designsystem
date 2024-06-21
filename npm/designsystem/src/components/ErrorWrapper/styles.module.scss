@@ -5,6 +5,8 @@
 @import '../../scss/font-settings';
 
 .error-wrapper {
+  position: relative;
+
   &--with-error {
     padding-top: getSpacer(s);
     margin-left: getSpacer(xs) * -1;

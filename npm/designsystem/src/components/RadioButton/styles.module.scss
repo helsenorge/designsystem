@@ -26,11 +26,11 @@
   }
 
   &--with-error#{&}__large {
-    padding: getSpacer(m) getSpacer(m);
+    padding: getSpacer(m);
   }
 
   &__large {
-    margin: getSpacer(2xs) 0 getSpacer(2xs) 0;
+    margin: getSpacer(2xs) 0;
 
     &--focused {
       box-shadow: 0 0 0 getSpacer(3xs);

@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "include": ["src"],
-  "exclude": ["**/*.test.snap.tsx", "**/*.test.tsx"],
+  "exclude": ["**/*.test.snap.tsx", "**/*.test.tsx", "**/*.stories.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

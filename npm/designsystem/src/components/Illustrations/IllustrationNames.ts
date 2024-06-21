@@ -1,6 +1,6 @@
 /** AUTO-GENERATED - DO NOT CHANGE MANUALLY **/
 
-export const IllustrationList = ['Doctor', 'HealthcarePersonnel'] as const;
+export const IllustrationList = ['Doctor', 'FacialRecognitionFingerprint', 'HealthcarePersonnel'] as const;
 
 export interface IllustrationSize {
   small?: string;
@@ -10,6 +10,7 @@ export interface IllustrationSize {
 
 export const IllustrationSizeList: Record<IllustrationName, IllustrationSize> = {
   Doctor: { small: 'DoctorSmall', medium: 'DoctorMedium' },
+  FacialRecognitionFingerprint: { medium: 'FacialRecognitionFingerprintMedium' },
   HealthcarePersonnel: { small: 'HealthcarePersonnelSmall', medium: 'HealthcarePersonnelMedium' },
 };
 

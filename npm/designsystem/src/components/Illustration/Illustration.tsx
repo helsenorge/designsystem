@@ -6,8 +6,15 @@ import { useUuid } from '../../hooks/useUuid';
 
 export type IllustrationColor = 'neutral' | 'cherry' | 'blueberry';
 
+export enum ViewBoxSize {
+  Medium = '0 0 512 512',
+  Small = '0 0 200 200',
+}
+
 export interface BaseSvgIllustrationProps {
   color: IllustrationColor;
+  svgProperties: React.SVGProps<SVGSVGElement>;
+  title: React.ReactNode;
 }
 export interface SvgIllustrationProps extends BaseSvgIllustrationProps {
   size: number;
@@ -36,36 +43,34 @@ export interface IllustrationProps extends BaseIllustrationProps {
 export const Illustration = React.forwardRef<SVGSVGElement, IllustrationProps>((props, ref) => {
   const { illustration, ariaLabel, className = '', size = 512, color = 'neutral', testId, ...other } = props;
 
+  const titleId = useUuid();
+  const viewBox = getIllustration({ size, medium: ViewBoxSize.Medium, small: ViewBoxSize.Small });
+
+  const svgProperties = {
+    'data-testid': testId,
+    'data-analyticsid': AnalyticsId.Illustration,
+    ref,
+    className,
+    role: ariaLabel ? 'img' : 'presentation',
+    'aria-labelledby': ariaLabel ? titleId : undefined,
+    focusable: false,
+    'aria-hidden': ariaLabel ? undefined : true,
+    viewBox,
+    style: { minWidth: size, minHeight: size },
+    width: size,
+    height: size,
+    fill: color,
+    ...other,
+  };
+
   const svgElement = React.createElement(illustration, {
     size,
     color,
+    svgProperties: svgProperties,
+    title: ariaLabel && <title id={titleId}>{ariaLabel}</title>,
   });
 
-  const titleId = useUuid();
-
-  const viewBox = getIllustration({ size, medium: '0 0 512 512', small: '0 0 200 200' });
-
-  return (
-    <svg
-      data-testid={testId}
-      data-analyticsid={AnalyticsId.Illustration}
-      ref={ref}
-      className={className}
-      role={ariaLabel ? 'img' : 'presentation'}
-      aria-labelledby={ariaLabel ? titleId : undefined}
-      focusable={false}
-      aria-hidden={ariaLabel ? undefined : true}
-      viewBox={viewBox}
-      style={{ minWidth: size, minHeight: size }}
-      width={size}
-      height={size}
-      fill={color}
-      {...other}
-    >
-      {ariaLabel && <title id={titleId}>{ariaLabel}</title>}
-      {svgElement}
-    </svg>
-  );
+  return svgElement;
 });
 
 Illustration.displayName = 'Illustration';

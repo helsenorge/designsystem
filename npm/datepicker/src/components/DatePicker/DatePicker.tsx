@@ -34,6 +34,8 @@ export interface DatePickerProps
   dateValue?: Date;
   /** Sets the current month */
   defaultMonth?: Date;
+  /** Disables the datepicker */
+  disabled?: boolean;
   /** Disables the days in the datepicker */
   disableDays?: Date[];
   /** Disables weekends in the datepicker */
@@ -72,6 +74,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     dateValue,
     defaultMonth,
     dir,
+    disabled,
     disableDays = [],
     disableWeekends,
     error,
@@ -194,6 +197,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
 
   const renderMobile = (
     <Input
+      disabled={disabled}
       error={error}
       errorText={errorText}
       errorTextId={errorTextId}
@@ -218,6 +222,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     <>
       <div>
         <Input
+          disabled={disabled}
           error={error}
           errorText={errorText}
           errorTextId={errorTextId}
@@ -234,6 +239,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           onChange={e => handleInputChange(e, dateFormat)}
           rightOfInput={
             <Button
+              disabled={disabled}
               ariaLabel={dateButtonAriaLabel ?? 'Velg dato'}
               onClick={handleButtonClick}
               tabIndex={datePickerOpen ? -1 : 0}
@@ -241,13 +247,13 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
               wrapperClassName={styles['date-button']}
               className={styles['date-button__inner']}
             >
-              {<Icon color={'black'} svgIcon={Calendar} />}
+              <Icon color={'black'} svgIcon={Calendar} />
             </Button>
           }
           autoComplete={autoComplete ? autoComplete : undefined}
         />
       </div>
-      {datePickerOpen && (
+      {datePickerOpen && !disabled && (
         <DatePickerPopup
           dir={dir}
           disabled={disabledDays}

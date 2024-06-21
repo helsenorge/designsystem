@@ -8,7 +8,7 @@ export type Styles = {
   legend: string;
   preamble: string;
   strong: string;
-  table: string;
+  'table-cell': string;
   time: string;
   'title-feature': string;
   title1: string;

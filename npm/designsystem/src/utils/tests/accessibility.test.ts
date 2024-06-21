@@ -38,47 +38,28 @@ describe('Gitt at getAriaLabelAttributes skal kalles', () => {
 describe('Gitt at getAriaDescribedBy skal kalles', () => {
   describe('Når props er tom', () => {
     test('Så returneres undefined', (): void => {
-      const result = getAriaDescribedBy({});
+      const result = getAriaDescribedBy({}, 'errorTextUuid');
 
       expect(result).toBeUndefined();
     });
   });
+  describe('Når error ikke er satt', () => {
+    describe('Når aria-describedby er en string', () => {
+      test('Så returneres aria-describedby', (): void => {
+        const result = getAriaDescribedBy({ 'aria-describedby': 'aria-describedby' }, 'errorTextUuid');
 
-  describe('Når aria-describedby er en string', () => {
-    test('Så returneres aria-describedby', (): void => {
-      const result = getAriaDescribedBy({ 'aria-describedby': 'aria-describedby' });
-
-      expect(result).toEqual('aria-describedby');
-    });
-
-    describe('Når errorTextId er en string, og errorTextUuid er satt', () => {
-      test('Så returneres aria-describedby og errorTextUuid', (): void => {
-        const result = getAriaDescribedBy({ 'aria-describedby': 'aria-describedby', errorTextId: 'errorTextId' }, 'errorTextUuid');
-
-        expect(result).toEqual('aria-describedby errorTextUuid');
+        expect(result).toEqual('aria-describedby');
       });
-    });
-  });
 
-  describe('Når errorTextUuid ikke er satt', () => {
-    describe('Når errorText er en string', () => {
-      test('Så returneres undefined', (): void => {
-        const result = getAriaDescribedBy({ errorText: 'errorText' });
+      describe('Når errorTextId er en string, og errorTextUuid er satt', () => {
+        test('Så returneres aria-describedby', (): void => {
+          const result = getAriaDescribedBy({ 'aria-describedby': 'aria-describedby', errorTextId: 'errorTextId' }, 'errorTextUuid');
 
-        expect(result).toBeUndefined();
+          expect(result).toEqual('aria-describedby');
+        });
       });
     });
 
-    describe('Når errorTextId er en string', () => {
-      test('Så returneres undefined', (): void => {
-        const result = getAriaDescribedBy({ errorTextId: 'errorTextId' });
-
-        expect(result).toBeUndefined();
-      });
-    });
-  });
-
-  describe('Når errorTextUuid er satt', () => {
     describe('Når errorText er en string', () => {
       test('Så returneres errorTextUuid', (): void => {
         const result = getAriaDescribedBy({ errorText: 'errorText' }, 'errorTextUuid');
@@ -88,10 +69,48 @@ describe('Gitt at getAriaDescribedBy skal kalles', () => {
     });
 
     describe('Når errorTextId er en string', () => {
-      test('Så returneres errorTextUuid', (): void => {
+      test('Så returneres undefined', (): void => {
         const result = getAriaDescribedBy({ errorTextId: 'errorTextId' }, 'errorTextUuid');
 
-        expect(result).toEqual('errorTextUuid');
+        expect(result).toBeUndefined();
+      });
+    });
+  });
+  describe('Når error er true', () => {
+    describe('Når aria-describedby er en string', () => {
+      test('Så returneres aria-describedby', (): void => {
+        const result = getAriaDescribedBy({ 'aria-describedby': 'aria-describedby', error: true }, 'errorTextUuid');
+
+        expect(result).toEqual('aria-describedby');
+      });
+
+      describe('Når errorTextId er en string, og errorTextUuid er satt', () => {
+        test('Så returneres aria-describedby og errorTextUuid', (): void => {
+          const result = getAriaDescribedBy(
+            { 'aria-describedby': 'aria-describedby', error: true, errorTextId: 'errorTextId' },
+            'errorTextUuid'
+          );
+
+          expect(result).toEqual('aria-describedby errorTextUuid');
+        });
+      });
+    });
+
+    describe('Når errorTextUuid er satt', () => {
+      describe('Når errorText er en string', () => {
+        test('Så returneres errorTextUuid', (): void => {
+          const result = getAriaDescribedBy({ error: true, errorText: 'errorText' }, 'errorTextUuid');
+
+          expect(result).toEqual('errorTextUuid');
+        });
+      });
+
+      describe('Når errorTextId er en string', () => {
+        test('Så returneres undefined', (): void => {
+          const result = getAriaDescribedBy({ error: true, errorTextId: 'errorTextId' }, 'errorTextUuid');
+
+          expect(result).toEqual('errorTextUuid');
+        });
       });
     });
   });

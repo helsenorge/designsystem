@@ -80,7 +80,7 @@
       padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
+        padding: getSpacer(m) getSpacer(m) getSpacer(l);
       }
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
@@ -91,10 +91,10 @@
 
   // fluid skal ha bakgrunnsfarge på den ytre containeren
   &--fluid {
-    padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
+    padding: getSpacer(m) getSpacer(s) getSpacer(l);
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
+      padding: getSpacer(m) getSpacer(m) getSpacer(l);
     }
 
     @each $color in $colors {

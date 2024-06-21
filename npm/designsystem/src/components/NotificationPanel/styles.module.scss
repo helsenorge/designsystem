@@ -41,7 +41,7 @@
   }
 
   &--dismissable {
-    padding: getSpacer(2xs) getSpacer(2xs) getSpacer(m) getSpacer(2xs);
+    padding: getSpacer(2xs) getSpacer(2xs) getSpacer(m);
   }
 
   &--small {
@@ -81,6 +81,20 @@
   }
 
   &--warn#{&}--compact--basic {
+    border: none;
+  }
+
+  &--error {
+    border: 0.125rem solid $cherry700;
+    background-color: $cherry50;
+  }
+
+  &--error#{&}--compact {
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  &--error#{&}--compact--basic {
     border: none;
   }
 
@@ -141,7 +155,7 @@
 
   &__label {
     font-weight: 700;
-    margin: getSpacer(2xs) 0 0 0;
+    margin: getSpacer(2xs) 0 0;
 
     &--compact {
       font-size: $font-size-xs;
@@ -171,7 +185,7 @@
     }
 
     &--expander-no-label {
-      margin: getSpacer(2xs) 0 0 0;
+      margin: getSpacer(2xs) 0 0;
 
       @media (max-width: map.get($grid-breakpoints, lg)) {
         padding-top: 0;

@@ -152,7 +152,7 @@
     }
 
     &--padding {
-      padding: getSpacer(m) 0 getSpacer(m) 0;
+      padding: getSpacer(m) 0;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
         padding-left: getSpacer(2xs);

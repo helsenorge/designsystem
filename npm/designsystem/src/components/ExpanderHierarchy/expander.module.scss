@@ -21,7 +21,7 @@
     cursor: pointer;
     background-color: transparent;
     border-bottom: 1px solid $neutral500;
-    padding: getSpacer(xs) 0 getSpacer(xs) 0;
+    padding: getSpacer(xs) 0;
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
       flex-direction: row-reverse;
@@ -51,7 +51,7 @@
     }
 
     &--2-and-lower {
-      padding: getSpacer(2xs) 0 getSpacer(2xs) 0;
+      padding: getSpacer(2xs) 0;
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
         padding: getSpacer(xs) getSpacer(s) getSpacer(xs) getSpacer(2xs);

@@ -20,7 +20,7 @@ export type ButtonSize = 'medium' | 'large';
 export type ButtonMode = 'onlight' | 'ondark';
 export type ButtonTags = 'button' | 'a';
 export type ButtonArrows = 'icon' | 'accessibility-character';
-export type ButtonTextPosition = 'left' | 'centered-mobile';
+export type ButtonTextPosition = 'left' | 'centered';
 
 export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttributes {
   /** Sets the aria-label of the button, use when the button only includes an icon */
@@ -169,7 +169,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   );
   const buttonTextClasses = classNames(buttonStyles['button__text'], {
     [buttonStyles['button__text--ellipsis']]: ellipsis,
-    [buttonStyles['button__text--centered-mobile']]: fluid && textPosition === 'centered-mobile',
+    [buttonStyles['button__text--centered']]: fluid && textPosition === 'centered',
   });
   const diagonalClasses = classNames(buttonStyles['diagonal'], {
     [buttonStyles['diagonal--on-dark']]: onDark,
@@ -183,7 +183,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     return iconElement
       ? React.cloneElement(iconElement, {
           size: iconSize,
-          color: iconElement?.props.color ? iconElement.props.color : iconColor,
+          color: iconElement?.props.color && !disabled ? iconElement.props.color : iconColor,
           isHovered: !disabled && isHovered,
           className: iconClassName,
         })

@@ -43,7 +43,7 @@
     "react-dom": "^17.0.0"
   },
   "dependencies": {
-    "react-day-picker": "^8.10.0"
+    "react-day-picker": "^8.10.1"
   },
   "devDependencies": {
     "@helsenorge/designsystem-react": "^7.8.1",
@@ -54,19 +54,20 @@
     "@types/react": "^17.0.80",
     "@types/react-datepicker": "^6.2.0",
     "@types/react-dom": "^17.0.25",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^1.6.0",
     "bootstrap": "^4.6.2",
     "classnames": "^2.5.1",
-    "jsdom": "^24.0.0",
+    "jsdom": "^24.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.51.2",
+    "react-hook-form": "^7.52.0",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "typed-scss-modules": "^8.0.1",
-    "typescript": "~5.4.4",
-    "vite": "^5.2.8",
-    "vitest": "^1.4.0"
+    "typescript": "~5.5.2",
+    "vite": "^5.3.1",
+    "vitest": "^1.6.0"
   }
 }
