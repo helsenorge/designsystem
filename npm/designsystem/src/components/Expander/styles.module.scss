@@ -183,7 +183,7 @@
       padding: getSpacer(s) getSpacer(m) getSpacer(l) getSpacer(s);
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(m) getSpacer(l) getSpacer(xl) getSpacer(l);
+        padding: getSpacer(m) getSpacer(l) getSpacer(xl);
       }
       &#{$content}--icon {
         @media (min-width: map.get($grid-breakpoints, md)) {

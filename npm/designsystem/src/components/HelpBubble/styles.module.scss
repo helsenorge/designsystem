@@ -27,7 +27,7 @@
     align-items: flex-start;
     overflow-wrap: anywhere;
     row-gap: getSpacer(2xs);
-    padding: getSpacer(s) getSpacer(s) getSpacer(m) getSpacer(s);
+    padding: getSpacer(s) getSpacer(s) getSpacer(m);
 
     &--close {
       padding-right: 0;

@@ -208,7 +208,7 @@
 
   &__input {
     border-bottom: 1px solid $neutral300;
-    padding: getSpacer(2xs) getSpacer(s) getSpacer(2xs) getSpacer(s);
+    padding: getSpacer(2xs) getSpacer(s);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       padding: getSpacer(s);

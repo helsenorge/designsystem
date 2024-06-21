@@ -42,21 +42,20 @@
     "posttest": "node ./scripts/aggregate-packages-coverage.cjs && nyc report --reporter lcov"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.2.1",
-    "@commitlint/config-conventional": "^19.1.0",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@helsenorge/eslint-config": "^31.0.0",
-    "@lerna/legacy-package-management": "^8.1.2",
-    "conventional-changelog-cli": "^4.1.0",
+    "@lerna/legacy-package-management": "^8.1.4",
+    "conventional-changelog-cli": "^5.0.0",
     "husky": "^9.0.11",
-    "lerna": "^8.1.2",
-    "lint-staged": "^15.2.2",
+    "lerna": "^8.1.4",
+    "lint-staged": "^15.2.7",
     "npm-run-all": "^4.1.5",
-    "nyc": "^15.1.0",
-    "rimraf": "^5.0.5"
+    "nyc": "^17.0.0",
+    "rimraf": "^5.0.7"
   },
   "engines": {
     "node": "^20.0.0",
     "npm": ">=10.0.0"
-  },
-  "packageManager": "pnpm@8.9.0+sha1.01c55344d677f3b481c6bb6ffba9a6b3c6dbd91d"
+  }
 }

@@ -28,11 +28,11 @@ $checkbox-icon-size: 1.625rem;
   }
 
   &--with-error#{&}--large {
-    padding: getSpacer(m) getSpacer(m);
+    padding: getSpacer(m);
   }
 
   &--large {
-    margin: getSpacer(2xs) 0 getSpacer(2xs) 0;
+    margin: getSpacer(2xs) 0;
   }
 }
 

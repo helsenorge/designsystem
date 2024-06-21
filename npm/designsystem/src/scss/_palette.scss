@@ -141,5 +141,6 @@ $palette-map: (
 * @returns Farge uten gjennomsiktighet
 */
 @function rgba-to-rgb($rgba, $background: $white) {
+  /* stylelint-disable-next-line scss/no-global-function-names */
   @return mix(rgb(red($rgba), green($rgba), blue($rgba)), $background, alpha($rgba) * 100%);
 }

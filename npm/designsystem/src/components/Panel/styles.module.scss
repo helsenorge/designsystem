@@ -5,7 +5,7 @@
 @import '../../scss/font-settings';
 
 @mixin panel-padding {
-  padding: getSpacer(s) getSpacer(s) getSpacer(s) getSpacer(s);
+  padding: getSpacer(s);
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     padding: getSpacer(l) getSpacer(m) getSpacer(l) getSpacer(l);
@@ -13,10 +13,10 @@
 }
 
 @mixin panel-padding-icon {
-  padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
+  padding: getSpacer(m) getSpacer(s) getSpacer(l);
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    padding: getSpacer(m) getSpacer(m) getSpacer(l) getSpacer(m);
+    padding: getSpacer(m) getSpacer(m) getSpacer(l);
   }
 }
 

@@ -175,22 +175,22 @@
 
     &__scroll {
       &--large {
-        padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
+        padding: getSpacer(xl) getSpacer(m) getSpacer(2xs);
 
         @media (min-width: map.get($grid-breakpoints, md)) {
-          padding: getSpacer(xl) getSpacer(xl) getSpacer(2xs) getSpacer(xl);
+          padding: getSpacer(xl) getSpacer(xl) getSpacer(2xs);
         }
       }
 
       &--medium {
-        padding: getSpacer(l) getSpacer(m) getSpacer(2xs) getSpacer(m);
+        padding: getSpacer(l) getSpacer(m) getSpacer(2xs);
 
         @media (min-width: map.get($grid-breakpoints, md)) {
-          padding: getSpacer(xl) getSpacer(m) getSpacer(2xs) getSpacer(m);
+          padding: getSpacer(xl) getSpacer(m) getSpacer(2xs);
         }
       }
       &--large#{&}--image {
-        padding: getSpacer(xl) getSpacer(2xs) getSpacer(l) getSpacer(2xs);
+        padding: getSpacer(xl) getSpacer(2xs) getSpacer(l);
       }
     }
 
@@ -234,15 +234,15 @@
     }
 
     &--large {
-      padding: getSpacer(l) getSpacer(m) 0 getSpacer(m);
+      padding: getSpacer(l) getSpacer(m) 0;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(l) getSpacer(xl) 0 getSpacer(xl);
+        padding: getSpacer(l) getSpacer(xl) 0;
       }
     }
 
     &--medium {
-      padding: getSpacer(m) getSpacer(m) 0 getSpacer(m);
+      padding: getSpacer(m) getSpacer(m) 0;
     }
   }
 
