@@ -107,7 +107,11 @@ const TooltipOpenContext = React.createContext<TooltipContext>({
   currentTooltip: undefined,
 });
 
-export const TooltipOpenProvider: React.FC = ({ children }) => {
+interface TooltipOpenProviderProps {
+  children?: React.ReactNode;
+}
+
+export const TooltipOpenProvider: React.FC<TooltipOpenProviderProps> = ({ children }) => {
   const [currentTooltip, setCurrentTooltip] = useState<string>();
 
   return <TooltipOpenContext.Provider value={{ currentTooltip, setCurrentTooltip }}>{children}</TooltipOpenContext.Provider>;

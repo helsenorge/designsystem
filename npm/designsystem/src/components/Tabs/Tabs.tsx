@@ -13,6 +13,7 @@ export type TabsColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'white'
 export type TabsType = 'normal' | 'framed';
 
 export interface TabsProps {
+  children?: React.ReactNode;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Sets the color of the tabs. Default: white */

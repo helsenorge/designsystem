@@ -5,6 +5,7 @@ import { AnalyticsId } from '../../constants';
 import styles from './styles.module.scss';
 
 export interface TagListPropsProps {
+  children?: React.ReactNode;
   /** Sets the data-testid attribute on the expander button. */
   testId?: string;
 }

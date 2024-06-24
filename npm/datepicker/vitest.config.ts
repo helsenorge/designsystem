@@ -17,5 +17,10 @@ export default defineConfig({
     outputFile: {
       junit: 'test-report.xml',
     },
+    server: {
+      deps: {
+        inline: ['@helsenorge/designsystem-react'],
+      },
+    },
   },
 });

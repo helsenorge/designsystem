@@ -7,6 +7,7 @@ import { TabsColors, TabsType } from '../Tabs';
 import styles from './styles.module.scss';
 
 interface TabPanelProps {
+  children?: React.ReactNode;
   color?: TabsColors;
   type?: TabsType;
   isFirst?: boolean;

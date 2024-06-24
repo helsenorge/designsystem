@@ -12,6 +12,7 @@ import styles from './styles.module.scss';
 const ROOT_MARGIN_OFFSET = '3px';
 
 interface HorizontalScrollProps {
+  children?: React.ReactNode;
   /**
    * Bredden på elementet som potensielt vil scrolle horisontalt i px
    */

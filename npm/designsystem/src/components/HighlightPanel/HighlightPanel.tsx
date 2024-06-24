@@ -49,6 +49,7 @@ export interface HighlightPanelProps {
 }
 
 interface WrapperProps {
+  children?: React.ReactNode;
   className: string;
   size?: keyof typeof HighlightPanelSize;
 }

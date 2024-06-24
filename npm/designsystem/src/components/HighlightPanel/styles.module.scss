@@ -77,7 +77,7 @@
 
   &--medium {
     #{$panel}__content-wrapper {
-      padding: getSpacer(m) getSpacer(s) getSpacer(l) getSpacer(s);
+      padding: getSpacer(m) getSpacer(s) getSpacer(l);
 
       @media (min-width: map.get($grid-breakpoints, md)) {
         padding: getSpacer(m) getSpacer(m) getSpacer(l);
