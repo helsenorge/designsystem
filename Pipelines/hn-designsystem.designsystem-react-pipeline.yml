@@ -153,7 +153,7 @@ stages:
               testResultsFiles: 'npm/*/test-report.xml'
               mergeTestResults: true
             condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-          - task: PublishCodeCoverageResults@1
+          - task: PublishCodeCoverageResults@2
             displayName: 'Publish code coverage'
             inputs:
               codeCoverageTool: Cobertura
