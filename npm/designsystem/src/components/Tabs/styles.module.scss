@@ -1,3 +1,39 @@
-.tabs {
-  background-color: transparent;
+@use 'sass:map';
+@import '../../scss/supernova/styles/colors';
+@import '../../scss/breakpoints';
+
+.tab-list-wrapper {
+  position: relative;
+
+  &--sticky {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.panel-wrapper {
+  $panel-wrapper: &;
+  $colors: 'blueberry', 'neutral', 'white';
+
+  border-top: 1px solid var(--color-action-border-onlight-focus);
+  position: relative;
+  width: 100%;
+
+  &--framed {
+    border-radius: 0;
+    height: 50px;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      border-radius: 0 0.5rem 0 0;
+      border-right: 1px solid var(--color-action-border-onlight-focus);
+      border-left: 1px solid var(--color-action-border-onlight-focus);
+    }
+  }
+
+  @each $color in $colors {
+    &--#{$color} {
+      background: linear-gradient(var(--color-base-background-#{$color}), #0000);
+      pointer-events: none;
+    }
+  }
 }

@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 
 import classNames from 'classnames';
 
+import { useIsVisible } from '../../../hooks/useIsVisible';
 import { useRovingFocus } from '../../../hooks/useRovingFocus';
 import { palette } from '../../../theme/palette';
 import { isComponent } from '../../../utils/component';
@@ -32,6 +33,7 @@ const TabList: React.FC<TabListProps> = props => {
   const tablistClasses = classNames(styles['tab-list'], styles[`tab-list--${type}`]);
 
   const id = uuid();
+  const isVisible = useIsVisible(listRef);
 
   return (
     <ul className={tablistClasses} ref={listRef} role="tablist" aria-orientation="horizontal">
@@ -42,6 +44,7 @@ const TabList: React.FC<TabListProps> = props => {
           const handleClick = (): void => {
             onTabClick && onTabClick(index);
             onTabListClick(index);
+            scrollToTab(index);
           };
           const tabButtonClasses = classNames(styles['tab-list__tab'], styles[`tab-list__tab--${color}`], {
             [styles['tab-list__tab--selected']]: isSelected,
@@ -50,8 +53,15 @@ const TabList: React.FC<TabListProps> = props => {
 
           const currentRef = tabRefs.current && tabRefs.current[index];
 
+          const scrollToTab = (index: number): void => {
+            const currentRef = tabRefs.current && tabRefs.current[index];
+            currentRef?.current?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          };
+
+          if (isSelected && isVisible) scrollToTab(index);
+
           return (
-            <li role="presentation">
+            <li role="presentation" key={`${title}-${id}`}>
               <button
                 role="tab"
                 aria-selected={isSelected}
