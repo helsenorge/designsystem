@@ -20,6 +20,12 @@
   position: absolute;
   top: 0;
   right: 0;
+  background-color: var(--core-color-black);
+  border-radius: 4px;
+
+  &:hover {
+    background-color: var(--core-color-black);
+  }
 }
 
 .arrow-button {
@@ -36,5 +42,32 @@
   &--right {
     right: 0;
     border-radius: 4px 0 0 4px;
+  }
+}
+
+.image-text-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  &__button {
+    color: var(--color-base-text-ondark);
+    background-color: var(--core-color-black);
+    display: flex;
+    justify-content: center;
+    outline: none;
+    border: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2.5rem;
+    border-radius: 4px 4px 0 0;
+  }
+
+  &__text {
+    color: var(--color-base-text-ondark);
+    background-color: var(--core-color-black);
+    margin: 0;
+    padding: 0.75rem 1rem;
   }
 }

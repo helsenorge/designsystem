@@ -22,6 +22,7 @@ const meta = {
     imageAlt: 'A random cat',
     imageSrc: 'https://loremflickr.com/640/480',
     testId: 'lightBox',
+    imageText: 'En søt pus eller kanskje flere',
     onClose: action('Close button clicked'),
     onLeftArrowClick: action('Left arrow clicked'),
     onRightArrowClick: action('Right arrow clicked'),
