@@ -16,8 +16,25 @@
   object-fit: contain;
 }
 
-.closeButton {
+.close-button {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  background-color: var(--core-color-black);
+  height: 2.75rem;
+
+  &--left {
+    left: 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  &--right {
+    right: 0;
+    border-radius: 4px 0 0 4px;
+  }
 }

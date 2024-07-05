@@ -23,6 +23,8 @@ const meta = {
     imageSrc: 'https://loremflickr.com/640/480',
     testId: 'lightBox',
     onClose: action('Close button clicked'),
+    onLeftArrowClick: action('Left arrow clicked'),
+    onRightArrowClick: action('Right arrow clicked'),
   },
   argTypes: {},
 } satisfies Meta<typeof LightBox>;
