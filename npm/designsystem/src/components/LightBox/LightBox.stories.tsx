@@ -19,6 +19,7 @@ const meta = {
   },
   args: {
     ariaLabelCloseButton: 'Lukk Lightbox',
+    closeTextAfterSeconds: 3,
     imageAlt: 'A random cat',
     imageSrc: 'https://loremflickr.com/640/480',
     testId: 'lightBox',

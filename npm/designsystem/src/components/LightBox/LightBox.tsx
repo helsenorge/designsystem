@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
 import { IconSize, ZIndex } from '../../constants';
-import Button from '../Button';
+import { useSize } from '../../hooks/useSize';
 import Close from '../Close';
 import Icon from '../Icon';
 import ChevronLeft from '../Icons/ChevronLeft';
@@ -16,6 +16,8 @@ import styles from './styles.module.scss';
 export interface LightBoxProps {
   /** Aria label for the close button */
   ariaLabelCloseButton: string;
+  /** If set the text box closes automatically after the given seconds */
+  closeTextAfterSeconds?: number;
   /** Alt text for the image */
   imageAlt: string;
   /** Source of the image that will be shown */
@@ -34,6 +36,7 @@ export interface LightBoxProps {
 
 const LightBox: React.FC<LightBoxProps> = ({
   ariaLabelCloseButton: ariaLabelButtonClose,
+  closeTextAfterSeconds,
   imageAlt,
   imageSrc,
   imageText,
@@ -43,25 +46,43 @@ const LightBox: React.FC<LightBoxProps> = ({
   testId,
 }) => {
   const [imageTextOpen, setImageTextOpen] = React.useState(true);
+  const textBoxRef = useRef<HTMLParagraphElement>(null);
+  const { height: textBoxHeight = 0 } = useSize(textBoxRef) || {};
+
+  useEffect(() => {
+    if (!closeTextAfterSeconds) return;
+    const timer = setTimeout(() => {
+      setImageTextOpen(false);
+    }, closeTextAfterSeconds * 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div data-testid={testId} className={styles.lightBox} style={{ zIndex: ZIndex.OverlayScreen }}>
       <Close ariaLabel={ariaLabelButtonClose} onClick={onClose} color="white" className={styles['close-button']} small={true} />
       {onLeftArrowClick && (
-        <div className={classNames(styles['arrow-button'], styles['arrow-button--left'])}>
-          <Button onClick={onLeftArrowClick} ariaLabel="Forrige bilde" data-testid="leftArrow" variant="borderless" mode="ondark">
-            <Icon svgIcon={ChevronLeft} color="white" size={IconSize.XSmall} />
-          </Button>
-        </div>
+        <button
+          className={classNames(styles['arrow-button'], styles['arrow-button--left'])}
+          onClick={onLeftArrowClick}
+          aria-label="Forrige bilde"
+          data-testid="leftArrow"
+        >
+          <Icon svgIcon={ChevronLeft} color="white" size={IconSize.XSmall} />
+        </button>
       )}
       {onRightArrowClick && (
-        <div className={classNames(styles['arrow-button'], styles['arrow-button--right'])}>
-          <Button onClick={onRightArrowClick} ariaLabel="Forrige bilde" data-testid="rightArrow" variant="borderless" mode="ondark">
-            <Icon svgIcon={ChevronRight} color="white" size={IconSize.XSmall} />
-          </Button>
-        </div>
+        <button
+          className={classNames(styles['arrow-button'], styles['arrow-button--right'])}
+          onClick={onRightArrowClick}
+          aria-label="Neste bilde"
+          data-testid="rightarrow"
+        >
+          <Icon svgIcon={ChevronRight} color="white" size={IconSize.XSmall} />
+        </button>
       )}
       {imageText && (
-        <div className={styles['image-text-box']}>
+        <div className={styles['image-text-box']} style={{ bottom: imageTextOpen ? '0' : '-' + textBoxHeight + 'px', transition: '0.5s' }}>
           <button className={classNames(styles['image-text-box__button'])} onClick={() => setImageTextOpen(!imageTextOpen)}>
             {imageTextOpen ? (
               <Icon svgIcon={ChevronsDown} color="white" size={IconSize.XSmall} />
@@ -69,7 +90,9 @@ const LightBox: React.FC<LightBoxProps> = ({
               <Icon svgIcon={ChevronsUp} color="white" size={IconSize.XSmall} />
             )}
           </button>
-          {imageTextOpen && <p className={styles['image-text-box__text']}>{imageText}</p>}
+          <p ref={textBoxRef} className={styles['image-text-box__text']}>
+            {imageText}
+          </p>
         </div>
       )}
       <img src={imageSrc} alt={imageAlt} />
