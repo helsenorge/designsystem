@@ -60,10 +60,16 @@ const LightBox: React.FC<LightBoxProps> = ({
 
   return (
     <div data-testid={testId} className={styles.lightBox} style={{ zIndex: ZIndex.OverlayScreen }}>
-      <Close ariaLabel={ariaLabelButtonClose} onClick={onClose} color="white" className={styles['close-button']} small={true} />
+      <Close
+        ariaLabel={ariaLabelButtonClose}
+        onClick={onClose}
+        color="white"
+        className={classNames(styles['button'], styles['close-button'])}
+        small={true}
+      />
       {onLeftArrowClick && (
         <button
-          className={classNames(styles['arrow-button'], styles['arrow-button--left'])}
+          className={classNames(styles['button'], styles['arrow-button'], styles['arrow-button--left'])}
           onClick={onLeftArrowClick}
           aria-label="Forrige bilde"
           data-testid="leftArrow"
@@ -73,7 +79,7 @@ const LightBox: React.FC<LightBoxProps> = ({
       )}
       {onRightArrowClick && (
         <button
-          className={classNames(styles['arrow-button'], styles['arrow-button--right'])}
+          className={classNames(styles['button'], styles['arrow-button'], styles['arrow-button--right'])}
           onClick={onRightArrowClick}
           aria-label="Neste bilde"
           data-testid="rightarrow"
@@ -83,7 +89,10 @@ const LightBox: React.FC<LightBoxProps> = ({
       )}
       {imageText && (
         <div className={styles['image-text-box']} style={{ bottom: imageTextOpen ? '0' : '-' + textBoxHeight + 'px', transition: '0.5s' }}>
-          <button className={classNames(styles['image-text-box__button'])} onClick={() => setImageTextOpen(!imageTextOpen)}>
+          <button
+            className={classNames(styles['button'], styles['image-text-box__button'])}
+            onClick={() => setImageTextOpen(!imageTextOpen)}
+          >
             {imageTextOpen ? (
               <Icon svgIcon={ChevronsDown} color="white" size={IconSize.XSmall} />
             ) : (
