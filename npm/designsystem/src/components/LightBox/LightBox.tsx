@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
-import { TransformWrapper, TransformComponent, useControls, ReactZoomPanPinchRef } from 'react-zoom-pan-pinch';
+import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef, useTransformComponent } from 'react-zoom-pan-pinch';
 
 import { IconSize, ZIndex } from '../../constants';
 import { useSize } from '../../hooks/useSize';
@@ -52,29 +52,33 @@ const LightBox: React.FC<LightBoxProps> = ({
   const [zoom, setZoom] = useState(1.0);
   const zoomRef = useRef<ReactZoomPanPinchRef | null>(null);
 
-  useEffect(() => {
-    if (zoomRef.current) {
-      const positionX = zoomRef.current.state?.positionX;
-      const positionY = zoomRef.current.state?.positionY;
-      const safeZoom = isNaN(zoom) ? 1.0 : zoom; // Default to 1.0 if zoom is NaN
-      positionX && positionY && safeZoom && zoomRef.current.setTransform(positionX, positionY, safeZoom);
-    }
-  }, [zoom]);
+  const updateStates = (newZoom: number) => {
+    if (zoom === newZoom) return;
+    setZoom(newZoom);
+  };
 
-  const Controls = () => {
-    const { zoomIn, zoomOut, resetTransform } = useControls();
+  const Controls = ({ transform }: { transform: (newPositionX: number, newPositionY: number, newScale: number) => void }) => {
+    useTransformComponent(({ state }) => {
+      updateStates(state.scale);
+    });
+
+    const adjustZoom = (newScale: number) => {
+      const element = document.getElementsByClassName('react-transform-component')[0];
+      const style = window.getComputedStyle(element);
+      const matrix = new WebKitCSSMatrix(style.transform);
+
+      const ratio = (newScale - zoom) / zoom + 1;
+      const x = (matrix.m41 - (window.innerWidth / 2) * (1 - zoom / newScale)) * ratio;
+      const y = (matrix.m42 - (window.innerHeight / 2) * (1 - zoom / newScale)) * ratio;
+
+      transform(x, y, newScale);
+    };
 
     return (
       <div className={classNames(styles['zoom-buttons'])}>
-        <button className={classNames(styles['button'])} onClick={() => zoomIn()}>
-          {'+'}
-        </button>
-        <span className={classNames(styles['slider'])}>{zoom.toFixed(1)}</span>
-        <button className={classNames(styles['button'])} onClick={() => zoomOut()}>
-          {'-'}
-        </button>
-        <button className={classNames(styles['button'])} onClick={() => resetTransform()}>
-          {'x'}
+        <span className={classNames(styles['slider'])}>{'zoom:' + zoom.toFixed(1)}</span>
+        <button className={classNames(styles['button'])} onClick={() => adjustZoom(2)}>
+          {'2'}
         </button>
       </div>
     );
@@ -143,15 +147,19 @@ const LightBox: React.FC<LightBoxProps> = ({
           </p>
         </div>
       )}
-      <TransformWrapper initialScale={1} maxScale={4} onZoom={value => setZoom(value.state.scale)}>
-        <Controls />
-        <TransformComponent
-          wrapperStyle={{
-            zIndex: 1,
-          }}
-        >
-          <img src={imageSrc} alt={imageAlt} />
-        </TransformComponent>
+      <TransformWrapper initialScale={1} maxScale={4} ref={zoomRef}>
+        {({ setTransform }) => (
+          <>
+            <Controls transform={setTransform} />
+            <TransformComponent
+              wrapperStyle={{
+                zIndex: 1,
+              }}
+            >
+              <img src={imageSrc} alt={imageAlt} />
+            </TransformComponent>
+          </>
+        )}
       </TransformWrapper>
     </div>
   );
