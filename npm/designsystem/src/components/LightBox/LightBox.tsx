@@ -160,7 +160,7 @@ const LightBox: React.FC<LightBoxProps> = ({
           </p>
         </div>
       )}
-      <TransformWrapper initialScale={1} maxScale={4} ref={zoomRef}>
+      <TransformWrapper initialScale={1} maxScale={4} ref={zoomRef} doubleClick={{ mode: 'toggle' }}>
         {({ setTransform }) => (
           <>
             <Controls transform={setTransform} />
