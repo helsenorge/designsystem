@@ -64,17 +64,17 @@ const LightBox: React.FC<LightBoxProps> = ({
   const [zoom, setZoom] = useState(1.0);
   const zoomRef = useRef<ReactZoomPanPinchRef | null>(null);
 
-  const updateStates = (newZoom: number) => {
+  const updateStates = (newZoom: number): void => {
     if (zoom === newZoom) return;
     setZoom(newZoom);
   };
 
-  const Controls = ({ transform }: { transform: (newPositionX: number, newPositionY: number, newScale: number) => void }) => {
+  const Controls = ({ transform }: { transform: (newPositionX: number, newPositionY: number, newScale: number) => void }): JSX.Element => {
     useTransformComponent(({ state }) => {
       updateStates(state.scale);
     });
 
-    const adjustZoom = (newScale: number) => {
+    const adjustZoom = (newScale: number): void => {
       const element = document.getElementsByClassName('react-transform-component')[0];
       const style = window.getComputedStyle(element);
       const matrix = new WebKitCSSMatrix(style.transform);
