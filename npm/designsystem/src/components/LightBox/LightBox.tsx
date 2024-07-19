@@ -3,8 +3,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef, useTransformComponent } from 'react-zoom-pan-pinch';
 
+import MiniSlider from './miniSlider';
 import { IconSize, ZIndex } from '../../constants';
 import { useSize } from '../../hooks/useSize';
+import { debounce } from '../../utils/debounce';
 import Icon from '../Icon';
 import ChevronLeft from '../Icons/ChevronLeft';
 import ChevronRight from '../Icons/ChevronRight';
@@ -74,7 +76,8 @@ const LightBox: React.FC<LightBoxProps> = ({
       updateStates(state.scale);
     });
 
-    const adjustZoom = (newScale: number): void => {
+    const adjustZoom = (newScale: number | undefined): void => {
+      if (newScale === undefined) return;
       const element = document.getElementsByClassName('react-transform-component')[0];
       const style = window.getComputedStyle(element);
       const matrix = new WebKitCSSMatrix(style.transform);
@@ -85,6 +88,7 @@ const LightBox: React.FC<LightBoxProps> = ({
 
       transform(x, y, newScale);
     };
+    const [debouncedAdjustZoom] = debounce(adjustZoom, 50);
 
     return (
       <div className={classNames(styles['zoom-buttons'])}>
@@ -92,6 +96,7 @@ const LightBox: React.FC<LightBoxProps> = ({
         <button className={classNames(styles['button'])} onClick={() => adjustZoom(2)}>
           {'2'}
         </button>
+        <MiniSlider minValue={1} maxValue={4} onChange={debouncedAdjustZoom} value={zoom} />
       </div>
     );
   };
