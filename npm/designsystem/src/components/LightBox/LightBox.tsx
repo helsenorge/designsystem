@@ -17,6 +17,14 @@ import styles from './styles.module.scss';
 export interface LightBoxProps {
   /** Aria label for the close button */
   ariaLabelCloseButton: string;
+  /** Aria label for the left arrow button */
+  ariaLabelLeftArrow: string;
+  /** Aria label for the right arrow button */
+  ariaLabelRightArrow: string;
+  /** Aria label for the text box button when its open */
+  ariaLabelCloseTextBox: string;
+  /** Aria label for the text box button when its closed */
+  ariaLabelOpenTextBox: string;
   /** If set the text box closes automatically after the given seconds */
   closeTextAfterSeconds?: number;
   /** Alt text for the image */
@@ -36,7 +44,11 @@ export interface LightBoxProps {
 }
 
 const LightBox: React.FC<LightBoxProps> = ({
-  ariaLabelCloseButton: ariaLabelButtonClose,
+  ariaLabelCloseButton,
+  ariaLabelLeftArrow,
+  ariaLabelRightArrow,
+  ariaLabelCloseTextBox,
+  ariaLabelOpenTextBox,
   closeTextAfterSeconds,
   imageAlt,
   imageSrc,
@@ -97,7 +109,7 @@ const LightBox: React.FC<LightBoxProps> = ({
     <div data-testid={testId} className={styles.lightBox} style={{ zIndex: ZIndex.OverlayScreen }}>
       <button
         onClick={onClose}
-        aria-label={ariaLabelButtonClose}
+        aria-label={ariaLabelCloseButton}
         data-testid="closeButton"
         className={classNames(styles['button'], styles['close-button'])}
         style={{ zIndex: ZIndex.LightBoxButtons }}
@@ -108,7 +120,7 @@ const LightBox: React.FC<LightBoxProps> = ({
         <button
           className={classNames(styles['button'], styles['arrow-button'], styles['arrow-button--left'])}
           onClick={onLeftArrowClick}
-          aria-label="Forrige bilde"
+          aria-label={ariaLabelLeftArrow}
           data-testid="leftArrow"
           style={{ zIndex: ZIndex.LightBoxButtons }}
         >
@@ -119,7 +131,7 @@ const LightBox: React.FC<LightBoxProps> = ({
         <button
           className={classNames(styles['button'], styles['arrow-button'], styles['arrow-button--right'])}
           onClick={onRightArrowClick}
-          aria-label="Neste bilde"
+          aria-label={ariaLabelRightArrow}
           data-testid="rightarrow"
           style={{ zIndex: ZIndex.LightBoxButtons }}
         >
@@ -135,6 +147,7 @@ const LightBox: React.FC<LightBoxProps> = ({
             className={classNames(styles['button'], styles['image-text-box__button'])}
             onClick={() => setImageTextOpen(!imageTextOpen)}
             style={{ zIndex: ZIndex.LightBoxButtons }}
+            aria-label={imageTextOpen ? ariaLabelCloseTextBox : ariaLabelOpenTextBox}
           >
             {imageTextOpen ? (
               <Icon svgIcon={ChevronsDown} color="white" size={IconSize.XSmall} />

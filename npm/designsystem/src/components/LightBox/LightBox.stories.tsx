@@ -19,6 +19,10 @@ const meta = {
   },
   args: {
     ariaLabelCloseButton: 'Lukk Lightbox',
+    ariaLabelLeftArrow: 'Forrige bilde',
+    ariaLabelRightArrow: 'Neste bilde',
+    ariaLabelCloseTextBox: 'Lukk tekstboks',
+    ariaLabelOpenTextBox: 'Åpne tekstboks',
     closeTextAfterSeconds: 3,
     imageAlt: 'A random cat',
     imageSrc: 'https://loremflickr.com/640/480',
