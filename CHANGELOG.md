@@ -1,3 +1,25 @@
+## [7.13.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.12.0&targetVersion=GTv7.13.0) (2024-07-22)
+
+### Features
+
+- legg til storybook-eksempler for typography.module
+  ([2fe8228](https://github.com/helsenorge/designsystem/commit/2fe8228dc486c99ed409c2d508dc09b094b2292a)), closes
+  [#326403](https://github.com/helsenorge/designsystem/issues/326403)
+- **duolist:** collapsed mode mulig fra gitt breakpoint
+  ([f50448c](https://github.com/helsenorge/designsystem/commit/f50448cab636c41679af97d5edb8909db810b6c0)), closes
+  [#328401](https://github.com/helsenorge/designsystem/issues/328401)
+- **tabs:** mer mobilvennlig ([b52c281](https://github.com/helsenorge/designsystem/commit/b52c281e029f2ccda72dda15fe559907287ad7f9)), closes
+  [#322461](https://github.com/helsenorge/designsystem/issues/322461) [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
+### Bug Fixes
+
+- error må være true for at inputfelter med errorTextId skal få aria-describedby
+  ([2d64531](https://github.com/helsenorge/designsystem/commit/2d64531a61eb4e6b37f00cc75e4a27ecf6c371b7)), closes
+  [#327379](https://github.com/helsenorge/designsystem/issues/327379)
+- **dictionarytrigger:** juster ned avstanden mellom linjen og ord
+  ([ef2e6af](https://github.com/helsenorge/designsystem/commit/ef2e6af7d1645544b2a3479d0d2b1b739c6886c9)), closes
+  [#328583](https://github.com/helsenorge/designsystem/issues/328583)
+
 ## [7.12.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.11.0&targetVersion=GTv7.12.0) (2024-06-21)
 
 ### Features
