@@ -13,7 +13,6 @@
   white-space: nowrap;
   overflow: hidden;
   height: 3rem;
-  z-index: 0;
   margin: 0;
   margin-bottom: -1px;
   background-color: var(--color-base-background-white);
@@ -42,7 +41,7 @@
 
     &--selected {
       overflow: visible;
-      z-index: 2;
+      z-index: 1;
       border-color: var(--color-action-border-onlight-focus);
       color: var(--color-base-text-onlight);
       background-color: var(--color-base-background-white);
