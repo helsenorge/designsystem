@@ -1,3 +1,10 @@
+## [7.13.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.0&targetVersion=GTv7.13.1) (2024-07-23)
+
+### Bug Fixes
+
+- **tabs:** endre z indeks ([30f5684](https://github.com/helsenorge/designsystem/commit/30f5684adaeea90a218cdd280980e45b25a4676c)), closes
+  [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
 ## [7.13.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.12.0&targetVersion=GTv7.13.0) (2024-07-22)
 
 ### Features
