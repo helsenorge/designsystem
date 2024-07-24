@@ -6,7 +6,6 @@ import { useIsVisible } from '../../../hooks/useIsVisible';
 import { useRovingFocus } from '../../../hooks/useRovingFocus';
 import { palette } from '../../../theme/palette';
 import { isComponent } from '../../../utils/component';
-import uuid from '../../../utils/uuid';
 import Icon, { IconSize } from '../../Icon';
 import { IconName } from '../../Icons/IconNames';
 import LazyIcon from '../../LazyIcon';
@@ -32,7 +31,6 @@ const TabList: React.FC<TabListProps> = props => {
 
   const tablistClasses = classNames(styles['tab-list'], styles[`tab-list--${type}`]);
 
-  const id = uuid();
   const isVisible = useIsVisible(listRef);
 
   return (
@@ -61,13 +59,13 @@ const TabList: React.FC<TabListProps> = props => {
           if (isSelected && isVisible) scrollToTab(index);
 
           return (
-            <li role="presentation" key={`${title}-${id}`}>
+            <li role="presentation" key={`${title}`}>
               <button
                 role="tab"
                 aria-selected={isSelected}
                 onClick={handleClick}
                 className={tabButtonClasses}
-                key={`${title}-${id}`}
+                key={`${title}`}
                 data-testid={testId}
                 ref={currentRef as React.RefObject<HTMLButtonElement>}
               >
