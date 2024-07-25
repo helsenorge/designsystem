@@ -1,3 +1,11 @@
+## [7.13.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.2&targetVersion=GTv7.13.3) (2024-07-25)
+
+### Bug Fixes
+
+- sett z-index på tabs og input så de oppfører seg sammen med andre komponenter
+  ([3bd47e0](https://github.com/helsenorge/designsystem/commit/3bd47e01af75dc2d17cb5af9ba4be30aaed50e91)), closes
+  [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
 ## [7.13.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.1&targetVersion=GTv7.13.2) (2024-07-25)
 
 ### Bug Fixes
