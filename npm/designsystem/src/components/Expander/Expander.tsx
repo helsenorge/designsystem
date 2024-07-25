@@ -88,8 +88,7 @@ const Expander: React.FC<ExpanderProps> = props => {
     size === ExpanderSize.large && styles[`expander__trigger--${color || 'neutral'}`],
     size === ExpanderSize.large && icon && styles['expander__trigger--icon'],
     isExpanded && styles['expander__trigger--expanded'],
-    isSticky && !isLeavingWindow && styles['expander__trigger--sticky'],
-    isSticky && isLeavingWindow && styles['expander__trigger--absolute']
+    isSticky && !isLeavingWindow && styles['expander__trigger--sticky']
   );
 
   const renderTrigger = (): React.ReactNode => (
