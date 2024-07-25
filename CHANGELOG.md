@@ -1,3 +1,10 @@
+## [7.13.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.3&targetVersion=GTv7.13.4) (2024-07-25)
+
+### Bug Fixes
+
+- **tabs:** fjern zindex ([312d337](https://github.com/helsenorge/designsystem/commit/312d3370b7f288b28e60e189c829eff82b5ce2ac)), closes
+  [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
 ## [7.13.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.2&targetVersion=GTv7.13.3) (2024-07-25)
 
 ### Bug Fixes
