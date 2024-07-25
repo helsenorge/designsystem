@@ -13,7 +13,6 @@ export enum ZIndex {
   // TODO: Skille mellom ExpanderTrigger isSticky og isHovered? Skulle tro isHovered trenger vesentlig mindre z-index
   ExpanderTrigger = 10000,
   OverlayScreen = 9999,
-  TabsSticky = 10,
 }
 
 export const AVERAGE_CHARACTER_WIDTH_PX = 12;

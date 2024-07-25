@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
-import { ZIndex } from '../../constants';
 import { useSticky } from '../../hooks/useSticky';
 import { PaletteNames } from '../../theme/palette';
 import { isMobileUA } from '../../utils/mobile';
@@ -145,7 +144,6 @@ const TabsRoot: React.FC<TabsProps> = ({ activeTab, children, className, color =
         className={classNames(styles['tab-list-wrapper'], {
           [styles['tab-list-wrapper--sticky']]: sticky && isOutsideWindow,
         })}
-        style={{ zIndex: ZIndex.TabsSticky }}
       >
         <TabList
           onTabListClick={(index: number) => onValueChange(index, activeTabIndex)}
