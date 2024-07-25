@@ -1,7 +1,6 @@
 export type Styles = {
   expander: string;
   expander__button: string;
-  'expander__button--absolute': string;
   'expander__button--expanded': string;
   'expander__button--sticky': string;
   expander__content: string;
@@ -21,7 +20,6 @@ export type Styles = {
   'expander__icon--left': string;
   'expander__icon--right': string;
   expander__trigger: string;
-  'expander__trigger--absolute': string;
   'expander__trigger--banana': string;
   'expander__trigger--blueberry': string;
   'expander__trigger--cherry': string;

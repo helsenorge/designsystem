@@ -123,8 +123,7 @@ const Expander: React.FC<ExpanderProps> = props => {
   const buttonClassName = classNames(
     styles['expander__button'],
     isExpanded && styles['expander__button--expanded'],
-    isSticky && !isLeavingWindow && styles['expander__button--sticky'],
-    isSticky && isLeavingWindow && styles['expander__button--absolute']
+    isSticky && !isLeavingWindow && styles['expander__button--sticky']
   );
 
   const renderButton = (): React.ReactNode => (
