@@ -1,3 +1,17 @@
+## [7.13.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.1&targetVersion=GTv7.13.2) (2024-07-25)
+
+### Bug Fixes
+
+- **expander:** bygg ([779c2a3](https://github.com/helsenorge/designsystem/commit/779c2a3aa668c5fcc870e230dbfa9d2847b5a40b))
+- **expander:** fiks sticky klasser ([5885b90](https://github.com/helsenorge/designsystem/commit/5885b902c4c51fd35c456f8c1584b9bf01908f6d))
+- **expander:** fjern klasse som gir bug
+  ([589c9af](https://github.com/helsenorge/designsystem/commit/589c9aff764e6ce162d180c2a0bb4ea3500357c3))
+- **expander:** sett position slik at zindex blir riktig
+  ([e1a8220](https://github.com/helsenorge/designsystem/commit/e1a82201412b9817f2e41a915c101a294d33853a))
+- **tabs:** fiks keyboard navigation
+  ([db5d64d](https://github.com/helsenorge/designsystem/commit/db5d64d99008b91b83cb38cb25bc11c591b8de43)), closes
+  [#328547](https://github.com/helsenorge/designsystem/issues/328547)
+
 ## [7.13.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.0&targetVersion=GTv7.13.1) (2024-07-23)
 
 ### Bug Fixes
