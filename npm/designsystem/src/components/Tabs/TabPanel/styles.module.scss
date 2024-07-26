@@ -8,12 +8,16 @@
 .tab-panel {
   $tab-panel: &;
 
-  border-top: 1px solid var(--color-action-border-onlight-focus);
   padding: 2rem;
-  position: relative;
-  z-index: 1;
 
   $colors: 'blueberry', 'neutral', 'white';
+
+  width: 100%;
+  padding-left: 0;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    width: 100%;
+  }
 
   &--normal {
     padding: 0;
@@ -21,11 +25,21 @@
 
   &--framed {
     padding: 2rem;
-    border: 1px solid var(--color-action-border-onlight-focus);
-    border-radius: 0.5rem;
+    border-bottom: 1px solid var(--color-action-border-onlight-focus);
+    border-radius: 0;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      border-radius: 0 0 0.5rem 0.5rem;
+      border: 1px solid var(--color-action-border-onlight-focus);
+      border-top: 0;
+    }
 
     &#{$tab-panel}--first {
-      border-radius: 0 0.5rem 0.5rem;
+      border-radius: 0;
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
+        border-radius: 0 0 0.5rem 0.5rem;
+      }
     }
 
     @each $color in $colors {
@@ -33,5 +47,33 @@
         background-color: var(--color-base-background-#{$color});
       }
     }
+  }
+}
+
+.tab-panel--animate-left {
+  animation: slide-left 0.5s forwards;
+}
+
+.tab-panel--animate-right {
+  animation: slide-right 0.5s forwards;
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0%);
   }
 }

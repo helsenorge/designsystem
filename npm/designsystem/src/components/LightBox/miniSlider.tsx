@@ -5,6 +5,7 @@ interface MiniSliderProps {
   minValue: number;
   maxValue: number;
   onChange: (newValue: number) => void;
+  className?: string;
 }
 
 const MiniSlider = (props: MiniSliderProps): JSX.Element => {
@@ -15,7 +16,7 @@ const MiniSlider = (props: MiniSliderProps): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className={props.className}>
       <input onChange={handleOnChange} type="range" min={props.minValue} max={props.maxValue} value={props.value} step={0.1} />
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
-import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef, useTransformComponent } from 'react-zoom-pan-pinch';
+import { TransformWrapper, TransformComponent, useTransformComponent } from 'react-zoom-pan-pinch';
 
 import MiniSlider from './miniSlider';
 import { IconSize, ZIndex } from '../../constants';
@@ -64,7 +64,6 @@ const LightBox: React.FC<LightBoxProps> = ({
   const textBoxRef = useRef<HTMLParagraphElement>(null);
   const { height: textBoxHeight = 0 } = useSize(textBoxRef) || {};
   const [zoom, setZoom] = useState(1.0);
-  const zoomRef = useRef<ReactZoomPanPinchRef | null>(null);
 
   const updateStates = (newZoom: number): void => {
     if (zoom === newZoom) return;
@@ -77,7 +76,7 @@ const LightBox: React.FC<LightBoxProps> = ({
     });
 
     const adjustZoom = (newScale: number | undefined): void => {
-      if (newScale === undefined) return;
+      if (newScale === undefined || newScale < 1 || newScale > 4) return;
       const element = document.getElementsByClassName('react-transform-component')[0];
       const style = window.getComputedStyle(element);
       const matrix = new WebKitCSSMatrix(style.transform);
@@ -91,12 +90,14 @@ const LightBox: React.FC<LightBoxProps> = ({
     const [debouncedAdjustZoom] = debounce(adjustZoom, 50);
 
     return (
-      <div className={classNames(styles['zoom-buttons'])}>
-        <span className={classNames(styles['slider'])}>{'zoom:' + zoom.toFixed(1)}</span>
-        <button className={classNames(styles['button'])} onClick={() => adjustZoom(2)}>
-          {'2'}
+      <div className={classNames(styles['zoom-buttons'])} style={{ zIndex: ZIndex.LightBoxButtons }}>
+        <button className={classNames(styles['button'])} onClick={() => adjustZoom(zoom - 0.5)}>
+          {'-'}
         </button>
-        <MiniSlider minValue={1} maxValue={4} onChange={debouncedAdjustZoom} value={zoom} />
+        <MiniSlider className={styles['slider']} minValue={1} maxValue={4} onChange={debouncedAdjustZoom} value={zoom} />
+        <button className={classNames(styles['button'])} onClick={() => adjustZoom(zoom + 0.5)} style={{ paddingTop: '0.2rem' }}>
+          {'+'}
+        </button>
       </div>
     );
   };
@@ -165,13 +166,19 @@ const LightBox: React.FC<LightBoxProps> = ({
           </p>
         </div>
       )}
-      <TransformWrapper initialScale={1} maxScale={4} ref={zoomRef} doubleClick={{ mode: 'toggle' }}>
+      <TransformWrapper initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle' }}>
         {({ setTransform }) => (
           <>
             <Controls transform={setTransform} />
             <TransformComponent
               wrapperStyle={{
                 zIndex: 1,
+                width: '100%',
+                height: '100%',
+              }}
+              contentStyle={{
+                width: '100%',
+                height: '100%',
               }}
             >
               <img src={imageSrc} alt={imageAlt} />

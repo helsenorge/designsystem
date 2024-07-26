@@ -1,3 +1,61 @@
+## [7.13.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.3&targetVersion=GTv7.13.4) (2024-07-25)
+
+### Bug Fixes
+
+- **tabs:** fjern zindex ([312d337](https://github.com/helsenorge/designsystem/commit/312d3370b7f288b28e60e189c829eff82b5ce2ac)), closes
+  [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
+## [7.13.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.2&targetVersion=GTv7.13.3) (2024-07-25)
+
+### Bug Fixes
+
+- sett z-index på tabs og input så de oppfører seg sammen med andre komponenter
+  ([3bd47e0](https://github.com/helsenorge/designsystem/commit/3bd47e01af75dc2d17cb5af9ba4be30aaed50e91)), closes
+  [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
+## [7.13.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.1&targetVersion=GTv7.13.2) (2024-07-25)
+
+### Bug Fixes
+
+- **expander:** bygg ([779c2a3](https://github.com/helsenorge/designsystem/commit/779c2a3aa668c5fcc870e230dbfa9d2847b5a40b))
+- **expander:** fiks sticky klasser ([5885b90](https://github.com/helsenorge/designsystem/commit/5885b902c4c51fd35c456f8c1584b9bf01908f6d))
+- **expander:** fjern klasse som gir bug
+  ([589c9af](https://github.com/helsenorge/designsystem/commit/589c9aff764e6ce162d180c2a0bb4ea3500357c3))
+- **expander:** sett position slik at zindex blir riktig
+  ([e1a8220](https://github.com/helsenorge/designsystem/commit/e1a82201412b9817f2e41a915c101a294d33853a))
+- **tabs:** fiks keyboard navigation
+  ([db5d64d](https://github.com/helsenorge/designsystem/commit/db5d64d99008b91b83cb38cb25bc11c591b8de43)), closes
+  [#328547](https://github.com/helsenorge/designsystem/issues/328547)
+
+## [7.13.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.0&targetVersion=GTv7.13.1) (2024-07-23)
+
+### Bug Fixes
+
+- **tabs:** endre z indeks ([30f5684](https://github.com/helsenorge/designsystem/commit/30f5684adaeea90a218cdd280980e45b25a4676c)), closes
+  [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
+## [7.13.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.12.0&targetVersion=GTv7.13.0) (2024-07-22)
+
+### Features
+
+- legg til storybook-eksempler for typography.module
+  ([2fe8228](https://github.com/helsenorge/designsystem/commit/2fe8228dc486c99ed409c2d508dc09b094b2292a)), closes
+  [#326403](https://github.com/helsenorge/designsystem/issues/326403)
+- **duolist:** collapsed mode mulig fra gitt breakpoint
+  ([f50448c](https://github.com/helsenorge/designsystem/commit/f50448cab636c41679af97d5edb8909db810b6c0)), closes
+  [#328401](https://github.com/helsenorge/designsystem/issues/328401)
+- **tabs:** mer mobilvennlig ([b52c281](https://github.com/helsenorge/designsystem/commit/b52c281e029f2ccda72dda15fe559907287ad7f9)), closes
+  [#322461](https://github.com/helsenorge/designsystem/issues/322461) [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
+### Bug Fixes
+
+- error må være true for at inputfelter med errorTextId skal få aria-describedby
+  ([2d64531](https://github.com/helsenorge/designsystem/commit/2d64531a61eb4e6b37f00cc75e4a27ecf6c371b7)), closes
+  [#327379](https://github.com/helsenorge/designsystem/issues/327379)
+- **dictionarytrigger:** juster ned avstanden mellom linjen og ord
+  ([ef2e6af](https://github.com/helsenorge/designsystem/commit/ef2e6af7d1645544b2a3479d0d2b1b739c6886c9)), closes
+  [#328583](https://github.com/helsenorge/designsystem/issues/328583)
+
 ## [7.12.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.11.0&targetVersion=GTv7.12.0) (2024-06-21)
 
 ### Features

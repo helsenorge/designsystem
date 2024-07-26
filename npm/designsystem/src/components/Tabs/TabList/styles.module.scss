@@ -1,4 +1,6 @@
+@use 'sass:map';
 @import '../../../scss/supernova/styles/colors';
+@import '../../../scss/breakpoints';
 
 .tab-list {
   $tab-list: &;
@@ -9,12 +11,11 @@
   gap: 0.25rem;
   list-style-type: none;
   white-space: nowrap;
-  overflow-x: initial;
-  overflow-y: initial;
+  overflow: hidden;
   height: 3rem;
-  z-index: 0;
   margin: 0;
   margin-bottom: -1px;
+  background-color: var(--color-base-background-white);
 
   &__tab {
     display: flex;
@@ -40,7 +41,7 @@
 
     &--selected {
       overflow: visible;
-      z-index: 2;
+      z-index: 1;
       border-color: var(--color-action-border-onlight-focus);
       color: var(--color-base-text-onlight);
       background-color: var(--color-base-background-white);
@@ -56,11 +57,19 @@
   }
 
   &--normal {
-    padding-left: 1rem;
+    padding-left: 0.5rem;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      padding-left: 1rem;
+    }
   }
 
   &--framed {
-    padding-left: 0;
+    padding-left: 0.5rem;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      padding-left: 0;
+    }
 
     #{$tab-list}__tab {
       background-color: var(--color-base-background-white);

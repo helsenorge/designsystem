@@ -25,18 +25,44 @@
 
   &:hover {
     background-color: var(--color-action-background-transparent-ondark-hover);
-    border: 1px solid var(--color-action-border-ondark-hover);
+    outline: 1px solid var(--color-action-border-ondark-hover);
   }
 
   &:focus-visible {
     background-color: var(--color-action-background-transparent-ondark-hoverselected);
-    border: 2px solid var(--color-action-border-ondark-focus);
+    outline: 2px solid var(--color-action-border-ondark-focus);
   }
 }
 
 .slider {
   color: var(--core-color-white);
-  z-index: 1000;
+  display: flex;
+  align-items: center;
+
+  input[type='range'] {
+    appearance: none;
+    height: 2px;
+    background: var(--core-color-white);
+    border-radius: 5px;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: var(--core-color-white);
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background 0.3s ease-in-out;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
 }
 
 .zoom-buttons {
@@ -44,6 +70,13 @@
   top: 0;
   display: flex;
   flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--core-color-black);
+  color: var(--color-base-text-ondark);
+  padding: 0.1rem;
+  border-radius: 0 0 4px 4px;
+  font-size: 1.5rem;
 }
 
 .close-button {
