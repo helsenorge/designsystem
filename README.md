@@ -4,6 +4,7 @@ This repository contains React components in NPM packages that implement the des
 
 - @helsenorge/designsystem-react
 - @helsenorge/datepicker
+- @helsenorge/lightbox
 
 ## Using the React components
 

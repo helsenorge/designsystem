@@ -1,0 +1,67 @@
+{
+  "name": "@helsenorge/lightbox",
+  "sideEffects": false,
+  "private": false,
+  "version": "7.13.4",
+  "description": "The official Helsenorge lightbox.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helsenorge/designsystem.git"
+  },
+  "homepage": "https://helsenorge.design",
+  "author": "Helsenorge",
+  "maintainers": [
+    "ROX"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "directory": "lib",
+    "access": "public"
+  },
+  "scripts": {
+    "prebuild": "npm-run-all clean generate:cssdefinitions generate:tsdefinitions",
+    "build": "vite build",
+    "clean": "rimraf lib types",
+    "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\" --nameFormat none --exportType default --includePaths node_modules ../../node_modules",
+    "generate:tsdefinitions": "tsc --noEmit false --declaration --emitDeclarationOnly --declarationDir types",
+    "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "eslint:fix": "npm run eslint -- --fix",
+    "stylelint": "stylelint \"src/**/*.{css,scss}\"",
+    "stylelint:fix": "npm run stylelint -- --fix",
+    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
+    "prettier:fix": "npm run prettier -- --write",
+    "pretypecheck": "tsc -v",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest"
+  },
+  "peerDependencies": {
+    "@helsenorge/designsystem-react": "^7.0.0",
+    "classnames": "^2.5.1",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "devDependencies": {
+    "@helsenorge/designsystem-react": "^7.13.4",
+    "@rollup/plugin-replace": "^5.0.7",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^17.0.80",
+    "@types/react-dom": "^17.0.25",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^1.6.0",
+    "bootstrap": "^4.6.2",
+    "classnames": "^2.5.1",
+    "jsdom": "^24.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-zoom-pan-pinch": "^3.6.1",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-generate-package-json": "^3.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "typed-scss-modules": "^8.0.1",
+    "typescript": "~5.5.2",
+    "vite": "^5.3.1",
+    "vitest": "^1.6.0"
+  }
+}
