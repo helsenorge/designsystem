@@ -11,8 +11,10 @@ import ChevronsUp from '@helsenorge/designsystem-react/components/Icons/Chevrons
 import Minus from '@helsenorge/designsystem-react/components/Icons/Minus';
 import PlusSmall from '@helsenorge/designsystem-react/components/Icons/PlusSmall';
 import X from '@helsenorge/designsystem-react/components/Icons/X';
-import { IconSize, ZIndex } from '@helsenorge/designsystem-react/constants';
+import { IconSize, KeyboardEventKey, ZIndex } from '@helsenorge/designsystem-react/constants';
 import { useSize } from '@helsenorge/designsystem-react/hooks/useSize';
+
+import { useKeyboardEvent } from '@helsenorge/designsystem-react';
 
 import MiniSlider from './MiniSlider';
 
@@ -21,18 +23,22 @@ import styles from './styles.module.scss';
 export interface LightBoxProps {
   /** Aria label for the close button */
   ariaLabelCloseButton: string;
-  /** Aria label for the left arrow button */
-  ariaLabelLeftArrow: string;
-  /** Aria label for the right arrow button */
-  ariaLabelRightArrow: string;
   /** Aria label for the text box button when its open */
   ariaLabelCloseTextBox: string;
+  /** Aria label for the left arrow button */
+  ariaLabelLeftArrow: string;
+  /** Aria label for the full modal describing what the modal contains */
+  ariaLabelLightBox: string;
+  /** Aria label for the right arrow button */
+  ariaLabelRightArrow: string;
   /** Aria label for the text box button when its closed */
   ariaLabelOpenTextBox: string;
-  /** Aria label for the zoom out button */
-  ariaLabelZoomOut: string;
   /** Aria label for the zoom in button */
   ariaLabelZoomIn: string;
+  /** Aria label for the zoom out button */
+  ariaLabelZoomOut: string;
+  /** Aria label for the slider input component */
+  ariaLabelZoomSlider: string;
   /** If set the text box closes automatically after the given seconds */
   closeTextAfterSeconds?: number;
   /** Alt text for the image */
@@ -54,11 +60,13 @@ export interface LightBoxProps {
 const LightBox: React.FC<LightBoxProps> = ({
   ariaLabelCloseButton,
   ariaLabelLeftArrow,
+  ariaLabelLightBox,
   ariaLabelRightArrow,
   ariaLabelCloseTextBox,
   ariaLabelOpenTextBox,
   ariaLabelZoomIn,
   ariaLabelZoomOut,
+  ariaLabelZoomSlider,
   closeTextAfterSeconds,
   imageAlt,
   imageSrc,
@@ -69,9 +77,12 @@ const LightBox: React.FC<LightBoxProps> = ({
   testId,
 }) => {
   const [imageTextOpen, setImageTextOpen] = React.useState(true);
+  const lightBoxRef = useRef<HTMLDivElement>(null);
   const textBoxRef = useRef<HTMLParagraphElement>(null);
   const { height: textBoxHeight = 0 } = useSize(textBoxRef) || {};
   const [zoom, setZoom] = useState(1.0);
+
+  useKeyboardEvent(lightBoxRef, onClose, [KeyboardEventKey.Escape]);
 
   const updateStates = (newZoom: number): void => {
     if (zoom === newZoom) return;
@@ -88,7 +99,15 @@ const LightBox: React.FC<LightBoxProps> = ({
   }, []);
 
   return (
-    <div data-testid={testId} className={styles.lightBox} style={{ zIndex: ZIndex.OverlayScreen }}>
+    <div
+      data-testid={testId}
+      className={styles.lightBox}
+      style={{ zIndex: ZIndex.OverlayScreen }}
+      role="dialog"
+      aria-modal={true}
+      aria-label={ariaLabelLightBox}
+      ref={lightBoxRef}
+    >
       <button
         onClick={onClose}
         aria-label={ariaLabelCloseButton}
@@ -146,7 +165,7 @@ const LightBox: React.FC<LightBoxProps> = ({
           </div>
         </div>
       )}
-      <TransformWrapper initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle' }}>
+      <TransformWrapper initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle', step: 4 }}>
         {({ setTransform }) => (
           <>
             <Controls
@@ -155,6 +174,7 @@ const LightBox: React.FC<LightBoxProps> = ({
               zoom={zoom}
               ariaLabelZoomIn={ariaLabelZoomIn}
               ariaLabelZoomOut={ariaLabelZoomOut}
+              ariaLabelZoomSlider={ariaLabelZoomSlider}
             />
             <TransformComponent
               wrapperStyle={{
@@ -182,12 +202,14 @@ const Controls = ({
   zoom,
   ariaLabelZoomIn,
   ariaLabelZoomOut,
+  ariaLabelZoomSlider,
 }: {
   transform: (newPositionX: number, newPositionY: number, newScale: number, animationTime?: number | undefined) => void;
   updateStates: (newZoom: number) => void;
   zoom: number;
   ariaLabelZoomIn: string;
   ariaLabelZoomOut: string;
+  ariaLabelZoomSlider: string;
 }): React.JSX.Element => {
   useTransformComponent(({ state }) => {
     updateStates(state.scale);
@@ -225,7 +247,14 @@ const Controls = ({
       <button className={classNames(styles.button)} onClick={() => adjustZoomWithAnimation(zoom - 0.5)} aria-label={ariaLabelZoomOut}>
         <Icon svgIcon={Minus} color="white" size={IconSize.XSmall} />
       </button>
-      <MiniSlider className={styles['slider']} minValue={1} maxValue={4} onChange={adjustZoom} value={zoom} />
+      <MiniSlider
+        className={styles['slider']}
+        minValue={1}
+        maxValue={4}
+        onChange={adjustZoom}
+        value={zoom}
+        ariaLabel={ariaLabelZoomSlider}
+      />
       <button className={classNames(styles.button)} onClick={() => adjustZoomWithAnimation(zoom + 0.5)} aria-label={ariaLabelZoomIn}>
         <Icon svgIcon={PlusSmall} color="white" size={IconSize.XSmall} />
       </button>

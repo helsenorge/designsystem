@@ -6,6 +6,7 @@ interface MiniSliderProps {
   maxValue: number;
   onChange: (newValue: number) => void;
   className?: string;
+  ariaLabel: string;
 }
 
 const MiniSlider = (props: MiniSliderProps): React.JSX.Element => {
@@ -17,7 +18,18 @@ const MiniSlider = (props: MiniSliderProps): React.JSX.Element => {
 
   return (
     <div className={props.className}>
-      <input onChange={handleOnChange} type="range" min={props.minValue} max={props.maxValue} value={props.value} step={0.1} />
+      <input
+        onChange={handleOnChange}
+        type="range"
+        min={props.minValue}
+        max={props.maxValue}
+        value={props.value}
+        aria-valuenow={props.value}
+        aria-valuemin={props.minValue}
+        aria-valuemax={props.maxValue}
+        aria-label={props.ariaLabel}
+        step={0.1}
+      />
     </div>
   );
 };
