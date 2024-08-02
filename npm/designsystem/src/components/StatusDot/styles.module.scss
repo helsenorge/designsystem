@@ -4,16 +4,18 @@
 @import '../../scss/palette';
 @import '../../scss/font-settings';
 @import '../../scss/screen-reader';
+@import '../../scss/supernova/styles/colors.css';
 
-$status-dot-size: 0.937rem;
+$status-dot-size: 0.9375rem;
 
 .statusdot {
   position: relative;
   display: inline-flex;
   align-items: flex-start;
-  font-size: $font-size-xs;
-  line-height: $lineheight-size-xs;
+  font-size: 1.125rem;
+  line-height: 1.62rem;
   font-weight: 400;
+  color: var(--core-color-neutral-800);
 
   @media (min-width: map.get($grid-breakpoints, sm)) {
     font-size: $font-size-sm;
