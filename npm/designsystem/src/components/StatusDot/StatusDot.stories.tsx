@@ -38,3 +38,20 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => <StatusDot {...args} />,
 };
+
+export const AllTypes: Story = {
+  render: args => (
+    <div style={{ display: 'flex', flexFlow: 'column' }}>
+      <StatusDot {...args} variant="active" />
+      <StatusDot {...args} variant="alert" />
+      <StatusDot {...args} variant="attachment" />
+      <StatusDot {...args} variant="cancelled" />
+      <StatusDot {...args} variant="group" />
+      <StatusDot {...args} variant="info" />
+      <StatusDot {...args} variant="noaccess" />
+      <StatusDot {...args} variant="recurring" />
+      <StatusDot {...args} variant="transparent" />
+      <StatusDot {...args} variant="warning" />
+    </div>
+  ),
+};
