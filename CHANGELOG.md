@@ -1,3 +1,153 @@
+## 8.0.0-beta.3 (2024-08-12)
+
+### Features
+
+- ny komponent lightbox ([283c06d](https://github.com/helsenorge/designsystem/commit/283c06dd0eee42e174d76646a43edb6001e69f4c)), closes
+  [#318675](https://github.com/helsenorge/designsystem/issues/318675)
+
+### Bug Fixes
+
+- **datepicker:** popup skal ha fast storrelse
+  ([5f7a5cf](https://github.com/helsenorge/designsystem/commit/5f7a5cfc460d3e779ede02cbdaa476dacdc8d4fb)), closes
+  [#328505](https://github.com/helsenorge/designsystem/issues/328505)
+- **lightbox:** legg til bedre universell utforming
+  ([40ad870](https://github.com/helsenorge/designsystem/commit/40ad870b180911227ad058c056ea8c96d84bf2e6)), closes
+  [#329100](https://github.com/helsenorge/designsystem/issues/329100)
+
+## 8.0.0-beta.2 (2024-06-24)
+
+## 8.0.0-beta.1 (2024-06-24)
+
+## 8.0.0-beta.0 (2024-06-24)
+
+### Features
+
+- fjern deprecated prop errorSummary
+  ([eed040f](https://github.com/helsenorge/designsystem/commit/eed040f5470c5c430098edb8171f3256f6b8b26d)), closes
+  [#324890](https://github.com/helsenorge/designsystem/issues/324890)
+- fjern variant alert ([0da88f3](https://github.com/helsenorge/designsystem/commit/0da88f33e2584650f8c2d9428197f62bc4ad7fb2)), closes
+  [#325898](https://github.com/helsenorge/designsystem/issues/325898)
+- flytt padding-bottom fra ErrorWrapper til Validation
+  ([f92a3d6](https://github.com/helsenorge/designsystem/commit/f92a3d6e724a34a75416df04ae7419b78028a2ab)), closes
+  [#324890](https://github.com/helsenorge/designsystem/issues/324890)
+- react 18 ([7a99c2a](https://github.com/helsenorge/designsystem/commit/7a99c2a0fa265aad351b5bca415e5977aef197f2)), closes
+  [#327791](https://github.com/helsenorge/designsystem/issues/327791)
+- rename highlightbox til highlightpanel
+  ([138beea](https://github.com/helsenorge/designsystem/commit/138beea5c249c71e5b47d931fa910e25c91a070f)), closes
+  [#318438](https://github.com/helsenorge/designsystem/issues/318438)
+- splitt Tag-komponent til Tag og Chip
+  ([7bac3bb](https://github.com/helsenorge/designsystem/commit/7bac3bbd99e9e2a474193c8f4d05b6b299017e73)), closes
+  [#314597](https://github.com/helsenorge/designsystem/issues/314597)
+- ta i bruk errorwrapper i checkbox og radiobutton
+  ([c91d997](https://github.com/helsenorge/designsystem/commit/c91d99712844f024c0056e819a49af0a339d8c6a)), closes
+  [#287874](https://github.com/helsenorge/designsystem/issues/287874)
+
+### Bug Fixes
+
+- chip large too large ([6fe2f2e](https://github.com/helsenorge/designsystem/commit/6fe2f2e17b26647e72163775cae219cc5c00ae7c)), closes
+  [#314597](https://github.com/helsenorge/designsystem/issues/314597)
+- feil skråstrek på chip ([253ed93](https://github.com/helsenorge/designsystem/commit/253ed9330142bd1b52afdccc9b59170ef4be0b84)), closes
+  [#314597](https://github.com/helsenorge/designsystem/issues/314597)
+- merge conflicts ([1b40d65](https://github.com/helsenorge/designsystem/commit/1b40d6594e6f8cf1f5b2570560dd79f2482b98a3))
+
+## 7.0.1-beta.0 (2024-04-09)
+
+## [7.13.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.3&targetVersion=GTv7.13.4) (2024-07-25)
+
+### Bug Fixes
+
+- **tabs:** fjern zindex ([312d337](https://github.com/helsenorge/designsystem/commit/312d3370b7f288b28e60e189c829eff82b5ce2ac)), closes
+  [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
+## [7.13.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.2&targetVersion=GTv7.13.3) (2024-07-25)
+
+### Bug Fixes
+
+- sett z-index på tabs og input så de oppfører seg sammen med andre komponenter
+  ([3bd47e0](https://github.com/helsenorge/designsystem/commit/3bd47e01af75dc2d17cb5af9ba4be30aaed50e91)), closes
+  [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
+## [7.13.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.1&targetVersion=GTv7.13.2) (2024-07-25)
+
+### Bug Fixes
+
+- **expander:** bygg ([779c2a3](https://github.com/helsenorge/designsystem/commit/779c2a3aa668c5fcc870e230dbfa9d2847b5a40b))
+- **expander:** fiks sticky klasser ([5885b90](https://github.com/helsenorge/designsystem/commit/5885b902c4c51fd35c456f8c1584b9bf01908f6d))
+- **expander:** fjern klasse som gir bug
+  ([589c9af](https://github.com/helsenorge/designsystem/commit/589c9aff764e6ce162d180c2a0bb4ea3500357c3))
+- **expander:** sett position slik at zindex blir riktig
+  ([e1a8220](https://github.com/helsenorge/designsystem/commit/e1a82201412b9817f2e41a915c101a294d33853a))
+- **tabs:** fiks keyboard navigation
+  ([db5d64d](https://github.com/helsenorge/designsystem/commit/db5d64d99008b91b83cb38cb25bc11c591b8de43)), closes
+  [#328547](https://github.com/helsenorge/designsystem/issues/328547)
+
+## [7.13.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.0&targetVersion=GTv7.13.1) (2024-07-23)
+
+### Bug Fixes
+
+- **tabs:** endre z indeks ([30f5684](https://github.com/helsenorge/designsystem/commit/30f5684adaeea90a218cdd280980e45b25a4676c)), closes
+  [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
+## [7.13.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.12.0&targetVersion=GTv7.13.0) (2024-07-22)
+
+### Features
+
+- legg til storybook-eksempler for typography.module
+  ([2fe8228](https://github.com/helsenorge/designsystem/commit/2fe8228dc486c99ed409c2d508dc09b094b2292a)), closes
+  [#326403](https://github.com/helsenorge/designsystem/issues/326403)
+- **duolist:** collapsed mode mulig fra gitt breakpoint
+  ([f50448c](https://github.com/helsenorge/designsystem/commit/f50448cab636c41679af97d5edb8909db810b6c0)), closes
+  [#328401](https://github.com/helsenorge/designsystem/issues/328401)
+- **tabs:** mer mobilvennlig ([b52c281](https://github.com/helsenorge/designsystem/commit/b52c281e029f2ccda72dda15fe559907287ad7f9)), closes
+  [#322461](https://github.com/helsenorge/designsystem/issues/322461) [#328176](https://github.com/helsenorge/designsystem/issues/328176)
+
+### Bug Fixes
+
+- error må være true for at inputfelter med errorTextId skal få aria-describedby
+  ([2d64531](https://github.com/helsenorge/designsystem/commit/2d64531a61eb4e6b37f00cc75e4a27ecf6c371b7)), closes
+  [#327379](https://github.com/helsenorge/designsystem/issues/327379)
+- **dictionarytrigger:** juster ned avstanden mellom linjen og ord
+  ([ef2e6af](https://github.com/helsenorge/designsystem/commit/ef2e6af7d1645544b2a3479d0d2b1b739c6886c9)), closes
+  [#328583](https://github.com/helsenorge/designsystem/issues/328583)
+
+## [7.12.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.11.0&targetVersion=GTv7.12.0) (2024-06-21)
+
+### Features
+
+- **datepicker:** lagt til disabled prop
+  ([178326d](https://github.com/helsenorge/designsystem/commit/178326d934c0f6a0b916de1c868bac7363ba2960)), closes
+  [#327974](https://github.com/helsenorge/designsystem/issues/327974)
+
+## [7.11.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.10.0&targetVersion=GTv7.11.0) (2024-06-20)
+
+### Features
+
+- **button:** textposition prop får centered type
+  ([46d7ae0](https://github.com/helsenorge/designsystem/commit/46d7ae09e6ac1ec954355ed81c7d17f3786a01e8)), closes
+  [#320973](https://github.com/helsenorge/designsystem/issues/320973)
+
+## [7.10.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.9.0&targetVersion=GTv7.10.0) (2024-06-19)
+
+### Features
+
+- illustrasjon facialrecongitionfingerprint lagt til
+  ([64bff31](https://github.com/helsenorge/designsystem/commit/64bff313fa89b1602dd5198fa773d9baa29b0a32)), closes
+  [#320973](https://github.com/helsenorge/designsystem/issues/320973)
+- **progressbar:** ny komponent ([9cdbd1b](https://github.com/helsenorge/designsystem/commit/9cdbd1bad9a701ed4a68bd84bb959b6785d518bd)),
+  closes [#297459](https://github.com/helsenorge/designsystem/issues/297459)
+
+### Bug Fixes
+
+- **progressbar:** bedre uu ([1f2bcf0](https://github.com/helsenorge/designsystem/commit/1f2bcf01cd1fa88a5b4765013a17ec2e5ca05a67)), closes
+  [#297459](https://github.com/helsenorge/designsystem/issues/297459)
+
+## [7.9.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.8.1&targetVersion=GTv7.9.0) (2024-06-12)
+
+### Bug Fixes
+
+- fiks brekking av ord i dropdown ([d10a776](https://github.com/helsenorge/designsystem/commit/d10a776b66763d2c92c9bfeb0b5988687e235577)),
+  closes [#327108](https://github.com/helsenorge/designsystem/issues/327108)
+
 ## [7.8.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.8.0&targetVersion=GTv7.8.1) (2024-06-04)
 
 ### Bug Fixes
@@ -1498,12 +1648,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- økt kontrast på understreking av lenker
-  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
-  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 - panel har avstand fra tittel til badge
   ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
   [#282359](https://github.com/helsenorge/designsystem/issues/282359)
+- økt kontrast på understreking av lenker
+  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
+  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
