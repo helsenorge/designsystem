@@ -11,11 +11,18 @@ export default defineConfig({
       },
     },
     coverage: {
-      reporter: ['cobertura', 'json'],
+      enabled: true,
+      provider: 'istanbul',
+      reporter: ['cobertura', 'lcov', 'json'],
     },
     reporters: ['default', 'junit'],
     outputFile: {
       junit: 'test-report.xml',
+    },
+    server: {
+      deps: {
+        inline: ['@helsenorge/designsystem-react'],
+      },
     },
   },
 });

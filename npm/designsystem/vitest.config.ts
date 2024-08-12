@@ -12,6 +12,7 @@ export default defineConfig({
     },
     coverage: {
       enabled: true,
+      provider: 'istanbul',
       reporter: ['cobertura', 'lcov', 'json'],
     },
     reporters: ['default', 'junit'],
