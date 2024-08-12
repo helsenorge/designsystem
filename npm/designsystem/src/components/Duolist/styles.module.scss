@@ -64,6 +64,10 @@
     }
   }
 
+  &--collapsed &__dd {
+    border-top: 0 !important;
+  }
+
   &--line &__dt,
   &--line &__dd {
     padding-top: getSpacer(2xs);

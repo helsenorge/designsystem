@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
+import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import Spacer from '../Spacer';
 import { TitleProps } from '../Title';
 
@@ -34,6 +35,8 @@ export interface DuolistProps {
   testId?: string;
   /** Width of the description column in percentage */
   descriptionWidth?: number;
+  /** Use collapsed mode on columns from chosen breakpoint and below. */
+  useCollapsedFromAndBelowBreakpoint?: keyof typeof Breakpoint;
 }
 
 export interface DuolistGroupProps {
@@ -91,12 +94,15 @@ export const Duolist: React.FC<DuolistProps> = props => {
     children,
     className,
     testId,
+    useCollapsedFromAndBelowBreakpoint,
   } = props;
 
   const hasBorder = border === 'border';
   const hasLines = variant === 'line';
   const extraPaddingTop = hasBorder && (label || hasLines);
   const nonFormatted = format === 'non-formatted';
+  const breakpoint = useBreakpoint();
+  const useCollapsedMode = useCollapsedFromAndBelowBreakpoint && breakpoint <= Breakpoint[useCollapsedFromAndBelowBreakpoint];
 
   const duolistWrapperClasses = classNames(
     {
@@ -109,7 +115,9 @@ export const Duolist: React.FC<DuolistProps> = props => {
   const duolistClasses = classNames(duolistStyles.duolist, {
     [duolistStyles['duolist--line']]: hasLines,
     [duolistStyles['duolist--non-formatted']]: nonFormatted,
+    [duolistStyles['duolist--collapsed']]: useCollapsedMode,
   });
+
   const duolistColumnStyle = descriptionWidth ? descriptionWidth + '%' : 'minmax(60%, 1fr)';
 
   return (
@@ -120,7 +128,10 @@ export const Duolist: React.FC<DuolistProps> = props => {
           <Spacer />
         </>
       )}
-      <dl style={!nonFormatted ? { gridTemplateColumns: `auto ${duolistColumnStyle}` } : undefined} className={duolistClasses}>
+      <dl
+        style={!nonFormatted ? { gridTemplateColumns: useCollapsedMode ? `1fr` : `auto ${duolistColumnStyle}` } : undefined}
+        className={duolistClasses}
+      >
         {React.Children.map(children, (child: React.ReactNode | React.ReactElement<DuolistGroupProps>) => {
           if (child === null || typeof child === 'undefined') return;
           const duolistGroup = child as React.ReactElement<DuolistGroupProps>;

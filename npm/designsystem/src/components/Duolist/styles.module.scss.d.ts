@@ -6,6 +6,7 @@ export type Styles = {
   duolist__dt: string;
   'duolist__dt--bold': string;
   'duolist__dt--non-formatted': string;
+  'duolist--collapsed': string;
   'duolist--line': string;
   'duolist--non-formatted': string;
   'duolist-wrapper--border': string;

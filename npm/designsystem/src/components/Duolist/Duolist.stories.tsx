@@ -22,6 +22,7 @@ const meta = {
   },
   args: {
     children: '',
+    useCollapsedFromAndBelowBreakpoint: 'xs',
   },
   argTypes: {
     descriptionWidth: {

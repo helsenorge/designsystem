@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
 import Tab from './Tab';
 import Tabs from './Tabs';
 import Docs from '../../docs';
+import longLoremText, { mediumLoremText } from '../../utils/loremtext';
+import Icon from '../Icon';
+import HelpSign from '../Icons/HelpSign';
+import PopOver from '../PopOver/PopOver';
+import Title from '../Title';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Tabs',
@@ -22,6 +27,7 @@ const meta = {
   args: {
     color: 'white',
     type: 'normal',
+    sticky: true,
   },
   argTypes: {
     color: {
@@ -41,6 +47,10 @@ const meta = {
     activeTab: {
       control: 'number',
       description: 'Sets the active tab on controlled mode. Only use if controlled version is needed.',
+    },
+    sticky: {
+      control: 'boolean',
+      description: 'Whether the tab list should be sticky',
     },
   },
 } satisfies Meta<typeof Tabs>;
@@ -168,6 +178,66 @@ export const Controlled: Story = {
           </Tabs.Tab>
         </Tabs>
         <button onClick={() => setActiveTab(0)}>{'Sett aktiv tab til nummer 0'}</button>
+      </>
+    );
+  },
+};
+
+export const MedInnholdRundt: Story = {
+  render: args => {
+    const controllerRef = useRef<SVGSVGElement>(null);
+
+    return (
+      <>
+        <Title>{'Noe annet innhold her '}</Title>
+        <br />
+        <span>{mediumLoremText}</span>
+        <br />
+        <br />
+        <Tabs {...args} color="white">
+          <Tabs.Tab title="Vaksinasjon">
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+          </Tabs.Tab>
+          <Tabs.Tab title="Helserelaterte spørsmål">
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+          </Tabs.Tab>
+          <Tabs.Tab title="Prøvesvar">
+            <p style={{ padding: '1rem' }}>{longLoremText}</p>
+          </Tabs.Tab>
+        </Tabs>
+        <br />
+        <br />
+        <span>{longLoremText}</span>
+        <br />
+        <span>{longLoremText}</span>
+        <br />
+        <br />
+        <br />
+        <Tabs {...args} color="blueberry" type="framed">
+          <Tabs.Tab title="Fane 1">
+            <div style={{ position: 'relative', display: 'inline' }}>
+              <Icon ref={controllerRef} svgIcon={HelpSign} />
+              <PopOver {...args} controllerRef={controllerRef}>
+                <div style={{ padding: '0.5rem 1rem' }}>{'Tekst inne i PopOver, så får vi testet z-indeks også!'}</div>
+              </PopOver>
+            </div>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+          </Tabs.Tab>
+          <Tabs.Tab title="Fane 2">
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+          </Tabs.Tab>
+          <Tabs.Tab title="Fane 3">
+            <p style={{ padding: '1rem' }}>{longLoremText}</p>
+          </Tabs.Tab>
+        </Tabs>
       </>
     );
   },

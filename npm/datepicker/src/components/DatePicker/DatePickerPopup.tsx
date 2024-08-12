@@ -10,6 +10,7 @@ import { useInterval } from '@helsenorge/designsystem-react/hooks/useInterval';
 import { useIsVisible } from '@helsenorge/designsystem-react/hooks/useIsVisible';
 import { useLayoutEvent } from '@helsenorge/designsystem-react/hooks/useLayoutEvent';
 import { useSize } from '@helsenorge/designsystem-react/hooks/useSize';
+import { getSpacer } from '@helsenorge/designsystem-react/theme/currys/spacing';
 
 import { getArrowStyle, getBubbleStyle, getVerticalPosition } from './position-utils';
 
@@ -70,6 +71,7 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
           captionLayout="dropdown-buttons"
           classNames={datePickerClassNames}
           mode={'single'}
+          style={{ '--rdp-cell-size': getSpacer('l') } as React.CSSProperties}
           modifiersClassNames={{ today: styles['day--today'], selected: styles['day_selected'], disabled: styles['day--disabled'] }}
           footer={<span className={styles['footer-wrapper']}>{footer}</span>}
           fixedWeeks
