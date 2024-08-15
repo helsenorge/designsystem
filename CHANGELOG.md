@@ -1,3 +1,5 @@
+## [8.0.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.0.0&targetVersion=GTv8.0.1) (2024-08-15)
+
 ## 8.0.0-beta.6 (2024-08-15)
 
 ### Features
