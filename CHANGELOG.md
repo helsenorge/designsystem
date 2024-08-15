@@ -1,3 +1,13 @@
+## 8.0.0-beta.6 (2024-08-15)
+
+### Features
+
+- checkbox og radio disabled state får nytt uttrykk
+  ([e3b871d](https://github.com/helsenorge/designsystem/commit/e3b871d8c739973eb7d1d323d77f487e086b9f1d)), closes
+  [#329309](https://github.com/helsenorge/designsystem/issues/329309)
+- ny komponent EyebrowHeader ([2c8f13b](https://github.com/helsenorge/designsystem/commit/2c8f13b1715dee17d9ce262427f86bebfe6281ca)), closes
+  [#326557](https://github.com/helsenorge/designsystem/issues/326557)
+
 ## [8.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv7.13.4&targetVersion=GTv8.0.0) (2024-08-13)
 
 ## 8.0.0-beta.5 (2024-08-12)
