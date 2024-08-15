@@ -217,8 +217,8 @@ stages:
   - stage:
     displayName: 'Github'
     condition:
-      and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), eq(variables['Build.SourceBranch'],
-      'refs/heads/master'))
+      and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'), contains(variables['Build.SourceBranch'],
+      'refs/tags/v'))
     jobs:
       - job:
         displayName: 'Copy to Github'
