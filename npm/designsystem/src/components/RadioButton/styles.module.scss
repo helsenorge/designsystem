@@ -1,8 +1,19 @@
 @use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
 @import '../../scss/font-settings';
+
+@mixin dashed-border() {
+  box-shadow: none;
+
+  $encoded-color: string.slice(meta.inspect($neutral600), 2);
+
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='%23#{$encoded-color}' stroke-width='4' stroke-dasharray='0.5, 7' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 100px;
+}
 
 .radio-button-errors {
   font-size: $font-size-sm;
@@ -121,17 +132,6 @@
     }
   }
 
-  &__large#{&}__large--disabled {
-    background-color: $neutral50;
-
-    &:hover {
-      background-color: $neutral50;
-    }
-
-    &:focus {
-      background-color: $neutral50;
-    }
-  }
   &__large#{&}__large--on-grey {
     background-color: $white;
 
@@ -162,6 +162,19 @@
 
     &:hover {
       background-color: $blueberry600;
+    }
+  }
+
+  &__large#{&}__large--disabled {
+    color: $neutral700;
+    background-color: $neutral50;
+
+    &:hover {
+      background-color: $neutral50;
+    }
+
+    &:focus {
+      background-color: $neutral50;
     }
   }
 
@@ -281,16 +294,18 @@
 
   &--disabled {
     cursor: default;
-    color: $neutral600;
-    background-color: $neutral50;
+
+    @include dashed-border;
+
+    background-color: transparent;
 
     &:hover {
-      box-shadow: 0 0 0 getSpacer(4xs);
-      background-color: $neutral50;
+      box-shadow: none;
+      background-color: transparent;
     }
 
     :hover > & {
-      background-color: $neutral50;
+      background-color: transparent;
     }
 
     &:active {
@@ -327,14 +342,12 @@
     background-color: $blueberry200;
   }
 
-  &--disabled:checked::before {
-    box-shadow: 0 0 0 0;
-    background-color: $neutral400;
-    color: $neutral600;
-  }
-
   &--invalid:checked::before {
     background-color: $cherry600;
+  }
+
+  &--disabled:checked::before {
+    background-color: transparent;
   }
 
   &__large {
@@ -393,12 +406,14 @@
     }
 
     &--disabled {
-      &:hover {
-        box-shadow: 0 0 0 getSpacer(4xs);
+      &:hover,
+      &:focus,
+      &:checked:hover {
+        box-shadow: none;
       }
 
-      &:focus {
-        box-shadow: 0 0 0 getSpacer(4xs);
+      &:checked::before {
+        background-color: $neutral600;
       }
     }
   }

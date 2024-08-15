@@ -5,6 +5,86 @@
 @import '../../scss/font-settings';
 @import '../../scss/screen-reader';
 
+@mixin dashed-dotted-border() {
+  box-shadow: none;
+
+  --dot-size: 2px;
+  --dash-length: 5px;
+  --gap-length: 2px;
+  --corner-gap: 2px;
+
+  background-image:
+    // Square dots at corners
+    linear-gradient($neutral600, $neutral600),
+    linear-gradient($neutral600, $neutral600),
+    linear-gradient($neutral600, $neutral600),
+    linear-gradient($neutral600, $neutral600),
+    // Dashed lines
+    repeating-linear-gradient(
+        0deg,
+        $neutral600,
+        $neutral600 var(--dash-length),
+        transparent var(--dash-length),
+        transparent calc(var(--dash-length) + var(--gap-length))
+      ),
+    repeating-linear-gradient(
+      90deg,
+      $neutral600,
+      $neutral600 var(--dash-length),
+      transparent var(--dash-length),
+      transparent calc(var(--dash-length) + var(--gap-length))
+    ),
+    repeating-linear-gradient(
+      180deg,
+      $neutral600,
+      $neutral600 var(--dash-length),
+      transparent var(--dash-length),
+      transparent calc(var(--dash-length) + var(--gap-length))
+    ),
+    repeating-linear-gradient(
+      270deg,
+      $neutral600,
+      $neutral600 var(--dash-length),
+      transparent var(--dash-length),
+      transparent calc(var(--dash-length) + var(--gap-length))
+    );
+  background-size:
+    // Top-left dot
+    var(--dot-size) var(--dot-size),
+    // Top-right dot
+    var(--dot-size) var(--dot-size),
+    // Bottom-right dot
+    var(--dot-size) var(--dot-size),
+    // Bottom-left dot
+    var(--dot-size) var(--dot-size),
+    // Left border
+    2px calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2),
+    // Top border
+    calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2) 2px,
+    // Right border
+    2px calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2),
+    // Bottom border
+    calc(100% - var(--dot-size) * 2 - var(--corner-gap) * 2) 2px;
+  background-position:
+    // Top-left dot
+    0 0,
+    // Top-right dot
+    100% 0,
+    // Bottom-right dot
+    100% 100%,
+    // Bottom-left dot
+    0 100%,
+    // Left border
+    0 calc(var(--dot-size) + var(--corner-gap)),
+    // Top border
+    calc(var(--dot-size) + var(--corner-gap)) 0,
+    // Right border
+    100% calc(var(--dot-size) + var(--corner-gap)),
+    // Bottom border
+    calc(var(--dot-size) + var(--corner-gap)) 100%;
+  background-repeat: no-repeat;
+}
+
 $checkbox-icon-size: 1.625rem;
 
 .checkbox-errors {
@@ -42,10 +122,6 @@ $checkbox-icon-size: 1.625rem;
   &__text {
     color: $black;
 
-    &--on-dark {
-      color: $white;
-    }
-
     &__large {
       &--checked {
         color: $white;
@@ -60,6 +136,10 @@ $checkbox-icon-size: 1.625rem;
 
     &--disabled {
       color: $neutral700;
+    }
+
+    &--on-dark {
+      color: $white;
     }
   }
 
@@ -153,9 +233,11 @@ $checkbox-icon-size: 1.625rem;
     }
 
     &--checked#{&}--disabled {
+      color: $neutral700;
       background-color: $neutral50;
 
       :hover > & {
+        color: $neutral700;
         background-color: $neutral50;
       }
     }
@@ -242,16 +324,6 @@ $checkbox-icon-size: 1.625rem;
       }
     }
 
-    &--disabled {
-      color: $neutral600;
-      background-color: $neutral50;
-
-      :hover > & {
-        box-shadow: 0 0 0 getSpacer(4xs);
-        background-color: $neutral50;
-      }
-    }
-
     &__regular {
       &--checked {
         background-color: $blueberry500;
@@ -307,13 +379,24 @@ $checkbox-icon-size: 1.625rem;
       }
       &--checked#{&}--disabled {
         color: $neutral600;
-        background-color: $neutral50;
-        box-shadow: 0 0 0 getSpacer(4xs);
+        background-color: transparent;
 
         :hover > & {
-          background-color: $neutral50;
-          box-shadow: 0 0 0 getSpacer(4xs);
+          background-color: transparent;
         }
+      }
+    }
+
+    &--disabled,
+    &--disabled#{&}--invalid,
+    &--disabled#{&}--on-dark {
+      @include dashed-dotted-border;
+
+      background-color: transparent;
+
+      :hover > & {
+        box-shadow: none;
+        background-color: transparent;
       }
     }
   }
@@ -358,7 +441,6 @@ $checkbox-icon-size: 1.625rem;
 
           &--disabled {
             color: $neutral700;
-            background-color: $neutral50;
           }
         }
       }

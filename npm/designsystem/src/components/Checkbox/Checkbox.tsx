@@ -116,7 +116,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   let iconColor = getColor('white');
   if (onDark || (large && isChecked)) iconColor = getColor('blueberry', 900);
   if (onInvalid && large && isChecked) iconColor = getColor('white');
-  if (disabled) iconColor = getColor('neutral', 400);
+  if (disabled) iconColor = getColor('neutral', 700);
 
   useEffect(() => {
     setIsChecked(checked);
