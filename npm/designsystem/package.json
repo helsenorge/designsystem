@@ -2,7 +2,7 @@
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
   "private": false,
-  "version": "8.0.0",
+  "version": "8.0.0-beta.6",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
