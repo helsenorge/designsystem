@@ -1,3 +1,13 @@
+## [8.0.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.0.1&targetVersion=GTv8.0.2) (2024-08-22)
+
+### Bug Fixes
+
+- lightbox uu forbedringer ([8026ee9](https://github.com/helsenorge/designsystem/commit/8026ee9fc1acb94cd1b9e9d12ff1a190beca31d3)), closes
+  [#329075](https://github.com/helsenorge/designsystem/issues/329075)
+- radiobutton-scss bygger når designsystem tas i bruk
+  ([867b0ec](https://github.com/helsenorge/designsystem/commit/867b0ec36002ed16fda4f7e6dae07bad4b805c46)), closes
+  [#330427](https://github.com/helsenorge/designsystem/issues/330427)
+
 ## [8.0.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.0.0&targetVersion=GTv8.0.1) (2024-08-15)
 
 ## 8.0.0-beta.6 (2024-08-15)
