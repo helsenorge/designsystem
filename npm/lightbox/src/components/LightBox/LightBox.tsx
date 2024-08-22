@@ -12,6 +12,7 @@ import Minus from '@helsenorge/designsystem-react/components/Icons/Minus';
 import PlusSmall from '@helsenorge/designsystem-react/components/Icons/PlusSmall';
 import X from '@helsenorge/designsystem-react/components/Icons/X';
 import { IconSize, KeyboardEventKey, ZIndex } from '@helsenorge/designsystem-react/constants';
+import { useFocusTrap } from '@helsenorge/designsystem-react/hooks/useFocusTrap';
 import { useSize } from '@helsenorge/designsystem-react/hooks/useSize';
 
 import { useKeyboardEvent } from '@helsenorge/designsystem-react';
@@ -81,6 +82,7 @@ const LightBox: React.FC<LightBoxProps> = ({
   const textBoxRef = useRef<HTMLParagraphElement>(null);
   const { height: textBoxHeight = 0 } = useSize(textBoxRef) || {};
   const [zoom, setZoom] = useState(1.0);
+  useFocusTrap(lightBoxRef, true);
 
   useKeyboardEvent(lightBoxRef, onClose, [KeyboardEventKey.Escape]);
 
@@ -247,14 +249,7 @@ const Controls = ({
       <button className={classNames(styles.button)} onClick={() => adjustZoomWithAnimation(zoom - 0.5)} aria-label={ariaLabelZoomOut}>
         <Icon svgIcon={Minus} color="white" size={IconSize.XSmall} />
       </button>
-      <MiniSlider
-        className={styles['slider']}
-        minValue={1}
-        maxValue={4}
-        onChange={adjustZoom}
-        value={zoom}
-        ariaLabel={ariaLabelZoomSlider}
-      />
+      <MiniSlider minValue={1} maxValue={4} onChange={adjustZoom} value={zoom} ariaLabel={ariaLabelZoomSlider} />
       <button className={classNames(styles.button)} onClick={() => adjustZoomWithAnimation(zoom + 0.5)} aria-label={ariaLabelZoomIn}>
         <Icon svgIcon={PlusSmall} color="white" size={IconSize.XSmall} />
       </button>

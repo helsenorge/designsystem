@@ -159,7 +159,7 @@
   --color-action-background-transparent-ondark-hover: #00000026;
 
   /* Hoverfarge for bakgrunn på interaktive elementer - onDark selected */
-  --color-action-background-transparent-ondark-hoverselected: #00000040;
+  --color-action-background-transparent-ondark-hoverselected: #000000bf;
   --color-base-background-dark-neutral: #2b2c2b;
 
   /* Placeholdertext in input- and textarea-controls */
@@ -170,4 +170,12 @@
   /* Subtle border for Blueberry 50 background */
   --color-base-border-blueberry: #afdae3;
   --color-base-border-cherry: #eec0a5;
+
+  /* In a few cases where coloured text is required to stress the semantics of an information notification text */
+  --color-notification-text-info: #08667c;
+  --color-notification-text-warning: #916500;
+
+  /* In a few cases where coloured text is required to stress the semantics of an error notification text */
+  --color-notification-text-error: #a31f0e;
+  --color-notification-text-success: #078141;
 }

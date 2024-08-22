@@ -1,11 +1,12 @@
 import React, { ChangeEvent } from 'react';
 
+import styles from './styles.module.scss';
+
 interface MiniSliderProps {
   value: number;
   minValue: number;
   maxValue: number;
   onChange: (newValue: number) => void;
-  className?: string;
   ariaLabel: string;
 }
 
@@ -16,8 +17,13 @@ const MiniSlider = (props: MiniSliderProps): React.JSX.Element => {
     props.onChange(newValue);
   };
 
+  const ariaValueText = `${Math.round(props.value * 100)}%`;
+
   return (
-    <div className={props.className}>
+    <div className={styles.slider} aria-live="polite">
+      <div key={props.value} className={styles.slider__announcements}>
+        {ariaValueText}
+      </div>
       <input
         onChange={handleOnChange}
         type="range"
@@ -27,6 +33,7 @@ const MiniSlider = (props: MiniSliderProps): React.JSX.Element => {
         aria-valuenow={props.value}
         aria-valuemin={props.minValue}
         aria-valuemax={props.maxValue}
+        aria-valuetext={ariaValueText}
         aria-label={props.ariaLabel}
         step={0.1}
       />

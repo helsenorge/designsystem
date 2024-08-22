@@ -10,6 +10,7 @@ export type Styles = {
   'image-text-box__text': string;
   lightBox: string;
   slider: string;
+  slider__announcements: string;
   'zoom-buttons': string;
 };
 

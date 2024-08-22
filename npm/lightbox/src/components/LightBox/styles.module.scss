@@ -1,4 +1,5 @@
 @import '@helsenorge/designsystem-react/scss/supernova/styles/colors';
+@import '@helsenorge/designsystem-react/scss/screen-reader';
 
 .lightBox {
   display: flex;
@@ -19,6 +20,7 @@
 }
 
 .button {
+  cursor: pointer;
   background-color: var(--core-color-black);
   color: var(--color-base-text-ondark);
   display: flex;
@@ -49,7 +51,8 @@
     border-radius: 5px;
   }
 
-  input[type='range']::-webkit-slider-thumb {
+  input[type='range']::-webkit-slider-thumb,
+  input[type='range']::-moz-range-thumb {
     appearance: none;
     height: 12px;
     width: 12px;
@@ -59,11 +62,16 @@
     box-shadow: 0 0 2px 0 #555;
   }
 
-  input[type='range']::-webkit-slider-runnable-track {
+  input[type='range']::-webkit-slider-runnable-track,
+  input[type='range']::-moz-range-track {
     appearance: none;
     box-shadow: none;
     border: none;
     background: transparent;
+  }
+
+  &__announcements {
+    @include sr-only;
   }
 }
 
