@@ -28,6 +28,8 @@ const meta = {
   },
   args: {
     popMenuVariant: PopMenuVariant.onWhite,
+    openButtonAriaLabel: 'Åpne meny',
+    closeButtonAriaLabel: 'Lukk meny',
   },
   argTypes: {
     popMenuVariant: {
