@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
-import { useSticky } from '../../hooks/useSticky';
 import { PaletteNames } from '../../theme/palette';
 import { isMobileUA } from '../../utils/mobile';
 
@@ -148,14 +147,12 @@ const TabsRoot: React.FC<TabsProps> = ({
     };
   }, []);
 
-  const { isOutsideWindow } = useSticky(tabListRef, tabsRef);
-
   return (
     <div className={className} data-testid={testId}>
       <div
         ref={tabListRef}
         className={classNames(styles['tab-list-wrapper'], {
-          [styles['tab-list-wrapper--sticky']]: sticky && isOutsideWindow,
+          [styles['tab-list-wrapper--sticky']]: sticky,
         })}
       >
         <TabList
