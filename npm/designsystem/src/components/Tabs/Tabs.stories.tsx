@@ -8,6 +8,7 @@ import Docs from '../../docs';
 import longLoremText, { mediumLoremText, shortLoremText } from '../../utils/loremtext';
 import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
+import Panel from '../Panel/Panel';
 import PopOver from '../PopOver/PopOver';
 import Title from '../Title';
 
@@ -68,9 +69,151 @@ export const Default: Story = {
   args: {},
   render: args => (
     <Tabs {...args}>
-      <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
-      <Tabs.Tab title="Prøvesvar">{mediumLoremText}</Tabs.Tab>
-      <Tabs.Tab title="Helserelaterte spørsmål">{shortLoremText}</Tabs.Tab>
+      <Tabs.Tab title="Vaksinasjon">
+        <Panel>
+          <div>
+            <Title appearance="title2">{'E-resept'}</Title>
+            <p style={{ whiteSpace: 'pre-line' }}>
+              {`
+        Legemiddel: Aerius Mikst 0,5 mg/ml
+
+        Dosering: 1 tablett daglig
+
+        Virkestoff: Cetrizin
+        ATC-kode:R06AX27
+        Pakningsstørrelse: 120ml
+
+
+        Antall: 1
+        Forskrevet av: Diana Dips, Testsykehuset HF
+        Forskrevet dato: 27.09.2020
+        Gyldig til: 20.09.2021
+        Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+        Antall utlevering: 1 (Se utleveringer på denne resepten)
+        Refusjonshjemmel: §5-14 §2 (blå resept)
+        Resepten er hentet fra: Reseptformidleren`}
+            </p>
+          </div>
+        </Panel>
+        <Panel>
+          <div>
+            <Title appearance="title2">{'E-resept'}</Title>
+            <p style={{ whiteSpace: 'pre-line' }}>
+              {`
+        Legemiddel: Aerius Mikst 0,5 mg/ml
+
+        Dosering: 1 tablett daglig
+
+        Virkestoff: Cetrizin
+        ATC-kode:R06AX27
+        Pakningsstørrelse: 120ml
+
+
+        Antall: 1
+        Forskrevet av: Diana Dips, Testsykehuset HF
+        Forskrevet dato: 27.09.2020
+        Gyldig til: 20.09.2021
+        Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+        Antall utlevering: 1 (Se utleveringer på denne resepten)
+        Refusjonshjemmel: §5-14 §2 (blå resept)
+        Resepten er hentet fra: Reseptformidleren`}
+            </p>
+          </div>
+        </Panel>
+        <Panel>
+          <div>
+            <Title appearance="title2">{'E-resept'}</Title>
+            <p style={{ whiteSpace: 'pre-line' }}>
+              {`
+        Legemiddel: Aerius Mikst 0,5 mg/ml
+
+        Dosering: 1 tablett daglig
+
+        Virkestoff: Cetrizin
+        ATC-kode:R06AX27
+        Pakningsstørrelse: 120ml
+
+
+        Antall: 1
+        Forskrevet av: Diana Dips, Testsykehuset HF
+        Forskrevet dato: 27.09.2020
+        Gyldig til: 20.09.2021
+        Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+        Antall utlevering: 1 (Se utleveringer på denne resepten)
+        Refusjonshjemmel: §5-14 §2 (blå resept)
+        Resepten er hentet fra: Reseptformidleren`}
+            </p>
+          </div>
+        </Panel>
+        <Panel>
+          <div>
+            <Title appearance="title2">{'E-resept'}</Title>
+            <p style={{ whiteSpace: 'pre-line' }}>
+              {`
+        Legemiddel: Aerius Mikst 0,5 mg/ml
+
+        Dosering: 1 tablett daglig
+
+        Virkestoff: Cetrizin
+        ATC-kode:R06AX27
+        Pakningsstørrelse: 120ml
+
+
+        Antall: 1
+        Forskrevet av: Diana Dips, Testsykehuset HF
+        Forskrevet dato: 27.09.2020
+        Gyldig til: 20.09.2021
+        Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+        Antall utlevering: 1 (Se utleveringer på denne resepten)
+        Refusjonshjemmel: §5-14 §2 (blå resept)
+        Resepten er hentet fra: Reseptformidleren`}
+            </p>
+          </div>
+        </Panel>
+        <Panel>
+          <div>
+            <Title appearance="title2">{'E-resept'}</Title>
+            <p style={{ whiteSpace: 'pre-line' }}>
+              {`
+        Legemiddel: Aerius Mikst 0,5 mg/ml
+
+        Dosering: 1 tablett daglig
+
+        Virkestoff: Cetrizin
+        ATC-kode:R06AX27
+        Pakningsstørrelse: 120ml
+
+
+        Antall: 1
+        Forskrevet av: Diana Dips, Testsykehuset HF
+        Forskrevet dato: 27.09.2020
+        Gyldig til: 20.09.2021
+        Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
+        Antall utlevering: 1 (Se utleveringer på denne resepten)
+        Refusjonshjemmel: §5-14 §2 (blå resept)
+        Resepten er hentet fra: Reseptformidleren`}
+            </p>
+          </div>
+        </Panel>
+        {longLoremText}
+        {longLoremText}
+        {longLoremText}
+        {longLoremText}
+        {longLoremText}
+      </Tabs.Tab>
+      <Tabs.Tab title="Prøvesvar">
+        {mediumLoremText}
+        {mediumLoremText}
+        {mediumLoremText}
+        {mediumLoremText}
+        {mediumLoremText}
+      </Tabs.Tab>
+      <Tabs.Tab title="Helserelaterte spørsmål">
+        {shortLoremText}
+        {shortLoremText}
+        {shortLoremText}
+        {shortLoremText}
+      </Tabs.Tab>
     </Tabs>
   ),
 };
@@ -80,11 +223,22 @@ export const WithIcon: Story = {
     <Tabs {...args}>
       <Tabs.Tab title="Vaksinasjon" icon={'Calendar'}>
         {longLoremText}
+        {longLoremText}
+        {longLoremText}
+        {longLoremText}
+        {longLoremText}
       </Tabs.Tab>
       <Tabs.Tab title="Prøvesvar" icon={'Calendar'}>
         {mediumLoremText}
+        {mediumLoremText}
+        {mediumLoremText}
+        {mediumLoremText}
+        {mediumLoremText}
       </Tabs.Tab>
       <Tabs.Tab title="Helserelaterte spørsmål" icon={'Calendar'}>
+        {shortLoremText}
+        {shortLoremText}
+        {shortLoremText}
         {shortLoremText}
       </Tabs.Tab>
     </Tabs>
