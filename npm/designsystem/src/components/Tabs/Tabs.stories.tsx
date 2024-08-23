@@ -335,7 +335,7 @@ export const MedInnholdRundt: Story = {
         <span>{mediumLoremText}</span>
         <br />
         <br />
-        <Tabs {...args} color="white" touchBehaviour="none">
+        <Tabs {...args} color="white">
           <Tabs.Tab title="Vaksinasjon">
             <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
             <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
