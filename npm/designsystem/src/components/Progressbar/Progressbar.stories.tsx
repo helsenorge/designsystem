@@ -23,6 +23,7 @@ const meta = {
     value: 0,
     size: ProgressbarSize.large,
     mode: ProgressBarMode.onlight,
+    ariaLabel: 'Fremdriftsindikator',
   },
   argTypes: {
     value: {
