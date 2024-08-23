@@ -14,6 +14,7 @@ import styles from './styles.module.scss';
 export type { TabProps } from './Tab';
 export type TabsColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'white'>;
 export type TabsType = 'normal' | 'framed';
+export type TabsTouchBehaviour = 'swipe' | 'none';
 
 export interface TabsProps {
   /** Controlled state for Tabs component */
@@ -24,6 +25,8 @@ export interface TabsProps {
   color?: TabsColors;
   /** Whether the tab list should be sticky */
   sticky?: boolean;
+  /** Determines how Tabs respons to touch events. */
+  touchBehaviour?: TabsTouchBehaviour;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Sets the visual type of the tabs */
@@ -32,7 +35,16 @@ export interface TabsProps {
 
 const swipeDistanceThreshold = 75;
 
-const TabsRoot: React.FC<TabsProps> = ({ activeTab, children, className, color = 'white', sticky = true, testId, type = 'normal' }) => {
+const TabsRoot: React.FC<TabsProps> = ({
+  activeTab,
+  children,
+  className,
+  color = 'white',
+  sticky = true,
+  testId,
+  type = 'normal',
+  touchBehaviour = 'swipe',
+}) => {
   const isControlled = activeTab !== undefined;
   const [uncontrolledValue, setUncontrolledValue] = useState(0);
   const [touchStartX, setTouchStartX] = useState(0);
@@ -105,7 +117,7 @@ const TabsRoot: React.FC<TabsProps> = ({ activeTab, children, className, color =
       setTranslateX(0);
     };
 
-    if (tabsRef.current) {
+    if (touchBehaviour === 'swipe' && tabsRef.current) {
       tabsRef.current.addEventListener('touchstart', handleTouchStart);
       tabsRef.current.addEventListener('touchmove', handleTouchMove);
       tabsRef.current.addEventListener('touchend', handleTouchEnd);
@@ -117,7 +129,7 @@ const TabsRoot: React.FC<TabsProps> = ({ activeTab, children, className, color =
         tabsRef.current.removeEventListener('touchend', handleTouchEnd);
       }
     };
-  }, [touchStartX, touchEndX, activeTabIndex]);
+  }, [touchBehaviour, touchStartX, touchEndX, activeTabIndex]);
 
   useEffect(() => {
     const handleAnimationEnd = (): void => {
