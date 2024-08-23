@@ -1,3 +1,22 @@
+## [8.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.0.2&targetVersion=GTv8.1.0) (2024-08-23)
+
+### Features
+
+- mulig å skru av swiping i tabs ([45aac8f](https://github.com/helsenorge/designsystem/commit/45aac8f7358e77fe85467d826b54c052b01b3086)),
+  closes [#330586](https://github.com/helsenorge/designsystem/issues/330586)
+
+### Bug Fixes
+
+- table kan brukes i tabs uten problemer med scrolling på mobil
+  ([d28a280](https://github.com/helsenorge/designsystem/commit/d28a280d4afe56227a331334348d91aac5be6281)), closes
+  [#330555](https://github.com/helsenorge/designsystem/issues/330555)
+- unngå blinking i tabs på mobil når man scroller
+  ([2bddf20](https://github.com/helsenorge/designsystem/commit/2bddf2017f1067ba1b17473006b2103de630054e)), closes
+  [#330597](https://github.com/helsenorge/designsystem/issues/330597)
+- validationsummary er ikke labelled by ikke-eksisterende element
+  ([3ac0b88](https://github.com/helsenorge/designsystem/commit/3ac0b8822820ad47ac635da95b7d7377481f2f33)), closes
+  [#328895](https://github.com/helsenorge/designsystem/issues/328895)
+
 ## [8.0.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.0.1&targetVersion=GTv8.0.2) (2024-08-22)
 
 ### Bug Fixes
