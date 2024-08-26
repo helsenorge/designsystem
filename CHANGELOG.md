@@ -1,3 +1,20 @@
+## [8.1.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.1.0&targetVersion=GTv8.1.1) (2024-08-26)
+
+### Bug Fixes
+
+- datepicker lukker seg når man klikker til høyre for inputfeltet
+  ([7b891fe](https://github.com/helsenorge/designsystem/commit/7b891fed2d21bb8a79e3c5c09f7e3078eac67cdf)), closes
+  [#326414](https://github.com/helsenorge/designsystem/issues/326414)
+- loader med overlay har alltid hvit farge
+  ([cdf94b3](https://github.com/helsenorge/designsystem/commit/cdf94b3431f78f48e33839a39f18dbf6d92347b8)), closes
+  [#328887](https://github.com/helsenorge/designsystem/issues/328887)
+- modal er tilgjengelig med tastatur mens den er scrollbar
+  ([80db1df](https://github.com/helsenorge/designsystem/commit/80db1df9bd319c5979385f669510d1539c1581a5)), closes
+  [#328890](https://github.com/helsenorge/designsystem/issues/328890)
+- **datepicker:** undefined datevalue fjerner dato og rerendrer riktig
+  ([b1d56a8](https://github.com/helsenorge/designsystem/commit/b1d56a844148f58e171eb424cc0593478922a8e2)), closes
+  [#330144](https://github.com/helsenorge/designsystem/issues/330144)
+
 ## [8.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.0.2&targetVersion=GTv8.1.0) (2024-08-23)
 
 ### Features
