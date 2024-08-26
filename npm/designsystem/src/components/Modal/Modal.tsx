@@ -217,6 +217,10 @@ const Modal = (props: ModalProps): JSX.Element => {
               className={cn(styles.modal__contentWrapper, {
                 [styles['modal__contentWrapper--image']]: imageView,
               })}
+              tabIndex={contentIsScrollable ? 0 : undefined}
+              role={contentIsScrollable ? 'region' : undefined}
+              aria-label={contentIsScrollable ? ariaLabel : undefined}
+              aria-labelledby={contentIsScrollable ? ariaLabelledBy : undefined}
               ref={modalContentRef}
             >
               {!props.noCloseButton && (
