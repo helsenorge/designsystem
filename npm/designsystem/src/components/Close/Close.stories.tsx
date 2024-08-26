@@ -19,8 +19,7 @@ const meta = {
     },
   },
   args: {
-    ariaLabel: '',
-    testId: '',
+    ariaLabel: 'Lukk',
   },
   argTypes: {
     ariaLabel: {
