@@ -28,10 +28,10 @@
   }
 
   &__legend {
-    @include legend;
-
     margin-bottom: getSpacer(m);
     margin-top: 0;
+
+    @include legend;
 
     &--on-dark {
       color: $white;

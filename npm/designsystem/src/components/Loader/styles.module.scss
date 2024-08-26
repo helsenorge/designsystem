@@ -14,6 +14,8 @@
 }
 
 @mixin loader-dot-scale($name, $scale-start, $scale-end) {
+  @include animate($name, scale, 0.6s, infinite);
+
   @include keyframes($name) {
     0% {
       transform: scale($scale-start);
@@ -23,11 +25,11 @@
       transform: scale($scale-end);
     }
   }
-
-  @include animate($name, scale, 0.6s, infinite);
 }
 
 @mixin loader-dot-translate($name, $distance) {
+  @include animate($name, translate, 0.6s, infinite);
+
   @include keyframes($name) {
     0% {
       transform: translate(0, 0);
@@ -37,8 +39,6 @@
       transform: translate($distance, 0);
     }
   }
-
-  @include animate($name, translate, 0.6s, infinite);
 }
 
 .loader-wrapper {
@@ -105,6 +105,9 @@
     background-color: $blueberry500;
     border-radius: 50%;
 
+    // Sets a form of easing animation curve
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+
     &--small {
       width: 12px;
       height: 12px;
@@ -147,9 +150,6 @@
     &--white {
       background-color: $white;
     }
-
-    // Sets a form of easing animation curve
-    animation-timing-function: cubic-bezier(0, 1, 1, 0);
 
     // Scales up the first dot
     &:nth-child(1) {

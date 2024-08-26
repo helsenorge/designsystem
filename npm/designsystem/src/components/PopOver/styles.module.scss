@@ -19,11 +19,6 @@
   background-color: $white;
   z-index: 3;
   visibility: hidden;
-
-  &--visible {
-    visibility: visible;
-  }
-
   border: getSpacer(4xs) solid $plum600;
   border-radius: 0.5625rem;
   box-shadow: 0 0.125rem 1.125rem 0 rgb(0 0 0 / 15%);
@@ -31,6 +26,10 @@
   @media (min-width: map.get($grid-breakpoints, lg)) {
     font-size: $font-size-md;
     line-height: $lineheight-size-md;
+  }
+
+  &--visible {
+    visibility: visible;
   }
 
   &__arrow {

@@ -17,12 +17,12 @@ table .table-body .table-row {
 }
 
 @mixin block {
+  display: block;
+  clear: both;
+
   .table__head {
     display: none;
   }
-
-  display: block;
-  clear: both;
 
   .table-body,
   .table-row,

@@ -39,8 +39,6 @@ $layout-md-col-gap: getSpacer(m);
 }
 
 .panel {
-  @include panel-padding;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -48,6 +46,8 @@ $layout-md-col-gap: getSpacer(m);
   position: relative;
   width: 100%;
   box-sizing: border-box;
+
+  @include panel-padding;
 
   &__layout-1,
   &__layout-2,

@@ -7,18 +7,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  @media (max-width: map.get($grid-breakpoints, sm)) {
-    height: 2.375rem;
-    width: 2.375rem;
-  }
-
   height: 3rem;
   width: 3rem;
   padding: 0;
   border: 0;
   background-color: transparent;
   cursor: pointer;
+
+  @media (max-width: map.get($grid-breakpoints, sm)) {
+    height: 2.375rem;
+    width: 2.375rem;
+  }
 
   &:hover,
   &:active {
