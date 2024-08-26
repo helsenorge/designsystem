@@ -110,7 +110,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   const mergedRefs = mergeRefs([ref, refObject]);
   useOutsideEvent(inputContainerRef, e => {
     const targetAsNode = e.target as Node;
-    if (!inputContainerRef?.current?.contains(targetAsNode)) {
+    if (!inputContainerRef.current?.contains(targetAsNode) && !datepickerWrapperRef.current?.contains(targetAsNode)) {
       setDatePickerOpen(false);
     }
   });

@@ -135,10 +135,11 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     autoFocus,
     maxCharacters,
     maxText,
+    inputContainerRef,
     ...rest
   } = props;
   const breakpoint = useBreakpoint();
-  const inputContainerRef = useRef<HTMLDivElement>(null);
+  const inputContainerRefLocal = useRef<HTMLDivElement>(null);
   const inputIdState = useUuid(inputId);
   const [input, setInput] = useState(defaultValue || '');
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
@@ -191,9 +192,9 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
 
   // eslint-disable-next-line
   const handleClick = (e: React.MouseEvent<any>): void => {
-    if (inputContainerRef && inputContainerRef.current && icon) {
+    if (inputContainerRefLocal && inputContainerRefLocal.current && icon) {
       const selectedChild = iconRight ? 0 : 1;
-      const input = inputContainerRef.current.children[selectedChild] as HTMLInputElement;
+      const input = inputContainerRefLocal.current.children[selectedChild] as HTMLInputElement;
       input.focus();
 
       props.onClick && props.onClick(e);
@@ -248,7 +249,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
           <div
             onClick={handleClick}
-            ref={mergeRefs([inputContainerRef, props.inputContainerRef])}
+            ref={mergeRefs([inputContainerRefLocal, inputContainerRef])}
             className={inputContainer}
             style={{ maxWidth }}
           >
