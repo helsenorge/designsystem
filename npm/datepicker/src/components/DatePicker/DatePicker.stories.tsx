@@ -373,7 +373,6 @@ export const ValidateDateTime: Story = {
           >
             <DatePicker
               {...args}
-              dateValue={startDate}
               disableDays={[disabledDate]}
               disableWeekends
               footerContent={<Icon size={38} svgIcon={Calendar} />}

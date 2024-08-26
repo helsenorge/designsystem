@@ -119,6 +119,10 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       setInputValue(dateValue ? format(dateValue, dateFormat) : '');
       setDateState(dateValue);
       setMonth(dateValue);
+    } else {
+      setInputValue('');
+      setDateState(undefined);
+      setMonth(undefined);
     }
   }, [dateValue]);
 
