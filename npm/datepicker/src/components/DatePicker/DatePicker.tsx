@@ -104,12 +104,13 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   };
   const disabledDays: (Date | DayOfWeek)[] = disableWeekends ? [...disableDays, weekendMatcher] : disableDays;
   const inputWrapperRef = useRef<HTMLDivElement>(null);
+  const inputContainerRef = useRef<HTMLDivElement>(null);
   const datepickerWrapperRef = useRef<HTMLDivElement>(null);
   const { refObject } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
-  useOutsideEvent(datepickerWrapperRef, e => {
+  useOutsideEvent(inputContainerRef, e => {
     const targetAsNode = e.target as Node;
-    if (!inputWrapperRef?.current?.contains(targetAsNode)) {
+    if (!inputContainerRef?.current?.contains(targetAsNode)) {
       setDatePickerOpen(false);
     }
   });
@@ -231,6 +232,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           errorText={errorText}
           errorTextId={errorTextId}
           inputId={inputId}
+          inputContainerRef={inputContainerRef}
           inputWrapperRef={inputWrapperRef}
           label={label}
           onFocus={handleInputFocus}

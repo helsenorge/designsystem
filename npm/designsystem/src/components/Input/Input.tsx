@@ -7,6 +7,7 @@ import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
+import { mergeRefs } from '../../utils/refs';
 import ErrorWrapper from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import { IconName } from '../Icons/IconNames';
@@ -54,6 +55,8 @@ export interface InputProps
   icon?: SvgIcon | IconName;
   /** Places the icon to the right */
   iconRight?: boolean;
+  /** Ref that is placed on the inputContainerRef */
+  inputContainerRef?: React.RefObject<HTMLDivElement>;
   /** Ref that is placed on the inputWrapper */
   inputWrapperRef?: React.RefObject<HTMLDivElement>;
   /** Changes the color profile of the input */
@@ -243,7 +246,12 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
         {/* input-elementet tillater keyboard-interaksjon */}
         <div className={styles['content-wrapper']}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-          <div onClick={handleClick} ref={inputContainerRef} className={inputContainer} style={{ maxWidth }}>
+          <div
+            onClick={handleClick}
+            ref={mergeRefs([inputContainerRef, props.inputContainerRef])}
+            className={inputContainer}
+            style={{ maxWidth }}
+          >
             {!iconRight && renderIcon()}
             <input
               onChange={handleChange}
