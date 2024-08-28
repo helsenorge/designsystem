@@ -24,10 +24,6 @@
 
     &--left {
       margin-right: getSpacer(2xs);
-
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        margin-right: getSpacer(s);
-      }
     }
 
     &--right {
