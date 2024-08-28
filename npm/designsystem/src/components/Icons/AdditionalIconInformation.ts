@@ -296,4 +296,12 @@ export default {
   htmlfile: { alternativeName: 'HTML-fil', categories: 'Filtyper' },
   emergencycall: { alternativeName: 'Nødsamtale', categories: 'Generisk' },
   glasses: { alternativeName: 'Briller', categories: 'Generisk, Syn og hørsel' },
+  carton: { alternativeName: 'Kartong', categories: 'Generisk' },
+  creditcard: { alternativeName: 'Kredittkort', categories: 'Generisk' },
+  fish: { alternativeName: 'Fisk', categories: 'Generisk' },
+  glasswater: { alternativeName: 'Vannglass', categories: 'Generisk' },
+  grain: { alternativeName: 'Korn', categories: 'Generisk' },
+  plateknifefork: { alternativeName: 'TallerkenKnivGaffel', categories: 'Generisk' },
+  reminder: { alternativeName: 'Påminnelse', categories: 'Generisk' },
+  sweets: { alternativeName: 'Søtsaker', categories: 'Generisk' },
 };

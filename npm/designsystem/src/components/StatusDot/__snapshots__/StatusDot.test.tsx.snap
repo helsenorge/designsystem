@@ -13,6 +13,7 @@ exports[`Gitt at StatusDot rendres  > N책r StatusDot er variant="attachment". > 
       <svg
         aria-hidden="true"
         class="hnds-style-icon"
+        color="black"
         data-analyticsid="icon"
         fill="black"
         focusable="false"
@@ -49,6 +50,7 @@ exports[`Gitt at StatusDot rendres  > N책r StatusDot er variant="group". > S책 s
       <svg
         aria-hidden="true"
         class="hnds-style-icon"
+        color="black"
         data-analyticsid="icon"
         fill="black"
         focusable="false"
@@ -87,6 +89,7 @@ exports[`Gitt at StatusDot rendres  > N책r StatusDot er variant="noaccess". > S�
       <svg
         aria-hidden="true"
         class="hnds-style-icon"
+        color="#B62E1C"
         data-analyticsid="icon"
         fill="#B62E1C"
         focusable="false"
@@ -124,6 +127,7 @@ exports[`Gitt at StatusDot rendres  > N책r StatusDot er variant="recurring". > S
       <svg
         aria-hidden="true"
         class="hnds-style-icon"
+        color="black"
         data-analyticsid="icon"
         fill="black"
         focusable="false"

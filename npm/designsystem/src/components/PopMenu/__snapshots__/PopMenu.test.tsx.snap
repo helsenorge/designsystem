@@ -19,6 +19,7 @@ exports[`Gitt at en PopMenu vises  > Når den rendrer > Så skal den kun vises 1
             <svg
               aria-hidden="true"
               class="hnds-style-icon"
+              color="#000000"
               data-analyticsid="icon"
               fill="#000000"
               focusable="false"
@@ -52,6 +53,7 @@ exports[`Gitt at en PopMenu vises  > Når den rendrer > Så skal den kun vises 1
           <svg
             aria-hidden="true"
             class="hnds-style-icon"
+            color="#000000"
             data-analyticsid="icon"
             fill="#000000"
             focusable="false"

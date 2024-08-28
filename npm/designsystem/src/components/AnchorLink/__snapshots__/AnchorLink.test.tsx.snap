@@ -25,6 +25,7 @@ exports[`Gitt at AnchorLink skal rendres > Gitt at AnchorLink skal vises som ext
     <svg
       aria-hidden="true"
       class="hnds-style-icon anchorlink__icon"
+      color="#126F87"
       data-analyticsid="icon"
       fill="#126F87"
       focusable="false"

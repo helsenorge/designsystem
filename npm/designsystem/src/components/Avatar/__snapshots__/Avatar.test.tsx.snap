@@ -20,6 +20,7 @@ exports[`Gitt at Avatar skal vises > Når selected er true > Så vises ikke teks
     <svg
       aria-hidden="true"
       class="hnds-style-icon"
+      color="#126F87"
       data-analyticsid="icon"
       fill="#126F87"
       focusable="false"
@@ -57,6 +58,7 @@ exports[`Gitt at Avatar skal vises > Når variant er black og selected > Så ska
     <svg
       aria-hidden="true"
       class="hnds-style-icon"
+      color="#2B2C2B"
       data-analyticsid="icon"
       fill="#2B2C2B"
       focusable="false"

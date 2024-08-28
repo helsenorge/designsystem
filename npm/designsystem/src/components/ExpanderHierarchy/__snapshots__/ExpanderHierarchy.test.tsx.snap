@@ -22,6 +22,7 @@ exports[`ExpanderHierarchy > gitt at ExpanderHierarchy har en Expander > når ko
           <svg
             aria-hidden="true"
             class="hnds-style-icon expander__icon"
+            color="black"
             data-analyticsid="icon"
             fill="black"
             focusable="false"
@@ -69,6 +70,7 @@ exports[`ExpanderHierarchy > gitt at ExpanderHierarchy har en Expander > når ko
           <svg
             aria-hidden="true"
             class="hnds-style-icon expander__icon"
+            color="black"
             data-analyticsid="icon"
             fill="black"
             focusable="false"

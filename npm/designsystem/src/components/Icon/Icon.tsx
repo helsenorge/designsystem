@@ -84,6 +84,7 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
   });
 
   const titleId = useUuid();
+  const svgColor = isHovered ? hoverColor : color;
 
   return (
     <svg
@@ -99,7 +100,8 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
       style={{ minWidth: size, minHeight: size }}
       width={size}
       height={size}
-      fill={isHovered ? hoverColor : color}
+      fill={svgColor}
+      color={svgColor}
       {...other}
     >
       {ariaLabel && <title id={titleId}>{ariaLabel}</title>}

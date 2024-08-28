@@ -28,6 +28,7 @@ exports[`Gitt at Dropdown skal vises vanlig > Når Dropdownen har vanlig innhold
       <svg
         aria-hidden="true"
         class="hnds-style-icon dropdown__icon"
+        color="#126F87"
         data-analyticsid="icon"
         fill="#126F87"
         focusable="false"
