@@ -1,3 +1,22 @@
+## [8.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.1.1&targetVersion=GTv8.2.0) (2024-08-28)
+
+### Features
+
+- nye ikoner ([f142728](https://github.com/helsenorge/designsystem/commit/f142728c1eb29c0742cfdddad183d116ca801537)), closes
+  [#330973](https://github.com/helsenorge/designsystem/issues/330973)
+
+### Bug Fixes
+
+- datovelger fungerer med klikk på dato i popup
+  ([897302c](https://github.com/helsenorge/designsystem/commit/897302cd9cf4de3d1bea911e14ad8760d9401d41)), closes
+  [#326414](https://github.com/helsenorge/designsystem/issues/326414)
+- expander large spacing matcher expander-list
+  ([724f3ca](https://github.com/helsenorge/designsystem/commit/724f3cac605dbbe3bece97d93ee88524e8263411)), closes
+  [#326162](https://github.com/helsenorge/designsystem/issues/326162)
+- useFocusableElements lytter bare på relevante DOM-endringer
+  ([375303f](https://github.com/helsenorge/designsystem/commit/375303f1d20490c2d37f2cc997e4730cbee763b5)), closes
+  [#328890](https://github.com/helsenorge/designsystem/issues/328890)
+
 ## [8.1.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.1.0&targetVersion=GTv8.1.1) (2024-08-26)
 
 ### Bug Fixes
@@ -1712,12 +1731,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- panel har avstand fra tittel til badge
-  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
-  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 - økt kontrast på understreking av lenker
   ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
   [#229049](https://github.com/helsenorge/designsystem/issues/229049)
+- panel har avstand fra tittel til badge
+  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
+  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
