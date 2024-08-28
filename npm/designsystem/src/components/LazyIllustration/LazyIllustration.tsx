@@ -1,10 +1,10 @@
 import React, { lazy, Suspense, useMemo } from 'react';
 
+import { useIsServerSide } from '../../hooks/useIsServerSide';
 import Illustration, { BaseIllustrationProps, SvgIllustration } from '../Illustration';
 import { getIllustration } from '../Illustration/utils';
 import { IllustrationName, IllustrationSizeList } from '../Illustrations/IllustrationNames';
 import ErrorBoundary from '../LazyIcon/ErrorBoundary';
-import { isServerSide } from '../LazyIcon/utils';
 
 export interface LazyIllustrationProps extends BaseIllustrationProps {
   // Navnet på illustrasjonen som skal vises. Tilsvarer filnavnet til illustrasjonen i Icons-mappen
@@ -20,8 +20,9 @@ export const lazyLoadIllustration = (illustrationName: IllustrationName, size: n
 
 export const LazyIllustration: React.FC<LazyIllustrationProps> = ({ illustrationName, size = 512, ...rest }) => {
   const illustration = useMemo(() => lazyLoadIllustration(illustrationName, size), [illustrationName, size]);
+  const isServerSide = useIsServerSide();
 
-  if (isServerSide()) {
+  if (isServerSide) {
     return null;
   }
 
