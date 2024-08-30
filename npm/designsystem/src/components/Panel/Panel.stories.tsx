@@ -423,6 +423,14 @@ export const Status: Story = {
       <Panel
         status={'new'}
         statusMessage={'4 nye'}
+        title={'Fullmakt slettet'}
+        url={'https://www.helsenorge.no/'}
+        focusable={args.focusable}
+      />
+      <br />
+      <Panel
+        status={'new'}
+        statusMessage={'4 nye'}
         title={'Dette er en veldig lang tittel for å wrappe badge (4)'}
         url={'https://www.helsenorge.no/'}
         focusable={args.focusable}
