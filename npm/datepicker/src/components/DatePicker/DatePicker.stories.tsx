@@ -298,7 +298,7 @@ const ValidateDateTimeExample = (args: DatePickerProps): JSX.Element => {
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm<DateForm>({ mode: 'all' });
+  } = useForm<DateForm>({ mode: 'onBlur', reValidateMode: 'onBlur' });
 
   const dateString = '30.11.2023';
   const formatString = 'dd.MM.yyyy';
