@@ -174,7 +174,7 @@ export const Sizes: Story = {
 export const DarkMode: Story = {
   render: args => (
     <>
-      <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 600) }}>
+      <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 500) }}>
         <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'} mode={'ondark'}>
           {args.children}
         </Button>

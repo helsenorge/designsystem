@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { FormMode } from '../../constants';
 import { getIcon, SvgPathProps } from '../Icon';
 
-const NoAccess: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
+const NoAccess: React.FC<SvgPathProps> = ({ size, isHovered, mode }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path
       fillRule={'evenodd'}
@@ -32,10 +33,13 @@ const NoAccess: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): Re
   );
 
   const xxSmall = (
-    <path
-      fillRule={'evenodd'}
-      d="M13.4 26.1h21.2v-4.2H13.4v4.2ZM24 9C15.728 9 9 15.728 9 24s6.728 15 15 15c8.27 0 15-6.728 15-15S32.27 9 24 9Z"
-    />
+    <>
+      {mode === FormMode.ondark && <circle cx="24" cy="24" r="17" fill="white" />}
+      <path
+        fillRule={'evenodd'}
+        d="M13.4 26.1h21.2v-4.2H13.4v4.2ZM24 9C15.728 9 9 15.728 9 24s6.728 15 15 15c8.27 0 15-6.728 15-15S32.27 9 24 9Z"
+      />
+    </>
   );
 
   return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover: xxSmall });

@@ -1,81 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Gitt at StatusDot rendres  > N책r StatusDot er variant="attachment". > S책 skal komponenten ha en SVG-fil. 1`] = `
-<div>
-  <span
-    class="statusdot"
-    data-analyticsid="status-dot"
-    data-testid="statusdot"
-  >
-    <span
-      class="statusdot__dot statusdot__dot--icon"
-    >
-      <svg
-        aria-hidden="true"
-        class="hnds-style-icon"
-        color="black"
-        data-analyticsid="icon"
-        fill="black"
-        focusable="false"
-        height="24"
-        role="presentation"
-        style="min-width: 24px; min-height: 24px;"
-        viewBox="0 0 48 48"
-        width="24"
-      >
-        <path
-          d="M24 9.172c-3.597 0-6.542 2.768-6.542 6.199v22.46h2.01v-22.46c0-2.295 2.019-4.189 4.531-4.189 2.514 0 4.53 1.894 4.53 4.189v19.827c0 1-.709 1.62-1.735 1.62-1.026 0-1.723-.682-1.723-1.62V18.934H23.06v16.264c0 2.282 1.668 3.63 3.735 3.63 2.068 0 3.748-1.661 3.748-3.63V15.371c0-3.43-2.945-6.2-6.543-6.2Z"
-        />
-      </svg>
-    </span>
-    <span
-      class="statusdot__label--icon"
-    >
-      Eksempeltekst
-    </span>
-  </span>
-</div>
-`;
-
-exports[`Gitt at StatusDot rendres  > N책r StatusDot er variant="group". > S책 skal komponenten ha en SVG-fil. 1`] = `
-<div>
-  <span
-    class="statusdot"
-    data-analyticsid="status-dot"
-    data-testid="statusdot"
-  >
-    <span
-      class="statusdot__dot statusdot__dot--icon"
-    >
-      <svg
-        aria-hidden="true"
-        class="hnds-style-icon"
-        color="black"
-        data-analyticsid="icon"
-        fill="black"
-        focusable="false"
-        height="24"
-        role="presentation"
-        style="min-width: 24px; min-height: 24px;"
-        viewBox="0 0 48 48"
-        width="24"
-      >
-        <path
-          d="M8.812 5.18h-.274a4.639 4.639 0 0 0-4.644 4.65v2.276a4.639 4.639 0 0 0 4.644 4.65h.274a4.64 4.64 0 0 0 4.644-4.65V9.83a4.64 4.64 0 0 0-4.644-4.65m4.07 14.526c-.076-.05-.15-.076-.226-.126a8.236 8.236 0 0 1-3.844.926h-.274a8.113 8.113 0 0 1-3.796-.926A8.612 8.612 0 0 0 0 27.306v2.1h17.376v-2.1c0-3.3-1.798-6.15-4.494-7.6m12.356-5.55a8.235 8.235 0 0 1-3.844.924h-.274a8.104 8.104 0 0 1-3.794-.924 9.173 9.173 0 0 0-2.772 2.198c4.044 2.152 6.566 6.3 6.566 10.952v2.1h8.838V21.88c0-3.4-1.898-6.3-4.72-7.724m.864-9.504v2.282a4.646 4.646 0 0 1-4.644 4.65h-.274a4.648 4.648 0 0 1-4.646-4.65V4.652c0-2.57 2.08-4.652 4.646-4.652h.274a4.647 4.647 0 0 1 4.644 4.652"
-          fill-rule="evenodd"
-          transform="translate(8, 8.2966)"
-        />
-      </svg>
-    </span>
-    <span
-      class="statusdot__label--icon"
-    >
-      Eksempeltekst
-    </span>
-  </span>
-</div>
-`;
-
 exports[`Gitt at StatusDot rendres  > N책r StatusDot er variant="noaccess". > S책 skal komponenten ha en SVG-fil. 1`] = `
 <div>
   <span
@@ -84,7 +8,7 @@ exports[`Gitt at StatusDot rendres  > N책r StatusDot er variant="noaccess". > S�
     data-testid="statusdot"
   >
     <span
-      class="statusdot__dot statusdot__dot--icon"
+      class="statusdot__dot"
     >
       <svg
         aria-hidden="true"
@@ -106,45 +30,7 @@ exports[`Gitt at StatusDot rendres  > N책r StatusDot er variant="noaccess". > S�
       </svg>
     </span>
     <span
-      class="statusdot__label--icon"
-    >
-      Eksempeltekst
-    </span>
-  </span>
-</div>
-`;
-
-exports[`Gitt at StatusDot rendres  > N책r StatusDot er variant="recurring". > S책 skal komponenten ha en SVG-fil. 1`] = `
-<div>
-  <span
-    class="statusdot"
-    data-analyticsid="status-dot"
-    data-testid="statusdot"
-  >
-    <span
-      class="statusdot__dot statusdot__dot--icon"
-    >
-      <svg
-        aria-hidden="true"
-        class="hnds-style-icon"
-        color="black"
-        data-analyticsid="icon"
-        fill="black"
-        focusable="false"
-        height="24"
-        role="presentation"
-        style="min-width: 24px; min-height: 24px;"
-        viewBox="0 0 48 48"
-        width="24"
-      >
-        <path
-          d="M38.726 24.194c0 8.196-6.668 14.864-14.864 14.864-7.028 0-13.152-4.992-14.56-11.87l2.744-.56c1.14 5.578 6.11 9.628 11.816 9.628 6.652 0 12.064-5.41 12.064-12.062 0-6.652-5.412-12.062-12.064-12.062-3.1 0-6.05 1.218-8.272 3.312h5.248v2.802h-9.516l-.004-9.89h2.802v4.624a14.893 14.893 0 0 1 9.742-3.648c8.196 0 14.864 6.666 14.864 14.862"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </span>
-    <span
-      class="statusdot__label--icon"
+      class=""
     >
       Eksempeltekst
     </span>
