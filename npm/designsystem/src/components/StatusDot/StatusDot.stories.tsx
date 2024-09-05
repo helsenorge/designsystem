@@ -3,7 +3,9 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import StatusDot, { StatusDotVariant } from './StatusDot';
+import { FormMode } from '../../constants';
 import Docs from '../../docs';
+import { getColor } from '../../theme/currys';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/StatusDot',
@@ -37,4 +39,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: args => <StatusDot {...args} />,
+};
+
+export const OnDark: Story = {
+  render: args => (
+    <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 500) }}>
+      <StatusDot {...args} mode={FormMode.ondark} />
+    </div>
+  ),
 };

@@ -116,7 +116,7 @@ export const OnDark: Story = {
     const statusDotId = 'statusdot-testid';
 
     return (
-      <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 600) }}>
+      <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 500) }}>
         <Input
           label={
             <Label
