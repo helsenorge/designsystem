@@ -289,12 +289,21 @@ interface DateForm {
 }
 
 export const ValidateDateTime: Story = {
-  render: (args: DatePickerProps) => <ValidateDateTimeExample {...args} />,
+  render: (args: DatePickerProps) => <ValidateDateTimeExample {...args} withOnDatePopupClosed={false} />,
 };
 
-const ValidateDateTimeExample = (args: DatePickerProps): JSX.Element => {
+export const ValidateOnDatePopupClosed: Story = {
+  render: (args: DatePickerProps) => <ValidateDateTimeExample {...args} withOnDatePopupClosed={true} />,
+};
+
+interface StoryDatePickerProps extends DatePickerProps {
+  withOnDatePopupClosed?: boolean;
+}
+
+const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePickerProps): JSX.Element => {
   const {
     register,
+    trigger,
     handleSubmit,
     formState: { errors },
     getValues,
@@ -380,6 +389,7 @@ const ValidateDateTimeExample = (args: DatePickerProps): JSX.Element => {
             label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
             maxDate={maxDate}
             minDate={minDate}
+            onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
             {...register(datepicker, { validate: requireDate })}
           />
           <DateTime
