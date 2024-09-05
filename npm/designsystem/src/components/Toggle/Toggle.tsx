@@ -1,5 +1,7 @@
 import React, { useState, useId } from 'react';
 
+import classNames from 'classnames';
+
 import { AnalyticsId } from '../../constants';
 
 import styles from './styles.module.scss';
@@ -34,8 +36,10 @@ const Toggle: React.FC<ToggleProps> = ({ label, onChange, position = TogglePosit
     onChange?.(newChecked);
   };
 
+  const toggleContainerClasses = classNames(styles['toggle-container'], styles[`toggle-container__${position}`]);
+
   return (
-    <div className={`${styles.toggleContainer} ${styles[position]}`} data-testid={testId} data-analyticsid={AnalyticsId.Toggle}>
+    <div className={toggleContainerClasses} data-testid={testId} data-analyticsid={AnalyticsId.Toggle}>
       <label htmlFor={id} className={styles.label}>
         {position === TogglePosition.left && <span>{label}</span>}
         <input type="checkbox" id={id} checked={checkedState} onChange={handleChange} className={styles.input} aria-label={label} />

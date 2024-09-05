@@ -2,12 +2,12 @@
     display: flex;
     align-items: center;
     
-    &.left {
+    &__left {
       flex-direction: row-reverse;
       justify-content: flex-end;
     }
     
-    &.right {
+    &__right {
       flex-direction: row;
       justify-content: flex-start;
     }
