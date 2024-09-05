@@ -223,12 +223,14 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   };
 
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement, Element>): void => {
-    if (!datepickerWrapperRef.current?.contains(e.relatedTarget as Node)) {
+    const focusedDatePickerPopup = datepickerWrapperRef.current?.contains(e.relatedTarget as Node);
+
+    if (!focusedDatePickerPopup) {
       setDatePickerOpen(false);
     }
 
     // We don't trigger the native onBlur event if the user select via the datepicker and the onDatePopupClosed callback is used (usually to trigger validation manually)
-    if (typeof onDatePopupClosed === 'undefined' || isTyping.current) {
+    if (!focusedDatePickerPopup && (typeof onDatePopupClosed === 'undefined' || isTyping.current)) {
       onBlur && onBlur(e);
     }
 
