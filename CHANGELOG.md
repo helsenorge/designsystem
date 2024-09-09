@@ -1,3 +1,28 @@
+## [8.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.2.1&targetVersion=GTv8.3.0) (2024-09-09)
+
+### Features
+
+- statusdot oppdaterer utseende ([18927ec](https://github.com/helsenorge/designsystem/commit/18927ec1e9a6ca18eb0f528798d17f2e4edaa4e0)),
+  closes [#328986](https://github.com/helsenorge/designsystem/issues/328986)
+- **datepicker:** ny prop onDatePickerClosed
+  ([11c1f3b](https://github.com/helsenorge/designsystem/commit/11c1f3b5dd8e186793d9e057385450385a1814ec)), closes
+  [#329586](https://github.com/helsenorge/designsystem/issues/329586)
+
+### Bug Fixes
+
+- **datepicker:** datevalue fungerer for mobil
+  ([7202ba8](https://github.com/helsenorge/designsystem/commit/7202ba8dca1f6101ed7987fd947b9e58824946db)), closes
+  [#331620](https://github.com/helsenorge/designsystem/issues/331620)
+- **datepicker:** onblur skjer riktig uten focuseddatepickerpopup
+  ([e1662ed](https://github.com/helsenorge/designsystem/commit/e1662edbb486340352e9012c1ba8aeae43dca27e)), closes
+  [#329586](https://github.com/helsenorge/designsystem/issues/329586)
+- **datepicker:** popup valg trigger onblur
+  ([6d886cb](https://github.com/helsenorge/designsystem/commit/6d886cbc3bcfe9b97c0247389ca0238f29dd9f0a)), closes
+  [#329586](https://github.com/helsenorge/designsystem/issues/329586)
+- **designsystem:** badge i panel vises til høyre på mobil
+  ([2b6d63e](https://github.com/helsenorge/designsystem/commit/2b6d63e1a36d63ad41159fb637f896636ae58672)), closes
+  [#329338](https://github.com/helsenorge/designsystem/issues/329338)
+
 ## [8.2.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.2.0&targetVersion=GTv8.2.1) (2024-08-28)
 
 ## [8.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.1.1&targetVersion=GTv8.2.0) (2024-08-28)
@@ -1733,12 +1758,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- panel har avstand fra tittel til badge
-  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
-  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 - økt kontrast på understreking av lenker
   ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
   [#229049](https://github.com/helsenorge/designsystem/issues/229049)
+- panel har avstand fra tittel til badge
+  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
+  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
