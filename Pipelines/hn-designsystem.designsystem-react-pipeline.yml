@@ -34,7 +34,7 @@ stages:
         displayName: Build, Test and Analyze
         steps:
           # Prepare Sonarqube
-          - task: SonarQubePrepare@5
+          - task: SonarQubePrepare@6
             displayName: Sonarqube Prepare
             inputs:
               SonarQube: $(sonarqube_endpoint)
@@ -161,11 +161,11 @@ stages:
             condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
 
           # Run Code Analysis task
-          - task: SonarQubeAnalyze@5
+          - task: SonarQubeAnalyze@6
             displayName: Sonarqube Analyze
 
           # Publish Quality Gate Result task
-          - task: SonarQubePublish@5
+          - task: SonarQubePublish@6
             inputs:
               pollingTimeoutSec: '300'
 
