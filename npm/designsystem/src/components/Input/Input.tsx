@@ -7,6 +7,7 @@ import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
+import { mergeRefs } from '../../utils/refs';
 import ErrorWrapper from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import { IconName } from '../Icons/IconNames';
@@ -54,6 +55,8 @@ export interface InputProps
   icon?: SvgIcon | IconName;
   /** Places the icon to the right */
   iconRight?: boolean;
+  /** Ref that is placed on the inputContainerRef */
+  inputContainerRef?: React.RefObject<HTMLDivElement>;
   /** Ref that is placed on the inputWrapper */
   inputWrapperRef?: React.RefObject<HTMLDivElement>;
   /** Changes the color profile of the input */
@@ -132,10 +135,11 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     autoFocus,
     maxCharacters,
     maxText,
+    inputContainerRef,
     ...rest
   } = props;
   const breakpoint = useBreakpoint();
-  const inputContainerRef = useRef<HTMLDivElement>(null);
+  const inputContainerRefLocal = useRef<HTMLDivElement>(null);
   const inputIdState = useUuid(inputId);
   const [input, setInput] = useState(defaultValue || '');
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
@@ -188,9 +192,9 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
 
   // eslint-disable-next-line
   const handleClick = (e: React.MouseEvent<any>): void => {
-    if (inputContainerRef && inputContainerRef.current && icon) {
+    if (inputContainerRefLocal && inputContainerRefLocal.current && icon) {
       const selectedChild = iconRight ? 0 : 1;
-      const input = inputContainerRef.current.children[selectedChild] as HTMLInputElement;
+      const input = inputContainerRefLocal.current.children[selectedChild] as HTMLInputElement;
       input.focus();
 
       props.onClick && props.onClick(e);
@@ -243,7 +247,12 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
         {/* input-elementet tillater keyboard-interaksjon */}
         <div className={styles['content-wrapper']}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-          <div onClick={handleClick} ref={inputContainerRef} className={inputContainer} style={{ maxWidth }}>
+          <div
+            onClick={handleClick}
+            ref={mergeRefs([inputContainerRefLocal, inputContainerRef])}
+            className={inputContainer}
+            style={{ maxWidth }}
+          >
             {!iconRight && renderIcon()}
             <input
               onChange={handleChange}
