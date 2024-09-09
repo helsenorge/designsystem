@@ -9,6 +9,7 @@ import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Label from '@helsenorge/designsystem-react/components/Label';
+import Spacer from '@helsenorge/designsystem-react/components/Spacer';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
 import Docs from '@helsenorge/designsystem-react/docs';
 
@@ -373,45 +374,52 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
   };
 
   return (
-    <form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Validation errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
-        <DateTimePickerWrapper
-          errorText={
-            (errors.datepicker?.message as string) || (errors.datetimehour?.message as string) || (errors.datetimeminute?.message as string)
-          }
-          legend={'Datepicker legend'}
-        >
-          <DatePicker
-            {...args}
-            disableDays={[disabledDate]}
-            disableWeekends
-            footerContent={<Icon size={38} svgIcon={Calendar} />}
-            label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
-            maxDate={maxDate}
-            minDate={minDate}
-            onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
-            {...register(datepicker, { validate: requireDate })}
-          />
-          <DateTime
-            defaultValue={12}
-            label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
-            timeUnit={'hours'}
-            {...register(datetimehour, { validate: requireHour })}
-          />
-          <DateTime
-            defaultValue={0}
-            aria-labelledby={'label01'}
-            timeUnit={'minutes'}
-            {...register(datetimeminute, { validate: requireMinute })}
-          />
-        </DateTimePickerWrapper>
-      </Validation>
-      <Button type="submit">{'Send inn'}</Button>
-      <div>
-        {
-          'Sunt et ullamco deserunt tempor ad id incididunt quis sint ea do culpa. Minim laboris voluptate id dolor consequat fugiat tempor laboris magna in Lorem ex. Fugiat velit amet cillum sint adipisicing nulla laborum nisi dolor non duis voluptate.Esse irure duis proident veniam enim consectetur duis deserunt sit esse in irure fugiat fugiat. Officia pariatur voluptate Lorem ullamco adipisicing ex sit ex mollit labore deserunt aliqua velit cillum. Aliqua incididunt pariatur labore ea dolore. Voluptate veniam nulla velit enim veniam excepteur dolor qui quis anim est minim. Voluptate laboris id ex pariatur laboris sunt sunt et nostrud adipisicing elit quis culpa.Mollit tempor commodo est excepteur commodo dolore laborum in. Officia ipsum tempor ullamco incididunt labore sint commodo nulla mollit esse cupidatat cupidatat. Sit exercitation excepteur non do reprehenderit ipsum. Aute adipisicing excepteur consectetur ea proident pariatur non. Duis fugiat qui consectetur laborum eu aute fugiat reprehenderit sit aute. Sunt et ullamco deserunt tempor ad id incididunt quis sint ea do culpa. Minim laboris voluptate id dolor consequat fugiat tempor laboris magna in Lorem ex. Fugiat velit amet cillum sint adipisicing nulla laborum nisi dolor non duis voluptate.Esse irure duis proident veniam enim consectetur duis deserunt sit esse in irure fugiat fugiat. Officia pariatur voluptate Lorem ullamco adipisicing ex sit ex mollit labore deserunt aliqua velit cillum. Aliqua incididunt pariatur labore ea dolore. Voluptate veniam nulla velit enim veniam excepteur dolor qui quis anim est minim. Voluptate laboris id ex pariatur laboris sunt sunt et nostrud adipisicing elit quis culpa.Mollit tempor commodo est excepteur commodo dolore laborum in. Officia ipsum tempor ullamco incididunt labore sint commodo nulla mollit esse cupidatat cupidatat. Sit exercitation excepteur non do reprehenderit ipsum. Aute adipisicing excepteur consectetur ea proident pariatur non. Duis fugiat qui consectetur laborum eu aute fugiat reprehenderit sit aute.'
-        }
-      </div>
-    </form>
+    <>
+      {withOnDatePopupClosed && (
+        <p>
+          {'use onDatePopupClosed to trigger validation:'}
+          <br />
+          {'onDatePopupClosed={(): Promise<boolean> => trigger(datepicker)}'}
+        </p>
+      )}
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Validation errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
+          <DateTimePickerWrapper
+            errorText={
+              (errors.datepicker?.message as string) ||
+              (errors.datetimehour?.message as string) ||
+              (errors.datetimeminute?.message as string)
+            }
+            legend={'Datepicker legend'}
+          >
+            <DatePicker
+              {...args}
+              disableDays={[disabledDate]}
+              disableWeekends
+              footerContent={<Icon size={38} svgIcon={Calendar} />}
+              label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+              maxDate={maxDate}
+              minDate={minDate}
+              onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
+              {...register(datepicker, { validate: requireDate })}
+            />
+            <DateTime
+              defaultValue={12}
+              label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
+              timeUnit={'hours'}
+              {...register(datetimehour, { validate: requireHour })}
+            />
+            <DateTime
+              defaultValue={0}
+              aria-labelledby={'label01'}
+              timeUnit={'minutes'}
+              {...register(datetimeminute, { validate: requireMinute })}
+            />
+          </DateTimePickerWrapper>
+        </Validation>
+        <Spacer size={'s'} />
+        <Button type="submit">{'Send inn'}</Button>
+      </form>
+    </>
   );
 };

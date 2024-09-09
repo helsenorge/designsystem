@@ -285,7 +285,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       min={minDate ? format(minDate, 'yyyy-MM-dd') : ''}
       type="date"
       ref={mergedRefs}
-      value={inputValue}
+      value={dateState ? format(dateState, 'yyyy-MM-dd') : ''}
       width={14}
       {...rest}
       onBlur={handleInputBlur}
