@@ -18,11 +18,11 @@
   "license": "MIT",
   "scripts": {
     "build": "lerna run build",
-    "version:latest": "lerna version",
+    "version:latest": "lerna version --no-push --force-publish=* --allow-branch=**",
     "version:beta": "lerna version --preid=beta --allow-branch=*/* --force-publish=*",
     "publish:latest": "lerna publish from-git --yes",
     "publish:beta": "lerna publish from-git --dist-tag=beta --yes",
-    "publish:specific": "lerna publish from-package --yes --ignore-scripts --dist-tag=v7-13-5 --allow-branch=**",
+    "publish:specific": "lerna publish from-package --yes --ignore-scripts --dist-tag=v7-13-7 --allow-branch=**",
     "clean:npm": "npm-run-all clean:packages clean:root",
     "clean:packages": "lerna clean --yes",
     "clean:root": "rimraf node_modules",
