@@ -32,8 +32,7 @@
     "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
     "prettier:fix": "npm run prettier -- --write",
     "pretypecheck": "tsc -v",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest"
+    "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
     "@helsenorge/designsystem-react": "^7.0.0",
