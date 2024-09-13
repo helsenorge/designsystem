@@ -16,7 +16,7 @@ import radioButtonStyles from './styles.module.scss';
 export interface RadioButtonProps
   extends Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
-    'aria-describedby' | 'name' | 'value' | 'disabled' | 'defaultChecked' | 'required' | 'onChange'
+    'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'defaultChecked' | 'required' | 'onChange'
   > {
   /** Adds custom classes to the element. */
   className?: string;
@@ -28,7 +28,7 @@ export interface RadioButtonProps
   inputId?: string;
   /** Changes the visuals of the radioButton */
   mode?: keyof typeof FormMode;
-  /** Changes the visuals of the radioButton */
+  /** Changes the visuals of the radioButton. Large version only works when used inside a FormGroup wrapper. */
   size?: keyof typeof FormSize;
   /** Activates Error style for the radioButton - This is can be true while errorText is empty, when in a FormGroup */
   error?: boolean;
@@ -55,7 +55,7 @@ export const getRadioLabelClasses = (radioId: string, mode: FormMode, large: boo
 export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React.Ref<HTMLInputElement>) => {
   const {
     className,
-    defaultChecked = false,
+    defaultChecked,
     onChange,
     disabled,
     label,
@@ -77,7 +77,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const onBlueberry = mode === FormMode.onblueberry;
   const onCherry = mode === FormMode.oninvalid;
   const isLarge = size === FormSize.large;
-  const [checked, changeChecked] = useState<boolean>(defaultChecked);
+  const [checked, changeChecked] = useState<boolean>();
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
   const errorTextUuid = useUuid(errorTextId);

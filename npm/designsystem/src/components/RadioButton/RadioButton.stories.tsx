@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
@@ -35,8 +35,13 @@ const meta = {
     label: {
       control: 'text',
     },
+    checked: {
+      control: 'boolean',
+      description: 'Used for controlled component. Only works when size is default (medium), does not work with large version.',
+    },
     defaultChecked: {
       control: 'boolean',
+      description: 'Used for uncontrolled component. Only works when "checked" prop is not used.',
     },
     disabled: {
       control: 'boolean',
@@ -105,4 +110,57 @@ export const Large: Story = {
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} size={'large'} mode={'onwhite'} disabled />
     </>
   ),
+};
+
+export const Controlled: Story = {
+  render: args => {
+    const [selected, setSelected] = useState<string>('');
+    const onClick = e => {
+      setSelected(e.target.value);
+    };
+    const buttonClick2 = () => {
+      setSelected('2');
+    };
+    const buttonClickReset = () => {
+      setSelected('');
+    };
+    return (
+      <form>
+        <RadioButton
+          {...args}
+          label={<Label labelTexts={[{ text: 'RadioButton 1' }]} />}
+          onChange={onClick}
+          value="1"
+          checked={selected == '1'}
+        />
+        <RadioButton
+          {...args}
+          label={<Label labelTexts={[{ text: 'RadioButton 2' }]} />}
+          onChange={onClick}
+          value="2"
+          checked={selected == '2'}
+        />
+        <RadioButton
+          {...args}
+          label={<Label labelTexts={[{ text: 'RadioButton 3' }]} />}
+          onChange={onClick}
+          value="3"
+          checked={selected == '3'}
+        />
+        <RadioButton
+          {...args}
+          label={<Label labelTexts={[{ text: 'RadioButton 4' }]} />}
+          onChange={onClick}
+          value="4"
+          checked={selected == '4'}
+        />
+        <button type="button" onClick={buttonClick2}>
+          {'Set to 2'}
+        </button>
+        <button type="button" onClick={buttonClickReset}>
+          {'Reset'}
+        </button>
+      </form>
+    );
+  },
 };
