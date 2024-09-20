@@ -1,0 +1,125 @@
+@use 'sass:map';
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/supernova/styles/colors';
+
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 43.5rem;
+
+  &__row {
+    display: flex;
+    align-items: center;
+
+    &--right {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  &__label {
+    font-size: $font-size-md;
+    font-weight: 400;
+    line-height: $lineheight-size-xs;
+    color: var(--core-color-neutral-900);
+    margin-left: getSpacer(xs);
+
+    @media (min-width: map.get($grid-breakpoints, sm)) {
+      margin-left: getSpacer(s);
+    }
+
+    &__text--semibold {
+      font-weight: 600;
+    }
+
+    &--toggle-right {
+      margin-left: 0;
+      margin-right: getSpacer(xs);
+
+      @media (min-width: map.get($grid-breakpoints, sm)) {
+        margin-right: getSpacer(s);
+      }
+    }
+  }
+
+  &__sublabel {
+    font-size: $font-size-xs;
+    line-height: 1.25rem;
+    color: var(--core-color-neutral-800);
+    margin-left: 3.9rem;
+    text-align: left;
+
+    @media (min-width: map.get($grid-breakpoints, sm)) {
+      font-size: $font-size-sm;
+      line-height: $lineheight-size-xs;
+      text-align: left;
+      margin-left: 4.1rem;
+    }
+
+    &--toggle-right {
+      margin-left: 0;
+    }
+  }
+
+  &__toggle-group {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__toggle {
+    position: relative;
+    display: inline-block;
+    width: 3.125rem;
+    height: 2rem;
+    background-color: var(--color-base-background-white);
+    border-radius: 60px;
+    border: 2px solid var(--color-base-border-onlight-emphasized);
+
+    &--on-white {
+      background-color: var(--core-color-neutral-50);
+    }
+
+    &--ignore-hover {
+      pointer-events: none;
+    }
+
+    &__dot {
+      content: '';
+      position: absolute;
+      width: 1.375rem;
+      height: 1.375rem;
+      left: 3px;
+      bottom: 3px;
+      background-color: var(--brandcolor-neutral-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &--ignore-hover {
+        pointer-events: none;
+      }
+
+      &__icon {
+        opacity: 0;
+        stroke: var(--color-action-graphics-onlight);
+      }
+    }
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:focus-visible + .toggle-container__toggle {
+      border-color: var(--color-action-border-onlight-focus);
+      outline: 2px solid var(--color-action-border-onlight-focus);
+    }
+  }
+}
