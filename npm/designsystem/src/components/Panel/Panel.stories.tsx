@@ -2,9 +2,9 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Panel, { PanelStatus, PanelVariant } from './Panel';
-import Docs from '../../docs';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';

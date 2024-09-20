@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import FormGroup from './FormGroup';
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import Spacer from '../../components/Spacer';
 import { FormMode, FormSize } from '../../constants';
-import Docs from '../../docs';
 import Checkbox from '../Checkbox/Checkbox';
 import FormLayout from '../FormLayout';
 import Coronavirus from '../Icons/Coronavirus';

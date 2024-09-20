@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import RadioButton from './RadioButton';
 import { FormMode, FormSize } from '../../constants';
-import Docs from '../../docs';
 import { getColor } from '../../theme/currys';
 import FormGroup from '../FormGroup';
 import Label from '../Label';

@@ -2,10 +2,10 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
 
 import Dropdown, { DropdownMode } from './Dropdown';
-import Docs from '../../docs';
 import Checkbox from '../Checkbox';
 import Label from '../Label';
 import RadioButton from '../RadioButton';

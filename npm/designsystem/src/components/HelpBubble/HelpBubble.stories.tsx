@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
-import Docs from '../../docs';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';

@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Badge from './Badge';
-import Docs from '../../docs';
 import Title from '../Title';
 
 const meta = {

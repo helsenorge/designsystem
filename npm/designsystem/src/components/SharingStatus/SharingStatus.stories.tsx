@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import SharingStatus from './SharingStatus';
-import Docs from '../../docs';
 import Eye from '../Icons/Eye';
 import Globe from '../Icons/Globe';
 import Group from '../Icons/Group';

@@ -74,6 +74,7 @@
     "bootstrap": "^4.6.2",
     "classnames": "^2.5.1",
     "copyfiles": "^2.4.1",
+    "frankenstein-build-tools": "^8.4.0",
     "glob": "^11.0.0",
     "jest-when": "^3.6.0",
     "jsdom": "^25.0.0",

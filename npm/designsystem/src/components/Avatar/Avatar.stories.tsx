@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Avatar, { AvatarSize } from './Avatar';
-import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Avatar',

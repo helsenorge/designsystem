@@ -26,9 +26,18 @@ export const alwaysIgnore = [
 ];
 
 const components = globSync(`src/components/**/index.{ts,tsx}`, { ignore: alwaysIgnore });
+
 const icons = globSync(`src/components/Icons/*.{ts,tsx}`, { ignore: alwaysIgnore });
+
 const illustrations = globSync(`src/components/Illustrations/*.{ts,tsx}`, { ignore: alwaysIgnore });
-const hooksAndExtras = globSync(`src/**/*.{ts,tsx}`, { ignore: [...alwaysIgnore, 'src/components/**/*'] });
+
+const hooksAndExtras = globSync(
+  ['src/*.{ts,tsx}', 'src/theme/**/*.{ts,tsx}', 'src/hooks/**/*.{ts,tsx}', 'src/hoc/**/*.{ts,tsx}', 'src/__mocks__/**/*.{ts,tsx}'],
+  {
+    ignore: alwaysIgnore,
+  }
+);
+
 const utils = globSync(`src/utils/*.ts`);
 
 export const entries = [...components, ...icons, ...illustrations, ...hooksAndExtras, ...utils]

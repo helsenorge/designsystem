@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Input, { InputProps, InputTypes } from './Input';
 import { FormMode, FormSize } from '../../constants';
-import Docs from '../../docs';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 

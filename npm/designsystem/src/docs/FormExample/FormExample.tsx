@@ -1,21 +1,19 @@
-import React from 'react';
-
 import { useForm } from 'react-hook-form';
 
+import Button from '../../components/Button';
+import Checkbox from '../../components/Checkbox';
+import FormGroup from '../../components/FormGroup/FormGroup';
+import FormLayout, { FormLayoutColumns } from '../../components/FormLayout';
+import Hospital from '../../components/Icons/Hospital';
+import Input from '../../components/Input';
+import Label from '../../components/Label';
+import RadioButton from '../../components/RadioButton';
+import Select from '../../components/Select';
+import Spacer from '../../components/Spacer';
+import Textarea from '../../components/Textarea';
+import Validation from '../../components/Validation';
 import { FormSize } from '../../constants';
 import { isTest } from '../../utils/environment';
-import Button from '../Button';
-import Checkbox from '../Checkbox';
-import FormGroup from '../FormGroup/FormGroup';
-import FormLayout, { FormLayoutColumns } from '../FormLayout';
-import Hospital from '../Icons/Hospital';
-import Input from '../Input';
-import Label from '../Label';
-import RadioButton from '../RadioButton';
-import Select from '../Select';
-import Spacer from '../Spacer';
-import Textarea from '../Textarea';
-import Validation from '../Validation';
 
 export interface FormExampleProps {
   exampleType: FormExampleVariants;

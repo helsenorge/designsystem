@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
-import Docs from '../../docs';
 import Checkbox from '../Checkbox';
 import additionalIconInformation from '../Icons/AdditionalIconInformation';
 import { IconList, IconName } from '../Icons/IconNames';

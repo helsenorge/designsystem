@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import NotificationPanel from './NotificationPanel';
 import { allTitleTags } from '../../../.storybook/knobs';
-import Docs from '../../docs';
 import { getColor } from '../../theme/currys';
 
 const meta = {
