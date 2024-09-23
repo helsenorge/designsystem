@@ -1,3 +1,18 @@
+## [8.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.4.0&targetVersion=GTv8.5.0) (2024-09-23)
+
+### Features
+
+- nytt komponent toggle ([76f1da5](https://github.com/helsenorge/designsystem/commit/76f1da5c077db4bc62a45007d72f65053e5310cc)), closes
+  [#308151](https://github.com/helsenorge/designsystem/issues/308151)
+
+## [8.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.3.0&targetVersion=GTv8.4.0) (2024-09-13)
+
+### Features
+
+- **radiobutton:** legg til prop for checked og gjør komponenten controlled
+  ([1c8ae22](https://github.com/helsenorge/designsystem/commit/1c8ae22e0f5d138f308a00ca29212ed04313ba9a)), closes
+  [#331953](https://github.com/helsenorge/designsystem/issues/331953)
+
 ## [8.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.2.1&targetVersion=GTv8.3.0) (2024-09-09)
 
 ### Features
