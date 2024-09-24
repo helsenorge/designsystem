@@ -26,8 +26,6 @@ export default defineConfig({
         entryFileNames: '[name].js',
         chunkFileNames: '[name].js',
         assetFileNames: '[name].[ext]',
-        preserveModules: true,
-        preserveModulesRoot: 'src',
       },
       plugins: [
         peerDepsExternal(),
