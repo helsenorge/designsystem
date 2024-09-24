@@ -22,8 +22,6 @@
     padding-left: 0;
 
     #{$tab-list}__tab {
-      background-color: var(--color-base-background-white);
-
       &--first {
         // This is in order to look nice when the first tab is not selected
         height: 3.5rem;
@@ -33,11 +31,11 @@
         height: 3rem;
       }
     }
+  }
 
-    @each $color in $colors {
-      .tab-list__tab--selected#{$tab-list}__tab--#{$color} {
-        background-color: var(--color-base-background-#{$color});
-      }
+  @each $color in $colors {
+    .tab-list__tab--selected#{$tab-list}__tab--#{$color} {
+      background-color: var(--color-base-background-#{$color});
     }
   }
 
@@ -57,12 +55,6 @@
     position: relative;
     z-index: 0;
 
-    @each $color in $colors {
-      &--#{$color} {
-        background-color: var(--color-base-background-#{$color});
-      }
-    }
-
     &--selected {
       overflow: visible;
       z-index: 1;
@@ -80,6 +72,7 @@
     }
   }
 
+  // TODO: Dette er feil
   // Because the button states should be the same for all types
   .tab-list__tab {
     &:hover {

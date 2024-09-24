@@ -7,12 +7,16 @@
 
 .tab-panel {
   $tab-panel: &;
-
-  padding: 0;
-
   $colors: 'blueberry', 'neutral', 'white';
 
+  padding: getSpacer(2xl) getSpacer(l) getSpacer(3xl);
   width: 100%;
+
+  @each $color in $colors {
+    &#{$tab-panel}--#{$color} {
+      background-color: var(--color-base-background-#{$color});
+    }
+  }
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     border-radius: 0 0 0.5rem 0.5rem;
@@ -24,12 +28,6 @@
 
       @media (min-width: map.get($grid-breakpoints, md)) {
         border-radius: 0 0 0.5rem 0.5rem;
-      }
-    }
-
-    @each $color in $colors {
-      &#{$tab-panel}--#{$color} {
-        background-color: var(--color-base-background-#{$color});
       }
     }
   }
