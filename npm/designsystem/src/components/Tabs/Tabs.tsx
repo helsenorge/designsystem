@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { PaletteNames } from '../../theme/palette';
 import { isMobileUA } from '../../utils/mobile';
 
@@ -49,7 +48,6 @@ const TabsRoot: React.FC<TabsProps> = ({
   const [translateX, setTranslateX] = useState(0);
   const [panelAnimation, setPanelAnimation] = useState<'left' | 'right' | null>(null);
   const mobile = isMobileUA();
-  const breakpoint = useBreakpoint();
   const tabsRef = useRef<HTMLDivElement>(null);
   const tabPanelRef = useRef<HTMLDivElement>(null);
   const tabListRef = useRef<HTMLDivElement>(null);

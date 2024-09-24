@@ -72,9 +72,14 @@
     }
   }
 
-  // TODO: Dette er feil
-  // Because the button states should be the same for all types
   .tab-list__tab {
+    &:focus-visible {
+      outline: 4px solid var(--color-action-border-onlight-focus);
+      outline-offset: -4px;
+    }
+  }
+
+  .tab-list__tab--not-selected {
     &:hover {
       background-color: var(--color-action-background-ondark-hover);
 
@@ -85,16 +90,6 @@
 
     &:active {
       background-color: var(--color-action-background-ondark-selected);
-
-      &#{$tab-list}__tab--blueberry {
-        background-color: var(--color-action-background-ondark-hoverselected);
-      }
-    }
-
-    &:focus-visible {
-      background-color: var(--color-base-background-blueberry);
-      outline: 4px solid var(--color-action-border-onlight-focus);
-      outline-offset: -4px;
     }
   }
 }

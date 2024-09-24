@@ -5,10 +5,9 @@ export type Styles = {
   'tab-list__tab--blueberry': string;
   'tab-list__tab--first': string;
   'tab-list__tab--neutral': string;
+  'tab-list__tab--not-selected': string;
   'tab-list__tab--selected': string;
   'tab-list__tab--white': string;
-  'tab-list--framed': string;
-  'tab-list--normal': string;
 };
 
 export type ClassNames = keyof Styles;

@@ -6,9 +6,7 @@ export type Styles = {
   'tab-panel--animate-right': string;
   'tab-panel--blueberry': string;
   'tab-panel--first': string;
-  'tab-panel--framed': string;
   'tab-panel--neutral': string;
-  'tab-panel--normal': string;
   'tab-panel--white': string;
 };
 
