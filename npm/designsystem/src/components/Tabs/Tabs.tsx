@@ -12,6 +12,7 @@ import styles from './styles.module.scss';
 
 export type { TabProps } from './Tab';
 export type TabsColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'white'>;
+export type TabsOnColor = 'onblueberry' | 'onneutral' | 'onwhite';
 export type TabsTouchBehaviour = 'swipe' | 'none';
 
 export interface TabsProps {
@@ -22,6 +23,8 @@ export interface TabsProps {
   className?: string;
   /** Sets the color of the tabs. Default: white */
   color?: TabsColors;
+  /** Sets the background color of the tabs. Can only be used when the color is set to white. Default: onwhite */
+  onColor?: TabsOnColor;
   /** Whether the tab list should be sticky */
   sticky?: boolean;
   /** Determines how Tabs respons to touch events. */
@@ -37,6 +40,7 @@ const TabsRoot: React.FC<TabsProps> = ({
   children,
   className,
   color = 'white',
+  onColor = 'onwhite',
   sticky = true,
   testId,
   touchBehaviour = 'swipe',
@@ -51,6 +55,11 @@ const TabsRoot: React.FC<TabsProps> = ({
   const tabsRef = useRef<HTMLDivElement>(null);
   const tabPanelRef = useRef<HTMLDivElement>(null);
   const tabListRef = useRef<HTMLDivElement>(null);
+
+  let onColorUsed = 'onwhite' as TabsOnColor;
+  if (color === 'white') {
+    onColorUsed = onColor;
+  }
 
   const onValueChange = (newValue: number, oldValue: number): void => {
     if (!isControlled) {
@@ -151,7 +160,12 @@ const TabsRoot: React.FC<TabsProps> = ({
           [styles['tab-list-wrapper--sticky']]: sticky,
         })}
       >
-        <TabList onTabListClick={(index: number) => onValueChange(index, activeTabIndex)} selectedTab={activeTabIndex} color={color}>
+        <TabList
+          onTabListClick={(index: number) => onValueChange(index, activeTabIndex)}
+          selectedTab={activeTabIndex}
+          color={color}
+          onColor={onColorUsed}
+        >
           {children}
         </TabList>
         <div className={classNames(styles['panel-wrapper'], styles[`panel-wrapper--${color}`])}></div>

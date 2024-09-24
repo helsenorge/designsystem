@@ -39,10 +39,22 @@
     }
   }
 
+  &--onwhite {
+    background-color: var(--color-base-background-white);
+  }
+
+  &--onblueberry {
+    background-color: var(--color-base-background-blueberry);
+  }
+
+  &--onneutral {
+    background-color: var(--color-base-background-neutral);
+  }
+
   &__tab {
     display: flex;
     align-items: start;
-    background-color: transparent;
+    background-color: var(--color-base-background-white);
     height: 3rem;
     text-align: start;
     font-size: 1.25rem;
