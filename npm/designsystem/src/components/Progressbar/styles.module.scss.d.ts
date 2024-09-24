@@ -1,5 +1,6 @@
 export type Styles = {
   'progressbar__progress-circle': string;
+  'progressbar__sr-only-text': string;
   progressbar__svg: string;
   'progressbar--overlay': string;
   'progressbar--overlay-parent': string;
