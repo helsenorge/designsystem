@@ -2,14 +2,13 @@ import React, { forwardRef } from 'react';
 
 import classNames from 'classnames';
 
-import { TabsColors, TabsType } from '../Tabs';
+import { TabsColors } from '../Tabs';
 
 import styles from './styles.module.scss';
 
 interface TabPanelProps {
   children?: React.ReactNode;
   color?: TabsColors;
-  type?: TabsType;
   isFirst?: boolean;
   translateX?: number;
   style?: React.CSSProperties;
@@ -17,8 +16,8 @@ interface TabPanelProps {
 }
 
 const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>((props, ref) => {
-  const { children, animate, color = 'white', type = 'normal', isFirst = false, translateX, style } = props;
-  const tabPanelClasses = classNames(styles['tab-panel'], styles[`tab-panel--${color}`], styles[`tab-panel--${type}`], {
+  const { children, animate, color = 'white', isFirst = false, translateX, style } = props;
+  const tabPanelClasses = classNames(styles['tab-panel'], styles[`tab-panel--${color}`], {
     [styles['tab-panel--first']]: isFirst,
   });
   const contentClasses = classNames({

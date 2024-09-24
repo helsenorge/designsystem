@@ -16,6 +16,30 @@
   margin: 0;
   margin-bottom: -1px;
   background-color: var(--color-base-background-white);
+  padding-left: 0.5rem;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    padding-left: 0;
+
+    #{$tab-list}__tab {
+      background-color: var(--color-base-background-white);
+
+      &--first {
+        // This is in order to look nice when the first tab is not selected
+        height: 3.5rem;
+      }
+
+      &--selected {
+        height: 3rem;
+      }
+    }
+
+    @each $color in $colors {
+      .tab-list__tab--selected#{$tab-list}__tab--#{$color} {
+        background-color: var(--color-base-background-#{$color});
+      }
+    }
+  }
 
   &__tab {
     display: flex;
@@ -53,41 +77,6 @@
       align-items: center;
       gap: 0.5rem;
       height: 2rem;
-    }
-  }
-
-  &--normal {
-    padding-left: 0.5rem;
-
-    @media (min-width: map.get($grid-breakpoints, md)) {
-      padding-left: 1rem;
-    }
-  }
-
-  &--framed {
-    padding-left: 0.5rem;
-
-    @media (min-width: map.get($grid-breakpoints, md)) {
-      padding-left: 0;
-    }
-
-    #{$tab-list}__tab {
-      background-color: var(--color-base-background-white);
-
-      &--first {
-        // This is in order to look nice when the first tab is not selected
-        height: 3.5rem;
-      }
-
-      &--selected {
-        height: 3rem;
-      }
-    }
-
-    @each $color in $colors {
-      .tab-list__tab--selected#{$tab-list}__tab--#{$color} {
-        background-color: var(--color-base-background-#{$color});
-      }
     }
   }
 

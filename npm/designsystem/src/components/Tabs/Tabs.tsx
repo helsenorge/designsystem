@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
+import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { PaletteNames } from '../../theme/palette';
 import { isMobileUA } from '../../utils/mobile';
 
@@ -12,7 +13,6 @@ import styles from './styles.module.scss';
 
 export type { TabProps } from './Tab';
 export type TabsColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'white'>;
-export type TabsType = 'normal' | 'framed';
 export type TabsTouchBehaviour = 'swipe' | 'none';
 
 export interface TabsProps {
@@ -29,8 +29,6 @@ export interface TabsProps {
   touchBehaviour?: TabsTouchBehaviour;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** Sets the visual type of the tabs */
-  type?: TabsType;
 }
 
 const swipeDistanceThreshold = 75;
@@ -42,7 +40,6 @@ const TabsRoot: React.FC<TabsProps> = ({
   color = 'white',
   sticky = true,
   testId,
-  type = 'normal',
   touchBehaviour = 'swipe',
 }) => {
   const isControlled = activeTab !== undefined;
@@ -52,6 +49,7 @@ const TabsRoot: React.FC<TabsProps> = ({
   const [translateX, setTranslateX] = useState(0);
   const [panelAnimation, setPanelAnimation] = useState<'left' | 'right' | null>(null);
   const mobile = isMobileUA();
+  const breakpoint = useBreakpoint();
   const tabsRef = useRef<HTMLDivElement>(null);
   const tabPanelRef = useRef<HTMLDivElement>(null);
   const tabListRef = useRef<HTMLDivElement>(null);
@@ -155,29 +153,13 @@ const TabsRoot: React.FC<TabsProps> = ({
           [styles['tab-list-wrapper--sticky']]: sticky,
         })}
       >
-        <TabList
-          onTabListClick={(index: number) => onValueChange(index, activeTabIndex)}
-          selectedTab={activeTabIndex}
-          color={color}
-          type={type}
-        >
+        <TabList onTabListClick={(index: number) => onValueChange(index, activeTabIndex)} selectedTab={activeTabIndex} color={color}>
           {children}
         </TabList>
-        <div
-          className={classNames(styles['panel-wrapper'], styles[`panel-wrapper--${color}`], {
-            [styles['panel-wrapper--framed']]: type == 'framed',
-          })}
-        ></div>
+        <div className={classNames(styles['panel-wrapper'], styles[`panel-wrapper--${color}`])}></div>
       </div>
-      <div ref={tabsRef} style={{ marginTop: type == 'framed' ? '-40px' : '' }}>
-        <TabPanel
-          ref={tabPanelRef}
-          color={color}
-          type={type}
-          isFirst={activeTabIndex == 0}
-          translateX={translateX}
-          animate={panelAnimation}
-        >
+      <div ref={tabsRef} style={{ marginTop: '-40px' }}>
+        <TabPanel ref={tabPanelRef} color={color} isFirst={activeTabIndex == 0} translateX={translateX} animate={panelAnimation}>
           {React.Children.toArray(children)[activeTabIndex]}
         </TabPanel>
       </div>

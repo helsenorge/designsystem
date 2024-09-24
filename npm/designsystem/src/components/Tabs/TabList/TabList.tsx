@@ -6,7 +6,7 @@ import TabItem from './TabItem';
 import { useRovingFocus } from '../../../hooks/useRovingFocus';
 import { isComponent } from '../../../utils/component';
 import Tab, { TabProps } from '../Tab';
-import { TabsColors, TabsType } from '../Tabs';
+import { TabsColors } from '../Tabs';
 
 import styles from './styles.module.scss';
 interface TabListProps {
@@ -14,18 +14,17 @@ interface TabListProps {
   onTabListClick: (index: number) => void;
   selectedTab: number;
   color?: TabsColors;
-  type?: TabsType;
 }
 
 const TabList: React.FC<TabListProps> = props => {
-  const { selectedTab, onTabListClick, children, color = 'white', type = 'normal' } = props;
+  const { selectedTab, onTabListClick, children, color = 'white' } = props;
 
   const listRef = useRef<HTMLUListElement>(null);
 
   const tabRefs = useRef(React.Children.map(children, () => React.createRef<HTMLButtonElement>()));
   useRovingFocus(onTabListClick, tabRefs, listRef, true);
 
-  const tablistClasses = classNames(styles['tab-list'], styles[`tab-list--${type}`]);
+  const tablistClasses = classNames(styles['tab-list']);
 
   return (
     <ul className={tablistClasses} ref={listRef} role="tablist" aria-orientation="horizontal">
