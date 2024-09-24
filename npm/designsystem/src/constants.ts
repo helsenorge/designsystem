@@ -126,6 +126,7 @@ export enum AnalyticsId {
   Textarea = 'textarea',
   Tile = 'tile',
   Title = 'title',
+  Toggle = 'toggle',
   Tooltip = 'tooltip',
   Trigger = 'trigger',
   Validation = 'validation',

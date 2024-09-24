@@ -7,16 +7,20 @@ import { useRef, useEffect, useState, RefObject, MutableRefObject } from 'react'
  */
 export const usePseudoClasses = <T extends HTMLElement | SVGElement>(
   ref?: RefObject<T> | MutableRefObject<T> | null
-): { refObject: RefObject<T> | MutableRefObject<T>; isHovered: boolean; isFocused: boolean } => {
+): { refObject: RefObject<T> | MutableRefObject<T>; isHovered: boolean; isFocused: boolean; isActive: boolean } => {
   const refObject = ref ? ref : useRef<T>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     const handleMouseEnter = (): void => setIsHovered(true);
     const handleMouseLeave = (): void => setIsHovered(false);
     const handleFocusIn = (): void => setIsFocused(true);
     const handleFocusOut = (): void => setIsFocused(false);
+    const handlePointerDown = (): void => setIsActive(true);
+    const handlePointerUp = (): void => setIsActive(false);
+    const handlePointerLeave = (): void => setIsActive(false);
 
     refObject.current?.addEventListener('mouseenter', handleMouseEnter);
     refObject.current?.addEventListener('mouseleave', handleMouseLeave);
@@ -24,6 +28,9 @@ export const usePseudoClasses = <T extends HTMLElement | SVGElement>(
     refObject.current?.addEventListener('pointerleave', handleMouseLeave);
     refObject.current?.addEventListener('focusin', handleFocusIn);
     refObject.current?.addEventListener('focusout', handleFocusOut);
+    refObject.current?.addEventListener('pointerdown', handlePointerDown);
+    refObject.current?.addEventListener('pointerup', handlePointerUp);
+    refObject.current?.addEventListener('pointerleave', handlePointerLeave);
 
     return (): void => {
       refObject.current?.removeEventListener('mouseenter', handleMouseEnter);
@@ -32,8 +39,11 @@ export const usePseudoClasses = <T extends HTMLElement | SVGElement>(
       refObject.current?.removeEventListener('pointerleave', handleMouseLeave);
       refObject.current?.removeEventListener('focusin', handleFocusIn);
       refObject.current?.removeEventListener('focusout', handleFocusOut);
+      refObject.current?.removeEventListener('pointerdown', handlePointerDown);
+      refObject.current?.removeEventListener('pointerup', handlePointerUp);
+      refObject.current?.removeEventListener('pointerleave', handlePointerLeave);
     };
   }, [refObject]);
 
-  return { refObject, isHovered, isFocused };
+  return { refObject, isHovered, isFocused, isActive };
 };

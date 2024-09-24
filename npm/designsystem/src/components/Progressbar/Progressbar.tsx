@@ -69,6 +69,7 @@ const Progressbar: React.FC<ProgressbarProps> = ({
   const mainColor = mode === ProgressBarMode.onlight ? palette.blueberry600 : palette.white;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (value / 100) * circumference;
+  const valueText = `${value}%`;
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -85,49 +86,55 @@ const Progressbar: React.FC<ProgressbarProps> = ({
   });
 
   return (
-    <div
-      ref={wrapperRef}
-      className={wrapperClasses}
-      data-testid={testId}
-      role="progressbar"
-      aria-valuenow={value}
-      aria-label={ariaLabel}
-      aria-live="polite"
-      style={overlay === Overlay.screen ? { zIndex: ZIndex.OverlayScreen } : {}}
-    >
-      <svg
-        role="presentation"
-        width={viewBoxSize}
-        height={viewBoxSize}
-        viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
-        className={styles['progressbar__svg']}
+    <>
+      <div
+        ref={wrapperRef}
+        className={wrapperClasses}
+        data-testid={testId}
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={value}
+        aria-label={ariaLabel}
+        style={overlay === Overlay.screen ? { zIndex: ZIndex.OverlayScreen } : {}}
       >
-        <circle cx={viewBoxCenter} cy={viewBoxCenter} r={radius} stroke={circleBackgroundColor} strokeWidth={strokeWidth} fill="none" />
-        <circle
-          cx={viewBoxCenter}
-          cy={viewBoxCenter}
-          r={radius}
-          stroke={mainColor}
-          strokeWidth={strokeWidth}
-          fill="none"
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          className={styles['progressbar__progress-circle']}
-          transform={`rotate(-90 ${viewBoxCenter} ${viewBoxCenter})`}
-        />{' '}
-        <text
-          className="progress-wheel__text--large"
-          fontSize={'1.5rem'}
-          fill={mainColor}
-          x={viewBoxCenter}
-          y={viewBoxCenter}
-          textAnchor="middle"
-          alignmentBaseline="middle"
+        <svg
+          role="presentation"
+          width={viewBoxSize}
+          height={viewBoxSize}
+          viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
+          className={styles['progressbar__svg']}
         >
-          {size == ProgressbarSize.large && `${value}%`}
-        </text>
-      </svg>
-    </div>
+          <circle cx={viewBoxCenter} cy={viewBoxCenter} r={radius} stroke={circleBackgroundColor} strokeWidth={strokeWidth} fill="none" />
+          <circle
+            cx={viewBoxCenter}
+            cy={viewBoxCenter}
+            r={radius}
+            stroke={mainColor}
+            strokeWidth={strokeWidth}
+            fill="none"
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
+            className={styles['progressbar__progress-circle']}
+            transform={`rotate(-90 ${viewBoxCenter} ${viewBoxCenter})`}
+          />
+          <text
+            className="progress-wheel__text--large"
+            fontSize={'1.5rem'}
+            fill={mainColor}
+            x={viewBoxCenter}
+            y={viewBoxCenter}
+            textAnchor="middle"
+            alignmentBaseline="middle"
+          >
+            {size === ProgressbarSize.large && valueText}
+          </text>
+        </svg>
+      </div>
+      <div className={styles['progressbar__sr-only-text']} aria-live="assertive" aria-atomic="true">
+        {valueText}
+      </div>
+    </>
   );
 };
 
