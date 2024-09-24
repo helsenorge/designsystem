@@ -1,3 +1,11 @@
+## 8.6.0-beta.0 (2024-09-24)
+
+### Bug Fixes
+
+- progressbar leses opp av skjermlesere
+  ([550e7ac](https://github.com/helsenorge/designsystem/commit/550e7acfbb4687d946f36a7dad9e284614aee6a4)), closes
+  [#328018](https://github.com/helsenorge/designsystem/issues/328018)
+
 ## [8.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.4.0&targetVersion=GTv8.5.0) (2024-09-23)
 
 ### Features
@@ -1773,12 +1781,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- økt kontrast på understreking av lenker
-  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
-  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 - panel har avstand fra tittel til badge
   ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
   [#282359](https://github.com/helsenorge/designsystem/issues/282359)
+- økt kontrast på understreking av lenker
+  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
+  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
