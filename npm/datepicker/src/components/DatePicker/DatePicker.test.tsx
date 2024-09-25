@@ -129,6 +129,22 @@ describe('Gitt at DatePicker skal vises', (): void => {
 
       expect(dateTime).toHaveAccessibleDescription('Invalid date and time');
     });
+
+    it('Så skal value settes riktig', () => {
+      render(<DateTime timeUnit="hours" label="Time" value={12} />);
+
+      const time = screen.getByDisplayValue(12);
+
+      expect(time).toBeInTheDocument();
+    });
+
+    it('Så skal defaultValue settes riktig', () => {
+      render(<DateTime timeUnit="hours" label="Time" defaultValue={12} />);
+
+      const time = screen.getByDisplayValue(12);
+
+      expect(time).toBeInTheDocument();
+    });
   });
 
   describe('Når autocomplete ikke er satt', (): void => {
