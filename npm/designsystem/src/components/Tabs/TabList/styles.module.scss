@@ -17,9 +17,11 @@
   margin-bottom: -1px;
   background-color: var(--color-base-background-white);
   padding-left: 0.5rem;
+  padding-right: 0.5rem;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     padding-left: 0;
+    padding-right: 0;
 
     #{$tab-list}__tab {
       &--first {
