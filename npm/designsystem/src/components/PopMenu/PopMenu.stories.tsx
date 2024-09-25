@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import { PopMenu, PopMenuLabelPosition, PopMenuVariant } from './PopMenu';
-import Docs from '../../docs';
 import longLoremText from '../../utils/loremtext';
 import { LinkList } from '../LinkList';
 import Table, { HeaderCategory, ResponsiveTableVariant, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';

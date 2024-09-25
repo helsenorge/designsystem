@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Stepper from './Stepper';
-import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Stepper',

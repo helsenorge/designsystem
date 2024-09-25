@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } from '@storybook/addon-docs';
 
 interface DocsProps<T> {

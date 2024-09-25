@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
-import Docs from '../../docs';
 import { longLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
 import LinkList from '../LinkList';

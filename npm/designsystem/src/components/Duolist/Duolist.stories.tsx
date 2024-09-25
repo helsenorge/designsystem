@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Duolist, { DuolistGroup } from './Duolist';
-import Docs from '../../docs';
 import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
 import Title from '../Title';

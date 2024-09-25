@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import EyebrowHeader from './EyebrowHeader';
-import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/EyebrowHeader',

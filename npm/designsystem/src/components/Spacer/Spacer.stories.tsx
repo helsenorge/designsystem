@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Spacer from './Spacer';
-import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Spacer',

@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Expander, { ExpanderSize } from './Expander';
-import Docs from '../../docs';
 import LawBook from '../Icons/LawBook';
 import Loader from '../Loader';
 import { Overlay } from '../Loader/Loader';

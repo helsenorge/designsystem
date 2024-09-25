@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import ExpanderHierarchy from './ExpanderHierarchy';
-import Docs from '../../docs';
 import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 
 const meta = {

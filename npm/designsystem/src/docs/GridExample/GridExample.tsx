@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isSupernova } from '../../docs';
+import { isSupernova } from 'frankenstein-build-tools';
 
 type GridLayout = 'helsenorge' | 'padding' | 'none';
 

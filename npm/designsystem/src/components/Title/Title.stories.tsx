@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Title from './Title';
 import { allTitleTags, allTitleAppearances } from '../../../.storybook/knobs';
-import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Title',

@@ -1,11 +1,7 @@
-import replace from '@rollup/plugin-replace';
 import copy from 'rollup-plugin-copy';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
-
-import { entries } from './__scripts__/entries';
 
 const OUTPUT_DIRECTORY = 'lib';
 
@@ -19,8 +15,7 @@ export default defineConfig({
     },
     rollupOptions: {
       preserveEntrySignatures: 'strict',
-      input: entries,
-      external: [/.module.scss/, 'react-hook-form', 'vitest'],
+      input: './src/index.ts',
       output: {
         format: 'es',
         entryFileNames: '[name].js',
@@ -30,20 +25,7 @@ export default defineConfig({
       plugins: [
         peerDepsExternal(),
         copy({
-          targets: [
-            { src: '*.md', dest: OUTPUT_DIRECTORY },
-            { src: '../../CHANGELOG.md', dest: OUTPUT_DIRECTORY },
-          ],
-          hook: 'writeBundle',
-        }),
-        copy({
-          targets: [
-            { src: 'src/scss', dest: OUTPUT_DIRECTORY },
-            { src: 'src/fonts', dest: OUTPUT_DIRECTORY },
-            { src: 'src/components/**/*.module.scss*', dest: OUTPUT_DIRECTORY },
-            { src: 'src/components/**/componentdata.json*', dest: OUTPUT_DIRECTORY },
-            { src: 'src/components/Icons/AdditionalIconInformation.js', dest: OUTPUT_DIRECTORY },
-          ],
+          targets: [{ src: 'types/**/*.d.ts*', dest: OUTPUT_DIRECTORY }],
           hook: 'writeBundle',
           flatten: false,
         }),
@@ -74,13 +56,6 @@ export default defineConfig({
             sideEffects,
           }),
         }),
-        // .module.scss
-        replace({
-          '../npm/designsystem/src/components/': '',
-          delimiters: ['', ''],
-          preventAssignment: true,
-        }),
-        visualizer({ gzipSize: true, filename: 'report.html' }),
       ],
     },
   },

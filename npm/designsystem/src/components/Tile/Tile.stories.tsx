@@ -2,9 +2,9 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Tile from './Tile';
-import Docs from '../../docs';
 import Icon, { IconSize } from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import Eye from '../Icons/Eye';

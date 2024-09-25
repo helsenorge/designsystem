@@ -2,6 +2,7 @@ import replace from '@rollup/plugin-replace';
 import copy from 'rollup-plugin-copy';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 
 import { entries } from './__scripts__/entries';
@@ -77,6 +78,7 @@ export default defineConfig({
           '.module.css?used': '.module.css',
           preventAssignment: true,
         }),
+        visualizer({ gzipSize: true, filename: 'report.html' }),
       ],
     },
   },

@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Tooltip, { TooltipOpenProvider } from './Tooltip';
-import Docs from '../../docs';
-import TooltipExample from '../TooltipExample';
+import TooltipExample from '../../docs/TooltipExample';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Tooltip',

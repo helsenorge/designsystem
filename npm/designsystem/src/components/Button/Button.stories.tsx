@@ -2,9 +2,9 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Button from './Button';
-import Docs from '../../docs';
 import { getColor } from '../../theme/currys/color';
 import Icon from '../Icon';
 import Dog from '../Icons/Dog';

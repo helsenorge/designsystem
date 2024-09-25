@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 import { parse } from 'date-fns';
 import { ar, nb } from 'date-fns/locale';
+import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
@@ -11,7 +12,6 @@ import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Label from '@helsenorge/designsystem-react/components/Label';
 import Spacer from '@helsenorge/designsystem-react/components/Spacer';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
-import Docs from '@helsenorge/designsystem-react/docs';
 
 import DatePicker, { DatePickerProps } from './DatePicker';
 import DateTime from './DateTime';

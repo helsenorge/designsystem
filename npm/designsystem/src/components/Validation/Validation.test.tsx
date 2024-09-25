@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import { ValidationErrors } from './types';
 import Validation from './Validation';
-import { FormExample, FormExampleVariants } from '../FormExample/FormExample';
+import { FormExample, FormExampleVariants } from '../../docs/FormExample';
 import Input from '../Input';
 
 describe('Gitt at Validation skal vises', () => {
