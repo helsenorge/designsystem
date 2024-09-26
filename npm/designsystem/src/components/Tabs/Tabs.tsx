@@ -43,7 +43,7 @@ const TabsRoot: React.FC<TabsProps> = ({
   sticky = true,
   testId,
   type = 'normal',
-  touchBehaviour = 'swipe',
+  touchBehaviour = 'none',
 }) => {
   const isControlled = activeTab !== undefined;
   const [uncontrolledValue, setUncontrolledValue] = useState(0);
