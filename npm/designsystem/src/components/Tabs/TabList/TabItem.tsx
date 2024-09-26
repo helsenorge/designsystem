@@ -59,7 +59,11 @@ const TabItem: React.FC<TabItemProps> = props => {
         className={tabButtonClasses}
         data-testid={testId}
         ref={currentRef as React.RefObject<HTMLButtonElement>}
-        style={{ borderBottom: isSelected ? '2px solid white' : '1px solid black' }}
+        style={{
+          borderBottom: isSelected
+            ? `2px solid var(--color-base-background-${props.color})`
+            : '1px solid var(--color-action-border-onlight-focus)',
+        }}
       >
         <span className={styles['tab-list__tab__title-and-icon']}>
           {icon &&
