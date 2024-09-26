@@ -6,6 +6,7 @@
   $tab-list: &;
   $colors: 'blueberry', 'neutral', 'white';
 
+  position: relative;
   display: flex;
   flex-direction: row;
   gap: 0.25rem;
@@ -52,6 +53,7 @@
     display: flex;
     align-items: start;
     background-color: var(--color-base-background-white);
+    // background-color: transparent;
     height: 3rem;
     text-align: start;
     font-size: 1.25rem;
@@ -102,26 +104,27 @@
     }
   }
 
-  &--fade-start {
-    mask-image: linear-gradient(to left, white 95%, transparent);
-    mask-position: left;
-    mask-repeat: no-repeat;
+  &__fade-start,
+  &__fade-end {
+    position: absolute;
+    top: 0;
+    width: 15px;
+    height: 47px;
+    z-index: 10;
   }
 
-  &--fade-end {
-    mask-image: linear-gradient(to right, white 95%, transparent);
-    mask-repeat: no-repeat;
-    mask-position: right;
+  &__fade-start {
+    left: 0;
+    mask-image: linear-gradient(to right, #000f, #0000);
   }
 
-  &--fade-both {
-    mask-image: linear-gradient(to right, white 95%, transparent 100%), linear-gradient(to left, white 95%, transparent);
-    mask-size: 50%, 50%;
-    mask-position: right, left;
-    mask-repeat: no-repeat;
+  &__fade-end {
+    right: 0;
+    mask-image: linear-gradient(to left, #000f, #0000);
   }
 
   &__border {
+    position: relative;
     height: 1px;
     background-color: var(--color-action-border-onlight-focus);
   }

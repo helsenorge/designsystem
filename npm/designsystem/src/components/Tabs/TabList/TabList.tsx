@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import classNames from 'classnames';
 
 import TabItem from './TabItem';
+import { useIsVisible } from '../../../hooks/useIsVisible';
 import { useRovingFocus } from '../../../hooks/useRovingFocus';
 import { isComponent } from '../../../utils/component';
 import Tab, { TabProps } from '../Tab';
@@ -27,8 +28,38 @@ const TabList: React.FC<TabListProps> = props => {
 
   const tablistClasses = classNames(styles['tab-list'], styles[`tab-list--${onColor}`]);
 
+  const getBackgroundColor = (onColor: TabsOnColor): string => {
+    switch (onColor) {
+      case 'onwhite':
+        return 'var(--color-base-background-white)';
+      case 'onblueberry':
+        return 'var(--color-base-background-blueberry)';
+      case 'onneutral':
+        return 'var(--color-base-background-neutral)';
+    }
+  };
+
+  const shouldShowFadeStart = (): boolean => {
+    const firstTab = tabRefs.current && tabRefs.current[0];
+    const tabVisible = firstTab ? useIsVisible(firstTab) : true;
+    return !tabVisible;
+  };
+
+  const shouldShowFadeEnd = (): boolean => {
+    const lastTab = tabRefs.current && tabRefs.current[tabRefs.current.length - 1];
+    const tabVisible = lastTab ? useIsVisible(lastTab) : true;
+    return !tabVisible;
+  };
+
   return (
-    <>
+    <div>
+      <div
+        className={classNames(styles['tab-list__fade-start'])}
+        style={{
+          display: shouldShowFadeStart() ? 'block' : 'none',
+          backgroundColor: `${getBackgroundColor(onColor)}`,
+        }}
+      ></div>
       <ul className={tablistClasses} ref={listRef} role="tablist" aria-orientation="horizontal">
         {React.Children.map(children, (child, index) => {
           if (isComponent<TabProps>(child, Tab)) {
@@ -47,8 +78,15 @@ const TabList: React.FC<TabListProps> = props => {
           return null;
         })}
       </ul>
+      <div
+        className={classNames(styles['tab-list__fade-end'])}
+        style={{
+          display: shouldShowFadeEnd() ? 'block' : 'none',
+          backgroundColor: `${getBackgroundColor(onColor)}`,
+        }}
+      ></div>
       <div className={classNames(styles['tab-list__border'])}></div>
-    </>
+    </div>
   );
 };
 
