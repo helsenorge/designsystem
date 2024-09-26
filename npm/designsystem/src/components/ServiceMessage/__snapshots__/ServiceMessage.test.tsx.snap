@@ -25,6 +25,7 @@ exports[`Gitt at ServiceMessage skal vises > Når komponenten vises med default 
               <svg
                 aria-hidden="true"
                 class="hnds-style-icon"
+                color="#A31F0E"
                 data-analyticsid="icon"
                 fill="#A31F0E"
                 focusable="false"
@@ -59,6 +60,7 @@ exports[`Gitt at ServiceMessage skal vises > Når komponenten vises med default 
                 <svg
                   aria-hidden="true"
                   class="hnds-style-icon"
+                  color="#126F87"
                   data-analyticsid="icon"
                   fill="#126F87"
                   focusable="false"

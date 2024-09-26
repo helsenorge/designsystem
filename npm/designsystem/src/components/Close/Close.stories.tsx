@@ -2,9 +2,9 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Close from './Close';
-import Docs from '../../docs';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Close',
@@ -19,8 +19,7 @@ const meta = {
     },
   },
   args: {
-    ariaLabel: '',
-    testId: '',
+    ariaLabel: 'Lukk',
   },
   argTypes: {
     ariaLabel: {

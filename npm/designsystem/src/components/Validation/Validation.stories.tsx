@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import { FormSize } from '../../constants';
-import Docs from '../../docs';
-import FormExample, { FormExampleVariants } from '../FormExample/FormExample';
+import FormExample, { FormExampleVariants } from '../../docs/FormExample/FormExample';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Validation',

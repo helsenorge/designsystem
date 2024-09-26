@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Label, { LabelText } from './Label';
 import { Sublabel } from './SubLabel';
 import { IconSize } from '../../constants';
-import Docs from '../../docs';
 import { getColor } from '../../theme/currys';
 import Checkbox from '../Checkbox';
 import Icon from '../Icon';
@@ -116,7 +116,7 @@ export const OnDark: Story = {
     const statusDotId = 'statusdot-testid';
 
     return (
-      <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 600) }}>
+      <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 500) }}>
         <Input
           label={
             <Label

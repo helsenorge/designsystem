@@ -2,9 +2,9 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Panel, { PanelStatus, PanelVariant } from './Panel';
-import Docs from '../../docs';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
@@ -419,6 +419,14 @@ export const Status: Story = {
   render: args => (
     <>
       <Panel status={args.status} statusMessage={args.statusMessage} title={args.title} url={'https://www.helsenorge.no/'} />
+      <br />
+      <Panel
+        status={'new'}
+        statusMessage={'4 nye'}
+        title={'Fullmakt slettet'}
+        url={'https://www.helsenorge.no/'}
+        focusable={args.focusable}
+      />
       <br />
       <Panel
         status={'new'}

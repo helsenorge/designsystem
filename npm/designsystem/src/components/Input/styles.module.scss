@@ -32,12 +32,12 @@
 }
 
 .input-container {
-  @include input-container;
-
   $container: &;
 
   padding: 0.5rem 0;
   align-items: center;
+
+  @include input-container;
 
   &--with-icon {
     padding: 1px 0;

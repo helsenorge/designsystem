@@ -39,12 +39,6 @@
   position: relative;
   font-size: $font-size-sm;
   line-height: $lineheight-size-sm;
-
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: $font-size-md;
-    line-height: $lineheight-size-md;
-  }
-
   display: flex;
   cursor: pointer;
   font-weight: 600;
@@ -57,6 +51,11 @@
   border: 0;
   width: 100%;
   outline: none;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: $font-size-md;
+    line-height: $lineheight-size-md;
+  }
 
   &--banana {
     background-color: $banana100;

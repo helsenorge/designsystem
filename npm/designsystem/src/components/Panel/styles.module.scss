@@ -39,8 +39,6 @@ $layout-md-col-gap: getSpacer(m);
 }
 
 .panel {
-  @include panel-padding;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -48,6 +46,8 @@ $layout-md-col-gap: getSpacer(m);
   position: relative;
   width: 100%;
   box-sizing: border-box;
+
+  @include panel-padding;
 
   &__layout-1,
   &__layout-2,
@@ -194,6 +194,7 @@ $layout-md-col-gap: getSpacer(m);
   &__badge {
     display: inline-block;
     vertical-align: text-bottom;
+    flex-shrink: 0;
   }
 
   &__btn-container {
@@ -347,6 +348,12 @@ $layout-md-col-gap: getSpacer(m);
     &--badge {
       padding-right: getSpacer(2xs);
     }
+  }
+
+  @media (max-width: map.get($grid-max-breakpoints, xs)) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 

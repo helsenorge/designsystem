@@ -8,6 +8,7 @@ exports[`Gitt at Panel skal vises > Gitt at status er draft og statusMessage er 
   <svg
     aria-hidden="true"
     class="hnds-style-icon"
+    color="#000000"
     data-analyticsid="icon"
     fill="#000000"
     focusable="false"
@@ -36,6 +37,7 @@ exports[`Gitt at Panel skal vises > Gitt at status er error og statusMessage er 
   <svg
     aria-hidden="true"
     class="hnds-style-icon"
+    color="#C83521"
     data-analyticsid="icon"
     fill="#C83521"
     focusable="false"

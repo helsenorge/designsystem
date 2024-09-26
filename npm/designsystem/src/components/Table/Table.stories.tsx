@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
-import Docs from '../../docs';
 import { longLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
 import LinkList from '../LinkList';
 import PopMenu from '../PopMenu';
+import Tabs from '../Tabs';
 import { Title } from '../Title';
 
 import {
@@ -201,6 +202,51 @@ export const DefaultResponsiveConfig: Story = {
                 ))}
               </TableBody>
             </Table>
+            <p>{longLoremText}</p>
+          </div>
+        </div>
+      </div>
+    );
+  },
+};
+
+export const TableInTabs: Story = {
+  render: args => {
+    const data = getFastlegeData(SortDirection.asc, '');
+
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-8 offset-lg-2">
+            <Title appearance="title3">
+              {
+                'Config for standard og komplekse tabeller, og tabeller hvor det er er i brukerens interesse å kryss-indeksere eller sammenligne verdier fremfor å bare finne riktig rad.'
+              }
+            </Title>
+            <p>{longLoremText}</p>
+            <Tabs>
+              <Tabs.Tab title="Fastleger" icon={'Calendar'}>
+                <Table {...args} breakpointConfig={defaultConfig}>
+                  <TableHead category={args.headerCategory}>
+                    <TableRow>
+                      <TableHeadCell>Fastlege</TableHeadCell>
+                      <TableHeadCell>Alder</TableHeadCell>
+                      <TableHeadCell>Kjønn</TableHeadCell>
+                      <TableHeadCell>Fastlegekontor</TableHeadCell>
+                      <TableHeadCell>Adresse</TableHeadCell>
+                      <TableHeadCell>Ledige plasser</TableHeadCell>
+                      <TableHeadCell>Antall på venteliste</TableHeadCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {data.map((fastlege, i: number) => (
+                      <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Tabs.Tab>
+              <Tabs.Tab title="Hjelp">{longLoremText}</Tabs.Tab>
+            </Tabs>
             <p>{longLoremText}</p>
           </div>
         </div>

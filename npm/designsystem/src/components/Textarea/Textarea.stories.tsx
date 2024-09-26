@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Textarea from './Textarea';
 import { FormMode } from '../../constants';
-import Docs from '../../docs';
 import Label from '../Label/Label';
 
 const meta = {

@@ -1,3 +1,118 @@
+## [8.5.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.5.0&targetVersion=GTv8.5.1) (2024-09-25)
+
+### Bug Fixes
+
+- progressbar leses opp av skjermlesere
+  ([550e7ac](https://github.com/helsenorge/designsystem/commit/550e7acfbb4687d946f36a7dad9e284614aee6a4)), closes
+  [#328018](https://github.com/helsenorge/designsystem/issues/328018)
+
+## [8.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.4.0&targetVersion=GTv8.5.0) (2024-09-23)
+
+### Features
+
+- nytt komponent toggle ([76f1da5](https://github.com/helsenorge/designsystem/commit/76f1da5c077db4bc62a45007d72f65053e5310cc)), closes
+  [#308151](https://github.com/helsenorge/designsystem/issues/308151)
+
+## [8.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.3.0&targetVersion=GTv8.4.0) (2024-09-13)
+
+### Features
+
+- **radiobutton:** legg til prop for checked og gjør komponenten controlled
+  ([1c8ae22](https://github.com/helsenorge/designsystem/commit/1c8ae22e0f5d138f308a00ca29212ed04313ba9a)), closes
+  [#331953](https://github.com/helsenorge/designsystem/issues/331953)
+
+## [8.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.2.1&targetVersion=GTv8.3.0) (2024-09-09)
+
+### Features
+
+- statusdot oppdaterer utseende ([18927ec](https://github.com/helsenorge/designsystem/commit/18927ec1e9a6ca18eb0f528798d17f2e4edaa4e0)),
+  closes [#328986](https://github.com/helsenorge/designsystem/issues/328986)
+- **datepicker:** ny prop onDatePickerClosed
+  ([11c1f3b](https://github.com/helsenorge/designsystem/commit/11c1f3b5dd8e186793d9e057385450385a1814ec)), closes
+  [#329586](https://github.com/helsenorge/designsystem/issues/329586)
+
+### Bug Fixes
+
+- **datepicker:** datevalue fungerer for mobil
+  ([7202ba8](https://github.com/helsenorge/designsystem/commit/7202ba8dca1f6101ed7987fd947b9e58824946db)), closes
+  [#331620](https://github.com/helsenorge/designsystem/issues/331620)
+- **datepicker:** onblur skjer riktig uten focuseddatepickerpopup
+  ([e1662ed](https://github.com/helsenorge/designsystem/commit/e1662edbb486340352e9012c1ba8aeae43dca27e)), closes
+  [#329586](https://github.com/helsenorge/designsystem/issues/329586)
+- **datepicker:** popup valg trigger onblur
+  ([6d886cb](https://github.com/helsenorge/designsystem/commit/6d886cbc3bcfe9b97c0247389ca0238f29dd9f0a)), closes
+  [#329586](https://github.com/helsenorge/designsystem/issues/329586)
+- **designsystem:** badge i panel vises til høyre på mobil
+  ([2b6d63e](https://github.com/helsenorge/designsystem/commit/2b6d63e1a36d63ad41159fb637f896636ae58672)), closes
+  [#329338](https://github.com/helsenorge/designsystem/issues/329338)
+
+## [8.2.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.2.0&targetVersion=GTv8.2.1) (2024-08-28)
+
+## [8.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.1.1&targetVersion=GTv8.2.0) (2024-08-28)
+
+### Features
+
+- nye ikoner ([f142728](https://github.com/helsenorge/designsystem/commit/f142728c1eb29c0742cfdddad183d116ca801537)), closes
+  [#330973](https://github.com/helsenorge/designsystem/issues/330973)
+
+### Bug Fixes
+
+- datovelger fungerer med klikk på dato i popup
+  ([897302c](https://github.com/helsenorge/designsystem/commit/897302cd9cf4de3d1bea911e14ad8760d9401d41)), closes
+  [#326414](https://github.com/helsenorge/designsystem/issues/326414)
+- expander large spacing matcher expander-list
+  ([724f3ca](https://github.com/helsenorge/designsystem/commit/724f3cac605dbbe3bece97d93ee88524e8263411)), closes
+  [#326162](https://github.com/helsenorge/designsystem/issues/326162)
+- useFocusableElements lytter bare på relevante DOM-endringer
+  ([375303f](https://github.com/helsenorge/designsystem/commit/375303f1d20490c2d37f2cc997e4730cbee763b5)), closes
+  [#328890](https://github.com/helsenorge/designsystem/issues/328890)
+
+## [8.1.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.1.0&targetVersion=GTv8.1.1) (2024-08-26)
+
+### Bug Fixes
+
+- datepicker lukker seg når man klikker til høyre for inputfeltet
+  ([7b891fe](https://github.com/helsenorge/designsystem/commit/7b891fed2d21bb8a79e3c5c09f7e3078eac67cdf)), closes
+  [#326414](https://github.com/helsenorge/designsystem/issues/326414)
+- loader med overlay har alltid hvit farge
+  ([cdf94b3](https://github.com/helsenorge/designsystem/commit/cdf94b3431f78f48e33839a39f18dbf6d92347b8)), closes
+  [#328887](https://github.com/helsenorge/designsystem/issues/328887)
+- modal er tilgjengelig med tastatur mens den er scrollbar
+  ([80db1df](https://github.com/helsenorge/designsystem/commit/80db1df9bd319c5979385f669510d1539c1581a5)), closes
+  [#328890](https://github.com/helsenorge/designsystem/issues/328890)
+- **datepicker:** undefined datevalue fjerner dato og rerendrer riktig
+  ([b1d56a8](https://github.com/helsenorge/designsystem/commit/b1d56a844148f58e171eb424cc0593478922a8e2)), closes
+  [#330144](https://github.com/helsenorge/designsystem/issues/330144)
+
+## [8.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.0.2&targetVersion=GTv8.1.0) (2024-08-23)
+
+### Features
+
+- mulig å skru av swiping i tabs ([45aac8f](https://github.com/helsenorge/designsystem/commit/45aac8f7358e77fe85467d826b54c052b01b3086)),
+  closes [#330586](https://github.com/helsenorge/designsystem/issues/330586)
+
+### Bug Fixes
+
+- table kan brukes i tabs uten problemer med scrolling på mobil
+  ([d28a280](https://github.com/helsenorge/designsystem/commit/d28a280d4afe56227a331334348d91aac5be6281)), closes
+  [#330555](https://github.com/helsenorge/designsystem/issues/330555)
+- unngå blinking i tabs på mobil når man scroller
+  ([2bddf20](https://github.com/helsenorge/designsystem/commit/2bddf2017f1067ba1b17473006b2103de630054e)), closes
+  [#330597](https://github.com/helsenorge/designsystem/issues/330597)
+- validationsummary er ikke labelled by ikke-eksisterende element
+  ([3ac0b88](https://github.com/helsenorge/designsystem/commit/3ac0b8822820ad47ac635da95b7d7377481f2f33)), closes
+  [#328895](https://github.com/helsenorge/designsystem/issues/328895)
+
+## [8.0.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.0.1&targetVersion=GTv8.0.2) (2024-08-22)
+
+### Bug Fixes
+
+- lightbox uu forbedringer ([8026ee9](https://github.com/helsenorge/designsystem/commit/8026ee9fc1acb94cd1b9e9d12ff1a190beca31d3)), closes
+  [#329075](https://github.com/helsenorge/designsystem/issues/329075)
+- radiobutton-scss bygger når designsystem tas i bruk
+  ([867b0ec](https://github.com/helsenorge/designsystem/commit/867b0ec36002ed16fda4f7e6dae07bad4b805c46)), closes
+  [#330427](https://github.com/helsenorge/designsystem/issues/330427)
+
 ## [8.0.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.0.0&targetVersion=GTv8.0.1) (2024-08-15)
 
 ## 8.0.0-beta.6 (2024-08-15)

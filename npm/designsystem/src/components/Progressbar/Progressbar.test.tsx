@@ -16,8 +16,8 @@ describe('Gitt at Progressbar skal vises', (): void => {
       const progressbar = screen.getByRole('progressbar');
       expect(progressbar).toHaveAttribute('aria-valuenow', '50');
 
-      const progressText = screen.queryByText('50%');
-      expect(progressText).toBeInTheDocument();
+      const progressText = screen.queryAllByText('50%');
+      expect(progressText.length).toBe(2);
     });
 
     test('Så oppdaterer den når value endrer seg', () => {
@@ -34,8 +34,8 @@ describe('Gitt at Progressbar skal vises', (): void => {
       const progressbar = screen.getByRole('progressbar');
       expect(progressbar).toHaveAttribute('aria-valuenow', '0');
 
-      const progress = screen.getByText('0%');
-      expect(progress).toBeInTheDocument();
+      const progress = screen.getAllByText('0%');
+      expect(progress.length).toBe(2);
     });
 
     test('Så har den en maksimumsverdi på 100', () => {
@@ -52,18 +52,18 @@ describe('Gitt at Progressbar skal vises', (): void => {
   });
 
   describe('Når size er small', () => {
-    test('Så vises ikke teksten i ProgressBar', () => {
+    test('Så finnes bare sr-only ikke tekst i ProgressBar', () => {
       render(<Progressbar value={10} size={ProgressbarSize.small} />);
       const progress = screen.queryByText('10%');
-      expect(progress).not.toBeInTheDocument();
+      expect(progress).toHaveClass('progressbar__sr-only-text');
     });
   });
 
   describe('Når size er medium', () => {
-    test('Så vises ikke teksten i ProgressBar', () => {
+    test('Så finnes bare sr-only teksten i ProgressBar', () => {
       render(<Progressbar value={10} size={ProgressbarSize.medium} />);
       const progress = screen.queryByText('10%');
-      expect(progress).not.toBeInTheDocument();
+      expect(progress).toHaveClass('progressbar__sr-only-text');
     });
   });
 });

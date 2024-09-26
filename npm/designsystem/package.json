@@ -2,7 +2,7 @@
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
   "private": false,
-  "version": "8.0.1",
+  "version": "8.5.1",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -52,6 +52,9 @@
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
+  "dependencies": {
+    "framer-motion": "^11.5.4"
+  },
   "devDependencies": {
     "@rollup/plugin-replace": "^5.0.7",
     "@storybook/addon-a11y": "^8.2.9",
@@ -63,10 +66,10 @@
     "@storybook/addon-viewport": "^8.2.9",
     "@storybook/react": "^8.2.9",
     "@storybook/react-vite": "^8.2.9",
-    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-istanbul": "^2.0.5",
@@ -74,23 +77,25 @@
     "bootstrap": "^4.6.2",
     "classnames": "^2.5.1",
     "copyfiles": "^2.4.1",
-    "glob": "^10.4.5",
+    "frankenstein-build-tools": "^8.5.1",
+    "glob": "^11.0.0",
     "jest-when": "^3.6.0",
-    "jsdom": "^24.1.1",
+    "jsdom": "^25.0.0",
     "normalize.css": "^8.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-hook-form": "^7.52.2",
+    "react-hook-form": "^7.53.0",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-visualizer": "^5.12.0",
     "sass": "^1.77.8",
     "storybook": "^8.2.9",
-    "style-dictionary": "^3.9.2",
+    "style-dictionary": "^4.0.1",
     "token-transformer": "^0.0.33",
     "typed-scss-modules": "^8.0.1",
     "typescript": "~5.5.4",
-    "vite": "^5.4.0",
+    "vite": "^5.4.2",
     "vitest": "^2.0.5"
   }
 }

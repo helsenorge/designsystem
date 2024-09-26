@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import LazyIcon from './LazyIcon';
 import { IconSize } from '../../constants';
-import Docs from '../../docs';
 import { useHover } from '../../hooks/useHover';
 import { shortLoremText } from '../../utils/loremtext';
 

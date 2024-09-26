@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Tab from './Tab';
 import Tabs from './Tabs';
-import Docs from '../../docs';
-import longLoremText, { mediumLoremText } from '../../utils/loremtext';
+import longLoremText, { mediumLoremText, shortLoremText } from '../../utils/loremtext';
 import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
 import PopOver from '../PopOver/PopOver';
@@ -28,6 +28,7 @@ const meta = {
     color: 'white',
     type: 'normal',
     sticky: true,
+    touchBehaviour: 'swipe',
   },
   argTypes: {
     color: {
@@ -42,7 +43,7 @@ const meta = {
     type: {
       control: 'select',
       options: ['normal', 'framed'],
-      describtion: 'Sets the visual type of the tabs. Default: normal',
+      description: 'Sets the visual type of the tabs. Default: normal',
     },
     activeTab: {
       control: 'number',
@@ -51,6 +52,10 @@ const meta = {
     sticky: {
       control: 'boolean',
       description: 'Whether the tab list should be sticky',
+    },
+    touchBehaviour: {
+      control: 'select',
+      options: ['swipe', 'none'],
     },
   },
 } satisfies Meta<typeof Tabs>;
@@ -63,9 +68,9 @@ export const Default: Story = {
   args: {},
   render: args => (
     <Tabs {...args}>
-      <Tabs.Tab title="Vaksinasjon">{'Innhold i fane om vaksinasjoner kommer her'}</Tabs.Tab>
-      <Tabs.Tab title="Prøvesvar">{'Her finner man litt prøvesvar'}</Tabs.Tab>
-      <Tabs.Tab title="Helserelaterte spørsmål">{'Fane om helserelaterte spørsmål kommer her'}</Tabs.Tab>
+      <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
+      <Tabs.Tab title="Prøvesvar">{mediumLoremText}</Tabs.Tab>
+      <Tabs.Tab title="Helserelaterte spørsmål">{shortLoremText}</Tabs.Tab>
     </Tabs>
   ),
 };
@@ -74,13 +79,13 @@ export const WithIcon: Story = {
   render: args => (
     <Tabs {...args}>
       <Tabs.Tab title="Vaksinasjon" icon={'Calendar'}>
-        {''}
+        {longLoremText}
       </Tabs.Tab>
       <Tabs.Tab title="Prøvesvar" icon={'Calendar'}>
-        {''}
+        {mediumLoremText}
       </Tabs.Tab>
       <Tabs.Tab title="Helserelaterte spørsmål" icon={'Calendar'}>
-        {''}
+        {shortLoremText}
       </Tabs.Tab>
     </Tabs>
   ),
@@ -90,39 +95,21 @@ export const Framed: Story = {
   render: args => (
     <>
       <Tabs {...args} color="white" type="framed">
-        <Tabs.Tab title="Vaksinasjon">
-          <div style={{ height: '200px' }}>{''}</div>
-        </Tabs.Tab>
-        <Tabs.Tab title="Helserelaterte spørsmål">
-          <div style={{ height: '200px' }}>{''}</div>
-        </Tabs.Tab>
-        <Tabs.Tab title="Prøvesvar">
-          <div style={{ height: '200px' }}>{''}</div>
-        </Tabs.Tab>
+        <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Helserelaterte spørsmål">{mediumLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Prøvesvar">{shortLoremText}</Tabs.Tab>
       </Tabs>
       <br />
       <Tabs {...args} color="neutral" type="framed">
-        <Tabs.Tab title="Vaksinasjon">
-          <div style={{ height: '200px' }}>{''}</div>
-        </Tabs.Tab>
-        <Tabs.Tab title="Helserelaterte spørsmål">
-          <div style={{ height: '200px' }}>{''}</div>
-        </Tabs.Tab>
-        <Tabs.Tab title="Prøvesvar">
-          <div style={{ height: '200px' }}>{''}</div>
-        </Tabs.Tab>
+        <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Helserelaterte spørsmål">{mediumLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Prøvesvar">{shortLoremText}</Tabs.Tab>
       </Tabs>
       <br />
       <Tabs {...args} color="blueberry" type="framed">
-        <Tabs.Tab title="Vaksinasjon">
-          <div style={{ height: '200px' }}>{''}</div>
-        </Tabs.Tab>
-        <Tabs.Tab title="Helserelaterte spørsmål">
-          <div style={{ height: '200px' }}>{''}</div>
-        </Tabs.Tab>
-        <Tabs.Tab title="Prøvesvar">
-          <div style={{ height: '200px' }}>{''}</div>
-        </Tabs.Tab>
+        <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Helserelaterte spørsmål">{mediumLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Prøvesvar">{shortLoremText}</Tabs.Tab>
       </Tabs>
     </>
   ),
@@ -132,21 +119,21 @@ export const Colors: Story = {
   render: args => (
     <>
       <Tabs {...args} color="white">
-        <Tabs.Tab title="Vaksinasjon"></Tabs.Tab>
-        <Tabs.Tab title="Helserelaterte spørsmål"></Tabs.Tab>
-        <Tabs.Tab title="Prøvesvar"></Tabs.Tab>
+        <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Helserelaterte spørsmål">{mediumLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Prøvesvar">{shortLoremText}</Tabs.Tab>
       </Tabs>
       <br />
       <Tabs {...args} color="neutral">
-        <Tabs.Tab title="Vaksinasjon"></Tabs.Tab>
-        <Tabs.Tab title="Helserelaterte spørsmål"></Tabs.Tab>
-        <Tabs.Tab title="Prøvesvar"></Tabs.Tab>
+        <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Helserelaterte spørsmål">{mediumLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Prøvesvar">{shortLoremText}</Tabs.Tab>
       </Tabs>
       <br />
       <Tabs {...args} color="blueberry">
-        <Tabs.Tab title="Vaksinasjon"></Tabs.Tab>
-        <Tabs.Tab title="Helserelaterte spørsmål"></Tabs.Tab>
-        <Tabs.Tab title="Prøvesvar"></Tabs.Tab>
+        <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Helserelaterte spørsmål">{mediumLoremText}</Tabs.Tab>
+        <Tabs.Tab title="Prøvesvar">{shortLoremText}</Tabs.Tab>
       </Tabs>
     </>
   ),

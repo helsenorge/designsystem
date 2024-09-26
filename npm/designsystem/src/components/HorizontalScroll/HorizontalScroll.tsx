@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useSize } from '../../hooks/useSize';
+import { useStopPropagation } from '../../hooks/usestopPropagation';
 import { AriaLabelAttributes } from '../../utils/accessibility';
 
 import styles from './styles.module.scss';
@@ -32,6 +33,8 @@ export const HorizontalScroll: React.FC<HorizontalScrollProps & AriaLabelAttribu
   const isOverflowing = childWidth > viewPortWidth;
   const viewportClasses = classNames(styles.horizontalscroll__viewport, isOverflowing && styles['horizontalscroll__viewport--overflow']);
   const hasAriaAttributes = rest['aria-label'] || rest['aria-labelledby'];
+
+  useStopPropagation(viewportRef, ['touchstart', 'touchmove']);
 
   return (
     <div className={styles.horizontalscroll} data-testid={testId}>

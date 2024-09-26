@@ -76,15 +76,6 @@ export interface ModalProps {
   disableCloseEvents?: boolean;
 }
 
-const defaultProps = {
-  variant: ModalVariants.normal,
-  primaryButtonText: 'OK',
-  titleId: uuid(),
-  className: '',
-  size: ModalSize.large,
-  zIndex: ZIndex.Modal,
-};
-
 const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => {
   if (variant === ModalVariants.error) {
     return <Icon size={IconSize.Small} svgIcon={AlertSignFill} color={palette.cherry500} />;
@@ -113,7 +104,16 @@ const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): JS
   return null;
 };
 
-const Modal = (props: ModalProps): JSX.Element => {
+const Modal: React.FC<ModalProps> = props => {
+  const {
+    variant = ModalVariants.normal,
+    primaryButtonText = 'OK',
+    titleId = uuid(),
+    className = '',
+    size = ModalSize.large,
+    zIndex = ZIndex.Modal,
+  } = props;
+
   const topContent = React.useRef<HTMLDivElement>(null);
   const modalContentRef = React.useRef<HTMLDivElement>(null);
   const dialogRef = React.useRef<HTMLDivElement>(null);
@@ -146,7 +146,7 @@ const Modal = (props: ModalProps): JSX.Element => {
   }
 
   /* Displays a full window size modal with image */
-  const imageView = props.variant === ModalVariants.image;
+  const imageView = variant === ModalVariants.image;
 
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -154,7 +154,7 @@ const Modal = (props: ModalProps): JSX.Element => {
 
   // ariaLabelledBy prioriteres over ariaLabel, men dersom ariaLabel brukes trengs ikke ariaLabelledBy
   const ariaLabel = !props.ariaLabelledBy ? props.ariaLabel : undefined;
-  const ariaLabelledBy = props.ariaLabelledBy ? props.ariaLabelledBy : !props.ariaLabel ? props.titleId : undefined;
+  const ariaLabelledBy = props.ariaLabelledBy ? props.ariaLabelledBy : !props.ariaLabel ? titleId : undefined;
 
   useEffect(() => {
     const overlayElement = overlayRef.current;
@@ -177,16 +177,16 @@ const Modal = (props: ModalProps): JSX.Element => {
   }, []);
 
   const dialogClasses = cn(
-    props.className,
+    className,
     styles.modal,
-    props.variant && styles[`modal--${props.variant}`],
-    props.size && styles[`modal--${props.size}`],
+    variant && styles[`modal--${variant}`],
+    size && styles[`modal--${size}`],
     contentIsScrollable && !showActions && styles['modal--no-actions']
   );
 
   const titleClasses = cn({
-    [styles['modal__title--error']]: props.variant === ModalVariants.error,
-    [styles['modal__title--success']]: props.variant === ModalVariants.success,
+    [styles['modal__title--error']]: variant === ModalVariants.error,
+    [styles['modal__title--success']]: variant === ModalVariants.success,
   });
 
   const Component = (
@@ -196,7 +196,7 @@ const Modal = (props: ModalProps): JSX.Element => {
         className={styles['modal-overlay']}
         data-testid={props.testId}
         data-analyticsid={AnalyticsId.Modal}
-        style={{ zIndex: props.zIndex }}
+        style={{ zIndex }}
       >
         <div className={styles.align}>
           <div
@@ -217,6 +217,10 @@ const Modal = (props: ModalProps): JSX.Element => {
               className={cn(styles.modal__contentWrapper, {
                 [styles['modal__contentWrapper--image']]: imageView,
               })}
+              tabIndex={contentIsScrollable ? 0 : undefined}
+              role={contentIsScrollable ? 'region' : undefined}
+              aria-label={contentIsScrollable ? ariaLabel : undefined}
+              aria-labelledby={contentIsScrollable ? ariaLabelledBy : undefined}
               ref={modalContentRef}
             >
               {!props.noCloseButton && (
@@ -227,13 +231,13 @@ const Modal = (props: ModalProps): JSX.Element => {
                 </div>
               )}
               <div
-                className={cn(props.size && styles[`modal__contentWrapper__scroll--${props.size}`], {
+                className={cn(size && styles[`modal__contentWrapper__scroll--${size}`], {
                   [styles['modal__contentWrapper__scroll--image']]: imageView,
                 })}
               >
                 <div ref={topContent} />
                 <div className={styles.modal__contentWrapper__title}>
-                  {getIcon(props.variant, props.icon)}
+                  {getIcon(variant, props.icon)}
                   <Title id={ariaLabelledBy} htmlMarkup="h3" appearance="title3" className={titleClasses}>
                     {props.title}
                   </Title>
@@ -256,8 +260,8 @@ const Modal = (props: ModalProps): JSX.Element => {
               })}
             />
             {showActions && (
-              <div className={cn(styles['modal__call-to-action'], props.size && styles[`modal__call-to-action--${props.size}`])}>
-                {props.onSuccess && <Button onClick={props.onSuccess}>{props.primaryButtonText}</Button>}
+              <div className={cn(styles['modal__call-to-action'], size && styles[`modal__call-to-action--${size}`])}>
+                {props.onSuccess && <Button onClick={props.onSuccess}>{primaryButtonText}</Button>}
                 {props.secondaryButtonText && props.secondaryButtonText?.length > 0 && (
                   <Button variant="borderless" onClick={props.onClose}>
                     {props.secondaryButtonText}
@@ -283,7 +287,5 @@ const Modal = (props: ModalProps): JSX.Element => {
 
   return Component;
 };
-
-Modal.defaultProps = defaultProps;
 
 export default Modal;

@@ -12,12 +12,12 @@ $status-dot-size: 0.937rem;
   display: inline-flex;
   align-items: flex-start;
   font-size: $font-size-xs;
-  line-height: $lineheight-size-xs;
+  line-height: 1.4rem;
   font-weight: 400;
 
   @media (min-width: map.get($grid-breakpoints, sm)) {
     font-size: $font-size-sm;
-    line-height: $lineheight-size-sm;
+    line-height: 1.6rem;
   }
 
   &--cancelled {
@@ -25,24 +25,27 @@ $status-dot-size: 0.937rem;
   }
 
   &__dot {
-    top: getSpacer(3xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: getSpacer(4xs);
     margin-right: getSpacer(2xs);
     border-radius: 10rem;
-    margin-top: 0.28rem;
+    width: $status-dot-size;
+    height: $status-dot-size;
+    min-width: $status-dot-size;
+    min-height: $status-dot-size;
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
-      margin-top: 0.45rem;
-    }
-
-    &:not(#{&}--icon) {
-      width: $status-dot-size;
-      height: $status-dot-size;
-      min-width: $status-dot-size;
-      min-height: $status-dot-size;
+      top: getSpacer(3xs);
     }
 
     &--info {
       background: $kiwi900;
+    }
+    &--info#{&}--on-dark {
+      background: $kiwi400;
     }
 
     &--warning {
@@ -53,26 +56,34 @@ $status-dot-size: 0.937rem;
     &--cancelled {
       background: $cherry500;
     }
+    &--alert#{&}--on-dark {
+      background: $cherry300;
+    }
+    &--cancelled#{&}--on-dark {
+      outline: 2px solid $white;
+    }
 
     &--active {
       background: $blueberry500;
+    }
+    &--active#{&}--on-dark {
+      background: $blueberry300;
     }
 
     &--transparent {
       border: 2px solid $neutral600;
     }
+    &--transparent#{&}--on-dark {
+      border: none;
+      background: $white;
+    }
 
-    &--icon {
+    svg {
       position: absolute;
-      margin: getSpacer(4xs) * -1 0 0 getSpacer(3xs) * -1;
     }
   }
 
   &__label {
-    &--icon {
-      margin-left: getSpacer(m);
-    }
-
     &--on-dark {
       color: $white;
     }

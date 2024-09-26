@@ -2,8 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, IconSize } from '../../constants';
+import { AnalyticsId, FormMode, IconSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
+import { StatusDotModes } from '../StatusDot';
 
 export type SvgIcon = React.FC<SvgPathProps>;
 
@@ -20,6 +21,8 @@ export interface BaseIconProps {
   className?: string;
   /* Swaps the displayed icon to the hover version and changes its color. */
   isHovered?: boolean;
+  /** Defines the color of the icon */
+  mode?: keyof typeof FormMode | StatusDotModes;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -32,6 +35,7 @@ export interface IconProps extends BaseIconProps {
 export interface SvgPathProps {
   size: IconSize;
   isHovered: boolean;
+  mode?: keyof typeof FormMode | StatusDotModes;
 }
 
 interface IconConfig {
@@ -74,6 +78,7 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
     color = 'black',
     hoverColor = color || 'black',
     isHovered = false,
+    mode,
     testId,
     ...other
   } = props;
@@ -81,9 +86,11 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
   const svgRaw = React.createElement(svgIcon, {
     size,
     isHovered,
+    mode,
   });
 
   const titleId = useUuid();
+  const svgColor = isHovered ? hoverColor : color;
 
   return (
     <svg
@@ -99,7 +106,8 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
       style={{ minWidth: size, minHeight: size }}
       width={size}
       height={size}
-      fill={isHovered ? hoverColor : color}
+      fill={svgColor}
+      color={svgColor}
       {...other}
     >
       {ariaLabel && <title id={titleId}>{ariaLabel}</title>}

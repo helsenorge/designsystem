@@ -3,19 +3,19 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { IconSize } from '../..';
-import { AnalyticsId } from '../../constants';
+import { AnalyticsId, FormMode } from '../../constants';
 import { getColor } from '../../theme/currys';
 import { Icon } from '../Icon';
 import Attachment from '../Icons/Attachment';
+import Change from '../Icons/Change';
 import Group from '../Icons/Group';
 import NoAccess from '../Icons/NoAccess';
-import Undo from '../Icons/Undo';
 
 import styles from './styles.module.scss';
 
 export enum StatusDotModes {
-  onwhite = 'onwhite',
-  ondark = 'ondark',
+  onwhite = FormMode.onwhite,
+  ondark = FormMode.ondark,
 }
 
 export enum StatusDotVariant {
@@ -32,19 +32,24 @@ export enum StatusDotVariant {
 }
 
 export interface StatusDotIconProps {
+  /** Defines the color of the icon */
+  mode?: keyof typeof StatusDotModes;
   /** The variant defines style formatting and what icon to use */
   variant?: keyof typeof StatusDotVariant;
 }
 
-const StatusDotIcon: React.FC<StatusDotIconProps> = ({ variant }) => {
+const StatusDotIcon: React.FC<StatusDotIconProps> = ({ mode, variant }) => {
+  const color = mode === StatusDotModes.ondark ? getColor('white') : getColor('black');
+  const iconProps = { color, size: IconSize.XXSmall, mode };
+
   if (variant === StatusDotVariant.recurring) {
-    return <Icon size={IconSize.XXSmall} svgIcon={Undo} />;
+    return <Icon {...iconProps} svgIcon={Change} />;
   } else if (variant === StatusDotVariant.group) {
-    return <Icon size={IconSize.XXSmall} svgIcon={Group} />;
+    return <Icon {...iconProps} svgIcon={Group} />;
   } else if (variant === StatusDotVariant.noaccess) {
-    return <Icon size={IconSize.XXSmall} svgIcon={NoAccess} color={getColor('cherry', 600)} />;
+    return <Icon {...iconProps} svgIcon={NoAccess} color={getColor('cherry', 600)} />;
   } else if (variant === StatusDotVariant.attachment) {
-    return <Icon size={IconSize.XXSmall} svgIcon={Attachment} />;
+    return <Icon {...iconProps} svgIcon={Attachment} />;
   }
 
   return null;
@@ -77,16 +82,16 @@ const StatusDot: React.FC<StatusDotProps> = props => {
   const isCancelled = variant === StatusDotVariant.cancelled;
 
   const statusDotClasses = classNames(styles['statusdot'], isCancelled && styles['statusdot--cancelled'], className);
-  const dotClasses = classNames(styles['statusdot__dot'], hasIcon ? styles[`statusdot__dot--icon`] : styles[`statusdot__dot--${variant}`]);
-  const labelClasses = classNames(
-    hasIcon && styles['statusdot__label--icon'],
-    mode === StatusDotModes.ondark && styles['statusdot__label--on-dark']
-  );
+  const dotClasses = classNames(styles['statusdot__dot'], {
+    ...(hasIcon ? {} : { [styles[`statusdot__dot--${variant}`]]: true }),
+    [styles['statusdot__dot--on-dark']]: mode === StatusDotModes.ondark,
+  });
+  const labelClasses = classNames(mode === StatusDotModes.ondark && styles['statusdot__label--on-dark']);
 
   return (
     <span id={id} className={statusDotClasses} data-testid={testId} data-analyticsid={AnalyticsId.StatusDot}>
       <span className={dotClasses}>
-        <StatusDotIcon variant={variant} />
+        <StatusDotIcon mode={mode} variant={variant} />
       </span>
       <span className={labelClasses}>{text}</span>
     </span>

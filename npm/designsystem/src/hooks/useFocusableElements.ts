@@ -23,4 +23,4 @@ export const FOCUSABLE_SELECTORS = [
  * @returns Liste med fokuserbare HTML-elementer
  */
 export const useFocusableElements = (ref: React.RefObject<HTMLElement>): NodeListOf<HTMLElement> | undefined =>
-  useElementList(ref, FOCUSABLE_SELECTORS);
+  useElementList(ref, FOCUSABLE_SELECTORS, { attributeFilter: ['href', 'tabindex', 'type', 'disabled', 'controls', 'contenteditable'] });

@@ -9,6 +9,7 @@ exports[`Gitt at NotificationPanel skal vises > Når bruker ser compact-variant 
     <svg
       aria-hidden="true"
       class="hnds-style-icon notification-panel__icon"
+      color="#08667C"
       data-analyticsid="icon"
       fill="#08667C"
       focusable="false"
@@ -45,6 +46,7 @@ exports[`Gitt at NotificationPanel skal vises > Når bruker ser compact-variant 
     <svg
       aria-hidden="true"
       class="hnds-style-icon notification-panel__icon"
+      color="#08667C"
       data-analyticsid="icon"
       fill="#08667C"
       focusable="false"
@@ -86,6 +88,7 @@ exports[`Gitt at NotificationPanel skal vises > Når panelet kan lukkes > Så ka
     <svg
       aria-hidden="true"
       class="hnds-style-icon notification-panel__icon"
+      color="#08667C"
       data-analyticsid="icon"
       fill="#08667C"
       focusable="false"
@@ -111,6 +114,7 @@ exports[`Gitt at NotificationPanel skal vises > Når panelet kan lukkes > Så ka
         <svg
           aria-hidden="true"
           class="hnds-style-icon"
+          color="#000000"
           data-analyticsid="icon"
           fill="#000000"
           focusable="false"
@@ -149,6 +153,7 @@ exports[`Gitt at NotificationPanel skal vises > Når panelet vises med default p
     <svg
       aria-hidden="true"
       class="hnds-style-icon notification-panel__icon"
+      color="#08667C"
       data-analyticsid="icon"
       fill="#08667C"
       focusable="false"

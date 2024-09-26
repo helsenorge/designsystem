@@ -3,7 +3,7 @@ import React from 'react';
 import { theme } from '../src/theme';
 import { breakpoints } from '../src/theme/grid';
 import { Preview } from '@storybook/react';
-import GridExample from '../src/components/GridExample';
+import GridExample from '../src/docs/GridExample';
 import '../src/scss/helsenorge.scss';
 
 const placeholder = '#4A412A';

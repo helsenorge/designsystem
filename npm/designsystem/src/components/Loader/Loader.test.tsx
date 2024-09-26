@@ -43,7 +43,7 @@ describe('Gitt at en loader skal vises ', (): void => {
 
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
       expect(loaderDotsWrapper).toHaveAttribute('aria-labelledby', 'test');
-      expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--small loader__dot--black');
+      expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--small loader__dot--white');
 
       const parent = screen.getByTestId('parent-wrapper');
       expect(parent).not.toHaveStyle('position: relative');

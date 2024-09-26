@@ -16,7 +16,7 @@ export enum Overlay {
 }
 
 export interface LoaderProps {
-  /** Sets the color of the loader */
+  /** Sets the color of the loader. If overlay is used, the color will always be white.  */
   color?: LoaderColors;
   /**	Adds custom classes to the element. */
   className?: string;
@@ -32,16 +32,15 @@ export interface LoaderProps {
   inline?: boolean;
   /** Loader is displayed with grey background covering the entire screen */
   overlay?: keyof typeof Overlay;
-  /**  Individual id for loading icon (aria-labelledby).  */
+  /** Individual id for loading icon (aria-labelledby).  */
   ariaLabelledById?: string;
-  /**  String that labels the current loading element  */
+  /** String that labels the current loading element  */
   ariaLabel?: string;
 }
 
 const Loader: React.FC<LoaderProps> = props => {
   const {
     overlay,
-    color = overlay ? 'black' : 'neutral',
     size = 'small',
     className = '',
     labelId = uuid(),
@@ -51,6 +50,7 @@ const Loader: React.FC<LoaderProps> = props => {
     ariaLabelledById,
     ariaLabel = 'Laster inn',
   } = props;
+  const color = props.overlay ? 'white' : props.color || 'neutral';
 
   const showLoader = (): boolean => {
     if (overlay === Overlay.parent || inline) {

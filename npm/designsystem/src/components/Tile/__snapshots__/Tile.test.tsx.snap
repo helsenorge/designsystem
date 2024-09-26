@@ -12,6 +12,7 @@ exports[`displays tile 1`] = `
       <svg
         aria-hidden="true"
         class="hnds-style-icon"
+        color="black"
         data-analyticsid="icon"
         fill="black"
         focusable="false"

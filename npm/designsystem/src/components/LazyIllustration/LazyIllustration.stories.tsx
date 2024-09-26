@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
-import Docs from '../../docs';
 import { shortLoremText } from '../../utils/loremtext';
 import HighlightPanel from '../HighlightPanel';
 

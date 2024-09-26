@@ -34,6 +34,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme do
             <svg
               aria-hidden="true"
               class="hnds-style-icon"
+              color="black"
               data-analyticsid="icon"
               fill="black"
               focusable="false"
@@ -84,6 +85,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme do
             <svg
               aria-hidden="true"
               class="hnds-style-icon"
+              color="black"
               data-analyticsid="icon"
               fill="black"
               focusable="false"
@@ -139,6 +141,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
             <svg
               aria-hidden="true"
               class="hnds-style-icon"
+              color="black"
               data-analyticsid="icon"
               fill="black"
               focusable="false"
@@ -184,6 +187,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
             <svg
               aria-hidden="true"
               class="hnds-style-icon"
+              color="black"
               data-analyticsid="icon"
               fill="black"
               focusable="false"
@@ -229,6 +233,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
             <svg
               aria-hidden="true"
               class="hnds-style-icon"
+              color="black"
               data-analyticsid="icon"
               fill="black"
               focusable="false"
@@ -282,6 +287,7 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
             <svg
               aria-hidden="true"
               class="hnds-style-icon"
+              color="black"
               data-analyticsid="icon"
               fill="black"
               focusable="false"
@@ -302,6 +308,7 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
             <svg
               aria-hidden="true"
               class="hnds-style-icon"
+              color="black"
               data-analyticsid="icon"
               fill="black"
               focusable="false"
@@ -347,6 +354,7 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
             <svg
               aria-hidden="true"
               class="hnds-style-icon"
+              color="black"
               data-analyticsid="icon"
               fill="black"
               focusable="false"

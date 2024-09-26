@@ -2,9 +2,9 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import StepButtons from './StepButtons';
-import Docs from '../../docs';
 import Button from '../Button';
 
 const meta = {

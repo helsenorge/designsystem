@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import ExpanderList from './ExpanderList';
 import { allPaletteNames } from '../../../.storybook/knobs';
-import Docs from '../../docs';
 import { longLoremText } from '../../utils/loremtext';
 import AvatarComponent from '../Avatar';
 import Badge from '../Badge';

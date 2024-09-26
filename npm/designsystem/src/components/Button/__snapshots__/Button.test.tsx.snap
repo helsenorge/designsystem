@@ -35,6 +35,7 @@ exports[`Gitt at button skal vises > Når button rendres kun med ikon > Så inne
       <svg
         aria-hidden="true"
         class="hnds-style-icon"
+        color="white"
         data-analyticsid="icon"
         fill="white"
         focusable="false"
@@ -73,6 +74,7 @@ exports[`Gitt at button skal vises > Når button rendres med ikoner > Så vises 
       <svg
         aria-hidden="true"
         class="hnds-style-icon button__left-icon"
+        color="white"
         data-analyticsid="icon"
         fill="white"
         focusable="false"
@@ -96,6 +98,7 @@ exports[`Gitt at button skal vises > Når button rendres med ikoner > Så vises 
       <svg
         aria-hidden="true"
         class="hnds-style-icon button__right-icon"
+        color="white"
         data-analyticsid="icon"
         fill="white"
         focusable="false"

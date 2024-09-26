@@ -17,6 +17,7 @@ exports[`Gitt at Expander skal vises som large, med farge og ikon > Når Expande
         <svg
           aria-hidden="true"
           class="hnds-style-icon"
+          color="black"
           data-analyticsid="icon"
           fill="black"
           focusable="false"
@@ -39,6 +40,7 @@ exports[`Gitt at Expander skal vises som large, med farge og ikon > Når Expande
         <svg
           aria-hidden="true"
           class="hnds-style-icon"
+          color="black"
           data-analyticsid="icon"
           fill="black"
           focusable="false"

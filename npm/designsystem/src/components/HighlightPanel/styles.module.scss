@@ -8,7 +8,9 @@
 @mixin content-wrapper-with-icon-flex {
   display: flex;
   flex-direction: column;
+}
 
+@mixin content-wrapper-with-icon-flex-responsive {
   @media (min-width: map.get($grid-breakpoints, md)) {
     flex-direction: row;
   }
@@ -113,6 +115,7 @@
     #{$panel}__content-wrapper {
       @include content-wrapper-with-icon-flex;
       @include content-wrapper-with-icon-padding;
+      @include content-wrapper-with-icon-flex-responsive;
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
         padding-left: getSpacer(m);
@@ -123,6 +126,7 @@
   &--has-icon#{&}--large {
     #{$panel}__col {
       @include content-wrapper-with-icon-flex;
+      @include content-wrapper-with-icon-flex-responsive;
     }
     #{$panel}__content-wrapper {
       @include content-wrapper-with-icon-padding;
@@ -171,6 +175,7 @@
   &--has-icon#{&}--fluid {
     @include content-wrapper-with-icon-flex;
     @include content-wrapper-with-icon-padding;
+    @include content-wrapper-with-icon-flex-responsive;
   }
 
   &__icon {

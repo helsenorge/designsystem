@@ -173,6 +173,29 @@ describe('Gitt at RadioButton skal vises', (): void => {
     });
   });
 
+  describe('Når radiobutton er controlled', (): void => {
+    test('Så kan den settes checked', (): void => {
+      render(<RadioButton label={<Label labelTexts={[{ text: 'En fin label' }]} />} checked={true} />);
+
+      const radioButton = screen.getByLabelText('En fin label');
+      expect(radioButton).toHaveProperty('checked', true);
+    });
+
+    test('Så kan den settes unchecked', (): void => {
+      render(<RadioButton label={<Label labelTexts={[{ text: 'En fin label' }]} />} checked={false} />);
+
+      const radioButton = screen.getByLabelText('En fin label');
+      expect(radioButton).toHaveProperty('checked', false);
+    });
+
+    test('Så er den default unchecked', (): void => {
+      render(<RadioButton label={<Label labelTexts={[{ text: 'En fin label' }]} />} />);
+
+      const radioButton = screen.getByLabelText('En fin label');
+      expect(radioButton).toHaveProperty('checked', false);
+    });
+  });
+
   describe('Når required er satt', (): void => {
     test('Så er input required', (): void => {
       render(<RadioButton label={<Label labelTexts={[{ text: 'En fin label' }]} />} required />);

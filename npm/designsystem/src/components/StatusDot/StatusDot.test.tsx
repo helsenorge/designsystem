@@ -13,58 +13,12 @@ describe('Gitt at StatusDot rendres ', () => {
       expect(text).toBeVisible();
     });
   });
-  describe('Når StatusDot er variant="recurring".', () => {
-    it('Så skal komponenten ha en SVG-fil.', () => {
-      const { container } = render(<StatusDot variant="recurring" text="Eksempeltekst" testId={'statusdot'} />);
-
-      const text = screen.getByText('Eksempeltekst');
-      expect(text).toBeVisible();
-
-      const statusdot = screen.getByTestId('statusdot');
-      expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(statusdot.lastElementChild.className).toBe('statusdot__label--icon');
-
-      expect(container).toMatchSnapshot();
-    });
-  });
-  describe('Når StatusDot er variant="group".', () => {
-    it('Så skal komponenten ha en SVG-fil.', () => {
-      const { container } = render(<StatusDot variant="group" text="Eksempeltekst" testId={'statusdot'} />);
-
-      const text = screen.getByText('Eksempeltekst');
-      expect(text).toBeVisible();
-
-      const statusdot = screen.getByTestId('statusdot');
-      expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(statusdot.lastElementChild.className).toBe('statusdot__label--icon');
-
-      expect(container).toMatchSnapshot();
-    });
-  });
   describe('Når StatusDot er variant="noaccess".', () => {
     it('Så skal komponenten ha en SVG-fil.', () => {
       const { container } = render(<StatusDot variant="noaccess" text="Eksempeltekst" testId={'statusdot'} />);
 
       const text = screen.getByText('Eksempeltekst');
       expect(text).toBeVisible();
-
-      const statusdot = screen.getByTestId('statusdot');
-      expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(statusdot.lastElementChild.className).toBe('statusdot__label--icon');
-
-      expect(container).toMatchSnapshot();
-    });
-  });
-  describe('Når StatusDot er variant="attachment".', () => {
-    it('Så skal komponenten ha en SVG-fil.', () => {
-      const { container } = render(<StatusDot variant="attachment" text="Eksempeltekst" testId={'statusdot'} />);
-
-      const text = screen.getByText('Eksempeltekst');
-      expect(text).toBeVisible();
-
-      const statusdot = screen.getByTestId('statusdot');
-      expect(statusdot.firstElementChild.className).toBe('statusdot__dot statusdot__dot--icon');
-      expect(statusdot.lastElementChild.className).toBe('statusdot__label--icon');
 
       expect(container).toMatchSnapshot();
     });

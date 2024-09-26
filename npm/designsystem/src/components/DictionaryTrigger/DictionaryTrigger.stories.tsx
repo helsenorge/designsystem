@@ -2,9 +2,9 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import DictionaryTrigger from './DictionaryTrigger';
-import Docs from '../../docs';
 import { mediumLoremText } from '../../utils/loremtext';
 
 const meta = {

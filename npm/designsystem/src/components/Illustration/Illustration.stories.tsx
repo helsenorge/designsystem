@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Illustration from './Illustration';
-import Docs from '../../docs';
 import HighlightPanel from '../HighlightPanel';
 import Doctor from '../Illustrations/Doctor';
 
