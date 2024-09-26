@@ -2,13 +2,13 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Modal, { ModalSize } from './Modal';
 import { ModalVariants } from './Modal';
 import { IconSize } from '../../constants';
-import Docs from '../../docs';
+import ButtonWithModal from '../../docs/ButtonWithModal';
 import Button from '../Button';
-import ButtonWithModal from '../ButtonWithModal/ButtonWithModal';
 import Checkbox from '../Checkbox';
 import Icon from '../Icon';
 import Envelope from '../Icons/Envelope';

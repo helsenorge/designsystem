@@ -2,9 +2,9 @@ import React from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Select from './Select';
-import Docs from '../../docs';
 import { palette } from '../../theme/palette';
 import Label from '../Label';
 

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Step from './Step';
-import Docs from '../../docs';
 import { mediumLoremText, longLoremText } from '../../utils/loremtext';
 import Button from '../Button';
 import StepButtons from '../StepButtons';

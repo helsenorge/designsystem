@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Input from '@helsenorge/designsystem-react/components/Input';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
@@ -13,6 +13,7 @@ export interface DateTimeProps
     React.InputHTMLAttributes<HTMLInputElement>,
     'name' | 'aria-describedby' | 'aria-labelledby' | 'onChange' | 'disabled' | 'autoComplete'
   > {
+  /** Default value that is set on the input field */
   defaultValue?: number;
   /** Activates Error style for the input */
   error?: boolean;
@@ -20,12 +21,14 @@ export interface DateTimeProps
   errorText?: string;
   /** Error text id */
   errorTextId?: string;
+  /** input id of the checkbox */
+  inputId?: string;
   /** Label of the input */
   label?: React.ReactNode;
   /** Sets the unit of time for the input field */
   timeUnit: TimeUnit;
-  /** input id of the checkbox */
-  inputId?: string;
+  /** Value that is set on the input field */
+  value?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -40,13 +43,17 @@ const isNumericString = (str: string): boolean => {
 };
 
 export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInputElement>) => {
-  const { defaultValue, error, errorText, errorTextId, label, onChange, timeUnit, testId, inputId, autoComplete = 'off', ...rest } = props;
+  const { error, errorText, errorTextId, label, onChange, timeUnit, testId, inputId, value, autoComplete = 'off', ...rest } = props;
 
   const [inputValue, setInputValue] = useState<number | string | undefined>(
-    typeof defaultValue !== 'undefined' ? formatAsTwoDigits(defaultValue) : ''
+    typeof value !== 'undefined' ? formatAsTwoDigits(value) : undefined
   );
   const { refObject } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
+
+  useEffect(() => {
+    setInputValue(value ? formatAsTwoDigits(value) : undefined);
+  }, [value]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
@@ -90,6 +97,7 @@ export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<H
         ref={mergedRefs}
         value={inputValue}
         width={5}
+        defaultValue={typeof props.defaultValue !== 'undefined' ? formatAsTwoDigits(props.defaultValue) : undefined}
         {...rest}
         onChange={handleInputChange}
         onBlur={handleInputBlur}

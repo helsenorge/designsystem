@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import PopOver, { PopOverVariant } from './PopOver';
-import Docs from '../../docs';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import Button from '../Button';

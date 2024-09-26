@@ -2,11 +2,11 @@ import React, { useRef, useEffect } from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import LinkList from './LinkList';
 import { allPaletteNames } from '../../../.storybook/knobs';
 import { allLinkListSizes } from '../../../.storybook/knobs';
-import Docs from '../../docs';
 import Avatar from '../Avatar';
 import Badge from '../Badge';
 import Icon from '../Icon';

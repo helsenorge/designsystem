@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import HighlightPanel, { HighlightPanelSize } from './HighlightPanel';
-import Docs from '../../docs';
 import PdfFile from '../Icons/PdfFile';
 
 const meta = {

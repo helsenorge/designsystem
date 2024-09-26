@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
+import { Docs } from 'frankenstein-build-tools';
 
 import Tab from './Tab';
 import Tabs from './Tabs';
-import Docs from '../../docs';
 import longLoremText, { mediumLoremText, shortLoremText } from '../../utils/loremtext';
 import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
