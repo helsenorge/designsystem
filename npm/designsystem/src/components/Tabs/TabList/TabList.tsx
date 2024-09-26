@@ -28,24 +28,27 @@ const TabList: React.FC<TabListProps> = props => {
   const tablistClasses = classNames(styles['tab-list'], styles[`tab-list--${onColor}`]);
 
   return (
-    <ul className={tablistClasses} ref={listRef} role="tablist" aria-orientation="horizontal">
-      {React.Children.map(children, (child, index) => {
-        if (isComponent<TabProps>(child, Tab)) {
-          return (
-            <TabItem
-              tabRefs={tabRefs}
-              key={child.props.title}
-              index={index}
-              selectedTab={selectedTab}
-              onTabListClick={onTabListClick}
-              tabProps={child.props}
-              color={color}
-            />
-          );
-        }
-        return null;
-      })}
-    </ul>
+    <>
+      <ul className={tablistClasses} ref={listRef} role="tablist" aria-orientation="horizontal">
+        {React.Children.map(children, (child, index) => {
+          if (isComponent<TabProps>(child, Tab)) {
+            return (
+              <TabItem
+                tabRefs={tabRefs}
+                key={child.props.title}
+                index={index}
+                selectedTab={selectedTab}
+                onTabListClick={onTabListClick}
+                tabProps={child.props}
+                color={color}
+              />
+            );
+          }
+          return null;
+        })}
+      </ul>
+      <div className={classNames(styles['tab-list__border'])}></div>
+    </>
   );
 };
 

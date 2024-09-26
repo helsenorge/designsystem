@@ -31,7 +31,6 @@ const TabItem: React.FC<TabItemProps> = props => {
   };
   const tabButtonClasses = classNames(styles['tab-list__tab'], styles[`tab-list__tab--${props.color}`], {
     [styles['tab-list__tab--selected']]: isSelected,
-    [styles['tab-list__tab--first']]: props.index == 0,
     [styles['tab-list__tab--not-selected']]: !isSelected,
   });
 
@@ -60,6 +59,7 @@ const TabItem: React.FC<TabItemProps> = props => {
         className={tabButtonClasses}
         data-testid={testId}
         ref={currentRef as React.RefObject<HTMLButtonElement>}
+        style={{ borderBottom: isSelected ? '2px solid white' : '1px solid black' }}
       >
         <span className={styles['tab-list__tab__title-and-icon']}>
           {icon &&
