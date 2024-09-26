@@ -74,7 +74,7 @@ await writeFile(
 import { StoryObj, Meta } from '@storybook/react';
 
 import ${componentName} from './${componentName}';
-import Docs from '../../docs';
+import { Docs } from 'frankenstein-build-tools';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/${componentName}',
