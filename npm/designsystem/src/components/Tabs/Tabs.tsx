@@ -170,7 +170,7 @@ const TabsRoot: React.FC<TabsProps> = ({
         </TabList>
         <div className={classNames(styles['panel-wrapper'], styles[`panel-wrapper--${color}`])}></div>
       </div>
-      <div ref={tabsRef} style={{ marginTop: '-40px' }}>
+      <div ref={tabsRef} style={{ marginTop: '-50px' }}>
         <TabPanel ref={tabPanelRef} color={color} isFirst={activeTabIndex == 0} translateX={translateX} animate={panelAnimation}>
           {React.Children.toArray(children)[activeTabIndex]}
         </TabPanel>
