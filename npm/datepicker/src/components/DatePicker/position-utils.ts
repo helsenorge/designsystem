@@ -18,6 +18,7 @@ const ARROW_VERTICAL_OFFSET_PX = 9;
 /** Pilen skal holde avstand til venstre/høyre kant av hjelpeboblen */
 const ARROW_HORIZONTAL_MARGIN_PX = 12;
 
+// @todo these functions are similar to the ones in utils in PopOver, should be moved to a shared location
 /**
  * Beregn om hjelpeboblen skal vises over eller under kontrolleren
  * @param controllerSize DOMRect for controlleren
@@ -25,7 +26,14 @@ const ARROW_HORIZONTAL_MARGIN_PX = 12;
  * @param variant Ønsket plassering av hjelpeboblen (over/under/automatisk)
  * @returns Om hjelpeboblen skal vises over eller under
  */
-export const getVerticalPosition = (controllerSize: DOMRect, bubbleSize: DOMRect): keyof typeof PopOverVariant => {
+export const getVerticalPosition = (
+  controllerSize: DOMRect,
+  bubbleSize: DOMRect,
+  variant?: keyof typeof PopOverVariant
+): keyof typeof PopOverVariant => {
+  if (variant !== PopOverVariant.positionautomatic && variant !== undefined) {
+    return variant;
+  }
   if (controllerSize.top > bubbleSize.height + BUBBLE_VERTICAL_OFFSET_PX) {
     return PopOverVariant.positionabove;
   } else {
@@ -163,9 +171,9 @@ const getArrowRightPx = (controllerSize: DOMRect): number => getControllerRightE
  * @param variant Ønsket plassering av hjelpeboblen (over/under)
  * @returns Beste mulige plassering av hjelpeboblen
  */
-const getBubblePosition = (controllerSize: DOMRect, bubbleSize: DOMRect): BubblePosition => {
+const getBubblePosition = (controllerSize: DOMRect, bubbleSize: DOMRect, variant: keyof typeof PopOverVariant): BubblePosition => {
   const horizontalPosition = getHorizontalPosition(controllerSize, bubbleSize);
-  const verticalPosition = getVerticalPosition(controllerSize, bubbleSize);
+  const verticalPosition = getVerticalPosition(controllerSize, bubbleSize, variant);
 
   if (horizontalPosition === 'left') {
     if (verticalPosition === PopOverVariant.positionabove) {
@@ -195,8 +203,8 @@ const getBubblePosition = (controllerSize: DOMRect, bubbleSize: DOMRect): Bubble
  * @param variant Ønsket plassering av hjelpeboblen (over/under)
  * @returns CSSProperties som plasserer hjelpeboblen riktig
  */
-export const getBubbleStyle = (controllerSize: DOMRect, bubbleSize: DOMRect): CSSProperties => {
-  const bubblePosition = getBubblePosition(controllerSize, bubbleSize);
+export const getBubbleStyle = (controllerSize: DOMRect, bubbleSize: DOMRect, variant: keyof typeof PopOverVariant): CSSProperties => {
+  const bubblePosition = getBubblePosition(controllerSize, bubbleSize, variant);
   const bubbleWidth = !getBubbleFitsInWindow() ? getBubbleWidth() : undefined;
 
   if (bubblePosition === 'leftabove') {
@@ -217,11 +225,30 @@ export const getBubbleStyle = (controllerSize: DOMRect, bubbleSize: DOMRect): CS
   }
 
   if (bubblePosition === 'floatingbelow') {
-    return { left: controllerSize.left, top: getBubbleBelowPx(controllerSize), width: bubbleWidth };
+    return { left: getBubbleLeftPx(controllerSize, bubbleSize), top: getBubbleBelowPx(controllerSize), width: bubbleWidth };
   }
 
-  return { left: controllerSize.left, top: getBubbleAbovePx(controllerSize, bubbleSize), width: bubbleWidth };
+  return { left: getBubbleLeftPx(controllerSize, bubbleSize), top: getBubbleAbovePx(controllerSize, bubbleSize), width: bubbleWidth };
 };
+
+/**
+ * Finn venstre kant av hjelpeboblen i forhold til kontrolleren
+ * @param controllerSize DOMRect for controlleren
+ * @param bubbleSize DOMRect for hjelpeboblen
+ * @returns Venstre kant av hjelpeboblen i px
+ */
+const getBubbleLeftPx = (controllerSize: DOMRect, bubbleSize: DOMRect): number => {
+  const controllerHorizontalCenterPx = getControllerLeftCenterPx(controllerSize);
+
+  return controllerHorizontalCenterPx - bubbleSize.width / 2;
+};
+
+/**
+ * Finn horisontalt midtpunkt på kontrolleren i forhold til venstre kant av vinduet
+ * @param controllerSize DOMRect for controlleren
+ * @returns Horisontalt senter av controlleren i px
+ */
+const getControllerLeftCenterPx = (controllerSize: DOMRect): number => controllerSize.left + controllerSize.width / 2;
 
 /**
  * Finn riktig plassering av pilen

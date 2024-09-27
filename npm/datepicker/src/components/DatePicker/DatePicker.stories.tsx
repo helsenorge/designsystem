@@ -10,8 +10,10 @@ import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Label from '@helsenorge/designsystem-react/components/Label';
+import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import Spacer from '@helsenorge/designsystem-react/components/Spacer';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
+import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
 
 import DatePicker, { DatePickerProps } from './DatePicker';
 import DateTime from './DateTime';
@@ -121,6 +123,11 @@ const meta = {
     testId: {
       control: 'text',
       description: 'Sets the data-testid attribute.',
+    },
+    variant: {
+      control: 'select',
+      options: Object.values(PopOverVariant),
+      description: 'Determines the placement of the DatePicker popup. Default: automatic positioning.',
     },
     zIndex: {
       control: 'number',
@@ -422,4 +429,23 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
       </form>
     </>
   );
+};
+
+export const Variants: Story = {
+  render: args => {
+    return (
+      <div>
+        <p>{longLoremText}</p>
+        <DatePicker
+          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+          {...args}
+          dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
+          disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
+          maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
+          minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
+        />
+        <p>{longLoremText}</p>
+      </div>
+    );
+  },
 };

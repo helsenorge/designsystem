@@ -24,11 +24,12 @@ interface DatePickerPopupProps
   datepickerWrapperRef: React.RefObject<HTMLDivElement>;
   inputRef: React.RefObject<HTMLInputElement>;
   testId?: string;
+  variant: keyof typeof PopOverVariant;
   zIndex?: number;
 }
 
 const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
-  const { datepickerWrapperRef, footer, inputRef, testId, zIndex, ...rest } = props;
+  const { datepickerWrapperRef, footer, inputRef, testId, variant, zIndex, ...rest } = props;
   const arrowRef = useRef<HTMLDivElement>(null);
   const [controllerSize, setControllerSize] = useState<DOMRect>();
   const bubbleSize = useSize(datepickerWrapperRef);
@@ -49,14 +50,14 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
   const datepickerPopupContainerClasses = classNames(styles['datepicker-popup-container'], {
     [styles['datepicker-popup-container--visible']]: controllerisVisible,
   });
-  const verticalPosition = controllerSize && bubbleSize && getVerticalPosition(controllerSize, bubbleSize);
+  const verticalPosition = controllerSize && bubbleSize && getVerticalPosition(controllerSize, bubbleSize, variant);
   const popupArrowClasses = classNames(styles['datepicker-popup-arrow'], {
     [styles['datepicker-popup-arrow--visible']]: controllerisVisible,
     [styles['datepicker-popup-arrow--over']]: verticalPosition === PopOverVariant.positionbelow,
     [styles['datepicker-popup-arrow--under']]: verticalPosition === PopOverVariant.positionabove,
   });
 
-  const bubbleStyle = controllerSize && bubbleSize && getBubbleStyle(controllerSize, bubbleSize);
+  const bubbleStyle = controllerSize && bubbleSize && getBubbleStyle(controllerSize, bubbleSize, variant);
   const arrowStyle = bubbleStyle && controllerSize && verticalPosition && getArrowStyle(bubbleStyle, controllerSize, verticalPosition);
 
   const datePickerClassNames = {
