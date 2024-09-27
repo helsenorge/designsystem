@@ -40,6 +40,13 @@ stages:
               command: ci
 
           - task: Npm@1
+            displayName: Build frankenstein-build-tools
+            inputs:
+              command: custom
+              workingDir: npm/build-tools
+              customCommand: run build
+
+          - task: Npm@1
             displayName: Build Storybook
             inputs:
               command: custom

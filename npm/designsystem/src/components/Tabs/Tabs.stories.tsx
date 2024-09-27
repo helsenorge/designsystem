@@ -26,7 +26,7 @@ const meta = {
   },
   args: {
     color: 'white',
-    type: 'normal',
+    onColor: 'onwhite',
     sticky: true,
     touchBehaviour: 'swipe',
   },
@@ -36,14 +36,14 @@ const meta = {
       options: ['blueberry', 'neutral', 'white'],
       description: 'Sets the color of the tabs. Default: white',
     },
+    onColor: {
+      control: 'select',
+      options: ['onwhite', 'onblueberry', 'onneutral'],
+      description: 'Sets the background color of the tabs. Can only be used when the color is set to white. Default: onwhite',
+    },
     testId: {
       control: 'text',
       description: 'Sets the data-testid attribute.',
-    },
-    type: {
-      control: 'select',
-      options: ['normal', 'framed'],
-      description: 'Sets the visual type of the tabs. Default: normal',
     },
     activeTab: {
       control: 'number',
@@ -88,30 +88,6 @@ export const WithIcon: Story = {
         {shortLoremText}
       </Tabs.Tab>
     </Tabs>
-  ),
-};
-
-export const Framed: Story = {
-  render: args => (
-    <>
-      <Tabs {...args} color="white" type="framed">
-        <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
-        <Tabs.Tab title="Helserelaterte spørsmål">{mediumLoremText}</Tabs.Tab>
-        <Tabs.Tab title="Prøvesvar">{shortLoremText}</Tabs.Tab>
-      </Tabs>
-      <br />
-      <Tabs {...args} color="neutral" type="framed">
-        <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
-        <Tabs.Tab title="Helserelaterte spørsmål">{mediumLoremText}</Tabs.Tab>
-        <Tabs.Tab title="Prøvesvar">{shortLoremText}</Tabs.Tab>
-      </Tabs>
-      <br />
-      <Tabs {...args} color="blueberry" type="framed">
-        <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
-        <Tabs.Tab title="Helserelaterte spørsmål">{mediumLoremText}</Tabs.Tab>
-        <Tabs.Tab title="Prøvesvar">{shortLoremText}</Tabs.Tab>
-      </Tabs>
-    </>
   ),
 };
 
@@ -204,7 +180,7 @@ export const MedInnholdRundt: Story = {
         <br />
         <br />
         <br />
-        <Tabs {...args} color="blueberry" type="framed">
+        <Tabs {...args} color="blueberry">
           <Tabs.Tab title="Fane 1">
             <div style={{ position: 'relative', display: 'inline' }}>
               <Icon ref={controllerRef} svgIcon={HelpSign} />

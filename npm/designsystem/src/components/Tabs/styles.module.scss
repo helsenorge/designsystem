@@ -16,19 +16,15 @@
   $panel-wrapper: &;
   $colors: 'blueberry', 'neutral', 'white';
 
-  border-top: 1px solid var(--color-action-border-onlight-focus);
   position: relative;
   width: 100%;
+  border-radius: 0;
+  height: 50px;
 
-  &--framed {
-    border-radius: 0;
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    border-right: 1px solid var(--color-action-border-onlight-focus);
+    border-left: 1px solid var(--color-action-border-onlight-focus);
     height: 50px;
-
-    @media (min-width: map.get($grid-breakpoints, md)) {
-      border-radius: 0 0.5rem 0 0;
-      border-right: 1px solid var(--color-action-border-onlight-focus);
-      border-left: 1px solid var(--color-action-border-onlight-focus);
-    }
   }
 
   @each $color in $colors {
