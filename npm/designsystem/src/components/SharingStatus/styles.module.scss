@@ -4,6 +4,7 @@
 @import '../../scss/palette';
 @import '../../scss/font-settings';
 @import '../../scss/screen-reader';
+@import '../../scss/supernova/styles/colors';
 
 $dot-size: 1.765rem;
 
@@ -26,11 +27,11 @@ $dot-size: 1.765rem;
     min-height: $dot-size;
 
     &--kiwi {
-      background: $kiwi900;
+      background: var(--color-notification-text-success);
     }
 
     &--cherry {
-      background: $cherry500;
+      background: var(--color-notification-text-error);
     }
 
     &--neutral {
@@ -38,11 +39,11 @@ $dot-size: 1.765rem;
     }
 
     &--blueberry {
-      background: $blueberry500;
+      background: var(--color-notification-text-info);
     }
 
     &--banana {
-      background: $banana700;
+      background: var(--color-notification-text-warning);
     }
   }
 
@@ -58,7 +59,7 @@ $dot-size: 1.765rem;
     }
 
     &--cherry {
-      color: $cherry500;
+      color: var(--color-notification-text-error);
     }
 
     &--neutral {
@@ -66,11 +67,11 @@ $dot-size: 1.765rem;
     }
 
     &--blueberry {
-      color: $blueberry500;
+      color: var(--color-notification-text-info);
     }
 
     &--banana {
-      color: $banana700;
+      color: var(--color-notification-text-warning);
     }
   }
 }
