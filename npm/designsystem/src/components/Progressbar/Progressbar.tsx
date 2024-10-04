@@ -14,7 +14,7 @@ export enum ProgressbarSize {
 }
 
 export enum ProgressBarMode {
-  ondark = 'ondark',
+  ondark = 'ondark', // only used for light/dark
   onlight = 'onlight',
 }
 
@@ -28,7 +28,7 @@ export interface ProgressbarProps {
   /** Size of the progressbar. Default is large */
   size?: ProgressbarSize;
   /** Changes the visuals of the ProgressBar. Default is onLight */
-  mode?: ProgressBarMode;
+  mode?: ProgressBarMode; // @todo: Change this too?
   /** Loader is displayed with grey background covering the entire screen */
   overlay?: keyof typeof Overlay;
   /** Aria label for the progressbar */

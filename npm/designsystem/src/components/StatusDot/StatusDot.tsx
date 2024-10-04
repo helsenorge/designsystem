@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { IconSize } from '../..';
-import { AnalyticsId, FormMode } from '../../constants';
+import { AnalyticsId, FormOnColor } from '../../constants';
 import { getColor } from '../../theme/currys';
 import { Icon } from '../Icon';
 import Attachment from '../Icons/Attachment';
@@ -13,9 +13,9 @@ import NoAccess from '../Icons/NoAccess';
 
 import styles from './styles.module.scss';
 
-export enum StatusDotModes {
-  onwhite = FormMode.onwhite,
-  ondark = FormMode.ondark,
+export enum StatusDotOnColor {
+  onwhite = FormOnColor.onwhite,
+  ondark = FormOnColor.ondark,
 }
 
 export enum StatusDotVariant {
@@ -33,14 +33,14 @@ export enum StatusDotVariant {
 
 export interface StatusDotIconProps {
   /** Defines the color of the icon */
-  mode?: keyof typeof StatusDotModes;
+  onColor?: keyof typeof StatusDotOnColor;
   /** The variant defines style formatting and what icon to use */
   variant?: keyof typeof StatusDotVariant;
 }
 
-const StatusDotIcon: React.FC<StatusDotIconProps> = ({ mode, variant }) => {
-  const color = mode === StatusDotModes.ondark ? getColor('white') : getColor('black');
-  const iconProps = { color, size: IconSize.XXSmall, mode };
+const StatusDotIcon: React.FC<StatusDotIconProps> = ({ onColor, variant }) => {
+  const color = onColor === StatusDotOnColor.ondark ? getColor('white') : getColor('black');
+  const iconProps = { color, size: IconSize.XXSmall, onColor };
 
   if (variant === StatusDotVariant.recurring) {
     return <Icon {...iconProps} svgIcon={Change} />;
@@ -59,7 +59,7 @@ export interface StatusDotProps {
   /** id that is placed on the wrapper */
   id?: string;
   /** Defines the color mode, onwhite, ondark etc. */
-  mode?: keyof typeof StatusDotModes;
+  onColor?: keyof typeof StatusDotOnColor;
   /** Visual variants for the statusdot */
   variant?: keyof typeof StatusDotVariant;
   /** Text placed to the right of the statusdot */
@@ -71,7 +71,7 @@ export interface StatusDotProps {
 }
 
 const StatusDot: React.FC<StatusDotProps> = props => {
-  const { id, mode = StatusDotModes.onwhite, variant = StatusDotVariant.info, text, className, testId } = props;
+  const { id, onColor = StatusDotOnColor.onwhite, variant = StatusDotVariant.info, text, className, testId } = props;
 
   const hasIcon =
     variant === StatusDotVariant.recurring ||
@@ -84,14 +84,14 @@ const StatusDot: React.FC<StatusDotProps> = props => {
   const statusDotClasses = classNames(styles['statusdot'], isCancelled && styles['statusdot--cancelled'], className);
   const dotClasses = classNames(styles['statusdot__dot'], {
     ...(hasIcon ? {} : { [styles[`statusdot__dot--${variant}`]]: true }),
-    [styles['statusdot__dot--on-dark']]: mode === StatusDotModes.ondark,
+    [styles['statusdot__dot--on-dark']]: onColor === StatusDotOnColor.ondark,
   });
-  const labelClasses = classNames(mode === StatusDotModes.ondark && styles['statusdot__label--on-dark']);
+  const labelClasses = classNames(onColor === StatusDotOnColor.ondark && styles['statusdot__label--on-dark']);
 
   return (
     <span id={id} className={statusDotClasses} data-testid={testId} data-analyticsid={AnalyticsId.StatusDot}>
       <span className={dotClasses}>
-        <StatusDotIcon mode={mode} variant={variant} />
+        <StatusDotIcon onColor={onColor} variant={variant} />
       </span>
       <span className={labelClasses}>{text}</span>
     </span>

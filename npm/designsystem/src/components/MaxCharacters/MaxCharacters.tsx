@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { FormMode } from '../../constants';
+import { FormOnColor } from '../../constants';
 
 import styles from './styles.module.scss';
 
@@ -14,16 +14,16 @@ interface MaxCharactersProps {
   /** The text is displayed in the end of the text-counter */
   maxText?: string;
   /** Changes the visuals of the textarea */
-  mode?: keyof typeof FormMode;
+  onColor?: keyof typeof FormOnColor;
   /** Max width of the component */
   maxWidth?: string;
 }
 
-const MaxCharacters: React.FC<MaxCharactersProps> = ({ maxCharacters, maxText, length, mode, maxWidth }) => {
+const MaxCharacters: React.FC<MaxCharactersProps> = ({ maxCharacters, maxText, length, onColor, maxWidth }) => {
   const progress = length / maxCharacters;
 
   const counterTextClass = classNames(styles['max-characters'], {
-    [styles[`max-characters--on-dark`]]: mode === FormMode.ondark,
+    [styles[`max-characters--on-dark`]]: onColor === FormOnColor.ondark,
     [styles[`max-characters--invalid`]]: progress > 1,
   });
 

@@ -17,7 +17,7 @@ import buttonStyles from './styles.module.scss';
 export type ButtonConcept = 'normal' | 'destructive';
 export type ButtonVariant = 'fill' | 'outline' | 'borderless';
 export type ButtonSize = 'medium' | 'large';
-export type ButtonMode = 'onlight' | 'ondark';
+export type ButtonMode = 'onlight' | 'ondark'; // only used for dark/light
 export type ButtonTags = 'button' | 'a';
 export type ButtonArrows = 'icon' | 'accessibility-character';
 export type ButtonTextPosition = 'left' | 'centered';
@@ -44,7 +44,7 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttri
   /** Changes the underlying element of the button. */
   htmlMarkup?: ButtonTags;
   /** Changes the button colors for different backgrounds. */
-  mode?: ButtonMode;
+  mode?: ButtonMode; // @todo: Change this too?
   /** Function that is called when the Button loses focus */
   onBlur?: () => void;
   /** Function that is called when clicked */

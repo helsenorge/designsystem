@@ -22,7 +22,7 @@ export enum ResponsiveTableVariant {
   /** Collapse to two columns. */
   block = 'block',
 }
-export enum ModeType {
+export enum ModeType { // here mode is layout type, is this wanted?
   compact = 'compact',
   normal = 'normal',
 }

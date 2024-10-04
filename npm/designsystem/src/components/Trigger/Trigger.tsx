@@ -18,7 +18,7 @@ export type TriggerVariant = 'help'; // @todo Support variant='info' in later ve
 
 export type TriggerSize = 'medium' | 'large';
 
-export type TriggerMode = 'onlight' | 'ondark';
+export type TriggerMode = 'onlight' | 'ondark'; // only used for dark/light
 
 export interface TriggerProps extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'aria-haspopup' | 'aria-controls'> {
   /**

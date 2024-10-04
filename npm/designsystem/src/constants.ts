@@ -57,7 +57,7 @@ export interface HTMLAnchorProps {
 
 export type ButtonVariant = 'secondary' | 'tertiary' | string | undefined | null;
 
-export enum FormMode {
+export enum FormOnColor {
   onwhite = 'onwhite',
   ongrey = 'ongrey',
   onblueberry = 'onblueberry',
