@@ -45,11 +45,11 @@ const TabList: React.FC<TabListProps> = props => {
   const lastTabVisible = useIsVisible(lastTab);
 
   const shouldShowFadeStart = (): boolean => {
-    return !firstTabVisible;
+    return !firstTabVisible && selectedTab !== 0;
   };
 
   const shouldShowFadeEnd = (): boolean => {
-    return !lastTabVisible;
+    return !lastTabVisible && selectedTab !== tabRefs.current.length - 1;
   };
 
   return (
