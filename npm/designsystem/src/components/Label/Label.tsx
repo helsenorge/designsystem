@@ -16,6 +16,8 @@ export type LabelText = {
   type?: 'semibold' | 'normal';
 };
 
+export type LabelTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span' | 'label' | 'p';
+
 export interface LabelProps {
   /** Component shown after label - discourage use of this */
   afterLabelChildren?: React.ReactNode;
@@ -29,6 +31,8 @@ export interface LabelProps {
   className?: string;
   /** Id that is put on the "for" attribute of the label */
   htmlFor?: string;
+  /** Changes the underlying element of the label */
+  htmlMarkup?: LabelTags;
   /** Id som plasseres på <label/> */
   labelId?: string;
   /** Array of main label strings. Can be of type semibold or normal */
@@ -57,12 +61,13 @@ export const getLabelText = (label: React.ReactNode): string => {
   return allLabelText;
 };
 
-export const renderLabel = (label: React.ReactNode, inputId: string, mode: FormMode): React.ReactNode => {
+export const renderLabel = (label: React.ReactNode, inputId: string, mode: FormMode, markup?: LabelTags): React.ReactNode => {
   return (
     <>
       {label && isComponent<LabelProps>(label, Label)
         ? React.cloneElement(label, {
             htmlFor: inputId,
+            htmlMarkup: markup || 'label',
             mode: mode,
           })
         : typeof label === 'string' && <Label labelTexts={[{ text: label, type: 'semibold' }]} htmlFor={inputId} mode={mode} />}
@@ -78,7 +83,8 @@ export const renderLabelAsParent = (
   labelClassName?: string,
   labelTextClassName?: string,
   sublabelWrapperClassName?: string,
-  large?: boolean
+  large?: boolean,
+  markup?: LabelTags
 ): React.ReactNode => {
   return (
     <>
@@ -89,6 +95,7 @@ export const renderLabelAsParent = (
             children: children,
             labelClassName: cn(labelClassName, label.props.labelClassName),
             labelTextClassName: labelTextClassName,
+            htmlMarkup: markup || 'label',
             sublabelWrapperClassName: sublabelWrapperClassName,
             sublabel: large ? undefined : label.props.sublabel,
             statusDot: large ? undefined : label.props.statusDot,
@@ -98,6 +105,7 @@ export const renderLabelAsParent = (
               labelTexts={[{ text: label }]}
               htmlFor={inputId}
               mode={mode}
+              htmlMarkup={markup || 'label'}
               labelClassName={labelClassName}
               labelTextClassName={labelTextClassName}
               sublabelWrapperClassName={sublabelWrapperClassName}
@@ -114,6 +122,7 @@ const Label: FunctionComponent<LabelProps> = ({
   children,
   className,
   htmlFor,
+  htmlMarkup = 'label',
   labelClassName,
   labelTextClassName,
   labelId,
@@ -148,16 +157,17 @@ const Label: FunctionComponent<LabelProps> = ({
       );
     });
   };
+  const CustomTag = htmlMarkup;
 
   return (
     <div className={labelWrapperClasses}>
       <div>
-        <label className={labelClassName} id={labelId} htmlFor={htmlFor} data-testid={testId} data-analyticsid={AnalyticsId.Label}>
+        <CustomTag className={labelClassName} id={labelId} htmlFor={htmlFor} data-testid={testId} data-analyticsid={AnalyticsId.Label}>
           <span className={styles['label-content-wrapper']}>
             {children}
             <span className={styles.label__texts}>{mapLabels()}</span>
           </span>
-        </label>
+        </CustomTag>
         <div className={sublabelWrapperClassName}>
           {sublabel &&
             isComponent<SublabelProps>(sublabel, Sublabel) &&

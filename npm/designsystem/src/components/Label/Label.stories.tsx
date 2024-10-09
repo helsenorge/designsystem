@@ -5,6 +5,7 @@ import { Docs } from 'frankenstein-build-tools';
 
 import Label, { LabelText } from './Label';
 import { Sublabel } from './SubLabel';
+import { allLabelTags } from '../../../.storybook/knobs';
 import { IconSize } from '../../constants';
 import { getColor } from '../../theme/currys';
 import Checkbox from '../Checkbox';
@@ -32,7 +33,12 @@ const meta = {
       },
     },
   },
-  argTypes: {},
+  argTypes: {
+    htmlMarkup: {
+      control: 'select',
+      options: allLabelTags,
+    },
+  },
 } satisfies Meta<LabelWithAndCustomArgs>;
 
 export default meta;
@@ -168,4 +174,8 @@ export const LabelAsString: Story = {
       <RadioButton {...rest} label={'Test label'} />
     </>
   ),
+};
+
+export const PureComponentStory: Story = {
+  render: args => <Label {...args} labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />,
 };

@@ -119,4 +119,37 @@ describe('Gitt at Label skal vises', (): void => {
       expect(input).toHaveAttribute('aria-describedby', sublabelId);
     });
   });
+
+  describe('Når Label ikke får satt htmlMarkup prop', (): void => {
+    test('Så blir den rendret med default label tag', (): void => {
+      render(<Label labelTexts={[{ text: 'normal label', type: 'normal' }]} testId="normalLabel" />);
+
+      const spanLabel = screen.getByTestId('normalLabel');
+      expect(spanLabel).toBeVisible();
+      expect(spanLabel.tagName).toBe('LABEL');
+    });
+  });
+  describe('Når Label får satt htmlMarkup prop', (): void => {
+    test('Så blir den rendret med riktig span tag', (): void => {
+      render(<Label labelTexts={[{ text: 'span label', type: 'normal' }]} htmlMarkup={'span'} testId="spanLabel" />);
+
+      const spanLabel = screen.getByTestId('spanLabel');
+      expect(spanLabel).toBeVisible();
+      expect(spanLabel.tagName).toBe('SPAN');
+    });
+    test('Så blir den rendret med riktig h1 tag', (): void => {
+      render(<Label labelTexts={[{ text: 'h1 label', type: 'normal' }]} htmlMarkup={'h1'} testId="titleLabel" />);
+
+      const h1Label = screen.getByTestId('titleLabel');
+      expect(h1Label).toBeVisible();
+      expect(h1Label.tagName).toBe('H1');
+    });
+    test('Så blir den rendret med riktig p tag', (): void => {
+      render(<Label labelTexts={[{ text: 'h1 label', type: 'normal' }]} htmlMarkup={'p'} testId="pLabel" />);
+
+      const pLabel = screen.getByTestId('pLabel');
+      expect(pLabel).toBeVisible();
+      expect(pLabel.tagName).toBe('P');
+    });
+  });
 });
