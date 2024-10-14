@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormMode, FormSize } from '../../constants';
+import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
 import { isComponent } from '../../utils/component';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
@@ -32,7 +32,7 @@ export interface FormGroupProps {
   /** Adds custom classes to the fieldset element. */
   fieldsetClassName?: string;
   /** Changes the visuals of the formgroup */
-  mode?: keyof typeof FormMode;
+  onColor?: keyof typeof FormOnColor;
   /** Changes the visuals of the formgroup */
   size?: keyof typeof FormSize;
   /** Error message */
@@ -57,7 +57,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   const {
     className,
     fieldsetClassName,
-    mode = FormMode.onwhite,
+    onColor = FormOnColor.onwhite,
     size = FormSize.medium,
     error,
     errorTextId,
@@ -70,7 +70,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   const [checkedRadioId, setCheckedRadioId] = useState<string>();
   const radioGroupId = useUuid();
   const errorTextUuid = useUuid(errorTextId);
-  const onDark = mode === FormMode.ondark;
+  const onDark = onColor === FormOnColor.ondark;
   const isLarge = size === FormSize.large;
   const formGroupWrapperClasses = classNames(formGroupStyles['form-group-wrapper'], className);
   const titleClasses = classNames({
@@ -91,7 +91,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
       });
     } else if (isComponent<FormGroupProps>(child, FormGroup)) {
       return React.cloneElement(child, {
-        mode,
+        onColor,
         size,
         error,
         renderError: false,
@@ -100,7 +100,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     } else if (isComponent<CheckboxProps>(child, Checkbox)) {
       return React.cloneElement(child, {
         name: name ?? child.props.name,
-        mode,
+        onColor,
         size,
         error: !!error,
         errorTextId: errorTextUuid,
@@ -110,7 +110,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
       return React.cloneElement(child, {
         inputId: radioId,
         name: name ?? child.props.name,
-        mode,
+        onColor,
         size,
         onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
           setCheckedRadioId(event.target.id);
@@ -118,12 +118,12 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         },
         error: !!error,
         errorTextId: errorTextUuid,
-        labelClassNames: getRadioLabelClasses(radioId, mode as FormMode, isLarge, checkedRadioId),
+        labelClassNames: getRadioLabelClasses(radioId, onColor as FormOnColor, isLarge, checkedRadioId),
       });
     } else if (isComponent<InputProps>(child, Input)) {
       return React.cloneElement(child, {
         name: name ?? child.props.name,
-        mode,
+        onColor,
         size,
         error: !!error,
         errorTextId: errorTextUuid,
@@ -131,14 +131,14 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     } else if (isComponent<TextareaProps>(child, Textarea)) {
       return React.cloneElement(child, {
         name: name ?? child.props.name,
-        mode,
+        onColor,
         error: !!error,
         errorTextId: errorTextUuid,
       });
     } else if (isComponent<SelectProps>(child, Select)) {
       return React.cloneElement(child, {
         name: name ?? child.props.name,
-        mode,
+        onColor,
         error: !!error,
         errorTextId: errorTextUuid,
       });

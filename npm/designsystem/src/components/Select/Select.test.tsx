@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { vi as jest } from 'vitest';
 
 import Select from './Select';
-import { FormMode } from '../../constants';
+import { FormOnColor } from '../../constants';
 import Label from '../Label';
 
 describe('Gitt at Select skal vises', (): void => {
@@ -47,10 +47,10 @@ describe('Gitt at Select skal vises', (): void => {
     });
   });
 
-  describe('Når mode er onBlueberry', (): void => {
+  describe('Når onColor er onBlueberry', (): void => {
     test('Så vises Select med onBlueberry styling', (): void => {
       render(
-        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} mode={FormMode.onblueberry}>
+        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} onColor={FormOnColor.onblueberry}>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>

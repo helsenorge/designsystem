@@ -247,10 +247,10 @@ describe('Gitt at button skal vises', (): void => {
     });
   });
 
-  describe('Når button rendres med mode ondark', (): void => {
+  describe('Når button rendres med onColor ondark', (): void => {
     test('Så er farger riktig', (): void => {
       render(
-        <Button testId={'test01'} mode={'ondark'}>
+        <Button testId={'test01'} onColor={'ondark'}>
           Button
         </Button>
       );

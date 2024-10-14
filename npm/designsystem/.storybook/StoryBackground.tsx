@@ -1,15 +1,15 @@
-import { FormMode } from '../src/constants';
+import { FormOnColor } from '../src/constants';
 import { palette } from '../src/theme/palette';
 
-export const mapToBackgoundColor = (mode: FormMode): string => {
-  switch (mode) {
-    case FormMode.onblueberry:
+export const mapToBackgoundColor = (onColor: FormOnColor): string => {
+  switch (onColor) {
+    case FormOnColor.onblueberry:
       return palette.blueberry50;
-    case FormMode.ondark:
+    case FormOnColor.ondark:
       return palette.blueberry800;
-    case FormMode.ongrey:
+    case FormOnColor.ongrey:
       return palette.neutral50;
-    case FormMode.oninvalid:
+    case FormOnColor.oninvalid:
       return palette.cherry100;
     default:
       return palette.white;

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import cn from 'classnames';
 
-import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode } from '../../constants';
+import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { uuid } from '../../utils/uuid';
@@ -39,7 +39,7 @@ export interface TextareaProps
   /** If true, the component will be transparent. */
   transparent?: boolean;
   /** Changes the visuals of the textarea */
-  mode?: keyof typeof FormMode;
+  onColor?: keyof typeof FormOnColor;
   /** Label of the input */
   label?: React.ReactNode;
   /** id of the textarea */
@@ -75,7 +75,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     defaultValue,
     marginBottom: gutterBottom,
     transparent,
-    mode = FormMode.onwhite,
+    onColor = FormOnColor.onwhite,
     label,
     textareaId = uuid(),
     minRows = 3,
@@ -128,10 +128,10 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     }
   };
 
-  const onDark = mode === FormMode.ondark;
-  const onBlueberry = mode === FormMode.onblueberry;
+  const onDark = onColor === FormOnColor.ondark;
+  const onBlueberry = onColor === FormOnColor.onblueberry;
   const maxCharactersExceeded = !!maxCharacters && textareaInput.toString().length > maxCharacters;
-  const onError = mode === FormMode.oninvalid || !!errorText || !!error || maxCharactersExceeded;
+  const onError = onColor === FormOnColor.oninvalid || !!errorText || !!error || maxCharactersExceeded;
 
   const textareaWrapperClass = cn(styles.textarea, {
     [styles['textarea--gutterBottom']]: gutterBottom,
@@ -175,7 +175,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   return (
     <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
-        {renderLabel(label, textareaId, mode as FormMode)}
+        {renderLabel(label, textareaId, onColor as FormOnColor)}
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
           <textarea
             rows={rows}
@@ -202,7 +202,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             maxCharacters={maxCharacters}
             length={textareaInput.toString().length}
             maxText={maxText}
-            mode={mode}
+            onColor={onColor}
             maxWidth={maxWidth}
           />
         )}

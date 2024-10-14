@@ -4,7 +4,7 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import Input, { InputProps, InputTypes } from './Input';
-import { FormMode, FormSize } from '../../constants';
+import { FormOnColor, FormSize } from '../../constants';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 
@@ -30,7 +30,7 @@ const meta = {
     transparent: false,
     type: InputTypes.text,
     disabled: false,
-    mode: FormMode.onwhite,
+    onColor: FormOnColor.onwhite,
     showIcon: true,
     iconRight: false,
     readOnly: false,
@@ -63,9 +63,9 @@ const meta = {
     disabled: {
       control: 'boolean',
     },
-    mode: {
+    onColor: {
       control: 'select',
-      options: FormMode,
+      options: FormOnColor,
     },
     showIcon: {
       control: 'boolean',

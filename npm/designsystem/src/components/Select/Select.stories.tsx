@@ -94,12 +94,12 @@ export const Concepts: Story = {
   ),
 };
 
-export const Modes: Story = {
+export const BackgroundColors: Story = {
   render: args => (
     <>
       <Select
         {...args}
-        mode={'onwhite'}
+        onColor={'onwhite'}
         label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
@@ -110,7 +110,7 @@ export const Modes: Story = {
       </Select>
       <Select
         {...args}
-        mode={'ongrey'}
+        onColor={'ongrey'}
         label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
@@ -121,7 +121,7 @@ export const Modes: Story = {
       </Select>
       <Select
         {...args}
-        mode={'onblueberry'}
+        onColor={'onblueberry'}
         label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
@@ -132,7 +132,7 @@ export const Modes: Story = {
       </Select>
       <Select
         {...args}
-        mode={'oninvalid'}
+        onColor={'oninvalid'}
         label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}

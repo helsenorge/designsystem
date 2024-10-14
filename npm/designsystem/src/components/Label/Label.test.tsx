@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 
 import Label, { LabelText } from './Label';
 import { Sublabel } from './SubLabel';
-import { FormMode } from '../../constants';
+import { FormOnColor } from '../../constants';
 import Input from '../Input';
 import StatusDot from '../StatusDot';
 
@@ -71,7 +71,7 @@ describe('Gitt at Label skal vises', (): void => {
       expect(sublabelNormal).toHaveClass('label label--sublabel');
     });
   });
-  describe('Når Label og sublabel rendres med ondark mode', (): void => {
+  describe('Når Label og sublabel rendres med onColor ondark', (): void => {
     test('Så vises Label og Sublabel med ondark klasser', (): void => {
       const sublabelId = 'sublabel-testid';
       const sublabelTexts: LabelText[] = [{ text: 'normal sublabel', type: 'normal' }];
@@ -82,7 +82,7 @@ describe('Gitt at Label skal vises', (): void => {
             labelTexts={[{ text: 'normal label', type: 'normal' }]}
             sublabel={<Sublabel id={sublabelId} sublabelTexts={sublabelTexts} />}
             statusDot={<StatusDot text={'Statusdot text'} variant={'alert'} />}
-            mode={FormMode.ondark}
+            onColor={FormOnColor.ondark}
           />
         </>
       );
@@ -106,7 +106,7 @@ describe('Gitt at Label skal vises', (): void => {
             sublabel={<Sublabel id={sublabelId} sublabelTexts={sublabelTexts} />}
             statusDot={<StatusDot text={'Statusdot text'} variant={'alert'} />}
             htmlFor={inputId}
-            mode={FormMode.ondark}
+            onColor={FormOnColor.ondark}
             testId={'test-label'}
           />
           <Input aria-describedby={sublabelId} inputId={inputId} />

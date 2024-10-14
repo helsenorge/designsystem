@@ -4,7 +4,7 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import Textarea from './Textarea';
-import { FormMode } from '../../constants';
+import { FormOnColor } from '../../constants';
 import Label from '../Label/Label';
 
 const meta = {
@@ -23,7 +23,7 @@ const meta = {
     maxCharacters: 150,
     maxText: 'tegn',
     width: undefined,
-    mode: FormMode.onwhite,
+    onColor: FormOnColor.onwhite,
     testId: '123-test',
     transparent: false,
     disabled: false,
@@ -50,9 +50,9 @@ const meta = {
     width: {
       control: 'number',
     },
-    mode: {
+    onColor: {
       control: 'select',
-      options: FormMode,
+      options: FormOnColor,
     },
     defaultValue: {
       control: 'text',

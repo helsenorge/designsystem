@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import Checkbox from './Checkbox';
-import { FormMode, FormSize } from '../../constants';
+import { FormOnColor, FormSize } from '../../constants';
 import Label from '../Label';
 
 describe('Gitt at Checkbox skal vises', (): void => {
@@ -33,17 +33,17 @@ describe('Gitt at Checkbox skal vises', (): void => {
     });
   });
 
-  describe('Når mode er onBlueberry', (): void => {
+  describe('Når onColor er onBlueberry', (): void => {
     test('Så vises Checkbox med onBlueberry styling', (): void => {
-      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} mode={FormMode.onblueberry} />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} onColor={FormOnColor.onblueberry} />);
 
       const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
       expect(label?.className).toBe('checkbox-label');
     });
   });
-  describe('Når mode er onDark', (): void => {
+  describe('Når onColor er onDark', (): void => {
     test('Så vises Checkbox med onDark styling', (): void => {
-      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} mode={FormMode.ondark} />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} onColor={FormOnColor.ondark} />);
 
       const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
       expect(label?.className).toBe('checkbox-label checkbox-label--on-dark');

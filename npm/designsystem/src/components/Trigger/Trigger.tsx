@@ -18,7 +18,7 @@ export type TriggerVariant = 'help'; // @todo Support variant='info' in later ve
 
 export type TriggerSize = 'medium' | 'large';
 
-export type TriggerMode = 'onlight' | 'ondark';
+export type TriggerOnColor = 'onlight' | 'ondark';
 
 export interface TriggerProps extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'aria-haspopup' | 'aria-controls'> {
   /**
@@ -36,7 +36,7 @@ export interface TriggerProps extends Pick<React.InputHTMLAttributes<HTMLButtonE
   /**
    * Changes the design based on the background the trigger is placed on. Default: onlight.
    */
-  mode?: TriggerMode;
+  onColor?: TriggerOnColor;
   /**
    * Size of the trigger. Default: medium.
    */
@@ -73,8 +73,8 @@ const iconSizeMap: Record<TriggerSize, IconSize> = {
   large: IconSize.Small,
 };
 
-const getIconColor = (mode: TriggerMode, variant: TriggerVariant, isActive: boolean): string | undefined => {
-  if (mode === 'ondark') {
+const getIconColor = (onColor: TriggerOnColor, variant: TriggerVariant, isActive: boolean): string | undefined => {
+  if (onColor === 'ondark') {
     return 'white';
   }
 
@@ -95,7 +95,7 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
       ariaLabel,
       ariaLabelledById,
       variant = 'help',
-      mode = 'onlight',
+      onColor = 'onlight',
       size = 'medium',
       selected = false,
       isHovered,
@@ -110,15 +110,15 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
 
     const triggerClasses = classNames(
       styles.trigger,
-      mode === 'onlight' && styles[`trigger--${variant}`], // variants look the same when mode=ondark
-      mode === 'ondark' && styles[`trigger--${mode}`],
+      onColor === 'onlight' && styles[`trigger--${variant}`], // variants look the same when onColor=ondark
+      onColor === 'ondark' && styles[`trigger--${onColor}`],
       styles[`trigger--${size}`],
       isHovered && styles[`trigger--hovered`],
       selected && styles[`trigger--selected`],
       className
     );
 
-    const iconColor = getIconColor(mode, variant, isHovered || buttonIsHovered || selected);
+    const iconColor = getIconColor(onColor, variant, isHovered || buttonIsHovered || selected);
 
     const icon = <Icon svgIcon={iconMap[variant]} size={iconSizeMap[size]} color={iconColor} isHovered={isHovered || buttonIsHovered} />;
 

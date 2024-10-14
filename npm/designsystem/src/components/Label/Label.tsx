@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 import cn from 'classnames';
 
 import { Sublabel, SublabelProps } from './SubLabel';
-import { AnalyticsId, FormMode } from '../../constants';
+import { AnalyticsId, FormOnColor } from '../../constants';
 import { isComponent } from '../../utils/component';
 import Spacer from '../Spacer';
 import StatusDot, { StatusDotProps } from '../StatusDot';
@@ -34,7 +34,7 @@ export interface LabelProps {
   /** Array of main label strings. Can be of type semibold or normal */
   labelTexts: LabelText[];
   /** Array of sublabel strings. Can be of type semibold or normal */
-  mode?: keyof typeof FormMode;
+  onColor?: keyof typeof FormOnColor;
   /** StatusDot placed underneath the last sublabel */
   statusDot?: React.ReactNode;
   /** Sublabel component */
@@ -57,15 +57,15 @@ export const getLabelText = (label: React.ReactNode): string => {
   return allLabelText;
 };
 
-export const renderLabel = (label: React.ReactNode, inputId: string, mode: FormMode): React.ReactNode => {
+export const renderLabel = (label: React.ReactNode, inputId: string, onColor: FormOnColor): React.ReactNode => {
   return (
     <>
       {label && isComponent<LabelProps>(label, Label)
         ? React.cloneElement(label, {
             htmlFor: inputId,
-            mode: mode,
+            onColor,
           })
-        : typeof label === 'string' && <Label labelTexts={[{ text: label, type: 'semibold' }]} htmlFor={inputId} mode={mode} />}
+        : typeof label === 'string' && <Label labelTexts={[{ text: label, type: 'semibold' }]} htmlFor={inputId} onColor={onColor} />}
     </>
   );
 };
@@ -74,7 +74,7 @@ export const renderLabelAsParent = (
   label: React.ReactNode,
   children: React.ReactNode,
   inputId: string,
-  mode: FormMode,
+  onColor: FormOnColor,
   labelClassName?: string,
   labelTextClassName?: string,
   sublabelWrapperClassName?: string,
@@ -85,7 +85,7 @@ export const renderLabelAsParent = (
       {label && isComponent<LabelProps>(label, Label)
         ? React.cloneElement(label, {
             htmlFor: inputId,
-            mode: mode,
+            onColor,
             children: children,
             labelClassName: cn(labelClassName, label.props.labelClassName),
             labelTextClassName: labelTextClassName,
@@ -97,7 +97,7 @@ export const renderLabelAsParent = (
             <Label
               labelTexts={[{ text: label }]}
               htmlFor={inputId}
-              mode={mode}
+              onColor={onColor}
               labelClassName={labelClassName}
               labelTextClassName={labelTextClassName}
               sublabelWrapperClassName={sublabelWrapperClassName}
@@ -118,7 +118,7 @@ const Label: FunctionComponent<LabelProps> = ({
   labelTextClassName,
   labelId,
   labelTexts,
-  mode = FormMode.onwhite,
+  onColor = FormOnColor.onwhite,
   statusDot,
   sublabel,
   sublabelWrapperClassName,
@@ -137,7 +137,7 @@ const Label: FunctionComponent<LabelProps> = ({
         styles.label,
         {
           [styles['label--semibold']]: labelText.type === 'semibold',
-          [styles['label--on-dark']]: mode === FormMode.ondark,
+          [styles['label--on-dark']]: onColor === FormOnColor.ondark,
         },
         labelTextClassName
       );
@@ -162,13 +162,13 @@ const Label: FunctionComponent<LabelProps> = ({
           {sublabel &&
             isComponent<SublabelProps>(sublabel, Sublabel) &&
             React.cloneElement(sublabel, {
-              mode: mode as FormMode,
+              onColor: onColor as FormOnColor,
             })}
           {statusDot && isComponent<StatusDotProps>(statusDot, StatusDot) && (
             <>
               <Spacer size={'3xs'} />
               {React.cloneElement(statusDot, {
-                mode: mode === FormMode.ondark ? 'ondark' : 'onwhite',
+                onColor: onColor === FormOnColor.ondark ? 'ondark' : 'onwhite',
               })}
             </>
           )}

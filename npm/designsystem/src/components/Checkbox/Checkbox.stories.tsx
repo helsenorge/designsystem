@@ -4,7 +4,7 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import Checkbox from './Checkbox';
-import { FormMode, FormSize } from '../../constants';
+import { FormOnColor, FormSize } from '../../constants';
 import Label from '../Label/Label';
 
 const meta = {
@@ -23,7 +23,7 @@ const meta = {
     label: '',
     checked: false,
     disabled: false,
-    mode: FormMode.onwhite,
+    onColor: FormOnColor.onwhite,
     size: FormSize.medium,
     name: 'checkbox',
     value: '',
@@ -36,9 +36,9 @@ const meta = {
     disabled: {
       control: 'boolean',
     },
-    mode: {
+    onColor: {
       control: 'select',
-      options: FormMode,
+      options: FormOnColor,
     },
     size: {
       control: 'select',
@@ -63,13 +63,13 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => (
     <>
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} mode="onwhite" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} mode="ongrey" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} mode="onblueberry" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} mode="oninvalid" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} mode="onwhite" disabled />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} onColor="onwhite" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} onColor="ongrey" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} onColor="onblueberry" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} onColor="oninvalid" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} onColor="onwhite" disabled />
       <div style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
-        <Checkbox {...args} label={<Label mode={'ondark'} labelTexts={[{ text: 'ondark' }]} />} mode="ondark" />
+        <Checkbox {...args} label={<Label onColor={'ondark'} labelTexts={[{ text: 'ondark' }]} />} onColor="ondark" />
       </div>
     </>
   ),
@@ -78,17 +78,17 @@ export const Default: Story = {
 export const Large: Story = {
   render: args => (
     <div style={{ backgroundColor: '#EAE7E7', display: 'block', marginTop: '1rem', padding: '1rem' }}>
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} size="large" mode="onwhite" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} size="large" mode="ongrey" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} size="large" mode="onblueberry" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} size="large" mode="oninvalid" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} size="large" mode="onwhite" disabled />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} size="large" onColor="onwhite" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} size="large" onColor="ongrey" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} size="large" onColor="onblueberry" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} size="large" onColor="oninvalid" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} size="large" onColor="onwhite" disabled />
       <Checkbox
         {...args}
-        label={<Label mode={'ondark'} labelTexts={[{ text: 'onwhite - disabled - checked' }]} />}
+        label={<Label onColor={'ondark'} labelTexts={[{ text: 'onwhite - disabled - checked' }]} />}
         size="large"
         checked
-        mode="onwhite"
+        onColor="onwhite"
         disabled
       />
     </div>

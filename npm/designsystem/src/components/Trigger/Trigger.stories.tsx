@@ -24,7 +24,7 @@ const meta = {
     ariaLabel: 'Hjelp',
     variant: 'help',
     size: 'medium',
-    mode: 'onlight',
+    onColor: 'onlight',
     selected: false,
     htmlMarkup: 'button',
   },
@@ -40,7 +40,7 @@ const meta = {
       control: 'select',
       options: ['medium', 'large'],
     },
-    mode: {
+    onColor: {
       control: 'select',
       options: ['onlight', 'ondark'],
     },
@@ -61,7 +61,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => (
     <>
-      {args.mode === 'ondark' ? (
+      {args.onColor === 'ondark' ? (
         <div style={{ backgroundColor: '#6a2abf', padding: '2rem' }}>
           <Trigger {...args} onClick={action('Trigger clicked!')} />
         </div>
@@ -79,7 +79,7 @@ export const HelpTrigger: Story = {
 export const OnDark: Story = {
   render: args => (
     <div style={{ backgroundColor: '#6a2abf', padding: '2rem' }}>
-      <Trigger {...args} onClick={action('Trigger clicked!')} mode="ondark" />
+      <Trigger {...args} onClick={action('Trigger clicked!')} onColor="ondark" />
     </div>
   ),
 };

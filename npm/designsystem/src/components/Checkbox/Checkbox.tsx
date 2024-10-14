@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormMode, FormSize, IconSize } from '../../constants';
+import { AnalyticsId, FormOnColor, FormSize, IconSize } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys/color';
@@ -28,7 +28,7 @@ export interface CheckboxProps
   /** input id of the checkbox */
   inputId?: string;
   /** Changes the visuals of the checkbox */
-  mode?: keyof typeof FormMode;
+  onColor?: keyof typeof FormOnColor;
   /** Changes the visuals of the checkbox */
   size?: keyof typeof FormSize;
   /** Activates Error style for the checkbox - This is can be true while errorText is empty, when in a FormGroup */
@@ -48,7 +48,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     disabled,
     label,
     inputId = uuid(),
-    mode = FormMode.onwhite,
+    onColor = FormOnColor.onwhite,
     name = inputId,
     size,
     errorText,
@@ -62,11 +62,11 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
   const errorTextUuid = useUuid(errorTextId);
-  const onWhite = mode === FormMode.onwhite;
-  const onGrey = mode === FormMode.ongrey;
-  const onBlueberry = mode === FormMode.onblueberry;
-  const onInvalid = error || mode === FormMode.oninvalid;
-  const onDark = mode === FormMode.ondark;
+  const onWhite = onColor === FormOnColor.onwhite;
+  const onGrey = onColor === FormOnColor.ongrey;
+  const onBlueberry = onColor === FormOnColor.onblueberry;
+  const onInvalid = error || onColor === FormOnColor.oninvalid;
+  const onDark = onColor === FormOnColor.ondark;
   const large = size === FormSize.large;
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
@@ -162,7 +162,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           label,
           getLabelContent(),
           inputId,
-          mode as FormMode,
+          onColor as FormOnColor,
           checkboxLabelClasses,
           labelTextClasses,
           checkboxStyles['checkbox-sublabel-wrapper'],

@@ -175,28 +175,28 @@ export const DarkMode: Story = {
   render: args => (
     <>
       <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 500) }}>
-        <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'} mode={'ondark'}>
+        <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'fill'} onColor={'ondark'}>
           {args.children}
         </Button>
         <br />
         <br />
-        <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} mode={'ondark'}>
+        <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} onColor={'ondark'}>
           <Icon svgIcon={Dog} />
           {args.children}
         </Button>
         <br />
         <br />
-        <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'outline'} mode={'ondark'}>
+        <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'outline'} onColor={'ondark'}>
           {args.children}
         </Button>
         <br />
         <br />
-        <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'} mode={'ondark'}>
+        <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'} onColor={'ondark'}>
           {args.children}
         </Button>
         <br />
         <br />
-        <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'} mode={'ondark'}>
+        <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'} onColor={'ondark'}>
           <Icon svgIcon={Dog} />
           {args.children}
         </Button>

@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import RadioButton from './RadioButton';
-import { FormMode, FormSize } from '../../constants';
+import { FormOnColor, FormSize } from '../../constants';
 import FormGroup from '../FormGroup';
 import Label from '../Label';
 
@@ -33,17 +33,17 @@ describe('Gitt at RadioButton skal vises', (): void => {
     });
   });
 
-  describe('Når mode er onBlueberry', (): void => {
+  describe('Når onColor er onBlueberry', (): void => {
     test('Så vises RadioButton med onBlueberry styling', (): void => {
-      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} mode={FormMode.onblueberry} />);
+      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} onColor={FormOnColor.onblueberry} />);
 
       const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
       expect(label).toHaveClass('radio-button-label');
     });
   });
-  describe('Når mode er onDark', (): void => {
+  describe('Når onColor er onDark', (): void => {
     test('Så vises RadioButton med onDark styling', (): void => {
-      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} mode={FormMode.ondark} />);
+      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} onColor={FormOnColor.ondark} />);
 
       const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
       expect(label).toHaveClass('radio-button-label radio-button-label--on-dark');
@@ -62,7 +62,7 @@ describe('Gitt at RadioButton skal vises', (): void => {
   describe('Når size er large', (): void => {
     test('Så vises RadioButton checked state riktig styling', (): void => {
       render(
-        <FormGroup legend={'onwhite'} name="radio1" mode={'onwhite'} size={'large'}>
+        <FormGroup legend={'onwhite'} name="radio1" onColor={'onwhite'} size={'large'}>
           <RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} />
           <RadioButton label={<Label labelTexts={[{ text: 'Radio2' }]} />} />
         </FormGroup>

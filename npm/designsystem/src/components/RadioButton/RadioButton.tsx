@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormMode, FormSize } from '../../constants';
+import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useUuid } from '../../hooks/useUuid';
 import { getAriaDescribedBy } from '../../utils/accessibility';
@@ -27,7 +27,7 @@ export interface RadioButtonProps
   /** input id of the radioButton */
   inputId?: string;
   /** Changes the visuals of the radioButton */
-  mode?: keyof typeof FormMode;
+  onColor?: keyof typeof FormOnColor;
   /** Changes the visuals of the radioButton. Large version only works when used inside a FormGroup wrapper. */
   size?: keyof typeof FormSize;
   /** Activates Error style for the radioButton - This is can be true while errorText is empty, when in a FormGroup */
@@ -40,13 +40,18 @@ export interface RadioButtonProps
   testId?: string;
 }
 
-export const getRadioLabelClasses = (radioId: string, mode: FormMode, large: boolean, checkedRadioId?: string): string | undefined => {
-  const onCherry = mode === 'oninvalid';
+export const getRadioLabelClasses = (
+  radioId: string,
+  onColor: FormOnColor,
+  large: boolean,
+  checkedRadioId?: string
+): string | undefined => {
+  const onCherry = onColor === 'oninvalid';
   const checked = radioId === checkedRadioId;
 
   return classNames({
-    [radioButtonStyles['radio-button-label__large--on-grey']]: large && mode === 'ongrey' && !checked,
-    [radioButtonStyles['radio-button-label__large--on-blueberry']]: mode === 'onblueberry' && !checked && large,
+    [radioButtonStyles['radio-button-label__large--on-grey']]: large && onColor === 'ongrey' && !checked,
+    [radioButtonStyles['radio-button-label__large--on-blueberry']]: onColor === 'onblueberry' && !checked && large,
     [radioButtonStyles['radio-button-label__large--selected']]: large && checked && !onCherry,
     [radioButtonStyles['radio-button-label__large--selected-invalid']]: large && checked && onCherry,
   });
@@ -60,7 +65,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     disabled,
     label,
     inputId = uuid(),
-    mode = FormMode.onwhite,
+    onColor = FormOnColor.onwhite,
     name = inputId,
     size,
     errorText,
@@ -72,10 +77,10 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     labelClassNames,
     ...rest
   } = props;
-  const invalid = error || mode === FormMode.oninvalid;
-  const onDark = mode === FormMode.ondark;
-  const onBlueberry = mode === FormMode.onblueberry;
-  const onCherry = mode === FormMode.oninvalid;
+  const invalid = error || onColor === FormOnColor.oninvalid;
+  const onDark = onColor === FormOnColor.ondark;
+  const onBlueberry = onColor === FormOnColor.onblueberry;
+  const onCherry = onColor === FormOnColor.oninvalid;
   const isLarge = size === FormSize.large;
   const [checked, changeChecked] = useState<boolean>();
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
@@ -144,7 +149,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
           label,
           getLabelContent(),
           inputId,
-          mode as FormMode,
+          onColor as FormOnColor,
           radioButtonLabelClasses,
           undefined,
           radioButtonStyles['radiobutton-sublabel-wrapper'],

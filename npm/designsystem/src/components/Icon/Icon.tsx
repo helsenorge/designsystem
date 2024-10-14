@@ -2,9 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormMode, IconSize } from '../../constants';
+import { AnalyticsId, FormOnColor, IconSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
-import { StatusDotModes } from '../StatusDot';
+import { StatusDotOnColor } from '../StatusDot';
 
 export type SvgIcon = React.FC<SvgPathProps>;
 
@@ -22,7 +22,7 @@ export interface BaseIconProps {
   /* Swaps the displayed icon to the hover version and changes its color. */
   isHovered?: boolean;
   /** Defines the color of the icon */
-  mode?: keyof typeof FormMode | StatusDotModes;
+  onColor?: keyof typeof FormOnColor | StatusDotOnColor;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -35,7 +35,7 @@ export interface IconProps extends BaseIconProps {
 export interface SvgPathProps {
   size: IconSize;
   isHovered: boolean;
-  mode?: keyof typeof FormMode | StatusDotModes;
+  onColor?: keyof typeof FormOnColor | StatusDotOnColor;
 }
 
 interface IconConfig {
@@ -78,7 +78,7 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
     color = 'black',
     hoverColor = color || 'black',
     isHovered = false,
-    mode,
+    onColor,
     testId,
     ...other
   } = props;
@@ -86,7 +86,7 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
   const svgRaw = React.createElement(svgIcon, {
     size,
     isHovered,
-    mode,
+    onColor,
   });
 
   const titleId = useUuid();

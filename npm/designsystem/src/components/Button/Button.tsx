@@ -17,7 +17,7 @@ import buttonStyles from './styles.module.scss';
 export type ButtonConcept = 'normal' | 'destructive';
 export type ButtonVariant = 'fill' | 'outline' | 'borderless';
 export type ButtonSize = 'medium' | 'large';
-export type ButtonMode = 'onlight' | 'ondark';
+export type ButtonOnColor = 'onlight' | 'ondark';
 export type ButtonTags = 'button' | 'a';
 export type ButtonArrows = 'icon' | 'accessibility-character';
 export type ButtonTextPosition = 'left' | 'centered';
@@ -44,7 +44,7 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttri
   /** Changes the underlying element of the button. */
   htmlMarkup?: ButtonTags;
   /** Changes the button colors for different backgrounds. */
-  mode?: ButtonMode;
+  onColor?: ButtonOnColor;
   /** Function that is called when the Button loses focus */
   onBlur?: () => void;
   /** Function that is called when clicked */
@@ -111,7 +111,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     ellipsis = false,
     fluid = false,
     htmlMarkup = 'button',
-    mode = 'onlight',
+    onColor = 'onlight',
     onBlur,
     onClick,
     size = 'medium',
@@ -133,7 +133,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const buttonContentRef = useRef<HTMLDivElement>(null);
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
   const bothIcons = leftIcon && (rightIcon || arrow) && !onlyIcon;
-  const onDark = mode === 'ondark';
+  const onDark = onColor === 'ondark';
   const breakpoint = useBreakpoint();
   const mobile = breakpoint < breakpoints.md;
   const destructive = concept === 'destructive' && !disabled;

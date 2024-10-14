@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
-import { FormMode, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
+import { FormOnColor, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
@@ -60,7 +60,7 @@ export interface InputProps
   /** Ref that is placed on the inputWrapper */
   inputWrapperRef?: React.RefObject<HTMLDivElement>;
   /** Changes the color profile of the input */
-  mode?: keyof typeof FormMode;
+  onColor?: keyof typeof FormOnColor;
   /** Changes the visuals of the input */
   size?: keyof typeof FormSize;
   /** Label of the input */
@@ -115,7 +115,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     iconRight,
     inputId,
     inputWrapperRef,
-    mode = FormMode.onwhite,
+    onColor = FormOnColor.onwhite,
     size,
     baseIncrementValue,
     label,
@@ -151,12 +151,12 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     setInput(defaultValue || '');
   }, [defaultValue]);
 
-  const onDark = mode === FormMode.ondark;
-  const onBlueberry = mode === FormMode.onblueberry;
+  const onDark = onColor === FormOnColor.ondark;
+  const onBlueberry = onColor === FormOnColor.onblueberry;
   const maxCharactersExceeded = !!maxCharacters && input.toString().length > maxCharacters;
-  const onError = mode === FormMode.oninvalid || !!errorText || !!error || maxCharactersExceeded;
+  const onError = onColor === FormOnColor.oninvalid || !!errorText || !!error || maxCharactersExceeded;
   const isLarge = size === FormSize.large;
-  const isTransparent = transparent && mode !== FormMode.ondark && !onError;
+  const isTransparent = transparent && onColor !== FormOnColor.ondark && !onError;
 
   const inputWrapperClass = cn(styles['input-wrapper'], className);
 
@@ -243,7 +243,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   return (
     <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
-        {renderLabel(label, inputIdState, mode as FormMode)}
+        {renderLabel(label, inputIdState, onColor as FormOnColor)}
         {/* input-elementet tillater keyboard-interaksjon */}
         <div className={styles['content-wrapper']}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
@@ -281,7 +281,13 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
           <div className={styles['content-wrapper__right-of-input']}>{rightOfInput}</div>
         </div>
         {maxCharacters && (
-          <MaxCharacters maxCharacters={maxCharacters} length={input.toString().length} maxText={maxText} mode={mode} maxWidth={maxWidth} />
+          <MaxCharacters
+            maxCharacters={maxCharacters}
+            length={input.toString().length}
+            maxText={maxText}
+            onColor={onColor}
+            maxWidth={maxWidth}
+          />
         )}
         {afterInputChildren}
       </div>

@@ -6,7 +6,7 @@ import { Docs } from 'frankenstein-build-tools';
 import FormGroup from './FormGroup';
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import Spacer from '../../components/Spacer';
-import { FormMode, FormSize } from '../../constants';
+import { FormOnColor, FormSize } from '../../constants';
 import Checkbox from '../Checkbox/Checkbox';
 import FormLayout from '../FormLayout';
 import Coronavirus from '../Icons/Coronavirus';
@@ -30,7 +30,7 @@ const meta = {
   args: {
     title: 'Gruppe tittel',
     legend: 'Første gruppe',
-    mode: FormMode.onwhite,
+    onColor: FormOnColor.onwhite,
     size: FormSize.medium,
     name: 'gruppe1',
   },
@@ -41,9 +41,9 @@ const meta = {
     legend: {
       control: 'text',
     },
-    mode: {
+    onColor: {
       control: 'select',
-      options: FormMode,
+      options: FormOnColor,
     },
     size: {
       control: 'select',
@@ -63,7 +63,7 @@ export const CheckboxChildren: Story = {
   render: args => (
     <div
       style={{
-        background: mapToBackgoundColor(args.mode as FormMode),
+        background: mapToBackgoundColor(args.onColor as FormOnColor),
       }}
     >
       <FormGroup {...args}>
@@ -79,7 +79,7 @@ export const RadioButtonChildren: Story = {
   render: args => (
     <div
       style={{
-        background: mapToBackgoundColor(args.mode as FormMode),
+        background: mapToBackgoundColor(args.onColor as FormOnColor),
       }}
     >
       <FormGroup {...args}>
@@ -95,7 +95,7 @@ export const InputChildren: Story = {
   render: args => (
     <div
       style={{
-        background: mapToBackgoundColor(args.mode as FormMode),
+        background: mapToBackgoundColor(args.onColor as FormOnColor),
       }}
     >
       <FormGroup {...args}>
@@ -111,7 +111,7 @@ export const DivTagTrue: Story = {
   render: args => (
     <div
       style={{
-        background: mapToBackgoundColor(args.mode as FormMode),
+        background: mapToBackgoundColor(args.onColor as FormOnColor),
       }}
     >
       <FormGroup htmlMarkup="div" {...args}>
@@ -127,7 +127,7 @@ export const CustomErrorWrapperClass: Story = {
   render: args => (
     <div
       style={{
-        background: mapToBackgoundColor(args.mode as FormMode),
+        background: mapToBackgoundColor(args.onColor as FormOnColor),
       }}
     >
       <FormGroup
@@ -154,7 +154,7 @@ export const FormLayoutChildren: Story = {
   render: args => (
     <div
       style={{
-        background: mapToBackgoundColor(args.mode as FormMode),
+        background: mapToBackgoundColor(args.onColor as FormOnColor),
       }}
     >
       <FormGroup {...args}>

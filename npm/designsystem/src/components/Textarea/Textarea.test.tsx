@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Textarea from './Textarea';
-import { FormMode } from '../../constants';
+import { FormOnColor } from '../../constants';
 import Label from '../Label';
 
 describe('Gitt at Textarea skal vises', (): void => {
@@ -30,17 +30,17 @@ describe('Gitt at Textarea skal vises', (): void => {
     });
   });
 
-  describe('Når FormMode er onblueberry', (): void => {
+  describe('Når onColor er onblueberry', (): void => {
     test('Så vises Textarea med onblueberry styling', (): void => {
-      render(<Textarea label={<Label labelTexts={[{ text: 'Skriv din historie' }]} />} mode={FormMode.onblueberry} />);
+      render(<Textarea label={<Label labelTexts={[{ text: 'Skriv din historie' }]} />} onColor={FormOnColor.onblueberry} />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
       expect(contentWrapper?.className).toBe('input-container input-container--on-blueberry');
     });
   });
-  describe('Når mode er ondark', (): void => {
+  describe('Når onColor er ondark', (): void => {
     test('Så vises Textarea med ondark styling', (): void => {
-      render(<Textarea label={<Label labelTexts={[{ text: 'Skriv din historie' }]} />} mode={FormMode.ondark} />);
+      render(<Textarea label={<Label labelTexts={[{ text: 'Skriv din historie' }]} />} onColor={FormOnColor.ondark} />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
       expect(contentWrapper?.className).toBe('input-container input-container--on-dark');

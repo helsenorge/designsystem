@@ -21,7 +21,7 @@ import PlusSmall from '../Icons/PlusSmall';
 
 import styles from './styles.module.scss';
 
-export enum DropdownMode {
+export enum DropdownOnColor {
   onwhite = 'onwhite',
   ongrey = 'ongrey',
   onblueberry = 'onblueberry',
@@ -44,7 +44,7 @@ export interface DropdownProps {
   /** Whether the dropdown is open or not */
   open?: boolean;
   /** Changes the visuals of the dropdown */
-  mode?: keyof typeof DropdownMode;
+  onColor?: keyof typeof DropdownOnColor;
   /** Makes the background of the trigger transparent */
   transparent?: boolean;
   /** Makes the width of the full component adjust to its parent */
@@ -66,7 +66,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
     onToggle,
     open = false,
     children,
-    mode = DropdownMode.onwhite,
+    onColor = DropdownOnColor.onwhite,
     transparent = false,
     fluid = false,
     testId,
@@ -142,10 +142,10 @@ const Dropdown: React.FC<DropdownProps> = props => {
   const toggleClasses = classNames(
     styles.dropdown__toggle,
     !disabled && {
-      [styles['dropdown__toggle--on-white']]: mode === DropdownMode.onwhite,
-      [styles['dropdown__toggle--on-grey']]: mode === DropdownMode.ongrey,
-      [styles['dropdown__toggle--on-blueberry']]: mode === DropdownMode.onblueberry,
-      [styles['dropdown__toggle--on-cherry']]: mode === DropdownMode.oncherry,
+      [styles['dropdown__toggle--on-white']]: onColor === DropdownOnColor.onwhite,
+      [styles['dropdown__toggle--on-grey']]: onColor === DropdownOnColor.ongrey,
+      [styles['dropdown__toggle--on-blueberry']]: onColor === DropdownOnColor.onblueberry,
+      [styles['dropdown__toggle--on-cherry']]: onColor === DropdownOnColor.oncherry,
       [styles['dropdown__toggle--transparent']]: transparent,
       [styles['dropdown__toggle--fluid']]: fluid,
       [styles['dropdown__toggle--open']]: isOpen,

@@ -131,7 +131,7 @@ export const OnDark: Story = {
               statusDot={<StatusDot id={statusDotId} text={'Statusdot text'} variant={'alert'} />}
             />
           }
-          mode={'ondark'}
+          onColor={'ondark'}
           aria-describedby={sublabelId + ' ' + statusDotId}
         />
       </div>

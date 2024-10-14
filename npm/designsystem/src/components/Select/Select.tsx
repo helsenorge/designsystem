@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormMode, IconSize } from '../../constants';
+import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, IconSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
@@ -29,7 +29,7 @@ export interface SelectProps
   /** The label text above the select */
   label?: React.ReactNode;
   /** Changes the visuals of the component */
-  mode?: keyof typeof FormMode;
+  onColor?: keyof typeof FormOnColor;
   /** Activates Error style for the select component - This is can be true while errorText is empty, when in a FormGroup */
   error?: boolean;
   /** Error text to show above the component */
@@ -71,7 +71,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     label,
     selectId,
     name = selectId,
-    mode = FormMode.onwhite,
+    onColor = FormOnColor.onwhite,
     testId,
     width,
     required,
@@ -84,8 +84,8 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
 
   const uuid = useUuid(selectId);
   const errorTextUuid = useUuid(errorTextId);
-  const onBlueberry = mode === 'onblueberry';
-  const invalid = mode === 'oninvalid' || !!errorText || !!error;
+  const onBlueberry = onColor === 'onblueberry';
+  const invalid = onColor === 'oninvalid' || !!errorText || !!error;
   const iconColor = getIconColor(invalid, !!disabled);
   const maxWidth = width ? getSelectMaxWidth(width) : undefined;
 
@@ -110,7 +110,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
   return (
     <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectWrapperClasses} style={{ maxWidth }}>
-        {renderLabel(label, uuid, mode as FormMode)}
+        {renderLabel(label, uuid, onColor as FormOnColor)}
         <div className={selectInnerWrapperClasses}>
           <Icon className={selectStyles['select-arrow']} svgIcon={ChevronDown} color={iconColor} size={IconSize.XSmall} />
           <select

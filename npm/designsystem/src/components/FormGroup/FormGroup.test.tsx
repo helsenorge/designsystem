@@ -36,10 +36,10 @@ describe('Gitt at FormGroup skal vises', (): void => {
     });
   });
 
-  describe('Når mode settes', (): void => {
+  describe('Når onColor settes', (): void => {
     test('Så er stylingen satt riktig på FormGroup children', (): void => {
       render(
-        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} mode={'onblueberry'}>
+        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} onColor={'onblueberry'}>
           <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
           <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
           <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
@@ -58,7 +58,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
           errorWrapperClassName="custom-wrapper-class"
           title={'One amazing title'}
           legend={'Check out these checkboxes!'}
-          mode={'onblueberry'}
+          onColor={'onblueberry'}
           errorWrapperTestId="error-wrapper-testid-1"
         >
           <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />

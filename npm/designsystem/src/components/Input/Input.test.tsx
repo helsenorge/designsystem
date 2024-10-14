@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Input, { InputTypes } from './Input';
-import { FormMode, FormSize } from '../../constants';
+import { FormOnColor, FormSize } from '../../constants';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label';
 
@@ -31,17 +31,17 @@ describe('Gitt at Input skal vises', (): void => {
     });
   });
 
-  describe('Når FormMode er onblueberry', (): void => {
+  describe('Når onColor er onblueberry', (): void => {
     test('Så vises Input med onblueberry styling', (): void => {
-      render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} mode={FormMode.onblueberry} />);
+      render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} onColor={FormOnColor.onblueberry} />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
       expect(contentWrapper).toHaveClass('input-container input-container--on-blueberry');
     });
   });
-  describe('Når mode er ondark', (): void => {
+  describe('Når onColor er ondark', (): void => {
     test('Så vises Input med ondark styling', (): void => {
-      render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} mode={FormMode.ondark} />);
+      render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} onColor={FormOnColor.ondark} />);
 
       const contentWrapper = screen.getByRole('textbox').parentElement;
       expect(contentWrapper).toHaveClass('input-container input-container--on-dark');

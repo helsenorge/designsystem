@@ -32,7 +32,7 @@ const meta = {
     placeholder: 'Hva skjer i kroppen?',
     closeText: 'Lukk',
     open: false,
-    mode: DropdownMode.onwhite,
+    onColor: DropdownMode.onwhite,
     transparent: false,
     fluid: false,
     noCloseButton: false,
@@ -51,7 +51,7 @@ const meta = {
     open: {
       control: 'boolean',
     },
-    mode: {
+    onColor: {
       control: 'select',
       options: DropdownMode,
     },
