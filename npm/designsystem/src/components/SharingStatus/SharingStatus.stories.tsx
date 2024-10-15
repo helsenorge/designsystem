@@ -107,14 +107,6 @@ export const AllColors: Story = {
       <SharingStatus {...args} color={'neutral'}>
         {'Neutral'}
       </SharingStatus>
-      <Spacer size="m" />
-      <SharingStatus {...args} color={'blueberry'}>
-        {'Blueberry'}
-      </SharingStatus>
-      <Spacer size="m" />
-      <SharingStatus {...args} color={'banana'}>
-        {'Banana'}
-      </SharingStatus>
     </>
   ),
 };

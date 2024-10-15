@@ -8,7 +8,7 @@ import Icon, { SvgIcon } from '../Icon';
 
 import styles from './styles.module.scss';
 
-export type SharingStatusColor = Extract<PaletteNames, 'kiwi' | 'cherry' | 'neutral' | 'blueberry' | 'banana'>;
+export type SharingStatusColor = Extract<PaletteNames, 'kiwi' | 'cherry' | 'neutral'>;
 
 export interface SharingStatusProps {
   /** Color choices represent variants of sharingstatus */
@@ -26,7 +26,7 @@ export interface SharingStatusProps {
 }
 
 const SharingStatus: React.FC<SharingStatusProps> = props => {
-  const { color = 'blueberry', icon, children, className, testId, wrapText } = props;
+  const { color = 'neutral', icon, children, className, testId, wrapText } = props;
 
   const sharingStatusClasses = classNames(styles['sharing-status'], className);
   const dotClasses = classNames(styles['sharing-status__dot'], styles[`sharing-status__dot--${color}`]);

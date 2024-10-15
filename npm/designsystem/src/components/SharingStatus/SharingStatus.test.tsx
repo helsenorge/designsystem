@@ -89,48 +89,6 @@ describe('Gitt at SharingStatus rendres ', () => {
     });
   });
 
-  describe('Når SharingStatus er av color="blueberry"', () => {
-    it('Så skal ikonet og teksten ha fargen "blueberry"', () => {
-      render(
-        <SharingStatus icon={Eye} color={'blueberry'} testId={'sharingStatus'}>
-          {'Eksempeltekst'}
-        </SharingStatus>
-      );
-
-      const text = screen.getByText('Eksempeltekst');
-      expect(text).toBeVisible();
-      const icon = screen.getByRole('presentation', { hidden: true });
-      expect(icon).toBeVisible();
-
-      const sharingStatusIcon = screen.getByTestId('sharingStatus');
-      const sharingStatusText = screen.getByText('Eksempeltekst');
-      // eslint-disable-next-line
-      expect(sharingStatusIcon.firstElementChild?.className).toBe('sharing-status__dot sharing-status__dot--blueberry');
-      expect(sharingStatusText).toHaveClass('sharing-status__label sharing-status__label--blueberry');
-    });
-  });
-
-  describe('Når SharingStatus er av color="banana"', () => {
-    it('Så skal ikonet og teksten ha fargen "banana"', () => {
-      render(
-        <SharingStatus icon={Eye} color={'banana'} testId={'sharingStatus'}>
-          {'Eksempeltekst'}
-        </SharingStatus>
-      );
-
-      const text = screen.getByText('Eksempeltekst');
-      expect(text).toBeVisible();
-      const icon = screen.getByRole('presentation', { hidden: true });
-      expect(icon).toBeVisible();
-
-      const sharingStatusIcon = screen.getByTestId('sharingStatus');
-      const sharingStatusText = screen.getByText('Eksempeltekst');
-      // eslint-disable-next-line
-      expect(sharingStatusIcon.firstElementChild?.className).toBe('sharing-status__dot sharing-status__dot--banana');
-      expect(sharingStatusText).toHaveClass('sharing-status__label sharing-status__label--banana');
-    });
-  });
-
   describe('Når SharingStatus er satt til wrapText="true"', () => {
     it('Så skal en lang tekst wrappe', () => {
       render(
@@ -143,7 +101,7 @@ describe('Gitt at SharingStatus rendres ', () => {
       expect(text).toBeVisible();
 
       const wrapText = screen.getByText('Eksempeltekst');
-      expect(wrapText).toHaveClass('sharing-status__label sharing-status__label--blueberry sharing-status__label--wrap');
+      expect(wrapText).toHaveClass('sharing-status__label--wrap');
     });
   });
 
@@ -159,7 +117,7 @@ describe('Gitt at SharingStatus rendres ', () => {
       expect(text).toBeVisible();
 
       const wrapText = screen.getByText('Eksempeltekst');
-      expect(wrapText).not.toHaveClass('sharing-status__label sharing-status__label--blueberry sharing-status__label--wrap');
+      expect(wrapText).not.toHaveClass('sharing-status__label--wrap');
     });
   });
 });

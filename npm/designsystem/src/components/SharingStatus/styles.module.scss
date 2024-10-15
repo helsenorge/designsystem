@@ -36,14 +36,6 @@ $dot-size: 1.765rem;
     &--neutral {
       background: $neutral700;
     }
-
-    &--blueberry {
-      background: $blueberry500;
-    }
-
-    &--banana {
-      background: $banana700;
-    }
   }
 
   &__label {
@@ -63,14 +55,6 @@ $dot-size: 1.765rem;
 
     &--neutral {
       color: $neutral700;
-    }
-
-    &--blueberry {
-      color: $blueberry500;
-    }
-
-    &--banana {
-      color: $banana700;
     }
   }
 }
