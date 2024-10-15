@@ -2,7 +2,7 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/font-settings';
-@import '../../scss/palette';
+@import '../../scss/supernova/styles/colors.css';
 
 .expander-list {
   list-style: none;
@@ -15,21 +15,101 @@
     position: relative;
 
     &--line {
-      border-bottom: 1px solid $neutral500;
+      border-bottom: 1px solid var(--color-base-border-onlight);
 
       &:first-of-type {
-        border-top: 1px solid $neutral500;
+        border-top: 1px solid var(--color-base-border-onlight);
+      }
+
+      &--blueberry,
+      .expander-list-link--line--blueberry {
+        background-color: var(--core-color-blueberry-50);
+      }
+
+      &--cherry,
+      .expander-list-link--line--cherry {
+        background-color: var(--core-color-cherry-50);
+      }
+
+      &--neutral,
+      .expander-list-link--line--neutral {
+        background-color: var(--core-color-neutral-50);
+      }
+
+      &--white,
+      .expander-list-link--line--white {
+        background-color: var(--color-base-background-white);
       }
     }
 
     &--outline {
-      border-top: getSpacer(2xs) $neutral100 solid;
-      border-left: getSpacer(2xs) $neutral100 solid;
-      border-right: getSpacer(2xs) $neutral100 solid;
+      background-color: var(--color-base-background-white);
 
-      &:last-of-type {
-        border-bottom: getSpacer(2xs) $neutral50 solid;
+      &--white {
+        border-top: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-neutral-100) solid;
+
+        &:last-of-type {
+          border-bottom: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        }
       }
+
+      &--blueberry {
+        border-top: getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-blueberry-100) solid;
+
+        &:last-of-type {
+          border-bottom: getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        }
+      }
+
+      &--cherry {
+        border-top: getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-cherry-100) solid;
+
+        &:last-of-type {
+          border-bottom: getSpacer(2xs) var(--core-color-cherry-100) solid;
+        }
+      }
+
+      &--neutral {
+        border-top: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-neutral-100) solid;
+
+        &:last-of-type {
+          border-bottom: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        }
+      }
+    }
+
+    &--fill {
+      &--blueberry,
+      .expander-list-link--fill--blueberry {
+        background-color: var(--core-color-blueberry-50);
+      }
+
+      &--cherry,
+      .expander-list-link--fill--cherry {
+        background-color: var(--core-color-cherry-50);
+      }
+
+      &--neutral,
+      .expander-list-link--fill--neutral {
+        background-color: var(--core-color-neutral-50);
+      }
+
+      &--white,
+      .expander-list-link--fill--white {
+        background-color: var(--color-base-background-white);
+      }
+    }
+
+    &--fill-negative {
+      background-color: var(--color-base-background-white);
     }
   }
 }
@@ -41,73 +121,114 @@
   line-height: $lineheight-size-sm;
   display: flex;
   cursor: pointer;
-  font-weight: 600;
   font-family: inherit;
   text-decoration: none;
   justify-content: space-between;
   align-items: center;
   letter-spacing: unset;
-  color: $black;
+  color: var(--color-base-text-onlight);
   border: 0;
   width: 100%;
   outline: none;
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: $font-size-md;
-    line-height: $lineheight-size-md;
+  &--open {
+    font-weight: 600;
   }
 
-  &--banana {
-    background-color: $banana100;
-  }
-
-  &--blueberry {
-    background-color: $blueberry100;
-  }
-
-  &--cherry {
-    background-color: $cherry100;
-  }
-
-  &--kiwi {
-    background-color: $kiwi100;
-  }
-
-  &--neutral {
-    background-color: $neutral100;
-  }
-
-  &--plum {
-    background-color: $plum100;
-  }
-
-  &--white {
-    background-color: $neutral50;
-  }
-
-  &--closed:not(:hover, .expander-list-link--fill) {
-    background-color: transparent;
-  }
-
-  &--fill {
+  &--fill,
+  &--fill-negative {
     margin-top: getSpacer(s);
+  }
+
+  &--fill-negative {
+    background-color: var(--color-base-background-white);
   }
 
   &--closed#{&}--fill {
     margin-bottom: getSpacer(s);
+  }
 
-    &:not(:hover) {
-      background-color: $neutral50;
+  &:focus-visible:not(.expander-list-link--outline) {
+    outline: 0.25rem solid var(--color-action-border-onlight-focus);
+  }
+
+  &--white:not(.expander-list-link--outline) {
+    &:hover {
+      background-color: var(--core-color-blueberry-50);
+    }
+
+    &:active {
+      background-color: var(--core-color-blueberry-100);
     }
   }
 
-  &:hover {
-    color: $blueberry700;
+  &--blueberry:not(.expander-list-link--outline) {
+    &:hover {
+      background-color: var(--core-color-blueberry-100);
+    }
+
+    &:active {
+      background-color: var(--color-action-background-ondark-hoverselected);
+    }
   }
 
-  &:focus,
-  &:focus-visible {
-    outline: getSpacer(4xs) solid $black;
+  &--cherry:not(.expander-list-link--outline) {
+    &:hover {
+      background-color: var(--core-color-cherry-100);
+    }
+
+    &:active {
+      background-color: var(--core-color-cherry-200);
+    }
+  }
+
+  &--neutral:not(.expander-list-link--outline) {
+    &:hover {
+      background-color: var(--core-color-neutral-100);
+    }
+
+    &:active {
+      background-color: var(--core-color-neutral-200);
+    }
+  }
+
+  &--outline {
+    background-color: var(--color-base-background-white);
+
+    &:focus-visible {
+      outline: 0.5rem solid var(--color-action-border-onlight-focus);
+    }
+
+    &--blueberry {
+      &:hover {
+        background-color: var(--core-color-blueberry-50);
+      }
+
+      &:active {
+        background-color: var(--core-color-blueberry-100);
+      }
+    }
+
+    &--cherry {
+      &:hover {
+        background-color: var(--core-color-cherry-50);
+      }
+
+      &:active {
+        background-color: var(--core-color-cherry-100);
+      }
+    }
+
+    &--neutral,
+    &--white {
+      &:hover {
+        background-color: var(--core-color-neutral-50);
+      }
+
+      &:active {
+        background-color: var(--core-color-neutral-100);
+      }
+    }
   }
 
   &--large {

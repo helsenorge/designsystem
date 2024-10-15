@@ -17,7 +17,7 @@ import { TitleTags } from '../Title';
 
 import expanderListStyles from './styles.module.scss';
 
-export type ExpanderListColors = PaletteNames;
+export type ExpanderListColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cherry' | 'neutral'>;
 export interface ExpanderType extends React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>> {
   ListHeader?: ListHeaderType;
 }
@@ -26,7 +26,7 @@ export interface ExpanderListCompound extends React.ForwardRefExoticComponent<Ex
   Expander: ExpanderType;
 }
 
-export type ExpanderListVariant = 'line' | 'outline' | 'fill';
+export type ExpanderListVariant = 'line' | 'outline' | 'fill' | 'fill-negative';
 
 interface ExpanderListProps {
   /** Toggles accordion functionality for the expanders. */
@@ -37,7 +37,7 @@ interface ExpanderListProps {
   childPadding?: boolean;
   /** Adds custom classes to the element. */
   className?: string;
-  /** Changes the link list background color on hover. */
+  /** Changes the colors of the list. */
   color?: ExpanderListColors;
   /** Changes the font size. */
   large?: boolean;
@@ -104,25 +104,35 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
   const triggerRef = useRef<HTMLButtonElement>(null);
   const { isHovered } = useHover(triggerRef);
 
-  const { isOutsideWindow, isLeavingWindow, offsetHeight, contentWidth } = useSticky(expanderRef, triggerRef);
+  const { isOutsideWindow, offsetHeight, contentWidth } = useSticky(expanderRef, triggerRef);
   const isSticky = sticky && isExpanded && isOutsideWindow;
 
-  const itemClasses = classNames(
-    className,
-    (variant === 'line' || variant === 'outline') && expanderListStyles[`expander-list__item--${variant}`]
-  );
+  const isFill = variant === 'fill';
+  const isFillNegative = variant === 'fill-negative';
+  const isOutline = variant === 'outline';
+  const isLine = variant === 'line';
 
-  const expanderClasses = classNames(
-    expanderListStyles['expander-list-link'],
-    color !== 'black' && expanderListStyles[`expander-list-link--${color}`],
-    {
-      [expanderListStyles['expander-list-link--fill']]: variant === 'fill',
-      [expanderListStyles['expander-list-link--closed']]: !isExpanded,
-      [expanderListStyles['expander-list-link--large']]: large,
-      [expanderListStyles['expander-list-link--sticky']]: isSticky && !isLeavingWindow,
-      [expanderListStyles['expander-list-link--absolute']]: isSticky && isLeavingWindow,
-    }
-  );
+  const itemClasses = classNames(className, expanderListStyles['expander-list__item'], {
+    [expanderListStyles[`expander-list__item--fill`]]: isFill,
+    [expanderListStyles[`expander-list__item--fill--${color}`]]: isFill,
+    [expanderListStyles[`expander-list__item--fill-negative`]]: isFillNegative,
+    [expanderListStyles['expander-list__item--outline']]: isOutline,
+    [expanderListStyles[`expander-list__item--outline--${color}`]]: isOutline,
+    [expanderListStyles['expander-list__item--line']]: isLine,
+    [expanderListStyles[`expander-list__item--line--${color}`]]: isLine,
+  });
+
+  const expanderClasses = classNames(expanderListStyles['expander-list-link'], expanderListStyles[`expander-list-link--${color}`], {
+    [expanderListStyles[`expander-list-link--fill`]]: isFill,
+    [expanderListStyles[`expander-list-link--fill--${color}`]]: isFill,
+    [expanderListStyles[`expander-list-link--fill-negative`]]: isFillNegative,
+    [expanderListStyles['expander-list-link--outline']]: isOutline,
+    [expanderListStyles[`expander-list-link--outline--${color}`]]: isOutline,
+    [expanderListStyles[`expander-list-link--line--${color}`]]: isLine,
+    [expanderListStyles['expander-list-link--closed']]: !isExpanded,
+    [expanderListStyles['expander-list-link--open']]: isExpanded,
+    [expanderListStyles['expander-list-link--large']]: large,
+  });
 
   const renderContent = (): React.ReactNode => {
     if (!renderChildrenWhenClosed && !isExpanded) {
