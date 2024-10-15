@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { AnalyticsId, ZIndex } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { useHover } from '../../hooks/useHover';
-import { useSticky } from '../../hooks/useSticky';
 import { useUuid } from '../../hooks/useUuid';
 import { PaletteNames } from '../../theme/palette';
 import { mergeRefs } from '../../utils/refs';
@@ -43,8 +42,6 @@ interface ExpanderListProps {
   large?: boolean;
   /** Whether to render children when closed (in which case they are hidden with CSS). Default: false */
   renderChildrenWhenClosed?: boolean;
-  /** Stick expander trigger to top of screen while scrolling down */
-  sticky?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Sets visual priority */
@@ -77,7 +74,7 @@ type ExpanderProps = Modify<
     zIndex?: number;
   }
 > &
-  Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'sticky' | 'variant'>;
+  Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'variant'>;
 
 const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((props, ref) => {
   const {
@@ -91,7 +88,6 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     title,
     titleHtmlMarkup = 'span',
     expanded = false,
-    sticky,
     testId,
     handleExpanderClick,
     onExpand,
@@ -103,9 +99,6 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
   const expanderRef = useRef<HTMLLIElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const { isHovered } = useHover(triggerRef);
-
-  const { isOutsideWindow, offsetHeight, contentWidth } = useSticky(expanderRef, triggerRef);
-  const isSticky = sticky && isExpanded && isOutsideWindow;
 
   const isFill = variant === 'fill';
   const isFillNegative = variant === 'fill-negative';
@@ -149,11 +142,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
   };
 
   return (
-    <li
-      className={itemClasses}
-      ref={mergeRefs([ref, expanderRef])}
-      style={{ paddingTop: isSticky && offsetHeight ? `${offsetHeight}px` : undefined }}
-    >
+    <li className={itemClasses} ref={mergeRefs([ref, expanderRef])}>
       <button
         type="button"
         id={id}
@@ -164,8 +153,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
         ref={triggerRef}
         aria-expanded={isExpanded}
         style={{
-          zIndex: isHovered || isSticky ? zIndex : undefined,
-          width: isSticky && contentWidth ? `${contentWidth}px` : undefined,
+          zIndex: isHovered ? zIndex : undefined,
         }}
       >
         {renderListHeader(title, titleHtmlMarkup, isHovered, large ? 'large' : 'medium', isExpanded ? ChevronUp : ChevronDown, icon)}
@@ -189,7 +177,6 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     color,
     className = '',
     accordion = false,
-    sticky = false,
     testId,
     variant,
     zIndex = ZIndex.ExpanderTrigger,
@@ -242,7 +229,6 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
             padding: childPadding,
             color,
             large,
-            sticky,
             'aria-expanded': expanded,
             className: expanderListStyles['expander-list__item'],
             handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${uuid}-${index}`),

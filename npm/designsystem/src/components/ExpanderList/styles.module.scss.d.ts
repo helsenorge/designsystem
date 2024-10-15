@@ -23,7 +23,6 @@ export type Styles = {
   'expander-list-link__main-content': string;
   'expander-list-link__main-content--expanded': string;
   'expander-list-link__main-content--padding': string;
-  'expander-list-link--absolute': string;
   'expander-list-link--blueberry': string;
   'expander-list-link--cherry': string;
   'expander-list-link--closed': string;
@@ -45,7 +44,6 @@ export type Styles = {
   'expander-list-link--outline--cherry': string;
   'expander-list-link--outline--neutral': string;
   'expander-list-link--outline--white': string;
-  'expander-list-link--sticky': string;
   'expander-list-link--white': string;
 };
 

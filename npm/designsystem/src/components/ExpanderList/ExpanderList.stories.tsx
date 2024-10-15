@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import ExpanderList from './ExpanderList';
-import { longLoremText } from '../../utils/loremtext';
 import AvatarComponent from '../Avatar';
 import Badge from '../Badge';
 import Icon from '../Icon';
@@ -35,7 +34,6 @@ const meta = {
     accordion: false,
     childPadding: true,
     color: 'white',
-    sticky: false,
     large: false,
   },
   argTypes: {
@@ -51,9 +49,6 @@ const meta = {
     color: {
       control: 'select',
       options: ['white', 'blueberry', 'cherry', 'neutral'],
-    },
-    sticky: {
-      control: 'boolean',
     },
     large: {
       control: 'boolean',
@@ -82,40 +77,23 @@ export const Default: Story = {
 
 export const WithLongText: Story = {
   render: args => (
-    <>
-      <ExpanderList {...args}>
-        <ExpanderList.Expander title="Kognitiv terapi">
-          {
-            'Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger og følelser. Et viktig mål er å bryte selvforsterkende onde sirkler som opprettholder psykiske helseproblemer.'
-          }
-        </ExpanderList.Expander>
-        <ExpanderList.Expander title="Hypokondri">
-          {
-            'Hypokondri er en sykdom der folk føler at de har en sykdom som de i realiteten ikke har. Statens helsetilsyn sier blant annet følgende om sykdommen: «Det vesentlige kjennetegnet er vedvarende opptatthet av muligheten for å ha en eller flere alvorlige og fremadskridende somatiske lidelser».'
-          }
-        </ExpanderList.Expander>
-        <ExpanderList.Expander title="En hjerneskade er en skade opstået i hjernen, med vedvarende funktionsnedsættelse til følge (Ekstra lang tekst for wrapping)">
-          {
-            'De hyppigste årsager til hjerneskader er hjerneblødninger, blodpropper i hjernen, trafik- eller drukneulykker, svulster eller hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.'
-          }
-        </ExpanderList.Expander>
-      </ExpanderList>
-      <p>{'Teksten under er for å kunne teste sticky oppførsel :-)'}</p>
-      <ul>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-        <li>{longLoremText}</li>
-      </ul>
-    </>
+    <ExpanderList {...args}>
+      <ExpanderList.Expander title="Kognitiv terapi">
+        {
+          'Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger og følelser. Et viktig mål er å bryte selvforsterkende onde sirkler som opprettholder psykiske helseproblemer.'
+        }
+      </ExpanderList.Expander>
+      <ExpanderList.Expander title="Hypokondri">
+        {
+          'Hypokondri er en sykdom der folk føler at de har en sykdom som de i realiteten ikke har. Statens helsetilsyn sier blant annet følgende om sykdommen: «Det vesentlige kjennetegnet er vedvarende opptatthet av muligheten for å ha en eller flere alvorlige og fremadskridende somatiske lidelser».'
+        }
+      </ExpanderList.Expander>
+      <ExpanderList.Expander title="En hjerneskade er en skade opstået i hjernen, med vedvarende funktionsnedsættelse til følge (Ekstra lang tekst for wrapping)">
+        {
+          'De hyppigste årsager til hjerneskader er hjerneblødninger, blodpropper i hjernen, trafik- eller drukneulykker, svulster eller hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.'
+        }
+      </ExpanderList.Expander>
+    </ExpanderList>
   ),
 };
 
