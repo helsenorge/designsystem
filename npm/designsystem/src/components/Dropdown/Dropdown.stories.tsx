@@ -5,7 +5,7 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
 
-import Dropdown, { DropdownMode } from './Dropdown';
+import Dropdown, { DropdownOnColor } from './Dropdown';
 import Checkbox from '../Checkbox';
 import Label from '../Label';
 import RadioButton from '../RadioButton';
@@ -32,7 +32,7 @@ const meta = {
     placeholder: 'Hva skjer i kroppen?',
     closeText: 'Lukk',
     open: false,
-    onColor: DropdownMode.onwhite,
+    onColor: DropdownOnColor.onwhite,
     transparent: false,
     fluid: false,
     noCloseButton: false,
@@ -53,7 +53,7 @@ const meta = {
     },
     onColor: {
       control: 'select',
-      options: DropdownMode,
+      options: DropdownOnColor,
     },
     transparent: {
       control: 'boolean',
