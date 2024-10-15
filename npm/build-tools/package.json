@@ -26,14 +26,14 @@
   },
   "peerDependencies": {
     "@storybook/addon-docs": "^8.2.9",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "typescript": "~5.5.4",
-    "vite": "^5.4.2"
+    "typescript": "~5.6.3",
+    "vite": "^5.4.9"
   }
 }
