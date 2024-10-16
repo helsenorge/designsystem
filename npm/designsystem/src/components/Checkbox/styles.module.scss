@@ -95,20 +95,6 @@ $checkbox-icon-size: 1.625rem;
 }
 
 .checkbox-wrapper {
-  &--with-error {
-    padding: getSpacer(s) getSpacer(2xs) getSpacer(m);
-    background-color: $cherry100;
-    border-left: 0.25rem solid $cherry600;
-
-    @media (min-width: map.get($grid-breakpoints, md)) {
-      padding: getSpacer(s) getSpacer(m) getSpacer(l);
-    }
-  }
-
-  &--with-error#{&}--large {
-    padding: getSpacer(m);
-  }
-
   &--large {
     margin: getSpacer(2xs) 0;
   }

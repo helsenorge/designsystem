@@ -28,7 +28,7 @@
     "postversion": "npm run changelog",
     "changelog": "conventional-changelog --config changelog.config.js --infile CHANGELOG.md --same-file --release-count 0 --skip-unstable --tag-prefix v --outputUnreleased false",
     "postchangelog": "git commit --include CHANGELOG.md -m \"docs: oppdater CHANGELOG\"",
-    "prepare": "lerna link",
+    "prepare": "lerna link --force-local",
     "pre-commit": "lint-staged",
     "validate": "npm-run-all typecheck prettier eslint stylelint",
     "prettier": "lerna run prettier",

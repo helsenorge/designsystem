@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import ErrorWrapper from '@helsenorge/designsystem-react/components/ErrorWrapper';
+import ErrorWrapper, { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import { useUuid } from '@helsenorge/designsystem-react/hooks/useUuid';
 import { isComponent } from '@helsenorge/designsystem-react/utils/component';
 
@@ -13,7 +13,7 @@ import styles from './styles.module.scss';
 
 export type TimeUnits = 'hours' | 'minutes';
 
-interface DateTimePickerWrapperProps {
+interface DateTimePickerWrapperProps extends ErrorWrapperClassNameProps {
   /** Sets the children of the datetimepicker - the DatePicker and DateTime components go here */
   children?: React.ReactNode;
   /** Error text to show above the component */
@@ -25,7 +25,7 @@ interface DateTimePickerWrapperProps {
 }
 
 export const DateTimePickerWrapper = React.forwardRef((props: DateTimePickerWrapperProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-  const { children, errorText, legend, testId } = props;
+  const { children, errorWrapperClassName, errorText, legend, testId } = props;
   const errorTextId = useUuid();
 
   const mapDateComponents = (child: React.ReactNode): React.ReactNode => {
@@ -46,7 +46,7 @@ export const DateTimePickerWrapper = React.forwardRef((props: DateTimePickerWrap
 
   return (
     <div ref={ref} tabIndex={-1}>
-      <ErrorWrapper errorText={errorText} errorTextId={errorTextId}>
+      <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
         {props.legend ? (
           <fieldset className={styles['date-time-picker-wrapper']} data-testid={testId}>
             {props.legend && <legend className={styles['date-time-picker-wrapper__legend']}>{legend}</legend>}

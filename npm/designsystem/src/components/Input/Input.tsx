@@ -8,7 +8,7 @@ import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
-import ErrorWrapper from '../ErrorWrapper';
+import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import { IconName } from '../Icons/IconNames';
 import { renderLabel } from '../Label';
@@ -18,27 +18,28 @@ import MaxCharacters from '../MaxCharacters/MaxCharacters';
 import styles from './styles.module.scss';
 
 export interface InputProps
-  extends Pick<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    | 'disabled'
-    | 'readOnly'
-    | 'autoComplete'
-    | 'name'
-    | 'placeholder'
-    | 'defaultValue'
-    | 'required'
-    | 'value'
-    | 'min'
-    | 'max'
-    | 'aria-describedby'
-    | 'aria-labelledby'
-    | 'onBlur'
-    | 'onClick'
-    | 'onChange'
-    | 'onFocus'
-    | 'onKeyDown'
-    | 'autoFocus'
-  > {
+  extends ErrorWrapperClassNameProps,
+    Pick<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      | 'disabled'
+      | 'readOnly'
+      | 'autoComplete'
+      | 'name'
+      | 'placeholder'
+      | 'defaultValue'
+      | 'required'
+      | 'value'
+      | 'min'
+      | 'max'
+      | 'aria-describedby'
+      | 'aria-labelledby'
+      | 'onBlur'
+      | 'onClick'
+      | 'onChange'
+      | 'onFocus'
+      | 'onKeyDown'
+      | 'autoFocus'
+    > {
   /** The number at which the input field starts when you increment or decrement it */
   baseIncrementValue?: number;
   /** Adds custom classes to the element. */
@@ -122,6 +123,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     error,
     errorText,
     errorTextId,
+    errorWrapperClassName,
     testId,
     disabled,
     readOnly,
@@ -241,7 +243,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
 
   return (
-    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
+    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
         {renderLabel(label, inputIdState, onColor as FormOnColor)}
         {/* input-elementet tillater keyboard-interaksjon */}

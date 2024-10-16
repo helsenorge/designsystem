@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
 import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
@@ -9,10 +10,11 @@ import styles from './styles.module.scss';
 export type TimeUnit = 'hours' | 'minutes';
 
 export interface DateTimeProps
-  extends Pick<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'name' | 'aria-describedby' | 'aria-labelledby' | 'onChange' | 'disabled' | 'autoComplete'
-  > {
+  extends ErrorWrapperClassNameProps,
+    Pick<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      'name' | 'aria-describedby' | 'aria-labelledby' | 'onChange' | 'disabled' | 'autoComplete'
+    > {
   /** Default value that is set on the input field */
   defaultValue?: number;
   /** Activates Error style for the input */
@@ -43,7 +45,20 @@ const isNumericString = (str: string): boolean => {
 };
 
 export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInputElement>) => {
-  const { error, errorText, errorTextId, label, onChange, timeUnit, testId, inputId, value, autoComplete = 'off', ...rest } = props;
+  const {
+    error,
+    errorText,
+    errorTextId,
+    errorWrapperClassName,
+    label,
+    onChange,
+    timeUnit,
+    testId,
+    inputId,
+    value,
+    autoComplete = 'off',
+    ...rest
+  } = props;
 
   const [inputValue, setInputValue] = useState<number | string | undefined>(
     typeof value !== 'undefined' ? formatAsTwoDigits(value) : undefined
@@ -90,6 +105,7 @@ export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<H
         error={error}
         errorText={errorText}
         errorTextId={errorTextId}
+        errorWrapperClassName={errorWrapperClassName}
         label={label}
         max={timeUnit === 'hours' ? 23 : 59}
         min={0}

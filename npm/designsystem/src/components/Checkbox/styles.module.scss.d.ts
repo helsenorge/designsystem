@@ -38,7 +38,6 @@ export type Styles = {
   'checkbox-label--on-dark': string;
   'checkbox-sublabel-wrapper': string;
   'checkbox-wrapper--large': string;
-  'checkbox-wrapper--with-error': string;
 };
 
 export type ClassNames = keyof Styles;

@@ -169,6 +169,13 @@ export const FormGroup: Story = {
   render: args => <FormExample {...args} />,
 };
 
+export const WithoutFormGroup: Story = {
+  args: {
+    exampleType: FormExampleVariants.withoutformgroup,
+  },
+  render: args => <FormExample {...args} />,
+};
+
 export const Checkbox: Story = {
   args: {
     exampleType: FormExampleVariants.checkbox,

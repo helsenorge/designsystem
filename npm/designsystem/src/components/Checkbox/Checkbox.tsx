@@ -9,7 +9,7 @@ import { getColor } from '../../theme/currys/color';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper from '../ErrorWrapper';
+import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import Icon from '../Icon';
 import Check from '../Icons/Check';
 import { getLabelText, renderLabelAsParent } from '../Label';
@@ -17,10 +17,11 @@ import { getLabelText, renderLabelAsParent } from '../Label';
 import checkboxStyles from './styles.module.scss';
 
 export interface CheckboxProps
-  extends Pick<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'required' | 'onChange'
-  > {
+  extends ErrorWrapperClassNameProps,
+    Pick<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'required' | 'onChange'
+    > {
   /** Adds custom classes to the element. */
   className?: string;
   /** The <Label/> next to the checkbox - sublabels kan ikke kombineres med large variant */
@@ -54,6 +55,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     errorText,
     error = !!errorText,
     errorTextId,
+    errorWrapperClassName,
     value = getLabelText(label),
     testId,
     required,
@@ -72,7 +74,6 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   const mergedRefs = mergeRefs([ref, refObject]);
 
   const checkboxWrapperClasses = classNames({
-    [checkboxStyles['checkbox-wrapper--with-error']]: errorText,
     [checkboxStyles['checkbox-wrapper--large']]: large,
   });
   const checkboxLabelClasses = classNames(checkboxStyles['checkbox-label'], {
@@ -156,7 +157,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   };
 
   return (
-    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
+    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
         {renderLabelAsParent(
           label,

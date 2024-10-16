@@ -130,10 +130,6 @@ describe('Gitt at RadioButton skal vises', (): void => {
       const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
 
       expect(label).toHaveClass('radio-button-label radio-button-label--invalid');
-
-      // Ytre styling
-      const wrapper = screen.getByTestId('test01');
-      expect(wrapper).toHaveClass('radio-button-wrapper radio-button-wrapper--with-error');
     });
   });
 

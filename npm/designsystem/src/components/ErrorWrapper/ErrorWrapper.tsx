@@ -4,6 +4,10 @@ import cn from 'classnames';
 
 import styles from './styles.module.scss';
 
+export interface ErrorWrapperClassNameProps {
+  errorWrapperClassName?: string;
+}
+
 export interface ErrorWrapperProps {
   /** Form component */
   children?: React.ReactNode;

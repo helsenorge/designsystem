@@ -6,26 +6,27 @@ import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor } from '../../cons
 import { useUuid } from '../../hooks/useUuid';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper from '../ErrorWrapper';
+import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import { renderLabel } from '../Label';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';
 
 export interface TextareaProps
-  extends Pick<
-    React.InputHTMLAttributes<HTMLTextAreaElement>,
-    | 'aria-describedby'
-    | 'autoFocus'
-    | 'disabled'
-    | 'name'
-    | 'autoComplete'
-    | 'placeholder'
-    | 'readOnly'
-    | 'required'
-    | 'defaultValue'
-    | 'onChange'
-  > {
+  extends ErrorWrapperClassNameProps,
+    Pick<
+      React.InputHTMLAttributes<HTMLTextAreaElement>,
+      | 'aria-describedby'
+      | 'autoFocus'
+      | 'disabled'
+      | 'name'
+      | 'autoComplete'
+      | 'placeholder'
+      | 'readOnly'
+      | 'required'
+      | 'defaultValue'
+      | 'onChange'
+    > {
   /** max character limit in textarea  */
   maxCharacters?: number;
   /** The text is displayed in the end of the text-counter */
@@ -84,6 +85,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     error,
     errorText,
     errorTextId,
+    errorWrapperClassName,
     autoFocus,
     disabled,
     name,
@@ -173,7 +175,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
 
   return (
-    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
+    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
         {renderLabel(label, textareaId, onColor as FormOnColor)}
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>

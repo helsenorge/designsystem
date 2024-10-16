@@ -6,7 +6,7 @@ import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, IconSize } from '
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import ErrorWrapper from '../ErrorWrapper';
+import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import Icon from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import { renderLabel } from '../Label';
@@ -16,10 +16,11 @@ import selectStyles from './styles.module.scss';
 type SelectConcept = 'normal' | 'transparent';
 
 export interface SelectProps
-  extends Pick<
-    React.SelectHTMLAttributes<HTMLSelectElement>,
-    'aria-describedby' | 'name' | 'disabled' | 'required' | 'value' | 'onChange' | 'autoComplete'
-  > {
+  extends ErrorWrapperClassNameProps,
+    Pick<
+      React.SelectHTMLAttributes<HTMLSelectElement>,
+      'aria-describedby' | 'name' | 'disabled' | 'required' | 'value' | 'onChange' | 'autoComplete'
+    > {
   /** Sets the content of the select element. */
   children: React.ReactNode;
   /** Adds custom classes to the element. */
@@ -68,6 +69,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     error,
     errorText,
     errorTextId,
+    errorWrapperClassName,
     label,
     selectId,
     name = selectId,
@@ -108,7 +110,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
   const selectWrapperClasses = classNames(selectStyles['select-wrapper'], wrapperClassName);
 
   return (
-    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
+    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectWrapperClasses} style={{ maxWidth }}>
         {renderLabel(label, uuid, onColor as FormOnColor)}
         <div className={selectInnerWrapperClasses}>

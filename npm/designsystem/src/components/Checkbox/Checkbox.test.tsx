@@ -128,10 +128,6 @@ describe('Gitt at Checkbox skal vises', (): void => {
       expect(checkIcon?.className).toBe(
         'checkbox__icon-wrapper checkbox__icon-wrapper--on-white checkbox__icon-wrapper--on-invalid checkbox__icon-wrapper--invalid'
       );
-
-      // Ytre styling
-      const wrapper = screen.getByTestId('test01');
-      expect(wrapper?.className).toBe('checkbox-wrapper--with-error');
     });
   });
 

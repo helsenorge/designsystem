@@ -8,16 +8,17 @@ import { useUuid } from '../../hooks/useUuid';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper from '../ErrorWrapper';
+import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import { getLabelText, renderLabelAsParent } from '../Label';
 
 import radioButtonStyles from './styles.module.scss';
 
 export interface RadioButtonProps
-  extends Pick<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'defaultChecked' | 'required' | 'onChange'
-  > {
+  extends ErrorWrapperClassNameProps,
+    Pick<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'defaultChecked' | 'required' | 'onChange'
+    > {
   /** Adds custom classes to the element. */
   className?: string;
   /** The <Label/> next to the radioButton - sublabels kan ikke kombineres med large variant */
@@ -71,6 +72,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     errorText,
     error = !!errorText,
     errorTextId,
+    errorWrapperClassName,
     value = getLabelText(label),
     testId,
     required,
@@ -88,7 +90,6 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const errorTextUuid = useUuid(errorTextId);
 
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
-    [radioButtonStyles['radio-button-wrapper--with-error']]: errorText,
     [radioButtonStyles['radio-button-wrapper__large']]: isLarge,
     [radioButtonStyles['radio-button-wrapper__large--focused']]: isLarge && isFocused,
     [radioButtonStyles['radio-button-wrapper__large--selected']]: isLarge && checked && isFocused,
@@ -143,7 +144,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   );
 
   return (
-    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
+    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
         {renderLabelAsParent(
           label,

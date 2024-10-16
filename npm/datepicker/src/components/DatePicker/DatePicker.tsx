@@ -5,6 +5,7 @@ import { nb } from 'date-fns/locale';
 import { ActiveModifiers, DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
+import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Input from '@helsenorge/designsystem-react/components/Input';
@@ -22,7 +23,8 @@ import styles from './styles.module.scss';
 export type DateFormat = 'dd.MM.yyyy';
 
 export interface DatePickerProps
-  extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur' | 'autoComplete'>,
+  extends ErrorWrapperClassNameProps,
+    Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur' | 'autoComplete'>,
     Pick<DayPickerSingleProps, 'dir' | 'initialFocus'> {
   /** Adds custom classes to the element. */
   className?: string;
@@ -82,6 +84,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     error,
     errorText,
     errorTextId,
+    errorWrapperClassName,
     footerContent,
     label,
     inputId,
@@ -298,6 +301,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     <>
       <div>
         <Input
+          errorWrapperClassName={errorWrapperClassName}
           disabled={disabled}
           error={error}
           errorText={errorText}

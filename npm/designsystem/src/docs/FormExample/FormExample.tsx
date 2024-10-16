@@ -27,6 +27,7 @@ export enum FormExampleVariants {
   textarea = 'textarea',
   input = 'input',
   select = 'select',
+  withoutformgroup = 'withoutformgroup',
 }
 
 interface FormExampleData {
@@ -76,7 +77,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     return value.toString() === 'Frankenstein' || monsterErrorMessage;
   };
 
-  const color = () => (
+  const color = (): React.ReactElement => (
     <FormGroup
       title={'FormGroup-tittel'}
       legend={'Farge'}
@@ -104,7 +105,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const size = () => (
+  const size = (): React.ReactElement => (
     <FormGroup legend={'Størrelser'} error={errors.sizes ? errors.sizes.message : undefined} size={props.size} errorTextId="error1">
       <Checkbox inputId="sizes1" label={<Label labelTexts={[{ text: 'Small' }]} />} {...register('sizes', { validate: requireTwo })} />
       <Checkbox inputId="sizes2" label={<Label labelTexts={[{ text: 'Medium' }]} />} {...register('sizes', { validate: requireTwo })} />
@@ -112,7 +113,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const position = () => (
+  const position = (): React.ReactElement => (
     <FormGroup
       legend={'Plassering'}
       error={errors.positions ? (errors.positions.message as string) : undefined}
@@ -137,7 +138,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const story = () => (
+  const story = (): React.ReactElement => (
     <FormGroup error={errors.story ? (errors.story.message as string) : undefined} errorTextId="error3">
       <Textarea
         defaultValue={`Dette er en test \n\n Hello \n\n test \n\n test test`}
@@ -151,7 +152,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const name = () => (
+  const name = (): React.ReactElement => (
     <FormGroup size={props.size} error={errors.name ? (errors.name.message as string) : undefined} errorTextId="error4">
       <Input
         label={<Label labelTexts={[{ text: 'Navn', type: 'semibold' }]} />}
@@ -163,7 +164,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const monster = () => (
+  const monster = (): React.ReactElement => (
     <FormGroup size={props.size} error={errors.monster ? (errors.monster.message as string) : undefined} errorTextId="error5">
       <Select
         selectId="monster"
@@ -176,7 +177,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const getFormExample = () => {
+  const getFormExample = (): React.ReactElement | undefined => {
     if (exampleType === FormExampleVariants.formgroup) {
       return (
         <>
@@ -189,15 +190,64 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         </>
       );
     } else if (exampleType === FormExampleVariants.checkbox) {
-      return <>{color()}</>;
+      return color();
     } else if (exampleType === FormExampleVariants.radiobutton) {
-      return <>{position()}</>;
+      return position();
     } else if (exampleType === FormExampleVariants.textarea) {
-      return <>{story()}</>;
+      return story();
     } else if (exampleType === FormExampleVariants.input) {
-      return <>{name()}</>;
+      return name();
     } else if (exampleType === FormExampleVariants.select) {
-      return <>{monster()}</>;
+      return monster();
+    } else if (exampleType === FormExampleVariants.withoutformgroup) {
+      return (
+        <>
+          <Checkbox
+            errorText={errors.sizes ? errors.sizes.message : undefined}
+            errorTextId="error1"
+            inputId="sizes1"
+            label={<Label labelTexts={[{ text: 'Small' }]} />}
+            {...register('sizes', { validate: requireTwo })}
+          />
+          <RadioButton
+            errorText={errors.positions ? (errors.positions.message as string) : undefined}
+            errorTextId="error2"
+            inputId="positions1"
+            label={<Label labelTexts={[{ text: 'Venstre' }]} />}
+            {...register('positions', { required: positionErrorMessage })}
+          />
+          <Textarea
+            errorText={errors.story ? (errors.story.message as string) : undefined}
+            errorTextId="error3"
+            defaultValue={`Dette er en test \n\n Hello \n\n test \n\n test test`}
+            grow
+            maxCharacters={40}
+            minRows={5}
+            label={<Label labelTexts={[{ text: 'Historie', type: 'semibold' }]} />}
+            textareaId="story"
+            {...register('story', { maxLength: { value: 40, message: storyErrorMessage } })}
+          />
+          <Input
+            errorText={errors.name ? (errors.name.message as string) : undefined}
+            errorTextId="error4"
+            label={<Label labelTexts={[{ text: 'Navn', type: 'semibold' }]} />}
+            placeholder={'Skriv noe!'}
+            icon={Hospital}
+            inputId="name"
+            {...register('name', { required: nameErrorMessage })}
+          />
+          <Select
+            errorText={errors.monster ? (errors.monster.message as string) : undefined}
+            errorTextId="error5"
+            selectId="monster"
+            label={<Label labelTexts={[{ text: 'Velg et monster', type: 'semibold' }]} />}
+            {...register('monster', { validate: requireFrankenstein })}
+          >
+            <option value={'Troll'}>{'Troll'}</option>
+            <option value={'Frankenstein'}>{'Frankenstein'}</option>
+          </Select>
+        </>
+      );
     }
   };
 
