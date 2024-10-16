@@ -11,7 +11,7 @@ export type TimeUnit = 'hours' | 'minutes';
 export interface DateTimeProps
   extends Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
-    'name' | 'aria-describedby' | 'aria-labelledby' | 'onChange' | 'disabled' | 'autoComplete'
+    'name' | 'aria-describedby' | 'aria-labelledby' | 'onBlur' | 'onChange' | 'disabled' | 'autoComplete'
   > {
   /** Default value that is set on the input field */
   defaultValue?: number;
@@ -43,7 +43,7 @@ const isNumericString = (str: string): boolean => {
 };
 
 export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInputElement>) => {
-  const { error, errorText, errorTextId, label, onChange, timeUnit, testId, inputId, value, autoComplete = 'off', ...rest } = props;
+  const { error, errorText, errorTextId, label, onBlur, onChange, timeUnit, testId, inputId, value, autoComplete = 'off', ...rest } = props;
 
   const [inputValue, setInputValue] = useState<number | string | undefined>(
     typeof value !== 'undefined' ? formatAsTwoDigits(value) : undefined
@@ -64,10 +64,11 @@ export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<H
     }
   };
 
-  const handleInputBlur = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputBlur = (event: React.FocusEvent<HTMLInputElement>): void => {
     const formattedValue = formatAsTwoDigits(event.target.value);
     setInputValue(formattedValue);
     onChange && onChange(event);
+    onBlur && onBlur(event);
   };
 
   /** Firefox stopper ikke vanlige characters fra å skrives til input type number - derfor håndterer vi det selv her */
