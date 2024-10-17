@@ -1,3 +1,10 @@
+## [8.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.6.0&targetVersion=GTv8.7.0) (2024-10-17)
+
+### Features
+
+- **datetime:** får onblur prop ([31fe602](https://github.com/helsenorge/designsystem/commit/31fe602a68f12c39e48a55b5559fcd812be97785)),
+  closes [#334254](https://github.com/helsenorge/designsystem/issues/334254)
+
 ## [8.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.5.1&targetVersion=GTv8.6.0) (2024-10-09)
 
 ### Features
