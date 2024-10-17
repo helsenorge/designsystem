@@ -212,10 +212,10 @@ describe('Gitt at validateMinMax kalles', () => {
   const parsedPastDate = parse(pastDate, formatString, new Date());
   const parsedPastDate2 = parse(pastDate2, formatString, new Date());
   describe('Når validateMinMax feiler', () => {
-    it('Så skal feilemelding returneres', () => {
-      const validateResult1 = validateMinMaxDate(currentDate, 'Feil', parsedFutureDate);
-      const validateResult2 = validateMinMaxDate(currentDate, 'Feil', undefined, parsedPastDate);
-      const validateResult3 = validateMinMaxDate(currentDate, 'Feil', parsedPastDate, parsedPastDate2);
+    it('Så skal feilmelding returneres', () => {
+      const validateResult1 = validateMinMaxDate(currentDate, 'Feil', undefined, parsedFutureDate);
+      const validateResult2 = validateMinMaxDate(currentDate, 'Feil', undefined, undefined, parsedPastDate);
+      const validateResult3 = validateMinMaxDate(currentDate, 'Feil', undefined, parsedPastDate, parsedPastDate2);
 
       expect(validateResult1).toBe('Feil');
       expect(validateResult2).toBe('Feil');
@@ -224,12 +224,12 @@ describe('Gitt at validateMinMax kalles', () => {
   });
   describe('Når validateMinMax validerer riktig', () => {
     it('Så skal true returneres', () => {
-      const validateResult1 = validateMinMaxDate(currentDate, 'Feil', parsedPastDate);
-      const validateResult2 = validateMinMaxDate(currentDate, 'Feil', undefined, parsedFutureDate);
-      const validateResult3 = validateMinMaxDate(currentDate, 'Feil', parsedPastDate, parsedFutureDate);
-      const validateSameDayResult1 = validateMinMaxDate(pastDate, 'Feil', parsedPastDate);
-      const validateSameDayResult2 = validateMinMaxDate(pastDate, 'Feil', undefined, parsedPastDate);
-      const validateSameDayResult3 = validateMinMaxDate(pastDate, 'Feil', parsedPastDate, parsedFutureDate);
+      const validateResult1 = validateMinMaxDate(currentDate, 'Feil', undefined, parsedPastDate);
+      const validateResult2 = validateMinMaxDate(currentDate, 'Feil', undefined, undefined, parsedFutureDate);
+      const validateResult3 = validateMinMaxDate(currentDate, 'Feil', undefined, parsedPastDate, parsedFutureDate);
+      const validateSameDayResult1 = validateMinMaxDate(pastDate, 'Feil', undefined, parsedPastDate);
+      const validateSameDayResult2 = validateMinMaxDate(pastDate, 'Feil', undefined, undefined, parsedPastDate);
+      const validateSameDayResult3 = validateMinMaxDate(pastDate, 'Feil', undefined, parsedPastDate, parsedFutureDate);
 
       expect(validateResult1).toBe(true);
       expect(validateResult2).toBe(true);
@@ -237,6 +237,17 @@ describe('Gitt at validateMinMax kalles', () => {
       expect(validateSameDayResult1).toBe(true);
       expect(validateSameDayResult2).toBe(true);
       expect(validateSameDayResult3).toBe(true);
+    });
+  });
+  describe('Når validateMinMax får inn dato på feil format', () => {
+    it('Så skal riktig feilmelding returneres', () => {
+      const validateResult1 = validateMinMaxDate('Ikke en dato', 'Ikke denne meldingen', 'Feil format', parsedPastDate);
+      const validateResult2 = validateMinMaxDate('Ikke en dato', 'Ikke denne meldingen', 'Feil format', undefined, parsedFutureDate);
+      const validateResult3 = validateMinMaxDate('Ikke en dato', 'Ikke denne meldingen', 'Feil format', parsedPastDate, parsedFutureDate);
+
+      expect(validateResult1).toBe('Feil format');
+      expect(validateResult2).toBe('Feil format');
+      expect(validateResult3).toBe('Feil format');
     });
   });
 });
@@ -248,7 +259,7 @@ describe('Gitt at validateDisabledDates kalles', () => {
   const parsedCurrentDate = parse(currentDate, formatString, new Date());
   const parsedNextDayDate = parse(nextDayDate, formatString, new Date());
   describe('Når validateDisabledDates feiler', () => {
-    it('Så skal feilemelding returneres', () => {
+    it('Så skal feilmelding returneres', () => {
       const validateResult1 = validateDisabledDates(currentDate, [parsedCurrentDate], 'Feil');
 
       expect(validateResult1).toBe('Feil');
@@ -261,6 +272,13 @@ describe('Gitt at validateDisabledDates kalles', () => {
       expect(validateResult1).toBe(true);
     });
   });
+  describe('Når validateDisabledDates får inn feil format', () => {
+    it('Så skal feilmelding returneres', () => {
+      const validateResult1 = validateDisabledDates('ikke en dato', [parsedCurrentDate], 'Datoen er ikke gyldig', 'Feil format');
+
+      expect(validateResult1).toBe('Feil format');
+    });
+  });
 });
 describe('Gitt at validateMinTimeMaxTime kalles', () => {
   const currentTime = { hour: 10, minute: 10 };
@@ -268,7 +286,7 @@ describe('Gitt at validateMinTimeMaxTime kalles', () => {
   const pastTime1 = { hour: 8, minute: 10 };
   const pastTime2 = { hour: 9, minute: 10 };
   describe('Når validateMinTimeMaxTime feiler', () => {
-    it('Så skal feilemelding returneres', () => {
+    it('Så skal feilmelding returneres', () => {
       const validateResult1 = validateMinTimeMaxTime(currentTime, 'Feil', futureTime);
       const validateResult2 = validateMinTimeMaxTime(currentTime, 'Feil', undefined, pastTime1);
       const validateResult3 = validateMinTimeMaxTime(currentTime, 'Feil', pastTime1, pastTime2);
