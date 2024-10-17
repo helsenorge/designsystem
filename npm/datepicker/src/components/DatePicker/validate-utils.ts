@@ -19,12 +19,18 @@ export const isValidDate = (dateString: string): boolean => {
 };
 
 /** react-hook-form fromDate and toDate validation */
-export const validateMinMaxDate = (date: string, errorMessage: string, minDate?: Date, maxDate?: Date): string | true => {
+export const validateMinMaxDate = (
+  date: string,
+  errorMessage: string,
+  invalidFormatErrorMessage?: string,
+  minDate?: Date,
+  maxDate?: Date
+): string | true => {
   const formattedDate = parseInputDate(date);
   const hasMinDate = typeof minDate !== 'undefined';
   const hasMaxDate = typeof maxDate !== 'undefined';
   if (!formattedDate || (hasMinDate && !isValid(minDate)) || (hasMaxDate && !isValid(maxDate))) {
-    return 'Invalid date format';
+    return invalidFormatErrorMessage || 'Invalid date format';
   }
 
   if (hasMinDate && !hasMaxDate && (isSameDay(formattedDate, minDate) || isAfter(formattedDate, minDate))) return true;
@@ -43,10 +49,15 @@ export const validateMinMaxDate = (date: string, errorMessage: string, minDate?:
 };
 
 /** react-hook-form fromDate and toDate validation */
-export const validateDisabledDates = (date: string, disabledDates: Date[], errorMessage: string): string | true => {
+export const validateDisabledDates = (
+  date: string,
+  disabledDates: Date[],
+  errorMessage: string,
+  invalidFormatErrorMessage?: string
+): string | true => {
   const formattedDate = parseInputDate(date);
   if (!formattedDate) {
-    return 'Invalid date format';
+    return invalidFormatErrorMessage || 'Invalid date format';
   }
   if (!disabledDates.some(d => isSameDay(d, formattedDate))) {
     return true;
