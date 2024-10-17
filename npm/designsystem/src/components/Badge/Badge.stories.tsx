@@ -20,9 +20,6 @@ const meta = {
   },
   args: {
     children: 'Tekst',
-    color: 'blueberry',
-    type: 'string',
-    notificationVariant: 'info',
   },
   argTypes: {
     children: {
@@ -38,7 +35,7 @@ const meta = {
     },
     notificationVariant: {
       control: 'select',
-      options: ['success', 'warning', 'error', 'info'],
+      options: ['success', 'warn', 'error', 'info'],
     },
   },
 } satisfies Meta<typeof Badge>;
@@ -51,11 +48,11 @@ export const Default: Story = {
   render: args => <Badge {...args} />,
 };
 
-export const Variants: Story = {
+export const Colors: Story = {
   render: args => (
     <>
       <Title margin={2} htmlMarkup={'h3'} appearance={'title3'}>
-        {'Variants'}
+        {'Colors'}
       </Title>
       <br />
       <Badge color="blueberry">{args.children}</Badge>

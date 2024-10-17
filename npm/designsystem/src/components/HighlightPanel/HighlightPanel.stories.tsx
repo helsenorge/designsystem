@@ -5,6 +5,7 @@ import { Docs } from 'frankenstein-build-tools';
 
 import HighlightPanel, { HighlightPanelSize } from './HighlightPanel';
 import PdfFile from '../Icons/PdfFile';
+import Spacer from '../Spacer';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/HighlightPanel',
@@ -21,9 +22,7 @@ const meta = {
   args: {
     children:
       'Risiko for alvorleg sjukdom aukar med alderen og underliggande sjukdomar, og menn har høgare risiko enn kvinner. Unge personar utan kjende risikofaktorar kan også få eit alvorleg forløp av sjukdomen. Det er meir sannsynleg at dette skjer dersom dei har underliggande sjukdomar.',
-    color: 'white',
-    size: HighlightPanelSize.medium,
-    htmlMarkup: 'div',
+    color: 'blueberry',
   },
   argTypes: {
     children: {
@@ -52,9 +51,23 @@ export const Default: Story = {
   render: args => <HighlightPanel {...args} />,
 };
 
+export const AllColors: Story = {
+  render: args => (
+    <>
+      <HighlightPanel {...args} color="blueberry" />
+      <Spacer size="m" />
+      <HighlightPanel {...args} color="neutral" />
+      <Spacer size="m" />
+      <HighlightPanel {...args} color="cherry" />
+      <Spacer size="m" />
+      <HighlightPanel {...args} color="white" />
+    </>
+  ),
+};
+
 export const WithIcon: Story = {
   args: {
     svgIcon: PdfFile,
   },
-  render: args => <HighlightPanel {...args} />,
+  render: args => <HighlightPanel {...args} svgIcon={PdfFile} />,
 };

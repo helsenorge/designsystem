@@ -30,8 +30,6 @@ const meta = {
   args: {
     children: '',
     chevron: false,
-    size: 'medium',
-    color: 'blueberry',
   },
   argTypes: {
     chevron: {
@@ -63,9 +61,7 @@ export const Default: Story = {
         {'Innhold A-Å'}
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        {
-          'Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)'
-        }
+        {'Helsenorge'}
       </LinkList.Link>
     </LinkList>
   ),

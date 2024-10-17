@@ -19,7 +19,6 @@ const meta = {
     },
   },
   args: {
-    variant: StatusDotVariant.info,
     text: 'StatusDot label',
   },
   argTypes: {

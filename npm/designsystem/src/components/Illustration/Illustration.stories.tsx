@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import Illustration from './Illustration';
-import HighlightPanel from '../HighlightPanel';
 import Doctor from '../Illustrations/Doctor';
 
 const meta = {
@@ -17,11 +16,6 @@ const meta = {
         component: 'Illustration lar deg vise en av flere illustrasjoner i ulike størrelser og farger',
       },
     },
-  },
-  args: {
-    size: 512,
-    color: 'neutral',
-    ariaLabel: '',
   },
   argTypes: {
     size: {
@@ -45,9 +39,5 @@ export const Default: Story = {
   args: {
     illustration: Doctor,
   },
-  render: args => (
-    <HighlightPanel color={args.color} size={'fluid'}>
-      <Illustration {...args} />
-    </HighlightPanel>
-  ),
+  render: args => <Illustration {...args} />,
 };

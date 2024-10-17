@@ -21,10 +21,6 @@ const meta = {
       },
     },
   },
-  args: {
-    maxColumns: FormLayoutColumns.three,
-    colMinWidth: 300,
-  },
   argTypes: {
     maxColumns: {
       control: 'select',
@@ -39,6 +35,19 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <FormGroup>
+      <FormLayout {...args}>
+        <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+        <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+        <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
+        <Checkbox inputId={'Checkbox4'} label={<Label labelTexts={[{ text: 'Checkbox 4' }]} />} />
+      </FormLayout>
+    </FormGroup>
+  ),
+};
 
 export const CheckboxChildren: Story = {
   render: args => (

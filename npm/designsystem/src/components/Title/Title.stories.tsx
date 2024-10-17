@@ -19,9 +19,6 @@ const meta = {
   },
   args: {
     children: 'Title',
-    htmlMarkup: 'h1',
-    margin: 0,
-    appearance: 'title1',
   },
   argTypes: {
     children: {

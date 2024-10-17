@@ -22,7 +22,7 @@ const meta = {
       page: (): React.JSX.Element => <Docs component={PopOver} />,
       story: {
         inline: false,
-        height: '40rem',
+        height: '25rem',
       },
     },
   },
@@ -48,6 +48,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: args => {
+    const controllerRef = useRef<SVGSVGElement>(null);
+
+    return (
+      <>
+        <Icon ref={controllerRef} svgIcon={HelpSign} />
+        <PopOver {...args} controllerRef={controllerRef}>
+          <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+        </PopOver>
+      </>
+    );
+  },
+};
+
+export const WithText: Story = {
   render: args => {
     const controllerRef = useRef<SVGSVGElement>(null);
 

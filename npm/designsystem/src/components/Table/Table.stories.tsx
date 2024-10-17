@@ -93,6 +93,33 @@ export const Default: Story = {
     const data = getFastlegeData(SortDirection.asc, '');
 
     return (
+      <Table {...args} breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}>
+        <TableHead category={args.headerCategory}>
+          <TableRow>
+            <TableHeadCell>Fastlege</TableHeadCell>
+            <TableHeadCell>Alder</TableHeadCell>
+            <TableHeadCell>Kjønn</TableHeadCell>
+            <TableHeadCell>Fastlegekontor</TableHeadCell>
+            <TableHeadCell>Adresse</TableHeadCell>
+            <TableHeadCell>Ledige plasser</TableHeadCell>
+            <TableHeadCell>Antall på venteliste</TableHeadCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((fastlege, i: number) => (
+            <TableRow key={i}>{getFastlegeDataCells(fastlege)}</TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
+  },
+};
+
+export const WithTextAbove: Story = {
+  render: args => {
+    const data = getFastlegeData(SortDirection.asc, '');
+
+    return (
       <div className="container">
         <div className="row">
           <div className="col-8 offset-2">

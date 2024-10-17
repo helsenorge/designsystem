@@ -18,12 +18,7 @@ const meta = {
     },
   },
   args: {
-    checked: false,
     label: [{ text: 'Toggle' }],
-    onColor: undefined,
-    subLabel: '',
-    togglePosition: TogglePosition.left,
-    testId: 'toggle',
   },
   argTypes: {
     label: {

@@ -23,12 +23,6 @@ const meta = {
     children:
       'Skjoldbruskkjertelen ligger ved strupehodet på halsen. Den produserer stoffskiftehormonene tyroksin T4 og trijodotyronin T3, som blir ført med blodet til cellene i kroppen. Disse hormonene kontrollerer stoffskiftet.',
     title: 'Hva skjer i kroppen',
-    size: ExpanderSize.small,
-    color: 'blueberry',
-    noNestedLine: false,
-    expanded: false,
-    renderChildrenWhenClosed: false,
-    sticky: true,
   },
   argTypes: {
     children: {
@@ -64,7 +58,11 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const DefaultSmall: Story = {
+export const Default: Story = {
+  render: args => <Expander {...args} />,
+};
+
+export const Small: Story = {
   render: args => (
     <>
       <p>

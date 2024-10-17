@@ -3,7 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
-import Progressbar, { Overlay, ProgressBarMode, ProgressbarSize } from './Progressbar';
+import Progressbar, { Overlay, ProgressBarMode } from './Progressbar';
 import Button from '../Button/Button';
 import Title from '../Title/Title';
 
@@ -21,9 +21,6 @@ const meta = {
   },
   args: {
     value: 0,
-    size: ProgressbarSize.large,
-    mode: ProgressBarMode.onlight,
-    ariaLabel: 'Fremdriftsindikator',
   },
   argTypes: {
     value: {

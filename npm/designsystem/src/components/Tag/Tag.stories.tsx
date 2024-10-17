@@ -19,9 +19,6 @@ const meta = {
   },
   args: {
     children: 'Tekst',
-    size: TagSize.medium,
-    color: 'blueberry',
-    variant: TagVariant.normal,
   },
   argTypes: {
     children: {

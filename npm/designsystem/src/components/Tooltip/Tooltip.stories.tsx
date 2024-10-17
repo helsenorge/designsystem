@@ -18,11 +18,11 @@ const meta = {
       },
       story: {
         inline: false,
-        iframeHeight: '35rem',
+        iframeHeight: '10rem',
       },
     },
   },
-  args: { children: 'ordet', description: 'Dette er tekst som skal fylle HelpBubble' },
+  args: { children: 'Ord', description: 'Dette er tekst som skal fylle HelpBubble' },
   argTypes: {
     children: {
       control: 'text',
@@ -38,16 +38,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: args => <Tooltip {...args} />,
+};
+
+export const WithText: Story = {
   render: args => <TooltipExample {...args} />,
 };
+
 export const SingleExample: Story = {
-  parameters: {
-    docs: {
-      story: {
-        iframeHeight: 'auto',
-      },
-    },
-  },
   render: args => (
     <TooltipOpenProvider>
       <Tooltip {...args} />

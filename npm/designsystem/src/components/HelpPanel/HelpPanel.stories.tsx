@@ -19,7 +19,6 @@ const meta = {
   args: {
     children:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis neque sed accumsan pellentesque. Pellentesque eu ex finibus lectus congue hendrerit quis vel justo.',
-    size: 'medium',
   },
   argTypes: {
     children: {
@@ -37,12 +36,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    title: 'Test tittel',
-  },
   render: args => <HelpPanel {...args} />,
 };
 
-export const WithoutTitle: Story = {
-  render: args => <HelpPanel {...args} />,
+export const WithTitle: Story = {
+  render: args => <HelpPanel {...args} title="Tittel" />,
 };

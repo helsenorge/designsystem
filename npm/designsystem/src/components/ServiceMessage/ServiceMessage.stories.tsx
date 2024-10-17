@@ -19,16 +19,15 @@ const meta = {
     },
   },
   args: {
-    label: 'ServiceMessage label',
-    info: 'Nedetid for østre-aker',
-    extraInfo: 'Ring 08400 for mer informasjon',
+    label: 'Driftsmelding',
+    info: 'Her er det noe som dessverre ikke stemmer i våre systemer. Prøv igjen senere!  Vi jobber hard for å løse problemet for deg.',
+    extraInfo: 'Alternativ ekstrainformasjon som må skrives kan legges inn her.',
     dismissable: true,
     expanderOpenFromStart: true,
-    urlTitle: 'Du kan henvises fra sykehuset eller fra din fastlege (helsedirektoratet.no)',
+    urlTitle: 'Les mer om dette her',
     url: 'https://www.helsenorge.no',
     target: '_parent',
-    closeBtnText: 'fjern melding',
-    variant: 'error',
+    closeBtnText: 'Fjern melding',
     testId: 'test',
   },
   argTypes: {
@@ -75,6 +74,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    expanderOpenFromStart: false,
+  },
+  render: args => <ServiceMessage {...args} />,
+};
+
+export const AllVariants: Story = {
   args: {
     expanderOpenFromStart: false,
   },

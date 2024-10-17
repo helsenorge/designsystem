@@ -20,7 +20,6 @@ const meta = {
   },
   args: {
     children: 'Hvordan finner jeg HPR-nummer?',
-    selected: false,
   },
   argTypes: {
     children: {
@@ -37,6 +36,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    onClick: action('Trigger clicked!'),
+  },
+  render: args => <HelpQuestion {...args} />,
+};
+
+export const InText: Story = {
   args: {
     onClick: action('Trigger clicked!'),
   },

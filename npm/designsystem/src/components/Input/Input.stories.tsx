@@ -24,21 +24,6 @@ const meta = {
       },
     },
   },
-  args: {
-    width: undefined,
-    size: FormSize.medium,
-    transparent: false,
-    type: InputTypes.text,
-    disabled: false,
-    onColor: FormOnColor.onwhite,
-    showIcon: true,
-    iconRight: false,
-    readOnly: false,
-    autoComplete: '',
-    name: 'input',
-    required: false,
-    maxText: 'tegn',
-  },
   argTypes: {
     defaultValue: {
       control: 'text',

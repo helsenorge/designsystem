@@ -24,16 +24,14 @@ const meta = {
       },
       story: {
         inline: false,
-        iframeHeight: '40rem',
+        iframeHeight: '25rem',
       },
     },
   },
   args: {
     controllerRef: undefined,
-    children:
-      'Dette er en HelpBubble. Aliquip aute consectetur eiusmod nisi ullamco aliquip adipisicing cupidatat reprehenderit nulla in Lorem sint.',
+    children: 'Dette er en HelpBubble.',
     showBubble: true,
-    variant: HelpBubbleVariant.positionautomatic,
   },
   argTypes: {
     children: {
@@ -54,6 +52,24 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    onClose: action('Bubble closed'),
+  },
+  render: args => {
+    const controllerRef = useRef<HTMLButtonElement>(null);
+
+    return (
+      <>
+        <Trigger ref={controllerRef} ariaLabel="Hjelp" />
+        <HelpBubble {...args} controllerRef={controllerRef}>
+          {args.children}
+        </HelpBubble>
+      </>
+    );
+  },
+};
+
+export const LongText: Story = {
   args: {
     onLinkClick: action('Mer hjelp clicked'),
     onClose: action('Bubble closed'),

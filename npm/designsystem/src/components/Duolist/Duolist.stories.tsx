@@ -38,10 +38,10 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => (
     <Duolist {...args}>
-      <DuolistGroup term={'test term'} description={'kort tekst'} />
-      <DuolistGroup term={'test term lang'} description={shortLoremText} />
-      <DuolistGroup term={'test term enda lenger'} description={mediumLoremText} />
-      <DuolistGroup term={'test term'} description={'test description'} />
+      <DuolistGroup term={'Term'} description={'Description'} />
+      <DuolistGroup term={'Term'} description={'Description'} />
+      <DuolistGroup term={'Term'} description={'Description'} />
+      <DuolistGroup term={'Term'} description={'Description'} />
     </Duolist>
   ),
 };

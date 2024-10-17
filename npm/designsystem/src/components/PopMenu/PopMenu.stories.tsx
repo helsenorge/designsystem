@@ -22,12 +22,11 @@ const meta = {
       },
       story: {
         inline: false,
-        iframeHeight: '40rem',
+        iframeHeight: '25rem',
       },
     },
   },
   args: {
-    popMenuVariant: PopMenuVariant.onWhite,
     openButtonAriaLabel: 'Åpne meny',
     closeButtonAriaLabel: 'Lukk meny',
   },
@@ -61,6 +60,22 @@ export const Default: Story = {
         <LinkList.Link onClick={handleClick} href="#">
           {'Link 2'}
         </LinkList.Link>
+      </LinkList>
+    ),
+  },
+  render: args => <PopMenu {...args}></PopMenu>,
+};
+
+export const WithText: Story = {
+  args: {
+    children: (
+      <LinkList chevron={false}>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 1'}
+        </LinkList.Link>
+        <LinkList.Link onClick={handleClick} href="#">
+          {'Link 2'}
+        </LinkList.Link>
         <LinkList.Link onClick={handleClick} href="#">
           {'Link 3'}
         </LinkList.Link>
@@ -78,6 +93,7 @@ export const Default: Story = {
     </>
   ),
 };
+
 export const CustomIcon: Story = {
   args: {
     svgIcon: 'InfoSignStroke',

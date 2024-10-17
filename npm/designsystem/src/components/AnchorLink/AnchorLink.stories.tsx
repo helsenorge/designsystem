@@ -20,6 +20,7 @@ const meta = {
   },
   args: {
     children: 'Anchorlink tekst',
+    target: '_parent',
     href: 'https://www.helsenorge.no',
   },
   argTypes: {
@@ -37,19 +38,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: args => <AnchorLink {...args}>{args.children}</AnchorLink>,
+};
+
+export const LongText: Story = {
   render: args => (
-    <>
-      <AnchorLink {...args} target={'_parent'}>
-        {args.children}
-      </AnchorLink>
-      <br />
-      <br />
-      <AnchorLink {...args} target={'_parent'}>
-        {
-          'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
-        }
-      </AnchorLink>
-    </>
+    <AnchorLink {...args}>
+      {
+        'Eiusmod veniam reprehenderit dolore magna tempor dolor reprehenderit reprehenderit ullamco sit in nulla qui. (Lang tekst - Skal wrappe).'
+      }
+    </AnchorLink>
   ),
 };
 
@@ -73,19 +71,19 @@ export const External: Story = {
 export const AsButton: Story = {
   render: args => (
     <p style={{ fontSize: '1.25rem' }}>
-      Dette er først en{' '}
+      {'Dette er først en'}
       <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
-        vanlig lenke i løpende tekst
-      </AnchorLink>{' '}
-      og nå kommer en
+        {'vanlig lenke i løpende tekst'}
+      </AnchorLink>
+      {'og nå kommer en'}
       <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
-        button-lenke i løpende tekst som går over flere linjer
-      </AnchorLink>{' '}
-      og til slutt en{' '}
+        {'button-lenke i løpende tekst som går over flere linjer'}
+      </AnchorLink>
+      {'og til slutt en'}
       <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
-        kort
-      </AnchorLink>{' '}
-      button-lenke
+        {'kort'}
+      </AnchorLink>
+      {'button-lenke'}
     </p>
   ),
 };

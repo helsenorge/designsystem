@@ -31,8 +31,6 @@ const meta = {
     label: <Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />,
     name: 'select name 1',
     onChange: action('onChange called'),
-    disabled: false,
-    autoComplete: '',
   },
   argTypes: {
     disabled: {

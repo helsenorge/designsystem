@@ -69,6 +69,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: args => <Modal {...args} onClose={action('Close')} onSuccess={action('Success')} />,
+};
+
+export const OpenFromButton: Story = {
   render: args => <ButtonWithModal buttonText={'Åpne modal'} {...args} onSuccess={action('Success')} />,
 };
 

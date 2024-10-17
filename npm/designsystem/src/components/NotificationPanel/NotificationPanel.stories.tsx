@@ -19,13 +19,8 @@ const meta = {
     },
   },
   args: {
-    dismissable: false,
-    size: 'large',
-    fluid: false,
-    label: 'Det har skjedd noe galt. Prøv igjen senere.',
-    labelHtmlMarkup: 'h1',
-    variant: 'error',
-    role: undefined,
+    label: 'Label',
+    children: 'Innhold',
   },
   argTypes: {
     dismissable: {
@@ -61,7 +56,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => <NotificationPanel {...args} label="Label only"></NotificationPanel>,
+  render: args => <NotificationPanel {...args}>{args.children}</NotificationPanel>,
 };
 
 export const WithoutLabel: Story = {

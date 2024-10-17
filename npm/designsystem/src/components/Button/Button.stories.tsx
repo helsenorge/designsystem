@@ -25,10 +25,6 @@ const meta = {
   },
   args: {
     children: 'Button',
-    ellipsis: false,
-    disabled: false,
-    fluid: false,
-    htmlMarkup: 'button',
     href: 'https://www.helsenorge.no',
   },
   argTypes: {

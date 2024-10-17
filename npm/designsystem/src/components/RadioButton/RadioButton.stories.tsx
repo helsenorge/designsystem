@@ -23,13 +23,7 @@ const meta = {
   },
   args: {
     label: 'RadioButton label',
-    defaultChecked: false,
-    disabled: false,
-    onColor: FormOnColor.onwhite,
-    size: FormSize.medium,
     name: 'radio',
-    value: '',
-    required: false,
   },
   argTypes: {
     label: {
@@ -71,9 +65,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: args => <RadioButton {...args} label={<Label labelTexts={[{ text: args.label as string }]} />} />,
+};
+
+export const AllColors: Story = {
   render: args => (
     <>
-      <RadioButton {...args} label={<Label labelTexts={[{ text: 'Radio onwhite' }]} />} onColor={'onwhite'} />
+      <RadioButton {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} onColor={'onwhite'} />
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} onColor={'ongrey'} />
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} onColor={'onblueberry'} />
       <RadioButton {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} onColor={'oninvalid'} />

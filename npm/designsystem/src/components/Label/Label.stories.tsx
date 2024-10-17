@@ -40,6 +40,10 @@ export default meta;
 type Story = StoryObj<LabelWithAndCustomArgs>;
 
 export const Default: Story = {
+  render: args => <Input {...args} label={<Label {...args} labelTexts={[{ text: 'Label' }]} />} />,
+};
+
+export const AllVariants: Story = {
   render: args => {
     const sublabelId1 = 'sublabel-testid1';
     const statusDotId1 = 'statusdot-testid1';

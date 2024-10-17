@@ -17,9 +17,6 @@ const meta = {
   },
   args: {
     children: 'Tekst',
-    size: ChipSize.medium,
-    color: 'blueberry',
-    variant: ChipVariant.normal,
     action: ChipAction.remove,
     onClick: action('Chip clicked'),
   },

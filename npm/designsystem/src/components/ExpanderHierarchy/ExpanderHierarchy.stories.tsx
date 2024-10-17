@@ -18,10 +18,6 @@ const meta = {
       },
     },
   },
-  args: {
-    htmlMarkup: 'h2',
-    print: false,
-  },
   argTypes: {
     htmlMarkup: {
       control: 'select',

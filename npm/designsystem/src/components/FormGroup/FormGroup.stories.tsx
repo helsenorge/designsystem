@@ -28,10 +28,8 @@ const meta = {
     },
   },
   args: {
-    title: 'Gruppe tittel',
-    legend: 'Første gruppe',
-    onColor: FormOnColor.onwhite,
-    size: FormSize.medium,
+    title: 'Tittel',
+    legend: 'Legend',
     name: 'gruppe1',
   },
   argTypes: {
@@ -58,6 +56,16 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: args => (
+    <FormGroup {...args}>
+      <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+      <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+      <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
+    </FormGroup>
+  ),
+};
 
 export const CheckboxChildren: Story = {
   render: args => (

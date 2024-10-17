@@ -28,9 +28,6 @@ const meta = {
       </Tile.Title>
     ),
     icon: <Icon size={IconSize.Medium} svgIcon={AlarmClock} />,
-    fixed: false,
-    highlighted: false,
-    href: 'https://www.helsenorge.no',
     description:
       'Førstehjelp de første minuttene etter at en akutt sykdom eller skade har oppstått er livsviktig og minsker risikoen for langtidsskader.',
   },

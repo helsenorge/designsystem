@@ -20,14 +20,6 @@ const meta = {
       },
     },
   },
-  args: {
-    ariaLabel: 'Hjelp',
-    variant: 'help',
-    size: 'medium',
-    onColor: 'onlight',
-    selected: false,
-    htmlMarkup: 'button',
-  },
   argTypes: {
     ariaLabel: {
       control: 'text',

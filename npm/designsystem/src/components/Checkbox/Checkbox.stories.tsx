@@ -20,14 +20,7 @@ const meta = {
     },
   },
   args: {
-    label: '',
-    checked: false,
-    disabled: false,
-    onColor: FormOnColor.onwhite,
-    size: FormSize.medium,
-    name: 'checkbox',
-    value: '',
-    required: false,
+    label: 'Label',
   },
   argTypes: {
     checked: {
@@ -61,6 +54,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  render: args => <Checkbox {...args} label={<Label labelTexts={[{ text: args.label as string }]} />} />,
+};
+
+export const AllColors: Story = {
   render: args => (
     <>
       <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} onColor="onwhite" />
