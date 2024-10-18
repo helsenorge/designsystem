@@ -6,6 +6,7 @@ import { AnalyticsId } from '../../constants';
 import { useSize } from '../../hooks/useSize';
 import { useUuid } from '../../hooks/useUuid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import ErrorWrapper from '../ErrorWrapper';
 import Title from '../Title';
 
 import styles from './styles.module.scss';
@@ -35,7 +36,13 @@ export type SliderStep = {
   emojiUniCode?: string;
 };
 
-export interface SliderProps {
+export interface SliderProps extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  /** Activates Error style for the input */
+  error?: boolean;
+  /** Error text to show above the component */
+  errorText?: string;
+  /** Error text id */
+  errorTextId?: string;
   /**	Sets the title of the slider. */
   title?: string;
   /** Adds the left hand label to the element. */
@@ -50,8 +57,6 @@ export interface SliderProps {
   minValue?: number;
   /** Sets the maximum allowed value on the slider - this overrides the use of steps prop for minValue/maxValue. */
   maxValue?: number;
-  /** Function to be called when the value state has changed. */
-  onChange?: (value: number) => void;
   /** If set to false will only trigger onChange once a user interaction has been made, updates to this prop will be taken into account - true by default */
   selected?: boolean;
   /** Sets the steps data for the slider */
@@ -64,21 +69,27 @@ export interface SliderProps {
   value?: number;
 }
 
-export const Slider: React.FC<SliderProps> = ({
-  title,
-  ariaLabel,
-  labelLeft,
-  labelRight,
-  disabled = false,
-  onChange,
-  steps,
-  step = 1,
-  minValue = 0,
-  maxValue = steps ? steps.length - 1 : 100,
-  selected = true,
-  testId,
-  value,
-}) => {
+export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLInputElement>) => {
+  const {
+    title,
+    ariaLabel,
+    error,
+    errorText,
+    errorTextId,
+    labelLeft,
+    labelRight,
+    disabled = false,
+    onChange,
+    steps,
+    step = 1,
+    minValue = 0,
+    maxValue = steps ? steps.length - 1 : 100,
+    selected = true,
+    testId,
+    value,
+    ...rest
+  } = props;
+
   const [isMoving, setIsMoving] = useState(false);
   const [selectedState, setSelectedState] = useState(typeof value === 'undefined' ? selected : true);
   const [valueState, setValueState] = useSafeNumberValue(
@@ -87,6 +98,7 @@ export const Slider: React.FC<SliderProps> = ({
     maxValue
   );
 
+  const errorTextUuid = useUuid(errorTextId);
   const titleId = useUuid();
   const labelLeftId = useUuid();
   const labelRightId = useUuid();
@@ -94,6 +106,7 @@ export const Slider: React.FC<SliderProps> = ({
   const markerRef = useRef<HTMLDivElement>(null);
   const { width: trackWidth } = useSize(trackRef) || { width: 0 };
   const largeStep = maxValue / 10;
+  const invalid = !!errorText || !!error;
 
   useEffect(() => {
     const handlePointerUp = (): void => {
@@ -102,7 +115,7 @@ export const Slider: React.FC<SliderProps> = ({
 
     document.addEventListener('pointerup', handlePointerUp);
 
-    return () => {
+    return (): void => {
       document.removeEventListener('pointerup', handlePointerUp);
     };
   }, []);
@@ -316,53 +329,59 @@ export const Slider: React.FC<SliderProps> = ({
   };
 
   return (
-    <div className={styles.slider} data-testid={testId} data-analyticsid={AnalyticsId.Slider}>
-      {title && (
-        <Title className={styles['slider__title']} htmlMarkup={'h3'} margin={0} appearance={'title3'} id={titleId}>
-          {title}
-        </Title>
-      )}
-      <div className={styles['slider__content-container']}>
-        {renderEmojies()}
-        {/* Komponenten er tilgjengelig for mus/keyboard gjennom bruk av slideren */}
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-        <div
-          ref={trackRef}
-          className={classNames(styles['slider__track-wrapper'], disabled && styles['slider__track-wrapper--disabled'])}
-          onClick={handleTrackClick}
-          onPointerDown={handlePointerDown}
-        >
-          <div className={classNames(styles.slider__track, disabled && styles['slider__track--disabled'])}>{renderSteps()}</div>
+    <ErrorWrapper errorText={errorText} errorTextId={errorTextUuid}>
+      <input className={styles['sr-only-slider']} aria-label={title} type={'range'} ref={ref} value={valueState} {...rest} />
+      <div className={styles.slider} data-testid={testId} data-analyticsid={AnalyticsId.Slider}>
+        {title && (
+          <Title className={styles['slider__title']} htmlMarkup={'h3'} margin={0} appearance={'title3'} id={titleId}>
+            {title}
+          </Title>
+        )}
+        <div className={styles['slider__content-container']}>
+          {renderEmojies()}
+          {/* Komponenten er tilgjengelig for mus/keyboard gjennom bruk av slideren */}
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
           <div
-            role={disabled ? undefined : 'slider'}
-            ref={markerRef}
-            className={classNames(styles.slider__marker, {
-              [styles['slider__marker--disabled']]: disabled,
-              [styles['slider__marker--selected']]: selectedState,
-            })}
-            style={{
-              left: `${markerXPos}px`,
-            }}
-            onKeyDown={handleKeyDown}
-            aria-valuenow={valueState}
-            aria-valuetext={getAriaValueText()}
-            aria-valuemin={minValue}
-            aria-valuemax={maxValue}
-            tabIndex={disabled ? undefined : 0}
-            aria-disabled={disabled}
-            {...ariaLabelAttributes}
-          />
+            ref={trackRef}
+            className={classNames(styles['slider__track-wrapper'], disabled && styles['slider__track-wrapper--disabled'])}
+            onClick={handleTrackClick}
+            onPointerDown={handlePointerDown}
+          >
+            <div className={classNames(styles.slider__track, disabled && styles['slider__track--disabled'])}>{renderSteps()}</div>
+            <div
+              role={disabled ? undefined : 'slider'}
+              ref={markerRef}
+              className={classNames(styles.slider__marker, {
+                [styles['slider__marker--disabled']]: disabled,
+                [styles['slider__marker--selected']]: selectedState,
+                [styles['slider__marker--invalid']]: invalid,
+              })}
+              style={{
+                left: `${markerXPos}px`,
+              }}
+              onKeyDown={handleKeyDown}
+              aria-valuenow={valueState}
+              aria-valuetext={getAriaValueText()}
+              aria-valuemin={minValue}
+              aria-valuemax={maxValue}
+              tabIndex={disabled ? undefined : 0}
+              aria-disabled={disabled}
+              {...ariaLabelAttributes}
+            />
+          </div>
+          {renderStepLabels()}
         </div>
-        {renderStepLabels()}
+        {(labelLeft || labelRight) && (
+          <span className={styles.slider__options}>
+            <span id={labelLeftId}>{labelLeft}</span>
+            <span id={labelRightId}>{labelRight}</span>
+          </span>
+        )}
       </div>
-      {(labelLeft || labelRight) && (
-        <span className={styles.slider__options}>
-          <span id={labelLeftId}>{labelLeft}</span>
-          <span id={labelRightId}>{labelRight}</span>
-        </span>
-      )}
-    </div>
+    </ErrorWrapper>
   );
-};
+});
+
+Slider.displayName = 'Slider';
 
 export default Slider;

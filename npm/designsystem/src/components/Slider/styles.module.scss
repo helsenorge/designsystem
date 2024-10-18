@@ -1,9 +1,15 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
+@import '../../scss/screen-reader';
+@import '../../scss/supernova/styles/colors';
 
 $track-height-offset: 1rem;
 $mark-size: getSpacer(l);
+
+.sr-only-slider {
+  @include sr-only;
+}
 
 .slider {
   display: flex;
@@ -105,6 +111,10 @@ $mark-size: getSpacer(l);
           background-color: $blueberry700;
         }
       }
+    }
+
+    &--invalid {
+      border-color: var(--color-notification-border-error);
     }
 
     &--disabled {

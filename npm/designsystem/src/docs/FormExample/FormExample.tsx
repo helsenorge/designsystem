@@ -9,6 +9,7 @@ import Input from '../../components/Input';
 import Label from '../../components/Label';
 import RadioButton from '../../components/RadioButton';
 import Select from '../../components/Select';
+import Slider from '../../components/Slider';
 import Spacer from '../../components/Spacer';
 import Textarea from '../../components/Textarea';
 import Validation from '../../components/Validation';
@@ -27,6 +28,7 @@ export enum FormExampleVariants {
   textarea = 'textarea',
   input = 'input',
   select = 'select',
+  slider = 'slider',
 }
 
 interface FormExampleData {
@@ -36,6 +38,7 @@ interface FormExampleData {
   story: string;
   name: string;
   monster: string[];
+  sykkel: number;
 }
 
 export const FormExample = (props: FormExampleProps): JSX.Element => {
@@ -67,6 +70,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   const storyErrorMessage = 'Historien må være på maks 40 tegn';
   const nameErrorMessage = 'Navn må fylles ut';
   const monsterErrorMessage = 'Du må velge "Frankenstein"';
+  const sykkelErrorMessage = 'Du må dra på slideren';
 
   const requireTwo = (value: Array<string>): true | string => {
     return value.length >= 2 || sizeErrorMessage;
@@ -76,7 +80,11 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     return value.toString() === 'Frankenstein' || monsterErrorMessage;
   };
 
-  const color = () => (
+  const requireSykkel = (value: number): true | string => {
+    return typeof value === 'undefined' || sykkelErrorMessage;
+  };
+
+  const color = (): React.ReactElement => (
     <FormGroup
       title={'FormGroup-tittel'}
       legend={'Farge'}
@@ -104,7 +112,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const size = () => (
+  const size = (): React.ReactElement => (
     <FormGroup legend={'Størrelser'} error={errors.sizes ? errors.sizes.message : undefined} size={props.size} errorTextId="error1">
       <Checkbox inputId="sizes1" label={<Label labelTexts={[{ text: 'Small' }]} />} {...register('sizes', { validate: requireTwo })} />
       <Checkbox inputId="sizes2" label={<Label labelTexts={[{ text: 'Medium' }]} />} {...register('sizes', { validate: requireTwo })} />
@@ -112,7 +120,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const position = () => (
+  const position = (): React.ReactElement => (
     <FormGroup
       legend={'Plassering'}
       error={errors.positions ? (errors.positions.message as string) : undefined}
@@ -137,7 +145,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const story = () => (
+  const story = (): React.ReactElement => (
     <FormGroup error={errors.story ? (errors.story.message as string) : undefined} errorTextId="error3">
       <Textarea
         defaultValue={`Dette er en test \n\n Hello \n\n test \n\n test test`}
@@ -151,7 +159,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const name = () => (
+  const name = (): React.ReactElement => (
     <FormGroup size={props.size} error={errors.name ? (errors.name.message as string) : undefined} errorTextId="error4">
       <Input
         label={<Label labelTexts={[{ text: 'Navn', type: 'semibold' }]} />}
@@ -163,7 +171,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
-  const monster = () => (
+  const monster = (): React.ReactElement => (
     <FormGroup size={props.size} error={errors.monster ? (errors.monster.message as string) : undefined} errorTextId="error5">
       <Select
         selectId="monster"
@@ -176,6 +184,17 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
+  const sykkel = (): React.ReactElement => (
+    <Slider
+      title="Hvor mye liker du å sykle?"
+      errorText={errors.sykkel ? (errors.sykkel.message as string) : undefined}
+      errorTextId="error5"
+      selected={false}
+      {...register('sykkel', { validate: requireSykkel })}
+      // onChange={(value: number) => console.log(value)}
+    />
+  );
+
   const getFormExample = () => {
     if (exampleType === FormExampleVariants.formgroup) {
       return (
@@ -185,7 +204,6 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
           {position()}
           {story()}
           {name()}
-          {monster()}
         </>
       );
     } else if (exampleType === FormExampleVariants.checkbox) {
@@ -198,6 +216,8 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       return <>{name()}</>;
     } else if (exampleType === FormExampleVariants.select) {
       return <>{monster()}</>;
+    } else if (exampleType === FormExampleVariants.slider) {
+      return <>{sykkel()}</>;
     }
   };
 

@@ -203,3 +203,10 @@ export const Select: Story = {
   },
   render: args => <FormExample {...args} />,
 };
+
+export const Slider: Story = {
+  args: {
+    exampleType: FormExampleVariants.slider,
+  },
+  render: args => <FormExample {...args} />,
+};
