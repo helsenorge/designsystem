@@ -38,6 +38,7 @@ export interface InputProps
     | 'onFocus'
     | 'onKeyDown'
     | 'autoFocus'
+    | 'inputMode'
   > {
   /** The number at which the input field starts when you increment or decrement it */
   baseIncrementValue?: number;
