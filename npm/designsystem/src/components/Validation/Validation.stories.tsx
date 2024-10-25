@@ -6,7 +6,7 @@ import { Docs } from 'frankenstein-build-tools';
 import { FormSize } from '../../constants';
 import FormExample, { FormExampleVariants } from '../../docs/FormExample/FormExample';
 
-const meta = {
+const meta: Meta<typeof FormExample> = {
   title: '@helsenorge/designsystem-react/Components/Validation',
   component: FormExample,
   parameters: {
@@ -18,131 +18,284 @@ const meta = {
         markdown: 'test',
       },
       source: {
-        code: `Eksempel på validation med react-hook-form 7:
-        const {
-          register,
-          handleSubmit,
-          formState: { errors },
-        } = useForm();
-        const field1 = 'field1';
-        const field2 = 'field2';
-        const field3 = 'field3';
-        const allErrors = errors.field1 || errors.field2 || errors.field3;
-        const errorMessage = 'Du må velge et alternativ';
-        const errorMessage2 = 'Du må velge to alternativ';
+        code: `
+Eksempel på validation med react-hook-form 7:
 
-        const requireTwo = (value: Array<string>): true | string => {
-          return value.length >= 2 || errorMessage2;
-        };
-        const allCheckBoxes = [
-          <Checkbox key={0} inputId="checkbox1" label={<Label labelTexts={[{ text: 'Checkbox 1'}]} />} {...register(field1, { required: errorMessage })} />,
-          <Checkbox key={1} inputId="checkbox2" label={<Label labelTexts={[{ text: 'Checkbox 2'}]} />} {...register(field1, { required: errorMessage })} />,
-          <Checkbox key={2} inputId="checkbox3" label={<Label labelTexts={[{ text: 'Checkbox 3'}]} />} {...register(field1, { required: errorMessage })} />,
-        ];
+export const FormExample = (props: FormExampleProps): JSX.Element => {
+  const { exampleType = FormExampleVariants.formgroup } = props;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, dirtyFields },
+  } = useForm<FormExampleData>();
 
-        <form onSubmit={handleSubmit(data => {
-                console.log(data);
-              })}
-        >
-        <Validation errors={allErrors} errorTitle={'Sjekk at alt er riktig utfylt'}>
-        <FormGroup
-          key={0}
-          title={'Gruppe tittel'}
-          legend={'Velg minst en'}
-          error={errors.field1 ? (errors.field1.message as string) : undefined}
-          size={props.size}
-        >
-          <FormLayout maxColumns={FormLayoutColumns.two}>
-            {allCheckBoxes.map(check => {
-              return check;
-            })}
-          </FormLayout>
-        </FormGroup>
-        <FormGroup
-        key={1}
-        legend={'Velg minst to'}
-        error={errors.field2 ? (errors.field2.message as string) : undefined}
-        size={props.size}>
-        <Checkbox inputId="checkbox4" label={<Label labelTexts={[{ text: 'Checkbox 4'}]} />} {...register(field2, { validate: requireTwo })} />
-        <Checkbox inputId="checkbox5" label={<Label labelTexts={[{ text: 'Checkbox 5'}]} />} {...register(field2, { validate: requireTwo })} />
-        <Checkbox inputId="checkbox6" label={<Label labelTexts={[{ text: 'Checkbox 6'}]} />} {...register(field2, { validate: requireTwo })} />
-        </FormGroup>
-        <FormGroup key={2} legend={'Velg en'} error={errors.field3 ? (errors.field3.message as string) : undefined} size={props.size}>
-          <RadioButton inputId="radiobutton1" label={<Label labelTexts={[{ text: 'Radiobutton 1'}]} />} {...register(field3, { required: errorMessage })} />
-          <RadioButton inputId="radiobutton2" label={<Label labelTexts={[{ text: 'Radiobutton 2'}]} />} {...register(field3, { required: errorMessage })} />
-          <RadioButton inputId="radiobutton3" label={<Label labelTexts={[{ text: 'Radiobutton 3'}]} />} {...register(field3, { required: errorMessage })} />
-        </FormGroup>
-        </Validation>
-        <Button type="submit">{'Send inn'}</Button>
-        </form>
-        
-Eksempel på validation med react-hook-form 6:
-          const {
-            register,
-            handleSubmit,
-            formState: { errors },
-          } = useForm();
-          const field1 = 'field1';
-          const field2 = 'field2';
-          const field3 = 'field3';
-          const allErrors = errors[field1] || errors[field2] || errors[field3];
-          const errorMessage = 'Du må velge et alternativ';
-          const errorMessage2 = 'Du må velge to alternativ';
-        
-          const requireTwo = (value: Array<string>): true | string => {
-            return value.length >= 2 || errorMessage2;
-          };
-          const allCheckBoxes = [
-            <Checkbox key={0} inputId="checkbox1" label={<Label labelTexts={[{ text: 'Checkbox 1'}]} />} ref={register({ required: errorMessage })} />,
-            <Checkbox key={1} inputId="checkbox2" label={<Label labelTexts={[{ text: 'Checkbox 2'}]} />} ref={register({ required: errorMessage })} />,
-            <Checkbox key={2} inputId="checkbox3" label={<Label labelTexts={[{ text: 'Checkbox 3'}]} />} ref={register({ required: errorMessage })} />,
-          ];
+  const defaultDate = new Date();
+  defaultDate.setHours(0);
+  defaultDate.setMinutes(0);
+  defaultDate.setSeconds(0);
+  const minDate = new Date();
+  minDate.setDate(defaultDate.getDate() - 5);
+  minDate.setHours(6);
+  minDate.setMinutes(10);
+  minDate.setSeconds(0);
+  const maxDate = new Date();
+  maxDate.setDate(defaultDate.getDate() + 5);
+  maxDate.setHours(22);
+  maxDate.setMinutes(0);
+  maxDate.setSeconds(0);
 
-        <form onSubmit={handleSubmit(data => {
-              console.log(data);
-            })}
-        >
-        <Validation errors={allErrors} errorTitle={allErrors ? 'Sjekk at alt er riktig utfylt' : undefined}>
-        <FormGroup
-        key={0}
-        title={'Gruppe tittel'}
-        legend={'Velg minst en'}
-        error={errors[field1] ? errors[field1].message : undefined}
-        size={props.size}
-        name={field1}
-        >
-        <FormLayout maxColumns={FormLayoutColumns.two}>
-          {allCheckBoxes.map(check => {
-            return check;
-          })}
-        </FormLayout>
-        </FormGroup>
-          <FormGroup
-          key={1}
-          legend={'Velg minst to'}
-          error={errors[field2] ? errors[field2].message : undefined}
-          size={props.size}
-          name={field2}
-        >
-          <Checkbox inputId="checkbox4" label={<Label labelTexts={[{ text: 'Checkbox 4'}]} />} ref={register({ validate: requireTwo })} />
-          <Checkbox inputId="checkbox5" label={<Label labelTexts={[{ text: 'Checkbox 5'}]} />} ref={register({ validate: requireTwo })} />
-          <Checkbox inputId="checkbox6" label={<Label labelTexts={[{ text: 'Checkbox 6'}]} />} ref={register({ validate: requireTwo })} />
-        </FormGroup>
-        <FormGroup
-          key={2}
-          legend={'Velg en'}
-          error={errors[field3] ? errors[field3].message : undefined}
-          size={props.size}
-          name={field3}
-        >
-          <RadioButton inputId="radiobutton1" label={<Label labelTexts={[{ text: 'Radiobutton 1'}]} />} ref={register({ required: errorMessage })} />
-          <RadioButton inputId="radiobutton2" label={<Label labelTexts={[{ text: 'Radiobutton 2'}]} />} ref={register({ required: errorMessage })} />
-          <RadioButton inputId="radiobutton3" label={<Label labelTexts={[{ text: 'Radiobutton 3'}]} />} ref={register({ required: errorMessage })} />
-        </FormGroup>
-        </Validation>
-        <Button type="submit">{'Send inn'}</Button>
-        </form>
-        `,
+  const colorErrorMessage = 'Du må velge minst én farge';
+  const sizeErrorMessage = 'Du må velge minst to størrelser';
+  const positionErrorMessage = 'Du må velge minst én plassering';
+  const storyErrorMessage = 'Historien må være på maks 40 tegn';
+  const nameErrorMessage = 'Navn må fylles ut';
+  const monsterErrorMessage = 'Du må velge "Frankenstein"';
+  const bikeErrorMessage = 'Du må dra på slideren';
+
+  const requireTwo = (value: Array<string>): true | string => {
+    return value.length >= 2 || sizeErrorMessage;
+  };
+
+  const requireFrankenstein = (value: Array<string>): true | string => {
+    return value.toString() === 'Frankenstein' || monsterErrorMessage;
+  };
+
+  const requireBike = (): true | string => {
+    return dirtyFields.bike || bikeErrorMessage;
+  };
+
+  const color = (): React.ReactElement => (
+    <FormGroup
+      title={'FormGroup-tittel'}
+      legend={'Farge'}
+      error={errors.colour ? errors.colour.message : undefined}
+      errorTextId="error"
+      size={props.size}
+    >
+      <FormLayout maxColumns={FormLayoutColumns.two}>
+        <Checkbox
+          inputId="colour1"
+          label={<Label labelTexts={[{ text: 'Blueberry' }]} />}
+          {...register('colour', { required: colorErrorMessage })}
+        />
+        <Checkbox
+          inputId="colour2"
+          label={<Label labelTexts={[{ text: 'Cherry' }]} />}
+          {...register('colour', { required: colorErrorMessage })}
+        />
+        <Checkbox
+          inputId="colour3"
+          label={<Label labelTexts={[{ text: 'Neutral' }]} />}
+          {...register('colour', { required: colorErrorMessage })}
+        />
+      </FormLayout>
+    </FormGroup>
+  );
+
+  const size = (): React.ReactElement => (
+    <FormGroup
+      legend={'Størrelser'}
+      error={errors.sizes ? errors.sizes.message : undefined}
+      size={props.size}
+      errorTextId="error1"
+    >
+      <Checkbox
+        inputId="sizes1"
+        label={<Label labelTexts={[{ text: 'Small' }]} />}
+        {...register('sizes', { validate: requireTwo })}
+      />
+      <Checkbox
+        inputId="sizes2"
+        label={<Label labelTexts={[{ text: 'Medium' }]} />}
+        {...register('sizes', { validate: requireTwo })}
+      />
+      <Checkbox
+        inputId="sizes3"
+        label={<Label labelTexts={[{ text: 'Large' }]} />}
+        {...register('sizes', { validate: requireTwo })}
+      />
+    </FormGroup>
+  );
+
+  const position = (): React.ReactElement => (
+    <FormGroup
+      legend={'Plassering'}
+      error={errors.positions ? (errors.positions.message as string) : undefined}
+      size={props.size}
+      errorTextId="error2"
+    >
+      <RadioButton
+        inputId="positions1"
+        label={<Label labelTexts={[{ text: 'Venstre' }]} />}
+        {...register('positions', { required: positionErrorMessage })}
+      />
+      <RadioButton
+        inputId="positions2"
+        label={<Label labelTexts={[{ text: 'Høyre' }]} />}
+        {...register('positions', { required: positionErrorMessage })}
+      />
+      <RadioButton
+        inputId="positions3"
+        label={<Label labelTexts={[{ text: 'Midten' }]} />}
+        {...register('positions', { required: positionErrorMessage })}
+      />
+    </FormGroup>
+  );
+
+  const story = (): React.ReactElement => (
+    <FormGroup
+      error={errors.story ? (errors.story.message as string) : undefined}
+      errorTextId="error3"
+    >
+      <Textarea
+        defaultValue={'Dette er en test \n\n Hello \n\n test \n\n test test'}
+        grow
+        maxCharacters={40}
+        minRows={5}
+        label={<Label labelTexts={[{ text: 'Historie', type: 'semibold' }]} />}
+        textareaId="story"
+        {...register('story', { maxLength: { value: 40, message: storyErrorMessage } })}
+      />
+    </FormGroup>
+  );
+
+  const name = (): React.ReactElement => (
+    <FormGroup
+      size={props.size}
+      error={errors.name ? (errors.name.message as string) : undefined}
+      errorTextId="error4"
+    >
+      <Input
+        label={<Label labelTexts={[{ text: 'Navn', type: 'semibold' }]} />}
+        placeholder={'Skriv noe!'}
+        icon={Hospital}
+        inputId="name"
+        {...register('name', { required: nameErrorMessage })}
+      />
+    </FormGroup>
+  );
+
+  const monster = (): React.ReactElement => (
+    <FormGroup
+      size={props.size}
+      error={errors.monster ? (errors.monster.message as string) : undefined}
+      errorTextId="error5"
+    >
+      <Select
+        selectId="monster"
+        label={<Label labelTexts={[{ text: 'Velg et monster', type: 'semibold' }]} />}
+        {...register('monster', { validate: requireFrankenstein })}
+      >
+        <option value={'Troll'}>{'Troll'}</option>
+        <option value={'Frankenstein'}>{'Frankenstein'}</option>
+      </Select>
+    </FormGroup>
+  );
+
+  const bike = (): React.ReactElement => (
+    <Slider
+      title="Hvor godt liker du å sykle?"
+      errorText={errors.bike ? (errors.bike.message as string) : undefined}
+      errorTextId="error6"
+      selected={false}
+      steps={[{ label: 'Lite' }, { label: 'Middels' }, { label: 'Veldig' }]}
+      {...register('bike', { validate: requireBike })}
+    />
+  );
+
+  const getFormExample = (): React.ReactElement | undefined => {
+    if (exampleType === FormExampleVariants.formgroup) {
+      return (
+        <>
+          {color()}
+          {size()}
+          {position()}
+          {story()}
+          {name()}
+          {monster()}
+        </>
+      );
+    } else if (exampleType === FormExampleVariants.checkbox) {
+      return color();
+    } else if (exampleType === FormExampleVariants.radiobutton) {
+      return position();
+    } else if (exampleType === FormExampleVariants.textarea) {
+      return story();
+    } else if (exampleType === FormExampleVariants.input) {
+      return name();
+    } else if (exampleType === FormExampleVariants.select) {
+      return monster();
+    } else if (exampleType === FormExampleVariants.slider) {
+      return <>{bike()}</>;
+    } else if (exampleType === FormExampleVariants.withoutformgroup) {
+      return (
+        <>
+          <Checkbox
+            errorText={errors.sizes ? errors.sizes.message : undefined}
+            errorTextId="error1"
+            inputId="sizes1"
+            label={<Label labelTexts={[{ text: 'Small' }]} />}
+            {...register('sizes', { validate: requireTwo })}
+          />
+          <RadioButton
+            errorText={errors.positions ? (errors.positions.message as string) : undefined}
+            errorTextId="error2"
+            inputId="positions1"
+            label={<Label labelTexts={[{ text: 'Venstre' }]} />}
+            {...register('positions', { required: positionErrorMessage })}
+          />
+          <Textarea
+            errorText={errors.story ? (errors.story.message as string) : undefined}
+            errorTextId="error3"
+            defaultValue={'Dette er en test \n\n Hello \n\n test \n\n test test'}
+            grow
+            maxCharacters={40}
+            minRows={5}
+            label={<Label labelTexts={[{ text: 'Historie', type: 'semibold' }]} />}
+            textareaId="story"
+            {...register('story', { maxLength: { value: 40, message: storyErrorMessage } })}
+          />
+          <Input
+            errorText={errors.name ? (errors.name.message as string) : undefined}
+            errorTextId="error4"
+            label={<Label labelTexts={[{ text: 'Navn', type: 'semibold' }]} />}
+            placeholder={'Skriv noe!'}
+            icon={Hospital}
+            inputId="name"
+            {...register('name', { required: nameErrorMessage })}
+          />
+          <Select
+            errorText={errors.monster ? (errors.monster.message as string) : undefined}
+            errorTextId="error5"
+            selectId="monster"
+            label={<Label labelTexts={[{ text: 'Velg et monster', type: 'semibold' }]} />}
+            {...register('monster', { validate: requireFrankenstein })}
+          >
+            <option value={'Troll'}>{'Troll'}</option>
+            <option value={'Frankenstein'}>{'Frankenstein'}</option>
+          </Select>
+        </>
+      );
+    }
+  };
+
+  return (
+    <form
+      noValidate
+      onSubmit={handleSubmit(data => {
+        // eslint-disable-next-line no-console
+        !isTest() && console.log(data);
+      })}
+    >
+      <Validation size={props.size} errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
+        {getFormExample()}
+      </Validation>
+      <Spacer />
+      <Button type="submit">{'Send inn'}</Button>
+    </form>
+  );
+};
+            `,
         language: 'tsx',
       },
     },
@@ -153,14 +306,14 @@ Eksempel på validation med react-hook-form 6:
   argTypes: {
     size: {
       control: 'select',
-      options: FormSize,
+      options: Object.values(FormSize),
     },
   },
-} satisfies Meta<typeof FormExample>;
+};
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof FormExample>;
 
 export const FormGroup: Story = {
   args: {
@@ -207,6 +360,13 @@ export const Input: Story = {
 export const Select: Story = {
   args: {
     exampleType: FormExampleVariants.select,
+  },
+  render: args => <FormExample {...args} />,
+};
+
+export const Slider: Story = {
+  args: {
+    exampleType: FormExampleVariants.slider,
   },
   render: args => <FormExample {...args} />,
 };

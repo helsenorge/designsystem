@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
+import { expect, vi as jest } from 'vitest';
 
 import { Slider } from './Slider';
 
@@ -34,7 +34,7 @@ describe('Gitt at Slider skal vises', (): void => {
       expect(optionRight).toBeVisible();
 
       const slider = screen.getByRole('slider', { name: 'Hvor viktig er det for deg?' });
-      expect(slider).toHaveClass('slider__marker');
+      expect(slider).toHaveClass('sr-only-slider');
     });
   });
 
@@ -73,7 +73,7 @@ describe('Gitt at Slider skal vises', (): void => {
       render(<Slider disabled={true} />);
 
       const slider = screen.queryByRole('slider');
-      expect(slider).not.toBeInTheDocument();
+      expect(slider).toBeDisabled();
     });
   });
 
@@ -106,17 +106,17 @@ describe('Gitt at Slider skal vises', (): void => {
       const slider = screen.getByRole('slider');
 
       await userEvent.click(slider);
-      expect(slider).toHaveAttribute('aria-valuenow', '50');
+      expect(slider).toHaveAttribute('value', '50');
 
       await userEvent.keyboard('{ArrowRight}');
       await userEvent.keyboard('{ArrowUp}');
-      expect(slider).toHaveAttribute('aria-valuenow', '52');
+      expect(slider).toHaveAttribute('value', '52');
 
       await userEvent.keyboard('{ArrowLeft}');
       await userEvent.keyboard('{ArrowDown}');
       await userEvent.keyboard('{ArrowLeft}');
       await userEvent.keyboard('{ArrowDown}');
-      expect(slider).toHaveAttribute('aria-valuenow', '48');
+      expect(slider).toHaveAttribute('value', '48');
     });
   });
 
@@ -127,14 +127,14 @@ describe('Gitt at Slider skal vises', (): void => {
       const slider = screen.getByRole('slider');
 
       await userEvent.click(slider);
-      expect(slider).toHaveAttribute('aria-valuenow', '50');
+      expect(slider).toHaveAttribute('value', '50');
 
       await userEvent.keyboard('{PageUp}');
-      expect(slider).toHaveAttribute('aria-valuenow', '60');
+      expect(slider).toHaveAttribute('value', '60');
 
       await userEvent.keyboard('{PageDown}');
       await userEvent.keyboard('{PageDown}');
-      expect(slider).toHaveAttribute('aria-valuenow', '40');
+      expect(slider).toHaveAttribute('value', '40');
     });
   });
 
@@ -145,13 +145,13 @@ describe('Gitt at Slider skal vises', (): void => {
       const slider = screen.getByRole('slider');
 
       await userEvent.click(slider);
-      expect(slider).toHaveAttribute('aria-valuenow', '50');
+      expect(slider).toHaveAttribute('value', '50');
 
       await userEvent.keyboard('{Home}');
-      expect(slider).toHaveAttribute('aria-valuenow', '0');
+      expect(slider).toHaveAttribute('value', '0');
 
       await userEvent.keyboard('{End}');
-      expect(slider).toHaveAttribute('aria-valuenow', '100');
+      expect(slider).toHaveAttribute('value', '100');
     });
   });
 
@@ -173,12 +173,12 @@ describe('Gitt at Slider skal vises', (): void => {
 
       const slider = screen.getByRole('slider');
 
-      expect(slider).toHaveAttribute('aria-valuenow', '50');
+      expect(slider).toHaveAttribute('value', '50');
 
       await userEvent.click(slider);
       await userEvent.keyboard('{ArrowRight}');
 
-      expect(slider).toHaveAttribute('aria-valuenow', '50.5');
+      expect(slider).toHaveAttribute('value', '50.5');
     });
   });
 
@@ -189,13 +189,13 @@ describe('Gitt at Slider skal vises', (): void => {
       const slider = screen.getByRole('slider');
       await userEvent.click(slider);
 
-      expect(slider).toHaveAttribute('aria-valuenow', '30');
+      expect(slider).toHaveAttribute('value', '30');
 
       await userEvent.keyboard('{End}');
-      expect(slider).toHaveAttribute('aria-valuenow', '50');
+      expect(slider).toHaveAttribute('value', '50');
 
       await userEvent.keyboard('{Home}');
-      expect(slider).toHaveAttribute('aria-valuenow', '10');
+      expect(slider).toHaveAttribute('value', '10');
     });
   });
 
@@ -245,6 +245,15 @@ describe('Gitt at Slider skal vises', (): void => {
       await waitFor(() => {
         expect(mockOnChange).toHaveBeenCalledTimes(1);
       });
+    });
+  });
+
+  describe('Når slider har en error', () => {
+    test('Så skal slideren få error tekst', async (): Promise<void> => {
+      const mockOnChange = jest.fn();
+      render(<Slider onChange={mockOnChange} errorText={'feilmelding'} />);
+
+      expect(screen.getByText('feilmelding')).toBeInTheDocument();
     });
   });
 });

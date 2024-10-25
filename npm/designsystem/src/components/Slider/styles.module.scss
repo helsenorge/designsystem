@@ -1,16 +1,21 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
+@import '../../scss/screen-reader';
+@import '../../scss/supernova/styles/colors';
 
 $track-height-offset: 1rem;
 $mark-size: getSpacer(l);
+
+.sr-only-slider {
+  @include sr-only;
+}
 
 .slider {
   display: flex;
   flex-direction: column;
   row-gap: getSpacer(s);
   width: 100%;
-  padding: getSpacer(m) 0;
   position: relative;
   outline: none !important;
 
@@ -87,8 +92,14 @@ $mark-size: getSpacer(l);
     outline: none;
     cursor: pointer;
 
-    &:focus-within {
+    &--focused {
       outline: 0.15rem solid $black;
+    }
+
+    &--focused#{&}--selected {
+      &::after {
+        background-color: $blueberry700;
+      }
     }
 
     &--selected {
@@ -100,11 +111,14 @@ $mark-size: getSpacer(l);
         border-radius: 10rem;
         background-color: $blueberry600;
 
-        :hover > &,
-        :focus > & {
+        :hover > & {
           background-color: $blueberry700;
         }
       }
+    }
+
+    &--invalid {
+      border-color: var(--color-notification-border-error);
     }
 
     &--disabled {
@@ -115,8 +129,7 @@ $mark-size: getSpacer(l);
         border-color: $neutral500;
         background-color: $neutral200;
 
-        :hover > &,
-        :focus > & {
+        :hover > & {
           background-color: $neutral200;
         }
       }

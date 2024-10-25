@@ -10,6 +10,7 @@ import FormGroup, { FormGroupProps } from '../FormGroup/FormGroup';
 import Input, { InputProps } from '../Input';
 import RadioButton, { RadioButtonProps } from '../RadioButton';
 import Select, { SelectProps } from '../Select';
+import Slider, { SliderProps } from '../Slider';
 import Textarea, { TextareaProps } from '../Textarea';
 
 import styles from './styles.module.scss';
@@ -47,6 +48,7 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
       isComponent<TextareaProps>(child, Textarea) ||
       isComponent<InputProps>(child, Input) ||
       isComponent<SelectProps>(child, Select) ||
+      isComponent<SliderProps>(child, Slider) ||
       isComponentWithDisplayName<ErrorWrapperClassNameProps>(child, 'DateTimePickerWrapper') ||
       isComponentWithDisplayName<ErrorWrapperClassNameProps>(child, 'DatePicker') ||
       isComponentWithDisplayName<ErrorWrapperClassNameProps>(child, 'DateTime')

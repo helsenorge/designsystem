@@ -9,6 +9,7 @@ import Input from '../../components/Input';
 import Label from '../../components/Label';
 import RadioButton from '../../components/RadioButton';
 import Select from '../../components/Select';
+import Slider from '../../components/Slider';
 import Spacer from '../../components/Spacer';
 import Textarea from '../../components/Textarea';
 import Validation from '../../components/Validation';
@@ -27,6 +28,7 @@ export enum FormExampleVariants {
   textarea = 'textarea',
   input = 'input',
   select = 'select',
+  slider = 'slider',
   withoutformgroup = 'withoutformgroup',
 }
 
@@ -37,6 +39,7 @@ interface FormExampleData {
   story: string;
   name: string;
   monster: string[];
+  bike: string;
 }
 
 export const FormExample = (props: FormExampleProps): JSX.Element => {
@@ -44,7 +47,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useForm<FormExampleData>();
 
   const defaultDate = new Date();
@@ -68,6 +71,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   const storyErrorMessage = 'Historien må være på maks 40 tegn';
   const nameErrorMessage = 'Navn må fylles ut';
   const monsterErrorMessage = 'Du må velge "Frankenstein"';
+  const bikeErrorMessage = 'Du må dra på slideren';
 
   const requireTwo = (value: Array<string>): true | string => {
     return value.length >= 2 || sizeErrorMessage;
@@ -75,6 +79,10 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
 
   const requireFrankenstein = (value: Array<string>): true | string => {
     return value.toString() === 'Frankenstein' || monsterErrorMessage;
+  };
+
+  const requireBike = (): true | string => {
+    return dirtyFields.bike || bikeErrorMessage;
   };
 
   const color = (): React.ReactElement => (
@@ -177,6 +185,17 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     </FormGroup>
   );
 
+  const bike = (): React.ReactElement => (
+    <Slider
+      title="Hvor godt liker du å sykle?"
+      errorText={errors.bike ? (errors.bike.message as string) : undefined}
+      errorTextId="error6"
+      selected={false}
+      steps={[{ label: 'Lite' }, { label: 'Middels' }, { label: 'Veldig' }]}
+      {...register('bike', { validate: requireBike })}
+    />
+  );
+
   const getFormExample = (): React.ReactElement | undefined => {
     if (exampleType === FormExampleVariants.formgroup) {
       return (
@@ -199,6 +218,8 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       return name();
     } else if (exampleType === FormExampleVariants.select) {
       return monster();
+    } else if (exampleType === FormExampleVariants.slider) {
+      return <>{bike()}</>;
     } else if (exampleType === FormExampleVariants.withoutformgroup) {
       return (
         <>
