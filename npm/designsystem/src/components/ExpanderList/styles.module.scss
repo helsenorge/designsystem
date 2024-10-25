@@ -131,6 +131,11 @@
   width: 100%;
   outline: none;
 
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: $font-size-md;
+    line-height: $lineheight-size-md;
+  }
+
   &--open {
     font-weight: 600;
   }

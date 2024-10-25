@@ -116,6 +116,15 @@ describe('Gitt at DatePicker skal vises', (): void => {
       expect(handleChange).toHaveBeenCalledTimes(1);
     });
 
+    it('Så skal onBlur kalles når input mister fokus', () => {
+      const handleBlur = jest.fn();
+      render(<DateTime label={'Time'} timeUnit="hours" onBlur={handleBlur} />);
+      const input = screen.getByLabelText('Time') as HTMLInputElement;
+      fireEvent.focus(input);
+      fireEvent.blur(input);
+      expect(handleBlur).toHaveBeenCalledTimes(1);
+    });
+
     it('Så skal disabled propen sette input feltet som disabled', () => {
       render(<DateTime label={'Time'} timeUnit="minutes" disabled />);
       const input = screen.getByLabelText('Time') as HTMLInputElement;

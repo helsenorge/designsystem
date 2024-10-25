@@ -76,6 +76,10 @@ const meta = {
     maxText: {
       control: 'text',
     },
+    inputMode: {
+      control: 'select',
+      options: ['decimal', 'email', 'none', 'numeric', 'search', 'tel', 'text', 'url'],
+    },
   },
 } satisfies Meta<InputWithAndCustomArgs>;
 

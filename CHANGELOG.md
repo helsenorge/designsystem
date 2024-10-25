@@ -1,3 +1,27 @@
+## [8.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.6.0&targetVersion=GTv8.7.0) (2024-10-17)
+
+### Features
+
+- **datetime:** får onblur prop ([31fe602](https://github.com/helsenorge/designsystem/commit/31fe602a68f12c39e48a55b5559fcd812be97785)),
+  closes [#334254](https://github.com/helsenorge/designsystem/issues/334254)
+
+## [8.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.5.1&targetVersion=GTv8.6.0) (2024-10-09)
+
+### Features
+
+- **datepicker:** legg til prop for å sette posisjon på datepicker popup
+  ([0f392ed](https://github.com/helsenorge/designsystem/commit/0f392ed1f5fc76be0fbfdeb5262f64071cbf4dc0)), closes
+  [#326998](https://github.com/helsenorge/designsystem/issues/326998)
+- **datetime:** value prop og defaultvalue settes riktig
+  ([a3d8617](https://github.com/helsenorge/designsystem/commit/a3d86173269cd5a1dd9d8cd1f13a2512b2fb87fd)), closes
+  [#332561](https://github.com/helsenorge/designsystem/issues/332561)
+- **label:** gi mulighet for å rendre label med andre tags
+  ([9f952dd](https://github.com/helsenorge/designsystem/commit/9f952ddd0eac84e1426d070685998e950fa9e9f8)), closes
+  [#331803](https://github.com/helsenorge/designsystem/issues/331803)
+- **tabs:** endre default touch behaviour til å være none
+  ([4101ce2](https://github.com/helsenorge/designsystem/commit/4101ce2a85f84e26b9fcfd61990ca8792f72b55c)), closes
+  [#331142](https://github.com/helsenorge/designsystem/issues/331142)
+
 ## [8.5.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.5.0&targetVersion=GTv8.5.1) (2024-09-25)
 
 ### Bug Fixes
@@ -1781,12 +1805,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- panel har avstand fra tittel til badge
-  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
-  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 - økt kontrast på understreking av lenker
   ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
   [#229049](https://github.com/helsenorge/designsystem/issues/229049)
+- panel har avstand fra tittel til badge
+  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
+  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 

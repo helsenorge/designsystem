@@ -129,10 +129,12 @@ export const IconWall: LazyIconStory = {
       const lowercaseKeys = searchIcons(searchText).map(key => key.toLowerCase());
       return IconList.filter(camelCaseKey => lowercaseKeys.some(lowercaseKey => includesCaseInsensitive(camelCaseKey, lowercaseKey)));
     };
-
-    const iconSizeKeys = Object.keys(IconSize).filter(key => isNaN(Number(key)));
     const filteredIcons = typeof searchText !== 'undefined' ? filterCamelCaseKeys(searchText) : IconList;
-
+    const iconSizeOptions = Object.entries(IconSize).filter(([, value]) => typeof value === 'number');
+    const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+      const selectedSize = Number(event.target.value);
+      setIconSize(selectedSize);
+    };
     return (
       <div>
         <div
@@ -154,16 +156,12 @@ export const IconWall: LazyIconStory = {
               setSearchText(e.currentTarget.value);
             }}
           />
-          <Select
-            label={'Velg størrelse'}
-            defaultValue={iconSizeKeys[3]}
-            onChange={e => {
-              setIconSize(parseInt(e.currentTarget.value, 10));
-            }}
-          >
-            {iconSizeKeys.map((size, index) => {
-              return <option key={index}>{size}</option>;
-            })}
+          <Select label={'Velg størrelse'} defaultValue={IconSize.Medium} onChange={handleSizeChange}>
+            {iconSizeOptions.map(([sizeName, sizeValue]) => (
+              <option key={sizeValue} value={sizeValue}>
+                {sizeName}
+              </option>
+            ))}
           </Select>
           <Checkbox
             label={'Hover'}

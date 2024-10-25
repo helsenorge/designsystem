@@ -9,6 +9,7 @@ import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/compo
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Input from '@helsenorge/designsystem-react/components/Input';
+import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import { KeyboardEventKey, ZIndex } from '@helsenorge/designsystem-react/constants';
 import { useKeyboardEvent } from '@helsenorge/designsystem-react/hooks/useKeyboardEvent';
 import { useOutsideEvent } from '@helsenorge/designsystem-react/hooks/useOutsideEvent';
@@ -66,6 +67,8 @@ export interface DatePickerProps
   onDatePopupClosed?: (date: Date | string | undefined) => void;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Determines the placement of the DatePicker popup. Default: automatic positioning. */
+  variant?: keyof typeof PopOverVariant;
   /** Overrides the default z-index of DatePicker */
   zIndex?: number;
 }
@@ -96,6 +99,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     onDatePopupClosed,
     testId,
     autoComplete = 'off',
+    variant = PopOverVariant.positionautomatic,
     zIndex = ZIndex.PopOver,
     ...rest
   } = props;
@@ -348,6 +352,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           selected={dateState}
           onSelect={handleSingleDatePickerSelect}
           onMonthChange={setMonth}
+          variant={variant}
           zIndex={zIndex}
         />
       )}
