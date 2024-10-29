@@ -1,8 +1,5 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import PromoPanel from './PromoPanel';
 
@@ -55,7 +52,7 @@ describe('Gitt at PromoPanel skal vises', (): void => {
 
   describe('Når tittel er satt, og lenke skal rendres som button', (): void => {
     test('Så kan man klikke på knappen', async (): Promise<void> => {
-      const mockClick = jest.fn();
+      const mockClick = vi.fn();
 
       render(<PromoPanel title="Tittel" linkHtmlMarkup="button" linkOnClick={mockClick} />);
 
@@ -73,7 +70,7 @@ describe('Gitt at PromoPanel skal vises', (): void => {
 
   describe('Når tittel ikke er satt, og lenke skal rendres som button', (): void => {
     test('Så kan man klikke på knappen', async (): Promise<void> => {
-      const mockClick = jest.fn();
+      const mockClick = vi.fn();
 
       render(
         <PromoPanel linkHtmlMarkup="button" linkOnClick={mockClick}>
@@ -95,7 +92,7 @@ describe('Gitt at PromoPanel skal vises', (): void => {
 
   describe('Når det brukes en custom link component', (): void => {
     test('Så kan man klikke på knappen', async (): Promise<void> => {
-      const mockClick = jest.fn();
+      const mockClick = vi.fn();
 
       const customLink = <button onClick={mockClick} />;
 

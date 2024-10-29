@@ -1,10 +1,7 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
-import Expander from './Expander';
+import Expander, { ExpanderSize } from './Expander';
 import Calendar from '../Icons/Calendar';
 
 describe('Gitt at Expander skal vises vanlig', (): void => {
@@ -12,7 +9,7 @@ describe('Gitt at Expander skal vises vanlig', (): void => {
     test('Så kan man klikke for å ekspandere innholdet', async (): Promise<void> => {
       render(
         <Expander title={'Knapp'}>
-          <h1>Innhold i expander</h1>
+          <h1>{'Innhold i expander'}</h1>
         </Expander>
       );
       const expander = screen.getByRole('button', { name: 'Knapp' });
@@ -36,7 +33,7 @@ describe('Gitt at Expander skal vises som ekspandert', (): void => {
     test('Så vises innholdet ekspandert fra starten av', async (): Promise<void> => {
       render(
         <Expander title={'Knapp'} expanded>
-          <h1>Innhold i expander</h1>
+          <h1>{'Innhold i expander'}</h1>
         </Expander>
       );
 
@@ -52,8 +49,8 @@ describe('Gitt at Expander skal vises som large, med farge og ikon', (): void =>
   describe('Når Expanderen vises', (): void => {
     test('Så rendres expanderen som den skal', (): void => {
       const { container } = render(
-        <Expander title={'Knapp'} size="large" color="blueberry" svgIcon={Calendar}>
-          <h1>Innhold i expander</h1>
+        <Expander title={'Knapp'} size={ExpanderSize.large} color="blueberry" svgIcon={Calendar}>
+          <h1>{'Innhold i expander'}</h1>
         </Expander>
       );
 
@@ -64,7 +61,7 @@ describe('Gitt at Expander skal vises som large, med farge og ikon', (): void =>
 describe('Gitt at Expander har onExpand-callback', (): void => {
   describe('Når man klikker på expanderen to ganger', (): void => {
     test('Så kalles callback først med true og så med false', async (): Promise<void> => {
-      const handleExpand = jest.fn();
+      const handleExpand = vi.fn();
       render(<Expander title={'Knapp'} testId={'knapp'} onExpand={handleExpand}></Expander>);
 
       const expander = screen.getByTestId('knapp');
@@ -81,7 +78,7 @@ describe('Gitt at Expander har onExpand-callback', (): void => {
 describe('Gitt at Expander har onExpand-callback og expanded satt til true', (): void => {
   describe('Når man klikker på expanderen én gang', (): void => {
     test('Så kalles callback først med true og så med false', async (): Promise<void> => {
-      const handleExpand = jest.fn();
+      const handleExpand = vi.fn();
       render(<Expander title={'Knapp'} testId={'knapp'} onExpand={handleExpand} expanded></Expander>);
 
       const expander = screen.getByTestId('knapp');
@@ -99,7 +96,7 @@ describe('Gitt at Expander vises med et fokuserbart element', (): void => {
     test('Så kan man tabbe til elementet etter at ekspanderen er åpnet', async (): Promise<void> => {
       render(
         <Expander title={'Knapp'}>
-          <button>En knapp til</button>
+          <button>{'En knapp til'}</button>
         </Expander>
       );
 

@@ -2,24 +2,27 @@ import React, { useRef } from 'react';
 
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import HelpBubble, { HelpBubbleProps } from './HelpBubble';
 
-const dummyDomRect = {
-  height: 100,
-  width: 100,
-  top: 0,
-  left: 0,
-  right: 100,
-  bottom: 100,
-};
+const { dummyDomRect } = vi.hoisted(() => {
+  return {
+    dummyDomRect: {
+      height: 100,
+      width: 100,
+      top: 0,
+      left: 0,
+      right: 100,
+      bottom: 100,
+    },
+  };
+});
 
-jest.mock('../../hooks/useSize', () => ({
-  useSize: jest.fn().mockReturnValue(dummyDomRect),
+vi.mock('../../hooks/useSize', () => ({
+  useSize: vi.fn().mockReturnValue(dummyDomRect),
 }));
-jest.mock('../../hooks/useIsVisible', () => ({
-  useIsVisible: jest.fn().mockReturnValue(true),
+vi.mock('../../hooks/useIsVisible', () => ({
+  useIsVisible: vi.fn().mockReturnValue(true),
 }));
 
 const HelpBubleWithController: React.FC<Omit<HelpBubbleProps, 'controllerRef'>> = props => {
@@ -34,22 +37,16 @@ const HelpBubleWithController: React.FC<Omit<HelpBubbleProps, 'controllerRef'>> 
 };
 
 describe('Gitt at HelpBubble skal vises', (): void => {
-  const originalWindow = global.document['window'];
-
   beforeAll(() => {
-    window.HTMLDivElement.prototype.getBoundingClientRect = jest.fn().mockReturnValue(dummyDomRect);
-  });
-
-  afterAll(() => {
-    global.document['window'] = originalWindow;
+    window.HTMLDivElement.prototype.getBoundingClientRect = vi.fn().mockReturnValue(dummyDomRect);
   });
 
   describe('Når den skal vises vanlig', (): void => {
     it('Så vises HelpBubble som vanlig', (): void => {
       const { container } = render(
-        <HelpBubble controllerRef={jest.fn()} showBubble testId="test01">
+        <HelpBubleWithController showBubble testId="test01">
           {'Test tekst'}
-        </HelpBubble>
+        </HelpBubleWithController>
       );
 
       expect(container).toMatchSnapshot();
@@ -58,7 +55,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
 
   describe('Når onLinkClick er satt', (): void => {
     it('Så vises ekstra knapp med onLinkClick callback riktig', async (): Promise<void> => {
-      const onLinkClick = jest.fn();
+      const onLinkClick = vi.fn();
       render(
         <HelpBubleWithController showBubble linkText={'Egen link tekst'} onLinkClick={onLinkClick} testId="test01">
           {'Test tekst'}
@@ -128,7 +125,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
 
   describe('Når onClose er satt', (): void => {
     it('Så kalles onClose callback riktig', async (): Promise<void> => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
       render(
         <HelpBubleWithController onClose={onClose} showBubble testId="test01">
           {'Test tekst'}

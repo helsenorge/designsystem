@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import Checkbox from './Checkbox';
@@ -9,9 +7,9 @@ import Label from '../Label';
 describe('Gitt at Checkbox skal vises', (): void => {
   describe('Når Checkbox rendres', (): void => {
     test('Så vises Checkbox', (): void => {
-      render(<Checkbox inputId={'test01'} label={<Label labelTexts={[{ text: 'Check me out!' }]} />} />);
+      render(<Checkbox inputId={'test01'} label={<Label labelTexts={[{ text: 'Check me out!' }]} testId="test01-label" />} />);
 
-      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('test01-label');
       expect(label).toBeVisible();
       expect(label?.className).toBe('checkbox-label');
 
@@ -19,6 +17,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
       expect(input).toBeVisible();
       expect(input.className).toBe('checkbox');
 
+      // eslint-disable-next-line testing-library/no-node-access
       const checkIconWrapper = screen.getByRole('checkbox')?.parentElement?.children[1];
       expect(checkIconWrapper?.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-white');
     });
@@ -26,35 +25,37 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når disabled er true', (): void => {
     test('Så vises Checkbox som disabled', (): void => {
-      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} disabled />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} testId="check-label" />} disabled />);
 
-      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('check-label');
       expect(label?.className).toBe('checkbox-label checkbox-label--disabled');
     });
   });
 
   describe('Når onColor er onBlueberry', (): void => {
     test('Så vises Checkbox med onBlueberry styling', (): void => {
-      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} onColor={FormOnColor.onblueberry} />);
+      render(
+        <Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} testId="check-label" />} onColor={FormOnColor.onblueberry} />
+      );
 
-      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('check-label');
       expect(label?.className).toBe('checkbox-label');
     });
   });
   describe('Når onColor er onDark', (): void => {
     test('Så vises Checkbox med onDark styling', (): void => {
-      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} onColor={FormOnColor.ondark} />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} testId="check-label" />} onColor={FormOnColor.ondark} />);
 
-      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('check-label');
       expect(label?.className).toBe('checkbox-label checkbox-label--on-dark');
     });
   });
 
   describe('Når size er large', (): void => {
     test('Så vises Checkbox med large styling', (): void => {
-      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} size={FormSize.large} />);
+      render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} testId="check-label" />} size={FormSize.large} />);
 
-      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('check-label');
       expect(label?.className).toBe('checkbox-label checkbox-label--large checkbox-label__large--on-white');
     });
   });
@@ -63,6 +64,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
     test('Så vises Checkbox med checkmark ikon', (): void => {
       render(<Checkbox label={<Label labelTexts={[{ text: 'Check me out!' }]} />} checked />);
 
+      // eslint-disable-next-line testing-library/no-node-access
       const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
       expect(checkIcon).toBeVisible();
@@ -76,6 +78,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       fireEvent.click(screen.getByText('Check me out!'));
 
+      // eslint-disable-next-line testing-library/no-node-access
       const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
       expect(checkIcon?.className).toBe('checkbox__icon-wrapper checkbox__icon-wrapper--on-white checkbox__icon-wrapper__regular--checked');
@@ -88,10 +91,11 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
   describe('Når checkbox får satt error', (): void => {
     test('Så vises Checkbox med indre error styling, uten ytre error styling', (): void => {
-      render(<Checkbox testId={'test01'} label={<Label labelTexts={[{ text: 'Check me out!' }]} />} error />);
+      render(<Checkbox testId={'test01'} label={<Label labelTexts={[{ text: 'Check me out!' }]} testId="check-label" />} error />);
 
       // Indre styling
-      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('check-label');
+      // eslint-disable-next-line testing-library/no-node-access
       const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
       expect(label?.className).toBe('checkbox-label');
@@ -111,7 +115,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
         <Checkbox
           testId={'test01'}
           inputId="checkbox"
-          label={<Label labelTexts={[{ text: 'Check me out!' }]} />}
+          label={<Label labelTexts={[{ text: 'Check me out!' }]} testId="check-label" />}
           errorText={'error error!'}
         />
       );
@@ -121,7 +125,8 @@ describe('Gitt at Checkbox skal vises', (): void => {
       expect(checkbox).toHaveAccessibleDescription('error error!');
 
       // Indre styling
-      const label = screen.getByText('Check me out!').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('check-label');
+      // eslint-disable-next-line testing-library/no-node-access
       const checkIcon = screen.getByRole('checkbox')?.parentElement?.children[1];
 
       expect(label?.className).toBe('checkbox-label');

@@ -1,17 +1,14 @@
-import React from 'react';
-
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
-import { vi as jest } from 'vitest';
 
 import LazyIcon from '../LazyIcon';
 describe('Gitt at LazyIcon skal vises', (): void => {
   beforeAll(() => {
-    jest.spyOn(console, 'error').mockImplementation(() => {
+    vi.spyOn(console, 'error').mockImplementation(() => {
       // Unngå at feil logges til console
     });
   });
   afterAll(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   describe('Når ikonet finnes', (): void => {
     test('Så vises ikonet', async (): Promise<void> => {

@@ -1,13 +1,10 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
-import { vi as jest } from 'vitest';
 
 import HelpPanel from './HelpPanel';
 import * as BreakpointUtils from '../../hooks/useBreakpoint';
 
-const mockUseBreakpoint = jest.fn();
-jest.spyOn(BreakpointUtils, 'useBreakpoint').mockImplementation(mockUseBreakpoint);
+const mockUseBreakpoint = vi.fn();
+vi.spyOn(BreakpointUtils, 'useBreakpoint').mockImplementation(mockUseBreakpoint);
 
 describe('Gitt at HelpPanel skal rendres', (): void => {
   describe('Når HelpPanel skal vises vanlig', (): void => {

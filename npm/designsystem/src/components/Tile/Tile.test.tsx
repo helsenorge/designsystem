@@ -1,8 +1,5 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import Tile from './Tile';
 import { IconSize } from '../../constants';
@@ -59,7 +56,7 @@ describe('Gitt at Tile skal vises', (): void => {
   });
   describe('Når onClick er satt', () => {
     test('Skal kalles onClick-handler når man klikker på knappen', async () => {
-      const onClickMock = jest.fn();
+      const onClickMock = vi.fn();
       render(
         <Tile
           icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}

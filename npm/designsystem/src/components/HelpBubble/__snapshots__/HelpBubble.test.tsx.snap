@@ -2,11 +2,14 @@
 
 exports[`Gitt at HelpBubble skal vises > Når den skal vises vanlig > Så vises HelpBubble som vanlig 1`] = `
 <div>
+  <span>
+    Test
+  </span>
   <div
-    class="popover"
+    class="popover popover--visible"
     data-analyticsid="pop-over"
     data-testid="test01"
-    style="z-index: 11000;"
+    style="z-index: 11000; right: 12px; top: 16px; width: -24px;"
   >
     <div
       class="helpbubble"
@@ -48,8 +51,8 @@ exports[`Gitt at HelpBubble skal vises > Når den skal vises vanlig > Så vises 
     </div>
   </div>
   <div
-    class="popover__arrow"
-    style="z-index: 11000;"
+    class="popover__arrow popover__arrow--over popover__arrow--visible"
+    style="z-index: 11000; right: 24px; top: 0px;"
   />
 </div>
 `;

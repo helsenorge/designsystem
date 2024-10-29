@@ -1,8 +1,5 @@
-import React from 'react';
-
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import Button from './Button';
 import Icon from '../Icon';
@@ -12,14 +9,14 @@ import Dog from '../Icons/Dog';
 describe('Gitt at button skal vises', (): void => {
   describe('Når button rendres', (): void => {
     test('Så vises button', (): void => {
-      const { container } = render(<Button>Button</Button>);
+      const { container } = render(<Button>{'Button'}</Button>);
       expect(container).toMatchSnapshot();
     });
 
     test('Så rendres button uten aria props', (): void => {
       render(
         <div>
-          <Button testId={'test01'}>Button</Button>
+          <Button testId={'test01'}>{'Button'}</Button>
         </div>
       );
 
@@ -30,8 +27,9 @@ describe('Gitt at button skal vises', (): void => {
     });
 
     test('Så er text klasse på', (): void => {
-      render(<Button>Button text</Button>);
+      render(<Button testId="button">{'Button text'}</Button>);
 
+      // eslint-disable-next-line testing-library/no-node-access
       const testButtonText = screen.getByText('Button text').parentElement;
       expect(testButtonText?.className).toBe('button__text');
     });
@@ -41,7 +39,7 @@ describe('Gitt at button skal vises', (): void => {
     test('Så blir id satt', (): void => {
       render(
         <Button id="id123" testId={'test01'}>
-          Button
+          {'Button'}
         </Button>
       );
       const testFill = screen.getByTestId('test01');
@@ -55,7 +53,7 @@ describe('Gitt at button skal vises', (): void => {
       const { container } = render(
         <Button>
           <Icon svgIcon={Check} />
-          Button
+          {'Button'}
           <Icon svgIcon={Check} />
         </Button>
       );
@@ -83,7 +81,7 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <Button arrow="icon" testId="test">
           <Icon svgIcon={Dog} />
-          Button
+          {'Button'}
         </Button>
       );
 
@@ -91,6 +89,7 @@ describe('Gitt at button skal vises', (): void => {
       const button = screen.getByTestId('test');
 
       expect(text).toBeVisible();
+      // eslint-disable-next-line testing-library/no-node-access
       expect(button.firstElementChild?.className).toBe('button button--normal button--left-icon button--both-icons button--arrow');
     });
   });
@@ -99,11 +98,12 @@ describe('Gitt at button skal vises', (): void => {
     test('Så brukes ellipsis på overflødig tekst', (): void => {
       render(
         <Button ellipsis={true} testId={'test01'}>
-          Button text
+          {'Button text'}
         </Button>
       );
 
       const button = screen.getByTestId('test01');
+      // eslint-disable-next-line testing-library/no-node-access
       const testButtonText = screen.getByText('Button text').parentElement;
       expect(button.className).toBe('button-wrapper button-wrapper--fluid');
       expect(testButtonText?.className).toBe('button__text button__text--ellipsis');
@@ -114,7 +114,7 @@ describe('Gitt at button skal vises', (): void => {
     test('Så settes riktige klasse på wrapper', (): void => {
       render(
         <Button testId={'test01'} fluid={true}>
-          Button text
+          {'Button text'}
           <Icon svgIcon={Check} />
         </Button>
       );
@@ -128,11 +128,12 @@ describe('Gitt at button skal vises', (): void => {
     test('Så settes riktige klasse på text', (): void => {
       render(
         <Button testId={'test01'} fluid={true} textPosition={'centered'}>
-          Button text
+          {'Button text'}
           <Icon svgIcon={Check} />
         </Button>
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const buttonText = screen.getByText('Button text').parentElement;
       expect(buttonText?.className).toBe('button__text button__text--centered');
     });
@@ -142,11 +143,12 @@ describe('Gitt at button skal vises', (): void => {
     test('Så settes riktige klasse på text', (): void => {
       render(
         <Button testId={'test01'} textPosition={'centered'}>
-          Button text
+          {'Button text'}
           <Icon svgIcon={Check} />
         </Button>
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const buttonText = screen.getByText('Button text').parentElement;
       expect(buttonText?.className).toBe('button__text');
     });
@@ -154,11 +156,11 @@ describe('Gitt at button skal vises', (): void => {
 
   describe('Når button rendres som button med onBlur-handler', () => {
     test('Så kalles onBlur-handleren når man klikker på knappen', async () => {
-      const handleBlur = jest.fn();
+      const handleBlur = vi.fn();
 
       render(
         <Button onBlur={handleBlur} htmlMarkup="button">
-          Lenketekst
+          {'Lenketekst'}
         </Button>
       );
 
@@ -173,11 +175,11 @@ describe('Gitt at button skal vises', (): void => {
 
   describe('Når button rendres som button med onClick-handler', () => {
     test('Så kalles onClick-handleren når man klikker på knappen', async () => {
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
 
       render(
         <Button onClick={handleClick} htmlMarkup="button">
-          Lenketekst
+          {'Lenketekst'}
         </Button>
       );
 
@@ -191,11 +193,11 @@ describe('Gitt at button skal vises', (): void => {
 
   describe('Når button rendres som lenke med onClick-handler', () => {
     test('Så kalles onClick-handleren når man klikker på knappen', async () => {
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
 
       render(
         <Button onClick={handleClick} htmlMarkup="a" href="#">
-          Lenketekst
+          {'Lenketekst'}
         </Button>
       );
 
@@ -209,11 +211,11 @@ describe('Gitt at button skal vises', (): void => {
 
   describe('Når button rendres med disabled', (): void => {
     test('Så kan ikke knappen trykkes på', (): void => {
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
 
       render(
         <Button testId={'test01'} onClick={handleClick} disabled={true}>
-          Button
+          {'Button'}
         </Button>
       );
 
@@ -231,15 +233,17 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <div>
           <Button testId={'test01'} concept={'normal'}>
-            Button
+            {'Button'}
           </Button>
           <Button testId={'test02'} concept={'destructive'}>
-            Button
+            {'Button'}
           </Button>
         </div>
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const testButton1 = screen.getByTestId('test01').children[0];
+      // eslint-disable-next-line testing-library/no-node-access
       const testButton2 = screen.getByTestId('test02').children[0];
 
       expect(testButton1.className).toBe('button button--normal');
@@ -251,10 +255,11 @@ describe('Gitt at button skal vises', (): void => {
     test('Så er farger riktig', (): void => {
       render(
         <Button testId={'test01'} onColor={'ondark'}>
-          Button
+          {'Button'}
         </Button>
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const testButton = screen.getByTestId('test01').children[0];
 
       expect(testButton.className).toBe('button button--normal button--on-dark');
@@ -266,7 +271,7 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <Button size={'large'}>
           <Icon testId={'test01'} svgIcon={Check} />
-          Button
+          {'Button'}
         </Button>
       );
 
@@ -284,25 +289,28 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <div>
           <Button testId={'test01'} variant={'fill'}>
-            Button
+            {'Button'}
           </Button>
           <Button testId={'test02'} variant={'outline'}>
-            Button
+            {'Button'}
           </Button>
           <Button testId={'test03'} variant={'borderless'}>
-            Button
+            {'Button'}
           </Button>
         </div>
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const testFill = screen.getByTestId('test01').children[0];
 
       expect(testFill.className).toBe('button button--normal');
 
+      // eslint-disable-next-line testing-library/no-node-access
       const testOutline = screen.getByTestId('test02').children[0];
 
       expect(testOutline.className).toBe('button button--normal button--outline');
 
+      // eslint-disable-next-line testing-library/no-node-access
       const testBorderless = screen.getByTestId('test03').children[0];
 
       expect(testBorderless.className).toBe('button button--normal button--borderless');
@@ -313,11 +321,12 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <div>
           <Button testId={'test01'} variant={'borderless'} size={'large'}>
-            Button
+            {'Button'}
           </Button>
         </div>
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const testFill = screen.getByTestId('test01').children[0];
 
       expect(testFill.className).toBe('button button--normal button--borderless');
@@ -326,11 +335,12 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <div>
           <Button testId={'test01'} variant={'borderless'} arrow="icon">
-            Button
+            {'Button'}
           </Button>
         </div>
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const testFill = screen.getByTestId('test01').children[0];
 
       expect(testFill.className).toBe('button button--normal button--borderless');
@@ -341,7 +351,7 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <div>
           <Button testId={'test01'} aria-label={'aria-label-test'} aria-expanded={true}>
-            Button
+            {'Button'}
           </Button>
         </div>
       );
@@ -357,7 +367,7 @@ describe('Gitt at button skal vises', (): void => {
       render(
         <div>
           <Button testId={'tester-rel'} htmlMarkup="a" target="_blank">
-            Button
+            {'Button'}
           </Button>
         </div>
       );
@@ -370,7 +380,7 @@ describe('Gitt at button skal vises', (): void => {
   });
   describe('Gitt at Button vises', (): void => {
     test('Så har den riktig analyticsid', (): void => {
-      render(<Button testId={'knapp'}>Tekst</Button>);
+      render(<Button testId={'knapp'}>{'Tekst'}</Button>);
 
       const button = screen.getByTestId('knapp');
 
@@ -379,7 +389,7 @@ describe('Gitt at button skal vises', (): void => {
   });
   describe('Når Button ikke har noen type', (): void => {
     test('Så er den av typen button', (): void => {
-      render(<Button testId={'knapp'}>Tekst</Button>);
+      render(<Button testId={'knapp'}>{'Tekst'}</Button>);
 
       const button = screen.getByTestId('knapp');
 
@@ -390,7 +400,7 @@ describe('Gitt at button skal vises', (): void => {
     test('Så er den av typen submit', (): void => {
       render(
         <Button testId={'knapp'} type="submit">
-          Tekst
+          {'Tekst'}
         </Button>
       );
 

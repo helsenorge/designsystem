@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import Trigger from './Trigger';
 
@@ -59,7 +58,7 @@ describe('Gitt at Trigger skal vises', () => {
 
   describe('Når man klikker på triggeren', () => {
     it('Så kalles onClick-callback', async () => {
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
       render(<Trigger ariaLabel="Hjelp" onClick={handleClick} />);
 
       const trigger = screen.getByLabelText('Hjelp');

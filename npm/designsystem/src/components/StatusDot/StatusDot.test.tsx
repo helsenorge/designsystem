@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { render, screen } from '@testing-library/react';
 
 import StatusDot from '.';
@@ -34,10 +32,10 @@ describe('Gitt at StatusDot rendres ', () => {
         </>
       );
 
-      const dot1 = screen.getByTestId('statusdot1').firstElementChild;
-      const dot2 = screen.getByTestId('statusdot2').firstElementChild;
-      const dot3 = screen.getByTestId('statusdot3').firstElementChild;
-      const dot4 = screen.getByTestId('statusdot4').firstElementChild;
+      const dot1 = screen.getByTestId('statusdot1-dot');
+      const dot2 = screen.getByTestId('statusdot2-dot');
+      const dot3 = screen.getByTestId('statusdot3-dot');
+      const dot4 = screen.getByTestId('statusdot4-dot');
 
       expect(dot1.className).toBe('statusdot__dot statusdot__dot--info');
       expect(dot2.className).toBe('statusdot__dot statusdot__dot--warning');

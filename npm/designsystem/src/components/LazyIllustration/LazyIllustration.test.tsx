@@ -1,18 +1,15 @@
-import React from 'react';
-
 import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
-import { vi as jest } from 'vitest';
 
 import LazyIllustration from './';
 
 describe('Gitt at LazyIllustration skal vises', (): void => {
   beforeAll(() => {
-    jest.spyOn(console, 'error').mockImplementation(() => {
+    vi.spyOn(console, 'error').mockImplementation(() => {
       // Unngå at feil logges til console
     });
   });
   afterAll(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   describe('Når illustrasjonen finnes', (): void => {
     test('Så vises illustrasjonen', async (): Promise<void> => {

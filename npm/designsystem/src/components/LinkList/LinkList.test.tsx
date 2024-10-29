@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import LinkList from './LinkList';
 import Badge from '../Badge';
@@ -50,6 +49,7 @@ describe('Gitt at LinkList skal vises', (): void => {
       );
 
       const component = screen.getByTestId('tester-rel');
+      // eslint-disable-next-line testing-library/no-node-access
       const anchor = component.firstChild;
       expect(component).toBeVisible();
       expect(anchor).toHaveAttribute('target', '_blank');
@@ -58,7 +58,7 @@ describe('Gitt at LinkList skal vises', (): void => {
   });
   describe('Når linkRef er satt på LinkList.Link', (): void => {
     test('Så er elementet tilgjengelig gjennom ref.current', async (): Promise<void> => {
-      const mockListener = jest.fn();
+      const mockListener = vi.fn();
 
       const LinkListWithRef: React.FC = () => {
         const ref = useRef<HTMLButtonElement>(null);
@@ -90,8 +90,8 @@ describe('Gitt at LinkList skal vises', (): void => {
 describe('Gitt at linkene skal være buttons med onClick-handler', () => {
   describe('Når man klikker på linkene', () => {
     test('Så kalles onClick-handlerne', async () => {
-      const mockClick1 = jest.fn();
-      const mockClick2 = jest.fn();
+      const mockClick1 = vi.fn();
+      const mockClick2 = vi.fn();
 
       render(
         <LinkList color="neutral">
@@ -116,8 +116,8 @@ describe('Gitt at linkene skal være buttons med onClick-handler', () => {
 describe('Gitt at linkene skal være vanlige lenker med onClick-handler', () => {
   describe('Når man klikker på linkene', () => {
     test('Så kalles onClick-handlerne', async () => {
-      const mockClick1 = jest.fn();
-      const mockClick2 = jest.fn();
+      const mockClick1 = vi.fn();
+      const mockClick2 = vi.fn();
 
       render(
         <LinkList color="neutral">

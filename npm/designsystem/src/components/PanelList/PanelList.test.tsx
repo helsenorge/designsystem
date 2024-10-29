@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { screen, render } from '@testing-library/react';
 
 import PanelList from './PanelList';
@@ -26,10 +24,10 @@ describe('Gitt at PanelList skal vises', (): void => {
       render(
         <PanelList>
           <Panel title="Overskrift 1">
-            <p>Litt tekst</p>
+            <p>{'Litt tekst'}</p>
           </Panel>
           <Panel title="Overskrift 2">
-            <p>Litt tekst</p>
+            <p>{'Litt tekst'}</p>
           </Panel>
         </PanelList>
       );

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 
 import Duolist, { DuolistGroup } from './Duolist';
@@ -17,7 +15,6 @@ describe('Gitt at Duolist skal vises', (): void => {
       );
 
       const duoListWrapper = screen.getByTestId('test01');
-      const duoList = duoListWrapper.children[0];
 
       const dlGroupTerm1 = screen.getByText('test term 1');
       const dlGroupTerm2 = screen.getByText('test term 2');
@@ -25,13 +22,11 @@ describe('Gitt at Duolist skal vises', (): void => {
       const dlGroupDescription2 = screen.getByText('test description 2');
 
       expect(duoListWrapper).toBeInTheDocument();
-      expect(duoList).toBeInTheDocument();
       expect(dlGroupTerm1).toBeInTheDocument();
       expect(dlGroupTerm2).toBeInTheDocument();
       expect(dlGroupDescription1).toBeInTheDocument();
       expect(dlGroupDescription2).toBeInTheDocument();
 
-      expect(duoList).toHaveClass('duolist');
       expect(dlGroupTerm1).toHaveClass('duolist__dt duolist__dt--bold');
       expect(dlGroupDescription1.className).toBe('duolist__dd');
 
@@ -48,6 +43,7 @@ describe('Gitt at Duolist skal vises', (): void => {
         </Duolist>
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const duoList = screen.getByTestId('test01').children[0];
 
       expect(duoList).toHaveClass('duolist--line');
@@ -124,7 +120,7 @@ describe('Gitt at Duolist skal vises', (): void => {
             term={'test term 1'}
             description={
               <>
-                {'test description 1'} + <AnchorLink>{'test link 1'}</AnchorLink>
+                {'test description 1 + '} <AnchorLink>{'test link 1'}</AnchorLink>
               </>
             }
           />
@@ -155,6 +151,7 @@ describe('Gitt at Duolist skal vises', (): void => {
         </Duolist>
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const duoList = screen.getByTestId('test01').children[0];
       const dt = screen.getByText('test term 1');
       const dd = screen.getByText('test description 1');

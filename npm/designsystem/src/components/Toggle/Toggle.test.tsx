@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, test, expect, vi } from 'vitest';
 
@@ -48,12 +46,14 @@ describe('Gitt at Toggle skal vises', () => {
     test('Så vises Toggle til høyre når togglePosition er satt til right', () => {
       render(<Toggle label={[{ text: 'Test Toggle' }]} togglePosition={TogglePosition.right} testId="Toggle" />);
       const container = screen.getByTestId('Toggle');
+      // eslint-disable-next-line testing-library/no-node-access
       expect(container.querySelector('.toggle-container__row--right')).toBeDefined();
     });
 
     test('Så har Toggle riktig farge når onColor er satt', () => {
       render(<Toggle label={[{ text: 'Test Toggle' }]} onColor={ToggleOnColor.onblueberry} testId="Toggle" />);
       const toggle = screen.getByTestId('Toggle');
+      // eslint-disable-next-line testing-library/no-node-access
       const toggleElement = toggle.querySelector('.toggle-container__toggle');
       expect(toggleElement).toBeDefined();
       expect(toggleElement).not.toHaveClass('toggle-container__toggle--on-white');

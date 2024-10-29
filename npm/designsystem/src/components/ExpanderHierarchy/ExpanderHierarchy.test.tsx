@@ -1,8 +1,5 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import ExpanderHierarchy from '../ExpanderHierarchy';
 
@@ -57,7 +54,7 @@ describe('ExpanderHierarchy', () => {
 
     describe('når Expander har onExpand-callback', () => {
       it('så vises innholdet i den', async () => {
-        const handleExpand = jest.fn();
+        const handleExpand = vi.fn();
 
         render(
           <ExpanderHierarchy>

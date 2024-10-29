@@ -1,15 +1,12 @@
-import React from 'react';
-
 import { screen, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import Modal, { ModalVariants } from './Modal';
 
 describe('Gitt at en modal skal vises ', (): void => {
   describe('Når en modal skal vise kun tittel og lukkeknapp', (): void => {
     it('Så skal den kun vise sist nevnte', (): void => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
 
       render(<Modal title="Hei der" onClose={onClose} />);
       const title = screen.getByText('Hei der');
@@ -21,7 +18,7 @@ describe('Gitt at en modal skal vises ', (): void => {
   });
   describe('Når en bruker trykker på lukkeknappen', (): void => {
     it('Så skal onClose kalles en gang', (): void => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
 
       render(<Modal title="Hei der" onClose={onClose} />);
 
@@ -61,8 +58,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe('Når en bruker trykker på OK knappen', (): void => {
     it('Så skal onSuccess kalles en gang', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(<Modal title="Hei der" onClose={onClose} onSuccess={onSuccess} />);
 
@@ -79,8 +76,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe('Når en bruker trykker på Avbryt knappen', (): void => {
     it('Så skal onSuccess kalles en gang', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(<Modal title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" />);
 
@@ -97,8 +94,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal har variant ${ModalVariants.warning}`, (): void => {
     it('Så skal bakgrunnen endre seg til riktig farge og det vises et ikon', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       const { container } = render(
         <Modal
@@ -120,8 +117,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal har variant ${ModalVariants.error}`, (): void => {
     it('Så skal bakgrunnen endre seg til riktig farge og det vises et ikon', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       const { container } = render(
         <Modal
@@ -143,10 +140,10 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal har satt attributt large`, (): void => {
     it('så skal dialogen ha klassen large', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
-      render(<Modal title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" large />);
+      render(<Modal title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" size="large" />);
 
       const dialog = screen.getByRole('dialog');
       expect(dialog.className).toBe('modal modal--normal modal--large');
@@ -155,8 +152,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal har satt attributt imageView`, (): void => {
     it('så skal dialogen ha klassen imageView', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(<Modal variant={ModalVariants.image} title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" />);
 
@@ -167,11 +164,18 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal har satt attributt imageView og large`, (): void => {
     it('så skal dialogen ha klassen imageView', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(
-        <Modal variant={ModalVariants.image} title="Hei der" onClose={onClose} onSuccess={onSuccess} secondaryButtonText="Avbryt" large />
+        <Modal
+          variant={ModalVariants.image}
+          title="Hei der"
+          onClose={onClose}
+          onSuccess={onSuccess}
+          secondaryButtonText="Avbryt"
+          size="large"
+        />
       );
 
       const dialog = screen.getByRole('dialog');
@@ -181,8 +185,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når modalen vises`, (): void => {
     it('Så har den fått fokus', async (): Promise<void> => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(
         <>
@@ -203,8 +207,8 @@ describe('Gitt at en modal skal vises ', (): void => {
   });
   describe(`Når en bruker tabber flere ganger inne i en Modal`, (): void => {
     it('Så skal man fanges inne i modalen når man tabber', async (): Promise<void> => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(
         <>
@@ -233,8 +237,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal har knapperad nederst (CTA), og en bruker trykker utenfor modalen`, (): void => {
     it('Så skal modalen ikke lukkes', async (): Promise<void> => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(
         <Modal
@@ -257,7 +261,7 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal ikke har knapperad nederst (CTA), og en bruker trykker utenfor modalen`, (): void => {
     it('Så skal modalen lukkes', async (): Promise<void> => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
 
       render(<Modal title="Hei der" onClose={onClose} variant={ModalVariants.error} testId="testid" />);
 
@@ -271,8 +275,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal har knapperad nederst (CTA), og en bruker trykker Escape`, (): void => {
     it('Så skal modalen lukkes', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(
         <Modal
@@ -295,7 +299,7 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal ikke har en knapperad (CTA) nederst og en bruker trykker Escape`, (): void => {
     it('Så skal modalen lukkes', (): void => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
 
       render(<Modal title="Hei der" onClose={onClose} variant={ModalVariants.error} testId="testid" />);
 
@@ -309,7 +313,7 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal ikke har en knapperad (CTA) nederst, og har disableCloseEvents til true`, (): void => {
     it('Så skal Escape ikke få modalen til å lukkes', (): void => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
 
       render(<Modal title="Hei der" onClose={onClose} variant={ModalVariants.error} disableCloseEvents testId="testid" />);
 
@@ -323,8 +327,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal rendres med titleId`, (): void => {
     it('Så skal titleId settes', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(
         <Modal
@@ -346,8 +350,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal rendres med ariaLabel satt`, (): void => {
     it('Så skal ariaLabel settes', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(
         <Modal
@@ -369,8 +373,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
   describe(`Når en modal rendres med ariaLabelledBy satt`, (): void => {
     it('Så skal ariaLabel settes etter ariaLabbeledBy og ikke ariaLabel', (): void => {
-      const onClose = jest.fn();
-      const onSuccess = jest.fn();
+      const onClose = vi.fn();
+      const onSuccess = vi.fn();
 
       render(
         <Modal
@@ -404,8 +408,8 @@ describe('Gitt at en modal skal vises ', (): void => {
 
 describe('Gitt at en modal skal vises som printable ', (): void => {
   it('Så skal modalen wrappes med Portal', (): void => {
-    const onClose = jest.fn();
-    const onSuccess = jest.fn();
+    const onClose = vi.fn();
+    const onSuccess = vi.fn();
 
     render(
       <Modal

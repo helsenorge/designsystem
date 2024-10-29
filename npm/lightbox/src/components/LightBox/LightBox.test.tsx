@@ -1,7 +1,5 @@
-import React from 'react';
-
 import { render, screen, fireEvent } from '@testing-library/react';
-import { vi } from 'vitest';
+import '@testing-library/jest-dom';
 
 import LightBox from './LightBox';
 
@@ -20,6 +18,8 @@ describe('Gitt at LightBox skal vises', (): void => {
           onClose={() => null}
           ariaLabelZoomOut={''}
           ariaLabelZoomIn={''}
+          ariaLabelLightBox={''}
+          ariaLabelZoomSlider={''}
         />
       );
     });
@@ -37,6 +37,8 @@ describe('Gitt at LightBox skal vises', (): void => {
           onClose={() => null}
           ariaLabelZoomOut=""
           ariaLabelZoomIn=""
+          ariaLabelLightBox={''}
+          ariaLabelZoomSlider={''}
         />
       );
 
@@ -59,6 +61,8 @@ describe('Gitt at LightBox skal vises', (): void => {
           onClose={() => null}
           ariaLabelZoomOut=""
           ariaLabelZoomIn=""
+          ariaLabelLightBox={''}
+          ariaLabelZoomSlider={''}
         />
       );
 
@@ -82,6 +86,8 @@ describe('Gitt at LightBox skal vises', (): void => {
           onClose={onCloseMock}
           ariaLabelZoomOut=""
           ariaLabelZoomIn=""
+          ariaLabelLightBox={''}
+          ariaLabelZoomSlider={''}
         />
       );
       const closeButton = screen.getByLabelText('Lukk');

@@ -1,8 +1,5 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import Select from './Select';
 import { FormOnColor } from '../../constants';
@@ -12,21 +9,21 @@ describe('Gitt at Select skal vises', (): void => {
   describe('Når Select rendres', (): void => {
     test('Så vises Select', (): void => {
       render(
-        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />}>
+        <Select testId={'test-select'} selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} testId="test-label" />}>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
         </Select>
       );
 
-      const label = screen.getByText('Label test').parentElement;
+      const label = screen.getByTestId('test-label');
       expect(label).toBeVisible();
 
       const select = screen.getByRole('combobox');
       expect(select).toBeVisible();
       expect(select).toHaveClass('select');
 
-      const icon = select.previousElementSibling;
+      const icon = screen.getByTestId('test-select-icon');
       expect(icon).toBeVisible();
       expect(icon).toHaveClass('hnds-style-icon select-arrow');
     });
@@ -35,22 +32,30 @@ describe('Gitt at Select skal vises', (): void => {
   describe('Når disabled er true', (): void => {
     test('Så vises Select som disabled', (): void => {
       render(
-        <Select disabled selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />}>
+        <Select testId="test-select" disabled selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />}>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
         </Select>
       );
 
-      const selectGrid = screen.getByRole('combobox').parentElement;
-      expect(selectGrid).toHaveClass('select-inner-wrapper select-inner-wrapper--disabled');
+      const selectInnerWrapper = screen.getByTestId('test-select-inner-wrapper');
+      expect(selectInnerWrapper).toHaveClass('select-inner-wrapper select-inner-wrapper--disabled');
+
+      const select = screen.getByRole('combobox');
+      expect(select).toBeDisabled();
     });
   });
 
   describe('Når onColor er onBlueberry', (): void => {
     test('Så vises Select med onBlueberry styling', (): void => {
       render(
-        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} onColor={FormOnColor.onblueberry}>
+        <Select
+          testId="test-select"
+          selectId={'test01'}
+          label={<Label labelTexts={[{ text: 'Label test' }]} />}
+          onColor={FormOnColor.onblueberry}
+        >
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
@@ -58,17 +63,17 @@ describe('Gitt at Select skal vises', (): void => {
       );
 
       const select = screen.getByRole('combobox');
-      const selectGrid = select?.parentElement;
+      const selectInnerWrapper = screen.getByTestId('test-select-inner-wrapper');
 
       expect(select).toHaveClass('select select--on-blueberry');
-      expect(selectGrid).toHaveClass('select-inner-wrapper select-inner-wrapper--on-blueberry');
+      expect(selectInnerWrapper).toHaveClass('select-inner-wrapper select-inner-wrapper--on-blueberry');
     });
   });
 
   describe('Når Select får satt error', (): void => {
     test('Så vises Select med indre error styling, uten ytre error styling', (): void => {
       render(
-        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} error>
+        <Select testId="test-select" selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} error>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
@@ -76,17 +81,17 @@ describe('Gitt at Select skal vises', (): void => {
       );
 
       const select = screen.getByRole('combobox');
-      const wrapper = select?.parentElement;
+      const selectInnerWrapper = screen.getByTestId('test-select-inner-wrapper');
 
       expect(select).toHaveClass('select select--invalid');
-      expect(wrapper).toHaveClass('select-inner-wrapper select-inner-wrapper--invalid');
+      expect(selectInnerWrapper).toHaveClass('select-inner-wrapper select-inner-wrapper--invalid');
     });
   });
 
   describe('Når select får satt errorText', (): void => {
     test('Så vises Select med errormelding i tilleg til error styling', (): void => {
       render(
-        <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} errorText={'error error!'}>
+        <Select testId="test-select" selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} errorText={'error error!'}>
           <option value={'Option 1'}>{'Option 1'}</option>
           <option value={'Option 2'}>{'Option 2'}</option>
           <option value={'Option 3'}>{'Option 3'}</option>
@@ -98,9 +103,9 @@ describe('Gitt at Select skal vises', (): void => {
       expect(select).toHaveAccessibleDescription('error error!');
       expect(select).toHaveClass('select select--invalid');
 
-      const wrapper = select?.parentElement;
+      const selectInnerWrapper = screen.getByTestId('test-select-inner-wrapper');
 
-      expect(wrapper).toHaveClass('select-inner-wrapper select-inner-wrapper--invalid');
+      expect(selectInnerWrapper).toHaveClass('select-inner-wrapper select-inner-wrapper--invalid');
     });
   });
 
@@ -137,7 +142,7 @@ describe('Gitt at Select skal vises', (): void => {
 
   describe('Når value og onChange er satt', (): void => {
     test('Så har select riktig value, og onChange kalles når man endrer', async (): Promise<void> => {
-      const handleChange = jest.fn();
+      const handleChange = vi.fn();
 
       render(
         <Select selectId={'test01'} label={<Label labelTexts={[{ text: 'Label test' }]} />} value={'Option 2'} onChange={handleChange}>

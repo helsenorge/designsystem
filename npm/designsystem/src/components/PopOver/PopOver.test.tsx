@@ -1,24 +1,27 @@
 import React, { useRef } from 'react';
 
 import { screen, render, waitFor } from '@testing-library/react';
-import { vi as jest } from 'vitest';
 
 import PopOver, { PopOverProps, PopOverVariant } from './PopOver';
 
-const dummyDomRect = {
-  height: 100,
-  width: 100,
-  top: 0,
-  left: 0,
-  right: 100,
-  bottom: 100,
-};
+const { dummyDomRect } = vi.hoisted(() => {
+  return {
+    dummyDomRect: {
+      height: 100,
+      width: 100,
+      top: 0,
+      left: 0,
+      right: 100,
+      bottom: 100,
+    },
+  };
+});
 
-jest.mock('../../hooks/useSize', () => ({
-  useSize: jest.fn().mockReturnValue(dummyDomRect),
+vi.mock('../../hooks/useSize', () => ({
+  useSize: vi.fn().mockReturnValue(dummyDomRect),
 }));
-jest.mock('../../hooks/useIsVisible', () => ({
-  useIsVisible: jest.fn().mockReturnValue(true),
+vi.mock('../../hooks/useIsVisible', () => ({
+  useIsVisible: vi.fn().mockReturnValue(true),
 }));
 
 const PopOverWithController: React.FC<Omit<PopOverProps, 'controllerRef'>> = props => {
@@ -33,23 +36,13 @@ const PopOverWithController: React.FC<Omit<PopOverProps, 'controllerRef'>> = pro
 };
 
 describe('Gitt at PopOver skal vises', (): void => {
-  const originalWindow = global.document['window'];
-
   beforeAll(() => {
-    window.HTMLDivElement.prototype.getBoundingClientRect = jest.fn().mockReturnValue(dummyDomRect);
-  });
-
-  afterAll(() => {
-    global.document['window'] = originalWindow;
+    window.HTMLDivElement.prototype.getBoundingClientRect = vi.fn().mockReturnValue(dummyDomRect);
   });
 
   describe('Når den skal vises vanlig', (): void => {
     it('Så vises PopOver som vanlig', (): void => {
-      const { container } = render(
-        <PopOver controllerRef={jest.fn()} popOverRef={jest.fn()} testId="test01">
-          {'Test tekst'}
-        </PopOver>
-      );
+      const { container } = render(<PopOverWithController testId="test01">{'Test tekst'}</PopOverWithController>);
 
       const bubble = screen.getByTestId('test01');
       const child = screen.getByText('Test tekst');
@@ -72,6 +65,7 @@ describe('Gitt at PopOver skal vises', (): void => {
       );
 
       const bubble = screen.getByTestId('test01');
+      // eslint-disable-next-line testing-library/no-node-access
       const arrow = bubble.nextSibling;
 
       expect(bubble).toHaveClass('popover');
@@ -88,6 +82,7 @@ describe('Gitt at PopOver skal vises', (): void => {
       );
 
       const bubble = screen.getByTestId('test01');
+      // eslint-disable-next-line testing-library/no-node-access
       const arrow = bubble.nextSibling;
 
       expect(bubble).toHaveClass('popover');

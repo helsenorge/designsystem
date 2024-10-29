@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -15,7 +13,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     test('Så kan man klikke og se innholdet', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
-          <h2>Innhold i Dropdown</h2>
+          <h2>{'Innhold i Dropdown'}</h2>
         </Dropdown>
       );
 
@@ -33,7 +31,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     test('Så ser Dropdown ut slik den skal', (): void => {
       const { container } = render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
-          <h2>Innhold i Dropdown</h2>
+          <h2>{'Innhold i Dropdown'}</h2>
         </Dropdown>
       );
 
@@ -45,7 +43,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     test('Så kan man lukke dropdownen med knappen', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp" closeText="Lukk">
-          <h2>Innhold i Dropdown</h2>
+          <h2>{'Innhold i Dropdown'}</h2>
         </Dropdown>
       );
 
@@ -63,7 +61,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     test('Så er den åpen', (): void => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp" open>
-          <h2>Innhold i Dropdown</h2>
+          <h2>{'Innhold i Dropdown'}</h2>
         </Dropdown>
       );
 
@@ -76,7 +74,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     test('Så er den disabled', (): void => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp" disabled>
-          <h2>Innhold i Dropdown</h2>
+          <h2>{'Innhold i Dropdown'}</h2>
         </Dropdown>
       );
 
@@ -89,7 +87,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     test('Så er det ingen lukkeknapp', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp" closeText="Lukk" noCloseButton>
-          <h2>Innhold i Dropdown</h2>
+          <h2>{'Innhold i Dropdown'}</h2>
         </Dropdown>
       );
 
@@ -105,9 +103,9 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     test('Så lukkes Dropdownen', async (): Promise<void> => {
       render(
         <>
-          <button>Knapp utenfor dropdown</button>
+          <button>{'Knapp utenfor dropdown'}</button>
           <Dropdown label="Ta et valg" placeholder="Knapp" open>
-            <h2>Innhold i Dropdown</h2>
+            <h2>{'Innhold i Dropdown'}</h2>
           </Dropdown>
         </>
       );
@@ -126,7 +124,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     test('Så lukkes Dropdownen', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
-          <h2>Innhold i Dropdown</h2>
+          <h2>{'Innhold i Dropdown'}</h2>
         </Dropdown>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
@@ -141,7 +139,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     test('Så åpnes Dropdownen', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
-          <h2>Innhold i Dropdown</h2>
+          <h2>{'Innhold i Dropdown'}</h2>
         </Dropdown>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });

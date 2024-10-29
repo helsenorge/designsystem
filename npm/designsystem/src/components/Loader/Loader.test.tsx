@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 
 import Loader, { Overlay } from './Loader';
@@ -15,17 +13,23 @@ describe('Gitt at en loader skal vises ', (): void => {
       render(<Loader testId={'loaderDotTest'} />);
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
 
+      // eslint-disable-next-line testing-library/no-node-access
       expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--small loader__dot--neutral');
+      // eslint-disable-next-line testing-library/no-node-access
       expect(loaderDotsWrapper.children[1].className).toBe('loader__dot loader__dot--small loader__dot--neutral');
+      // eslint-disable-next-line testing-library/no-node-access
       expect(loaderDotsWrapper.children[2].className).toBe('loader__dot loader__dot--small loader__dot--neutral');
+      // eslint-disable-next-line testing-library/no-node-access
       expect(loaderDotsWrapper.children[3].className).toBe('loader__dot loader__dot--small loader__dot--neutral');
     });
   });
 
   describe('Når center prop er true ', (): void => {
     test('Så sentreres loader', (): void => {
-      const { container } = render(<Loader center />);
-      expect(container.firstChild).toHaveClass('loader-wrapper--center');
+      render(<Loader center testId="load" />);
+      const wrapper = screen.getByTestId('load');
+      // eslint-disable-next-line testing-library/no-node-access
+      expect(wrapper.parentElement).toHaveClass('loader-wrapper--center');
     });
   });
 
@@ -39,10 +43,12 @@ describe('Gitt at en loader skal vises ', (): void => {
       const loader = screen.getByRole('progressbar');
       expect(loader).toBeVisible();
 
+      // eslint-disable-next-line testing-library/no-node-access
       expect(loader.parentElement).toHaveClass('loader-wrapper--overlay-screen');
 
       const loaderDotsWrapper = screen.getByTestId('loaderDotTest');
       expect(loaderDotsWrapper).toHaveAttribute('aria-labelledby', 'test');
+      // eslint-disable-next-line testing-library/no-node-access
       expect(loaderDotsWrapper.children[0].className).toBe('loader__dot loader__dot--small loader__dot--white');
 
       const parent = screen.getByTestId('parent-wrapper');
@@ -52,9 +58,11 @@ describe('Gitt at en loader skal vises ', (): void => {
 
   describe('Når ariaLabelledById er satt', (): void => {
     test('Så settes attributten aria-labelledby til det samme', (): void => {
-      const { container } = render(<Loader ariaLabelledById="aria-test" overlay={Overlay.screen} />);
-      expect(container.firstChild).toHaveClass('loader-wrapper--overlay-screen');
-      expect(container.firstChild.firstChild).toHaveAttribute('aria-labelledby', 'aria-test');
+      render(<Loader ariaLabelledById="aria-test" overlay={Overlay.screen} testId="load" />);
+      const wrapper = screen.getByTestId('load');
+      // eslint-disable-next-line testing-library/no-node-access
+      expect(wrapper.parentElement).toHaveClass('loader-wrapper--overlay-screen');
+      expect(wrapper).toHaveAttribute('aria-labelledby', 'aria-test');
     });
   });
 
@@ -79,6 +87,7 @@ describe('Gitt at en loader skal vises ', (): void => {
       expect(component).toBeVisible();
 
       const loaderWrapper = screen.getByRole('progressbar');
+      // eslint-disable-next-line testing-library/no-node-access
       expect(loaderWrapper.parentElement).toHaveClass('loader-wrapper--overlay-parent');
 
       const wrapper = screen.getByTestId('parent-wrapper');
@@ -99,6 +108,7 @@ describe('Gitt at en loader skal vises ', (): void => {
       expect(component).toBeVisible();
 
       const loaderWrapper = screen.getByRole('progressbar');
+      // eslint-disable-next-line testing-library/no-node-access
       expect(loaderWrapper.parentElement).toHaveClass('loader-wrapper--inline');
 
       const wrapper = screen.getByTestId('parent-wrapper');

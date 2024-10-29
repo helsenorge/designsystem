@@ -1,5 +1,3 @@
-import { vi as jest } from 'vitest';
-
 import { isElementInViewport } from '../viewport';
 
 const originalInnerHeight = window.innerHeight;
@@ -27,7 +25,7 @@ describe('Gitt at isElementInViewport kalles', (): void => {
   describe('Når hele elementet er innenfor vinduet', (): void => {
     it('Så returneres true', (): void => {
       const div = document.createElement('div');
-      div.getBoundingClientRect = jest.fn().mockReturnValue({
+      div.getBoundingClientRect = vi.fn().mockReturnValue({
         bottom: 300,
         height: 200,
         left: 100,
@@ -45,7 +43,7 @@ describe('Gitt at isElementInViewport kalles', (): void => {
   describe('Når toppen av elementet er utenfor vinduet', (): void => {
     it('Så returneres false', (): void => {
       const div = document.createElement('div');
-      div.getBoundingClientRect = jest.fn().mockReturnValue({
+      div.getBoundingClientRect = vi.fn().mockReturnValue({
         bottom: 300,
         height: 400,
         left: 100,
@@ -63,7 +61,7 @@ describe('Gitt at isElementInViewport kalles', (): void => {
   describe('Når bunnen av elementet er utenfor vinduet', (): void => {
     it('Så returneres false', (): void => {
       const div = document.createElement('div');
-      div.getBoundingClientRect = jest.fn().mockReturnValue({
+      div.getBoundingClientRect = vi.fn().mockReturnValue({
         bottom: 500,
         height: 400,
         left: 100,

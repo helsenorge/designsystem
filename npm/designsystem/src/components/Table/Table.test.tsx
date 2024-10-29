@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import { screen, render, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import * as BreakpointUtils from '../../hooks/useBreakpoint';
 import * as DeviceUtils from '../../utils/device';
@@ -22,14 +21,14 @@ import {
   ModeType,
 } from './';
 
-const mockUseBreakpoint = jest.fn();
-jest.spyOn(BreakpointUtils, 'useBreakpoint').mockImplementation(mockUseBreakpoint);
+const mockUseBreakpoint = vi.fn();
+vi.spyOn(BreakpointUtils, 'useBreakpoint').mockImplementation(mockUseBreakpoint);
 
-const mockGetBoundingClientRect = jest.fn();
+const mockGetBoundingClientRect = vi.fn();
 window.HTMLElement.prototype.getBoundingClientRect = mockGetBoundingClientRect;
 
-const mockIsTouchDevice = jest.fn();
-jest.spyOn(DeviceUtils, 'isTouchDevice').mockImplementation(mockIsTouchDevice);
+const mockIsTouchDevice = vi.fn();
+vi.spyOn(DeviceUtils, 'isTouchDevice').mockImplementation(mockIsTouchDevice);
 
 const TableContents: React.FC = () => (
   <>
@@ -52,7 +51,7 @@ const TableContents: React.FC = () => (
 
 describe('Gitt at Table skal vises', (): void => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockGetBoundingClientRect.mockReturnValue({ width: 0 });
   });
   describe('Når den skal vises', (): void => {

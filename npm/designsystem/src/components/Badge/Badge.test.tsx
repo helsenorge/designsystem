@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 
 import Badge from './Badge';
@@ -27,7 +25,7 @@ describe('Gitt at Badge skal vises', (): void => {
   });
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
-      render(<Badge testId="bare-tester">123</Badge>);
+      render(<Badge testId="bare-tester">{'123'}</Badge>);
 
       const component = screen.getByTestId('bare-tester');
 
@@ -39,13 +37,13 @@ describe('Gitt at Badge skal vises', (): void => {
       render(
         <div>
           <Badge testId={'test01'} color="blueberry">
-            Badge
+            {'Badge'}
           </Badge>
           <Badge testId={'test02'} color="cherry">
-            Badge
+            {'Badge'}
           </Badge>
           <Badge testId={'test03'} color="neutral">
-            Badge
+            {'Badge'}
           </Badge>
         </div>
       );

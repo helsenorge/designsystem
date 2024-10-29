@@ -2,7 +2,6 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import ExpanderList from './ExpanderList';
 import * as ViewportUtils from '../../utils/viewport';
@@ -16,9 +15,9 @@ describe('Gitt ExpanderList blir rendret', (): void => {
     it('Sjekk at ExpanderList sitt snapshot matcher', (): void => {
       const { container } = render(
         <ExpanderList accordion={false} childPadding={true} color={'blueberry'}>
-          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 3">Text 2</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 1">{'Text 1'}</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">{'Text 2'}</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 3">{'Text 2'}</ExpanderList.Expander>
         </ExpanderList>
       );
       expect(container).toMatchSnapshot();
@@ -30,9 +29,9 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       render(
         <ExpanderList>
           <ExpanderList.Expander title="Title 1" expanded>
-            Text 1
+            {'Text 1'}
           </ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">{'Text 2'}</ExpanderList.Expander>
         </ExpanderList>
       );
 
@@ -47,9 +46,9 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       render(
         <ExpanderList>
           <ExpanderList.Expander title="Title 1" expanded>
-            Text 1
+            {'Text 1'}
           </ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">{'Text 2'}</ExpanderList.Expander>
         </ExpanderList>
       );
 
@@ -67,9 +66,9 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       render(
         <ExpanderList>
           <ExpanderList.Expander title="Title 1" expanded>
-            Text 1
+            {'Text 1'}
           </ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">{'Text 2'}</ExpanderList.Expander>
         </ExpanderList>
       );
 
@@ -90,12 +89,12 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       render(
         <ExpanderList>
           <ExpanderList.Expander expanded title="Title 1">
-            Text 1
+            {'Text 1'}
           </ExpanderList.Expander>
           <ExpanderList.Expander expanded title="Title 2">
-            Text 2
+            {'Text 2'}
           </ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 3">Text 3</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 3">{'Text 3'}</ExpanderList.Expander>
         </ExpanderList>
       );
 
@@ -114,11 +113,11 @@ describe('Gitt ExpanderList blir rendret', (): void => {
     it('så er bare den andre expanderen åpen', async (): Promise<void> => {
       render(
         <ExpanderList>
-          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 1">{'Text 1'}</ExpanderList.Expander>
           <ExpanderList.Expander expanded title="Title 2">
-            Text 2
+            {'Text 2'}
           </ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 3">Text 3</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 3">{'Text 3'}</ExpanderList.Expander>
         </ExpanderList>
       );
 
@@ -238,10 +237,10 @@ describe('Gitt ExpanderList blir rendret', (): void => {
         >
           <ExpanderList accordion={false} childPadding={true} color={'blueberry'}>
             <ExpanderList.Expander testId="test01" title="Title 1">
-              Text 1
+              {'Text 1'}
             </ExpanderList.Expander>
-            <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
-            <ExpanderList.Expander title="Title 3">Text 2</ExpanderList.Expander>
+            <ExpanderList.Expander title="Title 2">{'Text 2'}</ExpanderList.Expander>
+            <ExpanderList.Expander title="Title 3">{'Text 2'}</ExpanderList.Expander>
           </ExpanderList>
         </div>
       );
@@ -256,9 +255,9 @@ describe('Gitt ExpanderList blir rendret', (): void => {
     test('Så vises bare en tekst om gangen', async (): Promise<void> => {
       render(
         <ExpanderList accordion={true}>
-          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 3">Text 3</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 1">{'Text 1'}</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">{'Text 2'}</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 3">{'Text 3'}</ExpanderList.Expander>
         </ExpanderList>
       );
 
@@ -285,16 +284,16 @@ describe('Gitt ExpanderList blir rendret', (): void => {
 
   describe('Når accordion er true og expanderen er utenfor viewport etter at man klikker på den', (): void => {
     test('Så scroller nettleseren slik at expanderen blir synlig', async (): Promise<void> => {
-      const mockScrollIntoView = jest.fn();
+      const mockScrollIntoView = vi.fn();
       window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
-      const mockIsElementInViewport = jest.spyOn(ViewportUtils, 'isElementInViewport');
+      const mockIsElementInViewport = vi.spyOn(ViewportUtils, 'isElementInViewport');
 
       mockIsElementInViewport.mockReturnValue(false);
       render(
         <ExpanderList accordion={true}>
-          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 3">Text 2</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 1">{'Text 1'}</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">{'Text 2'}</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 3">{'Text 2'}</ExpanderList.Expander>
         </ExpanderList>
       );
 
@@ -310,9 +309,9 @@ describe('Gitt ExpanderList blir rendret', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
       render(
         <ExpanderList testId="bare-tester">
-          <ExpanderList.Expander title="Title 1">Text 1</ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 2">Text 2</ExpanderList.Expander>
-          <ExpanderList.Expander title="Title 3">Text 2</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 1">{'Text 1'}</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 2">{'Text 2'}</ExpanderList.Expander>
+          <ExpanderList.Expander title="Title 3">{'Text 2'}</ExpanderList.Expander>
         </ExpanderList>
       );
 
@@ -325,7 +324,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       render(
         <ExpanderList>
           <ExpanderList.Expander title="Title 1" testId="expander">
-            Text 1
+            {'Text 1'}
           </ExpanderList.Expander>
         </ExpanderList>
       );
@@ -338,11 +337,11 @@ describe('Gitt ExpanderList blir rendret', (): void => {
   describe('Gitt at ExpanderList har expander med onExpand-callback', (): void => {
     describe('Når man klikker på ekspanderen tre ganger', (): void => {
       test('Så kalles callbacken med true, false og true', async (): Promise<void> => {
-        const handleExpand = jest.fn();
+        const handleExpand = vi.fn();
         render(
           <ExpanderList>
             <ExpanderList.Expander title="Title 1" onExpand={handleExpand}>
-              Text 1
+              {'Text 1'}
             </ExpanderList.Expander>
           </ExpanderList>
         );
@@ -362,11 +361,11 @@ describe('Gitt ExpanderList blir rendret', (): void => {
   describe('Gitt at ExpanderList har Expander med onExpand-callback og den første er expanded', (): void => {
     describe('Når man klikker på expanderen én gang', (): void => {
       test('Så kalles callback først med true og så med false', async (): Promise<void> => {
-        const handleExpand = jest.fn();
+        const handleExpand = vi.fn();
         render(
           <ExpanderList>
             <ExpanderList.Expander title="Title 1" onExpand={handleExpand} expanded>
-              Text 1
+              {'Text 1'}
             </ExpanderList.Expander>
           </ExpanderList>
         );
@@ -385,10 +384,10 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       const { container } = render(
         <>
           <ExpanderList>
-            <ExpanderList.Expander title="ExpanderList 1">Text 1</ExpanderList.Expander>
+            <ExpanderList.Expander title="ExpanderList 1">{'Text 1'}</ExpanderList.Expander>
           </ExpanderList>
           <ExpanderList>
-            <ExpanderList.Expander title="ExpanderList 2">Text 2</ExpanderList.Expander>
+            <ExpanderList.Expander title="ExpanderList 2">{'Text 2'}</ExpanderList.Expander>
           </ExpanderList>
         </>
       );
@@ -408,14 +407,14 @@ describe('Gitt ExpanderList blir rendret', (): void => {
             titleHtmlMarkup="span"
             title={
               <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                <Title appearance="title3">ExpanderList 1</Title>
+                <Title appearance="title3">{'ExpanderList 1'}</Title>
                 <Icon svgIcon={Avatar} />
               </span>
             }
           >
             {'Hei'}
           </ExpanderList.Expander>
-          <ExpanderList.Expander title={<Title appearance="title3">ExpanderList 2</Title>}>{'Hei'}</ExpanderList.Expander>
+          <ExpanderList.Expander title={<Title appearance="title3">{'ExpanderList 2'}</Title>}>{'Hei'}</ExpanderList.Expander>
         </ExpanderList>
       );
 

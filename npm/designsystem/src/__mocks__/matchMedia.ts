@@ -1,10 +1,10 @@
-import { vi as jest } from 'vitest';
+import { vi } from 'vitest';
 
-export const mockWindowMatchMedia = jest.fn().mockImplementation(() => ({
+export const mockWindowMatchMedia = vi.fn().mockImplementation(() => ({
   matches: true,
-  addListener: jest.fn(),
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
+  addListener: vi.fn(),
+  addEventListener: vi.fn(),
+  removeEventListener: vi.fn(),
 }));
 
 Object.defineProperty(window, 'matchMedia', {

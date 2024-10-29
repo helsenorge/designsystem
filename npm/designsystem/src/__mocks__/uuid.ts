@@ -1,5 +1,3 @@
-import { vi as jest } from 'vitest';
-
 import * as uuidUtils from '../utils/uuid';
 
 const testId = {
@@ -9,7 +7,7 @@ const testId = {
 /**
  * Returnerer en unik, forutsigbar id hver gang uuid() kalles
  */
-jest.spyOn(uuidUtils, 'uuid').mockImplementation(() => {
+vi.spyOn(uuidUtils, 'uuid').mockImplementation(() => {
   testId.id++;
   return `testid-${testId.id}`;
 });

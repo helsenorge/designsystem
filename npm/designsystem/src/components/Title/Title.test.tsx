@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 
 import Title from './Title';
@@ -7,7 +5,7 @@ import Title from './Title';
 describe('Gitt at Title skal rendres', (): void => {
   describe('Gitt at Title skal vises vanlig', (): void => {
     test('Så rendres Title riktig', (): void => {
-      const { container } = render(<Title>Title</Title>);
+      const { container } = render(<Title>{'Title'}</Title>);
 
       expect(container).toMatchSnapshot();
 
@@ -20,7 +18,7 @@ describe('Gitt at Title skal rendres', (): void => {
 
   describe('Gitt at Title skal vises som h2', (): void => {
     test('Så rendres Title med riktig tag', (): void => {
-      render(<Title htmlMarkup={'h2'}>Title</Title>);
+      render(<Title htmlMarkup={'h2'}>{'Title'}</Title>);
 
       const titleElement = screen.getByText('Title');
 
@@ -30,7 +28,7 @@ describe('Gitt at Title skal rendres', (): void => {
 
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
-      render(<Title testId="bare-tester">Title</Title>);
+      render(<Title testId="bare-tester">{'Title'}</Title>);
 
       const component = screen.getByTestId('bare-tester');
       expect(component).toBeVisible();

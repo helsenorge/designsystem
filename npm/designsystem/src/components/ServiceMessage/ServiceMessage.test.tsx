@@ -1,8 +1,5 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import ServiceMessage from './ServiceMessage';
 
@@ -16,7 +13,7 @@ describe('Gitt at ServiceMessage skal vises', () => {
 
   describe('Når komponenten skal kunne lukkes', () => {
     test('Så kalles onClick-handler når man klikker på lukkeknappen', async (): Promise<void> => {
-      const mockClose = jest.fn();
+      const mockClose = vi.fn();
 
       render(
         <ServiceMessage label={'Some text here for testing.'} onDismiss={mockClose} dismissable closeBtnText="Lukk denne beskjeden" />
@@ -40,7 +37,7 @@ describe('Gitt at ServiceMessage skal vises', () => {
 
   describe('Når komponenten ikke har expander og bruker klikker på tab', (): void => {
     test('Så får lukkeknappen fokus først', async (): Promise<void> => {
-      const mockClose = jest.fn();
+      const mockClose = vi.fn();
       render(<ServiceMessage label={'Some text here for testing.'} dismissable closeBtnText="lukk" onDismiss={mockClose} />);
 
       await userEvent.tab();
@@ -52,7 +49,7 @@ describe('Gitt at ServiceMessage skal vises', () => {
   });
   describe('Når komponenten har expander og bruker klikker på tab', (): void => {
     test('Så får øverste rad/knapp fokus først', async (): Promise<void> => {
-      const mockClose = jest.fn();
+      const mockClose = vi.fn();
       render(<ServiceMessage label={'Some text here for testing.'} dismissable closeBtnText="lukk" info="hei" onDismiss={mockClose} />);
 
       await userEvent.tab();
@@ -84,7 +81,7 @@ describe('Gitt at ServiceMessage skal vises', () => {
   });
   describe('Når komponenten har expander', () => {
     test('Så kalles onClick-handler når man klikker på lukkeknappen etter å ha ekspandert', async (): Promise<void> => {
-      const mockClose = jest.fn();
+      const mockClose = vi.fn();
       render(
         <ServiceMessage
           label={'Some text here for testing.'}

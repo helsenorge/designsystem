@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 
 import FormGroup from './FormGroup';
@@ -15,7 +13,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
   describe('Når FormGroup rendres', (): void => {
     test('Så vises FormGroup', (): void => {
       render(
-        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'}>
+        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} testId="formgroup1">
           <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
           <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
           <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
@@ -30,9 +28,8 @@ describe('Gitt at FormGroup skal vises', (): void => {
       expect(legend).toBeVisible();
       expect(legend.className).toBe('field-set__legend');
 
-      const wrapper = title.parentElement;
-      expect(wrapper).toBeVisible();
-      expect(wrapper?.className).toBe('form-group-wrapper');
+      const formGroup = screen.getByTestId('formgroup1');
+      expect(formGroup).toBeVisible();
     });
   });
 
@@ -40,15 +37,16 @@ describe('Gitt at FormGroup skal vises', (): void => {
     test('Så er stylingen satt riktig på FormGroup children', (): void => {
       render(
         <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} onColor={'onblueberry'}>
-          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
-          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+          <Checkbox testId="checkbox1" inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} testId="checkbox1-label" />} />
           <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
         </FormGroup>
       );
 
-      const checkbox = screen.getByText('Checkbox 1').parentElement?.parentElement?.parentElement;
+      const checkbox = screen.getByTestId('checkbox1');
       expect(checkbox).toBeVisible();
-      expect(checkbox?.className).toBe('checkbox-label');
+      const checkboxLabel = screen.getByTestId('checkbox1-label');
+      expect(checkboxLabel).toBeVisible();
     });
   });
   describe('Når errorWrapperClass settes', (): void => {
@@ -83,6 +81,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
         </FormGroup>
       );
 
+      // eslint-disable-next-line testing-library/no-node-access
       const checkbox = screen.getByText('Checkbox 1').parentElement?.parentElement?.parentElement;
       expect(checkbox).toBeVisible();
       expect(checkbox?.className).toBe('checkbox-label checkbox-label--large checkbox-label__large--on-white');
@@ -122,7 +121,7 @@ describe('Gitt at FormGroup skal vises', (): void => {
   describe('Når FormGroup får error prop satt', (): void => {
     test('Så rendres error melding og styling', (): void => {
       render(
-        <FormGroup error={'error error!'} title={'One amazing title'} legend={'Check out these checkboxes!'}>
+        <FormGroup testId="form-group" error={'error error!'} title={'One amazing title'} legend={'Check out these checkboxes!'}>
           <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
           <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
           <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
@@ -132,12 +131,12 @@ describe('Gitt at FormGroup skal vises', (): void => {
       const checkbox = screen.getByLabelText('Checkbox 1');
       expect(checkbox).toHaveAccessibleDescription('error error!');
 
-      const formGroup = screen.getByRole('group').parentElement;
-      const errorWrapper = formGroup?.parentElement;
-      const formGroupWrapper = errorWrapper?.parentElement;
+      const formGroup = screen.getByTestId('form-group');
+      // eslint-disable-next-line testing-library/no-node-access
+      const errorWrapper = formGroup.children[1];
 
       expect(errorWrapper?.className).toBe('error-wrapper--with-error');
-      expect(formGroupWrapper?.className).toBe('form-group-wrapper');
+      expect(formGroup?.className).toBe('form-group-wrapper');
     });
     describe('Når children er Checkbox', (): void => {
       test('Så er feilmelding knyttet til Checkbox', (): void => {

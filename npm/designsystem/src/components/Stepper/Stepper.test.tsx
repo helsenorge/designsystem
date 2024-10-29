@@ -1,13 +1,11 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
-import { vi as jest } from 'vitest';
 
 import Stepper from './Stepper';
-import { useSize } from '../../hooks/useSize';
 
-jest.mock('../../hooks/useSize', () => ({
-  useSize: jest.fn(),
+const mockUseSize = vi.fn().mockReturnValue({ width: 0 });
+
+vi.mock('../../hooks/useSize', () => ({
+  useSize: vi.fn().mockImplementation(() => mockUseSize()),
 }));
 
 describe('Stepper', (): void => {
@@ -60,7 +58,7 @@ describe('Stepper', (): void => {
     });
     describe('Når stepper har plass til tre prikker', (): void => {
       test('Så vises tre prikker', (): void => {
-        useSize.mockReturnValue({ width: 84 });
+        mockUseSize.mockReturnValue({ width: 84 });
         render(<Stepper ariaLabel="Steg for steg" />);
 
         const dots = screen.getAllByTestId('dot');
@@ -69,7 +67,7 @@ describe('Stepper', (): void => {
     });
     describe('Når stepper ikke har plass til tre prikker', (): void => {
       test('Så vises tall og to prikker', (): void => {
-        useSize.mockReturnValue({ width: 83 });
+        mockUseSize.mockReturnValue({ width: 83 });
         render(<Stepper ariaLabel="Steg for steg" />);
 
         const number = screen.getByText('0/2');
@@ -116,7 +114,7 @@ describe('Stepper', (): void => {
     });
     describe('Når stepper har plass til ti prikker', (): void => {
       test('Så vises ti prikker', (): void => {
-        useSize.mockReturnValue({ width: 280 });
+        mockUseSize.mockReturnValue({ width: 280 });
         render(<Stepper ariaLabel="Steg for steg" min={1} max={10} />);
 
         const dots = screen.getAllByTestId('dot');
@@ -125,7 +123,7 @@ describe('Stepper', (): void => {
     });
     describe('Når stepper ikke har plass til ti prikker', (): void => {
       test('Så vises tall og to prikker', (): void => {
-        useSize.mockReturnValue({ width: 279 });
+        mockUseSize.mockReturnValue({ width: 279 });
         render(<Stepper ariaLabel="Steg for steg" min={1} max={10} />);
 
         const number = screen.getByText('1/10');

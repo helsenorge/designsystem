@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -35,6 +33,7 @@ describe('Gitt at Input skal vises', (): void => {
     test('Så vises Input med onblueberry styling', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} onColor={FormOnColor.onblueberry} />);
 
+      // eslint-disable-next-line testing-library/no-node-access
       const contentWrapper = screen.getByRole('textbox').parentElement;
       expect(contentWrapper).toHaveClass('input-container input-container--on-blueberry');
     });
@@ -43,6 +42,7 @@ describe('Gitt at Input skal vises', (): void => {
     test('Så vises Input med ondark styling', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} onColor={FormOnColor.ondark} />);
 
+      // eslint-disable-next-line testing-library/no-node-access
       const contentWrapper = screen.getByRole('textbox').parentElement;
       expect(contentWrapper).toHaveClass('input-container input-container--on-dark');
     });
@@ -51,6 +51,7 @@ describe('Gitt at Input skal vises', (): void => {
     test('Så vises Input med transparent styling', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} transparent />);
 
+      // eslint-disable-next-line testing-library/no-node-access
       const contentWrapper = screen.getByRole('textbox').parentElement;
       expect(contentWrapper).toHaveClass('input-container input-container--transparent');
     });
@@ -59,6 +60,7 @@ describe('Gitt at Input skal vises', (): void => {
     test('Så vises Input med large styling', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} size={FormSize.large} />);
 
+      // eslint-disable-next-line testing-library/no-node-access
       const contentWrapper = screen.getByRole('textbox').parentElement;
       expect(contentWrapper).toHaveClass('input-container input-container--large');
     });
@@ -91,6 +93,7 @@ describe('Gitt at Input skal vises', (): void => {
   describe('Når icon settes', (): void => {
     test('Så rendres input med icon', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} icon={Hospital} />);
+      // eslint-disable-next-line testing-library/no-node-access
       const svg = screen.getByRole('textbox').previousSibling;
       expect(svg).toHaveClass('hnds-style-icon');
     });
@@ -99,6 +102,7 @@ describe('Gitt at Input skal vises', (): void => {
   describe('Når iconRight er true', (): void => {
     test('Så rendres input med icon til høyre', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} icon={Hospital} iconRight />);
+      // eslint-disable-next-line testing-library/no-node-access
       const svg = screen.getByRole('textbox').nextSibling;
       expect(svg).toHaveClass('hnds-style-icon');
     });
@@ -107,6 +111,7 @@ describe('Gitt at Input skal vises', (): void => {
   describe('Når Input har en error', (): void => {
     test('Så skal invalid styling brukes', (): void => {
       render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} error />);
+      // eslint-disable-next-line testing-library/no-node-access
       const contentWrapper = screen.getByRole('textbox').parentElement;
       expect(contentWrapper).toHaveClass('input-container input-container--invalid');
     });

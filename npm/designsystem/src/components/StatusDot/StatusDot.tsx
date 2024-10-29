@@ -90,7 +90,7 @@ const StatusDot: React.FC<StatusDotProps> = props => {
 
   return (
     <span id={id} className={statusDotClasses} data-testid={testId} data-analyticsid={AnalyticsId.StatusDot}>
-      <span className={dotClasses}>
+      <span className={dotClasses} data-testid={testId + '-dot'}>
         <StatusDotIcon onColor={onColor} variant={variant} />
       </span>
       <span className={labelClasses}>{text}</span>

@@ -9,6 +9,7 @@ exports[`Gitt at StatusDot rendres  > NÃ¥r StatusDot er variant="noaccess". > SÃ
   >
     <span
       class="statusdot__dot"
+      data-testid="statusdot-dot"
     >
       <svg
         aria-hidden="true"

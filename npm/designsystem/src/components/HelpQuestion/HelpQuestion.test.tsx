@@ -2,7 +2,6 @@ import React from 'react';
 
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import HelpQuestion from './HelpQuestion';
 describe('Gitt at HelpQuestion skal vises', (): void => {
@@ -28,7 +27,7 @@ describe('Gitt at HelpQuestion skal vises', (): void => {
 
   describe('Når man klikker på triggeren', () => {
     it('Så kalles onClick-callback', async () => {
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
       render(<HelpQuestion onClick={handleClick}>{'Hjelp'}</HelpQuestion>);
 
       const question = screen.getByRole('button', { name: 'Hjelp' });

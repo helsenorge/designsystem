@@ -1,26 +1,23 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import NotificationPanel from './NotificationPanel';
 
 describe('Gitt at NotificationPanel skal vises', () => {
   describe('Når panelet vises med default props', () => {
     test('Så rendres komponenten riktig', (): void => {
-      const { container } = render(<NotificationPanel>Some text here for testing.</NotificationPanel>);
+      const { container } = render(<NotificationPanel>{'Some text here for testing.'}</NotificationPanel>);
       expect(container).toMatchSnapshot();
     });
   });
 
   describe('Når panelet skal kunne lukkes', () => {
     test('Så kalles onClick-handler når man klikker på lukkeknappen', async (): Promise<void> => {
-      const mockClose = jest.fn();
+      const mockClose = vi.fn();
 
       render(
         <NotificationPanel onClick={mockClose} dismissable ariaLabelCloseBtn="Lukk denne beskjeden">
-          Some text here for testing.
+          {'Some text here for testing.'}
         </NotificationPanel>
       );
 
@@ -32,10 +29,10 @@ describe('Gitt at NotificationPanel skal vises', () => {
 
   describe('Når panelet kan lukkes', () => {
     test('Så kalles onClick-handleren når man klikker på knappen', async (): Promise<void> => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
       const { container } = render(
         <NotificationPanel dismissable onClick={mockOnClick}>
-          Some text here for testing.
+          {'Some text here for testing.'}
         </NotificationPanel>
       );
       expect(container).toMatchSnapshot();
@@ -49,7 +46,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
 
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
-      render(<NotificationPanel testId="bare-tester">Some text here for testing.</NotificationPanel>);
+      render(<NotificationPanel testId="bare-tester">{'Some text here for testing.'}</NotificationPanel>);
 
       const component = screen.getByTestId('bare-tester');
       expect(component).toBeVisible();
@@ -60,7 +57,8 @@ describe('Gitt at NotificationPanel skal vises', () => {
     test('Så får lukkeknappen fokus først', async (): Promise<void> => {
       render(
         <NotificationPanel dismissable>
-          Some text here for testing.<a href="/">Lenke</a>
+          {'Some text here for testing.'}
+          <a href="/">{'Lenke'}</a>
         </NotificationPanel>
       );
 
@@ -76,7 +74,8 @@ describe('Gitt at NotificationPanel skal vises', () => {
     test('Så vises innholdet i expander', async (): Promise<void> => {
       render(
         <NotificationPanel expanderButtonClosedText="Close" expanderButtonText="Open" expanderChildren="Expanded Content">
-          Some text here for testing.<a href="/">Lenke</a>
+          {'Some text here for testing.'}
+          <a href="/">{'Lenke'}</a>
         </NotificationPanel>
       );
 
@@ -91,10 +90,12 @@ describe('Gitt at NotificationPanel skal vises', () => {
       const { container } = render(
         <>
           <NotificationPanel compactVariant="basic">
-            Some text here for testing.<a href="/">Lenke</a>
+            {'Some text here for testing.'}
+            <a href="/">{'Lenke'}</a>
           </NotificationPanel>
           <NotificationPanel compactVariant="outline">
-            Some text here for testing.<a href="/">Lenke</a>
+            {'Some text here for testing.'}
+            <a href="/">{'Lenke'}</a>
           </NotificationPanel>
         </>
       );
@@ -107,7 +108,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
       test('Så er panelet tilgjengelig via label', (): void => {
         render(
           <NotificationPanel role="region" label="Overskrift">
-            Some text here for testing
+            {'Some text here for testing'}
           </NotificationPanel>
         );
 
@@ -118,7 +119,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
 
     describe('Når panelet har bare rent tekstlig innhold', (): void => {
       test('Så er panelet tilgjengelig via teksten i panelet', (): void => {
-        render(<NotificationPanel role="region">Some text here for testing</NotificationPanel>);
+        render(<NotificationPanel role="region">{'Some text here for testing'}</NotificationPanel>);
 
         const panel = screen.getByRole('region', { name: 'Some text here for testing' });
         expect(panel).toBeInTheDocument();
@@ -129,7 +130,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
       test('Så er panelet tilgjengelig via teksten i panelet', (): void => {
         render(
           <NotificationPanel role="region">
-            <p>Some text here for testing</p>
+            <p>{'Some text here for testing'}</p>
           </NotificationPanel>
         );
 
@@ -142,7 +143,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
       test('Så er panelet tilgjengelig via label', (): void => {
         render(
           <NotificationPanel role="region" label="Overskrift" labelId={'sidetittel'}>
-            Some text here for testing
+            {'Some text here for testing'}
           </NotificationPanel>
         );
 
@@ -152,7 +153,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
       test('Så bruker label labelId som id', (): void => {
         render(
           <NotificationPanel role="region" label="Overskrift" labelId={'sidetittel'}>
-            Some text here for testing
+            {'Some text here for testing.'}
           </NotificationPanel>
         );
 
@@ -164,7 +165,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
 
   describe('Når role er alert', (): void => {
     test('Så har komponenten role=alert', (): void => {
-      render(<NotificationPanel role="alert">Warning!</NotificationPanel>);
+      render(<NotificationPanel role="alert">{'Warning!'}</NotificationPanel>);
 
       const component = screen.getByRole('alert', { name: 'Warning!' });
       expect(component).toBeVisible();
@@ -173,7 +174,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
 
   describe('Når role ikke har satt', (): void => {
     test('Så har komponenten ikke role=region', (): void => {
-      render(<NotificationPanel>Important!</NotificationPanel>);
+      render(<NotificationPanel>{'Important!'}</NotificationPanel>);
 
       const component = screen.queryByRole('region');
       expect(component).not.toBeInTheDocument();
@@ -182,7 +183,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
 
   describe('Når variant er error', (): void => {
     test('Så har komponenten role=alert', (): void => {
-      render(<NotificationPanel variant="error">Danger!</NotificationPanel>);
+      render(<NotificationPanel variant="error">{'Danger!'}</NotificationPanel>);
 
       const component = screen.getByRole('alert', { name: 'Danger!' });
       expect(component).toBeVisible();
@@ -193,7 +194,7 @@ describe('Gitt at NotificationPanel skal vises', () => {
     test('Så har komponenten role=region', (): void => {
       render(
         <NotificationPanel variant="error" role="region">
-          Danger!
+          {'Danger!'}
         </NotificationPanel>
       );
 

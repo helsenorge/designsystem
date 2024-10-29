@@ -2,7 +2,6 @@ import React from 'react';
 
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi as jest } from 'vitest';
 
 import DictionaryTrigger from './DictionaryTrigger';
 
@@ -29,7 +28,7 @@ describe('Gitt at DictionaryTrigger skal vises', (): void => {
 
   describe('Når man klikker på triggeren', () => {
     it('Så kalles onClick-callback', async () => {
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
       render(<DictionaryTrigger onClick={handleClick}>{'Hjelp'}</DictionaryTrigger>);
 
       const trigger = screen.getByRole('button', { name: 'Hjelp' });
@@ -62,8 +61,8 @@ describe('Gitt at DictionaryTrigger skal vises', (): void => {
 
   describe('Når man tabber', () => {
     it('Så kalles onFocus og onBlur', async () => {
-      const handleFocus = jest.fn();
-      const handleBlur = jest.fn();
+      const handleFocus = vi.fn();
+      const handleBlur = vi.fn();
 
       render(
         <DictionaryTrigger onFocus={handleFocus} onBlur={handleBlur}>

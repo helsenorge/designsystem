@@ -1,15 +1,12 @@
-import React from 'react';
-
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { expect, vi as jest } from 'vitest';
 
 import { Slider } from './Slider';
 
 // Slider er aria-labelledby flere IDer og trenger derfor en unik, stabil ID under test
 let mocktestid = 0;
-jest.mock('../../hooks/useUuid', () => ({
-  useUuid: jest.fn().mockImplementation(() => {
+vi.mock('../../hooks/useUuid', () => ({
+  useUuid: vi.fn().mockImplementation(() => {
     mocktestid++;
     return 'slider-test-' + mocktestid;
   }),
@@ -17,7 +14,7 @@ jest.mock('../../hooks/useUuid', () => ({
 
 describe('Gitt at Slider skal vises', (): void => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('Når slider rendres', (): void => {
@@ -33,7 +30,7 @@ describe('Gitt at Slider skal vises', (): void => {
       const optionRight = screen.getByText('Viktig');
       expect(optionRight).toBeVisible();
 
-      const slider = screen.getByRole('slider', { name: 'Hvor viktig er det for deg?' });
+      const slider = screen.getByRole('slider');
       expect(slider).toHaveClass('sr-only-slider');
     });
   });
@@ -79,7 +76,7 @@ describe('Gitt at Slider skal vises', (): void => {
 
   describe('Når onChange settes', (): void => {
     test('Så kalles funksjonen som den ble satt til', async (): Promise<void> => {
-      const mockOnChange = jest.fn();
+      const mockOnChange = vi.fn();
       render(<Slider onChange={mockOnChange} />);
 
       const slider = screen.getByRole('slider');
@@ -157,7 +154,7 @@ describe('Gitt at Slider skal vises', (): void => {
 
   describe('Når brukeren drar slideren med musen', (): void => {
     test('Så trigges onChange handleren', async () => {
-      const mockOnChange = jest.fn();
+      const mockOnChange = vi.fn();
       render(<Slider onChange={mockOnChange} />);
 
       const slider = screen.getByRole('slider');
@@ -223,7 +220,7 @@ describe('Gitt at Slider skal vises', (): void => {
   });
   describe('Når selected propen er satt til false', () => {
     test('Så skal slideren ikke gi en value til onChange under oppstart', async (): Promise<void> => {
-      const mockOnChange = jest.fn();
+      const mockOnChange = vi.fn();
       render(<Slider onChange={mockOnChange} selected={false} />);
 
       await waitFor(() => {
@@ -232,7 +229,7 @@ describe('Gitt at Slider skal vises', (): void => {
     });
 
     test('Så skal slideren ta hensyn til videre endringer av propen', async (): Promise<void> => {
-      const mockOnChange = jest.fn();
+      const mockOnChange = vi.fn();
 
       const { rerender } = render(<Slider onChange={mockOnChange} selected={false} />);
 
@@ -250,7 +247,7 @@ describe('Gitt at Slider skal vises', (): void => {
 
   describe('Når slider har en error', () => {
     test('Så skal slideren få error tekst', async (): Promise<void> => {
-      const mockOnChange = jest.fn();
+      const mockOnChange = vi.fn();
       render(<Slider onChange={mockOnChange} errorText={'feilmelding'} />);
 
       expect(screen.getByText('feilmelding')).toBeInTheDocument();

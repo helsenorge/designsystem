@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import RadioButton from './RadioButton';
@@ -10,9 +8,9 @@ import Label from '../Label';
 describe('Gitt at RadioButton skal vises', (): void => {
   describe('Når RadioButton rendres', (): void => {
     test('Så vises RadioButton', (): void => {
-      render(<RadioButton inputId={'test01'} label={<Label labelTexts={[{ text: 'Radio1' }]} />} />);
+      render(<RadioButton inputId={'test01'} label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />} />);
 
-      const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('radio-label');
       expect(label).toBeVisible();
       expect(label).toHaveClass('radio-button-label');
 
@@ -24,10 +22,10 @@ describe('Gitt at RadioButton skal vises', (): void => {
 
   describe('Når disabled er true', (): void => {
     test('Så vises RadioButton som disabled', (): void => {
-      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} disabled />);
+      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />} disabled />);
 
       const input = screen.getByRole('radio');
-      const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('radio-label');
       expect(input).toBeDisabled();
       expect(label).toHaveClass('radio-button-label radio-button-label--disabled');
     });
@@ -35,26 +33,26 @@ describe('Gitt at RadioButton skal vises', (): void => {
 
   describe('Når onColor er onBlueberry', (): void => {
     test('Så vises RadioButton med onBlueberry styling', (): void => {
-      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} onColor={FormOnColor.onblueberry} />);
+      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />} onColor={FormOnColor.onblueberry} />);
 
-      const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('radio-label');
       expect(label).toHaveClass('radio-button-label');
     });
   });
   describe('Når onColor er onDark', (): void => {
     test('Så vises RadioButton med onDark styling', (): void => {
-      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} onColor={FormOnColor.ondark} />);
+      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />} onColor={FormOnColor.ondark} />);
 
-      const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('radio-label');
       expect(label).toHaveClass('radio-button-label radio-button-label--on-dark');
     });
   });
 
   describe('Når size er large', (): void => {
     test('Så vises RadioButton med large styling', (): void => {
-      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} size={FormSize.large} />);
+      render(<RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />} size={FormSize.large} />);
 
-      const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('radio-label');
       expect(label).toHaveClass('radio-button-label radio-button-label__large');
     });
   });
@@ -63,17 +61,17 @@ describe('Gitt at RadioButton skal vises', (): void => {
     test('Så vises RadioButton checked state riktig styling', (): void => {
       render(
         <FormGroup legend={'onwhite'} name="radio1" onColor={'onwhite'} size={'large'}>
-          <RadioButton label={<Label labelTexts={[{ text: 'Radio1' }]} />} />
-          <RadioButton label={<Label labelTexts={[{ text: 'Radio2' }]} />} />
+          <RadioButton label={<Label testId="radio1-label" labelTexts={[{ text: 'Radio1' }]} />} />
+          <RadioButton label={<Label testId="radio2-label" labelTexts={[{ text: 'Radio2' }]} />} />
         </FormGroup>
       );
 
-      const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('radio1-label');
       fireEvent.click(screen.getByText('Radio1'));
 
       expect(label).toHaveClass('radio-button-label radio-button-label__large radio-button-label__large--selected');
 
-      const label2 = screen.getByText('Radio2').parentElement?.parentElement?.parentElement;
+      const label2 = screen.getByTestId('radio2-label');
       fireEvent.click(screen.getByText('Radio2'));
 
       expect(label).toHaveClass('radio-button-label radio-button-label__large');
@@ -103,10 +101,10 @@ describe('Gitt at RadioButton skal vises', (): void => {
 
   describe('Når RadioButton får satt error', (): void => {
     test('Så vises RadioButton med indre error styling, uten ytre error styling', (): void => {
-      render(<RadioButton testId={'test01'} label={<Label labelTexts={[{ text: 'Radio1' }]} />} error />);
+      render(<RadioButton testId={'test01'} label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />} error />);
 
       // Indre styling
-      const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('radio-label');
 
       expect(label).toHaveClass('radio-button-label radio-button-label--invalid');
 
@@ -119,7 +117,12 @@ describe('Gitt at RadioButton skal vises', (): void => {
   describe('Når RadioButton får satt errorText', (): void => {
     test('Så vises RadioButton med errormelding i tilleg til indre og ytre error styling', (): void => {
       render(
-        <RadioButton testId={'test01'} inputId="radio01" label={<Label labelTexts={[{ text: 'Radio1' }]} />} errorText={'error error!'} />
+        <RadioButton
+          testId={'test01'}
+          inputId="radio01"
+          label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />}
+          errorText={'error error!'}
+        />
       );
 
       const radioButton = screen.getByLabelText('Radio1');
@@ -127,7 +130,7 @@ describe('Gitt at RadioButton skal vises', (): void => {
       expect(radioButton).toHaveAccessibleDescription('error error!');
 
       // Indre styling
-      const label = screen.getByText('Radio1').parentElement?.parentElement?.parentElement;
+      const label = screen.getByTestId('radio-label');
 
       expect(label).toHaveClass('radio-button-label radio-button-label--invalid');
     });

@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { parse } from 'date-fns';
-import { vi as jest } from 'vitest';
 
 import DatePicker from './DatePicker';
 import DateTime from './DateTime';
@@ -64,7 +62,7 @@ describe('Gitt at DatePicker skal vises', (): void => {
     });
 
     it('Så skal onChange trigges ved datoendring', () => {
-      const handleChange = jest.fn();
+      const handleChange = vi.fn();
       render(<DatePicker label={'Velg dato'} onChange={handleChange} />);
       const input = screen.getByLabelText('Velg dato') as HTMLInputElement;
       fireEvent.change(input, { target: { value: '01.01.2022' } });
@@ -109,7 +107,7 @@ describe('Gitt at DatePicker skal vises', (): void => {
     });
 
     it('Så skal onChange kalles når input endres', () => {
-      const handleChange = jest.fn();
+      const handleChange = vi.fn();
       render(<DateTime label={'Time'} timeUnit="hours" onChange={handleChange} />);
       const input = screen.getByLabelText('Time') as HTMLInputElement;
       fireEvent.change(input, { target: { value: '12' } });
@@ -117,7 +115,7 @@ describe('Gitt at DatePicker skal vises', (): void => {
     });
 
     it('Så skal onBlur kalles når input mister fokus', () => {
-      const handleBlur = jest.fn();
+      const handleBlur = vi.fn();
       render(<DateTime label={'Time'} timeUnit="hours" onBlur={handleBlur} />);
       const input = screen.getByLabelText('Time') as HTMLInputElement;
       fireEvent.focus(input);
