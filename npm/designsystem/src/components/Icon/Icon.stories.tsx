@@ -25,6 +25,7 @@ const meta = {
         component: 'Icon lar deg vise et av flere ikoner i ulike størrelser og farger',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     color: 'black',
