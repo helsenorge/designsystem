@@ -95,6 +95,7 @@ const meta = {
       control: 'select',
       options: ['decimal', 'email', 'none', 'numeric', 'search', 'tel', 'text', 'url'],
     },
+    value: { control: 'text' },
   },
 } satisfies Meta<InputWithAndCustomArgs>;
 

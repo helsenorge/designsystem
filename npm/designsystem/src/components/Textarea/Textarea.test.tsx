@@ -219,4 +219,14 @@ describe('Gitt at Textarea skal vises', (): void => {
       expect(input).toHaveAccessibleDescription('Navn må fylles ut');
     });
   });
+
+  describe('Når Textarea har value satt', (): void => {
+    test('Så blir teksten oppdatert riktig', (): void => {
+      render(<Textarea label={'Navn'} textareaId="navn" value={'value eksempel'} />);
+
+      const input = screen.getByLabelText('Navn');
+
+      expect(input).toHaveValue('value eksempel');
+    });
+  });
 });
