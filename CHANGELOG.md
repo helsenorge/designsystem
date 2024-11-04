@@ -1,3 +1,13 @@
+## [8.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.7.0&targetVersion=GTv8.8.0) (2024-11-04)
+
+### Features
+
+- **input:** eksponer inputmode som prop
+  ([6bc9883](https://github.com/helsenorge/designsystem/commit/6bc98831c582f0356c04be50d9d3be1b4c65ba98)), closes
+  [#333385](https://github.com/helsenorge/designsystem/issues/333385)
+- **textarea:** ny prop value ([fd9a116](https://github.com/helsenorge/designsystem/commit/fd9a11697229b87f88f135b8a5c16f7853cc9ead)),
+  closes [#335948](https://github.com/helsenorge/designsystem/issues/335948)
+
 ## [8.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.6.0&targetVersion=GTv8.7.0) (2024-10-17)
 
 ### Features

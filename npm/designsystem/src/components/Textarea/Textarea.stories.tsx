@@ -75,6 +75,9 @@ const meta = {
     required: {
       control: 'boolean',
     },
+    value: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof Textarea>;
 

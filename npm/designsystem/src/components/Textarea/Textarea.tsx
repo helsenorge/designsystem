@@ -26,6 +26,7 @@ export interface TextareaProps
       | 'required'
       | 'defaultValue'
       | 'onChange'
+      | 'value'
     > {
   /** max character limit in textarea  */
   maxCharacters?: number;
@@ -94,11 +95,12 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     readOnly,
     required,
     onChange,
+    value,
     ...rest
   } = props;
 
   const [rows, setRows] = useState(minRows);
-  const [textareaInput, setTextareaInput] = useState(defaultValue || '');
+  const [textareaInput, setTextareaInput] = useState(value || defaultValue || '');
   const referanse = useRef<HTMLDivElement>(null);
   const errorTextUuid = useUuid(errorTextId);
 
@@ -152,11 +154,13 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   });
 
   useEffect(() => {
+    value && setTextareaInput(value);
+
     if (grow && referanse.current?.children && referanse.current?.children[0]) {
       const textarea = referanse.current?.children[0] as HTMLTextAreaElement;
       resizeHeight(textarea);
     }
-  }, []);
+  }, [value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     if (grow) {
@@ -166,6 +170,8 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   };
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    setTextareaInput(e.target.value);
+
     if (onChange) {
       onChange(e);
     }
@@ -180,6 +186,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
         {renderLabel(label, textareaId, onColor as FormOnColor)}
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
           <textarea
+            {...rest}
             rows={rows}
             defaultValue={defaultValue}
             id={textareaId}
@@ -196,7 +203,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             readOnly={readOnly}
             required={required}
             onChange={onChangeHandler}
-            {...rest}
+            value={textareaInput}
           />
         </div>
         {maxCharacters && (
