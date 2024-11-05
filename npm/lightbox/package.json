@@ -2,7 +2,7 @@
   "name": "@helsenorge/lightbox",
   "sideEffects": false,
   "private": false,
-  "version": "9.0.0-beta.3",
+  "version": "9.0.0",
   "description": "The official Helsenorge lightbox.",
   "repository": {
     "type": "git",
@@ -54,7 +54,7 @@
     "@vitest/coverage-v8": "^2.1.3",
     "bootstrap": "^4.6.2",
     "classnames": "^2.5.1",
-    "frankenstein-build-tools": "^9.0.0-beta.3",
+    "frankenstein-build-tools": "^9.0.0",
     "jsdom": "^25.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
