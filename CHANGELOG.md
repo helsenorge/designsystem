@@ -1,3 +1,50 @@
+## [9.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.8.0&targetVersion=GTv9.0.0) (2024-11-05)
+
+## 9.0.0-beta.3 (2024-10-29)
+
+## 9.0.0-beta.2 (2024-10-29)
+
+## 9.0.0-beta.1 (2024-10-25)
+
+### Features
+
+- legg til invalidFormatErrorMessage som parameter i valideringsfunksjoner
+  ([2270650](https://github.com/helsenorge/designsystem/commit/22706507750a5968d9998b5430430b8de3b75683)), closes
+  [#333981](https://github.com/helsenorge/designsystem/issues/333981)
+- **slider:** legger til validering, og ref og endre signatur til onchange
+  ([5d5148a](https://github.com/helsenorge/designsystem/commit/5d5148ae5833c463f4bb7069ee704bc44d44d30f)), closes
+  [#329653](https://github.com/helsenorge/designsystem/issues/329653)
+
+## 9.0.0-beta.0 (2024-10-17)
+
+### Features
+
+- endre fra mode til oncolor ([3491c74](https://github.com/helsenorge/designsystem/commit/3491c7438b743e4e05d78ddd130a5f3797b5b55a)), closes
+  [#331833](https://github.com/helsenorge/designsystem/issues/331833)
+- validate gir skjema komponenter spacing
+  ([c984428](https://github.com/helsenorge/designsystem/commit/c98442817d8f4a799e7c1d6a473dd215148ca7cd)), closes
+  [#331167](https://github.com/helsenorge/designsystem/issues/331167)
+- **expanderlist:** fjern sticky mulighet
+  ([c0b7df9](https://github.com/helsenorge/designsystem/commit/c0b7df9eeb186f74de16b9e7d7f11601e0e5794b)), closes
+  [#332677](https://github.com/helsenorge/designsystem/issues/332677)
+- **expanderlist:** nytt design ([eb4d0f3](https://github.com/helsenorge/designsystem/commit/eb4d0f36d53401764033678dd571a10b481227e4)),
+  closes [#332677](https://github.com/helsenorge/designsystem/issues/332677)
+- **sharingstatus:** fjern fargevalg blueberry og banana
+  ([26db632](https://github.com/helsenorge/designsystem/commit/26db6326baeae2f7868d34b5a085c76a022e9345)), closes
+  [#328894](https://github.com/helsenorge/designsystem/issues/328894)
+- **tabs:** designendringer for mobiltilpasning
+  ([8ba1309](https://github.com/helsenorge/designsystem/commit/8ba13094a038b3077c07c870e1cb46ace0597f85)), closes
+  [#331142](https://github.com/helsenorge/designsystem/issues/331142)
+
+### Bug Fixes
+
+- ikke vis fadeout om siste tab er valgt
+  ([f0fe5a9](https://github.com/helsenorge/designsystem/commit/f0fe5a9ee1d928a0ae093bbed0909c3bce951498)), closes
+  [#331142](https://github.com/helsenorge/designsystem/issues/331142)
+- **dropdown:** import av feil oncolor
+  ([f305cae](https://github.com/helsenorge/designsystem/commit/f305caea3c7cdcf4d312bc0f3b6af1d839a0aaca)), closes
+  [#331833](https://github.com/helsenorge/designsystem/issues/331833)
+
 ## [8.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv8.7.0&targetVersion=GTv8.8.0) (2024-11-04)
 
 ### Features
@@ -1815,12 +1862,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- økt kontrast på understreking av lenker
-  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
-  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 - panel har avstand fra tittel til badge
   ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
   [#282359](https://github.com/helsenorge/designsystem/issues/282359)
+- økt kontrast på understreking av lenker
+  ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
+  [#229049](https://github.com/helsenorge/designsystem/issues/229049)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 
