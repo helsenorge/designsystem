@@ -60,6 +60,7 @@ const preview: Preview = {
       },
     },
   },
+
   decorators: [
     (Story, context) => (
       <GridExample gridLayout={context.globals.layout}>
@@ -67,6 +68,8 @@ const preview: Preview = {
       </GridExample>
     ),
   ],
+
+  tags: ['autodocs'],
 };
 
 export default preview;
