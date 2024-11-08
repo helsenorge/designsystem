@@ -1,0 +1,7 @@
+{
+  "onlyChanged": true,
+  "projectId": "Project:671f7e04436ea3529af77b34",
+  "storybookBaseDir": "npm/designsystem",
+  "buildScriptName": "build-storybook",
+  "zip": true
+}

@@ -55,6 +55,7 @@ const meta = {
           'Overvåk et element og finn alle fokuserbare elementer inne i elementet. Bruker MutationObserver slik at eventuelle nye elementer som legges til også vil inkluderes i listen.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseFocusableElementsExample>;
 

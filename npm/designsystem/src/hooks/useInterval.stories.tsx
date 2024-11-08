@@ -19,6 +19,7 @@ const meta = {
         component: 'Kjør en funksjon ved intervaller basert på ønsket frequency.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseIntervalExample>;
 

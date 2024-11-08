@@ -28,6 +28,7 @@ const meta = {
         component: 'Custom hook for klikk eller fokus utenfor et gitt element.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseOutsideEventExample>;
 

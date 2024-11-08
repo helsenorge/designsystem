@@ -25,6 +25,7 @@ const meta = {
         component: 'Lytt på endringer i størrelse på et element. Bruker ResizeObserver-APIet.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseResizeObserverExample>;
 

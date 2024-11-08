@@ -54,6 +54,7 @@ const meta = {
         component: 'Hent ut en liste med HTML-elementer. Bruker MutationObserver-APIet.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseElementListExample>;
 

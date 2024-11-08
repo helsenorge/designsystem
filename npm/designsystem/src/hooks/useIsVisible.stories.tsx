@@ -36,6 +36,7 @@ const meta = {
         component: 'Sjekk om et HTML-element er synlig i vinduet, eller ikke.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     threshold: 0.5,

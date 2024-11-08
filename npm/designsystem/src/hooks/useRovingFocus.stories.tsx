@@ -36,6 +36,7 @@ const meta = {
         component: 'Setter keyboard navigation mønsteret "Roving focus" (også kalt "Roving tabindex") på elementene i listen.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseRovingFocusExample>;
 

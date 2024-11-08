@@ -29,6 +29,7 @@ const meta = {
         component: 'Lytt på keyboard-events og kjør en callback.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseKeyboardEventExample>;
 

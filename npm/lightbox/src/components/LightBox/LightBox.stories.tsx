@@ -29,7 +29,7 @@ const meta = {
     ariaLabelZoomSlider: 'Zoom',
     closeTextAfterSeconds: 3,
     imageAlt: 'A random cat',
-    imageSrc: 'https://loremflickr.com/640/480',
+    imageSrc: 'https://placehold.co/640x480',
     testId: 'lightBox',
     imageText: 'En søt pus eller kanskje flere',
     onClose: action('Close button clicked'),

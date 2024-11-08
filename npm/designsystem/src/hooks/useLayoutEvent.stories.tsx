@@ -19,6 +19,7 @@ const meta = {
         component: 'Lytt på ulike layout-events som har betydning for rendring og størrelse på elementer.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseLayoutEventExample>;
 

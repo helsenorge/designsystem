@@ -29,6 +29,7 @@ const meta = {
         component: 'Returner unik uuid som ikke endrer seg for hver render.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseUuidExample>;
 

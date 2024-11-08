@@ -34,6 +34,7 @@ const meta = {
         component: 'useState, men med mulighet for å oppdatere state etter X millisekunder.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
   args: {
     delay: 1000,

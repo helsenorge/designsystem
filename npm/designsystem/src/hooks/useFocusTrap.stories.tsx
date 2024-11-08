@@ -49,6 +49,7 @@ const meta = {
         component: 'Lås fokus til et bestemt element. Bruker vil bare kunne tabbe mellom fokuserbare elementer innenfor elementet.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseFocusTrapExample>;
 

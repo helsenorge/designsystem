@@ -25,6 +25,7 @@ const meta = {
         component: 'Lytt på endringer i størrelse på et element.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseSizeExample>;
 

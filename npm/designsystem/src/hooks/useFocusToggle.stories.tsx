@@ -50,6 +50,7 @@ const meta = {
           'Skru av og på fokus på fokuserbare elementer slik at de kan være en del av DOMen, men samtidig ikke kunne fokuseres/tabbes til med tastaturet.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseFocusToggleExample>;
 

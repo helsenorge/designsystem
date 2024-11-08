@@ -33,6 +33,7 @@ const meta = {
         component: 'Sett et element til sticky hvis et annet element er delvis utenfor vinduet.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseStickyExample>;
 

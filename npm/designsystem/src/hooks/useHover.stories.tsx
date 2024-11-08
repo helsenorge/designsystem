@@ -26,6 +26,7 @@ const meta = {
         component: 'Få vite når et element hovres over eller mottar fokus.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseHoverExample>;
 

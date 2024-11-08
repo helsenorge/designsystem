@@ -194,7 +194,7 @@ export const DateRangePicker: Story = {
 
 export const DateAndTime: Story = {
   render: (args: DatePickerProps) => {
-    const [startDate] = React.useState(new Date());
+    const [startDate] = React.useState(new Date('01.01.2024'));
 
     return (
       <DateTimePickerWrapper>
@@ -216,7 +216,7 @@ export const DateAndTime: Story = {
 
 export const MinMaxDays: Story = {
   render: (args: DatePickerProps) => {
-    const [startDate] = React.useState(new Date());
+    const [startDate] = React.useState(new Date('01.01.2024'));
     const minDate = new Date();
     const maxDate = new Date();
     minDate.setDate(startDate.getDate() - 15);
@@ -237,7 +237,7 @@ export const MinMaxDays: Story = {
 
 export const DisabledDays: Story = {
   render: (args: DatePickerProps) => {
-    const [startDate] = React.useState(new Date());
+    const [startDate] = React.useState(new Date('01.01.2024'));
     const disabledDate = new Date();
     disabledDate.setDate(startDate.getDate() - 3);
 

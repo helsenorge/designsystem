@@ -21,6 +21,7 @@ const meta = {
         component: 'Lytt på endringer i breakpoint basert på media queries. Trigger re-render bare når breakpoint er endret.',
       },
     },
+    chromatic: { disableSnapshot: true },
   },
 } satisfies Meta<typeof UseBreakpointExample>;
 
