@@ -266,6 +266,11 @@ export const Variants: Story = {
       <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'outline'}>
         {args.children}
       </Button>
+      <br />
+      <br />
+      <Button {...args} onBlur={action('Button blurred')} onClick={action('Button clicked')} variant={'borderless'}>
+        {args.children}
+      </Button>
     </>
   ),
 };

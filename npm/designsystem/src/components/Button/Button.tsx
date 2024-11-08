@@ -57,6 +57,8 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttri
   tabIndex?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Adds custom classes to the text */
+  textClassName?: string;
   /** Sets the position of the text in the button - only applies when button is fluid */
   textPosition?: ButtonTextPosition;
   /** Button type. Default: button */
@@ -121,6 +123,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     testId,
     target,
     type = 'button',
+    textClassName,
     textPosition = 'left',
     ...restProps
   } = props;
@@ -167,10 +170,14 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     },
     className
   );
-  const buttonTextClasses = classNames(buttonStyles['button__text'], {
-    [buttonStyles['button__text--ellipsis']]: ellipsis,
-    [buttonStyles['button__text--centered']]: fluid && textPosition === 'centered',
-  });
+  const buttonTextClasses = classNames(
+    buttonStyles['button__text'],
+    {
+      [buttonStyles['button__text--ellipsis']]: ellipsis,
+      [buttonStyles['button__text--centered']]: fluid && textPosition === 'centered',
+    },
+    textClassName
+  );
   const diagonalClasses = classNames(buttonStyles['diagonal'], {
     [buttonStyles['diagonal--on-dark']]: onDark,
   });

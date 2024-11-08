@@ -129,6 +129,7 @@ const Expander: React.FC<ExpanderProps> = props => {
   const renderButton = (): React.ReactNode => (
     <Button
       variant="borderless"
+      textClassName={styles['expander__button__text']}
       className={buttonClassName}
       aria-expanded={isExpanded}
       ref={triggerRef}

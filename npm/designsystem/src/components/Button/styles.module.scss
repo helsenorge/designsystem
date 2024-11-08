@@ -4,6 +4,7 @@
 @import '../../scss/palette';
 @import '../../scss/font-settings';
 @import '../../scss/screen-reader';
+@import '../../scss/supernova/styles/colors';
 
 $dark-mode-disabled-transparrent: #ffffffb3;
 $with-icons: // icon-class, size-class, padding-left, padding-right, padding-left desktop, padding-right desktop, svg-margin-left, svg-margin-right, svg-margin-left desktop, svg-margin-right desktop
@@ -20,6 +21,18 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   'both-icons' 'normal' getSpacer(xs) getSpacer(xs) getSpacer(xs) getSpacer(xs) 0 0 0 0,
   'both-icons' 'large' getSpacer(xs) getSpacer(xs) getSpacer(xs) getSpacer(xs) 0 0 0 0;
 
+// Brukes til å aktivere hover styling uten at button hovres
+@mixin outline-borderless-hover {
+  @include outline-borderless-background(
+    var(--color-action-background-transparent-onlight-hover),
+    var(--color-action-background-transparent-onlight-hover)
+  );
+}
+
+@mixin outline-borderless-text-hover {
+  @include text-color(var(--color-action-text-onlight-hover), var(--color-action-text-onlight-hover));
+}
+
 @mixin focus-shadow {
   box-shadow: 0 0 0 getSpacer(3xs) $black;
 }
@@ -28,11 +41,11 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   box-shadow: 0 0 0 getSpacer(3xs) $white;
 }
 
-@mixin outline-borderless($background-color) {
-  background-color: transparent;
+@mixin outline-borderless-background($background-color, $hover-background-color) {
+  background-color: $background-color;
 
   &:hover {
-    background-color: $background-color;
+    background-color: $hover-background-color;
   }
 
   :disabled > & {
@@ -57,21 +70,17 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 }
 
-@mixin outline-text($color) {
+@mixin text-color($color, $hover-color) {
   color: $color;
+
+  :hover > & {
+    color: $hover-color;
+  }
 
   :disabled > & {
     @media (min-width: map.get($grid-breakpoints, md)) {
       color: $neutral700;
     }
-  }
-}
-
-@mixin borderless-text($color) {
-  color: $color;
-
-  :disabled > & {
-    color: $neutral700;
   }
 }
 
@@ -113,7 +122,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
 @mixin on-dark {
   &--on-dark {
-    @include fill-on-dark($blueberry50);
+    @include fill-on-dark(var(--color-action-background-ondark-hover));
   }
   &--on-dark#{&}--destructive {
     @include fill-on-dark($cherry50);
@@ -272,11 +281,11 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   &--outline,
   &--borderless {
-    @include outline-borderless(rgba(18, 111, 135, 0.1));
+    @include outline-borderless-background(transparent, var(--color-action-background-transparent-onlight-hover));
   }
   &--outline#{&}--destructive,
   &--borderless#{&}--destructive {
-    @include outline-borderless($cherry50);
+    @include outline-borderless-background(transparent, $cherry50);
   }
 
   &--outline {
@@ -341,19 +350,13 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 
   /* stylelint-disable-next-line */
-  &--outline &__text {
-    @include outline-text($blueberry600);
-  }
-  &--outline#{&}--destructive &__text {
-    @include outline-text($cherry600);
-  }
-
-  /* stylelint-disable-next-line */
+  &--outline &__text,
   &--borderless &__text {
-    @include borderless-text($blueberry600);
+    @include text-color(var(--color-action-text-onlight), var(--color-action-text-onlight-hover));
   }
+  &--outline#{&}--destructive &__text,
   &--borderless#{&}--destructive &__text {
-    @include borderless-text($cherry600);
+    @include text-color($cherry600, $cherry700);
   }
 
   /* stylelint-disable-next-line */

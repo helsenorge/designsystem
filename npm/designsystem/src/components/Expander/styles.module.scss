@@ -5,6 +5,7 @@
 @import '../../scss/palette';
 @import '../../scss/font-settings';
 @import '../../scss/supernova/styles/colors';
+@import '../button/styles.module';
 
 .expander {
   position: initial;
@@ -37,13 +38,13 @@
     padding-right: getSpacer(s);
     text-align: left;
 
-    &:hover {
-      background-color: var(--color-action-background-transparent-onlight-hover);
-    }
-
     &--expanded {
-      background-color: var(--color-action-background-transparent-onlight-hover);
+      @include outline-borderless-hover;
     }
+  }
+
+  &__button &__button__text {
+    @include outline-borderless-text-hover;
   }
 
   &__trigger {
