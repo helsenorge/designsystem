@@ -21,6 +21,8 @@ export interface AvatarProps {
   selected?: boolean;
   /** background and color will be determined on variant. */
   variant?: 'normal' | 'black';
+  /** @deprecated Square or circle variant of avatar. The circle should only be used for representation of someone else. NB: This is temporary and will be renamed in v10 */
+  type?: 'normal' | 'circle';
   /** Avatar size. Default: small */
   size?: keyof typeof AvatarSize;
   /** Adds custom classes to the element. */
@@ -30,7 +32,7 @@ export interface AvatarProps {
 }
 export type AvatarType = React.ForwardRefExoticComponent<AvatarProps & React.RefAttributes<HTMLElement>>;
 const Avatar: AvatarType = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { children, className = '', selected = false, variant = 'normal', size = AvatarSize.small, testId } = props;
+  const { children, className = '', selected = false, variant = 'normal', type = 'normal', size = AvatarSize.small, testId } = props;
   const truncatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
   return (
     <span
@@ -38,6 +40,7 @@ const Avatar: AvatarType = React.forwardRef(function AvatarForwardedRef(props: A
         styles.avatar,
         selected && styles['avatar--selected'],
         variant === 'black' && styles['avatar--black'],
+        type === 'circle' && styles['avatar--circle'],
         size === AvatarSize.xsmall && styles['avatar--xsmall'],
         size === AvatarSize.small && styles['avatar--small'],
         className

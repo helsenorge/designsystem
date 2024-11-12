@@ -1,6 +1,7 @@
 export type Styles = {
   avatar: string;
   'avatar--black': string;
+  'avatar--circle': string;
   'avatar--selected': string;
   'avatar--small': string;
   'avatar--xsmall': string;

@@ -9,6 +9,10 @@
   background-color: $blueberry500;
   color: $white;
 
+  &--circle {
+    border-radius: 50%;
+  }
+
   &--selected {
     background-color: transparent;
   }

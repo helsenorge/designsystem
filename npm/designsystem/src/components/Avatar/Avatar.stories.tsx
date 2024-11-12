@@ -31,7 +31,15 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: AvatarSize,
+      options: Object.values(AvatarSize),
+    },
+    variant: {
+      control: 'select',
+      options: ['normal', 'black'],
+    },
+    type: {
+      control: 'select',
+      options: ['normal', 'circle'],
     },
   },
 } satisfies Meta<typeof Avatar>;
