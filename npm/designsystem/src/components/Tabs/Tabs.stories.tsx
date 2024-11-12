@@ -36,6 +36,10 @@ const meta = {
       options: ['blueberry', 'neutral', 'white'],
       description: 'Sets the color of the tabs. Default: white',
     },
+    containerBreakout: {
+      control: 'boolean',
+      description: 'Sets wether the component should use the container-breakout class. Default: true ',
+    },
     onColor: {
       control: 'select',
       options: ['onwhite', 'onblueberry', 'onneutral'],

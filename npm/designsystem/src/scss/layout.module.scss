@@ -1,0 +1,14 @@
+@import './breakpoints';
+
+/*
+Denne filen er ment til å importeres som en css module:
+import designsystemlayout from './scss/layout.scss'
+<div className={designsystemlayout['container-breakout']}></div>
+*/
+
+.container-breakout {
+  // This is a copy of how bootstrap's row class sets margins inside a container
+  // https://github.com/twbs/bootstrap/blob/e5643aaa89eb67327a5b4abe7db976f0ea276b70/scss/mixins/_grid.scss#L16C1-L17C30
+  margin-right: -$grid-gutter-width * 0.5;
+  margin-left: -$grid-gutter-width * 0.5;
+}

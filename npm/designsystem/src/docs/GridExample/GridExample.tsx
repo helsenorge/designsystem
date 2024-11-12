@@ -15,13 +15,7 @@ export const GridExample: React.FC<GridExampleProps> = ({ gridLayout = isSuperno
   }
 
   if (gridLayout === 'helsenorge') {
-    return (
-      <div className="container py-5">
-        <div className="row">
-          <div className="col">{children}</div>
-        </div>
-      </div>
-    );
+    return <div className="container py-5">{children}</div>;
   }
 
   return <>{children}</>;

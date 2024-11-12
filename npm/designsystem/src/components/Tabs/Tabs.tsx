@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
+import designsystemlayout from '../../scss/layout.module.scss';
 import { PaletteNames } from '../../theme/palette';
 import { isMobileUA } from '../../utils/mobile';
 
@@ -23,6 +24,8 @@ export interface TabsProps {
   className?: string;
   /** Sets the color of the tabs. Default: white */
   color?: TabsColors;
+  /** Sets wether the component should use the container-breakout class. Default: true */
+  containerBreakout?: boolean;
   /** Sets the background color of the tabs. Can only be used when the color is set to white. Default: onwhite */
   onColor?: TabsOnColor;
   /** Whether the tab list should be sticky */
@@ -40,6 +43,7 @@ const TabsRoot: React.FC<TabsProps> = ({
   children,
   className,
   color = 'white',
+  containerBreakout = true,
   onColor = 'onwhite',
   sticky = true,
   testId,
@@ -153,7 +157,7 @@ const TabsRoot: React.FC<TabsProps> = ({
   }, []);
 
   return (
-    <div className={className} data-testid={testId}>
+    <div className={classNames(className, containerBreakout && designsystemlayout['container-breakout'])} data-testid={testId}>
       <div
         ref={tabListRef}
         className={classNames(styles['tab-list-wrapper'], {
