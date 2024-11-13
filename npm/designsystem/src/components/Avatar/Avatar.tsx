@@ -19,10 +19,10 @@ export interface AvatarProps {
   children: string;
   /** Displays a check icon to indicated the selected state. */
   selected?: boolean;
-  /** background and color will be determined on variant. */
-  variant?: 'normal' | 'black';
-  /** @deprecated Square or circle variant of avatar. The circle should only be used for representation of someone else. NB: This is temporary and will be renamed in v10 */
-  type?: 'normal' | 'circle';
+  /** Sets blue or black color on avatar. */
+  color?: 'blueberry' | 'black';
+  /** Square or circle variant of avatar. The circle should only be used for representation of someone else. NB: This is temporary and will be renamed in v10 */
+  variant?: 'normal' | 'circle';
   /** Avatar size. Default: small */
   size?: keyof typeof AvatarSize;
   /** Adds custom classes to the element. */
@@ -32,15 +32,15 @@ export interface AvatarProps {
 }
 export type AvatarType = React.ForwardRefExoticComponent<AvatarProps & React.RefAttributes<HTMLElement>>;
 const Avatar: AvatarType = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { children, className = '', selected = false, variant = 'normal', type = 'normal', size = AvatarSize.small, testId } = props;
+  const { children, className = '', selected = false, color = 'blueberry', variant = 'normal', size = AvatarSize.small, testId } = props;
   const truncatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
   return (
     <span
       className={cn(
         styles.avatar,
         selected && styles['avatar--selected'],
-        variant === 'black' && styles['avatar--black'],
-        type === 'circle' && styles['avatar--circle'],
+        color === 'black' && styles['avatar--black'],
+        variant === 'circle' && styles['avatar--circle'],
         size === AvatarSize.xsmall && styles['avatar--xsmall'],
         size === AvatarSize.small && styles['avatar--small'],
         className
@@ -50,7 +50,7 @@ const Avatar: AvatarType = React.forwardRef(function AvatarForwardedRef(props: A
       data-analyticsid={AnalyticsId.Avatar}
     >
       {selected ? (
-        <Icon svgIcon={Check} size={IconSize.Small} color={variant === 'black' ? palette.neutral900 : palette.blueberry600} />
+        <Icon svgIcon={Check} size={IconSize.Small} color={color === 'black' ? palette.neutral900 : palette.blueberry600} />
       ) : (
         truncatedName
       )}

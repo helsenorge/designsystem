@@ -33,11 +33,11 @@ const meta = {
       control: 'select',
       options: Object.values(AvatarSize),
     },
-    variant: {
+    color: {
       control: 'select',
-      options: ['normal', 'black'],
+      options: ['blueberry', 'black'],
     },
-    type: {
+    variant: {
       control: 'select',
       options: ['normal', 'circle'],
     },
@@ -54,7 +54,14 @@ export const Default: Story = {
 
 export const Inverted: Story = {
   args: {
-    variant: 'black',
+    color: 'black',
+  },
+  render: args => <Avatar {...args} />,
+};
+
+export const RepresentingSomeoneElse: Story = {
+  args: {
+    variant: 'circle',
   },
   render: args => <Avatar {...args} />,
 };
