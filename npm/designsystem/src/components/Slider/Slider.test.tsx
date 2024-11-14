@@ -179,6 +179,16 @@ describe('Gitt at Slider skal vises', (): void => {
     });
   });
 
+  describe('Når id propen er satt', () => {
+    test('Så skal den finnes på input feltet', async () => {
+      render(<Slider id="testid" />);
+
+      const slider = screen.getByRole('slider');
+
+      expect(slider).toHaveAttribute('id', 'testid');
+    });
+  });
+
   describe('Når minValue og maxValue er satt', () => {
     test('Så skal slideren ikke gå utenfor disse verdiene', async () => {
       render(<Slider minValue={10} maxValue={50} />);

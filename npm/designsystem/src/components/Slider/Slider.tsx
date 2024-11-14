@@ -40,7 +40,7 @@ export type SliderStep = {
 
 export interface SliderProps
   extends ErrorWrapperClassNameProps,
-    Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'onChange' | 'onBlur'> {
+    Pick<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'onChange' | 'onBlur'> {
   /** Activates Error style for the input */
   error?: boolean;
   /** Error text to show above the component */
