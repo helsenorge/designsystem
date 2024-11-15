@@ -22,7 +22,7 @@ export interface AvatarProps {
   /** Sets blue or black color on avatar. */
   color?: 'blueberry' | 'black';
   /** Square or circle variant of avatar. The circle should only be used for representation of someone else. NB: This is temporary and will be renamed in v10 */
-  variant?: 'normal' | 'circle';
+  variant?: 'square' | 'circle';
   /** Avatar size. Default: small */
   size?: keyof typeof AvatarSize;
   /** Adds custom classes to the element. */
@@ -32,7 +32,7 @@ export interface AvatarProps {
 }
 export type AvatarType = React.ForwardRefExoticComponent<AvatarProps & React.RefAttributes<HTMLElement>>;
 const Avatar: AvatarType = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { children, className = '', selected = false, color = 'blueberry', variant = 'normal', size = AvatarSize.small, testId } = props;
+  const { children, className = '', selected = false, color = 'blueberry', variant = 'square', size = AvatarSize.small, testId } = props;
   const truncatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
   return (
     <span

@@ -39,7 +39,7 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: ['normal', 'circle'],
+      options: ['square', 'circle'],
     },
   },
 } satisfies Meta<typeof Avatar>;
