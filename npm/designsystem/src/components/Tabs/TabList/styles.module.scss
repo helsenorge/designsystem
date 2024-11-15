@@ -12,13 +12,18 @@
   gap: 0.25rem;
   list-style-type: none;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: auto hidden;
   height: 3rem;
   margin: 0;
   background-color: var(--color-base-background-white);
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   margin-bottom: -1px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari */
+  }
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     padding-left: 0;
