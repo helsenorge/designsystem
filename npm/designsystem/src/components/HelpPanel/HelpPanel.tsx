@@ -1,5 +1,7 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 import HighlightPanel, { HighlightPanelSize } from '../HighlightPanel';
 import HandWaving from '../Icons/HandWaving';
 
@@ -21,7 +23,7 @@ export interface HelpPanelProps {
 const HelpPanel: React.FC<HelpPanelProps> = ({ className, testId, size, children, title }) => {
   return (
     <HighlightPanel
-      className={className}
+      className={classNames(className, { [styles['help-panel']]: size === 'fluid' })}
       contentWrapperClassName={styles['help-panel']}
       testId={testId}
       size={size}
