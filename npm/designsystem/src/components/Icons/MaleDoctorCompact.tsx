@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from '../Icon';
 
-const MaleDoctorCompact: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const MaleDoctorCompact: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <>
       <rect x="16.138" y="6.489" width="16.646" height="20.004" rx="8.323" stroke="#000" strokeWidth="1.3" />

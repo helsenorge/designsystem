@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from '../Icon';
 
-const SettingsFill: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const SettingsFill: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path
       fillRule="evenodd"
