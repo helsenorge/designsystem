@@ -258,7 +258,6 @@ export const IconList = [
   'Search',
   'SectionSign',
   'Settings',
-  'Settings2',
   'SettingsFill',
   'Sexualorientation',
   'ShakingHand',
