@@ -304,4 +304,5 @@ export default {
   plateknifefork: { alternativeName: 'TallerkenKnivGaffel', categories: 'Generisk' },
   reminder: { alternativeName: 'Påminnelse', categories: 'Generisk' },
   sweets: { alternativeName: 'Søtsaker', categories: 'Generisk' },
+  // Skal denne oppdateres manuelt?
 };
