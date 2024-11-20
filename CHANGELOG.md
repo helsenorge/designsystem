@@ -1,3 +1,16 @@
+## [9.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.1.0&targetVersion=GTv9.2.0) (2024-11-20)
+
+
+### Features
+
+* **tabs:**  mulighet for å scrolle i tablist ([74adc25](https://github.com/helsenorge/designsystem/commit/74adc25bea3967ec15a5be955f10ad6a94854eb1)), closes [#337089](https://github.com/helsenorge/designsystem/issues/337089)
+
+
+### Bug Fixes
+
+* **helppanel:**  styling på helppanel i fluid size ([d3df2eb](https://github.com/helsenorge/designsystem/commit/d3df2ebecb1dff71f3b334702ab579ba36da52e9)), closes [#332570](https://github.com/helsenorge/designsystem/issues/332570)
+* **textarea:**  controlled value warning ([371c8bd](https://github.com/helsenorge/designsystem/commit/371c8bd9ec2c453ed25fc265bef4afb566546151)), closes [#337333](https://github.com/helsenorge/designsystem/issues/337333)
+
 ## [9.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.0.0&targetVersion=GTv9.1.0) (2024-11-14)
 
 
