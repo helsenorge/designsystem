@@ -1,3 +1,10 @@
+## [9.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.2.0&targetVersion=GTv9.3.0) (2024-11-20)
+
+
+### Features
+
+*  tile variant prop og nytt utseende ([b5de00e](https://github.com/helsenorge/designsystem/commit/b5de00e8ed4b05392788ff09af613887b1ce99c1)), closes [#336170](https://github.com/helsenorge/designsystem/issues/336170)
+
 ## [9.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.1.0&targetVersion=GTv9.2.0) (2024-11-20)
 
 
