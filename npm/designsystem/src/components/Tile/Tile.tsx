@@ -2,13 +2,16 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { TitleTags } from './../Title/Title';
 import { AnalyticsId } from '../../constants';
+import { TitleTags } from './../Title/Title';
+import { useBreakpoint, Breakpoint } from '../../hooks/useBreakpoint';
 import { useHover } from '../../hooks/useHover';
 import { mergeRefs } from '../../utils/refs';
 import { IconSize } from '../Icon';
 
 import tileStyles from './styles.module.scss';
+
+export type TileVariants = 'normal' | 'compact';
 
 interface TileProps extends Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target' | 'onClick' | 'rel'> {
   children?: React.ReactNode;
@@ -24,6 +27,8 @@ interface TileProps extends Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 
   description?: string;
   /** Sets a fixed max and min width for the tile. */
   fixed?: boolean;
+  /** Sets the visual variant of the component */
+  variant?: TileVariants;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -41,12 +46,11 @@ export interface TileCompound extends React.ForwardRefExoticComponent<TileProps 
 }
 
 const Title = React.forwardRef<HTMLHeadingElement, TileTitleProps>((props, ref) => {
-  const { children, className, htmlMarkup = 'span', highlighted, compact } = props;
+  const { children, className, htmlMarkup = 'span', highlighted } = props;
   const titleClasses = classNames(
     tileStyles['tile__title'],
     {
       [tileStyles['tile__title--highlighted']]: highlighted,
-      [tileStyles['tile__title--compact']]: compact,
     },
     className
   );
@@ -73,11 +77,14 @@ export const Tile = React.forwardRef<HTMLAnchorElement, TileProps>((props, ref) 
     testId,
     target,
     rel,
+    variant = 'normal',
     href,
     onClick,
   } = props;
   const { hoverRef, isHovered } = useHover<HTMLAnchorElement>();
-  const compact = !description;
+  const breakpoint = useBreakpoint();
+  const mobile = breakpoint < Breakpoint.md;
+  const compact = variant === 'compact';
   const tileClasses = classNames(
     tileStyles.tile,
     {
@@ -103,10 +110,10 @@ export const Tile = React.forwardRef<HTMLAnchorElement, TileProps>((props, ref) 
       onClick={onClick}
     >
       <div className={tileTitleWrapperClasses}>
-        {React.cloneElement(icon, { size: IconSize.Medium, isHovered, color: highlighted ? 'white' : 'black' })}
+        {React.cloneElement(icon, { size: mobile ? IconSize.Small : IconSize.Medium, isHovered, color: highlighted ? 'white' : 'black' })}
         {React.cloneElement(title, { highlighted: highlighted, compact: compact })}
       </div>
-      {description && <p className={tileStyles.tile__description}>{description}</p>}
+      {!compact && !mobile && <p className={tileStyles.tile__description}>{description}</p>}
       {children && <div className={tileStyles.tile__children}>{children}</div>}
     </a>
   );

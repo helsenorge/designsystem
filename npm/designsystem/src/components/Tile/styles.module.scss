@@ -1,22 +1,26 @@
 @use 'sass:map';
+@import '../../scss/font-settings';
 @import '../../scss/palette';
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
+@import '../../scss/screen-reader';
+@import '../../scss/supernova/styles/colors';
 
 @mixin tile-title {
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
-  font-size: 1.5rem;
+  font-size: $font-size-sm;
   text-align: left;
-  line-height: 1.75rem;
-  font-weight: 600;
-  margin: 0;
-  margin-left: 0.5rem;
+  line-height: 1.74rem;
+  font-weight: 400;
+  margin: getSpacer(3xs) 0 0 getSpacer(2xs);
 
-  @media (min-width: map.get($grid-breakpoints, sm)) {
-    font-size: 1.25rem;
-    margin-top: 1rem;
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-weight: 600;
+    font-size: $font-size-md;
+    line-height: 1.625rem;
+    margin-top: getSpacer(s);
   }
 }
 
@@ -26,14 +30,20 @@
 
   display: flex;
   width: inherit;
-  padding: 1.5rem 2rem 2rem 1rem;
+  padding: getSpacer(2xs) getSpacer(2xs) getSpacer(xs);
   flex-direction: column;
-  justify-content: flex-start;
-  background-color: $white;
+  justify-content: center;
+  background-color: var(--core-color-white);
   color: $black;
   text-decoration: none;
   cursor: pointer;
+  border: 1px solid var(--color-base-border-blueberry);
   outline: none;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    padding: getSpacer(l) getSpacer(m) getSpacer(l) getSpacer(s);
+    justify-content: flex-start;
+  }
 
   @media print {
     border: 1px solid $black;
@@ -45,7 +55,11 @@
   }
 
   &--compact {
-    padding: 1.5rem 1rem;
+    padding: getSpacer(2xs) getSpacer(2xs) getSpacer(xs);
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      padding: getSpacer(s) getSpacer(m) getSpacer(s) getSpacer(s);
+    }
   }
 
   svg {
@@ -53,39 +67,36 @@
   }
 
   &:hover,
-  &:active,
-  &:focus {
-    background-color: $neutral100;
+  &:active {
+    background-color: var(--color-action-background-ondark-selected);
   }
 
-  &:focus {
-    box-shadow: 0 0 0 6px $neutral600;
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-action-border-onlight-focus);
+    border-color: var(--color-action-border-onlight-focus);
   }
 
   &--highlighted {
     background-color: $blueberry500;
+    border-color: $blueberry500;
     color: $white;
 
     &:hover,
-    &:active,
-    &:focus {
+    &:active {
       background-color: $blueberry700;
+      border-color: $blueberry700;
     }
 
-    &:focus {
-      box-shadow: 0 0 0 6px $blueberry700;
+    &:focus-visible {
+      border-color: var(--color-action-border-onlight-focus);
     }
   }
 
   &__title {
     @include tile-title;
-
-    &--compact {
-      margin: 0 0 0 1.5rem;
-    }
   }
 
-  #{$tile}:focus & {
+  #{$tile}:focus-visible & {
     &__title {
       &--highlighted {
         text-decoration: underline;
@@ -106,12 +117,11 @@
 
 .title-wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   padding-bottom: 0.5rem;
 
-  @media (min-width: map.get($grid-breakpoints, sm)) {
-    flex-direction: column;
+  @media (min-width: map.get($grid-breakpoints, md)) {
     align-items: start;
 
     @media print {
