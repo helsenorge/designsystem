@@ -188,7 +188,7 @@ export const IconWall: LazyIconStory = {
                 style={{ display: 'flex', width: 'fit-content', minWidth: '10rem', flexDirection: 'column', alignItems: 'center' }}
                 key={index}
               >
-                <LazyIcon {...args} iconName={iconName as IconName} size={iconSize} isHovered={isHovered} />
+                <LazyIcon {...args} iconName={iconName as IconName} size={iconSize} isHovered={isHovered} color={args.color} />
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <span>{iconName}</span>
                   {additionalInfo && (
