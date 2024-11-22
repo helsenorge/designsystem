@@ -22,7 +22,7 @@ export const useOutsideEvent = (
   useEffect(() => {
     events.forEach(eventName => document.addEventListener(eventName, handleOutsideEvent));
 
-    return () => {
+    return (): void => {
       events.forEach(eventName => document.removeEventListener(eventName, handleOutsideEvent));
     };
   }, [ref, handleClick, events]);
