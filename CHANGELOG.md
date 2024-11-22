@@ -1,3 +1,15 @@
+## [9.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.3.0&targetVersion=GTv9.4.0) (2024-11-22)
+
+
+### Features
+
+*  nye ikoner ([c18b15a](https://github.com/helsenorge/designsystem/commit/c18b15a31ad1109c23c72bffcafe41de2c795af2)), closes [#334685](https://github.com/helsenorge/designsystem/issues/334685)
+
+
+### Bug Fixes
+
+* **datepicker:**  sjekk for klikking utenfor popup fungerer ikke i webcomp ([7a831f9](https://github.com/helsenorge/designsystem/commit/7a831f929fd9b529e4e080e22db5cad1dbf6c2b8)), closes [#337485](https://github.com/helsenorge/designsystem/issues/337485)
+
 ## [9.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.2.0&targetVersion=GTv9.3.0) (2024-11-20)
 
 
