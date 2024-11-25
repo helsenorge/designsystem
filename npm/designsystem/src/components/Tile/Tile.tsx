@@ -46,11 +46,12 @@ export interface TileCompound extends React.ForwardRefExoticComponent<TileProps 
 }
 
 const Title = React.forwardRef<HTMLHeadingElement, TileTitleProps>((props, ref) => {
-  const { children, className, htmlMarkup = 'span', highlighted } = props;
+  const { compact, children, className, htmlMarkup = 'span', highlighted } = props;
   const titleClasses = classNames(
     tileStyles['tile__title'],
     {
       [tileStyles['tile__title--highlighted']]: highlighted,
+      [tileStyles['tile__title--compact']]: compact,
     },
     className
   );

@@ -3,6 +3,7 @@ export type Styles = {
   tile__children: string;
   tile__description: string;
   tile__title: string;
+  'tile__title--compact': string;
   'tile__title--highlighted': string;
   'tile--compact': string;
   'tile--fixed': string;

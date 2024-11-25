@@ -6,24 +6,6 @@
 @import '../../scss/screen-reader';
 @import '../../scss/supernova/styles/colors';
 
-@mixin tile-title {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  font-size: $font-size-sm;
-  text-align: left;
-  line-height: 1.74rem;
-  font-weight: 400;
-  margin: getSpacer(3xs) 0 0 getSpacer(2xs);
-
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-weight: 600;
-    font-size: $font-size-md;
-    line-height: 1.625rem;
-    margin-top: getSpacer(s);
-  }
-}
-
 .tile {
   // Referanse for grandparent selection i underklassene lenger nede
   $tile: &;
@@ -93,7 +75,29 @@
   }
 
   &__title {
-    @include tile-title;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    font-size: $font-size-sm;
+    text-align: left;
+    line-height: 1.74rem;
+    font-weight: 400;
+    margin: getSpacer(3xs) 0 0 getSpacer(2xs);
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      font-weight: 600;
+      font-size: $font-size-md;
+      line-height: 1.625rem;
+      margin-top: getSpacer(s);
+    }
+
+    &--compact {
+      margin: 0 0 0 getSpacer(3xs);
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
+        margin-left: getSpacer(2xs);
+      }
+    }
   }
 
   #{$tile}:focus-visible & {
