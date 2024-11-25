@@ -1,3 +1,10 @@
+## [9.4.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.4.0&targetVersion=GTv9.4.1) (2024-11-25)
+
+
+### Bug Fixes
+
+* **tile:**  compact title plasseres riktig ([72f7281](https://github.com/helsenorge/designsystem/commit/72f72818f9135d4489c29275ab4abbd746c324fd)), closes [#336170](https://github.com/helsenorge/designsystem/issues/336170)
+
 ## [9.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.3.0&targetVersion=GTv9.4.0) (2024-11-22)
 
 
