@@ -21,3 +21,19 @@ $container-max-widths: (
   md: 612px,
   lg: 1056px,
 );
+
+@function get($breakpoint) {
+  $breakpoint-value: map.get(
+    (
+      xxs: map.get($grid-breakpoints, xxs),
+      xs: map.get($grid-breakpoints, xs),
+      sm: map.get($grid-breakpoints, sm),
+      md: map.get($grid-breakpoints, md),
+      lg: map.get($grid-breakpoints, lg),
+      xl: map.get($grid-breakpoints, xl),
+    ),
+    $breakpoint
+  );
+
+  @return $breakpoint-value;
+}
