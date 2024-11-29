@@ -31,7 +31,7 @@ export type Styles = {
   expander__button: string;
   expander__button__text: string;
   'expander__button--expanded': string;
-  'expander__button--sticky': string;
+  'expander__button-container--sticky': string;
   expander__content: string;
   'expander__content--banana': string;
   'expander__content--blueberry': string;
@@ -44,6 +44,7 @@ export type Styles = {
   'expander__content--neutral': string;
   'expander__content--plum': string;
   'expander__content--small': string;
+  'expander__content--sticky': string;
   'expander__content--white': string;
   expander__icon: string;
   'expander__icon--left': string;
