@@ -5,8 +5,10 @@ import { Docs } from 'frankenstein-build-tools';
 
 import PanelNew, { PanelNewVariant, PanelNewLayout, PanelNewStacking } from './PanelNew';
 import Badge from '../Badge';
+import Button from '../Button';
 import Expander from '../Expander/Expander';
 import Icon, { IconSize } from '../Icon';
+import ArrowRight from '../Icons/ArrowRight';
 import PdfFile from '../Icons/PdfFile';
 import StatusDot from '../StatusDot';
 import Title from '../Title/Title';
@@ -47,7 +49,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const PreviewContainer = ({ children }) => {
+const PreviewContainer = ({ children }): JSX.Element => {
   return (
     <div style={{ width: '100%', height: '100%', backgroundColor: '#BD10E040', border: '1px #BD10E0 dotted', color: '#BD10E0' }}>
       {children}
@@ -166,22 +168,66 @@ export const OldPanelDefault: Story = {
     );
   },
 };
-// // <p style={{ whiteSpace: 'pre-line' }}>
-// {`
-//   Legemiddel: Aerius Mikst 0,5 mg/ml
 
-//   Dosering: 1 tablett daglig
-
-//   Virkestoff: Cetrizin
-//   ATC-kode:R06AX27
-//   Pakningsstørrelse: 120ml
-
-//   Antall: 1
-//   Forskrevet av: Diana Dips, Testsykehuset HF
-//   Forskrevet dato: 27.09.2020
-//   Gyldig til: 20.09.2021
-//   Reiterasjoner: 3 (Det betyr at du kan hente ut forskrevet mengde 4 ganger)
-//   Antall utlevering: 1 (Se utleveringer på denne resepten)
-//   Refusjonshjemmel: §5-14 §2 (blå resept)
-//   Resepten er hentet fra: Reseptformidleren`}
-//     </p>
+export const WithContent: Story = {
+  args: {},
+  render: args => (
+    <PanelNew {...args}>
+      <PanelNew.PreContainer>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateAreas: `'. statusdot statusdot' 'icon title badge'`,
+            gridTemplateColumns: '64px 70px auto',
+          }}
+        >
+          <div style={{ gridArea: 'statusdot' }}>
+            <StatusDot text={'Label'} />
+          </div>
+          <div style={{ gridArea: 'icon' }}>
+            <Icon svgIcon={PdfFile} size={IconSize.XSmall} />
+          </div>
+          <div style={{ gridArea: 'title' }}>
+            <Title appearance="title3">{'Tittel'}</Title>
+          </div>
+          <div style={{ gridArea: 'badge' }}>
+            <Badge>{'Ny'}</Badge>
+          </div>
+        </div>
+      </PanelNew.PreContainer>
+      <PanelNew.A>
+        <p>
+          {
+            'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+          }
+        </p>
+        <Button variant="borderless">
+          {'Call to action'}
+          <Icon svgIcon={ArrowRight} />
+        </Button>
+      </PanelNew.A>
+      <PanelNew.B>
+        <p>
+          {
+            'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+          }
+        </p>
+        <Button variant="borderless">
+          {'Call to action'}
+          <Icon svgIcon={ArrowRight} />
+        </Button>
+      </PanelNew.B>
+      <PanelNew.C>
+        <p>
+          {
+            'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+          }
+        </p>
+        <Button variant="borderless">
+          {'Call to action'}
+          <Icon svgIcon={ArrowRight} />
+        </Button>
+      </PanelNew.C>
+    </PanelNew>
+  ),
+};
