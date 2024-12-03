@@ -5,12 +5,18 @@
 .panel {
   display: grid;
   gap: spacers.getSpacer(m);
-  padding: spacers.getSpacer(m);
+  padding: spacers.getSpacer(s);
+
+  // @todo: gap mellom precontainer og content skal være s, ikke M
   grid-template-areas:
     'header'
     'contentA'
     'contentB'
     'contentC';
+
+  @media (min-width: breakpoints.get(md)) {
+    padding: spacers.getSpacer(m);
+  }
 
   &--b-first {
     grid-template-areas:
