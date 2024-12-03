@@ -2,8 +2,7 @@
 @import '@helsenorge/designsystem-react/scss/spacers';
 @import '@helsenorge/designsystem-react/scss/breakpoints';
 @import '@helsenorge/designsystem-react/scss/palette';
-@import '@helsenorge/designsystem-react/scss/font-settings';
-@import '@helsenorge/designsystem-react/scss/title';
+@import '@helsenorge/designsystem-react/scss/font-mixins';
 
 .date-time-picker-wrapper {
   display: flex;
@@ -130,13 +129,13 @@
 .head_cell {
   color: $neutral700;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: $font-size-sm;
+  font-size: 1.125rem;
   font-weight: 400;
   text-transform: capitalize;
 }
 
 .day {
-  font-size: $font-size-sm;
+  font-size: 1.125rem;
   font-weight: 600;
   font-family: 'Source Sans Pro', sans-serif;
   color: $blueberry600;
@@ -225,7 +224,7 @@
   opacity: 0;
   border: none;
   background-color: transparent;
-  font-size: $font-size-sm;
+  font-size: 1.125rem;
   line-height: inherit;
   text-transform: capitalize;
 
@@ -250,7 +249,7 @@
   white-space: nowrap;
   color: currentColor;
   border: 2px solid transparent;
-  font-size: $font-size-sm;
+  font-size: 1.125rem;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 600;
 }
@@ -262,7 +261,7 @@
   display: inline-flex;
   align-items: center;
   text-transform: capitalize;
-  font-size: $font-size-md;
+  font-size: 1.25rem;
   font-weight: 600;
 }
 
