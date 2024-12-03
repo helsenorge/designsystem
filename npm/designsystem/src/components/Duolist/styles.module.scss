@@ -1,6 +1,5 @@
 @use 'sass:map';
 @import '../../scss/breakpoints';
-@import '../../scss/font-settings';
 @import '../../scss/palette';
 @import '../../scss/spacers';
 
@@ -17,12 +16,12 @@
 }
 
 .duolist {
-  font-size: $font-size-sm;
+  font-size: 1.125rem;
   margin: 0;
   display: grid;
 
   @media (min-width: map.get($grid-breakpoints, sm)) {
-    font-size: $font-size-md;
+    font-size: 1.25rem;
   }
 
   &__dt {
@@ -47,7 +46,7 @@
 
   &__dt,
   &__dd {
-    line-height: $lineheight-size-md;
+    line-height: 1.875rem;
     padding-bottom: getSpacer(2xs);
 
     &:last-of-type {
@@ -56,7 +55,7 @@
 
     &--bold {
       font-weight: 600;
-      line-height: $lineheight-size-sm;
+      line-height: 1.75rem;
     }
 
     &--non-formatted {

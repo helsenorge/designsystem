@@ -1,5 +1,4 @@
 @use 'sass:map';
-@import '../../scss/font-settings';
 @import '../../scss/palette';
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
@@ -78,7 +77,7 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
-    font-size: $font-size-sm;
+    font-size: 1.125rem;
     text-align: center;
     line-height: 1.74rem;
     font-weight: 400;
@@ -87,7 +86,7 @@
     @media (min-width: map.get($grid-breakpoints, md)) {
       text-align: left;
       font-weight: 600;
-      font-size: $font-size-md;
+      font-size: 1.25rem;
       line-height: 1.625rem;
       margin: getSpacer(s) 0 0 getSpacer(2xs);
     }

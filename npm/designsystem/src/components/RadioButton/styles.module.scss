@@ -4,7 +4,6 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 
 @mixin dashed-border() {
   box-shadow: none;
@@ -16,7 +15,7 @@
 }
 
 .radio-button-errors {
-  font-size: $font-size-sm;
+  font-size: 1.125rem;
   font-weight: 600;
   color: $cherry600;
   margin-top: 0;
@@ -49,7 +48,7 @@
   display: flex;
   align-items: flex-start;
   cursor: pointer;
-  line-height: $lineheight-size-sm;
+  line-height: 1.75rem;
   color: $black;
 
   &--on-dark {

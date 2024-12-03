@@ -2,7 +2,6 @@
 @import '../../scss/breakpoints';
 @import '../../scss/spacers';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 
 .stepper-wrapper {
   display: flex;
@@ -72,8 +71,8 @@ $dot-offset: calc($stepper-padding-x + $dot-size / 2);
     min-width: 2.5rem;
     text-align: right;
     margin-left: getSpacer(xs);
-    font-size: $font-size-xs;
-    line-height: $lineheight-size-xs;
+    font-size: 1rem;
+    line-height: 1.5rem;
     font-weight: 700;
     color: $blueberry700;
   }

@@ -1,7 +1,6 @@
 @use 'sass:map';
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
-@import '../../scss/font-settings';
 @import '../../scss/palette';
 @import '../../scss/supernova/styles/colors.css';
 
@@ -108,34 +107,34 @@
     }
 
     &--small {
-      font-size: $font-size-xs;
-      line-height: $lineheight-size-xs;
+      font-size: 1rem;
+      line-height: 1.5rem;
     }
 
     &--medium {
-      font-size: $font-size-sm;
-      line-height: $lineheight-size-sm;
+      font-size: 1.125rem;
+      line-height: 1.75rem;
     }
 
     &--large {
-      font-size: $font-size-md;
-      line-height: $lineheight-size-md;
+      font-size: 1.25rem;
+      line-height: 1.875rem;
     }
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       &--small {
-        font-size: $font-size-sm;
-        line-height: $lineheight-size-sm;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
       }
 
       &--medium {
-        font-size: $font-size-md;
-        line-height: $lineheight-size-md;
+        font-size: 1.25rem;
+        line-height: 1.875rem;
       }
 
       &--large {
-        font-size: $font-size-lg;
-        line-height: $lineheight-size-lg;
+        font-size: 1.5rem;
+        line-height: 2rem;
       }
     }
 

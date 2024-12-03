@@ -2,7 +2,6 @@
 @import '../../scss/spacers';
 @import '../../scss/palette';
 @import '../../scss/breakpoints';
-@import '../../scss/font-settings';
 
 .modal-overlay {
   background: rgb(51 51 51 / 75%);
@@ -216,7 +215,7 @@
     }
 
     &__imageDescription {
-      font-size: $font-size-xs;
+      font-size: 1rem;
       padding-top: getSpacer(s);
       display: block;
     }

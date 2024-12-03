@@ -2,7 +2,6 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 @import '../AnchorLink/styles.module';
 
 .popover {
@@ -14,8 +13,8 @@
   max-width: 23.3125rem;
   text-align: start;
   font-family: inherit;
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   background-color: $white;
   z-index: 3;
   visibility: hidden;
@@ -24,8 +23,8 @@
   box-shadow: 0 0.125rem 1.125rem 0 rgb(0 0 0 / 15%);
 
   @media (min-width: map.get($grid-breakpoints, lg)) {
-    font-size: $font-size-md;
-    line-height: $lineheight-size-md;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
   }
 
   &--visible {

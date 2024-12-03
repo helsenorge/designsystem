@@ -6,7 +6,7 @@
 
 @mixin input-container {
   display: flex;
-  font-size: $font-size-sm;
+  font-size: 1.125rem;
   width: 100%;
   border: 2px solid $neutral700;
   outline: none;
@@ -134,7 +134,7 @@
   &__input {
     line-height: 1.625rem;
     font-family: inherit;
-    font-size: $font-size-sm;
+    font-size: 1.125rem;
     padding: 0 getSpacer(2xs);
     border: none;
     outline: none;
@@ -142,7 +142,7 @@
     width: 100%;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      font-size: $font-size-md;
+      font-size: 1.25rem;
     }
 
     &::placeholder {

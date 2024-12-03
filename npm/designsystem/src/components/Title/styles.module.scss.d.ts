@@ -6,6 +6,7 @@ export type Styles = {
   'title--title3': string;
   'title--title4': string;
   'title--title5': string;
+  'title--title6': string;
 };
 
 export type ClassNames = keyof Styles;

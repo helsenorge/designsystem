@@ -2,7 +2,6 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 
 .select-wrapper {
   display: flex;
@@ -61,13 +60,13 @@
   outline: $neutral700 solid 2px;
   outline-offset: -2px;
   font-family: inherit;
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   border-radius: 0;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     height: 3.125rem;
-    font-size: $font-size-md;
+    font-size: 1.25rem;
   }
 
   &--on-blueberry {
@@ -96,10 +95,10 @@
   & > option {
     background: $white;
     font-family: inherit;
-    font-size: $font-size-sm;
+    font-size: 1.125rem;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      font-size: $font-size-md;
+      font-size: 1.25rem;
     }
   }
 }

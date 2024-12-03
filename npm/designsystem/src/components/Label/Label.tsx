@@ -16,7 +16,7 @@ export type LabelText = {
   type?: 'semibold' | 'normal';
 };
 
-export type LabelTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span' | 'label' | 'p';
+export type LabelTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'label' | 'p';
 
 export interface LabelProps {
   /** Component shown after label - discourage use of this */

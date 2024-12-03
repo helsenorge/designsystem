@@ -2,7 +2,6 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 @import '../../scss/screen-reader';
 @import '../../scss/supernova/styles/colors';
 
@@ -197,7 +196,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   display: inline-flex;
   background-color: $blueberry500;
   padding: 0 getSpacer(m);
-  font-size: $font-size-sm;
+  font-size: 1.125rem;
   font-weight: 600;
   font-family: inherit;
   line-height: 1.375rem;
@@ -229,7 +228,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   @media (min-width: map.get($grid-breakpoints, md)) {
     min-height: 3.125rem;
     padding: 0 getSpacer(l);
-    font-size: $font-size-md;
+    font-size: 1.25rem;
     line-height: 1.5rem;
   }
 
@@ -241,7 +240,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     @media (min-width: map.get($grid-breakpoints, md)) {
       min-height: 4.5rem;
       padding: 0 getSpacer(xl);
-      font-size: $font-size-lg;
+      font-size: 1.5rem;
       line-height: 1.5rem;
     }
   }

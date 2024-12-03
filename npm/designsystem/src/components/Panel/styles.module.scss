@@ -2,7 +2,6 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 
 @mixin panel-padding {
   padding: getSpacer(s);
@@ -384,7 +383,7 @@ $layout-md-col-gap: getSpacer(m);
 }
 
 .status-message {
-  font-size: $font-size-sm;
+  font-size: 1.125rem;
   color: $cherry500;
   display: flex;
   margin-bottom: getSpacer(2xs) * -1;
@@ -393,7 +392,7 @@ $layout-md-col-gap: getSpacer(m);
   span {
     padding-left: 5px;
     align-self: center;
-    font-size: $font-size-sm;
+    font-size: 1.125rem;
   }
 
   &--new {
@@ -427,7 +426,7 @@ $layout-md-col-gap: getSpacer(m);
 
     span {
       padding-left: getSpacer(2xs);
-      font-size: $font-size-sm;
+      font-size: 1.125rem;
     }
   }
 }

@@ -49,6 +49,10 @@ export const Title5: Story = {
   render: args => <div className={designsystemtypography.title5}>{args.tekst}</div>,
 };
 
+export const Title6: Story = {
+  render: args => <div className={designsystemtypography.title6}>{args.tekst}</div>,
+};
+
 export const Preamble: Story = {
   render: args => <div className={designsystemtypography.preamble}>{args.tekst}</div>,
 };

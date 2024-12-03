@@ -2,7 +2,6 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 @import '../AnchorLink/styles.module';
 
 .helpbubble {
@@ -12,12 +11,12 @@
   align-items: flex-start !important;
   text-align: start;
   font-family: inherit;
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 
   @media (min-width: map.get($grid-breakpoints, lg)) {
-    font-size: $font-size-md;
-    line-height: $lineheight-size-md;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
   }
 
   &__content {

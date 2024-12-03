@@ -4,7 +4,6 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 @import '../../scss/grid';
 
 /* fix outline for Safari */
@@ -184,8 +183,8 @@ table .table-body .table-row {
   // Fix for firefox hover feil
   background-clip: padding-box;
   height: 3.625rem;
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-xs;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
   text-align: left;
   vertical-align: bottom;
   font-weight: 700;
@@ -209,8 +208,8 @@ table .table-body .table-row {
   @media (min-width: map.get($grid-breakpoints, lg)) {
     padding: 1rem;
     height: 5.5rem;
-    font-size: $font-size-md;
-    line-height: $lineheight-size-sm;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
     font-weight: 700;
   }
 
@@ -223,7 +222,7 @@ table .table-body .table-row {
     @media (min-width: map.get($grid-breakpoints, sm)) {
       padding: getSpacer(s) getSpacer(3xs) getSpacer(3xs);
       line-height: 20px;
-      font-size: $font-size-xs;
+      font-size: 1rem;
       height: unset;
     }
   }
@@ -235,7 +234,7 @@ table .table-body .table-row {
 
 .table__cell {
   height: 2, 375;
-  font-size: $font-size-xs;
+  font-size: 1rem;
   line-height: 1.5rem;
   padding: 0.5rem 0.75rem;
   text-align: left;
@@ -256,7 +255,7 @@ table .table-body .table-row {
   @media (min-width: map.get($grid-breakpoints, lg)) {
     padding: 1rem;
     height: 3.625rem;
-    font-size: $font-size-sm;
+    font-size: 1.125rem;
     line-height: 1.75rem;
   }
 
@@ -266,7 +265,7 @@ table .table-body .table-row {
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
       padding: getSpacer(3xs);
-      font-size: $font-size-xs;
+      font-size: 1rem;
     }
   }
 }

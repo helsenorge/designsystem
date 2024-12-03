@@ -1,0 +1,118 @@
+@use 'sass:map';
+@import './spacers';
+@import './breakpoints';
+
+// @todo rename denne filen til font-mixins e.l.
+
+@mixin title-feature {
+  font-size: 2.375rem;
+  line-height: 2.875rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+}
+
+@mixin title1 {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 3rem;
+    line-height: 3.6rem;
+  }
+}
+
+@mixin title2 {
+  font-size: 1.625rem;
+  line-height: 1.95rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+}
+
+@mixin title3 {
+  font-size: 1.375rem;
+  line-height: 1.7875rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.625rem;
+    line-height: 1.95rem;
+  }
+}
+
+@mixin title4 {
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.375rem;
+    line-height: 1.7875rem;
+  }
+}
+
+@mixin title5 {
+  font-size: 1rem;
+  line-height: 1.4rem;
+  letter-spacing: 0.03rem;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.125rem;
+    line-height: 1.575rem;
+    letter-spacing: 0.3375rem;
+  }
+}
+
+@mixin title6 {
+  font-size: 1rem;
+  line-height: 1.4rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.125rem;
+    line-height: 1.575rem;
+  }
+}
+
+@mixin body {
+  font-size: 1.125rem;
+  line-height: 1.6875rem;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+  }
+}
+
+@mixin preamble {
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-weight: 400;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.5rem;
+    line-height: 1.9375rem;
+  }
+}
+
+// TODO: Stoppet her på legend, fortsett herfra i skissene
+@mixin legend {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}

@@ -2,7 +2,6 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 @import '../../scss/supernova/styles/colors';
 
 .toggle-container {
@@ -21,9 +20,9 @@
   }
 
   &__label {
-    font-size: $font-size-md;
+    font-size: 1.25rem;
     font-weight: 400;
-    line-height: $lineheight-size-xs;
+    line-height: 1.5rem;
     color: var(--core-color-neutral-900);
     margin-left: getSpacer(xs);
 
@@ -46,15 +45,15 @@
   }
 
   &__sublabel {
-    font-size: $font-size-xs;
+    font-size: 1rem;
     line-height: 1.25rem;
     color: var(--core-color-neutral-800);
     margin-left: 3.9rem;
     text-align: left;
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
-      font-size: $font-size-sm;
-      line-height: $lineheight-size-xs;
+      font-size: 1.125rem;
+      line-height: 1.5rem;
       text-align: left;
       margin-left: 4.1rem;
     }

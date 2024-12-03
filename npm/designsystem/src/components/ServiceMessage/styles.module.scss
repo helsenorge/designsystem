@@ -2,7 +2,6 @@
 @import '../../scss/spacers';
 @import '../../scss/palette';
 @import '../../scss/breakpoints';
-@import '../../scss/font-settings';
 @import '../../scss/grid';
 
 .service-message {
@@ -110,11 +109,11 @@
   &__title {
     width: 100%;
     font-weight: 700;
-    font-size: $font-size-xs;
+    font-size: 1rem;
     line-height: 1.25rem;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      font-size: $font-size-sm;
+      font-size: 1.125rem;
     }
   }
 
@@ -149,14 +148,14 @@
   }
 
   &__info {
-    font-size: $font-size-xs;
+    font-size: 1rem;
     line-height: 1.25rem;
     margin: 0;
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
       margin-top: getSpacer(xs);
       line-height: 1.625rem;
-      font-size: $font-size-sm;
+      font-size: 1.125rem;
     }
 
     &--extra {
@@ -165,8 +164,8 @@
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
         margin-top: getSpacer(xs);
-        font-size: $font-size-xs;
-        line-height: $lineheight-size-xs;
+        font-size: 1rem;
+        line-height: 1.5rem;
       }
     }
   }
@@ -194,7 +193,7 @@
     width: fit-content;
     color: $blueberry700;
     font-weight: 600;
-    font-size: $font-size-xs;
+    font-size: 1rem;
     line-height: 1.25rem;
     background-color: transparent;
     text-decoration: none;

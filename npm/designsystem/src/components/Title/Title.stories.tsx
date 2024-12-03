@@ -67,6 +67,9 @@ export const AllAppearances: Story = {
       <Title {...args} appearance="title5">
         {args.children} {'(title5)'}
       </Title>
+      <Title {...args} appearance="title6">
+        {args.children} {'(title6)'}
+      </Title>
     </>
   ),
 };

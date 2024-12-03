@@ -3,7 +3,6 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 @import '../../scss/supernova/styles/colors';
 @import '../Button/styles.module';
 
@@ -55,14 +54,14 @@
     align-items: center;
     border: none;
     outline: none;
-    font-size: $font-size-sm;
-    line-height: $lineheight-size-sm;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
     font-weight: 600;
     text-align: left;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      font-size: $font-size-md;
-      line-height: $lineheight-size-md;
+      font-size: 1.25rem;
+      line-height: 1.875rem;
     }
 
     &--large {
