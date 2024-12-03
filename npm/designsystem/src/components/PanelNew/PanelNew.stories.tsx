@@ -32,7 +32,7 @@ const meta = {
     },
     color: {
       control: 'select',
-      options: ['blueberry', 'neutral', 'white'],
+      options: ['neutral', 'white'],
     },
     layout: {
       control: 'select',

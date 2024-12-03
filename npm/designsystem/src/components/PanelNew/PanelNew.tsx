@@ -13,7 +13,7 @@ export enum PanelNewLayout {
   bAsRightCol = 'bAsRightCol',
 }
 
-export type PanelColors = Extract<PaletteNames, 'white' | 'blueberry' | 'neutral'>;
+export type PanelColors = Extract<PaletteNames, 'white' | 'neutral'>;
 
 export enum PanelNewVariant {
   fill = 'fill',
