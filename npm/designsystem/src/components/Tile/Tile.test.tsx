@@ -8,17 +8,6 @@ import AlarmClock from '../Icons/AlarmClock';
 import Eye from '../Icons/Eye';
 import SharingStatus from '../SharingStatus';
 
-test('displays tile', (): void => {
-  const { container } = render(
-    <Tile
-      icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
-      title={<Tile.Title>{'Title'}</Tile.Title>}
-      description="Description"
-    />
-  );
-  expect(container).toMatchSnapshot();
-});
-
 describe('Gitt at Tile skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
@@ -83,6 +72,23 @@ describe('Gitt at Tile skal vises', (): void => {
 
       const child = screen.getByText('Eksempel på React Child');
       expect(child).toBeVisible();
+    });
+  });
+  describe('Når variant satt til compact', () => {
+    test('Så skal Tile rendres som compact', async () => {
+      render(
+        <Tile
+          variant={'compact'}
+          icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+          title={<Tile.Title>{'Lenketekst'}</Tile.Title>}
+          description={'Description'}
+          href="#"
+        />
+      );
+      const tile = screen.getByRole('link', { name: 'Lenketekst' });
+      const description = screen.queryByText('Description');
+      expect(tile).toHaveClass('tile tile--compact');
+      expect(description).not.toBeInTheDocument();
     });
   });
 });

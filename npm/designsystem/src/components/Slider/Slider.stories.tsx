@@ -47,6 +47,9 @@ const meta = {
     value: {
       control: 'number',
     },
+    id: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof Slider>;
 

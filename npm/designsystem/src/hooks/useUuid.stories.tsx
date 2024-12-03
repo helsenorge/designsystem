@@ -11,10 +11,10 @@ const UseUuidExample: React.FC = () => {
 
   return (
     <>
-      <p>uuid: {id}</p>
-      <p>Teller: {count}</p>
+      <p>{`uuid: ${id}`}</p>
+      <p>{`Teller: ${count}`}</p>
       <Button id={id} onClick={() => setCount(count + 1)}>
-        Oppdater
+        {'Oppdater'}
       </Button>
     </>
   );
@@ -27,6 +27,28 @@ const meta = {
     docs: {
       description: {
         component: 'Returner unik uuid som ikke endrer seg for hver render.',
+      },
+      source: {
+        language: 'tsx',
+        code: `
+import { useUuid } from '@helsenorge/designsystem-react/hooks/useUuid';
+import Button from '@helsenorge/designsystem-react/components/Button';
+
+const UseUuidExample: React.FC = () => {
+  const [count, setCount] = useState(0);
+  const id = useUuid();
+
+  return (
+    <>
+      <p>{\`uuid: \${id}\`}</p>
+      <p>{\`Teller: \${count}\`}</p>
+      <Button id={id} onClick={() => setCount(count + 1)}>
+        {'Oppdater'}
+      </Button>
+    </>
+  );
+};
+`,
       },
     },
     chromatic: { disableSnapshot: true },

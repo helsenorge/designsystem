@@ -12,8 +12,9 @@ const UseRovingFocusExample: React.FC = () => {
     useRef<HTMLButtonElement>(null),
   ]);
   const containerRef = useRef<HTMLDivElement>(null);
+  const leftRightNavigation = false;
 
-  useRovingFocus(setActiveIndex, refArray, containerRef);
+  useRovingFocus(setActiveIndex, refArray, containerRef, leftRightNavigation);
 
   return (
     <div ref={containerRef}>
@@ -34,6 +35,36 @@ const meta = {
     docs: {
       description: {
         component: 'Setter keyboard navigation mønsteret "Roving focus" (også kalt "Roving tabindex") på elementene i listen.',
+      },
+      source: {
+        language: 'tsx',
+        code: `
+import { useRovingFocus } from '@helsenorge/designsystem-react/hooks/useRovingFocus';
+
+const UseRovingFocusExample: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const refArray = useRef<Array<React.RefObject<HTMLButtonElement>>>([
+    useRef<HTMLButtonElement>(null),
+    useRef<HTMLButtonElement>(null),
+    useRef<HTMLButtonElement>(null),
+  ]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const leftRightNavigation = false;
+
+  useRovingFocus(setActiveIndex, refArray, containerRef, leftRightNavigation);
+
+  return (
+    <div ref={containerRef}>
+      <div>{'Focused button:' + activeIndex}</div>
+      {refArray.current.map((ref, index) => (
+        <button key={index} ref={ref}>
+          {'Button ' + index}
+        </button>
+      ))}
+    </div>
+  );
+};
+        `,
       },
     },
     chromatic: { disableSnapshot: true },

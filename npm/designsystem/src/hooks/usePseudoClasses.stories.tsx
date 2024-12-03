@@ -28,6 +28,28 @@ const meta = {
       description: {
         component: 'Få vite når et element hovres over eller mottar fokus.',
       },
+      source: {
+        language: 'tsx',
+        code: `
+import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
+import Button from '@helsenorge/designsystem-react/components/Button';
+        
+const UsePseudoClassesExample: React.FC = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  const { isHovered, isFocused } = usePseudoClasses(ref);
+
+  return (
+    <>
+      <Button ref={ref}>{'Knapp'}</Button>
+      <p>
+        {'Knappen har hover/fokus: '}
+        {isHovered ? 'hover' : isFocused ? 'fokus' : 'nei'}
+      </p>
+    </>
+  );
+};
+        `,
+      },
     },
     chromatic: { disableSnapshot: true },
   },

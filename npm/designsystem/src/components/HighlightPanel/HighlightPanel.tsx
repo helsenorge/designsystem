@@ -38,7 +38,7 @@ export interface HighlightPanelProps {
   htmlMarkup?: HighlightPanelTags;
   /** Adds custom classes to the element. */
   className?: string;
-  /** Adds custom classes to the content-wrapper */
+  /** Adds custom classes to the content-wrapper. Not used for fluid size. */
   contentWrapperClassName?: string;
   /** Sets the data-testid attribute. */
   testId?: string;

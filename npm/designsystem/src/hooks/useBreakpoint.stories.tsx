@@ -20,6 +20,19 @@ const meta = {
       description: {
         component: 'Lytt på endringer i breakpoint basert på media queries. Trigger re-render bare når breakpoint er endret.',
       },
+      source: {
+        language: 'tsx',
+        code: `
+import { Breakpoint, useBreakpoint } from '@helsenorge/designsystem-react/hooks/useBreakpoint';
+
+const UseBreakpointExample: React.FC = () => {
+  const breakpoint = useBreakpoint();
+  const description = \`Breakpoint er nå \${Breakpoint[breakpoint]} (\${breakpoint}px)\`;
+
+  return <p>{description}</p>;
+}
+`,
+      },
     },
     chromatic: { disableSnapshot: true },
   },

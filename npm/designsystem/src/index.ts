@@ -7,7 +7,6 @@ export { useIntersectionObserver } from './hooks/useIntersectionObserver';
 export { useIsVisible } from './hooks/useIsVisible';
 export { useLayoutEvent } from './hooks/useLayoutEvent';
 export { usePrevious } from './hooks/usePrevious';
-export { useSticky } from './hooks/useSticky';
 export { useSize } from './hooks/useSize';
 export { useResizeObserver } from './hooks/useResizeObserver';
 export { useToggle } from './hooks/useToggle';

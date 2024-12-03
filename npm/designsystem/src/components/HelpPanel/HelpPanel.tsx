@@ -21,11 +21,9 @@ export interface HelpPanelProps {
 }
 
 const HelpPanel: React.FC<HelpPanelProps> = ({ className, testId, size, children, title }) => {
-  const helpPanelClassName = classNames(styles['help-panel'], className);
-
   return (
     <HighlightPanel
-      className={helpPanelClassName}
+      className={classNames(className, { [styles['help-panel']]: size === 'fluid' })}
       contentWrapperClassName={styles['help-panel']}
       testId={testId}
       size={size}

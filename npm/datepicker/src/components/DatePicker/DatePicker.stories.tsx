@@ -366,7 +366,13 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
   const requireDate = (value: string): true | string => {
     // eslint-disable-next-line no-console
     console.log('Validating date: ', value);
-    let validateResult = validateMinMaxDate(value, `Datoen må være fra ${minDate} og til ${maxDate}`, minDate, maxDate);
+    let validateResult = validateMinMaxDate(
+      value,
+      `Datoen må være fra ${minDate} og til ${maxDate}`,
+      'Datoen har feil format',
+      minDate,
+      maxDate
+    );
     validateResult =
       typeof validateResult !== 'string'
         ? validateDisabledDates(value, [disabledDate], `Datoen kan ikke være ${disabledDate}`)

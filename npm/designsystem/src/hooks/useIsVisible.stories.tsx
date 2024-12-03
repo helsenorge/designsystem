@@ -4,6 +4,7 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import { useIsVisible } from './useIsVisible';
 import Button from '../components/Button';
+import HighlightPanel from '../components/HighlightPanel';
 import { longLoremText } from '../utils/loremtext';
 
 interface UseIsVisibleExampleProps {
@@ -19,10 +20,13 @@ const UseIsVisibleExample: React.FC<UseIsVisibleExampleProps> = props => {
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
       <Button ref={ref} disabled={!isVisible}>
-        {'Knappen er'} {isVisible ? 'synlig' : 'ikke synlig'}
+        {`Knappen som sjekkes`}
       </Button>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
+      <HighlightPanel color="blueberry">
+        <p>{`Knappen er ${isVisible ? 'synlig' : 'ikke synlig'}`}</p>
+      </HighlightPanel>
     </>
   );
 };
@@ -34,6 +38,35 @@ const meta = {
     docs: {
       description: {
         component: 'Sjekk om et HTML-element er synlig i vinduet, eller ikke.',
+      },
+      source: {
+        language: 'tsx',
+        code: `
+import { useIsVisible } from '@helsenorge/designsystem-react/hooks/useIsVisible';
+import Button from '@helsenorge/designsystem-react/components/Button';
+import HighlightPanel from '@helsenorge/designsystem-react/components/HighlightPanel';
+import { longLoremText } from '@helsenorge/designsystem-react/utils/loremtext';
+
+const UseIsVisibleExample: React.FC<UseIsVisibleExampleProps> = props => {
+  const ref = useRef<HTMLButtonElement>(null);
+  const isVisible = useIsVisible(ref, props.threshold);
+
+  return (
+    <>
+      <p>{longLoremText}</p>
+      <p>{longLoremText}</p>
+      <Button ref={ref} disabled={!isVisible}>
+        {\`Knappen som sjekkes\`}
+      </Button>
+      <p>{longLoremText}</p>
+      <p>{longLoremText}</p>
+      <HighlightPanel color="blueberry">
+        <p>{\`Knappen er \${isVisible ? 'synlig' : 'ikke synlig'}\`}</p>
+      </HighlightPanel>
+    </>
+  );
+};
+`,
       },
     },
     chromatic: { disableSnapshot: true },
