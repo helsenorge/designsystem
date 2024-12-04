@@ -26,6 +26,13 @@ export enum PanelNewStacking {
   bFirst = 'bFirst',
 }
 
+export enum PanelNewStatus {
+  normal = 'normal',
+  new = 'new',
+  error = 'error',
+  draft = 'draft',
+}
+
 export interface PanelNewProps {
   /** Sets the layout and order of the content boxes */
   layout?: PanelNewLayout;
@@ -39,6 +46,8 @@ export interface PanelNewProps {
   testId?: string;
   /** Children elements to be rendered inside the panel */
   children?: React.ReactNode;
+  /** Displays a status on the left side: default normal */
+  status?: PanelNewStatus;
 }
 
 const PanelNew: React.FC<PanelNewProps> & {
@@ -53,6 +62,7 @@ const PanelNew: React.FC<PanelNewProps> & {
   stacking = PanelNewStacking.default,
   testId,
   children,
+  status = PanelNewStatus.normal,
 }: PanelNewProps) => {
   const colorScheme = variant === PanelNewVariant.fill ? color : 'white';
   const outerLayout = classNames(
@@ -62,6 +72,10 @@ const PanelNew: React.FC<PanelNewProps> & {
     styles[`panel--${colorScheme}`],
     {
       [styles[`panel--b-first`]]: stacking == 'bFirst',
+      [styles['panel--new']]: status === PanelNewStatus.new,
+      [styles['panel--draft']]: status === PanelNewStatus.draft,
+      [styles['panel--error']]: status === PanelNewStatus.error,
+      [styles['panel--status']]: status && status !== PanelNewStatus.normal,
     }
   );
 

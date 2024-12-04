@@ -3,7 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
-import PanelNew, { PanelNewVariant, PanelNewLayout, PanelNewStacking } from './PanelNew';
+import PanelNew, { PanelNewVariant, PanelNewLayout, PanelNewStacking, PanelNewStatus } from './PanelNew';
 import Badge from '../Badge';
 import Button from '../Button';
 import Expander from '../Expander/Expander';
@@ -41,6 +41,10 @@ const meta = {
     stacking: {
       control: 'select',
       options: Object.values(PanelNewStacking),
+    },
+    status: {
+      control: 'select',
+      options: Object.values(PanelNewStatus),
     },
   },
 } satisfies Meta<typeof PanelNew>;
