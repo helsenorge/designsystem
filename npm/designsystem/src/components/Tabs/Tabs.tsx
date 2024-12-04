@@ -13,7 +13,6 @@ import styles from './styles.module.scss';
 export type { TabProps } from './Tab';
 export type TabsColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'white'>;
 export type TabsOnColor = 'onblueberry' | 'onneutral' | 'onwhite';
-export type TabsTouchBehaviour = 'swipe' | 'none';
 
 export interface TabsProps {
   children?: React.ReactNode;
@@ -29,8 +28,6 @@ export interface TabsProps {
   onColor?: TabsOnColor;
   /** Whether the tab list should be sticky */
   sticky?: boolean;
-  /** Determines how Tabs respons to touch events. */
-  touchBehaviour?: TabsTouchBehaviour;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
