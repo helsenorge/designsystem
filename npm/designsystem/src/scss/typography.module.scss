@@ -65,12 +65,7 @@ import designsystemtypography from './scss/typography.scss'
 }
 
 .table-cell {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: 1.25rem;
-  }
+  @include table-cell;
 }
 
 .strong {
