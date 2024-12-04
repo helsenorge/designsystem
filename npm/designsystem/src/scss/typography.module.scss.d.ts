@@ -1,5 +1,7 @@
 export type Styles = {
   'anchorlink-wrapper': string;
+  body: string;
+  'compact-data': string;
   'focused-content': string;
   form: string;
   'image-caption': string;
@@ -16,6 +18,7 @@ export type Styles = {
   title3: string;
   title4: string;
   title5: string;
+  title6: string;
 };
 
 export type ClassNames = keyof Styles;

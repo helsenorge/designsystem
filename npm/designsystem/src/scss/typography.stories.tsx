@@ -65,6 +65,10 @@ export const Label: Story = {
   render: args => <div className={designsystemtypography.label}>{args.tekst}</div>,
 };
 
+export const CompactData: Story = {
+  render: args => <div className={designsystemtypography['compact-data']}>{args.tekst}</div>,
+};
+
 export const TableCell: Story = {
   render: args => <div className={designsystemtypography['table-cell']}>{args.tekst}</div>,
 };

@@ -57,13 +57,11 @@ import designsystemtypography from './scss/typography.scss'
 }
 
 .label {
-  font-size: 1.125rem;
-  line-height: getSpacer(m);
+  @include label;
+}
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
+.compact-data {
+  @include compact-data
 }
 
 .table-cell {
