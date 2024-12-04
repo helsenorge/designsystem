@@ -1,3 +1,13 @@
+## [9.4.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.4.1&targetVersion=GTv9.4.2) (2024-12-04)
+
+
+### Bug Fixes
+
+*  avrundingsfeil på noen ikoner ([b23e4ae](https://github.com/helsenorge/designsystem/commit/b23e4aec495395cbf92642be6657b03cc5765a2b)), closes [#337174](https://github.com/helsenorge/designsystem/issues/337174)
+* **expander:**  sticky fungerer igjen ([0f179a1](https://github.com/helsenorge/designsystem/commit/0f179a12aa0d1da98cc3832ab2bf1cb60f2d1d75)), closes [#338697](https://github.com/helsenorge/designsystem/issues/338697)
+* **tabs:**  swipe og scrollintoview oppfører seg rart ([4d1c98f](https://github.com/helsenorge/designsystem/commit/4d1c98f92c728c4c83c4d89ca696990992f1f880)), closes [#328640](https://github.com/helsenorge/designsystem/issues/328640)
+* **tile:**  title spacing endringer ([28f852d](https://github.com/helsenorge/designsystem/commit/28f852dd361ff21bc77010d3d940677eaf82986f)), closes [#336171](https://github.com/helsenorge/designsystem/issues/336171)
+
 ## [9.4.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.4.0&targetVersion=GTv9.4.1) (2024-11-25)
 
 

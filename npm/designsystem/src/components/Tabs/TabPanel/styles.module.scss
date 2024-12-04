@@ -34,31 +34,3 @@
     }
   }
 }
-
-.tab-panel--animate-left {
-  animation: slide-left 0.5s forwards;
-}
-
-.tab-panel--animate-right {
-  animation: slide-right 0.5s forwards;
-}
-
-@keyframes slide-right {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes slide-left {
-  0% {
-    transform: translateX(100%);
-  }
-
-  100% {
-    transform: translateX(0%);
-  }
-}

@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
-import { useIsVisible } from '../../../hooks/useIsVisible';
 import { palette } from '../../../theme/palette';
 import Icon, { IconSize } from '../../Icon';
 import { IconName } from '../../Icons/IconNames';
@@ -38,17 +37,16 @@ const TabItem: React.FC<TabItemProps> = props => {
 
   const scrollToTab = (index: number): void => {
     const currentRef = props.tabRefs.current && props.tabRefs.current[index];
-    currentRef?.current?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    currentRef?.current?.scrollIntoView && currentRef?.current?.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
   };
 
   const itemRef = useRef<HTMLLIElement>(null);
-  const isVisible = useIsVisible(itemRef);
 
   useEffect(() => {
-    if (isSelected && isVisible) {
+    if (isSelected) {
       scrollToTab(props.index);
     }
-  }, [isSelected && isVisible]);
+  }, [isSelected]);
 
   return (
     <li role="presentation" ref={itemRef}>
