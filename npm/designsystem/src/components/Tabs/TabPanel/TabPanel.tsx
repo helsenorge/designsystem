@@ -10,27 +10,19 @@ interface TabPanelProps {
   children?: React.ReactNode;
   color?: TabsColors;
   isFirst?: boolean;
-  translateX?: number;
   style?: React.CSSProperties;
-  animate: 'left' | 'right' | null;
 }
 
 const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>((props, ref) => {
-  const { children, animate, color = 'white', isFirst = false, translateX, style } = props;
+  const { children, color = 'white', isFirst = false, style } = props;
+
   const tabPanelClasses = classNames(styles['tab-panel'], styles[`tab-panel--${color}`], {
     [styles['tab-panel--first']]: isFirst,
   });
-  const contentClasses = classNames({
-    [styles['tab-panel--animate-left']]: animate === 'left',
-    [styles['tab-panel--animate-right']]: animate === 'right',
-  });
-  const transformStyle: React.CSSProperties = translateX != 0 ? { transform: `translateX(${translateX}px)` } : {};
 
   return (
     <div ref={ref} className={tabPanelClasses} style={style}>
-      <div className={contentClasses} style={transformStyle}>
-        {children}
-      </div>
+      <div>{children}</div>
     </div>
   );
 });
