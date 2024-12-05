@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
-import { DayPicker, PropsSingle } from 'react-day-picker';
+import { DayPicker, DayPickerSingleProps } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
@@ -18,18 +18,8 @@ import styles from './styles.module.scss';
 
 interface DatePickerPopupProps
   extends Pick<
-    PropsSingle,
-    | 'dir'
-    | 'disabled'
-    | 'footer'
-    | 'startMonth'
-    | 'initialFocus'
-    | 'locale'
-    | 'month'
-    | 'selected'
-    | 'onSelect'
-    | 'onMonthChange'
-    | 'endMonth'
+    DayPickerSingleProps,
+    'dir' | 'disabled' | 'footer' | 'fromDate' | 'initialFocus' | 'locale' | 'month' | 'selected' | 'onSelect' | 'onMonthChange' | 'toDate'
   > {
   datepickerWrapperRef: React.RefObject<HTMLDivElement>;
   inputRef: React.RefObject<HTMLInputElement>;
