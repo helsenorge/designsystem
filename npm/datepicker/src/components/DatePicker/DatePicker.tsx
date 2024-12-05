@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { Locale, format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { ActiveModifiers, DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
+import { ActiveModifiers, DayOfWeek, PropsSingle, SelectSingleEventHandler } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
@@ -26,7 +26,7 @@ export type DateFormat = 'dd.MM.yyyy';
 export interface DatePickerProps
   extends ErrorWrapperClassNameProps,
     Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur' | 'autoComplete'>,
-    Pick<DayPickerSingleProps, 'dir' | 'initialFocus'> {
+    Pick<PropsSingle, 'dir' | 'initialFocus'> {
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets aria-label on the button that opens the datepicker dialogue */
@@ -352,8 +352,8 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           disabled={disabledDays}
           datepickerWrapperRef={datepickerWrapperRef}
           footer={footerContent}
-          fromDate={minDate}
-          toDate={maxDate}
+          startMonth={minDate}
+          endMonth={maxDate}
           inputRef={refObject}
           locale={locale}
           month={month}
