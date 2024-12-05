@@ -12,6 +12,7 @@ import ArrowRight from '../Icons/ArrowRight';
 import PdfFile from '../Icons/PdfFile';
 import StatusDot from '../StatusDot';
 import Title from '../Title/Title';
+import Toggle from '../Toggle';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/PanelNew',
@@ -234,4 +235,62 @@ export const WithContent: Story = {
       </PanelNew.C>
     </PanelNew>
   ),
+};
+
+export const TestPanel: Story = {
+  args: {},
+  render: args => {
+    const [showA, setShowA] = React.useState(true);
+    const [showB, setShowB] = React.useState(true);
+    const [showC, setShowC] = React.useState(true);
+
+    return (
+      <div>
+        <div>
+          <Toggle {...args} onColor={'onwhite'} checked={showA} onChange={() => setShowA(!showA)} label={[{ text: 'Vis content A' }]} />
+          <Toggle {...args} onColor={'onwhite'} checked={showB} onChange={() => setShowB(!showB)} label={[{ text: 'Vis content B' }]} />
+          <Toggle {...args} onColor={'onwhite'} checked={showC} onChange={() => setShowC(!showC)} label={[{ text: 'Vis content C' }]} />
+        </div>
+        <PanelNew {...args}>
+          <PanelNew.PreContainer>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateAreas: `'. statusdot statusdot' 'icon title badge'`,
+                gridTemplateColumns: '64px 70px auto',
+              }}
+            >
+              <div style={{ gridArea: 'statusdot' }}>
+                <StatusDot text={'Label'} />
+              </div>
+              <div style={{ gridArea: 'icon' }}>
+                <Icon svgIcon={PdfFile} size={IconSize.XSmall} />
+              </div>
+              <div style={{ gridArea: 'title' }}>
+                <Title appearance="title3">{'Tittel'}</Title>
+              </div>
+              <div style={{ gridArea: 'badge' }}>
+                <Badge>{'Ny'}</Badge>
+              </div>
+            </div>
+          </PanelNew.PreContainer>
+          {showA && (
+            <PanelNew.A>
+              <PreviewContainer>{'Content A'}</PreviewContainer>
+            </PanelNew.A>
+          )}
+          {showB && (
+            <PanelNew.B>
+              <PreviewContainer>{'Content B'}</PreviewContainer>
+            </PanelNew.B>
+          )}
+          {showC && (
+            <PanelNew.C>
+              <PreviewContainer>{'Content C'}</PreviewContainer>
+            </PanelNew.C>
+          )}
+        </PanelNew>
+      </div>
+    );
+  },
 };

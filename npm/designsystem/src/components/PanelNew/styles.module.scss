@@ -3,84 +3,81 @@
 @use '../../scss/breakpoints' as breakpoints;
 
 .panel {
-  display: grid;
-  gap: spacers.getSpacer(m);
-  padding: spacers.getSpacer(s);
+  $panel: &;
 
-  // @todo: gap mellom precontainer og content skal være s, ikke M
-  grid-template-areas:
-    'header'
-    'contentA'
-    'contentB'
-    'contentC';
+  display: flex;
+  flex-flow: column;
+  gap: spacers.getSpacer(s);
+  padding: spacers.getSpacer(s);
 
   @media (min-width: breakpoints.get(md)) {
     padding: spacers.getSpacer(m);
   }
 
-  &--b-first {
-    grid-template-areas:
-      'header'
-      'contentB'
-      'contentA'
-      'contentC';
-  }
-
   &__pre-container {
-    grid-area: header;
+    // order: -2;
+    width: 100%;
   }
 
   &__content {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-flow: column;
+    gap: spacers.getSpacer(m);
 
-    &--a {
-      grid-area: contentA;
+    &--horizontal {
+      @media (min-width: breakpoints.get(md)) {
+        flex-flow: row;
+      }
     }
 
-    &--b {
-      grid-area: contentB;
+    &--vertical {
+      @media (min-width: breakpoints.get(md)) {
+        flex-flow: column;
+      }
     }
 
-    &--c {
-      grid-area: contentC;
-    }
-  }
+    &--combined {
+      @media (min-width: breakpoints.get(md)) {
+        display: grid;
+        grid-template-areas:
+          'contentA contentB'
+          'contentC contentC';
 
-  &--horizontal {
-    @media (min-width: breakpoints.get(md)) {
-      grid-template-areas:
-        'header header header'
-        'contentA contentB contentC';
-    }
-  }
+        & .panel__content--a {
+          grid-area: contentA;
+        }
 
-  &--vertical {
-    @media (min-width: breakpoints.get(md)) {
-      // @todo: sjekk opp om stacking skal hensyntas her
-      grid-template-areas:
-        'header'
-        'contentA'
-        'contentB'
-        'contentC';
-    }
-  }
+        & .panel__content--b {
+          grid-area: contentB;
+        }
 
-  &--combined {
-    @media (min-width: breakpoints.get(md)) {
-      grid-template-areas:
-        'header header'
-        'contentA contentB'
-        'contentC contentC';
+        & .panel__content--c {
+          grid-area: contentC;
+        }
+      }
     }
-  }
 
-  &--bAsRightCol {
-    @media (min-width: breakpoints.get(md)) {
-      grid-template-areas:
-        'header header'
-        'contentA contentB'
-        'contentC contentB';
+    &--bAsRightCol {
+      @media (min-width: breakpoints.get(md)) {
+        display: grid;
+        grid-template-areas:
+          'contentA contentB'
+          'contentC contentB';
+
+        & .panel__content--a {
+          grid-area: contentA;
+        }
+
+        & .panel__content--b {
+          grid-area: contentB;
+        }
+
+        & .panel__content--c {
+          grid-area: contentC;
+        }
+      }
     }
   }
 

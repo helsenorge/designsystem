@@ -58,30 +58,39 @@ const PanelNew: React.FC<PanelNewProps> & {
 } = ({
   layout = PanelNewLayout.horizontal,
   variant = PanelNewVariant.fill,
-  color = 'white',
+  color = 'neutral',
   stacking = PanelNewStacking.default,
   testId,
   children,
   status = PanelNewStatus.normal,
 }: PanelNewProps) => {
-  const colorScheme = variant === PanelNewVariant.fill ? color : 'white';
-  const outerLayout = classNames(
-    styles['panel'],
-    styles[`panel--${layout}`],
-    styles[`panel--${variant}`],
-    styles[`panel--${colorScheme}`],
-    {
-      [styles[`panel--b-first`]]: stacking == 'bFirst',
-      [styles['panel--new']]: status === PanelNewStatus.new,
-      [styles['panel--draft']]: status === PanelNewStatus.draft,
-      [styles['panel--error']]: status === PanelNewStatus.error,
-      [styles['panel--status']]: status && status !== PanelNewStatus.normal,
+  const preContainer: React.ReactNode[] = [];
+  const content: React.ReactNode[] = [];
+
+  React.Children.forEach(children, child => {
+    if (React.isValidElement(child)) {
+      if (child.type === PreContainer) {
+        preContainer.push(child);
+      } else if (child.type === A || child.type === B || child.type === C) {
+        content.push(child);
+      }
     }
-  );
+  });
+
+  const colorScheme = variant === PanelNewVariant.fill ? color : 'white';
+  const outerLayout = classNames(styles['panel'], styles[`panel--${variant}`], styles[`panel--${colorScheme}`], {
+    [styles[`panel--b-first`]]: stacking == 'bFirst',
+    [styles['panel--new']]: status === PanelNewStatus.new,
+    [styles['panel--draft']]: status === PanelNewStatus.draft,
+    [styles['panel--error']]: status === PanelNewStatus.error,
+    [styles['panel--status']]: status && status !== PanelNewStatus.normal,
+  });
+  const contentLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`]);
 
   return (
     <div className={outerLayout} data-testid={testId}>
-      {children}
+      {preContainer}
+      <div className={contentLayout}>{content}</div>
     </div>
   );
 };
