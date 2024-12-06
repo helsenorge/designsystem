@@ -13,10 +13,10 @@ import styles from './styles.module.scss';
 export type LabelText = {
   hideFromScreenReader?: boolean;
   text: string;
-  type?: 'semibold' | 'normal';
+  type?: 'normal' | 'subdued';
 };
 
-export type LabelTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span' | 'label' | 'p';
+export type LabelTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'label' | 'p';
 
 export interface LabelProps {
   /** Component shown after label - discourage use of this */
@@ -70,7 +70,7 @@ export const renderLabel = (label: React.ReactNode, inputId: string, onColor: Fo
             htmlMarkup: markup || 'label',
             onColor,
           })
-        : typeof label === 'string' && <Label labelTexts={[{ text: label, type: 'semibold' }]} htmlFor={inputId} onColor={onColor} />}
+        : typeof label === 'string' && <Label labelTexts={[{ text: label, type: 'normal' }]} htmlFor={inputId} onColor={onColor} />}
     </>
   );
 };
@@ -145,7 +145,7 @@ const Label: FunctionComponent<LabelProps> = ({
       const labelClasses = cn(
         styles.label,
         {
-          [styles['label--semibold']]: labelText.type === 'semibold',
+          [styles['label--subdued']]: labelText.type === 'subdued',
           [styles['label--on-dark']]: onColor === FormOnColor.ondark,
         },
         labelTextClassName

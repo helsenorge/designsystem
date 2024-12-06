@@ -60,7 +60,7 @@ export const AllVariants: Story = {
 
     const sublabelTexts: LabelText[] = [
       { text: 'This is a normal sublabel', type: 'normal' },
-      { text: 'Semibold sublabel - hidden from screen reader', type: 'semibold', hideFromScreenReader: true },
+      { text: 'subdued sublabel - hidden from screen reader', type: 'subdued', hideFromScreenReader: true },
     ];
 
     return (
@@ -70,10 +70,9 @@ export const AllVariants: Story = {
             <Label
               {...args}
               labelTexts={[
-                { text: 'Semibold label', type: 'semibold' },
                 { text: 'normal label' },
-                { text: 'semibold returns', type: 'semibold' },
-                { text: 'this is hidden from screen readers', hideFromScreenReader: true },
+                { text: 'subdued label', type: 'subdued' },
+                { text: 'this is hidden from screen readers', type: 'subdued', hideFromScreenReader: true },
               ]}
               sublabel={<Sublabel id={sublabelId1} sublabelTexts={sublabelTexts} />}
               statusDot={<StatusDot id={statusDotId1} text={'Statusdot text'} variant={'alert'} />}
@@ -85,11 +84,7 @@ export const AllVariants: Story = {
           label={
             <Label
               {...args}
-              labelTexts={[
-                { text: 'Semibold label', type: 'semibold' },
-                { text: 'normal label' },
-                { text: 'semibold returns', type: 'semibold' },
-              ]}
+              labelTexts={[{ text: 'normal label' }, { text: 'normal label' }, { text: 'subdued label', type: 'subdued' }]}
               sublabel={<Sublabel id={sublabelId2} sublabelTexts={sublabelTexts} />}
               statusDot={<StatusDot id={statusDotId2} text={'Statusdot text'} variant={'alert'} />}
             />
@@ -100,11 +95,7 @@ export const AllVariants: Story = {
           label={
             <Label
               {...args}
-              labelTexts={[
-                { text: 'Semibold label', type: 'semibold' },
-                { text: 'normal label' },
-                { text: 'semibold returns', type: 'semibold' },
-              ]}
+              labelTexts={[{ text: 'normal label' }, { text: 'subdued label', type: 'subdued' }, { text: 'normal label' }]}
               sublabel={<Sublabel id={sublabelId3} sublabelTexts={sublabelTexts} />}
               statusDot={<StatusDot id={statusDotId3} text={'Statusdot text'} variant={'alert'} />}
             />
@@ -119,10 +110,7 @@ export const AllVariants: Story = {
 export const OnDark: Story = {
   render: args => {
     const sublabelId = 'sublabel-testid';
-    const sublabelTexts: LabelText[] = [
-      { text: 'normal sublabel with a pretty long text', type: 'normal' },
-      { text: 'Semibold sublabel', type: 'semibold' },
-    ];
+    const sublabelTexts: LabelText[] = [{ text: 'Normal sublabel with a pretty long text' }, { text: 'Subdued sublabel', type: 'subdued' }];
     const statusDotId = 'statusdot-testid';
 
     return (
@@ -132,10 +120,10 @@ export const OnDark: Story = {
             <Label
               {...args}
               labelTexts={[
-                { text: 'Semibold label', type: 'semibold' },
-                { text: 'normal label', type: 'normal' },
-                { text: 'semibold returns', type: 'semibold' },
-                { text: 'another normal label', type: 'normal' },
+                { text: 'Normal label' },
+                { text: 'Subdued label', type: 'subdued' },
+                { text: 'Normal label' },
+                { text: 'another normal label' },
               ]}
               sublabel={<Sublabel id={sublabelId} sublabelTexts={sublabelTexts} />}
               statusDot={<StatusDot id={statusDotId} text={'Statusdot text'} variant={'alert'} />}
@@ -154,10 +142,7 @@ export const ChildrenAfterLabel: Story = {
     <Input
       {...args}
       label={
-        <Label
-          labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]}
-          afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={HelpSign} />}
-        />
+        <Label labelTexts={[{ text: 'Skriv inn din tekst' }]} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={HelpSign} />} />
       }
     />
   ),
@@ -181,5 +166,5 @@ export const LabelAsString: Story = {
 };
 
 export const PureComponentStory: Story = {
-  render: args => <Label {...args} labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />,
+  render: args => <Label {...args} labelTexts={[{ text: 'Skriv inn din tekst' }]} />,
 };

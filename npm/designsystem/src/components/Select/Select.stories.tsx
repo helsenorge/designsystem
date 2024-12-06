@@ -28,7 +28,7 @@ const meta = {
         <option value={'Option 3'}>{'Option 3'}</option>
       </>
     ),
-    label: <Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />,
+    label: <Label labelTexts={[{ text: 'Velg noe' }]} />,
     name: 'select name 1',
     onChange: action('onChange called'),
   },
@@ -68,7 +68,7 @@ export const Concepts: Story = {
       <Select
         {...args}
         concept={'normal'}
-        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Velg noe' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
       >
@@ -80,7 +80,7 @@ export const Concepts: Story = {
       <Select
         {...args}
         concept={'transparent'}
-        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Velg noe' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
       >
@@ -98,7 +98,7 @@ export const BackgroundColors: Story = {
       <Select
         {...args}
         onColor={'onwhite'}
-        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Velg noe' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
       >
@@ -109,7 +109,7 @@ export const BackgroundColors: Story = {
       <Select
         {...args}
         onColor={'ongrey'}
-        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Velg noe' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
       >
@@ -120,7 +120,7 @@ export const BackgroundColors: Story = {
       <Select
         {...args}
         onColor={'onblueberry'}
-        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Velg noe' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
       >
@@ -131,7 +131,7 @@ export const BackgroundColors: Story = {
       <Select
         {...args}
         onColor={'oninvalid'}
-        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Velg noe' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
       >
@@ -146,12 +146,7 @@ export const BackgroundColors: Story = {
 export const Width: Story = {
   render: args => (
     <>
-      <Select
-        {...args}
-        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
-        name={'select name 1'}
-        onChange={action('onChange called')}
-      >
+      <Select {...args} label={<Label labelTexts={[{ text: 'Velg noe' }]} />} name={'select name 1'} onChange={action('onChange called')}>
         <option value={'Option 1'}>{'Option 1'}</option>
         <option value={'Option 2'}>{'Option 2'}</option>
         <option value={'Option 3'}>{'Option 3'}</option>
@@ -159,7 +154,7 @@ export const Width: Story = {
       <Select
         {...args}
         width={20}
-        label={<Label labelTexts={[{ text: 'Velg noe', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Velg noe' }]} />}
         name={'select name 1'}
         onChange={action('onChange called')}
       >

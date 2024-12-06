@@ -152,7 +152,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         grow
         maxCharacters={40}
         minRows={5}
-        label={<Label labelTexts={[{ text: 'Historie', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Historie',  }]} />}
         textareaId="story"
         {...register('story', { maxLength: { value: 40, message: storyErrorMessage } })}
       />
@@ -166,7 +166,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       errorTextId="error4"
     >
       <Input
-        label={<Label labelTexts={[{ text: 'Navn', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Navn',  }]} />}
         placeholder={'Skriv noe!'}
         icon={Hospital}
         inputId="name"
@@ -183,7 +183,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     >
       <Select
         selectId="monster"
-        label={<Label labelTexts={[{ text: 'Velg et monster', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Velg et monster',  }]} />}
         {...register('monster', { validate: requireFrankenstein })}
       >
         <option value={'Troll'}>{'Troll'}</option>
@@ -251,14 +251,14 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             grow
             maxCharacters={40}
             minRows={5}
-            label={<Label labelTexts={[{ text: 'Historie', type: 'semibold' }]} />}
+            label={<Label labelTexts={[{ text: 'Historie',  }]} />}
             textareaId="story"
             {...register('story', { maxLength: { value: 40, message: storyErrorMessage } })}
           />
           <Input
             errorText={errors.name ? (errors.name.message as string) : undefined}
             errorTextId="error4"
-            label={<Label labelTexts={[{ text: 'Navn', type: 'semibold' }]} />}
+            label={<Label labelTexts={[{ text: 'Navn',  }]} />}
             placeholder={'Skriv noe!'}
             icon={Hospital}
             inputId="name"
@@ -268,7 +268,7 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
             errorText={errors.monster ? (errors.monster.message as string) : undefined}
             errorTextId="error5"
             selectId="monster"
-            label={<Label labelTexts={[{ text: 'Velg et monster', type: 'semibold' }]} />}
+            label={<Label labelTexts={[{ text: 'Velg et monster',  }]} />}
             {...register('monster', { validate: requireFrankenstein })}
           >
             <option value={'Troll'}>{'Troll'}</option>

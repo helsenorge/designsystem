@@ -1,0 +1,186 @@
+@use 'sass:map';
+@import './spacers';
+@import './breakpoints';
+
+@mixin title-feature {
+  font-size: 2.375rem;
+  line-height: 2.875rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+}
+
+@mixin title1 {
+  font-size: 2rem;
+  line-height: 2.375rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 3rem;
+    line-height: 3.625rem;
+  }
+}
+
+@mixin title2 {
+  font-size: 1.625rem;
+  line-height: 1.938rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 2rem;
+    line-height: 2.375rem;
+  }
+}
+
+@mixin title3 {
+  font-size: 1.375rem;
+  line-height: 1.813rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.625rem;
+    line-height: 2rem;
+  }
+}
+
+@mixin title4 {
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.375rem;
+    line-height: 1.813rem;
+  }
+}
+
+@mixin title5 {
+  font-size: 1rem;
+  line-height: 1.375rem;
+  letter-spacing: 0.03rem;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.125rem;
+    line-height: 1.563rem;
+    letter-spacing: 0.3375rem;
+  }
+}
+
+@mixin title6 {
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.125rem;
+    line-height: 1.563rem;
+  }
+}
+
+@mixin body {
+  font-size: 1.125rem;
+  line-height: 1.688rem;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+  }
+}
+
+@mixin preamble {
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-weight: 400;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.5rem;
+    line-height: 1.938rem;
+  }
+}
+
+@mixin legend {
+  font-size: 1.125rem;
+  line-height: 1.438rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.5rem;
+    line-height: 1.938rem;
+  }
+}
+
+@mixin label {
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+  }
+}
+
+@mixin label-subdued {
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  font-weight: 400;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+  }
+}
+
+@mixin compact-data {
+  font-size: 1rem;
+  line-height: 1.5rem;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.125rem;
+    line-height: 1.4375rem;
+  }
+}
+
+@mixin table-cell {
+  font-size: 1.125rem;
+  line-height: 1.4375rem;
+}
+
+@mixin image-caption {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@mixin image-credit {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+@mixin status-timestamp {
+  font-size: 1.125rem;
+  line-height: 1.25rem;
+}
+
+@mixin input-text {
+  font-size: 1.125rem;
+  line-height: 1.688rem;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    line-height: 1.4375rem;
+  }
+}
+
+@mixin input-text-large {
+  font-size: 1.125rem;
+  line-height: 1.563rem;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}

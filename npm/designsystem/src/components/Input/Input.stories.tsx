@@ -95,7 +95,7 @@ export const Default: Story = {
     return (
       <Input
         {...rest}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} htmlFor={inputId} />}
         inputId={inputId}
         icon={showIcon ? Hospital : undefined}
       />
@@ -106,21 +106,9 @@ export const Default: Story = {
 export const MultipleExamples: Story = {
   render: ({ showIcon, ...rest }) => (
     <>
-      <Input
-        {...rest}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-        icon={showIcon ? Hospital : undefined}
-      />
-      <Input
-        {...rest}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-        icon={showIcon ? Hospital : undefined}
-      />
-      <Input
-        {...rest}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-        icon={showIcon ? Hospital : undefined}
-      />
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} icon={showIcon ? Hospital : undefined} />
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} icon={showIcon ? Hospital : undefined} />
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} icon={showIcon ? Hospital : undefined} />
     </>
   ),
 };
@@ -129,15 +117,9 @@ export const MaxCharacters: Story = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   render: ({ showIcon, ...rest }: InputProps & { showIcon?: boolean }) => (
     <>
-      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={10} width={10} />
-      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} maxCharacters={50} width={50} />
-      <Input
-        {...rest}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-        maxCharacters={50}
-        width={50}
-        defaultValue="test"
-      />
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} maxCharacters={10} width={10} />
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} maxCharacters={50} width={50} />
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} maxCharacters={50} width={50} defaultValue="test" />
     </>
   ),
 };
@@ -148,14 +130,10 @@ export const AfterInputChildren: Story = {
     <>
       <Input
         {...rest}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />}
         afterInputChildren={<div style={{ marginTop: '1rem' }}>{'*Ikke oppgi personsensitiv informasjon'}</div>}
       />
-      <Input
-        {...rest}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-        afterInputChildren={'Tekst uten innsendt div'}
-      />
+      <Input {...rest} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} afterInputChildren={'Tekst uten innsendt div'} />
     </>
   ),
 };
@@ -169,7 +147,7 @@ export const BaseIncrementValue: Story = {
         {...rest}
         type={'number'}
         baseIncrementValue={1990}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} htmlFor={inputId} />}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} htmlFor={inputId} />}
         inputId={inputId}
         icon={showIcon ? Hospital : undefined}
       />

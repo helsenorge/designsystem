@@ -12,7 +12,7 @@ describe('Gitt at Label skal vises', (): void => {
       const sublabelId = 'sublabel-testid';
       const sublabelTexts: LabelText[] = [
         { text: 'normal sublabel with a pretty long text', type: 'normal' },
-        { text: 'Semibold sublabel', type: 'semibold' },
+        { text: 'Semibold sublabel' },
       ];
 
       render(
@@ -39,19 +39,16 @@ describe('Gitt at Label skal vises', (): void => {
   describe('Når Label og sublabel rendres med normal og bold tekst', (): void => {
     test('Så vises Label og Sublabel med riktige klasser', (): void => {
       const sublabelId = 'sublabel-testid';
-      const sublabelTexts: LabelText[] = [
-        { text: 'normal sublabel', type: 'normal' },
-        { text: 'Semibold sublabel', type: 'semibold' },
-      ];
+      const sublabelTexts: LabelText[] = [{ text: 'normal sublabel' }, { text: 'Subdued sublabel', type: 'subdued' }];
 
       render(
         <>
           <Label
             labelTexts={[
-              { text: 'Semibold label', type: 'semibold' },
-              { text: 'normal label', type: 'normal' },
-              { text: 'semibold returns', type: 'semibold' },
-              { text: 'another normal label', type: 'normal' },
+              { text: 'Subdued label', type: 'subdued' },
+              { text: 'normal label' },
+              { text: 'subdued returns', type: 'subdued' },
+              { text: 'another normal label' },
             ]}
             sublabel={<Sublabel id={sublabelId} sublabelTexts={sublabelTexts} />}
             statusDot={<StatusDot text={'Statusdot text'} variant={'alert'} />}
@@ -59,13 +56,13 @@ describe('Gitt at Label skal vises', (): void => {
         </>
       );
 
-      const labelBold = screen.getByText('Semibold label');
+      const labelSubdued = screen.getByText('Subdued label');
       const labelNormal = screen.getByText('normal label');
-      const sublabelBold = screen.getByText('Semibold sublabel');
+      const sublabelSubdued = screen.getByText('Subdued sublabel');
       const sublabelNormal = screen.getByText('normal sublabel');
-      expect(labelBold).toHaveClass('label label--semibold');
+      expect(labelSubdued).toHaveClass('label label--subdued');
       expect(labelNormal).toHaveClass('label');
-      expect(sublabelBold).toHaveClass('label label--sublabel label--semibold');
+      expect(sublabelSubdued).toHaveClass('label label--sublabel label--subdued');
       expect(sublabelNormal).toHaveClass('label label--sublabel');
     });
   });

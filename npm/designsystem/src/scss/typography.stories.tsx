@@ -49,6 +49,10 @@ export const Title5: Story = {
   render: args => <div className={designsystemtypography.title5}>{args.tekst}</div>,
 };
 
+export const Title6: Story = {
+  render: args => <div className={designsystemtypography.title6}>{args.tekst}</div>,
+};
+
 export const Preamble: Story = {
   render: args => <div className={designsystemtypography.preamble}>{args.tekst}</div>,
 };
@@ -59,6 +63,10 @@ export const Legend: Story = {
 
 export const Label: Story = {
   render: args => <div className={designsystemtypography.label}>{args.tekst}</div>,
+};
+
+export const CompactData: Story = {
+  render: args => <div className={designsystemtypography['compact-data']}>{args.tekst}</div>,
 };
 
 export const TableCell: Story = {
@@ -77,8 +85,16 @@ export const ImageCredit: Story = {
   render: args => <div className={designsystemtypography['image-credit']}>{args.tekst}</div>,
 };
 
-export const Time: Story = {
-  render: args => <div className={designsystemtypography.time}>{args.tekst}</div>,
+export const StatusTime: Story = {
+  render: args => <div className={designsystemtypography['status-time']}>{args.tekst}</div>,
+};
+
+export const InputText: Story = {
+  render: args => <div className={designsystemtypography['input-text']}>{args.tekst}</div>,
+};
+
+export const InputTextLarge: Story = {
+  render: args => <div className={designsystemtypography['input-text-large']}>{args.tekst}</div>,
 };
 
 export const AnchorlinkWrapper: Story = {

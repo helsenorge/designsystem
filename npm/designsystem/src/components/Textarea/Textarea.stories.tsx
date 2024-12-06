@@ -86,28 +86,17 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => <Textarea {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />} />,
+  render: args => <Textarea {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} />,
 };
 
 export const MaxCharacters: Story = {
   render: args => (
     <>
+      <Textarea {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} maxCharacters={50} marginBottom width={50} />
+      <Textarea {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} maxCharacters={100} width={100} />
       <Textarea
         {...args}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-        maxCharacters={50}
-        marginBottom
-        width={50}
-      />
-      <Textarea
-        {...args}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
-        maxCharacters={100}
-        width={100}
-      />
-      <Textarea
-        {...args}
-        label={<Label labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />}
         maxCharacters={100}
         defaultValue="test"
         width={100}

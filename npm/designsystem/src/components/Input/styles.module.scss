@@ -2,8 +2,8 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
-@import '../../scss/font-settings';
 @import '../../scss/input';
+@import '../../scss/font-mixins';
 
 .input-wrapper {
   @include input-wrapper;
@@ -52,7 +52,8 @@
   }
 
   &__input {
-    line-height: getSpacer(m);
+    @include input-text;
+
     height: getSpacer(m);
 
     &--large {
@@ -60,12 +61,11 @@
     }
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      line-height: 1.625rem;
       height: 2.125rem;
-      font-size: $font-size-md;
 
       &--large {
-        line-height: 1.75rem;
+        @include input-text-large;
+
         height: 3.5rem;
       }
     }
