@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 
 import PanelList from './PanelList';
-import Panel from '../Panel';
+import PanelOld from '../PanelOld';
 
 describe('Gitt at PanelList skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {
@@ -23,12 +23,12 @@ describe('Gitt at PanelList skal vises', (): void => {
     test('Så vises panelene', async (): Promise<void> => {
       render(
         <PanelList>
-          <Panel title="Overskrift 1">
+          <PanelOld title="Overskrift 1">
             <p>{'Litt tekst'}</p>
-          </Panel>
-          <Panel title="Overskrift 2">
+          </PanelOld>
+          <PanelOld title="Overskrift 2">
             <p>{'Litt tekst'}</p>
-          </Panel>
+          </PanelOld>
         </PanelList>
       );
 
@@ -42,7 +42,7 @@ describe('Gitt at PanelList skal vises', (): void => {
     test('Så har panelet klasse for margin mellom panelene', async (): Promise<void> => {
       render(
         <PanelList>
-          <Panel title="Overskrift 1" testId="panel" />
+          <PanelOld title="Overskrift 1" testId="panel" />
         </PanelList>
       );
 
@@ -54,7 +54,7 @@ describe('Gitt at PanelList skal vises', (): void => {
     test('Så har panelet klasse for margin mellom panelene', async (): Promise<void> => {
       render(
         <PanelList variant="fill">
-          <Panel title="Overskrift 1" testId="panel" />
+          <PanelOld title="Overskrift 1" testId="panel" />
         </PanelList>
       );
 
@@ -66,7 +66,7 @@ describe('Gitt at PanelList skal vises', (): void => {
     test('Så har panelet klasse for margin mellom panelene', async (): Promise<void> => {
       render(
         <PanelList variant="white">
-          <Panel title="Overskrift 1" testId="panel" />
+          <PanelOld title="Overskrift 1" testId="panel" />
         </PanelList>
       );
 
@@ -78,7 +78,7 @@ describe('Gitt at PanelList skal vises', (): void => {
     test('Så har panelet klasse for margin mellom panelene', async (): Promise<void> => {
       render(
         <PanelList variant="stroke">
-          <Panel title="Overskrift 1" testId="panel" />
+          <PanelOld title="Overskrift 1" testId="panel" />
         </PanelList>
       );
 
@@ -90,7 +90,7 @@ describe('Gitt at PanelList skal vises', (): void => {
     test('Så har panelet ikke klasse for margin mellom panelene', async (): Promise<void> => {
       render(
         <PanelList variant="line">
-          <Panel title="Overskrift 1" testId="panel" />
+          <PanelOld title="Overskrift 1" testId="panel" />
         </PanelList>
       );
 

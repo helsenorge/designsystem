@@ -1,16 +1,16 @@
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Panel from './Panel';
+import PanelOld from './PanelOld';
 import * as uuidUtils from '../../utils/uuid';
 import Avatar from '../Avatar';
 import { Icon, IconSize } from '../Icon';
 import Calendar from '../Icons/Calendar';
 
-describe('Gitt at Panel skal vises', (): void => {
+describe('Gitt at PanelOld skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
-      render(<Panel testId="bare-tester" />);
+      render(<PanelOld testId="bare-tester" />);
       const component = screen.getByTestId('bare-tester');
       expect(component).toBeVisible();
       expect(component).toHaveAttribute('data-analyticsid', 'panel');
@@ -21,9 +21,9 @@ describe('Gitt at Panel skal vises', (): void => {
     describe('Når panelet har title', (): void => {
       test('Så er tittelen synlig', (): void => {
         render(
-          <Panel title="Medisinsk fødselsregister" buttonText="Vis detaljer">
+          <PanelOld title="Medisinsk fødselsregister" buttonText="Vis detaljer">
             <p>{'Mer tekst'}</p>
-          </Panel>
+          </PanelOld>
         );
         const title = screen.getByRole('heading', { name: 'Medisinsk fødselsregister' });
         expect(title).toBeVisible();
@@ -32,9 +32,9 @@ describe('Gitt at Panel skal vises', (): void => {
         vi.spyOn(uuidUtils, 'uuid').mockReturnValueOnce('a').mockReturnValueOnce('b');
 
         render(
-          <Panel title="Medisinsk fødselsregister" buttonText="Vis detaljer">
+          <PanelOld title="Medisinsk fødselsregister" buttonText="Vis detaljer">
             <p>{'Mer tekst'}</p>
-          </Panel>
+          </PanelOld>
         );
         const button = screen.getByRole('button', { name: 'Vis detaljer Medisinsk fødselsregister' });
         expect(button).toBeVisible();
@@ -45,9 +45,9 @@ describe('Gitt at Panel skal vises', (): void => {
         vi.spyOn(uuidUtils, 'uuid').mockReturnValueOnce('a').mockReturnValueOnce('b');
 
         render(
-          <Panel buttonText="Vis detaljer">
+          <PanelOld buttonText="Vis detaljer">
             <p>{'Mer tekst'}</p>
-          </Panel>
+          </PanelOld>
         );
         const button = screen.getByRole('button', { name: 'Vis detaljer' });
         expect(button).toBeVisible();
@@ -60,7 +60,7 @@ describe('Gitt at Panel skal vises', (): void => {
       test('Så har linken et unikt navn', (): void => {
         vi.spyOn(uuidUtils, 'uuid').mockReturnValueOnce('a').mockReturnValueOnce('b');
 
-        render(<Panel title="Medisinsk fødselsregister" buttonText="Åpne" url={'https://www.helsenorge.no'} />);
+        render(<PanelOld title="Medisinsk fødselsregister" buttonText="Åpne" url={'https://www.helsenorge.no'} />);
 
         const link = screen.getByRole('link', { name: 'Åpne Medisinsk fødselsregister' });
         expect(link).toBeVisible();
@@ -71,9 +71,9 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Når buttonAriaLabelledById-prop er satt', (): void => {
     test('Så har knappen som brukes for å ekspandere riktig navn', (): void => {
       render(
-        <Panel buttonText="Vis detaljer" buttonAriaLabelledById="egen-id" contentA={<h2 id="egen-id">{'Egendefinert tittel'}</h2>}>
+        <PanelOld buttonText="Vis detaljer" buttonAriaLabelledById="egen-id" contentA={<h2 id="egen-id">{'Egendefinert tittel'}</h2>}>
           <p>{'Mer tekst'}</p>
-        </Panel>
+        </PanelOld>
       );
       const button = screen.getByRole('button', { name: 'Vis detaljer Egendefinert tittel' });
       expect(button).toBeVisible();
@@ -83,9 +83,9 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Når buttonAriaLabel-prop er satt', (): void => {
     test('Så har knappen som brukes for å ekspandere riktig navn', (): void => {
       render(
-        <Panel buttonText="Vis detaljer" buttonAriaLabel="Helt egen tekst på knappen">
+        <PanelOld buttonText="Vis detaljer" buttonAriaLabel="Helt egen tekst på knappen">
           <p>{'Mer tekst'}</p>
-        </Panel>
+        </PanelOld>
       );
       const button = screen.getByRole('button', { name: 'Helt egen tekst på knappen' });
       expect(button).toBeVisible();
@@ -95,9 +95,9 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Når title og  buttonAriaLabel-prop er satt', (): void => {
     test('Så har knappen som brukes for å ekspandere riktig navn', (): void => {
       render(
-        <Panel title="Medisinsk fødselsregister" buttonText="Vis detaljer" buttonAriaLabel="Helt egen tekst på knappen">
+        <PanelOld title="Medisinsk fødselsregister" buttonText="Vis detaljer" buttonAriaLabel="Helt egen tekst på knappen">
           <p>{'Mer tekst'}</p>
-        </Panel>
+        </PanelOld>
       );
       const button = screen.getByRole('button', { name: 'Helt egen tekst på knappen' });
       expect(button).toBeVisible();
@@ -106,7 +106,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Når titleHtmlMarkup-prop er satt', (): void => {
     test('Så er tittel satt til ønsket overskriftsnivå', (): void => {
-      render(<Panel title="Tittel" titleHtmlMarkup="h3" />);
+      render(<PanelOld title="Tittel" titleHtmlMarkup="h3" />);
       const title = screen.getByRole('heading', { name: 'Tittel' });
       expect(title).toBeVisible();
       expect(title.tagName).toEqual('H3');
@@ -115,7 +115,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Når icon er satt', (): void => {
     test('Så skal komponenten vise ikon på venstre side', (): void => {
-      render(<Panel testId="bare-tester" icon={<Icon testId="icon-testid" svgIcon={Calendar} size={IconSize.XSmall} />} />);
+      render(<PanelOld testId="bare-tester" icon={<Icon testId="icon-testid" svgIcon={Calendar} size={IconSize.XSmall} />} />);
       const icon = screen.getByTestId('icon-testid');
       expect(icon).toBeVisible();
       // eslint-disable-next-line testing-library/no-node-access
@@ -125,7 +125,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Når Avatar er satt', (): void => {
     test('Så skal komponenten vise Avatar', (): void => {
-      render(<Panel icon={<Avatar testId="avatar-test">{'Anne Brun'}</Avatar>} />);
+      render(<PanelOld icon={<Avatar testId="avatar-test">{'Anne Brun'}</Avatar>} />);
       const avatar = screen.getByTestId('avatar-test');
       expect(avatar).toBeVisible();
       // eslint-disable-next-line testing-library/no-node-access
@@ -134,8 +134,8 @@ describe('Gitt at Panel skal vises', (): void => {
   });
 
   describe('Gitt at status ikke er satt', (): void => {
-    test('Så skal Panel vises som default normal', (): void => {
-      render(<Panel testId="panel-test-status" title="Dette er en tittel" />);
+    test('Så skal PanelOldvises som default normal', (): void => {
+      render(<PanelOld testId="panel-test-status" title="Dette er en tittel" />);
       const panel = screen.getByTestId('panel-test-status');
       // eslint-disable-next-line testing-library/no-node-access
       expect(panel.firstChild).toHaveClass('panel panel--fill');
@@ -144,7 +144,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Gitt at status er new og statusMessage er satt', (): void => {
     test('Så vises panel i new visning og Badge vises med statusMessage', (): void => {
-      render(<Panel testId="panel-test-status" status="new" statusMessage="1 ny" title="Dette er en tittel" />);
+      render(<PanelOld testId="panel-test-status" status="new" statusMessage="1 ny" title="Dette er en tittel" />);
       const panel = screen.getByTestId('panel-test-status');
       const title = screen.getByText('Dette er en tittel');
       const badge = screen.getByTestId('badge-status');
@@ -160,7 +160,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Gitt at status er draft og statusMessage er satt', (): void => {
     test('Så vises panel i draft visning og statusMessage vises med ikon', (): void => {
-      render(<Panel testId="panel-test-status" status="draft" statusMessage="Dette en beskjed" title="Dette er en tittel" />);
+      render(<PanelOld testId="panel-test-status" status="draft" statusMessage="Dette en beskjed" title="Dette er en tittel" />);
       const panel = screen.getByTestId('panel-test-status');
       // eslint-disable-next-line testing-library/no-node-access
       expect(panel.firstChild).toHaveClass('panel panel--fill panel--draft panel--status');
@@ -175,7 +175,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Gitt at status er error og statusMessage er satt', (): void => {
     test('Så vises panel i error visning og statusMessage vises med ikon', (): void => {
-      render(<Panel testId="panel-test-status" status="error" statusMessage="Dette en error beskjed" title="Dette er en tittel" />);
+      render(<PanelOld testId="panel-test-status" status="error" statusMessage="Dette en error beskjed" title="Dette er en tittel" />);
       const panel = screen.getByTestId('panel-test-status');
       // eslint-disable-next-line testing-library/no-node-access
       expect(panel.firstChild).toHaveClass('panel panel--fill panel--error panel--status');
@@ -190,7 +190,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Gitt at panelet har default variant', (): void => {
     test('Så skal panelet vise en default variant', (): void => {
-      render(<Panel testId="panel-test-status" title="Dette er en tittel" />);
+      render(<PanelOld testId="panel-test-status" title="Dette er en tittel" />);
       const panel = screen.getByTestId('panel-test-status');
       // eslint-disable-next-line testing-library/no-node-access
       expect(panel.firstChild).toHaveClass('panel panel--fill');
@@ -199,7 +199,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Gitt at panelet har variant line', (): void => {
     test('Så skal panelet vise variant line', (): void => {
-      render(<Panel variant="line" testId="panel-test-status" title="Dette er en tittel" />);
+      render(<PanelOld variant="line" testId="panel-test-status" title="Dette er en tittel" />);
       const panel = screen.getByTestId('panel-test-status');
       // eslint-disable-next-line testing-library/no-node-access
       expect(panel.firstChild).toHaveClass('panel panel--line');
@@ -208,7 +208,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Gitt at panelet har variant stroke', (): void => {
     test('Så skal panelet vise variant stroke', (): void => {
-      render(<Panel variant="stroke" testId="panel-test-status" title="Dette er en tittel" />);
+      render(<PanelOld variant="stroke" testId="panel-test-status" title="Dette er en tittel" />);
       const panel = screen.getByTestId('panel-test-status');
       // eslint-disable-next-line testing-library/no-node-access
       expect(panel.firstChild).toHaveClass('panel panel--stroke');
@@ -217,7 +217,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Gitt at panelet har variant white', (): void => {
     test('Så skal panelet vise variant white', (): void => {
-      render(<Panel variant="white" testId="panel-test-status" title="Dette er en tittel" />);
+      render(<PanelOld variant="white" testId="panel-test-status" title="Dette er en tittel" />);
       const panel = screen.getByTestId('panel-test-status');
       // eslint-disable-next-line testing-library/no-node-access
       expect(panel.firstChild).toHaveClass('panel panel--white');
@@ -226,7 +226,7 @@ describe('Gitt at Panel skal vises', (): void => {
 
   describe('Gitt at panelet har en url knapp', (): void => {
     test('Så skal knappen rendres som anchor-tag', (): void => {
-      render(<Panel url="/#?test" title="Dette er en tittel" />);
+      render(<PanelOld url="/#?test" title="Dette er en tittel" />);
       const btnDetails = screen.getByTestId('url');
       expect(btnDetails).toHaveAttribute('href', '/#?test');
       expect(btnDetails).toHaveAttribute('target', '_self');
@@ -236,9 +236,9 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Gitt at panelet har en expand knapp, og gitt at knappen trykkes', (): void => {
     test('Så vises detalje-området', async (): Promise<void> => {
       render(
-        <Panel title="Dette er en tittel" renderChildrenWhenClosed>
+        <PanelOld title="Dette er en tittel" renderChildrenWhenClosed>
           <div>{'Details'}</div>
-        </Panel>
+        </PanelOld>
       );
 
       const btnDetails = screen.getByTestId('expand');
@@ -259,9 +259,9 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Gitt at panelet skal vises som ekspandert', (): void => {
     test('Så vises innholdet ekspandert fra starten av', (): void => {
       render(
-        <Panel title={'Dette er en tittel'} expanded>
+        <PanelOld title={'Dette er en tittel'} expanded>
           <h1>{'Innhold i panel'}</h1>
-        </Panel>
+        </PanelOld>
       );
 
       const button = screen.getByTestId('expand');
@@ -272,9 +272,9 @@ describe('Gitt at Panel skal vises', (): void => {
     });
     test('Så er det bare én knapp for skjul detaljer', (): void => {
       render(
-        <Panel title={'Dette er en tittel'} expanded>
+        <PanelOld title={'Dette er en tittel'} expanded>
           <h1>{'Innhold i panel'}</h1>
-        </Panel>
+        </PanelOld>
       );
 
       const button = screen.getByTestId('expand');
@@ -287,9 +287,9 @@ describe('Gitt at Panel skal vises', (): void => {
       test('Så kalles callback først med true og så med false', async (): Promise<void> => {
         const handleExpand = vi.fn();
         render(
-          <Panel title={'Dette er en tittel'} onExpand={handleExpand}>
+          <PanelOld title={'Dette er en tittel'} onExpand={handleExpand}>
             <h1>{'Innhold i panel'}</h1>
-          </Panel>
+          </PanelOld>
         );
 
         const button = screen.getAllByTestId('expand')[0];
@@ -308,9 +308,9 @@ describe('Gitt at Panel skal vises', (): void => {
       test('Så kalles callback først med true og så med false', async (): Promise<void> => {
         const handleExpand = vi.fn();
         render(
-          <Panel title={'Dette er en tittel'} onExpand={handleExpand} expanded>
+          <PanelOld title={'Dette er en tittel'} onExpand={handleExpand} expanded>
             <h1>{'Innhold i panel'}</h1>
-          </Panel>
+          </PanelOld>
         );
 
         const button = screen.getAllByTestId('expand')[0];
@@ -328,9 +328,9 @@ describe('Gitt at Panel skal vises', (): void => {
     describe('Når man klikker på knappen for å vise detaljer', (): void => {
       test('Så vises detaljer-området', async (): Promise<void> => {
         render(
-          <Panel testId="panel-test" containerAsButton title="Dette er en tittel" renderChildrenWhenClosed>
+          <PanelOld testId="panel-test" containerAsButton title="Dette er en tittel" renderChildrenWhenClosed>
             <div>{'Details'}</div>
-          </Panel>
+          </PanelOld>
         );
 
         const button = screen.getByTestId('expand');
@@ -348,9 +348,9 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Gitt at panelet skal vise tid og dato', (): void => {
     test('Så vises tid og dato', (): void => {
       render(
-        <Panel testId="panel-test" date="dato" time="tid" title="Dette er en tittel" contentA={'Innhold A'} contentB={'Innhold B'}>
+        <PanelOld testId="panel-test" date="dato" time="tid" title="Dette er en tittel" contentA={'Innhold A'} contentB={'Innhold B'}>
           <div>{'Details'}</div>
-        </Panel>
+        </PanelOld>
       );
 
       expect(screen.getByText('dato')).toBeVisible();
@@ -361,7 +361,7 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Gitt at panelet skal vise lenke som knapp med onClick', () => {
     test('Så kalles onClick-handler når man klikker på knappen', async () => {
       const onClickMock = vi.fn();
-      render(<Panel buttonText="Lenke til mer" buttonOnClick={onClickMock} buttonHtmlMarkup="button" />);
+      render(<PanelOld buttonText="Lenke til mer" buttonOnClick={onClickMock} buttonHtmlMarkup="button" />);
 
       const link = screen.getByRole('button', { name: 'Lenke til mer' });
       await userEvent.click(link);
@@ -372,7 +372,7 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Gitt at panelet skal vise lenke som a med onClick', () => {
     test('Så kalles onClick-handler når man klikker på lenken', async () => {
       const onClickMock = vi.fn();
-      render(<Panel buttonText="Lenke til mer" buttonOnClick={onClickMock} buttonHtmlMarkup="a" url="#" />);
+      render(<PanelOld buttonText="Lenke til mer" buttonOnClick={onClickMock} buttonHtmlMarkup="a" url="#" />);
 
       const link = screen.getByRole('link', { name: 'Lenke til mer' });
 
@@ -385,9 +385,9 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Når renderChildrenWhenClosed ikke er satt', (): void => {
     test('Så er children ikke rendret', (): void => {
       render(
-        <Panel>
+        <PanelOld>
           <span data-testid="test">{'Test'}</span>
-        </Panel>
+        </PanelOld>
       );
 
       const child = screen.queryByTestId('test');
@@ -397,9 +397,9 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Når renderChildrenWhenClosed er true', (): void => {
     test('Så er children rendret', (): void => {
       render(
-        <Panel renderChildrenWhenClosed={true}>
+        <PanelOld renderChildrenWhenClosed={true}>
           <span data-testid="test">{'Test'}</span>
-        </Panel>
+        </PanelOld>
       );
 
       const child = screen.getByTestId('test');
@@ -409,9 +409,9 @@ describe('Gitt at Panel skal vises', (): void => {
   describe('Når renderChildrenWhenClosed er false', (): void => {
     test('Så er children ikke rendret', (): void => {
       render(
-        <Panel renderChildrenWhenClosed={false}>
+        <PanelOld renderChildrenWhenClosed={false}>
           <span data-testid="test">{'Test'}</span>
-        </Panel>
+        </PanelOld>
       );
 
       const child = screen.queryByTestId('test');

@@ -21,21 +21,21 @@ import Title, { TitleTags } from '../Title';
 
 import panelStyles from './styles.module.scss';
 
-export enum PanelStatus {
+export enum PanelOldStatus {
   normal = 'normal',
   new = 'new',
   error = 'error',
   draft = 'draft',
 }
 
-export enum PanelVariant {
+export enum PanelOldVariant {
   fill = 'fill',
   white = 'white',
   stroke = 'stroke',
   line = 'line',
 }
 
-export enum PanelLayout {
+export enum PanelOldLayout {
   layout1 = 'layout1',
   layout2 = 'layout2',
   layout3a = 'layout3a',
@@ -43,7 +43,7 @@ export enum PanelLayout {
   layout3c = 'layout3c',
 }
 
-export interface PanelProps {
+export interface PanelOldProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** Panel section A content */
@@ -77,7 +77,7 @@ export interface PanelProps {
   /** Panel button aria label */
   buttonAriaLabel?: string;
   /** Layout of the panel */
-  layout?: keyof typeof PanelLayout;
+  layout?: keyof typeof PanelOldLayout;
   /** Removes top border when variant is "line" */
   noTopBorder?: boolean;
   /** Called when the panel is opened/closed */
@@ -85,7 +85,7 @@ export interface PanelProps {
   /** Whether to render children when closed (in which case they are hidden with CSS). Default: false */
   renderChildrenWhenClosed?: boolean;
   /** Displays a status on the left side: default normal */
-  status?: keyof typeof PanelStatus;
+  status?: keyof typeof PanelOldStatus;
   /** Displayed on top of the panel with a status icon */
   statusMessage?: string;
   /** Sets the data-testid attribute for testing purposes */
@@ -97,7 +97,7 @@ export interface PanelProps {
   /** Changes the underlying element of the title. Default: h2 */
   titleHtmlMarkup?: TitleTags;
   /** Changes the visual representation of the panel */
-  variant?: keyof typeof PanelVariant;
+  variant?: keyof typeof PanelOldVariant;
   /** URL to details, renders as a button with anchor tag */
   url?: string;
   /** target used in the button: default is _self */
@@ -105,14 +105,14 @@ export interface PanelProps {
 }
 
 export interface LayoutProps
-  extends Pick<PanelProps, 'contentA' | 'contentB' | 'contentHeader' | 'icon' | 'layout' | 'status' | 'statusMessage'> {
+  extends Pick<PanelOldProps, 'contentA' | 'contentB' | 'contentHeader' | 'icon' | 'layout' | 'status' | 'statusMessage'> {
   ctaContainer?: React.ReactNode;
   titleElement: React.ReactNode;
 }
 
-const StatusText: React.FC<{ status?: keyof typeof PanelStatus; statusMessage?: string }> = ({ status, statusMessage }) => {
+const StatusText: React.FC<{ status?: keyof typeof PanelOldStatus; statusMessage?: string }> = ({ status, statusMessage }) => {
   const statusIcon = (): { color: string; svgIcon: React.FC<SvgPathProps> } => {
-    if (status === PanelStatus.error) {
+    if (status === PanelOldStatus.error) {
       return { color: palette.cherry500, svgIcon: AlertSignFill };
     }
 
@@ -120,10 +120,10 @@ const StatusText: React.FC<{ status?: keyof typeof PanelStatus; statusMessage?: 
   };
 
   const statusMessageClass = classNames(panelStyles['status-message'], {
-    [panelStyles['status-message--new']]: status === PanelStatus.new,
+    [panelStyles['status-message--new']]: status === PanelOldStatus.new,
   });
 
-  if ((status === PanelStatus.error || status === PanelStatus.draft) && statusMessage) {
+  if ((status === PanelOldStatus.error || status === PanelOldStatus.draft) && statusMessage) {
     return (
       <div className={statusMessageClass} data-testid="display-status">
         {<Icon {...statusIcon()} size={IconSize.XSmall} />} <span>{statusMessage}</span>
@@ -240,9 +240,9 @@ const PanelLayout3: React.FC<LayoutProps> = ({
 }) => {
   const layoutClasses = classNames(panelStyles['panel__layout-3'], {
     [panelStyles['panel__layout-3--with-icon']]: icon,
-    [panelStyles['panel__layout-3--a']]: layout === PanelLayout.layout3a,
-    [panelStyles['panel__layout-3--b']]: layout === PanelLayout.layout3b,
-    [panelStyles['panel__layout-3--c']]: layout === PanelLayout.layout3c,
+    [panelStyles['panel__layout-3--a']]: layout === PanelOldLayout.layout3a,
+    [panelStyles['panel__layout-3--b']]: layout === PanelOldLayout.layout3b,
+    [panelStyles['panel__layout-3--c']]: layout === PanelOldLayout.layout3c,
   });
   const iconClasses = classNames(panelStyles.panel__icon, panelStyles['panel__icon--layout-3'], {
     [panelStyles['panel__icon--no-content']]: !contentA && !contentB,
@@ -265,7 +265,7 @@ const PanelLayout3: React.FC<LayoutProps> = ({
   );
 };
 
-const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
+const PanelOld = React.forwardRef(function PanelForwardedRef(props: PanelOldProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
   const {
     buttonAriaLabel,
     buttonAriaLabelledById,
@@ -283,11 +283,11 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     expanded = false,
     focusable = false,
     icon,
-    layout = PanelLayout.layout2,
+    layout = PanelOldLayout.layout2,
     noTopBorder,
     onExpand,
     renderChildrenWhenClosed = false,
-    status = PanelStatus.normal,
+    status = PanelOldStatus.normal,
     statusMessage,
     target = '_self',
     testId,
@@ -295,13 +295,13 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
     title,
     titleHtmlMarkup = 'h2',
     url,
-    variant = PanelVariant.fill,
+    variant = PanelOldVariant.fill,
   } = props;
 
   const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
   const titleId = useUuid();
   const buttonTextId = useUuid();
-  const hasBadge = statusMessage && status === PanelStatus.new;
+  const hasBadge = statusMessage && status === PanelOldStatus.new;
   const noContentB = typeof contentB === 'undefined';
   const layout1 = layout === 'layout1' || noContentB;
   const layout2 = !noContentB && layout === 'layout2';
@@ -309,16 +309,16 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   const panelWrapperClasses = classNames(panelStyles['panel-wrapper'], className);
 
   const panelClasses = classNames(panelStyles.panel, {
-    [panelStyles['panel--fill']]: variant === PanelVariant.fill,
-    [panelStyles['panel--stroke']]: variant === PanelVariant.stroke,
-    [panelStyles['panel--white']]: variant === PanelVariant.white,
-    [panelStyles['panel--line']]: variant === PanelVariant.line,
-    [panelStyles['panel--no-top-border']]: variant === PanelVariant.line && noTopBorder,
+    [panelStyles['panel--fill']]: variant === PanelOldVariant.fill,
+    [panelStyles['panel--stroke']]: variant === PanelOldVariant.stroke,
+    [panelStyles['panel--white']]: variant === PanelOldVariant.white,
+    [panelStyles['panel--line']]: variant === PanelOldVariant.line,
+    [panelStyles['panel--no-top-border']]: variant === PanelOldVariant.line && noTopBorder,
     [panelStyles['panel--selected']]: isExpanded,
-    [panelStyles['panel--new']]: status === PanelStatus.new,
-    [panelStyles['panel--draft']]: status === PanelStatus.draft,
-    [panelStyles['panel--error']]: status === PanelStatus.error,
-    [panelStyles['panel--status']]: status && status !== PanelStatus.normal,
+    [panelStyles['panel--new']]: status === PanelOldStatus.new,
+    [panelStyles['panel--draft']]: status === PanelOldStatus.draft,
+    [panelStyles['panel--error']]: status === PanelOldStatus.error,
+    [panelStyles['panel--status']]: status && status !== PanelOldStatus.normal,
     [panelStyles['panel--with-icon']]: icon,
     [panelStyles['panel--button']]: containerAsButton,
     [panelStyles['panel--clickable']]: children || url || onExpand || buttonOnClick || containerAsButton,
@@ -380,8 +380,8 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
 
     const panelDetailsClasses = classNames(panelStyles['panel-details'], {
       [panelStyles['panel-details--open']]: isExpanded,
-      [panelStyles['panel-details--line']]: variant === PanelVariant.line,
-      [panelStyles['panel-details--white']]: variant === PanelVariant.white,
+      [panelStyles['panel-details--line']]: variant === PanelOldVariant.line,
+      [panelStyles['panel-details--white']]: variant === PanelOldVariant.white,
     });
 
     return (
@@ -447,4 +447,4 @@ const Panel = React.forwardRef(function PanelForwardedRef(props: PanelProps, ref
   );
 });
 
-export default Panel;
+export default PanelOld;
