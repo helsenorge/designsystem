@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
-import { Docs } from 'frankenstein-build-tools';
 
 import Panel, { PanelVariant, PanelLayout, PanelStacking, PanelStatus } from './Panel';
+import { PanelDocs } from './Paneldocs';
 import Badge from '../Badge';
 import Button from '../Button';
 import Expander from '../Expander/Expander';
@@ -22,7 +22,7 @@ const meta = {
       description: {
         component: 'Panel benyttes for å vise formaterte data på et avgrenset område, og gjør det scanbart og tilgjengelig for innbygger.',
       },
-      page: (): React.JSX.Element => <Docs component={Panel} />,
+      page: (): React.JSX.Element => <PanelDocs />,
     },
   },
   args: {},
