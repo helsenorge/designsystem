@@ -3,7 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
-import PanelNew, { PanelNewVariant, PanelNewLayout, PanelNewStacking, PanelNewStatus } from './PanelNew';
+import Panel, { PanelVariant, PanelLayout, PanelStacking, PanelStatus } from './Panel';
 import Badge from '../Badge';
 import Button from '../Button';
 import Expander from '../Expander/Expander';
@@ -15,21 +15,21 @@ import Title from '../Title/Title';
 import Toggle from '../Toggle';
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/PanelNew',
-  component: PanelNew,
+  title: '@helsenorge/designsystem-react/Components/Panel',
+  component: Panel,
   parameters: {
     docs: {
       description: {
-        component: 'Beskrivelse av PanelNew',
+        component: 'Panel benyttes for å vise formaterte data på et avgrenset område, og gjør det scanbart og tilgjengelig for innbygger.',
       },
-      page: (): React.JSX.Element => <Docs component={PanelNew} />,
+      page: (): React.JSX.Element => <Docs component={Panel} />,
     },
   },
   args: {},
   argTypes: {
     variant: {
       control: 'select',
-      options: Object.values(PanelNewVariant),
+      options: Object.values(PanelVariant),
     },
     color: {
       control: 'select',
@@ -37,18 +37,18 @@ const meta = {
     },
     layout: {
       control: 'select',
-      options: Object.values(PanelNewLayout),
+      options: Object.values(PanelLayout),
     },
     stacking: {
       control: 'select',
-      options: Object.values(PanelNewStacking),
+      options: Object.values(PanelStacking),
     },
     status: {
       control: 'select',
-      options: Object.values(PanelNewStatus),
+      options: Object.values(PanelStatus),
     },
   },
-} satisfies Meta<typeof PanelNew>;
+} satisfies Meta<typeof Panel>;
 
 export default meta;
 
@@ -65,28 +65,28 @@ const PreviewContainer = ({ children }): JSX.Element => {
 export const Default: Story = {
   args: {},
   render: args => (
-    <PanelNew {...args}>
-      <PanelNew.PreContainer>
+    <Panel {...args}>
+      <Panel.PreContainer>
         <PreviewContainer>{'Precontainer'}</PreviewContainer>
-      </PanelNew.PreContainer>
-      <PanelNew.A>
+      </Panel.PreContainer>
+      <Panel.A>
         <PreviewContainer>{'Content A'}</PreviewContainer>
-      </PanelNew.A>
-      <PanelNew.B>
+      </Panel.A>
+      <Panel.B>
         <PreviewContainer>{'Content B'}</PreviewContainer>
-      </PanelNew.B>
-      <PanelNew.C>
+      </Panel.B>
+      <Panel.C>
         <PreviewContainer>{'Content C'}</PreviewContainer>
-      </PanelNew.C>
-    </PanelNew>
+      </Panel.C>
+    </Panel>
   ),
 };
 
 export const WithHeader: Story = {
   args: {},
   render: args => (
-    <PanelNew {...args}>
-      <PanelNew.PreContainer>
+    <Panel {...args}>
+      <Panel.PreContainer>
         <div
           style={{
             display: 'grid',
@@ -107,37 +107,37 @@ export const WithHeader: Story = {
             <Badge>{'Ny'}</Badge>
           </div>
         </div>
-      </PanelNew.PreContainer>
-      <PanelNew.A>
+      </Panel.PreContainer>
+      <Panel.A>
         <PreviewContainer>{'Content A'}</PreviewContainer>
-      </PanelNew.A>
-      <PanelNew.B>
+      </Panel.A>
+      <Panel.B>
         <PreviewContainer>{'Content B'}</PreviewContainer>
-      </PanelNew.B>
-      <PanelNew.C>
+      </Panel.B>
+      <Panel.C>
         <PreviewContainer>{'Content C'}</PreviewContainer>
-      </PanelNew.C>
-    </PanelNew>
+      </Panel.C>
+    </Panel>
   ),
 };
 
 export const OldPanelDefault: Story = {
   args: {
-    variant: PanelNewVariant.fill,
+    variant: PanelVariant.fill,
     color: 'neutral',
-    layout: PanelNewLayout.vertical,
+    layout: PanelLayout.vertical,
   },
   render: args => {
     const [expanderOpen, setExpanderOpen] = React.useState(false);
     return (
-      <PanelNew {...args}>
-        <PanelNew.PreContainer>
+      <Panel {...args}>
+        <Panel.PreContainer>
           <Title appearance="title3">{'Medisinsk fødselsregister (MFR)'}</Title>
-        </PanelNew.PreContainer>
-        <PanelNew.A>
+        </Panel.PreContainer>
+        <Panel.A>
           <span>{'Noe innhold'}</span>
-        </PanelNew.A>
-        <PanelNew.B>
+        </Panel.A>
+        <Panel.B>
           <Expander
             title={expanderOpen ? 'Skjul detaljer' : 'Se detaljer'}
             onExpand={setExpanderOpen}
@@ -168,8 +168,8 @@ export const OldPanelDefault: Story = {
               </p>
             </div>
           </Expander>
-        </PanelNew.B>
-      </PanelNew>
+        </Panel.B>
+      </Panel>
     );
   },
 };
@@ -177,8 +177,8 @@ export const OldPanelDefault: Story = {
 export const WithContent: Story = {
   args: {},
   render: args => (
-    <PanelNew {...args}>
-      <PanelNew.PreContainer>
+    <Panel {...args}>
+      <Panel.PreContainer>
         <div
           style={{
             display: 'grid',
@@ -199,8 +199,8 @@ export const WithContent: Story = {
             <Badge>{'Ny'}</Badge>
           </div>
         </div>
-      </PanelNew.PreContainer>
-      <PanelNew.A>
+      </Panel.PreContainer>
+      <Panel.A>
         <p>
           {
             'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
@@ -210,8 +210,8 @@ export const WithContent: Story = {
           {'Call to action'}
           <Icon svgIcon={ArrowRight} />
         </Button>
-      </PanelNew.A>
-      <PanelNew.B>
+      </Panel.A>
+      <Panel.B>
         <p>
           {
             'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
@@ -221,8 +221,8 @@ export const WithContent: Story = {
           {'Call to action'}
           <Icon svgIcon={ArrowRight} />
         </Button>
-      </PanelNew.B>
-      <PanelNew.C>
+      </Panel.B>
+      <Panel.C>
         <p>
           {
             'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
@@ -232,8 +232,8 @@ export const WithContent: Story = {
           {'Call to action'}
           <Icon svgIcon={ArrowRight} />
         </Button>
-      </PanelNew.C>
-    </PanelNew>
+      </Panel.C>
+    </Panel>
   ),
 };
 
@@ -251,8 +251,8 @@ export const TestPanel: Story = {
           <Toggle {...args} onColor={'onwhite'} checked={showB} onChange={() => setShowB(!showB)} label={[{ text: 'Vis content B' }]} />
           <Toggle {...args} onColor={'onwhite'} checked={showC} onChange={() => setShowC(!showC)} label={[{ text: 'Vis content C' }]} />
         </div>
-        <PanelNew {...args}>
-          <PanelNew.PreContainer>
+        <Panel {...args}>
+          <Panel.PreContainer>
             <div
               style={{
                 display: 'grid',
@@ -273,23 +273,23 @@ export const TestPanel: Story = {
                 <Badge>{'Ny'}</Badge>
               </div>
             </div>
-          </PanelNew.PreContainer>
+          </Panel.PreContainer>
           {showA && (
-            <PanelNew.A>
+            <Panel.A>
               <PreviewContainer>{'Content A'}</PreviewContainer>
-            </PanelNew.A>
+            </Panel.A>
           )}
           {showB && (
-            <PanelNew.B>
+            <Panel.B>
               <PreviewContainer>{'Content B'}</PreviewContainer>
-            </PanelNew.B>
+            </Panel.B>
           )}
           {showC && (
-            <PanelNew.C>
+            <Panel.C>
               <PreviewContainer>{'Content C'}</PreviewContainer>
-            </PanelNew.C>
+            </Panel.C>
           )}
-        </PanelNew>
+        </Panel>
       </div>
     );
   },

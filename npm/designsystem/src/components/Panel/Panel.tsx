@@ -6,7 +6,7 @@ import { PaletteNames } from '../../theme/palette';
 
 import styles from './styles.module.scss';
 
-export enum PanelNewLayout {
+export enum PanelLayout {
   vertical = 'vertical',
   horizontal = 'horizontal',
   combined = 'combined',
@@ -15,55 +15,55 @@ export enum PanelNewLayout {
 
 export type PanelColors = Extract<PaletteNames, 'white' | 'neutral'>;
 
-export enum PanelNewVariant {
+export enum PanelVariant {
   fill = 'fill',
   line = 'line',
   border = 'border',
 }
 
-export enum PanelNewStacking {
+export enum PanelStacking {
   default = 'default',
   bFirst = 'bFirst',
 }
 
-export enum PanelNewStatus {
+export enum PanelStatus {
   normal = 'normal',
   new = 'new',
   error = 'error',
   draft = 'draft',
 }
 
-export interface PanelNewProps {
+export interface PanelProps {
   /** Sets the layout and order of the content boxes */
-  layout?: PanelNewLayout;
+  layout?: PanelLayout;
   /** Sets the visual variant of panel */
-  variant?: PanelNewVariant;
+  variant?: PanelVariant;
   /** Sets the color for panel if it has variant fill */
   color?: PanelColors;
   /** Sets the stacking order of the content boxes */
-  stacking?: PanelNewStacking;
+  stacking?: PanelStacking;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Children elements to be rendered inside the panel */
   children?: React.ReactNode;
   /** Displays a status on the left side: default normal */
-  status?: PanelNewStatus;
+  status?: PanelStatus;
 }
 
-const PanelNew: React.FC<PanelNewProps> & {
+const Panel: React.FC<PanelProps> & {
   PreContainer: React.FC<ContentProps>;
   A: React.FC<ContentProps>;
   B: React.FC<ContentProps>;
   C: React.FC<ContentProps>;
 } = ({
-  layout = PanelNewLayout.horizontal,
-  variant = PanelNewVariant.fill,
+  layout = PanelLayout.horizontal,
+  variant = PanelVariant.fill,
   color = 'neutral',
-  stacking = PanelNewStacking.default,
+  stacking = PanelStacking.default,
   testId,
   children,
-  status = PanelNewStatus.normal,
-}: PanelNewProps) => {
+  status = PanelStatus.normal,
+}: PanelProps) => {
   const preContainer: React.ReactNode[] = [];
   const content: React.ReactNode[] = [];
 
@@ -77,13 +77,13 @@ const PanelNew: React.FC<PanelNewProps> & {
     }
   });
 
-  const colorScheme = variant === PanelNewVariant.fill ? color : 'white';
+  const colorScheme = variant === PanelVariant.fill ? color : 'white';
   const outerLayout = classNames(styles['panel'], styles[`panel--${variant}`], styles[`panel--${colorScheme}`], {
     [styles[`panel--b-first`]]: stacking == 'bFirst',
-    [styles['panel--new']]: status === PanelNewStatus.new,
-    [styles['panel--draft']]: status === PanelNewStatus.draft,
-    [styles['panel--error']]: status === PanelNewStatus.error,
-    [styles['panel--status']]: status && status !== PanelNewStatus.normal,
+    [styles['panel--new']]: status === PanelStatus.new,
+    [styles['panel--draft']]: status === PanelStatus.draft,
+    [styles['panel--error']]: status === PanelStatus.error,
+    [styles['panel--status']]: status && status !== PanelStatus.normal,
   });
   const contentLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`]);
 
@@ -118,10 +118,10 @@ const C: React.FC<ContentProps> = ({ children }) => {
   return <div className={styling}>{children}</div>;
 };
 
-PanelNew.PreContainer = PreContainer;
+Panel.PreContainer = PreContainer;
 // @todo Navngivning på bokser
-PanelNew.A = A;
-PanelNew.B = B;
-PanelNew.C = C;
+Panel.A = A;
+Panel.B = B;
+Panel.C = C;
 
-export default PanelNew;
+export default Panel;
