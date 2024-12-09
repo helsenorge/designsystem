@@ -20,11 +20,10 @@
     "access": "public"
   },
   "scripts": {
-    "prebuild": "npm-run-all clean generate:cssdefinitions generate:tsdefinitions",
+    "prebuild": "npm-run-all clean generate:cssdefinitions",
     "build": "vite build",
-    "clean": "rimraf lib types",
+    "clean": "rimraf lib",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\" --nameFormat none --exportType default --includePaths node_modules ../../node_modules",
-    "generate:tsdefinitions": "tsc --noEmit false --declaration --emitDeclarationOnly --declarationDir types",
     "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "eslint:fix": "npm run eslint -- --fix",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
@@ -71,6 +70,7 @@
     "typed-scss-modules": "^8.0.1",
     "typescript": "~5.6.3",
     "vite": "^5.4.9",
+    "vite-plugin-dts": "^4.3.0",
     "vitest": "^2.1.3"
   }
 }
