@@ -6,6 +6,7 @@ import Panel, { PanelVariant, PanelLayout, PanelStacking, PanelStatus } from './
 import { PanelDocs } from './Paneldocs';
 import Badge from '../Badge';
 import Button from '../Button';
+import PanelTitle from './PanelTitle/PanelTitle';
 import Expander from '../Expander/Expander';
 import Icon, { IconSize } from '../Icon';
 import ArrowRight from '../Icons/ArrowRight';
@@ -293,4 +294,201 @@ export const TestPanel: Story = {
       </div>
     );
   },
+};
+
+export const WithPanelTitles: Story = {
+  args: {},
+  render: args => (
+    <div>
+      <Panel {...args}>
+        <Panel.PreContainer>
+          <PanelTitle
+            icon={<Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
+            title={'Tittel'}
+            badge={<Badge>{'Ny'}</Badge>}
+            statusDot={<StatusDot variant="info" text="Status" />}
+          />
+        </Panel.PreContainer>
+        <Panel.A>
+          <div>
+            <PanelTitle
+              icon={<Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
+              title={'Tittel'}
+              badge={<Badge>{'Ny'}</Badge>}
+              statusDot={<StatusDot variant="info" text="Status" />}
+            />
+            <p>
+              {
+                'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+              }
+            </p>
+            <Button variant="borderless">
+              {'Call to action'}
+              <Icon svgIcon={ArrowRight} />
+            </Button>
+          </div>
+        </Panel.A>
+        <Panel.B>
+          <div>
+            <p>{'Her kommer noe mer innhold i boks B for å vise layouts'}</p>
+          </div>
+        </Panel.B>
+        <Panel.C>
+          <div>
+            <p>{'Her kommer noe mer innhold i boks C for å vise layouts'}</p>
+          </div>
+        </Panel.C>
+      </Panel>
+      <br />
+
+      <Panel {...args}>
+        <Panel.PreContainer>
+          <PanelTitle title={'Uten ikon'} badge={<Badge>{'Ny'}</Badge>} statusDot={<StatusDot variant="info" text="Status" />} />
+        </Panel.PreContainer>
+        <Panel.A>
+          <div>
+            <PanelTitle title={'Uten ikon'} badge={<Badge>{'Ny'}</Badge>} statusDot={<StatusDot variant="info" text="Status" />} />
+
+            <p>
+              {
+                'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+              }
+            </p>
+            <Button variant="borderless">
+              {'Call to action'}
+              <Icon svgIcon={ArrowRight} />
+            </Button>
+          </div>
+        </Panel.A>
+        <Panel.B>
+          <div>
+            <p>{'Her kommer noe mer innhold i boks B for å vise layouts'}</p>
+          </div>
+        </Panel.B>
+        <Panel.C>
+          <div>
+            <p>{'Her kommer noe mer innhold i boks C for å vise layouts'}</p>
+          </div>
+        </Panel.C>
+      </Panel>
+      <br />
+
+      <Panel {...args}>
+        <Panel.PreContainer>
+          <PanelTitle
+            title={'Uten badge'}
+            icon={<Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
+            statusDot={<StatusDot variant="info" text="Status" />}
+          />
+        </Panel.PreContainer>
+        <Panel.A>
+          <div>
+            <PanelTitle
+              title={'Uten badge'}
+              icon={<Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
+              statusDot={<StatusDot variant="info" text="Status" />}
+            />
+            <p>
+              {
+                'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+              }
+            </p>
+            <Button variant="borderless">
+              {'Call to action'}
+              <Icon svgIcon={ArrowRight} />
+            </Button>
+          </div>
+        </Panel.A>
+        <Panel.B>
+          <div>
+            <p>{'Her kommer noe mer innhold i boks B for å vise layouts'}</p>
+          </div>
+        </Panel.B>
+        <Panel.C>
+          <div>
+            <p>{'Her kommer noe mer innhold i boks C for å vise layouts'}</p>
+          </div>
+        </Panel.C>
+      </Panel>
+      <br />
+
+      <Panel {...args}>
+        <Panel.PreContainer>
+          <PanelTitle
+            icon={<Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
+            title={'Uten statusdot men med skikkelig lang titteltekst'}
+            badge={<Badge>{'Ny'}</Badge>}
+          />
+        </Panel.PreContainer>
+        <Panel.A>
+          <div>
+            <PanelTitle
+              icon={<Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
+              title={'Uten statusdot men med skikkelig lang titteltekst'}
+              badge={<Badge>{'Ny'}</Badge>}
+            />
+            <p>
+              {
+                'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+              }
+            </p>
+            <Button variant="borderless">
+              {'Call to action'}
+              <Icon svgIcon={ArrowRight} />
+            </Button>
+          </div>
+        </Panel.A>
+        <Panel.B>
+          <div>
+            <p>{'Her kommer noe mer innhold i boks B for å vise layouts'}</p>
+          </div>
+        </Panel.B>
+        <Panel.C>
+          <div>
+            <p>{'Her kommer noe mer innhold i boks C for å vise layouts'}</p>
+          </div>
+        </Panel.C>
+      </Panel>
+      <br />
+
+      <Panel {...args}>
+        <Panel.PreContainer>
+          <PanelTitle
+            icon={<Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
+            statusDot={<StatusDot variant="warning" text="Status" />}
+            title={'Med alle komponenter og også med skikkelig lang titteltekst'}
+            badge={<Badge>{'Ny'}</Badge>}
+          />
+        </Panel.PreContainer>
+        <Panel.A>
+          <div>
+            <PanelTitle
+              icon={<Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
+              title={'Uten statusdot men med skikkelig lang titteltekst'}
+              badge={<Badge>{'Ny'}</Badge>}
+            />
+            <p>
+              {
+                'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+              }
+            </p>
+            <Button variant="borderless">
+              {'Call to action'}
+              <Icon svgIcon={ArrowRight} />
+            </Button>
+          </div>
+        </Panel.A>
+        <Panel.B>
+          <div>
+            <p>{'Her kommer noe mer innhold i boks B for å vise layouts'}</p>
+          </div>
+        </Panel.B>
+        <Panel.C>
+          <div>
+            <p>{'Her kommer noe mer innhold i boks C for å vise layouts'}</p>
+          </div>
+        </Panel.C>
+      </Panel>
+    </div>
+  ),
 };

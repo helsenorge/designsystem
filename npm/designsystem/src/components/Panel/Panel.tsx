@@ -64,28 +64,55 @@ const Panel: React.FC<PanelProps> & {
   children,
   status = PanelStatus.normal,
 }: PanelProps) => {
-  const preContainer: React.ReactNode[] = [];
-  const content: React.ReactNode[] = [];
+  const [preContainer, setPreContainer] = React.useState<React.ReactNode[]>([]);
+  const [content, setContent] = React.useState<React.ReactNode[]>([]);
+  const [hasIcon, setHasIcon] = React.useState(false);
 
-  React.Children.forEach(children, child => {
-    if (React.isValidElement(child)) {
-      if (child.type === PreContainer) {
-        preContainer.push(child);
-      } else if (child.type === A || child.type === B || child.type === C) {
-        content.push(child);
+  React.useEffect(() => {
+    let localHasIcon = false;
+    const newPreContainer: React.ReactNode[] = [];
+    const newContent: React.ReactNode[] = [];
+
+    React.Children.forEach(children, child => {
+      if (React.isValidElement(child)) {
+        if (child.type === PreContainer) {
+          newPreContainer.push(child);
+          if (child.props.children) {
+            if (
+              React.Children.toArray(child.props.children).some(grandChild => React.isValidElement(grandChild) && grandChild.props.icon)
+            ) {
+              localHasIcon = true;
+            }
+          }
+        } else if (child.type === A || child.type === B || child.type === C) {
+          newContent.push(child);
+          if (child.type === A && child.props.children) {
+            if (
+              React.Children.toArray(child.props.children).some(grandChild => React.isValidElement(grandChild) && grandChild.props.icon)
+            ) {
+              localHasIcon = true;
+            }
+          }
+        }
       }
-    }
-  });
+    });
+
+    setPreContainer(newPreContainer);
+    setContent(newContent);
+    setHasIcon(localHasIcon);
+  }, [children]);
 
   const colorScheme = variant === PanelVariant.fill ? color : 'white';
   const outerLayout = classNames(styles['panel'], styles[`panel--${variant}`], styles[`panel--${colorScheme}`], {
-    [styles[`panel--b-first`]]: stacking == 'bFirst',
     [styles['panel--new']]: status === PanelStatus.new,
     [styles['panel--draft']]: status === PanelStatus.draft,
     [styles['panel--error']]: status === PanelStatus.error,
     [styles['panel--status']]: status && status !== PanelStatus.normal,
+    [styles['panel--icon']]: hasIcon,
   });
-  const contentLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`]);
+  const contentLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`], {
+    [styles[`panel__content--b-first`]]: stacking === PanelStacking.bFirst, // @todo: fiks stacking
+  });
 
   return (
     <div className={outerLayout} data-testid={testId}>

@@ -14,10 +14,24 @@
     padding: spacers.getSpacer(m);
   }
 
+  &--icon {
+    padding-left: calc(3.5rem + spacers.getSpacer(s));
+
+    @media (min-width: breakpoints.get(md)) {
+      padding-left: calc(4rem + spacers.getSpacer(m));
+    }
+  }
+
   &__pre-container {
     // order: -2;
     width: 100%;
   }
+
+  // &--b-first {
+  //   :has(.panel__content--b) {
+  //     color: pink;
+  //   }
+  // }
 
   &__content {
     width: 100%;
@@ -25,6 +39,12 @@
     display: flex;
     flex-flow: column;
     gap: spacers.getSpacer(m);
+
+    &--b-first {
+      .panel__content--b {
+        order: -1;
+      }
+    }
 
     &--horizontal {
       @media (min-width: breakpoints.get(md)) {

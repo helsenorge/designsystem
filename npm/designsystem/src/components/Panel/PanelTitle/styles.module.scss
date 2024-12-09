@@ -1,0 +1,47 @@
+@use '../../../scss/spacers' as spacers;
+@use '../../../scss/breakpoints' as breakpoints;
+
+.paneltitle {
+  display: grid;
+  width: 100%;
+  gap: spacers.getSpacer(2xs);
+  grid-template-areas:
+    'statusdot'
+    'title';
+
+  @media (min-width: breakpoints.get(md)) {
+    gap: spacers.getSpacer(s);
+  }
+
+  &--has-icon {
+    margin-left: -3.5rem;
+    grid-template-columns: 3rem 1fr;
+    grid-template-areas:
+      '. statusdot'
+      'icon title';
+
+    @media (min-width: breakpoints.get(md)) {
+      margin-left: -4rem;
+    }
+  }
+
+  &__statusdot {
+    grid-area: statusdot;
+  }
+
+  &__icon {
+    grid-area: icon;
+    justify-self: center;
+  }
+
+  &__title {
+    grid-area: title;
+    display: flex;
+    flex-flow: row;
+    gap: spacers.getSpacer(s);
+  }
+
+  &__badge {
+    display: inline;
+  }
+}

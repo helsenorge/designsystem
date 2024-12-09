@@ -3,6 +3,7 @@ export type Styles = {
   panel__content: string;
   'panel__content--a': string;
   'panel__content--b': string;
+  'panel__content--b-first': string;
   'panel__content--bAsRightCol': string;
   'panel__content--c': string;
   'panel__content--combined': string;
@@ -14,6 +15,7 @@ export type Styles = {
   'panel--draft': string;
   'panel--error': string;
   'panel--fill': string;
+  'panel--icon': string;
   'panel--line': string;
   'panel--neutral': string;
   'panel--new': string;
