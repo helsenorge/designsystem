@@ -4,13 +4,21 @@ import { StoryObj, Meta } from '@storybook/react';
 
 import Panel, { PanelVariant, PanelLayout, PanelStacking, PanelStatus } from './Panel';
 import { PanelDocs } from './Paneldocs';
+import Avatar from '../Avatar';
 import Badge from '../Badge';
 import Button from '../Button';
 import PanelTitle from './PanelTitle/PanelTitle';
+import AnchorLink from '../AnchorLink/AnchorLink';
 import Expander from '../Expander/Expander';
 import Icon, { IconSize } from '../Icon';
 import ArrowRight from '../Icons/ArrowRight';
+import Attachment from '../Icons/Attachment';
+import Envelope from '../Icons/Envelope';
+import FemaleDoctor from '../Icons/FemaleDoctor';
 import PdfFile from '../Icons/PdfFile';
+import Pencil from '../Icons/Pencil';
+import Referral from '../Icons/Referral';
+import TrashCan from '../Icons/TrashCan';
 import StatusDot from '../StatusDot';
 import Title from '../Title/Title';
 import Toggle from '../Toggle';
@@ -65,6 +73,28 @@ const PreviewContainer = ({ children }): JSX.Element => {
 
 export const Default: Story = {
   args: {},
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: ` 
+<Panel {...args}>
+  <Panel.PreContainer>
+    <PreviewContainer>{'Precontainer'}</PreviewContainer>
+  </Panel.PreContainer>
+  <Panel.A>
+    <PreviewContainer>{'Content A'}</PreviewContainer>
+  </Panel.A>
+  <Panel.B>
+    <PreviewContainer>{'Content B'}</PreviewContainer>
+  </Panel.B>
+  <Panel.C>
+    <PreviewContainer>{'Content C'}</PreviewContainer>
+  </Panel.C>
+</Panel>`,
+      },
+    },
+  },
   render: args => (
     <Panel {...args}>
       <Panel.PreContainer>
@@ -416,4 +446,231 @@ export const WithPanelTitles: Story = {
       </Panel>
     </div>
   ),
+};
+
+export const PasientReiser: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div>
+        <Panel status={PanelStatus.draft} layout={PanelLayout.vertical}>
+          <Panel.PreContainer>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              <Icon svgIcon={Pencil} size={IconSize.XSmall} />
+              <span style={{ color: 'var(--core-color-cherry-500' }}>{'Utkast'}</span>
+            </div>
+            <Title appearance="title3">{`Søknad som pasient 6.november 2024`}</Title>
+          </Panel.PreContainer>
+          <Panel.A>
+            <span>{'Behandlingssted: Sykehus (Spesialist)'}</span>
+          </Panel.A>
+          <Panel.B>
+            <div>
+              <Button variant="borderless" onClick={() => null}>
+                <Icon svgIcon={Referral} />
+                {'Fortsett søknad'}
+              </Button>
+              <Button concept="destructive" variant="borderless" onClick={() => null}>
+                <Icon svgIcon={TrashCan} />
+                {'Slett søknad'}
+              </Button>
+            </div>
+          </Panel.B>
+        </Panel>
+      </div>
+    );
+  },
+};
+
+export const KjernejournalKritiskInfo: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div>
+        <Panel layout={PanelLayout.combined}>
+          <Panel.A>
+            <PanelTitle title={'Overfølsomhetsreaksjoner (allergier m.m.)'} />
+            <p>
+              {'Her vises legemidler og annet som kan gi deg en alvorlig reaksjon som for eksempel allergisk sjokk eller alvorlig utslett.'}
+            </p>
+          </Panel.A>
+          <Panel.B>
+            <div style={{ height: '100%', display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <StatusDot variant="info" text="43 gjeldende" />
+                <StatusDot variant="alert" text="52 avkreftet" />
+              </div>
+              <Expander title="Se detaljer" onExpand={() => null} expanded={false}>
+                {'Noe detaljer her'}
+              </Expander>
+            </div>
+          </Panel.B>
+        </Panel>
+      </div>
+    );
+  },
+};
+
+export const Helsekontakter: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div>
+        <Panel layout={PanelLayout.vertical}>
+          <Panel.PreContainer>
+            <PanelTitle title={'Benedikte (DDFL) Geiraas'} icon={<Icon svgIcon={FemaleDoctor} />} />
+          </Panel.PreContainer>
+          <Panel.A>
+            <p>{'DDFL Ehelse Interntest med Mock'}</p>
+          </Panel.A>
+          <Panel.B>
+            <Expander title="Se detaljer" onExpand={() => null} expanded={false}>
+              <div>
+                <p>{'Din fastlege siden: 1. april 2024'}</p>
+                <p>{'Telefon: 11223344'}</p>
+                <AnchorLink href="https://www.helsenorge.no">{'Mer om din fastlege'}</AnchorLink>
+              </div>
+            </Expander>
+          </Panel.B>
+        </Panel>
+      </div>
+    );
+  },
+};
+
+export const Varsler: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div>
+        <Panel layout={PanelLayout.horizontal} status={PanelStatus.new}>
+          <Panel.A>
+            <PanelTitle title={'Ny melding fra SØHF'} icon={<Icon svgIcon={Envelope} />} badge={<Badge>{'Ny'}</Badge>} />
+            <p>{'2 minutter siden'}</p>
+          </Panel.A>
+          <Panel.B>
+            <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'end', gap: '1rem' }}>
+              <Button htmlMarkup={'a'} variant="borderless" ariaLabel="Slett">
+                <Icon svgIcon={TrashCan} />
+              </Button>
+              <Button htmlMarkup={'a'} variant="borderless" aria-label="Se mer">
+                <span>{'Se mer'}</span>
+                <Icon svgIcon={ArrowRight} />
+              </Button>
+            </div>
+          </Panel.B>
+        </Panel>
+      </div>
+    );
+  },
+};
+
+export const Innboks: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div>
+        <Panel layout={PanelLayout.horizontal}>
+          <Panel.A>
+            <PanelTitle title={'Innbyggerbrev'} />
+            <p>{'SØHF'}</p>
+          </Panel.A>
+          <Panel.B>
+            <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'end', gap: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Icon svgIcon={Attachment} size={IconSize.XXSmall} />
+                <span style={{ fontWeight: 'bold' }}>{'Sendt: '}</span>
+                <span>{'14:34'}</span>
+              </div>
+              <Button htmlMarkup={'a'} variant="borderless" aria-label="Se mer">
+                <span>{'Se detaljer'}</span>
+                <Icon svgIcon={ArrowRight} />
+              </Button>
+            </div>
+          </Panel.B>
+        </Panel>
+      </div>
+    );
+  },
+};
+
+export const Fullmakter: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div>
+        <Panel layout={PanelLayout.horizontal}>
+          <Panel.A>
+            <PanelTitle title={'Gry Telokk'} icon={<Avatar>{'Gry Telokk'}</Avatar>} />
+            <p>{'Fødselsnummer 131169'}</p>
+            <p>{'*****'}</p>
+          </Panel.A>
+          <Panel.B>
+            <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'start', gap: '1rem' }}>
+              <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+              <p>{'Gyldig til: Ubegrenset'}</p>
+              <Expander title="Les mer" onExpand={() => null} expanded={false}>
+                <div>
+                  <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+                  <p>
+                    {
+                      'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+                    }
+                  </p>
+                  <div>
+                    <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
+                    <span>{'11.03.2024'}</span>
+                  </div>
+                  <div>
+                    <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
+                    <span>{'11.03.2024'}</span>
+                  </div>
+                  <div>
+                    <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
+                    <span>{'Ubegrenset'}</span>
+                  </div>
+                </div>
+              </Expander>
+            </div>
+          </Panel.B>
+        </Panel>
+      </div>
+    );
+  },
+};
+
+export const Dokumentliste: Story = {
+  args: {},
+  render: () => {
+    return (
+      <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border}>
+        <Panel.A>
+          <PanelTitle title={'Luftveisplager (Egenkartlegging)'} icon={<Icon svgIcon={PdfFile} />} />
+          <p>{'Henvendelse, arkivert 04.12.2024'}</p>
+        </Panel.A>
+        <Panel.B>
+          <Expander title="Se detaljer" onExpand={() => null} expanded={false}></Expander>
+        </Panel.B>
+      </Panel>
+    );
+  },
+};
+
+export const DokumentlisteDeling: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div>
+        <Title appearance="title4">{'Her er det ikke brukt PanelList, kun enkeltpanel'}</Title>
+        <br />
+        <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border}>
+          <Panel.A>
+            <PanelTitle title={'Langt_dokument-navn_med_rar_utforming.xml (Notat)'} icon={<Icon svgIcon={PdfFile} />} />
+            <p>{'Pasientjournal, arkivert 29.10.2020'}</p>
+            <p>{'Delt med legen din'}</p>
+          </Panel.A>
+        </Panel>
+      </div>
+    );
+  },
 };
