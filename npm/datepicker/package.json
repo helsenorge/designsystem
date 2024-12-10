@@ -2,7 +2,7 @@
   "name": "@helsenorge/datepicker",
   "sideEffects": false,
   "private": false,
-  "version": "9.4.2",
+  "version": "9.4.3",
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",
@@ -20,11 +20,10 @@
     "access": "public"
   },
   "scripts": {
-    "prebuild": "npm-run-all clean generate:cssdefinitions generate:tsdefinitions",
+    "prebuild": "npm-run-all clean generate:cssdefinitions",
     "build": "vite build",
-    "clean": "rimraf lib types",
+    "clean": "rimraf lib",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\" --nameFormat none --exportType default --includePaths node_modules ../../node_modules",
-    "generate:tsdefinitions": "tsc --noEmit false --declaration --emitDeclarationOnly --declarationDir types",
     "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "eslint:fix": "npm run eslint -- --fix",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
@@ -46,7 +45,7 @@
     "react-day-picker": "^8.10.1"
   },
   "devDependencies": {
-    "@helsenorge/designsystem-react": "^9.4.2",
+    "@helsenorge/designsystem-react": "^9.4.3",
     "@rollup/plugin-replace": "^6.0.1",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
@@ -59,7 +58,7 @@
     "@vitest/coverage-v8": "^2.1.3",
     "bootstrap": "^4.6.2",
     "classnames": "^2.5.1",
-    "frankenstein-build-tools": "^9.0.0",
+    "frankenstein-build-tools": "^9.4.3",
     "jsdom": "^25.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -71,6 +70,7 @@
     "typed-scss-modules": "^8.0.1",
     "typescript": "~5.6.3",
     "vite": "^5.4.9",
+    "vite-plugin-dts": "^4.3.0",
     "vitest": "^2.1.3"
   }
 }

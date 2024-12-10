@@ -4,14 +4,17 @@ import generatePackageJson from 'rollup-plugin-generate-package-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
 import { entries } from './__scripts__/entries';
 
 const OUTPUT_DIRECTORY = 'lib';
 
 export default defineConfig({
+  plugins: [dts()],
   build: {
     outDir: OUTPUT_DIRECTORY,
+    minify: false,
     sourcemap: true,
     lib: {
       entry: 'index.js',
@@ -37,10 +40,7 @@ export default defineConfig({
           hook: 'writeBundle',
         }),
         copy({
-          targets: [
-            { src: 'src/components/**/*.module.scss*', dest: OUTPUT_DIRECTORY },
-            { src: 'types/**/*.d.ts*', dest: OUTPUT_DIRECTORY },
-          ],
+          targets: [{ src: 'src/components/**/*.module.scss*', dest: OUTPUT_DIRECTORY }],
           hook: 'writeBundle',
           flatten: false,
         }),
