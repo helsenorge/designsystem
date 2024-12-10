@@ -6,8 +6,8 @@ import { AnalyticsId } from '../../constants';
 
 import titleStyles from './styles.module.scss';
 
-export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span';
-export type TitleAppearances = 'titleFeature' | 'title1' | 'title2' | 'title3' | 'title4' | 'title5';
+export type TitleTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+export type TitleAppearances = 'titleFeature' | 'title1' | 'title2' | 'title3' | 'title4' | 'title5' | 'title6';
 
 export interface TitleProps {
   children: React.ReactNode;
@@ -36,6 +36,7 @@ export const Title = React.forwardRef(function TitleForwardedRef(props: TitlePro
       [titleStyles['title--title3']]: appearance === 'title3',
       [titleStyles['title--title4']]: appearance === 'title4',
       [titleStyles['title--title5']]: appearance === 'title5',
+      [titleStyles['title--title6']]: appearance === 'title6',
     },
     className
   );

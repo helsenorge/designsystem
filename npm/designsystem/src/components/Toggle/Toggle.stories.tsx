@@ -39,18 +39,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
-  render: args => <Toggle {...args} onChange={action('Toggle switched')} />,
+  render: args => <Toggle {...args} label={[{ text: 'Toggle' }]} onChange={action('Toggle switched')} />,
 };
 
 export const OnColor: Story = {
   args: {},
   render: args => (
     <>
-      <Toggle {...args} onColor={'onwhite'} onChange={action('Toggle switched')} label={[{ text: 'onWhite' }]} />
+      <Toggle {...args} onColor={'onwhite'} onChange={action('Toggle switched')} label={[{ text: 'onWhite', type: 'subdued' }]} />
       <br />
-      <Toggle {...args} onColor={'onneutral'} onChange={action('Toggle switched')} label={[{ text: 'onNeutral' }]} />
+      <Toggle {...args} onColor={'onneutral'} onChange={action('Toggle switched')} label={[{ text: 'onNeutral', type: 'subdued' }]} />
       <br />
-      <Toggle {...args} onColor={'onblueberry'} onChange={action('Toggle switched')} label={[{ text: 'onBlueberry' }]} />
+      <Toggle {...args} onColor={'onblueberry'} onChange={action('Toggle switched')} label={[{ text: 'onBlueberry', type: 'subdued' }]} />
     </>
   ),
 };
@@ -66,7 +66,12 @@ export const TogglePositions: Story = {
         togglePosition={TogglePosition.left}
       />
       <br />
-      <Toggle {...args} label={[{ text: 'Toggle Right' }]} onChange={action('Toggle switched')} togglePosition={TogglePosition.right} />
+      <Toggle
+        {...args}
+        label={[{ text: 'Toggle Right', type: 'subdued' }]}
+        onChange={action('Toggle switched')}
+        togglePosition={TogglePosition.right}
+      />
     </>
   ),
 };
@@ -77,7 +82,7 @@ export const LabelAndSublabel: Story = {
     <>
       <Toggle
         {...args}
-        label={[{ text: 'Semibold', type: 'semibold' }, { text: 'Normal' }]}
+        label={[{ text: 'Normal' }]}
         subLabel={'Sublabel'}
         onChange={action('Toggle switched')}
         togglePosition={TogglePosition.left}
@@ -85,7 +90,7 @@ export const LabelAndSublabel: Story = {
       <br />
       <Toggle
         {...args}
-        label={[{ text: 'Normal' }]}
+        label={[{ text: 'Subdued', type: 'subdued' }]}
         subLabel={'Sublabel'}
         onChange={action('Toggle switched')}
         togglePosition={TogglePosition.right}

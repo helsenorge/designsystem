@@ -1,4 +1,4 @@
-@import '../../scss/title';
+@import '../../scss/font-mixins';
 
 .title {
   overflow-wrap: break-word;
@@ -28,5 +28,9 @@
 
   &--title5 {
     @include title5;
+  }
+
+  &--title6 {
+    @include title6;
   }
 }

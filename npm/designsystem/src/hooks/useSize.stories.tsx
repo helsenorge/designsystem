@@ -24,6 +24,23 @@ const meta = {
       description: {
         component: 'Lytt på endringer i størrelse på et element.',
       },
+      source: {
+        language: 'tsx',
+        code: `
+import { useSize } from '@helsenorge/designsystem-react/hooks/useSize';
+
+const UseSizeExample: React.FC = () => {
+  const ref = useRef<HTMLPreElement>(null);
+  const size = useSize(ref);
+
+  return (
+    <HighlightPanel color="blueberry" size="fluid">
+      <pre ref={ref}>{JSON.stringify(size?.toJSON(), null, 2)}</pre>
+    </HighlightPanel>
+  );
+};
+`,
+      },
     },
     chromatic: { disableSnapshot: true },
   },

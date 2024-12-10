@@ -162,20 +162,16 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     }
   }, [value]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    if (grow) {
-      resizeHeight(e.target);
-    }
-    setTextareaInput(e.target.value);
-  };
-
   const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setTextareaInput(e.target.value);
 
     if (onChange) {
       onChange(e);
     }
-    handleChange(e);
+
+    if (grow) {
+      resizeHeight(e.target);
+    }
   };
 
   const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
@@ -203,7 +199,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             readOnly={readOnly}
             required={required}
             onChange={onChangeHandler}
-            value={textareaInput}
+            value={value}
           />
         </div>
         {maxCharacters && (

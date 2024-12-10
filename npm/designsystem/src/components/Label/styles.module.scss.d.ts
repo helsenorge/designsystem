@@ -3,7 +3,7 @@ export type Styles = {
   label: string;
   label__texts: string;
   'label--on-dark': string;
-  'label--semibold': string;
+  'label--subdued': string;
   'label--sublabel': string;
   'label-content-wrapper': string;
   'label-wrapper': string;

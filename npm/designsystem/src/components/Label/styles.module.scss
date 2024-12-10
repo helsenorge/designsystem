@@ -3,6 +3,7 @@
 @import '../../scss/breakpoints';
 @import '../../scss/palette';
 @import '../../scss/font-settings';
+@import '../../scss/font-mixins';
 
 .label-wrapper {
   margin-bottom: getSpacer(2xs);
@@ -28,17 +29,10 @@
 }
 
 .label {
-  font-size: $font-size-sm;
-  font-weight: 400;
-  line-height: $lineheight-size-xs;
+  @include label;
 
-  @media (min-width: map.get($grid-breakpoints, sm)) {
-    font-size: $font-size-md;
-    line-height: $lineheight-size-sm;
-  }
-
-  &--semibold {
-    font-weight: 600;
+  &--subdued {
+    @include label-subdued;
   }
 
   &--sublabel {

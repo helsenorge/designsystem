@@ -5,9 +5,9 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import Tile from './Tile';
-import Icon, { IconSize } from '../Icon';
-import AlarmClock from '../Icons/AlarmClock';
+import Icon from '../Icon';
 import Eye from '../Icons/Eye';
+import Medicine from '../Icons/Medicine';
 import SharingStatus from '../SharingStatus';
 
 const meta = {
@@ -24,10 +24,10 @@ const meta = {
   args: {
     title: (
       <Tile.Title htmlMarkup={'h1'} className={''} highlighted={false} compact={false}>
-        {'Inbox'}
+        {'Tjeneste'}
       </Tile.Title>
     ),
-    icon: <Icon size={IconSize.Medium} svgIcon={AlarmClock} />,
+    icon: <Icon svgIcon={Medicine} />,
     description:
       'Førstehjelp de første minuttene etter at en akutt sykdom eller skade har oppstått er livsviktig og minsker risikoen for langtidsskader.',
   },
@@ -62,9 +62,16 @@ const meta = {
     href: {
       control: 'text',
     },
+    target: {
+      control: 'text',
+    },
     testId: {
       control: 'text',
       description: 'Sets the data-testid attribute.',
+    },
+    variant: {
+      control: 'select',
+      options: ['normal', 'compact'],
     },
   },
 } satisfies Meta<typeof Tile>;
@@ -77,9 +84,23 @@ export const Default: Story = {
   render: args => <Tile {...args} />,
 };
 
+export const Variants: Story = {
+  render: args => (
+    <>
+      <Tile {...args} />
+      <br />
+      <Tile {...args} variant={'compact'} />
+    </>
+  ),
+};
+
+export const Highlighted: Story = {
+  render: args => <Tile {...args} highlighted />,
+};
+
 export const External: Story = {
   args: {
-    icon: <Icon size={IconSize.Medium} svgIcon={AlarmClock} />,
+    icon: <Icon svgIcon={Medicine} />,
     href: 'https://www.helsenorge.no',
     title: <Tile.Title htmlMarkup={'h1'}>{'External'}</Tile.Title>,
   },
@@ -87,7 +108,7 @@ export const External: Story = {
 };
 
 export const WrappedContainer: StoryObj = {
-  render: () => (
+  render: args => (
     <div
       style={{
         display: 'grid',
@@ -97,67 +118,75 @@ export const WrappedContainer: StoryObj = {
     >
       <Tile
         href="https://www.helsenorge.no"
-        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        icon={<Icon svgIcon={Medicine} />}
         title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
+        {...args}
       />
       <Tile
         href="https://www.helsenorge.no"
-        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        icon={<Icon svgIcon={Medicine} />}
         title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
+        {...args}
       />
       <Tile
         href="https://www.helsenorge.no"
-        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        icon={<Icon svgIcon={Medicine} />}
         title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
+        {...args}
       />
       <Tile
         href="https://www.helsenorge.no"
-        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        icon={<Icon svgIcon={Medicine} />}
         title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
+        {...args}
       />
       <Tile
         href="https://www.helsenorge.no"
-        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        icon={<Icon svgIcon={Medicine} />}
         title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
+        {...args}
       />
       <Tile
         href="https://www.helsenorge.no"
-        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        icon={<Icon svgIcon={Medicine} />}
         title={<Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>}
         description="Hva du heter.
         Hvor du ringer fra.
         Telefonnummer du ringer fra.
         Beskriv situasjonen og symptomer."
+        {...args}
       />
       <Tile
         href="https://www.helsenorge.no"
-        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        icon={<Icon svgIcon={Medicine} />}
         title={<Tile.Title>{'Europeisk helsetrygdekort (nav)'}</Tile.Title>}
+        {...args}
       />
       <Tile
         href="https://www.helsenorge.no"
-        icon={<Icon size={IconSize.Medium} svgIcon={AlarmClock} />}
+        icon={<Icon svgIcon={Medicine} />}
         title={<Tile.Title>{'Europeisk helsetrygdekort (nav)'}</Tile.Title>}
+        {...args}
       />
     </div>
   ),
@@ -166,7 +195,7 @@ export const WrappedContainer: StoryObj = {
 export const WithOnClick: Story = {
   args: {
     onClick: action('Tile clicked!'),
-    icon: <Icon size={IconSize.Medium} svgIcon={AlarmClock} />,
+    icon: <Icon svgIcon={Medicine} />,
     title: <Tile.Title htmlMarkup={'h1'}>{'External'}</Tile.Title>,
   },
   render: args => <Tile {...args} />,
@@ -175,7 +204,7 @@ export const WithOnClick: Story = {
 export const ReactChildren: Story = {
   args: {
     href: 'https://www.helsenorge.no',
-    icon: <Icon size={IconSize.Medium} svgIcon={AlarmClock} />,
+    icon: <Icon svgIcon={Medicine} />,
     title: <Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>,
     description: 'Hva du heter. Hvor du ringer fra. Telefonnummer du ringer fra. Beskriv situasjonen og symptomer.',
   },

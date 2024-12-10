@@ -134,10 +134,16 @@
     }
   }
 
-  &__button,
+  &__button-container {
+    &--sticky {
+      background-color: $white;
+    }
+  }
+
+  &__button-container,
   &__trigger {
     &--sticky {
-      position: fixed;
+      position: sticky;
       top: 0;
     }
   }
@@ -158,6 +164,9 @@
 
     &--small {
       margin-top: getSpacer(s);
+    }
+    &--small#{&}--sticky {
+      margin-top: 1.25rem;
     }
 
     &--nested-line {

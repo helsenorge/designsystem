@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { AnalyticsId, ZIndex } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { useHover } from '../../hooks/useHover';
-import { useSticky } from '../../hooks/useSticky';
+import { useSize } from '../../hooks/useSize';
 import { PaletteNames } from '../../theme/palette';
 import Button from '../Button';
 import Icon, { IconSize, SvgIcon } from '../Icon';
@@ -72,9 +72,10 @@ const Expander: React.FC<ExpanderProps> = props => {
   const expanderRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const { isHovered } = useHover(triggerRef);
-  const { isOutsideWindow, isLeavingWindow, offsetHeight, contentWidth } = useSticky(expanderRef, triggerRef);
+  const contentSize = useSize(expanderRef);
+  const triggerSize = useSize(triggerRef);
 
-  const isSticky = sticky && isExpanded && isOutsideWindow;
+  const isSticky = sticky && isExpanded;
 
   const renderChevron = (align: 'left' | 'right'): React.ReactNode => (
     <span className={classNames(styles['expander__icon'], styles[`expander__icon--${align}`])}>
@@ -88,7 +89,7 @@ const Expander: React.FC<ExpanderProps> = props => {
     size === ExpanderSize.large && styles[`expander__trigger--${color || 'neutral'}`],
     size === ExpanderSize.large && icon && styles['expander__trigger--icon'],
     isExpanded && styles['expander__trigger--expanded'],
-    isSticky && !isLeavingWindow && styles['expander__trigger--sticky']
+    isSticky && styles['expander__trigger--sticky']
   );
 
   const renderTrigger = (): React.ReactNode => (
@@ -97,7 +98,7 @@ const Expander: React.FC<ExpanderProps> = props => {
       className={triggerClassName}
       style={{
         zIndex: isHovered || isSticky ? zIndex : undefined,
-        width: isSticky && contentWidth ? `${contentWidth}px` : undefined,
+        width: isSticky && contentSize?.width ? `${contentSize.width}px` : undefined,
       }}
       aria-expanded={isExpanded}
       ref={triggerRef}
@@ -120,26 +121,32 @@ const Expander: React.FC<ExpanderProps> = props => {
     </button>
   );
 
-  const buttonClassName = classNames(
-    styles['expander__button'],
-    isExpanded && styles['expander__button--expanded'],
-    isSticky && !isLeavingWindow && styles['expander__button--sticky']
-  );
+  const buttonClassName = classNames(styles['expander__button'], isExpanded && styles['expander__button--expanded']);
 
   const renderButton = (): React.ReactNode => (
-    <Button
-      variant="borderless"
-      textClassName={styles['expander__button__text']}
-      className={buttonClassName}
-      aria-expanded={isExpanded}
-      ref={triggerRef}
-      onClick={(): void => setIsExpanded(!isExpanded)}
-      testId={testId}
-      data-analyticsid={AnalyticsId.Expander}
+    <div
+      style={{
+        width: isSticky && triggerSize?.width ? `${triggerSize?.width}px` : undefined,
+        height: isSticky && triggerSize?.height ? `${triggerSize?.height}px` : undefined,
+      }}
+      className={classNames({
+        [styles['expander__button-container--sticky']]: isSticky,
+      })}
     >
-      <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} size={IconSize.XSmall} />
-      {title}
-    </Button>
+      <Button
+        variant="borderless"
+        textClassName={styles['expander__button__text']}
+        className={buttonClassName}
+        aria-expanded={isExpanded}
+        ref={triggerRef}
+        onClick={(): void => setIsExpanded(!isExpanded)}
+        testId={testId}
+        data-analyticsid={AnalyticsId.Expander}
+      >
+        <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} size={IconSize.XSmall} />
+        {title}
+      </Button>
+    </div>
   );
 
   const renderContent = (): React.ReactNode => {
@@ -154,6 +161,7 @@ const Expander: React.FC<ExpanderProps> = props => {
       size === ExpanderSize.large && icon && styles['expander__content--icon'],
       isExpanded && styles['expander__content--expanded'],
       size === ExpanderSize.small && !noNestedLine && styles['expander__content--nested-line'],
+      { [styles['expander__content--sticky']]: isSticky },
       contentClassNames
     );
 
@@ -161,11 +169,7 @@ const Expander: React.FC<ExpanderProps> = props => {
   };
 
   return (
-    <div
-      className={styles['expander']}
-      ref={expanderRef}
-      style={{ paddingTop: isSticky && offsetHeight ? `${offsetHeight}px` : undefined }}
-    >
+    <div className={styles['expander']} ref={expanderRef}>
       {size === ExpanderSize.large ? renderTrigger() : renderButton()}
       {renderContent()}
     </div>

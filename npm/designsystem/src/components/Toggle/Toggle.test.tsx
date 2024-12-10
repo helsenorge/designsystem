@@ -59,10 +59,10 @@ describe('Gitt at Toggle skal vises', () => {
       expect(toggleElement).not.toHaveClass('toggle-container__toggle--on-white');
     });
 
-    test('Så vises Toggle med uthevet label når type er semibold', () => {
-      render(<Toggle label={[{ text: 'Test Toggle', type: 'semibold' }]} />);
+    test('Så vises Toggle med subdued label når type er subdued', () => {
+      render(<Toggle label={[{ text: 'Test Toggle', type: 'subdued' }]} />);
       const labelElement = screen.getByText('Test Toggle');
-      expect(labelElement).toHaveClass('toggle-container__label__text--semibold');
+      expect(labelElement).toHaveClass('toggle-container__label__text--subdued');
     });
   });
 

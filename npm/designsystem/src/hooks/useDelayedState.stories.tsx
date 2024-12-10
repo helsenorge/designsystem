@@ -12,14 +12,14 @@ interface UseDelayedStateExampleProps {
 const UseDelayedStateExample: React.FC<UseDelayedStateExampleProps> = props => {
   const [state, setDelayedState, setState] = useDelayedState('', props.delay);
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setState('');
     setDelayedState(`Teksten ble vist etter ${props.delay} ms`);
   };
 
   return (
     <>
-      <Button onClick={handleClick}>Vis tekst om {props.delay} ms</Button>
+      <Button onClick={handleClick}>{`Vis tekst om ${props.delay} ms`}</Button>
       <p>{state}</p>
     </>
   );
@@ -32,6 +32,30 @@ const meta = {
     docs: {
       description: {
         component: 'useState, men med mulighet for å oppdatere state etter X millisekunder.',
+      },
+      source: {
+        language: 'tsx',
+        code: `
+import { useDelayedState } from '@helsenorge/designsystem-react/hooks/useDelayedState';
+import Button from '@helsenorge/designsystem-react/components/Button';
+
+const UseDelayedStateExample = () => {
+  const delay = 1000;
+  const [state, setDelayedState, setState] = useDelayedState('', delay);
+
+  const handleClick = () => {
+    setState('');
+    setDelayedState(\`Teksten ble vist etter \${delay} ms\`);
+  };
+
+  return (
+    <>
+      <Button onClick={handleClick}>{\`Vis tekst om \${delay} ms\`}</Button>
+      <p>{state}</p>
+    </>
+  );
+}
+`,
       },
     },
     chromatic: { disableSnapshot: true },

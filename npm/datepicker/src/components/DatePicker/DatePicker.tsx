@@ -122,9 +122,14 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   const mergedRefs = mergeRefs([ref, refObject]);
   const isTyping = useRef<boolean>(false);
 
-  useOutsideEvent(inputContainerRef, e => {
-    const targetAsNode = e.target as Node;
-    if (!inputContainerRef.current?.contains(targetAsNode) && !datepickerWrapperRef.current?.contains(targetAsNode)) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  useOutsideEvent(inputContainerRef, (e: any) => {
+    if (
+      inputContainerRef.current &&
+      datepickerWrapperRef.current &&
+      !e?.composedPath().includes(inputContainerRef.current) &&
+      !e?.composedPath().includes(datepickerWrapperRef.current)
+    ) {
       setDatePickerOpen(false);
     }
   });
@@ -214,30 +219,33 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       inputRef.current.value = value;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const inputEvent = new Event('change', { bubbles: true });
+
+      // Since the event is synthetic we have to add the target for webcomponents to not throw an error
+      Object.defineProperty(inputEvent, 'target', {
+        value: inputRef.current,
+        writable: false,
+        enumerable: true,
+        configurable: true,
+      });
+
+      Object.defineProperty(inputEvent, 'currentTarget', {
+        value: inputRef.current,
+        writable: false,
+        enumerable: true,
+        configurable: true,
+      });
+
       inputRef.current.dispatchEvent(inputEvent);
+
       if (onChange) {
         onChange(inputEvent as unknown as React.ChangeEvent<HTMLInputElement>, date);
       }
     }
   };
 
-  const handleDesktopInputBlur = (e: React.FocusEvent<HTMLInputElement, Element>): void => {
-    if (!datepickerWrapperRef.current?.contains(e.relatedTarget as Node)) {
-      setDatePickerOpen(false);
-    }
-
-    handleInputBlur(e);
-  };
-
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement, Element>): void => {
-    const focusedDatePickerPopup = datepickerWrapperRef.current?.contains(e.relatedTarget as Node);
-
-    if (!focusedDatePickerPopup) {
-      setDatePickerOpen(false);
-    }
-
     // We don't trigger the native onBlur event if the user select via the datepicker and the onDatePopupClosed callback is used (usually to trigger validation manually)
-    if (!focusedDatePickerPopup && (typeof onDatePopupClosed === 'undefined' || isTyping.current)) {
+    if (!datePickerOpen && (typeof onDatePopupClosed === 'undefined' || isTyping.current)) {
       onBlur && onBlur(e);
     }
 
@@ -320,7 +328,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           value={inputValue}
           width={12}
           {...rest}
-          onBlur={handleDesktopInputBlur}
+          onBlur={handleInputBlur}
           onChange={e => handleInputChange(e, 'yyyy-MM-dd')}
           rightOfInput={
             <Button

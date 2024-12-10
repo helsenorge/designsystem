@@ -18,6 +18,18 @@ const meta = {
       description: {
         component: 'Kjør en funksjon ved intervaller basert på ønsket frequency.',
       },
+      source: {
+        language: 'tsx',
+        code: `
+import { useInterval } from '@helsenorge/designsystem-react/hooks/useInterval';
+        
+const UseIntervalExample: React.FC = () => {
+  useInterval(() => console.log('Hei'), 1000);
+
+  return <p>{'Sjekk console'}</p>;
+};
+        `,
+      },
     },
     chromatic: { disableSnapshot: true },
   },

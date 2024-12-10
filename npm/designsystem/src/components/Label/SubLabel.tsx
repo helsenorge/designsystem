@@ -27,7 +27,7 @@ export const Sublabel: React.FC<SublabelProps> = ({ className, id, onColor, subl
       sublabelTexts &&
       sublabelTexts.map((sublabelText, index) => {
         const labelClasses = cn(styles.label, styles['label--sublabel'], {
-          [styles['label--semibold']]: sublabelText.type === 'semibold',
+          [styles['label--subdued']]: sublabelText.type === 'subdued',
           [styles['label--on-dark']]: onColor === FormOnColor.ondark,
         });
         return (

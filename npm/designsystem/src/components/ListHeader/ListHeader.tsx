@@ -121,50 +121,16 @@ export const ListHeader: ListHeaderType = props => {
   const showChevronAndIcon = size !== 'small' && !!(chevronIcon || icon);
   const contentIsString = typeof children === 'string';
   const mappedChildren = mapChildren(children);
-  const topAlignContent =
-    mappedChildren?.avatarChild ||
-    (mappedChildren?.listHeaderTextChildren && mappedChildren.listHeaderTextChildren.length > 0) ||
-    (mappedChildren?.remainingChildren && mappedChildren?.remainingChildren.length > 0);
 
-  const listLabelClasses = cn(
-    styles['list-header'],
-    {
-      [styles['list-header--for-element-content']]: !contentIsString,
-      [styles['list-header--top-align-content']]: topAlignContent,
-    },
-    className
-  );
-  const badgeClasses = cn(
-    styles['list-header__badge'],
-    {
-      [styles['list-header__badge--for-string-content']]: contentIsString,
-    },
-    !contentIsString && size && styles[`list-header__badge--${size}`]
-  );
-  const chevronClasses = cn(styles['list-header__chevron'], !contentIsString && size && styles[`list-header__chevron--${size}`], {
-    [styles['list-header__chevron--for-string-content']]: contentIsString,
-  });
+  const listLabelClasses = cn(styles['list-header'], className);
+  const badgeContainerClasses = cn(styles['list-header__badge-container']);
+  const badgeClasses = cn(styles['list-header__badge']);
+  const chevronClasses = cn(styles['list-header__chevron']);
   const contentClasses = cn(styles['list-header__content'], {
-    [styles['list-header__content--string']]: contentIsString,
     [styles['list-header__content--element']]: !contentIsString,
-    [styles['list-header__content--spacing']]: !mappedChildren?.avatarChild && !icon,
   });
-  const iconClasses = cn(
-    styles['list-header__icon'],
-    !contentIsString && size && (size === 'medium' || size === 'large') && styles[`list-header__icon--for-element-content--${size}`],
-    {
-      [styles['list-header__icon--for-string-content']]: contentIsString,
-      [styles['list-header__icon--for-element-content']]: !contentIsString,
-    }
-  );
-  const avatarClasses = cn(
-    styles['list-header__avatar'],
-    !contentIsString && size && (size === 'medium' || size === 'large') && styles[`list-header__avatar--for-element-content--${size}`],
-    {
-      [styles['list-header__avatar--for-string-content']]: contentIsString,
-      [styles['list-header__avatar--for-element-content']]: !contentIsString,
-    }
-  );
+  const iconClasses = cn(styles['list-header__icon'], {});
+  const avatarClasses = cn(styles['list-header__avatar'], {});
   const CustomTag = titleHtmlMarkup;
   return (
     <span data-testid={testId} className={listLabelClasses}>
@@ -187,15 +153,17 @@ export const ListHeader: ListHeaderType = props => {
         {mappedChildren?.remainingChildren}
       </span>
 
-      {mappedChildren?.badgeChildren &&
-        mappedChildren.badgeChildren.map(badgeChild => {
-          const id = uuid();
-          return (
-            <span key={id} className={badgeClasses}>
-              {badgeChild}
-            </span>
-          );
-        })}
+      <span className={badgeContainerClasses}>
+        {mappedChildren?.badgeChildren &&
+          mappedChildren.badgeChildren.map(badgeChild => {
+            const id = uuid();
+            return (
+              <span key={id} className={badgeClasses}>
+                {badgeChild}
+              </span>
+            );
+          })}
+      </span>
       {showChevronAndIcon && chevronIcon && (
         <span className={chevronClasses}>
           <Icon svgIcon={chevronIcon} isHovered={isHovered} size={IconSize.XSmall} />

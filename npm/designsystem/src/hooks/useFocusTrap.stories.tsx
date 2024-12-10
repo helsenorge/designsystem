@@ -18,21 +18,21 @@ const UseFocusTrapExample: React.FC = () => {
 
   return (
     <>
-      <Button onClick={toggleTrap}>Slå av/på fokusfelle</Button>
-      <p>Fokusfelle er {trap ? 'på' : 'av'}</p>
+      <Button onClick={toggleTrap}>{'Slå av/på fokusfelle'}</Button>
+      <p>{`Fokusfelle er ${trap ? 'på' : 'av'}`}</p>
       <Spacer />
       <HighlightPanel color="blueberry" size="fluid">
         <div ref={ref}>
           <div>
-            <Button>Knapp 1</Button>
+            <Button>{'Knapp 1'}</Button>
           </div>
           <Spacer />
           <div>
-            <Button>Knapp 2</Button>
+            <Button>{'Knapp 2'}</Button>
           </div>
           <Spacer />
           <div>
-            <Button>Knapp 3</Button>
+            <Button>{'Knapp 3'}</Button>
           </div>
         </div>
       </HighlightPanel>
@@ -47,6 +47,48 @@ const meta = {
     docs: {
       description: {
         component: 'Lås fokus til et bestemt element. Bruker vil bare kunne tabbe mellom fokuserbare elementer innenfor elementet.',
+      },
+      source: {
+        language: 'tsx',
+        code: `
+import { useFocusTrap } from '@helsenorge/designsystem-react/hooks/useFocusTrap';
+import Button from '@helsenorge/designsystem-react/components/Button';
+import HighlightPanel from '@helsenorge/designsystem-react/components/HighlightPanel';
+import Spacer from '@helsenorge/designsystem-react/components/Spacer';
+
+const UseFocusTrapExample: React.FC = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [trap, setTrap] = useState(false);
+  useFocusTrap(ref, trap);
+
+  const toggleTrap = (): void => {
+    setTrap(!trap);
+  };
+
+  return (
+    <>
+      <Button onClick={toggleTrap}>{'Slå av/på fokusfelle'}</Button>
+      <p>{\`Fokusfelle er \${trap ? 'på' : 'av'}\`}</p>
+      <Spacer />
+      <HighlightPanel color="blueberry" size="fluid">
+        <div ref={ref}>
+          <div>
+            <Button>{'Knapp 1'}</Button>
+          </div>
+          <Spacer />
+          <div>
+            <Button>{'Knapp 2'}</Button>
+          </div>
+          <Spacer />
+          <div>
+            <Button>{'Knapp 3'}</Button>
+          </div>
+        </div>
+      </HighlightPanel>
+    </>
+  );
+};
+        `,
       },
     },
     chromatic: { disableSnapshot: true },

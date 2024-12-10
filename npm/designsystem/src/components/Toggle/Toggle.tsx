@@ -12,7 +12,7 @@ import '../../scss/supernova/styles/colors.css';
 
 export type LabelText = {
   text: string;
-  type?: 'semibold' | 'normal';
+  type?: 'subdued' | 'normal';
 };
 
 export enum TogglePosition {
@@ -162,7 +162,7 @@ const Toggle: React.FC<ToggleProps> = ({
       >
         {label.map(labelText => {
           const labelClassNames = classNames({
-            [styles['toggle-container__label__text--semibold']]: labelText.type === 'semibold',
+            [styles['toggle-container__label__text--subdued']]: labelText.type === 'subdued',
           });
 
           return (

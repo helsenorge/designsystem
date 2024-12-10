@@ -28,7 +28,6 @@ const meta = {
     color: 'white',
     onColor: 'onwhite',
     sticky: true,
-    touchBehaviour: 'swipe',
   },
   argTypes: {
     color: {
@@ -56,10 +55,6 @@ const meta = {
     sticky: {
       control: 'boolean',
       description: 'Whether the tab list should be sticky',
-    },
-    touchBehaviour: {
-      control: 'select',
-      options: ['swipe', 'none'],
     },
   },
 } satisfies Meta<typeof Tabs>;

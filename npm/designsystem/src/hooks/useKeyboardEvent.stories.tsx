@@ -28,6 +28,29 @@ const meta = {
       description: {
         component: 'Lytt på keyboard-events og kjør en callback.',
       },
+      source: {
+        language: 'tsx',
+        code: `
+import { useKeyboardEvent } from '@helsenorge/designsystem-react/hooks/useKeyboardEvent';
+import Textarea from '@helsenorge/designsystem-react/components/Textarea';
+import { KeyboardEventKey } from '@helsenorge/designsystem-react/constants/KeyboardEventKey';
+
+const UseKeyboardEventExample: React.FC = () => {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  
+  useKeyboardEvent(ref, e => console.log(\`Du trykker på \${e.key}\`), [
+    KeyboardEventKey.ArrowDown,
+    KeyboardEventKey.ArrowUp,
+    KeyboardEventKey.End,
+    KeyboardEventKey.Enter,
+    KeyboardEventKey.Escape,
+    KeyboardEventKey.Home,
+  ]);
+
+  return <Textarea ref={ref} defaultValue="Trykk på enter og sjekk console" />;
+};
+        `,
+      },
     },
     chromatic: { disableSnapshot: true },
   },

@@ -11,13 +11,13 @@ const UseFocusableElementsExample: React.FC = () => {
   const [allowFocus, setAllowFocus] = useState(true);
   const elements = useFocusableElements(ref);
 
-  const toggleAllowFocus = () => {
+  const toggleAllowFocus = (): void => {
     setAllowFocus(!allowFocus);
   };
 
   return (
     <>
-      <p>Fokuserbare elementer:</p>
+      <p>{'Fokuserbare elementer:'}</p>
       <ul>
         {elements &&
           [...elements].map((element, index) => (
@@ -26,19 +26,19 @@ const UseFocusableElementsExample: React.FC = () => {
             </li>
           ))}
       </ul>
-      <Button onClick={toggleAllowFocus}>Slå av/på fokus på knapp nr 1</Button>
+      <Button onClick={toggleAllowFocus}>{'Slå av/på fokus på knapp nr 1'}</Button>
       <Spacer />
       <div ref={ref}>
         <div>
-          <Button disabled={!allowFocus}>Knapp 1</Button>
+          <Button disabled={!allowFocus}>{'Knapp 1'}</Button>
         </div>
         <Spacer />
         <div>
-          <Button>Knapp 2</Button>
+          <Button>{'Knapp 2'}</Button>
         </div>
         <Spacer />
         <div>
-          <Button>Knapp 3</Button>
+          <Button>{'Knapp 3'}</Button>
         </div>
       </div>
     </>
@@ -53,6 +53,53 @@ const meta = {
       description: {
         component:
           'Overvåk et element og finn alle fokuserbare elementer inne i elementet. Bruker MutationObserver slik at eventuelle nye elementer som legges til også vil inkluderes i listen.',
+      },
+      source: {
+        language: 'tsx',
+        code: `
+import { useFocusableElements } from '@helsenorge/designsystem-react/hooks/useFocusableElements';
+import Button from '@helsenorge/designsystem-react/components/Button';
+import Spacer from '@helsenorge/designsystem-react/components/Spacer';
+
+const UseFocusableElementsExample: React.FC = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [allowFocus, setAllowFocus] = useState(true);
+  const elements = useFocusableElements(ref);
+
+  const toggleAllowFocus = (): void => {
+    setAllowFocus(!allowFocus);
+  };
+
+  return (
+    <>
+      <p>{'Fokuserbare elementer:'}</p>
+      <ul>
+        {elements &&
+          [...elements].map((element, index) => (
+            <li key={index}>
+              {element.tagName} {element.textContent}
+            </li>
+          ))}
+      </ul>
+      <Button onClick={toggleAllowFocus}>{'Slå av/på fokus på knapp nr 1'}</Button>
+      <Spacer />
+      <div ref={ref}>
+        <div>
+          <Button disabled={!allowFocus}>{'Knapp 1'}</Button>
+        </div>
+        <Spacer />
+        <div>
+          <Button>{'Knapp 2'}</Button>
+        </div>
+        <Spacer />
+        <div>
+          <Button>{'Knapp 3'}</Button>
+        </div>
+      </div>
+    </>
+  );
+};
+        `,
       },
     },
     chromatic: { disableSnapshot: true },

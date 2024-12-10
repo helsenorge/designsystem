@@ -147,7 +147,7 @@ export const Default: Story = {
   render: args => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
@@ -167,7 +167,7 @@ export const DateRangePicker: Story = {
       <DateTimePickerWrapper>
         <DatePicker
           {...args}
-          label={<Label labelTexts={[{ text: 'Fra dato', type: 'semibold' }]} />}
+          label={<Label labelTexts={[{ text: 'Fra dato' }]} />}
           maxDate={toDate}
           onChange={(
             _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
@@ -178,7 +178,7 @@ export const DateRangePicker: Story = {
         />
         <DatePicker
           {...args}
-          label={<Label labelTexts={[{ text: 'Til dato', type: 'semibold' }]} />}
+          label={<Label labelTexts={[{ text: 'Til dato' }]} />}
           minDate={fromDate}
           onChange={(
             _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
@@ -198,14 +198,10 @@ export const DateAndTime: Story = {
 
     return (
       <DateTimePickerWrapper>
-        <DatePicker
-          {...args}
-          dateValue={startDate}
-          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
-        />
+        <DatePicker {...args} dateValue={startDate} label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />} />
         <DateTime
           defaultValue={12}
-          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
+          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
           timeUnit={'hours'}
         />
         <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
@@ -224,7 +220,7 @@ export const MinMaxDays: Story = {
 
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
         dateValue={startDate}
@@ -243,7 +239,7 @@ export const DisabledDays: Story = {
 
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
         disableDays={[disabledDate]}
         disableWeekends
@@ -259,7 +255,7 @@ export const FooterContent: Story = {
   render: (args: DatePickerProps) => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
         footerContent={<Icon size={38} svgIcon={Calendar} />}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
@@ -278,7 +274,7 @@ export const Locale: Story = {
   render: (args: DatePickerProps) => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Date', type: 'semibold' }, { text: '(dd.mm.yyyy)' }]} />}
+        label={<Label labelTexts={[{ text: 'Date' }, { text: '(dd.mm.yyyy)' }]} />}
         {...args}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
@@ -366,7 +362,13 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
   const requireDate = (value: string): true | string => {
     // eslint-disable-next-line no-console
     console.log('Validating date: ', value);
-    let validateResult = validateMinMaxDate(value, `Datoen må være fra ${minDate} og til ${maxDate}`, minDate, maxDate);
+    let validateResult = validateMinMaxDate(
+      value,
+      `Datoen må være fra ${minDate} og til ${maxDate}`,
+      'Datoen har feil format',
+      minDate,
+      maxDate
+    );
     validateResult =
       typeof validateResult !== 'string'
         ? validateDisabledDates(value, [disabledDate], `Datoen kan ikke være ${disabledDate}`)
@@ -404,7 +406,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
               disableDays={[disabledDate]}
               disableWeekends
               footerContent={<Icon size={38} svgIcon={Calendar} />}
-              label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+              label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
               maxDate={maxDate}
               minDate={minDate}
               onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
@@ -412,7 +414,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
             />
             <DateTime
               defaultValue={12}
-              label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
+              label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
               timeUnit={'hours'}
               {...register(datetimehour, { validate: requireHour })}
             />
@@ -437,7 +439,7 @@ export const Variants: Story = {
       <div>
         <p>{longLoremText}</p>
         <DatePicker
-          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+          label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
           {...args}
           dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
           disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
