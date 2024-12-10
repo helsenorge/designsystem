@@ -133,7 +133,7 @@ export const OldPanelDefault: Story = {
     return (
       <Panel {...args}>
         <Panel.PreContainer>
-          <Title appearance="title3">{'Medisinsk fødselsregister (MFR)'}</Title>
+          <PanelTitle title="Medisinsk fødselsregister (MFR)" />
         </Panel.PreContainer>
         <Panel.A>
           <span>{'Noe innhold'}</span>
@@ -175,75 +175,13 @@ export const OldPanelDefault: Story = {
   },
 };
 
-export const WithContent: Story = {
-  args: {},
-  render: args => (
-    <Panel {...args}>
-      <Panel.PreContainer>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateAreas: `'. statusdot statusdot' 'icon title badge'`,
-            gridTemplateColumns: '64px 70px auto',
-          }}
-        >
-          <div style={{ gridArea: 'statusdot' }}>
-            <StatusDot text={'Label'} />
-          </div>
-          <div style={{ gridArea: 'icon' }}>
-            <Icon svgIcon={PdfFile} size={IconSize.XSmall} />
-          </div>
-          <div style={{ gridArea: 'title' }}>
-            <Title appearance="title3">{'Tittel'}</Title>
-          </div>
-          <div style={{ gridArea: 'badge' }}>
-            <Badge>{'Ny'}</Badge>
-          </div>
-        </div>
-      </Panel.PreContainer>
-      <Panel.A>
-        <p>
-          {
-            'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
-          }
-        </p>
-        <Button variant="borderless">
-          {'Call to action'}
-          <Icon svgIcon={ArrowRight} />
-        </Button>
-      </Panel.A>
-      <Panel.B>
-        <p>
-          {
-            'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
-          }
-        </p>
-        <Button variant="borderless">
-          {'Call to action'}
-          <Icon svgIcon={ArrowRight} />
-        </Button>
-      </Panel.B>
-      <Panel.C>
-        <p>
-          {
-            'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
-          }
-        </p>
-        <Button variant="borderless">
-          {'Call to action'}
-          <Icon svgIcon={ArrowRight} />
-        </Button>
-      </Panel.C>
-    </Panel>
-  ),
-};
-
 export const TestPanel: Story = {
   args: {},
   render: args => {
     const [showA, setShowA] = React.useState(true);
     const [showB, setShowB] = React.useState(true);
     const [showC, setShowC] = React.useState(true);
+    const [showIcon, setShowIcon] = React.useState(true);
 
     return (
       <div>
@@ -251,29 +189,16 @@ export const TestPanel: Story = {
           <Toggle {...args} onColor={'onwhite'} checked={showA} onChange={() => setShowA(!showA)} label={[{ text: 'Vis content A' }]} />
           <Toggle {...args} onColor={'onwhite'} checked={showB} onChange={() => setShowB(!showB)} label={[{ text: 'Vis content B' }]} />
           <Toggle {...args} onColor={'onwhite'} checked={showC} onChange={() => setShowC(!showC)} label={[{ text: 'Vis content C' }]} />
+          <Toggle {...args} onColor={'onwhite'} checked={showIcon} onChange={() => setShowIcon(!showIcon)} label={[{ text: 'Vis ikon' }]} />
         </div>
         <Panel {...args}>
           <Panel.PreContainer>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateAreas: `'. statusdot statusdot' 'icon title badge'`,
-                gridTemplateColumns: '64px 70px auto',
-              }}
-            >
-              <div style={{ gridArea: 'statusdot' }}>
-                <StatusDot text={'Label'} />
-              </div>
-              <div style={{ gridArea: 'icon' }}>
-                <Icon svgIcon={PdfFile} size={IconSize.XSmall} />
-              </div>
-              <div style={{ gridArea: 'title' }}>
-                <Title appearance="title3">{'Tittel'}</Title>
-              </div>
-              <div style={{ gridArea: 'badge' }}>
-                <Badge>{'Ny'}</Badge>
-              </div>
-            </div>
+            <PanelTitle
+              icon={showIcon && <Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
+              title={'Tittel'}
+              badge={<Badge>{'Ny'}</Badge>}
+              statusDot={<StatusDot variant="info" text="Status" />}
+            />
           </Panel.PreContainer>
           {showA && (
             <Panel.A>
