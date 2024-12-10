@@ -110,14 +110,14 @@ const Panel: React.FC<PanelProps> & {
     [styles['panel--status']]: status && status !== PanelStatus.normal,
     [styles['panel--icon']]: hasIcon,
   });
-  const contentLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`], {
+  const contentContainerLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`], {
     [styles[`panel__content--b-first`]]: stacking === PanelStacking.bFirst, // @todo: fiks stacking
   });
 
   return (
     <div className={outerLayout} data-testid={testId}>
       {preContainer}
-      <div className={contentLayout}>{content}</div>
+      <div className={contentContainerLayout}>{content}</div>
     </div>
   );
 };
@@ -131,17 +131,17 @@ const PreContainer: React.FC<ContentProps> = ({ children }) => {
 };
 
 const A: React.FC<ContentProps> = ({ children }) => {
-  const styling = classNames(styles['panel__content'], styles['panel__content--a']);
+  const styling = classNames(styles['panel__content__item'], styles['panel__content__item--a']);
   return <div className={styling}>{children}</div>;
 };
 
 const B: React.FC<ContentProps> = ({ children }) => {
-  const styling = classNames(styles['panel__content'], styles['panel__content--b']);
+  const styling = classNames(styles['panel__content__item'], styles['panel__content__item--b']);
   return <div className={styling}>{children}</div>;
 };
 
 const C: React.FC<ContentProps> = ({ children }) => {
-  const styling = classNames(styles['panel__content'], styles['panel__content--c']);
+  const styling = classNames(styles['panel__content__item'], styles['panel__content__item--c']);
   return <div className={styling}>{children}</div>;
 };
 
