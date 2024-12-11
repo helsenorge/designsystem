@@ -477,6 +477,37 @@ export const PasientReiser: Story = {
             </div>
           </Panel.B>
         </Panel>
+        <br />
+        <Panel status={PanelStatus.draft} layout={PanelLayout.vertical}>
+          <Panel.PreContainer>
+            <PreviewContainer>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                <Icon svgIcon={Pencil} size={IconSize.XSmall} />
+                <span style={{ color: 'var(--core-color-cherry-500' }}>{'Utkast'}</span>
+              </div>
+              <Title appearance="title3">{`Søknad som pasient 6.november 2024`}</Title>
+            </PreviewContainer>
+          </Panel.PreContainer>
+          <Panel.A>
+            <PreviewContainer>
+              <span>{'Behandlingssted: Sykehus (Spesialist)'}</span>
+            </PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>
+              <div>
+                <Button variant="borderless" onClick={() => null}>
+                  <Icon svgIcon={Referral} />
+                  {'Fortsett søknad'}
+                </Button>
+                <Button concept="destructive" variant="borderless" onClick={() => null}>
+                  <Icon svgIcon={TrashCan} />
+                  {'Slett søknad'}
+                </Button>
+              </div>
+            </PreviewContainer>
+          </Panel.B>
+        </Panel>
       </div>
     );
   },
@@ -506,6 +537,33 @@ export const KjernejournalKritiskInfo: Story = {
             </div>
           </Panel.B>
         </Panel>
+        <br />
+
+        <Panel layout={PanelLayout.combined}>
+          <Panel.A>
+            <PreviewContainer>
+              <PanelTitle title={'Overfølsomhetsreaksjoner (allergier m.m.)'} />
+              <p>
+                {
+                  'Her vises legemidler og annet som kan gi deg en alvorlig reaksjon som for eksempel allergisk sjokk eller alvorlig utslett.'
+                }
+              </p>
+            </PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>
+              <div style={{ height: '100%', display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
+                <div>
+                  <StatusDot variant="info" text="43 gjeldende" />
+                  <StatusDot variant="alert" text="52 avkreftet" />
+                </div>
+                <Expander title="Se detaljer" onExpand={() => null} expanded={false}>
+                  {'Noe detaljer her'}
+                </Expander>
+              </div>
+            </PreviewContainer>
+          </Panel.B>
+        </Panel>
       </div>
     );
   },
@@ -531,6 +589,31 @@ export const Helsekontakter: Story = {
                 <AnchorLink href="https://www.helsenorge.no">{'Mer om din fastlege'}</AnchorLink>
               </div>
             </Expander>
+          </Panel.B>
+        </Panel>
+        <br />
+
+        <Panel layout={PanelLayout.vertical}>
+          <Panel.PreContainer>
+            <PreviewContainer>
+              <PanelTitle title={'Benedikte (DDFL) Geiraas'} icon={<Icon svgIcon={FemaleDoctor} />} />
+            </PreviewContainer>
+          </Panel.PreContainer>
+          <Panel.A>
+            <PreviewContainer>
+              <p>{'DDFL Ehelse Interntest med Mock'}</p>
+            </PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>
+              <Expander title="Se detaljer" onExpand={() => null} expanded={false}>
+                <div>
+                  <p>{'Din fastlege siden: 1. april 2024'}</p>
+                  <p>{'Telefon: 11223344'}</p>
+                  <AnchorLink href="https://www.helsenorge.no">{'Mer om din fastlege'}</AnchorLink>
+                </div>
+              </Expander>
+            </PreviewContainer>
           </Panel.B>
         </Panel>
       </div>
@@ -560,6 +643,28 @@ export const Varsler: Story = {
             </div>
           </Panel.B>
         </Panel>
+        <br />
+        <Panel layout={PanelLayout.horizontal} status={PanelStatus.new}>
+          <Panel.A>
+            <PreviewContainer>
+              <PanelTitle title={'Ny melding fra SØHF'} icon={<Icon svgIcon={Envelope} />} badge={<Badge>{'Ny'}</Badge>} />
+              <p>{'2 minutter siden'}</p>
+            </PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>
+              <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'end', gap: '1rem' }}>
+                <Button htmlMarkup={'a'} variant="borderless" ariaLabel="Slett">
+                  <Icon svgIcon={TrashCan} />
+                </Button>
+                <Button htmlMarkup={'a'} variant="borderless" aria-label="Se mer">
+                  <span>{'Se mer'}</span>
+                  <Icon svgIcon={ArrowRight} />
+                </Button>
+              </div>
+            </PreviewContainer>
+          </Panel.B>
+        </Panel>
       </div>
     );
   },
@@ -587,6 +692,31 @@ export const Innboks: Story = {
                 <Icon svgIcon={ArrowRight} />
               </Button>
             </div>
+          </Panel.B>
+        </Panel>
+        <br />
+
+        <Panel layout={PanelLayout.horizontal}>
+          <Panel.A>
+            <PreviewContainer>
+              <PanelTitle title={'Innbyggerbrev'} />
+              <p>{'SØHF'}</p>
+            </PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>
+              <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'end', gap: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Icon svgIcon={Attachment} size={IconSize.XXSmall} />
+                  <span style={{ fontWeight: 'bold' }}>{'Sendt: '}</span>
+                  <span>{'14:34'}</span>
+                </div>
+                <Button htmlMarkup={'a'} variant="borderless" aria-label="Se mer">
+                  <span>{'Se detaljer'}</span>
+                  <Icon svgIcon={ArrowRight} />
+                </Button>
+              </div>
+            </PreviewContainer>
           </Panel.B>
         </Panel>
       </div>
@@ -634,6 +764,47 @@ export const Fullmakter: Story = {
             </div>
           </Panel.B>
         </Panel>
+        <br />
+
+        <Panel layout={PanelLayout.horizontal}>
+          <Panel.A>
+            <PreviewContainer>
+              <PanelTitle title={'Gry Telokk'} icon={<Avatar>{'Gry Telokk'}</Avatar>} />
+              <p>{'Fødselsnummer 131169'}</p>
+              <p>{'*****'}</p>
+            </PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>
+              <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'start', gap: '1rem' }}>
+                <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+                <p>{'Gyldig til: Ubegrenset'}</p>
+                <Expander title="Les mer" onExpand={() => null} expanded={false}>
+                  <div>
+                    <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+                    <p>
+                      {
+                        'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+                      }
+                    </p>
+                    <div>
+                      <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
+                      <span>{'11.03.2024'}</span>
+                    </div>
+                    <div>
+                      <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
+                      <span>{'11.03.2024'}</span>
+                    </div>
+                    <div>
+                      <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
+                      <span>{'Ubegrenset'}</span>
+                    </div>
+                  </div>
+                </Expander>
+              </div>
+            </PreviewContainer>
+          </Panel.B>
+        </Panel>
       </div>
     );
   },
@@ -643,15 +814,32 @@ export const Dokumentliste: Story = {
   args: {},
   render: () => {
     return (
-      <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border}>
-        <Panel.A>
-          <PanelTitle title={'Luftveisplager (Egenkartlegging)'} icon={<Icon svgIcon={PdfFile} />} />
-          <p>{'Henvendelse, arkivert 04.12.2024'}</p>
-        </Panel.A>
-        <Panel.B>
-          <Expander title="Se detaljer" onExpand={() => null} expanded={false}></Expander>
-        </Panel.B>
-      </Panel>
+      <div>
+        <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border}>
+          <Panel.A>
+            <PanelTitle title={'Luftveisplager (Egenkartlegging)'} icon={<Icon svgIcon={PdfFile} />} />
+            <p>{'Henvendelse, arkivert 04.12.2024'}</p>
+          </Panel.A>
+          <Panel.B>
+            <Expander title="Se detaljer" onExpand={() => null} expanded={false}></Expander>
+          </Panel.B>
+        </Panel>
+        <br />
+
+        <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border}>
+          <Panel.A>
+            <PreviewContainer>
+              <PanelTitle title={'Luftveisplager (Egenkartlegging)'} icon={<Icon svgIcon={PdfFile} />} />
+              <p>{'Henvendelse, arkivert 04.12.2024'}</p>
+            </PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>
+              <Expander title="Se detaljer" onExpand={() => null} expanded={false}></Expander>
+            </PreviewContainer>
+          </Panel.B>
+        </Panel>
+      </div>
     );
   },
 };
@@ -668,6 +856,17 @@ export const DokumentlisteDeling: Story = {
             <PanelTitle title={'Langt_dokument-navn_med_rar_utforming.xml (Notat)'} icon={<Icon svgIcon={PdfFile} />} />
             <p>{'Pasientjournal, arkivert 29.10.2020'}</p>
             <p>{'Delt med legen din'}</p>
+          </Panel.A>
+        </Panel>
+        <br />
+
+        <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border}>
+          <Panel.A>
+            <PreviewContainer>
+              <PanelTitle title={'Langt_dokument-navn_med_rar_utforming.xml (Notat)'} icon={<Icon svgIcon={PdfFile} />} />
+              <p>{'Pasientjournal, arkivert 29.10.2020'}</p>
+              <p>{'Delt med legen din'}</p>
+            </PreviewContainer>
           </Panel.A>
         </Panel>
       </div>
