@@ -43,6 +43,7 @@ const TabList: React.FC<TabListProps> = props => {
 
   const firstTabVisible = useIsVisible(firstTab);
   const lastTabVisible = useIsVisible(lastTab);
+  const tabListVisible = useIsVisible(listRef);
 
   const shouldShowFadeStart = (): boolean => {
     return !firstTabVisible && selectedTab !== 0;
@@ -67,6 +68,7 @@ const TabList: React.FC<TabListProps> = props => {
             return (
               <TabItem
                 tabRefs={tabRefs}
+                tabListVisible={tabListVisible}
                 key={child.props.title}
                 index={index}
                 selectedTab={selectedTab}
