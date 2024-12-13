@@ -64,7 +64,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((
   const arrowRef = useRef<HTMLDivElement>(null);
   const bubbleSize = useSize(bubbleRef);
   const [controllerSize, setControllerSize] = useState<DOMRect>();
-  const controllerisVisible = useIsVisible(controllerRef, 0);
+  const controllerisVisible = useIsVisible(bubbleRef, 0);
 
   const updateControllerSize = (): void => {
     setControllerSize(controllerRef.current?.getBoundingClientRect());
