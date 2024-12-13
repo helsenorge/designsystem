@@ -33,7 +33,7 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
   const arrowRef = useRef<HTMLDivElement>(null);
   const [controllerSize, setControllerSize] = useState<DOMRect>();
   const bubbleSize = useSize(datepickerWrapperRef);
-  const controllerisVisible = useIsVisible(inputRef, 0);
+  const controllerisVisible = useIsVisible(datepickerWrapperRef, 0);
   useFocusTrap(datepickerWrapperRef, true);
 
   const updateControllerSize = (): void => {
