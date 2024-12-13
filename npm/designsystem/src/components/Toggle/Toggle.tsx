@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import classNames from 'classnames';
-import { useAnimate } from 'framer-motion';
+import { useAnimate } from 'motion/react';
 
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
