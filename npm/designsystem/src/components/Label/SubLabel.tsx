@@ -9,6 +9,8 @@ import Spacer from '../Spacer';
 import styles from './styles.module.scss';
 
 export interface SublabelProps {
+  /** Sets the content of the Sublabel */
+  children?: React.ReactNode;
   /** Adds custom classes to the element. */
   className?: string;
   /** id that is placed on the wrapper */
@@ -21,7 +23,7 @@ export interface SublabelProps {
   testId?: string;
 }
 
-export const Sublabel: React.FC<SublabelProps> = ({ className, id, onColor, sublabelTexts, testId }) => {
+export const Sublabel: React.FC<SublabelProps> = ({ children, className, id, onColor, sublabelTexts, testId }) => {
   const mapSublabels = (hideFromScreenReader?: boolean): React.ReactNode => {
     return (
       sublabelTexts &&
@@ -47,8 +49,9 @@ export const Sublabel: React.FC<SublabelProps> = ({ className, id, onColor, subl
   return (
     <>
       <Spacer size={'3xs'} />
-      {subLabels && (
+      {(subLabels || children) && (
         <div className={className} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Sublabel}>
+          {children}
           {subLabels}
         </div>
       )}

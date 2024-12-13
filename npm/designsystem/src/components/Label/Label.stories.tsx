@@ -180,6 +180,27 @@ export const LabelAsString: Story = {
   ),
 };
 
+export const LabelWithChildren: Story = {
+  render: args => (
+    <Input
+      {...args}
+      aria-describedby={'sublabelid'}
+      label={
+        <Label
+          labelTexts={[{ text: 'Label text', type: 'semibold' }]}
+          sublabel={
+            <Sublabel id={'sublabelid'} sublabelTexts={[{ text: 'Sublabel text' }]}>
+              <span>{'Sublabel child'}</span>
+            </Sublabel>
+          }
+        >
+          {<span>{'Label child'}</span>}
+        </Label>
+      }
+    />
+  ),
+};
+
 export const PureComponentStory: Story = {
   render: args => <Label {...args} labelTexts={[{ text: 'Skriv inn din tekst', type: 'semibold' }]} />,
 };

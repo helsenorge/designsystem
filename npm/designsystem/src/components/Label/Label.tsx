@@ -21,7 +21,7 @@ export type LabelTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'span' | 'label' | 'p
 export interface LabelProps {
   /** Component shown after label - discourage use of this */
   afterLabelChildren?: React.ReactNode;
-  /** Adds custom classes to the element. */
+  /** Sets the content of the Label */
   children?: React.ReactNode;
   /** Adds custom classes to the label tag. */
   labelClassName?: string;
