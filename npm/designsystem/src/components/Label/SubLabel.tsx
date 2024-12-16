@@ -51,8 +51,8 @@ export const Sublabel: React.FC<SublabelProps> = ({ children, className, id, onC
       <Spacer size={'3xs'} />
       {(subLabels || children) && (
         <div className={className} id={id} data-testid={testId} data-analyticsid={AnalyticsId.Sublabel}>
-          {children}
           {subLabels}
+          {children}
         </div>
       )}
       {ariaHiddenSublabels && (

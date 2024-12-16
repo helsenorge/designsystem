@@ -187,9 +187,8 @@ export const LabelWithChildren: Story = {
       aria-describedby={'sublabelid'}
       label={
         <Label
-          labelTexts={[{ text: 'Label text', type: 'semibold' }]}
           sublabel={
-            <Sublabel id={'sublabelid'} sublabelTexts={[{ text: 'Sublabel text' }]}>
+            <Sublabel id={'sublabelid'}>
               <span>{'Sublabel child'}</span>
             </Sublabel>
           }

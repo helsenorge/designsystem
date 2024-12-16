@@ -36,7 +36,7 @@ export interface LabelProps {
   /** Id som plasseres på <label/> */
   labelId?: string;
   /** Array of main label strings. Can be of type semibold or normal */
-  labelTexts: LabelText[];
+  labelTexts?: LabelText[];
   /** Array of sublabel strings. Can be of type semibold or normal */
   onColor?: keyof typeof FormOnColor;
   /** StatusDot placed underneath the last sublabel */
@@ -53,7 +53,7 @@ export const getLabelText = (label: React.ReactNode): string => {
   let allLabelText = '';
 
   if (isComponent<LabelProps>(label, Label)) {
-    label.props.labelTexts.forEach(labelText => {
+    label.props.labelTexts?.forEach(labelText => {
       allLabelText += !labelText.hideFromScreenReader ? labelText.text : '';
     });
   }
@@ -141,6 +141,8 @@ const Label: FunctionComponent<LabelProps> = ({
   );
 
   const mapLabels = (): React.ReactNode => {
+    if (typeof labelTexts === 'undefined') return null;
+
     return labelTexts.map((labelText, index) => {
       const labelClasses = cn(
         styles.label,
