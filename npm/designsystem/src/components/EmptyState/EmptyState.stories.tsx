@@ -19,11 +19,19 @@ const meta = {
     },
   },
   args: {
-    children: 'Du har ingen rekvirerte reiser',
+    children: 'Beskjed til bruker',
   },
   argTypes: {
     children: {
       control: 'text',
+    },
+    onColor: {
+      control: 'select',
+      options: ['onwhite', 'onblueberry', 'oncherry'],
+    },
+    size: {
+      control: 'select',
+      options: ['normal', 'compact'],
     },
   },
 } satisfies Meta<typeof EmptyState>;

@@ -1,26 +1,42 @@
 @use 'sass:map';
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
-@import '../../scss/palette';
+@import '../../scss/supernova/styles/colors';
 
 .emptystate {
-  background-color: $neutral50;
   display: flex;
-  gap: getSpacer(m);
-  padding: getSpacer(m);
+  flex-flow: row;
+  gap: getSpacer(s);
+  padding: getSpacer(s);
   align-items: center;
-  border-radius: 16px;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    gap: getSpacer(l);
-    padding: getSpacer(xl);
+    gap: getSpacer(m);
+    padding: getSpacer(l);
   }
 
-  &__illustration {
-    min-width: 101px;
+  &--dashed {
+    border-radius: 16px;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: var(--color-base-border-onlight-emphasized);
+  }
+
+  &--blank {
+    border: none;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      min-width: 151px;
+      padding-left: getSpacer(2xs);
     }
+  }
+
+  &--compact {
+    border-radius: 4px;
+    gap: getSpacer(3xs);
+    padding: getSpacer(2xs);
+    min-height: getSpacer(2xl);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.25rem;
   }
 }
