@@ -38,7 +38,8 @@ const TabItem: React.FC<TabItemProps> = props => {
 
   const scrollToTab = (index: number): void => {
     const currentRef = props.tabRefs.current && props.tabRefs.current[index];
-    currentRef?.current?.scrollIntoView && currentRef?.current?.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    // TODO: Test på mobil, kan gi bugs
+    currentRef?.current?.scrollIntoView && currentRef?.current?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   };
 
   const itemRef = useRef<HTMLLIElement>(null);
