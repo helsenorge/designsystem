@@ -8,6 +8,7 @@ import { useRovingFocus } from '../../../hooks/useRovingFocus';
 import { isComponent } from '../../../utils/component';
 import Tab, { TabProps } from '../Tab';
 import { TabsColors, TabsOnColor } from '../Tabs';
+import TabChevron from './TabChevron';
 
 import styles from './styles.module.scss';
 interface TabListProps {
@@ -55,13 +56,17 @@ const TabList: React.FC<TabListProps> = props => {
 
   return (
     <div>
-      <div
-        className={classNames(styles['tab-list__fade-start'])}
-        style={{
-          display: shouldShowFadeStart() ? 'block' : 'none',
-          backgroundColor: `${getBackgroundColor(onColor)}`,
-        }}
-      ></div>
+      {shouldShowFadeStart() && (
+        <div className={classNames(styles['tab-list__start-wrapper'])}>
+          <TabChevron onClick={() => null} direction="left" backgroundColor={`${getBackgroundColor(onColor)}`} />
+          <div
+            className={classNames(styles['tab-list__fade-start'])}
+            style={{
+              backgroundColor: `${getBackgroundColor(onColor)}`,
+            }}
+          ></div>
+        </div>
+      )}
       <ul className={tablistClasses} ref={listRef} role="tablist" aria-orientation="horizontal">
         {React.Children.map(children, (child, index) => {
           if (isComponent<TabProps>(child, Tab)) {
@@ -81,13 +86,17 @@ const TabList: React.FC<TabListProps> = props => {
           return null;
         })}
       </ul>
-      <div
-        className={classNames(styles['tab-list__fade-end'])}
-        style={{
-          display: shouldShowFadeEnd() ? 'block' : 'none',
-          backgroundColor: `${getBackgroundColor(onColor)}`,
-        }}
-      ></div>
+      {shouldShowFadeEnd() && (
+        <div className={classNames(styles['tab-list__end-wrapper'])}>
+          <div
+            className={classNames(styles['tab-list__fade-end'])}
+            style={{
+              backgroundColor: `${getBackgroundColor(onColor)}`,
+            }}
+          ></div>
+          <TabChevron onClick={() => null} direction="right" backgroundColor={`${getBackgroundColor(onColor)}`} />
+        </div>
+      )}
       <div className={classNames(styles['tab-list__border'])}></div>
     </div>
   );
