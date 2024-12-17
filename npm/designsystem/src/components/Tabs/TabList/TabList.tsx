@@ -17,10 +17,12 @@ interface TabListProps {
   selectedTab: number;
   color: TabsColors;
   onColor: TabsOnColor;
+  ariaLabelRightButton?: string;
+  ariaLabelLeftButton?: string;
 }
 
 const TabList: React.FC<TabListProps> = props => {
-  const { selectedTab, onTabListClick, children, color, onColor } = props;
+  const { selectedTab, onTabListClick, children, color, onColor, ariaLabelLeftButton, ariaLabelRightButton } = props;
 
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -56,8 +58,13 @@ const TabList: React.FC<TabListProps> = props => {
 
   const scrollInList = (direction: string): void => {
     if (listRef.current) {
-      const scrollAmount = direction === 'left' ? -listRef.current.clientWidth / 2 : listRef.current.clientWidth / 2;
-      listRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      if (direction === 'right' && !lastTabVisible) {
+        const scrollAmount = listRef.current.clientWidth / 2;
+        listRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      } else if (direction === 'left' && !firstTabVisible) {
+        const scrollAmount = -listRef.current.clientWidth / 2;
+        listRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
     }
   };
 
@@ -65,7 +72,12 @@ const TabList: React.FC<TabListProps> = props => {
     <div>
       {shouldShowFadeStart() && (
         <div className={classNames(styles['tab-list__start-wrapper'])}>
-          <TabChevron onClick={() => scrollInList('left')} direction="left" backgroundColor={`${getBackgroundColor(onColor)}`} />
+          <TabChevron
+            onClick={() => scrollInList('left')}
+            direction="left"
+            backgroundColor={`${getBackgroundColor(onColor)}`}
+            ariaLabelLeftButton={ariaLabelLeftButton}
+          />
           <div
             className={classNames(styles['tab-list__fade-start'])}
             style={{
@@ -101,7 +113,12 @@ const TabList: React.FC<TabListProps> = props => {
               backgroundColor: `${getBackgroundColor(onColor)}`,
             }}
           ></div>
-          <TabChevron onClick={() => scrollInList('right')} direction="right" backgroundColor={`${getBackgroundColor(onColor)}`} />
+          <TabChevron
+            onClick={() => scrollInList('right')}
+            direction="right"
+            backgroundColor={`${getBackgroundColor(onColor)}`}
+            ariaLabelRightButton={ariaLabelRightButton}
+          />
         </div>
       )}
       <div className={classNames(styles['tab-list__border'])}></div>

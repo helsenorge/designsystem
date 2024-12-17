@@ -11,9 +11,11 @@ interface TabChevronProps {
   direction: 'left' | 'right';
   onClick: () => void;
   backgroundColor?: string;
+  ariaLabelRightButton?: string;
+  ariaLabelLeftButton?: string;
 }
 
-const TabChevron: React.FC<TabChevronProps> = ({ direction, onClick, backgroundColor }) => {
+const TabChevron: React.FC<TabChevronProps> = ({ direction, onClick, backgroundColor, ariaLabelLeftButton, ariaLabelRightButton }) => {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const { isHovered } = useHover<HTMLButtonElement>(buttonRef);
 
@@ -22,7 +24,7 @@ const TabChevron: React.FC<TabChevronProps> = ({ direction, onClick, backgroundC
       ref={buttonRef}
       className={styles['tab-list__button']}
       onClick={onClick}
-      aria-label={`TODO: Scroll TabList ${direction}`}
+      aria-label={direction === 'left' ? ariaLabelLeftButton : ariaLabelRightButton}
       style={{ backgroundColor: backgroundColor }}
     >
       {direction === 'left' ? (
