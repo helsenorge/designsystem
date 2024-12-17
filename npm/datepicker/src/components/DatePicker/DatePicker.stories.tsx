@@ -147,7 +147,7 @@ export const Default: Story = {
   render: args => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
         {...args}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
@@ -198,10 +198,14 @@ export const DateAndTime: Story = {
 
     return (
       <DateTimePickerWrapper>
-        <DatePicker {...args} dateValue={startDate} label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />} />
+        <DatePicker
+          {...args}
+          dateValue={startDate}
+          label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+        />
         <DateTime
           defaultValue={12}
-          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
+          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
           timeUnit={'hours'}
         />
         <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
@@ -212,7 +216,7 @@ export const DateAndTime: Story = {
 
 export const MinMaxDays: Story = {
   render: (args: DatePickerProps) => {
-    const [startDate] = React.useState(new Date('01.01.2024'));
+    const [startDate] = React.useState(new Date());
     const minDate = new Date();
     const maxDate = new Date();
     minDate.setDate(startDate.getDate() - 15);
@@ -220,7 +224,7 @@ export const MinMaxDays: Story = {
 
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
         {...args}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
         dateValue={startDate}
@@ -239,7 +243,7 @@ export const DisabledDays: Story = {
 
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
         {...args}
         disableDays={[disabledDate]}
         disableWeekends
@@ -255,7 +259,7 @@ export const FooterContent: Story = {
   render: (args: DatePickerProps) => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
         {...args}
         footerContent={<Icon size={38} svgIcon={Calendar} />}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
@@ -274,7 +278,7 @@ export const Locale: Story = {
   render: (args: DatePickerProps) => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Date' }, { text: '(dd.mm.yyyy)' }]} />}
+        label={<Label labelTexts={[{ text: 'Date' }, { text: '(dd.mm.yyyy)', type: 'subdued' }]} />}
         {...args}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
@@ -406,7 +410,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
               disableDays={[disabledDate]}
               disableWeekends
               footerContent={<Icon size={38} svgIcon={Calendar} />}
-              label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
+              label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
               maxDate={maxDate}
               minDate={minDate}
               onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
@@ -414,7 +418,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
             />
             <DateTime
               defaultValue={12}
-              label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
+              label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
               timeUnit={'hours'}
               {...register(datetimehour, { validate: requireHour })}
             />
@@ -439,7 +443,7 @@ export const Variants: Story = {
       <div>
         <p>{longLoremText}</p>
         <DatePicker
-          label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
+          label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
           {...args}
           dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
           disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}

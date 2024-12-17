@@ -42,7 +42,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "react-day-picker": "^8.10.1"
+    "react-day-picker": "^9.4.1"
   },
   "devDependencies": {
     "@helsenorge/designsystem-react": "^9.4.3",

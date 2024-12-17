@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
-import { DayPicker, DayPickerSingleProps } from 'react-day-picker';
+import { DayPicker, DayPickerProps, PropsSingle } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
@@ -18,9 +18,10 @@ import styles from './styles.module.scss';
 
 interface DatePickerPopupProps
   extends Pick<
-    DayPickerSingleProps,
-    'dir' | 'disabled' | 'footer' | 'fromDate' | 'initialFocus' | 'locale' | 'month' | 'selected' | 'onSelect' | 'onMonthChange' | 'toDate'
-  > {
+      DayPickerProps,
+      'dir' | 'disabled' | 'footer' | 'startMonth' | 'initialFocus' | 'locale' | 'month' | 'onMonthChange' | 'endMonth'
+    >,
+    Pick<PropsSingle, 'selected' | 'onSelect'> {
   datepickerWrapperRef: React.RefObject<HTMLDivElement>;
   inputRef: React.RefObject<HTMLInputElement>;
   testId?: string;
@@ -30,6 +31,7 @@ interface DatePickerPopupProps
 
 const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
   const { datepickerWrapperRef, footer, inputRef, testId, variant, zIndex, ...rest } = props;
+  const today = new Date();
   const arrowRef = useRef<HTMLDivElement>(null);
   const [controllerSize, setControllerSize] = useState<DOMRect>();
   const bubbleSize = useSize(datepickerWrapperRef);
@@ -69,14 +71,20 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
     <>
       <div className={datepickerPopupContainerClasses} data-testid={testId} ref={datepickerWrapperRef} style={{ ...bubbleStyle, zIndex }}>
         <DayPicker
-          captionLayout="dropdown-buttons"
+          captionLayout="dropdown"
           classNames={datePickerClassNames}
           mode={'single'}
           style={{ '--rdp-cell-size': getSpacer('l') } as React.CSSProperties}
-          modifiersClassNames={{ today: styles['day--today'], selected: styles['day_selected'], disabled: styles['day--disabled'] }}
+          modifiersClassNames={{
+            today: styles['day--today'],
+            selected: styles['day--selected'],
+            disabled: styles['day--disabled'],
+          }}
           footer={<span className={styles['footer-wrapper']}>{footer}</span>}
           fixedWeeks
           {...rest}
+          startMonth={props.startMonth ?? new Date(today.getFullYear() - 100, today.getMonth(), 1)}
+          endMonth={props.endMonth ?? new Date(today.getFullYear() + 100, today.getMonth(), 1)}
         />
       </div>
       <div ref={arrowRef} className={popupArrowClasses} style={{ ...arrowStyle, zIndex }} />
