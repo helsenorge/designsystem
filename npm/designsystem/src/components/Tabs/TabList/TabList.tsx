@@ -47,11 +47,11 @@ const TabList: React.FC<TabListProps> = props => {
   const tabListVisible = useIsVisible(listRef);
 
   const shouldShowFadeStart = (): boolean => {
-    return !firstTabVisible && selectedTab !== 0;
+    return !firstTabVisible;
   };
 
   const shouldShowFadeEnd = (): boolean => {
-    return !lastTabVisible && selectedTab !== tabRefs.current.length - 1;
+    return !lastTabVisible;
   };
 
   const scrollInList = (direction: string): void => {
