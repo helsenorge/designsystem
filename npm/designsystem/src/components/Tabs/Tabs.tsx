@@ -33,7 +33,9 @@ export interface TabsProps {
   touchBehaviour?: TabsTouchBehaviour;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Sets aria label on the "scroll to the right" button in TabList */
   ariaLabelRightButton?: string;
+  /** Sets aria label on the "scroll to the left" button in TabList */
   ariaLabelLeftButton?: string;
 }
 
