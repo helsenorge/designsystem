@@ -80,7 +80,7 @@ const EmptyState: React.FC<EmptyStateProps> = props => {
 
   return (
     <div className={classes} data-testid={testId} data-analyticsid={AnalyticsId.EmptyState}>
-      {illustrationComponent}
+      <div>{illustrationComponent}</div>
       {size == 'normal' ? (
         <Title appearance={breakpoint < Breakpoint.md ? 'title4' : 'title3'} htmlMarkup={titleHtmlMarkup || 'h2'}>
           {children}
