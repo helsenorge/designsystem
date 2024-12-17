@@ -54,11 +54,18 @@ const TabList: React.FC<TabListProps> = props => {
     return !lastTabVisible && selectedTab !== tabRefs.current.length - 1;
   };
 
+  const scrollInList = (direction: string): void => {
+    if (listRef.current) {
+      const scrollAmount = direction === 'left' ? -listRef.current.clientWidth / 2 : listRef.current.clientWidth / 2;
+      listRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div>
       {shouldShowFadeStart() && (
         <div className={classNames(styles['tab-list__start-wrapper'])}>
-          <TabChevron onClick={() => null} direction="left" backgroundColor={`${getBackgroundColor(onColor)}`} />
+          <TabChevron onClick={() => scrollInList('left')} direction="left" backgroundColor={`${getBackgroundColor(onColor)}`} />
           <div
             className={classNames(styles['tab-list__fade-start'])}
             style={{
@@ -94,7 +101,7 @@ const TabList: React.FC<TabListProps> = props => {
               backgroundColor: `${getBackgroundColor(onColor)}`,
             }}
           ></div>
-          <TabChevron onClick={() => null} direction="right" backgroundColor={`${getBackgroundColor(onColor)}`} />
+          <TabChevron onClick={() => scrollInList('right')} direction="right" backgroundColor={`${getBackgroundColor(onColor)}`} />
         </div>
       )}
       <div className={classNames(styles['tab-list__border'])}></div>
