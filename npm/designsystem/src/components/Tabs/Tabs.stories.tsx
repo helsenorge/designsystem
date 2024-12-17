@@ -97,40 +97,6 @@ export const WithIcon: Story = {
   ),
 };
 
-export const WithALotOfTabs: Story = {
-  render: args => (
-    <Tabs {...args}>
-      <Tabs.Tab title="Vaksinasjon" icon={'Calendar'}>
-        {longLoremText}
-      </Tabs.Tab>
-      <Tabs.Tab title="Prøvesvar" icon={'Calendar'}>
-        {mediumLoremText}
-      </Tabs.Tab>
-      <Tabs.Tab title="Helserelaterte spørsmål" icon={'Calendar'}>
-        {shortLoremText}
-      </Tabs.Tab>
-      <Tabs.Tab title="Vaksinasjon" icon={'Calendar'}>
-        {longLoremText}
-      </Tabs.Tab>
-      <Tabs.Tab title="Prøvesvar" icon={'Calendar'}>
-        {mediumLoremText}
-      </Tabs.Tab>
-      <Tabs.Tab title="Helserelaterte spørsmål" icon={'Calendar'}>
-        {shortLoremText}
-      </Tabs.Tab>
-      <Tabs.Tab title="Vaksinasjon" icon={'Calendar'}>
-        {longLoremText}
-      </Tabs.Tab>
-      <Tabs.Tab title="Prøvesvar" icon={'Calendar'}>
-        {mediumLoremText}
-      </Tabs.Tab>
-      <Tabs.Tab title="Helserelaterte spørsmål" icon={'Calendar'}>
-        {shortLoremText}
-      </Tabs.Tab>
-    </Tabs>
-  ),
-};
-
 export const Colors: Story = {
   render: args => (
     <>
