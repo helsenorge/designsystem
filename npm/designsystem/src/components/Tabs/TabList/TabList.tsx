@@ -58,12 +58,15 @@ const TabList: React.FC<TabListProps> = props => {
 
   const scrollInList = (direction: string): void => {
     if (listRef.current) {
-      const maxScrollLeft = listRef.current.scrollWidth - listRef.current.clientWidth;
+      const listWidth = listRef.current.clientWidth;
+      const listScrollLeft = listRef.current.scrollLeft;
+      const maxScrollLeft = listRef.current.scrollWidth - listWidth;
+
       if (direction === 'right' && !lastTabVisible) {
-        const scrollAmount = Math.min(listRef.current.clientWidth / 2, maxScrollLeft - listRef.current.scrollLeft);
+        const scrollAmount = Math.min(listWidth / 2, maxScrollLeft - listScrollLeft);
         listRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
       } else if (direction === 'left' && !firstTabVisible) {
-        const scrollAmount = -Math.min(listRef.current.clientWidth / 2, listRef.current.scrollLeft);
+        const scrollAmount = -Math.min(listWidth / 2, listScrollLeft);
         listRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
       }
     }
