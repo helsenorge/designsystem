@@ -118,7 +118,7 @@ export const mapChildren: ChildrenMapper = (children, isJsxChild = false) => {
 export const ListHeader: ListHeaderType = props => {
   const { className = '', titleHtmlMarkup = 'h2', chevronIcon, children, icon, isHovered, size, testId } = props;
   const breakpoint = useBreakpoint();
-  const showChevronAndIcon = size !== 'small' && !!(chevronIcon || icon);
+  const showIcon = size !== 'small' && !!icon;
   const contentIsString = typeof children === 'string';
   const mappedChildren = mapChildren(children);
 
@@ -134,7 +134,7 @@ export const ListHeader: ListHeaderType = props => {
   const CustomTag = titleHtmlMarkup;
   return (
     <span data-testid={testId} className={listLabelClasses}>
-      {showChevronAndIcon && icon && (
+      {showIcon && icon && (
         <span className={iconClasses}>
           {React.cloneElement(icon, {
             size: breakpoint === Breakpoint.xs ? IconSize.XSmall : IconSize.Small,
@@ -164,7 +164,7 @@ export const ListHeader: ListHeaderType = props => {
             );
           })}
       </span>
-      {showChevronAndIcon && chevronIcon && (
+      {chevronIcon && (
         <span className={chevronClasses}>
           <Icon svgIcon={chevronIcon} isHovered={isHovered} size={IconSize.XSmall} />
         </span>
