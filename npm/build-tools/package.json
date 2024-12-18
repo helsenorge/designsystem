@@ -32,7 +32,7 @@
     "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "typescript": "~5.6.3",
-    "vite": "^5.4.9",
+    "vite": "^6.0.0",
     "vite-plugin-dts": "^4.3.0"
   }
 }
