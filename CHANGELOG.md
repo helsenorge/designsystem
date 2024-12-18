@@ -1,3 +1,10 @@
+## 10.0.0-beta.1 (2024-12-18)
+
+
+### Bug Fixes
+
+* **emptystate:**  behold bredden på illustrasjon ([058c7f9](https://github.com/helsenorge/designsystem/commit/058c7f94fa84b96ff58944c6e7696cd44af01a07)), closes [#336772](https://github.com/helsenorge/designsystem/issues/336772)
+
 ## 10.0.0-beta.0 (2024-12-17)
 
 
