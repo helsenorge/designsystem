@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { Locale, format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { Modifiers, DayOfWeek, DayPickerProps, PropsSingle } from 'react-day-picker';
+import { Modifiers, DayOfWeek, DayPickerProps, PropsSingle, Labels } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
@@ -55,6 +55,8 @@ export interface DatePickerProps
   label?: React.ReactNode;
   /** Input element id */
   inputId?: string;
+  /** Setter labels for popup på desktop visning */
+  ariaLabels?: Partial<Labels>;
   /** Sets the locale of the datepicker */
   locale?: Locale;
   /** Maximum date allowed to be selected */
@@ -63,8 +65,8 @@ export interface DatePickerProps
   minDate?: Date;
   /** onChange callback triggered by change in chosen date */
   onChange?: (
-    event?: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>,
-    date?: Date | string | undefined
+    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>,
+    date?: Date | string
   ) => void;
   /** Only use this to trigger validation. Callback triggered by change in chosen date via the datepicker popup */
   onDatePopupClosed?: (date: Date | string | undefined) => void;
@@ -93,6 +95,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     errorWrapperClassName,
     footerContent,
     label,
+    ariaLabels,
     inputId,
     locale = nb,
     maxDate,
@@ -116,7 +119,9 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   const weekendMatcher: DayOfWeek = {
     dayOfWeek: [0, 6],
   };
-  const disabledDays: (Date | DayOfWeek)[] = disableWeekends ? [...disableDays, weekendMatcher] : disableDays;
+  const disabledDays = disableWeekends
+    ? [...disableDays, weekendMatcher, ...(minDate ? [{ before: minDate }] : []), ...(maxDate ? [{ after: maxDate }] : [])]
+    : [...disableDays, ...(minDate ? [{ before: minDate }] : []), ...(maxDate ? [{ after: maxDate }] : [])];
 
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const inputContainerRef = useRef<HTMLDivElement>(null);
@@ -190,7 +195,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     date: Date | undefined,
     _selectedDay: Date,
     _activeModifiers: Modifiers,
-    e?: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>
+    e: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>
   ): void => {
     setReturnInputFocus(true);
 
@@ -365,6 +370,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           onMonthChange={setMonth}
           variant={variant}
           zIndex={zIndex}
+          ariaLabels={ariaLabels}
         />
       )}
     </>

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
-import { DayPicker, DayPickerProps, PropsSingle } from 'react-day-picker';
+import { DayPicker, DayPickerProps, PropsSingle, Labels } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
@@ -24,13 +24,14 @@ interface DatePickerPopupProps
     Pick<PropsSingle, 'selected' | 'onSelect'> {
   datepickerWrapperRef: React.RefObject<HTMLDivElement>;
   inputRef: React.RefObject<HTMLInputElement>;
+  ariaLabels?: Partial<Labels>;
   testId?: string;
   variant: keyof typeof PopOverVariant;
   zIndex?: number;
 }
 
 const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
-  const { datepickerWrapperRef, footer, inputRef, testId, variant, zIndex, ...rest } = props;
+  const { datepickerWrapperRef, endMonth, footer, inputRef, ariaLabels, startMonth, testId, variant, zIndex, ...rest } = props;
   const today = new Date();
   const arrowRef = useRef<HTMLDivElement>(null);
   const [controllerSize, setControllerSize] = useState<DOMRect>();
@@ -82,9 +83,10 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
           }}
           footer={<span className={styles['footer-wrapper']}>{footer}</span>}
           fixedWeeks
+          labels={ariaLabels}
+          startMonth={startMonth ?? new Date(today.getFullYear() - 100, today.getMonth(), 1)}
+          endMonth={endMonth ?? new Date(today.getFullYear() + 100, today.getMonth(), 1)}
           {...rest}
-          startMonth={props.startMonth ?? new Date(today.getFullYear() - 100, today.getMonth(), 1)}
-          endMonth={props.endMonth ?? new Date(today.getFullYear() + 100, today.getMonth(), 1)}
         />
       </div>
       <div ref={arrowRef} className={popupArrowClasses} style={{ ...arrowStyle, zIndex }} />

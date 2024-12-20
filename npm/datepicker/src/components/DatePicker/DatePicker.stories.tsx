@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
-import { parse } from 'date-fns';
+import { format, parse } from 'date-fns';
 import { ar, nb } from 'date-fns/locale';
 import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
@@ -170,7 +170,7 @@ export const DateRangePicker: Story = {
           label={<Label labelTexts={[{ text: 'Fra dato' }]} />}
           maxDate={toDate}
           onChange={(
-            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
+            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>,
             date: string | Date | undefined
           ): void => {
             date instanceof Date && setFromDate(date);
@@ -181,7 +181,7 @@ export const DateRangePicker: Story = {
           label={<Label labelTexts={[{ text: 'Til dato' }]} />}
           minDate={fromDate}
           onChange={(
-            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
+            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>,
             date: string | Date | undefined
           ): void => {
             date instanceof Date && setToDate(date);
@@ -452,6 +452,34 @@ export const Variants: Story = {
         />
         <p>{longLoremText}</p>
       </div>
+    );
+  },
+};
+
+export const AriaLabels: Story = {
+  render: args => {
+    return (
+      <DatePicker
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+        ariaLabels={{
+          labelDayButton: (date, { today, selected }) => {
+            let label = format(date, 'PPPP', { locale: nb });
+            if (today) label = `I dag, ${label}`;
+            if (selected) label = `${label}, valgt`;
+            return label;
+          },
+          labelWeekNumber: weekNumber => `Uke ${weekNumber}`,
+          labelNext: () => 'Neste måned',
+          labelPrevious: () => 'Forrige måned',
+          labelMonthDropdown: () => 'Velg måned',
+          labelYearDropdown: () => 'Velg år',
+        }}
+        {...args}
+        dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
+        disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
+        maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
+        minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
+      />
     );
   },
 };
