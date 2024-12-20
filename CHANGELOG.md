@@ -1,3 +1,10 @@
+## 10.0.0-beta.3 (2024-12-20)
+
+
+### Bug Fixes
+
+*  label renderasparent rendrer nå subdued igjen når det passeres inn ren string ([7851865](https://github.com/helsenorge/designsystem/commit/7851865ac788f7f2390a8093f049b40f020c650b))
+
 ## 10.0.0-beta.2 (2024-12-20)
 
 
