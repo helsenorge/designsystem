@@ -102,7 +102,7 @@ export const renderLabelAsParent = (
           })
         : typeof label === 'string' && (
             <Label
-              labelTexts={[{ text: label }]}
+              labelTexts={[{ text: label, type: 'subdued' }]}
               htmlFor={inputId}
               onColor={onColor}
               htmlMarkup={markup || 'label'}
