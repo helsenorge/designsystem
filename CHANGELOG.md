@@ -1,3 +1,11 @@
+## 10.0.0-beta.2 (2024-12-20)
+
+
+### Features
+
+*  arialabels prop for og fikset disabled dager feil ([e57ba55](https://github.com/helsenorge/designsystem/commit/e57ba55e4a2be478c659ec0515290aebed28674c)), closes [#331806](https://github.com/helsenorge/designsystem/issues/331806)
+* **listheader:**  tillat chevron på linklist size small ([9e93688](https://github.com/helsenorge/designsystem/commit/9e9368842dffb8b26c14dfd914376bc3b002c88c)), closes [#340288](https://github.com/helsenorge/designsystem/issues/340288)
+
 ## 10.0.0-beta.1 (2024-12-18)
 
 
