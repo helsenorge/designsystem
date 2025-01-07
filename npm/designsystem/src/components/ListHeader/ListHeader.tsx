@@ -5,7 +5,6 @@ import cn from 'classnames';
 import ListHeaderText, { ListHeaderTextProps, ListHeaderTextType } from './ListHeaderText/ListHeaderText';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { isComponent, isComponentWithChildren } from '../../utils/component';
-import uuid from '../../utils/uuid';
 import Avatar, { AvatarProps, AvatarSize, AvatarType } from '../Avatar';
 import Badge, { BadgeProps, BadgeType } from '../Badge';
 import Icon, { IconSize, SvgIcon } from '../Icon';
@@ -188,10 +187,9 @@ export const ListHeader: ListHeaderType = props => {
       </span>
 
       {mappedChildren?.badgeChildren &&
-        mappedChildren.badgeChildren.map(badgeChild => {
-          const id = uuid();
+        mappedChildren.badgeChildren.map((badgeChild, index) => {
           return (
-            <span key={id} className={badgeClasses}>
+            <span key={index} className={badgeClasses}>
               {badgeChild}
             </span>
           );
