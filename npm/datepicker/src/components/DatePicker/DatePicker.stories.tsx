@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
-import { format, parse } from 'date-fns';
+import { parse } from 'date-fns';
 import { ar, nb } from 'date-fns/locale';
 import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
@@ -135,6 +135,9 @@ const meta = {
     },
     autoComplete: {
       control: 'text',
+    },
+    ariaLabels: {
+      control: 'object',
     },
   },
 } satisfies Meta<typeof DatePicker>;
@@ -457,23 +460,21 @@ export const Variants: Story = {
 };
 
 export const AriaLabels: Story = {
+  args: {
+    ariaLabels: {
+      dayButtonBase: 'Standard tekst for {date}',
+      dayButtonToday: 'I dag, {date}',
+      dayButtonSelected: '{date}, valgt',
+      nextMonth: 'Neste måned',
+      previousMonth: 'Forrige måned',
+      monthDropdown: 'Velg måned',
+      yearDropdown: 'Velg år',
+    },
+  },
   render: args => {
     return (
       <DatePicker
         label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
-        ariaLabels={{
-          labelDayButton: (date, { today, selected }) => {
-            let label = format(date, 'PPPP', { locale: nb });
-            if (today) label = `I dag, ${label}`;
-            if (selected) label = `${label}, valgt`;
-            return label;
-          },
-          labelWeekNumber: weekNumber => `Uke ${weekNumber}`,
-          labelNext: () => 'Neste måned',
-          labelPrevious: () => 'Forrige måned',
-          labelMonthDropdown: () => 'Velg måned',
-          labelYearDropdown: () => 'Velg år',
-        }}
         {...args}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}

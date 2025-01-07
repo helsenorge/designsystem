@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { Locale, format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { Modifiers, DayOfWeek, DayPickerProps, PropsSingle, Labels } from 'react-day-picker';
+import { Modifiers, DayOfWeek, DayPickerProps, PropsSingle } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
@@ -17,7 +17,7 @@ import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudo
 import { isMobileUA } from '@helsenorge/designsystem-react/utils/mobile';
 import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
-import DatePickerPopup from './DatePickerPopup';
+import DatePickerPopup, { DatePickerAriaLabels } from './DatePickerPopup';
 
 import styles from './styles.module.scss';
 
@@ -27,6 +27,8 @@ export interface DatePickerProps
   extends ErrorWrapperClassNameProps,
     Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur' | 'autoComplete'>,
     Pick<DayPickerProps, 'dir' | 'initialFocus'> {
+  /** Setter labels for popup på desktop visning */
+  ariaLabels?: DatePickerAriaLabels;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets aria-label on the button that opens the datepicker dialogue */
@@ -55,8 +57,6 @@ export interface DatePickerProps
   label?: React.ReactNode;
   /** Input element id */
   inputId?: string;
-  /** Setter labels for popup på desktop visning */
-  ariaLabels?: Partial<Labels>;
   /** Sets the locale of the datepicker */
   locale?: Locale;
   /** Maximum date allowed to be selected */
