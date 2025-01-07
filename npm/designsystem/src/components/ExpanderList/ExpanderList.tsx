@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, ZIndex } from '../../constants';
+import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { useHover } from '../../hooks/useHover';
 import { useUuid } from '../../hooks/useUuid';
@@ -153,7 +153,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
         ref={triggerRef}
         aria-expanded={isExpanded}
         style={{
-          zIndex: isHovered ? zIndex : undefined,
+          zIndex: zIndex ?? undefined,
         }}
       >
         {renderListHeader(title, titleHtmlMarkup, isHovered, large ? 'large' : 'medium', isExpanded ? ChevronUp : ChevronDown, icon)}
@@ -179,7 +179,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     accordion = false,
     testId,
     variant,
-    zIndex = ZIndex.ExpanderTrigger,
+    zIndex,
   } = props;
   const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
