@@ -64,12 +64,8 @@ export const Default: Story = {
   render: args => (
     <>
       <ExpanderList {...args}>
-        <ExpanderList.Expander title="Her skrives en kort overskrift. Prøv å begrense den til max et par linjer.">
-          {args.children}
-        </ExpanderList.Expander>
-        <ExpanderList.Expander title="Her skrives en kort overskrift. Prøv å begrense den til max et par linjer.">
-          {args.children}
-        </ExpanderList.Expander>
+        <ExpanderList.Expander title="Her skrives en kort overskrift. Helst ikke gå over en linje.">{args.children}</ExpanderList.Expander>
+        <ExpanderList.Expander title="Her skrives en kort overskrift. Helst ikke gå over en linje.">{args.children}</ExpanderList.Expander>
       </ExpanderList>
     </>
   ),

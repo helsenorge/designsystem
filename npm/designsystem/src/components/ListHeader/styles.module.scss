@@ -51,7 +51,7 @@
     }
 
     &--spacing {
-      margin-left: getSpacer(s);
+      margin-left: getSpacer(2xs);
     }
 
     :focus > &,
