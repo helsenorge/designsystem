@@ -28,6 +28,9 @@ const meta = {
     color: 'white',
     onColor: 'onwhite',
     sticky: true,
+    touchBehaviour: 'swipe',
+    ariaLabelLeftButton: 'Scroll left',
+    ariaLabelRightButton: 'Scroll right',
   },
   argTypes: {
     color: {

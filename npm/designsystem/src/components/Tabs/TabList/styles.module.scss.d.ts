@@ -1,8 +1,11 @@
 export type Styles = {
   'tab-list': string;
   'tab-list__border': string;
+  'tab-list__button': string;
+  'tab-list__end-wrapper': string;
   'tab-list__fade-end': string;
   'tab-list__fade-start': string;
+  'tab-list__start-wrapper': string;
   'tab-list__tab': string;
   'tab-list__tab__title-and-icon': string;
   'tab-list__tab--blueberry': string;

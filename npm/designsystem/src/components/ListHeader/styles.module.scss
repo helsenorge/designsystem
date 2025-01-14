@@ -35,6 +35,10 @@
       flex-direction: column;
     }
 
+    &--spacing {
+      margin-left: getSpacer(2xs);
+    }
+
     :focus > &,
     :focus-visible > & {
       border-color: $black;

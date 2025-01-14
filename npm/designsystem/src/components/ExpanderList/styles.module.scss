@@ -267,12 +267,7 @@
     }
 
     &--padding {
-      padding: getSpacer(m) 0;
-
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        padding-left: getSpacer(2xs);
-        padding-right: getSpacer(2xs);
-      }
+      padding: getSpacer(xs) getSpacer(s) getSpacer(l);
     }
   }
 }
