@@ -27,22 +27,24 @@ export interface EmptyStateIllustrationProps {
 }
 
 export interface EmptyStateProps {
-  /** Text content */
-  children: React.ReactNode;
+  /** Additional text rendered under the title.  */
+  additionalText?: React.ReactNode;
   /** Color of the illustration */
   onColor?: EmptyStateOnColor;
+  /** Normal or compact size */
+  size?: EmptyStateSize;
+  /** The main message in the component  */
+  title: React.ReactNode;
   /** Markup props for title. Default: h2 */
   titleHtmlMarkup?: TitleTags;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Styling of the border */
   type?: EmptyStateType;
-  /** Normal or compact size */
-  size?: EmptyStateSize;
 }
 
 const EmptyState: React.FC<EmptyStateProps> = props => {
-  const { children, onColor = 'neutral', titleHtmlMarkup, testId, type = 'dashed', size = 'normal' } = props;
+  const { onColor = 'neutral', titleHtmlMarkup, testId, type = 'dashed', size = 'normal', title, additionalText } = props;
   const classes = classNames(styles.emptystate, {
     [styles['emptystate--dashed']]: type === 'dashed',
     [styles['emptystate--blank']]: type === 'blank',
@@ -80,14 +82,17 @@ const EmptyState: React.FC<EmptyStateProps> = props => {
 
   return (
     <div className={classes} data-testid={testId} data-analyticsid={AnalyticsId.EmptyState}>
-      <div>{illustrationComponent}</div>
-      {size == 'normal' ? (
-        <Title appearance={breakpoint < Breakpoint.md ? 'title4' : 'title3'} htmlMarkup={titleHtmlMarkup || 'h2'}>
-          {children}
-        </Title>
-      ) : (
-        <span>{children}</span>
-      )}
+      <div className={styles['emptystate__illustration']}>{illustrationComponent}</div>
+      <div className={styles['emptystate__text']}>
+        {size == 'normal' ? (
+          <Title appearance={breakpoint < Breakpoint.md ? 'title4' : 'title3'} htmlMarkup={titleHtmlMarkup || 'h2'}>
+            {title}
+          </Title>
+        ) : (
+          <span>{title}</span>
+        )}
+        {size == 'normal' && additionalText && <span className={styles['emptystate__additional-text']}>{additionalText}</span>}
+      </div>
     </div>
   );
 };
