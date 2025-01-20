@@ -61,11 +61,8 @@ const Drawer: React.FC<DrawerProps> = ({
   });
 
   // TODO: Hør med Tommy:
-  // TODO: 400% zoom, skal vi gjøre noe med padding?
-  // TODO: Hva er vh maxen egentlig? (har 85vh nå)
-  // TODO: Close er alltid 38px på smal skjerm, skal vi introdusere en prop for å overstyre dette,
-  //       eller eventuelt ikke la størrelsen redusere ved small prop satt?
-  // TODO: Har vi en token for overlayet bak drawer?
+  // TODO: 400% zoom, skal vi gjøre noe med padding? JA, kommer skisser
+  // TODO: Har vi en token for overlayet bak drawer? Burde sikkert hatt det, frankenweekly
 
   // TODO: Return focus after closing logic (mangler vi eksempel for dette i modal?)
   // TODO: Se over props
