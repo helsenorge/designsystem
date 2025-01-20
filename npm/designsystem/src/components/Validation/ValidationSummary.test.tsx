@@ -38,7 +38,7 @@ describe('Gitt at ValidationSummary skal vises', () => {
     test('Så vises teksten', () => {
       render(<ValidationSummary>{'Feilmelding'}</ValidationSummary>);
 
-      const alert = screen.getByRole('alert');
+      const alert = screen.getByRole('status');
 
       within(alert).getByText('Feilmelding');
     });

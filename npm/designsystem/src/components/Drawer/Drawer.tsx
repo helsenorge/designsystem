@@ -60,19 +60,21 @@ const Drawer: React.FC<DrawerProps> = ({
     handleClose();
   });
 
-  // TODO: Hør med Tommy: 400% zoom, skal vi gjøre noe med padding?
-  // TODO: Fullfør stories (og propsliste der)
-  // TODO: Skriv tester
-  // TODO: Se over props
-  // TODO: Hva er vh maxen egentlig? Hør med Tommy (har 85vh nå)
-  // TODO: colors use tokens
+  // TODO: Hør med Tommy:
+  // TODO: 400% zoom, skal vi gjøre noe med padding?
+  // TODO: Hva er vh maxen egentlig? (har 85vh nå)
   // TODO: Close er alltid 38px på smal skjerm, skal vi introdusere en prop for å overstyre dette,
   //       eller eventuelt ikke la størrelsen redusere ved small prop satt?
+  // TODO: Har vi en token for overlayet bak drawer?
+
   // TODO: Return focus after closing logic (mangler vi eksempel for dette i modal?)
+  // TODO: Se over props
   // TODO: Complete aria
   // ariaLabelledBy prioriteres over ariaLabel, men dersom ariaLabel brukes trengs ikke ariaLabelledBy
   // const ariaLabel = !props.ariaLabelledBy ? props.ariaLabel : undefined;
   // const ariaLabelledBy = props.ariaLabelledBy ? props.ariaLabelledBy : !props.ariaLabel ? titleId : undefined;
+  // TODO: Fullfør stories (og propsliste der)
+  // TODO: Skriv tester
 
   /**
    * Animate the drawer IN on mount.
