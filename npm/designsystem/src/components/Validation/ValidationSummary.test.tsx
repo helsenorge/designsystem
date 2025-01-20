@@ -4,33 +4,33 @@ import ValidationSummary from './ValidationSummary';
 
 describe('Gitt at ValidationSummary skal vises', () => {
   describe('Når ValidationSummary ikke har noen props', () => {
-    test('Så vises en tom alert', () => {
+    test('Så vises en tom status', () => {
       render(<ValidationSummary />);
 
-      const alert = screen.getByRole('alert');
+      const status = screen.getByRole('status');
 
-      expect(alert).not.toHaveAccessibleName();
-      expect(alert).toBeEmptyDOMElement();
+      expect(status).not.toHaveAccessibleName();
+      expect(status).toBeEmptyDOMElement();
     });
   });
 
   describe('Når ValidationSummary har title, men ikke errors', () => {
-    test('Så vises en tom alert', () => {
+    test('Så vises en tom status', () => {
       render(<ValidationSummary errorTitle="Feil" />);
 
-      const alert = screen.getByRole('alert');
+      const status = screen.getByRole('status');
 
-      expect(alert).not.toHaveAccessibleName();
-      expect(alert).toBeEmptyDOMElement();
+      expect(status).not.toHaveAccessibleName();
+      expect(status).toBeEmptyDOMElement();
     });
   });
 
   describe('Når ValidationSummary har title og errors', () => {
-    test('Så vises en tom alert', () => {
+    test('Så vises en tom status', () => {
       render(<ValidationSummary errorTitle="Feil" errors={{ feil1: { message: 'Feil 1' } }} />);
 
-      const alert = screen.getByRole('alert', { name: 'Feil' });
-      within(alert).getByText('Feil 1');
+      const status = screen.getByRole('status', { name: 'Feil' });
+      within(status).getByText('Feil 1');
     });
   });
 
@@ -38,9 +38,9 @@ describe('Gitt at ValidationSummary skal vises', () => {
     test('Så vises teksten', () => {
       render(<ValidationSummary>{'Feilmelding'}</ValidationSummary>);
 
-      const alert = screen.getByRole('alert');
+      const status = screen.getByRole('status');
 
-      within(alert).getByText('Feilmelding');
+      within(status).getByText('Feilmelding');
     });
   });
 });
