@@ -15,7 +15,8 @@ const meta = {
     docs: {
       page: (): React.JSX.Element => <Docs component={Drawer} />,
       description: {
-        component: 'Drawer brukes for å vise innhold fra bunn til topp, og lar brukeren fremdeles se litt av baksiden av siden øverst.',
+        component:
+          'Drawer er en generisk container komponent som brukes for å vise innhold fra bunn til topp på mobil, og venstre til høyre på desktop. Samtidig som det lar brukeren se litt av innholdet bak komponentet.',
       },
     },
   },
