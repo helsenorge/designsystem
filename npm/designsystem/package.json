@@ -43,7 +43,7 @@
     "new": "node __scripts__/new-component.js"
   },
   "peerDependencies": {
-    "bootstrap": "^4.6.2",
+    "bootstrap": "^5.0.0",
     "classnames": "^2.3.2",
     "normalize.css": "^8.0.1",
     "react": "^18.0.0",
@@ -73,7 +73,7 @@
     "@vitejs/plugin-react": "^4.3.2",
     "@vitest/coverage-istanbul": "^2.1.3",
     "@vitest/coverage-v8": "^2.1.3",
-    "bootstrap": "^4.6.2",
+    "bootstrap": "^5.0.0",
     "classnames": "^2.5.1",
     "copyfiles": "^2.4.1",
     "frankenstein-build-tools": "^9.4.3",
