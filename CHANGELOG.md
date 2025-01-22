@@ -1,3 +1,14 @@
+## 10.0.0-beta.5 (2025-01-22)
+
+### Features
+
+- **badge:** endre oppbygning av komponenten"
+  ([89dd434](https://github.com/helsenorge/designsystem/commit/89dd4342e9aa0bc1d9d9da8fe5699fd04adfb206)), closes
+  [#339274](https://github.com/helsenorge/designsystem/issues/339274) [#339274](https://github.com/helsenorge/designsystem/issues/339274)
+- **emptystate:** støtte for både tittel og brødtekst
+  ([676d1c3](https://github.com/helsenorge/designsystem/commit/676d1c362d1341d48ffd598402f1032a7d615362)), closes
+  [#342140](https://github.com/helsenorge/designsystem/issues/342140)
+
 ## 10.0.0-beta.4 (2025-01-10)
 
 ### Features
@@ -69,51 +80,6 @@
 - **tabs:** touchbehavior prop er fjernet
   ([994aded](https://github.com/helsenorge/designsystem/commit/994adeda6085664d26bf4e90ea111ef0fa6a9d78)), closes
   [#328640](https://github.com/helsenorge/designsystem/issues/328640)
-
-### Bug Fixes
-
-- popover og datepicker popup kan brukes i 400 prosent zoom
-  ([782ce70](https://github.com/helsenorge/designsystem/commit/782ce70b9b2c06a65a872ee886f742d54f5689ab)), closes
-  [#340117](https://github.com/helsenorge/designsystem/issues/340117)
-- **highlightpanel:** tillat tittel selv om ikon ikke er gitt
-  ([63322a8](https://github.com/helsenorge/designsystem/commit/63322a881857ae42aaf3039412548c6b9750abee)), closes
-  [#332566](https://github.com/helsenorge/designsystem/issues/332566)
-- **tabs:** ikke scroll til fane med mindre komponenten er i view
-  ([0c30a43](https://github.com/helsenorge/designsystem/commit/0c30a43e4fdb6acece3db8f30e6ed43468c712fd)), closes
-  [#339921](https://github.com/helsenorge/designsystem/issues/339921)
-
-## [9.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.5.0&targetVersion=GTv9.6.0) (2025-01-08)
-
-### Features
-
-- **expanderlist:** fjern zindex som ikke lenger er ønsket
-  ([e1508b3](https://github.com/helsenorge/designsystem/commit/e1508b38f58a196bfb4224da3fbf4f003d9f25b4)), closes
-  [#340832](https://github.com/helsenorge/designsystem/issues/340832)
-- **Label:** labeltexts er optional og flytter children til etter labeltexts
-  ([c39cd3c](https://github.com/helsenorge/designsystem/commit/c39cd3c2ef940655f750d0c202c27d4c9afdc80b)), closes
-  [#340280](https://github.com/helsenorge/designsystem/issues/340280)
-- **tabs:** gjør padding i tabpanel mindre
-  ([d0fa4d3](https://github.com/helsenorge/designsystem/commit/d0fa4d30354a377a9ef1527f19e3dec88fe73279)), closes
-  [#341052](https://github.com/helsenorge/designsystem/issues/341052)
-- **tabs:** legg på knapper for å scrolle i lang TabList
-  ([99e5a87](https://github.com/helsenorge/designsystem/commit/99e5a87d014bdc733f2c95fc775f44850c848c29)), closes
-  [#338897](https://github.com/helsenorge/designsystem/issues/338897)
-
-### Bug Fixes
-
-- gjør modal brukbar ved zoom ved å fjerne space når container er liten
-  ([f58038c](https://github.com/helsenorge/designsystem/commit/f58038c2e8e0f9afba9ed82439789d17ea1187e7)), closes
-  [#340170](https://github.com/helsenorge/designsystem/issues/340170)
-- **listheader:** ikke rendre badge på nytt
-  ([2436c14](https://github.com/helsenorge/designsystem/commit/2436c1447a568dd6b7097d569398c901fd5cd504)), closes
-  [#339467](https://github.com/helsenorge/designsystem/issues/339467) [#339467](https://github.com/helsenorge/designsystem/issues/339467)
-
-## [9.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.4.3&targetVersion=GTv9.5.0) (2024-12-13)
-
-### Features
-
-- **Sublabel:** støtte for children ([4880fd2](https://github.com/helsenorge/designsystem/commit/4880fd2085c41c13382c68183846dbf0010307b3)),
-  closes [#340280](https://github.com/helsenorge/designsystem/issues/340280)
 
 ### Bug Fixes
 
