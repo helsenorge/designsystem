@@ -2,7 +2,7 @@
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
   "private": false,
-  "version": "9.4.2",
+  "version": "10.0.0-beta.4",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -23,14 +23,11 @@
     "start": "storybook dev",
     "prebuild": "npm-run-all clean generate:iconnames generate:illustrationnames generate:cssdefinitions",
     "build": "vite build",
-    "postbuild": "npm run generate:tsdefinitions",
     "build-storybook": "storybook build -o dist",
-    "clean": "rimraf lib types",
+    "clean": "rimraf lib",
     "generate:iconnames": "node __scripts__/generateIconNames.mjs",
     "generate:illustrationnames": "node __scripts__/generateIllustrationNames.mjs",
     "generate:cssdefinitions": "typed-scss-modules \"src/**/*.module.scss\" --nameFormat none --exportType default --includePaths node_modules ../../node_modules",
-    "generate:tsdefinitions": "tsc --noEmit false --declaration --emitDeclarationOnly --declarationDir types",
-    "postgenerate:tsdefinitions": "copyfiles -u 1 \"./types/**/*.d.ts\" lib -E",
     "pregenerate:figmatokens": "git -C ../../../designtokens pull https://github.com/helsenorge/designtokens.git",
     "generate:figmatokens": "token-transformer ../../../designtokens/tokens.json data/design-tokens.json hn-designsystem --resolveReferences=false",
     "postgenerate:figmatokens": "style-dictionary build --config figma-token.config.json",
@@ -53,7 +50,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "framer-motion": "^11.11.8"
+    "motion": "^11.14.3"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.2",
@@ -79,7 +76,7 @@
     "bootstrap": "^4.6.2",
     "classnames": "^2.5.1",
     "copyfiles": "^2.4.1",
-    "frankenstein-build-tools": "^9.0.0",
+    "frankenstein-build-tools": "^10.0.0-beta.4",
     "glob": "^11.0.0",
     "jest-when": "^3.6.0",
     "jsdom": "^25.0.1",
@@ -98,6 +95,7 @@
     "typed-scss-modules": "^8.0.1",
     "typescript": "~5.6.3",
     "vite": "^5.4.9",
+    "vite-plugin-dts": "^4.3.0",
     "vitest": "^2.1.3"
   }
 }

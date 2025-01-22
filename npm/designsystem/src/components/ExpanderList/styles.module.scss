@@ -2,7 +2,7 @@
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
 @import '../../scss/font-settings';
-@import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/colors';
 
 .expander-list {
   list-style: none;
@@ -267,12 +267,7 @@
     }
 
     &--padding {
-      padding: getSpacer(m) 0;
-
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        padding-left: getSpacer(2xs);
-        padding-right: getSpacer(2xs);
-      }
+      padding: getSpacer(xs) getSpacer(s) getSpacer(l);
     }
   }
 }

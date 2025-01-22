@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { Locale, format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { ActiveModifiers, DayOfWeek, DayPickerSingleProps, SelectSingleEventHandler } from 'react-day-picker';
+import { Modifiers, DayOfWeek, DayPickerProps, PropsSingle } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
@@ -17,7 +17,7 @@ import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudo
 import { isMobileUA } from '@helsenorge/designsystem-react/utils/mobile';
 import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
-import DatePickerPopup from './DatePickerPopup';
+import DatePickerPopup, { DatePickerAriaLabels } from './DatePickerPopup';
 
 import styles from './styles.module.scss';
 
@@ -26,7 +26,9 @@ export type DateFormat = 'dd.MM.yyyy';
 export interface DatePickerProps
   extends ErrorWrapperClassNameProps,
     Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur' | 'autoComplete'>,
-    Pick<DayPickerSingleProps, 'dir' | 'initialFocus'> {
+    Pick<DayPickerProps, 'dir' | 'initialFocus'> {
+  /** Setter labels for popup på desktop visning */
+  ariaLabels?: DatePickerAriaLabels;
   /** Adds custom classes to the element. */
   className?: string;
   /** Sets aria-label on the button that opens the datepicker dialogue */
@@ -62,7 +64,10 @@ export interface DatePickerProps
   /** Minimum date allowed to be selected */
   minDate?: Date;
   /** onChange callback triggered by change in chosen date */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>, date: Date | string | undefined) => void;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>,
+    date?: Date | string
+  ) => void;
   /** Only use this to trigger validation. Callback triggered by change in chosen date via the datepicker popup */
   onDatePopupClosed?: (date: Date | string | undefined) => void;
   /** Sets the data-testid attribute. */
@@ -90,6 +95,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     errorWrapperClassName,
     footerContent,
     label,
+    ariaLabels,
     inputId,
     locale = nb,
     maxDate,
@@ -113,7 +119,9 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   const weekendMatcher: DayOfWeek = {
     dayOfWeek: [0, 6],
   };
-  const disabledDays: (Date | DayOfWeek)[] = disableWeekends ? [...disableDays, weekendMatcher] : disableDays;
+  const disabledDays = disableWeekends
+    ? [...disableDays, weekendMatcher, ...(minDate ? [{ before: minDate }] : []), ...(maxDate ? [{ after: maxDate }] : [])]
+    : [...disableDays, ...(minDate ? [{ before: minDate }] : []), ...(maxDate ? [{ after: maxDate }] : [])];
 
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const inputContainerRef = useRef<HTMLDivElement>(null);
@@ -183,11 +191,11 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   };
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
-  const handleSingleDatePickerSelect: SelectSingleEventHandler = (
+  const handleSingleDatePickerSelect: PropsSingle['onSelect'] = (
     date: Date | undefined,
     _selectedDay: Date,
-    _activeModifiers: ActiveModifiers,
-    e: React.MouseEvent<Element, MouseEvent>
+    _activeModifiers: Modifiers,
+    e: React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>
   ): void => {
     setReturnInputFocus(true);
 
@@ -329,7 +337,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           width={12}
           {...rest}
           onBlur={handleInputBlur}
-          onChange={e => handleInputChange(e, 'yyyy-MM-dd')}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange(e, 'yyyy-MM-dd')}
           rightOfInput={
             <Button
               disabled={disabled}
@@ -352,8 +360,8 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           disabled={disabledDays}
           datepickerWrapperRef={datepickerWrapperRef}
           footer={footerContent}
-          fromDate={minDate}
-          toDate={maxDate}
+          startMonth={minDate}
+          endMonth={maxDate}
           inputRef={refObject}
           locale={locale}
           month={month}
@@ -362,6 +370,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           onMonthChange={setMonth}
           variant={variant}
           zIndex={zIndex}
+          ariaLabels={ariaLabels}
         />
       )}
     </>

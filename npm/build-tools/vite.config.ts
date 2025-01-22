@@ -1,13 +1,15 @@
-import copy from 'rollup-plugin-copy';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
 const OUTPUT_DIRECTORY = 'lib';
 
 export default defineConfig({
+  plugins: [dts()],
   build: {
     outDir: OUTPUT_DIRECTORY,
+    minify: false,
     sourcemap: true,
     lib: {
       entry: 'index.js',
@@ -24,11 +26,6 @@ export default defineConfig({
       },
       plugins: [
         peerDepsExternal(),
-        copy({
-          targets: [{ src: 'types/**/*.d.ts*', dest: OUTPUT_DIRECTORY }],
-          hook: 'writeBundle',
-          flatten: false,
-        }),
         generatePackageJson({
           baseContents: ({
             name,

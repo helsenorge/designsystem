@@ -11,6 +11,7 @@
   justify-content: center;
   position: fixed;
   inset: 0;
+  container-type: inline-size;
 
   @media print {
     position: absolute;
@@ -90,6 +91,10 @@
     @media (min-width: map.get($grid-breakpoints, lg)) {
       width: 696px;
     }
+
+    @container (max-width: 500px) {
+      padding-bottom: getSpacer(2xs);
+    }
   }
 
   &--medium {
@@ -126,6 +131,7 @@
     transition: opacity 0.5s;
     opacity: 0;
     z-index: 2;
+    pointer-events: none;
   }
 
   &__shadow--top {
@@ -169,6 +175,10 @@
       max-height: none;
     }
 
+    @container (max-width: 500px) {
+      max-height: calc(100dvh - 4rem);
+    }
+
     &--image {
       max-height: 100vh;
     }
@@ -180,6 +190,10 @@
         @media (min-width: map.get($grid-breakpoints, md)) {
           padding: getSpacer(xl) getSpacer(xl) getSpacer(2xs);
         }
+
+        @container (max-width: 500px) {
+          padding: getSpacer(2xs) getSpacer(2xs) getSpacer(4xs);
+        }
       }
 
       &--medium {
@@ -187,6 +201,10 @@
 
         @media (min-width: map.get($grid-breakpoints, md)) {
           padding: getSpacer(xl) getSpacer(m) getSpacer(2xs);
+        }
+
+        @container (max-width: 500px) {
+          padding: getSpacer(2xs) getSpacer(3xs) getSpacer(4xs);
         }
       }
       &--large#{&}--image {
@@ -239,10 +257,18 @@
       @media (min-width: map.get($grid-breakpoints, md)) {
         padding: getSpacer(l) getSpacer(xl) 0;
       }
+
+      @container (max-width: 500px) {
+        padding: getSpacer(2xs) getSpacer(2xs) 0;
+      }
     }
 
     &--medium {
       padding: getSpacer(m) getSpacer(m) 0;
+
+      @container (max-width: 500px) {
+        padding: getSpacer(2xs) getSpacer(2xs) 0;
+      }
     }
   }
 

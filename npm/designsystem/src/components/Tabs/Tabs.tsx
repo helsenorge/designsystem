@@ -30,6 +30,10 @@ export interface TabsProps {
   sticky?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Sets aria label on the "scroll to the right" button in TabList */
+  ariaLabelRightButton?: string;
+  /** Sets aria label on the "scroll to the left" button in TabList */
+  ariaLabelLeftButton?: string;
 }
 
 const TabsRoot: React.FC<TabsProps> = ({
@@ -41,6 +45,8 @@ const TabsRoot: React.FC<TabsProps> = ({
   onColor = 'onwhite',
   sticky = true,
   testId,
+  ariaLabelRightButton,
+  ariaLabelLeftButton,
 }) => {
   const isControlled = activeTab !== undefined;
   const [uncontrolledValue, setUncontrolledValue] = useState(0);
@@ -69,7 +75,14 @@ const TabsRoot: React.FC<TabsProps> = ({
           [styles['tab-list-wrapper--sticky']]: sticky,
         })}
       >
-        <TabList onTabListClick={(index: number) => onValueChange(index)} selectedTab={activeTabIndex} color={color} onColor={onColorUsed}>
+        <TabList
+          onTabListClick={(index: number) => onValueChange(index)}
+          selectedTab={activeTabIndex}
+          color={color}
+          onColor={onColorUsed}
+          ariaLabelLeftButton={ariaLabelLeftButton}
+          ariaLabelRightButton={ariaLabelRightButton}
+        >
           {children}
         </TabList>
         <div className={classNames(styles['panel-wrapper'], styles[`panel-wrapper--${color}`])}></div>

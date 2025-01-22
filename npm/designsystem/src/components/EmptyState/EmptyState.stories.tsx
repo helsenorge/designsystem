@@ -19,10 +19,21 @@ const meta = {
     },
   },
   args: {
-    children: 'Du har ingen rekvirerte reiser',
+    title: 'Beskjed til bruker',
   },
   argTypes: {
-    children: {
+    title: {
+      control: 'text',
+    },
+    onColor: {
+      control: 'select',
+      options: ['onwhite', 'onblueberry', 'oncherry'],
+    },
+    size: {
+      control: 'select',
+      options: ['normal', 'compact'],
+    },
+    additionalText: {
       control: 'text',
     },
   },
@@ -38,12 +49,30 @@ export const Default: Story = {
 
 export const WithAnchorLink: Story = {
   render: args => (
-    <EmptyState {...args}>
-      {'Du har ingen verktøy enda. Gå til '}
-      <AnchorLink href={'https://www.helsenorge.no'} target="_blank">
-        {'Alle verktøy'}
-      </AnchorLink>
-      {' for å finne verktøy.'}
-    </EmptyState>
+    <EmptyState
+      {...args}
+      title={
+        <div>
+          {'Du har ingen verktøy enda. Gå til '}
+          <AnchorLink href={'https://www.helsenorge.no'} target="_blank">
+            {'Alle verktøy'}
+          </AnchorLink>
+          {' for å finne verktøy.'}
+        </div>
+      }
+    />
+  ),
+};
+
+export const WithTitle: Story = {
+  render: args => (
+    <EmptyState
+      {...args}
+      titleHtmlMarkup="h3"
+      title={'Du har ingen timeavtaler'}
+      additionalText={
+        'Tilleggstekst - ved bruk forsøk å begrense lengde. Og dersom det er mye tekst så skal illustrasjonen legge seg på toppen. Selv om teksten går langt nedover siden.'
+      }
+    />
   ),
 };

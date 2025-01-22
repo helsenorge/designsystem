@@ -17,6 +17,7 @@ interface TabItemProps {
   color: TabsColors;
   selectedTab: number;
   tabRefs: React.MutableRefObject<React.RefObject<HTMLButtonElement>[] | null | undefined>;
+  tabListVisible: boolean;
   onTabListClick: (index: number) => void;
 }
 
@@ -43,7 +44,7 @@ const TabItem: React.FC<TabItemProps> = props => {
   const itemRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
-    if (isSelected) {
+    if (isSelected && props.tabListVisible) {
       scrollToTab(props.index);
     }
   }, [isSelected]);

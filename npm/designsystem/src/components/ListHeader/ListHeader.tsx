@@ -5,7 +5,6 @@ import cn from 'classnames';
 import ListHeaderText, { ListHeaderTextProps, ListHeaderTextType } from './ListHeaderText/ListHeaderText';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { isComponent, isComponentWithChildren } from '../../utils/component';
-import uuid from '../../utils/uuid';
 import Avatar, { AvatarProps, AvatarSize, AvatarType } from '../Avatar';
 import Badge, { BadgeProps, BadgeType } from '../Badge';
 import Icon, { IconSize, SvgIcon } from '../Icon';
@@ -118,7 +117,7 @@ export const mapChildren: ChildrenMapper = (children, isJsxChild = false) => {
 export const ListHeader: ListHeaderType = props => {
   const { className = '', titleHtmlMarkup = 'h2', chevronIcon, children, icon, isHovered, size, testId } = props;
   const breakpoint = useBreakpoint();
-  const showChevronAndIcon = size !== 'small' && !!(chevronIcon || icon);
+  const showIcon = size !== 'small' && !!icon;
   const contentIsString = typeof children === 'string';
   const mappedChildren = mapChildren(children);
 
@@ -134,7 +133,7 @@ export const ListHeader: ListHeaderType = props => {
   const CustomTag = titleHtmlMarkup;
   return (
     <span data-testid={testId} className={listLabelClasses}>
-      {showChevronAndIcon && icon && (
+      {showIcon && icon && (
         <span className={iconClasses}>
           {React.cloneElement(icon, {
             size: breakpoint === Breakpoint.xs ? IconSize.XSmall : IconSize.Small,
@@ -155,16 +154,15 @@ export const ListHeader: ListHeaderType = props => {
 
       <span className={badgeContainerClasses}>
         {mappedChildren?.badgeChildren &&
-          mappedChildren.badgeChildren.map(badgeChild => {
-            const id = uuid();
+          mappedChildren.badgeChildren.map((badgeChild, index) => {
             return (
-              <span key={id} className={badgeClasses}>
+              <span key={index} className={badgeClasses}>
                 {badgeChild}
               </span>
             );
           })}
       </span>
-      {showChevronAndIcon && chevronIcon && (
+      {chevronIcon && (
         <span className={chevronClasses}>
           <Icon svgIcon={chevronIcon} isHovered={isHovered} size={IconSize.XSmall} />
         </span>

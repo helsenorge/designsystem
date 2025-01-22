@@ -165,3 +165,23 @@ export const Width: Story = {
     </>
   ),
 };
+
+export const WithPlaceholderText: Story = {
+  render: args => (
+    <>
+      <Select
+        {...args}
+        label={<Label labelTexts={[{ text: 'Velg et alternativ:', type: 'semibold' }]} />}
+        name={'select name 1'}
+        onChange={() => null}
+        defaultValue={''}
+      >
+        <option value="">{'-- Velg noe --'}</option>
+        <option value={'Option 1'}>{'Option 1'}</option>
+        <option value={'Option 2'}>{'Option 2'}</option>
+        <option value={'Option 3'}>{'Option 3'}</option>
+      </Select>
+      {/* TODO: Legg til litt UU best practice her  */}
+    </>
+  ),
+};

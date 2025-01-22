@@ -1,26 +1,62 @@
 @use 'sass:map';
+@use '../../scss/font-mixins' as fonts;
 @import '../../scss/spacers';
 @import '../../scss/breakpoints';
-@import '../../scss/palette';
+@import '../../scss/supernova/styles/colors';
 
 .emptystate {
-  background-color: $neutral50;
   display: flex;
-  gap: getSpacer(m);
-  padding: getSpacer(m);
+  flex-flow: row;
+  gap: getSpacer(s);
+  padding: getSpacer(s);
   align-items: center;
-  border-radius: 16px;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    gap: getSpacer(l);
-    padding: getSpacer(xl);
+    gap: getSpacer(m);
+    padding: getSpacer(l);
+  }
+
+  &--dashed {
+    border-radius: 16px;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: var(--color-base-border-onlight-emphasized);
+  }
+
+  &--blank {
+    border: none;
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      padding-left: getSpacer(2xs);
+    }
+  }
+
+  &--compact {
+    border-radius: 4px;
+    gap: getSpacer(3xs);
+    padding: getSpacer(2xs);
+    min-height: getSpacer(2xl);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    align-items: center;
   }
 
   &__illustration {
-    min-width: 101px;
+    align-self: flex-start;
+  }
+
+  &__text {
+    display: flex;
+    flex-flow: column;
+    gap: getSpacer(3xs);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      min-width: 151px;
+      gap: getSpacer(xs);
     }
+  }
+
+  &__additional-text {
+    @include fonts.body;
   }
 }

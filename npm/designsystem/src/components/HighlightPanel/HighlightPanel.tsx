@@ -104,14 +104,14 @@ const HighlightPanel: React.FC<HighlightPanelProps> = props => {
   );
 
   const renderContent = () => {
+    const titleElement = title && (
+      <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance="title4">
+        {title}
+      </Title>
+    );
+
     if (svgIcon) {
       const iconSize = size === HighlightPanelSize.large && breakpoint && breakpoint >= Breakpoint.md ? IconSize.Medium : IconSize.Small;
-
-      const titleElement = (
-        <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance="title4">
-          {title}
-        </Title>
-      );
 
       return (
         <>
@@ -131,7 +131,16 @@ const HighlightPanel: React.FC<HighlightPanelProps> = props => {
       );
     }
 
-    return children;
+    return (
+      <>
+        {title && (
+          <div className={styles.highlightpanel__content}>
+            <div>{titleElement}</div>
+          </div>
+        )}
+        {children}
+      </>
+    );
   };
 
   const CustomTag = htmlMarkup;

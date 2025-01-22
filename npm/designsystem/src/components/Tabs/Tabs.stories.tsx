@@ -28,6 +28,9 @@ const meta = {
     color: 'white',
     onColor: 'onwhite',
     sticky: true,
+    touchBehaviour: 'swipe',
+    ariaLabelLeftButton: 'Scroll left',
+    ariaLabelRightButton: 'Scroll right',
   },
   argTypes: {
     color: {
@@ -197,6 +200,72 @@ export const MedInnholdRundt: Story = {
             <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
           </Tabs.Tab>
           <Tabs.Tab title="Fane 3">
+            <p style={{ padding: '1rem' }}>{longLoremText}</p>
+          </Tabs.Tab>
+        </Tabs>
+      </>
+    );
+  },
+};
+
+export const ControlledMedInnholdRundt: Story = {
+  render: args => {
+    const controllerRef = useRef<SVGSVGElement>(null);
+    const [activeTab, setActiveTab] = React.useState(0);
+
+    const handleTabClick = (index: number): void => {
+      setActiveTab(index);
+    };
+
+    return (
+      <>
+        <Title>{'Noe annet innhold her '}</Title>
+        <br />
+        <span>{mediumLoremText}</span>
+        <br />
+        <br />
+        <Tabs {...args} color="white">
+          <Tabs.Tab title="Vaksinasjon">
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+          </Tabs.Tab>
+          <Tabs.Tab title="Helserelaterte spørsmål">
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+          </Tabs.Tab>
+          <Tabs.Tab title="Prøvesvar">
+            <p style={{ padding: '1rem' }}>{longLoremText}</p>
+          </Tabs.Tab>
+        </Tabs>
+        <br />
+        <button onClick={() => setActiveTab(1)}>{'Sett aktiv tab til nummer 2'}</button>
+        <br />
+        <span>{longLoremText}</span>
+        <br />
+        <span>{longLoremText}</span>
+        <br />
+        <br />
+        <br />
+        <Tabs {...args} color="blueberry" activeTab={activeTab}>
+          <Tabs.Tab title="Fane 1" onTabClick={handleTabClick}>
+            <div style={{ position: 'relative', display: 'inline' }}>
+              <Icon ref={controllerRef} svgIcon={HelpSign} />
+              <PopOver {...args} controllerRef={controllerRef}>
+                <div style={{ padding: '0.5rem 1rem' }}>{'Tekst inne i PopOver, så får vi testet z-indeks også!'}</div>
+              </PopOver>
+            </div>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+          </Tabs.Tab>
+          <Tabs.Tab title="Fane 2" onTabClick={handleTabClick}>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+            <p style={{ padding: '1rem' }}>{mediumLoremText}</p>
+          </Tabs.Tab>
+          <Tabs.Tab title="Fane 3" onTabClick={handleTabClick}>
             <p style={{ padding: '1rem' }}>{longLoremText}</p>
           </Tabs.Tab>
         </Tabs>

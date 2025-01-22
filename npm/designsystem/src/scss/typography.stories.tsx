@@ -85,8 +85,8 @@ export const ImageCredit: Story = {
   render: args => <div className={designsystemtypography['image-credit']}>{args.tekst}</div>,
 };
 
-export const StatusTime: Story = {
-  render: args => <div className={designsystemtypography['status-time']}>{args.tekst}</div>,
+export const StatusTimestamp: Story = {
+  render: args => <div className={designsystemtypography['status-timestamp']}>{args.tekst}</div>,
 };
 
 export const InputText: Story = {

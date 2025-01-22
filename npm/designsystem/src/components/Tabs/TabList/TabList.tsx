@@ -8,6 +8,7 @@ import { useRovingFocus } from '../../../hooks/useRovingFocus';
 import { isComponent } from '../../../utils/component';
 import Tab, { TabProps } from '../Tab';
 import { TabsColors, TabsOnColor } from '../Tabs';
+import TabChevron from './TabChevron';
 
 import styles from './styles.module.scss';
 interface TabListProps {
@@ -16,10 +17,12 @@ interface TabListProps {
   selectedTab: number;
   color: TabsColors;
   onColor: TabsOnColor;
+  ariaLabelRightButton?: string;
+  ariaLabelLeftButton?: string;
 }
 
 const TabList: React.FC<TabListProps> = props => {
-  const { selectedTab, onTabListClick, children, color, onColor } = props;
+  const { selectedTab, onTabListClick, children, color, onColor, ariaLabelLeftButton, ariaLabelRightButton } = props;
 
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -43,30 +46,57 @@ const TabList: React.FC<TabListProps> = props => {
 
   const firstTabVisible = useIsVisible(firstTab);
   const lastTabVisible = useIsVisible(lastTab);
+  const tabListVisible = useIsVisible(listRef);
 
   const shouldShowFadeStart = (): boolean => {
-    return !firstTabVisible && selectedTab !== 0;
+    return !firstTabVisible;
   };
 
   const shouldShowFadeEnd = (): boolean => {
-    return !lastTabVisible && selectedTab !== tabRefs.current.length - 1;
+    return !lastTabVisible;
+  };
+
+  const scrollInList = (direction: string): void => {
+    if (listRef.current) {
+      const listWidth = listRef.current.clientWidth;
+      const listScrollLeft = listRef.current.scrollLeft;
+      const maxScrollLeft = listRef.current.scrollWidth - listWidth;
+
+      if (direction === 'right' && !lastTabVisible) {
+        const scrollAmount = Math.min(listWidth / 2, maxScrollLeft - listScrollLeft);
+        listRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      } else if (direction === 'left' && !firstTabVisible) {
+        const scrollAmount = -Math.min(listWidth / 2, listScrollLeft);
+        listRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
   };
 
   return (
     <div>
-      <div
-        className={classNames(styles['tab-list__fade-start'])}
-        style={{
-          display: shouldShowFadeStart() ? 'block' : 'none',
-          backgroundColor: `${getBackgroundColor(onColor)}`,
-        }}
-      ></div>
+      {shouldShowFadeStart() && (
+        <div className={classNames(styles['tab-list__start-wrapper'])}>
+          <TabChevron
+            onClick={() => scrollInList('left')}
+            direction="left"
+            backgroundColor={`${getBackgroundColor(onColor)}`}
+            ariaLabel={ariaLabelLeftButton}
+          />
+          <div
+            className={classNames(styles['tab-list__fade-start'])}
+            style={{
+              backgroundColor: `${getBackgroundColor(onColor)}`,
+            }}
+          ></div>
+        </div>
+      )}
       <ul className={tablistClasses} ref={listRef} role="tablist" aria-orientation="horizontal">
         {React.Children.map(children, (child, index) => {
           if (isComponent<TabProps>(child, Tab)) {
             return (
               <TabItem
                 tabRefs={tabRefs}
+                tabListVisible={tabListVisible}
                 key={child.props.title}
                 index={index}
                 selectedTab={selectedTab}
@@ -79,13 +109,22 @@ const TabList: React.FC<TabListProps> = props => {
           return null;
         })}
       </ul>
-      <div
-        className={classNames(styles['tab-list__fade-end'])}
-        style={{
-          display: shouldShowFadeEnd() ? 'block' : 'none',
-          backgroundColor: `${getBackgroundColor(onColor)}`,
-        }}
-      ></div>
+      {shouldShowFadeEnd() && (
+        <div className={classNames(styles['tab-list__end-wrapper'])}>
+          <div
+            className={classNames(styles['tab-list__fade-end'])}
+            style={{
+              backgroundColor: `${getBackgroundColor(onColor)}`,
+            }}
+          ></div>
+          <TabChevron
+            onClick={() => scrollInList('right')}
+            direction="right"
+            backgroundColor={`${getBackgroundColor(onColor)}`}
+            ariaLabel={ariaLabelRightButton}
+          />
+        </div>
+      )}
       <div className={classNames(styles['tab-list__border'])}></div>
     </div>
   );

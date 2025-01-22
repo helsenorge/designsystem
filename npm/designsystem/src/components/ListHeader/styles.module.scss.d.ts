@@ -6,6 +6,7 @@ export type Styles = {
   'list-header__chevron': string;
   'list-header__content': string;
   'list-header__content--element': string;
+  'list-header__content--spacing': string;
   'list-header__icon': string;
   'list-header__title': string;
   'text-wrapper': string;

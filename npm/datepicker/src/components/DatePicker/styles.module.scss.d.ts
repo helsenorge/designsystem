@@ -1,6 +1,9 @@
 export type Styles = {
-  _day_selected: string;
+  '_day--selected': string;
+  button_next: string;
+  button_previous: string;
   caption_label: string;
+  chevron: string;
   'date-button': string;
   'date-button__inner': string;
   'date-time-picker-wrapper': string;
@@ -13,20 +16,18 @@ export type Styles = {
   'datepicker-popup-container': string;
   'datepicker-popup-container--visible': string;
   day: string;
-  day_selected: string;
+  day_button: string;
   'day--disabled': string;
+  'day--selected': string;
   'day--today': string;
   dropdown: string;
   dropdown_month: string;
-  dropdown_year: string;
   'footer-wrapper': string;
-  head_cell: string;
   month: string;
-  nav_button: string;
-  nav_button_next: string;
+  month_grid: string;
   root: string;
-  table: string;
   'time-separator': string;
+  weekday: string;
 };
 
 export type ClassNames = keyof Styles;

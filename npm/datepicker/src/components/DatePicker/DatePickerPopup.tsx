@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
-import { DayPicker, DayPickerSingleProps } from 'react-day-picker';
+import { Locale, format } from 'date-fns';
+import { nb } from 'date-fns/locale';
+import { DayPicker, DayPickerProps, PropsSingle, Labels } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
@@ -16,11 +18,42 @@ import { getArrowStyle, getBubbleStyle, getVerticalPosition } from './position-u
 
 import styles from './styles.module.scss';
 
+export interface DatePickerAriaLabels {
+  /** Tekst brukt for vanlige dager i kalenderen.
+   *  {date} - placeholder for den faktiske datoen.
+   */
+  dayButtonBase?: string;
+
+  /** Tekst brukt når en dag er "i dag".
+   *  {date} - placeholder for den faktiske datoen.
+   */
+  dayButtonToday?: string;
+
+  /** Tekst brukt når en dag er valgt.
+   *  {date} - placeholder for den faktiske datoen.
+   */
+  dayButtonSelected?: string;
+
+  /** Tekst brukt for knappen som viser neste måned. */
+  nextMonth?: string;
+
+  /** Tekst brukt for knappen som viser forrige måned. */
+  previousMonth?: string;
+
+  /** Tekst brukt for nedtrekkslisten over måneder. */
+  monthDropdown?: string;
+
+  /** Tekst brukt for nedtrekkslisten over år. */
+  yearDropdown?: string;
+}
+
 interface DatePickerPopupProps
   extends Pick<
-    DayPickerSingleProps,
-    'dir' | 'disabled' | 'footer' | 'fromDate' | 'initialFocus' | 'locale' | 'month' | 'selected' | 'onSelect' | 'onMonthChange' | 'toDate'
-  > {
+      DayPickerProps,
+      'dir' | 'disabled' | 'footer' | 'startMonth' | 'initialFocus' | 'locale' | 'month' | 'onMonthChange' | 'endMonth'
+    >,
+    Pick<PropsSingle, 'selected' | 'onSelect'> {
+  ariaLabels?: DatePickerAriaLabels;
   datepickerWrapperRef: React.RefObject<HTMLDivElement>;
   inputRef: React.RefObject<HTMLInputElement>;
   testId?: string;
@@ -29,12 +62,53 @@ interface DatePickerPopupProps
 }
 
 const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
-  const { datepickerWrapperRef, footer, inputRef, testId, variant, zIndex, ...rest } = props;
+  const { ariaLabels, datepickerWrapperRef, endMonth, footer, inputRef, locale, startMonth, testId, variant, zIndex, ...rest } = props;
+
+  const today = new Date();
   const arrowRef = useRef<HTMLDivElement>(null);
   const [controllerSize, setControllerSize] = useState<DOMRect>();
   const bubbleSize = useSize(datepickerWrapperRef);
-  const controllerisVisible = useIsVisible(inputRef, 0);
+  const controllerisVisible = useIsVisible(datepickerWrapperRef, 0);
   useFocusTrap(datepickerWrapperRef, true);
+
+  function getDateFnsLocale(dayPickerLocale?: Partial<Locale>): Locale {
+    return (dayPickerLocale as Locale) ?? nb;
+  }
+
+  const buildAriaLabels = (custom: DatePickerAriaLabels = {}): Partial<Labels> => {
+    return {
+      labelDayButton: (date, modifiers): string => {
+        const dateString = format(date, 'PPPP', {
+          locale: getDateFnsLocale(locale),
+        });
+
+        let label = custom.dayButtonBase ? custom.dayButtonBase.replace('{date}', dateString) : dateString;
+
+        if (modifiers.today && custom.dayButtonToday) {
+          label = custom.dayButtonToday.replace('{date}', dateString);
+        }
+
+        if (modifiers.selected && custom.dayButtonSelected) {
+          label = custom.dayButtonSelected.replace('{date}', dateString);
+        }
+
+        return label;
+      },
+
+      labelNext: (): string => {
+        return custom.nextMonth ?? 'Neste måned';
+      },
+      labelPrevious: (): string => {
+        return custom.previousMonth ?? 'Forrige måned';
+      },
+      labelMonthDropdown: (): string => {
+        return custom.monthDropdown ?? 'Velg måned';
+      },
+      labelYearDropdown: (): string => {
+        return custom.yearDropdown ?? 'Velg år';
+      },
+    };
+  };
 
   const updateControllerSize = (): void => {
     setControllerSize(inputRef.current?.getBoundingClientRect());
@@ -69,13 +143,20 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
     <>
       <div className={datepickerPopupContainerClasses} data-testid={testId} ref={datepickerWrapperRef} style={{ ...bubbleStyle, zIndex }}>
         <DayPicker
-          captionLayout="dropdown-buttons"
+          captionLayout="dropdown"
           classNames={datePickerClassNames}
           mode={'single'}
           style={{ '--rdp-cell-size': getSpacer('l') } as React.CSSProperties}
-          modifiersClassNames={{ today: styles['day--today'], selected: styles['day_selected'], disabled: styles['day--disabled'] }}
+          modifiersClassNames={{
+            today: styles['day--today'],
+            selected: styles['day--selected'],
+            disabled: styles['day--disabled'],
+          }}
           footer={<span className={styles['footer-wrapper']}>{footer}</span>}
           fixedWeeks
+          labels={buildAriaLabels(ariaLabels)}
+          startMonth={startMonth ?? new Date(today.getFullYear() - 100, today.getMonth(), 1)}
+          endMonth={endMonth ?? new Date(today.getFullYear() + 100, today.getMonth(), 1)}
           {...rest}
         />
       </div>
