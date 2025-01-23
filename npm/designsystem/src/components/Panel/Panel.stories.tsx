@@ -212,6 +212,7 @@ export const TestPanel: Story = {
     const [showB, setShowB] = React.useState(true);
     const [showC, setShowC] = React.useState(true);
     const [showIcon, setShowIcon] = React.useState(true);
+    const [showExpandableVersion, setShowExpandableVersion] = React.useState(false);
 
     return (
       <div>
@@ -220,6 +221,13 @@ export const TestPanel: Story = {
           <Toggle {...args} onColor={'onwhite'} checked={showB} onChange={() => setShowB(!showB)} label={[{ text: 'Vis content B' }]} />
           <Toggle {...args} onColor={'onwhite'} checked={showC} onChange={() => setShowC(!showC)} label={[{ text: 'Vis content C' }]} />
           <Toggle {...args} onColor={'onwhite'} checked={showIcon} onChange={() => setShowIcon(!showIcon)} label={[{ text: 'Vis ikon' }]} />
+          <Toggle
+            {...args}
+            onColor={'onwhite'}
+            checked={showExpandableVersion}
+            onChange={() => setShowExpandableVersion(!showExpandableVersion)}
+            label={[{ text: 'Vis med expander' }]}
+          />
         </div>
         <Panel {...args}>
           <Panel.PreContainer>
@@ -245,6 +253,7 @@ export const TestPanel: Story = {
               <PreviewContainer>{'Content C'}</PreviewContainer>
             </Panel.C>
           )}
+          {showExpandableVersion && <Panel.ExpandedContent>{'Expanded content'}</Panel.ExpandedContent>}
         </Panel>
       </div>
     );
@@ -531,11 +540,9 @@ export const KjernejournalKritiskInfo: Story = {
                 <StatusDot variant="info" text="43 gjeldende" />
                 <StatusDot variant="alert" text="52 avkreftet" />
               </div>
-              <Expander title="Se detaljer" onExpand={() => null} expanded={false}>
-                {'Noe detaljer her'}
-              </Expander>
             </div>
           </Panel.B>
+          <Panel.ExpandedContent>{'Noe detaljer her'}</Panel.ExpandedContent>
         </Panel>
         <br />
 
@@ -557,12 +564,10 @@ export const KjernejournalKritiskInfo: Story = {
                   <StatusDot variant="info" text="43 gjeldende" />
                   <StatusDot variant="alert" text="52 avkreftet" />
                 </div>
-                <Expander title="Se detaljer" onExpand={() => null} expanded={false}>
-                  {'Noe detaljer her'}
-                </Expander>
               </div>
             </PreviewContainer>
           </Panel.B>
+          <Panel.ExpandedContent>{'Noe detaljer her'}</Panel.ExpandedContent>
         </Panel>
       </div>
     );
@@ -581,15 +586,13 @@ export const Helsekontakter: Story = {
           <Panel.A>
             <p>{'DDFL Ehelse Interntest med Mock'}</p>
           </Panel.A>
-          <Panel.B>
-            <Expander title="Se detaljer" onExpand={() => null} expanded={false}>
-              <div>
-                <p>{'Din fastlege siden: 1. april 2024'}</p>
-                <p>{'Telefon: 11223344'}</p>
-                <AnchorLink href="https://www.helsenorge.no">{'Mer om din fastlege'}</AnchorLink>
-              </div>
-            </Expander>
-          </Panel.B>
+          <Panel.ExpandedContent>
+            <div>
+              <p>{'Din fastlege siden: 1. april 2024'}</p>
+              <p>{'Telefon: 11223344'}</p>
+              <AnchorLink href="https://www.helsenorge.no">{'Mer om din fastlege'}</AnchorLink>
+            </div>
+          </Panel.ExpandedContent>
         </Panel>
         <br />
 
@@ -604,17 +607,13 @@ export const Helsekontakter: Story = {
               <p>{'DDFL Ehelse Interntest med Mock'}</p>
             </PreviewContainer>
           </Panel.A>
-          <Panel.B>
-            <PreviewContainer>
-              <Expander title="Se detaljer" onExpand={() => null} expanded={false}>
-                <div>
-                  <p>{'Din fastlege siden: 1. april 2024'}</p>
-                  <p>{'Telefon: 11223344'}</p>
-                  <AnchorLink href="https://www.helsenorge.no">{'Mer om din fastlege'}</AnchorLink>
-                </div>
-              </Expander>
-            </PreviewContainer>
-          </Panel.B>
+          <Panel.ExpandedContent>
+            <div>
+              <p>{'Din fastlege siden: 1. april 2024'}</p>
+              <p>{'Telefon: 11223344'}</p>
+              <AnchorLink href="https://www.helsenorge.no">{'Mer om din fastlege'}</AnchorLink>
+            </div>
+          </Panel.ExpandedContent>
         </Panel>
       </div>
     );
@@ -739,30 +738,30 @@ export const Fullmakter: Story = {
             <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'start', gap: '1rem' }}>
               <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
               <p>{'Gyldig til: Ubegrenset'}</p>
-              <Expander title="Les mer" onExpand={() => null} expanded={false}>
-                <div>
-                  <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
-                  <p>
-                    {
-                      'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
-                    }
-                  </p>
-                  <div>
-                    <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
-                    <span>{'11.03.2024'}</span>
-                  </div>
-                  <div>
-                    <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
-                    <span>{'11.03.2024'}</span>
-                  </div>
-                  <div>
-                    <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
-                    <span>{'Ubegrenset'}</span>
-                  </div>
-                </div>
-              </Expander>
             </div>
           </Panel.B>
+          <Panel.ExpandedContent>
+            <div>
+              <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+              <p>
+                {
+                  'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+                }
+              </p>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
+                <span>{'11.03.2024'}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
+                <span>{'11.03.2024'}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
+                <span>{'Ubegrenset'}</span>
+              </div>
+            </div>
+          </Panel.ExpandedContent>
         </Panel>
         <br />
 
@@ -779,31 +778,31 @@ export const Fullmakter: Story = {
               <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'start', gap: '1rem' }}>
                 <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
                 <p>{'Gyldig til: Ubegrenset'}</p>
-                <Expander title="Les mer" onExpand={() => null} expanded={false}>
-                  <div>
-                    <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
-                    <p>
-                      {
-                        'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
-                      }
-                    </p>
-                    <div>
-                      <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
-                      <span>{'11.03.2024'}</span>
-                    </div>
-                    <div>
-                      <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
-                      <span>{'11.03.2024'}</span>
-                    </div>
-                    <div>
-                      <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
-                      <span>{'Ubegrenset'}</span>
-                    </div>
-                  </div>
-                </Expander>
               </div>
             </PreviewContainer>
           </Panel.B>
+          <Panel.ExpandedContent>
+            <div>
+              <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+              <p>
+                {
+                  'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+                }
+              </p>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
+                <span>{'11.03.2024'}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
+                <span>{'11.03.2024'}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
+                <span>{'Ubegrenset'}</span>
+              </div>
+            </div>
+          </Panel.ExpandedContent>
         </Panel>
       </div>
     );
@@ -820,9 +819,7 @@ export const Dokumentliste: Story = {
             <PanelTitle title={'Luftveisplager (Egenkartlegging)'} icon={<Icon svgIcon={PdfFile} />} />
             <p>{'Henvendelse, arkivert 04.12.2024'}</p>
           </Panel.A>
-          <Panel.B>
-            <Expander title="Se detaljer" onExpand={() => null} expanded={false}></Expander>
-          </Panel.B>
+          <Panel.ExpandedContent></Panel.ExpandedContent>
         </Panel>
         <br />
 
@@ -833,11 +830,7 @@ export const Dokumentliste: Story = {
               <p>{'Henvendelse, arkivert 04.12.2024'}</p>
             </PreviewContainer>
           </Panel.A>
-          <Panel.B>
-            <PreviewContainer>
-              <Expander title="Se detaljer" onExpand={() => null} expanded={false}></Expander>
-            </PreviewContainer>
-          </Panel.B>
+          <Panel.ExpandedContent></Panel.ExpandedContent>
         </Panel>
       </div>
     );
@@ -870,6 +863,30 @@ export const DokumentlisteDeling: Story = {
           </Panel.A>
         </Panel>
       </div>
+    );
+  },
+};
+
+export const Expandable: Story = {
+  args: {
+    layout: PanelLayout.vertical,
+  },
+  render: args => {
+    const [expanderOpen, setExpanderOpen] = React.useState(false);
+    return (
+      <Panel {...args} expanded={expanderOpen}>
+        <Panel.PreContainer>
+          <PanelTitle title="Denne har en knapp og skjult innhold" />
+        </Panel.PreContainer>
+        <Panel.A>
+          <span>{'Noe innhold'}</span>
+          <Button onClick={() => setExpanderOpen(!expanderOpen)}>{expanderOpen ? 'Skjul' : 'Vis'}</Button>
+        </Panel.A>
+        <Panel.ExpandedContent>
+          <Title appearance="title3">{'Dette er skjult'}</Title>
+          <p>{'Men når man åpner expanderen vil det vises'}</p>
+        </Panel.ExpandedContent>
+      </Panel>
     );
   },
 };
