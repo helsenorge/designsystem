@@ -9,6 +9,7 @@
   flex-flow: column;
   gap: spacers.getSpacer(s);
   padding: spacers.getSpacer(s);
+  border: 2px solid var(--color-base-border-onlight);
 
   @media (min-width: breakpoints.get(md)) {
     padding: spacers.getSpacer(m);
@@ -118,10 +119,16 @@
   &--line {
     border-top: 1px solid var(--color-base-border-ondark);
     border-bottom: 1px solid var(--color-base-border-ondark);
+    border-right: none;
+    border-left: none;
+  }
+
+  &__border--outline {
+    border: 8px solid var(--core-color-neutral-100);
   }
 
   &--border {
-    border: 8px solid var(--core-color-neutral-100);
+    border: 2px solid var(--color-base-background-white);
   }
 
   &--status {
@@ -140,5 +147,32 @@
 
   &--error {
     border-left-color: var(--core-color-cherry-500);
+  }
+
+  &__expander-border {
+    &--white {
+      border: 2px solid var(--color-base-background-white);
+    }
+
+    &--blueberry {
+      border: 2px solid var(--color-base-background-blueberry);
+    }
+
+    &--neutral {
+      border: 2px solid var(--color-base-background-neutral);
+    }
+
+    &--expanded {
+      border: 2px solid var(--color-base-border-onlight-emphasized);
+    }
+  }
+
+  // todo: style disse
+  &__expand-button {
+    width: inherit;
+  }
+
+  &__expanded-content {
+    width: inherit;
   }
 }

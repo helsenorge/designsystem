@@ -3,6 +3,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { PaletteNames } from '../../theme/palette';
+import Button from '../Button';
+import Icon from '../Icon';
+import ArrowDown from '../Icons/ArrowDown';
+import ArrowUp from '../Icons/ArrowUp';
 
 import styles from './styles.module.scss';
 
@@ -48,6 +52,8 @@ export interface PanelProps {
   children?: React.ReactNode;
   /** Displays a status on the left side: default normal */
   status?: PanelStatus;
+  expanded?: boolean;
+  showExpandButton?: boolean;
 }
 
 const Panel: React.FC<PanelProps> & {
@@ -55,6 +61,7 @@ const Panel: React.FC<PanelProps> & {
   A: React.FC<ContentProps>;
   B: React.FC<ContentProps>;
   C: React.FC<ContentProps>;
+  ExpandedContent: React.FC<ContentProps>;
 } = ({
   layout = PanelLayout.horizontal,
   variant = PanelVariant.fill,
@@ -63,15 +70,24 @@ const Panel: React.FC<PanelProps> & {
   testId,
   children,
   status = PanelStatus.normal,
+  expanded,
+  showExpandButton = true,
 }: PanelProps) => {
   const [preContainer, setPreContainer] = React.useState<React.ReactNode[]>([]);
   const [content, setContent] = React.useState<React.ReactNode[]>([]);
+  const [expandableContent, setExpandableContent] = React.useState<React.ReactNode[]>([]);
   const [hasIcon, setHasIcon] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(expanded);
+
+  React.useEffect(() => {
+    setIsExpanded(expanded);
+  }, [expanded]);
 
   React.useEffect(() => {
     let localHasIcon = false;
     const newPreContainer: React.ReactNode[] = [];
     const newContent: React.ReactNode[] = [];
+    const newExpandableContent: React.ReactNode[] = [];
 
     React.Children.forEach(children, child => {
       if (React.isValidElement(child)) {
@@ -93,12 +109,15 @@ const Panel: React.FC<PanelProps> & {
               localHasIcon = true;
             }
           }
+        } else if (child.type === ExpandedContent) {
+          newExpandableContent.push(child);
         }
       }
     });
 
     setPreContainer(newPreContainer);
     setContent(newContent);
+    setExpandableContent(newExpandableContent);
     setHasIcon(localHasIcon);
   }, [children]);
 
@@ -113,8 +132,27 @@ const Panel: React.FC<PanelProps> & {
   const contentContainerLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`], {
     [styles[`panel__content--b-first`]]: stacking === PanelStacking.bFirst, // @todo: fiks stacking
   });
+  const expanderBorderLayout = classNames(styles[`panel__expander-border--${colorScheme}`], {
+    [styles['panel__expander-border--expanded']]: isExpanded,
+  });
 
-  return (
+  return expandableContent.length > 0 ? (
+    <div className={classNames({ [styles['panel__border--outline']]: variant === PanelVariant.border })}>
+      <div className={expanderBorderLayout}>
+        <div className={outerLayout} data-testid={testId}>
+          {preContainer}
+          <div className={contentContainerLayout}>{content}</div>
+          {showExpandButton && (
+            <Button className={styles['panel__expand-button']} onClick={() => setIsExpanded(!isExpanded)} variant="borderless">
+              <Icon svgIcon={isExpanded ? ArrowUp : ArrowDown} />
+              <span>{isExpanded ? 'Skjul detaljer' : 'Se detaljer'}</span>
+            </Button>
+          )}
+          {isExpanded && <div className={contentContainerLayout}>{expandableContent}</div>}
+        </div>
+      </div>
+    </div>
+  ) : (
     <div className={outerLayout} data-testid={testId}>
       {preContainer}
       <div className={contentContainerLayout}>{content}</div>
@@ -145,10 +183,16 @@ const C: React.FC<ContentProps> = ({ children }) => {
   return <div className={styling}>{children}</div>;
 };
 
+const ExpandedContent: React.FC<ContentProps> = ({ children }) => {
+  const styling = classNames(styles['panel__expanded-content']);
+  return <div className={styling}>{children}</div>;
+};
+
 Panel.PreContainer = PreContainer;
 // @todo Navngivning på bokser
 Panel.A = A;
 Panel.B = B;
 Panel.C = C;
+Panel.ExpandedContent = ExpandedContent;
 
 export default Panel;
