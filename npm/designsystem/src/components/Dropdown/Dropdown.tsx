@@ -94,8 +94,6 @@ const Dropdown: React.FC<DropdownProps> = props => {
   };
 
   const handleKeyboardNavigation = (event: KeyboardEvent): void => {
-    event.preventDefault();
-
     if (!inputRefList.current) {
       return;
     }
@@ -122,7 +120,10 @@ const Dropdown: React.FC<DropdownProps> = props => {
     } else if (event.key === KeyboardEventKey.Enter && index !== -1) {
       nextIndex = index;
     }
+
     if (nextIndex !== -1) {
+      event.preventDefault();
+
       inputRefList.current[nextIndex].current?.focus();
       setCurrentIndex(nextIndex);
     }

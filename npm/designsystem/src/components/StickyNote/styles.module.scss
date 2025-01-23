@@ -1,0 +1,101 @@
+@use '../../scss/supernova/styles/colors' as *;
+@use '../../scss/font-settings' as fonts;
+
+.sticky-note {
+  position: relative;
+  background-color: var(--core-color-banana-50);
+  width: 100%;
+  border: var(--core-color-banana-300) 1px solid;
+  padding: 12px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+
+  &--focused {
+    background-color: var(--core-color-banana-50);
+    border-color: var(--core-color-banana-600);
+  }
+
+  &--hovered {
+    background-color: var(--core-color-banana-100);
+    border: var(--core-color-banana-100) 1px solid;
+  }
+
+  &--error {
+    background-color: var(--core-color-cherry-50);
+    border: var(--core-color-cherry-300) 1px solid;
+  }
+
+  &__x-button {
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color-base-text-onlight);
+    border: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+
+    &:hover {
+      background-color: var(--core-color-banana-200); // todo: bestem farge her
+      outline: 1px solid var(--core-color-banana-500); // todo: bestem farge her
+    }
+
+    &:focus-visible {
+      background-color: var(--color-action-background-transparent-onlight-hoverselected);
+      outline: 2px solid var(--color-action-border-onlight-focus);
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    &__timestamp {
+      color: var(--color-placeholder-text-onlight);
+      font-size: 1rem;
+    }
+  }
+
+  &__textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    resize: none;
+    background: transparent;
+    outline: none;
+    line-height: 28px;
+
+    &:disabled {
+      // Dette er for å unngå at disabled tekst ikke validerer på iOS
+      -webkit-text-fill-color: var(--color-base-text-onlight);
+      opacity: 1;
+    }
+  }
+
+  &__footer {
+    color: var(--color-placeholder-text-onlight);
+    font-size: 0.75rem;
+    font-style: italic;
+  }
+
+  &__triangle {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 22px;
+    height: 22px;
+  }
+
+  &__error-text {
+    color: var(--color-notification-status-error);
+    line-height: 1.875rem;
+    font-size: fonts.$font-size-sm;
+    margin-top: 0.75rem;
+  }
+}

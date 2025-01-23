@@ -30,7 +30,8 @@ const ValidationSummary: React.FC<ValidationSummaryProps> = props => {
 
   return (
     <div
-      role={'alert'}
+      role={'status'}
+      aria-atomic={'true'}
       aria-live={'polite'}
       aria-relevant={'all'}
       aria-labelledby={hasErrors && props.errorTitle ? titleId : undefined}

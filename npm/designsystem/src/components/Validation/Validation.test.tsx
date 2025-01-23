@@ -13,20 +13,20 @@ describe('Gitt at Validation skal vises', () => {
     test('Så vises tomt felt for oppsummering av feil', () => {
       render(<Validation />);
 
-      const alert = screen.getByRole('alert');
-      expect(alert).toBeVisible();
-      expect(alert).toBeEmptyDOMElement();
+      const status = screen.getByRole('status');
+      expect(status).toBeVisible();
+      expect(status).toBeEmptyDOMElement();
     });
   });
 
   describe('Når Validation har errorTitle og errors', () => {
-    test('Så vises oppsummering av feil i en alert', () => {
+    test('Så vises oppsummering av feil i en status', () => {
       render(<Validation errorTitle="Du må fikse dette:" errors={{ feil1: { message: 'For lang tekst' } }} />);
 
-      const alert = screen.getByRole('alert', { name: 'Du må fikse dette:' });
-      expect(alert).toBeVisible();
+      const status = screen.getByRole('status', { name: 'Du må fikse dette:' });
+      expect(status).toBeVisible();
 
-      const errorMessage = within(alert).getByText('For lang tekst');
+      const errorMessage = within(status).getByText('For lang tekst');
       expect(errorMessage).toBeVisible();
     });
   });
@@ -50,36 +50,36 @@ describe('Gitt at Validation skal vises', () => {
 
       render(<Example />);
 
-      const alert = screen.getByRole('alert', { name: 'Du må fikse dette:' });
-      expect(alert).toBeVisible();
+      const status = screen.getByRole('status', { name: 'Du må fikse dette:' });
+      expect(status).toBeVisible();
 
-      const errorMessage = await within(alert).findByRole('link', { name: 'For lang tekst' });
+      const errorMessage = await within(status).findByRole('link', { name: 'For lang tekst' });
       expect(errorMessage).toBeVisible();
       expect(errorMessage).toHaveAttribute('href', '#feil1');
     });
   });
 
   describe('Når Validation har errorTitle og errors der message er JSX', () => {
-    test('Så vises oppsummering av feil i en alert med JSX children', async () => {
+    test('Så vises oppsummering av feil i en status med JSX children', async () => {
       render(<Validation errorTitle="Du må fikse dette:" errors={{ feil1: { message: <a href="/feilmelding">{'Feilmelding'}</a> } }} />);
 
-      const alert = screen.getByRole('alert', { name: 'Du må fikse dette:' });
-      expect(alert).toBeVisible();
+      const status = screen.getByRole('status', { name: 'Du må fikse dette:' });
+      expect(status).toBeVisible();
 
-      const errorMessage = await within(alert).findByRole('link', { name: 'Feilmelding' });
+      const errorMessage = await within(status).findByRole('link', { name: 'Feilmelding' });
       expect(errorMessage).toBeVisible();
       expect(errorMessage).toHaveAttribute('href', '/feilmelding');
     });
   });
 
   describe('Når Validation har errorTitle og errors', () => {
-    test('Så vises all teksten i en alert', () => {
+    test('Så vises all teksten i en status', () => {
       render(<Validation errorTitle="Du må fikse dette:" errors={{ feil1: { message: 'For lang tekst' } }} />);
 
-      const alert = screen.getByRole('alert', { name: 'Du må fikse dette:' });
-      expect(alert).toBeVisible();
+      const status = screen.getByRole('status', { name: 'Du må fikse dette:' });
+      expect(status).toBeVisible();
 
-      const errorMessage = within(alert).getByText('For lang tekst');
+      const errorMessage = within(status).getByText('For lang tekst');
       expect(errorMessage).toBeVisible();
     });
   });
@@ -88,9 +88,9 @@ describe('Gitt at Validation skal vises', () => {
     test('Så vises tomt felt for oppsummering av feil', () => {
       render(<Validation errorTitle="Du må fikse dette:" />);
 
-      const alert = screen.getByRole('alert');
-      expect(alert).toBeVisible();
-      expect(alert).toBeEmptyDOMElement();
+      const status = screen.getByRole('status');
+      expect(status).toBeVisible();
+      expect(status).toBeEmptyDOMElement();
     });
   });
 
@@ -126,7 +126,7 @@ describe('Gitt at Validation skal vises', () => {
         const checkbox4 = screen.getByLabelText('Small');
         expect(checkbox4).toHaveAccessibleDescription('Du må velge minst to størrelser');
 
-        const errorSummary = screen.getByRole('alert');
+        const errorSummary = screen.getByRole('status');
         expect(errorSummary).toBeVisible();
         expect(errorSummary).toHaveTextContent('Sjekk at alt er riktig utfylt');
         expect(errorSummary.className).toBe('validation__summary validation__summary--visible');
@@ -141,7 +141,7 @@ describe('Gitt at Validation skal vises', () => {
 
         await userEvent.click(submit);
 
-        const errorSummary = screen.getByRole('alert');
+        const errorSummary = screen.getByRole('status');
 
         expect(errorSummary.className).toBe('validation__summary validation__summary--visible');
       });
@@ -185,7 +185,7 @@ describe('Gitt at Validation skal vises', () => {
         const monster = screen.getByLabelText('Velg et monster');
         expect(monster).toHaveAccessibleDescription('Du må velge "Frankenstein"');
 
-        const errorSummary = screen.getByRole('alert');
+        const errorSummary = screen.getByRole('status');
         expect(errorSummary).toBeVisible();
         expect(errorSummary).toHaveTextContent('Sjekk at alt er riktig utfylt');
 
