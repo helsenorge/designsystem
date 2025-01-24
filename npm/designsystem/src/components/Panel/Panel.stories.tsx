@@ -875,7 +875,7 @@ export const Expandable: Story = {
     const [expanderOpen, setExpanderOpen] = React.useState(false);
     return (
       <>
-        <Panel {...args} expanded={expanderOpen}>
+        <Panel {...args}>
           <Panel.PreContainer>
             <PanelTitle title="Denne har en knapp og skjult innhold" />
           </Panel.PreContainer>
@@ -894,7 +894,9 @@ export const Expandable: Story = {
           </Panel.PreContainer>
           <Panel.A>
             <span>{'Noe innhold'}</span>
-            <Button onClick={() => setExpanderOpen(!expanderOpen)}>{expanderOpen ? 'Skjul' : 'Vis'}</Button>
+            <Expander title="Se detaljer" onExpand={() => setExpanderOpen(!expanderOpen)}>
+              {'For å se forskjellen'}
+            </Expander>
           </Panel.A>
           <Panel.ExpandedContent>
             <Title appearance="title3">{'Dette er skjult'}</Title>

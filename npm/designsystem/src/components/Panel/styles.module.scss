@@ -1,6 +1,8 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/supernova/styles/colors' as *;
 @use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/font-settings' as fonts;
+@use '../Button/styles.module' as *;
 
 .panel {
   $panel: &;
@@ -174,5 +176,22 @@
 
   &__expanded-content {
     width: inherit;
+  }
+}
+
+.expander {
+  &__button {
+    position: relative;
+    padding-right: getSpacer(s);
+    text-align: left;
+    width: fit-content;
+
+    &--expanded {
+      @include outline-borderless-hover;
+    }
+  }
+
+  &__button &__button__text {
+    @include outline-borderless-text-hover;
   }
 }

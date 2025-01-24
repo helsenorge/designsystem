@@ -4,9 +4,9 @@ import classNames from 'classnames';
 
 import { PaletteNames } from '../../theme/palette';
 import Button from '../Button';
-import Icon from '../Icon';
-import ArrowDown from '../Icons/ArrowDown';
-import ArrowUp from '../Icons/ArrowUp';
+import Icon, { IconSize } from '../Icon';
+import ChevronDown from '../Icons/ChevronDown';
+import ChevronUp from '../Icons/ChevronUp';
 
 import styles from './styles.module.scss';
 
@@ -55,6 +55,23 @@ export interface PanelProps {
   expanded?: boolean;
   showExpandButton?: boolean;
 }
+
+const ExpandButton = ({ onClick, isExpanded }: { onClick: () => void; isExpanded: boolean | undefined }): React.JSX.Element => {
+  const buttonClassName = classNames(styles['expander__button'], isExpanded && styles['expander__button--expanded']);
+
+  return (
+    <Button
+      variant="borderless"
+      textClassName={styles['expander__button__text']}
+      className={buttonClassName}
+      aria-expanded={isExpanded}
+      onClick={onClick}
+    >
+      <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} size={IconSize.XSmall} />
+      <span>{isExpanded ? 'Skjul detaljer' : 'Se detaljer'}</span>
+    </Button>
+  );
+};
 
 const Panel: React.FC<PanelProps> & {
   PreContainer: React.FC<ContentProps>;
@@ -142,12 +159,7 @@ const Panel: React.FC<PanelProps> & {
         <div className={outerLayout} data-testid={testId}>
           {preContainer}
           <div className={contentContainerLayout}>{content}</div>
-          {showExpandButton && (
-            <Button className={styles['panel__expand-button']} onClick={() => setIsExpanded(!isExpanded)} variant="borderless">
-              <Icon svgIcon={isExpanded ? ArrowUp : ArrowDown} />
-              <span>{isExpanded ? 'Skjul detaljer' : 'Se detaljer'}</span>
-            </Button>
-          )}
+          {showExpandButton && <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} />}
           {isExpanded && <div className={contentContainerLayout}>{expandableContent}</div>}
         </div>
       </div>
