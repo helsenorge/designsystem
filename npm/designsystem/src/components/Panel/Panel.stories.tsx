@@ -914,74 +914,138 @@ export const LangExpandedContent: Story = {
   },
   render: args => {
     return (
-      <Panel {...args}>
-        <Panel.PreContainer>
-          <PanelTitle title="Denne har en knapp og skjult innhold" />
-        </Panel.PreContainer>
-        <Panel.A>
-          <span>{'Noe innhold'}</span>
-        </Panel.A>
-        <Panel.ExpandedContent>
-          <div>
-            <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
-            <p>
-              {
-                'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
-              }
-            </p>
+      <>
+        <Panel {...args}>
+          <Panel.PreContainer>
+            <PreviewContainer>{'Precontainer'}</PreviewContainer>
+          </Panel.PreContainer>
+          <Panel.A>
+            <PreviewContainer>{'Content A'}</PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>{'Content B'}</PreviewContainer>
+          </Panel.B>
+          <Panel.C>
+            <PreviewContainer>{'Content C'}</PreviewContainer>
+          </Panel.C>
+        </Panel>
+        <br />
+        <Panel {...args}>
+          <Panel.PreContainer>
+            <PreviewContainer>{'Precontainer'}</PreviewContainer>
+          </Panel.PreContainer>
+          <Panel.A>
+            <PreviewContainer>{'Content A'}</PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>{'Content B'}</PreviewContainer>
+          </Panel.B>
+          <Panel.C>
+            <PreviewContainer>{'Content C'}</PreviewContainer>
+          </Panel.C>
+        </Panel>
+        <br />
+        <Panel {...args}>
+          <Panel.PreContainer>
+            <PanelTitle title="Denne har en knapp og skjult innhold" />
+          </Panel.PreContainer>
+          <Panel.A>
+            <span>{'Noe innhold'}</span>
+          </Panel.A>
+          <Panel.ExpandedContent>
             <div>
-              <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
-              <span>{'11.03.2024'}</span>
-            </div>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
-              <span>{'11.03.2024'}</span>
-            </div>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
-              <span>{'Ubegrenset'}</span>
-            </div>
+              <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+              <p>
+                {
+                  'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+                }
+              </p>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
+                <span>{'11.03.2024'}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
+                <span>{'11.03.2024'}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
+                <span>{'Ubegrenset'}</span>
+              </div>
 
-            <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
-            <p>
-              {
-                'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
-              }
-            </p>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
-              <span>{'11.03.2024'}</span>
-            </div>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
-              <span>{'11.03.2024'}</span>
-            </div>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
-              <span>{'Ubegrenset'}</span>
-            </div>
+              <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+              <p>
+                {
+                  'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+                }
+              </p>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
+                <span>{'11.03.2024'}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
+                <span>{'11.03.2024'}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
+                <span>{'Ubegrenset'}</span>
+              </div>
 
-            <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
-            <p>
-              {
-                'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
-              }
-            </p>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
-              <span>{'11.03.2024'}</span>
+              <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+              <p>
+                {
+                  'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+                }
+              </p>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
+                <span>{'11.03.2024'}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
+                <span>{'11.03.2024'}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
+                <span>{'Ubegrenset'}</span>
+              </div>
             </div>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
-              <span>{'11.03.2024'}</span>
-            </div>
-            <div>
-              <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
-              <span>{'Ubegrenset'}</span>
-            </div>
-          </div>
-        </Panel.ExpandedContent>
-      </Panel>
+          </Panel.ExpandedContent>
+        </Panel>
+        <br />
+
+        <Panel {...args}>
+          <Panel.PreContainer>
+            <PreviewContainer>{'Precontainer'}</PreviewContainer>
+          </Panel.PreContainer>
+          <Panel.A>
+            <PreviewContainer>{'Content A'}</PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>{'Content B'}</PreviewContainer>
+          </Panel.B>
+          <Panel.C>
+            <PreviewContainer>{'Content C'}</PreviewContainer>
+          </Panel.C>
+        </Panel>
+        <br />
+        <Panel {...args}>
+          <Panel.PreContainer>
+            <PreviewContainer>{'Precontainer'}</PreviewContainer>
+          </Panel.PreContainer>
+          <Panel.A>
+            <PreviewContainer>{'Content A'}</PreviewContainer>
+          </Panel.A>
+          <Panel.B>
+            <PreviewContainer>{'Content B'}</PreviewContainer>
+          </Panel.B>
+          <Panel.C>
+            <PreviewContainer>{'Content C'}</PreviewContainer>
+          </Panel.C>
+        </Panel>
+        <br />
+      </>
     );
   },
 };
