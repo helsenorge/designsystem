@@ -165,7 +165,7 @@ const Panel: React.FC<PanelProps> & {
           {isExpanded && (
             <div>
               <div className={styles['panel__expander-separator']} />
-              <div className={styles['panel__expander-content']}>{expandableContent}</div>
+              {expandableContent}
             </div>
           )}
         </div>
@@ -203,7 +203,7 @@ const C: React.FC<ContentProps> = ({ children }) => {
 };
 
 const ExpandedContent: React.FC<ContentProps> = ({ children }) => {
-  const styling = classNames(styles['panel__expanded-content']);
+  const styling = classNames(styles['panel__expander-content']);
   return <div className={styling}>{children}</div>;
 };
 
