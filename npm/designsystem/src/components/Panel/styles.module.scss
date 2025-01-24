@@ -169,13 +169,13 @@
     }
   }
 
-  // todo: style disse
-  &__expand-button {
-    width: inherit;
+  &__expander-separator {
+    height: 1px;
+    background-color: var(--color-base-border-ondark);
   }
 
-  &__expanded-content {
-    width: inherit;
+  &__expander-content {
+    margin-top: spacers.getSpacer(s);
   }
 }
 

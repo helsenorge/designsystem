@@ -162,7 +162,12 @@ const Panel: React.FC<PanelProps> & {
           {preContainer}
           <div className={contentContainerLayout}>{content}</div>
           {showExpandButton && <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} />}
-          {isExpanded && <div className={contentContainerLayout}>{expandableContent}</div>}
+          {isExpanded && (
+            <div>
+              <div className={styles['panel__expander-separator']} />
+              <div className={styles['panel__expander-content']}>{expandableContent}</div>
+            </div>
+          )}
         </div>
       </div>
     </div>

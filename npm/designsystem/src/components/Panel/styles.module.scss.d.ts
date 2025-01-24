@@ -42,12 +42,12 @@ export type Styles = {
   'panel__content--combined': string;
   'panel__content--horizontal': string;
   'panel__content--vertical': string;
-  'panel__expand-button': string;
-  'panel__expanded-content': string;
   'panel__expander-border--blueberry': string;
   'panel__expander-border--expanded': string;
   'panel__expander-border--neutral': string;
   'panel__expander-border--white': string;
+  'panel__expander-content': string;
+  'panel__expander-separator': string;
   'panel__pre-container': string;
   'panel--blueberry': string;
   'panel--border': string;
