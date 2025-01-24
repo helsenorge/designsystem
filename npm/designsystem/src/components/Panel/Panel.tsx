@@ -97,6 +97,8 @@ const Panel: React.FC<PanelProps> & {
   const [expandableContent, setExpandableContent] = React.useState<React.ReactNode[]>([]);
   const [hasIcon, setHasIcon] = React.useState(false);
   const [isExpanded, setIsExpanded] = React.useState(expanded);
+  const panelRef = React.useRef<HTMLDivElement>(null);
+  const expandedContentRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     setIsExpanded(expanded);
@@ -140,6 +142,26 @@ const Panel: React.FC<PanelProps> & {
     setHasIcon(localHasIcon);
   }, [children]);
 
+  React.useEffect(() => {
+    if (isExpanded) {
+      if (panelRef.current && expandedContentRef.current) {
+        const panelRect = panelRef.current.getBoundingClientRect();
+        const expandedContentRect = expandedContentRef.current.getBoundingClientRect();
+
+        const scrollAmount = Math.min(200, panelRect.top - 20);
+
+        if (expandedContentRect.bottom > window.innerHeight) {
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          window.scrollBy({
+            top: scrollAmount,
+            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          });
+        }
+      }
+    }
+  }, [isExpanded]);
+
   const colorScheme = variant === PanelVariant.fill ? color : 'white';
   const outerLayout = classNames(styles['panel'], styles[`panel--${variant}`], styles[`panel--${colorScheme}`], {
     [styles['panel--new']]: status === PanelStatus.new,
@@ -158,12 +180,12 @@ const Panel: React.FC<PanelProps> & {
   return expandableContent.length > 0 ? (
     <div className={classNames({ [styles['panel__border--outline']]: variant === PanelVariant.border })}>
       <div className={expanderBorderLayout}>
-        <div className={outerLayout} data-testid={testId}>
+        <div className={outerLayout} data-testid={testId} ref={panelRef}>
           {preContainer}
           <div className={contentContainerLayout}>{content}</div>
           {showExpandButton && <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} />}
           {isExpanded && (
-            <div>
+            <div ref={expandedContentRef}>
               <div className={styles['panel__expander-separator']} />
               {expandableContent}
             </div>
@@ -172,7 +194,7 @@ const Panel: React.FC<PanelProps> & {
       </div>
     </div>
   ) : (
-    <div className={outerLayout} data-testid={testId}>
+    <div className={outerLayout} data-testid={testId} ref={panelRef}>
       {preContainer}
       <div className={contentContainerLayout}>{content}</div>
     </div>
