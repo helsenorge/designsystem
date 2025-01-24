@@ -12,6 +12,7 @@
   position: fixed;
   inset: 0;
   container-type: inline-size;
+  container-type: inline-size;
 
   @media print {
     position: absolute;
@@ -92,7 +93,7 @@
       width: 696px;
     }
 
-    @container (max-width: 500px) {
+    @container (max-width: 319px) {
       padding-bottom: getSpacer(2xs);
     }
   }
@@ -175,7 +176,7 @@
       max-height: none;
     }
 
-    @container (max-width: 500px) {
+    @container (max-width: 319px) {
       max-height: calc(100dvh - 4rem);
     }
 
@@ -191,7 +192,7 @@
           padding: getSpacer(xl) getSpacer(xl) getSpacer(2xs);
         }
 
-        @container (max-width: 500px) {
+        @container (max-width: 319px) {
           padding: getSpacer(2xs) getSpacer(2xs) getSpacer(4xs);
         }
       }
@@ -203,7 +204,7 @@
           padding: getSpacer(xl) getSpacer(m) getSpacer(2xs);
         }
 
-        @container (max-width: 500px) {
+        @container (max-width: 319px) {
           padding: getSpacer(2xs) getSpacer(3xs) getSpacer(4xs);
         }
       }
@@ -258,7 +259,7 @@
         padding: getSpacer(l) getSpacer(xl) 0;
       }
 
-      @container (max-width: 500px) {
+      @container (max-width: 319px) {
         padding: getSpacer(2xs) getSpacer(2xs) 0;
       }
     }
@@ -266,7 +267,7 @@
     &--medium {
       padding: getSpacer(m) getSpacer(m) 0;
 
-      @container (max-width: 500px) {
+      @container (max-width: 319px) {
         padding: getSpacer(2xs) getSpacer(2xs) 0;
       }
     }

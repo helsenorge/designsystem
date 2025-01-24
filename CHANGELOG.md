@@ -1,85 +1,57 @@
-## 10.0.0-beta.5 (2025-01-22)
+## [9.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.6.0&targetVersion=GTv9.7.0) (2025-01-24)
 
 ### Features
 
-- **badge:** endre oppbygning av komponenten"
-  ([89dd434](https://github.com/helsenorge/designsystem/commit/89dd4342e9aa0bc1d9d9da8fe5699fd04adfb206)), closes
-  [#339274](https://github.com/helsenorge/designsystem/issues/339274) [#339274](https://github.com/helsenorge/designsystem/issues/339274)
-- **emptystate:** støtte for både tittel og brødtekst
-  ([676d1c3](https://github.com/helsenorge/designsystem/commit/676d1c362d1341d48ffd598402f1032a7d615362)), closes
-  [#342140](https://github.com/helsenorge/designsystem/issues/342140)
-
-## 10.0.0-beta.4 (2025-01-10)
-
-### Features
-
-- **datepicker:** arialabels er nå et object av strings
-  ([63bbd43](https://github.com/helsenorge/designsystem/commit/63bbd4362be32744bff0add8f37a9fb07c8fc8f5)), closes
-  [#331806](https://github.com/helsenorge/designsystem/issues/331806)
+- oppdatert spacing i expanderlist og listheader
+  ([57d969c](https://github.com/helsenorge/designsystem/commit/57d969c5633b4c841790ec486f003c1a6d017279)), closes
+  [#339057](https://github.com/helsenorge/designsystem/issues/339057)
+- **stickynote:** ny komponent ([395603f](https://github.com/helsenorge/designsystem/commit/395603fc46e10432968bfef5f83a4937ecfc9440)),
+  closes [#341184](https://github.com/helsenorge/designsystem/issues/341184)
 
 ### Bug Fixes
 
-- import på riktig format ([8d2a26c](https://github.com/helsenorge/designsystem/commit/8d2a26cda5d370f8b5eb7acd61c3439d902b6998)), closes
-  [#339137](https://github.com/helsenorge/designsystem/issues/339137) [#339137](https://github.com/helsenorge/designsystem/issues/339137)
+- **dropdown:** enter på lukkeknapp lukker dropdown
+  ([c132d0f](https://github.com/helsenorge/designsystem/commit/c132d0fca8ad94ffd9343a219239e71daad2568b)), closes
+  [#340820](https://github.com/helsenorge/designsystem/issues/340820)
+- **modal:** fiks så styling for zoom på modal ikke vises på mobilt breakpoint
+  ([22aff5f](https://github.com/helsenorge/designsystem/commit/22aff5fdb82dc8438ea6e11dc6e0988e3fe61a6b)), closes
+  [#336560](https://github.com/helsenorge/designsystem/issues/336560)
+- **validationsummary:** aria attributter tweakes
+  ([2316247](https://github.com/helsenorge/designsystem/commit/2316247d7f6b038cc77f25c5940ae32ee2f0bd84)), closes
+  [#340310](https://github.com/helsenorge/designsystem/issues/340310)
 
-## 10.0.0-beta.3 (2024-12-20)
-
-### Bug Fixes
-
-- label renderasparent rendrer nå subdued igjen når det passeres inn ren string
-  ([7851865](https://github.com/helsenorge/designsystem/commit/7851865ac788f7f2390a8093f049b40f020c650b))
-
-## 10.0.0-beta.2 (2024-12-20)
-
-### Features
-
-- arialabels prop for og fikset disabled dager feil
-  ([e57ba55](https://github.com/helsenorge/designsystem/commit/e57ba55e4a2be478c659ec0515290aebed28674c)), closes
-  [#331806](https://github.com/helsenorge/designsystem/issues/331806)
-- **listheader:** tillat chevron på linklist size small
-  ([9e93688](https://github.com/helsenorge/designsystem/commit/9e9368842dffb8b26c14dfd914376bc3b002c88c)), closes
-  [#340288](https://github.com/helsenorge/designsystem/issues/340288)
-
-## 10.0.0-beta.1 (2024-12-18)
-
-### Bug Fixes
-
-- **emptystate:** behold bredden på illustrasjon
-  ([058c7f9](https://github.com/helsenorge/designsystem/commit/058c7f94fa84b96ff58944c6e7696cd44af01a07)), closes
-  [#336772](https://github.com/helsenorge/designsystem/issues/336772)
-
-## 10.0.0-beta.0 (2024-12-17)
+## [9.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.5.0&targetVersion=GTv9.6.0) (2025-01-08)
 
 ### Features
 
-- endret fonts ([6324729](https://github.com/helsenorge/designsystem/commit/632472942c9d83a33f5e508e3b9205193b72eeae)), closes
-  [#332727](https://github.com/helsenorge/designsystem/issues/332727)
-- oppdatert pakkeversjon og startet migrering
-  ([2a5f592](https://github.com/helsenorge/designsystem/commit/2a5f592b4f30e718a001e6a4a5b891087c85da0a))
-- oppdatert pakkeversjon og startet migrering"
-  ([09b7c27](https://github.com/helsenorge/designsystem/commit/09b7c2725d5c20d8a352349f3b673b17d717d130))
-- **avatar:** endre variant normal til square
-  ([8453374](https://github.com/helsenorge/designsystem/commit/8453374c0c64c8bedc005c346286f8d370c7d546)), closes
-  [#337118](https://github.com/helsenorge/designsystem/issues/337118)
-- **avatar:** nye navn for props ([37c8e0b](https://github.com/helsenorge/designsystem/commit/37c8e0be9a0186ccb24dbacafef858c4f2742a06)),
-  closes [#335338](https://github.com/helsenorge/designsystem/issues/335338)
-- **badge:** endre oppbygning av komponenten
-  ([12248cb](https://github.com/helsenorge/designsystem/commit/12248cb243322d8e83fe536b51f34ef231dadad8)), closes
-  [#339274](https://github.com/helsenorge/designsystem/issues/339274)
-- **datepicker:** date-fns peer-dependency satt til v4
-  ([a53ba94](https://github.com/helsenorge/designsystem/commit/a53ba94d6c720b87c3dbf466b2e6b25acc00082b)), closes
-  [#339137](https://github.com/helsenorge/designsystem/issues/339137)
-- **datepicker:** tar i bruk major 9 av reactdaypicker
-  ([778b49e](https://github.com/helsenorge/designsystem/commit/778b49e3feb8deebd3ae32a3d3de54cda93e2a20)), closes
-  [#331806](https://github.com/helsenorge/designsystem/issues/331806)
-- **emptystate:** nytt design med ny illustrasjon og flere varianter
-  ([e14a49f](https://github.com/helsenorge/designsystem/commit/e14a49fe26a30bd06e87e5ecf35a3bf6e5539b08)), closes
-  [#336772](https://github.com/helsenorge/designsystem/issues/336772)
-- **linklist:** nytt design ([43de477](https://github.com/helsenorge/designsystem/commit/43de477a3280d9ecf9aee997bc763fb82d269864)), closes
-  [#336491](https://github.com/helsenorge/designsystem/issues/336491)
-- **tabs:** touchbehavior prop er fjernet
-  ([994aded](https://github.com/helsenorge/designsystem/commit/994adeda6085664d26bf4e90ea111ef0fa6a9d78)), closes
-  [#328640](https://github.com/helsenorge/designsystem/issues/328640)
+- **expanderlist:** fjern zindex som ikke lenger er ønsket
+  ([e1508b3](https://github.com/helsenorge/designsystem/commit/e1508b38f58a196bfb4224da3fbf4f003d9f25b4)), closes
+  [#340832](https://github.com/helsenorge/designsystem/issues/340832)
+- **Label:** labeltexts er optional og flytter children til etter labeltexts
+  ([c39cd3c](https://github.com/helsenorge/designsystem/commit/c39cd3c2ef940655f750d0c202c27d4c9afdc80b)), closes
+  [#340280](https://github.com/helsenorge/designsystem/issues/340280)
+- **tabs:** gjør padding i tabpanel mindre
+  ([d0fa4d3](https://github.com/helsenorge/designsystem/commit/d0fa4d30354a377a9ef1527f19e3dec88fe73279)), closes
+  [#341052](https://github.com/helsenorge/designsystem/issues/341052)
+- **tabs:** legg på knapper for å scrolle i lang TabList
+  ([99e5a87](https://github.com/helsenorge/designsystem/commit/99e5a87d014bdc733f2c95fc775f44850c848c29)), closes
+  [#338897](https://github.com/helsenorge/designsystem/issues/338897)
+
+### Bug Fixes
+
+- gjør modal brukbar ved zoom ved å fjerne space når container er liten
+  ([f58038c](https://github.com/helsenorge/designsystem/commit/f58038c2e8e0f9afba9ed82439789d17ea1187e7)), closes
+  [#340170](https://github.com/helsenorge/designsystem/issues/340170)
+- **listheader:** ikke rendre badge på nytt
+  ([2436c14](https://github.com/helsenorge/designsystem/commit/2436c1447a568dd6b7097d569398c901fd5cd504)), closes
+  [#339467](https://github.com/helsenorge/designsystem/issues/339467) [#339467](https://github.com/helsenorge/designsystem/issues/339467)
+
+## [9.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.4.3&targetVersion=GTv9.5.0) (2024-12-13)
+
+### Features
+
+- **Sublabel:** støtte for children ([4880fd2](https://github.com/helsenorge/designsystem/commit/4880fd2085c41c13382c68183846dbf0010307b3)),
+  closes [#340280](https://github.com/helsenorge/designsystem/issues/340280)
 
 ### Bug Fixes
 
