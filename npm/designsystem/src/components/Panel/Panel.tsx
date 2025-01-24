@@ -56,6 +56,8 @@ export interface PanelProps {
   expanded?: boolean;
   /** Opt-out boolean for turning off the expander button when expandable content is used */
   showExpandButton?: boolean;
+  /** todo: delete this */
+  scrollProp?: number;
 }
 
 const ExpandButton = ({ onClick, isExpanded }: { onClick: () => void; isExpanded: boolean | undefined }): React.JSX.Element => {
@@ -91,6 +93,7 @@ const Panel: React.FC<PanelProps> & {
   status = PanelStatus.normal,
   expanded,
   showExpandButton = true,
+  scrollProp = 200,
 }: PanelProps) => {
   const [preContainer, setPreContainer] = React.useState<React.ReactNode[]>([]);
   const [content, setContent] = React.useState<React.ReactNode[]>([]);
@@ -150,7 +153,7 @@ const Panel: React.FC<PanelProps> & {
         const panelRect = panelRef.current.getBoundingClientRect();
         const expandedContentRect = expandedContentRef.current.getBoundingClientRect();
 
-        const scrollAmount = Math.min(200, panelRect.top - 20);
+        const scrollAmount = Math.min(scrollProp, panelRect.top - 20);
 
         if (expandedContentRect.bottom > window.innerHeight) {
           const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

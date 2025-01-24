@@ -56,6 +56,9 @@ const meta = {
       control: 'select',
       options: Object.values(PanelStatus),
     },
+    scrollProp: {
+      control: 'number',
+    },
   },
 } satisfies Meta<typeof Panel>;
 
