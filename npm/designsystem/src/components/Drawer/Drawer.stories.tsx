@@ -13,10 +13,14 @@ const meta = {
   component: Drawer,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Drawer} />,
+      page: (): React.ReactNode => <Docs component={Drawer} />,
       description: {
         component:
           'Drawer er en generisk container komponent som brukes for å vise innhold fra bunn til topp på mobil, og venstre til høyre på desktop. Samtidig som det lar brukeren se litt av innholdet bak komponentet.',
+      },
+      story: {
+        inline: false,
+        iframeHeight: '40rem',
       },
     },
   },
