@@ -142,6 +142,8 @@ const Panel: React.FC<PanelProps> & {
     setHasIcon(localHasIcon);
   }, [children]);
 
+  // kode for å scrolle til toppen av panel når det ekspanderes
+  // todo: gjør denne penere, evt flytt ut til egen hook
   React.useEffect(() => {
     if (isExpanded) {
       if (panelRef.current && expandedContentRef.current) {
