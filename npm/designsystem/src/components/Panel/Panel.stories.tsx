@@ -907,3 +907,81 @@ export const Expandable: Story = {
     );
   },
 };
+
+export const LangExpandedContent: Story = {
+  args: {
+    layout: PanelLayout.vertical,
+  },
+  render: args => {
+    return (
+      <Panel {...args}>
+        <Panel.PreContainer>
+          <PanelTitle title="Denne har en knapp og skjult innhold" />
+        </Panel.PreContainer>
+        <Panel.A>
+          <span>{'Noe innhold'}</span>
+        </Panel.A>
+        <Panel.ExpandedContent>
+          <div>
+            <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+            <p>
+              {
+                'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+              }
+            </p>
+            <div>
+              <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
+              <span>{'11.03.2024'}</span>
+            </div>
+            <div>
+              <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
+              <span>{'11.03.2024'}</span>
+            </div>
+            <div>
+              <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
+              <span>{'Ubegrenset'}</span>
+            </div>
+
+            <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+            <p>
+              {
+                'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+              }
+            </p>
+            <div>
+              <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
+              <span>{'11.03.2024'}</span>
+            </div>
+            <div>
+              <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
+              <span>{'11.03.2024'}</span>
+            </div>
+            <div>
+              <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
+              <span>{'Ubegrenset'}</span>
+            </div>
+
+            <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
+            <p>
+              {
+                'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+              }
+            </p>
+            <div>
+              <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
+              <span>{'11.03.2024'}</span>
+            </div>
+            <div>
+              <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
+              <span>{'11.03.2024'}</span>
+            </div>
+            <div>
+              <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
+              <span>{'Ubegrenset'}</span>
+            </div>
+          </div>
+        </Panel.ExpandedContent>
+      </Panel>
+    );
+  },
+};
