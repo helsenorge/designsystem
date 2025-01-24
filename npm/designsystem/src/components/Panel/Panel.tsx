@@ -52,7 +52,9 @@ export interface PanelProps {
   children?: React.ReactNode;
   /** Displays a status on the left side: default normal */
   status?: PanelStatus;
+  /** Control the expanded state for an expandable panel */
   expanded?: boolean;
+  /** Opt-out boolean for turning off the expander button when expandable content is used */
   showExpandButton?: boolean;
 }
 
