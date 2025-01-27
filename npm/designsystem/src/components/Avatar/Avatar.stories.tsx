@@ -8,6 +8,7 @@ import Avatar, { AvatarSize } from './Avatar';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Avatar',
   component: Avatar,
+  tags: ['breaking'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Avatar} />,

@@ -9,6 +9,7 @@ import AnchorLink from '../AnchorLink';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/EmptyState',
   component: EmptyState,
+  tags: ['breaking'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={EmptyState} />,

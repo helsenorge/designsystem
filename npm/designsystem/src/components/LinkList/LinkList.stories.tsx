@@ -18,6 +18,7 @@ import { StatusDotVariant } from '../StatusDot';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/LinkList',
   component: LinkList,
+  tags: ['breaking'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={LinkList} />,
