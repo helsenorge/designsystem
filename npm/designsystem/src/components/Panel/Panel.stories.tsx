@@ -26,6 +26,7 @@ import Toggle from '../Toggle';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Panel',
   component: Panel,
+  tags: ['new'],
   parameters: {
     docs: {
       description: {

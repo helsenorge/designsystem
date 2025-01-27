@@ -19,6 +19,7 @@ type PanelWithAndCustomArgs = React.ComponentProps<typeof PanelOld> & {
 const meta = {
   title: '@helsenorge/designsystem-react/Components/PanelOld',
   component: PanelOld,
+  tags: ['deprecated'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={PanelOld} />,
