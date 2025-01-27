@@ -35,7 +35,7 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "@helsenorge/designsystem-react": "^10.0.0-beta",
+    "@helsenorge/designsystem-react": "^10.0.0",
     "classnames": "^2.5.1",
     "date-fns": "^4.0.0",
     "react": "^18.0.0",
@@ -45,7 +45,7 @@
     "react-day-picker": "^9.4.1"
   },
   "devDependencies": {
-    "@helsenorge/designsystem-react": "^10.0.0-beta.5",
+    "@helsenorge/designsystem-react": "^10.0.0",
     "@rollup/plugin-replace": "^6.0.1",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
@@ -58,7 +58,7 @@
     "@vitest/coverage-v8": "^2.1.3",
     "bootstrap": "^4.6.2",
     "classnames": "^2.5.1",
-    "frankenstein-build-tools": "^10.0.0-beta.5",
+    "frankenstein-build-tools": "^10.0.0",
     "jsdom": "^25.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
