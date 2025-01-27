@@ -11,13 +11,13 @@ exports[`displays a list of links 1`] = `
       data-analyticsid="link"
     >
       <a
-        class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
+        class="link-list__anchor link-list__anchor--cherry link-list__anchor--line--cherry link-list__anchor--medium"
       >
         <span
           class="list-header"
         >
           <span
-            class="list-header__icon list-header__icon--for-string-content"
+            class="list-header__icon"
           >
             <svg
               aria-hidden="true"
@@ -48,7 +48,7 @@ exports[`displays a list of links 1`] = `
             </svg>
           </span>
           <span
-            class="list-header__content list-header__content--string"
+            class="list-header__content"
           >
             <span
               class="list-header__title"
@@ -56,6 +56,9 @@ exports[`displays a list of links 1`] = `
               Link 1
             </span>
           </span>
+          <span
+            class="list-header__badge-container"
+          />
         </span>
       </a>
     </li>
@@ -64,13 +67,13 @@ exports[`displays a list of links 1`] = `
       data-analyticsid="link"
     >
       <a
-        class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
+        class="link-list__anchor link-list__anchor--cherry link-list__anchor--line--cherry link-list__anchor--medium"
       >
         <span
           class="list-header"
         >
           <span
-            class="list-header__content list-header__content--string list-header__content--spacing"
+            class="list-header__content"
           >
             <span
               class="list-header__title"
@@ -78,6 +81,9 @@ exports[`displays a list of links 1`] = `
               Link 2
             </span>
           </span>
+          <span
+            class="list-header__badge-container"
+          />
         </span>
       </a>
     </li>
@@ -86,13 +92,13 @@ exports[`displays a list of links 1`] = `
       data-analyticsid="link"
     >
       <a
-        class="link-list__anchor link-list__anchor--cherry link-list__anchor--medium"
+        class="link-list__anchor link-list__anchor--cherry link-list__anchor--line--cherry link-list__anchor--medium"
       >
         <span
           class="list-header"
         >
           <span
-            class="list-header__content list-header__content--string list-header__content--spacing"
+            class="list-header__content"
           >
             <span
               class="list-header__title"
@@ -100,6 +106,9 @@ exports[`displays a list of links 1`] = `
               Link 3
             </span>
           </span>
+          <span
+            class="list-header__badge-container"
+          />
         </span>
       </a>
     </li>

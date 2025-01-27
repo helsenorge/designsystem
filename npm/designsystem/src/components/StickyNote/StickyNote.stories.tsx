@@ -64,8 +64,8 @@ export const Controlled: Story = {
     return (
       <>
         <span>
-          {`Inntastet tekst: `}
-          {value}
+          {`Tekst: `}
+          <input type="text" value={value} onChange={e => setValue(e.target.value)} />
         </span>
         <StickyNote {...args} value={value} onChange={handleChange} />
       </>
@@ -136,7 +136,9 @@ export const WithTitleAndButton: Story = {
   render: args => {
     return (
       <div>
-        <Title appearance="title2">{'Huskelapper'}</Title>
+        <Title appearance="title2" id="huskelapp-tittel">
+          {'Huskelapper'}
+        </Title>
         <p>{'Her kan du notere ting du ønsker å huske i forbindelse med denne timen.'}</p>
         <Button type="button" variant="outline">
           <Icon svgIcon={PlusSmall}></Icon>
@@ -150,9 +152,9 @@ export const WithTitleAndButton: Story = {
           flex-flow: column;
           gap: 1rem;
         }`}</style>
-          <StickyNote {...args} />
-          <StickyNote {...args} />
-          <StickyNote {...args} />
+          <StickyNote {...args} aria-labelledby="huskelapp-tittel" />
+          <StickyNote {...args} aria-labelledby="huskelapp-tittel" />
+          <StickyNote {...args} aria-labelledby="huskelapp-tittel" />
         </div>
       </div>
     );

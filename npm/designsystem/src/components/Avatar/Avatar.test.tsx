@@ -23,7 +23,7 @@ describe('Gitt at Avatar skal vises', (): void => {
   });
   describe('Når variant er black', (): void => {
     it('Så skal komponenten være svart', (): void => {
-      const { container } = render(<Avatar variant="black">{'Barbra Streisand'}</Avatar>);
+      const { container } = render(<Avatar color="black">{'Barbra Streisand'}</Avatar>);
 
       const text = screen.queryByText('Ba');
       expect(text).toBeVisible();
@@ -33,7 +33,7 @@ describe('Gitt at Avatar skal vises', (): void => {
   describe('Når variant er black og selected', (): void => {
     it('Så skal bakgrunnen være transparent og fargen på ikon er svart', (): void => {
       const { container } = render(
-        <Avatar selected variant="black">
+        <Avatar selected color="black">
           {'Barbra Streisand'}
         </Avatar>
       );

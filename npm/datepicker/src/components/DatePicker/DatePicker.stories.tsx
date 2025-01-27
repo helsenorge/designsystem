@@ -27,6 +27,7 @@ import {
 const meta = {
   title: '@helsenorge/datepicker/DatePicker',
   component: DatePicker,
+  tags: ['breaking'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={DatePicker} />,
@@ -136,6 +137,9 @@ const meta = {
     autoComplete: {
       control: 'text',
     },
+    ariaLabels: {
+      control: 'object',
+    },
   },
 } satisfies Meta<typeof DatePicker>;
 
@@ -147,7 +151,7 @@ export const Default: Story = {
   render: args => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
         {...args}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
@@ -167,10 +171,10 @@ export const DateRangePicker: Story = {
       <DateTimePickerWrapper>
         <DatePicker
           {...args}
-          label={<Label labelTexts={[{ text: 'Fra dato', type: 'semibold' }]} />}
+          label={<Label labelTexts={[{ text: 'Fra dato' }]} />}
           maxDate={toDate}
           onChange={(
-            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
+            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>,
             date: string | Date | undefined
           ): void => {
             date instanceof Date && setFromDate(date);
@@ -178,10 +182,10 @@ export const DateRangePicker: Story = {
         />
         <DatePicker
           {...args}
-          label={<Label labelTexts={[{ text: 'Til dato', type: 'semibold' }]} />}
+          label={<Label labelTexts={[{ text: 'Til dato' }]} />}
           minDate={fromDate}
           onChange={(
-            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>,
+            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>,
             date: string | Date | undefined
           ): void => {
             date instanceof Date && setToDate(date);
@@ -201,11 +205,11 @@ export const DateAndTime: Story = {
         <DatePicker
           {...args}
           dateValue={startDate}
-          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+          label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
         />
         <DateTime
           defaultValue={12}
-          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
+          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
           timeUnit={'hours'}
         />
         <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
@@ -216,7 +220,7 @@ export const DateAndTime: Story = {
 
 export const MinMaxDays: Story = {
   render: (args: DatePickerProps) => {
-    const [startDate] = React.useState(new Date('01.01.2024'));
+    const [startDate] = React.useState(new Date());
     const minDate = new Date();
     const maxDate = new Date();
     minDate.setDate(startDate.getDate() - 15);
@@ -224,7 +228,7 @@ export const MinMaxDays: Story = {
 
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
         {...args}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
         dateValue={startDate}
@@ -243,7 +247,7 @@ export const DisabledDays: Story = {
 
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
         {...args}
         disableDays={[disabledDate]}
         disableWeekends
@@ -259,7 +263,7 @@ export const FooterContent: Story = {
   render: (args: DatePickerProps) => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
         {...args}
         footerContent={<Icon size={38} svgIcon={Calendar} />}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
@@ -278,7 +282,7 @@ export const Locale: Story = {
   render: (args: DatePickerProps) => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Date', type: 'semibold' }, { text: '(dd.mm.yyyy)' }]} />}
+        label={<Label labelTexts={[{ text: 'Date' }, { text: '(dd.mm.yyyy)', type: 'subdued' }]} />}
         {...args}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
@@ -410,7 +414,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
               disableDays={[disabledDate]}
               disableWeekends
               footerContent={<Icon size={38} svgIcon={Calendar} />}
-              label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+              label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
               maxDate={maxDate}
               minDate={minDate}
               onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
@@ -418,7 +422,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
             />
             <DateTime
               defaultValue={12}
-              label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid', type: 'semibold' }, { text: '(tt:mm)' }]} />}
+              label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
               timeUnit={'hours'}
               {...register(datetimehour, { validate: requireHour })}
             />
@@ -443,7 +447,7 @@ export const Variants: Story = {
       <div>
         <p>{longLoremText}</p>
         <DatePicker
-          label={<Label labelTexts={[{ text: 'Dato', type: 'semibold' }, { text: '(dd.mm.åååå)' }]} />}
+          label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
           {...args}
           dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
           disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
@@ -452,6 +456,32 @@ export const Variants: Story = {
         />
         <p>{longLoremText}</p>
       </div>
+    );
+  },
+};
+
+export const AriaLabels: Story = {
+  args: {
+    ariaLabels: {
+      dayButtonBase: 'Standard tekst for {date}',
+      dayButtonToday: 'I dag, {date}',
+      dayButtonSelected: '{date}, valgt',
+      nextMonth: 'Neste måned',
+      previousMonth: 'Forrige måned',
+      monthDropdown: 'Velg måned',
+      yearDropdown: 'Velg år',
+    },
+  },
+  render: args => {
+    return (
+      <DatePicker
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+        {...args}
+        dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
+        disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
+        maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
+        minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
+      />
     );
   },
 };

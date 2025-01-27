@@ -4,6 +4,7 @@
 @import '../../scss/palette';
 @import '../../scss/font-settings';
 @import '../../scss/supernova/styles/colors';
+@import '../../scss/font-mixins';
 
 .toggle-container {
   display: flex;
@@ -21,9 +22,8 @@
   }
 
   &__label {
-    font-size: $font-size-md;
-    font-weight: 400;
-    line-height: $lineheight-size-xs;
+    @include label;
+
     color: var(--core-color-neutral-900);
     margin-left: getSpacer(xs);
 
@@ -31,8 +31,8 @@
       margin-left: getSpacer(s);
     }
 
-    &__text--semibold {
-      font-weight: 600;
+    &__text--subdued {
+      @include label-subdued;
     }
 
     &--toggle-right {

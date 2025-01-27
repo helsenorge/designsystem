@@ -8,6 +8,7 @@ import Avatar, { AvatarSize } from './Avatar';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Avatar',
   component: Avatar,
+  tags: ['breaking'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Avatar} />,
@@ -33,13 +34,13 @@ const meta = {
       control: 'select',
       options: Object.values(AvatarSize),
     },
+    color: {
+      control: 'select',
+      options: ['blueberry', 'black'],
+    },
     variant: {
       control: 'select',
-      options: ['normal', 'black'],
-    },
-    type: {
-      control: 'select',
-      options: ['normal', 'circle'],
+      options: ['square', 'circle'],
     },
   },
 } satisfies Meta<typeof Avatar>;
@@ -54,7 +55,14 @@ export const Default: Story = {
 
 export const Inverted: Story = {
   args: {
-    variant: 'black',
+    color: 'black',
+  },
+  render: args => <Avatar {...args} />,
+};
+
+export const RepresentingSomeoneElse: Story = {
+  args: {
+    variant: 'circle',
   },
   render: args => <Avatar {...args} />,
 };

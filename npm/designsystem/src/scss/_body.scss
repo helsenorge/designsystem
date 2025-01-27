@@ -1,17 +1,12 @@
 @use 'sass:map';
-@import './font-settings';
 @import './palette';
 @import './breakpoints';
+@import './font-mixins';
 
 body {
   font-family: 'Source Sans Pro', Arial, Verdana, sans-serif;
   background-color: $white;
   color: $black;
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: $font-size-md;
-    line-height: $lineheight-size-md;
-  }
+  @include body;
 }

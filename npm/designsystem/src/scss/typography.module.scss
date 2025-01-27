@@ -3,7 +3,7 @@
 @import './breakpoints';
 @import './fonts';
 @import './palette';
-@import './title';
+@import './font-mixins';
 
 /*
 Denne filen er ment til å importeres som en css module:
@@ -40,14 +40,16 @@ import designsystemtypography from './scss/typography.scss'
   @include title5;
 }
 
-.preamble {
-  font-size: 1.375rem;
-  line-height: getSpacer(l);
-  font-weight: 600;
+.title6 {
+  @include title6;
+}
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: getSpacer(m);
-  }
+.body {
+  @include body;
+}
+
+.preamble {
+  @include preamble;
 }
 
 .legend {
@@ -55,22 +57,15 @@ import designsystemtypography from './scss/typography.scss'
 }
 
 .label {
-  font-size: $font-size-sm;
-  line-height: getSpacer(m);
+  @include label;
+}
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: $font-size-md;
-    line-height: $lineheight-size-sm;
-  }
+.compact-data {
+  @include compact-data;
 }
 
 .table-cell {
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
-
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: $font-size-md;
-  }
+  @include table-cell;
 }
 
 .strong {
@@ -92,19 +87,24 @@ import designsystemtypography from './scss/typography.scss'
   }
 }
 
-.time {
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
+.status-timestamp {
+  @include status-timestamp;
 }
 
 .image-caption {
-  font-size: $spacer;
-  line-height: getSpacer(m);
+  @include image-caption;
 }
 
 .image-credit {
-  font-size: 0.75rem;
-  line-height: $spacer;
+  @include image-credit;
+}
+
+.input-text {
+  @include input-text;
+}
+
+.input-text-large {
+  @include input-text-large;
 }
 
 .anchorlink-wrapper {

@@ -9,6 +9,7 @@ import { allTitleTags, allTitleAppearances } from '../../../.storybook/knobs';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Title',
   component: Title,
+  tags: ['new'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Title} />,
@@ -66,6 +67,9 @@ export const AllAppearances: Story = {
       </Title>
       <Title {...args} appearance="title5">
         {args.children} {'(title5)'}
+      </Title>
+      <Title {...args} appearance="title6">
+        {args.children} {'(title6)'}
       </Title>
     </>
   ),

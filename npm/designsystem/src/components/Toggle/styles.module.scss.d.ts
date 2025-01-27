@@ -2,7 +2,7 @@ export type Styles = {
   'toggle-container': string;
   'toggle-container__input': string;
   'toggle-container__label': string;
-  'toggle-container__label__text--semibold': string;
+  'toggle-container__label__text--subdued': string;
   'toggle-container__label--toggle-right': string;
   'toggle-container__row': string;
   'toggle-container__row--right': string;

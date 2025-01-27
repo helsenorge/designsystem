@@ -14,8 +14,8 @@ export type LinkListSize = 'small' | 'medium' | 'large';
 
 export type LinkAnchorTargets = '_self' | '_blank' | '_parent';
 
-export type LinkListColors = PaletteNames;
-export type LinkListVariant = 'line' | 'outline' | 'fill';
+export type LinkListColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cherry' | 'neutral'>;
+export type LinkListVariant = 'line' | 'outline' | 'fill' | 'fill-negative';
 
 export interface LinkType extends React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLLIElement>> {
   ListHeader?: ListHeaderType;
@@ -31,7 +31,7 @@ export interface LinkListProps {
   children: React.ReactNode;
   /** Adds custom classes to the element. */
   className?: string;
-  /** Changes the link list background color on hover. */
+  /**  Changes the colors of the list. */
   color?: LinkListColors;
   /** Toggles chevron icon on or off. */
   chevron?: boolean;
@@ -70,7 +70,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
   const {
     children,
     className = '',
-    color = 'neutral',
+    color = 'white',
     icon,
     size = 'medium',
     chevron = false,
@@ -83,15 +83,25 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
   } = props;
   const { hoverRef, isHovered } = useHover<HTMLButtonElement | HTMLAnchorElement>(linkRef);
 
+  const isFill = variant === 'fill';
+  const isFillNegative = variant === 'fill-negative';
+  const isOutline = variant === 'outline';
+  const isLine = variant === 'line';
+
   const liClasses = cn({
-    [LinkListStyles['link-list__list-item--line']]: variant === 'line',
-    [LinkListStyles['link-list__list-item--outline']]: variant === 'outline',
+    [LinkListStyles['link-list__list-item--line']]: isLine,
+    [LinkListStyles[`link-list__list-item--outline--${color}`]]: isOutline,
   });
   const linkClasses = cn(
     LinkListStyles['link-list__anchor'],
     LinkListStyles[`link-list__anchor--${color}`],
     {
-      [LinkListStyles['link-list__anchor--fill']]: variant === 'fill',
+      [LinkListStyles[`link-list__anchor--line--${color}`]]: isLine,
+      [LinkListStyles['link-list__anchor--fill']]: isFill,
+      [LinkListStyles[`link-list__anchor--fill--${color}`]]: isFill,
+      [LinkListStyles['link-list__anchor--outline']]: isOutline,
+      [LinkListStyles[`link-list__anchor--outline--${color}`]]: isOutline,
+      [LinkListStyles['link-list__anchor--fill-negative']]: isFillNegative,
       [LinkListStyles[`link-list__anchor--${size}`]]: size,
       [LinkListStyles['link-list__anchor--button']]: htmlMarkup === 'button',
     },

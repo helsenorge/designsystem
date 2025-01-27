@@ -20,7 +20,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme do
           class="list-header"
         >
           <span
-            class="list-header__content list-header__content--string list-header__content--spacing"
+            class="list-header__content"
           >
             <span
               class="list-header__title"
@@ -29,7 +29,10 @@ exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme do
             </span>
           </span>
           <span
-            class="list-header__chevron list-header__chevron--for-string-content"
+            class="list-header__badge-container"
+          />
+          <span
+            class="list-header__chevron"
           >
             <svg
               aria-hidden="true"
@@ -71,7 +74,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme do
           class="list-header"
         >
           <span
-            class="list-header__content list-header__content--string list-header__content--spacing"
+            class="list-header__content"
           >
             <span
               class="list-header__title"
@@ -80,7 +83,10 @@ exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme do
             </span>
           </span>
           <span
-            class="list-header__chevron list-header__chevron--for-string-content"
+            class="list-header__badge-container"
+          />
+          <span
+            class="list-header__chevron"
           >
             <svg
               aria-hidden="true"
@@ -127,7 +133,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
           class="list-header"
         >
           <span
-            class="list-header__content list-header__content--string list-header__content--spacing"
+            class="list-header__content"
           >
             <span
               class="list-header__title"
@@ -136,7 +142,10 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
             </span>
           </span>
           <span
-            class="list-header__chevron list-header__chevron--for-string-content"
+            class="list-header__badge-container"
+          />
+          <span
+            class="list-header__chevron"
           >
             <svg
               aria-hidden="true"
@@ -173,7 +182,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
           class="list-header"
         >
           <span
-            class="list-header__content list-header__content--string list-header__content--spacing"
+            class="list-header__content"
           >
             <span
               class="list-header__title"
@@ -182,7 +191,10 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
             </span>
           </span>
           <span
-            class="list-header__chevron list-header__chevron--for-string-content"
+            class="list-header__badge-container"
+          />
+          <span
+            class="list-header__chevron"
           >
             <svg
               aria-hidden="true"
@@ -219,7 +231,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
           class="list-header"
         >
           <span
-            class="list-header__content list-header__content--string list-header__content--spacing"
+            class="list-header__content"
           >
             <span
               class="list-header__title"
@@ -228,7 +240,10 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
             </span>
           </span>
           <span
-            class="list-header__chevron list-header__chevron--for-string-content"
+            class="list-header__badge-container"
+          />
+          <span
+            class="list-header__chevron"
           >
             <svg
               aria-hidden="true"
@@ -272,10 +287,10 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
         type="button"
       >
         <span
-          class="list-header list-header--for-element-content list-header--top-align-content"
+          class="list-header"
         >
           <span
-            class="list-header__content list-header__content--element list-header__content--spacing"
+            class="list-header__content list-header__content--element"
           >
             <h1
               class="title title--title3"
@@ -303,7 +318,10 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
             </svg>
           </span>
           <span
-            class="list-header__chevron list-header__chevron--medium"
+            class="list-header__badge-container"
+          />
+          <span
+            class="list-header__chevron"
           >
             <svg
               aria-hidden="true"
@@ -337,10 +355,10 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
         type="button"
       >
         <span
-          class="list-header list-header--for-element-content"
+          class="list-header"
         >
           <span
-            class="list-header__content list-header__content--element list-header__content--spacing"
+            class="list-header__content list-header__content--element"
           >
             <span
               class="list-header__title"
@@ -349,7 +367,10 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
             </span>
           </span>
           <span
-            class="list-header__chevron list-header__chevron--medium"
+            class="list-header__badge-container"
+          />
+          <span
+            class="list-header__chevron"
           >
             <svg
               aria-hidden="true"

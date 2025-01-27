@@ -59,10 +59,6 @@ const meta = {
       control: 'boolean',
       description: 'Whether the tab list should be sticky',
     },
-    touchBehaviour: {
-      control: 'select',
-      options: ['swipe', 'none'],
-    },
   },
 } satisfies Meta<typeof Tabs>;
 

@@ -5,7 +5,6 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import LinkList from './LinkList';
-import { allPaletteNames } from '../../../.storybook/knobs';
 import { allLinkListSizes } from '../../../.storybook/knobs';
 import Avatar from '../Avatar';
 import Badge from '../Badge';
@@ -19,6 +18,7 @@ import { StatusDotVariant } from '../StatusDot';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/LinkList',
   component: LinkList,
+  tags: ['breaking'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={LinkList} />,
@@ -37,7 +37,7 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: ['line', 'outline', 'fill'],
+      options: ['line', 'outline', 'fill', 'fill-negative'],
     },
     size: {
       control: 'select',
@@ -45,7 +45,7 @@ const meta = {
     },
     color: {
       control: 'select',
-      options: allPaletteNames,
+      options: ['white', 'blueberry', 'cherry', 'neutral'],
     },
   },
 } satisfies Meta<typeof LinkList>;
@@ -80,6 +80,12 @@ export const WithIconAndChevron: Story = {
         {
           'Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)'
         }
+      </LinkList.Link>
+      <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
+        <ListHeader titleHtmlMarkup="span">
+          {'LinkListText'}
+          <Badge color="blueberry">{'Ny'}</Badge>
+        </ListHeader>
       </LinkList.Link>
     </LinkList>
   ),
