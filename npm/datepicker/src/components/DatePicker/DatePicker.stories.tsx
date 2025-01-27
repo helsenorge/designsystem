@@ -27,6 +27,7 @@ import {
 const meta = {
   title: '@helsenorge/datepicker/DatePicker',
   component: DatePicker,
+  tags: ['breaking'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={DatePicker} />,

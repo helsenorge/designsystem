@@ -24,6 +24,7 @@ type LabelWithAndCustomArgs = React.ComponentProps<typeof Label> & {
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Label',
   component: Label,
+  tags: ['breaking'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Label} />,
