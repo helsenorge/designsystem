@@ -1038,9 +1038,8 @@ export const LangExpandedContent: Story = {
           </Panel.PreContainer>
           <Panel.A>
             <span>{'Noe innhold'}</span>
-            <Expander title="Se detaljer" onExpand={() => setExpanderOpen(!expanderOpen)}>
-              {'For å se forskjellen'}
-            </Expander>
+            <br />
+            <Button onClick={() => setExpanderOpen(!expanderOpen)}>{expanderOpen ? 'Skjul detaljer' : 'Se detaljer'}</Button>
           </Panel.A>
           <Panel.ExpandedContent>
             <Title appearance="title3">{'Dette er skjult'}</Title>
