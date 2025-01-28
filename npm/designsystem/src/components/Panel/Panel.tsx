@@ -72,6 +72,7 @@ const ExpandButton = ({ onClick, isExpanded }: { onClick: () => void; isExpanded
       onClick={onClick}
     >
       <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} size={IconSize.XSmall} />
+      {/* @todo: lag prop for tekst på knappen */}
       <span>{isExpanded ? 'Skjul detaljer' : 'Se detaljer'}</span>
     </Button>
   );
