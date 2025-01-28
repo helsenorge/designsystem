@@ -366,7 +366,8 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   @include on-dark;
 
-  @media (max-width: map.get($grid-breakpoints, xxs-edge)) {
+  @include xxs-media-query {
+    min-height: getSpacer(l);
     padding: 0 getSpacer(xs);
   }
 }

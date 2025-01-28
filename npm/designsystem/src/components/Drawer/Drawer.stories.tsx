@@ -25,7 +25,7 @@ const meta = {
     },
   },
   args: {
-    title: 'Title',
+    title: 'Fullstendige bruksvilkår',
     primaryActionLabel: 'Send inn',
     secondaryActionLabel: 'Avbryt',
   },
@@ -114,7 +114,7 @@ export const OpenFromButton: Story = {
           >
             <span>
               {
-                'Cillum officia officia elit et officia eu eiusmod eu exercitation irure exercitation reprehenderit. Ut irure eiusmod ad Lorem nostrud Lorem ut. Ullamco deserunt dolore deserunt voluptate Lorem occaecat. Commodo id adipisicing sint adipisicing ut. Labore consequat commodo laboris excepteur deserunt qui sunt veniam elit cupidatat. Qui sit officia nostrud et dolore adipisicing et ut nostrud eu. Sint ullamco ullamco laborum nostrud nulla velit et sit excepteur qui sit proident non. Aute in ea sint ipsum commodo commodo veniam. Labore sunt sint cillum sit magna tempor non nulla. Aliquip tempor eu excepteur ea exercitation dolor ea incididunt. Proident deserunt nisi incididunt minim mollit sit incididunt et excepteur voluptate dolor est cillum. Sit cupidatat sunt in commodo anim minim culpa sint incididunt cupidatat. Tempor sunt nostrud voluptate mollit aliqua occaecat veniam eiusmod culpa ea velit. Lorem ad ea duis ex tempor elit sit nostrud voluptate sit eu quis. Quis elit ullamco anim occaecat amet fugiat qui consectetur.'
+                'Cillum officia officia elit et officia eu eiusmod eu exercitation irure exercitation reprehenderit. Ut irure eiusmod ad Lorem nostrud Lorem ut. Ullamco deserunt dolore deserunt voluptate Lorem occaecat. Commodo id adipisicing sint adipisicing ut. Labore consequat commodo laboris excepteur deserunt qui sunt veniam elit cupidatat. Qui sit officia nostrud et dolore adipisicing et ut nostrud eu. Sint ullamco ullamco laborum nostrud nulla velit et sit excepteur qui sit proident non. Aute in ea sint ipsum commodo commodo veniam. Labore sunt sint cillum sit magna tempor non nulla. Aliquip tempor eu excepteur ea exercitation dolor ea incididunt. Proident deserunt nisi incididunt minim mollit sit incididunt et excepteur voluptate dolor est cillum. Sit cupidatat sunt in commodo anim minim culpa sint incididunt cupidatat. Tempor sunt nostrud voluptate mollit aliqua occaecat veniam eiusmod culpa ea velit. Lorem ad ea duis ex tempor elit sit nostrud voluptate sit eu quis. Quis elit ullamco anim occaecat amet fugiat qui consectetur. Eu id deserunt tempor amet sit laboris dolor sunt. Et adipisicing id culpa enim in adipisicing in labore incididunt nisi. Minim enim dolore aute nostrud esse exercitation minim consectetur do sit deserunt. Anim ex reprehenderit culpa magna exercitation mollit eiusmod quis velit incididunt. Non minim quis fugiat aliquip quis commodo Lorem laborum proident sunt tempor irure. Dolor proident eu cupidatat duis sint. Ex consectetur laborum nisi consequat. Sit est non nostrud consequat deserunt labore irure laboris magna cupidatat elit amet.'
               }
             </span>
           </Drawer>

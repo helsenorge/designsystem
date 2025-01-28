@@ -1,6 +1,7 @@
 export type Styles = {
   drawer: string;
   drawer__container: string;
+  drawer__container__inner: string;
   drawer__content: string;
   drawer__footer: string;
   'drawer__footer__default-cta': string;

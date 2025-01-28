@@ -5,7 +5,6 @@ $grid-gutter-width: map.get($spacers, 5);
 $grid-columns: 12;
 $grid-breakpoints: (
   xxs: 0,
-  xxs-edge: 319px,
   xs: 360px,
   sm: 564px,
   md: 768px,
@@ -22,3 +21,11 @@ $container-max-widths: (
   md: 612px,
   lg: 1056px,
 );
+
+// TODO: Hva er høyden vi vil trigge på? Burde den kunne settes manuelt?
+@mixin xxs-media-query {
+  @media (max-width: 319px),
+         (max-height: 308px) {
+    @content;
+  }
+}

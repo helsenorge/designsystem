@@ -3,8 +3,10 @@ import React, { useEffect, useRef } from 'react';
 import { useAnimate } from 'motion/react';
 
 import { AnalyticsId, ZIndex } from '../../constants';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
+import { breakpoints } from '../../theme/grid';
 import Button from '../Button';
 import Close from '../Close';
 import Title, { TitleTags } from '../Title';
@@ -52,6 +54,8 @@ const Drawer: React.FC<DrawerProps> = ({
 }) => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const breakpoint = useBreakpoint();
+  const isMobile = breakpoint < breakpoints.md;
   const [scope, animate] = useAnimate();
 
   useFocusTrap(containerRef, true);
@@ -60,8 +64,7 @@ const Drawer: React.FC<DrawerProps> = ({
     handleClose();
   });
 
-  // TODO: Hør med Tommy:
-  // TODO: 400% zoom, skal vi gjøre noe med padding? JA, kommer skisser
+  // TODO: 400% zoom, skal vi gjøre noe med padding? JA, kommer skisser. Tittel og innhold scroller sammen
   // TODO: Har vi en token for overlayet bak drawer? Burde sikkert hatt det, frankenweekly
 
   // TODO: Return focus after closing logic (mangler vi eksempel for dette i modal?)
@@ -114,13 +117,15 @@ const Drawer: React.FC<DrawerProps> = ({
     <div className={styles.drawer} ref={scope} style={{ zIndex }} data-analyticsid={AnalyticsId.Drawer}>
       <div className={styles.drawer__overlay} ref={overlayRef} />
       <div className={styles.drawer__container} ref={containerRef}>
-        <div className={styles.drawer__header}>
-          <Title /* id={ariaLabelledBy} */ htmlMarkup={titleHtmlMarkup} appearance="title3">
-            {title}
-          </Title>
-          <Close onClick={handleClose} small={false} />
+        <div className={styles.drawer__container__inner}>
+          <div className={styles.drawer__header}>
+            <Title /* id={ariaLabelledBy} */ htmlMarkup={titleHtmlMarkup} appearance="title3">
+              {title}
+            </Title>
+            <Close onClick={handleClose} small={isMobile} />
+          </div>
+          <div className={styles.drawer__content}>{children}</div>
         </div>
-        <div className={styles.drawer__content}>{children}</div>
         <div className={styles.drawer__footer}>
           {footerContent ? (
             footerContent
