@@ -44,13 +44,18 @@ export type Styles = {
   'panel__content--horizontal': string;
   'panel__content--vertical': string;
   panel__expander: string;
+  'panel__expander__border--blueberry': string;
   'panel__expander__border--expanded': string;
   'panel__expander__border--neutral': string;
   'panel__expander__border--white': string;
   panel__expander__content: string;
   panel__expander__separator: string;
+  'panel__expander--blueberry': string;
+  'panel__expander--neutral': string;
+  'panel__expander--white': string;
   'panel__pre-container': string;
   'panel--blueberry': string;
+  'panel--blueberry--hover': string;
   'panel--border': string;
   'panel--draft': string;
   'panel--error': string;
@@ -58,9 +63,11 @@ export type Styles = {
   'panel--icon': string;
   'panel--line': string;
   'panel--neutral': string;
+  'panel--neutral--hover': string;
   'panel--new': string;
   'panel--status': string;
   'panel--white': string;
+  'panel--white--hover': string;
 };
 
 export type ClassNames = keyof Styles;

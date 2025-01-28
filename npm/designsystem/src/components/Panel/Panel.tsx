@@ -2,6 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import { useHover } from '../../hooks/useHover';
 import { PaletteNames } from '../../theme/palette';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
@@ -71,7 +72,7 @@ const ExpandButton = ({ onClick, isExpanded }: { onClick: () => void; isExpanded
       aria-expanded={isExpanded}
       onClick={onClick}
     >
-      <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} size={IconSize.XSmall} />
+      <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={true} size={IconSize.XSmall} />
       {/* @todo: lag prop for tekst på knappen */}
       <span>{isExpanded ? 'Skjul detaljer' : 'Se detaljer'}</span>
     </Button>
@@ -100,9 +101,11 @@ const Panel: React.FC<PanelProps> & {
   const [content, setContent] = React.useState<React.ReactNode[]>([]);
   const [expandableContent, setExpandableContent] = React.useState<React.ReactNode[]>([]);
   const [hasIcon, setHasIcon] = React.useState(false);
+  const [customExpanderButtonRef, setCustomExpanderButtonRef] = React.useState(null);
   const [isExpanded, setIsExpanded] = React.useState(expanded);
   const panelRef = React.useRef<HTMLDivElement>(null);
   const expandedContentRef = React.useRef<HTMLDivElement>(null);
+  const { isHovered: isExpandablePanelHovered } = useHover(panelRef);
 
   React.useEffect(() => {
     setIsExpanded(expanded);
@@ -110,6 +113,7 @@ const Panel: React.FC<PanelProps> & {
 
   React.useEffect(() => {
     let localHasIcon = false;
+    let localButton = null;
     const newPreContainer: React.ReactNode[] = [];
     const newContent: React.ReactNode[] = [];
     const newExpandableContent: React.ReactNode[] = [];
@@ -133,6 +137,18 @@ const Panel: React.FC<PanelProps> & {
             ) {
               localHasIcon = true;
             }
+            {
+              // Hvis vertikal bruker custom knapp for å ekspandere, lagre ref til denne
+              !showExpandButton &&
+                React.Children.forEach(child.props.children, grandChild => {
+                  if (React.isValidElement(grandChild)) {
+                    if (grandChild.type === Button || grandChild.type === 'button' || grandChild.type === 'a') {
+                      localButton = React.createRef();
+                      React.cloneElement(grandChild as React.ReactElement, { ref: localButton });
+                    }
+                  }
+                });
+            }
           }
         } else if (child.type === ExpandedContent) {
           newExpandableContent.push(child);
@@ -144,6 +160,7 @@ const Panel: React.FC<PanelProps> & {
     setContent(newContent);
     setExpandableContent(newExpandableContent);
     setHasIcon(localHasIcon);
+    setCustomExpanderButtonRef(localButton);
   }, [children]);
 
   // kode for å scrolle til toppen av panel når det ekspanderes
@@ -175,6 +192,7 @@ const Panel: React.FC<PanelProps> & {
     [styles['panel--error']]: status === PanelStatus.error,
     [styles['panel--status']]: status && status !== PanelStatus.normal,
     [styles['panel--icon']]: hasIcon,
+    [styles[`panel--${colorScheme}--hover`]]: isExpandablePanelHovered,
   });
   const contentContainerLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`], {
     [styles[`panel__content--b-first`]]: stacking === PanelStacking.bFirst, // @todo: fiks stacking
