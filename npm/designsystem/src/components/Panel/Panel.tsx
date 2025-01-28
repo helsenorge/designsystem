@@ -204,9 +204,16 @@ const Panel: React.FC<PanelProps> & {
       </div>
     </div>
   ) : (
-    <div className={outerLayout} data-testid={testId} ref={panelRef}>
-      {preContainer}
-      <div className={contentContainerLayout}>{content}</div>
+    <div
+      className={classNames({
+        [styles['panel__border--outline']]: variant === PanelVariant.border,
+        [styles['panel__border--line']]: variant === PanelVariant.line,
+      })}
+    >
+      <div className={outerLayout} data-testid={testId} ref={panelRef}>
+        {preContainer}
+        <div className={contentContainerLayout}>{content}</div>
+      </div>
     </div>
   );
 };
