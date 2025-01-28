@@ -876,38 +876,19 @@ export const Expandable: Story = {
     layout: PanelLayout.vertical,
   },
   render: args => {
-    const [expanderOpen, setExpanderOpen] = React.useState(false);
     return (
-      <>
-        <Panel {...args}>
-          <Panel.PreContainer>
-            <PanelTitle title="Denne har en knapp og skjult innhold" />
-          </Panel.PreContainer>
-          <Panel.A>
-            <span>{'Noe innhold'}</span>
-          </Panel.A>
-          <Panel.ExpandedContent>
-            <Title appearance="title3">{'Dette er skjult'}</Title>
-            <p>{'Men når man åpner expanderen vil det vises'}</p>
-          </Panel.ExpandedContent>
-        </Panel>
-        <br />
-        <Panel {...args} expanded={expanderOpen} showExpandButton={false}>
-          <Panel.PreContainer>
-            <PanelTitle title="Denne har en custom knapp som åpner expandedcontent" />
-          </Panel.PreContainer>
-          <Panel.A>
-            <span>{'Noe innhold'}</span>
-            <Expander title="Se detaljer" onExpand={() => setExpanderOpen(!expanderOpen)}>
-              {'For å se forskjellen'}
-            </Expander>
-          </Panel.A>
-          <Panel.ExpandedContent>
-            <Title appearance="title3">{'Dette er skjult'}</Title>
-            <p>{'Men når man åpner expanderen vil det vises'}</p>
-          </Panel.ExpandedContent>
-        </Panel>
-      </>
+      <Panel {...args}>
+        <Panel.PreContainer>
+          <PanelTitle title="Denne har en knapp og skjult innhold" />
+        </Panel.PreContainer>
+        <Panel.A>
+          <span>{'Noe innhold'}</span>
+        </Panel.A>
+        <Panel.ExpandedContent>
+          <Title appearance="title3">{'Dette er skjult'}</Title>
+          <p>{'Men når man åpner expanderen vil det vises'}</p>
+        </Panel.ExpandedContent>
+      </Panel>
     );
   },
 };
@@ -917,6 +898,7 @@ export const LangExpandedContent: Story = {
     layout: PanelLayout.vertical,
   },
   render: args => {
+    const [expanderOpen, setExpanderOpen] = React.useState(false);
     return (
       <>
         <Panel {...args}>
@@ -1049,6 +1031,22 @@ export const LangExpandedContent: Story = {
           </Panel.C>
         </Panel>
         <br />
+        <br />
+        <Panel {...args} expanded={expanderOpen} showExpandButton={false}>
+          <Panel.PreContainer>
+            <PanelTitle title="Denne har en custom knapp som åpner expandedcontent" />
+          </Panel.PreContainer>
+          <Panel.A>
+            <span>{'Noe innhold'}</span>
+            <Expander title="Se detaljer" onExpand={() => setExpanderOpen(!expanderOpen)}>
+              {'For å se forskjellen'}
+            </Expander>
+          </Panel.A>
+          <Panel.ExpandedContent>
+            <Title appearance="title3">{'Dette er skjult'}</Title>
+            <p>{'Men når man åpner expanderen vil det vises'}</p>
+          </Panel.ExpandedContent>
+        </Panel>
       </>
     );
   },
