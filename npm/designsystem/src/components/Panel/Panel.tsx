@@ -212,29 +212,30 @@ const Panel: React.FC<PanelProps> & {
 };
 
 export interface ContentProps {
+  /** Children elements to be rendered inside the content box */
   children?: React.ReactNode;
 }
 
-const PreContainer: React.FC<ContentProps> = ({ children }) => {
+export const PreContainer: React.FC<ContentProps> = ({ children }) => {
   return <div className={styles['panel__pre-container']}>{children}</div>;
 };
 
-const A: React.FC<ContentProps> = ({ children }) => {
+export const A: React.FC<ContentProps> = ({ children }) => {
   const styling = classNames(styles['panel__content__item'], styles['panel__content__item--a']);
   return <div className={styling}>{children}</div>;
 };
 
-const B: React.FC<ContentProps> = ({ children }) => {
+export const B: React.FC<ContentProps> = ({ children }) => {
   const styling = classNames(styles['panel__content__item'], styles['panel__content__item--b']);
   return <div className={styling}>{children}</div>;
 };
 
-const C: React.FC<ContentProps> = ({ children }) => {
+export const C: React.FC<ContentProps> = ({ children }) => {
   const styling = classNames(styles['panel__content__item'], styles['panel__content__item--c']);
   return <div className={styling}>{children}</div>;
 };
 
-const ExpandedContent: React.FC<ContentProps> = ({ children }) => {
+export const ExpandedContent: React.FC<ContentProps> = ({ children }) => {
   const styling = classNames(styles['panel__expander__content']);
   return <div className={styling}>{children}</div>;
 };

@@ -1,6 +1,6 @@
 import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } from '@storybook/addon-docs';
 
-import Panel from './Panel';
+import { A, B, C, ExpandedContent, PreContainer } from './Panel';
 import TitleFS from '../Title';
 
 export const isSupernova = (): boolean => {
@@ -36,19 +36,23 @@ export const PanelDocs = (): React.JSX.Element => {
       <TitleFS htmlMarkup="h3" appearance="title3">
         {'Panel.PreContainer'}
       </TitleFS>
-      <ArgTypes of={Panel} include={['children']} />
+      <ArgTypes of={PreContainer} />
       <TitleFS htmlMarkup="h3" appearance="title3">
         {'Panel.A'}
       </TitleFS>
-      <ArgTypes of={Panel} include={['children']} />
+      <ArgTypes of={A} />
       <TitleFS htmlMarkup="h3" appearance="title3">
         {'Panel.B'}
       </TitleFS>
-      <ArgTypes of={Panel} include={['children']} />
+      <ArgTypes of={B} />
       <TitleFS htmlMarkup="h3" appearance="title3">
         {'Panel.C'}
       </TitleFS>
-      <ArgTypes of={Panel} include={['children']} />
+      <ArgTypes of={C} />
+      <TitleFS htmlMarkup="h3" appearance="title3">
+        {'Panel.ExpandedContent'}
+      </TitleFS>
+      <ArgTypes of={ExpandedContent} />
       <Stories />
     </>
   );
