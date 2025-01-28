@@ -178,24 +178,29 @@ const Panel: React.FC<PanelProps> & {
   const contentContainerLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`], {
     [styles[`panel__content--b-first`]]: stacking === PanelStacking.bFirst, // @todo: fiks stacking
   });
-  const expanderBorderLayout = classNames(styles[`panel__expander-border--${colorScheme}`], {
-    [styles['panel__expander-border--expanded']]: isExpanded,
+  const expanderBorderLayout = classNames(styles[`panel__expander__border--${colorScheme}`], {
+    [styles['panel__expander__border--expanded']]: isExpanded,
   });
 
   return expandableContent.length > 0 ? (
-    <div className={classNames({ [styles['panel__border--outline']]: variant === PanelVariant.border })}>
+    <div
+      className={classNames({
+        [styles['panel__border--outline']]: variant === PanelVariant.border,
+        [styles['panel__border--line']]: variant === PanelVariant.line,
+      })}
+    >
       <div className={expanderBorderLayout}>
         <div className={outerLayout} data-testid={testId} ref={panelRef}>
           {preContainer}
           <div className={contentContainerLayout}>{content}</div>
           {showExpandButton && <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} />}
-          {isExpanded && (
-            <div ref={expandedContentRef}>
-              <div className={styles['panel__expander-separator']} />
-              {expandableContent}
-            </div>
-          )}
         </div>
+        {isExpanded && (
+          <div ref={expandedContentRef} className={classNames(styles['panel__expander'], styles[`panel__expander--${colorScheme}`])}>
+            <div className={styles['panel__expander__separator']} />
+            {expandableContent}
+          </div>
+        )}
       </div>
     </div>
   ) : (
@@ -230,7 +235,7 @@ const C: React.FC<ContentProps> = ({ children }) => {
 };
 
 const ExpandedContent: React.FC<ContentProps> = ({ children }) => {
-  const styling = classNames(styles['panel__expander-content']);
+  const styling = classNames(styles['panel__expander__content']);
   return <div className={styling}>{children}</div>;
 };
 

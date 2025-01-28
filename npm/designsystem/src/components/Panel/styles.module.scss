@@ -119,14 +119,18 @@
   }
 
   &--line {
-    border-top: 1px solid var(--color-base-border-ondark);
-    border-bottom: 1px solid var(--color-base-border-ondark);
-    border-right: none;
-    border-left: none;
+    border: none;
   }
 
   &__border--outline {
     border: 8px solid var(--core-color-neutral-100);
+  }
+
+  &__border--line {
+    border-top: 1px solid var(--color-base-border-ondark);
+    border-bottom: 1px solid var(--color-base-border-ondark);
+    border-right: none;
+    border-left: none;
   }
 
   &--border {
@@ -151,31 +155,48 @@
     border-left-color: var(--core-color-cherry-500);
   }
 
-  &__expander-border {
-    &--white {
-      border: 2px solid var(--color-base-background-white);
-    }
+  &__expander {
+    padding: spacers.getSpacer(s);
+    padding-top: 0;
 
-    &--blueberry {
-      border: 2px solid var(--color-base-background-blueberry);
+    &--white {
+      background-color: var(--color-base-background-white);
     }
 
     &--neutral {
-      border: 2px solid var(--color-base-background-neutral);
+      background-color: var(--color-base-background-neutral);
     }
 
-    &--expanded {
-      border: 2px solid var(--color-base-border-onlight-emphasized);
+    &--blueberry {
+      background-color: var(--color-base-background-blueberry);
     }
-  }
 
-  &__expander-separator {
-    height: 1px;
-    background-color: var(--color-base-border-ondark);
-  }
+    &__border {
+      &--white {
+        border: 2px solid var(--color-base-background-white);
+      }
 
-  &__expander-content {
-    margin-top: spacers.getSpacer(s);
+      &--neutral {
+        border: 2px solid var(--color-base-background-neutral);
+      }
+
+      &--blueberry {
+        border: 2px solid var(--color-base-background-blueberry);
+      }
+
+      &--expanded {
+        border: 2px solid var(--color-base-border-onlight-emphasized);
+      }
+    }
+
+    &__separator {
+      height: 1px;
+      background-color: var(--color-base-border-ondark);
+    }
+
+    &__content {
+      margin-top: spacers.getSpacer(s);
+    }
   }
 }
 
