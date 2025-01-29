@@ -59,6 +59,11 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    options: {
+      storySort: {
+        order: ['Dokumentasjon/Introduksjon', '*'],
+      },
+    },
   },
 
   decorators: [

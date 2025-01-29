@@ -13,7 +13,12 @@ const { base } = yargs(hideBin(process.argv).filter(x => x !== '--'))
   .parseSync();
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(tsx)', '../../datepicker/src/**/*.stories.@(tsx)', '../../lightbox/src/**/*.stories.@(tsx)'],
+  stories: [
+    '../src/**/*.@(mdx)',
+    '../src/**/*.stories.@(tsx)',
+    '../../datepicker/src/**/*.stories.@(tsx)',
+    '../../lightbox/src/**/*.stories.@(tsx)',
+  ],
 
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),

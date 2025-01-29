@@ -1,3 +1,18 @@
+## [10.0.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.0.1&targetVersion=GTv10.0.2) (2025-01-29)
+
+
+### Bug Fixes
+
+*  hvis icon har hover prop skal denne ikke overstyres ([f4956aa](https://github.com/helsenorge/designsystem/commit/f4956aacf26d462b2ffccc24fbce5b0946bd6de4)), closes [#336117](https://github.com/helsenorge/designsystem/issues/336117)
+* **listheader:**  title margin resettes riktig ([1b50bc0](https://github.com/helsenorge/designsystem/commit/1b50bc0e3229b2d351b2df17b79798dfd95a9fb8)), closes [#343414](https://github.com/helsenorge/designsystem/issues/343414)
+
+## [10.0.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.0.0&targetVersion=GTv10.0.1) (2025-01-28)
+
+
+### Bug Fixes
+
+*  feil letterspacing for title5 ([f1391bd](https://github.com/helsenorge/designsystem/commit/f1391bd18a30b8b2da737c6687e55b61b752a1fa)), closes [#342902](https://github.com/helsenorge/designsystem/issues/342902)
+
 ## [10.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.7.0&targetVersion=GTv10.0.0) (2025-01-27)
 
 

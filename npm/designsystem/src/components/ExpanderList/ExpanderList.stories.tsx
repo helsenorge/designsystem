@@ -414,3 +414,33 @@ export const JsxTitle: Story = {
     );
   },
 };
+
+export const WithTitleHtmlMarkup: Story = {
+  render: args => (
+    <>
+      <ExpanderList {...args}>
+        <ExpanderList.Expander titleHtmlMarkup="span" title="Jeg er en span">
+          {args.children}
+        </ExpanderList.Expander>
+        <ExpanderList.Expander titleHtmlMarkup="h1" title="Jeg er en h1">
+          {args.children}
+        </ExpanderList.Expander>
+        <ExpanderList.Expander titleHtmlMarkup="h2" title="Jeg er en h2">
+          {args.children}
+        </ExpanderList.Expander>
+        <ExpanderList.Expander titleHtmlMarkup="h3" title="Jeg er en h3">
+          {args.children}
+        </ExpanderList.Expander>
+        <ExpanderList.Expander titleHtmlMarkup="h4" title="Jeg er en h4">
+          {args.children}
+        </ExpanderList.Expander>
+        <ExpanderList.Expander titleHtmlMarkup="h5" title="Jeg er en h5">
+          {args.children}
+        </ExpanderList.Expander>
+        <ExpanderList.Expander titleHtmlMarkup="h6" title="Jeg er en h6">
+          {args.children}
+        </ExpanderList.Expander>
+      </ExpanderList>
+    </>
+  ),
+};
