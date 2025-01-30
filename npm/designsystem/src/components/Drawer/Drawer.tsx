@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
+import classNames from 'classnames';
 import { useAnimate } from 'motion/react';
 
 import { AnalyticsId, ZIndex } from '../../constants';
@@ -13,7 +14,11 @@ import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
 
+type DesktopDirections = 'left' | 'right';
+
 export interface DrawerProps {
+  /** Direction of the drawer on desktop. Default: left */
+  desktopDirection?: DesktopDirections;
   /** Title to display in the header of the drawer */
   title: string;
   /** Changes the underlying element of the title. Default: h3 */
@@ -41,6 +46,7 @@ export interface DrawerProps {
 }
 
 const Drawer: React.FC<DrawerProps> = ({
+  desktopDirection = 'left',
   title,
   titleHtmlMarkup = 'h3',
   onClose,
@@ -75,6 +81,7 @@ const Drawer: React.FC<DrawerProps> = ({
   // const ariaLabelledBy = props.ariaLabelledBy ? props.ariaLabelledBy : !props.ariaLabel ? titleId : undefined;
   // TODO: Fullfør stories (og propsliste der)
   // TODO: Skriv tester
+  // TODO: Hvis det er scrollbar, så endrer jeg høyden så er det fortsatt en scrollbar selv om det er plass igjen
 
   /**
    * Animate the drawer IN on mount.
@@ -82,7 +89,12 @@ const Drawer: React.FC<DrawerProps> = ({
   useEffect(() => {
     if (!overlayRef.current || !containerRef.current) return;
 
-    animate(containerRef.current, { y: '0' }, { duration: 0.3, ease: 'easeInOut' });
+    if (isMobile) {
+      animate(containerRef.current, { y: '0' }, { duration: 0.3, ease: 'easeInOut' });
+    } else {
+      animate(containerRef.current, { x: '0' }, { duration: 0.3, ease: 'easeInOut' });
+    }
+
     animate(overlayRef.current, { opacity: 1, pointerEvents: 'auto' }, { duration: 0.3, ease: 'easeInOut' });
   }, [animate]);
 
@@ -94,15 +106,28 @@ const Drawer: React.FC<DrawerProps> = ({
     if (!overlayRef.current || !containerRef.current) return;
 
     animate(overlayRef.current, { opacity: 0, pointerEvents: 'none' }, { duration: 0.3, ease: 'easeInOut' });
-    animate(
-      containerRef.current,
-      { y: '100%' },
-      {
-        duration: 0.3,
-        ease: 'easeInOut',
-        onComplete: () => onClose(),
-      }
-    );
+
+    if (isMobile) {
+      animate(
+        containerRef.current,
+        { y: '100%' },
+        {
+          duration: 0.3,
+          ease: 'easeInOut',
+          onComplete: () => onClose(),
+        }
+      );
+    } else {
+      animate(
+        containerRef.current,
+        { x: desktopDirection === 'left' ? '-100%' : '100%' },
+        {
+          duration: 0.3,
+          ease: 'easeInOut',
+          onComplete: () => onClose(),
+        }
+      );
+    }
   };
 
   const handleCTA = (callback?: () => void): void => {
@@ -116,7 +141,12 @@ const Drawer: React.FC<DrawerProps> = ({
   return (
     <div className={styles.drawer} ref={scope} style={{ zIndex }} data-analyticsid={AnalyticsId.Drawer}>
       <div className={styles.drawer__overlay} ref={overlayRef} />
-      <div className={styles.drawer__container} ref={containerRef}>
+      <div
+        className={classNames(styles.drawer__container, {
+          [styles['drawer__container--right']]: desktopDirection === 'right',
+        })}
+        ref={containerRef}
+      >
         <div className={styles.drawer__container__inner}>
           <div className={styles.drawer__header}>
             <Title /* id={ariaLabelledBy} */ htmlMarkup={titleHtmlMarkup} appearance="title3">
