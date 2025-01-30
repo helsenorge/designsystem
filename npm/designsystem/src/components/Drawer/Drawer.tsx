@@ -71,7 +71,7 @@ const Drawer: React.FC<DrawerProps> = ({
   });
 
   // TODO: 400% zoom, skal vi gjøre noe med padding? JA, kommer skisser. Tittel og innhold scroller sammen
-  // TODO: Har vi en token for overlayet bak drawer? Burde sikkert hatt det, frankenweekly
+  // TODO: Har vi en token for overlayet bak drawer? JA
 
   // TODO: Return focus after closing logic (mangler vi eksempel for dette i modal?)
   // TODO: Se over props
