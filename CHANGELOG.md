@@ -1,3 +1,10 @@
+## [10.0.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.0.2&targetVersion=GTv10.0.3) (2025-01-30)
+
+
+### Bug Fixes
+
+* **datepicker:**  locale setter tekst språk igjen ([921efcb](https://github.com/helsenorge/designsystem/commit/921efcb9040a2d790e965a009b28b3b4b3593a9b)), closes [#343367](https://github.com/helsenorge/designsystem/issues/343367)
+
 ## [10.0.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.0.1&targetVersion=GTv10.0.2) (2025-01-29)
 
 
