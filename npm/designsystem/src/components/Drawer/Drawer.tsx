@@ -7,6 +7,7 @@ import { AnalyticsId, ZIndex } from '../../constants';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
+import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { breakpoints } from '../../theme/grid';
 import Button from '../Button';
 import Close from '../Close';
@@ -65,27 +66,20 @@ const Drawer: React.FC<DrawerProps> = ({
   const [scope, animate] = useAnimate();
 
   useFocusTrap(containerRef, true);
-
+  useReturnFocusOnUnmount();
   useOutsideEvent(containerRef, () => {
     handleClose();
   });
 
-  // TODO: 400% zoom, skal vi gjøre noe med padding? JA, kommer skisser. Tittel og innhold scroller sammen
-  // TODO: Har vi en token for overlayet bak drawer? JA
-
-  // TODO: Return focus after closing logic (mangler vi eksempel for dette i modal?)
-  // TODO: Se over props
   // TODO: Complete aria
   // ariaLabelledBy prioriteres over ariaLabel, men dersom ariaLabel brukes trengs ikke ariaLabelledBy
   // const ariaLabel = !props.ariaLabelledBy ? props.ariaLabel : undefined;
   // const ariaLabelledBy = props.ariaLabelledBy ? props.ariaLabelledBy : !props.ariaLabel ? titleId : undefined;
+  // TODO: Se over props
   // TODO: Fullfør stories (og propsliste der)
   // TODO: Skriv tester
-  // TODO: Hvis det er scrollbar, så endrer jeg høyden så er det fortsatt en scrollbar selv om det er plass igjen
 
-  /**
-   * Animate the drawer IN on mount.
-   */
+  // Open animation.
   useEffect(() => {
     if (!overlayRef.current || !containerRef.current) return;
 
@@ -98,10 +92,7 @@ const Drawer: React.FC<DrawerProps> = ({
     animate(overlayRef.current, { opacity: 1, pointerEvents: 'auto' }, { duration: 0.3, ease: 'easeInOut' });
   }, [animate]);
 
-  /**
-   * Animate the drawer OUT, then call `onClose()`
-   * so the parent can unmount us after the animation finishes.
-   */
+  // Close animation, then we call `onClose()`
   const handleClose = (): void => {
     if (!overlayRef.current || !containerRef.current) return;
 

@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { AnalyticsId, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsVisible } from '../../hooks/useIsVisible';
+import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { palette } from '../../theme/palette';
 import { uuid } from '../../utils/uuid';
 import Button from '../Button';
@@ -122,6 +123,7 @@ const Modal: React.FC<ModalProps> = props => {
   const bottomContent = React.useRef<HTMLDivElement>(null);
   const bottomContentVisible = useIsVisible(bottomContent);
   const contentIsScrollable = modalContentRef.current && modalContentRef.current.scrollHeight > modalContentRef.current.clientHeight;
+  useReturnFocusOnUnmount();
 
   function handleKeyboardEvent(e: KeyboardEvent): void {
     if (e.key === 'Escape' && props.onClose) {
