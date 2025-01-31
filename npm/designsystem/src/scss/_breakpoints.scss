@@ -22,8 +22,7 @@ $container-max-widths: (
   lg: 1056px,
 );
 
-// TODO: Hva er høyden vi vil trigge på? Burde den kunne settes manuelt?
-@mixin xxs-media-query {
+@mixin tiny-screens-media-query {
   @media (max-width: 319px),
          (max-height: 308px) {
     @content;

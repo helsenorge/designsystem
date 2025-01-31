@@ -366,7 +366,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   @include on-dark;
 
-  @include xxs-media-query {
+  @include tiny-screens-media-query {
     min-height: getSpacer(l);
     padding: 0 getSpacer(xs);
   }
