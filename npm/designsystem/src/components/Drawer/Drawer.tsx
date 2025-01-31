@@ -9,6 +9,7 @@ import useFocusTrap from '../../hooks/useFocusTrap';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { breakpoints } from '../../theme/grid';
+import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
 import Title, { TitleTags } from '../Title';
@@ -18,10 +19,18 @@ import styles from './styles.module.scss';
 type DesktopDirections = 'left' | 'right';
 
 export interface DrawerProps {
+  /** Sets the aria-label of the drawer */
+  ariaLabel?: string;
+  /** Sets the aria-labelledby of the drawer */
+  ariaLabelledBy?: string;
+  /** Close button aria-label */
+  ariaLabelCloseBtn?: string;
   /** Direction of the drawer on desktop. Default: left */
   desktopDirection?: DesktopDirections;
   /** Title to display in the header of the drawer */
   title: string;
+  /** id of the modal title */
+  titleId?: string;
   /** Changes the underlying element of the title. Default: h3 */
   titleHtmlMarkup?: TitleTags;
   /**
@@ -36,10 +45,10 @@ export interface DrawerProps {
   children?: React.ReactNode;
   /** An optional function that can be used to handle CTA action(s); can also close the drawer */
   onPrimaryAction?: () => void;
-  /** Label for primary CTA button if you want a default CTA button rendered (instead of `footerContent`) */
-  primaryActionLabel?: string;
-  /** Label for secondary CTA button if you want a default CTA button rendered (instead of `footerContent`) */
-  secondaryActionLabel?: string;
+  /** Text for primary CTA button if you want a default CTA button rendered (instead of `footerContent`) */
+  primaryActionText?: string;
+  /** Text for secondary CTA button if you want a default CTA button rendered (instead of `footerContent`) */
+  secondaryActionText?: string;
   /** An optional function for secondary action */
   onSecondaryAction?: () => void;
   /** Customize the z-index of the drawer */
@@ -47,16 +56,20 @@ export interface DrawerProps {
 }
 
 const Drawer: React.FC<DrawerProps> = ({
+  ariaLabel,
+  ariaLabelledBy,
+  ariaLabelCloseBtn,
   desktopDirection = 'left',
   title,
   titleHtmlMarkup = 'h3',
+  titleId = uuid(),
   onClose,
   footerContent,
   children,
   onPrimaryAction,
   onSecondaryAction,
-  primaryActionLabel = 'Confirm',
-  secondaryActionLabel = 'Cancel',
+  primaryActionText,
+  secondaryActionText,
   zIndex = ZIndex.Modal,
 }) => {
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -65,19 +78,15 @@ const Drawer: React.FC<DrawerProps> = ({
   const isMobile = breakpoint < breakpoints.md;
   const [scope, animate] = useAnimate();
 
+  // ariaLabelledBy prioriteres over ariaLabel, men dersom ariaLabel brukes trengs ikke ariaLabelledBy
+  const containerAriaLabel = !ariaLabelledBy ? ariaLabel : undefined;
+  const containerAriaLabelledBy = ariaLabelledBy ? ariaLabelledBy : !ariaLabel ? titleId : undefined;
+
   useFocusTrap(containerRef, true);
   useReturnFocusOnUnmount();
   useOutsideEvent(containerRef, () => {
     handleClose();
   });
-
-  // TODO: Complete aria
-  // ariaLabelledBy prioriteres over ariaLabel, men dersom ariaLabel brukes trengs ikke ariaLabelledBy
-  // const ariaLabel = !props.ariaLabelledBy ? props.ariaLabel : undefined;
-  // const ariaLabelledBy = props.ariaLabelledBy ? props.ariaLabelledBy : !props.ariaLabel ? titleId : undefined;
-  // TODO: Se over props
-  // TODO: Fullfør stories (og propsliste der)
-  // TODO: Skriv tester
 
   // Open animation.
   useEffect(() => {
@@ -137,13 +146,18 @@ const Drawer: React.FC<DrawerProps> = ({
           [styles['drawer__container--right']]: desktopDirection === 'right',
         })}
         ref={containerRef}
+        role="dialog"
+        aria-modal="true"
+        tabIndex={-1}
+        aria-labelledby={containerAriaLabelledBy}
+        aria-label={containerAriaLabel}
       >
         <div className={styles.drawer__container__inner}>
           <div className={styles.drawer__header}>
-            <Title /* id={ariaLabelledBy} */ htmlMarkup={titleHtmlMarkup} appearance="title3">
+            <Title id={titleId} htmlMarkup={titleHtmlMarkup} appearance="title3">
               {title}
             </Title>
-            <Close onClick={handleClose} small={isMobile} />
+            <Close ariaLabel={ariaLabelCloseBtn} onClick={handleClose} small={isMobile} />
           </div>
           <div className={styles.drawer__content}>{children}</div>
         </div>
@@ -152,10 +166,10 @@ const Drawer: React.FC<DrawerProps> = ({
             footerContent
           ) : (
             <div className={styles['drawer__footer__default-cta']}>
-              {primaryActionLabel && <Button onClick={() => handleCTA(onPrimaryAction)}>{primaryActionLabel}</Button>}
-              {secondaryActionLabel && (
+              {primaryActionText && <Button onClick={() => handleCTA(onPrimaryAction)}>{primaryActionText}</Button>}
+              {secondaryActionText && (
                 <Button variant="borderless" onClick={() => handleCTA(onSecondaryAction)}>
-                  {secondaryActionLabel}
+                  {secondaryActionText}
                 </Button>
               )}
             </div>
