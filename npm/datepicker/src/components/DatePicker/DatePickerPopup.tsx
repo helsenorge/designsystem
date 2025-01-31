@@ -157,6 +157,7 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
           labels={buildAriaLabels(ariaLabels)}
           startMonth={startMonth ?? new Date(today.getFullYear() - 100, today.getMonth(), 1)}
           endMonth={endMonth ?? new Date(today.getFullYear() + 100, today.getMonth(), 1)}
+          locale={locale}
           {...rest}
         />
       </div>

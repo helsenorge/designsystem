@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { parse } from 'date-fns';
+import { ar } from 'date-fns/locale';
 
 import DatePicker from './DatePicker';
 import DateTime from './DateTime';
@@ -86,6 +88,19 @@ describe('Gitt at DatePicker skal vises', (): void => {
         const input = screen.getByLabelText('Velg dato');
 
         expect(input).toHaveAttribute('autocomplete', 'bday');
+      });
+    });
+
+    describe('Når locale er satt', (): void => {
+      test('Så er tekst på riktig språk', async () => {
+        render(<DatePicker label={'Velg dato'} locale={ar} />);
+
+        const input = screen.getByLabelText('Velg dato') as HTMLInputElement;
+        await userEvent.click(input);
+
+        const day = screen.queryByText('سبت');
+
+        expect(day).toBeInTheDocument();
       });
     });
   });
