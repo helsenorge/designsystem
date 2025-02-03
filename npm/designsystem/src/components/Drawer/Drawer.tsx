@@ -100,6 +100,10 @@ const Drawer = forwardRef<DrawerHandle, DrawerProps>(
       closeDrawer();
     });
 
+    useEffect(() => {
+      containerRef.current?.focus();
+    }, []);
+
     // Open animation.
     useEffect(() => {
       if (!overlayRef.current || !containerRef.current) return;
