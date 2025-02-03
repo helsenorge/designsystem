@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 
 import classNames from 'classnames';
 import { useAnimate } from 'motion/react';
@@ -55,129 +55,142 @@ export interface DrawerProps {
   zIndex?: number;
 }
 
-const Drawer: React.FC<DrawerProps> = ({
-  ariaLabel,
-  ariaLabelledBy,
-  ariaLabelCloseBtn,
-  desktopDirection = 'left',
-  title,
-  titleHtmlMarkup = 'h3',
-  titleId = uuid(),
-  onClose,
-  footerContent,
-  children,
-  onPrimaryAction,
-  onSecondaryAction,
-  primaryActionText,
-  secondaryActionText,
-  zIndex = ZIndex.Modal,
-}) => {
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const breakpoint = useBreakpoint();
-  const isMobile = breakpoint < breakpoints.md;
-  const [scope, animate] = useAnimate();
+export interface DrawerHandle {
+  closeDrawer: () => void;
+}
 
-  // ariaLabelledBy prioriteres over ariaLabel, men dersom ariaLabel brukes trengs ikke ariaLabelledBy
-  const containerAriaLabel = !ariaLabelledBy ? ariaLabel : undefined;
-  const containerAriaLabelledBy = ariaLabelledBy ? ariaLabelledBy : !ariaLabel ? titleId : undefined;
+const Drawer = forwardRef<DrawerHandle, DrawerProps>(
+  (
+    {
+      ariaLabel,
+      ariaLabelledBy,
+      ariaLabelCloseBtn,
+      desktopDirection = 'left',
+      title,
+      titleHtmlMarkup = 'h3',
+      titleId = uuid(),
+      onClose,
+      footerContent,
+      children,
+      onPrimaryAction,
+      onSecondaryAction,
+      primaryActionText,
+      secondaryActionText,
+      zIndex = ZIndex.Modal,
+    },
+    ref
+  ) => {
+    const overlayRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const breakpoint = useBreakpoint();
+    const isMobile = breakpoint < breakpoints.md;
+    const [scope, animate] = useAnimate();
 
-  useFocusTrap(containerRef, true);
-  useReturnFocusOnUnmount();
-  useOutsideEvent(containerRef, () => {
-    handleClose();
-  });
+    // ariaLabelledBy prioriteres over ariaLabel.
+    const containerAriaLabel = !ariaLabelledBy ? ariaLabel : undefined;
+    const containerAriaLabelledBy = ariaLabelledBy ? ariaLabelledBy : !ariaLabel ? titleId : undefined;
 
-  // Open animation.
-  useEffect(() => {
-    if (!overlayRef.current || !containerRef.current) return;
+    // Exponer handleClose til parent via ref
+    useImperativeHandle(ref, () => ({
+      closeDrawer,
+    }));
+    useFocusTrap(containerRef, true);
+    useReturnFocusOnUnmount();
+    useOutsideEvent(containerRef, () => {
+      closeDrawer();
+    });
 
-    if (isMobile) {
-      animate(containerRef.current, { y: '0' }, { duration: 0.3, ease: 'easeInOut' });
-    } else {
-      animate(containerRef.current, { x: '0' }, { duration: 0.3, ease: 'easeInOut' });
-    }
+    // Open animation.
+    useEffect(() => {
+      if (!overlayRef.current || !containerRef.current) return;
 
-    animate(overlayRef.current, { opacity: 1, pointerEvents: 'auto' }, { duration: 0.3, ease: 'easeInOut' });
-  }, [animate]);
+      if (isMobile) {
+        animate(containerRef.current, { y: '0' }, { duration: 0.3, ease: 'easeInOut' });
+      } else {
+        animate(containerRef.current, { x: '0' }, { duration: 0.3, ease: 'easeInOut' });
+      }
 
-  // Close animation, then we call `onClose()`
-  const handleClose = (): void => {
-    if (!overlayRef.current || !containerRef.current) return;
+      animate(overlayRef.current, { opacity: 1, pointerEvents: 'auto' }, { duration: 0.3, ease: 'easeInOut' });
+    }, [animate, isMobile]);
 
-    animate(overlayRef.current, { opacity: 0, pointerEvents: 'none' }, { duration: 0.3, ease: 'easeInOut' });
+    // Close animasjon, vi kaller `onClose()` til slutt
+    const closeDrawer = (): void => {
+      if (!overlayRef.current || !containerRef.current) return;
 
-    if (isMobile) {
-      animate(
-        containerRef.current,
-        { y: '100%' },
-        {
-          duration: 0.3,
-          ease: 'easeInOut',
-          onComplete: () => onClose(),
-        }
-      );
-    } else {
-      animate(
-        containerRef.current,
-        { x: desktopDirection === 'left' ? '-100%' : '100%' },
-        {
-          duration: 0.3,
-          ease: 'easeInOut',
-          onComplete: () => onClose(),
-        }
-      );
-    }
-  };
+      animate(overlayRef.current, { opacity: 0, pointerEvents: 'none' }, { duration: 0.3, ease: 'easeInOut' });
 
-  const handleCTA = (callback?: () => void): void => {
-    handleClose();
+      if (isMobile) {
+        animate(
+          containerRef.current,
+          { y: '100%' },
+          {
+            duration: 0.3,
+            ease: 'easeInOut',
+            onComplete: () => onClose(),
+          }
+        );
+      } else {
+        animate(
+          containerRef.current,
+          { x: desktopDirection === 'left' ? '-100%' : '100%' },
+          {
+            duration: 0.3,
+            ease: 'easeInOut',
+            onComplete: () => onClose(),
+          }
+        );
+      }
+    };
 
-    if (callback) {
-      callback();
-    }
-  };
+    const handleCTA = (callback?: () => void): void => {
+      if (callback) {
+        callback();
+      }
+    };
 
-  return (
-    <div className={styles.drawer} ref={scope} style={{ zIndex }} data-analyticsid={AnalyticsId.Drawer}>
-      <div className={styles.drawer__overlay} ref={overlayRef} />
-      <div
-        className={classNames(styles.drawer__container, {
-          [styles['drawer__container--right']]: desktopDirection === 'right',
-        })}
-        ref={containerRef}
-        role="dialog"
-        aria-modal="true"
-        tabIndex={-1}
-        aria-labelledby={containerAriaLabelledBy}
-        aria-label={containerAriaLabel}
-      >
-        <div className={styles.drawer__container__inner}>
-          <div className={styles.drawer__header}>
-            <Title id={titleId} htmlMarkup={titleHtmlMarkup} appearance="title3">
-              {title}
-            </Title>
-            <Close ariaLabel={ariaLabelCloseBtn} onClick={handleClose} small={isMobile} />
+    return (
+      <div className={styles.drawer} ref={scope} style={{ zIndex }} data-analyticsid={AnalyticsId.Drawer}>
+        <div className={styles.drawer__overlay} ref={overlayRef} />
+        <div
+          className={classNames(styles.drawer__container, {
+            [styles['drawer__container--right']]: desktopDirection === 'right',
+          })}
+          ref={containerRef}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={-1}
+          aria-labelledby={containerAriaLabelledBy}
+          aria-label={containerAriaLabel}
+        >
+          <div className={styles.drawer__container__inner}>
+            <div className={styles.drawer__header}>
+              <Title id={titleId} htmlMarkup={titleHtmlMarkup} appearance="title3">
+                {title}
+              </Title>
+              <Close ariaLabel={ariaLabelCloseBtn} onClick={closeDrawer} small={isMobile} />
+            </div>
+            <div className={styles.drawer__content}>{children}</div>
           </div>
-          <div className={styles.drawer__content}>{children}</div>
-        </div>
-        <div className={styles.drawer__footer}>
-          {footerContent ? (
-            footerContent
-          ) : (
-            <>
-              {primaryActionText && <Button onClick={() => handleCTA(onPrimaryAction)}>{primaryActionText}</Button>}
-              {secondaryActionText && (
-                <Button variant="borderless" onClick={() => handleCTA(onSecondaryAction)}>
-                  {secondaryActionText}
-                </Button>
-              )}
-            </>
-          )}
+          <div className={styles.drawer__footer}>
+            {footerContent ? (
+              footerContent
+            ) : (
+              <>
+                {primaryActionText && <Button onClick={() => handleCTA(onPrimaryAction)}>{primaryActionText}</Button>}
+                {secondaryActionText && (
+                  <Button variant="borderless" onClick={() => handleCTA(onSecondaryAction)}>
+                    {secondaryActionText}
+                  </Button>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
+
+Drawer.displayName = 'Drawer';
 
 export default Drawer;

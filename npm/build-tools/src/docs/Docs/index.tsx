@@ -3,6 +3,7 @@ import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } fr
 interface DocsProps<T> {
   component: T;
   hideStories?: boolean;
+  belowControlsContent?: React.ReactNode;
 }
 
 export const isSupernova = (): boolean => {
@@ -32,6 +33,7 @@ const Docs = <T,>(props: DocsProps<T>): React.JSX.Element => {
       <Description />
       <Primary />
       <Controls />
+      {props.belowControlsContent}
       {!props.hideStories && <Stories />}
     </>
   );

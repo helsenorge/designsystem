@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
+import { Source } from '@storybook/blocks';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
-import Drawer, { DrawerProps } from './Drawer';
+import Drawer, { DrawerHandle, DrawerProps } from './Drawer';
 import { allTitleTags } from '../../../.storybook/knobs';
 import Button from '../Button';
 
@@ -14,10 +15,57 @@ const meta = {
   tags: ['new'],
   parameters: {
     docs: {
-      page: (): React.ReactNode => <Docs component={Drawer} />,
+      page: (): React.ReactNode => (
+        <Docs
+          component={Drawer}
+          belowControlsContent={
+            <>
+              <section style={{ margin: '1rem 0' }}>
+                <h2>{'Using ref to Trigger Closing'}</h2>
+                <p>{'Close the drawer by using a ref. For example:'}</p>
+                <Source
+                  language="tsx"
+                  code={`
+  import React, { useRef } from 'react';
+  import Drawer, { DrawerHandle } from '@helsenorge/designsystem-react/Components/Drawer';
+
+  const drawerRef = useRef<DrawerHandle>(null);
+
+  <Drawer
+    ref={drawerRef}
+    onPrimaryAction={() => {
+      drawerRef.current?.closeDrawer();
+    }}
+    // ...other props
+  >
+    {/* Drawer content here */}
+  </Drawer>`}
+                />
+                <h2>{'Rendering Drawer conditionally'}</h2>
+                <p>{'Use the onClose callback to stop rendering the drawer when the close animation is complete. For example:'}</p>
+                <Source
+                  language="tsx"
+                  code={`
+  import React, { useState } from 'react';
+  import Drawer from '@helsenorge/designsystem-react/Components/Drawer';
+
+  const [showDrawer, setShowDrawer] = useState(false);
+
+  showDrawer && <Drawer
+    onClose={setShowDrawer(false)}
+    // ...other props
+  >
+    {/* Drawer content here */}
+  </Drawer>`}
+                />
+              </section>
+            </>
+          }
+        />
+      ),
       description: {
         component:
-          'Drawer er en generisk container komponent som brukes for å vise innhold fra bunn til topp på mobil, og venstre til høyre på desktop. Samtidig som det lar brukeren se litt av innholdet bak komponentet.',
+          'Drawer er en generisk container komponent som brukes for å vise innhold fra bunn til topp på mobil, og venstre eller høyre til motsatt side på desktop. Samtidig som det lar brukeren se litt av innholdet bak komponentet. Du bruker `ref` for å lukke drawer med CTA knappene',
       },
       story: {
         inline: false,
@@ -73,17 +121,22 @@ export const Default: Story = {
   },
 
   render: (args: DrawerProps) => {
+    const drawerRef = useRef<DrawerHandle>(null);
+
     return (
       <Drawer
         {...args}
+        ref={drawerRef}
         onClose={() => {
           args.onClose?.();
         }}
         onPrimaryAction={() => {
           args.onPrimaryAction?.();
+          drawerRef.current?.closeDrawer();
         }}
         onSecondaryAction={() => {
           args.onSecondaryAction?.();
+          drawerRef.current?.closeDrawer();
         }}
       >
         {args.children}
@@ -100,24 +153,28 @@ export const OpenFromButton: Story = {
   },
 
   render: (args: DrawerProps) => {
-    const [open, setOpen] = useState(false);
+    const [showDrawer, setShowDrawer] = useState(false);
+    const drawerRef = useRef<DrawerHandle>(null);
 
     return (
       <>
-        <Button onClick={() => setOpen(true)}>{'Åpne Drawer'}</Button>
+        <Button onClick={() => setShowDrawer(true)}>{'Åpne Drawer'}</Button>
 
-        {open && (
+        {showDrawer && (
           <Drawer
             {...args}
+            ref={drawerRef}
             onClose={() => {
               args.onClose?.();
-              setOpen(false);
+              setShowDrawer(false);
             }}
             onPrimaryAction={() => {
               args.onPrimaryAction?.();
+              drawerRef.current?.closeDrawer();
             }}
             onSecondaryAction={() => {
               args.onSecondaryAction?.();
+              drawerRef.current?.closeDrawer();
             }}
           >
             {args.children}
@@ -128,22 +185,24 @@ export const OpenFromButton: Story = {
   },
 };
 
-// TODO: Fullfør denne med ref lukking
 export const FooterContent: Story = {
   args: {
     onClose: action('Drawer closed'),
   },
 
   render: (args: DrawerProps) => {
+    const drawerRef = useRef<DrawerHandle>(null);
+
     return (
       <Drawer
         {...args}
+        ref={drawerRef}
         onClose={() => {
           args.onClose?.();
         }}
         footerContent={
           <>
-            <Button>{'Custom button'}</Button>
+            <Button onClick={() => drawerRef.current?.closeDrawer()}>{'Custom button'}</Button>
             <Button variant="outline">{'Custom button 2'}</Button>
           </>
         }
