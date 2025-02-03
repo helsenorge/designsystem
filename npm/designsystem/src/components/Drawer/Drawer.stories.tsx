@@ -127,3 +127,29 @@ export const OpenFromButton: Story = {
     );
   },
 };
+
+// TODO: Fullfør denne med ref lukking
+export const FooterContent: Story = {
+  args: {
+    onClose: action('Drawer closed'),
+  },
+
+  render: (args: DrawerProps) => {
+    return (
+      <Drawer
+        {...args}
+        onClose={() => {
+          args.onClose?.();
+        }}
+        footerContent={
+          <>
+            <Button>{'Custom button'}</Button>
+            <Button variant="outline">{'Custom button 2'}</Button>
+          </>
+        }
+      >
+        {args.children}
+      </Drawer>
+    );
+  },
+};

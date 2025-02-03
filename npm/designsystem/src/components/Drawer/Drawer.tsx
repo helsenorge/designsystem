@@ -29,7 +29,7 @@ export interface DrawerProps {
   desktopDirection?: DesktopDirections;
   /** Title to display in the header of the drawer */
   title: string;
-  /** id of the modal title */
+  /** id of the drawer title */
   titleId?: string;
   /** Changes the underlying element of the title. Default: h3 */
   titleHtmlMarkup?: TitleTags;
@@ -43,13 +43,13 @@ export interface DrawerProps {
   footerContent?: React.ReactNode;
   /** Main content of the drawer */
   children?: React.ReactNode;
-  /** An optional function that can be used to handle CTA action(s); can also close the drawer */
+  /** Primary CTA callback */
   onPrimaryAction?: () => void;
   /** Text for primary CTA button if you want a default CTA button rendered (instead of `footerContent`) */
   primaryActionText?: string;
   /** Text for secondary CTA button if you want a default CTA button rendered (instead of `footerContent`) */
   secondaryActionText?: string;
-  /** An optional function for secondary action */
+  /** Secondary CTA callback */
   onSecondaryAction?: () => void;
   /** Customize the z-index of the drawer */
   zIndex?: number;
@@ -165,14 +165,14 @@ const Drawer: React.FC<DrawerProps> = ({
           {footerContent ? (
             footerContent
           ) : (
-            <div className={styles['drawer__footer__default-cta']}>
+            <>
               {primaryActionText && <Button onClick={() => handleCTA(onPrimaryAction)}>{primaryActionText}</Button>}
               {secondaryActionText && (
                 <Button variant="borderless" onClick={() => handleCTA(onSecondaryAction)}>
                   {secondaryActionText}
                 </Button>
               )}
-            </div>
+            </>
           )}
         </div>
       </div>

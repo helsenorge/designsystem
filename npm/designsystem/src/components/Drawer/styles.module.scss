@@ -98,6 +98,8 @@
   }
 
   &__footer {
+    display: flex;
+    gap: getSpacer(m);
     border-top: 1px solid var(--core-color-neutral-200);
     padding: getSpacer(s) getSpacer(2xs);
 
@@ -106,17 +108,9 @@
     }
 
     @include tiny-screens-media-query {
-      padding: getSpacer(2xs) 0;
-    }
-
-    &__default-cta {
-      display: flex;
-      gap: getSpacer(m);
-
-      @include tiny-screens-media-query {
-        flex-wrap: wrap;
+      flex-wrap: wrap;
         gap: getSpacer(2xs) 0;
-      }
+      padding: getSpacer(2xs) 0;
     }
   }
 }
