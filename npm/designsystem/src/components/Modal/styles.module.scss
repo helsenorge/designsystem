@@ -171,6 +171,11 @@
     overflow: auto;
     overflow-x: hidden;
 
+    &:focus-visible {
+      outline: 1px solid $black;
+      outline-offset: -1px; 
+    }
+
     @media print {
       overflow: hidden;
       max-height: none;

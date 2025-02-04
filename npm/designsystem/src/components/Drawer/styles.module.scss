@@ -63,6 +63,11 @@
 
       @include tiny-screens-media-query {
         overflow-y: auto;
+
+        &:focus-visible {
+          outline: 1px solid $black;
+          outline-offset: -1px; 
+        }
       }
     }
   }
@@ -72,7 +77,7 @@
     align-items: center;
     justify-content: space-between;
     padding: getSpacer(xs) getSpacer(2xs);
-    border-bottom: 1px solid var(--core-color-neutral-200);
+    border-bottom: 1px solid var(--color-base-border-neutral);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       padding: getSpacer(xs) getSpacer(xs)
@@ -88,7 +93,11 @@
   &__content {
     overflow-y: auto;
     padding: getSpacer(xs) getSpacer(2xs);
-    outline-offset: -2px;
+    
+    &:focus-visible {
+      outline: 1px solid $black;
+      outline-offset: -1px;
+    }
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       padding: getSpacer(s) getSpacer(xs)
@@ -102,7 +111,7 @@
   &__footer {
     display: flex;
     gap: getSpacer(m);
-    border-top: 1px solid var(--core-color-neutral-200);
+    border-top: 1px solid var(--color-base-border-neutral);
     padding: getSpacer(s) getSpacer(2xs);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
