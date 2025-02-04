@@ -17,7 +17,9 @@ const meta = {
   component: Input,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Input} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Input} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/input/bruk-nZhVWDVH" />
+      ),
       description: {
         component:
           'Som innbygger vil jeg kunne skrive inn korte tekster slik at jeg kan gjøre mine oppgaver.<br><br>Bruksområde: For å la innbygger skrive inn en tekst (enkeltlinje, begrenset mengde)',

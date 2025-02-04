@@ -9,6 +9,7 @@ import TooltipExample from '../../docs/TooltipExample';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Tooltip',
   component: Tooltip,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Tooltip} />,

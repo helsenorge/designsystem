@@ -14,7 +14,9 @@ const meta = {
   component: RadioButton,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={RadioButton} />,
+      page: (): React.JSX.Element => (
+        <Docs component={RadioButton} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/radiobutton/bruk-iNKHuzL2" />
+      ),
       description: {
         component:
           'RadioButton lar brukeren velge et av flere valg i en liste. RadioButton kan brukes frittstående, som en del av en FormGroup eller direkte i et Validation komponent.',

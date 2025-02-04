@@ -12,7 +12,9 @@ const meta = {
   component: Checkbox,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Checkbox} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Checkbox} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/checkbox/bruk-ZgTIx4UU" />
+      ),
       description: {
         component:
           'Som innbygger vil jeg kunne se om noe er valgt eller ikke, og velge om dette noe skal være valgt eller ikke valgt, og se en umiddelbart oppdatert representasjon av valget jeg har gjort slik at jeg vet hva som gjelder for valget. <br><br>Checkbox kan brukes frittstående, som en del av en FormGroup eller direkte i et Validation komponent.',

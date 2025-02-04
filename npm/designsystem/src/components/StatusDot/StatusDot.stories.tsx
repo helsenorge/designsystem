@@ -12,7 +12,9 @@ const meta = {
   component: StatusDot,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={StatusDot} />,
+      page: (): React.JSX.Element => (
+        <Docs component={StatusDot} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/status-dot/bruk-K0Jmx5JR" />
+      ),
       description: {
         component: 'Viser en status i en kompakt og på en scanbar måte. Støtter en farget prikk og ikon.',
       },

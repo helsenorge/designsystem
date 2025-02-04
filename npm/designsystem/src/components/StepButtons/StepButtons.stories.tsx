@@ -10,6 +10,7 @@ import Button from '../Button';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/StepButtons',
   component: StepButtons,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={StepButtons} />,

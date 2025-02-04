@@ -11,7 +11,9 @@ const meta = {
   component: Close,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Close} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Close} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/close/bruk-hLj6IwjS" />
+      ),
       description: {
         component:
           'Close er en spesiell variant av Button tenkt til bruk ved lukking av modal vinduer, error meldinger eller andre informasjon bokser. Komponentet har unike layout regler, og burde derfor ikke brukes utenfor disse spesielle scenarioene.',

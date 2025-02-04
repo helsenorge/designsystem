@@ -11,7 +11,9 @@ const meta = {
   component: Badge,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Badge} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Badge} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/badge/bruk-TCKiSYLz" />
+      ),
       description: {
         component:
           'Badge [Markør] lar innbygger oppfatte at det er et antall nye elementer som har kommet til i et område siden sist gang innbygger besøkte området.',

@@ -8,6 +8,7 @@ import Chip, { ChipAction, ChipSize, ChipVariant } from './Chip';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Chip',
   component: Chip,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       description: {

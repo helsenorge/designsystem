@@ -9,6 +9,7 @@ import PanelList from '../PanelList';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/PanelList',
   component: PanelList,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={PanelList} />,

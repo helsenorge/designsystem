@@ -11,7 +11,9 @@ const meta = {
   component: PromoPanel,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={PromoPanel} />,
+      page: (): React.JSX.Element => (
+        <Docs component={PromoPanel} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/promo-panel/bruk-M0hk0GWV" />
+      ),
       description: {
         component:
           'Som en innbygger vil jeg kunne gjøres spesielt oppmerksom på inngang til vesentlig innhold på en annen side som er relevant for meg på den siden jeg befinner meg.',

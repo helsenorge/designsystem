@@ -11,7 +11,9 @@ const meta = {
   component: Tag,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Tag} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Tag} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/tag/bruk-KZSQu5iW" />
+      ),
       description: {
         component: 'Tags brukes til å framheve og tydeliggjøre en kategori eller tjenestetype.',
       },
