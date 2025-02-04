@@ -34,6 +34,7 @@
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 50%);
   background-color: $white;
   animation: open 200ms 1;
+  outline: none;
 
   &__title {
     &--error {

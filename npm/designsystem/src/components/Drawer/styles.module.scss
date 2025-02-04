@@ -30,6 +30,7 @@
     transform: translateY(100%);
     background-color: var(--core-color-white);
     border-radius: 0.75rem 0.75rem 0 0;
+    outline: none;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       justify-content: space-between;
@@ -87,6 +88,7 @@
   &__content {
     overflow-y: auto;
     padding: getSpacer(xs) getSpacer(2xs);
+    outline-offset: -2px;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       padding: getSpacer(s) getSpacer(xs)
