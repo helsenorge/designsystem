@@ -3,8 +3,8 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
-import Panel, { PanelVariant } from '../Panel';
 import PanelList from '../PanelList';
+import PanelOld, { PanelOldVariant } from '../PanelOld';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/PanelList',
@@ -20,12 +20,12 @@ const meta = {
     },
   },
   args: {
-    variant: PanelVariant.fill,
+    variant: PanelOldVariant.fill,
   },
   argTypes: {
     variant: {
       control: 'select',
-      options: PanelVariant,
+      options: PanelOldVariant,
     },
   },
 } satisfies Meta<typeof PanelList>;
@@ -37,26 +37,26 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => (
     <PanelList {...args}>
-      <Panel title="Overskrift 1">
+      <PanelOld title="Overskrift 1">
         {
           'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
         }
-      </Panel>
-      <Panel title="Overskrift 2">
+      </PanelOld>
+      <PanelOld title="Overskrift 2">
         {
           'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
         }
-      </Panel>
-      <Panel title="Overskrift 3">
+      </PanelOld>
+      <PanelOld title="Overskrift 3">
         {
           'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
         }
-      </Panel>
-      <Panel title="Overskrift 4">
+      </PanelOld>
+      <PanelOld title="Overskrift 4">
         {
           'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
         }
-      </Panel>
+      </PanelOld>
     </PanelList>
   ),
 };
