@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import PanelBase from './PanelBase';
 import { A, B, C, ContentProps, PanelProps, PreContainer } from './PanelBase';
-import { useHover } from '../../hooks/useHover';
+// import { useHover } from '../../hooks/useHover';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
@@ -56,10 +56,10 @@ const ExpandablePanel: React.FC<ExpandablePanelProps> & {
   const { content, preContainer, outerLayout, contentContainerLayout, todoRenameVariable, colorScheme } = PanelBase(props);
 
   const panelRef = React.useRef<HTMLDivElement>(null);
-  const [customExpanderButtonRef, setCustomExpanderButtonRef] = React.useState(null);
+  // const [customExpanderButtonRef, setCustomExpanderButtonRef] = React.useState(null);
   const [isExpanded, setIsExpanded] = React.useState(props.expanded);
   const expandedContentRef = React.useRef<HTMLDivElement>(null);
-  const { isHovered } = useHover(panelRef);
+  // const { isHovered } = useHover(panelRef);
   const [expandableContent, setExpandableContent] = React.useState<React.ReactNode[]>([]);
 
   React.useEffect(() => {
@@ -90,7 +90,7 @@ const ExpandablePanel: React.FC<ExpandablePanelProps> & {
     });
 
     setExpandableContent(newExpandableContent);
-    setCustomExpanderButtonRef(localButton);
+    // setCustomExpanderButtonRef(localButton);
   }, [props.children]);
 
   // kode for å scrolle til toppen av panel når det ekspanderes
