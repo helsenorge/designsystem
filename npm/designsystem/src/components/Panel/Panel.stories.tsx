@@ -31,7 +31,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Panel benyttes for å vise formaterte data på et avgrenset område, og gjør det scanbart og tilgjengelig for innbygger.',
+        component:
+          'Panel benyttes for å vise formaterte data på et avgrenset område, og gjør det scanbart og tilgjengelig for innbygger. Dette er den mest generelle varianten av Panel, og brukes der man ikke skal ha en del skjult av expander.',
       },
       page: (): React.JSX.Element => <PanelDocs />,
     },

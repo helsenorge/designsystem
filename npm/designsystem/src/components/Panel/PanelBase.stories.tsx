@@ -20,7 +20,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Panel benyttes for å vise formaterte data på et avgrenset område, og gjør det scanbart og tilgjengelig for innbygger.',
+        component:
+          'Panel benyttes for å vise formaterte data på et avgrenset område, og gjør det scanbart og tilgjengelig for innbygger. Vi har i kode delt opp Panel i 2 ulike komponenter som kan tas i bruk: Panel og ExpandablePanel. Nedenfor kan du få litt hjelp på hva som er riktig å ta i bruk i ditt case.',
       },
       page: (): React.JSX.Element => <PanelDocs />,
     },
@@ -74,18 +75,37 @@ export const Default: Story = {
     return (
       <div>
         <div>
-          <Toggle {...args} onColor={'onwhite'} checked={showA} onChange={() => setShowA(!showA)} label={[{ text: 'Vis content A' }]} />
-          <Toggle {...args} onColor={'onwhite'} checked={showB} onChange={() => setShowB(!showB)} label={[{ text: 'Vis content B' }]} />
-          <Toggle {...args} onColor={'onwhite'} checked={showC} onChange={() => setShowC(!showC)} label={[{ text: 'Vis content C' }]} />
-          <Toggle {...args} onColor={'onwhite'} checked={showIcon} onChange={() => setShowIcon(!showIcon)} label={[{ text: 'Vis ikon' }]} />
+          <Toggle {...args} onColor={'onwhite'} checked={showA} onChange={() => setShowA(!showA)} label={[{ text: 'Vis med content A' }]} />
+          <Toggle {...args} onColor={'onwhite'} checked={showB} onChange={() => setShowB(!showB)} label={[{ text: 'Vis med content B' }]} />
+          <Toggle {...args} onColor={'onwhite'} checked={showC} onChange={() => setShowC(!showC)} label={[{ text: 'Vis med content C' }]} />
+          <Toggle
+            {...args}
+            onColor={'onwhite'}
+            checked={showIcon}
+            onChange={() => setShowIcon(!showIcon)}
+            label={[{ text: 'Vis med ikon' }]}
+          />
           <Toggle
             {...args}
             onColor={'onwhite'}
             checked={showExpandableVersion}
             onChange={() => setShowExpandableVersion(!showExpandableVersion)}
-            label={[{ text: 'Vis med expander' }]}
+            label={[{ text: 'Vis med del som kan åpnes og lukkes' }]}
           />
         </div>
+        <br />
+        <div>
+          <p>{`For dette scenarioet så bruk basekomponent: ${showExpandableVersion ? 'ExpandablePanel' : 'Panel'}`}</p>
+          <p>{`Den viste konfigurasjonen bruker subkomponenter: ${[
+            showA && (showExpandableVersion ? 'ExpandablePanel.A' : 'Panel.A'),
+            showB && (showExpandableVersion ? 'ExpandablePanel.B' : 'Panel.B'),
+            showC && (showExpandableVersion ? 'ExpandablePanel.C' : 'Panel.C'),
+          ]
+            .filter(Boolean)
+            .join(' og ')}`}</p>
+        </div>
+
+        <br />
         {showExpandableVersion ? (
           <ExpandablePanel {...args}>
             <ExpandablePanel.PreContainer>

@@ -17,7 +17,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Panel benyttes for å vise formaterte data på et avgrenset område, og gjør det scanbart og tilgjengelig for innbygger.',
+        component:
+          'ExpandablePanel benyttes for å vise formaterte data på et avgrenset område, og gjør det scanbart og tilgjengelig for innbygger. Denne varianten av Panel skal brukes når man har mer innhold man vil kunne åpne uten å gå til en ny side.',
       },
       page: (): React.JSX.Element => <PanelDocs />,
     },
