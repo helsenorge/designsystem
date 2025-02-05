@@ -2,8 +2,8 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { A, B, C, ContentProps, PanelProps, PreContainer } from './PanelBase';
 import PanelBase from './PanelBase';
+import { A, B, C, ContentProps, PanelProps, PreContainer } from './PanelBase';
 import { useHover } from '../../hooks/useHover';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';

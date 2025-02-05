@@ -5,13 +5,14 @@ import { StoryObj, Meta } from '@storybook/react';
 import Panel from './Panel';
 import { PanelVariant, PanelLayout, PanelStacking, PanelStatus } from './PanelBase';
 import { PanelDocs } from './Paneldocs';
+import AnchorLink from '../AnchorLink/AnchorLink';
 import Avatar from '../Avatar';
 import Badge from '../Badge';
 import Button from '../Button';
-import PanelTitle from './PanelTitle/PanelTitle';
-import AnchorLink from '../AnchorLink/AnchorLink';
-import Expander from '../Expander/Expander';
 import Icon, { IconSize } from '../Icon';
+import ExpandablePanel from './ExpandablePanel';
+import PanelTitle from './PanelTitle/PanelTitle';
+import Expander from '../Expander/Expander';
 import ArrowRight from '../Icons/ArrowRight';
 import Attachment from '../Icons/Attachment';
 import Envelope from '../Icons/Envelope';
@@ -22,11 +23,9 @@ import Referral from '../Icons/Referral';
 import TrashCan from '../Icons/TrashCan';
 import StatusDot from '../StatusDot';
 import Title from '../Title/Title';
-import Toggle from '../Toggle';
-import ExpandablePanel from './ExpandablePanel';
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/Panel',
+  title: '@helsenorge/designsystem-react/Components/Panel/Panel',
   component: Panel,
   tags: ['new'],
   parameters: {
@@ -204,61 +203,6 @@ export const OldPanelDefault: Story = {
           </Expander>
         </Panel.B>
       </Panel>
-    );
-  },
-};
-
-export const TestPanel: Story = {
-  args: {},
-  render: args => {
-    const [showA, setShowA] = React.useState(true);
-    const [showB, setShowB] = React.useState(true);
-    const [showC, setShowC] = React.useState(true);
-    const [showIcon, setShowIcon] = React.useState(true);
-    const [showExpandableVersion, setShowExpandableVersion] = React.useState(false);
-
-    return (
-      <div>
-        <div>
-          <Toggle {...args} onColor={'onwhite'} checked={showA} onChange={() => setShowA(!showA)} label={[{ text: 'Vis content A' }]} />
-          <Toggle {...args} onColor={'onwhite'} checked={showB} onChange={() => setShowB(!showB)} label={[{ text: 'Vis content B' }]} />
-          <Toggle {...args} onColor={'onwhite'} checked={showC} onChange={() => setShowC(!showC)} label={[{ text: 'Vis content C' }]} />
-          <Toggle {...args} onColor={'onwhite'} checked={showIcon} onChange={() => setShowIcon(!showIcon)} label={[{ text: 'Vis ikon' }]} />
-          <Toggle
-            {...args}
-            onColor={'onwhite'}
-            checked={showExpandableVersion}
-            onChange={() => setShowExpandableVersion(!showExpandableVersion)}
-            label={[{ text: 'Vis med expander' }]}
-          />
-        </div>
-        <ExpandablePanel {...args}>
-          <ExpandablePanel.PreContainer>
-            <PanelTitle
-              icon={showIcon && <Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
-              title={'Tittel'}
-              badge={<Badge>{'Ny'}</Badge>}
-              statusDot={<StatusDot variant="info" text="Status" />}
-            />
-          </ExpandablePanel.PreContainer>
-          {showA && (
-            <ExpandablePanel.A>
-              <PreviewContainer>{'Content A'}</PreviewContainer>
-            </ExpandablePanel.A>
-          )}
-          {showB && (
-            <ExpandablePanel.B>
-              <PreviewContainer>{'Content B'}</PreviewContainer>
-            </ExpandablePanel.B>
-          )}
-          {showC && (
-            <ExpandablePanel.C>
-              <PreviewContainer>{'Content C'}</PreviewContainer>
-            </ExpandablePanel.C>
-          )}
-          {showExpandableVersion && <ExpandablePanel.ExpandedContent>{'Expanded content'}</ExpandablePanel.ExpandedContent>}
-        </ExpandablePanel>
-      </div>
     );
   },
 };
