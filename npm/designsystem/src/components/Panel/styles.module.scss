@@ -211,20 +211,3 @@
     }
   }
 }
-
-.expander {
-  &__button {
-    position: relative;
-    padding-right: getSpacer(s);
-    text-align: left;
-    width: fit-content;
-
-    &--expanded {
-      @include outline-borderless-hover;
-    }
-  }
-
-  &__button &__button__text {
-    @include outline-borderless-text-hover;
-  }
-}
