@@ -8,9 +8,12 @@ import Avatar, { AvatarSize } from './Avatar';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Avatar',
   component: Avatar,
+  tags: ['breaking'],
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Avatar} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Avatar} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/avatar/bruk-tsrq6evL" />
+      ),
       description: {
         component:
           'Avatar lar innbygger oppfatte en representasjon, f.eks. hvem man er logget inn som, hvem man handler på vegne av eller hvem som er avsender eller mottaker av en melding',

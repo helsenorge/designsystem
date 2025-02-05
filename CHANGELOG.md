@@ -1,3 +1,46 @@
+## [10.0.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.0.2&targetVersion=GTv10.0.3) (2025-01-30)
+
+### Bug Fixes
+
+- **datepicker:** locale setter tekst språk igjen
+  ([921efcb](https://github.com/helsenorge/designsystem/commit/921efcb9040a2d790e965a009b28b3b4b3593a9b)), closes
+  [#343367](https://github.com/helsenorge/designsystem/issues/343367)
+
+## [10.0.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.0.1&targetVersion=GTv10.0.2) (2025-01-29)
+
+### Bug Fixes
+
+- hvis icon har hover prop skal denne ikke overstyres
+  ([f4956aa](https://github.com/helsenorge/designsystem/commit/f4956aacf26d462b2ffccc24fbce5b0946bd6de4)), closes
+  [#336117](https://github.com/helsenorge/designsystem/issues/336117)
+- **listheader:** title margin resettes riktig
+  ([1b50bc0](https://github.com/helsenorge/designsystem/commit/1b50bc0e3229b2d351b2df17b79798dfd95a9fb8)), closes
+  [#343414](https://github.com/helsenorge/designsystem/issues/343414)
+
+## [10.0.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.0.0&targetVersion=GTv10.0.1) (2025-01-28)
+
+### Bug Fixes
+
+- feil letterspacing for title5 ([f1391bd](https://github.com/helsenorge/designsystem/commit/f1391bd18a30b8b2da737c6687e55b61b752a1fa)),
+  closes [#342902](https://github.com/helsenorge/designsystem/issues/342902)
+
+## [10.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.7.0&targetVersion=GTv10.0.0) (2025-01-27)
+
+### Bug Fixes
+
+- stylelint ([ebaa482](https://github.com/helsenorge/designsystem/commit/ebaa48251f10436b772a818ce735b544ce8749b7))
+
+## 10.0.0-beta.5 (2025-01-22)
+
+### Features
+
+- **badge:** endre oppbygning av komponenten"
+  ([89dd434](https://github.com/helsenorge/designsystem/commit/89dd4342e9aa0bc1d9d9da8fe5699fd04adfb206)), closes
+  [#339274](https://github.com/helsenorge/designsystem/issues/339274) [#339274](https://github.com/helsenorge/designsystem/issues/339274)
+- **emptystate:** støtte for både tittel og brødtekst
+  ([676d1c3](https://github.com/helsenorge/designsystem/commit/676d1c362d1341d48ffd598402f1032a7d615362)), closes
+  [#342140](https://github.com/helsenorge/designsystem/issues/342140)
+
 ## 10.0.0-beta.4 (2025-01-10)
 
 ### Features
@@ -70,17 +113,27 @@
   ([994aded](https://github.com/helsenorge/designsystem/commit/994adeda6085664d26bf4e90ea111ef0fa6a9d78)), closes
   [#328640](https://github.com/helsenorge/designsystem/issues/328640)
 
+## [9.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.6.0&targetVersion=GTv9.7.0) (2025-01-24)
+
+### Features
+
+- oppdatert spacing i expanderlist og listheader
+  ([57d969c](https://github.com/helsenorge/designsystem/commit/57d969c5633b4c841790ec486f003c1a6d017279)), closes
+  [#339057](https://github.com/helsenorge/designsystem/issues/339057)
+- **stickynote:** ny komponent ([395603f](https://github.com/helsenorge/designsystem/commit/395603fc46e10432968bfef5f83a4937ecfc9440)),
+  closes [#341184](https://github.com/helsenorge/designsystem/issues/341184)
+
 ### Bug Fixes
 
-- popover og datepicker popup kan brukes i 400 prosent zoom
-  ([782ce70](https://github.com/helsenorge/designsystem/commit/782ce70b9b2c06a65a872ee886f742d54f5689ab)), closes
-  [#340117](https://github.com/helsenorge/designsystem/issues/340117)
-- **highlightpanel:** tillat tittel selv om ikon ikke er gitt
-  ([63322a8](https://github.com/helsenorge/designsystem/commit/63322a881857ae42aaf3039412548c6b9750abee)), closes
-  [#332566](https://github.com/helsenorge/designsystem/issues/332566)
-- **tabs:** ikke scroll til fane med mindre komponenten er i view
-  ([0c30a43](https://github.com/helsenorge/designsystem/commit/0c30a43e4fdb6acece3db8f30e6ed43468c712fd)), closes
-  [#339921](https://github.com/helsenorge/designsystem/issues/339921)
+- **dropdown:** enter på lukkeknapp lukker dropdown
+  ([c132d0f](https://github.com/helsenorge/designsystem/commit/c132d0fca8ad94ffd9343a219239e71daad2568b)), closes
+  [#340820](https://github.com/helsenorge/designsystem/issues/340820)
+- **modal:** fiks så styling for zoom på modal ikke vises på mobilt breakpoint
+  ([22aff5f](https://github.com/helsenorge/designsystem/commit/22aff5fdb82dc8438ea6e11dc6e0988e3fe61a6b)), closes
+  [#336560](https://github.com/helsenorge/designsystem/issues/336560)
+- **validationsummary:** aria attributter tweakes
+  ([2316247](https://github.com/helsenorge/designsystem/commit/2316247d7f6b038cc77f25c5940ae32ee2f0bd84)), closes
+  [#340310](https://github.com/helsenorge/designsystem/issues/340310)
 
 ## [9.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv9.5.0&targetVersion=GTv9.6.0) (2025-01-08)
 

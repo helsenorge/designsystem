@@ -15,7 +15,9 @@ const meta = {
   component: Tile,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Tile} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Tile} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/tile/bruk-OJCkNgZh" />
+      ),
       description: {
         component: 'Som innbygger vil jeg kunne vise knapp og link innhold i ulike layouts og formater.',
       },

@@ -12,7 +12,12 @@ const meta = {
   component: DictionaryTrigger,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={DictionaryTrigger} />,
+      page: (): React.JSX.Element => (
+        <Docs
+          component={DictionaryTrigger}
+          supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/dictionary-trigger/bruk-ePYzzy1y"
+        />
+      ),
       description: {
         component:
           'DictionaryTrigger benyttes til å markere ord i løpende tekst på en gjenkjennelig måte, og skal trigge en HelpBubble med ordforklaring når den aktiveres.',

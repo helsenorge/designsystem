@@ -10,6 +10,7 @@ import Spacer from '../Spacer';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/HighlightPanel',
   component: HighlightPanel,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={HighlightPanel} />,

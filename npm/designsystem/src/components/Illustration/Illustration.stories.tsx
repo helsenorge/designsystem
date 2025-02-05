@@ -11,7 +11,9 @@ const meta = {
   component: Illustration,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Illustration} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Illustration} supernovaLink="https://frankenstein.helsenorge.design/latest/fundament/illustrasjoner-jY2uXwoj" />
+      ),
       description: {
         component: 'Illustration lar deg vise en av flere illustrasjoner i ulike størrelser og farger',
       },

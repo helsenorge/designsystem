@@ -13,7 +13,12 @@ const { base } = yargs(hideBin(process.argv).filter(x => x !== '--'))
   .parseSync();
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(tsx)', '../../datepicker/src/**/*.stories.@(tsx)', '../../lightbox/src/**/*.stories.@(tsx)'],
+  stories: [
+    '../src/**/*.@(mdx)',
+    '../src/**/*.stories.@(tsx)',
+    '../../datepicker/src/**/*.stories.@(tsx)',
+    '../../lightbox/src/**/*.stories.@(tsx)',
+  ],
 
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
@@ -32,6 +37,7 @@ const config: StorybookConfig = {
     // getAbsolutePath('storybook-addon-html-validator'), @todo https://github.com/dimafirsov/storybook-html-validator/issues/15
     getAbsolutePath('@storybook/addon-toolbars'),
     getAbsolutePath('@chromatic-com/storybook'),
+    getAbsolutePath('storybook-addon-tag-badges'),
   ],
 
   // Oppsett for å serve storybook fra subfolder hentet fra: https://github.com/storybookjs/storybook/issues/1291

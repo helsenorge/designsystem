@@ -18,9 +18,12 @@ import { StatusDotVariant } from '../StatusDot';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/LinkList',
   component: LinkList,
+  tags: ['breaking'],
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={LinkList} />,
+      page: (): React.JSX.Element => (
+        <Docs component={LinkList} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/link-list/bruk-JmsYNBpp" />
+      ),
       description: {
         component: 'Et komponent som lar deg vise en rekke lenker i et listeformat',
       },

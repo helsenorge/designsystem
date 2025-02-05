@@ -13,6 +13,7 @@ import Stepper from '../Stepper';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Step',
   component: Step,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Step} />,

@@ -18,6 +18,7 @@ import './formGroup.stories.scss';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/FormGroup',
   component: FormGroup,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={FormGroup} />,

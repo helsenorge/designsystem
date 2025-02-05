@@ -24,9 +24,12 @@ type LabelWithAndCustomArgs = React.ComponentProps<typeof Label> & {
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Label',
   component: Label,
+  tags: ['breaking'],
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Label} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Label} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/label/bruk-t83Q27be" />
+      ),
       description: {
         component:
           'Som en innbygger vil jeg kunne se flere dataelementer gruppert i en og samme label på en konsistent måte slik at jeg mer effektivt kan scanne og forstå valgene jeg skal kunne gjøre. \n\n <b>For å sette opp aria-label riktig med Label komponentet:</b> \n\n Gi input feltet sin id til id propen til Label. Gi Input feltet sin aria-describedby prop eventuelle sublabel/statusdot id(er). Du kan skjule bestemte label/sublabel tekster for skjermlesere ved hjelp av hideFromScreenReader property per tekst.',

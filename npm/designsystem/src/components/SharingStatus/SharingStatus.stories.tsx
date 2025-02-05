@@ -15,7 +15,12 @@ const meta = {
   component: SharingStatus,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={SharingStatus} />,
+      page: (): React.JSX.Element => (
+        <Docs
+          component={SharingStatus}
+          supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/sharing-status/bruk-2AHWZTBZ"
+        />
+      ),
       description: {
         component:
           'Som innbygger vil jeg tydelig kunne se hvem som har tilgang til enkelte av mine tjenester (ved fullmakt eller pga ungdomsrettigheter) og enkelt-dokumenter/resepter/mm, slik at jeg blir påminnet om hvilke delingsforhold som gjelder og ikke forveksler statusmeldinger med delingsstatuser.',

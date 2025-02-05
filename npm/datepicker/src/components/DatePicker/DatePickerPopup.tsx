@@ -7,7 +7,6 @@ import { DayPicker, DayPickerProps, PropsSingle, Labels } from 'react-day-picker
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
-import { useFocusTrap } from '@helsenorge/designsystem-react/hooks/useFocusTrap';
 import { useInterval } from '@helsenorge/designsystem-react/hooks/useInterval';
 import { useIsVisible } from '@helsenorge/designsystem-react/hooks/useIsVisible';
 import { useLayoutEvent } from '@helsenorge/designsystem-react/hooks/useLayoutEvent';
@@ -69,7 +68,6 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
   const [controllerSize, setControllerSize] = useState<DOMRect>();
   const bubbleSize = useSize(datepickerWrapperRef);
   const controllerisVisible = useIsVisible(datepickerWrapperRef, 0);
-  useFocusTrap(datepickerWrapperRef, true);
 
   function getDateFnsLocale(dayPickerLocale?: Partial<Locale>): Locale {
     return (dayPickerLocale as Locale) ?? nb;
@@ -157,6 +155,7 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
           labels={buildAriaLabels(ariaLabels)}
           startMonth={startMonth ?? new Date(today.getFullYear() - 100, today.getMonth(), 1)}
           endMonth={endMonth ?? new Date(today.getFullYear() + 100, today.getMonth(), 1)}
+          locale={locale}
           {...rest}
         />
       </div>
