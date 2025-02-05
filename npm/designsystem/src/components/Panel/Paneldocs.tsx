@@ -1,7 +1,8 @@
 import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } from '@storybook/addon-docs';
 
-import { A, B, C, ExpandedContent, PreContainer } from './Panel';
 import TitleFS from '../Title';
+import { ExpandedContent } from './ExpandablePanel';
+import { A, B, C, PreContainer } from './PanelBase';
 
 export const isSupernova = (): boolean => {
   const url = window.location != window.parent.location ? document.referrer : document.location.href;

@@ -2,7 +2,8 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 
-import Panel, { PanelVariant, PanelLayout, PanelStacking, PanelStatus } from './Panel';
+import Panel from './Panel';
+import { PanelVariant, PanelLayout, PanelStacking, PanelStatus } from './PanelBase';
 import { PanelDocs } from './Paneldocs';
 import Avatar from '../Avatar';
 import Badge from '../Badge';
@@ -22,6 +23,7 @@ import TrashCan from '../Icons/TrashCan';
 import StatusDot from '../StatusDot';
 import Title from '../Title/Title';
 import Toggle from '../Toggle';
+import ExpandablePanel from './ExpandablePanel';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Panel',
@@ -56,9 +58,6 @@ const meta = {
     status: {
       control: 'select',
       options: Object.values(PanelStatus),
-    },
-    scrollProp: {
-      control: 'number',
     },
   },
 } satisfies Meta<typeof Panel>;
@@ -233,32 +232,32 @@ export const TestPanel: Story = {
             label={[{ text: 'Vis med expander' }]}
           />
         </div>
-        <Panel {...args}>
-          <Panel.PreContainer>
+        <ExpandablePanel {...args}>
+          <ExpandablePanel.PreContainer>
             <PanelTitle
               icon={showIcon && <Icon svgIcon={PdfFile} size={IconSize.XSmall} />}
               title={'Tittel'}
               badge={<Badge>{'Ny'}</Badge>}
               statusDot={<StatusDot variant="info" text="Status" />}
             />
-          </Panel.PreContainer>
+          </ExpandablePanel.PreContainer>
           {showA && (
-            <Panel.A>
+            <ExpandablePanel.A>
               <PreviewContainer>{'Content A'}</PreviewContainer>
-            </Panel.A>
+            </ExpandablePanel.A>
           )}
           {showB && (
-            <Panel.B>
+            <ExpandablePanel.B>
               <PreviewContainer>{'Content B'}</PreviewContainer>
-            </Panel.B>
+            </ExpandablePanel.B>
           )}
           {showC && (
-            <Panel.C>
+            <ExpandablePanel.C>
               <PreviewContainer>{'Content C'}</PreviewContainer>
-            </Panel.C>
+            </ExpandablePanel.C>
           )}
-          {showExpandableVersion && <Panel.ExpandedContent>{'Expanded content'}</Panel.ExpandedContent>}
-        </Panel>
+          {showExpandableVersion && <ExpandablePanel.ExpandedContent>{'Expanded content'}</ExpandablePanel.ExpandedContent>}
+        </ExpandablePanel>
       </div>
     );
   },
@@ -531,48 +530,24 @@ export const KjernejournalKritiskInfo: Story = {
   render: () => {
     return (
       <div>
-        <Panel layout={PanelLayout.combined}>
-          <Panel.A>
+        <ExpandablePanel layout={PanelLayout.combined}>
+          <ExpandablePanel.A>
             <PanelTitle title={'Overfølsomhetsreaksjoner (allergier m.m.)'} />
             <p>
               {'Her vises legemidler og annet som kan gi deg en alvorlig reaksjon som for eksempel allergisk sjokk eller alvorlig utslett.'}
             </p>
-          </Panel.A>
-          <Panel.B>
+          </ExpandablePanel.A>
+          <ExpandablePanel.B>
             <div style={{ height: '100%', display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
               <div>
                 <StatusDot variant="info" text="43 gjeldende" />
                 <StatusDot variant="alert" text="52 avkreftet" />
               </div>
             </div>
-          </Panel.B>
-          <Panel.ExpandedContent>{'Noe detaljer her'}</Panel.ExpandedContent>
-        </Panel>
+          </ExpandablePanel.B>
+          <ExpandablePanel.ExpandedContent>{'Noe detaljer her'}</ExpandablePanel.ExpandedContent>
+        </ExpandablePanel>
         <br />
-
-        <Panel layout={PanelLayout.combined}>
-          <Panel.A>
-            <PreviewContainer>
-              <PanelTitle title={'Overfølsomhetsreaksjoner (allergier m.m.)'} />
-              <p>
-                {
-                  'Her vises legemidler og annet som kan gi deg en alvorlig reaksjon som for eksempel allergisk sjokk eller alvorlig utslett.'
-                }
-              </p>
-            </PreviewContainer>
-          </Panel.A>
-          <Panel.B>
-            <PreviewContainer>
-              <div style={{ height: '100%', display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <StatusDot variant="info" text="43 gjeldende" />
-                  <StatusDot variant="alert" text="52 avkreftet" />
-                </div>
-              </div>
-            </PreviewContainer>
-          </Panel.B>
-          <Panel.ExpandedContent>{'Noe detaljer her'}</Panel.ExpandedContent>
-        </Panel>
       </div>
     );
   },
@@ -583,42 +558,22 @@ export const Helsekontakter: Story = {
   render: () => {
     return (
       <div>
-        <Panel layout={PanelLayout.vertical}>
-          <Panel.PreContainer>
+        <ExpandablePanel layout={PanelLayout.vertical}>
+          <ExpandablePanel.PreContainer>
             <PanelTitle title={'Benedikte (DDFL) Geiraas'} icon={<Icon svgIcon={FemaleDoctor} />} />
-          </Panel.PreContainer>
-          <Panel.A>
+          </ExpandablePanel.PreContainer>
+          <ExpandablePanel.A>
             <p>{'DDFL Ehelse Interntest med Mock'}</p>
-          </Panel.A>
-          <Panel.ExpandedContent>
+          </ExpandablePanel.A>
+          <ExpandablePanel.ExpandedContent>
             <div>
               <p>{'Din fastlege siden: 1. april 2024'}</p>
               <p>{'Telefon: 11223344'}</p>
               <AnchorLink href="https://www.helsenorge.no">{'Mer om din fastlege'}</AnchorLink>
             </div>
-          </Panel.ExpandedContent>
-        </Panel>
+          </ExpandablePanel.ExpandedContent>
+        </ExpandablePanel>
         <br />
-
-        <Panel layout={PanelLayout.vertical}>
-          <Panel.PreContainer>
-            <PreviewContainer>
-              <PanelTitle title={'Benedikte (DDFL) Geiraas'} icon={<Icon svgIcon={FemaleDoctor} />} />
-            </PreviewContainer>
-          </Panel.PreContainer>
-          <Panel.A>
-            <PreviewContainer>
-              <p>{'DDFL Ehelse Interntest med Mock'}</p>
-            </PreviewContainer>
-          </Panel.A>
-          <Panel.ExpandedContent>
-            <div>
-              <p>{'Din fastlege siden: 1. april 2024'}</p>
-              <p>{'Telefon: 11223344'}</p>
-              <AnchorLink href="https://www.helsenorge.no">{'Mer om din fastlege'}</AnchorLink>
-            </div>
-          </Panel.ExpandedContent>
-        </Panel>
       </div>
     );
   },
@@ -732,19 +687,19 @@ export const Fullmakter: Story = {
   render: () => {
     return (
       <div>
-        <Panel layout={PanelLayout.horizontal}>
-          <Panel.A>
+        <ExpandablePanel layout={PanelLayout.horizontal}>
+          <ExpandablePanel.A>
             <PanelTitle title={'Gry Telokk'} icon={<Avatar>{'Gry Telokk'}</Avatar>} />
             <p>{'Fødselsnummer 131169'}</p>
             <p>{'*****'}</p>
-          </Panel.A>
-          <Panel.B>
+          </ExpandablePanel.A>
+          <ExpandablePanel.B>
             <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'start', gap: '1rem' }}>
               <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
               <p>{'Gyldig til: Ubegrenset'}</p>
             </div>
-          </Panel.B>
-          <Panel.ExpandedContent>
+          </ExpandablePanel.B>
+          <ExpandablePanel.ExpandedContent>
             <div>
               <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
               <p>
@@ -765,49 +720,9 @@ export const Fullmakter: Story = {
                 <span>{'Ubegrenset'}</span>
               </div>
             </div>
-          </Panel.ExpandedContent>
-        </Panel>
+          </ExpandablePanel.ExpandedContent>
+        </ExpandablePanel>
         <br />
-
-        <Panel layout={PanelLayout.horizontal}>
-          <Panel.A>
-            <PreviewContainer>
-              <PanelTitle title={'Gry Telokk'} icon={<Avatar>{'Gry Telokk'}</Avatar>} />
-              <p>{'Fødselsnummer 131169'}</p>
-              <p>{'*****'}</p>
-            </PreviewContainer>
-          </Panel.A>
-          <Panel.B>
-            <PreviewContainer>
-              <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'start', gap: '1rem' }}>
-                <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
-                <p>{'Gyldig til: Ubegrenset'}</p>
-              </div>
-            </PreviewContainer>
-          </Panel.B>
-          <Panel.ExpandedContent>
-            <div>
-              <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
-              <p>
-                {
-                  'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
-                }
-              </p>
-              <div>
-                <span style={{ fontWeight: 'bold' }}>{'Opprettet: '}</span>
-                <span>{'11.03.2024'}</span>
-              </div>
-              <div>
-                <span style={{ fontWeight: 'bold' }}>{'Gyldig fra: '}</span>
-                <span>{'11.03.2024'}</span>
-              </div>
-              <div>
-                <span style={{ fontWeight: 'bold' }}>{'Gyldig til: '}</span>
-                <span>{'Ubegrenset'}</span>
-              </div>
-            </div>
-          </Panel.ExpandedContent>
-        </Panel>
       </div>
     );
   },
@@ -818,24 +733,14 @@ export const Dokumentliste: Story = {
   render: () => {
     return (
       <div>
-        <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border}>
-          <Panel.A>
+        <ExpandablePanel layout={PanelLayout.horizontal} variant={PanelVariant.border}>
+          <ExpandablePanel.A>
             <PanelTitle title={'Luftveisplager (Egenkartlegging)'} icon={<Icon svgIcon={PdfFile} />} />
             <p>{'Henvendelse, arkivert 04.12.2024'}</p>
-          </Panel.A>
-          <Panel.ExpandedContent></Panel.ExpandedContent>
-        </Panel>
+          </ExpandablePanel.A>
+          <ExpandablePanel.ExpandedContent></ExpandablePanel.ExpandedContent>
+        </ExpandablePanel>
         <br />
-
-        <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border}>
-          <Panel.A>
-            <PreviewContainer>
-              <PanelTitle title={'Luftveisplager (Egenkartlegging)'} icon={<Icon svgIcon={PdfFile} />} />
-              <p>{'Henvendelse, arkivert 04.12.2024'}</p>
-            </PreviewContainer>
-          </Panel.A>
-          <Panel.ExpandedContent></Panel.ExpandedContent>
-        </Panel>
       </div>
     );
   },
@@ -877,18 +782,18 @@ export const Expandable: Story = {
   },
   render: args => {
     return (
-      <Panel {...args}>
-        <Panel.PreContainer>
+      <ExpandablePanel {...args}>
+        <ExpandablePanel.PreContainer>
           <PanelTitle title="Denne har en knapp og skjult innhold" />
-        </Panel.PreContainer>
-        <Panel.A>
+        </ExpandablePanel.PreContainer>
+        <ExpandablePanel.A>
           <span>{'Noe innhold'}</span>
-        </Panel.A>
-        <Panel.ExpandedContent>
+        </ExpandablePanel.A>
+        <ExpandablePanel.ExpandedContent>
           <Title appearance="title3">{'Dette er skjult'}</Title>
           <p>{'Men når man åpner expanderen vil det vises'}</p>
-        </Panel.ExpandedContent>
-      </Panel>
+        </ExpandablePanel.ExpandedContent>
+      </ExpandablePanel>
     );
   },
 };
@@ -901,44 +806,44 @@ export const LangExpandedContent: Story = {
     const [expanderOpen, setExpanderOpen] = React.useState(false);
     return (
       <>
-        <Panel {...args}>
-          <Panel.PreContainer>
+        <ExpandablePanel {...args}>
+          <ExpandablePanel.PreContainer>
             <PreviewContainer>{'Precontainer'}</PreviewContainer>
-          </Panel.PreContainer>
-          <Panel.A>
+          </ExpandablePanel.PreContainer>
+          <ExpandablePanel.A>
             <PreviewContainer>{'Content A'}</PreviewContainer>
-          </Panel.A>
-          <Panel.B>
+          </ExpandablePanel.A>
+          <ExpandablePanel.B>
             <PreviewContainer>{'Content B'}</PreviewContainer>
-          </Panel.B>
-          <Panel.C>
+          </ExpandablePanel.B>
+          <ExpandablePanel.C>
             <PreviewContainer>{'Content C'}</PreviewContainer>
-          </Panel.C>
-        </Panel>
+          </ExpandablePanel.C>
+        </ExpandablePanel>
         <br />
-        <Panel {...args}>
-          <Panel.PreContainer>
+        <ExpandablePanel {...args}>
+          <ExpandablePanel.PreContainer>
             <PreviewContainer>{'Precontainer'}</PreviewContainer>
-          </Panel.PreContainer>
-          <Panel.A>
+          </ExpandablePanel.PreContainer>
+          <ExpandablePanel.A>
             <PreviewContainer>{'Content A'}</PreviewContainer>
-          </Panel.A>
-          <Panel.B>
+          </ExpandablePanel.A>
+          <ExpandablePanel.B>
             <PreviewContainer>{'Content B'}</PreviewContainer>
-          </Panel.B>
-          <Panel.C>
+          </ExpandablePanel.B>
+          <ExpandablePanel.C>
             <PreviewContainer>{'Content C'}</PreviewContainer>
-          </Panel.C>
-        </Panel>
+          </ExpandablePanel.C>
+        </ExpandablePanel>
         <br />
-        <Panel {...args}>
-          <Panel.PreContainer>
+        <ExpandablePanel {...args}>
+          <ExpandablePanel.PreContainer>
             <PanelTitle title="Denne har en knapp og skjult innhold" />
-          </Panel.PreContainer>
-          <Panel.A>
+          </ExpandablePanel.PreContainer>
+          <ExpandablePanel.A>
             <span>{'Noe innhold'}</span>
-          </Panel.A>
-          <Panel.ExpandedContent>
+          </ExpandablePanel.A>
+          <ExpandablePanel.ExpandedContent>
             <div>
               <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
               <p>
@@ -997,8 +902,8 @@ export const LangExpandedContent: Story = {
                 <span>{'Ubegrenset'}</span>
               </div>
             </div>
-          </Panel.ExpandedContent>
-        </Panel>
+          </ExpandablePanel.ExpandedContent>
+        </ExpandablePanel>
         <br />
 
         <Panel {...args}>
@@ -1032,20 +937,20 @@ export const LangExpandedContent: Story = {
         </Panel>
         <br />
         <br />
-        <Panel {...args} expanded={expanderOpen} showExpandButton={false}>
-          <Panel.PreContainer>
+        <ExpandablePanel {...args} expanded={expanderOpen} showExpandButton={false}>
+          <ExpandablePanel.PreContainer>
             <PanelTitle title="Denne har en custom knapp som åpner expandedcontent" />
-          </Panel.PreContainer>
-          <Panel.A>
+          </ExpandablePanel.PreContainer>
+          <ExpandablePanel.A>
             <span>{'Noe innhold'}</span>
             <br />
             <Button onClick={() => setExpanderOpen(!expanderOpen)}>{expanderOpen ? 'Skjul detaljer' : 'Se detaljer'}</Button>
-          </Panel.A>
-          <Panel.ExpandedContent>
+          </ExpandablePanel.A>
+          <ExpandablePanel.ExpandedContent>
             <Title appearance="title3">{'Dette er skjult'}</Title>
             <p>{'Men når man åpner expanderen vil det vises'}</p>
-          </Panel.ExpandedContent>
-        </Panel>
+          </ExpandablePanel.ExpandedContent>
+        </ExpandablePanel>
       </>
     );
   },

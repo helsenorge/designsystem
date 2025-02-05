@@ -2,9 +2,77 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { A, B, C, PanelLayout, PanelProps, PanelStacking, PanelStatus, PanelVariant, PreContainer } from './Panel';
+import { PaletteNames } from '../../theme/palette';
 
 import styles from './styles.module.scss';
+
+export enum PanelLayout {
+  vertical = 'vertical',
+  horizontal = 'horizontal',
+  combined = 'combined',
+  bAsRightCol = 'bAsRightCol',
+}
+
+export type PanelColors = Extract<PaletteNames, 'white' | 'neutral'>;
+
+export enum PanelVariant {
+  fill = 'fill',
+  line = 'line',
+  border = 'border',
+}
+
+export enum PanelStacking {
+  default = 'default',
+  bFirst = 'bFirst',
+}
+
+export enum PanelStatus {
+  normal = 'normal',
+  new = 'new',
+  error = 'error',
+  draft = 'draft',
+}
+
+export interface PanelProps {
+  /** Sets the layout and order of the content boxes */
+  layout?: PanelLayout;
+  /** Sets the visual variant of panel */
+  variant?: PanelVariant;
+  /** Sets the color for panel if it has variant fill */
+  color?: PanelColors;
+  /** Sets the stacking order of the content boxes */
+  stacking?: PanelStacking;
+  /** Sets the data-testid attribute. */
+  testId?: string;
+  /** Children elements to be rendered inside the panel */
+  children?: React.ReactNode;
+  /** Displays a status on the left side: default normal */
+  status?: PanelStatus;
+}
+
+export interface ContentProps {
+  /** Children elements to be rendered inside the content box */
+  children?: React.ReactNode;
+}
+
+export const PreContainer: React.FC<ContentProps> = ({ children }) => {
+  return <div className={styles['panel__pre-container']}>{children}</div>;
+};
+
+export const A: React.FC<ContentProps> = ({ children }) => {
+  const styling = classNames(styles['panel__content__item'], styles['panel__content__item--a']);
+  return <div className={styling}>{children}</div>;
+};
+
+export const B: React.FC<ContentProps> = ({ children }) => {
+  const styling = classNames(styles['panel__content__item'], styles['panel__content__item--b']);
+  return <div className={styling}>{children}</div>;
+};
+
+export const C: React.FC<ContentProps> = ({ children }) => {
+  const styling = classNames(styles['panel__content__item'], styles['panel__content__item--c']);
+  return <div className={styling}>{children}</div>;
+};
 
 interface BaseValues {
   content: React.ReactNode[];
