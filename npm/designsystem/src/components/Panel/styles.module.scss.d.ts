@@ -27,9 +27,6 @@ export type Styles = {
   diagonal: string;
   diagonal__line: string;
   'diagonal--on-dark': string;
-  expander__button: string;
-  expander__button__text: string;
-  'expander__button--expanded': string;
   panel: string;
   'panel__border--line': string;
   'panel__border--outline': string;
