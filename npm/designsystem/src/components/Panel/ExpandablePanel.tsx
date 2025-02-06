@@ -46,7 +46,7 @@ const ExpandButton = ({
 
 const ExpandablePanel: React.FC<ExpandablePanelProps> = (props: ExpandablePanelProps) => {
   const { showExpandButton = true, expandButtonTextClosed = 'Se detaljer', expandButtonTextOpen = 'Skjul detaljer' } = props;
-  const { content, preContainer, outerLayout, contentContainerLayout, todoRenameVariable, colorScheme } = PanelBase(props);
+  const { content, preContainer, panelLayout, contentContainerLayout, wrapperLayout, colorScheme } = PanelBase(props);
 
   const panelRef = React.useRef<HTMLDivElement>(null);
   // const [customExpanderButtonRef, setCustomExpanderButtonRef] = React.useState(null);
@@ -113,9 +113,9 @@ const ExpandablePanel: React.FC<ExpandablePanelProps> = (props: ExpandablePanelP
   });
 
   return (
-    <div className={todoRenameVariable}>
+    <div className={wrapperLayout}>
       <div className={expanderBorderLayout}>
-        <div className={outerLayout} data-testid={props.testId} ref={panelRef}>
+        <div className={classNames(panelLayout, topPanelLayout)} data-testid={props.testId} ref={panelRef}>
           {preContainer}
           <div className={contentContainerLayout}>{content}</div>
           {showExpandButton && (

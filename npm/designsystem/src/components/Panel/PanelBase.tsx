@@ -77,10 +77,10 @@ export const C: React.FC<ContentProps> = ({ children }) => {
 interface BaseValues {
   content: React.ReactNode[];
   preContainer: React.ReactNode[];
-  outerLayout: string;
+  panelLayout: string;
   contentContainerLayout: string;
   colorScheme: string;
-  todoRenameVariable: string;
+  wrapperLayout: string;
 }
 
 const PanelBase = ({
@@ -116,28 +116,28 @@ const PanelBase = ({
   });
 
   const colorScheme = variant === PanelVariant.fill ? color : 'white';
-  const outerLayout = classNames(styles['panel'], styles[`panel--${variant}`], styles[`panel--${colorScheme}`], {
-    [styles['panel--new']]: status === PanelStatus.new,
-    [styles['panel--draft']]: status === PanelStatus.draft,
-    [styles['panel--error']]: status === PanelStatus.error,
-    [styles['panel--status']]: status && status !== PanelStatus.normal,
+  const panelLayout = classNames(styles['panel'], styles[`panel--${variant}`], styles[`panel--${colorScheme}`], {
     [styles['panel--icon']]: localHasIcon,
   });
   const contentContainerLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`], {
     [styles[`panel__content--b-first`]]: stacking === PanelStacking.bFirst, // @todo: fiks stacking
   });
-  const todoRenameVariable = classNames({
+  const wrapperLayout = classNames({
     [styles['panel__border--outline']]: variant === PanelVariant.border,
     [styles['panel__border--line']]: variant === PanelVariant.line,
+    [styles['panel--new']]: status === PanelStatus.new,
+    [styles['panel--draft']]: status === PanelStatus.draft,
+    [styles['panel--error']]: status === PanelStatus.error,
+    [styles['panel--status']]: status && status !== PanelStatus.normal,
   });
 
   return {
     content: newContent,
     preContainer: newPreContainer,
-    outerLayout,
+    panelLayout,
     contentContainerLayout,
     colorScheme,
-    todoRenameVariable,
+    wrapperLayout,
   };
 };
 
