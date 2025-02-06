@@ -24,7 +24,7 @@ import StatusDot from '../StatusDot';
 import Title from '../Title/Title';
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/Panel/Panel',
+  title: '@helsenorge/designsystem-react/Components/Panel',
   component: Panel,
   tags: ['new'],
   parameters: {
@@ -37,7 +37,7 @@ const meta = {
     },
   },
   args: {
-    isExpandable: false,
+    variant: PanelVariant.line,
   },
   argTypes: {
     variant: {
@@ -678,16 +678,13 @@ export const Dokumentliste: Story = {
   args: {},
   render: () => {
     return (
-      <div>
-        <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border} isExpandable>
-          <Panel.A>
-            <PanelTitle title={'Luftveisplager (Egenkartlegging)'} icon={<Icon svgIcon={PdfFile} />} />
-            <p>{'Henvendelse, arkivert 04.12.2024'}</p>
-          </Panel.A>
-          <Panel.ExpandedContent></Panel.ExpandedContent>
-        </Panel>
-        <br />
-      </div>
+      <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border} isExpandable>
+        <Panel.A>
+          <PanelTitle title={'Luftveisplager (Egenkartlegging)'} icon={<Icon svgIcon={PdfFile} />} />
+          <p>{'Henvendelse, arkivert 04.12.2024'}</p>
+        </Panel.A>
+        <Panel.ExpandedContent>{'Innhold i expander'}</Panel.ExpandedContent>
+      </Panel>
     );
   },
 };
