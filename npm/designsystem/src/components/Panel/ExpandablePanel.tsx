@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import PanelBase from './PanelBase';
-import { A, B, C, ContentProps, PanelProps, PreContainer } from './PanelBase';
+import { A, B, C, ContentProps, PanelBaseProps } from './PanelBase';
 // import { useHover } from '../../hooks/useHover';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
@@ -12,7 +12,7 @@ import ChevronUp from '../Icons/ChevronUp';
 
 import styles from './styles.module.scss';
 
-export interface ExpandablePanelProps extends PanelProps {
+export interface ExpandablePanelProps extends PanelBaseProps {
   /** Control the expanded state for an expandable panel */
   expanded?: boolean;
   /** Opt-out boolean for turning off the expander button when expandable content is used */
@@ -45,13 +45,7 @@ const ExpandButton = ({
   );
 };
 
-const ExpandablePanel: React.FC<ExpandablePanelProps> & {
-  PreContainer: React.FC<ContentProps>;
-  A: React.FC<ContentProps>;
-  B: React.FC<ContentProps>;
-  C: React.FC<ContentProps>;
-  ExpandedContent: React.FC<ContentProps>;
-} = (props: ExpandablePanelProps) => {
+const ExpandablePanel: React.FC<ExpandablePanelProps> = (props: ExpandablePanelProps) => {
   const { showExpandButton = true, expandButtonTextClosed = 'Se detaljer', expandButtonTextOpen = 'Skjul detaljer' } = props;
   const { content, preContainer, outerLayout, contentContainerLayout, todoRenameVariable, colorScheme } = PanelBase(props);
 
@@ -149,11 +143,5 @@ export const ExpandedContent: React.FC<ContentProps> = ({ children }) => {
   const styling = classNames(styles['panel__expander__content']);
   return <div className={styling}>{children}</div>;
 };
-
-ExpandablePanel.PreContainer = PreContainer;
-ExpandablePanel.A = A;
-ExpandablePanel.B = B;
-ExpandablePanel.C = C;
-ExpandablePanel.ExpandedContent = ExpandedContent;
 
 export default ExpandablePanel;

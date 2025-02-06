@@ -33,7 +33,7 @@ export enum PanelStatus {
   draft = 'draft',
 }
 
-export interface PanelProps {
+export interface PanelBaseProps {
   /** Sets the layout and order of the content boxes */
   layout?: PanelLayout;
   /** Sets the visual variant of panel */
@@ -90,7 +90,7 @@ const PanelBase = ({
   stacking = PanelStacking.default,
   status,
   layout = PanelLayout.vertical,
-}: PanelProps): BaseValues => {
+}: PanelBaseProps): BaseValues => {
   let localHasIcon = false;
   const newPreContainer: React.ReactNode[] = [];
   const newContent: React.ReactNode[] = [];
