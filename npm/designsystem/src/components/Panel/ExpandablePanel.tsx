@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import PanelBase from './PanelBase';
 import { A, B, C, ContentProps, PanelBaseProps } from './PanelBase';
-// import { useHover } from '../../hooks/useHover';
+import { useHover } from '../../hooks/useHover';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
@@ -24,22 +24,27 @@ export interface ExpandablePanelProps extends PanelBaseProps {
 }
 
 const ExpandButton = ({
-  onClick,
+  // onClick,
   isExpanded,
   expandButtonTextClosed,
   expandButtonTextOpen,
+  isHovered,
+  ref,
 }: {
-  onClick: () => void;
+  // onClick: () => void;
   isExpanded: boolean | undefined;
   expandButtonTextClosed: string;
   expandButtonTextOpen: string;
+  isHovered: boolean;
+  ref: React.Ref<HTMLDivElement>;
 }): React.JSX.Element => {
   return (
     <div>
-      <Button variant="borderless" textClassName={styles['expander__button__text']} aria-expanded={isExpanded} onClick={onClick}>
-        <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={true} size={IconSize.XSmall} />
+      {/* <Button variant="borderless" textClassName={styles['expander__button__text']} ref={ref} aria-expanded={isExpanded} onClick={onClick}> */}
+      <div className={styles['expander__button__text']} ref={ref} aria-expanded={isExpanded}>
+        <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} size={IconSize.XSmall} />
         <span>{isExpanded ? expandButtonTextOpen : expandButtonTextClosed}</span>
-      </Button>
+      </div>
     </div>
   );
 };
@@ -48,16 +53,22 @@ const ExpandablePanel: React.FC<ExpandablePanelProps> = (props: ExpandablePanelP
   const { showExpandButton = true, expandButtonTextClosed = 'Se detaljer', expandButtonTextOpen = 'Skjul detaljer' } = props;
   const { content, preContainer, panelLayout, contentContainerLayout, wrapperLayout, colorScheme } = PanelBase(props);
 
-  const panelRef = React.useRef<HTMLDivElement>(null);
+  const panelRef = React.useRef<HTMLButtonElement>(null);
+  const expanderButtonRef = React.useRef<HTMLDivElement>(null);
   // const [customExpanderButtonRef, setCustomExpanderButtonRef] = React.useState(null);
   const [isExpanded, setIsExpanded] = React.useState(props.expanded);
   const expandedContentRef = React.useRef<HTMLDivElement>(null);
-  // const { isHovered } = useHover(panelRef);
+  const { isHovered } = useHover(panelRef);
   const [expandableContent, setExpandableContent] = React.useState<React.ReactNode[]>([]);
 
   React.useEffect(() => {
     setIsExpanded(props.expanded);
   }, [props.expanded]);
+
+  React.useEffect(() => {
+    // fiks hover-greiene her
+    // expanderButtonRef && expanderButtonRef.current && expanderButtonRef.current.?
+  }, [isHovered]);
 
   React.useEffect(() => {
     const newExpandableContent: React.ReactNode[] = [];
@@ -108,25 +119,36 @@ const ExpandablePanel: React.FC<ExpandablePanelProps> = (props: ExpandablePanelP
     }
   }, [isExpanded]);
 
+  const handleClick = () => setIsExpanded(!isExpanded);
+
+  const onTopPanelClick = () => {
+    // todo: fiks hover-button-funksjonalitet her
+    handleClick();
+  };
+
   const expanderBorderLayout = classNames(styles[`panel__expander__border--${colorScheme}`], {
     [styles['panel__expander__border--expanded']]: isExpanded,
   });
 
+  const topPanelLayout = classNames({ [styles[`panel__expander--hover`]]: isHovered });
+
   return (
     <div className={wrapperLayout}>
       <div className={expanderBorderLayout}>
-        <div className={classNames(panelLayout, topPanelLayout)} data-testid={props.testId} ref={panelRef}>
+        <button className={classNames(panelLayout, topPanelLayout)} data-testid={props.testId} ref={panelRef} onClick={onTopPanelClick}>
           {preContainer}
           <div className={contentContainerLayout}>{content}</div>
           {showExpandButton && (
             <ExpandButton
-              onClick={() => setIsExpanded(!isExpanded)}
+              ref={expanderButtonRef}
+              // onClick={handleClick}
               isExpanded={isExpanded}
               expandButtonTextClosed={expandButtonTextClosed}
               expandButtonTextOpen={expandButtonTextOpen}
+              isHovered={isHovered}
             />
           )}
-        </div>
+        </button>
         {isExpanded && (
           <div ref={expandedContentRef} className={classNames(styles['panel__expander'], styles[`panel__expander--${colorScheme}`])}>
             <div className={styles['panel__expander__separator']} />
