@@ -12,6 +12,7 @@
   gap: spacers.getSpacer(s);
   padding: spacers.getSpacer(s);
   border: 2px solid var(--color-base-border-onlight);
+  width: 100%;
 
   @media (min-width: breakpoints.get(md)) {
     padding: spacers.getSpacer(m);
@@ -171,6 +172,10 @@
     padding: spacers.getSpacer(s);
     padding-top: 0;
 
+    &--hover {
+      background-color: var(--core-color-neutral-100);
+    }
+
     &--white {
       background-color: var(--color-base-background-white);
     }
@@ -210,4 +215,8 @@
       margin-top: spacers.getSpacer(s);
     }
   }
+}
+
+.expander__button--hover {
+  background-color: red;
 }
