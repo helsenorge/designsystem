@@ -733,7 +733,7 @@ export const Expandable: Story = {
           <PanelTitle title="Denne har en knapp og skjult innhold" />
         </Panel.PreContainer>
         <Panel.A>
-          <span>{'Noe innhold'}</span>
+          <div style={{ textAlign: 'left' }}>{'Noe innhold'}</div>
         </Panel.A>
         <Panel.ExpandedContent>
           <Title appearance="title3">{'Dette er skjult'}</Title>
