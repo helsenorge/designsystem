@@ -27,6 +27,7 @@ export type Styles = {
   diagonal: string;
   diagonal__line: string;
   'diagonal--on-dark': string;
+  'expander__button--hover': string;
   panel: string;
   'panel__border--line': string;
   'panel__border--outline': string;
@@ -48,6 +49,7 @@ export type Styles = {
   panel__expander__content: string;
   panel__expander__separator: string;
   'panel__expander--blueberry': string;
+  'panel__expander--hover': string;
   'panel__expander--neutral': string;
   'panel__expander--white': string;
   'panel__pre-container': string;
