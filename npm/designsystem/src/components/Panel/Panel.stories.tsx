@@ -36,7 +36,9 @@ const meta = {
       page: (): React.JSX.Element => <PanelDocs />,
     },
   },
-  args: {},
+  args: {
+    isExpandable: false,
+  },
   argTypes: {
     variant: {
       control: 'select',
@@ -163,7 +165,7 @@ export const OldPanelDefault: Story = {
   render: args => {
     const [expanderOpen, setExpanderOpen] = React.useState(false);
     return (
-      <Panel {...args}>
+      <Panel {...args} isExpandable>
         <Panel.PreContainer>
           <PanelTitle title="Medisinsk fødselsregister (MFR)" />
         </Panel.PreContainer>
@@ -502,7 +504,7 @@ export const Helsekontakter: Story = {
   render: () => {
     return (
       <div>
-        <Panel layout={PanelLayout.vertical}>
+        <Panel layout={PanelLayout.vertical} isExpandable>
           <Panel.PreContainer>
             <PanelTitle title={'Benedikte (DDFL) Geiraas'} icon={<Icon svgIcon={FemaleDoctor} />} />
           </Panel.PreContainer>
@@ -631,7 +633,7 @@ export const Fullmakter: Story = {
   render: () => {
     return (
       <div>
-        <Panel layout={PanelLayout.horizontal}>
+        <Panel layout={PanelLayout.horizontal} isExpandable>
           <Panel.A>
             <PanelTitle title={'Gry Telokk'} icon={<Avatar>{'Gry Telokk'}</Avatar>} />
             <p>{'Fødselsnummer 131169'}</p>
@@ -677,7 +679,7 @@ export const Dokumentliste: Story = {
   render: () => {
     return (
       <div>
-        <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border}>
+        <Panel layout={PanelLayout.horizontal} variant={PanelVariant.border} isExpandable>
           <Panel.A>
             <PanelTitle title={'Luftveisplager (Egenkartlegging)'} icon={<Icon svgIcon={PdfFile} />} />
             <p>{'Henvendelse, arkivert 04.12.2024'}</p>
@@ -726,7 +728,7 @@ export const Expandable: Story = {
   },
   render: args => {
     return (
-      <Panel {...args}>
+      <Panel {...args} isExpandable>
         <Panel.PreContainer>
           <PanelTitle title="Denne har en knapp og skjult innhold" />
         </Panel.PreContainer>
@@ -780,7 +782,7 @@ export const LangExpandedContent: Story = {
           </Panel.C>
         </Panel>
         <br />
-        <Panel {...args}>
+        <Panel {...args} isExpandable>
           <Panel.PreContainer>
             <PanelTitle title="Denne har en knapp og skjult innhold" />
           </Panel.PreContainer>
@@ -881,7 +883,7 @@ export const LangExpandedContent: Story = {
         </Panel>
         <br />
         <br />
-        <Panel {...args} expanded={expanderOpen} showExpandButton={false}>
+        <Panel {...args} expanded={expanderOpen} showExpandButton={false} isExpandable>
           <Panel.PreContainer>
             <PanelTitle title="Denne har en custom knapp som åpner expandedcontent" />
           </Panel.PreContainer>

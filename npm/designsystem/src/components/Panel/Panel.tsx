@@ -4,7 +4,9 @@ import ExpandablePanel, { ExpandablePanelProps, ExpandedContent } from './Expand
 import { A, B, C, ContentProps, PanelBaseProps, PreContainer } from './PanelBase';
 import SimplePanel from './SimplePanel';
 
-interface PanelProps extends PanelBaseProps, ExpandablePanelProps {}
+interface PanelProps extends PanelBaseProps, ExpandablePanelProps {
+  isExpandable?: boolean;
+}
 
 const Panel: React.FC<PanelProps> & {
   PreContainer: React.FC<ContentProps>;
@@ -13,15 +15,7 @@ const Panel: React.FC<PanelProps> & {
   C: React.FC<ContentProps>;
   ExpandedContent: React.FC<ContentProps>;
 } = (props: PanelProps) => {
-  let isExpandable = false;
-
-  React.Children.forEach(props.children, child => {
-    if (React.isValidElement(child)) {
-      if (child.type === ExpandedContent) {
-        isExpandable = true;
-      }
-    }
-  });
+  const { isExpandable = false } = props;
   return isExpandable ? <ExpandablePanel {...props} /> : <SimplePanel {...props} />;
 };
 
