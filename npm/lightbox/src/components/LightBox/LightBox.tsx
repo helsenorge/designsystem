@@ -110,6 +110,33 @@ const LightBox: React.FC<LightBoxProps> = ({
       aria-label={ariaLabelLightBox}
       ref={lightBoxRef}
     >
+      <TransformWrapper initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle', step: 4 }}>
+        {({ setTransform }) => (
+          <>
+            <Controls
+              transform={setTransform}
+              updateStates={updateStates}
+              zoom={zoom}
+              ariaLabelZoomIn={ariaLabelZoomIn}
+              ariaLabelZoomOut={ariaLabelZoomOut}
+              ariaLabelZoomSlider={ariaLabelZoomSlider}
+            />
+            <TransformComponent
+              wrapperStyle={{
+                zIndex: 1,
+                width: '100%',
+                height: '100%',
+              }}
+              contentStyle={{
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <img src={imageSrc} alt={imageAlt} />
+            </TransformComponent>
+          </>
+        )}
+      </TransformWrapper>
       <button
         onClick={onClose}
         aria-label={ariaLabelCloseButton}
@@ -167,33 +194,6 @@ const LightBox: React.FC<LightBoxProps> = ({
           </div>
         </div>
       )}
-      <TransformWrapper initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle', step: 4 }}>
-        {({ setTransform }) => (
-          <>
-            <Controls
-              transform={setTransform}
-              updateStates={updateStates}
-              zoom={zoom}
-              ariaLabelZoomIn={ariaLabelZoomIn}
-              ariaLabelZoomOut={ariaLabelZoomOut}
-              ariaLabelZoomSlider={ariaLabelZoomSlider}
-            />
-            <TransformComponent
-              wrapperStyle={{
-                zIndex: 1,
-                width: '100%',
-                height: '100%',
-              }}
-              contentStyle={{
-                width: '100%',
-                height: '100%',
-              }}
-            >
-              <img src={imageSrc} alt={imageAlt} />
-            </TransformComponent>
-          </>
-        )}
-      </TransformWrapper>
     </div>
   );
 };
