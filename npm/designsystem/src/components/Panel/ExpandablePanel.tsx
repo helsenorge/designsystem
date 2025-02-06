@@ -38,7 +38,6 @@ const ExpandButton = ({
     <div>
       <Button variant="borderless" textClassName={styles['expander__button__text']} aria-expanded={isExpanded} onClick={onClick}>
         <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={true} size={IconSize.XSmall} />
-        {/* @todo: lag prop for tekst på knappen */}
         <span>{isExpanded ? expandButtonTextOpen : expandButtonTextClosed}</span>
       </Button>
     </div>
