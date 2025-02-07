@@ -20,7 +20,9 @@ const meta = {
         component:
           'Button [Knapp] benyttes for å la innbygger initiere en handling eller hendelse. Knapper lar innbygger vite hva som vil skje om man trykker på dem.',
       },
-      page: (): React.JSX.Element => <Docs component={Button} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Button} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/button/bruk-qgE10iJk" />
+      ),
     },
   },
   args: {

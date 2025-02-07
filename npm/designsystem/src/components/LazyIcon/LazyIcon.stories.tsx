@@ -10,6 +10,7 @@ import { useHover } from '../../hooks/useHover';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/LazyIcon',
   component: LazyIcon,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={LazyIcon} />,

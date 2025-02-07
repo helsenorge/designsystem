@@ -12,7 +12,9 @@ const meta = {
   tags: ['breaking'],
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={EmptyState} />,
+      page: (): React.JSX.Element => (
+        <Docs component={EmptyState} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/emptystate/bruk-GKPb2vaj" />
+      ),
       description: {
         component:
           'Denne komponenten benyttes på sider der det ikke finnes innhold å vise, og man ønsker å gi en tilpasset beskjed til brukeren om dette avhengig av hvor i løsningen de befinner seg. Illustrasjonen «Ingen hjemme» og oppsettet på mørk bakgrunn sørger for at brukeren kjenner den igjen uavhengig av hvilken kontekst den står i.',

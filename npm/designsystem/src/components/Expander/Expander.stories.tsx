@@ -13,7 +13,9 @@ const meta = {
   component: Expander,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Expander} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Expander} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/expander/bruk-3czEyjUk" />
+      ),
       description: {
         component: 'Expander skjuler detaljinformasjon når den ikke trengs, og gjør den lett tilgjengelig i kontekst når den trengs.',
       },

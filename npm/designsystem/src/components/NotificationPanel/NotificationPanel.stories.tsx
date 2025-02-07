@@ -12,7 +12,12 @@ const meta = {
   component: NotificationPanel,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={NotificationPanel} />,
+      page: (): React.JSX.Element => (
+        <Docs
+          component={NotificationPanel}
+          supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/notification-panel/bruk-ZWQpRl7n"
+        />
+      ),
       description: {
         component: 'Et NotificationPanel lar deg vise viktig informasjon avskilt fra bakgrunnen med ulike farger og ikoner',
       },

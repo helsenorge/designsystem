@@ -8,6 +8,7 @@ import LazyIllustration from './';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/LazyIllustration',
   component: LazyIllustration,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={LazyIllustration} />,

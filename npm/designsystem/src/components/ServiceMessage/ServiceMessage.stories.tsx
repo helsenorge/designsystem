@@ -11,7 +11,12 @@ const meta = {
   component: ServiceMessage,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={ServiceMessage} />,
+      page: (): React.JSX.Element => (
+        <Docs
+          component={ServiceMessage}
+          supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/service-message/bruk-opIfXmgG"
+        />
+      ),
       description: {
         component:
           'ServiceMessage lar brukeren velge et av flere valg i en liste. ServiceMessage kan brukes frittstående, som en del av en FormGroup eller direkte i et Validation komponent.',

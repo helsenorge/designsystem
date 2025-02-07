@@ -11,6 +11,7 @@ import Tag from '../Tag';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/TagList',
   component: TagList,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={TagList} />,

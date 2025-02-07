@@ -8,6 +8,7 @@ import EyebrowHeader from './EyebrowHeader';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/EyebrowHeader',
   component: EyebrowHeader,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       description: {

@@ -28,7 +28,9 @@ const meta = {
         inline: false,
         iframeHeight: '40rem',
       },
-      page: (): React.JSX.Element => <Docs component={Modal} hideStories />,
+      page: (): React.JSX.Element => (
+        <Docs component={Modal} hideStories supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/modal/bruk-Jow45Yvf" />
+      ),
     },
   },
   args: {

@@ -3,6 +3,7 @@ import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } fr
 interface DocsProps<T> {
   component: T;
   hideStories?: boolean;
+  supernovaLink?: string;
   belowControlsContent?: React.ReactNode;
 }
 
@@ -29,6 +30,11 @@ const Docs = <T,>(props: DocsProps<T>): React.JSX.Element => {
           </a>
         </div>
       </div>
+      {props.supernovaLink && (
+        <a target="_blank" href={props.supernovaLink} rel="noreferrer">
+          {'Se komponentens dokumentasjon'}
+        </a>
+      )}
       <Subtitle />
       <Description />
       <Primary />

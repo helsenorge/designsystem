@@ -21,7 +21,9 @@ const meta = {
         component:
           'Som en innbygger vil jeg kunne velge å skifte mellom å se flere større innholdsområder på siden slik at jeg kan rydde unna innhold og funksjoner som ikke omhandler det jeg ønsker å gjøre.',
       },
-      page: (): React.JSX.Element => <Docs component={Tabs} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Tabs} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/tabs/bruk-lhIQYn5P" />
+      ),
     },
   },
   args: {

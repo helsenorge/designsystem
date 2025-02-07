@@ -11,6 +11,7 @@ import Title from '../Title/Title';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Loader',
   component: Loader,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Loader} />,

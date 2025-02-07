@@ -21,7 +21,12 @@ const meta = {
   component: ExpanderList,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={ExpanderList} />,
+      page: (): React.JSX.Element => (
+        <Docs
+          component={ExpanderList}
+          supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/expander-list/bruk-HenkgcrB"
+        />
+      ),
       description: {
         component:
           'ExpanderList er en liste av elementer som skjuler detaljinformasjon når den ikke trengs, og gjør den lett tilgjengelig i kontekst når den trengs.',

@@ -20,7 +20,9 @@ const meta = {
   component: Icon,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Icon} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Icon} supernovaLink="https://frankenstein.helsenorge.design/latest/fundament/ikoner-DDPNz1NO" />
+      ),
       description: {
         component: 'Icon lar deg vise et av flere ikoner i ulike størrelser og farger',
       },

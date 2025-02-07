@@ -210,7 +210,9 @@ const meta = {
   component: Mitten,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Mitten} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Mitten} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/mittens/bruk-lv8iaPve" />
+      ),
       description: {
         component: 'Mittens brukes for å varme kalde fingre. Kan brukes av både venner og fiender av Frankenstein.',
       },

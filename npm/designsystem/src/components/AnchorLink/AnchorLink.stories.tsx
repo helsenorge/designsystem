@@ -11,7 +11,12 @@ const meta = {
   component: AnchorLink,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={AnchorLink} />,
+      page: (): React.JSX.Element => (
+        <Docs
+          component={AnchorLink}
+          supernovaLink={'https://frankenstein.helsenorge.design/latest/komponenter/anchor-link/bruk-lyuI2gRy'}
+        />
+      ),
       description: {
         component:
           'AnchorLink kan bli brukt som et komponent for \\<a\\> tag eller \\<button\\> tag som skal ha en anchorlink styling.<br>.anchorlink-wrapper kan også bli brukt når det ikke er kontroll over markup som kommer inn.',

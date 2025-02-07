@@ -13,7 +13,9 @@ const meta = {
   component: Trigger,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Trigger} />,
+      page: (): React.JSX.Element => (
+        <Docs component={Trigger} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/help-trigger/bruk-o4PKfguM" />
+      ),
       description: {
         component:
           'Hjelpetrigger/Infotrigger lar innbygger se at hjelp finnes for et område eller en detalj, og tillater innbygger å be om hjelp ved behov. Brukes der hvor innbygger skal kunne be om assistanse”',

@@ -13,6 +13,7 @@ import styles from './story.module.scss';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/PopMenu',
   component: PopMenu,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={PopMenu} />,

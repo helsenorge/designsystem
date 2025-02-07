@@ -13,6 +13,7 @@ import RadioButton from '../RadioButton';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Dropdown',
   component: Dropdown,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Dropdown} />,

@@ -11,6 +11,7 @@ import Title from '../Title';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Duolist',
   component: Duolist,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Duolist} />,

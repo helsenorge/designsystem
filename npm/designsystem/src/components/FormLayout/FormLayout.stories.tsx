@@ -12,6 +12,7 @@ import RadioButton from '../RadioButton/RadioButton';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/FormLayout',
   component: FormLayout,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={FormLayout} />,
