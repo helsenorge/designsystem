@@ -130,17 +130,22 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   const mergedRefs = mergeRefs([ref, refObject]);
   const isTyping = useRef<boolean>(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  useOutsideEvent(inputContainerRef, (e: any) => {
-    if (
-      inputContainerRef.current &&
-      datepickerWrapperRef.current &&
-      !e?.composedPath().includes(inputContainerRef.current) &&
-      !e?.composedPath().includes(datepickerWrapperRef.current)
-    ) {
-      setDatePickerOpen(false);
-    }
-  });
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  useOutsideEvent(
+    [inputContainerRef, datepickerWrapperRef],
+    (e: any) => {
+      if (
+        inputContainerRef.current &&
+        datepickerWrapperRef.current &&
+        !e?.composedPath().includes(inputContainerRef.current) &&
+        !e?.composedPath().includes(datepickerWrapperRef.current)
+      ) {
+        setDatePickerOpen(false);
+      }
+    },
+    ['mousedown', 'focusin', 'blur']
+  );
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 
   useEffect(() => {
     if (isValid(dateValue)) {

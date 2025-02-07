@@ -88,7 +88,7 @@ export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<H
   };
 
   /** Firefox stopper ikke vanlige characters fra å skrives til input type number - derfor håndterer vi det selv her */
-  const handleInputOnKeyDown = (event: React.KeyboardEvent) => {
+  const handleInputOnKeyDown = (event: React.KeyboardEvent): void => {
     const validChars = /[0-9]/;
     const allowedKeys = ['Backspace', ' ', 'Enter', 'Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
     if (!validChars.test(event.key) && !allowedKeys.includes(event.key)) {
