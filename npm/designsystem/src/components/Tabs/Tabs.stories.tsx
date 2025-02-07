@@ -61,6 +61,10 @@ const meta = {
       control: 'boolean',
       description: 'Whether the tab list should be sticky',
     },
+    zIndex: {
+      control: 'number',
+      description: 'Overrides the default z-index of the tabs header',
+    },
   },
 } satisfies Meta<typeof Tabs>;
 
