@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
@@ -67,21 +67,28 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
     textareaRef.current?.focus();
   };
 
-  useEffect(() => {
-    // Resize textarea to fit default value
-    textareaRef && textareaRef.current && resizeTextarea(textareaRef.current);
-  }, []);
+  const resizeTextarea = (): void => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    resizeTarget(textarea);
+  };
 
-  const resizeTextarea = (target: HTMLTextAreaElement): void => {
+  const resizeTarget = (target: HTMLTextAreaElement): void => {
     // Reset field height
     target.style.height = 'inherit';
     // Set new height
     target.style.height = `${target.scrollHeight}px`;
   };
 
+  useLayoutEffect(() => {
+    resizeTextarea();
+    // Must run after the shadow DOM has been set up to work on microweb
+    setTimeout(() => resizeTextarea(), 1000);
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const textarea = e.target as HTMLTextAreaElement;
-    resizeTextarea(textarea);
+    resizeTarget(textarea);
     textareaProps.onChange && textareaProps.onChange(e);
   };
 
