@@ -19,6 +19,7 @@ type PanelWithAndCustomArgs = React.ComponentProps<typeof Panel> & {
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Panel',
   component: Panel,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Panel} />,

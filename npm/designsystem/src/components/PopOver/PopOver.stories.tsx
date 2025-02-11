@@ -14,6 +14,7 @@ import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, Respon
 const meta = {
   title: '@helsenorge/designsystem-react/Components/PopOver',
   component: PopOver,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       description: {

@@ -11,7 +11,9 @@ const meta: Meta<typeof FormExample> = {
   component: FormExample,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={FormExample} />,
+      page: (): React.JSX.Element => (
+        <Docs component={FormExample} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/validation/bruk-C8MGO5PV" />
+      ),
       description: {
         component:
           'Som innbygger skal jeg informeres om feil eller mangler i informasjon jeg har lagt inn slik at jeg forstår hvor jeg kan rette feilene og hva som er galt eller mangler.<br>Wrapper enten FormGroup eller et individuelt form input komponent.',

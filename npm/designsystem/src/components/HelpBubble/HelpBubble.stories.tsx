@@ -18,7 +18,9 @@ const meta = {
   component: HelpBubble,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={HelpBubble} />,
+      page: (): React.JSX.Element => (
+        <Docs component={HelpBubble} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/help-bubble/bruk-hSW8wk3D" />
+      ),
       description: {
         component: 'HelpBubble [Hjelpeboble] er en liten popup som lar innbygger lese et tekstinnhold som utdyper det som ble trykket på.',
       },

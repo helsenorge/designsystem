@@ -12,7 +12,12 @@ const meta = {
   tags: ['new'],
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Title} />,
+      page: (): React.JSX.Element => (
+        <Docs
+          component={Title}
+          supernovaLink="https://frankenstein.helsenorge.design/latest/fundament/typografi/font-og-stiler-jym9t8zW#section-stil-oversikt-17"
+        />
+      ),
       description: {
         component: 'Som innbygger vil jeg kunne vise titler i ulike størrelser og html markup.',
       },

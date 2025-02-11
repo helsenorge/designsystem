@@ -34,6 +34,8 @@ export interface TabsProps {
   ariaLabelRightButton?: string;
   /** Sets aria label on the "scroll to the left" button in TabList */
   ariaLabelLeftButton?: string;
+  /** Overrides the default z-index of the tabs header */
+  zIndex?: number;
 }
 
 const TabsRoot: React.FC<TabsProps> = ({
@@ -47,6 +49,7 @@ const TabsRoot: React.FC<TabsProps> = ({
   testId,
   ariaLabelRightButton,
   ariaLabelLeftButton,
+  zIndex,
 }) => {
   const isControlled = activeTab !== undefined;
   const [uncontrolledValue, setUncontrolledValue] = useState(0);
@@ -74,6 +77,9 @@ const TabsRoot: React.FC<TabsProps> = ({
         className={classNames(styles['tab-list-wrapper'], {
           [styles['tab-list-wrapper--sticky']]: sticky,
         })}
+        style={{
+          zIndex: zIndex,
+        }}
       >
         <TabList
           onTabListClick={(index: number) => onValueChange(index)}

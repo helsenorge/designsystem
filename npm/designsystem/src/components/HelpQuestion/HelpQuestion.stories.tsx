@@ -12,7 +12,12 @@ const meta = {
   component: HelpQuestion,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={HelpQuestion} />,
+      page: (): React.JSX.Element => (
+        <Docs
+          component={HelpQuestion}
+          supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/help-question/bruk-MTQ8TkDW"
+        />
+      ),
       description: {
         component: 'Mulighet for å aktivere hjelp i form av svar på et konkret spørsmål.',
       },

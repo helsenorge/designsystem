@@ -38,6 +38,7 @@ type TableWithAndCustomArgs = React.ComponentProps<typeof Table> & {
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Table',
   component: Table,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={Table} />,

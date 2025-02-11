@@ -10,7 +10,9 @@ const meta = {
   component: HelpPanel,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={HelpPanel} />,
+      page: (): React.JSX.Element => (
+        <Docs component={HelpPanel} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/help-panel/bruk-gFaElbtJ" />
+      ),
       description: {
         component: 'HelpPanel er et komponent som skal innholde hjelpetekst til brukeren.',
       },

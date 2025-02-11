@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, ZIndex } from '../../constants';
+import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { useHover } from '../../hooks/useHover';
 import { useSize } from '../../hooks/useSize';
@@ -66,7 +66,7 @@ const Expander: React.FC<ExpanderProps> = props => {
     testId,
     onExpand,
     renderChildrenWhenClosed = false,
-    zIndex = ZIndex.ExpanderTrigger,
+    zIndex,
   } = props;
   const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLDivElement>(null);

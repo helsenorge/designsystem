@@ -9,6 +9,7 @@ import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/ExpanderHierarchy',
   component: ExpanderHierarchy,
+  tags: ['not-supernova'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={ExpanderHierarchy} />,
