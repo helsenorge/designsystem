@@ -11,12 +11,24 @@ export enum Breakpoint {
   xl = breakpoints.xl,
 }
 
-/**
- * Lytt på endringer i breakpoint basert på media queries. Trigger re-render bare når breakpoint er endret.
- * @returns Gjeldende breakpoint
- */
+function getCurrentBreakpoint(): Breakpoint {
+  // We read from largest -> smallest or vice versa
+  // so that the first match is the "highest" one that applies
+  const mediaQueryList = Object.entries(screen)
+    .reverse() // e.g. check xl, lg, md, etc. in descending order
+    .map(([size, mediaQuery]) => {
+      return {
+        breakpoint: Breakpoint[size as keyof typeof Breakpoint],
+        mq: window.matchMedia(mediaQuery),
+      };
+    });
+
+  const matched = mediaQueryList.find(entry => entry.mq.matches);
+  return matched?.breakpoint ?? Breakpoint.xxs;
+}
+
 export const useBreakpoint = (): Breakpoint => {
-  const [breakpoint, setBreakpoint] = useState<Breakpoint>(Breakpoint.xxs);
+  const [breakpoint, setBreakpoint] = useState<Breakpoint>(() => getCurrentBreakpoint());
 
   useEffect(() => {
     const handleMediaQueryEvent = (event: MediaQueryListEvent): void => {
@@ -38,36 +50,27 @@ export const useBreakpoint = (): Breakpoint => {
           return;
         default:
           setBreakpoint(Breakpoint.xxs);
-          return;
       }
     };
 
-    // Lytt etter endringer for hvert breakpoint
-    const mediaQueryList = Object.entries(screen)
-      .reverse()
-      .map(([size, mediaQuery]) => {
-        return { breakpoint: Breakpoint[size as keyof typeof Breakpoint], mediaQuery: window.matchMedia(mediaQuery) };
-      });
-    mediaQueryList.forEach(x => {
+    const mediaQueryList = Object.entries(screen).map(([mediaQuery]) => {
+      const mq = window.matchMedia(mediaQuery);
       // iOS <=13 har ikke støtte for addEventListener/removeEventListener på MediaQueryList,
       // men har støtte for addListener
-      if (x.mediaQuery.addEventListener) {
-        x.mediaQuery.addEventListener('change', handleMediaQueryEvent);
-      } else if (x.mediaQuery.addListener) {
-        x.mediaQuery.addListener(handleMediaQueryEvent);
+      if (mq.addEventListener) {
+        mq.addEventListener('change', handleMediaQueryEvent);
+      } else if (mq.addListener) {
+        mq.addListener(handleMediaQueryEvent);
       }
+      return mq;
     });
 
-    // Finn breakpoint ved første render
-    const initialBreakpoint = mediaQueryList.find(x => x.mediaQuery.matches)?.breakpoint ?? breakpoint;
-    setBreakpoint(initialBreakpoint);
-
     return (): void => {
-      mediaQueryList.forEach(x => {
-        if (x.mediaQuery.removeEventListener) {
-          x.mediaQuery.removeEventListener('change', handleMediaQueryEvent);
-        } else if (x.mediaQuery.removeListener) {
-          x.mediaQuery.removeListener(handleMediaQueryEvent);
+      mediaQueryList.forEach(mq => {
+        if (mq.removeEventListener) {
+          mq.removeEventListener('change', handleMediaQueryEvent);
+        } else if (mq.removeListener) {
+          mq.removeListener(handleMediaQueryEvent);
         }
       });
     };

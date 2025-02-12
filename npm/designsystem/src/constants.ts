@@ -77,6 +77,7 @@ export enum AnalyticsId {
   Chip = 'chip',
   Close = 'close',
   DictionaryTrigger = 'dictionary-trigger',
+  Drawer = 'Drawer',
   Dropdown = 'dropdown',
   Duolist = 'duolist',
   EmptyState = 'empty-state',
