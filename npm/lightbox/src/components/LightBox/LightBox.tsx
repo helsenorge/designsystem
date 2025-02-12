@@ -91,13 +91,25 @@ const LightBox: React.FC<LightBoxProps> = ({
     setZoom(newZoom);
   };
 
+  function disableBodyScroll(): void {
+    document.body.style.overflow = 'hidden';
+  }
+
+  function enableBodyScroll(): void {
+    document.body.style.removeProperty('overflow');
+  }
+
   useEffect(() => {
+    disableBodyScroll();
     if (!closeTextAfterSeconds) return;
     const timer = setTimeout(() => {
       setImageTextOpen(false);
     }, closeTextAfterSeconds * 1000);
 
-    return () => clearTimeout(timer);
+    return (): void => {
+      enableBodyScroll();
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
