@@ -27,11 +27,11 @@ export interface LightBoxProps {
   /** Aria label for the text box button when its open */
   ariaLabelCloseTextBox: string;
   /** Aria label for the left arrow button */
-  ariaLabelLeftArrow: string;
+  ariaLabelLeftArrow?: string;
   /** Aria label for the full modal describing what the modal contains */
   ariaLabelLightBox: string;
   /** Aria label for the right arrow button */
-  ariaLabelRightArrow: string;
+  ariaLabelRightArrow?: string;
   /** Aria label for the text box button when its closed */
   ariaLabelOpenTextBox: string;
   /** Aria label for the zoom in button */
