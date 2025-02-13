@@ -17,11 +17,7 @@
 }
 
 @mixin content-wrapper-with-icon-padding {
-  padding-top: getSpacer(s);
-
-  @media (min-width: map.get($grid-breakpoints, xl)) {
-    padding-top: getSpacer(m);
-  }
+  padding-top: getSpacer(m);
 }
 
 .highlightpanel {
@@ -50,25 +46,9 @@
     }
   }
 
-  // large skal også ha bakgrunnsfarge på den ytre containeren på de minste skjermnene
-  // slik at bakgrunnsfargen går helt ut til skjermkanten
   &--large {
-    @each $color in $colors {
-      &#{$panel}--#{$color} {
-        @include media-breakpoint-down(xs) {
-          background-color: var(--color-base-background-#{$color});
-        }
-      }
-    }
-
-    &#{$panel}--white {
-      @include media-breakpoint-down(xs) {
-        background-color: var(--color-base-background-white);
-      }
-    }
     #{$panel}__content-wrapper {
-      padding-top: getSpacer(m);
-      padding-bottom: getSpacer(l);
+      padding: getSpacer(m) getSpacer(s) getSpacer(l);
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
         padding-top: getSpacer(l);
@@ -219,21 +199,9 @@
       }
     }
   }
-}
 
-.mobile {
-  display: flex;
-  align-items: center;
-
-  @media screen and (width >= 768px) {
-    @include sr-only;
-  }
-}
-
-.desktop {
-  display: none;
-
-  @media screen and (width >= 768px) {
+  &__title-wrapper {
     display: flex;
+    align-items: center;
   }
 }
