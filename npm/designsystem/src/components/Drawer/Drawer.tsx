@@ -176,7 +176,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
       >
         <div className={styles.drawer__container__inner}>
           <div className={styles.drawer__header}>
-            <Title id={titleId} htmlMarkup={titleHtmlMarkup} appearance="title3">
+            <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
               {title}
             </Title>
             <Close ariaLabel={ariaLabelCloseBtn} onClick={onRequestClose} small={isMobile} />

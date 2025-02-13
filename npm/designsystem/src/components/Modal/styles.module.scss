@@ -34,6 +34,7 @@
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 50%);
   background-color: $white;
   animation: open 200ms 1;
+  outline: none;
 
   &__title {
     &--error {
@@ -92,7 +93,7 @@
       width: 696px;
     }
 
-    @container (max-width: 319px) {
+    @include tiny-screens-media-query {
       padding-bottom: getSpacer(2xs);
     }
   }
@@ -170,12 +171,17 @@
     overflow: auto;
     overflow-x: hidden;
 
+    &:focus-visible {
+      outline: 1px solid $black;
+      outline-offset: -1px;
+    }
+
     @media print {
       overflow: hidden;
       max-height: none;
     }
 
-    @container (max-width: 319px) {
+    @include tiny-screens-media-query {
       max-height: calc(100dvh - 4rem);
     }
 
@@ -191,7 +197,7 @@
           padding: getSpacer(xl) getSpacer(xl) getSpacer(2xs);
         }
 
-        @container (max-width: 319px) {
+        @include tiny-screens-media-query {
           padding: getSpacer(2xs) getSpacer(2xs) getSpacer(4xs);
         }
       }
@@ -203,7 +209,7 @@
           padding: getSpacer(xl) getSpacer(m) getSpacer(2xs);
         }
 
-        @container (max-width: 319px) {
+        @include tiny-screens-media-query {
           padding: getSpacer(2xs) getSpacer(3xs) getSpacer(4xs);
         }
       }
@@ -258,7 +264,7 @@
         padding: getSpacer(l) getSpacer(xl) 0;
       }
 
-      @container (max-width: 319px) {
+      @include tiny-screens-media-query {
         padding: getSpacer(2xs) getSpacer(2xs) 0;
       }
     }
@@ -266,7 +272,7 @@
     &--medium {
       padding: getSpacer(m) getSpacer(m) 0;
 
-      @container (max-width: 319px) {
+      @include tiny-screens-media-query {
         padding: getSpacer(2xs) getSpacer(2xs) 0;
       }
     }
