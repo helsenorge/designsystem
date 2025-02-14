@@ -6,6 +6,7 @@ import styles from './styles.module.scss';
 
 export interface TemporaryErrorWrapperClassNameProps {
   errorWrapperClassName?: string;
+  showLeftBorder?: boolean;
 }
 
 export interface TemporaryErrorWrapperProps {
@@ -19,10 +20,14 @@ export interface TemporaryErrorWrapperProps {
   className?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  showLeftBorder?: boolean; // hvordan i alle dager sette denne?
 }
 
 export const TemporaryErrorWrapper: React.FC<TemporaryErrorWrapperProps> = props => {
-  const errorWrapperClasses = cn(props.errorText && styles[`error-wrapper--with-error`], props.className);
+  const { showLeftBorder = true } = props;
+  const errorWrapperClasses = cn(props.errorText && styles[`error-wrapper--with-error`], props.className, {
+    [styles['error-wrapper__left-border']]: showLeftBorder && props.errorText,
+  });
 
   return (
     <div className={errorWrapperClasses} data-testid={props.testId}>
