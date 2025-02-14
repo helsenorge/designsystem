@@ -8,17 +8,17 @@ import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import { IconName } from '../Icons/IconNames';
 import { renderLabel } from '../Label';
 import LazyIcon from '../LazyIcon';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
+import TermporaryErrorWrapper, { TemporaryErrorWrapperClassNameProps } from '../TemporaryErrorWrapper';
 
 import styles from './styles.module.scss';
 
 export interface InputProps
-  extends ErrorWrapperClassNameProps,
+  extends TemporaryErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       | 'disabled'
@@ -244,7 +244,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <TermporaryErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
         {renderLabel(label, inputIdState, onColor as FormOnColor)}
         {/* input-elementet tillater keyboard-interaksjon */}
@@ -294,7 +294,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
         )}
         {afterInputChildren}
       </div>
-    </ErrorWrapper>
+    </TermporaryErrorWrapper>
   );
 });
 

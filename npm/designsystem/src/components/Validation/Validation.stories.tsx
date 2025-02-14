@@ -372,3 +372,10 @@ export const Slider: Story = {
   },
   render: args => <FormExample {...args} />,
 };
+
+export const Horizontal: Story = {
+  args: {
+    exampleType: FormExampleVariants.horizontal,
+  },
+  render: args => <FormExample {...args} />,
+};

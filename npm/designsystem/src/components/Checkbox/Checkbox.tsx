@@ -9,15 +9,15 @@ import { getColor } from '../../theme/currys/color';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import Icon from '../Icon';
 import Check from '../Icons/Check';
 import { getLabelText, renderLabelAsParent } from '../Label';
+import TemporaryErrorWrapper, { TemporaryErrorWrapperClassNameProps } from '../TemporaryErrorWrapper';
 
 import checkboxStyles from './styles.module.scss';
 
 export interface CheckboxProps
-  extends ErrorWrapperClassNameProps,
+  extends TemporaryErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'required' | 'onChange'
@@ -157,7 +157,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   };
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <TemporaryErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
         {renderLabelAsParent(
           label,
@@ -170,7 +170,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           large
         )}
       </div>
-    </ErrorWrapper>
+    </TemporaryErrorWrapper>
   );
 });
 

@@ -6,17 +6,17 @@ import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, IconSize } from '
 import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import Icon from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import { renderLabel } from '../Label';
+import TemporaryErrorWrapper, { TemporaryErrorWrapperClassNameProps } from '../TemporaryErrorWrapper';
 
 import selectStyles from './styles.module.scss';
 
 type SelectConcept = 'normal' | 'transparent';
 
 export interface SelectProps
-  extends ErrorWrapperClassNameProps,
+  extends TemporaryErrorWrapperClassNameProps,
     Pick<
       React.SelectHTMLAttributes<HTMLSelectElement>,
       'aria-describedby' | 'name' | 'disabled' | 'required' | 'value' | 'onChange' | 'autoComplete'
@@ -110,7 +110,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
   const selectWrapperClasses = classNames(selectStyles['select-wrapper'], wrapperClassName);
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <TemporaryErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectWrapperClasses} style={{ maxWidth }}>
         {renderLabel(label, uuid, onColor as FormOnColor)}
         <div className={selectInnerWrapperClasses} data-testid={testId + '-inner-wrapper'}>
@@ -140,7 +140,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
           </select>
         </div>
       </div>
-    </ErrorWrapper>
+    </TemporaryErrorWrapper>
   );
 });
 

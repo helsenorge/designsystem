@@ -8,7 +8,7 @@ import { useSize } from '../../hooks/useSize';
 import { useUuid } from '../../hooks/useUuid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import TemporaryErrorWrapper, { TemporaryErrorWrapperClassNameProps } from '../TemporaryErrorWrapper';
 import Title from '../Title';
 
 import styles from './styles.module.scss';
@@ -39,7 +39,7 @@ export type SliderStep = {
 };
 
 export interface SliderProps
-  extends ErrorWrapperClassNameProps,
+  extends TemporaryErrorWrapperClassNameProps,
     Pick<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'onChange' | 'onBlur'> {
   /** Activates Error style for the input */
   error?: boolean;
@@ -341,7 +341,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
   };
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <TemporaryErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <input
         aria-valuetext={getAriaValueText()}
         className={styles['sr-only-slider']}
@@ -394,7 +394,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
           </span>
         )}
       </div>
-    </ErrorWrapper>
+    </TemporaryErrorWrapper>
   );
 });
 

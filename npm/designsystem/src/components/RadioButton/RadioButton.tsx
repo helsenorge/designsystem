@@ -8,13 +8,13 @@ import { useUuid } from '../../hooks/useUuid';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import { getLabelText, renderLabelAsParent } from '../Label';
+import TemporaryErrorWrapper, { TemporaryErrorWrapperClassNameProps } from '../TemporaryErrorWrapper';
 
 import radioButtonStyles from './styles.module.scss';
 
 export interface RadioButtonProps
-  extends ErrorWrapperClassNameProps,
+  extends TemporaryErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'defaultChecked' | 'required' | 'onChange'
@@ -144,7 +144,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   );
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <TemporaryErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
         {renderLabelAsParent(
           label,
@@ -157,7 +157,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
           isLarge
         )}
       </div>
-    </ErrorWrapper>
+    </TemporaryErrorWrapper>
   );
 });
 

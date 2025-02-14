@@ -5,12 +5,12 @@ import ValidationSummary from './ValidationSummary';
 import { AnalyticsId, FormSize } from '../../constants';
 import { isComponent, isComponentWithDisplayName } from '../../utils/component';
 import Checkbox, { CheckboxProps } from '../Checkbox';
-import { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import FormGroup, { FormGroupProps } from '../FormGroup/FormGroup';
 import Input, { InputProps } from '../Input';
 import RadioButton, { RadioButtonProps } from '../RadioButton';
 import Select, { SelectProps } from '../Select';
 import Slider, { SliderProps } from '../Slider';
+import { TemporaryErrorWrapperClassNameProps } from '../TemporaryErrorWrapper';
 import Textarea, { TextareaProps } from '../Textarea';
 
 import styles from './styles.module.scss';
@@ -33,7 +33,7 @@ interface ValidationProps {
 export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const validationErrorClass = styles['validation__error-wrapper'];
 
-  const cloneFormElement = <T extends ErrorWrapperClassNameProps>(child: React.ReactElement<T>): React.ReactElement<T> => {
+  const cloneFormElement = <T extends TemporaryErrorWrapperClassNameProps>(child: React.ReactElement<T>): React.ReactElement<T> => {
     return React.cloneElement(child, {
       ...child.props,
       errorWrapperClassName: validationErrorClass,
@@ -49,13 +49,13 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
       isComponent<InputProps>(child, Input) ||
       isComponent<SelectProps>(child, Select) ||
       isComponent<SliderProps>(child, Slider) ||
-      isComponentWithDisplayName<ErrorWrapperClassNameProps>(child, 'DateTimePickerWrapper') ||
-      isComponentWithDisplayName<ErrorWrapperClassNameProps>(child, 'DatePicker') ||
-      isComponentWithDisplayName<ErrorWrapperClassNameProps>(child, 'DateTime')
+      isComponentWithDisplayName<TemporaryErrorWrapperClassNameProps>(child, 'DateTimePickerWrapper') ||
+      isComponentWithDisplayName<TemporaryErrorWrapperClassNameProps>(child, 'DatePicker') ||
+      isComponentWithDisplayName<TemporaryErrorWrapperClassNameProps>(child, 'DateTime')
     ) {
-      return cloneFormElement<ErrorWrapperClassNameProps>(child);
+      return cloneFormElement<TemporaryErrorWrapperClassNameProps>(child);
     }
-    if (React.isValidElement(child) && child.type === React.Fragment) {
+    if (React.isValidElement(child) && (child.type === React.Fragment || child.type === 'div')) {
       return React.Children.map(child.props.children, (child: React.ReactNode) => {
         return renderChild(child);
       });

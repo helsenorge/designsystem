@@ -6,14 +6,14 @@ import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor } from '../../cons
 import { useUuid } from '../../hooks/useUuid';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import { renderLabel } from '../Label';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
+import TemporaryErrorWrapper, { TemporaryErrorWrapperClassNameProps } from '../TemporaryErrorWrapper';
 
 import styles from './styles.module.scss';
 
 export interface TextareaProps
-  extends ErrorWrapperClassNameProps,
+  extends TemporaryErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLTextAreaElement>,
       | 'aria-describedby'
@@ -177,7 +177,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const maxWidth = width ? getTextareaMaxWidth(width) : undefined;
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <TemporaryErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
         {renderLabel(label, textareaId, onColor as FormOnColor)}
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
@@ -212,7 +212,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
           />
         )}
       </div>
-    </ErrorWrapper>
+    </TemporaryErrorWrapper>
   );
 });
 

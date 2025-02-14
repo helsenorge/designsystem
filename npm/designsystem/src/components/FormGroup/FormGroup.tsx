@@ -6,12 +6,12 @@ import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
 import { isComponent } from '../../utils/component';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
-import ErrorWrapper from '../ErrorWrapper';
 import FormLayout, { FormLayoutProps } from '../FormLayout';
 import Input, { InputProps } from '../Input/Input';
 import RadioButton, { RadioButtonProps, getRadioLabelClasses } from '../RadioButton/RadioButton';
 import Select, { SelectProps } from '../Select';
 import Slider, { SliderProps } from '../Slider';
+import TemporaryErrorWrapper from '../TemporaryErrorWrapper';
 import Textarea, { TextareaProps } from '../Textarea';
 import Title from '../Title';
 
@@ -180,9 +180,9 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         </Title>
       )}
       {renderError ? (
-        <ErrorWrapper className={errorWrapperClassName} errorText={error} testId={errorWrapperTestId} errorTextId={errorTextUuid}>
+        <TemporaryErrorWrapper className={errorWrapperClassName} errorText={error} testId={errorWrapperTestId} errorTextId={errorTextUuid}>
           {formGroupContent()}
-        </ErrorWrapper>
+        </TemporaryErrorWrapper>
       ) : (
         formGroupContent()
       )}
