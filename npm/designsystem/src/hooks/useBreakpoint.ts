@@ -53,7 +53,8 @@ export const useBreakpoint = (): Breakpoint => {
       }
     };
 
-    const mediaQueryList = Object.entries(screen).map(([mediaQuery]) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const mediaQueryList = Object.entries(screen).map(([_size, mediaQuery]) => {
       const mq = window.matchMedia(mediaQuery);
       // iOS <=13 har ikke støtte for addEventListener/removeEventListener på MediaQueryList,
       // men har støtte for addListener
