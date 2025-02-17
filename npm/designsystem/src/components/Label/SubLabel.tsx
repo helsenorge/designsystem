@@ -28,9 +28,9 @@ export const Sublabel: React.FC<SublabelProps> = ({ children, className, id, onC
     return (
       sublabelTexts &&
       sublabelTexts.map((sublabelText, index) => {
-        const labelClasses = cn(styles.label, styles['label--sublabel'], {
-          [styles['label--subdued']]: sublabelText.type === 'subdued',
-          [styles['label--on-dark']]: onColor === FormOnColor.ondark,
+        const labelClasses = cn(styles.label, styles['sublabel'], {
+          [styles['sublabel--subdued']]: sublabelText.type === 'subdued',
+          [styles['sublabel--on-dark']]: onColor === FormOnColor.ondark,
         });
         return (
           hideFromScreenReader === sublabelText.hideFromScreenReader && (

@@ -60,6 +60,18 @@ import designsystemtypography from './scss/typography.scss'
   @include label;
 }
 
+.label-subdued {
+  @include label-subdued;
+}
+
+.sublabel {
+  @include sublabel;
+}
+
+.sublabel-subdued {
+  @include sublabel-subdued;
+}
+
 .compact-data {
   @include compact-data;
 }
@@ -105,6 +117,18 @@ import designsystemtypography from './scss/typography.scss'
 
 .input-text-large {
   @include input-text-large;
+}
+
+.text-list {
+  @include text-list;
+}
+
+.definition-list-type {
+  @include definition-list-type;
+}
+
+.definition-list-data {
+  @include definition-list-data;
 }
 
 .anchorlink-wrapper {

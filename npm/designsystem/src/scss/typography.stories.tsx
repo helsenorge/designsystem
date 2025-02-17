@@ -65,6 +65,18 @@ export const Label: Story = {
   render: args => <div className={designsystemtypography.label}>{args.tekst}</div>,
 };
 
+export const LabelSubdued: Story = {
+  render: args => <div className={designsystemtypography['label-subdued']}>{args.tekst}</div>,
+};
+
+export const Sublabel: Story = {
+  render: args => <div className={designsystemtypography.sublabel}>{args.tekst}</div>,
+};
+
+export const SublabelSubdued: Story = {
+  render: args => <div className={designsystemtypography['sublabel-subdued']}>{args.tekst}</div>,
+};
+
 export const CompactData: Story = {
   render: args => <div className={designsystemtypography['compact-data']}>{args.tekst}</div>,
 };
@@ -95,6 +107,18 @@ export const InputText: Story = {
 
 export const InputTextLarge: Story = {
   render: args => <div className={designsystemtypography['input-text-large']}>{args.tekst}</div>,
+};
+
+export const TextList: Story = {
+  render: args => <div className={designsystemtypography['text-list']}>{args.tekst}</div>,
+};
+
+export const DefinitionListType: Story = {
+  render: args => <div className={designsystemtypography['definition-list-type']}>{args.tekst}</div>,
+};
+
+export const DefinitionListData: Story = {
+  render: args => <div className={designsystemtypography['definition-list-data']}>{args.tekst}</div>,
 };
 
 export const AnchorlinkWrapper: Story = {

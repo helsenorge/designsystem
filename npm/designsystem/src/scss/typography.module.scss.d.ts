@@ -2,6 +2,8 @@ export type Styles = {
   'anchorlink-wrapper': string;
   body: string;
   'compact-data': string;
+  'definition-list-data': string;
+  'definition-list-type': string;
   'focused-content': string;
   form: string;
   'image-caption': string;
@@ -9,11 +11,15 @@ export type Styles = {
   'input-text': string;
   'input-text-large': string;
   label: string;
+  'label-subdued': string;
   legend: string;
   preamble: string;
   'status-timestamp': string;
   strong: string;
+  sublabel: string;
+  'sublabel-subdued': string;
   'table-cell': string;
+  'text-list': string;
   'title-feature': string;
   title1: string;
   title2: string;

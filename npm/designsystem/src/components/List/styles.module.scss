@@ -1,14 +1,14 @@
-@import '../../scss/spacers';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/font-mixins' as fonts;
 
 .list {
   $list: &;
 
-  margin-top: 0;
-  margin-bottom: 0;
+  @include fonts.text-list;
 
   &--margin {
-    margin-top: getSpacer(s);
-    margin-bottom: getSpacer(s);
+    margin-top: spacers.getSpacer(s);
+    margin-bottom: spacers.getSpacer(s);
   }
 
   &--bullet {
@@ -57,11 +57,11 @@
 
   &__item {
     > #{$list} {
-      margin-top: getSpacer(2xs);
+      margin-top: spacers.getSpacer(2xs);
     }
   }
 
   &__item:not(:last-child) {
-    margin-bottom: getSpacer(2xs);
+    margin-bottom: spacers.getSpacer(2xs);
   }
 }

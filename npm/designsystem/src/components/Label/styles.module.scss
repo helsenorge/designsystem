@@ -35,18 +35,6 @@
     @include label-subdued;
   }
 
-  &--sublabel {
-    display: block;
-    font-size: $font-size-xs;
-    line-height: 1.25rem;
-    color: $neutral800;
-
-    @media (min-width: map.get($grid-breakpoints, sm)) {
-      font-size: $font-size-sm;
-      line-height: $lineheight-size-xs;
-    }
-  }
-
   &--on-dark {
     color: $white;
   }
@@ -57,6 +45,22 @@
 
   &__texts {
     min-width: 0;
+  }
+}
+
+.sublabel {
+  @include sublabel;
+
+  &--subdued {
+    @include sublabel-subdued;
+  }
+
+  &--on-dark {
+    color: $white;
+  }
+
+  &::after {
+    content: ' ';
   }
 }
 
