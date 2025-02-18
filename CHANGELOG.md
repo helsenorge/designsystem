@@ -1,3 +1,28 @@
+## [10.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.1.0&targetVersion=GTv10.2.0) (2025-02-18)
+
+### Features
+
+- nytt komponent drawer ([563a44e](https://github.com/helsenorge/designsystem/commit/563a44ee979ec777cdaea4a02134e3187000b3b9)), closes
+  [#339100](https://github.com/helsenorge/designsystem/issues/339100)
+- oppdatering på fontstack spesifikasjon
+  ([07f2f01](https://github.com/helsenorge/designsystem/commit/07f2f0197099c5d820d0c6caf727b898c86a2c6d)), closes
+  [#344729](https://github.com/helsenorge/designsystem/issues/344729)
+- **illustration:** nye illustrasjoner
+  ([e3bc97d](https://github.com/helsenorge/designsystem/commit/e3bc97d4b9e0cbf4e4d5a38afd587e4da5a29b22)), closes
+  [#339457](https://github.com/helsenorge/designsystem/issues/339457)
+
+### Bug Fixes
+
+- usebreakpoint oppdateres live igjen
+  ([fb93380](https://github.com/helsenorge/designsystem/commit/fb93380c21fa31f974224b977cfd82e7077d9f87)), closes
+  [#345242](https://github.com/helsenorge/designsystem/issues/345242)
+- **highlightpanel:** ikke rendre tittel to ganger og fiks bakgrunnsfarge i large size
+  ([73e0a71](https://github.com/helsenorge/designsystem/commit/73e0a7182f9473ddce3ff6db8cf5ad758d517d86)), closes
+  [#337117](https://github.com/helsenorge/designsystem/issues/337117) [#340928](https://github.com/helsenorge/designsystem/issues/340928)
+- **modal:** returnerer fokus ved lukk og 400 prosent zoom fiks for høyde
+  ([7695152](https://github.com/helsenorge/designsystem/commit/7695152fc6ce8a995ec61636b5de8b47ad0dd6ef)), closes
+  [#344549](https://github.com/helsenorge/designsystem/issues/344549)
+
 ## [10.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.0.3&targetVersion=GTv10.1.0) (2025-02-11)
 
 ### Features
