@@ -116,6 +116,7 @@ export const Duolist: React.FC<DuolistProps> = props => {
     [duolistStyles['duolist--line']]: hasLines,
     [duolistStyles['duolist--non-formatted']]: nonFormatted,
     [duolistStyles['duolist--collapsed']]: useCollapsedMode,
+    [duolistStyles['duolist--not-collapsed']]: !useCollapsedMode,
   });
 
   const duolistColumnStyle = descriptionWidth ? descriptionWidth + '%' : 'minmax(60%, 1fr)';

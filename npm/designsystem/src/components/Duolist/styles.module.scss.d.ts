@@ -9,6 +9,7 @@ export type Styles = {
   'duolist--collapsed': string;
   'duolist--line': string;
   'duolist--non-formatted': string;
+  'duolist--not-collapsed': string;
   'duolist-wrapper--border': string;
   'duolist-wrapper--extra-padding-top': string;
 };

@@ -1,40 +1,34 @@
 @use 'sass:map';
+@use '../../scss/font-mixins' as fonts;
+@use '../../scss/spacers' as spacers;
 @import '../../scss/breakpoints';
 @import '../../scss/font-settings';
 @import '../../scss/palette';
-@import '../../scss/spacers';
 
 .duolist-wrapper {
   &--border {
-    padding: getSpacer(s) getSpacer(s) getSpacer(l);
+    padding: spacers.getSpacer(s) spacers.getSpacer(s) spacers.getSpacer(l);
     border: 0.062rem solid $neutral500;
   }
 
   &--extra-padding-top {
-    padding-top: getSpacer(xl);
-    padding-bottom: getSpacer(xl);
+    padding-top: spacers.getSpacer(xl);
+    padding-bottom: spacers.getSpacer(xl);
   }
 }
 
 .duolist {
-  font-size: $font-size-sm;
-  margin: 0;
   display: grid;
 
-  @media (min-width: map.get($grid-breakpoints, sm)) {
-    font-size: $font-size-md;
-  }
-
   &__dt {
-    padding-right: getSpacer(l);
+    @include fonts.definition-list-data;
 
-    @media (min-width: map.get($grid-breakpoints, sm)) {
-      padding-right: 2.6669rem;
-    }
+    padding-right: spacers.getSpacer(l);
 
     &--non-formatted {
       padding-right: 0;
     }
+
     &--non-formatted#{&}::after {
       content: attr(data-separator);
       font-weight: 400;
@@ -42,21 +36,15 @@
   }
 
   &__dd {
+    @include fonts.definition-list-data;
+
     margin-inline-start: 0;
   }
 
   &__dt,
   &__dd {
-    line-height: $lineheight-size-md;
-    padding-bottom: getSpacer(2xs);
-
-    &:last-of-type {
-      padding-bottom: 0;
-    }
-
     &--bold {
-      font-weight: 600;
-      line-height: $lineheight-size-sm;
+      @include fonts.definition-list-type;
     }
 
     &--non-formatted {
@@ -64,19 +52,52 @@
     }
   }
 
+  &--collapsed {
+    dt {
+      padding-bottom: spacers.getSpacer(3xs);
+    }
+
+    dd {
+      padding-bottom: spacers.getSpacer(s);
+    }
+  }
+
+  &--not-collapsed {
+    dt,
+    dd {
+      padding-bottom: spacers.getSpacer(2xs);
+    }
+  }
+
   &--collapsed &__dd {
     border-top: 0 !important;
   }
 
-  &--line &__dt,
-  &--line &__dd {
-    padding-top: getSpacer(2xs);
-    padding-bottom: getSpacer(2xs);
-    border-top: 0.062rem solid $neutral200;
+  &--line#{&}--collapsed {
+    dt {
+      padding-top: spacers.getSpacer(3xs);
+      padding-top: spacers.getSpacer(2xs);
+    }
 
-    &:last-of-type {
-      padding-bottom: getSpacer(2xs);
-      border-bottom: 0.062rem solid $neutral200;
+    dd {
+      padding-bottom: spacers.getSpacer(2xs);
+      border-bottom: 1px solid var(--color-base-border-onlight);
+
+      &:last-of-type {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  &--line#{&}--not-collapsed {
+    dt,
+    dd {
+      border-top: 1px solid var(--color-base-border-onlight);
+      padding-top: spacers.getSpacer(2xs);
+
+      &:last-of-type {
+        border-bottom: 0.062rem solid var(--color-base-border-onlight);
+      }
     }
   }
 
