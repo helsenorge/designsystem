@@ -55,7 +55,7 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
     ) {
       return cloneFormElement<TemporaryErrorWrapperClassNameProps>(child);
     }
-    if (React.isValidElement(child) && (child.type === React.Fragment || child.type === 'div')) {
+    if (React.isValidElement(child) && child.type === React.Fragment) {
       return React.Children.map(child.props.children, (child: React.ReactNode) => {
         return renderChild(child);
       });

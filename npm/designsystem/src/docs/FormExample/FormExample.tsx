@@ -214,26 +214,9 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
   );
 
   const horizontal = (): React.ReactElement => (
-    <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
-      <FormGroup size={props.size} error={errors.name ? (errors.name.message as string) : undefined} errorTextId="error4">
-        <Input
-          label={<Label labelTexts={[{ text: 'Navn' }]} />}
-          placeholder={'Skriv noe!'}
-          icon={Hospital}
-          inputId="name"
-          {...register('name', { required: nameErrorMessage })}
-        />
-      </FormGroup>
-      <FormGroup size={props.size} error={errors.monster ? (errors.monster.message as string) : undefined} errorTextId="error5">
-        <Select
-          selectId="monster"
-          label={<Label labelTexts={[{ text: 'Velg et monster' }]} />}
-          {...register('monster', { validate: requireFrankenstein })}
-        >
-          <option value={'Troll'}>{'Troll'}</option>
-          <option value={'Frankenstein'}>{'Frankenstein'}</option>
-        </Select>
-      </FormGroup>
+    <div style={{ display: 'flex', flexDirection: 'row', width: '100%', gap: '1rem' }}>
+      {name()}
+      {monster()}
     </div>
   );
 
