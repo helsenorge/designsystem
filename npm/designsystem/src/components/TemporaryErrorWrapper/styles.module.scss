@@ -4,28 +4,37 @@
 @use '../../scss/font-mixins' as fonts;
 
 .error-wrapper {
-  // margin-left: spacers.getSpacer(m);
-  // margin-right: spacers.getSpacer(m);
-  // margin-bottom: spacers.getSpacer(s);
+  // padding for å alltid matche når error wrapper er tilstede
+  // todo: slett. Kan ikke brukes, fordi errorwrapper brukes på så mange nivåer
   // padding: spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(2xs);
-  // display: flex;
-  // flex-flow: column;
-  // flex-wrap: nowrap;
-  // align-items: flex-start;
-  // justify-content: flex-end;
+
+  // prøv å sette riktig høyde
+  height: 100%;
+  width: 100%;
+
+  // prøv å aligne nederst inne i wrapper
+  display: flex;
+  flex-flow: column;
+  justify-content: end;
+
+  // @media (min-width: map.get($grid-breakpoints, md)) {
+  //   padding: spacers.getSpacer(s) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(m);
+  // }
 
   &--with-error {
-    padding: spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(2xs);
     background-color: var(--color-notification-background-error);
     border: 1px solid var(--core-color-cherry-400);
     border-left: 4px solid var(--color-notification-border-error);
 
-    // display: flex;
-    // flex-flow: column;
-    // flex-wrap: nowrap;
-    // align-items: flex-start;
-    // justify-content: flex-end;
+    // prøv å aligne nederst inne i wrapper
+    display: flex;
+    flex-flow: column;
+    justify-content: end;
 
+    // gammel padding
+    padding: spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(2xs);
+
+    // gammel padding
     @media (min-width: map.get($grid-breakpoints, md)) {
       padding: spacers.getSpacer(s) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(m);
     }

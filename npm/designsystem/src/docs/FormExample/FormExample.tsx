@@ -15,6 +15,7 @@ import Slider from '../../components/Slider';
 import Spacer from '../../components/Spacer';
 import Textarea from '../../components/Textarea';
 import Validation from '../../components/Validation';
+import { FormGrid } from '../../components/Validation/FormGrid/FormGrid';
 import { FormSize } from '../../constants';
 import { isTest } from '../../utils/environment';
 
@@ -307,7 +308,9 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       })}
     >
       <Validation size={props.size} errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
+        {/* <FormGrid> */}
         {getFormExample()}
+        {/* </FormGrid> */}
       </Validation>
       <Spacer />
       <Button type="submit">{'Send inn'}</Button>

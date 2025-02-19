@@ -47,17 +47,15 @@ export const DateTimePickerWrapper = React.forwardRef((props: DateTimePickerWrap
   };
 
   return (
-    <div ref={ref} tabIndex={-1}>
-      <TemporaryErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId} showLeftBorder={true}>
+    <div ref={ref} tabIndex={-1} style={{ width: '100%' }}>
+      <TemporaryErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
         {props.legend ? (
           <fieldset className={styles['date-time-picker-wrapper']} data-testid={testId}>
             {props.legend && <legend className={styles['date-time-picker-wrapper__legend']}>{legend}</legend>}
-            <div className={classNames(styles['date-time-picker-wrapper__row'])}>{React.Children.map(children, mapDateComponents)}</div>
+            {React.Children.map(children, mapDateComponents)}
           </fieldset>
         ) : (
-          <div className={classNames(styles['date-time-picker-wrapper'], styles['date-time-picker-wrapper__row'])}>
-            {React.Children.map(children, mapDateComponents)}
-          </div>
+          <div className={classNames(styles['date-time-picker-wrapper'])}>{React.Children.map(children, mapDateComponents)}</div>
         )}
       </TemporaryErrorWrapper>
     </div>

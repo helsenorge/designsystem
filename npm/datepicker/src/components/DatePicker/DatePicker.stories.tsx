@@ -7,8 +7,11 @@ import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
+import FormGroup from '@helsenorge/designsystem-react/components/FormGroup';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
+import Hospital from '@helsenorge/designsystem-react/components/Icons/Hospital';
+import Input from '@helsenorge/designsystem-react/components/Input';
 import Label from '@helsenorge/designsystem-react/components/Label';
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import Spacer from '@helsenorge/designsystem-react/components/Spacer';
@@ -23,7 +26,7 @@ import {
   validateMinMaxDate as validateMinMaxDate,
   validateMinTimeMaxTime as validateMinMaxTime,
 } from './validate-utils';
-// import { FormGrid } from '../FormGrid/FormGrid';
+import { FormGrid } from '../FormGrid/FormGrid';
 
 const meta = {
   title: '@helsenorge/datepicker/DatePicker',
@@ -301,8 +304,17 @@ interface DateForm {
   datetimeminute: number;
 }
 
+interface DateForm2 {
+  datepicker: string;
+  name: string;
+}
+
 export const ValidateDateTime: Story = {
   render: (args: DatePickerProps) => <ValidateDateTimeExample {...args} withOnDatePopupClosed={false} />,
+};
+
+export const ValidateDateTime2: Story = {
+  render: (args: DatePickerProps) => <ValidateDateTimeExample2 {...args} withOnDatePopupClosed={false} />,
 };
 
 export const ValidateOnDatePopupClosed: Story = {
@@ -403,7 +415,102 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Validation errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
           <DateTimePickerWrapper legend={'Datepicker legend'}>
-            {/* <FormGrid> */}
+            <FormGrid>
+              <DatePicker
+                {...args}
+                disableDays={[disabledDate]}
+                disableWeekends
+                footerContent={<Icon size={38} svgIcon={Calendar} />}
+                label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+                maxDate={maxDate}
+                minDate={minDate}
+                errorText={errors.datepicker?.message as string}
+                onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
+                {...register(datepicker, { validate: requireDate })}
+              />
+              <DateTimePickerWrapper errorText={(errors.datetimehour?.message as string) || (errors.datetimeminute?.message as string)}>
+                <DateTime
+                  defaultValue={12}
+                  label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+                  timeUnit={'hours'}
+                  {...register(datetimehour, { validate: requireHour })}
+                />
+                <DateTime
+                  defaultValue={0}
+                  aria-labelledby={'label01'}
+                  timeUnit={'minutes'}
+                  {...register(datetimeminute, { validate: requireMinute })}
+                />
+              </DateTimePickerWrapper>
+            </FormGrid>
+          </DateTimePickerWrapper>
+        </Validation>
+        <Spacer size={'s'} />
+        <Button type="submit">{'Send inn'}</Button>
+      </form>
+    </>
+  );
+};
+
+const ValidateDateTimeExample2 = ({ withOnDatePopupClosed, ...args }: StoryDatePickerProps): JSX.Element => {
+  const {
+    register,
+    trigger,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<DateForm2>({ mode: 'onBlur', reValidateMode: 'onBlur' });
+
+  const dateString = '30.11.2023';
+  const formatString = 'dd.MM.yyyy';
+
+  const parsedDate = parse(dateString, formatString, new Date());
+  const [startDate] = React.useState(parsedDate);
+  const minDate = new Date();
+  const maxDate = new Date();
+  const disabledDate = new Date();
+  minDate.setDate(startDate.getDate() - 30);
+  maxDate.setDate(startDate.getDate() + 30);
+  disabledDate.setDate(startDate.getDate() - 3);
+
+  const datepicker = 'datepicker';
+  const nameErrorMessage = 'Navn må fylles ut';
+
+  const requireDate = (value: string): true | string => {
+    // eslint-disable-next-line no-console
+    console.log('Validating date: ', value);
+    let validateResult = validateMinMaxDate(
+      value,
+      `Datoen må være fra ${minDate} og til ${maxDate}`,
+      'Datoen har feil format',
+      minDate,
+      maxDate
+    );
+    validateResult =
+      typeof validateResult !== 'string'
+        ? validateDisabledDates(value, [disabledDate], `Datoen kan ikke være ${disabledDate}`)
+        : validateResult;
+
+    return validateResult;
+  };
+
+  const onSubmit = (data: DateForm2): void => {
+    // eslint-disable-next-line no-console
+    console.log('Date submitted', data);
+  };
+
+  return (
+    <>
+      {withOnDatePopupClosed && (
+        <p>
+          {'use onDatePopupClosed to trigger validation:'}
+          <br />
+          {'onDatePopupClosed={(): Promise<boolean> => trigger(datepicker)}'}
+        </p>
+      )}
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Validation errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
+          <FormGrid>
             <DatePicker
               {...args}
               disableDays={[disabledDate]}
@@ -416,22 +523,16 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
               onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
               {...register(datepicker, { validate: requireDate })}
             />
-            <DateTimePickerWrapper errorText={(errors.datetimehour?.message as string) || (errors.datetimeminute?.message as string)}>
-              <DateTime
-                defaultValue={12}
-                label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
-                timeUnit={'hours'}
-                {...register(datetimehour, { validate: requireHour })}
+            <FormGroup error={errors.name ? (errors.name.message as string) : undefined} errorTextId="error4">
+              <Input
+                // label={<Label labelTexts={[{ text: 'Navn' }]} />}
+                placeholder={'Skriv noe!'}
+                icon={Hospital}
+                inputId="name"
+                {...register('name', { required: nameErrorMessage })}
               />
-              <DateTime
-                defaultValue={0}
-                aria-labelledby={'label01'}
-                timeUnit={'minutes'}
-                {...register(datetimeminute, { validate: requireMinute })}
-              />
-            </DateTimePickerWrapper>
-            {/* </FormGrid> */}
-          </DateTimePickerWrapper>
+            </FormGroup>
+          </FormGrid>
         </Validation>
         <Spacer size={'s'} />
         <Button type="submit">{'Send inn'}</Button>

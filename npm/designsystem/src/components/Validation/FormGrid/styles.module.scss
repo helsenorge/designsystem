@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '@helsenorge/designsystem-react/scss/spacers' as spacers;
-@use '@helsenorge/designsystem-react/scss/breakpoints' as *;
+@use '../../../scss/spacers' as spacers;
+@use '../../../scss/breakpoints' as *;
 
 .formgrid {
   display: grid;
