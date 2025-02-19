@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use '@helsenorge/designsystem-react/scss/spacers' as spacers;
+@use '@helsenorge/designsystem-react/scss/breakpoints' as *;
+
+.formgrid {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(150px, auto);
+  gap: spacers.getSpacer(2xs);
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    gap: spacers.getSpacer(m);
+  }
+}

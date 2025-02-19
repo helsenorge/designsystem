@@ -2,7 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
+import TemporaryErrorWrapper, {
+  TemporaryErrorWrapperClassNameProps,
+} from '@helsenorge/designsystem-react/components/TemporaryErrorWrapper/TemporaryErrorWrapper';
 import { useUuid } from '@helsenorge/designsystem-react/hooks/useUuid';
 import { isComponent } from '@helsenorge/designsystem-react/utils/component';
 
@@ -13,7 +15,7 @@ import styles from './styles.module.scss';
 
 export type TimeUnits = 'hours' | 'minutes';
 
-interface DateTimePickerWrapperProps extends ErrorWrapperClassNameProps {
+interface DateTimePickerWrapperProps extends TemporaryErrorWrapperClassNameProps {
   /** Sets the children of the datetimepicker - the DatePicker and DateTime components go here */
   children?: React.ReactNode;
   /** Error text to show above the component */
@@ -46,16 +48,18 @@ export const DateTimePickerWrapper = React.forwardRef((props: DateTimePickerWrap
 
   return (
     <div ref={ref} tabIndex={-1}>
-      <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
+      <TemporaryErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId} showLeftBorder={true}>
         {props.legend ? (
           <fieldset className={styles['date-time-picker-wrapper']} data-testid={testId}>
             {props.legend && <legend className={styles['date-time-picker-wrapper__legend']}>{legend}</legend>}
-            {React.Children.map(children, mapDateComponents)}
+            <div className={classNames(styles['date-time-picker-wrapper__row'])}>{React.Children.map(children, mapDateComponents)}</div>
           </fieldset>
         ) : (
-          <div className={styles['date-time-picker-wrapper']}>{React.Children.map(children, mapDateComponents)}</div>
+          <div className={classNames(styles['date-time-picker-wrapper'], styles['date-time-picker-wrapper__row'])}>
+            {React.Children.map(children, mapDateComponents)}
+          </div>
         )}
-      </ErrorWrapper>
+      </TemporaryErrorWrapper>
     </div>
   );
 });

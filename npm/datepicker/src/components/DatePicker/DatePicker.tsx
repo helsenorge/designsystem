@@ -5,11 +5,11 @@ import { nb } from 'date-fns/locale';
 import { Modifiers, DayOfWeek, DayPickerProps, PropsSingle } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
-import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
+import { TemporaryErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/TemporaryErrorWrapper';
 import { KeyboardEventKey, ZIndex } from '@helsenorge/designsystem-react/constants';
 import { useKeyboardEvent } from '@helsenorge/designsystem-react/hooks/useKeyboardEvent';
 import { useOutsideEvent } from '@helsenorge/designsystem-react/hooks/useOutsideEvent';
@@ -24,7 +24,7 @@ import styles from './styles.module.scss';
 export type DateFormat = 'dd.MM.yyyy';
 
 export interface DatePickerProps
-  extends ErrorWrapperClassNameProps,
+  extends TemporaryErrorWrapperClassNameProps,
     Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur' | 'autoComplete'>,
     Pick<DayPickerProps, 'dir' | 'initialFocus'> {
   /** Setter labels for popup på desktop visning */
@@ -307,6 +307,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       error={error}
       errorText={errorText}
       errorTextId={errorTextId}
+      errorWrapperClassName={errorWrapperClassName} // hvorfor var ikke denne her fra før av??
       inputId={inputId}
       label={label}
       max={maxDate ? format(maxDate, 'yyyy-MM-dd') : ''}

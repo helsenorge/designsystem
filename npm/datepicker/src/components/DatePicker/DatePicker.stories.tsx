@@ -23,6 +23,7 @@ import {
   validateMinMaxDate as validateMinMaxDate,
   validateMinTimeMaxTime as validateMinMaxTime,
 } from './validate-utils';
+import { FormGrid } from '../FormGrid/FormGrid';
 
 const meta = {
   title: '@helsenorge/datepicker/DatePicker',
@@ -401,37 +402,35 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
       )}
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Validation errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
-          <DateTimePickerWrapper
-            errorText={
-              (errors.datepicker?.message as string) ||
-              (errors.datetimehour?.message as string) ||
-              (errors.datetimeminute?.message as string)
-            }
-            legend={'Datepicker legend'}
-          >
-            <DatePicker
-              {...args}
-              disableDays={[disabledDate]}
-              disableWeekends
-              footerContent={<Icon size={38} svgIcon={Calendar} />}
-              label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
-              maxDate={maxDate}
-              minDate={minDate}
-              onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
-              {...register(datepicker, { validate: requireDate })}
-            />
-            <DateTime
-              defaultValue={12}
-              label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
-              timeUnit={'hours'}
-              {...register(datetimehour, { validate: requireHour })}
-            />
-            <DateTime
-              defaultValue={0}
-              aria-labelledby={'label01'}
-              timeUnit={'minutes'}
-              {...register(datetimeminute, { validate: requireMinute })}
-            />
+          <DateTimePickerWrapper legend={'Datepicker legend'}>
+            <FormGrid>
+              <DatePicker
+                {...args}
+                disableDays={[disabledDate]}
+                disableWeekends
+                footerContent={<Icon size={38} svgIcon={Calendar} />}
+                label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+                maxDate={maxDate}
+                minDate={minDate}
+                errorText={errors.datepicker?.message as string}
+                onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
+                {...register(datepicker, { validate: requireDate })}
+              />
+              <DateTimePickerWrapper errorText={(errors.datetimehour?.message as string) || (errors.datetimeminute?.message as string)}>
+                <DateTime
+                  defaultValue={12}
+                  label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+                  timeUnit={'hours'}
+                  {...register(datetimehour, { validate: requireHour })}
+                />
+                <DateTime
+                  defaultValue={0}
+                  aria-labelledby={'label01'}
+                  timeUnit={'minutes'}
+                  {...register(datetimeminute, { validate: requireMinute })}
+                />
+              </DateTimePickerWrapper>
+            </FormGrid>
           </DateTimePickerWrapper>
         </Validation>
         <Spacer size={'s'} />

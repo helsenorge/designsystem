@@ -4,22 +4,31 @@
 @use '../../scss/font-mixins' as fonts;
 
 .error-wrapper {
-  margin-left: spacers.getSpacer(m);
-  margin-right: spacers.getSpacer(m);
-  margin-bottom: spacers.getSpacer(s);
+  // margin-left: spacers.getSpacer(m);
+  // margin-right: spacers.getSpacer(m);
+  // margin-bottom: spacers.getSpacer(s);
+  // padding: spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(2xs);
+  // display: flex;
+  // flex-flow: column;
+  // flex-wrap: nowrap;
+  // align-items: flex-start;
+  // justify-content: flex-end;
 
   &--with-error {
     padding: spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(2xs);
     background-color: var(--color-notification-background-error);
     border: 1px solid var(--core-color-cherry-400);
+    border-left: 4px solid var(--color-notification-border-error);
+
+    // display: flex;
+    // flex-flow: column;
+    // flex-wrap: nowrap;
+    // align-items: flex-start;
+    // justify-content: flex-end;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       padding: spacers.getSpacer(s) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(m);
     }
-  }
-
-  &__left-border {
-    border-left: 4px solid var(--color-notification-border-error);
   }
 
   &__errors {
