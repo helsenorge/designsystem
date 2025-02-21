@@ -6,10 +6,10 @@
 
 .validation {
   &__error-wrapper {
-    padding-bottom: getSpacer(m);
+    margin-bottom: getSpacer(2xs);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      padding-bottom: getSpacer(l);
+      margin-bottom: getSpacer(m);
     }
   }
 

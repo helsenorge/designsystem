@@ -1,34 +1,24 @@
 @use 'sass:map';
-@import '../../scss/spacers';
-@import '../../scss/breakpoints';
-@import '../../scss/palette';
-@import '../../scss/font-settings';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/breakpoints' as *;
+@use '../../scss/font-mixins' as fonts;
 
 .error-wrapper {
-  position: relative;
-
   &--with-error {
-    padding-top: getSpacer(s);
-    margin-left: getSpacer(xs) * -1;
-    margin-right: getSpacer(xs) * -1;
-    padding-left: getSpacer(2xs);
-    padding-right: getSpacer(xs);
-    background-color: $cherry100;
-    border-left: getSpacer(3xs) solid $cherry600;
+    padding: spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(m) spacers.getSpacer(2xs);
+    background-color: var(--color-notification-background-error);
+    border: 1px solid var(--core-color-cherry-400);
+    border-left: 4px solid var(--color-notification-border-error);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      margin-left: (getSpacer(m) + 0.25rem) * -1;
-      margin-right: (getSpacer(m) + 0.25rem) * -1;
-      padding-left: getSpacer(m);
-      padding-right: getSpacer(m);
+      padding: spacers.getSpacer(s) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(m);
     }
   }
 
   &__errors {
-    line-height: 1.875rem;
-    font-size: $font-size-sm;
-    font-weight: 600;
-    color: $cherry600;
     margin-top: 0;
+    color: var(--color-notification-border-error);
+
+    @include fonts.label;
   }
 }
