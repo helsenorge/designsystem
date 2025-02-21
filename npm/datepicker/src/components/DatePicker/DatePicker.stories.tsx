@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
+import Input from '@helsenorge/designsystem-react/components/Input';
 import Label from '@helsenorge/designsystem-react/components/Label';
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import Spacer from '@helsenorge/designsystem-react/components/Spacer';
@@ -482,6 +483,32 @@ export const AriaLabels: Story = {
         maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
         minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
       />
+    );
+  },
+};
+
+export const TimeInputTypeNumeric: Story = {
+  render: (args: DatePickerProps) => {
+    const [startDate] = React.useState(new Date('01.01.2024'));
+
+    return (
+      <>
+        <Input width={4} inputMode="numeric" type="number" label="Testing input type numeric" />
+        <Spacer />
+        <DateTimePickerWrapper>
+          <DatePicker
+            {...args}
+            dateValue={startDate}
+            label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+          />
+          <DateTime
+            defaultValue={12}
+            label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+            timeUnit={'hours'}
+          />
+          <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
+        </DateTimePickerWrapper>
+      </>
     );
   },
 };
