@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 
 interface LanguageContextType<T extends string = string> {
   language: T;
@@ -27,7 +27,14 @@ interface LanguageProviderProps<T extends string> {
 }
 
 const LanguageProvider = <T extends string>({ children, language }: LanguageProviderProps<T>): React.JSX.Element => {
-  return <LanguageContext.Provider value={{ language }}>{children}</LanguageContext.Provider>;
+  const value = useMemo<LanguageContextType<T>>(
+    () => ({
+      language,
+    }),
+    [language]
+  );
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
 
 export default LanguageProvider;
