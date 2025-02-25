@@ -26,7 +26,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: StatusDotVariant,
+      options: Object.values(StatusDotVariant),
     },
     text: {
       control: 'text',
@@ -48,4 +48,23 @@ export const OnDark: Story = {
       <StatusDot {...args} onColor={FormOnColor.ondark} />
     </div>
   ),
+};
+
+export const Variants: Story = {
+  render: args => {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <StatusDot {...args} variant="active" />
+        <StatusDot {...args} variant="alert" />
+        <StatusDot {...args} variant="attachment" />
+        <StatusDot {...args} variant="cancelled" />
+        <StatusDot {...args} variant="group" />
+        <StatusDot {...args} variant="info" />
+        <StatusDot {...args} variant="noaccess" />
+        <StatusDot {...args} variant="recurring" />
+        <StatusDot {...args} variant="transparent" />
+        <StatusDot {...args} variant="warning" />
+      </div>
+    );
+  },
 };
