@@ -6,6 +6,7 @@ import LanguageProvider, { useLanguage } from './language';
 import Button from '../components/Button';
 import Spacer from '../components/Spacer';
 import Title from '../components/Title';
+import { LanguageLocales } from '../constants';
 
 // Eksempel på bruk av context:
 
@@ -24,11 +25,11 @@ const english: Resources = {
   description: 'Description',
 };
 
-const getResources = (language: string): Resources => {
+const getResources = (language: LanguageLocales): Resources => {
   switch (language) {
-    case 'en-GB':
+    case LanguageLocales.ENGLISH:
       return english;
-    case 'nb-NO':
+    case LanguageLocales.NORWEGIAN:
     default:
       return norwegian;
   }
@@ -38,10 +39,8 @@ interface ComponentWithTranslationsProps {
   resources?: Partial<Resources>;
 }
 
-type Languages = 'en-GB' | 'nb-NO';
-
 const ComponentWithTranslations: React.FC<ComponentWithTranslationsProps> = ({ resources }) => {
-  const { language } = useLanguage<Languages>('nb-NO');
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
 
   const mergedResources: Resources = {
@@ -60,12 +59,15 @@ const ComponentWithTranslations: React.FC<ComponentWithTranslationsProps> = ({ r
 // Eksempel på bruk av provider:
 
 const LanguageProviderExample = (): React.JSX.Element => {
-  const [language, setLanguage] = useState<Languages>('nb-NO');
+  const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
 
   return (
-    <LanguageProvider<Languages> language={language}>
-      <Button onClick={() => setLanguage(language === 'en-GB' ? 'nb-NO' : 'en-GB')} variant="outline">
-        {language === 'en-GB' ? 'Bytt til bokmål' : 'Switch to English'}
+    <LanguageProvider<LanguageLocales> language={language}>
+      <Button
+        onClick={() => setLanguage(language === LanguageLocales.ENGLISH ? LanguageLocales.NORWEGIAN : LanguageLocales.ENGLISH)}
+        variant="outline"
+      >
+        {language === LanguageLocales.ENGLISH ? 'Bytt til bokmål' : 'Switch to English'}
       </Button>
       <Spacer />
       <ComponentWithTranslations />
@@ -101,11 +103,11 @@ const english: Resources = {
   description: 'Description',
 };
 
-const getResources = (language: string): Resources => {
+const getResources = (language: LanguageLocales): Resources => {
   switch (language) {
-    case 'en-GB':
+    case LanguageLocales.ENGLISH:
       return english;
-    case 'nb-NO':
+    case LanguageLocales.NORWEGIAN:
     default:
       return norwegian;
   }
@@ -115,10 +117,8 @@ interface ComponentWithTranslationsProps {
   resources?: Partial<Resources>;
 }
 
-type Languages = 'en-GB' | 'nb-NO';
-
 const ComponentWithTranslations: React.FC<ComponentWithTranslationsProps> = ({ resources }) => {
-  const { language } = useLanguage<Languages>('nb-NO');
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
 
   const mergedResources: Resources = {
@@ -137,12 +137,15 @@ const ComponentWithTranslations: React.FC<ComponentWithTranslationsProps> = ({ r
 // Eksempel på bruk av provider:
 
 const LanguageProviderExample = (): React.JSX.Element => {
-  const [language, setLanguage] = useState<Languages>('nb-NO');
+  const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
 
   return (
-    <LanguageProvider<Languages> language={language}>
-      <Button onClick={() => setLanguage(language === 'en-GB' ? 'nb-NO' : 'en-GB')} variant="outline">
-        {language === 'en-GB' ? 'Bytt til bokmål' : 'Switch to English'}
+    <LanguageProvider<LanguageLocales> language={language}>
+      <Button
+        onClick={() => setLanguage(language === LanguageLocales.ENGLISH ? LanguageLocales.NORWEGIAN : LanguageLocales.ENGLISH)}
+        variant="outline"
+      >
+        {language === LanguageLocales.ENGLISH ? 'Bytt til bokmål' : 'Switch to English'}
       </Button>
       <Spacer />
       <ComponentWithTranslations />
