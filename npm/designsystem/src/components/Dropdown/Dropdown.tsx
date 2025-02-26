@@ -115,6 +115,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
 
     if (!isOpen) {
       handleOpen();
+      event.preventDefault();
       return;
     } else if (event.key === KeyboardEventKey.Escape && isOpen) {
       handleClose();
