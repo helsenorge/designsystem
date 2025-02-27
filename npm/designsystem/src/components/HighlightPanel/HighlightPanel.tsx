@@ -103,7 +103,7 @@ const HighlightPanel: React.FC<HighlightPanelProps> = props => {
     className
   );
 
-  const renderContent = () => {
+  const renderContent = (): React.ReactNode => {
     const titleElement = title && (
       <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance="title4">
         {title}
@@ -117,14 +117,10 @@ const HighlightPanel: React.FC<HighlightPanelProps> = props => {
         <>
           <div className={styles.highlightpanel__icon}>
             {typeof svgIcon === 'string' ? <LazyIcon iconName={svgIcon} size={iconSize} /> : <Icon svgIcon={svgIcon} size={iconSize} />}
-            {title && <div className={styles['mobile']}>{titleElement}</div>}
+            {title && breakpoint < Breakpoint.md && <div className={styles['highlightpanel__title-wrapper']}>{titleElement}</div>}
           </div>
           <div className={styles.highlightpanel__content}>
-            {title && (
-              <div className={styles['desktop']} aria-hidden="true">
-                {titleElement}
-              </div>
-            )}
+            {title && breakpoint >= Breakpoint.md && <div className={styles['highlightpanel__title-wrapper']}>{titleElement}</div>}
             {children}
           </div>
         </>

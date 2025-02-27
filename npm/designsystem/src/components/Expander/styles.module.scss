@@ -1,11 +1,11 @@
 /* stylelint-disable no-descending-specificity */
 @use 'sass:map';
-@import '../../scss/spacers';
-@import '../../scss/breakpoints';
-@import '../../scss/palette';
-@import '../../scss/font-settings';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/palette' as palette;
+@use '../../scss/font-settings' as font-settings;
+@use '../Button/styles.module' as button;
+@use '../../scss/breakpoints' as *;
 @import '../../scss/supernova/styles/colors';
-@import '../Button/styles.module';
 
 .expander {
   position: initial;
@@ -16,7 +16,7 @@
   }
 
   @media print {
-    border: 1px solid $black;
+    border: 1px solid palette.$black;
   }
 
   &__icon {
@@ -24,27 +24,27 @@
     align-items: center;
 
     &--left {
-      margin-right: getSpacer(2xs);
+      margin-right: spacers.getSpacer(2xs);
     }
 
     &--right {
       margin-left: auto;
-      padding-left: getSpacer(2xs);
+      padding-left: spacers.getSpacer(2xs);
     }
   }
 
   &__button {
     position: relative;
-    padding-right: getSpacer(s);
+    padding-right: spacers.getSpacer(s);
     text-align: left;
 
     &--expanded {
-      @include outline-borderless-hover;
+      @include button.outline-borderless-hover;
     }
   }
 
   &__button &__button__text {
-    @include outline-borderless-text-hover;
+    @include button.outline-borderless-text-hover;
   }
 
   &__trigger {
@@ -55,31 +55,31 @@
     align-items: center;
     border: none;
     outline: none;
-    font-size: $font-size-sm;
-    line-height: $lineheight-size-sm;
+    font-size: font-settings.$font-size-sm;
+    line-height: font-settings.$lineheight-size-sm;
     font-weight: 600;
     text-align: left;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      font-size: $font-size-md;
-      line-height: $lineheight-size-md;
+      font-size: font-settings.$font-size-md;
+      line-height: font-settings.$lineheight-size-md;
     }
 
     &--large {
       width: 100%;
-      padding: getSpacer(xs) getSpacer(2xs) getSpacer(xs) getSpacer(s);
+      padding: spacers.getSpacer(xs) spacers.getSpacer(2xs) spacers.getSpacer(xs) spacers.getSpacer(s);
       cursor: pointer;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(xs) getSpacer(s) getSpacer(xs) getSpacer(l);
+        padding: spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(l);
       }
     }
 
     &--icon {
-      padding-left: getSpacer(2xs);
+      padding-left: spacers.getSpacer(2xs);
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding-left: getSpacer(s);
+        padding-left: spacers.getSpacer(s);
       }
     }
 
@@ -87,22 +87,22 @@
 
     @each $color in $colors {
       &--#{$color} {
-        background-color: map.get($palette-map, #{$color}50);
+        background-color: map.get(palette.$palette-map, #{$color}50);
 
         &:hover {
-          background-color: map.get($palette-map, #{$color}100);
+          background-color: map.get(palette.$palette-map, #{$color}100);
         }
 
         &:focus {
           box-shadow:
-            0 0 0 1.5px $neutral600,
-            inset 0 0 0 1.5px $neutral600;
+            0 0 0 1.5px palette.$neutral600,
+            inset 0 0 0 1.5px palette.$neutral600;
         }
         &#{$trigger}--expanded {
-          background-color: map.get($palette-map, #{$color}100);
+          background-color: map.get(palette.$palette-map, #{$color}100);
 
           &:hover {
-            background-color: map.get($palette-map, #{$color}200);
+            background-color: map.get(palette.$palette-map, #{$color}200);
           }
         }
       }
@@ -110,25 +110,25 @@
 
     // Hvit bakgrunn har egne regler for bakgrunnsfarge, hover og fokus
     &--white {
-      background-color: $white;
+      background-color: palette.$white;
 
       &:hover {
-        background-color: $neutral100;
+        background-color: palette.$neutral100;
       }
 
       &:focus {
         box-shadow:
-          0 0 0 1.5px $neutral600,
-          inset 0 0 0 1.5px $neutral600;
+          0 0 0 1.5px palette.$neutral600,
+          inset 0 0 0 1.5px palette.$neutral600;
       }
       &#{$trigger}--expanded {
-        box-shadow: inset 0 0 0 6px $neutral100;
+        box-shadow: inset 0 0 0 6px palette.$neutral100;
 
         &:focus {
           box-shadow:
-            0 0 0 1.5px $neutral600,
-            inset 0 0 0 1.5px $neutral600,
-            inset 0 0 0 6px $neutral100;
+            0 0 0 1.5px palette.$neutral600,
+            inset 0 0 0 1.5px palette.$neutral600,
+            inset 0 0 0 6px palette.$neutral100;
         }
       }
     }
@@ -136,7 +136,7 @@
 
   &__button-container {
     &--sticky {
-      background-color: $white;
+      background-color: palette.$white;
     }
   }
 
@@ -163,15 +163,15 @@
     }
 
     &--small {
-      margin-top: getSpacer(s);
+      margin-top: spacers.getSpacer(s);
     }
     &--small#{&}--sticky {
       margin-top: 1.25rem;
     }
 
     &--nested-line {
-      padding-left: getSpacer(s);
-      border-left: solid 3px $neutral200;
+      padding-left: spacers.getSpacer(s);
+      border-left: solid 3px palette.$neutral200;
 
       @media (min-width: map.get($grid-breakpoints, md)) {
         margin-left: calc(38px / 2 - 1px); // Halvparten av chevron-ikonets bredde minus halve bredden på border
@@ -182,10 +182,10 @@
     }
 
     &--large {
-      padding: getSpacer(s) getSpacer(m) getSpacer(l) getSpacer(s);
+      padding: spacers.getSpacer(s) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(s);
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(m) getSpacer(l) getSpacer(xl);
+        padding: spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(xl);
       }
       &#{$content}--icon {
         @media (min-width: map.get($grid-breakpoints, md)) {
@@ -195,31 +195,31 @@
     }
 
     &--neutral {
-      background-color: $neutral50;
+      background-color: palette.$neutral50;
     }
 
     &--blueberry {
-      background-color: $blueberry50;
+      background-color: palette.$blueberry50;
     }
 
     &--cherry {
-      background-color: $cherry50;
+      background-color: palette.$cherry50;
     }
 
     &--kiwi {
-      background-color: $kiwi50;
+      background-color: palette.$kiwi50;
     }
 
     &--banana {
-      background-color: $banana50;
+      background-color: palette.$banana50;
     }
 
     &--plum {
-      background-color: $plum50;
+      background-color: palette.$plum50;
     }
 
     &--white {
-      background-color: $white;
+      background-color: palette.$white;
     }
   }
 }

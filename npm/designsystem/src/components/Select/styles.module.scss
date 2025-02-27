@@ -1,8 +1,8 @@
 @use 'sass:map';
-@import '../../scss/spacers';
-@import '../../scss/breakpoints';
-@import '../../scss/palette';
-@import '../../scss/font-settings';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/palette' as palette;
+@use '../../scss/font-settings' as font-settings;
+@use '../../scss/breakpoints' as *;
 
 .select-wrapper {
   display: flex;
@@ -12,7 +12,7 @@
 .select-inner-wrapper {
   // Grid brukes til å kunne plassere custom ikon fritt over select elementet
   display: inline-grid;
-  background-color: $white;
+  background-color: palette.$white;
   align-items: center;
 
   // Andre kolonne her styrer plassering av select ikonet
@@ -23,23 +23,23 @@
   }
 
   &:hover {
-    background: $neutral50;
+    background: palette.$neutral50;
   }
 
   &--on-blueberry {
     &:hover {
-      background-color: $blueberry50;
+      background-color: palette.$blueberry50;
     }
   }
 
   &--invalid {
     &:hover {
-      background-color: $cherry50;
+      background-color: palette.$cherry50;
     }
   }
 
   &--disabled {
-    color: $neutral700;
+    color: palette.$neutral700;
     background: transparent;
 
     &:hover {
@@ -56,26 +56,26 @@
   background-color: transparent;
   grid-column: 1 / 3;
   grid-row: 1;
-  padding-left: getSpacer(xs);
+  padding-left: spacers.getSpacer(xs);
   border: none;
-  outline: $neutral700 solid 2px;
+  outline: palette.$neutral700 solid 2px;
   outline-offset: -2px;
   font-family: inherit;
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
+  font-size: font-settings.$font-size-sm;
+  line-height: font-settings.$lineheight-size-sm;
   border-radius: 0;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
     height: 3.125rem;
-    font-size: $font-size-md;
+    font-size: font-settings.$font-size-md;
   }
 
   &--on-blueberry {
-    outline-color: $blueberry500;
+    outline-color: palette.$blueberry500;
   }
 
   &--invalid {
-    outline-color: $cherry600;
+    outline-color: palette.$cherry600;
   }
 
   :hover > & {
@@ -84,22 +84,22 @@
   }
 
   &:focus {
-    outline: $black solid 4px;
+    outline: palette.$black solid 4px;
     outline-offset: -2px;
   }
 
   &:disabled {
-    outline: $neutral600 dashed 2px;
+    outline: palette.$neutral600 dashed 2px;
     outline-offset: -2px;
   }
 
   & > option {
-    background: $white;
+    background: palette.$white;
     font-family: inherit;
-    font-size: $font-size-sm;
+    font-size: font-settings.$font-size-sm;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      font-size: $font-size-md;
+      font-size: font-settings.$font-size-md;
     }
   }
 }

@@ -5,7 +5,9 @@ import cn from 'classnames';
 import { AnalyticsId, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsVisible } from '../../hooks/useIsVisible';
+import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { palette } from '../../theme/palette';
+import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { uuid } from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
@@ -122,6 +124,7 @@ const Modal: React.FC<ModalProps> = props => {
   const bottomContent = React.useRef<HTMLDivElement>(null);
   const bottomContentVisible = useIsVisible(bottomContent);
   const contentIsScrollable = modalContentRef.current && modalContentRef.current.scrollHeight > modalContentRef.current.clientHeight;
+  useReturnFocusOnUnmount(dialogRef);
 
   function handleKeyboardEvent(e: KeyboardEvent): void {
     if (e.key === 'Escape' && props.onClose) {
@@ -152,9 +155,7 @@ const Modal: React.FC<ModalProps> = props => {
 
   const showActions = (props.secondaryButtonText && props.secondaryButtonText?.length > 0) || props.onSuccess;
 
-  // ariaLabelledBy prioriteres over ariaLabel, men dersom ariaLabel brukes trengs ikke ariaLabelledBy
-  const ariaLabel = !props.ariaLabelledBy ? props.ariaLabel : undefined;
-  const ariaLabelledBy = props.ariaLabelledBy ? props.ariaLabelledBy : !props.ariaLabel ? titleId : undefined;
+  const ariaLabelAttributes = getAriaLabelAttributes({ label: props.ariaLabel, id: props.ariaLabelledBy, fallbackId: titleId });
 
   useEffect(() => {
     const overlayElement = overlayRef.current;
@@ -199,15 +200,7 @@ const Modal: React.FC<ModalProps> = props => {
         style={{ zIndex }}
       >
         <div className={styles.align}>
-          <div
-            className={dialogClasses}
-            role="dialog"
-            aria-modal="true"
-            tabIndex={-1}
-            aria-label={ariaLabel}
-            aria-labelledby={ariaLabelledBy}
-            ref={dialogRef}
-          >
+          <div className={dialogClasses} role="dialog" aria-modal="true" tabIndex={-1} {...ariaLabelAttributes} ref={dialogRef}>
             <div
               className={cn(styles['modal__shadow'], styles['modal__shadow--top'], {
                 [styles['modal__shadow--show']]: !topContentVisible && contentIsScrollable,
@@ -219,8 +212,7 @@ const Modal: React.FC<ModalProps> = props => {
               })}
               tabIndex={contentIsScrollable ? 0 : undefined}
               role={contentIsScrollable ? 'region' : undefined}
-              aria-label={contentIsScrollable ? ariaLabel : undefined}
-              aria-labelledby={contentIsScrollable ? ariaLabelledBy : undefined}
+              {...(contentIsScrollable ? ariaLabelAttributes : {})}
               ref={modalContentRef}
             >
               {!props.noCloseButton && (
@@ -238,7 +230,7 @@ const Modal: React.FC<ModalProps> = props => {
                 <div ref={topContent} />
                 <div className={styles.modal__contentWrapper__title}>
                   {getIcon(variant, props.icon)}
-                  <Title id={ariaLabelledBy} htmlMarkup="h3" appearance="title3" className={titleClasses}>
+                  <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup="h3" appearance="title3" className={titleClasses}>
                     {props.title}
                   </Title>
                   {props.afterTitleChildren && <div className={styles['modal__afterTitleChildren']}>{props.afterTitleChildren}</div>}

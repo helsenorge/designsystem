@@ -1,5 +1,4 @@
 export type Styles = {
-  desktop: string;
   highlightpanel__col: string;
   'highlightpanel__col--large-with-icon': string;
   'highlightpanel__col--offset': string;
@@ -7,6 +6,7 @@ export type Styles = {
   'highlightpanel__content-wrapper': string;
   highlightpanel__icon: string;
   highlightpanel__row: string;
+  'highlightpanel__title-wrapper': string;
   'highlightpanel--blueberry': string;
   'highlightpanel--cherry': string;
   'highlightpanel--fluid': string;
@@ -15,7 +15,6 @@ export type Styles = {
   'highlightpanel--medium': string;
   'highlightpanel--neutral': string;
   'highlightpanel--white': string;
-  mobile: string;
 };
 
 export type ClassNames = keyof Styles;

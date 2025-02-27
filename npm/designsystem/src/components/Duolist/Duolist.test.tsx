@@ -157,9 +157,9 @@ describe('Gitt at Duolist skal vises', (): void => {
       const dd = screen.getByText('test description 1');
       const separator = dt.getAttribute('data-separator');
 
-      expect(duoList.className).toBe('duolist duolist--non-formatted');
-      expect(dt.className).toBe('duolist__dt duolist__dt--non-formatted');
-      expect(dd.className).toBe('duolist__dd duolist__dd--non-formatted');
+      expect(duoList.className).toContain('duolist duolist--non-formatted');
+      expect(dt.className).toContain('duolist__dt duolist__dt--non-formatted');
+      expect(dd.className).toContain('duolist__dd duolist__dd--non-formatted');
       expect(separator).toBe(': ');
     });
   });

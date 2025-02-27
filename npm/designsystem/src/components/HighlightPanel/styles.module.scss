@@ -1,8 +1,8 @@
 @use 'sass:map';
-@import '../../scss/spacers';
-@import '../../scss/breakpoints';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/screen-reader' as *;
+@use '../../scss/breakpoints' as *;
 @import '../../scss/grid';
-@import '../../scss/screen-reader';
 @import '../../scss/supernova/styles/colors';
 
 @mixin content-wrapper-with-icon-flex {
@@ -17,11 +17,7 @@
 }
 
 @mixin content-wrapper-with-icon-padding {
-  padding-top: getSpacer(s);
-
-  @media (min-width: map.get($grid-breakpoints, xl)) {
-    padding-top: getSpacer(m);
-  }
+  padding-top: spacers.getSpacer(m);
 }
 
 .highlightpanel {
@@ -50,53 +46,37 @@
     }
   }
 
-  // large skal også ha bakgrunnsfarge på den ytre containeren på de minste skjermnene
-  // slik at bakgrunnsfargen går helt ut til skjermkanten
   &--large {
-    @each $color in $colors {
-      &#{$panel}--#{$color} {
-        @include media-breakpoint-down(xs) {
-          background-color: var(--color-base-background-#{$color});
-        }
-      }
-    }
-
-    &#{$panel}--white {
-      @include media-breakpoint-down(xs) {
-        background-color: var(--color-base-background-white);
-      }
-    }
     #{$panel}__content-wrapper {
-      padding-top: getSpacer(m);
-      padding-bottom: getSpacer(l);
+      padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-top: getSpacer(l);
-        padding-bottom: getSpacer(xl);
+        padding-top: spacers.getSpacer(l);
+        padding-bottom: spacers.getSpacer(xl);
       }
     }
   }
 
   &--medium {
     #{$panel}__content-wrapper {
-      padding: getSpacer(m) getSpacer(s) getSpacer(l);
+      padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: getSpacer(m) getSpacer(m) getSpacer(l);
+        padding: spacers.getSpacer(m) spacers.getSpacer(m) spacers.getSpacer(l);
       }
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding: getSpacer(l);
+        padding: spacers.getSpacer(l);
       }
     }
   }
 
   // fluid skal ha bakgrunnsfarge på den ytre containeren
   &--fluid {
-    padding: getSpacer(m) getSpacer(s) getSpacer(l);
+    padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      padding: getSpacer(m) getSpacer(m) getSpacer(l);
+      padding: spacers.getSpacer(m) spacers.getSpacer(m) spacers.getSpacer(l);
     }
 
     @each $color in $colors {
@@ -118,7 +98,7 @@
       @include content-wrapper-with-icon-flex-responsive;
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-left: getSpacer(m);
+        padding-left: spacers.getSpacer(m);
       }
     }
   }
@@ -132,17 +112,17 @@
       @include content-wrapper-with-icon-padding;
 
       @media (min-width: map.get($grid-breakpoints, sm)) {
-        padding-left: getSpacer(s);
+        padding-left: spacers.getSpacer(s);
       }
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding-left: getSpacer(m);
+        padding-left: spacers.getSpacer(m);
       }
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
         padding-left: 0;
-        padding-top: getSpacer(l);
-        padding-bottom: getSpacer(xl);
+        padding-top: spacers.getSpacer(l);
+        padding-bottom: spacers.getSpacer(xl);
       }
     }
 
@@ -154,7 +134,7 @@
         display: flex;
         justify-content: flex-end;
         margin-right: 0;
-        padding-right: getSpacer(s);
+        padding-right: spacers.getSpacer(s);
       }
     }
 
@@ -180,8 +160,8 @@
 
   &__icon {
     display: inline-flex;
-    margin-right: getSpacer(s);
-    margin-bottom: getSpacer(2xs);
+    margin-right: spacers.getSpacer(s);
+    margin-bottom: spacers.getSpacer(2xs);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       margin-bottom: 0;
@@ -219,21 +199,9 @@
       }
     }
   }
-}
 
-.mobile {
-  display: flex;
-  align-items: center;
-
-  @media screen and (width >= 768px) {
-    @include sr-only;
-  }
-}
-
-.desktop {
-  display: none;
-
-  @media screen and (width >= 768px) {
+  &__title-wrapper {
     display: flex;
+    align-items: center;
   }
 }

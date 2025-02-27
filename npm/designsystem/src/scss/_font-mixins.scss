@@ -1,6 +1,6 @@
 @use 'sass:map';
-@import './spacers';
-@import './breakpoints';
+@use './spacers' as spacers;
+@use './breakpoints' as *;
 
 @mixin title-feature {
   font-size: 2.375rem;
@@ -135,6 +135,28 @@
   }
 }
 
+@mixin sublabel {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.125rem;
+    line-height: 1.463rem;
+  }
+}
+
+@mixin sublabel-subdued {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-weight: 400;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.125rem;
+    line-height: 1.463rem;
+  }
+}
+
 @mixin compact-data {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -181,5 +203,38 @@
   @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+}
+
+@mixin text-list {
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  font-weight: 400;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+  }
+}
+
+@mixin definition-list-type {
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+  }
+}
+
+@mixin definition-list-data {
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  font-weight: 400;
+
+  @media (min-width: map.get($grid-breakpoints, md)) {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
   }
 }

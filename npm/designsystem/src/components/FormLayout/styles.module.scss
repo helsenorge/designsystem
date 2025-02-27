@@ -1,16 +1,15 @@
-@import '../../scss/spacers';
-@import '../../scss/breakpoints';
+@use '../../scss/spacers' as spacers;
 
 .form-layout-container {
-  // Settes med harde verdier fordi calc() lenger nede ikke støtter getSpacer()
+  // Settes med harde verdier fordi calc() lenger nede ikke støtter spacers.getSpacer()
   --column-gap: 2rem;
 
   display: flex;
   flex-wrap: wrap;
-  gap: getSpacer(s) var(--column-gap);
+  gap: spacers.getSpacer(s) var(--column-gap);
 
   &--large {
-    row-gap: getSpacer(2xs);
+    row-gap: spacers.getSpacer(2xs);
   }
 }
 

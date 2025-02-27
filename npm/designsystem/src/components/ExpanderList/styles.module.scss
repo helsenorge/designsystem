@@ -1,7 +1,7 @@
 @use 'sass:map';
-@import '../../scss/spacers';
-@import '../../scss/breakpoints';
-@import '../../scss/font-settings';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/font-settings' as font-settings;
+@use '../../scss/breakpoints' as *;
 @import '../../scss/supernova/styles/colors';
 
 .expander-list {
@@ -46,42 +46,42 @@
       background-color: var(--color-base-background-white);
 
       &--white {
-        border-top: getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-left: getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-right: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-top: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-left: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-right: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
 
         &:last-of-type {
-          border-bottom: getSpacer(2xs) var(--core-color-neutral-100) solid;
+          border-bottom: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
         }
       }
 
       &--blueberry {
-        border-top: getSpacer(2xs) var(--core-color-blueberry-100) solid;
-        border-left: getSpacer(2xs) var(--core-color-blueberry-100) solid;
-        border-right: getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-top: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-left: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-right: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
 
         &:last-of-type {
-          border-bottom: getSpacer(2xs) var(--core-color-blueberry-100) solid;
+          border-bottom: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
         }
       }
 
       &--cherry {
-        border-top: getSpacer(2xs) var(--core-color-cherry-100) solid;
-        border-left: getSpacer(2xs) var(--core-color-cherry-100) solid;
-        border-right: getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-top: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-left: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-right: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
 
         &:last-of-type {
-          border-bottom: getSpacer(2xs) var(--core-color-cherry-100) solid;
+          border-bottom: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
         }
       }
 
       &--neutral {
-        border-top: getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-left: getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-right: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-top: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-left: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-right: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
 
         &:last-of-type {
-          border-bottom: getSpacer(2xs) var(--core-color-neutral-100) solid;
+          border-bottom: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
         }
       }
     }
@@ -117,8 +117,8 @@
 .expander-list-link {
   padding: 0;
   position: relative;
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
+  font-size: font-settings.$font-size-sm;
+  line-height: font-settings.$lineheight-size-sm;
   display: flex;
   cursor: pointer;
   font-family: inherit;
@@ -132,8 +132,8 @@
   outline: none;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: $font-size-md;
-    line-height: $lineheight-size-md;
+    font-size: font-settings.$font-size-md;
+    line-height: font-settings.$lineheight-size-md;
   }
 
   &--open {
@@ -142,7 +142,7 @@
 
   &--fill,
   &--fill-negative {
-    margin-top: getSpacer(s);
+    margin-top: spacers.getSpacer(s);
   }
 
   &--fill-negative {
@@ -150,7 +150,7 @@
   }
 
   &--closed#{&}--fill {
-    margin-bottom: getSpacer(s);
+    margin-bottom: spacers.getSpacer(s);
   }
 
   &:focus-visible:not(.expander-list-link--outline) {
@@ -237,21 +237,21 @@
   }
 
   &--large {
-    font-size: $font-size-lg;
-    line-height: $lineheight-size-lg;
+    font-size: font-settings.$font-size-lg;
+    line-height: font-settings.$lineheight-size-lg;
   }
 
   &__icon {
     display: flex;
     align-items: center;
-    margin-right: getSpacer(2xs);
+    margin-right: spacers.getSpacer(2xs);
   }
 
   &__chevron {
     display: flex;
     align-items: center;
     margin-left: auto;
-    padding-left: getSpacer(2xs);
+    padding-left: spacers.getSpacer(2xs);
   }
 
   &__main-content {
@@ -267,7 +267,7 @@
     }
 
     &--padding {
-      padding: getSpacer(xs) getSpacer(s) getSpacer(l);
+      padding: spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(l);
     }
   }
 }

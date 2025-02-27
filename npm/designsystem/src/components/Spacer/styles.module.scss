@@ -1,4 +1,4 @@
-@import '../../scss/spacers';
+@use '../../scss/spacers' as spacers;
 
 .spacer {
   display: block;
@@ -6,54 +6,54 @@
   height: 0.125rem;
 
   &--4xs {
-    height: getSpacer(4xs);
+    height: spacers.getSpacer(4xs);
   }
 
   &--3xs {
-    height: getSpacer(3xs);
+    height: spacers.getSpacer(3xs);
   }
 
   &--2xs {
-    height: getSpacer(2xs);
+    height: spacers.getSpacer(2xs);
   }
 
   &--xs {
-    height: getSpacer(xs);
+    height: spacers.getSpacer(xs);
   }
 
   &--s {
-    height: getSpacer(s);
+    height: spacers.getSpacer(s);
   }
 
   &--m {
-    height: getSpacer(m);
+    height: spacers.getSpacer(m);
   }
 
   &--l {
-    height: getSpacer(l);
+    height: spacers.getSpacer(l);
   }
 
   &--xl {
-    height: getSpacer(xl);
+    height: spacers.getSpacer(xl);
   }
 
   &--2xl {
-    height: getSpacer(2xl);
+    height: spacers.getSpacer(2xl);
   }
 
   &--3xl {
-    height: getSpacer(3xl);
+    height: spacers.getSpacer(3xl);
   }
 
   &--4xl {
-    height: getSpacer(4xl);
+    height: spacers.getSpacer(4xl);
   }
 
   &--5xl {
-    height: getSpacer(5xl);
+    height: spacers.getSpacer(5xl);
   }
 
   &--6xl {
-    height: getSpacer(6xl);
+    height: spacers.getSpacer(6xl);
   }
 }

@@ -1,16 +1,16 @@
 @use 'sass:map';
-@import '../../scss/spacers';
-@import '../../scss/breakpoints';
-@import '../../scss/palette';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/palette' as palette;
+@use '../../scss/breakpoints' as *;
 
 .list-header {
   display: grid;
   grid-template:
     'icon text badge chevron' 4rem
     '. text . .' auto / min-content auto min-content min-content;
-  column-gap: getSpacer(2xs);
-  margin-left: getSpacer(2xs);
-  margin-right: getSpacer(2xs);
+  column-gap: spacers.getSpacer(2xs);
+  margin-left: spacers.getSpacer(2xs);
+  margin-right: spacers.getSpacer(2xs);
   width: 100%;
   height: 100%;
   text-align: left;
@@ -38,12 +38,12 @@
     }
 
     &--spacing {
-      margin-left: getSpacer(2xs);
+      margin-left: spacers.getSpacer(2xs);
     }
 
     :focus > &,
     :focus-visible > & {
-      border-color: $black;
+      border-color: palette.$black;
     }
   }
 

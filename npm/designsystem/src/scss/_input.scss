@@ -1,5 +1,8 @@
 @use 'sass:map';
-@import './font-settings';
+@use './palette' as palette;
+@use './spacers' as spacers;
+@use './font-settings' as font-settings;
+@use './breakpoints' as *;
 
 @mixin input-wrapper {
   width: 100%;
@@ -7,11 +10,11 @@
 
 @mixin input-container {
   display: flex;
-  font-size: $font-size-sm;
+  font-size: font-settings.$font-size-sm;
   width: 100%;
-  border: 2px solid $neutral700;
+  border: 2px solid palette.$neutral700;
   outline: none;
-  background: $white;
+  background: palette.$white;
 
   svg:first-of-type {
     padding-left: 0.375rem;
@@ -22,79 +25,79 @@
   }
 
   &--large {
-    padding: getSpacer(2xs) 0;
+    padding: spacers.getSpacer(2xs) 0;
 
     svg:first-of-type {
-      padding-left: getSpacer(2xs);
+      padding-left: spacers.getSpacer(2xs);
     }
 
     svg:last-of-type {
-      padding-right: getSpacer(2xs);
+      padding-right: spacers.getSpacer(2xs);
     }
   }
 
   &:focus-within {
-    background: $white;
-    border-color: $neutral900;
-    box-shadow: 0 0 0 2px $neutral900;
+    background: palette.$white;
+    border-color: palette.$neutral900;
+    box-shadow: 0 0 0 2px palette.$neutral900;
   }
 
   &:hover {
-    background: $neutral50;
-    border-color: $neutral700;
-    box-shadow: 0 0 0 1px $neutral700;
+    background: palette.$neutral50;
+    border-color: palette.$neutral700;
+    box-shadow: 0 0 0 1px palette.$neutral700;
 
     &:focus-within {
-      border-color: $black;
-      box-shadow: 0 0 0 2px $black;
+      border-color: palette.$black;
+      box-shadow: 0 0 0 2px palette.$black;
     }
   }
 
   &--on-blueberry {
-    border-color: $blueberry500;
+    border-color: palette.$blueberry500;
 
     &:hover {
-      background: $blueberry50;
-      box-shadow: 0 0 0 1px $blueberry500;
-      border-color: $blueberry500;
+      background: palette.$blueberry50;
+      box-shadow: 0 0 0 1px palette.$blueberry500;
+      border-color: palette.$blueberry500;
     }
 
     &:focus-within {
-      background: $white;
-      border-color: $neutral900;
-      box-shadow: 0 0 0 2px $neutral900;
+      background: palette.$white;
+      border-color: palette.$neutral900;
+      box-shadow: 0 0 0 2px palette.$neutral900;
     }
   }
 
   &--on-dark {
-    border-color: $blueberry900;
+    border-color: palette.$blueberry900;
 
     &:hover {
-      background: $blueberry50;
-      border-color: $blueberry900;
-      box-shadow: 0 0 0 1px $blueberry900;
+      background: palette.$blueberry50;
+      border-color: palette.$blueberry900;
+      box-shadow: 0 0 0 1px palette.$blueberry900;
     }
 
     &:focus-within {
-      background: $white;
-      border-color: $neutral900;
-      box-shadow: 0 0 0 2px $neutral900;
+      background: palette.$white;
+      border-color: palette.$neutral900;
+      box-shadow: 0 0 0 2px palette.$neutral900;
     }
   }
 
   &--invalid {
-    border-color: $cherry600;
+    border-color: palette.$cherry600;
 
     &:hover {
-      background: $cherry100;
-      border-color: $cherry600;
-      box-shadow: 0 0 0 2px $cherry600;
+      background: palette.$cherry100;
+      border-color: palette.$cherry600;
+      box-shadow: 0 0 0 2px palette.$cherry600;
     }
 
     &:focus-within {
-      background: $white;
-      border-color: $neutral900;
-      box-shadow: 0 0 0 2px $neutral900;
+      background: palette.$white;
+      border-color: palette.$neutral900;
+      box-shadow: 0 0 0 2px palette.$neutral900;
     }
   }
 
@@ -102,32 +105,32 @@
     background: transparent;
 
     &:hover {
-      background: $neutral100;
+      background: palette.$neutral100;
     }
 
     &:focus-within {
-      background: $white;
+      background: palette.$white;
     }
   }
   &--transparent#{&}--on-blueberry {
     &:hover {
-      background: $blueberry100;
+      background: palette.$blueberry100;
     }
 
     &:focus-within {
-      background: $white;
+      background: palette.$white;
     }
   }
 
   &--disabled {
     background: transparent;
-    border-color: $neutral600;
+    border-color: palette.$neutral600;
     border-style: dashed;
-    color: $neutral700;
+    color: palette.$neutral700;
 
     &:hover {
       background: transparent;
-      border-color: $neutral600;
+      border-color: palette.$neutral600;
       box-shadow: none;
     }
   }
@@ -135,31 +138,31 @@
   &__input {
     line-height: 1.625rem;
     font-family: inherit;
-    font-size: $font-size-sm;
-    padding: 0 getSpacer(2xs);
+    font-size: font-settings.$font-size-sm;
+    padding: 0 spacers.getSpacer(2xs);
     border: none;
     outline: none;
     background-color: transparent;
     width: 100%;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      font-size: $font-size-md;
+      font-size: font-settings.$font-size-md;
     }
 
     &::placeholder {
-      color: $neutral500;
+      color: palette.$neutral500;
     }
 
     &--disabled {
-      color: $neutral700;
+      color: palette.$neutral700;
     }
 
     &:first-child {
-      padding-left: getSpacer(s);
+      padding-left: spacers.getSpacer(s);
     }
 
     &:last-child {
-      padding-right: getSpacer(s);
+      padding-right: spacers.getSpacer(s);
     }
   }
 }

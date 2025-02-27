@@ -1,5 +1,5 @@
 @use 'sass:map';
-@import 'palette';
+@use 'palette' as palette;
 @import 'breakpoints';
 
 @media print {
@@ -32,7 +32,7 @@
 
   pre,
   blockquote {
-    border: 1px solid $neutral500;
+    border: 1px solid palette.$neutral500;
     page-break-inside: avoid;
   }
 

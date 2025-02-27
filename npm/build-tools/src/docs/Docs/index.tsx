@@ -4,6 +4,7 @@ interface DocsProps<T> {
   component: T;
   hideStories?: boolean;
   supernovaLink?: string;
+  belowControlsContent?: React.ReactNode;
 }
 
 export const isSupernova = (): boolean => {
@@ -38,6 +39,7 @@ const Docs = <T,>(props: DocsProps<T>): React.JSX.Element => {
       <Description />
       <Primary />
       <Controls />
+      {props.belowControlsContent}
       {!props.hideStories && <Stories />}
     </>
   );

@@ -62,8 +62,8 @@ describe('Gitt at Label skal vises', (): void => {
       const sublabelNormal = screen.getByText('normal sublabel');
       expect(labelSubdued).toHaveClass('label label--subdued');
       expect(labelNormal).toHaveClass('label');
-      expect(sublabelSubdued).toHaveClass('label label--sublabel label--subdued');
-      expect(sublabelNormal).toHaveClass('label label--sublabel');
+      expect(sublabelSubdued).toHaveClass('sublabel sublabel--subdued');
+      expect(sublabelNormal).toHaveClass('sublabel');
     });
   });
   describe('Når Label og sublabel rendres med onColor ondark', (): void => {
@@ -85,7 +85,7 @@ describe('Gitt at Label skal vises', (): void => {
       const labelNormal = screen.getByText('normal label');
       const sublabelNormal = screen.getByText('normal sublabel');
       expect(labelNormal).toHaveClass('label label--on-dark');
-      expect(sublabelNormal).toHaveClass('label label--sublabel label--on-dark');
+      expect(sublabelNormal).toHaveClass('sublabel sublabel--on-dark');
     });
   });
   describe('Når Label og sublabel kobles til et input felt', (): void => {
