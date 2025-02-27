@@ -1,7 +1,4 @@
 export type Styles = {
-  anchorlink: string;
-  anchorlink__icon: string;
-  'anchorlink-wrapper': string;
   popover: string;
   popover__arrow: string;
   'popover__arrow--over': string;

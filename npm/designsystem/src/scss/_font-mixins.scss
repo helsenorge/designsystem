@@ -1,6 +1,6 @@
 @use 'sass:map';
-@import './spacers';
-@import './breakpoints';
+@use './spacers' as spacers;
+@use './breakpoints' as *;
 
 @mixin title-feature {
   font-size: 2.375rem;

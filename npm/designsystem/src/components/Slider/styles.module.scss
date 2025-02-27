@@ -1,11 +1,11 @@
-@import '../../scss/spacers';
-@import '../../scss/breakpoints';
-@import '../../scss/palette';
-@import '../../scss/screen-reader';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/palette' as palette;
+@use '../../scss/screen-reader' as *;
+@use '../../scss/breakpoints' as *;
 @import '../../scss/supernova/styles/colors';
 
 $track-height-offset: 1rem;
-$mark-size: getSpacer(l);
+$mark-size: spacers.getSpacer(l);
 
 .sr-only-slider {
   @include sr-only;
@@ -14,7 +14,7 @@ $mark-size: getSpacer(l);
 .slider {
   display: flex;
   flex-direction: column;
-  row-gap: getSpacer(s);
+  row-gap: spacers.getSpacer(s);
   width: 100%;
   position: relative;
   outline: none !important;
@@ -26,8 +26,8 @@ $mark-size: getSpacer(l);
   &__content-container {
     display: flex;
     flex-direction: column;
-    row-gap: getSpacer(s);
-    padding: 0 getSpacer(s);
+    row-gap: spacers.getSpacer(s);
+    padding: 0 spacers.getSpacer(s);
   }
 
   &__emoji-container,
@@ -58,23 +58,23 @@ $mark-size: getSpacer(l);
   }
 
   &__track {
-    padding: 0 getSpacer(s);
-    border-top: 2px solid $black;
+    padding: 0 spacers.getSpacer(s);
+    border-top: 2px solid palette.$black;
     position: relative;
     top: $track-height-offset;
 
     &--disabled {
-      border-color: $neutral600;
+      border-color: palette.$neutral600;
     }
 
     &__step {
       position: absolute;
       left: -1px;
       width: 2px;
-      height: getSpacer(xs);
+      height: spacers.getSpacer(xs);
       bottom: 0;
       top: (calc($track-height-offset / 2) * -1) + 0.05rem;
-      background-color: $black;
+      background-color: palette.$black;
     }
   }
 
@@ -84,8 +84,8 @@ $mark-size: getSpacer(l);
     align-items: center;
     width: $mark-size;
     height: $mark-size;
-    background-color: $white;
-    border: 0.15rem solid $black;
+    background-color: palette.$white;
+    border: 0.15rem solid palette.$black;
     border-radius: 10rem;
     position: absolute;
     z-index: 9;
@@ -93,12 +93,12 @@ $mark-size: getSpacer(l);
     cursor: pointer;
 
     &--focused {
-      outline: 0.15rem solid $black;
+      outline: 0.15rem solid palette.$black;
     }
 
     &--focused#{&}--selected {
       &::after {
-        background-color: $blueberry700;
+        background-color: palette.$blueberry700;
       }
     }
 
@@ -107,12 +107,12 @@ $mark-size: getSpacer(l);
         content: '';
         width: 1.25rem;
         height: 1.25rem;
-        border: 0.1rem solid $black;
+        border: 0.1rem solid palette.$black;
         border-radius: 10rem;
-        background-color: $blueberry600;
+        background-color: palette.$blueberry600;
 
         :hover > & {
-          background-color: $blueberry700;
+          background-color: palette.$blueberry700;
         }
       }
     }
@@ -122,15 +122,15 @@ $mark-size: getSpacer(l);
     }
 
     &--disabled {
-      border-color: $neutral500;
+      border-color: palette.$neutral500;
       cursor: default;
 
       &::after {
-        border-color: $neutral500;
-        background-color: $neutral200;
+        border-color: palette.$neutral500;
+        background-color: palette.$neutral200;
 
         :hover > & {
-          background-color: $neutral200;
+          background-color: palette.$neutral200;
         }
       }
     }

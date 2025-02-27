@@ -1,14 +1,14 @@
 @use 'sass:map';
-@import '../../scss/spacers';
-@import '../../scss/breakpoints';
-@import '../../scss/palette';
-@import '../../scss/input';
-@import '../../scss/font-mixins';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/palette' as palette;
+@use '../../scss/input' as input;
+@use '../../scss/font-mixins' as fonts;
+@use '../../scss/breakpoints' as *;
 
 .input-wrapper {
-  @include input-wrapper;
+  @include input.input-wrapper;
 
-  margin: getSpacer(l) 0;
+  margin: spacers.getSpacer(l) 0;
 }
 
 .input-wrapper:first-of-type {
@@ -37,7 +37,7 @@
   padding: 0.5rem 0;
   align-items: center;
 
-  @include input-container;
+  @include input.input-container;
 
   &--with-icon {
     padding: 1px 0;
@@ -48,13 +48,13 @@
   }
 
   &--with-icon#{&}--large {
-    padding: getSpacer(2xs) 0;
+    padding: spacers.getSpacer(2xs) 0;
   }
 
   &__input {
-    @include input-text;
+    @include fonts.input-text;
 
-    height: getSpacer(m);
+    height: spacers.getSpacer(m);
 
     &--large {
       height: 2.5rem;
@@ -64,7 +64,7 @@
       height: 2.125rem;
 
       &--large {
-        @include input-text-large;
+        @include fonts.input-text-large;
 
         height: 3.5rem;
       }

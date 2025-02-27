@@ -1,9 +1,10 @@
 @use 'sass:map';
-@import './spacers';
-@import './breakpoints';
+@use './spacers' as spacers;
+@use './palette' as palette;
+@use './font-mixins' as fonts;
+@use './font-settings' as font-settings;
+@use './breakpoints' as *;
 @import './fonts';
-@import './palette';
-@import './font-mixins';
 
 /*
 Denne filen er ment til å importeres som en css module:
@@ -12,123 +13,123 @@ import designsystemtypography from './scss/typography.scss'
 */
 
 .title-feature {
-  @include title-feature;
+  @include fonts.title-feature;
 }
 
 .focused-content {
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
+  font-size: font-settings.$font-size-sm;
+  line-height: font-settings.$lineheight-size-sm;
 }
 
 .title1 {
-  @include title1;
+  @include fonts.title1;
 }
 
 .title2 {
-  @include title2;
+  @include fonts.title2;
 }
 
 .title3 {
-  @include title3;
+  @include fonts.title3;
 }
 
 .title4 {
-  @include title4;
+  @include fonts.title4;
 }
 
 .title5 {
-  @include title5;
+  @include fonts.title5;
 }
 
 .title6 {
-  @include title6;
+  @include fonts.title6;
 }
 
 .body {
-  @include body;
+  @include fonts.body;
 }
 
 .preamble {
-  @include preamble;
+  @include fonts.preamble;
 }
 
 .legend {
-  @include legend;
+  @include fonts.legend;
 }
 
 .label {
-  @include label;
+  @include fonts.label;
 }
 
 .label-subdued {
-  @include label-subdued;
+  @include fonts.label-subdued;
 }
 
 .sublabel {
-  @include sublabel;
+  @include fonts.sublabel;
 }
 
 .sublabel-subdued {
-  @include sublabel-subdued;
+  @include fonts.sublabel-subdued;
 }
 
 .compact-data {
-  @include compact-data;
+  @include fonts.compact-data;
 }
 
 .table-cell {
-  @include table-cell;
+  @include fonts.table-cell;
 }
 
 .strong {
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
+  font-size: font-settings.$font-size-sm;
+  line-height: font-settings.$lineheight-size-sm;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: $font-size-md;
-    line-height: $lineheight-size-md;
+    font-size: font-settings.$font-size-md;
+    line-height: font-settings.$lineheight-size-md;
   }
 }
 
 .form {
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
+  font-size: font-settings.$font-size-sm;
+  line-height: font-settings.$lineheight-size-sm;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    font-size: $font-size-md;
+    font-size: font-settings.$font-size-md;
   }
 }
 
 .status-timestamp {
-  @include status-timestamp;
+  @include fonts.status-timestamp;
 }
 
 .image-caption {
-  @include image-caption;
+  @include fonts.image-caption;
 }
 
 .image-credit {
-  @include image-credit;
+  @include fonts.image-credit;
 }
 
 .input-text {
-  @include input-text;
+  @include fonts.input-text;
 }
 
 .input-text-large {
-  @include input-text-large;
+  @include fonts.input-text-large;
 }
 
 .text-list {
-  @include text-list;
+  @include fonts.text-list;
 }
 
 .definition-list-type {
-  @include definition-list-type;
+  @include fonts.definition-list-type;
 }
 
 .definition-list-data {
-  @include definition-list-data;
+  @include fonts.definition-list-data;
 }
 
 .anchorlink-wrapper {
@@ -138,24 +139,24 @@ import designsystemtypography from './scss/typography.scss'
     overflow-wrap: break-word;
     word-break: break-word;
     text-align: left;
-    color: $blueberry600;
+    color: palette.$blueberry600;
     border: 0.15rem solid transparent;
     text-decoration: underline;
     text-underline-offset: 0.16rem;
-    text-decoration-color: $blueberry400;
+    text-decoration-color: palette.$blueberry400;
     text-decoration-thickness: 0.0625rem;
     padding: 0.1rem;
 
     &:hover {
       cursor: pointer;
-      color: $blueberry700;
-      background-color: $blueberry50;
-      text-decoration-color: $blueberry600;
+      color: palette.$blueberry700;
+      background-color: palette.$blueberry50;
+      text-decoration-color: palette.$blueberry600;
     }
 
     &:focus {
       outline: none;
-      border: 0.15rem solid $black;
+      border: 0.15rem solid palette.$black;
     }
 
     &[target='_blank'] {
