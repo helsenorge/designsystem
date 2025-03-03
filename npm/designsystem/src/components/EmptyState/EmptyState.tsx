@@ -7,8 +7,9 @@ import Title, { TitleTags } from '../Title';
 import EmptyBoxBeeMedium from './EmptyBoxBeeMedium';
 import EmptyBoxBeeSmall from './EmptyBoxBeeSmall';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import Icon from '../Icon';
+import EmptyBox from '../Icons/EmptyBox';
 import { IllustrationColor } from '../Illustration';
-import EmptyBoxBeeCompact from './EmptyBoxBeeCompact';
 
 import styles from './styles.module.scss';
 
@@ -67,9 +68,7 @@ const EmptyState: React.FC<EmptyStateProps> = props => {
 
   let illustrationComponent;
   if (size === 'compact') {
-    illustrationComponent = (
-      <EmptyBoxBeeCompact svgProperties={{ 'aria-hidden': 'true', role: 'presentation', focusable: 'false' }} color={'neutral'} />
-    );
+    illustrationComponent = <Icon color={'neutral'} svgIcon={EmptyBox} />;
   } else if (breakpoint <= Breakpoint.sm) {
     illustrationComponent = (
       <EmptyBoxBeeSmall color={color} svgProperties={{ 'aria-hidden': 'true', role: 'presentation', focusable: 'false' }} />
