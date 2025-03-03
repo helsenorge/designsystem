@@ -2,7 +2,7 @@
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
   "private": false,
-  "version": "10.2.0",
+  "version": "10.2.1-beta.0",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -76,7 +76,7 @@
     "bootstrap": "^4.6.2",
     "classnames": "^2.5.1",
     "copyfiles": "^2.4.1",
-    "frankenstein-build-tools": "^10.2.0",
+    "frankenstein-build-tools": "^10.2.1-beta.0",
     "glob": "^11.0.0",
     "jest-when": "^3.6.0",
     "jsdom": "^25.0.1",
