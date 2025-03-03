@@ -2,12 +2,12 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as *;
+@use '../../scss/breakpoints' as breakpoints;
 
 @mixin panel-padding {
   padding: spacers.getSpacer(s);
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     padding: spacers.getSpacer(l) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(l);
   }
 }
@@ -15,7 +15,7 @@
 @mixin panel-padding-icon {
   padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     padding: spacers.getSpacer(m) spacers.getSpacer(m) spacers.getSpacer(l);
   }
 }
@@ -58,7 +58,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
     gap: $layout-sm-gap $layout-sm-gap;
     width: 100%;
 
-    @media (min-width: map.get($grid-breakpoints, md)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       column-gap: $layout-md-col-gap;
     }
   }
@@ -68,7 +68,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
       grid-template-columns: auto 1fr;
     }
 
-    @media (min-width: map.get($grid-breakpoints, md)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       grid-template-rows: auto auto;
       grid-template-columns: 1fr auto;
 
@@ -87,7 +87,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
       grid-template-columns: auto 1fr;
     }
 
-    @media (min-width: map.get($grid-breakpoints, md)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       grid-template-rows: auto auto;
       grid-template-columns: 1fr auto;
 
@@ -104,7 +104,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
       }
     }
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       grid-template-columns: minmax(auto, 760px) auto;
 
       &--with-icon {
@@ -123,7 +123,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
       row-gap: $layout-sm-gap;
     }
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       grid-template-rows: auto;
 
       &--a {
@@ -171,13 +171,13 @@ $layout-md-col-gap: spacers.getSpacer(m);
 
     &--layout-1,
     &--layout-2 {
-      @media (min-width: map.get($grid-breakpoints, md)) {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         grid-row: span 2;
         padding-right: spacers.getSpacer(2xs);
       }
     }
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       grid-row: span 2;
       padding-right: spacers.getSpacer(2xs);
     }
@@ -185,7 +185,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
     &--layout-3 {
       grid-row: span 2;
 
-      @media (min-width: map.get($grid-breakpoints, lg)) {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
         grid-row: span 1;
       }
     }
@@ -203,7 +203,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
     justify-content: flex-end;
 
     &--no-content-b {
-      @media (min-width: map.get($grid-breakpoints, lg)) {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
         flex-direction: row;
         grid-column: span 2;
       }
@@ -217,7 +217,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
   &__details-btn {
     align-self: flex-start;
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       align-self: flex-end;
       margin-left: auto;
     }
@@ -350,7 +350,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
     }
   }
 
-  @media (max-width: map.get($grid-max-breakpoints, xs)) {
+  @media (max-width: map.get(breakpoints.$grid-max-breakpoints, xs)) {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -409,7 +409,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
   display: flex;
   flex-direction: column;
 
-  @media (min-width: map.get($grid-breakpoints, lg)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
     padding-top: spacers.getSpacer(xs);
     flex-direction: row;
   }
@@ -419,7 +419,7 @@ $layout-md-col-gap: spacers.getSpacer(m);
     align-items: center;
     padding-bottom: spacers.getSpacer(2xs);
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       padding-top: 0;
       padding-right: spacers.getSpacer(m);
       padding-bottom: 0;

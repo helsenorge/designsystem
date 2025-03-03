@@ -3,7 +3,7 @@
 @use '@helsenorge/designsystem-react/scss/palette' as palette;
 @use '@helsenorge/designsystem-react/scss/font-settings' as font-settings;
 @use '@helsenorge/designsystem-react/scss/font-mixins' as fonts;
-@use '@helsenorge/designsystem-react/scss/breakpoints' as *;
+@use '@helsenorge/designsystem-react/scss/breakpoints' as breakpoints;
 
 .date-time-picker-wrapper {
   display: flex;
@@ -13,7 +13,7 @@
   padding: 0;
   margin: 0;
 
-  @media (min-width: map.get($grid-breakpoints, sm)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
     flex-flow: row nowrap;
   }
 
@@ -21,7 +21,7 @@
     flex: 100%;
     margin-right: spacers.getSpacer(l);
 
-    @media (min-width: map.get($grid-breakpoints, sm)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
       flex: unset;
     }
   }
@@ -89,7 +89,7 @@
   &__inner {
     min-height: 2.5rem;
 
-    @media (min-width: map.get($grid-breakpoints, md)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       min-height: 3.125rem;
     }
   }
@@ -123,7 +123,7 @@
   border-spacing: spacers.getSpacer(3xs) spacers.getSpacer(4xs);
   border-collapse: separate;
 
-  @media (min-width: map.get($grid-breakpoints, sm)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
     margin: 0 spacers.getSpacer(xs) * -1 spacers.getSpacer(3xs) * -1;
     border-spacing: spacers.getSpacer(xs) spacers.getSpacer(3xs);
   }

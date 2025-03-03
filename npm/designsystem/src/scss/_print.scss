@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use 'palette' as palette;
-@import 'breakpoints';
+@use 'breakpoints' as breakpoints;
 
 @media print {
   *,
@@ -15,11 +15,11 @@
   }
 
   body {
-    min-width: map.get($grid-breakpoints, lg) !important;
+    min-width: map.get(breakpoints.$grid-breakpoints, lg) !important;
   }
 
   .container {
-    min-width: map.get($grid-breakpoints, lg) !important;
+    min-width: map.get(breakpoints.$grid-breakpoints, lg) !important;
   }
 
   abbr[title]::after {
