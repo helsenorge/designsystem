@@ -3,9 +3,10 @@ import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { AnimatePresence, useAnimate, usePresence } from 'motion/react';
 
-import { AnalyticsId, ZIndex } from '../../constants';
+import { AnalyticsId, KeyboardEventKey, ZIndex } from '../../constants';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import useFocusTrap from '../../hooks/useFocusTrap';
+import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { breakpoints } from '../../theme/grid';
@@ -97,6 +98,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   useOutsideEvent(containerRef, () => {
     onRequestClose && onRequestClose();
   });
+  useKeyboardEvent(containerRef, () => onRequestClose && onRequestClose(), [KeyboardEventKey.Escape]);
 
   useEffect(() => {
     containerRef.current?.focus();
