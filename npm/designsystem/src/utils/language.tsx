@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo } from 'react';
 
-interface LanguageContextType<T extends string = string> {
+export interface LanguageContextType<T extends string = string> {
   language: T;
 }
 
