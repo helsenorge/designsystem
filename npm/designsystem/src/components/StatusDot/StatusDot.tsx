@@ -68,38 +68,39 @@ const StatusDotIcon: React.FC<StatusDotIconProps> = ({ onColor, variant = 'info'
     }),
   };
 
-  if (variant === StatusDotVariant.success) {
-    return <Icon {...iconProps} svgIcon={DotSuccess} />;
-  } else if (variant === StatusDotVariant.warning) {
-    return <Icon {...iconProps} svgIcon={DotHalfDisc} />;
-  } else if (variant === StatusDotVariant.warningtriangle) {
-    return <Icon {...iconProps} svgIcon={DotWarningTriangle} />;
-  } else if (variant === StatusDotVariant.warningquestionmark) {
-    return <Icon {...iconProps} svgIcon={DotQuestionMark} />;
-  } else if (variant === StatusDotVariant.warninglookingglass) {
-    return <Icon {...iconProps} svgIcon={DotLookingGlass} />;
-  } else if (variant === StatusDotVariant.cancelled) {
-    return <Icon {...iconProps} svgIcon={DotCancelled} />;
-  } else if (variant === StatusDotVariant.alert) {
-    return <Icon {...iconProps} svgIcon={DotAlert} />;
-  } else if (variant === StatusDotVariant.transparent) {
-    return <Icon {...iconProps} svgIcon={DotTransparent} />;
-  } else if (variant === StatusDotVariant.info) {
-    return <Icon {...iconProps} svgIcon={DotInfo} />;
-  } else if (variant === StatusDotVariant.group) {
-    return <Icon {...iconProps} svgIcon={Group} />;
-  } else if (variant === StatusDotVariant.recurring) {
-    return <Icon {...iconProps} svgIcon={Change} />;
-  } else if (variant === StatusDotVariant.noaccess) {
-    return <Icon {...iconProps} svgIcon={NoAccess} />;
-  } else if (variant === StatusDotVariant.draft) {
-    return <Icon {...iconProps} svgIcon={Pencil} />;
-  } else if (variant === StatusDotVariant.hidden) {
-    return <Icon {...iconProps} svgIcon={NoEye} />;
-  } else if (variant === StatusDotVariant.login) {
-    return <Icon {...iconProps} svgIcon={Login} />;
-  } else if (variant === StatusDotVariant.attachment) {
-    return <Icon {...iconProps} svgIcon={Attachment} />;
+  switch (variant) {
+    case StatusDotVariant.success:
+      return <Icon {...iconProps} svgIcon={DotSuccess} />;
+    case StatusDotVariant.warning:
+      return <Icon {...iconProps} svgIcon={DotHalfDisc} />;
+    case StatusDotVariant.warningtriangle:
+      return <Icon {...iconProps} svgIcon={DotWarningTriangle} />;
+    case StatusDotVariant.warningquestionmark:
+      return <Icon {...iconProps} svgIcon={DotQuestionMark} />;
+    case StatusDotVariant.warninglookingglass:
+      return <Icon {...iconProps} svgIcon={DotLookingGlass} />;
+    case StatusDotVariant.cancelled:
+      return <Icon {...iconProps} svgIcon={DotCancelled} />;
+    case StatusDotVariant.alert:
+      return <Icon {...iconProps} svgIcon={DotAlert} />;
+    case StatusDotVariant.transparent:
+      return <Icon {...iconProps} svgIcon={DotTransparent} />;
+    case StatusDotVariant.info:
+      return <Icon {...iconProps} svgIcon={DotInfo} />;
+    case StatusDotVariant.group:
+      return <Icon {...iconProps} svgIcon={Group} />;
+    case StatusDotVariant.recurring:
+      return <Icon {...iconProps} svgIcon={Change} />;
+    case StatusDotVariant.noaccess:
+      return <Icon {...iconProps} svgIcon={NoAccess} />;
+    case StatusDotVariant.draft:
+      return <Icon {...iconProps} svgIcon={Pencil} />;
+    case StatusDotVariant.hidden:
+      return <Icon {...iconProps} svgIcon={NoEye} />;
+    case StatusDotVariant.login:
+      return <Icon {...iconProps} svgIcon={Login} />;
+    case StatusDotVariant.attachment:
+      return <Icon {...iconProps} svgIcon={Attachment} />;
   }
 
   return null;
