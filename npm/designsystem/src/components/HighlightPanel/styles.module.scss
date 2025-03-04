@@ -1,9 +1,9 @@
 @use 'sass:map';
 @use '../../scss/spacers' as spacers;
 @use '../../scss/screen-reader' as *;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/breakpoints';
 @import '../../scss/grid';
-@import '../../scss/supernova/styles/colors';
+@import '../../scss/supernova/styles/colors.css';
 
 @mixin content-wrapper-with-icon-flex {
   display: flex;

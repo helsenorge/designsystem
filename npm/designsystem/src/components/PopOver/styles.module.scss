@@ -2,7 +2,7 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as *;
+@use '../../scss/breakpoints' as breakpoints;
 
 .popover {
   $popover: &;
@@ -22,7 +22,7 @@
   border-radius: 0.5625rem;
   box-shadow: 0 0.125rem 1.125rem 0 rgb(0 0 0 / 15%);
 
-  @media (min-width: map.get($grid-breakpoints, lg)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
     font-size: font-settings.$font-size-md;
     line-height: font-settings.$lineheight-size-md;
   }

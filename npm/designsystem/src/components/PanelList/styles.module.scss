@@ -1,13 +1,13 @@
 @use 'sass:map';
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
-@use '../../scss/breakpoints' as *;
+@use '../../scss/breakpoints' as breakpoints;
 
 .panel-list {
   &__panel:not(:last-child) {
     margin-bottom: spacers.getSpacer(2xs);
 
-    @media (min-width: map.get($grid-breakpoints, md)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       margin-bottom: spacers.getSpacer(s);
     }
   }

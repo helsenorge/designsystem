@@ -4,7 +4,7 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/breakpoints';
 @import '../../scss/grid';
 
 /* fix outline for Safari */

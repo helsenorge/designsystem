@@ -3,8 +3,8 @@
 @use './palette' as palette;
 @use './font-mixins' as fonts;
 @use './font-settings' as font-settings;
-@use './breakpoints' as *;
-@import './fonts';
+@use './breakpoints' as breakpoints;
+@use './fonts' as *;
 
 /*
 Denne filen er ment til å importeres som en css module:
@@ -85,7 +85,7 @@ import designsystemtypography from './scss/typography.scss'
   font-size: font-settings.$font-size-sm;
   line-height: font-settings.$lineheight-size-sm;
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     font-size: font-settings.$font-size-md;
     line-height: font-settings.$lineheight-size-md;
   }
@@ -95,7 +95,7 @@ import designsystemtypography from './scss/typography.scss'
   font-size: font-settings.$font-size-sm;
   line-height: font-settings.$lineheight-size-sm;
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     font-size: font-settings.$font-size-md;
   }
 }
