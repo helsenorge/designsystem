@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -14,10 +14,13 @@ import {
   useToggle,
   useUuid,
 } from '../..';
+import { isComponent } from '../../utils/component';
 import { mergeRefs } from '../../utils/refs';
 import Button from '../Button';
+import Checkbox, { CheckboxProps } from '../Checkbox';
 import Icon from '../Icon';
 import PlusSmall from '../Icons/PlusSmall';
+import RadioButton, { RadioButtonProps } from '../RadioButton';
 
 import styles from './styles.module.scss';
 
@@ -85,13 +88,25 @@ const Dropdown: React.FC<DropdownProps> = props => {
 
   const handleOpen = (): void => {
     toggleIsOpen();
-    optionsRef.current?.focus();
   };
 
   const handleClose = (): void => {
     toggleIsOpen();
     buttonRef.current?.focus();
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      inputRefList.current
+        ?.find((inputRef, index) => {
+          if (inputRef.current && !inputRef.current.hasAttribute('disabled')) {
+            setCurrentIndex(index);
+            return true;
+          }
+        })
+        ?.current?.focus();
+    }
+  }, [isOpen]);
 
   const handleKeyboardNavigation = (event: KeyboardEvent): void => {
     if (!inputRefList.current) {
@@ -100,6 +115,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
 
     if (!isOpen) {
       handleOpen();
+      event.preventDefault();
       return;
     } else if (event.key === KeyboardEventKey.Escape && isOpen) {
       handleClose();
@@ -155,13 +171,21 @@ const Dropdown: React.FC<DropdownProps> = props => {
 
   const contentClasses = classNames(styles.dropdown__content, isOpen && styles['dropdown__content--open']);
 
-  const renderChildren = React.Children.map(children, (child, index) => (
-    <li className={styles.dropdown__input} role="option" id={`${optionIdPrefix}-${index}`} aria-selected={index === currentIndex}>
-      {React.isValidElement(child) && inputRefList.current && inputRefList.current[index]
-        ? React.cloneElement(child as React.ReactElement, { ref: mergeRefs([child.props.ref, inputRefList.current[index]]) })
-        : child}
-    </li>
-  ));
+  const renderChildren = React.Children.map(children, (child, index) => {
+    const role = isComponent<RadioButtonProps>(child, RadioButton)
+      ? 'menuitemradio'
+      : isComponent<CheckboxProps>(child, Checkbox)
+        ? 'menuitemcheckbox'
+        : 'menuitem';
+
+    return (
+      <li className={styles.dropdown__input} role={role} id={`${optionIdPrefix}-${index}`}>
+        {React.isValidElement(child) && inputRefList.current && inputRefList.current[index]
+          ? React.cloneElement(child as React.ReactElement, { ref: mergeRefs([child.props.ref, inputRefList.current[index]]) })
+          : child}
+      </li>
+    );
+  });
 
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
@@ -177,7 +201,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
         data-analyticsid={AnalyticsId.Dropdown}
         disabled={disabled}
         aria-labelledby={toggleLabelId}
-        aria-haspopup="listbox"
+        aria-haspopup="menu"
         aria-expanded={isOpen}
       >
         <span id={toggleLabelId} className={styles.dropdown__toggle__label}>
@@ -194,7 +218,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
       <div className={contentClasses} style={{ width: fluid ? '100%' : `auto`, zIndex: zIndex }}>
         <ul
           className={styles.dropdown__options}
-          role="listbox"
+          role="menu"
           aria-labelledby={labelId}
           tabIndex={-1}
           aria-activedescendant={typeof currentIndex !== 'undefined' ? `${optionIdPrefix}-${currentIndex}` : undefined}
