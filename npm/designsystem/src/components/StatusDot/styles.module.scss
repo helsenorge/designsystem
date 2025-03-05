@@ -44,16 +44,16 @@ $status-dot-size: 1rem;
       fill: var(--core-color-kiwi-200);
     }
 
-    &--warning,
-    &--warningtriangle,
-    &--warningquestionmark,
-    &--warninglookingglass {
+    &--inprocess,
+    &--exception,
+    &--unknown,
+    &--inspected {
       fill: var(--color-notification-graphics-warning);
     }
-    &--warning#{&}--on-dark,
-    &--warningtriangle#{&}--on-dark,
-    &--warningquestionmark#{&}--on-dark,
-    &--warninglookingglass#{&}--on-dark {
+    &--inprocess#{&}--on-dark,
+    &--exception#{&}--on-dark,
+    &--unknown#{&}--on-dark,
+    &--inspected#{&}--on-dark {
       fill: var(--core-color-banana-300);
     }
 

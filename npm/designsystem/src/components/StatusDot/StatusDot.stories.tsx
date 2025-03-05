@@ -54,10 +54,10 @@ export const Variants: Story = {
   render: args => (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <StatusDot {...args} variant="success" text="success" />
-      <StatusDot {...args} variant="warning" text="warning" />
-      <StatusDot {...args} variant="warningtriangle" text="warningtriangle" />
-      <StatusDot {...args} variant="warningquestionmark" text="warningquestionmark" />
-      <StatusDot {...args} variant="warninglookingglass" text="warninglookingglass" />
+      <StatusDot {...args} variant="inprocess" text="inprocess" />
+      <StatusDot {...args} variant="exception" text="exception" />
+      <StatusDot {...args} variant="unknown" text="unknown" />
+      <StatusDot {...args} variant="inspected" text="inspected" />
       <StatusDot {...args} variant="cancelled" text="cancelled" />
       <StatusDot {...args} variant="alert" text="alert" />
       <StatusDot {...args} variant="transparent" text="transparent" />

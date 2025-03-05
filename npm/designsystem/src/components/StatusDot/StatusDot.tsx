@@ -32,10 +32,10 @@ export enum StatusDotOnColor {
 
 export enum StatusDotVariant {
   success = 'success',
-  warning = 'warning',
-  warningtriangle = 'warningtriangle',
-  warningquestionmark = 'warningquestionmark',
-  warninglookingglass = 'warninglookingglass',
+  inprocess = 'inprocess',
+  exception = 'exception',
+  unknown = 'unknown',
+  inspected = 'inspected',
   cancelled = 'cancelled',
   alert = 'alert',
   transparent = 'transparent',
@@ -71,13 +71,13 @@ const StatusDotIcon: React.FC<StatusDotIconProps> = ({ onColor, variant = 'info'
   switch (variant) {
     case StatusDotVariant.success:
       return <Icon {...iconProps} svgIcon={DotSuccess} />;
-    case StatusDotVariant.warning:
+    case StatusDotVariant.inprocess:
       return <Icon {...iconProps} svgIcon={DotHalfDisc} />;
-    case StatusDotVariant.warningtriangle:
+    case StatusDotVariant.exception:
       return <Icon {...iconProps} svgIcon={DotWarningTriangle} />;
-    case StatusDotVariant.warningquestionmark:
+    case StatusDotVariant.unknown:
       return <Icon {...iconProps} svgIcon={DotQuestionMark} />;
-    case StatusDotVariant.warninglookingglass:
+    case StatusDotVariant.inspected:
       return <Icon {...iconProps} svgIcon={DotLookingGlass} />;
     case StatusDotVariant.cancelled:
       return <Icon {...iconProps} svgIcon={DotCancelled} />;

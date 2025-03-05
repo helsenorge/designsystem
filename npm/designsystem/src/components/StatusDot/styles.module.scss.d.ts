@@ -14,10 +14,10 @@ export type Styles = {
   'statusdot__dot--recurring': string;
   'statusdot__dot--success': string;
   'statusdot__dot--transparent': string;
-  'statusdot__dot--warning': string;
-  'statusdot__dot--warninglookingglass': string;
-  'statusdot__dot--warningquestionmark': string;
-  'statusdot__dot--warningtriangle': string;
+  'statusdot__dot--inprocess': string;
+  'statusdot__dot--inspected': string;
+  'statusdot__dot--unknown': string;
+  'statusdot__dot--exception': string;
   'statusdot__label--on-dark': string;
 };
 
