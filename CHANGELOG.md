@@ -1,3 +1,10 @@
+## [10.4.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.4.0&targetVersion=GTv10.4.1) (2025-03-05)
+
+### Bug Fixes
+
+- eksporter interface for languagecontext
+  ([d35da32](https://github.com/helsenorge/designsystem/commit/d35da32647631e5c01a586ec43d6e0622a5cb279))
+
 ## [10.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.3.0&targetVersion=GTv10.4.0) (2025-03-04)
 
 ### Features
