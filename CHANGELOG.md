@@ -1,3 +1,5 @@
+## 11.0.0-beta.0 (2025-03-05)
+
 ## [10.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.2.0&targetVersion=GTv10.3.0) (2025-02-27)
 
 
