@@ -62,6 +62,9 @@ const meta = {
     disabled: {
       control: 'boolean',
     },
+    dropdownMinWidth: {
+      control: 'number',
+    },
   },
 } satisfies Meta<typeof Dropdown>;
 

@@ -40,6 +40,8 @@ export interface DropdownProps {
   children: React.ReactNode;
   /** Close button text */
   closeText?: string;
+  /** Minimum width for the dropdown in pixels. Does not affect trigger button */
+  dropdownMinWidth?: number;
   /** No close button */
   noCloseButton?: boolean;
   /** Called when dropdown is open/closed */
@@ -67,6 +69,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
     closeText = 'Lukk',
     noCloseButton = false,
     onToggle,
+    dropdownMinWidth,
     open = false,
     children,
     onColor = DropdownOnColor.onwhite,
@@ -215,7 +218,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
           size={IconSize.XSmall}
         />
       </button>
-      <div className={contentClasses} style={{ width: fluid ? '100%' : `auto`, zIndex: zIndex }}>
+      <div className={contentClasses} style={{ width: fluid ? '100%' : `auto`, minWidth: dropdownMinWidth ?? 'auto', zIndex: zIndex }}>
         <ul
           className={styles.dropdown__options}
           role="menu"
