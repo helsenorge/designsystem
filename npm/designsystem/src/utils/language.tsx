@@ -4,7 +4,7 @@ export interface LanguageContextType<T extends string = string> {
   language: T;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 /**
  * Hent nåværende språk fra context
