@@ -24,10 +24,6 @@ const DotAlert: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): Re
     isHovered,
     normal: xxSmall,
     normalHover: xxSmallHover,
-    xSmall: xxSmall,
-    xSmallHover: xxSmallHover,
-    xxSmall: xxSmall,
-    xxSmallHover: xxSmallHover,
   });
 };
 

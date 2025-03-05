@@ -24,10 +24,6 @@ const DotHalfDisc: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps):
     isHovered,
     normal: xxSmall,
     normalHover: xxSmallHover,
-    xSmall: xxSmall,
-    xSmallHover: xxSmallHover,
-    xxSmall: xxSmall,
-    xxSmallHover: xxSmallHover,
   });
 };
 
