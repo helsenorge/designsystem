@@ -5,11 +5,7 @@ import classNames from 'classnames';
 import { IconSize } from '../..';
 import { AnalyticsId, FormOnColor } from '../../constants';
 import { getColor } from '../../theme/currys';
-import { Icon } from '../Icon';
-import Attachment from '../Icons/Attachment';
-import Change from '../Icons/Change';
-import Group from '../Icons/Group';
-import NoAccess from '../Icons/NoAccess';
+import { LazyIcon } from '../LazyIcon';
 
 import styles from './styles.module.scss';
 
@@ -19,15 +15,21 @@ export enum StatusDotOnColor {
 }
 
 export enum StatusDotVariant {
-  info = 'info',
-  warning = 'warning',
-  alert = 'alert',
+  success = 'success',
+  inprocess = 'inprocess',
+  exception = 'exception',
+  unknown = 'unknown',
+  inspected = 'inspected',
   cancelled = 'cancelled',
-  active = 'active',
+  alert = 'alert',
   transparent = 'transparent',
-  recurring = 'recurring',
+  info = 'info',
   group = 'group',
+  recurring = 'recurring',
   noaccess = 'noaccess',
+  draft = 'draft',
+  hidden = 'hidden',
+  login = 'login',
   attachment = 'attachment',
 }
 
@@ -38,18 +40,51 @@ export interface StatusDotIconProps {
   variant?: keyof typeof StatusDotVariant;
 }
 
-const StatusDotIcon: React.FC<StatusDotIconProps> = ({ onColor, variant }) => {
+const StatusDotIcon: React.FC<StatusDotIconProps> = ({ onColor, variant = 'info' }) => {
   const color = onColor === StatusDotOnColor.ondark ? getColor('white') : getColor('black');
-  const iconProps = { color, size: IconSize.XXSmall, onColor };
+  const iconProps = {
+    color,
+    size: IconSize.XXSmall,
+    onColor,
+    className: classNames({
+      [styles[`statusdot__dot--${variant}`]]: typeof variant !== 'undefined',
+      [styles['statusdot__dot--on-dark']]: onColor === StatusDotOnColor.ondark,
+    }),
+  };
 
-  if (variant === StatusDotVariant.recurring) {
-    return <Icon {...iconProps} svgIcon={Change} />;
-  } else if (variant === StatusDotVariant.group) {
-    return <Icon {...iconProps} svgIcon={Group} />;
-  } else if (variant === StatusDotVariant.noaccess) {
-    return <Icon {...iconProps} svgIcon={NoAccess} color={getColor('cherry', 600)} />;
-  } else if (variant === StatusDotVariant.attachment) {
-    return <Icon {...iconProps} svgIcon={Attachment} />;
+  switch (variant) {
+    case StatusDotVariant.success:
+      return <LazyIcon {...iconProps} iconName={'DotSuccess'} />;
+    case StatusDotVariant.inprocess:
+      return <LazyIcon {...iconProps} iconName={'DotHalfDisc'} />;
+    case StatusDotVariant.exception:
+      return <LazyIcon {...iconProps} iconName={'DotWarningTriangle'} />;
+    case StatusDotVariant.unknown:
+      return <LazyIcon {...iconProps} iconName={'DotQuestionMark'} />;
+    case StatusDotVariant.inspected:
+      return <LazyIcon {...iconProps} iconName={'DotLookingGlass'} />;
+    case StatusDotVariant.cancelled:
+      return <LazyIcon {...iconProps} iconName={'DotCancelled'} />;
+    case StatusDotVariant.alert:
+      return <LazyIcon {...iconProps} iconName={'DotAlert'} />;
+    case StatusDotVariant.transparent:
+      return <LazyIcon {...iconProps} iconName={'DotTransparent'} />;
+    case StatusDotVariant.info:
+      return <LazyIcon {...iconProps} iconName={'DotInfo'} />;
+    case StatusDotVariant.group:
+      return <LazyIcon {...iconProps} iconName={'Group'} />;
+    case StatusDotVariant.recurring:
+      return <LazyIcon {...iconProps} iconName={'Change'} />;
+    case StatusDotVariant.noaccess:
+      return <LazyIcon {...iconProps} iconName={'NoAccess'} />;
+    case StatusDotVariant.draft:
+      return <LazyIcon {...iconProps} iconName={'Pencil'} />;
+    case StatusDotVariant.hidden:
+      return <LazyIcon {...iconProps} iconName={'NoEye'} />;
+    case StatusDotVariant.login:
+      return <LazyIcon {...iconProps} iconName={'Login'} />;
+    case StatusDotVariant.attachment:
+      return <LazyIcon {...iconProps} iconName={'Attachment'} />;
   }
 
   return null;
@@ -73,24 +108,12 @@ export interface StatusDotProps {
 const StatusDot: React.FC<StatusDotProps> = props => {
   const { id, onColor = StatusDotOnColor.onwhite, variant = StatusDotVariant.info, text, className, testId } = props;
 
-  const hasIcon =
-    variant === StatusDotVariant.recurring ||
-    variant === StatusDotVariant.group ||
-    variant === StatusDotVariant.noaccess ||
-    variant === StatusDotVariant.attachment;
-
-  const isCancelled = variant === StatusDotVariant.cancelled;
-
-  const statusDotClasses = classNames(styles['statusdot'], isCancelled && styles['statusdot--cancelled'], className);
-  const dotClasses = classNames(styles['statusdot__dot'], {
-    ...(hasIcon ? {} : { [styles[`statusdot__dot--${variant}`]]: true }),
-    [styles['statusdot__dot--on-dark']]: onColor === StatusDotOnColor.ondark,
-  });
+  const statusDotClasses = classNames(styles['statusdot'], className);
   const labelClasses = classNames(onColor === StatusDotOnColor.ondark && styles['statusdot__label--on-dark']);
 
   return (
     <span id={id} className={statusDotClasses} data-testid={testId} data-analyticsid={AnalyticsId.StatusDot}>
-      <span className={dotClasses} data-testid={testId + '-dot'}>
+      <span className={styles['statusdot__dot']} data-testid={testId + '-dot'}>
         <StatusDotIcon onColor={onColor} variant={variant} />
       </span>
       <span className={labelClasses}>{text}</span>

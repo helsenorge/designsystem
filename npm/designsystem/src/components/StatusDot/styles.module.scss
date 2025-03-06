@@ -4,8 +4,9 @@
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/screen-reader' as *;
 @use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
 
-$status-dot-size: 0.937rem;
+$status-dot-size: 1rem;
 
 .statusdot {
   position: relative;
@@ -20,18 +21,13 @@ $status-dot-size: 0.937rem;
     line-height: 1.6rem;
   }
 
-  &--cancelled {
-    color: palette.$cherry600;
-  }
-
   &__dot {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    top: spacers.getSpacer(4xs);
+    top: 0.15rem;
     margin-right: spacers.getSpacer(2xs);
-    border-radius: 10rem;
     width: $status-dot-size;
     height: $status-dot-size;
     min-width: $status-dot-size;
@@ -41,41 +37,54 @@ $status-dot-size: 0.937rem;
       top: spacers.getSpacer(3xs);
     }
 
+    &--success {
+      fill: var(--color-notification-graphics-success);
+    }
+    &--success#{&}--on-dark {
+      fill: var(--core-color-kiwi-200);
+    }
+
+    &--inprocess,
+    &--exception,
+    &--unknown,
+    &--inspected {
+      fill: var(--color-notification-graphics-warning);
+    }
+    &--inprocess#{&}--on-dark,
+    &--exception#{&}--on-dark,
+    &--unknown#{&}--on-dark,
+    &--inspected#{&}--on-dark {
+      fill: var(--core-color-banana-300);
+    }
+
+    &--cancelled,
+    &--alert {
+      fill: var(--color-notification-graphics-error);
+    }
+    &--cancelled#{&}--on-dark,
+    &--alert#{&}--on-dark {
+      fill: var(--core-color-cherry-100);
+    }
+
     &--info {
-      background: palette.$kiwi900;
+      fill: var(--core-color-blueberry-500);
     }
     &--info#{&}--on-dark {
-      background: palette.$kiwi400;
-    }
-
-    &--warning {
-      background: palette.$banana400;
-    }
-
-    &--alert,
-    &--cancelled {
-      background: palette.$cherry500;
-    }
-    &--alert#{&}--on-dark {
-      background: palette.$cherry300;
-    }
-    &--cancelled#{&}--on-dark {
-      outline: 2px solid palette.$white;
-    }
-
-    &--active {
-      background: palette.$blueberry500;
-    }
-    &--active#{&}--on-dark {
-      background: palette.$blueberry300;
+      fill: var(--core-color-blueberry-200);
     }
 
     &--transparent {
-      border: 2px solid palette.$neutral600;
+      fill: var(--color-disabled-border);
     }
-    &--transparent#{&}--on-dark {
-      border: none;
-      background: palette.$white;
+    &--transparent#{&}--on-dark,
+    &--group#{&}--on-dark,
+    &--recurring#{&}--on-dark,
+    &--noaccess#{&}--on-dark,
+    &--draft#{&}--on-dark,
+    &--hidden#{&}--on-dark,
+    &--login#{&}--on-dark,
+    &--attachment#{&}--on-dark {
+      fill: var(--color-base-graphics-ondark);
     }
 
     svg {

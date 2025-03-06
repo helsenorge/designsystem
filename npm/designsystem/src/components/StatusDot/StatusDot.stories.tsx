@@ -26,7 +26,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: StatusDotVariant,
+      options: Object.values(StatusDotVariant),
     },
     text: {
       control: 'text',
@@ -46,6 +46,29 @@ export const OnDark: Story = {
   render: args => (
     <div style={{ padding: '3rem', backgroundColor: getColor('blueberry', 500) }}>
       <StatusDot {...args} onColor={FormOnColor.ondark} />
+    </div>
+  ),
+};
+
+export const Variants: Story = {
+  render: args => (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <StatusDot {...args} variant="success" text="success" />
+      <StatusDot {...args} variant="inprocess" text="inprocess" />
+      <StatusDot {...args} variant="exception" text="exception" />
+      <StatusDot {...args} variant="unknown" text="unknown" />
+      <StatusDot {...args} variant="inspected" text="inspected" />
+      <StatusDot {...args} variant="cancelled" text="cancelled" />
+      <StatusDot {...args} variant="alert" text="alert" />
+      <StatusDot {...args} variant="transparent" text="transparent" />
+      <StatusDot {...args} variant="info" text="info" />
+      <StatusDot {...args} variant="group" text="group" />
+      <StatusDot {...args} variant="recurring" text="recurring" />
+      <StatusDot {...args} variant="noaccess" text="noaccess" />
+      <StatusDot {...args} variant="draft" text="draft" />
+      <StatusDot {...args} variant="hidden" text="hidden" />
+      <StatusDot {...args} variant="login" text="login" />
+      <StatusDot {...args} variant="attachment" text="attachment" />
     </div>
   ),
 };

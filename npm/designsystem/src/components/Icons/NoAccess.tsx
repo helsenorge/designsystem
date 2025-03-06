@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { FormOnColor } from '../../constants';
 import { getIcon, SvgPathProps } from '../Icon';
 
-const NoAccess: React.FC<SvgPathProps> = ({ size, isHovered, onColor }: SvgPathProps): React.ReactElement => {
+const NoAccess: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
     <path
       fillRule={'evenodd'}
@@ -34,15 +33,27 @@ const NoAccess: React.FC<SvgPathProps> = ({ size, isHovered, onColor }: SvgPathP
 
   const xxSmall = (
     <>
-      {onColor === FormOnColor.ondark && <circle cx="24" cy="24" r="17" fill="white" />}
+      <path fillRule="evenodd" clipRule="evenodd" d="M16 21.5h16.5V26H16v-4.5Z" />
       <path
-        fillRule={'evenodd'}
-        d="M13.4 26.1h21.2v-4.2H13.4v4.2ZM24 9C15.728 9 9 15.728 9 24s6.728 15 15 15c8.27 0 15-6.728 15-15S32.27 9 24 9Z"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M24 36c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12Zm16-12c0 8.837-7.163 16-16 16S8 32.837 8 24 15.163 8 24 8s16 7.163 16 16Z"
       />
     </>
   );
 
-  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover: xxSmall });
+  const xxSmallHover = (
+    <>
+      <path fillRule="evenodd" clipRule="evenodd" d="M13.75 21.5h20.5V26h-20.5v-4.5Z" />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M24 36c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12Zm16-12c0 8.837-7.163 16-16 16S8 32.837 8 24 15.163 8 24 8s16 7.163 16 16Z"
+      />
+    </>
+  );
+
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover });
 };
 
 export default NoAccess;
