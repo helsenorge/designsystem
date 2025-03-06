@@ -1,3 +1,16 @@
+## [10.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.4.1&targetVersion=GTv10.5.0) (2025-03-06)
+
+### Features
+
+- **dropdown:** mulig å sette minimumsbredde på dropdown
+  ([c57f803](https://github.com/helsenorge/designsystem/commit/c57f8037c9da11ab6d7ffbfe6557a044a216ba39)), closes
+  [#346470](https://github.com/helsenorge/designsystem/issues/346470)
+
+### Bug Fixes
+
+- **language:** eksporter LanguageContext
+  ([e0e841a](https://github.com/helsenorge/designsystem/commit/e0e841a13237bbadfebf9b2098d873a00a5eda10))
+
 ## [10.4.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.4.0&targetVersion=GTv10.4.1) (2025-03-05)
 
 ### Bug Fixes
