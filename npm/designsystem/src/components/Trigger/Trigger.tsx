@@ -32,6 +32,7 @@ export interface TriggerProps extends Pick<React.InputHTMLAttributes<HTMLButtonE
   /**
    * Controls the icon and color. Default: help.
    */
+  /** @deprecated This will be removed in next major version */
   variant?: TriggerVariant;
   /**
    * Changes the design based on the background the trigger is placed on. Default: onlight.
