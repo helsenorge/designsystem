@@ -6,7 +6,7 @@ $trigger-medium-size: 24.18px;
 $trigger-medium-click-area: 44px;
 $trigger-large-size: 30.61px;
 
-.trigger {
+.help-trigger {
   $trigger: &;
 
   position: relative;
@@ -45,38 +45,31 @@ $trigger-large-size: 30.61px;
     margin-right: calc((map.get(icon.$icon-sizes, sm) - $trigger-large-size) / 2);
   }
 
-  $variant-map: (
-    'help': 'plum',
-    'info': 'blueberry',
-  );
+  &--help {
+    box-shadow: inset 0 0 0 1.6px palette.$plum600;
 
-  @each $variant, $color in $variant-map {
-    &--#{$variant} {
-      box-shadow: inset 0 0 0 1.6px map.get(palette.$palette-map, #{$color}600);
+    &:hover,
+    &#{$trigger}--hovered {
+      box-shadow: inset 0 0 0 1.6px palette.$plum800;
+      background-color: rgba(palette.$plum600, 0.1);
+    }
+
+    &:focus-visible {
+      box-shadow: inset 0 0 0 1.6px palette.$black;
+      outline: 1.6px solid palette.$black;
+    }
+
+    &#{$trigger}--selected {
+      box-shadow: inset 0 0 0 1.6px palette.$plum800;
+      background-color: rgba(palette.$plum600, 0.1);
 
       &:hover,
       &#{$trigger}--hovered {
-        box-shadow: inset 0 0 0 1.6px map.get(palette.$palette-map, #{$color}800);
-        background-color: rgba(map.get(palette.$palette-map, #{$color}600), 0.1);
+        background-color: rgba(palette.$plum600, 0.2);
       }
 
-      &:focus-visible {
-        box-shadow: inset 0 0 0 1.6px palette.$black;
-        outline: 1.6px solid palette.$black;
-      }
-
-      &#{$trigger}--selected {
-        box-shadow: inset 0 0 0 1.6px map.get(palette.$palette-map, #{$color}800);
-        background-color: rgba(map.get(palette.$palette-map, #{$color}600), 0.1);
-
-        &:hover,
-        &#{$trigger}--hovered {
-          background-color: rgba(map.get(palette.$palette-map, #{$color}600), 0.2);
-        }
-
-        &:focus {
-          background-color: rgba(map.get(palette.$palette-map, #{$color}600), 0.1);
-        }
+      &:focus {
+        background-color: rgba(palette.$plum600, 0.1);
       }
     }
   }

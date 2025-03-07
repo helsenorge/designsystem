@@ -10,8 +10,8 @@ import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import DictionaryTrigger from '../DictionaryTrigger/DictionaryTrigger';
 import HelpQuestion from '../HelpQuestion';
+import HelpTrigger from '../HelpTrigger';
 import Table, { ResponsiveTableVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell, HeaderCategory } from '../Table';
-import Trigger from '../Trigger/Trigger';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/HelpBubble',
@@ -62,7 +62,7 @@ export const Default: Story = {
 
     return (
       <>
-        <Trigger ref={controllerRef} ariaLabel="Hjelp" />
+        <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
         <HelpBubble {...args} controllerRef={controllerRef}>
           {args.children}
         </HelpBubble>
@@ -83,7 +83,7 @@ export const LongText: Story = {
       <>
         <span>{loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
-          <Trigger ref={controllerRef} ariaLabel="Hjelp" />
+          <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
           <HelpBubble {...args} controllerRef={controllerRef}>
             {args.children}
           </HelpBubble>
@@ -108,7 +108,7 @@ export const Link: Story = {
       <>
         <span>{loremText + loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
-          <Trigger ref={controllerRef} ariaLabel="Hjelp" />
+          <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
           <HelpBubble {...args} controllerRef={controllerRef}>
             {args.children}
           </HelpBubble>
@@ -132,7 +132,7 @@ export const Toggle: Story = {
       <>
         <span>{loremText + loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
-          <Trigger ref={controllerRef} onClick={toggleValue} ariaLabel="Åpne" />
+          <HelpTrigger ref={controllerRef} onClick={toggleValue} ariaLabel="Åpne" />
           <HelpBubble {...args} controllerRef={controllerRef} showBubble={value}>
             {args.children}
           </HelpBubble>
@@ -248,7 +248,7 @@ export const HorizontalScroll: Story = {
               <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
               <TableCell dataLabel="Antall på venteliste">53</TableCell>
               <TableCell dataLabel="Handlinger">
-                <Trigger ref={controllerRef} ariaLabel="Hjelp" />
+                <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
                 <HelpBubble {...args} controllerRef={controllerRef}>
                   <div>{args.children}</div>
                 </HelpBubble>
@@ -324,7 +324,7 @@ export const CenteredOverflow: Story = {
                   <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
                   <TableCell dataLabel="Antall på venteliste">53</TableCell>
                   <TableCell dataLabel="Handlinger">
-                    <Trigger ref={controllerRef} ariaLabel="Hjelp" />
+                    <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
                     <HelpBubble {...args} onClose={action('Bubble closed')} controllerRef={controllerRef}>
                       <div>{args.children}</div>
                     </HelpBubble>

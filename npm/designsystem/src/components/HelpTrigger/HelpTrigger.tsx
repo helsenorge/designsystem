@@ -8,19 +8,18 @@ import { useHover } from '../../hooks/useHover';
 import { getColor } from '../../theme/currys';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
-import Icon, { SvgIcon } from '../Icon';
+import Icon from '../Icon';
 
 import styles from './styles.module.scss';
 
-export type TriggerTags = 'button' | 'span';
+export type HelpTriggerTags = 'button' | 'span';
 
-export type TriggerVariant = 'help'; // @todo Support variant='info' in later version
+export type HelpTriggerSize = 'medium' | 'large';
 
-export type TriggerSize = 'medium' | 'large';
+export type HelpTriggerOnColor = 'onlight' | 'ondark';
 
-export type TriggerOnColor = 'onlight' | 'ondark';
-
-export interface TriggerProps extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'aria-haspopup' | 'aria-controls'> {
+export interface HelpTriggerProps
+  extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'aria-haspopup' | 'aria-controls'> {
   /**
    * Sets aria-label of the trigger. ariaLabel or ariaLabelledById MUST be set!
    */
@@ -30,29 +29,25 @@ export interface TriggerProps extends Pick<React.InputHTMLAttributes<HTMLButtonE
    */
   ariaLabelledById?: string;
   /**
-   * Controls the icon and color. Default: help.
+   * Changes the design based on the background the help trigger is placed on. Default: onlight.
    */
-  variant?: TriggerVariant;
-  /**
-   * Changes the design based on the background the trigger is placed on. Default: onlight.
-   */
-  onColor?: TriggerOnColor;
+  onColor?: HelpTriggerOnColor;
   /**
    * Size of the trigger. Default: medium.
    */
-  size?: TriggerSize;
+  size?: HelpTriggerSize;
   /**
-   * Indicates that the trigger is in use.
+   * Indicates that the help trigger is in use.
    */
   selected?: boolean;
   /**
-   * Indicates that the trigger is hovered. Used in combination with htmlMarkup=span to force visual hover state.
+   * Indicates that the help trigger is hovered. Used in combination with htmlMarkup=span to force visual hover state.
    */
   isHovered?: boolean;
   /**
    * Changes the underlying element of the trigger. If set to span, the trigger will be a non-interactive icon. Default: button
    */
-  htmlMarkup?: TriggerTags;
+  htmlMarkup?: HelpTriggerTags;
   /**
    * Classname will be applied to the button element.
    */
@@ -63,38 +58,25 @@ export interface TriggerProps extends Pick<React.InputHTMLAttributes<HTMLButtonE
   testId?: string;
 }
 
-const iconMap: Record<TriggerVariant, SvgIcon> = {
-  help: HelpSign,
-  //info: InfoSignStroke, // @todo Support variant='info' in later version
-};
-
-const iconSizeMap: Record<TriggerSize, IconSize> = {
+const iconSizeMap: Record<HelpTriggerSize, IconSize> = {
   medium: IconSize.XSmall,
   large: IconSize.Small,
 };
 
-const getIconColor = (onColor: TriggerOnColor, variant: TriggerVariant, isActive: boolean): string | undefined => {
+const getIconColor = (onColor: HelpTriggerOnColor, isActive: boolean): string | undefined => {
   if (onColor === 'ondark') {
     return 'white';
   }
 
   const depth = isActive ? 800 : 600;
-
-  if (variant === 'help') {
-    return getColor('plum', depth);
-  }
-
-  if (variant === 'info') {
-    return getColor('blueberry', depth);
-  }
+  return getColor('plum', depth);
 };
 
-const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
+const HelpTrigger = React.forwardRef<HTMLButtonElement, HelpTriggerProps>(
   (
     {
       ariaLabel,
       ariaLabelledById,
-      variant = 'help',
       onColor = 'onlight',
       size = 'medium',
       selected = false,
@@ -109,18 +91,18 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
     const { isHovered: buttonIsHovered, hoverRef } = useHover<HTMLButtonElement>();
 
     const triggerClasses = classNames(
-      styles.trigger,
-      onColor === 'onlight' && styles[`trigger--${variant}`], // variants look the same when onColor=ondark
-      onColor === 'ondark' && styles[`trigger--${onColor}`],
-      styles[`trigger--${size}`],
-      isHovered && styles[`trigger--hovered`],
-      selected && styles[`trigger--selected`],
+      styles['help-trigger'],
+      onColor === 'onlight' && styles[`help-trigger--help`], // variants look the same when onColor=ondark
+      onColor === 'ondark' && styles[`help-trigger--${onColor}`],
+      styles[`help-trigger--${size}`],
+      isHovered && styles[`help-trigger--hovered`],
+      selected && styles[`help-trigger--selected`],
       className
     );
 
-    const iconColor = getIconColor(onColor, variant, isHovered || buttonIsHovered || selected);
+    const iconColor = getIconColor(onColor, isHovered || buttonIsHovered || selected);
 
-    const icon = <Icon svgIcon={iconMap[variant]} size={iconSizeMap[size]} color={iconColor} isHovered={isHovered || buttonIsHovered} />;
+    const icon = <Icon svgIcon={HelpSign} size={iconSizeMap[size]} color={iconColor} isHovered={isHovered || buttonIsHovered} />;
 
     if (htmlMarkup === 'span') {
       return (
@@ -150,6 +132,6 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
   }
 );
 
-Trigger.displayName = 'Trigger';
+HelpTrigger.displayName = 'HelpTrigger';
 
-export default Trigger;
+export default HelpTrigger;

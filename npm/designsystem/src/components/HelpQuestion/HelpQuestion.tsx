@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { mergeRefs } from '../../utils/refs';
-import Trigger from '../Trigger';
+import HelpTrigger from '../HelpTrigger';
 
 import styles from './styles.module.scss';
 
@@ -44,7 +44,7 @@ const HelpQuestion = React.forwardRef<HTMLButtonElement, HelpQuestionProps>(
         aria-expanded={selected}
         data-analyticsid={AnalyticsId.HelpQuestion}
       >
-        <Trigger variant="help" htmlMarkup="span" selected={selected} isHovered={isHovered} />
+        <HelpTrigger htmlMarkup="span" selected={selected} isHovered={isHovered} />
         {children}
       </button>
     );
