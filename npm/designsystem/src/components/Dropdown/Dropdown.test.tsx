@@ -24,7 +24,24 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
       const options = screen.getByLabelText('Ta et valg');
       const contents = within(options).getByRole('button', { name: 'Innhold i Dropdown' });
       expect(contents).toBeVisible();
-      expect(contents).toHaveFocus();
+      expect(contents).not.toHaveFocus();
+    });
+  });
+
+  describe('Når Dropdownen åpnes via tastatur', (): void => {
+    test('Så fokuseres første element i dropdownen', async (): Promise<void> => {
+      render(
+        <Dropdown label="Ta et valg" placeholder="Knapp">
+          <button>{'Første element'}</button>
+          <button>{'Andre element'}</button>
+        </Dropdown>
+      );
+      const button = screen.getByRole('button', { name: 'Knapp' });
+      button.focus();
+      await userEvent.keyboard('{enter}');
+
+      const firstElement = screen.getByRole('button', { name: 'Første element' });
+      expect(firstElement).toHaveFocus();
     });
   });
 

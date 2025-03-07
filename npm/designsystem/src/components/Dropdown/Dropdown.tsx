@@ -82,6 +82,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
   const { hoverRef: buttonRef, isHovered } = useHover<HTMLButtonElement>();
+  const openedByKeyboard = useRef<boolean>(false);
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
   const inputRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
   const [currentIndex, setCurrentIndex] = useState<number>();
@@ -89,7 +90,8 @@ const Dropdown: React.FC<DropdownProps> = props => {
   const toggleLabelId = useUuid();
   const optionIdPrefix = useUuid();
 
-  const handleOpen = (): void => {
+  const handleOpen = (isKeyboard: boolean): void => {
+    openedByKeyboard.current = isKeyboard;
     toggleIsOpen();
   };
 
@@ -99,7 +101,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
   };
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && openedByKeyboard.current) {
       inputRefList.current
         ?.find((inputRef, index) => {
           if (inputRef.current && !inputRef.current.hasAttribute('disabled')) {
@@ -117,7 +119,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
     }
 
     if (!isOpen) {
-      handleOpen();
+      handleOpen(true);
       event.preventDefault();
       return;
     } else if (event.key === KeyboardEventKey.Escape && isOpen) {
@@ -140,7 +142,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
       nextIndex = index;
     }
 
-    if (nextIndex !== -1) {
+    if (nextIndex !== -1 && event.key !== KeyboardEventKey.Space) {
       event.preventDefault();
 
       inputRefList.current[nextIndex].current?.focus();
@@ -155,6 +157,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
     KeyboardEventKey.Enter,
     KeyboardEventKey.Escape,
     KeyboardEventKey.Home,
+    KeyboardEventKey.Space,
   ]);
 
   useOutsideEvent(dropdownRef, () => isOpen && handleClose());
@@ -197,7 +200,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
       </span>
       <button
         type="button"
-        onClick={(): false | void => !isOpen && handleOpen()}
+        onClick={(): false | void => !isOpen && handleOpen(false)}
         className={toggleClasses}
         ref={buttonRef}
         data-testid={testId}
