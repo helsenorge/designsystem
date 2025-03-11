@@ -35,7 +35,7 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "@helsenorge/designsystem-react": "^10.0.0",
+    "@helsenorge/designsystem-react": "^11.0.0-beta",
     "classnames": "^2.5.1",
     "date-fns": "^4.0.0",
     "react": "^18.0.0",
