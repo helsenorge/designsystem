@@ -1,3 +1,5 @@
+## 11.0.0-beta.2 (2025-03-12)
+
 ## 11.0.0-beta.1 (2025-03-11)
 
 ### Features
@@ -8,8 +10,58 @@
 - **statusdot:** oppdatert varianter og ikoner
   ([482aa0d](https://github.com/helsenorge/designsystem/commit/482aa0dfb8cd0e89c833a6c663ae8756be648b85)), closes
   [#334937](https://github.com/helsenorge/designsystem/issues/334937)
+- **trigger:** marker prop som deprecated
+  ([f850cb2](https://github.com/helsenorge/designsystem/commit/f850cb2717788b02656dbb6b0cc8ffbbc541a327)), closes
+  [#346490](https://github.com/helsenorge/designsystem/issues/346490)
+
+### Bug Fixes
+
+- **dropdown:** bare tastaturnavigasjon fokuserer første child
+  ([ee5438a](https://github.com/helsenorge/designsystem/commit/ee5438aa561ce2a8c3a19bc65ac2153cfd77c086)), closes
+  [#342762](https://github.com/helsenorge/designsystem/issues/342762)
 
 ## 11.0.0-beta.0 (2025-03-05)
+
+## [10.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.4.1&targetVersion=GTv10.5.0) (2025-03-06)
+
+### Features
+
+- **dropdown:** mulig å sette minimumsbredde på dropdown
+  ([c57f803](https://github.com/helsenorge/designsystem/commit/c57f8037c9da11ab6d7ffbfe6557a044a216ba39)), closes
+  [#346470](https://github.com/helsenorge/designsystem/issues/346470)
+
+### Bug Fixes
+
+- **language:** eksporter LanguageContext
+  ([e0e841a](https://github.com/helsenorge/designsystem/commit/e0e841a13237bbadfebf9b2098d873a00a5eda10))
+
+## [10.4.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.4.0&targetVersion=GTv10.4.1) (2025-03-05)
+
+### Bug Fixes
+
+- eksporter interface for languagecontext
+  ([d35da32](https://github.com/helsenorge/designsystem/commit/d35da32647631e5c01a586ec43d6e0622a5cb279))
+
+## [10.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.3.0&targetVersion=GTv10.4.0) (2025-03-04)
+
+### Features
+
+- **drawer:** lukk drawer med escape knapp
+  ([b307451](https://github.com/helsenorge/designsystem/commit/b30745144f54b4ceda551bd07e3b18e29d08e388)), closes
+  [#346116](https://github.com/helsenorge/designsystem/issues/346116)
+- **icon:** nye ikoner ([cfb9c42](https://github.com/helsenorge/designsystem/commit/cfb9c42076e22649df45ab0497e478f5244e55ec)), closes
+  [#343101](https://github.com/helsenorge/designsystem/issues/343101)
+- **utils:** felles språkkontekst ([bbd6d1e](https://github.com/helsenorge/designsystem/commit/bbd6d1eb9e5b06780e7ce29d631b83a3f5d01e89)),
+  closes [#345767](https://github.com/helsenorge/designsystem/issues/345767)
+
+### Bug Fixes
+
+- **dropdown:** oppdater interaksjon og aria attributter til menu button patternet
+  ([3d594e2](https://github.com/helsenorge/designsystem/commit/3d594e2728df0d41a9e9ee3fcbab1dbaaebb7e73)), closes
+  [#342762](https://github.com/helsenorge/designsystem/issues/342762)
+- **popmenu:** avrundede hjørner uansett
+  ([f1ed605](https://github.com/helsenorge/designsystem/commit/f1ed60520d9b37a00bdbad39937a8beb2a78192a)), closes
+  [#346274](https://github.com/helsenorge/designsystem/issues/346274)
 
 ## [10.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.2.0&targetVersion=GTv10.3.0) (2025-02-27)
 
