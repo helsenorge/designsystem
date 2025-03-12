@@ -143,3 +143,10 @@ export enum KeyboardEventKey {
   Space = ' ',
   Tab = 'Tab',
 }
+
+export enum LanguageLocales {
+  NORWEGIAN = 'nb-NO',
+  NORWEGIAN_NYNORSK = 'nn-NO',
+  ENGLISH = 'en-GB',
+  SAMI_NORTHERN = 'se-NO',
+}

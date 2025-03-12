@@ -13,7 +13,7 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     test('Så kan man klikke og se innholdet', async (): Promise<void> => {
       render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
-          <h2>{'Innhold i Dropdown'}</h2>
+          <button>{'Innhold i Dropdown'}</button>
         </Dropdown>
       );
 
@@ -22,20 +22,26 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
       await userEvent.click(button);
 
       const options = screen.getByLabelText('Ta et valg');
-      expect(options).toHaveFocus();
-
-      const contents = within(options).getByRole('heading', { name: 'Innhold i Dropdown' });
+      const contents = within(options).getByRole('button', { name: 'Innhold i Dropdown' });
       expect(contents).toBeVisible();
+      expect(contents).not.toHaveFocus();
     });
+  });
 
-    test('Så ser Dropdown ut slik den skal', (): void => {
-      const { container } = render(
+  describe('Når Dropdownen åpnes via tastatur', (): void => {
+    test('Så fokuseres første element i dropdownen', async (): Promise<void> => {
+      render(
         <Dropdown label="Ta et valg" placeholder="Knapp">
-          <h2>{'Innhold i Dropdown'}</h2>
+          <button>{'Første element'}</button>
+          <button>{'Andre element'}</button>
         </Dropdown>
       );
+      const button = screen.getByRole('button', { name: 'Knapp' });
+      button.focus();
+      await userEvent.keyboard('{enter}');
 
-      expect(container).toMatchSnapshot();
+      const firstElement = screen.getByRole('button', { name: 'Første element' });
+      expect(firstElement).toHaveFocus();
     });
   });
 

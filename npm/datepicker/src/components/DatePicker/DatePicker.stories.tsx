@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Source } from '@storybook/blocks';
 import { StoryObj, Meta } from '@storybook/react';
 import { parse } from 'date-fns';
 import { ar, nb } from 'date-fns/locale';
@@ -30,7 +31,118 @@ const meta = {
   tags: ['breaking'],
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={DatePicker} />,
+      page: (): React.JSX.Element => (
+        <Docs
+          component={DatePicker}
+          belowControlsContent={
+            <>
+              <section style={{ margin: '1rem 0' }}>
+                <h2>{'Example code:'}</h2>
+                <h3>{'A simple DatePicker component:'}</h3>
+                <Source
+                  language="tsx"
+                  code={`
+<DatePicker
+  label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+/>`}
+                />
+                <br />
+                <h3>{'A simple DateTime component:'}</h3>
+                <Source
+                  language="tsx"
+                  code={`
+<DateTimePickerWrapper>
+  <DateTime
+  defaultValue={12}
+  label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+  timeUnit={'hours'}
+  />
+  <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
+</DateTimePickerWrapper>`}
+                />
+                <br />
+                <h3>{'Date and time:'}</h3>
+                <Source
+                  language="tsx"
+                  code={`
+<DateTimePickerWrapper>
+  <DatePicker
+  label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+  />
+  <DateTime
+  defaultValue={12}
+  label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+  timeUnit={'hours'}
+  />
+  <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
+</DateTimePickerWrapper>`}
+                />
+                <br />
+                <h3>{'With validation:'}</h3>
+                <Source
+                  language="tsx"
+                  code={`
+import { useForm } from 'react-hook-form';
+
+const {
+    register,
+    trigger,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<DateForm>({ mode: 'onBlur' });
+
+  // ... //
+
+  const requireHour = (hours: number): true | string => {
+    // validation logic here
+  };
+
+  const requireMinute = (minutes: number): true | string => {
+    // validation logic here
+  };
+
+  const requireDate = (value: string): true | string => {
+    // validation logic here
+  };
+
+  // ... //
+
+return (
+  <Validation errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
+    <DateTimePickerWrapper legend={'Datepicker legend'}>
+      <DatePicker
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+        maxDate={maxDate}
+        minDate={minDate}
+        errorText={errors.datepicker?.message as string}
+        onDatePopupClosed={withOnDatePopupClosed ? (): Promise<boolean> => trigger(datepicker) : undefined}
+        {...register(datepicker, { validate: requireDate })}
+      />
+      <DateTimePickerWrapper errorText={(errors.datetimehour?.message as string) || (errors.datetimeminute?.message as string)}>
+        <DateTime
+          defaultValue={12}
+          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+          timeUnit={'hours'}
+          {...register(datetimehour, { validate: requireHour })}
+        />
+        <DateTime
+          defaultValue={0}
+          aria-labelledby={'label01'}
+          timeUnit={'minutes'}
+          {...register(datetimeminute, { validate: requireMinute })}
+        />
+      </DateTimePickerWrapper>
+    </DateTimePickerWrapper>
+  </Validation>
+)`}
+                />
+                <br />
+              </section>
+            </>
+          }
+        />
+      ),
       description: {
         component: 'Som innbygger ønsker jeg å kunne velge dato og tidspunkt for tjenestene på helsenorge.',
       },

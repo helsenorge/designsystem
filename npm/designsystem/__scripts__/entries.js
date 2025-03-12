@@ -38,7 +38,9 @@ const hooksAndExtras = globSync(
   }
 );
 
-const utils = globSync(`src/utils/*.ts`);
+const utils = globSync(`src/utils/*.{ts,tsx}`, {
+  ignore: ['**/*.stories.tsx'],
+});
 
 export const entries = [...components, ...icons, ...illustrations, ...hooksAndExtras, ...utils]
   .sort((a, b) => a.localeCompare(b))
