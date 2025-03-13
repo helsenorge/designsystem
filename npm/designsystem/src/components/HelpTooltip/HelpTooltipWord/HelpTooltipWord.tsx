@@ -4,7 +4,7 @@ import { AnalyticsId } from '../../../constants';
 
 import styles from './styles.module.scss';
 
-export interface TooltipWordProps {
+export interface HelpTooltipWordProps {
   /** Ordet som skal ha en tilhørende tooltip */
   children: string;
   /** Callback når ordet klikkes på */
@@ -21,7 +21,7 @@ export interface TooltipWordProps {
   testId?: string;
 }
 
-const TooltipWord = React.forwardRef<HTMLButtonElement, TooltipWordProps>(
+const HelpTooltipWord = React.forwardRef<HTMLButtonElement, HelpTooltipWordProps>(
   ({ children, onClick, onFocus, onBlur, onKeyDown, testId, ariaDescribedById }, ref) => (
     <button
       className={styles.word}
@@ -41,6 +41,6 @@ const TooltipWord = React.forwardRef<HTMLButtonElement, TooltipWordProps>(
   )
 );
 
-TooltipWord.displayName = 'TooltipWord';
+HelpTooltipWord.displayName = 'TooltipWord';
 
-export default TooltipWord;
+export default HelpTooltipWord;

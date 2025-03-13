@@ -1,46 +1,46 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 
-import TooltipWord from './TooltipWord';
+import HelpTooltipWord from './HelpTooltipWord';
 import { useDelayedState } from '../../hooks/useDelayedState';
 import { useUuid } from '../../hooks/useUuid';
 import HelpBubble from '../HelpBubble';
 
 const HOVER_DELAY_MS = 200;
 
-export interface TooltipProps {
+export interface HelpTooltipProps {
   /** Ordet som skal ha en tilhørende tooltip */
   children: string;
-  /** Teksten som skal vises i tooltip */
+  /** Teksten som skal vises i boblen som åpnes */
   description: React.ReactNode;
   /** Valgfri test-id */
   testId?: string;
 }
 
-export const Tooltip: React.FC<TooltipProps> = ({ children, description, testId }) => {
+export const HelpTooltip: React.FC<HelpTooltipProps> = ({ children, description, testId }) => {
   const helpBubbleId = useUuid();
   const wordRef = useRef<HTMLButtonElement>(null);
-  const { currentTooltip, setCurrentTooltip } = useContext(TooltipOpenContext);
+  const { currentHelpTooltip, setCurrentHelpTooltip } = useContext(HelpTooltipOpenContext);
   const [{ showTooltip, keepOpen }, setShowTooltipDelayed, setShowTooltip] = useDelayedState(
     { showTooltip: false, keepOpen: false },
     HOVER_DELAY_MS
   );
 
   useEffect(() => {
-    if (!setCurrentTooltip) {
+    if (!setCurrentHelpTooltip) {
       return;
     }
     if (showTooltip) {
-      setCurrentTooltip(helpBubbleId);
+      setCurrentHelpTooltip(helpBubbleId);
     } else {
-      setCurrentTooltip(undefined);
+      setCurrentHelpTooltip(undefined);
     }
   }, [showTooltip]);
 
   useEffect(() => {
-    if (currentTooltip !== helpBubbleId && typeof currentTooltip !== 'undefined') {
+    if (currentHelpTooltip !== helpBubbleId && typeof currentHelpTooltip !== 'undefined') {
       setShowTooltip(prevState => ({ showTooltip: false, keepOpen: prevState.keepOpen }));
     }
-  }, [currentTooltip]);
+  }, [currentHelpTooltip]);
 
   const handleDocumentClick = (): void => {
     if (!showTooltip) {
@@ -60,7 +60,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ children, description, testId 
   };
 
   const handleFocus = (): void => {
-    if (!currentTooltip) {
+    if (!currentHelpTooltip) {
       setShowTooltipDelayed(prevState => ({ showTooltip: true, keepOpen: prevState.keepOpen }));
     }
   };
@@ -80,7 +80,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ children, description, testId 
 
   return (
     <>
-      <TooltipWord
+      <HelpTooltipWord
         ref={wordRef}
         onClick={handleTooltipClick}
         onFocus={handleFocus}
@@ -90,7 +90,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ children, description, testId 
         testId={testId}
       >
         {children}
-      </TooltipWord>
+      </HelpTooltipWord>
       <HelpBubble helpBubbleId={helpBubbleId} controllerRef={wordRef} role="tooltip" showBubble={showTooltip || keepOpen}>
         {description}
       </HelpBubble>
@@ -98,23 +98,25 @@ export const Tooltip: React.FC<TooltipProps> = ({ children, description, testId 
   );
 };
 
-export type TooltipContext = {
-  currentTooltip?: string;
-  setCurrentTooltip?: (id?: string) => void;
+export type HelpTooltipContext = {
+  currentHelpTooltip?: string;
+  setCurrentHelpTooltip?: (id?: string) => void;
 };
 
-const TooltipOpenContext = React.createContext<TooltipContext>({
-  currentTooltip: undefined,
+const HelpTooltipOpenContext = React.createContext<HelpTooltipContext>({
+  currentHelpTooltip: undefined,
 });
 
-interface TooltipOpenProviderProps {
+interface HelpTooltipOpenProviderProps {
   children?: React.ReactNode;
 }
 
-export const TooltipOpenProvider: React.FC<TooltipOpenProviderProps> = ({ children }) => {
-  const [currentTooltip, setCurrentTooltip] = useState<string>();
+export const HelpTooltipOpenProvider: React.FC<HelpTooltipOpenProviderProps> = ({ children }) => {
+  const [currentHelpTooltip, setCurrentHelpTooltip] = useState<string>();
 
-  return <TooltipOpenContext.Provider value={{ currentTooltip, setCurrentTooltip }}>{children}</TooltipOpenContext.Provider>;
+  return (
+    <HelpTooltipOpenContext.Provider value={{ currentHelpTooltip, setCurrentHelpTooltip }}>{children}</HelpTooltipOpenContext.Provider>
+  );
 };
 
-export default Tooltip;
+export default HelpTooltip;

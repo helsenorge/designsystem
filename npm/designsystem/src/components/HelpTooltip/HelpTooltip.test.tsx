@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Tooltip from './Tooltip';
+import HelpTooltip from './HelpTooltip';
 
-describe('Gitt at Tooltip skal vises ', () => {
+describe('Gitt at HelpTooltip skal vises ', () => {
   describe('Når komponenten får en tekst', () => {
     it('Så vises beskrivelsen', () => {
-      render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
+      render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
 
       const word = screen.getByText('ordet');
       expect(word).toBeVisible();
@@ -14,7 +14,7 @@ describe('Gitt at Tooltip skal vises ', () => {
     });
 
     it('Så rendres den riktig', () => {
-      const { container } = render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
+      const { container } = render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
 
       expect(container).toMatchSnapshot();
     });
@@ -22,7 +22,7 @@ describe('Gitt at Tooltip skal vises ', () => {
 
   describe('Når tekst trykkes på', () => {
     it('Så vises HelpBubble', async () => {
-      render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
+      render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
 
       const word = screen.getByText('ordet');
       await userEvent.click(word);
@@ -34,7 +34,7 @@ describe('Gitt at Tooltip skal vises ', () => {
 
   describe('Når tekst hovres med musen', () => {
     it('Så vises HelpBubble', async () => {
-      render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
+      render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
 
       const word = screen.getByText('ordet');
       await userEvent.hover(word);
@@ -46,7 +46,7 @@ describe('Gitt at Tooltip skal vises ', () => {
 
   describe('Når tekst får fokus', () => {
     it('Så vises HelpBubble', async () => {
-      render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
+      render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
 
       const word = screen.getByText('ordet');
 
@@ -60,7 +60,7 @@ describe('Gitt at Tooltip skal vises ', () => {
 
   describe('Når det trykkes mens HelpBubble er åpen', () => {
     it('Så skjules HelpBubble', async () => {
-      render(<Tooltip description={'beskrivelse av ordet'}>{'ordet'}</Tooltip>);
+      render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
 
       const word = screen.getByText('ordet');
       await userEvent.click(word);
