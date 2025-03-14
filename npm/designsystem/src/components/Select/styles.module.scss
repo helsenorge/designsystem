@@ -2,7 +2,7 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 .select-wrapper {
   display: flex;
@@ -65,7 +65,7 @@
   line-height: font-settings.$lineheight-size-sm;
   border-radius: 0;
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     height: 3.125rem;
     font-size: font-settings.$font-size-md;
   }
@@ -98,7 +98,7 @@
     font-family: inherit;
     font-size: font-settings.$font-size-sm;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       font-size: font-settings.$font-size-md;
     }
   }

@@ -1,7 +1,7 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-mixins' as fonts;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 .form-group-wrapper {
   &__title {

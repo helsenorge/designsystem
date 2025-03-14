@@ -3,7 +3,7 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/screen-reader' as *;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 $status-dot-size: 0.937rem;
 
@@ -15,7 +15,7 @@ $status-dot-size: 0.937rem;
   line-height: 1.4rem;
   font-weight: 400;
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+  @media (min-width: map.get($grid-breakpoints, sm)) {
     font-size: font-settings.$font-size-sm;
     line-height: 1.6rem;
   }
@@ -37,7 +37,7 @@ $status-dot-size: 0.937rem;
     min-width: $status-dot-size;
     min-height: $status-dot-size;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+    @media (min-width: map.get($grid-breakpoints, sm)) {
       top: spacers.getSpacer(3xs);
     }
 

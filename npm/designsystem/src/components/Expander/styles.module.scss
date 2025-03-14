@@ -4,8 +4,8 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../Button/styles.module' as button;
-@use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
+@use '../../scss/breakpoints' as *;
+@import '../../scss/supernova/styles/colors';
 
 .expander {
   position: initial;
@@ -60,7 +60,7 @@
     font-weight: 600;
     text-align: left;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       font-size: font-settings.$font-size-md;
       line-height: font-settings.$lineheight-size-md;
     }
@@ -70,7 +70,7 @@
       padding: spacers.getSpacer(xs) spacers.getSpacer(2xs) spacers.getSpacer(xs) spacers.getSpacer(s);
       cursor: pointer;
 
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding: spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(l);
       }
     }
@@ -78,7 +78,7 @@
     &--icon {
       padding-left: spacers.getSpacer(2xs);
 
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding-left: spacers.getSpacer(s);
       }
     }
@@ -173,7 +173,7 @@
       padding-left: spacers.getSpacer(s);
       border-left: solid 3px palette.$neutral200;
 
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         margin-left: calc(38px / 2 - 1px); // Halvparten av chevron-ikonets bredde minus halve bredden på border
         padding-left: calc(
           38px / 2 + 12px - 2px
@@ -184,11 +184,11 @@
     &--large {
       padding: spacers.getSpacer(s) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(s);
 
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding: spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(xl);
       }
       &#{$content}--icon {
-        @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        @media (min-width: map.get($grid-breakpoints, md)) {
           padding-left: 70px;
         }
       }

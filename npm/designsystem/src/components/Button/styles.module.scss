@@ -3,8 +3,8 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/screen-reader' as *;
-@use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
+@use '../../scss/breakpoints' as *;
+@import '../../scss/supernova/styles/colors';
 
 $dark-mode-disabled-transparrent: #ffffffb3;
 $with-icons: // icon-class, size-class, padding-left, padding-right, padding-left desktop, padding-right desktop, svg-margin-left, svg-margin-right, svg-margin-left desktop, svg-margin-right desktop
@@ -70,7 +70,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   :disabled > & {
     outline-color: palette.$neutral700;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       outline-color: palette.$neutral500;
     }
   }
@@ -84,7 +84,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 
   :disabled > & {
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       color: palette.$neutral700;
     }
   }
@@ -147,7 +147,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     outline-color: palette.$white;
 
     :disabled > & {
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         outline-color: $dark-mode-disabled-transparrent;
       }
     }
@@ -169,7 +169,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     color: palette.$white;
 
     :disabled > & {
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         color: $dark-mode-disabled-transparrent;
       }
     }
@@ -232,7 +232,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     color: palette.$neutral800;
   }
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     min-height: 3.125rem;
     padding: 0 spacers.getSpacer(l);
     font-size: font-settings.$font-size-md;
@@ -244,7 +244,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     padding: 0 spacers.getSpacer(l);
     font-size: 1.3125rem;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       min-height: 4.5rem;
       padding: 0 spacers.getSpacer(xl);
       font-size: font-settings.$font-size-lg;
@@ -257,7 +257,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
       padding-left: $pl;
       padding-right: $pr;
 
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding-left: $pld;
         padding-right: $prd;
       }
@@ -269,7 +269,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
       margin-left: $svgml;
       margin-right: $svgmr;
 
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         margin-left: $svgmld;
         margin-right: $svgmrd;
       }
@@ -336,7 +336,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     align-items: center;
     justify-content: center;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       margin: 0 auto 0 0;
     }
 
@@ -372,7 +372,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   @include on-dark;
 
-  @include breakpoints.tiny-screens-media-query {
+  @include tiny-screens-media-query {
     min-height: spacers.getSpacer(l);
     padding: 0 spacers.getSpacer(xs);
   }
@@ -395,7 +395,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--on-dark &__line {
     border-color: palette.$white;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       border-color: $dark-mode-disabled-transparrent;
     }
   }

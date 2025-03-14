@@ -3,8 +3,8 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/palette' as palette;
-@use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
+@use '../../scss/breakpoints' as *;
+@import '../../scss/supernova/styles/colors';
 
 .duolist-wrapper {
   &--border {

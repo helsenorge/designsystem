@@ -3,13 +3,13 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/font-mixins' as fonts;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 .label-wrapper {
   margin-bottom: spacers.getSpacer(2xs);
   line-height: font-settings.$lineheight-size-xs;
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+  @media (min-width: map.get($grid-breakpoints, sm)) {
     line-height: font-settings.$lineheight-size-sm;
   }
 

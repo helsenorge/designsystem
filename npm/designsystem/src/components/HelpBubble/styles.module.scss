@@ -3,7 +3,7 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../AnchorLink/styles.module' as anchorlink;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 .helpbubble {
   $bubble: &;
@@ -15,7 +15,7 @@
   font-size: font-settings.$font-size-sm;
   line-height: font-settings.$lineheight-size-sm;
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
+  @media (min-width: map.get($grid-breakpoints, lg)) {
     font-size: font-settings.$font-size-md;
     line-height: font-settings.$lineheight-size-md;
   }

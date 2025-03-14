@@ -2,8 +2,8 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
+@use '../../scss/breakpoints' as *;
+@import '../../scss/supernova/styles/colors';
 
 .drawer {
   position: fixed;
@@ -32,7 +32,7 @@
     border-radius: 0.75rem 0.75rem 0 0;
     outline: none;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       justify-content: space-between;
       height: 100%;
       max-height: 100dvh;
@@ -43,14 +43,14 @@
     }
 
     &--right {
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         transform: translateX(100%);
         right: 0;
         left: unset;
       }
     }
 
-    @include breakpoints.tiny-screens-media-query {
+    @include tiny-screens-media-query {
       max-height: 100dvh;
       border-radius: 0;
     }
@@ -61,7 +61,7 @@
       max-height: inherit;
       overflow: hidden;
 
-      @include breakpoints.tiny-screens-media-query {
+      @include tiny-screens-media-query {
         overflow-y: auto;
 
         &:focus-visible {
@@ -79,11 +79,11 @@
     padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
     border-bottom: 1px solid var(--color-base-border-neutral);
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: spacers.getSpacer(xs);
     }
 
-    @include breakpoints.tiny-screens-media-query {
+    @include tiny-screens-media-query {
       padding: spacers.getSpacer(4xs) 0;
       flex-direction: column-reverse;
       align-items: flex-start;
@@ -99,11 +99,11 @@
       outline-offset: -1px;
     }
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: spacers.getSpacer(s) spacers.getSpacer(xs);
     }
 
-    @include breakpoints.tiny-screens-media-query {
+    @include tiny-screens-media-query {
       overflow-y: unset;
     }
   }
@@ -114,11 +114,11 @@
     border-top: 1px solid var(--color-base-border-neutral);
     padding: spacers.getSpacer(s) spacers.getSpacer(2xs);
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: spacers.getSpacer(m) spacers.getSpacer(xs);
     }
 
-    @include breakpoints.tiny-screens-media-query {
+    @include tiny-screens-media-query {
       flex-wrap: wrap;
       gap: spacers.getSpacer(2xs) 0;
       padding: spacers.getSpacer(2xs) 0;

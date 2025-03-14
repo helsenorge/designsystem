@@ -2,7 +2,7 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
-@import '../../scss/breakpoints';
+@use '../../scss/breakpoints' as *;
 @import '../../scss/grid';
 
 .service-message {

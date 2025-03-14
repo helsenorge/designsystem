@@ -3,7 +3,7 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/screen-reader' as *;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 $dot-size: 1.765rem;
 

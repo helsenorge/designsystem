@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use '../../scss/palette' as palette;
 @use '../../scss/spacers' as spacers;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 $colors: 'neutral', 'blueberry', 'cherry';
 
@@ -21,22 +21,22 @@ $colors: 'neutral', 'blueberry', 'cherry';
       inset 0 0 0 2px palette.$black;
   }
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, xs)) {
+  @media (min-width: map.get($grid-breakpoints, xs)) {
     padding-left: 0;
   }
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+  @media (min-width: map.get($grid-breakpoints, sm)) {
     padding-right: spacers.getSpacer(s);
   }
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     padding-right: spacers.getSpacer(l);
   }
 
   &--no-illustration {
     padding-left: spacers.getSpacer(s);
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding-left: spacers.getSpacer(l);
     }
   }
@@ -54,7 +54,7 @@ $colors: 'neutral', 'blueberry', 'cherry';
   &__illustration {
     display: none;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, xs)) {
+    @media (min-width: map.get($grid-breakpoints, xs)) {
       display: inline;
     }
   }
@@ -67,7 +67,7 @@ $colors: 'neutral', 'blueberry', 'cherry';
     padding-top: spacers.getSpacer(m);
     padding-bottom: spacers.getSpacer(m);
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       gap: spacers.getSpacer(2xs);
       padding-top: spacers.getSpacer(l);
       padding-bottom: spacers.getSpacer(l);
@@ -89,11 +89,11 @@ $colors: 'neutral', 'blueberry', 'cherry';
   &__icon {
     margin-left: spacers.getSpacer(xs);
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+    @media (min-width: map.get($grid-breakpoints, sm)) {
       margin-left: spacers.getSpacer(s);
     }
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
+    @media (min-width: map.get($grid-breakpoints, lg)) {
       margin-left: spacers.getSpacer(l);
     }
   }

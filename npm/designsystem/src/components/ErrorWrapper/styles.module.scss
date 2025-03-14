@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use '../../scss/spacers' as spacers;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 @use '../../scss/font-mixins' as fonts;
 
 .error-wrapper {
@@ -10,7 +10,7 @@
     border: 1px solid var(--core-color-cherry-400);
     border-left: 4px solid var(--color-notification-border-error);
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: spacers.getSpacer(s) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(m);
     }
   }

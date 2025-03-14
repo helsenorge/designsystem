@@ -2,7 +2,7 @@
 @use './palette' as palette;
 @use './spacers' as spacers;
 @use './font-settings' as font-settings;
-@use './breakpoints' as breakpoints;
+@use './breakpoints' as *;
 
 @mixin input-wrapper {
   width: 100%;
@@ -145,7 +145,7 @@
     background-color: transparent;
     width: 100%;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       font-size: font-settings.$font-size-md;
     }
 

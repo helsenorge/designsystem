@@ -3,7 +3,7 @@
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/palette' as palette;
 @use '../AnchorLink/styles.module' as anchorlink;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 .notification-panel {
   $panel: &;
@@ -13,7 +13,7 @@
   box-shadow: 0.25rem 0.25rem 0.375rem rgb(0 0 0 / 15%);
   border-radius: 0.25rem;
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     padding-left: spacers.getSpacer(s);
     padding-right: spacers.getSpacer(m);
     #{$panel}__icon {
@@ -27,7 +27,7 @@
     line-height: 1.25rem;
     box-shadow: none;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding-left: spacers.getSpacer(2xs);
       padding-right: spacers.getSpacer(s);
     }
@@ -45,15 +45,15 @@
   }
 
   &--small {
-    max-width: map.get(breakpoints.$grid-breakpoints, sm);
+    max-width: map.get($grid-breakpoints, sm);
   }
 
   &--medium {
-    max-width: map.get(breakpoints.$grid-breakpoints, md);
+    max-width: map.get($grid-breakpoints, md);
   }
 
   &--large {
-    max-width: map.get(breakpoints.$grid-breakpoints, lg);
+    max-width: map.get($grid-breakpoints, lg);
   }
 
   &--info {
@@ -133,7 +133,7 @@
     line-height: font-settings.$lineheight-size-xs;
     margin: 0;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       font-size: font-settings.$font-size-sm;
       line-height: 1.625rem;
     }
@@ -173,7 +173,7 @@
     &--expander-no-label {
       margin: spacers.getSpacer(2xs) 0 0;
 
-      @media (max-width: map.get(breakpoints.$grid-breakpoints, lg)) {
+      @media (max-width: map.get($grid-breakpoints, lg)) {
         padding-top: 0;
       }
     }

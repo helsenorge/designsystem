@@ -3,7 +3,7 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/screen-reader' as *;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 .dropdown {
   position: relative;
@@ -25,7 +25,7 @@
     font-size: font-settings.$font-size-sm;
     line-height: 1.3rem; // Custom fordi teksten skal henge bedre sammen om den går over to linjer
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: spacers.getSpacer(3xs) spacers.getSpacer(3xs) spacers.getSpacer(3xs) spacers.getSpacer(s);
       font-size: font-settings.$font-size-md;
       line-height: 1.5rem;
@@ -167,7 +167,7 @@
     &__label {
       padding: spacers.getSpacer(3xs) 0;
 
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      @media (min-width: map.get($grid-breakpoints, md)) {
         padding: spacers.getSpacer(2xs) 0;
       }
     }
@@ -197,7 +197,7 @@
     padding: 0;
     margin: 0;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       max-height: 464px;
     }
   }
@@ -210,7 +210,7 @@
     border-bottom: 1px solid palette.$neutral300;
     padding: spacers.getSpacer(2xs) spacers.getSpacer(s);
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       padding: spacers.getSpacer(s);
     }
 

@@ -3,8 +3,8 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/font-mixins' as fonts;
-@use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
+@use '../../scss/breakpoints' as *;
+@import '../../scss/supernova/styles/colors';
 
 .toggle-container {
   display: flex;
@@ -27,7 +27,7 @@
     color: var(--core-color-neutral-900);
     margin-left: spacers.getSpacer(xs);
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+    @media (min-width: map.get($grid-breakpoints, sm)) {
       margin-left: spacers.getSpacer(s);
     }
 
@@ -39,7 +39,7 @@
       margin-left: 0;
       margin-right: spacers.getSpacer(xs);
 
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+      @media (min-width: map.get($grid-breakpoints, sm)) {
         margin-right: spacers.getSpacer(s);
       }
     }
@@ -52,7 +52,7 @@
     margin-left: 3.9rem;
     text-align: left;
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+    @media (min-width: map.get($grid-breakpoints, sm)) {
       font-size: font-settings.$font-size-sm;
       line-height: font-settings.$lineheight-size-xs;
       text-align: left;

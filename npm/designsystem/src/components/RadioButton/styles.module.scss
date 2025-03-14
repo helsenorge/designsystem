@@ -4,7 +4,7 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 @mixin dashed-border() {
   box-shadow: none;
@@ -163,7 +163,7 @@
     }
   }
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     &__large {
       padding: 1.68rem spacers.getSpacer(l);
     }

@@ -2,8 +2,8 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/palette' as palette;
-@use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
+@use '../../scss/breakpoints' as *;
+@import '../../scss/supernova/styles/colors';
 
 .link-list {
   list-style: none;
@@ -122,7 +122,7 @@
       line-height: font-settings.$lineheight-size-md;
     }
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    @media (min-width: map.get($grid-breakpoints, md)) {
       &--small {
         font-size: font-settings.$font-size-sm;
         line-height: font-settings.$lineheight-size-sm;

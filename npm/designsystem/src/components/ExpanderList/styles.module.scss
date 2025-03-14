@@ -1,8 +1,8 @@
 @use 'sass:map';
 @use '../../scss/spacers' as spacers;
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as breakpoints;
-@import '../../scss/supernova/styles/colors.css';
+@use '../../scss/breakpoints' as *;
+@import '../../scss/supernova/styles/colors';
 
 .expander-list {
   list-style: none;
@@ -131,7 +131,7 @@
   width: 100%;
   outline: none;
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     font-size: font-settings.$font-size-md;
     line-height: font-settings.$lineheight-size-md;
   }

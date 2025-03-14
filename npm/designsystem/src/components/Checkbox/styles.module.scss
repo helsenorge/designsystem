@@ -3,7 +3,7 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/screen-reader' as *;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 @mixin dashed-dotted-border() {
   box-shadow: none;
@@ -245,7 +245,7 @@ $checkbox-icon-size: 1.625rem;
     background-color: palette.$blueberry800;
   }
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     &--large {
       padding: 1.68rem spacers.getSpacer(l);
     }

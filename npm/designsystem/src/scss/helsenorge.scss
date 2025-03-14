@@ -1,8 +1,8 @@
-@use 'reset' as *;
-@use 'spacers' as *;
-@use 'breakpoints' as *;
-@use 'palette' as *;
-@use 'fonts' as *;
-@use 'body' as *;
-@use 'print' as *;
+@import 'reset';
+@import 'spacers';
+@import 'breakpoints';
 @import 'bootstrap/scss/bootstrap-grid';
+@import 'palette';
+@import 'fonts';
+@import 'body';
+@import 'print';

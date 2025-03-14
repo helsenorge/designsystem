@@ -2,7 +2,7 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 .helpquestion {
   display: inline-flex;
@@ -19,7 +19,7 @@
   font-size: font-settings.$font-size-sm;
   line-height: font-settings.$lineheight-size-xs;
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     gap: spacers.getSpacer(2xs);
     font-size: font-settings.$font-size-md;
     line-height: font-settings.$lineheight-size-sm;

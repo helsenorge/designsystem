@@ -2,7 +2,7 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/breakpoints' as *;
 
 .max-characters {
   display: flex;
@@ -12,7 +12,7 @@
   font-size: font-settings.$font-size-sm;
   line-height: font-settings.$lineheight-size-sm;
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+  @media (min-width: map.get($grid-breakpoints, md)) {
     line-height: font-settings.$lineheight-size-md;
     font-size: font-settings.$font-size-md;
   }
