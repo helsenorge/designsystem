@@ -2,14 +2,14 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as *;
+@use '../../scss/breakpoints' as breakpoints;
 
 .stepper-wrapper {
   display: flex;
   align-items: center;
   min-height: spacers.getSpacer(l);
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     min-height: spacers.getSpacer(xl);
   }
 }

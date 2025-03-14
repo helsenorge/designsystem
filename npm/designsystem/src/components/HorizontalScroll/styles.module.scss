@@ -1,6 +1,6 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
-@use '../../scss/breakpoints' as *;
+@use '../../scss/breakpoints' as breakpoints;
 
 // Disables fordi stylelint og prettier er uenige
 /* stylelint-disable-next-line scss/dollar-variable-colon-space-after */

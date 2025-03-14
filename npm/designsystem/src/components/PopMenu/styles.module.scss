@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use '../../scss/palette' as palette;
-@use '../../scss/breakpoints' as *;
+@use '../../scss/breakpoints' as breakpoints;
 
 .pop-menu-button {
   padding: 0;
@@ -111,7 +111,7 @@ html :focus > .pop-menu-button {
   border: 0.125rem solid rgb(24 128 151);
   box-shadow: 0 0 0.3125rem 0 rgb(0 0 0 / 50%);
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     width: 26.125rem;
   }
 

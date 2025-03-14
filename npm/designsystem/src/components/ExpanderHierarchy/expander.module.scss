@@ -2,7 +2,7 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/spacers' as spacers;
 @use '../../scss/font-mixins' as fonts;
-@use '../../scss/breakpoints' as *;
+@use '../../scss/breakpoints' as breakpoints;
 
 .expander {
   $item: &;
@@ -23,7 +23,7 @@
     border-bottom: 1px solid palette.$neutral500;
     padding: spacers.getSpacer(xs) 0;
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       flex-direction: row-reverse;
       justify-content: start;
       padding: spacers.getSpacer(s) spacers.getSpacer(s) spacers.getSpacer(s) spacers.getSpacer(2xs);
@@ -53,7 +53,7 @@
     &--2-and-lower {
       padding: spacers.getSpacer(2xs) 0;
 
-      @media (min-width: map.get($grid-breakpoints, lg)) {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
         padding: spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(2xs);
       }
     }
@@ -106,13 +106,13 @@
 
     &--1,
     &--2 {
-      @media (min-width: map.get($grid-breakpoints, lg)) {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
         padding-left: spacers.getSpacer(2xl);
       }
     }
 
     &--3-and-lower {
-      @media (min-width: map.get($grid-breakpoints, lg)) {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
         padding-left: spacers.getSpacer(xl);
       }
     }
@@ -125,13 +125,13 @@
       margin-left: spacers.getSpacer(xs);
     }
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       margin-left: 0;
       margin-right: spacers.getSpacer(s);
     }
 
     &--3-and-lower {
-      @media (min-width: map.get($grid-breakpoints, lg)) {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
         margin-right: spacers.getSpacer(xs);
       }
     }

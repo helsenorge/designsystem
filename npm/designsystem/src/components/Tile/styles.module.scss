@@ -3,8 +3,8 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/spacers' as spacers;
 @use '../../scss/screen-reader' as *;
-@use '../../scss/breakpoints' as *;
-@import '../../scss/supernova/styles/colors';
+@use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
 
 .tile {
   // Referanse for grandparent selection i underklassene lenger nede
@@ -22,7 +22,7 @@
   border: 1px solid var(--color-base-border-blueberry);
   outline: none;
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     padding: spacers.getSpacer(l) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(s);
     justify-content: flex-start;
   }
@@ -39,7 +39,7 @@
   &--compact {
     padding: spacers.getSpacer(2xs) spacers.getSpacer(2xs) spacers.getSpacer(xs);
 
-    @media (min-width: map.get($grid-breakpoints, md)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       padding: spacers.getSpacer(s) spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(s);
     }
   }
@@ -84,7 +84,7 @@
     font-weight: 400;
     margin: spacers.getSpacer(3xs) 0 0;
 
-    @media (min-width: map.get($grid-breakpoints, md)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       text-align: left;
       font-weight: 600;
       font-size: font-settings.$font-size-md;
@@ -96,7 +96,7 @@
       margin: 0 0 0 spacers.getSpacer(3xs);
       text-align: left;
 
-      @media (min-width: map.get($grid-breakpoints, md)) {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         margin-left: spacers.getSpacer(2xs);
       }
     }
@@ -126,7 +126,7 @@
   flex-direction: column;
   align-items: center;
 
-  @media (min-width: map.get($grid-breakpoints, md)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     align-items: start;
 
     @media print {

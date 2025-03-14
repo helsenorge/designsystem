@@ -1,12 +1,12 @@
 @use 'sass:map';
 @use '../../scss/spacers' as spacers;
-@use '../../scss/breakpoints' as *;
+@use '../../scss/breakpoints' as breakpoints;
 
 .date-time {
   display: flex;
   flex-flow: column wrap;
 
-  @media (min-width: map.get($grid-breakpoints, sm)) {
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
     flex-direction: row;
     align-items: flex-end;
   }
@@ -20,7 +20,7 @@
     align-items: flex-end;
     padding-top: spacers.getSpacer(m);
 
-    @media (min-width: map.get($grid-breakpoints, sm)) {
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
       padding-top: 0;
     }
   }

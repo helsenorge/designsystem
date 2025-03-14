@@ -2,7 +2,7 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-mixins' as fonts;
 @use '../../scss/input' as input;
-@use '../../scss/breakpoints' as *;
+@use '../../scss/breakpoints' as breakpoints;
 
 .textarea {
   @include input.input-wrapper;

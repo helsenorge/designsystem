@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
-@use '../../scss/breakpoints' as *;
+@use '../../scss/breakpoints' as breakpoints;
 
 .close {
   display: flex;
@@ -14,7 +14,7 @@
   background-color: transparent;
   cursor: pointer;
 
-  @media (max-width: map.get($grid-breakpoints, sm)) {
+  @media (max-width: map.get(breakpoints.$grid-breakpoints, sm)) {
     height: 2.375rem;
     width: 2.375rem;
   }
