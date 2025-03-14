@@ -95,7 +95,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
     cb && cb();
   };
 
-  const renderChildren = () => {
+  const renderChildren = (): React.ReactElement | undefined => {
     if (isComponent<LinkListProps>(children, LinkList)) {
       return (
         <PopOver

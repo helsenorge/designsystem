@@ -1,15 +1,23 @@
-## 11.0.0-beta.2 (2025-03-12)
+## [10.6.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.6.1&targetVersion=GTv10.6.2) (2025-03-14)
 
-## 11.0.0-beta.1 (2025-03-11)
+### Reverts
+
+- tar i bruk sass use" ([b4fc044](https://github.com/helsenorge/designsystem/commit/b4fc044c68aee56fdbe4ad93f8397f87bae5a0c3))
+
+## [10.6.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.6.0&targetVersion=GTv10.6.1) (2025-03-14)
+
+### Bug Fixes
+
+- **expanderlist:** nedre focus outline forsvinner
+  ([f345142](https://github.com/helsenorge/designsystem/commit/f345142968f86db4b1b3aeb33cfce7f9c237af32))
+- **expanderlist:** nedre focus outline forsvinner"
+  ([c8fde30](https://github.com/helsenorge/designsystem/commit/c8fde305783f79eeb0bb24587cb19a282a60f3f7)), closes
+  [#347177](https://github.com/helsenorge/designsystem/issues/347177)
+
+## [10.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.5.0&targetVersion=GTv10.6.0) (2025-03-12)
 
 ### Features
 
-- **helptrigger:** rename fra Trigger til HelpTrigger
-  ([cabb1a5](https://github.com/helsenorge/designsystem/commit/cabb1a535da4021ebe8e3826954e7a536e379a62)), closes
-  [#346490](https://github.com/helsenorge/designsystem/issues/346490)
-- **statusdot:** oppdatert varianter og ikoner
-  ([482aa0d](https://github.com/helsenorge/designsystem/commit/482aa0dfb8cd0e89c833a6c663ae8756be648b85)), closes
-  [#334937](https://github.com/helsenorge/designsystem/issues/334937)
 - **trigger:** marker prop som deprecated
   ([f850cb2](https://github.com/helsenorge/designsystem/commit/f850cb2717788b02656dbb6b0cc8ffbbc541a327)), closes
   [#346490](https://github.com/helsenorge/designsystem/issues/346490)
@@ -19,8 +27,9 @@
 - **dropdown:** bare tastaturnavigasjon fokuserer første child
   ([ee5438a](https://github.com/helsenorge/designsystem/commit/ee5438aa561ce2a8c3a19bc65ac2153cfd77c086)), closes
   [#342762](https://github.com/helsenorge/designsystem/issues/342762)
-
-## 11.0.0-beta.0 (2025-03-05)
+- **popover:** border radius for linklist type button er riktig
+  ([0864551](https://github.com/helsenorge/designsystem/commit/08645513954f4bb03d003d46f7751890f6f8243b)), closes
+  [#347231](https://github.com/helsenorge/designsystem/issues/347231)
 
 ## [10.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.4.1&targetVersion=GTv10.5.0) (2025-03-06)
 
@@ -2248,12 +2257,12 @@ Dette er fordi vi skal kunne dynamisk importere alt som ligger i Icons, så da b
 
 ### Bug Fixes
 
-- panel har avstand fra tittel til badge
-  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
-  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 - økt kontrast på understreking av lenker
   ([50b7fa4](https://github.com/helsenorge/designsystem/commit/50b7fa47fb44cb7d75fb877bd53e2309b35e1e21)), closes
   [#229049](https://github.com/helsenorge/designsystem/issues/229049)
+- panel har avstand fra tittel til badge
+  ([09034c4](https://github.com/helsenorge/designsystem/commit/09034c4844408c7cfe8f65d7a1a0d82a7828c2ef)), closes
+  [#282359](https://github.com/helsenorge/designsystem/issues/282359)
 
 ## [1.2.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv1.2.1&targetVersion=GTv1.2.2) (2022-08-31)
 

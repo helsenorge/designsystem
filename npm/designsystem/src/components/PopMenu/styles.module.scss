@@ -116,14 +116,20 @@ html :focus > .pop-menu-button {
   }
 
   li:first-of-type {
-    a {
+    border-top: none;
+
+    a,
+    button {
       border-top-left-radius: 0.5625rem;
       border-top-right-radius: 0.5625rem;
     }
   }
 
   li:last-of-type {
-    a {
+    border-bottom: none;
+
+    a,
+    button {
       border-bottom-left-radius: 0.5625rem;
       border-bottom-right-radius: 0.5625rem;
     }

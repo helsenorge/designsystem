@@ -67,6 +67,22 @@ export const Default: Story = {
   render: args => <PopMenu {...args}></PopMenu>,
 };
 
+export const WithLinkListAsButton: Story = {
+  args: {
+    children: (
+      <LinkList chevron={false}>
+        <LinkList.Link htmlMarkup="button" onClick={handleClick}>
+          {'Button 1'}
+        </LinkList.Link>
+        <LinkList.Link htmlMarkup="button" onClick={handleClick}>
+          {'Button 2'}
+        </LinkList.Link>
+      </LinkList>
+    ),
+  },
+  render: args => <PopMenu {...args}></PopMenu>,
+};
+
 export const WithText: Story = {
   args: {
     children: (
