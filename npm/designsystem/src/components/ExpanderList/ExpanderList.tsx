@@ -93,7 +93,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     onExpand,
     renderChildrenWhenClosed,
     variant = 'line',
-    zIndex = 1,
+    zIndex = 0,
   } = props;
   const [isExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLLIElement>(null);
