@@ -1,3 +1,10 @@
+## [10.6.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.6.1&targetVersion=GTv10.6.2) (2025-03-14)
+
+
+### Reverts
+
+*  tar i bruk sass use" ([b4fc044](https://github.com/helsenorge/designsystem/commit/b4fc044c68aee56fdbe4ad93f8397f87bae5a0c3))
+
 ## [10.6.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.6.0&targetVersion=GTv10.6.1) (2025-03-14)
 
 
