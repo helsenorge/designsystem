@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../../scss/breakpoints' as *;
 @import '../../../scss/supernova/styles/colors';
+@import '../../../scss/breakpoints';
 
 .tab-list {
   $tab-list: &;

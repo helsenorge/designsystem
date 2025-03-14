@@ -1,12 +1,12 @@
 @use 'sass:map';
-@use '../../scss/spacers' as spacers;
+@import '../../scss/spacers';
 
 .step {
   &__stepper {
-    margin-bottom: spacers.getSpacer(m);
+    margin-bottom: getSpacer(m);
   }
 
   &__content {
-    margin-bottom: spacers.getSpacer(s);
+    margin-bottom: getSpacer(s);
   }
 }

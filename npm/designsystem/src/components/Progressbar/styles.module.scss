@@ -1,5 +1,5 @@
-@use '../../scss/palette' as palette;
-@use '../../scss/screen-reader' as *;
+@import '../../scss/palette';
+@import '../../scss/screen-reader';
 
 .progressbar {
   &__svg {
@@ -20,7 +20,7 @@
   }
 
   &--overlay-screen {
-    background: palette.$transparent-grey;
+    background: $transparent-grey;
     position: fixed;
     inset: 0;
   }
@@ -29,7 +29,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: palette.$transparent-grey;
+    background: $transparent-grey;
     height: 100%;
     width: 100%;
   }

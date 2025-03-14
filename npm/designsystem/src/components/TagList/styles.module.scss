@@ -1,13 +1,13 @@
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
 
 .tag-list {
   all: unset;
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: spacers.getSpacer(2xs);
+  gap: getSpacer(2xs);
 
   &__item {
     all: unset;

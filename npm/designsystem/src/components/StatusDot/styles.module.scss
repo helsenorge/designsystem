@@ -1,9 +1,9 @@
 @use 'sass:map';
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
-@use '../../scss/font-settings' as font-settings;
-@use '../../scss/screen-reader' as *;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/screen-reader';
 
 $status-dot-size: 0.937rem;
 
@@ -11,17 +11,17 @@ $status-dot-size: 0.937rem;
   position: relative;
   display: inline-flex;
   align-items: flex-start;
-  font-size: font-settings.$font-size-xs;
+  font-size: $font-size-xs;
   line-height: 1.4rem;
   font-weight: 400;
 
   @media (min-width: map.get($grid-breakpoints, sm)) {
-    font-size: font-settings.$font-size-sm;
+    font-size: $font-size-sm;
     line-height: 1.6rem;
   }
 
   &--cancelled {
-    color: palette.$cherry600;
+    color: $cherry600;
   }
 
   &__dot {
@@ -29,8 +29,8 @@ $status-dot-size: 0.937rem;
     align-items: center;
     justify-content: center;
     position: relative;
-    top: spacers.getSpacer(4xs);
-    margin-right: spacers.getSpacer(2xs);
+    top: getSpacer(4xs);
+    margin-right: getSpacer(2xs);
     border-radius: 10rem;
     width: $status-dot-size;
     height: $status-dot-size;
@@ -38,44 +38,44 @@ $status-dot-size: 0.937rem;
     min-height: $status-dot-size;
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
-      top: spacers.getSpacer(3xs);
+      top: getSpacer(3xs);
     }
 
     &--info {
-      background: palette.$kiwi900;
+      background: $kiwi900;
     }
     &--info#{&}--on-dark {
-      background: palette.$kiwi400;
+      background: $kiwi400;
     }
 
     &--warning {
-      background: palette.$banana400;
+      background: $banana400;
     }
 
     &--alert,
     &--cancelled {
-      background: palette.$cherry500;
+      background: $cherry500;
     }
     &--alert#{&}--on-dark {
-      background: palette.$cherry300;
+      background: $cherry300;
     }
     &--cancelled#{&}--on-dark {
-      outline: 2px solid palette.$white;
+      outline: 2px solid $white;
     }
 
     &--active {
-      background: palette.$blueberry500;
+      background: $blueberry500;
     }
     &--active#{&}--on-dark {
-      background: palette.$blueberry300;
+      background: $blueberry300;
     }
 
     &--transparent {
-      border: 2px solid palette.$neutral600;
+      border: 2px solid $neutral600;
     }
     &--transparent#{&}--on-dark {
       border: none;
-      background: palette.$white;
+      background: $white;
     }
 
     svg {
@@ -85,7 +85,7 @@ $status-dot-size: 0.937rem;
 
   &__label {
     &--on-dark {
-      color: palette.$white;
+      color: $white;
     }
   }
 }

@@ -1,9 +1,9 @@
 @use 'sass:map';
-@use '@helsenorge/designsystem-react/scss/spacers' as spacers;
-@use '@helsenorge/designsystem-react/scss/palette' as palette;
-@use '@helsenorge/designsystem-react/scss/font-settings' as font-settings;
-@use '@helsenorge/designsystem-react/scss/font-mixins' as fonts;
-@use '@helsenorge/designsystem-react/scss/breakpoints' as *;
+@import '@helsenorge/designsystem-react/scss/spacers';
+@import '@helsenorge/designsystem-react/scss/breakpoints';
+@import '@helsenorge/designsystem-react/scss/palette';
+@import '@helsenorge/designsystem-react/scss/font-settings';
+@import '@helsenorge/designsystem-react/scss/font-mixins';
 
 .date-time-picker-wrapper {
   display: flex;
@@ -19,7 +19,7 @@
 
   &__date-picker {
     flex: 100%;
-    margin-right: spacers.getSpacer(l);
+    margin-right: getSpacer(l);
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
       flex: unset;
@@ -27,17 +27,17 @@
   }
 
   &__legend {
-    margin-bottom: spacers.getSpacer(m);
+    margin-bottom: getSpacer(m);
     margin-top: 0;
 
-    @include fonts.legend;
+    @include legend;
   }
 }
 
 .time-separator {
   display: flex;
   align-items: center;
-  padding: 0 spacers.getSpacer(2xs);
+  padding: 0 getSpacer(2xs);
 }
 
 .datepicker-popup-container {
@@ -51,7 +51,7 @@
 }
 
 .datepicker-popup-arrow {
-  --drop-shadow-color: #{palette.$blueberry500};
+  --drop-shadow-color: #{$blueberry500};
 
   width: 0;
   height: 0;
@@ -67,14 +67,14 @@
 
   &--over {
     border-width: 0.625rem;
-    border-bottom-color: palette.$white;
+    border-bottom-color: $white;
     filter: drop-shadow(var(--drop-shadow-color) 0 0.125rem 0.375rem 0.125rem);
     filter: drop-shadow(0 -0.185rem 0 var(--drop-shadow-color));
   }
 
   &--under {
     border-width: 0.625rem;
-    border-top-color: palette.$white;
+    border-top-color: $white;
     filter: drop-shadow(var(--drop-shadow-color) 0 0.125rem 0.375rem 0.125rem);
     filter: drop-shadow(0 0.2rem 0 var(--drop-shadow-color));
   }
@@ -108,9 +108,9 @@
   --rdp-dropdown-gap: 0.25rem;
   --rdp-nav-height: 2.375rem;
 
-  background-color: palette.$white;
-  padding: spacers.getSpacer(s) spacers.getSpacer(s) spacers.getSpacer(xs);
-  border: 2px solid palette.$blueberry500;
+  background-color: $white;
+  padding: getSpacer(s) getSpacer(s) getSpacer(xs);
+  border: 2px solid $blueberry500;
 }
 
 .month {
@@ -119,39 +119,39 @@
 
 .month_grid {
   width: 100%;
-  margin: 0 spacers.getSpacer(3xs) * -1 spacers.getSpacer(4xs) * -1;
-  border-spacing: spacers.getSpacer(3xs) spacers.getSpacer(4xs);
+  margin: 0 getSpacer(3xs) * -1 getSpacer(4xs) * -1;
+  border-spacing: getSpacer(3xs) getSpacer(4xs);
   border-collapse: separate;
 
   @media (min-width: map.get($grid-breakpoints, sm)) {
-    margin: 0 spacers.getSpacer(xs) * -1 spacers.getSpacer(3xs) * -1;
-    border-spacing: spacers.getSpacer(xs) spacers.getSpacer(3xs);
+    margin: 0 getSpacer(xs) * -1 getSpacer(3xs) * -1;
+    border-spacing: getSpacer(xs) getSpacer(3xs);
   }
 }
 
 .weekday {
-  color: palette.$neutral700;
+  color: $neutral700;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: font-settings.$font-size-sm;
+  font-size: $font-size-sm;
   font-weight: 400;
   text-transform: capitalize;
 }
 
 .day {
-  width: spacers.getSpacer(l);
-  height: spacers.getSpacer(l);
+  width: getSpacer(l);
+  height: getSpacer(l);
   padding: 0;
 
   .day_button {
-    font-size: font-settings.$font-size-sm;
+    font-size: $font-size-sm;
     font-weight: 600;
     font-family: 'Source Sans Pro', sans-serif;
-    color: palette.$blueberry600;
+    color: $blueberry600;
     overflow: hidden;
     box-sizing: border-box;
-    width: spacers.getSpacer(l);
-    max-width: spacers.getSpacer(l);
-    height: spacers.getSpacer(l);
+    width: getSpacer(l);
+    max-width: getSpacer(l);
+    height: getSpacer(l);
     margin: 0;
     border: 2px solid transparent;
     border-radius: 0;
@@ -162,30 +162,30 @@
 
     &:focus-visible:not([disabled]),
     &:focus:not([disabled]) {
-      background-color: palette.$neutral100;
-      color: palette.$blueberry600;
-      text-decoration: underline 2px palette.$blueberry600;
+      background-color: $neutral100;
+      color: $blueberry600;
+      text-decoration: underline 2px $blueberry600;
       outline: none;
     }
 
     &:hover:not([disabled]):not(._day--selected) {
-      background-color: palette.$neutral100;
+      background-color: $neutral100;
     }
   }
 
   &--today {
     .day_button {
-      background-color: palette.$blueberry100;
-      color: palette.$blueberry600;
+      background-color: $blueberry100;
+      color: $blueberry600;
 
       &:hover:not([disabled]):not(._day--selected) {
-        background-color: palette.$blueberry200;
+        background-color: $blueberry200;
       }
 
       &:focus-visible:not([disabled]),
       &:focus:not([disabled]) {
-        background-color: palette.$blueberry200;
-        text-decoration: underline 2px palette.$blueberry600;
+        background-color: $blueberry200;
+        text-decoration: underline 2px $blueberry600;
         outline: none;
       }
     }
@@ -195,10 +195,10 @@
     .day_button {
       cursor: default;
       opacity: 1 !important;
-      color: palette.$neutral400;
+      color: $neutral400;
 
       &:hover {
-        background-color: palette.$white;
+        background-color: $white;
       }
     }
   }
@@ -206,18 +206,18 @@
 
 .day--selected {
   .day_button {
-    background-color: palette.$blueberry500;
-    color: palette.$white;
+    background-color: $blueberry500;
+    color: $white;
 
     &:hover:not([disabled]):not(._day--selected) {
-      background-color: palette.$blueberry700;
+      background-color: $blueberry700;
     }
 
     &:focus-visible:not([disabled]),
     &:focus:not([disabled]) {
-      background-color: palette.$blueberry700;
-      color: palette.$white;
-      text-decoration: underline 2px palette.$white;
+      background-color: $blueberry700;
+      color: $white;
+      text-decoration: underline 2px $white;
       outline: none;
     }
   }
@@ -237,7 +237,7 @@
   opacity: 0;
   border: none;
   background-color: transparent;
-  font-size: font-settings.$font-size-sm;
+  font-size: $font-size-sm;
   line-height: inherit;
   text-transform: capitalize;
 
@@ -247,7 +247,7 @@
   }
 
   &:focus-visible:not([disabled]) + .caption_label {
-    box-shadow: 0 0 0 4px palette.$neutral900;
+    box-shadow: 0 0 0 4px $neutral900;
     border-radius: 0;
   }
 }
@@ -259,20 +259,20 @@
   align-items: center;
   margin: 0;
   white-space: nowrap;
-  color: palette.$blueberry600;
+  color: $blueberry600;
   border: 2px solid transparent;
   text-transform: capitalize;
-  font-size: font-settings.$font-size-sm;
+  font-size: $font-size-sm;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 600;
 
   .chevron {
-    fill: palette.$blueberry600;
+    fill: $blueberry600;
   }
 }
 
 .dropdown_month {
-  margin-right: spacers.getSpacer(2xs);
+  margin-right: getSpacer(2xs);
 }
 
 .button_previous,
@@ -280,7 +280,7 @@
   cursor: pointer;
   background: transparent;
   display: inline-flex;
-  margin-left: spacers.getSpacer(2xs);
+  margin-left: getSpacer(2xs);
   align-items: center;
   justify-content: center;
   width: 2.375rem;
@@ -291,16 +291,16 @@
 
   &[disabled] {
     cursor: default;
-    fill: palette.$neutral300;
+    fill: $neutral300;
   }
 
   &:focus-visible:not([disabled]) {
-    box-shadow: 0 0 0 4px palette.$neutral900;
-    background-color: palette.$neutral100;
+    box-shadow: 0 0 0 4px $neutral900;
+    background-color: $neutral100;
   }
 
   &:hover:not([disabled]):not(.day--selected) {
-    background-color: palette.$neutral100;
+    background-color: $neutral100;
   }
 }
 /* stylelint-enable */

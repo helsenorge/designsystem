@@ -1,16 +1,16 @@
 @use 'sass:map';
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
-@use '../../scss/font-settings' as font-settings;
-@use '../../scss/font-mixins' as fonts;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/font-mixins';
 
 .label-wrapper {
-  margin-bottom: spacers.getSpacer(2xs);
-  line-height: font-settings.$lineheight-size-xs;
+  margin-bottom: getSpacer(2xs);
+  line-height: $lineheight-size-xs;
 
   @media (min-width: map.get($grid-breakpoints, sm)) {
-    line-height: font-settings.$lineheight-size-sm;
+    line-height: $lineheight-size-sm;
   }
 
   &--no-bottom-margin {
@@ -29,14 +29,14 @@
 }
 
 .label {
-  @include fonts.label;
+  @include label;
 
   &--subdued {
-    @include fonts.label-subdued;
+    @include label-subdued;
   }
 
   &--on-dark {
-    color: palette.$white;
+    color: $white;
   }
 
   &::after {
@@ -49,14 +49,14 @@
 }
 
 .sublabel {
-  @include fonts.sublabel;
+  @include sublabel;
 
   &--subdued {
-    @include fonts.sublabel-subdued;
+    @include sublabel-subdued;
   }
 
   &--on-dark {
-    color: palette.$white;
+    color: $white;
   }
 
   &::after {
@@ -65,5 +65,5 @@
 }
 
 .after-label-children {
-  padding-left: spacers.getSpacer(xs);
+  padding-left: getSpacer(xs);
 }

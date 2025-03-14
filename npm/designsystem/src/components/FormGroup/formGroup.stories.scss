@@ -1,7 +1,7 @@
-@use '../../scss/spacers' as spacers;
+@import '../../scss/breakpoints';
 
 html .error-wrapper-class--with-bottom-margin {
-  padding-bottom: spacers.getSpacer(m);
+  padding-bottom: getSpacer(m);
   border: 2px dashed black;
 }
 

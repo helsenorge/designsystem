@@ -1,8 +1,8 @@
 @use 'sass:map';
-@use '../../scss/spacers' as spacers;
-@use '../../scss/screen-reader' as *;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
 @import '../../scss/grid';
+@import '../../scss/screen-reader';
 @import '../../scss/supernova/styles/colors';
 
 @mixin content-wrapper-with-icon-flex {
@@ -17,7 +17,7 @@
 }
 
 @mixin content-wrapper-with-icon-padding {
-  padding-top: spacers.getSpacer(m);
+  padding-top: getSpacer(m);
 }
 
 .highlightpanel {
@@ -48,35 +48,35 @@
 
   &--large {
     #{$panel}__content-wrapper {
-      padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
+      padding: getSpacer(m) getSpacer(s) getSpacer(l);
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-top: spacers.getSpacer(l);
-        padding-bottom: spacers.getSpacer(xl);
+        padding-top: getSpacer(l);
+        padding-bottom: getSpacer(xl);
       }
     }
   }
 
   &--medium {
     #{$panel}__content-wrapper {
-      padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
+      padding: getSpacer(m) getSpacer(s) getSpacer(l);
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: spacers.getSpacer(m) spacers.getSpacer(m) spacers.getSpacer(l);
+        padding: getSpacer(m) getSpacer(m) getSpacer(l);
       }
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding: spacers.getSpacer(l);
+        padding: getSpacer(l);
       }
     }
   }
 
   // fluid skal ha bakgrunnsfarge på den ytre containeren
   &--fluid {
-    padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
+    padding: getSpacer(m) getSpacer(s) getSpacer(l);
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      padding: spacers.getSpacer(m) spacers.getSpacer(m) spacers.getSpacer(l);
+      padding: getSpacer(m) getSpacer(m) getSpacer(l);
     }
 
     @each $color in $colors {
@@ -98,7 +98,7 @@
       @include content-wrapper-with-icon-flex-responsive;
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-left: spacers.getSpacer(m);
+        padding-left: getSpacer(m);
       }
     }
   }
@@ -112,17 +112,17 @@
       @include content-wrapper-with-icon-padding;
 
       @media (min-width: map.get($grid-breakpoints, sm)) {
-        padding-left: spacers.getSpacer(s);
+        padding-left: getSpacer(s);
       }
 
       @media (min-width: map.get($grid-breakpoints, md)) {
-        padding-left: spacers.getSpacer(m);
+        padding-left: getSpacer(m);
       }
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
         padding-left: 0;
-        padding-top: spacers.getSpacer(l);
-        padding-bottom: spacers.getSpacer(xl);
+        padding-top: getSpacer(l);
+        padding-bottom: getSpacer(xl);
       }
     }
 
@@ -134,7 +134,7 @@
         display: flex;
         justify-content: flex-end;
         margin-right: 0;
-        padding-right: spacers.getSpacer(s);
+        padding-right: getSpacer(s);
       }
     }
 
@@ -160,8 +160,8 @@
 
   &__icon {
     display: inline-flex;
-    margin-right: spacers.getSpacer(s);
-    margin-bottom: spacers.getSpacer(2xs);
+    margin-right: getSpacer(s);
+    margin-bottom: getSpacer(2xs);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       margin-bottom: 0;

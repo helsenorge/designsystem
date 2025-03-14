@@ -1,5 +1,5 @@
-@use '../../scss/font-settings' as font-settings;
-@import '../../scss/supernova/styles/colors';
+@use '../../scss/supernova/styles/colors' as *;
+@use '../../scss/font-settings' as fonts;
 
 .sticky-note {
   position: relative;
@@ -95,7 +95,7 @@
   &__error-text {
     color: var(--color-notification-status-error);
     line-height: 1.875rem;
-    font-size: font-settings.$font-size-sm;
+    font-size: fonts.$font-size-sm;
     margin-top: 0.75rem;
   }
 }

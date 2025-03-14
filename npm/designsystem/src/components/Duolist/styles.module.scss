@@ -1,15 +1,14 @@
 @use 'sass:map';
 @use '../../scss/font-mixins' as fonts;
 @use '../../scss/spacers' as spacers;
-@use '../../scss/font-settings' as font-settings;
-@use '../../scss/palette' as palette;
-@use '../../scss/breakpoints' as *;
-@import '../../scss/supernova/styles/colors';
+@import '../../scss/breakpoints';
+@import '../../scss/font-settings';
+@import '../../scss/palette';
 
 .duolist-wrapper {
   &--border {
     padding: spacers.getSpacer(s) spacers.getSpacer(s) spacers.getSpacer(l);
-    border: 0.062rem solid palette.$neutral500;
+    border: 0.062rem solid $neutral500;
   }
 
   &--extra-padding-top {

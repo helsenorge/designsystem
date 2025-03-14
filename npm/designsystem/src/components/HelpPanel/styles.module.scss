@@ -1,5 +1,5 @@
-@use '../../scss/palette' as palette;
+@import '../../scss/palette';
 
 .help-panel {
-  background-color: palette.$plum50 !important;
+  background-color: $plum50 !important;
 }

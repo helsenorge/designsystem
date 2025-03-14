@@ -1,22 +1,22 @@
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
-@use '../../scss/font-mixins' as fonts;
-@use '../../scss/input' as input;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/input';
+@import '../../scss/font-mixins';
 
 .textarea {
-  @include input.input-wrapper;
+  @include input-wrapper;
 
   &--gutterBottom {
-    margin-bottom: spacers.getSpacer(s);
+    margin-bottom: getSpacer(s);
   }
 }
 
 .input-container {
-  @include input.input-container;
+  @include input-container;
 
   &__input {
-    @include fonts.input-text;
+    @include input-text;
 
     height: auto;
     padding: 16px;

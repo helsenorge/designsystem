@@ -1,19 +1,19 @@
 @use 'sass:map';
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
-@use '../../scss/font-settings' as font-settings;
-@use '../../scss/screen-reader' as *;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
+@import '../../scss/screen-reader';
 
 $dot-size: 1.765rem;
 
 .sharing-status {
   display: inline-flex;
   align-items: center;
-  font-size: font-settings.$font-size-sm;
+  font-size: $font-size-sm;
   line-height: 1.25rem;
   font-weight: 600;
-  gap: spacers.getSpacer(2xs);
+  gap: getSpacer(2xs);
 
   &__dot {
     display: inline-flex;
@@ -26,15 +26,15 @@ $dot-size: 1.765rem;
     min-height: $dot-size;
 
     &--kiwi {
-      background: palette.$kiwi900;
+      background: $kiwi900;
     }
 
     &--cherry {
-      background: palette.$cherry500;
+      background: $cherry500;
     }
 
     &--neutral {
-      background: palette.$neutral700;
+      background: $neutral700;
     }
   }
 
@@ -46,15 +46,15 @@ $dot-size: 1.765rem;
     }
 
     &--kiwi {
-      color: palette.$kiwi900;
+      color: $kiwi900;
     }
 
     &--cherry {
-      color: palette.$cherry500;
+      color: $cherry500;
     }
 
     &--neutral {
-      color: palette.$neutral700;
+      color: $neutral700;
     }
   }
 }

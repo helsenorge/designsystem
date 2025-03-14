@@ -1,6 +1,5 @@
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
 
 // Disables fordi stylelint og prettier er uenige
 /* stylelint-disable-next-line scss/dollar-variable-colon-space-after */
@@ -16,7 +15,7 @@ $gradient:
     display: flex;
 
     &:focus-visible {
-      outline: spacers.getSpacer(4xs) solid palette.$black;
+      outline: getSpacer(4xs) solid $black;
       outline-offset: -1px;
     }
 

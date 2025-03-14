@@ -1,7 +1,7 @@
 @use 'sass:map';
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/spacers';
+@import '../../scss/palette';
+@import '../../scss/breakpoints';
 
 .close {
   display: flex;
@@ -25,7 +25,7 @@
   }
 
   &:focus {
-    box-shadow: 0 0 0 2px palette.$black;
+    box-shadow: 0 0 0 2px $black;
     background-color: transparent;
     border-radius: 0;
     border: 0;

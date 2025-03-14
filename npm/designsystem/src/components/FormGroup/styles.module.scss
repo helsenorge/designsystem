@@ -1,12 +1,12 @@
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
-@use '../../scss/font-mixins' as fonts;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-mixins';
 
 .form-group-wrapper {
   &__title {
     &--on-dark {
-      color: palette.$white;
+      color: $white;
     }
   }
 }
@@ -21,20 +21,20 @@
   margin: 0;
   display: flex;
   flex-flow: column;
-  gap: spacers.getSpacer(s);
+  gap: getSpacer(s);
 
   > div {
     padding-bottom: 0;
   }
 
   &__legend {
-    margin-bottom: spacers.getSpacer(m);
+    margin-bottom: getSpacer(m);
     margin-top: 0;
 
-    @include fonts.legend;
+    @include legend;
 
     &--on-dark {
-      color: palette.$white;
+      color: $white;
     }
   }
 }

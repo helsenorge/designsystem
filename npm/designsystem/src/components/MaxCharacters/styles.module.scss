@@ -1,28 +1,28 @@
 @use 'sass:map';
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
-@use '../../scss/font-settings' as font-settings;
-@use '../../scss/breakpoints' as *;
+@import '../../scss/spacers';
+@import '../../scss/breakpoints';
+@import '../../scss/palette';
+@import '../../scss/font-settings';
 
 .max-characters {
   display: flex;
   justify-content: flex-end;
-  padding-top: spacers.getSpacer(2xs);
+  padding-top: getSpacer(2xs);
   padding-right: 2px;
-  font-size: font-settings.$font-size-sm;
-  line-height: font-settings.$lineheight-size-sm;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
 
   @media (min-width: map.get($grid-breakpoints, md)) {
-    line-height: font-settings.$lineheight-size-md;
-    font-size: font-settings.$font-size-md;
+    line-height: $lineheight-size-md;
+    font-size: $font-size-md;
   }
 
   &--on-dark {
-    color: palette.$white;
+    color: $white;
   }
 
   &--invalid {
-    color: palette.$cherry600;
+    color: $cherry600;
     font-weight: 600;
   }
 }
