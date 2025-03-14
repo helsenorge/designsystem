@@ -1,3 +1,11 @@
+## [10.6.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.6.0&targetVersion=GTv10.6.1) (2025-03-14)
+
+
+### Bug Fixes
+
+* **expanderlist:**  nedre focus outline forsvinner ([f345142](https://github.com/helsenorge/designsystem/commit/f345142968f86db4b1b3aeb33cfce7f9c237af32))
+* **expanderlist:**  nedre focus outline forsvinner" ([c8fde30](https://github.com/helsenorge/designsystem/commit/c8fde305783f79eeb0bb24587cb19a282a60f3f7)), closes [#347177](https://github.com/helsenorge/designsystem/issues/347177)
+
 ## [10.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.5.0&targetVersion=GTv10.6.0) (2025-03-12)
 
 
