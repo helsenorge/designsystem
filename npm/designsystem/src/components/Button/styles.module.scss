@@ -212,7 +212,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   &:hover {
     background-color: $blueberry700;
-    box-shadow: 0 0 0 getSpacer(3xs) $blueberry700;
+    box-shadow: 0 0 0 $spacer-3xs $blueberry700;
   }
 
   :disabled > & {
