@@ -381,7 +381,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
   &__line {
     display: block;
-    border-bottom: getSpacer(4xs) dashed $neutral500;
+    border-bottom: getSpacer(3xs) dashed $neutral500;
     transform-origin: top left;
     transform: rotate(37.4deg);
   }
