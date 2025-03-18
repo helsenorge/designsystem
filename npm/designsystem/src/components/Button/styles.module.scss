@@ -196,7 +196,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 .button {
   display: inline-flex;
   background-color: $blueberry500;
-  padding: 0 getSpacer(m);
+  padding: 0 getSpacer(s);
   font-size: $font-size-sm;
   font-weight: 600;
   font-family: inherit;
