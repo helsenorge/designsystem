@@ -91,6 +91,7 @@ export enum AnalyticsId {
   FormLayout = 'form-layout',
   HelpBubble = 'help-bubble',
   HelpQuestion = 'help-question',
+  HelpTooltip = 'help-tooltip',
   HighlightPanel = 'highlight-panel',
   Icon = 'icon',
   Illustration = 'Illustration',
@@ -126,7 +127,6 @@ export enum AnalyticsId {
   Tile = 'tile',
   Title = 'title',
   Toggle = 'toggle',
-  Tooltip = 'tooltip',
   Trigger = 'trigger',
   Validation = 'validation',
 }

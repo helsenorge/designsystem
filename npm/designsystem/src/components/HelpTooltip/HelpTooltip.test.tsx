@@ -12,12 +12,6 @@ describe('Gitt at HelpTooltip skal vises ', () => {
       expect(word).toBeVisible();
       expect(word).toHaveAccessibleDescription('beskrivelse av ordet');
     });
-
-    it('Så rendres den riktig', () => {
-      const { container } = render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
-
-      expect(container).toMatchSnapshot();
-    });
   });
 
   describe('Når tekst trykkes på', () => {

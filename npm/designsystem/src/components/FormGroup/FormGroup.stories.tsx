@@ -13,7 +13,8 @@ import Coronavirus from '../Icons/Coronavirus';
 import Input from '../Input/Input';
 import Label from '../Label';
 import RadioButton from '../RadioButton/RadioButton';
-import './formGroup.stories.scss';
+
+import styles from './formGroup.module.scss';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/FormGroup',
@@ -42,11 +43,11 @@ const meta = {
     },
     onColor: {
       control: 'select',
-      options: FormOnColor,
+      options: Object.values(FormOnColor),
     },
     size: {
       control: 'select',
-      options: FormSize,
+      options: Object.values(FormSize),
     },
     name: {
       control: 'text',
@@ -143,14 +144,14 @@ export const CustomErrorWrapperClass: Story = {
         htmlMarkup="div"
         {...args}
         legend={'ErrorWrapperClass gir mulighet til å style ErrorWrapper som ligger rundt form'}
-        errorWrapperClassName="error-wrapper-class--with-bottom-margin"
+        errorWrapperClassName={styles['error-wrapper-class--with-bottom-margin']}
       >
         <RadioButton inputId={'RadioButton1'} label={<Label labelTexts={[{ text: 'Radiobutton 1' }]} />} />
         <RadioButton inputId={'RadioButton2'} label={<Label labelTexts={[{ text: 'Radiobutton 2' }]} />} />
         <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Legg merke til avstand ned til border' }]} />} />
       </FormGroup>
       <Spacer size="2xs" />
-      <FormGroup htmlMarkup="div" {...args} errorWrapperClassName="error-wrapper-class">
+      <FormGroup htmlMarkup="div" {...args} errorWrapperClassName={styles['error-wrapper-class']}>
         <RadioButton inputId={'RadioButton4'} label={<Label labelTexts={[{ text: 'Radiobutton 4' }]} />} />
         <RadioButton inputId={'RadioButton5'} label={<Label labelTexts={[{ text: 'Radiobutton 5' }]} />} />
         <RadioButton inputId={'RadioButton6'} label={<Label labelTexts={[{ text: 'Med standard avstand ned til border' }]} />} />

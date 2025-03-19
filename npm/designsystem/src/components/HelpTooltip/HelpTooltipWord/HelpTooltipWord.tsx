@@ -34,7 +34,7 @@ const HelpTooltipWord = React.forwardRef<HTMLButtonElement, HelpTooltipWordProps
       onKeyDown={onKeyDown}
       aria-describedby={ariaDescribedById}
       data-testid={testId}
-      data-analyticsid={AnalyticsId.Tooltip}
+      data-analyticsid={AnalyticsId.HelpTooltip}
     >
       {children}
     </button>
