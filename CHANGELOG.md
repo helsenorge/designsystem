@@ -1,3 +1,11 @@
+## [10.6.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.6.2&targetVersion=GTv10.6.3) (2025-03-20)
+
+
+### Bug Fixes
+
+*  nedre focus outline forsvinner ([5124290](https://github.com/helsenorge/designsystem/commit/51242909087003fbe390c89e2360681d4500ebe1)), closes [#347177](https://github.com/helsenorge/designsystem/issues/347177)
+*  useBreakpoint kaller ikke window.matchMedia ved server side rendering ([00b7926](https://github.com/helsenorge/designsystem/commit/00b792639a436a876a2a9f3ecdf2679b52304f54)), closes [#347898](https://github.com/helsenorge/designsystem/issues/347898)
+
 ## [10.6.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.6.1&targetVersion=GTv10.6.2) (2025-03-14)
 
 
