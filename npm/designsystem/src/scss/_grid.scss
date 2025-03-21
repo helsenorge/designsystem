@@ -1,6 +1,6 @@
 $enable-deprecation-messages: true;
 
-@import 'bootstrap/scss/vendor/rfs';
-@import 'bootstrap/scss/mixins/deprecate';
-@import 'bootstrap/scss/mixins/breakpoints';
-@import 'bootstrap/scss/mixins/grid';
+@import './bootstrap/scss/vendor/rfs';
+@import './bootstrap/scss/mixins/deprecate';
+@import './bootstrap/scss/mixins/breakpoints';
+@import './bootstrap/scss/mixins/grid';
