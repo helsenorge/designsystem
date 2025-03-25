@@ -185,6 +185,7 @@ stages:
             displayName: 'Check for uncommited changes'
 
           - task: Npm@1
+            name: publishLatest
             displayName: 'publish designsystem to Helsenorge-registry (latest)'
             inputs:
               command: custom
@@ -200,6 +201,7 @@ stages:
               not(contains(variables['Build.SourceBranch'], '-')))
 
           - task: Npm@1
+            name: publishBeta
             displayName: 'publish designsystem to Helsenorge-registry (beta)'
             inputs:
               command: custom
@@ -212,6 +214,14 @@ stages:
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'), contains(variables['Build.SourceBranch'], 'beta'))
+
+          - script: |
+              node scripts/sendSlackMessage.js
+            displayName: 'Send melding til Slack'
+            condition: or( eq( variables['publishLatest.result'], 'Succeeded' ), eq( variables['publishBeta.result'], 'Succeeded' ) )
+            env:
+              SLACK_WEBHOOK_URL: $(SlackWebhookUrl)
+              REPO_NAME: $(Build.Repository.Name)
 
   # Copy to Github
   - stage:
