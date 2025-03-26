@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-require-imports */
 // scripts/sendSlackMessage.js
 
 const fs = require('fs');
@@ -48,24 +50,45 @@ let inBugFixes = false;
 const features = [];
 const bugFixes = [];
 
+/**
+ * We look for the first line starting with "## ".
+ * Two possible patterns:
+ * 1) ## [<version>](<link>)...
+ * 2) ## <version> (2025-03-26)...
+ *
+ * For beta:  ## 35.0.0-beta.7 (date)
+ * For standard: ## [34.9.0](link) (date)
+ * We'll parse whichever format matches.
+ */
 for (let i = 0; i < lines.length; i++) {
   const line = lines[i];
 
-  // Find the topmost version entry
-  if (!inEntry && line.startsWith('## [')) {
-    const match = line.match(/^## \[([^\]]+)\]\(([^)]+)\)/);
+  // Find the topmost version entry: must start with `## `
+  if (!inEntry && line.startsWith('## ')) {
+    // Try to match the link format: e.g. "## [34.9.0](http://...)"
+    let match = line.match(/^## \[([^\]]+)\]\(([^)]+)\)/);
     if (match) {
+      // Format 1: version + link
       version = match[1];
       link = match[2];
       inEntry = true;
+      continue;
     }
-    continue;
+
+    // Otherwise, try no-link format: e.g. "## 35.0.0-beta.7 (2025-03-26)"
+    match = line.match(/^## ([^\s]+.*)/);
+    if (match) {
+      version = match[1].trim(); // e.g. "35.0.0-beta.7 (2025-03-26)"
+      // If you only want the raw semver, you'd parse out the date, but let's keep it.
+      inEntry = true;
+      continue;
+    }
   }
 
-  // Parse lines until the next version or EOF
+  // If we've already found our version line, parse the subsequent lines for features/bugs
   if (inEntry) {
-    if (line.startsWith('## [')) {
-      // Next version => stop
+    // Stop if we see another "## " => next version block
+    if (line.startsWith('## ')) {
       break;
     }
 
@@ -91,22 +114,26 @@ for (let i = 0; i < lines.length; i++) {
     if (inFeatures && line.trim().startsWith('*')) {
       features.push(cleanupLine(line));
     }
-    // Gather bugfix lines
+    // Gather bug-fix lines
     if (inBugFixes && line.trim().startsWith('*')) {
       bugFixes.push(cleanupLine(line));
     }
   }
 }
 
-if (!version || !link) {
-  console.error('Failed to parse version or link from CHANGELOG.md');
+// Ensure at least we got a version
+if (!version) {
+  console.error('Failed to parse version from CHANGELOG.md');
   process.exit(1);
 }
 
 // Use the repo name from an environment variable, or fall back
 const repoName = process.env.REPO_NAME || 'UNKNOWN-REPO';
 
-let message = `<${link}|${repoName} ${version}>\n`;
+// Build the Slack message
+// If link is present, do clickable Slack link: <link|repoName version>
+// If link is empty, just do "repoName version"
+let message = link ? `<${link}|${repoName} ${version}>\n` : `${repoName} ${version}\n`;
 
 if (features.length) {
   message += `\n*Features*\n${features.join('\n')}\n`;
@@ -122,6 +149,7 @@ if (!webhookUrl) {
   process.exit(0);
 }
 
+// Send to Slack
 const payload = JSON.stringify({ text: message });
 const { hostname, pathname } = new URL(webhookUrl);
 
