@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
-import Panel, { PanelStatus, PanelVariant } from './Panel';
+import PanelOld, { PanelOldStatus, PanelOldVariant } from './PanelOld';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
@@ -12,17 +12,17 @@ import Attachment from '../Icons/Attachment';
 import Envelope from '../Icons/Envelope';
 import Title from '../Title';
 
-type PanelWithAndCustomArgs = React.ComponentProps<typeof Panel> & {
+type PanelWithAndCustomArgs = React.ComponentProps<typeof PanelOld> & {
   useIcon: boolean;
 };
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/Panel',
-  component: Panel,
-  tags: ['not-supernova'],
+  title: '@helsenorge/designsystem-react/Components/PanelOld',
+  component: PanelOld,
+  tags: ['deprecated'],
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Panel} />,
+      page: (): React.JSX.Element => <Docs component={PanelOld} />,
       description: {
         component:
           'Som innbygger vil jeg se formatterte data på et avgrenset område som gjør det scanbart og tilgjengelig, og som kan være en inngang til mer informasjon, slik at jeg kan løse oppgavene mine.',
@@ -30,9 +30,9 @@ const meta = {
     },
   },
   args: {
-    variant: PanelVariant.fill,
+    variant: PanelOldVariant.fill,
     title: 'Medisinsk fødselsregister (MFR)',
-    status: PanelStatus.normal,
+    status: PanelOldStatus.normal,
     statusMessage: 'Dette er en status tekst',
     buttonText: 'Vis detaljer',
     buttonTextClose: 'Skjul detaljer',
@@ -47,14 +47,14 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: PanelVariant,
+      options: PanelOldVariant,
     },
     title: {
       control: 'text',
     },
     status: {
       control: 'select',
-      options: PanelStatus,
+      options: PanelOldStatus,
     },
     statusMessage: {
       control: 'text',
@@ -101,7 +101,7 @@ const contentExample = (content: 'Header' | 'A' | 'B' | 'C') => (
 
 export const Default: Story = {
   render: args => (
-    <Panel {...args} contentA={'Noe innhold'} icon={args.useIcon ? <Icon svgIcon={Attachment} size={IconSize.XSmall} /> : undefined}>
+    <PanelOld {...args} contentA={'Noe innhold'} icon={args.useIcon ? <Icon svgIcon={Attachment} size={IconSize.XSmall} /> : undefined}>
       <div>
         <Title appearance="title2">{'E-resept'}</Title>
         <p style={{ whiteSpace: 'pre-line' }}>
@@ -125,13 +125,13 @@ export const Default: Story = {
       Resepten er hentet fra: Reseptformidleren`}
         </p>
       </div>
-    </Panel>
+    </PanelOld>
   ),
 };
 
 export const ContentA: Story = {
   render: args => (
-    <Panel {...args} contentA={contentExample('A')}>
+    <PanelOld {...args} contentA={contentExample('A')}>
       <div>
         <Title appearance="title2">{'E-resept'}</Title>
         <p style={{ whiteSpace: 'pre-line' }}>
@@ -155,13 +155,13 @@ export const ContentA: Story = {
         Resepten er hentet fra: Reseptformidleren`}
         </p>
       </div>
-    </Panel>
+    </PanelOld>
   ),
 };
 export const ContentAAndB: Story = {
   render: args => (
     <>
-      <Panel {...args} title={'Layout1'} layout={'layout1'} contentA={contentExample('A')} contentB={contentExample('B')}>
+      <PanelOld {...args} title={'Layout1'} layout={'layout1'} contentA={contentExample('A')} contentB={contentExample('B')}>
         <div>
           <Title appearance="title2">{'Layout1'}</Title>
           <p style={{ whiteSpace: 'pre-line' }}>
@@ -185,9 +185,9 @@ export const ContentAAndB: Story = {
         Resepten er hentet fra: Reseptformidleren`}
           </p>
         </div>
-      </Panel>
+      </PanelOld>
       <br />
-      <Panel {...args} title={'Layout2'} layout={'layout2'} contentA={contentExample('A')} contentB={contentExample('B')}>
+      <PanelOld {...args} title={'Layout2'} layout={'layout2'} contentA={contentExample('A')} contentB={contentExample('B')}>
         <div>
           <Title appearance="title2">{'Layout2'}</Title>
           <p style={{ whiteSpace: 'pre-line' }}>
@@ -211,9 +211,9 @@ export const ContentAAndB: Story = {
         Resepten er hentet fra: Reseptformidleren`}
           </p>
         </div>
-      </Panel>
+      </PanelOld>
       <br />
-      <Panel {...args} title={'Layout3a'} layout={'layout3a'} contentA={contentExample('A')} contentB={contentExample('B')}>
+      <PanelOld {...args} title={'Layout3a'} layout={'layout3a'} contentA={contentExample('A')} contentB={contentExample('B')}>
         <div>
           <Title appearance="title2">{'Layout3a'}</Title>
           <p style={{ whiteSpace: 'pre-line' }}>
@@ -237,9 +237,9 @@ export const ContentAAndB: Story = {
         Resepten er hentet fra: Reseptformidleren`}
           </p>
         </div>
-      </Panel>
+      </PanelOld>
       <br />
-      <Panel {...args} title={'Layout3b'} layout={'layout3b'} contentA={contentExample('A')} contentB={contentExample('B')}>
+      <PanelOld {...args} title={'Layout3b'} layout={'layout3b'} contentA={contentExample('A')} contentB={contentExample('B')}>
         <div>
           <Title appearance="title2">{'Layout3b'}</Title>
           <p style={{ whiteSpace: 'pre-line' }}>
@@ -263,9 +263,9 @@ export const ContentAAndB: Story = {
         Resepten er hentet fra: Reseptformidleren`}
           </p>
         </div>
-      </Panel>
+      </PanelOld>
       <br />
-      <Panel {...args} title={'Layout3c'} layout={'layout3c'} contentA={contentExample('A')} contentB={contentExample('B')}>
+      <PanelOld {...args} title={'Layout3c'} layout={'layout3c'} contentA={contentExample('A')} contentB={contentExample('B')}>
         <div>
           <Title appearance="title2">{'Layout3c'}</Title>
           <p style={{ whiteSpace: 'pre-line' }}>
@@ -289,7 +289,7 @@ export const ContentAAndB: Story = {
         Resepten er hentet fra: Reseptformidleren`}
           </p>
         </div>
-      </Panel>
+      </PanelOld>
     </>
   ),
 };
@@ -297,7 +297,7 @@ export const ContentAAndB: Story = {
 export const ContentAAndBWithIconAndUrl: Story = {
   render: args => (
     <>
-      <Panel
+      <PanelOld
         {...args}
         icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
         url={'https://www.helsenorge.no/'}
@@ -308,7 +308,7 @@ export const ContentAAndBWithIconAndUrl: Story = {
         contentB={contentExample('B')}
       />
       <br />
-      <Panel
+      <PanelOld
         {...args}
         icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
         url={'https://www.helsenorge.no/'}
@@ -319,7 +319,7 @@ export const ContentAAndBWithIconAndUrl: Story = {
         contentB={contentExample('B')}
       />
       <br />
-      <Panel
+      <PanelOld
         {...args}
         icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
         url={'https://www.helsenorge.no/'}
@@ -330,7 +330,7 @@ export const ContentAAndBWithIconAndUrl: Story = {
         contentB={contentExample('B')}
       />
       <br />
-      <Panel
+      <PanelOld
         {...args}
         icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
         url={'https://www.helsenorge.no/'}
@@ -341,7 +341,7 @@ export const ContentAAndBWithIconAndUrl: Story = {
         contentB={contentExample('B')}
       />
       <br />
-      <Panel
+      <PanelOld
         {...args}
         icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}
         url={'https://www.helsenorge.no/'}
@@ -357,7 +357,7 @@ export const ContentAAndBWithIconAndUrl: Story = {
 
 export const ContentHeader: Story = {
   render: args => (
-    <Panel
+    <PanelOld
       {...args}
       title={'Content in preContainer'}
       contentA={contentExample('A')}
@@ -387,41 +387,41 @@ export const ContentHeader: Story = {
         Resepten er hentet fra: Reseptformidleren`}
         </p>
       </div>
-    </Panel>
+    </PanelOld>
   ),
 };
 
 export const IconAndDetails: Story = {
   render: () => (
-    <Panel title={'Medisinsk fødselsregister (MFR)'} icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}>
+    <PanelOld title={'Medisinsk fødselsregister (MFR)'} icon={<Icon svgIcon={Envelope} size={IconSize.Small} />}>
       <p>
         {
           'Dolor sit nisi exercitation esse sint et excepteur commodo officia qui exercitation. Ad excepteur laboris laboris Lorem. Occaecat aliquip cupidatat pariatur enim est eiusmod laboris ea nulla dolore ullamco dolore nostrud proident. Irure in eu irure excepteur sit exercitation aliquip deserunt adipisicing ullamco nulla elit culpa culpa.'
         }
       </p>
-    </Panel>
+    </PanelOld>
   ),
 };
 
 export const AvatarAndDetails: Story = {
   render: () => (
-    <Panel title={'Medisinsk fødselsregister (MFR)'} icon={<Avatar variant="black">{'Line Danser'}</Avatar>}>
+    <PanelOld title={'Medisinsk fødselsregister (MFR)'} icon={<Avatar variant="black">{'Line Danser'}</Avatar>}>
       <div>
         <Button htmlMarkup="a" target="_blank" href="https://www.facebook.com/people/Line-Danser/100007422643849/">
           {'Line Danser'}
         </Button>
         <span>{' Lorem culpa esse dolore cillum minim qui minim aliquip eu laborum voluptate.'}</span>
       </div>
-    </Panel>
+    </PanelOld>
   ),
 };
 
 export const Status: Story = {
   render: args => (
     <>
-      <Panel status={args.status} statusMessage={args.statusMessage} title={args.title} url={'https://www.helsenorge.no/'} />
+      <PanelOld status={args.status} statusMessage={args.statusMessage} title={args.title} url={'https://www.helsenorge.no/'} />
       <br />
-      <Panel
+      <PanelOld
         status={'new'}
         statusMessage={'4 nye'}
         title={'Fullmakt slettet'}
@@ -429,7 +429,7 @@ export const Status: Story = {
         focusable={args.focusable}
       />
       <br />
-      <Panel
+      <PanelOld
         status={'new'}
         statusMessage={'4 nye'}
         title={'Dette er en veldig lang tittel for å wrappe badge (4)'}
@@ -437,18 +437,18 @@ export const Status: Story = {
         focusable={args.focusable}
       />
       <br />
-      <Panel status={'error'} statusMessage={'1'} title={args.title} url={'https://www.helsenorge.no/'} />
+      <PanelOld status={'error'} statusMessage={'1'} title={args.title} url={'https://www.helsenorge.no/'} />
       <br />
-      <Panel status={'draft'} statusMessage={'1'} title={args.title} url={'https://www.helsenorge.no/'} />
+      <PanelOld status={'draft'} statusMessage={'1'} title={args.title} url={'https://www.helsenorge.no/'} />
     </>
   ),
 };
 
 export const AsButton: Story = {
   render: () => (
-    <Panel
+    <PanelOld
       title={'Medisinsk fødselsregister (MFR)'}
-      icon={<Avatar variant="black">{'Line Danser'}</Avatar>}
+      icon={<Avatar color="black">{'Line Danser'}</Avatar>}
       buttonText="Lenke til mer"
       buttonOnClick={action('Button clicked!')}
       buttonHtmlMarkup="button"
@@ -458,12 +458,12 @@ export const AsButton: Story = {
 
 export const WithCallback: Story = {
   render: args => (
-    <Panel {...args} title={'Medisinsk fødselsregister (MFR)'} onExpand={isExpanded => console.log(isExpanded)}>
+    <PanelOld {...args} title={'Medisinsk fødselsregister (MFR)'} onExpand={isExpanded => console.log(isExpanded)}>
       <p>Sjekk nettleserkonsollen</p>
-    </Panel>
+    </PanelOld>
   ),
 };
 
 export const NotClickable: Story = {
-  render: args => <Panel {...args} title={'Medisinsk fødselsregister (MFR)'}></Panel>,
+  render: args => <PanelOld {...args} title={'Medisinsk fødselsregister (MFR)'}></PanelOld>,
 };
