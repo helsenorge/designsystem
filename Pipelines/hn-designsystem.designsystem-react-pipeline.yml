@@ -12,7 +12,7 @@ pool:
 
 variables:
   - name: node_version
-    value: 20
+    value: 22
   - name: project_name
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
