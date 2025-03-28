@@ -7,7 +7,7 @@
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: spacers.getSpacer(2xs);
+  gap: getSpacer(2xs);
 
   &__item {
     all: unset;

@@ -46,42 +46,42 @@
       background-color: var(--color-base-background-white);
 
       &--white {
-        border-top: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-top: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-neutral-100) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+          border-bottom: getSpacer(2xs) var(--core-color-neutral-100) solid;
         }
       }
 
       &--blueberry {
-        border-top: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-top: getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-blueberry-100) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
+          border-bottom: getSpacer(2xs) var(--core-color-blueberry-100) solid;
         }
       }
 
       &--cherry {
-        border-top: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-top: getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-cherry-100) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
+          border-bottom: getSpacer(2xs) var(--core-color-cherry-100) solid;
         }
       }
 
       &--neutral {
-        border-top: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-top: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-neutral-100) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+          border-bottom: getSpacer(2xs) var(--core-color-neutral-100) solid;
         }
       }
     }
@@ -117,8 +117,8 @@
 .expander-list-link {
   padding: 0;
   position: relative;
-  font-size: font-settings.$font-size-sm;
-  line-height: font-settings.$lineheight-size-sm;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
   display: flex;
   cursor: pointer;
   font-family: inherit;
@@ -142,7 +142,7 @@
 
   &--fill,
   &--fill-negative {
-    margin-top: spacers.getSpacer(s);
+    margin-top: getSpacer(s);
   }
 
   &--fill-negative {
@@ -150,7 +150,7 @@
   }
 
   &--closed#{&}--fill {
-    margin-bottom: spacers.getSpacer(s);
+    margin-bottom: getSpacer(s);
   }
 
   &:focus-visible:not(.expander-list-link--outline) {
@@ -237,21 +237,21 @@
   }
 
   &--large {
-    font-size: font-settings.$font-size-lg;
-    line-height: font-settings.$lineheight-size-lg;
+    font-size: $font-size-lg;
+    line-height: $lineheight-size-lg;
   }
 
   &__icon {
     display: flex;
     align-items: center;
-    margin-right: spacers.getSpacer(2xs);
+    margin-right: getSpacer(2xs);
   }
 
   &__chevron {
     display: flex;
     align-items: center;
     margin-left: auto;
-    padding-left: spacers.getSpacer(2xs);
+    padding-left: getSpacer(2xs);
   }
 
   &__main-content {
@@ -267,7 +267,7 @@
     }
 
     &--padding {
-      padding: spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(l);
+      padding: getSpacer(xs) getSpacer(s) getSpacer(l);
     }
   }
 }

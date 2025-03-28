@@ -6,8 +6,8 @@
 @use '../../scss/breakpoints' as breakpoints;
 
 .label-wrapper {
-  margin-bottom: spacers.getSpacer(2xs);
-  line-height: font-settings.$lineheight-size-xs;
+  margin-bottom: getSpacer(2xs);
+  line-height: $lineheight-size-xs;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
     line-height: font-settings.$lineheight-size-sm;
@@ -29,14 +29,14 @@
 }
 
 .label {
-  @include fonts.label;
+  @include label;
 
   &--subdued {
-    @include fonts.label-subdued;
+    @include label-subdued;
   }
 
   &--on-dark {
-    color: palette.$white;
+    color: $white;
   }
 
   &::after {
@@ -49,14 +49,14 @@
 }
 
 .sublabel {
-  @include fonts.sublabel;
+  @include sublabel;
 
   &--subdued {
-    @include fonts.sublabel-subdued;
+    @include sublabel-subdued;
   }
 
   &--on-dark {
-    color: palette.$white;
+    color: $white;
   }
 
   &::after {
@@ -65,5 +65,5 @@
 }
 
 .after-label-children {
-  padding-left: spacers.getSpacer(xs);
+  padding-left: getSpacer(xs);
 }

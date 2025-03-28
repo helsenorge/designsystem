@@ -65,7 +65,7 @@
         overflow-y: auto;
 
         &:focus-visible {
-          outline: 1px solid palette.$black;
+          outline: 1px solid $black;
           outline-offset: -1px;
         }
       }
@@ -76,7 +76,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
+    padding: getSpacer(xs) getSpacer(2xs);
     border-bottom: 1px solid var(--color-base-border-neutral);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
@@ -92,10 +92,10 @@
 
   &__content {
     overflow-y: auto;
-    padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
+    padding: getSpacer(xs) getSpacer(2xs);
 
     &:focus-visible {
-      outline: 1px solid palette.$black;
+      outline: 1px solid $black;
       outline-offset: -1px;
     }
 
@@ -110,9 +110,9 @@
 
   &__footer {
     display: flex;
-    gap: spacers.getSpacer(m);
+    gap: getSpacer(m);
     border-top: 1px solid var(--color-base-border-neutral);
-    padding: spacers.getSpacer(s) spacers.getSpacer(2xs);
+    padding: getSpacer(s) getSpacer(2xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       padding: spacers.getSpacer(m) spacers.getSpacer(xs);
@@ -120,8 +120,8 @@
 
     @include breakpoints.tiny-screens-media-query {
       flex-wrap: wrap;
-      gap: spacers.getSpacer(2xs) 0;
-      padding: spacers.getSpacer(2xs) 0;
+      gap: getSpacer(2xs) 0;
+      padding: getSpacer(2xs) 0;
     }
   }
 }

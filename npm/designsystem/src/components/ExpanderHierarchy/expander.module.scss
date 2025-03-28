@@ -8,7 +8,7 @@
   $item: &;
 
   &:first-of-type {
-    border-top: 1px solid palette.$neutral500;
+    border-top: 1px solid $neutral500;
   }
 
   &__button {
@@ -20,38 +20,38 @@
     width: 100%;
     cursor: pointer;
     background-color: transparent;
-    border-bottom: 1px solid palette.$neutral500;
-    padding: spacers.getSpacer(xs) 0;
+    border-bottom: 1px solid $neutral500;
+    padding: getSpacer(xs) 0;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       flex-direction: row-reverse;
       justify-content: start;
-      padding: spacers.getSpacer(s) spacers.getSpacer(s) spacers.getSpacer(s) spacers.getSpacer(2xs);
+      padding: getSpacer(s) getSpacer(s) getSpacer(s) getSpacer(2xs);
     }
 
     &:hover,
     &:focus {
-      background-color: palette.$neutral100;
+      background-color: $neutral100;
     }
 
     &:focus {
       text-decoration: underline;
-      outline: spacers.getSpacer(4xs) solid palette.$black;
+      outline: getSpacer(4xs) solid $black;
     }
 
     &[aria-expanded='true'] {
-      background-color: palette.$neutral100;
+      background-color: $neutral100;
       border-bottom: none;
     }
 
     @media print {
       &--print {
-        background-color: palette.$neutral100;
+        background-color: $neutral100;
       }
     }
 
     &--2-and-lower {
-      padding: spacers.getSpacer(2xs) 0;
+      padding: getSpacer(2xs) 0;
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
         padding: spacers.getSpacer(xs) spacers.getSpacer(s) spacers.getSpacer(xs) spacers.getSpacer(2xs);
@@ -63,19 +63,19 @@
     margin: 0;
 
     &--1 {
-      @include fonts.title2;
+      @include title2;
     }
 
     &--2 {
-      @include fonts.title3;
+      @include title3;
     }
 
     &--3 {
-      @include fonts.title4;
+      @include title4;
     }
 
     &--4-and-lower {
-      @include fonts.title5;
+      @include title5;
     }
 
     &--expanded {
@@ -95,13 +95,13 @@
 
   &__content {
     display: none;
-    border-bottom: 1px solid palette.$neutral500;
-    padding-top: spacers.getSpacer(m);
-    padding-left: spacers.getSpacer(2xs);
-    padding-bottom: spacers.getSpacer(m);
+    border-bottom: 1px solid $neutral500;
+    padding-top: getSpacer(m);
+    padding-left: getSpacer(2xs);
+    padding-bottom: getSpacer(m);
 
     &--1 {
-      padding-top: spacers.getSpacer(xl);
+      padding-top: getSpacer(xl);
     }
 
     &--1,
@@ -119,15 +119,15 @@
   }
 
   &__icon {
-    margin-left: spacers.getSpacer(s);
+    margin-left: getSpacer(s);
 
     &--2-and-lower {
-      margin-left: spacers.getSpacer(xs);
+      margin-left: getSpacer(xs);
     }
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       margin-left: 0;
-      margin-right: spacers.getSpacer(s);
+      margin-right: getSpacer(s);
     }
 
     &--3-and-lower {

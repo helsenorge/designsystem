@@ -14,6 +14,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme do
         class="expander-list-link expander-list-link--neutral expander-list-link--line--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-177-0"
+        style="z-index: 0;"
         type="button"
       >
         <span
@@ -68,6 +69,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme do
         class="expander-list-link expander-list-link--neutral expander-list-link--line--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-179-0"
+        style="z-index: 0;"
         type="button"
       >
         <span
@@ -127,6 +129,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
         class="expander-list-link expander-list-link--blueberry expander-list-link--line--blueberry expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-1-0"
+        style="z-index: 0;"
         type="button"
       >
         <span
@@ -176,6 +179,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
         class="expander-list-link expander-list-link--blueberry expander-list-link--line--blueberry expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-1-1"
+        style="z-index: 0;"
         type="button"
       >
         <span
@@ -225,6 +229,7 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
         class="expander-list-link expander-list-link--blueberry expander-list-link--line--blueberry expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-1-2"
+        style="z-index: 0;"
         type="button"
       >
         <span
@@ -284,6 +289,7 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
         class="expander-list-link expander-list-link--neutral expander-list-link--line--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-185-0"
+        style="z-index: 0;"
         type="button"
       >
         <span
@@ -352,6 +358,7 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
         class="expander-list-link expander-list-link--neutral expander-list-link--line--neutral expander-list-link--closed"
         data-analyticsid="expander-list-expander"
         id="testid-185-1"
+        style="z-index: 0;"
         type="button"
       >
         <span

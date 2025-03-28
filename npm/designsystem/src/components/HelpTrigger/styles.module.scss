@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../scss/palette' as palette;
-@use '../../scss/icon' as icon;
+@import '../../scss/palette';
+@import '../../scss/icon';
 
 $trigger-medium-size: 24.18px;
 $trigger-medium-click-area: 44px;
@@ -24,8 +24,8 @@ $trigger-large-size: 30.61px;
   &--medium {
     height: $trigger-medium-size;
     width: $trigger-medium-size;
-    margin-left: calc((map.get(icon.$icon-sizes, xs) - $trigger-medium-size) / 2);
-    margin-right: calc((map.get(icon.$icon-sizes, xs) - $trigger-medium-size) / 2);
+    margin-left: calc((map.get($icon-sizes, xs) - $trigger-medium-size) / 2);
+    margin-right: calc((map.get($icon-sizes, xs) - $trigger-medium-size) / 2);
 
     &::after {
       // Increase the clickable area
@@ -41,8 +41,8 @@ $trigger-large-size: 30.61px;
   &--large {
     height: $trigger-large-size;
     width: $trigger-large-size;
-    margin-left: calc((map.get(icon.$icon-sizes, sm) - $trigger-large-size) / 2);
-    margin-right: calc((map.get(icon.$icon-sizes, sm) - $trigger-large-size) / 2);
+    margin-left: calc((map.get($icon-sizes, sm) - $trigger-large-size) / 2);
+    margin-right: calc((map.get($icon-sizes, sm) - $trigger-large-size) / 2);
   }
 
   &--help {
@@ -75,26 +75,26 @@ $trigger-large-size: 30.61px;
   }
 
   &--ondark {
-    box-shadow: inset 0 0 0 1.6px palette.$white;
+    box-shadow: inset 0 0 0 1.6px $white;
 
     &:hover {
-      background-color: rgba(palette.$plum50, 0.2);
+      background-color: rgba($plum50, 0.2);
     }
 
     &:focus-visible {
-      outline: 1.6px solid palette.$white;
+      outline: 1.6px solid $white;
     }
 
     &#{$trigger}--selected {
-      background-color: rgba(palette.$plum50, 0.1);
+      background-color: rgba($plum50, 0.1);
 
       &:hover,
       &#{$trigger}--hovered {
-        background-color: rgba(palette.$plum50, 0.2);
+        background-color: rgba($plum50, 0.2);
       }
 
       &:focus-visible {
-        background-color: rgba(palette.$plum50, 0.1);
+        background-color: rgba($plum50, 0.1);
       }
     }
   }

@@ -5,7 +5,7 @@
 @import '../../scss/supernova/styles/colors.css';
 
 $track-height-offset: 1rem;
-$mark-size: spacers.getSpacer(l);
+$mark-size: getSpacer(l);
 
 .sr-only-slider {
   @include sr-only;
@@ -14,7 +14,7 @@ $mark-size: spacers.getSpacer(l);
 .slider {
   display: flex;
   flex-direction: column;
-  row-gap: spacers.getSpacer(s);
+  row-gap: getSpacer(s);
   width: 100%;
   position: relative;
   outline: none !important;
@@ -26,8 +26,8 @@ $mark-size: spacers.getSpacer(l);
   &__content-container {
     display: flex;
     flex-direction: column;
-    row-gap: spacers.getSpacer(s);
-    padding: 0 spacers.getSpacer(s);
+    row-gap: getSpacer(s);
+    padding: 0 getSpacer(s);
   }
 
   &__emoji-container,
@@ -58,23 +58,23 @@ $mark-size: spacers.getSpacer(l);
   }
 
   &__track {
-    padding: 0 spacers.getSpacer(s);
-    border-top: 2px solid palette.$black;
+    padding: 0 getSpacer(s);
+    border-top: 2px solid $black;
     position: relative;
     top: $track-height-offset;
 
     &--disabled {
-      border-color: palette.$neutral600;
+      border-color: $neutral600;
     }
 
     &__step {
       position: absolute;
       left: -1px;
       width: 2px;
-      height: spacers.getSpacer(xs);
+      height: getSpacer(xs);
       bottom: 0;
       top: (calc($track-height-offset / 2) * -1) + 0.05rem;
-      background-color: palette.$black;
+      background-color: $black;
     }
   }
 
@@ -84,8 +84,8 @@ $mark-size: spacers.getSpacer(l);
     align-items: center;
     width: $mark-size;
     height: $mark-size;
-    background-color: palette.$white;
-    border: 0.15rem solid palette.$black;
+    background-color: $white;
+    border: 0.15rem solid $black;
     border-radius: 10rem;
     position: absolute;
     z-index: 9;
@@ -93,12 +93,12 @@ $mark-size: spacers.getSpacer(l);
     cursor: pointer;
 
     &--focused {
-      outline: 0.15rem solid palette.$black;
+      outline: 0.15rem solid $black;
     }
 
     &--focused#{&}--selected {
       &::after {
-        background-color: palette.$blueberry700;
+        background-color: $blueberry700;
       }
     }
 
@@ -107,12 +107,12 @@ $mark-size: spacers.getSpacer(l);
         content: '';
         width: 1.25rem;
         height: 1.25rem;
-        border: 0.1rem solid palette.$black;
+        border: 0.1rem solid $black;
         border-radius: 10rem;
-        background-color: palette.$blueberry600;
+        background-color: $blueberry600;
 
         :hover > & {
-          background-color: palette.$blueberry700;
+          background-color: $blueberry700;
         }
       }
     }
@@ -122,15 +122,15 @@ $mark-size: spacers.getSpacer(l);
     }
 
     &--disabled {
-      border-color: palette.$neutral500;
+      border-color: $neutral500;
       cursor: default;
 
       &::after {
-        border-color: palette.$neutral500;
-        background-color: palette.$neutral200;
+        border-color: $neutral500;
+        background-color: $neutral200;
 
         :hover > & {
-          background-color: palette.$neutral200;
+          background-color: $neutral200;
         }
       }
     }

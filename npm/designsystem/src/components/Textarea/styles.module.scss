@@ -5,18 +5,18 @@
 @use '../../scss/breakpoints' as breakpoints;
 
 .textarea {
-  @include input.input-wrapper;
+  @include input-wrapper;
 
   &--gutterBottom {
-    margin-bottom: spacers.getSpacer(s);
+    margin-bottom: getSpacer(s);
   }
 }
 
 .input-container {
-  @include input.input-container;
+  @include input-container;
 
   &__input {
-    @include fonts.input-text;
+    @include input-text;
 
     height: auto;
     padding: 16px;

@@ -25,7 +25,7 @@
   }
 
   &:focus {
-    box-shadow: 0 0 0 2px palette.$black;
+    box-shadow: 0 0 0 2px $black;
     background-color: transparent;
     border-radius: 0;
     border: 0;

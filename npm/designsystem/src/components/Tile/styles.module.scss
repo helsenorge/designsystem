@@ -12,11 +12,11 @@
 
   display: flex;
   width: inherit;
-  padding: spacers.getSpacer(2xs) spacers.getSpacer(2xs) spacers.getSpacer(xs);
+  padding: getSpacer(2xs) getSpacer(2xs) getSpacer(xs);
   flex-direction: column;
   justify-content: center;
   background-color: var(--core-color-white);
-  color: palette.$black;
+  color: $black;
   text-decoration: none;
   cursor: pointer;
   border: 1px solid var(--color-base-border-blueberry);
@@ -28,7 +28,7 @@
   }
 
   @media print {
-    border: 1px solid palette.$black;
+    border: 1px solid $black;
   }
 
   &--fixed {
@@ -37,7 +37,7 @@
   }
 
   &--compact {
-    padding: spacers.getSpacer(2xs) spacers.getSpacer(2xs) spacers.getSpacer(xs);
+    padding: getSpacer(2xs) getSpacer(2xs) getSpacer(xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       padding: spacers.getSpacer(s) spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(s);
@@ -59,14 +59,14 @@
   }
 
   &--highlighted {
-    background-color: palette.$blueberry500;
-    border-color: palette.$blueberry500;
-    color: palette.$white;
+    background-color: $blueberry500;
+    border-color: $blueberry500;
+    color: $white;
 
     &:hover,
     &:active {
-      background-color: palette.$blueberry700;
-      border-color: palette.$blueberry700;
+      background-color: $blueberry700;
+      border-color: $blueberry700;
     }
 
     &:focus-visible {
@@ -78,22 +78,22 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
-    font-size: font-settings.$font-size-sm;
+    font-size: $font-size-sm;
     text-align: center;
     line-height: 1.74rem;
     font-weight: 400;
-    margin: spacers.getSpacer(3xs) 0 0;
+    margin: getSpacer(3xs) 0 0;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       text-align: left;
       font-weight: 600;
-      font-size: font-settings.$font-size-md;
+      font-size: $font-size-md;
       line-height: 1.625rem;
-      margin: spacers.getSpacer(s) 0 0 spacers.getSpacer(2xs);
+      margin: getSpacer(s) 0 0 getSpacer(2xs);
     }
 
     &--compact {
-      margin: 0 0 0 spacers.getSpacer(3xs);
+      margin: 0 0 0 getSpacer(3xs);
       text-align: left;
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
@@ -113,11 +113,11 @@
   &__description {
     font-size: 1.125rem;
     line-height: 1.75rem;
-    margin: spacers.getSpacer(2xs) 0 0 spacers.getSpacer(2xs);
+    margin: getSpacer(2xs) 0 0 getSpacer(2xs);
   }
 
   &__children {
-    margin: spacers.getSpacer(s) 0 0 spacers.getSpacer(2xs);
+    margin: getSpacer(s) 0 0 getSpacer(2xs);
   }
 }
 
@@ -137,7 +137,7 @@
   &--compact {
     flex-direction: row;
     align-items: center;
-    padding-right: spacers.getSpacer(s);
+    padding-right: getSpacer(s);
     padding-bottom: 0;
 
     svg {

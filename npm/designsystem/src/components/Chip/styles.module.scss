@@ -29,19 +29,19 @@
     &--#{$color}[type='button'] {
       // banana og kiwi har unntak fra hovedregelen
       @if $color == 'banana' {
-        color: map.get(palette.$palette-map, #{$color}900);
-        border-color: map.get(palette.$palette-map, #{$color}300);
+        color: map.get($palette-map, #{$color}900);
+        border-color: map.get($palette-map, #{$color}300);
       } @else if $color == 'kiwi' {
-        color: map.get(palette.$palette-map, #{$color}900);
-        border-color: map.get(palette.$palette-map, #{$color}200);
+        color: map.get($palette-map, #{$color}900);
+        border-color: map.get($palette-map, #{$color}200);
       } @else {
-        color: map.get(palette.$palette-map, #{$color}800);
-        border-color: map.get(palette.$palette-map, #{$color}200);
+        color: map.get($palette-map, #{$color}800);
+        border-color: map.get($palette-map, #{$color}200);
       }
 
       &#{$chip}--normal {
         &:hover {
-          background-color: rgba-to-rgb(rgba(map.get(palette.$palette-map, #{$color}200), 0.2));
+          background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}200), 0.2));
         }
       }
 
@@ -49,25 +49,25 @@
         background-color: transparent;
 
         &:hover {
-          background-color: map.get(palette.$palette-map, #{$color}100);
-          border-color: map.get(palette.$palette-map, #{$color}100);
+          background-color: map.get($palette-map, #{$color}100);
+          border-color: map.get($palette-map, #{$color}100);
         }
 
         &:focus {
-          background-color: palette.$white;
-          border-color: palette.$white;
-          box-shadow: 0 0 0 3px palette.$black;
+          background-color: $white;
+          border-color: $white;
+          box-shadow: 0 0 0 3px $black;
         }
       }
 
       &#{$chip}--emphasised {
-        background-color: map.get(palette.$palette-map, #{$color}50);
+        background-color: map.get($palette-map, #{$color}50);
 
         &:hover {
           @if $color == 'banana' {
-            background-color: rgba-to-rgb(rgba(map.get(palette.$palette-map, #{$color}300), 0.5));
+            background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}300), 0.5));
           } @else {
-            background-color: rgba-to-rgb(rgba(map.get(palette.$palette-map, #{$color}200), 0.5));
+            background-color: rgba-to-rgb(rgba(map.get($palette-map, #{$color}200), 0.5));
           }
         }
       }
@@ -76,8 +76,8 @@
 
   &:focus {
     outline: none;
-    border-color: palette.$black;
-    box-shadow: inset 0 0 0 2px palette.$black;
+    border-color: $black;
+    box-shadow: inset 0 0 0 2px $black;
   }
 
   &#{$chip}--undo {
@@ -85,12 +85,12 @@
   }
 
   &--medium {
-    padding: 0 spacers.getSpacer(3xs) 0 spacers.getSpacer(xs);
+    padding: 0 getSpacer(3xs) 0 getSpacer(xs);
     min-height: 1.875rem;
   }
 
   &--large {
-    padding: spacers.getSpacer(4xs) spacers.getSpacer(3xs) spacers.getSpacer(4xs) spacers.getSpacer(xs);
+    padding: getSpacer(4xs) getSpacer(3xs) getSpacer(4xs) getSpacer(xs);
     min-height: 2.125rem;
   }
 }

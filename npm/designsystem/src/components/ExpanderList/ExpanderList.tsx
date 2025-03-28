@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useUuid } from '../../hooks/useUuid';
 import { PaletteNames } from '../../theme/palette';
 import { mergeRefs } from '../../utils/refs';
@@ -93,12 +93,12 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     onExpand,
     renderChildrenWhenClosed,
     variant = 'line',
-    zIndex,
+    zIndex = 0,
   } = props;
   const [isExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLLIElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const { isHovered } = useHover(triggerRef);
+  const { isHovered, isFocused } = usePseudoClasses(triggerRef);
 
   const isFill = variant === 'fill';
   const isFillNegative = variant === 'fill-negative';
@@ -153,10 +153,17 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
         ref={triggerRef}
         aria-expanded={isExpanded}
         style={{
-          zIndex: zIndex ?? undefined,
+          zIndex: isFocused ? zIndex + 1 : zIndex,
         }}
       >
-        {renderListHeader(title, titleHtmlMarkup, isHovered, large ? 'large' : 'medium', isExpanded ? ChevronUp : ChevronDown, icon)}
+        {renderListHeader(
+          title,
+          titleHtmlMarkup,
+          isHovered || isFocused,
+          large ? 'large' : 'medium',
+          isExpanded ? ChevronUp : ChevronDown,
+          icon
+        )}
       </button>
       {renderContent()}
     </li>
@@ -165,7 +172,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
 
 type ActiveExpander = Record<string, boolean>;
 
-const isExpanderComponent = (element: {} | null | undefined): element is React.ReactElement<ExpanderProps> =>
+const isExpanderComponent = (element: unknown | null | undefined): element is React.ReactElement<ExpanderProps> =>
   React.isValidElement<ExpanderProps>(element) && (element as React.ReactElement).type === Expander;
 
 export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: React.Ref<HTMLUListElement>) => {

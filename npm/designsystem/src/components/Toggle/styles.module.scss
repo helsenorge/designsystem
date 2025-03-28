@@ -22,22 +22,22 @@
   }
 
   &__label {
-    @include fonts.label;
+    @include label;
 
     color: var(--core-color-neutral-900);
-    margin-left: spacers.getSpacer(xs);
+    margin-left: getSpacer(xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
       margin-left: spacers.getSpacer(s);
     }
 
     &__text--subdued {
-      @include fonts.label-subdued;
+      @include label-subdued;
     }
 
     &--toggle-right {
       margin-left: 0;
-      margin-right: spacers.getSpacer(xs);
+      margin-right: getSpacer(xs);
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
         margin-right: spacers.getSpacer(s);
@@ -46,7 +46,7 @@
   }
 
   &__sublabel {
-    font-size: font-settings.$font-size-xs;
+    font-size: $font-size-xs;
     line-height: 1.25rem;
     color: var(--core-color-neutral-800);
     margin-left: 3.9rem;

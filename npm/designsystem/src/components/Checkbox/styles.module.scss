@@ -15,36 +15,36 @@
 
   background-image:
     // Square dots at corners
-    linear-gradient(palette.$neutral600, palette.$neutral600),
-    linear-gradient(palette.$neutral600, palette.$neutral600),
-    linear-gradient(palette.$neutral600, palette.$neutral600),
-    linear-gradient(palette.$neutral600, palette.$neutral600),
+    linear-gradient($neutral600, $neutral600),
+    linear-gradient($neutral600, $neutral600),
+    linear-gradient($neutral600, $neutral600),
+    linear-gradient($neutral600, $neutral600),
     // Dashed lines
     repeating-linear-gradient(
         0deg,
-        palette.$neutral600,
-        palette.$neutral600 var(--dash-length),
+        $neutral600,
+        $neutral600 var(--dash-length),
         transparent var(--dash-length),
         transparent calc(var(--dash-length) + var(--gap-length))
       ),
     repeating-linear-gradient(
       90deg,
-      palette.$neutral600,
-      palette.$neutral600 var(--dash-length),
+      $neutral600,
+      $neutral600 var(--dash-length),
       transparent var(--dash-length),
       transparent calc(var(--dash-length) + var(--gap-length))
     ),
     repeating-linear-gradient(
       180deg,
-      palette.$neutral600,
-      palette.$neutral600 var(--dash-length),
+      $neutral600,
+      $neutral600 var(--dash-length),
       transparent var(--dash-length),
       transparent calc(var(--dash-length) + var(--gap-length))
     ),
     repeating-linear-gradient(
       270deg,
-      palette.$neutral600,
-      palette.$neutral600 var(--dash-length),
+      $neutral600,
+      $neutral600 var(--dash-length),
       transparent var(--dash-length),
       transparent calc(var(--dash-length) + var(--gap-length))
     );
@@ -88,15 +88,15 @@
 $checkbox-icon-size: 1.625rem;
 
 .checkbox-errors {
-  font-size: font-settings.$font-size-sm;
+  font-size: $font-size-sm;
   font-weight: 600;
-  color: palette.$cherry600;
+  color: $cherry600;
   margin-top: 0;
 }
 
 .checkbox-wrapper {
   &--large {
-    margin: spacers.getSpacer(2xs) 0;
+    margin: getSpacer(2xs) 0;
   }
 }
 
@@ -106,26 +106,26 @@ $checkbox-icon-size: 1.625rem;
   cursor: pointer;
 
   &__text {
-    color: palette.$black;
+    color: $black;
 
     &__large {
       &--checked {
-        color: palette.$white;
+        color: $white;
       }
       &--checked#{&}--invalid {
-        color: palette.$black;
+        color: $black;
       }
       &--checked#{&}--disabled {
-        color: palette.$neutral700;
+        color: $neutral700;
       }
     }
 
     &--disabled {
-      color: palette.$neutral700;
+      color: $neutral700;
     }
 
     &--on-dark {
-      color: palette.$white;
+      color: $white;
     }
   }
 
@@ -135,119 +135,119 @@ $checkbox-icon-size: 1.625rem;
 
   &__large {
     &--focus {
-      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+      box-shadow: 0 0 0 getSpacer(3xs);
     }
 
     &--on-white {
-      background-color: palette.$neutral50;
+      background-color: $neutral50;
 
       :hover > & {
-        background-color: palette.$neutral100;
+        background-color: $neutral100;
       }
     }
     &--on-white#{&}--focus {
-      color: palette.$neutral500;
+      color: $neutral500;
     }
 
     &--on-grey {
-      background-color: palette.$white;
+      background-color: $white;
 
       :hover > & {
-        background-color: palette.$neutral100;
+        background-color: $neutral100;
       }
     }
 
     &--on-grey#{&}--focus {
-      color: palette.$neutral500;
-      background-color: palette.$white;
+      color: $neutral500;
+      background-color: $white;
     }
 
     &--on-blueberry {
-      background-color: palette.$white;
+      background-color: $white;
 
       :hover > & {
-        background-color: palette.$blueberry100;
+        background-color: $blueberry100;
       }
     }
     &--on-blueberry#{&}--focus {
-      color: palette.$blueberry500;
-      background-color: palette.$white;
+      color: $blueberry500;
+      background-color: $white;
     }
 
     &--on-invalid {
-      background-color: palette.$white;
+      background-color: $white;
 
       :hover > & {
-        background-color: palette.$cherry100;
+        background-color: $cherry100;
       }
     }
     &--on-invalid#{&}--focus {
-      color: palette.$cherry400;
-      background-color: palette.$white;
+      color: $cherry400;
+      background-color: $white;
     }
 
     &--disabled {
-      background-color: palette.$neutral50;
+      background-color: $neutral50;
 
       :hover > & {
-        background-color: palette.$neutral50;
+        background-color: $neutral50;
       }
     }
 
     &--checked {
-      background-color: palette.$blueberry500;
+      background-color: $blueberry500;
 
       :hover > & {
-        background-color: palette.$blueberry600;
+        background-color: $blueberry600;
       }
     }
     &--checked#{&}--focus {
-      color: palette.$blueberry900;
-      background-color: palette.$blueberry500;
+      color: $blueberry900;
+      background-color: $blueberry500;
     }
 
     &--checked#{&}--on-invalid {
-      background-color: palette.$cherry100;
+      background-color: $cherry100;
 
       :hover > & {
-        background-color: palette.$cherry200;
+        background-color: $cherry200;
       }
     }
 
     &--checked#{&}--on-invalid#{&}--focus {
-      color: palette.$cherry400;
+      color: $cherry400;
     }
 
     &--checked#{&}--disabled {
-      color: palette.$neutral700;
-      background-color: palette.$neutral50;
+      color: $neutral700;
+      background-color: $neutral50;
 
       :hover > & {
-        color: palette.$neutral700;
-        background-color: palette.$neutral50;
+        color: $neutral700;
+        background-color: $neutral50;
       }
     }
 
     &--disabled#{&}--white {
-      background-color: palette.$white;
+      background-color: $white;
 
       :hover > & {
-        background-color: palette.$white;
+        background-color: $white;
       }
     }
   }
 
   &--large {
-    padding: spacers.getSpacer(s);
+    padding: getSpacer(s);
   }
 
   &--large#{&}--on-dark {
-    background-color: palette.$blueberry800;
+    background-color: $blueberry800;
   }
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     &--large {
-      padding: 1.68rem spacers.getSpacer(l);
+      padding: 1.68rem getSpacer(l);
     }
   }
 }
@@ -259,12 +259,12 @@ $checkbox-icon-size: 1.625rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: spacers.getSpacer(4xs) spacers.getSpacer(s) spacers.getSpacer(4xs) spacers.getSpacer(4xs);
+    margin: getSpacer(4xs) getSpacer(s) getSpacer(4xs) getSpacer(4xs);
     height: $checkbox-icon-size;
     width: $checkbox-icon-size;
     min-height: $checkbox-icon-size;
     min-width: $checkbox-icon-size;
-    box-shadow: 0 0 0 spacers.getSpacer(4xs);
+    box-shadow: 0 0 0 getSpacer(4xs);
 
     // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
     @media (forced-colors: active) {
@@ -274,36 +274,36 @@ $checkbox-icon-size: 1.625rem;
     }
 
     :hover > & {
-      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+      box-shadow: 0 0 0 getSpacer(3xs);
     }
 
     &--on-white,
     &--on-grey {
-      color: palette.$neutral700;
+      color: $neutral700;
 
       :hover > & {
-        background-color: palette.$neutral100;
+        background-color: $neutral100;
       }
     }
 
     &--on-blueberry {
-      color: palette.$blueberry500;
+      color: $blueberry500;
 
       :hover > & {
-        background-color: palette.$blueberry100;
+        background-color: $blueberry100;
       }
     }
 
     &--on-invalid {
-      color: palette.$cherry500;
+      color: $cherry500;
 
       :hover > & {
-        background-color: palette.$cherry100;
+        background-color: $cherry100;
       }
     }
 
     &--on-dark {
-      color: palette.$neutral200;
+      color: $neutral200;
 
       :hover > & {
         background-color: #ffffff1a;
@@ -312,59 +312,59 @@ $checkbox-icon-size: 1.625rem;
 
     &__regular {
       &--checked {
-        background-color: palette.$blueberry500;
-        color: palette.$blueberry500;
-        box-shadow: 0 0 0 spacers.getSpacer(4xs);
+        background-color: $blueberry500;
+        color: $blueberry500;
+        box-shadow: 0 0 0 getSpacer(4xs);
 
         :hover > & {
-          background-color: palette.$blueberry600;
-          color: palette.$blueberry600;
-          box-shadow: 0 0 0 spacers.getSpacer(4xs);
+          background-color: $blueberry600;
+          color: $blueberry600;
+          box-shadow: 0 0 0 getSpacer(4xs);
         }
       }
       &--checked#{&}--invalid {
-        background-color: palette.$cherry500;
-        color: palette.$cherry500;
-        box-shadow: 0 0 0 spacers.getSpacer(4xs);
+        background-color: $cherry500;
+        color: $cherry500;
+        box-shadow: 0 0 0 getSpacer(4xs);
 
         :hover > & {
-          background-color: palette.$cherry600;
-          color: palette.$cherry600;
-          box-shadow: 0 0 0 spacers.getSpacer(4xs);
+          background-color: $cherry600;
+          color: $cherry600;
+          box-shadow: 0 0 0 getSpacer(4xs);
         }
       }
       &--checked#{&}--on-dark {
-        background-color: palette.$blueberry50;
-        color: palette.$blueberry50;
-        box-shadow: 0 0 0 spacers.getSpacer(4xs);
+        background-color: $blueberry50;
+        color: $blueberry50;
+        box-shadow: 0 0 0 getSpacer(4xs);
 
         :hover > & {
-          background-color: palette.$blueberry200;
-          color: palette.$blueberry200;
-          box-shadow: 0 0 0 spacers.getSpacer(4xs);
+          background-color: $blueberry200;
+          color: $blueberry200;
+          box-shadow: 0 0 0 getSpacer(4xs);
         }
       }
     }
 
     &__large {
       &--checked {
-        background-color: palette.$blueberry50;
+        background-color: $blueberry50;
         box-shadow: none;
 
         :hover > & {
-          background-color: palette.$blueberry200;
+          background-color: $blueberry200;
           box-shadow: none;
         }
       }
       &--checked#{&}--invalid {
-        background-color: palette.$cherry500;
+        background-color: $cherry500;
 
         :hover > & {
-          background-color: palette.$cherry600;
+          background-color: $cherry600;
         }
       }
       &--checked#{&}--disabled {
-        color: palette.$neutral600;
+        color: $neutral600;
         background-color: transparent;
 
         :hover > & {
@@ -402,31 +402,31 @@ $checkbox-icon-size: 1.625rem;
   &:focus {
     /* stylelint-disable-next-line */
     & + .checkbox__icon-wrapper {
-      box-shadow: 0 0 0 spacers.getSpacer(3xs);
-      color: palette.$black;
+      box-shadow: 0 0 0 getSpacer(3xs);
+      color: $black;
 
       &--on-dark {
-        color: palette.$white;
+        color: $white;
       }
 
       &--invalid {
-        color: palette.$black;
+        color: $black;
       }
 
       &__large {
         &--checked {
-          background-color: palette.$blueberry200;
-          box-shadow: 0 0 0 spacers.getSpacer(3xs);
-          color: palette.$white;
+          background-color: $blueberry200;
+          box-shadow: 0 0 0 getSpacer(3xs);
+          color: $white;
 
           // komboklasser fungerer ikke i nested struktur
           &--invalid {
-            background-color: palette.$cherry500;
-            color: palette.$black;
+            background-color: $cherry500;
+            color: $black;
           }
 
           &--disabled {
-            color: palette.$neutral700;
+            color: $neutral700;
           }
         }
       }

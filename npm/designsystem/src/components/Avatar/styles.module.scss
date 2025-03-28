@@ -1,13 +1,13 @@
-@use '../../scss/palette' as palette;
-@use '../../scss/font-settings' as font-settings;
+@import '../../scss/palette';
+@import '../../scss/font-settings';
 
 .avatar {
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  background-color: palette.$blueberry500;
-  color: palette.$white;
+  background-color: $blueberry500;
+  color: $white;
 
   &--circle {
     border-radius: 50%;
@@ -18,7 +18,7 @@
   }
 
   &--black {
-    background-color: palette.$neutral900;
+    background-color: $neutral900;
   }
 
   &--selected#{&}--black {
@@ -28,14 +28,14 @@
   &--xsmall {
     width: 2.375rem;
     height: 2.375rem;
-    font-size: font-settings.$font-size-md;
-    line-height: font-settings.$lineheight-size-md;
+    font-size: $font-size-md;
+    line-height: $lineheight-size-md;
   }
 
   &--small {
     width: 3rem;
     height: 3rem;
-    font-size: font-settings.$font-size-lg;
-    line-height: font-settings.$lineheight-size-lg;
+    font-size: $font-size-lg;
+    line-height: $lineheight-size-lg;
   }
 }

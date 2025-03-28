@@ -22,42 +22,42 @@
 
     &--outline {
       &--white {
-        border-top: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-top: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-neutral-100) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+          border-bottom: getSpacer(2xs) var(--core-color-neutral-100) solid;
         }
       }
 
       &--blueberry {
-        border-top: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-top: getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-blueberry-100) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
+          border-bottom: getSpacer(2xs) var(--core-color-blueberry-100) solid;
         }
       }
 
       &--cherry {
-        border-top: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-top: getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-cherry-100) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
+          border-bottom: getSpacer(2xs) var(--core-color-cherry-100) solid;
         }
       }
 
       &--neutral {
-        border-top: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-top: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-left: getSpacer(2xs) var(--core-color-neutral-100) solid;
+        border-right: getSpacer(2xs) var(--core-color-neutral-100) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+          border-bottom: getSpacer(2xs) var(--core-color-neutral-100) solid;
         }
       }
     }
@@ -100,7 +100,7 @@
 
     &--fill,
     &--fill-negative {
-      margin-top: spacers.getSpacer(s);
+      margin-top: getSpacer(s);
     }
 
     &--fill-negative {
@@ -108,34 +108,34 @@
     }
 
     &--small {
-      font-size: font-settings.$font-size-xs;
-      line-height: font-settings.$lineheight-size-xs;
+      font-size: $font-size-xs;
+      line-height: $lineheight-size-xs;
     }
 
     &--medium {
-      font-size: font-settings.$font-size-sm;
-      line-height: font-settings.$lineheight-size-sm;
+      font-size: $font-size-sm;
+      line-height: $lineheight-size-sm;
     }
 
     &--large {
-      font-size: font-settings.$font-size-md;
-      line-height: font-settings.$lineheight-size-md;
+      font-size: $font-size-md;
+      line-height: $lineheight-size-md;
     }
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       &--small {
-        font-size: font-settings.$font-size-sm;
-        line-height: font-settings.$lineheight-size-sm;
+        font-size: $font-size-sm;
+        line-height: $lineheight-size-sm;
       }
 
       &--medium {
-        font-size: font-settings.$font-size-md;
-        line-height: font-settings.$lineheight-size-md;
+        font-size: $font-size-md;
+        line-height: $lineheight-size-md;
       }
 
       &--large {
-        font-size: font-settings.$font-size-lg;
-        line-height: font-settings.$lineheight-size-lg;
+        font-size: $font-size-lg;
+        line-height: $lineheight-size-lg;
       }
     }
 

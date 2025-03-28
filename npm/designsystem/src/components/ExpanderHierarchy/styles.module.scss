@@ -1,5 +1,6 @@
-@use '../../scss/palette' as palette;
-@use '../../scss/spacers' as spacers;
+@import '../../scss/palette';
+@import '../../scss/spacers';
+@import '../../scss/font-mixins';
 
 .expanderhierarchy {
   list-style: none;
@@ -7,10 +8,10 @@
   margin: 0;
 
   &--2 {
-    margin-top: spacers.getSpacer(xl);
+    margin-top: getSpacer(xl);
   }
 
   &--3-and-lower {
-    margin-top: spacers.getSpacer(m);
+    margin-top: getSpacer(m);
   }
 }

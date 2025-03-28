@@ -6,7 +6,7 @@
 
 .validation {
   &__error-wrapper {
-    margin-bottom: spacers.getSpacer(2xs);
+    margin-bottom: getSpacer(2xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       margin-bottom: spacers.getSpacer(m);
@@ -14,19 +14,19 @@
   }
 
   &__summary {
-    color: palette.$cherry600;
+    color: $cherry600;
 
     &--visible {
-      margin: spacers.getSpacer(l) 0 spacers.getSpacer(s);
+      margin: getSpacer(l) 0 getSpacer(s);
     }
   }
 
   &__errors {
-    font-size: font-settings.$font-size-sm;
+    font-size: $font-size-sm;
     font-weight: 600;
 
     &--visible {
-      margin: spacers.getSpacer(l) 0 spacers.getSpacer(s);
+      margin: getSpacer(l) 0 getSpacer(s);
     }
   }
 }

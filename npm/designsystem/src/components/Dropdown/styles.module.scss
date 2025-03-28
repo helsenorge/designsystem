@@ -20,9 +20,9 @@
     border-radius: 0;
     border-width: 2px;
     border-style: solid;
-    padding: 0 spacers.getSpacer(3xs) 0 spacers.getSpacer(s);
+    padding: 0 getSpacer(3xs) 0 getSpacer(s);
     font-family: inherit;
-    font-size: font-settings.$font-size-sm;
+    font-size: $font-size-sm;
     line-height: 1.3rem; // Custom fordi teksten skal henge bedre sammen om den går over to linjer
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
@@ -37,80 +37,80 @@
 
     &:disabled {
       cursor: initial;
-      color: palette.$neutral700;
+      color: $neutral700;
       background-color: transparent;
-      border-color: palette.$neutral600;
+      border-color: $neutral600;
       border-style: dashed;
     }
 
     &--on-white,
     &--on-grey {
-      border-color: palette.$neutral700;
-      background-color: palette.$white;
+      border-color: $neutral700;
+      background-color: $white;
 
       &:hover {
-        background-color: palette.$neutral50;
-        box-shadow: 0 0 0 1px palette.$neutral700;
+        background-color: $neutral50;
+        box-shadow: 0 0 0 1px $neutral700;
       }
 
       &:focus {
-        border-color: palette.$black;
-        box-shadow: 0 0 0 1px palette.$black;
+        border-color: $black;
+        box-shadow: 0 0 0 1px $black;
       }
     }
 
     &--on-blueberry {
-      border-color: palette.$blueberry500;
-      background-color: palette.$white;
+      border-color: $blueberry500;
+      background-color: $white;
 
       &:hover {
-        background-color: palette.$blueberry50;
-        box-shadow: 0 0 0 1px palette.$blueberry500;
+        background-color: $blueberry50;
+        box-shadow: 0 0 0 1px $blueberry500;
       }
 
       &:focus {
-        border-color: palette.$black;
-        box-shadow: 0 0 0 1px palette.$black;
+        border-color: $black;
+        box-shadow: 0 0 0 1px $black;
       }
     }
 
     &--on-cherry {
-      border-color: palette.$cherry500;
-      background-color: palette.$white;
+      border-color: $cherry500;
+      background-color: $white;
 
       &:hover {
-        background-color: palette.$cherry50;
-        box-shadow: 0 0 0 1px palette.$cherry500;
+        background-color: $cherry50;
+        box-shadow: 0 0 0 1px $cherry500;
       }
 
       &:focus {
-        border-color: palette.$black;
-        box-shadow: 0 0 0 1px palette.$black;
+        border-color: $black;
+        box-shadow: 0 0 0 1px $black;
       }
     }
 
     &--open#{&}--on-white,
     &--open#{&}--on-grey {
-      background-color: palette.$neutral50;
+      background-color: $neutral50;
 
       &:hover {
-        background-color: palette.$white;
+        background-color: $white;
       }
     }
 
     &--open#{&}--on-blueberry {
-      background-color: palette.$blueberry50;
+      background-color: $blueberry50;
 
       &:hover {
-        background-color: palette.$white;
+        background-color: $white;
       }
     }
 
     &--open#{&}--on-cherry {
-      background-color: palette.$cherry50;
+      background-color: $cherry50;
 
       &:hover {
-        background-color: palette.$white;
+        background-color: $white;
       }
     }
 
@@ -120,24 +120,24 @@
 
     &--transparent#{&}--on-grey {
       &:hover {
-        background-color: palette.$neutral100;
+        background-color: $neutral100;
       }
     }
 
     &--transparent#{&}--on-blueberry {
       &:hover {
-        background-color: palette.$blueberry100;
+        background-color: $blueberry100;
       }
     }
 
     &--transparent#{&}--on-cherry {
       &:hover {
-        background-color: palette.$cherry100;
+        background-color: $cherry100;
       }
     }
 
     &--transparent#{&}--open#{&}--on-grey {
-      background-color: palette.$neutral100;
+      background-color: $neutral100;
 
       &:hover {
         background-color: transparent;
@@ -145,7 +145,7 @@
     }
 
     &--transparent#{&}--open#{&}--on-blueberry {
-      background-color: palette.$blueberry100;
+      background-color: $blueberry100;
 
       &:hover {
         background-color: transparent;
@@ -153,7 +153,7 @@
     }
 
     &--transparent#{&}--open#{&}--on-cherry {
-      background-color: palette.$cherry100;
+      background-color: $cherry100;
 
       &:hover {
         background-color: transparent;
@@ -165,7 +165,7 @@
     }
 
     &__label {
-      padding: spacers.getSpacer(3xs) 0;
+      padding: getSpacer(3xs) 0;
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         padding: spacers.getSpacer(2xs) 0;
@@ -174,15 +174,15 @@
   }
 
   &__icon {
-    margin-left: spacers.getSpacer(2xs);
+    margin-left: getSpacer(2xs);
   }
 
   &__content {
     display: none;
     position: absolute;
-    background-color: palette.$white;
-    margin-top: spacers.getSpacer(2xs);
-    box-shadow: 0 0 0 2px palette.$blueberry500;
+    background-color: $white;
+    margin-top: getSpacer(2xs);
+    box-shadow: 0 0 0 2px $blueberry500;
     z-index: 1;
 
     &--open {
@@ -203,12 +203,12 @@
   }
 
   &__close {
-    padding: spacers.getSpacer(s);
+    padding: getSpacer(s);
   }
 
   &__input {
-    border-bottom: 1px solid palette.$neutral300;
-    padding: spacers.getSpacer(2xs) spacers.getSpacer(s);
+    border-bottom: 1px solid $neutral300;
+    padding: getSpacer(2xs) getSpacer(s);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       padding: spacers.getSpacer(s);

@@ -32,26 +32,26 @@
 .modal {
   pointer-events: auto;
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 50%);
-  background-color: palette.$white;
+  background-color: $white;
   animation: open 200ms 1;
   outline: none;
 
   &__title {
     &--error {
-      color: palette.$cherry600;
+      color: $cherry600;
     }
 
     &--success {
-      color: palette.$kiwi900;
+      color: $kiwi900;
     }
   }
 
   &__iconWrapper {
-    padding-right: spacers.getSpacer(xs);
+    padding-right: getSpacer(xs);
   }
 
   &__afterTitleChildren {
-    padding-left: spacers.getSpacer(xs);
+    padding-left: getSpacer(xs);
   }
 
   p {
@@ -59,24 +59,24 @@
   }
 
   &--normal {
-    background-color: palette.$white;
+    background-color: $white;
   }
 
   &--error {
-    background-color: palette.$cherry100;
+    background-color: $cherry100;
   }
 
   &--warning {
-    background-color: palette.$banana50;
+    background-color: $banana50;
   }
 
   &--success {
-    background-color: palette.$kiwi50;
+    background-color: $kiwi50;
   }
 
   &--large {
     width: calc(100vw - 0.75rem);
-    padding-bottom: spacers.getSpacer(l);
+    padding-bottom: getSpacer(l);
 
     @media (max-width: map.get(breakpoints.$grid-breakpoints, sm)) {
       p {
@@ -100,7 +100,7 @@
 
   &--medium {
     width: calc(100vw - 0.75rem);
-    padding-bottom: spacers.getSpacer(m);
+    padding-bottom: getSpacer(m);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       width: 335px;
@@ -160,8 +160,8 @@
 
     &__close {
       position: absolute;
-      right: spacers.getSpacer(3xs);
-      top: spacers.getSpacer(3xs);
+      right: getSpacer(3xs);
+      top: getSpacer(3xs);
     }
   }
 
@@ -172,7 +172,7 @@
     overflow-x: hidden;
 
     &:focus-visible {
-      outline: 1px solid palette.$black;
+      outline: 1px solid $black;
       outline-offset: -1px;
     }
 
@@ -191,7 +191,7 @@
 
     &__scroll {
       &--large {
-        padding: spacers.getSpacer(xl) spacers.getSpacer(m) spacers.getSpacer(2xs);
+        padding: getSpacer(xl) getSpacer(m) getSpacer(2xs);
 
         @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
           padding: spacers.getSpacer(xl) spacers.getSpacer(xl) spacers.getSpacer(2xs);
@@ -203,7 +203,7 @@
       }
 
       &--medium {
-        padding: spacers.getSpacer(l) spacers.getSpacer(m) spacers.getSpacer(2xs);
+        padding: getSpacer(l) getSpacer(m) getSpacer(2xs);
 
         @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
           padding: spacers.getSpacer(xl) spacers.getSpacer(m) spacers.getSpacer(2xs);
@@ -214,7 +214,7 @@
         }
       }
       &--large#{&}--image {
-        padding: spacers.getSpacer(xl) spacers.getSpacer(2xs) spacers.getSpacer(l);
+        padding: getSpacer(xl) getSpacer(2xs) getSpacer(l);
       }
     }
 
@@ -240,8 +240,8 @@
     }
 
     &__imageDescription {
-      font-size: font-settings.$font-size-xs;
-      padding-top: spacers.getSpacer(s);
+      font-size: $font-size-xs;
+      padding-top: getSpacer(s);
       display: block;
     }
   }
@@ -258,7 +258,7 @@
     }
 
     &--large {
-      padding: spacers.getSpacer(l) spacers.getSpacer(m) 0;
+      padding: getSpacer(l) getSpacer(m) 0;
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         padding: spacers.getSpacer(l) spacers.getSpacer(xl) 0;
@@ -270,7 +270,7 @@
     }
 
     &--medium {
-      padding: spacers.getSpacer(m) spacers.getSpacer(m) 0;
+      padding: getSpacer(m) getSpacer(m) 0;
 
       @include breakpoints.tiny-screens-media-query {
         padding: spacers.getSpacer(2xs) spacers.getSpacer(2xs) 0;

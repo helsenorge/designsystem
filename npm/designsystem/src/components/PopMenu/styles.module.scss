@@ -1,6 +1,8 @@
 @use 'sass:map';
 @use '../../scss/palette' as palette;
 @use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/palette';
+@import '../../scss/breakpoints';
 
 .pop-menu-button {
   padding: 0;
@@ -14,7 +16,7 @@
   min-width: 3rem;
 
   &:focus {
-    border: 0.1875rem solid palette.$black;
+    border: 0.1875rem solid $black;
     box-shadow: none;
     outline: none;
   }
@@ -40,12 +42,12 @@ html :focus > .pop-menu-button {
   }
 
   &:active {
-    background-color: palette.$neutral50;
+    background-color: $neutral50;
     border: none;
   }
 
   &:hover {
-    background-color: palette.$neutral50;
+    background-color: $neutral50;
   }
 
   &:active:hover {
@@ -53,8 +55,8 @@ html :focus > .pop-menu-button {
   }
 
   &:active:focus {
-    background-color: palette.$neutral50;
-    border: 0.1875rem solid palette.$black;
+    background-color: $neutral50;
+    border: 0.1875rem solid $black;
   }
 }
 
@@ -64,12 +66,12 @@ html :focus > .pop-menu-button {
   }
 
   &:active {
-    background-color: palette.$neutral100;
+    background-color: $neutral100;
     border: none;
   }
 
   &:hover {
-    background-color: palette.$neutral100;
+    background-color: $neutral100;
   }
 
   &:active:hover {
@@ -77,8 +79,8 @@ html :focus > .pop-menu-button {
   }
 
   &:active:focus {
-    background-color: palette.$neutral100;
-    border: 0.1875rem solid palette.$black;
+    background-color: $neutral100;
+    border: 0.1875rem solid $black;
   }
 }
 
@@ -88,12 +90,12 @@ html :focus > .pop-menu-button {
   }
 
   &:active {
-    background-color: palette.$blueberry100;
+    background-color: $blueberry100;
     border: none;
   }
 
   &:hover {
-    background-color: palette.$blueberry100;
+    background-color: $blueberry100;
   }
 
   &:active:hover {
@@ -101,8 +103,8 @@ html :focus > .pop-menu-button {
   }
 
   &:active:focus {
-    background-color: palette.$blueberry100;
-    border: 0.1875rem solid palette.$black;
+    background-color: $blueberry100;
+    border: 0.1875rem solid $black;
   }
 }
 

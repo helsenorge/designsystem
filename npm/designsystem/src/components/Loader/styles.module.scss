@@ -1,6 +1,6 @@
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
-@use '../../scss/screen-reader' as *;
+@import '../../scss/spacers';
+@import '../../scss/palette';
+@import '../../scss/screen-reader';
 
 @mixin keyframes($name) {
   @keyframes #{$name} {
@@ -48,7 +48,7 @@
 
   &--inline {
     align-self: center;
-    padding-left: spacers.getSpacer(2xs);
+    padding-left: getSpacer(2xs);
   }
 
   &--overlay {
@@ -58,7 +58,7 @@
   }
 
   &--overlay-screen {
-    background: palette.$transparent-grey;
+    background: $transparent-grey;
     position: fixed;
     inset: 0;
   }
@@ -67,7 +67,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: palette.$transparent-grey;
+    background: $transparent-grey;
     height: 100%;
     width: 100%;
   }
@@ -102,7 +102,7 @@
     position: absolute;
     width: 8px;
     height: 8px;
-    background-color: palette.$blueberry500;
+    background-color: $blueberry500;
     border-radius: 50%;
 
     // Sets a form of easing animation curve
@@ -124,31 +124,31 @@
     }
 
     &--banana {
-      background-color: palette.$banana500;
+      background-color: $banana500;
     }
 
     &--cherry {
-      background-color: palette.$cherry500;
+      background-color: $cherry500;
     }
 
     &--kiwi {
-      background-color: palette.$kiwi500;
+      background-color: $kiwi500;
     }
 
     &--neutral {
-      background-color: palette.$neutral500;
+      background-color: $neutral500;
     }
 
     &--plum {
-      background-color: palette.$plum500;
+      background-color: $plum500;
     }
 
     &--black {
-      background-color: palette.$black;
+      background-color: $black;
     }
 
     &--white {
-      background-color: palette.$white;
+      background-color: $white;
     }
 
     // Scales up the first dot

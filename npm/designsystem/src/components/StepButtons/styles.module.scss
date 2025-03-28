@@ -5,21 +5,21 @@
 @use '../../scss/breakpoints' as breakpoints;
 
 .stepbuttons {
-  margin-top: spacers.getSpacer(m);
-  margin-bottom: spacers.getSpacer(s);
+  margin-top: getSpacer(m);
+  margin-bottom: getSpacer(s);
   display: flex;
   flex-wrap: wrap;
-  gap: spacers.getSpacer(m) spacers.getSpacer(l);
+  gap: getSpacer(m) getSpacer(l);
 
   &--has-sticky-buttons {
-    background-color: palette.$white;
+    background-color: $white;
     position: sticky;
     bottom: 0;
   }
 
   &__buttons {
     display: flex;
-    gap: spacers.getSpacer(s);
+    gap: getSpacer(s);
 
     @media (max-width: map.get(breakpoints.$grid-max-breakpoints, xs)) {
       width: 100%;

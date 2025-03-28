@@ -7,7 +7,7 @@
 .stepper-wrapper {
   display: flex;
   align-items: center;
-  min-height: spacers.getSpacer(l);
+  min-height: getSpacer(l);
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     min-height: spacers.getSpacer(xl);
@@ -47,15 +47,7 @@ $dot-offset: calc($stepper-padding-x + $dot-size / 2);
   display: block;
   height: $stepper-height;
   border-radius: 4px;
-  background:
-    linear-gradient(
-      to right,
-      palette.$blueberry600,
-      palette.$blueberry600 $dot-offset,
-      palette.$blueberry50 $dot-offset,
-      palette.$blueberry50
-    ),
-    palette.$blueberry600;
+  background: linear-gradient(to right, $blueberry600, $blueberry600 $dot-offset, $blueberry50 $dot-offset, $blueberry50), $blueberry600;
   background-repeat: no-repeat;
 
   @media (prefers-reduced-motion: no-preference) {
@@ -67,8 +59,8 @@ $dot-offset: calc($stepper-padding-x + $dot-size / 2);
     width: $marker-size;
     height: $marker-size;
     top: calc(($stepper-height - $marker-size) / 2);
-    background-color: palette.$white;
-    border: 6px solid palette.$blueberry600;
+    background-color: $white;
+    border: 6px solid $blueberry600;
     border-radius: 50%;
 
     @media (prefers-reduced-motion: no-preference) {
@@ -79,11 +71,11 @@ $dot-offset: calc($stepper-padding-x + $dot-size / 2);
   &__number {
     min-width: 2.5rem;
     text-align: right;
-    margin-left: spacers.getSpacer(xs);
-    font-size: font-settings.$font-size-xs;
-    line-height: font-settings.$lineheight-size-xs;
+    margin-left: getSpacer(xs);
+    font-size: $font-size-xs;
+    line-height: $lineheight-size-xs;
     font-weight: 700;
-    color: palette.$blueberry700;
+    color: $blueberry700;
   }
 
   &__dot {
@@ -91,7 +83,7 @@ $dot-offset: calc($stepper-padding-x + $dot-size / 2);
     top: calc(($stepper-height - $dot-size) / 2);
     width: $dot-size;
     height: $dot-size;
-    background-color: palette.$blueberry600;
+    background-color: $blueberry600;
     border-radius: 50%;
 
     @media (prefers-reduced-motion: no-preference) {
@@ -99,7 +91,7 @@ $dot-offset: calc($stepper-padding-x + $dot-size / 2);
     }
 
     &--completed {
-      background-color: palette.$blueberry50;
+      background-color: $blueberry50;
     }
 
     &--left {

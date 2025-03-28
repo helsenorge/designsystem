@@ -10,11 +10,11 @@
 
 @mixin input-container {
   display: flex;
-  font-size: font-settings.$font-size-sm;
+  font-size: $font-size-sm;
   width: 100%;
-  border: 2px solid palette.$neutral700;
+  border: 2px solid $neutral700;
   outline: none;
-  background: palette.$white;
+  background: $white;
 
   svg:first-of-type {
     padding-left: 0.375rem;
@@ -25,79 +25,79 @@
   }
 
   &--large {
-    padding: spacers.getSpacer(2xs) 0;
+    padding: getSpacer(2xs) 0;
 
     svg:first-of-type {
-      padding-left: spacers.getSpacer(2xs);
+      padding-left: getSpacer(2xs);
     }
 
     svg:last-of-type {
-      padding-right: spacers.getSpacer(2xs);
+      padding-right: getSpacer(2xs);
     }
   }
 
   &:focus-within {
-    background: palette.$white;
-    border-color: palette.$neutral900;
-    box-shadow: 0 0 0 2px palette.$neutral900;
+    background: $white;
+    border-color: $neutral900;
+    box-shadow: 0 0 0 2px $neutral900;
   }
 
   &:hover {
-    background: palette.$neutral50;
-    border-color: palette.$neutral700;
-    box-shadow: 0 0 0 1px palette.$neutral700;
+    background: $neutral50;
+    border-color: $neutral700;
+    box-shadow: 0 0 0 1px $neutral700;
 
     &:focus-within {
-      border-color: palette.$black;
-      box-shadow: 0 0 0 2px palette.$black;
+      border-color: $black;
+      box-shadow: 0 0 0 2px $black;
     }
   }
 
   &--on-blueberry {
-    border-color: palette.$blueberry500;
+    border-color: $blueberry500;
 
     &:hover {
-      background: palette.$blueberry50;
-      box-shadow: 0 0 0 1px palette.$blueberry500;
-      border-color: palette.$blueberry500;
+      background: $blueberry50;
+      box-shadow: 0 0 0 1px $blueberry500;
+      border-color: $blueberry500;
     }
 
     &:focus-within {
-      background: palette.$white;
-      border-color: palette.$neutral900;
-      box-shadow: 0 0 0 2px palette.$neutral900;
+      background: $white;
+      border-color: $neutral900;
+      box-shadow: 0 0 0 2px $neutral900;
     }
   }
 
   &--on-dark {
-    border-color: palette.$blueberry900;
+    border-color: $blueberry900;
 
     &:hover {
-      background: palette.$blueberry50;
-      border-color: palette.$blueberry900;
-      box-shadow: 0 0 0 1px palette.$blueberry900;
+      background: $blueberry50;
+      border-color: $blueberry900;
+      box-shadow: 0 0 0 1px $blueberry900;
     }
 
     &:focus-within {
-      background: palette.$white;
-      border-color: palette.$neutral900;
-      box-shadow: 0 0 0 2px palette.$neutral900;
+      background: $white;
+      border-color: $neutral900;
+      box-shadow: 0 0 0 2px $neutral900;
     }
   }
 
   &--invalid {
-    border-color: palette.$cherry600;
+    border-color: $cherry600;
 
     &:hover {
-      background: palette.$cherry100;
-      border-color: palette.$cherry600;
-      box-shadow: 0 0 0 2px palette.$cherry600;
+      background: $cherry100;
+      border-color: $cherry600;
+      box-shadow: 0 0 0 2px $cherry600;
     }
 
     &:focus-within {
-      background: palette.$white;
-      border-color: palette.$neutral900;
-      box-shadow: 0 0 0 2px palette.$neutral900;
+      background: $white;
+      border-color: $neutral900;
+      box-shadow: 0 0 0 2px $neutral900;
     }
   }
 
@@ -105,32 +105,32 @@
     background: transparent;
 
     &:hover {
-      background: palette.$neutral100;
+      background: $neutral100;
     }
 
     &:focus-within {
-      background: palette.$white;
+      background: $white;
     }
   }
   &--transparent#{&}--on-blueberry {
     &:hover {
-      background: palette.$blueberry100;
+      background: $blueberry100;
     }
 
     &:focus-within {
-      background: palette.$white;
+      background: $white;
     }
   }
 
   &--disabled {
     background: transparent;
-    border-color: palette.$neutral600;
+    border-color: $neutral600;
     border-style: dashed;
-    color: palette.$neutral700;
+    color: $neutral700;
 
     &:hover {
       background: transparent;
-      border-color: palette.$neutral600;
+      border-color: $neutral600;
       box-shadow: none;
     }
   }
@@ -138,8 +138,8 @@
   &__input {
     line-height: 1.625rem;
     font-family: inherit;
-    font-size: font-settings.$font-size-sm;
-    padding: 0 spacers.getSpacer(2xs);
+    font-size: $font-size-sm;
+    padding: 0 getSpacer(2xs);
     border: none;
     outline: none;
     background-color: transparent;
@@ -150,19 +150,19 @@
     }
 
     &::placeholder {
-      color: palette.$neutral500;
+      color: $neutral500;
     }
 
     &--disabled {
-      color: palette.$neutral700;
+      color: $neutral700;
     }
 
     &:first-child {
-      padding-left: spacers.getSpacer(s);
+      padding-left: getSpacer(s);
     }
 
     &:last-child {
-      padding-right: spacers.getSpacer(s);
+      padding-right: getSpacer(s);
     }
   }
 }

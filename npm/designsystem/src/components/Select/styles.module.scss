@@ -12,7 +12,7 @@
 .select-inner-wrapper {
   // Grid brukes til å kunne plassere custom ikon fritt over select elementet
   display: inline-grid;
-  background-color: palette.$white;
+  background-color: $white;
   align-items: center;
 
   // Andre kolonne her styrer plassering av select ikonet
@@ -23,23 +23,23 @@
   }
 
   &:hover {
-    background: palette.$neutral50;
+    background: $neutral50;
   }
 
   &--on-blueberry {
     &:hover {
-      background-color: palette.$blueberry50;
+      background-color: $blueberry50;
     }
   }
 
   &--invalid {
     &:hover {
-      background-color: palette.$cherry50;
+      background-color: $cherry50;
     }
   }
 
   &--disabled {
-    color: palette.$neutral700;
+    color: $neutral700;
     background: transparent;
 
     &:hover {
@@ -56,26 +56,26 @@
   background-color: transparent;
   grid-column: 1 / 3;
   grid-row: 1;
-  padding-left: spacers.getSpacer(xs);
+  padding-left: getSpacer(xs);
   border: none;
-  outline: palette.$neutral700 solid 2px;
+  outline: $neutral700 solid 2px;
   outline-offset: -2px;
   font-family: inherit;
-  font-size: font-settings.$font-size-sm;
-  line-height: font-settings.$lineheight-size-sm;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
   border-radius: 0;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     height: 3.125rem;
-    font-size: font-settings.$font-size-md;
+    font-size: $font-size-md;
   }
 
   &--on-blueberry {
-    outline-color: palette.$blueberry500;
+    outline-color: $blueberry500;
   }
 
   &--invalid {
-    outline-color: palette.$cherry600;
+    outline-color: $cherry600;
   }
 
   :hover > & {
@@ -84,19 +84,19 @@
   }
 
   &:focus {
-    outline: palette.$black solid 4px;
+    outline: $black solid 4px;
     outline-offset: -2px;
   }
 
   &:disabled {
-    outline: palette.$neutral600 dashed 2px;
+    outline: $neutral600 dashed 2px;
     outline-offset: -2px;
   }
 
   & > option {
-    background: palette.$white;
+    background: $white;
     font-family: inherit;
-    font-size: font-settings.$font-size-sm;
+    font-size: $font-size-sm;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       font-size: font-settings.$font-size-md;

@@ -6,9 +6,9 @@
 @use '../../scss/breakpoints' as breakpoints;
 
 .input-wrapper {
-  @include input.input-wrapper;
+  @include input-wrapper;
 
-  margin: spacers.getSpacer(l) 0;
+  margin: getSpacer(l) 0;
 }
 
 .input-wrapper:first-of-type {
@@ -37,7 +37,7 @@
   padding: 0.5rem 0;
   align-items: center;
 
-  @include input.input-container;
+  @include input-container;
 
   &--with-icon {
     padding: 1px 0;
@@ -48,13 +48,13 @@
   }
 
   &--with-icon#{&}--large {
-    padding: spacers.getSpacer(2xs) 0;
+    padding: getSpacer(2xs) 0;
   }
 
   &__input {
-    @include fonts.input-text;
+    @include input-text;
 
-    height: spacers.getSpacer(m);
+    height: getSpacer(m);
 
     &--large {
       height: 2.5rem;
@@ -64,7 +64,7 @@
       height: 2.125rem;
 
       &--large {
-        @include fonts.input-text-large;
+        @include input-text-large;
 
         height: 3.5rem;
       }

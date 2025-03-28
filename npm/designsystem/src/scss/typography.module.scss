@@ -13,77 +13,77 @@ import designsystemtypography from './scss/typography.scss'
 */
 
 .title-feature {
-  @include fonts.title-feature;
+  @include title-feature;
 }
 
 .focused-content {
-  font-size: font-settings.$font-size-sm;
-  line-height: font-settings.$lineheight-size-sm;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
 }
 
 .title1 {
-  @include fonts.title1;
+  @include title1;
 }
 
 .title2 {
-  @include fonts.title2;
+  @include title2;
 }
 
 .title3 {
-  @include fonts.title3;
+  @include title3;
 }
 
 .title4 {
-  @include fonts.title4;
+  @include title4;
 }
 
 .title5 {
-  @include fonts.title5;
+  @include title5;
 }
 
 .title6 {
-  @include fonts.title6;
+  @include title6;
 }
 
 .body {
-  @include fonts.body;
+  @include body;
 }
 
 .preamble {
-  @include fonts.preamble;
+  @include preamble;
 }
 
 .legend {
-  @include fonts.legend;
+  @include legend;
 }
 
 .label {
-  @include fonts.label;
+  @include label;
 }
 
 .label-subdued {
-  @include fonts.label-subdued;
+  @include label-subdued;
 }
 
 .sublabel {
-  @include fonts.sublabel;
+  @include sublabel;
 }
 
 .sublabel-subdued {
-  @include fonts.sublabel-subdued;
+  @include sublabel-subdued;
 }
 
 .compact-data {
-  @include fonts.compact-data;
+  @include compact-data;
 }
 
 .table-cell {
-  @include fonts.table-cell;
+  @include table-cell;
 }
 
 .strong {
-  font-size: font-settings.$font-size-sm;
-  line-height: font-settings.$lineheight-size-sm;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     font-size: font-settings.$font-size-md;
@@ -92,8 +92,8 @@ import designsystemtypography from './scss/typography.scss'
 }
 
 .form {
-  font-size: font-settings.$font-size-sm;
-  line-height: font-settings.$lineheight-size-sm;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-sm;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     font-size: font-settings.$font-size-md;
@@ -101,35 +101,35 @@ import designsystemtypography from './scss/typography.scss'
 }
 
 .status-timestamp {
-  @include fonts.status-timestamp;
+  @include status-timestamp;
 }
 
 .image-caption {
-  @include fonts.image-caption;
+  @include image-caption;
 }
 
 .image-credit {
-  @include fonts.image-credit;
+  @include image-credit;
 }
 
 .input-text {
-  @include fonts.input-text;
+  @include input-text;
 }
 
 .input-text-large {
-  @include fonts.input-text-large;
+  @include input-text-large;
 }
 
 .text-list {
-  @include fonts.text-list;
+  @include text-list;
 }
 
 .definition-list-type {
-  @include fonts.definition-list-type;
+  @include definition-list-type;
 }
 
 .definition-list-data {
-  @include fonts.definition-list-data;
+  @include definition-list-data;
 }
 
 .anchorlink-wrapper {
@@ -139,24 +139,24 @@ import designsystemtypography from './scss/typography.scss'
     overflow-wrap: break-word;
     word-break: break-word;
     text-align: left;
-    color: palette.$blueberry600;
+    color: $blueberry600;
     border: 0.15rem solid transparent;
     text-decoration: underline;
     text-underline-offset: 0.16rem;
-    text-decoration-color: palette.$blueberry400;
+    text-decoration-color: $blueberry400;
     text-decoration-thickness: 0.0625rem;
     padding: 0.1rem;
 
     &:hover {
       cursor: pointer;
-      color: palette.$blueberry700;
-      background-color: palette.$blueberry50;
-      text-decoration-color: palette.$blueberry600;
+      color: $blueberry700;
+      background-color: $blueberry50;
+      text-decoration-color: $blueberry600;
     }
 
     &:focus {
       outline: none;
-      border: 0.15rem solid palette.$black;
+      border: 0.15rem solid $black;
     }
 
     &[target='_blank'] {

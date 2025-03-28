@@ -72,7 +72,7 @@ table .table-body .table-row {
       top: 0;
       left: 0;
       width: 60%;
-      padding-right: spacers.$spacer;
+      padding-right: $spacer;
       white-space: normal;
       display: block;
       float: left;
@@ -85,7 +85,7 @@ table .table-body .table-row {
 
   .table__expander-cell-mobile {
     padding-left: 0.75rem;
-    border-bottom: 1px solid palette.$neutral500;
+    border-bottom: 1px solid $neutral500;
 
     &--expanded {
       border-bottom: 0;
@@ -99,7 +99,7 @@ table .table-body .table-row {
 
   .table__cell:first-child {
     border-collapse: collapse;
-    border-top: 1px solid palette.$neutral500;
+    border-top: 1px solid $neutral500;
   }
 
   .table__expanded-row {
@@ -117,7 +117,7 @@ table .table-body .table-row {
   .table__row--expandable {
     .table__cell:nth-child(2) {
       border-collapse: collapse;
-      border-top: 1px solid palette.$neutral500;
+      border-top: 1px solid $neutral500;
     }
 
     &:focus-within {
@@ -126,7 +126,7 @@ table .table-body .table-row {
   }
 
   .table-row:last-child .table__cell:last-child {
-    border-bottom: 1px solid palette.$neutral500;
+    border-bottom: 1px solid $neutral500;
   }
 }
 
@@ -153,10 +153,10 @@ table .table-body .table-row {
 }
 
 .table__head {
-  background: palette.$blueberry50;
+  background: $blueberry50;
 
   &--normal {
-    background: palette.$neutral50;
+    background: $neutral50;
   }
 
   &--transparent {
@@ -164,7 +164,7 @@ table .table-body .table-row {
   }
 
   &--sortable {
-    background: palette.$blueberry50;
+    background: $blueberry50;
   }
 
   @media (min-width: map.get($grid-breakpoints, lg)) {
@@ -184,46 +184,46 @@ table .table-body .table-row {
   // Fix for firefox hover feil
   background-clip: padding-box;
   height: 3.625rem;
-  font-size: font-settings.$font-size-sm;
-  line-height: font-settings.$lineheight-size-xs;
+  font-size: $font-size-sm;
+  line-height: $lineheight-size-xs;
   text-align: left;
   vertical-align: bottom;
   font-weight: 700;
   padding: 0.5rem 0.75rem;
-  border: 1px solid palette.$neutral500;
+  border: 1px solid $neutral500;
 
   &--sortable {
     position: relative;
   }
 
   &--sortable:hover {
-    background-color: palette.$blueberry100;
+    background-color: $blueberry100;
     cursor: pointer;
   }
 
   &--sortable:focus-within {
-    outline: 3px solid palette.$black;
+    outline: 3px solid $black;
     outline-offset: -3px;
   }
 
   @media (min-width: map.get($grid-breakpoints, lg)) {
     padding: 1rem;
     height: 5.5rem;
-    font-size: font-settings.$font-size-md;
-    line-height: font-settings.$lineheight-size-sm;
+    font-size: $font-size-md;
+    line-height: $lineheight-size-sm;
     font-weight: 700;
   }
 
   &--compact {
-    padding: spacers.getSpacer(2xs) spacers.getSpacer(3xs) spacers.getSpacer(4xs);
+    padding: getSpacer(2xs) getSpacer(3xs) getSpacer(4xs);
     line-height: 18px;
     font-size: 14px;
     height: unset;
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
-      padding: spacers.getSpacer(s) spacers.getSpacer(3xs) spacers.getSpacer(3xs);
+      padding: getSpacer(s) getSpacer(3xs) getSpacer(3xs);
       line-height: 20px;
-      font-size: font-settings.$font-size-xs;
+      font-size: $font-size-xs;
       height: unset;
     }
   }
@@ -235,11 +235,11 @@ table .table-body .table-row {
 
 .table__cell {
   height: 2, 375;
-  font-size: font-settings.$font-size-xs;
+  font-size: $font-size-xs;
   line-height: 1.5rem;
   padding: 0.5rem 0.75rem;
   text-align: left;
-  border: 1px solid palette.$neutral500;
+  border: 1px solid $neutral500;
 
   &--center {
     text-align: center;
@@ -256,17 +256,17 @@ table .table-body .table-row {
   @media (min-width: map.get($grid-breakpoints, lg)) {
     padding: 1rem;
     height: 3.625rem;
-    font-size: font-settings.$font-size-sm;
+    font-size: $font-size-sm;
     line-height: 1.75rem;
   }
 
   &--compact {
-    padding: spacers.getSpacer(4xs) spacers.getSpacer(3xs);
+    padding: getSpacer(4xs) getSpacer(3xs);
     font-size: 14px;
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
-      padding: spacers.getSpacer(3xs);
-      font-size: font-settings.$font-size-xs;
+      padding: getSpacer(3xs);
+      font-size: $font-size-xs;
     }
   }
 }
@@ -274,18 +274,18 @@ table .table-body .table-row {
 .table__cell-expander {
   text-align: center;
   width: min-content;
-  padding: 0 spacers.getSpacer(3xs);
+  padding: 0 getSpacer(3xs);
   vertical-align: middle;
 }
 
 .table__row--expandable {
   &--selected {
-    background: palette.$neutral100;
+    background: $neutral100;
   }
 
   &:hover {
     cursor: pointer;
-    background: palette.$blueberry50;
+    background: $blueberry50;
   }
 }
 
@@ -301,7 +301,7 @@ table .table-body .table-row {
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
       &--open {
-        border-bottom: 1px solid palette.$neutral100;
+        border-bottom: 1px solid $neutral100;
       }
     }
   }

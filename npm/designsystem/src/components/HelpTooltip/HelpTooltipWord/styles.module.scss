@@ -1,5 +1,5 @@
-@use '../../../scss/palette' as palette;
-@use '../../../scss/spacers' as spacers;
+@import '../../../scss/palette';
+@import '../../../scss/spacers';
 
 .word {
   all: unset;
@@ -8,11 +8,11 @@
   cursor: help;
 
   // bruker border istedet for text-decoration for å komme rundt text-decoraton-thickness begrensninger i safari
-  border-bottom: 0.2rem dotted palette.$plum400;
+  border-bottom: 0.2rem dotted $plum400;
   line-height: 1.4rem;
 
   &:focus-visible {
-    box-shadow: 0 0 0 spacers.getSpacer(4xs) palette.$black;
+    box-shadow: 0 0 0 getSpacer(4xs) $black;
     outline: none;
   }
 }

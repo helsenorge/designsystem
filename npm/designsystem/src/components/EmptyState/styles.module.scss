@@ -7,8 +7,8 @@
 .emptystate {
   display: flex;
   flex-flow: row;
-  gap: spacers.getSpacer(s);
-  padding: spacers.getSpacer(s);
+  gap: getSpacer(s);
+  padding: getSpacer(s);
   align-items: center;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
@@ -33,9 +33,9 @@
 
   &--compact {
     border-radius: 4px;
-    gap: spacers.getSpacer(3xs);
-    padding: spacers.getSpacer(2xs);
-    min-height: spacers.getSpacer(2xl);
+    gap: getSpacer(3xs);
+    padding: getSpacer(2xs);
+    min-height: getSpacer(2xl);
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.25rem;
@@ -49,7 +49,7 @@
   &__text {
     display: flex;
     flex-flow: column;
-    gap: spacers.getSpacer(3xs);
+    gap: getSpacer(3xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       gap: spacers.getSpacer(xs);

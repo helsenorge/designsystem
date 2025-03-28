@@ -16,54 +16,54 @@
   }
 
   &--success {
-    background-color: palette.$kiwi50;
+    background-color: $kiwi50;
 
     &:hover {
-      background-color: rgba-to-rgb(rgba(palette.$kiwi500, 0.1), palette.$kiwi50);
+      background-color: rgba-to-rgb(rgba($kiwi500, 0.1), $kiwi50);
     }
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: palette.$kiwi900;
+      border-color: $kiwi900;
     }
   }
 
   &--info {
-    background-color: palette.$blueberry50;
+    background-color: $blueberry50;
 
     &:hover {
-      background-color: rgba-to-rgb(rgba(palette.$blueberry500, 0.1), palette.$blueberry50);
+      background-color: rgba-to-rgb(rgba($blueberry500, 0.1), $blueberry50);
     }
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: palette.$blueberry700;
+      border-color: $blueberry700;
     }
   }
 
   &--warn {
-    background-color: palette.$banana50;
+    background-color: $banana50;
 
     &:hover {
-      background-color: rgba-to-rgb(rgba(palette.$banana500, 0.1), palette.$banana50);
+      background-color: rgba-to-rgb(rgba($banana500, 0.1), $banana50);
     }
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: palette.$banana700;
+      border-color: $banana700;
     }
   }
 
   &--error {
-    background-color: palette.$cherry50;
+    background-color: $cherry50;
 
     &:hover {
-      background-color: rgba-to-rgb(rgba(palette.$cherry500, 0.1), palette.$cherry50);
+      background-color: rgba-to-rgb(rgba($cherry500, 0.1), $cherry50);
     }
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: palette.$cherry700;
+      border-color: $cherry700;
     }
   }
 
@@ -83,16 +83,16 @@
 
   &__label-container {
     position: relative;
-    padding-top: spacers.getSpacer(3xs);
-    padding-bottom: spacers.getSpacer(3xs);
+    padding-top: getSpacer(3xs);
+    padding-bottom: getSpacer(3xs);
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      padding-top: spacers.getSpacer(2xs);
-      padding-bottom: spacers.getSpacer(2xs);
+      padding-top: getSpacer(2xs);
+      padding-bottom: getSpacer(2xs);
     }
 
     &--has-expander:has(:focus-visible) {
-      box-shadow: inset 0 0 0 2px palette.$black;
+      box-shadow: inset 0 0 0 2px $black;
     }
   }
 
@@ -100,21 +100,21 @@
     display: flex;
     width: 100%;
     align-items: center;
-    gap: spacers.getSpacer(2xs);
+    gap: getSpacer(2xs);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      gap: spacers.getSpacer(m);
+      gap: getSpacer(m);
     }
   }
 
   &__title {
     width: 100%;
     font-weight: 700;
-    font-size: font-settings.$font-size-xs;
+    font-size: $font-size-xs;
     line-height: 1.25rem;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      font-size: font-settings.$font-size-sm;
+      font-size: $font-size-sm;
     }
   }
 
@@ -130,43 +130,43 @@
   }
 
   &__content {
-    margin-left: calc(38px + spacers.getSpacer(2xs));
-    margin-right: calc(38px + spacers.getSpacer(2xs));
-    padding-top: spacers.getSpacer(xs);
-    padding-bottom: spacers.getSpacer(xs);
+    margin-left: calc(38px + getSpacer(2xs));
+    margin-right: calc(38px + getSpacer(2xs));
+    padding-top: getSpacer(xs);
+    padding-bottom: getSpacer(xs);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      margin-left: calc(38px + spacers.getSpacer(m));
-      margin-right: calc(38px + spacers.getSpacer(m));
+      margin-left: calc(38px + getSpacer(m));
+      margin-right: calc(38px + getSpacer(m));
     }
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      margin-left: calc(48px + spacers.getSpacer(m));
-      margin-right: calc(48px + spacers.getSpacer(m));
-      padding-top: spacers.getSpacer(2xs);
-      padding-bottom: spacers.getSpacer(s);
+      margin-left: calc(48px + getSpacer(m));
+      margin-right: calc(48px + getSpacer(m));
+      padding-top: getSpacer(2xs);
+      padding-bottom: getSpacer(s);
     }
   }
 
   &__info {
-    font-size: font-settings.$font-size-xs;
+    font-size: $font-size-xs;
     line-height: 1.25rem;
     margin: 0;
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      margin-top: spacers.getSpacer(xs);
+      margin-top: getSpacer(xs);
       line-height: 1.625rem;
-      font-size: font-settings.$font-size-sm;
+      font-size: $font-size-sm;
     }
 
     &--extra {
       font-size: 0.875rem;
-      margin-top: spacers.getSpacer(2xs);
+      margin-top: getSpacer(2xs);
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        margin-top: spacers.getSpacer(xs);
-        font-size: font-settings.$font-size-xs;
-        line-height: font-settings.$lineheight-size-xs;
+        margin-top: getSpacer(xs);
+        font-size: $font-size-xs;
+        line-height: $lineheight-size-xs;
       }
     }
   }
@@ -175,15 +175,15 @@
     display: flex;
     justify-content: space-between;
     flex-flow: column wrap;
-    gap: spacers.getSpacer(2xs);
-    margin-top: spacers.getSpacer(2xs);
+    gap: getSpacer(2xs);
+    margin-top: getSpacer(2xs);
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
       flex-direction: row;
     }
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      margin-top: spacers.getSpacer(s);
+      margin-top: getSpacer(s);
     }
   }
 
@@ -192,15 +192,15 @@
     align-items: center;
     border: none;
     width: fit-content;
-    color: palette.$blueberry700;
+    color: $blueberry700;
     font-weight: 600;
-    font-size: font-settings.$font-size-xs;
+    font-size: $font-size-xs;
     line-height: 1.25rem;
     background-color: transparent;
     text-decoration: none;
     padding: 0.5rem;
     margin-left: -0.5rem;
-    gap: spacers.getSpacer(xs);
+    gap: getSpacer(xs);
 
     &:hover,
     &:active {
@@ -208,7 +208,7 @@
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px palette.$black;
+      box-shadow: 0 0 0 2px $black;
       background-color: transparent;
       border: 0;
       outline: none;
