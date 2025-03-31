@@ -5,7 +5,7 @@
 
 .panel-list {
   &__panel:not(:last-child) {
-    margin-bottom: getSpacer(2xs);
+    margin-bottom: spacers.getSpacer(2xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       margin-bottom: spacers.getSpacer(s);

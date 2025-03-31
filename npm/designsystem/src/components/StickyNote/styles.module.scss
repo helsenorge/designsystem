@@ -95,7 +95,7 @@
   &__error-text {
     color: var(--color-notification-status-error);
     line-height: 1.875rem;
-    font-size: fonts.$font-size-sm;
+    font-size: font-settings.$font-size-sm;
     margin-top: 0.75rem;
   }
 }

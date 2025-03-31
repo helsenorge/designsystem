@@ -9,7 +9,7 @@
 .duolist-wrapper {
   &--border {
     padding: spacers.getSpacer(s) spacers.getSpacer(s) spacers.getSpacer(l);
-    border: 0.062rem solid $neutral500;
+    border: 0.062rem solid palette.$neutral500;
   }
 
   &--extra-padding-top {

@@ -10,10 +10,10 @@ $dot-size: 1.765rem;
 .sharing-status {
   display: inline-flex;
   align-items: center;
-  font-size: $font-size-sm;
+  font-size: font-settings.$font-size-sm;
   line-height: 1.25rem;
   font-weight: 600;
-  gap: getSpacer(2xs);
+  gap: spacers.getSpacer(2xs);
 
   &__dot {
     display: inline-flex;
@@ -26,15 +26,15 @@ $dot-size: 1.765rem;
     min-height: $dot-size;
 
     &--kiwi {
-      background: $kiwi900;
+      background: palette.$kiwi900;
     }
 
     &--cherry {
-      background: $cherry500;
+      background: palette.$cherry500;
     }
 
     &--neutral {
-      background: $neutral700;
+      background: palette.$neutral700;
     }
   }
 
@@ -46,15 +46,15 @@ $dot-size: 1.765rem;
     }
 
     &--kiwi {
-      color: $kiwi900;
+      color: palette.$kiwi900;
     }
 
     &--cherry {
-      color: $cherry500;
+      color: palette.$cherry500;
     }
 
     &--neutral {
-      color: $neutral700;
+      color: palette.$neutral700;
     }
   }
 }

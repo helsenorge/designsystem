@@ -16,7 +16,7 @@ $gradient:
     display: flex;
 
     &:focus-visible {
-      outline: getSpacer(4xs) solid $black;
+      outline: spacers.getSpacer(4xs) solid palette.$black;
       outline-offset: -1px;
     }
 

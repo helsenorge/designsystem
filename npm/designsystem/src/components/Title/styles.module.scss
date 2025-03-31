@@ -1,4 +1,4 @@
-@import '../../scss/font-mixins';
+@use '../../scss/font-mixins' as fonts;
 
 .title {
   overflow-wrap: break-word;
@@ -7,30 +7,30 @@
   margin-right: 0;
 
   &--feature {
-    @include title-feature;
+    @include fonts.title-feature;
   }
 
   &--title1 {
-    @include title1;
+    @include fonts.title1;
   }
 
   &--title2 {
-    @include title2;
+    @include fonts.title2;
   }
 
   &--title3 {
-    @include title3;
+    @include fonts.title3;
   }
 
   &--title4 {
-    @include title4;
+    @include fonts.title4;
   }
 
   &--title5 {
-    @include title5;
+    @include fonts.title5;
   }
 
   &--title6 {
-    @include title6;
+    @include fonts.title6;
   }
 }

@@ -8,7 +8,7 @@
   $tab-panel: &;
   $colors: 'blueberry', 'neutral', 'white';
 
-  padding: getSpacer(l) getSpacer(s) getSpacer(xl);
+  padding: spacers.getSpacer(l) spacers.getSpacer(s) spacers.getSpacer(xl);
   width: 100%;
   border-bottom: 1px solid var(--color-action-border-onlight-focus);
 
@@ -22,7 +22,7 @@
     border-radius: 0 0 0.5rem 0.5rem;
     border: 1px solid var(--color-action-border-onlight-focus);
     border-top: 0;
-    padding: getSpacer(xl) getSpacer(m) getSpacer(2xl);
+    padding: spacers.getSpacer(xl) spacers.getSpacer(m) spacers.getSpacer(2xl);
 
     &#{$tab-panel}--first {
       border-radius: 0;

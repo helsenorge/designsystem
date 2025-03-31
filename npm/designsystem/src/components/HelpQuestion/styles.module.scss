@@ -8,16 +8,16 @@
   display: inline-flex;
   align-items: center;
   text-align: left;
-  gap: getSpacer(2xs);
-  padding: getSpacer(xs) getSpacer(xs) getSpacer(xs) getSpacer(3xs);
+  gap: spacers.getSpacer(2xs);
+  padding: spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(xs) spacers.getSpacer(3xs);
   border: 0;
   outline: none;
   background-color: transparent;
   cursor: pointer;
-  color: $plum600;
+  color: palette.$plum600;
   font-weight: 600;
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-xs;
+  font-size: font-settings.$font-size-sm;
+  line-height: font-settings.$lineheight-size-xs;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     gap: spacers.getSpacer(2xs);
@@ -26,24 +26,24 @@
   }
 
   &:hover {
-    color: $plum800;
-    background-color: rgba($plum600, 0.1);
+    color: palette.$plum800;
+    background-color: rgba(palette.$plum600, 0.1);
   }
 
   &:focus-visible {
-    box-shadow: inset 0 0 0 3px $black;
+    box-shadow: inset 0 0 0 3px palette.$black;
   }
 
   &--selected {
-    color: $plum800;
-    background-color: rgba($plum600, 0.1);
+    color: palette.$plum800;
+    background-color: rgba(palette.$plum600, 0.1);
 
     &:hover {
-      background-color: rgba($plum600, 0.2);
+      background-color: rgba(palette.$plum600, 0.2);
     }
 
     &:focus-visible {
-      background-color: rgba($plum600, 0.1);
+      background-color: rgba(palette.$plum600, 0.1);
     }
   }
 }

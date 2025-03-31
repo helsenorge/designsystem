@@ -6,14 +6,14 @@ $focus-width: 0.15rem;
 
 @mixin anchorlink-hover {
   cursor: pointer;
-  color: $blueberry700;
-  background-color: $blueberry60010;
-  text-decoration-color: $blueberry600;
+  color: palette.$blueberry700;
+  background-color: palette.$blueberry60010;
+  text-decoration-color: palette.$blueberry600;
 }
 
 @mixin anchorlink-focus {
   outline: none;
-  border: $focus-width solid $black;
+  border: $focus-width solid palette.$black;
 }
 
 @mixin anchorlink {
@@ -22,11 +22,11 @@ $focus-width: 0.15rem;
   overflow-wrap: break-word;
   word-break: break-word;
   text-align: left;
-  color: $blueberry600;
+  color: palette.$blueberry600;
   border: $focus-width solid transparent;
   text-decoration: underline;
   text-underline-offset: 0.16rem;
-  text-decoration-color: $blueberry400;
+  text-decoration-color: palette.$blueberry400;
   text-decoration-thickness: $underline-width;
   padding: 0.1rem;
 
