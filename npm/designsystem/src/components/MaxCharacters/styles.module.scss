@@ -7,10 +7,10 @@
 .max-characters {
   display: flex;
   justify-content: flex-end;
-  padding-top: getSpacer(2xs);
+  padding-top: spacers.getSpacer(2xs);
   padding-right: 2px;
-  font-size: $font-size-sm;
-  line-height: $lineheight-size-sm;
+  font-size: font-settings.$font-size-sm;
+  line-height: font-settings.$lineheight-size-sm;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     line-height: font-settings.$lineheight-size-md;
@@ -18,11 +18,11 @@
   }
 
   &--on-dark {
-    color: $white;
+    color: palette.$white;
   }
 
   &--invalid {
-    color: $cherry600;
+    color: palette.$cherry600;
     font-weight: 600;
   }
 }

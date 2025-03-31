@@ -28,45 +28,45 @@
     &--#{$color}[type='button'] {
       // banana og kiwi har unntak fra hovedregelen
       @if $color == 'banana' {
-        color: map.get($palette-map, #{$color}900);
-        border-color: map.get($palette-map, #{$color}300);
+        color: map.get(palette.$palette-map, #{$color}900);
+        border-color: map.get(palette.$palette-map, #{$color}300);
       } @else if $color == 'kiwi' {
-        color: map.get($palette-map, #{$color}900);
-        border-color: map.get($palette-map, #{$color}200);
+        color: map.get(palette.$palette-map, #{$color}900);
+        border-color: map.get(palette.$palette-map, #{$color}200);
       } @else {
-        color: map.get($palette-map, #{$color}800);
-        border-color: map.get($palette-map, #{$color}200);
+        color: map.get(palette.$palette-map, #{$color}800);
+        border-color: map.get(palette.$palette-map, #{$color}200);
       }
 
       &#{$tag}--emphasised {
-        background-color: map.get($palette-map, #{$color}50);
+        background-color: map.get(palette.$palette-map, #{$color}50);
       }
     }
   }
 
   &--medium {
-    padding: 0 getSpacer(xs);
+    padding: 0 spacers.getSpacer(xs);
     min-height: 1.625rem;
 
     &#{$tag}--has-icon {
-      padding: 0 getSpacer(xs) 0 0.375rem;
+      padding: 0 spacers.getSpacer(xs) 0 0.375rem;
     }
 
     #{$tag}__icon {
-      margin-right: getSpacer(4xs);
+      margin-right: spacers.getSpacer(4xs);
     }
   }
 
   &--large {
-    padding: 0 getSpacer(xs);
+    padding: 0 spacers.getSpacer(xs);
     min-height: 1.875rem;
 
     &#{$tag}--has-icon {
-      padding: getSpacer(4xs) getSpacer(xs) getSpacer(4xs) 0.375rem;
+      padding: spacers.getSpacer(4xs) spacers.getSpacer(xs) spacers.getSpacer(4xs) 0.375rem;
     }
 
     #{$tag}__icon {
-      margin-right: getSpacer(4xs);
+      margin-right: spacers.getSpacer(4xs);
     }
   }
 }

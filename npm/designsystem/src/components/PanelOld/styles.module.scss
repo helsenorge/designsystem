@@ -5,7 +5,7 @@
 @use '../../scss/breakpoints' as breakpoints;
 
 @mixin panel-padding {
-  padding: getSpacer(s);
+  padding: spacers.getSpacer(s);
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     padding: spacers.getSpacer(l) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(l);
@@ -13,7 +13,7 @@
 }
 
 @mixin panel-padding-icon {
-  padding: getSpacer(m) getSpacer(s) getSpacer(l);
+  padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     padding: spacers.getSpacer(m) spacers.getSpacer(m) spacers.getSpacer(l);
@@ -30,8 +30,8 @@
   }
 }
 
-$layout-sm-gap: getSpacer(s);
-$layout-md-col-gap: getSpacer(m);
+$layout-sm-gap: spacers.getSpacer(s);
+$layout-md-col-gap: spacers.getSpacer(m);
 
 .panel-wrapper {
   width: 100%;
@@ -173,13 +173,13 @@ $layout-md-col-gap: getSpacer(m);
     &--layout-2 {
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
         grid-row: span 2;
-        padding-right: getSpacer(2xs);
+        padding-right: spacers.getSpacer(2xs);
       }
     }
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       grid-row: span 2;
-      padding-right: getSpacer(2xs);
+      padding-right: spacers.getSpacer(2xs);
     }
 
     &--layout-3 {
@@ -234,63 +234,63 @@ $layout-md-col-gap: getSpacer(m);
   }
 
   &--fill {
-    background-color: $neutral50;
+    background-color: palette.$neutral50;
   }
 
   &--fill#{&}--selected {
-    background-color: $neutral100;
+    background-color: palette.$neutral100;
   }
 
   &--fill#{&}--selected#{&}--clickable {
     &:hover {
-      background-color: $neutral200;
+      background-color: palette.$neutral200;
     }
   }
 
   &--white {
-    background-color: $white;
+    background-color: palette.$white;
   }
 
   &--fill#{&}--clickable,
   &--white#{&}--clickable {
-    @include hover-and-focus-effects($neutral100, $neutral600);
+    @include hover-and-focus-effects(palette.$neutral100, palette.$neutral600);
   }
 
   &--white#{&}--selected {
-    box-shadow: inset 0 0 0 6px $neutral100;
+    box-shadow: inset 0 0 0 6px palette.$neutral100;
   }
 
   &--stroke {
-    border: 6px solid $neutral100;
+    border: 6px solid palette.$neutral100;
   }
 
   &--stroke#{&}--clickable {
-    @include hover-and-focus-effects($neutral50, $neutral100);
+    @include hover-and-focus-effects(palette.$neutral50, palette.$neutral100);
 
     &:focus {
-      border-color: $neutral600;
+      border-color: palette.$neutral600;
     }
   }
 
   &--line {
-    background-color: $white;
-    border-color: $neutral500;
+    background-color: palette.$white;
+    border-color: palette.$neutral500;
     border-top: 1px solid;
     border-bottom: 1px solid;
   }
 
   &--line#{&}--clickable {
-    @include hover-and-focus-effects($neutral50, $neutral600);
+    @include hover-and-focus-effects(palette.$neutral50, palette.$neutral600);
   }
 
   &--line#{&}--selected {
-    background-color: $neutral50;
+    background-color: palette.$neutral50;
     border-bottom: 0;
   }
 
   &--line#{&}--selected#{&}--clickable {
     &:hover {
-      background-color: $neutral100;
+      background-color: palette.$neutral100;
     }
   }
 
@@ -316,26 +316,26 @@ $layout-md-col-gap: getSpacer(m);
 
   &--new {
     &::before {
-      border-left-color: $blueberry600;
+      border-left-color: palette.$blueberry600;
     }
   }
 
   &--draft {
     &::before {
       border-left-style: dashed;
-      border-left-color: $neutral500;
+      border-left-color: palette.$neutral500;
     }
   }
 
   &--error {
     &::before {
-      border-left-color: $cherry500;
+      border-left-color: palette.$cherry500;
     }
   }
 }
 
 .title-container {
-  padding-bottom: getSpacer(s);
+  padding-bottom: spacers.getSpacer(s);
 
   &--no-content-a {
     padding-bottom: 0;
@@ -346,7 +346,7 @@ $layout-md-col-gap: getSpacer(m);
     display: inline;
 
     &--badge {
-      padding-right: getSpacer(2xs);
+      padding-right: spacers.getSpacer(2xs);
     }
   }
 
@@ -358,7 +358,7 @@ $layout-md-col-gap: getSpacer(m);
 }
 
 .panel-details {
-  background-color: $neutral50;
+  background-color: palette.$neutral50;
   display: none;
 
   @include panel-padding;
@@ -374,30 +374,30 @@ $layout-md-col-gap: getSpacer(m);
   }
 
   &--line {
-    background: $white;
-    border-bottom: 1px solid $neutral500;
+    background: palette.$white;
+    border-bottom: 1px solid palette.$neutral500;
   }
 
   &--white {
-    background: $white;
+    background: palette.$white;
   }
 }
 
 .status-message {
-  font-size: $font-size-sm;
-  color: $cherry500;
+  font-size: font-settings.$font-size-sm;
+  color: palette.$cherry500;
   display: flex;
-  margin-bottom: getSpacer(2xs) * -1;
+  margin-bottom: spacers.getSpacer(2xs) * -1;
   grid-column: 1 / -1;
 
   span {
     padding-left: 5px;
     align-self: center;
-    font-size: $font-size-sm;
+    font-size: font-settings.$font-size-sm;
   }
 
   &--new {
-    color: $blueberry800;
+    color: palette.$blueberry800;
   }
 }
 
@@ -417,17 +417,17 @@ $layout-md-col-gap: getSpacer(m);
   &__icon {
     display: flex;
     align-items: center;
-    padding-bottom: getSpacer(2xs);
+    padding-bottom: spacers.getSpacer(2xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
       padding-top: 0;
-      padding-right: getSpacer(m);
+      padding-right: spacers.getSpacer(m);
       padding-bottom: 0;
     }
 
     span {
-      padding-left: getSpacer(2xs);
-      font-size: $font-size-sm;
+      padding-left: spacers.getSpacer(2xs);
+      font-size: font-settings.$font-size-sm;
     }
   }
 }

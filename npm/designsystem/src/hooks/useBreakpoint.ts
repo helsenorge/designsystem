@@ -28,9 +28,7 @@ function getCurrentBreakpoint(): Breakpoint {
 }
 
 export const useBreakpoint = (): Breakpoint => {
-  const [breakpoint, setBreakpoint] = useState<Breakpoint>(
-    typeof window.matchMedia !== 'undefined' ? getCurrentBreakpoint() : Breakpoint.xxs
-  );
+  const [breakpoint, setBreakpoint] = useState<Breakpoint>(() => getCurrentBreakpoint());
 
   useEffect(() => {
     const handleMediaQueryEvent = (event: MediaQueryListEvent): void => {

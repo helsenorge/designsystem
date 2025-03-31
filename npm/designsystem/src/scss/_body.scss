@@ -1,12 +1,11 @@
 @use 'sass:map';
-@import './palette';
-@import './breakpoints';
-@import './font-mixins';
+@use './palette' as palette;
+@use './font-mixins' as fonts;
 
 body {
   font-family: 'Source Sans Pro', Arial, Verdana, sans-serif;
-  background-color: $white;
-  color: $black;
+  background-color: palette.$white;
+  color: palette.$black;
 
-  @include body;
+  @include fonts.body;
 }

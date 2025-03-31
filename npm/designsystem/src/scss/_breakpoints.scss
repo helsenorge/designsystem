@@ -1,7 +1,7 @@
 @use 'sass:map';
-@import 'spacers';
+@use 'spacers' as spacers;
 
-$grid-gutter-width: map.get($spacers, 5);
+$grid-gutter-width: map.get(spacers.$spacers, 5);
 $grid-columns: 12;
 $grid-breakpoints: (
   xxs: 0,

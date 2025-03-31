@@ -1,4 +1,4 @@
-@import '../../scss/palette';
+@use '../../scss/palette' as palette;
 
 .dictionarytrigger {
   all: unset;
@@ -13,24 +13,24 @@
   background-repeat: repeat-x;
 
   &:hover {
-    background-color: rgba-to-rgb(rgba($plum600, 0.1), $white);
+    background-color: rgba-to-rgb(rgba(palette.$plum600, 0.1), palette.$white);
     background-image: url("data:image/svg+xml,<svg width='8' height='3' viewBox='0 0 8 3' xmlns='http://www.w3.org/2000/svg'><circle cx='1.5' cy='1.5' r='1.5' fill='%236A2ABF' /></svg>");
   }
 
   &:focus-visible {
     padding-bottom: 3px;
     margin-bottom: -3px;
-    outline: 2px solid $black;
+    outline: 2px solid palette.$black;
     background-image: none;
   }
 
   &[aria-expanded='true'] {
-    background-color: rgba-to-rgb(rgba($plum600, 0.1), $white);
+    background-color: rgba-to-rgb(rgba(palette.$plum600, 0.1), palette.$white);
     background-image: url("data:image/svg+xml,<svg width='8' height='3' viewBox='0 0 8 3' xmlns='http://www.w3.org/2000/svg'><circle cx='1.5' cy='1.5' r='1.5' fill='%236A2ABF' /></svg>");
 
     &:hover,
     &:focus-visible {
-      background-color: rgba-to-rgb(rgba($plum600, 0.2), $white);
+      background-color: rgba-to-rgb(rgba(palette.$plum600, 0.2), palette.$white);
     }
 
     &:focus-visible {

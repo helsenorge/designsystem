@@ -9,16 +9,16 @@
 @mixin dashed-border() {
   box-shadow: none;
 
-  $encoded-color: string.slice(meta.inspect($neutral600), 2);
+  $encoded-color: string.slice(meta.inspect(palette.$neutral600), 2);
 
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='%23" + $encoded-color + "' stroke-width='4' stroke-dasharray='0.5, 7' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   border-radius: 100px;
 }
 
 .radio-button-errors {
-  font-size: $font-size-sm;
+  font-size: font-settings.$font-size-sm;
   font-weight: 600;
-  color: $cherry600;
+  color: palette.$cherry600;
   margin-top: 0;
 }
 
@@ -26,21 +26,21 @@
   cursor: pointer;
 
   &__large {
-    margin: getSpacer(2xs) 0;
+    margin: spacers.getSpacer(2xs) 0;
 
     &--focused {
-      box-shadow: 0 0 0 getSpacer(3xs);
-      color: $neutral500;
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+      color: palette.$neutral500;
     }
     &--focused#{&}--on-blueberry {
-      color: $blueberry500;
+      color: palette.$blueberry500;
     }
 
     &--focused#{&}--selected {
-      color: $blueberry900;
+      color: palette.$blueberry900;
     }
     &--focused#{&}--invalid {
-      color: $cherry400;
+      color: palette.$cherry400;
     }
   }
 }
@@ -49,123 +49,123 @@
   display: flex;
   align-items: flex-start;
   cursor: pointer;
-  line-height: $lineheight-size-sm;
-  color: $black;
+  line-height: font-settings.$lineheight-size-sm;
+  color: palette.$black;
 
   &--on-dark {
-    color: $white;
+    color: palette.$white;
   }
 
   &--invalid {
-    color: $black;
+    color: palette.$black;
   }
 
   &--disabled {
     cursor: default;
-    color: $neutral700;
+    color: palette.$neutral700;
   }
 
   &__large {
-    padding: getSpacer(s);
-    background-color: $neutral50;
+    padding: spacers.getSpacer(s);
+    background-color: palette.$neutral50;
 
     &:hover {
-      background-color: $neutral100;
+      background-color: palette.$neutral100;
     }
 
     &--on-blueberry {
-      background-color: $white;
+      background-color: palette.$white;
 
       &:focus {
-        background-color: $white;
+        background-color: palette.$white;
       }
 
       &:hover {
-        background-color: $blueberry100;
+        background-color: palette.$blueberry100;
       }
     }
 
     &--on-grey {
-      background-color: $white;
+      background-color: palette.$white;
 
       &:hover {
-        background-color: $neutral100;
+        background-color: palette.$neutral100;
       }
 
       &:focus {
-        background-color: $white;
+        background-color: palette.$white;
       }
     }
   }
 
   &__large#{&}--on-dark {
-    background-color: $blueberry800;
+    background-color: palette.$blueberry800;
   }
   &__large#{&}--invalid {
-    background-color: $white;
+    background-color: palette.$white;
 
     &:hover {
-      background-color: $cherry100;
+      background-color: palette.$cherry100;
     }
   }
   &__large#{&}__large--selected-invalid {
-    background-color: $cherry100;
-    color: $black;
+    background-color: palette.$cherry100;
+    color: palette.$black;
 
     &:hover {
-      background-color: $cherry200;
+      background-color: palette.$cherry200;
     }
   }
 
   &__large#{&}__large--on-grey {
-    background-color: $white;
+    background-color: palette.$white;
 
     &:hover {
-      background-color: $neutral100;
+      background-color: palette.$neutral100;
     }
 
     &:focus {
-      background-color: $white;
+      background-color: palette.$white;
     }
   }
 
   &__large#{&}__large--on-blueberry {
-    background-color: $white;
+    background-color: palette.$white;
 
     &:hover {
-      background-color: $blueberry100;
+      background-color: palette.$blueberry100;
     }
 
     &:focus {
-      background-color: $white;
+      background-color: palette.$white;
     }
   }
 
   &__large--selected {
-    background-color: $blueberry500;
-    color: $white;
+    background-color: palette.$blueberry500;
+    color: palette.$white;
 
     &:hover {
-      background-color: $blueberry600;
+      background-color: palette.$blueberry600;
     }
   }
 
   &__large#{&}__large--disabled {
-    color: $neutral700;
-    background-color: $neutral50;
+    color: palette.$neutral700;
+    background-color: palette.$neutral50;
 
     &:hover {
-      background-color: $neutral50;
+      background-color: palette.$neutral50;
     }
 
     &:focus {
-      background-color: $neutral50;
+      background-color: palette.$neutral50;
     }
   }
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     &__large {
-      padding: 1.68rem getSpacer(l);
+      padding: 1.68rem spacers.getSpacer(l);
     }
   }
 }
@@ -177,102 +177,102 @@
   justify-content: center;
   align-items: center;
   border-radius: 10rem;
-  margin: 0 getSpacer(s) 0 0;
+  margin: 0 spacers.getSpacer(s) 0 0;
   height: 1.5rem;
   width: 1.5rem;
   min-height: 1.5rem;
   min-width: 1.5rem;
-  color: $neutral700;
-  box-shadow: 0 0 0 getSpacer(4xs);
+  color: palette.$neutral700;
+  box-shadow: 0 0 0 spacers.getSpacer(4xs);
   outline: none;
 
   &:focus {
-    box-shadow: 0 0 0 getSpacer(3xs);
-    color: $black;
+    box-shadow: 0 0 0 spacers.getSpacer(3xs);
+    color: palette.$black;
   }
 
   &:hover {
-    box-shadow: 0 0 0 getSpacer(3xs);
-    background-color: $neutral100;
+    box-shadow: 0 0 0 spacers.getSpacer(3xs);
+    background-color: palette.$neutral100;
   }
 
   :active > & {
-    box-shadow: 0 0 0 getSpacer(3xs);
-    color: $black;
+    box-shadow: 0 0 0 spacers.getSpacer(3xs);
+    color: palette.$black;
   }
 
   &:checked {
-    color: $blueberry500;
+    color: palette.$blueberry500;
 
     &:hover {
-      box-shadow: 0 0 0 getSpacer(4xs);
-      background-color: $blueberry50;
+      box-shadow: 0 0 0 spacers.getSpacer(4xs);
+      background-color: palette.$blueberry50;
     }
 
     &:focus {
-      box-shadow: 0 0 0 getSpacer(3xs);
-      color: $black;
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+      color: palette.$black;
     }
   }
 
   &--on-blueberry {
-    color: $blueberry500;
+    color: palette.$blueberry500;
 
     :hover > & {
-      background-color: $blueberry100;
+      background-color: palette.$blueberry100;
     }
   }
 
   &--on-dark {
-    color: $neutral200;
+    color: palette.$neutral200;
 
     &:hover {
-      background-color: $inverted-hover-old;
-      box-shadow: 0 0 0 getSpacer(3xs);
+      background-color: palette.$inverted-hover-old;
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
     }
 
     &:focus {
-      color: $white;
+      color: palette.$white;
     }
 
     :active > & {
-      box-shadow: 0 0 0 getSpacer(3xs);
-      color: $white;
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+      color: palette.$white;
     }
 
     &:checked {
-      color: $blueberry200;
+      color: palette.$blueberry200;
 
       &:hover {
-        background-color: $inverted-hover-old;
+        background-color: palette.$inverted-hover-old;
       }
 
       &:focus {
-        color: $white;
+        color: palette.$white;
       }
     }
   }
 
   &--invalid {
-    color: $cherry600;
+    color: palette.$cherry600;
 
     &:hover {
-      background-color: $cherry100;
+      background-color: palette.$cherry100;
     }
 
     &:active {
-      color: $black;
+      color: palette.$black;
     }
 
     &:focus {
-      color: $black;
+      color: palette.$black;
     }
 
     &:checked {
-      color: $cherry600;
+      color: palette.$cherry600;
 
       &:hover {
-        background-color: $cherry100;
+        background-color: palette.$cherry100;
       }
     }
   }
@@ -294,15 +294,15 @@
     }
 
     &:active {
-      color: $neutral600;
+      color: palette.$neutral600;
     }
 
     &:checked {
-      color: $neutral600;
+      color: palette.$neutral600;
 
       &:hover {
-        box-shadow: 0 0 0 getSpacer(4xs);
-        background-color: $neutral50;
+        box-shadow: 0 0 0 spacers.getSpacer(4xs);
+        background-color: palette.$neutral50;
       }
     }
   }
@@ -311,7 +311,7 @@
   &:checked::before {
     content: '';
     display: flex;
-    background-color: $blueberry500;
+    background-color: palette.$blueberry500;
     width: 0.875rem;
     height: 0.875rem;
     border-radius: 10rem;
@@ -324,11 +324,11 @@
   }
 
   &--on-dark:checked::before {
-    background-color: $blueberry200;
+    background-color: palette.$blueberry200;
   }
 
   &--invalid:checked::before {
-    background-color: $cherry600;
+    background-color: palette.$cherry600;
   }
 
   &--disabled:checked::before {
@@ -338,43 +338,43 @@
   &__large {
     &:checked {
       outline: none;
-      color: $blueberry100;
+      color: palette.$blueberry100;
     }
 
     &:hover {
-      box-shadow: 0 0 0 getSpacer(3xs);
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
     }
 
     &:focus {
-      box-shadow: 0 0 0 getSpacer(3xs);
-      color: $black;
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+      color: palette.$black;
     }
 
     &:focus:checked {
-      color: $white;
+      color: palette.$white;
     }
 
     &:checked::before {
-      background-color: $blueberry100;
+      background-color: palette.$blueberry100;
     }
 
     &:checked:hover {
-      box-shadow: 0 0 0 getSpacer(4xs);
+      box-shadow: 0 0 0 spacers.getSpacer(4xs);
       background-color: unset;
     }
 
     &:checked:hover:focus {
-      box-shadow: 0 0 0 getSpacer(3xs);
-      color: $white;
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+      color: palette.$white;
     }
 
     &--invalid {
       &:checked {
-        color: $cherry500;
+        color: palette.$cherry500;
       }
 
       &:checked::before {
-        background-color: $cherry500;
+        background-color: palette.$cherry500;
       }
 
       &:checked:hover {
@@ -382,11 +382,11 @@
       }
 
       &:checked:focus {
-        color: $black;
+        color: palette.$black;
       }
 
       &:checked:focus:hover {
-        color: $black;
+        color: palette.$black;
       }
     }
 
@@ -398,7 +398,7 @@
       }
 
       &:checked::before {
-        background-color: $neutral600;
+        background-color: palette.$neutral600;
       }
     }
   }

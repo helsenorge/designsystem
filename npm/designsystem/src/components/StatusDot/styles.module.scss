@@ -12,7 +12,7 @@ $status-dot-size: 1rem;
   position: relative;
   display: inline-flex;
   align-items: flex-start;
-  font-size: $font-size-xs;
+  font-size: font-settings.$font-size-xs;
   line-height: 1.4rem;
   font-weight: 400;
 
@@ -94,7 +94,7 @@ $status-dot-size: 1rem;
 
   &__label {
     &--on-dark {
-      color: $white;
+      color: palette.$white;
     }
   }
 }
