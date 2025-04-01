@@ -109,7 +109,9 @@ const StatusDot: React.FC<StatusDotProps> = props => {
   const { id, onColor = StatusDotOnColor.onwhite, variant = StatusDotVariant.info, text, className, testId } = props;
 
   const statusDotClasses = classNames(styles['statusdot'], className);
-  const labelClasses = classNames(onColor === StatusDotOnColor.ondark && styles['statusdot__label--on-dark']);
+  const labelClasses = classNames(styles['statusdot__label'], {
+    [styles['statusdot__label--on-dark']]: onColor === StatusDotOnColor.ondark,
+  });
 
   return (
     <span id={id} className={statusDotClasses} data-testid={testId} data-analyticsid={AnalyticsId.StatusDot}>

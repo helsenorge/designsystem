@@ -18,6 +18,7 @@ export type Styles = {
   'statusdot__dot--success': string;
   'statusdot__dot--transparent': string;
   'statusdot__dot--unknown': string;
+  statusdot__label: string;
   'statusdot__label--on-dark': string;
 };
 
