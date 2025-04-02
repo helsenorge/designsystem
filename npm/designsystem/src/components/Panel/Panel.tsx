@@ -58,10 +58,6 @@ export interface PanelProps {
   children?: React.ReactNode;
   /** Displays a status on the left side: default normal */
   status?: PanelStatus;
-  /** Control the expanded state for an expandable panel */
-  expanded?: boolean;
-  /** Opt-out boolean for turning off the expander button when expandable content is used */
-  showExpandButton?: boolean;
   /** todo: delete this */
   scrollProp?: number;
 }
@@ -99,8 +95,6 @@ const Panel: React.FC<PanelProps> & {
   testId,
   children,
   status = PanelStatus.none,
-  expanded,
-  showExpandButton = true,
   scrollProp = 200,
   buttonBottomOnClick,
   buttonBottomText,
@@ -110,13 +104,9 @@ const Panel: React.FC<PanelProps> & {
   const [content, setContent] = React.useState<React.ReactNode[]>([]);
   const [expandableContent, setExpandableContent] = React.useState<React.ReactNode[]>([]);
   const [hasIcon, setHasIcon] = React.useState(false);
-  const [isExpanded, setIsExpanded] = React.useState(expanded);
+  const [isExpanded, setIsExpanded] = React.useState(false);
   const panelRef = React.useRef<HTMLDivElement>(null);
   const expandedContentRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    setIsExpanded(expanded);
-  }, [expanded]);
 
   React.useEffect(() => {
     let localHasIcon = false;
@@ -172,7 +162,8 @@ const Panel: React.FC<PanelProps> & {
   }, [isExpanded]);
 
   const colorScheme = variant === PanelVariant.fill ? color : 'white';
-  const outerLayout = classNames(styles['panel'], styles[`panel--${variant}`], styles[`panel--${colorScheme}`], {
+  const outerLayout = classNames(styles['panel'], styles[`panel--${colorScheme}`], {
+    [styles['panel--line']]: variant === PanelVariant.line,
     [styles['panel--new']]: status === PanelStatus.new,
     [styles['panel--draft']]: status === PanelStatus.draft,
     [styles['panel--error']]: status === PanelStatus.error,
@@ -182,8 +173,9 @@ const Panel: React.FC<PanelProps> & {
   const contentContainerLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`], {
     [styles[`panel__content--b-first`]]: stacking === PanelStacking.bFirst, // @todo: fiks stacking
   });
-  const expanderBorderLayout = classNames(styles[`panel__expander__border--${colorScheme}`], {
-    [styles['panel__expander__border--expanded']]: isExpanded,
+  const expanderBorderLayout = classNames({
+    [styles['panel__expander__border--expanded']]: isExpanded && status === PanelStatus.none,
+    [styles['panel__expander__border--not-expanded']]: !isExpanded && status === PanelStatus.none,
   });
 
   return expandableContent.length > 0 ? (
@@ -199,9 +191,9 @@ const Panel: React.FC<PanelProps> & {
             {preContainer}
             {title}
             <div className={contentContainerLayout}>{content}</div>
-            {showExpandButton && <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} />}
+            <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} />
             {isExpanded && (
-              <div ref={expandedContentRef} className={classNames(styles['panel__expander'], styles[`panel__expander--${colorScheme}`])}>
+              <div ref={expandedContentRef}>
                 <div className={styles['panel__expander__separator']} />
                 {expandableContent}
               </div>

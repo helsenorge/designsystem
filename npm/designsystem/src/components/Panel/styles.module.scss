@@ -106,20 +106,12 @@
     background-color: var(--color-base-background-white);
   }
 
-  &--blueberry {
-    background-color: var(--color-base-background-blueberry);
-  }
-
   &--neutral {
     background-color: var(--color-base-background-neutral);
   }
 
-  &--fill {
-    border: none;
-  }
-
   &--line {
-    border: none;
+    background-color: transparent;
   }
 
   &__border--outline {
@@ -166,6 +158,10 @@
     &__border {
       &--expanded {
         border-left: 2px solid var(--color-base-border-onlight-emphasized);
+      }
+
+      &--not-expanded {
+        border-left: 2px solid transparent;
       }
     }
 
