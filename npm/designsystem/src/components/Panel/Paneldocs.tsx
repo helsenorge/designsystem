@@ -2,6 +2,7 @@ import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } fr
 
 import { A, B, C, ExpandedContent, PreContainer } from './Panel';
 import TitleFS from '../Title';
+import PanelTitle from './PanelTitle';
 
 export const isSupernova = (): boolean => {
   const url = window.location != window.parent.location ? document.referrer : document.location.href;
@@ -33,6 +34,10 @@ export const PanelDocs = (): React.JSX.Element => {
       <TitleFS htmlMarkup="h2" appearance="title2">
         {'Subcomponents'}
       </TitleFS>
+      <TitleFS htmlMarkup="h3" appearance="title3">
+        {'Panel.Title'}
+      </TitleFS>
+      <ArgTypes of={PanelTitle} />
       <TitleFS htmlMarkup="h3" appearance="title3">
         {'Panel.PreContainer'}
       </TitleFS>
