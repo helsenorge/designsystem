@@ -10,11 +10,19 @@
 
   display: flex;
   flex-flow: column;
-  gap: spacers.getSpacer(s);
   padding: spacers.getSpacer(s);
+
+  & > *:not(:last-child) {
+    // because of a problem with gap this margin gives space between elements
+    margin-bottom: spacers.getSpacer(2xs);
+  }
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     padding: spacers.getSpacer(m);
+
+    & > *:not(:last-child) {
+      margin-bottom: spacers.getSpacer(s);
+    }
   }
 
   &--icon {
