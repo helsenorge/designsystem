@@ -8,6 +8,8 @@ import { PanelDocs } from './Paneldocs';
 import Badge from '../Badge';
 import Icon, { IconSize } from '../Icon';
 import PdfFile from '../Icons/PdfFile';
+import Input from '../Input';
+import Label from '../Label';
 import StatusDot from '../StatusDot';
 import Title from '../Title/Title';
 import Toggle from '../Toggle';
@@ -326,6 +328,7 @@ export const Status: Story = {
 export const TestPanel: Story = {
   args: {},
   render: args => {
+    const [titleText, setTitleText] = React.useState('Tittel');
     const [showA, setShowA] = React.useState(true);
     const [showB, setShowB] = React.useState(true);
     const [showC, setShowC] = React.useState(true);
@@ -336,6 +339,14 @@ export const TestPanel: Story = {
     return (
       <div>
         <div>
+          <Input
+            value={titleText}
+            onChange={e => {
+              setTitleText(e.currentTarget.value);
+            }}
+            label={<Label labelTexts={[{ text: 'Tittel tekst' }]} />}
+          />
+          <br />
           <Toggle {...args} onColor={'onwhite'} checked={showA} onChange={() => setShowA(!showA)} label={[{ text: 'Vis content A' }]} />
           <Toggle {...args} onColor={'onwhite'} checked={showB} onChange={() => setShowB(!showB)} label={[{ text: 'Vis content B' }]} />
           <Toggle {...args} onColor={'onwhite'} checked={showC} onChange={() => setShowC(!showC)} label={[{ text: 'Vis content C' }]} />
@@ -349,10 +360,11 @@ export const TestPanel: Story = {
           />
           <Toggle {...args} onColor={'onwhite'} checked={showCTA} onChange={() => setShowCTA(!showCTA)} label={[{ text: 'Vis CTA' }]} />
         </div>
+        <br />
         <Panel {...args} buttonBottomOnClick={() => action('Clicked CTA')} buttonBottomText={showCTA ? 'Call to action' : undefined}>
           <Panel.Title
             icon={showIcon && <Icon svgIcon={PdfFile} size={IconSize.Small} />}
-            title={'Opp og ned. Men med ekstra tekst for å få testet hvordan komponenten breaker teksten. Spennende!'}
+            title={titleText}
             badge={<Badge>{'Ny'}</Badge>}
             statusDot={<StatusDot variant="info" text="Status" />}
           />
