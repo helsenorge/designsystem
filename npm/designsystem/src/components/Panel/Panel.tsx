@@ -171,7 +171,7 @@ const Panel: React.FC<PanelProps> & {
     [styles['panel--icon']]: hasIcon,
   });
   const contentContainerLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`], {
-    [styles[`panel__content--b-first`]]: stacking === PanelStacking.bFirst, // @todo: fiks stacking
+    [styles[`panel__content--b-first`]]: stacking === PanelStacking.bFirst,
   });
   const expanderBorderLayout = classNames({
     [styles['panel__expander__border--expanded']]: isExpanded && status === PanelStatus.none,
