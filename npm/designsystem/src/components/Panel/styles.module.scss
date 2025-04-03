@@ -19,10 +19,6 @@
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     padding: spacers.getSpacer(m);
-
-    & > *:not(:last-child) {
-      margin-bottom: spacers.getSpacer(s);
-    }
   }
 
   &--icon {
