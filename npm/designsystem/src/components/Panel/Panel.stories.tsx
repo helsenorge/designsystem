@@ -13,6 +13,7 @@ import Label from '../Label';
 import StatusDot from '../StatusDot';
 import Title from '../Title/Title';
 import Toggle from '../Toggle';
+import { Dokumentliste, DokumentlisteDeling, Helsekontakter, MedisinskFødselsregister, PasientReiser, TimeAvtale } from './PanelExamples';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Panel',
@@ -635,4 +636,24 @@ export const LangExpandedContent: Story = {
       </>
     );
   },
+};
+
+export const Examples: Story = {
+  args: {},
+  render: () => (
+    <div>
+      <MedisinskFødselsregister />
+      <br />
+      <TimeAvtale />
+      <br />
+      <PasientReiser />
+      <br />
+      <Helsekontakter />
+      <br />
+      <Dokumentliste />
+      <br />
+      <DokumentlisteDeling />
+      <br />
+    </div>
+  ),
 };
