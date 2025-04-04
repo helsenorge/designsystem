@@ -330,6 +330,8 @@ export const TestPanel: Story = {
   args: {},
   render: args => {
     const [titleText, setTitleText] = React.useState('Tittel');
+    const [showTitle, setShowTitle] = React.useState(true);
+    const [showPre, setShowPre] = React.useState(true);
     const [showA, setShowA] = React.useState(true);
     const [showB, setShowB] = React.useState(true);
     const [showC, setShowC] = React.useState(true);
@@ -347,7 +349,21 @@ export const TestPanel: Story = {
             }}
             label={<Label labelTexts={[{ text: 'Tittel tekst' }]} />}
           />
+          <Toggle
+            {...args}
+            onColor={'onwhite'}
+            checked={showTitle}
+            onChange={() => setShowTitle(!showTitle)}
+            label={[{ text: 'Vis tittel' }]}
+          />
           <br />
+          <Toggle
+            {...args}
+            onColor={'onwhite'}
+            checked={showPre}
+            onChange={() => setShowPre(!showPre)}
+            label={[{ text: 'Vis PreContainer' }]}
+          />
           <Toggle {...args} onColor={'onwhite'} checked={showA} onChange={() => setShowA(!showA)} label={[{ text: 'Vis content A' }]} />
           <Toggle {...args} onColor={'onwhite'} checked={showB} onChange={() => setShowB(!showB)} label={[{ text: 'Vis content B' }]} />
           <Toggle {...args} onColor={'onwhite'} checked={showC} onChange={() => setShowC(!showC)} label={[{ text: 'Vis content C' }]} />
@@ -363,12 +379,19 @@ export const TestPanel: Story = {
         </div>
         <br />
         <Panel {...args} buttonBottomOnClick={() => action('Clicked CTA')} buttonBottomText={showCTA ? 'Call to action' : undefined}>
-          <Panel.Title
-            icon={showIcon && <Icon svgIcon={PdfFile} size={IconSize.Small} />}
-            title={titleText}
-            badge={<Badge>{'Ny'}</Badge>}
-            statusDot={<StatusDot variant="info" text="Status" />}
-          />
+          {showPre && (
+            <Panel.PreContainer>
+              <PreviewContainer>{'Precontainer'}</PreviewContainer>
+            </Panel.PreContainer>
+          )}
+          {showTitle && (
+            <Panel.Title
+              icon={showIcon && <Icon svgIcon={PdfFile} size={IconSize.Small} />}
+              title={titleText}
+              badge={<Badge>{'Ny'}</Badge>}
+              statusDot={<StatusDot variant="info" text="Status" />}
+            />
+          )}
           {showA && (
             <Panel.A>
               <PreviewContainer>{'Content A'}</PreviewContainer>
