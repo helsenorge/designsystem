@@ -122,7 +122,7 @@
   &__border {
     &--outline {
       &--outer {
-        border: 1px dashed var(--core-color-neutral-600);
+        border: 1px solid var(--core-color-neutral-300);
       }
 
       &--inner {
@@ -136,20 +136,6 @@
       border-right: none;
       border-left: none;
       padding: spacers.getSpacer(xs) 0;
-    }
-
-    &--draft {
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 6px;
-        background: radial-gradient(circle, var(--core-color-neutral-500) 50%, transparent 50%);
-        background-size: 6px 10px;
-        background-repeat: repeat-y;
-      }
     }
   }
 
@@ -167,8 +153,7 @@
   }
 
   &--draft {
-    position: relative;
-    border-left: none;
+    border-left: dotted 6px var(--core-color-neutral-500);
   }
 
   &--error {

@@ -188,9 +188,6 @@ const Panel: React.FC<PanelProps> & {
       <div className={classNames({ [styles['panel__border--outline--inner']]: variant === PanelVariant.outline })}>
         <div className={expanderBorderLayout}>
           <div className={outerLayout} data-testid={testId} ref={panelRef}>
-            {status === PanelStatus.draft && (
-              <div className={classNames({ [styles['panel__border--draft']]: status === PanelStatus.draft })} />
-            )}
             {preContainer}
             {title}
             <div className={contentContainerLayout}>{content}</div>
@@ -214,9 +211,6 @@ const Panel: React.FC<PanelProps> & {
     >
       <div className={classNames({ [styles['panel__border--outline--inner']]: variant === PanelVariant.outline })}>
         <div className={outerLayout} data-testid={testId} ref={panelRef}>
-          {status === PanelStatus.draft && (
-            <div className={classNames({ [styles['panel__border--draft']]: status === PanelStatus.draft })} />
-          )}
           {preContainer}
           {title}
           <div className={contentContainerLayout}>{content}</div>
