@@ -124,12 +124,10 @@ export const WithTitle: Story = {
         // @todo: legg til riktig kode i alle stories
         code: ` 
 <Panel>
-  <Panel.Title
-    title={'Tittel'}
-    icon={<Icon svgIcon={PdfFile} />}
-    badge={<Badge>{'Ny'}</Badge>}
-    statusDot={<StatusDot text="Godkjent" variant="success" />}
-  />
+  <Panel.PreContainer>
+    <StatusDot text="Godkjent" variant="success" />
+  </Panel.PreContainer>
+  <Panel.Title title={'Tittel'} icon={<Icon svgIcon={PdfFile} />} badge={<Badge>{'Ny'}</Badge>} />
   <Panel.A>
     <PreviewContainer>{'Content A'}</PreviewContainer>
   </Panel.A>
@@ -321,6 +319,45 @@ export const Status: Story = {
       </Panel>
       <br />
     </div>
+  ),
+};
+
+export const WithCTA: Story = {
+  args: {},
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        // @todo: legg til riktig kode i alle stories
+        code: ` 
+<Panel>
+  <Panel.PreContainer>
+    <StatusDot text="Godkjent" variant="success" />
+  </Panel.PreContainer>
+  <Panel.Title title={'Tittel'} icon={<Icon svgIcon={PdfFile} />} badge={<Badge>{'Ny'}</Badge>} />
+  <Panel.A>
+    <PreviewContainer>{'Content A'}</PreviewContainer>
+  </Panel.A>
+  <Panel.B>
+    <PreviewContainer>{'Content B'}</PreviewContainer>
+  </Panel.B>
+  <Panel.C>
+    <PreviewContainer>{'Content C'}</PreviewContainer>
+  </Panel.C>
+</Panel>`,
+      },
+    },
+  },
+  render: args => (
+    <Panel {...args} buttonBottomOnClick={() => action('Clicked CTA')} buttonBottomText={'Call to action'}>
+      <Panel.Title title={'Panel med CTA'} />
+      <Panel.A>
+        <span>{'Prop buttonBottomOnClick og buttonBottomText gir en knapp som legges under alle content boxes.'}</span>
+      </Panel.A>
+      <Panel.B>
+        <span>{'Denne knappen skal kun brukes dersom Panel ikke er ekspanderbart. Om man bruker ExpandedContent vises ikke knappen.'}</span>
+      </Panel.B>
+    </Panel>
   ),
 };
 
