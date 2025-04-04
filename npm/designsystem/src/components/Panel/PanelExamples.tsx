@@ -65,7 +65,10 @@ export const TimeAvtale: React.FC = () => {
 export const PasientReiser: React.FC = () => {
   return (
     <Panel status={PanelStatus.draft} layout={PanelLayout.vertical}>
-      <Panel.Title title="Søknad som pasient 6. november 2024" statusDot={<StatusDot text="Utkast" variant="draft" />} />
+      <Panel.PreContainer>
+        <StatusDot text="Utkast" variant="draft" />
+      </Panel.PreContainer>
+      <Panel.Title title="Søknad som pasient 6. november 2024" />
       <Panel.A>
         <span>{'Behandlingssted: Sykehus (Spesialist)'}</span>
       </Panel.A>

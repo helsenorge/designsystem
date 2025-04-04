@@ -6,9 +6,7 @@
   display: grid;
   width: 100%;
   gap: spacers.getSpacer(2xs);
-  grid-template-areas:
-    'statusdot'
-    'title';
+  grid-template-areas: 'title';
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     gap: spacers.getSpacer(2xs) spacers.getSpacer(s);
@@ -17,17 +15,11 @@
   &--has-icon {
     margin-left: -3.5rem;
     grid-template-columns: 3rem 1fr;
-    grid-template-areas:
-      '. statusdot'
-      'icon title';
+    grid-template-areas: 'icon title';
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       margin-left: -4rem;
     }
-  }
-
-  &__statusdot {
-    grid-area: statusdot;
   }
 
   &__icon {

@@ -145,12 +145,10 @@ export const WithTitle: Story = {
   },
   render: args => (
     <Panel {...args}>
-      <Panel.Title
-        title={'Tittel'}
-        icon={<Icon svgIcon={PdfFile} />}
-        badge={<Badge>{'Ny'}</Badge>}
-        statusDot={<StatusDot text="Godkjent" variant="success" />}
-      />
+      <Panel.PreContainer>
+        <StatusDot text="Godkjent" variant="success" />
+      </Panel.PreContainer>
+      <Panel.Title title={'Tittel'} icon={<Icon svgIcon={PdfFile} />} badge={<Badge>{'Ny'}</Badge>} />
       <Panel.A>
         <PreviewContainer>{'Content A'}</PreviewContainer>
       </Panel.A>
@@ -389,7 +387,6 @@ export const TestPanel: Story = {
               icon={showIcon && <Icon svgIcon={PdfFile} size={IconSize.Small} />}
               title={titleText}
               badge={<Badge>{'Ny'}</Badge>}
-              statusDot={<StatusDot variant="info" text="Status" />}
             />
           )}
           {showA && (
@@ -419,12 +416,10 @@ export const WithPanelTitles: Story = {
   render: args => (
     <div>
       <Panel {...args}>
-        <Panel.Title
-          icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />}
-          title={'Tittel'}
-          badge={<Badge>{'Ny'}</Badge>}
-          statusDot={<StatusDot variant="info" text="Status" />}
-        />
+        <Panel.Title icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />} title={'Tittel'} badge={<Badge>{'Ny'}</Badge>} />
+        <Panel.PreContainer>
+          <StatusDot variant="info" text="Status" />
+        </Panel.PreContainer>
         <Panel.A>
           <p>
             {
@@ -436,7 +431,10 @@ export const WithPanelTitles: Story = {
       <br />
 
       <Panel {...args}>
-        <Panel.Title title={'Uten ikon'} badge={<Badge>{'Ny'}</Badge>} statusDot={<StatusDot variant="info" text="Status" />} />
+        <Panel.PreContainer>
+          <StatusDot variant="info" text="Status" />
+        </Panel.PreContainer>
+        <Panel.Title title={'Uten ikon'} badge={<Badge>{'Ny'}</Badge>} />
         <Panel.A>
           <p>
             {
@@ -448,11 +446,10 @@ export const WithPanelTitles: Story = {
       <br />
 
       <Panel {...args}>
-        <Panel.Title
-          title={'Uten badge'}
-          icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />}
-          statusDot={<StatusDot variant="info" text="Status" />}
-        />
+        <Panel.PreContainer>
+          <StatusDot variant="info" text="Status" />
+        </Panel.PreContainer>
+        <Panel.Title title={'Uten badge'} icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />} />
         <Panel.A>
           <p>
             {
@@ -480,9 +477,11 @@ export const WithPanelTitles: Story = {
       <br />
 
       <Panel {...args}>
+        <Panel.PreContainer>
+          <StatusDot variant="alert" text="Status" />
+        </Panel.PreContainer>
         <Panel.Title
           icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />}
-          statusDot={<StatusDot variant="alert" text="Status" />}
           title={'Med alle komponenter og også med skikkelig lang titteltekst'}
           badge={<Badge>{'Ny'}</Badge>}
         />
