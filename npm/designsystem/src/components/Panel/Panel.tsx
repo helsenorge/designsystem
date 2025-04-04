@@ -73,7 +73,7 @@ const ExpandButton = ({ onClick, isExpanded }: { onClick: () => void; isExpanded
       aria-expanded={isExpanded}
       onClick={onClick}
     >
-      <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={true} size={IconSize.XSmall} />
+      <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} size={IconSize.XSmall} />
       {/* @todo: språk på knapp */}
       <span>{isExpanded ? 'Skjul detaljer' : 'Se detaljer'}</span>
     </Button>
