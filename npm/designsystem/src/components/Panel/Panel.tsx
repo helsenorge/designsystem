@@ -206,7 +206,7 @@ const Panel: React.FC<PanelProps> & {
     </div>
   ) : (
     <div
-      className={classNames({
+      className={classNames(className, {
         [styles['panel__border--outline--outer']]: variant === PanelVariant.outline,
         [styles['panel__border--line']]: variant === PanelVariant.line,
       })}
