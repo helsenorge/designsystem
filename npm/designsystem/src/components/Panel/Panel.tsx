@@ -50,6 +50,8 @@ export interface PanelProps {
   variant?: PanelVariant;
   /** Sets the color for panel if it has variant fill */
   color?: PanelColors;
+  /** Sets classes on the outermost container of the panel */
+  className?: string;
   /** Sets the stacking order of the content boxes */
   stacking?: PanelStacking;
   /** Sets the data-testid attribute. */
@@ -95,6 +97,7 @@ const Panel: React.FC<PanelProps> & {
   status = PanelStatus.none,
   buttonBottomOnClick,
   buttonBottomText,
+  className,
 }: PanelProps) => {
   const [preContainer, setPreContainer] = React.useState<React.ReactNode[]>([]);
   const [title, setTitle] = React.useState<React.ReactNode[]>([]);
@@ -179,7 +182,7 @@ const Panel: React.FC<PanelProps> & {
 
   return expandableContent.length > 0 ? (
     <div
-      className={classNames({
+      className={classNames(className, {
         [styles['panel__border--outline--outer']]: variant === PanelVariant.outline,
         [styles['panel__border--line']]: variant === PanelVariant.line,
       })}
