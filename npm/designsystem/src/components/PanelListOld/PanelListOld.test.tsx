@@ -1,19 +1,19 @@
 import { screen, render } from '@testing-library/react';
 
-import PanelList from './PanelList';
+import PanelListOld from './PanelListOld';
 import PanelOld from '../PanelOld';
 
-describe('Gitt at PanelList skal vises', (): void => {
+describe('Gitt at PanelListOld skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
-      render(<PanelList testId="bare-tester" />);
+      render(<PanelListOld testId="bare-tester" />);
 
       const panelList = screen.getByTestId('bare-tester');
       expect(panelList).toBeVisible();
       expect(panelList).toHaveAttribute('data-analyticsid', 'panel-list');
     });
     test('Så har den riktig analyticsid', (): void => {
-      render(<PanelList testId="bare-tester" />);
+      render(<PanelListOld testId="bare-tester" />);
 
       const panelList = screen.getByTestId('bare-tester');
       expect(panelList).toHaveAttribute('data-analyticsid', 'panel-list');
@@ -22,14 +22,14 @@ describe('Gitt at PanelList skal vises', (): void => {
   describe('Når listen har Panel som children', (): void => {
     test('Så vises panelene', async (): Promise<void> => {
       render(
-        <PanelList>
+        <PanelListOld>
           <PanelOld title="Overskrift 1">
             <p>{'Litt tekst'}</p>
           </PanelOld>
           <PanelOld title="Overskrift 2">
             <p>{'Litt tekst'}</p>
           </PanelOld>
-        </PanelList>
+        </PanelListOld>
       );
 
       const panel1 = await screen.findByRole('heading', { name: 'Overskrift 1' });
@@ -38,12 +38,12 @@ describe('Gitt at PanelList skal vises', (): void => {
       expect(panel2).toBeVisible();
     });
   });
-  describe('Når PanelList har Panel som child', (): void => {
+  describe('Når PanelListOld har Panel som child', (): void => {
     test('Så har panelet klasse for margin mellom panelene', async (): Promise<void> => {
       render(
-        <PanelList>
+        <PanelListOld>
           <PanelOld title="Overskrift 1" testId="panel" />
-        </PanelList>
+        </PanelListOld>
       );
 
       const panel = screen.getByTestId('panel');
@@ -53,9 +53,9 @@ describe('Gitt at PanelList skal vises', (): void => {
   describe('Når variant er fill', (): void => {
     test('Så har panelet klasse for margin mellom panelene', async (): Promise<void> => {
       render(
-        <PanelList variant="fill">
+        <PanelListOld variant="fill">
           <PanelOld title="Overskrift 1" testId="panel" />
-        </PanelList>
+        </PanelListOld>
       );
 
       const panel = screen.getByTestId('panel');
@@ -65,9 +65,9 @@ describe('Gitt at PanelList skal vises', (): void => {
   describe('Når variant er white', (): void => {
     test('Så har panelet klasse for margin mellom panelene', async (): Promise<void> => {
       render(
-        <PanelList variant="white">
+        <PanelListOld variant="white">
           <PanelOld title="Overskrift 1" testId="panel" />
-        </PanelList>
+        </PanelListOld>
       );
 
       const panel = screen.getByTestId('panel');
@@ -77,9 +77,9 @@ describe('Gitt at PanelList skal vises', (): void => {
   describe('Når variant er stroke', (): void => {
     test('Så har panelet klasse for margin mellom panelene', async (): Promise<void> => {
       render(
-        <PanelList variant="stroke">
+        <PanelListOld variant="stroke">
           <PanelOld title="Overskrift 1" testId="panel" />
-        </PanelList>
+        </PanelListOld>
       );
 
       const panel = screen.getByTestId('panel');
@@ -89,9 +89,9 @@ describe('Gitt at PanelList skal vises', (): void => {
   describe('Når variant er line', (): void => {
     test('Så har panelet ikke klasse for margin mellom panelene', async (): Promise<void> => {
       render(
-        <PanelList variant="line">
+        <PanelListOld variant="line">
           <PanelOld title="Overskrift 1" testId="panel" />
-        </PanelList>
+        </PanelListOld>
       );
 
       const panel = screen.getByTestId('panel');

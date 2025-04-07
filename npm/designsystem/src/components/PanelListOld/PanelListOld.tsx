@@ -7,7 +7,7 @@ import PanelOld, { PanelOldProps, PanelOldVariant } from '../PanelOld';
 
 import styles from './styles.module.scss';
 
-export interface PanelListProps {
+export interface PanelListOldProps {
   /** Panels to render inside the PanelList */
   children?: React.ReactNode;
   /** Changes the visual representation of the panel. Default: fill */
@@ -19,7 +19,7 @@ export interface PanelListProps {
 const isPanelComponent = (element: {} | null | undefined): element is React.ReactElement<PanelOldProps> =>
   React.isValidElement<PanelOldProps>(element) && (element as React.ReactElement).type === PanelOld;
 
-const PanelList = React.forwardRef(function BadgeForwardedRef(props: PanelListProps, ref: React.ForwardedRef<HTMLDivElement>) {
+const PanelListOld = React.forwardRef(function BadgeForwardedRef(props: PanelListOldProps, ref: React.ForwardedRef<HTMLDivElement>) {
   const { testId, children, variant = PanelOldVariant.fill } = props;
 
   const renderPanel = (panel: React.ReactElement<PanelOldProps>, firstChild: boolean) =>
@@ -36,4 +36,4 @@ const PanelList = React.forwardRef(function BadgeForwardedRef(props: PanelListPr
   );
 });
 
-export default PanelList;
+export default PanelListOld;
