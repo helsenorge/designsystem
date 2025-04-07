@@ -31,7 +31,6 @@ export type Styles = {
   expander__button__text: string;
   'expander__button--expanded': string;
   panel: string;
-  'panel__border--draft': string;
   'panel__border--line': string;
   'panel__border--outline--inner': string;
   'panel__border--outline--outer': string;

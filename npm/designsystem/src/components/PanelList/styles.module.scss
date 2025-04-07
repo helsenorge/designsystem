@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/palette' as palette;
+@use '../../scss/breakpoints' as breakpoints;
+
+.panel-list {
+  &__panel {
+    &--line {
+      margin-bottom: -1px;
+    }
+
+    &--outline {
+      margin-bottom: -9px;
+    }
+
+    &--fill {
+      margin-bottom: spacers.getSpacer(xs);
+    }
+  }
+}
