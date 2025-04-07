@@ -88,7 +88,7 @@ $status-dot-size: 1rem;
   &__label {
     color: var(--core-color-neutral-800);
 
-    @include fonts.label-subdued;
+    @include fonts.sublabel-subdued;
 
     &--on-dark {
       color: var(--color-base-text-ondark);
