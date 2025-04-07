@@ -75,7 +75,6 @@ export const Default: Story = {
     docs: {
       source: {
         language: 'tsx',
-        // @todo: legg til riktig kode i alle stories
         code: ` 
 <Panel {...args}>
   <Panel.PreContainer>
@@ -118,7 +117,6 @@ export const WithTitle: Story = {
     docs: {
       source: {
         language: 'tsx',
-        // @todo: legg til riktig kode i alle stories
         code: ` 
 <Panel>
   <Panel.PreContainer>
@@ -496,7 +494,6 @@ export const WithCTA: Story = {
     docs: {
       source: {
         language: 'tsx',
-        // @todo: legg til riktig kode i alle stories
         code: ` 
 <Panel buttonBottomOnClick={() => action('Clicked CTA')} buttonBottomText={'Call to action'}>
   <Panel.Title title={'Panel med CTA'} />
