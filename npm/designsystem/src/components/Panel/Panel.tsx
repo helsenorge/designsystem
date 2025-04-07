@@ -58,8 +58,6 @@ export interface PanelProps {
   children?: React.ReactNode;
   /** Displays a status on the left side: default normal */
   status?: PanelStatus;
-  /** todo: delete this */
-  scrollProp?: number;
 }
 
 const ExpandButton = ({ onClick, isExpanded }: { onClick: () => void; isExpanded: boolean | undefined }): React.JSX.Element => {
@@ -95,7 +93,6 @@ const Panel: React.FC<PanelProps> & {
   testId,
   children,
   status = PanelStatus.none,
-  scrollProp = 200,
   buttonBottomOnClick,
   buttonBottomText,
 }: PanelProps) => {
@@ -107,6 +104,7 @@ const Panel: React.FC<PanelProps> & {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const panelRef = React.useRef<HTMLDivElement>(null);
   const expandedContentRef = React.useRef<HTMLDivElement>(null);
+  const defaultScroll = 100;
 
   React.useEffect(() => {
     let localHasIcon = false;
@@ -139,22 +137,23 @@ const Panel: React.FC<PanelProps> & {
     setHasIcon(localHasIcon);
   }, [children]);
 
-  // kode for å scrolle til toppen av panel når det ekspanderes
-  // @todo: gjør denne penere, evt flytt ut til egen hook
   React.useEffect(() => {
+    // Scroller oppover når expanded content åpnes
     if (isExpanded) {
       if (panelRef.current && expandedContentRef.current) {
         const panelRect = panelRef.current.getBoundingClientRect();
         const expandedContentRect = expandedContentRef.current.getBoundingClientRect();
 
-        const scrollAmount = Math.min(scrollProp, panelRect.top - 20);
+        const scrollAmount = Math.min(defaultScroll, panelRect.top - 20);
 
-        if (expandedContentRect.bottom > window.innerHeight) {
+        if (scrollAmount > 0 && expandedContentRect.bottom > window.innerHeight) {
           const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
+          if (prefersReducedMotion) {
+            return;
+          }
           window.scrollBy({
             top: scrollAmount,
-            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            behavior: 'smooth',
           });
         }
       }

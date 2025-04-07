@@ -51,9 +51,6 @@ const meta = {
       control: 'select',
       options: Object.values(PanelStatus),
     },
-    scrollProp: {
-      control: 'number',
-    },
     buttonBottomText: {
       control: 'text',
     },
