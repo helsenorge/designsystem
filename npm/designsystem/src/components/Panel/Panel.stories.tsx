@@ -159,6 +159,57 @@ export const WithTitle: Story = {
 
 export const Variants: Story = {
   args: {},
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+<div>
+  <Panel {...args} variant={PanelVariant.fill}>
+    <Panel.Title title={'Tittel'} icon={<Icon svgIcon={PdfFile} />} />
+    <Panel.A>
+      <PreviewContainer>{'Content A'}</PreviewContainer>
+    </Panel.A>
+    <Panel.B>
+      <PreviewContainer>{'Content B'}</PreviewContainer>
+    </Panel.B>
+    <Panel.C>
+      <PreviewContainer>{'Content C'}</PreviewContainer>
+    </Panel.C>
+  </Panel>
+  <br />
+
+  <Panel {...args} variant={PanelVariant.outline}>
+    <Panel.Title title={'Tittel'} icon={<Icon svgIcon={PdfFile} />} />
+    <Panel.A>
+      <PreviewContainer>{'Content A'}</PreviewContainer>
+    </Panel.A>
+    <Panel.B>
+      <PreviewContainer>{'Content B'}</PreviewContainer>
+    </Panel.B>
+    <Panel.C>
+      <PreviewContainer>{'Content C'}</PreviewContainer>
+    </Panel.C>
+  </Panel>
+  <br />
+
+  <Panel {...args} variant={PanelVariant.line}>
+    <Panel.Title title={'Tittel'} icon={<Icon svgIcon={PdfFile} />} />
+    <Panel.A>
+      <PreviewContainer>{'Content A'}</PreviewContainer>
+    </Panel.A>
+    <Panel.B>
+      <PreviewContainer>{'Content B'}</PreviewContainer>
+    </Panel.B>
+    <Panel.C>
+      <PreviewContainer>{'Content C'}</PreviewContainer>
+    </Panel.C>
+  </Panel>
+</div>
+        `,
+      },
+    },
+  },
   render: args => (
     <div>
       <Panel {...args} variant={PanelVariant.fill}>
@@ -207,6 +258,83 @@ export const Variants: Story = {
 
 export const Layouts: Story = {
   args: {},
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+<div>
+  <Panel {...args} layout={PanelLayout.horizontal}>
+    <Panel.PreContainer>
+      <PreviewContainer>{'Precontainer'}</PreviewContainer>
+    </Panel.PreContainer>
+    <Panel.Title title={'Horizontal'} />
+    <Panel.A>
+      <PreviewContainer>{'Content A'}</PreviewContainer>
+    </Panel.A>
+    <Panel.B>
+      <PreviewContainer>{'Content B'}</PreviewContainer>
+    </Panel.B>
+    <Panel.C>
+      <PreviewContainer>{'Content C'}</PreviewContainer>
+    </Panel.C>
+  </Panel>
+  <br />
+
+  <Panel {...args} layout={PanelLayout.vertical}>
+    <Panel.PreContainer>
+      <PreviewContainer>{'Precontainer'}</PreviewContainer>
+    </Panel.PreContainer>
+    <Panel.Title title={'Vertical'} />
+    <Panel.A>
+      <PreviewContainer>{'Content A'}</PreviewContainer>
+    </Panel.A>
+    <Panel.B>
+      <PreviewContainer>{'Content B'}</PreviewContainer>
+    </Panel.B>
+    <Panel.C>
+      <PreviewContainer>{'Content C'}</PreviewContainer>
+    </Panel.C>
+  </Panel>
+  <br />
+
+  <Panel {...args} layout={PanelLayout.combined}>
+    <Panel.PreContainer>
+      <PreviewContainer>{'Precontainer'}</PreviewContainer>
+    </Panel.PreContainer>
+    <Panel.Title title={'Combined'} />
+    <Panel.A>
+      <PreviewContainer>{'Content A'}</PreviewContainer>
+    </Panel.A>
+    <Panel.B>
+      <PreviewContainer>{'Content B'}</PreviewContainer>
+    </Panel.B>
+    <Panel.C>
+      <PreviewContainer>{'Content C'}</PreviewContainer>
+    </Panel.C>
+  </Panel>
+  <br />
+
+  <Panel {...args} layout={PanelLayout.bAsRightCol}>
+    <Panel.PreContainer>
+      <PreviewContainer>{'Precontainer'}</PreviewContainer>
+    </Panel.PreContainer>
+    <Panel.Title title={'B as right column'} />
+    <Panel.A>
+      <PreviewContainer>{'Content A'}</PreviewContainer>
+    </Panel.A>
+    <Panel.B>
+      <PreviewContainer>{'Content B'}</PreviewContainer>
+    </Panel.B>
+    <Panel.C>
+      <PreviewContainer>{'Content C'}</PreviewContainer>
+    </Panel.C>
+  </Panel>
+</div>
+        `,
+      },
+    },
+  },
   render: args => (
     <div>
       <Panel {...args} layout={PanelLayout.horizontal}>
@@ -281,6 +409,49 @@ export const Layouts: Story = {
 
 export const Status: Story = {
   args: {},
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+<div>
+  <Panel {...args} status={PanelStatus.new}>
+    <Panel.Title title={'New'} icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />} />
+    <Panel.A>
+      <span>{'Lorem ipsum dolor sit amet.'}</span>
+    </Panel.A>
+    <Panel.ExpandedContent>
+      <span>{'Detaljer.'}</span>
+    </Panel.ExpandedContent>
+  </Panel>
+  <br />
+
+  <Panel {...args} status={PanelStatus.error}>
+    <Panel.Title title={'Error'} icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />} />
+    <Panel.A>
+      <span>{'Lorem ipsum dolor sit amet.'}</span>
+    </Panel.A>
+    <Panel.ExpandedContent>
+      <span>{'Detaljer.'}</span>
+    </Panel.ExpandedContent>
+  </Panel>
+  <br />
+
+  <Panel {...args} status={PanelStatus.draft}>
+    <Panel.Title title={'Draft'} icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />} />
+    <Panel.A>
+      <span>{'Lorem ipsum dolor sit amet.'}</span>
+    </Panel.A>
+    <Panel.ExpandedContent>
+      <span>{'Detaljer.'}</span>
+    </Panel.ExpandedContent>
+  </Panel>
+  <br />
+</div>
+        `,
+      },
+    },
+  },
   render: args => (
     <div>
       <Panel {...args} status={PanelStatus.new}>
@@ -327,20 +498,14 @@ export const WithCTA: Story = {
         language: 'tsx',
         // @todo: legg til riktig kode i alle stories
         code: ` 
-<Panel>
-  <Panel.PreContainer>
-    <StatusDot text="Godkjent" variant="success" />
-  </Panel.PreContainer>
-  <Panel.Title title={'Tittel'} icon={<Icon svgIcon={PdfFile} />} badge={<Badge>{'Ny'}</Badge>} />
+<Panel buttonBottomOnClick={() => action('Clicked CTA')} buttonBottomText={'Call to action'}>
+  <Panel.Title title={'Panel med CTA'} />
   <Panel.A>
-    <PreviewContainer>{'Content A'}</PreviewContainer>
+    <span>{'Prop buttonBottomOnClick og buttonBottomText gir en knapp som legges under alle content boxes.'}</span>
   </Panel.A>
   <Panel.B>
-    <PreviewContainer>{'Content B'}</PreviewContainer>
+    <span>{'Denne knappen kan kun brukes dersom Panel ikke er ekspanderbart. Om man bruker ExpandedContent vises ikke knappen.'}</span>
   </Panel.B>
-  <Panel.C>
-    <PreviewContainer>{'Content C'}</PreviewContainer>
-  </Panel.C>
 </Panel>`,
       },
     },
@@ -352,7 +517,7 @@ export const WithCTA: Story = {
         <span>{'Prop buttonBottomOnClick og buttonBottomText gir en knapp som legges under alle content boxes.'}</span>
       </Panel.A>
       <Panel.B>
-        <span>{'Denne knappen skal kun brukes dersom Panel ikke er ekspanderbart. Om man bruker ExpandedContent vises ikke knappen.'}</span>
+        <span>{'Denne knappen kan kun brukes dersom Panel ikke er ekspanderbart. Om man bruker ExpandedContent vises ikke knappen.'}</span>
       </Panel.B>
     </Panel>
   ),
@@ -447,6 +612,95 @@ export const TestPanel: Story = {
 
 export const WithPanelTitles: Story = {
   args: {},
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+<div>
+  <Panel {...args}>
+    <Panel.Title icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />} title={'Tittel'} badge={<Badge>{'Ny'}</Badge>} />
+    <Panel.PreContainer>
+      <StatusDot variant="info" text="Status" />
+    </Panel.PreContainer>
+    <Panel.A>
+      <p>
+        {
+          'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+        }
+      </p>
+    </Panel.A>
+  </Panel>
+  <br />
+
+  <Panel {...args}>
+    <Panel.PreContainer>
+      <StatusDot variant="info" text="Status" />
+    </Panel.PreContainer>
+    <Panel.Title title={'Uten ikon'} badge={<Badge>{'Ny'}</Badge>} />
+    <Panel.A>
+      <p>
+        {
+          'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+        }
+      </p>
+    </Panel.A>
+  </Panel>
+  <br />
+
+  <Panel {...args}>
+    <Panel.PreContainer>
+      <StatusDot variant="info" text="Status" />
+    </Panel.PreContainer>
+    <Panel.Title title={'Uten badge'} icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />} />
+    <Panel.A>
+      <p>
+        {
+          'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+        }
+      </p>
+    </Panel.A>
+  </Panel>
+  <br />
+
+  <Panel {...args}>
+    <Panel.Title
+      icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />}
+      title={'Uten statusdot men med skikkelig lang titteltekst'}
+      badge={<Badge>{'Ny'}</Badge>}
+    />
+    <Panel.A>
+      <p>
+        {
+          'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+        }
+      </p>
+    </Panel.A>
+  </Panel>
+  <br />
+
+  <Panel {...args}>
+    <Panel.PreContainer>
+      <StatusDot variant="alert" text="Status" />
+    </Panel.PreContainer>
+    <Panel.Title
+      icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />}
+      title={'Med alle komponenter og også med skikkelig lang titteltekst'}
+      badge={<Badge>{'Ny'}</Badge>}
+    />
+    <Panel.A>
+      <p>
+        {
+          'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+        }
+      </p>
+    </Panel.A>
+  </Panel>
+</div>
+        `,
+      },
+    },
+  },
   render: args => (
     <div>
       <Panel {...args}>
@@ -534,6 +788,28 @@ export const WithPanelTitles: Story = {
 export const Expandable: Story = {
   args: {
     layout: PanelLayout.vertical,
+  },
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+<Panel {...args}>
+  <Panel.Title title="Denne har en knapp og skjult innhold" />
+  <Panel.PreContainer></Panel.PreContainer>
+  <Panel.A>
+    <span>{'Noe innhold'}</span>
+  </Panel.A>
+  <Panel.ExpandedContent>
+    <Title appearance="title4" htmlMarkup="h4">
+      {'Dette er skjult'}
+    </Title>
+    <p>{'Men når man åpner expanderen vil det vises'}</p>
+  </Panel.ExpandedContent>
+</Panel>
+        `,
+      },
+    },
   },
   render: args => {
     return (
