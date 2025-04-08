@@ -3,7 +3,7 @@
 @use '../../scss/supernova/styles/colors' as *;
 @use '../../scss/breakpoints' as breakpoints;
 @use '../../scss/font-settings' as fonts;
-@use '../Button/styles.module' as *;
+@use '../Button/styles.module' as button;
 
 .panel {
   $panel: &;
@@ -195,6 +195,7 @@
 }
 
 .expander {
+  // This is a copy of the button class in Expander
   &__button {
     position: relative;
     padding-right: getSpacer(s);
@@ -202,11 +203,11 @@
     width: fit-content;
 
     &--expanded {
-      @include outline-borderless-hover;
+      @include button.outline-borderless-hover;
     }
   }
 
   &__button &__button__text {
-    @include outline-borderless-text-hover;
+    @include button.outline-borderless-text-hover;
   }
 }
