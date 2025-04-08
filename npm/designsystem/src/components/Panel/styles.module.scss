@@ -192,6 +192,14 @@
       margin-top: spacers.getSpacer(s);
     }
   }
+
+  &__button-bottom {
+    margin-top: spacers.getSpacer(2xs);
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      margin-top: spacers.getSpacer(s);
+    }
+  }
 }
 
 .expander {

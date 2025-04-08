@@ -218,7 +218,7 @@ const Panel: React.FC<PanelProps> & {
           {title}
           <div className={contentContainerLayout}>{content}</div>
           {buttonBottomText && buttonBottomOnClick && (
-            <div>
+            <div className={styles['panel__button-bottom']}>
               <Button variant="borderless" type="button" size="medium" onClick={buttonBottomOnClick}>
                 {buttonBottomText}
                 <Icon svgIcon={ChevronRight} size={IconSize.XSmall} />

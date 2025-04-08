@@ -34,6 +34,7 @@ export type Styles = {
   'panel__border--line': string;
   'panel__border--outline--inner': string;
   'panel__border--outline--outer': string;
+  'panel__button-bottom': string;
   panel__content: string;
   panel__content__item: string;
   'panel__content__item--a': string;
@@ -45,7 +46,9 @@ export type Styles = {
   'panel__content--horizontal': string;
   'panel__content--vertical': string;
   'panel__expander__border--expanded': string;
-  'panel__expander__border--not-expanded': string;
+  'panel__expander__border--not-expanded--line': string;
+  'panel__expander__border--not-expanded--neutral': string;
+  'panel__expander__border--not-expanded--white': string;
   panel__expander__content: string;
   panel__expander__separator: string;
   'panel__pre-container': string;
