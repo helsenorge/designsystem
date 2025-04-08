@@ -1,13 +1,9 @@
 import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } from '@storybook/addon-docs';
+import { isSupernova } from 'frankenstein-build-tools';
 
 import { A, B, C, ExpandedContent, PreContainer } from './Panel';
 import TitleFS from '../Title';
 import PanelTitle from './PanelTitle';
-
-export const isSupernova = (): boolean => {
-  const url = window.location != window.parent.location ? document.referrer : document.location.href;
-  return url.startsWith('https://frankenstein.helsenorge.design') || window.location.search.includes('isSupernova');
-};
 
 export const PanelDocs = (): React.JSX.Element => {
   if (isSupernova()) {
