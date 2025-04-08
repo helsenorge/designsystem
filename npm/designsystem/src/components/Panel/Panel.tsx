@@ -149,6 +149,7 @@ const Panel: React.FC<PanelProps> & {
 
         const scrollAmount = Math.min(defaultScroll, panelRect.top - 20);
 
+        // Scroller kun oppover, og kun dersom expandedContent havner utenfor skjermen når åpnet
         if (scrollAmount > 0 && expandedContentRect.bottom > window.innerHeight) {
           const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           if (prefersReducedMotion) {
