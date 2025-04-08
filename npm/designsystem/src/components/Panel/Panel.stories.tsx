@@ -621,11 +621,11 @@ export const WithPanelTitles: Story = {
       <StatusDot variant="info" text="Status" />
     </Panel.PreContainer>
     <Panel.A>
-      <p>
+      <span>
         {
           'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
         }
-      </p>
+      </span>
     </Panel.A>
   </Panel>
   <br />
@@ -636,11 +636,11 @@ export const WithPanelTitles: Story = {
     </Panel.PreContainer>
     <Panel.Title title={'Uten ikon'} badge={<Badge>{'Ny'}</Badge>} />
     <Panel.A>
-      <p>
+      <span>
         {
           'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
         }
-      </p>
+      </span>
     </Panel.A>
   </Panel>
   <br />
@@ -651,11 +651,11 @@ export const WithPanelTitles: Story = {
     </Panel.PreContainer>
     <Panel.Title title={'Uten badge'} icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />} />
     <Panel.A>
-      <p>
+      <span>
         {
           'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
         }
-      </p>
+      </span>
     </Panel.A>
   </Panel>
   <br />
@@ -667,11 +667,11 @@ export const WithPanelTitles: Story = {
       badge={<Badge>{'Ny'}</Badge>}
     />
     <Panel.A>
-      <p>
+      <span>
         {
           'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
         }
-      </p>
+      </span>
     </Panel.A>
   </Panel>
   <br />
@@ -686,11 +686,11 @@ export const WithPanelTitles: Story = {
       badge={<Badge>{'Ny'}</Badge>}
     />
     <Panel.A>
-      <p>
+      <span>
         {
           'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
         }
-      </p>
+      </span>
     </Panel.A>
   </Panel>
 </div>
@@ -706,11 +706,11 @@ export const WithPanelTitles: Story = {
           <StatusDot variant="info" text="Status" />
         </Panel.PreContainer>
         <Panel.A>
-          <p>
+          <span>
             {
               'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
             }
-          </p>
+          </span>
         </Panel.A>
       </Panel>
       <br />
@@ -721,11 +721,11 @@ export const WithPanelTitles: Story = {
         </Panel.PreContainer>
         <Panel.Title title={'Uten ikon'} badge={<Badge>{'Ny'}</Badge>} />
         <Panel.A>
-          <p>
+          <span>
             {
               'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
             }
-          </p>
+          </span>
         </Panel.A>
       </Panel>
       <br />
@@ -736,11 +736,11 @@ export const WithPanelTitles: Story = {
         </Panel.PreContainer>
         <Panel.Title title={'Uten badge'} icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />} />
         <Panel.A>
-          <p>
+          <span>
             {
               'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
             }
-          </p>
+          </span>
         </Panel.A>
       </Panel>
       <br />
@@ -752,11 +752,11 @@ export const WithPanelTitles: Story = {
           badge={<Badge>{'Ny'}</Badge>}
         />
         <Panel.A>
-          <p>
+          <span>
             {
               'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
             }
-          </p>
+          </span>
         </Panel.A>
       </Panel>
       <br />
@@ -771,11 +771,11 @@ export const WithPanelTitles: Story = {
           badge={<Badge>{'Ny'}</Badge>}
         />
         <Panel.A>
-          <p>
+          <span>
             {
               'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
             }
-          </p>
+          </span>
         </Panel.A>
       </Panel>
     </div>
@@ -875,7 +875,7 @@ export const LangExpandedContent: Story = {
               <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
               <p>
                 {
-                  'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+                  'Den som gir fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
                 }
               </p>
               <div>
@@ -894,7 +894,7 @@ export const LangExpandedContent: Story = {
               <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
               <p>
                 {
-                  'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+                  'Den som gir fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
                 }
               </p>
               <div>
@@ -913,7 +913,7 @@ export const LangExpandedContent: Story = {
               <Title appearance="title4">{'Fullmakt til å bruke tjenester på Helsenorge'}</Title>
               <p>
                 {
-                  'Den som går fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
+                  'Den som gir fullmakt, kan bruke tjenester på Helsenorge på vegne av personen som gir fullmakt. Det er ikke mulig å gi fullmakt til mer enn man selv har tilgang til.'
                 }
               </p>
               <div>
