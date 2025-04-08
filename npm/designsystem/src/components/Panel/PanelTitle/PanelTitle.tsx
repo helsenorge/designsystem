@@ -14,7 +14,7 @@ export interface PanelTitleProps {
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Title text */
-  title?: string;
+  title: string;
 }
 
 const PanelTitle: React.FC<PanelTitleProps> = (props: PanelTitleProps) => {
