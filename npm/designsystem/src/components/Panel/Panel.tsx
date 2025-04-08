@@ -178,7 +178,7 @@ const Panel: React.FC<PanelProps> & {
   const expanderBorderLayout = classNames({
     [styles['panel__expander__border--expanded']]: isExpanded && status === PanelStatus.none,
     [styles[`panel__expander__border--not-expanded--${colorScheme}`]]: !isExpanded && status === PanelStatus.none,
-    [styles[`panel__expander__border--not-expanded--line`]]: !isExpanded && variant === PanelVariant.line,
+    [styles[`panel__expander__border--not-expanded--line`]]: !isExpanded && status === PanelStatus.none && variant === PanelVariant.line,
   });
 
   return expandableContent.length > 0 ? (
