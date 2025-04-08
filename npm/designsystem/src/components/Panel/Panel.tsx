@@ -164,12 +164,11 @@ const Panel: React.FC<PanelProps> & {
   }, [isExpanded]);
 
   const colorScheme = variant === PanelVariant.fill ? color : 'white';
-  const outerLayout = classNames(styles['panel'], styles[`panel--${colorScheme}`], {
+  const outerLayout = classNames(styles['panel'], styles[`panel--${colorScheme}`], styles['panel--status'], {
     [styles['panel--line']]: variant === PanelVariant.line,
     [styles['panel--new']]: status === PanelStatus.new,
     [styles['panel--draft']]: status === PanelStatus.draft,
     [styles['panel--error']]: status === PanelStatus.error,
-    [styles['panel--status']]: status && status !== PanelStatus.none,
     [styles['panel--icon']]: hasIcon,
   });
   const contentContainerLayout = classNames(styles['panel__content'], styles[`panel__content--${layout}`], {
