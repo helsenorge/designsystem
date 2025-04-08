@@ -12,23 +12,18 @@ $status-dot-size: 1rem;
 .statusdot {
   position: relative;
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
+  gap: spacers.getSpacer(2xs);
 
   &__dot {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    top: 0.15rem;
-    margin-right: spacers.getSpacer(2xs);
     width: $status-dot-size;
     height: $status-dot-size;
     min-width: $status-dot-size;
     min-height: $status-dot-size;
-
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
-      top: spacers.getSpacer(3xs);
-    }
 
     &--success {
       fill: var(--color-notification-graphics-success);
