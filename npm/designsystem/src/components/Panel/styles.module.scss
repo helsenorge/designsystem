@@ -167,7 +167,17 @@
       }
 
       &--not-expanded {
-        border-left: 2px solid transparent;
+        &--white {
+          border-left: 2px solid var(--color-base-background-white);
+        }
+
+        &--neutral {
+          border-left: 2px solid var(--color-base-background-neutral);
+        }
+
+        &--line {
+          border-left: 2px solid transparent;
+        }
       }
     }
 
