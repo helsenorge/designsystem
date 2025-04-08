@@ -19,11 +19,11 @@ export const MedisinskFødselsregister: React.FC = () => {
     <Panel layout={PanelLayout.vertical} variant={PanelVariant.outline}>
       <Panel.Title title="Medisinsk fødselsregister (MFR)" />
       <Panel.A>
-        <p>
+        <span>
           {
             'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
           }
-        </p>
+        </span>
       </Panel.A>
       <Panel.ExpandedContent>
         <span>{'Innhold.'}</span>
