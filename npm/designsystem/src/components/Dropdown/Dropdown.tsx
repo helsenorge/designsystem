@@ -6,6 +6,7 @@ import {
   AnalyticsId,
   IconSize,
   KeyboardEventKey,
+  LanguageLocales,
   ZIndex,
   theme,
   useHover,
@@ -14,13 +15,16 @@ import {
   useToggle,
   useUuid,
 } from '../..';
+import { HNDesignsystemDropdown } from '../../resources/Resources';
 import { isComponent } from '../../utils/component';
+import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
 import Button from '../Button';
 import Checkbox, { CheckboxProps } from '../Checkbox';
 import Icon from '../Icon';
 import PlusSmall from '../Icons/PlusSmall';
 import RadioButton, { RadioButtonProps } from '../RadioButton';
+import { getResources } from './resourceHelper';
 
 import styles from './styles.module.scss';
 
@@ -38,7 +42,7 @@ export interface DropdownProps {
   placeholder: string;
   /** Sets the dropdown content */
   children: React.ReactNode;
-  /** Close button text */
+  /** @deprecated Close button text */
   closeText?: string;
   /** Minimum width for the dropdown in pixels. Does not affect trigger button */
   dropdownMinWidth?: number;
@@ -60,13 +64,14 @@ export interface DropdownProps {
   testId?: string;
   /** Overrides the default z-index of the DropDownContent */
   zIndex?: number;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemDropdown>;
 }
 
 const Dropdown: React.FC<DropdownProps> = props => {
   const {
     label,
     placeholder,
-    closeText = 'Lukk',
     noCloseButton = false,
     onToggle,
     dropdownMinWidth,
@@ -78,6 +83,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
     testId,
     disabled,
     zIndex = ZIndex.PopOver,
+    resources,
   } = props;
   const dropdownRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
@@ -89,6 +95,14 @@ const Dropdown: React.FC<DropdownProps> = props => {
   const labelId = useUuid();
   const toggleLabelId = useUuid();
   const optionIdPrefix = useUuid();
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemDropdown = {
+    ...defaultResources,
+    ...resources,
+    closeText: props.closeText ?? resources?.closeText ?? defaultResources.closeText,
+  };
 
   const handleOpen = (isKeyboard: boolean): void => {
     openedByKeyboard.current = isKeyboard;
@@ -235,7 +249,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
         {!noCloseButton && (
           <div className={styles.dropdown__close}>
             <Button onClick={handleClose} aria-expanded={isOpen}>
-              {closeText}
+              {mergedResources.closeText}
             </Button>
           </div>
         )}
