@@ -1,3 +1,15 @@
+## [10.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.6.3&targetVersion=GTv10.7.0) (2025-04-10)
+
+
+### Features
+
+* **dropdown:**  legg til språkhåndtering ([e54e4e8](https://github.com/helsenorge/designsystem/commit/e54e4e8a3abf2fb44fc9e39ba77bb344b61ecee5)), closes [#349329](https://github.com/helsenorge/designsystem/issues/349329)
+
+
+### Bug Fixes
+
+* **lightbox:**  zoom pan og zindex fikser ([ffc268d](https://github.com/helsenorge/designsystem/commit/ffc268d607b3ce7c613b0db5e20db4b2c6c1e18d)), closes [#342790](https://github.com/helsenorge/designsystem/issues/342790)
+
 ## [10.6.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.6.2&targetVersion=GTv10.6.3) (2025-03-20)
 
 

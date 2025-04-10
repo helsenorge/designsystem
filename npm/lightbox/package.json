@@ -2,7 +2,7 @@
   "name": "@helsenorge/lightbox",
   "sideEffects": false,
   "private": false,
-  "version": "10.6.3",
+  "version": "10.7.0",
   "description": "The official Helsenorge lightbox.",
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@helsenorge/designsystem-react": "^10.6.3",
+    "@helsenorge/designsystem-react": "^10.7.0",
     "@rollup/plugin-replace": "^6.0.1",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
