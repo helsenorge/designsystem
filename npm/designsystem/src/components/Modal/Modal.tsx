@@ -8,6 +8,7 @@ import { useIsVisible } from '../../hooks/useIsVisible';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import { uuid } from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
@@ -113,7 +114,7 @@ const Modal: React.FC<ModalProps> = props => {
     titleId = uuid(),
     className = '',
     size = ModalSize.large,
-    zIndex = ZIndex.Modal,
+    zIndex = ZIndex.OverlayScreen,
   } = props;
 
   const topContent = React.useRef<HTMLDivElement>(null);
@@ -138,14 +139,6 @@ const Modal: React.FC<ModalProps> = props => {
       event.stopPropagation();
       props.onClose();
     }
-  }
-
-  function disableBodyScroll(): void {
-    document.body.style.overflow = 'hidden';
-  }
-
-  function enableBodyScroll(): void {
-    document.body.style.removeProperty('overflow');
   }
 
   /* Displays a full window size modal with image */

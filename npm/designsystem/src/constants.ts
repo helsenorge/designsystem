@@ -8,9 +8,8 @@ export enum IconSize {
 }
 
 export enum ZIndex {
-  Modal = 1300000,
+  OverlayScreen = 1300000,
   PopOver = 11000,
-  OverlayScreen = 9999,
   LightBoxButtons = 1000,
 }
 

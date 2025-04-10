@@ -14,6 +14,10 @@ const meta = {
       description: {
         component: 'Beskrivelse av LightBox',
       },
+      story: {
+        inline: false,
+        iframeHeight: '40rem',
+      },
       page: (): React.JSX.Element => <Docs component={LightBox} />,
     },
   },

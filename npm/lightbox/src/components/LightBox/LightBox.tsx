@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
-import { TransformWrapper, TransformComponent, useTransformComponent } from 'react-zoom-pan-pinch';
+import { TransformWrapper, TransformComponent, useTransformComponent, useControls } from 'react-zoom-pan-pinch';
 
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import ChevronLeft from '@helsenorge/designsystem-react/components/Icons/ChevronLeft';
@@ -14,6 +14,7 @@ import X from '@helsenorge/designsystem-react/components/Icons/X';
 import { IconSize, KeyboardEventKey, ZIndex } from '@helsenorge/designsystem-react/constants';
 import { useFocusTrap } from '@helsenorge/designsystem-react/hooks/useFocusTrap';
 import { useSize } from '@helsenorge/designsystem-react/hooks/useSize';
+import { disableBodyScroll, enableBodyScroll } from '@helsenorge/designsystem-react/utils/scroll';
 
 import { useKeyboardEvent } from '@helsenorge/designsystem-react';
 
@@ -27,11 +28,11 @@ export interface LightBoxProps {
   /** Aria label for the text box button when its open */
   ariaLabelCloseTextBox: string;
   /** Aria label for the left arrow button */
-  ariaLabelLeftArrow: string;
+  ariaLabelLeftArrow?: string;
   /** Aria label for the full modal describing what the modal contains */
   ariaLabelLightBox: string;
   /** Aria label for the right arrow button */
-  ariaLabelRightArrow: string;
+  ariaLabelRightArrow?: string;
   /** Aria label for the text box button when its closed */
   ariaLabelOpenTextBox: string;
   /** Aria label for the zoom in button */
@@ -96,8 +97,12 @@ const LightBox: React.FC<LightBoxProps> = ({
     const timer = setTimeout(() => {
       setImageTextOpen(false);
     }, closeTextAfterSeconds * 1000);
+    disableBodyScroll();
 
-    return () => clearTimeout(timer);
+    return (): void => {
+      clearTimeout(timer);
+      enableBodyScroll();
+    };
   }, []);
 
   return (
@@ -167,7 +172,7 @@ const LightBox: React.FC<LightBoxProps> = ({
           </div>
         </div>
       )}
-      <TransformWrapper initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle', step: 4 }}>
+      <TransformWrapper smooth={false} initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle', step: 4 }}>
         {({ setTransform }) => (
           <>
             <Controls
@@ -216,41 +221,44 @@ const Controls = ({
   useTransformComponent(({ state }) => {
     updateStates(state.scale);
   });
+  const { zoomIn, zoomOut, centerView } = useControls();
+  let centerTimeout: number;
 
   const calculateZoomCenter = (newScale: number): number[] => {
     const element = document.getElementsByClassName('react-transform-component')[0];
     const style = window.getComputedStyle(element);
     const matrix = new WebKitCSSMatrix(style.transform);
-
     const ratio = (newScale - zoom) / zoom + 1;
     const x = (matrix.m41 - (window.innerWidth / 2) * (1 - zoom / newScale)) * ratio;
     const y = (matrix.m42 - (window.innerHeight / 2) * (1 - zoom / newScale)) * ratio;
     return [x, y];
   };
-
   const adjustZoom = (newScale: number | undefined): void => {
     if (newScale === undefined || newScale === zoom) return;
     if (newScale < 1) newScale = 1;
     if (newScale > 4) newScale = 4;
     const [x, y] = calculateZoomCenter(newScale);
     transform(x, y, newScale, 1);
-  };
 
-  const adjustZoomWithAnimation = (newScale: number | undefined): void => {
-    if (newScale === undefined || newScale === zoom) return;
-    if (newScale < 1) newScale = 1;
-    if (newScale > 4) newScale = 4;
-    const [x, y] = calculateZoomCenter(newScale);
-    transform(x, y, newScale);
+    if (centerTimeout) {
+      clearTimeout(centerTimeout);
+    }
+
+    // Starter sentrering timeout hvis det zoomes ut
+    if (newScale - zoom < 0) {
+      centerTimeout = window.setTimeout(() => {
+        centerView();
+      }, 160);
+    }
   };
 
   return (
     <div className={classNames(styles['zoom-buttons'])} style={{ zIndex: ZIndex.LightBoxButtons }}>
-      <button className={classNames(styles.button)} onClick={() => adjustZoomWithAnimation(zoom - 0.5)} aria-label={ariaLabelZoomOut}>
+      <button className={classNames(styles.button)} onClick={() => zoomOut()} aria-label={ariaLabelZoomOut}>
         <Icon svgIcon={Minus} color="white" size={IconSize.XSmall} />
       </button>
       <MiniSlider minValue={1} maxValue={4} onChange={adjustZoom} value={zoom} ariaLabel={ariaLabelZoomSlider} />
-      <button className={classNames(styles.button)} onClick={() => adjustZoomWithAnimation(zoom + 0.5)} aria-label={ariaLabelZoomIn}>
+      <button className={classNames(styles.button)} onClick={() => zoomIn()} aria-label={ariaLabelZoomIn}>
         <Icon svgIcon={PlusSmall} color="white" size={IconSize.XSmall} />
       </button>
     </div>

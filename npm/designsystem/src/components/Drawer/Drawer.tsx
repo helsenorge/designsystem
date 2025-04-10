@@ -80,7 +80,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     title,
     titleHtmlMarkup = 'h3',
     titleId = uuid(),
-    zIndex = ZIndex.Modal,
+    zIndex = ZIndex.OverlayScreen,
   } = props;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledBy, fallbackId: titleId });
