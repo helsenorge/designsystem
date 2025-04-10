@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/palette' as palette;
+@use '../../scss/breakpoints' as breakpoints;
+
+.panel-list {
+  &--outline {
+    border: 1px solid var(--core-color-neutral-300);
+
+    & > div {
+      // overstyrer så ikke hvert panel har egen border
+      border: none;
+    }
+  }
+
+  &__panel {
+    &--line:not(:last-child) {
+      margin-bottom: -1px;
+    }
+
+    &--outline:not(:last-child) {
+      margin-bottom: -9px;
+    }
+
+    &--fill:not(:last-child) {
+      margin-bottom: spacers.getSpacer(xs);
+    }
+  }
+}

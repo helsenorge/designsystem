@@ -1,0 +1,224 @@
+@use 'sass:map';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/supernova/styles/colors' as *;
+@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/font-settings' as fonts;
+@use '../Button/styles.module' as button;
+
+.panel {
+  $panel: &;
+
+  display: flex;
+  flex-flow: column;
+  padding: spacers.getSpacer(s);
+
+  & > *:not(:last-child) {
+    // because of a problem with gap this margin gives space between elements
+    margin-bottom: spacers.getSpacer(2xs);
+  }
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    padding: spacers.getSpacer(m);
+  }
+
+  &--icon {
+    padding-left: calc(3.5rem + spacers.getSpacer(s));
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      padding-left: calc(4rem + spacers.getSpacer(m));
+    }
+  }
+
+  &__pre-container {
+    width: 100%;
+  }
+
+  &__content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    gap: spacers.getSpacer(m);
+
+    &__item {
+      width: 100%;
+      height: 100%;
+    }
+
+    &--b-first {
+      .panel__content__item--b {
+        order: -1;
+      }
+    }
+
+    &--horizontal {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        flex-flow: row;
+      }
+    }
+
+    &--vertical {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        flex-flow: column;
+      }
+    }
+
+    &--combined {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        display: grid;
+        grid-template-areas:
+          'contentA contentB'
+          'contentC contentC';
+
+        & .panel__content__item--a {
+          grid-area: contentA;
+        }
+
+        & .panel__content__item--b {
+          grid-area: contentB;
+        }
+
+        & .panel__content__item--c {
+          grid-area: contentC;
+        }
+      }
+    }
+
+    &--bAsRightCol {
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        display: grid;
+        grid-template-areas:
+          'contentA contentB'
+          'contentC contentB';
+
+        & .panel__content__item--a {
+          grid-area: contentA;
+        }
+
+        & .panel__content__item--b {
+          grid-area: contentB;
+        }
+
+        & .panel__content__item--c {
+          grid-area: contentC;
+        }
+      }
+    }
+  }
+
+  &--white {
+    background-color: var(--color-base-background-white);
+  }
+
+  &--neutral {
+    background-color: var(--color-base-background-neutral);
+  }
+
+  &--line {
+    background-color: transparent;
+  }
+
+  &__border {
+    &--outline {
+      &--outer {
+        border: 1px solid var(--core-color-neutral-300);
+      }
+
+      &--inner {
+        border: 8px solid var(--core-color-neutral-100);
+      }
+    }
+
+    &--line {
+      border-top: 1px solid var(--core-color-neutral-600);
+      border-bottom: 1px solid var(--core-color-neutral-600);
+      border-right: none;
+      border-left: none;
+      padding: spacers.getSpacer(xs) 0;
+    }
+
+    &--fill--neutral {
+      border: 1px solid var(--core-color-neutral-300);
+    }
+  }
+
+  &--border {
+    border: 2px solid var(--color-base-background-white);
+  }
+
+  &--status {
+    border-left: 6px;
+    border-left-style: solid;
+    border-left-color: transparent;
+  }
+
+  &--new {
+    border-left-color: var(--core-color-blueberry-500);
+  }
+
+  &--draft {
+    border-left: dotted 6px var(--core-color-neutral-500);
+  }
+
+  &--error {
+    border-left-color: var(--core-color-cherry-500);
+  }
+
+  &__expander {
+    &__border {
+      &--expanded {
+        border-left: 2px solid var(--color-base-border-onlight-emphasized);
+      }
+
+      &--not-expanded {
+        &--white {
+          border-left: 2px solid var(--color-base-background-white);
+        }
+
+        &--neutral {
+          border-left: 2px solid var(--color-base-background-neutral);
+        }
+
+        &--line {
+          border-left: 2px solid transparent;
+        }
+      }
+    }
+
+    &__separator {
+      height: 1px;
+      width: 40px;
+      background-color: var(--color-base-border-onlight);
+    }
+
+    &__content {
+      margin-top: spacers.getSpacer(s);
+    }
+  }
+
+  &__button-bottom {
+    margin-top: spacers.getSpacer(2xs);
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      margin-top: spacers.getSpacer(s);
+    }
+  }
+}
+
+.expander {
+  // This is a copy of the button class in Expander
+  &__button {
+    position: relative;
+    padding-right: getSpacer(s);
+    text-align: left;
+    width: fit-content;
+
+    &--expanded {
+      @include button.outline-borderless-hover;
+    }
+  }
+
+  &__button &__button__text {
+    @include button.outline-borderless-text-hover;
+  }
+}
