@@ -682,6 +682,26 @@ export const WithPanelTitles: Story = {
     </Panel.PreContainer>
     <Panel.Title
       icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />}
+      title={'Med markup som h2'}
+      badge={<Badge>{'Ny'}</Badge>}
+      titleMarkup="h2"
+    />
+    <Panel.A>
+      <span>
+        {
+          'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+        }
+      </span>
+    </Panel.A>
+  </Panel>
+  <br />
+
+  <Panel {...args}>
+    <Panel.PreContainer>
+      <StatusDot variant="alert" text="Status" />
+    </Panel.PreContainer>
+    <Panel.Title
+      icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />}
       title={'Med alle komponenter og også med skikkelig lang titteltekst'}
       badge={<Badge>{'Ny'}</Badge>}
     />
@@ -750,6 +770,26 @@ export const WithPanelTitles: Story = {
           icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />}
           title={'Uten statusdot men med skikkelig lang titteltekst'}
           badge={<Badge>{'Ny'}</Badge>}
+        />
+        <Panel.A>
+          <span>
+            {
+              'Lorem ipsum dolor sit amet consectetur. Neque cras eget at imperdiet. Lectus massa dolor cursus vulputate. Vel ultrices morbi et lacus id amet morbi. Enim molestie elit in nibh lorem. Malesuada sapien elementum pretium enim arcu orci. '
+            }
+          </span>
+        </Panel.A>
+      </Panel>
+      <br />
+
+      <Panel {...args}>
+        <Panel.PreContainer>
+          <StatusDot variant="alert" text="Status" />
+        </Panel.PreContainer>
+        <Panel.Title
+          icon={<Icon svgIcon={PdfFile} size={IconSize.Small} />}
+          title={'Med markup som h2'}
+          badge={<Badge>{'Ny'}</Badge>}
+          titleMarkup="h2"
         />
         <Panel.A>
           <span>
