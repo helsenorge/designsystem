@@ -14,6 +14,7 @@ import HelpSign from '../Icons/HelpSign';
 import Input from '../Input';
 import RadioButton from '../RadioButton/RadioButton';
 import Select from '../Select';
+import Spacer from '../Spacer';
 import StatusDot from '../StatusDot';
 import Textarea from '../Textarea';
 
@@ -83,6 +84,7 @@ export const AllVariants: Story = {
           }
           aria-describedby={sublabelId1 + ' ' + statusDotId1}
         />
+        <Spacer size={'2xl'} />
         <Checkbox
           label={
             <Label
@@ -94,6 +96,7 @@ export const AllVariants: Story = {
           }
           aria-describedby={sublabelId2 + ' ' + statusDotId2}
         />
+        <Spacer size={'2xl'} />
         <RadioButton
           label={
             <Label
@@ -156,13 +159,17 @@ export const LabelAsString: Story = {
   render: ({ showIcon, ...rest }) => (
     <>
       <Input {...rest} label={'Test label'} />
+      <Spacer size={'2xl'} />
       <Textarea {...rest} label={'Test label'} />
+      <Spacer size={'2xl'} />
       <Select {...rest} label={'Test label'}>
         <option value={'Option 1'}>{'Option 1'}</option>
         <option value={'Option 2'}>{'Option 2'}</option>
         <option value={'Option 3'}>{'Option 3'}</option>
       </Select>
+      <Spacer size={'2xl'} />
       <Checkbox {...rest} label={'Test label'} />
+      <Spacer size={'2xl'} />
       <RadioButton {...rest} label={'Test label'} />
     </>
   ),
