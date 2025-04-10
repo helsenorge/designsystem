@@ -164,6 +164,38 @@ export const WithLanguageProvider: Story = {
   args: {
     onToggle: action('onToggle'),
   },
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+import { LanguageLocales } from '@helsenorge/designsystem-react/constants' 
+import LanguageProvider from '@helsenorge/designsystem-react/utils/language'
+...
+
+const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+
+return (
+  <LanguageProvider<LanguageLocales> language={language}>
+    <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} variant="outline">
+      {'Bytt til bokmål'}
+    </Button>
+    <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)} variant="outline">
+      {'Switch to English'}
+    </Button>
+    <Spacer />
+    <span>{\`Valgt språk: \${language}\`}</span>
+    <Spacer />
+    <Dropdown {...args}>
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+    </Dropdown>
+  </LanguageProvider>
+);`,
+      },
+    },
+  },
   render: args => {
     const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
 
