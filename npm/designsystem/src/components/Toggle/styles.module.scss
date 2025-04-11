@@ -46,21 +46,29 @@
   }
 
   &__sublabel {
+    --sublabel-mobile-margin: 3.9rem;
+    --sublabel-desktop-margin: 4.1rem;
+
     font-size: $font-size-xs;
     line-height: 1.25rem;
     color: var(--core-color-neutral-800);
-    margin-left: 3.9rem;
+    margin-left: var(--sublabel-mobile-margin);
     text-align: left;
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
       font-size: $font-size-sm;
       line-height: $lineheight-size-xs;
       text-align: left;
-      margin-left: 4.1rem;
+      margin-left: var(--sublabel-desktop-margin);
     }
 
     &--toggle-right {
       margin-left: 0;
+      margin-right: var(--sublabel-mobile-margin);
+
+      @media (min-width: map.get($grid-breakpoints, sm)) {
+        margin-right: var(--sublabel-desktop-margin);
+      }
     }
   }
 
