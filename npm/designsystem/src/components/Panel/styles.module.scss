@@ -1,9 +1,9 @@
 @use 'sass:map';
 @use '../../scss/spacers' as spacers;
-@use '../../scss/supernova/styles/colors' as *;
 @use '../../scss/breakpoints' as breakpoints;
 @use '../../scss/font-settings' as fonts;
 @use '../Button/styles.module' as button;
+@import '../../scss/supernova/styles/colors.css';
 
 .panel {
   $panel: &;
