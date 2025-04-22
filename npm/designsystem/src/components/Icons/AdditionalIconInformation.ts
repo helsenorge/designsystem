@@ -324,5 +324,10 @@ export default {
   dotlookingglass: { alternativeName: '', categories: 'System, StatusDot' },
   dotquestionmark: { alternativeName: '', categories: 'System, StatusDot' },
   dotwarningtriangle: { alternativeName: '', categories: 'System, StatusDot' },
+  alertsignfill: { alternativeName: 'Advarselskilt (mørk)', categories: 'System' },
+  alertsignstroke: { alternativeName: 'Advarselskilt', categories: 'System' },
+  avatar: { alternativeName: 'Avatar', categories: 'Generisk, Personer' },
+  noaccess: { alternativeName: 'IngenTilgang (mørk)', categories: 'System' },
+  patientandperson: { alternativeName: 'PårørendeOgPasient', categories: 'Behandling, Personer' },
   '': { alternativeName: '', categories: '' },
 };
