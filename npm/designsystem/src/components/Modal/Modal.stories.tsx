@@ -63,6 +63,10 @@ const meta = {
     secondaryButtonText: {
       control: 'text',
     },
+    role: {
+      control: 'select',
+      options: ['dialog', 'alertdialog'],
+    },
   },
 } satisfies Meta<typeof Modal>;
 

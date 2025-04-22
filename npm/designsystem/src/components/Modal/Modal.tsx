@@ -77,6 +77,8 @@ export interface ModalProps {
   printable?: boolean;
   /** If disabled, clicking escape or outside the modal will not close it */
   disableCloseEvents?: boolean;
+  /** Aria role used for the Modal. Default is dialog */
+  role?: 'dialog' | 'alertdialog';
 }
 
 const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => {
@@ -115,6 +117,7 @@ const Modal: React.FC<ModalProps> = props => {
     className = '',
     size = ModalSize.large,
     zIndex = ZIndex.OverlayScreen,
+    role = 'dialog',
   } = props;
 
   const topContent = React.useRef<HTMLDivElement>(null);
@@ -193,7 +196,7 @@ const Modal: React.FC<ModalProps> = props => {
         style={{ zIndex }}
       >
         <div className={styles.align}>
-          <div className={dialogClasses} role="dialog" aria-modal="true" tabIndex={-1} {...ariaLabelAttributes} ref={dialogRef}>
+          <div className={dialogClasses} role={role} aria-modal="true" tabIndex={-1} {...ariaLabelAttributes} ref={dialogRef}>
             <div
               className={cn(styles['modal__shadow'], styles['modal__shadow--top'], {
                 [styles['modal__shadow--show']]: !topContentVisible && contentIsScrollable,
