@@ -3,16 +3,17 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
+import Validation from './Validation';
 import { FormSize } from '../../constants';
 import FormExample, { FormExampleVariants } from '../../docs/FormExample/FormExample';
 
-const meta: Meta<typeof FormExample> = {
+const meta: Meta<typeof Validation> = {
   title: '@helsenorge/designsystem-react/Components/Validation',
-  component: FormExample,
+  component: Validation,
   parameters: {
     docs: {
       page: (): React.JSX.Element => (
-        <Docs component={FormExample} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/validation/bruk-C8MGO5PV" />
+        <Docs component={Validation} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/validation/bruk-C8MGO5PV" />
       ),
       description: {
         component:
