@@ -1,3 +1,18 @@
+## [10.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.7.0&targetVersion=GTv10.8.0) (2025-04-23)
+
+
+### Features
+
+*  oppdater fargetokens for plum ([7a5eb26](https://github.com/helsenorge/designsystem/commit/7a5eb26db3a190cbc43a8e71a3187752394f79d5)), closes [#349794](https://github.com/helsenorge/designsystem/issues/349794)
+* **modal:**  legg til prop for role ([01e24b3](https://github.com/helsenorge/designsystem/commit/01e24b380e4d91d9aee0f5e6b2dce6f61bf20c31)), closes [#346796](https://github.com/helsenorge/designsystem/issues/346796)
+* **radiobutton:**  sett styling på checked disabled state ([78e56df](https://github.com/helsenorge/designsystem/commit/78e56dff7477766f5cf8cdd5e52f044c1a50879d)), closes [#339561](https://github.com/helsenorge/designsystem/issues/339561)
+
+
+### Bug Fixes
+
+* **dropdown:**  trykke på eller ved siden av skal lukke dropdown ([b0d852c](https://github.com/helsenorge/designsystem/commit/b0d852cb42ed0ce41f8baa067d0dae5aba69800f)), closes [#343160](https://github.com/helsenorge/designsystem/issues/343160)
+* **toggle:**  toggle right med lang sublabel wrapper ikke riktig ([409ef89](https://github.com/helsenorge/designsystem/commit/409ef8916a99d7f66a3e327ca8b259f6a1c2bed5)), closes [#349679](https://github.com/helsenorge/designsystem/issues/349679)
+
 ## [10.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.6.3&targetVersion=GTv10.7.0) (2025-04-10)
 
 
