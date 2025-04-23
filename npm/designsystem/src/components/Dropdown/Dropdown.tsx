@@ -132,12 +132,14 @@ const Dropdown: React.FC<DropdownProps> = props => {
       return;
     }
 
+    if (event.key === KeyboardEventKey.Escape) {
+      if (isOpen) handleClose();
+      return;
+    }
+
     if (!isOpen) {
       handleOpen(true);
       event.preventDefault();
-      return;
-    } else if (event.key === KeyboardEventKey.Escape && isOpen) {
-      handleClose();
       return;
     }
 
@@ -214,7 +216,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
       </span>
       <button
         type="button"
-        onClick={(): false | void => !isOpen && handleOpen(false)}
+        onClick={(): false | void => handleOpen(false)}
         className={toggleClasses}
         ref={buttonRef}
         data-testid={testId}

@@ -208,4 +208,24 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
       expect(radio2).toHaveFocus();
     });
   });
+
+  describe('Når man klikker på dropdown-knappen mens den er åpen', (): void => {
+    test('Så lukkes Dropdownen når man klikker knappen på nytt', async (): Promise<void> => {
+      render(
+        <Dropdown label="Ta et valg" placeholder="Knapp">
+          <h2>{'Innhold i Dropdown'}</h2>
+        </Dropdown>
+      );
+
+      const button = screen.getByRole('button', { name: 'Knapp' });
+
+      // Åpne dropdownen
+      await userEvent.click(button);
+      expect(button).toHaveAttribute('aria-expanded', 'true');
+
+      // Klikk på knappen igjen for å lukke
+      await userEvent.click(button);
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+  });
 });
