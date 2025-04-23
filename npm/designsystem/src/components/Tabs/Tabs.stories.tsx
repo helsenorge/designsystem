@@ -1,36 +1,31 @@
 import React, { useRef } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
-import { Docs } from 'frankenstein-build-tools';
 
-import Tab from './Tab';
 import Tabs from './Tabs';
 import longLoremText, { mediumLoremText, shortLoremText } from '../../utils/loremtext';
 import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
 import PopOver from '../PopOver/PopOver';
 import Title from '../Title';
+import { TabsDocs } from './TabsDocs';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Tabs',
   component: Tabs,
-  subcomponents: { Tab },
   parameters: {
     docs: {
       description: {
         component:
           'Som en innbygger vil jeg kunne velge å skifte mellom å se flere større innholdsområder på siden slik at jeg kan rydde unna innhold og funksjoner som ikke omhandler det jeg ønsker å gjøre.',
       },
-      page: (): React.JSX.Element => (
-        <Docs component={Tabs} supernovaLink="https://frankenstein.helsenorge.design/latest/komponenter/tabs/bruk-lhIQYn5P" />
-      ),
+      page: (): React.JSX.Element => <TabsDocs />,
     },
   },
   args: {
     color: 'white',
     onColor: 'onwhite',
     sticky: true,
-    touchBehaviour: 'swipe',
     ariaLabelLeftButton: 'Scroll left',
     ariaLabelRightButton: 'Scroll right',
   },
