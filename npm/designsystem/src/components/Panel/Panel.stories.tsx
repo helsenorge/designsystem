@@ -13,7 +13,15 @@ import Label from '../Label';
 import StatusDot from '../StatusDot';
 import Title from '../Title/Title';
 import Toggle from '../Toggle';
-import { Dokumentliste, DokumentlisteDeling, Helsekontakter, MedisinskFødselsregister, PasientReiser, TimeAvtale } from './PanelExamples';
+import {
+  Dokumentliste,
+  DokumentlisteDeling,
+  Helsekontakter,
+  MedisinskFødselsregister,
+  NyMelding,
+  PasientReiser,
+  TimeAvtale,
+} from './PanelExamples';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Panel',
@@ -1022,6 +1030,8 @@ export const Examples: Story = {
       <Dokumentliste />
       <br />
       <DokumentlisteDeling />
+      <br />
+      <NyMelding />
       <br />
     </div>
   ),

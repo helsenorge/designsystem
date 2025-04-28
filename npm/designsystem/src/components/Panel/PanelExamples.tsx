@@ -8,6 +8,8 @@ import Badge from '../Badge';
 import Button from '../Button';
 import Duolist, { DuolistGroup } from '../Duolist';
 import Icon from '../Icon';
+import ArrowRight from '../Icons/ArrowRight';
+import Envelope from '../Icons/Envelope';
 import FemaleDoctor from '../Icons/FemaleDoctor';
 import PdfFile from '../Icons/PdfFile';
 import Referral from '../Icons/Referral';
@@ -123,11 +125,31 @@ export const Dokumentliste: React.FC = () => {
 export const DokumentlisteDeling: React.FC = () => {
   return (
     <Panel layout={PanelLayout.horizontal} variant={PanelVariant.outline}>
-      <Panel.Title title={'Langt_dokument-navn_med_rar_utforming.xml (Notat)'} icon={<Icon svgIcon={PdfFile} />} />
+      <Panel.Title title={'Dokument-navn.xml (Notat)'} icon={<Icon svgIcon={PdfFile} />} />
       <Panel.A>
         <p>{'Pasientjournal, arkivert 29.10.2020'}</p>
         <p>{'Delt med legen din'}</p>
       </Panel.A>
+    </Panel>
+  );
+};
+
+export const NyMelding: React.FC = () => {
+  return (
+    <Panel layout={PanelLayout.horizontal}>
+      <Panel.Title title={'Ny melding fra Tarmscreeningprogrammet Kreftregisteret'} icon={<Icon svgIcon={Envelope} />} />
+      <Panel.A>
+        <p>{'19.11.2024'}</p>
+        <Button variant="borderless" onClick={() => null}>
+          {'Se mer'}
+          <Icon svgIcon={ArrowRight} />
+        </Button>
+      </Panel.A>
+      <Panel.B>
+        <Button variant="borderless" onClick={() => null} ariaLabel="Slett">
+          <Icon svgIcon={TrashCan} />
+        </Button>
+      </Panel.B>
     </Panel>
   );
 };

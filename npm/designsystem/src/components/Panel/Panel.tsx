@@ -69,7 +69,7 @@ const ExpandButton = ({ onClick, isExpanded }: { onClick: () => void; isExpanded
     <Button
       variant="borderless"
       textClassName={styles['expander__button__text']}
-      className={buttonClassName}
+      wrapperClassName={buttonClassName}
       aria-expanded={isExpanded}
       onClick={onClick}
     >
