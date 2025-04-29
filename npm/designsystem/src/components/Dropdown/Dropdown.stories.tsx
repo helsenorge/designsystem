@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
@@ -6,6 +6,9 @@ import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
 
 import Dropdown, { DropdownOnColor } from './Dropdown';
+import { LanguageLocales } from '../../constants';
+import LanguageProvider from '../../utils/language';
+import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Label from '../Label';
 import RadioButton from '../RadioButton';
@@ -153,6 +156,66 @@ export const EksternChildrenRefs: Story = {
           <Checkbox {...register('checkbox.3')} label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} />
         </form>
       </Dropdown>
+    );
+  },
+};
+
+export const WithLanguageProvider: Story = {
+  args: {
+    onToggle: action('onToggle'),
+  },
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+import { LanguageLocales } from '@helsenorge/designsystem-react/constants' 
+import LanguageProvider from '@helsenorge/designsystem-react/utils/language'
+...
+
+const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+
+return (
+  <LanguageProvider<LanguageLocales> language={language}>
+    <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} variant="outline">
+      {'Bytt til bokmål'}
+    </Button>
+    <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)} variant="outline">
+      {'Switch to English'}
+    </Button>
+    <Spacer />
+    <span>{\`Valgt språk: \${language}\`}</span>
+    <Spacer />
+    <Dropdown {...args}>
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
+      <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+    </Dropdown>
+  </LanguageProvider>
+);`,
+      },
+    },
+  },
+  render: args => {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} variant="outline">
+          {'Bytt til bokmål'}
+        </Button>
+        <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)} variant="outline">
+          {'Switch to English'}
+        </Button>
+        <Spacer />
+        <span>{`Valgt språk: ${language}`}</span>
+        <Spacer />
+        <Dropdown {...args}>
+          <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
+          <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
+          <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+        </Dropdown>
+      </LanguageProvider>
     );
   },
 };

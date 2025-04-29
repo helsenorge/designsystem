@@ -7,6 +7,7 @@
 
 .dropdown {
   position: relative;
+  width: fit-content;
 
   &__label {
     @include sr-only;

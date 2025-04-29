@@ -301,8 +301,8 @@
       color: palette.$neutral600;
 
       &:hover {
-        box-shadow: 0 0 0 spacers.getSpacer(4xs);
-        background-color: palette.$neutral50;
+        box-shadow: none;
+        background-color: transparent;
       }
     }
   }
@@ -332,7 +332,7 @@
   }
 
   &--disabled:checked::before {
-    background-color: transparent;
+    background-color: $neutral600;
   }
 
   &__large {

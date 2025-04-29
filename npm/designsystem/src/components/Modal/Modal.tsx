@@ -8,6 +8,7 @@ import { useIsVisible } from '../../hooks/useIsVisible';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import { uuid } from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
@@ -76,6 +77,8 @@ export interface ModalProps {
   printable?: boolean;
   /** If disabled, clicking escape or outside the modal will not close it */
   disableCloseEvents?: boolean;
+  /** Aria role used for the Modal. Default is dialog */
+  role?: 'dialog' | 'alertdialog';
 }
 
 const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => {
@@ -113,7 +116,8 @@ const Modal: React.FC<ModalProps> = props => {
     titleId = uuid(),
     className = '',
     size = ModalSize.large,
-    zIndex = ZIndex.Modal,
+    zIndex = ZIndex.OverlayScreen,
+    role = 'dialog',
   } = props;
 
   const topContent = React.useRef<HTMLDivElement>(null);
@@ -138,14 +142,6 @@ const Modal: React.FC<ModalProps> = props => {
       event.stopPropagation();
       props.onClose();
     }
-  }
-
-  function disableBodyScroll(): void {
-    document.body.style.overflow = 'hidden';
-  }
-
-  function enableBodyScroll(): void {
-    document.body.style.removeProperty('overflow');
   }
 
   /* Displays a full window size modal with image */
@@ -200,7 +196,7 @@ const Modal: React.FC<ModalProps> = props => {
         style={{ zIndex }}
       >
         <div className={styles.align}>
-          <div className={dialogClasses} role="dialog" aria-modal="true" tabIndex={-1} {...ariaLabelAttributes} ref={dialogRef}>
+          <div className={dialogClasses} role={role} aria-modal="true" tabIndex={-1} {...ariaLabelAttributes} ref={dialogRef}>
             <div
               className={cn(styles['modal__shadow'], styles['modal__shadow--top'], {
                 [styles['modal__shadow--show']]: !topContentVisible && contentIsScrollable,
