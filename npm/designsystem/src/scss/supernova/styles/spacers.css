@@ -1,0 +1,24 @@
+/* stylelint-disable color-hex-length */
+/* stylelint-disable comment-empty-line-before */
+/* stylelint-disable scss/operator-no-unspaced */
+
+/**
+ * This file was generated automatically by Supernova.io and should not be changed manually.
+ * To modify the format or content of this file, please contact your design system team. 
+ */
+
+:root {
+  --core-space-4xs: 0.125rem;
+  --core-space-3xs: 0.25rem;
+  --core-space-2xs: 0.5rem;
+  --core-space-xs: 0.75rem;
+  --core-space-s: 1rem;
+  --core-space-m: 1.5rem;
+  --core-space-l: 2rem;
+  --core-space-xl: 3rem;
+  --core-space-2xl: 4rem;
+  --core-space-3xl: 5rem;
+  --core-space-4xl: 6rem;
+  --core-space-5xl: 7rem;
+  --core-space-6xl: 8rem;
+}
