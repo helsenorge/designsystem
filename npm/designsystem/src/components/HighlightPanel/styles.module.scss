@@ -160,6 +160,7 @@
 
   &__icon {
     display: inline-flex;
+    gap: spacers.getSpacer(xs);
     margin-right: spacers.getSpacer(s);
     margin-bottom: spacers.getSpacer(2xs);
 

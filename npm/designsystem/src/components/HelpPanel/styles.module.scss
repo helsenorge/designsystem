@@ -1,5 +1,6 @@
-@use '../../scss/palette' as palette;
+@import '../../scss/supernova/styles/colors.css';
 
 .help-panel {
-  background-color: palette.$plum50 !important;
+  background-color: var(--core-color-plum-50) !important;
+  border: 1px solid var(--core-color-plum-400) !important;
 }
