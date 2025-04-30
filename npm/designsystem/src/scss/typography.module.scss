@@ -132,6 +132,14 @@ import designsystemtypography from './scss/typography.scss'
   @include fonts.definition-list-data;
 }
 
+.help-text {
+  @include fonts.help-text;
+}
+
+.help-trigger-text {
+  @include fonts.help-trigger-text;
+}
+
 .anchorlink-wrapper {
   a {
     display: inline;

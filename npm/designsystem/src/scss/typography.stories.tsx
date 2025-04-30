@@ -121,6 +121,14 @@ export const DefinitionListData: Story = {
   render: args => <div className={designsystemtypography['definition-list-data']}>{args.tekst}</div>,
 };
 
+export const HelpText: Story = {
+  render: args => <div className={designsystemtypography['help-text']}>{args.tekst}</div>,
+};
+
+export const HelpTriggerText: Story = {
+  render: args => <div className={designsystemtypography['help-trigger-text']}>{args.tekst}</div>,
+};
+
 export const AnchorlinkWrapper: Story = {
   render: args => (
     <div className={designsystemtypography['anchorlink-wrapper']}>
