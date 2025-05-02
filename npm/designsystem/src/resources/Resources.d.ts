@@ -11,4 +11,22 @@ export type HNDesignsystemDropdown = {
   closeText: string;
 };
 
+export type HNDesignsystemPanel = {
+  /**
+   * Se detaljer
+   */
+  expandButtonOpen: string;
+  /**
+   * Skjul detaljerr
+   */
+  expandButtonClose: string;
+};
+
+export type HNDesignsystemClose = {
+  /**
+   * Lukk
+   */
+  ariaLabel: string;
+};
+
 /* eslint:enable */
