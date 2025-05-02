@@ -63,6 +63,21 @@ export const Default: Story = {
   },
 };
 
+export const WithOneliner: Story = {
+  render: args => {
+    const controllerRef = useRef<SVGSVGElement>(null);
+
+    return (
+      <>
+        <Icon ref={controllerRef} svgIcon={HelpSign} />
+        <PopOver {...args} controllerRef={controllerRef}>
+          <div style={{ padding: '0.5rem 1rem' }}>{'Hello from small'}</div>
+        </PopOver>
+      </>
+    );
+  },
+};
+
 export const WithText: Story = {
   render: args => {
     const controllerRef = useRef<SVGSVGElement>(null);
