@@ -7,7 +7,7 @@
   $popover: &;
 
   width: max-content;
-  max-width: 23.3125rem;
+  max-width: min(23.3125rem, 100vw);
   text-align: start;
   background-color: var(--core-color-white);
   z-index: 3;
