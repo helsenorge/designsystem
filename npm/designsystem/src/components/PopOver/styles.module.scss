@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use '../../scss/spacers' as spacers;
-@use '../../scss/font-settings' as font-settings;
+@use '../../scss/font-mixins' as fonts;
 @import '../../scss/supernova/styles/colors.css';
 
 .popover {
@@ -9,12 +9,11 @@
   width: max-content;
   max-width: 23.3125rem;
   text-align: start;
-  font-family: inherit;
-  font-size: font-settings.$font-size-sm;
-  line-height: font-settings.$lineheight-size-sm;
   background-color: var(--core-color-white);
   z-index: 3;
-  border: 1px solid var(--core-color-neutral-600);
+  border: 1px solid var(--color-base-border-onlight);
   border-radius: 4px;
   filter: drop-shadow(0 4px 16px rgba(0 0 0 / 30%));
+
+  @include fonts.help-text;
 }

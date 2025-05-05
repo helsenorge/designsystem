@@ -10,7 +10,6 @@ import {
   useDismiss,
   useFloating,
   useInteractions,
-  useRole,
   FloatingArrow,
   arrow,
   hide,
@@ -28,7 +27,9 @@ export enum PopOverVariant {
   positionabove = 'positionabove',
 }
 
-export type PopOverRole = 'tooltip';
+export type PopOverRole = 'dialog' | 'tooltip';
+
+export type PopOverPlacement = Placement;
 
 export interface PopOverProps {
   /** Id of the PopOver */
@@ -37,16 +38,20 @@ export interface PopOverProps {
   children: React.ReactNode;
   /** Ref for the element the PopOver is placed upon */
   controllerRef: React.RefObject<HTMLElement | SVGSVGElement>;
-  /** Show the popover. Only applies when role=tooltip. Default: false. */
+  /** Ref for the element the PopOver is placed upon */
+  popOverRef?: React.RefObject<HTMLDivElement>;
+  /** @deprecated Show the popover. Only applies when role=tooltip. Default: false. */
   show?: boolean;
   /** Adds custom classes to the element. */
   className?: string;
-  /** Adds custom classes to the arrow element. */
+  /** @deprecated Adds custom classes to the arrow element. */
   arrowClassName?: string;
   /** @deprecated Determines the placement of the popover. Default: automatic positioning. */
   variant?: keyof typeof PopOverVariant;
   /** Sets the placement of the popover relative to the trigger. */
-  placement?: Placement;
+  placement?: PopOverPlacement;
+  /** Sets role of the PopOver element */
+  role?: PopOverRole;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Overrides the default z-index of PopOver */
@@ -63,6 +68,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>(p
     placement,
     testId,
     zIndex = ZIndex.PopOver,
+    role = 'dialog',
   } = props;
 
   const placementProp = placement ?? (variant === PopOverVariant.positionabove ? 'top' : 'bottom');
@@ -79,9 +85,8 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>(p
 
   const click = useClick(context);
   const dismiss = useDismiss(context);
-  const role = useRole(context);
 
-  const { getFloatingProps } = useInteractions([click, dismiss, role]);
+  const { getFloatingProps } = useInteractions([click, dismiss]);
 
   return (
     <FloatingFocusManager context={context} modal={false}>
@@ -91,6 +96,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>(p
         style={{ ...floatingStyles, visibility: middlewareData.hide?.referenceHidden ? 'hidden' : 'visible', zIndex: zIndex }}
         className={classNames(styles.popover, className)}
         {...getFloatingProps()}
+        role={role}
         data-testid={testId}
         data-analyticsid={AnalyticsId.PopOver}
       >
@@ -99,7 +105,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>(p
           ref={arrowRef}
           context={context}
           fill={'var(--core-color-white)'}
-          stroke={'var(--core-color-neutral-600)'}
+          stroke={'var(--color-base-border-onlight)'}
           strokeWidth={1}
         />
       </div>
