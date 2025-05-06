@@ -265,3 +265,22 @@ export const PrintModal: Story = {
     </>
   ),
 };
+
+export const FooterContent: Story = {
+  render: args => {
+    return (
+      <Modal
+        {...args}
+        secondaryButtonText=""
+        footerContent={
+          <>
+            <Button>{'Custom 1'}</Button>
+            <Button variant="outline">{'Custom 2'}</Button>
+          </>
+        }
+      >
+        {args.children}
+      </Modal>
+    );
+  },
+};
