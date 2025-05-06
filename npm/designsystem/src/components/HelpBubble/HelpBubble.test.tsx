@@ -143,7 +143,11 @@ describe('Gitt at HelpBubble skal vises', (): void => {
 describe('Gitt at HelpBubble ikke skal vises', (): void => {
   describe('Når den rendres', (): void => {
     it('Så vises HelpBubble ikke', (): void => {
-      render(<HelpBubleWithController testId="test01">{'Test tekst'}</HelpBubleWithController>);
+      render(
+        <HelpBubleWithController showBubble={false} testId="test01">
+          {'Test tekst'}
+        </HelpBubleWithController>
+      );
 
       const bubble = screen.queryByTestId('test01');
       const child = screen.queryByText('Test tekst');

@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 
-import { screen, render, waitFor } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 
-import PopOver, { PopOverProps, PopOverVariant } from './PopOver';
+import PopOver, { PopOverProps } from './PopOver';
 
 const { dummyDomRect } = vi.hoisted(() => {
   return {
@@ -53,40 +53,6 @@ describe('Gitt at PopOver skal vises', (): void => {
       expect(bubble).toHaveClass('popover');
 
       expect(container).toMatchSnapshot();
-    });
-  });
-
-  describe('Når variant er positionbelow', (): void => {
-    it('Så vises PopOver riktig', async (): Promise<void> => {
-      render(
-        <PopOverWithController variant={PopOverVariant.positionbelow} testId="test01">
-          {'Test tekst'}
-        </PopOverWithController>
-      );
-
-      const bubble = screen.getByTestId('test01');
-      // eslint-disable-next-line testing-library/no-node-access
-      const arrow = bubble.nextSibling;
-
-      expect(bubble).toHaveClass('popover');
-      await waitFor(() => expect(arrow).toHaveClass('popover__arrow popover__arrow--over'));
-    });
-  });
-
-  describe('Når variant er positionabove', (): void => {
-    it('Så vises PopOver riktig', async (): Promise<void> => {
-      render(
-        <PopOverWithController variant={PopOverVariant.positionabove} testId="test01">
-          {'Test tekst'}
-        </PopOverWithController>
-      );
-
-      const bubble = screen.getByTestId('test01');
-      // eslint-disable-next-line testing-library/no-node-access
-      const arrow = bubble.nextSibling;
-
-      expect(bubble).toHaveClass('popover');
-      await waitFor(() => expect(arrow).toHaveClass('popover__arrow popover__arrow--under'));
     });
   });
 });

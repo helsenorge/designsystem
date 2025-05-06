@@ -2,14 +2,19 @@
 
 exports[`Gitt at HelpBubble skal vises > Når den skal vises vanlig > Så vises HelpBubble som vanlig 1`] = `
 <div>
-  <span>
+  <span
+    data-floating-ui-inert=""
+  >
     Test
   </span>
   <div
-    class="popover popover--visible"
+    class="popover"
     data-analyticsid="pop-over"
+    data-floating-ui-focusable=""
     data-testid="test01"
-    style="z-index: 11000; right: 12px; top: 16px; width: -24px;"
+    role="dialog"
+    style="position: absolute; left: 0px; top: 0px; visibility: visible; z-index: 11000; transform: translate(0px, 0px);"
+    tabindex="-1"
   >
     <div
       class="helpbubble"
@@ -44,15 +49,41 @@ exports[`Gitt at HelpBubble skal vises > Når den skal vises vanlig > Så vises 
         </button>
       </div>
       <div
-        class="helpbubble__content helpbubble__content--close"
+        class="helpbubble__content"
       >
         Test tekst
       </div>
     </div>
+    <svg
+      aria-hidden="true"
+      fill="var(--core-color-white)"
+      height="14"
+      style="position: absolute; pointer-events: none; bottom: 100%; transform: rotate(180deg);"
+      viewBox="0 0 14 14"
+      width="16"
+    >
+      <path
+        clip-path="url(#:r1:)"
+        d="M0,0 H14 L7,7 Q7,7 7,7 Z"
+        fill="none"
+        stroke="var(--color-base-border-onlight)"
+        stroke-width="3"
+      />
+      <path
+        d="M0,0 H14 L7,7 Q7,7 7,7 Z"
+        stroke="var(--core-color-white)"
+      />
+      <clippath
+        id=":r1:"
+      >
+        <rect
+          height="14"
+          width="16"
+          x="-1"
+          y="1"
+        />
+      </clippath>
+    </svg>
   </div>
-  <div
-    class="popover__arrow popover__arrow--over popover__arrow--visible"
-    style="z-index: 11000; right: 24px; top: 0px;"
-  />
 </div>
 `;
