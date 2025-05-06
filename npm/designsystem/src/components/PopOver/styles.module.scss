@@ -2,6 +2,7 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/font-mixins' as fonts;
 @import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
 
 .popover {
   $popover: &;
@@ -14,6 +15,7 @@
   border: 1px solid var(--color-base-border-onlight);
   border-radius: 4px;
   filter: drop-shadow(0 4px 16px rgba(0 0 0 / 30%));
+  padding: var(--core-space-s);
 
   @include fonts.help-text;
 }

@@ -34,7 +34,7 @@ export type PopOverPlacement = Placement;
 export interface PopOverProps {
   /** Id of the PopOver */
   id?: string;
-  /** Content shown inside PopOver. Note that if role="tooltip", you must not include interactive/focusable elements. */
+  /** Content shown inside PopOver. */
   children: React.ReactNode;
   /** Ref for the element the PopOver is placed upon */
   controllerRef: React.RefObject<HTMLElement | SVGSVGElement>;
@@ -75,7 +75,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>(p
 
   const arrowRef = useRef(null);
   const { refs, floatingStyles, context, middlewareData } = useFloating({
-    middleware: [offset(8), flip(), shift(), hide(), arrow({ element: arrowRef })],
+    middleware: [offset(10), flip(), shift(), hide(), arrow({ element: arrowRef })],
     placement: placementProp,
     whileElementsMounted: autoUpdate,
     elements: {

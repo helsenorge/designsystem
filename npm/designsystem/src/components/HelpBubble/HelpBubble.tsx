@@ -24,6 +24,8 @@ export interface HelpBubbleProps extends PopOverProps {
   className?: string;
   /** @deprecated Hide the close button in the bubble. Close button is never rendered if role="tooltip". */
   noCloseButton?: boolean;
+  /** @deprecated Show the bubble. Default: false. */
+  showBubble?: boolean;
   /** Visible text on the link. */
   linkText?: string;
   /** Url the link leads to */
@@ -56,11 +58,12 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     helpBubbleId,
     controllerRef,
     testId,
+    showBubble = true,
   } = props;
 
   const helpBubbleClasses = classNames(styles.helpbubble, className);
 
-  const contentClasses = classNames(styles.helpbubble__content, styles['helpbubble__content--close']);
+  const contentClasses = classNames(styles.helpbubble__content);
 
   const renderLink = (): JSX.Element | undefined => {
     if (onLinkClick && linkText) {
@@ -87,15 +90,17 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
   };
 
   return (
-    <PopOver id={helpBubbleId} placement={placement} controllerRef={controllerRef} role={'dialog'} ref={ref} testId={testId}>
-      <div className={helpBubbleClasses} data-analyticsid={AnalyticsId.HelpBubble}>
-        {renderCloseButton()}
-        <div className={contentClasses}>
-          {children}
-          {renderLink()}
+    showBubble && (
+      <PopOver id={helpBubbleId} placement={placement} controllerRef={controllerRef} role={'dialog'} ref={ref} testId={testId}>
+        <div className={helpBubbleClasses} data-analyticsid={AnalyticsId.HelpBubble}>
+          {renderCloseButton()}
+          <div className={contentClasses}>
+            {children}
+            {renderLink()}
+          </div>
         </div>
-      </div>
-    </PopOver>
+      </PopOver>
+    )
   );
 });
 

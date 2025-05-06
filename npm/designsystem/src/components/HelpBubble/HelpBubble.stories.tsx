@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
-import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
+import HelpBubble from './HelpBubble';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
@@ -33,7 +33,6 @@ const meta = {
   args: {
     controllerRef: undefined,
     children: 'Dette er en HelpBubble.',
-    showBubble: true,
   },
   argTypes: {
     children: {
@@ -42,9 +41,9 @@ const meta = {
     showBubble: {
       control: 'boolean',
     },
-    variant: {
+    placement: {
       control: 'select',
-      options: HelpBubbleVariant,
+      options: ['top', 'bottom'],
     },
   },
 } satisfies Meta<typeof HelpBubble>;
@@ -58,12 +57,12 @@ export const Default: Story = {
     onClose: action('Bubble closed'),
   },
   render: args => {
-    const controllerRef = useRef<HTMLButtonElement>(null);
+    const controllerRef = useRef<HTMLDivElement>(null);
 
     return (
       <>
-        <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
-        <HelpBubble {...args} controllerRef={controllerRef}>
+        <div style={{ height: '1px', width: '2rem' }} ref={controllerRef} />
+        <HelpBubble {...args} controllerRef={controllerRef} showBubble={true}>
           {args.children}
         </HelpBubble>
       </>
@@ -84,7 +83,7 @@ export const LongText: Story = {
         <span>{loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
-          <HelpBubble {...args} controllerRef={controllerRef}>
+          <HelpBubble {...args} controllerRef={controllerRef} showBubble={true}>
             {args.children}
           </HelpBubble>
         </div>
@@ -109,7 +108,7 @@ export const Link: Story = {
         <span>{loremText + loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
           <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
-          <HelpBubble {...args} controllerRef={controllerRef}>
+          <HelpBubble {...args} controllerRef={controllerRef} showBubble={true}>
             {args.children}
           </HelpBubble>
         </div>
@@ -164,36 +163,6 @@ export const OnText: Story = {
     );
   },
 };
-export const AsTooltip: Story = {
-  args: {
-    role: 'tooltip',
-  },
-  render: args => {
-    const controllerRef = useRef<HTMLButtonElement>(null);
-    const bubbleRef = useRef<HTMLDivElement>(null);
-    const [isOpen, setIsOpen] = useState(false);
-    useOutsideEvent(bubbleRef, () => isOpen && setIsOpen(false));
-
-    return (
-      <>
-        {loremText + loremText}
-        <DictionaryTrigger
-          ref={controllerRef}
-          selected={isOpen}
-          onClick={(): void => setIsOpen(true)}
-          onFocus={(): void => setIsOpen(true)}
-          onBlur={(): void => setIsOpen(false)}
-        >
-          {'Helsebiblioteket'}
-        </DictionaryTrigger>{' '}
-        <HelpBubble ref={bubbleRef} {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
-          {args.children}
-        </HelpBubble>
-        {loremText + loremText}
-      </>
-    );
-  },
-};
 
 export const WithHelpQuestion: Story = {
   render: args => {
@@ -228,25 +197,25 @@ export const HorizontalScroll: Story = {
         <Table breakpointConfig={{ variant: ResponsiveTableVariant.horizontalscroll, breakpoint: 'md' }}>
           <TableHead category={HeaderCategory.normal}>
             <TableRow key="head">
-              <TableHeadCell>Fastlege</TableHeadCell>
-              <TableHeadCell>Alder</TableHeadCell>
-              <TableHeadCell>Kjønn</TableHeadCell>
-              <TableHeadCell>Fastlegekontor</TableHeadCell>
-              <TableHeadCell>Adresse</TableHeadCell>
-              <TableHeadCell>Ledige plasser</TableHeadCell>
-              <TableHeadCell>Antall på venteliste</TableHeadCell>
-              <TableHeadCell>Handlinger</TableHeadCell>
+              <TableHeadCell>{'Fastlege'}</TableHeadCell>
+              <TableHeadCell>{'Alder'}</TableHeadCell>
+              <TableHeadCell>{'Kjønn'}</TableHeadCell>
+              <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+              <TableHeadCell>{'Adresse'}</TableHeadCell>
+              <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+              <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
+              <TableHeadCell>{'Handlinger'}</TableHeadCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-              <TableCell dataLabel="Alder">35 år</TableCell>
-              <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-              <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-              <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-              <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-              <TableCell dataLabel="Antall på venteliste">53</TableCell>
+              <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+              <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+              <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+              <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+              <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+              <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
               <TableCell dataLabel="Handlinger">
                 <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
                 <HelpBubble {...args} controllerRef={controllerRef}>
@@ -255,117 +224,39 @@ export const HorizontalScroll: Story = {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-              <TableCell dataLabel="Alder">35 år</TableCell>
-              <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-              <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-              <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-              <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-              <TableCell dataLabel="Antall på venteliste">53</TableCell>
+              <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+              <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+              <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+              <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+              <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+              <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
               <TableCell dataLabel="Handlinger">{''}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-              <TableCell dataLabel="Alder">35 år</TableCell>
-              <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-              <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-              <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-              <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-              <TableCell dataLabel="Antall på venteliste">53</TableCell>
+              <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+              <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+              <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+              <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+              <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+              <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
               <TableCell dataLabel="Handlinger">{''}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-              <TableCell dataLabel="Alder">35 år</TableCell>
-              <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-              <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-              <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-              <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-              <TableCell dataLabel="Antall på venteliste">53</TableCell>
+              <TableCell dataLabel="Fastlege">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="Alder">{'35 år'}</TableCell>
+              <TableCell dataLabel="Kjønn">{'Kvinne'}</TableCell>
+              <TableCell dataLabel="Fastlegekontor">{'Regnbuen Legekontor'}</TableCell>
+              <TableCell dataLabel="Adresse">{'Vestre Kjennervei 2B'}</TableCell>
+              <TableCell dataLabel="Ledige plasser">{'0 av 1000'}</TableCell>
+              <TableCell dataLabel="Antall på venteliste">{'53'}</TableCell>
               <TableCell dataLabel="Handlinger">{''}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
         <p>{longLoremText}</p>
       </>
-    );
-  },
-};
-
-export const CenteredOverflow: Story = {
-  render: args => {
-    const controllerRef = useRef<HTMLButtonElement>(null);
-
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-8 offset-2">
-            <p>{longLoremText}</p>
-            <Table breakpointConfig={{ variant: ResponsiveTableVariant.centeredoverflow, breakpoint: 'xl' }}>
-              <TableHead category={HeaderCategory.normal}>
-                <TableRow key="head">
-                  <TableHeadCell>Fastlege</TableHeadCell>
-                  <TableHeadCell>Alder</TableHeadCell>
-                  <TableHeadCell>Kjønn</TableHeadCell>
-                  <TableHeadCell>Fastlegekontor</TableHeadCell>
-                  <TableHeadCell>Adresse</TableHeadCell>
-                  <TableHeadCell>Ledige plasser</TableHeadCell>
-                  <TableHeadCell>Antall på venteliste</TableHeadCell>
-                  <TableHeadCell>Handlinger</TableHeadCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-                  <TableCell dataLabel="Alder">35 år</TableCell>
-                  <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-                  <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-                  <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">53</TableCell>
-                  <TableCell dataLabel="Handlinger">
-                    <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
-                    <HelpBubble {...args} onClose={action('Bubble closed')} controllerRef={controllerRef}>
-                      <div>{args.children}</div>
-                    </HelpBubble>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-                  <TableCell dataLabel="Alder">35 år</TableCell>
-                  <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-                  <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-                  <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">53</TableCell>
-                  <TableCell dataLabel="Handlinger">{''}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-                  <TableCell dataLabel="Alder">35 år</TableCell>
-                  <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-                  <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-                  <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">53</TableCell>
-                  <TableCell dataLabel="Handlinger">{''}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell dataLabel="Fastlege">Line Danser</TableCell>
-                  <TableCell dataLabel="Alder">35 år</TableCell>
-                  <TableCell dataLabel="Kjønn">Kvinne</TableCell>
-                  <TableCell dataLabel="Fastlegekontor">Regnbuen Legekontor</TableCell>
-                  <TableCell dataLabel="Adresse">Vestre Kjennervei 2B</TableCell>
-                  <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
-                  <TableCell dataLabel="Antall på venteliste">53</TableCell>
-                  <TableCell dataLabel="Handlinger">{''}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-            <p>{longLoremText}</p>
-          </div>
-        </div>
-      </div>
     );
   },
 };

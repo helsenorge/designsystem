@@ -56,7 +56,7 @@ export const Default: Story = {
       <>
         <Icon ref={controllerRef} svgIcon={HelpSign} />
         <PopOver {...args} controllerRef={controllerRef}>
-          <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+          {args.children}
         </PopOver>
       </>
     );
@@ -71,7 +71,7 @@ export const WithOneliner: Story = {
       <>
         <Icon ref={controllerRef} svgIcon={HelpSign} />
         <PopOver {...args} controllerRef={controllerRef}>
-          <div style={{ padding: '0.5rem 1rem' }}>{'Hello from small'}</div>
+          {'Hello from small'}
         </PopOver>
       </>
     );
@@ -88,7 +88,7 @@ export const WithText: Story = {
         <div style={{ position: 'relative', display: 'inline' }}>
           <Icon ref={controllerRef} svgIcon={HelpSign} />
           <PopOver {...args} controllerRef={controllerRef}>
-            <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+            {args.children}
           </PopOver>
         </div>
         <span>{loremText + loremText}</span>
@@ -111,7 +111,7 @@ export const Toggle: Story = {
           </Button>
           {value && (
             <PopOver {...args} controllerRef={controllerRef}>
-              <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+              {args.children}
             </PopOver>
           )}
         </div>
@@ -131,41 +131,41 @@ export const HorizontalScroll: Story = {
         <Table breakpointConfig={{ breakpoint: 'xl', variant: ResponsiveTableVariant.horizontalscroll }}>
           <TableHead category={HeaderCategory.normal}>
             <TableRow key="head">
-              <TableHeadCell>Fastlege</TableHeadCell>
-              <TableHeadCell>Fastlegekontor</TableHeadCell>
-              <TableHeadCell>Ledige plasser</TableHeadCell>
-              <TableHeadCell>Antall på venteliste</TableHeadCell>
+              <TableHeadCell>{'Fastlege'}</TableHeadCell>
+              <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+              <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+              <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell dataLabel="navn">Line Danser</TableCell>
-              <TableCell dataLabel="kontor">Røtvedt</TableCell>
-              <TableCell dataLabel="ledige">1</TableCell>
+              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
+              <TableCell dataLabel="ledige">{'1'}</TableCell>
               <TableCell dataLabel="antall">
                 <Icon ref={controllerRef} svgIcon={HelpSign} />
                 <PopOver {...args} controllerRef={controllerRef}>
-                  <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+                  {args.children}
                 </PopOver>
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="navn">Line Danser</TableCell>
-              <TableCell dataLabel="kontor">Røtvedt</TableCell>
-              <TableCell dataLabel="ledige">1</TableCell>
-              <TableCell dataLabel="antall">200</TableCell>
+              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
+              <TableCell dataLabel="ledige">{'1'}</TableCell>
+              <TableCell dataLabel="antall">{'200'}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="navn">Line Danser</TableCell>
-              <TableCell dataLabel="kontor">Røtvedt</TableCell>
-              <TableCell dataLabel="ledige">1</TableCell>
-              <TableCell dataLabel="antall">200</TableCell>
+              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
+              <TableCell dataLabel="ledige">{'1'}</TableCell>
+              <TableCell dataLabel="antall">{'200'}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell dataLabel="navn">Line Danser</TableCell>
-              <TableCell dataLabel="kontor">Røtvedt</TableCell>
-              <TableCell dataLabel="ledige">1</TableCell>
-              <TableCell dataLabel="antall">200</TableCell>
+              <TableCell dataLabel="navn">{'Line Danser'}</TableCell>
+              <TableCell dataLabel="kontor">{'Røtvedt'}</TableCell>
+              <TableCell dataLabel="ledige">{'1'}</TableCell>
+              <TableCell dataLabel="antall">{'200'}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
