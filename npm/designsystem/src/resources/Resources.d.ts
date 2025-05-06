@@ -9,6 +9,28 @@ export type HNDesignsystemDropdown = {
    * Lukk
    */
   closeText: string;
+  /**
+   * testtest
+   */
+  testtest: string;
+};
+
+export type HNDesignsystemPanel = {
+  /**
+   * Se detaljer
+   */
+  expandButtonOpen: string;
+  /**
+   * Skjul detaljerr
+   */
+  expandButtonClose: string;
+};
+
+export type HNDesignsystemClose = {
+  /**
+   * Lukk
+   */
+  ariaLabel: string;
 };
 
 /* eslint:enable */
