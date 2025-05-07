@@ -4,12 +4,11 @@ import classNames from 'classnames';
 import { AnimatePresence, useAnimate, usePresence } from 'motion/react';
 
 import { AnalyticsId, KeyboardEventKey, ZIndex } from '../../constants';
-import { useBreakpoint } from '../../hooks/useBreakpoint';
 import useFocusTrap from '../../hooks/useFocusTrap';
+import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
-import { breakpoints } from '../../theme/grid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
@@ -89,8 +88,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const breakpoint = useBreakpoint();
-  const isMobile = breakpoint < breakpoints.md;
+  const isMobile = useIsMobileBreakpoint();
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
