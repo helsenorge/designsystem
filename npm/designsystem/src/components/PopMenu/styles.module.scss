@@ -108,6 +108,7 @@ html :focus > .pop-menu-button {
 
 .pop-menu__pop-over {
   width: 20.875rem;
+  padding: 0;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     width: 26.125rem;
