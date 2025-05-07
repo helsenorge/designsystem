@@ -67,6 +67,7 @@ const meta = {
       control: 'select',
       options: ['dialog', 'alertdialog'],
     },
+    noCloseButton: { control: 'boolean' },
   },
 } satisfies Meta<typeof Modal>;
 

@@ -46,6 +46,8 @@ export interface InnerDrawerProps {
   footerContent?: React.ReactNode;
   /** Main content of the drawer */
   children?: React.ReactNode;
+  /** Hides the close button */
+  noCloseButton?: boolean;
   /** Primary CTA callback */
   onPrimaryAction?: () => void;
   /** Text for primary CTA button if you want a default CTA button rendered (instead of `footerContent`) */
@@ -181,7 +183,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
               {title}
             </Title>
-            <Close ariaLabel={ariaLabelCloseBtn} onClick={onRequestClose} small={isMobile} />
+            {!props.noCloseButton && <Close ariaLabel={ariaLabelCloseBtn} onClick={onRequestClose} small={isMobile} />}
           </div>
           <div
             className={styles.drawer__content}
