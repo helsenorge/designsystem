@@ -12,7 +12,7 @@ import HelpSign from '../Icons/HelpSign';
 import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, ResponsiveTableVariant, HeaderCategory } from '../Table';
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/PopOver',
+  title: '@helsenorge/designsystem-react/Components/_Internal/PopOver',
   component: PopOver,
   tags: ['not-supernova'],
   parameters: {
@@ -37,9 +37,9 @@ const meta = {
     children: {
       control: 'text',
     },
-    variant: {
+    placement: {
       control: 'select',
-      options: PopOverVariant,
+      options: ['top', 'bottom'],
     },
   },
 } satisfies Meta<typeof PopOver>;

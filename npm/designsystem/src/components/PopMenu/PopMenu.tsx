@@ -60,7 +60,6 @@ export interface PopMenuProps {
 export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
-  const popOverRef = useRef<HTMLDivElement>(null);
   const outerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const {
@@ -98,13 +97,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   const renderChildren = (): React.ReactElement | undefined => {
     if (isComponent<LinkListProps>(children, LinkList)) {
       return (
-        <PopOver
-          testId={popOverTestId}
-          className={classNames(styles['pop-menu__pop-over'], popOverClassName)}
-          arrowClassName={styles['pop-menu__pop-over-arrow']}
-          controllerRef={iconRef}
-          popOverRef={popOverRef}
-        >
+        <PopOver testId={popOverTestId} className={classNames(styles['pop-menu__pop-over'], popOverClassName)} controllerRef={iconRef}>
           {React.Children.map(children, child =>
             React.cloneElement(child, {
               children: React.Children.map(child.props.children, child =>

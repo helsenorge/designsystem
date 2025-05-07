@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import HelpTooltipWord from './HelpTooltipWord';
 import { useDelayedState } from '../../hooks/useDelayedState';
 import { useUuid } from '../../hooks/useUuid';
-import HelpBubble from '../HelpBubble';
+import PopOver from '../PopOver';
 
 const HOVER_DELAY_MS = 200;
 
@@ -91,9 +91,9 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({ children, description,
       >
         {children}
       </HelpTooltipWord>
-      <HelpBubble helpBubbleId={helpBubbleId} controllerRef={wordRef} role="tooltip" showBubble={showTooltip || keepOpen}>
+      <PopOver id={helpBubbleId} controllerRef={wordRef} role="tooltip" show={showTooltip || keepOpen}>
         {description}
-      </HelpBubble>
+      </PopOver>
     </>
   );
 };

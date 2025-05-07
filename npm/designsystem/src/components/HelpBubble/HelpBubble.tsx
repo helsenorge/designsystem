@@ -74,9 +74,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
 
   const helpBubbleClasses = classNames(styles.helpbubble, className);
 
-  const contentClasses = classNames(styles.helpbubble__content, {
-    [styles['helpbubble__content--close']]: !noCloseButton && !isTooltip,
-  });
+  const contentClasses = classNames(styles.helpbubble__content);
 
   const renderLink = (): JSX.Element | undefined => {
     // Det er ikke tillatt med interaktive/fokuserbare elementer i role="tooltip"
