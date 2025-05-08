@@ -31,11 +31,7 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: ['medium', 'large'],
-    },
-    onColor: {
-      control: 'select',
-      options: ['onlight', 'ondark'],
+      options: ['medium', 'large', 'xlarge'],
     },
     selected: {
       control: 'boolean',
@@ -52,24 +48,29 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    ariaLabel: 'test',
+  },
+
+  render: args => <HelpTrigger {...args} onClick={action('Trigger clicked!')} />,
+};
+
+export const Sizes: Story = {
   render: args => (
     <>
-      {args.onColor === 'ondark' ? (
-        <div style={{ backgroundColor: '#6a2abf', padding: '2rem' }}>
-          <HelpTrigger {...args} onClick={action('Trigger clicked!')} />
-        </div>
-      ) : (
-        <HelpTrigger {...args} onClick={action('Trigger clicked!')} />
-      )}
+      <HelpTrigger {...args} onClick={action('Trigger clicked!')} size="medium" />
+      <HelpTrigger {...args} onClick={action('Trigger clicked!')} size="large" />
+      <HelpTrigger {...args} onClick={action('Trigger clicked!')} size="xlarge" />
     </>
   ),
 };
 
-export const OnDark: Story = {
+export const Weights: Story = {
   render: args => (
-    <div style={{ backgroundColor: '#6a2abf', padding: '2rem' }}>
-      <HelpTrigger {...args} onClick={action('Trigger clicked!')} onColor="ondark" />
-    </div>
+    <>
+      <HelpTrigger {...args} onClick={action('Trigger clicked!')} weight="normal" />
+      <HelpTrigger {...args} onClick={action('Trigger clicked!')} weight="strong" />
+    </>
   ),
 };
 
