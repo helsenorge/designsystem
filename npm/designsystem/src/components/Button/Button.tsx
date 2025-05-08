@@ -4,11 +4,10 @@ import classNames from 'classnames';
 
 import Icon, { IconSize } from './../Icon';
 import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
-import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { useHover } from '../../hooks/useHover';
 import { BaseIconElement, useIcons } from '../../hooks/useIcons';
+import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { getColor } from '../../theme/currys/color';
-import { breakpoints } from '../../theme/grid';
 import { isTest, isProd } from '../../utils/environment';
 import ArrowRight from '../Icons/ArrowRight';
 
@@ -137,12 +136,11 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
   const bothIcons = leftIcon && (rightIcon || arrow) && !onlyIcon;
   const onDark = onColor === 'ondark';
-  const breakpoint = useBreakpoint();
-  const mobile = breakpoint < breakpoints.md;
+  const isMobile = useIsMobileBreakpoint();
   const destructive = concept === 'destructive' && !disabled;
   const outlineVariant = variant === 'outline';
   const borderlessVariant = variant === 'borderless';
-  const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, mobile);
+  const iconColor = getIconColor(variant === 'fill', borderlessVariant, disabled, concept, onDark, isMobile);
   const hasArrow = arrow === 'icon' && !borderlessVariant;
   const large = size === 'large' && !destructive && !borderlessVariant;
   const hasUURightArrow = arrow === 'accessibility-character' && !fluid && !leftIcon && !rightIcon && !hasArrow && borderlessVariant;
@@ -212,15 +210,15 @@ const Button = React.forwardRef(function ButtonForwardedRef(
 
   const renderbuttonContentWrapper = (): JSX.Element => (
     <span className={buttonClasses}>
-      {renderIcon(leftIcon, getLargeIconSize(large, mobile), !onlyIcon ? buttonStyles['button__left-icon'] : undefined)}
+      {renderIcon(leftIcon, getLargeIconSize(large, isMobile), !onlyIcon ? buttonStyles['button__left-icon'] : undefined)}
       {renderButtonContent()}
       {hasArrow
         ? renderIcon(
             <Icon svgIcon={ArrowRight} />,
-            getLargeIconSize(large, mobile),
+            getLargeIconSize(large, isMobile),
             classNames(buttonStyles['button__arrow'], { [buttonStyles['button__arrow--both-icons']]: bothIcons })
           )
-        : renderIcon(rightIcon, getLargeIconSize(large, mobile), buttonStyles['button__right-icon'])}
+        : renderIcon(rightIcon, getLargeIconSize(large, isMobile), buttonStyles['button__right-icon'])}
       {hasUURightArrow && (
         <span style={{ color: iconColor }} className={buttonStyles['button__right-unicode-arrow']} aria-hidden>
           {'  →'}

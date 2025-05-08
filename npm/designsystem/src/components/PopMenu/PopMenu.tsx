@@ -3,11 +3,10 @@ import React, { useRef, useState } from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId, IconSize } from '../../constants';
-import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { useHover } from '../../hooks/useHover';
+import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { getColor } from '../../theme/currys';
-import { breakpoints } from '../../theme/grid';
 import { isComponent } from '../../utils/component';
 import Icon, { SvgIcon } from '../Icon';
 import { IconName } from '../Icons/IconNames';
@@ -79,15 +78,14 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   const buttonClasses = classNames(styles['pop-menu-button'], {
     [styles[`pop-menu-button--${popMenuVariant}`]]: popMenuVariant,
   });
-  const breakpoint = useBreakpoint();
-  const mobile = breakpoint < breakpoints.md;
+  const isMobile = useIsMobileBreakpoint();
 
   useOutsideEvent(outerRef, () => {
     setIsOpen(false);
   });
 
   const { isHovered: triggerButtonIsHovered } = useHover(triggerButtonRef);
-  const mobileIconSize = mobile ? IconSize.XSmall : IconSize.Small;
+  const mobileIconSize = isMobile ? IconSize.XSmall : IconSize.Small;
 
   const handleClick = (cb?: () => void): void => {
     setIsOpen(false);

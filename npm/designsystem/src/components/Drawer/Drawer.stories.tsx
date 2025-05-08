@@ -82,6 +82,7 @@ const meta = {
     titleHtmlMarkup: { control: 'select', options: allTitleTags },
     titleId: { control: 'text' },
     zIndex: { control: 'number' },
+    noCloseButton: { control: 'boolean' },
   },
 } satisfies Meta<typeof Drawer>;
 
