@@ -27,7 +27,7 @@ export enum PopOverVariant {
   positionabove = 'positionabove',
 }
 
-export type PopOverRole = 'tooltip';
+export type PopOverRole = 'tooltip' | 'dialog';
 
 export type PopOverPlacement = 'top' | 'bottom';
 
@@ -56,7 +56,7 @@ export interface PopOverProps {
   zIndex?: number;
 }
 
-const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((props, ref) => {
+const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement | HTMLElement, PopOverProps>((props, ref) => {
   const {
     id,
     children,
@@ -64,13 +64,12 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((
     show = false,
     className = '',
     variant = PopOverVariant.positionautomatic,
-    role,
+    role = 'dialog',
     testId,
     zIndex = ZIndex.PopOver,
     placement,
   } = props;
 
-  const isTooltip = role === 'tooltip';
   const placementProp = placement ?? (variant === PopOverVariant.positionabove ? 'top' : 'bottom');
 
   const arrowRef = useRef(null);
@@ -87,7 +86,8 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((
   const dismiss = useDismiss(context);
 
   const { getFloatingProps } = useInteractions([click, dismiss]);
-  const isVisible = isTooltip ? show : !middlewareData.hide?.referenceHidden;
+
+  const isVisible = show && !middlewareData.hide?.referenceHidden;
 
   const mergedRef = useMergeRefs<HTMLElement | SVGSVGElement>([refs.setFloating, ref]);
 

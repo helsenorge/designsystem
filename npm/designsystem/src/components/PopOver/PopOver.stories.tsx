@@ -28,6 +28,7 @@ const meta = {
     },
   },
   args: {
+    show: true,
     controllerRef: undefined,
     children:
       'Dette er en PopOver. Aliquip aute consectetur eiusmod nisi ullamco aliquip adipisicing cupidatat reprehenderit nulla in Lorem sint.',

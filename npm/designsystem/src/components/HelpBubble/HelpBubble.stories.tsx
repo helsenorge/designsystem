@@ -5,10 +5,8 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
-import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
-import DictionaryTrigger from '../DictionaryTrigger/DictionaryTrigger';
 import HelpQuestion from '../HelpQuestion';
 import HelpTrigger from '../HelpTrigger';
 import Table, { ResponsiveTableVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell, HeaderCategory } from '../Table';
@@ -138,58 +136,6 @@ export const Toggle: Story = {
           </HelpBubble>
         </div>
         <span> {loremText + loremText}</span>
-      </>
-    );
-  },
-};
-
-export const OnText: Story = {
-  render: args => {
-    const controllerRef = useRef<HTMLButtonElement>(null);
-    const bubbleRef = useRef<HTMLDivElement>(null);
-    const [isOpen, setIsOpen] = useState(false);
-    useOutsideEvent(bubbleRef, () => setIsOpen(false));
-
-    return (
-      <>
-        {loremText + loremText}
-        <DictionaryTrigger ref={controllerRef} selected={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
-          {'Helsebiblioteket'}
-        </DictionaryTrigger>{' '}
-        <HelpBubble ref={bubbleRef} {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
-          {args.children}
-        </HelpBubble>
-        {loremText + loremText}
-      </>
-    );
-  },
-};
-export const AsTooltip: Story = {
-  args: {
-    role: 'tooltip',
-  },
-  render: args => {
-    const controllerRef = useRef<HTMLButtonElement>(null);
-    const bubbleRef = useRef<HTMLDivElement>(null);
-    const [isOpen, setIsOpen] = useState(false);
-    useOutsideEvent(bubbleRef, () => isOpen && setIsOpen(false));
-
-    return (
-      <>
-        {loremText + loremText}
-        <DictionaryTrigger
-          ref={controllerRef}
-          selected={isOpen}
-          onClick={(): void => setIsOpen(true)}
-          onFocus={(): void => setIsOpen(true)}
-          onBlur={(): void => setIsOpen(false)}
-        >
-          {'Helsebiblioteket'}
-        </DictionaryTrigger>{' '}
-        <HelpBubble ref={bubbleRef} {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
-          {args.children}
-        </HelpBubble>
-        {loremText + loremText}
       </>
     );
   },
