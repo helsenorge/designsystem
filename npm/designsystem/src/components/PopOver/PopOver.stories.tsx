@@ -56,7 +56,7 @@ export const Default: Story = {
       <>
         <Icon ref={controllerRef} svgIcon={HelpSign} />
         <PopOver {...args} controllerRef={controllerRef}>
-          <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+          {args.children}
         </PopOver>
       </>
     );
@@ -73,7 +73,7 @@ export const WithText: Story = {
         <div style={{ position: 'relative', display: 'inline' }}>
           <Icon ref={controllerRef} svgIcon={HelpSign} />
           <PopOver {...args} controllerRef={controllerRef}>
-            <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+            {args.children}
           </PopOver>
         </div>
         <span>{loremText + loremText}</span>
@@ -96,7 +96,7 @@ export const Toggle: Story = {
           </Button>
           {value && (
             <PopOver {...args} controllerRef={controllerRef}>
-              <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+              {args.children}
             </PopOver>
           )}
         </div>
