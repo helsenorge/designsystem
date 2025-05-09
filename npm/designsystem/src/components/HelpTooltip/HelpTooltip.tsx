@@ -46,4 +46,34 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({ children, description,
   );
 };
 
+/**
+ * @deprecated This context is deprecated and will be removed in a future version. Use the `HelpTooltip` component directly instead.
+ */
+export type HelpTooltipContext = {
+  currentHelpTooltip?: string;
+  setCurrentHelpTooltip?: (id?: string) => void;
+};
+
+const HelpTooltipOpenContext = React.createContext<HelpTooltipContext>({
+  currentHelpTooltip: undefined,
+});
+
+/**
+ * @deprecated This provider is deprecated and will be removed in a future version. Use the `HelpTooltip` component directly instead.
+ */
+interface HelpTooltipOpenProviderProps {
+  children?: React.ReactNode;
+}
+
+/**
+ * @deprecated This provider is deprecated and will be removed in a future version. Use the `HelpTooltip` component directly instead.
+ */
+export const HelpTooltipOpenProvider: React.FC<HelpTooltipOpenProviderProps> = ({ children }) => {
+  const [currentHelpTooltip, setCurrentHelpTooltip] = useState<string>();
+
+  return (
+    <HelpTooltipOpenContext.Provider value={{ currentHelpTooltip, setCurrentHelpTooltip }}>{children}</HelpTooltipOpenContext.Provider>
+  );
+};
+
 export default HelpTooltip;
