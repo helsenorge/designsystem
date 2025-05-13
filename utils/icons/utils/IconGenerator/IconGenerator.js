@@ -12,7 +12,7 @@ class IconGenerator {
   // Henter ut alle ikonnavn, og kategorier fra confluence og legger det inne i filen AdditionalIconInformation.ts
   async main() {
     await this.page.goto(this.url, { waitUntil: 'domcontentloaded' });
-    await this.page.waitForTimeout(40000);
+    await this.page.waitForTimeout(60000);
 
     this.iconGenerator = await this.page.evaluate(() =>
       Array.from(document.querySelectorAll('tbody > tr > td:nth-child(2), td:nth-child(3), td:nth-child(6), td:nth-child(7)')).map(
