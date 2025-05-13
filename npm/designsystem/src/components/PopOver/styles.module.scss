@@ -5,6 +5,7 @@
 @use '../../scss/font-mixins' as fonts;
 @use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
 
 .popover {
   width: max-content;
