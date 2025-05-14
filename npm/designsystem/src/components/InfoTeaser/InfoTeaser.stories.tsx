@@ -4,6 +4,7 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import InfoTeaser from './InfoTeaser';
+import { allTitleTags } from '../../../.storybook/knobs';
 import longLoremText from '../../utils/loremtext';
 import HandWaving from '../Icons/HandWaving';
 
@@ -26,6 +27,18 @@ const meta = {
   argTypes: {
     title: {
       control: 'text',
+    },
+    htmlMarkup: {
+      control: {
+        type: 'select',
+        options: ['div', 'section', 'aside', 'article'],
+      },
+    },
+    titleHtmlMarkup: {
+      control: {
+        type: 'select',
+        options: allTitleTags,
+      },
     },
   },
 } satisfies Meta<typeof InfoTeaser>;

@@ -9,6 +9,8 @@ import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
 
+export type InfoTeaserTags = 'div' | 'section' | 'aside' | 'article';
+
 export interface InfoTeaserProps {
   /** For overriding styling on the button */
   buttonClassName?: string;
@@ -16,26 +18,30 @@ export interface InfoTeaserProps {
   children: React.ReactNode;
   /** For overriding styling on infoteaser box */
   className?: string;
+  /** Changes the underlying element of the wrapper */
+  htmlMarkup?: InfoTeaserTags;
   /** Adds an icon */
   svgIcon?: SvgIcon | IconName;
   /** Sets the data-testid attribute */
   testId?: string;
   /** Title on top of the component */
-  title?: string;
+  title: string;
   /** Markup props for title */
   titleHtmlMarkup?: TitleTags;
 }
 
 const InfoTeaser: React.FC<InfoTeaserProps> = props => {
-  const { buttonClassName, children, className, svgIcon, testId, title, titleHtmlMarkup = 'h4' } = props;
+  const { buttonClassName, children, className, htmlMarkup = 'div', svgIcon, testId, title, titleHtmlMarkup = 'h4' } = props;
   const [expanded, setExpanded] = useState(false);
+
+  const WrapperTag = htmlMarkup;
+
   return (
-    <div className={styles.wrapper}>
+    <WrapperTag className={styles.wrapper} data-testid={testId}>
       <div
         className={classNames(styles.infoteaser, className, {
           [styles['infoteaser--collapsed']]: !expanded,
         })}
-        data-testid={testId}
       >
         {svgIcon &&
           (typeof svgIcon === 'string' ? (
@@ -43,12 +49,12 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
           ) : (
             <Icon svgIcon={svgIcon} size={IconSize.Small} className={styles.infoteaser__icon} />
           ))}
-        {title && (
-          <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance="title4" className={styles.infoteaser__title}>
-            {title}
-          </Title>
-        )}
-        <div className={styles.infoteaser__text}>{children}</div>
+        <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance="title4" className={styles.infoteaser__title}>
+          {title}
+        </Title>
+        <div className={styles.infoteaser__text} aria-hidden={expanded ? false : true}>
+          {children}
+        </div>
       </div>
       <button
         type="button"
@@ -61,7 +67,7 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
         {/* @todo: språk på knapp */}
         {expanded ? 'Vis mindre' : 'Vis mer'}
       </button>
-    </div>
+    </WrapperTag>
   );
 };
 
