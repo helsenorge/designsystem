@@ -73,7 +73,7 @@
   --color-base-background-dark-cherry: #c83521;
   --color-base-graphics-onlight: #000000;
   --color-base-border-ondark: #d6d4d3;
-  --color-base-border-onlight: #989693;
+  --color-base-border-onlight: #7d7c79;
   --color-base-border-onlight-emphasized: #62625f;
   --color-help-background: #efe4fd;
   --color-help-graphics: #5b22a6;
@@ -184,4 +184,6 @@
   /* In a few cases where coloured text is required to stress the semantics of an error notification text */
   --color-notification-text-error: #a31f0e;
   --color-notification-text-success: #078141;
+  --color-base-border-neutral-emphasized: #bdbab9;
+  --color-notification-status-draft: #7d7c79;
 }
