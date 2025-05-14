@@ -27,12 +27,12 @@ export interface InfoTeaserProps {
 }
 
 const InfoTeaser: React.FC<InfoTeaserProps> = props => {
-  const { children, svgIcon, testId, title, titleHtmlMarkup = 'h4' } = props;
+  const { buttonClassName, children, className, svgIcon, testId, title, titleHtmlMarkup = 'h4' } = props;
   const [expanded, setExpanded] = useState(false);
   return (
     <div className={styles.wrapper}>
       <div
-        className={classNames(styles.infoteaser, {
+        className={classNames(styles.infoteaser, className, {
           [styles['infoteaser--collapsed']]: !expanded,
         })}
         data-testid={testId}
@@ -52,7 +52,7 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
       </div>
       <button
         type="button"
-        className={styles.infoteaser__button}
+        className={classNames(styles.infoteaser__button, buttonClassName)}
         onClick={() => {
           setExpanded(!expanded);
         }}
