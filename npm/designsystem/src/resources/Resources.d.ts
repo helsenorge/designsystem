@@ -21,7 +21,7 @@ export type HNDesignsystemPanel = {
    */
   expandButtonOpen: string;
   /**
-   * Skjul detaljerr
+   * Skjul detaljer
    */
   expandButtonClose: string;
 };
@@ -31,6 +31,17 @@ export type HNDesignsystemClose = {
    * Lukk
    */
   ariaLabel: string;
+};
+
+export type HNDesignsystemInfoTeaser = {
+  /**
+   * Vis mindre
+   */
+  expandButtonOpen: string;
+  /**
+   * Vis mer
+   */
+  expandButtonClose: string;
 };
 
 /* eslint:enable */
