@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
+import { LanguageLocales } from '../../constants';
+import { HNDesignsystemInfoTeaser } from '../../resources/Resources';
+import { useLanguage } from '../../utils/language';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import { IconName } from '../Icons/IconNames';
 import LazyIcon from '../LazyIcon';
 import Title, { TitleTags } from '../Title';
+import { getResources } from './resourceHelper';
 
 import styles from './styles.module.scss';
 
@@ -20,6 +24,8 @@ export interface InfoTeaserProps {
   className?: string;
   /** Changes the underlying element of the wrapper */
   htmlMarkup?: InfoTeaserTags;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemInfoTeaser>;
   /** Adds an icon */
   svgIcon?: SvgIcon | IconName;
   /** Sets the data-testid attribute */
@@ -31,8 +37,15 @@ export interface InfoTeaserProps {
 }
 
 const InfoTeaser: React.FC<InfoTeaserProps> = props => {
-  const { buttonClassName, children, className, htmlMarkup = 'div', svgIcon, testId, title, titleHtmlMarkup = 'h4' } = props;
+  const { buttonClassName, children, className, htmlMarkup = 'div', resources, svgIcon, testId, title, titleHtmlMarkup = 'h4' } = props;
   const [expanded, setExpanded] = useState(false);
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemInfoTeaser = {
+    ...defaultResources,
+    ...resources,
+  };
 
   const WrapperTag = htmlMarkup;
 
@@ -62,10 +75,8 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
         onClick={() => {
           setExpanded(!expanded);
         }}
-        aria-label="Les mer"
       >
-        {/* @todo: språk på knapp */}
-        {expanded ? 'Vis mindre' : 'Vis mer'}
+        {expanded ? mergedResources.expandButtonOpen : mergedResources.expandButtonClose}
       </button>
     </WrapperTag>
   );
