@@ -2,10 +2,14 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import { LanguageLocales } from '../../constants';
 import { PaletteNames } from '../../theme/palette';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
 import PanelTitle, { PanelTitleProps } from './PanelTitle';
+import { getResources } from './resourceHelper';
+import { HNDesignsystemPanel } from '../../resources/Resources';
+import { useLanguage } from '../../utils/language';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronRight from '../Icons/ChevronRight';
 import ChevronUp from '../Icons/ChevronUp';
@@ -60,9 +64,19 @@ export interface PanelProps {
   children?: React.ReactNode;
   /** Displays a status on the left side: default normal */
   status?: PanelStatus;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemPanel>;
 }
 
-const ExpandButton = ({ onClick, isExpanded }: { onClick: () => void; isExpanded: boolean | undefined }): React.JSX.Element => {
+const ExpandButton = ({
+  onClick,
+  isExpanded,
+  resources,
+}: {
+  onClick: () => void;
+  isExpanded: boolean | undefined;
+  resources: Partial<HNDesignsystemPanel>;
+}): React.JSX.Element => {
   const buttonClassName = classNames(styles['expander__button'], isExpanded && styles['expander__button--expanded']);
 
   return (
@@ -74,8 +88,7 @@ const ExpandButton = ({ onClick, isExpanded }: { onClick: () => void; isExpanded
       onClick={onClick}
     >
       <Icon svgIcon={isExpanded ? ChevronUp : ChevronDown} size={IconSize.XSmall} />
-      {/* @todo: språk på knapp */}
-      <span>{isExpanded ? 'Skjul detaljer' : 'Se detaljer'}</span>
+      <span>{isExpanded ? resources.expandButtonClose : resources.expandButtonOpen}</span>
     </Button>
   );
 };
@@ -98,6 +111,7 @@ const Panel: React.FC<PanelProps> & {
   buttonBottomOnClick,
   buttonBottomText,
   className,
+  resources,
 }: PanelProps) => {
   const [preContainer, setPreContainer] = React.useState<React.ReactNode[]>([]);
   const [title, setTitle] = React.useState<React.ReactNode[]>([]);
@@ -108,6 +122,14 @@ const Panel: React.FC<PanelProps> & {
   const panelRef = React.useRef<HTMLDivElement>(null);
   const expandedContentRef = React.useRef<HTMLDivElement>(null);
   const defaultScroll = 100;
+
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemPanel = {
+    ...defaultResources,
+    ...resources,
+  };
 
   React.useEffect(() => {
     let localHasIcon = false;
@@ -195,7 +217,7 @@ const Panel: React.FC<PanelProps> & {
             {preContainer}
             {title}
             <div className={contentContainerLayout}>{content}</div>
-            <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} />
+            <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} resources={mergedResources} />
             {isExpanded && (
               <div ref={expandedContentRef}>
                 <div className={styles['panel__expander__separator']} />
