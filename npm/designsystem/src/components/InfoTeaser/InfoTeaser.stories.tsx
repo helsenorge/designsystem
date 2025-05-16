@@ -14,7 +14,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Beskrivelse av InfoTeaser',
+        component: 'InfoTeaser viser faktainformasjon i en avgrenset høyde, med mulighet for ekspandering.',
       },
       page: (): React.JSX.Element => <Docs component={InfoTeaser} />,
     },
