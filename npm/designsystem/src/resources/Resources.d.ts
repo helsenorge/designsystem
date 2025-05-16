@@ -44,4 +44,15 @@ export type HNDesignsystemInfoTeaser = {
   expandButtonClose: string;
 };
 
+export type HNDesignsystemArticleTeaser = {
+  /**
+   * Vis mer
+   */
+  expandButtonClose: string;
+  /**
+   * Vis mindre
+   */
+  expandButtonOpen: string;
+};
+
 /* eslint:enable */
