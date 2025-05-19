@@ -3,26 +3,24 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
-import InfoTeaser from './InfoTeaser';
+import HelpTeaser from './HelpTeaser';
 import { allTitleTags } from '../../../.storybook/knobs';
 import longLoremText from '../../utils/loremtext';
-import HandWaving from '../Icons/HandWaving';
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/InfoTeaser',
-  component: InfoTeaser,
+  title: '@helsenorge/designsystem-react/Components/HelpTeaser',
+  component: HelpTeaser,
   parameters: {
     docs: {
       description: {
-        component: 'InfoTeaser viser faktainformasjon i en avgrenset høyde, med mulighet for ekspandering.',
+        component: 'HelpTeaser viser hjelpeinformasjon i en avgrenset høyde, med mulighet for ekspandering.',
       },
-      page: (): React.JSX.Element => <Docs component={InfoTeaser} />,
+      page: (): React.JSX.Element => <Docs component={HelpTeaser} />,
     },
   },
   args: {
     title: 'Mange lurer på dette',
     children: <span>{longLoremText}</span>,
-    svgIcon: HandWaving,
   },
   argTypes: {
     title: {
@@ -41,7 +39,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof InfoTeaser>;
+} satisfies Meta<typeof HelpTeaser>;
 
 export default meta;
 
@@ -49,5 +47,5 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
-  render: args => <InfoTeaser {...args} />,
+  render: args => <HelpTeaser {...args} />,
 };
