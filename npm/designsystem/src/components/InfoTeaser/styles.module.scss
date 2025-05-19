@@ -86,7 +86,7 @@
 
     &:focus,
     &:focus-visible {
-      border: 1px solid var(--color-base-graphics-ondark); // @todo: sjekk opp denne i QA
+      border: 1px solid var(--color-base-graphics-ondark);
       outline: none;
       box-shadow: 0 0 0 var(--core-space-3xs) var(--color-base-graphics-onlight);
     }
