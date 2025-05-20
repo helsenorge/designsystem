@@ -2,8 +2,9 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
+import { useArgs } from 'storybook/internal/preview-api';
 
-import ArticleTeaser from './ArticleTeaser';
+import ArticleTeaser, { ArticleTeaserProps } from './ArticleTeaser';
 import Title from '../Title';
 
 const meta = {
@@ -56,10 +57,12 @@ const DummyContent = (props: { expanded: boolean }) => (
 export const Default: Story = {
   args: {},
   render: args => {
-    const [expanded, setExpanded] = React.useState(false);
+    const [{ expanded }, setExpanded] = useArgs<ArticleTeaserProps>();
+
     const onExpand = () => {
-      setExpanded(!expanded);
+      setExpanded({ expanded: !expanded });
     };
+
     return (
       <ArticleTeaser {...args} onExpand={onExpand} expanded={expanded}>
         <DummyContent expanded={expanded} />
