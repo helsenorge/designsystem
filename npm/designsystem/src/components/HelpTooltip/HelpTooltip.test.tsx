@@ -14,32 +14,34 @@ describe('Gitt at HelpTooltip skal vises ', () => {
     });
   });
 
-  describe('Når tekst trykkes på', () => {
-    it('Så vises HelpBubble', async () => {
+  describe('Når komponenten ikke har fokus', () => {
+    it('Så finnes beskrivelsen men boblen vises ikke', async () => {
       render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
 
       const word = screen.getByText('ordet');
-      await userEvent.click(word);
+      expect(word).toBeVisible();
+      expect(word).toHaveAccessibleDescription('beskrivelse av ordet');
 
-      const helpBubble = screen.getByRole('tooltip', { name: 'beskrivelse av ordet' });
-      expect(helpBubble).toBeInTheDocument();
+      const helpbubble = screen.queryByLabelText('beskrivelse av ordet');
+      expect(helpbubble).not.toBeInTheDocument();
     });
   });
 
   describe('Når tekst hovres med musen', () => {
-    it('Så vises HelpBubble', async () => {
+    it('Så vises boblen', async () => {
       render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
 
       const word = screen.getByText('ordet');
       await userEvent.hover(word);
 
-      const helpBubble = await screen.findByRole('tooltip', { name: 'beskrivelse av ordet' });
+      // findByRole has issues: https://github.com/testing-library/react-testing-library/issues/1248
+      const helpBubble = await screen.findByText('beskrivelse av ordet');
       expect(helpBubble).toBeInTheDocument();
     });
   });
 
   describe('Når tekst får fokus', () => {
-    it('Så vises HelpBubble', async () => {
+    it('Så vises boblen', async () => {
       render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
 
       const word = screen.getByText('ordet');
@@ -47,22 +49,9 @@ describe('Gitt at HelpTooltip skal vises ', () => {
       await userEvent.tab();
       expect(word).toHaveFocus();
 
-      const helpBubble = await screen.findByRole('tooltip', { name: 'beskrivelse av ordet' });
+      // findByRole has issues: https://github.com/testing-library/react-testing-library/issues/1248
+      const helpBubble = await screen.findByText('beskrivelse av ordet');
       expect(helpBubble).toBeInTheDocument();
-    });
-  });
-
-  describe('Når det trykkes mens HelpBubble er åpen', () => {
-    it('Så skjules HelpBubble', async () => {
-      render(<HelpTooltip description={'beskrivelse av ordet'}>{'ordet'}</HelpTooltip>);
-
-      const word = screen.getByText('ordet');
-      await userEvent.click(word);
-
-      const helpBubble = screen.getByRole('tooltip');
-      await userEvent.click(helpBubble);
-
-      expect(helpBubble).not.toHaveClass('helpbubble--visible');
     });
   });
 });

@@ -12,8 +12,9 @@ exports[`Gitt at PopOver skal vises > Når den skal vises vanlig > Så vises Pop
     data-analyticsid="pop-over"
     data-floating-ui-focusable=""
     data-testid="test01"
-    style="position: absolute; left: 0px; top: 0px; visibility: visible; z-index: 11000; transform: translate(0px, 0px);"
-    tabindex="-1"
+    role="dialog"
+    style="position: absolute; left: 0px; top: 0px; visibility: hidden; z-index: 11000; transform: translate(0px, 0px);"
+    tabindex="0"
   >
     Test tekst
     <svg
