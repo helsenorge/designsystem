@@ -12,7 +12,7 @@ import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
-import Close, { CloseProps } from '../Close';
+import Close from '../Close';
 import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
@@ -24,7 +24,7 @@ export interface DrawerProps extends InnerDrawerProps {
   isOpen: boolean;
 }
 
-export interface InnerDrawerProps extends Pick<CloseProps, 'color'> {
+export interface InnerDrawerProps {
   /** Sets the aria-label of the drawer */
   ariaLabel?: string;
   /** Sets the aria-labelledby of the drawer */
@@ -33,8 +33,6 @@ export interface InnerDrawerProps extends Pick<CloseProps, 'color'> {
   ariaLabelCloseBtn?: string;
   /** Direction of the drawer on desktop. Default: left */
   desktopDirection?: DesktopDirections;
-  /** Sets the style of the Drawer header */
-  headerClasses?: string;
   /** Title to display in the header of the drawer */
   title: string;
   /** id of the drawer title */
@@ -73,10 +71,8 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     ariaLabelledBy,
     ariaLabelCloseBtn,
     children,
-    color,
     desktopDirection = 'left',
     footerContent,
-    headerClasses,
     onPrimaryAction,
     onRequestClose,
     onSecondaryAction,
@@ -96,7 +92,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
-  const headerStyling = classNames(styles.drawer__header, headerClasses);
 
   useFocusTrap(containerRef, true);
   useReturnFocusOnUnmount(containerRef);
@@ -182,11 +177,11 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
         {...ariaLabelAttributes}
       >
         <div className={styles.drawer__container__inner}>
-          <div className={headerStyling}>
+          <div className={styles.drawer__header}>
             <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
               {title}
             </Title>
-            {!props.noCloseButton && <Close ariaLabel={ariaLabelCloseBtn} onClick={onRequestClose} small={isMobile} color={color} />}
+            {!props.noCloseButton && <Close ariaLabel={ariaLabelCloseBtn} onClick={onRequestClose} small={isMobile} />}
           </div>
           <div
             className={styles.drawer__content}
