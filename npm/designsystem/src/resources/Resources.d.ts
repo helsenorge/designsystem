@@ -9,10 +9,6 @@ export type HNDesignsystemDropdown = {
    * Lukk
    */
   closeText: string;
-  /**
-   * testtest
-   */
-  testtest: string;
 };
 
 export type HNDesignsystemPanel = {
