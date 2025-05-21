@@ -74,7 +74,7 @@
 
   &__header {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
     border-bottom: 1px solid var(--color-base-border-neutral);
