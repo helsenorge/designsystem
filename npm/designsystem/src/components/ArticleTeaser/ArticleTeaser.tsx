@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { getResources } from './resourceHelper';
-import { LanguageLocales } from '../../constants';
+import { AnalyticsId, LanguageLocales } from '../../constants';
 import { HNDesignsystemArticleTeaser } from '../../resources/Resources';
 import { useLanguage } from '../../utils/language';
 
@@ -43,7 +43,7 @@ const ArticleTeaser: React.FC<ArticleTeaserProps> = props => {
   };
 
   return (
-    <WrapperTag className={classNames(styles.articleteaser)} data-testid={testId}>
+    <WrapperTag className={classNames(styles.articleteaser)} data-testid={testId} data-analyticsid={AnalyticsId.ArticleTeaser}>
       <div
         className={classNames(styles['articleteaser__content'], {
           [styles['articleteaser__content--collapsed']]: !expanded,

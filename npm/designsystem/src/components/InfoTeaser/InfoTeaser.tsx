@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
-import { LanguageLocales } from '../../constants';
+import { AnalyticsId, LanguageLocales } from '../../constants';
 import { HNDesignsystemInfoTeaser } from '../../resources/Resources';
 import { useLanguage } from '../../utils/language';
 import Icon, { IconSize, SvgIcon } from '../Icon';
@@ -52,7 +52,7 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
   const WrapperTag = htmlMarkup;
 
   return (
-    <WrapperTag className={styles.wrapper} data-testid={testId}>
+    <WrapperTag className={styles.wrapper} data-testid={testId} data-analyticsid={AnalyticsId.InfoTeaser}>
       <div
         className={classNames(styles.infoteaser, className, {
           [styles['infoteaser--collapsed']]: !expanded,

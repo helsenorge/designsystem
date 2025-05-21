@@ -69,6 +69,7 @@ export enum FormSize {
 
 export enum AnalyticsId {
   AnchorLink = 'anchor-link',
+  ArticleTeaser = 'article-teaser',
   Avatar = 'avatar',
   Badge = 'badge',
   Button = 'button',
@@ -94,6 +95,7 @@ export enum AnalyticsId {
   HighlightPanel = 'highlight-panel',
   Icon = 'icon',
   Illustration = 'Illustration',
+  InfoTeaser = 'info-teaser',
   Input = 'input',
   Label = 'label',
   Link = 'link',
