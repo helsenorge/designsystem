@@ -56,6 +56,10 @@
       box-shadow: 0 0 0 3px var(--color-base-graphics-onlight);
     }
 
+    &:active {
+      background-color: var(--core-color-blueberry-800);
+    }
+
     &--expanded {
       background: var(--color-action-graphics-ondark);
       color: var(--color-action-graphics-onlight);
@@ -64,6 +68,11 @@
       &:hover {
         // @todo: endre denne når ny token er laget
         background-color: var(--color-action-graphics-ondark-hover);
+      }
+
+      &:active {
+        // @todo: endre denne når ny token er laget
+        background-color: var(--color-action-graphics-ondark);
       }
     }
   }
