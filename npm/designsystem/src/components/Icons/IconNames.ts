@@ -300,6 +300,7 @@ export const IconList = [
   'ThinkingAboutBaby',
   'Ticket',
   'TimePassing',
+  'Toddler',
   'Tombstone',
   'Toolbox',
   'Tooth',

@@ -1,3 +1,19 @@
+## [11.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.0.0&targetVersion=GTv11.1.0) (2025-05-09)
+
+
+### Features
+
+*  ny hook useismobilebreakpoint ([a5db7ed](https://github.com/helsenorge/designsystem/commit/a5db7ed8753af15ea29e459c2d5032b43e813856)), closes [#351338](https://github.com/helsenorge/designsystem/issues/351338)
+*  spacers tokens lagt til ([40b77e4](https://github.com/helsenorge/designsystem/commit/40b77e4626971621f6645e61df2636249463c2f7)), closes [#347154](https://github.com/helsenorge/designsystem/issues/347154)
+* **drawer:**  mulighet til å skru av lukkekryss ([f486bee](https://github.com/helsenorge/designsystem/commit/f486bee62d3709e2c4b9f39d6ce9e770c4010cc4)), closes [#351292](https://github.com/helsenorge/designsystem/issues/351292)
+* **modal:**  footercontent prop legges til for å kunne gi egne cta buttons ([f5b0519](https://github.com/helsenorge/designsystem/commit/f5b051917081f6f7d8be44ff33679ace6a6e02da)), closes [#350943](https://github.com/helsenorge/designsystem/issues/350943)
+
+
+### Bug Fixes
+
+* **lightbox:**  fiks problem med store knapper på ios ([91481f6](https://github.com/helsenorge/designsystem/commit/91481f64ad0982f579558407658747eae5a5a30e)), closes [#331056](https://github.com/helsenorge/designsystem/issues/331056)
+* **lightbox:**  scrollbar vises ikke med lightbox åpen ([3953140](https://github.com/helsenorge/designsystem/commit/3953140a0e1411edc18161eff7e1e727933cb3c3)), closes [#350843](https://github.com/helsenorge/designsystem/issues/350843)
+
 ## [11.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv10.8.0&targetVersion=GTv11.0.0) (2025-04-29)
 
 

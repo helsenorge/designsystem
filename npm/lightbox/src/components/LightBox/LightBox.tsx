@@ -97,11 +97,8 @@ const LightBox: React.FC<LightBoxProps> = ({
     const timer = setTimeout(() => {
       setImageTextOpen(false);
     }, closeTextAfterSeconds * 1000);
-    disableBodyScroll();
-
     return (): void => {
       clearTimeout(timer);
-      enableBodyScroll();
     };
   }, []);
 
@@ -251,6 +248,13 @@ const Controls = ({
       }, 160);
     }
   };
+
+  useEffect(() => {
+    disableBodyScroll();
+    return (): void => {
+      enableBodyScroll();
+    };
+  }, []);
 
   return (
     <div className={classNames(styles['zoom-buttons'])} style={{ zIndex: ZIndex.LightBoxButtons }}>

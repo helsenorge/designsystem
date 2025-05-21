@@ -9,10 +9,6 @@ export type HNDesignsystemDropdown = {
    * Lukk
    */
   closeText: string;
-  /**
-   * testtest
-   */
-  testtest: string;
 };
 
 export type HNDesignsystemPanel = {
@@ -21,7 +17,7 @@ export type HNDesignsystemPanel = {
    */
   expandButtonOpen: string;
   /**
-   * Skjul detaljerr
+   * Skjul detaljer
    */
   expandButtonClose: string;
 };
@@ -31,6 +27,28 @@ export type HNDesignsystemClose = {
    * Lukk
    */
   ariaLabel: string;
+};
+
+export type HNDesignsystemInfoTeaser = {
+  /**
+   * Vis mindre
+   */
+  expandButtonOpen: string;
+  /**
+   * Vis mer
+   */
+  expandButtonClose: string;
+};
+
+export type HNDesignsystemArticleTeaser = {
+  /**
+   * Vis mer
+   */
+  expandButtonClose: string;
+  /**
+   * Vis mindre
+   */
+  expandButtonOpen: string;
 };
 
 /* eslint:enable */
