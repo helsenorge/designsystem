@@ -1,0 +1,63 @@
+@use 'sass:map';
+@use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
+
+$trigger-medium-size: 1.25rem;
+$trigger-large-size: 1.5rem;
+$trigger-xl-size: 2rem;
+$outline-medium-width: 2px;
+$outline-large-width: 2.2px;
+$outline-xl-width: 2.5px;
+
+.help-trigger-standalone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  min-width: 4.6rem;
+  height: 2.75rem;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &__inner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--core-space-l);
+    color: var(--core-color-plum-800);
+    padding: 0 var(--core-space-3xs);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2rem;
+
+    :hover > & {
+      background-color: var(--core-color-plum-50);
+    }
+
+    :focus-visible > & {
+      outline: 3px solid var(--color-action-border-onlight-focus);
+    }
+
+    :active > & {
+      text-decoration: solid underline;
+      text-underline-offset: 4.23px;
+    }
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      min-height: 2.25rem;
+      font-size: 1.125rem;
+      line-height: 1.463rem;
+    }
+  }
+
+  &__text {
+    margin-left: var(--core-space-2xs);
+  }
+}

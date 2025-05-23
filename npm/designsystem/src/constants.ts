@@ -90,8 +90,10 @@ export enum AnalyticsId {
   FormGroup = 'form-group',
   FormLayout = 'form-layout',
   HelpBubble = 'help-bubble',
-  HelpQuestion = 'help-question',
   HelpTooltip = 'help-tooltip',
+  HelpTriggerIcon = 'help-trigger-icon',
+  HelpTriggerInline = 'help-trigger-inline',
+  HelpTriggerStandalone = 'help-trigger-standalone',
   HighlightPanel = 'highlight-panel',
   Icon = 'icon',
   Illustration = 'Illustration',
@@ -128,7 +130,6 @@ export enum AnalyticsId {
   Tile = 'tile',
   Title = 'title',
   Toggle = 'toggle',
-  Trigger = 'trigger',
   Validation = 'validation',
 }
 
