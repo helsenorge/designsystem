@@ -9,7 +9,7 @@
 
 .popover {
   width: max-content;
-  max-width: min(23.3125rem, 100vw);
+  max-width: min(32rem, calc(100vw - (2 * 8px)));
   text-align: start;
   background-color: var(--core-color-white);
   z-index: 3;
@@ -19,4 +19,8 @@
   padding: var(--core-space-s);
 
   @include fonts.help-text;
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    max-width: 35rem;
+  }
 }

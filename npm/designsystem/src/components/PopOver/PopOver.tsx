@@ -74,7 +74,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement | HTMLElement, P
 
   const arrowRef = useRef(null);
   const { refs, floatingStyles, context, middlewareData } = useFloating({
-    middleware: [offset(10), flip(), shift(), hide(), arrow({ element: arrowRef })],
+    middleware: [offset(10), flip(), shift({ padding: 8 }), hide(), arrow({ element: arrowRef })],
     placement: placementProp,
     whileElementsMounted: autoUpdate,
     elements: {
