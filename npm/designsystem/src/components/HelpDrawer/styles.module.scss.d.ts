@@ -1,8 +1,6 @@
 export type Styles = {
-  close: string;
-  'close__inner-container': string;
-  'close__inner-container--plum': string;
-  'close--small': string;
+  'help-drawer': string;
+  'help-drawer__close-button': string;
 };
 
 export type ClassNames = keyof Styles;

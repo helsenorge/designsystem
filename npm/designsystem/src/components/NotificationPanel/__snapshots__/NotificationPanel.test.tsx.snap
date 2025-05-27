@@ -111,23 +111,27 @@ exports[`Gitt at NotificationPanel skal vises > Når panelet kan lukkes > Så ka
         data-analyticsid="close"
         type="button"
       >
-        <svg
-          aria-hidden="true"
-          class="hnds-style-icon"
-          color="#000000"
-          data-analyticsid="icon"
-          fill="#000000"
-          focusable="false"
-          height="48"
-          role="presentation"
-          style="min-width: 48px; min-height: 48px;"
-          viewBox="0 0 48 48"
-          width="48"
+        <span
+          class="close__inner-container"
         >
-          <path
-            d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z"
-          />
-        </svg>
+          <svg
+            aria-hidden="true"
+            class="hnds-style-icon"
+            color="var(--color-action-graphics-onlight)"
+            data-analyticsid="icon"
+            fill="var(--color-action-graphics-onlight)"
+            focusable="false"
+            height="48"
+            role="presentation"
+            style="min-width: 48px; min-height: 48px;"
+            viewBox="0 0 48 48"
+            width="48"
+          >
+            <path
+              d="M25.403 24l10.259-10.259-1.403-1.403L24 22.597l-10.259-10.26-1.403 1.403L22.597 24 12.338 34.26l1.403 1.403L24 25.403l10.259 10.259 1.403-1.403z"
+            />
+          </svg>
+        </span>
       </button>
     </span>
     <div

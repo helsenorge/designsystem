@@ -30,6 +30,10 @@ const meta = {
     testId: {
       control: 'text',
     },
+    color: {
+      control: 'select',
+      options: ['blueberry', 'black', 'plum'],
+    },
   },
 } satisfies Meta<typeof Close>;
 
@@ -42,4 +46,17 @@ export const Default: Story = {
     onClick: action('button-click'),
   },
   render: args => <Close {...args} />,
+};
+
+export const AllColors: Story = {
+  args: {
+    onClick: action('button-click'),
+  },
+  render: args => (
+    <div>
+      <Close {...args} color="blueberry" />
+      <Close {...args} color="black" />
+      <Close {...args} color="plum" />
+    </div>
+  ),
 };
