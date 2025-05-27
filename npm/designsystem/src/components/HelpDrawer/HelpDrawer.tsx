@@ -23,14 +23,7 @@ export interface HelpDrawerProps
 }
 
 const HelpDrawer: React.FC<HelpDrawerProps> = props => {
-  return (
-    <Drawer
-      {...props}
-      closeClasses={styles['help-drawer__close-button']}
-      headerClasses={styles['help-drawer']}
-      desktopDirection={'right'}
-    />
-  );
+  return <Drawer {...props} closeColor={'plum'} headerClasses={styles['help-drawer']} desktopDirection={'right'} />;
 };
 
 export default HelpDrawer;

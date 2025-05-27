@@ -74,7 +74,7 @@
 
   &__header {
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: space-between;
     padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
     border-bottom: 1px solid var(--color-base-border-neutral);
@@ -87,6 +87,10 @@
       padding: spacers.getSpacer(4xs) 0;
       flex-direction: column-reverse;
       align-items: flex-start;
+    }
+
+    &__close-button {
+      align-self: flex-start;
     }
   }
 

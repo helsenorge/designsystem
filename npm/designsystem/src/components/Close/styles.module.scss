@@ -2,42 +2,68 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
+
+$desktop-size: 3rem;
+$mobile-inner-size: 2.375rem;
+$mobile-outer-size: 2.75rem;
 
 .close {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 3rem;
-  width: 3rem;
+  height: $mobile-outer-size;
+  width: $mobile-outer-size;
   padding: 0;
   border: 0;
   background-color: transparent;
   cursor: pointer;
 
-  @media (max-width: map.get(breakpoints.$grid-breakpoints, sm)) {
-    height: 2.375rem;
-    width: 2.375rem;
-  }
-
-  &:hover,
-  &:active {
-    background-color: rgb(88 170 187 / 10%);
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 2px palette.$black;
-    background-color: transparent;
-    border-radius: 0;
-    border: 0;
+  &:focus-visible {
     outline: none;
   }
 
-  &:hover {
-    background-color: rgb(88 170 187 / 10%);
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    height: $desktop-size;
+    width: $desktop-size;
   }
 
   &--small {
-    height: auto;
-    width: auto;
+    height: $mobile-outer-size;
+    width: $mobile-outer-size;
+  }
+
+  &__inner-container {
+    width: $mobile-inner-size;
+    height: $mobile-inner-size;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      height: $desktop-size;
+      width: $desktop-size;
+    }
+
+    :hover > &,
+    :active > & {
+      background-color: var(--color-action-background-transparent-onlight-hover);
+    }
+
+    :focus-visible > & {
+      outline: 3px solid var(--color-action-border-onlight-focus);
+      border-radius: 0;
+      border: 0;
+    }
+
+    &--plum {
+      :hover > &,
+      :active > & {
+        background-color: var(--color-help-background-transparent-onlight-hover, #6c36b31a);
+      }
+
+      :focus-visible > & {
+        outline: 3px solid var(--color-action-border-onlight-focus);
+        border-radius: 0;
+        border: 0;
+      }
+    }
   }
 }

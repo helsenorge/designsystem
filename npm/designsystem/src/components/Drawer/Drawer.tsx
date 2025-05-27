@@ -31,8 +31,8 @@ export interface InnerDrawerProps {
   ariaLabelledBy?: string;
   /** Close button aria-label */
   ariaLabelCloseBtn?: string;
-  /** Sets the style of the Drawer Close button */
-  closeClasses?: string;
+  /** Sets the style of the Drawer Close button. Meant for use by HelpDrawer */
+  closeColor?: 'blueberry' | 'plum';
   /** Direction of the drawer on desktop. Default: left */
   desktopDirection?: DesktopDirections;
   /** Sets the style of the Drawer header */
@@ -75,7 +75,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     ariaLabelledBy,
     ariaLabelCloseBtn,
     children,
-    closeClasses,
+    closeColor = 'blueberry',
     desktopDirection = 'left',
     footerContent,
     headerClasses,
@@ -190,7 +190,12 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
               {title}
             </Title>
             {!props.noCloseButton && (
-              <Close ariaLabel={ariaLabelCloseBtn} className={closeClasses} onClick={onRequestClose} small={isMobile} />
+              <Close
+                ariaLabel={ariaLabelCloseBtn}
+                color={closeColor}
+                onClick={onRequestClose}
+                className={styles['drawer__header__close-button']}
+              />
             )}
           </div>
           <div

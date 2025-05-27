@@ -1,5 +1,7 @@
 export type Styles = {
   close: string;
+  'close__inner-container': string;
+  'close__inner-container--plum': string;
   'close--small': string;
 };
 
