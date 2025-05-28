@@ -25,7 +25,7 @@ describe('Gitt at Drawer skal vises', () => {
       expect(closeButton).toBeInTheDocument();
     });
 
-    test('Så vises default CTA-knapper når primaryActionText/secondaryActionText er gitt', () => {
+    test('Så vises default CTA-knapper når onPrimaryAction/onSecondaryAction er gitt', () => {
       const primaryText = 'Fortsett';
       const secondaryText = 'Avbryt';
 
@@ -35,6 +35,8 @@ describe('Gitt at Drawer skal vises', () => {
           title="Tittel"
           primaryActionText={primaryText}
           secondaryActionText={secondaryText}
+          onPrimaryAction={() => {}}
+          onSecondaryAction={() => {}}
           isOpen={true}
         />
       );

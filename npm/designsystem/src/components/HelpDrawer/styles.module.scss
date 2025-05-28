@@ -1,0 +1,16 @@
+@use 'sass:map';
+@import '../../scss/supernova/styles/colors.css';
+
+.help-drawer {
+  background-color: var(--core-color-plum-50);
+
+  &__close-button {
+    svg {
+      fill: var(--core-color-plum-700);
+    }
+
+    &:hover {
+      background-color: var(--core-color-plum-100);
+    }
+  }
+}

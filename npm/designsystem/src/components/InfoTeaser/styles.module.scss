@@ -89,5 +89,10 @@
       outline: none;
       box-shadow: 0 0 0 3px var(--color-base-graphics-onlight);
     }
+
+    &:active {
+      // @todo: endre denne når token er laget
+      background-color: var(--core-color-blueberry-800);
+    }
   }
 }

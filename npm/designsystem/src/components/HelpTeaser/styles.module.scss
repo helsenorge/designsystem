@@ -14,5 +14,9 @@
     &:hover {
       background-color: var(--core-color-plum-900);
     }
+
+    &:active {
+      background-color: var(--core-color-plum-800);
+    }
   }
 }

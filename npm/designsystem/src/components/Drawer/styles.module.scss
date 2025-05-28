@@ -88,6 +88,10 @@
       flex-direction: column-reverse;
       align-items: flex-start;
     }
+
+    &__close-button {
+      align-self: flex-start;
+    }
   }
 
   &__content {

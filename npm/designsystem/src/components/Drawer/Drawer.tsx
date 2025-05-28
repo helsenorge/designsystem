@@ -31,8 +31,12 @@ export interface InnerDrawerProps {
   ariaLabelledBy?: string;
   /** Close button aria-label */
   ariaLabelCloseBtn?: string;
+  /** Sets the style of the Drawer Close button. Meant for use by HelpDrawer */
+  closeColor?: 'blueberry' | 'plum';
   /** Direction of the drawer on desktop. Default: left */
   desktopDirection?: DesktopDirections;
+  /** Sets the style of the Drawer header */
+  headerClasses?: string;
   /** Title to display in the header of the drawer */
   title: string;
   /** id of the drawer title */
@@ -71,8 +75,10 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     ariaLabelledBy,
     ariaLabelCloseBtn,
     children,
+    closeColor = 'blueberry',
     desktopDirection = 'left',
     footerContent,
+    headerClasses,
     onPrimaryAction,
     onRequestClose,
     onSecondaryAction,
@@ -92,6 +98,8 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
+  const headerStyling = classNames(styles.drawer__header, headerClasses);
+  const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
 
   useFocusTrap(containerRef, true);
   useReturnFocusOnUnmount(containerRef);
@@ -177,11 +185,18 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
         {...ariaLabelAttributes}
       >
         <div className={styles.drawer__container__inner}>
-          <div className={styles.drawer__header}>
+          <div className={headerStyling}>
             <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
               {title}
             </Title>
-            {!props.noCloseButton && <Close ariaLabel={ariaLabelCloseBtn} onClick={onRequestClose} small={isMobile} />}
+            {!props.noCloseButton && (
+              <Close
+                ariaLabel={ariaLabelCloseBtn}
+                color={closeColor}
+                onClick={onRequestClose}
+                className={styles['drawer__header__close-button']}
+              />
+            )}
           </div>
           <div
             className={styles.drawer__content}
@@ -193,20 +208,22 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             {children}
           </div>
         </div>
-        <div className={styles.drawer__footer}>
-          {footerContent ? (
-            footerContent
-          ) : (
-            <>
-              {primaryActionText && <Button onClick={() => handleCTA(onPrimaryAction)}>{primaryActionText}</Button>}
-              {secondaryActionText && (
-                <Button variant="borderless" onClick={() => handleCTA(onSecondaryAction)}>
-                  {secondaryActionText}
-                </Button>
-              )}
-            </>
-          )}
-        </div>
+        {hasFooterContent && (
+          <div className={styles.drawer__footer}>
+            {footerContent ? (
+              footerContent
+            ) : (
+              <>
+                {onPrimaryAction && <Button onClick={() => handleCTA(onPrimaryAction)}>{primaryActionText}</Button>}
+                {onSecondaryAction && (
+                  <Button variant="borderless" onClick={() => handleCTA(onSecondaryAction)}>
+                    {secondaryActionText}
+                  </Button>
+                )}
+              </>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
