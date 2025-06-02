@@ -76,11 +76,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
     border-bottom: 1px solid var(--color-base-border-neutral);
 
+    // legg til padding for å gi plass til close button
+    padding: spacers.getSpacer(xs) 2.75rem spacers.getSpacer(xs) spacers.getSpacer(2xs);
+
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      padding: spacers.getSpacer(xs);
+      padding: spacers.getSpacer(xs) 2.75rem spacers.getSpacer(xs) spacers.getSpacer(xs);
     }
 
     @include breakpoints.tiny-screens-media-query {
@@ -89,8 +91,18 @@
       align-items: flex-start;
     }
 
+    &--no-close-button {
+      padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: spacers.getSpacer(xs);
+      }
+    }
+
     &__close-button {
-      align-self: flex-start;
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 

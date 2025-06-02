@@ -79,6 +79,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     desktopDirection = 'left',
     footerContent,
     headerClasses,
+    noCloseButton = false,
     onPrimaryAction,
     onRequestClose,
     onSecondaryAction,
@@ -98,7 +99,9 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
-  const headerStyling = classNames(styles.drawer__header, headerClasses);
+  const headerStyling = classNames(styles.drawer__header, headerClasses, {
+    [styles['drawer__header--no-close-button']]: noCloseButton,
+  });
   const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
 
   useFocusTrap(containerRef, true);
@@ -189,7 +192,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
               {title}
             </Title>
-            {!props.noCloseButton && (
+            {!noCloseButton && (
               <Close
                 ariaLabel={ariaLabelCloseBtn}
                 color={closeColor}
