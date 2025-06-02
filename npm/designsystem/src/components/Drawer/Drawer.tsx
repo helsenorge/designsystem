@@ -10,6 +10,7 @@ import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
@@ -113,6 +114,11 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
 
   useEffect(() => {
     containerRef.current?.focus();
+    disableBodyScroll();
+
+    return (): void => {
+      enableBodyScroll();
+    };
   }, []);
 
   // Open animation.

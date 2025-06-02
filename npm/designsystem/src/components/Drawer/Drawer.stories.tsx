@@ -8,6 +8,7 @@ import { Docs } from 'frankenstein-build-tools';
 
 import Drawer, { DrawerProps } from './Drawer';
 import { allTitleTags } from '../../../.storybook/knobs';
+import longLoremText from '../../utils/loremtext';
 import Button from '../Button';
 
 const meta = {
@@ -190,6 +191,49 @@ export const FooterContent: Story = {
       >
         {args.children}
       </Drawer>
+    );
+  },
+};
+
+export const ScrollingWindow: Story = {
+  args: {
+    onRequestClose: action('Drawer closed'),
+    onPrimaryAction: action('Primary action clicked'),
+    onSecondaryAction: action('Secondary action clicked'),
+    isOpen: false,
+  },
+
+  render: (args: DrawerProps) => {
+    const [{ isOpen }, setIsOpen] = useArgs<DrawerProps>();
+
+    return (
+      <>
+        <div>{longLoremText}</div>
+        <div>{longLoremText}</div>
+        <Button onClick={() => setIsOpen({ isOpen: true })}>{'Åpne Drawer'}</Button>
+        <Drawer
+          {...args}
+          isOpen={isOpen}
+          onRequestClose={() => {
+            args.onRequestClose?.();
+            setIsOpen({ isOpen: false });
+          }}
+          onPrimaryAction={() => {
+            args.onPrimaryAction?.();
+            setIsOpen({ isOpen: false });
+          }}
+          onSecondaryAction={() => {
+            args.onSecondaryAction?.();
+          }}
+          primaryActionText="I close"
+          secondaryActionText="I don't"
+        >
+          {args.children}
+        </Drawer>
+        <div>{longLoremText}</div>
+        <div>{longLoremText}</div>
+        <div>{longLoremText}</div>
+      </>
     );
   },
 };
