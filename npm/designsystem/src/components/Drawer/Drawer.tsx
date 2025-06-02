@@ -44,7 +44,7 @@ export interface InnerDrawerProps {
   /** Changes the underlying element of the title. Default: h3 */
   titleHtmlMarkup?: TitleTags;
   /** Callback that triggers when clicking on close button or outside the drawer, update isOpen state when this triggers */
-  onRequestClose: () => void;
+  onRequestClose?: () => void;
   /** Optional footer content that can be rendered instead of default CTA(s) */
   footerContent?: React.ReactNode;
   /** Main content of the drawer */
@@ -192,7 +192,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
               {title}
             </Title>
-            {!noCloseButton && (
+            {!noCloseButton && onRequestClose != undefined && (
               <Close
                 ariaLabel={ariaLabelCloseBtn}
                 color={closeColor}
