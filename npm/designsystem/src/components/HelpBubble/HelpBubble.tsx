@@ -89,11 +89,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     if (noCloseButton) {
       return;
     }
-    return (
-      <div className={styles.helpbubble__close}>
-        <Close small onClick={onClose} ariaLabel={closeAriaLabel} />
-      </div>
-    );
+    return <Close small color="plum" onClick={onClose} ariaLabel={closeAriaLabel} className={styles.helpbubble__close} />;
   };
 
   return (
