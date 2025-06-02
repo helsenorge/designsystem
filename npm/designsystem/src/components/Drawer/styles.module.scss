@@ -76,11 +76,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
-    border-bottom: 1px solid var(--color-base-border-neutral);
+
+    // legg til padding for å gi plass til close button
+    padding: spacers.getSpacer(xs) 2.75rem spacers.getSpacer(xs) spacers.getSpacer(2xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      padding: spacers.getSpacer(xs);
+      padding: spacers.getSpacer(xs) 2.75rem spacers.getSpacer(xs) spacers.getSpacer(xs);
     }
 
     @include breakpoints.tiny-screens-media-query {
@@ -89,8 +90,18 @@
       align-items: flex-start;
     }
 
+    &--no-close-button {
+      padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: spacers.getSpacer(xs);
+      }
+    }
+
     &__close-button {
-      align-self: flex-start;
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 
@@ -110,12 +121,26 @@
     @include breakpoints.tiny-screens-media-query {
       overflow-y: unset;
     }
+
+    // Scroll shadow
+    // Inspired by: https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/
+    background:
+      linear-gradient(white 30%, rgba(255 255 255 / 0%)) center top,
+      linear-gradient(rgba(255 255 255 / 0%), white 70%) center bottom,
+      linear-gradient(rgba(0 0 0 / 46%), rgba(0 0 0 / 0%)) center top,
+      linear-gradient(rgba(0 0 0 / 0%), rgba(0 0 0 / 46%)) center bottom;
+    background-repeat: no-repeat;
+    background-size:
+      100% 40px,
+      100% 40px,
+      100% 16px,
+      100% 16px;
+    background-attachment: local, local, scroll, scroll;
   }
 
   &__footer {
     display: flex;
     gap: spacers.getSpacer(m);
-    border-top: 1px solid var(--color-base-border-neutral);
     padding: spacers.getSpacer(s) spacers.getSpacer(2xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
