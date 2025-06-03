@@ -90,6 +90,8 @@ export enum AnalyticsId {
   FormGroup = 'form-group',
   FormLayout = 'form-layout',
   HelpBubble = 'help-bubble',
+  HelpExpanderInline = 'help-expander-inline',
+  HelpExpanderStandalone = 'help-expander-standalone',
   HelpTooltip = 'help-tooltip',
   HelpTriggerIcon = 'help-trigger-icon',
   HelpTriggerInline = 'help-trigger-inline',

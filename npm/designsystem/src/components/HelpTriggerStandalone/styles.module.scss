@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/font-mixins' as fonts;
 @import '../../scss/supernova/styles/colors.css';
 @import '../../scss/supernova/styles/spacers.css';
 
@@ -14,6 +15,7 @@ $outline-xl-width: 2.5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
   cursor: pointer;
   text-decoration: none;
   background-color: transparent;
@@ -57,7 +59,12 @@ $outline-xl-width: 2.5px;
     }
   }
 
-  &__text {
+  &__children {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     margin-left: var(--core-space-2xs);
+
+    @include fonts.help-trigger-text;
   }
 }

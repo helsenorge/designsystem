@@ -20,7 +20,7 @@ export interface HelpTriggerStandaloneProps
    */
   ariaLabelledById?: string;
   /** Sets the text content of the HelpTriggerStandalone. */
-  children: string;
+  children: React.ReactNode;
   /**
    * Sets the colors of the help trigger. Default: normal.
    */
@@ -54,7 +54,7 @@ const HelpTriggerStandalone = React.forwardRef<HTMLButtonElement, HelpTriggerSta
       >
         <span className={styles['help-trigger-standalone__inner-container']}>
           <HelpTriggerIconInternal weight={weight} size={isMobile ? 'medium' : 'large'} htmlMarkup={'span'} />
-          <span className={styles['help-trigger-standalone__text']}>{children}</span>
+          <span className={styles['help-trigger-standalone__children']}>{children}</span>
         </span>
       </button>
     );

@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import HelpSign from './HelpSign';
 import { AnalyticsId } from '../../constants';
 import { useHover } from '../../hooks/useHover';
-import { getColor } from '../../theme/currys';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
 
@@ -50,7 +49,7 @@ interface HelpTriggerIconInternalProps extends HelpTriggerIconProps {
 
 const getIconColor = (hover: boolean, weight: HelpTriggerWeights): string | undefined => {
   if (weight === 'normal') {
-    return hover ? getColor('plum', 900) : getColor('plum', 700);
+    return `var(--core-color-plum-${hover ? '900' : '700'})`;
   }
 };
 
