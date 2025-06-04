@@ -5,7 +5,6 @@ export type Styles = {
   'help-trigger-icon--large': string;
   'help-trigger-icon--medium': string;
   'help-trigger-icon--strong': string;
-  'help-trigger-icon--strong--is-button': string;
   'help-trigger-icon--xlarge': string;
 };
 

@@ -9,7 +9,8 @@ $trigger-xl-size: 2rem;
 $outline-medium-width: 2px;
 $outline-large-width: 2.2px;
 $outline-xl-width: 2.5px;
-$outline-focus-width: 3px;
+$outline-focus-inner-width: 2px;
+$outline-focus-outer-width: 5px;
 
 .help-trigger-icon {
   $trigger: &;
@@ -110,24 +111,12 @@ $outline-focus-width: 3px;
       }
     }
   }
+
   &--xlarge#{&}--is-button {
     &:focus-visible {
       box-shadow: none;
       outline: 3.5px solid var(--core-color-black);
       outline-offset: -2px;
-    }
-  }
-
-  &--xlarge#{&}--strong {
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      &--is-button {
-        &:focus-visible {
-          box-shadow:
-            0 0 0 #{$outline-focus-width} var(--core-color-white),
-            0 0 0 calc(#{$outline-focus-width} * 2) var(--core-color-black);
-          outline: none;
-        }
-      }
     }
   }
 
@@ -156,8 +145,8 @@ $outline-focus-width: 3px;
 
     &:focus-visible {
       box-shadow:
-        0 0 0 #{$outline-focus-width} var(--core-color-white),
-        0 0 0 calc(#{$outline-focus-width} * 2) var(--core-color-black);
+        0 0 0 #{$outline-focus-inner-width} var(--core-color-white),
+        0 0 0 calc(#{$outline-focus-outer-width}) var(--core-color-black);
       outline: none;
 
       &::after {
