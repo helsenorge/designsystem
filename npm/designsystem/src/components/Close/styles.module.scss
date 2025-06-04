@@ -42,6 +42,11 @@ $mobile-outer-size: 2.75rem;
       width: $desktop-size;
     }
 
+    &--small {
+      width: $mobile-inner-size;
+      height: $mobile-inner-size;
+    }
+
     :hover > &,
     :active > & {
       background-color: var(--color-action-background-transparent-onlight-hover);

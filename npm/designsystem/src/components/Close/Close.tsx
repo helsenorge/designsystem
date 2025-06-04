@@ -55,7 +55,7 @@ const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, re
     >
       <span
         className={classNames(styles['close__inner-container'], {
-          [styles['close--small']]: small,
+          [styles['close__inner-container--small']]: small,
           [styles['close__inner-container--plum']]: color == 'plum',
         })}
       >
