@@ -10,6 +10,7 @@ import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
@@ -44,7 +45,7 @@ export interface InnerDrawerProps {
   /** Changes the underlying element of the title. Default: h3 */
   titleHtmlMarkup?: TitleTags;
   /** Callback that triggers when clicking on close button or outside the drawer, update isOpen state when this triggers */
-  onRequestClose: () => void;
+  onRequestClose?: () => void;
   /** Optional footer content that can be rendered instead of default CTA(s) */
   footerContent?: React.ReactNode;
   /** Main content of the drawer */
@@ -79,6 +80,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     desktopDirection = 'left',
     footerContent,
     headerClasses,
+    noCloseButton = false,
     onPrimaryAction,
     onRequestClose,
     onSecondaryAction,
@@ -98,7 +100,9 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
-  const headerStyling = classNames(styles.drawer__header, headerClasses);
+  const headerStyling = classNames(styles.drawer__header, headerClasses, {
+    [styles['drawer__header--no-close-button']]: noCloseButton,
+  });
   const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
 
   useFocusTrap(containerRef, true);
@@ -110,6 +114,11 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
 
   useEffect(() => {
     containerRef.current?.focus();
+    disableBodyScroll();
+
+    return (): void => {
+      enableBodyScroll();
+    };
   }, []);
 
   // Open animation.
@@ -189,7 +198,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
               {title}
             </Title>
-            {!props.noCloseButton && (
+            {!noCloseButton && onRequestClose != undefined && (
               <Close
                 ariaLabel={ariaLabelCloseBtn}
                 color={closeColor}
