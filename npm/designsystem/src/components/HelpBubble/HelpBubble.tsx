@@ -12,6 +12,10 @@ import styles from './styles.module.scss';
 export const HelpBubbleVariant = PopOverVariant;
 
 export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'variant' | 'controllerRef' | 'role'> {
+  /** Sets aria-label of the bubble. ariaLabel or ariaLabelledById MUST be set! */
+  ariaLabel?: string;
+  /** Sets aria-labelledby of the bubble. ariaLabel or ariaLabelledById MUST be set! */
+  ariaLabelledById?: string;
   /** Id of the HelpBubble */
   helpBubbleId?: string;
   /** Content shown inside HelpBubble. */
@@ -44,6 +48,8 @@ export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'varian
 
 const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubbleProps>((props, ref) => {
   const {
+    ariaLabel,
+    ariaLabelledById,
     children,
     className = '',
     noCloseButton,
@@ -64,7 +70,6 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
   if (!showBubble) {
     return null;
   }
-
   const helpBubbleClasses = classNames(styles.helpbubble, className);
 
   const contentClasses = classNames(styles.helpbubble__content);
@@ -93,7 +98,17 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
   };
 
   return (
-    <PopOver id={helpBubbleId} variant={variant} controllerRef={controllerRef} role="dialog" ref={ref} show={showBubble} testId={testId}>
+    <PopOver
+      ariaLabel={ariaLabel}
+      ariaLabelledById={ariaLabelledById}
+      id={helpBubbleId}
+      variant={variant}
+      controllerRef={controllerRef}
+      role="dialog"
+      ref={ref}
+      show={showBubble}
+      testId={testId}
+    >
       <div className={helpBubbleClasses} data-analyticsid={AnalyticsId.HelpBubble}>
         {renderCloseButton()}
         <div className={contentClasses}>

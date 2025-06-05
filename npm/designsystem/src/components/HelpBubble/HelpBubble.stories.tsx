@@ -30,11 +30,18 @@ const meta = {
     },
   },
   args: {
+    ariaLabel: 'Help title',
     controllerRef: undefined,
     children: 'Dette er en HelpBubble.',
     showBubble: true,
   },
   argTypes: {
+    ariaLabel: {
+      control: 'text',
+    },
+    ariaLabelledById: {
+      control: 'text',
+    },
     children: {
       control: 'text',
     },

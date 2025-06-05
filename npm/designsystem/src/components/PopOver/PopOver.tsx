@@ -18,6 +18,7 @@ import {
 import classNames from 'classnames';
 
 import { AnalyticsId, ZIndex } from '../../constants';
+import { getAriaLabelAttributes } from '../../utils/accessibility';
 
 import styles from './styles.module.scss';
 
@@ -32,6 +33,10 @@ export type PopOverRole = 'tooltip' | 'dialog';
 export type PopOverPlacement = 'top' | 'bottom';
 
 export interface PopOverProps {
+  /** Sets aria-label of the bubble. If role is set to dialog ariaLabel or ariaLabelledById MUST be set! */
+  ariaLabel?: string;
+  /** Sets aria-labelledby of the bubble. If role is set to dialog ariaLabel or ariaLabelledById MUST be set! */
+  ariaLabelledById?: string;
   /** Id of the PopOver */
   id?: string;
   /** Content shown inside PopOver. Note that if role="tooltip", you must not include interactive/focusable elements. */
@@ -58,6 +63,8 @@ export interface PopOverProps {
 
 const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement | HTMLElement, PopOverProps>((props, ref) => {
   const {
+    ariaLabel,
+    ariaLabelledById,
     id,
     children,
     controllerRef,
@@ -69,6 +76,8 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement | HTMLElement, P
     zIndex = ZIndex.PopOver,
     placement,
   } = props;
+
+  const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
 
   const placementProp = placement ?? (variant === PopOverVariant.positionabove ? 'top' : 'bottom');
 
@@ -102,6 +111,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement | HTMLElement, P
         role={role}
         data-testid={testId}
         data-analyticsid={AnalyticsId.PopOver}
+        {...ariaLabelAttributes}
       >
         {children}
         <FloatingArrow
