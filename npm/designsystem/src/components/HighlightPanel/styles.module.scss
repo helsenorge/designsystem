@@ -5,145 +5,30 @@
 @import '../../scss/grid';
 @import '../../scss/supernova/styles/colors.css';
 
-@mixin content-wrapper-with-icon-flex {
-  display: flex;
-  flex-direction: column;
-}
-
-@mixin content-wrapper-with-icon-flex-responsive {
-  @media (min-width: map.get($grid-breakpoints, md)) {
-    flex-direction: row;
-  }
-}
-
-@mixin content-wrapper-with-icon-padding {
-  padding-top: spacers.getSpacer(m);
-}
-
 .highlightpanel {
-  $panel: &;
   $colors: 'neutral', 'blueberry', 'cherry';
 
-  // Medium og large har bakgrunnsfarge på den indre wrapperen
-  // slik at bakgrunnsfargen ikke går helt ut i kantene
-  &--medium,
-  &--large {
-    @each $color in $colors {
-      &#{$panel}--#{$color} {
-        #{$panel}__content-wrapper {
-          background-color: var(--color-base-background-#{$color});
-          border: 1px solid var(--color-base-border-#{$color});
-        }
-      }
-    }
-
-    // Hvit har sin egen regel siden den ikke har valører
-    &#{$panel}--white {
-      #{$panel}__content-wrapper {
-        background-color: var(--color-base-background-white);
-        border: 1px solid var(--color-base-border-onlight-subtle);
-      }
-    }
-  }
-
-  &--large {
-    #{$panel}__content-wrapper {
-      padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
-
-      @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-top: spacers.getSpacer(l);
-        padding-bottom: spacers.getSpacer(xl);
-      }
-    }
-  }
-
-  &--medium {
-    #{$panel}__content-wrapper {
-      padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
-
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        padding: spacers.getSpacer(m) spacers.getSpacer(m) spacers.getSpacer(l);
-      }
-
-      @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding: spacers.getSpacer(l);
-      }
-    }
-  }
-
   // fluid skal ha bakgrunnsfarge på den ytre containeren
-  &--fluid {
-    padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
+  padding: spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(l);
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
-      padding: spacers.getSpacer(m) spacers.getSpacer(m) spacers.getSpacer(l);
-    }
+  @media (min-width: map.get($grid-breakpoints, sm)) {
+    padding: spacers.getSpacer(m) spacers.getSpacer(m) spacers.getSpacer(l);
+  }
 
-    @each $color in $colors {
-      &#{$panel}--#{$color} {
-        background-color: var(--color-base-background-#{$color});
-        border: 1px solid var(--color-base-border-#{$color});
-      }
-    }
-    &#{$panel}--white {
-      background-color: var(--color-base-background-white);
-      border: 1px solid var(--color-base-border-onlight-subtle);
+  @media (min-width: map.get($grid-breakpoints, xl)) {
+    padding: spacers.getSpacer(l) spacers.getSpacer(l) spacers.getSpacer(l) spacers.getSpacer(m);
+  }
+
+  @each $color in $colors {
+    &--#{$color} {
+      background-color: var(--color-base-background-#{$color});
+      border: 1px solid var(--color-base-border-#{$color});
     }
   }
 
-  &--has-icon#{&}--medium {
-    #{$panel}__content-wrapper {
-      @include content-wrapper-with-icon-flex;
-      @include content-wrapper-with-icon-padding;
-      @include content-wrapper-with-icon-flex-responsive;
-
-      @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-left: spacers.getSpacer(m);
-      }
-    }
-  }
-
-  &--has-icon#{&}--large {
-    #{$panel}__col {
-      @include content-wrapper-with-icon-flex;
-      @include content-wrapper-with-icon-flex-responsive;
-    }
-    #{$panel}__content-wrapper {
-      @include content-wrapper-with-icon-padding;
-
-      @media (min-width: map.get($grid-breakpoints, sm)) {
-        padding-left: spacers.getSpacer(s);
-      }
-
-      @media (min-width: map.get($grid-breakpoints, md)) {
-        padding-left: spacers.getSpacer(m);
-      }
-
-      @media (min-width: map.get($grid-breakpoints, lg)) {
-        padding-left: 0;
-        padding-top: spacers.getSpacer(l);
-        padding-bottom: spacers.getSpacer(xl);
-      }
-    }
-
-    #{$panel}__icon {
-      @media (min-width: map.get($grid-breakpoints, lg)) {
-        @include make-col-ready;
-        @include make-col(2);
-
-        display: flex;
-        justify-content: flex-end;
-        margin-right: 0;
-        padding-right: spacers.getSpacer(s);
-      }
-    }
-
-    #{$panel}__content {
-      @media (min-width: map.get($grid-breakpoints, lg)) {
-        @include make-col-ready;
-        @include make-col(8);
-      }
-    }
+  &--white {
+    background-color: var(--color-base-background-white);
+    border: 1px solid var(--color-base-border-onlight-subtle);
   }
 
   &__content {
@@ -152,52 +37,24 @@
     }
   }
 
-  &--has-icon#{&}--fluid {
-    @include content-wrapper-with-icon-flex;
-    @include content-wrapper-with-icon-padding;
-    @include content-wrapper-with-icon-flex-responsive;
+  &--has-icon {
+    display: flex;
+    flex-direction: column;
+    padding-top: spacers.getSpacer(m);
+
+    @media (min-width: map.get($grid-breakpoints, md)) {
+      flex-direction: row;
+    }
   }
 
   &__icon {
     display: inline-flex;
     gap: spacers.getSpacer(xs);
-    margin-right: spacers.getSpacer(s);
     margin-bottom: spacers.getSpacer(2xs);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
+      margin-right: spacers.getSpacer(s);
       margin-bottom: 0;
-    }
-  }
-
-  &__row {
-    @include make-row;
-  }
-
-  &__col {
-    @include make-col-ready;
-    @include make-col(12);
-
-    &--offset {
-      @media (min-width: map.get($grid-breakpoints, sm)) {
-        @include make-col(10);
-        @include make-col-offset(1);
-      }
-
-      @media (min-width: map.get($grid-breakpoints, lg)) {
-        @include make-col(8);
-        @include make-col-offset(2);
-      }
-    }
-
-    &--large-with-icon {
-      @media (min-width: map.get($grid-breakpoints, sm)) {
-        @include make-col(11);
-        @include make-col-offset(0);
-      }
-
-      @media (min-width: map.get($grid-breakpoints, lg)) {
-        @include make-col(12);
-      }
     }
   }
 
