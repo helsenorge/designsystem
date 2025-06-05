@@ -35,6 +35,12 @@ const meta = {
     variant: PopOverVariant.positionautomatic,
   },
   argTypes: {
+    ariaLabel: {
+      control: 'text',
+    },
+    ariaLabelledById: {
+      control: 'text',
+    },
     children: {
       control: 'text',
     },
