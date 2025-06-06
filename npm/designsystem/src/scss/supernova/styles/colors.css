@@ -186,4 +186,18 @@
   --color-notification-text-success: #078141;
   --color-base-border-neutral-emphasized: #bdbab9;
   --color-notification-status-draft: #7d7c79;
+
+  /* hoverstate on help components on white background */
+  --color-help-background-transparent-onlight-hover: #6c36b31a;
+  --color-help-background-transparent-onlight-hover-selected: #6c38b333;
+  --color-help-background-transparent-onlight-active: #6c38b34d;
+  --color-action-background-transparent-onlight-active: #126f874d;
+
+  /* Background outside of modal and bottomsheet to mask inactive screen-area */
+  --color-shadow-pagemask: #2c2b2cb8;
+  --color-help-border-subtle-wcag: #9153e2;
+  --color-help-graphics-dark: #4c1b8c;
+  --color-help-border-dark: #4c1b8c;
+  --color-help-graphics-verydark: #3c1471;
+  --color-help-border-verydark: #3c1471;
 }

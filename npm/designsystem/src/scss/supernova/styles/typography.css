@@ -97,13 +97,13 @@
   /* Renders clumping in ordinary clumps */
   --mobile-textlist: 400 1.125rem/120% "Source Sans Pro";
 
-  /* For use as body text in help components */
+  /* For use as body text in smaller help components as HelpExpander (detail panel), HelpBubble and HelpTooltip */
   --desktop-help-text: 400 1.125rem/140% "Source Sans Pro";
 
   /* For use in Help trigger components */
   --desktop-help-trigger-text: 600 1.125rem/130% "Source Sans 3";
 
-  /* For use as body text in help components */
+  /* For use as body text in smaller help components as HelpExpander (detail panel), HelpBubble and HelpTooltip */
   --mobile-help-text: 400 1rem/150% "Source Sans Pro";
 
   /* For use in Help trigger components */
