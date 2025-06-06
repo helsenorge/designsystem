@@ -12,7 +12,7 @@ import HelpSign from '../Icons/HelpSign';
 import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, ResponsiveTableVariant, HeaderCategory } from '../Table';
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/PopOver',
+  title: '@helsenorge/designsystem-react/_Internal/PopOver',
   component: PopOver,
   tags: ['not-supernova'],
   parameters: {
@@ -28,6 +28,7 @@ const meta = {
     },
   },
   args: {
+    show: true,
     controllerRef: undefined,
     children:
       'Dette er en PopOver. Aliquip aute consectetur eiusmod nisi ullamco aliquip adipisicing cupidatat reprehenderit nulla in Lorem sint.',
@@ -37,9 +38,9 @@ const meta = {
     children: {
       control: 'text',
     },
-    variant: {
+    placement: {
       control: 'select',
-      options: PopOverVariant,
+      options: ['top', 'bottom'],
     },
   },
 } satisfies Meta<typeof PopOver>;
@@ -56,7 +57,7 @@ export const Default: Story = {
       <>
         <Icon ref={controllerRef} svgIcon={HelpSign} />
         <PopOver {...args} controllerRef={controllerRef}>
-          <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+          {args.children}
         </PopOver>
       </>
     );
@@ -73,7 +74,7 @@ export const WithText: Story = {
         <div style={{ position: 'relative', display: 'inline' }}>
           <Icon ref={controllerRef} svgIcon={HelpSign} />
           <PopOver {...args} controllerRef={controllerRef}>
-            <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+            {args.children}
           </PopOver>
         </div>
         <span>{loremText + loremText}</span>
@@ -96,7 +97,7 @@ export const Toggle: Story = {
           </Button>
           {value && (
             <PopOver {...args} controllerRef={controllerRef}>
-              <div style={{ padding: '0.5rem 1rem' }}>{args.children}</div>
+              {args.children}
             </PopOver>
           )}
         </div>

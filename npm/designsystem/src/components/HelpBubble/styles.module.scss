@@ -4,6 +4,7 @@
 @use '../../scss/font-settings' as font-settings;
 @use '../AnchorLink/styles.module' as anchorlink;
 @use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/spacers.css';
 
 .helpbubble {
   $bubble: &;
@@ -26,12 +27,7 @@
     flex-direction: column;
     align-items: flex-start;
     overflow-wrap: anywhere;
-    row-gap: spacers.getSpacer(2xs);
-    padding: spacers.getSpacer(s) spacers.getSpacer(s) spacers.getSpacer(m);
-
-    &--close {
-      padding-right: 0;
-    }
+    padding-right: calc(var(--core-space-xl) - var(--core-space-2xs));
 
     > p {
       margin: 0;
@@ -46,6 +42,8 @@
 
   &__close {
     order: 2;
-    padding: spacers.getSpacer(2xs) spacers.getSpacer(2xs) 0 0;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }

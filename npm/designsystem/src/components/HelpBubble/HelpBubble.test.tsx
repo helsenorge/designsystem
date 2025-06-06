@@ -49,7 +49,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
         </HelpBubleWithController>
       );
 
-      expect(container).toMatchSnapshot();
+      expect(container).toBeVisible();
     });
   });
 

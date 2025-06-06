@@ -238,3 +238,25 @@
     line-height: 1.625rem;
   }
 }
+
+@mixin help-text {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    font-size: 1.125rem;
+    line-height: 1.575rem;
+  }
+}
+
+@mixin help-trigger-text {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-weight: 600;
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    font-size: 1.125rem;
+    line-height: 1.463rem;
+  }
+}

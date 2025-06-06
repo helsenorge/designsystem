@@ -1,5 +1,5 @@
 export type Styles = {
-  word: string;
+  'help-expander-standalone-trigger': string;
 };
 
 export type ClassNames = keyof Styles;

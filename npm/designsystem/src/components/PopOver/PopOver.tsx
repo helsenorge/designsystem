@@ -1,14 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
+import {
+  autoUpdate,
+  flip,
+  offset,
+  shift,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+  FloatingArrow,
+  arrow,
+  hide,
+  FloatingFocusManager,
+  useMergeRefs,
+} from '@floating-ui/react';
 import classNames from 'classnames';
 
-import { getArrowStyle, getBubbleStyle, getVerticalPosition } from './utils';
 import { AnalyticsId, ZIndex } from '../../constants';
-import { useInterval } from '../../hooks/useInterval';
-import { useIsVisible } from '../../hooks/useIsVisible';
-import { useLayoutEvent } from '../../hooks/useLayoutEvent';
-import { useSize } from '../../hooks/useSize';
-import { mergeRefs } from '../../utils/refs';
 
 import styles from './styles.module.scss';
 
@@ -18,7 +27,9 @@ export enum PopOverVariant {
   positionabove = 'positionabove',
 }
 
-export type PopOverRole = 'tooltip';
+export type PopOverRole = 'tooltip' | 'dialog';
+
+export type PopOverPlacement = 'top' | 'bottom';
 
 export interface PopOverProps {
   /** Id of the PopOver */
@@ -27,16 +38,16 @@ export interface PopOverProps {
   children: React.ReactNode;
   /** Ref for the element the PopOver is placed upon */
   controllerRef: React.RefObject<HTMLElement | SVGSVGElement>;
-  /** Ref for the element the PopOver is placed upon */
-  popOverRef?: React.RefObject<HTMLDivElement>;
   /** Show the popover. Only applies when role=tooltip. Default: false. */
   show?: boolean;
   /** Adds custom classes to the element. */
   className?: string;
-  /** Adds custom classes to the arrow element. */
+  /** @deprecated Adds custom classes to the arrow element. */
   arrowClassName?: string;
-  /** Determines the placement of the popover. Default: automatic positioning. */
+  /** @deprecated use placement instead. Determines the placement of the popover. Default: automatic positioning. */
   variant?: keyof typeof PopOverVariant;
+  /** Sets the placement of the popover relative to the trigger if there is space, otherwise automatic. */
+  placement?: PopOverPlacement;
   /** Sets role of the PopOver element */
   role?: PopOverRole;
   /** Sets the data-testid attribute. */
@@ -45,66 +56,63 @@ export interface PopOverProps {
   zIndex?: number;
 }
 
-const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement, PopOverProps>((props, ref) => {
+const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement | HTMLElement, PopOverProps>((props, ref) => {
   const {
     id,
     children,
     controllerRef,
-    popOverRef,
     show = false,
     className = '',
     variant = PopOverVariant.positionautomatic,
-    role,
+    role = 'dialog',
     testId,
-    arrowClassName,
     zIndex = ZIndex.PopOver,
+    placement,
   } = props;
 
-  const bubbleRef = popOverRef || useRef<HTMLDivElement>(null);
-  const arrowRef = useRef<HTMLDivElement>(null);
-  const bubbleSize = useSize(bubbleRef);
-  const [controllerSize, setControllerSize] = useState<DOMRect>();
-  const controllerisVisible = useIsVisible(bubbleRef, 0);
+  const placementProp = placement ?? (variant === PopOverVariant.positionabove ? 'top' : 'bottom');
 
-  const updateControllerSize = (): void => {
-    setControllerSize(controllerRef.current?.getBoundingClientRect());
-  };
-
-  useInterval(updateControllerSize, 500);
-  useLayoutEvent(updateControllerSize, ['scroll', 'resize'], 10);
-
-  useEffect(() => {
-    updateControllerSize();
-  }, []);
-
-  const isTooltip = role === 'tooltip';
-
-  const popOverClasses = classNames(styles.popover, { [styles['popover--visible']]: isTooltip ? show : controllerisVisible }, className);
-  const verticalPosition = controllerSize && bubbleSize && getVerticalPosition(controllerSize, bubbleSize, variant);
-  const arrowClasses = classNames(styles.popover__arrow, arrowClassName, {
-    [styles['popover__arrow--over']]: verticalPosition === PopOverVariant.positionbelow,
-    [styles['popover__arrow--under']]: verticalPosition === PopOverVariant.positionabove,
-    [styles['popover__arrow--visible']]: isTooltip ? show : controllerisVisible,
+  const arrowRef = useRef(null);
+  const { refs, floatingStyles, context, middlewareData } = useFloating({
+    middleware: [offset(10), flip(), shift({ padding: 8 }), hide(), arrow({ element: arrowRef })],
+    placement: placementProp,
+    whileElementsMounted: autoUpdate,
+    elements: {
+      reference: controllerRef.current,
+    },
   });
 
-  const bubbleStyle = controllerSize && bubbleSize && getBubbleStyle(controllerSize, bubbleSize, variant);
-  const arrowStyle = bubbleStyle && controllerSize && verticalPosition && getArrowStyle(bubbleStyle, controllerSize, verticalPosition);
+  const click = useClick(context);
+  const dismiss = useDismiss(context);
+
+  const { getFloatingProps } = useInteractions([click, dismiss]);
+
+  const isVisible = show && !middlewareData.hide?.referenceHidden;
+
+  const mergedRef = useMergeRefs<HTMLElement | SVGSVGElement>([refs.setFloating, ref]);
 
   return (
-    <>
+    <FloatingFocusManager context={context} modal={false}>
       <div
         id={id}
-        ref={mergeRefs([ref, bubbleRef])}
-        className={popOverClasses}
-        style={{ ...bubbleStyle, zIndex }}
+        ref={mergedRef}
+        style={{ ...floatingStyles, visibility: isVisible ? 'visible' : 'hidden', zIndex: zIndex }}
+        className={classNames(styles.popover, className)}
+        {...getFloatingProps()}
+        role={role}
         data-testid={testId}
         data-analyticsid={AnalyticsId.PopOver}
-        role={role}
       >
         {children}
+        <FloatingArrow
+          ref={arrowRef}
+          context={context}
+          fill={'var(--core-color-white)'}
+          stroke={'var(--color-base-border-onlight)'}
+          strokeWidth={1}
+        />
       </div>
-      <div ref={arrowRef} className={arrowClasses} style={{ ...arrowStyle, zIndex }} />
-    </>
+    </FloatingFocusManager>
   );
 });
 

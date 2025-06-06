@@ -1,6 +1,6 @@
 export type Styles = {
-  helpquestion: string;
-  'helpquestion--selected': string;
+  'help-trigger-inline': string;
+  'help-trigger-inline__text': string;
 };
 
 export type ClassNames = keyof Styles;

@@ -2,62 +2,25 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
+@use '../../scss/font-mixins' as fonts;
 @use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
 
 .popover {
-  $popover: &;
-
-  display: flex;
-  position: fixed;
-  align-items: flex-start !important;
-  max-width: 23.3125rem;
+  width: max-content;
+  max-width: min(32rem, calc(100vw - (2 * 8px)));
   text-align: start;
-  font-family: inherit;
-  font-size: font-settings.$font-size-sm;
-  line-height: font-settings.$lineheight-size-sm;
-  background-color: palette.$white;
+  background-color: var(--core-color-white);
   z-index: 3;
-  visibility: hidden;
-  border: spacers.getSpacer(4xs) solid palette.$plum600;
-  border-radius: 0.5625rem;
-  box-shadow: 0 0.125rem 1.125rem 0 rgb(0 0 0 / 15%);
+  border: 1px solid var(--color-base-border-onlight);
+  border-radius: 9px;
+  filter: drop-shadow(0 4px 16px rgba(0 0 0 / 30%));
+  padding: var(--core-space-s);
 
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
-    font-size: font-settings.$font-size-md;
-    line-height: font-settings.$lineheight-size-md;
-  }
+  @include fonts.help-text;
 
-  &--visible {
-    visibility: visible;
-  }
-
-  &__arrow {
-    --drop-shadow-color: #{palette.$plum600};
-
-    width: 0;
-    height: 0;
-    position: fixed;
-    border-style: solid;
-    border-color: transparent;
-    z-index: 3;
-    visibility: hidden;
-
-    &--over {
-      border-width: 0.625rem;
-      border-bottom-color: palette.$white;
-      filter: drop-shadow(var(--drop-shadow-color) 0 0.125rem 0.375rem 0.125rem);
-      filter: drop-shadow(0 -0.185rem 0 var(--drop-shadow-color));
-    }
-
-    &--under {
-      border-width: 0.625rem;
-      border-top-color: palette.$white;
-      filter: drop-shadow(var(--drop-shadow-color) 0 0.125rem 0.375rem 0.125rem);
-      filter: drop-shadow(0 0.2rem 0 var(--drop-shadow-color));
-    }
-
-    &--visible {
-      visibility: visible;
-    }
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    max-width: 35rem;
   }
 }

@@ -3,12 +3,12 @@ import * as React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import HelpTrigger from './HelpTrigger';
+import HelpTriggerInline from './HelpTriggerInline';
 
-describe('Gitt at HelpTrigger skal vises', () => {
+describe('Gitt at HelpTriggerInline skal vises', () => {
   describe('Når komponenten får en tekst', () => {
     it('Så vises beskrivelsen', () => {
-      render(<HelpTrigger ariaLabel="Hjelp" />);
+      render(<HelpTriggerInline ariaLabel="Hjelp">{'test'}</HelpTriggerInline>);
 
       const helpTrigger = screen.getByLabelText('Hjelp');
 
@@ -21,7 +21,7 @@ describe('Gitt at HelpTrigger skal vises', () => {
       render(
         <>
           <p id="test">{'Hjelp'}</p>
-          <HelpTrigger ariaLabelledById="test" />
+          <HelpTriggerInline ariaLabelledById="test">{'test'}</HelpTriggerInline>
         </>
       );
 
@@ -36,7 +36,9 @@ describe('Gitt at HelpTrigger skal vises', () => {
       render(
         <>
           <p id="test">{'Hjelp'}</p>
-          <HelpTrigger ariaLabelledById="test" ariaLabel="Annen tekst" />
+          <HelpTriggerInline ariaLabelledById="test" ariaLabel="Annen tekst">
+            {'test'}
+          </HelpTriggerInline>
         </>
       );
 
@@ -48,7 +50,11 @@ describe('Gitt at HelpTrigger skal vises', () => {
 
   describe('Når komponenten får en css-klasse', () => {
     it('Så brukes css-klassen', () => {
-      render(<HelpTrigger ariaLabel="Hjelp" className="test" />);
+      render(
+        <HelpTriggerInline ariaLabel="Hjelp" className="test">
+          {'test'}
+        </HelpTriggerInline>
+      );
 
       const helpTrigger = screen.getByLabelText('Hjelp');
 
@@ -59,7 +65,11 @@ describe('Gitt at HelpTrigger skal vises', () => {
   describe('Når man klikker på knappen', () => {
     it('Så kalles onClick-callback', async () => {
       const handleClick = vi.fn();
-      render(<HelpTrigger ariaLabel="Hjelp" onClick={handleClick} />);
+      render(
+        <HelpTriggerInline ariaLabel="Hjelp" onClick={handleClick}>
+          {'test'}
+        </HelpTriggerInline>
+      );
 
       const helpTrigger = screen.getByLabelText('Hjelp');
 
@@ -78,7 +88,11 @@ describe('Gitt at HelpTrigger skal vises', () => {
           ref?.current?.focus();
         }, [ref]);
 
-        return <HelpTrigger ref={ref} ariaLabel="Hjelp" />;
+        return (
+          <HelpTriggerInline ref={ref} ariaLabel="Hjelp">
+            {'test'}
+          </HelpTriggerInline>
+        );
       };
 
       render(<WithRef />);
@@ -89,19 +103,13 @@ describe('Gitt at HelpTrigger skal vises', () => {
     });
   });
 
-  describe('Når selected ikke er satt', () => {
-    it('Så er aria-expanded=false', async () => {
-      render(<HelpTrigger ariaLabel="Hjelp" />);
-
-      const helpTrigger = screen.getByLabelText('Hjelp');
-
-      expect(helpTrigger).toHaveAttribute('aria-expanded', 'false');
-    });
-  });
-
-  describe('Når selected er true', () => {
-    it('Så er aria-expanded=true', async () => {
-      render(<HelpTrigger selected ariaLabel="Hjelp" />);
+  describe('Når aria-expanded er true', () => {
+    it('Så settes verdien på komponenten', async () => {
+      render(
+        <HelpTriggerInline aria-expanded={true} ariaLabel="Hjelp">
+          {'test'}
+        </HelpTriggerInline>
+      );
 
       const helpTrigger = screen.getByLabelText('Hjelp');
 
@@ -110,20 +118,15 @@ describe('Gitt at HelpTrigger skal vises', () => {
   });
   describe('Når data-triggerid=default', () => {
     it('Så har knappen data-triggerid=default', async () => {
-      render(<HelpTrigger selected ariaLabel="Hjelp" data-triggerid={'default'} />);
+      render(
+        <HelpTriggerInline ariaLabel="Hjelp" data-triggerid={'default'}>
+          {'test'}
+        </HelpTriggerInline>
+      );
 
       const helpTrigger = screen.getByLabelText('Hjelp');
 
       expect(helpTrigger).toHaveAttribute('data-triggerid', 'default');
-    });
-  });
-  describe('Når htmlMarkup=span', () => {
-    it('Så kan den finnes med testid', async () => {
-      render(<HelpTrigger htmlMarkup="span" testId="helpTrigger" />);
-
-      const helpTrigger = screen.getByTestId('helpTrigger');
-
-      expect(helpTrigger).toBeVisible();
     });
   });
 });

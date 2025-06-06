@@ -49,6 +49,7 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.8",
     "motion": "^11.14.3"
   },
   "devDependencies": {
