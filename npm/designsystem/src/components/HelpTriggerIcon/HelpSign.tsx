@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HelpTriggerWeights } from '../HelpTrigger/HelpTrigger';
+import { HelpTriggerWeights } from '../HelpTriggerIcon';
 
 export interface HelpSignProps {
   color?: string;
@@ -8,9 +8,9 @@ export interface HelpSignProps {
 }
 
 const HelpSign: React.FC<HelpSignProps> = ({ color, weight }: HelpSignProps): React.ReactElement => {
-  if (weight === 'normal') {
-    return (
-      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+  const paths =
+    weight === 'normal' ? (
+      <>
         <defs>
           <clipPath id="clipCircle" clipPathUnits="userSpaceOnUse">
             <path
@@ -33,13 +33,9 @@ const HelpSign: React.FC<HelpSignProps> = ({ color, weight }: HelpSignProps): Re
           d="M10 12.7998C10.6024 12.7999 11.0996 13.31 11.0996 13.9072C11.0994 14.506 10.6023 14.9999 10 15C9.38173 15 8.8996 14.506 8.89941 13.9072C8.89941 13.31 9.38162 12.7998 10 12.7998Z"
           fill={color}
         />
-      </svg>
-    );
-  }
-
-  if (weight === 'strong') {
-    return (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      </>
+    ) : (
+      <>
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -53,9 +49,14 @@ const HelpSign: React.FC<HelpSignProps> = ({ color, weight }: HelpSignProps): Re
           d="M10 12.7998C10.6024 12.7999 11.0996 13.31 11.0996 13.9072C11.0994 14.506 10.6023 14.9999 10 15C9.38173 15 8.8996 14.506 8.89941 13.9072C8.89941 13.31 9.38162 12.7998 10 12.7998Z"
           fill="white"
         />
-      </svg>
+      </>
     );
-  }
+
+  return (
+    <svg fill="none" height="20" overflow="visible" role={'presentation'} width="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      {paths}
+    </svg>
+  );
 };
 
 export default HelpSign;

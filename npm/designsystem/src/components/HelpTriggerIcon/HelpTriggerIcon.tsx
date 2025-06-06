@@ -75,13 +75,12 @@ export const HelpTriggerIconInternal = React.forwardRef<HTMLButtonElement, HelpT
     if (isButton) {
       return (
         <button
-          aria-label={ariaLabel}
+          {...ariaLabelAttributes}
           type="button"
           data-testid={testId}
           data-analyticsid={AnalyticsId.HelpTriggerIcon}
           className={iconClasses}
           ref={mergeRefs([hoverRef, ref])}
-          {...ariaLabelAttributes}
           {...buttonRest}
         >
           {helpIcon}
