@@ -3,8 +3,9 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
+import { useArgs } from 'storybook/internal/preview-api';
 
-import HelpExpanderInline from './HelpExpanderInline';
+import HelpExpanderInline, { HelpExpanderInlineProps } from './HelpExpanderInline';
 import { mediumLoremText } from '../../utils/loremtext';
 import Checkbox from '../Checkbox';
 import HelpTriggerIcon from '../HelpTriggerIcon';
@@ -40,7 +41,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => {
     const controllerRef = React.useRef<HTMLButtonElement>(null);
-    const [expanded, setExpanded] = React.useState(false);
+    const [{ expanded }, setExpanded] = useArgs<HelpExpanderInlineProps>();
 
     return (
       <>
@@ -49,7 +50,7 @@ export const Default: Story = {
           aria-expanded={expanded}
           ariaLabel={'Help text'}
           ref={controllerRef}
-          onClick={() => setExpanded(!expanded)}
+          onClick={() => setExpanded({ expanded: !expanded })}
         />
         <HelpExpanderInline {...args} expanded={expanded} controllerRef={controllerRef} onExpand={action('Expander toggled')} />
       </>

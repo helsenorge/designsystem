@@ -47,25 +47,24 @@ $mobile-outer-size: 2.75rem;
       height: $mobile-inner-size;
     }
 
-    :hover>&,
-    :active>& {
+    :hover > &,
+    :active > & {
       background-color: var(--color-action-background-transparent-onlight-hover);
     }
 
-    :focus-visible>& {
+    :focus-visible > & {
       outline: 3px solid var(--color-action-border-onlight-focus);
       border-radius: 0;
       border: 0;
     }
 
     &--plum {
-
-      :hover>&,
-      :active>& {
+      :hover > &,
+      :active > & {
         background-color: var(--color-help-background-transparent-onlight-hover, #6c36b31a);
       }
 
-      :focus-visible>& {
+      :focus-visible > & {
         outline: 3px solid var(--color-action-border-onlight-focus);
         border-radius: 0;
         border: 0;
