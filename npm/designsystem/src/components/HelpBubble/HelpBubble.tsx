@@ -12,9 +12,9 @@ import styles from './styles.module.scss';
 export const HelpBubbleVariant = PopOverVariant;
 
 export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'variant' | 'controllerRef' | 'role'> {
-  /** Sets aria-label of the bubble. ariaLabel or ariaLabelledById MUST be set! */
+  /** Sets aria-label of the bubble. */
   ariaLabel?: string;
-  /** Sets aria-labelledby of the bubble. ariaLabel or ariaLabelledById MUST be set! */
+  /** Sets aria-labelledby of the bubble. */
   ariaLabelledById?: string;
   /** Id of the HelpBubble */
   helpBubbleId?: string;
