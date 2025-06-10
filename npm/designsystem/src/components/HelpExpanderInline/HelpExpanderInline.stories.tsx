@@ -41,7 +41,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => {
     const controllerRef = React.useRef<HTMLButtonElement>(null);
-    const [{ expanded }, setExpanded] = useArgs<HelpExpanderInlineProps>();
+    const [{ expanded = true }, setExpanded] = useArgs<HelpExpanderInlineProps>();
 
     return (
       <>
