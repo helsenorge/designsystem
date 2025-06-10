@@ -24,7 +24,7 @@ const meta = {
       },
     },
   },
-  args: { children: 'Ord', description: 'Dette er tekst som skal fylle HelpBubble' },
+  args: { children: 'Ord', description: 'Dette er tekst som skal fylle HelpTooltip' },
   argTypes: {
     children: {
       control: 'text',
@@ -56,11 +56,11 @@ export const MultipleTooltips: Story = {
     <div>
       <HelpTooltipDelayGroup delay={200}>
         {longLoremText + ' '}
-        <HelpTooltip {...args} description="Dette er tekst som skal fylle HelpBubble" />
+        <HelpTooltip {...args} description="Dette er tekst som skal fylle HelpTooltip" />
         {' ' + shortLoremText + ' '}
-        <HelpTooltip {...args} description="Dette er tekst som skal fylle HelpBubble" />
+        <HelpTooltip {...args} description="Dette er tekst som skal fylle HelpTooltip" />
         {' ' + longLoremText + ' '}
-        <HelpTooltip {...args} description="Dette er tekst som skal fylle HelpBubble" />
+        <HelpTooltip {...args} description="Dette er tekst som skal fylle HelpTooltip" />
       </HelpTooltipDelayGroup>
     </div>
   ),
