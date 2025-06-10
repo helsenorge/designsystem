@@ -3,10 +3,11 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
 @import '../../scss/supernova/styles/spacers.css';
 
 .modal-overlay {
-  background: rgb(51 51 51 / 75%);
+  background: var(--color-shadow-pagemask);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -214,6 +215,7 @@
           padding: spacers.getSpacer(2xs) spacers.getSpacer(3xs) spacers.getSpacer(4xs);
         }
       }
+
       &--large#{&}--image {
         padding: spacers.getSpacer(xl) spacers.getSpacer(2xs) spacers.getSpacer(l);
       }
