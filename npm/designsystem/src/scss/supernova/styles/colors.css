@@ -75,9 +75,9 @@
   --color-base-border-ondark: #d6d4d3;
   --color-base-border-onlight: #7d7c79;
   --color-base-border-onlight-emphasized: #62625f;
-  --color-help-background: #efe4fd;
-  --color-help-graphics: #5b22a6;
-  --color-help-border: #5b22a6;
+  --color-help-background-normal: #efe4fd;
+  --color-help-graphics-normal: #5b22a6;
+  --color-help-border-normal: #5b22a6;
   --core-color-blueberry-100: #cae7ed;
   --core-color-blueberry-200: #afdae3;
   --core-color-blueberry-300: #7abecc;
@@ -172,8 +172,6 @@
   --color-placeholder-text-onlight: #62625f;
   --color-base-border-onlight-subtle: #d6d4d3;
   --color-base-border-neutral: #d6d4d3;
-
-  /* Subtle border for Blueberry 50 background */
   --color-base-border-blueberry: #afdae3;
   --color-base-border-cherry: #eec0a5;
 
