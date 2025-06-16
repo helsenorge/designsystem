@@ -54,8 +54,13 @@ export const NextToText: Story = {
     onClick: action('Trigger clicked!'),
   },
   render: args => (
-    <div>
-      {mediumLoremText} <DictionaryTrigger {...args} /> {mediumLoremText}
-    </div>
+    <>
+      <p style={{ fontSize: '18px', lineHeight: '27px' }}>
+        {mediumLoremText} <DictionaryTrigger {...args} /> {mediumLoremText}
+      </p>
+      <p style={{ fontSize: '20px', lineHeight: '30px' }}>
+        {mediumLoremText} <DictionaryTrigger {...args} /> {mediumLoremText}
+      </p>
+    </>
   ),
 };

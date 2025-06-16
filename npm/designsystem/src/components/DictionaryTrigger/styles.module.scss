@@ -1,10 +1,13 @@
 @use '../../scss/palette' as palette;
+@import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
 
 .dictionarytrigger {
   all: unset;
+  font-size: inherit;
+  line-height: inherit;
   cursor: help;
-  line-height: initial;
-  padding-bottom: 4px;
+  padding: 0 var(--core-space-4xs);
   background-color: transparent;
 
   // The background svg consists of a circle with empty space to the right, making up a dotted pattern when repeated horizontally
@@ -13,28 +16,30 @@
   background-repeat: repeat-x;
 
   &:hover {
-    background-color: rgba-to-rgb(rgba(palette.$plum600, 0.1), palette.$white);
+    background-color: var(--color-help-background-transparent-onlight-hover);
     background-image: url("data:image/svg+xml,<svg width='8' height='3' viewBox='0 0 8 3' xmlns='http://www.w3.org/2000/svg'><circle cx='1.5' cy='1.5' r='1.5' fill='%236A2ABF' /></svg>");
   }
 
   &:focus-visible {
-    padding-bottom: 3px;
-    margin-bottom: -3px;
     outline: 2px solid palette.$black;
     background-image: none;
   }
 
   &[aria-expanded='true'] {
-    background-color: rgba-to-rgb(rgba(palette.$plum600, 0.1), palette.$white);
+    background-color: var(--color-help-background-transparent-onlight-hover);
     background-image: url("data:image/svg+xml,<svg width='8' height='3' viewBox='0 0 8 3' xmlns='http://www.w3.org/2000/svg'><circle cx='1.5' cy='1.5' r='1.5' fill='%236A2ABF' /></svg>");
 
     &:hover,
     &:focus-visible {
-      background-color: rgba-to-rgb(rgba(palette.$plum600, 0.2), palette.$white);
+      background-color: var(--color-help-background-transparent-onlight-hover-selected);
     }
 
     &:focus-visible {
       background-image: none;
     }
+  }
+
+  &:active {
+    background-color: var(--color-help-background-transparent-onlight-hover-selected);
   }
 }
