@@ -20,7 +20,7 @@ export interface HelpExpanderStandaloneProps {
   /** Sets aria-labelledby of the trigger. */
   ariaLabelledById?: string;
   /** Sets the text content of the help text that appears when expanded. */
-  children: string;
+  children: React.ReactNode;
   /** Expands the component */
   expanded?: boolean;
   /** Called when expander is open/closed. */

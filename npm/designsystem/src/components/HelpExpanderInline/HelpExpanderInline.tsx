@@ -6,7 +6,7 @@ import HelpDetails from '../HelpDetails/HelpDetails';
 
 export interface HelpExpanderInlineProps {
   /** Sets the text content of the help text that appears when expanded. */
-  children: string;
+  children: React.ReactNode;
   /** Ref for the element that triggers the HelpExpanderInline */
   controllerRef?: React.RefObject<HTMLButtonElement>;
   /** Expands the component */
