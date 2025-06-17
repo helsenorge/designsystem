@@ -51,4 +51,11 @@ export type HNDesignsystemArticleTeaser = {
   expandButtonOpen: string;
 };
 
+export type HNDesignsystemHelpBubble = {
+  /**
+   * Hjelpetekst
+   */
+  helpText: string;
+};
+
 /* eslint:enable */
