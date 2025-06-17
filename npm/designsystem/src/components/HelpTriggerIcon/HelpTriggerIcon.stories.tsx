@@ -27,6 +27,9 @@ const meta = {
       exclude: ['htmlMarkup'],
     },
   },
+  args: {
+    ariaLabel: 'Aria text',
+  },
   argTypes: {
     ariaLabel: {
       control: 'text',
@@ -55,10 +58,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    ariaLabel: 'test',
-  },
-
   render: (args: HelpTriggerIconProps) => <HelpTriggerIcon {...args} onClick={action('Trigger clicked!')} />,
 };
 
