@@ -24,9 +24,11 @@ const HelpExpanderInline = React.forwardRef<HTMLDivElement, HelpExpanderInlinePr
     const [isExpanded] = useExpand(expanded, onExpand);
 
     return (
-      <div className={className} data-testid={testId} data-analyticsid={AnalyticsId.HelpExpanderInline} ref={ref}>
-        {isExpanded && <HelpDetails controllerRef={controllerRef}>{children}</HelpDetails>}
-      </div>
+      isExpanded && (
+        <div className={className} data-testid={testId} data-analyticsid={AnalyticsId.HelpExpanderInline} ref={ref}>
+          <HelpDetails controllerRef={controllerRef}>{children}</HelpDetails>
+        </div>
+      )
     );
   }
 );

@@ -22,7 +22,11 @@ describe('Gitt at HelpExpanderInline skal vises', (): void => {
 
     test('Så forwards ref til yttercontaineren', (): void => {
       const outerRef = React.createRef<HTMLDivElement>();
-      render(<HelpExpanderInline ref={outerRef}>{'Testinnhold'}</HelpExpanderInline>);
+      render(
+        <HelpExpanderInline expanded ref={outerRef}>
+          {'Testinnhold'}
+        </HelpExpanderInline>
+      );
       expect(outerRef.current).toBeInstanceOf(HTMLDivElement);
     });
   });
