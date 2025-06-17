@@ -1,3 +1,10 @@
+## [11.3.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.3.0&targetVersion=GTv11.3.1) (2025-06-17)
+
+
+### Features
+
+* **panel:**  setter testid på ekspandert innhold ([f0a670b](https://github.com/helsenorge/designsystem/commit/f0a670bda5cae7b47e1b51455d99678871215d33)), closes [#354743](https://github.com/helsenorge/designsystem/issues/354743)
+
 ## [11.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.2.0&targetVersion=GTv11.3.0) (2025-06-10)
 
 
