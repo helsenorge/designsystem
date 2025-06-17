@@ -1,3 +1,16 @@
+## 12.0.0-beta.1 (2025-06-17)
+
+
+### Features
+
+*  helpexpander children er reactnode ([044e828](https://github.com/helsenorge/designsystem/commit/044e828ae675bd65e54b8e45bf358844b7cd01fc)), closes [#354640](https://github.com/helsenorge/designsystem/issues/354640)
+
+
+### Bug Fixes
+
+* **dictionarytrigger:**  ta i bruk fargetokens ([5e970bf](https://github.com/helsenorge/designsystem/commit/5e970bf0755ed2ccf2679c98927fff9db237b2bc)), closes [#353506](https://github.com/helsenorge/designsystem/issues/353506)
+* **helpexpanderinline:**  er i domen når den ikke er ekspandert ([e81f691](https://github.com/helsenorge/designsystem/commit/e81f6918275f165b645fe67a5953b3b81cf7fedd)), closes [#354658](https://github.com/helsenorge/designsystem/issues/354658)
+
 ## 12.0.0-beta.0 (2025-06-10)
 
 
