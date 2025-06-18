@@ -219,7 +219,7 @@ const Panel: React.FC<PanelProps> & {
             <div className={contentContainerLayout}>{content}</div>
             <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} resources={mergedResources} />
             {isExpanded && (
-              <div ref={expandedContentRef}>
+              <div ref={expandedContentRef} data-testid={testId + '-details'}>
                 <div className={styles['panel__expander__separator']} />
                 {expandableContent}
               </div>
