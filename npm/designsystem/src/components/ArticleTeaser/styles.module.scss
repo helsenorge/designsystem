@@ -8,8 +8,12 @@
   border-bottom: 1px solid var(--color-base-border-onlight);
 
   &__content {
-    margin-bottom: var(--core-space-l);
     overflow: hidden;
+    padding-bottom: 1rem;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      padding-bottom: 2.65rem;
+    }
 
     &--collapsed {
       max-height: 10rem;
@@ -18,9 +22,9 @@
         content: '';
         position: absolute;
         height: var(--core-space-3xl);
-        background: linear-gradient(180deg, #ffffff40 0%, #fff 80%);
+        background: linear-gradient(180deg, #fff0 0%, #fff 60%);
         width: 100%;
-        bottom: 1px;
+        bottom: 0;
       }
     }
   }
