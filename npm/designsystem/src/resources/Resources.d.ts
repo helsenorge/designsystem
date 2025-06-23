@@ -55,7 +55,14 @@ export type HNDesignsystemHelpBubble = {
   /**
    * Hjelpetekst
    */
-  helpText: string;
+  ariaLabel: string;
+};
+
+export type HNDesignsystemHelpDrawer = {
+  /**
+   * Hjelpetekst
+   */
+  ariaLabel: string;
 };
 
 /* eslint:enable */
