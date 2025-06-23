@@ -153,3 +153,12 @@ describe('Gitt at HelpBubble ikke skal vises', (): void => {
     });
   });
 });
+
+describe('Gitt at default brukes', (): void => {
+  test('Så får vi riktig tekst', async (): Promise<void> => {
+    render(<HelpBubleWithController showBubble>{'Test tekst'}</HelpBubleWithController>);
+
+    const helpbubble = screen.getByLabelText('Hjelpetekst');
+    expect(helpbubble).toBeVisible;
+  });
+});

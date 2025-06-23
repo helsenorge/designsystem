@@ -9,7 +9,6 @@ import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import HelpTriggerIcon from '../HelpTriggerIcon';
 import HelpTriggerInline from '../HelpTriggerInline/HelpTriggerInline';
-import HelpTriggerStandalone from '../HelpTriggerStandalone/HelpTriggerStandalone';
 import Table, { ResponsiveTableVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell, HeaderCategory } from '../Table';
 
 const meta = {
@@ -35,6 +34,12 @@ const meta = {
     showBubble: true,
   },
   argTypes: {
+    ariaLabel: {
+      control: 'text',
+    },
+    ariaLabelledById: {
+      control: 'text',
+    },
     children: {
       control: 'text',
     },
@@ -154,28 +159,6 @@ export const WithHelpTriggerInline: Story = {
           <HelpTriggerInline ref={controllerRef} aria-expanded={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
             {'Helsebiblioteket'}
           </HelpTriggerInline>
-          <HelpBubble {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
-            {args.children}
-          </HelpBubble>
-          {loremText + loremText}
-        </p>
-      </>
-    );
-  },
-};
-
-export const WithHelpTriggerStandalone: Story = {
-  render: args => {
-    const controllerRef = useRef<HTMLButtonElement>(null);
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-      <>
-        <p>
-          {loremText + loremText}
-          <HelpTriggerStandalone ref={controllerRef} aria-expanded={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
-            {'Helsebiblioteket'}
-          </HelpTriggerStandalone>
           <HelpBubble {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
             {args.children}
           </HelpBubble>

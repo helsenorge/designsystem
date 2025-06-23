@@ -42,7 +42,7 @@ describe('Gitt at PopOver skal vises', (): void => {
 
   describe('Når den skal vises vanlig', (): void => {
     it('Så vises PopOver som vanlig', (): void => {
-      const { container } = render(<PopOverWithController testId="test01">{'Test tekst'}</PopOverWithController>);
+      render(<PopOverWithController testId="test01">{'Test tekst'}</PopOverWithController>);
 
       const bubble = screen.getByTestId('test01');
       const child = screen.getByText('Test tekst');
@@ -51,8 +51,35 @@ describe('Gitt at PopOver skal vises', (): void => {
       expect(child).toBeInTheDocument();
 
       expect(bubble).toHaveClass('popover');
+    });
+  });
+  describe('Når ariaLabel settes', (): void => {
+    it('Så vises PopOver med riktig aria tekst', (): void => {
+      render(
+        <PopOverWithController ariaLabel="testlabel" testId="test01">
+          {'Test tekst'}
+        </PopOverWithController>
+      );
 
-      expect(container).toMatchSnapshot();
+      const bubble = screen.getByLabelText('testlabel');
+
+      expect(bubble).toBeInTheDocument();
+    });
+  });
+  describe('Når ariaLabelledBy settes', (): void => {
+    it('Så vises PopOver med riktig aria tekst', (): void => {
+      render(
+        <>
+          <h3 id="tittelid">{'Tittel label'}</h3>
+          <PopOverWithController ariaLabelledById="tittelid" testId="test01">
+            {'Test tekst'}
+          </PopOverWithController>
+        </>
+      );
+
+      const bubble = screen.getByLabelText('Tittel label');
+
+      expect(bubble).toBeInTheDocument();
     });
   });
 });

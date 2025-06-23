@@ -2,16 +2,23 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId } from '../../constants';
+import { AnalyticsId, LanguageLocales } from '../../constants';
+import { HNDesignsystemHelpBubble } from '../../resources/Resources';
+import { useLanguage } from '../../utils/language';
 import AnchorLink, { AnchorLinkTargets } from '../AnchorLink';
 import Close from '../Close';
 import PopOver, { PopOverProps, PopOverVariant } from '../PopOver';
+import { getResources } from './resourceHelper';
 
 import styles from './styles.module.scss';
 
 export const HelpBubbleVariant = PopOverVariant;
 
 export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'variant' | 'controllerRef' | 'role'> {
+  /** Sets aria-label of the bubble. */
+  ariaLabel?: string;
+  /** Sets aria-labelledby of the bubble. */
+  ariaLabelledById?: string;
   /** Id of the HelpBubble */
   helpBubbleId?: string;
   /** Content shown inside HelpBubble. */
@@ -38,12 +45,15 @@ export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'varian
   onClose?: () => void;
   /** aria-label to be passed onto Close */
   closeAriaLabel?: string;
+  /** Resources for the component */
+  resources?: Partial<HNDesignsystemHelpBubble>;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubbleProps>((props, ref) => {
   const {
+    ariaLabelledById,
     children,
     className = '',
     noCloseButton,
@@ -58,6 +68,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     helpBubbleId,
     variant,
     controllerRef,
+    resources,
     testId,
   } = props;
 
@@ -65,8 +76,15 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     return null;
   }
 
-  const helpBubbleClasses = classNames(styles.helpbubble, className);
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+  const mergedResources: HNDesignsystemHelpBubble = {
+    ...defaultResources,
+    ...resources,
+    ariaLabel: props.ariaLabel ?? resources?.ariaLabel ?? defaultResources.ariaLabel,
+  };
 
+  const helpBubbleClasses = classNames(styles.helpbubble, className);
   const contentClasses = classNames(styles.helpbubble__content);
 
   const renderLink = (): JSX.Element | undefined => {
@@ -93,7 +111,17 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
   };
 
   return (
-    <PopOver id={helpBubbleId} variant={variant} controllerRef={controllerRef} role="dialog" ref={ref} show={showBubble} testId={testId}>
+    <PopOver
+      ariaLabel={mergedResources.ariaLabel}
+      ariaLabelledById={ariaLabelledById}
+      id={helpBubbleId}
+      variant={variant}
+      controllerRef={controllerRef}
+      role="dialog"
+      ref={ref}
+      show={showBubble}
+      testId={testId}
+    >
       <div className={helpBubbleClasses} data-analyticsid={AnalyticsId.HelpBubble}>
         {renderCloseButton()}
         <div className={contentClasses}>
