@@ -1,19 +1,19 @@
 @use 'sass:map';
-@use '../../scss/palette' as palette;
+@import '../../scss/supernova/styles/colors.css';
 
 $underline-width: 0.0625rem;
 $focus-width: 0.15rem;
 
 @mixin anchorlink-hover {
   cursor: pointer;
-  color: palette.$blueberry700;
-  background-color: palette.$blueberry60010;
-  text-decoration-color: palette.$blueberry600;
+  color: var(--color-action-text-onlight-hover);
+  background-color: var(--color-action-background-transparent-onlight-hover);
+  text-decoration-color: var(--color-action-border-hover);
 }
 
 @mixin anchorlink-focus {
   outline: none;
-  border: $focus-width solid palette.$black;
+  border: $focus-width solid var(--color-action-border-onlight-focus);
 }
 
 @mixin anchorlink {
@@ -22,11 +22,11 @@ $focus-width: 0.15rem;
   overflow-wrap: break-word;
   word-break: break-word;
   text-align: left;
-  color: palette.$blueberry600;
+  color: var(--color-action-text-onlight);
   border: $focus-width solid transparent;
   text-decoration: underline;
   text-underline-offset: 0.16rem;
-  text-decoration-color: palette.$blueberry400;
+  text-decoration-color: var(--core-color-neutral-700);
   text-decoration-thickness: $underline-width;
   padding: 0.1rem;
 

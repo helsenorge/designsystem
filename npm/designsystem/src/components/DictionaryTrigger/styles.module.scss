@@ -10,14 +10,18 @@
   padding: 0 var(--core-space-4xs);
   background-color: transparent;
 
-  // The background svg consists of a circle with empty space to the right, making up a dotted pattern when repeated horizontally
-  background-image: url("data:image/svg+xml,<svg width='8' height='3' viewBox='0 0 8 3' xmlns='http://www.w3.org/2000/svg'><circle cx='1.5' cy='1.5' r='1.5' fill='%236A2ABF' /></svg>");
-  background-position: bottom left;
+  --dot-color: var(--color-help-border-normal);
+
+  // The radial-gradient consists of a circle with empty space to the right, making up a dotted pattern when repeated horizontally
+  background-image: radial-gradient(circle at 1.5px 1.5px, var(--dot-color) 1.5px, transparent 1.5px);
   background-repeat: repeat-x;
+  background-size: 8px 3px;
+  background-position: bottom left;
 
   &:hover {
     background-color: var(--color-help-background-transparent-onlight-hover);
-    background-image: url("data:image/svg+xml,<svg width='8' height='3' viewBox='0 0 8 3' xmlns='http://www.w3.org/2000/svg'><circle cx='1.5' cy='1.5' r='1.5' fill='%236A2ABF' /></svg>");
+
+    --dot-color: var(--color-help-border-dark);
   }
 
   &:focus-visible {
@@ -27,7 +31,8 @@
 
   &[aria-expanded='true'] {
     background-color: var(--color-help-background-transparent-onlight-hover);
-    background-image: url("data:image/svg+xml,<svg width='8' height='3' viewBox='0 0 8 3' xmlns='http://www.w3.org/2000/svg'><circle cx='1.5' cy='1.5' r='1.5' fill='%236A2ABF' /></svg>");
+
+    --dot-color: var(--color-help-border-dark);
 
     &:hover,
     &:focus-visible {
@@ -41,5 +46,7 @@
 
   &:active {
     background-color: var(--color-help-background-transparent-onlight-hover-selected);
+
+    --dot-color: var(--color-help-border-dark);
   }
 }

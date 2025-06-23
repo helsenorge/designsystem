@@ -12,7 +12,7 @@ $outline-xl-width: 2.5px;
 
 .help-trigger-inline {
   display: inline;
-  color: var(--core-color-plum-800);
+  color: var(--color-help-graphics-normal);
   cursor: pointer;
   text-decoration: none;
   background-color: transparent;
@@ -22,8 +22,10 @@ $outline-xl-width: 2.5px;
   font-size: clamp(0px, 1em, 48px);
   font-weight: inherit;
 
-  &:hover {
-    background-color: var(--core-color-plum-50);
+  &:hover,
+  &:active {
+    color: var(--color-help-graphics-verydark);
+    background-color: var(--color-help-background-transparent-onlight-hover);
   }
 
   &:focus-visible {

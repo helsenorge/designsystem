@@ -41,6 +41,10 @@ export interface HelpTriggerIconProps
 
 interface HelpTriggerIconInternalProps extends HelpTriggerIconProps {
   /**
+   * Sets the hover styling of the trigger. Intended for use when wrapped by a parent button.
+   */
+  isHovered?: boolean;
+  /**
    * Only use this if the parent wrapper is a Button!
    * Changes the underlying element of the trigger. If set to span, the trigger will be a non-interactive icon. Default: button
    */
@@ -49,7 +53,7 @@ interface HelpTriggerIconInternalProps extends HelpTriggerIconProps {
 
 const getIconColor = (hover: boolean, weight: HelpTriggerWeights): string | undefined => {
   if (weight === 'normal') {
-    return `var(--core-color-plum-${hover ? '900' : '700'})`;
+    return hover ? 'var(--color-help-graphics-verydark)' : 'var(--color-help-graphics-normal)';
   }
 };
 
@@ -58,10 +62,13 @@ const HelpTriggerIcon = React.forwardRef<HTMLButtonElement, HelpTriggerIconProps
 });
 
 export const HelpTriggerIconInternal = React.forwardRef<HTMLButtonElement, HelpTriggerIconInternalProps>(
-  ({ ariaLabel, ariaLabelledById, htmlMarkup = 'button', size = 'medium', testId, weight = 'normal', ...buttonRest }, ref) => {
+  (
+    { ariaLabel, ariaLabelledById, htmlMarkup = 'button', isHovered = false, size = 'medium', testId, weight = 'normal', ...buttonRest },
+    ref
+  ) => {
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
-    const { hoverRef, isHovered } = useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
-    const helpIcon = <HelpSign color={getIconColor(isHovered, weight)} weight={weight} />;
+    const { hoverRef, isHovered: interalIsHovered } = useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
+    const helpIcon = <HelpSign color={getIconColor(interalIsHovered || isHovered, weight)} weight={weight} />;
     const isButton = htmlMarkup === 'button';
     const iconClasses = classNames(
       styles['help-trigger-icon'],

@@ -77,10 +77,6 @@ export const Sizes: Story = {
         <HelpTriggerIcon {...args} onClick={action('Trigger clicked!')} size="inherit" />
         {' Cillum quis sit reprehenderit adipisicing labore.'}
       </p>
-      <Title htmlMarkup="h1">
-        {'Heading 1 '}
-        <HelpTriggerIcon {...args} onClick={action('Trigger clicked!')} size="inherit" />
-      </Title>
       <br />
       <br />
       <Title appearance="title3" htmlMarkup="h1">

@@ -3,8 +3,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
+import { useHover } from '../../hooks/useHover';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import { mergeRefs } from '../../utils/refs';
 import { HelpTriggerIconInternal, HelpTriggerWeights } from '../HelpTriggerIcon';
 
 import styles from './styles.module.scss';
@@ -40,6 +42,7 @@ const HelpTriggerStandalone = React.forwardRef<HTMLButtonElement, HelpTriggerSta
     const isMobile = useIsMobileBreakpoint();
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
     const helpTriggerStandaloneStyles = classNames(styles['help-trigger-standalone'], className);
+    const { hoverRef, isHovered } = useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
 
     return (
       <button
@@ -48,12 +51,12 @@ const HelpTriggerStandalone = React.forwardRef<HTMLButtonElement, HelpTriggerSta
         data-testid={testId}
         data-analyticsid={AnalyticsId.HelpTriggerStandalone}
         className={helpTriggerStandaloneStyles}
-        ref={ref}
+        ref={mergeRefs([hoverRef, ref])}
         {...ariaLabelAttributes}
         {...rest}
       >
         <span className={styles['help-trigger-standalone__inner-container']}>
-          <HelpTriggerIconInternal weight={weight} size={isMobile ? 'medium' : 'large'} htmlMarkup={'span'} />
+          <HelpTriggerIconInternal weight={weight} size={isMobile ? 'medium' : 'large'} htmlMarkup={'span'} isHovered={isHovered} />
           <span className={styles['help-trigger-standalone__children']}>{children}</span>
         </span>
       </button>

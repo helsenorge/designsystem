@@ -66,7 +66,7 @@ $outline-focus-outer-width: 5px;
         $outline-width: clamp(0px, 0.3em, 3px);
 
         inset: calc(-1 * (#{$outline-width}/ 3));
-        box-shadow: inset 0 0 0 #{$outline-width} var(--core-color-black);
+        box-shadow: inset 0 0 0 #{$outline-width} var(--color-action-border-onlight-focus);
         z-index: 1;
       }
     }
@@ -95,7 +95,7 @@ $outline-focus-outer-width: 5px;
   &--large#{&}--is-button {
     &:focus-visible {
       box-shadow: none;
-      outline: 3px solid var(--core-color-black);
+      outline: 3px solid var(--color-action-border-onlight-focus);
       outline-offset: -2px;
     }
   }
@@ -115,38 +115,38 @@ $outline-focus-outer-width: 5px;
   &--xlarge#{&}--is-button {
     &:focus-visible {
       box-shadow: none;
-      outline: 3.5px solid var(--core-color-black);
+      outline: 3.5px solid var(--color-action-border-onlight-focus);
       outline-offset: -2px;
     }
   }
 
   &--is-button {
     &:hover {
-      background-color: var(--core-color-plum-50);
+      background-color: var(--color-help-background-transparent-onlight-hover);
     }
 
     &:active {
-      background-color: var(--core-color-plum-100);
+      background-color: var(--color-help-background-transparent-onlight-active);
     }
   }
 
   &--strong {
-    background-color: var(--core-color-plum-700);
+    background-color: var(--color-help-graphics-normal);
   }
 
   &--strong#{&}--is-button {
     &:hover {
-      background-color: var(--core-color-plum-800);
+      background-color: var(--color-help-graphics-verydark);
     }
 
     &:active {
-      background-color: var(--core-color-plum-900);
+      background-color: var(--color-help-graphics-normal);
     }
 
     &:focus-visible {
       box-shadow:
-        0 0 0 #{$outline-focus-inner-width} var(--core-color-white),
-        0 0 0 calc(#{$outline-focus-outer-width}) var(--core-color-black);
+        0 0 0 #{$outline-focus-inner-width} var(--color-base-graphics-ondark),
+        0 0 0 calc(#{$outline-focus-outer-width}) var(--color-action-border-onlight-focus);
       outline: none;
 
       &::after {

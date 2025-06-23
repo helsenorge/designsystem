@@ -5,7 +5,6 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import HelpTriggerInline from './HelpTriggerInline';
-import Title from '../Title';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/HelpTriggerInline',
@@ -78,10 +77,6 @@ export const InsideText: Story = {
         <HelpTriggerInline {...args} onClick={action('Trigger clicked!')} />
         {' Cillum quis sit reprehenderit adipisicing labore.'}
       </p>
-      <Title htmlMarkup="h1">
-        {'Heading 1 '}
-        <HelpTriggerInline {...args} onClick={action('Trigger clicked!')} />
-      </Title>
     </>
   ),
 };

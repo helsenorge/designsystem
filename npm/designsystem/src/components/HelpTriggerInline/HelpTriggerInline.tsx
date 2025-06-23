@@ -3,7 +3,9 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
+import { useHover } from '../../hooks/useHover';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import { mergeRefs } from '../../utils/refs';
 import { HelpTriggerIconInternal, HelpTriggerWeights } from '../HelpTriggerIcon';
 
 import styles from './styles.module.scss';
@@ -38,6 +40,7 @@ const HelpTriggerInline = React.forwardRef<HTMLButtonElement, HelpTriggerInlineP
   ({ ariaLabel, ariaLabelledById, children, className, testId, weight = 'normal', ...rest }, ref) => {
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
     const helpTriggerInlineStyles = classNames(styles['help-trigger-inline'], className);
+    const { hoverRef, isHovered } = useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
 
     return (
       <button
@@ -46,12 +49,12 @@ const HelpTriggerInline = React.forwardRef<HTMLButtonElement, HelpTriggerInlineP
         data-testid={testId}
         data-analyticsid={AnalyticsId.HelpTriggerInline}
         className={helpTriggerInlineStyles}
-        ref={ref}
+        ref={mergeRefs([hoverRef, ref])}
         {...ariaLabelAttributes}
         {...rest}
       >
         <span className={styles['help-trigger-inline__text']}>{children}</span>
-        <HelpTriggerIconInternal weight={weight} size={'inherit'} htmlMarkup={'span'} />
+        <HelpTriggerIconInternal weight={weight} size={'inherit'} htmlMarkup={'span'} isHovered={isHovered} />
       </button>
     );
   }
