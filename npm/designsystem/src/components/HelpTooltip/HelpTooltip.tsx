@@ -7,8 +7,8 @@ import DictionaryTrigger from '../DictionaryTrigger';
 import PopOver from '../PopOver';
 
 export interface HelpTooltipProps {
-  /** Ordet som skal ha en tilhørende tooltip */
-  children: string;
+  /** Ordet som skal ha en tilhørende tooltip. Det skal bare sendes inn string som children. Er satt til ReactNode for å kunne brukes i CMSet. */
+  children: React.ReactNode;
   /** Teksten som skal vises i boblen som åpnes */
   description: React.ReactNode;
   /** Valgfri test-id */
