@@ -120,13 +120,14 @@ export const NextToElements: Story = {
         </ul>
         <p>
           {mediumLoremText}
-          <HelpTriggerIcon
-            size={'inherit'}
+          <HelpTriggerInline
             aria-expanded={expanded2}
             ariaLabel={'Help text'}
             ref={controllerRef2}
             onClick={() => setExpanded2(!expanded2)}
-          />
+          >
+            {'Help text'}
+          </HelpTriggerInline>
           <HelpExpanderInline {...args} expanded={expanded2} controllerRef={controllerRef2} onExpand={action('Expander toggled')} />
         </p>
         <p>{mediumLoremText}</p>

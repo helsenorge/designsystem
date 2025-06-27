@@ -28,8 +28,8 @@ const HelpDetails = React.forwardRef<HTMLDivElement, HelpDetailsProps>(({ childr
       controllerRef && arrow({ element: arrowRef }),
       size({
         apply({ rects }) {
-          // Vi setter minimum bredde på bubble basert på controllerRef sin x posisjon
-          setBubbleMinWidth(rects.reference.x);
+          // Vi setter minimum bredde på bubble basert på controllerRef sin x posisjon og halve bredden
+          setBubbleMinWidth(rects.reference.x + rects.reference.width / 2);
 
           // Vi kalkulerer pilens y-offset basert på avstand mellom controllerRef og bubble
           const { reference, floating } = rects;
