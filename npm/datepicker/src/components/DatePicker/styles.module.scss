@@ -164,7 +164,8 @@
     &:focus:not([disabled]) {
       background-color: palette.$neutral100;
       color: palette.$blueberry600;
-      text-decoration: underline 2px palette.$blueberry600;
+      text-decoration-line: underline;
+      text-decoration-thickness: 2px;
       outline: none;
     }
 
@@ -303,4 +304,5 @@
     background-color: palette.$neutral100;
   }
 }
+
 /* stylelint-enable */
