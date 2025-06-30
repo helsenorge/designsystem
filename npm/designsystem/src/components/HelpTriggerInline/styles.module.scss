@@ -33,7 +33,9 @@ $outline-xl-width: 2.5px;
   }
 
   &:active {
-    text-decoration: solid underline;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 1px;
     text-underline-offset: 4.23px;
   }
 
