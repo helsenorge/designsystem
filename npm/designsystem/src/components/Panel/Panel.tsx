@@ -92,34 +92,30 @@ const ExpandButton = ({
     </Button>
   );
 };
-
-const Panel: React.FC<PanelProps> & {
-  PreContainer: React.FC<ContentProps>;
-  Title: React.FC<PanelTitleProps>;
-  A: React.FC<ContentProps>;
-  B: React.FC<ContentProps>;
-  C: React.FC<ContentProps>;
-  ExpandedContent: React.FC<ContentProps>;
-} = ({
-  layout = PanelLayout.vertical,
-  variant = PanelVariant.fill,
-  color = 'neutral',
-  stacking = PanelStacking.default,
-  testId,
-  children,
-  status = PanelStatus.none,
-  buttonBottomOnClick,
-  buttonBottomText,
-  className,
-  resources,
-}: PanelProps) => {
+const PanelRoot = React.forwardRef(function PanelForwardedRef(
+  {
+    layout = PanelLayout.vertical,
+    variant = PanelVariant.fill,
+    color = 'neutral',
+    stacking = PanelStacking.default,
+    testId,
+    children,
+    status = PanelStatus.none,
+    buttonBottomOnClick,
+    buttonBottomText,
+    className,
+    resources,
+  }: PanelProps,
+  ref: React.ForwardedRef<HTMLDivElement>
+) {
   const [preContainer, setPreContainer] = React.useState<React.ReactNode[]>([]);
   const [title, setTitle] = React.useState<React.ReactNode[]>([]);
   const [content, setContent] = React.useState<React.ReactNode[]>([]);
   const [expandableContent, setExpandableContent] = React.useState<React.ReactNode[]>([]);
   const [hasIcon, setHasIcon] = React.useState(false);
   const [isExpanded, setIsExpanded] = React.useState(false);
-  const panelRef = React.useRef<HTMLDivElement>(null);
+  const localRef = React.useRef<HTMLDivElement>(null);
+  const panelRef = ref ?? localRef;
   const expandedContentRef = React.useRef<HTMLDivElement>(null);
   const defaultScroll = 100;
 
@@ -165,7 +161,7 @@ const Panel: React.FC<PanelProps> & {
   React.useEffect(() => {
     // Scroller oppover når expanded content åpnes
     if (isExpanded) {
-      if (panelRef.current && expandedContentRef.current) {
+      if ('current' in panelRef && panelRef.current && expandedContentRef.current) {
         const panelRect = panelRef.current.getBoundingClientRect();
         const expandedContentRect = expandedContentRef.current.getBoundingClientRect();
 
@@ -247,7 +243,7 @@ const Panel: React.FC<PanelProps> & {
       </div>
     </div>
   );
-};
+});
 
 export interface ContentProps {
   /** Children elements to be rendered inside the content box */
@@ -278,6 +274,16 @@ export const ExpandedContent: React.FC<ContentProps> = ({ children }) => {
   return <div className={styling}>{children}</div>;
 };
 
+type PanelComponent = typeof PanelRoot & {
+  PreContainer: React.FC<ContentProps>;
+  Title: React.FC<PanelTitleProps>;
+  A: React.FC<ContentProps>;
+  B: React.FC<ContentProps>;
+  C: React.FC<ContentProps>;
+  ExpandedContent: React.FC<ContentProps>;
+};
+PanelRoot.displayName = 'Panel';
+const Panel = PanelRoot as PanelComponent;
 Panel.PreContainer = PreContainer;
 Panel.Title = PanelTitle;
 Panel.A = A;
