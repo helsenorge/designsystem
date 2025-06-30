@@ -1,5 +1,6 @@
 export type Styles = {
   popover: string;
+  popover__arrow: string;
 };
 
 export type ClassNames = keyof Styles;

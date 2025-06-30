@@ -116,6 +116,7 @@ const PopOver = React.forwardRef<HTMLDivElement | SVGSVGElement | HTMLElement, P
         {children}
         <FloatingArrow
           ref={arrowRef}
+          className={styles['popover__arrow']}
           context={context}
           fill={'var(--core-color-white)'}
           stroke={'var(--color-base-border-onlight)'}

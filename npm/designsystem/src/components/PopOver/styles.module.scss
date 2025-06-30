@@ -11,7 +11,7 @@
   text-align: start;
   background-color: var(--core-color-white);
   z-index: 3;
-  border: 1px solid var(--color-base-border-onlight);
+  box-shadow: 0 0 0 1px var(--color-base-border-onlight);
   border-radius: 9px;
   filter: drop-shadow(0 4px 16px rgba(0 0 0 / 30%));
   padding: var(--core-space-s);
@@ -20,5 +20,10 @@
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     max-width: 35rem;
+  }
+
+  &__arrow {
+    // Fjerner mellomrom mellom pil og boble på ulike zoomnivåer
+    margin: -0.5px 0;
   }
 }
