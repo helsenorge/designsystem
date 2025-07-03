@@ -188,6 +188,8 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     [styles['panel__border--outline--outer']]: variant === PanelVariant.outline,
     [styles['panel__border--line']]: variant === PanelVariant.line,
     [styles['panel__border--fill--neutral']]: variant === PanelVariant.fill && colorScheme === 'neutral',
+    [styles['panel__border--fill--new']]: variant === PanelVariant.fill && status === PanelStatus.new,
+    [styles['panel__border--fill--status']]: variant === PanelVariant.fill && status !== PanelStatus.none,
   });
   const panelClassnames = classNames(styles['panel'], styles[`panel--${colorScheme}`], styles['panel--status'], {
     [styles['panel--line']]: variant === PanelVariant.line,
