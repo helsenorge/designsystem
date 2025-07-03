@@ -42,7 +42,7 @@ const NotificationBadge = (props: NotificationBadgeProps): React.JSX.Element => 
       return (
         <Icon
           svgIcon={ErrorSignFill}
-          color={palette.banana700}
+          color={palette.banana800}
           hoverColor={palette.banana700}
           size={size}
           className={className}

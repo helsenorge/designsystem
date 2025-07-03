@@ -190,7 +190,7 @@ export const Dismissable: Story = {
 
 export const Compact: Story = {
   render: args => (
-    <div style={{ backgroundColor: getColor('blueberry', 50), padding: '3rem' }}>
+    <div style={{ padding: '3rem' }}>
       <div className="row mt-6">
         <div className={'col-12'}>
           <NotificationPanel {...args} label={'Compact - basic'} compactVariant={'basic'}></NotificationPanel>{' '}
