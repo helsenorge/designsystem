@@ -330,4 +330,5 @@ export default {
   noaccess: { alternativeName: 'IngenTilgang (mørk)', categories: 'System' },
   patientandperson: { alternativeName: 'PårørendeOgPasient', categories: 'Behandling, Personer' },
   toddler: { alternativeName: 'Småbarn', categories: 'Tjeneste' },
+  treatmentaids: { alternativeName: 'Behandlingshjelpemidler', categories: 'Tjeneste' },
 };

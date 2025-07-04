@@ -312,6 +312,7 @@ export const IconList = [
   'Transplantation',
   'TrashCan',
   'TravelRoute',
+  'TreatmentAids',
   'TriangleX',
   'Twitter',
   'Undo',
