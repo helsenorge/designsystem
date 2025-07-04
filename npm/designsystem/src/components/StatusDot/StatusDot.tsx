@@ -31,6 +31,9 @@ export enum StatusDotVariant {
   hidden = 'hidden',
   login = 'login',
   attachment = 'attachment',
+  active = 'active',
+  pending = 'pending',
+  inactive = 'inactive',
 }
 
 export interface StatusDotIconProps {
@@ -85,6 +88,12 @@ const StatusDotIcon: React.FC<StatusDotIconProps> = ({ onColor, variant = 'info'
       return <LazyIcon {...iconProps} iconName={'Login'} />;
     case StatusDotVariant.attachment:
       return <LazyIcon {...iconProps} iconName={'Attachment'} />;
+    case StatusDotVariant.active:
+      return <LazyIcon {...iconProps} iconName={'DotActive'} />;
+    case StatusDotVariant.pending:
+      return <LazyIcon {...iconProps} iconName={'DotPending'} />;
+    case StatusDotVariant.inactive:
+      return <LazyIcon {...iconProps} iconName={'DotInactive'} />;
   }
 
   return null;
