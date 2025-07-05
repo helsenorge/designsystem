@@ -37,6 +37,7 @@ export type Styles = {
   'checkbox-label--large': string;
   'checkbox-label--on-dark': string;
   'checkbox-sublabel-wrapper': string;
+  'checkbox-wrapper': string;
   'checkbox-wrapper--large': string;
 };
 
