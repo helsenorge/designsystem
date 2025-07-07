@@ -25,32 +25,38 @@ $status-dot-size: 1rem;
     min-width: $status-dot-size;
     min-height: $status-dot-size;
 
-    &--success {
+    &--success,
+    &--active {
       fill: var(--color-notification-graphics-success);
     }
-    &--success#{&}--on-dark {
+    &--success#{&}--on-dark,
+    &--active#{&}--on-dark {
       fill: var(--core-color-kiwi-200);
     }
 
     &--inprocess,
     &--exception,
     &--unknown,
-    &--inspected {
+    &--inspected,
+    &--pending {
       fill: var(--color-notification-graphics-warning);
     }
     &--inprocess#{&}--on-dark,
     &--exception#{&}--on-dark,
     &--unknown#{&}--on-dark,
-    &--inspected#{&}--on-dark {
+    &--inspected#{&}--on-dark,
+    &--pending#{&}--on-dark {
       fill: var(--core-color-banana-300);
     }
 
     &--cancelled,
-    &--alert {
+    &--alert,
+    &--inactive {
       fill: var(--color-notification-graphics-error);
     }
     &--cancelled#{&}--on-dark,
-    &--alert#{&}--on-dark {
+    &--alert#{&}--on-dark,
+    &--inactive#{&}--on-dark {
       fill: var(--core-color-cherry-100);
     }
 

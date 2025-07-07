@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import Panel, { PanelStatus, PanelVariant } from './Panel';
@@ -122,6 +124,16 @@ describe('Gitt at Panel skal vises', () => {
       render(<Panel testId="panel" />);
       const expandButton = screen.queryByRole('button', { name: /Se detaljer/i });
       expect(expandButton).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Når Panel får custom ref', () => {
+    test('Så kan man bruke denne', () => {
+      const panelRef = React.createRef<HTMLDivElement>();
+      render(<Panel testId="panel-test" ref={panelRef} />);
+
+      expect(panelRef.current).toBeInstanceOf(HTMLDivElement);
+      expect(panelRef.current).toHaveAttribute('data-testid', 'panel-test');
     });
   });
 });

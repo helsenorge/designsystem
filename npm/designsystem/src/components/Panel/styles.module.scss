@@ -138,7 +138,15 @@
     }
 
     &--fill--neutral {
-      border: 1px solid var(--core-color-neutral-300);
+      border: 1px solid var(--color-base-border-neutral-emphasized);
+    }
+
+    &--fill--new {
+      border: 1px solid var(--core-color-blueberry-200);
+    }
+
+    &--fill--status {
+      border-left: none;
     }
   }
 
@@ -154,6 +162,7 @@
 
   &--new {
     border-left-color: var(--color-notification-status-info);
+    background-color: var(--color-base-background-blueberry);
   }
 
   &--draft {

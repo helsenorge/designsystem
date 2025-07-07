@@ -136,7 +136,7 @@ export const ListHeader: ListHeaderType = props => {
       {showIcon && icon && (
         <span className={iconClasses}>
           {React.cloneElement(icon, {
-            size: breakpoint === Breakpoint.xs ? IconSize.XSmall : IconSize.Small,
+            size: breakpoint <= Breakpoint.xs ? IconSize.XSmall : IconSize.Small,
             isHovered,
           })}
         </span>
