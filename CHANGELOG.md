@@ -1,21 +1,37 @@
-## [11.3.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.3.0&targetVersion=GTv11.3.1) (2025-06-17)
+## 12.0.0-beta.1 (2025-06-17)
 
 
 ### Features
 
-* **panel:**  setter testid på ekspandert innhold ([f0a670b](https://github.com/helsenorge/designsystem/commit/f0a670bda5cae7b47e1b51455d99678871215d33)), closes [#354743](https://github.com/helsenorge/designsystem/issues/354743)
+*  helpexpander children er reactnode ([044e828](https://github.com/helsenorge/designsystem/commit/044e828ae675bd65e54b8e45bf358844b7cd01fc)), closes [#354640](https://github.com/helsenorge/designsystem/issues/354640)
 
-## [11.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.2.0&targetVersion=GTv11.3.0) (2025-06-10)
+
+### Bug Fixes
+
+* **dictionarytrigger:**  ta i bruk fargetokens ([5e970bf](https://github.com/helsenorge/designsystem/commit/5e970bf0755ed2ccf2679c98927fff9db237b2bc)), closes [#353506](https://github.com/helsenorge/designsystem/issues/353506)
+* **helpexpanderinline:**  er i domen når den ikke er ekspandert ([e81f691](https://github.com/helsenorge/designsystem/commit/e81f6918275f165b645fe67a5953b3b81cf7fedd)), closes [#354658](https://github.com/helsenorge/designsystem/issues/354658)
+
+## 12.0.0-beta.0 (2025-06-10)
 
 
 ### Features
 
+*  helptrigger blir erstattet av helptriggericon helptriggerinline og helptriggerstandalone ([3b0556b](https://github.com/helsenorge/designsystem/commit/3b0556bd5ef225718a28175e42a5e4070c4158e1)), closes [#350475](https://github.com/helsenorge/designsystem/issues/350475)
+*  nye komponenter helpexpanderinline og helpexpanderstandalone ([b38f230](https://github.com/helsenorge/designsystem/commit/b38f2308f4b72756784874e4b49295d9e168e040)), closes [#350484](https://github.com/helsenorge/designsystem/issues/350484)
 *  prosesshjelp fargetokens lagt til ([c70fb44](https://github.com/helsenorge/designsystem/commit/c70fb44c9b95338f1e19563931d707a5921e311b)), closes [#353506](https://github.com/helsenorge/designsystem/issues/353506)
 *  spacers tokens ([575cd80](https://github.com/helsenorge/designsystem/commit/575cd8081ffdb9c96b7df28e85fa4ff3bd4025db)), closes [#351112](https://github.com/helsenorge/designsystem/issues/351112)
 * **drawer:**  flytt lukkekryss til hjørnet ([2b8ff77](https://github.com/helsenorge/designsystem/commit/2b8ff771c5de8bbe7a6f1b257f2df35d8e01bced))
 * **drawer:**  gjør onclose optional ([6eb0bf3](https://github.com/helsenorge/designsystem/commit/6eb0bf3a97b465ba11abba7e4b6b9023130bf788))
 * **drawer:**  legg på shadow ved scroll istedenfor border ([2f3162a](https://github.com/helsenorge/designsystem/commit/2f3162a2903e6e7ce12d95d99b55909282fbcb76))
 * **drawer:**  stopp scrolling bak drawer ([4e5ebe1](https://github.com/helsenorge/designsystem/commit/4e5ebe16b8340c28ea2066d7a63f2065bef19de9))
+* **helpbubble:**  flytt lukkekryss helt til hjørnet ([2b3c54d](https://github.com/helsenorge/designsystem/commit/2b3c54d6aac8bc074eeb6f62ddb0b5bc6c3f421f)), closes [#352915](https://github.com/helsenorge/designsystem/issues/352915)
+* **helppanel:**  ny border og spacing til tittel ([b47870f](https://github.com/helsenorge/designsystem/commit/b47870ff5cb571d09adcc921bbfc7270e640dba0))
+* **helptooltip:**  fjern provider og rydd opp i tooltip role ([37215ca](https://github.com/helsenorge/designsystem/commit/37215cac7626448915020f7d72f5d848dd8bd515)), closes [#350651](https://github.com/helsenorge/designsystem/issues/350651)
+* **helptrigger:**  ny prop weight med extra large størrelse samt nytt uttrykk ([24eaf8d](https://github.com/helsenorge/designsystem/commit/24eaf8d883c9da70ce189b044ad96394df82ab77)), closes [#350475](https://github.com/helsenorge/designsystem/issues/350475)
+* **hightlightpanel:**  size prop er fjernet og spacing oppdatert ([ac14ef0](https://github.com/helsenorge/designsystem/commit/ac14ef0927bb05ea5c62d189edbce46393403a93)), closes [#350938](https://github.com/helsenorge/designsystem/issues/350938)
+* **popover:**  nye visuelle endringer og ta i bruk floating-ui ([3c186d1](https://github.com/helsenorge/designsystem/commit/3c186d1aaccd10d4f9d881bd9ad12266dc4a5c2e)), closes [#350488](https://github.com/helsenorge/designsystem/issues/350488) [#350650](https://github.com/helsenorge/designsystem/issues/350650)
+* **popover:**  satt avstand til kant og maks bredde ([c96d447](https://github.com/helsenorge/designsystem/commit/c96d447623fc9574385ea2f9982da920f53b4518)), closes [#353533](https://github.com/helsenorge/designsystem/issues/353533)
+* **typography:**  nye stiler for help-text pg helt-trigger-text ([9ee09ba](https://github.com/helsenorge/designsystem/commit/9ee09ba5d7815b81c9fd2910f00d667c1d01bfee)), closes [#350872](https://github.com/helsenorge/designsystem/issues/350872)
 
 
 ### Bug Fixes
@@ -23,6 +39,10 @@
 *  drawer og modal får lik overlay ([99efb7b](https://github.com/helsenorge/designsystem/commit/99efb7b9ac463e09678f081417be006cd9954d87)), closes [#352610](https://github.com/helsenorge/designsystem/issues/352610)
 * **close:**  riktig size på inner container for small versjon ([d23f53a](https://github.com/helsenorge/designsystem/commit/d23f53a959e0c2cd17bde70431775a90d0c5382b)), closes [#352915](https://github.com/helsenorge/designsystem/issues/352915)
 * **drawer:**  legg til scroll shadow også på tiny screen query ([1cdf6df](https://github.com/helsenorge/designsystem/commit/1cdf6dfc78b3e71bbebe2d2ad6104e6e36ea5e0a)), closes [#352610](https://github.com/helsenorge/designsystem/issues/352610)
+* **helptriggericon:**  strong focus styling riktig størrelse ([ada7679](https://github.com/helsenorge/designsystem/commit/ada7679c59fe0754d74211f9087d73f504313faf)), closes [#350475](https://github.com/helsenorge/designsystem/issues/350475)
+* **helptriggericon:**  svg får riktig rolle og aria ([e1cac75](https://github.com/helsenorge/designsystem/commit/e1cac758b62fddd560bd21fda2bf4905676292fd)), closes [#350475](https://github.com/helsenorge/designsystem/issues/350475)
+* **popover:**  fiks padding for popover og popmenu ([c4d916c](https://github.com/helsenorge/designsystem/commit/c4d916cc48d2cc95bc7461a43dbe1fbc67c81576)), closes [#350488](https://github.com/helsenorge/designsystem/issues/350488)
+* **popover:**  sett border radius lik som skisser ([d665e38](https://github.com/helsenorge/designsystem/commit/d665e385b5187be9674b35a15fae4dfc3c9055a6)), closes [#350488](https://github.com/helsenorge/designsystem/issues/350488)
 
 ## [11.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.1.0&targetVersion=GTv11.2.0) (2025-05-27)
 

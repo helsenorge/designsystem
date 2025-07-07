@@ -1,0 +1,157 @@
+@use 'sass:map';
+@use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
+
+$trigger-medium-size: 1.25rem;
+$trigger-large-size: 1.5rem;
+$trigger-xl-size: 2rem;
+$outline-medium-width: 2px;
+$outline-large-width: 2.2px;
+$outline-xl-width: 2.5px;
+$outline-focus-inner-width: 2px;
+$outline-focus-outer-width: 5px;
+
+.help-trigger-icon {
+  $trigger: &;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &--inherit {
+    top: 0.2rem;
+
+    svg {
+      display: inline-block;
+      border-radius: 50%;
+      font-size: inherit;
+
+      // Husk å oppdatere box-shadow under hvis det gjøres endringer her
+      width: 1em;
+      height: 1em;
+      max-width: 1.5rem;
+      max-height: 1.5rem;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        max-width: 2rem;
+        max-height: 2rem;
+      }
+    }
+  }
+
+  &--inherit#{&}--is-button {
+    &:focus-visible {
+      &::after {
+        content: '';
+        display: inline-block;
+        overflow: visible;
+        position: absolute;
+        pointer-events: none;
+        border-radius: 50%;
+
+        // For å få riktig outline på inherit versjonen av HelpTriggerIcon på firefox så bruker vi inset box shadow
+        // Vi bruker clamp for at den skal vokse med font-size, samtidig som vi begrenser maks størrelse (slik som vi gjør med ikonet)
+        $outline-width: clamp(0px, 0.3em, 3px);
+
+        inset: calc(-1 * (#{$outline-width}/ 3));
+        box-shadow: inset 0 0 0 #{$outline-width} var(--color-action-border-onlight-focus);
+        z-index: 1;
+      }
+    }
+  }
+
+  &--medium {
+    svg {
+      width: $trigger-medium-size;
+      height: $trigger-medium-size;
+    }
+  }
+
+  &--large {
+    svg {
+      height: $trigger-medium-size;
+      width: $trigger-medium-size;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        height: $trigger-large-size;
+        width: $trigger-large-size;
+      }
+    }
+  }
+
+  &--medium#{&}--is-button,
+  &--large#{&}--is-button {
+    &:focus-visible {
+      box-shadow: none;
+      outline: 3px solid var(--color-action-border-onlight-focus);
+      outline-offset: -2px;
+    }
+  }
+
+  &--xlarge {
+    svg {
+      height: $trigger-large-size;
+      width: $trigger-large-size;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        height: $trigger-xl-size;
+        width: $trigger-xl-size;
+      }
+    }
+  }
+
+  &--xlarge#{&}--is-button {
+    &:focus-visible {
+      box-shadow: none;
+      outline: 3.5px solid var(--color-action-border-onlight-focus);
+      outline-offset: -2px;
+    }
+  }
+
+  &--is-button {
+    &:hover {
+      background-color: var(--color-help-background-transparent-onlight-hover);
+    }
+
+    &:active {
+      background-color: var(--color-help-background-transparent-onlight-active);
+    }
+  }
+
+  &--strong {
+    background-color: var(--color-help-graphics-normal);
+  }
+
+  &--strong#{&}--is-button {
+    &:hover {
+      background-color: var(--color-help-graphics-verydark);
+    }
+
+    &:active {
+      background-color: var(--color-help-graphics-normal);
+    }
+
+    &:focus-visible {
+      box-shadow:
+        0 0 0 #{$outline-focus-inner-width} var(--color-base-graphics-ondark),
+        0 0 0 calc(#{$outline-focus-outer-width}) var(--color-action-border-onlight-focus);
+      outline: none;
+
+      &::after {
+        box-shadow: none;
+      }
+    }
+  }
+}

@@ -108,11 +108,15 @@ html :focus > .pop-menu-button {
 
 .pop-menu__pop-over {
   width: 20.875rem;
-  border: 0.125rem solid rgb(24 128 151);
-  box-shadow: 0 0 0.3125rem 0 rgb(0 0 0 / 50%);
+  padding: 0;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     width: 26.125rem;
+    max-width: 27rem;
+  }
+
+  ul {
+    width: calc(100% - 0.5px);
   }
 
   li:first-of-type {
@@ -120,8 +124,8 @@ html :focus > .pop-menu-button {
 
     a,
     button {
-      border-top-left-radius: 0.5625rem;
-      border-top-right-radius: 0.5625rem;
+      border-top-left-radius: 9px;
+      border-top-right-radius: 9px;
     }
   }
 
@@ -130,12 +134,8 @@ html :focus > .pop-menu-button {
 
     a,
     button {
-      border-bottom-left-radius: 0.5625rem;
-      border-bottom-right-radius: 0.5625rem;
+      border-bottom-left-radius: 9px;
+      border-bottom-right-radius: 9px;
     }
   }
-}
-
-.pop-menu__pop-over-arrow {
-  --drop-shadow-color: rgb(24 128 151);
 }

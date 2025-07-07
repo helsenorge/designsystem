@@ -26,10 +26,6 @@ const meta = {
     children: {
       control: 'text',
     },
-    size: {
-      control: 'select',
-      options: ['fluid', 'medium', 'large'],
-    },
   },
 } satisfies Meta<typeof HelpPanel>;
 

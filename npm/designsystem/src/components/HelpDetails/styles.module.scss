@@ -1,0 +1,50 @@
+@use 'sass:map';
+@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/font-mixins' as fonts;
+@import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
+
+.help-details {
+  @include fonts.help-text;
+
+  color: var(--color-base-text-onlight);
+  background-color: var(--color-help-background-normal);
+  border: 1px solid var(--color-help-border-subtle-wcag);
+  border-radius: 0.25rem;
+  position: relative;
+
+  &--inline {
+    width: fit-content;
+    margin-top: 0.2rem;
+  }
+
+  &--standalone {
+    margin-top: -0.35rem;
+    max-width: 32rem;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      margin-top: -0.25rem;
+      max-width: 36rem;
+    }
+  }
+
+  &__content {
+    &--inline {
+      max-width: 29rem;
+      padding: var(--core-space-s) 1.625rem var(--core-space-s) var(--core-space-s);
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        max-width: 32rem;
+        padding: 1.625rem;
+      }
+    }
+
+    &--standalone {
+      padding: var(--core-space-s) var(--core-space-s) var(--core-space-s) 2.25rem;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding-left: 2.625rem;
+      }
+    }
+  }
+}

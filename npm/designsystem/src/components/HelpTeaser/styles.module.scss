@@ -1,22 +1,22 @@
 @import '../../scss/supernova/styles/colors.css';
 
 .helpteaser {
-  background-color: var(--core-color-plum-50);
-  border: 1px solid var(--core-color-plum-400);
+  background-color: var(--color-help-background-normal);
+  border: 1px solid var(--color-help-border-subtle-wcag);
 
   &::after {
     background: linear-gradient(180deg, #f4ecfe40 0%, #f4ecfe 80%);
   }
 
   &__button {
-    background-color: var(--core-color-plum-700);
+    background-color: var(--color-help-graphics-normal);
 
     &:hover {
-      background-color: var(--core-color-plum-900);
+      background-color: var(--color-help-graphics-verydark);
     }
 
     &:active {
-      background-color: var(--core-color-plum-800);
+      background-color: var(--color-help-graphics-dark);
     }
   }
 }

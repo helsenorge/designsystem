@@ -3,7 +3,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
-import HighlightPanel, { HighlightPanelSize } from './HighlightPanel';
+import HighlightPanel from './HighlightPanel';
 import PdfFile from '../Icons/PdfFile';
 import Spacer from '../Spacer';
 
@@ -32,10 +32,6 @@ const meta = {
     color: {
       control: 'select',
       options: ['white', 'neutral', 'blueberry', 'cherry'],
-    },
-    size: {
-      control: 'select',
-      options: HighlightPanelSize,
     },
     htmlMarkup: {
       control: 'select',

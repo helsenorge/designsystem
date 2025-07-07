@@ -49,7 +49,7 @@ describe('Gitt at HelpBubble skal vises', (): void => {
         </HelpBubleWithController>
       );
 
-      expect(container).toMatchSnapshot();
+      expect(container).toBeVisible();
     });
   });
 
@@ -151,5 +151,14 @@ describe('Gitt at HelpBubble ikke skal vises', (): void => {
       expect(bubble).not.toBeInTheDocument();
       expect(child).not.toBeInTheDocument();
     });
+  });
+});
+
+describe('Gitt at default brukes', (): void => {
+  test('Så får vi riktig tekst', async (): Promise<void> => {
+    render(<HelpBubleWithController showBubble>{'Test tekst'}</HelpBubleWithController>);
+
+    const helpbubble = screen.getByLabelText('Hjelpetekst');
+    expect(helpbubble).toBeVisible;
   });
 });

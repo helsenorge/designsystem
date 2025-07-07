@@ -2,21 +2,26 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId } from '../../constants';
+import { AnalyticsId, LanguageLocales } from '../../constants';
+import { HNDesignsystemHelpBubble } from '../../resources/Resources';
+import { useLanguage } from '../../utils/language';
 import AnchorLink, { AnchorLinkTargets } from '../AnchorLink';
 import Close from '../Close';
 import PopOver, { PopOverProps, PopOverVariant } from '../PopOver';
+import { getResources } from './resourceHelper';
 
 import styles from './styles.module.scss';
 
 export const HelpBubbleVariant = PopOverVariant;
 
-type HelpBubbleRole = 'tooltip';
-
 export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'variant' | 'controllerRef' | 'role'> {
+  /** Sets aria-label of the bubble. */
+  ariaLabel?: string;
+  /** Sets aria-labelledby of the bubble. */
+  ariaLabelledById?: string;
   /** Id of the HelpBubble */
   helpBubbleId?: string;
-  /** Content shown inside HelpBubble. Note that if role="tooltip", you must not include interactive/focusable elements. */
+  /** Content shown inside HelpBubble. */
   children: React.ReactNode;
   /** Ref for the element the HelpBubble is placed upon */
   controllerRef: React.RefObject<HTMLElement | SVGSVGElement>;
@@ -26,9 +31,9 @@ export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'varian
   variant?: keyof typeof HelpBubbleVariant;
   /** Show the bubble. Default: false. */
   showBubble?: boolean;
-  /** Hide the close button in the bubble. Close button is never rendered if role="tooltip". */
+  /** Hide the close button in the bubble. */
   noCloseButton?: boolean;
-  /** Visible text on the link. Link is never rendered if role="tooltip". */
+  /** Visible text on the link. */
   linkText?: string;
   /** Url the link leads to */
   linkUrl?: string;
@@ -40,14 +45,15 @@ export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'varian
   onClose?: () => void;
   /** aria-label to be passed onto Close */
   closeAriaLabel?: string;
-  /** Sets role of the HelpBubble element. If set to "tooltip",  */
-  role?: HelpBubbleRole;
+  /** Resources for the component */
+  resources?: Partial<HNDesignsystemHelpBubble>;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubbleProps>((props, ref) => {
   const {
+    ariaLabelledById,
     children,
     className = '',
     noCloseButton,
@@ -62,27 +68,26 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     helpBubbleId,
     variant,
     controllerRef,
-    role,
+    resources,
     testId,
   } = props;
 
-  const isTooltip = role === 'tooltip';
-
-  if (!showBubble && !isTooltip) {
+  if (!showBubble) {
     return null;
   }
 
-  const helpBubbleClasses = classNames(styles.helpbubble, className);
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+  const mergedResources: HNDesignsystemHelpBubble = {
+    ...defaultResources,
+    ...resources,
+    ariaLabel: props.ariaLabel ?? resources?.ariaLabel ?? defaultResources.ariaLabel,
+  };
 
-  const contentClasses = classNames(styles.helpbubble__content, {
-    [styles['helpbubble__content--close']]: !noCloseButton && !isTooltip,
-  });
+  const helpBubbleClasses = classNames(styles.helpbubble, className);
+  const contentClasses = classNames(styles.helpbubble__content);
 
   const renderLink = (): JSX.Element | undefined => {
-    // Det er ikke tillatt med interaktive/fokuserbare elementer i role="tooltip"
-    if (isTooltip) {
-      return;
-    }
     if (onLinkClick && linkText) {
       return (
         <button className={styles.helpbubble__link} onClick={onLinkClick} type="button">
@@ -99,24 +104,22 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
   };
 
   const renderCloseButton = (): JSX.Element | undefined => {
-    if (noCloseButton || isTooltip) {
+    if (noCloseButton) {
       return;
     }
-    return (
-      <div className={styles.helpbubble__close}>
-        <Close small onClick={onClose} ariaLabel={closeAriaLabel} />
-      </div>
-    );
+    return <Close small color="plum" onClick={onClose} ariaLabel={closeAriaLabel} className={styles.helpbubble__close} />;
   };
 
   return (
     <PopOver
+      ariaLabel={mergedResources.ariaLabel}
+      ariaLabelledById={ariaLabelledById}
       id={helpBubbleId}
       variant={variant}
       controllerRef={controllerRef}
-      role={role}
+      role="dialog"
       ref={ref}
-      show={isTooltip && showBubble}
+      show={showBubble}
       testId={testId}
     >
       <div className={helpBubbleClasses} data-analyticsid={AnalyticsId.HelpBubble}>

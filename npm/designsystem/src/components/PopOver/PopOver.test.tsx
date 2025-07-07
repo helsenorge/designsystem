@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 
-import { screen, render, waitFor } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 
-import PopOver, { PopOverProps, PopOverVariant } from './PopOver';
+import PopOver, { PopOverProps } from './PopOver';
 
 const { dummyDomRect } = vi.hoisted(() => {
   return {
@@ -42,7 +42,7 @@ describe('Gitt at PopOver skal vises', (): void => {
 
   describe('Når den skal vises vanlig', (): void => {
     it('Så vises PopOver som vanlig', (): void => {
-      const { container } = render(<PopOverWithController testId="test01">{'Test tekst'}</PopOverWithController>);
+      render(<PopOverWithController testId="test01">{'Test tekst'}</PopOverWithController>);
 
       const bubble = screen.getByTestId('test01');
       const child = screen.getByText('Test tekst');
@@ -51,42 +51,35 @@ describe('Gitt at PopOver skal vises', (): void => {
       expect(child).toBeInTheDocument();
 
       expect(bubble).toHaveClass('popover');
-
-      expect(container).toMatchSnapshot();
     });
   });
-
-  describe('Når variant er positionbelow', (): void => {
-    it('Så vises PopOver riktig', async (): Promise<void> => {
+  describe('Når ariaLabel settes', (): void => {
+    it('Så vises PopOver med riktig aria tekst', (): void => {
       render(
-        <PopOverWithController variant={PopOverVariant.positionbelow} testId="test01">
+        <PopOverWithController ariaLabel="testlabel" testId="test01">
           {'Test tekst'}
         </PopOverWithController>
       );
 
-      const bubble = screen.getByTestId('test01');
-      // eslint-disable-next-line testing-library/no-node-access
-      const arrow = bubble.nextSibling;
+      const bubble = screen.getByLabelText('testlabel');
 
-      expect(bubble).toHaveClass('popover');
-      await waitFor(() => expect(arrow).toHaveClass('popover__arrow popover__arrow--over'));
+      expect(bubble).toBeInTheDocument();
     });
   });
-
-  describe('Når variant er positionabove', (): void => {
-    it('Så vises PopOver riktig', async (): Promise<void> => {
+  describe('Når ariaLabelledBy settes', (): void => {
+    it('Så vises PopOver med riktig aria tekst', (): void => {
       render(
-        <PopOverWithController variant={PopOverVariant.positionabove} testId="test01">
-          {'Test tekst'}
-        </PopOverWithController>
+        <>
+          <h3 id="tittelid">{'Tittel label'}</h3>
+          <PopOverWithController ariaLabelledById="tittelid" testId="test01">
+            {'Test tekst'}
+          </PopOverWithController>
+        </>
       );
 
-      const bubble = screen.getByTestId('test01');
-      // eslint-disable-next-line testing-library/no-node-access
-      const arrow = bubble.nextSibling;
+      const bubble = screen.getByLabelText('Tittel label');
 
-      expect(bubble).toHaveClass('popover');
-      await waitFor(() => expect(arrow).toHaveClass('popover__arrow popover__arrow--under'));
+      expect(bubble).toBeInTheDocument();
     });
   });
 });

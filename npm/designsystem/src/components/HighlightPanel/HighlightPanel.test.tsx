@@ -15,39 +15,6 @@ describe('Gitt at HighlightPanel skal rendres', (): void => {
       expect(text).toBeVisible();
     });
   });
-  describe('Når HighlightPanel skal vises som medium', (): void => {
-    test('Så rendres HighlightPanel riktig', (): void => {
-      const { container } = render(
-        <HighlightPanel color="blueberry" size="medium">
-          <p>{'Avsnitt'}</p>
-        </HighlightPanel>
-      );
-
-      expect(container).toMatchSnapshot();
-    });
-  });
-  describe('Når HighlightPanel skal vises som large', (): void => {
-    test('Så rendres HighlightPanel riktig', (): void => {
-      const { container } = render(
-        <HighlightPanel color="blueberry" size="large">
-          <p>{'Avsnitt'}</p>
-        </HighlightPanel>
-      );
-
-      expect(container).toMatchSnapshot();
-    });
-  });
-  describe('Når HighlightPanel skal vises som fluid', (): void => {
-    test('Så rendres HighlightPanel riktig', (): void => {
-      const { container } = render(
-        <HighlightPanel color="blueberry" size="fluid">
-          <p>{'Avsnitt'}</p>
-        </HighlightPanel>
-      );
-
-      expect(container).toMatchSnapshot();
-    });
-  });
   describe('Når HighlightPanel skal vises som et nav-element', (): void => {
     test('Så har komponenten riktig rolle', (): void => {
       render(
@@ -88,24 +55,12 @@ describe('Gitt at HighlightPanel skal rendres', (): void => {
   describe('Når HighlightPanel skal vises med custom className', (): void => {
     test('Så er className med', (): void => {
       render(
-        <HighlightPanel className="test-av-custom-classname">
+        <HighlightPanel testId="highlightpanel-test" className="test-av-custom-classname">
           <h1>{'Jeg er en tittel'}</h1>
         </HighlightPanel>
       );
 
-      const panel = screen.getByTestId('highlightpanel-wrapper');
-      expect(panel).toHaveClass('test-av-custom-classname');
-    });
-  });
-  describe('Når HighlightPanel skal vises som fluid med custom className', (): void => {
-    test('Så er className med', (): void => {
-      render(
-        <HighlightPanel className="test-av-custom-classname" size={'fluid'} testId="fluid-highlightpanel">
-          <h1>{'Jeg er en tittel'}</h1>
-        </HighlightPanel>
-      );
-
-      const panel = screen.getByTestId('fluid-highlightpanel');
+      const panel = screen.getByTestId('highlightpanel-test');
       expect(panel).toHaveClass('test-av-custom-classname');
     });
   });

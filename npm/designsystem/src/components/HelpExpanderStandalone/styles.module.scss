@@ -1,0 +1,5 @@
+.help-expander-standalone-trigger {
+  // Plasserer HelpTriggerStandalone over HelpExpanderStandalone for at focus-outline skal vises riktig
+  position: relative;
+  z-index: 1;
+}

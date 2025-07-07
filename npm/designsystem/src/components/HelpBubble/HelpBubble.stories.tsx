@@ -5,12 +5,10 @@ import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
 import HelpBubble, { HelpBubbleVariant } from './HelpBubble';
-import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
-import DictionaryTrigger from '../DictionaryTrigger/DictionaryTrigger';
-import HelpQuestion from '../HelpQuestion';
-import HelpTrigger from '../HelpTrigger';
+import HelpTriggerIcon from '../HelpTriggerIcon';
+import HelpTriggerInline from '../HelpTriggerInline/HelpTriggerInline';
 import Table, { ResponsiveTableVariant, TableHead, TableRow, TableHeadCell, TableBody, TableCell, HeaderCategory } from '../Table';
 
 const meta = {
@@ -36,6 +34,12 @@ const meta = {
     showBubble: true,
   },
   argTypes: {
+    ariaLabel: {
+      control: 'text',
+    },
+    ariaLabelledById: {
+      control: 'text',
+    },
     children: {
       control: 'text',
     },
@@ -62,7 +66,7 @@ export const Default: Story = {
 
     return (
       <>
-        <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
+        <HelpTriggerIcon ref={controllerRef} ariaLabel="Hjelp" />
         <HelpBubble {...args} controllerRef={controllerRef}>
           {args.children}
         </HelpBubble>
@@ -83,7 +87,7 @@ export const LongText: Story = {
       <>
         <span>{loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
-          <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
+          <HelpTriggerIcon ref={controllerRef} ariaLabel="Hjelp" />
           <HelpBubble {...args} controllerRef={controllerRef}>
             {args.children}
           </HelpBubble>
@@ -108,7 +112,7 @@ export const Link: Story = {
       <>
         <span>{loremText + loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
-          <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
+          <HelpTriggerIcon ref={controllerRef} ariaLabel="Hjelp" />
           <HelpBubble {...args} controllerRef={controllerRef}>
             {args.children}
           </HelpBubble>
@@ -132,7 +136,7 @@ export const Toggle: Story = {
       <>
         <span>{loremText + loremText} </span>
         <div style={{ position: 'relative', display: 'inline' }}>
-          <HelpTrigger ref={controllerRef} onClick={toggleValue} ariaLabel="Åpne" />
+          <HelpTriggerIcon ref={controllerRef} onClick={toggleValue} ariaLabel="Åpne" />
           <HelpBubble {...args} controllerRef={controllerRef} showBubble={value}>
             {args.children}
           </HelpBubble>
@@ -143,73 +147,23 @@ export const Toggle: Story = {
   },
 };
 
-export const OnText: Story = {
-  render: args => {
-    const controllerRef = useRef<HTMLButtonElement>(null);
-    const bubbleRef = useRef<HTMLDivElement>(null);
-    const [isOpen, setIsOpen] = useState(false);
-    useOutsideEvent(bubbleRef, () => setIsOpen(false));
-
-    return (
-      <>
-        {loremText + loremText}
-        <DictionaryTrigger ref={controllerRef} selected={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
-          {'Helsebiblioteket'}
-        </DictionaryTrigger>{' '}
-        <HelpBubble ref={bubbleRef} {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
-          {args.children}
-        </HelpBubble>
-        {loremText + loremText}
-      </>
-    );
-  },
-};
-export const AsTooltip: Story = {
-  args: {
-    role: 'tooltip',
-  },
-  render: args => {
-    const controllerRef = useRef<HTMLButtonElement>(null);
-    const bubbleRef = useRef<HTMLDivElement>(null);
-    const [isOpen, setIsOpen] = useState(false);
-    useOutsideEvent(bubbleRef, () => isOpen && setIsOpen(false));
-
-    return (
-      <>
-        {loremText + loremText}
-        <DictionaryTrigger
-          ref={controllerRef}
-          selected={isOpen}
-          onClick={(): void => setIsOpen(true)}
-          onFocus={(): void => setIsOpen(true)}
-          onBlur={(): void => setIsOpen(false)}
-        >
-          {'Helsebiblioteket'}
-        </DictionaryTrigger>{' '}
-        <HelpBubble ref={bubbleRef} {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
-          {args.children}
-        </HelpBubble>
-        {loremText + loremText}
-      </>
-    );
-  },
-};
-
-export const WithHelpQuestion: Story = {
+export const WithHelpTriggerInline: Story = {
   render: args => {
     const controllerRef = useRef<HTMLButtonElement>(null);
     const [isOpen, setIsOpen] = useState(false);
 
     return (
       <>
-        <p>{loremText + loremText}</p>
-        <HelpQuestion ref={controllerRef} selected={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
-          {'Helsebiblioteket'}
-        </HelpQuestion>
-        <HelpBubble {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
-          {args.children}
-        </HelpBubble>
-        <p>{loremText + loremText}</p>
+        <p>
+          {loremText + loremText}
+          <HelpTriggerInline ref={controllerRef} aria-expanded={isOpen} onClick={(): void => setIsOpen(!isOpen)}>
+            {'Helsebiblioteket'}
+          </HelpTriggerInline>
+          <HelpBubble {...args} onClose={(): void => setIsOpen(false)} controllerRef={controllerRef} showBubble={isOpen}>
+            {args.children}
+          </HelpBubble>
+          {loremText + loremText}
+        </p>
       </>
     );
   },
@@ -248,7 +202,7 @@ export const HorizontalScroll: Story = {
               <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
               <TableCell dataLabel="Antall på venteliste">53</TableCell>
               <TableCell dataLabel="Handlinger">
-                <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
+                <HelpTriggerIcon ref={controllerRef} ariaLabel="Hjelp" />
                 <HelpBubble {...args} controllerRef={controllerRef}>
                   <div>{args.children}</div>
                 </HelpBubble>
@@ -324,7 +278,7 @@ export const CenteredOverflow: Story = {
                   <TableCell dataLabel="Ledige plasser">0 av 1000</TableCell>
                   <TableCell dataLabel="Antall på venteliste">53</TableCell>
                   <TableCell dataLabel="Handlinger">
-                    <HelpTrigger ref={controllerRef} ariaLabel="Hjelp" />
+                    <HelpTriggerIcon ref={controllerRef} ariaLabel="Hjelp" />
                     <HelpBubble {...args} onClose={action('Bubble closed')} controllerRef={controllerRef}>
                       <div>{args.children}</div>
                     </HelpBubble>

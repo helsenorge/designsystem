@@ -3,8 +3,9 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 import { Docs } from 'frankenstein-build-tools';
 
-import HelpTooltip, { HelpTooltipOpenProvider } from './HelpTooltip';
+import HelpTooltip, { HelpTooltipDelayGroup } from './HelpTooltip';
 import HelpTooltipExample from '../../docs/HelpTooltipExample';
+import longLoremText, { shortLoremText } from '../../utils/loremtext';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/HelpTooltip',
@@ -15,7 +16,7 @@ const meta = {
       page: (): React.JSX.Element => <Docs component={HelpTooltip} />,
       description: {
         component:
-          'HelpTooltip [HelpTooltip] hjelper innbygger å forstå et ord eller en setning bedre ved å vise en forklaring i en HelpBubble når teksten hovres eller klikkes på.<br><br>Ved bruk av flere tooltips på en side så skal de wrappes i HelpTooltipOpenProvider som eksporteres fra HelpTooltip.',
+          'HelpTooltip [HelpTooltip] hjelper innbygger å forstå et ord eller en setning bedre ved å vise en forklaring i en boble når teksten hovres eller får fokus.',
       },
       story: {
         inline: false,
@@ -23,7 +24,7 @@ const meta = {
       },
     },
   },
-  args: { children: 'Ord', description: 'Dette er tekst som skal fylle HelpBubble' },
+  args: { children: 'Ord', description: 'Dette er tekst som skal fylle HelpTooltip' },
   argTypes: {
     children: {
       control: 'text',
@@ -47,9 +48,20 @@ export const WithText: Story = {
 };
 
 export const SingleExample: Story = {
+  render: args => <HelpTooltip {...args} />,
+};
+
+export const MultipleTooltips: Story = {
   render: args => (
-    <HelpTooltipOpenProvider>
-      <HelpTooltip {...args} />
-    </HelpTooltipOpenProvider>
+    <div>
+      <HelpTooltipDelayGroup delay={200}>
+        {longLoremText + ' '}
+        <HelpTooltip {...args} description="Dette er tekst som skal fylle HelpTooltip" />
+        {' ' + shortLoremText + ' '}
+        <HelpTooltip {...args} description="Dette er tekst som skal fylle HelpTooltip" />
+        {' ' + longLoremText + ' '}
+        <HelpTooltip {...args} description="Dette er tekst som skal fylle HelpTooltip" />
+      </HelpTooltipDelayGroup>
+    </div>
   ),
 };

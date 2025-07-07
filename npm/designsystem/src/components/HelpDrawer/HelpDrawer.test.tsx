@@ -12,4 +12,13 @@ describe('Gitt at Drawer skal vises', () => {
       expect(dialog).toBeInTheDocument();
     });
   });
+
+  describe('Gitt at default brukes', (): void => {
+    test('Så får vi riktig tekst', async (): Promise<void> => {
+      render(<HelpDrawer onRequestClose={() => {}} title="Min tittel" isOpen={true} />);
+
+      const helpdrawer = screen.getByLabelText('Hjelpetekst');
+      expect(helpdrawer).toBeVisible;
+    });
+  });
 });

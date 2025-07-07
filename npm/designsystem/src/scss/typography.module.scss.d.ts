@@ -6,6 +6,8 @@ export type Styles = {
   'definition-list-type': string;
   'focused-content': string;
   form: string;
+  'help-text': string;
+  'help-trigger-text': string;
   'image-caption': string;
   'image-credit': string;
   'input-text': string;
