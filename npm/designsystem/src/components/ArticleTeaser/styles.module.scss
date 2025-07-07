@@ -1,0 +1,83 @@
+@use 'sass:map';
+@use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
+
+.articleteaser {
+  position: relative;
+  border-bottom: 1px solid var(--color-base-border-onlight);
+
+  &__content {
+    overflow: hidden;
+    padding-bottom: 1rem;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      padding-bottom: 2.65rem;
+    }
+
+    &--collapsed {
+      max-height: 10rem;
+
+      &::after {
+        content: '';
+        position: absolute;
+        height: var(--core-space-3xl);
+        background: linear-gradient(180deg, #fff0 0%, #fff 60%);
+        width: 100%;
+        bottom: 0;
+      }
+    }
+  }
+
+  &__button {
+    position: absolute;
+    right: calc(50%);
+    border: none;
+    width: fit-content;
+    white-space: nowrap;
+    border-radius: 1.25rem;
+    background: var(--color-action-graphics-onlight, #188097);
+    color: var(--core-color-white, #fff);
+    padding: 0.375rem 1rem;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    cursor: pointer;
+
+    /* @todo Mobile/HelpTriggerText */
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 1.2rem */
+
+    &:hover {
+      background-color: var(--color-action-graphics-onlight-hover);
+    }
+
+    &:focus-visible {
+      border: 1px solid var(--color-base-graphics-ondark);
+      outline: none;
+      box-shadow: 0 0 0 3px var(--color-base-graphics-onlight);
+    }
+
+    &:active {
+      background-color: var(--core-color-blueberry-800);
+    }
+
+    &--expanded {
+      background: var(--color-action-graphics-ondark);
+      color: var(--color-action-graphics-onlight);
+      border: 1px solid var(--color-action-border-onlight);
+
+      &:hover {
+        // @todo: endre denne når ny token er laget
+        background-color: var(--color-action-graphics-ondark-hover);
+      }
+
+      &:active {
+        // @todo: endre denne når ny token er laget
+        background-color: var(--color-action-graphics-ondark);
+      }
+    }
+  }
+}

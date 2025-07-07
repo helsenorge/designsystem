@@ -67,6 +67,7 @@ const meta = {
       control: 'select',
       options: ['dialog', 'alertdialog'],
     },
+    noCloseButton: { control: 'boolean' },
   },
 } satisfies Meta<typeof Modal>;
 
@@ -264,4 +265,23 @@ export const PrintModal: Story = {
       <p>{'A random string: bottom'}</p>
     </>
   ),
+};
+
+export const FooterContent: Story = {
+  render: args => {
+    return (
+      <Modal
+        {...args}
+        secondaryButtonText=""
+        footerContent={
+          <>
+            <Button>{'Custom 1'}</Button>
+            <Button variant="outline">{'Custom 2'}</Button>
+          </>
+        }
+      >
+        {args.children}
+      </Modal>
+    );
+  },
 };

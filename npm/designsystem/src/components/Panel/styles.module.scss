@@ -121,7 +121,7 @@
   &__border {
     &--outline {
       &--outer {
-        border: 1px solid var(--core-color-neutral-300);
+        border: 1px solid var(--color-base-border-neutral-emphasized);
       }
 
       &--inner {
@@ -130,15 +130,23 @@
     }
 
     &--line {
-      border-top: 1px solid var(--core-color-neutral-600);
-      border-bottom: 1px solid var(--core-color-neutral-600);
+      border-top: 1px solid var(--color-base-border-onlight);
+      border-bottom: 1px solid var(--color-base-border-onlight);
       border-right: none;
       border-left: none;
       padding: spacers.getSpacer(xs) 0;
     }
 
     &--fill--neutral {
-      border: 1px solid var(--core-color-neutral-300);
+      border: 1px solid var(--color-base-border-neutral-emphasized);
+    }
+
+    &--fill--new {
+      border: 1px solid var(--core-color-blueberry-200);
+    }
+
+    &--fill--status {
+      border-left: none;
     }
   }
 
@@ -153,15 +161,16 @@
   }
 
   &--new {
-    border-left-color: var(--core-color-blueberry-500);
+    border-left-color: var(--color-notification-status-info);
+    background-color: var(--color-base-background-blueberry);
   }
 
   &--draft {
-    border-left: dotted 6px var(--core-color-neutral-500);
+    border-left: dotted 6px var(--color-notification-status-draft);
   }
 
   &--error {
-    border-left-color: var(--core-color-cherry-500);
+    border-left-color: var(--color-notification-status-error);
   }
 
   &__expander {

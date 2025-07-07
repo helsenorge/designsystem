@@ -32,6 +32,8 @@ export type Styles = {
   'expander__button--expanded': string;
   panel: string;
   'panel__border--fill--neutral': string;
+  'panel__border--fill--new': string;
+  'panel__border--fill--status': string;
   'panel__border--line': string;
   'panel__border--outline--inner': string;
   'panel__border--outline--outer': string;

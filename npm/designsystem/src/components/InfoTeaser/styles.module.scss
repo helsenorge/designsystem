@@ -1,0 +1,98 @@
+@use 'sass:map';
+@use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
+
+.wrapper {
+  position: relative;
+}
+
+.infoteaser {
+  display: grid;
+  grid-template:
+    'icon title' auto
+    '. title' auto
+    'text text' min-content / auto 1fr;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-base-background-blueberry);
+  border: 1px solid var(--color-base-border-blueberry);
+  padding: var(--core-space-m) var(--core-space-s) var(--core-space-l) var(--core-space-s);
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    grid-template:
+      'icon title' auto
+      '. title' auto
+      '. text' min-content / auto 1fr;
+  }
+
+  &--collapsed {
+    max-height: 12.25rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 5rem;
+      background: linear-gradient(180deg, #e4f7f940 0%, #e4f7f9 80%);
+
+      /* 1px på hver side for å ikke ligge over border */
+      bottom: 1px;
+      left: 1px;
+      width: calc(100% - 2px);
+    }
+  }
+
+  &__title {
+    grid-area: title;
+    align-self: center;
+  }
+
+  &__icon {
+    grid-area: icon;
+    margin-right: var(--core-space-xs);
+  }
+
+  &__text {
+    grid-area: text;
+    overflow: hidden;
+    height: inherit;
+    margin-top: var(--core-space-2xs);
+  }
+
+  &__button {
+    position: absolute;
+    right: calc(50%);
+    border: none;
+    width: fit-content;
+    white-space: nowrap;
+    border-radius: 1.25rem;
+    background: var(--color-action-graphics-onlight, #188097);
+    color: var(--core-color-white, #fff);
+    padding: 0.375rem 1rem;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    cursor: pointer;
+
+    /* @todo Mobile/HelpTriggerText */
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 1.2rem */
+
+    &:hover {
+      background-color: var(--color-action-graphics-onlight-hover);
+    }
+
+    &:focus-visible {
+      border: 1px solid var(--color-base-graphics-ondark);
+      outline: none;
+      box-shadow: 0 0 0 3px var(--color-base-graphics-onlight);
+    }
+
+    &:active {
+      // @todo: endre denne når token er laget
+      background-color: var(--core-color-blueberry-800);
+    }
+  }
+}

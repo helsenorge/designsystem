@@ -33,47 +33,28 @@ export const useBreakpoint = (): Breakpoint => {
   );
 
   useEffect(() => {
-    const handleMediaQueryEvent = (event: MediaQueryListEvent): void => {
-      switch (event.media) {
-        case screen.xl:
-          setBreakpoint(event.matches ? Breakpoint.xl : Breakpoint.lg);
-          return;
-        case screen.lg:
-          setBreakpoint(event.matches ? Breakpoint.lg : Breakpoint.md);
-          return;
-        case screen.md:
-          setBreakpoint(event.matches ? Breakpoint.md : Breakpoint.sm);
-          return;
-        case screen.sm:
-          setBreakpoint(event.matches ? Breakpoint.sm : Breakpoint.xs);
-          return;
-        case screen.xs:
-          setBreakpoint(event.matches ? Breakpoint.xs : Breakpoint.xxs);
-          return;
-        default:
-          setBreakpoint(Breakpoint.xxs);
-      }
-    };
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const mediaQueryList = Object.entries(screen).map(([_size, mediaQuery]) => {
+    const mediaQueryList = Object.values(screen).map(mediaQuery => {
       const mq = window.matchMedia(mediaQuery);
       // iOS <=13 har ikke støtte for addEventListener/removeEventListener på MediaQueryList,
       // men har støtte for addListener
+      const handler = (): void => {
+        setBreakpoint(getCurrentBreakpoint());
+      };
+
       if (mq.addEventListener) {
-        mq.addEventListener('change', handleMediaQueryEvent);
+        mq.addEventListener('change', handler);
       } else if (mq.addListener) {
-        mq.addListener(handleMediaQueryEvent);
+        mq.addListener(handler);
       }
-      return mq;
+      return { mq, handler };
     });
 
     return (): void => {
-      mediaQueryList.forEach(mq => {
+      mediaQueryList.forEach(({ mq, handler }) => {
         if (mq.removeEventListener) {
-          mq.removeEventListener('change', handleMediaQueryEvent);
+          mq.removeEventListener('change', handler);
         } else if (mq.removeListener) {
-          mq.removeListener(handleMediaQueryEvent);
+          mq.removeListener(handler);
         }
       });
     };

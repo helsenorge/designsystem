@@ -41,6 +41,8 @@ export interface ModalProps {
   titleId?: string;
   /** Description of the modal. Will not render if the modal has children. */
   description?: string;
+  /** Optional footer content that can be rendered instead of default CTA(s) */
+  footerContent?: React.ReactNode;
   /** Changes the visual representation of the modal */
   variant?: keyof typeof ModalVariants;
   /** Change width of the modal (default: large) */
@@ -111,6 +113,7 @@ const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): JS
 
 const Modal: React.FC<ModalProps> = props => {
   const {
+    footerContent,
     variant = ModalVariants.normal,
     primaryButtonText = 'OK',
     titleId = uuid(),
@@ -149,7 +152,7 @@ const Modal: React.FC<ModalProps> = props => {
 
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
-  const showActions = (props.secondaryButtonText && props.secondaryButtonText?.length > 0) || props.onSuccess;
+  const showActions = (props.secondaryButtonText && props.secondaryButtonText?.length > 0) || props.onSuccess || footerContent;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: props.ariaLabel, id: props.ariaLabelledBy, fallbackId: titleId });
 
@@ -249,12 +252,13 @@ const Modal: React.FC<ModalProps> = props => {
             />
             {showActions && (
               <div className={cn(styles['modal__call-to-action'], size && styles[`modal__call-to-action--${size}`])}>
-                {props.onSuccess && <Button onClick={props.onSuccess}>{primaryButtonText}</Button>}
+                {props.onSuccess && primaryButtonText && <Button onClick={props.onSuccess}>{primaryButtonText}</Button>}
                 {props.secondaryButtonText && props.secondaryButtonText?.length > 0 && (
                   <Button variant="borderless" onClick={props.onClose}>
                     {props.secondaryButtonText}
                   </Button>
                 )}
+                {footerContent}
               </div>
             )}
           </div>

@@ -11,4 +11,58 @@ export type HNDesignsystemDropdown = {
   closeText: string;
 };
 
+export type HNDesignsystemPanel = {
+  /**
+   * Se detaljer
+   */
+  expandButtonOpen: string;
+  /**
+   * Skjul detaljer
+   */
+  expandButtonClose: string;
+};
+
+export type HNDesignsystemClose = {
+  /**
+   * Lukk
+   */
+  ariaLabel: string;
+};
+
+export type HNDesignsystemInfoTeaser = {
+  /**
+   * Vis mindre
+   */
+  expandButtonOpen: string;
+  /**
+   * Vis mer
+   */
+  expandButtonClose: string;
+};
+
+export type HNDesignsystemArticleTeaser = {
+  /**
+   * Vis mer
+   */
+  expandButtonClose: string;
+  /**
+   * Vis mindre
+   */
+  expandButtonOpen: string;
+};
+
+export type HNDesignsystemHelpBubble = {
+  /**
+   * Hjelpetekst
+   */
+  ariaLabel: string;
+};
+
+export type HNDesignsystemHelpDrawer = {
+  /**
+   * Hjelpetekst
+   */
+  ariaLabel: string;
+};
+
 /* eslint:enable */

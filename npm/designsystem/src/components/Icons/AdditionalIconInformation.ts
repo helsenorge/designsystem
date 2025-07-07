@@ -329,5 +329,6 @@ export default {
   avatar: { alternativeName: 'Avatar', categories: 'Generisk, Personer' },
   noaccess: { alternativeName: 'IngenTilgang (mørk)', categories: 'System' },
   patientandperson: { alternativeName: 'PårørendeOgPasient', categories: 'Behandling, Personer' },
-  '': { alternativeName: '', categories: '' },
+  toddler: { alternativeName: 'Småbarn', categories: 'Tjeneste' },
+  treatmentaids: { alternativeName: 'Behandlingshjelpemidler', categories: 'Tjeneste' },
 };

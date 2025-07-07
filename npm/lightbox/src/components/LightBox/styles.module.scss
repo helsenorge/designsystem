@@ -20,6 +20,7 @@
 }
 
 .button {
+  all: unset; // Reset all inherited styles to fix issues on iOS
   cursor: pointer;
   background-color: var(--core-color-black);
   color: var(--color-base-text-ondark);

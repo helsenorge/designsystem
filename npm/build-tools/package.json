@@ -1,7 +1,7 @@
 {
   "name": "frankenstein-build-tools",
   "private": true,
-  "version": "11.0.0-beta.4",
+  "version": "11.3.1",
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",

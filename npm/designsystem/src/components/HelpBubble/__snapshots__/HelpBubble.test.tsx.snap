@@ -24,23 +24,27 @@ exports[`Gitt at HelpBubble skal vises > Når den skal vises vanlig > Så vises 
           data-analyticsid="close"
           type="button"
         >
-          <svg
-            aria-hidden="true"
-            class="hnds-style-icon"
-            color="#126F87"
-            data-analyticsid="icon"
-            fill="#126F87"
-            focusable="false"
-            height="38"
-            role="presentation"
-            style="min-width: 38px; min-height: 38px;"
-            viewBox="0 0 48 48"
-            width="38"
+          <span
+            class="close__inner-container close__inner-container--small"
           >
-            <path
-              d="M25.773 24l10.432-10.432-1.772-1.773-10.432 10.433-10.433-10.433-1.773 1.772L22.229 24 11.795 34.433l1.773 1.772 10.433-10.433 10.432 10.433 1.772-1.773z"
-            />
-          </svg>
+            <svg
+              aria-hidden="true"
+              class="hnds-style-icon"
+              color="var(--color-action-graphics-onlight)"
+              data-analyticsid="icon"
+              fill="var(--color-action-graphics-onlight)"
+              focusable="false"
+              height="38"
+              role="presentation"
+              style="min-width: 38px; min-height: 38px;"
+              viewBox="0 0 48 48"
+              width="38"
+            >
+              <path
+                d="M25.773 24l10.432-10.432-1.772-1.773-10.432 10.433-10.433-10.433-1.773 1.772L22.229 24 11.795 34.433l1.773 1.772 10.433-10.433 10.432 10.433 1.772-1.773z"
+              />
+            </svg>
+          </span>
         </button>
       </div>
       <div

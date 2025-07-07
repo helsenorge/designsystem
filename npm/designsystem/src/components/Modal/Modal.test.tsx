@@ -2,6 +2,7 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Modal, { ModalVariants } from './Modal';
+import Button from '../Button';
 
 describe('Gitt at en modal skal vises ', (): void => {
   describe('Når en modal skal vise kun tittel og lukkeknapp', (): void => {
@@ -402,6 +403,16 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       const label = screen.getByText('Dette er tittelen');
       expect(label).toHaveAttribute('id', 'testing');
+    });
+  });
+
+  describe(`Når en modal får footerContent`, (): void => {
+    it('Så skal innholdet der rendres', (): void => {
+      render(<Modal title="test" footerContent={<Button>{'Custom button'}</Button>} />);
+
+      const customButton = screen.getByText('Custom button');
+
+      expect(customButton).toBeVisible();
     });
   });
 });

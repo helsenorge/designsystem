@@ -3,9 +3,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useHover } from '../../hooks/useHover';
-import { palette } from '../../theme/palette';
+import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { mergeRefs } from '../../utils/refs';
 import Icon from '../Icon';
 import X from '../Icons/X';
@@ -24,15 +23,23 @@ export interface CloseProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** Gives color to the svg */
-  color?: string;
+  color?: 'blueberry' | 'black' | 'plum';
 }
 
 const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, ref: React.ForwardedRef<HTMLButtonElement>) {
-  const { small, testId, ariaLabel = 'Lukk', onClick, className, color = palette.blueberry600 } = props;
-  const breakpoint = useBreakpoint();
+  const { small, testId, ariaLabel = 'Lukk', onClick, className, color = 'blueberry' } = props;
   const { hoverRef, isHovered } = useHover();
 
-  const iconSize = breakpoint === Breakpoint.xs || small ? 38 : 48;
+  const iconSize = useIsMobileBreakpoint() || small ? 38 : 48;
+
+  let iconColor;
+  if (color === 'black') {
+    iconColor = 'black';
+  } else if (color === 'plum') {
+    iconColor = 'var(--core-color-plum-700)';
+  } else {
+    iconColor = 'var(--color-action-graphics-onlight)';
+  }
 
   const closeClasses = classNames(styles.close, { [styles['close--small']]: small }, className);
 
@@ -46,7 +53,14 @@ const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, re
       onClick={onClick}
       type="button"
     >
-      <Icon svgIcon={X} color={color} size={iconSize} isHovered={isHovered} />
+      <span
+        className={classNames(styles['close__inner-container'], {
+          [styles['close__inner-container--small']]: small,
+          [styles['close__inner-container--plum']]: color == 'plum',
+        })}
+      >
+        <Icon svgIcon={X} color={iconColor} size={iconSize} isHovered={isHovered} />
+      </span>
     </button>
   );
 });
