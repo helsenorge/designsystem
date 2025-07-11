@@ -1,3 +1,11 @@
+## [11.4.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.4.0&targetVersion=GTv11.4.1) (2025-07-11)
+
+### Bug Fixes
+
+- **panel:** legg til manglende onexpand function prop
+  ([a2ee192](https://github.com/helsenorge/designsystem/commit/a2ee19211b5b808bdea0b82484125622ef1cef48)), closes
+  [#356092](https://github.com/helsenorge/designsystem/issues/356092)
+
 ## [11.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.3.1&targetVersion=GTv11.4.0) (2025-07-08)
 
 ### Features
