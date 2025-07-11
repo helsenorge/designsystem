@@ -56,6 +56,8 @@ export interface PanelProps {
   color?: PanelColors;
   /** Sets classes on the outermost container of the panel */
   className?: string;
+  /** Action called when toggling expansion of ExpandedContent */
+  onExpand?: () => void;
   /** Sets the stacking order of the content boxes */
   stacking?: PanelStacking;
   /** Sets the data-testid attribute. */
@@ -105,6 +107,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     buttonBottomText,
     className,
     resources,
+    onExpand,
   }: PanelProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
@@ -207,6 +210,11 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     [styles[`panel__expander__border--not-expanded--line`]]: !isExpanded && status === PanelStatus.none && variant === PanelVariant.line,
   });
 
+  const handleExpandClick = (): void => {
+    setIsExpanded(!isExpanded);
+    onExpand && onExpand();
+  };
+
   return expandableContent.length > 0 ? (
     <div className={outerClassnames}>
       <div className={classNames({ [styles['panel__border--outline--inner']]: variant === PanelVariant.outline })}>
@@ -215,7 +223,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
             {preContainer}
             {title}
             <div className={contentContainerLayout}>{content}</div>
-            <ExpandButton onClick={() => setIsExpanded(!isExpanded)} isExpanded={isExpanded} resources={mergedResources} />
+            <ExpandButton onClick={handleExpandClick} isExpanded={isExpanded} resources={mergedResources} />
             {isExpanded && (
               <div ref={expandedContentRef} data-testid={testId + '-details'}>
                 <div className={styles['panel__expander__separator']} />
