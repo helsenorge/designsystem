@@ -22,7 +22,7 @@ $outline-xl-width: 2.5px;
   outline: none;
   border: 0;
   min-width: 4.6rem;
-  height: 2.75rem;
+  min-height: 2.75rem;
 
   &:focus-visible {
     outline: none;
@@ -30,7 +30,7 @@ $outline-xl-width: 2.5px;
 
   &__inner-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     min-height: var(--core-space-l);
     color: var(--color-help-graphics-normal);
@@ -38,6 +38,10 @@ $outline-xl-width: 2.5px;
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.2rem;
+
+    & > * {
+      margin-top: 6px;
+    }
 
     :hover > &,
     :active > & {

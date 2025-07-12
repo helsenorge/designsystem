@@ -55,12 +55,14 @@ const HelpExpanderStandalone = React.forwardRef<HTMLButtonElement, HelpExpanderS
           weight={weight}
           {...ariaLabelAttributes}
         >
-          {triggerText}
-          <Icon
-            color={`var(--core-color-plum-${isHovered ? '900' : '700'})`}
-            svgIcon={isExpanded ? ChevronUp : ChevronDown}
-            size={IconSize.XXSmall}
-          />
+          <span className={styles['help-expander-standalone-trigger__inner-container']}>
+            {triggerText}
+            <Icon
+              color={`var(--core-color-plum-${isHovered ? '900' : '700'})`}
+              svgIcon={isExpanded ? ChevronUp : ChevronDown}
+              size={IconSize.XXSmall}
+            />
+          </span>
         </HelpTriggerStandalone>
         {isExpanded && <HelpDetails>{children}</HelpDetails>}
       </div>
