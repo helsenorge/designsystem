@@ -48,9 +48,14 @@
     flex-shrink: 0;
   }
 
-  &:hover,
   &:active {
     background-color: var(--color-action-background-ondark-selected);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-action-background-ondark-selected);
+    }
   }
 
   &:focus-visible {
@@ -63,10 +68,16 @@
     border-color: palette.$blueberry500;
     color: palette.$white;
 
-    &:hover,
     &:active {
       background-color: palette.$blueberry700;
       border-color: palette.$blueberry700;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: palette.$blueberry700;
+        border-color: palette.$blueberry700;
+      }
     }
 
     &:focus-visible {
