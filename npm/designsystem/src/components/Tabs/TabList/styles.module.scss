@@ -95,11 +95,13 @@
   }
 
   .tab-list__tab--not-selected {
-    &:hover {
-      background-color: var(--color-action-background-ondark-hover);
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--color-action-background-ondark-hover);
 
-      &#{$tab-list}__tab--blueberry {
-        background-color: var(--color-action-background-ondark-selected);
+        &#{$tab-list}__tab--blueberry {
+          background-color: var(--color-action-background-ondark-selected);
+        }
       }
     }
 

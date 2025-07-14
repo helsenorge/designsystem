@@ -5,10 +5,12 @@ $underline-width: 0.0625rem;
 $focus-width: 0.15rem;
 
 @mixin anchorlink-hover {
-  cursor: pointer;
-  color: palette.$blueberry700;
-  background-color: palette.$blueberry60010;
-  text-decoration-color: palette.$blueberry600;
+  @media (hover: hover) {
+    cursor: pointer;
+    color: palette.$blueberry700;
+    background-color: palette.$blueberry60010;
+    text-decoration-color: palette.$blueberry600;
+  }
 }
 
 @mixin anchorlink-focus {
