@@ -28,6 +28,9 @@ const meta = {
       control: 'select',
       options: PanelVariant,
     },
+    highlightText: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof PanelList>;
 

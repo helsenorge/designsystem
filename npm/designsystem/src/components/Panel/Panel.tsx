@@ -10,6 +10,7 @@ import PanelTitle, { PanelTitleProps } from './PanelTitle';
 import { getResources } from './resourceHelper';
 import { HNDesignsystemPanel } from '../../resources/Resources';
 import { useLanguage } from '../../utils/language';
+import Highlighter from '../Highlighter';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronRight from '../Icons/ChevronRight';
 import ChevronUp from '../Icons/ChevronUp';
@@ -68,6 +69,8 @@ export interface PanelProps {
   status?: PanelStatus;
   /** Resources for component */
   resources?: Partial<HNDesignsystemPanel>;
+  /** Highlights text in title and content. Used for search results */
+  highlightText?: string;
 }
 
 const ExpandButton = ({
@@ -108,6 +111,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     className,
     resources,
     onExpand,
+    highlightText,
   }: PanelProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
@@ -142,7 +146,9 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
         if (child.type === PreContainer) {
           newPreContainer.push(child);
         } else if (child.type === PanelTitle) {
-          newTitle.push(child);
+          newTitle.push(
+            React.cloneElement(child as React.ReactElement<PanelTitleProps>, { highlightText: child.props.highlightText || highlightText })
+          );
           if (child.props.icon) {
             localHasIcon = true;
           }
@@ -220,14 +226,18 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
       <div className={classNames({ [styles['panel__border--outline--inner']]: variant === PanelVariant.outline })}>
         <div className={expanderBorderLayout}>
           <div className={panelClassnames} data-testid={testId} ref={panelRef}>
-            {preContainer}
-            {title}
-            <div className={contentContainerLayout}>{content}</div>
+            <Highlighter searchText={highlightText}>
+              {preContainer}
+              {title}
+            </Highlighter>
+            <div className={contentContainerLayout}>
+              <Highlighter searchText={highlightText}>{content}</Highlighter>
+            </div>
             <ExpandButton onClick={handleExpandClick} isExpanded={isExpanded} resources={mergedResources} />
             {isExpanded && (
               <div ref={expandedContentRef} data-testid={testId + '-details'}>
                 <div className={styles['panel__expander__separator']} />
-                {expandableContent}
+                <Highlighter searchText={highlightText}>{expandableContent}</Highlighter>
               </div>
             )}
           </div>
@@ -238,9 +248,13 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     <div className={outerClassnames}>
       <div className={classNames({ [styles['panel__border--outline--inner']]: variant === PanelVariant.outline })}>
         <div className={panelClassnames} data-testid={testId} ref={panelRef}>
-          {preContainer}
-          {title}
-          <div className={contentContainerLayout}>{content}</div>
+          <Highlighter searchText={highlightText}>
+            {preContainer}
+            {title}
+          </Highlighter>
+          <div className={contentContainerLayout}>
+            <Highlighter searchText={highlightText}>{content}</Highlighter>
+          </div>
           {buttonBottomText && buttonBottomOnClick && (
             <div className={styles['panel__button-bottom']}>
               <Button variant="borderless" type="button" size="medium" onClick={buttonBottomOnClick}>

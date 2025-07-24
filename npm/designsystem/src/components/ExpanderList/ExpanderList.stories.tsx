@@ -58,6 +58,9 @@ const meta = {
     large: {
       control: 'boolean',
     },
+    highlightText: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof ExpanderList>;
 
@@ -245,8 +248,8 @@ export const WithIcon: Story = {
 
 export const WithLinkList: Story = {
   render: args => (
-    <ExpanderList {...args}>
-      <ExpanderList.Expander title="Kognitiv terapi">
+    <ExpanderList {...args} highlightText="kog">
+      <ExpanderList.Expander title="Kognitiv terapi" highlightText="-">
         <LinkList color="cherry">
           <LinkList.Link href="/kognitivterapi1">{'Første lenke'}</LinkList.Link>
           <LinkList.Link href="/kognitivterapi2">{'Andre lenke'}</LinkList.Link>
@@ -448,4 +451,67 @@ export const WithTitleHtmlMarkup: Story = {
       </ExpanderList>
     </>
   ),
+};
+
+export const WithHighlight: Story = {
+  args: {
+    highlightText: 'her',
+  },
+  render: args => (
+    <>
+      <ExpanderList {...args}>
+        <ExpanderList.Expander title="Her skrives en kort overskrift. Helst ikke gå over en linje.">{args.children}</ExpanderList.Expander>
+        <ExpanderList.Expander title="Her skrives en kort overskrift. Helst ikke gå over en linje.">{args.children}</ExpanderList.Expander>
+      </ExpanderList>
+    </>
+  ),
+};
+
+export const WithHighlightOnListHeaderOnly: Story = {
+  render: args => {
+    const listHeader = (
+      <ListHeader>
+        <ListHeaderText
+          highlightText={args.highlightText}
+          firstText="Emphasized label segment"
+          firstTextEmphasised
+          secondText=" and normal segment"
+        />
+        <ListHeaderText
+          highlightText={args.highlightText}
+          subText
+          firstText="Emphasized label segment"
+          firstTextEmphasised
+          secondText=" and normal segment"
+        />
+        <ListHeaderText
+          highlightText={args.highlightText}
+          subText
+          firstText="Emphasized label segment"
+          firstTextEmphasised
+          secondText=" and normal segment"
+        />
+        <ListHeaderText
+          highlightText={args.highlightText}
+          subText
+          statusDotVariant={StatusDotVariant.alert}
+          firstText={'Statdot og uthevet skrift'}
+          firstTextEmphasised
+          secondText=""
+        />
+      </ListHeader>
+    );
+
+    return (
+      <ExpanderList {...args} highlightText={undefined}>
+        <ExpanderList.Expander title={listHeader} icon={<Icon svgIcon={AlarmClock} />}>
+          <LinkList color="cherry">
+            <LinkList.Link href="/kognitivterapi1">{'Første lenke'}</LinkList.Link>
+            <LinkList.Link href="/kognitivterapi2">{'Andre lenke'}</LinkList.Link>
+            <LinkList.Link href="/kognitivterapi3">{'Tredje lenke'}</LinkList.Link>
+          </LinkList>
+        </ExpanderList.Expander>
+      </ExpanderList>
+    );
+  },
 };

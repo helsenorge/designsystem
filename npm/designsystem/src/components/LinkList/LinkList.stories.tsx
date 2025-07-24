@@ -49,6 +49,9 @@ const meta = {
       control: 'select',
       options: ['white', 'blueberry', 'cherry', 'neutral'],
     },
+    highlightText: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof LinkList>;
 

@@ -62,6 +62,9 @@ const meta = {
     buttonBottomText: {
       control: 'text',
     },
+    highlightText: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof Panel>;
 

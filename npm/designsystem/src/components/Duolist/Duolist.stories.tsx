@@ -6,6 +6,7 @@ import { Docs } from 'frankenstein-build-tools';
 import Duolist, { DuolistGroup } from './Duolist';
 import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
+import Highlighter from '../Highlighter';
 import Title from '../Title';
 
 const meta = {
@@ -158,5 +159,18 @@ export const NonFormatted: Story = {
         <DuolistGroup term={'Custom separator'} description={mediumLoremText} />
       </Duolist>
     </>
+  ),
+};
+
+export const WithHighlighter: Story = {
+  render: args => (
+    <Highlighter searchText="descr">
+      <Duolist {...args}>
+        <DuolistGroup description="Description" term="Term" key={1} />
+        <DuolistGroup description="Description" term="Term" key={2} />
+        <DuolistGroup description="Description" term="Term" key={3} />
+        <DuolistGroup description="Description" term="Term" key={4} />
+      </Duolist>
+    </Highlighter>
   ),
 };
