@@ -1,15 +1,10 @@
 import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } from '@storybook/addon-docs';
-import { isSupernova } from 'frankenstein-build-tools';
 
 import { A, B, C, ExpandedContent, PreContainer } from './Panel';
 import TitleFS from '../Title';
 import PanelTitle from './PanelTitle';
 
 export const PanelDocs = (): React.JSX.Element => {
-  if (isSupernova()) {
-    return <ArgTypes />;
-  }
-
   const searchParams = new URLSearchParams(window.location.search);
   const newWindowUrl = `${window.location.pathname}?id=${searchParams.get('id')}&viewMode=docs`;
 
