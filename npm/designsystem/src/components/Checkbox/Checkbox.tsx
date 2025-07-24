@@ -73,7 +73,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
 
-  const checkboxWrapperClasses = classNames({
+  const checkboxWrapperClasses = classNames(checkboxStyles['checkbox-wrapper'], {
     [checkboxStyles['checkbox-wrapper--large']]: large,
   });
   const checkboxLabelClasses = classNames(checkboxStyles['checkbox-label'], {

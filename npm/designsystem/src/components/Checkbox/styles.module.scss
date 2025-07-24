@@ -86,6 +86,8 @@
 }
 
 $checkbox-icon-size: 1.625rem;
+$padding-clickable-area-top-bottom: 7px;
+$padding-clickable-area-left: 8px;
 
 .checkbox-errors {
   font-size: font-settings.$font-size-sm;
@@ -95,6 +97,8 @@ $checkbox-icon-size: 1.625rem;
 }
 
 .checkbox-wrapper {
+  margin-left: -$padding-clickable-area-left;
+
   &--large {
     margin: spacers.getSpacer(2xs) 0;
   }
@@ -104,6 +108,7 @@ $checkbox-icon-size: 1.625rem;
   display: flex;
   align-items: flex-start;
   cursor: pointer;
+  padding: $padding-clickable-area-top-bottom 0 $padding-clickable-area-top-bottom $padding-clickable-area-left;
 
   &__text {
     color: palette.$black;
@@ -439,5 +444,6 @@ $checkbox-icon-size: 1.625rem;
 }
 
 .checkbox-sublabel-wrapper {
-  padding-left: 2.8rem;
+  margin-top: -$padding-clickable-area-top-bottom;
+  padding-left: calc(2.8rem + $padding-clickable-area-left);
 }

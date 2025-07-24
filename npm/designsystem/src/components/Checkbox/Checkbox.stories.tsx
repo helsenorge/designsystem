@@ -5,6 +5,7 @@ import { Docs } from 'frankenstein-build-tools';
 
 import Checkbox from './Checkbox';
 import { FormOnColor, FormSize } from '../../constants';
+import { Sublabel } from '../Label';
 import Label from '../Label/Label';
 
 const meta = {
@@ -56,17 +57,34 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => <Checkbox {...args} label={<Label labelTexts={[{ text: args.label as string, type: 'subdued' }]} />} />,
+  render: args => <Checkbox {...args} label={<Label labelTexts={[{ text: args.label as string }]} />} />,
+};
+
+export const DifferentLabels: Story = {
+  render: args => (
+    <>
+      <Checkbox {...args} label={<Label labelTexts={[{ text: args.label as string, type: 'normal' }]} />} />
+      <Checkbox
+        {...args}
+        label={
+          <Label
+            sublabel={<Sublabel id="sublabel-testid2" sublabelTexts={[{ text: 'This is a normal sublabel', type: 'normal' }]} />}
+            labelTexts={[{ text: args.label as string, type: 'normal' }]}
+          />
+        }
+      />
+    </>
+  ),
 };
 
 export const AllColors: Story = {
   render: args => (
     <>
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite', type: 'subdued' }]} />} onColor="onwhite" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey', type: 'subdued' }]} />} onColor="ongrey" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry', type: 'subdued' }]} />} onColor="onblueberry" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid', type: 'subdued' }]} />} onColor="oninvalid" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled', type: 'subdued' }]} />} onColor="onwhite" disabled />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite', type: 'normal' }]} />} onColor="onwhite" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey', type: 'normal' }]} />} onColor="ongrey" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry', type: 'normal' }]} />} onColor="onblueberry" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid', type: 'normal' }]} />} onColor="oninvalid" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled', type: 'normal' }]} />} onColor="onwhite" disabled />
       <div style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
         <Checkbox {...args} label={<Label onColor={'ondark'} labelTexts={[{ text: 'ondark' }]} />} onColor="ondark" />
       </div>

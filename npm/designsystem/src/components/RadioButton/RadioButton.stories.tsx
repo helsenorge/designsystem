@@ -7,7 +7,7 @@ import RadioButton from './RadioButton';
 import { FormOnColor, FormSize } from '../../constants';
 import { getColor } from '../../theme/currys';
 import FormGroup from '../FormGroup';
-import Label from '../Label';
+import Label, { Sublabel } from '../Label';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/RadioButton',
@@ -174,4 +174,21 @@ export const Controlled: Story = {
       </form>
     );
   },
+};
+
+export const DifferentLabels: Story = {
+  render: args => (
+    <>
+      <RadioButton {...args} label={<Label labelTexts={[{ text: args.label as string, type: 'normal' }]} />} />
+      <RadioButton
+        {...args}
+        label={
+          <Label
+            labelTexts={[{ text: args.label as string, type: 'normal' }]}
+            sublabel={<Sublabel id="sublabel-testid2" sublabelTexts={[{ text: 'This is a normal sublabel', type: 'normal' }]} />}
+          />
+        }
+      />
+    </>
+  ),
 };

@@ -105,7 +105,7 @@ describe('Gitt at Checkbox skal vises', (): void => {
 
       // Ytre styling
       const wrapper = screen.getByTestId('test01');
-      expect(wrapper?.className).toBe('');
+      expect(wrapper?.className).toBe('checkbox-wrapper');
     });
   });
 
