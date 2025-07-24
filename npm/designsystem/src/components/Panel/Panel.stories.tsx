@@ -59,6 +59,9 @@ const meta = {
       control: 'select',
       options: Object.values(PanelStatus),
     },
+    buttonBottomAriaLabel: {
+      control: 'text',
+    },
     buttonBottomText: {
       control: 'text',
     },

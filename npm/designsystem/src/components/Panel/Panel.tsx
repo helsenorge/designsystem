@@ -45,6 +45,8 @@ export enum PanelStatus {
 }
 
 export interface PanelProps {
+  /** Aria label on call to action button */
+  buttonBottomAriaLabel?: string;
   /** Sets the text on the bottom call to action button */
   buttonBottomText?: string;
   /** Sets the action on the bottom call to action button */
@@ -106,6 +108,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     testId,
     children,
     status = PanelStatus.none,
+    buttonBottomAriaLabel,
     buttonBottomOnClick,
     buttonBottomText,
     className,
@@ -257,7 +260,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
           </div>
           {buttonBottomText && buttonBottomOnClick && (
             <div className={styles['panel__button-bottom']}>
-              <Button variant="borderless" type="button" size="medium" onClick={buttonBottomOnClick}>
+              <Button variant="borderless" type="button" size="medium" onClick={buttonBottomOnClick} aria-label={buttonBottomAriaLabel}>
                 {buttonBottomText}
                 <Icon svgIcon={ChevronRight} size={IconSize.XSmall} />
               </Button>
