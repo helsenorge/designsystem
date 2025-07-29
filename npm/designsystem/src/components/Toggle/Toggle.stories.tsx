@@ -46,11 +46,11 @@ export const OnColor: Story = {
   args: {},
   render: args => (
     <>
-      <Toggle {...args} onColor={'onwhite'} onChange={action('Toggle switched')} label={[{ text: 'onWhite', type: 'subdued' }]} />
+      <Toggle {...args} onColor={'onwhite'} onChange={action('Toggle switched')} label={[{ text: 'onWhite' }]} />
       <br />
-      <Toggle {...args} onColor={'onneutral'} onChange={action('Toggle switched')} label={[{ text: 'onNeutral', type: 'subdued' }]} />
+      <Toggle {...args} onColor={'onneutral'} onChange={action('Toggle switched')} label={[{ text: 'onNeutral' }]} />
       <br />
-      <Toggle {...args} onColor={'onblueberry'} onChange={action('Toggle switched')} label={[{ text: 'onBlueberry', type: 'subdued' }]} />
+      <Toggle {...args} onColor={'onblueberry'} onChange={action('Toggle switched')} label={[{ text: 'onBlueberry' }]} />
     </>
   ),
 };
@@ -66,12 +66,7 @@ export const TogglePositions: Story = {
         togglePosition={TogglePosition.left}
       />
       <br />
-      <Toggle
-        {...args}
-        label={[{ text: 'Toggle Right', type: 'subdued' }]}
-        onChange={action('Toggle switched')}
-        togglePosition={TogglePosition.right}
-      />
+      <Toggle {...args} label={[{ text: 'Toggle Right' }]} onChange={action('Toggle switched')} togglePosition={TogglePosition.right} />
     </>
   ),
 };

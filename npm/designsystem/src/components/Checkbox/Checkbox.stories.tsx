@@ -80,11 +80,11 @@ export const DifferentLabels: Story = {
 export const AllColors: Story = {
   render: args => (
     <>
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite', type: 'normal' }]} />} onColor="onwhite" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey', type: 'normal' }]} />} onColor="ongrey" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry', type: 'normal' }]} />} onColor="onblueberry" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid', type: 'normal' }]} />} onColor="oninvalid" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled', type: 'normal' }]} />} onColor="onwhite" disabled />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} onColor="onwhite" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} onColor="ongrey" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} onColor="onblueberry" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} onColor="oninvalid" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} onColor="onwhite" disabled />
       <div style={{ backgroundColor: '#06596C', display: 'block', marginTop: '1rem', padding: '1rem' }}>
         <Checkbox {...args} label={<Label onColor={'ondark'} labelTexts={[{ text: 'ondark' }]} />} onColor="ondark" />
       </div>
@@ -95,20 +95,14 @@ export const AllColors: Story = {
 export const Large: Story = {
   render: args => (
     <div style={{ backgroundColor: '#EAE7E7', display: 'block', marginTop: '1rem', padding: '1rem' }}>
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite', type: 'subdued' }]} />} size="large" onColor="onwhite" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey', type: 'subdued' }]} />} size="large" onColor="ongrey" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry', type: 'subdued' }]} />} size="large" onColor="onblueberry" />
-      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid', type: 'subdued' }]} />} size="large" onColor="oninvalid" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite' }]} />} size="large" onColor="onwhite" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'ongrey' }]} />} size="large" onColor="ongrey" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onblueberry' }]} />} size="large" onColor="onblueberry" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'oninvalid' }]} />} size="large" onColor="oninvalid" />
+      <Checkbox {...args} label={<Label labelTexts={[{ text: 'onwhite - disabled' }]} />} size="large" onColor="onwhite" disabled />
       <Checkbox
         {...args}
-        label={<Label labelTexts={[{ text: 'onwhite - disabled', type: 'subdued' }]} />}
-        size="large"
-        onColor="onwhite"
-        disabled
-      />
-      <Checkbox
-        {...args}
-        label={<Label onColor={'ondark'} labelTexts={[{ text: 'onwhite - disabled - checked', type: 'subdued' }]} />}
+        label={<Label onColor={'ondark'} labelTexts={[{ text: 'onwhite - disabled - checked' }]} />}
         size="large"
         checked
         onColor="onwhite"

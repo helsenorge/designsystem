@@ -43,7 +43,7 @@ const meta = {
                   language="tsx"
                   code={`
 <DatePicker
-  label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+  label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)'}]} />}
 />`}
                 />
                 <br />
@@ -54,7 +54,7 @@ const meta = {
 <DateTimePickerWrapper>
   <DateTime
   defaultValue={12}
-  label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+  label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
   timeUnit={'hours'}
   />
   <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
@@ -67,11 +67,11 @@ const meta = {
                   code={`
 <DateTimePickerWrapper>
   <DatePicker
-  label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+  label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)'}]} />}
   />
   <DateTime
   defaultValue={12}
-  label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+  label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
   timeUnit={'hours'}
   />
   <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
@@ -112,7 +112,7 @@ return (
   <Validation errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
     <DateTimePickerWrapper legend={'Datepicker legend'}>
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         maxDate={maxDate}
         minDate={minDate}
         errorText={errors.datepicker?.message as string}
@@ -122,7 +122,7 @@ return (
       <DateTimePickerWrapper errorText={(errors.datetimehour?.message as string) || (errors.datetimeminute?.message as string)}>
         <DateTime
           defaultValue={12}
-          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
           timeUnit={'hours'}
           {...register(datetimehour, { validate: requireHour })}
         />
@@ -263,7 +263,7 @@ export const Default: Story = {
   render: args => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
@@ -314,14 +314,10 @@ export const DateAndTime: Story = {
 
     return (
       <DateTimePickerWrapper>
-        <DatePicker
-          {...args}
-          dateValue={startDate}
-          label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
-        />
+        <DatePicker {...args} dateValue={startDate} label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />} />
         <DateTime
           defaultValue={12}
-          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
           timeUnit={'hours'}
         />
         <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
@@ -340,7 +336,7 @@ export const MinMaxDays: Story = {
 
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
         dateValue={startDate}
@@ -359,7 +355,7 @@ export const DisabledDays: Story = {
 
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
         disableDays={[disabledDate]}
         disableWeekends
@@ -375,7 +371,7 @@ export const FooterContent: Story = {
   render: (args: DatePickerProps) => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
         footerContent={<Icon size={38} svgIcon={Calendar} />}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
@@ -394,7 +390,7 @@ export const Locale: Story = {
   render: (args: DatePickerProps) => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Date' }, { text: '(dd.mm.yyyy)', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: 'Date' }, { text: '(dd.mm.yyyy)' }]} />}
         {...args}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
@@ -519,7 +515,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
               disableDays={[disabledDate]}
               disableWeekends
               footerContent={<Icon size={38} svgIcon={Calendar} />}
-              label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+              label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
               maxDate={maxDate}
               minDate={minDate}
               errorText={errors.datepicker?.message as string}
@@ -529,7 +525,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
             <DateTimePickerWrapper errorText={(errors.datetimehour?.message as string) || (errors.datetimeminute?.message as string)}>
               <DateTime
                 defaultValue={12}
-                label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)', type: 'subdued' }]} />}
+                label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
                 timeUnit={'hours'}
                 {...register(datetimehour, { validate: requireHour })}
               />
@@ -555,7 +551,7 @@ export const Variants: Story = {
       <div>
         <p>{longLoremText}</p>
         <DatePicker
-          label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+          label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
           {...args}
           dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
           disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
@@ -583,7 +579,7 @@ export const AriaLabels: Story = {
   render: args => {
     return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
         dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
         disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
