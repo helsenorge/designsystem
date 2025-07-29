@@ -47,6 +47,7 @@
     "@helsenorge/eslint-config": "^32.0.0",
     "@lerna/legacy-package-management": "^8.1.8",
     "conventional-changelog-cli": "^4.1.0",
+    "eslint-plugin-storybook": "9.0.18",
     "husky": "^9.1.6",
     "lerna": "^8.1.8",
     "lint-staged": "^15.2.10",

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Source } from '@storybook/blocks';
-import { StoryObj, Meta } from '@storybook/react';
+import { Source } from '@storybook/addon-docs/blocks';
+import { StoryObj, Meta } from '@storybook/react-vite';
 import { parse } from 'date-fns';
 import { ar, nb } from 'date-fns/locale';
 import { Docs } from 'frankenstein-build-tools';

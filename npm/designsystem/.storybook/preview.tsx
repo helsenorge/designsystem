@@ -2,49 +2,52 @@ import React from 'react';
 
 import { theme } from '../src/theme';
 import { breakpoints } from '../src/theme/grid';
-import { Preview } from '@storybook/react';
+import { Preview } from '@storybook/react-vite';
 import GridExample from '../src/docs/GridExample';
 import '../src/scss/helsenorge.scss';
+import { background } from 'storybook/internal/theming';
 
 const placeholder = '#4A412A';
 
 const createBackgroundColors = () =>
   Object.keys(theme.palette)
-    .filter(palette => theme.palette[palette] !== placeholder)
-    .map(palette => ({ name: palette, value: theme.palette[palette] }));
+    .filter((key) => theme.palette[key] !== placeholder)
+    .reduce<Record<string, { name: string; value: string }>>((acc, key) => {
+      acc[key] = { name: key, value: theme.palette[key] };
+      return acc;
+    }, {});
 
 const createCustomViewPorts = () =>
-  Object.keys(breakpoints).map(bp => {
-    const breakpointPixels = breakpoints[bp];
-    let type = 'mobile';
-    if (breakpointPixels >= breakpoints['lg']) {
-      type = 'desktop';
-    } else if (breakpointPixels >= breakpoints['md']) {
-      type = 'tablet';
-    }
-
-    return {
+  Object.keys(breakpoints).reduce<Record<string, {
+    name: string;
+    styles: { width: string; height: string };
+    type: 'mobile' | 'tablet' | 'desktop' | 'other';
+  }>>((acc, bp) => {
+    const px = breakpoints[bp];
+    const type = px >= breakpoints.lg ? 'desktop' : px >= breakpoints.md ? 'tablet' : 'mobile';
+    acc[bp] = {
       name: bp,
       styles: {
-        width: `${bp === 'xxs' ? 320 : breakpointPixels}px`,
+        width: `${bp === 'xxs' ? 320 : px}px`,
         height: '100%',
-        type,
       },
+      type,
     };
-  });
+    return acc;
+  }, {});
 
 export const parameters = {
   layout: 'fullscreen',
   backgrounds: {
-    default: 'white',
-    values: createBackgroundColors(),
+    options: createBackgroundColors(),
   },
   viewport: {
-    viewports: createCustomViewPorts(),
+    options: createCustomViewPorts(),
   },
 };
 
 const preview: Preview = {
+  parameters: parameters,
   globalTypes: {
     layout: {
       description: 'Grid layout',
@@ -64,6 +67,9 @@ const preview: Preview = {
         order: ['Dokumentasjon/Introduksjon', '*'],
       },
     },
+  },
+  initialGlobals: {
+    backgrounds: {value: 'white'},
   },
 
   decorators: [

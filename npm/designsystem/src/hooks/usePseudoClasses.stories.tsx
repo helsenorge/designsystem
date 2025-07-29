@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { usePseudoClasses } from './usePseudoClasses';
 import Button from '../components/Button';

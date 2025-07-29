@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useKeyboardEvent } from './useKeyboardEvent';
 import Textarea from '../components/Textarea';

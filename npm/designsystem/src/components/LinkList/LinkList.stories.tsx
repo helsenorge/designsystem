@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+import { action } from 'storybook/actions';
 
 import LinkList from './LinkList';
 import { allLinkListSizes } from '../../../.storybook/knobs';

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import Panel, { PanelVariant, PanelLayout, PanelStacking, PanelStatus } from './Panel';
 import { PanelDocs } from './Paneldocs';
