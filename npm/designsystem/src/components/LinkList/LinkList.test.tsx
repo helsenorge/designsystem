@@ -5,10 +5,9 @@ import userEvent from '@testing-library/user-event';
 
 import LinkList from './LinkList';
 import Badge from '../Badge';
+import ElementHeader from '../ElementHeader';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
-import ListHeader from '../ListHeader/ListHeader';
-import ListHeaderText from '../ListHeader/ListHeaderText/ListHeaderText';
 
 test('displays a list of links', (): void => {
   const { container } = render(
@@ -146,12 +145,12 @@ describe('Gitt at linkene skal ha badges', () => {
       render(
         <LinkList testId="bare-tester">
           <LinkList.Link>
-            <ListHeader>
-              <ListHeaderText firstText="Link 1" />
+            <ElementHeader>
+              <ElementHeader.Text firstText="Link 1" />
               <Badge type="string" testId="badge">
                 {'Badge'}
               </Badge>
-            </ListHeader>
+            </ElementHeader>
           </LinkList.Link>
         </LinkList>
       );
@@ -167,15 +166,15 @@ describe('Gitt at linkene skal ha badges', () => {
       render(
         <LinkList testId="bare-tester">
           <LinkList.Link>
-            <ListHeader>
-              <ListHeaderText firstText="Link 1" />
+            <ElementHeader>
+              <ElementHeader.Text firstText="Link 1" />
               <Badge type="string" testId="first">
                 {'Badge 1'}
               </Badge>
               <Badge type="string" testId="second">
                 {'Badge 2'}
               </Badge>
-            </ListHeader>
+            </ElementHeader>
           </LinkList.Link>
         </LinkList>
       );

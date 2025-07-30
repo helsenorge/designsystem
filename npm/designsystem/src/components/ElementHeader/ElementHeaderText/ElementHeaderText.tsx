@@ -3,43 +3,39 @@ import React from 'react';
 import cn from 'classnames';
 
 import Highlighter from '../../Highlighter';
-import StatusDot, { StatusDotVariant } from '../../StatusDot';
 import { TitleTags } from '../../Title';
 import styles from '../styles.module.scss';
 
-export type ListHeaderTextType = React.FC<ListHeaderTextProps>;
+export type ElementHeaderTextType = React.FC<ElementHeaderTextProps>;
 
-export interface ListHeaderTextProps {
-  /** The first text in the ListHeaderText Component */
+export interface ElementHeaderTextProps {
+  /** The first text in the ElementHeaderText Component */
   firstText: string;
   /** Will style the first text as bold */
   firstTextEmphasised?: boolean;
-  /** The second text in the ListHeaderText Component */
+  /** The second text in the ElementHeaderText Component */
   secondText?: string;
   /** Will style the second text as bold */
   secondTextEmphasised?: boolean;
-  /** Whether or not this ListHeaderText is a sub text */
+  /** Whether or not this ElementHeaderText is a sub text */
   subText?: boolean;
-  /** Decides the variant for the StatusDot */
-  statusDotVariant?: StatusDotVariant;
-  /** Adds custom classes to the ListHeaderText component. */
+  /** Adds custom classes to the ElementHeaderText component. */
   className?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** Changes the underlying element of the title. Default: span*/
+  /** Changes the underlying element of the text. Default: span*/
   titleHtmlMarkup?: TitleTags;
   /** Highlights text. Used for search results */
   highlightText?: string;
 }
 
-export const ListHeaderText: ListHeaderTextType = props => {
+export const ElementHeaderText: ElementHeaderTextType = props => {
   const {
     firstText,
     firstTextEmphasised = false,
     secondText = undefined,
     secondTextEmphasised = false,
     subText = false,
-    statusDotVariant,
     className = '',
     testId,
     titleHtmlMarkup = 'span',
@@ -59,12 +55,7 @@ export const ListHeaderText: ListHeaderTextType = props => {
 
   return (
     <span data-testid={testId} className={headerTextWrapperClasses}>
-      {statusDotVariant !== undefined && (
-        <span>
-          <StatusDot text={''} variant={statusDotVariant} />
-        </span>
-      )}
-      <CustomTag className={styles['list-header__title']}>
+      <CustomTag className={styles['element-header__title']}>
         <Highlighter searchText={highlightText}>
           <span className={firstHeaderTextSegmentClasses}>{firstText}</span>
           {secondText && <span className={secondHeaderTextSegmentClasses}>{secondText}</span>}
@@ -74,6 +65,4 @@ export const ListHeaderText: ListHeaderTextType = props => {
   );
 };
 
-ListHeaderText.displayName = 'ListHeaderText';
-
-export default ListHeaderText;
+export default ElementHeaderText;

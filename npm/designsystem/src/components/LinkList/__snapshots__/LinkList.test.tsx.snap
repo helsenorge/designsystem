@@ -14,10 +14,10 @@ exports[`displays a list of links 1`] = `
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--line--cherry link-list__anchor--medium"
       >
         <span
-          class="list-header"
+          class="element-header"
         >
           <span
-            class="list-header__icon"
+            class="element-header__icon"
           >
             <svg
               aria-hidden="true"
@@ -48,16 +48,17 @@ exports[`displays a list of links 1`] = `
             </svg>
           </span>
           <span
-            class="list-header__content"
+            class="element-header__content"
+            data-hasstatusdots="false"
           >
             <span
-              class="list-header__title"
+              class="element-header__title"
             >
               Link 1
             </span>
           </span>
           <span
-            class="list-header__badge-container"
+            class="element-header__badge-container"
           />
         </span>
       </a>
@@ -70,19 +71,20 @@ exports[`displays a list of links 1`] = `
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--line--cherry link-list__anchor--medium"
       >
         <span
-          class="list-header"
+          class="element-header"
         >
           <span
-            class="list-header__content"
+            class="element-header__content"
+            data-hasstatusdots="false"
           >
             <span
-              class="list-header__title"
+              class="element-header__title"
             >
               Link 2
             </span>
           </span>
           <span
-            class="list-header__badge-container"
+            class="element-header__badge-container"
           />
         </span>
       </a>
@@ -95,19 +97,20 @@ exports[`displays a list of links 1`] = `
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--line--cherry link-list__anchor--medium"
       >
         <span
-          class="list-header"
+          class="element-header"
         >
           <span
-            class="list-header__content"
+            class="element-header__content"
+            data-hasstatusdots="false"
           >
             <span
-              class="list-header__title"
+              class="element-header__title"
             >
               Link 3
             </span>
           </span>
           <span
-            class="list-header__badge-container"
+            class="element-header__badge-container"
           />
         </span>
       </a>

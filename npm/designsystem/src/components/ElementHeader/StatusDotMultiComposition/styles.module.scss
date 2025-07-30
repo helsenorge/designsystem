@@ -1,0 +1,28 @@
+@use '../../../scss/font-mixins' as fonts;
+
+.statusdotmulticomposition {
+  display: flex;
+  flex-flow: column;
+
+  &__children {
+    display: flex;
+
+    &[data-stacking='horizontal'] {
+      flex-flow: row;
+      column-gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    &[data-stacking='vertical'] {
+      flex-flow: column;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__additional-text {
+    @include fonts.sublabel-subdued;
+
+    padding-left: 1.5rem;
+    color: var(--core-color-neutral-800);
+  }
+}

@@ -6,13 +6,12 @@ import { Docs } from 'frankenstein-build-tools';
 import ExpanderList from './ExpanderList';
 import AvatarComponent from '../Avatar';
 import Badge from '../Badge';
+import ElementHeader from '../ElementHeader';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import Avatar from '../Icons/Avatar';
 import PaperPlane from '../Icons/PaperPlane';
 import LinkList from '../LinkList';
-import ListHeader from '../ListHeader/ListHeader';
-import ListHeaderText from '../ListHeader/ListHeaderText';
 import StatusDot, { StatusDotVariant } from '../StatusDot';
 import Title from '../Title/Title';
 
@@ -147,26 +146,20 @@ export const VariantFillNegative: Story = {
   ),
 };
 
-export const WithListHeaderComp: Story = {
+export const WithElementHeaderComp: Story = {
   render: args => {
-    const listHeader = (
-      <ListHeader>
-        <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-        <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-        <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-        <ListHeaderText
-          subText
-          statusDotVariant={StatusDotVariant.alert}
-          firstText={'Statdot og uthevet skrift'}
-          firstTextEmphasised
-          secondText=""
-        />
-      </ListHeader>
+    const elementHeader = (
+      <ElementHeader>
+        <ElementHeader.Text firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+        <ElementHeader.Text subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+        <ElementHeader.Text subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+        <StatusDot text="Statusdot" variant={StatusDotVariant.alert} />
+      </ElementHeader>
     );
 
     return (
       <ExpanderList {...args}>
-        <ExpanderList.Expander title={listHeader} icon={<Icon svgIcon={AlarmClock} />}>
+        <ExpanderList.Expander title={elementHeader} icon={<Icon svgIcon={AlarmClock} />}>
           {'test'}
         </ExpanderList.Expander>
       </ExpanderList>
@@ -175,26 +168,26 @@ export const WithListHeaderComp: Story = {
 };
 export const WithAvatarAndBadge: Story = {
   render: args => {
-    const listHeader = (
-      <ListHeader>
-        <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+    const elementHeader = (
+      <ElementHeader>
+        <ElementHeader.Text firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
         <AvatarComponent>{'Line Danser'}</AvatarComponent>
         <Badge color="blueberry">{'10000'}</Badge>
-      </ListHeader>
+      </ElementHeader>
     );
 
-    const listHeader2 = (
-      <ListHeader titleHtmlMarkup="span">
+    const elementHeader2 = (
+      <ElementHeader titleHtmlMarkup="span">
         {'ExpanderListText'}
         <Badge color="blueberry">{'Ny'}</Badge>
         <AvatarComponent>{'Line Danser'}</AvatarComponent>
-      </ListHeader>
+      </ElementHeader>
     );
 
     return (
       <ExpanderList {...args}>
-        <ExpanderList.Expander title={listHeader}>{'test'}</ExpanderList.Expander>
-        <ExpanderList.Expander title={listHeader2}>{'test'}</ExpanderList.Expander>
+        <ExpanderList.Expander title={elementHeader}>{'test'}</ExpanderList.Expander>
+        <ExpanderList.Expander title={elementHeader2}>{'test'}</ExpanderList.Expander>
       </ExpanderList>
     );
   },
@@ -470,36 +463,28 @@ export const WithHighlight: Story = {
 export const WithHighlightOnListHeaderOnly: Story = {
   render: args => {
     const listHeader = (
-      <ListHeader>
-        <ListHeaderText
+      <ElementHeader>
+        <ElementHeader.Text
           highlightText={args.highlightText}
           firstText="Emphasized label segment"
           firstTextEmphasised
           secondText=" and normal segment"
         />
-        <ListHeaderText
+        <ElementHeader.Text
           highlightText={args.highlightText}
           subText
           firstText="Emphasized label segment"
           firstTextEmphasised
           secondText=" and normal segment"
         />
-        <ListHeaderText
+        <ElementHeader.Text
           highlightText={args.highlightText}
           subText
           firstText="Emphasized label segment"
           firstTextEmphasised
           secondText=" and normal segment"
         />
-        <ListHeaderText
-          highlightText={args.highlightText}
-          subText
-          statusDotVariant={StatusDotVariant.alert}
-          firstText={'Statdot og uthevet skrift'}
-          firstTextEmphasised
-          secondText=""
-        />
-      </ListHeader>
+      </ElementHeader>
     );
 
     return (

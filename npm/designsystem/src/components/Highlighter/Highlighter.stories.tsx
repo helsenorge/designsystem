@@ -10,6 +10,7 @@ import AnchorLink from '../AnchorLink';
 import Badge from '../Badge';
 import Button from '../Button';
 import Duolist, { DuolistGroup } from '../Duolist';
+import ElementHeader from '../ElementHeader';
 import ExpanderList from '../ExpanderList';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
@@ -21,10 +22,9 @@ import PdfFile from '../Icons/PdfFile';
 import Referral from '../Icons/Referral';
 import TrashCan from '../Icons/TrashCan';
 import LinkList from '../LinkList';
-import ListHeader, { ListHeaderText } from '../ListHeader';
 import Panel, { PanelLayout, PanelStatus, PanelVariant } from '../Panel';
 import PanelList from '../PanelList';
-import StatusDot, { StatusDotVariant } from '../StatusDot';
+import StatusDot from '../StatusDot';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Highlighter',
@@ -359,12 +359,12 @@ export const ExpanderListExamplesWithProp: Story = {
       <ExpanderList.Expander
         testId="dokument-expandable"
         title={
-          <ListHeader highlightText={args.searchText}>
-            <ListHeaderText highlightText={args.searchText} firstText="Tekst" />
+          <ElementHeader highlightText={args.searchText}>
+            <ElementHeader.Text highlightText={args.searchText} firstText="Tekst" />
             <span>{'Opprettet dato: 01.01.2025'}</span>
             <span>{'Kategori:'}</span>
             <span>{'Avdeling:'}</span>
-          </ListHeader>
+          </ElementHeader>
         }
       >
         <div>{'Noe innhold her'}</div>
@@ -403,36 +403,28 @@ export const LinkListExamplesWithProp: Story = {
         }
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
-        <ListHeader>
-          <ListHeaderText
+        <ElementHeader>
+          <ElementHeader.Text
             highlightText={args.searchText}
             firstText="Emphasized label segment"
             firstTextEmphasised
             secondText=" and normal segment"
           />
-          <ListHeaderText
+          <ElementHeader.Text
             highlightText={args.searchText}
             subText
             firstText="Emphasized label segment"
             firstTextEmphasised
             secondText=" and normal segment"
           />
-          <ListHeaderText
+          <ElementHeader.Text
             highlightText={args.searchText}
             subText
             firstText="Emphasized label segment"
             firstTextEmphasised
             secondText=" and normal segment"
           />
-          <ListHeaderText
-            highlightText={args.searchText}
-            subText
-            statusDotVariant={StatusDotVariant.alert}
-            firstText={'Statdot og uthevet skrift'}
-            firstTextEmphasised
-            secondText=""
-          />
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
     </LinkList>
   ),

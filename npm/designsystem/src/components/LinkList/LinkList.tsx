@@ -5,8 +5,8 @@ import cn from 'classnames';
 import { AnalyticsId } from '../../constants';
 import { useHover } from '../../hooks/useHover';
 import { PaletteNames } from '../../theme/palette';
+import { ElementHeaderType, renderElementHeader } from '../ElementHeader/ElementHeader';
 import ChevronRight from '../Icons/ChevronRight';
-import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
 
 import LinkListStyles from './styles.module.scss';
 
@@ -18,7 +18,7 @@ export type LinkListColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cher
 export type LinkListVariant = 'line' | 'outline' | 'fill' | 'fill-negative';
 
 export interface LinkType extends React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLLIElement>> {
-  ListHeader?: ListHeaderType;
+  ElementHeader?: ElementHeaderType;
 }
 
 export type LinkTags = 'button' | 'a';
@@ -122,12 +122,28 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
           target={target}
           {...restProps}
         >
-          {renderListHeader(children, 'span', isHovered, size, chevron ? ChevronRight : undefined, icon, highlightText)}
+          {renderElementHeader(children, {
+            titleHtmlMarkup: 'span',
+            isHovered,
+            size,
+            parentType: 'linklist',
+            chevronIcon: chevron ? ChevronRight : undefined,
+            icon,
+            highlightText,
+          })}
         </a>
       )}
       {htmlMarkup === 'button' && (
         <button className={linkClasses} ref={hoverRef as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
-          {renderListHeader(children, 'span', isHovered, size, chevron ? ChevronRight : undefined, icon, highlightText)}
+          {renderElementHeader(children, {
+            titleHtmlMarkup: 'span',
+            isHovered,
+            size,
+            parentType: 'linklist',
+            chevronIcon: chevron ? ChevronRight : undefined,
+            icon,
+            highlightText,
+          })}
         </button>
       )}
     </li>

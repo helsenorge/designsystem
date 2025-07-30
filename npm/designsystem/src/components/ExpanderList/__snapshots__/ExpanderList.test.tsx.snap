@@ -18,22 +18,24 @@ exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme do
         type="button"
       >
         <span
-          class="list-header"
+          class="element-header"
         >
           <span
-            class="list-header__content"
+            class="element-header__content"
+            data-hasstatusdots="false"
           >
             <span
-              class="list-header__title"
+              class="element-header__title"
             >
               ExpanderList 1
             </span>
           </span>
           <span
-            class="list-header__badge-container"
+            class="element-header__badge-container"
           />
           <span
-            class="list-header__chevron"
+            class="element-header__chevron"
+            data-parenttype="expanderlist"
           >
             <svg
               aria-hidden="true"
@@ -73,22 +75,24 @@ exports[`Gitt ExpanderList blir rendret > Når det er to ExpanderList i samme do
         type="button"
       >
         <span
-          class="list-header"
+          class="element-header"
         >
           <span
-            class="list-header__content"
+            class="element-header__content"
+            data-hasstatusdots="false"
           >
             <span
-              class="list-header__title"
+              class="element-header__title"
             >
               ExpanderList 2
             </span>
           </span>
           <span
-            class="list-header__badge-container"
+            class="element-header__badge-container"
           />
           <span
-            class="list-header__chevron"
+            class="element-header__chevron"
+            data-parenttype="expanderlist"
           >
             <svg
               aria-hidden="true"
@@ -133,22 +137,24 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
         type="button"
       >
         <span
-          class="list-header"
+          class="element-header"
         >
           <span
-            class="list-header__content"
+            class="element-header__content"
+            data-hasstatusdots="false"
           >
             <span
-              class="list-header__title"
+              class="element-header__title"
             >
               Title 1
             </span>
           </span>
           <span
-            class="list-header__badge-container"
+            class="element-header__badge-container"
           />
           <span
-            class="list-header__chevron"
+            class="element-header__chevron"
+            data-parenttype="expanderlist"
           >
             <svg
               aria-hidden="true"
@@ -183,22 +189,24 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
         type="button"
       >
         <span
-          class="list-header"
+          class="element-header"
         >
           <span
-            class="list-header__content"
+            class="element-header__content"
+            data-hasstatusdots="false"
           >
             <span
-              class="list-header__title"
+              class="element-header__title"
             >
               Title 2
             </span>
           </span>
           <span
-            class="list-header__badge-container"
+            class="element-header__badge-container"
           />
           <span
-            class="list-header__chevron"
+            class="element-header__chevron"
+            data-parenttype="expanderlist"
           >
             <svg
               aria-hidden="true"
@@ -233,22 +241,24 @@ exports[`Gitt ExpanderList blir rendret > Når det er tre expandere og accordion
         type="button"
       >
         <span
-          class="list-header"
+          class="element-header"
         >
           <span
-            class="list-header__content"
+            class="element-header__content"
+            data-hasstatusdots="false"
           >
             <span
-              class="list-header__title"
+              class="element-header__title"
             >
               Title 3
             </span>
           </span>
           <span
-            class="list-header__badge-container"
+            class="element-header__badge-container"
           />
           <span
-            class="list-header__chevron"
+            class="element-header__chevron"
+            data-parenttype="expanderlist"
           >
             <svg
               aria-hidden="true"
@@ -293,10 +303,11 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
         type="button"
       >
         <span
-          class="list-header"
+          class="element-header"
         >
           <span
-            class="list-header__content list-header__content--element"
+            class="element-header__content element-header__content--element"
+            data-hasstatusdots="false"
           >
             <h1
               class="title title--title3"
@@ -324,10 +335,11 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
             </svg>
           </span>
           <span
-            class="list-header__badge-container"
+            class="element-header__badge-container"
           />
           <span
-            class="list-header__chevron"
+            class="element-header__chevron"
+            data-parenttype="expanderlist"
           >
             <svg
               aria-hidden="true"
@@ -362,22 +374,24 @@ exports[`Gitt ExpanderList blir rendret > Når title er JSX > Så fungerer expan
         type="button"
       >
         <span
-          class="list-header"
+          class="element-header"
         >
           <span
-            class="list-header__content list-header__content--element"
+            class="element-header__content element-header__content--element"
+            data-hasstatusdots="false"
           >
             <span
-              class="list-header__title"
+              class="element-header__title"
             >
               ExpanderList 2
             </span>
           </span>
           <span
-            class="list-header__badge-container"
+            class="element-header__badge-container"
           />
           <span
-            class="list-header__chevron"
+            class="element-header__chevron"
+            data-parenttype="expanderlist"
           >
             <svg
               aria-hidden="true"

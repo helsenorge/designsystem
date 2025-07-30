@@ -9,17 +9,17 @@ import { useUuid } from '../../hooks/useUuid';
 import { PaletteNames } from '../../theme/palette';
 import { mergeRefs } from '../../utils/refs';
 import { isElementInViewport } from '../../utils/viewport';
+import { ElementHeaderType, renderElementHeader } from '../ElementHeader/ElementHeader';
 import Highlighter from '../Highlighter';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
-import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
 import { TitleTags } from '../Title';
 
 import expanderListStyles from './styles.module.scss';
 
 export type ExpanderListColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cherry' | 'neutral'>;
 export interface ExpanderType extends React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>> {
-  ListHeader?: ListHeaderType;
+  ElementHeader?: ElementHeaderType;
 }
 
 export interface ExpanderListCompound extends React.ForwardRefExoticComponent<ExpanderListProps & React.RefAttributes<HTMLUListElement>> {
@@ -166,15 +166,15 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
           zIndex: isFocused ? zIndex + 1 : zIndex,
         }}
       >
-        {renderListHeader(
-          title,
+        {renderElementHeader(title, {
           titleHtmlMarkup,
-          isHovered || isFocused,
-          large ? 'large' : 'medium',
-          isExpanded ? ChevronUp : ChevronDown,
+          isHovered: isHovered || isFocused,
+          size: large ? 'large' : 'medium',
+          parentType: 'expanderlist',
+          chevronIcon: isExpanded ? ChevronUp : ChevronDown,
           icon,
-          highlightText
-        )}
+          highlightText,
+        })}
       </button>
       {renderContent()}
     </li>

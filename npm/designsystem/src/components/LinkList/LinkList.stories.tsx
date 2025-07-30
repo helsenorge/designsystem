@@ -8,11 +8,10 @@ import LinkList from './LinkList';
 import { allLinkListSizes } from '../../../.storybook/knobs';
 import Avatar from '../Avatar';
 import Badge from '../Badge';
+import ElementHeader from '../ElementHeader';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
-import ListHeader from '../ListHeader/ListHeader';
-import ListHeaderText from '../ListHeader/ListHeaderText/ListHeaderText';
 import { StatusDotVariant } from '../StatusDot';
 
 const meta = {
@@ -87,37 +86,37 @@ export const WithIconAndChevron: Story = {
         }
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
-        <ListHeader titleHtmlMarkup="span">
+        <ElementHeader titleHtmlMarkup="span">
           {'LinkListText'}
           <Badge color="blueberry">{'Ny'}</Badge>
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
     </LinkList>
   ),
 };
 
-export const WithListHeaderComp: Story = {
+export const WithElementHeaderComp: Story = {
   args: {
     chevron: true,
   },
   render: args => (
     <LinkList {...args}>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
-        <ListHeader>
-          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-          <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-          <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-          <ListHeaderText
+        <ElementHeader>
+          <ElementHeader.Text firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ElementHeader.Text subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ElementHeader.Text subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ElementHeader.Text
             subText
             statusDotVariant={StatusDotVariant.alert}
             firstText={'Statdot og uthevet skrift'}
             firstTextEmphasised
             secondText=""
           />
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={PaperPlane} />}>
-        <ListHeader titleHtmlMarkup="span">
+        <ElementHeader titleHtmlMarkup="span">
           <>
             <span>
               {'Ved å gi LinkList.Link et '}
@@ -126,7 +125,7 @@ export const WithListHeaderComp: Story = {
               {' Nå midstiller ikoner seg i forhold til øverste linje.'}
             </span>
           </>
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
     </LinkList>
   ),
@@ -139,27 +138,27 @@ export const WithAvatarAndBadge: Story = {
   render: args => (
     <LinkList {...args}>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        <ListHeader>
-          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+        <ElementHeader>
+          <ElementHeader.Text firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ElementHeader.Text firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
           <Avatar>{'Line Danser'}</Avatar>
           <Badge color="blueberry">{'10000'}</Badge>
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        <ListHeader titleHtmlMarkup="span">
+        <ElementHeader titleHtmlMarkup="span">
           {'LinkListText'}
           <Badge color="blueberry">{'Ny'}</Badge>
           <Avatar>{'Line Danser'}</Avatar>
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        <ListHeader titleHtmlMarkup="span">
+        <ElementHeader titleHtmlMarkup="span">
           {
             'Test Test Eu et minim esse do eiusmod eu cillum et aute enim. Quis ea reprehenderit veniam est ullamco laboris culpa fugiat duis voluptate ullamco fugiat. Ullamco Lorem occaecat adipisicing duis aliquip.'
           }
           <Badge color="blueberry">{'10000'}</Badge>
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
     </LinkList>
   ),
@@ -172,18 +171,18 @@ export const VariantLine: Story = {
   render: args => (
     <LinkList {...args}>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        <ListHeader>
-          <ListHeaderText firstText="Variant: line" />
-          <ListHeaderText firstText="This i standard variant" subText />
-        </ListHeader>
+        <ElementHeader>
+          <ElementHeader.Text firstText="Variant: line" />
+          <ElementHeader.Text firstText="This i standard variant" subText />
+        </ElementHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
         {'Gives the listelements lines'}
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
-        <ListHeader>
-          <ListHeaderText firstText='Linklist (level 1) "line" visual priority'></ListHeaderText>
-        </ListHeader>
+        <ElementHeader>
+          <ElementHeader.Text firstText='Linklist (level 1) "line" visual priority'></ElementHeader.Text>
+        </ElementHeader>
       </LinkList.Link>
     </LinkList>
   ),
@@ -202,9 +201,9 @@ export const VariantOutline: Story = {
         {'Gives the listelements outline'}
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
-        <ListHeader>
-          <ListHeaderText firstText='Linklist (level 2) "outline" visual priority'></ListHeaderText>
-        </ListHeader>
+        <ElementHeader>
+          <ElementHeader.Text firstText='Linklist (level 2) "outline" visual priority'></ElementHeader.Text>
+        </ElementHeader>
       </LinkList.Link>
     </LinkList>
   ),
@@ -217,17 +216,17 @@ export const VariantFill: Story = {
   render: args => (
     <LinkList {...args}>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        <ListHeader>
-          <ListHeaderText firstText="Variant: fill" />
-        </ListHeader>
+        <ElementHeader>
+          <ElementHeader.Text firstText="Variant: fill" />
+        </ElementHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
         {'Gives the listelements fill'}
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
-        <ListHeader>
-          <ListHeaderText firstText='Linklist (level 3) "fill" visual priority'></ListHeaderText>
-        </ListHeader>
+        <ElementHeader>
+          <ElementHeader.Text firstText='Linklist (level 3) "fill" visual priority'></ElementHeader.Text>
+        </ElementHeader>
       </LinkList.Link>
     </LinkList>
   ),
@@ -278,38 +277,38 @@ export const WithNotificationBadge: Story = {
   render: args => (
     <LinkList {...args}>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        <ListHeader>
-          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-          <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+        <ElementHeader>
+          <ElementHeader.Text firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+          <ElementHeader.Text firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
           <Badge type="notification" notificationVariant="info" />
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        <ListHeader titleHtmlMarkup="span">
+        <ElementHeader titleHtmlMarkup="span">
           {'LinkListText'}
           <Badge type="notification" notificationVariant="warn" />
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        <ListHeader titleHtmlMarkup="span">
+        <ElementHeader titleHtmlMarkup="span">
           {
             'Test Test Eu et minim esse do eiusmod eu cillum et aute enim. Quis ea reprehenderit veniam est ullamco laboris culpa fugiat duis voluptate ullamco fugiat. Ullamco Lorem occaecat adipisicing duis aliquip.'
           }
           <Badge type="notification" notificationVariant="error" />
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        <ListHeader titleHtmlMarkup="span">
+        <ElementHeader titleHtmlMarkup="span">
           {'LinkListText'}
           <Badge type="notification" notificationVariant="success" />
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank">
-        <ListHeader titleHtmlMarkup="span">
+        <ElementHeader titleHtmlMarkup="span">
           {'LinkListText'}
           <Badge type="notification" notificationVariant="success" />
           <Badge type="string">{'100'}</Badge>
-        </ListHeader>
+        </ElementHeader>
       </LinkList.Link>
     </LinkList>
   ),
