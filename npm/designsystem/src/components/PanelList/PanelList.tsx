@@ -14,18 +14,21 @@ export interface PanelListProps {
   variant?: PanelVariant;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Highlights text in title and content. Used for search results */
+  highlightText?: string;
 }
 
 const isPanelComponent = (element: {} | null | undefined): element is React.ReactElement<PanelProps> =>
   React.isValidElement<PanelProps>(element) && (element as React.ReactElement).type === Panel;
 
 const PanelList = React.forwardRef(function BadgeForwardedRef(props: PanelListProps, ref: React.ForwardedRef<HTMLDivElement>) {
-  const { testId, children, variant = PanelVariant.fill } = props;
+  const { testId, children, variant = PanelVariant.fill, highlightText } = props;
 
   const renderPanel = (panel: React.ReactElement<PanelProps>): React.ReactElement<PanelProps> =>
     React.cloneElement(panel, {
       variant: variant,
       className: classNames(panel.props.className, styles[`panel-list__panel--${variant}`]),
+      highlightText: panel.props.highlightText || highlightText,
     });
 
   return (

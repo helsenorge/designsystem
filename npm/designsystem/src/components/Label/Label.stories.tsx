@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import Label, { LabelText } from './Label';
@@ -63,7 +63,7 @@ export const AllVariants: Story = {
     const statusDotId3 = 'statusdot-testid3';
 
     const sublabelTexts: LabelText[] = [
-      { text: 'This is a normal sublabel', type: 'normal' },
+      { text: 'This is a normal sublabel' },
       { text: 'subdued sublabel - hidden from screen reader', type: 'subdued', hideFromScreenReader: true },
     ];
 

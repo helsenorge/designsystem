@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import Panel, { PanelVariant } from '../Panel/Panel';
@@ -27,6 +27,9 @@ const meta = {
     variant: {
       control: 'select',
       options: PanelVariant,
+    },
+    highlightText: {
+      control: 'text',
     },
   },
 } satisfies Meta<typeof PanelList>;

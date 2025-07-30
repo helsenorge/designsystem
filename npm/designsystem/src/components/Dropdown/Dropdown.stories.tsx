@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
+import { action } from 'storybook/actions';
 
 import Dropdown, { DropdownOnColor } from './Dropdown';
 import { LanguageLocales } from '../../constants';

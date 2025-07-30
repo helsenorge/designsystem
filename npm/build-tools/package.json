@@ -1,7 +1,7 @@
 {
   "name": "frankenstein-build-tools",
   "private": true,
-  "version": "11.3.1",
+  "version": "11.5.0",
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",
@@ -23,9 +23,10 @@
     "build": "vite build"
   },
   "peerDependencies": {
-    "@storybook/addon-docs": "^8.2.9",
+    "@storybook/addon-docs": "^9.0.18",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "storybook": "^9.0.18"
   },
   "devDependencies": {
     "rollup-plugin-copy": "^3.5.0",

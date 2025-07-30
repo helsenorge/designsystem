@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 
 import { useDelayedState } from './useDelayedState';
 import Button from '../components/Button';

@@ -135,6 +135,7 @@ const Toggle: React.FC<ToggleProps> = ({
         className={styles['toggle-container__input']}
         aria-label={label.map(l => l.text).join(' ')}
         aria-describedby={subLabel ? subLabelId : undefined}
+        role="switch"
       />
       <span id={toggleId} className={toggleClassNames} aria-hidden="true">
         <span id={toggleDotId} className={toggleDotClassNames} aria-hidden="true">

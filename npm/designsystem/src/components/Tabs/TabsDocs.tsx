@@ -1,4 +1,4 @@
-import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } from '@storybook/addon-docs';
+import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } from '@storybook/addon-docs/blocks';
 
 import { Title as TitleFS } from '../Title';
 import Tab from './Tab';

@@ -1,4 +1,4 @@
-import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } from '@storybook/addon-docs';
+import { Title, Subtitle, Description, Primary, ArgTypes, Stories, Controls } from '@storybook/addon-docs/blocks';
 
 import { A, B, C, ExpandedContent, PreContainer } from './Panel';
 import TitleFS from '../Title';

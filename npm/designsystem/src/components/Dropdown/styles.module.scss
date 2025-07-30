@@ -209,7 +209,15 @@
 
   &__input {
     border-bottom: 1px solid palette.$neutral300;
-    padding: spacers.getSpacer(2xs) spacers.getSpacer(s);
+    padding: 0 spacers.getSpacer(s);
+
+    &[role='menuitemradio'] {
+      padding: 0 spacers.getSpacer(s);
+    }
+
+    &[role='menuitemcheckbox'] {
+      padding: 1px spacers.getSpacer(s) spacers.getSpacer(2xs) spacers.getSpacer(s);
+    }
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       padding: spacers.getSpacer(s);

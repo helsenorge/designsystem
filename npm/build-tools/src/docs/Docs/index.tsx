@@ -1,4 +1,4 @@
-import { Title, Subtitle, Description, Primary, Stories, Controls } from '@storybook/addon-docs';
+import { Title, Subtitle, Description, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
 
 interface DocsProps<T> {
   component: T;

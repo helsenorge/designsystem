@@ -7,6 +7,7 @@ import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { isComponent, isComponentWithChildren } from '../../utils/component';
 import Avatar, { AvatarProps, AvatarSize, AvatarType } from '../Avatar';
 import Badge, { BadgeProps, BadgeType } from '../Badge';
+import Highlighter from '../Highlighter';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import { TitleTags } from '../Title';
 
@@ -26,7 +27,8 @@ export const renderListHeader = (
   isHovered: boolean,
   size: ListHeaderSize,
   chevronIcon?: SvgIcon,
-  icon?: React.ReactElement
+  icon?: React.ReactElement,
+  highlightText?: string
 ): JSX.Element | undefined => {
   if (isComponent<ListHeaderProps>(element, ListHeader)) {
     return React.cloneElement(element, {
@@ -34,11 +36,19 @@ export const renderListHeader = (
       icon,
       isHovered,
       size,
+      highlightText,
     });
   }
   if (element) {
     return (
-      <ListHeader titleHtmlMarkup={titleHtmlMarkup} chevronIcon={chevronIcon} icon={icon} isHovered={isHovered} size={size}>
+      <ListHeader
+        highlightText={highlightText}
+        titleHtmlMarkup={titleHtmlMarkup}
+        chevronIcon={chevronIcon}
+        icon={icon}
+        isHovered={isHovered}
+        size={size}
+      >
         {element}
       </ListHeader>
     );
@@ -62,6 +72,8 @@ export interface ListHeaderProps {
   size?: ListHeaderSize;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Highlights text in title. Used for search results */
+  highlightText?: string;
 }
 
 interface ListHeaderChildren {
@@ -115,7 +127,7 @@ export const mapChildren: ChildrenMapper = (children, isJsxChild = false) => {
 };
 
 export const ListHeader: ListHeaderType = props => {
-  const { className = '', titleHtmlMarkup = 'h2', chevronIcon, children, icon, isHovered, size, testId } = props;
+  const { className = '', titleHtmlMarkup = 'h2', chevronIcon, children, icon, isHovered, size, testId, highlightText } = props;
   const breakpoint = useBreakpoint();
   const showIcon = size !== 'small' && !!icon;
   const contentIsString = typeof children === 'string';
@@ -147,9 +159,11 @@ export const ListHeader: ListHeaderType = props => {
       <span className={contentClasses}>
         {mappedChildren?.listHeaderTextChildren}
         {!!mappedChildren?.stringChildren.length && (
-          <CustomTag className={styles['list-header__title']}>{mappedChildren.stringChildren}</CustomTag>
+          <CustomTag className={styles['list-header__title']}>
+            <Highlighter searchText={highlightText}>{mappedChildren.stringChildren}</Highlighter>
+          </CustomTag>
         )}
-        {mappedChildren?.remainingChildren}
+        <Highlighter searchText={highlightText}>{mappedChildren?.remainingChildren}</Highlighter>
       </span>
 
       <span className={badgeContainerClasses}>
