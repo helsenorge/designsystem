@@ -1,3 +1,3 @@
-import Docs, { isSupernova } from './docs/Docs/index.tsx';
+import Docs from './docs/Docs/index.tsx';
 
-export { Docs, isSupernova };
+export { Docs };
