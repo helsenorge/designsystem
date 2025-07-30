@@ -3,7 +3,7 @@ module.exports = {
     node: true,
   },
   root: true,
-  extends: ['@helsenorge/eslint-config'],
+  extends: ['@helsenorge/eslint-config', 'plugin:storybook/recommended'],
   rules: {
     'react/prop-types': 'off',
   },

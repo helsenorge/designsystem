@@ -12,17 +12,17 @@ describe('Gitt at Toggle skal vises', () => {
 
     test('Så vises Toggle med riktig label', () => {
       render(<Toggle label={[{ text: 'Aktiver funksjon' }]} />);
-      expect(screen.getByRole('checkbox', { name: 'Aktiver funksjon' })).toBeDefined();
+      expect(screen.getByRole('switch', { name: 'Aktiver funksjon' })).toBeDefined();
     });
 
     test('Så vises Toggle i unchecked tilstand som standard', () => {
       render(<Toggle label={[{ text: 'Test Toggle' }]} />);
-      expect(screen.getByRole('checkbox')).not.toBeChecked();
+      expect(screen.getByRole('switch')).not.toBeChecked();
     });
 
     test('Så vises Toggle i checked tilstand når checked prop er true', () => {
       render(<Toggle label={[{ text: 'Test Toggle' }]} checked={true} />);
-      expect(screen.getByRole('checkbox')).toBeChecked();
+      expect(screen.getByRole('switch')).toBeChecked();
     });
 
     test('Så vises sublabel når den er angitt', () => {
@@ -35,7 +35,7 @@ describe('Gitt at Toggle skal vises', () => {
     test('Så endres tilstanden når den klikkes', () => {
       const handleChange = vi.fn();
       render(<Toggle label={[{ text: 'Test Toggle' }]} onChange={handleChange} />);
-      const toggle = screen.getByRole('checkbox');
+      const toggle = screen.getByRole('switch');
       fireEvent.click(toggle);
       expect(toggle).toBeChecked();
       expect(handleChange).toHaveBeenCalledTimes(1);

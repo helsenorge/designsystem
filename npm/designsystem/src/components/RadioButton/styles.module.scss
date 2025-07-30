@@ -6,6 +6,9 @@
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/breakpoints' as breakpoints;
 
+$padding-clickable-area-top-bottom: 8px;
+$padding-clickable-area-left: 8px;
+
 @mixin dashed-border() {
   box-shadow: none;
 
@@ -24,6 +27,7 @@
 
 .radio-button-wrapper {
   cursor: pointer;
+  margin-left: -$padding-clickable-area-left;
 
   &__large {
     margin: spacers.getSpacer(2xs) 0;
@@ -51,6 +55,7 @@
   cursor: pointer;
   line-height: font-settings.$lineheight-size-sm;
   color: palette.$black;
+  padding: $padding-clickable-area-top-bottom 0 $padding-clickable-area-top-bottom $padding-clickable-area-left;
 
   &--on-dark {
     color: palette.$white;
@@ -412,7 +417,8 @@
 }
 
 .radiobutton-sublabel-wrapper {
-  padding-left: 2.7rem;
+  margin-top: -$padding-clickable-area-top-bottom;
+  padding-left: calc(2.8rem + $padding-clickable-area-left);
 }
 
 /******** RESET *********/

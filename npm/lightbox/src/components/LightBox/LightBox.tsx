@@ -13,6 +13,7 @@ import PlusSmall from '@helsenorge/designsystem-react/components/Icons/PlusSmall
 import X from '@helsenorge/designsystem-react/components/Icons/X';
 import { IconSize, KeyboardEventKey, ZIndex } from '@helsenorge/designsystem-react/constants';
 import { useFocusTrap } from '@helsenorge/designsystem-react/hooks/useFocusTrap';
+import { useReturnFocusOnUnmount } from '@helsenorge/designsystem-react/hooks/useReturnFocusOnUnmount';
 import { useSize } from '@helsenorge/designsystem-react/hooks/useSize';
 import { disableBodyScroll, enableBodyScroll } from '@helsenorge/designsystem-react/utils/scroll';
 
@@ -84,6 +85,7 @@ const LightBox: React.FC<LightBoxProps> = ({
   const { height: textBoxHeight = 0 } = useSize(textBoxRef) || {};
   const [zoom, setZoom] = useState(1.0);
   useFocusTrap(lightBoxRef, true);
+  useReturnFocusOnUnmount(lightBoxRef);
 
   useKeyboardEvent(lightBoxRef, onClose, [KeyboardEventKey.Escape]);
 
@@ -102,6 +104,10 @@ const LightBox: React.FC<LightBoxProps> = ({
     };
   }, []);
 
+  useEffect(() => {
+    lightBoxRef.current?.focus();
+  }, []);
+
   return (
     <div
       data-testid={testId}
@@ -109,6 +115,7 @@ const LightBox: React.FC<LightBoxProps> = ({
       style={{ zIndex: ZIndex.OverlayScreen }}
       role="dialog"
       aria-modal={true}
+      tabIndex={-1}
       aria-label={ariaLabelLightBox}
       ref={lightBoxRef}
     >

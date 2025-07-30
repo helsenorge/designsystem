@@ -9,6 +9,7 @@ import { useUuid } from '../../hooks/useUuid';
 import { PaletteNames } from '../../theme/palette';
 import { mergeRefs } from '../../utils/refs';
 import { isElementInViewport } from '../../utils/viewport';
+import Highlighter from '../Highlighter';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
 import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
@@ -48,6 +49,8 @@ interface ExpanderListProps {
   variant?: ExpanderListVariant;
   /** Overrides the default z-index of the expander header */
   zIndex?: number;
+  /** Highlights text in title and content. Used for search results */
+  highlightText?: string;
 }
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -72,6 +75,8 @@ type ExpanderProps = Modify<
     onExpand?: (isExpanded: boolean) => void;
     /** Overrides the default z-index of the expander header */
     zIndex?: number;
+    /** Highlights text in title and content. Override if different from list. */
+    highlightText?: string;
   }
 > &
   Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'variant'>;
@@ -94,6 +99,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     renderChildrenWhenClosed,
     variant = 'line',
     zIndex = 0,
+    highlightText,
   } = props;
   const [isExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLLIElement>(null);
@@ -138,7 +144,11 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
       padding ? expanderListStyles['expander-list-link__main-content--padding'] : ''
     );
 
-    return <div className={mainContentClasses}>{children}</div>;
+    return (
+      <div className={mainContentClasses}>
+        <Highlighter searchText={highlightText}>{children}</Highlighter>
+      </div>
+    );
   };
 
   return (
@@ -162,7 +172,8 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
           isHovered || isFocused,
           large ? 'large' : 'medium',
           isExpanded ? ChevronUp : ChevronDown,
-          icon
+          icon,
+          highlightText
         )}
       </button>
       {renderContent()}
@@ -187,6 +198,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     testId,
     variant,
     zIndex,
+    highlightText,
   } = props;
   const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
@@ -228,6 +240,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
         if (isExpanderComponent(child)) {
           const id = getExpanderId(index);
           const expanded = activeExpander?.[id];
+          const highlightTextChild: string | undefined = child.props.highlightText || highlightText;
 
           return React.cloneElement(child as React.ReactElement<ExpanderProps>, {
             id,
@@ -242,6 +255,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
             renderChildrenWhenClosed,
             variant,
             zIndex: zIndex,
+            highlightText: highlightTextChild,
           });
         }
         return child;

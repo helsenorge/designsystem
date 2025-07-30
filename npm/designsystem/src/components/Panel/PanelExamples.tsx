@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 import Panel, { PanelVariant, PanelLayout, PanelStatus } from './Panel';
 import AnchorLink from '../AnchorLink/AnchorLink';
