@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 
 import LabelComponent from '../components/Label';
 import Title from '../components/Title';

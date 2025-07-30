@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useUuid } from './useUuid';
 import Button from '../components/Button';

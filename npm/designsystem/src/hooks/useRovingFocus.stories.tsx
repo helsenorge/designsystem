@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useRovingFocus } from './useRovingFocus';
 

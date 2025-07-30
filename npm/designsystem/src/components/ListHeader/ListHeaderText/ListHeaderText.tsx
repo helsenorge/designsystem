@@ -2,6 +2,7 @@ import React from 'react';
 
 import cn from 'classnames';
 
+import Highlighter from '../../Highlighter';
 import StatusDot, { StatusDotVariant } from '../../StatusDot';
 import { TitleTags } from '../../Title';
 import styles from '../styles.module.scss';
@@ -27,6 +28,8 @@ export interface ListHeaderTextProps {
   testId?: string;
   /** Changes the underlying element of the title. Default: span*/
   titleHtmlMarkup?: TitleTags;
+  /** Highlights text. Used for search results */
+  highlightText?: string;
 }
 
 export const ListHeaderText: ListHeaderTextType = props => {
@@ -40,6 +43,7 @@ export const ListHeaderText: ListHeaderTextType = props => {
     className = '',
     testId,
     titleHtmlMarkup = 'span',
+    highlightText,
   } = props;
 
   const headerTextWrapperClasses = cn(className, styles['text-wrapper'], {
@@ -61,8 +65,10 @@ export const ListHeaderText: ListHeaderTextType = props => {
         </span>
       )}
       <CustomTag className={styles['list-header__title']}>
-        <span className={firstHeaderTextSegmentClasses}>{firstText}</span>
-        {secondText && <span className={secondHeaderTextSegmentClasses}>{secondText}</span>}
+        <Highlighter searchText={highlightText}>
+          <span className={firstHeaderTextSegmentClasses}>{firstText}</span>
+          {secondText && <span className={secondHeaderTextSegmentClasses}>{secondText}</span>}
+        </Highlighter>
       </CustomTag>
     </span>
   );

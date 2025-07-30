@@ -96,17 +96,17 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       <FormLayout maxColumns={FormLayoutColumns.two}>
         <Checkbox
           inputId="colour1"
-          label={<Label labelTexts={[{ text: 'Blueberry', type: 'subdued' }]} />}
+          label={<Label labelTexts={[{ text: 'Blueberry' }]} />}
           {...register('colour', { required: colorErrorMessage })}
         />
         <Checkbox
           inputId="colour2"
-          label={<Label labelTexts={[{ text: 'Cherry', type: 'subdued' }]} />}
+          label={<Label labelTexts={[{ text: 'Cherry' }]} />}
           {...register('colour', { required: colorErrorMessage })}
         />
         <Checkbox
           inputId="colour3"
-          label={<Label labelTexts={[{ text: 'Neutral', type: 'subdued' }]} />}
+          label={<Label labelTexts={[{ text: 'Neutral' }]} />}
           {...register('colour', { required: colorErrorMessage })}
         />
       </FormLayout>
@@ -115,21 +115,9 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
 
   const size = (): React.ReactElement => (
     <FormGroup legend={'Størrelser'} error={errors.sizes ? errors.sizes.message : undefined} size={props.size} errorTextId="error1">
-      <Checkbox
-        inputId="sizes1"
-        label={<Label labelTexts={[{ text: 'Small', type: 'subdued' }]} />}
-        {...register('sizes', { validate: requireTwo })}
-      />
-      <Checkbox
-        inputId="sizes2"
-        label={<Label labelTexts={[{ text: 'Medium', type: 'subdued' }]} />}
-        {...register('sizes', { validate: requireTwo })}
-      />
-      <Checkbox
-        inputId="sizes3"
-        label={<Label labelTexts={[{ text: 'Large', type: 'subdued' }]} />}
-        {...register('sizes', { validate: requireTwo })}
-      />
+      <Checkbox inputId="sizes1" label={<Label labelTexts={[{ text: 'Small' }]} />} {...register('sizes', { validate: requireTwo })} />
+      <Checkbox inputId="sizes2" label={<Label labelTexts={[{ text: 'Medium' }]} />} {...register('sizes', { validate: requireTwo })} />
+      <Checkbox inputId="sizes3" label={<Label labelTexts={[{ text: 'Large' }]} />} {...register('sizes', { validate: requireTwo })} />
     </FormGroup>
   );
 
@@ -142,17 +130,17 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
     >
       <RadioButton
         inputId="positions1"
-        label={<Label labelTexts={[{ text: 'Venstre', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: 'Venstre', type: 'normal' }]} />}
         {...register('positions', { required: positionErrorMessage })}
       />
       <RadioButton
         inputId="positions2"
-        label={<Label labelTexts={[{ text: 'Høyre', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: 'Høyre', type: 'normal' }]} />}
         {...register('positions', { required: positionErrorMessage })}
       />
       <RadioButton
         inputId="positions3"
-        label={<Label labelTexts={[{ text: 'Midten', type: 'subdued' }]} />}
+        label={<Label labelTexts={[{ text: 'Midten', type: 'normal' }]} />}
         {...register('positions', { required: positionErrorMessage })}
       />
     </FormGroup>

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 import { AnalyticsId } from '../../constants';
 import { ButtonProps } from '../Button';
 import StepButtons from '../StepButtons';
@@ -12,6 +14,10 @@ export interface StepProps {
   stepper?: React.ReactElement<StepperProps>;
   /** Innhold i steget */
   children: React.ReactNode;
+  /** Adds custom classes to the element. */
+  className?: string;
+  /** Adds custom classes to the content element. */
+  contentClassName?: string;
   /** Knapp for å gå tilbake. Vises med "outline" variant. */
   backButton?: React.ReactElement<ButtonProps>;
   /** Knapp for å gå videre. Vises med "fill" variant. */
@@ -29,6 +35,8 @@ export interface StepProps {
 const Step: React.FC<StepProps> = ({
   stepper,
   children,
+  className,
+  contentClassName,
   backButton,
   forwardButton,
   additionalButtons,
@@ -39,9 +47,9 @@ const Step: React.FC<StepProps> = ({
   const hasNavigation = backButton || forwardButton || additionalButtons || cancelButton;
 
   return (
-    <div data-testid={testId} data-analyticsid={AnalyticsId.Step}>
+    <div data-testid={testId} data-analyticsid={AnalyticsId.Step} className={className}>
       {stepper && <div className={styles.step__stepper}>{stepper}</div>}
-      <div className={styles.step__content}>{children}</div>
+      <div className={classNames(styles.step__content, contentClassName)}>{children}</div>
       {hasNavigation && (
         <StepButtons
           backButton={backButton}

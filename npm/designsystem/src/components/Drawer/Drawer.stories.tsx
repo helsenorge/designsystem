@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { Source } from '@storybook/blocks';
-import { useArgs } from '@storybook/preview-api';
-import { StoryObj, Meta } from '@storybook/react';
+import { Source } from '@storybook/addon-docs/blocks';
+import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+import { action } from 'storybook/actions';
+import { useArgs } from 'storybook/preview-api';
 
 import Drawer, { DrawerProps } from './Drawer';
 import { allTitleTags } from '../../../.storybook/knobs';
