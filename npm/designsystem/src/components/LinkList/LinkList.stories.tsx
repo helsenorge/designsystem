@@ -12,7 +12,7 @@ import ElementHeader from '../ElementHeader';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
-import { StatusDotVariant } from '../StatusDot';
+import StatusDot, { StatusDotVariant } from '../StatusDot';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/LinkList',
@@ -106,13 +106,7 @@ export const WithElementHeaderComp: Story = {
           <ElementHeader.Text firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
           <ElementHeader.Text subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
           <ElementHeader.Text subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-          <ElementHeader.Text
-            subText
-            statusDotVariant={StatusDotVariant.alert}
-            firstText={'Statdot og uthevet skrift'}
-            firstTextEmphasised
-            secondText=""
-          />
+          <StatusDot text="Statusdot" variant={StatusDotVariant.alert} />
         </ElementHeader>
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={PaperPlane} />}>
