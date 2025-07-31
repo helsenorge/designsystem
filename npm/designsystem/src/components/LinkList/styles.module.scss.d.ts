@@ -10,6 +10,10 @@ export type Styles = {
   'link-list__anchor--fill--neutral': string;
   'link-list__anchor--fill--white': string;
   'link-list__anchor--fill-negative': string;
+  'link-list__anchor--fill-negative--blueberry': string;
+  'link-list__anchor--fill-negative--cherry': string;
+  'link-list__anchor--fill-negative--neutral': string;
+  'link-list__anchor--fill-negative--white': string;
   'link-list__anchor--large': string;
   'link-list__anchor--line--blueberry': string;
   'link-list__anchor--line--cherry': string;
@@ -17,6 +21,7 @@ export type Styles = {
   'link-list__anchor--line--white': string;
   'link-list__anchor--medium': string;
   'link-list__anchor--neutral': string;
+  'link-list__anchor--new': string;
   'link-list__anchor--outline': string;
   'link-list__anchor--outline--blueberry': string;
   'link-list__anchor--outline--cherry': string;
@@ -29,6 +34,12 @@ export type Styles = {
   'link-list__list-item--outline--cherry': string;
   'link-list__list-item--outline--neutral': string;
   'link-list__list-item--outline--white': string;
+  'link-list__status-marker': string;
+  'link-list__status-marker--new': string;
+  'link-list--outline--blueberry': string;
+  'link-list--outline--cherry': string;
+  'link-list--outline--neutral': string;
+  'link-list--outline--white': string;
 };
 
 export type ClassNames = keyof Styles;

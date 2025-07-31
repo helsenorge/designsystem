@@ -313,3 +313,31 @@ export const WithNotificationBadge: Story = {
     </LinkList>
   ),
 };
+
+export const WithStatus: Story = {
+  args: {
+    chevron: true,
+  },
+  render: args => (
+    <LinkList {...args}>
+      <LinkList.Link status={'new'} href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
+        {'Innhold A-Å'}
+        <Badge color="blueberry">{'Ny'}</Badge>
+      </LinkList.Link>
+      <LinkList.Link htmlMarkup="button" icon={<Icon svgIcon={PaperPlane} />}>
+        {
+          'Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)'
+        }
+      </LinkList.Link>
+      <LinkList.Link
+        status="new"
+        htmlMarkup="button"
+        href={'https://www.helsenorge.no'}
+        target="_blank"
+        icon={<Icon svgIcon={AlarmClock} />}
+      >
+        <ElementHeader titleHtmlMarkup="span">{'LinkListText'}</ElementHeader>
+      </LinkList.Link>
+    </LinkList>
+  ),
+};

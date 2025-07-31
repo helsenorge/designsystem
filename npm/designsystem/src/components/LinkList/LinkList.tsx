@@ -12,6 +12,8 @@ import LinkListStyles from './styles.module.scss';
 
 export type LinkListSize = 'small' | 'medium' | 'large';
 
+export type LinkListStatus = 'none' | 'new';
+
 export type LinkAnchorTargets = '_self' | '_blank' | '_parent';
 
 export type LinkListColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cherry' | 'neutral'>;
@@ -54,6 +56,8 @@ export type LinkProps = Modify<
     chevron?: boolean;
     className?: string;
     icon?: React.ReactElement;
+    /** Displays a status on the left side: default none */
+    status?: LinkListStatus;
     href?: string;
     target?: LinkAnchorTargets;
     /** HTML markup for link. Default: a */
@@ -79,6 +83,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
     size = 'medium',
     chevron = false,
     linkRef,
+    status = 'none',
     testId,
     target,
     variant,
@@ -93,7 +98,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
   const isOutline = variant === 'outline';
   const isLine = variant === 'line';
 
-  const liClasses = cn({
+  const liClasses = cn(LinkListStyles['link-list'], {
     [LinkListStyles['link-list__list-item--line']]: isLine,
     [LinkListStyles[`link-list__list-item--outline--${color}`]]: isOutline,
   });
@@ -107,11 +112,18 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
       [LinkListStyles['link-list__anchor--outline']]: isOutline,
       [LinkListStyles[`link-list__anchor--outline--${color}`]]: isOutline,
       [LinkListStyles['link-list__anchor--fill-negative']]: isFillNegative,
+      [LinkListStyles[`link-list__anchor--fill-negative--${color}`]]: isFillNegative,
       [LinkListStyles[`link-list__anchor--${size}`]]: size,
       [LinkListStyles['link-list__anchor--button']]: htmlMarkup === 'button',
+      [LinkListStyles['link-list__anchor--new']]: status === 'new',
     },
     className
   );
+
+  const statusMarkerClasses = cn(LinkListStyles['link-list__status-marker'], {
+    [LinkListStyles['link-list__status-marker--new']]: status === 'new',
+  });
+
   return (
     <li className={liClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
       {htmlMarkup === 'a' && (
@@ -122,6 +134,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
           target={target}
           {...restProps}
         >
+          <div className={statusMarkerClasses}></div>
           {renderElementHeader(children, {
             titleHtmlMarkup: 'span',
             isHovered,
@@ -135,6 +148,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
       )}
       {htmlMarkup === 'button' && (
         <button className={linkClasses} ref={hoverRef as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
+          <div className={statusMarkerClasses}></div>
           {renderElementHeader(children, {
             titleHtmlMarkup: 'span',
             isHovered,
@@ -151,9 +165,14 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
 });
 
 export const LinkList = React.forwardRef(function LinkListForwardedRef(props: LinkListProps, ref: React.Ref<HTMLUListElement>) {
-  const { children, className = '', chevron = false, size = 'medium', color, testId, variant = 'line', highlightText } = props;
+  const { children, className = '', chevron = false, size = 'medium', color = 'white', testId, variant = 'line', highlightText } = props;
+
+  const listClassNames = cn(LinkListStyles['link-list'], className, {
+    [LinkListStyles[`link-list--outline--${color}`]]: variant === 'outline',
+  });
+
   return (
-    <ul ref={ref} className={cn(LinkListStyles['link-list'], className)} data-testid={testId} data-analyticsid={AnalyticsId.LinkList}>
+    <ul ref={ref} className={listClassNames} data-testid={testId} data-analyticsid={AnalyticsId.LinkList}>
       {React.Children.map(children, (child: React.ReactNode | React.ReactElement<LinkProps>) => {
         if ((child as React.ReactElement<LinkProps>).type === Link) {
           return React.cloneElement(child as React.ReactElement<LinkProps>, {

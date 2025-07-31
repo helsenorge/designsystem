@@ -7,12 +7,15 @@ exports[`displays a list of links 1`] = `
     data-analyticsid="link-list"
   >
     <li
-      class="link-list__list-item--line"
+      class="link-list link-list__list-item--line"
       data-analyticsid="link"
     >
       <a
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--line--cherry link-list__anchor--medium"
       >
+        <div
+          class="link-list__status-marker"
+        />
         <span
           class="element-header"
         >
@@ -64,12 +67,15 @@ exports[`displays a list of links 1`] = `
       </a>
     </li>
     <li
-      class="link-list__list-item--line"
+      class="link-list link-list__list-item--line"
       data-analyticsid="link"
     >
       <a
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--line--cherry link-list__anchor--medium"
       >
+        <div
+          class="link-list__status-marker"
+        />
         <span
           class="element-header"
         >
@@ -90,12 +96,15 @@ exports[`displays a list of links 1`] = `
       </a>
     </li>
     <li
-      class="link-list__list-item--line"
+      class="link-list link-list__list-item--line"
       data-analyticsid="link"
     >
       <a
         class="link-list__anchor link-list__anchor--cherry link-list__anchor--line--cherry link-list__anchor--medium"
       >
+        <div
+          class="link-list__status-marker"
+        />
         <span
           class="element-header"
         >
