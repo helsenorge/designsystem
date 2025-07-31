@@ -136,6 +136,10 @@
     line-height: font-settings.$lineheight-size-md;
   }
 
+  &[aria-expanded='true'] {
+    border-bottom: 1px solid var(--color-action-border-ondark);
+  }
+
   &--open {
     font-weight: 600;
   }
@@ -157,47 +161,104 @@
     outline: 0.25rem solid var(--color-action-border-onlight-focus);
   }
 
-  &--white:not(.expander-list-link--outline) {
-    &:hover {
-      background-color: var(--core-color-blueberry-50);
+  &--white:not(.expander-list-link--outline, .expander-list-link--fill-negative) {
+    &[aria-expanded='false'] {
+      &:hover {
+        background-color: var(--core-color-neutral-50);
+      }
+
+      &:active {
+        background-color: var(--core-color-neutral-100);
+      }
     }
 
-    &:active {
-      background-color: var(--core-color-blueberry-100);
+    &[aria-expanded='true'] {
+      background-color: var(--core-color-neutral-50);
+
+      &:hover {
+        background-color: var(--core-color-neutral-100);
+      }
+
+      &:active {
+        background-color: var(--core-color-neutral-200);
+      }
     }
   }
 
-  &--blueberry:not(.expander-list-link--outline) {
-    &:hover {
-      background-color: var(--core-color-blueberry-100);
+  &--blueberry:not(.expander-list-link--outline, .expander-list-link--fill-negative) {
+    &[aria-expanded='false'] {
+      &:hover {
+        background-color: var(--core-color-blueberry-100);
+      }
+
+      &:active {
+        background-color: var(--color-action-background-ondark-hoverselected);
+      }
     }
 
-    &:active {
-      background-color: var(--color-action-background-ondark-hoverselected);
+    &[aria-expanded='true'] {
+      background-color: var(--core-color-blueberry-100);
+
+      &:hover {
+        background-color: var(--core-color-blueberry-200);
+      }
+
+      &:active {
+        background-color: var(--core-color-blueberry-300);
+      }
     }
   }
 
-  &--cherry:not(.expander-list-link--outline) {
-    &:hover {
+  &--cherry:not(.expander-list-link--outline, .expander-list-link--fill-negative) {
+    &[aria-expanded='false'] {
+      &:hover {
+        background-color: var(--core-color-cherry-100);
+      }
+
+      &:active {
+        background-color: var(--core-color-cherry-200);
+      }
+    }
+
+    &[aria-expanded='true'] {
       background-color: var(--core-color-cherry-100);
-    }
 
-    &:active {
-      background-color: var(--core-color-cherry-200);
+      &:hover {
+        background-color: var(--core-color-cherry-200);
+      }
+
+      &:active {
+        background-color: var(--core-color-cherry-300);
+      }
     }
   }
 
-  &--neutral:not(.expander-list-link--outline) {
-    &:hover {
+  &--neutral:not(.expander-list-link--outline, .expander-list-link--fill-negative) {
+    &[aria-expanded='false'] {
+      &:hover {
+        background-color: var(--core-color-neutral-100);
+      }
+
+      &:active {
+        background-color: var(--core-color-neutral-200);
+      }
+    }
+
+    &[aria-expanded='true'] {
       background-color: var(--core-color-neutral-100);
-    }
 
-    &:active {
-      background-color: var(--core-color-neutral-200);
+      &:hover {
+        background-color: var(--core-color-neutral-200);
+      }
+
+      &:active {
+        background-color: var(--core-color-neutral-300);
+      }
     }
   }
 
-  &--outline {
+  &--outline,
+  &--fill-negative {
     background-color: var(--color-base-background-white);
 
     &:focus-visible {
@@ -205,33 +266,75 @@
     }
 
     &--blueberry {
-      &:hover {
-        background-color: var(--core-color-blueberry-50);
+      &[aria-expanded='false'] {
+        &:hover {
+          background-color: var(--core-color-blueberry-50);
+        }
+
+        &:active {
+          background-color: var(--core-color-blueberry-100);
+        }
       }
 
-      &:active {
-        background-color: var(--core-color-blueberry-100);
+      &[aria-expanded='true'] {
+        background-color: var(--core-color-blueberry-50);
+
+        &:hover {
+          background-color: var(--core-color-blueberry-100);
+        }
+
+        &:active {
+          background-color: var(--core-color-blueberry-200);
+        }
       }
     }
 
     &--cherry {
-      &:hover {
-        background-color: var(--core-color-cherry-50);
+      &[aria-expanded='false'] {
+        &:hover {
+          background-color: var(--core-color-cherry-50);
+        }
+
+        &:active {
+          background-color: var(--core-color-cherry-100);
+        }
       }
 
-      &:active {
-        background-color: var(--core-color-cherry-100);
+      &[aria-expanded='true'] {
+        background-color: var(--core-color-cherry-50);
+
+        &:hover {
+          background-color: var(--core-color-cherry-100);
+        }
+
+        &:active {
+          background-color: var(--core-color-cherry-200);
+        }
       }
     }
 
     &--neutral,
     &--white {
-      &:hover {
-        background-color: var(--core-color-neutral-50);
+      &[aria-expanded='false'] {
+        &:hover {
+          background-color: var(--core-color-neutral-50);
+        }
+
+        &:active {
+          background-color: var(--core-color-neutral-100);
+        }
       }
 
-      &:active {
-        background-color: var(--core-color-neutral-100);
+      &[aria-expanded='true'] {
+        background-color: var(--core-color-neutral-50);
+
+        &:hover {
+          background-color: var(--core-color-neutral-100);
+        }
+
+        &:active {
+          background-color: var(--core-color-neutral-200);
+        }
       }
     }
   }

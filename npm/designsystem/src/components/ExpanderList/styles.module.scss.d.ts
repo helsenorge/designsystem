@@ -32,6 +32,10 @@ export type Styles = {
   'expander-list-link--fill--neutral': string;
   'expander-list-link--fill--white': string;
   'expander-list-link--fill-negative': string;
+  'expander-list-link--fill-negative--blueberry': string;
+  'expander-list-link--fill-negative--cherry': string;
+  'expander-list-link--fill-negative--neutral': string;
+  'expander-list-link--fill-negative--white': string;
   'expander-list-link--large': string;
   'expander-list-link--line--blueberry': string;
   'expander-list-link--line--cherry': string;

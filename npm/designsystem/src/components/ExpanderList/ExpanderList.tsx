@@ -125,6 +125,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     [expanderListStyles[`expander-list-link--fill`]]: isFill,
     [expanderListStyles[`expander-list-link--fill--${color}`]]: isFill,
     [expanderListStyles[`expander-list-link--fill-negative`]]: isFillNegative,
+    [expanderListStyles[`expander-list-link--fill-negative--${color}`]]: isFillNegative,
     [expanderListStyles['expander-list-link--outline']]: isOutline,
     [expanderListStyles[`expander-list-link--outline--${color}`]]: isOutline,
     [expanderListStyles[`expander-list-link--line--${color}`]]: isLine,
