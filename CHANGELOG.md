@@ -1,3 +1,24 @@
+## [11.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.4.1&targetVersion=GTv11.5.0) (2025-07-30)
+
+### Features
+
+- clickarea for radiobutton og checkbox oppfyller uu krav
+  ([0e01c6f](https://github.com/helsenorge/designsystem/commit/0e01c6f745600ee60c2e704cbe3e6109532004e3)), closes
+  [#355146](https://github.com/helsenorge/designsystem/issues/355146)
+- **highlighter:** ny komponent ([974bded](https://github.com/helsenorge/designsystem/commit/974bdedb7109d32271a292b995008e848dd6d2bb)),
+  closes [#341189](https://github.com/helsenorge/designsystem/issues/341189)
+- **panel:** legg til aria label for buttonBottom
+  ([470fd44](https://github.com/helsenorge/designsystem/commit/470fd443a1ae56f7225a013e91c52cad57d8c960)), closes
+  [#356384](https://github.com/helsenorge/designsystem/issues/356384)
+
+### Bug Fixes
+
+- colorscss og spacerscss importeres i helsenorgecss
+  ([321fdff](https://github.com/helsenorge/designsystem/commit/321fdff9133ae974d60855e3f995841db824d042)), closes
+  [#355112](https://github.com/helsenorge/designsystem/issues/355112)
+- **toggle:** lagt til role switch ([d70ac71](https://github.com/helsenorge/designsystem/commit/d70ac718012d47a9a6e46098390314e17ed18290)),
+  closes [#356306](https://github.com/helsenorge/designsystem/issues/356306)
+
 ## [11.4.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.4.0&targetVersion=GTv11.4.1) (2025-07-11)
 
 ### Bug Fixes

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { isSupernova } from 'frankenstein-build-tools';
-
 type GridLayout = 'helsenorge' | 'padding' | 'none';
 
 interface GridExampleProps {
@@ -9,8 +7,8 @@ interface GridExampleProps {
   children?: React.ReactNode;
 }
 
-export const GridExample: React.FC<GridExampleProps> = ({ gridLayout = isSupernova(), children }) => {
-  if (isSupernova() || gridLayout === 'padding') {
+export const GridExample: React.FC<GridExampleProps> = ({ gridLayout = 'helsenorge', children }) => {
+  if (gridLayout === 'padding') {
     return <div style={{ padding: '0.5rem' }}>{children}</div>;
   }
 
