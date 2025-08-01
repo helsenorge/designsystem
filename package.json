@@ -56,6 +56,11 @@
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1"
   },
+  "overrides": {
+    "typed-scss-modules": {
+      "esbuild": "0.25.1"
+    }
+  },
   "engines": {
     "node": "^22.0.0",
     "npm": ">=10.0.0"
