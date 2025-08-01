@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
@@ -14,6 +14,7 @@ import PaperPlane from '../Icons/PaperPlane';
 import LinkList from '../LinkList';
 import StatusDot, { StatusDotVariant } from '../StatusDot';
 import Title from '../Title/Title';
+import Toggle from '../Toggle';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/ExpanderList',
@@ -114,6 +115,7 @@ export const VariantLine: Story = {
 export const VariantOutline: Story = {
   args: {
     variant: 'outline',
+    color: 'blueberry',
   },
   render: args => (
     <ExpanderList {...args}>
@@ -125,6 +127,7 @@ export const VariantOutline: Story = {
 export const VariantFill: Story = {
   args: {
     variant: 'fill',
+    color: 'blueberry',
   },
   render: args => (
     <ExpanderList {...args}>
@@ -137,6 +140,7 @@ export const VariantFill: Story = {
 export const VariantFillNegative: Story = {
   args: {
     variant: 'fill-negative',
+    color: 'blueberry',
   },
   render: args => (
     <ExpanderList {...args}>
@@ -497,6 +501,36 @@ export const WithHighlightOnListHeaderOnly: Story = {
           </LinkList>
         </ExpanderList.Expander>
       </ExpanderList>
+    );
+  },
+};
+
+export const WithStatus: Story = {
+  render: args => {
+    const [newStatus, setNewStatus] = useState(false);
+
+    return (
+      <>
+        <ExpanderList {...args}>
+          <ExpanderList.Expander status="new" icon={<Icon svgIcon={Avatar} />} title="Kognitiv terapi">
+            {
+              'Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger og følelser. Et viktig mål er å bryte selvforsterkende onde sirkler som opprettholder psykiske helseproblemer.'
+            }
+          </ExpanderList.Expander>
+          <ExpanderList.Expander icon={<Icon svgIcon={PaperPlane} />} title="Hypokondri">
+            {
+              'Hypokondri er en sykdom der folk føler at de har en sykdom som de i realiteten ikke har. Statens helsetilsyn sier blant annet følgende om sykdommen: «Det vesentlige kjennetegnet er vedvarende opptatthet av muligheten for å ha en eller flere alvorlige og fremadskridende somatiske lidelser».'
+            }
+          </ExpanderList.Expander>
+          <ExpanderList.Expander status={newStatus ? 'new' : 'none'} icon={<Icon svgIcon={AlarmClock} />} title="Hjerneskade">
+            {
+              'De hyppigste årsager til hjerneskader er hjerneblødninger, blodpropper i hjernen, trafik- eller drukneulykker, svulster eller hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.'
+            }
+          </ExpanderList.Expander>
+        </ExpanderList>
+        <br />
+        <Toggle onChange={() => setNewStatus(!newStatus)} checked={newStatus} label={[{ text: 'Status' }]} />
+      </>
     );
   },
 };
