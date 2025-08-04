@@ -29,6 +29,7 @@ export type Styles = {
   'link-list__anchor--outline--white': string;
   'link-list__anchor--small': string;
   'link-list__anchor--white': string;
+  'link-list__image-container': string;
   'link-list__list-item--line': string;
   'link-list__list-item--outline--blueberry': string;
   'link-list__list-item--outline--cherry': string;

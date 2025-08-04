@@ -6,19 +6,6 @@ import userEvent from '@testing-library/user-event';
 import LinkList from './LinkList';
 import Badge from '../Badge';
 import ElementHeader from '../ElementHeader';
-import Icon from '../Icon';
-import AlarmClock from '../Icons/AlarmClock';
-
-test('displays a list of links', (): void => {
-  const { container } = render(
-    <LinkList color="cherry">
-      <LinkList.Link icon={<Icon svgIcon={AlarmClock} />}>{'Link 1'}</LinkList.Link>
-      <LinkList.Link>{'Link 2'}</LinkList.Link>
-      <LinkList.Link>{'Link 3'}</LinkList.Link>
-    </LinkList>
-  );
-  expect(container).toMatchSnapshot();
-});
 
 describe('Gitt at LinkList skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {

@@ -95,6 +95,38 @@ export const WithIconAndChevron: Story = {
   ),
 };
 
+export const WithImageAndChevron: Story = {
+  args: {
+    chevron: true,
+  },
+  render: args => (
+    <LinkList {...args}>
+      <LinkList.Link
+        href={'https://www.helsenorge.no'}
+        target="_blank"
+        image={<img src="https://dummyimage.com/48x48.png?text=48x48" alt="test" />}
+      >
+        {'Innhold A-Å'}
+      </LinkList.Link>
+      <LinkList.Link htmlMarkup="button" image={<img src="https://dummyimage.com/48x48.png?text=48x48" alt="test" />}>
+        {
+          'Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)'
+        }
+      </LinkList.Link>
+      <LinkList.Link
+        href={'https://www.helsenorge.no'}
+        target="_blank"
+        image={<img src="https://dummyimage.com/48x48.png?text=48x48" alt="test" />}
+      >
+        <ElementHeader titleHtmlMarkup="span">
+          {'LinkListText'}
+          <Badge color="blueberry">{'Ny'}</Badge>
+        </ElementHeader>
+      </LinkList.Link>
+    </LinkList>
+  ),
+};
+
 export const WithElementHeaderComp: Story = {
   args: {
     chevron: true,

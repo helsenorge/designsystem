@@ -56,6 +56,8 @@ export type LinkProps = Modify<
     chevron?: boolean;
     className?: string;
     icon?: React.ReactElement;
+    /** Renders the image in the LinkList header */
+    image?: React.ReactElement;
     /** Displays a status on the left side: default none */
     status?: LinkListStatus;
     href?: string;
@@ -80,6 +82,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
     className = '',
     color = 'white',
     icon,
+    image,
     size = 'medium',
     chevron = false,
     linkRef,
@@ -124,6 +127,8 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
     [LinkListStyles['link-list__status-marker--new']]: status === 'new',
   });
 
+  const imageContainer = <span className={LinkListStyles['link-list__image-container']}>{image}</span>;
+
   return (
     <li className={liClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
       {htmlMarkup === 'a' && (
@@ -141,7 +146,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
             size,
             parentType: 'linklist',
             chevronIcon: chevron ? ChevronRight : undefined,
-            icon,
+            icon: icon ?? imageContainer,
             highlightText,
           })}
         </a>
@@ -155,7 +160,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
             size,
             parentType: 'linklist',
             chevronIcon: chevron ? ChevronRight : undefined,
-            icon,
+            icon: icon ?? imageContainer,
             highlightText,
           })}
         </button>
