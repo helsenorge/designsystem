@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@helsenorge/designsystem-react": "^12.0.0-beta.2",
+    "@helsenorge/typed-scss-modules": "^9.0.0",
     "@rollup/plugin-replace": "^6.0.1",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
@@ -61,7 +62,6 @@
     "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-visualizer": "^5.12.0",
-    "typed-scss-modules": "^8.0.1",
     "typescript": "~5.8.2",
     "vite": "^6.2.1",
     "vite-plugin-dts": "^4.3.0",
