@@ -22,9 +22,11 @@
   height: 50px;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-    border-right: 1px solid var(--color-action-border-onlight-focus);
-    border-left: 1px solid var(--color-action-border-onlight-focus);
     height: 50px;
+
+    /* Disse to linjene passer på at den hvite gradienten ikke går over border til den ytre diven */
+    width: auto;
+    margin: 0 2px;
   }
 
   @each $color in $colors {
