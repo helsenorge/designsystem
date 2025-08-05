@@ -6,9 +6,9 @@ import StatusDot, { StatusDotProps, StatusDotVariant } from '../../StatusDot';
 
 import styles from './styles.module.scss';
 
-export type StatusDotMultiCompositionType = React.FC<StatusDotMultiCompositionProps>;
+export type StatusDotListType = React.FC<StatusDotListProps>;
 
-export interface StatusDotMultiCompositionProps {
+export interface StatusDotListProps {
   /** Additional text to the bottom statusdot */
   additionalText?: string;
   /** StatusDot that is under the others and outside the stacking */
@@ -27,7 +27,7 @@ export interface StatusDotMultiCompositionProps {
   topStatusDot?: React.ReactElement<StatusDotProps>;
 }
 
-export const StatusDotMultiComposition: StatusDotMultiCompositionType = props => {
+export const StatusDotList: StatusDotListType = props => {
   const {
     additionalText,
     children,
@@ -40,17 +40,17 @@ export const StatusDotMultiComposition: StatusDotMultiCompositionType = props =>
   } = props;
 
   return (
-    <span data-testid={testId} className={cn(styles['statusdotmulticomposition'], className)}>
+    <span data-testid={testId} className={cn(styles['statusdotlist'], className)}>
       {topStatusDot}
       {/* @todo: legg til tekst i SOT */}
       {hiddenForChild && <StatusDot variant={StatusDotVariant.hidden} text="Skjult for barnet" />}
-      <span data-stacking={stacking} className={styles['statusdotmulticomposition__children']}>
+      <span data-stacking={stacking} className={styles['statusdotlist__children']}>
         {children}
       </span>
       {bottomStatusDot}
-      {additionalText && <span className={styles['statusdotmulticomposition__additional-text']}>{additionalText}</span>}
+      {additionalText && <span className={styles['statusdotlist__additional-text']}>{additionalText}</span>}
     </span>
   );
 };
 
-export default StatusDotMultiComposition;
+export default StatusDotList;

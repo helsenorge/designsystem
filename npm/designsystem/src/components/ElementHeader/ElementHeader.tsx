@@ -10,7 +10,7 @@ import Badge, { BadgeProps, BadgeType } from '../Badge';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import StatusDot, { StatusDotProps, StatusDotType } from '../StatusDot';
 import { TitleTags } from '../Title';
-import StatusDotMultiComposition, { StatusDotMultiCompositionProps, StatusDotMultiCompositionType } from './StatusDotMultiComposition';
+import StatusDotList, { StatusDotListProps, StatusDotListType } from './StatusDotList';
 import Highlighter from '../Highlighter';
 
 import styles from './styles.module.scss';
@@ -23,7 +23,7 @@ export interface ElementHeaderType extends React.FC<ElementHeaderProps> {
   Badge?: BadgeType;
   ElementHeaderText?: ElementHeaderTextType;
   StatusDot?: StatusDotType;
-  StatusDotMultiComposition?: StatusDotMultiCompositionType;
+  StatusDotList?: StatusDotListType;
 }
 
 export const renderElementHeader = (
@@ -87,7 +87,7 @@ interface ElementHeaderChildren {
   elementHeaderTextChildren: React.ReactElement<ElementHeaderTextProps>[];
   badgeChildren?: React.ReactElement<BadgeProps>[];
   statusDotChildren?: React.ReactElement<StatusDotProps>[];
-  statusDotMCChild?: React.ReactElement<StatusDotMultiCompositionProps>;
+  statusDotMCChild?: React.ReactElement<StatusDotListProps>;
   elementChild?: React.ReactElement;
   stringChildren: string[];
   remainingChildren: React.ReactNode[];
@@ -99,7 +99,7 @@ export const mapChildren: ChildrenMapper = (children, isJsxChild = false) => {
   let avatarChild: React.ReactElement<AvatarProps> | undefined;
   const badgeChildren: React.ReactElement<BadgeProps>[] = [];
   const statusDotChildren: React.ReactElement<StatusDotProps>[] = [];
-  let statusDotMCChild: React.ReactElement<StatusDotMultiCompositionProps> | undefined;
+  let statusDotMCChild: React.ReactElement<StatusDotListProps> | undefined;
   const elementHeaderTextChildren: React.ReactElement<ElementHeaderTextProps>[] = [];
   const stringChildren: string[] = [];
   const remainingChildren: React.ReactNode[] = [];
@@ -112,7 +112,7 @@ export const mapChildren: ChildrenMapper = (children, isJsxChild = false) => {
       elementHeaderTextChildren.push(child);
     } else if (isComponent<BadgeProps>(child, Badge)) {
       badgeChildren.push(child);
-    } else if (isComponent<StatusDotMultiCompositionProps>(child, StatusDotMultiComposition)) {
+    } else if (isComponent<StatusDotListProps>(child, StatusDotList)) {
       statusDotMCChild = child;
     } else if (isComponent<StatusDotProps>(child, StatusDot)) {
       statusDotChildren.push(child);
@@ -198,7 +198,7 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
 
       {hasStatusDots && (
         <span className={statusdotContainerClasses}>
-          {!!mappedChildren?.statusDotChildren && <StatusDotMultiComposition>{mappedChildren.statusDotChildren}</StatusDotMultiComposition>}
+          {!!mappedChildren?.statusDotChildren && <StatusDotList>{mappedChildren.statusDotChildren}</StatusDotList>}
           {!!mappedChildren?.statusDotMCChild && mappedChildren?.statusDotMCChild}
         </span>
       )}
@@ -233,13 +233,13 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
 
 type ElementHeaderComponent = typeof ElementHeaderRoot & {
   Text: React.FC<ElementHeaderTextProps>;
-  StatusDotMultiComposition: React.FC<StatusDotMultiCompositionProps>;
+  StatusDotList: React.FC<StatusDotListProps>;
 };
 ElementHeaderRoot.displayName = 'ElementHeader';
 const ElementHeader = ElementHeaderRoot as ElementHeaderComponent;
 ElementHeader.Text = ElementHeaderText;
 ElementHeader.Text.displayName = 'ElementHeader.Text';
-ElementHeader.StatusDotMultiComposition = StatusDotMultiComposition;
-ElementHeader.StatusDotMultiComposition.displayName = 'ElementHeader.StatusDotMultiComposition';
+ElementHeader.StatusDotList = StatusDotList;
+ElementHeader.StatusDotList.displayName = 'ElementHeader.StatusDotList';
 
 export default ElementHeader;

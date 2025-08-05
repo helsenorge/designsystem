@@ -199,38 +199,38 @@ export const WithStatusDots: Story = {
       </ElementHeader>
       <br />
       <ElementHeader {...args}>
-        <ElementHeader.StatusDotMultiComposition>
+        <ElementHeader.StatusDotList>
           <StatusDot variant={StatusDotVariant.alert} text="StatusDot label" />
           <StatusDot variant={StatusDotVariant.attachment} text="StatusDot label" />
-        </ElementHeader.StatusDotMultiComposition>
-        <ElementHeader.Text firstText="With StatusDotMultiComposition default" />
+        </ElementHeader.StatusDotList>
+        <ElementHeader.Text firstText="With StatusDotList default" />
       </ElementHeader>
       <br />
       <ElementHeader {...args}>
-        <ElementHeader.StatusDotMultiComposition stacking="vertical">
+        <ElementHeader.StatusDotList stacking="vertical">
           <StatusDot variant={StatusDotVariant.alert} text="StatusDot label" />
           <StatusDot variant={StatusDotVariant.attachment} text="StatusDot label" />
-        </ElementHeader.StatusDotMultiComposition>
-        <ElementHeader.Text firstText="With StatusDotMultiComposition vertical" />
+        </ElementHeader.StatusDotList>
+        <ElementHeader.Text firstText="With StatusDotList vertical" />
       </ElementHeader>
       <br />
       <ElementHeader {...args}>
-        <ElementHeader.StatusDotMultiComposition stacking="vertical" hiddenForChild>
+        <ElementHeader.StatusDotList stacking="vertical" hiddenForChild>
           <StatusDot variant={StatusDotVariant.alert} text="StatusDot label" />
           <StatusDot variant={StatusDotVariant.attachment} text="StatusDot label" />
-        </ElementHeader.StatusDotMultiComposition>
+        </ElementHeader.StatusDotList>
         <ElementHeader.Text firstText="With hiddenForChild" />
       </ElementHeader>
       <br />
       <ElementHeader {...args}>
-        <ElementHeader.StatusDotMultiComposition
+        <ElementHeader.StatusDotList
           topStatusDot={<StatusDot variant={StatusDotVariant.exception} text="Top StatusDot" />}
           bottomStatusDot={<StatusDot variant={StatusDotVariant.group} text="Bottom StatusDot" />}
         >
           <StatusDot variant={StatusDotVariant.alert} text="StatusDot label" />
           <StatusDot variant={StatusDotVariant.attachment} text="StatusDot label" />
-        </ElementHeader.StatusDotMultiComposition>
-        <ElementHeader.Text firstText="With StatusDotMultiComposition" />
+        </ElementHeader.StatusDotList>
+        <ElementHeader.Text firstText="With StatusDotList" />
       </ElementHeader>
     </>
   ),
@@ -243,7 +243,7 @@ export const WithEverything: Story = {
   },
   render: args => (
     <ElementHeader {...args}>
-      <ElementHeader.StatusDotMultiComposition
+      <ElementHeader.StatusDotList
         hiddenForChild
         bottomStatusDot={<StatusDot variant={StatusDotVariant.success} text="Label" />}
         additionalText="Additional text"
@@ -252,7 +252,7 @@ export const WithEverything: Story = {
         <StatusDot variant={StatusDotVariant.recurring} text="Label" />
         <StatusDot variant={StatusDotVariant.group} text="Label" />
         <StatusDot variant={StatusDotVariant.attachment} text="Label" />
-      </ElementHeader.StatusDotMultiComposition>
+      </ElementHeader.StatusDotList>
       <ElementHeader.Text firstText="Label" firstTextEmphasised />
       <ElementHeader.Text subText firstText="Sublabel 1" />
       <ElementHeader.Text subText firstText="Emphasized sublabel" firstTextEmphasised />
