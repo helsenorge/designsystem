@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { LanguageLocales } from '../../constants';
+import { useExpand } from '../../hooks/useExpand';
 import { PaletteNames } from '../../theme/palette';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
@@ -51,6 +52,8 @@ export interface PanelProps {
   buttonBottomText?: string;
   /** Sets the action on the bottom call to action button */
   buttonBottomOnClick?: () => void;
+  /** Expands or collapses the panel. Only applicable when ExpandedContent is used */
+  expanded?: boolean;
   /** Sets the layout and order of the content boxes */
   layout?: PanelLayout;
   /** Sets the visual variant of panel */
@@ -107,6 +110,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     stacking = PanelStacking.default,
     testId,
     children,
+    expanded = false,
     status = PanelStatus.none,
     buttonBottomAriaLabel,
     buttonBottomOnClick,
@@ -123,7 +127,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
   const [content, setContent] = React.useState<React.ReactNode[]>([]);
   const [expandableContent, setExpandableContent] = React.useState<React.ReactNode[]>([]);
   const [hasIcon, setHasIcon] = React.useState(false);
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
   const localRef = React.useRef<HTMLDivElement>(null);
   const panelRef = ref ?? localRef;
   const expandedContentRef = React.useRef<HTMLDivElement>(null);
@@ -171,7 +175,11 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
   }, [children]);
 
   React.useEffect(() => {
-    // Scroller oppover når expanded content åpnes
+    if (expanded) {
+      // Hvis panel åpnes controlled skal ikke scroll skje
+      return;
+    }
+    // Scroller oppover når expanded content åpnes uncontrolled
     if (isExpanded) {
       if ('current' in panelRef && panelRef.current && expandedContentRef.current) {
         const panelRect = panelRef.current.getBoundingClientRect();
