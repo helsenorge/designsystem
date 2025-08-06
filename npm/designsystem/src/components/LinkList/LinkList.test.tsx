@@ -5,21 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import LinkList from './LinkList';
 import Badge from '../Badge';
-import Icon from '../Icon';
-import AlarmClock from '../Icons/AlarmClock';
-import ListHeader from '../ListHeader/ListHeader';
-import ListHeaderText from '../ListHeader/ListHeaderText/ListHeaderText';
-
-test('displays a list of links', (): void => {
-  const { container } = render(
-    <LinkList color="cherry">
-      <LinkList.Link icon={<Icon svgIcon={AlarmClock} />}>{'Link 1'}</LinkList.Link>
-      <LinkList.Link>{'Link 2'}</LinkList.Link>
-      <LinkList.Link>{'Link 3'}</LinkList.Link>
-    </LinkList>
-  );
-  expect(container).toMatchSnapshot();
-});
+import ElementHeader from '../ElementHeader';
 
 describe('Gitt at LinkList skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {
@@ -146,12 +132,12 @@ describe('Gitt at linkene skal ha badges', () => {
       render(
         <LinkList testId="bare-tester">
           <LinkList.Link>
-            <ListHeader>
-              <ListHeaderText firstText="Link 1" />
+            <ElementHeader>
+              <ElementHeader.Text firstText="Link 1" />
               <Badge type="string" testId="badge">
                 {'Badge'}
               </Badge>
-            </ListHeader>
+            </ElementHeader>
           </LinkList.Link>
         </LinkList>
       );
@@ -167,15 +153,15 @@ describe('Gitt at linkene skal ha badges', () => {
       render(
         <LinkList testId="bare-tester">
           <LinkList.Link>
-            <ListHeader>
-              <ListHeaderText firstText="Link 1" />
+            <ElementHeader>
+              <ElementHeader.Text firstText="Link 1" />
               <Badge type="string" testId="first">
                 {'Badge 1'}
               </Badge>
               <Badge type="string" testId="second">
                 {'Badge 2'}
               </Badge>
-            </ListHeader>
+            </ElementHeader>
           </LinkList.Link>
         </LinkList>
       );

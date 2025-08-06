@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import Panel, { PanelVariant, PanelLayout, PanelStacking, PanelStatus } from './Panel';
 import { PanelDocs } from './Paneldocs';
@@ -59,8 +59,17 @@ const meta = {
       control: 'select',
       options: Object.values(PanelStatus),
     },
+    buttonBottomAriaLabel: {
+      control: 'text',
+    },
     buttonBottomText: {
       control: 'text',
+    },
+    highlightText: {
+      control: 'text',
+    },
+    expanded: {
+      control: 'boolean',
     },
   },
 } satisfies Meta<typeof Panel>;
@@ -869,6 +878,29 @@ export const Expandable: Story = {
             {'Dette er skjult'}
           </Title>
           <p>{'Men når man åpner expanderen vil det vises'}</p>
+        </Panel.ExpandedContent>
+      </Panel>
+    );
+  },
+};
+
+export const ExpandableControlled: Story = {
+  args: {
+    expanded: true,
+  },
+  render: args => {
+    return (
+      <Panel {...args}>
+        <Panel.Title title="Denne har en knapp og skjult innhold" />
+        <Panel.PreContainer></Panel.PreContainer>
+        <Panel.A>
+          <span>{'Noe innhold'}</span>
+        </Panel.A>
+        <Panel.ExpandedContent>
+          <Title appearance="title4" htmlMarkup="h4">
+            {'Dette er åpent by default'}
+          </Title>
+          <p>{'Men lukker seg om man lukker expander'}</p>
         </Panel.ExpandedContent>
       </Panel>
     );

@@ -1,3 +1,24 @@
+## 12.0.0-beta.2 (2025-08-01)
+
+
+### Features
+
+*  ta i bruk nye prosesshjelp fargetokens ([4330037](https://github.com/helsenorge/designsystem/commit/43300372ca04dd26cd207aa9ddebf4f0e8e8dd6f)), closes [#351112](https://github.com/helsenorge/designsystem/issues/351112) [#353025](https://github.com/helsenorge/designsystem/issues/353025)
+* **elementheader:**  nytt navn på listheader og oppdatert design ([e42d370](https://github.com/helsenorge/designsystem/commit/e42d37014aa84142bc4a0a4ec3324f77b7f31887)), closes [#355123](https://github.com/helsenorge/designsystem/issues/355123)
+* **expanderlist:**  mulighet for status new og små designendringer ([d94734f](https://github.com/helsenorge/designsystem/commit/d94734f8d3f2df722510ad3ce031c5652e149e74)), closes [#354210](https://github.com/helsenorge/designsystem/issues/354210)
+* **expanderlist:**  tydeliggjør forskjellen mellom innhold og knapp ved ekspansjon ([ae537bf](https://github.com/helsenorge/designsystem/commit/ae537bf679327c470a969b4f54c393c278ca87a4)), closes [#355711](https://github.com/helsenorge/designsystem/issues/355711)
+* **helpbubble:**  aria props er lagt til ([a95f503](https://github.com/helsenorge/designsystem/commit/a95f503a9b08eb68d5084d58e23c7148eb1a3429)), closes [#346605](https://github.com/helsenorge/designsystem/issues/346605)
+* **helptooltip:**  children type kan nå brukes med cmset ([e2f9081](https://github.com/helsenorge/designsystem/commit/e2f9081fcb307013d0f52fc48b9e0c0132e34d94)), closes [#355554](https://github.com/helsenorge/designsystem/issues/355554)
+* **linklist:**  mulighet for status new og små designendringer ([27c0365](https://github.com/helsenorge/designsystem/commit/27c0365930b715f90b74d80f7f906f9502c81ac3)), closes [#353721](https://github.com/helsenorge/designsystem/issues/353721) [#355891](https://github.com/helsenorge/designsystem/issues/355891)
+
+
+### Bug Fixes
+
+*  helptriggerinline og helptriggerstandalone underline vises på safari ([8579bab](https://github.com/helsenorge/designsystem/commit/8579bab9315a9c5e0dd456c4546a56f68a4580d5)), closes [#355480](https://github.com/helsenorge/designsystem/issues/355480)
+* **helpdrawer:**  kommer fra venstre side på desktop ([db0d8ef](https://github.com/helsenorge/designsystem/commit/db0d8efd5aecd76acc871d114dfa2efb1c204083)), closes [#355122](https://github.com/helsenorge/designsystem/issues/355122)
+* **helptriggerinline:**  boble får riktig bredde når brukt med helptriggerinline ([1b30878](https://github.com/helsenorge/designsystem/commit/1b30878d0c9f0526a719a8f116a1a3181b58076a)), closes [#355552](https://github.com/helsenorge/designsystem/issues/355552)
+* **popover:**  pil og bubble får ikke artifakter ved zooming ([6aafa55](https://github.com/helsenorge/designsystem/commit/6aafa55c13f9049e624fb1e6f64d0b6db992eec5)), closes [#354396](https://github.com/helsenorge/designsystem/issues/354396)
+
 ## 12.0.0-beta.1 (2025-06-17)
 
 
@@ -18,12 +39,6 @@
 
 *  helptrigger blir erstattet av helptriggericon helptriggerinline og helptriggerstandalone ([3b0556b](https://github.com/helsenorge/designsystem/commit/3b0556bd5ef225718a28175e42a5e4070c4158e1)), closes [#350475](https://github.com/helsenorge/designsystem/issues/350475)
 *  nye komponenter helpexpanderinline og helpexpanderstandalone ([b38f230](https://github.com/helsenorge/designsystem/commit/b38f2308f4b72756784874e4b49295d9e168e040)), closes [#350484](https://github.com/helsenorge/designsystem/issues/350484)
-*  prosesshjelp fargetokens lagt til ([c70fb44](https://github.com/helsenorge/designsystem/commit/c70fb44c9b95338f1e19563931d707a5921e311b)), closes [#353506](https://github.com/helsenorge/designsystem/issues/353506)
-*  spacers tokens ([575cd80](https://github.com/helsenorge/designsystem/commit/575cd8081ffdb9c96b7df28e85fa4ff3bd4025db)), closes [#351112](https://github.com/helsenorge/designsystem/issues/351112)
-* **drawer:**  flytt lukkekryss til hjørnet ([2b8ff77](https://github.com/helsenorge/designsystem/commit/2b8ff771c5de8bbe7a6f1b257f2df35d8e01bced))
-* **drawer:**  gjør onclose optional ([6eb0bf3](https://github.com/helsenorge/designsystem/commit/6eb0bf3a97b465ba11abba7e4b6b9023130bf788))
-* **drawer:**  legg på shadow ved scroll istedenfor border ([2f3162a](https://github.com/helsenorge/designsystem/commit/2f3162a2903e6e7ce12d95d99b55909282fbcb76))
-* **drawer:**  stopp scrolling bak drawer ([4e5ebe1](https://github.com/helsenorge/designsystem/commit/4e5ebe16b8340c28ea2066d7a63f2065bef19de9))
 * **helpbubble:**  flytt lukkekryss helt til hjørnet ([2b3c54d](https://github.com/helsenorge/designsystem/commit/2b3c54d6aac8bc074eeb6f62ddb0b5bc6c3f421f)), closes [#352915](https://github.com/helsenorge/designsystem/issues/352915)
 * **helppanel:**  ny border og spacing til tittel ([b47870f](https://github.com/helsenorge/designsystem/commit/b47870ff5cb571d09adcc921bbfc7270e640dba0))
 * **helptooltip:**  fjern provider og rydd opp i tooltip role ([37215ca](https://github.com/helsenorge/designsystem/commit/37215cac7626448915020f7d72f5d848dd8bd515)), closes [#350651](https://github.com/helsenorge/designsystem/issues/350651)
@@ -36,13 +51,79 @@
 
 ### Bug Fixes
 
-*  drawer og modal får lik overlay ([99efb7b](https://github.com/helsenorge/designsystem/commit/99efb7b9ac463e09678f081417be006cd9954d87)), closes [#352610](https://github.com/helsenorge/designsystem/issues/352610)
-* **close:**  riktig size på inner container for small versjon ([d23f53a](https://github.com/helsenorge/designsystem/commit/d23f53a959e0c2cd17bde70431775a90d0c5382b)), closes [#352915](https://github.com/helsenorge/designsystem/issues/352915)
-* **drawer:**  legg til scroll shadow også på tiny screen query ([1cdf6df](https://github.com/helsenorge/designsystem/commit/1cdf6dfc78b3e71bbebe2d2ad6104e6e36ea5e0a)), closes [#352610](https://github.com/helsenorge/designsystem/issues/352610)
 * **helptriggericon:**  strong focus styling riktig størrelse ([ada7679](https://github.com/helsenorge/designsystem/commit/ada7679c59fe0754d74211f9087d73f504313faf)), closes [#350475](https://github.com/helsenorge/designsystem/issues/350475)
 * **helptriggericon:**  svg får riktig rolle og aria ([e1cac75](https://github.com/helsenorge/designsystem/commit/e1cac758b62fddd560bd21fda2bf4905676292fd)), closes [#350475](https://github.com/helsenorge/designsystem/issues/350475)
 * **popover:**  fiks padding for popover og popmenu ([c4d916c](https://github.com/helsenorge/designsystem/commit/c4d916cc48d2cc95bc7461a43dbe1fbc67c81576)), closes [#350488](https://github.com/helsenorge/designsystem/issues/350488)
 * **popover:**  sett border radius lik som skisser ([d665e38](https://github.com/helsenorge/designsystem/commit/d665e385b5187be9674b35a15fae4dfc3c9055a6)), closes [#350488](https://github.com/helsenorge/designsystem/issues/350488)
+
+## [11.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.4.1&targetVersion=GTv11.5.0) (2025-07-30)
+
+
+### Features
+
+*  clickarea for radiobutton og checkbox oppfyller uu krav ([0e01c6f](https://github.com/helsenorge/designsystem/commit/0e01c6f745600ee60c2e704cbe3e6109532004e3)), closes [#355146](https://github.com/helsenorge/designsystem/issues/355146)
+* **highlighter:**  ny komponent ([974bded](https://github.com/helsenorge/designsystem/commit/974bdedb7109d32271a292b995008e848dd6d2bb)), closes [#341189](https://github.com/helsenorge/designsystem/issues/341189)
+* **panel:**  legg til aria label for buttonBottom ([470fd44](https://github.com/helsenorge/designsystem/commit/470fd443a1ae56f7225a013e91c52cad57d8c960)), closes [#356384](https://github.com/helsenorge/designsystem/issues/356384)
+
+
+### Bug Fixes
+
+*  colorscss og spacerscss importeres i helsenorgecss ([321fdff](https://github.com/helsenorge/designsystem/commit/321fdff9133ae974d60855e3f995841db824d042)), closes [#355112](https://github.com/helsenorge/designsystem/issues/355112)
+* **toggle:**  lagt til role switch ([d70ac71](https://github.com/helsenorge/designsystem/commit/d70ac718012d47a9a6e46098390314e17ed18290)), closes [#356306](https://github.com/helsenorge/designsystem/issues/356306)
+
+## [11.4.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.4.0&targetVersion=GTv11.4.1) (2025-07-11)
+
+
+### Bug Fixes
+
+* **panel:**  legg til manglende onexpand function prop ([a2ee192](https://github.com/helsenorge/designsystem/commit/a2ee19211b5b808bdea0b82484125622ef1cef48)), closes [#356092](https://github.com/helsenorge/designsystem/issues/356092)
+
+## [11.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.3.1&targetVersion=GTv11.4.0) (2025-07-08)
+
+
+### Features
+
+*  oppdatert help fargetoken ([31d3226](https://github.com/helsenorge/designsystem/commit/31d32262b902c0dd3c39d5ec8d0e98ec96d88b34)), closes [#351112](https://github.com/helsenorge/designsystem/issues/351112)
+* **icon:**  nytt ikon treatmentaids ([a76a8fe](https://github.com/helsenorge/designsystem/commit/a76a8fe45a2e072af895a84b6288edfcf5959aa2)), closes [#354525](https://github.com/helsenorge/designsystem/issues/354525)
+* **panel:**  legg til ref ([306b176](https://github.com/helsenorge/designsystem/commit/306b176c7b6cf7b6f49d4bef56a3fd2f9f7a3fb0)), closes [#354177](https://github.com/helsenorge/designsystem/issues/354177)
+* **panel:**  oppdatert markering av ny-state ([dc9539d](https://github.com/helsenorge/designsystem/commit/dc9539d9c3f8663913866d8c9e59a101cee5deb8)), closes [#353574](https://github.com/helsenorge/designsystem/issues/353574)
+* **statusdot:**  legg til 3 nye statusdotter ([a03339c](https://github.com/helsenorge/designsystem/commit/a03339cfca0901abebf41ce5422e8b2dd1c44d91)), closes [#355543](https://github.com/helsenorge/designsystem/issues/355543)
+* **step:**  legg til mulighet for custom classes ([e7c99e8](https://github.com/helsenorge/designsystem/commit/e7c99e8cf2650affcafb523aaed0760af6d25e32)), closes [#355590](https://github.com/helsenorge/designsystem/issues/355590)
+
+
+### Bug Fixes
+
+* **articleteaser:**  gradient har myk overgang ([3483d7e](https://github.com/helsenorge/designsystem/commit/3483d7e86d222805ae30379b33531889f5de59a6)), closes [#354140](https://github.com/helsenorge/designsystem/issues/354140)
+* **badge:**  kontrast på notification badge warn ([5284733](https://github.com/helsenorge/designsystem/commit/52847332b71f2ce49519a4a65d2dbe83002cfded)), closes [#355693](https://github.com/helsenorge/designsystem/issues/355693)
+* **datepicker:**  focus underline vises på safari ([b79160a](https://github.com/helsenorge/designsystem/commit/b79160a976b87e1e272201cd4962b47a1866b063)), closes [#355604](https://github.com/helsenorge/designsystem/issues/355604)
+* **lightbox:**  riktig fokushåndtering ([da4de84](https://github.com/helsenorge/designsystem/commit/da4de840e098c922f7978dd2d1896c746a3f86bd)), closes [#354742](https://github.com/helsenorge/designsystem/issues/354742)
+* **listheader:**  fiks ikonstørrelse for minste breakpoint ([21de566](https://github.com/helsenorge/designsystem/commit/21de566bafdf2f666a74864681a8985f0efc00e2)), closes [#350169](https://github.com/helsenorge/designsystem/issues/350169)
+
+## [11.3.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.3.0&targetVersion=GTv11.3.1) (2025-06-17)
+
+
+### Features
+
+* **panel:**  setter testid på ekspandert innhold ([f0a670b](https://github.com/helsenorge/designsystem/commit/f0a670bda5cae7b47e1b51455d99678871215d33)), closes [#354743](https://github.com/helsenorge/designsystem/issues/354743)
+
+## [11.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.2.0&targetVersion=GTv11.3.0) (2025-06-10)
+
+
+### Features
+
+*  prosesshjelp fargetokens lagt til ([c70fb44](https://github.com/helsenorge/designsystem/commit/c70fb44c9b95338f1e19563931d707a5921e311b)), closes [#353506](https://github.com/helsenorge/designsystem/issues/353506)
+*  spacers tokens ([575cd80](https://github.com/helsenorge/designsystem/commit/575cd8081ffdb9c96b7df28e85fa4ff3bd4025db)), closes [#351112](https://github.com/helsenorge/designsystem/issues/351112)
+* **drawer:**  flytt lukkekryss til hjørnet ([2b8ff77](https://github.com/helsenorge/designsystem/commit/2b8ff771c5de8bbe7a6f1b257f2df35d8e01bced))
+* **drawer:**  gjør onclose optional ([6eb0bf3](https://github.com/helsenorge/designsystem/commit/6eb0bf3a97b465ba11abba7e4b6b9023130bf788))
+* **drawer:**  legg på shadow ved scroll istedenfor border ([2f3162a](https://github.com/helsenorge/designsystem/commit/2f3162a2903e6e7ce12d95d99b55909282fbcb76))
+* **drawer:**  stopp scrolling bak drawer ([4e5ebe1](https://github.com/helsenorge/designsystem/commit/4e5ebe16b8340c28ea2066d7a63f2065bef19de9))
+
+
+### Bug Fixes
+
+*  drawer og modal får lik overlay ([99efb7b](https://github.com/helsenorge/designsystem/commit/99efb7b9ac463e09678f081417be006cd9954d87)), closes [#352610](https://github.com/helsenorge/designsystem/issues/352610)
+* **close:**  riktig size på inner container for small versjon ([d23f53a](https://github.com/helsenorge/designsystem/commit/d23f53a959e0c2cd17bde70431775a90d0c5382b)), closes [#352915](https://github.com/helsenorge/designsystem/issues/352915)
+* **drawer:**  legg til scroll shadow også på tiny screen query ([1cdf6df](https://github.com/helsenorge/designsystem/commit/1cdf6dfc78b3e71bbebe2d2ad6104e6e36ea5e0a)), closes [#352610](https://github.com/helsenorge/designsystem/issues/352610)
 
 ## [11.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.1.0&targetVersion=GTv11.2.0) (2025-05-27)
 

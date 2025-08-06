@@ -3,12 +3,13 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/breakpoints' as breakpoints;
 
-.list-header {
+.element-header {
+  margin: 0.5rem;
   display: grid;
   grid-template:
-    'icon text badge chevron' 4rem
-    '. text . .' auto / min-content auto min-content min-content;
-  column-gap: spacers.getSpacer(2xs);
+    '. statusdots badge chevron' auto
+    'icon text badge chevron' 3rem
+    '. text badge chevron' auto / min-content auto min-content min-content;
   margin-left: spacers.getSpacer(2xs);
   margin-right: spacers.getSpacer(2xs);
   width: 100%;
@@ -28,8 +29,23 @@
     height: 100%;
     grid-area: text;
     align-self: center;
-    padding-top: 1.125rem;
-    padding-bottom: 1.125rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    padding-left: 0.5rem;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+
+    &[data-hasstatusdots='true'] {
+      padding-top: 0.125rem;
+      padding-bottom: 0;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding-top: 0;
+      }
+    }
 
     &--element {
       display: flex;
@@ -45,6 +61,10 @@
     :focus-visible > & {
       border-color: palette.$black;
     }
+  }
+
+  &__statusdot-container {
+    grid-area: statusdots;
   }
 
   &__icon,
@@ -67,7 +87,15 @@
 
   &__chevron {
     grid-area: chevron;
-    height: 100%;
+
+    &[data-parenttype='linklist'] {
+      align-self: center;
+      height: 100%;
+    }
+
+    &[data-parenttype='expanderlist'] {
+      align-self: start;
+    }
   }
 
   &__chevron svg,
@@ -79,9 +107,18 @@
     grid-area: badge;
     display: flex;
     flex-flow: row;
-    align-items: center;
-    gap: 0.5rem;
     height: 100%;
+    gap: 0.5rem;
+  }
+
+  &__badge {
+    &[data-parenttype='linklist'] {
+      align-self: center;
+    }
+
+    &[data-parenttype='expanderlist'] {
+      align-self: start;
+    }
   }
 
   &__badge:has(svg),

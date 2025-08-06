@@ -114,7 +114,11 @@ export interface StatusDotProps {
   testId?: string;
 }
 
-const StatusDot: React.FC<StatusDotProps> = props => {
+export type StatusDotType = React.ForwardRefExoticComponent<StatusDotProps & React.RefAttributes<HTMLElement>>;
+const StatusDot: StatusDotType = React.forwardRef(function StatusDotForwardedRef(
+  props: StatusDotProps,
+  ref: React.ForwardedRef<HTMLElement>
+) {
   const { id, onColor = StatusDotOnColor.onwhite, variant = StatusDotVariant.info, text, className, testId } = props;
 
   const statusDotClasses = classNames(styles['statusdot'], className);
@@ -123,13 +127,13 @@ const StatusDot: React.FC<StatusDotProps> = props => {
   });
 
   return (
-    <span id={id} className={statusDotClasses} data-testid={testId} data-analyticsid={AnalyticsId.StatusDot}>
+    <span id={id} ref={ref} className={statusDotClasses} data-testid={testId} data-analyticsid={AnalyticsId.StatusDot}>
       <span className={styles['statusdot__dot']} data-testid={testId + '-dot'}>
         <StatusDotIcon onColor={onColor} variant={variant} />
       </span>
       <span className={labelClasses}>{text}</span>
     </span>
   );
-};
+});
 
 export default StatusDot;

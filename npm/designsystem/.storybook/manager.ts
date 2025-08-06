@@ -1,5 +1,5 @@
-import { addons } from '@storybook/manager-api';
-import { create } from '@storybook/theming/create';
+import { addons } from 'storybook/manager-api';
+import { create } from 'storybook/theming';
 import { defaultConfig, type TagBadgeParameters } from 'storybook-addon-tag-badges';
 
 import { palette } from '../src/theme/palette';
@@ -18,8 +18,10 @@ addons.setConfig({
       tags: 'breaking',
       badge: {
         text: 'Breaking',
-        bgColor: '#fcf2bf',
-        fgColor: '#764f00',
+        style: {
+          backgroundColor: '#fcf2bf',
+          color: '#764f00',
+        },
         tooltip: 'Breaking changes added to this component',
       },
     },
@@ -27,8 +29,10 @@ addons.setConfig({
       tags: 'not-supernova',
       badge: {
         text: 'Not in documentation',
-        bgColor: '#eec0a5',
-        fgColor: '#912112',
+        style: {
+          backgroundColor: '#eec0a5',
+          color: '#912112',
+        },
         tooltip: 'This component is not documented in Supernova',
       },
       display: {
@@ -40,8 +44,10 @@ addons.setConfig({
       tags: 'new',
       badge: {
         text: 'New',
-        bgColor: '#afdae3',
-        fgColor: '#06596c',
+        style: {
+          backgroundColor: '#afdae3',
+          color: '#06596c',
+        },
         tooltip: 'New component',
       },
     },
@@ -49,8 +55,10 @@ addons.setConfig({
       tags: 'beta',
       badge: {
         text: 'Beta',
-        bgColor: '#bf98f3',
-        fgColor: '#4c1b8c',
+        style: {
+          backgroundColor: '#bf98f3',
+          color: '#4c1b8c',
+        },
         tooltip: 'New component',
       },
     },
@@ -58,8 +66,10 @@ addons.setConfig({
       tags: 'deprecated',
       badge: {
         text: 'Deprecated',
-        bgColor: '#eec0a5',
-        fgColor: '#912112',
+        style: {
+          backgroundColor: '#eec0a5',
+          color: '#912112',
+        },
         tooltip: 'Deprecated component that will be removed in a future release',
       },
     },
@@ -67,8 +77,10 @@ addons.setConfig({
       tags: 'outdated',
       badge: {
         text: 'Outdated',
-        bgColor: '#d6d4d3',
-        fgColor: '#474745',
+        style: {
+          backgroundColor: '#d6d4d3',
+          color: '#474745',
+        },
         tooltip: 'This component has new features in Figma that is not yet implemented',
       },
     },

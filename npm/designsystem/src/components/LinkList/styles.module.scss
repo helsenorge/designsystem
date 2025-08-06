@@ -4,12 +4,32 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
 
 .link-list {
   list-style: none;
   padding: 0;
   width: inherit;
   margin: 0;
+  position: relative;
+
+  &--outline {
+    &--neutral {
+      border: 1px solid var(--color-base-border-onlight);
+    }
+
+    &--blueberry {
+      border: 1px solid var(--core-color-blueberry-500);
+    }
+
+    &--cherry {
+      border: 1px solid var(--core-color-cherry-400);
+    }
+
+    &--white {
+      border: 1px solid var(--color-base-border-onlight);
+    }
+  }
 
   &__list-item {
     &--line {
@@ -101,6 +121,23 @@
     &--fill,
     &--fill-negative {
       margin-top: spacers.getSpacer(s);
+
+      &--blueberry {
+        border: 1px solid var(--core-color-blueberry-500);
+      }
+
+      &--cherry {
+        border: 1px solid var(--core-color-cherry-400);
+      }
+
+      &--neutral {
+        border: 1px solid var(--color-base-border-onlight);
+      }
+
+      // Skal ikke brukes, men klassen er definert for enkelhets skyld
+      &--white {
+        border: 1px solid var(--color-base-border-onlight);
+      }
     }
 
     &--fill-negative {
@@ -182,6 +219,9 @@
     &:focus,
     &:focus-visible {
       outline: 4px solid var(--color-action-border-onlight-focus);
+      outline-offset: 0; // Override user agent default
+      position: relative;
+      z-index: 1;
     }
 
     &--outline {
@@ -192,6 +232,8 @@
       }
 
       &--blueberry {
+        border-bottom: 1px solid var(--core-color-blueberry-500);
+
         &:hover {
           background-color: var(--core-color-blueberry-50);
         }
@@ -202,6 +244,8 @@
       }
 
       &--cherry {
+        border-bottom: 1px solid var(--core-color-cherry-400);
+
         &:hover {
           background-color: var(--core-color-cherry-50);
         }
@@ -212,6 +256,8 @@
       }
 
       &--neutral {
+        border-bottom: 1px solid var(--color-base-border-onlight);
+
         &:hover {
           background-color: var(--core-color-neutral-50);
         }
@@ -220,6 +266,48 @@
           background-color: var(--core-color-neutral-100);
         }
       }
+    }
+
+    &--new {
+      background-color: var(--core-color-blueberry-50) !important;
+
+      &:hover {
+        background-color: var(--core-color-blueberry-100) !important;
+      }
+
+      &:active {
+        background-color: var(--core-color-blueberry-200) !important;
+      }
+    }
+  }
+
+  &__image-container {
+    display: inline-block;
+
+    img {
+      display: block;
+      padding: var(--core-space-4xs);
+      max-width: 38px;
+      max-height: 38px;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: var(--core-space-3xs);
+        max-width: 48px;
+        max-height: 48px;
+      }
+    }
+  }
+
+  &__status-marker {
+    width: 6px;
+    height: 100%;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &--new {
+      background-color: var(--color-notification-status-info);
     }
   }
 }

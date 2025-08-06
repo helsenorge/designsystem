@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useSize } from './useSize';
 import HighlightPanel from '../components/HighlightPanel';

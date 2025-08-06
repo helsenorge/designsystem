@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import ExpanderList from './ExpanderList';
 import AvatarComponent from '../Avatar';
 import Badge from '../Badge';
+import ElementHeader from '../ElementHeader';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import Avatar from '../Icons/Avatar';
 import PaperPlane from '../Icons/PaperPlane';
 import LinkList from '../LinkList';
-import ListHeader from '../ListHeader/ListHeader';
-import ListHeaderText from '../ListHeader/ListHeaderText';
 import StatusDot, { StatusDotVariant } from '../StatusDot';
 import Title from '../Title/Title';
+import Toggle from '../Toggle';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/ExpanderList',
@@ -57,6 +57,9 @@ const meta = {
     },
     large: {
       control: 'boolean',
+    },
+    highlightText: {
+      control: 'text',
     },
   },
 } satisfies Meta<typeof ExpanderList>;
@@ -112,6 +115,7 @@ export const VariantLine: Story = {
 export const VariantOutline: Story = {
   args: {
     variant: 'outline',
+    color: 'blueberry',
   },
   render: args => (
     <ExpanderList {...args}>
@@ -123,6 +127,7 @@ export const VariantOutline: Story = {
 export const VariantFill: Story = {
   args: {
     variant: 'fill',
+    color: 'blueberry',
   },
   render: args => (
     <ExpanderList {...args}>
@@ -135,6 +140,7 @@ export const VariantFill: Story = {
 export const VariantFillNegative: Story = {
   args: {
     variant: 'fill-negative',
+    color: 'blueberry',
   },
   render: args => (
     <ExpanderList {...args}>
@@ -144,26 +150,20 @@ export const VariantFillNegative: Story = {
   ),
 };
 
-export const WithListHeaderComp: Story = {
+export const WithElementHeaderComp: Story = {
   render: args => {
-    const listHeader = (
-      <ListHeader>
-        <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-        <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-        <ListHeaderText subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
-        <ListHeaderText
-          subText
-          statusDotVariant={StatusDotVariant.alert}
-          firstText={'Statdot og uthevet skrift'}
-          firstTextEmphasised
-          secondText=""
-        />
-      </ListHeader>
+    const elementHeader = (
+      <ElementHeader>
+        <ElementHeader.Text firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+        <ElementHeader.Text subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+        <ElementHeader.Text subText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+        <StatusDot text="Statusdot" variant={StatusDotVariant.alert} />
+      </ElementHeader>
     );
 
     return (
       <ExpanderList {...args}>
-        <ExpanderList.Expander title={listHeader} icon={<Icon svgIcon={AlarmClock} />}>
+        <ExpanderList.Expander title={elementHeader} icon={<Icon svgIcon={AlarmClock} />}>
           {'test'}
         </ExpanderList.Expander>
       </ExpanderList>
@@ -172,26 +172,26 @@ export const WithListHeaderComp: Story = {
 };
 export const WithAvatarAndBadge: Story = {
   render: args => {
-    const listHeader = (
-      <ListHeader>
-        <ListHeaderText firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
+    const elementHeader = (
+      <ElementHeader>
+        <ElementHeader.Text firstText="Emphasized label segment" firstTextEmphasised secondText=" and normal segment" />
         <AvatarComponent>{'Line Danser'}</AvatarComponent>
         <Badge color="blueberry">{'10000'}</Badge>
-      </ListHeader>
+      </ElementHeader>
     );
 
-    const listHeader2 = (
-      <ListHeader titleHtmlMarkup="span">
+    const elementHeader2 = (
+      <ElementHeader titleHtmlMarkup="span">
         {'ExpanderListText'}
         <Badge color="blueberry">{'Ny'}</Badge>
         <AvatarComponent>{'Line Danser'}</AvatarComponent>
-      </ListHeader>
+      </ElementHeader>
     );
 
     return (
       <ExpanderList {...args}>
-        <ExpanderList.Expander title={listHeader}>{'test'}</ExpanderList.Expander>
-        <ExpanderList.Expander title={listHeader2}>{'test'}</ExpanderList.Expander>
+        <ExpanderList.Expander title={elementHeader}>{'test'}</ExpanderList.Expander>
+        <ExpanderList.Expander title={elementHeader2}>{'test'}</ExpanderList.Expander>
       </ExpanderList>
     );
   },
@@ -245,8 +245,8 @@ export const WithIcon: Story = {
 
 export const WithLinkList: Story = {
   render: args => (
-    <ExpanderList {...args}>
-      <ExpanderList.Expander title="Kognitiv terapi">
+    <ExpanderList {...args} highlightText="kog">
+      <ExpanderList.Expander title="Kognitiv terapi" highlightText="-">
         <LinkList color="cherry">
           <LinkList.Link href="/kognitivterapi1">{'Første lenke'}</LinkList.Link>
           <LinkList.Link href="/kognitivterapi2">{'Andre lenke'}</LinkList.Link>
@@ -448,4 +448,89 @@ export const WithTitleHtmlMarkup: Story = {
       </ExpanderList>
     </>
   ),
+};
+
+export const WithHighlight: Story = {
+  args: {
+    highlightText: 'her',
+  },
+  render: args => (
+    <>
+      <ExpanderList {...args}>
+        <ExpanderList.Expander title="Her skrives en kort overskrift. Helst ikke gå over en linje.">{args.children}</ExpanderList.Expander>
+        <ExpanderList.Expander title="Her skrives en kort overskrift. Helst ikke gå over en linje.">{args.children}</ExpanderList.Expander>
+      </ExpanderList>
+    </>
+  ),
+};
+
+export const WithHighlightOnListHeaderOnly: Story = {
+  render: args => {
+    const listHeader = (
+      <ElementHeader>
+        <ElementHeader.Text
+          highlightText={args.highlightText}
+          firstText="Emphasized label segment"
+          firstTextEmphasised
+          secondText=" and normal segment"
+        />
+        <ElementHeader.Text
+          highlightText={args.highlightText}
+          subText
+          firstText="Emphasized label segment"
+          firstTextEmphasised
+          secondText=" and normal segment"
+        />
+        <ElementHeader.Text
+          highlightText={args.highlightText}
+          subText
+          firstText="Emphasized label segment"
+          firstTextEmphasised
+          secondText=" and normal segment"
+        />
+      </ElementHeader>
+    );
+
+    return (
+      <ExpanderList {...args} highlightText={undefined}>
+        <ExpanderList.Expander title={listHeader} icon={<Icon svgIcon={AlarmClock} />}>
+          <LinkList color="cherry">
+            <LinkList.Link href="/kognitivterapi1">{'Første lenke'}</LinkList.Link>
+            <LinkList.Link href="/kognitivterapi2">{'Andre lenke'}</LinkList.Link>
+            <LinkList.Link href="/kognitivterapi3">{'Tredje lenke'}</LinkList.Link>
+          </LinkList>
+        </ExpanderList.Expander>
+      </ExpanderList>
+    );
+  },
+};
+
+export const WithStatus: Story = {
+  render: args => {
+    const [newStatus, setNewStatus] = useState(false);
+
+    return (
+      <>
+        <ExpanderList {...args}>
+          <ExpanderList.Expander status="new" icon={<Icon svgIcon={Avatar} />} title="Kognitiv terapi">
+            {
+              'Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger og følelser. Et viktig mål er å bryte selvforsterkende onde sirkler som opprettholder psykiske helseproblemer.'
+            }
+          </ExpanderList.Expander>
+          <ExpanderList.Expander icon={<Icon svgIcon={PaperPlane} />} title="Hypokondri">
+            {
+              'Hypokondri er en sykdom der folk føler at de har en sykdom som de i realiteten ikke har. Statens helsetilsyn sier blant annet følgende om sykdommen: «Det vesentlige kjennetegnet er vedvarende opptatthet av muligheten for å ha en eller flere alvorlige og fremadskridende somatiske lidelser».'
+            }
+          </ExpanderList.Expander>
+          <ExpanderList.Expander status={newStatus ? 'new' : 'none'} icon={<Icon svgIcon={AlarmClock} />} title="Hjerneskade">
+            {
+              'De hyppigste årsager til hjerneskader er hjerneblødninger, blodpropper i hjernen, trafik- eller drukneulykker, svulster eller hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.'
+            }
+          </ExpanderList.Expander>
+        </ExpanderList>
+        <br />
+        <Toggle onChange={() => setNewStatus(!newStatus)} checked={newStatus} label={[{ text: 'Status' }]} />
+      </>
+    );
+  },
 };

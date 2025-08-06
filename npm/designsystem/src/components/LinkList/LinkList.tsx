@@ -5,12 +5,14 @@ import cn from 'classnames';
 import { AnalyticsId } from '../../constants';
 import { useHover } from '../../hooks/useHover';
 import { PaletteNames } from '../../theme/palette';
+import { ElementHeaderType, renderElementHeader } from '../ElementHeader/ElementHeader';
 import ChevronRight from '../Icons/ChevronRight';
-import { ListHeaderType, renderListHeader } from '../ListHeader/ListHeader';
 
 import LinkListStyles from './styles.module.scss';
 
 export type LinkListSize = 'small' | 'medium' | 'large';
+
+export type LinkListStatus = 'none' | 'new';
 
 export type LinkAnchorTargets = '_self' | '_blank' | '_parent';
 
@@ -18,7 +20,7 @@ export type LinkListColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cher
 export type LinkListVariant = 'line' | 'outline' | 'fill' | 'fill-negative';
 
 export interface LinkType extends React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLLIElement>> {
-  ListHeader?: ListHeaderType;
+  ElementHeader?: ElementHeaderType;
 }
 
 export type LinkTags = 'button' | 'a';
@@ -41,6 +43,8 @@ export interface LinkListProps {
   testId?: string;
   /** Sets visual priority */
   variant?: LinkListVariant;
+  /** Highlights text. Used for search results */
+  highlightText?: string;
 }
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -52,6 +56,10 @@ export type LinkProps = Modify<
     chevron?: boolean;
     className?: string;
     icon?: React.ReactElement;
+    /** Renders the image in the LinkList header */
+    image?: React.ReactElement;
+    /** Displays a status on the left side: default none */
+    status?: LinkListStatus;
     href?: string;
     target?: LinkAnchorTargets;
     /** HTML markup for link. Default: a */
@@ -62,6 +70,8 @@ export type LinkProps = Modify<
     linkRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
     /** Sets the data-testid attribute. */
     testId?: string;
+    /** Highlights text. Override if different from list */
+    highlightText?: string;
   }
 > &
   Pick<LinkListProps, 'color' | 'size' | 'variant'>;
@@ -72,13 +82,16 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
     className = '',
     color = 'white',
     icon,
+    image,
     size = 'medium',
     chevron = false,
     linkRef,
+    status = 'none',
     testId,
     target,
     variant,
     htmlMarkup = 'a',
+    highlightText,
     ...restProps
   } = props;
   const { hoverRef, isHovered } = useHover<HTMLButtonElement | HTMLAnchorElement>(linkRef);
@@ -88,7 +101,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
   const isOutline = variant === 'outline';
   const isLine = variant === 'line';
 
-  const liClasses = cn({
+  const liClasses = cn(LinkListStyles['link-list'], {
     [LinkListStyles['link-list__list-item--line']]: isLine,
     [LinkListStyles[`link-list__list-item--outline--${color}`]]: isOutline,
   });
@@ -102,11 +115,20 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
       [LinkListStyles['link-list__anchor--outline']]: isOutline,
       [LinkListStyles[`link-list__anchor--outline--${color}`]]: isOutline,
       [LinkListStyles['link-list__anchor--fill-negative']]: isFillNegative,
+      [LinkListStyles[`link-list__anchor--fill-negative--${color}`]]: isFillNegative,
       [LinkListStyles[`link-list__anchor--${size}`]]: size,
       [LinkListStyles['link-list__anchor--button']]: htmlMarkup === 'button',
+      [LinkListStyles['link-list__anchor--new']]: status === 'new',
     },
     className
   );
+
+  const statusMarkerClasses = cn(LinkListStyles['link-list__status-marker'], {
+    [LinkListStyles['link-list__status-marker--new']]: status === 'new',
+  });
+
+  const imageContainer = <span className={LinkListStyles['link-list__image-container']}>{image}</span>;
+
   return (
     <li className={liClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
       {htmlMarkup === 'a' && (
@@ -117,12 +139,30 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
           target={target}
           {...restProps}
         >
-          {renderListHeader(children, 'span', isHovered, size, chevron ? ChevronRight : undefined, icon)}
+          <div className={statusMarkerClasses}></div>
+          {renderElementHeader(children, {
+            titleHtmlMarkup: 'span',
+            isHovered,
+            size,
+            parentType: 'linklist',
+            chevronIcon: chevron ? ChevronRight : undefined,
+            icon: icon ?? imageContainer,
+            highlightText,
+          })}
         </a>
       )}
       {htmlMarkup === 'button' && (
         <button className={linkClasses} ref={hoverRef as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
-          {renderListHeader(children, 'span', isHovered, size, chevron ? ChevronRight : undefined, icon)}
+          <div className={statusMarkerClasses}></div>
+          {renderElementHeader(children, {
+            titleHtmlMarkup: 'span',
+            isHovered,
+            size,
+            parentType: 'linklist',
+            chevronIcon: chevron ? ChevronRight : undefined,
+            icon: icon ?? imageContainer,
+            highlightText,
+          })}
         </button>
       )}
     </li>
@@ -130,12 +170,23 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
 });
 
 export const LinkList = React.forwardRef(function LinkListForwardedRef(props: LinkListProps, ref: React.Ref<HTMLUListElement>) {
-  const { children, className = '', chevron = false, size = 'medium', color, testId, variant = 'line' } = props;
+  const { children, className = '', chevron = false, size = 'medium', color = 'white', testId, variant = 'line', highlightText } = props;
+
+  const listClassNames = cn(LinkListStyles['link-list'], className, {
+    [LinkListStyles[`link-list--outline--${color}`]]: variant === 'outline',
+  });
+
   return (
-    <ul ref={ref} className={cn(LinkListStyles['link-list'], className)} data-testid={testId} data-analyticsid={AnalyticsId.LinkList}>
+    <ul ref={ref} className={listClassNames} data-testid={testId} data-analyticsid={AnalyticsId.LinkList}>
       {React.Children.map(children, (child: React.ReactNode | React.ReactElement<LinkProps>) => {
         if ((child as React.ReactElement<LinkProps>).type === Link) {
-          return React.cloneElement(child as React.ReactElement<LinkProps>, { color, size, chevron, variant });
+          return React.cloneElement(child as React.ReactElement<LinkProps>, {
+            color,
+            size,
+            chevron,
+            variant,
+            highlightText: highlightText,
+          });
         }
       })}
     </ul>

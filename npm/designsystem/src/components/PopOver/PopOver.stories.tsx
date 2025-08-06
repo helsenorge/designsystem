@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import PopOver, { PopOverVariant } from './PopOver';

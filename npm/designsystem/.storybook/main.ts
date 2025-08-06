@@ -29,13 +29,7 @@ const config: StorybookConfig = {
 
   addons: [
     getAbsolutePath('@storybook/addon-a11y'),
-    getAbsolutePath('@storybook/addon-actions'),
-    getAbsolutePath('@storybook/addon-backgrounds'),
-    getAbsolutePath('@storybook/addon-controls'),
     getAbsolutePath('@storybook/addon-docs'),
-    getAbsolutePath('@storybook/addon-viewport'),
-    // getAbsolutePath('storybook-addon-html-validator'), @todo https://github.com/dimafirsov/storybook-html-validator/issues/15
-    getAbsolutePath('@storybook/addon-toolbars'),
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('storybook-addon-tag-badges'),
   ],
@@ -54,6 +48,7 @@ const config: StorybookConfig = {
     if (configType === 'PRODUCTION') {
       config.base = base;
     }
+
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,

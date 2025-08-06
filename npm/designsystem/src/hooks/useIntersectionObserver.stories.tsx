@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react-vite';
 
 import { useIntersectionObserver } from './useIntersectionObserver';
 import Button from '../components/Button';
