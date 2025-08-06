@@ -282,7 +282,9 @@
   }
 
   &__image-container {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    height: 100%;
 
     img {
       display: block;
