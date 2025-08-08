@@ -73,7 +73,7 @@ const TabList: React.FC<TabListProps> = props => {
   };
 
   return (
-    <div>
+    <div className={styles['tab-list-wrapper']}>
       {shouldShowFadeStart() && (
         <div className={classNames(styles['tab-list__start-wrapper'])}>
           <TabChevron
