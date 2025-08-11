@@ -20,6 +20,8 @@ import formGroupStyles from './styles.module.scss';
 export type FormGroupTags = 'fieldset' | 'div';
 
 export interface FormGroupProps {
+  /** Can be used as a replacement text for legend in cases where the group title already exists externally */
+  ariaLabelledBy?: string;
   /** title for the the fieldset */
   title?: string;
   /** text placed in the legend tag of the fieldset */
@@ -56,6 +58,7 @@ export interface FormGroupProps {
 
 export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const {
+    ariaLabelledBy,
     className,
     fieldsetClassName,
     onColor = FormOnColor.onwhite,
@@ -163,7 +166,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
           </div>
         )}
         {htmlMarkup === 'fieldset' && (
-          <fieldset name={props.fieldsetName} className={fieldsetClasses}>
+          <fieldset aria-labelledby={ariaLabelledBy} name={props.fieldsetName} className={fieldsetClasses}>
             {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
             {React.Children.map(props.children, mapFormComponent)}
           </fieldset>
