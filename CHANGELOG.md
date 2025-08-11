@@ -1,3 +1,17 @@
+## [11.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.5.0&targetVersion=GTv11.6.0) (2025-08-11)
+
+
+### Features
+
+* **fromgroup:**  formgroup får aria-labelledby som alternativ til legend ([abf306c](https://github.com/helsenorge/designsystem/commit/abf306ca007f12a399aee5ad26c993f6a458df83)), closes [#356915](https://github.com/helsenorge/designsystem/issues/356915)
+* **panel:**  legg til controlled funksjonalitet for expandable panel ([de7ca61](https://github.com/helsenorge/designsystem/commit/de7ca612169be8e5e825a9975cbc30c79dde446c)), closes [#356603](https://github.com/helsenorge/designsystem/issues/356603)
+
+
+### Bug Fixes
+
+* **tabs:**  border vises rart på noen skjermer ([40c4fb5](https://github.com/helsenorge/designsystem/commit/40c4fb5c08d688dfa633573d851d3a14098a99a8)), closes [#346853](https://github.com/helsenorge/designsystem/issues/346853)
+* **tabs:**  tablist border ser riktig ut ved zooming ([d031642](https://github.com/helsenorge/designsystem/commit/d031642fff55581b845819e26e20c17da4d9c18e)), closes [#346853](https://github.com/helsenorge/designsystem/issues/346853)
+
 ## [11.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.4.1&targetVersion=GTv11.5.0) (2025-07-30)
 
 
