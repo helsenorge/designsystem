@@ -122,6 +122,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
             testId={testId + '-icon'}
           />
           <select
+            aria-errormessage={invalid ? errorTextUuid : undefined}
             aria-invalid={!!invalid}
             id={uuid}
             name={name}

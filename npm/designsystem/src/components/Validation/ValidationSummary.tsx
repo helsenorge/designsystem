@@ -29,14 +29,7 @@ const ValidationSummary: React.FC<ValidationSummaryProps> = props => {
   const summaryClasses = classNames(styles['validation__summary'], hasErrors && styles['validation__summary--visible']);
 
   return (
-    <div
-      role={'status'}
-      aria-atomic={'true'}
-      aria-live={'polite'}
-      aria-relevant={'all'}
-      aria-labelledby={hasErrors && props.errorTitle ? titleId : undefined}
-      className={summaryClasses}
-    >
+    <div aria-labelledby={hasErrors && props.errorTitle ? titleId : undefined} className={summaryClasses}>
       {hasErrors && (
         <>
           {props.errorTitle && (

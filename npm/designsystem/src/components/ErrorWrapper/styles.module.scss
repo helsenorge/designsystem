@@ -2,6 +2,7 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/breakpoints' as breakpoints;
 @use '../../scss/font-mixins' as fonts;
+@use '../../scss/screen-reader' as *;
 
 .error-wrapper {
   &--with-error {
@@ -18,7 +19,10 @@
   &__errors {
     margin-top: 0;
     color: var(--color-notification-border-error);
-
     @include fonts.label;
+
+    &--hidden {
+      @include sr-only;
+    }
   }
 }

@@ -144,6 +144,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           value={value}
           ref={mergedRefs}
           aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
+          aria-errormessage={error ? errorTextUuid : undefined}
           aria-invalid={error}
           required={required}
           onChange={onChangeHandler}

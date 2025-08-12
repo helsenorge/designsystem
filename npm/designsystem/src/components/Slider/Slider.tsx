@@ -350,6 +350,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
         max={maxValue}
         onChange={onChange}
         onKeyDown={handleKeyDown}
+        aria-errormessage={error ? errorTextUuid : undefined}
         value={valueState}
         ref={mergedRefs}
         type="range"

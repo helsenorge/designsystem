@@ -189,6 +189,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
             className={textareaClass}
             ref={ref}
             aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
+            aria-errormessage={onError ? errorTextUuid : undefined}
             aria-invalid={!!onError}
             // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={autoFocus}

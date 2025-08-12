@@ -269,6 +269,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
               ref={ref}
               aria-labelledby={props['aria-labelledby'] ?? undefined}
               aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
+              aria-errormessage={onError ? errorTextUuid : undefined}
               aria-invalid={!!onError}
               disabled={disabled}
               placeholder={placeholder}

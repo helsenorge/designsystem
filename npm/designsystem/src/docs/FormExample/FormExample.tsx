@@ -280,7 +280,11 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
         !isTest() && console.log(data);
       })}
     >
-      <Validation size={props.size} errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
+      <Validation
+        size={props.size}
+        errorTitle={'Sjekk at alt er riktig utfylt:'}
+        errors={exampleType === FormExampleVariants.formgroup || exampleType === FormExampleVariants.withoutformgroup ? errors : undefined}
+      >
         {getFormExample()}
       </Validation>
       <Spacer />
