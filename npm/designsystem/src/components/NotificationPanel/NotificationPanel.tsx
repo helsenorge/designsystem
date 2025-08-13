@@ -51,7 +51,7 @@ export interface NotificationPanelProps {
   /** Custom id for the label */
   labelId?: string;
   /** Custom role for the panel. Default is no role. If variant is alert or crisis, the aria role will be set to "alert" unless the role-prop is also set. */
-  role?: 'region' | 'alert';
+  role?: 'region' | 'alert' | 'status';
   /** Sets the data-testid attribute. */
   testId?: string;
 }

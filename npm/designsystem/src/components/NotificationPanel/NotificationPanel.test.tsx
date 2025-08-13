@@ -202,4 +202,13 @@ describe('Gitt at NotificationPanel skal vises', () => {
       expect(component).toBeVisible();
     });
   });
+
+  describe('Når role er status', (): void => {
+    test('Så har komponenten role=status', (): void => {
+      render(<NotificationPanel role="status">{'Status!'}</NotificationPanel>);
+
+      const component = screen.getByRole('status', { name: 'Status!' });
+      expect(component).toBeVisible();
+    });
+  });
 });
