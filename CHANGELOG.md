@@ -1,3 +1,10 @@
+## [11.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.6.0&targetVersion=GTv11.7.0) (2025-08-13)
+
+
+### Features
+
+* **notificationpanel:**  propen role har status som valg ([6c93716](https://github.com/helsenorge/designsystem/commit/6c937166f6ccf35c9d91699b5c19ea5327e9103e)), closes [#357209](https://github.com/helsenorge/designsystem/issues/357209)
+
 ## [11.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.5.0&targetVersion=GTv11.6.0) (2025-08-11)
 
 
