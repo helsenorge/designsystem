@@ -1,3 +1,10 @@
+## [11.7.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.7.0&targetVersion=GTv11.7.1) (2025-08-25)
+
+
+### Bug Fixes
+
+* **useBreakpoint:**  oppdaterer breakpoint etter første render ([545999e](https://github.com/helsenorge/designsystem/commit/545999e0741ab9e4ce1ecbc7e993e7aef68b6394)), closes [#348789](https://github.com/helsenorge/designsystem/issues/348789)
+
 ## [11.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.6.0&targetVersion=GTv11.7.0) (2025-08-13)
 
 
