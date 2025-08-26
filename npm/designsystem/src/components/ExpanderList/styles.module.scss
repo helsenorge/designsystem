@@ -5,7 +5,7 @@
 @import '../../scss/supernova/styles/colors.css';
 
 .expander-list {
-  --statusmarker-left-space: 8px;
+  --statusmarker-left-space: 6px;
 
   list-style: none;
   padding: 0;
@@ -46,7 +46,7 @@
     &--new {
       grid-template:
         'statusmarker header' auto
-        'statusmarker content' auto / 8px auto;
+        'statusmarker content' auto / 6px auto;
 
       --statusmarker-left-space: 0px;
     }

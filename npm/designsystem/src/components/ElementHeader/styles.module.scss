@@ -10,20 +10,21 @@
     '. text badge chevron' auto / min-content auto min-content min-content;
 }
 
+@mixin parent-type-expanderlist {
+  display: flex;
+  align-items: center;
+  align-self: start;
+  height: 48px;
+}
+
 .element-header {
-  margin: 0.5rem;
+  padding: 0.5rem spacers.getSpacer(2xs) 0.5rem 0;
   display: grid;
-  margin-left: spacers.getSpacer(2xs);
-  margin-right: spacers.getSpacer(2xs);
   width: 100%;
   height: 100%;
   text-align: left;
 
   @include gridtemplate(3rem);
-
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-    @include gridtemplate(3.375rem);
-  }
 
   &__title {
     font-size: inherit;
@@ -38,14 +39,7 @@
     height: 100%;
     grid-area: text;
     align-self: center;
-    padding-top: 0.625rem;
-    padding-bottom: 0.625rem;
-    padding-left: 0.5rem;
-
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-    }
+    padding: 0.5rem 0 0.5rem 0.5rem;
 
     &[data-hasstatusdots='true'] {
       padding-top: 0.125rem;
@@ -74,6 +68,7 @@
 
   &__statusdot-container {
     grid-area: statusdots;
+    padding-left: 0.5rem;
   }
 
   &__icon,
@@ -103,7 +98,7 @@
     }
 
     &[data-parenttype='expanderlist'] {
-      align-self: start;
+      @include parent-type-expanderlist;
     }
   }
 
@@ -126,7 +121,7 @@
     }
 
     &[data-parenttype='expanderlist'] {
-      align-self: start;
+      @include parent-type-expanderlist;
     }
   }
 

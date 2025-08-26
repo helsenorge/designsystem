@@ -302,11 +302,8 @@
 
   &__status-marker {
     width: 6px;
-    height: 100%;
+    height: auto;
     background-color: transparent;
-    position: absolute;
-    top: 0;
-    left: 0;
 
     &--new {
       background-color: var(--color-notification-status-info);
