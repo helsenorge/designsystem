@@ -8,6 +8,7 @@ import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import Spacer from '../../components/Spacer';
 import { FormOnColor, FormSize } from '../../constants';
 import Checkbox from '../Checkbox/Checkbox';
+import Expander from '../Expander';
 import FormLayout from '../FormLayout';
 import Coronavirus from '../Icons/Coronavirus';
 import Input from '../Input/Input';
@@ -174,6 +175,24 @@ export const FormLayoutChildren: Story = {
           <RadioButton inputId={'RadioButton3'} label={<Label labelTexts={[{ text: 'Radiobutton 3' }]} />} />
         </FormLayout>
       </FormGroup>
+    </div>
+  ),
+};
+
+export const WithExternalLegendText: Story = {
+  args: {
+    title: undefined,
+    legend: undefined,
+  },
+  render: args => (
+    <div style={{ background: mapToBackgoundColor(args.onColor as FormOnColor) }}>
+      <Expander buttonId="expander-tittel-id" title="Velg mellom checkboxer">
+        <FormGroup ariaLabelledBy="expander-tittel-id" {...args}>
+          <Checkbox inputId="Checkbox1" label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+          <Checkbox inputId="Checkbox2" label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+          <Checkbox inputId="Checkbox3" label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
+        </FormGroup>
+      </Expander>
     </div>
   ),
 };

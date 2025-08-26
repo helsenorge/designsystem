@@ -24,6 +24,7 @@ export enum ExpanderSize {
 export type ExpanderColors = Extract<PaletteNames, 'banana' | 'blueberry' | 'cherry' | 'kiwi' | 'neutral' | 'plum' | 'white'>;
 
 export interface ExpanderProps {
+  buttonId?: string;
   /** Sets the trigger title */
   title: string;
   /** Sets the expanded content */
@@ -54,6 +55,7 @@ export interface ExpanderProps {
 
 const Expander: React.FC<ExpanderProps> = props => {
   const {
+    buttonId,
     title,
     children,
     size = ExpanderSize.small,
@@ -94,6 +96,7 @@ const Expander: React.FC<ExpanderProps> = props => {
 
   const renderTrigger = (): React.ReactNode => (
     <button
+      id={buttonId}
       type="button"
       className={triggerClassName}
       style={{
@@ -134,6 +137,7 @@ const Expander: React.FC<ExpanderProps> = props => {
       })}
     >
       <Button
+        id={buttonId}
         variant="borderless"
         textClassName={styles['expander__button__text']}
         className={buttonClassName}

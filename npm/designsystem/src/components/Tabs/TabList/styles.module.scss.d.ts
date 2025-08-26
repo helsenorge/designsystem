@@ -16,6 +16,7 @@ export type Styles = {
   'tab-list--onblueberry': string;
   'tab-list--onneutral': string;
   'tab-list--onwhite': string;
+  'tab-list-wrapper': string;
 };
 
 export type ClassNames = keyof Styles;

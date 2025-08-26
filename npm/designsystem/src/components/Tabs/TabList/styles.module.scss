@@ -2,6 +2,10 @@
 @use '../../../scss/breakpoints' as breakpoints;
 @import '../../../scss/supernova/styles/colors';
 
+.tab-list-wrapper {
+  position: relative;
+}
+
 .tab-list {
   $tab-list: &;
   $colors: 'blueberry', 'neutral', 'white';
@@ -68,14 +72,16 @@
     border-bottom: 0;
     border-radius: 0.5rem 0.5rem 0 0;
     position: relative;
+
+    // Z-index brukes til å flytte tab bak/foran bottom border til tab-list__border
     z-index: 0;
 
     &--selected {
       overflow: visible;
-      z-index: 1;
       border-color: var(--color-action-border-onlight-focus);
       color: var(--color-base-text-onlight);
       background-color: var(--color-base-background-white);
+      z-index: 2;
     }
 
     &__title-and-icon {
@@ -152,8 +158,12 @@
   }
 
   &__border {
-    position: relative;
-    height: 1px;
-    background-color: var(--color-action-border-onlight-focus);
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid var(--color-action-border-onlight-focus);
   }
 }

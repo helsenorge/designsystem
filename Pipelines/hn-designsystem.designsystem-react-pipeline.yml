@@ -1,3 +1,9 @@
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: HN-AzureDevopsPipelines
+
 trigger:
   branches:
     include:
@@ -23,6 +29,7 @@ variables:
     value: 'https://sonarqube.int-hn.nhn.no'
   - name: HUSKY
     value: 0
+  - group: DependencyTrack
 
 stages:
   # stage build, test and analyze
@@ -137,6 +144,12 @@ stages:
               command: custom
               workingDir: $(working_directory)
               customCommand: 'run build'
+
+          - template: Templates/Build/post-build-frontend.yml@templates
+            parameters:
+              project_name: $(project_name)
+              webappfolder: $(working_directory)
+              dependencyTrackBranchStartsWith: 'refs/heads/master'
 
           # test
           - task: Npm@1
