@@ -1,3 +1,16 @@
+## 12.0.0-beta.3 (2025-08-27)
+
+
+### Features
+
+* **linklist:**  image prop lagt til ([c6f2f9e](https://github.com/helsenorge/designsystem/commit/c6f2f9e588ea8a71cb08ea55aab4c08728195d16)), closes [#353994](https://github.com/helsenorge/designsystem/issues/353994)
+
+
+### Bug Fixes
+
+* **elementheader:**  fikset spacing og plassering ([d19e92e](https://github.com/helsenorge/designsystem/commit/d19e92e83c306115af5219e7dc08305b5a1dc548)), closes [#356675](https://github.com/helsenorge/designsystem/issues/356675)
+* **linklist:**  image høyde sentreres på en linje ([d4d108f](https://github.com/helsenorge/designsystem/commit/d4d108fe3aff1b504eea39d306c3c3f02d4bb971)), closes [#353994](https://github.com/helsenorge/designsystem/issues/353994)
+
 ## 12.0.0-beta.2 (2025-08-01)
 
 
@@ -55,6 +68,34 @@
 * **helptriggericon:**  svg får riktig rolle og aria ([e1cac75](https://github.com/helsenorge/designsystem/commit/e1cac758b62fddd560bd21fda2bf4905676292fd)), closes [#350475](https://github.com/helsenorge/designsystem/issues/350475)
 * **popover:**  fiks padding for popover og popmenu ([c4d916c](https://github.com/helsenorge/designsystem/commit/c4d916cc48d2cc95bc7461a43dbe1fbc67c81576)), closes [#350488](https://github.com/helsenorge/designsystem/issues/350488)
 * **popover:**  sett border radius lik som skisser ([d665e38](https://github.com/helsenorge/designsystem/commit/d665e385b5187be9674b35a15fae4dfc3c9055a6)), closes [#350488](https://github.com/helsenorge/designsystem/issues/350488)
+
+## [11.7.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.7.0&targetVersion=GTv11.7.1) (2025-08-25)
+
+
+### Bug Fixes
+
+* **useBreakpoint:**  oppdaterer breakpoint etter første render ([545999e](https://github.com/helsenorge/designsystem/commit/545999e0741ab9e4ce1ecbc7e993e7aef68b6394)), closes [#348789](https://github.com/helsenorge/designsystem/issues/348789)
+
+## [11.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.6.0&targetVersion=GTv11.7.0) (2025-08-13)
+
+
+### Features
+
+* **notificationpanel:**  propen role har status som valg ([6c93716](https://github.com/helsenorge/designsystem/commit/6c937166f6ccf35c9d91699b5c19ea5327e9103e)), closes [#357209](https://github.com/helsenorge/designsystem/issues/357209)
+
+## [11.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.5.0&targetVersion=GTv11.6.0) (2025-08-11)
+
+
+### Features
+
+* **fromgroup:**  formgroup får aria-labelledby som alternativ til legend ([abf306c](https://github.com/helsenorge/designsystem/commit/abf306ca007f12a399aee5ad26c993f6a458df83)), closes [#356915](https://github.com/helsenorge/designsystem/issues/356915)
+* **panel:**  legg til controlled funksjonalitet for expandable panel ([de7ca61](https://github.com/helsenorge/designsystem/commit/de7ca612169be8e5e825a9975cbc30c79dde446c)), closes [#356603](https://github.com/helsenorge/designsystem/issues/356603)
+
+
+### Bug Fixes
+
+* **tabs:**  border vises rart på noen skjermer ([40c4fb5](https://github.com/helsenorge/designsystem/commit/40c4fb5c08d688dfa633573d851d3a14098a99a8)), closes [#346853](https://github.com/helsenorge/designsystem/issues/346853)
+* **tabs:**  tablist border ser riktig ut ved zooming ([d031642](https://github.com/helsenorge/designsystem/commit/d031642fff55581b845819e26e20c17da4d9c18e)), closes [#346853](https://github.com/helsenorge/designsystem/issues/346853)
 
 ## [11.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.4.1&targetVersion=GTv11.5.0) (2025-07-30)
 
