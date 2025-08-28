@@ -182,19 +182,15 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
           {props.title}
         </Title>
       )}
-      {renderError ? (
-        <ErrorWrapper
-          className={errorWrapperClassName}
-          errorText={error}
-          testId={errorWrapperTestId}
-          errorTextId={errorTextUuid}
-          errorMessageRef={ref}
-        >
-          {formGroupContent()}
-        </ErrorWrapper>
-      ) : (
-        formGroupContent()
-      )}
+      <ErrorWrapper
+        className={errorWrapperClassName}
+        errorText={error}
+        testId={errorWrapperTestId}
+        errorTextId={errorTextUuid}
+        errorMessageRef={ref}
+      >
+        {formGroupContent()}
+      </ErrorWrapper>
     </div>
   );
 });

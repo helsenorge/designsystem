@@ -25,14 +25,13 @@ export interface ErrorWrapperProps {
 
 export const ErrorWrapper: React.FC<ErrorWrapperProps> = props => {
   const errorWrapperClasses = cn(props.errorText && styles[`error-wrapper--with-error`], props.className);
+  const errorWrapperTextClasses = cn(styles['error-wrapper__errors'], { [styles['error-wrapper__errors--hidden']]: !props.errorText });
 
   return (
     <div className={errorWrapperClasses} data-testid={props.testId}>
-      {props.errorText && (
-        <p className={styles['error-wrapper__errors']} id={props.errorTextId} ref={props.errorMessageRef} tabIndex={-1}>
-          {props.errorText}
-        </p>
-      )}
+      <p className={errorWrapperTextClasses} id={props.errorTextId} ref={props.errorMessageRef} tabIndex={-1}>
+        {props.errorText}
+      </p>
       {props.children}
     </div>
   );
