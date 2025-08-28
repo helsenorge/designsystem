@@ -13,13 +13,6 @@ describe('Gitt at det skal vises en valideringsfeil', (): void => {
       expect(errorText).toBeVisible();
     });
 
-    it('Så får feilmeldingen tabIndex -1 for fokusstyring', (): void => {
-      render(<ErrorWrapper errorText="Feil her" />);
-
-      const errorText = screen.getByText('Feil her');
-      expect(errorText).toHaveAttribute('tabindex', '-1');
-    });
-
     it('Så settes id på feilmeldingen når errorTextId er satt', (): void => {
       render(<ErrorWrapper errorText="Har id" errorTextId="min-feil-id" />);
 
@@ -40,6 +33,7 @@ describe('Gitt at det skal vises en valideringsfeil', (): void => {
 
       expect(ref.current).not.toBeNull();
       expect(ref.current?.textContent).toBe('Ref mål');
+      expect(ref.current).toHaveAttribute('tabindex', '-1');
     });
   });
 
