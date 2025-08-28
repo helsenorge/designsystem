@@ -1,3 +1,10 @@
+## 11.8.0-beta.0 (2025-08-28)
+
+
+### Features
+
+* **formgroup:**  flyttet ref og tabindex til errorwrapper p tag ([0ff1c3b](https://github.com/helsenorge/designsystem/commit/0ff1c3bdc942c220060d3065c7a561a556058141))
+
 ## [11.7.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.7.0&targetVersion=GTv11.7.1) (2025-08-25)
 
 
