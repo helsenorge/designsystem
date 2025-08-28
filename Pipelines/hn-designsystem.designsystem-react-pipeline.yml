@@ -223,10 +223,7 @@ stages:
               publishFeed: '926a1f6a-72f8-4464-b9be-a7978dee78b0'
             continueOnError: true
             condition:
-              and(
-                succeeded(),
-                in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual')
-              )
+              and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 
           - script: |
               node scripts/sendSlackMessage.js
