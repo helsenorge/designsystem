@@ -1,3 +1,10 @@
+## 11.8.0-beta.1 (2025-08-28)
+
+
+### Bug Fixes
+
+*  skjuler visuelt for å støtte fokus ([cba90ed](https://github.com/helsenorge/designsystem/commit/cba90edf82966ed6ec8f7c4a98958da33effd85d))
+
 ## 11.8.0-beta.0 (2025-08-28)
 
 
