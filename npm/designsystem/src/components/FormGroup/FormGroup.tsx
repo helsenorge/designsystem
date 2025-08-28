@@ -176,14 +176,20 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   };
 
   return (
-    <div data-testid={props.testId} data-analyticsid={AnalyticsId.FormGroup} className={formGroupWrapperClasses} ref={ref} tabIndex={-1}>
+    <div data-testid={props.testId} data-analyticsid={AnalyticsId.FormGroup} className={formGroupWrapperClasses}>
       {props.title && (
         <Title className={titleClasses} htmlMarkup={'h4'} appearance={'title4'} margin={{ marginTop: 0, marginBottom: error ? 1 : 2 }}>
           {props.title}
         </Title>
       )}
       {renderError ? (
-        <ErrorWrapper className={errorWrapperClassName} errorText={error} testId={errorWrapperTestId} errorTextId={errorTextUuid}>
+        <ErrorWrapper
+          className={errorWrapperClassName}
+          errorText={error}
+          testId={errorWrapperTestId}
+          errorTextId={errorTextUuid}
+          errorMessageRef={ref}
+        >
           {formGroupContent()}
         </ErrorWrapper>
       ) : (

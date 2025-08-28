@@ -17,6 +17,8 @@ export interface ErrorWrapperProps {
   errorTextId?: string;
   /** Adds custom classes to the element. */
   className?: string;
+  /** Adds a ref to the error message p tag */
+  errorMessageRef?: React.ForwardedRef<HTMLDivElement>;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -27,7 +29,7 @@ export const ErrorWrapper: React.FC<ErrorWrapperProps> = props => {
   return (
     <div className={errorWrapperClasses} data-testid={props.testId}>
       {props.errorText && (
-        <p className={styles['error-wrapper__errors']} id={props.errorTextId}>
+        <p className={styles['error-wrapper__errors']} id={props.errorTextId} ref={props.errorMessageRef} tabIndex={-1}>
           {props.errorText}
         </p>
       )}
