@@ -1,3 +1,11 @@
+## 11.8.0-beta.2 (2025-08-28)
+
+
+### Bug Fixes
+
+*  oppdatert rendererror til å style errorwrapper ([0cbeac2](https://github.com/helsenorge/designsystem/commit/0cbeac2ba68bcc12af27691efdbfb26f85f2a271))
+*  tester passerer igjen ([9bdad9b](https://github.com/helsenorge/designsystem/commit/9bdad9b2a85105efa66db8191b99410ec9a0c111))
+
 ## 11.8.0-beta.1 (2025-08-28)
 
 
