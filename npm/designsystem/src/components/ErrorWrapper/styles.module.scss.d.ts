@@ -1,5 +1,6 @@
 export type Styles = {
   'error-wrapper__errors': string;
+  'error-wrapper__errors--hidden': string;
   'error-wrapper--with-error': string;
 };
 
