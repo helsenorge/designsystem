@@ -67,6 +67,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     errorTextId,
     name,
     htmlMarkup = 'fieldset',
+    renderError = true,
     errorWrapperClassName,
     errorWrapperTestId,
   } = props;
@@ -187,7 +188,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         testId={errorWrapperTestId}
         errorTextId={errorTextUuid}
         errorMessageRef={ref}
-        renderError={props.renderError}
+        renderError={renderError}
       >
         {formGroupContent()}
       </ErrorWrapper>
