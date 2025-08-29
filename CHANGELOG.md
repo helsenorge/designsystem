@@ -1,3 +1,10 @@
+## [11.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.7.1&targetVersion=GTv11.8.0) (2025-08-29)
+
+
+### Features
+
+* **formgroup:**  flyttet ref og tabindex til errorwrapper feilmelding ([a64a00a](https://github.com/helsenorge/designsystem/commit/a64a00a25dd432f85f84901dbb233fe345103b70)), closes [#339940](https://github.com/helsenorge/designsystem/issues/339940)
+
 ## [11.7.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.7.0&targetVersion=GTv11.7.1) (2025-08-25)
 
 
