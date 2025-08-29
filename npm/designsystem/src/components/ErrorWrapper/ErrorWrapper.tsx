@@ -17,20 +17,28 @@ export interface ErrorWrapperProps {
   errorTextId?: string;
   /** Adds custom classes to the element. */
   className?: string;
+  /** Adds a ref to the error message p tag */
+  errorMessageRef?: React.ForwardedRef<HTMLDivElement>;
+  /** Renders the error component (Default: true) */
+  renderError?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 export const ErrorWrapper: React.FC<ErrorWrapperProps> = props => {
-  const errorWrapperClasses = cn(props.errorText && styles[`error-wrapper--with-error`], props.className);
+  const { renderError = true } = props;
+
+  const errorWrapperClasses = cn(props.errorText && renderError && styles[`error-wrapper--with-error`], props.className);
 
   return (
     <div className={errorWrapperClasses} data-testid={props.testId}>
-      {props.errorText && (
-        <p className={styles['error-wrapper__errors']} id={props.errorTextId}>
-          {props.errorText}
-        </p>
-      )}
+      <span ref={props.errorMessageRef} tabIndex={-1}>
+        {props.errorText && (
+          <p className={styles['error-wrapper__errors']} id={props.errorTextId}>
+            {props.errorText}
+          </p>
+        )}
+      </span>
       {props.children}
     </div>
   );
