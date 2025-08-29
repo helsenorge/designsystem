@@ -196,12 +196,6 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
         <span className={avatarClasses}>{React.cloneElement(mappedChildren.avatarChild, { size: AvatarSize.xsmall })}</span>
       )}
 
-      {hasStatusDots && (
-        <span className={statusdotContainerClasses}>
-          {!!mappedChildren?.statusDotChildren && <StatusDotMultiComposition>{mappedChildren.statusDotChildren}</StatusDotMultiComposition>}
-          {!!mappedChildren?.statusDotMCChild && mappedChildren?.statusDotMCChild}
-        </span>
-      )}
       <span className={contentClasses} data-hasstatusdots={hasStatusDots}>
         {mappedChildren?.elementHeaderTextChildren}
         {!!mappedChildren?.stringChildren.length && (
@@ -211,6 +205,13 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
         )}
         <Highlighter searchText={highlightText}>{mappedChildren?.remainingChildren}</Highlighter>
       </span>
+
+      {hasStatusDots && (
+        <span className={statusdotContainerClasses}>
+          {!!mappedChildren?.statusDotChildren && <StatusDotMultiComposition>{mappedChildren.statusDotChildren}</StatusDotMultiComposition>}
+          {!!mappedChildren?.statusDotMCChild && mappedChildren?.statusDotMCChild}
+        </span>
+      )}
 
       <span className={badgeContainerClasses}>
         {mappedChildren?.badgeChildren &&
