@@ -171,7 +171,7 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
   const mappedChildren = mapChildren(children);
   const hasStatusDots = !!mappedChildren?.statusDotChildren?.length || !!mappedChildren?.statusDotMCChild;
 
-  const listLabelClasses = cn(styles['element-header'], className);
+  const listLabelClasses = cn(styles['element-header'], { [styles['element-header--with-statusdot']]: hasStatusDots }, className);
   const badgeContainerClasses = cn(styles['element-header__badge-container']);
   const badgeClasses = cn(styles['element-header__badge']);
   const statusdotContainerClasses = cn(styles['element-header__statusdot-container']);

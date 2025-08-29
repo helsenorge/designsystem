@@ -10,6 +10,7 @@ export type Styles = {
   'element-header__icon': string;
   'element-header__statusdot-container': string;
   'element-header__title': string;
+  'element-header--with-statusdot': string;
   'text-wrapper': string;
   'text-wrapper__text--emphasised': string;
   'text-wrapper--sub-level': string;
