@@ -1,3 +1,5 @@
+## [12.0.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.0.0&targetVersion=GTv12.0.1) (2025-09-01)
+
 ## [12.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.8.0&targetVersion=GTv12.0.0) (2025-09-01)
 
 
