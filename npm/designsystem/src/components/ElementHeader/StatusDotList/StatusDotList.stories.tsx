@@ -4,20 +4,20 @@ import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import ElementHeader from '../ElementHeader';
-import StatusDotMultiComposition from './StatusDotMultiComposition';
+import StatusDotList from './StatusDotList';
 import StatusDot, { StatusDotVariant } from '../../StatusDot';
 
 const meta = {
-  title: '@helsenorge/designsystem-react/_Internal/ElementHeader/StatusDotMultiComposition',
-  component: StatusDotMultiComposition,
+  title: '@helsenorge/designsystem-react/_Internal/ElementHeader/StatusDotList',
+  component: StatusDotList,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={StatusDotMultiComposition} />,
+      page: (): React.JSX.Element => <Docs component={StatusDotList} />,
     },
   },
   args: {},
   argTypes: {},
-} satisfies Meta<typeof StatusDotMultiComposition>;
+} satisfies Meta<typeof StatusDotList>;
 
 export default meta;
 
@@ -27,11 +27,11 @@ export const Default: Story = {
   args: {},
   render: args => (
     <ElementHeader>
-      <ElementHeader.StatusDotMultiComposition {...args}>
+      <ElementHeader.StatusDotList {...args}>
         <StatusDot variant={StatusDotVariant.success} text="Label" />
         <StatusDot variant={StatusDotVariant.recurring} text="Label" />
         <StatusDot variant={StatusDotVariant.group} text="Label" />
-      </ElementHeader.StatusDotMultiComposition>
+      </ElementHeader.StatusDotList>
     </ElementHeader>
   ),
 };
