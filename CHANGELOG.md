@@ -1,3 +1,16 @@
+## [12.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.8.0&targetVersion=GTv12.0.0) (2025-09-01)
+
+
+### Features
+
+* **elementheader:**  rename til statusdotlist ([f7f8bde](https://github.com/helsenorge/designsystem/commit/f7f8bdeb0dbf7e45a92f4577283210c7934f4450)), closes [#358534](https://github.com/helsenorge/designsystem/issues/358534)
+
+
+### Bug Fixes
+
+* **elementheader:**  ikon plasseres riktig ([905cafd](https://github.com/helsenorge/designsystem/commit/905cafda481f8e3ce57f0220c08d095885c57cfc)), closes [#356675](https://github.com/helsenorge/designsystem/issues/356675)
+* **elementheader:**  statusdot skal leses opp etter hovedteksten ([3db22a4](https://github.com/helsenorge/designsystem/commit/3db22a4d6c7031964c7f9947fdf59a4f320683c5)), closes [#358340](https://github.com/helsenorge/designsystem/issues/358340)
+
 ## 12.0.0-beta.3 (2025-08-27)
 
 
@@ -68,6 +81,13 @@
 * **helptriggericon:**  svg får riktig rolle og aria ([e1cac75](https://github.com/helsenorge/designsystem/commit/e1cac758b62fddd560bd21fda2bf4905676292fd)), closes [#350475](https://github.com/helsenorge/designsystem/issues/350475)
 * **popover:**  fiks padding for popover og popmenu ([c4d916c](https://github.com/helsenorge/designsystem/commit/c4d916cc48d2cc95bc7461a43dbe1fbc67c81576)), closes [#350488](https://github.com/helsenorge/designsystem/issues/350488)
 * **popover:**  sett border radius lik som skisser ([d665e38](https://github.com/helsenorge/designsystem/commit/d665e385b5187be9674b35a15fae4dfc3c9055a6)), closes [#350488](https://github.com/helsenorge/designsystem/issues/350488)
+
+## [11.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.7.1&targetVersion=GTv11.8.0) (2025-08-29)
+
+
+### Features
+
+* **formgroup:**  flyttet ref og tabindex til errorwrapper feilmelding ([a64a00a](https://github.com/helsenorge/designsystem/commit/a64a00a25dd432f85f84901dbb233fe345103b70)), closes [#339940](https://github.com/helsenorge/designsystem/issues/339940)
 
 ## [11.7.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv11.7.0&targetVersion=GTv11.7.1) (2025-08-25)
 
