@@ -4,7 +4,6 @@ import classNames from 'classnames';
 
 import { AnalyticsId, IconSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
-import { getColor } from '../../theme/currys';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
@@ -162,7 +161,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         />
         {dismissable && (
           <span className={styles['notification-panel__close']}>
-            <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} color={getColor('black')} />
+            <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} color={'black'} />
           </span>
         )}
         {renderContent()}
