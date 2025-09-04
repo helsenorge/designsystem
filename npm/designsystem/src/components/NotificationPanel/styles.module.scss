@@ -2,7 +2,6 @@
 @use '../../scss/spacers' as spacers;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/palette' as palette;
-@use '../AnchorLink/styles.module' as anchorlink;
 @use '../../scss/breakpoints' as breakpoints;
 
 .notification-panel {
@@ -120,11 +119,6 @@
 
   &__content {
     align-self: center;
-
-    a {
-      @include anchorlink.anchorlink;
-      @include anchorlink.anchorlink-icon;
-    }
   }
 
   &__label,
