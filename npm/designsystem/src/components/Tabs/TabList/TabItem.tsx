@@ -25,7 +25,7 @@ const TabItem: React.FC<TabItemProps> = props => {
   const isSelected = props.index === props.selectedTab;
   const { title, onTabClick, icon, testId } = props.tabProps;
   const handleClick = (): void => {
-    onTabClick && onTabClick(props.index);
+    if (onTabClick) onTabClick(props.index);
     props.onTabListClick(props.index);
     scrollToTab(props.index);
   };
@@ -38,7 +38,10 @@ const TabItem: React.FC<TabItemProps> = props => {
 
   const scrollToTab = (index: number): void => {
     const currentRef = props.tabRefs.current && props.tabRefs.current[index];
-    currentRef?.current?.scrollIntoView && currentRef?.current?.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+
+    if (currentRef?.current?.scrollIntoView) {
+      currentRef?.current?.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    }
   };
 
   const itemRef = useRef<HTMLLIElement>(null);

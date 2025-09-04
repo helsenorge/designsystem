@@ -9,10 +9,10 @@
   // Scroll shadow
   // Inspired by: https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/
   background:
-    linear-gradient(white 30%, rgba(255 255 255 / 0%)) center top,
-    linear-gradient(rgba(255 255 255 / 0%), white 70%) center bottom,
-    linear-gradient(rgba(0 0 0 / 46%), rgba(0 0 0 / 0%)) center top,
-    linear-gradient(rgba(0 0 0 / 0%), rgba(0 0 0 / 46%)) center bottom;
+    linear-gradient(white 30%, rgb(255 255 255 / 0%)) center top,
+    linear-gradient(rgb(255 255 255 / 0%), white 70%) center bottom,
+    linear-gradient(rgb(0 0 0 / 46%), rgb(0 0 0 / 0%)) center top,
+    linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 46%)) center bottom;
   background-repeat: no-repeat;
   background-size:
     100% 40px,

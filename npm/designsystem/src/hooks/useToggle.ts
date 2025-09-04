@@ -13,7 +13,7 @@ export const useToggle = (initialValue: boolean, callback?: (value: boolean) => 
   const [value, setValue] = useState(initialValue);
   const previousValue = usePrevious(value);
 
-  const toggleValue = () => {
+  const toggleValue = (): void => {
     setValue(!value);
   };
 

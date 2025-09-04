@@ -471,7 +471,7 @@ $custom-control-indicator-disabled-bg: $input-disabled-bg !default;
 $custom-control-label-disabled-color: $gray-600 !default;
 $custom-control-indicator-checked-color: $component-active-color !default;
 $custom-control-indicator-checked-bg: $component-active-bg !default;
-$custom-control-indicator-checked-disabled-bg: rgba(theme-color('primary'), 0.5) !default;
+$custom-control-indicator-checked-disabled-bg: rgb(theme-color('primary'), 0.5) !default;
 $custom-control-indicator-checked-box-shadow: null !default;
 $custom-control-indicator-checked-border-color: $custom-control-indicator-checked-bg !default;
 $custom-control-indicator-focus-box-shadow: $input-focus-box-shadow !default;

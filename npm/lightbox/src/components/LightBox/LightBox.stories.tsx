@@ -65,42 +65,39 @@ export const LangBildetekst: Story = {
   ),
 };
 
-export const ÅpnesOverSide: Story = {
-  render: args => {
-    const [lightboxOpen, setLightboxOpen] = React.useState(false);
+const AapnesOverSideRender = (args: React.ComponentProps<typeof LightBox>): React.ReactElement => {
+  const [lightboxOpen, setLightboxOpen] = React.useState(false);
 
-    return (
-      <div>
-        <button
-          onClick={(): void => {
-            setLightboxOpen(true);
-          }}
-          id="åpne"
-        >
-          {'Åpne LightBox over side'}
-        </button>
-        <section>{longLoremText}</section>
-        <section>{longLoremText}</section>
-        <section>{longLoremText}</section>
-        <button id="tilfeldig" onClick={() => null}>
-          {'Tilfeldig knapp'}
-        </button>
-        <section>{longLoremText}</section>
-        <section>{longLoremText}</section>
-        <section>{longLoremText}</section>
-        {lightboxOpen && (
-          <LightBox
-            {...args}
-            onClose={(): void => {
-              setLightboxOpen(false);
-            }}
-            imageText={
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu turpis posuere, dignissim ex at, interdum metus. Etiam efficitur ut lectus et condimentum. Suspendisse ornare suscipit metus sit amet luctus. Quisque risus orci, molestie sit amet tempus non, semper a ligula. Etiam volutpat scelerisque magna vel feugiat. Sed ac venenatis justo. Aliquam iaculis ante a eros sagittis, id gravida felis placerat. Cras luctus mi quam, non venenatis lorem condimentum vel. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer nulla sem, placerat non blandit ac, interdum vel augue. Nulla fermentum orci non augue pulvinar, sed posuere neque scelerisque. Aenean pulvinar commodo lorem vel consectetur. Nam augue lectus, tempus vitae finibus id, dignissim id eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar commodo lorem vel consectetur. Nam augue lectus, tempus vitae finibus id, dignissim id eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            }
-            closeTextAfterSeconds={undefined}
-          />
-        )}
-      </div>
-    );
-  },
+  return (
+    <div>
+      <button onClick={() => setLightboxOpen(true)} id="åpne">
+        {'Åpne LightBox over side'}
+      </button>
+
+      <section>{longLoremText}</section>
+      <section>{longLoremText}</section>
+      <section>{longLoremText}</section>
+
+      <button id="tilfeldig" onClick={() => null}>
+        {'Tilfeldig knapp'}
+      </button>
+
+      <section>{longLoremText}</section>
+      <section>{longLoremText}</section>
+      <section>{longLoremText}</section>
+
+      {lightboxOpen && (
+        <LightBox
+          {...args}
+          onClose={() => setLightboxOpen(false)}
+          imageText="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+          closeTextAfterSeconds={undefined}
+        />
+      )}
+    </div>
+  );
+};
+
+export const ÅpnesOverSide: Story = {
+  render: args => <AapnesOverSideRender {...args} />,
 };

@@ -229,7 +229,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
 
   const handleExpandClick = (): void => {
     setIsExpanded(!isExpanded);
-    onExpand && onExpand();
+    if (onExpand) onExpand();
   };
 
   return expandableContent.length > 0 ? (

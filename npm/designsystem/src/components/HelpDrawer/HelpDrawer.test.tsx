@@ -16,7 +16,7 @@ describe('Gitt at Drawer skal vises', () => {
       render(<HelpDrawer onRequestClose={() => {}} title="Min tittel" isOpen={true} />);
 
       const helpdrawer = screen.getByLabelText('Hjelpetekst');
-      expect(helpdrawer).toBeVisible;
+      expect(helpdrawer).toBeVisible();
     });
   });
 });

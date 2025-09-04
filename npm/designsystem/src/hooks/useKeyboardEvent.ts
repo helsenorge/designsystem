@@ -14,9 +14,9 @@ export const useKeyboardEvent = (
   callback: (event: HTMLElementEventMap[KeyboardEvents]) => void,
   key: string | string[],
   events: KeyboardEvents[] = ['keydown']
-) => {
+): void => {
   useEffect(() => {
-    const handleKeyboardEvent = (event: HTMLElementEventMap[KeyboardEvents]) => {
+    const handleKeyboardEvent = (event: HTMLElementEventMap[KeyboardEvents]): void => {
       if (event.key === key || (Array.isArray(key) && key.includes(event.key))) {
         callback(event);
       }
@@ -24,7 +24,7 @@ export const useKeyboardEvent = (
 
     events.forEach(eventName => ref.current?.addEventListener(eventName, handleKeyboardEvent));
 
-    return () => {
+    return (): void => {
       events.forEach(eventName => ref.current?.removeEventListener(eventName, handleKeyboardEvent));
     };
   }, [ref, callback, events, key]);

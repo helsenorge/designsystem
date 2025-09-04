@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
  * @param value Verdi du ønsker å ta vare på
  * @returns Forrige verdi
  */
-export const usePrevious = <T>(value: T) => {
+export const usePrevious = <T>(value: T): T | undefined => {
   const ref = useRef<T>();
 
   useEffect(() => {

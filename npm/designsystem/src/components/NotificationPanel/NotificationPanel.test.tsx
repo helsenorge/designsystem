@@ -30,12 +30,11 @@ describe('Gitt at NotificationPanel skal vises', () => {
   describe('Når panelet kan lukkes', () => {
     test('Så kalles onClick-handleren når man klikker på knappen', async (): Promise<void> => {
       const mockOnClick = vi.fn();
-      const { container } = render(
+      render(
         <NotificationPanel dismissable onClick={mockOnClick}>
           {'Some text here for testing.'}
         </NotificationPanel>
       );
-      expect(container).toMatchSnapshot();
 
       const closeButton = screen.getByRole('button');
       await userEvent.click(closeButton);

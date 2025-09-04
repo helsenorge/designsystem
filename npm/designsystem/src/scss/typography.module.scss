@@ -145,7 +145,7 @@ import designsystemtypography from './scss/typography.scss'
     display: inline;
     box-decoration-break: clone;
     overflow-wrap: break-word;
-    word-break: break-word;
+    word-break: normal;
     text-align: left;
     color: palette.$blueberry600;
     border: 0.15rem solid transparent;

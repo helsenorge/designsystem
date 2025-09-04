@@ -11,7 +11,7 @@ export const useInterval = (callback: () => void, frequency = 10): void => {
   useEffect(() => {
     const timer = setInterval(callback, frequency);
 
-    return () => {
+    return (): void => {
       clearInterval(timer);
     };
   }, [callback, frequency]);

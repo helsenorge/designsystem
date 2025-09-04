@@ -9,7 +9,7 @@ import { debounce } from '../utils/debounce';
  * @param events Liste med events som skal lyttes på
  * @param debounceMs Begrens kall til callback til x antall ms
  */
-export const useLayoutEvent = (callback: () => void, events = ['layoutchange', 'resize', 'orientationchange'], debounceMs = 10) => {
+export const useLayoutEvent = (callback: () => void, events = ['layoutchange', 'resize', 'orientationchange'], debounceMs = 10): void => {
   useEffect(() => {
     if (typeof window !== 'object') return;
     const [debouncedCallback, teardown] = debounce(callback, debounceMs);
@@ -18,7 +18,7 @@ export const useLayoutEvent = (callback: () => void, events = ['layoutchange', '
 
     debouncedCallback();
 
-    return () => {
+    return (): void => {
       teardown();
       events.forEach(eventName => window.removeEventListener(eventName, debouncedCallback));
     };

@@ -47,7 +47,9 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttri
   /** Function that is called when the Button loses focus */
   onBlur?: () => void;
   /** Function that is called when clicked */
-  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null) => void;
+  onClick?: (
+    e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<unknown> | React.KeyboardEvent<HTMLUListElement> | null
+  ) => void;
   /** Changes the button colors for different backgrounds. (Large not available in borderless variant) */
   size?: ButtonSize;
   /** Changes the visual representation of the button. */
@@ -128,10 +130,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   } = props;
 
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const { hoverRef, isHovered } =
-    htmlMarkup === 'button'
-      ? useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>)
-      : useHover<HTMLAnchorElement>(ref as React.RefObject<HTMLAnchorElement>);
+  const { hoverRef, isHovered } = useHover<HTMLElement>(ref as React.RefObject<HTMLElement>);
   const buttonContentRef = useRef<HTMLDivElement>(null);
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
   const bothIcons = leftIcon && (rightIcon || arrow) && !onlyIcon;

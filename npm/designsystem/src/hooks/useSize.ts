@@ -35,8 +35,8 @@ export const useSize = (ref?: React.RefObject<HTMLElement>): DOMRect | undefined
       };
     } else if (typeof window === 'object') {
       // For nettlesere som ikke støtter ResizeObserver (iOS 13 og lavere)
-      const handleLayoutEvent = () => {
-        ref?.current && setSize(ref.current.getBoundingClientRect());
+      const handleLayoutEvent = (): void => {
+        if (ref?.current) setSize(ref.current.getBoundingClientRect());
       };
 
       const events = ['layoutchange', 'resize', 'orientationchange'];
@@ -48,7 +48,7 @@ export const useSize = (ref?: React.RefObject<HTMLElement>): DOMRect | undefined
 
       debouncedCallback();
 
-      return () => {
+      return (): void => {
         teardown();
         events.forEach(eventName => window.removeEventListener(eventName, debouncedCallback));
       };

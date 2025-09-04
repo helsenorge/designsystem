@@ -20,7 +20,7 @@ $focus-width: 0.15rem;
   display: inline;
   box-decoration-break: clone;
   overflow-wrap: break-word;
-  word-break: break-word;
+  word-break: normal;
   text-align: left;
   color: var(--color-action-text-onlight);
   border: $focus-width solid transparent;

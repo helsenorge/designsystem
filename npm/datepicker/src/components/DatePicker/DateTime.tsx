@@ -76,15 +76,15 @@ export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<H
 
     if (isNumericString(value)) {
       setInputValue(value);
-      onChange && onChange(event);
+      if (onChange) onChange(event);
     }
   };
 
   const handleInputBlur = (event: React.FocusEvent<HTMLInputElement>): void => {
     const formattedValue = formatAsTwoDigits(event.target.value);
     setInputValue(formattedValue);
-    onChange && onChange(event);
-    onBlur && onBlur(event);
+    if (onChange) onChange(event);
+    if (onBlur) onBlur(event);
   };
 
   /** Firefox stopper ikke vanlige characters fra å skrives til input type number - derfor håndterer vi det selv her */

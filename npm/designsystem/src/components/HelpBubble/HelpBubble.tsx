@@ -72,11 +72,12 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     testId,
   } = props;
 
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+
   if (!showBubble) {
     return null;
   }
 
-  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
   const mergedResources: HNDesignsystemHelpBubble = {
     ...defaultResources,

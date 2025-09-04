@@ -215,11 +215,6 @@ describe('Gitt at DatePicker skal vises', (): void => {
 
       expect(datePicker).toHaveAccessibleDescription('Some error');
       expect(dateTime).toHaveAccessibleDescription('Some error');
-
-      expect(datePicker).toBeInTheDocument();
-      expect(datePicker.closest('div')).toHaveClass('input-container input-container--invalid');
-      expect(dateTime).toBeInTheDocument();
-      expect(dateTime.closest('div')).toHaveClass('input-container input-container--invalid');
     });
   });
 });

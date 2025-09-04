@@ -4,7 +4,6 @@ import classNames from 'classnames';
 
 import { AnalyticsId, IconSize } from '../../constants';
 import { useUuid } from '../../hooks/useUuid';
-import { getColor } from '../../theme/currys';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
@@ -90,6 +89,8 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     testId,
   } = props;
   const uuid = useUuid(labelId);
+  const [expanderOpen, setExpanderOpen] = React.useState(expanderOpenFromStart);
+
   const renderContent = (): JSX.Element => {
     const outlineVariant = compactVariant === 'outline';
     const contentClasses = classNames(styles['notification-panel__content']);
@@ -105,7 +106,6 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     });
     const CustomTag = labelHtmlMarkup;
 
-    const [expanderOpen, setExpanderOpen] = React.useState(expanderOpenFromStart);
     return (
       <div className={contentClasses} id={!label ? uuid : undefined}>
         {label && (
@@ -162,7 +162,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         />
         {dismissable && (
           <span className={styles['notification-panel__close']}>
-            <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} color={getColor('black')} />
+            <Close ariaLabel={props.ariaLabelCloseBtn} onClick={onClick} color="black" />
           </span>
         )}
         {renderContent()}

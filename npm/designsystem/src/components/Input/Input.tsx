@@ -200,7 +200,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
       const input = inputContainerRefLocal.current.children[selectedChild] as HTMLInputElement;
       input.focus();
 
-      props.onClick && props.onClick(e);
+      if (props.onClick) props.onClick(e);
     }
   };
 
@@ -232,7 +232,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     if (numRegex.test(e.key)) {
       numKeyPressed.current = true;
     }
-    onKeyDown && onKeyDown(e);
+    if (onKeyDown) onKeyDown(e);
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>): void => {

@@ -274,98 +274,91 @@ export const Default: Story = {
   },
 };
 
-export const DateRangePicker: Story = {
-  render: (args: DatePickerProps) => {
-    const [fromDate, setFromDate] = React.useState<Date | undefined>();
-    const [toDate, setToDate] = React.useState<Date | undefined>();
+const DateRangePickerRender = (args: DatePickerProps): React.ReactElement => {
+  const [fromDate, setFromDate] = React.useState<Date | undefined>();
+  const [toDate, setToDate] = React.useState<Date | undefined>();
 
-    return (
-      <DateTimePickerWrapper>
-        <DatePicker
-          {...args}
-          label={<Label labelTexts={[{ text: 'Fra dato' }]} />}
-          maxDate={toDate}
-          onChange={(
-            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>,
-            date: string | Date | undefined
-          ): void => {
-            date instanceof Date && setFromDate(date);
-          }}
-        />
-        <DatePicker
-          {...args}
-          label={<Label labelTexts={[{ text: 'Til dato' }]} />}
-          minDate={fromDate}
-          onChange={(
-            _event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent> | React.KeyboardEvent<Element>,
-            date: string | Date | undefined
-          ): void => {
-            date instanceof Date && setToDate(date);
-          }}
-        />
-      </DateTimePickerWrapper>
-    );
-  },
-};
-
-export const DateAndTime: Story = {
-  render: (args: DatePickerProps) => {
-    const [startDate] = React.useState(new Date('01.01.2024'));
-
-    return (
-      <DateTimePickerWrapper>
-        <DatePicker {...args} dateValue={startDate} label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />} />
-        <DateTime
-          defaultValue={12}
-          label={<Label labelId={'label01'} labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
-          timeUnit={'hours'}
-        />
-        <DateTime defaultValue={0} aria-labelledby={'label01'} timeUnit={'minutes'} />
-      </DateTimePickerWrapper>
-    );
-  },
-};
-
-export const MinMaxDays: Story = {
-  render: (args: DatePickerProps) => {
-    const [startDate] = React.useState(new Date());
-    const minDate = new Date();
-    const maxDate = new Date();
-    minDate.setDate(startDate.getDate() - 15);
-    maxDate.setDate(startDate.getDate() + 15);
-
-    return (
+  return (
+    <DateTimePickerWrapper>
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
-        disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
-        dateValue={startDate}
-        maxDate={maxDate}
-        minDate={minDate}
+        label={<Label labelTexts={[{ text: 'Fra dato' }]} />}
+        maxDate={toDate}
+        onChange={(_e, date) => {
+          if (date instanceof Date) setFromDate(date);
+        }}
       />
-    );
-  },
-};
-
-export const DisabledDays: Story = {
-  render: (args: DatePickerProps) => {
-    const [startDate] = React.useState(new Date('01.01.2024'));
-    const disabledDate = new Date();
-    disabledDate.setDate(startDate.getDate() - 3);
-
-    return (
       <DatePicker
-        label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
         {...args}
-        disableDays={[disabledDate]}
-        disableWeekends
-        dateValue={startDate}
-        maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
-        minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
+        label={<Label labelTexts={[{ text: 'Til dato' }]} />}
+        minDate={fromDate}
+        onChange={(_e, date) => {
+          if (date instanceof Date) setToDate(date);
+        }}
       />
-    );
-  },
+    </DateTimePickerWrapper>
+  );
 };
+
+export const DateRangePicker: Story = { render: DateRangePickerRender };
+
+const DateAndTimeRender = (args: DatePickerProps): React.ReactElement => {
+  const [startDate] = React.useState(new Date('01.01.2024'));
+  return (
+    <DateTimePickerWrapper>
+      <DatePicker {...args} dateValue={startDate} label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />} />
+      <DateTime
+        defaultValue={12}
+        label={<Label labelId="label01" labelTexts={[{ text: 'Tid' }, { text: '(tt:mm)' }]} />}
+        timeUnit="hours"
+      />
+      <DateTime defaultValue={0} aria-labelledby="label01" timeUnit="minutes" />
+    </DateTimePickerWrapper>
+  );
+};
+
+export const DateAndTime: Story = { render: DateAndTimeRender };
+
+const MinMaxDaysRender = (args: DatePickerProps): React.ReactElement => {
+  const [startDate] = React.useState(new Date());
+  const minDate = new Date(startDate);
+  minDate.setDate(startDate.getDate() - 15);
+  const maxDate = new Date(startDate);
+  maxDate.setDate(startDate.getDate() + 15);
+
+  return (
+    <DatePicker
+      {...args}
+      label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
+      dateValue={startDate}
+      minDate={minDate}
+      maxDate={maxDate}
+      disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
+    />
+  );
+};
+
+export const MinMaxDays: Story = { render: MinMaxDaysRender };
+
+const DisabledDaysRender = (args: DatePickerProps): React.ReactElement => {
+  const [startDate] = React.useState(new Date('01.01.2024'));
+  const disabledDate = new Date(startDate);
+  disabledDate.setDate(startDate.getDate() - 3);
+
+  return (
+    <DatePicker
+      {...args}
+      label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
+      dateValue={startDate}
+      disableDays={[disabledDate]}
+      disableWeekends
+      maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
+      minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
+    />
+  );
+};
+
+export const DisabledDays: Story = { render: DisabledDaysRender };
 
 export const FooterContent: Story = {
   render: (args: DatePickerProps) => {
@@ -447,7 +440,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
 
   const requireHour = (hours: number): true | string => {
     const minutes = getValues(datetimeminute);
-    // eslint-disable-next-line no-console
+
     console.log('Validating time: ', hours, minutes);
 
     const validateResult = validateMinMaxTime(
@@ -462,7 +455,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
 
   const requireMinute = (minutes: number): true | string => {
     const hours = getValues(datetimehour);
-    // eslint-disable-next-line no-console
+
     console.log('Validating time: ', hours, minutes);
 
     const validateResult = validateMinMaxTime(
@@ -476,7 +469,6 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
   };
 
   const requireDate = (value: string): true | string => {
-    // eslint-disable-next-line no-console
     console.log('Validating date: ', value);
     let validateResult = validateMinMaxDate(
       value,
@@ -494,7 +486,6 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
   };
 
   const onSubmit = (data: DateForm): void => {
-    // eslint-disable-next-line no-console
     console.log('Date submitted', data);
   };
 

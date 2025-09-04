@@ -13,7 +13,7 @@
   z-index: 3;
   box-shadow: 0 0 0 1px var(--color-base-border-onlight);
   border-radius: 9px;
-  filter: drop-shadow(0 4px 16px rgba(0 0 0 / 30%));
+  filter: drop-shadow(0 4px 16px rgb(0 0 0 / 30%));
   padding: var(--core-space-s);
 
   @include fonts.help-text;

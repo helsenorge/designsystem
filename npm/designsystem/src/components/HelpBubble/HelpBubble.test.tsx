@@ -159,6 +159,6 @@ describe('Gitt at default brukes', (): void => {
     render(<HelpBubleWithController showBubble>{'Test tekst'}</HelpBubleWithController>);
 
     const helpbubble = screen.getByLabelText('Hjelpetekst');
-    expect(helpbubble).toBeVisible;
+    expect(helpbubble).toBeVisible();
   });
 });

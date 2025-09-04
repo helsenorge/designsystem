@@ -166,7 +166,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   }, [returnInputFocus]);
 
   const handleEscapeKeyDown = (): void => {
-    refObject?.current && refObject.current.focus();
+    if (refObject?.current) refObject.current.focus();
     setDatePickerOpen(false);
   };
 
@@ -184,7 +184,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       setDateState(undefined);
     }
 
-    onChange && onChange(event, event.currentTarget.value);
+    if (onChange) onChange(event, event.currentTarget.value);
   };
 
   const handleInputFocus = (): void => {
@@ -216,9 +216,11 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       setDatePickerOpen(false);
     }
 
-    onChange && onChange(e, date);
+    if (onChange) onChange(e, date);
+
     triggerSyntheticInputEvents(refObject, format(date, dateFormat), date);
-    onDatePopupClosed && onDatePopupClosed(date);
+
+    if (onDatePopupClosed) onDatePopupClosed(date);
   };
 
   // We do this to make sure selecting from the DatePickerPopup triggers the onChange events properly, and works with react-hook-form
@@ -230,7 +232,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   ): void => {
     if (inputRef.current) {
       inputRef.current.value = value;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
       const inputEvent = new Event('change', { bubbles: true });
 
       // Since the event is synthetic we have to add the target for webcomponents to not throw an error
@@ -259,13 +261,14 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement, Element>): void => {
     // We don't trigger the native onBlur event if the user select via the datepicker and the onDatePopupClosed callback is used (usually to trigger validation manually)
     if (!datePickerOpen && (typeof onDatePopupClosed === 'undefined' || isTyping.current)) {
-      onBlur && onBlur(e);
+      if (onBlur) onBlur(e);
     }
 
     isTyping.current = false;
   };
 
   const handleButtonClick = (
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null | undefined
   ): void => {
     e?.stopPropagation();
@@ -297,7 +300,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     handleInputChange(e, 'yyyy-MM-dd');
 
     if (!isTyping.current) {
-      onDatePopupClosed && onDatePopupClosed(dateState);
+      if (onDatePopupClosed) onDatePopupClosed(dateState);
     }
   };
 

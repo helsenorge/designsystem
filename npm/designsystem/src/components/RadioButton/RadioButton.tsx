@@ -123,7 +123,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
 
   const change = (e: React.ChangeEvent<HTMLInputElement>): void => {
     changeChecked(e.target.checked);
-    onChange && onChange(e);
+    if (onChange) onChange(e);
   };
 
   const getLabelContent = (): React.ReactNode => (

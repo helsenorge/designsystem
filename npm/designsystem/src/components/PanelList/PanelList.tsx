@@ -18,6 +18,7 @@ export interface PanelListProps {
   highlightText?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 const isPanelComponent = (element: {} | null | undefined): element is React.ReactElement<PanelProps> =>
   React.isValidElement<PanelProps>(element) && (element as React.ReactElement).type === Panel;
 

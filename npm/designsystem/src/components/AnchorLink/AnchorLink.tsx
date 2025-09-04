@@ -16,7 +16,7 @@ export type AnchorLinkTags = 'a' | 'button';
 
 export type AnchorLinkOnClickEvent =
   | React.MouseEvent<HTMLElement, MouseEvent>
-  | React.FormEvent<{}>
+  | React.FormEvent<unknown>
   | React.KeyboardEvent<HTMLUListElement>
   | null;
 
@@ -54,7 +54,7 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
     onClick,
   };
 
-  const renderContent = () => (
+  const renderContent = (): React.ReactElement => (
     <>
       {children}
       {external && (
@@ -97,5 +97,7 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
     </>
   );
 });
+
+AnchorLink.displayName = 'AnchorLink';
 
 export default AnchorLink;
