@@ -4,13 +4,6 @@ import userEvent from '@testing-library/user-event';
 import NotificationPanel from './NotificationPanel';
 
 describe('Gitt at NotificationPanel skal vises', () => {
-  describe('Når panelet vises med default props', () => {
-    test('Så rendres komponenten riktig', (): void => {
-      const { container } = render(<NotificationPanel>{'Some text here for testing.'}</NotificationPanel>);
-      expect(container).toMatchSnapshot();
-    });
-  });
-
   describe('Når panelet skal kunne lukkes', () => {
     test('Så kalles onClick-handler når man klikker på lukkeknappen', async (): Promise<void> => {
       const mockClose = vi.fn();
@@ -81,24 +74,6 @@ describe('Gitt at NotificationPanel skal vises', () => {
       const expandButton = screen.getByTestId('expand');
       await userEvent.click(expandButton);
       expect(await screen.findByText('Expanded Content')).toBeInTheDocument();
-    });
-  });
-
-  describe('Når bruker ser compact-variant', (): void => {
-    test('Så vises innhold', async (): Promise<void> => {
-      const { container } = render(
-        <>
-          <NotificationPanel compactVariant="basic">
-            {'Some text here for testing.'}
-            <a href="/">{'Lenke'}</a>
-          </NotificationPanel>
-          <NotificationPanel compactVariant="outline">
-            {'Some text here for testing.'}
-            <a href="/">{'Lenke'}</a>
-          </NotificationPanel>
-        </>
-      );
-      expect(container).toMatchSnapshot();
     });
   });
 

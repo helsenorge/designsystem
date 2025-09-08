@@ -1,7 +1,4 @@
 export type Styles = {
-  anchorlink: string;
-  anchorlink__icon: string;
-  'anchorlink-wrapper': string;
   'fluid-wrapper': string;
   'notification-panel': string;
   'notification-panel__children': string;
