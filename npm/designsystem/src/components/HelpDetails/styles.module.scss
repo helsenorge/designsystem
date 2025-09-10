@@ -19,11 +19,9 @@
   }
 
   &--standalone {
-    margin-top: -0.35rem;
     max-width: 32rem;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      margin-top: -0.25rem;
       max-width: 36rem;
     }
   }

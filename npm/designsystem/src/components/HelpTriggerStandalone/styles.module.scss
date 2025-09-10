@@ -13,54 +13,47 @@ $outline-xl-width: 2.5px;
 
 .help-trigger-standalone {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 0;
   cursor: pointer;
   text-decoration: none;
   background-color: transparent;
   outline: none;
   border: 0;
   min-width: 4.6rem;
-  height: 2.75rem;
+  min-height: 2.75rem;
+  color: var(--color-help-graphics-normal);
+  padding: 0 var(--core-space-3xs);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2rem;
+  text-align: left;
 
-  &:focus-visible {
-    outline: none;
+  // juster alle elementer inne i container for center alignment i knapp med én linje
+  & > * {
+    margin-top: 10px;
   }
 
-  &__inner-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: var(--core-space-l);
-    color: var(--color-help-graphics-normal);
-    padding: 0 var(--core-space-3xs);
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.2rem;
+  &:hover,
+  &:active {
+    color: var(--color-help-graphics-verydark);
+    background-color: var(--color-help-background-transparent-onlight-hover);
+  }
 
-    :hover > &,
-    :active > & {
-      color: var(--color-help-graphics-verydark);
-      background-color: var(--color-help-background-transparent-onlight-hover);
-    }
+  &:focus-visible {
+    outline: 3px solid var(--color-action-border-onlight-focus);
+  }
 
-    :focus-visible > & {
-      outline: 3px solid var(--color-action-border-onlight-focus);
-    }
+  &:active {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4.23px;
+  }
 
-    :active > & {
-      text-decoration-line: underline;
-      text-decoration-style: solid;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 4.23px;
-    }
-
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      min-height: 2.25rem;
-      font-size: 1.125rem;
-      line-height: 1.463rem;
-    }
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    font-size: 1.125rem;
+    line-height: 1.463rem;
   }
 
   &__children {
