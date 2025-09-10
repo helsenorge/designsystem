@@ -1,3 +1,20 @@
+## [12.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.0.2&targetVersion=GTv12.1.0) (2025-09-10)
+
+### Features
+
+- **helpexpanderstandalone:** justering av innhold ved tekst over flere linjer
+  ([5d3a8ea](https://github.com/helsenorge/designsystem/commit/5d3a8eac4d3cf1ccbd9bd4aac947b3a26a73a120)), closes
+  [#354487](https://github.com/helsenorge/designsystem/issues/354487)
+- **notificationpanel:** fjern spesifikk styling av rene anchorlinks
+  ([6db68e4](https://github.com/helsenorge/designsystem/commit/6db68e4c5e3c1806f9ae16c2088322d51b0da15e)), closes
+  [#358876](https://github.com/helsenorge/designsystem/issues/358876)
+
+### Bug Fixes
+
+- **dropdown:** skjermleser leser ikke opp innholdet i safari
+  ([a26e4a9](https://github.com/helsenorge/designsystem/commit/a26e4a990a017c95274a4f9bb5b6b5d1c3f02c9c)), closes
+  [#356915](https://github.com/helsenorge/designsystem/issues/356915)
+
 ## [12.0.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.0.1&targetVersion=GTv12.0.2) (2025-09-04)
 
 ### Bug Fixes
