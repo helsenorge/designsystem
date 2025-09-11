@@ -1,3 +1,20 @@
+## [12.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.1.0&targetVersion=GTv12.2.0) (2025-09-11)
+
+### Features
+
+- **expanderhierarchy:** eksponer classname prop på expander
+  ([8c7f2cd](https://github.com/helsenorge/designsystem/commit/8c7f2cd92d582de3b97a60f849a9a8e599b9935b)), closes
+  [#359415](https://github.com/helsenorge/designsystem/issues/359415)
+- **validation:** ny prop visuallyHiddenSummary
+  ([d51e566](https://github.com/helsenorge/designsystem/commit/d51e566a2f02d9b0a65cb3cf5ada7c9c8c062014)), closes
+  [#358073](https://github.com/helsenorge/designsystem/issues/358073)
+
+### Bug Fixes
+
+- **useReturnFocusOnUnmount:** fiks hook for microweb
+  ([5d87848](https://github.com/helsenorge/designsystem/commit/5d87848b5adbb4b0765cf67496408ff8948a1f41)), closes
+  [#359450](https://github.com/helsenorge/designsystem/issues/359450)
+
 ## [12.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.0.2&targetVersion=GTv12.1.0) (2025-09-10)
 
 ### Features
