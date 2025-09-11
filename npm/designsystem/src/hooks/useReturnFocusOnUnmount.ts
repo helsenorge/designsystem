@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 
+import { deepContains } from '../utils/deepContains';
 import { getDocumentActiveElement } from '../utils/focus';
 
 /**
@@ -19,7 +20,7 @@ export const useReturnFocusOnUnmount = (ref: React.RefObject<HTMLElement>): void
 
     // Restores focus to the stored element on unmount
     return (): void => {
-      if (previouslyFocusedElementRef.current instanceof HTMLElement && document.contains(previouslyFocusedElementRef.current)) {
+      if (previouslyFocusedElementRef.current instanceof HTMLElement && deepContains(document, previouslyFocusedElementRef.current)) {
         previouslyFocusedElementRef.current.focus();
       }
     };

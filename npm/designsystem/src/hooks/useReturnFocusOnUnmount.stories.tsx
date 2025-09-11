@@ -15,7 +15,8 @@ const UseReturnFocusOnUnmount: React.FC = () => {
       {open && (
         <Drawer
           title="Lukk meg"
-          onClose={() => {
+          isOpen={open}
+          onRequestClose={() => {
             setOpen(false);
           }}
         >
@@ -60,7 +61,7 @@ export const usePreviousFocus = (): void => {
 
     // Restores focus to the stored element on unmount
     return (): void => {
-      if (previouslyFocusedElementRef.current instanceof HTMLElement && document.contains(previouslyFocusedElementRef.current)) {
+      if (previouslyFocusedElementRef.current instanceof HTMLElement && deepContains(document, previouslyFocusedElementRef.current)) {
         previouslyFocusedElementRef.current.focus();
       }
     };
