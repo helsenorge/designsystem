@@ -19,6 +19,8 @@ export type HighlightPanelTags = Exclude<
   'dir' | 'font' | 'frame' | 'frameset' | 'marquee' | 'applet' | 'basefont' | 'search'
 >;
 
+export type HighlightPanelVariants = 'normal' | 'compact';
+
 export interface HighlightPanelProps {
   /** What's in the box? */
   children: React.ReactNode;
@@ -30,6 +32,8 @@ export interface HighlightPanelProps {
   htmlMarkup?: HighlightPanelTags;
   /** Adds custom classes to the element. */
   className?: string;
+  /** Uses the compact styling if set to compact */
+  variant?: HighlightPanelVariants;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Element that is set after the icon-element in the DOM, often a title-element */
@@ -39,25 +43,50 @@ export interface HighlightPanelProps {
 }
 
 const HighlightPanel: React.FC<HighlightPanelProps> = props => {
-  const { children, color = 'white', testId, svgIcon, htmlMarkup = 'div', className, title, titleHtmlMarkup = 'h2' } = props;
+  const {
+    children,
+    color = 'white',
+    testId,
+    svgIcon,
+    htmlMarkup = 'div',
+    className,
+    variant = 'normal',
+    title,
+    titleHtmlMarkup = 'h2',
+  } = props;
   const breakpoint = useBreakpoint();
 
   const containerClassName = classNames(
     styles.highlightpanel,
     styles[`highlightpanel--${color}`],
     svgIcon && styles['highlightpanel--has-icon'],
-    className
+    className,
+    { [styles['highlightpanel--compact']]: variant === 'compact' }
   );
 
   const renderContent = (): React.ReactNode => {
     const titleElement = title && (
-      <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance="title4">
+      <Title testId="titleId" htmlMarkup={titleHtmlMarkup} appearance={variant === 'compact' ? 'title6' : 'title4'}>
         {title}
       </Title>
     );
 
     if (svgIcon) {
       const iconSize = IconSize.Small;
+
+      if (variant === 'compact') {
+        return (
+          <>
+            <div className={classNames(styles.highlightpanel__icon, styles['highlightpanel__icon--compact'])}>
+              {typeof svgIcon === 'string' ? <LazyIcon iconName={svgIcon} size={iconSize} /> : <Icon svgIcon={svgIcon} size={iconSize} />}
+            </div>
+            <div className={(styles.highlightpanel__content, styles['highlightpanel__content--compact'])}>
+              {title && <div className={styles['highlightpanel__title-wrapper']}>{titleElement}</div>}
+              <div className={styles['highlightpanel__content__children--compact']}>{children}</div>
+            </div>
+          </>
+        );
+      }
 
       return (
         <>
