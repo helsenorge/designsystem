@@ -1,3 +1,16 @@
+## [12.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.2.0&targetVersion=GTv12.3.0) (2025-09-18)
+
+### Features
+
+- **helppanel:** ny compact variant ([7528a48](https://github.com/helsenorge/designsystem/commit/7528a4841c6e7f9a4b2ea0b9d1e061e2cd37dae1)),
+  closes [#354473](https://github.com/helsenorge/designsystem/issues/354473)
+- **icon:** nye ikoner drag og edit ([c43bac8](https://github.com/helsenorge/designsystem/commit/c43bac89f4d59f97e943859f7d21eb9bff6e61e8)),
+  closes [#357267](https://github.com/helsenorge/designsystem/issues/357267)
+  [#357711](https://github.com/helsenorge/designsystem/issues/357711)
+- **toggle:** legg til mulighet for statustekst under toggle knapp
+  ([db310bc](https://github.com/helsenorge/designsystem/commit/db310bcad67e67dcc2664834958c8fc70ece15c4)), closes
+  [#358389](https://github.com/helsenorge/designsystem/issues/358389)
+
 ## [12.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.1.0&targetVersion=GTv12.2.0) (2025-09-11)
 
 ### Features
