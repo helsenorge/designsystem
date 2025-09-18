@@ -172,7 +172,7 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
   const mappedChildren = mapChildren(children);
   const hasStatusDots = !!mappedChildren?.statusDotChildren?.length || !!mappedChildren?.statusDotMCChild;
 
-  const listLabelClasses = cn(styles['element-header'], { [styles['element-header--with-statusdot']]: hasStatusDots }, className);
+  const listLabelClasses = cn(styles['element-header'], className);
   const badgeContainerClasses = cn(styles['element-header__badge-container']);
   const badgeClasses = cn(styles['element-header__badge']);
   const statusdotContainerClasses = cn(styles['element-header__statusdot-container']);
@@ -180,7 +180,7 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
   const contentClasses = cn(styles['element-header__content'], {
     [styles['element-header__content--element']]: !contentIsString,
   });
-  const iconClasses = cn(styles['element-header__icon'], {});
+  const iconClasses = cn(styles['element-header__icon'], { [styles['element-header__icon--with-statusdot']]: hasStatusDots });
   const avatarClasses = cn(styles['element-header__avatar'], {});
   const CustomTag = titleHtmlMarkup;
   return (

@@ -10,6 +10,7 @@
 $status-dot-size: 1rem;
 
 .statusdot {
+  min-height: 1.75rem;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -29,6 +30,7 @@ $status-dot-size: 1rem;
     &--active {
       fill: var(--color-notification-graphics-success);
     }
+
     &--success#{&}--on-dark,
     &--active#{&}--on-dark {
       fill: var(--core-color-kiwi-200);
@@ -41,6 +43,7 @@ $status-dot-size: 1rem;
     &--pending {
       fill: var(--color-notification-graphics-warning);
     }
+
     &--inprocess#{&}--on-dark,
     &--exception#{&}--on-dark,
     &--unknown#{&}--on-dark,
@@ -54,6 +57,7 @@ $status-dot-size: 1rem;
     &--inactive {
       fill: var(--color-notification-graphics-error);
     }
+
     &--cancelled#{&}--on-dark,
     &--alert#{&}--on-dark,
     &--inactive#{&}--on-dark {
@@ -63,6 +67,7 @@ $status-dot-size: 1rem;
     &--info {
       fill: var(--core-color-blueberry-500);
     }
+
     &--info#{&}--on-dark {
       fill: var(--core-color-blueberry-200);
     }
@@ -70,6 +75,7 @@ $status-dot-size: 1rem;
     &--transparent {
       fill: var(--color-disabled-border);
     }
+
     &--transparent#{&}--on-dark,
     &--group#{&}--on-dark,
     &--recurring#{&}--on-dark,

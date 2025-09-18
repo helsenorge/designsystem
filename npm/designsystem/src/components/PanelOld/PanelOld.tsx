@@ -430,7 +430,6 @@ const PanelOld = React.forwardRef(function PanelForwardedRef(props: PanelOldProp
 
   return (
     <div
-      // eslint-disable-next-line no-constant-condition
       tabIndex={focusable ? -1 : undefined}
       ref={ref}
       data-testid={testId}
