@@ -1,0 +1,22 @@
+@use 'sass:map';
+@use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/spacers' as spacers;
+
+.story {
+  &__title {
+    display: inline;
+    padding-right: spacers.getSpacer(2xl);
+  }
+
+  &__hjelpetrigger {
+    display: inline-flex;
+    position: relative;
+    margin-left: spacers.getSpacer(xl) * -1;
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@use 'sass:map';
+@use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
+
+$large-size: 2.5rem;
+$xl-size: 3.75rem;
+
+.favoritebutton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  height: $large-size;
+  width: $large-size;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  outline: none;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    height: $xl-size;
+    width: $xl-size;
+  }
+
+  svg {
+    height: $large-size;
+    width: $large-size;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      height: $xl-size;
+      width: $xl-size;
+    }
+  }
+}
