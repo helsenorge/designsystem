@@ -7,7 +7,7 @@ import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { isComponent, isComponentWithChildren } from '../../utils/component';
 import Avatar, { AvatarProps, AvatarSize, AvatarType } from '../Avatar';
 import Badge, { BadgeProps, BadgeType } from '../Badge';
-import Icon, { IconSize, SvgIcon } from '../Icon';
+import Icon, { IconProps, IconSize, SvgIcon } from '../Icon';
 import StatusDot, { StatusDotProps, StatusDotType } from '../StatusDot';
 import { TitleTags } from '../Title';
 import StatusDotList from './StatusDotList';
@@ -183,14 +183,18 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
   const iconClasses = cn(styles['element-header__icon'], { [styles['element-header__icon--with-statusdot']]: hasStatusDots });
   const avatarClasses = cn(styles['element-header__avatar'], {});
   const CustomTag = titleHtmlMarkup;
+  const iconPropIsIconComponent = isComponent<IconProps>(icon, Icon);
+
   return (
     <span data-testid={testId} className={listLabelClasses}>
       {showIcon && icon && (
         <span className={iconClasses}>
-          {React.cloneElement(icon, {
-            size: breakpoint < Breakpoint.md ? IconSize.XSmall : IconSize.Small,
-            isHovered,
-          })}
+          {iconPropIsIconComponent
+            ? React.cloneElement(icon, {
+                size: breakpoint < Breakpoint.md ? IconSize.XSmall : IconSize.Small,
+                isHovered,
+              })
+            : icon}
         </span>
       )}
       {size !== 'small' && mappedChildren?.avatarChild && (
