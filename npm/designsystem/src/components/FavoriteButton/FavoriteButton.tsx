@@ -2,10 +2,13 @@ import React, { AriaAttributes } from 'react';
 
 import classNames from 'classnames';
 
+import { getResources } from './resourceHelper';
 import { starIconHoverDesktop, starIconHoverMobile, starIconNormalDesktop, starIconNormalMobile } from './StarIcon';
-import { AnalyticsId, HTMLButtonProps } from '../../constants';
+import { AnalyticsId, HTMLButtonProps, LanguageLocales } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
+import { HNDesignsystemFavoriteButton } from '../../resources/Resources';
+import { useLanguage } from '../../utils/language';
 import { isMutableRefObject } from '../../utils/refs';
 
 import styles from './styles.module.scss';
@@ -17,6 +20,8 @@ export interface FavoriteButtonProps extends HTMLButtonProps, AriaAttributes {
   id?: string;
   /** Function that is called when clicked */
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemFavoriteButton>;
   /** Specifies the focus order relative to the other buttons or controls on the page  */
   tabIndex?: number;
   /** Sets the data-testid attribute. */
@@ -27,11 +32,19 @@ export const FavoriteButton = React.forwardRef(function FavoriteButtonForwardedR
   props: FavoriteButtonProps,
   ref: React.ForwardedRef<HTMLButtonElement>
 ) {
-  const { checked, id, onClick, tabIndex, testId, ...other } = props;
+  const { checked, id, onClick, resources, tabIndex, testId, ...other } = props;
 
   const buttonWrapperClasses = classNames(styles.favoritebutton);
   const { refObject, isFocused, isHovered, isActive } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
   const breakpoint = useBreakpoint();
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemFavoriteButton = {
+    ...defaultResources,
+    ...resources,
+    ariaLabel: other['aria-label'] || resources?.ariaLabel || defaultResources.ariaLabel,
+  };
 
   const isMobile = breakpoint <= Breakpoint.sm;
 
@@ -63,6 +76,7 @@ export const FavoriteButton = React.forwardRef(function FavoriteButtonForwardedR
       role="switch"
       aria-checked={checked}
       type="button"
+      aria-label={mergedResources.ariaLabel}
       {...other}
     >
       <svg focusable={false} overflow="visible" role="presentation" viewBox={isMobile ? '0 0 41 41' : '0 0 61 61'} {...other}>
