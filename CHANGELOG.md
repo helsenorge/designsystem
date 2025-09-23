@@ -1,3 +1,25 @@
+## [12.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.3.0&targetVersion=GTv12.4.0) (2025-09-23)
+
+### Features
+
+- **favoritebutton:** default aria-label hentes fra sot
+  ([53b3596](https://github.com/helsenorge/designsystem/commit/53b359668307ed19279a2a4d87a80a81538698e0)), closes
+  [#357829](https://github.com/helsenorge/designsystem/issues/357829)
+- **favoritebutton:** ny komponent ([3971d8c](https://github.com/helsenorge/designsystem/commit/3971d8cea9d0f6e87c622ffcc700d5aecfc5a1ca)),
+  closes [#357829](https://github.com/helsenorge/designsystem/issues/357829)
+
+### Bug Fixes
+
+- når vertikaler brukte aria-describedby på skjemakomponenter så ble errorTextUuid overstyrt
+  ([7de2697](https://github.com/helsenorge/designsystem/commit/7de26976ff449a10028deb734dbf6c5fe24fc029)), closes
+  [#359583](https://github.com/helsenorge/designsystem/issues/359583)
+- statusdot og elementheader spacing fikses
+  ([d88c71d](https://github.com/helsenorge/designsystem/commit/d88c71d6d73d73039a744cee76939114c06487e9)), closes
+  [#356675](https://github.com/helsenorge/designsystem/issues/356675)
+- **elementheader:** ishovered sendes bare til ekte ikoner
+  ([dcb0779](https://github.com/helsenorge/designsystem/commit/dcb0779a4a89894ad2262f9e88ef4438a41b09dc)), closes
+  [#360049](https://github.com/helsenorge/designsystem/issues/360049)
+
 ## [12.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.2.0&targetVersion=GTv12.3.0) (2025-09-18)
 
 ### Features
