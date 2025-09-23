@@ -258,6 +258,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
           >
             {!iconRight && renderIcon()}
             <input
+              {...rest}
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               onKeyUp={handleKeyUp}
@@ -267,7 +268,6 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
               id={inputIdState}
               className={inputClass}
               ref={ref}
-              aria-labelledby={props['aria-labelledby'] ?? undefined}
               aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
               aria-invalid={!!onError}
               disabled={disabled}
@@ -277,7 +277,6 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
               required={required}
               // eslint-disable-next-line jsx-a11y/no-autofocus
               autoFocus={autoFocus}
-              {...rest}
             />
             {iconRight && renderIcon()}
           </div>
