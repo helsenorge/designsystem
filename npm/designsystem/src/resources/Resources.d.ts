@@ -4,7 +4,7 @@
  *
  * This file is for typings support only, it will not supply the actual text, you will still need to download the correct culture spesific .resx file.
  */
-export type HNDesignsystemDropdownOld = {
+export type HNDesignsystemDropdown = {
   /**
    * Lukk
    */

@@ -24,14 +24,14 @@ import PlusSmall from '../Icons/PlusSmall';
 
 import styles from './styles.module.scss';
 
-export enum DropdownOldOnColor {
+export enum DropdownOnColor {
   onwhite = 'onwhite',
   ongrey = 'ongrey',
   onblueberry = 'onblueberry',
   oncherry = 'oncherry',
 }
 
-export interface DropdownOldProps {
+export interface DropdownProps {
   /** Label for dropdown. Visible for screen readers  */
   label: string;
   /** Text on the trigger button that opens the dropdown */
@@ -49,7 +49,7 @@ export interface DropdownOldProps {
   /** Whether the dropdown is open or not */
   open?: boolean;
   /** Changes the visuals of the dropdown */
-  onColor?: keyof typeof DropdownOldOnColor;
+  onColor?: keyof typeof DropdownOnColor;
   /** Makes the background of the trigger transparent */
   transparent?: boolean;
   /** Makes the width of the full component adjust to its parent */
@@ -64,7 +64,7 @@ export interface DropdownOldProps {
   resources?: Partial<HNDesignsystemDropdown>;
 }
 
-const DropdownOld: React.FC<DropdownOldProps> = props => {
+const Dropdown: React.FC<DropdownProps> = props => {
   const {
     label,
     placeholder,
@@ -73,7 +73,7 @@ const DropdownOld: React.FC<DropdownOldProps> = props => {
     dropdownMinWidth,
     open = false,
     children,
-    onColor = DropdownOldOnColor.onwhite,
+    onColor = DropdownOnColor.onwhite,
     transparent = false,
     fluid = false,
     testId,
@@ -172,10 +172,10 @@ const DropdownOld: React.FC<DropdownOldProps> = props => {
   const toggleClasses = classNames(
     styles.dropdown__toggle,
     !disabled && {
-      [styles['dropdown__toggle--on-white']]: onColor === DropdownOldOnColor.onwhite,
-      [styles['dropdown__toggle--on-grey']]: onColor === DropdownOldOnColor.ongrey,
-      [styles['dropdown__toggle--on-blueberry']]: onColor === DropdownOldOnColor.onblueberry,
-      [styles['dropdown__toggle--on-cherry']]: onColor === DropdownOldOnColor.oncherry,
+      [styles['dropdown__toggle--on-white']]: onColor === DropdownOnColor.onwhite,
+      [styles['dropdown__toggle--on-grey']]: onColor === DropdownOnColor.ongrey,
+      [styles['dropdown__toggle--on-blueberry']]: onColor === DropdownOnColor.onblueberry,
+      [styles['dropdown__toggle--on-cherry']]: onColor === DropdownOnColor.oncherry,
       [styles['dropdown__toggle--transparent']]: transparent,
       [styles['dropdown__toggle--fluid']]: fluid,
       [styles['dropdown__toggle--open']]: isOpen,
@@ -243,4 +243,4 @@ const DropdownOld: React.FC<DropdownOldProps> = props => {
   );
 };
 
-export default DropdownOld;
+export default Dropdown;

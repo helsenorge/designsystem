@@ -1,0 +1,230 @@
+@use 'sass:map';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/palette' as palette;
+@use '../../scss/font-settings' as font-settings;
+@use '../../scss/screen-reader' as *;
+@use '../../scss/breakpoints' as breakpoints;
+
+.dropdown {
+  position: relative;
+  width: fit-content;
+
+  &__label {
+    @include sr-only;
+  }
+
+  &__toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 0;
+    border-width: 2px;
+    border-style: solid;
+    padding: 0 spacers.getSpacer(3xs) 0 spacers.getSpacer(s);
+    font-family: inherit;
+    font-size: font-settings.$font-size-sm;
+    line-height: 1.3rem; // Custom fordi teksten skal henge bedre sammen om den går over to linjer
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      padding: spacers.getSpacer(3xs) spacers.getSpacer(3xs) spacers.getSpacer(3xs) spacers.getSpacer(s);
+      font-size: font-settings.$font-size-md;
+      line-height: 1.5rem;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      cursor: initial;
+      color: palette.$neutral700;
+      background-color: transparent;
+      border-color: palette.$neutral600;
+      border-style: dashed;
+    }
+
+    &--on-white,
+    &--on-grey {
+      border-color: palette.$neutral700;
+      background-color: palette.$white;
+
+      &:hover {
+        background-color: palette.$neutral50;
+        box-shadow: 0 0 0 1px palette.$neutral700;
+      }
+
+      &:focus {
+        border-color: palette.$black;
+        box-shadow: 0 0 0 1px palette.$black;
+      }
+    }
+
+    &--on-blueberry {
+      border-color: palette.$blueberry500;
+      background-color: palette.$white;
+
+      &:hover {
+        background-color: palette.$blueberry50;
+        box-shadow: 0 0 0 1px palette.$blueberry500;
+      }
+
+      &:focus {
+        border-color: palette.$black;
+        box-shadow: 0 0 0 1px palette.$black;
+      }
+    }
+
+    &--on-cherry {
+      border-color: palette.$cherry500;
+      background-color: palette.$white;
+
+      &:hover {
+        background-color: palette.$cherry50;
+        box-shadow: 0 0 0 1px palette.$cherry500;
+      }
+
+      &:focus {
+        border-color: palette.$black;
+        box-shadow: 0 0 0 1px palette.$black;
+      }
+    }
+
+    &--open#{&}--on-white,
+    &--open#{&}--on-grey {
+      background-color: palette.$neutral50;
+
+      &:hover {
+        background-color: palette.$white;
+      }
+    }
+
+    &--open#{&}--on-blueberry {
+      background-color: palette.$blueberry50;
+
+      &:hover {
+        background-color: palette.$white;
+      }
+    }
+
+    &--open#{&}--on-cherry {
+      background-color: palette.$cherry50;
+
+      &:hover {
+        background-color: palette.$white;
+      }
+    }
+
+    &--transparent {
+      background-color: transparent;
+    }
+
+    &--transparent#{&}--on-grey {
+      &:hover {
+        background-color: palette.$neutral100;
+      }
+    }
+
+    &--transparent#{&}--on-blueberry {
+      &:hover {
+        background-color: palette.$blueberry100;
+      }
+    }
+
+    &--transparent#{&}--on-cherry {
+      &:hover {
+        background-color: palette.$cherry100;
+      }
+    }
+
+    &--transparent#{&}--open#{&}--on-grey {
+      background-color: palette.$neutral100;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    &--transparent#{&}--open#{&}--on-blueberry {
+      background-color: palette.$blueberry100;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    &--transparent#{&}--open#{&}--on-cherry {
+      background-color: palette.$cherry100;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    &--fluid {
+      width: 100%;
+    }
+
+    &__label {
+      padding: spacers.getSpacer(3xs) 0;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: spacers.getSpacer(2xs) 0;
+      }
+    }
+  }
+
+  &__icon {
+    margin-left: spacers.getSpacer(2xs);
+  }
+
+  &__content {
+    display: none;
+    position: absolute;
+    background-color: palette.$white;
+    margin-top: spacers.getSpacer(2xs);
+    box-shadow: 0 0 0 2px palette.$blueberry500;
+    z-index: 1;
+
+    &--open {
+      display: block;
+    }
+  }
+
+  &__options {
+    overflow: hidden auto;
+    max-height: 384px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      max-height: 464px;
+    }
+  }
+
+  &__close {
+    padding: spacers.getSpacer(s);
+  }
+
+  &__input {
+    border-bottom: 1px solid palette.$neutral300;
+    padding: 0 spacers.getSpacer(s);
+
+    &[role='menuitemradio'] {
+      padding: 0 spacers.getSpacer(s);
+    }
+
+    &[role='menuitemcheckbox'] {
+      padding: 1px spacers.getSpacer(s) spacers.getSpacer(2xs) spacers.getSpacer(s);
+    }
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      padding: spacers.getSpacer(s);
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
