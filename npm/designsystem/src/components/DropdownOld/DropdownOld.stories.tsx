@@ -5,7 +5,7 @@ import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
 import { action } from 'storybook/actions';
 
-import Dropdown, { DropdownOnColor } from './Dropdown';
+import DropdownOld, { DropdownOldOnColor } from './DropdownOld';
 import { LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
 import Button from '../Button';
@@ -15,12 +15,12 @@ import RadioButton from '../RadioButton';
 import Spacer from '../Spacer';
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/Dropdown',
-  component: Dropdown,
-  tags: ['not-supernova'],
+  title: '@helsenorge/designsystem-react/Components/DropdownOld',
+  component: DropdownOld,
+  tags: ['deprecated'],
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={Dropdown} />,
+      page: (): React.JSX.Element => <Docs component={DropdownOld} />,
       description: {
         component:
           'Som innbygger ønsker jeg å kunne gjøre ett eller flere valg i en liste der hvor det ikke er plass til å vise listen i grensesnittet',
@@ -51,7 +51,7 @@ const meta = {
     },
     onColor: {
       control: 'select',
-      options: Object.values(DropdownOnColor),
+      options: Object.values(DropdownOldOnColor),
     },
     transparent: {
       control: 'boolean',
@@ -69,7 +69,7 @@ const meta = {
       control: 'number',
     },
   },
-} satisfies Meta<typeof Dropdown>;
+} satisfies Meta<typeof DropdownOld>;
 
 export default meta;
 
@@ -80,11 +80,11 @@ export const Default: Story = {
     onToggle: action('onToggle'),
   },
   render: args => (
-    <Dropdown {...args}>
+    <DropdownOld {...args}>
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
-    </Dropdown>
+    </DropdownOld>
   ),
 };
 
@@ -93,7 +93,7 @@ export const RadioButtonChildren: Story = {
     onToggle: action('onToggle'),
   },
   render: args => (
-    <Dropdown {...args}>
+    <DropdownOld {...args}>
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
@@ -103,13 +103,13 @@ export const RadioButtonChildren: Story = {
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 7', type: 'subdued' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 8', type: 'subdued' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 9', type: 'subdued' }]} />} name="radiobutton" />
-    </Dropdown>
+    </DropdownOld>
   ),
 };
 
 export const CheckboxChildren: Story = {
   render: args => (
-    <Dropdown {...args} onToggle={action('onToggle')}>
+    <DropdownOld {...args} onToggle={action('onToggle')}>
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="checkbox" />
@@ -119,13 +119,13 @@ export const CheckboxChildren: Story = {
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 7', type: 'subdued' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 8', type: 'subdued' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 9', type: 'subdued' }]} />} name="checkbox" />
-    </Dropdown>
+    </DropdownOld>
   ),
 };
 
 export const WideChildren: Story = {
   render: args => (
-    <Dropdown {...args} onToggle={action('onToggle')}>
+    <DropdownOld {...args} onToggle={action('onToggle')}>
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 2 VeldigLangtOrdSomErForBredt', type: 'subdued' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="checkbox" />
@@ -135,7 +135,7 @@ export const WideChildren: Story = {
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 7', type: 'subdued' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 8', type: 'subdued' }]} />} name="checkbox" />
       <Checkbox label={<Label labelTexts={[{ text: 'Valg 9', type: 'subdued' }]} />} name="checkbox" />
-    </Dropdown>
+    </DropdownOld>
   ),
 };
 
@@ -147,7 +147,7 @@ export const EksternChildrenRefs: Story = {
       action('Checked')(checkboxChanging);
     }, [checkboxChanging]);
     return (
-      <Dropdown {...args} onToggle={action('onToggle')}>
+      <DropdownOld {...args} onToggle={action('onToggle')}>
         <form>
           <Checkbox {...register('checkbox.1')} label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} />
           <Spacer />
@@ -155,7 +155,7 @@ export const EksternChildrenRefs: Story = {
           <Spacer />
           <Checkbox {...register('checkbox.3')} label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} />
         </form>
-      </Dropdown>
+      </DropdownOld>
     );
   },
 };
@@ -186,11 +186,11 @@ return (
     <Spacer />
     <span>{\`Valgt språk: \${language}\`}</span>
     <Spacer />
-    <Dropdown {...args}>
+    <DropdownOld {...args}>
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
-    </Dropdown>
+    </DropdownOld>
   </LanguageProvider>
 );`,
       },
@@ -210,11 +210,11 @@ return (
         <Spacer />
         <span>{`Valgt språk: ${language}`}</span>
         <Spacer />
-        <Dropdown {...args}>
+        <DropdownOld {...args}>
           <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
           <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
           <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
-        </Dropdown>
+        </DropdownOld>
       </LanguageProvider>
     );
   },

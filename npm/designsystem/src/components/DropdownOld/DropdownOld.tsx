@@ -15,7 +15,7 @@ import {
   useToggle,
 } from '../..';
 import { getResources } from './resourceHelper';
-import { HNDesignsystemDropdown } from '../../resources/Resources';
+import { HNDesignsystemDropdownOld } from '../../resources/Resources';
 import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
 import Button from '../Button';
@@ -24,14 +24,14 @@ import PlusSmall from '../Icons/PlusSmall';
 
 import styles from './styles.module.scss';
 
-export enum DropdownOnColor {
+export enum DropdownOldOnColor {
   onwhite = 'onwhite',
   ongrey = 'ongrey',
   onblueberry = 'onblueberry',
   oncherry = 'oncherry',
 }
 
-export interface DropdownProps {
+export interface DropdownOldProps {
   /** Label for dropdown. Visible for screen readers  */
   label: string;
   /** Text on the trigger button that opens the dropdown */
@@ -49,7 +49,7 @@ export interface DropdownProps {
   /** Whether the dropdown is open or not */
   open?: boolean;
   /** Changes the visuals of the dropdown */
-  onColor?: keyof typeof DropdownOnColor;
+  onColor?: keyof typeof DropdownOldOnColor;
   /** Makes the background of the trigger transparent */
   transparent?: boolean;
   /** Makes the width of the full component adjust to its parent */
@@ -61,10 +61,10 @@ export interface DropdownProps {
   /** Overrides the default z-index of the DropDownContent */
   zIndex?: number;
   /** Resources for component */
-  resources?: Partial<HNDesignsystemDropdown>;
+  resources?: Partial<HNDesignsystemDropdownOld>;
 }
 
-const Dropdown: React.FC<DropdownProps> = props => {
+const DropdownOld: React.FC<DropdownOldProps> = props => {
   const {
     label,
     placeholder,
@@ -73,7 +73,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
     dropdownMinWidth,
     open = false,
     children,
-    onColor = DropdownOnColor.onwhite,
+    onColor = DropdownOldOnColor.onwhite,
     transparent = false,
     fluid = false,
     testId,
@@ -95,7 +95,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
 
-  const mergedResources: HNDesignsystemDropdown = {
+  const mergedResources: HNDesignsystemDropdownOld = {
     ...defaultResources,
     ...resources,
     closeText: props.closeText ?? resources?.closeText ?? defaultResources.closeText,
@@ -172,10 +172,10 @@ const Dropdown: React.FC<DropdownProps> = props => {
   const toggleClasses = classNames(
     styles.dropdown__toggle,
     !disabled && {
-      [styles['dropdown__toggle--on-white']]: onColor === DropdownOnColor.onwhite,
-      [styles['dropdown__toggle--on-grey']]: onColor === DropdownOnColor.ongrey,
-      [styles['dropdown__toggle--on-blueberry']]: onColor === DropdownOnColor.onblueberry,
-      [styles['dropdown__toggle--on-cherry']]: onColor === DropdownOnColor.oncherry,
+      [styles['dropdown__toggle--on-white']]: onColor === DropdownOldOnColor.onwhite,
+      [styles['dropdown__toggle--on-grey']]: onColor === DropdownOldOnColor.ongrey,
+      [styles['dropdown__toggle--on-blueberry']]: onColor === DropdownOldOnColor.onblueberry,
+      [styles['dropdown__toggle--on-cherry']]: onColor === DropdownOldOnColor.oncherry,
       [styles['dropdown__toggle--transparent']]: transparent,
       [styles['dropdown__toggle--fluid']]: fluid,
       [styles['dropdown__toggle--open']]: isOpen,
@@ -207,7 +207,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
         className={toggleClasses}
         ref={buttonRef}
         data-testid={testId}
-        data-analyticsid={AnalyticsId.Dropdown}
+        data-analyticsid={AnalyticsId.DropdownOld}
         disabled={disabled}
         aria-labelledby={toggleLabelId}
         aria-haspopup={true}
@@ -243,4 +243,4 @@ const Dropdown: React.FC<DropdownProps> = props => {
   );
 };
 
-export default Dropdown;
+export default DropdownOld;

@@ -1,9 +1,9 @@
 import { LanguageLocales } from '../../constants';
 import enGB from '../../resources/HN.Designsystem.Dropdown.en-GB.json';
 import nbNO from '../../resources/HN.Designsystem.Dropdown.nb-NO.json';
-import { HNDesignsystemDropdown } from '../../resources/Resources';
+import { HNDesignsystemDropdownOld } from '../../resources/Resources';
 
-export const getResources = (language: LanguageLocales): HNDesignsystemDropdown => {
+export const getResources = (language: LanguageLocales): HNDesignsystemDropdownOld => {
   switch (language) {
     case LanguageLocales.ENGLISH:
       return enGB;

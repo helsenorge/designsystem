@@ -4,17 +4,17 @@ import userEvent from '@testing-library/user-event';
 import Label from '../Label';
 import RadioButton from '../RadioButton';
 
-import Dropdown from './';
+import DropdownOld from '.';
 
 import '../../__mocks__/uuid';
 
-describe('Gitt at Dropdown skal vises vanlig', (): void => {
-  describe('Når Dropdownen har vanlig innhold', (): void => {
+describe('Gitt at DropdownOld skal vises vanlig', (): void => {
+  describe('Når DropdownOlden har vanlig innhold', (): void => {
     test('Så kan man klikke og se innholdet', async (): Promise<void> => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp">
-          <button>{'Innhold i Dropdown'}</button>
-        </Dropdown>
+        <DropdownOld label="Ta et valg" placeholder="Knapp">
+          <button>{'Innhold i DropdownOld'}</button>
+        </DropdownOld>
       );
 
       const button = screen.getByRole('button', { name: 'Knapp' });
@@ -22,19 +22,19 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
       await userEvent.click(button);
 
       const options = screen.getByLabelText('Ta et valg');
-      const contents = within(options).getByRole('button', { name: 'Innhold i Dropdown' });
+      const contents = within(options).getByRole('button', { name: 'Innhold i DropdownOld' });
       expect(contents).toBeVisible();
       expect(contents).not.toHaveFocus();
     });
   });
 
-  describe('Når Dropdownen åpnes via tastatur', (): void => {
+  describe('Når DropdownOlden åpnes via tastatur', (): void => {
     test('Så fokuseres første element i dropdownen', async (): Promise<void> => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp">
+        <DropdownOld label="Ta et valg" placeholder="Knapp">
           <button>{'Første element'}</button>
           <button>{'Andre element'}</button>
-        </Dropdown>
+        </DropdownOld>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
       button.focus();
@@ -45,12 +45,12 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     });
   });
 
-  describe('Når Dropdownen har lukkeknapp', (): void => {
+  describe('Når DropdownOlden har lukkeknapp', (): void => {
     test('Så kan man lukke dropdownen med knappen', async (): Promise<void> => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp" closeText="Lukk">
-          <h2>{'Innhold i Dropdown'}</h2>
-        </Dropdown>
+        <DropdownOld label="Ta et valg" placeholder="Knapp" closeText="Lukk">
+          <h2>{'Innhold i DropdownOld'}</h2>
+        </DropdownOld>
       );
 
       const button = screen.getByRole('button', { name: 'Knapp' });
@@ -60,12 +60,12 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     });
   });
 
-  describe('Når Dropdownen har open prop', (): void => {
+  describe('Når DropdownOlden har open prop', (): void => {
     test('Så er den åpen', (): void => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp" open>
-          <h2>{'Innhold i Dropdown'}</h2>
-        </Dropdown>
+        <DropdownOld label="Ta et valg" placeholder="Knapp" open>
+          <h2>{'Innhold i DropdownOld'}</h2>
+        </DropdownOld>
       );
 
       const button = screen.getByRole('button', { name: 'Knapp' });
@@ -73,12 +73,12 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     });
   });
 
-  describe('Når Dropdownen har disabled prop', (): void => {
+  describe('Når DropdownOlden har disabled prop', (): void => {
     test('Så er den disabled', (): void => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp" disabled>
-          <h2>{'Innhold i Dropdown'}</h2>
-        </Dropdown>
+        <DropdownOld label="Ta et valg" placeholder="Knapp" disabled>
+          <h2>{'Innhold i DropdownOld'}</h2>
+        </DropdownOld>
       );
 
       const button = screen.getByRole('button', { name: 'Knapp' });
@@ -86,12 +86,12 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     });
   });
 
-  describe('Når Dropdownen har noCloseButton prop', (): void => {
+  describe('Når DropdownOlden har noCloseButton prop', (): void => {
     test('Så er det ingen lukkeknapp', async (): Promise<void> => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp" closeText="Lukk" noCloseButton>
-          <h2>{'Innhold i Dropdown'}</h2>
-        </Dropdown>
+        <DropdownOld label="Ta et valg" placeholder="Knapp" closeText="Lukk" noCloseButton>
+          <h2>{'Innhold i DropdownOld'}</h2>
+        </DropdownOld>
       );
 
       const button = screen.getByRole('button', { name: 'Knapp' });
@@ -103,13 +103,13 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   });
 
   describe('Når man klikker utenfor dropdownen mens den er åpen', (): void => {
-    test('Så lukkes Dropdownen', async (): Promise<void> => {
+    test('Så lukkes DropdownOlden', async (): Promise<void> => {
       render(
         <>
           <button>{'Knapp utenfor dropdown'}</button>
-          <Dropdown label="Ta et valg" placeholder="Knapp" open>
-            <h2>{'Innhold i Dropdown'}</h2>
-          </Dropdown>
+          <DropdownOld label="Ta et valg" placeholder="Knapp" open>
+            <h2>{'Innhold i DropdownOld'}</h2>
+          </DropdownOld>
         </>
       );
 
@@ -123,12 +123,12 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     });
   });
 
-  describe('Når man klikker på Escape mens Dropdown er åpen', (): void => {
-    test('Så lukkes Dropdownen', async (): Promise<void> => {
+  describe('Når man klikker på Escape mens DropdownOld er åpen', (): void => {
+    test('Så lukkes DropdownOlden', async (): Promise<void> => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp">
-          <h2>{'Innhold i Dropdown'}</h2>
-        </Dropdown>
+        <DropdownOld label="Ta et valg" placeholder="Knapp">
+          <h2>{'Innhold i DropdownOld'}</h2>
+        </DropdownOld>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
       await userEvent.click(button);
@@ -138,12 +138,12 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     });
   });
 
-  describe('Når man klikker på Enter mens Dropdown er lukket', (): void => {
-    test('Så åpnes Dropdownen', async (): Promise<void> => {
+  describe('Når man klikker på Enter mens DropdownOld er lukket', (): void => {
+    test('Så åpnes DropdownOlden', async (): Promise<void> => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp">
-          <h2>{'Innhold i Dropdown'}</h2>
-        </Dropdown>
+        <DropdownOld label="Ta et valg" placeholder="Knapp">
+          <h2>{'Innhold i DropdownOld'}</h2>
+        </DropdownOld>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
       // Åpne og lukke dropdownen slik at fokus er på knappen før vi klikker på tastaturet
@@ -155,14 +155,14 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     });
   });
 
-  describe('Når man klikker på Home mens Dropdown er åpen', (): void => {
+  describe('Når man klikker på Home mens DropdownOld er åpen', (): void => {
     test('Så flyttes fokus til første radioknapp, og man kan bruke tastaturet for å gå nedover, men ikke oppover', async (): Promise<void> => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp">
+        <DropdownOld label="Ta et valg" placeholder="Knapp">
           <RadioButton label={<Label labelTexts={[{ text: 'Førstevalg' }]} />} inputId="radio-1" value="radio-1" />
           <RadioButton label={<Label labelTexts={[{ text: 'Andrevalg' }]} />} inputId="radio-2" value="radio-2" />
           <RadioButton label={<Label labelTexts={[{ text: 'Tredjevalg' }]} />} inputId="radio-3" value="radio-3" />
-        </Dropdown>
+        </DropdownOld>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
       await userEvent.click(button);
@@ -180,14 +180,14 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
     });
   });
 
-  describe('Når man klikker på End mens Dropdown er åpen', (): void => {
+  describe('Når man klikker på End mens DropdownOld er åpen', (): void => {
     test('Så flyttes fokus til sist radioknapp, og man kan bruke tastaturet for å gå oppover, men ikke nedover', async (): Promise<void> => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp">
+        <DropdownOld label="Ta et valg" placeholder="Knapp">
           <RadioButton label={<Label labelTexts={[{ text: 'Førstevalg' }]} />} inputId="radio-1" value="radio-1" />
           <RadioButton label={<Label labelTexts={[{ text: 'Andrevalg' }]} />} inputId="radio-2" value="radio-2" />
           <RadioButton label={<Label labelTexts={[{ text: 'Tredjevalg' }]} />} inputId="radio-3" value="radio-3" />
-        </Dropdown>
+        </DropdownOld>
       );
       const button = screen.getByRole('button', { name: 'Knapp' });
       await userEvent.click(button);
@@ -207,11 +207,11 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
   });
 
   describe('Når man klikker på dropdown-knappen mens den er åpen', (): void => {
-    test('Så lukkes Dropdownen når man klikker knappen på nytt', async (): Promise<void> => {
+    test('Så lukkes DropdownOlden når man klikker knappen på nytt', async (): Promise<void> => {
       render(
-        <Dropdown label="Ta et valg" placeholder="Knapp">
-          <h2>{'Innhold i Dropdown'}</h2>
-        </Dropdown>
+        <DropdownOld label="Ta et valg" placeholder="Knapp">
+          <h2>{'Innhold i DropdownOld'}</h2>
+        </DropdownOld>
       );
 
       const button = screen.getByRole('button', { name: 'Knapp' });

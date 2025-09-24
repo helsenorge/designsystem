@@ -1,13 +1,13 @@
-/*import { HNDesignsystemDropdown } from '../types/Resources';
+/*import { HNDesignsystemDropdownOld } from '../types/Resources';
 
 import LanguageLocales from '@helsenorge/core-utils/constants/languages';
 import { getModifiedResourcesForTest } from '@helsenorge/framework-utils/resources';
 
-import defaultResources from './HN.Designsystem.Dropdown.nb-NO.json';
+import defaultResources from './HN.Designsystem.DropdownOld.nb-NO.json';
 
 type ResourceItem = { [key: string]: string } | Record<string, string>;
 
-const defaultResourceName = 'HN.Designsystem.Dropdown.nb-NO';
+const defaultResourceName = 'HN.Designsystem.DropdownOld.nb-NO';
 
 export function getResources(projectName: string, language: LanguageLocales = LanguageLocales.NORWEGIAN): Promise<ResourceItem> {
   if (projectName === defaultResourceName && language === LanguageLocales.NORWEGIAN) {
@@ -17,6 +17,6 @@ export function getResources(projectName: string, language: LanguageLocales = La
   return import(`./${projectName}.${language}.json`);
 }
 
-export function getResourcesTestHelper(): HNDesignsystemDropdown {
-  return getModifiedResourcesForTest(defaultResources) as HNDesignsystemDropdown;
+export function getResourcesTestHelper(): HNDesignsystemDropdownOld {
+  return getModifiedResourcesForTest(defaultResources) as HNDesignsystemDropdownOld;
 }*/
