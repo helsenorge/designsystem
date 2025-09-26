@@ -6,6 +6,9 @@
 $trigger-medium-size: 1.25rem;
 $trigger-large-size: 1.5rem;
 $trigger-xl-size: 2rem;
+$trigger-medium-margin: 0.125rem;
+$trigger-large-margin: 0.25rem;
+$trigger-xl-margin: 0.25rem;
 $outline-medium-width: 2px;
 $outline-large-width: 2.2px;
 $outline-xl-width: 2.5px;
@@ -91,6 +94,18 @@ $outline-focus-outer-width: 5px;
     }
   }
 
+  &--medium#{&}--is-button {
+    margin: $trigger-medium-margin;
+  }
+
+  &--large#{&}--is-button {
+    margin: $trigger-medium-margin;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      margin: $trigger-large-margin;
+    }
+  }
+
   &--medium#{&}--is-button,
   &--large#{&}--is-button {
     &:focus-visible {
@@ -113,10 +128,16 @@ $outline-focus-outer-width: 5px;
   }
 
   &--xlarge#{&}--is-button {
+    margin: $trigger-large-margin;
+
     &:focus-visible {
       box-shadow: none;
       outline: 3.5px solid var(--color-action-border-onlight-focus);
       outline-offset: -2px;
+    }
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      margin: $trigger-xl-margin;
     }
   }
 

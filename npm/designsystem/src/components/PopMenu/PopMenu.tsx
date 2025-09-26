@@ -89,7 +89,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
 
   const handleClick = (cb?: () => void): void => {
     setIsOpen(false);
-    cb && cb();
+    if (cb) cb();
   };
 
   const renderChildren = (): React.ReactElement | undefined => {
@@ -120,7 +120,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   };
 
   const toggleOpenOnClick = (e?: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-    e && e.stopPropagation();
+    if (e) e.stopPropagation();
     setIsOpen(!isOpen);
   };
 

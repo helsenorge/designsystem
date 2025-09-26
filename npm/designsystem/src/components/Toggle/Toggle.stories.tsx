@@ -12,7 +12,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Beskrivelse av Toggle',
+        component:
+          'Toggle brukes for å veklse mellom to tilstander som gir umiddelbar virkning. Eksempler på dette kan være: å skru av / på en funksjon i innstillinger eller aktivere varslinger.',
       },
       page: (): React.JSX.Element => <Docs component={Toggle} />,
     },
@@ -87,6 +88,42 @@ export const LabelAndSublabel: Story = {
         {...args}
         label={[{ text: 'Subdued', type: 'subdued' }]}
         subLabel={'Sublabel'}
+        onChange={action('Toggle switched')}
+        togglePosition={TogglePosition.right}
+      />
+    </>
+  ),
+};
+
+export const StatusExample: Story = {
+  args: {},
+  render: args => (
+    <>
+      <Toggle
+        {...args}
+        label={[{ text: 'Statistikk og analyse' }]}
+        subLabel={
+          'Vi bruker verktøy for å analysere hvordan Helsenorge brukes. Informasjonen vi får hjelper oss å forstå hvordan nettsiden brukes, slik at vi kan gjøre innhold og tjenester bedre. Verktøyene samler ikke inn personsensitiv data.'
+        }
+        statusText={{
+          checked: 'Godtatt',
+          unchecked: 'Avvist',
+        }}
+        onChange={action('Toggle switched')}
+        togglePosition={TogglePosition.right}
+      />
+      <br />
+      <Toggle
+        {...args}
+        label={[{ text: 'Se videoer' }]}
+        subLabel={
+          'Vi bruker Youtube eller Vimeo for å vise videoer på Helsenorge. De bruker egne informasjonskapsler. Du må godta informasjonskapsler for video for å kunne se video.'
+        }
+        statusText={{
+          checked: 'Godtatt',
+          unchecked: 'Avvist',
+        }}
+        checked={true}
         onChange={action('Toggle switched')}
         togglePosition={TogglePosition.right}
       />

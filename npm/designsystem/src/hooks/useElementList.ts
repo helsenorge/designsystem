@@ -15,7 +15,7 @@ export const useElementList = (
   const [elementList, setElementList] = useState<NodeListOf<HTMLElement>>();
 
   useEffect(() => {
-    const handleMutationChange = () => {
+    const handleMutationChange = (): void => {
       const elements = ref.current?.querySelectorAll<HTMLElement>(selectors);
       setElementList(elements);
     };

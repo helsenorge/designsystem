@@ -36,6 +36,7 @@ $padding-clickable-area-left: 8px;
       box-shadow: 0 0 0 spacers.getSpacer(3xs);
       color: palette.$neutral500;
     }
+
     &--focused#{&}--on-blueberry {
       color: palette.$blueberry500;
     }
@@ -43,6 +44,7 @@ $padding-clickable-area-left: 8px;
     &--focused#{&}--selected {
       color: palette.$blueberry900;
     }
+
     &--focused#{&}--invalid {
       color: palette.$cherry400;
     }
@@ -106,6 +108,7 @@ $padding-clickable-area-left: 8px;
   &__large#{&}--on-dark {
     background-color: palette.$blueberry800;
   }
+
   &__large#{&}--invalid {
     background-color: palette.$white;
 
@@ -113,6 +116,7 @@ $padding-clickable-area-left: 8px;
       background-color: palette.$cherry100;
     }
   }
+
   &__large#{&}__large--selected-invalid {
     background-color: palette.$cherry100;
     color: palette.$black;
@@ -438,7 +442,8 @@ $padding-clickable-area-left: 8px;
     font-size: 18px;
     font-weight: 400;
     margin: 0;
-    word-break: break-word;
+    word-break: normal;
+    overflow-wrap: break-word;
     hyphens: auto;
   }
 }

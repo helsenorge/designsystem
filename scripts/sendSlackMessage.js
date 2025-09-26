@@ -111,11 +111,11 @@ for (let i = 0; i < lines.length; i++) {
     }
 
     // Gather feature lines
-    if (inFeatures && line.trim().startsWith('*')) {
+    if (inFeatures && (line.trim().startsWith('*') || line.trim().startsWith('-'))) {
       features.push(cleanupLine(line));
     }
     // Gather bug-fix lines
-    if (inBugFixes && line.trim().startsWith('*')) {
+    if (inBugFixes && (line.trim().startsWith('*') || line.trim().startsWith('-'))) {
       bugFixes.push(cleanupLine(line));
     }
   }

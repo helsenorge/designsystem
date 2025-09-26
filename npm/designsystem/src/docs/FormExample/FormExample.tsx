@@ -19,6 +19,7 @@ import { isTest } from '../../utils/environment';
 export interface FormExampleProps {
   exampleType: FormExampleVariants;
   size?: keyof typeof FormSize;
+  visuallyHiddenSummary?: boolean;
 }
 
 export enum FormExampleVariants {
@@ -277,10 +278,15 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       noValidate
       onSubmit={handleSubmit(data => {
         // eslint-disable-next-line no-console
-        !isTest() && console.log(data);
+        if (!isTest()) console.log(data);
       })}
     >
-      <Validation size={props.size} errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
+      <Validation
+        size={props.size}
+        errorTitle={'Sjekk at alt er riktig utfylt:'}
+        errors={errors}
+        visuallyHiddenSummary={props.visuallyHiddenSummary}
+      >
         {getFormExample()}
       </Validation>
       <Spacer />

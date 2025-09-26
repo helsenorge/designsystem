@@ -122,6 +122,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
             testId={testId + '-icon'}
           />
           <select
+            {...rest}
             aria-invalid={!!invalid}
             id={uuid}
             name={name}
@@ -134,7 +135,6 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
             value={value}
             defaultValue={defaultValue}
             autoComplete={autoComplete ? autoComplete : undefined}
-            {...rest}
           >
             {children}
           </select>

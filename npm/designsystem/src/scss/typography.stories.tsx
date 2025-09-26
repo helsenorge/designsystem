@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { StoryObj, Meta } from '@storybook/react-vite';
 
 import LabelComponent from '../components/Label';
@@ -147,8 +145,8 @@ export const ClassExamplesWithComponents: Story = {
       <>
         <table style={{}}>
           <tr>
-            <th style={{ padding }}>Class Example</th>
-            <th style={{ padding }}>Component Example</th>
+            <th style={{ padding }}>{'Class Example'}</th>
+            <th style={{ padding }}>{'Component Example'}</th>
           </tr>
           <tr>
             <td style={{ padding }}>

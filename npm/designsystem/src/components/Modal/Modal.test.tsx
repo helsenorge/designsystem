@@ -294,7 +294,7 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       fireEvent.keyDown(dialog, { key: 'Escape' });
 
-      expect(onClose).toBeCalled();
+      expect(onClose).toHaveBeenCalled();
     });
   });
 
@@ -308,7 +308,7 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       fireEvent.keyDown(dialog, { key: 'Escape' });
 
-      expect(onClose).toBeCalled();
+      expect(onClose).toHaveBeenCalled();
     });
   });
 
@@ -322,7 +322,7 @@ describe('Gitt at en modal skal vises ', (): void => {
 
       fireEvent.keyDown(dialog, { key: 'Escape' });
 
-      expect(onClose).not.toBeCalled();
+      expect(onClose).not.toHaveBeenCalled();
     });
   });
 

@@ -8,7 +8,8 @@ import { useRef, useEffect, useState, RefObject, MutableRefObject } from 'react'
 export const usePseudoClasses = <T extends HTMLElement | SVGElement>(
   ref?: RefObject<T> | MutableRefObject<T> | null
 ): { refObject: RefObject<T> | MutableRefObject<T>; isHovered: boolean; isFocused: boolean; isActive: boolean } => {
-  const refObject = ref ? ref : useRef<T>(null);
+  const internalRef = useRef<T | null>(null);
+  const refObject = ref ?? internalRef;
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [isActive, setIsActive] = useState(false);

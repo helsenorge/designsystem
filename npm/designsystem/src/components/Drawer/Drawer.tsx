@@ -108,7 +108,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   useFocusTrap(containerRef, true);
   useReturnFocusOnUnmount(containerRef);
   useOutsideEvent(containerRef, () => {
-    onRequestClose && onRequestClose();
+    if (onRequestClose) onRequestClose();
   });
   useKeyboardEvent(containerRef, () => onRequestClose && onRequestClose(), [KeyboardEventKey.Escape]);
 
@@ -155,7 +155,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
           duration: 0.3,
           ease: 'easeInOut',
           onComplete: () => {
-            safeToRemove && safeToRemove();
+            if (safeToRemove) safeToRemove();
           },
         }
       );
@@ -167,7 +167,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
           duration: 0.3,
           ease: 'easeInOut',
           onComplete: () => {
-            safeToRemove && safeToRemove();
+            if (safeToRemove) safeToRemove();
           },
         }
       );

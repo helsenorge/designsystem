@@ -15,6 +15,11 @@ export type LabelText = {
   type?: 'subdued' | 'normal';
 };
 
+export type StatusTextType = {
+  checked: string;
+  unchecked: string;
+};
+
 export enum TogglePosition {
   left = 'left',
   right = 'right',
@@ -33,6 +38,8 @@ export interface ToggleProps extends Pick<React.InputHTMLAttributes<HTMLInputEle
   label: LabelText[];
   /** Defines the color of the toggle */
   onColor?: keyof typeof ToggleOnColor;
+  /** A text that is shown under the Toggle switch */
+  statusText?: StatusTextType;
   /** Sets the sublabel of the Toggle */
   subLabel?: string;
   /** Sets the position of the toggle relative to the label */
@@ -46,6 +53,7 @@ const Toggle: React.FC<ToggleProps> = ({
   label,
   onChange,
   onColor = ToggleOnColor.onwhite,
+  statusText,
   subLabel,
   togglePosition = TogglePosition.left,
   testId,
@@ -106,14 +114,15 @@ const Toggle: React.FC<ToggleProps> = ({
     onChange?.(event);
   };
 
-  const toggleContainerClassNames = classNames(styles['toggle-container']);
-
-  const toggleRowClassNames = classNames(styles['toggle-container__row'], {
-    [styles['toggle-container__row--right']]: togglePosition === TogglePosition.right,
+  const toggleContainerClassNames = classNames(styles['toggle-container'], {
+    [styles['toggle-container--position-right']]: togglePosition === TogglePosition.right,
+    [styles['toggle-container--with-status']]: statusText !== undefined && statusText !== null,
   });
 
-  const subLabelClassNames = classNames(styles['toggle-container__sublabel'], {
-    [styles['toggle-container__sublabel--toggle-right']]: togglePosition === TogglePosition.right,
+  const subLabelClassNames = classNames(styles['toggle-container__sublabel']);
+
+  const statusTextClassNames = classNames(styles['toggle-container__status'], {
+    [styles['toggle-container__status--checked']]: checkedState,
   });
 
   const toggleClassNames = classNames(styles['toggle-container__toggle'], {
@@ -126,76 +135,78 @@ const Toggle: React.FC<ToggleProps> = ({
   });
 
   const renderToggle = (): React.ReactElement => (
-    <label ref={refObject} className={styles['toggle-container__toggle-group']}>
-      <input
-        id={inputId}
-        type="checkbox"
-        checked={checkedState}
-        onChange={handleChange}
-        className={styles['toggle-container__input']}
-        aria-label={label.map(l => l.text).join(' ')}
-        aria-describedby={subLabel ? subLabelId : undefined}
-        role="switch"
-      />
-      <span id={toggleId} className={toggleClassNames} aria-hidden="true">
-        <span id={toggleDotId} className={toggleDotClassNames} aria-hidden="true">
-          <svg
-            width="17"
-            height="13"
-            viewBox="0 0 17 13"
-            xmlns="http://www.w3.org/2000/svg"
-            className={styles['toggle-container__toggle__dot__icon']}
-          >
-            <path d="M15 2L6.80839 10.548L2 5.53145" fill="none" strokeWidth="3" />
-          </svg>
+    <div className={styles['toggle-container__outer-toggle']}>
+      <label ref={refObject} className={classNames(styles['toggle-container__toggle-group'])}>
+        <input
+          id={inputId}
+          type="checkbox"
+          checked={checkedState}
+          onChange={handleChange}
+          className={styles['toggle-container__input']}
+          aria-label={label.map(l => l.text).join(' ')}
+          aria-describedby={`${subLabel ? subLabelId + ' ' : undefined} ${statusText ? toggleId + '-status' : undefined}`}
+          role="switch"
+        />
+        <span id={toggleId} className={toggleClassNames} aria-hidden="true">
+          <span id={toggleDotId} className={toggleDotClassNames} aria-hidden="true">
+            <svg
+              width="17"
+              height="13"
+              viewBox="0 0 17 13"
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles['toggle-container__toggle__dot__icon']}
+            >
+              <path d="M15 2L6.80839 10.548L2 5.53145" fill="none" strokeWidth="3" />
+            </svg>
+          </span>
         </span>
-      </span>
-    </label>
+      </label>
+      {statusText && (
+        <span className={statusTextClassNames} id={toggleId + '-status'}>
+          {checkedState ? statusText.checked : statusText.unchecked}
+        </span>
+      )}
+    </div>
   );
 
   const renderLabelText = (): React.ReactElement => {
     return (
-      <span
-        id={labelId}
-        className={classNames(styles['toggle-container__label'], {
-          [styles['toggle-container__label--toggle-right']]: togglePosition === TogglePosition.right,
-        })}
-      >
-        {label.map(labelText => {
-          const labelClassNames = classNames({
-            [styles['toggle-container__label__text--subdued']]: labelText.type === 'subdued',
-          });
+      <div className={styles['toggle-container__outer-label']}>
+        <span id={labelId} className={classNames(styles['toggle-container__label'])}>
+          {label.map(labelText => {
+            const labelClassNames = classNames({
+              [styles['toggle-container__label__text--subdued']]: labelText.type === 'subdued',
+            });
 
-          return (
-            <span key={labelId + labelText.text} className={labelClassNames}>
-              {labelText.text}
-            </span>
-          );
-        })}
-      </span>
+            return (
+              <span key={labelId + labelText.text} className={labelClassNames}>
+                {labelText.text}
+              </span>
+            );
+          })}
+        </span>
+        {subLabel && (
+          <div id={subLabelId} className={subLabelClassNames}>
+            {subLabel}
+          </div>
+        )}
+      </div>
     );
   };
 
   return (
     <div className={toggleContainerClassNames} data-testid={testId} data-analyticsid={AnalyticsId.Toggle}>
-      <div className={toggleRowClassNames}>
-        {togglePosition === TogglePosition.left && (
-          <>
-            {renderToggle()}
-            {renderLabelText()}
-          </>
-        )}
-        {togglePosition === TogglePosition.right && (
-          <>
-            {renderLabelText()}
-            {renderToggle()}
-          </>
-        )}
-      </div>
-      {subLabel && (
-        <div id={subLabelId} className={subLabelClassNames}>
-          {subLabel}
-        </div>
+      {togglePosition === TogglePosition.left && (
+        <>
+          {renderToggle()}
+          {renderLabelText()}
+        </>
+      )}
+      {togglePosition === TogglePosition.right && (
+        <>
+          {renderLabelText()}
+          {renderToggle()}
+        </>
       )}
     </div>
   );

@@ -77,27 +77,27 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = { render: () => <UseRovingFocusExample /> };
 
+const WithLeftRightNavigationRender: React.FC = () => {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+
+  const buttonRefs = React.useMemo(() => Array.from({ length: 3 }, () => React.createRef<HTMLButtonElement>()), []);
+  const refArray = React.useRef<React.RefObject<HTMLButtonElement>[]>(buttonRefs);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useRovingFocus(setActiveIndex, refArray, containerRef, true);
+
+  return (
+    <div ref={containerRef}>
+      <div>{'Focused button:' + activeIndex}</div>
+      {refArray.current.map((ref, index) => (
+        <button key={index} ref={ref}>
+          {'Button ' + index}
+        </button>
+      ))}
+    </div>
+  );
+};
+
 export const WithLeftRightNavigation: Story = {
-  render: () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const refArray = useRef<Array<React.RefObject<HTMLButtonElement>>>([
-      useRef<HTMLButtonElement>(null),
-      useRef<HTMLButtonElement>(null),
-      useRef<HTMLButtonElement>(null),
-    ]);
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    useRovingFocus(setActiveIndex, refArray, containerRef, true);
-
-    return (
-      <div ref={containerRef}>
-        <div>{'Focused button:' + activeIndex}</div>
-        {refArray.current.map((ref, index) => (
-          <button key={index} ref={ref}>
-            {'Button ' + index}
-          </button>
-        ))}
-      </div>
-    );
-  },
+  render: () => <WithLeftRightNavigationRender />,
 };

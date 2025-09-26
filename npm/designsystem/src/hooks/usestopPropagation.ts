@@ -5,7 +5,7 @@ import { useEffect } from 'react';
  * @param ref Element som skal overvåkes
  * @param events Navn på eventer som ikke skal boble opp
  */
-export const useStopPropagation = (ref: React.RefObject<HTMLElement>, events: string[]) => {
+export const useStopPropagation = (ref: React.RefObject<HTMLElement>, events: string[]): void => {
   const handleEvent = (e: Event): void => e.stopPropagation();
 
   useEffect(() => {

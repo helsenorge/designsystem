@@ -28,6 +28,8 @@ interface ValidationProps {
   size?: keyof typeof FormSize;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Hides the ValidationSummary list visually - summary is still announced by screen readers */
+  visuallyHiddenSummary?: boolean;
 }
 
 export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLDivElement>) => {
@@ -69,7 +71,7 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
       <div data-testid={props.testId} data-analyticsid={AnalyticsId.Validation} className={props.className} ref={ref}>
         {React.Children.map(props.children, (child: React.ReactNode) => renderChild(child))}
       </div>
-      <ValidationSummary errorTitle={props.errorTitle} errors={props.errors} />
+      <ValidationSummary errorTitle={props.errorTitle} errors={props.errors} visuallyHidden={props.visuallyHiddenSummary} />
     </>
   );
 });

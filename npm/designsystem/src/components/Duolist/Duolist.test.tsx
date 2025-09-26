@@ -138,7 +138,7 @@ describe('Gitt at Duolist skal vises', (): void => {
     test('Så kastes det ikke en feilmelding', (): void => {
       render(
         <Duolist testId={'test01'} border="border">
-          {false && <DuolistGroup term={'test term 1'} description={'test description 1'} />}
+          {null}
         </Duolist>
       );
     });

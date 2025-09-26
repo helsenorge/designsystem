@@ -61,7 +61,7 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
       return;
     }
     if (textareaProps.disabled) {
-      onClickWhileDisabled && onClickWhileDisabled();
+      if (onClickWhileDisabled) onClickWhileDisabled();
       return;
     }
     textareaRef.current?.focus();
@@ -89,7 +89,7 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const textarea = e.target as HTMLTextAreaElement;
     resizeTarget(textarea);
-    textareaProps.onChange && textareaProps.onChange(e);
+    if (textareaProps.onChange) textareaProps.onChange(e);
   };
 
   return (

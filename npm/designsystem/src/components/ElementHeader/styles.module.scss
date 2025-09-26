@@ -3,11 +3,9 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/breakpoints' as breakpoints;
 
-@mixin gridtemplate($second-row-height, $with-statusdot) {
-  $first-col: if($with-statusdot, 'icon', '.');
-
+@mixin gridtemplate($second-row-height) {
   grid-template:
-    '#{$first-col} statusdots badge chevron' auto
+    '. statusdots badge chevron' auto
     'icon text badge chevron' $second-row-height '. text badge chevron' auto /
     min-content auto min-content min-content;
 }
@@ -26,11 +24,7 @@
   height: 100%;
   text-align: left;
 
-  @include gridtemplate(3rem, false);
-
-  &--with-statusdot {
-    @include gridtemplate(3rem, true);
-  }
+  @include gridtemplate(3rem);
 
   &__title {
     font-size: inherit;
@@ -89,6 +83,10 @@
   &__icon,
   &__avatar {
     grid-area: icon;
+
+    &--with-statusdot {
+      margin-top: -1rem;
+    }
   }
 
   &__icon {

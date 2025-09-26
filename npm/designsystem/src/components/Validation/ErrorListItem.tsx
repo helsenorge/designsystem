@@ -11,7 +11,7 @@ interface ErrorElementProps {
 const ErrorListItem: React.FC<ErrorElementProps> = props => {
   const handleClick = (event?: AnchorLinkOnClickEvent, element?: FocusableElement): void => {
     event?.preventDefault();
-    element?.focus && element?.focus();
+    if (element?.focus) element?.focus();
   };
 
   if (props.error.ref) {

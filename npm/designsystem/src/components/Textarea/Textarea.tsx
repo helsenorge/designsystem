@@ -154,7 +154,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   });
 
   useEffect(() => {
-    value && setTextareaInput(value);
+    if (value) setTextareaInput(value);
 
     if (grow && referanse.current?.children && referanse.current?.children[0]) {
       const textarea = referanse.current?.children[0] as HTMLTextAreaElement;

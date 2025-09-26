@@ -331,4 +331,6 @@ export default {
   patientandperson: { alternativeName: 'PårørendeOgPasient', categories: 'Behandling, Personer' },
   toddler: { alternativeName: 'Småbarn', categories: 'Tjeneste' },
   treatmentaids: { alternativeName: 'Behandlingshjelpemidler', categories: 'Tjeneste' },
+  drag: { alternativeName: 'Dra', categories: 'System' },
+  edit: { alternativeName: 'Rediger', categories: 'System' },
 };

@@ -16,13 +16,13 @@ export interface PanelListOldProps {
   testId?: string;
 }
 
-const isPanelComponent = (element: {} | null | undefined): element is React.ReactElement<PanelOldProps> =>
+const isPanelComponent = (element: unknown | null | undefined): element is React.ReactElement<PanelOldProps> =>
   React.isValidElement<PanelOldProps>(element) && (element as React.ReactElement).type === PanelOld;
 
 const PanelListOld = React.forwardRef(function BadgeForwardedRef(props: PanelListOldProps, ref: React.ForwardedRef<HTMLDivElement>) {
   const { testId, children, variant = PanelOldVariant.fill } = props;
 
-  const renderPanel = (panel: React.ReactElement<PanelOldProps>, firstChild: boolean) =>
+  const renderPanel = (panel: React.ReactElement<PanelOldProps>, firstChild: boolean): React.ReactElement =>
     React.cloneElement(panel, {
       variant: variant,
       noTopBorder: variant === PanelOldVariant.line && !firstChild,

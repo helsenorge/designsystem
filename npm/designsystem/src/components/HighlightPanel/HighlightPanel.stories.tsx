@@ -37,6 +37,10 @@ const meta = {
       control: 'select',
       options: ['div', 'nav', 'section', 'article', 'span'],
     },
+    variant: {
+      control: 'select',
+      options: ['normal', 'compact'],
+    },
   },
 } satisfies Meta<typeof HighlightPanel>;
 

@@ -18,6 +18,8 @@ interface ValidationSummaryProps {
   errorTitleHtmlMarkup?: TitleTags;
   /** Will be shown last */
   children?: React.ReactNode;
+  /** Hides the list visually - summary is still announced by screen readers */
+  visuallyHidden?: boolean;
 }
 
 const ValidationSummary: React.FC<ValidationSummaryProps> = props => {
@@ -25,8 +27,12 @@ const ValidationSummary: React.FC<ValidationSummaryProps> = props => {
   const titleId = useUuid();
 
   const hasErrors = !!props.errors && Object.entries(props.errors).length > 0;
+  const visuallyHidden = props.visuallyHidden;
 
-  const summaryClasses = classNames(styles['validation__summary'], hasErrors && styles['validation__summary--visible']);
+  const summaryClasses = classNames(styles['validation__summary'], {
+    [styles['validation__summary--visible']]: hasErrors && !visuallyHidden,
+    [styles['validation__summary--sr-only']]: visuallyHidden,
+  });
 
   return (
     <div

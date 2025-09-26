@@ -55,10 +55,8 @@ const HelpTriggerStandalone = React.forwardRef<HTMLButtonElement, HelpTriggerSta
         {...ariaLabelAttributes}
         {...rest}
       >
-        <span className={styles['help-trigger-standalone__inner-container']}>
-          <HelpTriggerIconInternal weight={weight} size={isMobile ? 'medium' : 'large'} htmlMarkup={'span'} isHovered={isHovered} />
-          <span className={styles['help-trigger-standalone__children']}>{children}</span>
-        </span>
+        <HelpTriggerIconInternal weight={weight} size={isMobile ? 'medium' : 'large'} htmlMarkup={'span'} isHovered={isHovered} />
+        <span className={styles['help-trigger-standalone__children']}>{children}</span>
       </button>
     );
   }

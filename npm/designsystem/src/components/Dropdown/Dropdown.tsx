@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useId } from 'react';
 
 import classNames from 'classnames';
 
@@ -13,18 +13,14 @@ import {
   useKeyboardEvent,
   useOutsideEvent,
   useToggle,
-  useUuid,
 } from '../..';
+import { getResources } from './resourceHelper';
 import { HNDesignsystemDropdown } from '../../resources/Resources';
-import { isComponent } from '../../utils/component';
 import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
 import Button from '../Button';
-import Checkbox, { CheckboxProps } from '../Checkbox';
 import Icon from '../Icon';
 import PlusSmall from '../Icons/PlusSmall';
-import RadioButton, { RadioButtonProps } from '../RadioButton';
-import { getResources } from './resourceHelper';
 
 import styles from './styles.module.scss';
 
@@ -85,16 +81,17 @@ const Dropdown: React.FC<DropdownProps> = props => {
     zIndex = ZIndex.PopOver,
     resources,
   } = props;
+
   const dropdownRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
   const { hoverRef: buttonRef, isHovered } = useHover<HTMLButtonElement>();
   const openedByKeyboard = useRef<boolean>(false);
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
   const inputRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
-  const [currentIndex, setCurrentIndex] = useState<number>();
-  const labelId = useUuid();
-  const toggleLabelId = useUuid();
-  const optionIdPrefix = useUuid();
+  const labelId = useId();
+  const toggleLabelId = useId();
+  const optionIdPrefix = useId();
+  const contentId = useId();
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
 
@@ -116,14 +113,9 @@ const Dropdown: React.FC<DropdownProps> = props => {
 
   useEffect(() => {
     if (isOpen && openedByKeyboard.current) {
-      inputRefList.current
-        ?.find((inputRef, index) => {
-          if (inputRef.current && !inputRef.current.hasAttribute('disabled')) {
-            setCurrentIndex(index);
-            return true;
-          }
-        })
-        ?.current?.focus();
+      const firstEnabled = inputRefList.current?.find(r => r.current && !r.current.hasAttribute('disabled'));
+      firstEnabled?.current?.focus();
+      openedByKeyboard.current = false;
     }
   }, [isOpen]);
 
@@ -162,7 +154,6 @@ const Dropdown: React.FC<DropdownProps> = props => {
       event.preventDefault();
 
       inputRefList.current[nextIndex].current?.focus();
-      setCurrentIndex(nextIndex);
     }
   };
 
@@ -194,16 +185,12 @@ const Dropdown: React.FC<DropdownProps> = props => {
   const contentClasses = classNames(styles.dropdown__content, isOpen && styles['dropdown__content--open']);
 
   const renderChildren = React.Children.map(children, (child, index) => {
-    const role = isComponent<RadioButtonProps>(child, RadioButton)
-      ? 'menuitemradio'
-      : isComponent<CheckboxProps>(child, Checkbox)
-        ? 'menuitemcheckbox'
-        : 'menuitem';
-
     return (
-      <li className={styles.dropdown__input} role={role} id={`${optionIdPrefix}-${index}`}>
+      <li className={styles.dropdown__input} id={`${optionIdPrefix}-${index}`}>
         {React.isValidElement(child) && inputRefList.current && inputRefList.current[index]
-          ? React.cloneElement(child as React.ReactElement, { ref: mergeRefs([child.props.ref, inputRefList.current[index]]) })
+          ? React.cloneElement(child as React.ReactElement, {
+              ref: mergeRefs([child.props.ref, inputRefList.current[index]]),
+            })
           : child}
       </li>
     );
@@ -223,7 +210,8 @@ const Dropdown: React.FC<DropdownProps> = props => {
         data-analyticsid={AnalyticsId.Dropdown}
         disabled={disabled}
         aria-labelledby={toggleLabelId}
-        aria-haspopup="menu"
+        aria-haspopup={true}
+        aria-controls={contentId}
         aria-expanded={isOpen}
       >
         <span id={toggleLabelId} className={styles.dropdown__toggle__label}>
@@ -237,22 +225,17 @@ const Dropdown: React.FC<DropdownProps> = props => {
           size={IconSize.XSmall}
         />
       </button>
-      <div className={contentClasses} style={{ width: fluid ? '100%' : `auto`, minWidth: dropdownMinWidth ?? 'auto', zIndex: zIndex }}>
-        <ul
-          className={styles.dropdown__options}
-          role="menu"
-          aria-labelledby={labelId}
-          tabIndex={-1}
-          aria-activedescendant={typeof currentIndex !== 'undefined' ? `${optionIdPrefix}-${currentIndex}` : undefined}
-          ref={optionsRef}
-        >
+      <div
+        id={contentId}
+        className={contentClasses}
+        style={{ width: fluid ? '100%' : `auto`, minWidth: dropdownMinWidth ?? 'auto', zIndex: zIndex }}
+      >
+        <ul className={styles.dropdown__options} role="group" aria-labelledby={labelId} tabIndex={-1} ref={optionsRef}>
           {renderChildren}
         </ul>
         {!noCloseButton && (
           <div className={styles.dropdown__close}>
-            <Button onClick={handleClose} aria-expanded={isOpen}>
-              {mergedResources.closeText}
-            </Button>
+            <Button onClick={handleClose}>{mergedResources.closeText}</Button>
           </div>
         )}
       </div>

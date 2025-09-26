@@ -1,15 +1,35 @@
 @use 'sass:map';
 @use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/font-mixins' as fonts;
 @use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/colors.css';
 
 .toggle-container {
-  display: flex;
-  flex-direction: column;
+  $toggle-container: &;
+
+  display: grid;
+  grid-template: 'toggle label' auto / min-content auto;
+  column-gap: spacers.getSpacer(xs);
   max-width: 43.5rem;
+
+  &--position-right {
+    grid-template: 'label toggle' auto / auto min-content;
+  }
+
+  &--with-status {
+    --status-column-size: 5.5rem;
+
+    grid-template: 'toggle label' auto / var(--status-column-size) auto;
+
+    &.toggle-container--position-right {
+      grid-template: 'label toggle' auto / auto var(--status-column-size);
+    }
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      --status-column-size: 6.25rem;
+    }
+  }
 
   &__row {
     display: flex;
@@ -21,61 +41,60 @@
     }
   }
 
+  &__outer-label {
+    grid-area: label;
+    margin-top: 0.5rem;
+  }
+
+  &__outer-toggle {
+    grid-area: toggle;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
   &__label {
     @include fonts.label;
 
     color: var(--core-color-neutral-900);
-    margin-left: spacers.getSpacer(xs);
-
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
-      margin-left: spacers.getSpacer(s);
-    }
 
     &__text--subdued {
       @include fonts.label-subdued;
     }
-
-    &--toggle-right {
-      margin-left: 0;
-      margin-right: spacers.getSpacer(xs);
-
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
-        margin-right: spacers.getSpacer(s);
-      }
-    }
   }
 
   &__sublabel {
-    --sublabel-mobile-margin: 3.9rem;
-    --sublabel-desktop-margin: 4.1rem;
-
+    grid-area: sublabel;
     font-size: font-settings.$font-size-xs;
     line-height: 1.25rem;
     color: var(--core-color-neutral-800);
-    margin-left: var(--sublabel-mobile-margin);
     text-align: left;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
       font-size: font-settings.$font-size-sm;
       line-height: font-settings.$lineheight-size-xs;
       text-align: left;
-      margin-left: var(--sublabel-desktop-margin);
     }
+  }
 
-    &--toggle-right {
-      margin-left: 0;
-      margin-right: var(--sublabel-mobile-margin);
+  &__status {
+    @include fonts.sublabel;
 
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
-        margin-right: var(--sublabel-desktop-margin);
-      }
+    word-break: break-all;
+
+    &--checked {
+      color: var(--color-action-text-onlight);
     }
   }
 
   &__toggle-group {
+    grid-area: input;
+    place-self: center;
     display: flex;
     align-items: center;
     cursor: pointer;
+    min-height: 2.75rem;
   }
 
   &__toggle {

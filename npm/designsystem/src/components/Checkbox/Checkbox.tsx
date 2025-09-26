@@ -60,7 +60,6 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     testId,
     required,
     onChange,
-    ...rest
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
   const errorTextUuid = useUuid(errorTextId);
@@ -147,7 +146,6 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           aria-invalid={error}
           required={required}
           onChange={onChangeHandler}
-          {...rest}
         />
         <span className={checkboxIconWrapperClasses}>
           {isChecked && <Icon color={iconColor} className={checkboxStyles['checkbox__icon']} svgIcon={Check} size={IconSize.XSmall} />}

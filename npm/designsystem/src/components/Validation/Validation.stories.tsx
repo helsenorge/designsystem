@@ -127,6 +127,9 @@ export const FormExample = (props: FormExampleProps): JSX.Element => {
       control: 'select',
       options: Object.values(FormSize),
     },
+    visuallyHiddenSummary: {
+      control: 'boolean',
+    },
   },
 };
 

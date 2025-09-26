@@ -65,4 +65,11 @@ export type HNDesignsystemHelpDrawer = {
   ariaLabel: string;
 };
 
+export type HNDesignsystemFavoriteButton = {
+  /**
+   * Favorittmarkering
+   */
+  ariaLabel: string;
+};
+
 /* eslint:enable */

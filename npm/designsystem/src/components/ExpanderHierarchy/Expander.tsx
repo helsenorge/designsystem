@@ -20,6 +20,8 @@ export interface ExpanderProps extends ExpanderHierarchyCommonProps {
   children?: React.ReactNode;
   /** Sets the data-testid attribute on the expander button. */
   testId?: string;
+  /** Adds custom classes to the element. */
+  className?: string;
 }
 
 export type ExpanderType = React.FC<ExpanderProps>;
@@ -33,6 +35,7 @@ const Expander: ExpanderType = ({
   onExpand,
   children,
   testId,
+  className,
 }: ExpanderProps) => {
   const contentClasses = classNames(
     styles.expander__content,
@@ -41,7 +44,7 @@ const Expander: ExpanderType = ({
   );
 
   return (
-    <li className={styles.expander}>
+    <li className={classNames(styles.expander, className)}>
       <ExpanderButton htmlMarkup={htmlMarkup} level={level} print={print} expanded={expanded} onExpand={onExpand} testId={testId}>
         {title}
       </ExpanderButton>

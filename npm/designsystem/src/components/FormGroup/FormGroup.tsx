@@ -118,7 +118,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         size,
         onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
           setCheckedRadioId(event.target.id);
-          child.props.onChange && child.props.onChange(event);
+          if (child.props.onChange) child.props.onChange(event);
         },
         error: !!error,
         errorTextId: errorTextUuid,

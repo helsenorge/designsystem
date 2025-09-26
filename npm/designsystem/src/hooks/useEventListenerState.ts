@@ -5,7 +5,7 @@ export const useEventListenerState = <T>(initial?: T): [valueRef: React.MutableR
 
   const valueRef = React.useRef(value);
 
-  const setValue = (x: T) => {
+  const setValue = (x: T): void => {
     valueRef.current = x;
     _setValue(x);
   };

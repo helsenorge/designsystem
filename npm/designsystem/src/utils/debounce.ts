@@ -19,7 +19,7 @@ export function debounce<A = unknown, R = void>(func: (args?: A) => R, wait: num
     });
 
   const teardown = (): void => {
-    timeout && clearTimeout(timeout);
+    if (timeout) clearTimeout(timeout);
   };
 
   return [debouncedFunc, teardown];

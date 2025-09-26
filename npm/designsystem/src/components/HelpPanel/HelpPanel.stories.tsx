@@ -26,6 +26,10 @@ const meta = {
     children: {
       control: 'text',
     },
+    variant: {
+      control: 'select',
+      options: ['normal', 'compact'],
+    },
   },
 } satisfies Meta<typeof HelpPanel>;
 
@@ -39,4 +43,11 @@ export const Default: Story = {
 
 export const WithTitle: Story = {
   render: args => <HelpPanel {...args} title="Tittel" />,
+};
+
+export const Compact: Story = {
+  args: {
+    variant: 'compact',
+  },
+  render: args => <HelpPanel {...args} />,
 };

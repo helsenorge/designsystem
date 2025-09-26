@@ -28,7 +28,7 @@
     "postversion": "npm run changelog",
     "changelog": "conventional-changelog --config changelog.config.js --infile CHANGELOG.md --same-file --release-count 0 --skip-unstable --tag-prefix v --outputUnreleased false",
     "postchangelog": "git add CHANGELOG.md && git commit --amend --no-edit && git tag -f v$(node -p \"require('./lerna.json').version\")",
-    "prepare": "lerna link --force-local",
+    "prepare": "lerna link --force-local && husky",
     "pre-commit": "lint-staged",
     "validate": "npm-run-all typecheck prettier eslint stylelint",
     "prettier": "lerna run prettier",
@@ -44,20 +44,31 @@
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@helsenorge/eslint-config": "^32.0.0",
-    "@lerna/legacy-package-management": "^8.1.8",
+    "@helsenorge/eslint-config": "^36.0.1",
+    "@lerna/legacy-package-management": "^8.2.3",
+    "@nx/devkit": "^21.4.1",
     "conventional-changelog-cli": "^4.1.0",
     "eslint-plugin-storybook": "9.0.18",
     "husky": "^9.1.6",
-    "lerna": "^8.1.8",
+    "lerna": "^8.2.3",
     "lint-staged": "^15.2.10",
     "npm-run-all2": "^7.0.1",
     "nyc": "^17.1.0",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-darwin-arm64": "^4.50.0",
+    "@rollup/rollup-linux-x64-gnu": "^4.50.0",
+    "@rollup/rollup-linux-x64-musl": "^4.50.0"
+  },
   "engines": {
     "node": "^22.0.0",
     "npm": ">=10.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{css,scss}": "stylelint --fix",
+    "*.{js,jsx,ts,tsx,css,scss,md,json}": "prettier --write"
   }
 }

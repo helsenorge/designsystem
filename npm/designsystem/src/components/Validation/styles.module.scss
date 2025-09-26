@@ -3,6 +3,7 @@
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/breakpoints' as breakpoints;
+@use '../../scss/screen-reader' as *;
 
 .validation {
   &__error-wrapper {
@@ -18,6 +19,10 @@
 
     &--visible {
       margin: spacers.getSpacer(l) 0 spacers.getSpacer(s);
+    }
+
+    &--sr-only {
+      @include sr-only;
     }
   }
 

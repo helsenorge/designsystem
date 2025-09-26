@@ -6,6 +6,7 @@ import { Docs } from 'frankenstein-build-tools';
 import NotificationPanel from './NotificationPanel';
 import { allTitleTags } from '../../../.storybook/knobs';
 import { getColor } from '../../theme/currys';
+import AnchorLink from '../AnchorLink';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/NotificationPanel',
@@ -97,9 +98,9 @@ export const AllVariants: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.`}
-              <a href={'https://www.helsenorge.no'} target="_parent">
+              <AnchorLink href={'https://www.helsenorge.no'} target="_parent">
                 {'Les mer om dine rettigheter her.'}
-              </a>
+              </AnchorLink>
             </div>
           </NotificationPanel>
         </div>
@@ -110,9 +111,9 @@ export const AllVariants: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
-              <a href={'https://www.helsenorge.no'} target="_blank" rel="noopener noreferrer">
+              <AnchorLink href={'https://www.helsenorge.no'} target="_blank" rel="noopener noreferrer">
                 {'Les mer om dine rettigheter her (external).'}
-              </a>
+              </AnchorLink>
             </div>
           </NotificationPanel>
         </div>
@@ -123,9 +124,9 @@ export const AllVariants: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
-              <a href={'https://www.helsenorge.no'} target="_parent">
+              <AnchorLink href={'https://www.helsenorge.no'} target="_parent">
                 {'Les mer om dine rettigheter her.'}
-              </a>
+              </AnchorLink>
             </div>
           </NotificationPanel>
         </div>
@@ -136,9 +137,9 @@ export const AllVariants: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere. `}
-              <a href={'https://www.helsenorge.no'} target="_parent">
+              <AnchorLink href={'https://www.helsenorge.no'} target="_parent">
                 {'Les mer om dine rettigheter her.'}
-              </a>
+              </AnchorLink>
             </div>
           </NotificationPanel>
         </div>
@@ -214,9 +215,9 @@ export const CompactWithChildren: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.`}
-              <a href={'https://www.helsenorge.no'} target="_parent">
+              <AnchorLink href={'https://www.helsenorge.no'} target="_parent">
                 {'Les mer om dine rettigheter her.'}
-              </a>
+              </AnchorLink>
             </div>
           </NotificationPanel>{' '}
         </div>
@@ -227,9 +228,9 @@ export const CompactWithChildren: Story = {
             <div>
               {`På grunn av kommunesammenslåingen ved nyttår vil enkelte Helsenorge-tjenester være ustabile eller tidsvis utilgjenglig i en
               periode i begynnelsen av januar. Vi beklager ulempnene dette medfører og oppfordrer til å prøve igjen senere.`}
-              <a href={'https://www.helsenorge.no'} target="_parent">
+              <AnchorLink href={'https://www.helsenorge.no'} target="_parent">
                 {'Les mer om dine rettigheter her.'}
-              </a>
+              </AnchorLink>
             </div>
           </NotificationPanel>
         </div>

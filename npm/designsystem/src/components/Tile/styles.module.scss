@@ -75,9 +75,8 @@
   }
 
   &__title {
+    word-break: normal;
     overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
     font-size: font-settings.$font-size-sm;
     text-align: center;
     line-height: 1.74rem;

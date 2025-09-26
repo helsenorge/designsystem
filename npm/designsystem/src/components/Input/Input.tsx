@@ -200,7 +200,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
       const input = inputContainerRefLocal.current.children[selectedChild] as HTMLInputElement;
       input.focus();
 
-      props.onClick && props.onClick(e);
+      if (props.onClick) props.onClick(e);
     }
   };
 
@@ -232,7 +232,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     if (numRegex.test(e.key)) {
       numKeyPressed.current = true;
     }
-    onKeyDown && onKeyDown(e);
+    if (onKeyDown) onKeyDown(e);
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -258,6 +258,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
           >
             {!iconRight && renderIcon()}
             <input
+              {...rest}
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               onKeyUp={handleKeyUp}
@@ -267,7 +268,6 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
               id={inputIdState}
               className={inputClass}
               ref={ref}
-              aria-labelledby={props['aria-labelledby'] ?? undefined}
               aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
               aria-invalid={!!onError}
               disabled={disabled}
@@ -277,7 +277,6 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
               required={required}
               // eslint-disable-next-line jsx-a11y/no-autofocus
               autoFocus={autoFocus}
-              {...rest}
             />
             {iconRight && renderIcon()}
           </div>

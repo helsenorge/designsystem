@@ -57,9 +57,6 @@ describe('Gitt at Dropdown skal vises vanlig', (): void => {
       expect(button).toHaveAttribute('aria-expanded', 'false');
       await userEvent.click(button);
       expect(button).toHaveAttribute('aria-expanded', 'true');
-      const close = screen.getByRole('button', { name: 'Lukk' });
-      await userEvent.click(close);
-      expect(close).toHaveAttribute('aria-expanded', 'false');
     });
   });
 

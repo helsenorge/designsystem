@@ -4,8 +4,7 @@ import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
-import Modal, { ModalSize } from './Modal';
-import { ModalVariants } from './Modal';
+import Modal, { ModalSize, ModalVariants } from './Modal';
 import { IconSize } from '../../constants';
 import ButtonWithModal from '../../docs/ButtonWithModal';
 import Button from '../Button';

@@ -38,7 +38,7 @@ describe('Gitt at Validation skal vises', () => {
         const [errors, setErrors] = useState<ValidationErrors>();
 
         useEffect(() => {
-          inputRef.current && setErrors({ feil1: { message: 'For lang tekst', ref: inputRef.current } });
+          if (inputRef.current) setErrors({ feil1: { message: 'For lang tekst', ref: inputRef.current } });
         }, [inputRef.current]);
 
         return (

@@ -1,11 +1,11 @@
 class ResizeObserver {
-  observe() {
+  observe(): void {
     // do nothing
   }
-  unobserve() {
+  unobserve(): void {
     // do nothing
   }
-  disconnect() {
+  disconnect(): void {
     // do nothing
   }
 }

@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '../../scss/spacers' as spacers;
+@use '../../scss/font-mixins' as fonts;
 @use '../../scss/screen-reader' as *;
 @import '../../scss/breakpoints';
 @import '../../scss/grid';
@@ -19,6 +20,11 @@
     padding: spacers.getSpacer(l) spacers.getSpacer(l) spacers.getSpacer(l) spacers.getSpacer(m);
   }
 
+  &--compact {
+    padding: spacers.getSpacer(2xs) spacers.getSpacer(s);
+    flex-direction: row !important;
+  }
+
   @each $color in $colors {
     &--#{$color} {
       background-color: var(--color-base-background-#{$color});
@@ -35,15 +41,26 @@
     @media (min-width: map.get($grid-breakpoints, md)) {
       margin-top: 0.625rem;
     }
+
+    &--compact {
+      margin-top: 0.625rem;
+    }
+
+    &__children--compact {
+      @include fonts.help-text;
+    }
   }
 
   &--has-icon {
     display: flex;
-    flex-direction: column;
-    padding-top: spacers.getSpacer(m);
 
-    @media (min-width: map.get($grid-breakpoints, md)) {
-      flex-direction: row;
+    &:not(.highlightpanel--compact) {
+      flex-direction: column;
+      padding-top: spacers.getSpacer(m);
+
+      @media (min-width: map.get($grid-breakpoints, md)) {
+        flex-direction: row;
+      }
     }
   }
 
@@ -54,6 +71,11 @@
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       margin-right: spacers.getSpacer(s);
+      margin-bottom: 0;
+    }
+
+    &--compact {
+      margin-right: spacers.getSpacer(2xs);
       margin-bottom: 0;
     }
   }

@@ -175,7 +175,7 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
   const ariaLabelAttributes = getAriaLabelAttributes({ label, id: labelId });
 
   const handleClick = (): void => {
-    hasExpander && setIsExpanded(!isExpanded);
+    if (hasExpander) setIsExpanded(!isExpanded);
   };
 
   const classes = classNames(styles['service-message'], styles[`service-message--${variant}`]);
