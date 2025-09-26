@@ -3,21 +3,25 @@ import React, { useRef, useEffect } from 'react';
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
+import { useArgs } from 'storybook/internal/preview-api';
 
-import LinkList from './LinkList';
+import LinkList, { LinkListProps } from './LinkList';
 import { allLinkListSizes } from '../../../.storybook/knobs';
+import { palette } from '../../theme/palette';
 import Avatar from '../Avatar';
 import Badge from '../Badge';
 import ElementHeader from '../ElementHeader';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
+import Bus from '../Icons/Bus';
+import Journal from '../Icons/Journal';
 import PaperPlane from '../Icons/PaperPlane';
 import StatusDot, { StatusDotVariant } from '../StatusDot';
+import Toggle from '../Toggle';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/LinkList',
   component: LinkList,
-  tags: ['breaking'],
   parameters: {
     docs: {
       page: (): React.JSX.Element => (
@@ -366,4 +370,67 @@ export const WithStatus: Story = {
       </LinkList.Link>
     </LinkList>
   ),
+};
+
+export const EditMode: Story = {
+  args: {
+    editMode: true,
+  },
+  render: args => (
+    <LinkList {...args}>
+      <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" onDelete={() => alert('Delete')} chevron>
+        {'Innhold A-Å'}
+      </LinkList.Link>
+      <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" onDelete={() => alert('Delete')} chevron>
+        {'Helsenorge'}
+      </LinkList.Link>
+    </LinkList>
+  ),
+};
+
+export const Prototype: Story = {
+  args: {
+    editMode: true,
+    variant: 'fill-negative',
+    chevron: true,
+    color: 'blueberry',
+  },
+  render: args => {
+    const [{ editMode }, setEditMode] = useArgs<LinkListProps>();
+    const toggleEditMode = (): void => setEditMode({ editMode: !editMode });
+
+    const onDelete = (id: string): void => {
+      alert(`Delete ${id}`);
+    };
+
+    const items = [
+      {
+        id: 'pasientreiser',
+        href: 'https://www.helsenorge.no',
+        text: 'Pasientreiser',
+        icon: Bus,
+      },
+      { id: 'pasientjournal', htmlMarkup: 'button', text: 'Pasientjournal', icon: Journal },
+    ];
+    return (
+      <div style={{ backgroundColor: palette.blueberry50, padding: '1rem' }}>
+        <Toggle checked={editMode} onChange={toggleEditMode} label={[{ text: 'Redigeringsmodus' }]} />
+        <br />
+        <br />
+        <LinkList {...args}>
+          {items.map(item => (
+            <LinkList.Link
+              key={item.id}
+              icon={<Icon svgIcon={item.icon} />}
+              href={item.href}
+              target="_blank"
+              onDelete={() => onDelete(item.id)}
+            >
+              {item.text}
+            </LinkList.Link>
+          ))}
+        </LinkList>
+      </div>
+    );
+  },
 };
