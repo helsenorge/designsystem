@@ -35,7 +35,7 @@ export const FavoriteButton = React.forwardRef(function FavoriteButtonForwardedR
   const { checked, id, onClick, resources, tabIndex, testId, ...other } = props;
 
   const buttonWrapperClasses = classNames(styles.favoritebutton);
-  const { refObject, isFocused, isHovered, isActive } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
+  const { refObject, isHovered, isActive } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
   const breakpoint = useBreakpoint();
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
@@ -51,15 +51,15 @@ export const FavoriteButton = React.forwardRef(function FavoriteButtonForwardedR
   const starIcon = ((): React.JSX.Element => {
     if (isMobile) {
       if (isHovered) {
-        return starIconHoverMobile(isFocused, checked, isActive);
+        return starIconHoverMobile(checked, isActive);
       } else {
-        return starIconNormalMobile(isFocused, checked, isActive);
+        return starIconNormalMobile(checked, isActive);
       }
     } else {
       if (isHovered) {
-        return starIconHoverDesktop(isFocused, checked, isActive);
+        return starIconHoverDesktop(checked, isActive);
       } else {
-        return starIconNormalDesktop(isFocused, checked, isActive);
+        return starIconNormalDesktop(checked, isActive);
       }
     }
   })();
