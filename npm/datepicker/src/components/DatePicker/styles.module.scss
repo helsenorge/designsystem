@@ -87,10 +87,11 @@
   top: 0.1rem;
 
   &__inner {
-    min-height: 2.5rem;
+    height: 2.75rem;
+    min-height: 0;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      min-height: 3.125rem;
+      height: 3rem;
     }
   }
 }
