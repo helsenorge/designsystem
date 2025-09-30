@@ -3,13 +3,16 @@ import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { AnimatePresence, useAnimate, usePresence } from 'motion/react';
 
-import { AnalyticsId, KeyboardEventKey, ZIndex } from '../../constants';
+import { getResources } from './resourceHelper';
+import { AnalyticsId, KeyboardEventKey, LanguageLocales, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
+import { HNDesignsystemDrawer } from '../../resources/Resources';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import { useLanguage } from '../../utils/language';
 import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
@@ -30,7 +33,7 @@ export interface InnerDrawerProps {
   ariaLabel?: string;
   /** Sets the aria-labelledby of the drawer */
   ariaLabelledBy?: string;
-  /** Close button aria-label */
+  /** @deprecated Close button aria-label */
   ariaLabelCloseBtn?: string;
   /** Sets the style of the Drawer Close button. Meant for use by HelpDrawer */
   closeColor?: 'blueberry' | 'plum';
@@ -62,6 +65,8 @@ export interface InnerDrawerProps {
   onSecondaryAction?: () => void;
   /** Customize the z-index of the drawer */
   zIndex?: number;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemDrawer>;
 }
 
 const Drawer: React.FC<DrawerProps> = props => {
@@ -90,6 +95,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     titleHtmlMarkup = 'h3',
     titleId = uuid(),
     zIndex = ZIndex.OverlayScreen,
+    resources,
   } = props;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledBy, fallbackId: titleId });
@@ -99,6 +105,15 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const isMobile = useIsMobileBreakpoint();
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemDrawer = {
+    ...defaultResources,
+    ...resources,
+    ariaLabelCloseBtn: ariaLabelCloseBtn || resources?.ariaLabelCloseBtn || defaultResources.ariaLabelCloseBtn,
+  };
+
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
   const headerStyling = classNames(styles.drawer__header, headerClasses, {
     [styles['drawer__header--no-close-button']]: noCloseButton,
@@ -200,7 +215,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             </Title>
             {!noCloseButton && onRequestClose != undefined && (
               <Close
-                ariaLabel={ariaLabelCloseBtn}
+                ariaLabel={mergedResources.ariaLabelCloseBtn}
                 color={closeColor}
                 onClick={onRequestClose}
                 className={styles['drawer__header__close-button']}
