@@ -83,41 +83,6 @@ export type HNDesignsystemTabs = {
   ariaLabelLeftButton: string;
 };
 
-export type HNDesignsystemDatePicker = {
-  /**
-   * Åpne datovelger
-   */
-  dateButtonAriaLabel: string;
-  /**
-   * {date}
-   */
-  dayButtonBase: string;
-  /**
-   * I dag, {date}
-   */
-  dayButtonToday: string;
-  /**
-   * {date}, valgt
-   */
-  dayButtonSelected: string;
-  /**
-   * Neste måned
-   */
-  nextMonth: string;
-  /**
-   * Forrige måned
-   */
-  previousMonth: string;
-  /**
-   * Velg måned
-   */
-  monthDropdown: string;
-  /**
-   * Velg år
-   */
-  yearDropdown: string;
-};
-
 export type HNDesignsystemDrawer = {
   /**
    * Lukk
