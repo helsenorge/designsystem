@@ -120,9 +120,9 @@ export type HNDesignsystemDatePicker = {
 
 export type HNDesignsystemDrawer = {
   /**
-   * 
+   * Lukk
    */
-  ariaLabel: string;
+  ariaLabelCloseBtn: string;
 };
 
 /* eslint:enable */
