@@ -118,4 +118,11 @@ export type HNDesignsystemDatePicker = {
   yearDropdown: string;
 };
 
+export type HNDesignsystemDrawer = {
+  /**
+   * 
+   */
+  ariaLabel: string;
+};
+
 /* eslint:enable */
