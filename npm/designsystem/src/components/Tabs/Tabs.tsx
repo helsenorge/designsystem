@@ -38,7 +38,7 @@ export interface TabsProps {
   zIndex?: number;
 }
 
-const TabsRoot: React.FC<TabsProps> = ({
+export const TabsRoot: React.FC<TabsProps> = ({
   activeTab,
   children,
   className,
@@ -106,6 +106,7 @@ type TabsComponent = typeof TabsRoot & {
   Tab: typeof Tab;
 };
 const Tabs = TabsRoot as TabsComponent;
+TabsRoot.displayName = 'Tabs';
 Tabs.displayName = 'Tabs';
 Tabs.Tab = Tab;
 Tabs.Tab.displayName = 'Tabs.Tab';
