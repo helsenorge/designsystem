@@ -1,13 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import Tabs, { TabsRoot } from './Tabs';
+import { LanguageLocales } from '../../constants';
+import LanguageProvider from '../../utils/language';
 import longLoremText, { mediumLoremText, shortLoremText } from '../../utils/loremtext';
+import Button from '../Button';
 import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
 import PopOver from '../PopOver/PopOver';
+import Spacer from '../Spacer';
 import Title from '../Title';
 
 const meta = {
@@ -27,8 +31,6 @@ const meta = {
     color: 'white',
     onColor: 'onwhite',
     sticky: true,
-    ariaLabelLeftButton: 'Scroll left',
-    ariaLabelRightButton: 'Scroll right',
   },
   argTypes: {
     color: {
@@ -272,6 +274,31 @@ export const ControlledMedInnholdRundt: Story = {
           </Tabs.Tab>
         </Tabs>
       </>
+    );
+  },
+};
+
+export const WithLanguageProvider: Story = {
+  render: args => {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} variant="outline">
+          {'Bytt til bokmål'}
+        </Button>
+        <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)} variant="outline">
+          {'Switch to English'}
+        </Button>
+        <Spacer />
+        <span>{`Valgt språk: ${language}`}</span>
+        <Spacer />
+        <Tabs {...args}>
+          <Tabs.Tab title="Vaksinasjon">{longLoremText}</Tabs.Tab>
+          <Tabs.Tab title="Prøvesvar">{mediumLoremText}</Tabs.Tab>
+          <Tabs.Tab title="Helserelaterte spørsmål">{shortLoremText}</Tabs.Tab>
+        </Tabs>
+      </LanguageProvider>
     );
   },
 };
