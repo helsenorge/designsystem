@@ -1,0 +1,10 @@
+{
+  "dateButtonAriaLabel": "Open datepicker",
+  "dayButtonBase": "{date}",
+  "dayButtonToday": "Today, {date}",
+  "dayButtonSelected": "{date}, selected",
+  "nextMonth": "Next month",
+  "previousMonth": "Previous month",
+  "monthDropdown": "Select month",
+  "yearDropdown": "Select year"
+}
