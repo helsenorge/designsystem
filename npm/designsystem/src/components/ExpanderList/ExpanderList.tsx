@@ -92,7 +92,7 @@ type ExpanderProps = Modify<
   Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'variant'> &
   ListEditModeItemProps;
 
-const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((props, ref) => {
+export const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((props, ref) => {
   const {
     id,
     children,
