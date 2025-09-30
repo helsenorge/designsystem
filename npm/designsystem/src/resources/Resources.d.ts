@@ -88,6 +88,34 @@ export type HNDesignsystemDatePicker = {
    * Åpne datovelger
    */
   dateButtonAriaLabel: string;
+  /**
+   * Standard tekst for {date}
+   */
+  dayButtonBase: string;
+  /**
+   * I dag, {date}
+   */
+  dayButtonToday: string;
+  /**
+   * {date}, valgt
+   */
+  dayButtonSelected: string;
+  /**
+   * Neste måned
+   */
+  nextMonth: string;
+  /**
+   * Forrige måned
+   */
+  previousMonth: string;
+  /**
+   * Velg måned
+   */
+  monthDropdown: string;
+  /**
+   * Velg år
+   */
+  yearDropdown: string;
 };
 
 /* eslint:enable */
