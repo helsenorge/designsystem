@@ -4,5 +4,7 @@
   "dayButtonToday": "Today, {date}",
   "dayButtonSelected": "{date}, selected",
   "nextMonth": "Next month",
-  "monthDropdown": "Select month"
+  "previousMonth": "Previous month",
+  "monthDropdown": "Select month",
+  "yearDropdown": "Select year"
 }
