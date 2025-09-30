@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useId } from 'react';
+import React, { useEffect, useRef, useId, ComponentType } from 'react';
 
 import classNames from 'classnames';
 
@@ -14,22 +14,23 @@ import {
   useOutsideEvent,
   useToggle,
 } from '../..';
+import { Radio, RadioProps } from './Radio';
 import { getResources } from './resourceHelper';
 import { HNDesignsystemDropdown } from '../../resources/Resources';
+import { isComponent } from '../../utils/component';
 import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
 import Button from '../Button';
-import Icon from '../Icon';
+import Icon, { SvgIcon } from '../Icon';
+import ChevronDown from '../Icons/ChevronDown';
+import ChevronUp from '../Icons/ChevronUp';
+import { IconName } from '../Icons/IconNames';
 import PlusSmall from '../Icons/PlusSmall';
+import LazyIcon from '../LazyIcon';
 
 import styles from './styles.module.scss';
 
-export enum DropdownOnColor {
-  onwhite = 'onwhite',
-  ongrey = 'ongrey',
-  onblueberry = 'onblueberry',
-  oncherry = 'oncherry',
-}
+type DropdownVariants = 'fill' | 'transparent' | 'borderless';
 
 export interface DropdownProps {
   /** Label for dropdown. Visible for screen readers  */
@@ -38,8 +39,6 @@ export interface DropdownProps {
   placeholder: string;
   /** Sets the dropdown content */
   children: React.ReactNode;
-  /** @deprecated Close button text */
-  closeText?: string;
   /** Minimum width for the dropdown in pixels. Does not affect trigger button */
   dropdownMinWidth?: number;
   /** No close button */
@@ -48,12 +47,6 @@ export interface DropdownProps {
   onToggle?: (isOpen: boolean) => void;
   /** Whether the dropdown is open or not */
   open?: boolean;
-  /** Changes the visuals of the dropdown */
-  onColor?: keyof typeof DropdownOnColor;
-  /** Makes the background of the trigger transparent */
-  transparent?: boolean;
-  /** Makes the width of the full component adjust to its parent */
-  fluid?: boolean;
   /** Makes the dropdown disabled */
   disabled?: boolean;
   /** Sets the data-testid attribute on the dropdown button */
@@ -62,9 +55,13 @@ export interface DropdownProps {
   zIndex?: number;
   /** Resources for component */
   resources?: Partial<HNDesignsystemDropdown>;
+  /** Adds an icon to the trigger */
+  svgIcon?: SvgIcon | IconName;
+  /** Sets the visual variant of the Dropdown */
+  variant?: DropdownVariants;
 }
 
-const Dropdown: React.FC<DropdownProps> = props => {
+export const DropdownBase: React.FC<DropdownProps> = props => {
   const {
     label,
     placeholder,
@@ -73,32 +70,49 @@ const Dropdown: React.FC<DropdownProps> = props => {
     dropdownMinWidth,
     open = false,
     children,
-    onColor = DropdownOnColor.onwhite,
-    transparent = false,
-    fluid = false,
     testId,
     disabled,
     zIndex = ZIndex.PopOver,
     resources,
+    svgIcon,
+    variant = 'fill',
   } = props;
 
+  const isSingleSelect = React.Children.toArray(children).every(
+    child => React.isValidElement(child) && isComponent<RadioProps>(child, Radio)
+  );
   const dropdownRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
+  const inputRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
   const { hoverRef: buttonRef, isHovered } = useHover<HTMLButtonElement>();
   const openedByKeyboard = useRef<boolean>(false);
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
-  const inputRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
   const labelId = useId();
   const toggleLabelId = useId();
   const optionIdPrefix = useId();
   const contentId = useId();
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
+  const iconProps = {
+    className: styles['dropdown__left-icon'],
+    color: 'var(--core-color-blueberry-600)',
+    size: IconSize.XSmall,
+    isHovered: isHovered,
+  };
+
+  const toggleClasses = classNames(styles.dropdown__toggle, {
+    [styles['dropdown__toggle--open']]: isOpen && !disabled,
+    [styles['dropdown__toggle--with-icon']]: typeof svgIcon !== 'undefined',
+    [styles['dropdown__toggle--transparent']]: variant === 'transparent',
+    [styles['dropdown__toggle--borderless']]: variant === 'borderless',
+  });
+
+  const contentClasses = classNames(styles.dropdown__content, isOpen && styles['dropdown__content--open']);
 
   const mergedResources: HNDesignsystemDropdown = {
     ...defaultResources,
     ...resources,
-    closeText: props.closeText ?? resources?.closeText ?? defaultResources.closeText,
+    closeText: resources?.closeText ?? defaultResources.closeText,
   };
 
   const handleOpen = (isKeyboard: boolean): void => {
@@ -169,24 +183,9 @@ const Dropdown: React.FC<DropdownProps> = props => {
 
   useOutsideEvent(dropdownRef, () => isOpen && handleClose());
 
-  const toggleClasses = classNames(
-    styles.dropdown__toggle,
-    !disabled && {
-      [styles['dropdown__toggle--on-white']]: onColor === DropdownOnColor.onwhite,
-      [styles['dropdown__toggle--on-grey']]: onColor === DropdownOnColor.ongrey,
-      [styles['dropdown__toggle--on-blueberry']]: onColor === DropdownOnColor.onblueberry,
-      [styles['dropdown__toggle--on-cherry']]: onColor === DropdownOnColor.oncherry,
-      [styles['dropdown__toggle--transparent']]: transparent,
-      [styles['dropdown__toggle--fluid']]: fluid,
-      [styles['dropdown__toggle--open']]: isOpen,
-    }
-  );
-
-  const contentClasses = classNames(styles.dropdown__content, isOpen && styles['dropdown__content--open']);
-
   const renderChildren = React.Children.map(children, (child, index) => {
     return (
-      <li className={styles.dropdown__input} id={`${optionIdPrefix}-${index}`}>
+      <li className={styles['dropdown__list-item']} id={`${optionIdPrefix}-${index}`}>
         {React.isValidElement(child) && inputRefList.current && inputRefList.current[index]
           ? React.cloneElement(child as React.ReactElement, {
               ref: mergeRefs([child.props.ref, inputRefList.current[index]]),
@@ -214,26 +213,25 @@ const Dropdown: React.FC<DropdownProps> = props => {
         aria-controls={contentId}
         aria-expanded={isOpen}
       >
+        {svgIcon && (
+          <>{typeof svgIcon === 'string' ? <LazyIcon {...iconProps} iconName={svgIcon} /> : <Icon {...iconProps} svgIcon={svgIcon} />}</>
+        )}
         <span id={toggleLabelId} className={styles.dropdown__toggle__label}>
           {placeholder}
         </span>
         <Icon
           color={disabled ? theme.palette.neutral700 : theme.palette.blueberry600}
-          svgIcon={PlusSmall}
-          className={styles.dropdown__icon}
+          svgIcon={!isSingleSelect ? PlusSmall : isOpen ? ChevronUp : ChevronDown}
+          className={styles['dropdown__right-icon']}
           isHovered={!disabled && isHovered}
           size={IconSize.XSmall}
         />
       </button>
-      <div
-        id={contentId}
-        className={contentClasses}
-        style={{ width: fluid ? '100%' : `auto`, minWidth: dropdownMinWidth ?? 'auto', zIndex: zIndex }}
-      >
+      <div id={contentId} className={contentClasses} style={{ minWidth: dropdownMinWidth ?? 'auto', zIndex: zIndex }}>
         <ul className={styles.dropdown__options} role="group" aria-labelledby={labelId} tabIndex={-1} ref={optionsRef}>
           {renderChildren}
         </ul>
-        {!noCloseButton && (
+        {!isSingleSelect && !noCloseButton && (
           <div className={styles.dropdown__close}>
             <Button onClick={handleClose}>{mergedResources.closeText}</Button>
           </div>
@@ -242,5 +240,12 @@ const Dropdown: React.FC<DropdownProps> = props => {
     </div>
   );
 };
+
+export interface DropdownCompound extends React.FC<DropdownProps> {
+  Radio: ComponentType<RadioProps>;
+}
+const Dropdown = DropdownBase as DropdownCompound;
+Dropdown.Radio = Radio;
+DropdownBase.displayName = 'Dropdown';
 
 export default Dropdown;

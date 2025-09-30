@@ -79,6 +79,7 @@ export enum AnalyticsId {
   DictionaryTrigger = 'dictionary-trigger',
   Drawer = 'Drawer',
   Dropdown = 'dropdown',
+  DropdownRadio = 'dropdown-radio',
   Duolist = 'duolist',
   EmptyState = 'empty-state',
   Expander = 'expander',

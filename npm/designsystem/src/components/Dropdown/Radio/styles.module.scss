@@ -1,0 +1,206 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../../../scss/spacers' as spacers;
+@use '../../../scss/palette' as palette;
+@use '../../../scss/font-settings' as font-settings;
+@use '../../../scss/breakpoints' as breakpoints;
+
+$padding-clickable-area-top-bottom: 8px;
+$padding-clickable-area-left: 8px;
+
+.radio-button-wrapper {
+  cursor: pointer;
+}
+
+.radio-button-label {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  line-height: font-settings.$lineheight-size-sm;
+  color: palette.$black;
+  padding: $padding-clickable-area-top-bottom 0 $padding-clickable-area-top-bottom $padding-clickable-area-left;
+
+  &--on-dark {
+    color: palette.$white;
+  }
+
+  &--invalid {
+    color: palette.$black;
+  }
+
+  &--disabled {
+    cursor: default;
+    color: palette.$neutral700;
+  }
+}
+
+.radio-button {
+  appearance: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rem;
+  margin: 0 spacers.getSpacer(s) 0 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  color: palette.$neutral700;
+  box-shadow: 0 0 0 spacers.getSpacer(4xs);
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 0 0 spacers.getSpacer(3xs);
+    color: palette.$black;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 spacers.getSpacer(3xs);
+    background-color: palette.$neutral100;
+  }
+
+  :active > & {
+    box-shadow: 0 0 0 spacers.getSpacer(3xs);
+    color: palette.$black;
+  }
+
+  &:checked {
+    color: palette.$blueberry500;
+
+    &:hover {
+      box-shadow: 0 0 0 spacers.getSpacer(4xs);
+      background-color: palette.$blueberry50;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+      color: palette.$black;
+    }
+  }
+
+  &--on-blueberry {
+    color: palette.$blueberry500;
+
+    :hover > & {
+      background-color: palette.$blueberry100;
+    }
+  }
+
+  &--on-dark {
+    color: palette.$neutral200;
+
+    &:hover {
+      background-color: palette.$inverted-hover-old;
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+    }
+
+    &:focus {
+      color: palette.$white;
+    }
+
+    :active > & {
+      box-shadow: 0 0 0 spacers.getSpacer(3xs);
+      color: palette.$white;
+    }
+
+    &:checked {
+      color: palette.$blueberry200;
+
+      &:hover {
+        background-color: palette.$inverted-hover-old;
+      }
+
+      &:focus {
+        color: palette.$white;
+      }
+    }
+  }
+
+  &--invalid {
+    color: palette.$cherry600;
+
+    &:hover {
+      background-color: palette.$cherry100;
+    }
+
+    &:active {
+      color: palette.$black;
+    }
+
+    &:focus {
+      color: palette.$black;
+    }
+
+    &:checked {
+      color: palette.$cherry600;
+
+      &:hover {
+        background-color: palette.$cherry100;
+      }
+    }
+  }
+
+  &--disabled {
+    cursor: default;
+    background-color: transparent;
+
+    &:hover {
+      box-shadow: none;
+      background-color: transparent;
+    }
+
+    :hover > & {
+      background-color: transparent;
+    }
+
+    &:active {
+      color: palette.$neutral600;
+    }
+
+    &:checked {
+      color: palette.$neutral600;
+
+      &:hover {
+        box-shadow: none;
+        background-color: transparent;
+      }
+    }
+  }
+
+  // :before er dot i RadioButton
+  &:checked::before {
+    content: '';
+    display: flex;
+    background-color: palette.$blueberry500;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 10rem;
+
+    // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      background-color: #fff !important;
+    }
+  }
+
+  &--on-dark:checked::before {
+    background-color: palette.$blueberry200;
+  }
+
+  &--invalid:checked::before {
+    background-color: palette.$cherry600;
+  }
+
+  &--disabled:checked::before {
+    background-color: palette.$neutral600;
+  }
+
+  // Vi overstyrer farger satt ved high-contrast mode i nettleser/os
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    color: #fff !important;
+    background-color: transparent !important;
+  }
+}
