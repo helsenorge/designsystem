@@ -1,6 +1,6 @@
 {
   "dateButtonAriaLabel": "Åpne datovelger",
-  "dayButtonBase": "Standard tekst for {date}",
+  "dayButtonBase": "{date}",
   "dayButtonToday": "I dag, {date}",
   "dayButtonSelected": "{date}, valgt",
   "nextMonth": "Neste måned",

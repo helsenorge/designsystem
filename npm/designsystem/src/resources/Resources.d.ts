@@ -89,7 +89,7 @@ export type HNDesignsystemDatePicker = {
    */
   dateButtonAriaLabel: string;
   /**
-   * Standard tekst for {date}
+   * {date}
    */
   dayButtonBase: string;
   /**
