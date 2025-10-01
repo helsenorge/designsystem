@@ -150,7 +150,11 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
       type="button"
     >
       {labelText && labelTextPosition == PopMenuLabelPosition.left && <span>{labelText}</span>}
-      {<div ref={iconRef}>{isOpen ? closeIcon : openIcon}</div>}
+      {
+        <div className={styles['pop-menu-button__icon-wrapper']} ref={iconRef}>
+          {isOpen ? closeIcon : openIcon}
+        </div>
+      }
       {labelText && labelTextPosition == PopMenuLabelPosition.right && <span>{labelText}</span>}
     </button>
   );
