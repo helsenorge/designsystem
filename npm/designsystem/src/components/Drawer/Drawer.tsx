@@ -67,12 +67,15 @@ export interface InnerDrawerProps {
   zIndex?: number;
   /** Resources for component */
   resources?: Partial<HNDesignsystemDrawer>;
+  /** Sets mobile styling and animation from outer level Drawer */
+  isMobile?: boolean;
 }
 
 const Drawer: React.FC<DrawerProps> = props => {
   const { isOpen, ...rest } = props;
+  const isMobile = useIsMobileBreakpoint();
 
-  return <AnimatePresence>{isOpen && <InnerDrawer {...rest} />}</AnimatePresence>;
+  return <AnimatePresence>{isOpen && <InnerDrawer {...rest} isMobile={isMobile} />}</AnimatePresence>;
 };
 
 const InnerDrawer: React.FC<InnerDrawerProps> = props => {
@@ -96,13 +99,13 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     titleId = uuid(),
     zIndex = ZIndex.OverlayScreen,
     resources,
+    isMobile,
   } = props;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledBy, fallbackId: titleId });
   const overlayRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobileBreakpoint();
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
@@ -153,8 +156,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
 
     animate(overlayRef.current, { opacity: 1, pointerEvents: 'auto' }, { duration: 0.3, ease: 'easeInOut' });
   }, [isPresent]);
-
-  useEffect(() => {}, [isPresent]);
 
   // Close animasjon, vi kaller `onClose()` til slutt
   const closeDrawer = (): void => {
