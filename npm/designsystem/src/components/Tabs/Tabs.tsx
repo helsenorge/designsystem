@@ -2,11 +2,15 @@ import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
 
+import { getResources } from './resourceHelper';
 import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
+import { LanguageLocales } from '../../constants';
+import { HNDesignsystemTabs } from '../../resources/Resources';
 import designsystemlayout from '../../scss/layout.module.scss';
 import { PaletteNames } from '../../theme/palette';
+import { useLanguage } from '../../utils/language';
 
 import styles from './styles.module.scss';
 
@@ -30,10 +34,12 @@ export interface TabsProps {
   sticky?: boolean;
   /** Sets the data-testid attribute. */
   testId?: string;
-  /** Sets aria label on the "scroll to the right" button in TabList */
+  /** @deprecated Sets aria label on the "scroll to the right" button in TabList */
   ariaLabelRightButton?: string;
-  /** Sets aria label on the "scroll to the left" button in TabList */
+  /** @deprecated Sets aria label on the "scroll to the left" button in TabList */
   ariaLabelLeftButton?: string;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemTabs>;
   /** Overrides the default z-index of the tabs header */
   zIndex?: number;
 }
@@ -49,6 +55,7 @@ export const TabsRoot: React.FC<TabsProps> = ({
   testId,
   ariaLabelRightButton,
   ariaLabelLeftButton,
+  resources,
   zIndex,
 }) => {
   const isControlled = activeTab !== undefined;
@@ -56,6 +63,15 @@ export const TabsRoot: React.FC<TabsProps> = ({
   const tabsRef = useRef<HTMLDivElement>(null);
   const tabPanelRef = useRef<HTMLDivElement>(null);
   const tabListRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemTabs = {
+    ...defaultResources,
+    ...resources,
+    ariaLabelRightButton: ariaLabelRightButton || resources?.ariaLabelRightButton || defaultResources.ariaLabelRightButton,
+    ariaLabelLeftButton: ariaLabelLeftButton || resources?.ariaLabelLeftButton || defaultResources.ariaLabelLeftButton,
+  };
 
   let onColorUsed: TabsOnColor = 'onwhite';
   if (color === 'white') {
@@ -86,8 +102,8 @@ export const TabsRoot: React.FC<TabsProps> = ({
           selectedTab={activeTabIndex}
           color={color}
           onColor={onColorUsed}
-          ariaLabelLeftButton={ariaLabelLeftButton}
-          ariaLabelRightButton={ariaLabelRightButton}
+          ariaLabelLeftButton={mergedResources.ariaLabelLeftButton}
+          ariaLabelRightButton={mergedResources.ariaLabelRightButton}
         >
           {children}
         </TabList>
