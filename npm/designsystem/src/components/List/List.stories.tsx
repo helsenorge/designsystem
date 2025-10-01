@@ -2,9 +2,11 @@ import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+import { action } from 'storybook/internal/actions';
 
 import List from './List';
 import { mediumLoremText } from '../../utils/loremtext';
+import AnchorLink from '../AnchorLink';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/List',
@@ -213,6 +215,28 @@ export const Nested: Story = {
         </List>
       </List.Item>
       <List.Item>{mediumLoremText}</List.Item>
+    </List>
+  ),
+};
+
+export const AnchorlinkInList: Story = {
+  render: args => (
+    <List>
+      <List.Item>
+        <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
+          {'vanlig lenke i liste, med lang tekst så den wrapper'}
+        </AnchorLink>
+      </List.Item>
+      <List.Item>
+        <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
+          {'button lenke i liste, med lang tekst så den wrapper'}
+        </AnchorLink>
+      </List.Item>
+      <List.Item>
+        <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
+          {'vanlig lenke i liste, med lang tekst så den wrapper'}
+        </AnchorLink>
+      </List.Item>
     </List>
   ),
 };
