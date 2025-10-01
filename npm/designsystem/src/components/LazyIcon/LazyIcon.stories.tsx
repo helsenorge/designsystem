@@ -5,7 +5,7 @@ import { Docs } from 'frankenstein-build-tools';
 
 import LazyIcon from './LazyIcon';
 import { IconSize } from '../../constants';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/LazyIcon',
@@ -38,9 +38,9 @@ export const Default: Story = {
     size: IconSize.XLarge,
   },
   render: args => {
-    const { hoverRef, isHovered } = useHover<HTMLDivElement>();
+    const { refObject, isHovered } = usePseudoClasses<HTMLDivElement>();
     return (
-      <div ref={hoverRef}>
+      <div ref={refObject}>
         <LazyIcon {...args} isHovered={isHovered} />
       </div>
     );

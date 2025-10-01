@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useHover } from '../../../hooks/useHover';
+import { usePseudoClasses } from '../../../hooks/usePseudoClasses';
 import Icon, { IconSize } from '../../Icon';
 import ChevronLeft from '../../Icons/ChevronLeft';
 import ChevronRight from '../../Icons/ChevronRight';
@@ -16,7 +16,7 @@ interface TabChevronProps {
 
 const TabChevron: React.FC<TabChevronProps> = ({ direction, onClick, backgroundColor, ariaLabel }) => {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const { isHovered } = useHover<HTMLButtonElement>(buttonRef);
+  const { isHovered } = usePseudoClasses<HTMLButtonElement>(buttonRef);
 
   return (
     <button

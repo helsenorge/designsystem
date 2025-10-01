@@ -3,7 +3,7 @@ import React from 'react';
 import cn from 'classnames';
 
 import { AnalyticsId } from '../../constants';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { PaletteNames } from '../../theme/palette';
 import { ElementHeaderType, renderElementHeader } from '../ElementHeader/ElementHeader';
 import ChevronRight from '../Icons/ChevronRight';
@@ -94,7 +94,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
     highlightText,
     ...restProps
   } = props;
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement | HTMLAnchorElement>(linkRef);
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement>(linkRef);
 
   const isFill = variant === 'fill';
   const isFillNegative = variant === 'fill-negative';
@@ -134,7 +134,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
       {htmlMarkup === 'a' && (
         <a
           className={linkClasses}
-          ref={hoverRef as React.RefObject<HTMLAnchorElement>}
+          ref={refObject as React.RefObject<HTMLAnchorElement>}
           rel={target === '_blank' ? 'noopener noreferrer' : undefined}
           target={target}
           {...restProps}
@@ -152,7 +152,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
         </a>
       )}
       {htmlMarkup === 'button' && (
-        <button className={linkClasses} ref={hoverRef as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
+        <button className={linkClasses} ref={refObject as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
           <div className={statusMarkerClasses}></div>
           {renderElementHeader(children, {
             titleHtmlMarkup: 'span',

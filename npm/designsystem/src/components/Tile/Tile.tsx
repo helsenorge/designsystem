@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { AnalyticsId } from '../../constants';
 import { TitleTags } from './../Title/Title';
 import { useBreakpoint, Breakpoint } from '../../hooks/useBreakpoint';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { mergeRefs } from '../../utils/refs';
 import { IconSize } from '../Icon';
 
@@ -82,7 +82,7 @@ export const Tile = React.forwardRef<HTMLAnchorElement, TileProps>((props, ref) 
     href,
     onClick,
   } = props;
-  const { hoverRef, isHovered } = useHover<HTMLAnchorElement>();
+  const { refObject, isHovered } = usePseudoClasses<HTMLAnchorElement>();
   const breakpoint = useBreakpoint();
   const mobile = breakpoint < Breakpoint.md;
   const compact = variant === 'compact';
@@ -101,7 +101,7 @@ export const Tile = React.forwardRef<HTMLAnchorElement, TileProps>((props, ref) 
 
   return (
     <a
-      ref={mergeRefs([ref, hoverRef])}
+      ref={mergeRefs([ref, refObject])}
       href={href}
       target={target}
       rel={target === '_blank' ? 'noopener noreferrer' : rel}

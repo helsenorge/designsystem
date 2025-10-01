@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys';
 import Icon, { IconSize } from '../Icon';
 import ArrowUpRight from '../Icons/ArrowUpRight';
@@ -42,7 +42,7 @@ export interface AnchorLinkProps {
 const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, AnchorLinkProps>((props, ref) => {
   const { id, href, children, className, target = '_self', htmlMarkup = 'a', onClick, testId } = props;
   const external = target === '_blank';
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement | HTMLAnchorElement>(
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement>(
     ref as React.RefObject<HTMLButtonElement | HTMLAnchorElement>
   );
   const anchorClasses = classNames(AnchorLinkStyles.anchorlink, className);
@@ -78,7 +78,7 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
           target={target}
           className={anchorClasses}
           rel={external ? 'noopener noreferrer' : undefined}
-          ref={hoverRef as React.RefObject<HTMLAnchorElement>}
+          ref={refObject as React.RefObject<HTMLAnchorElement>}
           {...commonProps}
         >
           {renderContent()}
@@ -88,7 +88,7 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
         <button
           type="button"
           className={AnchorLinkStyles['anchorlink-wrapper']}
-          ref={hoverRef as React.RefObject<HTMLButtonElement>}
+          ref={refObject as React.RefObject<HTMLButtonElement>}
           {...commonProps}
         >
           <span className={anchorClasses}>{renderContent()}</span>

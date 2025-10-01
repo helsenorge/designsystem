@@ -3,9 +3,9 @@ import React, { useRef, useState } from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId, IconSize } from '../../constants';
-import { useHover } from '../../hooks/useHover';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys';
 import { isComponent } from '../../utils/component';
 import Icon, { SvgIcon } from '../Icon';
@@ -84,7 +84,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
     setIsOpen(false);
   });
 
-  const { isHovered: triggerButtonIsHovered } = useHover(triggerButtonRef);
+  const { isHovered: triggerButtonIsHovered } = usePseudoClasses(triggerButtonRef);
   const mobileIconSize = isMobile ? IconSize.XSmall : IconSize.Small;
 
   const handleClick = (cb?: () => void): void => {

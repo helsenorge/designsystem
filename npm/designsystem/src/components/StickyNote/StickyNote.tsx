@@ -2,7 +2,6 @@ import React, { useLayoutEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
-import { useHover } from '../../hooks/useHover';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import Icon, { IconSize } from '../Icon';
 import Triangle from './Triangle';
@@ -53,7 +52,7 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
   const stickynoteRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { isFocused: isTextareaFocused } = usePseudoClasses<HTMLTextAreaElement>(textareaRef);
-  const { isHovered } = useHover<HTMLDivElement>(stickynoteRef);
+  const { isHovered } = usePseudoClasses<HTMLDivElement>(stickynoteRef);
   const triangleType = error ? 'error' : isTextareaFocused ? 'active' : 'default';
 
   const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>): void => {

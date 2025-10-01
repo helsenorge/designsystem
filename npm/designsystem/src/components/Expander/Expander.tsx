@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useSize } from '../../hooks/useSize';
 import { PaletteNames } from '../../theme/palette';
 import Button from '../Button';
@@ -73,7 +73,7 @@ const Expander: React.FC<ExpanderProps> = props => {
   const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const { isHovered } = useHover(triggerRef);
+  const { isHovered } = usePseudoClasses(triggerRef);
   const contentSize = useSize(expanderRef);
   const triggerSize = useSize(triggerRef);
 
