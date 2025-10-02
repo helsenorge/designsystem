@@ -119,6 +119,7 @@ export const IconList = [
   'Eye',
   'Facebook',
   'FallingLeaf',
+  'Feedback',
   'Female',
   'FemaleDoctor',
   'Ferry',

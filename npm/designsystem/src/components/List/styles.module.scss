@@ -56,6 +56,11 @@
   }
 
   &__item {
+    // In case AnchorLink is used inside List with html markup button
+    button {
+      vertical-align: top;
+    }
+
     > #{$list} {
       margin-top: spacers.getSpacer(2xs);
     }

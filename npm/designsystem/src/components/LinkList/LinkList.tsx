@@ -7,6 +7,7 @@ import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { PaletteNames } from '../../theme/palette';
 import { ElementHeaderType, renderElementHeader } from '../ElementHeader/ElementHeader';
 import ChevronRight from '../Icons/ChevronRight';
+import ListEditModeItem, { ListEditModeItemProps, listEditModeWrapperClassnames } from '../ListEditMode';
 
 import LinkListStyles from './styles.module.scss';
 
@@ -45,6 +46,11 @@ export interface LinkListProps {
   variant?: LinkListVariant;
   /** Highlights text. Used for search results */
   highlightText?: string;
+  /**
+   * @experimental This prop is experimental and may change in the future.
+   * Enables ListEditMode
+   */
+  editMode?: boolean;
 }
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -74,9 +80,10 @@ export type LinkProps = Modify<
     highlightText?: string;
   }
 > &
-  Pick<LinkListProps, 'color' | 'size' | 'variant'>;
+  Pick<LinkListProps, 'color' | 'size' | 'variant'> &
+  ListEditModeItemProps;
 
-const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLIElement>) => {
+export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLIElement>) => {
   const {
     children,
     className = '',
@@ -92,6 +99,7 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
     variant,
     htmlMarkup = 'a',
     highlightText,
+    editMode = false,
     ...restProps
   } = props;
   const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement>(linkRef);
@@ -131,7 +139,19 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
 
   return (
     <li className={liClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
-      {htmlMarkup === 'a' && (
+      {editMode ? (
+        <div className={linkClasses}>
+          <div className={statusMarkerClasses}></div>
+          {renderElementHeader(children, {
+            titleHtmlMarkup: 'span',
+            size,
+            parentType: 'linklist',
+            chevronIcon: chevron ? ChevronRight : undefined,
+            icon: icon ?? imageContainer,
+            highlightText,
+          })}
+        </div>
+      ) : htmlMarkup === 'a' ? (
         <a
           className={linkClasses}
           ref={refObject as React.RefObject<HTMLAnchorElement>}
@@ -150,44 +170,73 @@ const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLI
             highlightText,
           })}
         </a>
-      )}
-      {htmlMarkup === 'button' && (
-        <button className={linkClasses} ref={refObject as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
-          <div className={statusMarkerClasses}></div>
-          {renderElementHeader(children, {
-            titleHtmlMarkup: 'span',
-            isHovered,
-            size,
-            parentType: 'linklist',
-            chevronIcon: chevron ? ChevronRight : undefined,
-            icon: icon ?? imageContainer,
-            highlightText,
-          })}
-        </button>
+      ) : (
+        htmlMarkup === 'button' && (
+          <button className={linkClasses} ref={refObject as React.RefObject<HTMLButtonElement>} type="button" {...restProps}>
+            <div className={statusMarkerClasses}></div>
+            {renderElementHeader(children, {
+              titleHtmlMarkup: 'span',
+              isHovered,
+              size,
+              parentType: 'linklist',
+              chevronIcon: chevron ? ChevronRight : undefined,
+              icon: icon ?? imageContainer,
+              highlightText,
+            })}
+          </button>
+        )
       )}
     </li>
   );
 });
 
 export const LinkList = React.forwardRef(function LinkListForwardedRef(props: LinkListProps, ref: React.Ref<HTMLUListElement>) {
-  const { children, className = '', chevron = false, size = 'medium', color = 'white', testId, variant = 'line', highlightText } = props;
+  const {
+    children,
+    className = '',
+    chevron = false,
+    size = 'medium',
+    color = 'white',
+    testId,
+    variant = 'line',
+    highlightText,
+    editMode = false,
+  } = props;
 
   const listClassNames = cn(LinkListStyles['link-list'], className, {
     [LinkListStyles[`link-list--outline--${color}`]]: variant === 'outline',
+    [listEditModeWrapperClassnames]: editMode,
   });
 
   return (
     <ul ref={ref} className={listClassNames} data-testid={testId} data-analyticsid={AnalyticsId.LinkList}>
-      {React.Children.map(children, (child: React.ReactNode | React.ReactElement<LinkProps>) => {
-        if ((child as React.ReactElement<LinkProps>).type === Link) {
-          return React.cloneElement(child as React.ReactElement<LinkProps>, {
-            color,
-            size,
-            chevron,
-            variant,
-            highlightText: highlightText,
-          });
+      {React.Children.map(children, (child: React.ReactNode) => {
+        if (React.isValidElement<LinkProps>(child) && child.type === Link) {
+          if (editMode) {
+            return (
+              <ListEditModeItem color={color} variant={variant} onDelete={child.props.onDelete}>
+                {React.cloneElement(child, {
+                  color,
+                  size,
+                  chevron: false,
+                  variant,
+                  highlightText: highlightText,
+                  editMode: true,
+                })}
+              </ListEditModeItem>
+            );
+          } else {
+            return React.cloneElement(child, {
+              color,
+              size,
+              chevron,
+              variant,
+              highlightText: highlightText,
+              editMode: false,
+            });
+          }
         }
+        return null;
       })}
     </ul>
   );

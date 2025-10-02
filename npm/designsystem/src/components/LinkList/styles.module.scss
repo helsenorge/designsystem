@@ -88,7 +88,11 @@
     min-height: 4rem;
     text-decoration: none;
     color: var(--color-base-text-onlight);
-    cursor: pointer;
+
+    // listeelement settes til div om man er i edit mode, og skal da ikke ha interactive effekter
+    &:not(div) {
+      cursor: pointer;
+    }
 
     &--button {
       width: 100%;
@@ -118,9 +122,16 @@
       }
     }
 
+    &--fill-negative {
+      background-color: var(--color-base-background-white);
+    }
+
     &--fill,
     &--fill-negative {
-      margin-top: spacers.getSpacer(s);
+      // listeelement settes til div om man er i edit mode, og styles da via ListEditMode
+      &:not(div) {
+        margin-top: spacers.getSpacer(s);
+      }
 
       &--blueberry {
         border: 1px solid var(--core-color-blueberry-500);
@@ -138,10 +149,6 @@
       &--white {
         border: 1px solid var(--color-base-border-onlight);
       }
-    }
-
-    &--fill-negative {
-      background-color: var(--color-base-background-white);
     }
 
     &--small {
@@ -177,41 +184,42 @@
     }
 
     &--white:not(.link-list__anchor--outline) {
-      &:hover {
+      // listeelement settes til div om man er i edit mode, og skal da ikke ha hover/active effekter
+      &:hover:not(div) {
         background-color: var(--core-color-neutral-50);
       }
 
-      &:active {
+      &:active:not(div) {
         background-color: var(--core-color-neutral-100);
       }
     }
 
     &--blueberry:not(.link-list__anchor--outline) {
-      &:hover {
+      &:hover:not(div) {
         background-color: var(--core-color-blueberry-100);
       }
 
-      &:active {
+      &:active:not(div) {
         background-color: var(--color-action-background-ondark-hoverselected);
       }
     }
 
     &--cherry:not(.link-list__anchor--outline) {
-      &:hover {
+      &:hover:not(div) {
         background-color: var(--core-color-cherry-100);
       }
 
-      &:active {
+      &:active:not(div) {
         background-color: var(--core-color-cherry-200);
       }
     }
 
     &--neutral:not(.link-list__anchor--outline) {
-      &:hover {
+      &:hover:not(div) {
         background-color: var(--core-color-neutral-100);
       }
 
-      &:active {
+      &:active:not(div) {
         background-color: var(--core-color-neutral-200);
       }
     }
@@ -234,11 +242,11 @@
       &--blueberry {
         border-bottom: 1px solid var(--core-color-blueberry-500);
 
-        &:hover {
+        &:hover:not(div) {
           background-color: var(--core-color-blueberry-50);
         }
 
-        &:active {
+        &:active:not(div) {
           background-color: var(--core-color-blueberry-100);
         }
       }
@@ -246,11 +254,11 @@
       &--cherry {
         border-bottom: 1px solid var(--core-color-cherry-400);
 
-        &:hover {
+        &:hover:not(div) {
           background-color: var(--core-color-cherry-50);
         }
 
-        &:active {
+        &:active:not(div) {
           background-color: var(--core-color-cherry-100);
         }
       }
@@ -258,11 +266,11 @@
       &--neutral {
         border-bottom: 1px solid var(--color-base-border-onlight);
 
-        &:hover {
+        &:hover:not(div) {
           background-color: var(--core-color-neutral-50);
         }
 
-        &:active {
+        &:active:not(div) {
           background-color: var(--core-color-neutral-100);
         }
       }
@@ -271,11 +279,11 @@
     &--new {
       background-color: var(--core-color-blueberry-50) !important;
 
-      &:hover {
+      &:hover:not(div) {
         background-color: var(--core-color-blueberry-100) !important;
       }
 
-      &:active {
+      &:active:not(div) {
         background-color: var(--core-color-blueberry-200) !important;
       }
     }
