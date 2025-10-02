@@ -1,0 +1,79 @@
+@use 'sass:map';
+@use '../../scss/spacers' as spacers;
+@use '../../scss/font-settings' as font-settings;
+@use '../../scss/palette' as palette;
+@use '../../scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
+
+.list-edit-mode {
+  border: none !important;
+
+  &__icon-button {
+    background: none;
+    border: none;
+    height: 3rem;
+    width: 3rem;
+    background-color: transparent;
+    outline: none;
+    padding: 0;
+    margin: 4px;
+
+    &:focus-visible {
+      outline: 4px solid var(--color-action-border-onlight-focus);
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    align-items: center;
+
+    li {
+      width: 100%;
+    }
+
+    &--neutral,
+    &--white {
+      border-bottom: 1px solid var(--color-base-border-onlight);
+
+      &:first-of-type {
+        border-top: 1px solid var(--color-base-border-onlight);
+      }
+    }
+
+    &--cherry {
+      border-bottom: 1px solid var(--core-color-cherry-400);
+
+      &:first-of-type {
+        border-top: 1px solid var(--core-color-cherry-400);
+      }
+    }
+
+    &--blueberry {
+      border-bottom: 1px solid var(--core-color-blueberry-500);
+
+      &:first-of-type {
+        border-top: 1px solid var(--core-color-blueberry-500);
+      }
+    }
+
+    &--line {
+      li {
+        border: none !important;
+      }
+    }
+
+    &--fill {
+      li {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+    }
+
+    &__link {
+      margin: 0;
+    }
+  }
+}

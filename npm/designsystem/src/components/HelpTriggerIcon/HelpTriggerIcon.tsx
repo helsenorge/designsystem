@@ -26,10 +26,11 @@ export interface HelpTriggerIconProps
    * Sets aria-labelledby of the trigger. ariaLabel or ariaLabelledById MUST be set!
    */
   ariaLabelledById?: string;
+  /** Adds custom classes to the element. */
+  className?: string;
   /**
    * Size of the Icon. Default: medium.
    */
-
   size?: HelpTriggerIconSizes;
   /** Sets the data-testid attribute. */
   testId?: string;
@@ -63,7 +64,17 @@ const HelpTriggerIcon = React.forwardRef<HTMLButtonElement, HelpTriggerIconProps
 
 export const HelpTriggerIconInternal = React.forwardRef<HTMLButtonElement, HelpTriggerIconInternalProps>(
   (
-    { ariaLabel, ariaLabelledById, htmlMarkup = 'button', isHovered = false, size = 'medium', testId, weight = 'normal', ...buttonRest },
+    {
+      ariaLabel,
+      ariaLabelledById,
+      className,
+      htmlMarkup = 'button',
+      isHovered = false,
+      size = 'medium',
+      testId,
+      weight = 'normal',
+      ...buttonRest
+    },
     ref
   ) => {
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
@@ -79,7 +90,8 @@ export const HelpTriggerIconInternal = React.forwardRef<HTMLButtonElement, HelpT
         [styles['help-trigger-icon--strong']]: weight === 'strong',
         [styles['help-trigger-icon--is-button']]: isButton,
       },
-      styles[`help-trigger-icon--${size}`]
+      styles[`help-trigger-icon--${size}`],
+      className
     );
 
     if (isButton) {

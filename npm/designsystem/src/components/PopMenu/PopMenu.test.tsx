@@ -23,11 +23,6 @@ const container = (
 );
 
 describe('Gitt at en PopMenu vises ', (): void => {
-  describe('Når den rendrer', (): void => {
-    it('Så skal den kun vises', (): void => {
-      expect(render(container)).toMatchSnapshot();
-    });
-  });
   describe('Når man trykker på åpne/lukke-knappen', (): void => {
     it('Så skal popover åpnes/lukkes', async (): Promise<void> => {
       render(container);

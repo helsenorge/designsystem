@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Source } from '@storybook/addon-docs/blocks';
 import { StoryObj, Meta } from '@storybook/react-vite';
@@ -14,7 +14,10 @@ import Label from '@helsenorge/designsystem-react/components/Label';
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import Spacer from '@helsenorge/designsystem-react/components/Spacer';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
+import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
 import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
+
+import { LanguageLocales } from '@helsenorge/designsystem-react';
 
 import DatePicker, { DatePickerProps } from './DatePicker';
 import DateTime from './DateTime';
@@ -577,6 +580,34 @@ export const AriaLabels: Story = {
         maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
         minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
       />
+    );
+  },
+};
+
+export const WithLanguageProvider: Story = {
+  render: args => {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} variant="outline">
+          {'Bytt til bokmål'}
+        </Button>
+        <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)} variant="outline">
+          {'Switch to English'}
+        </Button>
+        <Spacer />
+        <span>{`Valgt språk: ${language}`}</span>
+        <Spacer />
+        <DatePicker
+          label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />}
+          {...args}
+          dateValue={args.dateValue ? new Date(Number(args.dateValue)) : undefined}
+          disableDays={args.disableDays ? [new Date(Number(args.disableDays))] : undefined}
+          maxDate={args.maxDate ? new Date(Number(args.maxDate)) : undefined}
+          minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
+        />
+      </LanguageProvider>
     );
   },
 };

@@ -13,6 +13,7 @@ import { ElementHeaderType, renderElementHeader } from '../ElementHeader/Element
 import Highlighter from '../Highlighter';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
+import ListEditModeItem, { ListEditModeItemProps, listEditModeWrapperClassnames } from '../ListEditMode';
 import { TitleTags } from '../Title';
 
 import expanderListStyles from './styles.module.scss';
@@ -53,6 +54,11 @@ interface ExpanderListProps {
   zIndex?: number;
   /** Highlights text in title and content. Used for search results */
   highlightText?: string;
+  /**
+   * @experimental This prop is experimental and may change in the future.
+   * Enables ListEditMode
+   */
+  editMode?: boolean;
 }
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -83,9 +89,10 @@ type ExpanderProps = Modify<
     status?: ExpanderListStatus;
   }
 > &
-  Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'variant'>;
+  Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'variant'> &
+  ListEditModeItemProps;
 
-const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((props, ref) => {
+export const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((props, ref) => {
   const {
     id,
     children,
@@ -105,6 +112,7 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
     zIndex = 0,
     highlightText,
     status = 'none',
+    editMode = false,
   } = props;
   const [isExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLLIElement>(null);
@@ -166,30 +174,44 @@ const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((p
   return (
     <li className={itemClasses} ref={mergeRefs([ref, expanderRef])}>
       {status !== 'none' && <div className={statusMarkerClasses}></div>}
-      <button
-        type="button"
-        id={id}
-        onClick={handleExpanderClick}
-        data-testid={testId}
-        data-analyticsid={AnalyticsId.ExpanderListExpander}
-        className={expanderClasses}
-        ref={triggerRef}
-        aria-expanded={isExpanded}
-        style={{
-          zIndex: isFocused ? zIndex + 1 : zIndex,
-        }}
-      >
-        {renderElementHeader(title, {
-          titleHtmlMarkup,
-          isHovered: isHovered || isFocused,
-          size: large ? 'large' : 'medium',
-          parentType: 'expanderlist',
-          chevronIcon: isExpanded ? ChevronUp : ChevronDown,
-          icon,
-          highlightText,
-        })}
-      </button>
-      {renderContent()}
+      {editMode ? (
+        <div id={id} data-testid={testId} data-analyticsid={AnalyticsId.ExpanderListExpander} className={expanderClasses}>
+          {renderElementHeader(title, {
+            titleHtmlMarkup,
+            isHovered: false,
+            size: large ? 'large' : 'medium',
+            parentType: 'expanderlist',
+            chevronIcon: undefined,
+            icon,
+            highlightText,
+          })}
+        </div>
+      ) : (
+        <button
+          type="button"
+          id={id}
+          onClick={handleExpanderClick}
+          data-testid={testId}
+          data-analyticsid={AnalyticsId.ExpanderListExpander}
+          className={expanderClasses}
+          ref={triggerRef}
+          aria-expanded={isExpanded}
+          style={{
+            zIndex: isFocused ? zIndex + 1 : zIndex,
+          }}
+        >
+          {renderElementHeader(title, {
+            titleHtmlMarkup,
+            isHovered: isHovered || isFocused,
+            size: large ? 'large' : 'medium',
+            parentType: 'expanderlist',
+            chevronIcon: isExpanded ? ChevronUp : ChevronDown,
+            icon,
+            highlightText,
+          })}
+        </button>
+      )}
+      {!editMode && renderContent()}
     </li>
   );
 });
@@ -212,6 +234,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     variant,
     zIndex,
     highlightText,
+    editMode = false,
   } = props;
   const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
@@ -219,6 +242,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   const expanderListClasses = classNames(expanderListStyles['expander-list'], className, {
     [expanderListStyles[`expander-list--outline--${color}`]]: variant === 'outline',
     [expanderListStyles[`expander-list--fill`]]: variant === 'fill' || variant === 'fill-negative',
+    [listEditModeWrapperClassnames]: editMode,
   });
 
   function handleExpanderClick(event: React.MouseEvent<HTMLElement, MouseEvent>, id: string): void {
@@ -258,21 +282,43 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
           const expanded = activeExpander?.[id];
           const highlightTextChild: string | undefined = child.props.highlightText || highlightText;
 
-          return React.cloneElement(child as React.ReactElement<ExpanderProps>, {
-            id,
-            key: index,
-            expanded,
-            padding: childPadding,
-            color,
-            large,
-            'aria-expanded': expanded,
-            className: expanderListStyles['expander-list__item'],
-            handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${uuid}-${index}`),
-            renderChildrenWhenClosed,
-            variant,
-            zIndex: zIndex,
-            highlightText: highlightTextChild,
-          });
+          if (editMode) {
+            return (
+              <ListEditModeItem color={color} variant={variant} onDelete={child.props.onDelete}>
+                {React.cloneElement(child, {
+                  id,
+                  key: index,
+                  expanded,
+                  padding: childPadding,
+                  color,
+                  large,
+                  'aria-expanded': false,
+                  className: expanderListStyles['expander-list__item'],
+                  renderChildrenWhenClosed: false,
+                  variant,
+                  zIndex: zIndex,
+                  highlightText: highlightTextChild,
+                  editMode: true,
+                })}
+              </ListEditModeItem>
+            );
+          } else {
+            return React.cloneElement(child as React.ReactElement<ExpanderProps>, {
+              id,
+              key: index,
+              expanded,
+              padding: childPadding,
+              color,
+              large,
+              'aria-expanded': expanded,
+              className: expanderListStyles['expander-list__item'],
+              handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${uuid}-${index}`),
+              renderChildrenWhenClosed,
+              variant,
+              zIndex: zIndex,
+              highlightText: highlightTextChild,
+            });
+          }
         }
         return child;
       })}

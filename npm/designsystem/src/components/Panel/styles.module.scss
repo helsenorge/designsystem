@@ -7,10 +7,12 @@
 
 .panel {
   $panel: &;
+  $status-width: 6px;
 
   display: flex;
   flex-flow: column;
   padding: spacers.getSpacer(s);
+  padding-left: calc(spacers.getSpacer(s) - $status-width);
 
   & > *:not(:last-child) {
     // because of a problem with gap this margin gives space between elements
@@ -19,6 +21,7 @@
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     padding: spacers.getSpacer(m);
+    padding-left: calc(spacers.getSpacer(m) - $status-width);
   }
 
   &--icon {
@@ -155,7 +158,7 @@
   }
 
   &--status {
-    border-left: 6px;
+    border-left: $status-width;
     border-left-style: solid;
     border-left-color: transparent;
   }
@@ -166,7 +169,7 @@
   }
 
   &--draft {
-    border-left: dotted 6px var(--color-notification-status-draft);
+    border-left: dotted $status-width var(--color-notification-status-draft);
   }
 
   &--error {

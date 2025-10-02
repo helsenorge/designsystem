@@ -19,8 +19,16 @@ $xl-size: 3.75rem;
   background-color: transparent;
   outline: none;
 
+  &__star-icon--focus {
+    display: none; // hides the focus path
+  }
+
   &:focus-visible {
     outline: none;
+
+    .favoritebutton__star-icon--focus {
+      display: block; // shows the focus path only on focus-visible
+    }
   }
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {

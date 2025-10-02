@@ -18,6 +18,10 @@
     box-shadow: none;
     outline: none;
   }
+
+  &__icon-wrapper {
+    display: flex;
+  }
 }
 
 html :focus > .pop-menu-button {
