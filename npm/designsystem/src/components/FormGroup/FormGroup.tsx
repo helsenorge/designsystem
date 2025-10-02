@@ -34,6 +34,8 @@ export interface FormGroupProps {
   errorWrapperClassName?: string;
   /** Adds custom classes to the fieldset element. */
   fieldsetClassName?: string;
+  /** Adds custom classes to the legend element. */
+  legendClassName?: string;
   /** Changes the visuals of the formgroup */
   onColor?: keyof typeof FormOnColor;
   /** Changes the visuals of the formgroup */
@@ -61,6 +63,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     ariaLabelledBy,
     className,
     fieldsetClassName,
+    legendClassName,
     onColor = FormOnColor.onwhite,
     size = FormSize.medium,
     error,
@@ -81,9 +84,13 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     [formGroupStyles['form-group-wrapper__title--on-dark']]: onDark && !error,
   });
 
-  const legendClasses = classNames(formGroupStyles['field-set__legend'], {
-    [formGroupStyles['field-set__legend--on-dark']]: onDark && !error,
-  });
+  const legendClasses = classNames(
+    formGroupStyles['field-set__legend'],
+    {
+      [formGroupStyles['field-set__legend--on-dark']]: onDark && !error,
+    },
+    legendClassName
+  );
 
   const fieldsetClasses = classNames(formGroupStyles['field-set'], fieldsetClassName);
 

@@ -10,14 +10,17 @@ import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
-import { KeyboardEventKey, ZIndex } from '@helsenorge/designsystem-react/constants';
+import { KeyboardEventKey, LanguageLocales, ZIndex } from '@helsenorge/designsystem-react/constants';
 import { useKeyboardEvent } from '@helsenorge/designsystem-react/hooks/useKeyboardEvent';
 import { useOutsideEvent } from '@helsenorge/designsystem-react/hooks/useOutsideEvent';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
+import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
 import { isMobileUA } from '@helsenorge/designsystem-react/utils/mobile';
 import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
 import DatePickerPopup, { DatePickerAriaLabels } from './DatePickerPopup';
+import { getResources } from './resourceHelper';
+import { HNDesignsystemDatePicker } from '../../resources/Resources';
 
 import styles from './styles.module.scss';
 
@@ -31,7 +34,7 @@ export interface DatePickerProps
   ariaLabels?: DatePickerAriaLabels;
   /** Adds custom classes to the element. */
   className?: string;
-  /** Sets aria-label on the button that opens the datepicker dialogue */
+  /** @deprecated Sets aria-label on the button that opens the datepicker dialogue */
   dateButtonAriaLabel?: string;
   /** Sets the format of the date - only applies for desktop use. Native mobile date fields base their formats on the device */
   dateFormat?: DateFormat;
@@ -70,6 +73,8 @@ export interface DatePickerProps
   ) => void;
   /** Only use this to trigger validation. Callback triggered by change in chosen date via the datepicker popup */
   onDatePopupClosed?: (date: Date | string | undefined) => void;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemDatePicker>;
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Determines the placement of the DatePicker popup. Default: automatic positioning. */
@@ -104,6 +109,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     onChange,
     onDatePopupClosed,
     testId,
+    resources,
     autoComplete = 'off',
     variant = PopOverVariant.positionautomatic,
     zIndex = ZIndex.PopOver,
@@ -115,6 +121,23 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   const [month, setMonth] = useState<Date | undefined>(defaultMonth);
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
   const [returnInputFocus, setReturnInputFocus] = useState<boolean>(false);
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemDatePicker = {
+    ...defaultResources,
+    ...resources,
+    dateButtonAriaLabel: dateButtonAriaLabel || resources?.dateButtonAriaLabel || defaultResources.dateButtonAriaLabel,
+  };
+  const popupAriaLabels: DatePickerAriaLabels = {
+    dayButtonBase: ariaLabels?.dayButtonBase || mergedResources.dayButtonBase,
+    dayButtonToday: ariaLabels?.dayButtonToday || mergedResources.dayButtonToday,
+    dayButtonSelected: ariaLabels?.dayButtonSelected || mergedResources.dayButtonSelected,
+    nextMonth: ariaLabels?.nextMonth || mergedResources.nextMonth,
+    previousMonth: ariaLabels?.previousMonth || mergedResources.previousMonth,
+    monthDropdown: ariaLabels?.monthDropdown || mergedResources.monthDropdown,
+    yearDropdown: ariaLabels?.yearDropdown || mergedResources.yearDropdown,
+  };
 
   const weekendMatcher: DayOfWeek = {
     dayOfWeek: [0, 6],
@@ -378,7 +401,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
           onMonthChange={setMonth}
           variant={variant}
           zIndex={zIndex}
-          ariaLabels={ariaLabels}
+          ariaLabels={popupAriaLabels}
         />
       )}
     </>

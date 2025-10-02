@@ -72,4 +72,22 @@ export type HNDesignsystemFavoriteButton = {
   ariaLabel: string;
 };
 
+export type HNDesignsystemTabs = {
+  /**
+   * Scroll til høyre
+   */
+  ariaLabelRightButton: string;
+  /**
+   * Scroll til venstre
+   */
+  ariaLabelLeftButton: string;
+};
+
+export type HNDesignsystemDrawer = {
+  /**
+   * Lukk
+   */
+  ariaLabelCloseBtn: string;
+};
+
 /* eslint:enable */

@@ -5,6 +5,7 @@ import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
 import HelpTriggerIcon, { HelpTriggerIconProps } from './HelpTriggerIcon';
+import List from '../List';
 import Title from '../Title';
 
 const meta = {
@@ -107,5 +108,19 @@ export const Weights: Story = {
       <br />
       <HelpTriggerIcon {...args} onClick={action('Trigger clicked!')} weight="strong" />
     </>
+  ),
+};
+
+export const InList: Story = {
+  render: args => (
+    <List>
+      <List.Item>{'Tekst her som ikke endes med et hjelpetrigger '}</List.Item>
+      <List.Item>{'Tekst her som ikke endes med et hjelpetrigger '}</List.Item>
+      <List.Item>
+        {'Tekst her som endes med et hjelpetrigger '}
+        <HelpTriggerIcon {...args} size="inherit" onClick={action('Trigger clicked!')} />
+      </List.Item>
+      <List.Item>{'Tekst her som ikke endes med et hjelpetrigger '}</List.Item>
+    </List>
   ),
 };

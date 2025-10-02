@@ -333,4 +333,5 @@ export default {
   treatmentaids: { alternativeName: 'Behandlingshjelpemidler', categories: 'Tjeneste' },
   drag: { alternativeName: 'Dra', categories: 'System' },
   edit: { alternativeName: 'Rediger', categories: 'System' },
+  feedback: { alternativeName: 'Tilbakemelding', categories: 'Generisk' },
 };
