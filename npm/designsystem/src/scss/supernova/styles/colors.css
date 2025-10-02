@@ -198,4 +198,7 @@
   --color-help-border-dark: #4c1b8c;
   --color-help-graphics-verydark: #3c1471;
   --color-help-border-verydark: #3c1471;
+  --color-action-background-onlight-active: #06596c;
+  --color-action-background-like-transparent-but-opaque-onlight-hover: #e0ecef;
+  --color-action-background-like-transparent-but-opaque-onlight-hoverselected: #d7e7eb;
 }
