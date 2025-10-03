@@ -7,6 +7,7 @@ import { action } from 'storybook/actions';
 import Dropdown, { DropdownBase } from './Dropdown';
 import { LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
+import AnchorLink from '../AnchorLink';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Globe from '../Icons/Globe';
@@ -142,15 +143,29 @@ export const AsChild: Story = {
   },
   render: args => (
     <Dropdown {...args} svgIcon={Globe}>
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 4', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 5', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 6', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 7', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 8', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 9', type: 'subdued' }]} />} name="radiobutton" />
+      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As Button 1', type: 'subdued' }]} />} name="radiobutton">
+        <Button onClick={action('Button click: As Button 1')} />
+      </Dropdown.Radio>
+
+      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As Button 2', type: 'subdued' }]} />} name="radiobutton">
+        <Button onClick={action('Button click: As Button 2')} />
+      </Dropdown.Radio>
+
+      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As Button 3', type: 'subdued' }]} />} name="radiobutton">
+        <Button onClick={action('Button click: As Button 3')} />
+      </Dropdown.Radio>
+
+      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As AnchorLink 4', type: 'subdued' }]} />} name="radiobutton">
+        <AnchorLink href="#" target="_blank" />
+      </Dropdown.Radio>
+
+      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As AnchorLink 5', type: 'subdued' }]} />} name="radiobutton">
+        <AnchorLink href="#" target="_blank" />
+      </Dropdown.Radio>
+
+      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As AnchorLink 6', type: 'subdued' }]} />} name="radiobutton">
+        <AnchorLink href="#" target="_blank" />
+      </Dropdown.Radio>
     </Dropdown>
   ),
 };

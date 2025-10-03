@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { AnalyticsId, FormOnColor } from '../../../constants';
 import { uuid } from '../../../utils/uuid';
+import AsChildSlot, { AsChildSlotHandle } from '../../AsChildSlot';
 import { getLabelText, renderLabelAsParent } from '../../Label';
 
 import styles from './styles.module.scss';
@@ -21,6 +22,10 @@ export interface RadioProps
   inputId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** When true, onclick and keyboard events will be passed to the child Button or AnchorLink. */
+  asChild?: boolean;
+  /** Only use when asChild is set to true and only pass one child */
+  children?: React.ReactNode;
 }
 
 export const Radio = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLInputElement>) => {
@@ -35,9 +40,11 @@ export const Radio = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLInp
     testId,
     required,
     labelClassNames,
+    asChild = false,
+    children,
     ...rest
   } = props;
-
+  const asChildSlotRef = React.useRef<AsChildSlotHandle | null>(null);
   const radioLabelClasses = classNames(
     styles['radio-button-label'],
     {
@@ -62,12 +69,26 @@ export const Radio = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLInp
       defaultChecked={defaultChecked}
       aria-describedby={props['aria-describedby']}
       required={required}
-      onChange={onChange}
+      onChange={e => {
+        onChange?.(e);
+        if (asChild && e.currentTarget.checked) {
+          asChildSlotRef.current?.click();
+        }
+      }}
+      onKeyDown={e => {
+        if (asChild && e.key === 'Enter') {
+          asChildSlotRef.current?.click();
+        }
+      }}
     />
   );
 
   return (
     <div data-testid={testId} data-analyticsid={AnalyticsId.DropdownRadio} className={styles['radio-button-wrapper']}>
+      <AsChildSlot active={asChild && !disabled} ref={asChildSlotRef}>
+        {children}
+      </AsChildSlot>
+
       {renderLabelAsParent(
         label,
         getLabelContent(),
