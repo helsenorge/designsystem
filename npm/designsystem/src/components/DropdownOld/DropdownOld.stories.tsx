@@ -10,7 +10,7 @@ import { LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
-import Label from '../Label';
+import Label, { Sublabel } from '../Label';
 import RadioButton from '../RadioButton';
 import Spacer from '../Spacer';
 
@@ -81,7 +81,15 @@ export const Default: Story = {
   },
   render: args => (
     <DropdownOld {...args}>
-      <RadioButton label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
+      <RadioButton
+        label={
+          <Label
+            labelTexts={[{ text: 'Valg 1', type: 'subdued' }]}
+            sublabel={<Sublabel id="sublabel-testid2" sublabelTexts={[{ text: 'Ekstra info', type: 'subdued' }]} />}
+          />
+        }
+        name="radiobutton"
+      />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
       <RadioButton label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
     </DropdownOld>

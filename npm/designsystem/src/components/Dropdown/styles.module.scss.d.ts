@@ -11,6 +11,7 @@ export type Styles = {
   dropdown__toggle: string;
   dropdown__toggle__label: string;
   'dropdown__toggle--borderless': string;
+  'dropdown__toggle--fill': string;
   'dropdown__toggle--open': string;
   'dropdown__toggle--transparent': string;
   'dropdown__toggle--with-icon': string;

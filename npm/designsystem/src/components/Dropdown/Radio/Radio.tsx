@@ -68,7 +68,15 @@ export const Radio = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLInp
 
   return (
     <div data-testid={testId} data-analyticsid={AnalyticsId.DropdownRadio} className={styles['radio-button-wrapper']}>
-      {renderLabelAsParent(label, getLabelContent(), inputId, FormOnColor.onwhite, radioLabelClasses, undefined)}
+      {renderLabelAsParent(
+        label,
+        getLabelContent(),
+        inputId,
+        FormOnColor.onwhite,
+        radioLabelClasses,
+        undefined,
+        styles['radiobutton-sublabel-wrapper']
+      )}
     </div>
   );
 });

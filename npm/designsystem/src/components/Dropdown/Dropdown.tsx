@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useId, ComponentType } from 'react';
 
 import classNames from 'classnames';
+import { clamp } from 'motion/react';
 
 import {
   AnalyticsId,
@@ -16,6 +17,7 @@ import {
 } from '../..';
 import { Radio, RadioProps } from './Radio';
 import { getResources } from './resourceHelper';
+import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { HNDesignsystemDropdown } from '../../resources/Resources';
 import { isComponent } from '../../utils/component';
 import { useLanguage } from '../../utils/language';
@@ -39,8 +41,10 @@ export interface DropdownProps {
   placeholder: string;
   /** Sets the dropdown content */
   children: React.ReactNode;
-  /** Minimum width for the dropdown in pixels. Does not affect trigger button */
+  /** Minimum width for the dropdown in pixels. Does not affect trigger button. */
   dropdownMinWidth?: number;
+  /** Minimum width for the trigger in pixels. Does not apply for borderless variant */
+  triggerMinWidth?: number;
   /** No close button */
   noCloseButton?: boolean;
   /** Called when dropdown is open/closed */
@@ -68,6 +72,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
     noCloseButton = false,
     onToggle,
     dropdownMinWidth,
+    triggerMinWidth,
     open = false,
     children,
     testId,
@@ -87,6 +92,9 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const { hoverRef: buttonRef, isHovered } = useHover<HTMLButtonElement>();
   const openedByKeyboard = useRef<boolean>(false);
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
+  const isMobile = useIsMobileBreakpoint();
+  const minWidth = isMobile ? 96 : 112;
+  const maxWidth = isMobile ? 384 : 400;
   const labelId = useId();
   const toggleLabelId = useId();
   const optionIdPrefix = useId();
@@ -103,6 +111,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const toggleClasses = classNames(styles.dropdown__toggle, {
     [styles['dropdown__toggle--open']]: isOpen && !disabled,
     [styles['dropdown__toggle--with-icon']]: typeof svgIcon !== 'undefined',
+    [styles['dropdown__toggle--fill']]: variant === 'fill',
     [styles['dropdown__toggle--transparent']]: variant === 'transparent',
     [styles['dropdown__toggle--borderless']]: variant === 'borderless',
   });
@@ -212,6 +221,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         aria-haspopup={true}
         aria-controls={contentId}
         aria-expanded={isOpen}
+        style={{ minWidth: variant === 'borderless' ? 'auto' : triggerMinWidth ? clamp(minWidth, maxWidth, triggerMinWidth) : minWidth }}
       >
         {svgIcon && (
           <>{typeof svgIcon === 'string' ? <LazyIcon {...iconProps} iconName={svgIcon} /> : <Icon {...iconProps} svgIcon={svgIcon} />}</>
@@ -227,7 +237,11 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
           size={IconSize.XSmall}
         />
       </button>
-      <div id={contentId} className={contentClasses} style={{ minWidth: dropdownMinWidth ?? 'auto', zIndex: zIndex }}>
+      <div
+        id={contentId}
+        className={contentClasses}
+        style={{ minWidth: dropdownMinWidth ? clamp(0, maxWidth, dropdownMinWidth) : 'auto', zIndex: zIndex }}
+      >
         <ul className={styles.dropdown__options} role="group" aria-labelledby={labelId} tabIndex={-1} ref={optionsRef}>
           {renderChildren}
         </ul>
