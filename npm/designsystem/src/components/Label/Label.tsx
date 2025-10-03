@@ -170,21 +170,23 @@ const Label: FunctionComponent<LabelProps> = ({
             <span className={styles.label__texts}>{mapLabels()}</span>
           </span>
         </CustomTag>
-        <div className={sublabelWrapperClassName}>
-          {sublabel &&
-            isComponent<SublabelProps>(sublabel, Sublabel) &&
-            React.cloneElement(sublabel, {
-              onColor: onColor as FormOnColor,
-            })}
-          {statusDot && isComponent<StatusDotProps>(statusDot, StatusDot) && (
-            <>
-              <Spacer size={'3xs'} />
-              {React.cloneElement(statusDot, {
-                onColor: onColor === FormOnColor.ondark ? 'ondark' : 'onwhite',
+        {(sublabel || statusDot) && (
+          <div className={sublabelWrapperClassName}>
+            {sublabel &&
+              isComponent<SublabelProps>(sublabel, Sublabel) &&
+              React.cloneElement(sublabel, {
+                onColor: onColor as FormOnColor,
               })}
-            </>
-          )}
-        </div>
+            {statusDot && isComponent<StatusDotProps>(statusDot, StatusDot) && (
+              <>
+                <Spacer size={'3xs'} />
+                {React.cloneElement(statusDot, {
+                  onColor: onColor === FormOnColor.ondark ? 'ondark' : 'onwhite',
+                })}
+              </>
+            )}
+          </div>
+        )}
       </div>
       {afterLabelChildren && <div className={styles['after-label-children']}>{afterLabelChildren}</div>}
     </div>
