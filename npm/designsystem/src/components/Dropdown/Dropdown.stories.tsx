@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+import { MemoryRouter, Link, Routes, Route, useLocation } from 'react-router-dom';
 import { action } from 'storybook/actions';
 
 import Dropdown, { DropdownBase } from './Dropdown';
@@ -137,36 +138,56 @@ export const WithIcon: Story = {
   ),
 };
 
+const CurrentPath: React.FC = () => {
+  const location = useLocation();
+  React.useEffect(() => {
+    action('navigated')(location.pathname);
+  }, [location.pathname]);
+  return (
+    <div style={{ marginTop: '1rem', fontFamily: 'monospace' }}>
+      {'Current path:'}
+      <strong>{location.pathname}</strong>
+    </div>
+  );
+};
+
 export const AsChild: Story = {
   args: {
     onToggle: action('onToggle'),
   },
   render: args => (
-    <Dropdown {...args} svgIcon={Globe}>
-      <Dropdown.Radio asChild label={'As Button 1'} name="radiobutton">
-        <Button onClick={action('Button click: As Button 1')} />
-      </Dropdown.Radio>
+    <MemoryRouter initialEntries={['/']}>
+      <Routes>
+        <Route path="/" element={<CurrentPath />} />
+        <Route path="/sprak/:lang" element={<CurrentPath />} />
+      </Routes>
+      <br />
+      <Dropdown {...args} svgIcon={Globe}>
+        <Dropdown.Radio asChild label={'As Button 1'} name="radiobutton">
+          <button onClick={action('Button click: As Button 1')} />
+        </Dropdown.Radio>
 
-      <Dropdown.Radio asChild label={'As Button 2'} name="radiobutton">
-        <Button onClick={action('Button click: As Button 2')} />
-      </Dropdown.Radio>
+        <Dropdown.Radio asChild label={'As Button 2'} name="radiobutton">
+          <button onClick={action('Button click: As Button 2')} />
+        </Dropdown.Radio>
 
-      <Dropdown.Radio asChild label={'As Button 3'} name="radiobutton">
-        <Button onClick={action('Button click: As Button 3')} />
-      </Dropdown.Radio>
+        <Dropdown.Radio asChild label={'As AnchorLink 1'} name="radiobutton">
+          <a href="#" target="_blank"></a>
+        </Dropdown.Radio>
 
-      <Dropdown.Radio asChild label={'As AnchorLink 4'} name="radiobutton">
-        <AnchorLink href="#" target="_blank" />
-      </Dropdown.Radio>
+        <Dropdown.Radio asChild label={'As AnchorLink 2'} name="radiobutton">
+          <a href="#" target="_blank"></a>
+        </Dropdown.Radio>
 
-      <Dropdown.Radio asChild label={'As AnchorLink 5'} name="radiobutton">
-        <AnchorLink href="#" target="_blank" />
-      </Dropdown.Radio>
+        <Dropdown.Radio asChild label={'As React Router Link (en)'} name="radiobutton" value="en">
+          <Link to="/sprak/en" />
+        </Dropdown.Radio>
 
-      <Dropdown.Radio asChild label={'As AnchorLink 6'} name="radiobutton">
-        <AnchorLink href="#" target="_blank" />
-      </Dropdown.Radio>
-    </Dropdown>
+        <Dropdown.Radio asChild label={'As React Router Link (nb)'} name="radiobutton" value="nb">
+          <Link to="/sprak/nb" />
+        </Dropdown.Radio>
+      </Dropdown>
+    </MemoryRouter>
   ),
 };
 
