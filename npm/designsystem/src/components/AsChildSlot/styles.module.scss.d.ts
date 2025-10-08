@@ -1,5 +1,5 @@
 export type Styles = {
-  'as-child-slot': string;
+  'as-child-reset': string;
 };
 
 export type ClassNames = keyof Styles;

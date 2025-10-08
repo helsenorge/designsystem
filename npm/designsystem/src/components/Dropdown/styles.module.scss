@@ -164,7 +164,8 @@
       outline-offset: -4px;
     }
 
-    &:has(:checked) {
+    &:has(:checked),
+    &:has([aria-current='true']) {
       background-color: var(--core-color-blueberry-50);
 
       &:hover {

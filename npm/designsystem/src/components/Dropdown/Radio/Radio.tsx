@@ -2,18 +2,14 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormOnColor } from '../../../constants';
+import { useRadioGroup } from './RadioGroup';
+import { AnalyticsId } from '../../../constants';
 import { uuid } from '../../../utils/uuid';
 import AsChildSlot, { AsChildSlotHandle } from '../../AsChildSlot';
-import { getLabelText, renderLabelAsParent } from '../../Label';
 
 import styles from './styles.module.scss';
 
-export interface RadioProps
-  extends Pick<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'defaultChecked' | 'required' | 'onChange'
-  > {
+export interface RadioProps extends Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
   /** The <Label/> next to the radio */
   label: React.ReactNode;
   /** Adds custom classes to the label element. */
@@ -26,78 +22,96 @@ export interface RadioProps
   asChild?: boolean;
   /** Only use when asChild is set to true and only pass one child */
   children?: React.ReactNode;
+  /** Value for this radio option */
+  value?: string;
+  /** Name (only semantic) */
+  name?: string;
+  /** aria-describedby passthrough if needed */
+  ['aria-describedby']?: string;
 }
 
-export const Radio = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLInputElement>) => {
-  const {
-    defaultChecked,
-    onChange,
-    disabled,
-    label,
-    inputId = uuid(),
-    name = inputId,
-    value = getLabelText(label),
-    testId,
-    required,
-    labelClassNames,
-    asChild = false,
-    children,
-    ...rest
-  } = props;
+export const Radio = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLElement>) => {
+  const { label, inputId = uuid(), name, value: valueProp, testId, labelClassNames, asChild = false, children, disabled, ...rest } = props;
+
+  const group = useRadioGroup();
+  const radioValue = (typeof valueProp === 'string' && valueProp.length > 0 ? valueProp : undefined) ?? String(inputId);
+  const isSelected = group ? group.value === radioValue : false;
+  const isDisabled = !!disabled || !!group?.disabled;
   const asChildSlotRef = React.useRef<AsChildSlotHandle | null>(null);
+
   const radioLabelClasses = classNames(
-    styles['radio-button-label'],
+    styles['radio-label'],
     {
-      [styles['radio-button-label--disabled']]: disabled,
+      [styles['radio-label--disabled']]: isDisabled,
     },
     labelClassNames
   );
-  const radioClasses = classNames(styles['radio-button'], {
-    [styles['radio-button--disabled']]: disabled,
+  const radioDotClasses = classNames(styles.radio, {
+    [styles['radio--disabled']]: isDisabled,
+    [styles['radio--checked']]: isSelected,
   });
 
-  const getLabelContent = (): React.ReactNode => (
-    <input
+  const childArray = React.Children.toArray(children).filter(React.isValidElement) as React.ReactElement[];
+  const childElement = childArray[0] ?? null;
+
+  const selectThis = (e?: React.SyntheticEvent): void => {
+    if (isDisabled) return;
+    if (group && group.value !== radioValue) {
+      group.onValueChange?.(radioValue, e);
+    }
+  };
+
+  const getButton = (): React.ReactNode => (
+    <button
       {...rest}
-      id={inputId}
-      name={name}
-      className={radioClasses}
-      type="radio"
-      disabled={disabled}
-      value={value}
-      ref={ref}
-      defaultChecked={defaultChecked}
-      aria-describedby={props['aria-describedby']}
-      required={required}
-      onChange={e => {
-        onChange?.(e);
-        if (asChild && e.currentTarget.checked) {
-          asChildSlotRef.current?.click();
-        }
+      type="button"
+      className={radioLabelClasses}
+      disabled={isDisabled}
+      onClick={e => {
+        e.preventDefault();
+        selectThis(e);
       }}
       onKeyDown={e => {
-        if (asChild && e.key === 'Enter') {
-          asChildSlotRef.current?.click();
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          selectThis(e);
         }
       }}
-    />
+      ref={ref as React.Ref<HTMLButtonElement>}
+      aria-disabled={isDisabled || undefined}
+      aria-current={isSelected ? 'true' : undefined}
+      data-radio-name={group?.name ?? name}
+      data-radio-value={radioValue}
+      data-testid={testId}
+      data-analyticsid={AnalyticsId.DropdownRadio}
+    >
+      <span className={radioDotClasses} aria-hidden />
+      <span>{label}</span>
+    </button>
+  );
+
+  const getAsChild = (): React.ReactNode => (
+    <AsChildSlot
+      ref={asChildSlotRef}
+      elementRef={ref as React.Ref<HTMLElement>}
+      className={radioLabelClasses}
+      disabled={isDisabled}
+      onSelect={e => selectThis(e)}
+      ariaCurrent={isSelected ? 'true' : undefined}
+      content={
+        <>
+          <span className={radioDotClasses} aria-hidden />
+          <span>{label}</span>
+        </>
+      }
+    >
+      {childElement}
+    </AsChildSlot>
   );
 
   return (
-    <div data-testid={testId} data-analyticsid={AnalyticsId.DropdownRadio} className={styles['radio-button-wrapper']}>
-      <AsChildSlot active={asChild && !disabled} ref={asChildSlotRef}>
-        {children}
-      </AsChildSlot>
-
-      {renderLabelAsParent(
-        label,
-        getLabelContent(),
-        inputId,
-        FormOnColor.onwhite,
-        radioLabelClasses,
-        undefined,
-        styles['radiobutton-sublabel-wrapper']
-      )}
+    <div data-testid={testId} data-analyticsid={AnalyticsId.DropdownRadio} className={styles['radio-wrapper']}>
+      {asChild ? getAsChild() : getButton()}
     </div>
   );
 });

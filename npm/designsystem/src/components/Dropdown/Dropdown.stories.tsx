@@ -49,9 +49,9 @@ export const Default: Story = {
   },
   render: args => (
     <Dropdown {...args}>
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
     </Dropdown>
   ),
 };
@@ -62,15 +62,15 @@ export const SingleSelect: Story = {
   },
   render: args => (
     <Dropdown {...args}>
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 4', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 5', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 6', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 7', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 8', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 9', type: 'subdued' }]} />} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 4'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 5'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 6'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 7'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 8'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 9'} name="radiobutton" />
     </Dropdown>
   ),
 };
@@ -98,21 +98,21 @@ export const Variants: Story = {
   render: args => (
     <>
       <Dropdown {...args} variant={'fill'}>
-        <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-        <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-        <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+        <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
+        <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
+        <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
       </Dropdown>
       <br />
       <Dropdown {...args} variant="transparent">
-        <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-        <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-        <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+        <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
+        <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
+        <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
       </Dropdown>
       <br />
       <Dropdown {...args} variant="borderless">
-        <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-        <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-        <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+        <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
+        <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
+        <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
       </Dropdown>
     </>
   ),
@@ -124,15 +124,15 @@ export const WithIcon: Story = {
   },
   render: args => (
     <Dropdown {...args} svgIcon={Globe}>
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 4', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 5', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 6', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 7', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 8', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 9', type: 'subdued' }]} />} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 4'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 5'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 6'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 7'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 8'} name="radiobutton" />
+      <Dropdown.Radio label={'Valg 9'} name="radiobutton" />
     </Dropdown>
   ),
 };
@@ -143,72 +143,29 @@ export const AsChild: Story = {
   },
   render: args => (
     <Dropdown {...args} svgIcon={Globe}>
-      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As Button 1', type: 'subdued' }]} />} name="radiobutton">
+      <Dropdown.Radio asChild label={'As Button 1'} name="radiobutton">
         <Button onClick={action('Button click: As Button 1')} />
       </Dropdown.Radio>
 
-      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As Button 2', type: 'subdued' }]} />} name="radiobutton">
+      <Dropdown.Radio asChild label={'As Button 2'} name="radiobutton">
         <Button onClick={action('Button click: As Button 2')} />
       </Dropdown.Radio>
 
-      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As Button 3', type: 'subdued' }]} />} name="radiobutton">
+      <Dropdown.Radio asChild label={'As Button 3'} name="radiobutton">
         <Button onClick={action('Button click: As Button 3')} />
       </Dropdown.Radio>
 
-      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As AnchorLink 4', type: 'subdued' }]} />} name="radiobutton">
+      <Dropdown.Radio asChild label={'As AnchorLink 4'} name="radiobutton">
         <AnchorLink href="#" target="_blank" />
       </Dropdown.Radio>
 
-      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As AnchorLink 5', type: 'subdued' }]} />} name="radiobutton">
+      <Dropdown.Radio asChild label={'As AnchorLink 5'} name="radiobutton">
         <AnchorLink href="#" target="_blank" />
       </Dropdown.Radio>
 
-      <Dropdown.Radio asChild label={<Label labelTexts={[{ text: 'As AnchorLink 6', type: 'subdued' }]} />} name="radiobutton">
+      <Dropdown.Radio asChild label={'As AnchorLink 6'} name="radiobutton">
         <AnchorLink href="#" target="_blank" />
       </Dropdown.Radio>
-    </Dropdown>
-  ),
-};
-
-export const WithSublabels: Story = {
-  args: {
-    onToggle: action('onToggle'),
-  },
-  render: args => (
-    <Dropdown {...args}>
-      <Dropdown.Radio
-        label={
-          <Label
-            labelTexts={[{ text: 'Valg 1', type: 'subdued' }]}
-            sublabel={<Sublabel id="sublabel-testid2" sublabelTexts={[{ text: 'Ekstra info', type: 'subdued' }]} />}
-          />
-        }
-        name="radiobutton"
-      />
-      <Dropdown.Radio
-        label={
-          <Label
-            labelTexts={[{ text: 'Valg 2', type: 'subdued' }]}
-            sublabel={<Sublabel id="sublabel-testid2" sublabelTexts={[{ text: 'Ekstra info', type: 'subdued' }]} />}
-          />
-        }
-        name="radiobutton"
-      />
-      <Dropdown.Radio
-        label={
-          <Label
-            labelTexts={[{ text: 'Valg 3', type: 'subdued' }]}
-            sublabel={<Sublabel id="sublabel-testid2" sublabelTexts={[{ text: 'Ekstra info', type: 'subdued' }]} />}
-          />
-        }
-        name="radiobutton"
-      />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 4', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 5', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 6', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 7', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 8', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 9', type: 'subdued' }]} />} name="radiobutton" />
     </Dropdown>
   ),
 };
@@ -240,9 +197,9 @@ return (
     <span>{\`Valgt språk: \${language}\`}</span>
     <Spacer />
     <Dropdown {...args}>
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="checkbox" />
+      <Checkbox label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="checkbox" />
     </Dropdown>
   </LanguageProvider>
 );`,
@@ -264,9 +221,9 @@ return (
         <span>{`Valgt språk: ${language}`}</span>
         <Spacer />
         <Dropdown {...args}>
-          <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-          <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-          <Dropdown.Radio label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+          <Checkbox label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="checkbox" />
+          <Checkbox label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="checkbox" />
+          <Checkbox label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="checkbox" />
         </Dropdown>
       </LanguageProvider>
     );
