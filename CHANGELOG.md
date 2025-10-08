@@ -1,3 +1,55 @@
+## [12.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.4.0&targetVersion=GTv12.5.0) (2025-10-08)
+
+### Features
+
+- **datepicker:** default språkstøtte fra sot
+  ([1f2b2ae](https://github.com/helsenorge/designsystem/commit/1f2b2ae2ddd0ab527d976ec2d3dc6ec9293f58a0))
+- **drawer:** default språkstøtte fra sot
+  ([56517c5](https://github.com/helsenorge/designsystem/commit/56517c50ec9f4d61ecbbd3ce2ebbe509d9af898b))
+- **formgroup:** lagt til legendclassname prop
+  ([9dbd90c](https://github.com/helsenorge/designsystem/commit/9dbd90c7efbb838fb5204870bcfd90a089d03f4c)), closes
+  [#360836](https://github.com/helsenorge/designsystem/issues/360836)
+- **helptriggericon:** lagt til classname prop
+  ([b9d207e](https://github.com/helsenorge/designsystem/commit/b9d207ec0871ce79259562042f4b321b21b94fd8)), closes
+  [#360496](https://github.com/helsenorge/designsystem/issues/360496)
+- **icon:** nytt ikon feedback ([0e3f89c](https://github.com/helsenorge/designsystem/commit/0e3f89c04c897c8667593396cecaceb8d50fd879)),
+  closes [#360055](https://github.com/helsenorge/designsystem/issues/360055)
+- **listeditmode:** funksjonalitet for å redigere liste
+  ([d87e8c5](https://github.com/helsenorge/designsystem/commit/d87e8c59d44ce2278b403df3c3858029db280ad0)), closes
+  [#359697](https://github.com/helsenorge/designsystem/issues/359697)
+- **tabs:** default språkstøtte fra sot
+  ([733fd7e](https://github.com/helsenorge/designsystem/commit/733fd7e559e57cb3dfaf5e2efd52ac8754db8f6d))
+
+### Bug Fixes
+
+- **drawer:** legg breakpoint check på outer level for å vise animasjon riktig igjen
+  ([04f604a](https://github.com/helsenorge/designsystem/commit/04f604aaba66738ac710c28cb5514ec7b0d2967a)), closes
+  [#360641](https://github.com/helsenorge/designsystem/issues/360641)
+- **favoritebutton:** kun vis fokusstrek på focus-visible"
+  ([2dc6b2f](https://github.com/helsenorge/designsystem/commit/2dc6b2f954cdb7a5b5b3e7326a8c0d42723ef972)), closes
+  [#357829](https://github.com/helsenorge/designsystem/issues/357829)
+- **helptriggericon:** fiks så komponenten fungerer i liste igjen
+  ([45f801e](https://github.com/helsenorge/designsystem/commit/45f801edb77306cd7cba614396a7abc1089a610b)), closes
+  [#353532](https://github.com/helsenorge/designsystem/issues/353532) [#360885](https://github.com/helsenorge/designsystem/issues/360885)
+- **helptriggericon:** juster ikon ift tekst uten å endre linjehøyde
+  ([687a0fa](https://github.com/helsenorge/designsystem/commit/687a0fa13798a757408d417bde0d9bdb57cb59e1)), closes
+  [#360885](https://github.com/helsenorge/designsystem/issues/360885)
+- **list:** vertikalt align knapper riktig i liste
+  ([2926423](https://github.com/helsenorge/designsystem/commit/2926423198f6459228ea28b5c68945407756c6e3)), closes
+  [#353532](https://github.com/helsenorge/designsystem/issues/353532)
+- **panel:** juster paddings for å ta hensyn til statuslinje
+  ([1e8f5ff](https://github.com/helsenorge/designsystem/commit/1e8f5ff07c8e796af7269b3f4b92269a50d4fdcb)), closes
+  [#360101](https://github.com/helsenorge/designsystem/issues/360101)
+- **popmenu:** ikon sentreres riktig
+  ([3a8f5ac](https://github.com/helsenorge/designsystem/commit/3a8f5ac3dd9dfcff4fc75f101a4f4a6dbfbd1c88)), closes
+  [#361064](https://github.com/helsenorge/designsystem/issues/361064)
+- **radiobutton:** disabled har samme radius som andre states
+  ([27548a7](https://github.com/helsenorge/designsystem/commit/27548a74a68ac6c2d4c5783b84da056971995a4d)), closes
+  [#350142](https://github.com/helsenorge/designsystem/issues/350142)
+- **radiobutton:** hele wrapperen skal ikke se klikkbar ut
+  ([2c396cd](https://github.com/helsenorge/designsystem/commit/2c396cd1a5c79869ef9d72941c9c93efba47dc47)), closes
+  [#350142](https://github.com/helsenorge/designsystem/issues/350142)
+
 ## [12.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.3.0&targetVersion=GTv12.4.0) (2025-09-23)
 
 ### Features
