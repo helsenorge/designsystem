@@ -81,11 +81,10 @@ stages:
             displayName: 'Use npm $(npm_version)'
 
           # ci / install
-          - task: Npm@1
-            displayName: npm ci
-            inputs:
-              command: ci
-              workingDir: $(working_directory)
+          - script: |
+              npm ci --include=optional
+          workingDirectory: $(working_directory)
+          displayName: 'npm ci (pinned npm 11)'
 
           # Lint commit message
           - bash: |
@@ -104,15 +103,6 @@ stages:
               PR_TITLE: $(Pr.Title)
             displayName: Lint pull request title
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
-
-          - task: Npm@1
-            displayName: npm ci
-            inputs:
-              command: ci
-              workingDir: $(working_directory)
-            env:
-              NPM_CONFIG_INCLUDE: optional
-              NPM_CONFIG_OPTIONAL: 'true'
 
           # audit
           - task: Npm@1
