@@ -83,8 +83,8 @@ stages:
           # ci / install
           - script: |
               npm ci --include=optional
-          workingDirectory: $(working_directory)
-          displayName: 'npm ci (pinned npm 11)'
+            workingDirectory: $(working_directory)
+            displayName: 'npm ci'
 
           # Lint commit message
           - bash: |
