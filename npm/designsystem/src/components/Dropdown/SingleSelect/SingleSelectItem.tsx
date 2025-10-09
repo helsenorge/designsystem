@@ -107,7 +107,7 @@ export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, 
       };
 
   return (
-    <div data-testid={testId} data-analyticsid={AnalyticsId.DropdownRadio} className={styles['single-select-item']}>
+    <div data-testid={testId} className={styles['single-select-item']}>
       <Component {...componentProps} />
     </div>
   );

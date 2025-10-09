@@ -1,5 +1,13 @@
 import React, { useEffect, useRef, useId, ComponentType } from 'react';
 
+import {
+  autoUpdate,
+  flip,
+  offset,
+  shift,
+  size,
+  useFloating,
+} from '@floating-ui/react';
 import classNames from 'classnames';
 import { clamp } from 'motion/react';
 
@@ -36,8 +44,6 @@ import styles from './styles.module.scss';
 
 type DropdownVariants = 'fill' | 'transparent' | 'borderless';
 
-// TODO: Sjekk hva som skjer hvis vertikalen sender inn noe annet enn Radio/checkboxes
-// TODO: Radio blir kanskje ikke et godt navn lenger
 export interface DropdownProps {
   // TODO: et annet navn enn label? Er teknisk sett bare en span
   /** Label for dropdown. Visible for screen readers  */
@@ -131,6 +137,36 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
     [styles['dropdown__toggle--borderless']]: variant === 'borderless',
   });
   const contentClasses = classNames(styles.dropdown__content, isOpen && styles['dropdown__content--open']);
+  const listItemClasses = classNames(styles['dropdown__list-item'], { [styles['dropdown__list-item--single-select']]: isSingleSelect });
+
+  const { refs, floatingStyles } = useFloating({
+    strategy: 'fixed',
+    placement: 'bottom-start',
+    middleware: [
+      offset(8),
+      flip(),
+      shift({ padding: 8, crossAxis: true }),
+      size({
+        padding: 16,
+        apply({ availableWidth, availableHeight, elements, rects }) {
+          const triggerW = rects.reference.width;
+          const minProp = typeof dropdownMinWidth !== 'undefined'
+            ? clamp(0, maxWidth, dropdownMinWidth)
+            : 0;
+          const targetW = Math.max(triggerW, minProp);
+          const finalW = Math.min(availableWidth, targetW);
+  
+          Object.assign(elements.floating.style, {
+            width: `${finalW}px`,
+            maxHeight: `${availableHeight}px`,
+            overflowY: 'auto',
+            overflowX: 'hidden',
+          });
+        },
+      }),
+    ],
+    whileElementsMounted: autoUpdate,
+  });
 
   const handleOpen = (isKeyboard: boolean): void => {
     openedByKeyboard.current = isKeyboard;
@@ -224,7 +260,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
 
     // TODO: : child skal vi vel ikke gjøre lenger? Tillate alle children
     return (
-      <li className={styles['dropdown__list-item']} id={`${optionIdPrefix}-${index}`}>
+      <li className={listItemClasses} id={`${optionIdPrefix}-${index}`}>
         {React.isValidElement(child) && childrenRefList.current && childrenRefList.current[index]
           ? React.cloneElement(child as React.ReactElement<any>, {
               ref: mergeRefs([child.props.ref, childrenRefList.current[index]]),
@@ -248,7 +284,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         type="button"
         onClick={(): false | void => handleOpen(false)}
         className={toggleClasses}
-        ref={buttonRef}
+        ref={mergeRefs([buttonRef, refs.setReference])}
         data-testid={testId}
         data-analyticsid={AnalyticsId.Dropdown}
         disabled={disabled}
@@ -257,10 +293,13 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         aria-controls={contentId}
         aria-expanded={isOpen}
         style={{
-          // TODO: triggerMinWidthLimit skal kanskje gjelde for listen og?
-          minWidth: variant !== 'borderless' ? clamp(triggerMinWidthLimit, maxWidth, triggerActualMinWidth) : triggerMinWidthLimit,
-        }}
-      >
+          width: variant !== 'borderless'
+          ? `${triggerActualMinWidth}px`
+          : 'auto',
+          maxWidth: '100%',
+          minWidth: `${triggerMinWidthLimit}px`,
+          }}
+        >
         {svgIcon && (
           <>{typeof svgIcon === 'string' ? <LazyIcon {...iconProps} iconName={svgIcon} /> : <Icon {...iconProps} svgIcon={svgIcon} />}</>
         )}
@@ -277,11 +316,15 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         />
       </button>
       <div
+      key={dropdownMinWidth ?? 'auto'}
         id={contentId}
         className={contentClasses}
-        style={{ minWidth: dropdownMinWidth ? clamp(0, maxWidth, dropdownMinWidth) : 'auto', zIndex: zIndex }}
+        ref={refs.setFloating}
+        style={{
+          ...floatingStyles,
+          zIndex: zIndex,
+        }}
       >
-        {/* TODO: Sjekk role for checkbox/falske radio/navigation scenarioene */}
         <ul className={styles.dropdown__options} role="group" aria-labelledby={labelId} tabIndex={-1} ref={optionsRef}>
           {isSingleSelect && (
             <SingleSelect name={label} value={selectedValue} onValueChange={v => setSelectedValue(v)}>

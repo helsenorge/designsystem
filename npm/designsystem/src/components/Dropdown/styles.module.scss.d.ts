@@ -6,6 +6,8 @@ export type Styles = {
   dropdown__label: string;
   'dropdown__left-icon': string;
   'dropdown__list-item': string;
+  'dropdown__list-item--single-select': string;
+  'dropdown__multiselect-item': string;
   dropdown__options: string;
   'dropdown__right-icon': string;
   dropdown__toggle: string;
