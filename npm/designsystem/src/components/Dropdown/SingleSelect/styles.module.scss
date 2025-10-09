@@ -1,0 +1,54 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@import '../../../scss/supernova/styles/colors.css';
+@import '../../../scss/supernova/styles/spacers.css';
+
+.single-select-item {
+  cursor: pointer;
+
+  :focus-visible {
+    outline: none;
+  }
+
+  &__content {
+    all: unset;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: baseline;
+    cursor: pointer;
+    padding: var(--core-space-2xs) 0 var(--core-space-2xs) var(--core-space-s);
+    line-height: 1.75rem;
+
+    &--disabled {
+      cursor: default;
+    }
+  }
+
+  &__dot {
+    appearance: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.667rem 0 0;
+    background-color: transparent;
+    min-width: 0.67rem;
+    min-height: 0.67rem;
+    border-radius: 10rem;
+    outline: none;
+
+    &:checked {
+      background-color: var(--core-color-black);
+    }
+
+    &--checked {
+      background-color: var(--core-color-black);
+    }
+
+    &--disabled {
+      cursor: default;
+    }
+  }
+}

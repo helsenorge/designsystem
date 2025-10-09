@@ -2,19 +2,19 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { useRadioGroup } from './RadioGroup';
+import { useSingleSelect } from './SingleSelect';
 import { AnalyticsId } from '../../../constants';
 import { uuid } from '../../../utils/uuid';
 import AsChildSlot, { AsChildSlotHandle } from '../../AsChildSlot';
 
 import styles from './styles.module.scss';
 
-export interface RadioProps extends Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
-  /** The <Label/> next to the radio */
-  label: React.ReactNode;
+export interface SingleSelectItemProps extends Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
+  /** The <Label/> next to the singleSelectItem */
+  label?: React.ReactNode;
   /** Adds custom classes to the label element. */
   labelClassNames?: string;
-  /** input id of the radio */
+  /** input id of the singleSelectItem */
   inputId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
@@ -22,7 +22,8 @@ export interface RadioProps extends Pick<React.ButtonHTMLAttributes<HTMLButtonEl
   asChild?: boolean;
   /** Only use when asChild is set to true and only pass one child */
   children?: React.ReactNode;
-  /** Value for this radio option */
+  // TODO: Skal vi fortsatt ha denne?
+  /** Value for this singleSelectItem option */
   value?: string;
   /** Name (only semantic) */
   name?: string;
@@ -30,25 +31,25 @@ export interface RadioProps extends Pick<React.ButtonHTMLAttributes<HTMLButtonEl
   ['aria-describedby']?: string;
 }
 
-export const Radio = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLElement>) => {
+export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, ref: React.Ref<HTMLElement>) => {
   const { label, inputId = uuid(), name, value: valueProp, testId, labelClassNames, asChild = false, children, disabled, ...rest } = props;
 
-  const group = useRadioGroup();
+  const group = useSingleSelect();
   const optionValue = (typeof valueProp === 'string' && valueProp.length > 0 ? valueProp : undefined) ?? String(inputId);
   const isSelected = group ? group.value === optionValue : false;
   const isDisabled = !!disabled || !!group?.disabled;
   const asChildSlotRef = React.useRef<AsChildSlotHandle | null>(null);
 
-  const radioLabelClasses = classNames(
-    styles['radio-label'],
+  const contentClasses = classNames(
+    styles['single-select-item__content'],
     {
-      [styles['radio-label--disabled']]: isDisabled,
+      [styles['single-select-item__content--disabled']]: isDisabled,
     },
     labelClassNames
   );
-  const radioDotClasses = classNames(styles.radio, {
-    [styles['radio--disabled']]: isDisabled,
-    [styles['radio--checked']]: isSelected,
+  const dotClasses = classNames(styles['single-select-item__dot'], {
+    [styles['single-select-item__dot--disabled']]: isDisabled,
+    [styles['single-select-item__dot--checked']]: isSelected,
   });
 
   const childArray = React.Children.toArray(children).filter(React.isValidElement) as React.ReactElement[];
@@ -63,18 +64,18 @@ export const Radio = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLEle
 
   const content = (
     <>
-      <span className={radioDotClasses} aria-hidden />
+      <span className={dotClasses} aria-hidden />
       <span>{label}</span>
     </>
   );
 
-  const Component = (asChild ? AsChildSlot : 'button') as any;
+  const Component = (asChild ? AsChildSlot : 'button') as React.ElementType;
 
   const componentProps = asChild
     ? {
         ref: asChildSlotRef,
         elementRef: ref as React.Ref<HTMLElement>,
-        className: radioLabelClasses,
+        className: contentClasses,
         disabled: isDisabled,
         onSelect: (e: React.SyntheticEvent): void => selectThis(e),
         ariaCurrent: isSelected ? 'true' : undefined,
@@ -84,7 +85,7 @@ export const Radio = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLEle
     : {
         ...rest,
         type: 'button' as const,
-        className: radioLabelClasses,
+        className: contentClasses,
         disabled: isDisabled,
         onClick: (e: React.MouseEvent<HTMLButtonElement>): void => {
           e.preventDefault();
@@ -99,18 +100,19 @@ export const Radio = React.forwardRef((props: RadioProps, ref: React.Ref<HTMLEle
         ref: ref as React.Ref<HTMLButtonElement>,
         'aria-disabled': isDisabled || undefined,
         'aria-current': isSelected ? 'true' : undefined,
+        //TODO: Trengs disse?
         'data-radio-name': group?.name ?? name,
         'data-radio-value': optionValue,
         children: content,
       };
 
   return (
-    <div data-testid={testId} data-analyticsid={AnalyticsId.DropdownRadio} className={styles['radio-wrapper']}>
+    <div data-testid={testId} data-analyticsid={AnalyticsId.DropdownRadio} className={styles['single-select-item']}>
       <Component {...componentProps} />
     </div>
   );
 });
 
-Radio.displayName = 'Dropdown.Radio';
+SingleSelectItem.displayName = 'Dropdown.SingleSelectItem';
 
-export default Radio;
+export default SingleSelectItem;

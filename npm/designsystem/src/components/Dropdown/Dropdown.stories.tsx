@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
@@ -8,17 +9,16 @@ import { action } from 'storybook/actions';
 import Dropdown, { DropdownBase } from './Dropdown';
 import { LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
-import AnchorLink from '../AnchorLink';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Globe from '../Icons/Globe';
-import Label, { Sublabel } from '../Label';
+import Label from '../Label';
 import Spacer from '../Spacer';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Dropdown',
   component: Dropdown,
-  subcomponents: { Radio: Dropdown.Radio },
+  subcomponents: { SingleSelectItem: Dropdown.SingleSelectItem },
   parameters: {
     docs: {
       page: (): React.JSX.Element => <Docs component={DropdownBase} />,
@@ -50,9 +50,9 @@ export const Default: Story = {
   },
   render: args => (
     <Dropdown {...args}>
-      <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
+      <Dropdown.SingleSelectItem label={'Valg 1'} />
+      <Dropdown.SingleSelectItem label={'Valg 2'} />
+      <Dropdown.SingleSelectItem label={'Valg 3'} />
     </Dropdown>
   ),
 };
@@ -63,15 +63,15 @@ export const SingleSelect: Story = {
   },
   render: args => (
     <Dropdown {...args}>
-      <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 4'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 5'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 6'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 7'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 8'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 9'} name="radiobutton" />
+      <Dropdown.SingleSelectItem label={'Valg 1'} />
+      <Dropdown.SingleSelectItem label={'Valg 2'} />
+      <Dropdown.SingleSelectItem label={'Valg 3'} />
+      <Dropdown.SingleSelectItem label={'Valg 4'} />
+      <Dropdown.SingleSelectItem label={'Valg 5'} />
+      <Dropdown.SingleSelectItem label={'Valg 6'} />
+      <Dropdown.SingleSelectItem label={'Valg 7'} />
+      <Dropdown.SingleSelectItem label={'Valg 8'} />
+      <Dropdown.SingleSelectItem label={'Valg 9'} />
     </Dropdown>
   ),
 };
@@ -99,21 +99,21 @@ export const Variants: Story = {
   render: args => (
     <>
       <Dropdown {...args} variant={'fill'}>
-        <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
-        <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
-        <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
+        <Dropdown.SingleSelectItem label={'Valg 1'} />
+        <Dropdown.SingleSelectItem label={'Valg 2'} />
+        <Dropdown.SingleSelectItem label={'Valg 3'} />
       </Dropdown>
       <br />
       <Dropdown {...args} variant="transparent">
-        <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
-        <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
-        <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
+        <Dropdown.SingleSelectItem label={'Valg 1'} />
+        <Dropdown.SingleSelectItem label={'Valg 2'} />
+        <Dropdown.SingleSelectItem label={'Valg 3'} />
       </Dropdown>
       <br />
       <Dropdown {...args} variant="borderless">
-        <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
-        <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
-        <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
+        <Dropdown.SingleSelectItem label={'Valg 1'} />
+        <Dropdown.SingleSelectItem label={'Valg 2'} />
+        <Dropdown.SingleSelectItem label={'Valg 3'} />
       </Dropdown>
     </>
   ),
@@ -125,15 +125,15 @@ export const WithIcon: Story = {
   },
   render: args => (
     <Dropdown {...args} svgIcon={Globe}>
-      <Dropdown.Radio label={'Valg 1'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 2'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 3'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 4'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 5'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 6'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 7'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 8'} name="radiobutton" />
-      <Dropdown.Radio label={'Valg 9'} name="radiobutton" />
+      <Dropdown.SingleSelectItem label={'Valg 1'} />
+      <Dropdown.SingleSelectItem label={'Valg 2'} />
+      <Dropdown.SingleSelectItem label={'Valg 3'} />
+      <Dropdown.SingleSelectItem label={'Valg 4'} />
+      <Dropdown.SingleSelectItem label={'Valg 5'} />
+      <Dropdown.SingleSelectItem label={'Valg 6'} />
+      <Dropdown.SingleSelectItem label={'Valg 7'} />
+      <Dropdown.SingleSelectItem label={'Valg 8'} />
+      <Dropdown.SingleSelectItem label={'Valg 9'} />
     </Dropdown>
   ),
 };
@@ -163,29 +163,33 @@ export const AsChild: Story = {
       </Routes>
       <br />
       <Dropdown {...args} svgIcon={Globe}>
-        <Dropdown.Radio asChild label={'As Button 1'} name="radiobutton">
+        <Dropdown.SingleSelectItem asChild label={'As Button 1'}>
           <button onClick={action('Button click: As Button 1')} />
-        </Dropdown.Radio>
+        </Dropdown.SingleSelectItem>
 
-        <Dropdown.Radio asChild label={'As Button 2'} name="radiobutton">
+        <Dropdown.SingleSelectItem asChild label={'As Button 2'}>
           <button onClick={action('Button click: As Button 2')} />
-        </Dropdown.Radio>
+        </Dropdown.SingleSelectItem>
 
-        <Dropdown.Radio asChild label={'As AnchorLink 1'} name="radiobutton">
-          <a href="#" target="_blank"></a>
-        </Dropdown.Radio>
+        <Dropdown.SingleSelectItem asChild label={'As AnchorLink 1'}>
+          <a href="#" target="_blank">
+            {'As AnchorLink 1'}
+          </a>
+        </Dropdown.SingleSelectItem>
 
-        <Dropdown.Radio asChild label={'As AnchorLink 2'} name="radiobutton">
-          <a href="#" target="_blank"></a>
-        </Dropdown.Radio>
+        <Dropdown.SingleSelectItem asChild label={'As AnchorLink 2'}>
+          <a href="#" target="_blank">
+            {'As AnchorLink 2'}
+          </a>
+        </Dropdown.SingleSelectItem>
 
-        <Dropdown.Radio asChild label={'As React Router Link (en)'} name="radiobutton" value="en">
+        <Dropdown.SingleSelectItem asChild label={'As React Router Link (en)'} value="en">
           <Link to="/sprak/en" />
-        </Dropdown.Radio>
+        </Dropdown.SingleSelectItem>
 
-        <Dropdown.Radio asChild label={'As React Router Link (nb)'} name="radiobutton" value="nb">
+        <Dropdown.SingleSelectItem asChild label={'As React Router Link (nb)'} value="nb">
           <Link to="/sprak/nb" />
-        </Dropdown.Radio>
+        </Dropdown.SingleSelectItem>
       </Dropdown>
     </MemoryRouter>
   ),

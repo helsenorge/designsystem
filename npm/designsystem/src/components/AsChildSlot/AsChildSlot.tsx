@@ -12,8 +12,9 @@ export interface AsChildSlotHandle {
 export interface AsChildSlotProps {
   /** Pass one element/component that ultimately maps to a DOM element (AnchorLink, Button, <a>, <button>, React Router <Link>, etc.) */
   children?: React.ReactNode;
-  /** Class names to apply to the visible element (eg. radio-label classes) */
+  /** Class names to apply to the visible element */
   className?: string;
+  // TODO: Dette må vekk
   /** Content to render inside the visible element (dot + label) */
   content?: React.ReactNode;
   /** Disabled state passed down (merged with child’s disabled/aria-disabled) */

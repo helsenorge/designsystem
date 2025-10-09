@@ -15,21 +15,22 @@ import {
   useOutsideEvent,
   useToggle,
 } from '../..';
-import { Radio, RadioProps } from './Radio';
 import { getResources } from './resourceHelper';
+import { SingleSelectItem, SingleSelectItemProps } from './SingleSelect';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { HNDesignsystemDropdown } from '../../resources/Resources';
 import { isComponent } from '../../utils/component';
 import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
 import Button from '../Button';
+import Checkbox, { CheckboxProps } from '../Checkbox';
 import Icon, { SvgIcon } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
 import { IconName } from '../Icons/IconNames';
 import PlusSmall from '../Icons/PlusSmall';
 import LazyIcon from '../LazyIcon';
-import { RadioGroup } from './Radio/RadioGroup';
+import { SingleSelect } from './SingleSelect/SingleSelect';
 
 import styles from './styles.module.scss';
 
@@ -108,9 +109,11 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
     isHovered: isHovered,
   };
 
-  // TODO: Hm dobbelt opp
   const isSingleSelect = React.Children.toArray(children).every(
-    child => React.isValidElement(child) && isComponent<RadioProps>(child, Radio)
+    child => React.isValidElement(child) && isComponent<SingleSelectItemProps>(child, SingleSelectItem)
+  );
+  const isMultiSelect = React.Children.toArray(children).every(
+    child => React.isValidElement(child) && isComponent<CheckboxProps>(child, Checkbox)
   );
   const [selectedValue, setSelectedValue] = React.useState<string | undefined>(undefined);
 
@@ -212,7 +215,8 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
 
   const renderChildren = React.Children.map(children, (child, index) => {
     // TODO: Sjekk checkbox og så vi er strenge
-    const isRadio = React.isValidElement(child) && isComponent<RadioProps>(child, Radio);
+    const isRadio = React.isValidElement(child) && isComponent<SingleSelectItemProps>(child, SingleSelectItem);
+    const isCheckbox = React.isValidElement(child) && isComponent<CheckboxProps>(child, Checkbox);
 
     // TODO: Burde kanskje være required av Radio
     const autoValue = `${optionIdPrefix}-value-${index}`;
@@ -225,6 +229,9 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
           ? React.cloneElement(child as React.ReactElement<any>, {
               ref: mergeRefs([child.props.ref, childrenRefList.current[index]]),
               ...(needsAutoValue ? { value: autoValue } : null),
+              ...(isMultiSelect && isCheckbox
+                ? { labelClassName: classNames(child.props.labelClassName, styles['dropdown__multiselect-item']) }
+                : null),
             })
           : child}
       </li>
@@ -276,13 +283,12 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
       >
         {/* TODO: Sjekk role for checkbox/falske radio/navigation scenarioene */}
         <ul className={styles.dropdown__options} role="group" aria-labelledby={labelId} tabIndex={-1} ref={optionsRef}>
-          {isSingleSelect ? (
-            <RadioGroup name={label} value={selectedValue} onValueChange={v => setSelectedValue(v)}>
+          {isSingleSelect && (
+            <SingleSelect name={label} value={selectedValue} onValueChange={v => setSelectedValue(v)}>
               {renderChildren}
-            </RadioGroup>
-          ) : (
-            renderChildren
+            </SingleSelect>
           )}
+          {isMultiSelect && renderChildren}
         </ul>
         {!isSingleSelect && !noCloseButton && (
           <div className={styles.dropdown__close}>
@@ -295,10 +301,10 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
 };
 
 export interface DropdownCompound extends React.FC<DropdownProps> {
-  Radio: ComponentType<RadioProps>;
+  SingleSelectItem: ComponentType<SingleSelectItemProps>;
 }
 const Dropdown = DropdownBase as DropdownCompound;
-Dropdown.Radio = Radio;
+Dropdown.SingleSelectItem = SingleSelectItem;
 DropdownBase.displayName = 'Dropdown';
 
 export default Dropdown;

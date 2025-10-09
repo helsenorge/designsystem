@@ -27,7 +27,7 @@ export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttri
   /** Gives a unique id to the button */
   id?: string;
   /** Sets the content of the button. */
-  children?: React.ReactNode;
+  children: React.ReactNode;
   /** Adds custom classes to the wrapper element. */
   wrapperClassName?: string;
   /** Adds custom classes to the element. */

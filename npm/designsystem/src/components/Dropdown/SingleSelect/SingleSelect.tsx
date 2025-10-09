@@ -1,6 +1,6 @@
 import React from 'react';
 
-type RadioGroupContextType = {
+type SingleSelectContextType = {
   name?: string;
   disabled?: boolean;
   required?: boolean;
@@ -8,9 +8,9 @@ type RadioGroupContextType = {
   onValueChange?: (newValue: string, e?: React.SyntheticEvent) => void;
 };
 
-const RadioGroupContext = React.createContext<RadioGroupContextType | null>(null);
+const SingleSelectContext = React.createContext<SingleSelectContextType | null>(null);
 
-export interface RadioGroupProps {
+export interface SingleSelectProps {
   name?: string;
   disabled?: boolean;
   required?: boolean;
@@ -20,13 +20,13 @@ export interface RadioGroupProps {
   children: React.ReactNode;
 }
 
-export const RadioGroup: React.FC<RadioGroupProps> = ({ name, disabled, required, value, defaultValue, onValueChange, children }) => {
+export const SingleSelect: React.FC<SingleSelectProps> = ({ name, disabled, required, value, defaultValue, onValueChange, children }) => {
   const isControlled = typeof value === 'string';
   const [uncontrolled, setUncontrolled] = React.useState<string | undefined>(defaultValue);
   const selected = isControlled ? value : uncontrolled;
 
   // TODO: Trenger jeg egentlig usememo her?
-  const context = React.useMemo<RadioGroupContextType>(
+  const context = React.useMemo<SingleSelectContextType>(
     () => ({
       name,
       disabled,
@@ -40,7 +40,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({ name, disabled, required
     [name, disabled, required, selected, isControlled, onValueChange]
   );
 
-  return <RadioGroupContext.Provider value={context}>{children}</RadioGroupContext.Provider>;
+  return <SingleSelectContext.Provider value={context}>{children}</SingleSelectContext.Provider>;
 };
 
-export const useRadioGroup = (): RadioGroupContextType | null => React.useContext(RadioGroupContext);
+export const useSingleSelect = (): SingleSelectContextType | null => React.useContext(SingleSelectContext);

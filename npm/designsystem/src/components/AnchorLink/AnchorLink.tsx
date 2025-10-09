@@ -22,7 +22,7 @@ export type AnchorLinkOnClickEvent =
 
 export interface AnchorLinkProps {
   /** Sets the content of the <a> tag */
-  children?: React.ReactNode;
+  children: React.ReactNode;
   /** URL to link to */
   href?: string;
   /** Gives a unique id to the anchor-link :) */

@@ -24,6 +24,8 @@ export interface CheckboxProps
     > {
   /** Adds custom classes to the element. */
   className?: string;
+  /** Adds custom classes to the label element. */
+  labelClassName?: string;
   /** The <Label/> next to the checkbox - sublabels kan ikke kombineres med large variant */
   label: React.ReactNode;
   /** input id of the checkbox */
@@ -47,6 +49,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     className,
     checked = false,
     disabled,
+    labelClassName,
     label,
     inputId = uuid(),
     onColor = FormOnColor.onwhite,
@@ -75,18 +78,22 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   const checkboxWrapperClasses = classNames(checkboxStyles['checkbox-wrapper'], {
     [checkboxStyles['checkbox-wrapper--large']]: large,
   });
-  const checkboxLabelClasses = classNames(checkboxStyles['checkbox-label'], {
-    [checkboxStyles['checkbox-label--disabled']]: disabled,
-    [checkboxStyles['checkbox-label--on-dark']]: onDark,
-    [checkboxStyles['checkbox-label--large']]: large,
-    [checkboxStyles['checkbox-label__large--checked']]: large && isChecked,
-    [checkboxStyles['checkbox-label__large--focus']]: large && isFocused,
-    [checkboxStyles['checkbox-label__large--on-white']]: large && onWhite,
-    [checkboxStyles['checkbox-label__large--on-grey']]: large && onGrey,
-    [checkboxStyles['checkbox-label__large--on-blueberry']]: large && onBlueberry,
-    [checkboxStyles['checkbox-label__large--on-invalid']]: large && onInvalid,
-    [checkboxStyles['checkbox-label__large--disabled']]: large && disabled,
-  });
+  const checkboxLabelClasses = classNames(
+    checkboxStyles['checkbox-label'],
+    {
+      [checkboxStyles['checkbox-label--disabled']]: disabled,
+      [checkboxStyles['checkbox-label--on-dark']]: onDark,
+      [checkboxStyles['checkbox-label--large']]: large,
+      [checkboxStyles['checkbox-label__large--checked']]: large && isChecked,
+      [checkboxStyles['checkbox-label__large--focus']]: large && isFocused,
+      [checkboxStyles['checkbox-label__large--on-white']]: large && onWhite,
+      [checkboxStyles['checkbox-label__large--on-grey']]: large && onGrey,
+      [checkboxStyles['checkbox-label__large--on-blueberry']]: large && onBlueberry,
+      [checkboxStyles['checkbox-label__large--on-invalid']]: large && onInvalid,
+      [checkboxStyles['checkbox-label__large--disabled']]: large && disabled,
+    },
+    labelClassName
+  );
   const checkboxClasses = classNames(checkboxStyles.checkbox, className);
   const checkboxIconWrapperClasses = classNames(checkboxStyles['checkbox__icon-wrapper'], {
     [checkboxStyles['checkbox__icon-wrapper--on-white']]: onWhite,

@@ -3,13 +3,13 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, test, expect, vi } from 'vitest';
 
-import Radio from './Radio';
+import SingleSelectItem from './SingleSelectItem';
 import Label from '../../Label';
 
 describe('Gitt at Radio skal vises', () => {
   describe('Når Radio rendres', () => {
     test('Så vises Radio med label og input', () => {
-      render(<Radio inputId="test01" label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />} />);
+      render(<SingleSelectItem inputId="test01" label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />} />);
 
       const label = screen.getByTestId('radio-label');
       expect(label).toBeVisible();
@@ -21,7 +21,7 @@ describe('Gitt at Radio skal vises', () => {
     });
 
     test('Så vises Radio som disabled når disabled=true', () => {
-      render(<Radio label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />} disabled />);
+      render(<SingleSelectItem label={<Label labelTexts={[{ text: 'Radio1' }]} testId="radio-label" />} disabled />);
 
       const input = screen.getByRole('radio');
       const label = screen.getByTestId('radio-label');
@@ -30,33 +30,33 @@ describe('Gitt at Radio skal vises', () => {
     });
 
     test('Så vises Radio som checked når defaultChecked=true', () => {
-      render(<Radio label={<Label labelTexts={[{ text: 'Radio1' }]} />} defaultChecked />);
+      render(<SingleSelectItem label={<Label labelTexts={[{ text: 'Radio1' }]} />} defaultChecked />);
       expect(screen.getByRole('radio')).toBeChecked();
     });
 
     test('Så blir Radio checked når det klikkes på label', () => {
-      render(<Radio label={<Label labelTexts={[{ text: 'Radio1' }]} />} />);
+      render(<SingleSelectItem label={<Label labelTexts={[{ text: 'Radio1' }]} />} />);
       fireEvent.click(screen.getByText('Radio1'));
       expect(screen.getByRole('radio')).toBeChecked();
     });
 
     test('Så har input riktig name når name-prop er satt', () => {
-      render(<Radio label={<Label labelTexts={[{ text: 'En fin label' }]} />} name="custom-name" />);
+      render(<SingleSelectItem label={<Label labelTexts={[{ text: 'En fin label' }]} />} name="custom-name" />);
       expect(screen.getByRole('radio')).toHaveAttribute('name', 'custom-name');
     });
 
     test('Så har input riktig value når value-prop er satt', () => {
-      render(<Radio label={<Label labelTexts={[{ text: 'En fin label' }]} />} value="custom-value" />);
+      render(<SingleSelectItem label={<Label labelTexts={[{ text: 'En fin label' }]} />} value="custom-value" />);
       expect(screen.getByRole('radio')).toHaveAttribute('value', 'custom-value');
     });
 
     test('Så er input required når required=true', () => {
-      render(<Radio label={<Label labelTexts={[{ text: 'En fin label' }]} />} required />);
+      render(<SingleSelectItem label={<Label labelTexts={[{ text: 'En fin label' }]} />} required />);
       expect(screen.getByRole('radio')).toBeRequired();
     });
 
     test('Så settes testId på wrapper når testId er satt', () => {
-      render(<Radio testId="RadioTest" label={<Label labelTexts={[{ text: 'Label' }]} />} />);
+      render(<SingleSelectItem testId="RadioTest" label={<Label labelTexts={[{ text: 'Label' }]} />} />);
       expect(screen.getByTestId('RadioTest')).toBeDefined();
     });
   });
@@ -64,23 +64,23 @@ describe('Gitt at Radio skal vises', () => {
   describe('Når Radio interageres med', () => {
     test('Så kalles onChange når den velges', () => {
       const handleChange = vi.fn();
-      render(<Radio label={<Label labelTexts={[{ text: 'Radio1' }]} />} onChange={handleChange} />);
+      render(<SingleSelectItem label={<Label labelTexts={[{ text: 'Radio1' }]} />} onChange={handleChange} />);
       fireEvent.click(screen.getByText('Radio1'));
       expect(handleChange).toHaveBeenCalledTimes(1);
     });
 
     test('Så er den default unchecked når verken checked eller defaultChecked er satt', () => {
-      render(<Radio label={<Label labelTexts={[{ text: 'Radio1' }]} />} />);
+      render(<SingleSelectItem label={<Label labelTexts={[{ text: 'Radio1' }]} />} />);
       expect(screen.getByRole('radio')).not.toBeChecked();
     });
 
     test('Så kan den være controlled (checked=true)', () => {
-      render(<Radio label={<Label labelTexts={[{ text: 'Radio1' }]} />} checked />);
+      render(<SingleSelectItem label={<Label labelTexts={[{ text: 'Radio1' }]} />} checked />);
       expect(screen.getByRole('radio')).toBeChecked();
     });
 
     test('Så kan den være controlled (checked=false)', () => {
-      render(<Radio label={<Label labelTexts={[{ text: 'Radio1' }]} />} checked={false} />);
+      render(<SingleSelectItem label={<Label labelTexts={[{ text: 'Radio1' }]} />} checked={false} />);
       expect(screen.getByRole('radio')).not.toBeChecked();
     });
   });
@@ -89,9 +89,9 @@ describe('Gitt at Radio skal vises', () => {
     test('Så trigges Button-barnets onClick når radio blir checked', () => {
       const handleClick = vi.fn();
       render(
-        <Radio asChild label={<Label labelTexts={[{ text: 'As Button' }]} />}>
+        <SingleSelectItem asChild label={<Label labelTexts={[{ text: 'As Button' }]} />}>
           <button onClick={handleClick} />
-        </Radio>
+        </SingleSelectItem>
       );
 
       // første klikk velger radio => asChildSlot.click() => child onClick kalles
@@ -107,9 +107,9 @@ describe('Gitt at Radio skal vises', () => {
     test('Så trigges AnchorLink-barnets onClick (uten navigasjon) når radio blir checked', () => {
       const handleClick = vi.fn((e: React.MouseEvent<HTMLAnchorElement>) => e.preventDefault());
       render(
-        <Radio asChild label={<Label labelTexts={[{ text: 'As Link' }]} />}>
+        <SingleSelectItem asChild label={<Label labelTexts={[{ text: 'As Link' }]} />}>
           <a href="#" target="_blank" onClick={handleClick} />
-        </Radio>
+        </SingleSelectItem>
       );
 
       fireEvent.click(screen.getByText('As Link'));
@@ -120,9 +120,9 @@ describe('Gitt at Radio skal vises', () => {
     test('Så trigges ikke child når Radio er disabled', () => {
       const handleClick = vi.fn();
       render(
-        <Radio asChild disabled label={<Label labelTexts={[{ text: 'Disabled' }]} />}>
+        <SingleSelectItem asChild disabled label={<Label labelTexts={[{ text: 'Disabled' }]} />}>
           <button onClick={handleClick} />
-        </Radio>
+        </SingleSelectItem>
       );
 
       fireEvent.click(screen.getByText('Disabled'));
@@ -133,9 +133,9 @@ describe('Gitt at Radio skal vises', () => {
     test('Så kan Enter trigge child-aksjonen', () => {
       const handleClick = vi.fn();
       render(
-        <Radio asChild label={<Label labelTexts={[{ text: 'Keyboard' }]} />}>
+        <SingleSelectItem asChild label={<Label labelTexts={[{ text: 'Keyboard' }]} />}>
           <button onClick={handleClick} />
-        </Radio>
+        </SingleSelectItem>
       );
 
       const input = screen.getByRole('radio');

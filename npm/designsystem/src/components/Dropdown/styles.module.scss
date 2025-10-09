@@ -141,8 +141,12 @@
     padding: var(--core-space-s);
   }
 
+  &__multiselect-item {
+    padding-left: var(--core-space-m);
+    padding-right: var(--core-space-m);
+  }
+
   &__list-item {
-    padding: 0 var(--core-space-s);
     min-height: 44px;
     border-bottom: 1px solid var(--color-base-border-neutral-emphasized);
 
