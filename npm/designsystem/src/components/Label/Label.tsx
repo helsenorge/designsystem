@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { Sublabel, SublabelProps } from './SubLabel';
 import { AnalyticsId, FormOnColor } from '../../constants';
 import { isComponent } from '../../utils/component';
+import FormFieldTag, { FormFieldTagLevel } from '../FormFieldTag';
 import Spacer from '../Spacer';
 import StatusDot, { StatusDotProps } from '../StatusDot';
 
@@ -47,6 +48,8 @@ export interface LabelProps {
   sublabelWrapperClassName?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** @todo: beskrivelse her Sets level of requiredness */
+  formFieldLevel?: FormFieldTagLevel;
 }
 
 export const getLabelText = (label: React.ReactNode): string => {
@@ -132,6 +135,7 @@ const Label: FunctionComponent<LabelProps> = ({
   sublabel,
   sublabelWrapperClassName,
   testId,
+  formFieldLevel,
 }) => {
   const hasChildren = children && typeof children !== 'undefined';
   const labelWrapperClasses = cn(
@@ -171,6 +175,11 @@ const Label: FunctionComponent<LabelProps> = ({
           </span>
         </CustomTag>
         <div className={sublabelWrapperClassName}>
+          {formFieldLevel && (
+            <div>
+              <FormFieldTag level={formFieldLevel} />
+            </div>
+          )}
           {sublabel &&
             isComponent<SublabelProps>(sublabel, Sublabel) &&
             React.cloneElement(sublabel, {
