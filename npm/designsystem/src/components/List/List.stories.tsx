@@ -8,6 +8,8 @@ import List from './List';
 import { mediumLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
 
+import styles from './stories.module.scss';
+
 const meta = {
   title: '@helsenorge/designsystem-react/Components/List',
   component: List,
@@ -17,7 +19,7 @@ const meta = {
       description: {
         component: 'Strukturert visning av punktvise data',
       },
-      page: (): React.JSX.Element => <Docs component={List} hideStories />,
+      page: (): React.JSX.Element => <Docs component={List} />,
     },
   },
   args: {
@@ -42,11 +44,11 @@ const meta = {
       description: 'List contents',
     },
     className: {
-      control: 'string',
+      control: 'text',
       description: 'Adds className to list element.',
     },
     testId: {
-      control: 'string',
+      control: 'text',
       description: 'Sets the data-testid attribute.',
     },
   },
@@ -220,8 +222,49 @@ export const Nested: Story = {
 };
 
 export const AnchorlinkInList: Story = {
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+CSS:
+Add this snippet to align the marker with the first line of text when 
+Anchorlink has htmlMarkup 'button'.
+
+.list-anchorlink {
+  li {
+    button {
+      vertical-align: top;
+    }
+  }
+}
+
+
+React:
+
+<List className={styles['list-anchorlink']}>
+  <List.Item>
+    <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
+      {'vanlig lenke i liste, med lang tekst så den wrapper'}
+    </AnchorLink>
+  </List.Item>
+  <List.Item>
+    <AnchorLink htmlMarkup={'button'} onClick={action('AnchorLink clicked!')} {...args}>
+      {'button lenke i liste, med lang tekst så den wrapper'}
+    </AnchorLink>
+  </List.Item>
+  <List.Item>
+    <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
+      {'vanlig lenke i liste, med lang tekst så den wrapper'}
+    </AnchorLink>
+  </List.Item>
+</List>
+`,
+      },
+    },
+  },
   render: args => (
-    <List>
+    <List className={styles['list-anchorlink']}>
       <List.Item>
         <AnchorLink htmlMarkup={'a'} onClick={action('AnchorLink clicked!')} {...args}>
           {'vanlig lenke i liste, med lang tekst så den wrapper'}
