@@ -25,7 +25,6 @@ export const SingleSelect: React.FC<SingleSelectProps> = ({ name, disabled, requ
   const [uncontrolled, setUncontrolled] = React.useState<string | undefined>(defaultValue);
   const selected = isControlled ? value : uncontrolled;
 
-  // TODO: Trenger jeg egentlig usememo her?
   const context = React.useMemo<SingleSelectContextType>(
     () => ({
       name,

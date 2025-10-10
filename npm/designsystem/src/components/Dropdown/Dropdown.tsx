@@ -1,13 +1,6 @@
 import React, { useEffect, useRef, useId, ComponentType } from 'react';
 
-import {
-  autoUpdate,
-  flip,
-  offset,
-  shift,
-  size,
-  useFloating,
-} from '@floating-ui/react';
+import { autoUpdate, flip, offset, shift, size, useFloating } from '@floating-ui/react';
 import classNames from 'classnames';
 import { clamp } from 'motion/react';
 
@@ -17,14 +10,13 @@ import {
   KeyboardEventKey,
   LanguageLocales,
   ZIndex,
-  theme,
   useHover,
   useKeyboardEvent,
   useOutsideEvent,
   useToggle,
 } from '../..';
 import { getResources } from './resourceHelper';
-import { SingleSelectItem, SingleSelectItemProps } from './SingleSelect';
+import { SingleSelectItem, SingleSelectItemProps } from './SingleSelect/SingleSelectItem';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { HNDesignsystemDropdown } from '../../resources/Resources';
 import { isComponent } from '../../utils/component';
@@ -45,18 +37,15 @@ import styles from './styles.module.scss';
 type DropdownVariants = 'fill' | 'transparent' | 'borderless';
 
 export interface DropdownProps {
-  // TODO: et annet navn enn label? Er teknisk sett bare en span
-  /** Label for dropdown. Visible for screen readers  */
-  label: string;
   /** Text on the trigger button that opens the dropdown */
-  placeholder: string;
+  triggerText: string;
   /** Sets the dropdown content */
   children: React.ReactNode;
   /** Minimum width for the dropdown in pixels. Does not affect trigger button. */
   dropdownMinWidth?: number;
   /** Minimum width for the trigger in pixels. Does not apply for borderless variant */
   triggerMinWidth?: number;
-  /** No close button */
+  /** Disables rendring of the close button in the list */
   noCloseButton?: boolean;
   /** Called when dropdown is open/closed */
   onToggle?: (isOpen: boolean) => void;
@@ -78,8 +67,7 @@ export interface DropdownProps {
 
 export const DropdownBase: React.FC<DropdownProps> = props => {
   const {
-    label,
-    placeholder,
+    triggerText,
     noCloseButton = false,
     onToggle,
     dropdownMinWidth,
@@ -104,15 +92,13 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const triggerActualMinWidth = typeof triggerMinWidth != 'undefined' ? triggerMinWidth : isMobile ? 225 : 240;
   const triggerMinWidthLimit = isMobile ? 96 : 112;
   const maxWidth = isMobile ? 384 : 400;
-  const labelId = useId();
-  const toggleLabelId = useId();
+  const toggleTextId = useId();
   const optionIdPrefix = useId();
   const contentId = useId();
-  const iconProps = {
+  const leftIconProps = {
     className: styles['dropdown__left-icon'],
-    color: 'var(--core-color-blueberry-600)',
     size: IconSize.XSmall,
-    isHovered: isHovered,
+    isHovered: !disabled && isHovered,
   };
 
   const isSingleSelect = React.Children.toArray(children).every(
@@ -150,12 +136,10 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         padding: 16,
         apply({ availableWidth, availableHeight, elements, rects }) {
           const triggerW = rects.reference.width;
-          const minProp = typeof dropdownMinWidth !== 'undefined'
-            ? clamp(0, maxWidth, dropdownMinWidth)
-            : 0;
+          const minProp = typeof dropdownMinWidth !== 'undefined' ? clamp(0, maxWidth, dropdownMinWidth) : 0;
           const targetW = Math.max(triggerW, minProp);
           const finalW = Math.min(availableWidth, targetW);
-  
+
           Object.assign(elements.floating.style, {
             width: `${finalW}px`,
             maxHeight: `${availableHeight}px`,
@@ -250,23 +234,15 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   useOutsideEvent(dropdownRef, () => isOpen && handleClose());
 
   const renderChildren = React.Children.map(children, (child, index) => {
-    // TODO: Sjekk checkbox og så vi er strenge
-    const isRadio = React.isValidElement(child) && isComponent<SingleSelectItemProps>(child, SingleSelectItem);
-    const isCheckbox = React.isValidElement(child) && isComponent<CheckboxProps>(child, Checkbox);
-
-    // TODO: Burde kanskje være required av Radio
-    const autoValue = `${optionIdPrefix}-value-${index}`;
-    const needsAutoValue = isRadio && (child as any).props && ((child as any).props.value == null || (child as any).props.value === '');
-
-    // TODO: : child skal vi vel ikke gjøre lenger? Tillate alle children
     return (
       <li className={listItemClasses} id={`${optionIdPrefix}-${index}`}>
         {React.isValidElement(child) && childrenRefList.current && childrenRefList.current[index]
           ? React.cloneElement(child as React.ReactElement<any>, {
               ref: mergeRefs([child.props.ref, childrenRefList.current[index]]),
-              ...(needsAutoValue ? { value: autoValue } : null),
-              ...(isMultiSelect && isCheckbox
-                ? { labelClassName: classNames(child.props.labelClassName, styles['dropdown__multiselect-item']) }
+              ...(isMultiSelect
+                ? {
+                    labelClassName: classNames((child as any).props.labelClassName, styles['dropdown__multiselect-item']),
+                  }
                 : null),
             })
           : child}
@@ -276,10 +252,6 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
 
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
-      {/* TODO: Trenger vi denne? */}
-      <span id={labelId} className={styles.dropdown__label}>
-        {label}
-      </span>
       <button
         type="button"
         onClick={(): false | void => handleOpen(false)}
@@ -288,27 +260,29 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         data-testid={testId}
         data-analyticsid={AnalyticsId.Dropdown}
         disabled={disabled}
-        aria-labelledby={toggleLabelId}
+        aria-labelledby={toggleTextId}
         aria-haspopup={true}
         aria-controls={contentId}
         aria-expanded={isOpen}
         style={{
-          width: variant !== 'borderless'
-          ? `${triggerActualMinWidth}px`
-          : 'auto',
+          width: variant !== 'borderless' ? `${triggerActualMinWidth}px` : 'auto',
           maxWidth: '100%',
           minWidth: `${triggerMinWidthLimit}px`,
-          }}
-        >
+        }}
+      >
         {svgIcon && (
-          <>{typeof svgIcon === 'string' ? <LazyIcon {...iconProps} iconName={svgIcon} /> : <Icon {...iconProps} svgIcon={svgIcon} />}</>
+          <>
+            {typeof svgIcon === 'string' ? (
+              <LazyIcon {...leftIconProps} iconName={svgIcon} />
+            ) : (
+              <Icon {...leftIconProps} svgIcon={svgIcon} />
+            )}
+          </>
         )}
-        <span id={toggleLabelId} className={styles.dropdown__toggle__label}>
-          {placeholder}
+        <span id={toggleTextId} className={styles.dropdown__toggle__text}>
+          {triggerText}
         </span>
         <Icon
-          // TODO: Sette farge i css?
-          color={disabled ? theme.palette.neutral700 : theme.palette.blueberry600}
           svgIcon={!isSingleSelect ? PlusSmall : isOpen ? ChevronUp : ChevronDown}
           className={styles['dropdown__right-icon']}
           isHovered={!disabled && isHovered}
@@ -316,7 +290,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         />
       </button>
       <div
-      key={dropdownMinWidth ?? 'auto'}
+        key={dropdownMinWidth ?? 'auto'}
         id={contentId}
         className={contentClasses}
         ref={refs.setFloating}
@@ -325,9 +299,9 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
           zIndex: zIndex,
         }}
       >
-        <ul className={styles.dropdown__options} role="group" aria-labelledby={labelId} tabIndex={-1} ref={optionsRef}>
+        <ul className={styles.dropdown__options} role="group" aria-labelledby={toggleTextId} tabIndex={-1} ref={optionsRef}>
           {isSingleSelect && (
-            <SingleSelect name={label} value={selectedValue} onValueChange={v => setSelectedValue(v)}>
+            <SingleSelect value={selectedValue} onValueChange={v => setSelectedValue(v)}>
               {renderChildren}
             </SingleSelect>
           )}

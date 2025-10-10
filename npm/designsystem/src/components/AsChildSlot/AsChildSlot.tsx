@@ -10,11 +10,10 @@ export interface AsChildSlotHandle {
 }
 
 export interface AsChildSlotProps {
-  /** Pass one element/component that ultimately maps to a DOM element (AnchorLink, Button, <a>, <button>, React Router <Link>, etc.) */
+  /** Pass one element/component that we will map to a DOM element (<a>, <button>, React Router <Link>) */
   children?: React.ReactNode;
   /** Class names to apply to the visible element */
   className?: string;
-  // TODO: Dette må vekk
   /** Content to render inside the visible element (dot + label) */
   content?: React.ReactNode;
   /** Disabled state passed down (merged with child’s disabled/aria-disabled) */
@@ -32,7 +31,6 @@ const isAriaDisabled = (v: unknown): boolean => v === true || v === 'true';
 export const AsChildSlot = React.forwardRef<AsChildSlotHandle, AsChildSlotProps>(
   ({ children, className, content, disabled, onSelect, ariaCurrent, elementRef }, forwardedRef) => {
     const childElement = React.Children.toArray(children).filter(React.isValidElement)[0] as React.ReactElement | undefined;
-
     const nodeRef = React.useRef<HTMLElement | null>(null);
     const childRef = (childElement as unknown as { ref?: React.Ref<HTMLElement> | undefined })?.ref;
     const mergedRef = mergeRefs<HTMLElement>([
@@ -43,10 +41,14 @@ export const AsChildSlot = React.forwardRef<AsChildSlotHandle, AsChildSlotProps>
       elementRef,
     ]);
 
-    const childProps = (childElement?.props as Record<string, any>) || {};
-    const childDisabled = !!childProps?.disabled || isAriaDisabled(childProps?.['aria-disabled']);
+    const childProps =
+      (childElement?.props as Partial<React.DOMAttributes<HTMLElement>> &
+        Partial<React.AnchorHTMLAttributes<HTMLElement>> &
+        Partial<React.ButtonHTMLAttributes<HTMLElement>> & { disabled?: boolean; href?: unknown }) || {};
+    const childDisabled = !!childProps.disabled || isAriaDisabled((childProps as React.AriaAttributes)['aria-disabled']);
     const isDisabled = !!disabled || childDisabled;
 
+    // Exposes a callable click() to the parents.
     React.useImperativeHandle(
       forwardedRef,
       () => ({
@@ -60,8 +62,9 @@ export const AsChildSlot = React.forwardRef<AsChildSlotHandle, AsChildSlotProps>
 
     if (!childElement) return null;
 
-    const childOnClick = childProps.onClick as (e: React.MouseEvent<any>) => void;
-    const wrappedOnClick: React.MouseEventHandler<any> = e => {
+    // Actual user mouse interaction
+    const childOnClick = childProps.onClick as React.MouseEventHandler<HTMLElement> | undefined;
+    const wrappedOnClick: React.MouseEventHandler<HTMLElement> = e => {
       if (isDisabled) {
         e.preventDefault();
         e.stopPropagation();
@@ -71,8 +74,9 @@ export const AsChildSlot = React.forwardRef<AsChildSlotHandle, AsChildSlotProps>
       childOnClick?.(e);
     };
 
-    const childOnKeyDown = childProps.onKeyDown as React.KeyboardEventHandler<any> | undefined;
-    const wrappedOnKeyDown: React.KeyboardEventHandler<any> = e => {
+    // Actual user keyboard interaction
+    const childOnKeyDown = childProps.onKeyDown as React.KeyboardEventHandler<HTMLElement> | undefined;
+    const wrappedOnKeyDown: React.KeyboardEventHandler<HTMLElement> = e => {
       childOnKeyDown?.(e);
       if (e.defaultPrevented) return;
       if (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space') {
@@ -85,7 +89,7 @@ export const AsChildSlot = React.forwardRef<AsChildSlotHandle, AsChildSlotProps>
       }
     };
 
-    const isButtonLike = typeof childProps?.href === 'undefined';
+    const isButtonLike = typeof childProps.href === 'undefined';
 
     return React.cloneElement(childElement, {
       ref: mergedRef,

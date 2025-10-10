@@ -3,7 +3,6 @@ export type Styles = {
   dropdown__close: string;
   dropdown__content: string;
   'dropdown__content--open': string;
-  dropdown__label: string;
   'dropdown__left-icon': string;
   'dropdown__list-item': string;
   'dropdown__list-item--single-select': string;
@@ -11,7 +10,7 @@ export type Styles = {
   dropdown__options: string;
   'dropdown__right-icon': string;
   dropdown__toggle: string;
-  dropdown__toggle__label: string;
+  dropdown__toggle__text: string;
   'dropdown__toggle--borderless': string;
   'dropdown__toggle--open': string;
   'dropdown__toggle--transparent': string;

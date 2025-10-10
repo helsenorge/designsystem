@@ -33,9 +33,8 @@ const meta = {
     },
   },
   args: {
-    label: 'Ta et valg',
     children: '',
-    placeholder: 'Hva skjer i kroppen?',
+    triggerText: 'Hva skjer i kroppen?',
   },
   argTypes: {},
 } satisfies Meta<typeof DropdownBase>;
@@ -50,9 +49,9 @@ export const Default: Story = {
   },
   render: args => (
     <Dropdown {...args}>
-      <Dropdown.SingleSelectItem label={'Valg 1'} />
-      <Dropdown.SingleSelectItem label={'Valg 2'} />
-      <Dropdown.SingleSelectItem label={'Valg 3'} />
+      <Dropdown.SingleSelectItem text={'Valg 1'} />
+      <Dropdown.SingleSelectItem text={'Valg 2'} />
+      <Dropdown.SingleSelectItem text={'Valg 3'} />
     </Dropdown>
   ),
 };
@@ -63,15 +62,15 @@ export const SingleSelect: Story = {
   },
   render: args => (
     <Dropdown {...args}>
-      <Dropdown.SingleSelectItem label={'Valg 1'} />
-      <Dropdown.SingleSelectItem label={'Valg 2'} />
-      <Dropdown.SingleSelectItem label={'Valg 3'} />
-      <Dropdown.SingleSelectItem label={'Valg 4'} />
-      <Dropdown.SingleSelectItem label={'Valg 5'} />
-      <Dropdown.SingleSelectItem label={'Valg 6'} />
-      <Dropdown.SingleSelectItem label={'Valg 7'} />
-      <Dropdown.SingleSelectItem label={'Valg 8'} />
-      <Dropdown.SingleSelectItem label={'Valg 9'} />
+      <Dropdown.SingleSelectItem text={'Valg 1'} />
+      <Dropdown.SingleSelectItem text={'Valg 2'} />
+      <Dropdown.SingleSelectItem text={'Valg 3'} />
+      <Dropdown.SingleSelectItem text={'Valg 4'} />
+      <Dropdown.SingleSelectItem text={'Valg 5'} />
+      <Dropdown.SingleSelectItem text={'Valg 6'} />
+      <Dropdown.SingleSelectItem text={'Valg 7'} />
+      <Dropdown.SingleSelectItem text={'Valg 8'} />
+      <Dropdown.SingleSelectItem text={'Valg 9'} />
     </Dropdown>
   ),
 };
@@ -99,21 +98,21 @@ export const Variants: Story = {
   render: args => (
     <>
       <Dropdown {...args} variant={'fill'}>
-        <Dropdown.SingleSelectItem label={'Valg 1'} />
-        <Dropdown.SingleSelectItem label={'Valg 2'} />
-        <Dropdown.SingleSelectItem label={'Valg 3'} />
+        <Dropdown.SingleSelectItem text={'Valg 1'} />
+        <Dropdown.SingleSelectItem text={'Valg 2'} />
+        <Dropdown.SingleSelectItem text={'Valg 3'} />
       </Dropdown>
       <br />
       <Dropdown {...args} variant="transparent">
-        <Dropdown.SingleSelectItem label={'Valg 1'} />
-        <Dropdown.SingleSelectItem label={'Valg 2'} />
-        <Dropdown.SingleSelectItem label={'Valg 3'} />
+        <Dropdown.SingleSelectItem text={'Valg 1'} />
+        <Dropdown.SingleSelectItem text={'Valg 2'} />
+        <Dropdown.SingleSelectItem text={'Valg 3'} />
       </Dropdown>
       <br />
       <Dropdown {...args} variant="borderless">
-        <Dropdown.SingleSelectItem label={'Valg 1'} />
-        <Dropdown.SingleSelectItem label={'Valg 2'} />
-        <Dropdown.SingleSelectItem label={'Valg 3'} />
+        <Dropdown.SingleSelectItem text={'Valg 1'} />
+        <Dropdown.SingleSelectItem text={'Valg 2'} />
+        <Dropdown.SingleSelectItem text={'Valg 3'} />
       </Dropdown>
     </>
   ),
@@ -125,15 +124,15 @@ export const WithIcon: Story = {
   },
   render: args => (
     <Dropdown {...args} svgIcon={Globe}>
-      <Dropdown.SingleSelectItem label={'Valg 1'} />
-      <Dropdown.SingleSelectItem label={'Valg 2'} />
-      <Dropdown.SingleSelectItem label={'Valg 3'} />
-      <Dropdown.SingleSelectItem label={'Valg 4'} />
-      <Dropdown.SingleSelectItem label={'Valg 5'} />
-      <Dropdown.SingleSelectItem label={'Valg 6'} />
-      <Dropdown.SingleSelectItem label={'Valg 7'} />
-      <Dropdown.SingleSelectItem label={'Valg 8'} />
-      <Dropdown.SingleSelectItem label={'Valg 9'} />
+      <Dropdown.SingleSelectItem text={'Valg 1'} />
+      <Dropdown.SingleSelectItem text={'Valg 2'} />
+      <Dropdown.SingleSelectItem text={'Valg 3'} />
+      <Dropdown.SingleSelectItem text={'Valg 4'} />
+      <Dropdown.SingleSelectItem text={'Valg 5'} />
+      <Dropdown.SingleSelectItem text={'Valg 6'} />
+      <Dropdown.SingleSelectItem text={'Valg 7'} />
+      <Dropdown.SingleSelectItem text={'Valg 8'} />
+      <Dropdown.SingleSelectItem text={'Valg 9'} />
     </Dropdown>
   ),
 };
@@ -163,31 +162,31 @@ export const AsChild: Story = {
       </Routes>
       <br />
       <Dropdown {...args} svgIcon={Globe}>
-        <Dropdown.SingleSelectItem asChild label={'As Button 1'}>
+        <Dropdown.SingleSelectItem asChild text={'As Button 1'}>
           <button onClick={action('Button click: As Button 1')} />
         </Dropdown.SingleSelectItem>
 
-        <Dropdown.SingleSelectItem asChild label={'As Button 2'}>
+        <Dropdown.SingleSelectItem asChild text={'As Button 2'}>
           <button onClick={action('Button click: As Button 2')} />
         </Dropdown.SingleSelectItem>
 
-        <Dropdown.SingleSelectItem asChild label={'As AnchorLink 1'}>
+        <Dropdown.SingleSelectItem asChild text={'As AnchorLink 1'}>
           <a href="#" target="_blank">
             {'As AnchorLink 1'}
           </a>
         </Dropdown.SingleSelectItem>
 
-        <Dropdown.SingleSelectItem asChild label={'As AnchorLink 2'}>
+        <Dropdown.SingleSelectItem asChild text={'As AnchorLink 2'}>
           <a href="#" target="_blank">
             {'As AnchorLink 2'}
           </a>
         </Dropdown.SingleSelectItem>
 
-        <Dropdown.SingleSelectItem asChild label={'As React Router Link (en)'} value="en">
+        <Dropdown.SingleSelectItem asChild text={'As React Router Link (en)'} value="en">
           <Link to="/sprak/en" />
         </Dropdown.SingleSelectItem>
 
-        <Dropdown.SingleSelectItem asChild label={'As React Router Link (nb)'} value="nb">
+        <Dropdown.SingleSelectItem asChild text={'As React Router Link (nb)'} value="nb">
           <Link to="/sprak/nb" />
         </Dropdown.SingleSelectItem>
       </Dropdown>

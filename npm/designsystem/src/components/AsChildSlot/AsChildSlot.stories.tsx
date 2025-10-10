@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
@@ -5,9 +6,6 @@ import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
 import AsChildSlot, { AsChildSlotHandle } from './AsChildSlot';
-import AnchorLink from '../AnchorLink';
-import Button from '../Button';
-import Spacer from '../Spacer';
 
 const meta = {
   title: '@helsenorge/designsystem-react/_Internal/AsChildSlot',
@@ -17,17 +15,11 @@ const meta = {
       page: (): React.JSX.Element => <Docs component={AsChildSlot} />,
       description: {
         component:
-          'Et usynlig wrapper-element som lar deg trigge barnets native klikk (onClick/navigasjon) via en ref. Tenkt å brukes med asChild pattern.',
-      },
-      story: {
-        inline: false,
-        iframeHeight: '16rem',
+          'Wrapper som kloner barnet og injiserer props (ref, aria, handlers). Gir også en imperativ ref med .click(), så jeg kan trigge barnets naturlige onClick/navigasjon programmatisk. Brukes i asChild-pattern.',
       },
     },
   },
-  args: {
-    active: true,
-  },
+  args: {},
   argTypes: {},
 } satisfies Meta<typeof AsChildSlot>;
 
@@ -36,17 +28,20 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    active: true,
-  },
   render: args => {
     const slotRef = React.useRef<AsChildSlotHandle | null>(null);
     return (
       <div>
-        <p>{'Child is hidden; clicking the Button will trigger the child Button onClick.'}</p>
-        <Button onClick={() => slotRef.current?.click()}>{"Trigger AsChildSlot child's click event"}</Button>
-        <AsChildSlot {...args} ref={slotRef}>
-          <Button onClick={action('child Button onClick')} />
+        <p>{'Klikk på knappen for å trigge barnets onClick.'}</p>
+        <button onClick={() => slotRef.current?.click()}>{'Trigger child onClick()'}</button>
+        <div style={{ height: 16 }} />
+        <AsChildSlot
+          {...args}
+          ref={slotRef}
+          content="Dette er barnet (button) – blir klikket via .click()"
+          onSelect={action('onSelect (user click)')}
+        >
+          <button onClick={e => action('child <button> onClick')(e)} />
         </AsChildSlot>
       </div>
     );
@@ -54,43 +49,37 @@ export const Default: Story = {
 };
 
 export const WithAnchorLinkChild: Story = {
-  args: {
-    active: true,
-  },
   render: args => {
     const slotRef = React.useRef<AsChildSlotHandle | null>(null);
     return (
       <div>
-        <Button onClick={() => slotRef.current?.click()}>{"Trigger AsChildSlot child's click event"}</Button>
-        <Spacer />
-        <Spacer />
-        <AsChildSlot {...args} ref={slotRef}>
-          <AnchorLink
-            href="#"
-            target="_blank"
-            onClick={e => {
-              action('child AnchorLink onClick')(e);
-            }}
-          />
+        <button onClick={() => slotRef.current?.click()}>{'Trigger child anchor click()'}</button>
+        <div style={{ height: 24 }} />
+        <AsChildSlot
+          {...args}
+          ref={slotRef}
+          content="Dette er barnet (<a>) – vi preventer i onClick for å unngå navigasjon"
+          onSelect={action('onSelect (user click)')}
+        >
+          <a href="#" target="_blank">
+            {'As AnchorLink 1'}
+          </a>
         </AsChildSlot>
       </div>
     );
   },
 };
 
-export const Inactive: Story = {
-  args: {
-    active: false,
-  },
+export const Disabled: Story = {
   render: args => {
     const slotRef = React.useRef<AsChildSlotHandle | null>(null);
     return (
       <div>
-        <p>{'This button should not trigger Actions when clicked'}</p>
-        <Button onClick={() => slotRef.current?.click()}>{'Inactive AsChildSlot'}</Button>
-        <Spacer />
-        <AsChildSlot {...args} ref={slotRef}>
-          <Button onClick={action('should NOT fire when inactive')} />
+        <p>{'Disabled: click() gjør ingenting og user click blokkeres.'}</p>
+        <button onClick={() => slotRef.current?.click()}>{'Prøv å trigge (skal ikke skje noe)'}</button>
+        <div style={{ height: 16 }} />
+        <AsChildSlot {...args} ref={slotRef} disabled content="Disabled child" onSelect={action('onSelect (skal IKKE fyres når disabled)')}>
+          <button onClick={e => action('child <button> onClick (skal IKKE fyres)')(e)} />
         </AsChildSlot>
       </div>
     );

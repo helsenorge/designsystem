@@ -7,28 +7,23 @@ import AsChildSlot, { AsChildSlotHandle } from './AsChildSlot';
 
 describe('Gitt at AsChildSlot skal vises', () => {
   describe('Når AsChildSlot vises', () => {
-    test('Så rendres ingenting når active=false', () => {
-      render(
-        <AsChildSlot active={false}>
-          <button data-testid="child" />
-        </AsChildSlot>
-      );
+    test('Så rendres ingenting når det ikke finnes et gyldig barn', () => {
+      render(<AsChildSlot>{null}</AsChildSlot>);
       expect(screen.queryByTestId('child')).toBeNull();
     });
 
-    test('Så rendres barn skjult når active=true', () => {
+    test('Så rendres barnet', () => {
       render(
-        <AsChildSlot active>
+        <AsChildSlot>
           <button data-testid="child" />
         </AsChildSlot>
       );
       const child = screen.getByTestId('child');
-      // jest-dom matcher: ikke synlig siden wrapper har display:none
-      expect(child).not.toBeVisible();
+      expect(child).toBeVisible();
     });
 
     test('Så ignoreres manglende barn uten å kaste feil', () => {
-      render(<AsChildSlot active />);
+      render(<AsChildSlot />);
       // Bare at render ikke kaster er nok
       expect(true).toBe(true);
     });
@@ -40,7 +35,7 @@ describe('Gitt at AsChildSlot skal vises', () => {
       const ref = React.createRef<AsChildSlotHandle>();
 
       render(
-        <AsChildSlot active ref={ref}>
+        <AsChildSlot ref={ref}>
           <button data-testid="child" onClick={handleClick} />
         </AsChildSlot>
       );
@@ -56,7 +51,7 @@ describe('Gitt at AsChildSlot skal vises', () => {
       const ref = React.createRef<AsChildSlotHandle>();
 
       render(
-        <AsChildSlot active ref={ref}>
+        <AsChildSlot ref={ref}>
           <a data-testid="child" href="#" target="_blank" onClick={handleClick} />
         </AsChildSlot>
       );
@@ -70,7 +65,7 @@ describe('Gitt at AsChildSlot skal vises', () => {
       const ref = React.createRef<AsChildSlotHandle>();
 
       render(
-        <AsChildSlot active ref={ref}>
+        <AsChildSlot ref={ref}>
           <button data-testid="child" disabled onClick={handleClick} />
         </AsChildSlot>
       );
@@ -84,7 +79,7 @@ describe('Gitt at AsChildSlot skal vises', () => {
       const ref = React.createRef<AsChildSlotHandle>();
 
       render(
-        <AsChildSlot active ref={ref}>
+        <AsChildSlot ref={ref}>
           <a data-testid="child" href="#" aria-disabled="true" onClick={handleClick} />
         </AsChildSlot>
       );
@@ -99,7 +94,7 @@ describe('Gitt at AsChildSlot skal vises', () => {
       const childRef = React.createRef<HTMLButtonElement>();
 
       render(
-        <AsChildSlot active>
+        <AsChildSlot>
           <button data-testid="child" ref={childRef} />
         </AsChildSlot>
       );

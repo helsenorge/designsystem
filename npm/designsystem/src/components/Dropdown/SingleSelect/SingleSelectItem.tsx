@@ -1,19 +1,15 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
 import { useSingleSelect } from './SingleSelect';
-import { AnalyticsId } from '../../../constants';
-import { uuid } from '../../../utils/uuid';
 import AsChildSlot, { AsChildSlotHandle } from '../../AsChildSlot';
 
 import styles from './styles.module.scss';
 
 export interface SingleSelectItemProps extends Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
-  /** The <Label/> next to the singleSelectItem */
-  label?: React.ReactNode;
-  /** Adds custom classes to the label element. */
-  labelClassNames?: string;
+  /** The next to the singleSelectItem */
+  text?: string;
   /** input id of the singleSelectItem */
   inputId?: string;
   /** Sets the data-testid attribute. */
@@ -22,31 +18,26 @@ export interface SingleSelectItemProps extends Pick<React.ButtonHTMLAttributes<H
   asChild?: boolean;
   /** Only use when asChild is set to true and only pass one child */
   children?: React.ReactNode;
-  // TODO: Skal vi fortsatt ha denne?
-  /** Value for this singleSelectItem option */
+  /** Value for this singleSelectItem option - used by the parent wrapper to keep track of the context */
   value?: string;
-  /** Name (only semantic) */
-  name?: string;
   /** aria-describedby passthrough if needed */
   ['aria-describedby']?: string;
 }
 
 export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, ref: React.Ref<HTMLElement>) => {
-  const { label, inputId = uuid(), name, value: valueProp, testId, labelClassNames, asChild = false, children, disabled, ...rest } = props;
+  const { text, value, testId, asChild = false, children, disabled, ...rest } = props;
 
+  const generatedId = useId();
+  const inputId = props.inputId ?? generatedId;
   const group = useSingleSelect();
-  const optionValue = (typeof valueProp === 'string' && valueProp.length > 0 ? valueProp : undefined) ?? String(inputId);
+  const optionValue = typeof value === 'string' && value.length > 0 ? value : inputId;
   const isSelected = group ? group.value === optionValue : false;
   const isDisabled = !!disabled || !!group?.disabled;
   const asChildSlotRef = React.useRef<AsChildSlotHandle | null>(null);
 
-  const contentClasses = classNames(
-    styles['single-select-item__content'],
-    {
-      [styles['single-select-item__content--disabled']]: isDisabled,
-    },
-    labelClassNames
-  );
+  const contentClasses = classNames(styles['single-select-item__content'], {
+    [styles['single-select-item__content--disabled']]: isDisabled,
+  });
   const dotClasses = classNames(styles['single-select-item__dot'], {
     [styles['single-select-item__dot--disabled']]: isDisabled,
     [styles['single-select-item__dot--checked']]: isSelected,
@@ -65,7 +56,7 @@ export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, 
   const content = (
     <>
       <span className={dotClasses} aria-hidden />
-      <span>{label}</span>
+      <span>{text}</span>
     </>
   );
 
@@ -100,9 +91,6 @@ export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, 
         ref: ref as React.Ref<HTMLButtonElement>,
         'aria-disabled': isDisabled || undefined,
         'aria-current': isSelected ? 'true' : undefined,
-        //TODO: Trengs disse?
-        'data-radio-name': group?.name ?? name,
-        'data-radio-value': optionValue,
         children: content,
       };
 

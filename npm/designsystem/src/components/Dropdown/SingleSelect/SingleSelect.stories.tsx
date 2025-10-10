@@ -4,7 +4,6 @@ import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import SingleSelectItem from './SingleSelectItem';
-import Label from '../../Label';
 import Dropdown from '../Dropdown';
 
 const meta = {
@@ -24,7 +23,7 @@ const meta = {
     },
   },
   args: {
-    label: 'Ta et valg',
+    text: 'Ta et valg',
   },
   argTypes: {},
 } satisfies Meta<typeof SingleSelectItem>;
@@ -36,10 +35,10 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {},
   render: () => (
-    <Dropdown label="Dropdown" placeholder="Velg en">
-      <Dropdown.SingleSelectItem label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.SingleSelectItem label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="radiobutton" />
-      <Dropdown.SingleSelectItem label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="radiobutton" />
+    <Dropdown triggerText="Velg en">
+      <Dropdown.SingleSelectItem text={'Valg 1'} />
+      <Dropdown.SingleSelectItem text={'Valg 2'} />
+      <Dropdown.SingleSelectItem text={'Valg 3'} />
     </Dropdown>
   ),
 };

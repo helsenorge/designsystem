@@ -1,16 +1,11 @@
 @use 'sass:map';
 @use '../../scss/font-settings' as font-settings;
-@use '../../scss/screen-reader' as *;
 @use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/colors.css';
 @import '../../scss/supernova/styles/spacers.css';
 
 .dropdown {
   position: relative;
-
-  &__label {
-    @include sr-only;
-  }
 
   &__toggle {
     display: flex;
@@ -85,7 +80,7 @@
       border-color: var(--color-base-border-onlight-emphasized);
     }
 
-    &__label {
+    &__text {
       padding: 0.34rem 0;
       white-space: nowrap;
       overflow: hidden;
@@ -103,6 +98,19 @@
 
   &__right-icon {
     margin-left: var(--core-space-3xs);
+  }
+
+  &__left-icon,
+  &__right-icon {
+    fill: var(--color-action-graphics-onlight);
+
+    :hover>& {
+      fill: var(--color-action-graphics-onlight-hover);
+    }
+
+    :disabled>& {
+      fill: var(--color-disabled-graphics);
+    }
   }
 
   &__content {
