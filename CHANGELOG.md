@@ -1,3 +1,23 @@
+## 13.0.0-beta.0 (2025-10-10)
+
+### Features
+
+- react 19 støttes i peerdeps ([958be5b](https://github.com/helsenorge/designsystem/commit/958be5b32fc347be04e33dc7405936a1726cce44)),
+  closes [#361681](https://github.com/helsenorge/designsystem/issues/361681)
+- **icons:** bytt navn på patientandperson og personandpatient
+  ([756ffe9](https://github.com/helsenorge/designsystem/commit/756ffe9d5a82110c0683fb0a24ac8aedde84d8d7)), closes
+  [#350215](https://github.com/helsenorge/designsystem/issues/350215)
+- **usehover:** fjernet hook ([d6545ac](https://github.com/helsenorge/designsystem/commit/d6545ac6d64155f3783ea5627d3fdbc74bf35425)), closes
+  [#353276](https://github.com/helsenorge/designsystem/issues/353276)
+
+### Bug Fixes
+
+- **input:** endre høyden til input og select til å matche
+  ([abf51c4](https://github.com/helsenorge/designsystem/commit/abf51c49c248eab5fd6e5102225d79e1a0131a91)), closes
+  [#335472](https://github.com/helsenorge/designsystem/issues/335472)
+- **label:** kun rendre sublabel wrapper om det er innhold i den
+  ([df90851](https://github.com/helsenorge/designsystem/commit/df908511874ed4dfe939591ca3823fa20ad2f4cd))
+
 ## [12.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.4.0&targetVersion=GTv12.5.0) (2025-10-08)
 
 ### Features
