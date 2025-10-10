@@ -1,3 +1,5 @@
 {
-  "allRequired": "Alle felt må fylles ut"
+  "allRequired": "Alle felt må fylles ut",
+  "requiredField": "Må fylles ut",
+  "optional": "Valgfritt"
 }
