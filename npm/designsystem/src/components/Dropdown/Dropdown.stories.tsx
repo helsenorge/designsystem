@@ -137,60 +137,76 @@ export const WithIcon: Story = {
   ),
 };
 
-const CurrentPath: React.FC = () => {
-  const location = useLocation();
-  React.useEffect(() => {
-    action('navigated')(location.pathname);
-  }, [location.pathname]);
-  return (
-    <div style={{ marginTop: '1rem', fontFamily: 'monospace' }}>
-      {'Current path:'}
-      <strong>{location.pathname}</strong>
-    </div>
-  );
-};
-
 export const AsChild: Story = {
   args: {
     onToggle: action('onToggle'),
   },
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+        <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<CurrentPath />} />
+          <Route path="/sprak/:lang" element={<CurrentPath />} />
+        </Routes>
+        <br />
+        <Dropdown {...args} svgIcon={Globe}>
+          <Dropdown.SingleSelectItem asChild text={'As Button 1'}>
+            <button onClick={action('Button click: As Button 1')} />
+          </Dropdown.SingleSelectItem>
+  
+          <Dropdown.SingleSelectItem asChild text={'As Button 2'}>
+            <button onClick={action('Button click: As Button 2')} />
+          </Dropdown.SingleSelectItem>
+  
+          <Dropdown.SingleSelectItem asChild text={'As AnchorLink 1'}>
+            <a href="#" target="_blank">
+              {'As AnchorLink 1'}
+            </a>
+          </Dropdown.SingleSelectItem>
+  
+          <Dropdown.SingleSelectItem asChild text={'As AnchorLink 2'}>
+            <a href="#" target="_blank">
+              {'As AnchorLink 2'}
+            </a>
+          </Dropdown.SingleSelectItem>
+  
+          <Dropdown.SingleSelectItem asChild text={'As React Router Link (en)'} value="en">
+            <Link to="/sprak/en" />
+          </Dropdown.SingleSelectItem>
+  
+          <Dropdown.SingleSelectItem asChild text={'As React Router Link (nb)'} value="nb">
+            <Link to="/sprak/nb" />
+          </Dropdown.SingleSelectItem>
+        </Dropdown>
+      </MemoryRouter>`,
+      },
+    },
+  },
   render: args => (
-    <MemoryRouter initialEntries={['/']}>
-      <Routes>
-        <Route path="/" element={<CurrentPath />} />
-        <Route path="/sprak/:lang" element={<CurrentPath />} />
-      </Routes>
-      <br />
-      <Dropdown {...args} svgIcon={Globe}>
-        <Dropdown.SingleSelectItem asChild text={'As Button 1'}>
-          <button onClick={action('Button click: As Button 1')} />
-        </Dropdown.SingleSelectItem>
+    <Dropdown {...args} svgIcon={Globe}>
+      <Dropdown.SingleSelectItem asChild text={'As Button 1'}>
+        <button onClick={action('Button click: As Button 1')} />
+      </Dropdown.SingleSelectItem>
 
-        <Dropdown.SingleSelectItem asChild text={'As Button 2'}>
-          <button onClick={action('Button click: As Button 2')} />
-        </Dropdown.SingleSelectItem>
+      <Dropdown.SingleSelectItem asChild text={'As Button 2'}>
+        <button onClick={action('Button click: As Button 2')} />
+      </Dropdown.SingleSelectItem>
 
-        <Dropdown.SingleSelectItem asChild text={'As AnchorLink 1'}>
-          <a href="#" target="_blank">
-            {'As AnchorLink 1'}
-          </a>
-        </Dropdown.SingleSelectItem>
+      <Dropdown.SingleSelectItem asChild text={'As AnchorLink 1'}>
+        <a href="#" target="_blank">
+          {'As AnchorLink 1'}
+        </a>
+      </Dropdown.SingleSelectItem>
 
-        <Dropdown.SingleSelectItem asChild text={'As AnchorLink 2'}>
-          <a href="#" target="_blank">
-            {'As AnchorLink 2'}
-          </a>
-        </Dropdown.SingleSelectItem>
-
-        <Dropdown.SingleSelectItem asChild text={'As React Router Link (en)'} value="en">
-          <Link to="/sprak/en" />
-        </Dropdown.SingleSelectItem>
-
-        <Dropdown.SingleSelectItem asChild text={'As React Router Link (nb)'} value="nb">
-          <Link to="/sprak/nb" />
-        </Dropdown.SingleSelectItem>
-      </Dropdown>
-    </MemoryRouter>
+      <Dropdown.SingleSelectItem asChild text={'As AnchorLink 2'}>
+        <a href="#" target="_blank">
+          {'As AnchorLink 2'}
+        </a>
+      </Dropdown.SingleSelectItem>
+    </Dropdown>
   ),
 };
 
