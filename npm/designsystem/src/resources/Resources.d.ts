@@ -90,4 +90,11 @@ export type HNDesignsystemDrawer = {
   ariaLabelCloseBtn: string;
 };
 
+export type HNDesignsystemFormFieldTag = {
+  /**
+   * Alle felt må fylles ut
+   */
+  allRequired: string;
+};
+
 /* eslint:enable */
