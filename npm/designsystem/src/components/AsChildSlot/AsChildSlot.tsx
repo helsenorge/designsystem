@@ -14,7 +14,7 @@ export interface AsChildSlotProps {
   children?: React.ReactNode;
   /** Class names to apply to the visible element */
   className?: string;
-  /** Content to render inside the visible element (dot + label) */
+  /** Content to render inside the visible element - For example the text and icons of the parent component that renders AsChildSlot */
   content?: React.ReactNode;
   /** Disabled state passed down (merged with child’s disabled/aria-disabled) */
   disabled?: boolean;
