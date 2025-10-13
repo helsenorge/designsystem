@@ -1,0 +1,17 @@
+@use '../../scss/font-mixins' as fonts;
+@import '../../scss/supernova/styles/colors.css';
+
+.form-field-tag {
+  @include fonts.image-caption;
+
+  font-weight: 400;
+  background-color: var(--core-color-banana-100);
+  color: var(--core-color-neutral-800);
+
+  // 2px vertical padding to match figmas text box height
+  padding: 0.125rem 0.1875rem;
+
+  &--optional {
+    background-color: var(--core-color-blueberry-100);
+  }
+}

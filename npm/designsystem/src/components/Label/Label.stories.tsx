@@ -42,6 +42,10 @@ const meta = {
       control: 'select',
       options: allLabelTags,
     },
+    formFieldLevel: {
+      control: 'select',
+      options: ['all-required', 'required-field', 'optional'],
+    },
   },
 } satisfies Meta<LabelWithAndCustomArgs>;
 
@@ -197,4 +201,64 @@ export const LabelWithChildren: Story = {
 
 export const PureComponentStory: Story = {
   render: args => <Label {...args} labelTexts={[{ text: 'Skriv inn din tekst' }]} />,
+};
+
+export const AllVariantsWithFormFieldTag: Story = {
+  render: args => {
+    const sublabelId1 = 'sublabel-testid1';
+    const statusDotId1 = 'statusdot-testid1';
+
+    const sublabelTexts: LabelText[] = [
+      { text: 'This is a normal sublabel' },
+      { text: 'subdued sublabel - hidden from screen reader', type: 'subdued', hideFromScreenReader: true },
+    ];
+
+    return (
+      <>
+        <Input {...args} label={<Label {...args} labelTexts={[{ text: 'Label' }]} formFieldLevel="required-field" />} />
+        <Spacer size={'2xl'} />
+        <Input
+          label={
+            <Label
+              {...args}
+              labelTexts={[{ text: 'normal label' }, { text: 'subdued label', type: 'subdued' }]}
+              sublabel={<Sublabel id={sublabelId1} sublabelTexts={sublabelTexts} />}
+              formFieldLevel="required-field"
+            />
+          }
+          aria-describedby={sublabelId1 + ' ' + statusDotId1}
+        />
+        <Spacer size={'2xl'} />
+        <Input
+          label={
+            <Label
+              {...args}
+              labelTexts={[{ text: 'normal label' }]}
+              statusDot={<StatusDot id={statusDotId1} text={'Statusdot text'} variant={'alert'} />}
+              formFieldLevel="required-field"
+            />
+          }
+          aria-describedby={sublabelId1 + ' ' + statusDotId1}
+        />
+        <Spacer size={'2xl'} />
+        <Input
+          label={
+            <Label
+              {...args}
+              labelTexts={[
+                { text: 'normal label' },
+                { text: 'subdued label', type: 'subdued' },
+                { text: 'this is hidden from screen readers', type: 'subdued', hideFromScreenReader: true },
+              ]}
+              sublabel={<Sublabel id={sublabelId1} sublabelTexts={sublabelTexts} />}
+              statusDot={<StatusDot id={statusDotId1} text={'Statusdot text'} variant={'alert'} />}
+              formFieldLevel="required-field"
+            />
+          }
+          aria-describedby={sublabelId1 + ' ' + statusDotId1}
+        />
+        <Spacer size={'2xl'} />
+      </>
+    );
+  },
 };
