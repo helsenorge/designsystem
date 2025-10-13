@@ -17,8 +17,9 @@
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
 
   &--focused {
-    border-width: 3px;
+    border-width: 2px;
     border-color: var(--color-action-border-onlight-focus);
+    background-color: var(--component-stickynote-background-normal-medium);
   }
 
   &--hovered {
@@ -42,7 +43,7 @@
     }
 
     &#{$sticky-note}--focused {
-      border-width: 3px;
+      border-width: 2px;
       border-color: var(--color-action-border-onlight-focus);
     }
   }
@@ -90,8 +91,8 @@
     height: 22px;
 
     .sticky-note--focused & {
-      bottom: -4px;
-      right: -4px;
+      bottom: -3px;
+      right: -3px;
     }
   }
 

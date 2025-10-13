@@ -28,6 +28,7 @@ const Triangle: React.FC<TriangleProps> = ({ isHover, isFocus, isActive, isError
       }
       if (isFocus) {
         colors.border = 'var(--color-action-border-onlight-focus)';
+        colors.background = 'var(--component-stickynote-background-fold-normal-medium)';
       }
     } else {
       colors.border = 'var(--component-stickynote-border-error)';
@@ -40,6 +41,7 @@ const Triangle: React.FC<TriangleProps> = ({ isHover, isFocus, isActive, isError
       }
       if (isFocus) {
         colors.border = 'var(--color-action-border-onlight-focus)';
+        colors.background = 'var(--component-stickynote-background-fold-error-medium)';
       }
     }
     return colors;
@@ -68,7 +70,10 @@ const Triangle: React.FC<TriangleProps> = ({ isHover, isFocus, isActive, isError
             <mask id="path-1-inside-1_7753_1374" fill="white">
               <path d="M0.923827 20.9211L0.70703 20.9211L0.707031 0.921142L20.707 0.921143L20.707 1.13794L0.923827 20.9211Z" />
             </mask>
-            <path d="M0.923827 20.9211L0.70703 20.9211L0.707031 0.921142L20.707 0.921143L20.707 1.13794L0.923827 20.9211Z" fill="#F9EA9F" />
+            <path
+              d="M0.923827 20.9211L0.70703 20.9211L0.707031 0.921142L20.707 0.921143L20.707 1.13794L0.923827 20.9211Z"
+              fill={palette.background}
+            />
             <path
               d="M0.923827 20.9211L0.923827 22.9211L1.75225 22.9211L2.33804 22.3354L0.923827 20.9211ZM0.70703 20.9211L-1.29297 20.9211L-1.29297 22.9211L0.70703 22.9211L0.70703 20.9211ZM0.707031 0.921142L0.707031 -1.07886L-1.29297 -1.07886L-1.29297 0.921142L0.707031 0.921142ZM20.707 0.921143L22.707 0.921143L22.707 -1.07886L20.707 -1.07886L20.707 0.921143ZM20.707 1.13794L22.1212 2.55215L22.707 1.96637L22.707 1.13794L20.707 1.13794ZM0.923827 20.9211L0.923827 18.9211L0.70703 18.9211L0.70703 20.9211L0.70703 22.9211L0.923827 22.9211L0.923827 20.9211ZM0.70703 20.9211L2.70703 20.9211L2.70703 0.921142L0.707031 0.921142L-1.29297 0.921142L-1.29297 20.9211L0.70703 20.9211ZM0.707031 0.921142L0.707031 2.92114L20.707 2.92114L20.707 0.921143L20.707 -1.07886L0.707031 -1.07886L0.707031 0.921142ZM20.707 0.921143L18.707 0.921142L18.707 1.13794L20.707 1.13794L22.707 1.13794L22.707 0.921143L20.707 0.921143ZM20.707 1.13794L19.2928 -0.276274L-0.490386 19.5069L0.923827 20.9211L2.33804 22.3354L22.1212 2.55215L20.707 1.13794Z"
               fill="black"
