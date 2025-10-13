@@ -68,11 +68,11 @@
   /* Vis status/tidskoder - lav linjehøyde for kompakt visning */
   --mobile-status-time-stamp-time: 400 1rem/110% "Source Sans Pro";
   --mobile-h5-title5: 700 1rem/140% "Source Sans Pro";
-  --desktop-h6-title6: 700 1.125rem/140% "Source Sans Pro";
+  --desktop-h6-title6: 600 1.125rem/140% "Source Sans Pro";
   --desktop-label-subdued: 400 1.25rem/130% "Source Sans Pro";
   --desktop-sublabel: 600 1.125rem/130% "Source Sans 3";
   --desktop-sublabel-subdued: 400 1.125rem/130% "Source Sans 3";
-  --mobile-h6-title6: 700 1rem/140% "Source Sans Pro";
+  --mobile-h6-title6: 600 1rem/140% "Source Sans Pro";
   --mobile-label-subdued: 400 1.125rem/120% "Source Sans Pro";
   --mobile-sublabel: 600 1rem/120% "Source Sans 3";
 
