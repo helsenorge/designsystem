@@ -1,52 +1,49 @@
+@use 'sass:map';
 @use '../../scss/font-settings' as font-settings;
+@use '../../scss/font-mixins' as fonts;
+@use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/colors.css';
 
 .sticky-note {
+  $sticky-note: &;
+
   position: relative;
-  background-color: var(--core-color-banana-50);
+  background-color: var(--component-stickynote-background-normal-light);
   width: 100%;
-  border: var(--core-color-banana-300) 1px solid;
+  max-width: 32rem;
+  border: var(--component-stickynote-border-normal) 1px solid;
   padding: 12px;
   overflow: hidden;
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
 
   &--focused {
-    background-color: var(--core-color-banana-50);
-    border-color: var(--core-color-banana-600);
+    border-width: 3px;
+    border-color: var(--color-action-border-onlight-focus);
   }
 
   &--hovered {
-    background-color: var(--core-color-banana-100);
-    border: var(--core-color-banana-100) 1px solid;
+    background-color: var(--component-stickynote-background-normal-medium);
+  }
+
+  &--active {
+    background-color: var(--component-stickynote-background-normal-dark);
   }
 
   &--error {
-    background-color: var(--core-color-cherry-50);
-    border: var(--core-color-cherry-300) 1px solid;
-  }
+    background-color: var(--component-stickynote-background-error-light);
+    border: var(--component-stickynote-border-error) 1px solid;
 
-  &__x-button {
-    cursor: pointer;
-    background-color: transparent;
-    color: var(--color-base-text-onlight);
-    border: 0;
-    width: 2.75rem;
-    height: 2.75rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 2px;
-    right: 2px;
-
-    &:hover {
-      background-color: var(--core-color-banana-200); // todo: bestem farge her
-      outline: 1px solid var(--core-color-banana-500); // todo: bestem farge her
+    &#{$sticky-note}--hovered {
+      background-color: var(--component-stickynote-background-error-medium);
     }
 
-    &:focus-visible {
-      background-color: var(--color-action-background-transparent-onlight-hoverselected);
-      outline: 2px solid var(--color-action-border-onlight-focus);
+    &#{$sticky-note}--active {
+      background-color: var(--component-stickynote-background-error-dark);
+    }
+
+    &#{$sticky-note}--focused {
+      border-width: 3px;
+      border-color: var(--color-action-border-onlight-focus);
     }
   }
 
@@ -57,8 +54,9 @@
     align-items: center;
 
     &__timestamp {
+      @include fonts.compact-data;
+
       color: var(--color-placeholder-text-onlight);
-      font-size: 1rem;
     }
   }
 
@@ -79,9 +77,9 @@
   }
 
   &__footer {
+    @include fonts.image-credit;
+
     color: var(--color-placeholder-text-onlight);
-    font-size: 0.75rem;
-    font-style: italic;
   }
 
   &__triangle {
@@ -90,12 +88,89 @@
     right: -2px;
     width: 22px;
     height: 22px;
+
+    .sticky-note--focused & {
+      bottom: -4px;
+      right: -4px;
+    }
   }
 
   &__error-text {
+    @include fonts.sublabel-subdued;
+
     color: var(--color-notification-status-error);
-    line-height: 1.875rem;
-    font-size: font-settings.$font-size-sm;
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
+  }
+}
+
+$desktop-size: 3rem;
+$mobile-inner-size: 2.375rem;
+$mobile-outer-size: 2.75rem;
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  height: $mobile-outer-size;
+  width: $mobile-outer-size;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    height: $desktop-size;
+    width: $desktop-size;
+  }
+
+  &--small {
+    height: $mobile-outer-size;
+    width: $mobile-outer-size;
+  }
+
+  &__inner-container {
+    width: $mobile-inner-size;
+    height: $mobile-inner-size;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      height: $desktop-size;
+      width: $desktop-size;
+    }
+
+    &--small {
+      width: $mobile-inner-size;
+      height: $mobile-inner-size;
+    }
+
+    :hover > & {
+      background-color: var(--component-stickynote-background-transparent-onlight-hover);
+    }
+
+    :active > & {
+      background-color: var(--component-stickynote-background-transparent-onlight-active);
+    }
+
+    :focus-visible > & {
+      outline: 3px solid var(--color-action-border-onlight-focus);
+      border-radius: 0;
+      border: 0;
+    }
+
+    &--error {
+      :hover > & {
+        background-color: var(--component-stickynote-background-transparent-error-hover);
+      }
+
+      :active > & {
+        background-color: var(--component-stickynote-background-transparent-error-active);
+      }
+    }
   }
 }

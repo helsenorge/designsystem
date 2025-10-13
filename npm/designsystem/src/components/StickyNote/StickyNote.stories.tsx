@@ -13,7 +13,6 @@ import Title from '../Title';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/StickyNote',
   component: StickyNote,
-  tags: ['not-supernova'],
   parameters: {
     docs: {
       description: {
