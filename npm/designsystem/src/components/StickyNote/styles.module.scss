@@ -45,6 +45,7 @@
     &#{$sticky-note}--focused {
       border-width: 2px;
       border-color: var(--color-action-border-onlight-focus);
+      background-color: var(--component-stickynote-background-error-medium);
     }
   }
 
