@@ -1,0 +1,12 @@
+.toast-list {
+  position: fixed;
+  z-index: 1;
+  inset-block-end: 0;
+  inset-inline: 1.2188rem;
+  padding-block-end: 1rem;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  gap: 1rem;
+  pointer-events: none;
+}
