@@ -2,7 +2,6 @@ import React from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
-import { action } from 'storybook/actions';
 
 import StickyNote from './StickyNote';
 import Button from '../Button';
@@ -76,19 +75,6 @@ export const Controlled: Story = {
 export const DefaultValue: Story = {
   render: args => {
     return <StickyNote {...args} defaultValue={'Et lite notat som jeg skal huske på til legetimen.'} />;
-  },
-};
-
-export const Disabled: Story = {
-  render: args => {
-    return (
-      <StickyNote
-        {...args}
-        onClickWhileDisabled={action('Denne er disabled og kan ikke endres')}
-        disabled
-        defaultValue={'Dette notatet kan ikke endres på.'}
-      />
-    );
   },
 };
 
