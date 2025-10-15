@@ -1,0 +1,23 @@
+@use '../../scss/font-mixins' as fonts;
+@import '../../scss/supernova/styles/colors.css';
+
+.form-field-tag {
+  @include fonts.image-caption;
+
+  font-weight: 400;
+  display: block;
+  width: fit-content;
+  background: linear-gradient(180deg, transparent 8%, var(--core-color-banana-100) 8%, var(--core-color-banana-100) 92%, transparent 92%);
+  color: var(--core-color-neutral-800);
+  padding: 0 0.1875rem;
+
+  &--optional {
+    background: linear-gradient(
+      180deg,
+      transparent 8%,
+      var(--core-color-blueberry-100) 8%,
+      var(--core-color-blueberry-100) 92%,
+      transparent 92%
+    );
+  }
+}

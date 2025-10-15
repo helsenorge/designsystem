@@ -53,6 +53,10 @@ const meta = {
     name: {
       control: 'text',
     },
+    formFieldLevel: {
+      control: 'select',
+      options: ['all-required', 'required-field', 'optional'],
+    },
   },
 } satisfies Meta<typeof FormGroup>;
 
