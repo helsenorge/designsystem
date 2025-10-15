@@ -175,11 +175,7 @@ const Label: FunctionComponent<LabelProps> = ({
           </span>
         </CustomTag>
         <div className={sublabelWrapperClassName}>
-          {formFieldLevel && (
-            <div>
-              <FormFieldTag level={formFieldLevel} />
-            </div>
-          )}
+          {formFieldLevel && <FormFieldTag level={formFieldLevel} />}
           {sublabel &&
             isComponent<SublabelProps>(sublabel, Sublabel) &&
             React.cloneElement(sublabel, {

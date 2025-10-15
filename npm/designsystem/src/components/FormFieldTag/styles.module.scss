@@ -5,13 +5,19 @@
   @include fonts.image-caption;
 
   font-weight: 400;
-  background-color: var(--core-color-banana-100);
+  display: block;
+  width: fit-content;
+  background: linear-gradient(180deg, transparent 8%, var(--core-color-banana-100) 8%, var(--core-color-banana-100) 92%, transparent 92%);
   color: var(--core-color-neutral-800);
-
-  // 2px vertical padding to match figmas text box height
-  padding: 0.125rem 0.1875rem;
+  padding: 0 0.1875rem;
 
   &--optional {
-    background-color: var(--core-color-blueberry-100);
+    background: linear-gradient(
+      180deg,
+      transparent 8%,
+      var(--core-color-blueberry-100) 8%,
+      var(--core-color-blueberry-100) 92%,
+      transparent 92%
+    );
   }
 }
