@@ -94,7 +94,6 @@ export const AllVariants: Story = {
               sublabel={<Sublabel id={sublabelId2} sublabelTexts={sublabelTexts} />}
               statusDot={<StatusDot id={statusDotId2} text={'Statusdot text'} variant={'alert'} />}
             />
-            // legge til story om UU og aria-describedby
           }
           aria-describedby={sublabelId2 + ' ' + statusDotId2}
         />
