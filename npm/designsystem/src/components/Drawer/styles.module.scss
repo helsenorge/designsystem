@@ -8,18 +8,18 @@
 @mixin drawer-scroll-shadow {
   // Scroll shadow
   // Inspired by: https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/
-  background:
-    linear-gradient(white 30%, rgb(255 255 255 / 0%)) center top,
-    linear-gradient(rgb(255 255 255 / 0%), white 70%) center bottom,
-    linear-gradient(rgb(0 0 0 / 46%), rgb(0 0 0 / 0%)) center top,
-    linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 46%)) center bottom;
-  background-repeat: no-repeat;
-  background-size:
-    100% 40px,
-    100% 40px,
-    100% 16px,
-    100% 16px;
-  background-attachment: local, local, scroll, scroll;
+  // background:
+  //   linear-gradient(white 30%, rgb(255 255 255 / 0%)) center top,
+  //   linear-gradient(rgb(255 255 255 / 0%), white 70%) center bottom,
+  //   linear-gradient(rgb(0 0 0 / 46%), rgb(0 0 0 / 0%)) center top,
+  //   linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 46%)) center bottom;
+  // background-repeat: no-repeat;
+  // background-size:
+  //   100% 40px,
+  //   100% 40px,
+  //   100% 16px,
+  //   100% 16px;
+  // background-attachment: local, local, scroll, scroll;
 }
 
 .drawer {
@@ -81,7 +81,7 @@
       @include breakpoints.tiny-screens-media-query {
         overflow-y: auto;
 
-        @include drawer-scroll-shadow;
+        // todo: shadow på dette breakpointet
 
         &:focus-visible {
           outline: 1px solid palette.$black;
@@ -130,15 +130,10 @@
 
   &__content {
     overflow-y: auto;
-    padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
 
     &:focus-visible {
       outline: 1px solid palette.$black;
       outline-offset: -1px;
-    }
-
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      padding: spacers.getSpacer(s) spacers.getSpacer(xs);
     }
 
     @include breakpoints.tiny-screens-media-query {
@@ -146,6 +141,30 @@
     }
 
     @include drawer-scroll-shadow;
+
+    &__children {
+      padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: spacers.getSpacer(s) spacers.getSpacer(xs);
+      }
+    }
+
+    &__shadow {
+      position: sticky;
+      z-index: 10;
+      height: 16px;
+
+      &--top {
+        top: 0;
+        background: linear-gradient(to bottom, #00000075, transparent);
+      }
+
+      &--bottom {
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent, #00000075);
+      }
+    }
   }
 
   &__footer {

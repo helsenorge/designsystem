@@ -4,6 +4,10 @@ export type Styles = {
   drawer__container__inner: string;
   'drawer__container--right': string;
   drawer__content: string;
+  drawer__content__children: string;
+  drawer__content__shadow: string;
+  'drawer__content__shadow--bottom': string;
+  'drawer__content__shadow--top': string;
   drawer__footer: string;
   drawer__header: string;
   'drawer__header__close-button': string;
