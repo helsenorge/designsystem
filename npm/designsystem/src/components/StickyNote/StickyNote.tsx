@@ -2,12 +2,11 @@ import React, { useLayoutEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
-import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import Icon, { IconSize } from '../Icon';
+import Close from './Close';
 import Triangle from './Triangle';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useUuid } from '../../hooks/useUuid';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import X from '../Icons/X';
 
 import styles from './styles.module.scss';
 
@@ -52,8 +51,7 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
   const stickynoteRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { isFocused: isTextareaFocused } = usePseudoClasses<HTMLTextAreaElement>(textareaRef);
-  const { isHovered } = usePseudoClasses<HTMLDivElement>(stickynoteRef);
-  const triangleType = error ? 'error' : isTextareaFocused ? 'active' : 'default';
+  const { isHovered, isActive } = usePseudoClasses<HTMLDivElement>(stickynoteRef);
 
   const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>): void => {
     if ((event.target as HTMLElement).closest('button')) {
@@ -98,6 +96,7 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
         ref={stickynoteRef}
         className={classNames(styles['sticky-note'], wrapperClassName, {
           [styles['sticky-note--focused']]: isTextareaFocused,
+          [styles['sticky-note--active']]: isActive,
           [styles['sticky-note--hovered']]: isHovered && !isTextareaFocused && !textareaProps.disabled,
           [styles['sticky-note--error']]: error,
         })}
@@ -121,18 +120,10 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
           onChange={handleChange}
           aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
         />
-        <button
-          onClick={onXButtonClick}
-          aria-label={arialabelXButton}
-          data-testid="closeButton"
-          className={classNames(styles['sticky-note__x-button'])}
-          type="button"
-        >
-          <Icon svgIcon={X} color="black" size={IconSize.XXSmall} />
-        </button>
+        <Close onClick={onXButtonClick} ariaLabel={arialabelXButton} testId="closeButton" />
         <div className={classNames(styles['sticky-note__footer'])}>{footerText && <span>{footerText}</span>}</div>
         <div className={classNames(styles['sticky-note__triangle'])}>
-          <Triangle type={triangleType} />
+          <Triangle isHover={isHovered} isActive={isActive} isFocus={isTextareaFocused} isError={!!error} />
         </div>
       </div>
       {error && (

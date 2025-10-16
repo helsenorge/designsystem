@@ -30,6 +30,9 @@
   &__legend {
     margin-bottom: spacers.getSpacer(m);
     margin-top: 0;
+    display: flex;
+    flex-flow: column;
+    gap: 0.25rem;
 
     @include fonts.legend;
 
