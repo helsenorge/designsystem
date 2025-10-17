@@ -89,7 +89,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const openedByKeyboard = useRef<boolean>(false);
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
   const isMobile = useIsMobileBreakpoint();
-  const triggerActualMinWidth = typeof triggerMinWidth != 'undefined' ? triggerMinWidth : isMobile ? 225 : 240;
+  const triggerActualMinWidth = variant !== 'borderless' && typeof triggerMinWidth != 'undefined' ? `${triggerMinWidth}px` : 'auto';
   const triggerMinWidthLimit = isMobile ? 96 : 112;
   const maxWidth = isMobile ? 384 : 400;
   const toggleTextId = useId();
@@ -237,10 +237,12 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
     return (
       <li className={listItemClasses} id={`${optionIdPrefix}-${index}`}>
         {React.isValidElement(child) && childrenRefList.current && childrenRefList.current[index]
-          ? React.cloneElement(child as React.ReactElement<any>, {
+          ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            React.cloneElement(child as React.ReactElement<any>, {
               ref: mergeRefs([child.props.ref, childrenRefList.current[index]]),
               ...(isMultiSelect
                 ? {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     labelClassName: classNames((child as any).props.labelClassName, styles['dropdown__multiselect-item']),
                   }
                 : null),
@@ -265,7 +267,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         aria-controls={contentId}
         aria-expanded={isOpen}
         style={{
-          width: variant !== 'borderless' ? `${triggerActualMinWidth}px` : 'auto',
+          width: triggerActualMinWidth,
           maxWidth: '100%',
           minWidth: `${triggerMinWidthLimit}px`,
         }}

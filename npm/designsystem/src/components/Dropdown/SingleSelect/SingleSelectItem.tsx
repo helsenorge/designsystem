@@ -8,7 +8,7 @@ import AsChildSlot, { AsChildSlotHandle } from '../../AsChildSlot';
 import styles from './styles.module.scss';
 
 export interface SingleSelectItemProps extends Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
-  /** The next to the singleSelectItem */
+  /** The text to the singleSelectItem */
   text?: string;
   /** input id of the singleSelectItem */
   inputId?: string;
