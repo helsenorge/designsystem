@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
-import { MemoryRouter, Link, Routes, Route, useLocation } from 'react-router-dom';
 import { action } from 'storybook/actions';
 
 import Dropdown, { DropdownBase } from './Dropdown';
@@ -207,6 +206,27 @@ export const AsChild: Story = {
         </a>
       </Dropdown.SingleSelectItem>
     </Dropdown>
+  ),
+};
+
+export const DefaultSelected: Story = {
+  args: {
+    onToggle: action('onToggle'),
+  },
+  render: args => (
+    <>
+      <Dropdown {...args}>
+        <Dropdown.SingleSelectItem text={'Valg 1'} defaultSelected />
+        <Dropdown.SingleSelectItem text={'Valg 2'} />
+        <Dropdown.SingleSelectItem text={'Valg 3'} />
+      </Dropdown>
+      <br />
+      <Dropdown {...args} onToggle={action('onToggle')}>
+        <Checkbox label={<Label labelTexts={[{ text: 'Valg 1', type: 'subdued' }]} />} name="checkbox" checked />
+        <Checkbox label={<Label labelTexts={[{ text: 'Valg 2', type: 'subdued' }]} />} name="checkbox" checked />
+        <Checkbox label={<Label labelTexts={[{ text: 'Valg 3', type: 'subdued' }]} />} name="checkbox" />
+      </Dropdown>
+    </>
   ),
 };
 

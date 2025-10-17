@@ -29,6 +29,7 @@ import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
 import { IconName } from '../Icons/IconNames';
 import PlusSmall from '../Icons/PlusSmall';
+import Label, { LabelProps } from '../Label';
 import LazyIcon from '../LazyIcon';
 import { SingleSelect } from './SingleSelect/SingleSelect';
 
@@ -107,7 +108,6 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const isMultiSelect = React.Children.toArray(children).every(
     child => React.isValidElement(child) && isComponent<CheckboxProps>(child, Checkbox)
   );
-  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(undefined);
 
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
@@ -237,16 +237,25 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
     return (
       <li className={listItemClasses} id={`${optionIdPrefix}-${index}`}>
         {React.isValidElement(child) && childrenRefList.current && childrenRefList.current[index]
-          ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            React.cloneElement(child as React.ReactElement<any>, {
-              ref: mergeRefs([child.props.ref, childrenRefList.current[index]]),
-              ...(isMultiSelect
-                ? {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    labelClassName: classNames((child as any).props.labelClassName, styles['dropdown__multiselect-item']),
-                  }
-                : null),
-            })
+          ? ((): React.ReactElement => {
+              const baseProps: { ref: React.Ref<HTMLElement> } = {
+                ref: mergeRefs([child.props.ref, childrenRefList.current[index]]),
+              };
+
+              if (isMultiSelect) {
+                const label = (child.props as CheckboxProps).label as React.ReactNode;
+                if (React.isValidElement(label) && isComponent<LabelProps>(label, Label)) {
+                  return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
+                    ...baseProps,
+                    label: React.cloneElement(label, {
+                      labelClassName: classNames((label.props as LabelProps)?.labelClassName, styles['dropdown__multiselect-item']),
+                    }),
+                  });
+                }
+              }
+
+              return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, baseProps);
+            })()
           : child}
       </li>
     );
@@ -302,11 +311,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
         }}
       >
         <ul className={styles.dropdown__options} role="group" aria-labelledby={toggleTextId} tabIndex={-1} ref={optionsRef}>
-          {isSingleSelect && (
-            <SingleSelect value={selectedValue} onValueChange={v => setSelectedValue(v)}>
-              {renderChildren}
-            </SingleSelect>
-          )}
+          {isSingleSelect && <SingleSelect onValueChange={() => handleClose()}>{renderChildren}</SingleSelect>}
           {isMultiSelect && renderChildren}
         </ul>
         {!isSingleSelect && !noCloseButton && (

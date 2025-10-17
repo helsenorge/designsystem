@@ -22,10 +22,12 @@ export interface SingleSelectItemProps extends Pick<React.ButtonHTMLAttributes<H
   value?: string;
   /** aria-describedby passthrough if needed */
   ['aria-describedby']?: string;
+  /** Marks this option as initially selected */
+  defaultSelected?: boolean;
 }
 
 export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, ref: React.Ref<HTMLElement>) => {
-  const { text, value, testId, asChild = false, children, disabled, ...rest } = props;
+  const { text, value, testId, asChild = false, children, disabled, defaultSelected, ...rest } = props;
 
   const generatedId = useId();
   const inputId = props.inputId ?? generatedId;
@@ -34,6 +36,12 @@ export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, 
   const isSelected = group ? group.value === optionValue : false;
   const isDisabled = !!disabled || !!group?.disabled;
   const asChildSlotRef = React.useRef<AsChildSlotHandle | null>(null);
+
+  React.useEffect(() => {
+    if (defaultSelected && group && typeof group.value === 'undefined') {
+      group.onValueChange?.(optionValue);
+    }
+  }, [defaultSelected, group, optionValue]);
 
   const contentClasses = classNames(styles['single-select-item__content'], {
     [styles['single-select-item__content--disabled']]: isDisabled,

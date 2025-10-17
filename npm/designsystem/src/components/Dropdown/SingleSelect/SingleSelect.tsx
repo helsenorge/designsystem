@@ -13,30 +13,25 @@ const SingleSelectContext = React.createContext<SingleSelectContextType | null>(
 export interface SingleSelectProps {
   name?: string;
   disabled?: boolean;
-  required?: boolean;
-  value?: string;
   defaultValue?: string;
   onValueChange?: (newValue: string, e?: React.SyntheticEvent) => void;
   children: React.ReactNode;
 }
 
-export const SingleSelect: React.FC<SingleSelectProps> = ({ name, disabled, required, value, defaultValue, onValueChange, children }) => {
-  const isControlled = typeof value === 'string';
-  const [uncontrolled, setUncontrolled] = React.useState<string | undefined>(defaultValue);
-  const selected = isControlled ? value : uncontrolled;
+export const SingleSelect: React.FC<SingleSelectProps> = ({ name, disabled, defaultValue, onValueChange, children }) => {
+  const [selected, setSelected] = React.useState<string | undefined>(defaultValue);
 
   const context = React.useMemo<SingleSelectContextType>(
     () => ({
       name,
       disabled,
-      required,
       value: selected,
       onValueChange: (v, e): void => {
-        if (!isControlled) setUncontrolled(v);
+        setSelected(v);
         onValueChange?.(v, e);
       },
     }),
-    [name, disabled, required, selected, isControlled, onValueChange]
+    [name, disabled, selected, onValueChange]
   );
 
   return <SingleSelectContext.Provider value={context}>{children}</SingleSelectContext.Provider>;
