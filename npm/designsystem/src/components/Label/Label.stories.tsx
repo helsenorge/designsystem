@@ -9,6 +9,7 @@ import { allLabelTags } from '../../../.storybook/knobs';
 import { IconSize } from '../../constants';
 import { getColor } from '../../theme/currys';
 import Checkbox from '../Checkbox';
+import FormFieldTag from '../FormFieldTag';
 import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
 import Input from '../Input';
@@ -197,4 +198,84 @@ export const LabelWithChildren: Story = {
 
 export const PureComponentStory: Story = {
   render: args => <Label {...args} labelTexts={[{ text: 'Skriv inn din tekst' }]} />,
+};
+
+export const WithCorrectAriaAttributes: Story = {
+  render: args => {
+    const sublabelId1 = 'sublabel-testid1';
+    const statusDotId1 = 'statusdot-testid1';
+    const sublabelId2 = 'sublabel-testid2';
+    const statusDotId2 = 'statusdot-testid2';
+    const sublabelId3 = 'sublabel-testid3';
+    const statusDotId3 = 'statusdot-testid3';
+    const formFieldLevelId1 = 'formfieldtag-testid1';
+    const formFieldLevelId2 = 'formfieldtag-testid2';
+    const formFieldLevelId3 = 'formfieldtag-testid3';
+
+    const sublabelTexts: LabelText[] = [
+      { text: 'This is a normal sublabel' },
+      { text: 'subdued sublabel - hidden from screen reader', type: 'subdued', hideFromScreenReader: true },
+    ];
+
+    return (
+      <>
+        <Input
+          label={
+            <Label
+              {...args}
+              labelTexts={[
+                { text: 'normal label' },
+                { text: 'subdued label', type: 'subdued' },
+                { text: 'this is hidden from screen readers', type: 'subdued', hideFromScreenReader: true },
+              ]}
+              sublabel={<Sublabel id={sublabelId1} sublabelTexts={sublabelTexts} />}
+              statusDot={<StatusDot id={statusDotId1} text={'Statusdot text'} variant={'alert'} />}
+              formFieldTag={<FormFieldTag id={formFieldLevelId1} level="required-field" />}
+            />
+          }
+          aria-describedby={formFieldLevelId1 + ' ' + sublabelId1 + ' ' + statusDotId1}
+        />
+        <Spacer size={'2xl'} />
+        <Checkbox
+          label={
+            <Label
+              {...args}
+              labelTexts={[{ text: 'normal label' }, { text: 'normal label' }, { text: 'subdued label', type: 'subdued' }]}
+              sublabel={<Sublabel id={sublabelId2} sublabelTexts={sublabelTexts} />}
+              statusDot={<StatusDot id={statusDotId2} text={'Statusdot text'} variant={'alert'} />}
+              formFieldTag={<FormFieldTag id={formFieldLevelId2} level="required-field" />}
+            />
+          }
+          aria-describedby={formFieldLevelId2 + ' ' + sublabelId2 + ' ' + statusDotId2}
+        />
+        <Spacer size={'2xl'} />
+        <RadioButton
+          label={
+            <Label
+              {...args}
+              labelTexts={[{ text: 'normal label' }, { text: 'subdued label', type: 'subdued' }, { text: 'normal label' }]}
+              sublabel={<Sublabel id={sublabelId3} sublabelTexts={sublabelTexts} />}
+              statusDot={<StatusDot id={statusDotId3} text={'Statusdot text'} variant={'alert'} />}
+              formFieldTag={<FormFieldTag id={formFieldLevelId3} level="required-field" />}
+            />
+          }
+          aria-describedby={formFieldLevelId3 + ' ' + sublabelId3 + ' ' + statusDotId3}
+        />
+      </>
+    );
+  },
+};
+
+export const WithFormFieldTag: Story = {
+  render: args => {
+    const formFieldLevelId = 'formfieldtag-id';
+    return (
+      <Input
+        label={
+          <Label {...args} labelTexts={[{ text: 'Navn' }]} formFieldTag={<FormFieldTag id={formFieldLevelId} level="required-field" />} />
+        }
+        aria-describedby={formFieldLevelId}
+      />
+    );
+  },
 };

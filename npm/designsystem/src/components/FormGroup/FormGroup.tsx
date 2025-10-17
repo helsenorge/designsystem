@@ -7,6 +7,7 @@ import { useUuid } from '../../hooks/useUuid';
 import { isComponent } from '../../utils/component';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import ErrorWrapper from '../ErrorWrapper';
+import FormFieldTag, { FormFieldTagProps } from '../FormFieldTag';
 import FormLayout, { FormLayoutProps } from '../FormLayout';
 import Input, { InputProps } from '../Input/Input';
 import RadioButton, { RadioButtonProps, getRadioLabelClasses } from '../RadioButton/RadioButton';
@@ -34,6 +35,8 @@ export interface FormGroupProps {
   errorWrapperClassName?: string;
   /** Adds custom classes to the fieldset element. */
   fieldsetClassName?: string;
+  /** Sets a tag that describes whether the form group is required or optional */
+  formFieldTag?: React.ReactNode;
   /** Adds custom classes to the legend element. */
   legendClassName?: string;
   /** Changes the visuals of the formgroup */
@@ -63,6 +66,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     ariaLabelledBy,
     className,
     fieldsetClassName,
+    formFieldTag,
     legendClassName,
     onColor = FormOnColor.onwhite,
     size = FormSize.medium,
@@ -168,13 +172,27 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
       <div>
         {htmlMarkup === 'div' && (
           <div className={fieldsetClasses}>
-            {props.legend && <h5 className={legendClasses}>{props.legend}</h5>}
+            {props.legend && (
+              <>
+                <h5 className={legendClasses}>
+                  {props.legend}
+                  {formFieldTag && isComponent<FormFieldTagProps>(formFieldTag, FormFieldTag) && React.cloneElement(formFieldTag)}
+                </h5>
+              </>
+            )}
             {React.Children.map(props.children, mapFormComponent)}
           </div>
         )}
         {htmlMarkup === 'fieldset' && (
           <fieldset aria-labelledby={ariaLabelledBy} name={props.fieldsetName} className={fieldsetClasses}>
-            {props.legend && <legend className={legendClasses}>{props.legend}</legend>}
+            {props.legend && (
+              <>
+                <legend className={legendClasses}>
+                  {props.legend}
+                  {formFieldTag && isComponent<FormFieldTagProps>(formFieldTag, FormFieldTag) && React.cloneElement(formFieldTag)}
+                </legend>
+              </>
+            )}
             {React.Children.map(props.children, mapFormComponent)}
           </fieldset>
         )}

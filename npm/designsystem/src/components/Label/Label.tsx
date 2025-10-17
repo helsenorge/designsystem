@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { Sublabel, SublabelProps } from './SubLabel';
 import { AnalyticsId, FormOnColor } from '../../constants';
 import { isComponent } from '../../utils/component';
+import FormFieldTag, { FormFieldTagProps } from '../FormFieldTag';
 import Spacer from '../Spacer';
 import StatusDot, { StatusDotProps } from '../StatusDot';
 
@@ -23,6 +24,8 @@ export interface LabelProps {
   afterLabelChildren?: React.ReactNode;
   /** Sets the content of the Label */
   children?: React.ReactNode;
+  /** Sets a tag that describes whether the form field is required or optional */
+  formFieldTag?: React.ReactNode;
   /** Adds custom classes to the label tag. */
   labelClassName?: string;
   /** Adds custom classes to the label text. */
@@ -121,6 +124,7 @@ const Label: FunctionComponent<LabelProps> = ({
   afterLabelChildren,
   children,
   className,
+  formFieldTag,
   htmlFor,
   htmlMarkup = 'label',
   labelClassName,
@@ -171,6 +175,7 @@ const Label: FunctionComponent<LabelProps> = ({
           </span>
         </CustomTag>
         <div className={sublabelWrapperClassName}>
+          {formFieldTag && isComponent<FormFieldTagProps>(formFieldTag, FormFieldTag) && React.cloneElement(formFieldTag)}
           {sublabel &&
             isComponent<SublabelProps>(sublabel, Sublabel) &&
             React.cloneElement(sublabel, {

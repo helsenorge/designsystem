@@ -1,3 +1,95 @@
+## [12.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.4&targetVersion=GTv12.7.0) (2025-10-17)
+
+### Features
+
+- **formgroup:** endre prop for FormFieldTag til å være lik som i label
+  ([850b4e0](https://github.com/helsenorge/designsystem/commit/850b4e0cdc5888dbe29ba894c23e460dfe9d4930)), closes
+  [#362503](https://github.com/helsenorge/designsystem/issues/362503)
+
+## [12.6.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.3&targetVersion=GTv12.6.4) (2025-10-16)
+
+### Reverts
+
+- Revert "v12.6.3" ([973e6b8](https://github.com/helsenorge/designsystem/commit/973e6b8893fc765892a993adf83d93f4d5bfd5dd))
+
+## [12.6.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.2&targetVersion=GTv12.6.3) (2025-10-16)
+
+## [12.6.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.1&targetVersion=GTv12.6.2) (2025-10-16)
+
+## [12.6.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.0&targetVersion=GTv12.6.1) (2025-10-16)
+
+## [12.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.5.0&targetVersion=GTv12.6.0) (2025-10-16)
+
+### Features
+
+- **formfieldtag:** ny komponent for å markere obligatoriske felter
+  ([43186e8](https://github.com/helsenorge/designsystem/commit/43186e85e06d6b3e34124c3afd372180ecff9af9)), closes
+  [#361861](https://github.com/helsenorge/designsystem/issues/361861)
+- **stickynote:** justeringer etter ny figma komponent
+  ([b3afb5a](https://github.com/helsenorge/designsystem/commit/b3afb5a41f1400bef0afce40b244deafcac7b505)), closes
+  [#361520](https://github.com/helsenorge/designsystem/issues/361520)
+
+### Bug Fixes
+
+- **formfieldtag:** fiks display for at den holder seg i riktig størrelse
+  ([1e53dc1](https://github.com/helsenorge/designsystem/commit/1e53dc1cf52215a3476a1d6d86c36f8108b0fbc1)), closes
+  [#361861](https://github.com/helsenorge/designsystem/issues/361861)
+- **label:** bruk formfieldtag som komponent slik at man får satt id
+  ([006e152](https://github.com/helsenorge/designsystem/commit/006e1520cc16b66f637c11c193902510ebd72b76)), closes
+  [#361861](https://github.com/helsenorge/designsystem/issues/361861)
+
+## [12.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.4.0&targetVersion=GTv12.5.0) (2025-10-08)
+
+### Features
+
+- **datepicker:** default språkstøtte fra sot
+  ([1f2b2ae](https://github.com/helsenorge/designsystem/commit/1f2b2ae2ddd0ab527d976ec2d3dc6ec9293f58a0))
+- **drawer:** default språkstøtte fra sot
+  ([56517c5](https://github.com/helsenorge/designsystem/commit/56517c50ec9f4d61ecbbd3ce2ebbe509d9af898b))
+- **formgroup:** lagt til legendclassname prop
+  ([9dbd90c](https://github.com/helsenorge/designsystem/commit/9dbd90c7efbb838fb5204870bcfd90a089d03f4c)), closes
+  [#360836](https://github.com/helsenorge/designsystem/issues/360836)
+- **helptriggericon:** lagt til classname prop
+  ([b9d207e](https://github.com/helsenorge/designsystem/commit/b9d207ec0871ce79259562042f4b321b21b94fd8)), closes
+  [#360496](https://github.com/helsenorge/designsystem/issues/360496)
+- **icon:** nytt ikon feedback ([0e3f89c](https://github.com/helsenorge/designsystem/commit/0e3f89c04c897c8667593396cecaceb8d50fd879)),
+  closes [#360055](https://github.com/helsenorge/designsystem/issues/360055)
+- **listeditmode:** funksjonalitet for å redigere liste
+  ([d87e8c5](https://github.com/helsenorge/designsystem/commit/d87e8c59d44ce2278b403df3c3858029db280ad0)), closes
+  [#359697](https://github.com/helsenorge/designsystem/issues/359697)
+- **tabs:** default språkstøtte fra sot
+  ([733fd7e](https://github.com/helsenorge/designsystem/commit/733fd7e559e57cb3dfaf5e2efd52ac8754db8f6d))
+
+### Bug Fixes
+
+- **drawer:** legg breakpoint check på outer level for å vise animasjon riktig igjen
+  ([04f604a](https://github.com/helsenorge/designsystem/commit/04f604aaba66738ac710c28cb5514ec7b0d2967a)), closes
+  [#360641](https://github.com/helsenorge/designsystem/issues/360641)
+- **favoritebutton:** kun vis fokusstrek på focus-visible"
+  ([2dc6b2f](https://github.com/helsenorge/designsystem/commit/2dc6b2f954cdb7a5b5b3e7326a8c0d42723ef972)), closes
+  [#357829](https://github.com/helsenorge/designsystem/issues/357829)
+- **helptriggericon:** fiks så komponenten fungerer i liste igjen
+  ([45f801e](https://github.com/helsenorge/designsystem/commit/45f801edb77306cd7cba614396a7abc1089a610b)), closes
+  [#353532](https://github.com/helsenorge/designsystem/issues/353532) [#360885](https://github.com/helsenorge/designsystem/issues/360885)
+- **helptriggericon:** juster ikon ift tekst uten å endre linjehøyde
+  ([687a0fa](https://github.com/helsenorge/designsystem/commit/687a0fa13798a757408d417bde0d9bdb57cb59e1)), closes
+  [#360885](https://github.com/helsenorge/designsystem/issues/360885)
+- **list:** vertikalt align knapper riktig i liste
+  ([2926423](https://github.com/helsenorge/designsystem/commit/2926423198f6459228ea28b5c68945407756c6e3)), closes
+  [#353532](https://github.com/helsenorge/designsystem/issues/353532)
+- **panel:** juster paddings for å ta hensyn til statuslinje
+  ([1e8f5ff](https://github.com/helsenorge/designsystem/commit/1e8f5ff07c8e796af7269b3f4b92269a50d4fdcb)), closes
+  [#360101](https://github.com/helsenorge/designsystem/issues/360101)
+- **popmenu:** ikon sentreres riktig
+  ([3a8f5ac](https://github.com/helsenorge/designsystem/commit/3a8f5ac3dd9dfcff4fc75f101a4f4a6dbfbd1c88)), closes
+  [#361064](https://github.com/helsenorge/designsystem/issues/361064)
+- **radiobutton:** disabled har samme radius som andre states
+  ([27548a7](https://github.com/helsenorge/designsystem/commit/27548a74a68ac6c2d4c5783b84da056971995a4d)), closes
+  [#350142](https://github.com/helsenorge/designsystem/issues/350142)
+- **radiobutton:** hele wrapperen skal ikke se klikkbar ut
+  ([2c396cd](https://github.com/helsenorge/designsystem/commit/2c396cd1a5c79869ef9d72941c9c93efba47dc47)), closes
+  [#350142](https://github.com/helsenorge/designsystem/issues/350142)
+
 ## [12.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.3.0&targetVersion=GTv12.4.0) (2025-09-23)
 
 ### Features

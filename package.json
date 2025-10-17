@@ -42,25 +42,20 @@
     "posttest": "node ./scripts/aggregate-packages-coverage.cjs && nyc report --reporter lcov"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.5.0",
-    "@commitlint/config-conventional": "^19.5.0",
-    "@helsenorge/eslint-config": "^36.0.1",
-    "@lerna/legacy-package-management": "^8.2.3",
-    "@nx/devkit": "^21.4.1",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@helsenorge/eslint-config": "^36.1.1",
+    "@lerna/legacy-package-management": "^8.2.4",
+    "@nx/devkit": "^21.6.5",
     "conventional-changelog-cli": "^4.1.0",
-    "eslint-plugin-storybook": "9.0.18",
-    "husky": "^9.1.6",
-    "lerna": "^8.2.3",
-    "lint-staged": "^15.2.10",
-    "npm-run-all2": "^7.0.1",
+    "eslint-plugin-storybook": "9.1.10",
+    "husky": "^9.1.7",
+    "lerna": "^8.2.4",
+    "lint-staged": "^15.5.2",
+    "npm-run-all2": "^7.0.2",
     "nyc": "^17.1.0",
-    "prettier": "^3.3.3",
+    "prettier": "^3.6.2",
     "rimraf": "^6.0.1"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-darwin-arm64": "^4.50.0",
-    "@rollup/rollup-linux-x64-gnu": "^4.50.0",
-    "@rollup/rollup-linux-x64-musl": "^4.50.0"
   },
   "engines": {
     "node": "^22.0.0",
