@@ -1,3 +1,11 @@
+## [12.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.4&targetVersion=GTv12.7.0) (2025-10-17)
+
+### Features
+
+- **formgroup:** endre prop for FormFieldTag til å være lik som i label
+  ([850b4e0](https://github.com/helsenorge/designsystem/commit/850b4e0cdc5888dbe29ba894c23e460dfe9d4930)), closes
+  [#362503](https://github.com/helsenorge/designsystem/issues/362503)
+
 ## [12.6.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.3&targetVersion=GTv12.6.4) (2025-10-16)
 
 ### Reverts
