@@ -7,6 +7,7 @@ import { getResources } from './resourceHelper';
 import { AnalyticsId, KeyboardEventKey, LanguageLocales, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
+import { useIsVisible } from '../../hooks/useIsVisible';
 import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
@@ -106,10 +107,12 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const topContent = useRef<HTMLDivElement>(null);
+  const bottomContent = useRef<HTMLDivElement>(null);
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
-  const [showTopShadow, setShowTopShadow] = React.useState(false);
-  const [showBottomShadow, setShowBottomShadow] = React.useState(false);
+  const topContentVisible = useIsVisible(topContent);
+  const bottomContentVisible = useIsVisible(bottomContent, 0);
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
 
@@ -125,18 +128,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   });
   const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
 
-  const handleScroll = (): void => {
-    if (!contentRef.current) return;
-
-    const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
-    const isAtTop = scrollTop === 0;
-    const threshold = 2; // px, to fix unstable calculations
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - threshold;
-
-    setShowTopShadow(!isAtTop);
-    setShowBottomShadow(!isAtBottom);
-  };
-
   useFocusTrap(containerRef, true);
   useReturnFocusOnUnmount(containerRef);
   useOutsideEvent(containerRef, () => {
@@ -150,19 +141,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
 
     return (): void => {
       enableBodyScroll();
-    };
-  }, []);
-
-  useEffect(() => {
-    const content = contentRef.current;
-    if (!content) return;
-
-    // Check initial scroll state
-    handleScroll();
-
-    content.addEventListener('scroll', handleScroll);
-    return (): void => {
-      content.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -251,18 +229,28 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             )}
           </div>
           <div
+            className={classNames(styles['drawer__content__shadow'], styles['drawer__content__shadow--top'])}
+            style={{
+              opacity: !topContentVisible && contentIsScrollable ? 1 : 0,
+            }}
+          />
+          <div
             className={styles.drawer__content}
             tabIndex={contentIsScrollable ? 0 : undefined}
             role={contentIsScrollable ? 'region' : undefined}
             {...(contentIsScrollable ? ariaLabelAttributes : {})}
             ref={contentRef}
           >
-            {showTopShadow && <div className={classNames(styles['drawer__content__shadow'], styles['drawer__content__shadow--top'])} />}
+            <div ref={topContent} />
             <div className={styles['drawer__content__children']}>{children}</div>
-            {showBottomShadow && (
-              <div className={classNames(styles['drawer__content__shadow'], styles['drawer__content__shadow--bottom'])} />
-            )}
+            <div ref={bottomContent} style={{ height: '1px' }} />
           </div>
+          <div
+            className={classNames(styles['drawer__content__shadow'], styles['drawer__content__shadow--bottom'])}
+            style={{
+              opacity: !bottomContentVisible && contentIsScrollable ? 1 : 0,
+            }}
+          />
         </div>
         {hasFooterContent && (
           <div className={styles.drawer__footer}>

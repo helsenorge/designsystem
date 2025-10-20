@@ -151,18 +151,36 @@
     }
 
     &__shadow {
-      position: sticky;
+      position: absolute;
       z-index: 10;
       height: 16px;
+      width: 100%;
+      transition: opacity 0.5s;
+      opacity: 0;
+      pointer-events: none;
 
       &--top {
         top: 0;
-        background: linear-gradient(to bottom, #00000075, transparent);
+        margin-bottom: calc(0rem - spacers.getSpacer(xs));
+        background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 45.7%) 100%);
+
+        @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+          margin-bottom: calc(0rem - spacers.getSpacer(s));
+        }
       }
 
       &--bottom {
         bottom: 0;
-        background: linear-gradient(to bottom, transparent, #00000075);
+        background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 45.7%) 100%);
+        margin-top: calc(0rem - spacers.getSpacer(xs));
+
+        @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+          margin-top: calc(0rem - spacers.getSpacer(s));
+        }
+      }
+
+      &--show {
+        opacity: 1;
       }
     }
   }
