@@ -104,11 +104,11 @@
   &__right-icon {
     fill: var(--color-action-graphics-onlight);
 
-    :hover>& {
+    :hover > & {
       fill: var(--color-action-graphics-onlight-hover);
     }
 
-    :disabled>& {
+    :disabled > & {
       fill: var(--color-disabled-graphics);
     }
   }
