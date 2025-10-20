@@ -31,7 +31,6 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 .env
 .cache
-.nx
 test-report.xml
 report.html
 .nyc_output

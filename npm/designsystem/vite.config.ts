@@ -10,26 +10,56 @@ import { entries } from './__scripts__/entries';
 
 const OUTPUT_DIRECTORY = 'lib';
 
+function buildExportsFromEntries(entryMap: Record<string, string>): Record<string, unknown> {
+  const exp: Record<string, unknown> = {
+    '.': { types: './index.d.ts', import: './index.js', require: './index.cjs' },
+    './package.json': './package.json',
+    './scss/*': './scss/*',
+    './fonts/*': './fonts/*',
+  };
+  for (const [chunkName] of Object.entries(entryMap)) {
+    // skip the root entry if it's named "index"
+    if (chunkName === 'index') continue;
+    exp[`./${chunkName}`] = {
+      types: `./${chunkName}.d.ts`,
+      import: `./${chunkName}.js`,
+    };
+  }
+  return exp;
+}
+
 export default defineConfig({
-  plugins: [dts()],
+  plugins: [
+    // Ensure .d.ts for all entries land in lib/
+    dts({
+      outDir: OUTPUT_DIRECTORY,
+      insertTypesEntry: true,
+    }),
+  ],
   build: {
     outDir: OUTPUT_DIRECTORY,
     minify: false,
     sourcemap: true,
     lib: {
       entry: 'index.js',
-      formats: ['es'],
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       preserveEntrySignatures: 'strict',
       input: entries,
       external: [/.module.scss/, 'react-hook-form', 'vitest'],
-      output: {
-        format: 'es',
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
-        assetFileNames: '[name].[ext]',
-      },
+      output: [
+        {
+          format: 'es',
+          entryFileNames: '[name].js',
+          chunkFileNames: '[name].js',
+          assetFileNames: '[name].[ext]',
+        },
+        {
+          format: 'cjs',
+          entryFileNames: chunk => (chunk.name === 'index' ? 'index.cjs' : '[name].cjs'),
+        },
+      ],
       plugins: [
         peerDepsExternal(),
         copy({
@@ -51,9 +81,9 @@ export default defineConfig({
           flatten: false,
         }),
         generatePackageJson({
+          outputFolder: OUTPUT_DIRECTORY,
           baseContents: ({
             name,
-            type,
             description,
             repository,
             homepage,
@@ -64,20 +94,24 @@ export default defineConfig({
             peerDependencies = {},
             sideEffects,
           }) => ({
+            // keep your metadata
             name,
-            type,
+            version,
             description,
             repository,
             homepage,
-            version,
             author,
             license,
+            type: 'module',
+            sideEffects,
             dependencies,
             peerDependencies,
-            sideEffects,
+            main: './index.cjs',
+            module: './index.js',
+            types: './index.d.ts',
+            exports: buildExportsFromEntries(entries),
           }),
         }),
-        // .module.scss
         replace({
           '../npm/designsystem/src/components/': '',
           delimiters: ['', ''],

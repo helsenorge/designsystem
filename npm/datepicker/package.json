@@ -11,13 +11,25 @@
   "homepage": "https://helsenorge.design",
   "author": "Helsenorge",
   "maintainers": [
-    "ROX"
+    "Frankenstein"
   ],
   "license": "MIT",
   "type": "module",
   "publishConfig": {
     "directory": "lib",
     "access": "public"
+  },
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib/index.cjs"
+    },
+    "./scss/*": "./lib/scss/*",
+    "./package.json": "./package.json"
   },
   "scripts": {
     "prebuild": "npm-run-all clean generate:cssdefinitions",
