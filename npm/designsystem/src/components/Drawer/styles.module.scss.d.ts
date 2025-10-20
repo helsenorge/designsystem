@@ -7,6 +7,7 @@ export type Styles = {
   drawer__content__children: string;
   drawer__content__shadow: string;
   'drawer__content__shadow--bottom': string;
+  'drawer__content__shadow--show': string;
   'drawer__content__shadow--top': string;
   drawer__footer: string;
   drawer__header: string;
