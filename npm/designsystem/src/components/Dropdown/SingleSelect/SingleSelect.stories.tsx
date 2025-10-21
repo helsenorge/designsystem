@@ -25,7 +25,40 @@ const meta = {
   args: {
     text: 'Ta et valg',
   },
-  argTypes: {},
+  argTypes: {
+    text: {
+      control: 'text',
+      description: 'The text to the singleSelectItem',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disables the singleSelectItem',
+    },
+    value: {
+      control: 'text',
+      description: 'Value for this singleSelectItem option - used by the parent wrapper to keep track of the context',
+    },
+    testId: {
+      control: 'text',
+      description: 'Sets the data-testid attribute.',
+    },
+    asChild: {
+      control: 'boolean',
+      description: 'When true, onclick and keyboard events will be passed to the child Button or AnchorLink.',
+    },
+    children: {
+      control: 'object',
+      description: 'Only use when asChild is set to true and only pass one child',
+    },
+    defaultSelected: {
+      control: 'boolean',
+      description: 'Marks this option as initially selected',
+    },
+    ['aria-describedby']: {
+      control: 'text',
+      description: 'aria-describedby passthrough if needed',
+    },
+  },
 } satisfies Meta<typeof SingleSelectItem>;
 
 export default meta;
