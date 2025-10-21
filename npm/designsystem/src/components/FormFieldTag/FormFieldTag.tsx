@@ -12,6 +12,8 @@ import styles from './styles.module.scss';
 export type FormFieldTagLevel = 'all-required' | 'required-field' | 'optional';
 
 export interface FormFieldTagProps {
+  /** Id that is placed on the component */
+  id?: string;
   /** What level is the required tag, sets the styling and the text. */
   level: FormFieldTagLevel;
   /** Texts if overriding SOT */
@@ -21,7 +23,7 @@ export interface FormFieldTagProps {
 }
 
 const FormFieldTag: React.FC<FormFieldTagProps> = props => {
-  const { level, resources, testId } = props;
+  const { id, level, resources, testId } = props;
 
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
@@ -39,6 +41,7 @@ const FormFieldTag: React.FC<FormFieldTagProps> = props => {
 
   return (
     <span
+      id={id}
       data-testid={testId}
       data-analyticsid={AnalyticsId.FormFieldTag}
       className={classNames(styles['form-field-tag'], { [styles['form-field-tag--optional']]: level === 'optional' })}

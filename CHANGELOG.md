@@ -1,3 +1,43 @@
+## [12.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.4&targetVersion=GTv12.7.0) (2025-10-17)
+
+### Features
+
+- **formgroup:** endre prop for FormFieldTag til å være lik som i label
+  ([850b4e0](https://github.com/helsenorge/designsystem/commit/850b4e0cdc5888dbe29ba894c23e460dfe9d4930)), closes
+  [#362503](https://github.com/helsenorge/designsystem/issues/362503)
+
+## [12.6.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.3&targetVersion=GTv12.6.4) (2025-10-16)
+
+### Reverts
+
+- Revert "v12.6.3" ([973e6b8](https://github.com/helsenorge/designsystem/commit/973e6b8893fc765892a993adf83d93f4d5bfd5dd))
+
+## [12.6.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.2&targetVersion=GTv12.6.3) (2025-10-16)
+
+## [12.6.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.1&targetVersion=GTv12.6.2) (2025-10-16)
+
+## [12.6.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.0&targetVersion=GTv12.6.1) (2025-10-16)
+
+## [12.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.5.0&targetVersion=GTv12.6.0) (2025-10-16)
+
+### Features
+
+- **formfieldtag:** ny komponent for å markere obligatoriske felter
+  ([43186e8](https://github.com/helsenorge/designsystem/commit/43186e85e06d6b3e34124c3afd372180ecff9af9)), closes
+  [#361861](https://github.com/helsenorge/designsystem/issues/361861)
+- **stickynote:** justeringer etter ny figma komponent
+  ([b3afb5a](https://github.com/helsenorge/designsystem/commit/b3afb5a41f1400bef0afce40b244deafcac7b505)), closes
+  [#361520](https://github.com/helsenorge/designsystem/issues/361520)
+
+### Bug Fixes
+
+- **formfieldtag:** fiks display for at den holder seg i riktig størrelse
+  ([1e53dc1](https://github.com/helsenorge/designsystem/commit/1e53dc1cf52215a3476a1d6d86c36f8108b0fbc1)), closes
+  [#361861](https://github.com/helsenorge/designsystem/issues/361861)
+- **label:** bruk formfieldtag som komponent slik at man får satt id
+  ([006e152](https://github.com/helsenorge/designsystem/commit/006e1520cc16b66f637c11c193902510ebd72b76)), closes
+  [#361861](https://github.com/helsenorge/designsystem/issues/361861)
+
 ## [12.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.4.0&targetVersion=GTv12.5.0) (2025-10-08)
 
 ### Features

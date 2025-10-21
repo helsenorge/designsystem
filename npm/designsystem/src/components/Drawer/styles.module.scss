@@ -5,23 +5,6 @@
 @use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/colors.css';
 
-@mixin drawer-scroll-shadow {
-  // Scroll shadow
-  // Inspired by: https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/
-  background:
-    linear-gradient(white 30%, rgb(255 255 255 / 0%)) center top,
-    linear-gradient(rgb(255 255 255 / 0%), white 70%) center bottom,
-    linear-gradient(rgb(0 0 0 / 46%), rgb(0 0 0 / 0%)) center top,
-    linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 46%)) center bottom;
-  background-repeat: no-repeat;
-  background-size:
-    100% 40px,
-    100% 40px,
-    100% 16px,
-    100% 16px;
-  background-attachment: local, local, scroll, scroll;
-}
-
 .drawer {
   position: fixed;
   inset: 0;
@@ -43,7 +26,6 @@
     position: fixed;
     width: 100%;
     max-height: 90dvh;
-    overflow: hidden;
     transform: translateY(100%);
     background-color: var(--core-color-white);
     border-radius: 0.75rem 0.75rem 0 0;
@@ -80,8 +62,6 @@
 
       @include breakpoints.tiny-screens-media-query {
         overflow-y: auto;
-
-        @include drawer-scroll-shadow;
 
         &:focus-visible {
           outline: 1px solid palette.$black;
@@ -130,22 +110,61 @@
 
   &__content {
     overflow-y: auto;
-    padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
 
     &:focus-visible {
       outline: 1px solid palette.$black;
       outline-offset: -1px;
     }
 
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      padding: spacers.getSpacer(s) spacers.getSpacer(xs);
-    }
-
     @include breakpoints.tiny-screens-media-query {
       overflow-y: unset;
     }
 
-    @include drawer-scroll-shadow;
+    &__children {
+      padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: spacers.getSpacer(s) spacers.getSpacer(xs);
+      }
+    }
+
+    &__shadow {
+      position: absolute;
+      z-index: 10;
+      height: 16px;
+      width: 100%;
+      transition: opacity 0.5s;
+      opacity: 0;
+      pointer-events: none;
+
+      @include breakpoints.tiny-screens-media-query {
+        display: none;
+      }
+
+      &--top {
+        top: 0;
+        margin-bottom: calc(0rem - spacers.getSpacer(xs));
+        background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 45.7%) 100%);
+
+        @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+          margin-bottom: calc(0rem - spacers.getSpacer(s));
+        }
+      }
+
+      &--bottom {
+        bottom: 0;
+        background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 45.7%) 100%);
+        margin-top: calc(0rem - spacers.getSpacer(xs));
+
+        @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+          margin-top: calc(0rem - spacers.getSpacer(s));
+        }
+      }
+
+      &--show {
+        opacity: 1;
+      }
+    }
   }
 
   &__footer {

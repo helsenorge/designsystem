@@ -64,13 +64,13 @@ stages:
             displayName: 'Install node version'
             inputs:
               versionSpec: $(node_version)
-  
+
           # Set node version
           - task: UseNode@1
             displayName: 'Use Node version'
             inputs:
               version: $(node_version)
-                          
+
           # npm tasks
           # Force npm 11.x globally for the rest of the job
           - script: |
@@ -104,15 +104,6 @@ stages:
               PR_TITLE: $(Pr.Title)
             displayName: Lint pull request title
             condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
-
-          - task: Npm@1
-            displayName: npm ci
-            inputs:
-              command: ci
-              workingDir: $(working_directory)
-            env:
-              NPM_CONFIG_INCLUDE: optional
-              NPM_CONFIG_OPTIONAL: 'true'
 
           # audit
           - task: Npm@1

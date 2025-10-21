@@ -9,6 +9,7 @@ import Spacer from '../../components/Spacer';
 import { FormOnColor, FormSize } from '../../constants';
 import Checkbox from '../Checkbox/Checkbox';
 import Expander from '../Expander';
+import FormFieldTag from '../FormFieldTag';
 import FormLayout from '../FormLayout';
 import Coronavirus from '../Icons/Coronavirus';
 import Input from '../Input/Input';
@@ -52,10 +53,6 @@ const meta = {
     },
     name: {
       control: 'text',
-    },
-    formFieldLevel: {
-      control: 'select',
-      options: ['all-required', 'required-field', 'optional'],
     },
   },
 } satisfies Meta<typeof FormGroup>;
@@ -198,5 +195,15 @@ export const WithExternalLegendText: Story = {
         </FormGroup>
       </Expander>
     </div>
+  ),
+};
+
+export const WithFormFieldTag: Story = {
+  render: args => (
+    <FormGroup {...args} formFieldTag={<FormFieldTag level="required-field" id="formfieldtag-id" />}>
+      <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
+      <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
+      <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
+    </FormGroup>
   ),
 };
