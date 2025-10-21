@@ -31,9 +31,9 @@ describe('Gitt at Radio skal vises', () => {
       expect(control).toHaveAttribute('aria-disabled', 'true');
     });
 
-    test('Så vises Radio som valgt når verdi matcher gruppens value', () => {
+    test('Så vises Radio som valgt når verdi matcher gruppens defaultValue', () => {
       render(
-        <SingleSelect value="v1">
+        <SingleSelect defaultValue="v1">
           <SingleSelectItem value="v1" text="Radio1" />
         </SingleSelect>
       );
@@ -49,13 +49,30 @@ describe('Gitt at Radio skal vises', () => {
       );
       expect(screen.getByTestId('RadioTest')).toBeDefined();
     });
+
+    test('Så kan SingleSelectItem markeres som valgt med defaultSelected (uten defaultValue på gruppa)', () => {
+      const handleChange = vi.fn();
+      render(
+        <SingleSelect onValueChange={handleChange}>
+          <SingleSelectItem value="foo" defaultSelected text="Foo" />
+          <SingleSelectItem value="bar" text="Bar" />
+        </SingleSelect>
+      );
+
+      const control = screen.getByRole('button', { name: 'Foo' });
+      expect(control).toHaveAttribute('aria-current', 'true');
+
+      // Mount-effekten i SingleSelectItem kaller onValueChange én gang (uten event)
+      expect(handleChange).toHaveBeenCalledTimes(1);
+      expect(handleChange).toHaveBeenCalledWith('foo', undefined);
+    });
   });
 
   describe('Når Radio interageres med', () => {
     test('Så kalles onValueChange når den velges', () => {
       const handleChange = vi.fn();
       render(
-        <SingleSelect onValueChange={handleChange} value="start">
+        <SingleSelect onValueChange={handleChange}>
           <SingleSelectItem value="Radio1" text="Radio1" />
         </SingleSelect>
       );
@@ -65,29 +82,9 @@ describe('Gitt at Radio skal vises', () => {
       expect(handleChange).toHaveBeenCalledWith('Radio1', expect.any(Object));
     });
 
-    test('Så er den ikke valgt når verdien ikke matcher', () => {
+    test('Så er den ikke valgt når gruppens defaultValue ikke matcher', () => {
       render(
-        <SingleSelect value="annen">
-          <SingleSelectItem value="Radio1" text="Radio1" />
-        </SingleSelect>
-      );
-      const control = screen.getByRole('button');
-      expect(control).not.toHaveAttribute('aria-current', 'true');
-    });
-
-    test('Så kan den være controlled (valgt)', () => {
-      render(
-        <SingleSelect value="Radio1">
-          <SingleSelectItem value="Radio1" text="Radio1" />
-        </SingleSelect>
-      );
-      const control = screen.getByRole('button');
-      expect(control).toHaveAttribute('aria-current', 'true');
-    });
-
-    test('Så kan den være controlled (ikke valgt)', () => {
-      render(
-        <SingleSelect value="annen">
+        <SingleSelect defaultValue="annen">
           <SingleSelectItem value="Radio1" text="Radio1" />
         </SingleSelect>
       );
@@ -162,7 +159,7 @@ describe('Gitt at Radio skal vises', () => {
       );
 
       fireEvent.click(screen.getByText('Disabled'));
-      const control = screen.getByRole('button');
+      const control = screen.getByRole('button', { name: 'Disabled' });
       expect(control).toHaveAttribute('aria-disabled', 'true');
       expect(handleChange).not.toHaveBeenCalled();
       expect(handleClick).not.toHaveBeenCalled();
@@ -180,9 +177,9 @@ describe('Gitt at Radio skal vises', () => {
         </SingleSelect>
       );
 
-      const control = screen.getByRole('button');
+      const control = screen.getByRole('button', { name: 'Keyboard' });
       control.focus();
-      // AsChildSlot binder på Space, ikke Enter
+      // AsChildSlot binder Space til click
       fireEvent.keyDown(control, { key: ' ', code: 'Space' });
 
       expect(handleChange).toHaveBeenCalledWith('kbd', expect.any(Object));

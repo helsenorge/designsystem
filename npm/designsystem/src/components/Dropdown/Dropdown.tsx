@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useId, ComponentType } from 'react';
 
-import { autoUpdate, flip, offset, shift, size, useFloating } from '@floating-ui/react';
+import { autoUpdate, offset, shift, size, useFloating } from '@floating-ui/react';
 import classNames from 'classnames';
 import { clamp } from 'motion/react';
 
@@ -126,14 +126,11 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const listItemClasses = classNames(styles['dropdown__list-item'], { [styles['dropdown__list-item--single-select']]: isSingleSelect });
 
   const { refs, floatingStyles } = useFloating({
-    strategy: 'fixed',
-    placement: 'bottom-start',
+    placement: 'bottom',
     middleware: [
       offset(8),
-      flip(),
-      shift({ padding: 8, crossAxis: true }),
+      shift({ padding: 8 }),
       size({
-        padding: 16,
         apply({ availableWidth, availableHeight, elements, rects }) {
           const triggerW = rects.reference.width;
           const minProp = typeof dropdownMinWidth !== 'undefined' ? clamp(0, maxWidth, dropdownMinWidth) : 0;
