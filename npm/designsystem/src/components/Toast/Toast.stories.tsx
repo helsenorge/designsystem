@@ -17,7 +17,11 @@ const meta = {
       page: (): React.JSX.Element => <Docs component={Toast} />,
     },
   },
-  args: { title: 'Dette er en toast', onClose: () => action('Lukket toast') },
+  args: {
+    title: 'Dette er en toast',
+    message: 'With message',
+    onClose: () => action('Lukket toast'),
+  },
   argTypes: {
     message: { control: 'text' },
     testId: { control: 'text' },

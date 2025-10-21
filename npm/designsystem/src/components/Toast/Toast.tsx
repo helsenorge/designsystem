@@ -14,7 +14,7 @@ export interface ToastProps {
   /** The message to display in the toast */
   message?: string;
   /** Callback when toast is closed */
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 const Toast: React.FC<ToastProps> = ({ testId, title, message, onClose }) => {
@@ -25,13 +25,13 @@ const Toast: React.FC<ToastProps> = ({ testId, title, message, onClose }) => {
   };
 
   return (
-    <output className={`${styles['toast']}`} data-testid={testId}>
+    <output className={styles['toast']} data-testid={testId}>
       <Icon svgIcon={CheckFill} color="var(--core-color-kiwi-900)" className={styles['toast__icon']} />
       <div className={styles['toast__text-container']}>
         <span className={styles['toast__title']}>{title}</span>
         {message && <span className={styles['toast__description']}>{message}</span>}
       </div>
-      <Close onClick={handleClose} color="black" className={styles['toast__icon']} />
+      <Close onClick={handleClose} color="black" className={styles['toast__icon']} testId={`${testId}-close`} />
     </output>
   );
 };

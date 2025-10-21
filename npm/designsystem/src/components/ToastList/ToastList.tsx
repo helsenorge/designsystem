@@ -17,8 +17,10 @@ export interface ToastListProps {
   toasts?: ToastData[];
 }
 
-// const DURATION = 8000; // Duration for toasts in milliseconds
-const DURATION = 10000000; // Duration for toasts in milliseconds
+const DURATION = 8000;
+const ANIMATION_DURATION = 300;
+const FADE_OUT_DISTANCE = 10;
+const FLIP_ANIMATION_DURATION = 150;
 
 const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => {
   const { testId, toasts = [] } = props;
@@ -34,7 +36,7 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
     }
   }, [toasts]);
 
-  // Handle FLIP animation when visible toasts change
+  // Handle animation when visible toasts change
   React.useEffect(() => {
     const container = internalRef.current;
     if (!container) return;
@@ -46,15 +48,17 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
       const last = container.offsetHeight;
       const invert = last - first;
 
+      // Animate height changes
       if (invert > 0) {
         container.animate([{ transform: `translateY(-${invert}px)` }, { transform: 'translateY(0)' }], {
-          duration: 150,
+          duration: FLIP_ANIMATION_DURATION,
           easing: 'ease-out',
         });
       }
     });
   }, [visibleToasts.length]);
 
+  // Handles manual removal of a toast
   const handleRemoveToast = React.useCallback((id: string): void => {
     const toastElement = document.querySelector(`[data-toast-id="${id}"]`) as HTMLElement;
 
@@ -64,10 +68,10 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
         .animate(
           [
             { opacity: 1, transform: 'translateY(0)' },
-            { opacity: 0, transform: 'translateY(-10px)' },
+            { opacity: 0, transform: `translateY(-${FADE_OUT_DISTANCE}px)` },
           ],
           {
-            duration: 300,
+            duration: ANIMATION_DURATION,
             easing: 'ease-out',
             fill: 'forwards',
           }
@@ -93,14 +97,13 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
     }
   }, []);
 
-  // Handle auto-removal of toasts - only set up timers for new toasts
+  // Handle auto-removal of toasts after duration
   React.useEffect(() => {
     const timeouts = timeoutRefs.current;
 
-    // Set up timeouts for new visible toasts only
+    // Set up timeouts for new visible toasts that does not have timeout yet
     visibleToasts.forEach(toast => {
       if (!timeouts.has(toast.id)) {
-        // Create timeout for this specific toast
         const timeout = setTimeout(() => {
           handleRemoveToast(toast.id);
         }, DURATION);
@@ -147,7 +150,7 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
     <section ref={setRefs} className={styles['toast-list']} data-testid={testId}>
       {visibleToasts.map(toast => (
         <div key={toast.id} data-toast-id={toast.id}>
-          <Toast title={toast.title} message={toast.message} onClose={() => handleRemoveToast(toast.id)} />
+          <Toast testId={`${testId}-${toast.id}`} title={toast.title} message={toast.message} onClose={() => handleRemoveToast(toast.id)} />
         </div>
       ))}
     </section>
