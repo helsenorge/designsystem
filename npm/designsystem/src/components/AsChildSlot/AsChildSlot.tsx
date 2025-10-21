@@ -21,7 +21,7 @@ export interface AsChildSlotProps {
   /** Called before the child’s onClick when visible */
   onSelect?: (e: React.SyntheticEvent) => void;
   /** Optional states to apply to the DOM element */
-  ariaCurrent?: 'page' | 'true' | undefined;
+  ariaCurrent?: 'page' | 'true';
   /** DOM ref for the element we end up rendering */
   elementRef?: React.Ref<HTMLElement>;
 }
