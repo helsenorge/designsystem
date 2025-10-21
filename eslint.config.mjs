@@ -29,6 +29,7 @@ export default [
     rules: {
       'react/prop-types': 'off',
       'no-console': 'off',
+      'jsx-a11y/anchor-is-valid': 'off'
     },
   },
   {
