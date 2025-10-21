@@ -2,7 +2,7 @@ import { screen, render } from '@testing-library/react';
 
 import PanelList from './PanelList';
 
-describe('Gitt at PanelListOld skal vises', (): void => {
+describe('Gitt at PanelList skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {
     test('Så kan komponenten finnes ved hjelp av testId', (): void => {
       render(<PanelList testId="bare-tester" />);
