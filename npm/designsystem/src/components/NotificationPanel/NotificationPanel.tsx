@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId, IconSize } from '../../constants';
-import { useUuid } from '../../hooks/useUuid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
@@ -84,11 +83,11 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     fluid = false,
     size,
     className,
-    labelId,
     role,
     testId,
   } = props;
-  const uuid = useUuid(labelId);
+  const labelIdFallback = useId();
+  const labelId = props.labelId || labelIdFallback;
   const [expanderOpen, setExpanderOpen] = React.useState(expanderOpenFromStart);
 
   const renderContent = (): JSX.Element => {
@@ -107,9 +106,9 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     const CustomTag = labelHtmlMarkup;
 
     return (
-      <div className={contentClasses} id={!label ? uuid : undefined}>
+      <div className={contentClasses} id={!label ? labelId : undefined}>
         {label && (
-          <CustomTag className={labelClasses} id={uuid}>
+          <CustomTag className={labelClasses} id={labelId}>
             {label}
           </CustomTag>
         )}
@@ -143,7 +142,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
   );
 
   const ariaRole = role || (variant === 'error' && 'alert') || undefined;
-  const ariaLabelAttributes = ariaRole ? getAriaLabelAttributes({ label, id: uuid }) : undefined;
+  const ariaLabelAttributes = ariaRole ? getAriaLabelAttributes({ label, id: labelId }) : undefined;
 
   return (
     <FluidWrapper fluid={fluid}>

@@ -1,11 +1,10 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useId, useLayoutEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
 import Close from './Close';
 import Triangle from './Triangle';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { useUuid } from '../../hooks/useUuid';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 
 import styles from './styles.module.scss';
@@ -42,12 +41,12 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
     footerText,
     error,
     errorText,
-    errorTextId,
     onClickWhileDisabled,
     testId,
     ...textareaProps
   } = props;
-  const errorTextUuid = useUuid(errorTextId);
+  const errorTextIdFallback = useId();
+  const errorTextId = props.errorTextId || errorTextIdFallback;
   const stickynoteRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { isFocused: isTextareaFocused } = usePseudoClasses<HTMLTextAreaElement>(textareaRef);
@@ -118,7 +117,7 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
           className={classNames(styles['sticky-note__textarea'], textareaProps.className)}
           {...textareaProps}
           onChange={handleChange}
-          aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
+          aria-describedby={getAriaDescribedBy(props, errorTextId)}
         />
         <Close onClick={onXButtonClick} ariaLabel={arialabelXButton} testId="closeButton" />
         <div className={classNames(styles['sticky-note__footer'])}>{footerText && <span>{footerText}</span>}</div>

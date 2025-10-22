@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
 import { FormOnColor, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
-import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
@@ -143,11 +142,13 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   } = props;
   const breakpoint = useBreakpoint();
   const inputContainerRefLocal = useRef<HTMLDivElement>(null);
-  const inputIdState = useUuid(inputId);
+  const inputIdFallback = useId();
+  const inputIdState = inputId || inputIdFallback;
   const [input, setInput] = useState(defaultValue || '');
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
   const numKeyPressed = useRef<boolean>(false);
-  const errorTextUuid = useUuid(errorTextId);
+  const errorTextIdFallback = useId();
+  const errorTextUuid = errorTextId || errorTextIdFallback;
   const numRegex = /^[0-9]$/;
 
   useEffect(() => {

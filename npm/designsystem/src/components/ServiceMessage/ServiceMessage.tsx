@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 
 import classNames from 'classnames';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys';
 import { breakpoints } from '../../theme/grid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
@@ -168,7 +167,7 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(expanderOpenFromStart);
 
-  const labelId = useUuid();
+  const labelId = useId();
   const hasExpander = !!info || !!extraInfo;
 
   const ariaRole = variant === 'error' ? 'alert' : 'region';

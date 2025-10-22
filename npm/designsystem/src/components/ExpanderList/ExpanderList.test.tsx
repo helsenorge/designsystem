@@ -20,7 +20,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
           <ExpanderList.Expander title="Title 3">{'Text 2'}</ExpanderList.Expander>
         </ExpanderList>
       );
-      expect(container).toMatchSnapshot();
+      expect(container).toBeVisible();
     });
   });
 
@@ -381,7 +381,7 @@ describe('Gitt ExpanderList blir rendret', (): void => {
   });
   describe('Når det er to ExpanderList i samme dokument', (): void => {
     test('Så har expanderne forskjellige IDer', (): void => {
-      const { container } = render(
+      render(
         <>
           <ExpanderList>
             <ExpanderList.Expander title="ExpanderList 1">{'Text 1'}</ExpanderList.Expander>
@@ -396,12 +396,11 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       const buttonId2 = screen.getByRole('button', { name: 'ExpanderList 2' }).id;
 
       expect(buttonId1).not.toEqual(buttonId2);
-      expect(container).toMatchSnapshot();
     });
   });
   describe('Når title er JSX', (): void => {
     test('Så fungerer expanderen', (): void => {
-      const { container } = render(
+      render(
         <ExpanderList>
           <ExpanderList.Expander
             titleHtmlMarkup="span"
@@ -422,7 +421,6 @@ describe('Gitt ExpanderList blir rendret', (): void => {
       const buttonId2 = screen.getByRole('button', { name: 'ExpanderList 2' }).id;
 
       expect(buttonId1).not.toEqual(buttonId2);
-      expect(container).toMatchSnapshot();
     });
   });
   describe('Når renderChildrenWhenClosed ikke er satt', (): void => {

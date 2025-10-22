@@ -3,15 +3,6 @@ import userEvent from '@testing-library/user-event';
 
 import { Slider } from './Slider';
 
-// Slider er aria-labelledby flere IDer og trenger derfor en unik, stabil ID under test
-let mocktestid = 0;
-vi.mock('../../hooks/useUuid', () => ({
-  useUuid: vi.fn().mockImplementation(() => {
-    mocktestid++;
-    return 'slider-test-' + mocktestid;
-  }),
-}));
-
 describe('Gitt at Slider skal vises', (): void => {
   beforeEach(() => {
     vi.clearAllMocks();

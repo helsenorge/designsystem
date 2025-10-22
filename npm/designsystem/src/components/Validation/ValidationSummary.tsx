@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
 import ErrorList from './ErrorList';
 import { ValidationErrors } from './types';
-import { useUuid } from '../../hooks/useUuid';
 import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
@@ -24,7 +23,7 @@ interface ValidationSummaryProps {
 
 const ValidationSummary: React.FC<ValidationSummaryProps> = props => {
   const { errorTitleHtmlMarkup = 'h2' } = props;
-  const titleId = useUuid();
+  const titleId = useId();
 
   const hasErrors = !!props.errors && Object.entries(props.errors).length > 0;
   const visuallyHidden = props.visuallyHidden;
