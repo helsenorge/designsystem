@@ -1,8 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useId } from 'react';
 
 import { useFloating, useHover, useFocus, useDismiss, useInteractions, FloatingDelayGroup } from '@floating-ui/react';
 
-import { useUuid } from '../../hooks/useUuid';
 import DictionaryTrigger from '../DictionaryTrigger';
 import PopOver from '../PopOver';
 
@@ -16,7 +15,7 @@ export interface HelpTooltipProps {
 }
 
 export const HelpTooltip: React.FC<HelpTooltipProps> = ({ children, description, testId }) => {
-  const popoverId = useUuid();
+  const popoverId = useId();
   const [showTooltip, setShowTooltip] = useState(false);
 
   const wordRef = useRef<HTMLButtonElement>(null);

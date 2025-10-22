@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId, FormOnColor, IconSize } from '../../constants';
-import { useUuid } from '../../hooks/useUuid';
 import { StatusDotOnColor } from '../StatusDot';
 
 export type SvgIcon = React.FC<SvgPathProps>;
@@ -89,7 +88,7 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
     onColor,
   });
 
-  const titleId = useUuid();
+  const titleId = useId();
   const svgColor = isHovered ? hoverColor : color;
 
   return (
