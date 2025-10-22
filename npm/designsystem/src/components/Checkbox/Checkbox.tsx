@@ -1,8 +1,9 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId, FormOnColor, FormSize, IconSize } from '../../constants';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys/color';
 import { getAriaDescribedBy } from '../../utils/accessibility';
@@ -60,8 +61,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     onChange,
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
-  const errorTextIdFallback = useId();
-  const errorTextId = props.errorTextId || errorTextIdFallback;
+  const errorTextId = useIdWithFallback(props.errorTextId);
   const onWhite = onColor === FormOnColor.onwhite;
   const onGrey = onColor === FormOnColor.ongrey;
   const onBlueberry = onColor === FormOnColor.onblueberry;

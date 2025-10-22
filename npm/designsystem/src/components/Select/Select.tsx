@@ -1,8 +1,9 @@
-import React, { useId } from 'react';
+import React from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, IconSize } from '../../constants';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
@@ -54,7 +55,7 @@ const getSelectMaxWidth = (characters: number): string => {
   return `calc(${characters * AVERAGE_CHARACTER_WIDTH_PX}px + ${paddingWidth})`;
 };
 
-const getIconColor = (invalid: boolean, disabled: boolean) => {
+const getIconColor = (invalid: boolean, disabled: boolean): string => {
   const iconColor = invalid ? 'cherry' : 'blueberry';
   return disabled ? getColor('neutral', 500) : getColor(iconColor, 600);
 };
@@ -81,10 +82,8 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     ...rest
   } = props;
 
-  const selectIdFallback = useId();
-  const selectId = props.selectId || selectIdFallback;
-  const errorTextIdFallback = useId();
-  const errorTextId = props.errorTextId || errorTextIdFallback;
+  const selectId = useIdWithFallback(props.selectId);
+  const errorTextId = useIdWithFallback(props.errorTextId);
   const onBlueberry = onColor === 'onblueberry';
   const invalid = onColor === 'oninvalid' || !!errorText || !!error;
   const iconColor = getIconColor(invalid, !!disabled);

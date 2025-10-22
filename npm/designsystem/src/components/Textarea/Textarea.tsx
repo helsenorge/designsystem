@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect, useId } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import cn from 'classnames';
 
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor } from '../../constants';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
@@ -100,8 +101,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const [rows, setRows] = useState(minRows);
   const [textareaInput, setTextareaInput] = useState(value || defaultValue || '');
   const referanse = useRef<HTMLDivElement>(null);
-  const errorTextIdFallback = useId();
-  const errorTextUuid = props.errorTextId || errorTextIdFallback;
+  const errorTextUuid = useIdWithFallback(props.errorTextId);
 
   useEffect(() => {
     setTextareaInput(defaultValue || '');

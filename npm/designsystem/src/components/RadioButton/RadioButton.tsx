@@ -1,8 +1,9 @@
-import React, { useId, useState } from 'react';
+import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
@@ -85,8 +86,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const [checked, changeChecked] = useState<boolean>();
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
-  const errorTextIdFallback = useId();
-  const errorTextId = props.errorTextId || errorTextIdFallback;
+  const errorTextId = useIdWithFallback(props.errorTextId);
 
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
     [radioButtonStyles['radio-button-wrapper__large']]: isLarge,

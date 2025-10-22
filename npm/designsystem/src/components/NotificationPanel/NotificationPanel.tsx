@@ -1,8 +1,9 @@
-import React, { useId } from 'react';
+import React from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId, IconSize } from '../../constants';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
@@ -86,8 +87,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     role,
     testId,
   } = props;
-  const labelIdFallback = useId();
-  const labelId = props.labelId || labelIdFallback;
+  const labelId = useIdWithFallback(props.labelId);
   const [expanderOpen, setExpanderOpen] = React.useState(expanderOpenFromStart);
 
   const renderContent = (): JSX.Element => {

@@ -3,6 +3,7 @@ import React, { useId, useState } from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { isComponent } from '../../utils/component';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import ErrorWrapper from '../ErrorWrapper';
@@ -78,8 +79,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   } = props;
   const [checkedRadioId, setCheckedRadioId] = useState<string>();
   const radioGroupId = useId();
-  const errorTextIdFallback = useId();
-  const errorTextId = props.errorTextId || errorTextIdFallback;
+  const errorTextId = useIdWithFallback(props.errorTextId);
   const onDark = onColor === FormOnColor.ondark;
   const isLarge = size === FormSize.large;
   const formGroupWrapperClasses = classNames(formGroupStyles['form-group-wrapper'], className);

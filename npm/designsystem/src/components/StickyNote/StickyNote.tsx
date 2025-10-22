@@ -1,9 +1,10 @@
-import React, { useId, useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
 import Close from './Close';
 import Triangle from './Triangle';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 
@@ -45,8 +46,7 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
     testId,
     ...textareaProps
   } = props;
-  const errorTextIdFallback = useId();
-  const errorTextId = props.errorTextId || errorTextIdFallback;
+  const errorTextId = useIdWithFallback(props.errorTextId);
   const stickynoteRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { isFocused: isTextareaFocused } = usePseudoClasses<HTMLTextAreaElement>(textareaRef);

@@ -6,8 +6,8 @@ import ServiceMessage from './ServiceMessage';
 describe('Gitt at ServiceMessage skal vises', () => {
   describe('Når komponenten vises med default props', () => {
     test('Så rendres komponenten riktig', (): void => {
-      const { container } = render(<ServiceMessage label={'Some text here for testing.'} />);
-      expect(container).toBeInTheDocument();
+      render(<ServiceMessage label={'Some text here for testing.'} />);
+      expect(screen.getByLabelText('Some text here for testing.')).toBeInTheDocument();
     });
   });
 

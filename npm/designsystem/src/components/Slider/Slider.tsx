@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef, useId } from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useSize } from '../../hooks/useSize';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
@@ -101,11 +102,11 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
     maxValue
   );
 
-  const errorTextIdFallback = useId();
-  const errorTextId = props.errorTextId || errorTextIdFallback;
-  const titleId = useId();
-  const labelLeftId = useId();
-  const labelRightId = useId();
+  const errorTextId = useIdWithFallback(props.errorTextId);
+  const baseId = useId();
+  const titleId = 'title-' + baseId;
+  const labelLeftId = 'label-' + baseId;
+  const labelRightId = 'label-right-' + baseId;
   const trackRef = useRef<HTMLDivElement>(null);
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
