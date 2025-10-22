@@ -91,7 +91,7 @@ const Toggle: React.FC<ToggleProps> = ({
       { duration: 0.2, ease: 'easeInOut' }
     );
     animate(toggleDotRef.current, { x: showHoveredStyling ? 9 : checkedState ? 18 : 0 }, { duration: 0.2, ease: 'easeInOut' });
-    animate(toggleDotRef.current.querySelector('svg')!, { opacity: checkedState ? 1 : 0 }, { duration: 0.2, ease: 'easeInOut' });
+    animate('svg', { opacity: checkedState ? 1 : 0 }, { duration: 0.2, ease: 'easeInOut' });
   }, [checkedState, showHoveredStyling, isActive]);
 
   const getBackgroundColor = (): string => {
