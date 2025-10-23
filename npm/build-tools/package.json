@@ -18,14 +18,13 @@
     "directory": "lib",
     "access": "public"
   },
-  "main": "./lib/index.cjs",
+  "main": "./lib/index.js",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "exports": {
     ".": {
       "types": "./lib/index.d.ts",
-      "import": "./lib/index.js",
-      "require": "./lib/index.cjs"
+      "import": "./lib/index.js"
     }
   },
   "scripts": {
