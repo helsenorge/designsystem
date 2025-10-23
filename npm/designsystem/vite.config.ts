@@ -23,7 +23,7 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: 'index.js',
-      formats: ['es', 'cjs'],
+      formats: ['es'],
     },
     rollupOptions: {
       preserveEntrySignatures: 'strict',
