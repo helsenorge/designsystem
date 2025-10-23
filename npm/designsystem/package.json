@@ -31,6 +31,10 @@
       "types": "./lib/components/Icons/*.d.ts",
       "import": "./lib/components/Icons/*.js"
     },
+    "./components/Illustrations/*": {
+      "types": "./lib/components/Illustrations/*.d.ts",
+      "import": "./lib/components/Illustrations/*.js"
+    },
     "./components/*": {
       "types": "./lib/components/*/index.d.ts",
       "import": "./lib/components/*/index.js"
