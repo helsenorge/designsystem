@@ -18,6 +18,7 @@
     outline: none;
     padding: 0;
     margin: 4px;
+    cursor: pointer;
 
     &:focus-visible {
       outline: 4px solid var(--color-action-border-onlight-focus);
