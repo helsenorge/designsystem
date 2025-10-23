@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import { getIllustration } from './utils';
 import { AnalyticsId } from '../../constants';
-import { useUuid } from '../../hooks/useUuid';
 
 export type IllustrationColor = 'neutral' | 'cherry' | 'blueberry';
 
@@ -43,7 +42,7 @@ export interface IllustrationProps extends BaseIllustrationProps {
 export const Illustration = React.forwardRef<SVGSVGElement, IllustrationProps>((props, ref) => {
   const { illustration, ariaLabel, className = '', size = 512, color = 'neutral', testId, ...other } = props;
 
-  const titleId = useUuid();
+  const titleId = useId();
   const viewBox = getIllustration({ size, medium: ViewBoxSize.Medium, small: ViewBoxSize.Small });
 
   const svgProperties = {

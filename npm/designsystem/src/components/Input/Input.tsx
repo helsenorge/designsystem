@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { FormOnColor, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
-import { useUuid } from '../../hooks/useUuid';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
@@ -115,7 +115,6 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     transparent = false,
     icon,
     iconRight,
-    inputId,
     inputWrapperRef,
     onColor = FormOnColor.onwhite,
     size,
@@ -123,7 +122,6 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     label,
     error,
     errorText,
-    errorTextId,
     errorWrapperClassName,
     testId,
     disabled,
@@ -143,11 +141,11 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   } = props;
   const breakpoint = useBreakpoint();
   const inputContainerRefLocal = useRef<HTMLDivElement>(null);
-  const inputIdState = useUuid(inputId);
+  const inputId = useIdWithFallback(props.inputId);
   const [input, setInput] = useState(defaultValue || '');
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
   const numKeyPressed = useRef<boolean>(false);
-  const errorTextUuid = useUuid(errorTextId);
+  const errorTextId = useIdWithFallback(props.errorTextId);
   const numRegex = /^[0-9]$/;
 
   useEffect(() => {
@@ -245,9 +243,9 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   const maxWidth = width ? getInputMaxWidth(width, !!icon, iconSize) : undefined;
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
-        {renderLabel(label, inputIdState, onColor as FormOnColor)}
+        {renderLabel(label, inputId, onColor as FormOnColor)}
         {/* input-elementet tillater keyboard-interaksjon */}
         <div className={styles['content-wrapper']}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
@@ -266,10 +264,10 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
               name={name}
               type={type}
               defaultValue={defaultValue}
-              id={inputIdState}
+              id={inputId}
               className={inputClass}
               ref={ref}
-              aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
+              aria-describedby={getAriaDescribedBy(props, errorTextId)}
               aria-invalid={!!onError}
               disabled={disabled}
               placeholder={placeholder}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -10,7 +10,6 @@ import { IconName } from '../Icons/IconNames';
 import LazyIcon from '../LazyIcon';
 import Title, { TitleTags } from '../Title';
 import { getResources } from './resourceHelper';
-import { useUuid } from '../../hooks/useUuid';
 
 import styles from './styles.module.scss';
 
@@ -42,7 +41,7 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
   const [expanded, setExpanded] = useState(false);
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
-  const infoteaserTextId = useUuid();
+  const infoteaserTextId = useId();
 
   const mergedResources: HNDesignsystemInfoTeaser = {
     ...defaultResources,

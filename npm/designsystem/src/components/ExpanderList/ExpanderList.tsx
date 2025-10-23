@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { useUuid } from '../../hooks/useUuid';
 import { PaletteNames } from '../../theme/palette';
 import { mergeRefs } from '../../utils/refs';
 import { isElementInViewport } from '../../utils/viewport';
@@ -238,7 +237,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
   } = props;
   const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
-  const uuid = useUuid();
+  const expanderIdBase = useId();
   const expanderListClasses = classNames(expanderListStyles['expander-list'], className, {
     [expanderListStyles[`expander-list--outline--${color}`]]: variant === 'outline',
     [expanderListStyles[`expander-list--fill`]]: variant === 'fill' || variant === 'fill-negative',
@@ -250,7 +249,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     setLatestExpander(event.currentTarget);
   }
 
-  const getExpanderId = (index: number): string => `${uuid}-${index}`;
+  const getExpanderId = (index: number): string => `${expanderIdBase}-${index}`;
 
   useEffect(() => {
     if (accordion && latestExpander && !isElementInViewport(latestExpander)) {
@@ -312,7 +311,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
               large,
               'aria-expanded': expanded,
               className: expanderListStyles['expander-list__item'],
-              handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${uuid}-${index}`),
+              handleExpanderClick: (event: React.MouseEvent<HTMLElement>) => handleExpanderClick(event, `${expanderIdBase}-${index}`),
               renderChildrenWhenClosed,
               variant,
               zIndex: zIndex,

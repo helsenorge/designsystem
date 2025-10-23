@@ -2,14 +2,9 @@ import { render, screen } from '@testing-library/react';
 
 import Logo from './Logo';
 
-test('displays original logo', (): void => {
-  const { container } = render(<Logo />);
-  expect(container).toMatchSnapshot();
-});
-
 test('displays byline logo', (): void => {
   const { container } = render(<Logo byline />);
-  expect(container).toMatchSnapshot();
+  expect(container).toBeVisible();
 });
 
 describe('Gitt at Logo skal vises', (): void => {

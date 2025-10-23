@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
-import { useUuid } from '../../hooks/useUuid';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { isComponent } from '../../utils/component';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import ErrorWrapper from '../ErrorWrapper';
@@ -71,7 +71,6 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     onColor = FormOnColor.onwhite,
     size = FormSize.medium,
     error,
-    errorTextId,
     name,
     htmlMarkup = 'fieldset',
     renderError = true,
@@ -79,8 +78,8 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     errorWrapperTestId,
   } = props;
   const [checkedRadioId, setCheckedRadioId] = useState<string>();
-  const radioGroupId = useUuid();
-  const errorTextUuid = useUuid(errorTextId);
+  const radioGroupId = useId();
+  const errorTextId = useIdWithFallback(props.errorTextId);
   const onDark = onColor === FormOnColor.ondark;
   const isLarge = size === FormSize.large;
   const formGroupWrapperClasses = classNames(formGroupStyles['form-group-wrapper'], className);
@@ -110,7 +109,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         size,
         error,
         renderError: false,
-        errorTextId: errorTextUuid,
+        errorTextId: errorTextId,
       });
     } else if (isComponent<CheckboxProps>(child, Checkbox)) {
       return React.cloneElement(child, {
@@ -118,7 +117,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         onColor,
         size,
         error: !!error,
-        errorTextId: errorTextUuid,
+        errorTextId: errorTextId,
       });
     } else if (isComponent<RadioButtonProps>(child, RadioButton)) {
       const radioId = typeof child.props.inputId === 'undefined' ? radioGroupId + index : child.props.inputId;
@@ -132,7 +131,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
           if (child.props.onChange) child.props.onChange(event);
         },
         error: !!error,
-        errorTextId: errorTextUuid,
+        errorTextId: errorTextId,
         labelClassNames: getRadioLabelClasses(radioId, onColor as FormOnColor, isLarge, checkedRadioId),
       });
     } else if (isComponent<InputProps>(child, Input)) {
@@ -141,27 +140,27 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         onColor,
         size,
         error: !!error,
-        errorTextId: errorTextUuid,
+        errorTextId: errorTextId,
       });
     } else if (isComponent<TextareaProps>(child, Textarea)) {
       return React.cloneElement(child, {
         name: name ?? child.props.name,
         onColor,
         error: !!error,
-        errorTextId: errorTextUuid,
+        errorTextId: errorTextId,
       });
     } else if (isComponent<SelectProps>(child, Select)) {
       return React.cloneElement(child, {
         name: name ?? child.props.name,
         onColor,
         error: !!error,
-        errorTextId: errorTextUuid,
+        errorTextId: errorTextId,
       });
     } else if (isComponent<SliderProps>(child, Slider)) {
       return React.cloneElement(child, {
         name: name ?? child.props.name,
         error: !!error,
-        errorTextId: errorTextUuid,
+        errorTextId: errorTextId,
       });
     }
     return child;
@@ -210,7 +209,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         className={errorWrapperClassName}
         errorText={error}
         testId={errorWrapperTestId}
-        errorTextId={errorTextUuid}
+        errorTextId={errorTextId}
         errorMessageRef={ref}
         renderError={renderError}
       >

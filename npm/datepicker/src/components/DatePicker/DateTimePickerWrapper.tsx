@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
 import ErrorWrapper, { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
-import { useUuid } from '@helsenorge/designsystem-react/hooks/useUuid';
 import { isComponent } from '@helsenorge/designsystem-react/utils/component';
 
 import DatePicker, { DatePickerProps } from './DatePicker';
@@ -26,7 +25,7 @@ interface DateTimePickerWrapperProps extends ErrorWrapperClassNameProps {
 
 export const DateTimePickerWrapper = React.forwardRef((props: DateTimePickerWrapperProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   const { children, errorWrapperClassName, errorText, legend, testId } = props;
-  const errorTextId = useUuid();
+  const errorTextId = useId();
 
   const mapDateComponents = (child: React.ReactNode): React.ReactNode => {
     if (isComponent<DatePickerProps>(child, DatePicker)) {
