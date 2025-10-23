@@ -35,7 +35,7 @@
     "stylelint": "npm run -ws --if-present stylelint",
     "stylelint:fix": "npm run -ws --if-present stylelint:fix",
     "typecheck": "npm run -ws --if-present typecheck",
-    "test": "npm run -ws --if-present test",
+    "test": "npm run -ws --if-present test -- --run",
     "posttest": "node ./scripts/aggregate-packages-coverage.cjs && nyc report --reporter lcov",
     "postversion": "npm run changelog",
     "changelog": "conventional-changelog --config changelog.config.js --infile CHANGELOG.md --same-file --release-count 0 --skip-unstable --tag-prefix v --outputUnreleased false",
