@@ -27,6 +27,10 @@
       "types": "./lib/index.d.ts",
       "import": "./lib/index.js"
     },
+    "./components/*": {
+      "types": "./lib/components/*/index.d.ts",
+      "import": "./lib/components/*/index.js"
+    },
     "./scss/*": "./lib/scss/*",
     "./package.json": "./package.json"
   },
@@ -70,7 +74,6 @@
     "react-dom": "^18.3.1",
     "react-zoom-pan-pinch": "^3.6.1",
     "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-visualizer": "^5.12.0",
     "typescript": "~5.8.2",
