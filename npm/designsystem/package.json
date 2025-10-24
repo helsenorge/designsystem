@@ -62,7 +62,8 @@
   "scripts": {
     "start": "storybook dev",
     "prebuild": "npm-run-all clean generate:iconnames generate:illustrationnames generate:cssdefinitions",
-    "build": "vite build && node __scripts__/link-root-scss.mjs",
+    "build": "vite build",
+    "postbuild": "node __scripts__/link-root-scss.mjs",
     "build-storybook": "storybook build -o dist",
     "clean": "rimraf lib",
     "generate:iconnames": "node __scripts__/generateIconNames.mjs",
