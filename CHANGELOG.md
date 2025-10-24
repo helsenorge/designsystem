@@ -1,3 +1,13 @@
+## 13.0.0-beta.1 (2025-10-24)
+
+### Features
+
+- erstatter useuuid hooken med useidwithfallback og tar i bruk useid
+  ([e78748c](https://github.com/helsenorge/designsystem/commit/e78748c69a6c6999867bcc22302127f1637611f0)), closes
+  [#357961](https://github.com/helsenorge/designsystem/issues/357961)
+- **panelold:** slett gammelt Panel ([af225ff](https://github.com/helsenorge/designsystem/commit/af225ff1ee3cc690b4968a67b920be7e5fd022fd)),
+  closes [#352894](https://github.com/helsenorge/designsystem/issues/352894)
+
 ## 13.0.0-beta.0 (2025-10-10)
 
 ### Features
