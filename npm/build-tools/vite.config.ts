@@ -1,4 +1,3 @@
-import generatePackageJson from 'rollup-plugin-generate-package-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -24,36 +23,7 @@ export default defineConfig({
         chunkFileNames: '[name].js',
         assetFileNames: '[name].[ext]',
       },
-      plugins: [
-        peerDepsExternal(),
-        generatePackageJson({
-          baseContents: ({
-            name,
-            type,
-            description,
-            repository,
-            homepage,
-            version,
-            author,
-            license,
-            dependencies = {},
-            peerDependencies = {},
-            sideEffects,
-          }) => ({
-            name,
-            type,
-            description,
-            repository,
-            homepage,
-            version,
-            author,
-            license,
-            dependencies,
-            peerDependencies,
-            sideEffects,
-          }),
-        }),
-      ],
+      plugins: [peerDepsExternal()],
     },
   },
 });
