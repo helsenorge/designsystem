@@ -23,7 +23,7 @@ export default defineConfig({
     rollupOptions: {
       preserveEntrySignatures: 'strict',
       input: entries,
-      external: [/.module.scss/, 'react-hook-form', 'vitest'],
+      external: [/.module.scss/, 'react-hook-form', 'vitest', /^motion(\/.*)?$/],
       output: {
         format: 'es',
         entryFileNames: '[name].js',
