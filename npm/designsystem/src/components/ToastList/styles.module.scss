@@ -1,4 +1,5 @@
 .toast-list {
+  width: 100%;
   position: fixed;
   z-index: 1;
   inset-block-end: 0;
@@ -6,7 +7,6 @@
   padding-block-end: 1rem;
   display: flex;
   flex-direction: column;
-  place-items: center;
   gap: 1rem;
   pointer-events: none;
 }
