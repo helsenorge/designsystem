@@ -7,10 +7,10 @@ import ToastList, { type ToastData } from './ToastList';
 
 vi.useFakeTimers();
 
-// Mock framer-motion
+// Mock motion/react
 vi.mock('motion/react', () => ({
   motion: {
-    div: ({ children, ...props }: React.PropsWithChildren<Record<string, unknown>>): JSX.Element => <div {...props}>{children}</div>,
+    div: ({ ...props }: React.PropsWithChildren<Record<string, unknown>>): JSX.Element => <div {...props}>{props.children}</div>,
   },
   AnimatePresence: ({ children }: React.PropsWithChildren): React.ReactNode => children,
 }));
@@ -93,7 +93,7 @@ describe('Gitt at ToastList skal vises', (): void => {
       const closeButton = screen.getByTestId('toast-list-toast-1-close');
       fireEvent.click(closeButton);
 
-      // Since framer-motion is mocked, the toast should be removed immediately
+      // Since motion is mocked, the toast should be removed immediately
       expect(screen.queryByText('Success message')).not.toBeInTheDocument();
     });
   });
@@ -140,9 +140,8 @@ describe('Gitt at ToastList skal vises', (): void => {
 
       unmount();
 
-      // Etter unmount skal timers være ryddet opp
-      // Note: Vi kan ikke direkte teste at timers er cleared siden de er interne,
-      // men vi kan sjekke at komponenten unmounter uten feil
+      // After unmount the timers should be cleared
+      // Note: We can't test that directly but checks that the component unmount without errors
       expect(true).toBe(true);
     });
   });
