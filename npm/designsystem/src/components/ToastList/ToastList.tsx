@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 
 import { mergeRefs } from '../../utils/refs';
 import Toast from '../Toast/Toast';

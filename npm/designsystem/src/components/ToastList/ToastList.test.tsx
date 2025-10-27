@@ -7,24 +7,13 @@ import ToastList, { type ToastData } from './ToastList';
 
 vi.useFakeTimers();
 
-// Mock element.animate since it's not available in JSDOM
-const mockAnimate = vi.fn().mockImplementation(() => {
-  const mockAnimation = {
-    addEventListener: vi.fn((event: string, callback: () => void) => {
-      if (event === 'finish') {
-        // Simulate animation completion immediately
-        setTimeout(() => callback(), 0);
-      }
-    }),
-    finished: Promise.resolve(),
-  };
-  return mockAnimation;
-});
-
-Object.defineProperty(Element.prototype, 'animate', {
-  value: mockAnimate,
-  writable: true,
-});
+// Mock framer-motion
+vi.mock('motion/react', () => ({
+  motion: {
+    div: ({ children, ...props }: React.PropsWithChildren<Record<string, unknown>>): JSX.Element => <div {...props}>{children}</div>,
+  },
+  AnimatePresence: ({ children }: React.PropsWithChildren): React.ReactNode => children,
+}));
 
 const mockToastData: ToastData[] = [
   {
@@ -46,7 +35,6 @@ const mockToastData: ToastData[] = [
 describe('Gitt at ToastList skal vises', (): void => {
   beforeEach(() => {
     vi.clearAllTimers();
-    mockAnimate.mockClear();
   });
 
   describe('Når ToastList vises uten toasts', (): void => {
@@ -97,7 +85,7 @@ describe('Gitt at ToastList skal vises', (): void => {
   });
 
   describe('Når bruker klikker på lukk-knappen', (): void => {
-    test('Så kalles onClose callback', (): void => {
+    test('Så fjernes toasten fra listen', (): void => {
       render(<ToastList testId="toast-list" toasts={[mockToastData[0]]} />);
 
       expect(screen.getByText('Success message')).toBeInTheDocument();
@@ -105,7 +93,8 @@ describe('Gitt at ToastList skal vises', (): void => {
       const closeButton = screen.getByTestId('toast-list-toast-1-close');
       fireEvent.click(closeButton);
 
-      expect(mockAnimate).toHaveBeenCalled();
+      // Since framer-motion is mocked, the toast should be removed immediately
+      expect(screen.queryByText('Success message')).not.toBeInTheDocument();
     });
   });
 
