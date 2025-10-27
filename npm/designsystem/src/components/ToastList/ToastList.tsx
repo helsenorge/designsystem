@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { mergeRefs } from '../../utils/refs';
 import Toast from '../Toast/Toast';
 
 import styles from './styles.module.scss';
@@ -134,17 +135,7 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
     };
   }, []);
 
-  const setRefs = React.useCallback(
-    (node: HTMLElement | null) => {
-      internalRef.current = node;
-      if (typeof ref === 'function') {
-        ref(node);
-      } else if (ref) {
-        ref.current = node;
-      }
-    },
-    [ref]
-  );
+  const setRefs = mergeRefs([internalRef, ref]);
 
   return (
     <section ref={setRefs} className={styles['toast-list']} data-testid={testId}>

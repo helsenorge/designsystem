@@ -26,7 +26,7 @@ const Toast: React.FC<ToastProps> = ({ testId, title, message, onClose }) => {
 
   return (
     <output className={styles['toast']} data-testid={testId}>
-      <Icon svgIcon={CheckFill} color="var(--core-color-kiwi-900)" className={styles['toast__icon']} />
+      <Icon svgIcon={CheckFill} className={styles['toast__icon']} />
       <div className={styles['toast__text-container']}>
         <span className={styles['toast__title']}>{title}</span>
         {message && <span className={styles['toast__description']}>{message}</span>}
