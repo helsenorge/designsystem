@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { AnimatePresence, motion } from 'framer-motion';
+
 import { mergeRefs } from '../../utils/refs';
 import Toast from '../Toast/Toast';
 
@@ -19,9 +21,6 @@ export interface ToastListProps {
 }
 
 const DURATION = 8000;
-const ANIMATION_DURATION = 300;
-const FADE_OUT_DISTANCE = 10;
-const FLIP_ANIMATION_DURATION = 150;
 
 const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => {
   const { testId, toasts = [] } = props;
@@ -35,60 +34,13 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
     if (newToasts.length > 0) {
       setVisibleToasts(prev => [...prev, ...newToasts]);
     }
-  }, [toasts]);
+  }, [toasts, visibleToasts, removedToastIds]);
 
-  // Handle animation when visible toasts change
-  React.useEffect(() => {
-    const container = internalRef.current;
-    if (!container) return;
-
-    // FLIP animation technique
-    const first = container.offsetHeight;
-
-    requestAnimationFrame(() => {
-      const last = container.offsetHeight;
-      const invert = last - first;
-
-      // Animate height changes
-      if (invert > 0) {
-        container.animate([{ transform: `translateY(-${invert}px)` }, { transform: 'translateY(0)' }], {
-          duration: FLIP_ANIMATION_DURATION,
-          easing: 'ease-out',
-        });
-      }
-    });
-  }, [visibleToasts.length]);
-
-  // Handles manual removal of a toast
+  // Handles removal of a toast
   const handleRemoveToast = React.useCallback((id: string): void => {
-    const toastElement = document.querySelector(`[data-toast-id="${id}"]`) as HTMLElement;
-
-    if (toastElement) {
-      // Animate fade out
-      toastElement
-        .animate(
-          [
-            { opacity: 1, transform: 'translateY(0)' },
-            { opacity: 0, transform: `translateY(-${FADE_OUT_DISTANCE}px)` },
-          ],
-          {
-            duration: ANIMATION_DURATION,
-            easing: 'ease-out',
-            fill: 'forwards',
-          }
-        )
-        .addEventListener('finish', () => {
-          // Remove from state after animation completes
-          setVisibleToasts(prev => prev.filter(t => t.id !== id));
-          // Add to removed IDs to prevent re-appearance
-          setRemovedToastIds(prev => new Set([...prev, id]));
-        });
-    } else {
-      // Fallback: remove immediately if element not found
-      setVisibleToasts(prev => prev.filter(t => t.id !== id));
-      // Add to removed IDs to prevent re-appearance
-      setRemovedToastIds(prev => new Set([...prev, id]));
-    }
+    setVisibleToasts(prev => prev.filter(t => t.id !== id));
+    // Add to removed IDs to prevent re-appearance
+    setRemovedToastIds(prev => new Set([...prev, id]));
 
     // Clear timeout if exists
     const timeout = timeoutRefs.current.get(id);
@@ -102,7 +54,7 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
   React.useEffect(() => {
     const timeouts = timeoutRefs.current;
 
-    // Set up timeouts for new visible toasts that does not have timeout yet
+    // Set up timeouts for new visible toasts that don't have timeout yet
     visibleToasts.forEach(toast => {
       if (!timeouts.has(toast.id)) {
         const timeout = setTimeout(() => {
@@ -112,7 +64,7 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
         timeouts.set(toast.id, timeout);
       }
     });
-  }, [visibleToasts.length, handleRemoveToast]);
+  }, [visibleToasts, handleRemoveToast]);
 
   // Cleanup timeouts for removed toasts
   React.useEffect(() => {
@@ -139,11 +91,27 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
 
   return (
     <section ref={setRefs} className={styles['toast-list']} data-testid={testId}>
-      {visibleToasts.map(toast => (
-        <div key={toast.id} data-toast-id={toast.id}>
-          <Toast testId={`${testId}-${toast.id}`} title={toast.title} message={toast.message} onClose={() => handleRemoveToast(toast.id)} />
-        </div>
-      ))}
+      <AnimatePresence mode="popLayout">
+        {visibleToasts.map(toast => (
+          <motion.div
+            key={toast.id}
+            layout
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{
+              layout: { type: 'spring', duration: 0.4, bounce: 0.1 },
+            }}
+          >
+            <Toast
+              testId={`${testId}-${toast.id}`}
+              title={toast.title}
+              message={toast.message}
+              onClose={() => handleRemoveToast(toast.id)}
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </section>
   );
 });

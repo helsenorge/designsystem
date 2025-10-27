@@ -16,13 +16,6 @@
   gap: 0.25rem;
   pointer-events: auto;
 
-  --travel-distance: 0;
-
-  will-change: transform;
-  animation:
-    fade-in 0.3s ease,
-    slide-in 0.3s ease;
-
   &__icon {
     align-self: flex-start;
     fill: var(--core-color-kiwi-900);
@@ -52,29 +45,5 @@
 
   &__description {
     @include fonts.compact-data;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .toast {
-    --travel-distance: 5vh;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes fade-out {
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes slide-in {
-  from {
-    transform: translateY(var(--travel-distance, 10px));
   }
 }
