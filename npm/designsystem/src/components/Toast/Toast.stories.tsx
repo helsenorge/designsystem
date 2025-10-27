@@ -12,7 +12,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Beskrivelse av Toast',
+        component:
+          'Toast informerer innbygger om en handling som har blitt utført eller kommer til å bli utført. De vises midlertidig, nederst på skjermen og skal ikke kreve handling eller avbryte brukeropplevelsen. ',
       },
       page: (): React.JSX.Element => <Docs component={Toast} />,
     },

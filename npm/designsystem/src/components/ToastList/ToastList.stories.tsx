@@ -11,7 +11,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'ToastList handles all toast management including animations, durations, and removal.',
+        component:
+          'Toast informerer innbygger om en handling som har blitt utført eller kommer til å bli utført. ToastList er en container for flere toasts, og håndterer visning og fjerning av disse. ',
       },
       page: (): React.JSX.Element => <Docs component={ToastList} />,
     },
@@ -20,7 +21,6 @@ const meta = {
   argTypes: {
     toasts: {
       control: 'object',
-      description: 'Array of toast data to display',
     },
   },
 } satisfies Meta<typeof ToastList>;
