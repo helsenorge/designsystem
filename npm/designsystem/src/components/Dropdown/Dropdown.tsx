@@ -4,17 +4,7 @@ import { autoUpdate, offset, shift, size, useFloating } from '@floating-ui/react
 import classNames from 'classnames';
 import { clamp } from 'motion/react';
 
-import {
-  AnalyticsId,
-  IconSize,
-  KeyboardEventKey,
-  LanguageLocales,
-  ZIndex,
-  useHover,
-  useKeyboardEvent,
-  useOutsideEvent,
-  useToggle,
-} from '../..';
+import { AnalyticsId, IconSize, KeyboardEventKey, LanguageLocales, ZIndex, useKeyboardEvent, useOutsideEvent, useToggle } from '../..';
 import { getResources } from './resourceHelper';
 import { SingleSelectItem, SingleSelectItemProps } from './SingleSelect/SingleSelectItem';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
@@ -32,6 +22,7 @@ import PlusSmall from '../Icons/PlusSmall';
 import Label, { LabelProps } from '../Label';
 import LazyIcon from '../LazyIcon';
 import { SingleSelect } from './SingleSelect/SingleSelect';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 
 import styles from './styles.module.scss';
 
@@ -86,7 +77,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
   const childrenRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
-  const { hoverRef: buttonRef, isHovered } = useHover<HTMLButtonElement>();
+  const { refObject: buttonRef, isHovered } = usePseudoClasses<HTMLButtonElement>();
   const openedByKeyboard = useRef<boolean>(false);
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
   const isMobile = useIsMobileBreakpoint();
