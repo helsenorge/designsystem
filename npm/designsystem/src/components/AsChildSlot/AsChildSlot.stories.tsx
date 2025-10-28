@@ -32,7 +32,7 @@ const Visuals = ({ text }: { text: string }): React.ReactElement => (
   </span>
 );
 
-export const WithButtonChild: Story = {
+export const Default: Story = {
   render: args => {
     const slotRef = React.useRef<AsChildSlotHandle | null>(null);
     return (
