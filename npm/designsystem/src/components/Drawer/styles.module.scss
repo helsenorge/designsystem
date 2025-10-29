@@ -1,9 +1,9 @@
 @use 'sass:map';
-@use '../../scss/spacers' as spacers;
 @use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
 
 .drawer {
   position: fixed;
@@ -77,23 +77,23 @@
     justify-content: space-between;
 
     // legg til padding for å gi plass til close button
-    padding: spacers.getSpacer(xs) 2.75rem spacers.getSpacer(xs) spacers.getSpacer(2xs);
+    padding: var(--core-space-xs) 2.75rem var(--core-space-xs) var(--core-space-2xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      padding: spacers.getSpacer(xs) 2.75rem spacers.getSpacer(xs) spacers.getSpacer(xs);
+      padding: var(--core-space-xs) 2.75rem var(--core-space-xs) var(--core-space-xs);
     }
 
     @include breakpoints.tiny-screens-media-query {
-      padding: spacers.getSpacer(4xs) 0;
+      padding: var(--core-space-4xs) 0;
       flex-direction: column-reverse;
       align-items: flex-start;
     }
 
     &--no-close-button {
-      padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
+      padding: var(--core-space-xs) var(--core-space-2xs);
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-        padding: spacers.getSpacer(xs);
+        padding: var(--core-space-xs);
       }
     }
 
@@ -121,10 +121,10 @@
     }
 
     &__children {
-      padding: spacers.getSpacer(xs) spacers.getSpacer(2xs);
+      padding: var(--core-space-xs) var(--core-space-2xs);
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-        padding: spacers.getSpacer(s) spacers.getSpacer(xs);
+        padding: var(--core-space-s) var(--core-space-xs);
       }
     }
 
@@ -143,21 +143,21 @@
 
       &--top {
         top: 0;
-        margin-bottom: calc(0rem - spacers.getSpacer(xs));
+        margin-bottom: calc(0rem - var(--core-space-xs));
         background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 45.7%) 100%);
 
         @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-          margin-bottom: calc(0rem - spacers.getSpacer(s));
+          margin-bottom: calc(0rem - var(--core-space-s));
         }
       }
 
       &--bottom {
         bottom: 0;
         background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 45.7%) 100%);
-        margin-top: calc(0rem - spacers.getSpacer(xs));
+        margin-top: calc(0rem - var(--core-space-xs));
 
         @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-          margin-top: calc(0rem - spacers.getSpacer(s));
+          margin-top: calc(0rem - var(--core-space-s));
         }
       }
 
@@ -169,17 +169,18 @@
 
   &__footer {
     display: flex;
-    gap: spacers.getSpacer(m);
-    padding: spacers.getSpacer(s) spacers.getSpacer(2xs);
+    gap: var(--core-space-2xs) var(--core-space-m);
+    padding: var(--core-space-s) var(--core-space-2xs);
+    flex-wrap: wrap;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      padding: spacers.getSpacer(m) spacers.getSpacer(xs);
+      row-gap: var(--core-space-s);
+      padding: var(--core-space-m) var(--core-space-xs);
     }
 
     @include breakpoints.tiny-screens-media-query {
-      flex-wrap: wrap;
-      gap: spacers.getSpacer(2xs) 0;
-      padding: spacers.getSpacer(2xs) 0;
+      column-gap: var(--core-space-2xs) 0;
+      padding: var(--core-space-2xs) 0;
     }
   }
 }
