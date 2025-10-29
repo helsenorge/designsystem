@@ -1,3 +1,14 @@
+## [12.9.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.8.0&targetVersion=GTv12.9.0) (2025-10-29)
+
+### Bug Fixes
+
+- dropdown fokus styling fiks og aschildslot story forbedret
+  ([08d1658](https://github.com/helsenorge/designsystem/commit/08d165819fa9295ae16c6c77316735cc15172a32)), closes
+  [#358846](https://github.com/helsenorge/designsystem/issues/358846)
+- **panel:** fiks controlled med state i callback
+  ([49d7398](https://github.com/helsenorge/designsystem/commit/49d73985164dfe571fcf9c3af9ba68d54988c259)), closes
+  [#363208](https://github.com/helsenorge/designsystem/issues/363208)
+
 ## [12.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.7.0&targetVersion=GTv12.8.0) (2025-10-28)
 
 ### Features
