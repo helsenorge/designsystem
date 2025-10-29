@@ -1,3 +1,10 @@
+## 13.0.0-beta.2 (2025-10-29)
+
+### Features
+
+- gjør motion external ([aaf9051](https://github.com/helsenorge/designsystem/commit/aaf90515520194725651b653a516180381bc270d)), closes
+  [#361425](https://github.com/helsenorge/designsystem/issues/361425)
+
 ## 13.0.0-beta.1 (2025-10-24)
 
 ### Features
