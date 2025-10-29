@@ -1,0 +1,50 @@
+@use '../../scss/font-mixins' as fonts;
+@use 'sass:map';
+@use '@helsenorge/designsystem-react/scss/breakpoints' as breakpoints;
+@import '../../scss/supernova/styles/colors.css';
+
+.toast {
+  max-width: 40rem;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--core-color-kiwi-50);
+  border: 2px solid var(--core-color-kiwi-900);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  pointer-events: auto;
+
+  &__icon {
+    align-self: flex-start;
+    fill: var(--core-color-kiwi-900);
+  }
+
+  &__text-container {
+    --margin-top: 0;
+
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: var(--margin-top);
+
+    &:has(.toast__description) {
+      --margin-top: 0.5rem;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+        --margin-top: 0.625rem;
+      }
+    }
+  }
+
+  &__title {
+    @include fonts.title6;
+  }
+
+  &__description {
+    @include fonts.compact-data;
+  }
+}
