@@ -49,7 +49,7 @@ export interface LightBoxProps {
   /** Source of the image that will be shown */
   imageSrc: string;
   /** The text for the image that shows in the textbox */
-  imageText?: string;
+  imageText?: string | React.ReactNode;
   /** Function is called when user clicks the close button */
   onClose: () => void;
   /** Function is called when user clicks the left arrow button. If not given the arrow will not show. */
@@ -169,9 +169,15 @@ const LightBox: React.FC<LightBoxProps> = ({
             )}
           </button>
           <div>
-            <p ref={textBoxRef} className={styles['image-text-box__text']}>
-              {imageText}
-            </p>
+            {typeof imageText === 'string' ? (
+              <p ref={textBoxRef} className={styles['image-text-box__text']}>
+                {imageText}
+              </p>
+            ) : (
+              <div ref={textBoxRef} className={styles['image-text-box__text']}>
+                {imageText}
+              </div>
+            )}
             <div className={styles['image-text-box__overflow-border']}></div>
           </div>
         </div>
