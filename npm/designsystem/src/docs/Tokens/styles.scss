@@ -1,0 +1,32 @@
+@import '../../scss/supernova/styles/colors.css';
+
+.token-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+  border-bottom: solid 1px #eae7e7;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  &:first-of-type {
+    border-top: solid 1px #eae7e7;
+  }
+}
+
+.token-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  border-width: 1px;
+  border-style: solid;
+  margin-top: 1px;
+}
+
+.token-text {
+  color: #000;
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+}
