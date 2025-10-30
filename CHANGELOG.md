@@ -1,3 +1,23 @@
+## [12.10.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.9.0&targetVersion=GTv12.10.0) (2025-10-30)
+
+### Features
+
+- **lightbox:** åpne for reactnode på imagetext
+  ([fa7b052](https://github.com/helsenorge/designsystem/commit/fa7b052639f642ec8a196820440ed8798f3df353)), closes
+  [#363386](https://github.com/helsenorge/designsystem/issues/363386)
+- **toast:** nye komponenter toast og toastlist
+  ([a186861](https://github.com/helsenorge/designsystem/commit/a186861d6f025f2864a4eb012222aa5beb9037c5)), closes
+  [#357838](https://github.com/helsenorge/designsystem/issues/357838)
+
+### Bug Fixes
+
+- **drawer:** drawer footer innhold skal wrappe på alle størrelser
+  ([21f7c99](https://github.com/helsenorge/designsystem/commit/21f7c9910e9f5bd4335941bfe2861470ce204dff)), closes
+  [#363405](https://github.com/helsenorge/designsystem/issues/363405)
+- **dropdown:** defaultselected toggler ikke lenger og clickoutside fungerer alltid
+  ([ca19c57](https://github.com/helsenorge/designsystem/commit/ca19c57d2e353f47e1e5290a2fa76e5081f1d8b4)), closes
+  [#363415](https://github.com/helsenorge/designsystem/issues/363415)
+
 ## [12.9.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.8.0&targetVersion=GTv12.9.0) (2025-10-29)
 
 ### Bug Fixes
