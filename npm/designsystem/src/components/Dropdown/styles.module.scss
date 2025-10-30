@@ -6,6 +6,7 @@
 
 .dropdown {
   position: relative;
+  max-width: fit-content;
 
   &__toggle {
     display: flex;

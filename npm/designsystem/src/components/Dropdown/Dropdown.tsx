@@ -156,6 +156,8 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   };
 
   const handleClose = (): void => {
+    if (!isOpen) return;
+
     toggleIsOpen();
     buttonRef.current?.focus();
   };
