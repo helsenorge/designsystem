@@ -72,9 +72,12 @@
     "@nx/nx-win32-arm64-msvc": "21.6.4",
     "@nx/nx-win32-x64-msvc": "21.6.4"
   },
+  "overrides": {
+    "vite": "npm:rolldown-vite@^7.1.2"
+  },
   "engines": {
-    "node": "^22.0.0",
-    "npm": ">=10.0.0"
+    "node": "^24.0.0",
+    "npm": "^11.6.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",

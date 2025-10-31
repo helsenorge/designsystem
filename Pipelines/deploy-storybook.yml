@@ -12,7 +12,7 @@ pool:
 
 variables:
   - name: node_version
-    value: 22
+    value: 24
   - name: HUSKY
     value: 0
   - name: branchName

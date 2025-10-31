@@ -18,7 +18,7 @@ pool:
 
 variables:
   - name: node_version
-    value: 22
+    value: 24
   - name: npm_version
     value: 11
   - name: project_name
