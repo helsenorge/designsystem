@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
 import { AnchorTarget, AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
-import { useUuid } from '../../hooks/useUuid';
 import { palette } from '../../theme/palette';
 import { AriaLabelAttributes, getAriaLabelAttributes } from '../../utils/accessibility';
 import Badge from '../Badge';
@@ -299,8 +298,8 @@ const PanelOld = React.forwardRef(function PanelForwardedRef(props: PanelOldProp
   } = props;
 
   const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
-  const titleId = useUuid();
-  const buttonTextId = useUuid();
+  const titleId = useId();
+  const buttonTextId = useId();
   const hasBadge = statusMessage && status === PanelOldStatus.new;
   const noContentB = typeof contentB === 'undefined';
   const layout1 = layout === 'layout1' || noContentB;
