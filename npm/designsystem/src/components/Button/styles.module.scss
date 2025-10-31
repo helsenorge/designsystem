@@ -342,9 +342,11 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     align-items: center;
     justify-content: center;
     text-align: left;
+    padding: 0.4375rem 0;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       margin: 0 auto 0 0;
+      padding: 0.625rem 0;
     }
 
     &--ellipsis {
