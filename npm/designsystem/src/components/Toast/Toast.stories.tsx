@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
-import { action } from 'storybook/internal/actions';
+import { action, HandlerFunction } from 'storybook/internal/actions';
 
 import Toast from './Toast';
 
@@ -20,8 +20,7 @@ const meta = {
   },
   args: {
     title: 'Dette er en toast',
-    message: 'With message',
-    onClose: () => action('Lukket toast'),
+    onClose: (): HandlerFunction => action('Lukket toast'),
   },
   argTypes: {
     message: { control: 'text' },

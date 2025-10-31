@@ -11,24 +11,41 @@
   border-radius: 0.25rem;
   background-color: var(--core-color-kiwi-50);
   border: 2px solid var(--core-color-kiwi-900);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.25rem;
   pointer-events: auto;
+  display: grid;
+  grid-template:
+    'check text close' 2.375rem
+    '. text .' auto /
+    min-content auto min-content;
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    grid-template:
+      'check text close' 2.75rem
+      '. text .' auto /
+      min-content auto min-content;
+  }
 
   &__icon {
-    align-self: flex-start;
     fill: var(--core-color-kiwi-900);
+    align-self: center;
+
+    &--check {
+      grid-area: check;
+    }
+
+    &--close {
+      grid-area: close;
+    }
   }
 
   &__text-container {
     --margin-top: 0;
 
-    flex-grow: 1;
+    grid-area: text;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    align-self: center;
     margin-top: var(--margin-top);
 
     &:has(.toast__description) {

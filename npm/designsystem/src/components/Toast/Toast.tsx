@@ -1,7 +1,10 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
+import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import Close from '../Close';
-import Icon from '../Icon';
+import Icon, { IconSize } from '../Icon';
 import CheckFill from '../Icons/CheckFill';
 
 import styles from './styles.module.scss';
@@ -18,6 +21,8 @@ export interface ToastProps {
 }
 
 const Toast: React.FC<ToastProps> = ({ testId, title, message, onClose }) => {
+  const isMobile = useIsMobileBreakpoint();
+
   const handleClose = (): void => {
     if (onClose) {
       onClose();
@@ -26,12 +31,21 @@ const Toast: React.FC<ToastProps> = ({ testId, title, message, onClose }) => {
 
   return (
     <output className={styles['toast']} data-testid={testId}>
-      <Icon svgIcon={CheckFill} className={styles['toast__icon']} />
+      <Icon
+        size={isMobile ? IconSize.XSmall : IconSize.Small}
+        svgIcon={CheckFill}
+        className={classNames(styles['toast__icon'], styles['toast__icon--check'])}
+      />
       <div className={styles['toast__text-container']}>
         <span className={styles['toast__title']}>{title}</span>
         {message && <span className={styles['toast__description']}>{message}</span>}
       </div>
-      <Close onClick={handleClose} color="black" className={styles['toast__icon']} testId={`${testId}-close`} />
+      <Close
+        onClick={handleClose}
+        color="black"
+        className={classNames(styles['toast__icon'], styles['toast__icon--close'])}
+        testId={`${testId}-close`}
+      />
     </output>
   );
 };
