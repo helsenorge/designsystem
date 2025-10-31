@@ -1,0 +1,59 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Gitt at Panel skal vises > Gitt at status er draft og statusMessage er satt > Så vises panel i draft visning og statusMessage vises med ikon 1`] = `
+<div
+  class="status-message"
+  data-testid="display-status"
+>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon"
+    color="#000000"
+    data-analyticsid="icon"
+    fill="#000000"
+    focusable="false"
+    height="38"
+    role="presentation"
+    style="min-width: 38px; min-height: 38px;"
+    viewBox="0 0 48 48"
+    width="38"
+  >
+    <path
+      d="M38.188 15.243l-.754.754-5.702-5.703.753-.755c1.522-1.523 4.178-1.522 5.703 0a4.04 4.04 0 010 5.704zm-3.08 3.08l-5.702-5.704 1.61-1.61 5.703 5.703-1.61 1.61zM19.796 33.633l-2.49-2.49 14.702-14.493 2.387 2.385-14.599 14.598zm-6.856 3.28l-2.117-2.118 2.313-5.32 5.118 5.118-5.314 2.32zm-3.75 1.638l1.2-2.758 1.554 1.555-2.753 1.203zm19.501-25.218l2.602 2.602L16.592 30.43l-2.499-2.499 14.598-14.597zM39.438 8.29V8.29a5.768 5.768 0 00-4.102-1.699 5.765 5.765 0 00-4.102 1.699L12.216 27.306a.895.895 0 00-.184.274L6.673 39.91a.884.884 0 001.165 1.163l12.312-5.377a.888.888 0 00.271-.186l19.017-19.017a5.808 5.808 0 000-8.203z"
+    />
+  </svg>
+   
+  <span>
+    Dette en beskjed
+  </span>
+</div>
+`;
+
+exports[`Gitt at Panel skal vises > Gitt at status er error og statusMessage er satt > Så vises panel i error visning og statusMessage vises med ikon 1`] = `
+<div
+  class="status-message"
+  data-testid="display-status"
+>
+  <svg
+    aria-hidden="true"
+    class="hnds-style-icon"
+    color="#C83521"
+    data-analyticsid="icon"
+    fill="#C83521"
+    focusable="false"
+    height="38"
+    role="presentation"
+    style="min-width: 38px; min-height: 38px;"
+    viewBox="0 0 48 48"
+    width="38"
+  >
+    <path
+      d="M24.896 21.452v7.213a.891.891 0 01-1.782 0v-7.213a.89.89 0 111.782 0zm.5 11.577a1.39 1.39 0 11-2.782-.001 1.39 1.39 0 012.782.001zM6.613 39.725h34.774L24.11 8.275 6.613 39.725z"
+    />
+  </svg>
+   
+  <span>
+    Dette en error beskjed
+  </span>
+</div>
+`;

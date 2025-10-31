@@ -112,6 +112,7 @@ export enum AnalyticsId {
   Logo = 'logo',
   Modal = 'modal',
   NotificationPanel = 'notification-panel',
+  PanelOld = 'panel',
   PanelList = 'panel-list',
   PopMenu = 'pop-menu',
   PopOver = 'pop-over',
