@@ -301,12 +301,6 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     @include outline(palette.$cherry700, palette.$cherry50);
   }
 
-  /* stylelint-disable-next-line */
-  &--borderless:not(.button--only-icon) {
-    padding: 0 spacers.getSpacer(3xs);
-  }
-
-  /* stylelint-disable-next-line */
   &--borderless {
     border-radius: 0;
 
@@ -316,6 +310,18 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 
     :disabled > & {
       outline: none;
+    }
+  }
+
+  &--borderless:not(.button--only-icon) {
+    padding: 0 spacers.getSpacer(2xs);
+
+    &:has(.button__left-icon) {
+      padding-left: 0;
+    }
+
+    &:has(.button__right-icon) {
+      padding-right: 0;
     }
   }
 
