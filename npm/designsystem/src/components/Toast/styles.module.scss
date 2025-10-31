@@ -59,6 +59,8 @@
 
   &__title {
     @include fonts.title6;
+
+    padding-top: 0.125rem;
   }
 
   &__description {
