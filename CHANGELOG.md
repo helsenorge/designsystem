@@ -1,3 +1,13 @@
+## 13.0.0-beta.3 (2025-10-31)
+
+### Features
+
+- oppdatert til vite 7 ([0a70cfb](https://github.com/helsenorge/designsystem/commit/0a70cfb413f6a40142952ba1420a7bb4c20217bd)), closes
+  [#360075](https://github.com/helsenorge/designsystem/issues/360075)
+- **panelold:** slett gammelt Panel"
+  ([5a2230a](https://github.com/helsenorge/designsystem/commit/5a2230ac5cfb6cceefa7d5eb609c505780ca23ac)), closes
+  [#363596](https://github.com/helsenorge/designsystem/issues/363596)
+
 ## 13.0.0-beta.2 (2025-10-29)
 
 ### Features
