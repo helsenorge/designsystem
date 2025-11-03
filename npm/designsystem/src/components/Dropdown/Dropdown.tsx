@@ -139,13 +139,15 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
       // Hvis det ikke er plass på noen av sidene krymper vi bredden på listen med size
       size({
         padding: dropdownFloatingPadding,
-        apply({ availableWidth, elements, rects }) {
+        apply({ availableWidth, availableHeight, elements, rects }) {
           const triggerW = rects.reference.width;
           const minProp = typeof dropdownMinWidth !== 'undefined' ? clamp(0, maxWidth, dropdownMinWidth) : 0;
           const targetW = Math.max(triggerW, minProp);
 
           Object.assign(elements.floating.style, {
             maxWidth: `${Math.min(targetW, availableWidth)}px`,
+            maxHeight: `${availableHeight}px`,
+            overflowY: 'auto',
             overflowX: 'hidden',
           });
         },
