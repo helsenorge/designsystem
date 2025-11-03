@@ -1,3 +1,32 @@
+## [12.11.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.10.0&targetVersion=GTv12.11.0) (2025-11-03)
+
+### Features
+
+- tydeligere focus state for noen komponenter
+  ([412e779](https://github.com/helsenorge/designsystem/commit/412e779f6e01a11fcc593ed57dbfd32168a3241e)), closes
+  [#357133](https://github.com/helsenorge/designsystem/issues/357133)
+
+### Bug Fixes
+
+- **button:** align tekst til venstre ved flere linjer
+  ([b47f1e0](https://github.com/helsenorge/designsystem/commit/b47f1e0e137230a3c8017b07e7671d063e91d86a))
+- **button:** fiks padding rundt tekst når den går over flere linjer
+  ([7ff8f63](https://github.com/helsenorge/designsystem/commit/7ff8f63f305291c56f77ec3a25334f74b2205dfb))
+- **button:** oppdatert padding på borderless variant
+  ([be2b683](https://github.com/helsenorge/designsystem/commit/be2b6833591625a90b235e48e7682f6eb722bbf6))
+- **dropdown:** aligner og krymper riktig ved mindre plass
+  ([4b28673](https://github.com/helsenorge/designsystem/commit/4b286731a9dae975e29e8d17c0c200099405e789)), closes
+  [#363493](https://github.com/helsenorge/designsystem/issues/363493)
+- **toast:** fiks størrelse på ikon og plassering i grid
+  ([cf38ba8](https://github.com/helsenorge/designsystem/commit/cf38ba8c399bd66f2f24c7f64fa88688cc639656)), closes
+  [#357838](https://github.com/helsenorge/designsystem/issues/357838)
+- **toast:** legg til litt spacing mellom innhold
+  ([1c900de](https://github.com/helsenorge/designsystem/commit/1c900de13b3c1d19d3326bf15ec7e0f34c2fc530)), closes
+  [#357838](https://github.com/helsenorge/designsystem/issues/357838)
+- **toast:** liten justering av tekst
+  ([481834f](https://github.com/helsenorge/designsystem/commit/481834f15ed31e4eb02788db58f795079fd07877)), closes
+  [#357838](https://github.com/helsenorge/designsystem/issues/357838)
+
 ## [12.10.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.9.0&targetVersion=GTv12.10.0) (2025-10-30)
 
 ### Features
