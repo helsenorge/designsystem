@@ -28,12 +28,12 @@ $status-dot-size: 1rem;
 
     &--success,
     &--active {
-      fill: var(--color-notification-graphics-success);
+      fill: var(--component-statusdot-graphics-kiwi-onlight);
     }
 
     &--success#{&}--on-dark,
     &--active#{&}--on-dark {
-      fill: var(--core-color-kiwi-200);
+      fill: var(--component-statusdot-graphics-kiwi-ondark);
     }
 
     &--inprocess,
@@ -41,7 +41,7 @@ $status-dot-size: 1rem;
     &--unknown,
     &--inspected,
     &--pending {
-      fill: var(--color-notification-graphics-warning);
+      fill: var(--component-statusdot-graphics-banana-onlight);
     }
 
     &--inprocess#{&}--on-dark,
@@ -49,27 +49,27 @@ $status-dot-size: 1rem;
     &--unknown#{&}--on-dark,
     &--inspected#{&}--on-dark,
     &--pending#{&}--on-dark {
-      fill: var(--core-color-banana-300);
+      fill: var(--component-statusdot-graphics-banana-ondark);
     }
 
     &--cancelled,
     &--alert,
     &--inactive {
-      fill: var(--color-notification-graphics-error);
+      fill: var(--component-statusdot-graphics-cherry-onlight);
     }
 
     &--cancelled#{&}--on-dark,
     &--alert#{&}--on-dark,
     &--inactive#{&}--on-dark {
-      fill: var(--core-color-cherry-100);
+      fill: var(--component-statusdot-graphics-cherry-ondark);
     }
 
     &--info {
-      fill: var(--core-color-blueberry-500);
+      fill: var(--component-statusdot-graphics-blueberry-onlight);
     }
 
     &--info#{&}--on-dark {
-      fill: var(--core-color-blueberry-200);
+      fill: var(--component-statusdot-graphics-blueberry-ondark);
     }
 
     &--transparent {
@@ -93,7 +93,7 @@ $status-dot-size: 1rem;
   }
 
   &__label {
-    color: var(--core-color-neutral-800);
+    color: var(--color-base-text-onlight-subdued);
 
     @include fonts.sublabel-subdued;
 
