@@ -93,7 +93,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const isMobile = useIsMobileBreakpoint();
   const triggerActualMinWidth = variant !== 'borderless' && typeof triggerMinWidth != 'undefined' ? `${triggerMinWidth}px` : 'auto';
   const triggerMinWidthLimit = isMobile ? 96 : 112;
-  const dropdownFloatingPadding = 16;
+  const dropdownFloatingPadding = 15;
   const maxWidth = isMobile ? 384 : 400;
   const toggleTextId = useId();
   const optionIdPrefix = useId();
@@ -133,21 +133,19 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
     middleware: [
       offset(8),
       // Hvis det ikke er plass på høyre side flipper vi dropdownlisten fra bottom-start til bottom-end
-      flip({ mainAxis: false, crossAxis: true, fallbackPlacements: ['bottom-end'], padding: dropdownFloatingPadding }),
+      flip({ mainAxis: false, fallbackPlacements: ['bottom-end'], padding: dropdownFloatingPadding }),
       // Shift fungerer som en fallback for flip og unngår at availableWidth ikke oppdaterer seg ved skjermbreddeendring
-      shift({ padding: dropdownFloatingPadding, crossAxis: true }),
+      shift({ padding: dropdownFloatingPadding }),
       // Hvis det ikke er plass på noen av sidene krymper vi bredden på listen med size
       size({
         padding: dropdownFloatingPadding,
-        apply({ availableWidth, availableHeight, elements, rects }) {
+        apply({ availableWidth, elements, rects }) {
           const triggerW = rects.reference.width;
           const minProp = typeof dropdownMinWidth !== 'undefined' ? clamp(0, maxWidth, dropdownMinWidth) : 0;
           const targetW = Math.max(triggerW, minProp);
 
           Object.assign(elements.floating.style, {
             maxWidth: `${Math.min(targetW, availableWidth)}px`,
-            maxHeight: `${availableHeight}px`,
-            overflowY: 'auto',
             overflowX: 'hidden',
           });
         },
