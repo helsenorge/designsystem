@@ -208,6 +208,29 @@ export const AsChild: Story = {
   ),
 };
 
+export const DropdownWidthAndAlignment: Story = {
+  args: {
+    onToggle: action('onToggle'),
+    dropdownMinWidth: 400,
+  },
+  render: args => (
+    <>
+      <Dropdown {...args}>
+        <Dropdown.SingleSelectItem text={'Valg 1'} />
+        <Dropdown.SingleSelectItem text={'Valg 2'} />
+        <Dropdown.SingleSelectItem text={'Valg 3'} />
+      </Dropdown>
+      <div style={{ display: 'flex', justifyContent: 'end', marginTop: '10rem' }}>
+        <Dropdown {...args}>
+          <Dropdown.SingleSelectItem text={'Valg 1'} />
+          <Dropdown.SingleSelectItem text={'Valg 2'} />
+          <Dropdown.SingleSelectItem text={'Valg 3'} />
+        </Dropdown>
+      </div>
+    </>
+  ),
+};
+
 export const DefaultSelected: Story = {
   args: {
     onToggle: action('onToggle'),
