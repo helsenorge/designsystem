@@ -103,7 +103,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
       [radioButtonStyles['radio-button-label--on-dark']]: onDark,
       [radioButtonStyles['radio-button-label--invalid']]: invalid,
       [radioButtonStyles['radio-button-label__large']]: isLarge,
-      [radioButtonStyles['radio-button-label__large--focused']]: isFocused,
+      [radioButtonStyles['radio-button-label__large--focused']]: isFocused && isLarge,
       [radioButtonStyles['radio-button-label__large--disabled']]: isLarge && disabled,
     },
     labelClassNames
