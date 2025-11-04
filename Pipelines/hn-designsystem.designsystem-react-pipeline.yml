@@ -20,7 +20,7 @@ variables:
   - name: node_version
     value: 24
   - name: npm_version
-    value: 11
+    value: '^11.6.2'
   - name: project_name
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
