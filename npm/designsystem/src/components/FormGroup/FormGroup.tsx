@@ -7,7 +7,7 @@ import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { isComponent } from '../../utils/component';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import ErrorWrapper from '../ErrorWrapper';
-import FormFieldTag, { FormFieldTagLevel } from '../FormFieldTag';
+import FormFieldTag, { FormFieldTagProps } from '../FormFieldTag';
 import FormLayout, { FormLayoutProps } from '../FormLayout';
 import Input, { InputProps } from '../Input/Input';
 import RadioButton, { RadioButtonProps, getRadioLabelClasses } from '../RadioButton/RadioButton';
@@ -36,7 +36,7 @@ export interface FormGroupProps {
   /** Adds custom classes to the fieldset element. */
   fieldsetClassName?: string;
   /** Sets a tag that describes whether the form group is required or optional */
-  formFieldLevel?: FormFieldTagLevel;
+  formFieldTag?: React.ReactNode;
   /** Adds custom classes to the legend element. */
   legendClassName?: string;
   /** Changes the visuals of the formgroup */
@@ -66,7 +66,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     ariaLabelledBy,
     className,
     fieldsetClassName,
-    formFieldLevel,
+    formFieldTag,
     legendClassName,
     onColor = FormOnColor.onwhite,
     size = FormSize.medium,
@@ -174,7 +174,8 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
             {props.legend && (
               <>
                 <h5 className={legendClasses}>
-                  {props.legend} {formFieldLevel && <FormFieldTag level={formFieldLevel} />}
+                  {props.legend}
+                  {formFieldTag && isComponent<FormFieldTagProps>(formFieldTag, FormFieldTag) && React.cloneElement(formFieldTag)}
                 </h5>
               </>
             )}
@@ -187,7 +188,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
               <>
                 <legend className={legendClasses}>
                   {props.legend}
-                  {formFieldLevel && <FormFieldTag level={formFieldLevel} />}
+                  {formFieldTag && isComponent<FormFieldTagProps>(formFieldTag, FormFieldTag) && React.cloneElement(formFieldTag)}
                 </legend>
               </>
             )}

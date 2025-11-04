@@ -2,6 +2,7 @@ export { theme } from './theme';
 export { useBreakpoint, Breakpoint } from './hooks/useBreakpoint';
 export { useFocusToggle } from './hooks/useFocusToggle';
 export { useFocusTrap } from './hooks/useFocusTrap';
+export { usePseudoClasses } from './hooks/usePseudoClasses';
 export { useIntersectionObserver } from './hooks/useIntersectionObserver';
 export { useIsVisible } from './hooks/useIsVisible';
 export { useLayoutEvent } from './hooks/useLayoutEvent';

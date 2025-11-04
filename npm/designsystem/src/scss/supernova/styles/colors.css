@@ -236,4 +236,14 @@
   --component-listelements-background-cherry-dark: #eec0a5;
   --component-listelements-border-cherry-normal: #d56147;
   --component-listelements-border-neutral-normal: #7d7c79;
+  --component-statusdot-graphics-banana-ondark: #f5e080;
+  --component-statusdot-graphics-banana-onlight: #ab7c00;
+  --component-statusdot-graphics-blueberry-ondark: #afdae3;
+  --component-statusdot-graphics-blueberry-onlight: #188097;
+  --component-statusdot-graphics-cherry-ondark: #f7e1d2;
+  --component-statusdot-graphics-cherry-onlight: #a31f0e;
+  --component-statusdot-graphics-kiwi-ondark: #9de2bf;
+  --component-statusdot-graphics-kiwi-onlight: #078141;
+  --component-statusdot-graphics-neutral-ondark: #f5f3f3;
+  --component-statusdot-graphics-neutral-onlight: #7d7c79;
 }

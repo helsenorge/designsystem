@@ -410,8 +410,17 @@ $padding-clickable-area-left: 8px;
       box-shadow: 0 0 0 spacers.getSpacer(3xs);
       color: palette.$black;
 
+      &__regular--checked {
+        border: 1px solid var(--color-action-border-ondark-focus);
+
+        & + .checkbox__icon-wrapper__regular--on-dark {
+          border: 1px solid var(--color-action-border-onlight-focus);
+        }
+      }
+
       &--on-dark {
         color: palette.$white;
+        border: 1px solid var(--color-action-border-onlight-focus);
       }
 
       &--invalid {
@@ -423,11 +432,13 @@ $padding-clickable-area-left: 8px;
           background-color: palette.$blueberry200;
           box-shadow: 0 0 0 spacers.getSpacer(3xs);
           color: palette.$white;
+          border: 1px solid var(--color-action-border-onlight-focus);
 
           // komboklasser fungerer ikke i nested struktur
           &--invalid {
             background-color: palette.$cherry500;
             color: palette.$black;
+            border: 1px solid var(--color-action-border-ondark-focus);
           }
 
           &--disabled {

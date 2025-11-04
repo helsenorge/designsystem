@@ -3,19 +3,18 @@ export type Styles = {
   dropdown__close: string;
   dropdown__content: string;
   'dropdown__content--open': string;
-  dropdown__icon: string;
-  dropdown__input: string;
-  dropdown__label: string;
+  'dropdown__left-icon': string;
+  'dropdown__list-item': string;
+  'dropdown__list-item--single-select': string;
+  'dropdown__multiselect-item': string;
   dropdown__options: string;
+  'dropdown__right-icon': string;
   dropdown__toggle: string;
-  dropdown__toggle__label: string;
-  'dropdown__toggle--fluid': string;
-  'dropdown__toggle--on-blueberry': string;
-  'dropdown__toggle--on-cherry': string;
-  'dropdown__toggle--on-grey': string;
-  'dropdown__toggle--on-white': string;
+  dropdown__toggle__text: string;
+  'dropdown__toggle--borderless': string;
   'dropdown__toggle--open': string;
   'dropdown__toggle--transparent': string;
+  'dropdown__toggle--with-icon': string;
 };
 
 export type ClassNames = keyof Styles;

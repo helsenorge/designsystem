@@ -101,3 +101,23 @@ const AapnesOverSideRender = (args: React.ComponentProps<typeof LightBox>): Reac
 export const ÅpnesOverSide: Story = {
   render: args => <AapnesOverSideRender {...args} />,
 };
+
+export const EgetOppsettPåTekst: Story = {
+  args: {
+    closeTextAfterSeconds: undefined,
+  },
+  render: args => (
+    <LightBox
+      {...args}
+      imageText={
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <span>{'Tekst over flere'}</span>
+          <span>
+            {'linjer og med '}
+            <strong>{'styling'}</strong>
+          </span>
+        </div>
+      }
+    />
+  ),
+};

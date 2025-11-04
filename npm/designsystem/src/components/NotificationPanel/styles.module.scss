@@ -15,9 +15,6 @@
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     padding-left: spacers.getSpacer(s);
     padding-right: spacers.getSpacer(m);
-    #{$panel}__icon {
-      margin-right: spacers.getSpacer(m);
-    }
   }
 
   &--compact {
@@ -36,7 +33,11 @@
     }
   }
   #{$panel}__icon {
-    margin-right: spacers.getSpacer(2xs);
+    margin-right: spacers.getSpacer(3xs);
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      margin-right: spacers.getSpacer(2xs);
+    }
   }
 
   &--dismissable {
@@ -114,7 +115,11 @@
   &__close {
     order: 1;
     margin-left: auto;
-    padding-left: spacers.getSpacer(2xs);
+    padding-left: spacers.getSpacer(3xs);
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      padding-left: spacers.getSpacer(2xs);
+    }
   }
 
   &__content {

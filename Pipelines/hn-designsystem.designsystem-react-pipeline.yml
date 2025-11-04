@@ -64,13 +64,13 @@ stages:
             displayName: 'Install node version'
             inputs:
               versionSpec: $(node_version)
-  
+
           # Set node version
           - task: UseNode@1
             displayName: 'Use Node version'
             inputs:
               version: $(node_version)
-                          
+
           # npm tasks
           # Force npm 11.x globally for the rest of the job
           - script: |

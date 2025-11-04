@@ -1068,3 +1068,23 @@ export const Examples: Story = {
     </div>
   ),
 };
+
+export const Controlled: Story = {
+  render: () => {
+    const [expanded, setExpanded] = React.useState(true);
+
+    return (
+      <Panel expanded={expanded} onExpand={isExpanded => isExpanded !== expanded && setExpanded(!isExpanded)}>
+        <Panel.Title title="Denne er controlled" />
+        <Panel.A>
+          <span>{'Noe innhold'}</span>
+        </Panel.A>
+        <Panel.ExpandedContent>
+          <div>
+            <Title appearance="title4">{'Dette er åpent by default'}</Title>
+          </div>
+        </Panel.ExpandedContent>
+      </Panel>
+    );
+  },
+};
