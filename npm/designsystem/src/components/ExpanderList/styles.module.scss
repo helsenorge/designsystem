@@ -13,20 +13,17 @@
   margin: 0;
 
   &--outline {
-    &--neutral {
-      border: 1px solid var(--color-base-border-onlight);
+    &--neutral,
+    &--white {
+      border: 1px solid var(--component-listelements-border-neutral-light);
     }
 
     &--blueberry {
-      border: 1px solid var(--core-color-blueberry-500);
+      border: 1px solid var(--component-listelements-border-blueberry-light);
     }
 
     &--cherry {
-      border: 1px solid var(--core-color-cherry-400);
-    }
-
-    &--white {
-      border: 1px solid var(--color-base-border-onlight);
+      border: 1px solidvar(--component-listelements-border-cherry-light);
     }
   }
 
@@ -52,25 +49,25 @@
     }
 
     &--line {
-      border-bottom: 1px solid var(--color-base-border-onlight);
+      border-bottom: 1px solid var(--component-listelements-border-neutral-normal);
 
       &:first-of-type {
-        border-top: 1px solid var(--color-base-border-onlight);
+        border-top: 1px solid var(--component-listelements-border-neutral-normal);
       }
 
       &--blueberry,
       .expander-list-link--line--blueberry {
-        background-color: var(--core-color-blueberry-50);
+        background-color: var(--component-listelements-background-blueberry-light);
       }
 
       &--cherry,
       .expander-list-link--line--cherry {
-        background-color: var(--core-color-cherry-50);
+        background-color: var(--component-listelements-background-cherry-light);
       }
 
       &--neutral,
       .expander-list-link--line--neutral {
-        background-color: var(--core-color-neutral-50);
+        background-color: var(--component-listelements-background-neutral-light);
       }
 
       &--white,
@@ -82,43 +79,34 @@
     &--outline {
       background-color: var(--color-base-background-white);
 
-      &--white {
-        border-top: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+      &--white,
+      &--neutral {
+        border-top: spacers.getSpacer(2xs) var(--component-listelements-border-neutral-light) solid;
+        border-left: spacers.getSpacer(2xs) var(--component-listelements-border-neutral-light) solid;
+        border-right: spacers.getSpacer(2xs) var(--component-listelements-border-neutral-light) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+          border-bottom: spacers.getSpacer(2xs) var(--component-listelements-border-neutral-light) solid;
         }
       }
 
       &--blueberry {
-        border-top: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
+        border-top: spacers.getSpacer(2xs) var(--component-listelements-border-blueberry-light) solid;
+        border-left: spacers.getSpacer(2xs) var(--component-listelements-border-blueberry-light) solid;
+        border-right: spacers.getSpacer(2xs) var(--component-listelements-border-blueberry-light) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-blueberry-100) solid;
+          border-bottom: spacers.getSpacer(2xs) var(--component-listelements-border-blueberry-light) solid;
         }
       }
 
       &--cherry {
-        border-top: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
+        border-top: spacers.getSpacer(2xs) var(--component-listelements-border-cherry-light) solid;
+        border-left: spacers.getSpacer(2xs) var(--component-listelements-border-cherry-light) solid;
+        border-right: spacers.getSpacer(2xs) var(--component-listelements-border-cherry-light) solid;
 
         &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-cherry-100) solid;
-        }
-      }
-
-      &--neutral {
-        border-top: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-left: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-        border-right: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
-
-        &:last-of-type {
-          border-bottom: spacers.getSpacer(2xs) var(--core-color-neutral-100) solid;
+          border-bottom: spacers.getSpacer(2xs) var(--component-listelements-border-cherry-light) solid;
         }
       }
     }
@@ -126,17 +114,17 @@
     &--fill {
       &--blueberry,
       .expander-list-link--fill--blueberry {
-        background-color: var(--core-color-blueberry-50);
+        background-color: var(--component-listelements-background-blueberry-light);
       }
 
       &--cherry,
       .expander-list-link--fill--cherry {
-        background-color: var(--core-color-cherry-50);
+        background-color: var(--component-listelements-background-cherry-light);
       }
 
       &--neutral,
       .expander-list-link--fill--neutral {
-        background-color: var(--core-color-neutral-50);
+        background-color: var(--component-listelements-background-neutral-light);
       }
 
       &--white,
@@ -152,19 +140,16 @@
     &--fill,
     &--fill-negative {
       &--blueberry {
-        border: 1px solid var(--core-color-blueberry-500);
+        border: 1px solid var(--component-listelements-border-blueberry-normal);
       }
 
       &--cherry {
-        border: 1px solid var(--core-color-cherry-400);
+        border: 1px solid var(--component-listelements-border-cherry-normal);
       }
 
-      &--neutral {
-        border: 1px solid var(--color-base-border-onlight);
-      }
-
+      &--neutral,
       &--white {
-        border: 1px solid var(--color-base-border-onlight);
+        border: 1px solid var(--component-listelements-border-neutral-normal);
       }
     }
 
@@ -175,7 +160,7 @@
       background-color: transparent;
 
       &--new {
-        background-color: var(--core-color-blueberry-500);
+        background-color: var(--color-notification-status-info);
       }
     }
   }
@@ -228,23 +213,23 @@
     &[aria-expanded='false'] {
       // expander settes til div om man er i edit mode, og skal da ikke ha hover/active effekter
       &:hover:not(div) {
-        background-color: var(--core-color-neutral-50);
+        background-color: var(--component-listelements-background-neutral-light);
       }
 
       &:active:not(div) {
-        background-color: var(--core-color-neutral-100);
+        background-color: var(--component-listelements-background-neutral-medium);
       }
     }
 
     &[aria-expanded='true'] {
-      background-color: var(--core-color-neutral-50);
+      background-color: var(--component-listelements-background-neutral-light);
 
       &:hover:not(div) {
-        background-color: var(--core-color-neutral-100);
+        background-color: var(--component-listelements-background-neutral-medium);
       }
 
       &:active:not(div) {
-        background-color: var(--core-color-neutral-200);
+        background-color: var(--component-listelements-background-neutral-dark);
       }
     }
   }
@@ -252,23 +237,23 @@
   &--blueberry:not(.expander-list-link--outline, .expander-list-link--fill-negative) {
     &[aria-expanded='false'] {
       &:hover:not(div) {
-        background-color: var(--core-color-blueberry-100);
+        background-color: var(--component-listelements-background-blueberry-medium);
       }
 
       &:active:not(div) {
-        background-color: var(--color-action-background-ondark-hoverselected);
+        background-color: var(--component-listelements-background-blueberry-dark);
       }
     }
 
     &[aria-expanded='true'] {
-      background-color: var(--core-color-blueberry-100);
+      background-color: var(--component-listelements-background-blueberry-medium);
 
       &:hover:not(div) {
-        background-color: var(--core-color-blueberry-200);
+        background-color: var(--component-listelements-background-blueberry-dark);
       }
 
       &:active:not(div) {
-        background-color: var(--core-color-blueberry-300);
+        background-color: var(--component-listelements-background-blueberry-verydark);
       }
     }
   }
@@ -276,23 +261,23 @@
   &--cherry:not(.expander-list-link--outline, .expander-list-link--fill-negative) {
     &[aria-expanded='false'] {
       &:hover:not(div) {
-        background-color: var(--core-color-cherry-100);
+        background-color: var(--component-listelements-background-cherry-medium);
       }
 
       &:active:not(div) {
-        background-color: var(--core-color-cherry-200);
+        background-color: var(--component-listelements-background-cherry-dark);
       }
     }
 
     &[aria-expanded='true'] {
-      background-color: var(--core-color-cherry-100);
+      background-color: var(--component-listelements-background-cherry-medium);
 
       &:hover:not(div) {
-        background-color: var(--core-color-cherry-200);
+        background-color: var(--component-listelements-background-cherry-dark);
       }
 
       &:active:not(div) {
-        background-color: var(--core-color-cherry-300);
+        background-color: var(--component-listelements-background-cherry-verydark);
       }
     }
   }
@@ -300,23 +285,23 @@
   &--neutral:not(.expander-list-link--outline, .expander-list-link--fill-negative) {
     &[aria-expanded='false'] {
       &:hover:not(div) {
-        background-color: var(--core-color-neutral-100);
+        background-color: var(--component-listelements-background-neutral-medium);
       }
 
       &:active:not(div) {
-        background-color: var(--core-color-neutral-200);
+        background-color: var(--component-listelements-background-neutral-dark);
       }
     }
 
     &[aria-expanded='true'] {
-      background-color: var(--core-color-neutral-100);
+      background-color: var(--component-listelements-background-neutral-medium);
 
       &:hover:not(div) {
-        background-color: var(--core-color-neutral-200);
+        background-color: var(--component-listelements-background-neutral-dark);
       }
 
       &:active:not(div) {
-        background-color: var(--core-color-neutral-300);
+        background-color: var(--component-listelements-background-neutral-verydark);
       }
     }
   }
@@ -324,25 +309,25 @@
   &--outline {
     &--blueberry {
       &[aria-expanded='false'] {
-        border-bottom: 1px solid var(--core-color-blueberry-500);
+        border-bottom: 1px solid var(--component-listelements-border-blueberry-normal);
       }
     }
 
     &--cherry {
       &[aria-expanded='false'] {
-        border-bottom: 1px solid var(--core-color-cherry-400);
+        border-bottom: 1px solid var(--component-listelements-border-cherry-normal);
       }
     }
 
     &--neutral {
       &[aria-expanded='false'] {
-        border-bottom: 1px solid var(--color-base-border-onlight);
+        border-bottom: 1px solid var(--component-listelements-border-neutral-normal);
       }
     }
 
     &--white {
       &[aria-expanded='false'] {
-        border-bottom: 1px solid var(--color-base-border-onlight);
+        border-bottom: 1px solid var(--component-listelements-border-neutral-normal);
       }
     }
   }
@@ -354,23 +339,23 @@
     &--blueberry {
       &[aria-expanded='false'] {
         &:hover:not(div) {
-          background-color: var(--core-color-blueberry-50);
+          background-color: var(--component-listelements-background-blueberry-light);
         }
 
         &:active:not(div) {
-          background-color: var(--core-color-blueberry-100);
+          background-color: var(--component-listelements-background-blueberry-medium);
         }
       }
 
       &[aria-expanded='true'] {
-        background-color: var(--core-color-blueberry-50);
+        background-color: var(--component-listelements-background-blueberry-light);
 
         &:hover:not(div) {
-          background-color: var(--core-color-blueberry-100);
+          background-color: var(--component-listelements-background-blueberry-medium);
         }
 
         &:active:not(div) {
-          background-color: var(--core-color-blueberry-200);
+          background-color: var(--component-listelements-background-blueberry-dark);
         }
       }
     }
@@ -378,23 +363,23 @@
     &--cherry {
       &[aria-expanded='false'] {
         &:hover:not(div) {
-          background-color: var(--core-color-cherry-50);
+          background-color: var(--component-listelements-background-cherry-light);
         }
 
         &:active:not(div) {
-          background-color: var(--core-color-cherry-100);
+          background-color: var(--component-listelements-background-cherry-medium);
         }
       }
 
       &[aria-expanded='true'] {
-        background-color: var(--core-color-cherry-50);
+        background-color: var(--component-listelements-background-cherry-light);
 
         &:hover:not(div) {
-          background-color: var(--core-color-cherry-100);
+          background-color: var(--component-listelements-background-cherry-medium);
         }
 
         &:active:not(div) {
-          background-color: var(--core-color-cherry-200);
+          background-color: var(--component-listelements-background-cherry-dark);
         }
       }
     }
@@ -403,23 +388,23 @@
     &--white {
       &[aria-expanded='false'] {
         &:hover:not(div) {
-          background-color: var(--core-color-neutral-50);
+          background-color: var(--component-listelements-background-neutral-light);
         }
 
         &:active:not(div) {
-          background-color: var(--core-color-neutral-100);
+          background-color: var(--component-listelements-background-neutral-medium);
         }
       }
 
       &[aria-expanded='true'] {
-        background-color: var(--core-color-neutral-50);
+        background-color: var(--component-listelements-background-neutral-light);
 
         &:hover:not(div) {
-          background-color: var(--core-color-neutral-100);
+          background-color: var(--component-listelements-background-neutral-medium);
         }
 
         &:active:not(div) {
-          background-color: var(--core-color-neutral-200);
+          background-color: var(--component-listelements-background-neutral-dark);
         }
       }
     }
@@ -431,25 +416,25 @@
   }
 
   &--new {
-    background-color: var(--core-color-blueberry-50) !important;
+    background-color: var(--component-listelements-background-blueberry-light) !important;
 
     &:hover:not(div) {
-      background-color: var(--core-color-blueberry-100) !important;
+      background-color: var(--component-listelements-background-blueberry-medium) !important;
     }
 
     &:active:not(div) {
-      background-color: var(--core-color-blueberry-200) !important;
+      background-color: var(--component-listelements-background-blueberry-dark) !important;
     }
 
     &[aria-expanded='true'] {
-      background-color: var(--core-color-blueberry-100) !important;
+      background-color: var(--component-listelements-background-blueberry-medium) !important;
 
       &:hover:not(div) {
-        background-color: var(--core-color-blueberry-200) !important;
+        background-color: var(--component-listelements-background-blueberry-dark) !important;
       }
 
       &:active:not(div) {
-        background-color: var(--core-color-blueberry-300) !important;
+        background-color: var(--component-listelements-background-blueberry-verydark) !important;
       }
     }
   }
@@ -482,7 +467,7 @@
     }
 
     &--new {
-      background-color: var(--core-color-blueberry-50);
+      background-color: var(--component-listelements-background-blueberry-light);
     }
 
     &--padding {
@@ -492,25 +477,20 @@
     &--outline {
       &--blueberry {
         &[aria-expanded='true'] {
-          border-bottom: 1px solid var(--core-color-blueberry-500);
+          border-bottom: 1px solid var(--component-listelements-border-blueberry-normal);
         }
       }
 
       &--cherry {
         &[aria-expanded='true'] {
-          border-bottom: 1px solid var(--core-color-cherry-400);
+          border-bottom: 1px solid var(--component-listelements-border-cherry-normal);
         }
       }
 
-      &--neutral {
-        &[aria-expanded='true'] {
-          border-bottom: 1px solid var(--color-base-border-onlight);
-        }
-      }
-
+      &--neutral,
       &--white {
         &[aria-expanded='true'] {
-          border-bottom: 1px solid var(--color-base-border-onlight);
+          border-bottom: 1px solid var(--component-listelements-border-neutral-normal);
         }
       }
     }
