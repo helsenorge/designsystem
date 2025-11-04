@@ -23,7 +23,15 @@ const meta = {
   argTypes: {
     level: {
       control: 'select',
-      options: ['all-required', 'required-field', 'optional'],
+      options: [
+        'all-required',
+        'required-field',
+        'optional',
+        'all-optional',
+        'required-radiobutton-list',
+        'required-checkbox-list',
+        'required-single-checkbox',
+      ],
     },
   },
 } satisfies Meta<typeof FormFieldTag>;
@@ -36,12 +44,6 @@ export const Default: Story = {
   render: args => <FormFieldTag {...args} />,
 };
 
-const resourcesEnglish: HNDesignsystemFormFieldTag = {
-  allRequired: 'All fields are required',
-  requiredField: 'Required field',
-  optional: 'Optional',
-};
-
 export const AllTypes: Story = {
   render: () => (
     <>
@@ -51,11 +53,45 @@ export const AllTypes: Story = {
       <br />
       <FormFieldTag level="optional" />
       <br />
-      <FormFieldTag level="all-required" resources={resourcesEnglish} />
+      <FormFieldTag level="all-optional" />
       <br />
-      <FormFieldTag level="required-field" resources={resourcesEnglish} />
+      <FormFieldTag level="required-radiobutton-list" />
       <br />
-      <FormFieldTag level="optional" resources={resourcesEnglish} />
+      <FormFieldTag level="required-checkbox-list" />
+      <br />
+      <FormFieldTag level="required-single-checkbox" />
     </>
   ),
+};
+
+export const OverrideResources: Story = {
+  render: () => {
+    const englishResources: HNDesignsystemFormFieldTag = {
+      allRequired: 'All fields are required',
+      requiredField: 'Required field',
+      optional: 'Optional',
+      allOptional: 'All fields are optional',
+      requiredRadiobuttonList: 'Choose one option',
+      requiredCheckboxList: 'Choose one or more options',
+      requiredSingleCheckbox: 'Required to check',
+    };
+
+    return (
+      <>
+        <FormFieldTag level="all-required" resources={englishResources} />
+        <br />
+        <FormFieldTag level="required-field" resources={englishResources} />
+        <br />
+        <FormFieldTag level="optional" resources={englishResources} />
+        <br />
+        <FormFieldTag level="all-optional" resources={englishResources} />
+        <br />
+        <FormFieldTag level="required-radiobutton-list" resources={englishResources} />
+        <br />
+        <FormFieldTag level="required-checkbox-list" resources={englishResources} />
+        <br />
+        <FormFieldTag level="required-single-checkbox" resources={englishResources} />
+      </>
+    );
+  },
 };
