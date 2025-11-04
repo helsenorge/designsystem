@@ -1,3 +1,21 @@
+## 13.0.0-beta.4 (2025-11-04)
+
+### Features
+
+- **formfieldtag:** legg til flere muligheter
+  ([fa2260f](https://github.com/helsenorge/designsystem/commit/fa2260fb79fd594015fe9a2217a60904d5f91dc2)), closes
+  [#363797](https://github.com/helsenorge/designsystem/issues/363797)
+- **modal:** slett gammel image variant
+  ([0b2cb35](https://github.com/helsenorge/designsystem/commit/0b2cb353066ede6c760ad5a494f19c2099705dec)), closes
+  [#363162](https://github.com/helsenorge/designsystem/issues/363162)
+
+### Bug Fixes
+
+- unngå at ting flytter seg pga focus border
+  ([ecb515f](https://github.com/helsenorge/designsystem/commit/ecb515fa4d32c0e38453201cc2817466a6170e1c))
+- **radiobutton:** legg på manglende sjekk på størrelse
+  ([b451032](https://github.com/helsenorge/designsystem/commit/b4510324a7d6a2e3722d55f82a4a8ee83ba0a297))
+
 ## 13.0.0-beta.3 (2025-10-31)
 
 ### Features
