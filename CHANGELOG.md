@@ -1,3 +1,14 @@
+## [12.11.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.0&targetVersion=GTv12.11.1) (2025-11-04)
+
+### Bug Fixes
+
+- **dropdown:** krymper med høyden igjen
+  ([07d9baf](https://github.com/helsenorge/designsystem/commit/07d9baf51824dff93a5c45766f59a2fdf9285caa)), closes
+  [#363493](https://github.com/helsenorge/designsystem/issues/363493)
+- **dropdown:** listen flyttes ikke i y aksen av viewport
+  ([357ea4f](https://github.com/helsenorge/designsystem/commit/357ea4ff08fc405bc8004c83ab5c0f9cb2b56145)), closes
+  [#363493](https://github.com/helsenorge/designsystem/issues/363493)
+
 ## [12.11.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.10.0&targetVersion=GTv12.11.0) (2025-11-03)
 
 ### Features
