@@ -24,6 +24,9 @@ jobs:
         with:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
+        # Need npm 11.5.1 or later for trusted publisher configuration to work
+      - name: Update npm
+        run: npm install -g npm@latest
       - run: npm ci
         env:
           HUSKY: 0

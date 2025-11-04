@@ -1,5 +1,9 @@
 {
   "allRequired": "Alle felt må fylles ut",
   "requiredField": "Må fylles ut",
-  "optional": "Valgfritt"
+  "optional": "Valgfritt",
+  "allOptional": "Alle felt er valgfrie",
+  "requiredRadiobuttonList": "Velg én",
+  "requiredCheckboxList": "Velg en eller flere",
+  "requiredSingleCheckbox": "Må velges"
 }

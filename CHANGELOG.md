@@ -1,3 +1,110 @@
+## [12.11.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.0&targetVersion=GTv12.11.1) (2025-11-04)
+
+### Bug Fixes
+
+- **dropdown:** krymper med høyden igjen
+  ([07d9baf](https://github.com/helsenorge/designsystem/commit/07d9baf51824dff93a5c45766f59a2fdf9285caa)), closes
+  [#363493](https://github.com/helsenorge/designsystem/issues/363493)
+- **dropdown:** listen flyttes ikke i y aksen av viewport
+  ([357ea4f](https://github.com/helsenorge/designsystem/commit/357ea4ff08fc405bc8004c83ab5c0f9cb2b56145)), closes
+  [#363493](https://github.com/helsenorge/designsystem/issues/363493)
+
+## [12.11.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.10.0&targetVersion=GTv12.11.0) (2025-11-03)
+
+### Features
+
+- tydeligere focus state for noen komponenter
+  ([412e779](https://github.com/helsenorge/designsystem/commit/412e779f6e01a11fcc593ed57dbfd32168a3241e)), closes
+  [#357133](https://github.com/helsenorge/designsystem/issues/357133)
+
+### Bug Fixes
+
+- **button:** align tekst til venstre ved flere linjer
+  ([b47f1e0](https://github.com/helsenorge/designsystem/commit/b47f1e0e137230a3c8017b07e7671d063e91d86a))
+- **button:** fiks padding rundt tekst når den går over flere linjer
+  ([7ff8f63](https://github.com/helsenorge/designsystem/commit/7ff8f63f305291c56f77ec3a25334f74b2205dfb))
+- **button:** oppdatert padding på borderless variant
+  ([be2b683](https://github.com/helsenorge/designsystem/commit/be2b6833591625a90b235e48e7682f6eb722bbf6))
+- **dropdown:** aligner og krymper riktig ved mindre plass
+  ([4b28673](https://github.com/helsenorge/designsystem/commit/4b286731a9dae975e29e8d17c0c200099405e789)), closes
+  [#363493](https://github.com/helsenorge/designsystem/issues/363493)
+- **toast:** fiks størrelse på ikon og plassering i grid
+  ([cf38ba8](https://github.com/helsenorge/designsystem/commit/cf38ba8c399bd66f2f24c7f64fa88688cc639656)), closes
+  [#357838](https://github.com/helsenorge/designsystem/issues/357838)
+- **toast:** legg til litt spacing mellom innhold
+  ([1c900de](https://github.com/helsenorge/designsystem/commit/1c900de13b3c1d19d3326bf15ec7e0f34c2fc530)), closes
+  [#357838](https://github.com/helsenorge/designsystem/issues/357838)
+- **toast:** liten justering av tekst
+  ([481834f](https://github.com/helsenorge/designsystem/commit/481834f15ed31e4eb02788db58f795079fd07877)), closes
+  [#357838](https://github.com/helsenorge/designsystem/issues/357838)
+
+## [12.10.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.9.0&targetVersion=GTv12.10.0) (2025-10-30)
+
+### Features
+
+- **lightbox:** åpne for reactnode på imagetext
+  ([fa7b052](https://github.com/helsenorge/designsystem/commit/fa7b052639f642ec8a196820440ed8798f3df353)), closes
+  [#363386](https://github.com/helsenorge/designsystem/issues/363386)
+- **toast:** nye komponenter toast og toastlist
+  ([a186861](https://github.com/helsenorge/designsystem/commit/a186861d6f025f2864a4eb012222aa5beb9037c5)), closes
+  [#357838](https://github.com/helsenorge/designsystem/issues/357838)
+
+### Bug Fixes
+
+- **drawer:** drawer footer innhold skal wrappe på alle størrelser
+  ([21f7c99](https://github.com/helsenorge/designsystem/commit/21f7c9910e9f5bd4335941bfe2861470ce204dff)), closes
+  [#363405](https://github.com/helsenorge/designsystem/issues/363405)
+- **dropdown:** defaultselected toggler ikke lenger og clickoutside fungerer alltid
+  ([ca19c57](https://github.com/helsenorge/designsystem/commit/ca19c57d2e353f47e1e5290a2fa76e5081f1d8b4)), closes
+  [#363415](https://github.com/helsenorge/designsystem/issues/363415)
+
+## [12.9.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.8.0&targetVersion=GTv12.9.0) (2025-10-29)
+
+### Bug Fixes
+
+- dropdown fokus styling fiks og aschildslot story forbedret
+  ([08d1658](https://github.com/helsenorge/designsystem/commit/08d165819fa9295ae16c6c77316735cc15172a32)), closes
+  [#358846](https://github.com/helsenorge/designsystem/issues/358846)
+- **panel:** fiks controlled med state i callback
+  ([49d7398](https://github.com/helsenorge/designsystem/commit/49d73985164dfe571fcf9c3af9ba68d54988c259)), closes
+  [#363208](https://github.com/helsenorge/designsystem/issues/363208)
+
+## [12.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.7.0&targetVersion=GTv12.8.0) (2025-10-28)
+
+### Features
+
+- nye tokens fra supernova ([aa6ba72](https://github.com/helsenorge/designsystem/commit/aa6ba72e73349197ef27248491a54a827711a04d)), closes
+  [#362358](https://github.com/helsenorge/designsystem/issues/362358)
+- **articleteaser:** ta i bruk nye tokens
+  ([e1bd030](https://github.com/helsenorge/designsystem/commit/e1bd030ccf429e1320438d9b514dcea589a32b84)), closes
+  [#352016](https://github.com/helsenorge/designsystem/issues/352016)
+- **dropdown:** nytt dropdown komponent med aschildslot komponent og renamet gamle til dropdownold
+  ([80e6e88](https://github.com/helsenorge/designsystem/commit/80e6e886cefcfa07e4419d3b6081aa1f58a14ad3)), closes
+  [#358846](https://github.com/helsenorge/designsystem/issues/358846)
+- **linklist:** ta i bruk nye tokens for farger
+  ([658e44f](https://github.com/helsenorge/designsystem/commit/658e44f0e0a9d1dcd2e703a5b7a5ba0674a8654d)), closes
+  [#362129](https://github.com/helsenorge/designsystem/issues/362129)
+
+### Bug Fixes
+
+- **drawer:** fjern overflow hidden på ytterste nivå
+  ([66bfa99](https://github.com/helsenorge/designsystem/commit/66bfa996a9a3efa53f8c44aa54d13d72243fd24f)), closes
+  [#361695](https://github.com/helsenorge/designsystem/issues/361695)
+- **drawer:** legg skygge oppå content og match logikken med Modal
+  ([793232d](https://github.com/helsenorge/designsystem/commit/793232de0d2ad7785022ba9a866e623716769b33)), closes
+  [#361521](https://github.com/helsenorge/designsystem/issues/361521)
+- **icons:** fiks svg på to ikoner ([44da111](https://github.com/helsenorge/designsystem/commit/44da111275eac5240fefab46bc2f92e5bae680b9)),
+  closes [#362501](https://github.com/helsenorge/designsystem/issues/362501)
+- **icons:** oppdatert versjon av emoticon ikoner
+  ([b845c21](https://github.com/helsenorge/designsystem/commit/b845c2121d799e5b0558e9f0087c013cb51a938c)), closes
+  [#362501](https://github.com/helsenorge/designsystem/issues/362501)
+- **listeditmode:** legg til manglende pointer på knapper
+  ([e7fbc2f](https://github.com/helsenorge/designsystem/commit/e7fbc2fbd686e2b53836db42b6e6bed792f8af2f)), closes
+  [#354199](https://github.com/helsenorge/designsystem/issues/354199)
+- **notificationpanel:** bruk riktig størrelse på ikon og padding rundt på mobil
+  ([23c984b](https://github.com/helsenorge/designsystem/commit/23c984be87836adc108abf4d3633db9fbf18583d)), closes
+  [#361176](https://github.com/helsenorge/designsystem/issues/361176)
+
 ## [12.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.4&targetVersion=GTv12.7.0) (2025-10-17)
 
 ### Features
@@ -6,15 +113,11 @@
   ([850b4e0](https://github.com/helsenorge/designsystem/commit/850b4e0cdc5888dbe29ba894c23e460dfe9d4930)), closes
   [#362503](https://github.com/helsenorge/designsystem/issues/362503)
 
-## [12.6.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.3&targetVersion=GTv12.6.4) (2025-10-16)
+## [12.6.4](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.1&targetVersion=GTv12.6.4) (2025-10-16)
 
 ### Reverts
 
 - Revert "v12.6.3" ([973e6b8](https://github.com/helsenorge/designsystem/commit/973e6b8893fc765892a993adf83d93f4d5bfd5dd))
-
-## [12.6.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.2&targetVersion=GTv12.6.3) (2025-10-16)
-
-## [12.6.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.1&targetVersion=GTv12.6.2) (2025-10-16)
 
 ## [12.6.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.6.0&targetVersion=GTv12.6.1) (2025-10-16)
 

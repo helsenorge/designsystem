@@ -11,6 +11,7 @@ export type Styles = {
   'radio-button-label': string;
   'radio-button-label__large': string;
   'radio-button-label__large--disabled': string;
+  'radio-button-label__large--focused': string;
   'radio-button-label__large--on-blueberry': string;
   'radio-button-label__large--on-grey': string;
   'radio-button-label__large--selected': string;

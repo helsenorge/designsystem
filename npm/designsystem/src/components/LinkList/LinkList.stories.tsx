@@ -221,6 +221,7 @@ export const VariantOutline: Story = {
   args: {
     chevron: true,
     variant: 'outline',
+    color: 'blueberry',
   },
   render: args => (
     <LinkList {...args}>
@@ -242,6 +243,7 @@ export const VariantFill: Story = {
   args: {
     chevron: true,
     variant: 'fill',
+    color: 'neutral',
   },
   render: args => (
     <LinkList {...args}>
