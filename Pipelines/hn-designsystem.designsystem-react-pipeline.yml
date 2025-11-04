@@ -73,8 +73,7 @@ stages:
 
           # npm tasks
           # Force npm 11.x globally for the rest of the job
-          - script: |
-              npm i -g npm@$(npm_version)
+          - script: npm i -g npm@$(npm_version)
             displayName: 'Use npm $(npm_version)'
 
           # ci / install

@@ -30,8 +30,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
         # Need npm 11.5.1 or later for trusted publisher configuration to work
       - name: Use npm ${{ env.NPM_VERSION }}
-        run: |
-          npm i -g npm@$NPM_VERSION
+        run: npm i -g npm@$NPM_VERSION
       - run: npm ci
         env:
           HUSKY: 0
