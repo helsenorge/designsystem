@@ -8,13 +8,9 @@ export type Styles = {
   modal__closeWrapper: string;
   modal__closeWrapper__close: string;
   modal__contentWrapper: string;
-  modal__contentWrapper__imageDescription: string;
-  modal__contentWrapper__imageWrapper: string;
-  'modal__contentWrapper__scroll--image': string;
   'modal__contentWrapper__scroll--large': string;
   'modal__contentWrapper__scroll--medium': string;
   modal__contentWrapper__title: string;
-  'modal__contentWrapper--image': string;
   modal__description: string;
   modal__iconWrapper: string;
   modal__shadow: string;
@@ -24,7 +20,6 @@ export type Styles = {
   'modal__title--error': string;
   'modal__title--success': string;
   'modal--error': string;
-  'modal--image': string;
   'modal--large': string;
   'modal--medium': string;
   'modal--no-actions': string;
