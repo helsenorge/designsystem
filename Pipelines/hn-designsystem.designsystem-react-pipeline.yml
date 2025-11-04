@@ -20,7 +20,7 @@ variables:
   - name: node_version
     value: 24
   - name: npm_version
-    value: 11
+    value: '^11.6.2'
   - name: project_name
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
@@ -73,11 +73,7 @@ stages:
 
           # npm tasks
           # Force npm 11.x globally for the rest of the job
-          - script: |
-              node -v
-              npm -v
-              npm i -g npm@$(npm_version)
-              npm -v
+          - script: npm i -g npm@$(npm_version)
             displayName: 'Use npm $(npm_version)'
 
           # ci / install
