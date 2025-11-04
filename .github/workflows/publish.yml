@@ -31,10 +31,7 @@ jobs:
         # Need npm 11.5.1 or later for trusted publisher configuration to work
       - name: Use npm ${{ env.NPM_VERSION }}
         run: |
-          node -v
-          npm -v
           npm i -g npm@$NPM_VERSION
-          npm -v
       - run: npm ci
         env:
           HUSKY: 0

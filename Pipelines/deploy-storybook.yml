@@ -36,10 +36,7 @@ stages:
             inputs:
               version: $(node_version)
           - script: |
-              node -v
-              npm -v
               npm i -g npm@$(npm_version)
-              npm -v
             displayName: Use npm $(npm_version)
 
           - task: Npm@1
