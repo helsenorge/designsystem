@@ -61,7 +61,7 @@
     }
 
     &:active {
-      background-color: var(--core-color-blueberry-800);
+      background-color: var(--color-action-background-onlight-active);
     }
 
     &--expanded {
@@ -70,13 +70,11 @@
       border: 1px solid var(--color-action-border-onlight);
 
       &:hover {
-        // @todo: endre denne når ny token er laget
-        background-color: var(--color-action-graphics-ondark-hover);
+        background-color: var(--color-action-background-like-transparent-but-opaque-onlight-hover);
       }
 
       &:active {
-        // @todo: endre denne når ny token er laget
-        background-color: var(--color-action-graphics-ondark);
+        background-color: var(--color-action-background-like-transparent-but-opaque-onlight-hoverselected);
       }
     }
   }

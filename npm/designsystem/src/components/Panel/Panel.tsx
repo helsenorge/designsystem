@@ -63,7 +63,7 @@ export interface PanelProps {
   /** Sets classes on the outermost container of the panel */
   className?: string;
   /** Action called when toggling expansion of ExpandedContent */
-  onExpand?: () => void;
+  onExpand?: (isExpanded?: boolean) => void;
   /** Sets the stacking order of the content boxes */
   stacking?: PanelStacking;
   /** Sets the data-testid attribute. */
@@ -229,7 +229,6 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
 
   const handleExpandClick = (): void => {
     setIsExpanded(!isExpanded);
-    if (onExpand) onExpand();
   };
 
   return expandableContent.length > 0 ? (

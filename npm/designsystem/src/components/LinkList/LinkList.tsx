@@ -111,6 +111,7 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
 
   const liClasses = cn(LinkListStyles['link-list'], {
     [LinkListStyles['link-list__list-item--line']]: isLine,
+    [LinkListStyles['link-list__list-item--outline']]: isOutline,
     [LinkListStyles[`link-list__list-item--outline--${color}`]]: isOutline,
   });
   const linkClasses = cn(

@@ -7,6 +7,7 @@ import { getResources } from './resourceHelper';
 import { AnalyticsId, KeyboardEventKey, LanguageLocales, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
+import { useIsVisible } from '../../hooks/useIsVisible';
 import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
@@ -106,8 +107,17 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  // topContent and bottomContent are used to detect scroll position for shadow effects
+  const topContent = useRef<HTMLDivElement>(null);
+  const bottomContent = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
+  const [headerHeight, setHeaderHeight] = React.useState(0);
+  const [footerHeight, setFooterHeight] = React.useState(0);
+  const topContentVisible = useIsVisible(topContent);
+  const bottomContentVisible = useIsVisible(bottomContent, 0);
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
 
@@ -138,6 +148,33 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
       enableBodyScroll();
     };
   }, []);
+
+  // Measure header and footer heights
+  useEffect(() => {
+    const updateHeights = (): void => {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight);
+      }
+      if (footerRef.current) {
+        setFooterHeight(footerRef.current.offsetHeight);
+      }
+    };
+
+    updateHeights();
+
+    // Update heights when content changes
+    const resizeObserver = new ResizeObserver(updateHeights);
+    if (headerRef.current) {
+      resizeObserver.observe(headerRef.current);
+    }
+    if (footerRef.current) {
+      resizeObserver.observe(footerRef.current);
+    }
+
+    return (): void => {
+      resizeObserver.disconnect();
+    };
+  }, [hasFooterContent]);
 
   // Open animation.
   useEffect(() => {
@@ -210,7 +247,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
         {...ariaLabelAttributes}
       >
         <div className={styles.drawer__container__inner}>
-          <div className={headerStyling}>
+          <div className={headerStyling} ref={headerRef}>
             <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
               {title}
             </Title>
@@ -224,17 +261,33 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
             )}
           </div>
           <div
+            className={classNames(styles['drawer__content__shadow'], styles['drawer__content__shadow--top'])}
+            style={{
+              opacity: !topContentVisible && contentIsScrollable ? 1 : 0,
+              top: headerHeight,
+            }}
+          />
+          <div
             className={styles.drawer__content}
             tabIndex={contentIsScrollable ? 0 : undefined}
             role={contentIsScrollable ? 'region' : undefined}
             {...(contentIsScrollable ? ariaLabelAttributes : {})}
             ref={contentRef}
           >
-            {children}
+            <div ref={topContent} />
+            <div className={styles['drawer__content__children']}>{children}</div>
+            <div ref={bottomContent} style={{ height: '1px' }} />
           </div>
+          <div
+            className={classNames(styles['drawer__content__shadow'], styles['drawer__content__shadow--bottom'])}
+            style={{
+              opacity: !bottomContentVisible && contentIsScrollable ? 1 : 0,
+              bottom: hasFooterContent ? footerHeight : 0,
+            }}
+          />
         </div>
         {hasFooterContent && (
-          <div className={styles.drawer__footer}>
+          <div className={styles.drawer__footer} ref={footerRef}>
             {footerContent ? (
               footerContent
             ) : (

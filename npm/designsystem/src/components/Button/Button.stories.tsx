@@ -306,3 +306,38 @@ export const UURightArrow: Story = {
     </Button>
   ),
 };
+
+export const Borderless: Story = {
+  args: {
+    variant: 'borderless',
+  },
+  render: args => (
+    <>
+      <Button {...args} ref={myRef1} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+        <Icon svgIcon={Dog} />
+        {args.children}
+      </Button>
+      <br />
+      <br />
+      <Button {...args} ref={myRef2} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+        {args.children}
+        <Icon svgIcon={Dog} />
+      </Button>
+      <br />
+      <br />
+      <Button {...args} ref={myRef3} onBlur={action('Button blurred')} onClick={action('Button clicked')} arrow="icon">
+        {args.children}
+      </Button>
+      <br />
+      <br />
+      <Button {...args} ariaLabel={'Verticaldots button'} ref={myRef5} onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+        <Icon svgIcon={VerticalDots} />
+      </Button>
+      <br />
+      <br />
+      <Button {...args} arrow="accessibility-character" onBlur={action('Button blurred')} onClick={action('Button clicked')}>
+        {'Button'}
+      </Button>
+    </>
+  ),
+};

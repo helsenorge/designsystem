@@ -39,12 +39,24 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   @include text-color(var(--color-action-text-onlight-hover), var(--color-action-text-onlight-hover));
 }
 
-@mixin focus-shadow {
+@mixin focus-shadow($with-uu-border: true) {
   box-shadow: 0 0 0 spacers.getSpacer(3xs) palette.$black;
+
+  @if $with-uu-border {
+    border: 1px solid var(--color-action-border-ondark-focus);
+  } @else {
+    border: none;
+  }
 }
 
-@mixin focus-shadow-on-dark {
+@mixin focus-shadow-on-dark($with-uu-border: true) {
   box-shadow: 0 0 0 spacers.getSpacer(3xs) palette.$white;
+
+  @if $with-uu-border {
+    border: 1px solid var(--color-action-border-onlight-focus);
+  } @else {
+    border: none;
+  }
 }
 
 @mixin outline-borderless-background($background-color, $hover-background-color) {
@@ -102,16 +114,6 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     background-color: $background-color;
   }
 
-  :focus > & {
-    @include focus-shadow-on-dark;
-
-    &:hover {
-      @include focus-shadow-on-dark;
-
-      background-color: palette.$white;
-    }
-  }
-
   /* stylelint-disable-next-line */
   :disabled > & {
     background-color: $dark-mode-disabled-transparrent;
@@ -129,6 +131,16 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
 @mixin on-dark {
   &--on-dark {
     @include fill-on-dark(var(--color-action-background-ondark-hover));
+
+    :focus > & {
+      @include focus-shadow-on-dark(true);
+
+      &:hover {
+        @include focus-shadow-on-dark(true);
+
+        background-color: palette.$white;
+      }
+    }
   }
   &--on-dark#{&}--destructive {
     @include fill-on-dark(palette.$cherry50);
@@ -139,8 +151,14 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--on-dark#{&}--borderless#{&}--destructive {
     background-color: transparent;
 
-    &:hover {
-      background-color: palette.$inverted-hover;
+    :focus > & {
+      @include focus-shadow-on-dark(false);
+
+      &:hover {
+        @include focus-shadow-on-dark(false);
+
+        background-color: palette.$inverted-hover;
+      }
     }
   }
   &--on-dark#{&}--outline {
@@ -285,9 +303,25 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     }
   }
 
+  :focus > & {
+    @include focus-shadow;
+
+    &:hover {
+      @include focus-shadow;
+    }
+  }
+
   &--outline,
   &--borderless {
     @include outline-borderless-background(transparent, var(--color-action-background-transparent-onlight-hover));
+
+    :focus > & {
+      @include focus-shadow(false);
+
+      &:hover {
+        @include focus-shadow(false);
+      }
+    }
   }
   &--outline#{&}--destructive,
   &--borderless#{&}--destructive {
@@ -301,12 +335,6 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     @include outline(palette.$cherry700, palette.$cherry50);
   }
 
-  /* stylelint-disable-next-line */
-  &--borderless:not(.button--only-icon) {
-    padding: 0 spacers.getSpacer(3xs);
-  }
-
-  /* stylelint-disable-next-line */
   &--borderless {
     border-radius: 0;
 
@@ -319,11 +347,15 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     }
   }
 
-  :focus > & {
-    @include focus-shadow;
+  &--borderless:not(.button--only-icon) {
+    padding: 0 spacers.getSpacer(2xs);
 
-    &:hover {
-      @include focus-shadow;
+    &:has(.button__left-icon) {
+      padding-left: 0;
+    }
+
+    &:has(.button__right-icon) {
+      padding-right: 0;
     }
   }
 
@@ -335,9 +367,12 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: left;
+    padding: 0.4375rem 0;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       margin: 0 auto 0 0;
+      padding: 0.625rem 0;
     }
 
     &--ellipsis {

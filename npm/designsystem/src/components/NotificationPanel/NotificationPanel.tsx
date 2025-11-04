@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { AnalyticsId, IconSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
+import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
@@ -89,6 +90,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
   } = props;
   const labelId = useIdWithFallback(props.labelId);
   const [expanderOpen, setExpanderOpen] = React.useState(expanderOpenFromStart);
+  const isMobile = useIsMobileBreakpoint();
 
   const renderContent = (): JSX.Element => {
     const outlineVariant = compactVariant === 'outline';
@@ -156,7 +158,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
       >
         <NotificationBadge
           variant={variant}
-          size={compactVariant ? IconSize.XSmall : IconSize.Small}
+          size={compactVariant || isMobile ? IconSize.XSmall : IconSize.Small}
           className={styles['notification-panel__icon']}
         />
         {dismissable && (
