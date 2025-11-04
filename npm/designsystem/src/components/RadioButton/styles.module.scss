@@ -93,6 +93,7 @@ $padding-clickable-area-left: 8px;
   &__large {
     padding: spacers.getSpacer(s);
     background-color: palette.$neutral50;
+    border: 1px solid transparent;
 
     &:hover {
       background-color: palette.$neutral100;
