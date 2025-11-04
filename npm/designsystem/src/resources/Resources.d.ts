@@ -103,6 +103,22 @@ export type HNDesignsystemFormFieldTag = {
    * Valgfritt
    */
   optional: string;
+  /**
+   * Alle felt er valgfrie
+   */
+  allOptional: string;
+  /**
+   * Velg én
+   */
+  requiredRadiobuttonList: string;
+  /**
+   * Velg en eller flere
+   */
+  requiredCheckboxList: string;
+  /**
+   * Må velges
+   */
+  requiredSingleCheckbox: string;
 };
 
 /* eslint:enable */
