@@ -92,3 +92,11 @@ export const AsButton: Story = {
     </p>
   ),
 };
+
+export const WithPopupProps: Story = {
+  render: args => (
+    <AnchorLink {...args} aria-haspopup={true} aria-expanded={false}>
+      {args.children}
+    </AnchorLink>
+  ),
+};
