@@ -4,6 +4,6 @@
   "optional": "Valgfritt",
   "allOptional": "Alle felt er valgfrie",
   "requiredRadiobuttonList": "Velg én",
-  "requiredCheckboxList": "Velg en eller flere",
+  "requiredCheckboxList": "Velg én eller flere",
   "requiredSingleCheckbox": "Må velges"
 }
