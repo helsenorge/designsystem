@@ -1,16 +1,6 @@
-import type { StorybookConfig } from '@storybook/react-vite';
 import path, { dirname, join } from 'path';
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
 
-const { base } = yargs(hideBin(process.argv).filter(x => x !== '--'))
-  .options({
-    base: {
-      type: 'string',
-      description: 'Public base path',
-    },
-  })
-  .parseSync();
+import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: [
@@ -34,21 +24,7 @@ const config: StorybookConfig = {
     getAbsolutePath('storybook-addon-tag-badges'),
   ],
 
-  // Oppsett for å serve storybook fra subfolder hentet fra: https://github.com/storybookjs/storybook/issues/1291
-  // This is to change configurations of building process of storybook's main frame
-  managerHead: (head, { configType }) => {
-    const injections = [
-      `<link rel="shortcut icon" type="image/x-icon" href="${base}favicon.ico">`, // This set icon for your site.
-      `<script>window.PREVIEW_URL = '${base}iframe.html'</script>`, // This decide how storybook's main frame visit stories
-    ];
-    return configType === 'PRODUCTION' ? `${head}${injections.join('')}` : head;
-  },
-
-  async viteFinal(config, { configType }) {
-    if (configType === 'PRODUCTION') {
-      config.base = base;
-    }
-
+  async viteFinal(config) {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,
