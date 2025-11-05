@@ -24,7 +24,7 @@ export interface AnchorLinkProps {
   /** Indicates if the popup element the AnchorLink controls is expanded or collapes  */
   'aria-expanded'?: boolean;
   /** Indicates that a interactive popup element can be triggered by the AnchorLink */
-  'aria-haspopup'?: boolean | 'dialog' | 'menu' | 'listbox' | 'tree' | 'grid' | undefined;
+  'aria-haspopup'?: boolean | 'dialog' | 'menu' | 'listbox' | 'tree' | 'grid';
   /** Sets the content of the <a> tag */
   children: React.ReactNode;
   /** URL to link to */
