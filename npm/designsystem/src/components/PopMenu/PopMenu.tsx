@@ -135,7 +135,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   const closeIcon = <Icon svgIcon={X} ref={iconRef} size={mobileIconSize} isHovered={triggerButtonIsHovered} />;
 
   return (
-    <div ref={outerRef} className={classNames(styles['pop-menu-button'], popMenuClassName)} data-analyticsid={AnalyticsId.PopMenu}>
+    <div ref={outerRef} className={classNames(popMenuClassName)} data-analyticsid={AnalyticsId.PopMenu}>
       <Button
         variant="borderless"
         aria-expanded={isOpen}
