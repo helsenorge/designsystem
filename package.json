@@ -50,7 +50,7 @@
     "version:major": "npm -w frankenstein-build-tools version major --git-tag-version=false && npm -w @helsenorge/designsystem-react version major --git-tag-version=false && npm -w @helsenorge/datepicker version major --git-tag-version=false && npm -w @helsenorge/lightbox version major --git-tag-version=false",
     "version:beta": "npm -w frankenstein-build-tools version prerelease --preid=beta --git-tag-version=false && npm -w @helsenorge/designsystem-react version prerelease --preid=beta --git-tag-version=false && npm -w @helsenorge/datepicker version prerelease --preid=beta --git-tag-version=false && npm -w @helsenorge/lightbox version prerelease --preid=beta --git-tag-version=false",
     "─── commit & tag ───": "echo commit",
-    "release:commit": "git add -A && git commit -m \"v$(node -p 'require(\"./npm/designsystem/package.json\").version')\" && npm run changelog && npm run postchangelog",
+    "release:commit-and-push": "git add -A && git commit -m \"v$(node -p 'require(\"./npm/designsystem/package.json\").version')\" && npm run changelog && npm run postchangelog && git push --follow-tags",
     "changelog": "conventional-changelog --config changelog.config.js --infile CHANGELOG.md --same-file --release-count 0 --skip-unstable --tag-prefix v --outputUnreleased false",
     "postchangelog": "git add CHANGELOG.md && git commit --amend --no-edit --no-verify && git tag -f v$(node -p 'require(\"./npm/designsystem/package.json\").version')",
     "─── publish ───": "echo publish",
