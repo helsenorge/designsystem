@@ -11,7 +11,7 @@
   "homepage": "https://helsenorge.design",
   "author": "Helsenorge",
   "maintainers": [
-    "ROX"
+    "Frankenstein"
   ],
   "license": "MIT",
   "type": "module",
@@ -19,10 +19,50 @@
     "directory": "lib",
     "access": "public"
   },
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    },
+    "./components/Icons/*": {
+      "types": "./lib/components/Icons/*.d.ts",
+      "import": "./lib/components/Icons/*.js"
+    },
+    "./components/Illustrations/*": {
+      "types": "./lib/components/Illustrations/*.d.ts",
+      "import": "./lib/components/Illustrations/*.js"
+    },
+    "./components/*": {
+      "types": "./lib/components/*/index.d.ts",
+      "import": "./lib/components/*/index.js"
+    },
+    "./constants": {
+      "types": "./lib/constants.d.ts",
+      "import": "./lib/constants.js"
+    },
+    "./hooks/*": {
+      "types": "./lib/hooks/*.d.ts",
+      "import": "./lib/hooks/*.js"
+    },
+    "./theme/*": {
+      "types": "./lib/theme/*.d.ts",
+      "import": "./lib/theme/*.js"
+    },
+    "./utils/*": {
+      "types": "./lib/utils/*.d.ts",
+      "import": "./lib/utils/*.js"
+    },
+    "./scss/*": "./lib/scss/*",
+    "./fonts/*": "./lib/fonts/*"
+  },
   "scripts": {
     "start": "storybook dev",
     "prebuild": "npm-run-all clean generate:iconnames generate:illustrationnames generate:cssdefinitions",
     "build": "vite build",
+    "postbuild": "node __scripts__/link-root-scss.mjs",
     "build-storybook": "storybook build -o dist",
     "clean": "rimraf lib",
     "generate:iconnames": "node __scripts__/generateIconNames.mjs",
@@ -70,7 +110,7 @@
     "@vitest/coverage-v8": "^3.1.2",
     "classnames": "^2.5.1",
     "copyfiles": "^2.4.1",
-    "frankenstein-build-tools": "^12.11.1",
+    "frankenstein-build-tools": "file:../build-tools",
     "glob": "^11.0.0",
     "jest-when": "^3.6.0",
     "jsdom": "^26.0.0",
@@ -79,7 +119,6 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-visualizer": "^5.12.0",
     "sass": "^1.79.5",

@@ -10,13 +10,22 @@
   "homepage": "https://helsenorge.design",
   "author": "Helsenorge",
   "maintainers": [
-    "ROX"
+    "Frankenstein"
   ],
   "license": "MIT",
   "type": "module",
   "publishConfig": {
     "directory": "lib",
     "access": "public"
+  },
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    }
   },
   "scripts": {
     "prebuild": "rimraf lib",
@@ -30,7 +39,6 @@
   },
   "devDependencies": {
     "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "typescript": "~5.8.2",
     "vite": "^6.2.1",
