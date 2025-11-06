@@ -210,7 +210,7 @@
   --component-stickynote-background-error-dark: #eec0a5;
   --component-stickynote-background-error-medium: #f7e1d2;
   --component-stickynote-background-error-light: #fff2ea;
-  --color-base-text-onlight-subdued: #000000;
+  --color-base-text-onlight-subdued: #474745;
   --component-stickynote-background-fold-error-dark: #e39376;
   --component-stickynote-background-fold-error-light: #f7e1d2;
   --component-stickynote-background-fold-error-medium: #eec0a5;
@@ -246,4 +246,13 @@
   --component-statusdot-graphics-kiwi-onlight: #078141;
   --component-statusdot-graphics-neutral-ondark: #f5f3f3;
   --component-statusdot-graphics-neutral-onlight: #7d7c79;
+  --color-action-graphics-emphasized-onlight: #08667c;
+  --color-base-background-stroke-dark-cherry: #b62e1c;
+  --color-base-background-stroke-dark-blueberry: #126f87;
+  --color-base-background-stroke-dark-neutral: #000000;
+  --color-destructive-graphics-emphasized-onlight: #a31f0e;
+  --component-listelements-background-neutral-verydark: #bdbab9;
+  --component-listelements-background-blueberry-verydark: #7abecc;
+  --component-listelements-border-neutral-ondark: #ffffff;
+  --component-listelements-background-cherry-verydark: #e39376;
 }
