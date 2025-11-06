@@ -116,7 +116,7 @@
     &--fill-negative {
       // listeelement settes til div om man er i edit mode, og styles da via ListEditMode
       &:not(div) {
-        margin-top: spacers.getSpacer(s);
+        margin-top: spacers.getSpacer(2xs);
       }
 
       &--blueberry {
