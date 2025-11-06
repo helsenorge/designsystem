@@ -14,9 +14,11 @@ export default defineConfig({
     dts({
       outDir: OUTPUT_DIRECTORY,
       entryRoot: 'src',
-      insertTypesEntry: true,
-      include: ['src/index.ts', 'src/components/**/index.{ts,tsx}'],
-      exclude: ['**/__mocks__/**', '**/__snapshots__/**', '**/*.stories.*', '**/*.test.*'],
+      insertTypesEntry: false,
+      rollupTypes: false,
+      include: ['src/components/**/*.{ts,tsx}', 'src/__mocks__/**/*.{ts,tsx}'],
+      exclude: ['**/__snapshots__/**', '**/*.stories.*', '**/*.test.*'],
+      aliasesExclude: [/@helsenorge\/designsystem-react/],
     }),
   ],
   build: {
@@ -47,7 +49,7 @@ export default defineConfig({
           hook: 'writeBundle',
         }),
         copy({
-          targets: [{ src: 'src/components/**/*.module.scss', dest: OUTPUT_DIRECTORY }],
+          targets: [{ src: 'src/components/**/*.module.scss*', dest: OUTPUT_DIRECTORY }],
           hook: 'writeBundle',
           flatten: false,
         }),
