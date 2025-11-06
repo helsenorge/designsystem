@@ -56,8 +56,7 @@
       "import": "./lib/utils/*.js"
     },
     "./scss/*": "./lib/scss/*",
-    "./fonts/*": "./lib/fonts/*",
-    "./package.json": "./package.json"
+    "./fonts/*": "./lib/fonts/*"
   },
   "scripts": {
     "start": "storybook dev",
