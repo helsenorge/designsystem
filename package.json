@@ -17,6 +17,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "start": "cd npm/designsystem/ && npm run start",
     "─── build ───": "echo build",
     "build": "npm run build:ordered",
     "build:ordered": "npm-run-all -s build:build-tools build:designsystem build:consumers",
