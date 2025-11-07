@@ -15,8 +15,10 @@
   ],
   "license": "MIT",
   "type": "module",
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
-    "directory": "lib",
     "access": "public"
   },
   "main": "./lib/index.js",
