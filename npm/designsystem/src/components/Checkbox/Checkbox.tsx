@@ -54,6 +54,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     size,
     errorText,
     error = !!errorText,
+    errorTextId: errorTextIdProp,
     errorWrapperClassName,
     value = getLabelText(label),
     testId,
@@ -61,7 +62,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     onChange,
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
-  const errorTextId = useIdWithFallback(props.errorTextId);
+  const errorTextId = useIdWithFallback(errorTextIdProp);
   const onWhite = onColor === FormOnColor.onwhite;
   const onGrey = onColor === FormOnColor.ongrey;
   const onBlueberry = onColor === FormOnColor.onblueberry;

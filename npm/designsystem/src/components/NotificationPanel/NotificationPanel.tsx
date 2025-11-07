@@ -81,6 +81,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     expanderOpenFromStart = false,
     compactVariant,
     label,
+    labelId: labelIdProp,
     labelHtmlMarkup = 'h1',
     fluid = false,
     size,
@@ -88,7 +89,7 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     role,
     testId,
   } = props;
-  const labelId = useIdWithFallback(props.labelId);
+  const labelId = useIdWithFallback(labelIdProp);
   const [expanderOpen, setExpanderOpen] = React.useState(expanderOpenFromStart);
   const isMobile = useIsMobileBreakpoint();
 

@@ -68,6 +68,8 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     disabled,
     error,
     errorText,
+    errorTextId: errorTextIdProp,
+    selectId: selectIdProp,
     errorWrapperClassName,
     label,
     name = props.selectId,
@@ -82,8 +84,8 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     ...rest
   } = props;
 
-  const selectId = useIdWithFallback(props.selectId);
-  const errorTextId = useIdWithFallback(props.errorTextId);
+  const selectId = useIdWithFallback(selectIdProp);
+  const errorTextId = useIdWithFallback(errorTextIdProp);
   const onBlueberry = onColor === 'onblueberry';
   const invalid = onColor === 'oninvalid' || !!errorText || !!error;
   const iconColor = getIconColor(invalid, !!disabled);

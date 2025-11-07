@@ -70,6 +70,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     name = inputId,
     size,
     errorText,
+    errorTextId: errorTextIdProp,
     error = !!errorText,
     errorWrapperClassName,
     value = getLabelText(label),
@@ -86,7 +87,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const [checked, changeChecked] = useState<boolean>();
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
-  const errorTextId = useIdWithFallback(props.errorTextId);
+  const errorTextId = useIdWithFallback(errorTextIdProp);
 
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
     [radioButtonStyles['radio-button-wrapper__large']]: isLarge,
