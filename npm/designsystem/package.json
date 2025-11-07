@@ -16,7 +16,8 @@
   "license": "MIT",
   "type": "module",
   "files": [
-    "lib"
+    "lib",
+    "scss"
   ],
   "publishConfig": {
     "access": "public"
