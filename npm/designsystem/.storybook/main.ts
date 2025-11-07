@@ -17,6 +17,7 @@ const { base } = yargs(hideBin(process.argv).filter(x => x !== '--'))
     base: {
       type: 'string',
       description: 'Public base path',
+      default: process.env.STORYBOOK_BASE_PATH || '/',
     },
   })
   .parseSync();
@@ -80,6 +81,6 @@ const config: StorybookConfig = {
 
 export default config;
 
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string): string {
   return dirname(require.resolve(join(value, 'package.json')));
 }
