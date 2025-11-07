@@ -6,6 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import Checkbox from '@helsenorge/designsystem-react/components/Checkbox';
+import FormFieldTag from '@helsenorge/designsystem-react/components/FormFieldTag';
 import FormGroup from '@helsenorge/designsystem-react/components/FormGroup';
 import Hospital from '@helsenorge/designsystem-react/components/Icons/Hospital';
 import Input from '@helsenorge/designsystem-react/components/Input';
@@ -71,7 +72,12 @@ export const Default: Story = {
         })}
       >
         <Validation errorTitle={'Sjekk at alt er riktig utfylt:'} errors={errors}>
-          <FormGroup legend={'Størrelser'} error={errors.sizes ? errors.sizes.message : undefined} errorTextId="error1">
+          <FormGroup
+            legend={'Størrelser'}
+            error={errors.sizes ? errors.sizes.message : undefined}
+            errorTextId="error1"
+            formFieldTag={<FormFieldTag level="required-checkbox-list" resources={{ requiredCheckboxList: 'Velg to eller flere' }} />}
+          >
             <Checkbox
               inputId="sizes1"
               label={<Label labelTexts={[{ text: 'Small' }]} />}
@@ -89,7 +95,12 @@ export const Default: Story = {
             />
           </FormGroup>
           <Spacer />
-          <FormGroup legend={'Plassering'} error={errors.positions ? (errors.positions.message as string) : undefined} errorTextId="error2">
+          <FormGroup
+            legend={'Plassering'}
+            error={errors.positions ? (errors.positions.message as string) : undefined}
+            errorTextId="error2"
+            formFieldTag={<FormFieldTag level="required-radiobutton-list" />}
+          >
             <RadioButton
               inputId="positions1"
               label={<Label labelTexts={[{ text: 'Venstre', type: 'normal' }]} />}
@@ -110,18 +121,18 @@ export const Default: Story = {
           <Textarea
             errorText={errors.story ? (errors.story.message as string) : undefined}
             errorTextId="error3"
-            defaultValue={'Dette er en test \\n\\n Hello \\n\\n test \\n\\n test test'}
+            defaultValue={'Dette er en test Hello test Dette er en test Hello'}
             grow
             maxCharacters={40}
             minRows={5}
-            label={<Label labelTexts={[{ text: 'Historie' }]} />}
+            label={<Label labelTexts={[{ text: 'Historie' }]} formFieldTag={<FormFieldTag level="optional" />} />}
             textareaId="story"
             {...register('story', { maxLength: { value: 40, message: storyErrorMessage } })}
           />
           <Input
             errorText={errors.name ? (errors.name.message as string) : undefined}
             errorTextId="error4"
-            label={<Label labelTexts={[{ text: 'Navn' }]} />}
+            label={<Label labelTexts={[{ text: 'Navn' }]} formFieldTag={<FormFieldTag level="required-field" />} />}
             placeholder={'Skriv noe!'}
             icon={Hospital}
             inputId="name"
@@ -131,7 +142,7 @@ export const Default: Story = {
             errorText={errors.monster ? (errors.monster.message as string) : undefined}
             errorTextId="error5"
             selectId="monster"
-            label={<Label labelTexts={[{ text: 'Velg et monster' }]} />}
+            label={<Label labelTexts={[{ text: 'Velg et monster' }]} formFieldTag={<FormFieldTag level="required-field" />} />}
             {...register('monster', { validate: requireFrankenstein })}
           >
             <option value={'Troll'}>{'Troll'}</option>
