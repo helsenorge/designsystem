@@ -7,7 +7,7 @@ import { Breakpoint, useBreakpoint } from './useBreakpoint';
 const UseBreakpointExample: React.FC = () => {
   const breakpoint = useBreakpoint();
 
-  const description = `Breakpoint er nå ${Breakpoint[breakpoint]} (${breakpoint}px).`;
+  const description = `Breakpoint er nå ${Breakpoint[breakpoint]} (${breakpoint}px)`;
 
   return <p>{description}</p>;
 };
