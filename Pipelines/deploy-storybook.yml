@@ -13,6 +13,8 @@ pool:
 variables:
   - name: node_version
     value: 22
+  - name: npm_version
+    value: '^11.6.2'
   - name: HUSKY
     value: 0
   - name: branchName
@@ -33,6 +35,8 @@ stages:
             displayName: Use Node version
             inputs:
               version: $(node_version)
+          - script: npm i -g npm@$(npm_version)
+            displayName: Use npm $(npm_version)
 
           - task: Npm@1
             displayName: Install dependencies
