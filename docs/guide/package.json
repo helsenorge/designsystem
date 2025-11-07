@@ -1,0 +1,23 @@
+{
+  "name": "@helsenorge/docs-guide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Documentation and guides for Helsenorge Design System",
+  "type": "module",
+  "scripts": {
+    "prettier": "prettier --check \"src/**/*.{ts,tsx,js,jsx,css,scss,md,mdx,json}\"",
+    "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,scss,md,mdx,json}\""
+  },
+  "dependencies": {
+    "@helsenorge/designsystem-react": "*",
+    "classnames": "^2.5.1",
+    "normalize.css": "^8.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1"
+  }
+}

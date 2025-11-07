@@ -27,6 +27,7 @@ const config: StorybookConfig = {
     '../src/**/*.stories.@(tsx)',
     '../../datepicker/src/**/*.stories.@(tsx)',
     '../../lightbox/src/**/*.stories.@(tsx)',
+    '../../../docs/guide/src/**/*.stories.@(tsx)',
   ],
 
   framework: {
@@ -80,6 +81,6 @@ const config: StorybookConfig = {
 
 export default config;
 
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string): string {
   return dirname(require.resolve(join(value, 'package.json')));
 }

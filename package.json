@@ -2,7 +2,8 @@
   "name": "hn-designsystem",
   "private": true,
   "workspaces": [
-    "npm/*"
+    "npm/*",
+    "docs/*"
   ],
   "version": "1.0.0",
   "description": "NPM pakke og dokumentasjon for Helsenorges designsystem",
