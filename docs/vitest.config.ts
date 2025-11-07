@@ -11,7 +11,7 @@ export default defineConfig({
   resolve: useBuiltVersion
     ? {
         alias: {
-          '@helsenorge/designsystem-react': path.resolve(__dirname, '../../npm/designsystem/lib'),
+          '@helsenorge/designsystem-react': path.resolve(__dirname, '../npm/designsystem/lib'),
         },
       }
     : undefined,

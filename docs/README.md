@@ -1,11 +1,11 @@
-# Docs Guide Workspace
+# Docs Workspace
 
 This workspace is for documentation and testing purposes only. It's not published to npm.
 
 ## Using Source vs Built Versions
 
 By default, this workspace uses the **source code** from `npm/designsystem/src/`. However, you can test against the **built version**
-(`npm/designsystem/lib/`) to reproduce issues that consumers see.
+(`npm/designsystem/lib/`) to reproduce issues that consumers see. (`npm/designsystem/lib/`) to reproduce issues that consumers see.
 
 ### Testing Against Source (Default)
 

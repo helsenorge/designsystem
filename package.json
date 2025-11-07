@@ -3,7 +3,7 @@
   "private": true,
   "workspaces": [
     "npm/*",
-    "docs/*"
+    "docs"
   ],
   "version": "1.0.0",
   "description": "NPM pakke og dokumentasjon for Helsenorges designsystem",

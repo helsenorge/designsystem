@@ -30,7 +30,7 @@ const config: StorybookConfig = {
     '../src/**/*.stories.@(tsx)',
     '../../datepicker/src/**/*.stories.@(tsx)',
     '../../lightbox/src/**/*.stories.@(tsx)',
-    '../../../docs/guide/src/**/*.stories.@(tsx)',
+    '../../../docs/src/**/*.stories.@(tsx)',
   ],
 
   framework: {
