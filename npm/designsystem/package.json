@@ -129,5 +129,10 @@
     "vite": "^6.2.1",
     "vite-plugin-dts": "^4.3.0",
     "vitest": "^3.1.2"
+  },
+  "overrides": {
+    "@helsenorge/typed-scss-modules": {
+      "glob": "7.2.3"
+    }
   }
 }
