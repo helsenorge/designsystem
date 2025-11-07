@@ -122,6 +122,8 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     label,
     error,
     errorText,
+    errorTextId: errorTextIdProp,
+    inputId: inputIdProp,
     errorWrapperClassName,
     testId,
     disabled,
@@ -141,11 +143,11 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
   } = props;
   const breakpoint = useBreakpoint();
   const inputContainerRefLocal = useRef<HTMLDivElement>(null);
-  const inputId = useIdWithFallback(props.inputId);
+  const inputId = useIdWithFallback(inputIdProp);
   const [input, setInput] = useState(defaultValue || '');
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
   const numKeyPressed = useRef<boolean>(false);
-  const errorTextId = useIdWithFallback(props.errorTextId);
+  const errorTextId = useIdWithFallback(errorTextIdProp);
   const numRegex = /^[0-9]$/;
 
   useEffect(() => {

@@ -42,11 +42,12 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
     footerText,
     error,
     errorText,
+    errorTextId: errorTextIdProp,
     onClickWhileDisabled,
     testId,
     ...textareaProps
   } = props;
-  const errorTextId = useIdWithFallback(props.errorTextId);
+  const errorTextId = useIdWithFallback(errorTextIdProp);
   const stickynoteRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { isFocused: isTextareaFocused } = usePseudoClasses<HTMLTextAreaElement>(textareaRef);

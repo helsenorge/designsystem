@@ -79,6 +79,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
     ariaLabel,
     error,
     errorText,
+    errorTextId: errorTextIdProp,
     errorWrapperClassName,
     labelLeft,
     labelRight,
@@ -102,7 +103,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
     maxValue
   );
 
-  const errorTextId = useIdWithFallback(props.errorTextId);
+  const errorTextId = useIdWithFallback(errorTextIdProp);
   const baseId = useId();
   const titleId = 'title-' + baseId;
   const labelLeftId = 'label-' + baseId;

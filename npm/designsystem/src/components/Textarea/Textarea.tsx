@@ -85,6 +85,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     grow,
     error,
     errorText,
+    errorTextId: errorTextIdProp,
     errorWrapperClassName,
     autoFocus,
     disabled,
@@ -101,7 +102,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const [rows, setRows] = useState(minRows);
   const [textareaInput, setTextareaInput] = useState(value || defaultValue || '');
   const referanse = useRef<HTMLDivElement>(null);
-  const errorTextUuid = useIdWithFallback(props.errorTextId);
+  const errorTextUuid = useIdWithFallback(errorTextIdProp);
 
   useEffect(() => {
     setTextareaInput(defaultValue || '');

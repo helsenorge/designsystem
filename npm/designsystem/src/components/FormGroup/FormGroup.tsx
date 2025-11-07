@@ -65,6 +65,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   const {
     ariaLabelledBy,
     className,
+    errorTextId: errorTextIdProp,
     fieldsetClassName,
     formFieldTag,
     legendClassName,
@@ -79,7 +80,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   } = props;
   const [checkedRadioId, setCheckedRadioId] = useState<string>();
   const radioGroupId = useId();
-  const errorTextId = useIdWithFallback(props.errorTextId);
+  const errorTextId = useIdWithFallback(errorTextIdProp);
   const onDark = onColor === FormOnColor.ondark;
   const isLarge = size === FormSize.large;
   const formGroupWrapperClasses = classNames(formGroupStyles['form-group-wrapper'], className);
