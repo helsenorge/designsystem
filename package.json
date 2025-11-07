@@ -66,7 +66,10 @@
     "publish:datepicker:beta": "npm publish -w @helsenorge/datepicker --access public --tag beta",
     "publish:lightbox:beta": "npm publish -w @helsenorge/lightbox --access public --tag beta",
     "prepare": "husky",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "docs:test": "npm run test --workspace=@helsenorge/docs-guide",
+    "docs:test:built": "USE_BUILT=true npm run test --workspace=@helsenorge/docs-guide",
+    "start:built": "npm run build && USE_BUILT=true npm start"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

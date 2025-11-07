@@ -21,6 +21,9 @@ const { base } = yargs(hideBin(process.argv).filter(x => x !== '--'))
   })
   .parseSync();
 
+// Use built version if USE_BUILT env var is set
+const useBuiltVersion = process.env.USE_BUILT === 'true';
+
 const config: StorybookConfig = {
   stories: [
     '../src/**/*.@(mdx)',
@@ -57,7 +60,8 @@ const config: StorybookConfig = {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@helsenorge/designsystem-react': path.resolve(__dirname, '../src'),
+      // Use built lib or source based on USE_BUILT env var
+      '@helsenorge/designsystem-react': useBuiltVersion ? path.resolve(__dirname, '../lib') : path.resolve(__dirname, '../src'),
     };
 
     return config;

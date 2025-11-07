@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
+    "test:built": "USE_BUILT=true vitest",
     "prettier": "prettier --check \"src/**/*.{ts,tsx,js,jsx,css,scss,md,mdx,json}\"",
     "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,scss,md,mdx,json}\""
   },

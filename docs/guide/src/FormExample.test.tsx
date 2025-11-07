@@ -1,6 +1,6 @@
 import { useId } from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { useForm } from 'react-hook-form';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { vi } from 'vitest';
@@ -8,7 +8,7 @@ import { vi } from 'vitest';
 import FormGroup from '@helsenorge/designsystem-react/components/FormGroup';
 import Input from '@helsenorge/designsystem-react/components/Input';
 
-const TestDispatcher = () => {
+const TestDispatcher: React.FC = () => {
   const skrivMeldingForm = useForm<{ subject: string }>({
     defaultValues: {
       subject: '',
@@ -36,7 +36,7 @@ const TestDispatcher = () => {
   );
 };
 
-const setup = () => {
+const setup = (): void => {
   const router = createMemoryRouter([
     {
       path: '/',
@@ -54,7 +54,5 @@ beforeEach(() => {
 it('Input og FormGroup logger ingenting', async () => {
   const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
   setup();
-
-  screen.debug();
   expect(consoleSpy).not.toHaveBeenCalled();
 });
