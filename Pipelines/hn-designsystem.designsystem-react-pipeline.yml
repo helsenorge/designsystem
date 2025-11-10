@@ -230,16 +230,6 @@ stages:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'), contains(variables['Build.SourceBranch'], 'beta'))
 
-          - script: |
-              node scripts/sendSlackMessage.js
-            displayName: 'Send melding til Slack'
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
-            env:
-              SLACK_WEBHOOK_URL: $(SlackWebhookUrl)
-              REPO_NAME: $(Build.Repository.Name)
-
   # Copy to Github
   - stage:
     displayName: 'Github'
