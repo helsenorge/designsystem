@@ -63,6 +63,40 @@
 - **label:** kun rendre sublabel wrapper om det er innhold i den
   ([df90851](https://github.com/helsenorge/designsystem/commit/df908511874ed4dfe939591ca3823fa20ad2f4cd))
 
+## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-07)
+
+## [12.12.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.1&targetVersion=GTv12.12.1) (2025-11-06)
+
+### Features
+
+- nye tokens ([299653f](https://github.com/helsenorge/designsystem/commit/299653fd1259470a9aa6e4323b33657409d44035)), closes
+  [#349138](https://github.com/helsenorge/designsystem/issues/349138)
+- **formfieldtag:** legg til flere muligheter
+  ([fa2260f](https://github.com/helsenorge/designsystem/commit/fa2260fb79fd594015fe9a2217a60904d5f91dc2)), closes
+  [#363797](https://github.com/helsenorge/designsystem/issues/363797)
+- **popmenu:** ta i bruk borderless button istedenfor custom trigger
+  ([3609f13](https://github.com/helsenorge/designsystem/commit/3609f1383697c52a0f05331cb27f120dd136524e)), closes
+  [#361780](https://github.com/helsenorge/designsystem/issues/361780)
+
+### Bug Fixes
+
+- unngå at ting flytter seg pga focus border
+  ([ecb515f](https://github.com/helsenorge/designsystem/commit/ecb515fa4d32c0e38453201cc2817466a6170e1c))
+- **button:** behold bredden på knapp selv om man bruker lazy icon
+  ([ab416b5](https://github.com/helsenorge/designsystem/commit/ab416b597494d6b680a8fc557c3f2e056f276347)), closes
+  [#361780](https://github.com/helsenorge/designsystem/issues/361780)
+- **elementheader:** riktig farge på chevron
+  ([8338db3](https://github.com/helsenorge/designsystem/commit/8338db3518ee299eea4a2ca9b9cafa56674a698a)), closes
+  [#361426](https://github.com/helsenorge/designsystem/issues/361426)
+- **label:** bruk riktig farge for sublabel
+  ([d5af33b](https://github.com/helsenorge/designsystem/commit/d5af33b04ec5a7ba8e71e158876ecb1b904d0a98)), closes
+  [#349138](https://github.com/helsenorge/designsystem/issues/349138)
+- **linklist:** spacing mellom elementer
+  ([5ff90b3](https://github.com/helsenorge/designsystem/commit/5ff90b362f52ff068281e17dbc3b37fc3dea7b62)), closes
+  [#362947](https://github.com/helsenorge/designsystem/issues/362947)
+- **radiobutton:** legg på manglende sjekk på størrelse
+  ([b451032](https://github.com/helsenorge/designsystem/commit/b4510324a7d6a2e3722d55f82a4a8ee83ba0a297))
+
 ## [12.11.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.0&targetVersion=GTv12.11.1) (2025-11-04)
 
 ### Bug Fixes

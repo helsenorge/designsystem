@@ -112,7 +112,7 @@ export type HNDesignsystemFormFieldTag = {
    */
   requiredRadiobuttonList: string;
   /**
-   * Velg en eller flere
+   * Velg én eller flere
    */
   requiredCheckboxList: string;
   /**

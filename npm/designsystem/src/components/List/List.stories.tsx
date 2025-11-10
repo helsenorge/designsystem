@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
-import { action } from 'storybook/internal/actions';
+import { action } from 'storybook/actions';
 
 import List from './List';
 import { mediumLoremText } from '../../utils/loremtext';

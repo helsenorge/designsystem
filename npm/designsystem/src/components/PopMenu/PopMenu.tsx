@@ -6,8 +6,8 @@ import { AnalyticsId, IconSize } from '../../constants';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { getColor } from '../../theme/currys';
 import { isComponent } from '../../utils/component';
+import Button from '../Button';
 import Icon, { SvgIcon } from '../Icon';
 import { IconName } from '../Icons/IconNames';
 import VerticalDots from '../Icons/VerticalDots';
@@ -36,7 +36,7 @@ export interface PopMenuProps {
   popOverClassName?: string;
   /** Adds custom classes to the element. */
   popMenuClassName?: string;
-  /** Changes responsive design for the trigger buttons. */
+  /** @deprecated Changes responsive design for the trigger buttons. */
   popMenuVariant?: PopMenuVariant;
   /** Sets the data-testid attribute for the button that opens. */
   openButtonTestId?: string;
@@ -58,7 +58,7 @@ export interface PopMenuProps {
 
 export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
-  const iconRef = useRef<HTMLDivElement>(null);
+  const iconRef = useRef(null);
   const outerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const {
@@ -68,16 +68,12 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
     openButtonTestId,
     closeButtonTestId,
     popOverTestId,
-    popMenuVariant = PopMenuVariant.onWhite,
     openButtonAriaLabel,
     closeButtonAriaLabel,
     svgIcon,
     labelText,
     labelTextPosition = PopMenuLabelPosition.right,
   } = props;
-  const buttonClasses = classNames(styles['pop-menu-button'], {
-    [styles[`pop-menu-button--${popMenuVariant}`]]: popMenuVariant,
-  });
   const isMobile = useIsMobileBreakpoint();
 
   useOutsideEvent(outerRef, () => {
@@ -119,8 +115,7 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
     }
   };
 
-  const toggleOpenOnClick = (e?: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-    if (e) e.stopPropagation();
+  const toggleOpenOnClick = (): void => {
     setIsOpen(!isOpen);
   };
 
@@ -134,34 +129,25 @@ export const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   const openIcon = svgIcon ? (
     iconComponent
   ) : (
-    <Icon svgIcon={svgIcon ?? VerticalDots} color={getColor('black')} size={mobileIconSize} isHovered={triggerButtonIsHovered} />
+    <Icon ref={iconRef} svgIcon={svgIcon ?? VerticalDots} size={mobileIconSize} isHovered={triggerButtonIsHovered} />
   );
 
-  const closeIcon = <Icon svgIcon={X} color={getColor('black')} size={mobileIconSize} isHovered={triggerButtonIsHovered} />;
-
-  const triggerButton = (
-    <button
-      ref={triggerButtonRef}
-      data-testid={isOpen ? closeButtonTestId : openButtonTestId}
-      className={buttonClasses}
-      aria-label={isOpen ? closeButtonAriaLabel : openButtonAriaLabel}
-      aria-expanded={isOpen}
-      onClick={toggleOpenOnClick}
-      type="button"
-    >
-      {labelText && labelTextPosition == PopMenuLabelPosition.left && <span>{labelText}</span>}
-      {
-        <div className={styles['pop-menu-button__icon-wrapper']} ref={iconRef}>
-          {isOpen ? closeIcon : openIcon}
-        </div>
-      }
-      {labelText && labelTextPosition == PopMenuLabelPosition.right && <span>{labelText}</span>}
-    </button>
-  );
+  const closeIcon = <Icon svgIcon={X} ref={iconRef} size={mobileIconSize} isHovered={triggerButtonIsHovered} />;
 
   return (
-    <div ref={outerRef} className={classNames(styles['pop-menu-button'], popMenuClassName)} data-analyticsid={AnalyticsId.PopMenu}>
-      {triggerButton}
+    <div ref={outerRef} className={classNames(popMenuClassName)} data-analyticsid={AnalyticsId.PopMenu}>
+      <Button
+        variant="borderless"
+        aria-expanded={isOpen}
+        onClick={toggleOpenOnClick}
+        ref={triggerButtonRef}
+        ariaLabel={isOpen ? closeButtonAriaLabel : openButtonAriaLabel}
+        testId={isOpen ? closeButtonTestId : openButtonTestId}
+      >
+        {labelText && labelTextPosition == PopMenuLabelPosition.left && <span>{labelText}</span>}
+        {isOpen ? closeIcon : openIcon}
+        {labelText && labelTextPosition == PopMenuLabelPosition.right && <span>{labelText}</span>}
+      </Button>
       {isOpen && renderChildren()}
     </div>
   );
