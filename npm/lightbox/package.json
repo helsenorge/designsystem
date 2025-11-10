@@ -2,7 +2,7 @@
   "name": "@helsenorge/lightbox",
   "sideEffects": false,
   "private": false,
-  "version": "13.0.0-workspaces-beta.0",
+  "version": "13.0.0-workspaces-beta.1",
   "description": "The official Helsenorge lightbox.",
   "repository": {
     "type": "git",
@@ -51,7 +51,7 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "@helsenorge/designsystem-react": "^13.0.0-beta",
+    "@helsenorge/designsystem-react": "^13.0.0-workspaces-beta",
     "classnames": "^2.5.1",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"

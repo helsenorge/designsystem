@@ -1,3 +1,10 @@
+## 13.0.0-workspaces-beta.0 (2025-11-10)
+
+
+### Bug Fixes
+
+*  ikke send id props videre til base komponenter ([cefebe8](https://github.com/helsenorge/designsystem/commit/cefebe8d98073f1a883f647cf6dcd33e6d8f5743)), closes [#364177](https://github.com/helsenorge/designsystem/issues/364177)
+
 ## 13.0.0-beta.4 (2025-11-04)
 
 
