@@ -80,21 +80,6 @@
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1"
   },
-  "optionalDependencies": {
-    "@rollup/rollup-darwin-arm64": "^4.50.0",
-    "@rollup/rollup-linux-x64-gnu": "^4.50.0",
-    "@rollup/rollup-linux-x64-musl": "^4.50.0",
-    "@nx/nx-darwin-arm64": "21.6.4",
-    "@nx/nx-darwin-x64": "21.6.4",
-    "@nx/nx-freebsd-x64": "21.6.4",
-    "@nx/nx-linux-arm-gnueabihf": "21.6.4",
-    "@nx/nx-linux-arm64-gnu": "21.6.4",
-    "@nx/nx-linux-arm64-musl": "21.6.4",
-    "@nx/nx-linux-x64-gnu": "21.6.4",
-    "@nx/nx-linux-x64-musl": "21.6.4",
-    "@nx/nx-win32-arm64-msvc": "21.6.4",
-    "@nx/nx-win32-x64-msvc": "21.6.4"
-  },
   "overrides": {
     "vite": "npm:rolldown-vite@^7.1.2"
   },
