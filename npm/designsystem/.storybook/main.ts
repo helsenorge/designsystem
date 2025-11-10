@@ -1,13 +1,23 @@
-import type { StorybookConfig } from '@storybook/react-vite';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 import path, { dirname, join } from 'path';
+
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+
+import type { StorybookConfig } from '@storybook/react-vite';
+
+// This part has been automatically migrated to valid ESM format by Storybook.
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const require = createRequire(import.meta.url);
 
 const { base } = yargs(hideBin(process.argv).filter(x => x !== '--'))
   .options({
     base: {
       type: 'string',
       description: 'Public base path',
+      default: process.env.STORYBOOK_BASE_PATH || '/',
     },
   })
   .parseSync();
@@ -27,12 +37,7 @@ const config: StorybookConfig = {
     },
   },
 
-  addons: [
-    getAbsolutePath('@storybook/addon-a11y'),
-    getAbsolutePath('@storybook/addon-docs'),
-    getAbsolutePath('@chromatic-com/storybook'),
-    getAbsolutePath('storybook-addon-tag-badges'),
-  ],
+  addons: [getAbsolutePath('@storybook/addon-a11y'), getAbsolutePath('@storybook/addon-docs'), getAbsolutePath('@chromatic-com/storybook')],
 
   // Oppsett for å serve storybook fra subfolder hentet fra: https://github.com/storybookjs/storybook/issues/1291
   // This is to change configurations of building process of storybook's main frame
@@ -76,6 +81,6 @@ const config: StorybookConfig = {
 
 export default config;
 
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string): string {
   return dirname(require.resolve(join(value, 'package.json')));
 }

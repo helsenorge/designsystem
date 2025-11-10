@@ -96,6 +96,10 @@
   &__chevron {
     grid-area: chevron;
 
+    svg {
+      fill: var(--color-action-graphics-onlight);
+    }
+
     &[data-parenttype='linklist'] {
       align-self: center;
       height: 100%;

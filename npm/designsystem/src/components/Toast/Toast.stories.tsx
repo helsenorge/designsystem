@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
-import { action, HandlerFunction } from 'storybook/internal/actions';
+import { action, HandlerFunction } from 'storybook/actions';
 
 import Toast from './Toast';
 

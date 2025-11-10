@@ -14,6 +14,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Monorepo paths so TS can resolve subpaths to SOURCE */
+    "baseUrl": ".",
+    "paths": {
+      "@helsenorge/designsystem-react": ["npm/designsystem/src/index.ts"],
+      "@helsenorge/designsystem-react/*": ["npm/designsystem/src/*"]
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,

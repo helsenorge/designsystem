@@ -2,9 +2,8 @@ import { writeFile, mkdir } from 'fs/promises';
 import readline from 'readline';
 
 const rl = readline.createInterface({
-  // eslint-disable-next-line no-undef
   input: process.stdin,
-  // eslint-disable-next-line no-undef
+
   output: process.stdout,
 });
 

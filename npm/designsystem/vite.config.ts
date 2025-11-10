@@ -1,6 +1,5 @@
 import replace from '@rollup/plugin-replace';
 import copy from 'rollup-plugin-copy';
-import generatePackageJson from 'rollup-plugin-generate-package-json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
@@ -11,7 +10,13 @@ import { entries } from './__scripts__/entries';
 const OUTPUT_DIRECTORY = 'lib';
 
 export default defineConfig({
-  plugins: [dts()],
+  plugins: [
+    // Ensure .d.ts for all entries land in lib/
+    dts({
+      outDir: OUTPUT_DIRECTORY,
+      insertTypesEntry: true,
+    }),
+  ],
   build: {
     outDir: OUTPUT_DIRECTORY,
     minify: false,
@@ -24,12 +29,14 @@ export default defineConfig({
       preserveEntrySignatures: 'strict',
       input: entries,
       external: [/.module.scss/, 'react-hook-form', 'vitest', /^motion(\/.*)?$/],
-      output: {
-        format: 'es',
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
-        assetFileNames: '[name].[ext]',
-      },
+      output: [
+        {
+          format: 'es',
+          entryFileNames: '[name].js',
+          chunkFileNames: '[name].js',
+          assetFileNames: '[name].[ext]',
+        },
+      ],
       plugins: [
         peerDepsExternal(),
         copy({
@@ -50,34 +57,6 @@ export default defineConfig({
           hook: 'writeBundle',
           flatten: false,
         }),
-        generatePackageJson({
-          baseContents: ({
-            name,
-            type,
-            description,
-            repository,
-            homepage,
-            version,
-            author,
-            license,
-            dependencies = {},
-            peerDependencies = {},
-            sideEffects,
-          }) => ({
-            name,
-            type,
-            description,
-            repository,
-            homepage,
-            version,
-            author,
-            license,
-            dependencies,
-            peerDependencies,
-            sideEffects,
-          }),
-        }),
-        // .module.scss
         replace({
           '../npm/designsystem/src/components/': '',
           delimiters: ['', ''],
