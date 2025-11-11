@@ -62,6 +62,10 @@
       "types": "./lib/utils/*.d.ts",
       "import": "./lib/utils/*.js"
     },
+    "./__mocks__/*": {
+      "types": "./lib/__mocks__/*.d.ts",
+      "import": "./lib/__mocks__/*.js"
+    },
     "./scss/*": "./scss/*",
     "./lib/scss/*": "./lib/scss/*",
     "./fonts/*": "./lib/fonts/*"
@@ -71,6 +75,8 @@
     "prebuild": "npm-run-all clean generate:iconnames generate:illustrationnames generate:cssdefinitions",
     "build": "vite build",
     "postbuild": "node __scripts__/link-root-scss.mjs",
+    "prepack": "node __scripts__/copy-scss-for-publish.mjs",
+    "postpack": "node __scripts__/link-root-scss.mjs",
     "build-storybook": "storybook build -o dist",
     "clean": "rimraf lib",
     "generate:iconnames": "node __scripts__/generateIconNames.mjs",

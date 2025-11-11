@@ -33,6 +33,10 @@
       "types": "./lib/components/*/index.d.ts",
       "import": "./lib/components/*/index.js"
     },
+    "./__mocks__/*": {
+      "types": "./lib/__mocks__/*.d.ts",
+      "import": "./lib/__mocks__/*.js"
+    },
     "./scss/*": "./lib/scss/*"
   },
   "scripts": {
