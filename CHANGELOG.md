@@ -1,3 +1,5 @@
+## 13.0.0-workspaces-beta.1 (2025-11-10)
+
 ## 13.0.0-workspaces-beta.0 (2025-11-10)
 
 

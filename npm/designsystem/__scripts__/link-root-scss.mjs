@@ -12,7 +12,8 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const pkgRoot = resolve(__dirname, '..');
-const target = resolve(pkgRoot, 'lib/scss');
+const targetLib = resolve(pkgRoot, 'lib/scss');
+const targetSrc = resolve(pkgRoot, 'src/scss');
 const link = resolve(pkgRoot, 'scss');
 const lockDir = resolve(pkgRoot, '.link-root-scss.lock');
 
@@ -39,8 +40,11 @@ async function withLock(fn) {
 }
 
 async function ensureLink() {
+  // Prefer lib/scss if it exists (after build), otherwise use src/scss (before build)
+  const target = existsSync(targetLib) ? targetLib : targetSrc;
+  
   if (!existsSync(target)) {
-    console.error(`[link-root-scss] Missing ${target}. Did you run build?`);
+    console.error(`[link-root-scss] Missing ${target}. Neither lib/scss nor src/scss found.`);
     process.exit(1);
   }
 
