@@ -2,7 +2,7 @@
   "name": "@helsenorge/lightbox",
   "sideEffects": false,
   "private": false,
-  "version": "12.12.2",
+  "version": "13.0.0-workspaces-beta.1",
   "description": "The official Helsenorge lightbox.",
   "repository": {
     "type": "git",
@@ -15,8 +15,10 @@
   ],
   "license": "MIT",
   "type": "module",
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
-    "directory": "lib",
     "access": "public"
   },
   "main": "./lib/index.js",
@@ -49,13 +51,13 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "@helsenorge/designsystem-react": "^12.0.0",
+    "@helsenorge/designsystem-react": "^13.0.0-workspaces-beta",
     "classnames": "^2.5.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@helsenorge/designsystem-react": "^12.11.1",
+    "@helsenorge/designsystem-react": "^13.0.0-beta.4",
     "@helsenorge/typed-scss-modules": "^9.0.0",
     "@rollup/plugin-replace": "^6.0.1",
     "@testing-library/jest-dom": "^6.5.0",
@@ -63,11 +65,11 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.2",
-    "@vitest/coverage-istanbul": "^3.1.2",
-    "@vitest/coverage-v8": "^3.1.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "@vitest/coverage-istanbul": "^3.2.4",
+    "@vitest/coverage-v8": "^3.2.4",
     "classnames": "^2.5.1",
-    "frankenstein-build-tools": "file:../build-tools",
+    "frankenstein-build-tools": "^13.0.0-beta.4",
     "jsdom": "^26.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -76,8 +78,8 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-visualizer": "^5.12.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.1",
-    "vite-plugin-dts": "^4.3.0",
-    "vitest": "^3.1.2"
+    "vite": "npm:rolldown-vite@^7.1.2",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4"
   }
 }

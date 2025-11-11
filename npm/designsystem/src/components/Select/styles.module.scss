@@ -51,7 +51,7 @@
 .select {
   /* Pil fjernes for browsere utenom IE */
   appearance: none;
-  height: 2.5rem;
+  height: calc(2.75rem + 0.25rem); // 44px height + 4px border
   align-items: center;
   background-color: transparent;
   grid-column: 1 / 3;
@@ -66,7 +66,7 @@
   border-radius: 0;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-    height: 3.125rem;
+    height: calc(3rem + 0.25rem); // 48px height + 4px border
     font-size: font-settings.$font-size-md;
   }
 

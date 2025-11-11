@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId, FormOnColor, FormSize, IconSize } from '../../constants';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { useUuid } from '../../hooks/useUuid';
 import { getColor } from '../../theme/currys/color';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
@@ -54,7 +54,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     size,
     errorText,
     error = !!errorText,
-    errorTextId,
+    errorTextId: errorTextIdProp,
     errorWrapperClassName,
     value = getLabelText(label),
     testId,
@@ -62,7 +62,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     onChange,
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
-  const errorTextUuid = useUuid(errorTextId);
+  const errorTextId = useIdWithFallback(errorTextIdProp);
   const onWhite = onColor === FormOnColor.onwhite;
   const onGrey = onColor === FormOnColor.ongrey;
   const onBlueberry = onColor === FormOnColor.onblueberry;
@@ -142,7 +142,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
           disabled={disabled}
           value={value}
           ref={mergedRefs}
-          aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
+          aria-describedby={getAriaDescribedBy(props, errorTextId)}
           aria-invalid={error}
           required={required}
           onChange={onChangeHandler}
@@ -155,7 +155,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
   };
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
         {renderLabelAsParent(
           label,

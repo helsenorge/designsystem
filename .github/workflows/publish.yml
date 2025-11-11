@@ -22,7 +22,7 @@ jobs:
           ref: ${{ inputs.tag || github.ref }}
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
         # Need npm 11.5.1 or later for trusted publisher configuration to work
       - name: Update npm

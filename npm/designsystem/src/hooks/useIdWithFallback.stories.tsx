@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { useUuid } from './useUuid';
+import { useIdWithFallback } from './useIdWithFallback';
 import Button from '../components/Button';
 
-const UseUuidExample: React.FC = () => {
+const UseIdWithFallbackExample: React.FC = () => {
   const [count, setCount] = useState(0);
-  const id = useUuid();
+  const id = useIdWithFallback();
 
   return (
     <>
-      <p>{`uuid: ${id}`}</p>
+      <p>{`id: ${id}`}</p>
       <p>{`Teller: ${count}`}</p>
       <Button id={id} onClick={() => setCount(count + 1)}>
         {'Oppdater'}
@@ -21,26 +21,26 @@ const UseUuidExample: React.FC = () => {
 };
 
 const meta = {
-  title: '@helsenorge/designsystem-react/Hooks/useUuid',
-  component: UseUuidExample,
+  title: '@helsenorge/designsystem-react/Hooks/useIdWithFallback',
+  component: UseIdWithFallbackExample,
   parameters: {
     docs: {
       description: {
-        component: 'Returner unik uuid som ikke endrer seg for hver render.',
+        component: 'Returner unik id som ikke endrer seg for hver render, med fallback.',
       },
       source: {
         language: 'tsx',
         code: `
-import { useUuid } from '@helsenorge/designsystem-react/hooks/useUuid';
+import { useIdWithFallback } from '@helsenorge/designsystem-react/hooks/useIdWithFallback';
 import Button from '@helsenorge/designsystem-react/components/Button';
 
-const UseUuidExample: React.FC = () => {
+const UseIdWithFallbackExample: React.FC = () => {
   const [count, setCount] = useState(0);
-  const id = useUuid();
+  const id = useIdWithFallback();
 
   return (
     <>
-      <p>{\`uuid: \${id}\`}</p>
+      <p>{\`id: \${id}\`}</p>
       <p>{\`Teller: \${count}\`}</p>
       <Button id={id} onClick={() => setCount(count + 1)}>
         {'Oppdater'}
@@ -53,10 +53,10 @@ const UseUuidExample: React.FC = () => {
     },
     chromatic: { disableSnapshot: true },
   },
-} satisfies Meta<typeof UseUuidExample>;
+} satisfies Meta<typeof UseIdWithFallbackExample>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = { render: () => <UseUuidExample /> };
+export const Default: Story = { render: () => <UseIdWithFallbackExample /> };

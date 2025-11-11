@@ -8,11 +8,11 @@ export type Styles = {
   'input-container__input--large': string;
   'input-container--disabled': string;
   'input-container--invalid': string;
-  'input-container--large': string;
   'input-container--on-blueberry': string;
   'input-container--on-dark': string;
   'input-container--transparent': string;
   'input-container--with-icon': string;
+  'input-container--with-icon--right': string;
   'input-wrapper': string;
 };
 

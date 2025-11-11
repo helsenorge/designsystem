@@ -140,9 +140,11 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
       }
     }
   }
+
   &--on-dark#{&}--destructive {
     @include fill-on-dark(palette.$cherry50);
   }
+
   &--on-dark#{&}--outline,
   &--on-dark#{&}--borderless,
   &--on-dark#{&}--outline#{&}--destructive,
@@ -159,6 +161,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
       }
     }
   }
+
   &--on-dark#{&}--outline {
     outline-color: palette.$white;
 
@@ -168,6 +171,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
       }
     }
   }
+
   &--on-dark#{&}--borderless {
     :disabled > & {
       border-color: $dark-mode-disabled-transparrent;
@@ -177,9 +181,11 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--on-dark &__text {
     @include on-dark-text(palette.$blueberry600);
   }
+
   &--on-dark#{&}--destructive &__text {
     @include on-dark-text(palette.$cherry600);
   }
+
   &--on-dark#{&}--outline &__text,
   &--on-dark#{&}--borderless &__text {
     color: palette.$white;
@@ -324,6 +330,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
       }
     }
   }
+
   &--outline#{&}--destructive,
   &--borderless#{&}--destructive {
     @include outline-borderless-background(transparent, palette.$cherry50);
@@ -332,6 +339,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--outline {
     @include outline(palette.$blueberry700, palette.$blueberry50);
   }
+
   &--outline#{&}--destructive {
     @include outline(palette.$cherry700, palette.$cherry50);
   }
@@ -396,6 +404,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   &--borderless &__text {
     @include text-color(var(--color-action-text-onlight), var(--color-action-text-onlight-hover));
   }
+
   &--outline#{&}--destructive &__text,
   &--borderless#{&}--destructive &__text {
     @include text-color(palette.$cherry600, palette.$cherry700);

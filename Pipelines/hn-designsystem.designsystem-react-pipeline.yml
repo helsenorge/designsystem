@@ -18,9 +18,9 @@ pool:
 
 variables:
   - name: node_version
-    value: 22
+    value: 24
   - name: npm_version
-    value: 11
+    value: '^11.6.2'
   - name: project_name
     value: Designsystem.Packages.Designsystem.CI
   - name: working_directory
@@ -73,19 +73,14 @@ stages:
 
           # npm tasks
           # Force npm 11.x globally for the rest of the job
-          - script: |
-              node -v
-              npm -v
-              npm i -g npm@$(npm_version)
-              npm -v
+          - script: npm i -g npm@$(npm_version)
             displayName: 'Use npm $(npm_version)'
 
           # ci / install
-          - task: Npm@1
-            displayName: npm ci
-            inputs:
-              command: ci
-              workingDir: $(working_directory)
+          - script: |
+              npm ci --include=optional
+            workingDirectory: $(working_directory)
+            displayName: 'npm ci'
 
           # Lint commit message
           - bash: |
@@ -234,16 +229,6 @@ stages:
             condition:
               and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
               contains(variables['Build.SourceBranch'], 'refs/tags/v'), contains(variables['Build.SourceBranch'], 'beta'))
-
-          - script: |
-              node scripts/sendSlackMessage.js
-            displayName: 'Send melding til Slack'
-            condition:
-              and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),
-              contains(variables['Build.SourceBranch'], 'refs/tags/v'))
-            env:
-              SLACK_WEBHOOK_URL: $(SlackWebhookUrl)
-              REPO_NAME: $(Build.Repository.Name)
 
   # Copy to Github
   - stage:

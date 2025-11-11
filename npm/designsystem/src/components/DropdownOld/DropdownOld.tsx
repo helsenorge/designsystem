@@ -9,7 +9,7 @@ import {
   LanguageLocales,
   ZIndex,
   theme,
-  useHover,
+  usePseudoClasses,
   useKeyboardEvent,
   useOutsideEvent,
   useToggle,
@@ -84,7 +84,7 @@ const DropdownOld: React.FC<DropdownOldProps> = props => {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
-  const { hoverRef: buttonRef, isHovered } = useHover<HTMLButtonElement>();
+  const { refObject: buttonRef, isHovered } = usePseudoClasses<HTMLButtonElement>();
   const openedByKeyboard = useRef<boolean>(false);
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
   const inputRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));

@@ -8,104 +8,103 @@
  */
 
 :root {
-
   /* Hovedtittel H1 */
-  --desktop-h1-title1: 600 3rem/120% "Source Sans Pro";
+  --desktop-h1-title1: 600 3rem/120% 'Source Sans Pro';
 
   /* Sekundærtittel H2 */
-  --desktop-h2-title2: 600 2rem/120% "Source Sans Pro";
+  --desktop-h2-title2: 600 2rem/120% 'Source Sans Pro';
 
   /* Tertiærtittel H3 */
-  --desktop-h3-title3: 600 1.625rem/120% "Source Sans Pro";
-  --desktop-h4-title4: 600 1.375rem/130% "Source Sans Pro";
-  --desktop-h5-title5: 700 1.125rem/140% "Source Sans Pro";
-  --desktop-preamble: 400 1.5rem/130% "Source Sans Pro";
-  --desktop-legend: 600 1.5rem/130% "Source Sans Pro";
-  --desktop-label: 600 1.25rem/130% "Source Sans Pro";
-  --desktop-body: 400 1.25rem/150% "Source Sans Pro";
+  --desktop-h3-title3: 600 1.625rem/120% 'Source Sans Pro';
+  --desktop-h4-title4: 600 1.375rem/130% 'Source Sans Pro';
+  --desktop-h5-title5: 700 1.125rem/140% 'Source Sans Pro';
+  --desktop-preamble: 400 1.5rem/130% 'Source Sans Pro';
+  --desktop-legend: 600 1.5rem/130% 'Source Sans Pro';
+  --desktop-label: 600 1.25rem/130% 'Source Sans Pro';
+  --desktop-body: 400 1.25rem/150% 'Source Sans Pro';
 
   /* Display of condensed textual data, such as metadata or information that is useful, but perhaps not essential for the use of a service. */
-  --desktop-compact-data: 400 1.125rem/140% "Source Sans Pro";
+  --desktop-compact-data: 400 1.125rem/140% 'Source Sans Pro';
 
   /* Tekst i tabellceller. Mer kompakt enn brødtekst (body) */
-  --desktop-tablecell: 400 1.125rem/130% "Source Sans Pro";
-  --desktop-body-strong: 600 1.25rem/150% "Source Sans Pro";
+  --desktop-tablecell: 400 1.125rem/130% 'Source Sans Pro';
+  --desktop-body-strong: 600 1.25rem/150% 'Source Sans Pro';
 
   /* Text inside input-fields, textarea fields and numeric steppers, etc. Not to be used as the Label for Radiogroup or Checkbox - use Label. */
-  --desktop-form-input: 400 1.25rem/140% "Source Sans Pro";
+  --desktop-form-input: 400 1.25rem/140% 'Source Sans Pro';
 
   /* Bildetekst - plasseres nedenfor bilde eller figur */
-  --desktop-image-caption: 400 1rem/150% "Source Sans Pro";
+  --desktop-image-caption: 400 1rem/150% 'Source Sans Pro';
 
   /* Supply copyright information for images */
-  --desktop-image-credit: 400 0.75rem/130% "Source Sans Pro";
+  --desktop-image-credit: 400 0.75rem/130% 'Source Sans Pro';
 
   /* Vis status/tidskoder - lav linjehøyde for kompakt visning */
-  --desktop-status-time-stamp-time: 400 1.125rem/110% "Source Sans Pro";
+  --desktop-status-time-stamp-time: 400 1.125rem/110% 'Source Sans Pro';
 
   /* Hovedtittel H1 */
-  --mobile-h1-title1: 600 2rem/120% "Source Sans Pro";
+  --mobile-h1-title1: 600 2rem/120% 'Source Sans Pro';
 
   /* Sekundærtittel H2 */
-  --mobile-h2-title2: 600 1.625rem/120% "Source Sans Pro";
+  --mobile-h2-title2: 600 1.625rem/120% 'Source Sans Pro';
 
   /* Tertiærtittel H3 */
-  --mobile-h3-title3: 600 1.375rem/136% "Source Sans Pro";
-  --mobile-h4-title4: 600 1.25rem/130% "Source Sans Pro";
-  --mobile-preamble: 400 1.25rem/130% "Source Sans Pro";
-  --mobile-legend: 600 1.125rem/130% "Source Sans Pro";
-  --mobile-label: 600 1.125rem/120% "Source Sans Pro";
-  --mobile-body: 400 1.125rem/150% "Source Sans Pro";
+  --mobile-h3-title3: 600 1.375rem/136% 'Source Sans Pro';
+  --mobile-h4-title4: 600 1.25rem/130% 'Source Sans Pro';
+  --mobile-preamble: 400 1.25rem/130% 'Source Sans Pro';
+  --mobile-legend: 600 1.125rem/130% 'Source Sans Pro';
+  --mobile-label: 600 1.125rem/120% 'Source Sans Pro';
+  --mobile-body: 400 1.125rem/150% 'Source Sans Pro';
 
   /* Tekst i tabellceller. Mer kompakt enn brødtekst (body) */
-  --mobile-tablecell: 400 1.125rem/128% "Source Sans Pro";
+  --mobile-tablecell: 400 1.125rem/128% 'Source Sans Pro';
 
   /* Text in Input and Textarea - widgets */
-  --mobile-form-input: 400 1.125rem/150% "Source Sans Pro";
-  --mobile-image-caption: 400 1rem/150% "Source Sans Pro";
-  --mobile-image-credit: 400 0.75rem/133% "Source Sans Pro";
+  --mobile-form-input: 400 1.125rem/150% 'Source Sans Pro';
+  --mobile-image-caption: 400 1rem/150% 'Source Sans Pro';
+  --mobile-image-credit: 400 0.75rem/133% 'Source Sans Pro';
 
   /* Vis status/tidskoder - lav linjehøyde for kompakt visning */
-  --mobile-status-time-stamp-time: 400 1rem/110% "Source Sans Pro";
-  --mobile-h5-title5: 700 1rem/140% "Source Sans Pro";
-  --desktop-h6-title6: 600 1.125rem/140% "Source Sans Pro";
-  --desktop-label-subdued: 400 1.25rem/130% "Source Sans Pro";
-  --desktop-sublabel: 600 1.125rem/130% "Source Sans 3";
-  --desktop-sublabel-subdued: 400 1.125rem/130% "Source Sans 3";
-  --mobile-h6-title6: 600 1rem/140% "Source Sans Pro";
-  --mobile-label-subdued: 400 1.125rem/120% "Source Sans Pro";
-  --mobile-sublabel: 600 1rem/120% "Source Sans 3";
+  --mobile-status-time-stamp-time: 400 1rem/110% 'Source Sans Pro';
+  --mobile-h5-title5: 700 1rem/140% 'Source Sans Pro';
+  --desktop-h6-title6: 600 1.125rem/140% 'Source Sans Pro';
+  --desktop-label-subdued: 400 1.25rem/130% 'Source Sans Pro';
+  --desktop-sublabel: 600 1.125rem/130% 'Source Sans 3';
+  --desktop-sublabel-subdued: 400 1.125rem/130% 'Source Sans 3';
+  --mobile-h6-title6: 600 1rem/140% 'Source Sans Pro';
+  --mobile-label-subdued: 400 1.125rem/120% 'Source Sans Pro';
+  --mobile-sublabel: 600 1rem/120% 'Source Sans 3';
 
   /* <label> */
-  --mobile-sublabel-subdued: 400 1rem/120% "Source Sans 3";
-  --mobile-body-strong: 600 1.125rem/150% "Source Sans Pro";
-  --mobile-compact-data: 400 1rem/150% "Source Sans Pro";
+  --mobile-sublabel-subdued: 400 1rem/120% 'Source Sans 3';
+  --mobile-body-strong: 600 1.125rem/150% 'Source Sans Pro';
+  --mobile-compact-data: 400 1rem/150% 'Source Sans Pro';
 
   /* Name-value pairs as rendered by an HTML <DT>-tag */
-  --desktop-definitionlist-type: 600 1.25rem/130% "Source Sans Pro";
+  --desktop-definitionlist-type: 600 1.25rem/130% 'Source Sans Pro';
 
   /* Data-value in Name-Value-pairs as rendered by a <DD>-tag (definition-data) */
-  --desktop-definition-list-data: 400 1.25rem/130% "Source Sans Pro";
+  --desktop-definition-list-data: 400 1.25rem/130% 'Source Sans Pro';
 
   /* Use for inherent "chunking" of text in hmtl lists <LI>, ie. bullet-lists and ordered lists. */
-  --desktop-textlist: 400 1.25rem/130% "Source Sans Pro";
+  --desktop-textlist: 400 1.25rem/130% 'Source Sans Pro';
 
   /* Use for the Name part in name-value pairs, the equivalent of html <DT> */
-  --mobile-definitionlist-type: 600 1.125rem/120% "Source Sans Pro";
-  --mobile-definitionlist-data: 400 1.125rem/120% "Source Sans Pro";
+  --mobile-definitionlist-type: 600 1.125rem/120% 'Source Sans Pro';
+  --mobile-definitionlist-data: 400 1.125rem/120% 'Source Sans Pro';
 
   /* Renders clumping in ordinary clumps */
-  --mobile-textlist: 400 1.125rem/120% "Source Sans Pro";
+  --mobile-textlist: 400 1.125rem/120% 'Source Sans Pro';
 
   /* For use as body text in smaller help components as HelpExpander (detail panel), HelpBubble and HelpTooltip */
-  --desktop-help-text: 400 1.125rem/140% "Source Sans Pro";
+  --desktop-help-text: 400 1.125rem/140% 'Source Sans Pro';
 
   /* For use in Help trigger components */
-  --desktop-help-trigger-text: 600 1.125rem/130% "Source Sans 3";
+  --desktop-help-trigger-text: 600 1.125rem/130% 'Source Sans 3';
 
   /* For use as body text in smaller help components as HelpExpander (detail panel), HelpBubble and HelpTooltip */
-  --mobile-help-text: 400 1rem/150% "Source Sans Pro";
+  --mobile-help-text: 400 1rem/150% 'Source Sans Pro';
 
   /* For use in Help trigger components */
-  --mobile-help-trigger-text: 600 1rem/120% "Source Sans 3";
+  --mobile-help-trigger-text: 600 1rem/120% 'Source Sans 3';
 }

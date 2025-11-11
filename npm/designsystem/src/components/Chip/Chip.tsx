@@ -3,7 +3,7 @@ import React from 'react';
 import cn from 'classnames';
 
 import { AnalyticsId } from '../../constants';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { palette, PaletteNames } from '../../theme/palette';
 import Icon, { IconSize, SvgIcon } from '../Icon';
 import Undo from '../Icons/Undo';
@@ -49,7 +49,7 @@ export interface ChipProps {
 const Chip: React.FC<ChipProps> = props => {
   const { children, size = ChipSize.medium, color = 'blueberry', variant = 'normal', action, onClick, testId } = props;
 
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>();
 
   const chipClasses = cn(styles.chip, styles[`chip--${size}`], styles[`chip--${color}`], styles[`chip--${variant}`], {
     [styles[`chip--undo`]]: action === 'undo',
@@ -65,7 +65,7 @@ const Chip: React.FC<ChipProps> = props => {
   };
 
   return (
-    <button className={chipClasses} onClick={onClick} ref={hoverRef} type="button" data-testid={testId} data-analyticsid={AnalyticsId.Tag}>
+    <button className={chipClasses} onClick={onClick} ref={refObject} type="button" data-testid={testId} data-analyticsid={AnalyticsId.Tag}>
       {children}
       <Icon svgIcon={getActionIcon()} size={IconSize.XXSmall} color={palette[`${color}800`]} isHovered={isHovered} />
     </button>

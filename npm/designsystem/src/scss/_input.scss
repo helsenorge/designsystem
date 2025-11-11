@@ -16,26 +16,6 @@
   outline: none;
   background: palette.$white;
 
-  svg:first-of-type {
-    padding-left: 0.375rem;
-  }
-
-  svg:last-of-type {
-    padding-right: 0.375rem;
-  }
-
-  &--large {
-    padding: spacers.getSpacer(2xs) 0;
-
-    svg:first-of-type {
-      padding-left: spacers.getSpacer(2xs);
-    }
-
-    svg:last-of-type {
-      padding-right: spacers.getSpacer(2xs);
-    }
-  }
-
   &:focus-within {
     background: palette.$white;
     border-color: palette.$neutral900;
@@ -139,7 +119,6 @@
     line-height: 1.625rem;
     font-family: inherit;
     font-size: font-settings.$font-size-sm;
-    padding: 0 spacers.getSpacer(2xs);
     border: none;
     outline: none;
     background-color: transparent;
@@ -155,14 +134,6 @@
 
     &--disabled {
       color: palette.$neutral700;
-    }
-
-    &:first-child {
-      padding-left: spacers.getSpacer(s);
-    }
-
-    &:last-child {
-      padding-right: spacers.getSpacer(s);
     }
   }
 }

@@ -3,8 +3,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
-import { useHover } from '../../hooks/useHover';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { mergeRefs } from '../../utils/refs';
 import Icon from '../Icon';
 import X from '../Icons/X';
@@ -28,7 +28,7 @@ export interface CloseProps {
 
 const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, ref: React.ForwardedRef<HTMLButtonElement>) {
   const { small, testId, ariaLabel = 'Lukk', onClick, className, color = 'blueberry' } = props;
-  const { hoverRef, isHovered } = useHover();
+  const { refObject, isHovered } = usePseudoClasses();
 
   const iconSize = useIsMobileBreakpoint() || small ? 38 : 48;
 
@@ -45,7 +45,7 @@ const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, re
 
   return (
     <button
-      ref={mergeRefs([ref, hoverRef])}
+      ref={mergeRefs([ref, refObject])}
       data-testid={testId}
       data-analyticsid={AnalyticsId.Close}
       className={closeClasses}

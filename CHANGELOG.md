@@ -1,3 +1,64 @@
+## 13.0.0-workspaces-beta.0 (2025-11-10)
+
+
+### Bug Fixes
+
+*  ikke send id props videre til base komponenter ([cefebe8](https://github.com/helsenorge/designsystem/commit/cefebe8d98073f1a883f647cf6dcd33e6d8f5743)), closes [#364177](https://github.com/helsenorge/designsystem/issues/364177)
+
+## 13.0.0-beta.4 (2025-11-04)
+
+
+### Features
+
+* **modal:**  slett gammel image variant ([0b2cb35](https://github.com/helsenorge/designsystem/commit/0b2cb353066ede6c760ad5a494f19c2099705dec)), closes [#363162](https://github.com/helsenorge/designsystem/issues/363162)
+
+## 13.0.0-beta.3 (2025-10-31)
+
+
+### Features
+
+*  oppdatert til vite 7 ([0a70cfb](https://github.com/helsenorge/designsystem/commit/0a70cfb413f6a40142952ba1420a7bb4c20217bd)), closes [#360075](https://github.com/helsenorge/designsystem/issues/360075)
+* **panelold:**  slett gammelt Panel" ([5a2230a](https://github.com/helsenorge/designsystem/commit/5a2230ac5cfb6cceefa7d5eb609c505780ca23ac)), closes [#363596](https://github.com/helsenorge/designsystem/issues/363596)
+
+## 13.0.0-beta.2 (2025-10-29)
+
+
+### Features
+
+*  gjør motion external ([aaf9051](https://github.com/helsenorge/designsystem/commit/aaf90515520194725651b653a516180381bc270d)), closes [#361425](https://github.com/helsenorge/designsystem/issues/361425)
+
+## 13.0.0-beta.1 (2025-10-24)
+
+
+### Features
+
+*  erstatter useuuid hooken med useidwithfallback og tar i bruk useid ([e78748c](https://github.com/helsenorge/designsystem/commit/e78748c69a6c6999867bcc22302127f1637611f0)), closes [#357961](https://github.com/helsenorge/designsystem/issues/357961)
+* **panelold:**  slett gammelt Panel ([af225ff](https://github.com/helsenorge/designsystem/commit/af225ff1ee3cc690b4968a67b920be7e5fd022fd)), closes [#352894](https://github.com/helsenorge/designsystem/issues/352894)
+
+## 13.0.0-beta.0 (2025-10-10)
+
+
+### Features
+
+*  react 19 støttes i peerdeps ([958be5b](https://github.com/helsenorge/designsystem/commit/958be5b32fc347be04e33dc7405936a1726cce44)), closes [#361681](https://github.com/helsenorge/designsystem/issues/361681)
+* **icons:**  bytt navn på patientandperson og personandpatient ([756ffe9](https://github.com/helsenorge/designsystem/commit/756ffe9d5a82110c0683fb0a24ac8aedde84d8d7)), closes [#350215](https://github.com/helsenorge/designsystem/issues/350215)
+* **usehover:**  fjernet hook ([d6545ac](https://github.com/helsenorge/designsystem/commit/d6545ac6d64155f3783ea5627d3fdbc74bf35425)), closes [#353276](https://github.com/helsenorge/designsystem/issues/353276)
+
+
+### Bug Fixes
+
+* **input:**  endre høyden til input og select til å matche ([abf51c4](https://github.com/helsenorge/designsystem/commit/abf51c49c248eab5fd6e5102225d79e1a0131a91)), closes [#335472](https://github.com/helsenorge/designsystem/issues/335472)
+* **label:**  kun rendre sublabel wrapper om det er innhold i den ([df90851](https://github.com/helsenorge/designsystem/commit/df908511874ed4dfe939591ca3823fa20ad2f4cd))
+
+## [12.12.3](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.2&targetVersion=GTv12.12.3) (2025-11-07)
+
+
+### Bug Fixes
+
+*  lib mappen ble ikke med i den publiserte pakken ([1c5409e](https://github.com/helsenorge/designsystem/commit/1c5409eeaf05524c315650ea11a839a70b7dfaa3)), closes [#362474](https://github.com/helsenorge/designsystem/issues/362474)
+
+## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-07)
+
 ## [12.12.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.1&targetVersion=GTv12.12.1) (2025-11-06)
 
 

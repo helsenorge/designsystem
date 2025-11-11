@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { IconSize } from '../../constants';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { ExpanderListColors, ExpanderListVariant } from '../ExpanderList';
 import Icon, { SvgIcon } from '../Icon';
 import X from '../Icons/X';
@@ -38,10 +38,10 @@ export const IconButton = ({
   color: 'red' | 'blue';
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }): React.JSX.Element => {
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>();
 
   return (
-    <button ref={hoverRef} onClick={onClick} type="button" className={classNames(styles['list-edit-mode__icon-button'])}>
+    <button ref={refObject} onClick={onClick} type="button" className={classNames(styles['list-edit-mode__icon-button'])}>
       <Icon
         isHovered={isHovered}
         svgIcon={icon}

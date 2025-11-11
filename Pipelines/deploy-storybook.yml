@@ -12,7 +12,9 @@ pool:
 
 variables:
   - name: node_version
-    value: 22
+    value: 24
+  - name: npm_version
+    value: '^11.6.2'
   - name: HUSKY
     value: 0
   - name: branchName
@@ -33,25 +35,19 @@ stages:
             displayName: Use Node version
             inputs:
               version: $(node_version)
+          - script: npm i -g npm@$(npm_version)
+            displayName: Use npm $(npm_version)
 
-          - task: Npm@1
+          - script: npm ci
             displayName: Install dependencies
-            inputs:
-              command: ci
 
-          - task: Npm@1
+          - script: npm run build --workspace=npm/build-tools
             displayName: Build frankenstein-build-tools
-            inputs:
-              command: custom
-              workingDir: npm/build-tools
-              customCommand: run build
 
-          - task: Npm@1
+          - script: npm run build-storybook --workspace=npm/designsystem -- -o dist/$(branchName)
             displayName: Build Storybook
-            inputs:
-              command: custom
-              workingDir: npm/designsystem
-              customCommand: run build-storybook -- -o dist/$(branchName) -- --base /$(branchName)/
+            env:
+              STORYBOOK_BASE_PATH: /$(branchName)/
 
           - task: AzureCLI@2
             displayName: Copy to Azure Storage account

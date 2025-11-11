@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { useUuid } from '../../hooks/useUuid';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
@@ -70,8 +70,8 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     name = inputId,
     size,
     errorText,
+    errorTextId: errorTextIdProp,
     error = !!errorText,
-    errorTextId,
     errorWrapperClassName,
     value = getLabelText(label),
     testId,
@@ -87,7 +87,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
   const [checked, changeChecked] = useState<boolean>();
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
-  const errorTextUuid = useUuid(errorTextId);
+  const errorTextId = useIdWithFallback(errorTextIdProp);
 
   const radioButtonWrapperClasses = classNames(radioButtonStyles['radio-button-wrapper'], {
     [radioButtonStyles['radio-button-wrapper__large']]: isLarge,
@@ -138,14 +138,14 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
       value={value}
       ref={mergedRefs}
       defaultChecked={defaultChecked}
-      aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
+      aria-describedby={getAriaDescribedBy(props, errorTextId)}
       required={required}
       onChange={(e): void => change(e)}
     />
   );
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
         {renderLabelAsParent(
           label,

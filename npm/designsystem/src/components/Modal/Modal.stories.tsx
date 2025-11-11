@@ -44,11 +44,11 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ModalVariants,
+      options: Object.values(ModalVariants),
     },
     size: {
       control: 'select',
-      options: ModalSize,
+      options: Object.values(ModalSize),
     },
     title: {
       control: 'text',
@@ -119,30 +119,6 @@ export const Scroll: Story = {
       
       De siste årene har det vært stilt spørsmål om frukt egentlig er så sunt på grunn av fruktens karbohydratinnhold. Noen lurer også på om man kan legge på seg av frukt. Det korte svaret er at frukt er sunt, karbohydratinnholdet er ikke noe friske mennesker behøver å bekymre seg over og nei - det er nok ikke frukten som er syndebukken. Norske kostholdsundersøkelser viser at vi fortsatt spiser mindre frukt og grønt enn anbefalt.`}
     />
-  ),
-};
-
-export const WithHorizontalImage4By3: Story = {
-  render: args => (
-    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With horizontal image 4x3'}>
-      <img src="http://fakeimg.pl/1200x800?text=jpg&font=lobster" alt="" />
-    </Modal>
-  ),
-};
-
-export const WithHorizontalImage16By9: Story = {
-  render: args => (
-    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With horizontal image 16x9'}>
-      <img src="http://fakeimg.pl/1600x900?text=jpg&font=lobster" alt="" />
-    </Modal>
-  ),
-};
-
-export const WithVerticalImage: Story = {
-  render: args => (
-    <Modal {...args} variant={ModalVariants.image} onClose={action('Close')} title={'With vertical image'}>
-      <img src="http://fakeimg.pl/600x1000?text=jpg&font=lobster" alt="" />
-    </Modal>
   ),
 };
 
@@ -223,7 +199,7 @@ export const ModalWithCustomContent: Story = {
               <div tabIndex={0} role="button">
                 {'This uses tabindex="0"'}
               </div>
-              <Slider labelLeft="0" labelRight="mange" onChange={(value): void => setTempBurger(value)} />
+              <Slider labelLeft="0" labelRight="mange" onChange={(event): void => setTempBurger(Number(event.target.value))} />
             </div>
           </Modal>
         )}

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 
 import classNames from 'classnames';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
-import { useHover } from '../../hooks/useHover';
-import { useUuid } from '../../hooks/useUuid';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys';
 import { breakpoints } from '../../theme/grid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
@@ -34,7 +33,7 @@ interface LabelProps {
 
 const Label: React.FC<LabelProps> = ({ label, variant, id, hasExpander, isExpanded, dismissable, onExpand, onDismiss, closeBtnText }) => {
   const breakpoint = useBreakpoint();
-  const { isHovered, hoverRef } = useHover<HTMLDivElement>();
+  const { isHovered, refObject } = usePseudoClasses<HTMLDivElement>();
 
   const iconSize = breakpoint < breakpoints.lg ? IconSize.XSmall : IconSize.Small;
   const CustomTag = hasExpander ? 'button' : 'span';
@@ -45,7 +44,7 @@ const Label: React.FC<LabelProps> = ({ label, variant, id, hasExpander, isExpand
   );
 
   return (
-    <div className={labelContainerClasses} ref={hoverRef}>
+    <div className={labelContainerClasses} ref={refObject}>
       <div className={styles['service-message__container']}>
         <div className={styles['service-message__row']}>
           <div className={styles['service-message__col']}>
@@ -84,8 +83,8 @@ interface ContentProps {
 }
 
 const Content: React.FC<ContentProps> = ({ info, extraInfo, urlTitle, url, target, dismissable, closeBtnText, onDismiss }) => {
-  const { hoverRef: readMoreRef, isHovered: readMoreHoverRefIsHovered } = useHover<HTMLAnchorElement>();
-  const { hoverRef: closeButtonRef, isHovered: closeButtonIsHovered } = useHover<HTMLButtonElement>();
+  const { refObject: readMoreRef, isHovered: readMoreHoverRefIsHovered } = usePseudoClasses<HTMLAnchorElement>();
+  const { refObject: closeButtonRef, isHovered: closeButtonIsHovered } = usePseudoClasses<HTMLButtonElement>();
 
   const hasUrl = url && urlTitle;
 
@@ -168,7 +167,7 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(expanderOpenFromStart);
 
-  const labelId = useUuid();
+  const labelId = useId();
   const hasExpander = !!info || !!extraInfo;
 
   const ariaRole = variant === 'error' ? 'alert' : 'region';

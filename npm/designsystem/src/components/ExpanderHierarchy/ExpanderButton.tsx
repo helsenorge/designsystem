@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { ExpanderHierarchyCommonProps } from '../ExpanderHierarchy';
 import Icon, { IconSize } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
@@ -20,7 +20,7 @@ interface ExpanderButtonProps extends ExpanderHierarchyCommonProps {
 }
 
 const ExpanderButton: React.FC<ExpanderButtonProps> = ({ htmlMarkup = 'h2', level = 1, print, expanded, onExpand, children, testId }) => {
-  const { hoverRef, isHovered } = useHover<HTMLButtonElement>();
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>();
   const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
 
   const handleClick = (): void => {
@@ -56,7 +56,7 @@ const ExpanderButton: React.FC<ExpanderButtonProps> = ({ htmlMarkup = 'h2', leve
         onClick={handleClick}
         className={buttonClasses}
         aria-expanded={isExpanded}
-        ref={hoverRef}
+        ref={refObject}
         data-testid={testId}
         data-analyticsid={AnalyticsId.ExpanderHierarchyExpander}
       >

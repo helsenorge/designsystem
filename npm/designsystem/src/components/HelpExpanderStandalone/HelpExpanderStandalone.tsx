@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AnalyticsId, IconSize } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
 import HelpDetails from '../HelpDetails/HelpDetails';
@@ -43,7 +43,7 @@ const HelpExpanderStandalone = React.forwardRef<HTMLButtonElement, HelpExpanderS
   ({ ariaLabel, ariaLabelledById, children, className, expanded = false, onExpand, testId, triggerText, weight = 'normal' }, ref) => {
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
     const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
-    const { hoverRef, isHovered } = useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
+    const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
 
     return (
       <div className={className} data-testid={testId} data-analyticsid={AnalyticsId.HelpExpanderStandalone}>
@@ -51,7 +51,7 @@ const HelpExpanderStandalone = React.forwardRef<HTMLButtonElement, HelpExpanderS
           className={styles['help-expander-standalone-trigger']}
           aria-expanded={isExpanded}
           onClick={(): void => setIsExpanded(!isExpanded)}
-          ref={mergeRefs([ref, hoverRef])}
+          ref={mergeRefs([ref, refObject])}
           weight={weight}
           {...ariaLabelAttributes}
         >

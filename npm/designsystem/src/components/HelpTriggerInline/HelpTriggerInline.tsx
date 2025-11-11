@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
 import { HelpTriggerIconInternal, HelpTriggerWeights } from '../HelpTriggerIcon';
@@ -40,7 +40,7 @@ const HelpTriggerInline = React.forwardRef<HTMLButtonElement, HelpTriggerInlineP
   ({ ariaLabel, ariaLabelledById, children, className, testId, weight = 'normal', ...rest }, ref) => {
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
     const helpTriggerInlineStyles = classNames(styles['help-trigger-inline'], className);
-    const { hoverRef, isHovered } = useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
+    const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
 
     return (
       <button
@@ -49,7 +49,7 @@ const HelpTriggerInline = React.forwardRef<HTMLButtonElement, HelpTriggerInlineP
         data-testid={testId}
         data-analyticsid={AnalyticsId.HelpTriggerInline}
         className={helpTriggerInlineStyles}
-        ref={mergeRefs([hoverRef, ref])}
+        ref={mergeRefs([refObject, ref])}
         {...ariaLabelAttributes}
         {...rest}
       >

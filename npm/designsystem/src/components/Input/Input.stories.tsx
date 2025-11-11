@@ -38,21 +38,21 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: FormSize,
+      options: Object.values(FormSize),
     },
     transparent: {
       control: 'boolean',
     },
     type: {
       control: 'select',
-      options: InputTypes,
+      options: Object.values(InputTypes),
     },
     disabled: {
       control: 'boolean',
     },
     onColor: {
       control: 'select',
-      options: FormOnColor,
+      options: Object.values(FormOnColor),
     },
     showIcon: {
       control: 'boolean',
@@ -153,6 +153,54 @@ export const BaseIncrementValue: Story = {
         inputId={inputId}
         icon={showIcon ? Hospital : undefined}
       />
+    );
+  },
+};
+
+export const WithAndWithoutIcon: Story = {
+  render: ({ ...rest }) => {
+    const inputId = 'input-testid';
+
+    return (
+      <>
+        <Input
+          {...rest}
+          label={<Label labelTexts={[{ text: 'Medium ikon right' }]} htmlFor={inputId} />}
+          inputId={inputId}
+          icon={Hospital}
+          iconRight={true}
+        />
+        <br />
+        <Input
+          {...rest}
+          label={<Label labelTexts={[{ text: 'Medium ikon left' }]} htmlFor={inputId} />}
+          inputId={inputId}
+          icon={Hospital}
+          iconRight={false}
+        />
+        <br />
+        <Input {...rest} label={<Label labelTexts={[{ text: 'Medium uten ikon' }]} htmlFor={inputId} />} inputId={inputId} />
+        <br />
+        <Input
+          {...rest}
+          label={<Label labelTexts={[{ text: 'Large ikon right' }]} htmlFor={inputId} />}
+          inputId={inputId}
+          icon={Hospital}
+          iconRight={true}
+          size="large"
+        />
+        <br />
+        <Input
+          {...rest}
+          label={<Label labelTexts={[{ text: 'Large ikon left' }]} htmlFor={inputId} />}
+          inputId={inputId}
+          icon={Hospital}
+          iconRight={false}
+          size="large"
+        />
+        <br />
+        <Input {...rest} label={<Label labelTexts={[{ text: 'Large uten ikon' }]} htmlFor={inputId} />} inputId={inputId} size="large" />
+      </>
     );
   },
 };

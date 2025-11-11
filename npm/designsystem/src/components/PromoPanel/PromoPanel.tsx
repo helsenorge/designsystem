@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { AnalyticsId, IconSize } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys/color';
 import { PaletteNames } from '../../theme/palette';
 import { AnchorLinkTags, AnchorLinkTargets } from '../AnchorLink';
@@ -72,7 +72,7 @@ const PromoPanelLink: React.FC<PromoPanelLinkProps> = props => {
 };
 
 const PromoPanel: React.FC<PromoPanelProps> = props => {
-  const { isHovered, hoverRef } = useHover<HTMLDivElement>();
+  const { isHovered, refObject } = usePseudoClasses<HTMLDivElement>();
 
   const { color = 'neutral', titleHtmlMarkup = 'h2', linkHtmlMarkup = 'a' } = props;
 
@@ -105,7 +105,7 @@ const PromoPanel: React.FC<PromoPanelProps> = props => {
   })();
 
   return (
-    <div className={promoPanelClasses} data-testid={props.testId} data-analyticsid={AnalyticsId.PromoPanel} ref={hoverRef}>
+    <div className={promoPanelClasses} data-testid={props.testId} data-analyticsid={AnalyticsId.PromoPanel} ref={refObject}>
       {props.illustration && (
         <LazyIllustration
           illustrationName={props.illustration}

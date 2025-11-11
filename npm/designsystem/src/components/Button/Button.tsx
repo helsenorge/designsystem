@@ -4,9 +4,9 @@ import classNames from 'classnames';
 
 import Icon, { IconSize } from './../Icon';
 import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
-import { useHover } from '../../hooks/useHover';
 import { BaseIconElement, useIcons } from '../../hooks/useIcons';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys/color';
 import { isTest, isProd } from '../../utils/environment';
 import ArrowRight from '../Icons/ArrowRight';
@@ -130,7 +130,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
   } = props;
 
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const { hoverRef, isHovered } = useHover<HTMLElement>(ref as React.RefObject<HTMLElement>);
+  const { refObject, isHovered } = usePseudoClasses<HTMLElement>(ref as React.RefObject<HTMLElement>);
   const buttonContentRef = useRef<HTMLDivElement>(null);
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
   const bothIcons = leftIcon && (rightIcon || arrow) && !onlyIcon;
@@ -237,7 +237,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           data-testid={testId}
           data-analyticsid={AnalyticsId.Button}
           className={buttonWrapperClasses}
-          ref={hoverRef as React.ForwardedRef<HTMLButtonElement>}
+          ref={refObject as React.ForwardedRef<HTMLButtonElement>}
           tabIndex={tabIndex}
           type={type}
           {...rest}
@@ -256,7 +256,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           href={href}
           target={target}
           rel={target === '_blank' ? 'noopener noreferrer' : props.rel}
-          ref={hoverRef as React.ForwardedRef<HTMLAnchorElement>}
+          ref={refObject as React.ForwardedRef<HTMLAnchorElement>}
           tabIndex={tabIndex}
           {...restProps}
         >

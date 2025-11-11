@@ -26,7 +26,6 @@ export enum ModalVariants {
   warning = 'warning',
   error = 'error',
   success = 'success',
-  image = 'image',
 }
 
 export enum ModalSize {
@@ -147,9 +146,6 @@ const Modal: React.FC<ModalProps> = props => {
     }
   }
 
-  /* Displays a full window size modal with image */
-  const imageView = variant === ModalVariants.image;
-
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
   const showActions = (props.secondaryButtonText && props.secondaryButtonText?.length > 0) || props.onSuccess || footerContent;
@@ -206,9 +202,7 @@ const Modal: React.FC<ModalProps> = props => {
               })}
             />
             <div
-              className={cn(styles.modal__contentWrapper, {
-                [styles['modal__contentWrapper--image']]: imageView,
-              })}
+              className={cn(styles.modal__contentWrapper)}
               tabIndex={contentIsScrollable ? 0 : undefined}
               role={contentIsScrollable ? 'region' : undefined}
               {...(contentIsScrollable ? ariaLabelAttributes : {})}
@@ -221,11 +215,7 @@ const Modal: React.FC<ModalProps> = props => {
                   </div>
                 </div>
               )}
-              <div
-                className={cn(size && styles[`modal__contentWrapper__scroll--${size}`], {
-                  [styles['modal__contentWrapper__scroll--image']]: imageView,
-                })}
-              >
+              <div className={cn(size && styles[`modal__contentWrapper__scroll--${size}`])}>
                 <div ref={topContent} />
                 <div className={styles.modal__contentWrapper__title}>
                   {getIcon(variant, props.icon)}
@@ -234,14 +224,8 @@ const Modal: React.FC<ModalProps> = props => {
                   </Title>
                   {props.afterTitleChildren && <div className={styles['modal__afterTitleChildren']}>{props.afterTitleChildren}</div>}
                 </div>
-                {imageView && (
-                  <div>
-                    <div className={styles['modal__contentWrapper__imageWrapper']}>{props.children}</div>
-                    <span className={styles['modal__contentWrapper__imageDescription']}>{props.description}</span>
-                  </div>
-                )}
-                {!imageView && props.children && <div>{props.children}</div>}
-                {!imageView && !props.children && <p className={styles.modal__description}>{props.description}</p>}
+                {props.children && <div>{props.children}</div>}
+                {!props.children && <p className={styles.modal__description}>{props.description}</p>}
                 <div ref={bottomContent} />
               </div>
             </div>

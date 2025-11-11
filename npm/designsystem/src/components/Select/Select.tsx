@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, IconSize } from '../../constants';
-import { useUuid } from '../../hooks/useUuid';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
@@ -55,7 +55,7 @@ const getSelectMaxWidth = (characters: number): string => {
   return `calc(${characters * AVERAGE_CHARACTER_WIDTH_PX}px + ${paddingWidth})`;
 };
 
-const getIconColor = (invalid: boolean, disabled: boolean) => {
+const getIconColor = (invalid: boolean, disabled: boolean): string => {
   const iconColor = invalid ? 'cherry' : 'blueberry';
   return disabled ? getColor('neutral', 500) : getColor(iconColor, 600);
 };
@@ -68,11 +68,11 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     disabled,
     error,
     errorText,
-    errorTextId,
+    errorTextId: errorTextIdProp,
+    selectId: selectIdProp,
     errorWrapperClassName,
     label,
-    selectId,
-    name = selectId,
+    name = props.selectId,
     onColor = FormOnColor.onwhite,
     testId,
     width,
@@ -84,8 +84,8 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     ...rest
   } = props;
 
-  const uuid = useUuid(selectId);
-  const errorTextUuid = useUuid(errorTextId);
+  const selectId = useIdWithFallback(selectIdProp);
+  const errorTextId = useIdWithFallback(errorTextIdProp);
   const onBlueberry = onColor === 'onblueberry';
   const invalid = onColor === 'oninvalid' || !!errorText || !!error;
   const iconColor = getIconColor(invalid, !!disabled);
@@ -110,9 +110,9 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
   const selectWrapperClasses = classNames(selectStyles['select-wrapper'], wrapperClassName);
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectWrapperClasses} style={{ maxWidth }}>
-        {renderLabel(label, uuid, onColor as FormOnColor)}
+        {renderLabel(label, selectId, onColor as FormOnColor)}
         <div className={selectInnerWrapperClasses} data-testid={testId + '-inner-wrapper'}>
           <Icon
             className={selectStyles['select-arrow']}
@@ -124,13 +124,13 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
           <select
             {...rest}
             aria-invalid={!!invalid}
-            id={uuid}
+            id={selectId}
             name={name}
             className={selectClasses}
             disabled={disabled}
             ref={ref}
             required={required}
-            aria-describedby={getAriaDescribedBy(props, errorTextUuid)}
+            aria-describedby={getAriaDescribedBy(props, errorTextId)}
             aria-required={!!required}
             value={value}
             defaultValue={defaultValue}

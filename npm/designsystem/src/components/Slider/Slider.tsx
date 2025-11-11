@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useId } from 'react';
 
 import classNames from 'classnames';
 
 import { AnalyticsId } from '../../constants';
+import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useSize } from '../../hooks/useSize';
-import { useUuid } from '../../hooks/useUuid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
@@ -79,7 +79,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
     ariaLabel,
     error,
     errorText,
-    errorTextId,
+    errorTextId: errorTextIdProp,
     errorWrapperClassName,
     labelLeft,
     labelRight,
@@ -103,10 +103,11 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
     maxValue
   );
 
-  const errorTextUuid = useUuid(errorTextId);
-  const titleId = useUuid();
-  const labelLeftId = useUuid();
-  const labelRightId = useUuid();
+  const errorTextId = useIdWithFallback(errorTextIdProp);
+  const baseId = useId();
+  const titleId = 'title-' + baseId;
+  const labelLeftId = 'label-' + baseId;
+  const labelRightId = 'label-right-' + baseId;
   const trackRef = useRef<HTMLDivElement>(null);
   const { refObject, isFocused } = usePseudoClasses<HTMLInputElement>(isMutableRefObject(ref) ? ref : null);
   const mergedRefs = mergeRefs([ref, refObject]);
@@ -341,7 +342,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
   };
 
   return (
-    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
+    <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <input
         aria-valuetext={getAriaValueText()}
         className={styles['sr-only-slider']}

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import HelpSign from './HelpSign';
 import { AnalyticsId } from '../../constants';
-import { useHover } from '../../hooks/useHover';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
 
@@ -78,7 +78,10 @@ export const HelpTriggerIconInternal = React.forwardRef<HTMLButtonElement, HelpT
     ref
   ) => {
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
-    const { hoverRef, isHovered: interalIsHovered } = useHover<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
+    const { refObject, isHovered: interalIsHovered } = usePseudoClasses<HTMLButtonElement>(
+      ref as React.RefObject<HTMLButtonElement>,
+      false
+    );
     const helpIcon = <HelpSign color={getIconColor(interalIsHovered || isHovered, weight)} weight={weight} />;
     const isButton = htmlMarkup === 'button';
     const iconClasses = classNames(
@@ -99,7 +102,7 @@ export const HelpTriggerIconInternal = React.forwardRef<HTMLButtonElement, HelpT
           data-testid={testId}
           data-analyticsid={AnalyticsId.HelpTriggerIcon}
           className={iconClasses}
-          ref={mergeRefs([hoverRef, ref])}
+          ref={mergeRefs([refObject, ref])}
           {...buttonRest}
         >
           {helpIcon}

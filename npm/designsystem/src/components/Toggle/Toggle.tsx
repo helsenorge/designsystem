@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 
 import classNames from 'classnames';
 import { useAnimate } from 'motion/react';
 
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { useUuid } from '../../hooks/useUuid';
 
 import styles from './styles.module.scss';
 import '../../scss/supernova/styles/colors.css';
@@ -61,11 +60,13 @@ const Toggle: React.FC<ToggleProps> = ({
   const [checkedState, setCheckedState] = useState(checked);
   const [showToggleAnimation, setShowToggleAnimation] = useState(false);
   const [scope, animate] = useAnimate();
-  const inputId = useUuid();
-  const toggleId = useUuid();
-  const toggleDotId = useUuid();
-  const labelId = useUuid();
-  const subLabelId = useUuid();
+  const baseId = useId();
+  const toggleId = 'toggle-' + baseId;
+  const inputId = 'input-' + baseId;
+  const labelId = 'label-' + baseId;
+  const subLabelId = 'sublabel-' + baseId;
+  const toggleRef = React.useRef<HTMLSpanElement>(null);
+  const toggleDotRef = React.useRef<HTMLSpanElement>(null);
   const { refObject, isHovered, isActive } = usePseudoClasses<HTMLLabelElement>(scope);
   const showHoveredStyling = isHovered && !showToggleAnimation;
   const isOnWhite = onColor === ToggleOnColor.onwhite;
@@ -82,13 +83,14 @@ const Toggle: React.FC<ToggleProps> = ({
   }, [checked]);
 
   useEffect(() => {
-    animate('#' + toggleId, { background: getBackgroundColor() }, { duration: 0.2, ease: 'easeInOut' });
+    if (!toggleRef.current || !toggleDotRef.current) return;
+    animate(toggleRef.current, { background: getBackgroundColor() }, { duration: 0.2, ease: 'easeInOut' });
     animate(
-      '#' + toggleDotId,
+      toggleDotRef.current,
       { background: checkedState ? 'var(--color-action-graphics-ondark)' : 'var(--core-color-neutral-700)' },
       { duration: 0.2, ease: 'easeInOut' }
     );
-    animate('#' + toggleDotId, { x: showHoveredStyling ? 9 : checkedState ? 18 : 0 }, { duration: 0.2, ease: 'easeInOut' });
+    animate(toggleDotRef.current, { x: showHoveredStyling ? 9 : checkedState ? 18 : 0 }, { duration: 0.2, ease: 'easeInOut' });
     animate('svg', { opacity: checkedState ? 1 : 0 }, { duration: 0.2, ease: 'easeInOut' });
   }, [checkedState, showHoveredStyling, isActive]);
 
@@ -147,8 +149,8 @@ const Toggle: React.FC<ToggleProps> = ({
           aria-describedby={`${subLabel ? subLabelId + ' ' : undefined} ${statusText ? toggleId + '-status' : undefined}`}
           role="switch"
         />
-        <span id={toggleId} className={toggleClassNames} aria-hidden="true">
-          <span id={toggleDotId} className={toggleDotClassNames} aria-hidden="true">
+        <span id={toggleId} ref={toggleRef} className={toggleClassNames} aria-hidden="true">
+          <span ref={toggleDotRef} className={toggleDotClassNames} aria-hidden="true">
             <svg
               width="17"
               height="13"

@@ -17,6 +17,7 @@ const { base } = yargs(hideBin(process.argv).filter(x => x !== '--'))
     base: {
       type: 'string',
       description: 'Public base path',
+      default: process.env.STORYBOOK_BASE_PATH || '/',
     },
   })
   .parseSync();
