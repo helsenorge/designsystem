@@ -75,7 +75,7 @@
     "prebuild": "npm-run-all clean generate:iconnames generate:illustrationnames generate:cssdefinitions",
     "build": "vite build",
     "postbuild": "node __scripts__/link-root-scss.mjs",
-    "prepack": "node __scripts__/copy-scss-for-publish.mjs",
+    "prepack": "rimraf scss && copyfiles -u 1 'lib/scss/**/*' .",
     "postpack": "node __scripts__/link-root-scss.mjs",
     "build-storybook": "storybook build -o dist",
     "clean": "rimraf lib",
