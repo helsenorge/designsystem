@@ -24,7 +24,7 @@ export interface FormFieldTagProps {
   /** What level is the required tag, sets the styling and the text. */
   level: FormFieldTagLevel;
   /** Texts if overriding SOT */
-  resources?: HNDesignsystemFormFieldTag;
+  resources?: Partial<HNDesignsystemFormFieldTag>;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
