@@ -17,7 +17,8 @@
   "type": "module",
   "files": [
     "lib",
-    "scss"
+    "scss",
+    "index.d.ts"
   ],
   "publishConfig": {
     "access": "public"
