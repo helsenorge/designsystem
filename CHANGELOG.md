@@ -1,3 +1,10 @@
+## 13.0.0-workspaces-beta.3 (2025-11-11)
+
+
+### Bug Fixes
+
+* **formfieldtag:**  ikke krev hele resources objekt om man vil overstyre tekster ([a5d0e5d](https://github.com/helsenorge/designsystem/commit/a5d0e5d9dca8210fd9c4386f49f9401559cda9aa)), closes [#364187](https://github.com/helsenorge/designsystem/issues/364187)
+
 ## 13.0.0-workspaces-beta.2 (2025-11-11)
 
 ## 13.0.0-workspaces-beta.1 (2025-11-10)

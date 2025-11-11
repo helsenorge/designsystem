@@ -2,7 +2,7 @@
   "name": "@helsenorge/lightbox",
   "sideEffects": false,
   "private": false,
-  "version": "13.0.0-workspaces-beta.3",
+  "version": "13.0.0-workspaces-beta.4",
   "description": "The official Helsenorge lightbox.",
   "repository": {
     "type": "git",
