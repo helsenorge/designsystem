@@ -1,0 +1,32 @@
+{
+  "name": "@helsenorge/docs-guide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Documentation and guides for Helsenorge Design System",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:built": "USE_BUILT=true vitest",
+    "prettier": "prettier --check \"src/**/*.{ts,tsx,js,jsx,css,scss,md,mdx,json}\"",
+    "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,scss,md,mdx,json}\""
+  },
+  "dependencies": {
+    "@helsenorge/designsystem-react": "*",
+    "classnames": "^2.5.1",
+    "normalize.css": "^8.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.0",
+    "react-router": "^7.9.5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitest/coverage-v8": "^3.1.2",
+    "jsdom": "^26.0.0",
+    "vitest": "^3.1.2"
+  }
+}
