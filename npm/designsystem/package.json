@@ -29,7 +29,9 @@
   "exports": {
     ".": {
       "types": "./lib/index.d.ts",
-      "import": "./lib/index.js"
+      "import": "./lib/index.js",
+      "require": "./lib/index.js",
+      "default": "./lib/index.js"
     },
     "./components/Icons/*": {
       "types": "./lib/components/Icons/*.d.ts",
@@ -39,11 +41,6 @@
       "types": "./lib/components/Illustrations/*.d.ts",
       "import": "./lib/components/Illustrations/*.js"
     },
-    "./components/*/*": {
-      "types": "./lib/components/*/*.d.ts",
-      "import": "./lib/components/*/index.js"
-    },
-    "./components/*/*.scss": "./lib/components/*/*.scss",
     "./components/*": {
       "types": "./lib/components/*/index.d.ts",
       "import": "./lib/components/*/index.js"
@@ -70,9 +67,617 @@
     },
     "./scss/*": {
       "types": "./lib/scss/*.d.ts",
-      "import": "./lib/scss/*.scss"
+      "import": "./scss/*",
+      "require": "./scss/*",
+      "default": "./scss/*"
     },
-    "./fonts/*": "./lib/fonts/*"
+    "./fonts/*": "./lib/fonts/*",
+    "./components/AnchorLink/AnchorLink": {
+      "types": "./lib/components/AnchorLink/AnchorLink.d.ts",
+      "import": "./lib/components/AnchorLink/index.js",
+      "require": "./lib/components/AnchorLink/index.js",
+      "default": "./lib/components/AnchorLink/index.js"
+    },
+    "./components/ArticleTeaser/ArticleTeaser": {
+      "types": "./lib/components/ArticleTeaser/ArticleTeaser.d.ts",
+      "import": "./lib/components/ArticleTeaser/index.js",
+      "require": "./lib/components/ArticleTeaser/index.js",
+      "default": "./lib/components/ArticleTeaser/index.js"
+    },
+    "./components/AsChildSlot/AsChildSlot": {
+      "types": "./lib/components/AsChildSlot/AsChildSlot.d.ts",
+      "import": "./lib/components/AsChildSlot/index.js",
+      "require": "./lib/components/AsChildSlot/index.js",
+      "default": "./lib/components/AsChildSlot/index.js"
+    },
+    "./components/Avatar/Avatar": {
+      "types": "./lib/components/Avatar/Avatar.d.ts",
+      "import": "./lib/components/Avatar/index.js",
+      "require": "./lib/components/Avatar/index.js",
+      "default": "./lib/components/Avatar/index.js"
+    },
+    "./components/Badge/Badge": {
+      "types": "./lib/components/Badge/Badge.d.ts",
+      "import": "./lib/components/Badge/index.js",
+      "require": "./lib/components/Badge/index.js",
+      "default": "./lib/components/Badge/index.js"
+    },
+    "./components/Badge/NotificationBadge": {
+      "types": "./lib/components/Badge/NotificationBadge.d.ts",
+      "import": "./lib/components/Badge/index.js",
+      "require": "./lib/components/Badge/index.js",
+      "default": "./lib/components/Badge/index.js"
+    },
+    "./components/Button/Button": {
+      "types": "./lib/components/Button/Button.d.ts",
+      "import": "./lib/components/Button/index.js",
+      "require": "./lib/components/Button/index.js",
+      "default": "./lib/components/Button/index.js"
+    },
+    "./components/Checkbox/Checkbox": {
+      "types": "./lib/components/Checkbox/Checkbox.d.ts",
+      "import": "./lib/components/Checkbox/index.js",
+      "require": "./lib/components/Checkbox/index.js",
+      "default": "./lib/components/Checkbox/index.js"
+    },
+    "./components/Chip/Chip": {
+      "types": "./lib/components/Chip/Chip.d.ts",
+      "import": "./lib/components/Chip/index.js",
+      "require": "./lib/components/Chip/index.js",
+      "default": "./lib/components/Chip/index.js"
+    },
+    "./components/Close/Close": {
+      "types": "./lib/components/Close/Close.d.ts",
+      "import": "./lib/components/Close/index.js",
+      "require": "./lib/components/Close/index.js",
+      "default": "./lib/components/Close/index.js"
+    },
+    "./components/DictionaryTrigger/DictionaryTrigger": {
+      "types": "./lib/components/DictionaryTrigger/DictionaryTrigger.d.ts",
+      "import": "./lib/components/DictionaryTrigger/index.js",
+      "require": "./lib/components/DictionaryTrigger/index.js",
+      "default": "./lib/components/DictionaryTrigger/index.js"
+    },
+    "./components/Drawer/Drawer": {
+      "types": "./lib/components/Drawer/Drawer.d.ts",
+      "import": "./lib/components/Drawer/index.js",
+      "require": "./lib/components/Drawer/index.js",
+      "default": "./lib/components/Drawer/index.js"
+    },
+    "./components/Dropdown/Dropdown": {
+      "types": "./lib/components/Dropdown/Dropdown.d.ts",
+      "import": "./lib/components/Dropdown/index.js",
+      "require": "./lib/components/Dropdown/index.js",
+      "default": "./lib/components/Dropdown/index.js"
+    },
+    "./components/DropdownOld/DropdownOld": {
+      "types": "./lib/components/DropdownOld/DropdownOld.d.ts",
+      "import": "./lib/components/DropdownOld/index.js",
+      "require": "./lib/components/DropdownOld/index.js",
+      "default": "./lib/components/DropdownOld/index.js"
+    },
+    "./components/Duolist/Duolist": {
+      "types": "./lib/components/Duolist/Duolist.d.ts",
+      "import": "./lib/components/Duolist/index.js",
+      "require": "./lib/components/Duolist/index.js",
+      "default": "./lib/components/Duolist/index.js"
+    },
+    "./components/ElementHeader/ElementHeader": {
+      "types": "./lib/components/ElementHeader/ElementHeader.d.ts",
+      "import": "./lib/components/ElementHeader/index.js",
+      "require": "./lib/components/ElementHeader/index.js",
+      "default": "./lib/components/ElementHeader/index.js"
+    },
+    "./components/EmptyState/EmptyBoxBeeMedium": {
+      "types": "./lib/components/EmptyState/EmptyBoxBeeMedium.d.ts",
+      "import": "./lib/components/EmptyState/index.js",
+      "require": "./lib/components/EmptyState/index.js",
+      "default": "./lib/components/EmptyState/index.js"
+    },
+    "./components/EmptyState/EmptyBoxBeeSmall": {
+      "types": "./lib/components/EmptyState/EmptyBoxBeeSmall.d.ts",
+      "import": "./lib/components/EmptyState/index.js",
+      "require": "./lib/components/EmptyState/index.js",
+      "default": "./lib/components/EmptyState/index.js"
+    },
+    "./components/EmptyState/EmptyState": {
+      "types": "./lib/components/EmptyState/EmptyState.d.ts",
+      "import": "./lib/components/EmptyState/index.js",
+      "require": "./lib/components/EmptyState/index.js",
+      "default": "./lib/components/EmptyState/index.js"
+    },
+    "./components/ErrorWrapper/ErrorWrapper": {
+      "types": "./lib/components/ErrorWrapper/ErrorWrapper.d.ts",
+      "import": "./lib/components/ErrorWrapper/index.js",
+      "require": "./lib/components/ErrorWrapper/index.js",
+      "default": "./lib/components/ErrorWrapper/index.js"
+    },
+    "./components/Expander/Expander": {
+      "types": "./lib/components/Expander/Expander.d.ts",
+      "import": "./lib/components/Expander/index.js",
+      "require": "./lib/components/Expander/index.js",
+      "default": "./lib/components/Expander/index.js"
+    },
+    "./components/ExpanderHierarchy/Expander": {
+      "types": "./lib/components/ExpanderHierarchy/Expander.d.ts",
+      "import": "./lib/components/ExpanderHierarchy/index.js",
+      "require": "./lib/components/ExpanderHierarchy/index.js",
+      "default": "./lib/components/ExpanderHierarchy/index.js"
+    },
+    "./components/ExpanderHierarchy/ExpanderButton": {
+      "types": "./lib/components/ExpanderHierarchy/ExpanderButton.d.ts",
+      "import": "./lib/components/ExpanderHierarchy/index.js",
+      "require": "./lib/components/ExpanderHierarchy/index.js",
+      "default": "./lib/components/ExpanderHierarchy/index.js"
+    },
+    "./components/ExpanderHierarchy/ExpanderHierarchy": {
+      "types": "./lib/components/ExpanderHierarchy/ExpanderHierarchy.d.ts",
+      "import": "./lib/components/ExpanderHierarchy/index.js",
+      "require": "./lib/components/ExpanderHierarchy/index.js",
+      "default": "./lib/components/ExpanderHierarchy/index.js"
+    },
+    "./components/ExpanderList/ExpanderList": {
+      "types": "./lib/components/ExpanderList/ExpanderList.d.ts",
+      "import": "./lib/components/ExpanderList/index.js",
+      "require": "./lib/components/ExpanderList/index.js",
+      "default": "./lib/components/ExpanderList/index.js"
+    },
+    "./components/EyebrowHeader/EyebrowHeader": {
+      "types": "./lib/components/EyebrowHeader/EyebrowHeader.d.ts",
+      "import": "./lib/components/EyebrowHeader/index.js",
+      "require": "./lib/components/EyebrowHeader/index.js",
+      "default": "./lib/components/EyebrowHeader/index.js"
+    },
+    "./components/FavoriteButton/FavoriteButton": {
+      "types": "./lib/components/FavoriteButton/FavoriteButton.d.ts",
+      "import": "./lib/components/FavoriteButton/index.js",
+      "require": "./lib/components/FavoriteButton/index.js",
+      "default": "./lib/components/FavoriteButton/index.js"
+    },
+    "./components/FavoriteButton/StarIcon": {
+      "types": "./lib/components/FavoriteButton/StarIcon.d.ts",
+      "import": "./lib/components/FavoriteButton/index.js",
+      "require": "./lib/components/FavoriteButton/index.js",
+      "default": "./lib/components/FavoriteButton/index.js"
+    },
+    "./components/FormFieldTag/FormFieldTag": {
+      "types": "./lib/components/FormFieldTag/FormFieldTag.d.ts",
+      "import": "./lib/components/FormFieldTag/index.js",
+      "require": "./lib/components/FormFieldTag/index.js",
+      "default": "./lib/components/FormFieldTag/index.js"
+    },
+    "./components/FormGroup/FormGroup": {
+      "types": "./lib/components/FormGroup/FormGroup.d.ts",
+      "import": "./lib/components/FormGroup/index.js",
+      "require": "./lib/components/FormGroup/index.js",
+      "default": "./lib/components/FormGroup/index.js"
+    },
+    "./components/FormLayout/FormLayout": {
+      "types": "./lib/components/FormLayout/FormLayout.d.ts",
+      "import": "./lib/components/FormLayout/index.js",
+      "require": "./lib/components/FormLayout/index.js",
+      "default": "./lib/components/FormLayout/index.js"
+    },
+    "./components/HelpBubble/HelpBubble": {
+      "types": "./lib/components/HelpBubble/HelpBubble.d.ts",
+      "import": "./lib/components/HelpBubble/index.js",
+      "require": "./lib/components/HelpBubble/index.js",
+      "default": "./lib/components/HelpBubble/index.js"
+    },
+    "./components/HelpDrawer/HelpDrawer": {
+      "types": "./lib/components/HelpDrawer/HelpDrawer.d.ts",
+      "import": "./lib/components/HelpDrawer/index.js",
+      "require": "./lib/components/HelpDrawer/index.js",
+      "default": "./lib/components/HelpDrawer/index.js"
+    },
+    "./components/HelpExpanderInline/HelpExpanderInline": {
+      "types": "./lib/components/HelpExpanderInline/HelpExpanderInline.d.ts",
+      "import": "./lib/components/HelpExpanderInline/index.js",
+      "require": "./lib/components/HelpExpanderInline/index.js",
+      "default": "./lib/components/HelpExpanderInline/index.js"
+    },
+    "./components/HelpExpanderStandalone/HelpExpanderStandalone": {
+      "types": "./lib/components/HelpExpanderStandalone/HelpExpanderStandalone.d.ts",
+      "import": "./lib/components/HelpExpanderStandalone/index.js",
+      "require": "./lib/components/HelpExpanderStandalone/index.js",
+      "default": "./lib/components/HelpExpanderStandalone/index.js"
+    },
+    "./components/HelpPanel/HelpPanel": {
+      "types": "./lib/components/HelpPanel/HelpPanel.d.ts",
+      "import": "./lib/components/HelpPanel/index.js",
+      "require": "./lib/components/HelpPanel/index.js",
+      "default": "./lib/components/HelpPanel/index.js"
+    },
+    "./components/HelpTeaser/HelpTeaser": {
+      "types": "./lib/components/HelpTeaser/HelpTeaser.d.ts",
+      "import": "./lib/components/HelpTeaser/index.js",
+      "require": "./lib/components/HelpTeaser/index.js",
+      "default": "./lib/components/HelpTeaser/index.js"
+    },
+    "./components/HelpTooltip/HelpTooltip": {
+      "types": "./lib/components/HelpTooltip/HelpTooltip.d.ts",
+      "import": "./lib/components/HelpTooltip/index.js",
+      "require": "./lib/components/HelpTooltip/index.js",
+      "default": "./lib/components/HelpTooltip/index.js"
+    },
+    "./components/HelpTriggerIcon/HelpSign": {
+      "types": "./lib/components/HelpTriggerIcon/HelpSign.d.ts",
+      "import": "./lib/components/HelpTriggerIcon/index.js",
+      "require": "./lib/components/HelpTriggerIcon/index.js",
+      "default": "./lib/components/HelpTriggerIcon/index.js"
+    },
+    "./components/HelpTriggerIcon/HelpTriggerIcon": {
+      "types": "./lib/components/HelpTriggerIcon/HelpTriggerIcon.d.ts",
+      "import": "./lib/components/HelpTriggerIcon/index.js",
+      "require": "./lib/components/HelpTriggerIcon/index.js",
+      "default": "./lib/components/HelpTriggerIcon/index.js"
+    },
+    "./components/HelpTriggerInline/HelpTriggerInline": {
+      "types": "./lib/components/HelpTriggerInline/HelpTriggerInline.d.ts",
+      "import": "./lib/components/HelpTriggerInline/index.js",
+      "require": "./lib/components/HelpTriggerInline/index.js",
+      "default": "./lib/components/HelpTriggerInline/index.js"
+    },
+    "./components/HelpTriggerStandalone/HelpTriggerStandalone": {
+      "types": "./lib/components/HelpTriggerStandalone/HelpTriggerStandalone.d.ts",
+      "import": "./lib/components/HelpTriggerStandalone/index.js",
+      "require": "./lib/components/HelpTriggerStandalone/index.js",
+      "default": "./lib/components/HelpTriggerStandalone/index.js"
+    },
+    "./components/HighlightPanel/HighlightPanel": {
+      "types": "./lib/components/HighlightPanel/HighlightPanel.d.ts",
+      "import": "./lib/components/HighlightPanel/index.js",
+      "require": "./lib/components/HighlightPanel/index.js",
+      "default": "./lib/components/HighlightPanel/index.js"
+    },
+    "./components/Highlighter/Highlighter": {
+      "types": "./lib/components/Highlighter/Highlighter.d.ts",
+      "import": "./lib/components/Highlighter/index.js",
+      "require": "./lib/components/Highlighter/index.js",
+      "default": "./lib/components/Highlighter/index.js"
+    },
+    "./components/HorizontalScroll/HorizontalScroll": {
+      "types": "./lib/components/HorizontalScroll/HorizontalScroll.d.ts",
+      "import": "./lib/components/HorizontalScroll/index.js",
+      "require": "./lib/components/HorizontalScroll/index.js",
+      "default": "./lib/components/HorizontalScroll/index.js"
+    },
+    "./components/Icon/Icon": {
+      "types": "./lib/components/Icon/Icon.d.ts",
+      "import": "./lib/components/Icon/index.js",
+      "require": "./lib/components/Icon/index.js",
+      "default": "./lib/components/Icon/index.js"
+    },
+    "./components/Illustration/Illustration": {
+      "types": "./lib/components/Illustration/Illustration.d.ts",
+      "import": "./lib/components/Illustration/index.js",
+      "require": "./lib/components/Illustration/index.js",
+      "default": "./lib/components/Illustration/index.js"
+    },
+    "./components/InfoTeaser/InfoTeaser": {
+      "types": "./lib/components/InfoTeaser/InfoTeaser.d.ts",
+      "import": "./lib/components/InfoTeaser/index.js",
+      "require": "./lib/components/InfoTeaser/index.js",
+      "default": "./lib/components/InfoTeaser/index.js"
+    },
+    "./components/Input/Input": {
+      "types": "./lib/components/Input/Input.d.ts",
+      "import": "./lib/components/Input/index.js",
+      "require": "./lib/components/Input/index.js",
+      "default": "./lib/components/Input/index.js"
+    },
+    "./components/Label/Label": {
+      "types": "./lib/components/Label/Label.d.ts",
+      "import": "./lib/components/Label/index.js",
+      "require": "./lib/components/Label/index.js",
+      "default": "./lib/components/Label/index.js"
+    },
+    "./components/Label/SubLabel": {
+      "types": "./lib/components/Label/SubLabel.d.ts",
+      "import": "./lib/components/Label/index.js",
+      "require": "./lib/components/Label/index.js",
+      "default": "./lib/components/Label/index.js"
+    },
+    "./components/LazyIcon/ErrorBoundary": {
+      "types": "./lib/components/LazyIcon/ErrorBoundary.d.ts",
+      "import": "./lib/components/LazyIcon/index.js",
+      "require": "./lib/components/LazyIcon/index.js",
+      "default": "./lib/components/LazyIcon/index.js"
+    },
+    "./components/LazyIcon/LazyIcon": {
+      "types": "./lib/components/LazyIcon/LazyIcon.d.ts",
+      "import": "./lib/components/LazyIcon/index.js",
+      "require": "./lib/components/LazyIcon/index.js",
+      "default": "./lib/components/LazyIcon/index.js"
+    },
+    "./components/LazyIllustration/LazyIllustration": {
+      "types": "./lib/components/LazyIllustration/LazyIllustration.d.ts",
+      "import": "./lib/components/LazyIllustration/index.js",
+      "require": "./lib/components/LazyIllustration/index.js",
+      "default": "./lib/components/LazyIllustration/index.js"
+    },
+    "./components/LinkList/LinkList": {
+      "types": "./lib/components/LinkList/LinkList.d.ts",
+      "import": "./lib/components/LinkList/index.js",
+      "require": "./lib/components/LinkList/index.js",
+      "default": "./lib/components/LinkList/index.js"
+    },
+    "./components/List/List": {
+      "types": "./lib/components/List/List.d.ts",
+      "import": "./lib/components/List/index.js",
+      "require": "./lib/components/List/index.js",
+      "default": "./lib/components/List/index.js"
+    },
+    "./components/ListEditMode/ListEditMode": {
+      "types": "./lib/components/ListEditMode/ListEditMode.d.ts",
+      "import": "./lib/components/ListEditMode/index.js",
+      "require": "./lib/components/ListEditMode/index.js",
+      "default": "./lib/components/ListEditMode/index.js"
+    },
+    "./components/Loader/Loader": {
+      "types": "./lib/components/Loader/Loader.d.ts",
+      "import": "./lib/components/Loader/index.js",
+      "require": "./lib/components/Loader/index.js",
+      "default": "./lib/components/Loader/index.js"
+    },
+    "./components/Logo/Logo": {
+      "types": "./lib/components/Logo/Logo.d.ts",
+      "import": "./lib/components/Logo/index.js",
+      "require": "./lib/components/Logo/index.js",
+      "default": "./lib/components/Logo/index.js"
+    },
+    "./components/Modal/Modal": {
+      "types": "./lib/components/Modal/Modal.d.ts",
+      "import": "./lib/components/Modal/index.js",
+      "require": "./lib/components/Modal/index.js",
+      "default": "./lib/components/Modal/index.js"
+    },
+    "./components/NotificationPanel/NotificationPanel": {
+      "types": "./lib/components/NotificationPanel/NotificationPanel.d.ts",
+      "import": "./lib/components/NotificationPanel/index.js",
+      "require": "./lib/components/NotificationPanel/index.js",
+      "default": "./lib/components/NotificationPanel/index.js"
+    },
+    "./components/Panel/Panel": {
+      "types": "./lib/components/Panel/Panel.d.ts",
+      "import": "./lib/components/Panel/index.js",
+      "require": "./lib/components/Panel/index.js",
+      "default": "./lib/components/Panel/index.js"
+    },
+    "./components/Panel/PanelExamples": {
+      "types": "./lib/components/Panel/PanelExamples.d.ts",
+      "import": "./lib/components/Panel/index.js",
+      "require": "./lib/components/Panel/index.js",
+      "default": "./lib/components/Panel/index.js"
+    },
+    "./components/Panel/Paneldocs": {
+      "types": "./lib/components/Panel/Paneldocs.d.ts",
+      "import": "./lib/components/Panel/index.js",
+      "require": "./lib/components/Panel/index.js",
+      "default": "./lib/components/Panel/index.js"
+    },
+    "./components/PanelList/PanelList": {
+      "types": "./lib/components/PanelList/PanelList.d.ts",
+      "import": "./lib/components/PanelList/index.js",
+      "require": "./lib/components/PanelList/index.js",
+      "default": "./lib/components/PanelList/index.js"
+    },
+    "./components/PanelListOld/PanelListOld": {
+      "types": "./lib/components/PanelListOld/PanelListOld.d.ts",
+      "import": "./lib/components/PanelListOld/index.js",
+      "require": "./lib/components/PanelListOld/index.js",
+      "default": "./lib/components/PanelListOld/index.js"
+    },
+    "./components/PanelOld/PanelOld": {
+      "types": "./lib/components/PanelOld/PanelOld.d.ts",
+      "import": "./lib/components/PanelOld/index.js",
+      "require": "./lib/components/PanelOld/index.js",
+      "default": "./lib/components/PanelOld/index.js"
+    },
+    "./components/PopMenu/PopMenu": {
+      "types": "./lib/components/PopMenu/PopMenu.d.ts",
+      "import": "./lib/components/PopMenu/index.js",
+      "require": "./lib/components/PopMenu/index.js",
+      "default": "./lib/components/PopMenu/index.js"
+    },
+    "./components/PopOver/PopOver": {
+      "types": "./lib/components/PopOver/PopOver.d.ts",
+      "import": "./lib/components/PopOver/index.js",
+      "require": "./lib/components/PopOver/index.js",
+      "default": "./lib/components/PopOver/index.js"
+    },
+    "./components/Progressbar/Progressbar": {
+      "types": "./lib/components/Progressbar/Progressbar.d.ts",
+      "import": "./lib/components/Progressbar/index.js",
+      "require": "./lib/components/Progressbar/index.js",
+      "default": "./lib/components/Progressbar/index.js"
+    },
+    "./components/PromoPanel/PromoPanel": {
+      "types": "./lib/components/PromoPanel/PromoPanel.d.ts",
+      "import": "./lib/components/PromoPanel/index.js",
+      "require": "./lib/components/PromoPanel/index.js",
+      "default": "./lib/components/PromoPanel/index.js"
+    },
+    "./components/RadioButton/RadioButton": {
+      "types": "./lib/components/RadioButton/RadioButton.d.ts",
+      "import": "./lib/components/RadioButton/index.js",
+      "require": "./lib/components/RadioButton/index.js",
+      "default": "./lib/components/RadioButton/index.js"
+    },
+    "./components/Select/Select": {
+      "types": "./lib/components/Select/Select.d.ts",
+      "import": "./lib/components/Select/index.js",
+      "require": "./lib/components/Select/index.js",
+      "default": "./lib/components/Select/index.js"
+    },
+    "./components/ServiceMessage/ServiceMessage": {
+      "types": "./lib/components/ServiceMessage/ServiceMessage.d.ts",
+      "import": "./lib/components/ServiceMessage/index.js",
+      "require": "./lib/components/ServiceMessage/index.js",
+      "default": "./lib/components/ServiceMessage/index.js"
+    },
+    "./components/SharingStatus/SharingStatus": {
+      "types": "./lib/components/SharingStatus/SharingStatus.d.ts",
+      "import": "./lib/components/SharingStatus/index.js",
+      "require": "./lib/components/SharingStatus/index.js",
+      "default": "./lib/components/SharingStatus/index.js"
+    },
+    "./components/Slider/Slider": {
+      "types": "./lib/components/Slider/Slider.d.ts",
+      "import": "./lib/components/Slider/index.js",
+      "require": "./lib/components/Slider/index.js",
+      "default": "./lib/components/Slider/index.js"
+    },
+    "./components/Spacer/Spacer": {
+      "types": "./lib/components/Spacer/Spacer.d.ts",
+      "import": "./lib/components/Spacer/index.js",
+      "require": "./lib/components/Spacer/index.js",
+      "default": "./lib/components/Spacer/index.js"
+    },
+    "./components/StatusDot/StatusDot": {
+      "types": "./lib/components/StatusDot/StatusDot.d.ts",
+      "import": "./lib/components/StatusDot/index.js",
+      "require": "./lib/components/StatusDot/index.js",
+      "default": "./lib/components/StatusDot/index.js"
+    },
+    "./components/Step/Step": {
+      "types": "./lib/components/Step/Step.d.ts",
+      "import": "./lib/components/Step/index.js",
+      "require": "./lib/components/Step/index.js",
+      "default": "./lib/components/Step/index.js"
+    },
+    "./components/StepButtons/StepButtons": {
+      "types": "./lib/components/StepButtons/StepButtons.d.ts",
+      "import": "./lib/components/StepButtons/index.js",
+      "require": "./lib/components/StepButtons/index.js",
+      "default": "./lib/components/StepButtons/index.js"
+    },
+    "./components/Stepper/Dot": {
+      "types": "./lib/components/Stepper/Dot.d.ts",
+      "import": "./lib/components/Stepper/index.js",
+      "require": "./lib/components/Stepper/index.js",
+      "default": "./lib/components/Stepper/index.js"
+    },
+    "./components/Stepper/DotList": {
+      "types": "./lib/components/Stepper/DotList.d.ts",
+      "import": "./lib/components/Stepper/index.js",
+      "require": "./lib/components/Stepper/index.js",
+      "default": "./lib/components/Stepper/index.js"
+    },
+    "./components/Stepper/Stepper": {
+      "types": "./lib/components/Stepper/Stepper.d.ts",
+      "import": "./lib/components/Stepper/index.js",
+      "require": "./lib/components/Stepper/index.js",
+      "default": "./lib/components/Stepper/index.js"
+    },
+    "./components/StickyNote/Close": {
+      "types": "./lib/components/StickyNote/Close.d.ts",
+      "import": "./lib/components/StickyNote/index.js",
+      "require": "./lib/components/StickyNote/index.js",
+      "default": "./lib/components/StickyNote/index.js"
+    },
+    "./components/StickyNote/StickyNote": {
+      "types": "./lib/components/StickyNote/StickyNote.d.ts",
+      "import": "./lib/components/StickyNote/index.js",
+      "require": "./lib/components/StickyNote/index.js",
+      "default": "./lib/components/StickyNote/index.js"
+    },
+    "./components/StickyNote/Triangle": {
+      "types": "./lib/components/StickyNote/Triangle.d.ts",
+      "import": "./lib/components/StickyNote/index.js",
+      "require": "./lib/components/StickyNote/index.js",
+      "default": "./lib/components/StickyNote/index.js"
+    },
+    "./components/Table/Table": {
+      "types": "./lib/components/Table/Table.d.ts",
+      "import": "./lib/components/Table/index.js",
+      "require": "./lib/components/Table/index.js",
+      "default": "./lib/components/Table/index.js"
+    },
+    "./components/Tabs/Tab": {
+      "types": "./lib/components/Tabs/Tab.d.ts",
+      "import": "./lib/components/Tabs/index.js",
+      "require": "./lib/components/Tabs/index.js",
+      "default": "./lib/components/Tabs/index.js"
+    },
+    "./components/Tabs/Tabs": {
+      "types": "./lib/components/Tabs/Tabs.d.ts",
+      "import": "./lib/components/Tabs/index.js",
+      "require": "./lib/components/Tabs/index.js",
+      "default": "./lib/components/Tabs/index.js"
+    },
+    "./components/Tag/Tag": {
+      "types": "./lib/components/Tag/Tag.d.ts",
+      "import": "./lib/components/Tag/index.js",
+      "require": "./lib/components/Tag/index.js",
+      "default": "./lib/components/Tag/index.js"
+    },
+    "./components/TagList/TagList": {
+      "types": "./lib/components/TagList/TagList.d.ts",
+      "import": "./lib/components/TagList/index.js",
+      "require": "./lib/components/TagList/index.js",
+      "default": "./lib/components/TagList/index.js"
+    },
+    "./components/Textarea/Textarea": {
+      "types": "./lib/components/Textarea/Textarea.d.ts",
+      "import": "./lib/components/Textarea/index.js",
+      "require": "./lib/components/Textarea/index.js",
+      "default": "./lib/components/Textarea/index.js"
+    },
+    "./components/Tile/Tile": {
+      "types": "./lib/components/Tile/Tile.d.ts",
+      "import": "./lib/components/Tile/index.js",
+      "require": "./lib/components/Tile/index.js",
+      "default": "./lib/components/Tile/index.js"
+    },
+    "./components/Title/Title": {
+      "types": "./lib/components/Title/Title.d.ts",
+      "import": "./lib/components/Title/index.js",
+      "require": "./lib/components/Title/index.js",
+      "default": "./lib/components/Title/index.js"
+    },
+    "./components/Toast/Toast": {
+      "types": "./lib/components/Toast/Toast.d.ts",
+      "import": "./lib/components/Toast/index.js",
+      "require": "./lib/components/Toast/index.js",
+      "default": "./lib/components/Toast/index.js"
+    },
+    "./components/ToastList/ToastList": {
+      "types": "./lib/components/ToastList/ToastList.d.ts",
+      "import": "./lib/components/ToastList/index.js",
+      "require": "./lib/components/ToastList/index.js",
+      "default": "./lib/components/ToastList/index.js"
+    },
+    "./components/Toggle/Toggle": {
+      "types": "./lib/components/Toggle/Toggle.d.ts",
+      "import": "./lib/components/Toggle/index.js",
+      "require": "./lib/components/Toggle/index.js",
+      "default": "./lib/components/Toggle/index.js"
+    },
+    "./components/Validation/ErrorList": {
+      "types": "./lib/components/Validation/ErrorList.d.ts",
+      "import": "./lib/components/Validation/index.js",
+      "require": "./lib/components/Validation/index.js",
+      "default": "./lib/components/Validation/index.js"
+    },
+    "./components/Validation/ErrorListItem": {
+      "types": "./lib/components/Validation/ErrorListItem.d.ts",
+      "import": "./lib/components/Validation/index.js",
+      "require": "./lib/components/Validation/index.js",
+      "default": "./lib/components/Validation/index.js"
+    },
+    "./components/Validation/Validation": {
+      "types": "./lib/components/Validation/Validation.d.ts",
+      "import": "./lib/components/Validation/index.js",
+      "require": "./lib/components/Validation/index.js",
+      "default": "./lib/components/Validation/index.js"
+    },
+    "./components/Validation/ValidationSummary": {
+      "types": "./lib/components/Validation/ValidationSummary.d.ts",
+      "import": "./lib/components/Validation/index.js",
+      "require": "./lib/components/Validation/index.js",
+      "default": "./lib/components/Validation/index.js"
+    }
   },
   "scripts": {
     "start": "storybook dev",
