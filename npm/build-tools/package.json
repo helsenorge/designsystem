@@ -1,7 +1,7 @@
 {
   "name": "frankenstein-build-tools",
   "private": true,
-  "version": "13.0.0-workspaces-beta.4",
+  "version": "13.0.0-workspaces-beta.5",
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",

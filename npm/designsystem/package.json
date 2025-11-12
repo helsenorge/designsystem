@@ -2,7 +2,7 @@
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
   "private": false,
-  "version": "13.0.0-workspaces-beta.4",
+  "version": "13.0.0-workspaces-beta.5",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
   "types": "./lib/index.d.ts",
   "exports": {
     ".": {
-      "types": "./index.d.ts",
+      "types": "./lib/index.d.ts",
       "import": "./lib/index.js"
     },
     "./components/Icons/*": {
@@ -39,20 +39,15 @@
       "types": "./lib/components/Illustrations/*.d.ts",
       "import": "./lib/components/Illustrations/*.js"
     },
-    "./components/*/*": [
-      {
-        "types": "./lib/components/*/*.d.ts",
-        "import": "./lib/components/*/index.js"
-      },
-      "./lib/components/*/*.scss"
-    ],
-    "./components/*": [
-      {
-        "types": "./lib/components/*/index.d.ts",
-        "import": "./lib/components/*/index.js"
-      },
-      "./lib/components/*/*.scss"
-    ],
+    "./components/*/*": {
+      "types": "./lib/components/*/*.d.ts",
+      "import": "./lib/components/*/index.js"
+    },
+    "./components/*/*.scss": "./lib/components/*/*.scss",
+    "./components/*": {
+      "types": "./lib/components/*/index.d.ts",
+      "import": "./lib/components/*/index.js"
+    },
     "./constants": {
       "types": "./lib/constants.d.ts",
       "import": "./lib/constants.js"
@@ -73,8 +68,10 @@
       "types": "./lib/__mocks__/*.d.ts",
       "import": "./lib/__mocks__/*.js"
     },
-    "./scss/*": "./scss/*",
-    "./lib/scss/*": "./lib/scss/*",
+    "./scss/*": {
+      "types": "./lib/scss/*.d.ts",
+      "import": "./lib/scss/*.scss"
+    },
     "./fonts/*": "./lib/fonts/*"
   },
   "scripts": {
