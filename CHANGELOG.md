@@ -1,3 +1,10 @@
+## 13.0.0-beta.5 (2025-11-13)
+
+
+### Features
+
+*  designsystemet bruker npm workspaces ([3aa656e](https://github.com/helsenorge/designsystem/commit/3aa656e59f93c8bd2953270b4319a1f4d4a8444d))
+
 ## 13.0.0-workspaces-beta.7 (2025-11-12)
 
 

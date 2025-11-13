@@ -14,7 +14,7 @@
   "homepage": "https://helsenorge.design",
   "author": "Helsenorge",
   "maintainers": [
-    "ROX"
+    "Frankenstein"
   ],
   "license": "MIT",
   "scripts": {
@@ -49,11 +49,12 @@
     "version:patch": "npm -w @helsenorge/designsystem-react version patch --git-tag-version=false && npm -w @helsenorge/datepicker version patch --git-tag-version=false && npm -w @helsenorge/lightbox version patch --git-tag-version=false",
     "version:minor": "npm -w @helsenorge/designsystem-react version minor --git-tag-version=false && npm -w @helsenorge/datepicker version minor --git-tag-version=false && npm -w @helsenorge/lightbox version minor --git-tag-version=false",
     "version:major": "npm -w @helsenorge/designsystem-react version major --git-tag-version=false && npm -w @helsenorge/datepicker version major --git-tag-version=false && npm -w @helsenorge/lightbox version major --git-tag-version=false",
-    "version:beta": "npm -w @helsenorge/designsystem-react version prerelease --preid=beta --git-tag-version=false && npm -w @helsenorge/datepicker version prerelease --preid=beta --git-tag-version=false && npm -w @helsenorge/lightbox version prerelease --git-tag-version=false --preid=beta",
+    "version:beta": "npm -w @helsenorge/designsystem-react version prerelease --preid=beta --git-tag-version=false && npm -w @helsenorge/datepicker version prerelease --preid=beta --git-tag-version=false && npm -w @helsenorge/lightbox version prerelease --preid=beta --git-tag-version=false",
     "─── commit & tag ───": "echo commit",
-    "release:commit-and-push": "git add -A && git commit -m \"v$(node -p 'require(\"./npm/designsystem/package.json\").version')\" && npm run changelog && npm run postchangelog && git push --follow-tags",
+    "v:tag": "git tag -f v$(node -p \"require('./npm/designsystem/package.json').version\")",
+    "release:commit-and-push": "git add -A && git commit -m v$(node -p \"require('./npm/designsystem/package.json').version\") && npm run v:tag && npm run changelog && npm run postchangelog && git push --follow-tags",
     "changelog": "conventional-changelog --config changelog.config.js --infile CHANGELOG.md --same-file --release-count 0 --skip-unstable --tag-prefix v --outputUnreleased false",
-    "postchangelog": "git add CHANGELOG.md && git commit --amend --no-edit --no-verify && git tag -f v$(node -p 'require(\"./npm/designsystem/package.json\").version')",
+    "postchangelog": "git add CHANGELOG.md && git commit --amend --no-edit --no-verify && git tag -f v$(node -p \"require('./npm/designsystem/package.json').version\")",
     "─── publish ───": "echo publish",
     "publish:latest": "npm-run-all -s release:ensure-clean build publish:designsystem:latest publish:consumers:latest",
     "publish:designsystem:latest": "npm publish -w @helsenorge/designsystem-react --access public",
