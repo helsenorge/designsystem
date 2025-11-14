@@ -168,7 +168,6 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     [styles['input-container--on-blueberry']]: onBlueberry,
     [styles['input-container--on-dark']]: onDark,
     [styles['input-container--invalid']]: onError,
-    [styles['input-container--large']]: isLarge,
     [styles['input-container--disabled']]: disabled,
     [styles['input-container--with-icon']]: icon,
     [styles['input-container--with-icon--right']]: icon && iconRight,

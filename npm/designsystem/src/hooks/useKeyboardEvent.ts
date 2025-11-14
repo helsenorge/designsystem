@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 
-type KeyboardEvents = keyof PickByValue<HTMLElementEventMap, KeyboardEvent>;
+type KeyboardEvents = {
+  [K in keyof HTMLElementEventMap]: HTMLElementEventMap[K] extends KeyboardEvent ? K : never;
+}[keyof HTMLElementEventMap];
 
 /**
  * Kjør en callback når bruker skriver på tastaturet.
@@ -11,21 +13,26 @@ type KeyboardEvents = keyof PickByValue<HTMLElementEventMap, KeyboardEvent>;
  */
 export const useKeyboardEvent = (
   ref: React.RefObject<HTMLElement>,
-  callback: (event: HTMLElementEventMap[KeyboardEvents]) => void,
+  callback: (event: KeyboardEvent) => void,
   key: string | string[],
   events: KeyboardEvents[] = ['keydown']
 ): void => {
   useEffect(() => {
-    const handleKeyboardEvent = (event: HTMLElementEventMap[KeyboardEvents]): void => {
+    const element = ref.current;
+    if (!element) {
+      return;
+    }
+
+    const handleKeyboardEvent = (event: KeyboardEvent): void => {
       if (event.key === key || (Array.isArray(key) && key.includes(event.key))) {
         callback(event);
       }
     };
 
-    events.forEach(eventName => ref.current?.addEventListener(eventName, handleKeyboardEvent));
+    events.forEach(eventName => element.addEventListener(eventName, handleKeyboardEvent));
 
     return (): void => {
-      events.forEach(eventName => ref.current?.removeEventListener(eventName, handleKeyboardEvent));
+      events.forEach(eventName => element.removeEventListener(eventName, handleKeyboardEvent));
     };
   }, [ref, callback, events, key]);
 };

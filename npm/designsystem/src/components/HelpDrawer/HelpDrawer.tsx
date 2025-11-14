@@ -29,17 +29,18 @@ export interface HelpDrawerProps
 }
 
 const HelpDrawer: React.FC<HelpDrawerProps> = props => {
+  const { resources, ...drawerProps } = props;
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
   const mergedResources: HNDesignsystemHelpDrawer = {
     ...defaultResources,
-    ...props.resources,
+    ...resources,
     ariaLabel: props.ariaLabel ?? props.resources?.ariaLabel ?? defaultResources.ariaLabel,
   };
 
   return (
     <Drawer
-      {...props}
+      {...drawerProps}
       closeColor={'plum'}
       headerClasses={styles['help-drawer']}
       desktopDirection={'left'}

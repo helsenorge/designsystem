@@ -78,10 +78,7 @@ export const HelpTriggerIconInternal = React.forwardRef<HTMLButtonElement, HelpT
     ref
   ) => {
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
-    const { refObject, isHovered: interalIsHovered } = usePseudoClasses<HTMLButtonElement>(
-      ref as React.RefObject<HTMLButtonElement>,
-      false
-    );
+    const { refObject, isHovered: interalIsHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>);
     const helpIcon = <HelpSign color={getIconColor(interalIsHovered || isHovered, weight)} weight={weight} />;
     const isButton = htmlMarkup === 'button';
     const iconClasses = classNames(

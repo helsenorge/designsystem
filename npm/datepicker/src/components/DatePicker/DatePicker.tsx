@@ -291,8 +291,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
   };
 
   const handleButtonClick = (
-    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-    e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<{}> | React.KeyboardEvent<HTMLUListElement> | null | undefined
+    e?: React.MouseEvent<HTMLElement, MouseEvent> | React.FormEvent<unknown> | React.KeyboardEvent<HTMLUListElement> | null | undefined
   ): void => {
     e?.stopPropagation();
     setDatePickerOpen(!datePickerOpen);

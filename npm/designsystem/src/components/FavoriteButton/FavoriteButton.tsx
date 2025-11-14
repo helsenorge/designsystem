@@ -13,7 +13,7 @@ import { isMutableRefObject } from '../../utils/refs';
 
 import styles from './styles.module.scss';
 
-export interface FavoriteButtonProps extends HTMLButtonProps, AriaAttributes {
+export interface FavoriteButtonProps extends Omit<HTMLButtonProps, 'type'>, AriaAttributes {
   /**  Determines if the FavoriteButton is checked */
   checked: boolean;
   /** Gives a unique id to the button */
@@ -79,7 +79,7 @@ export const FavoriteButton = React.forwardRef(function FavoriteButtonForwardedR
       aria-label={mergedResources.ariaLabel}
       {...other}
     >
-      <svg focusable={false} overflow="visible" role="presentation" viewBox={isMobile ? '0 0 41 41' : '0 0 61 61'} {...other}>
+      <svg focusable={false} overflow="visible" role="presentation" viewBox={isMobile ? '0 0 41 41' : '0 0 61 61'}>
         {starIcon}
       </svg>
     </button>

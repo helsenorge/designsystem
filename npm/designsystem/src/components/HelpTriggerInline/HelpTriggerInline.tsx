@@ -40,7 +40,7 @@ const HelpTriggerInline = React.forwardRef<HTMLButtonElement, HelpTriggerInlineP
   ({ ariaLabel, ariaLabelledById, children, className, testId, weight = 'normal', ...rest }, ref) => {
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
     const helpTriggerInlineStyles = classNames(styles['help-trigger-inline'], className);
-    const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
+    const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>);
 
     return (
       <button
