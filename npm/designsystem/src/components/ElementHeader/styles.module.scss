@@ -98,6 +98,7 @@
 
     svg {
       fill: var(--color-action-graphics-onlight);
+      height: 100%;
     }
 
     &[data-parenttype='linklist'] {
@@ -108,11 +109,6 @@
     &[data-parenttype='expanderlist'] {
       @include parent-type-expanderlist;
     }
-  }
-
-  &__chevron svg,
-  &__icon svg {
-    height: 100%;
   }
 
   &__badge-container {
