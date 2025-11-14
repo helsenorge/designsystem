@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 
-type OutsideEvents = keyof PickByValue<HTMLElementEventMap, MouseEvent | FocusEvent>;
+type OutsideEvents = {
+  [K in keyof DocumentEventMap]: DocumentEventMap[K] extends MouseEvent | FocusEvent ? K : never;
+}[keyof DocumentEventMap];
 
 /**
  * Custom hook for klikk eller fokus utenfor et gitt element (eller flere elementer)
@@ -10,13 +12,13 @@ type OutsideEvents = keyof PickByValue<HTMLElementEventMap, MouseEvent | FocusEv
  */
 export const useOutsideEvent = (
   ref: React.RefObject<HTMLElement> | React.RefObject<HTMLElement>[],
-  callback: (event: HTMLElementEventMap[OutsideEvents]) => void,
+  callback: (event: MouseEvent | FocusEvent) => void,
   events: OutsideEvents[] = ['mousedown']
 ): void => {
   const refArray = Array.isArray(ref) ? ref : [ref];
 
-  const handleOutsideEvent = (event: HTMLElementEventMap[OutsideEvents]): void => {
-    if (refArray.every(ref => ref.current && !event.composedPath().includes(ref.current))) {
+  const handleOutsideEvent = (event: MouseEvent | FocusEvent): void => {
+    if (refArray.every(r => r.current && !event.composedPath().includes(r.current))) {
       callback(event);
     }
   };

@@ -42,7 +42,7 @@ const HelpTriggerStandalone = React.forwardRef<HTMLButtonElement, HelpTriggerSta
     const isMobile = useIsMobileBreakpoint();
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
     const helpTriggerStandaloneStyles = classNames(styles['help-trigger-standalone'], className);
-    const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
+    const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>);
 
     return (
       <button

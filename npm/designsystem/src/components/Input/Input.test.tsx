@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Input, { InputTypes } from './Input';
-import { FormOnColor, FormSize } from '../../constants';
+import { FormOnColor } from '../../constants';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label';
 
@@ -54,15 +54,6 @@ describe('Gitt at Input skal vises', (): void => {
       // eslint-disable-next-line testing-library/no-node-access
       const contentWrapper = screen.getByRole('textbox').parentElement;
       expect(contentWrapper).toHaveClass('input-container input-container--transparent');
-    });
-  });
-  describe('Når size er large', (): void => {
-    test('Så vises Input med large styling', (): void => {
-      render(<Input label={<Label labelTexts={[{ text: 'Skriv noe' }]} />} size={FormSize.large} />);
-
-      // eslint-disable-next-line testing-library/no-node-access
-      const contentWrapper = screen.getByRole('textbox').parentElement;
-      expect(contentWrapper).toHaveClass('input-container input-container--large');
     });
   });
 

@@ -43,7 +43,7 @@ const HelpExpanderStandalone = React.forwardRef<HTMLButtonElement, HelpExpanderS
   ({ ariaLabel, ariaLabelledById, children, className, expanded = false, onExpand, testId, triggerText, weight = 'normal' }, ref) => {
     const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
     const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
-    const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>, false);
+    const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>);
 
     return (
       <div className={className} data-testid={testId} data-analyticsid={AnalyticsId.HelpExpanderStandalone}>

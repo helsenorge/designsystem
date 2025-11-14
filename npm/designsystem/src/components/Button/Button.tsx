@@ -21,7 +21,7 @@ export type ButtonTags = 'button' | 'a';
 export type ButtonArrows = 'icon' | 'accessibility-character';
 export type ButtonTextPosition = 'left' | 'centered';
 
-export interface ButtonProps extends HTMLButtonProps, HTMLAnchorProps, AriaAttributes {
+export interface ButtonProps extends Omit<HTMLButtonProps, 'onClick' | 'type'>, Omit<HTMLAnchorProps, 'onClick'>, AriaAttributes {
   /** Sets the aria-label of the button, use when the button only includes an icon */
   ariaLabel?: string;
   /** Gives a unique id to the button */
