@@ -1,0 +1,8 @@
+{
+  "requiredField": "Må fyllast ut",
+  "optional": "Valfritt",
+  "allOptional": "Alle felt må fyllast ut",
+  "requiredRadiobuttonList": "Vel éin",
+  "requiredCheckboxList": "Vel éin eller fleire",
+  "requiredSingleCheckbox": "Må veljast"
+}
