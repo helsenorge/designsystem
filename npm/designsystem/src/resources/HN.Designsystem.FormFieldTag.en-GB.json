@@ -3,5 +3,6 @@
   "optional": "Optional",
   "allOptional": "All fields must be filled out",
   "requiredRadiobuttonList": "Select one",
-  "requiredCheckboxList": "Select one or more"
+  "requiredCheckboxList": "Select one or more",
+  "requiredSingleCheckbox": "Must be selected"
 }
