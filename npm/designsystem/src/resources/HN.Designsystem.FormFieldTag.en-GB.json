@@ -1,7 +1,8 @@
 {
+  "allRequired": "All fields must be filled out",
   "requiredField": "Must be filled out",
   "optional": "Optional",
-  "allOptional": "All fields must be filled out",
+  "allOptional": "All fields are optional",
   "requiredRadiobuttonList": "Select one",
   "requiredCheckboxList": "Select one or more",
   "requiredSingleCheckbox": "Must be selected"
