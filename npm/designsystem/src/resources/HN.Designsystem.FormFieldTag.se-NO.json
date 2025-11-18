@@ -1,0 +1,9 @@
+{
+  "allRequired": "Buot sajiid ferte deavdit",
+  "requiredField": "Ferte devdojuvvot",
+  "optional": "Válljenláhkái",
+  "allOptional": "Buot sajit eat válljenláhkái",
+  "requiredRadiobuttonList": "Vállje ovtta",
+  "requiredCheckboxList": "Vállje ovtta dahje máŋga",
+  "requiredSingleCheckbox": "Ferte válljejuvvot"
+}
