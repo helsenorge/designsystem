@@ -1,3 +1,12 @@
+## 13.0.0-beta.6 (2025-11-18)
+
+
+### Bug Fixes
+
+*  en rekke typescript feil i komponenter som logges under bygg ([9f5e4cd](https://github.com/helsenorge/designsystem/commit/9f5e4cdcf4c00dc4076d6c03d7e6f2eeafc5964f)), closes [#364139](https://github.com/helsenorge/designsystem/issues/364139)
+*  toast får riktig import path på breakpoints ([cde3703](https://github.com/helsenorge/designsystem/commit/cde37035258c5ad3d8c5c1f03405e39ba65879b4)), closes [#364797](https://github.com/helsenorge/designsystem/issues/364797)
+* **elementheader:**  fix rar høyde på ikon i noen scenarioer ([5bfbcf8](https://github.com/helsenorge/designsystem/commit/5bfbcf80c6faaeef37ffc7f2ff135dae7aee0ad2)), closes [#362359](https://github.com/helsenorge/designsystem/issues/362359)
+
 ## 13.0.0-beta.5 (2025-11-13)
 
 
@@ -88,7 +97,7 @@
 
 *  lib mappen ble ikke med i den publiserte pakken ([1c5409e](https://github.com/helsenorge/designsystem/commit/1c5409eeaf05524c315650ea11a839a70b7dfaa3)), closes [#362474](https://github.com/helsenorge/designsystem/issues/362474)
 
-## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-07)
+## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-06)
 
 ## [12.12.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.1&targetVersion=GTv12.12.1) (2025-11-06)
 
