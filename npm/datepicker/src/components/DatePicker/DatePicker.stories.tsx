@@ -19,6 +19,7 @@ import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
 
 import { LanguageLocales } from '@helsenorge/designsystem-react';
 
+import CleanDayPicker from './CleanDayPicker';
 import DatePicker, { DatePickerProps } from './DatePicker';
 import DateTime from './DateTime';
 import DateTimePickerWrapper from './DateTimePickerWrapper';
@@ -608,6 +609,21 @@ export const WithLanguageProvider: Story = {
           minDate={args.minDate ? new Date(Number(args.minDate)) : undefined}
         />
       </LanguageProvider>
+    );
+  },
+};
+
+export const Clean: Story = {
+  render: args => {
+    const [selected, setSelected] = React.useState<Date | undefined>(undefined);
+    return (
+      <>
+        <span>
+          {'Selected date: '}
+          {selected ? selected.toDateString() : 'none'}
+        </span>
+        <CleanDayPicker selectedDate={selected} onDateChange={setSelected} />
+      </>
     );
   },
 };
