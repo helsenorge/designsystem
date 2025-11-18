@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import { LanguageLocales } from '@helsenorge/designsystem-react/constants';
-import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
-
 import FormFieldTag from './FormFieldTag';
+import { LanguageLocales } from '../../constants';
 import { HNDesignsystemFormFieldTag } from '../../resources/Resources';
+import LanguageProvider from '../../utils/language';
 import Button from '../Button';
 
 const meta = {
@@ -106,9 +105,9 @@ export const WithLanguageProvider: Story = {
 
     return (
       <LanguageProvider<LanguageLocales> language={language}>
-        <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)}>Bokmål</Button>
-        <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)}>Nynorsk</Button>
-        <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>English</Button>
+        <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)}>{'Bokmål'}</Button>
+        <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)}>{'Nynorsk'}</Button>
+        <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
         <span>{`Valgt språk: ${language}`}</span>
         <br />
         <FormFieldTag level="all-required" />
