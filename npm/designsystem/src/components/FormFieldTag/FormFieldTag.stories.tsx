@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
+import { LanguageLocales } from '@helsenorge/designsystem-react/constants';
+import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
+
 import FormFieldTag from './FormFieldTag';
 import { HNDesignsystemFormFieldTag } from '../../resources/Resources';
+import Button from '../Button';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/FormFieldTag',
@@ -92,6 +96,35 @@ export const OverrideResources: Story = {
         <br />
         <FormFieldTag level="required-single-checkbox" resources={englishResources} />
       </>
+    );
+  },
+};
+
+export const WithLanguageProvider: Story = {
+  render: () => {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)}>Bokmål</Button>
+        <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)}>Nynorsk</Button>
+        <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>English</Button>
+        <span>{`Valgt språk: ${language}`}</span>
+        <br />
+        <FormFieldTag level="all-required" />
+        <br />
+        <FormFieldTag level="required-field" />
+        <br />
+        <FormFieldTag level="optional" />
+        <br />
+        <FormFieldTag level="all-optional" />
+        <br />
+        <FormFieldTag level="required-radiobutton-list" />
+        <br />
+        <FormFieldTag level="required-checkbox-list" />
+        <br />
+        <FormFieldTag level="required-single-checkbox" />
+      </LanguageProvider>
     );
   },
 };
