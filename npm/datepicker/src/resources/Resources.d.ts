@@ -41,6 +41,10 @@ export type HNDesignsystemDatePicker = {
    * Gå til i dag
    */
   goToToday: string;
+  /**
+   * Henter info. \n Vennligst vent.
+   */
+  loadingText: string;
 };
 
 /* eslint:enable */

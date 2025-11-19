@@ -7,5 +7,6 @@
   "previousMonth": "Forrige måned",
   "monthDropdown": "Velg måned",
   "yearDropdown": "Velg år",
-  "goToToday": "Gå til i dag"
+  "goToToday": "Gå til i dag",
+  "loadingText": "Henter info. \\n Vennligst vent."
 }
