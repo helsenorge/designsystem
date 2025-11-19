@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys';
+import AsChildSlot from '../AsChildSlot';
 import Icon, { IconSize } from '../Icon';
 import ArrowUpRight from '../Icons/ArrowUpRight';
 
@@ -21,6 +22,8 @@ export type AnchorLinkOnClickEvent =
   | null;
 
 export interface AnchorLinkProps {
+  /** When true, onclick and keyboard events will be passed to the child. */
+  asChild?: boolean;
   /** Sets the content of the <a> tag */
   children: React.ReactNode;
   /** URL to link to */
@@ -40,7 +43,7 @@ export interface AnchorLinkProps {
 }
 
 const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, AnchorLinkProps>((props, ref) => {
-  const { id, href, children, className, target = '_self', htmlMarkup = 'a', onClick, testId } = props;
+  const { asChild, id, href, children, className, target = '_self', htmlMarkup = 'a', onClick, testId } = props;
   const external = target === '_blank';
   const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement>(
     ref as React.RefObject<HTMLButtonElement | HTMLAnchorElement>
@@ -70,31 +73,38 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
     </>
   );
 
+  if (asChild) {
+    return (
+      <AsChildSlot className={anchorClasses} elementRef={refObject as React.Ref<HTMLElement>}>
+        {children}
+      </AsChildSlot>
+    );
+  }
+
+  if (htmlMarkup === 'a') {
+    return (
+      <a
+        href={href}
+        target={target}
+        className={anchorClasses}
+        rel={external ? 'noopener noreferrer' : undefined}
+        ref={refObject as React.RefObject<HTMLAnchorElement>}
+        {...commonProps}
+      >
+        {renderContent()}
+      </a>
+    );
+  }
+
   return (
-    <>
-      {htmlMarkup === 'a' && (
-        <a
-          href={href}
-          target={target}
-          className={anchorClasses}
-          rel={external ? 'noopener noreferrer' : undefined}
-          ref={refObject as React.RefObject<HTMLAnchorElement>}
-          {...commonProps}
-        >
-          {renderContent()}
-        </a>
-      )}
-      {htmlMarkup === 'button' && (
-        <button
-          type="button"
-          className={AnchorLinkStyles['anchorlink-wrapper']}
-          ref={refObject as React.RefObject<HTMLButtonElement>}
-          {...commonProps}
-        >
-          <span className={anchorClasses}>{renderContent()}</span>
-        </button>
-      )}
-    </>
+    <button
+      type="button"
+      className={AnchorLinkStyles['anchorlink-wrapper']}
+      ref={refObject as React.RefObject<HTMLButtonElement>}
+      {...commonProps}
+    >
+      <span className={anchorClasses}>{renderContent()}</span>
+    </button>
   );
 });
 

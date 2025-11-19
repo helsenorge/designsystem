@@ -100,7 +100,7 @@ export const AsChildSlot = React.forwardRef<AsChildSlotHandle, AsChildSlotProps>
       ...(isButtonLike && !('type' in childProps) ? { type: 'button' } : null),
       onClick: wrappedOnClick,
       onKeyDown: wrappedOnKeyDown,
-      children: content,
+      children: content ?? childElement.props.children,
     });
   }
 );

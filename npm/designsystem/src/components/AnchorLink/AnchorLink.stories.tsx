@@ -92,3 +92,18 @@ export const AsButton: Story = {
     </p>
   ),
 };
+
+export const AsChild: Story = {
+  render: args => (
+    <p style={{ fontSize: '1.25rem' }}>
+      {'Her rendrer vi '}
+      <AnchorLink asChild {...args}>
+        <button aria-haspopup aria-expanded={false} onClick={action('AnchorLink clicked!')}>
+          {'AnchorLink as Button'}
+        </button>
+      </AnchorLink>
+      {' ved siden av en vanlig '}
+      <AnchorLink {...args}>{'AnchorLink'}</AnchorLink>
+    </p>
+  ),
+};
