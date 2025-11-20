@@ -42,7 +42,7 @@ export type HNDesignsystemDatePicker = {
    */
   goToToday: string;
   /**
-   * Henter info. \n Vennligst vent.
+   * Henter info. Vennligst vent.
    */
   loadingText: string;
 };
