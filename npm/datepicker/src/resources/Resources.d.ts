@@ -37,6 +37,14 @@ export type HNDesignsystemDatePicker = {
    * Velg år
    */
   yearDropdown: string;
+  /**
+   * Gå til i dag
+   */
+  goToToday: string;
+  /**
+   * Henter info. \n Vennligst vent.
+   */
+  loadingText: string;
 };
 
 /* eslint:enable */

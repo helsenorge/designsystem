@@ -1,3 +1,15 @@
+## 13.0.0-beta.7 (2025-11-19)
+
+
+### Features
+
+* **formfieldtag:**  legg til engelsk og nynorsk ([c4a2365](https://github.com/helsenorge/designsystem/commit/c4a23657dae5c8e8770f6f5f89510110d1b26e79)), closes [#363896](https://github.com/helsenorge/designsystem/issues/363896)
+
+
+### Bug Fixes
+
+*  cms bygg feiler pga manglende fonts på rot ([37de8b7](https://github.com/helsenorge/designsystem/commit/37de8b7daf74be319da3612bed6dea9c0a65cc35)), closes [#365035](https://github.com/helsenorge/designsystem/issues/365035)
+
 ## 13.0.0-beta.6 (2025-11-18)
 
 
@@ -97,7 +109,7 @@
 
 *  lib mappen ble ikke med i den publiserte pakken ([1c5409e](https://github.com/helsenorge/designsystem/commit/1c5409eeaf05524c315650ea11a839a70b7dfaa3)), closes [#362474](https://github.com/helsenorge/designsystem/issues/362474)
 
-## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-06)
+## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-07)
 
 ## [12.12.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.1&targetVersion=GTv12.12.1) (2025-11-06)
 
