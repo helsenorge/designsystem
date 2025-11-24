@@ -25,7 +25,7 @@ export type DatePickerModifiers = {
   disabled?: Date[] | Matcher[];
 };
 
-interface CleanDayPickerProps
+export interface BaseDayPickerProps
   extends Pick<DayPickerProps, 'dir' | 'startMonth' | 'locale' | 'endMonth' | 'captionLayout' | 'footer' | 'navLayout'> {
   selectedDate?: Date;
   onDateChange?: (date: Date | undefined) => void;
@@ -35,10 +35,10 @@ interface CleanDayPickerProps
   /** Resources for component */
   resources?: Partial<HNDesignsystemDatePicker>;
   /** Sets the locale of the datepicker */
-  locale?: Locale;
+  locale?: Locale; // koble denne til LanguageLocales og useLanguage ?
 }
 
-const CleanDayPicker = (props: CleanDayPickerProps): React.ReactNode => {
+const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
   const {
     selectedDate,
     onDateChange,
@@ -48,6 +48,7 @@ const CleanDayPicker = (props: CleanDayPickerProps): React.ReactNode => {
     footer,
     resources,
     locale = nb,
+    navLayout = 'after',
     ...rdpProps
   } = props;
 
@@ -92,6 +93,7 @@ const CleanDayPicker = (props: CleanDayPickerProps): React.ReactNode => {
   return (
     <DayPicker
       {...rdpProps}
+      navLayout={navLayout}
       mode={'single'}
       fixedWeeks
       required={true} // ?
@@ -159,4 +161,4 @@ const CleanDayPicker = (props: CleanDayPickerProps): React.ReactNode => {
   );
 };
 
-export default CleanDayPicker;
+export default BaseDayPicker;

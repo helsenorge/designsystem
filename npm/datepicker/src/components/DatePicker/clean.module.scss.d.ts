@@ -1,4 +1,5 @@
 export type Styles = {
+  'clear-button': string;
   'custom_caption-label': string;
   custom_chevron: string;
   custom_dropdown_select: string;

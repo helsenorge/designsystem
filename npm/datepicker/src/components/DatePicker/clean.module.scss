@@ -308,3 +308,28 @@
 .dropdown_chevron {
   fill: var(--color-action-graphics-onlight);
 }
+
+.clear-button {
+  --button-size: 2rem;
+
+  position: absolute;
+  translate: calc(-100% - 0.5rem) calc(0.5rem);
+  width: var(--button-size);
+  height: var(--button-size);
+  border: none;
+  background: transparent;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--color-action-background-transparent-onlight-hover);
+  }
+
+  /* denne gir det ingen mening at den klager på */
+  /* stylelint-disable-next-line no-descending-specificity */
+  svg {
+    fill: var(--color-action-graphics-onlight);
+  }
+}

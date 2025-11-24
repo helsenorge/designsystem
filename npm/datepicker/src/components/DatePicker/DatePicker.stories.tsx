@@ -1,5 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
+import {
+  autoUpdate,
+  flip,
+  FloatingFocusManager,
+  hide,
+  offset,
+  shift,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from '@floating-ui/react';
 import { Source } from '@storybook/addon-docs/blocks';
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { parse } from 'date-fns';
@@ -11,6 +23,7 @@ import { useForm } from 'react-hook-form';
 import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
+import Input from '@helsenorge/designsystem-react/components/Input';
 import Label from '@helsenorge/designsystem-react/components/Label';
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import Spacer from '@helsenorge/designsystem-react/components/Spacer';
@@ -19,12 +32,13 @@ import Validation from '@helsenorge/designsystem-react/components/Validation';
 import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
 import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
 
-import { LanguageLocales } from '@helsenorge/designsystem-react';
+import { LanguageLocales, useToggle } from '@helsenorge/designsystem-react';
 
-import CleanDayPicker from './CleanDayPicker';
+import BaseDayPicker from './BaseDayPicker';
 import DatePicker, { DatePickerProps } from './DatePicker';
 import DateTime from './DateTime';
 import DateTimePickerWrapper from './DateTimePickerWrapper';
+import NewDayPicker from './NewDatePicker';
 import {
   validateDisabledDates,
   validateMinMaxDate as validateMinMaxDate,
@@ -619,7 +633,7 @@ export const Clean: Story = {
   render: () => {
     const [selected, setSelected] = React.useState<Date | undefined>(undefined);
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const captionLayout = 'label';
+    const captionLayout = 'dropdown';
 
     return (
       <>
@@ -636,7 +650,7 @@ export const Clean: Story = {
           checked={isLoading}
           onChange={() => setIsLoading(!isLoading)}
         />
-        <CleanDayPicker
+        <BaseDayPicker
           navLayout="after"
           selectedDate={selected}
           onDateChange={setSelected}
@@ -681,7 +695,7 @@ export const Timeavtaler: Story = {
           checked={isLoading}
           onChange={() => setIsLoading(!isLoading)}
         />
-        <CleanDayPicker
+        <BaseDayPicker
           selectedDate={selected}
           onDateChange={setSelected}
           captionLayout={captionLayout}
@@ -730,7 +744,7 @@ export const WithFooter: Story = {
           checked={isLoading}
           onChange={() => setIsLoading(!isLoading)}
         />
-        <CleanDayPicker
+        <BaseDayPicker
           showGoToTodayButton
           footer={<FooterComponent />}
           selectedDate={selected}
@@ -759,7 +773,7 @@ export const WithTodayButton: Story = {
           checked={isLoading}
           onChange={() => setIsLoading(!isLoading)}
         />
-        <CleanDayPicker showGoToTodayButton selectedDate={selected} onDateChange={setSelected} isLoading={isLoading} />
+        <BaseDayPicker showGoToTodayButton selectedDate={selected} onDateChange={setSelected} isLoading={isLoading} />
       </>
     );
   },
@@ -786,13 +800,101 @@ export const PreFilled: Story = {
           checked={isLoading}
           onChange={() => setIsLoading(!isLoading)}
         />
-        <CleanDayPicker
+        <BaseDayPicker
           navLayout="after"
           selectedDate={selected}
           onDateChange={setSelected}
           isLoading={isLoading}
           captionLayout={captionLayout}
         />
+      </>
+    );
+  },
+};
+
+export const Popup: Story = {
+  render: () => {
+    const [selected, setSelected] = React.useState<Date | undefined>(undefined);
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const controllerRef = useRef<HTMLDivElement>(null);
+    const { value, toggleValue } = useToggle(false);
+    const { refs, floatingStyles, context, middlewareData } = useFloating({
+      placement: 'bottom-start',
+      middleware: [offset(8), flip({ mainAxis: true, crossAxis: false }), shift({ mainAxis: true, padding: 8 }), hide()],
+      whileElementsMounted: autoUpdate,
+      elements: {
+        reference: controllerRef.current,
+      },
+    });
+
+    const click = useClick(context);
+    const dismiss = useDismiss(context);
+
+    const { getFloatingProps } = useInteractions([click, dismiss]);
+    const isVisible = value && !middlewareData.hide?.referenceHidden;
+
+    return (
+      <>
+        <span>{longLoremText}</span>
+        <span>
+          {'Selected date: '}
+          {selected ? selected.toDateString() : 'none'}
+        </span>
+        <Toggle
+          label={[
+            {
+              text: 'Loading',
+            },
+          ]}
+          checked={isLoading}
+          onChange={() => setIsLoading(!isLoading)}
+        />
+        <div ref={controllerRef}>
+          <Input
+            label={<Label labelTexts={[{ text: 'Velg dato' }]} />}
+            width={10}
+            rightOfInput={
+              <Button onClick={toggleValue} ariaLabel="Open datepicker" variant="outline">
+                <Icon svgIcon={Calendar} />
+              </Button>
+            }
+          />
+        </div>
+        {value && (
+          <FloatingFocusManager context={context} modal={false}>
+            <div ref={refs.setFloating} style={{ ...floatingStyles, visibility: isVisible ? 'visible' : 'hidden' }} {...getFloatingProps()}>
+              <BaseDayPicker
+                navLayout="around"
+                captionLayout="label"
+                selectedDate={selected}
+                onDateChange={setSelected}
+                isLoading={isLoading}
+              />
+            </div>
+          </FloatingFocusManager>
+        )}
+        <br />
+        <span>{longLoremText}</span>
+        <span>{longLoremText}</span>
+        <span>{longLoremText}</span>
+        <span>{longLoremText}</span>
+      </>
+    );
+  },
+};
+
+export const New: Story = {
+  render: () => {
+    return (
+      <>
+        <NewDayPicker standalone captionLayout="dropdown" />
+        <br />
+        <NewDayPicker withClearButton />
+        <br />
+        <span>{longLoremText}</span>
+        <span>{longLoremText}</span>
+        <span>{longLoremText}</span>
+        <span>{longLoremText}</span>
       </>
     );
   },
