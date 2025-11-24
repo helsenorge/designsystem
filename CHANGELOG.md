@@ -1,3 +1,10 @@
+## 13.0.0-beta.8 (2025-11-24)
+
+
+### Bug Fixes
+
+*  deep export av component ts filer skal inkluderes i publisert pakke ([f9ca449](https://github.com/helsenorge/designsystem/commit/f9ca449205f392c497ab2a66008a9dae07a093d2)), closes [#365382](https://github.com/helsenorge/designsystem/issues/365382)
+
 ## 13.0.0-beta.7 (2025-11-19)
 
 

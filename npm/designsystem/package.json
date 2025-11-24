@@ -2,7 +2,7 @@
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
   "private": false,
-  "version": "13.0.0-beta.7",
+  "version": "13.0.0-beta.8",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -678,6 +678,60 @@
       "import": "./lib/components/Validation/index.js",
       "require": "./lib/components/Validation/index.js",
       "default": "./lib/components/Validation/index.js"
+    },
+    "./components/ArticleTeaser/resourceHelper": {
+      "types": "./lib/components/ArticleTeaser/resourceHelper.d.ts"
+    },
+    "./components/Drawer/resourceHelper": {
+      "types": "./lib/components/Drawer/resourceHelper.d.ts"
+    },
+    "./components/Dropdown/resourceHelper": {
+      "types": "./lib/components/Dropdown/resourceHelper.d.ts"
+    },
+    "./components/DropdownOld/resourceHelper": {
+      "types": "./lib/components/DropdownOld/resourceHelper.d.ts"
+    },
+    "./components/ExpanderHierarchy/utils": {
+      "types": "./lib/components/ExpanderHierarchy/utils.d.ts"
+    },
+    "./components/FavoriteButton/resourceHelper": {
+      "types": "./lib/components/FavoriteButton/resourceHelper.d.ts"
+    },
+    "./components/FormFieldTag/resourceHelper": {
+      "types": "./lib/components/FormFieldTag/resourceHelper.d.ts"
+    },
+    "./components/HelpBubble/resourceHelper": {
+      "types": "./lib/components/HelpBubble/resourceHelper.d.ts"
+    },
+    "./components/HelpDrawer/resourceHelper": {
+      "types": "./lib/components/HelpDrawer/resourceHelper.d.ts"
+    },
+    "./components/Illustration/utils": {
+      "types": "./lib/components/Illustration/utils.d.ts"
+    },
+    "./components/InfoTeaser/resourceHelper": {
+      "types": "./lib/components/InfoTeaser/resourceHelper.d.ts"
+    },
+    "./components/LazyIcon/utils": {
+      "types": "./lib/components/LazyIcon/utils.d.ts"
+    },
+    "./components/Panel/resourceHelper": {
+      "types": "./lib/components/Panel/resourceHelper.d.ts"
+    },
+    "./components/PopOver/utils": {
+      "types": "./lib/components/PopOver/utils.d.ts"
+    },
+    "./components/Stepper/utils": {
+      "types": "./lib/components/Stepper/utils.d.ts"
+    },
+    "./components/Table/utils": {
+      "types": "./lib/components/Table/utils.d.ts"
+    },
+    "./components/Tabs/resourceHelper": {
+      "types": "./lib/components/Tabs/resourceHelper.d.ts"
+    },
+    "./components/Validation/types": {
+      "types": "./lib/components/Validation/types.d.ts"
     }
   },
   "scripts": {

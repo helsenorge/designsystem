@@ -40,17 +40,21 @@ for (const dirent of fs.readdirSync(LIB_COMPONENTS, { withFileTypes: true })) {
     if (EXCLUDE_PATTERNS.some((re) => re.test(f))) continue;
 
     const base = f.replace(/\.d\.ts$/, "");
-    if (!isPascalCase(base)) continue;
-
     const exportKey = `./components/${compDir}/${base}`;
     if (pkg.exports[exportKey]) continue;
 
-    pkg.exports[exportKey] = {
-      types: `./lib/components/${compDir}/${base}.d.ts`,
-      import: `./lib/components/${compDir}/index.js`,
-      require: `./lib/components/${compDir}/index.js`,
-      default: `./lib/components/${compDir}/index.js`,
-    };
+    if (isPascalCase(base)) {
+      pkg.exports[exportKey] = {
+        types: `./lib/components/${compDir}/${base}.d.ts`,
+        import: `./lib/components/${compDir}/index.js`,
+        require: `./lib/components/${compDir}/index.js`,
+        default: `./lib/components/${compDir}/index.js`,
+      };
+    } else {
+      pkg.exports[exportKey] = {
+        types: `./lib/components/${compDir}/${base}.d.ts`,
+      };
+    }
 
     added++;
   }
