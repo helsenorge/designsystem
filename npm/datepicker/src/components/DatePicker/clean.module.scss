@@ -11,9 +11,11 @@
 
 .root_override {
   --rdp-day_button-border-radius: 0;
-  --rdp-day_button-height: 2.5rem;
-  --rdp-day_button-width: 2.5rem;
+  --rdp-day_button-height: 2.375rem;
+  --rdp-day_button-width: 2.375rem;
   --rdp-nav_button-width: 2.75rem;
+  --rdp-nav_button-height: 2.75rem;
+  --rdp-dropdown-gap: 0;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
     --rdp-day_button-height: 2.75rem;
@@ -21,8 +23,10 @@
   }
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-    --rdp-day_button-height: 3rem;
-    --rdp-day_button-width: 3rem;
+    --rdp-day_button-height: 2.875rem;
+    --rdp-day_button-width: 2.875rem;
+    --rdp-nav_button-width: 3rem;
+    --rdp-nav_button-height: 3rem;
   }
 }
 
@@ -52,8 +56,6 @@
     border-radius: 100%;
     width: 6px;
     height: 6px;
-
-    // Half of font size plus 3px
     transform: translateY(calc(0.1875em + 0.5rem));
   }
 }
@@ -193,7 +195,7 @@
 .custom_dropdown_select {
   background-color: var(--core-color-white);
   border: none;
-  padding: 0.3125rem 0.25rem 0.3125rem 1rem;
+  padding: 0.1875rem 0.25rem 0.1875rem 1rem;
   font-size: 1.125rem;
   line-height: 150%;
   font-weight: 400;
@@ -204,6 +206,7 @@
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     font-size: 1.25rem;
     line-height: 140%;
+    padding: 0.3125rem 0.25rem 0.3125rem 1rem;
   }
 
   &:hover {
@@ -224,14 +227,7 @@
 }
 
 .custom_nav_button {
-  width: 2.75rem;
-  height: 2.75rem;
   border: none;
-
-  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-    width: 3rem;
-    height: 3rem;
-  }
 
   &:focus-visible {
     outline: 2px solid var(--color-action-border-onlight-focus);
@@ -256,4 +252,40 @@
       outline: none;
     }
   }
+}
+
+.loading-overlay {
+  position: absolute;
+  inset: 2.75rem 0 0;
+  background-color: var(--color-action-graphics-ondark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.datepicker-footer {
+  display: flex;
+  flex-flow: row;
+  gap: 0.5rem;
+}
+
+.custom_caption-label {
+  @include fonts.body;
+}
+
+.dropdown_container {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3125rem 0.25rem 0.3125rem 1rem;
+}
+
+.dropdown_label {
+  @include fonts.input-text;
+}
+
+.dropdown_chevron {
+  fill: var(--color-action-graphics-onlight);
 }

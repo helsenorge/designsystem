@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
 import classNames from 'classnames';
-import { DayPicker } from 'react-day-picker';
+import { isSameDay, Locale } from 'date-fns';
+import { nb } from 'date-fns/locale';
+import { DayPicker, DayPickerProps, Matcher, MonthGrid, MonthGridProps } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 // import Button from '@helsenorge/designsystem-react/components/Button';
@@ -9,24 +11,58 @@ import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 // import ChevronLeft from '@helsenorge/designsystem-react/components/Icons/ChevronLeft';
 // import ChevronRight from '@helsenorge/designsystem-react/components/Icons/ChevronRight';
 
-import {
-  CustomChevron,
-  CustomDayButton,
-  CustomNavButton,
-  CustomNextButton,
-  CustomPreviousButton,
-  SelectedDateContext,
-} from './CleanCustom';
+import Button from '@helsenorge/designsystem-react/components/Button';
+import Loader from '@helsenorge/designsystem-react/components/Loader';
+import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
+
+import { LanguageLocales } from '@helsenorge/designsystem-react';
+
+import { CustomCaptionLabel, CustomDayButton, CustomDropdown, CustomNextButton, CustomPreviousButton } from './CleanCustom';
+import { getResources } from './resourceHelper';
+import { HNDesignsystemDatePicker } from '../../resources/Resources';
 
 import customstyles from './clean.module.scss';
 
-interface CleanDayPickerProps {
+export type DatePickerModifiers = {
+  emphasized?: Date[] | Matcher[];
+  partiallyBooked?: Date[] | Matcher[];
+  fullyBooked?: Date[] | Matcher[];
+  disabled?: Date[] | Matcher[];
+};
+
+interface CleanDayPickerProps
+  extends Pick<DayPickerProps, 'dir' | 'startMonth' | 'locale' | 'endMonth' | 'captionLayout' | 'footer' | 'navLayout'> {
   selectedDate?: Date;
   onDateChange?: (date: Date | undefined) => void;
+  isLoading?: boolean;
+  modifiers?: DatePickerModifiers;
+  showGoToTodayButton?: boolean;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemDatePicker>;
+  /** Sets the locale of the datepicker */
+  locale?: Locale;
 }
 
-const CleanDayPicker = (props: CleanDayPickerProps) => {
-  const { selectedDate, onDateChange } = props;
+const CleanDayPicker = (props: CleanDayPickerProps): React.ReactNode => {
+  const {
+    selectedDate,
+    onDateChange,
+    isLoading,
+    modifiers,
+    showGoToTodayButton = false,
+    footer,
+    resources,
+    locale = nb,
+    ...rdpProps
+  } = props;
+
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemDatePicker = {
+    ...defaultResources,
+    ...resources,
+  };
 
   const datePickerClassNames = {
     ...reactdaypickerstyles,
@@ -37,8 +73,9 @@ const CleanDayPicker = (props: CleanDayPickerProps) => {
     month_caption: classNames(reactdaypickerstyles['month_caption'], customstyles['custom_month_caption']),
   };
 
-  // Internal state for context - synced with external selectedDate
-  const [selected, setSelected] = React.useState<Date | undefined>(selectedDate);
+  // Internal state - synced with external selectedDate
+  const [selected, setSelected] = useState<Date | undefined>(selectedDate);
+  const [month, setMonth] = useState<Date>(new Date());
 
   // Update internal state when prop changes
   React.useEffect(() => {
@@ -47,26 +84,45 @@ const CleanDayPicker = (props: CleanDayPickerProps) => {
 
   // Handle selection changes
   const handleSelect = (date: Date | undefined): void => {
+    if (date && selected && isSameDay(date, selected)) {
+      setSelected(undefined);
+      onDateChange?.(undefined);
+      return;
+    }
     setSelected(date);
     onDateChange?.(date);
   };
 
   return (
     <DayPicker
-      captionLayout="dropdown" // dropdown || label
-      navLayout="after" // around || after
+      {...rdpProps}
       mode={'single'}
       fixedWeeks
       required={true} // ?
       selected={selected}
+      month={month}
+      onMonthChange={setMonth}
       onSelect={handleSelect}
       classNames={datePickerClassNames}
-      modifiers={{
-        emphasized: [new Date('11-08-2025'), new Date('11-07-2025')],
-        partiallyBooked: [new Date('11-11-2025'), new Date('11-23-2025')],
-        fullyBooked: [new Date('11-10-2025'), new Date('11-09-2025')],
-        disabled: [new Date('11-13-2025'), new Date('11-14-2025')],
-      }}
+      locale={locale}
+      footer={
+        showGoToTodayButton ? (
+          <div className={customstyles['datepicker-footer']}>
+            <Button
+              variant="borderless"
+              onClick={() => {
+                setMonth(new Date());
+              }}
+            >
+              {mergedResources.goToToday}
+            </Button>
+            {footer}
+          </div>
+        ) : (
+          footer
+        )
+      }
+      modifiers={modifiers}
       onDayClick={(_date, modifiers) => {
         if (modifiers.disabled) {
           alert('Denne datoen er ikke tilgjengelig for valg.');
@@ -83,25 +139,25 @@ const CleanDayPicker = (props: CleanDayPickerProps) => {
         partiallyBooked: customstyles['date--partial'],
         fullyBooked: customstyles['date--fully'],
       }}
-      // todo: Overskrive hele month slik aksel gjør? Vanskelig å plassere knappene ellers
-      //   components={{
-      //     NextMonthButton: props => (
-      //       <Button variant="borderless" ariaLabel={props['aria-label']} className={reactdaypickerstyles['button_next']}>
-      //         <Icon svgIcon={ChevronRight} />
-      //       </Button>
-      //     ),
-      //     PreviousMonthButton: props => (
-      //       <Button variant="borderless" ariaLabel={props['aria-label']} className={reactdaypickerstyles['button_previous']}>
-      //         <Icon svgIcon={ChevronLeft} />
-      //       </Button>
-      //     ),
-      //   }}
-      // todo: bestem om vi vil overskrive eller ikke, fordelen med RDP sin er at de er like i alle browsers
       components={{
-        // Dropdown: CustomSelect,
         DayButton: CustomDayButton,
         NextMonthButton: CustomNextButton,
         PreviousMonthButton: CustomPreviousButton,
+        MonthGrid: isLoading
+          ? (props: MonthGridProps): JSX.Element => (
+              <div style={{ position: 'relative' }}>
+                <MonthGrid {...props} />
+                <div className={customstyles['loading-overlay']}>
+                  <Loader size="small" color="blueberry" />
+                  <p style={{ whiteSpace: 'pre-line' }} aria-live="polite">
+                    {mergedResources.loadingText}
+                  </p>
+                </div>
+              </div>
+            )
+          : MonthGrid,
+        Dropdown: CustomDropdown,
+        CaptionLabel: CustomCaptionLabel,
       }}
     />
   );

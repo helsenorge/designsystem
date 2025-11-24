@@ -5,6 +5,7 @@ import { StoryObj, Meta } from '@storybook/react-vite';
 import { parse } from 'date-fns';
 import { ar, nb } from 'date-fns/locale';
 import { Docs } from 'frankenstein-build-tools';
+import { useDayPicker } from 'react-day-picker';
 import { useForm } from 'react-hook-form';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
@@ -13,6 +14,7 @@ import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Label from '@helsenorge/designsystem-react/components/Label';
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import Spacer from '@helsenorge/designsystem-react/components/Spacer';
+import Toggle from '@helsenorge/designsystem-react/components/Toggle';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
 import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
 import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
@@ -614,15 +616,183 @@ export const WithLanguageProvider: Story = {
 };
 
 export const Clean: Story = {
-  render: args => {
+  render: () => {
     const [selected, setSelected] = React.useState<Date | undefined>(undefined);
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const captionLayout = 'label';
+
     return (
       <>
         <span>
           {'Selected date: '}
           {selected ? selected.toDateString() : 'none'}
         </span>
-        <CleanDayPicker selectedDate={selected} onDateChange={setSelected} />
+        <Toggle
+          label={[
+            {
+              text: 'Loading',
+            },
+          ]}
+          checked={isLoading}
+          onChange={() => setIsLoading(!isLoading)}
+        />
+        <CleanDayPicker
+          navLayout="after"
+          selectedDate={selected}
+          onDateChange={setSelected}
+          isLoading={isLoading}
+          captionLayout={captionLayout}
+        />
+      </>
+    );
+  },
+};
+
+export const Timeavtaler: Story = {
+  render: () => {
+    const [selected, setSelected] = React.useState<Date | undefined>(undefined);
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const captionLayout = 'dropdown';
+    const today = new Date();
+    const yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+    const emphasized = [{ from: today, to: new Date('08-11-2026') }];
+    const disabled = [{ from: new Date('01-01-0000'), to: yesterday }];
+    const partiallyBooked = [tomorrow];
+    const startMonth = new Date();
+    startMonth.setMonth(today.getMonth() - 3);
+    const endMonth = new Date();
+    endMonth.setMonth(today.getMonth() + 3);
+
+    return (
+      <>
+        <span>
+          {'Selected date: '}
+          {selected ? selected.toDateString() : 'none'}
+        </span>
+        <Toggle
+          label={[
+            {
+              text: 'Loading',
+            },
+          ]}
+          checked={isLoading}
+          onChange={() => setIsLoading(!isLoading)}
+        />
+        <CleanDayPicker
+          selectedDate={selected}
+          onDateChange={setSelected}
+          captionLayout={captionLayout}
+          startMonth={startMonth}
+          endMonth={endMonth}
+          isLoading={isLoading}
+          modifiers={{
+            emphasized: emphasized,
+            disabled: disabled,
+            partiallyBooked: partiallyBooked,
+          }}
+        />
+      </>
+    );
+  },
+};
+
+const FooterComponent: React.FC = () => {
+  const { selected } = useDayPicker();
+  return (
+    <div style={{ padding: '0.5rem', textAlign: 'center' }}>
+      {'Selected date: '}
+      {selected ? (selected as Date).toDateString() : 'none'}
+    </div>
+  );
+};
+
+export const WithFooter: Story = {
+  render: () => {
+    const [selected, setSelected] = React.useState<Date | undefined>(undefined);
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const captionLayout = 'dropdown';
+
+    return (
+      <>
+        <span>
+          {'Selected date: '}
+          {selected ? selected.toDateString() : 'none'}
+        </span>
+        <Toggle
+          label={[
+            {
+              text: 'Loading',
+            },
+          ]}
+          checked={isLoading}
+          onChange={() => setIsLoading(!isLoading)}
+        />
+        <CleanDayPicker
+          showGoToTodayButton
+          footer={<FooterComponent />}
+          selectedDate={selected}
+          onDateChange={setSelected}
+          isLoading={isLoading}
+          captionLayout={captionLayout}
+        />
+      </>
+    );
+  },
+};
+
+export const WithTodayButton: Story = {
+  render: () => {
+    const [selected, setSelected] = React.useState<Date | undefined>(undefined);
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+    return (
+      <>
+        <Toggle
+          label={[
+            {
+              text: 'Loading',
+            },
+          ]}
+          checked={isLoading}
+          onChange={() => setIsLoading(!isLoading)}
+        />
+        <CleanDayPicker showGoToTodayButton selectedDate={selected} onDateChange={setSelected} isLoading={isLoading} />
+      </>
+    );
+  },
+};
+
+export const PreFilled: Story = {
+  render: () => {
+    const [selected, setSelected] = React.useState<Date | undefined>(new Date());
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const captionLayout = 'label';
+
+    return (
+      <>
+        <span>
+          {'Selected date: '}
+          {selected ? selected.toDateString() : 'none'}
+        </span>
+        <Toggle
+          label={[
+            {
+              text: 'Loading',
+            },
+          ]}
+          checked={isLoading}
+          onChange={() => setIsLoading(!isLoading)}
+        />
+        <CleanDayPicker
+          navLayout="after"
+          selectedDate={selected}
+          onDateChange={setSelected}
+          isLoading={isLoading}
+          captionLayout={captionLayout}
+        />
       </>
     );
   },
