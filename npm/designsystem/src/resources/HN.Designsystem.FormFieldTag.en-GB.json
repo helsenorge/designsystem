@@ -1,6 +1,6 @@
 {
   "allRequired": "All fields must be filled out",
-  "requiredField": "Must be filled out",
+  "requiredField": "Required",
   "optional": "Optional",
   "allOptional": "All fields are optional",
   "requiredRadiobuttonList": "Select one",

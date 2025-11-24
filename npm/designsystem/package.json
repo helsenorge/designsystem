@@ -2,7 +2,7 @@
   "name": "@helsenorge/designsystem-react",
   "sideEffects": false,
   "private": false,
-  "version": "13.0.0-beta.5",
+  "version": "13.0.0-beta.7",
   "description": "The official design system for Helsenorge built with React.",
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   "files": [
     "lib",
     "scss",
+    "fonts",
     "index.d.ts"
   ],
   "publishConfig": {
@@ -685,8 +686,9 @@
     "build": "vite build",
     "postbuild": "npm run link-scss",
     "link-scss": "node __scripts__/link-root-scss.mjs",
-    "prepack": "rimraf scss && copyfiles -u 1 'lib/scss/**/*' .",
-    "postpack": "npm run link-scss",
+    "copy-fonts": "node __scripts__/copy-fonts.mjs",
+    "prepack": "npm run copy-fonts && rimraf scss && copyfiles -u 1 'lib/scss/**/*' .",
+    "postpack": "rimraf fonts && npm run link-scss",
     "build-storybook": "storybook build -o dist",
     "clean": "rimraf lib",
     "generate:iconnames": "node __scripts__/generateIconNames.mjs",
