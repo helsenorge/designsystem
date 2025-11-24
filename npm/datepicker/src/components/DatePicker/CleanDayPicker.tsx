@@ -6,11 +6,6 @@ import { nb } from 'date-fns/locale';
 import { DayPicker, DayPickerProps, Matcher, MonthGrid, MonthGridProps } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
-// import Button from '@helsenorge/designsystem-react/components/Button';
-// import Icon from '@helsenorge/designsystem-react/components/Icon';
-// import ChevronLeft from '@helsenorge/designsystem-react/components/Icons/ChevronLeft';
-// import ChevronRight from '@helsenorge/designsystem-react/components/Icons/ChevronRight';
-
 import Button from '@helsenorge/designsystem-react/components/Button';
 import Loader from '@helsenorge/designsystem-react/components/Loader';
 import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
@@ -68,8 +63,9 @@ const CleanDayPicker = (props: CleanDayPickerProps): React.ReactNode => {
     ...reactdaypickerstyles,
     ...customstyles,
     // https://daypicker.dev/docs/styling#custom-class-names
-    root: classNames(reactdaypickerstyles.root, customstyles.root_override),
+    root: classNames(reactdaypickerstyles.root, customstyles['root_override']),
     day: classNames(reactdaypickerstyles.day, customstyles['date--default']),
+    months: classNames(reactdaypickerstyles.months, customstyles['custom_months-container']),
     month_caption: classNames(reactdaypickerstyles['month_caption'], customstyles['custom_month_caption']),
   };
 

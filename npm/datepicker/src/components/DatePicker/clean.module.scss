@@ -30,18 +30,34 @@
   }
 }
 
-.caption_label {
-  font-size: 16px;
+.custom_months-container {
+  border: 1px solid var(--color-action-border-onlight);
+  padding: 0.5rem;
+  background-color: var(--color-base-background-white);
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, sm)) {
+    padding: 0.875rem;
+  }
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    padding: 1rem;
+  }
 }
 
 @mixin strikethrough-line {
-  text-decoration: line-through;
-  text-decoration-color: var(--color-disabled-border);
-  text-decoration-thickness: 1px;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 1.5rem;
+    height: 1px;
+    background-color: var(--color-disabled-border);
+  }
 }
 
 @mixin no-strikethrough-line {
-  text-decoration: none;
+  &::after {
+    all: unset;
+  }
 }
 
 @mixin focus-border {
@@ -186,9 +202,7 @@
 /* stylelint-enable no-descending-specificity */
 
 .custom_month_caption {
-  @include fonts.body;
-
-  font-weight: 400;
+  /* For aligning text with nav buttons */
   align-items: center;
 }
 
@@ -273,6 +287,9 @@
 
 .custom_caption-label {
   @include fonts.body;
+
+  font-weight: 400;
+  align-items: center;
 }
 
 .dropdown_container {
@@ -284,6 +301,8 @@
 
 .dropdown_label {
   @include fonts.input-text;
+
+  font-weight: 400;
 }
 
 .dropdown_chevron {
