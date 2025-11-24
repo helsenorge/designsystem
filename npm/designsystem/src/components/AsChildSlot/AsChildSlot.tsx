@@ -90,6 +90,10 @@ export const AsChildSlot = React.forwardRef<AsChildSlotHandle, AsChildSlotProps>
     };
 
     const isButtonLike = typeof childProps.href === 'undefined';
+    const wrappedChildren =
+      content && React.isValidElement(content)
+        ? React.cloneElement(content, content.props, childElement.props.children)
+        : childElement.props.children;
 
     return React.cloneElement(childElement, {
       ref: mergedRef,
@@ -100,7 +104,7 @@ export const AsChildSlot = React.forwardRef<AsChildSlotHandle, AsChildSlotProps>
       ...(isButtonLike && !('type' in childProps) ? { type: 'button' } : null),
       onClick: wrappedOnClick,
       onKeyDown: wrappedOnKeyDown,
-      children: content ?? childElement.props.children,
+      children: wrappedChildren,
     });
   }
 );

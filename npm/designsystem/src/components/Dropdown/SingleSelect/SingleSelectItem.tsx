@@ -69,6 +69,7 @@ export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, 
   );
 
   const Component = (asChild ? AsChildSlot : 'button') as React.ElementType;
+  const childWithInjectedContent = childElement ? React.cloneElement(childElement, childElement.props, content) : null;
 
   const componentProps = asChild
     ? {
@@ -78,8 +79,7 @@ export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, 
         disabled: isDisabled,
         onSelect: (e: React.SyntheticEvent): void => selectThis(e),
         ariaCurrent: isSelected ? 'true' : undefined,
-        children: childElement,
-        content,
+        children: childWithInjectedContent,
       }
     : {
         ...rest,

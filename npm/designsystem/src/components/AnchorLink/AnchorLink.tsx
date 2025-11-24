@@ -75,7 +75,11 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
 
   if (asChild) {
     return (
-      <AsChildSlot className={anchorClasses} elementRef={refObject as React.Ref<HTMLElement>}>
+      <AsChildSlot
+        content={<span className={anchorClasses} />}
+        className={AnchorLinkStyles['anchorlink-wrapper']}
+        elementRef={refObject as React.Ref<HTMLElement>}
+      >
         {children}
       </AsChildSlot>
     );
