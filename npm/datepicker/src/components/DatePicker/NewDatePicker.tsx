@@ -8,12 +8,12 @@ interface NewDayPicker extends BaseDayPickerProps, DatePickerWithInputProps {
 }
 
 const NewDayPicker = (props: NewDayPicker): React.ReactNode => {
-  const { standalone = false, withClearButton, ...datepickerProps } = props;
+  const { standalone = false, label, withClearButton, ...datepickerProps } = props;
 
   return standalone ? (
     <BaseDayPicker {...datepickerProps} />
   ) : (
-    <DatePickerWithInput withClearButton={withClearButton} {...datepickerProps} />
+    <DatePickerWithInput withClearButton={withClearButton} label={label} {...datepickerProps} />
   );
 };
 

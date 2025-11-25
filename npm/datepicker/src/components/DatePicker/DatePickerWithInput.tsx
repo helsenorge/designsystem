@@ -13,12 +13,10 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 
-import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import X from '@helsenorge/designsystem-react/components/Icons/X';
 import Input from '@helsenorge/designsystem-react/components/Input';
-import Label from '@helsenorge/designsystem-react/components/Label';
 
 import { IconSize, useToggle, ZIndex } from '@helsenorge/designsystem-react';
 
@@ -26,11 +24,17 @@ import BaseDayPicker, { BaseDayPickerProps } from './BaseDayPicker';
 
 import customstyles from './clean.module.scss';
 export interface DatePickerWithInputProps extends BaseDayPickerProps {
+  /** sets input disabled */
+  disabled?: boolean;
+  /** @todo: denne bør være required når man bruker input men ikke for standalone */
+  label?: React.ReactNode;
+  /** @todo: gjør ferdig denne funksjonaliteten */
+  /** Shows a clear button if input field has content */
   withClearButton?: boolean;
 }
 
 const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode => {
-  const { withClearButton, ...baseProps } = props;
+  const { disabled, label, withClearButton, ...baseProps } = props;
   const [inputValue, setInputValue] = useState<Date | undefined>(baseProps.selectedDate);
   const controllerRef = useRef<HTMLDivElement>(null);
   const { value, toggleValue } = useToggle(false);
@@ -54,23 +58,27 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
     setInputValue(undefined);
   };
 
+  /** @todo */
+  const hasValue = !!inputValue;
+
   return (
     <>
       <div ref={controllerRef}>
         <Input
-          label={<Label labelTexts={[{ text: 'Velg dato' }]} />}
+          disabled={disabled}
+          label={label}
           value={inputValue?.toLocaleDateString() || ''}
           width={14}
           rightOfInput={
             <>
-              {withClearButton && (
-                <button onClick={handleClear} className={customstyles['clear-button']} aria-label="Clear input">
+              {withClearButton && hasValue && (
+                <button onClick={handleClear} disabled={disabled} className={customstyles['clear-button']} aria-label="Clear input">
                   <Icon svgIcon={X} size={IconSize.XXSmall} />
                 </button>
               )}
-              <Button onClick={toggleValue} ariaLabel="Open datepicker" variant="outline">
-                <Icon svgIcon={Calendar} />
-              </Button>
+              <button onClick={toggleValue} disabled={disabled} aria-label="Open datepicker" className={customstyles['calendar-button']}>
+                <Icon svgIcon={Calendar} size={IconSize.XSmall} />
+              </button>
             </>
           }
         />

@@ -24,7 +24,7 @@ import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Input from '@helsenorge/designsystem-react/components/Input';
-import Label from '@helsenorge/designsystem-react/components/Label';
+import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import Spacer from '@helsenorge/designsystem-react/components/Spacer';
 import Toggle from '@helsenorge/designsystem-react/components/Toggle';
@@ -887,12 +887,20 @@ export const New: Story = {
   render: () => {
     return (
       <>
+        <NewDayPicker
+          withClearButton={true}
+          label={
+            <Label
+              labelTexts={[{ text: 'Dato' }]}
+              sublabel={<Sublabel id="sublabel-testid1" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
+            />
+          }
+        />
+        <br />
+        <span>{longLoremText}</span>
+        <span>{longLoremText}</span>
         <NewDayPicker standalone captionLayout="dropdown" />
         <br />
-        <NewDayPicker withClearButton />
-        <br />
-        <span>{longLoremText}</span>
-        <span>{longLoremText}</span>
         <span>{longLoremText}</span>
         <span>{longLoremText}</span>
       </>

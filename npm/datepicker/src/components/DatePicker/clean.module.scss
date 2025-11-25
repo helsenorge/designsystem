@@ -310,21 +310,115 @@
 }
 
 .clear-button {
-  --button-size: 2rem;
+  --button-size: calc(2.75rem);
 
+  // position inside input field and 2px for centering adjusted for border
+  translate: -3rem 2px;
   position: absolute;
-  translate: calc(-100% - 0.5rem) calc(0.5rem);
   width: var(--button-size);
   height: var(--button-size);
   border: none;
   background: transparent;
-  border-radius: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    --button-size: calc(3rem);
+
+    // position inside input field and 2px for centering adjusted for border
+    translate: -3.25rem 2px;
+  }
+
   &:hover {
-    background: var(--color-action-background-transparent-onlight-hover);
+    &::after {
+      content: '';
+      position: absolute;
+      border-radius: 100%;
+      background: var(--core-color-neutral-50);
+      width: 2rem;
+      height: 2rem;
+      z-index: 1;
+    }
+
+    svg {
+      fill: var(--color-action-graphics-onlight-hover);
+    }
+  }
+
+  &:active {
+    &::after {
+      content: '';
+      position: absolute;
+      border-radius: 100%;
+      background: var(--core-color-neutral-100);
+      width: 2rem;
+      height: 2rem;
+      z-index: 1;
+    }
+  }
+
+  &:focus-visible {
+    @include focus-border;
+  }
+
+  /* denne gir det ingen mening at den klager på */
+  /* stylelint-disable-next-line no-descending-specificity */
+  svg {
+    fill: var(--color-action-graphics-onlight);
+    z-index: 2;
+  }
+}
+
+.calendar-button {
+  // Same as Input component
+  --button-size: calc(2.75rem + 0.25rem); // 44px height + 4px border
+
+  width: var(--button-size);
+  height: var(--button-size);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-base-border-onlight-emphasized);
+  border-left: none;
+
+  @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+    // Same as Input component
+    --button-size: calc(3rem + 0.25rem); // 48px height + 4px border
+  }
+
+  &:disabled {
+    border: 2px dashed var(--color-disabled-border);
+    border-left: none;
+
+    svg {
+      fill: var(--color-disabled-graphics);
+    }
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--core-color-neutral-50);
+
+    svg {
+      fill: var(--color-action-graphics-onlight-hover);
+    }
+  }
+
+  &:active:not(:disabled) {
+    background: var(--core-color-neutral-100);
+
+    svg {
+      fill: var(--color-action-graphics-emphasized-onlight);
+    }
+  }
+
+  &:focus-visible:not(:disabled) {
+    outline: 2px solid var(--color-action-border-onlight-focus);
+    border-color: var(--color-action-border-onlight-focus);
+
+    // hack to make focus border on left without moving icon
+    box-shadow: -2px 0 0 2px var(--color-action-border-onlight-focus);
   }
 
   /* denne gir det ingen mening at den klager på */
