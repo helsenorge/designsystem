@@ -1,3 +1,11 @@
+## [13.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.3&targetVersion=GTv13.0.0) (2025-11-25)
+
+
+### Features
+
+* **anchorlink:**  ny prop aschild med støtte for aschild patternet ([b6988a4](https://github.com/helsenorge/designsystem/commit/b6988a4664a2abd8639ad241b54e415e321499f0)), closes [#340712](https://github.com/helsenorge/designsystem/issues/340712)
+* **formfieldtag:**  tilgjengeliggjør nordsamisk ([8bee112](https://github.com/helsenorge/designsystem/commit/8bee112fa3148b3a44c8d8c68f1b011b69774e7d)), closes [#364928](https://github.com/helsenorge/designsystem/issues/364928)
+
 ## 13.0.0-beta.8 (2025-11-24)
 
 
