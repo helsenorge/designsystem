@@ -243,10 +243,8 @@ stages:
   # Copy to Github
   - stage:
     displayName: 'Github'
-    condition: and(
-      succeeded(),
-      in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual')
-    )
+    condition:
+      and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'))
     jobs:
       - job:
         displayName: 'Copy to Github'
