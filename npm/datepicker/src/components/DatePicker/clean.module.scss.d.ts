@@ -1,4 +1,5 @@
 export type Styles = {
+  'calendar-button': string;
   'clear-button': string;
   'custom_caption-label': string;
   custom_chevron: string;

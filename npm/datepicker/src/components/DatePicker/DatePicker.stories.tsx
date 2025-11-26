@@ -887,6 +887,9 @@ export const New: Story = {
   render: () => {
     return (
       <>
+        <span>{longLoremText}</span>
+        <span>{longLoremText}</span>
+        <br />
         <NewDayPicker
           withClearButton={true}
           label={

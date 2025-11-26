@@ -12,6 +12,7 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react';
+import { format } from 'date-fns';
 
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
@@ -34,9 +35,10 @@ export interface DatePickerWithInputProps extends BaseDayPickerProps {
 }
 
 const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode => {
-  const { disabled, label, withClearButton, ...baseProps } = props;
+  const { disabled, label, locale, withClearButton, ...baseProps } = props;
   const [inputValue, setInputValue] = useState<Date | undefined>(baseProps.selectedDate);
   const controllerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { value, toggleValue } = useToggle(false);
   const { refs, floatingStyles, context, middlewareData } = useFloating({
     placement: 'bottom-start',
@@ -54,8 +56,15 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
   const { getFloatingProps } = useInteractions([click, dismiss]);
   const isVisible = value && !middlewareData.hide?.referenceHidden;
 
+  const setFocusOnInput = (): void => {
+    if (inputRef.current) {
+      inputRef.current?.focus();
+    }
+  };
+
   const handleClear = (): void => {
     setInputValue(undefined);
+    setFocusOnInput();
   };
 
   /** @todo */
@@ -67,8 +76,9 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
         <Input
           disabled={disabled}
           label={label}
-          value={inputValue?.toLocaleDateString() || ''}
+          value={inputValue ? format(inputValue, 'P', { locale: locale }) : ''}
           width={14}
+          ref={inputRef}
           rightOfInput={
             <>
               {withClearButton && hasValue && (
@@ -90,6 +100,7 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
             style={{ ...floatingStyles, visibility: isVisible ? 'visible' : 'hidden', zIndex: ZIndex.PopOver }}
             {...getFloatingProps()}
           >
+            {/* @todo fix props */}
             <BaseDayPicker {...baseProps} selectedDate={inputValue} onDateChange={setInputValue} />
           </div>
         </FloatingFocusManager>
