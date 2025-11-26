@@ -108,6 +108,7 @@ export const WithLanguageProvider: Story = {
         <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)}>{'Bokmål'}</Button>
         <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)}>{'Nynorsk'}</Button>
         <Button onClick={() => setLanguage(LanguageLocales.ENGLISH)}>{'English'}</Button>
+        <Button onClick={() => setLanguage(LanguageLocales.SAMI_NORTHERN)}>{'Nordsamisk'}</Button>
         <span>{`Valgt språk: ${language}`}</span>
         <br />
         <FormFieldTag level="all-required" />

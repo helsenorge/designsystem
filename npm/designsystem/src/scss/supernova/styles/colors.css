@@ -255,4 +255,12 @@
   --component-listelements-background-blueberry-verydark: #7abecc;
   --component-listelements-border-neutral-ondark: #ffffff;
   --component-listelements-background-cherry-verydark: #e39376;
+  --color-notification-background-info-hover: #cae7ed;
+  --color-notification-background-info-active: #afdae3;
+  --color-notification-background-error-hover: #f7e1d2;
+  --color-notification-background-error-active: #eec0a5;
+  --color-notification-background-warning-hover: #fcf2bf;
+  --color-notification-background-warning-active: #f9ea9f;
+  --color-notification-background-success-hover: #c2edd6;
+  --color-notification-background-success-active: #9de2bf;
 }
