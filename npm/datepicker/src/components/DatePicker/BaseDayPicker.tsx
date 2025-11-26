@@ -65,7 +65,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
     ...customstyles,
     // https://daypicker.dev/docs/styling#custom-class-names
     root: classNames(reactdaypickerstyles.root, customstyles['root_override']),
-    day: classNames(reactdaypickerstyles.day, customstyles['date--default'], customstyles['day-custom']),
+    day: classNames(reactdaypickerstyles.day, customstyles['date--default']),
     months: classNames(reactdaypickerstyles.months, customstyles['custom_months-container']),
     month_caption: classNames(reactdaypickerstyles['month_caption'], customstyles['custom_month_caption']),
   };

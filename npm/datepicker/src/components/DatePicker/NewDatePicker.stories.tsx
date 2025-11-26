@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 import {
   autoUpdate,
@@ -14,7 +14,6 @@ import {
 } from '@floating-ui/react';
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { nb } from 'date-fns/locale';
-import { useDayPicker } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
