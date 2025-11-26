@@ -61,7 +61,7 @@ interface DatePickerPopupProps
 }
 
 const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
-  const { ariaLabels, datepickerWrapperRef, endMonth, footer, inputRef, locale, startMonth, testId, variant, zIndex, ...rest } = props;
+  const { ariaLabels, datepickerWrapperRef, endMonth, footer, inputRef, locale, startMonth, testId, variant, zIndex, ...rdpProps } = props;
 
   const today = new Date();
   const arrowRef = useRef<HTMLDivElement>(null);
@@ -151,12 +151,11 @@ const DatePickerPopup: React.FC<DatePickerPopupProps> = props => {
             disabled: styles['day--disabled'],
           }}
           footer={<span className={styles['footer-wrapper']}>{footer}</span>}
-          fixedWeeks
           labels={buildAriaLabels(ariaLabels)}
           startMonth={startMonth ?? new Date(today.getFullYear() - 100, today.getMonth(), 1)}
           endMonth={endMonth ?? new Date(today.getFullYear() + 100, today.getMonth(), 1)}
           locale={locale}
-          {...rest}
+          {...rdpProps}
         />
       </div>
       <div ref={arrowRef} className={popupArrowClasses} style={{ ...arrowStyle, zIndex }} />

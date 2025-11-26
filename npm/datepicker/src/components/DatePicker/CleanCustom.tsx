@@ -2,7 +2,6 @@ import React, { ButtonHTMLAttributes, useRef } from 'react';
 
 import classNames from 'classnames';
 import { CaptionLabel, CaptionLabelProps, DropdownProps, useDayPicker, type DayButtonProps } from 'react-day-picker';
-import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import ChevronDown from '@helsenorge/designsystem-react/components/Icons/ChevronDown';
@@ -13,30 +12,6 @@ import PopOver from '@helsenorge/designsystem-react/components/PopOver';
 import { IconSize, useOutsideEvent, usePseudoClasses, useToggle } from '@helsenorge/designsystem-react';
 
 import customstyles from './clean.module.scss';
-
-export const CustomSelect = (props: DropdownProps): React.JSX.Element => {
-  const { options, className, ...selectProps } = props;
-  const { components } = useDayPicker();
-
-  return (
-    <span data-disabled={selectProps.disabled} className={classNames(reactdaypickerstyles['dropdown_root'])}>
-      <components.Select className={classNames(className, customstyles['custom_dropdown_select'])} {...selectProps}>
-        {options?.map(({ value, label, disabled }) => (
-          <components.Option key={value} value={value} disabled={disabled}>
-            {label}
-          </components.Option>
-        ))}
-      </components.Select>
-    </span>
-  );
-};
-
-// // Create a context to share the selected date state between the custom DayButton and the main component.
-// // https://daypicker.dev/guides/custom-components#intercepting-click-events
-// export const SelectedDateContext = React.createContext<{
-//   selected?: Date;
-//   setSelected?: (date: Date | undefined) => void;
-// }>({});
 
 export const CustomDayButton = (props: DayButtonProps): React.JSX.Element => {
   // const { day, modifiers, className, components, ...buttonProps } = props;
@@ -65,6 +40,7 @@ export const CustomDayButton = (props: DayButtonProps): React.JSX.Element => {
   return (
     <>
       {modifiers.fullyBooked && (
+        // @todo: fix popover som prop
         <PopOver controllerRef={buttonRef} ref={popoverRef} id={``} show={isPopoverOpen}>
           {'Det er fullt'}
         </PopOver>

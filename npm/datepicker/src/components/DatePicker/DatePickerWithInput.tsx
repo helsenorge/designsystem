@@ -39,7 +39,7 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
   const [inputValue, setInputValue] = useState<Date | undefined>(baseProps.selectedDate);
   const controllerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { value, toggleValue } = useToggle(false);
+  const { value: isPopupOpen, toggleValue: toggleIsPopupOpen } = useToggle(false);
   const { refs, floatingStyles, context, middlewareData } = useFloating({
     placement: 'bottom-start',
     // todo: sjekk om vi skal tillate at den kan legge seg over inputfeltet
@@ -54,7 +54,7 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
   const dismiss = useDismiss(context);
 
   const { getFloatingProps } = useInteractions([click, dismiss]);
-  const isVisible = value && !middlewareData.hide?.referenceHidden;
+  const isVisible = isPopupOpen && !middlewareData.hide?.referenceHidden;
 
   const setFocusOnInput = (): void => {
     if (inputRef.current) {
@@ -65,6 +65,13 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
   const handleClear = (): void => {
     setInputValue(undefined);
     setFocusOnInput();
+  };
+
+  const handleDateChange = (date: Date | undefined): void => {
+    setInputValue(date);
+    baseProps.onDateChange?.(date);
+    setFocusOnInput();
+    toggleIsPopupOpen();
   };
 
   /** @todo */
@@ -86,14 +93,19 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
                   <Icon svgIcon={X} size={IconSize.XXSmall} />
                 </button>
               )}
-              <button onClick={toggleValue} disabled={disabled} aria-label="Open datepicker" className={customstyles['calendar-button']}>
+              <button
+                onClick={toggleIsPopupOpen}
+                disabled={disabled}
+                aria-label="Open datepicker"
+                className={customstyles['calendar-button']}
+              >
                 <Icon svgIcon={Calendar} size={IconSize.XSmall} />
               </button>
             </>
           }
         />
       </div>
-      {value && (
+      {isPopupOpen && (
         <FloatingFocusManager context={context} modal={false}>
           <div
             ref={refs.setFloating}
@@ -101,7 +113,7 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
             {...getFloatingProps()}
           >
             {/* @todo fix props */}
-            <BaseDayPicker {...baseProps} selectedDate={inputValue} onDateChange={setInputValue} />
+            <BaseDayPicker {...baseProps} selectedDate={inputValue} onDateChange={handleDateChange} />
           </div>
         </FloatingFocusManager>
       )}

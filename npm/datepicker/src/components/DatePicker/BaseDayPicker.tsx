@@ -26,7 +26,7 @@ export type DatePickerModifiers = {
 };
 
 export interface BaseDayPickerProps
-  extends Pick<DayPickerProps, 'dir' | 'startMonth' | 'locale' | 'endMonth' | 'captionLayout' | 'footer' | 'navLayout'> {
+  extends Pick<DayPickerProps, 'dir' | 'startMonth' | 'locale' | 'endMonth' | 'captionLayout' | 'footer' | 'navLayout' | 'fixedWeeks'> {
   selectedDate?: Date;
   onDateChange?: (date: Date | undefined) => void;
   isLoading?: boolean;
@@ -35,7 +35,7 @@ export interface BaseDayPickerProps
   /** Resources for component */
   resources?: Partial<HNDesignsystemDatePicker>;
   /** Sets the locale of the datepicker */
-  locale?: Locale; // koble denne til LanguageLocales og useLanguage ?
+  locale?: Locale;
 }
 
 const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
@@ -65,7 +65,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
     ...customstyles,
     // https://daypicker.dev/docs/styling#custom-class-names
     root: classNames(reactdaypickerstyles.root, customstyles['root_override']),
-    day: classNames(reactdaypickerstyles.day, customstyles['date--default']),
+    day: classNames(reactdaypickerstyles.day, customstyles['date--default'], customstyles['day-custom']),
     months: classNames(reactdaypickerstyles.months, customstyles['custom_months-container']),
     month_caption: classNames(reactdaypickerstyles['month_caption'], customstyles['custom_month_caption']),
   };
@@ -95,7 +95,6 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
       {...rdpProps}
       navLayout={navLayout}
       mode={'single'}
-      fixedWeeks
       required={true} // ?
       selected={selected}
       month={month}
@@ -105,7 +104,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
       locale={locale}
       footer={
         showGoToTodayButton ? (
-          <div className={customstyles['datepicker-footer']}>
+          <div className={classNames(customstyles['datepicker-footer'], customstyles['datepicker-footer--with-today-button'])}>
             <Button
               variant="borderless"
               onClick={() => {
@@ -117,7 +116,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
             {footer}
           </div>
         ) : (
-          footer
+          footer && <div className={classNames(customstyles['datepicker-footer'])}>{footer}</div>
         )
       }
       modifiers={modifiers}
