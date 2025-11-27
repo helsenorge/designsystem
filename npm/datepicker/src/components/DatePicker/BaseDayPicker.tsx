@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { isSameDay, Locale } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { DayPicker, DayPickerProps, Matcher, MonthGrid, MonthGridProps } from 'react-day-picker';
+import { DayPicker, DayPickerProps, Matcher, Modifiers, MonthGrid, MonthGridProps } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
@@ -23,6 +23,14 @@ export type DatePickerModifiers = {
   partiallyBooked?: Date[] | Matcher[];
   fullyBooked?: Date[] | Matcher[];
   disabled?: Date[] | Matcher[];
+  [key: string]: Date[] | Matcher[] | undefined;
+};
+
+/* @todo: lag dette */
+export type HelpBubbleText = {
+  id: string;
+  dates: Date | Date[] | Matcher | Matcher[];
+  text: string;
 };
 
 export interface BaseDayPickerProps
@@ -36,6 +44,7 @@ export interface BaseDayPickerProps
   resources?: Partial<HNDesignsystemDatePicker>;
   /** Sets the locale of the datepicker */
   locale?: Locale;
+  helpBubbleTexts?: HelpBubbleText[];
 }
 
 const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
@@ -49,6 +58,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
     resources,
     locale = nb,
     navLayout = 'after',
+    helpBubbleTexts,
     ...rdpProps
   } = props;
 
@@ -90,6 +100,17 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
     onDateChange?.(date);
   };
 
+  const helpBubbleTextModifiers = {} as DatePickerModifiers;
+  helpBubbleTexts?.forEach(helpBubbleText => {
+    const dates = Array.isArray(helpBubbleText.dates) ? helpBubbleText.dates : [helpBubbleText.dates];
+    helpBubbleTextModifiers[helpBubbleText.id] = dates;
+  });
+
+  const modifiersExtended: DatePickerModifiers = {
+    ...modifiers,
+    ...helpBubbleTextModifiers,
+  };
+
   return (
     <DayPicker
       {...rdpProps}
@@ -102,6 +123,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
       onSelect={handleSelect}
       classNames={datePickerClassNames}
       locale={locale}
+      modifiers={modifiersExtended}
       footer={
         showGoToTodayButton ? (
           <div className={classNames(customstyles['datepicker-footer'], customstyles['datepicker-footer--with-today-button'])}>
@@ -109,6 +131,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
               variant="borderless"
               onClick={() => {
                 setMonth(new Date());
+                // @todo: velg dagens ?
               }}
             >
               {mergedResources.goToToday}
@@ -119,14 +142,13 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
           footer && <div className={classNames(customstyles['datepicker-footer'])}>{footer}</div>
         )
       }
-      modifiers={modifiers}
       onDayClick={(_date, modifiers) => {
-        if (modifiers.disabled) {
-          alert('Denne datoen er ikke tilgjengelig for valg.');
-        }
-        if (modifiers.fullyBooked) {
-          alert('Denne datoen er fullbooket. Vennligst velg en annen dato.');
-        }
+        // if (modifiers.disabled) {
+        //   alert('Denne datoen er ikke tilgjengelig for valg.');
+        // }
+        // if (modifiers.fullyBooked) {
+        //   alert('Denne datoen er fullbooket. Vennligst velg en annen dato.');
+        // }
       }}
       modifiersClassNames={{
         emphasized: customstyles['date--emphasized'],

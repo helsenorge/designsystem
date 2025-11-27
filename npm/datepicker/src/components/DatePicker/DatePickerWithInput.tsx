@@ -19,7 +19,7 @@ import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import X from '@helsenorge/designsystem-react/components/Icons/X';
 import Input from '@helsenorge/designsystem-react/components/Input';
 
-import { IconSize, useToggle, ZIndex } from '@helsenorge/designsystem-react';
+import { IconSize, useOutsideEvent, useToggle, ZIndex } from '@helsenorge/designsystem-react';
 
 import BaseDayPicker, { BaseDayPickerProps } from './BaseDayPicker';
 
@@ -39,6 +39,7 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
   const [inputValue, setInputValue] = useState<Date | undefined>(baseProps.selectedDate);
   const controllerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const calendarButtonRef = useRef<HTMLButtonElement>(null);
   const { value: isPopupOpen, toggleValue: toggleIsPopupOpen } = useToggle(false);
   const { refs, floatingStyles, context, middlewareData } = useFloating({
     placement: 'bottom-start',
@@ -46,7 +47,7 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
     middleware: [offset(8), flip({ mainAxis: true, crossAxis: false }), shift({ mainAxis: true, padding: 8 }), hide()],
     whileElementsMounted: autoUpdate,
     elements: {
-      reference: controllerRef.current,
+      reference: controllerRef.current, // @todo: legg til popup for å ikke lukke seg om input blir borte
     },
   });
 
@@ -62,17 +63,40 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
     }
   };
 
+  // @todo: ser ut som default oppførsel er at inputfelt fokuseres, kanskje bedre enn at vi overstyrer?
+  // const setFocusOnCalendarButton = (): void => {
+  //   if (calendarButtonRef.current) {
+  //     calendarButtonRef.current?.focus();
+  //   }
+  // };
+
   const handleClear = (): void => {
-    setInputValue(undefined);
+    handleDateChange(undefined);
     setFocusOnInput();
   };
 
   const handleDateChange = (date: Date | undefined): void => {
     setInputValue(date);
     baseProps.onDateChange?.(date);
-    setFocusOnInput();
-    toggleIsPopupOpen();
+    if (isPopupOpen) toggleIsPopupOpen();
   };
+
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  useOutsideEvent(
+    [calendarButtonRef, refs.floating],
+    (e: any) => {
+      if (
+        calendarButtonRef.current &&
+        refs.floating.current &&
+        !e?.composedPath().includes(calendarButtonRef.current) &&
+        !e?.composedPath().includes(refs.floating.current)
+      ) {
+        if (isPopupOpen) toggleIsPopupOpen();
+      }
+    },
+    ['mousedown', 'focusin', 'blur']
+  );
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 
   /** @todo */
   const hasValue = !!inputValue;
@@ -94,6 +118,7 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
                 </button>
               )}
               <button
+                ref={calendarButtonRef}
                 onClick={toggleIsPopupOpen}
                 disabled={disabled}
                 aria-label="Open datepicker"

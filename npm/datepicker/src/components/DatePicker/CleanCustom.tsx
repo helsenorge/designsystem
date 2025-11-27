@@ -22,12 +22,13 @@ export const CustomDayButton = (props: DayButtonProps): React.JSX.Element => {
   const { value: isPopoverOpen, toggleValue: togglePopover } = useToggle(false);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    if (modifiers.disabled) {
-      alert('Denne datoen er ikke tilgjengelig for valg.');
-      return;
-    }
+    // if (modifiers.disabled) {
+    //   alert('Denne datoen er ikke tilgjengelig for valg.');
+    //   return;
+    // }
     if (modifiers.fullyBooked) {
       togglePopover();
+      return;
     }
     // call the original onClick from RDP
     buttonProps.onClick?.(e);
@@ -36,6 +37,10 @@ export const CustomDayButton = (props: DayButtonProps): React.JSX.Element => {
     if (isPopoverOpen) togglePopover();
   });
   const popoverId = `datepicker-popover-${day?.date?.toISOString()}`;
+
+  React.useEffect(() => {
+    if (modifiers.focused) buttonRef.current?.focus();
+  }, [modifiers.focused]);
 
   return (
     <>

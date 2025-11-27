@@ -25,7 +25,7 @@ import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
 
 import { useToggle } from '@helsenorge/designsystem-react';
 
-import BaseDayPicker from './BaseDayPicker';
+import BaseDayPicker, { HelpBubbleText } from './BaseDayPicker';
 import NewDayPicker from './NewDatePicker';
 
 const meta = {
@@ -100,6 +100,34 @@ export const Standalone: Story = {
   },
 };
 
+export const StandaloneWithHelpBubbles: Story = {
+  args: {
+    standalone: true,
+  },
+  render: args => {
+    const [selected, setSelected] = React.useState<Date | undefined>(undefined);
+
+    const helpBubbles: HelpBubbleText[] = [
+      {
+        id: 'disabledPast',
+        dates: [{ from: new Date(0), to: new Date() }],
+        text: 'Du kan ikke velge datoer i fortiden',
+      },
+      {
+        id: 'emphasizedWeekends',
+        dates: [{ dayOfWeek: [0, 6] }],
+        text: 'Helgedager er markert',
+      },
+    ];
+
+    return (
+      <>
+        <NewDayPicker helpBubbleTexts={helpBubbles} selectedDate={selected} onDateChange={setSelected} {...args} />
+      </>
+    );
+  },
+};
+
 export const Timeavtaler: Story = {
   render: () => {
     const [selected, setSelected] = React.useState<Date | undefined>(undefined);
@@ -110,6 +138,8 @@ export const Timeavtaler: Story = {
     yesterday.setDate(today.getDate() - 1);
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
+    const overtomorrow = new Date();
+    overtomorrow.setDate(tomorrow.getDate() + 1);
     const emphasized = [{ from: today, to: new Date('08-11-2026') }];
     const disabled = [{ from: new Date('01-01-0000'), to: yesterday }];
     const partiallyBooked = [tomorrow];
@@ -144,6 +174,7 @@ export const Timeavtaler: Story = {
             emphasized: emphasized,
             disabled: disabled,
             partiallyBooked: partiallyBooked,
+            fullyBooked: [overtomorrow],
           }}
         />
       </>
@@ -152,7 +183,7 @@ export const Timeavtaler: Story = {
 };
 
 export const WithFooter: Story = {
-  render: () => {
+  render: args => {
     const [selected, setSelected] = React.useState<Date | undefined>(undefined);
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const captionLayout = 'dropdown';
@@ -172,7 +203,7 @@ export const WithFooter: Story = {
           checked={isLoading}
           onChange={() => setIsLoading(!isLoading)}
         />
-        <BaseDayPicker
+        <NewDayPicker
           showGoToTodayButton
           footer={
             <Button onClick={() => console.log('Clicked')} variant="borderless">
@@ -183,6 +214,7 @@ export const WithFooter: Story = {
           onDateChange={setSelected}
           isLoading={isLoading}
           captionLayout={captionLayout}
+          {...args}
         />
       </>
     );
@@ -212,33 +244,12 @@ export const WithTodayButton: Story = {
 };
 
 export const PreFilled: Story = {
-  render: () => {
+  render: args => {
     const [selected, setSelected] = React.useState<Date | undefined>(new Date());
-    const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const captionLayout = 'label';
 
     return (
       <>
-        <span>
-          {'Selected date: '}
-          {selected ? selected.toDateString() : 'none'}
-        </span>
-        <Toggle
-          label={[
-            {
-              text: 'Loading',
-            },
-          ]}
-          checked={isLoading}
-          onChange={() => setIsLoading(!isLoading)}
-        />
-        <BaseDayPicker
-          navLayout="after"
-          selectedDate={selected}
-          onDateChange={setSelected}
-          isLoading={isLoading}
-          captionLayout={captionLayout}
-        />
+        <NewDayPicker navLayout="after" selectedDate={selected} onDateChange={setSelected} {...args} />
       </>
     );
   },
