@@ -85,6 +85,8 @@ export type LinkProps = Modify<
     highlightText?: string;
     /** Resources for component */
     resources?: Partial<HNDesignsystemLinkList>;
+    /** @experimental id for content (only used in edit mode for aria-describedby) */
+    contentId?: string;
   }
 > &
   Pick<LinkListProps, 'color' | 'size' | 'variant'> &
@@ -107,6 +109,7 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
     htmlMarkup = 'a',
     highlightText,
     editMode = false,
+    contentId,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     resources, // used by ListEditModeItem in LinkList
     ...restProps
@@ -148,7 +151,7 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
   const imageContainer = <span className={LinkListStyles['link-list__image-container']}>{image}</span>;
 
   return editMode ? (
-    <div className={liClasses} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
+    <div id={contentId} className={liClasses} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
       <div className={linkClasses}>
         <div className={statusMarkerClasses}></div>
         {renderElementHeader(children, {
@@ -231,14 +234,21 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
 
   return (
     <ul ref={ref} className={listClassNames} data-testid={testId} data-analyticsid={AnalyticsId.LinkList}>
-      {React.Children.map(children, (child: React.ReactNode) => {
+      {React.Children.map(children, (child: React.ReactNode, index) => {
         if (React.isValidElement<LinkProps>(child) && child.type === Link) {
           if (editMode) {
             const childResources = child.props.resources;
             const deleteAriaLabel = childResources?.editMode_deleteButtonAriaLabel ?? mergedResources.editMode_deleteButtonAriaLabel;
+            const itemId = `linklist-item-${index}`;
 
             return (
-              <ListEditModeItem color={color} variant={variant} onDelete={child.props.onDelete} deleteButtonAriaLabel={deleteAriaLabel}>
+              <ListEditModeItem
+                color={color}
+                variant={variant}
+                onDelete={child.props.onDelete}
+                contentId={itemId}
+                deleteButtonAriaLabel={deleteAriaLabel}
+              >
                 {React.cloneElement(child, {
                   color,
                   size,
@@ -246,6 +256,7 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
                   variant,
                   highlightText: highlightText,
                   editMode: true,
+                  contentId: itemId,
                 })}
               </ListEditModeItem>
             );

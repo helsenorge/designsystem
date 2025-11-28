@@ -27,6 +27,7 @@ export interface ListEditModeItemProps {
   editMode?: boolean;
   /** Callback for delete button  */
   onDelete?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  contentId?: string;
 }
 
 export const listEditModeWrapperClassnames = classNames([styles[`list-edit-mode`]]);
@@ -36,11 +37,13 @@ export const IconButton = ({
   color,
   onClick,
   ariaLabel,
+  ariaDescribedby,
 }: {
   icon: SvgIcon;
   color: 'red' | 'blue';
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   ariaLabel?: string;
+  ariaDescribedby?: string;
 }): React.JSX.Element => {
   const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>();
 
@@ -51,6 +54,7 @@ export const IconButton = ({
       type="button"
       className={classNames(styles['list-edit-mode__icon-button'])}
       aria-label={ariaLabel}
+      aria-describedby={ariaDescribedby}
     >
       <Icon
         isHovered={isHovered}
@@ -63,7 +67,7 @@ export const IconButton = ({
 };
 
 export const ListEditModeItem = (props: ListEditModeProps): React.JSX.Element => {
-  const { children, variant = 'line', color = 'neutral', onDelete, deleteButtonAriaLabel } = props;
+  const { children, variant = 'line', color = 'neutral', onDelete, deleteButtonAriaLabel, contentId } = props;
 
   const listClassNames = classNames(styles['list-edit-mode__item'], color && styles[`list-edit-mode__item--${color}`], {
     [styles['list-edit-mode__item--line']]: variant === 'line',
@@ -73,7 +77,7 @@ export const ListEditModeItem = (props: ListEditModeProps): React.JSX.Element =>
   return (
     <li className={listClassNames}>
       {children}
-      {onDelete && <IconButton icon={X} onClick={onDelete} color="red" ariaLabel={deleteButtonAriaLabel} />}
+      {onDelete && <IconButton icon={X} onClick={onDelete} color="red" ariaLabel={deleteButtonAriaLabel} ariaDescribedby={contentId} />}
     </li>
   );
 };
