@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 import { isSameDay, Locale } from 'date-fns';
@@ -7,12 +7,13 @@ import { DayPicker, DayPickerProps, Matcher, Modifiers, MonthGrid, MonthGridProp
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
+import HelpBubble from '@helsenorge/designsystem-react/components/HelpBubble';
 import Loader from '@helsenorge/designsystem-react/components/Loader';
 import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
 
-import { LanguageLocales } from '@helsenorge/designsystem-react';
+import { LanguageLocales, useOutsideEvent, useToggle } from '@helsenorge/designsystem-react';
 
-import { CustomCaptionLabel, CustomDayButton, CustomDropdown, CustomNextButton, CustomPreviousButton } from './CleanCustom';
+import { CustomCaptionLabel, CustomDropdown, CustomNextButton, CustomPreviousButton } from './CleanCustom';
 import { getResources } from './resourceHelper';
 import { HNDesignsystemDatePicker } from '../../resources/Resources';
 
@@ -159,7 +160,62 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
         fullyBooked: customstyles['date--fully'],
       }}
       components={{
-        DayButton: CustomDayButton,
+        DayButton: props => {
+          const { day, modifiers, ...buttonProps } = props;
+
+          const buttonRef = React.useRef<HTMLButtonElement>(null);
+          const popoverRef = React.useRef<HTMLDivElement>(null);
+          // const { value: isPopoverOpen, toggleValue: togglePopover } = useToggle(false);
+          const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
+          const [popoverText, setPopoverText] = useState<string>('');
+
+          useEffect(() => {
+            console.trace('isPopoverOpen changed: ', isPopoverOpen);
+          }, [isPopoverOpen]);
+
+          const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+            // if (modifiers.disabled) {
+            //   alert('Denne datoen er ikke tilgjengelig for valg.');
+            //   return;
+            // }
+            if (modifiers.selected) {
+              setIsPopoverOpen(false);
+            } else {
+              Object.keys(helpBubbleTextModifiers).forEach(key => {
+                if (modifiers[key as keyof Modifiers]) {
+                  const helpText = helpBubbleTexts?.find(hbt => hbt.id === key)?.text;
+                  if (helpText) {
+                    console.log(helpText);
+                    setPopoverText(helpText);
+                    if (!isPopoverOpen) {
+                      setIsPopoverOpen(true);
+                    }
+                  }
+                }
+              });
+            }
+            // call the original onClick from RDP
+            buttonProps.onClick?.(e);
+          };
+          // useOutsideEvent([buttonRef, popoverRef], () => {
+          //   if (isPopoverOpen) togglePopover();
+          // });
+          const popoverId = `datepicker-popover-${day?.date?.toISOString()}`;
+
+          React.useEffect(() => {
+            if (modifiers.focused) buttonRef.current?.focus();
+          }, [modifiers.focused]);
+
+          return (
+            <>
+              {/* // @todo: fix popover som prop */}
+              <HelpBubble controllerRef={buttonRef} ref={popoverRef} showBubble={isPopoverOpen}>
+                <span id={popoverId}>{popoverText}</span>
+              </HelpBubble>
+              <button {...buttonProps} ref={buttonRef} onClick={handleClick} style={{ zIndex: 1 }} aria-describedby={popoverId} />
+            </>
+          );
+        },
         NextMonthButton: CustomNextButton,
         PreviousMonthButton: CustomPreviousButton,
         MonthGrid: isLoading
