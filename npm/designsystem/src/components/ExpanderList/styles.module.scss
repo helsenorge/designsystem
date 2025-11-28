@@ -39,6 +39,7 @@
     grid-template:
       'header' auto
       'content' auto / 1fr auto;
+    width: 100%;
 
     &--new {
       grid-template:

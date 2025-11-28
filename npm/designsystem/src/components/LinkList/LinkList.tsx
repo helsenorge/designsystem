@@ -2,12 +2,15 @@ import React from 'react';
 
 import cn from 'classnames';
 
-import { AnalyticsId } from '../../constants';
+import { AnalyticsId, LanguageLocales } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
+import { HNDesignsystemLinkList } from '../../resources/Resources';
 import { PaletteNames } from '../../theme/palette';
+import { useLanguage } from '../../utils/language';
 import { ElementHeaderType, renderElementHeader } from '../ElementHeader/ElementHeader';
 import ChevronRight from '../Icons/ChevronRight';
 import ListEditModeItem, { ListEditModeItemProps, listEditModeWrapperClassnames } from '../ListEditMode';
+import { getResources } from './resourceHelper';
 
 import LinkListStyles from './styles.module.scss';
 
@@ -51,6 +54,8 @@ export interface LinkListProps {
    * Enables ListEditMode
    */
   editMode?: boolean;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemLinkList>;
 }
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -78,6 +83,8 @@ export type LinkProps = Modify<
     testId?: string;
     /** Highlights text. Override if different from list */
     highlightText?: string;
+    /** Resources for component */
+    resources?: Partial<HNDesignsystemLinkList>;
   }
 > &
   Pick<LinkListProps, 'color' | 'size' | 'variant'> &
@@ -100,6 +107,8 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
     htmlMarkup = 'a',
     highlightText,
     editMode = false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    resources, // used by ListEditModeItem in LinkList
     ...restProps
   } = props;
   const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement>(linkRef);
@@ -138,21 +147,23 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
 
   const imageContainer = <span className={LinkListStyles['link-list__image-container']}>{image}</span>;
 
-  return (
+  return editMode ? (
+    <div className={liClasses} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
+      <div className={linkClasses}>
+        <div className={statusMarkerClasses}></div>
+        {renderElementHeader(children, {
+          titleHtmlMarkup: 'span',
+          size,
+          parentType: 'linklist',
+          chevronIcon: chevron ? ChevronRight : undefined,
+          icon: icon ?? imageContainer,
+          highlightText,
+        })}
+      </div>
+    </div>
+  ) : (
     <li className={liClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
-      {editMode ? (
-        <div className={linkClasses}>
-          <div className={statusMarkerClasses}></div>
-          {renderElementHeader(children, {
-            titleHtmlMarkup: 'span',
-            size,
-            parentType: 'linklist',
-            chevronIcon: chevron ? ChevronRight : undefined,
-            icon: icon ?? imageContainer,
-            highlightText,
-          })}
-        </div>
-      ) : htmlMarkup === 'a' ? (
+      {htmlMarkup === 'a' ? (
         <a
           className={linkClasses}
           ref={refObject as React.RefObject<HTMLAnchorElement>}
@@ -202,7 +213,16 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
     variant = 'line',
     highlightText,
     editMode = false,
+    resources,
   } = props;
+
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemLinkList = {
+    ...defaultResources,
+    ...resources,
+  };
 
   const listClassNames = cn(LinkListStyles['link-list'], className, {
     [LinkListStyles[`link-list--outline--${color}`]]: variant === 'outline',
@@ -214,8 +234,11 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
       {React.Children.map(children, (child: React.ReactNode) => {
         if (React.isValidElement<LinkProps>(child) && child.type === Link) {
           if (editMode) {
+            const childResources = child.props.resources;
+            const deleteAriaLabel = childResources?.editMode_deleteButtonAriaLabel ?? mergedResources.editMode_deleteButtonAriaLabel;
+
             return (
-              <ListEditModeItem color={color} variant={variant} onDelete={child.props.onDelete}>
+              <ListEditModeItem color={color} variant={variant} onDelete={child.props.onDelete} deleteButtonAriaLabel={deleteAriaLabel}>
                 {React.cloneElement(child, {
                   color,
                   size,
