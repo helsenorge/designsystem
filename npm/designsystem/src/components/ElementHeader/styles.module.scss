@@ -26,6 +26,18 @@
 
   @include gridtemplate(3rem);
 
+  &--compact {
+    padding: 0 spacers.getSpacer(2xs) 0 0;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      padding: 0.125rem spacers.getSpacer(2xs) 0.125rem 0;
+    }
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
+      padding: 0.5rem spacers.getSpacer(2xs) 0.5rem 0;
+    }
+  }
+
   &__title {
     font-size: inherit;
     font-weight: inherit;
@@ -60,6 +72,18 @@
       margin-left: spacers.getSpacer(2xs);
     }
 
+    &--compact {
+      padding: 0.7rem 0 0.7rem 1rem;
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+        padding: 0.57rem 0 0.57rem 2rem;
+      }
+
+      @media (min-width: map.get(breakpoints.$grid-breakpoints, lg)) {
+        padding: 0.57rem 0 0.57rem 1rem;
+      }
+    }
+
     :focus > &,
     :focus-visible > & {
       border-color: palette.$black;
@@ -78,6 +102,8 @@
   &__chevron,
   &__chevron svg {
     align-self: center;
+    display: flex;
+    align-items: center;
   }
 
   &__icon,

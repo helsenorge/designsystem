@@ -126,3 +126,11 @@ export const DismissableLabelOnly: Story = {
 export const LabelOnly: Story = {
   render: () => <ServiceMessage label={'Label only'} variant="error" dismissable={false} />,
 };
+
+export const LongTitle: Story = {
+  args: {
+    label:
+      'This is a very long title that should test how the ServiceMessage component handles long text in the label area. Would you believe it?',
+  },
+  render: args => <ServiceMessage {...args} />,
+};
