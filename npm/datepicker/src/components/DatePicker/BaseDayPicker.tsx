@@ -27,7 +27,6 @@ export type DatePickerModifiers = {
   [key: string]: Date[] | Matcher[] | undefined;
 };
 
-/* @todo: lag dette */
 export type HelpBubbleText = {
   id: string;
   dates: Date | Date[] | Matcher | Matcher[];
@@ -224,7 +223,6 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
             buttonProps.onClick?.(e);
           };
 
-          // Check if this button should show the popover
           const shouldShowPopover = popoverDay && isSameDay(day.date, popoverDay);
 
           return (

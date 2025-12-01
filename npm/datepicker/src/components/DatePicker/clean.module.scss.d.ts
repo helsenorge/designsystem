@@ -3,9 +3,8 @@ export type Styles = {
   'clear-button': string;
   'custom_caption-label': string;
   custom_chevron: string;
-  custom_dropdown_select: string;
+  custom_day_button: string;
   custom_month_caption: string;
-  'custom_months-container': string;
   custom_nav_button: string;
   'date--default': string;
   'date--disabled': string;
@@ -15,6 +14,7 @@ export type Styles = {
   'date--selected': string;
   'date--today': string;
   'datepicker-footer': string;
+  'datepicker-footer--with-today-button': string;
   dropdown_chevron: string;
   dropdown_container: string;
   dropdown_label: string;
