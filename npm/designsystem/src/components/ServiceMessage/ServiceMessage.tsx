@@ -10,6 +10,7 @@ import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { AnchorLinkTargets } from '../AnchorLink';
 import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
+import { renderElementHeader } from '../ElementHeader/ElementHeader';
 import Icon, { IconSize } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
@@ -36,12 +37,24 @@ const Label: React.FC<LabelProps> = ({ label, variant, id, hasExpander, isExpand
   const { isHovered, refObject } = usePseudoClasses<HTMLDivElement>();
 
   const iconSize = breakpoint < breakpoints.lg ? IconSize.XSmall : IconSize.Small;
-  const CustomTag = hasExpander ? 'button' : 'span';
-
   const labelContainerClasses = classNames(
     styles['service-message__label-container'],
+    styles[`service-message__label-container--${variant}`],
     hasExpander && styles[`service-message__label-container--has-expander`]
   );
+
+  const elementHeader = renderElementHeader(label, {
+    titleHtmlMarkup: 'span',
+    isHovered,
+    size: 'compact',
+    parentType: 'expanderlist',
+    chevronIcon: hasExpander ? (isExpanded ? ChevronUp : ChevronDown) : undefined,
+    icon: <NotificationBadge variant={variant} size={iconSize} isHovered={hasExpander && isHovered} />,
+    closeButton:
+      !hasExpander && dismissable ? (
+        <Close onClick={onDismiss} ariaLabel={closeBtnText} className={styles['service-message__close']} />
+      ) : undefined,
+  });
 
   return (
     <div className={labelContainerClasses} ref={refObject}>
@@ -49,19 +62,16 @@ const Label: React.FC<LabelProps> = ({ label, variant, id, hasExpander, isExpand
         <div className={styles['service-message__row']}>
           <div className={styles['service-message__col']}>
             <div className={styles['service-message__label']}>
-              <NotificationBadge variant={variant} size={iconSize} isHovered={isHovered} />
-              <h1 className={styles['service-message__title']} id={id}>
-                <CustomTag
-                  className={styles['service-message__toggle']}
-                  onClick={hasExpander ? onExpand : undefined}
-                  aria-expanded={hasExpander ? isExpanded : undefined}
-                >
-                  {label}
-                </CustomTag>
-              </h1>
-              {hasExpander && <Icon size={iconSize} svgIcon={isExpanded ? ChevronUp : ChevronDown} isHovered={isHovered} />}
-              {!hasExpander && dismissable && (
-                <Close onClick={onDismiss} ariaLabel={closeBtnText} className={styles['service-message__close']} />
+              {hasExpander ? (
+                <h1 className={styles['service-message__title']} id={id}>
+                  <button type="button" className={styles['service-message__toggle']} onClick={onExpand} aria-expanded={isExpanded}>
+                    {elementHeader}
+                  </button>
+                </h1>
+              ) : (
+                <h1 className={styles['service-message__title']} id={id}>
+                  {elementHeader}
+                </h1>
               )}
             </div>
           </div>

@@ -128,4 +128,11 @@ export type HNDesignsystemMaxCharacters = {
   characters: string;
 };
 
+export type HNDesignsystemLinkList = {
+  /**
+   * Slett
+   */
+  editMode_deleteButtonAriaLabel: string;
+};
+
 /* eslint:enable */

@@ -1,7 +1,7 @@
 @use 'sass:map';
-@use '../../scss/spacers' as spacers;
-@use '../../scss/palette' as palette;
 @use '../../scss/font-settings' as font-settings;
+@import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
 @import '../../scss/breakpoints';
 @import '../../scss/grid';
 
@@ -16,55 +16,43 @@
   }
 
   &--success {
-    background-color: palette.$kiwi50;
-
-    &:hover {
-      background-color: rgba-to-rgb(rgba(palette.$kiwi500, 0.1), palette.$kiwi50);
-    }
+    background-color: var(--color-notification-background-success);
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: palette.$kiwi900;
+      border-color: var(--color-notification-border-success);
     }
   }
 
   &--info {
-    background-color: palette.$blueberry50;
-
-    &:hover {
-      background-color: rgba-to-rgb(rgba(palette.$blueberry500, 0.1), palette.$blueberry50);
-    }
+    background-color: var(--color-notification-background-info);
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: palette.$blueberry700;
+      border-color: var(--color-notification-border-info);
     }
   }
 
   &--warn {
-    background-color: palette.$banana50;
-
-    &:hover {
-      background-color: rgba-to-rgb(rgba(palette.$banana500, 0.1), palette.$banana50);
-    }
+    background-color: var(--color-notification-background-warning);
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: palette.$banana700;
+      border-color: var(--color-notification-border-warning);
     }
   }
 
   &--error {
-    background-color: palette.$cherry50;
-
-    &:hover {
-      background-color: rgba-to-rgb(rgba(palette.$cherry500, 0.1), palette.$cherry50);
-    }
+    background-color: var(--color-notification-background-error);
 
     &#{$servicemessage},
     &#{$servicemessage}__label-container {
-      border-color: palette.$cherry700;
+      border-color: var(--color-notification-border-error);
     }
+  }
+
+  &__icon {
+    fill: var(--color-action-graphics-onlight);
   }
 
   &__container {
@@ -83,16 +71,53 @@
 
   &__label-container {
     position: relative;
-    padding-top: spacers.getSpacer(3xs);
-    padding-bottom: spacers.getSpacer(3xs);
 
-    @media (min-width: map.get($grid-breakpoints, lg)) {
-      padding-top: spacers.getSpacer(2xs);
-      padding-bottom: spacers.getSpacer(2xs);
+    &--has-expander {
+      cursor: pointer;
     }
 
     &--has-expander:has(:focus-visible) {
-      box-shadow: inset 0 0 0 2px palette.$black;
+      box-shadow: inset 0 0 0 4px var(--color-action-border-onlight-focus);
+    }
+
+    &--info#{&}--has-expander {
+      &:hover {
+        background-color: var(--color-notification-background-info-hover);
+      }
+
+      &:active {
+        background-color: var(--color-notification-background-info-active);
+      }
+    }
+
+    &--success#{&}--has-expander {
+      &:hover {
+        background-color: var(--color-notification-background-success-hover);
+      }
+
+      &:active {
+        background-color: var(--color-notification-background-success-active);
+      }
+    }
+
+    &--warn#{&}--has-expander {
+      &:hover {
+        background-color: var(--color-notification-background-warning-hover);
+      }
+
+      &:active {
+        background-color: var(--color-notification-background-warning-active);
+      }
+    }
+
+    &--error#{&}--has-expander {
+      &:hover {
+        background-color: var(--color-notification-background-error-hover);
+      }
+
+      &:active {
+        background-color: var(--color-notification-background-error-active);
+      }
     }
   }
 
@@ -100,18 +125,20 @@
     display: flex;
     width: 100%;
     align-items: center;
-    gap: spacers.getSpacer(2xs);
+    gap: var(--core-space-2xs);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      gap: spacers.getSpacer(m);
+      gap: var(--core-space-m);
     }
   }
 
   &__title {
+    display: flex;
     width: 100%;
     font-weight: 700;
     font-size: font-settings.$font-size-xs;
-    line-height: 1.25rem;
+    line-height: inherit;
+    margin: 0;
 
     @media (min-width: map.get($grid-breakpoints, md)) {
       font-size: font-settings.$font-size-sm;
@@ -120,6 +147,8 @@
 
   &__toggle {
     all: unset;
+    width: 100%;
+    box-sizing: border-box;
 
     // Triks for at hele labelen skal trigge klikk på knappen
     &::after {
@@ -127,24 +156,26 @@
       content: '';
       position: absolute;
     }
+
+    &:focus-visible {
+      outline: none !important;
+    }
   }
 
   &__content {
-    margin-left: calc(38px + spacers.getSpacer(2xs));
-    margin-right: calc(38px + spacers.getSpacer(2xs));
-    padding-top: spacers.getSpacer(xs);
-    padding-bottom: spacers.getSpacer(xs);
+    margin-left: 3.375rem;
+    margin-right: 3.375rem;
+    padding-top: var(--core-space-3xs);
+    padding-bottom: var(--core-space-2xs);
 
     @media (min-width: map.get($grid-breakpoints, md)) {
-      margin-left: calc(38px + spacers.getSpacer(m));
-      margin-right: calc(38px + spacers.getSpacer(m));
+      margin-left: 4.375rem;
+      margin-right: 4.375rem;
     }
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      margin-left: calc(48px + spacers.getSpacer(m));
-      margin-right: calc(48px + spacers.getSpacer(m));
-      padding-top: spacers.getSpacer(2xs);
-      padding-bottom: spacers.getSpacer(s);
+      margin-left: 4rem;
+      margin-right: 4rem;
     }
   }
 
@@ -154,17 +185,16 @@
     margin: 0;
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      margin-top: spacers.getSpacer(xs);
       line-height: 1.625rem;
       font-size: font-settings.$font-size-sm;
     }
 
     &--extra {
       font-size: 0.875rem;
-      margin-top: spacers.getSpacer(2xs);
+      margin-top: var(--core-space-2xs);
 
       @media (min-width: map.get($grid-breakpoints, lg)) {
-        margin-top: spacers.getSpacer(xs);
+        margin-top: var(--core-space-xs);
         font-size: font-settings.$font-size-xs;
         line-height: font-settings.$lineheight-size-xs;
       }
@@ -175,32 +205,33 @@
     display: flex;
     justify-content: space-between;
     flex-flow: column wrap;
-    gap: spacers.getSpacer(2xs);
-    margin-top: spacers.getSpacer(2xs);
+    gap: var(--core-space-2xs);
+    margin-top: var(--core-space-2xs);
 
     @media (min-width: map.get($grid-breakpoints, sm)) {
       flex-direction: row;
     }
 
     @media (min-width: map.get($grid-breakpoints, lg)) {
-      margin-top: spacers.getSpacer(s);
+      margin-top: var(--core-space-s);
     }
   }
 
   &__action {
+    cursor: pointer;
     display: flex;
     align-items: center;
     border: none;
     width: fit-content;
-    color: palette.$blueberry700;
+    color: var(--color-action-text-onlight);
     font-weight: 600;
     font-size: font-settings.$font-size-xs;
     line-height: 1.25rem;
     background-color: transparent;
     text-decoration: none;
-    padding: 0.5rem;
-    margin-left: -0.5rem;
-    gap: spacers.getSpacer(xs);
+    padding: var(--core-space-xs);
+    margin-left: calc(var(--core-space-xs) * -1);
+    gap: var(--core-space-xs);
 
     &:hover,
     &:active {
@@ -208,7 +239,7 @@
     }
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px palette.$black;
+      box-shadow: 0 0 0 4px var(--color-action-border-onlight-focus);
       background-color: transparent;
       border: 0;
       outline: none;

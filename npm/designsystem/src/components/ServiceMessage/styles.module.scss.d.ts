@@ -7,11 +7,16 @@ export type Styles = {
   'service-message__col': string;
   'service-message__container': string;
   'service-message__content': string;
+  'service-message__icon': string;
   'service-message__info': string;
   'service-message__info--extra': string;
   'service-message__label': string;
   'service-message__label-container': string;
+  'service-message__label-container--error': string;
   'service-message__label-container--has-expander': string;
+  'service-message__label-container--info': string;
+  'service-message__label-container--success': string;
+  'service-message__label-container--warn': string;
   'service-message__row': string;
   'service-message__title': string;
   'service-message__toggle': string;

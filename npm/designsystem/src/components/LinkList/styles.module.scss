@@ -119,6 +119,10 @@
         margin-top: spacers.getSpacer(2xs);
       }
 
+      li:first-child > &:not(div) {
+        margin-top: 0;
+      }
+
       &--blueberry {
         border: 1px solid var(--component-listelements-border-blueberry-normal);
       }

@@ -171,47 +171,52 @@ export const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderPr
   });
 
   return (
-    <li className={itemClasses} ref={mergeRefs([ref, expanderRef])}>
-      {status !== 'none' && <div className={statusMarkerClasses}></div>}
+    <>
       {editMode ? (
-        <div id={id} data-testid={testId} data-analyticsid={AnalyticsId.ExpanderListExpander} className={expanderClasses}>
-          {renderElementHeader(title, {
-            titleHtmlMarkup,
-            isHovered: false,
-            size: large ? 'large' : 'medium',
-            parentType: 'expanderlist',
-            chevronIcon: undefined,
-            icon,
-            highlightText,
-          })}
+        <div className={itemClasses}>
+          {status !== 'none' && <div className={statusMarkerClasses}></div>}
+          <div id={id} data-testid={testId} data-analyticsid={AnalyticsId.ExpanderListExpander} className={expanderClasses}>
+            {renderElementHeader(title, {
+              titleHtmlMarkup,
+              isHovered: false,
+              size: large ? 'large' : 'medium',
+              parentType: 'expanderlist',
+              chevronIcon: undefined,
+              icon,
+              highlightText,
+            })}
+          </div>
         </div>
       ) : (
-        <button
-          type="button"
-          id={id}
-          onClick={handleExpanderClick}
-          data-testid={testId}
-          data-analyticsid={AnalyticsId.ExpanderListExpander}
-          className={expanderClasses}
-          ref={triggerRef}
-          aria-expanded={isExpanded}
-          style={{
-            zIndex: isFocused ? zIndex + 1 : zIndex,
-          }}
-        >
-          {renderElementHeader(title, {
-            titleHtmlMarkup,
-            isHovered: isHovered || isFocused,
-            size: large ? 'large' : 'medium',
-            parentType: 'expanderlist',
-            chevronIcon: isExpanded ? ChevronUp : ChevronDown,
-            icon,
-            highlightText,
-          })}
-        </button>
+        <li className={itemClasses} ref={mergeRefs([ref, expanderRef])}>
+          {status !== 'none' && <div className={statusMarkerClasses}></div>}
+          <button
+            type="button"
+            id={id}
+            onClick={handleExpanderClick}
+            data-testid={testId}
+            data-analyticsid={AnalyticsId.ExpanderListExpander}
+            className={expanderClasses}
+            ref={triggerRef}
+            aria-expanded={isExpanded}
+            style={{
+              zIndex: isFocused ? zIndex + 1 : zIndex,
+            }}
+          >
+            {renderElementHeader(title, {
+              titleHtmlMarkup,
+              isHovered: isHovered || isFocused,
+              size: large ? 'large' : 'medium',
+              parentType: 'expanderlist',
+              chevronIcon: isExpanded ? ChevronUp : ChevronDown,
+              icon,
+              highlightText,
+            })}
+          </button>
+          {renderContent()}
+        </li>
       )}
-      {!editMode && renderContent()}
-    </li>
+    </>
   );
 });
 

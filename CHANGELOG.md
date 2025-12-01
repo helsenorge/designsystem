@@ -1,3 +1,18 @@
+## [13.0.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.0.0&targetVersion=GTv13.0.2) (2025-12-01)
+
+
+### Features
+
+*  nye notification tokens ([0c99411](https://github.com/helsenorge/designsystem/commit/0c99411b8d84d7a33c3831634f3e4e39d78ca220)), closes [#361065](https://github.com/helsenorge/designsystem/issues/361065)
+
+
+### Bug Fixes
+
+*  github action feiler pga npm bug ([63ba3ef](https://github.com/helsenorge/designsystem/commit/63ba3ef1a4d3b1b7521876095f56339c66a4b9cb)), closes [#363968](https://github.com/helsenorge/designsystem/issues/363968)
+* **elementheader:**  sentrer ikon ([1abc825](https://github.com/helsenorge/designsystem/commit/1abc825b94fe4aebc577f57686cca0d022bcdb62)), closes [#365327](https://github.com/helsenorge/designsystem/issues/365327)
+* **listeditmode:**  fiks struktur i DOM og aria label på knapp ([517faab](https://github.com/helsenorge/designsystem/commit/517faab13e1fb98f1f7810d23cc66b9394132505)), closes [#365327](https://github.com/helsenorge/designsystem/issues/365327)
+* **listeditmode:**  legg til aria describedby på sletteknapp ([93c27bf](https://github.com/helsenorge/designsystem/commit/93c27bf9f2e743bbd0bc3c93894fc35c51b98493)), closes [#365327](https://github.com/helsenorge/designsystem/issues/365327)
+
 ## [13.0.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.3&targetVersion=GTv13.0.0) (2025-11-25)
 
 
@@ -124,7 +139,7 @@
 
 *  lib mappen ble ikke med i den publiserte pakken ([1c5409e](https://github.com/helsenorge/designsystem/commit/1c5409eeaf05524c315650ea11a839a70b7dfaa3)), closes [#362474](https://github.com/helsenorge/designsystem/issues/362474)
 
-## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-07)
+## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-06)
 
 ## [12.12.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.1&targetVersion=GTv12.12.1) (2025-11-06)
 

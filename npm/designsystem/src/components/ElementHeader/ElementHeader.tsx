@@ -16,7 +16,7 @@ import { StatusDotListProps, StatusDotListType } from './StatusDotList/StatusDot
 
 import styles from './styles.module.scss';
 
-export type ElementHeaderSize = 'small' | 'medium' | 'large';
+export type ElementHeaderSize = 'compact' | 'small' | 'medium' | 'large';
 export type ParentType = 'linklist' | 'expanderlist';
 
 export interface ElementHeaderType extends React.FC<ElementHeaderProps> {
@@ -29,9 +29,12 @@ export interface ElementHeaderType extends React.FC<ElementHeaderProps> {
 
 export const renderElementHeader = (
   element: React.ReactNode,
-  options: Pick<ElementHeaderProps, 'titleHtmlMarkup' | 'isHovered' | 'size' | 'parentType' | 'chevronIcon' | 'icon' | 'highlightText'>
+  options: Pick<
+    ElementHeaderProps,
+    'titleHtmlMarkup' | 'isHovered' | 'size' | 'parentType' | 'chevronIcon' | 'icon' | 'highlightText' | 'closeButton'
+  >
 ): React.ReactElement | undefined => {
-  const { titleHtmlMarkup, isHovered, size, parentType, chevronIcon, icon, highlightText } = options;
+  const { titleHtmlMarkup, isHovered, size, parentType, chevronIcon, icon, highlightText, closeButton } = options;
 
   if (isComponent<ElementHeaderProps>(element, ElementHeader)) {
     return React.cloneElement(element, {
@@ -41,6 +44,7 @@ export const renderElementHeader = (
       size,
       parentType,
       highlightText,
+      closeButton,
     });
   }
   if (element) {
@@ -53,6 +57,7 @@ export const renderElementHeader = (
         icon={icon}
         isHovered={isHovered}
         size={size}
+        closeButton={closeButton}
       >
         {element}
       </ElementHeader>
@@ -65,6 +70,8 @@ export interface ElementHeaderProps {
   className?: string;
   /** Chevron to render inside of the ElementHeader */
   chevronIcon?: SvgIcon;
+  /** Close button to be rendered inside of ElementHeader. This renders in place of chevronIcon */
+  closeButton?: React.ReactElement;
   /** Children to be rendered inside of ElementHeader */
   children: React.ReactNode;
   /** Changes the underlying element of the title. Default: h2*/
@@ -159,6 +166,7 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
     titleHtmlMarkup = 'h2',
     parentType = 'linklist',
     chevronIcon,
+    closeButton,
     children,
     icon,
     isHovered,
@@ -172,13 +180,14 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
   const mappedChildren = mapChildren(children);
   const hasStatusDots = !!mappedChildren?.statusDotChildren?.length || !!mappedChildren?.statusDotMCChild;
 
-  const listLabelClasses = cn(styles['element-header'], className);
+  const listLabelClasses = cn(styles['element-header'], { [styles['element-header--compact']]: size === 'compact' }, className);
   const badgeContainerClasses = cn(styles['element-header__badge-container']);
   const badgeClasses = cn(styles['element-header__badge']);
   const statusdotContainerClasses = cn(styles['element-header__statusdot-container']);
   const chevronClasses = cn(styles['element-header__chevron']);
   const contentClasses = cn(styles['element-header__content'], {
     [styles['element-header__content--element']]: !contentIsString,
+    [styles['element-header__content--compact']]: size === 'compact',
   });
   const iconClasses = cn(styles['element-header__icon'], { [styles['element-header__icon--with-statusdot']]: hasStatusDots });
   const avatarClasses = cn(styles['element-header__avatar'], {});
@@ -228,9 +237,14 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
             );
           })}
       </span>
-      {chevronIcon && (
+      {chevronIcon && typeof closeButton === 'undefined' && (
         <span className={chevronClasses} data-parenttype={parentType}>
           <Icon svgIcon={chevronIcon} isHovered={isHovered} size={IconSize.XSmall} />
+        </span>
+      )}
+      {closeButton && (
+        <span className={chevronClasses} data-parenttype={parentType}>
+          {closeButton}
         </span>
       )}
     </span>

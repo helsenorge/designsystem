@@ -6,12 +6,14 @@ export type Styles = {
   'element-header__badge-container': string;
   'element-header__chevron': string;
   'element-header__content': string;
+  'element-header__content--compact': string;
   'element-header__content--element': string;
   'element-header__content--spacing': string;
   'element-header__icon': string;
   'element-header__icon--with-statusdot': string;
   'element-header__statusdot-container': string;
   'element-header__title': string;
+  'element-header--compact': string;
   'text-wrapper': string;
   'text-wrapper__text--emphasised': string;
   'text-wrapper--sub-level': string;
