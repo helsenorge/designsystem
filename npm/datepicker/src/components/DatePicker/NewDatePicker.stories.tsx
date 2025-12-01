@@ -33,6 +33,12 @@ const meta = {
   component: NewDayPicker,
   args: {
     locale: nb,
+    label: (
+      <Label
+        labelTexts={[{ text: 'Dato' }]}
+        sublabel={<Sublabel id={'format'} sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
+      />
+    ),
   },
   argTypes: {
     standalone: {
@@ -78,11 +84,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => {
     const [selected, setSelected] = React.useState<Date | undefined>(undefined);
-    return (
-      <>
-        <NewDayPicker selectedDate={selected} onDateChange={setSelected} {...args} />
-      </>
-    );
+    return <NewDayPicker selectedDate={selected} onDateChange={setSelected} {...args} />;
   },
 };
 
@@ -92,11 +94,7 @@ export const Standalone: Story = {
   },
   render: args => {
     const [selected, setSelected] = React.useState<Date | undefined>(undefined);
-    return (
-      <>
-        <NewDayPicker selectedDate={selected} onDateChange={setSelected} {...args} />
-      </>
-    );
+    return <NewDayPicker selectedDate={selected} onDateChange={setSelected} {...args} />;
   },
 };
 

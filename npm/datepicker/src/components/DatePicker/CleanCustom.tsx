@@ -1,59 +1,16 @@
 import React, { ButtonHTMLAttributes, useRef } from 'react';
 
 import classNames from 'classnames';
-import { CaptionLabel, CaptionLabelProps, DropdownProps, useDayPicker, type DayButtonProps } from 'react-day-picker';
+import { CaptionLabel, CaptionLabelProps, DropdownProps, useDayPicker } from 'react-day-picker';
 
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import ChevronDown from '@helsenorge/designsystem-react/components/Icons/ChevronDown';
 import ChevronLeft from '@helsenorge/designsystem-react/components/Icons/ChevronLeft';
 import ChevronRight from '@helsenorge/designsystem-react/components/Icons/ChevronRight';
-import PopOver from '@helsenorge/designsystem-react/components/PopOver';
 
-import { IconSize, useOutsideEvent, usePseudoClasses, useToggle } from '@helsenorge/designsystem-react';
+import { IconSize, usePseudoClasses } from '@helsenorge/designsystem-react';
 
 import customstyles from './clean.module.scss';
-
-export const CustomDayButton = (props: DayButtonProps): React.JSX.Element => {
-  // const { day, modifiers, className, components, ...buttonProps } = props;
-  const { day, modifiers, ...buttonProps } = props;
-
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const popoverRef = React.useRef<HTMLDivElement>(null);
-  const { value: isPopoverOpen, toggleValue: togglePopover } = useToggle(false);
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    // if (modifiers.disabled) {
-    //   alert('Denne datoen er ikke tilgjengelig for valg.');
-    //   return;
-    // }
-    if (modifiers.fullyBooked) {
-      togglePopover();
-      return;
-    }
-    // call the original onClick from RDP
-    buttonProps.onClick?.(e);
-  };
-  useOutsideEvent([buttonRef, popoverRef], () => {
-    if (isPopoverOpen) togglePopover();
-  });
-  const popoverId = `datepicker-popover-${day?.date?.toISOString()}`;
-
-  React.useEffect(() => {
-    if (modifiers.focused) buttonRef.current?.focus();
-  }, [modifiers.focused]);
-
-  return (
-    <>
-      {modifiers.fullyBooked && (
-        // @todo: fix popover som prop
-        <PopOver controllerRef={buttonRef} ref={popoverRef} id={``} show={isPopoverOpen}>
-          {'Det er fullt'}
-        </PopOver>
-      )}
-      <button {...buttonProps} ref={buttonRef} onClick={handleClick} style={{ zIndex: 1 }} aria-describedby={popoverId} />
-    </>
-  );
-};
 
 export const CustomPreviousButton = (props: ButtonHTMLAttributes<HTMLButtonElement>): React.JSX.Element => {
   const buttonRef = React.useRef<HTMLButtonElement>(null);

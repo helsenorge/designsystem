@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import classNames from 'classnames';
 import { isSameDay, Locale } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { DayPicker, DayPickerProps, Matcher, Modifiers, MonthGrid, MonthGridProps } from 'react-day-picker';
+import { DayPicker, DayPickerProps, Matcher, Modifiers, MonthGrid, MonthGridProps, useDayPicker } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
@@ -11,7 +11,7 @@ import HelpBubble from '@helsenorge/designsystem-react/components/HelpBubble';
 import Loader from '@helsenorge/designsystem-react/components/Loader';
 import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
 
-import { LanguageLocales, useOutsideEvent, useToggle } from '@helsenorge/designsystem-react';
+import { LanguageLocales } from '@helsenorge/designsystem-react';
 
 import { CustomCaptionLabel, CustomDropdown, CustomNextButton, CustomPreviousButton } from './CleanCustom';
 import { getResources } from './resourceHelper';
@@ -84,6 +84,9 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
   // Internal state - synced with external selectedDate
   const [selected, setSelected] = useState<Date | undefined>(selectedDate);
   const [month, setMonth] = useState<Date>(new Date());
+  // Popover state for HelpBubble
+  const [popoverDay, setPopoverDay] = useState<Date | undefined>(undefined);
+  const [popoverText, setPopoverText] = useState<string>('');
 
   // Update internal state when prop changes
   React.useEffect(() => {
@@ -110,6 +113,65 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
   const modifiersExtended: DatePickerModifiers = {
     ...modifiers,
     ...helpBubbleTextModifiers,
+  };
+
+  // Find help text for a given day
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getHelpTextForDay = (day: any, modifiers: Modifiers): string => {
+    let foundHelpText = '';
+    Object.keys(helpBubbleTextModifiers).forEach(key => {
+      const dates = helpBubbleTextModifiers[key];
+      if (dates && day?.date) {
+        dates.forEach(dateOrMatcher => {
+          let isMatch = false;
+
+          // Check if it's a Date object
+          if (dateOrMatcher instanceof Date) {
+            isMatch = isSameDay(day.date, dateOrMatcher);
+          }
+          // Check if it's a matcher function
+          else if (typeof dateOrMatcher === 'function') {
+            isMatch = dateOrMatcher(day.date);
+          }
+          // Check if it's a Matcher object - use modifiers instead
+          else if (typeof dateOrMatcher === 'object' && dateOrMatcher !== null) {
+            // For matcher objects, check if this day has the modifier applied by DayPicker
+            isMatch = !!modifiers[key];
+          }
+
+          if (isMatch) {
+            const helpBubbleText = helpBubbleTexts?.find(hbt => hbt.id === key);
+            const helpText = helpBubbleText?.text;
+            if (helpText) foundHelpText = helpText;
+          }
+        });
+      }
+    });
+    return foundHelpText;
+  };
+
+  // Handle DayButton click for popover
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleDayButtonClick = (day: any, modifiers: Modifiers) => {
+    if (modifiers.selected) {
+      setPopoverDay(undefined);
+      setPopoverText('');
+    } else {
+      const helpText = getHelpTextForDay(day, modifiers);
+      if (helpText) {
+        setPopoverDay(day.date);
+        setPopoverText(helpText);
+      } else {
+        setPopoverDay(undefined);
+        setPopoverText('');
+      }
+    }
+  };
+
+  // Close HelpBubble popover
+  const handleCloseBubble = () => {
+    setPopoverDay(undefined);
+    setPopoverText('');
   };
 
   return (
@@ -143,14 +205,6 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
           footer && <div className={classNames(customstyles['datepicker-footer'])}>{footer}</div>
         )
       }
-      onDayClick={(_date, modifiers) => {
-        // if (modifiers.disabled) {
-        //   alert('Denne datoen er ikke tilgjengelig for valg.');
-        // }
-        // if (modifiers.fullyBooked) {
-        //   alert('Denne datoen er fullbooket. Vennligst velg en annen dato.');
-        // }
-      }}
       modifiersClassNames={{
         emphasized: customstyles['date--emphasized'],
         disabled: customstyles['date--disabled'],
@@ -162,57 +216,31 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
       components={{
         DayButton: props => {
           const { day, modifiers, ...buttonProps } = props;
-
+          const { classNames: rdpClassnames } = useDayPicker();
           const buttonRef = React.useRef<HTMLButtonElement>(null);
-          const popoverRef = React.useRef<HTMLDivElement>(null);
-          // const { value: isPopoverOpen, toggleValue: togglePopover } = useToggle(false);
-          const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
-          const [popoverText, setPopoverText] = useState<string>('');
-
-          useEffect(() => {
-            console.trace('isPopoverOpen changed: ', isPopoverOpen);
-          }, [isPopoverOpen]);
-
-          const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-            // if (modifiers.disabled) {
-            //   alert('Denne datoen er ikke tilgjengelig for valg.');
-            //   return;
-            // }
-            if (modifiers.selected) {
-              setIsPopoverOpen(false);
-            } else {
-              Object.keys(helpBubbleTextModifiers).forEach(key => {
-                if (modifiers[key as keyof Modifiers]) {
-                  const helpText = helpBubbleTexts?.find(hbt => hbt.id === key)?.text;
-                  if (helpText) {
-                    console.log(helpText);
-                    setPopoverText(helpText);
-                    if (!isPopoverOpen) {
-                      setIsPopoverOpen(true);
-                    }
-                  }
-                }
-              });
-            }
-            // call the original onClick from RDP
+          const popoverId = `datepicker-popover-${day?.date?.toISOString()}`;
+          const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+            handleDayButtonClick(day, modifiers);
             buttonProps.onClick?.(e);
           };
-          // useOutsideEvent([buttonRef, popoverRef], () => {
-          //   if (isPopoverOpen) togglePopover();
-          // });
-          const popoverId = `datepicker-popover-${day?.date?.toISOString()}`;
 
-          React.useEffect(() => {
-            if (modifiers.focused) buttonRef.current?.focus();
-          }, [modifiers.focused]);
+          // Check if this button should show the popover
+          const shouldShowPopover = popoverDay && isSameDay(day.date, popoverDay);
 
           return (
             <>
-              {/* // @todo: fix popover som prop */}
-              <HelpBubble controllerRef={buttonRef} ref={popoverRef} showBubble={isPopoverOpen}>
-                <span id={popoverId}>{popoverText}</span>
-              </HelpBubble>
-              <button {...buttonProps} ref={buttonRef} onClick={handleClick} style={{ zIndex: 1 }} aria-describedby={popoverId} />
+              <button
+                {...buttonProps}
+                className={classNames(rdpClassnames['day_button'], customstyles['custom_day_button'])}
+                ref={buttonRef}
+                onClick={handleClick}
+                aria-describedby={popoverId}
+              />
+              {shouldShowPopover && (
+                <HelpBubble showBubble={true} onClose={handleCloseBubble} controllerRef={buttonRef}>
+                  <span>{popoverText}</span>
+                </HelpBubble>
+              )}
             </>
           );
         },

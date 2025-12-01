@@ -95,12 +95,9 @@
 /* stylelint-disable no-descending-specificity */
 .date {
   &--default {
-    // border: 1px dotted blue;
-
-    button {
+    .custom_day_button {
       @include fonts.label;
 
-      // border: 1px dotted red;
       color: var(--color-action-graphics-onlight);
 
       &:hover {
@@ -114,7 +111,7 @@
   }
 
   &--emphasized {
-    button {
+    .custom_day_button {
       color: var(--color-action-graphics-emphasized-onlight);
       border: 1px solid var(--color-action-border-onlight);
       background: var(--color-action-background-transparent-onlight-hover);
@@ -130,7 +127,7 @@
   }
 
   &--today {
-    button {
+    .custom_day_button {
       @include day-indicator('blue');
 
       &:hover {
@@ -144,7 +141,7 @@
   }
 
   &--disabled {
-    button {
+    .custom_day_button {
       @include strikethrough-line;
 
       color: var(--color-disabled-text);
@@ -152,7 +149,7 @@
   }
 
   &--partial {
-    button {
+    .custom_day_button {
       @include strikethrough-line;
 
       color: var(--color-action-graphics-emphasized-onlight);
@@ -170,7 +167,7 @@
   }
 
   &--fully {
-    button {
+    .custom_day_button {
       @include strikethrough-line;
 
       border: 1px dashed var(--color-disabled-border);
@@ -187,7 +184,7 @@
   }
 
   &--selected {
-    button {
+    .custom_day_button {
       --rdp-day_button-border-radius: 100%;
 
       @include no-strikethrough-line;
@@ -212,7 +209,7 @@
   }
 
   &--selected.date--today {
-    button {
+    .custom_day_button {
       @include day-indicator('white');
     }
   }
