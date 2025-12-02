@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 
 const normalStroke = 'var(--color-action-graphics-onlight)';
 const normalFill = 'transparent';
-const hoverFill = '#126F8721'; // kan ikke bruke transparent token på svg
+const hoverFill = 'var(--color-action-graphics-onlight-hover)';
 const hoverStroke = 'var(--color-action-graphics-onlight-hover)';
 const activeStroke = 'var(--core-color-blueberry-800)';
 
