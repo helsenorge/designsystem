@@ -1,10 +1,10 @@
 @use 'sass:map';
 @use '../../scss/font-settings' as font-settings;
 @use '../../scss/palette' as palette;
-@use '../../scss/spacers' as spacers;
 @use '../../scss/screen-reader' as *;
 @use '../../scss/breakpoints' as breakpoints;
 @import '../../scss/supernova/styles/colors.css';
+@import '../../scss/supernova/styles/spacers.css';
 
 .tile {
   // Referanse for grandparent selection i underklassene lenger nede
@@ -12,23 +12,23 @@
 
   display: flex;
   width: inherit;
-  padding: spacers.getSpacer(2xs) spacers.getSpacer(2xs) spacers.getSpacer(xs);
+  padding: var(--core-space-2xs) var(--core-space-2xs) var(--core-space-xs);
   flex-direction: column;
   justify-content: center;
   background-color: var(--core-color-white);
-  color: palette.$black;
+  color: var(--core-color-black);
   text-decoration: none;
   cursor: pointer;
-  border: 1px solid var(--color-base-border-blueberry);
+  border: 1px solid var(--color-action-border-onlight);
   outline: none;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-    padding: spacers.getSpacer(l) spacers.getSpacer(m) spacers.getSpacer(l) spacers.getSpacer(s);
+    padding: var(--core-space-l) var(--core-space-m) var(--core-space-l) var(--core-space-s);
     justify-content: flex-start;
   }
 
   @media print {
-    border: 1px solid palette.$black;
+    border: 1px solid var(--core-color-black);
   }
 
   &--fixed {
@@ -37,10 +37,10 @@
   }
 
   &--compact {
-    padding: spacers.getSpacer(2xs) spacers.getSpacer(2xs) spacers.getSpacer(xs);
+    padding: var(--core-space-2xs) var(--core-space-2xs) var(--core-space-xs);
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      padding: spacers.getSpacer(s) spacers.getSpacer(m) spacers.getSpacer(s) spacers.getSpacer(s);
+      padding: var(--core-space-s) var(--core-space-m) var(--core-space-s) var(--core-space-s);
     }
   }
 
@@ -81,22 +81,22 @@
     text-align: center;
     line-height: 1.74rem;
     font-weight: 400;
-    margin: spacers.getSpacer(3xs) 0 0;
+    margin: var(--core-space-3xs) 0 0;
 
     @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
       text-align: left;
       font-weight: 600;
       font-size: font-settings.$font-size-md;
       line-height: 1.625rem;
-      margin: spacers.getSpacer(s) 0 0 spacers.getSpacer(2xs);
+      margin: var(--core-space-s) 0 0 var(--core-space-2xs);
     }
 
     &--compact {
-      margin: 0 0 0 spacers.getSpacer(3xs);
+      margin: 0 0 0 var(--core-space-3xs);
       text-align: left;
 
       @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-        margin-left: spacers.getSpacer(2xs);
+        margin-left: var(--core-space-2xs);
       }
     }
   }
@@ -112,11 +112,11 @@
   &__description {
     font-size: 1.125rem;
     line-height: 1.75rem;
-    margin: spacers.getSpacer(2xs) 0 0 spacers.getSpacer(2xs);
+    margin: var(--core-space-2xs) 0 0 var(--core-space-2xs);
   }
 
   &__children {
-    margin: spacers.getSpacer(s) 0 0 spacers.getSpacer(2xs);
+    margin: var(--core-space-s) 0 0 var(--core-space-2xs);
   }
 }
 
@@ -136,7 +136,7 @@
   &--compact {
     flex-direction: row;
     align-items: center;
-    padding-right: spacers.getSpacer(s);
+    padding-right: var(--core-space-s);
     padding-bottom: 0;
 
     svg {
