@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import {
   autoUpdate,
@@ -13,7 +13,7 @@ import {
   useInteractions,
 } from '@floating-ui/react';
 import { StoryObj, Meta } from '@storybook/react-vite';
-import { nb } from 'date-fns/locale';
+import { nb, enGB } from 'date-fns/locale';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
@@ -26,7 +26,7 @@ import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
 import { useToggle } from '@helsenorge/designsystem-react';
 
 import BaseDayPicker, { HelpBubbleText } from './BaseDayPicker';
-import NewDayPicker from './NewDatePicker';
+import NewDayPicker, { NewDayPickerProps } from './NewDatePicker';
 
 const meta = {
   title: '@helsenorge/datepicker/NewDatePicker',
@@ -347,6 +347,21 @@ export const New: Story = {
         <br />
         <span>{longLoremText}</span>
         <span>{longLoremText}</span>
+      </>
+    );
+  },
+};
+
+export const Locales: Story = {
+  render: (args: NewDayPickerProps) => {
+    const [selected, setSelected] = useState<Date | undefined>(undefined);
+    const [locale, setLocale] = useState(nb);
+    return (
+      <>
+        <button onClick={() => setLocale(nb)}>{'Bruk nb'}</button>
+        <button onClick={() => setLocale(enGB)}>{'Bruk enGB'}</button>
+        <span>{'Nåværende locale: ' + locale.code}</span>
+        <NewDayPicker {...args} selectedDate={selected} onDateChange={setSelected} locale={locale} />
       </>
     );
   },

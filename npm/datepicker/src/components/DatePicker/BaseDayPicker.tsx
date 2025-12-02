@@ -82,7 +82,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
 
   // Internal state - synced with external selectedDate
   const [selected, setSelected] = useState<Date | undefined>(selectedDate);
-  const [month, setMonth] = useState<Date>(new Date());
+  const [month, setMonth] = useState<Date>(selectedDate || new Date());
   // Popover state for HelpBubble
   const [popoverDay, setPopoverDay] = useState<Date | undefined>(undefined);
   const [popoverText, setPopoverText] = useState<string>('');

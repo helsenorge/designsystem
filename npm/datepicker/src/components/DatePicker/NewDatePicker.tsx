@@ -3,11 +3,11 @@ import React from 'react';
 import BaseDayPicker, { BaseDayPickerProps } from './BaseDayPicker';
 import DatePickerWithInput, { DatePickerWithInputProps } from './DatePickerWithInput';
 
-interface NewDayPicker extends BaseDayPickerProps, DatePickerWithInputProps {
+export interface NewDayPickerProps extends BaseDayPickerProps, DatePickerWithInputProps {
   standalone?: boolean;
 }
 
-const NewDayPicker = (props: NewDayPicker): React.ReactNode => {
+const NewDayPicker = (props: NewDayPickerProps): React.ReactNode => {
   const { standalone = false, label, withClearButton, ...datepickerProps } = props;
 
   return standalone ? (

@@ -12,7 +12,7 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react';
-import { format } from 'date-fns';
+import { format, isValid, parse } from 'date-fns';
 
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
@@ -36,7 +36,37 @@ export interface DatePickerWithInputProps extends BaseDayPickerProps {
 
 const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode => {
   const { disabled, label, locale, withClearButton, ...baseProps } = props;
-  const [inputValue, setInputValue] = useState<Date | undefined>(baseProps.selectedDate);
+
+  // from https://daypicker.dev/guides/input-fields
+  // Hold the selected date in state
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(baseProps.selectedDate);
+
+  // Hold the input value in state
+  const [inputValue, setInputValue] = useState('');
+
+  const handleDayPickerSelect = (date: Date | undefined) => {
+    if (!date) {
+      setInputValue('');
+      setSelectedDate(undefined);
+    } else {
+      setSelectedDate(date);
+      setInputValue(format(date, 'P', { locale: locale }));
+      if (isPopupOpen) toggleIsPopupOpen();
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value); // Keep the input value in sync
+
+    const parsedDate = parse(e.target.value, 'P', new Date(), { locale: locale });
+
+    if (isValid(parsedDate)) {
+      setSelectedDate(parsedDate);
+    } else {
+      setSelectedDate(undefined);
+    }
+  };
+
   const controllerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const calendarButtonRef = useRef<HTMLButtonElement>(null);
@@ -71,14 +101,8 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
   // };
 
   const handleClear = (): void => {
-    handleDateChange(undefined);
+    handleDayPickerSelect(undefined);
     setFocusOnInput();
-  };
-
-  const handleDateChange = (date: Date | undefined): void => {
-    setInputValue(date);
-    baseProps.onDateChange?.(date);
-    if (isPopupOpen) toggleIsPopupOpen();
   };
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -107,7 +131,8 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
         <Input
           disabled={disabled}
           label={label}
-          value={inputValue ? format(inputValue, 'P', { locale: locale }) : ''}
+          value={inputValue}
+          onChange={handleInputChange}
           width={14}
           ref={inputRef}
           rightOfInput={
@@ -138,7 +163,7 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
             {...getFloatingProps()}
           >
             {/* @todo fix props */}
-            <BaseDayPicker {...baseProps} selectedDate={inputValue} onDateChange={handleDateChange} />
+            <BaseDayPicker {...baseProps} locale={locale} selectedDate={selectedDate} onDateChange={handleDayPickerSelect} />
           </div>
         </FloatingFocusManager>
       )}
