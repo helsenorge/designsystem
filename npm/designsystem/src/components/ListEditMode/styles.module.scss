@@ -17,8 +17,16 @@
     background-color: transparent;
     outline: none;
     padding: 0;
-    margin: 4px;
+    margin: var(--core-space-3xs) 0 var(--core-space-3xs) var(--core-space-2xs);
     cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-action-background-transparent-onmulticolor-hover);
+    }
+
+    &:active {
+      background-color: var(--color-action-background-transparent-onmulticolor-active);
+    }
 
     &:focus-visible {
       outline: 4px solid var(--color-action-border-onlight-focus);
@@ -64,8 +72,8 @@
 
     &--fill {
       > * {
-        margin-top: 8px !important;
-        margin-bottom: 8px !important;
+        margin-top: var(--core-space-2xs) !important;
+        margin-bottom: var(--core-space-2xs) !important;
       }
     }
 

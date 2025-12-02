@@ -129,11 +129,13 @@
   --color-action-background-onlight: #188097;
   --color-action-background-onlight-hover: #08667c;
 
-  /* Hoverfarge for bakgrunn på interaktive elementer - onDark */
+  /* Hoverfarge for bakgrunn på interaktive elementer - hvor hover skal eksistere på forskjellige fargebakgrunner */
   --color-action-background-transparent-ondark-hover: #00000026;
+  --color-action-background-transparent-onmulticolor-hover: #00000013;
 
-  /* Hoverfarge for bakgrunn på interaktive elementer - onDark selected */
+  /* Activefarge for bakgrunn på interaktive elementer - hvor hover skal eksistere på forskjellige fargebakgrunner */
   --color-action-background-transparent-ondark-hoverselected: #000000bf;
+  --color-action-background-transparent-onmulticolor-active: #00000026;
   --color-base-background-blueberry: #e4f7f9;
   --color-base-background-cherry: #fff2ea;
   --color-base-background-neutral: #f5f3f3;
@@ -263,4 +265,8 @@
   --color-notification-background-warning-active: #f9ea9f;
   --color-notification-background-success-hover: #c2edd6;
   --color-notification-background-success-active: #9de2bf;
+  --color-lightbox-background-transparent-ondark-hover: #00000026;
+  --color-lightbox-background-transparent-ondark-hoverselected: #000000bf;
+  --component-lightbox-background-transparent-ondark-hover: #00000026;
+  --component-lightbox-background-transparent-ondark-hoverselected: #000000bf;
 }
