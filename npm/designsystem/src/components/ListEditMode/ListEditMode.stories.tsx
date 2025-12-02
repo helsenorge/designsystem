@@ -8,6 +8,7 @@ import ExpanderList from '../ExpanderList';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import PaperPlane from '../Icons/PaperPlane';
+import LazyIcon from '../LazyIcon';
 import LinkList from '../LinkList';
 import Toggle from '../Toggle';
 
@@ -92,6 +93,41 @@ export const OnLinkList: Story = {
             {'Innhold A-Å'}
           </LinkList.Link>
           <LinkList.Link onDelete={() => onDelete('2')} htmlMarkup="button" icon={<Icon svgIcon={PaperPlane} />}>
+            {'Helsenorge'}
+          </LinkList.Link>
+        </LinkList>
+      </>
+    );
+  },
+};
+
+export const WithLazyIcon: Story = {
+  args: {
+    variant: 'fill',
+    color: 'blueberry',
+  },
+  render: args => {
+    const [editMode, setEditMode] = useState(true);
+    const toggleEditMode = (): void => setEditMode(!editMode);
+
+    const onDelete = (id: string): void => {
+      alert(`Delete ${id}`);
+    };
+    return (
+      <>
+        <Toggle checked={editMode} onChange={toggleEditMode} label={[{ text: 'Redigeringsmodus' }]} />
+        <br />
+        <br />
+        <LinkList {...args} editMode={editMode} chevron>
+          <LinkList.Link
+            onDelete={() => onDelete('1')}
+            href={'https://www.helsenorge.no'}
+            target="_blank"
+            icon={<LazyIcon iconName="AlarmClock" />}
+          >
+            {'Innhold A-Å'}
+          </LinkList.Link>
+          <LinkList.Link onDelete={() => onDelete('2')} htmlMarkup="button" icon={<LazyIcon iconName="PaperPlane" />}>
             {'Helsenorge'}
           </LinkList.Link>
         </LinkList>

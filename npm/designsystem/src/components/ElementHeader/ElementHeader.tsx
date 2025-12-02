@@ -12,6 +12,7 @@ import StatusDot, { StatusDotProps, StatusDotType } from '../StatusDot';
 import { TitleTags } from '../Title';
 import StatusDotList from './StatusDotList';
 import Highlighter from '../Highlighter';
+import LazyIcon, { LazyIconProps } from '../LazyIcon';
 import { StatusDotListProps, StatusDotListType } from './StatusDotList/StatusDotList';
 
 import styles from './styles.module.scss';
@@ -193,19 +194,26 @@ export const ElementHeaderRoot: ElementHeaderType = props => {
   const avatarClasses = cn(styles['element-header__avatar'], {});
   const CustomTag = titleHtmlMarkup;
   const iconPropIsIconComponent = isComponent<IconProps>(icon, Icon);
+  const iconPropIsLazyIconComponent = !iconPropIsIconComponent && isComponent<LazyIconProps>(icon, LazyIcon);
+
+  let iconComponent;
+  if (iconPropIsIconComponent) {
+    iconComponent = React.cloneElement(icon as React.ReactElement<IconProps>, {
+      size: breakpoint < Breakpoint.md ? IconSize.XSmall : IconSize.Small,
+      isHovered,
+    });
+  } else if (iconPropIsLazyIconComponent) {
+    iconComponent = React.cloneElement(icon as React.ReactElement<LazyIconProps>, {
+      size: breakpoint < Breakpoint.md ? IconSize.XSmall : IconSize.Small,
+      isHovered,
+    });
+  } else {
+    iconComponent = icon;
+  }
 
   return (
     <span data-testid={testId} className={listLabelClasses}>
-      {showIcon && icon && (
-        <span className={iconClasses}>
-          {iconPropIsIconComponent
-            ? React.cloneElement(icon, {
-                size: breakpoint < Breakpoint.md ? IconSize.XSmall : IconSize.Small,
-                isHovered,
-              })
-            : icon}
-        </span>
-      )}
+      {showIcon && icon && <span className={iconClasses}>{iconComponent}</span>}
       {size !== 'small' && mappedChildren?.avatarChild && (
         <span className={avatarClasses}>{React.cloneElement(mappedChildren.avatarChild, { size: AvatarSize.xsmall })}</span>
       )}

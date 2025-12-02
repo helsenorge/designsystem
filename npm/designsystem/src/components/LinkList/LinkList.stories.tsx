@@ -16,6 +16,7 @@ import AlarmClock from '../Icons/AlarmClock';
 import Bus from '../Icons/Bus';
 import Journal from '../Icons/Journal';
 import PaperPlane from '../Icons/PaperPlane';
+import LazyIcon from '../LazyIcon';
 import StatusDot, { StatusDotVariant } from '../StatusDot';
 import Toggle from '../Toggle';
 
@@ -90,6 +91,30 @@ export const WithIconAndChevron: Story = {
         }
       </LinkList.Link>
       <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<Icon svgIcon={AlarmClock} />}>
+        <ElementHeader titleHtmlMarkup="span">
+          {'LinkListText'}
+          <Badge color="blueberry">{'Ny'}</Badge>
+        </ElementHeader>
+      </LinkList.Link>
+    </LinkList>
+  ),
+};
+
+export const WithLazyIcon: Story = {
+  args: {
+    chevron: true,
+  },
+  render: args => (
+    <LinkList {...args}>
+      <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<LazyIcon iconName="AlarmClock" />}>
+        {'Innhold A-Å'}
+      </LinkList.Link>
+      <LinkList.Link htmlMarkup="button" icon={<LazyIcon iconName="PaperPlane" />}>
+        {
+          'Frisk frukt har et høyt innhold av vann, og det høye vanninnholdet og fiberinnholdet vil fylle magen godt, gi god metthetsfølelse og bidra til en god fordøyelse. (Eksempel på wrapping av tekst)'
+        }
+      </LinkList.Link>
+      <LinkList.Link href={'https://www.helsenorge.no'} target="_blank" icon={<LazyIcon iconName="AlarmClock" />}>
         <ElementHeader titleHtmlMarkup="span">
           {'LinkListText'}
           <Badge color="blueberry">{'Ny'}</Badge>

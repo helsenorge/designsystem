@@ -11,6 +11,7 @@ import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import Avatar from '../Icons/Avatar';
 import PaperPlane from '../Icons/PaperPlane';
+import LazyIcon from '../LazyIcon';
 import LinkList from '../LinkList';
 import StatusDot, { StatusDotVariant } from '../StatusDot';
 import Title from '../Title/Title';
@@ -235,6 +236,28 @@ export const WithIcon: Story = {
         }
       </ExpanderList.Expander>
       <ExpanderList.Expander icon={<Icon svgIcon={AlarmClock} />} title="Hjerneskade">
+        {
+          'De hyppigste årsager til hjerneskader er hjerneblødninger, blodpropper i hjernen, trafik- eller drukneulykker, svulster eller hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.'
+        }
+      </ExpanderList.Expander>
+    </ExpanderList>
+  ),
+};
+
+export const WithLazyIcon: Story = {
+  render: args => (
+    <ExpanderList {...args}>
+      <ExpanderList.Expander icon={<LazyIcon iconName="Avatar" />} title="Kognitiv terapi">
+        {
+          'Kognitiv terapi er en form for psykoterapi som retter seg mot problemløsning og innsikt i sammenhengen mellom tenkning, handlinger og følelser. Et viktig mål er å bryte selvforsterkende onde sirkler som opprettholder psykiske helseproblemer.'
+        }
+      </ExpanderList.Expander>
+      <ExpanderList.Expander icon={<LazyIcon iconName="PaperPlane" />} title="Hypokondri">
+        {
+          'Hypokondri er en sykdom der folk føler at de har en sykdom som de i realiteten ikke har. Statens helsetilsyn sier blant annet følgende om sykdommen: «Det vesentlige kjennetegnet er vedvarende opptatthet av muligheten for å ha en eller flere alvorlige og fremadskridende somatiske lidelser».'
+        }
+      </ExpanderList.Expander>
+      <ExpanderList.Expander icon={<LazyIcon iconName="AlarmClock" />} title="Hjerneskade">
         {
           'De hyppigste årsager til hjerneskader er hjerneblødninger, blodpropper i hjernen, trafik- eller drukneulykker, svulster eller hjertestop med efterfølgende iltmangel til hjernen; men kan også skyldes en hjernebetændelse på grund af herpes eller anden virus.'
         }
