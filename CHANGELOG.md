@@ -1,3 +1,16 @@
+## [13.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.0.2&targetVersion=GTv13.1.0) (2025-12-02)
+
+
+### Features
+
+* **servicemessage:**  tar i bruk elementheader og får active og hover states ([b628e44](https://github.com/helsenorge/designsystem/commit/b628e442191e9bdbfee1bdbcc6aff874dd9f4845)), closes [#361065](https://github.com/helsenorge/designsystem/issues/361065) [#365204](https://github.com/helsenorge/designsystem/issues/365204)
+
+
+### Bug Fixes
+
+* **elementheader:**  fiks manglende håndtering av lazyicon som ikon i listeelementer ([f3714cd](https://github.com/helsenorge/designsystem/commit/f3714cd34285ac0eff789546a9c1c3c67cdf1845)), closes [#366030](https://github.com/helsenorge/designsystem/issues/366030)
+* **favoritebutton:**  feil farge ved hover ([5c9a9d2](https://github.com/helsenorge/designsystem/commit/5c9a9d2fcad0479567ec5ecff78f8a6514725f8a)), closes [#366027](https://github.com/helsenorge/designsystem/issues/366027)
+
 ## [13.0.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.0.0&targetVersion=GTv13.0.2) (2025-12-01)
 
 
