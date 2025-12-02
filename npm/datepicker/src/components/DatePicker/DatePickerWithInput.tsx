@@ -55,6 +55,8 @@ const DatePickerWithInput = (props: DatePickerWithInputProps): React.ReactNode =
     }
   };
 
+  // @todo: hva skjer om skrevet dato ikke har riktig format ift locale ?
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value); // Keep the input value in sync
 
