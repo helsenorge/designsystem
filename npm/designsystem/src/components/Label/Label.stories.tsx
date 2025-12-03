@@ -146,12 +146,29 @@ export const OnDark: Story = {
 
 export const ChildrenAfterLabel: Story = {
   render: args => (
-    <Input
-      {...args}
-      label={
-        <Label labelTexts={[{ text: 'Skriv inn din tekst' }]} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={HelpSign} />} />
-      }
-    />
+    <>
+      <Input
+        {...args}
+        label={
+          <Label labelTexts={[{ text: 'Skriv inn din tekst' }]} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={HelpSign} />} />
+        }
+      />
+      <br />
+      <Input
+        {...args}
+        label={
+          <Label
+            labelTexts={[{ text: 'Skriv inn din tekst' }]}
+            afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={HelpSign} />}
+            sublabel={
+              <Sublabel id={'sublabelid'}>
+                <span>{'Eksempel på sublabel tekst'}</span>
+              </Sublabel>
+            }
+          />
+        }
+      />
+    </>
   ),
 };
 
