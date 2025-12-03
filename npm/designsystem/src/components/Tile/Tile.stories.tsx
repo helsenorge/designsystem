@@ -29,6 +29,7 @@ const meta = {
         {'Tjeneste'}
       </Tile.Title>
     ),
+    href: 'https://www.helsenorge.no',
     icon: <Icon svgIcon={Medicine} />,
     description:
       'Førstehjelp de første minuttene etter at en akutt sykdom eller skade har oppstått er livsviktig og minsker risikoen for langtidsskader.',
@@ -103,7 +104,6 @@ export const Highlighted: Story = {
 export const External: Story = {
   args: {
     icon: <Icon svgIcon={Medicine} />,
-    href: 'https://www.helsenorge.no',
     title: <Tile.Title htmlMarkup={'h1'}>{'External'}</Tile.Title>,
   },
   render: args => <Tile {...args} />,
@@ -205,7 +205,6 @@ export const WithOnClick: Story = {
 
 export const ReactChildren: Story = {
   args: {
-    href: 'https://www.helsenorge.no',
     icon: <Icon svgIcon={Medicine} />,
     title: <Tile.Title>{'Hva skal du si når du ringer 113?'}</Tile.Title>,
     description: 'Hva du heter. Hvor du ringer fra. Telefonnummer du ringer fra. Beskriv situasjonen og symptomer.',
