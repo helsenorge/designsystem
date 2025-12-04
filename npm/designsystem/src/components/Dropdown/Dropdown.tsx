@@ -95,6 +95,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const triggerMinWidthLimit = isMobile ? 96 : 112;
   const dropdownFloatingPadding = 15;
   const maxWidth = isMobile ? 384 : 400;
+  const maxHeight = isMobile ? 384 : 464;
   const toggleTextId = useId();
   const optionIdPrefix = useId();
   const contentId = useId();
@@ -146,7 +147,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
 
           Object.assign(elements.floating.style, {
             maxWidth: `${Math.min(targetW, availableWidth)}px`,
-            maxHeight: `${availableHeight}px`,
+            maxHeight: `${Math.min(maxHeight, availableHeight)}px`,
             overflowY: 'auto',
             overflowX: 'hidden',
           });

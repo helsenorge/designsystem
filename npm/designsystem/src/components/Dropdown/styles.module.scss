@@ -128,15 +128,9 @@
   }
 
   &__options {
-    overflow: hidden auto;
-    max-height: 384px;
     list-style: none;
     padding: 0;
     margin: 0;
-
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      max-height: 464px;
-    }
   }
 
   &__close {
