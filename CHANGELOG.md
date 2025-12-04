@@ -1,3 +1,15 @@
+## [13.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.1.0&targetVersion=GTv13.2.0) (2025-12-04)
+
+
+### Features
+
+* **listeditmode:**  nye tokens for hover og active states og endret spacing ([040271e](https://github.com/helsenorge/designsystem/commit/040271ea24fb71319e85fb54ddab56f011476ac0)), closes [#365898](https://github.com/helsenorge/designsystem/issues/365898)
+
+
+### Bug Fixes
+
+* **tile:**  hairline får justering for bedre kontrast ([15c2e40](https://github.com/helsenorge/designsystem/commit/15c2e40b4f4f8de92d0a8566feb89cfef389f159)), closes [#358926](https://github.com/helsenorge/designsystem/issues/358926)
+
 ## [13.1.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.0.2&targetVersion=GTv13.1.0) (2025-12-02)
 
 
@@ -152,7 +164,7 @@
 
 *  lib mappen ble ikke med i den publiserte pakken ([1c5409e](https://github.com/helsenorge/designsystem/commit/1c5409eeaf05524c315650ea11a839a70b7dfaa3)), closes [#362474](https://github.com/helsenorge/designsystem/issues/362474)
 
-## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-06)
+## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-07)
 
 ## [12.12.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.1&targetVersion=GTv12.12.1) (2025-11-06)
 
