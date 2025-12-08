@@ -214,7 +214,6 @@
       }
     }
 
-    &:focus,
     &:focus-visible {
       outline: 4px solid var(--color-action-border-onlight-focus);
       outline-offset: 0; // Override user agent default
