@@ -16,7 +16,7 @@
     "@svgr/hast-util-to-babel-ast": "^6.5.1",
     "async": "^3.2.6",
     "fs-extra": "^10.1.0",
-    "puppeteer": "^17.1.3",
+    "playwright": "^1.57.0",
     "svg-parser": "^2.0.4",
     "yargs": "^17.7.2"
   }

@@ -28,8 +28,13 @@ export default [
     files: ['**/*.stories.tsx'],
     rules: {
       'react/prop-types': 'off',
+      'jsx-a11y/anchor-is-valid': 'off',
+    },
+  },
+  {
+    files: ['**/*.stories.tsx', 'utils/icons/utils/IconGenerator/*.js'],
+    rules: {
       'no-console': 'off',
-      'jsx-a11y/anchor-is-valid': 'off'
     },
   },
   {

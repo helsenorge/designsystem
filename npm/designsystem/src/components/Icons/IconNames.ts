@@ -339,6 +339,8 @@ export const IconList = [
   'XOutline',
   'YouTube',
   'Zoom',
+  'ZoomInLeft',
+  'ZoomOutLeft',
 ] as const;
 
 export type IconName = (typeof IconList)[number];

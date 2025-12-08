@@ -1,19 +1,11 @@
-import puppeteer from "puppeteer";
-import IconGenerator from "./IconGenerator.js";
+import IconGenerator from './IconGenerator.js';
 
 (async () => {
-  let browser;
-  let page;
-
   try {
-    browser = await puppeteer.launch({
-      headless: false,
-    });
-
-    page = await browser.newPage();
-
-    const iconGenerator = await new IconGenerator(browser, page).main();
-  } catch (error) {}
-
-  await browser.close();
+    const generator = new IconGenerator();
+    await generator.main();
+  } catch (error) {
+    console.error('Icon generation failed:', error);
+    process.exitCode = 1;
+  }
 })();
