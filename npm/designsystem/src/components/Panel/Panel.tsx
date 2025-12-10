@@ -54,6 +54,8 @@ export interface PanelProps {
   buttonBottomOnClick?: () => void;
   /** Expands or collapses the panel. Only applicable when ExpandedContent is used */
   expanded?: boolean;
+  /** Whether the panel can be focused */
+  focusable?: boolean;
   /** Sets the layout and order of the content boxes */
   layout?: PanelLayout;
   /** Sets the visual variant of panel */
@@ -111,6 +113,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     testId,
     children,
     expanded = false,
+    focusable,
     status = PanelStatus.none,
     buttonBottomAriaLabel,
     buttonBottomOnClick,
@@ -235,7 +238,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     <div className={outerClassnames}>
       <div className={classNames({ [styles['panel__border--outline--inner']]: variant === PanelVariant.outline })}>
         <div className={expanderBorderLayout}>
-          <div className={panelClassnames} data-testid={testId} ref={panelRef}>
+          <div className={panelClassnames} data-testid={testId} ref={panelRef} tabIndex={focusable ? -1 : undefined}>
             <Highlighter searchText={highlightText}>
               {preContainer}
               {title}
@@ -257,7 +260,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
   ) : (
     <div className={outerClassnames}>
       <div className={classNames({ [styles['panel__border--outline--inner']]: variant === PanelVariant.outline })}>
-        <div className={panelClassnames} data-testid={testId} ref={panelRef}>
+        <div className={panelClassnames} data-testid={testId} ref={panelRef} tabIndex={focusable ? -1 : undefined}>
           <Highlighter searchText={highlightText}>
             {preContainer}
             {title}

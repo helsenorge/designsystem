@@ -71,6 +71,9 @@ const meta = {
     expanded: {
       control: 'boolean',
     },
+    focusable: {
+      control: 'boolean',
+    },
   },
 } satisfies Meta<typeof Panel>;
 
