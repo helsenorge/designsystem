@@ -1,7 +1,8 @@
 import React from 'react';
 
+import { isComponent } from '../../utils/component';
 import uuid from '../../utils/uuid';
-import { DuolistGroup } from '../Duolist';
+import { DuolistGroup, DuolistGroupProps } from '../Duolist';
 
 import styles from './styles.module.scss';
 
@@ -40,12 +41,12 @@ export const Highlighter = ({ children, searchText }: HighlightProps): React.Rea
       const { children: nodeChildren, ...props } = node.props;
 
       // Handle DuoList specifically
-      if (node.type === DuolistGroup) {
-        const highlightedTerm = replaceWithMarkTag(node.props.term as string);
-        const highlightedDescription = replaceWithMarkTag(node.props.description as string);
+      if (isComponent<DuolistGroupProps>(node, DuolistGroup)) {
+        const term = replaceWithMarkTag(node.props.term as string);
+        const description = replaceWithMarkTag(node.props.description as string);
         return React.cloneElement(node, {
-          highlightedTerm,
-          highlightedDescription,
+          term,
+          description,
         });
       }
 
