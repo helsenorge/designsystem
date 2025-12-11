@@ -232,6 +232,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
   const handlePointerDown: React.PointerEventHandler<HTMLDivElement> = e => {
     if (disabled) return;
 
+    handleTrackClick(e);
     setIsMoving(true);
     handleSelected();
 
@@ -366,11 +367,9 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
         <div className={styles['slider__content-container']}>
           {renderEmojies()}
           {/* Slider streken er klikkbar med mus/touch */}
-          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
           <div
             ref={trackRef}
             className={classNames(styles['slider__track-wrapper'], disabled && styles['slider__track-wrapper--disabled'])}
-            onClick={handleTrackClick}
             onPointerDown={handlePointerDown}
           >
             <div className={classNames(styles.slider__track, disabled && styles['slider__track--disabled'])}>{renderSteps()}</div>
