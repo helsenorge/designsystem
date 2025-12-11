@@ -1,3 +1,20 @@
+## [13.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.2.0&targetVersion=GTv13.3.0) (2025-12-11)
+
+
+### Features
+
+*  Nye ikon zoominleft zoomoutleft og oppdatert ikonscript ([f7a429d](https://github.com/helsenorge/designsystem/commit/f7a429d2558da965a5fb7259353c7123428b6985)), closes [#365860](https://github.com/helsenorge/designsystem/issues/365860)
+* **panel:**  får focusable prop ([0e35f3c](https://github.com/helsenorge/designsystem/commit/0e35f3c787acce1fd19862d069485c8f02a8f8e1)), closes [#366506](https://github.com/helsenorge/designsystem/issues/366506)
+
+
+### Bug Fixes
+
+* **dropdown:**  dobbel scrollbar på windows med mange elementer ([9b740a9](https://github.com/helsenorge/designsystem/commit/9b740a99cea321edda035b3c7acda377e82ab76c)), closes [#366359](https://github.com/helsenorge/designsystem/issues/366359)
+* **highlighter:**  fungerer igjen med duolist ([3f31a76](https://github.com/helsenorge/designsystem/commit/3f31a76176ee73ff5d89dbf6f28c4b517f20a54a)), closes [#366784](https://github.com/helsenorge/designsystem/issues/366784)
+* **highlighter:**  mister keys ved bruk med duolist ([550b025](https://github.com/helsenorge/designsystem/commit/550b025486651d9389efc99a42640b7f965f022d)), closes [#366784](https://github.com/helsenorge/designsystem/issues/366784)
+* **linklist:**  focus styling skal ikke trigges av museklikk ([8ffc342](https://github.com/helsenorge/designsystem/commit/8ffc342d4bebd321b5c306a2c37bed835f912193)), closes [#366485](https://github.com/helsenorge/designsystem/issues/366485)
+* **panel:**  klager på manglende keys på underkomponenter ([611b12d](https://github.com/helsenorge/designsystem/commit/611b12d44d47fb4c35f718006f0661f54a896481)), closes [#366779](https://github.com/helsenorge/designsystem/issues/366779)
+
 ## [13.2.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.1.0&targetVersion=GTv13.2.0) (2025-12-04)
 
 
