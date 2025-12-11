@@ -43,7 +43,10 @@ export const Highlighter = ({ children, searchText }: HighlightProps): React.Rea
       if (node.type === DuolistGroup) {
         const highlightedTerm = replaceWithMarkTag(node.props.term as string);
         const highlightedDescription = replaceWithMarkTag(node.props.description as string);
-        return <DuolistGroup {...node.props} term={highlightedTerm} description={highlightedDescription} />;
+        return React.cloneElement(node, {
+          highlightedTerm,
+          highlightedDescription,
+        });
       }
 
       if (!nodeChildren) {
