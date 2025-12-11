@@ -145,6 +145,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
   };
 
   React.useEffect(() => {
+    let index = 0;
     let localHasIcon = false;
     const newPreContainer: React.ReactNode[] = [];
     const newTitle: React.ReactNode[] = [];
@@ -153,19 +154,24 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
 
     React.Children.forEach(children, child => {
       if (React.isValidElement(child)) {
+        const key = child.key ?? `panel-child-${index++}`;
+
         if (child.type === PreContainer) {
-          newPreContainer.push(child);
+          newPreContainer.push(React.cloneElement(child, { key }));
         } else if (child.type === PanelTitle) {
           newTitle.push(
-            React.cloneElement(child as React.ReactElement<PanelTitleProps>, { highlightText: child.props.highlightText || highlightText })
+            React.cloneElement(child as React.ReactElement<PanelTitleProps>, {
+              key,
+              highlightText: child.props.highlightText || highlightText,
+            })
           );
           if (child.props.icon) {
             localHasIcon = true;
           }
         } else if (child.type === A || child.type === B || child.type === C) {
-          newContent.push(child);
+          newContent.push(React.cloneElement(child, { key }));
         } else if (child.type === ExpandedContent) {
-          newExpandableContent.push(child);
+          newExpandableContent.push(React.cloneElement(child, { key }));
         }
       }
     });
