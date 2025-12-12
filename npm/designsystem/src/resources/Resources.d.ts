@@ -135,4 +135,11 @@ export type HNDesignsystemLinkList = {
   editMode_deleteButtonAriaLabel: string;
 };
 
+export type HNDesignsystemInput = {
+  /**
+   * tegn
+   */
+  characters: string;
+};
+
 /* eslint:enable */
