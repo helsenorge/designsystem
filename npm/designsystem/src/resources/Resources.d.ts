@@ -121,7 +121,7 @@ export type HNDesignsystemFormFieldTag = {
   requiredSingleCheckbox: string;
 };
 
-export type HNDesignsystemMaxCharacters = {
+export type HNDesignsystemTextArea = {
   /**
    * tegn
    */
