@@ -172,7 +172,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
       <div>
         {htmlMarkup === 'div' && (
           <div className={fieldsetClasses}>
-            {props.legend && (
+            {(props.legend || props.formFieldTag) && (
               <>
                 <h5 className={legendClasses}>
                   {props.legend}
@@ -185,7 +185,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
         )}
         {htmlMarkup === 'fieldset' && (
           <fieldset aria-labelledby={ariaLabelledBy} name={props.fieldsetName} className={fieldsetClasses}>
-            {props.legend && (
+            {(props.legend || props.formFieldTag) && (
               <>
                 <legend className={legendClasses}>
                   {props.legend}
