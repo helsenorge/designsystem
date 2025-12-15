@@ -2,11 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
-import { FormOnColor, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX } from '../../constants';
+import { getResources } from './resourceHelper';
+import { FormOnColor, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, LanguageLocales } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
+import { HNDesignsystemInput } from '../../resources/Resources';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
+import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
 import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import Icon, { IconSize, SvgIcon } from '../Icon';
@@ -81,8 +84,10 @@ export interface InputProps
   rightOfInput?: React.ReactNode;
   /** max character limit in input  */
   maxCharacters?: number;
-  /** The text is displayed in the end of the text-counter */
+  /** @deprecated use resources instead. The text is displayed in the end of the text-counter */
   maxText?: string;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemInput>;
 }
 
 export enum InputTypes {
@@ -139,8 +144,18 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     maxCharacters,
     maxText,
     inputContainerRef,
+    resources,
     ...rest
   } = props;
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemInput = {
+    ...defaultResources,
+    ...resources,
+    characters: maxText || resources?.characters || defaultResources.characters,
+  };
+
   const breakpoint = useBreakpoint();
   const inputContainerRefLocal = useRef<HTMLDivElement>(null);
   const inputId = useIdWithFallback(inputIdProp);
@@ -286,7 +301,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
           <MaxCharacters
             maxCharacters={maxCharacters}
             length={input.toString().length}
-            maxText={maxText}
+            maxText={mergedResources.characters}
             onColor={onColor}
             maxWidth={maxWidth}
           />

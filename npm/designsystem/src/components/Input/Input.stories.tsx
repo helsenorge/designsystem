@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import Input, { InputProps, InputTypes } from './Input';
-import { FormOnColor, FormSize } from '../../constants';
+import { FormOnColor, FormSize, LanguageLocales } from '../../constants';
+import LanguageProvider from '../../utils/language';
+import Dropdown from '../Dropdown';
+import Globe from '../Icons/Globe';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
+import Spacer from '../Spacer';
 
 type InputWithAndCustomArgs = React.ComponentProps<typeof Input> & {
   showIcon: boolean;
@@ -201,6 +205,30 @@ export const WithAndWithoutIcon: Story = {
         <br />
         <Input {...rest} label={<Label labelTexts={[{ text: 'Large uten ikon' }]} htmlFor={inputId} />} inputId={inputId} size="large" />
       </>
+    );
+  },
+};
+
+export const WithLanguageProvider: Story = {
+  render: args => {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Dropdown svgIcon={Globe} triggerText="Velg språk">
+          <Dropdown.SingleSelectItem text={'English'} asChild defaultSelected>
+            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Nynorsk'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Bokmål'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
+          </Dropdown.SingleSelectItem>
+        </Dropdown>
+        <Spacer />
+        <Input {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} maxCharacters={10} width={10} />
+      </LanguageProvider>
     );
   },
 };

@@ -2,9 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import cn from 'classnames';
 
-import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor } from '../../constants';
+import { getResources } from './resourceHelper';
+import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, LanguageLocales } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
+import { HNDesignsystemTextArea } from '../../resources/Resources';
 import { getAriaDescribedBy } from '../../utils/accessibility';
+import { useLanguage } from '../../utils/language';
 import { uuid } from '../../utils/uuid';
 import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import { renderLabel } from '../Label';
@@ -30,7 +33,7 @@ export interface TextareaProps
     > {
   /** max character limit in textarea  */
   maxCharacters?: number;
-  /** The text is displayed in the end of the text-counter */
+  /** @deprecated use resources instead. The text is displayed in the end of the text-counter */
   maxText?: string;
   /** Width of textarea in characters (approximate) */
   width?: number;
@@ -58,6 +61,8 @@ export interface TextareaProps
   errorText?: string;
   /** Error text id */
   errorTextId?: string;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemTextArea>;
 }
 
 const getTextareaMaxWidth = (characters: number): string => {
@@ -96,6 +101,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     required,
     onChange,
     value,
+    resources,
     ...rest
   } = props;
 
@@ -103,6 +109,15 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const [textareaInput, setTextareaInput] = useState(value || defaultValue || '');
   const referanse = useRef<HTMLDivElement>(null);
   const errorTextUuid = useIdWithFallback(errorTextIdProp);
+
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+
+  const mergedResources: HNDesignsystemTextArea = {
+    ...defaultResources,
+    ...resources,
+    characters: maxText || resources?.characters || defaultResources.characters,
+  };
 
   useEffect(() => {
     setTextareaInput(defaultValue || '');
@@ -206,7 +221,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
           <MaxCharacters
             maxCharacters={maxCharacters}
             length={textareaInput.toString().length}
-            maxText={maxText}
+            maxText={mergedResources.characters}
             onColor={onColor}
             maxWidth={maxWidth}
           />

@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import Textarea from './Textarea';
-import { FormOnColor } from '../../constants';
+import { FormOnColor, LanguageLocales } from '../../constants';
+import LanguageProvider from '../../utils/language';
+import Dropdown from '../Dropdown';
+import Globe from '../Icons/Globe';
 import Label from '../Label/Label';
+import Spacer from '../Spacer';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Textarea',
@@ -105,4 +109,28 @@ export const MaxCharacters: Story = {
       />
     </>
   ),
+};
+
+export const WithLanguageProvider: Story = {
+  render: args => {
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Dropdown svgIcon={Globe} triggerText="Velg språk">
+          <Dropdown.SingleSelectItem text={'English'} asChild defaultSelected>
+            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Nynorsk'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Bokmål'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
+          </Dropdown.SingleSelectItem>
+        </Dropdown>
+        <Spacer />
+        <Textarea {...args} label={<Label labelTexts={[{ text: 'Skriv inn din tekst' }]} />} maxCharacters={50} marginBottom width={50} />
+      </LanguageProvider>
+    );
+  },
 };

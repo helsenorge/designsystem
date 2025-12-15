@@ -12,7 +12,7 @@ interface MaxCharactersProps {
   /** max character limit in textarea  */
   maxCharacters: number;
   /** The text is displayed in the end of the text-counter */
-  maxText?: string;
+  maxText: string;
   /** Changes the visuals of the textarea */
   onColor?: keyof typeof FormOnColor;
   /** Max width of the component */
@@ -31,7 +31,7 @@ const MaxCharacters: React.FC<MaxCharactersProps> = ({ maxCharacters, maxText, l
 
   return (
     <div aria-live={ariaLevel} aria-atomic={'true'} className={counterTextClass} style={{ maxWidth }}>
-      {`${length}/${maxCharacters} ${maxText ? maxText : 'tegn'}`}
+      {`${length}/${maxCharacters} ${maxText}`}
     </div>
   );
 };
