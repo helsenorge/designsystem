@@ -78,7 +78,7 @@ export type LinkProps = Modify<
     /**
      * Ref for lenke/knapp
      */
-    linkRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
+    linkRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement> | null;
     /** Sets the data-testid attribute. */
     testId?: string;
     /** Highlights text. Override if different from list */

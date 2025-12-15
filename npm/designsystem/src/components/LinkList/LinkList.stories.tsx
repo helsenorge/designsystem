@@ -23,6 +23,7 @@ import Toggle from '../Toggle';
 const meta = {
   title: '@helsenorge/designsystem-react/Components/LinkList',
   component: LinkList,
+  subcomponents: { Link: LinkList.Link },
   parameters: {
     docs: {
       page: (): React.JSX.Element => (
