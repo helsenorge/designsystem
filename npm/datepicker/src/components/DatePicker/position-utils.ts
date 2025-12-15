@@ -79,8 +79,9 @@ const getBubbleRightPx = (controllerSize: DOMRect, bubbleSize: DOMRect): number 
  * @param bubbleSize DOMRect for hjelpeboblen
  * @returns true dersom venstre kant er innenfor vinduet
  */
-const getBubbleLeftVisible = (controllerSize: DOMRect): boolean => {
-  return controllerSize.left > WINDOW_MARGIN_PX;
+const getBubbleLeftVisible = (controllerSize: DOMRect, bubbleSize: DOMRect): boolean => {
+  const bubbleLeft = getBubbleLeftPx(controllerSize, bubbleSize);
+  return bubbleLeft > WINDOW_MARGIN_PX;
 };
 
 /**
@@ -105,7 +106,7 @@ const getHorizontalPosition = (controllerSize: DOMRect, bubbleSize: DOMRect): Ho
   if (!getBubbleRightIsVisible(controllerSize, bubbleSize)) {
     return 'right';
   }
-  if (!getBubbleLeftVisible(controllerSize)) {
+  if (!getBubbleLeftVisible(controllerSize, bubbleSize)) {
     return 'left';
   }
 
