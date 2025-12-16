@@ -1,0 +1,7 @@
+{
+  "dateButtonAriaLabel": "Opne datoveljar",
+  "dayButtonBase": "{date}",
+  "dayButtonToday": "I dag, {date}",
+  "dayButtonSelected": "{date} valt",
+  "goToToday": "Gå til i dag"
+}
