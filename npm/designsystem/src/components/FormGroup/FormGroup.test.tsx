@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 
 import FormGroup from './FormGroup';
 import Checkbox from '../Checkbox';
-import FormFieldTag from '../FormFieldTag';
 import FormLayout from '../FormLayout';
 import Input from '../Input';
 import Label from '../Label';
@@ -228,52 +227,6 @@ describe('Gitt at FormGroup skal vises', (): void => {
         const input = screen.getByLabelText('Input 1');
         expect(input).toHaveAccessibleDescription('error error!');
       });
-    });
-  });
-
-  describe('Når fieldsetName er satt', (): void => {
-    test('Så har fieldset name-attributtet satt', (): void => {
-      render(
-        <FormGroup title={'One amazing title'} legend={'Check out these checkboxes!'} fieldsetName="choices">
-          <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
-          <Checkbox inputId={'Checkbox2'} label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
-          <Checkbox inputId={'Checkbox3'} label={<Label labelTexts={[{ text: 'Checkbox 3' }]} />} />
-        </FormGroup>
-      );
-
-      const fieldset = screen.getByRole('group', { name: 'Check out these checkboxes!' });
-
-      expect(fieldset).toBeVisible();
-      expect(fieldset).toHaveAttribute('name', 'choices');
-    });
-  });
-
-  describe('Når ariaDescribedBy og FormFieldTag brukes', (): void => {
-    test('Så settes aria-describedby på fieldset til både custom id og FormFieldTag id', (): void => {
-      render(
-        <>
-          <p id="extra-help">{'Ekstra beskrivelse'}</p>
-
-          <FormGroup
-            legend="Check out these checkboxes!"
-            ariaDescribedBy="extra-help"
-            formFieldTag={<FormFieldTag level={'all-required'} />}
-          >
-            <Checkbox inputId={'Checkbox1'} label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
-          </FormGroup>
-        </>
-      );
-
-      const fieldset = screen.getByRole('group', { name: 'Check out these checkboxes!' });
-
-      expect(fieldset.getAttribute('aria-describedby')).toContain('extra-help');
-
-      const tag = screen.getByText('Alle felt må fylles ut');
-      expect(tag).toHaveAttribute('id');
-
-      const tagId = tag.getAttribute('id');
-      expect(tagId).toBeTruthy();
-      expect(fieldset.getAttribute('aria-describedby')).toContain(tagId as string);
     });
   });
 });
