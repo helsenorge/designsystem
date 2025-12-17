@@ -45,6 +45,18 @@ export type HNDesignsystemDatePicker = {
    * Henter info. Vennligst vent.
    */
   loadingText: string;
+  /**
+   * dd
+   */
+  dayFormatPlaceholder: string;
+  /**
+   * mm
+   */
+  monthFormatPlaceholder: string;
+  /**
+   * åååå
+   */
+  yearFormatPlaceholder: string;
 };
 
 /* eslint:enable */
