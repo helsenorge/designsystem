@@ -28,7 +28,7 @@ export enum PopOverVariant {
   positionabove = 'positionabove',
 }
 
-export type PopOverRole = 'tooltip' | 'dialog';
+export type PopOverRole = 'tooltip' | 'dialog' | 'group';
 
 export type PopOverPlacement = 'top' | 'bottom';
 

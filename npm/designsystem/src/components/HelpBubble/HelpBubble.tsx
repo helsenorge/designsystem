@@ -118,17 +118,17 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
       id={helpBubbleId}
       variant={variant}
       controllerRef={controllerRef}
-      role="dialog"
+      role="group"
       ref={ref}
       show={showBubble}
       testId={testId}
     >
       <div className={helpBubbleClasses} data-analyticsid={AnalyticsId.HelpBubble}>
-        {renderCloseButton()}
         <div className={contentClasses}>
           {children}
           {renderLink()}
         </div>
+        {renderCloseButton()}
       </div>
     </PopOver>
   );
