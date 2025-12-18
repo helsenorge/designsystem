@@ -1,3 +1,19 @@
+## [13.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.3.0&targetVersion=GTv13.4.0) (2025-12-18)
+
+
+### Features
+
+*  input og textarea får resources til maxcharacters tekst ([5057563](https://github.com/helsenorge/designsystem/commit/5057563de68c04df119ff8f16063041c05282562)), closes [#365224](https://github.com/helsenorge/designsystem/issues/365224)
+* **formgroup:**  fjerner ariadescribedby prop ([9aa55d4](https://github.com/helsenorge/designsystem/commit/9aa55d463caaeff7d715d3d604237a687c25dc1f)), closes [#367262](https://github.com/helsenorge/designsystem/issues/367262)
+* **formgroup:**  ny prop ariadescribedby og formfieldtag er koblet med ariadescribedby automatisk ([71569ef](https://github.com/helsenorge/designsystem/commit/71569ef9db0f955b6a06a363b137635703c2f123)), closes [#367262](https://github.com/helsenorge/designsystem/issues/367262)
+* **linklist:**  linkref prop kan være null ([b3bd5c1](https://github.com/helsenorge/designsystem/commit/b3bd5c1e5e786908269752cd4ccc672dd81ba88d)), closes [#367039](https://github.com/helsenorge/designsystem/issues/367039)
+
+
+### Bug Fixes
+
+* **datepicker:**  popup vises delvis utenfor skjerm på smal desktop ([1a06d2a](https://github.com/helsenorge/designsystem/commit/1a06d2a27b3902d4fbf89a231ed13085aa1959f6)), closes [#367051](https://github.com/helsenorge/designsystem/issues/367051)
+* **slider:**  onclick oppfører seg rart med validering aktivert ([fe2c93a](https://github.com/helsenorge/designsystem/commit/fe2c93a917ce0b54b5f92283fd2340918529e42d)), closes [#357082](https://github.com/helsenorge/designsystem/issues/357082)
+
 ## [13.3.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.2.0&targetVersion=GTv13.3.0) (2025-12-11)
 
 
