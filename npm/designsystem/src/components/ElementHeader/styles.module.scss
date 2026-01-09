@@ -51,7 +51,11 @@
     height: 100%;
     grid-area: text;
     align-self: center;
-    padding: 0.5rem 0 0.5rem 0.5rem;
+    padding: 0.7rem 0 0.5rem 0.5rem;
+
+    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+      padding-top: 0.65rem;
+    }
 
     &[data-hasstatusdots='true'] {
       padding-top: 0.25rem;
