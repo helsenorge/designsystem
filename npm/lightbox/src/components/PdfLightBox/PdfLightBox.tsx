@@ -18,6 +18,8 @@ import MiniSlider from './MiniSlider';
 
 import styles from './styles.module.scss';
 
+// @todo: test ut react-pdf for visning av PDF-filer i lightboxen
+
 export interface PdfLightBoxProps {
   /** Aria label for the close button */
   ariaLabelCloseButton: string;
