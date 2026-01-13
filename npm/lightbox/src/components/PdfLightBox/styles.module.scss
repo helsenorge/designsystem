@@ -11,6 +11,7 @@
   left: 0;
   width: 100vw;
   height: 100dvh;
+  overflow: auto;
 }
 
 .lightBox img {
@@ -114,35 +115,29 @@
   }
 }
 
-.image-text-box {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+.pdf-container {
+  overflow: auto;
 
-  &__button {
-    outline: none;
-    border: none;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2.5rem;
-    border-radius: 4px 4px 0 0;
+  // height: 856px;
+  width: 800px;
+  height: 100%;
+}
+
+.pdf-viewer {
+  // overflow: auto;
+  // height: 856px;
+  width: 800px;
+
+  // height: 100%;
+
+  &__document {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  &__text {
-    color: var(--color-base-text-ondark);
-    background-color: var(--core-color-black);
-    margin: 0;
-    padding: 0.75rem 1rem;
-    max-height: calc(50dvh - 19px);
-    overflow: auto;
-  }
-
-  &__overflow-border {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 1.5rem;
-    background: linear-gradient(#0000, var(--core-color-black));
+  &__page {
+    border: 1px solid grey;
+    margin: 0 auto 2px;
   }
 }

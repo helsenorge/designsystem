@@ -15,6 +15,7 @@ import { disableBodyScroll, enableBodyScroll } from '@helsenorge/designsystem-re
 import { useKeyboardEvent } from '@helsenorge/designsystem-react';
 
 import MiniSlider from './MiniSlider';
+import PdfViewer, { PdfViewerFile } from './PdfViewer';
 
 import styles from './styles.module.scss';
 
@@ -36,7 +37,9 @@ export interface PdfLightBoxProps {
   /** Aria label for the slider input component */
   ariaLabelZoomSlider: string;
   /** The content rendered inside the lightbox wrapper */
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  /** PDF-dokument som skal vises */
+  file: PdfViewerFile;
   /** Function is called when user clicks the close button */
   onClose: () => void;
   /** Sets the data-testid attribute. */
@@ -49,9 +52,10 @@ const PdfLightBox: React.FC<PdfLightBoxProps> = ({
   ariaLabelZoomIn,
   ariaLabelZoomOut,
   ariaLabelZoomSlider,
-  children,
+  // children,
   onClose,
   testId,
+  file,
 }) => {
   const lightBoxRef = useRef<HTMLDivElement>(null);
   const [zoom, setZoom] = useState(1.0);
@@ -72,7 +76,7 @@ const PdfLightBox: React.FC<PdfLightBoxProps> = ({
   return (
     <div
       data-testid={testId}
-      className={styles.lightBox}
+      // className={styles.lightBox}
       style={{ zIndex: ZIndex.OverlayScreen }}
       role="dialog"
       aria-modal={true}
@@ -89,33 +93,64 @@ const PdfLightBox: React.FC<PdfLightBoxProps> = ({
       >
         <Icon svgIcon={X} color="white" size={IconSize.XSmall} />
       </button>
-      <TransformWrapper smooth={false} initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle', step: 4 }}>
-        {({ setTransform }) => (
-          <>
-            <Controls
-              transform={setTransform}
-              updateStates={updateStates}
-              zoom={zoom}
-              ariaLabelZoomIn={ariaLabelZoomIn}
-              ariaLabelZoomOut={ariaLabelZoomOut}
-              ariaLabelZoomSlider={ariaLabelZoomSlider}
-            />
-            <TransformComponent
-              wrapperStyle={{
-                zIndex: 1,
-                width: '100%',
-                height: '100%',
-              }}
-              contentStyle={{
-                width: '100%',
-                height: '100%',
-              }}
-            >
-              {children}
-            </TransformComponent>
-          </>
-        )}
-      </TransformWrapper>
+      {/* <div className={styles['pdf-container']}>
+        <TransformWrapper smooth={false} initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle', step: 4 }} wheel={{ disabled: true }}>
+          {({ setTransform }) => (
+            <>
+              <Controls
+                transform={setTransform}
+                updateStates={updateStates}
+                zoom={zoom}
+                ariaLabelZoomIn={ariaLabelZoomIn}
+                ariaLabelZoomOut={ariaLabelZoomOut}
+                ariaLabelZoomSlider={ariaLabelZoomSlider}
+              />
+              <TransformComponent
+                wrapperStyle={{
+                  zIndex: 1,
+                  width: '100%',
+                  height: '100%',
+                }}
+                contentStyle={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <PdfViewer file={file} scale={zoom} />
+              </TransformComponent>
+            </>
+          )}
+        </TransformWrapper>
+      </div> */}
+      <div className={styles['pdf-container']}>
+        <TransformWrapper smooth={false} initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle', step: 4 }} wheel={{ disabled: true }}>
+          {({ setTransform }) => (
+            <>
+              <Controls
+                transform={setTransform}
+                updateStates={updateStates}
+                zoom={zoom}
+                ariaLabelZoomIn={ariaLabelZoomIn}
+                ariaLabelZoomOut={ariaLabelZoomOut}
+                ariaLabelZoomSlider={ariaLabelZoomSlider}
+              />
+              <TransformComponent
+                wrapperStyle={{
+                  zIndex: 1,
+                  width: '100%',
+                  height: '100%',
+                }}
+                contentStyle={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <PdfViewer file={file} scale={zoom} />
+              </TransformComponent>
+            </>
+          )}
+        </TransformWrapper>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
@@ -7,6 +7,7 @@ import { action } from 'storybook/actions';
 import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
 
 import PdfLightBox from './PdfLightBox';
+import PdfViewer from './PdfViewer';
 
 const meta = {
   title: '@helsenorge/lightbox/PdfLightBox',
@@ -52,6 +53,70 @@ export const Default: Story = {
 
 export const LangBildetekst: Story = {
   render: args => <PdfLightBox {...args} />,
+};
+
+export const PdfViewerExample: Story = {
+  render: () => {
+    const [file, setFile] = useState<Blob | null>(null);
+    const [lightboxOpen, setLightboxOpen] = React.useState(false);
+
+    return (
+      <div>
+        <input
+          type="file"
+          accept="application/pdf"
+          onChange={e => {
+            const f = e.target.files?.[0];
+            if (f) setFile(f);
+          }}
+        />
+        <button onClick={() => setLightboxOpen(true)} id="åpne">
+          {'Åpne PdfLightBox over side'}
+        </button>
+        {file && lightboxOpen && (
+          <PdfLightBox
+            ariaLabelCloseButton={''}
+            ariaLabelCloseTextBox={''}
+            ariaLabelLightBox={''}
+            ariaLabelOpenTextBox={''}
+            ariaLabelZoomIn={''}
+            ariaLabelZoomOut={''}
+            ariaLabelZoomSlider={''}
+            onClose={() => setLightboxOpen(false)}
+            file={file}
+          ></PdfLightBox>
+        )}
+      </div>
+    );
+  },
+};
+
+export const PdfViewerWithoutLightboxExample: Story = {
+  render: () => {
+    const [file, setFile] = useState<Blob | null>(null);
+    // const [lightboxOpen, setLightboxOpen] = React.useState(false);
+
+    return (
+      <div>
+        <input
+          type="file"
+          accept="application/pdf"
+          onChange={e => {
+            const f = e.target.files?.[0];
+            if (f) setFile(f);
+          }}
+        />
+        <button onClick={() => setLightboxOpen(true)} id="åpne">
+          {'Åpne PdfLightBox over side'}
+        </button>
+        {file && (
+          <div style={{ height: '800px', overflow: 'auto' }}>
+            <PdfViewer file={file} />
+          </div>
+        )}
+      </div>
+    );
+  },
 };
 
 const AapnesOverSideRender = (args: React.ComponentProps<typeof PdfLightBox>): React.ReactElement => {
