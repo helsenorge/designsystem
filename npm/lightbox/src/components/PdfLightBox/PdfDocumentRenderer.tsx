@@ -55,7 +55,14 @@ const PdfDocumentRenderer: React.FC<PdfDocumentRendererProps> = ({
       tabIndex={hasAriaAttributes ? 0 : undefined}
       className={styles['pdf-viewer']}
     >
-      <TransformWrapper smooth={false} initialScale={1} maxScale={4} doubleClick={{ mode: 'toggle', step: 4 }} wheel={{ disabled: true }}>
+      <TransformWrapper
+        smooth={false}
+        initialScale={1}
+        maxScale={4}
+        doubleClick={{ mode: 'toggle', step: 4 }}
+        wheel={{ disabled: true }}
+        panning={{ disabled: true }}
+      >
         {() => (
           <>
             {/* <Controls

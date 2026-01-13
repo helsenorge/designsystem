@@ -106,9 +106,9 @@ export const PdfViewerWithoutLightboxExample: Story = {
             if (f) setFile(f);
           }}
         />
-        <button onClick={() => setLightboxOpen(true)} id="åpne">
+        {/* <button onClick={() => setLightboxOpen(true)} id="åpne">
           {'Åpne PdfLightBox over side'}
-        </button>
+        </button> */}
         {file && (
           <div style={{ height: '800px', overflow: 'auto' }}>
             <PdfViewer file={file} />
