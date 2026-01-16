@@ -735,7 +735,7 @@
     }
   },
   "scripts": {
-    "start": "storybook dev",
+    "start": "storybook dev -p 3000",
     "prebuild": "npm-run-all link-scss clean generate:iconnames generate:illustrationnames generate:cssdefinitions",
     "build": "vite build",
     "postbuild": "npm run link-scss",
