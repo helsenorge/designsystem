@@ -73,6 +73,10 @@ export type HNDesignsystemDatePicker = {
    * Dag må være et tall mellom 01 og 31
    */
   validateDefaultMessageDay: string;
+  /**
+   * Nullstill dato
+   */
+  clearButtonAriaLabel: string;
 };
 
 /* eslint:enable */
