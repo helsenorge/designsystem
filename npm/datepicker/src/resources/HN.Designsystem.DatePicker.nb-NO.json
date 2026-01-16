@@ -11,5 +11,9 @@
   "loadingText": "Henter info. Vennligst vent.",
   "dayFormatPlaceholder": "dd",
   "monthFormatPlaceholder": "mm",
-  "yearFormatPlaceholder": "åååå"
+  "yearFormatPlaceholder": "åååå",
+  "calendarButtonAriaLabel": "Åpne datovelger",
+  "validateDefaultMessageYear": "År må være et tall med 4 siffer",
+  "validateDefaultMessageMonth": "Måned må være et tall mellom 01 og 12",
+  "validateDefaultMessageDay": "Dag må være et tall mellom 01 og 31"
 }

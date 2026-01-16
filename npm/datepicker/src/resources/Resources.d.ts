@@ -57,6 +57,22 @@ export type HNDesignsystemDatePicker = {
    * åååå
    */
   yearFormatPlaceholder: string;
+  /**
+   * Åpne datovelger
+   */
+  calendarButtonAriaLabel: string;
+  /**
+   * År må være et tall med 4 siffer
+   */
+  validateDefaultMessageYear: string;
+  /**
+   * Måned må være et tall mellom 01 og 12
+   */
+  validateDefaultMessageMonth: string;
+  /**
+   * Dag må være et tall mellom 01 og 31
+   */
+  validateDefaultMessageDay: string;
 };
 
 /* eslint:enable */
