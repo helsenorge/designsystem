@@ -22,6 +22,7 @@ import {
   PasientReiser,
   TimeAvtale,
 } from './PanelExamples';
+import Duolist, { DuolistGroup } from '../Duolist';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Panel',
@@ -1090,4 +1091,55 @@ export const Controlled: Story = {
       </Panel>
     );
   },
+};
+
+export const SupernovaStrukturerInnholdet: Story = {
+  args: {
+    buttonBottomText: 'Gå til timeavtale',
+    buttonBottomOnClick: () => action('Button bottom clicked'),
+  },
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: ` 
+<Panel {...args}>
+  <Panel.PreContainer>
+    <div>
+      <StatusDot text="Tildelt" variant="success" />
+      <br />
+      <span>{'1.sep.2024, kl. 10.00'}</span>
+    </div>
+  </Panel.PreContainer>
+  <Panel.Title title={'Poliklinisk time, Ortopedisk avdeling, Ullevål'} />
+  <Panel.A>
+    <Duolist useCollapsedFromAndBelowBreakpoint={'lg'}>
+      <DuolistGroup term={'Oppmøtested'} description={'Se innkallingsbrev, eller møt opp som avtalt'} />
+      <DuolistGroup term={'Avtale med'} description={'Ullevål sykehus, Oslo'} />
+      <DuolistGroup term={'Antatt varighet'} description={'1 time'} />
+    </Duolist>
+  </Panel.A>
+</Panel>`,
+      },
+    },
+  },
+  render: args => (
+    <Panel {...args}>
+      <Panel.PreContainer>
+        <div>
+          <StatusDot text="Tildelt" variant="success" />
+          <br />
+          <span>{'1.sep.2024, kl. 10.00'}</span>
+        </div>
+      </Panel.PreContainer>
+      <Panel.Title title={'Poliklinisk time, Ortopedisk avdeling, Ullevål'} />
+      <Panel.A>
+        <Duolist useCollapsedFromAndBelowBreakpoint={'lg'}>
+          <DuolistGroup term={'Oppmøtested'} description={'Se innkallingsbrev, eller møt opp som avtalt'} />
+          <DuolistGroup term={'Avtale med'} description={'Ullevål sykehus, Oslo'} />
+          <DuolistGroup term={'Antatt varighet'} description={'1 time'} />
+        </Duolist>
+      </Panel.A>
+    </Panel>
+  ),
 };
