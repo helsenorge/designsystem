@@ -16,5 +16,8 @@
   "validateDefaultMessageYear": "År må være et tall med 4 siffer",
   "validateDefaultMessageMonth": "Måned må være et tall mellom 01 og 12",
   "validateDefaultMessageDay": "Dag må være et tall mellom 01 og 31",
-  "clearButtonAriaLabel": "Nullstill dato"
+  "clearButtonAriaLabel": "Nullstill dato",
+  "ariaLabelInputDay": "Dag",
+  "ariaLabelInputMonth": "Måned",
+  "ariaLabelInputYear": "År"
 }

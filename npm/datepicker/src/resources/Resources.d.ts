@@ -77,6 +77,18 @@ export type HNDesignsystemDatePicker = {
    * Nullstill dato
    */
   clearButtonAriaLabel: string;
+  /**
+   * Dag
+   */
+  ariaLabelInputDay: string;
+  /**
+   * Måned
+   */
+  ariaLabelInputMonth: string;
+  /**
+   * År
+   */
+  ariaLabelInputYear: string;
 };
 
 /* eslint:enable */
