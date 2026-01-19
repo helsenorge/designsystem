@@ -4,7 +4,7 @@ import { AnalyticsId, IconSize } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { mergeRefs } from '../../utils/refs';
+import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import HelpDetails from '../HelpDetails/HelpDetails';
 import { HelpTriggerWeights } from '../HelpTriggerIcon/HelpTriggerIcon';
 import HelpTriggerStandalone from '../HelpTriggerStandalone';
@@ -37,36 +37,48 @@ export interface HelpExpanderStandaloneProps {
   testId?: string;
   /** The text that will be displayed in the trigger. */
   triggerText: string;
+  /** Ref passed to the component */
+  ref?: React.Ref<HTMLButtonElement | null>;
 }
 
-const HelpExpanderStandalone = React.forwardRef<HTMLButtonElement, HelpExpanderStandaloneProps>(
-  ({ ariaLabel, ariaLabelledById, children, className, expanded = false, onExpand, testId, triggerText, weight = 'normal' }, ref) => {
-    const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
-    const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
-    const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>);
+const HelpExpanderStandalone: React.FC<HelpExpanderStandaloneProps> = props => {
+  const {
+    ariaLabel,
+    ariaLabelledById,
+    children,
+    className,
+    expanded = false,
+    onExpand,
+    testId,
+    triggerText,
+    weight = 'normal',
+    ref,
+  } = props;
+  const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
+  const [isExpanded, setIsExpanded] = useExpand(expanded, onExpand);
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
 
-    return (
-      <div className={className} data-testid={testId} data-analyticsid={AnalyticsId.HelpExpanderStandalone}>
-        <HelpTriggerStandalone
-          className={styles['help-expander-standalone-trigger']}
-          aria-expanded={isExpanded}
-          onClick={(): void => setIsExpanded(!isExpanded)}
-          ref={mergeRefs([ref, refObject])}
-          weight={weight}
-          {...ariaLabelAttributes}
-        >
-          {triggerText}
-          <Icon
-            color={`var(--core-color-plum-${isHovered ? '900' : '700'})`}
-            svgIcon={isExpanded ? ChevronUp : ChevronDown}
-            size={IconSize.XXSmall}
-          />
-        </HelpTriggerStandalone>
-        {isExpanded && <HelpDetails>{children}</HelpDetails>}
-      </div>
-    );
-  }
-);
+  return (
+    <div className={className} data-testid={testId} data-analyticsid={AnalyticsId.HelpExpanderStandalone}>
+      <HelpTriggerStandalone
+        className={styles['help-expander-standalone-trigger']}
+        aria-expanded={isExpanded}
+        onClick={(): void => setIsExpanded(!isExpanded)}
+        ref={mergeRefs([ref, refObject])}
+        weight={weight}
+        {...ariaLabelAttributes}
+      >
+        {triggerText}
+        <Icon
+          color={`var(--core-color-plum-${isHovered ? '900' : '700'})`}
+          svgIcon={isExpanded ? ChevronUp : ChevronDown}
+          size={IconSize.XXSmall}
+        />
+      </HelpTriggerStandalone>
+      {isExpanded && <HelpDetails>{children}</HelpDetails>}
+    </div>
+  );
+};
 
 HelpExpanderStandalone.displayName = 'HelpExpanderStandalone';
 

@@ -6,7 +6,7 @@ import Highlighter from '../../Highlighter';
 import { TitleTags } from '../../Title';
 import styles from '../styles.module.scss';
 
-export type ElementHeaderTextType = React.FC<ElementHeaderTextProps>;
+export type ElementHeaderTextType = typeof ElementHeaderText;
 
 export interface ElementHeaderTextProps {
   /** The first text in the ElementHeaderText Component */
@@ -29,7 +29,7 @@ export interface ElementHeaderTextProps {
   highlightText?: string;
 }
 
-export const ElementHeaderText: ElementHeaderTextType = props => {
+export const ElementHeaderText: React.FC<ElementHeaderTextProps> = props => {
   const {
     firstText,
     firstTextEmphasised = false,

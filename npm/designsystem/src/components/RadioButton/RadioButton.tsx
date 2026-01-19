@@ -14,7 +14,8 @@ import { getLabelText, renderLabelAsParent } from '../Label';
 import radioButtonStyles from './styles.module.scss';
 
 export interface RadioButtonProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'defaultChecked' | 'required' | 'onChange'
@@ -39,6 +40,8 @@ export interface RadioButtonProps
   errorTextId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the input element */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
 export const getRadioLabelClasses = (
@@ -58,7 +61,7 @@ export const getRadioLabelClasses = (
   });
 };
 
-export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React.Ref<HTMLInputElement>) => {
+export const RadioButton: React.FC<RadioButtonProps> = props => {
   const {
     className,
     defaultChecked,
@@ -77,6 +80,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
     testId,
     required,
     labelClassNames,
+    ref,
     ...rest
   } = props;
   const invalid = error || onColor === FormOnColor.oninvalid;
@@ -160,7 +164,7 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
       </div>
     </ErrorWrapper>
   );
-});
+};
 
 RadioButton.displayName = 'RadioButton';
 

@@ -29,10 +29,12 @@ export interface FormLayoutProps {
   testId?: string;
   /** Function that helps map the form children */
   mapHelper?: (child: React.ReactNode, index: number) => React.ReactNode;
+  /** Ref passed to the root div */
+  ref?: React.Ref<HTMLDivElement | null>;
 }
 
-export const FormLayout = React.forwardRef((props: FormLayoutProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-  const { maxColumns: columns = FormLayoutColumns.one, colMinWidth = 300, size, className, mapHelper } = props;
+export const FormLayout: React.FC<FormLayoutProps> = (props: FormLayoutProps) => {
+  const { maxColumns: columns = FormLayoutColumns.one, colMinWidth = 300, size, className, mapHelper, ref } = props;
 
   const cssVariable = { '--min-col-width': `${colMinWidth}px` } as React.CSSProperties;
   const formLayoutContainerClasses = classNames(
@@ -62,7 +64,7 @@ export const FormLayout = React.forwardRef((props: FormLayoutProps, ref: React.F
       })}
     </div>
   );
-});
+};
 
 FormLayout.displayName = 'FormLayout';
 

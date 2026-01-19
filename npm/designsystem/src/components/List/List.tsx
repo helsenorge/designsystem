@@ -12,9 +12,7 @@ export interface ItemProps {
   children: React.ReactNode;
 }
 
-type ItemType = React.FC<ItemProps>;
-
-const Item: ItemType = ({ children }: ItemProps) => <li className={styles.list__item}>{children}</li>;
+const Item: React.FC<ItemProps> = ({ children }: ItemProps) => <li className={styles.list__item}>{children}</li>;
 
 export interface ListProps {
   /** List contents */
@@ -30,7 +28,7 @@ export interface ListProps {
 }
 
 export interface ListCompound extends React.FC<ListProps> {
-  Item: ItemType;
+  Item: typeof Item;
 }
 
 const List: ListCompound = ({ children, className, testId, variant = 'bullet', margin }: ListProps) => {

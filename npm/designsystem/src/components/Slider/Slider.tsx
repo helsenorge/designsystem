@@ -39,8 +39,7 @@ export type SliderStep = {
 };
 
 export interface SliderProps
-  extends ErrorWrapperClassNameProps,
-    Pick<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'onChange' | 'onBlur'> {
+  extends ErrorWrapperClassNameProps, Pick<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'onChange' | 'onBlur'> {
   /** Activates Error style for the input */
   error?: boolean;
   /** Error text to show above the component */
@@ -71,9 +70,11 @@ export interface SliderProps
   testId?: string;
   /** Sets the value of the slider */
   value?: number;
+  /** Ref passed to component */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
-export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLInputElement>) => {
+export const Slider: React.FC<SliderProps> = props => {
   const {
     title,
     ariaLabel,
@@ -92,6 +93,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
     selected = true,
     testId,
     value,
+    ref,
     ...rest
   } = props;
 
@@ -396,7 +398,7 @@ export const Slider = React.forwardRef((props: SliderProps, ref: React.Ref<HTMLI
       </div>
     </ErrorWrapper>
   );
-});
+};
 
 Slider.displayName = 'Slider';
 

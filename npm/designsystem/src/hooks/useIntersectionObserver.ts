@@ -10,7 +10,7 @@ import { useEffect } from 'react';
  */
 
 export const useIntersectionObserver = (
-  ref: React.RefObject<Element>,
+  ref: React.RefObject<Element | null>,
   callback: IntersectionObserverCallback,
   options?: IntersectionObserverInit
 ): void => {

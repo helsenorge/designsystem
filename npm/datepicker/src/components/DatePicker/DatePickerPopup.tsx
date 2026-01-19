@@ -47,14 +47,12 @@ export interface DatePickerAriaLabels {
 }
 
 interface DatePickerPopupProps
-  extends Pick<
-      DayPickerProps,
-      'dir' | 'disabled' | 'footer' | 'startMonth' | 'initialFocus' | 'locale' | 'month' | 'onMonthChange' | 'endMonth'
-    >,
+  extends
+    Pick<DayPickerProps, 'dir' | 'disabled' | 'footer' | 'startMonth' | 'initialFocus' | 'locale' | 'month' | 'onMonthChange' | 'endMonth'>,
     Pick<PropsSingle, 'selected' | 'onSelect'> {
   ariaLabels?: DatePickerAriaLabels;
-  datepickerWrapperRef: React.RefObject<HTMLDivElement>;
-  inputRef: React.RefObject<HTMLInputElement>;
+  datepickerWrapperRef: React.RefObject<HTMLDivElement | null>;
+  inputRef: React.RefObject<HTMLInputElement | null>;
   testId?: string;
   variant: keyof typeof PopOverVariant;
   zIndex?: number;

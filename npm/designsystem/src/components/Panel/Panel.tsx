@@ -78,6 +78,8 @@ export interface PanelProps {
   resources?: Partial<HNDesignsystemPanel>;
   /** Highlights text in title and content. Used for search results */
   highlightText?: string;
+  /** Ref passed to the panel container */
+  ref?: React.Ref<HTMLDivElement | null>;
 }
 
 const ExpandButton = ({
@@ -104,27 +106,25 @@ const ExpandButton = ({
     </Button>
   );
 };
-const PanelRoot = React.forwardRef(function PanelForwardedRef(
-  {
-    layout = PanelLayout.vertical,
-    variant = PanelVariant.fill,
-    color = 'neutral',
-    stacking = PanelStacking.default,
-    testId,
-    children,
-    expanded = false,
-    focusable,
-    status = PanelStatus.none,
-    buttonBottomAriaLabel,
-    buttonBottomOnClick,
-    buttonBottomText,
-    className,
-    resources,
-    onExpand,
-    highlightText,
-  }: PanelProps,
-  ref: React.ForwardedRef<HTMLDivElement>
-) {
+const PanelRoot: React.FC<PanelProps> = ({
+  layout = PanelLayout.vertical,
+  variant = PanelVariant.fill,
+  color = 'neutral',
+  stacking = PanelStacking.default,
+  testId,
+  children,
+  expanded = false,
+  focusable,
+  status = PanelStatus.none,
+  buttonBottomAriaLabel,
+  buttonBottomOnClick,
+  buttonBottomText,
+  className,
+  resources,
+  onExpand,
+  highlightText,
+  ref,
+}: PanelProps) => {
   const [preContainer, setPreContainer] = React.useState<React.ReactNode[]>([]);
   const [title, setTitle] = React.useState<React.ReactNode[]>([]);
   const [content, setContent] = React.useState<React.ReactNode[]>([]);
@@ -286,7 +286,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
       </div>
     </div>
   );
-});
+};
 
 export interface ContentProps {
   /** Children elements to be rendered inside the content box */

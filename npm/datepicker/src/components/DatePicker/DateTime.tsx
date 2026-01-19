@@ -10,7 +10,8 @@ import styles from './styles.module.scss';
 export type TimeUnit = 'hours' | 'minutes';
 
 export interface DateTimeProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       'name' | 'aria-describedby' | 'aria-labelledby' | 'onBlur' | 'onChange' | 'disabled' | 'autoComplete'
@@ -33,6 +34,8 @@ export interface DateTimeProps
   value?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
 const formatAsTwoDigits = (value: string | number): string => {
@@ -44,7 +47,7 @@ const isNumericString = (str: string): boolean => {
   return !str || (/^\d+$/.test(str) && str.length <= 2);
 };
 
-export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<HTMLInputElement>) => {
+export const DateTime: React.FC<DateTimeProps> = props => {
   const {
     error,
     errorText,
@@ -58,9 +61,9 @@ export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<H
     inputId,
     value,
     autoComplete = 'off',
+    ref,
     ...rest
   } = props;
-
   const [inputValue, setInputValue] = useState<number | string | undefined>(
     typeof value !== 'undefined' ? formatAsTwoDigits(value) : undefined
   );
@@ -125,8 +128,6 @@ export const DateTime = React.forwardRef((props: DateTimeProps, ref: React.Ref<H
       />
     </div>
   );
-});
-
-DateTime.displayName = 'DateTime';
+};
 
 export default DateTime;

@@ -11,7 +11,7 @@ type OutsideEvents = {
  * @param events Type eventer å lytte på. Default: mousedown
  */
 export const useOutsideEvent = (
-  ref: React.RefObject<HTMLElement> | React.RefObject<HTMLElement>[],
+  ref: React.RefObject<HTMLElement | null> | React.RefObject<HTMLElement | null>[],
   callback: (event: MouseEvent | FocusEvent) => void,
   events: OutsideEvents[] = ['mousedown']
 ): void => {

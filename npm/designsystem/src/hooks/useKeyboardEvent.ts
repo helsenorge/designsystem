@@ -12,7 +12,7 @@ type KeyboardEvents = {
  * @param events Liste med keyboard-events som skal trigge callback. Default: "keydown"
  */
 export const useKeyboardEvent = (
-  ref: React.RefObject<HTMLElement>,
+  ref: React.RefObject<HTMLElement | null>,
   callback: (event: KeyboardEvent) => void,
   key: string | string[],
   events: KeyboardEvents[] = ['keydown']

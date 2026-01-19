@@ -30,9 +30,11 @@ interface ValidationProps {
   testId?: string;
   /** Hides the ValidationSummary list visually - summary is still announced by screen readers */
   visuallyHiddenSummary?: boolean;
+  /** Ref passed to the component */
+  ref?: React.Ref<HTMLDivElement | null>;
 }
 
-export const Validation = React.forwardRef((props: ValidationProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const Validation: React.FC<ValidationProps> = (props: ValidationProps) => {
   const validationErrorClass = styles['validation__error-wrapper'];
 
   const cloneFormElement = <T extends ErrorWrapperClassNameProps>(child: React.ReactElement<T>): React.ReactElement<T> => {
@@ -68,13 +70,13 @@ export const Validation = React.forwardRef((props: ValidationProps, ref: React.F
 
   return (
     <>
-      <div data-testid={props.testId} data-analyticsid={AnalyticsId.Validation} className={props.className} ref={ref}>
+      <div data-testid={props.testId} data-analyticsid={AnalyticsId.Validation} className={props.className} ref={props.ref}>
         {React.Children.map(props.children, (child: React.ReactNode) => renderChild(child))}
       </div>
       <ValidationSummary errorTitle={props.errorTitle} errors={props.errors} visuallyHidden={props.visuallyHiddenSummary} />
     </>
   );
-});
+};
 
 Validation.displayName = 'Validation';
 

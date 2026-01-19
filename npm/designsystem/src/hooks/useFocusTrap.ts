@@ -8,7 +8,7 @@ import { getDocumentActiveElement } from '../utils/focus';
  * @param ref Alle barn av dette elementet vil være fokuserbare, elementer utenfor vil ikke det
  * @param trapFocus Om fokus skal "trappes" innenfor elementet eller ikke. Default=true.
  */
-export const useFocusTrap = (ref: React.RefObject<HTMLElement>, trapFocus = true): void => {
+export const useFocusTrap = (ref: React.RefObject<HTMLElement | null>, trapFocus = true): void => {
   const focusableElementList = useFocusableElements(ref);
 
   const handleKeyboardEvent = (e: KeyboardEvent): void => {

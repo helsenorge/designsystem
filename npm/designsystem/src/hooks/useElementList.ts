@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
  * @returns Liste med HTML-elementer
  */
 export const useElementList = (
-  ref: React.RefObject<HTMLElement>,
+  ref: React.RefObject<HTMLElement | null>,
   selectors: string,
   options?: MutationObserverInit
 ): NodeListOf<HTMLElement> | undefined => {

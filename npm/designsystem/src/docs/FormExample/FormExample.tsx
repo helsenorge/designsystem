@@ -43,7 +43,7 @@ interface FormExampleData {
   bike: string;
 }
 
-export const FormExample = (props: FormExampleProps): JSX.Element => {
+export const FormExample = (props: FormExampleProps): React.JSX.Element => {
   const { exampleType = FormExampleVariants.formgroup } = props;
   const {
     register,

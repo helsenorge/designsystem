@@ -24,6 +24,8 @@ export interface BaseIconProps {
   onColor?: keyof typeof FormOnColor | StatusDotOnColor;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<SVGSVGElement | null>;
 }
 
 export interface IconProps extends BaseIconProps {
@@ -68,7 +70,7 @@ export const getIcon = ({
   return isHovered ? normalHover : normal;
 };
 
-export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<SVGSVGElement>) => {
+export const Icon: React.FC<IconProps> = props => {
   const {
     svgIcon,
     ariaLabel,
@@ -79,9 +81,9 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
     isHovered = false,
     onColor,
     testId,
+    ref,
     ...other
   } = props;
-
   const svgRaw = React.createElement(svgIcon, {
     size,
     isHovered,
@@ -113,7 +115,7 @@ export const Icon = React.forwardRef((props: IconProps, ref: React.ForwardedRef<
       {svgRaw}
     </svg>
   );
-});
+};
 
 Icon.displayName = 'Icon';
 

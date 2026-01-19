@@ -416,7 +416,7 @@ interface StoryDatePickerProps extends DatePickerProps {
   withOnDatePopupClosed?: boolean;
 }
 
-const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePickerProps): JSX.Element => {
+const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePickerProps): React.JSX.Element => {
   const {
     register,
     trigger,

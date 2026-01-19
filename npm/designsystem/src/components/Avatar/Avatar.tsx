@@ -29,10 +29,21 @@ export interface AvatarProps {
   className?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the root element */
+  ref?: React.Ref<HTMLElement | null>;
 }
-export type AvatarType = React.ForwardRefExoticComponent<AvatarProps & React.RefAttributes<HTMLElement>>;
-const Avatar: AvatarType = React.forwardRef(function AvatarForwardedRef(props: AvatarProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { children, className = '', selected = false, color = 'blueberry', variant = 'square', size = AvatarSize.small, testId } = props;
+export type AvatarType = typeof Avatar;
+const Avatar: React.FC<AvatarProps> = (props: AvatarProps) => {
+  const {
+    children,
+    className = '',
+    selected = false,
+    color = 'blueberry',
+    variant = 'square',
+    size = AvatarSize.small,
+    testId,
+    ref,
+  } = props;
   const truncatedName = children.charAt(0).toLocaleUpperCase() + children.substring(1, 2);
   return (
     <span
@@ -56,6 +67,6 @@ const Avatar: AvatarType = React.forwardRef(function AvatarForwardedRef(props: A
       )}
     </span>
   );
-});
+};
 
 export default Avatar;

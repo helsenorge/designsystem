@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getIcon, SvgPathProps } from '../Icon';
 
-const InfoSignFill: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): JSX.Element => {
+const InfoSignFill: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.JSX.Element => {
   const normal = (
     <path d="M26.372 31.239h-4.709v-.544c.129-.01.256-.022.38-.037a1.31 1.31 0 00.32-.075.614.614 0 00.335-.256.883.883 0 00.097-.444v-6.337a.87.87 0 00-.119-.459 1.003 1.003 0 00-.298-.316 1.546 1.546 0 00-.406-.171 2.65 2.65 0 00-.496-.105v-.544l3.652-.193.111.111v7.917c0 .174.038.322.112.443a.672.672 0 00.321.272 2.368 2.368 0 00.7.194v.544zM23.726 16.21a1.559 1.559 0 11-.002 3.118 1.559 1.559 0 01.002-3.118zm.275-7.514C15.562 8.696 8.696 15.561 8.696 24c0 8.438 6.866 15.304 15.305 15.304 8.438 0 15.303-6.866 15.303-15.304 0-8.439-6.865-15.304-15.303-15.304z" />
   );

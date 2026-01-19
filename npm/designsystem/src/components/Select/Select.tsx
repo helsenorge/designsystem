@@ -16,7 +16,8 @@ import selectStyles from './styles.module.scss';
 type SelectConcept = 'normal' | 'transparent';
 
 export interface SelectProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.SelectHTMLAttributes<HTMLSelectElement>,
       'aria-describedby' | 'name' | 'disabled' | 'required' | 'value' | 'onChange' | 'autoComplete'
@@ -47,6 +48,8 @@ export interface SelectProps
   defaultValue?: string | number;
   /** Adds custom classes to the wrapper tag */
   wrapperClassName?: string;
+  /** Ref passed to the select element */
+  ref?: React.Ref<HTMLSelectElement | null>;
 }
 
 const getSelectMaxWidth = (characters: number): string => {
@@ -60,7 +63,7 @@ const getIconColor = (invalid: boolean, disabled: boolean): string => {
   return disabled ? getColor('neutral', 500) : getColor(iconColor, 600);
 };
 
-export const Select = React.forwardRef(function SelectForwardedRef(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
+export const Select: React.FC<SelectProps> = props => {
   const {
     className,
     children,
@@ -81,6 +84,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     defaultValue,
     autoComplete = 'off',
     wrapperClassName,
+    ref,
     ...rest
   } = props;
 
@@ -142,6 +146,6 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
       </div>
     </ErrorWrapper>
   );
-});
+};
 
 export default Select;

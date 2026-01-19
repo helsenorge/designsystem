@@ -139,10 +139,10 @@ function template({ template }, opts, { imports, componentName, props, jsx, expo
       import {IconProps} from './Icon';
 
 
-      const ${componentName} = React.forwardRef((svgProps: IconProps, ref: any) => {
+      const ${componentName}: React.FC<IconProps> = (svgProps: IconProps) => {
         const {size = 38, color = 'black', isHovered = false, ...props} = svgProps;
         return !isHovered ? (${opts.state.svgNormal}) : (${opts.state.svgHover})
-      });
+      };
 
       export default ${componentName};
     `;

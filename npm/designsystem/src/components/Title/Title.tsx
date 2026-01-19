@@ -23,10 +23,12 @@ export interface TitleProps {
   appearance?: TitleAppearances;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the heading element */
+  ref?: React.Ref<HTMLHeadingElement | null>;
 }
 
-export const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
-  const { id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0, testId } = props;
+export const Title: React.FC<TitleProps> = (props: TitleProps) => {
+  const { id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0, testId, ref } = props;
   const titleClasses = classNames(
     titleStyles.title,
     {
@@ -51,7 +53,7 @@ export const Title = React.forwardRef(function TitleForwardedRef(props: TitlePro
       {children}
     </CustomTag>
   );
-});
+};
 
 export interface TitleMargin {
   marginTop: number;

@@ -25,11 +25,13 @@ export interface BadgeProps {
   type?: BadgeVariant;
   /** Type of notification badge. Only works if type is 'notification'. */
   notificationVariant?: BadgeNotificationVariant;
+  /** Ref passed to the root element */
+  ref?: React.Ref<HTMLElement | null>;
 }
 
-export type BadgeType = React.ForwardRefExoticComponent<BadgeProps & React.RefAttributes<HTMLElement>>;
-const Badge: BadgeType = React.forwardRef(function BadgeForwardedRef(props: BadgeProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { children, className = '', color = 'blueberry', testId, type = 'string', notificationVariant = 'info' } = props;
+export type BadgeType = typeof Badge;
+const Badge: React.FC<BadgeProps> = (props: BadgeProps) => {
+  const { children, className = '', color = 'blueberry', testId, type = 'string', notificationVariant = 'info', ref } = props;
   const badgeClasses = classNames(
     badgeStyles.badge,
     {
@@ -57,6 +59,6 @@ const Badge: BadgeType = React.forwardRef(function BadgeForwardedRef(props: Badg
       {children}
     </span>
   );
-});
+};
 
 export default Badge;

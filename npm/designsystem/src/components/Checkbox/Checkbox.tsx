@@ -17,7 +17,8 @@ import { getLabelText, renderLabelAsParent } from '../Label';
 import checkboxStyles from './styles.module.scss';
 
 export interface CheckboxProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'required' | 'onChange'
@@ -40,9 +41,11 @@ export interface CheckboxProps
   errorTextId?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
-export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<HTMLInputElement>) => {
+export const Checkbox: React.FC<CheckboxProps> = props => {
   const {
     className,
     checked = false,
@@ -60,6 +63,7 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
     testId,
     required,
     onChange,
+    ref,
   } = props;
   const [isChecked, setIsChecked] = useState(checked);
   const errorTextId = useIdWithFallback(errorTextIdProp);
@@ -170,8 +174,6 @@ export const Checkbox = React.forwardRef((props: CheckboxProps, ref: React.Ref<H
       </div>
     </ErrorWrapper>
   );
-});
-
-Checkbox.displayName = 'Checkbox';
+};
 
 export default Checkbox;

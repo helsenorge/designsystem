@@ -24,10 +24,12 @@ export interface CloseProps {
   className?: string;
   /** Gives color to the svg */
   color?: 'blueberry' | 'black' | 'plum';
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLButtonElement | null>;
 }
 
-const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, ref: React.ForwardedRef<HTMLButtonElement>) {
-  const { small, testId, ariaLabel = 'Lukk', onClick, className, color = 'blueberry' } = props;
+const Close: React.FC<CloseProps> = props => {
+  const { small, testId, ariaLabel = 'Lukk', onClick, className, color = 'blueberry', ref } = props;
   const { refObject, isHovered } = usePseudoClasses();
 
   const iconSize = useIsMobileBreakpoint() || small ? 38 : 48;
@@ -63,6 +65,6 @@ const Close = React.forwardRef(function ButtonForwardedRef(props: CloseProps, re
       </span>
     </button>
   );
-});
+};
 
 export default Close;

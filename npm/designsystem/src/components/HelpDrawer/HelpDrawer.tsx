@@ -8,20 +8,19 @@ import Drawer, { DrawerProps } from '../Drawer';
 
 import styles from './styles.module.scss';
 
-export interface HelpDrawerProps
-  extends Pick<
-    DrawerProps,
-    | 'ariaLabel'
-    | 'ariaLabelledBy'
-    | 'ariaLabelCloseBtn'
-    | 'children'
-    | 'isOpen'
-    | 'onRequestClose'
-    | 'title'
-    | 'titleHtmlMarkup'
-    | 'titleId'
-    | 'zIndex'
-  > {
+export interface HelpDrawerProps extends Pick<
+  DrawerProps,
+  | 'ariaLabel'
+  | 'ariaLabelledBy'
+  | 'ariaLabelCloseBtn'
+  | 'children'
+  | 'isOpen'
+  | 'onRequestClose'
+  | 'title'
+  | 'titleHtmlMarkup'
+  | 'titleId'
+  | 'zIndex'
+> {
   /** Resources for the component */
   resources?: Partial<HNDesignsystemHelpDrawer>;
   /** Sets the data-testid attribute. */

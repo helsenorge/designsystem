@@ -10,7 +10,7 @@ vi.useFakeTimers();
 // Mock motion/react
 vi.mock('motion/react', () => ({
   motion: {
-    div: ({ ...props }: React.PropsWithChildren<Record<string, unknown>>): JSX.Element => <div {...props}>{props.children}</div>,
+    div: ({ ...props }: React.PropsWithChildren<Record<string, unknown>>): React.ReactElement => <div {...props}>{props.children}</div>,
   },
   AnimatePresence: ({ children }: React.PropsWithChildren): React.ReactNode => children,
 }));

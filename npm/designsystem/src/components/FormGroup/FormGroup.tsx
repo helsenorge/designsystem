@@ -59,9 +59,11 @@ export interface FormGroupProps {
   htmlMarkup?: FormGroupTags;
   /** Renders the error component (Default: true) */
   renderError?: boolean;
+  /** Ref passed to the error message element */
+  ref?: React.Ref<HTMLDivElement | null>;
 }
 
-export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
   const {
     ariaLabelledBy,
     className,
@@ -77,6 +79,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     renderError = true,
     errorWrapperClassName,
     errorWrapperTestId,
+    ref,
   } = props;
   const [checkedRadioId, setCheckedRadioId] = useState<string>();
   const radioGroupId = useId();
@@ -219,7 +222,7 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
       </ErrorWrapper>
     </div>
   );
-});
+};
 
 FormGroup.displayName = 'FormGroup';
 

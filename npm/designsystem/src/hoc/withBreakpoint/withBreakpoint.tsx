@@ -9,21 +9,16 @@ export interface BreakpointProps {
 // Hentet fra https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35834#issuecomment-497605842
 export function withBreakpoint<P extends BreakpointProps, C extends React.ComponentClass<P>>(
   Component: C & React.ComponentType<P>
-): React.ForwardRefExoticComponent<Omit<React.ComponentPropsWithoutRef<C> & { ref?: React.Ref<InstanceType<C>> }, keyof BreakpointProps>>;
+): React.FC<Omit<React.ComponentPropsWithoutRef<C>, keyof BreakpointProps>>;
 
-export function withBreakpoint<P extends BreakpointProps & { ref?: React.Ref<unknown> }>(
-  Component: React.ForwardRefExoticComponent<P>
-): React.ForwardRefExoticComponent<Omit<P, keyof BreakpointProps>>;
+export function withBreakpoint<P extends BreakpointProps>(Component: React.FC<P>): React.FC<Omit<P, keyof BreakpointProps>>;
 
-export function withBreakpoint<P extends BreakpointProps>(
-  Component: React.FunctionComponent<P>
-): React.ForwardRefExoticComponent<Omit<P, keyof BreakpointProps>>;
-
-export function withBreakpoint<P extends BreakpointProps>(Component: React.ComponentType<P>) {
-  return React.forwardRef((props, ref) => {
+export function withBreakpoint<P extends BreakpointProps>(Component: React.ComponentType<P>): React.FC<Omit<P, keyof BreakpointProps>> {
+  const WithBreakpoint: React.FC<Omit<P, keyof BreakpointProps>> = props => {
     const breakpoint = useBreakpoint();
-    return <Component ref={ref} {...(props as P)} breakpoint={breakpoint} />;
-  });
+    return <Component {...(props as P)} breakpoint={breakpoint} />;
+  };
+  return WithBreakpoint;
 }
 
 export default withBreakpoint;

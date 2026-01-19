@@ -40,10 +40,12 @@ export interface AnchorLinkProps {
   onClick?: (e?: AnchorLinkOnClickEvent) => void;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLAnchorElement | HTMLButtonElement | null>;
 }
 
-const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, AnchorLinkProps>((props, ref) => {
-  const { asChild, id, href, children, className, target = '_self', htmlMarkup = 'a', onClick, testId } = props;
+const AnchorLink: React.FC<AnchorLinkProps> = props => {
+  const { asChild, id, href, children, className, target = '_self', htmlMarkup = 'a', onClick, testId, ref } = props;
   const external = target === '_blank';
   const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement>(
     ref as React.RefObject<HTMLButtonElement | HTMLAnchorElement>
@@ -110,8 +112,6 @@ const AnchorLink = React.forwardRef<HTMLAnchorElement | HTMLButtonElement, Ancho
       <span className={anchorClasses}>{renderContent()}</span>
     </button>
   );
-});
-
-AnchorLink.displayName = 'AnchorLink';
+};
 
 export default AnchorLink;

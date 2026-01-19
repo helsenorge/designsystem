@@ -6,7 +6,7 @@ import StatusDot, { StatusDotProps, StatusDotVariant } from '../../StatusDot';
 
 import styles from './styles.module.scss';
 
-export type StatusDotListType = React.FC<StatusDotListProps>;
+export type StatusDotListType = typeof StatusDotList;
 
 export interface StatusDotListProps {
   /** Additional text to the bottom statusdot */
@@ -27,7 +27,7 @@ export interface StatusDotListProps {
   topStatusDot?: React.ReactElement<StatusDotProps>;
 }
 
-export const StatusDotList: StatusDotListType = props => {
+export const StatusDotList: React.FC<StatusDotListProps> = props => {
   const {
     additionalText,
     children,

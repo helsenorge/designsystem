@@ -54,6 +54,8 @@ export interface NotificationPanelProps {
   role?: 'region' | 'alert' | 'status';
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the component */
+  ref?: React.Ref<HTMLDivElement | null>;
 }
 
 type WrapFluidProps = Pick<NotificationPanelProps, 'fluid'> & {
@@ -69,7 +71,7 @@ const FluidWrapper: React.FC<WrapFluidProps> = ({ fluid, children }) => {
   return children;
 };
 
-const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProps>((props, ref) => {
+const NotificationPanel: React.FC<NotificationPanelProps> = props => {
   const {
     children,
     variant = 'info',
@@ -88,12 +90,13 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     className,
     role,
     testId,
+    ref,
   } = props;
   const labelId = useIdWithFallback(labelIdProp);
   const [expanderOpen, setExpanderOpen] = React.useState(expanderOpenFromStart);
   const isMobile = useIsMobileBreakpoint();
 
-  const renderContent = (): JSX.Element => {
+  const renderContent = (): React.ReactNode => {
     const outlineVariant = compactVariant === 'outline';
     const contentClasses = classNames(styles['notification-panel__content']);
     const labelClasses = classNames(styles['notification-panel__label'], {
@@ -171,6 +174,6 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
       </div>
     </FluidWrapper>
   );
-});
+};
 
 export default NotificationPanel;

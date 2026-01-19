@@ -6,7 +6,7 @@ import HelpSign from './HelpSign';
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { mergeRefs } from '../../utils/refs';
+import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 
 import styles from './styles.module.scss';
 
@@ -16,8 +16,10 @@ export type HelpTriggerIconTags = 'button' | 'span';
 
 export type HelpTriggerWeights = 'normal' | 'strong';
 
-export interface HelpTriggerIconProps
-  extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'aria-haspopup' | 'aria-controls' | 'aria-expanded'> {
+export interface HelpTriggerIconProps extends Pick<
+  React.InputHTMLAttributes<HTMLButtonElement>,
+  'onClick' | 'aria-haspopup' | 'aria-controls' | 'aria-expanded'
+> {
   /**
    * Sets aria-label of the trigger. ariaLabel or ariaLabelledById MUST be set!
    */
@@ -38,6 +40,8 @@ export interface HelpTriggerIconProps
    * Sets the colors of the help trigger icon. Default: normal.
    */
   weight?: HelpTriggerWeights;
+  /** Ref passed to the component */
+  ref?: React.Ref<HTMLButtonElement | null>;
 }
 
 interface HelpTriggerIconInternalProps extends HelpTriggerIconProps {
@@ -58,62 +62,59 @@ const getIconColor = (hover: boolean, weight: HelpTriggerWeights): string | unde
   }
 };
 
-const HelpTriggerIcon = React.forwardRef<HTMLButtonElement, HelpTriggerIconProps>((props, ref) => {
-  return <HelpTriggerIconInternal {...props} ref={ref} />;
-});
+const HelpTriggerIcon: React.FC<HelpTriggerIconProps> = props => {
+  return <HelpTriggerIconInternal {...props} />;
+};
 
-export const HelpTriggerIconInternal = React.forwardRef<HTMLButtonElement, HelpTriggerIconInternalProps>(
-  (
+export const HelpTriggerIconInternal: React.FC<HelpTriggerIconInternalProps> = props => {
+  const {
+    ariaLabel,
+    ariaLabelledById,
+    className,
+    htmlMarkup = 'button',
+    isHovered = false,
+    size = 'medium',
+    testId,
+    weight = 'normal',
+    ref,
+    ...buttonRest
+  } = props;
+  const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
+  const { refObject, isHovered: interalIsHovered } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
+  const helpIcon = <HelpSign color={getIconColor(interalIsHovered || isHovered, weight)} weight={weight} />;
+  const isButton = htmlMarkup === 'button';
+  const iconClasses = classNames(
+    styles['help-trigger-icon'],
     {
-      ariaLabel,
-      ariaLabelledById,
-      className,
-      htmlMarkup = 'button',
-      isHovered = false,
-      size = 'medium',
-      testId,
-      weight = 'normal',
-      ...buttonRest
+      [styles['help-trigger-icon--strong']]: weight === 'strong',
+      [styles['help-trigger-icon--is-button']]: isButton,
     },
-    ref
-  ) => {
-    const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
-    const { refObject, isHovered: interalIsHovered } = usePseudoClasses<HTMLButtonElement>(ref as React.RefObject<HTMLButtonElement>);
-    const helpIcon = <HelpSign color={getIconColor(interalIsHovered || isHovered, weight)} weight={weight} />;
-    const isButton = htmlMarkup === 'button';
-    const iconClasses = classNames(
-      styles['help-trigger-icon'],
-      {
-        [styles['help-trigger-icon--strong']]: weight === 'strong',
-        [styles['help-trigger-icon--is-button']]: isButton,
-      },
-      styles[`help-trigger-icon--${size}`],
-      className
-    );
+    styles[`help-trigger-icon--${size}`],
+    className
+  );
 
-    if (isButton) {
-      return (
-        <button
-          {...ariaLabelAttributes}
-          type="button"
-          data-testid={testId}
-          data-analyticsid={AnalyticsId.HelpTriggerIcon}
-          className={iconClasses}
-          ref={mergeRefs([refObject, ref])}
-          {...buttonRest}
-        >
-          {helpIcon}
-        </button>
-      );
-    }
-
+  if (isButton) {
     return (
-      <span data-testid={testId} data-analyticsid={AnalyticsId.HelpTriggerIcon} className={iconClasses}>
+      <button
+        {...ariaLabelAttributes}
+        type="button"
+        data-testid={testId}
+        data-analyticsid={AnalyticsId.HelpTriggerIcon}
+        className={iconClasses}
+        ref={mergeRefs([refObject, ref])}
+        {...buttonRest}
+      >
         {helpIcon}
-      </span>
+      </button>
     );
   }
-);
+
+  return (
+    <span data-testid={testId} data-analyticsid={AnalyticsId.HelpTriggerIcon} className={iconClasses}>
+      {helpIcon}
+    </span>
+  );
+};
 
 HelpTriggerIcon.displayName = 'HelpTriggerIcon';
 HelpTriggerIconInternal.displayName = 'HelpTriggerIconInternal';

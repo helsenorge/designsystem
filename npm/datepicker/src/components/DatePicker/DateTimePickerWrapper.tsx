@@ -21,10 +21,12 @@ interface DateTimePickerWrapperProps extends ErrorWrapperClassNameProps {
   legend?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLDivElement | null>;
 }
 
-export const DateTimePickerWrapper = React.forwardRef((props: DateTimePickerWrapperProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-  const { children, errorWrapperClassName, errorText, legend, testId } = props;
+export const DateTimePickerWrapper: React.FC<DateTimePickerWrapperProps> = props => {
+  const { children, errorWrapperClassName, errorText, legend, testId, ref } = props;
   const errorTextId = useId();
 
   const mapDateComponents = (child: React.ReactNode): React.ReactNode => {
@@ -57,8 +59,6 @@ export const DateTimePickerWrapper = React.forwardRef((props: DateTimePickerWrap
       </ErrorWrapper>
     </div>
   );
-});
-
-DateTimePickerWrapper.displayName = 'DateTimePickerWrapper';
+};
 
 export default DateTimePickerWrapper;

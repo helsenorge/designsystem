@@ -7,7 +7,7 @@ import { getDocumentActiveElement } from '../utils/focus';
  * A hook that stores the currently focused element when the component mounts,
  * and returns focus to it when the component unmounts.
  */
-export const useReturnFocusOnUnmount = (ref: React.RefObject<HTMLElement>): void => {
+export const useReturnFocusOnUnmount = (ref: React.RefObject<HTMLElement | null>): void => {
   const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {

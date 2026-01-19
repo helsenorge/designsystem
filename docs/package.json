@@ -14,8 +14,8 @@
     "@helsenorge/designsystem-react": "*",
     "classnames": "^2.5.1",
     "normalize.css": "^8.0.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-hook-form": "^7.53.0",
     "react-router": "^7.9.5"
   },
@@ -23,8 +23,8 @@
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.6.1",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.1",
+    "@types/react": "^19.2.3",
+    "@types/react-dom": "^19.2.3",
     "@vitest/coverage-v8": "^3.1.2",
     "jsdom": "^26.0.0",
     "vitest": "^3.1.2"

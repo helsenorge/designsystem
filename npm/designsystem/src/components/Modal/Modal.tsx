@@ -82,7 +82,7 @@ export interface ModalProps {
   role?: 'dialog' | 'alertdialog';
 }
 
-const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => {
+const getVariantIcon = (variant?: ModalProps['variant']): React.JSX.Element | null => {
   if (variant === ModalVariants.error) {
     return <Icon size={IconSize.Small} svgIcon={AlertSignFill} color={palette.cherry500} />;
   } else if (variant === ModalVariants.warning) {
@@ -93,7 +93,7 @@ const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => 
   return null;
 };
 
-const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): JSX.Element | null => {
+const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): React.JSX.Element | null => {
   const variantIcon = getVariantIcon(variant);
   if (variantIcon) {
     return <div className={styles.modal__iconWrapper}>{variantIcon}</div>;

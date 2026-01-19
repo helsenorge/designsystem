@@ -18,11 +18,11 @@ import { TitleTags } from '../Title';
 import expanderListStyles from './styles.module.scss';
 
 export type ExpanderListColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cherry' | 'neutral'>;
-export interface ExpanderType extends React.ForwardRefExoticComponent<ExpanderProps & React.RefAttributes<HTMLLIElement>> {
+export interface ExpanderType extends React.FC<ExpanderProps> {
   ElementHeader?: ElementHeaderType;
 }
 
-export interface ExpanderListCompound extends React.ForwardRefExoticComponent<ExpanderListProps & React.RefAttributes<HTMLUListElement>> {
+export interface ExpanderListCompound extends React.FC<ExpanderListProps> {
   Expander: ExpanderType;
 }
 
@@ -58,6 +58,8 @@ interface ExpanderListProps {
    * Enables ListEditMode
    */
   editMode?: boolean;
+  /** Ref passed to the ul element */
+  ref?: React.Ref<HTMLUListElement | null>;
 }
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -66,7 +68,7 @@ type ExpanderProps = Modify<
   React.HTMLAttributes<HTMLButtonElement>,
   {
     id?: string;
-    title: JSX.Element | string;
+    title: React.ReactElement | string;
     /** Changes the underlying element of the title. Default: span*/
     titleHtmlMarkup?: TitleTags;
     children: React.ReactNode;
@@ -86,12 +88,14 @@ type ExpanderProps = Modify<
     highlightText?: string;
     /** Displays a status on the left side: default none */
     status?: ExpanderListStatus;
+    /** Ref passed to the li element */
+    ref?: React.Ref<HTMLLIElement | null>;
   }
 > &
   Pick<ExpanderListProps, 'renderChildrenWhenClosed' | 'variant'> &
   ListEditModeItemProps;
 
-export const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderProps>((props, ref) => {
+export const Expander: ExpanderType = (props: ExpanderProps) => {
   const {
     id,
     children,
@@ -112,6 +116,7 @@ export const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderPr
     highlightText,
     status = 'none',
     editMode = false,
+    ref,
   } = props;
   const [isExpanded] = useExpand(expanded, onExpand);
   const expanderRef = useRef<HTMLLIElement>(null);
@@ -218,14 +223,14 @@ export const Expander: ExpanderType = React.forwardRef<HTMLLIElement, ExpanderPr
       )}
     </>
   );
-});
+};
 
 type ActiveExpander = Record<string, boolean>;
 
 const isExpanderComponent = (element: unknown | null | undefined): element is React.ReactElement<ExpanderProps> =>
   React.isValidElement<ExpanderProps>(element) && (element as React.ReactElement).type === Expander;
 
-export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: React.Ref<HTMLUListElement>) => {
+const ExpanderListComponent: React.FC<ExpanderListProps> = (props: ExpanderListProps) => {
   const {
     children,
     childPadding = true,
@@ -239,6 +244,7 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
     zIndex,
     highlightText,
     editMode = false,
+    ref,
   } = props;
   const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
@@ -328,7 +334,9 @@ export const ExpanderList = React.forwardRef((props: ExpanderListProps, ref: Rea
       })}
     </ul>
   );
-}) as ExpanderListCompound;
+};
+
+const ExpanderList = ExpanderListComponent as ExpanderListCompound;
 
 ExpanderList.displayName = 'ExpanderList';
 ExpanderList.Expander = Expander;

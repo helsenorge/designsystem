@@ -1,10 +1,10 @@
-import React, { AriaAttributes, useEffect, useRef } from 'react';
+import React, { type AriaAttributes, useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 
 import Icon, { IconSize } from './../Icon';
-import { HTMLButtonProps, HTMLAnchorProps, AnalyticsId } from '../../constants';
-import { BaseIconElement, useIcons } from '../../hooks/useIcons';
+import { type HTMLButtonProps, type HTMLAnchorProps, AnalyticsId } from '../../constants';
+import { type BaseIconElement, useIcons } from '../../hooks/useIcons';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys/color';
@@ -64,6 +64,8 @@ export interface ButtonProps extends Omit<HTMLButtonProps, 'onClick' | 'type'>, 
   textPosition?: ButtonTextPosition;
   /** Button type. Default: button */
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLButtonElement | HTMLAnchorElement | null>;
 }
 
 const getIconColor = (
@@ -98,10 +100,7 @@ const checkOnlyIconAria = (onlyIcon: boolean, ariaLabel: string | undefined, dev
   }
 };
 
-const Button = React.forwardRef(function ButtonForwardedRef(
-  props: ButtonProps,
-  ref: React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>
-) {
+const Button: React.FC<ButtonProps> = props => {
   const {
     ariaLabel,
     id,
@@ -126,9 +125,9 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     type = 'button',
     textClassName,
     textPosition = 'left',
+    ref,
     ...restProps
   } = props;
-
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
   const { refObject, isHovered } = usePseudoClasses<HTMLElement>(ref as React.RefObject<HTMLElement>);
   const buttonContentRef = useRef<HTMLDivElement>(null);
@@ -194,7 +193,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       : null;
   };
 
-  const renderButtonContent = (): JSX.Element => {
+  const renderButtonContent = (): React.ReactNode => {
     return (
       <span className={buttonTextClasses} ref={buttonContentRef}>
         {disabled && borderlessVariant && (
@@ -207,7 +206,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
     );
   };
 
-  const renderbuttonContentWrapper = (): JSX.Element => (
+  const renderbuttonContentWrapper = (): React.ReactNode => (
     <span className={buttonClasses}>
       {renderIcon(leftIcon, getLargeIconSize(large, isMobile), !onlyIcon ? buttonStyles['button__left-icon'] : undefined)}
       {renderButtonContent()}
@@ -237,7 +236,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           data-testid={testId}
           data-analyticsid={AnalyticsId.Button}
           className={buttonWrapperClasses}
-          ref={refObject as React.ForwardedRef<HTMLButtonElement>}
+          ref={refObject as React.Ref<HTMLButtonElement>}
           tabIndex={tabIndex}
           type={type}
           {...rest}
@@ -256,7 +255,7 @@ const Button = React.forwardRef(function ButtonForwardedRef(
           href={href}
           target={target}
           rel={target === '_blank' ? 'noopener noreferrer' : props.rel}
-          ref={refObject as React.ForwardedRef<HTMLAnchorElement>}
+          ref={refObject as React.Ref<HTMLAnchorElement>}
           tabIndex={tabIndex}
           {...restProps}
         >
@@ -265,6 +264,6 @@ const Button = React.forwardRef(function ButtonForwardedRef(
       )}
     </>
   );
-});
+};
 
 export default Button;

@@ -16,14 +16,16 @@ export interface PanelListProps {
   testId?: string;
   /** Highlights text in title and content. Used for search results */
   highlightText?: string;
+  /** Ref passed to the container element */
+  ref?: React.Ref<HTMLDivElement | null>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 const isPanelComponent = (element: {} | null | undefined): element is React.ReactElement<PanelProps> =>
   React.isValidElement<PanelProps>(element) && (element as React.ReactElement).type === Panel;
 
-const PanelList = React.forwardRef(function BadgeForwardedRef(props: PanelListProps, ref: React.ForwardedRef<HTMLDivElement>) {
-  const { testId, children, variant = PanelVariant.fill, highlightText } = props;
+const PanelList: React.FC<PanelListProps> = (props: PanelListProps) => {
+  const { testId, children, variant = PanelVariant.fill, highlightText, ref } = props;
 
   const renderPanel = (panel: React.ReactElement<PanelProps>): React.ReactElement<PanelProps> =>
     React.cloneElement(panel, {
@@ -42,6 +44,6 @@ const PanelList = React.forwardRef(function BadgeForwardedRef(props: PanelListPr
       {React.Children.map(children, child => (isPanelComponent(child) ? renderPanel(child) : child))}
     </div>
   );
-});
+};
 
 export default PanelList;

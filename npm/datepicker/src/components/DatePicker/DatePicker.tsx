@@ -27,7 +27,8 @@ import styles from './styles.module.scss';
 export type DateFormat = 'dd.MM.yyyy';
 
 export interface DatePickerProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur' | 'autoComplete'>,
     Pick<DayPickerProps, 'dir' | 'initialFocus'> {
   /** Setter labels for popup på desktop visning */
@@ -81,9 +82,11 @@ export interface DatePickerProps
   variant?: keyof typeof PopOverVariant;
   /** Overrides the default z-index of DatePicker */
   zIndex?: number;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
-export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
+export const DatePicker: React.FC<DatePickerProps> = props => {
   const {
     className,
     dateButtonAriaLabel,
@@ -113,9 +116,9 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
     autoComplete = 'off',
     variant = PopOverVariant.positionautomatic,
     zIndex = ZIndex.PopOver,
+    ref,
     ...rest
   } = props;
-
   const [dateState, setDateState] = useState<Date | undefined>(dateValue);
   const [inputValue, setInputValue] = useState<string>(dateState ? format(dateState, dateFormat) : '');
   const [month, setMonth] = useState<Date | undefined>(defaultMonth);
@@ -248,7 +251,7 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
 
   // We do this to make sure selecting from the DatePickerPopup triggers the onChange events properly, and works with react-hook-form
   const triggerSyntheticInputEvents = (
-    inputRef: React.RefObject<HTMLInputElement>,
+    inputRef: React.RefObject<HTMLInputElement | null>,
     value: string,
     date: Date,
     _onChange?: (event: React.ChangeEvent<HTMLInputElement>, date: Date) => void
@@ -411,8 +414,6 @@ export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.R
       {isMobileUA() ? renderMobile : renderDesktop}
     </div>
   );
-});
-
-DatePicker.displayName = 'DatePicker';
+};
 
 export default DatePicker;

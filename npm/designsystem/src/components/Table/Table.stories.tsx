@@ -675,7 +675,7 @@ export const Irregular: Story = {
 };
 
 export interface Legekontor {
-  Navn: string | JSX.Element;
+  Navn: string | React.JSX.Element;
   Adresse: string;
 }
 

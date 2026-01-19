@@ -23,27 +23,30 @@ export interface DictionaryTriggerProps extends Pick<React.InputHTMLAttributes<H
    * Sets the data-testid attribute.
    */
   testId?: string;
+  /**
+   * ref that is passed to the component
+   */
+  ref?: React.Ref<HTMLButtonElement | null>;
 }
 
-const DictionaryTrigger = React.forwardRef<HTMLButtonElement, DictionaryTriggerProps>(
-  ({ children, selected = false, className, testId, ...rest }, ref) => {
-    const triggerClasses = classNames(styles.dictionarytrigger, className);
+const DictionaryTrigger: React.FC<DictionaryTriggerProps> = (props: DictionaryTriggerProps) => {
+  const { children, selected = false, className, testId, ref, ...rest } = props;
+  const triggerClasses = classNames(styles.dictionarytrigger, className);
 
-    return (
-      <button
-        type="button"
-        data-testid={testId}
-        data-analyticsid={AnalyticsId.DictionaryTrigger}
-        className={triggerClasses}
-        aria-expanded={selected}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-      </button>
-    );
-  }
-);
+  return (
+    <button
+      type="button"
+      data-testid={testId}
+      data-analyticsid={AnalyticsId.DictionaryTrigger}
+      className={triggerClasses}
+      aria-expanded={selected}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+};
 
 DictionaryTrigger.displayName = 'DictionaryTrigger';
 

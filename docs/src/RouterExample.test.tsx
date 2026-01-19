@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Link, useNavigate, useLocation } from 'react-router';
@@ -70,7 +72,7 @@ describe('AnchorLink with React Router Link', () => {
   it('AnchorLink with asChild behaves the same as AnchorLink with htmlMarkup="button" and useNavigate', async () => {
     const user = userEvent.setup();
 
-    const TestComponent = (): JSX.Element => {
+    const TestComponent = (): React.JSX.Element => {
       const navigate = useNavigate();
       const location = useLocation();
 

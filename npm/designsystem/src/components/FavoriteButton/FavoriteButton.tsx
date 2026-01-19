@@ -26,13 +26,12 @@ export interface FavoriteButtonProps extends Omit<HTMLButtonProps, 'type'>, Aria
   tabIndex?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the button element */
+  ref?: React.Ref<HTMLButtonElement | null>;
 }
 
-export const FavoriteButton = React.forwardRef(function FavoriteButtonForwardedRef(
-  props: FavoriteButtonProps,
-  ref: React.ForwardedRef<HTMLButtonElement>
-) {
-  const { checked, id, onClick, resources, tabIndex, testId, ...other } = props;
+export const FavoriteButton: React.FC<FavoriteButtonProps> = (props: FavoriteButtonProps) => {
+  const { checked, id, onClick, resources, tabIndex, testId, ref, ...other } = props;
 
   const buttonWrapperClasses = classNames(styles.favoritebutton);
   const { refObject, isHovered, isActive } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
@@ -84,7 +83,7 @@ export const FavoriteButton = React.forwardRef(function FavoriteButtonForwardedR
       </svg>
     </button>
   );
-});
+};
 
 FavoriteButton.displayName = 'FavoriteButton';
 

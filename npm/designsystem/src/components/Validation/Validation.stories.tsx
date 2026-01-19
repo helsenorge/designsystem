@@ -34,7 +34,7 @@ interface FormExampleData {
   monster: string[];
 }
 
-export const FormExample = (props: FormExampleProps): JSX.Element => {
+export const FormExample = (props: FormExampleProps): React.JSX.Element => {
   const {
     register,
     handleSubmit,

@@ -24,10 +24,12 @@ export interface SingleSelectItemProps extends Pick<React.ButtonHTMLAttributes<H
   ['aria-describedby']?: string;
   /** Marks this option as initially selected */
   defaultSelected?: boolean;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLElement | null>;
 }
 
-export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, ref: React.Ref<HTMLElement>) => {
-  const { text, value, testId, asChild = false, children, disabled, defaultSelected, ...rest } = props;
+export const SingleSelectItem: React.FC<SingleSelectItemProps> = props => {
+  const { text, value, testId, asChild = false, children, disabled, defaultSelected, ref, ...rest } = props;
 
   const generatedId = useId();
   const inputId = props.inputId ?? generatedId;
@@ -107,7 +109,7 @@ export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, 
       <Component {...componentProps} />
     </div>
   );
-});
+};
 
 SingleSelectItem.displayName = 'Dropdown.SingleSelectItem';
 

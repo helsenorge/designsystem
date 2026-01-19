@@ -81,7 +81,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const PreviewContainer = ({ children }): JSX.Element => {
+const PreviewContainer = ({ children }): React.JSX.Element => {
   return (
     <div style={{ width: '100%', height: '100%', backgroundColor: '#BD10E040', border: '1px #BD10E0 dotted', color: '#BD10E0' }}>
       {children}

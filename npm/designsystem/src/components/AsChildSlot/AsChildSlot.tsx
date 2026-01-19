@@ -24,91 +24,90 @@ export interface AsChildSlotProps {
   ariaCurrent?: 'page' | 'true';
   /** DOM ref for the element we end up rendering */
   elementRef?: React.Ref<HTMLElement>;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<AsChildSlotHandle>;
 }
 
 const isAriaDisabled = (v: unknown): boolean => v === true || v === 'true';
 
-export const AsChildSlot = React.forwardRef<AsChildSlotHandle, AsChildSlotProps>(
-  ({ children, className, content, disabled, onSelect, ariaCurrent, elementRef }, forwardedRef) => {
-    const childElement = React.Children.toArray(children).filter(React.isValidElement)[0] as React.ReactElement | undefined;
-    const nodeRef = React.useRef<HTMLElement | null>(null);
-    const childRef = (childElement as unknown as { ref?: React.Ref<HTMLElement> | undefined })?.ref;
-    const mergedRef = mergeRefs<HTMLElement>([
-      (node): void => {
-        nodeRef.current = node;
+export const AsChildSlot: React.FC<AsChildSlotProps> = props => {
+  const { children, className, content, disabled, onSelect, ariaCurrent, elementRef, ref } = props;
+  const childElement = React.Children.toArray(children).filter(React.isValidElement)[0] as React.ReactElement | undefined;
+  const nodeRef = React.useRef<HTMLElement | null>(null);
+  const childRef = (childElement as unknown as { ref?: React.Ref<HTMLElement> | undefined })?.ref;
+  const mergedRef = mergeRefs<HTMLElement>([
+    (node): void => {
+      nodeRef.current = node;
+    },
+    childRef,
+    elementRef,
+  ]);
+
+  const childProps =
+    (childElement?.props as Partial<React.DOMAttributes<HTMLElement>> &
+      Partial<React.AnchorHTMLAttributes<HTMLElement>> &
+      Partial<React.ButtonHTMLAttributes<HTMLElement>> & { disabled?: boolean; href?: unknown }) || {};
+  const childDisabled = !!childProps.disabled || isAriaDisabled((childProps as React.AriaAttributes)['aria-disabled']);
+  const isDisabled = !!disabled || childDisabled;
+
+  // Exposes a callable click() to the parents.
+  React.useImperativeHandle(
+    ref,
+    () => ({
+      click: (): void => {
+        if (isDisabled) return;
+        nodeRef.current?.click();
       },
-      childRef,
-      elementRef,
-    ]);
+    }),
+    [isDisabled]
+  );
 
-    const childProps =
-      (childElement?.props as Partial<React.DOMAttributes<HTMLElement>> &
-        Partial<React.AnchorHTMLAttributes<HTMLElement>> &
-        Partial<React.ButtonHTMLAttributes<HTMLElement>> & { disabled?: boolean; href?: unknown }) || {};
-    const childDisabled = !!childProps.disabled || isAriaDisabled((childProps as React.AriaAttributes)['aria-disabled']);
-    const isDisabled = !!disabled || childDisabled;
+  if (!childElement) return null;
 
-    // Exposes a callable click() to the parents.
-    React.useImperativeHandle(
-      forwardedRef,
-      () => ({
-        click: (): void => {
-          if (isDisabled) return;
-          nodeRef.current?.click();
-        },
-      }),
-      [isDisabled]
-    );
+  // Actual user mouse interaction
+  const childOnClick = childProps.onClick as React.MouseEventHandler<HTMLElement> | undefined;
+  const wrappedOnClick: React.MouseEventHandler<HTMLElement> = e => {
+    if (isDisabled) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    onSelect?.(e);
+    childOnClick?.(e);
+  };
 
-    if (!childElement) return null;
-
-    // Actual user mouse interaction
-    const childOnClick = childProps.onClick as React.MouseEventHandler<HTMLElement> | undefined;
-    const wrappedOnClick: React.MouseEventHandler<HTMLElement> = e => {
+  // Actual user keyboard interaction
+  const childOnKeyDown = childProps.onKeyDown as React.KeyboardEventHandler<HTMLElement> | undefined;
+  const wrappedOnKeyDown: React.KeyboardEventHandler<HTMLElement> = e => {
+    childOnKeyDown?.(e);
+    if (e.defaultPrevented) return;
+    if (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space') {
       if (isDisabled) {
         e.preventDefault();
-        e.stopPropagation();
         return;
       }
-      onSelect?.(e);
-      childOnClick?.(e);
-    };
+      e.preventDefault();
+      nodeRef.current?.click();
+    }
+  };
 
-    // Actual user keyboard interaction
-    const childOnKeyDown = childProps.onKeyDown as React.KeyboardEventHandler<HTMLElement> | undefined;
-    const wrappedOnKeyDown: React.KeyboardEventHandler<HTMLElement> = e => {
-      childOnKeyDown?.(e);
-      if (e.defaultPrevented) return;
-      if (e.key === ' ' || e.key === 'Spacebar' || e.code === 'Space') {
-        if (isDisabled) {
-          e.preventDefault();
-          return;
-        }
-        e.preventDefault();
-        nodeRef.current?.click();
-      }
-    };
+  const isButtonLike = typeof childProps.href === 'undefined';
+  const wrappedChildren =
+    content && React.isValidElement(content)
+      ? React.cloneElement(content, content.props, childElement.props.children)
+      : childElement.props.children;
 
-    const isButtonLike = typeof childProps.href === 'undefined';
-    const wrappedChildren =
-      content && React.isValidElement(content)
-        ? React.cloneElement(content, content.props, childElement.props.children)
-        : childElement.props.children;
-
-    return React.cloneElement(childElement, {
-      ref: mergedRef,
-      className: `${styles['as-child-reset']} ${className ?? ''}`,
-      style: undefined,
-      'aria-disabled': isDisabled || undefined,
-      'aria-current': ariaCurrent,
-      ...(isButtonLike && !('type' in childProps) ? { type: 'button' } : null),
-      onClick: wrappedOnClick,
-      onKeyDown: wrappedOnKeyDown,
-      children: wrappedChildren,
-    });
-  }
-);
-
-AsChildSlot.displayName = 'AsChildSlot';
+  return React.cloneElement(childElement, {
+    ref: mergedRef,
+    className: `${styles['as-child-reset']} ${className ?? ''}`,
+    style: undefined,
+    'aria-disabled': isDisabled || undefined,
+    'aria-current': ariaCurrent,
+    ...(isButtonLike && !('type' in childProps) ? { type: 'button' } : null),
+    onClick: wrappedOnClick,
+    onKeyDown: wrappedOnKeyDown,
+    children: wrappedChildren,
+  });
+};
 
 export default AsChildSlot;

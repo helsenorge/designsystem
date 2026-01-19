@@ -9,7 +9,7 @@ import { debounce } from '../utils/debounce';
  * @returns Object med høyde, bredde, x og y til elementet. Merk at objektet bare oppdates når høyde eller bredde endres, ikke når
  * posisjonen (x og y) endres.
  */
-export const useSize = (ref?: React.RefObject<HTMLElement>): DOMRect | undefined => {
+export const useSize = (ref?: React.RefObject<HTMLElement | null>): DOMRect | undefined => {
   const ticking = useRef(false);
   const [size, setSize] = useState<DOMRect>();
   useEffect(() => {

@@ -24,9 +24,9 @@ export interface ExpanderProps extends ExpanderHierarchyCommonProps {
   className?: string;
 }
 
-export type ExpanderType = React.FC<ExpanderProps>;
+export type ExpanderType = typeof Expander;
 
-const Expander: ExpanderType = ({
+const Expander: React.FC<ExpanderProps> = ({
   title,
   htmlMarkup = 'h2',
   level = 1,

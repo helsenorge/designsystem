@@ -21,7 +21,8 @@ import MaxCharacters from '../MaxCharacters/MaxCharacters';
 import styles from './styles.module.scss';
 
 export interface InputProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       | 'disabled'
@@ -61,9 +62,9 @@ export interface InputProps
   /** Places the icon to the right */
   iconRight?: boolean;
   /** Ref that is placed on the inputContainerRef */
-  inputContainerRef?: React.RefObject<HTMLDivElement>;
+  inputContainerRef?: React.RefObject<HTMLDivElement | null>;
   /** Ref that is placed on the inputWrapper */
-  inputWrapperRef?: React.RefObject<HTMLDivElement>;
+  inputWrapperRef?: React.RefObject<HTMLDivElement | null>;
   /** Changes the color profile of the input */
   onColor?: keyof typeof FormOnColor;
   /** Changes the visuals of the input */
@@ -88,6 +89,8 @@ export interface InputProps
   maxText?: string;
   /** Resources for component */
   resources?: Partial<HNDesignsystemInput>;
+  /** Ref passed to the input element */
+  ref?: React.Ref<HTMLInputElement | null>;
 }
 
 export enum InputTypes {
@@ -110,7 +113,7 @@ const getInputMaxWidth = (characters: number, hasIcon: boolean, iconSize: number
   return `calc(${characters * AVERAGE_CHARACTER_WIDTH_PX}px + ${paddingWidth} + ${iconWidth} + ${borderWidth})`;
 };
 
-const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputElement>) => {
+const Input: React.FC<InputProps> = props => {
   const {
     className,
     defaultValue,
@@ -145,6 +148,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
     maxText,
     inputContainerRef,
     resources,
+    ref,
     ...rest
   } = props;
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
@@ -310,7 +314,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputEleme
       </div>
     </ErrorWrapper>
   );
-});
+};
 
 Input.displayName = 'Input';
 

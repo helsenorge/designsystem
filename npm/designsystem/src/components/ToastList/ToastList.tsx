@@ -18,12 +18,14 @@ export interface ToastListProps {
   testId?: string;
   /** Array of toast data to display */
   toasts?: ToastData[];
+  /** Ref passed to the component */
+  ref?: React.Ref<HTMLElement | null>;
 }
 
 const DURATION = 8000;
 
-const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => {
-  const { testId, toasts = [] } = props;
+const ToastList: React.FC<ToastListProps> = props => {
+  const { testId, toasts = [], ref } = props;
   const internalRef = React.useRef<HTMLElement | null>(null);
   const [visibleToasts, setVisibleToasts] = React.useState<ToastData[]>([]);
   const [removedToastIds, setRemovedToastIds] = React.useState<Set<string>>(new Set());
@@ -114,7 +116,7 @@ const ToastList = React.forwardRef<HTMLElement, ToastListProps>((props, ref) => 
       </AnimatePresence>
     </section>
   );
-});
+};
 
 ToastList.displayName = 'ToastList';
 

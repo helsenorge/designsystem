@@ -49,9 +49,11 @@ export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'varian
   resources?: Partial<HNDesignsystemHelpBubble>;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLDivElement | SVGSVGElement | null>;
 }
 
-const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubbleProps>((props, ref) => {
+const HelpBubble: React.FC<HelpBubbleProps> = props => {
   const {
     ariaLabelledById,
     children,
@@ -70,6 +72,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     controllerRef,
     resources,
     testId,
+    ref,
   } = props;
 
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
@@ -88,7 +91,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
   const helpBubbleClasses = classNames(styles.helpbubble, className);
   const contentClasses = classNames(styles.helpbubble__content);
 
-  const renderLink = (): JSX.Element | undefined => {
+  const renderLink = (): React.ReactNode | undefined => {
     if (onLinkClick && linkText) {
       return (
         <button className={styles.helpbubble__link} onClick={onLinkClick} type="button">
@@ -104,7 +107,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     }
   };
 
-  const renderCloseButton = (): JSX.Element | undefined => {
+  const renderCloseButton = (): React.ReactNode | undefined => {
     if (noCloseButton) {
       return;
     }
@@ -132,7 +135,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
       </div>
     </PopOver>
   );
-});
+};
 
 HelpBubble.displayName = 'HelpBubble';
 

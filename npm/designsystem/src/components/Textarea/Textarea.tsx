@@ -16,7 +16,8 @@ import MaxCharacters from '../MaxCharacters/MaxCharacters';
 import styles from './styles.module.scss';
 
 export interface TextareaProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLTextAreaElement>,
       | 'aria-describedby'
@@ -63,6 +64,8 @@ export interface TextareaProps
   errorTextId?: string;
   /** Resources for component */
   resources?: Partial<HNDesignsystemTextArea>;
+  /** Ref passed to the component */
+  ref?: React.Ref<HTMLTextAreaElement | null>;
 }
 
 const getTextareaMaxWidth = (characters: number): string => {
@@ -73,7 +76,7 @@ const getTextareaMaxWidth = (characters: number): string => {
   return `calc(${characters * AVERAGE_CHARACTER_WIDTH_PX}px + ${paddingWidth} + ${scrollbarWidth} + ${borderWidth})`;
 };
 
-const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
+const Textarea: React.FC<TextareaProps> = props => {
   const {
     maxCharacters,
     maxText,
@@ -102,6 +105,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     onChange,
     value,
     resources,
+    ref,
     ...rest
   } = props;
 
@@ -229,7 +233,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
       </div>
     </ErrorWrapper>
   );
-});
+};
 
 Textarea.displayName = 'Textarea';
 
