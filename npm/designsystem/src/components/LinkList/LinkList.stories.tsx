@@ -544,3 +544,49 @@ export const Forside: Story = {
     );
   },
 };
+
+export const WithExternalLinks: Story = {
+  args: {
+    editMode: false,
+    variant: 'fill-negative',
+    chevron: true,
+    color: 'blueberry',
+  },
+  render: args => {
+    const items = [
+      {
+        id: 'pasientreiser',
+        href: 'https://www.helsenorge.no',
+        text: 'Pasientreiser',
+        icon: Bus,
+        external: false,
+      },
+      { id: 'exorlive', htmlMarkup: 'button', text: 'Exorlive - treningsprogram', icon: Journal, external: true },
+      {
+        id: 'fastlegen',
+        href: 'https://www.helsenorge.no',
+        text: 'Fastlegen',
+        icon: FemaleDoctor,
+        external: false,
+      },
+      {
+        id: 'verktøy',
+        href: 'https://www.helsenorge.no',
+        text: 'ExorLive - treningsprogram',
+        icon: Toolbox,
+        external: true,
+      },
+    ];
+    return (
+      <div style={{ backgroundColor: palette.blueberry50, padding: '1rem' }}>
+        <LinkList {...args}>
+          {items.map(item => (
+            <LinkList.Link key={item.id} icon={<Icon svgIcon={item.icon} />} href={item.href} target="_blank" external={item.external}>
+              {item.text}
+            </LinkList.Link>
+          ))}
+        </LinkList>
+      </div>
+    );
+  },
+};

@@ -11,6 +11,7 @@ import { ElementHeaderType, renderElementHeader } from '../ElementHeader/Element
 import ChevronRight from '../Icons/ChevronRight';
 import ListEditModeItem, { ListEditModeItemProps, listEditModeWrapperClassnames } from '../ListEditMode';
 import { getResources } from './resourceHelper';
+import ArrowUpRight from '../Icons/ArrowUpRight';
 
 import LinkListStyles from './styles.module.scss';
 
@@ -64,6 +65,7 @@ export type LinkProps = Modify<
   React.HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>,
   {
     children: React.ReactNode;
+    /** @private Turns chevron icon on/off. Overwritten by LinkList so not possible to set on LinkList.Link */
     chevron?: boolean;
     className?: string;
     icon?: React.ReactElement;
@@ -75,9 +77,7 @@ export type LinkProps = Modify<
     target?: LinkAnchorTargets;
     /** HTML markup for link. Default: a */
     htmlMarkup?: LinkTags;
-    /**
-     * Ref for lenke/knapp
-     */
+    /** Ref for lenke/knapp */
     linkRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement> | null;
     /** Sets the data-testid attribute. */
     testId?: string;
@@ -87,6 +87,8 @@ export type LinkProps = Modify<
     resources?: Partial<HNDesignsystemLinkList>;
     /** @experimental id for content (only used in edit mode for aria-describedby) */
     contentId?: string;
+    /** Replaces the chevron with an arrow up right which is used for indicating external links */
+    external?: boolean;
   }
 > &
   Pick<LinkListProps, 'color' | 'size' | 'variant'> &
@@ -112,6 +114,7 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
     contentId,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     resources, // used by ListEditModeItem in LinkList
+    external = false,
     ...restProps
   } = props;
   const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement>(linkRef);
@@ -150,6 +153,13 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
 
   const imageContainer = <span className={LinkListStyles['link-list__image-container']}>{image}</span>;
 
+  let chevronIcon = undefined;
+  if (external) {
+    chevronIcon = ArrowUpRight;
+  } else if (chevron) {
+    chevronIcon = ChevronRight;
+  }
+
   return editMode ? (
     <div id={contentId} className={liClasses} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
       <div className={linkClasses}>
@@ -158,7 +168,7 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
           titleHtmlMarkup: 'span',
           size,
           parentType: 'linklist',
-          chevronIcon: chevron ? ChevronRight : undefined,
+          chevronIcon: chevronIcon,
           icon: icon ?? imageContainer,
           highlightText,
         })}
@@ -180,7 +190,7 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
             isHovered,
             size,
             parentType: 'linklist',
-            chevronIcon: chevron ? ChevronRight : undefined,
+            chevronIcon: chevronIcon,
             icon: icon ?? imageContainer,
             highlightText,
           })}
@@ -194,7 +204,7 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
               isHovered,
               size,
               parentType: 'linklist',
-              chevronIcon: chevron ? ChevronRight : undefined,
+              chevronIcon: chevronIcon,
               icon: icon ?? imageContainer,
               highlightText,
             })}
