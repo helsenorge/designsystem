@@ -89,6 +89,22 @@ export type HNDesignsystemDatePicker = {
    * År
    */
   ariaLabelInputYear: string;
+  /**
+   * Time må være et tall mellom 00 og 23
+   */
+  validateDefaultMessageHour: string;
+  /**
+   * Minutt må være et tall mellom 00 og 59
+   */
+  validateDefaultMessageMinute: string;
+  /**
+   * tt
+   */
+  hourFormatPlaceholder: string;
+  /**
+   * mm
+   */
+  minuteFormatPlaceholder: string;
 };
 
 /* eslint:enable */

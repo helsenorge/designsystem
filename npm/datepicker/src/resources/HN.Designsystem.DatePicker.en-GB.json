@@ -9,5 +9,8 @@
   "yearDropdown": "Select year",
   "dayFormatPlaceholder": "dd",
   "monthFormatPlaceholder": "mm",
-  "yearFormatPlaceholder": "yyyy"
+  "yearFormatPlaceholder": "yyyy",
+  "clearButtonAriaLabel": "Clear date",
+  "hourFormatPlaceholder": "hh",
+  "minuteFormatPlaceholder": "mm"
 }
