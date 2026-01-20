@@ -37,6 +37,41 @@ export type HNDesignsystemDatePicker = {
    * Velg år
    */
   yearDropdown: string;
+};
+
+export type HNDesignsystemUnsafe_DatePicker = {
+  /**
+   * Åpne datovelger
+   */
+  dateButtonAriaLabel: string;
+  /**
+   * {date}
+   */
+  dayButtonBase: string;
+  /**
+   * I dag, {date}
+   */
+  dayButtonToday: string;
+  /**
+   * {date} valgt
+   */
+  dayButtonSelected: string;
+  /**
+   * Neste måned
+   */
+  nextMonth: string;
+  /**
+   * Forrige måned
+   */
+  previousMonth: string;
+  /**
+   * Velg måned
+   */
+  monthDropdown: string;
+  /**
+   * Velg år
+   */
+  yearDropdown: string;
   /**
    * Gå til i dag
    */

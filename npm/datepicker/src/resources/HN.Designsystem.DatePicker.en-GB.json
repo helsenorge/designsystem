@@ -6,11 +6,5 @@
   "nextMonth": "Next month",
   "previousMonth": "Previous month",
   "monthDropdown": "Select month",
-  "yearDropdown": "Select year",
-  "dayFormatPlaceholder": "dd",
-  "monthFormatPlaceholder": "mm",
-  "yearFormatPlaceholder": "yyyy",
-  "clearButtonAriaLabel": "Clear date",
-  "hourFormatPlaceholder": "hh",
-  "minuteFormatPlaceholder": "mm"
+  "yearDropdown": "Select year"
 }
