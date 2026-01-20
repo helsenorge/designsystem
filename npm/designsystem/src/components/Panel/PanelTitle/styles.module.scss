@@ -4,7 +4,6 @@
 
 .paneltitle {
   display: grid;
-  width: 100%;
   gap: spacers.getSpacer(2xs);
   grid-template-areas: 'title';
 
