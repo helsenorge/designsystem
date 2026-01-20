@@ -1,0 +1,9 @@
+.range-date-pickers {
+  display: flex;
+  flex-flow: column;
+  gap: 1.5rem;
+
+  > * {
+    min-width: 225px;
+  }
+}
