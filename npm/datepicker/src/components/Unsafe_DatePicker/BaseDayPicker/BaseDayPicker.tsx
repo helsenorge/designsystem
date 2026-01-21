@@ -25,8 +25,8 @@ import { LanguageLocales } from '@helsenorge/designsystem-react';
 
 import { CustomCaptionLabel, CustomDropdown, CustomNextButton, CustomPreviousButton } from './CustomComponents';
 // import { matchesDayObjectMatcher } from './utils';
-import { HNDesignsystemDatePicker } from '../../../resources/Resources';
-import { getResources } from '../../DatePicker/resourceHelper';
+import { HNDesignsystemUnsafe_DatePicker } from '../../../resources/Resources';
+import { getResources } from '../resourceHelper';
 
 import customstyles from './BaseDayPicker.module.scss';
 
@@ -63,7 +63,7 @@ export interface BaseDayPickerProps
   /* https://daypicker.dev/api/type-aliases/Labels */
   labelsForCalendar?: Partial<Labels>;
   /** Resources for component */
-  resources?: Partial<HNDesignsystemDatePicker>;
+  resources?: Partial<HNDesignsystemUnsafe_DatePicker>;
   // /** Texts with dates or matcher functions for showing helpbubbles on given dates */
   // helpBubbleTexts?: HelpBubbleText[];
 }
@@ -86,7 +86,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
 
-  const mergedResources: HNDesignsystemDatePicker = {
+  const mergedResources: HNDesignsystemUnsafe_DatePicker = {
     ...defaultResources,
     ...resources,
   };

@@ -16,8 +16,8 @@ import { IconSize, KeyboardEventKey, LanguageLocales, useKeyboardEvent, useOutsi
 
 import BaseDayPicker, { BaseDayPickerProps } from './BaseDayPicker/BaseDayPicker';
 import DateInputInternal from './DateInputInternal';
-import { HNDesignsystemDatePicker } from '../../resources/Resources';
-import { getResources } from '../DatePicker/resourceHelper';
+import { getResources } from './resourceHelper';
+import { HNDesignsystemUnsafe_DatePicker } from '../../resources/Resources';
 
 import styles from './DatePicker.module.scss';
 
@@ -80,7 +80,7 @@ const Unsafe_DatePicker = ({
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
 
-  const mergedResources: HNDesignsystemDatePicker = {
+  const mergedResources: HNDesignsystemUnsafe_DatePicker = {
     ...defaultResources,
     ...resources,
   };

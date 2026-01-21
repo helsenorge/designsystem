@@ -7,7 +7,7 @@ import X from '@helsenorge/designsystem-react/components/Icons/X';
 
 import { KeyboardEventKey, useKeyboardEvent } from '@helsenorge/designsystem-react';
 
-import { HNDesignsystemDatePicker } from '../../resources/Resources';
+import { HNDesignsystemUnsafe_DatePicker } from '../../resources/Resources';
 
 import styles from './DatePicker.module.scss';
 
@@ -25,7 +25,7 @@ export interface DateInputInternalProps {
   /** Wether or not to shw a clear button when there is content in the input */
   withClearButton?: boolean;
   /** Resources for component */
-  resources?: Partial<HNDesignsystemDatePicker>;
+  resources?: Partial<HNDesignsystemUnsafe_DatePicker>;
   /** Sets aria-describedby on the input, for connecting labels */
   ['aria-describedby']?: string;
   /** Sets aria-labelledby on the input, for connecting labels */
