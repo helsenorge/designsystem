@@ -1,6 +1,7 @@
-import React from 'react';
+import type React from 'react';
 
-import { SvgIllustrationProps } from '../Illustration';
+import type { SvgIllustrationProps } from '../Illustration';
+
 import Support2Medium from './Support2Medium';
 import { getIllustration } from '../Illustration/utils';
 

@@ -1,7 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
-import { Palette } from './Stroller';
-import { BaseSvgIllustrationProps, ViewBoxSize } from '../Illustration';
+import type { Palette } from './Stroller';
+import type { BaseSvgIllustrationProps } from '../Illustration';
+
+import { ViewBoxSize } from '../Illustration/utils';
 
 const StrollerMedium: React.FC<BaseSvgIllustrationProps> = ({ color, svgProperties, title }) => {
   const palette = ((): Palette => {

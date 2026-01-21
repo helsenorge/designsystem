@@ -1,7 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, test, expect, vi } from 'vitest';
 
-import Toggle, { TogglePosition, ToggleOnColor } from './Toggle';
+import { ToggleOnColor, TogglePosition } from './constants';
+import Toggle from './Toggle';
 
 describe('Gitt at Toggle skal vises', () => {
   describe('Når Toggle vises', () => {

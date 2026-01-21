@@ -1,4 +1,6 @@
-import React from 'react';
+import type React from 'react';
+
+import type { HelpTriggerWeights } from '../HelpTriggerIcon/HelpTriggerIcon';
 
 import { AnalyticsId, IconSize } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
@@ -6,7 +8,6 @@ import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import HelpDetails from '../HelpDetails/HelpDetails';
-import { HelpTriggerWeights } from '../HelpTriggerIcon/HelpTriggerIcon';
 import HelpTriggerStandalone from '../HelpTriggerStandalone';
 import Icon from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';

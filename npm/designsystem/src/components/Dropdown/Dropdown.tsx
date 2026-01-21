@@ -1,8 +1,16 @@
-import React, { useEffect, useRef, useId, ComponentType } from 'react';
+import type { ComponentType } from 'react';
+import React, { useEffect, useRef, useId } from 'react';
 
 import { autoUpdate, offset, shift, size, useFloating, flip } from '@floating-ui/react';
 import classNames from 'classnames';
 import { clamp } from 'motion/react';
+
+import type { SingleSelectItemProps } from './SingleSelect/SingleSelectItem';
+import type { HNDesignsystemDropdown } from '../../resources/Resources';
+import type { CheckboxProps } from '../Checkbox';
+import type { SvgIcon } from '../Icon';
+import type { IconName } from '../Icons/IconNames';
+import type { LabelProps } from '../Label';
 
 import {
   AnalyticsId,
@@ -16,20 +24,18 @@ import {
   useToggle,
 } from '../..';
 import { getResources } from './resourceHelper';
-import { SingleSelectItem, SingleSelectItemProps } from './SingleSelect/SingleSelectItem';
+import { SingleSelectItem } from './SingleSelect/SingleSelectItem';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
-import { HNDesignsystemDropdown } from '../../resources/Resources';
+import { useLanguage } from '../../hooks/useLanguage';
 import { isComponent } from '../../utils/component';
-import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
 import Button from '../Button';
-import Checkbox, { CheckboxProps } from '../Checkbox';
-import Icon, { SvgIcon } from '../Icon';
+import Checkbox from '../Checkbox';
+import Icon from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
-import { IconName } from '../Icons/IconNames';
 import PlusSmall from '../Icons/PlusSmall';
-import Label, { LabelProps } from '../Label';
+import Label from '../Label';
 import LazyIcon from '../LazyIcon';
 import { SingleSelect } from './SingleSelect/SingleSelect';
 

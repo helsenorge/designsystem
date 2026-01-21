@@ -1,13 +1,18 @@
-import React, { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
+import React from 'react';
 
 import cn from 'classnames';
 
-import { Sublabel, SublabelProps } from './SubLabel';
+import type { SublabelProps } from './SubLabel';
+import type { FormFieldTagProps } from '../FormFieldTag';
+import type { StatusDotProps } from '../StatusDot';
+
+import { Sublabel } from './SubLabel';
 import { AnalyticsId, FormOnColor } from '../../constants';
 import { isComponent } from '../../utils/component';
-import FormFieldTag, { FormFieldTagProps } from '../FormFieldTag';
+import FormFieldTag from '../FormFieldTag';
 import Spacer from '../Spacer';
-import StatusDot, { StatusDotProps } from '../StatusDot';
+import StatusDot from '../StatusDot';
 
 import styles from './styles.module.scss';
 
@@ -51,74 +56,6 @@ export interface LabelProps {
   /** Sets the data-testid attribute. */
   testId?: string;
 }
-
-export const getLabelText = (label: React.ReactNode): string => {
-  let allLabelText = '';
-
-  if (isComponent<LabelProps>(label, Label)) {
-    label.props.labelTexts?.forEach(labelText => {
-      allLabelText += !labelText.hideFromScreenReader ? labelText.text : '';
-    });
-  }
-
-  return allLabelText;
-};
-
-export const renderLabel = (label: React.ReactNode, inputId: string, onColor: FormOnColor, markup?: LabelTags): React.ReactNode => {
-  return (
-    <>
-      {label && isComponent<LabelProps>(label, Label)
-        ? React.cloneElement(label, {
-            htmlFor: inputId,
-            htmlMarkup: markup || 'label',
-            onColor,
-          })
-        : typeof label === 'string' && <Label labelTexts={[{ text: label, type: 'normal' }]} htmlFor={inputId} onColor={onColor} />}
-    </>
-  );
-};
-
-export const renderLabelAsParent = (
-  label: React.ReactNode,
-  children: React.ReactNode,
-  inputId: string,
-  onColor: FormOnColor,
-  labelClassName?: string,
-  labelTextClassName?: string,
-  sublabelWrapperClassName?: string,
-  large?: boolean,
-  markup?: LabelTags
-): React.ReactNode => {
-  return (
-    <>
-      {label && isComponent<LabelProps>(label, Label)
-        ? React.cloneElement(label, {
-            htmlFor: inputId,
-            onColor,
-            children: children,
-            labelClassName: cn(labelClassName, label.props.labelClassName),
-            labelTextClassName: labelTextClassName,
-            htmlMarkup: markup || 'label',
-            sublabelWrapperClassName: sublabelWrapperClassName,
-            sublabel: large ? undefined : label.props.sublabel,
-            statusDot: large ? undefined : label.props.statusDot,
-          })
-        : typeof label === 'string' && (
-            <Label
-              labelTexts={[{ text: label, type: 'subdued' }]}
-              htmlFor={inputId}
-              onColor={onColor}
-              htmlMarkup={markup || 'label'}
-              labelClassName={labelClassName}
-              labelTextClassName={labelTextClassName}
-              sublabelWrapperClassName={sublabelWrapperClassName}
-            >
-              {children}
-            </Label>
-          )}
-    </>
-  );
-};
 
 const Label: FunctionComponent<LabelProps> = ({
   afterLabelChildren,

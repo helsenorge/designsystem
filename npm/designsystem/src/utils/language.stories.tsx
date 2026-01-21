@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import LanguageProvider, { useLanguage } from './language';
+import LanguageProvider from './language';
 import Button from '../components/Button';
 import Spacer from '../components/Spacer';
 import Title from '../components/Title';
 import { LanguageLocales } from '../constants';
+import { useLanguage } from '../hooks/useLanguage';
 
 // Eksempel på bruk av context:
 
@@ -137,10 +139,9 @@ const ComponentWithTranslations: React.FC<ComponentWithTranslationsProps> = ({ r
 // Eksempel på bruk av provider:
 
 const LanguageProviderExample = (): React.JSX.Element => {
-  const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const [language, setLanguage] = useState<LanguageLocales>{'(LanguageLocales.NORWEGIAN);
 
-  return (
-    <LanguageProvider<LanguageLocales> language={language}>
+  return ('}<LanguageProvider<LanguageLocales> language={language}>
       <Button
         onClick={() => setLanguage(language === LanguageLocales.ENGLISH ? LanguageLocales.NORWEGIAN : LanguageLocales.ENGLISH)}
         variant="outline"

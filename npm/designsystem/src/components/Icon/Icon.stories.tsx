@@ -1,11 +1,13 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { IconName } from '../Icons/IconNames';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Checkbox from '../Checkbox';
 import additionalIconInformation from '../Icons/AdditionalIconInformation';
-import { IconList, IconName } from '../Icons/IconNames';
+import { IconList } from '../Icons/IconNames';
 import Search from '../Icons/Search';
 import ExampleSvgIcon from '../Icons/Undo';
 import Input from '../Input';

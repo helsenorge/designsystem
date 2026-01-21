@@ -1,14 +1,18 @@
-import React, { useId, useState } from 'react';
+import type React from 'react';
+import { useId, useState } from 'react';
 
 import classNames from 'classnames';
 
+import type { HNDesignsystemInfoTeaser } from '../../resources/Resources';
+import type { SvgIcon } from '../Icon';
+import type { IconName } from '../Icons/IconNames';
+import type { TitleTags } from '../Title';
+
 import { AnalyticsId, LanguageLocales } from '../../constants';
-import { HNDesignsystemInfoTeaser } from '../../resources/Resources';
-import { useLanguage } from '../../utils/language';
-import Icon, { IconSize, SvgIcon } from '../Icon';
-import { IconName } from '../Icons/IconNames';
+import { useLanguage } from '../../hooks/useLanguage';
+import Icon, { IconSize } from '../Icon';
 import LazyIcon from '../LazyIcon';
-import Title, { TitleTags } from '../Title';
+import Title from '../Title';
 import { getResources } from './resourceHelper';
 
 import styles from './styles.module.scss';

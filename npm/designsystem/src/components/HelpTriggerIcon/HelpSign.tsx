@@ -1,6 +1,6 @@
-import React from 'react';
+import type React from 'react';
 
-import { HelpTriggerWeights } from '../HelpTriggerIcon';
+import type { HelpTriggerWeights } from '../HelpTriggerIcon';
 
 export interface HelpSignProps {
   color?: string;

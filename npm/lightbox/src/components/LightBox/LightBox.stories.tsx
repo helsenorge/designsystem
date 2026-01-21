@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
 
@@ -98,6 +99,7 @@ const AapnesOverSideRender = (args: React.ComponentProps<typeof LightBox>): Reac
   );
 };
 
+// eslint-disable-next-line storybook/prefer-pascal-case
 export const ÅpnesOverSide: Story = {
   render: args => <AapnesOverSideRender {...args} />,
 };

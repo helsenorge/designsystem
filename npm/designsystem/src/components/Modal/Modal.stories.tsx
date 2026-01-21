@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Modal, { ModalSize, ModalVariants } from './Modal';
 import { IconSize } from '../../constants';
@@ -137,8 +138,8 @@ export const ModalWithDisabledButton: Story = {
             <div>
               <Checkbox label={<Label labelTexts={[{ text: 'Checkbox 1' }]} />} />
               <Checkbox label={<Label labelTexts={[{ text: 'Checkbox 2' }]} />} />
-              <p>Vanlig tekst</p>
-              <Button disabled>Ok</Button>
+              <p>{'Vanlig tekst'}</p>
+              <Button disabled>{'Ok'}</Button>
             </div>
           </Modal>
         )}

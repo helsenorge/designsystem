@@ -1,25 +1,17 @@
-import React from 'react';
+import type React from 'react';
 
 import cn from 'classnames';
 
+import type { PaletteNames } from '../../theme/palette';
+import type { SvgIcon } from '../Icon';
+import type { IconName } from '../Icons/IconNames';
+
 import { AnalyticsId } from '../../constants';
-import { palette, PaletteNames } from '../../theme/palette';
-import Icon, { IconSize, SvgIcon } from '../Icon';
-import { IconName } from '../Icons/IconNames';
+import { palette } from '../../theme/palette';
+import Icon, { IconSize } from '../Icon';
 import LazyIcon from '../LazyIcon';
 
 import styles from './styles.module.scss';
-
-export enum TagSize {
-  medium = 'medium',
-  large = 'large',
-}
-
-export enum TagVariant {
-  normal = 'normal',
-  oncolor = 'oncolor',
-  emphasised = 'emphasised',
-}
 
 export type TagColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'cherry' | 'banana' | 'kiwi' | 'plum'>;
 

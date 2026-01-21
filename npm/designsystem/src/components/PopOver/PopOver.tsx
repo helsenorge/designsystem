@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 
 import {
   autoUpdate,
@@ -17,16 +18,11 @@ import {
 } from '@floating-ui/react';
 import classNames from 'classnames';
 
+import { PopOverVariant } from './utils';
 import { AnalyticsId, ZIndex } from '../../constants';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 
 import styles from './styles.module.scss';
-
-export enum PopOverVariant {
-  positionautomatic = 'positionautomatic',
-  positionbelow = 'positionbelow',
-  positionabove = 'positionabove',
-}
 
 export type PopOverRole = 'tooltip' | 'dialog' | 'group';
 

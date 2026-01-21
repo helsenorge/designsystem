@@ -1,9 +1,11 @@
-import React from 'react';
+import type React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import Panel, { PanelVariant } from '../Panel/Panel';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import { PanelVariant } from '../Panel/constants';
+import Panel from '../Panel/Panel';
 
 import PanelList from '.';
 

@@ -2,15 +2,16 @@ import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
 
+import type { HNDesignsystemTabs } from '../../resources/Resources';
+import type { PaletteNames } from '../../theme/palette';
+
 import { getResources } from './resourceHelper';
 import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
 import { LanguageLocales } from '../../constants';
-import { HNDesignsystemTabs } from '../../resources/Resources';
+import { useLanguage } from '../../hooks/useLanguage';
 import designsystemlayout from '../../scss/layout.module.scss';
-import { PaletteNames } from '../../theme/palette';
-import { useLanguage } from '../../utils/language';
 
 import styles from './styles.module.scss';
 

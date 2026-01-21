@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 
-import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
+import type { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
 import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';

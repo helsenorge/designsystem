@@ -1,5 +1,6 @@
+import type { PaletteNames, PaletteDepths } from '../palette';
+
 import { theme } from '..';
-import { PaletteNames, PaletteDepths } from '../palette';
 
 export const getColor = (name: PaletteNames, depth?: PaletteDepths): string => {
   if (name === 'black' || name === 'white') {

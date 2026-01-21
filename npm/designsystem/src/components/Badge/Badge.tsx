@@ -1,10 +1,12 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
-import NotificationBadge, { BadgeNotificationVariant } from './NotificationBadge';
+import type { BadgeNotificationVariant } from './NotificationBadge';
+import type { PaletteNames } from '../../theme/palette';
+
+import NotificationBadge from './NotificationBadge';
 import { AnalyticsId, IconSize } from '../../constants';
-import { PaletteNames } from '../../theme/palette';
 
 import badgeStyles from './styles.module.scss';
 

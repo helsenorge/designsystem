@@ -1,22 +1,19 @@
-import React, { lazy, Suspense, useMemo } from 'react';
+import type React from 'react';
+import { lazy, Suspense, useMemo } from 'react';
+
+import type { BaseIllustrationProps, SvgIllustration } from '../Illustration';
+import type { IllustrationName } from '../Illustrations/IllustrationNames';
 
 import { useIsServerSide } from '../../hooks/useIsServerSide';
-import Illustration, { BaseIllustrationProps, SvgIllustration } from '../Illustration';
+import Illustration from '../Illustration';
 import { getIllustration } from '../Illustration/utils';
-import { IllustrationName, IllustrationSizeList } from '../Illustrations/IllustrationNames';
+import { IllustrationSizeList } from '../Illustrations/IllustrationNames';
 import ErrorBoundary from '../LazyIcon/ErrorBoundary';
 
 export interface LazyIllustrationProps extends BaseIllustrationProps {
   // Navnet på illustrasjonen som skal vises. Tilsvarer filnavnet til illustrasjonen i Icons-mappen
   illustrationName: IllustrationName;
 }
-
-export const lazyLoadIllustration = (illustrationName: IllustrationName, size: number): React.LazyExoticComponent<SvgIllustration> => {
-  const sizes = IllustrationSizeList[illustrationName];
-  const illustrationFileName = getIllustration({ size, ...sizes });
-
-  return lazy<SvgIllustration>(() => import(`../Illustrations/${illustrationFileName}.tsx`));
-};
 
 export const LazyIllustration: React.FC<LazyIllustrationProps> = ({ illustrationName, size = 512, ...rest }) => {
   const illustration = useMemo(() => lazyLoadIllustration(illustrationName, size), [illustrationName, size]);
@@ -25,6 +22,13 @@ export const LazyIllustration: React.FC<LazyIllustrationProps> = ({ illustration
   if (isServerSide) {
     return null;
   }
+
+  const lazyLoadIllustration = (illustrationName: IllustrationName, size: number): React.LazyExoticComponent<SvgIllustration> => {
+    const sizes = IllustrationSizeList[illustrationName];
+    const illustrationFileName = getIllustration({ size, ...sizes });
+
+    return lazy<SvgIllustration>(() => import(`../Illustrations/${illustrationFileName}.tsx`));
+  };
 
   const fallback = (
     <svg

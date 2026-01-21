@@ -2,18 +2,22 @@ import React, { useEffect, useId, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
+import type { PaletteNames } from '../../theme/palette';
+import type { ElementHeaderType } from '../ElementHeader/ElementHeader';
+import type { ListEditModeItemProps } from '../ListEditMode';
+import type { TitleTags } from '../Title';
+
 import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { PaletteNames } from '../../theme/palette';
 import { mergeRefs } from '../../utils/refs';
 import { isElementInViewport } from '../../utils/viewport';
-import { ElementHeaderType, renderElementHeader } from '../ElementHeader/ElementHeader';
+import { renderElementHeader } from '../ElementHeader/utils';
 import Highlighter from '../Highlighter';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
-import ListEditModeItem, { ListEditModeItemProps, listEditModeWrapperClassnames } from '../ListEditMode';
-import { TitleTags } from '../Title';
+import ListEditModeItem from '../ListEditMode';
+import { listEditModeWrapperClassnames } from '../ListEditMode/constants';
 
 import expanderListStyles from './styles.module.scss';
 

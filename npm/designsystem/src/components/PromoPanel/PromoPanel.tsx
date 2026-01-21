@@ -2,17 +2,19 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { PaletteNames } from '../../theme/palette';
+import type { AnchorLinkTags, AnchorLinkTargets } from '../AnchorLink';
+import type { TitleTags } from '../Title';
+
 import { AnalyticsId, IconSize } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys/color';
-import { PaletteNames } from '../../theme/palette';
-import { AnchorLinkTags, AnchorLinkTargets } from '../AnchorLink';
 import Icon from '../Icon';
 import ArrowRight from '../Icons/ArrowRight';
 import ArrowUpRight from '../Icons/ArrowUpRight';
 import LazyIllustration from '../LazyIllustration';
-import Title, { TitleTags } from '../Title';
+import Title from '../Title';
 
 import styles from './styles.module.scss';
 

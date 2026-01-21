@@ -1,10 +1,13 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import type { PaletteNames } from '../../theme/palette';
+import type { SvgIcon } from '../Icon';
+
 import { AnalyticsId, IconSize } from '../../constants';
-import { PaletteNames, palette } from '../../theme/palette';
-import Icon, { SvgIcon } from '../Icon';
+import { palette } from '../../theme/palette';
+import Icon from '../Icon';
 
 import styles from './styles.module.scss';
 

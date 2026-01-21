@@ -1,8 +1,9 @@
+import type { HNDesignsystemDatePicker } from '../../resources/Resources';
+
 import { LanguageLocales } from '@helsenorge/designsystem-react';
 
 import enGB from '../../resources/HN.Designsystem.DatePicker.en-GB.json';
 import nbNO from '../../resources/HN.Designsystem.DatePicker.nb-NO.json';
-import { HNDesignsystemDatePicker } from '../../resources/Resources';
 
 export const getResources = (language: LanguageLocales): HNDesignsystemDatePicker => {
   switch (language) {

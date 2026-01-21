@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 
-import Panel, { PanelVariant, PanelLayout, PanelStacking, PanelStatus } from './Panel';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import Panel from './Panel';
 import { PanelDocs } from './Paneldocs';
 import Badge from '../Badge';
 import Icon, { IconSize } from '../Icon';
@@ -11,6 +12,7 @@ import PdfFile from '../Icons/PdfFile';
 import Input from '../Input';
 import Label from '../Label';
 import StatusDot from '../StatusDot';
+import { PanelLayout, PanelStacking, PanelStatus, PanelVariant } from './constants';
 import Title from '../Title/Title';
 import Toggle from '../Toggle';
 import {

@@ -2,8 +2,8 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import { ModeType } from '../constants';
 import tableStyles from '../styles.module.scss';
-import { ModeType } from '../Table';
 import TableExpanderCellMobile from '../TableExpanderCell/TableExpanderCellMobile';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style'> {

@@ -1,8 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
-import { TabsColors } from '../Tabs';
+import type { TabsColors } from '../Tabs';
 
 import styles from './styles.module.scss';
 

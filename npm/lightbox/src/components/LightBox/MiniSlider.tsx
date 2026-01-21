@@ -1,4 +1,5 @@
-import React, { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
+import type React from 'react';
 
 import styles from './styles.module.scss';
 

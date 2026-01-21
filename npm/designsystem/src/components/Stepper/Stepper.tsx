@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 
 import Dot from './Dot';
 import DotList from './DotList';

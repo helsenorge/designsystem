@@ -1,22 +1,24 @@
-import React, { useId, useState } from 'react';
+import type React from 'react';
+import { useId, useState } from 'react';
 
 import classNames from 'classnames';
+
+import type { AnchorLinkTargets } from '../AnchorLink';
+import type { NotificationPanelVariants } from '../NotificationPanel';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys';
 import { breakpoints } from '../../theme/grid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { AnchorLinkTargets } from '../AnchorLink';
 import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
-import { renderElementHeader } from '../ElementHeader/ElementHeader';
+import { renderElementHeader } from '../ElementHeader/utils';
 import Icon, { IconSize } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
 import Forward from '../Icons/Forward';
 import X from '../Icons/X';
-import { NotificationPanelVariants } from '../NotificationPanel';
 
 import styles from './styles.module.scss';
 

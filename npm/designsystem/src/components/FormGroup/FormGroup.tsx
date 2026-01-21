@@ -2,18 +2,28 @@ import React, { useId, useState } from 'react';
 
 import classNames from 'classnames';
 
+import type { CheckboxProps } from '../Checkbox/Checkbox';
+import type { FormFieldTagProps } from '../FormFieldTag';
+import type { FormLayoutProps } from '../FormLayout';
+import type { InputProps } from '../Input/Input';
+import type { RadioButtonProps } from '../RadioButton/RadioButton';
+import type { SelectProps } from '../Select';
+import type { SliderProps } from '../Slider';
+import type { TextareaProps } from '../Textarea';
+
 import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { isComponent } from '../../utils/component';
-import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
+import Checkbox from '../Checkbox/Checkbox';
 import ErrorWrapper from '../ErrorWrapper';
-import FormFieldTag, { FormFieldTagProps } from '../FormFieldTag';
-import FormLayout, { FormLayoutProps } from '../FormLayout';
-import Input, { InputProps } from '../Input/Input';
-import RadioButton, { RadioButtonProps, getRadioLabelClasses } from '../RadioButton/RadioButton';
-import Select, { SelectProps } from '../Select';
-import Slider, { SliderProps } from '../Slider';
-import Textarea, { TextareaProps } from '../Textarea';
+import FormFieldTag from '../FormFieldTag';
+import FormLayout from '../FormLayout';
+import Input from '../Input/Input';
+import RadioButton from '../RadioButton/RadioButton';
+import { getRadioLabelClasses } from '../RadioButton/utils';
+import Select from '../Select';
+import Slider from '../Slider';
+import Textarea from '../Textarea';
 import Title from '../Title';
 
 import formGroupStyles from './styles.module.scss';

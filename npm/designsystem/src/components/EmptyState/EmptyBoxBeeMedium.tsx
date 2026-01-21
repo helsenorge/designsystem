@@ -1,6 +1,6 @@
-import React from 'react';
+import type React from 'react';
 
-import { EmptyStateIllustrationProps } from './EmptyState';
+import type { EmptyStateIllustrationProps } from './EmptyState';
 
 const EmptyBoxBeeMedium: React.FC<EmptyStateIllustrationProps> = ({ color, svgProperties }) => {
   const palette = (() => {

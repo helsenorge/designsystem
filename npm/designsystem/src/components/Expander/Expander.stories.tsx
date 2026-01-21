@@ -1,12 +1,13 @@
-import React from 'react';
+import type React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import Expander, { ExpanderSize } from './Expander';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import { ExpanderSize } from './constants';
+import Expander from './Expander';
 import LawBook from '../Icons/LawBook';
-import Loader from '../Loader';
-import { Overlay } from '../Loader/Loader';
+import Loader, { Overlay } from '../Loader';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Expander',
@@ -167,7 +168,7 @@ export const WithCallback: Story = {
   },
   render: args => (
     <Expander {...args}>
-      <p>Sjekk nettleserkonsollen</p>
+      <p>{'Sjekk nettleserkonsollen'}</p>
     </Expander>
   ),
 };

@@ -1,6 +1,6 @@
-import React from 'react';
+import type React from 'react';
 
-import { SvgPathProps } from '../Icon';
+import type { SvgPathProps } from '../Icon';
 
 const DataSent: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.JSX.Element => {
   const normal = (

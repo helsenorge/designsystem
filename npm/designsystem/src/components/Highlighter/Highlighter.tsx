@@ -1,8 +1,10 @@
 import React from 'react';
 
+import type { DuolistGroupProps } from '../Duolist';
+
 import { isComponent } from '../../utils/component';
 import uuid from '../../utils/uuid';
-import { DuolistGroup, DuolistGroupProps } from '../Duolist';
+import { DuolistGroup } from '../Duolist';
 
 import styles from './styles.module.scss';
 

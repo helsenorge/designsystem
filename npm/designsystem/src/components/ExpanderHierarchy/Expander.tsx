@@ -2,8 +2,10 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { ExpanderHierarchyCommonProps, ExpanderHierarchyProps } from './ExpanderHierarchy';
+
 import ExpanderButton from './ExpanderButton';
-import ExpanderHierarchy, { ExpanderHierarchyCommonProps, ExpanderHierarchyProps } from './ExpanderHierarchy';
+import ExpanderHierarchy from './ExpanderHierarchy';
 import { getHeadingTag } from './utils';
 import { isComponent } from '../../utils/component';
 

@@ -1,12 +1,13 @@
 import { Table } from './Table';
 
 export { TableBody } from './TableBody';
-export { TableCell, TextAlign } from './TableCell';
+export { TableCell } from './TableCell';
 export { TableExpandedRow } from './TableExpandedRow';
 export { TableExpanderCell } from './TableExpanderCell';
-export { TableHead, HeaderCategory } from './TableHead';
-export { TableHeadCell, SortDirection } from './TableHeadCell';
+export { TableHead } from './TableHead';
+export { TableHeadCell } from './TableHeadCell';
 export { TableRow } from './TableRow';
+export { SortDirection, HeaderCategory, TextAlign, ResponsiveTableVariant, ModeType, defaultConfig, simpleConfig } from './constants';
 
 export * from './Table';
 

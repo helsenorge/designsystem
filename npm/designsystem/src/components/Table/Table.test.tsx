@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
 import { screen, render, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

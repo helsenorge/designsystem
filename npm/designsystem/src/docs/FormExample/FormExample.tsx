@@ -1,5 +1,8 @@
 import { useForm } from 'react-hook-form';
 
+import type { FormSize } from '../../constants';
+
+import { FormExampleVariants } from './constants';
 import Button from '../../components/Button';
 import Checkbox from '../../components/Checkbox';
 import FormGroup from '../../components/FormGroup/FormGroup';
@@ -13,24 +16,12 @@ import Slider from '../../components/Slider';
 import Spacer from '../../components/Spacer';
 import Textarea from '../../components/Textarea';
 import Validation from '../../components/Validation';
-import { FormSize } from '../../constants';
 import { isTest } from '../../utils/environment';
 
 export interface FormExampleProps {
   exampleType: FormExampleVariants;
   size?: keyof typeof FormSize;
   visuallyHiddenSummary?: boolean;
-}
-
-export enum FormExampleVariants {
-  formgroup = 'formgroup',
-  checkbox = 'checkbox',
-  radiobutton = 'radiobutton',
-  textarea = 'textarea',
-  input = 'input',
-  select = 'select',
-  slider = 'slider',
-  withoutformgroup = 'withoutformgroup',
 }
 
 interface FormExampleData {

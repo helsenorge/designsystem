@@ -1,14 +1,17 @@
-import React, { AriaAttributes } from 'react';
+import type { AriaAttributes } from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import type { HTMLButtonProps } from '../../constants';
+import type { HNDesignsystemFavoriteButton } from '../../resources/Resources';
+
 import { getResources } from './resourceHelper';
 import { starIconHoverDesktop, starIconHoverMobile, starIconNormalDesktop, starIconNormalMobile } from './StarIcon';
-import { AnalyticsId, HTMLButtonProps, LanguageLocales } from '../../constants';
+import { AnalyticsId, LanguageLocales } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { useLanguage } from '../../hooks/useLanguage';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { HNDesignsystemFavoriteButton } from '../../resources/Resources';
-import { useLanguage } from '../../utils/language';
 import { isMutableRefObject } from '../../utils/refs';
 
 import styles from './styles.module.scss';

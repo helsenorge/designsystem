@@ -1,7 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Logo from './Logo';
 import { allLogoPaletteNames } from '../../../.storybook/knobs';

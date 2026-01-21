@@ -1,6 +1,5 @@
-// eslint-disable-next-line no-undef
 module.exports = {
-  '*.{js,jsx,ts,tsx}': ['eslint --fix'],
-  '*.{css,scss}': ['stylelint --fix'],
-  '*.{js,jsx,ts,tsx,json,css,scss,md}': ['prettier --write'],
+  '*.{js,jsx,ts,tsx}': ['eslint --fix', 'prettier --write'],
+  '*.{css,scss}': ['stylelint --fix', 'prettier --write'],
+  '*.{md,json}': ['prettier --write'],
 };

@@ -1,4 +1,4 @@
-import { StoryObj, Meta } from '@storybook/react-vite';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import LabelComponent from '../components/Label';
 import Title from '../components/Title';

@@ -2,12 +2,14 @@ import React, { useRef } from 'react';
 
 import classNames from 'classnames';
 
+import type { TabProps } from '../Tab';
+import type { TabsColors, TabsOnColor } from '../Tabs';
+
 import TabItem from './TabItem';
 import { useIsVisible } from '../../../hooks/useIsVisible';
 import { useRovingFocus } from '../../../hooks/useRovingFocus';
 import { isComponent } from '../../../utils/component';
-import Tab, { TabProps } from '../Tab';
-import { TabsColors, TabsOnColor } from '../Tabs';
+import Tab from '../Tab';
 import TabChevron from './TabChevron';
 
 import styles from './styles.module.scss';

@@ -1,9 +1,12 @@
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import HelpBubble, { HelpBubbleProps } from './HelpBubble';
+import type { HelpBubbleProps } from './HelpBubble';
+
+import HelpBubble from './HelpBubble';
 
 const { dummyDomRect } = vi.hoisted(() => {
   return {

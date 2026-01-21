@@ -2,15 +2,18 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { PanelTitleProps } from './PanelTitle';
+import type { HNDesignsystemPanel } from '../../resources/Resources';
+import type { PaletteNames } from '../../theme/palette';
+
 import { LanguageLocales } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
-import { PaletteNames } from '../../theme/palette';
 import Button from '../Button';
 import Icon, { IconSize } from '../Icon';
-import PanelTitle, { PanelTitleProps } from './PanelTitle';
+import { PanelLayout, PanelStacking, PanelStatus, PanelVariant } from './constants';
+import PanelTitle from './PanelTitle';
 import { getResources } from './resourceHelper';
-import { HNDesignsystemPanel } from '../../resources/Resources';
-import { useLanguage } from '../../utils/language';
+import { useLanguage } from '../../hooks/useLanguage';
 import Highlighter from '../Highlighter';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronRight from '../Icons/ChevronRight';
@@ -18,32 +21,7 @@ import ChevronUp from '../Icons/ChevronUp';
 
 import styles from './styles.module.scss';
 
-export enum PanelLayout {
-  vertical = 'vertical',
-  horizontal = 'horizontal',
-  combined = 'combined',
-  bAsRightCol = 'bAsRightCol',
-}
-
 export type PanelColors = Extract<PaletteNames, 'white' | 'neutral'>;
-
-export enum PanelVariant {
-  fill = 'fill',
-  line = 'line',
-  outline = 'outline',
-}
-
-export enum PanelStacking {
-  default = 'default',
-  bFirst = 'bFirst',
-}
-
-export enum PanelStatus {
-  none = 'none',
-  new = 'new',
-  error = 'error',
-  draft = 'draft',
-}
 
 export interface PanelProps {
   /** Aria label on call to action button */

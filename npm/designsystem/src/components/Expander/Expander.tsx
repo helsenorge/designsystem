@@ -1,25 +1,24 @@
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 
 import classNames from 'classnames';
 
+import type { PaletteNames } from '../../theme/palette';
+import type { SvgIcon } from '../Icon';
+import type { IconName } from '../Icons/IconNames';
+
+import { ExpanderSize } from './constants';
 import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useSize } from '../../hooks/useSize';
-import { PaletteNames } from '../../theme/palette';
 import Button from '../Button';
-import Icon, { IconSize, SvgIcon } from '../Icon';
+import Icon, { IconSize } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
-import { IconName } from '../Icons/IconNames';
 import LazyIcon from '../LazyIcon';
 
 import styles from './styles.module.scss';
-
-export enum ExpanderSize {
-  small = 'small',
-  large = 'large',
-}
 
 export type ExpanderColors = Extract<PaletteNames, 'banana' | 'blueberry' | 'cherry' | 'kiwi' | 'neutral' | 'plum' | 'white'>;
 

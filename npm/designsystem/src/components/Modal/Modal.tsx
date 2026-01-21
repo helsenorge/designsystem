@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import cn from 'classnames';
 
+import { ModalSize, ModalVariants } from './constants';
 import { AnalyticsId, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsVisible } from '../../hooks/useIsVisible';
@@ -20,18 +21,6 @@ import Portal from '../Portal';
 import Title from '../Title/Title';
 
 import styles from './styles.module.scss';
-
-export enum ModalVariants {
-  normal = 'normal',
-  warning = 'warning',
-  error = 'error',
-  success = 'success',
-}
-
-export enum ModalSize {
-  large = 'large',
-  medium = 'medium',
-}
 
 export interface ModalProps {
   /** Title of the modal */

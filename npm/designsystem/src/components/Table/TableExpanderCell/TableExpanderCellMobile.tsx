@@ -1,14 +1,15 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
+
+import type { Props } from '../TableRow/TableRow';
 
 import Button from '../../Button';
 import Icon from '../../Icon';
 import ChevronDown from '../../Icons/ChevronDown';
 import ChevronUp from '../../Icons/ChevronUp';
+import { ModeType } from '../constants';
 import tableStyles from '../styles.module.scss';
-import { ModeType } from '../Table';
-import { Props } from '../TableRow/TableRow';
 
 type TableExpanderCellMobileProps = Pick<Props, 'expanded' | 'onClick' | 'hideDetailsText' | 'showDetailsText' | 'mode'>;
 

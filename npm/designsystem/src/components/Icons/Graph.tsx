@@ -1,6 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
-import { SvgPathProps, getIcon } from '../Icon';
+import type { SvgPathProps } from '../Icon';
+
+import { getIcon } from '../Icon/utils';
 
 const Graph: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (

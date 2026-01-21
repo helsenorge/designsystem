@@ -1,40 +1,14 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import { StatusDotOnColor, StatusDotVariant } from './constants';
 import { IconSize } from '../..';
-import { AnalyticsId, FormOnColor } from '../../constants';
+import { AnalyticsId } from '../../constants';
 import { getColor } from '../../theme/currys';
 import { LazyIcon } from '../LazyIcon';
 
 import styles from './styles.module.scss';
-
-export enum StatusDotOnColor {
-  onwhite = FormOnColor.onwhite,
-  ondark = FormOnColor.ondark,
-}
-
-export enum StatusDotVariant {
-  success = 'success',
-  inprocess = 'inprocess',
-  exception = 'exception',
-  unknown = 'unknown',
-  inspected = 'inspected',
-  cancelled = 'cancelled',
-  alert = 'alert',
-  transparent = 'transparent',
-  info = 'info',
-  group = 'group',
-  recurring = 'recurring',
-  noaccess = 'noaccess',
-  draft = 'draft',
-  hidden = 'hidden',
-  login = 'login',
-  attachment = 'attachment',
-  active = 'active',
-  pending = 'pending',
-  inactive = 'inactive',
-}
 
 export interface StatusDotIconProps {
   /** Defines the color of the icon */

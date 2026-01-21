@@ -1,20 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
+import type { HNDesignsystemInput } from '../../resources/Resources';
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import type { SvgIcon } from '../Icon';
+import type { IconName } from '../Icons/IconNames';
+
+import { InputTypes } from './constants';
 import { getResources } from './resourceHelper';
 import { FormOnColor, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, LanguageLocales } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
-import { HNDesignsystemInput } from '../../resources/Resources';
+import { useLanguage } from '../../hooks/useLanguage';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
-import Icon, { IconSize, SvgIcon } from '../Icon';
-import { IconName } from '../Icons/IconNames';
-import { renderLabel } from '../Label';
+import ErrorWrapper from '../ErrorWrapper';
+import Icon, { IconSize } from '../Icon';
+import { renderLabel } from '../Label/utils';
 import LazyIcon from '../LazyIcon';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
@@ -91,18 +96,6 @@ export interface InputProps
   resources?: Partial<HNDesignsystemInput>;
   /** Ref passed to the input element */
   ref?: React.Ref<HTMLInputElement | null>;
-}
-
-export enum InputTypes {
-  text = 'text',
-  number = 'number',
-  email = 'email',
-  password = 'password',
-  search = 'search',
-  tel = 'tel',
-  url = 'url',
-  date = 'date',
-  time = 'time',
 }
 
 const getInputMaxWidth = (characters: number, hasIcon: boolean, iconSize: number): string => {

@@ -1,10 +1,12 @@
-import React from 'react';
+import type React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
-import HelpTriggerIcon, { HelpTriggerIconProps } from './HelpTriggerIcon';
+import type { HelpTriggerIconProps } from './HelpTriggerIcon';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import HelpTriggerIcon from './HelpTriggerIcon';
 import List from '../List';
 import Title from '../Title';
 

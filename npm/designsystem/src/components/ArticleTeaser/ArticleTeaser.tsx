@@ -1,11 +1,12 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import type { HNDesignsystemArticleTeaser } from '../../resources/Resources';
+
 import { getResources } from './resourceHelper';
 import { AnalyticsId, LanguageLocales } from '../../constants';
-import { HNDesignsystemArticleTeaser } from '../../resources/Resources';
-import { useLanguage } from '../../utils/language';
+import { useLanguage } from '../../hooks/useLanguage';
 
 import styles from './styles.module.scss';
 

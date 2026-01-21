@@ -1,17 +1,12 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
 import Icon, { IconSize } from '../../Icon';
 import ArrowDown from '../../Icons/ArrowDown';
 import ArrowUp from '../../Icons/ArrowUp';
+import { ModeType, SortDirection } from '../constants';
 import tableStyles from '../styles.module.scss';
-import { ModeType } from '../Table';
-
-export enum SortDirection {
-  asc = 'asc',
-  desc = 'desc',
-}
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'th'>, 'style'> {
   /** Sets if column for head cell should be sortable*/

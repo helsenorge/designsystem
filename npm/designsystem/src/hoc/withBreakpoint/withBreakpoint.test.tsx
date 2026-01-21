@@ -3,7 +3,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { when } from 'jest-when';
 
-import { BreakpointProps, withBreakpoint } from './withBreakpoint';
+import type { BreakpointProps } from './withBreakpoint';
+
+import { withBreakpoint } from './withBreakpoint';
 import { mockWindowMatchMedia } from '../../__mocks__/matchMedia';
 import { Breakpoint } from '../../hooks/useBreakpoint';
 import { screen as themeScreen } from '../../theme/grid';

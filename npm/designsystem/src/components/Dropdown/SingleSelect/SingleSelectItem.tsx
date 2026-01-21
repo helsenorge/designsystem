@@ -2,8 +2,10 @@ import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
-import { useSingleSelect } from './SingleSelect';
-import AsChildSlot, { AsChildSlotHandle } from '../../AsChildSlot';
+import type { AsChildSlotHandle } from '../../AsChildSlot';
+
+import { useSingleSelect } from './utils';
+import AsChildSlot from '../../AsChildSlot';
 
 import styles from './styles.module.scss';
 

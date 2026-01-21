@@ -2,10 +2,11 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { TitleProps } from '../Title';
+
 import { AnalyticsId } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import Spacer from '../Spacer';
-import { TitleProps } from '../Title';
 
 import duolistStyles from './styles.module.scss';
 

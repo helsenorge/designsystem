@@ -1,13 +1,15 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
+
+import type { HelpTriggerWeights } from '../HelpTriggerIcon';
 
 import { AnalyticsId } from '../../constants';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
-import { HelpTriggerIconInternal, HelpTriggerWeights } from '../HelpTriggerIcon';
+import { HelpTriggerIconInternal } from '../HelpTriggerIcon';
 
 import styles from './styles.module.scss';
 

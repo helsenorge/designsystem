@@ -1,4 +1,5 @@
-import React, { useState, useRef, useId } from 'react';
+import type React from 'react';
+import { useState, useRef, useId } from 'react';
 
 import { useFloating, useHover, useFocus, useDismiss, useInteractions, FloatingDelayGroup } from '@floating-ui/react';
 

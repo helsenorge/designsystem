@@ -1,7 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
-import { ErrorDetails, FocusableElement } from './types';
-import AnchorLink, { AnchorLinkOnClickEvent } from '../AnchorLink';
+import type { ErrorDetails, FocusableElement } from './types';
+import type { AnchorLinkOnClickEvent } from '../AnchorLink';
+
+import AnchorLink from '../AnchorLink';
 
 interface ErrorElementProps {
   name: string;

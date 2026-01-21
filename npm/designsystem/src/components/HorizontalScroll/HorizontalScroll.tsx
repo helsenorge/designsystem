@@ -1,11 +1,13 @@
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 
 import classNames from 'classnames';
+
+import type { AriaLabelAttributes } from '../../utils/accessibility';
 
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useSize } from '../../hooks/useSize';
 import { useStopPropagation } from '../../hooks/usestopPropagation';
-import { AriaLabelAttributes } from '../../utils/accessibility';
 
 import styles from './styles.module.scss';
 

@@ -1,7 +1,6 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Chip, { ChipAction, ChipSize, ChipVariant } from './Chip';
 

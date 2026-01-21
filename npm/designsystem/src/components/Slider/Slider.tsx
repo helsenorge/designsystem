@@ -1,6 +1,9 @@
-import React, { useEffect, useState, useRef, useId } from 'react';
+import type React from 'react';
+import { useEffect, useState, useRef, useId } from 'react';
 
 import classNames from 'classnames';
+
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
 import { AnalyticsId } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
@@ -8,7 +11,7 @@ import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useSize } from '../../hooks/useSize';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import ErrorWrapper from '../ErrorWrapper';
 import Title from '../Title';
 
 import styles from './styles.module.scss';

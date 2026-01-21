@@ -1,11 +1,13 @@
-import React from 'react';
+import type React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Validation from './Validation';
 import { FormSize } from '../../constants';
-import FormExample, { FormExampleVariants } from '../../docs/FormExample/FormExample';
+import { FormExampleVariants } from '../../docs/FormExample/constants';
+import FormExample from '../../docs/FormExample/FormExample';
 
 const meta: Meta<typeof Validation> = {
   title: '@helsenorge/designsystem-react/Components/Validation',
@@ -39,7 +41,7 @@ export const FormExample = (props: FormExampleProps): React.JSX.Element => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormExampleData>();
+  } = useForm<FormExampleData>{'();
 
   const sizeErrorMessage = 'Du må velge minst to størrelser';
   const positionErrorMessage = 'Du må velge minst én plassering';
@@ -47,7 +49,7 @@ export const FormExample = (props: FormExampleProps): React.JSX.Element => {
   const nameErrorMessage = 'Navn må fylles ut';
   const monsterErrorMessage = 'Du må velge "Frankenstein"';
 
-  const requireTwo = (value: Array<string>): true | string => {
+  const requireTwo = (value: Array'}<string>): true | string => {
     return value.length >= 2 || sizeErrorMessage;
   };
 

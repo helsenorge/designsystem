@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
+
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
 import { AnalyticsId, FormOnColor, FormSize, IconSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
@@ -9,10 +12,10 @@ import { getColor } from '../../theme/currys/color';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import ErrorWrapper from '../ErrorWrapper';
 import Icon from '../Icon';
 import Check from '../Icons/Check';
-import { getLabelText, renderLabelAsParent } from '../Label';
+import { getLabelText, renderLabelAsParent } from '../Label/utils';
 
 import checkboxStyles from './styles.module.scss';
 

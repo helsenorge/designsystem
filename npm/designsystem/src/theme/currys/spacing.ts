@@ -1,4 +1,6 @@
-import { SpacerSizes, spacers } from './../spacers';
+import type { SpacerSizes } from './../spacers';
+
+import { spacers } from './../spacers';
 
 export const mapSpacerValue = (spacerSize: SpacerSizes): number => {
   switch (spacerSize) {

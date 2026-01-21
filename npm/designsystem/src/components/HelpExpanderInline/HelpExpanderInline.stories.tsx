@@ -1,11 +1,13 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 import { useArgs } from 'storybook/internal/preview-api';
 
-import HelpExpanderInline, { HelpExpanderInlineProps } from './HelpExpanderInline';
+import type { HelpExpanderInlineProps } from './HelpExpanderInline';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import HelpExpanderInline from './HelpExpanderInline';
 import { mediumLoremText } from '../../utils/loremtext';
 import Checkbox from '../Checkbox';
 import HelpTriggerIcon from '../HelpTriggerIcon';
