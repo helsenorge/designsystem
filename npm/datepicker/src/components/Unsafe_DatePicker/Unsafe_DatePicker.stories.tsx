@@ -49,13 +49,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: args => {
     const [value, setValue] = useState<Date | undefined>();
-    return (
-      <>
-        <Unsafe_DatePicker {...args} value={value} onChange={setValue} />
-        <br />
-        <span>{'Value: ' + value}</span>
-      </>
-    );
+    return <Unsafe_DatePicker {...args} value={value} onChange={setValue} />;
   },
 };
 
