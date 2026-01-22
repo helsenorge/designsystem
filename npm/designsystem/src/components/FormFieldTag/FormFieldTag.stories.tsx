@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { HNDesignsystemFormFieldTag } from '../../resources/Resources';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import FormFieldTag from './FormFieldTag';
 import { LanguageLocales } from '../../constants';
-import { HNDesignsystemFormFieldTag } from '../../resources/Resources';
 import LanguageProvider from '../../utils/language';
 import Button from '../Button';
 

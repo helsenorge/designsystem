@@ -1,7 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
-import { Palette } from './ReadLetters';
-import { BaseSvgIllustrationProps, ViewBoxSize } from '../Illustration';
+import type { Palette } from './ReadLetters';
+import type { BaseSvgIllustrationProps } from '../Illustration';
+
+import { ViewBoxSize } from '../Illustration/utils';
 
 const ReadLettersMedium: React.FC<BaseSvgIllustrationProps> = ({ color, svgProperties, title }) => {
   const palette = ((): Palette => {

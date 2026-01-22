@@ -1,18 +1,14 @@
-import React from 'react';
+import type React from 'react';
 
 import cn from 'classnames';
 
+import { AvatarSize } from './constants';
 import { AnalyticsId } from '../../constants';
 import { palette } from '../../theme/palette';
 import Icon, { IconSize } from '../Icon';
 import Check from '../Icons/Check';
 
 import styles from './styles.module.scss';
-
-export enum AvatarSize {
-  xsmall = 'xsmall',
-  small = 'small',
-}
 
 export interface AvatarProps {
   /** Name to display in the avatar. Will be truncated to the first two characters. */

@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
-import Loader, { Overlay } from './Loader';
+import { Overlay } from './constants';
+import Loader from './Loader';
 
 describe('Gitt at en loader skal vises ', (): void => {
   describe('Når at en loader rendres ', (): void => {

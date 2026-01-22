@@ -3,10 +3,12 @@ import React, { useState, useEffect, useId } from 'react';
 import classNames from 'classnames';
 import { useAnimate } from 'motion/react';
 
+import { ToggleOnColor, TogglePosition } from './constants';
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 
 import styles from './styles.module.scss';
+
 import '../../scss/supernova/styles/colors.css';
 
 export type LabelText = {
@@ -18,17 +20,6 @@ export type StatusTextType = {
   checked: string;
   unchecked: string;
 };
-
-export enum TogglePosition {
-  left = 'left',
-  right = 'right',
-}
-
-export enum ToggleOnColor {
-  onwhite = 'onwhite',
-  onneutral = 'onneutral',
-  onblueberry = 'onblueberry',
-}
 
 export interface ToggleProps extends Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   /**  Determines if the Toggle is checked */

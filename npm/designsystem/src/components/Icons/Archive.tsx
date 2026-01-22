@@ -1,6 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
-import { getIcon, SvgPathProps } from '../Icon';
+import type { SvgPathProps } from '../Icon';
+
+import { getIcon } from '../Icon/utils';
 
 const Archive: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.JSX.Element => {
   const normal = (

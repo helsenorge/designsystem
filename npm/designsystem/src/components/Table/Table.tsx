@@ -2,9 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
+import type { Breakpoint } from '../../hooks/useBreakpoint';
+
+import { defaultConfig, ModeType, ResponsiveTableVariant } from './constants';
 import { getCurrentConfig, getBreakpointClass, getCenteredOverflowTableStyle } from './utils';
 import { AnalyticsId } from '../../constants';
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useLayoutEvent } from '../../hooks/useLayoutEvent';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
@@ -12,20 +15,6 @@ import HorizontalScroll from '../HorizontalScroll';
 
 import styles from './styles.module.scss';
 
-export enum ResponsiveTableVariant {
-  /** No handling responsive behaviour. Default. */
-  none = 'none',
-  /** Overflow parent container to the left and right while remaining centered horizontally. */
-  centeredoverflow = 'centeredoverflow',
-  /** Show horizontal scrollbar when table is too big for the screen. */
-  horizontalscroll = 'horizontalscroll',
-  /** Collapse to two columns. */
-  block = 'block',
-}
-export enum ModeType {
-  compact = 'compact',
-  normal = 'normal',
-}
 export interface BreakpointConfig {
   /** Breakpoint at which responsive behaviour will be applied. The table component uses a "desktop first" approach. */
   breakpoint: keyof typeof Breakpoint;
@@ -53,27 +42,6 @@ export interface Props extends Omit<React.ComponentPropsWithoutRef<'table'>, 'st
   /** Sets aria-labelledby of the horizontal scroll container. scrollAriaLabel or scrollAriaLabelledById MUST be set if horizontal scrolling is enabled! */
   scrollAriaLabelledById?: string;
 }
-
-export const defaultConfig: BreakpointConfig[] = [
-  {
-    breakpoint: 'xl',
-    variant: ResponsiveTableVariant.centeredoverflow,
-    fallbackVariant: ResponsiveTableVariant.horizontalscroll,
-  },
-];
-
-export const simpleConfig: BreakpointConfig[] = [
-  {
-    breakpoint: 'xl',
-    variant: ResponsiveTableVariant.centeredoverflow,
-    fallbackVariant: ResponsiveTableVariant.horizontalscroll,
-  },
-  {
-    breakpoint: 'sm',
-    variant: ResponsiveTableVariant.centeredoverflow,
-    fallbackVariant: ResponsiveTableVariant.block,
-  },
-];
 
 export const Table: React.FC<Props> = ({
   id,

@@ -1,15 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import { ModeType, TextAlign } from '../constants';
 import tableStyles from '../styles.module.scss';
-import { ModeType } from '../Table';
-
-export enum TextAlign {
-  left = 'left',
-  center = 'center',
-  right = 'right',
-}
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'td'>, 'style'> {
   /** Label used for small viewport block */

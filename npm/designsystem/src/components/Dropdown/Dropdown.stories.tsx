@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Dropdown, { DropdownBase } from './Dropdown';
 import { LanguageLocales } from '../../constants';
@@ -265,10 +267,9 @@ import { LanguageLocales } from '@helsenorge/designsystem-react/constants'
 import LanguageProvider from '@helsenorge/designsystem-react/utils/language'
 ...
 
-const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.ENGLISH);
+const [language, setLanguage] = useState<LanguageLocales>{'(LanguageLocales.ENGLISH);
 
-return (
-  <LanguageProvider<LanguageLocales> language={language}>
+return ('}<LanguageProvider<LanguageLocales> language={language}>
     <Button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} variant="outline">
       {'Bytt til bokmål'}
     </Button>

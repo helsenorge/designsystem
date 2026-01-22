@@ -75,13 +75,14 @@
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
-    "@helsenorge/eslint-config": "^36.1.1",
+    "@helsenorge/eslint-config": "^37.7.1",
     "conventional-changelog-cli": "^4.1.0",
     "eslint-plugin-storybook": "10.0.5",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
     "npm-run-all2": "^7.0.2",
     "nyc": "^17.1.0",
+    "jsdom": "^26.0.0",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1"
   },

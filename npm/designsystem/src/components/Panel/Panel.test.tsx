@@ -2,7 +2,8 @@ import React from 'react';
 
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import Panel, { PanelStatus, PanelVariant } from './Panel';
+import { PanelStatus, PanelVariant } from './constants';
+import Panel from './Panel';
 
 describe('Gitt at Panel skal vises', () => {
   describe('Når Panel vises', () => {

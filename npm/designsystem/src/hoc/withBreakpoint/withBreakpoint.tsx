@@ -1,6 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
-import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
+import type { Breakpoint } from '../../hooks/useBreakpoint';
+
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 
 export interface BreakpointProps {
   breakpoint: Breakpoint;

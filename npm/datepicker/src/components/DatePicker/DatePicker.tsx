@@ -1,26 +1,30 @@
-import React, { useState, useRef, useEffect } from 'react';
+import type React from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-import { Locale, format, isValid, parse } from 'date-fns';
+import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { Modifiers, DayOfWeek, DayPickerProps, PropsSingle } from 'react-day-picker';
+
+import type { DatePickerAriaLabels } from './DatePickerPopup';
+import type { HNDesignsystemDatePicker } from '../../resources/Resources';
+import type { Locale } from 'date-fns';
+import type { Modifiers, DayOfWeek, DayPickerProps, PropsSingle } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
-import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
+import type { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import { KeyboardEventKey, LanguageLocales, ZIndex } from '@helsenorge/designsystem-react/constants';
 import { useKeyboardEvent } from '@helsenorge/designsystem-react/hooks/useKeyboardEvent';
+import { useLanguage } from '@helsenorge/designsystem-react/hooks/useLanguage';
 import { useOutsideEvent } from '@helsenorge/designsystem-react/hooks/useOutsideEvent';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
-import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
 import { isMobileUA } from '@helsenorge/designsystem-react/utils/mobile';
 import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
-import DatePickerPopup, { DatePickerAriaLabels } from './DatePickerPopup';
+import DatePickerPopup from './DatePickerPopup';
 import { getResources } from './resourceHelper';
-import { HNDesignsystemDatePicker } from '../../resources/Resources';
 
 import styles from './styles.module.scss';
 

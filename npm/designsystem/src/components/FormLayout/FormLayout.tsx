@@ -2,17 +2,10 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import { FormLayoutColumns } from './constants';
 import { AnalyticsId, FormSize } from '../../constants';
 
 import formGroupStyles from './styles.module.scss';
-
-export enum FormLayoutColumns {
-  one = 'one',
-  two = 'two',
-  three = 'three',
-  four = 'four',
-  five = 'five',
-}
 
 export interface FormLayoutProps {
   /** The max number of columns that will exist if space is available */

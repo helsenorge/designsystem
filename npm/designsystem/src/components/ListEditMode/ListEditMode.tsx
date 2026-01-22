@@ -1,13 +1,15 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import type { ExpanderListColors, ExpanderListVariant } from '../ExpanderList';
+import type { SvgIcon } from '../Icon';
+import type { LinkListColors, LinkListVariant } from '../LinkList';
+
 import { IconSize } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { ExpanderListColors, ExpanderListVariant } from '../ExpanderList';
-import Icon, { SvgIcon } from '../Icon';
+import Icon from '../Icon';
 import X from '../Icons/X';
-import { LinkListColors, LinkListVariant } from '../LinkList';
 
 import styles from './styles.module.scss';
 
@@ -29,8 +31,6 @@ export interface ListEditModeItemProps {
   onDelete?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   contentId?: string;
 }
-
-export const listEditModeWrapperClassnames = classNames([styles[`list-edit-mode`]]);
 
 export const IconButton = ({
   icon,

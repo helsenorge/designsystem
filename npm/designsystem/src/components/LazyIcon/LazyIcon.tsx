@@ -1,19 +1,21 @@
-import React, { lazy, Suspense, useMemo } from 'react';
+import type React from 'react';
+import { lazy, Suspense, useMemo } from 'react';
+
+import type { BaseIconProps, SvgIcon } from '../Icon';
+import type { IconName } from '../Icons/IconNames';
 
 import ErrorBoundary from './ErrorBoundary';
 import { useIsServerSide } from '../../hooks/useIsServerSide';
-import Icon, { BaseIconProps, IconSize, SvgIcon } from '../Icon';
-import { IconName } from '../Icons/IconNames';
+import Icon, { IconSize } from '../Icon';
 
 export interface LazyIconProps extends BaseIconProps {
   // Navnet på ikonet som skal vises. Tilsvarer filnavnet til ikonet i Icons-mappen
   iconName: IconName;
 }
 
-export const lazyLoadIcon = (iconName: IconName): React.LazyExoticComponent<SvgIcon> =>
-  lazy<SvgIcon>(() => import(`../Icons/${iconName}.tsx`));
-
 export const LazyIcon: React.FC<LazyIconProps> = ({ iconName, size = IconSize.Small, ...rest }) => {
+  const lazyLoadIcon = (iconName: IconName): React.LazyExoticComponent<SvgIcon> => lazy<SvgIcon>(() => import(`../Icons/${iconName}.tsx`));
+
   const icon = useMemo(() => lazyLoadIcon(iconName), [iconName]);
   const isServerSide = useIsServerSide();
 

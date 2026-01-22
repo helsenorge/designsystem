@@ -1,8 +1,9 @@
-import React from 'react';
+import type React from 'react';
+
+import type { SvgIllustrationProps } from '../Illustration';
 
 import DoctorMedium from './DoctorMedium';
 import DoctorSmall from './DoctorSmall';
-import { SvgIllustrationProps } from '../Illustration';
 import { getIllustration } from '../Illustration/utils';
 
 export interface Palette {

@@ -2,15 +2,19 @@ import React from 'react';
 
 import cn from 'classnames';
 
-import { AnalyticsId, LanguageLocales } from '../../constants';
-import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { HNDesignsystemLinkList } from '../../resources/Resources';
-import { PaletteNames } from '../../theme/palette';
-import { useLanguage } from '../../utils/language';
-import { ElementHeaderType, renderElementHeader } from '../ElementHeader/ElementHeader';
-import ChevronRight from '../Icons/ChevronRight';
-import ListEditModeItem, { ListEditModeItemProps, listEditModeWrapperClassnames } from '../ListEditMode';
+import type { HNDesignsystemLinkList } from '../../resources/Resources';
+import type { PaletteNames } from '../../theme/palette';
+import type { ElementHeaderType } from '../ElementHeader/ElementHeader';
+import type { ListEditModeItemProps } from '../ListEditMode';
+
 import { getResources } from './resourceHelper';
+import { AnalyticsId, LanguageLocales } from '../../constants';
+import { useLanguage } from '../../hooks/useLanguage';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
+import { renderElementHeader } from '../ElementHeader/utils';
+import ChevronRight from '../Icons/ChevronRight';
+import ListEditModeItem from '../ListEditMode';
+import { listEditModeWrapperClassnames } from '../ListEditMode/constants';
 
 import LinkListStyles from './styles.module.scss';
 

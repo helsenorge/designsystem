@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useResizeObserver } from './useResizeObserver';
 import HighlightPanel from '../components/HighlightPanel';
@@ -31,11 +32,10 @@ import { useResizeObserver } from '@helsenorge/designsystem-react/hooks/useResiz
 import HighlightPanel from '@helsenorge/designsystem-react/components/HighlightPanel';
         
 const UseResizeObserverExample: React.FC = () => {
-  const ref = useRef<HTMLPreElement>(null);
+  const ref = useRef<HTMLPreElement>{'(null);
   const size = useResizeObserver(ref);
 
-  return (
-    <HighlightPanel color="blueberry" size="fluid">
+  return ('}<HighlightPanel color="blueberry" size="fluid">
       <pre ref={ref}>{JSON.stringify(size?.toJSON(), null, 2)}</pre>
     </HighlightPanel>
   );

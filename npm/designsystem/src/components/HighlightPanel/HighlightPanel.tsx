@@ -1,14 +1,17 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import type { PaletteNames } from '../../theme/palette';
+import type { SvgIcon } from '../Icon';
+import type { IconName } from '../Icons/IconNames';
+import type { TitleTags } from '../Title';
+
 import { useBreakpoint, Breakpoint } from '../..';
 import { AnalyticsId } from '../../constants';
-import { PaletteNames } from '../../theme/palette';
-import Icon, { SvgIcon, IconSize } from '../Icon';
-import { IconName } from '../Icons/IconNames';
+import Icon, { IconSize } from '../Icon';
 import LazyIcon from '../LazyIcon';
-import Title, { TitleTags } from '../Title';
+import Title from '../Title';
 
 import styles from './styles.module.scss';
 

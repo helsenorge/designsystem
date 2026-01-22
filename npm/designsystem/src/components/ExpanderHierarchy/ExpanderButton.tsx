@@ -1,11 +1,12 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
+
+import type { ExpanderHierarchyCommonProps } from '../ExpanderHierarchy';
 
 import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { ExpanderHierarchyCommonProps } from '../ExpanderHierarchy';
 import Icon, { IconSize } from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';

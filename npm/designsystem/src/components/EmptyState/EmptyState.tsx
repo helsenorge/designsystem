@@ -1,26 +1,23 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import type { IllustrationColor } from '../Illustration';
+import type { TitleTags } from '../Title';
+import type { EmptyStateOnColor } from './constants';
+
 import { AnalyticsId } from '../../constants';
-import Title, { TitleTags } from '../Title';
+import Title from '../Title';
 import EmptyBoxBeeMedium from './EmptyBoxBeeMedium';
 import EmptyBoxBeeSmall from './EmptyBoxBeeSmall';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import Icon from '../Icon';
 import EmptyBox from '../Icons/EmptyBox';
-import { IllustrationColor } from '../Illustration';
 
 import styles from './styles.module.scss';
 
 export type EmptyStateType = 'dashed' | 'blank';
 export type EmptyStateSize = 'normal' | 'compact';
-
-export enum EmptyStateOnColor {
-  onwhite = 'onwhite',
-  onblueberry = 'onblueberry',
-  oncherry = 'oncherry',
-}
 
 export interface EmptyStateIllustrationProps {
   color: IllustrationColor;

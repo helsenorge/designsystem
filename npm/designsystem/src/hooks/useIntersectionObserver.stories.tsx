@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import { useIntersectionObserver } from './useIntersectionObserver';
 import Button from '../components/Button';
@@ -37,11 +38,10 @@ import Button from '@helsenorge/designsystem-react/components/Button';
 import { longLoremText } from '@helsenorge/designsystem-react/utils/loremtext';
 
 const UseIntersectionObserverExample: React.FC = () => {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLButtonElement>{'(null);
   useIntersectionObserver(ref, entries => console.log(entries));
 
-  return (
-    <>
+  return ('}<>
       <p>{longLoremText}</p>
       <p>{longLoremText}</p>
       <Button ref={ref}>{'Sjekk console'}</Button>

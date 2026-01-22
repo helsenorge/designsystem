@@ -1,8 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
 import { render, screen } from '@testing-library/react';
 
-import LanguageProvider, { useLanguage } from '../language';
+import { useLanguage } from '../../hooks/useLanguage';
+import LanguageProvider from '../language';
 
 describe('Gitt at useLanguage kalles', () => {
   describe('Når hooken kalles utenfor context', () => {

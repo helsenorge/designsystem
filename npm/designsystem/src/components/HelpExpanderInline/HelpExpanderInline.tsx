@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 import { AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';

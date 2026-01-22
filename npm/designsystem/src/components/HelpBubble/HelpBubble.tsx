@@ -1,13 +1,16 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import type { HNDesignsystemHelpBubble } from '../../resources/Resources';
+import type { AnchorLinkTargets } from '../AnchorLink';
+import type { PopOverProps } from '../PopOver';
+
 import { AnalyticsId, LanguageLocales } from '../../constants';
-import { HNDesignsystemHelpBubble } from '../../resources/Resources';
-import { useLanguage } from '../../utils/language';
-import AnchorLink, { AnchorLinkTargets } from '../AnchorLink';
+import { useLanguage } from '../../hooks/useLanguage';
+import AnchorLink from '../AnchorLink';
 import Close from '../Close';
-import PopOver, { PopOverProps, PopOverVariant } from '../PopOver';
+import PopOver, { PopOverVariant } from '../PopOver';
 import { getResources } from './resourceHelper';
 
 import styles from './styles.module.scss';
@@ -24,7 +27,7 @@ export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'varian
   /** Content shown inside HelpBubble. */
   children: React.ReactNode;
   /** Ref for the element the HelpBubble is placed upon */
-  controllerRef: React.RefObject<HTMLElement | SVGSVGElement>;
+  controllerRef: React.RefObject<HTMLElement | SVGSVGElement | null>;
   /** Adds custom classes to the element. */
   className?: string;
   /** Determines the placement of the helpbubble. Default: automatic positioning. */

@@ -1,8 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
+
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import List from './List';
 import { mediumLoremText } from '../../utils/loremtext';

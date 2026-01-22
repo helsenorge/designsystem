@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
 import classNames from 'classnames';
+
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
 import { AnalyticsId, FormOnColor, FormSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
@@ -8,8 +11,8 @@ import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
-import { getLabelText, renderLabelAsParent } from '../Label';
+import ErrorWrapper from '../ErrorWrapper';
+import { getLabelText, renderLabelAsParent } from '../Label/utils';
 
 import radioButtonStyles from './styles.module.scss';
 
@@ -43,23 +46,6 @@ export interface RadioButtonProps
   /** Ref passed to the input element */
   ref?: React.Ref<HTMLInputElement | null>;
 }
-
-export const getRadioLabelClasses = (
-  radioId: string,
-  onColor: FormOnColor,
-  large: boolean,
-  checkedRadioId?: string
-): string | undefined => {
-  const onCherry = onColor === 'oninvalid';
-  const checked = radioId === checkedRadioId;
-
-  return classNames({
-    [radioButtonStyles['radio-button-label__large--on-grey']]: large && onColor === 'ongrey' && !checked,
-    [radioButtonStyles['radio-button-label__large--on-blueberry']]: onColor === 'onblueberry' && !checked && large,
-    [radioButtonStyles['radio-button-label__large--selected']]: large && checked && !onCherry,
-    [radioButtonStyles['radio-button-label__large--selected-invalid']]: large && checked && onCherry,
-  });
-};
 
 export const RadioButton: React.FC<RadioButtonProps> = props => {
   const {

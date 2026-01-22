@@ -1,31 +1,19 @@
-import React from 'react';
+import type React from 'react';
 
 import cn from 'classnames';
 
+import type { PaletteNames } from '../../theme/palette';
+import type { SvgIcon } from '../Icon';
+
+import { ChipSize, type ChipAction, type ChipVariant } from './constants';
 import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { palette, PaletteNames } from '../../theme/palette';
-import Icon, { IconSize, SvgIcon } from '../Icon';
+import { palette } from '../../theme/palette';
+import Icon, { IconSize } from '../Icon';
 import Undo from '../Icons/Undo';
 import X from '../Icons/X';
 
 import styles from './styles.module.scss';
-
-export enum ChipSize {
-  medium = 'medium',
-  large = 'large',
-}
-
-export enum ChipAction {
-  remove = 'remove',
-  undo = 'undo',
-}
-
-export enum ChipVariant {
-  normal = 'normal',
-  oncolor = 'oncolor',
-  emphasised = 'emphasised',
-}
 
 export type ChipColors = Extract<PaletteNames, 'blueberry' | 'neutral' | 'cherry' | 'banana' | 'kiwi' | 'plum'>;
 

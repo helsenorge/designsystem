@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import TokensExample from './TokensExample';
 

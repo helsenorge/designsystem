@@ -2,8 +2,10 @@ import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
-import { AnalyticsId, FormOnColor, IconSize } from '../../constants';
-import { StatusDotOnColor } from '../StatusDot';
+import type { FormOnColor } from '../../constants';
+import type { StatusDotOnColor } from '../StatusDot';
+
+import { AnalyticsId, IconSize } from '../../constants';
 
 export type SvgIcon = React.FC<SvgPathProps>;
 
@@ -39,7 +41,7 @@ export interface SvgPathProps {
   onColor?: keyof typeof FormOnColor | StatusDotOnColor;
 }
 
-interface IconConfig {
+export interface IconConfig {
   size: IconSize;
   isHovered: boolean;
   normal: React.ReactElement;
@@ -49,26 +51,6 @@ interface IconConfig {
   xxSmall?: React.ReactElement;
   xxSmallHover?: React.ReactElement;
 }
-
-export const getIcon = ({
-  size,
-  isHovered,
-  normal,
-  normalHover,
-  xSmall,
-  xSmallHover,
-  xxSmall,
-  xxSmallHover,
-}: IconConfig): React.ReactElement => {
-  if (size <= IconSize.XXSmall && xxSmall && xxSmallHover) {
-    return isHovered ? xxSmallHover : xxSmall;
-  }
-  if (size <= IconSize.XSmall && xSmall && xSmallHover) {
-    return isHovered ? xSmallHover : xSmall;
-  }
-
-  return isHovered ? normalHover : normal;
-};
 
 export const Icon: React.FC<IconProps> = props => {
   const {

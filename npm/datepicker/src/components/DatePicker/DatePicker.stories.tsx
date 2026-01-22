@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
 import { Source } from '@storybook/addon-docs/blocks';
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { parse } from 'date-fns';
 import { ar, nb } from 'date-fns/locale';
 import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
+
+import type { DatePickerProps } from './DatePicker';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
@@ -19,7 +21,7 @@ import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
 
 import { LanguageLocales } from '@helsenorge/designsystem-react';
 
-import DatePicker, { DatePickerProps } from './DatePicker';
+import DatePicker from './DatePicker';
 import DateTime from './DateTime';
 import DateTimePickerWrapper from './DateTimePickerWrapper';
 import {

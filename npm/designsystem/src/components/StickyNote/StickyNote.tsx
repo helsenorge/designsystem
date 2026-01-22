@@ -1,4 +1,5 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import type React from 'react';
+import { useLayoutEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 

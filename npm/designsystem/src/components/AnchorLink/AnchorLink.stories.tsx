@@ -1,8 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
+
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import AnchorLink from './AnchorLink';
 
@@ -19,7 +20,7 @@ const meta = {
       ),
       description: {
         component:
-          'AnchorLink kan bli brukt som et komponent for \\<a\\> tag eller \\<button\\> tag som skal ha en anchorlink styling.<br>.anchorlink-wrapper kan også bli brukt når det ikke er kontroll over markup som kommer inn.',
+          'AnchorLink kan bli brukt som et komponent for \\<a\\>tag eller \\<button\\>tag som skal ha en anchorlink styling.<br>.anchorlink-wrapper kan også bli brukt når det ikke er kontroll over markup som kommer inn.',
       },
     },
   },

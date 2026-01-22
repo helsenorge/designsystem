@@ -2,8 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { TitleTags } from './../Title/Title';
+
 import { AnalyticsId } from '../../constants';
-import { TitleTags } from './../Title/Title';
 import { useBreakpoint, Breakpoint } from '../../hooks/useBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { mergeRefs } from '../../utils/refs';

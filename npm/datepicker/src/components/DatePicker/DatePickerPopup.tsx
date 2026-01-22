@@ -1,10 +1,13 @@
 import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
-import { Locale, format } from 'date-fns';
+import { format } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { DayPicker, DayPickerProps, PropsSingle, Labels } from 'react-day-picker';
+import { DayPicker } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
+
+import type { Locale } from 'date-fns';
+import type { DayPickerProps, PropsSingle, Labels } from 'react-day-picker';
 
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
 import { useInterval } from '@helsenorge/designsystem-react/hooks/useInterval';

@@ -1,27 +1,14 @@
-import React, { useRef, useEffect } from 'react';
+import type React from 'react';
+import { useRef, useEffect } from 'react';
 
 import classNames from 'classnames';
 
+import { Overlay, ProgressBarMode, ProgressbarSize } from './constants';
 import { ZIndex } from '../../constants';
 import { palette } from '../../theme/palette';
 
 import styles from './styles.module.scss';
 
-export enum ProgressbarSize {
-  small = 'small',
-  medium = 'medium',
-  large = 'large',
-}
-
-export enum ProgressBarMode {
-  ondark = 'ondark',
-  onlight = 'onlight',
-}
-
-export enum Overlay {
-  screen = 'screen',
-  parent = 'parent',
-}
 export interface ProgressbarProps {
   /** The value of the progressbar given in percent. Value between 0 and 100 */
   value: number;

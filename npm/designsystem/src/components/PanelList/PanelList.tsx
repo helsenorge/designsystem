@@ -2,8 +2,11 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { PanelProps } from '../Panel/Panel';
+
 import { AnalyticsId } from '../../constants';
-import Panel, { PanelProps, PanelVariant } from '../Panel/Panel';
+import { PanelVariant } from '../Panel/constants';
+import Panel from '../Panel/Panel';
 
 import styles from './styles.module.scss';
 

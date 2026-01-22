@@ -1,14 +1,14 @@
 import React from 'react';
 
-type SingleSelectContextType = {
+import { SingleSelectContext } from './utils';
+
+export type SingleSelectContextType = {
   name?: string;
   disabled?: boolean;
   required?: boolean;
   value?: string;
   onValueChange?: (newValue: string, e?: React.SyntheticEvent) => void;
 };
-
-const SingleSelectContext = React.createContext<SingleSelectContextType | null>(null);
 
 export interface SingleSelectProps {
   name?: string;
@@ -36,5 +36,3 @@ export const SingleSelect: React.FC<SingleSelectProps> = ({ name, disabled, defa
 
   return <SingleSelectContext.Provider value={context}>{children}</SingleSelectContext.Provider>;
 };
-
-export const useSingleSelect = (): SingleSelectContextType | null => React.useContext(SingleSelectContext);

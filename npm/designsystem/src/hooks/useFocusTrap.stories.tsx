@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import type React from 'react';
+import { useState, useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useFocusTrap } from './useFocusTrap';
 import Button from '../components/Button';

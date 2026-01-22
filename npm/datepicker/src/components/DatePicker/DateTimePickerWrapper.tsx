@@ -2,11 +2,15 @@ import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
+import type { DatePickerProps } from './DatePicker';
+import type { DateTimeProps } from './DateTime';
+
+import type { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
+import ErrorWrapper from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import { isComponent } from '@helsenorge/designsystem-react/utils/component';
 
-import DatePicker, { DatePickerProps } from './DatePicker';
-import DateTime, { DateTimeProps } from './DateTime';
+import DatePicker from './DatePicker';
+import DateTime from './DateTime';
 
 import styles from './styles.module.scss';
 

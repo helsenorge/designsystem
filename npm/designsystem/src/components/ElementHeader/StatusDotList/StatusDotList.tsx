@@ -1,8 +1,10 @@
-import React from 'react';
+import type React from 'react';
 
 import cn from 'classnames';
 
-import StatusDot, { StatusDotProps, StatusDotVariant } from '../../StatusDot';
+import type { StatusDotProps } from '../../StatusDot';
+
+import StatusDot, { StatusDotVariant } from '../../StatusDot';
 
 import styles from './styles.module.scss';
 

@@ -1,6 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
-import HelpTooltip, { HelpTooltipProps } from '../../components/HelpTooltip';
+import type { HelpTooltipProps } from '../../components/HelpTooltip';
+
+import HelpTooltip from '../../components/HelpTooltip';
 import longLoremText from '../../utils/loremtext';
 
 const HelpTooltipExample: React.FC<HelpTooltipProps> = props => {

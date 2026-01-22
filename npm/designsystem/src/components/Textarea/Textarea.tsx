@@ -1,16 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
+import type React from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import cn from 'classnames';
+
+import type { HNDesignsystemTextArea } from '../../resources/Resources';
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
 import { getResources } from './resourceHelper';
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, LanguageLocales } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
-import { HNDesignsystemTextArea } from '../../resources/Resources';
+import { useLanguage } from '../../hooks/useLanguage';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import { useLanguage } from '../../utils/language';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
-import { renderLabel } from '../Label';
+import ErrorWrapper from '../ErrorWrapper';
+import { renderLabel } from '../Label/utils';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';

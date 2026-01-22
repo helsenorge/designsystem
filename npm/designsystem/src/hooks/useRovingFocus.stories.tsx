@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useRovingFocus } from './useRovingFocus';
 
@@ -43,18 +43,17 @@ import { useRovingFocus } from '@helsenorge/designsystem-react/hooks/useRovingFo
 
 const UseRovingFocusExample: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const refArray = useRef<Array<React.RefObject<HTMLButtonElement>>>([
-    useRef<HTMLButtonElement>(null),
-    useRef<HTMLButtonElement>(null),
-    useRef<HTMLButtonElement>(null),
+  const refArray = useRef<Array<React.RefObject<HTMLButtonElement>{'>>([
+    useRef'}<HTMLButtonElement>{'(null),
+    useRef'}<HTMLButtonElement>{'(null),
+    useRef'}<HTMLButtonElement>{'(null),
   ]);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef'}<HTMLDivElement>{'(null);
   const leftRightNavigation = false;
 
   useRovingFocus(setActiveIndex, refArray, containerRef, leftRightNavigation);
 
-  return (
-    <div ref={containerRef}>
+  return ('}<div ref={containerRef}>
       <div>{'Focused button:' + activeIndex}</div>
       {refArray.current.map((ref, index) => (
         <button key={index} ref={ref}>

@@ -1,10 +1,12 @@
-import React from 'react';
+import type React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { useArgs } from 'storybook/internal/preview-api';
 
-import ArticleTeaser, { ArticleTeaserProps } from './ArticleTeaser';
+import type { ArticleTeaserProps } from './ArticleTeaser';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import ArticleTeaser from './ArticleTeaser';
 import Title from '../Title';
 
 const meta = {

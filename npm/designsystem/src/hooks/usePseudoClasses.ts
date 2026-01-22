@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState, RefObject } from 'react';
+import type { RefObject } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 /**
  * Få vite når et element hovres over eller mottar fokus.

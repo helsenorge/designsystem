@@ -1,15 +1,17 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
+
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, IconSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import ErrorWrapper from '../ErrorWrapper';
 import Icon from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
-import { renderLabel } from '../Label';
+import { renderLabel } from '../Label/utils';
 
 import selectStyles from './styles.module.scss';
 

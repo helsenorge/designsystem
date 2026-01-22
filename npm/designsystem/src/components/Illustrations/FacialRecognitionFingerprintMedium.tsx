@@ -1,7 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
-import { Palette } from './FacialRecognitionFingerprint';
-import { BaseSvgIllustrationProps, ViewBoxSize } from '../Illustration';
+import type { Palette } from './FacialRecognitionFingerprint';
+import type { BaseSvgIllustrationProps } from '../Illustration';
+
+import { ViewBoxSize } from '../Illustration/utils';
 
 const FacialRecognitionFingerprintMedium: React.FC<BaseSvgIllustrationProps> = ({ color, svgProperties, title }) => {
   const palette = ((): Palette => {

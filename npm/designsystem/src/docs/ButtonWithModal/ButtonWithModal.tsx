@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
+
+import type { ModalProps } from '../../components/Modal';
 
 import Button from '../../components/Button';
-import Modal, { ModalProps } from '../../components/Modal';
+import Modal from '../../components/Modal';
 
 interface ModalWithButtonProps extends ModalProps {
   /** Text of the button */

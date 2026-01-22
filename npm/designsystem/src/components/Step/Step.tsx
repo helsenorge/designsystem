@@ -1,11 +1,12 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import type { ButtonProps } from '../Button';
+import type { StepperProps } from '../Stepper';
+
 import { AnalyticsId } from '../../constants';
-import { ButtonProps } from '../Button';
 import StepButtons from '../StepButtons';
-import { StepperProps } from '../Stepper';
 
 import styles from './styles.module.scss';
 

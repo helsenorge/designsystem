@@ -1,6 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
-import { getIcon, SvgPathProps } from '../Icon';
+import type { SvgPathProps } from '../Icon';
+
+import { getIcon } from '../Icon/utils';
 
 const PlusLarge: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = <path d="M24.992 23.008V9.328h-1.983v13.68H9.328v1.983h13.681v13.681h1.983V24.991h13.68v-1.983z" />;

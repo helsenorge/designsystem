@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useSize } from './useSize';
 import HighlightPanel from '../components/HighlightPanel';
@@ -34,7 +35,7 @@ const UseSizeExample: React.FC = () => {
   const size = useSize(ref);
 
   return (
-    <HighlightPanel color="blueberry" size="fluid">
+  <HighlightPanel color="blueberry" size="fluid">
       <pre ref={ref}>{JSON.stringify(size?.toJSON(), null, 2)}</pre>
     </HighlightPanel>
   );

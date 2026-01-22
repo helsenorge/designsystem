@@ -1,19 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
+import type { PaletteNames } from '../../theme/palette';
+
+import { Overlay } from './constants';
 import { AnalyticsId, ZIndex } from '../../constants';
-import { PaletteNames } from '../../theme/palette';
 import { uuid } from '../../utils/uuid';
 
 import loaderStyles from './styles.module.scss';
 
 export type LoaderColors = PaletteNames;
 export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';
-export enum Overlay {
-  screen = 'screen',
-  parent = 'parent',
-}
 
 export interface LoaderProps {
   /** Sets the color of the loader. If overlay is used, the color will always be white.  */

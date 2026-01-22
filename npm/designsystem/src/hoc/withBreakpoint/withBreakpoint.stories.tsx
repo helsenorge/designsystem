@@ -1,8 +1,9 @@
-import React from 'react';
+import type React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { BreakpointProps } from './withBreakpoint';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { BreakpointProps, withBreakpoint } from './withBreakpoint';
+import { withBreakpoint } from './withBreakpoint';
 import { Breakpoint } from '../../hooks/useBreakpoint';
 
 const Example: React.FC<BreakpointProps> = ({ breakpoint }) => {

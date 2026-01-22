@@ -1,9 +1,10 @@
-import React from 'react';
+import type React from 'react';
 
 import cn from 'classnames';
 
+import type { TitleTags } from '../../Title';
+
 import Highlighter from '../../Highlighter';
-import { TitleTags } from '../../Title';
 import styles from '../styles.module.scss';
 
 export type ElementHeaderTextType = typeof ElementHeaderText;

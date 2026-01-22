@@ -1,14 +1,9 @@
 import React, { useId } from 'react';
 
-import { getIllustration } from './utils';
+import { getIllustration, ViewBoxSize } from './utils';
 import { AnalyticsId } from '../../constants';
 
 export type IllustrationColor = 'neutral' | 'cherry' | 'blueberry';
-
-export enum ViewBoxSize {
-  Medium = '0 0 512 512',
-  Small = '0 0 200 200',
-}
 
 export interface BaseSvgIllustrationProps {
   color: IllustrationColor;

@@ -1,10 +1,13 @@
-import React, { useId } from 'react';
+import type React from 'react';
+import { useId } from 'react';
 
 import classNames from 'classnames';
 
+import type { ValidationErrors } from './types';
+import type { TitleTags } from '../Title';
+
 import ErrorList from './ErrorList';
-import { ValidationErrors } from './types';
-import Title, { TitleTags } from '../Title';
+import Title from '../Title';
 
 import styles from './styles.module.scss';
 

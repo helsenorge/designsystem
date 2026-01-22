@@ -3,22 +3,24 @@ import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { AnimatePresence, useAnimate, usePresence } from 'motion/react';
 
+import type { HNDesignsystemDrawer } from '../../resources/Resources';
+import type { TitleTags } from '../Title';
+
 import { getResources } from './resourceHelper';
 import { AnalyticsId, KeyboardEventKey, LanguageLocales, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsMobileBreakpoint } from '../../hooks/useIsMobileBreakpoint';
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
+import { useLanguage } from '../../hooks/useLanguage';
 import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
-import { HNDesignsystemDrawer } from '../../resources/Resources';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { useLanguage } from '../../utils/language';
 import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
-import Title, { TitleTags } from '../Title';
+import Title from '../Title';
 
 import styles from './styles.module.scss';
 

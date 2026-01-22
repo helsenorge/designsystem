@@ -1,6 +1,6 @@
-import React from 'react';
+import type React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { useIsMobileBreakpoint } from './useIsMobileBreakpoint';
 

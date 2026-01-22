@@ -2,14 +2,8 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import { HeaderCategory, ModeType } from '../constants';
 import tableStyles from '../styles.module.scss';
-import { ModeType } from '../Table';
-
-export enum HeaderCategory {
-  normal = 'normal',
-  transparent = 'transparent',
-  sortable = 'sortable',
-}
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'thead'>, 'style'> {
   /** Header category for styling. Default: normal */

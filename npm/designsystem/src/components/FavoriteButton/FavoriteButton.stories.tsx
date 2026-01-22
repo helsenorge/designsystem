@@ -1,16 +1,18 @@
-import React from 'react';
+import type React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 import { useArgs } from 'storybook/internal/preview-api';
+
+import type { FavoriteButtonProps } from '.';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import HelpTriggerIcon from '../HelpTriggerIcon';
 import Title from '../Title';
 
 import storyStyles from './stories.module.scss';
 
-import { FavoriteButton, FavoriteButtonProps } from '.';
+import { FavoriteButton } from '.';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/FavoriteButton',

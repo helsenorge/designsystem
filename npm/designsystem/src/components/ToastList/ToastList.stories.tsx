@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import ToastList, { ToastData } from './ToastList';
+import type { ToastData } from './ToastList';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import ToastList from './ToastList';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/ToastList',

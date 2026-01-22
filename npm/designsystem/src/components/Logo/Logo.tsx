@@ -1,4 +1,5 @@
-import React, { useId } from 'react';
+import type React from 'react';
+import { useId } from 'react';
 
 import { AnalyticsId } from '../../constants';
 import { getColor } from '../../theme/currys/color';

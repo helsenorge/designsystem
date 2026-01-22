@@ -1,11 +1,13 @@
-import React from 'react';
+import type React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 import { useArgs } from 'storybook/internal/preview-api';
 
-import HelpDrawer, { HelpDrawerProps } from './HelpDrawer';
+import type { HelpDrawerProps } from './HelpDrawer';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import HelpDrawer from './HelpDrawer';
 import { allTitleTags } from '../../../.storybook/knobs';
 import Button from '../Button';
 

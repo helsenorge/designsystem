@@ -1,9 +1,11 @@
-import React from 'react';
+import type React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import Label, { LabelText } from './Label';
+import type { LabelText } from './Label';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import Label from './Label';
 import { Sublabel } from './SubLabel';
 import { allLabelTags } from '../../../.storybook/knobs';
 import { IconSize } from '../../constants';

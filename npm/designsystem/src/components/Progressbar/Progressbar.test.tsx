@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
-import Progressbar, { ProgressbarSize } from './Progressbar';
+import { ProgressbarSize } from './constants';
+import Progressbar from './Progressbar';
 
 describe('Gitt at Progressbar skal vises', (): void => {
   describe('Når default props brukes', () => {

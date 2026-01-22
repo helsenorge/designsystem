@@ -1,7 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import { instanceOfTitleMargin } from './utils';
 import { AnalyticsId } from '../../constants';
 
 import titleStyles from './styles.module.scss';
@@ -59,9 +60,5 @@ export interface TitleMargin {
   marginTop: number;
   marginBottom: number;
 }
-
-export const instanceOfTitleMargin = (margin: unknown): margin is TitleMargin => {
-  return Object.prototype.hasOwnProperty.call(margin, 'marginTop') && Object.prototype.hasOwnProperty.call(margin, 'marginBottom');
-};
 
 export default Title;

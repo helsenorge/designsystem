@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import type React from 'react';
+import { useRef } from 'react';
 
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { usePseudoClasses } from './usePseudoClasses';
 import Button from '../components/Button';

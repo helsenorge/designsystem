@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Expander, { ExpanderSize } from './Expander';
+import { ExpanderSize } from './constants';
+import Expander from './Expander';
 import Calendar from '../Icons/Calendar';
 
 describe('Gitt at Expander skal vises vanlig', (): void => {

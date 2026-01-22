@@ -1,6 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
-import { getIcon, SvgPathProps } from '../Icon';
+import type { SvgPathProps } from '../Icon';
+
+import { getIcon } from '../Icon/utils';
 
 const Menu: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = <path d="M37.656 31.434v1.75H10.269v-1.75h27.387zm0-8.842v1.75H10.269v-1.75h27.387zm0-8.464v1.75H10.269v-1.75h27.387z" />;

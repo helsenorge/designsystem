@@ -1,11 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { ValidationErrors } from './types';
+import type { ValidationErrors } from './types';
+
 import Validation from './Validation';
-import { FormExample, FormExampleVariants } from '../../docs/FormExample';
+import { FormExample } from '../../docs/FormExample';
+import { FormExampleVariants } from '../../docs/FormExample/constants';
 import Input from '../Input';
 
 describe('Gitt at Validation skal vises', () => {

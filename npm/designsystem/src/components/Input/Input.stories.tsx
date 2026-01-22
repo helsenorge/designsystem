@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import Input, { InputProps, InputTypes } from './Input';
+import type { InputProps } from './Input';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import Input from './Input';
 import { FormOnColor, FormSize, LanguageLocales } from '../../constants';
 import LanguageProvider from '../../utils/language';
 import Dropdown from '../Dropdown';
@@ -11,6 +14,7 @@ import Globe from '../Icons/Globe';
 import Hospital from '../Icons/Hospital';
 import Label from '../Label/Label';
 import Spacer from '../Spacer';
+import { InputTypes } from './constants';
 
 type InputWithAndCustomArgs = React.ComponentProps<typeof Input> & {
   showIcon: boolean;

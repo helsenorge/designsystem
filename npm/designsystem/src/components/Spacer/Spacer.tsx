@@ -1,9 +1,10 @@
-import React from 'react';
+import type React from 'react';
 
 import classNames from 'classnames';
 
+import type { SpacerSizes } from './../../theme/spacers';
+
 import { AnalyticsId } from '../../constants';
-import { SpacerSizes } from './../../theme/spacers';
 
 import spacerStyles from './styles.module.scss';
 

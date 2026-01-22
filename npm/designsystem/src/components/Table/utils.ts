@@ -1,6 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
-import { BreakpointConfig, ResponsiveTableVariant } from './Table';
+import type { BreakpointConfig } from './Table';
+
+import { ResponsiveTableVariant } from './constants';
 import { Breakpoint } from '../../hooks/useBreakpoint';
 import { isTouchDevice } from '../../utils/device';
 
