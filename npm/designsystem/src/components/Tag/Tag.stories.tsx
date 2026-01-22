@@ -4,7 +4,8 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import Tag, { TagSize, TagVariant } from './Tag';
+import { TagSize, TagVariant } from './constants';
+import Tag from './Tag';
 import LawBook from '../Icons/LawBook';
 
 const meta = {

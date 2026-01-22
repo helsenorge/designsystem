@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
-import { useArgs } from 'storybook/internal/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
 import type { HelpExpanderInlineProps } from './HelpExpanderInline';
 import type { StoryObj, Meta } from '@storybook/react-vite';

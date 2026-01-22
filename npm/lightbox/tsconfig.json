@@ -4,6 +4,6 @@
     "types": ["vitest/globals"]
   },
   "include": ["src"],
-  "exclude": ["**/*.test.snap.tsx", "**/*.stories.tsx"],
+  "exclude": ["**/*.test.snap.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -4,7 +4,8 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import Avatar, { AvatarSize } from './Avatar';
+import Avatar from './Avatar';
+import { AvatarSize } from './constants';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Avatar',

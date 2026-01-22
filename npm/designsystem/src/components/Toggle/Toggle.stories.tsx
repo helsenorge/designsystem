@@ -1,11 +1,11 @@
 import type React from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
-import { TogglePosition } from 'npm/designsystem/lib/components/Toggle';
 import { action } from 'storybook/actions';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
+import { TogglePosition } from './constants';
 import Toggle from './Toggle';
 
 const meta = {

@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
-import { useArgs } from 'storybook/internal/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
 import type { LinkListProps } from './LinkList';
 import type { StoryObj, Meta } from '@storybook/react-vite';

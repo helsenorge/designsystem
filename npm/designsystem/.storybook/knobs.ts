@@ -1,8 +1,8 @@
-import { PaletteNames } from '../src/theme/palette';
-import { TitleTags, TitleAppearances } from '../src/components/Title/Title';
-import { AnchorLinkTargets } from '../src/components/AnchorLink/AnchorLink';
-import { LinkListSize } from '../src/components/LinkList/LinkList';
-import { LabelTags } from '../src/components/Label';
+import type { AnchorLinkTargets } from '../src/components/AnchorLink/AnchorLink';
+import type { LabelTags } from '../src/components/Label';
+import type { LinkListSize } from '../src/components/LinkList/LinkList';
+import type { TitleTags, TitleAppearances } from '../src/components/Title/Title';
+import type { PaletteNames } from '../src/theme/palette';
 
 export const allPaletteNames: PaletteNames[] = ['banana', 'blueberry', 'cherry', 'kiwi', 'neutral', 'plum', 'black', 'white'];
 

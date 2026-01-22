@@ -4,10 +4,11 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import FormLayout, { FormLayoutColumns } from './FormLayout';
+import FormLayout from './FormLayout';
 import Checkbox from '../Checkbox/Checkbox';
 import FormGroup from '../FormGroup';
 import Label from '../Label';
+import { FormLayoutColumns } from './constants';
 import RadioButton from '../RadioButton/RadioButton';
 
 const meta = {

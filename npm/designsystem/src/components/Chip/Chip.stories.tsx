@@ -2,7 +2,8 @@ import { action } from 'storybook/actions';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import Chip, { ChipAction, ChipSize, ChipVariant } from './Chip';
+import Chip from './Chip';
+import { ChipAction, ChipSize, ChipVariant } from './constants';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Chip',

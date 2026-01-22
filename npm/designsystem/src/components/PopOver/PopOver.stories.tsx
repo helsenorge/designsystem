@@ -5,13 +5,14 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import PopOver, { PopOverVariant } from './PopOver';
+import PopOver from './PopOver';
 import { useToggle } from '../../hooks/useToggle';
 import loremText, { longLoremText } from '../../utils/loremtext';
 import Button from '../Button';
 import Icon from '../Icon';
 import HelpSign from '../Icons/HelpSign';
 import Table, { TableHead, TableRow, TableHeadCell, TableBody, TableCell, ResponsiveTableVariant, HeaderCategory } from '../Table';
+import { PopOverVariant } from './utils';
 
 const meta = {
   title: '@helsenorge/designsystem-react/_Internal/PopOver',

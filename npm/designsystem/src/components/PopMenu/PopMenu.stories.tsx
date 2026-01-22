@@ -4,10 +4,11 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import { PopMenu, PopMenuLabelPosition, PopMenuVariant } from './PopMenu';
+import { PopMenu } from './PopMenu';
 import longLoremText from '../../utils/loremtext';
 import { LinkList } from '../LinkList';
 import Table, { HeaderCategory, ResponsiveTableVariant, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from '../Table';
+import { PopMenuLabelPosition, PopMenuVariant } from './constants';
 
 import styles from './story.module.scss';
 

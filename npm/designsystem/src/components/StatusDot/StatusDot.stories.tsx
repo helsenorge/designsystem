@@ -4,7 +4,8 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import StatusDot, { StatusDotVariant } from './StatusDot';
+import { StatusDotVariant } from './constants';
+import StatusDot from './StatusDot';
 import { FormOnColor } from '../../constants';
 import { getColor } from '../../theme/currys';
 

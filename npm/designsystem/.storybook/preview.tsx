@@ -1,11 +1,9 @@
-import React from 'react';
+import type { Preview } from '@storybook/react';
 
+import GridExample from '../src/docs/GridExample';
 import { theme } from '../src/theme';
 import { breakpoints } from '../src/theme/grid';
-import { Preview } from '@storybook/react-vite';
-import GridExample from '../src/docs/GridExample';
 import '../src/scss/helsenorge.scss';
-import { background } from 'storybook/internal/theming';
 
 const placeholder = '#4A412A';
 

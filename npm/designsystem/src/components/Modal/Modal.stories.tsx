@@ -5,7 +5,7 @@ import { action } from 'storybook/actions';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import Modal, { ModalSize, ModalVariants } from './Modal';
+import Modal from './Modal';
 import { IconSize } from '../../constants';
 import ButtonWithModal from '../../docs/ButtonWithModal';
 import Button from '../Button';
@@ -14,6 +14,7 @@ import Icon from '../Icon';
 import Envelope from '../Icons/Envelope';
 import Label from '../Label';
 import Slider from '../Slider';
+import { ModalSize, ModalVariants } from './constants';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/Modal',

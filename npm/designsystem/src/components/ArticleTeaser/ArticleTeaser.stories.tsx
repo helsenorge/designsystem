@@ -1,7 +1,7 @@
 import type React from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
-import { useArgs } from 'storybook/internal/preview-api';
+import { useArgs } from 'storybook/preview-api';
 
 import type { ArticleTeaserProps } from './ArticleTeaser';
 import type { StoryObj, Meta } from '@storybook/react-vite';
