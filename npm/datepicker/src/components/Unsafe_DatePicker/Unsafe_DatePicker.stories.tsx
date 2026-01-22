@@ -19,7 +19,7 @@ const meta = {
     ['aria-describedby']: 'sublabel-format',
     label: (
       <Label
-        labelTexts={[{ text: 'Dato test' }]}
+        labelTexts={[{ text: 'Dato' }]}
         sublabel={<Sublabel id="sublabel-format" sublabelTexts={[{ text: 'dd.mm.åååå', type: 'subdued' }]} />}
       />
     ),

@@ -185,16 +185,12 @@ const Unsafe_DatePicker = ({
     }
   };
 
+  const labelGivenAsPropIsValidLabelComponent = isComponent<LabelProps>(label, Label);
   const legend =
-    label && isComponent<LabelProps>(label, Label) ? (
-      cloneElement(label, { htmlMarkup: 'legend', labelId: label.props.labelId || 'date-legend' })
-    ) : (
-      <legend id="date-legend" className={styles['legend']}>
-        {'Dato'} <br />
-        <span className={styles['legend__sublabel']}>{'dd.mm.åååå'}</span>
-      </legend>
-    );
-  const legendId = isComponent<LabelProps>(label, Label) && label.props.labelId ? label.props.labelId : 'date-legend';
+    label && labelGivenAsPropIsValidLabelComponent
+      ? cloneElement(label, { htmlMarkup: 'legend', labelId: label.props.labelId || 'date-legend' })
+      : null;
+  const legendId = labelGivenAsPropIsValidLabelComponent && label.props.labelId ? label.props.labelId : 'date-legend';
   const popupId = 'calendar-popup';
 
   return (
