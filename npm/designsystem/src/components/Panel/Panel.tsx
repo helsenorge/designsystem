@@ -15,6 +15,7 @@ import Highlighter from '../Highlighter';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronRight from '../Icons/ChevronRight';
 import ChevronUp from '../Icons/ChevronUp';
+import { PanelListContext } from '../PanelList/PanelList';
 
 import styles from './styles.module.scss';
 
@@ -125,6 +126,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
   }: PanelProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
+  const panelListContext = React.useContext(PanelListContext);
   const [preContainer, setPreContainer] = React.useState<React.ReactNode[]>([]);
   const [title, setTitle] = React.useState<React.ReactNode[]>([]);
   const [content, setContent] = React.useState<React.ReactNode[]>([]);
@@ -135,6 +137,11 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
   const panelRef = ref ?? localRef;
   const expandedContentRef = React.useRef<HTMLDivElement>(null);
   const defaultScroll = 100;
+
+  // Use context values if available, otherwise use props
+  const effectiveVariant = panelListContext?.variant ?? variant;
+  const effectiveHighlightText = panelListContext?.highlightText ?? highlightText;
+  const effectiveClassName = panelListContext?.applyPanelClassName(className) ?? className;
 
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
@@ -162,7 +169,7 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
           newTitle.push(
             React.cloneElement(child as React.ReactElement<PanelTitleProps>, {
               key,
-              highlightText: child.props.highlightText || highlightText,
+              highlightText: child.props.highlightText || effectiveHighlightText,
             })
           );
           if (child.props.icon) {
@@ -211,17 +218,17 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     }
   }, [isExpanded]);
 
-  const colorScheme = variant === PanelVariant.fill ? color : 'white';
+  const colorScheme = effectiveVariant === PanelVariant.fill ? color : 'white';
 
-  const outerClassnames = classNames(className, {
-    [styles['panel__border--outline--outer']]: variant === PanelVariant.outline,
-    [styles['panel__border--line']]: variant === PanelVariant.line,
-    [styles['panel__border--fill--neutral']]: variant === PanelVariant.fill && colorScheme === 'neutral',
-    [styles['panel__border--fill--new']]: variant === PanelVariant.fill && status === PanelStatus.new,
-    [styles['panel__border--fill--status']]: variant === PanelVariant.fill && status !== PanelStatus.none,
+  const outerClassnames = classNames(effectiveClassName, {
+    [styles['panel__border--outline--outer']]: effectiveVariant === PanelVariant.outline,
+    [styles['panel__border--line']]: effectiveVariant === PanelVariant.line,
+    [styles['panel__border--fill--neutral']]: effectiveVariant === PanelVariant.fill && colorScheme === 'neutral',
+    [styles['panel__border--fill--new']]: effectiveVariant === PanelVariant.fill && status === PanelStatus.new,
+    [styles['panel__border--fill--status']]: effectiveVariant === PanelVariant.fill && status !== PanelStatus.none,
   });
   const panelClassnames = classNames(styles['panel'], styles[`panel--${colorScheme}`], styles['panel--status'], {
-    [styles['panel--line']]: variant === PanelVariant.line,
+    [styles['panel--line']]: effectiveVariant === PanelVariant.line,
     [styles['panel--new']]: status === PanelStatus.new,
     [styles['panel--draft']]: status === PanelStatus.draft,
     [styles['panel--error']]: status === PanelStatus.error,
@@ -233,7 +240,8 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
   const expanderBorderLayout = classNames({
     [styles['panel__expander__border--expanded']]: isExpanded && status === PanelStatus.none,
     [styles[`panel__expander__border--not-expanded--${colorScheme}`]]: !isExpanded && status === PanelStatus.none,
-    [styles[`panel__expander__border--not-expanded--line`]]: !isExpanded && status === PanelStatus.none && variant === PanelVariant.line,
+    [styles[`panel__expander__border--not-expanded--line`]]:
+      !isExpanded && status === PanelStatus.none && effectiveVariant === PanelVariant.line,
   });
 
   const handleExpandClick = (): void => {
@@ -242,21 +250,21 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
 
   return expandableContent.length > 0 ? (
     <div className={outerClassnames}>
-      <div className={classNames({ [styles['panel__border--outline--inner']]: variant === PanelVariant.outline })}>
+      <div className={classNames({ [styles['panel__border--outline--inner']]: effectiveVariant === PanelVariant.outline })}>
         <div className={expanderBorderLayout}>
           <div className={panelClassnames} data-testid={testId} ref={panelRef} tabIndex={focusable ? -1 : undefined}>
-            <Highlighter searchText={highlightText}>
+            <Highlighter searchText={effectiveHighlightText}>
               {preContainer}
               {title}
             </Highlighter>
             <div className={contentContainerLayout}>
-              <Highlighter searchText={highlightText}>{content}</Highlighter>
+              <Highlighter searchText={effectiveHighlightText}>{content}</Highlighter>
             </div>
             <ExpandButton onClick={handleExpandClick} isExpanded={isExpanded} resources={mergedResources} />
             {isExpanded && (
               <div ref={expandedContentRef} data-testid={testId + '-details'}>
                 <div className={styles['panel__expander__separator']} />
-                <Highlighter searchText={highlightText}>{expandableContent}</Highlighter>
+                <Highlighter searchText={effectiveHighlightText}>{expandableContent}</Highlighter>
               </div>
             )}
           </div>
@@ -265,14 +273,14 @@ const PanelRoot = React.forwardRef(function PanelForwardedRef(
     </div>
   ) : (
     <div className={outerClassnames}>
-      <div className={classNames({ [styles['panel__border--outline--inner']]: variant === PanelVariant.outline })}>
+      <div className={classNames({ [styles['panel__border--outline--inner']]: effectiveVariant === PanelVariant.outline })}>
         <div className={panelClassnames} data-testid={testId} ref={panelRef} tabIndex={focusable ? -1 : undefined}>
-          <Highlighter searchText={highlightText}>
+          <Highlighter searchText={effectiveHighlightText}>
             {preContainer}
             {title}
           </Highlighter>
           <div className={contentContainerLayout}>
-            <Highlighter searchText={highlightText}>{content}</Highlighter>
+            <Highlighter searchText={effectiveHighlightText}>{content}</Highlighter>
           </div>
           {buttonBottomText && buttonBottomOnClick && (
             <div className={styles['panel__button-bottom']}>
