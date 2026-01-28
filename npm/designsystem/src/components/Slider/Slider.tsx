@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useEffect, useState, useRef, useId } from 'react';
 
 import classNames from 'classnames';

@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { HelpTriggerWeights } from '../HelpTriggerIcon/HelpTriggerIcon';
 
 import { AnalyticsId, IconSize } from '../../constants';

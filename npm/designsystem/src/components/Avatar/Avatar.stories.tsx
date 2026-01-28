@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { Docs } from 'frankenstein-build-tools';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';

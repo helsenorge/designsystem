@@ -1,5 +1,6 @@
-import type React from 'react';
+import React from 'react';
 
+import type { ModeType } from './constants';
 import type { BreakpointConfig } from './Table';
 
 import { ResponsiveTableVariant } from './constants';
@@ -148,4 +149,32 @@ export const getCenteredOverflowTableStyle = (parentWidth: number, tableWidth: n
   const COLUMN_GUTTER_WIDTH_PX = 8;
 
   return { left: `${(parentWidth - tableWidth) / 2 - COLUMN_GUTTER_WIDTH_PX}px` };
+};
+
+/**
+ * Map children and inject the `mode` prop into element children, but never on React.Fragment.
+ * If a Fragment is encountered, its children are mapped and updated, while the Fragment wrapper is preserved.
+ */
+export const mapChildrenWithMode = (children: React.ReactNode, mode: ModeType | undefined): React.ReactNode =>
+  React.Children.map(children, child => {
+    if (!React.isValidElement(child)) return child;
+    if (child.type === React.Fragment) {
+      const fragmentChildren = (child.props as { children?: React.ReactNode }).children;
+      const mapped = React.Children.map(fragmentChildren, gc =>
+        React.isValidElement<{ mode?: ModeType }>(gc) ? React.cloneElement(gc, { mode }) : gc
+      );
+      return React.cloneElement(child, undefined, mapped);
+    }
+    return React.cloneElement(child as React.ReactElement<{ mode?: ModeType }>, { mode });
+  });
+
+/**
+ * Create a shallow copy of an object with specific keys omitted.
+ */
+export const omitProps = <T extends Record<PropertyKey, unknown>>(obj: T, keys: Array<keyof T>): Partial<T> => {
+  const clone: Partial<T> = { ...obj };
+  for (const k of keys) {
+    delete clone[k];
+  }
+  return clone;
 };

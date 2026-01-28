@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useState, useRef } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -22,7 +21,7 @@ const UseFocusTrapExample: React.FC = () => {
       <Button onClick={toggleTrap}>{'Slå av/på fokusfelle'}</Button>
       <p>{`Fokusfelle er ${trap ? 'på' : 'av'}`}</p>
       <Spacer />
-      <HighlightPanel color="blueberry" size="fluid">
+      <HighlightPanel color="blueberry">
         <div ref={ref}>
           <div>
             <Button>{'Knapp 1'}</Button>

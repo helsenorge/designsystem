@@ -1,4 +1,3 @@
-import type React from 'react';
 import './styles.scss';
 
 interface TokensExampleProps {

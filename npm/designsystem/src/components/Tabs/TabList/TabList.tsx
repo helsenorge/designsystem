@@ -5,12 +5,12 @@ import classNames from 'classnames';
 import type { TabProps } from '../Tab';
 import type { TabsColors, TabsOnColor } from '../Tabs';
 
+import TabChevron from './TabChevron';
 import TabItem from './TabItem';
 import { useIsVisible } from '../../../hooks/useIsVisible';
 import { useRovingFocus } from '../../../hooks/useRovingFocus';
 import { isComponent } from '../../../utils/component';
 import Tab from '../Tab';
-import TabChevron from './TabChevron';
 
 import styles from './styles.module.scss';
 interface TabListProps {

@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
@@ -63,7 +61,7 @@ export const IllustrationWall: Story = {
               {illustrationName}
             </Title>
             <Spacer />
-            <HighlightPanel color={args.color} size={'fluid'}>
+            <HighlightPanel color={args.color}>
               <LazyIllustration color={args.color} size={args.size} illustrationName={illustrationName} />
             </HighlightPanel>
           </div>

@@ -38,7 +38,7 @@ const meta = {
     },
   },
   args: {
-    buttonBottomOnClick: () => action('Clicked CTA'),
+    buttonBottomOnClick: action('Clicked CTA'),
   },
   argTypes: {
     variant: {
@@ -83,7 +83,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const PreviewContainer = ({ children }): React.JSX.Element => {
+const PreviewContainer = ({ children }: { children: React.ReactNode }): React.JSX.Element => {
   return (
     <div style={{ width: '100%', height: '100%', backgroundColor: '#BD10E040', border: '1px #BD10E0 dotted', color: '#BD10E0' }}>
       {children}
@@ -530,7 +530,7 @@ export const WithCTA: Story = {
     },
   },
   render: args => (
-    <Panel {...args} buttonBottomOnClick={() => action('Clicked CTA')} buttonBottomText={'Call to action'}>
+    <Panel {...args} buttonBottomOnClick={action('Clicked CTA')} buttonBottomText={'Call to action'}>
       <Panel.Title title={'Panel med CTA'} />
       <Panel.A>
         <span>{'Prop buttonBottomOnClick og buttonBottomText gir en knapp som legges under alle content boxes.'}</span>
@@ -594,7 +594,7 @@ export const TestPanel: Story = {
           <Toggle {...args} onColor={'onwhite'} checked={showCTA} onChange={() => setShowCTA(!showCTA)} label={[{ text: 'Vis CTA' }]} />
         </div>
         <br />
-        <Panel {...args} buttonBottomOnClick={() => action('Clicked CTA')} buttonBottomText={showCTA ? 'Call to action' : undefined}>
+        <Panel {...args} buttonBottomOnClick={action('Clicked CTA')} buttonBottomText={showCTA ? 'Call to action' : undefined}>
           {showPre && (
             <Panel.PreContainer>
               <PreviewContainer>{'Precontainer'}</PreviewContainer>

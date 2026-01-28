@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { HelpTooltipProps } from '../../components/HelpTooltip';
 
 import HelpTooltip from '../../components/HelpTooltip';

@@ -1,9 +1,8 @@
-import React from 'react';
-
 import classNames from 'classnames';
 
 import { HeaderCategory, ModeType } from '../constants';
 import tableStyles from '../styles.module.scss';
+import { mapChildrenWithMode } from '../utils';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'thead'>, 'style'> {
   /** Header category for styling. Default: normal */
@@ -30,7 +29,7 @@ export const TableHead: React.FC<Props> = ({ category = HeaderCategory.normal, c
 
   return (
     <thead className={tableHeadClass} {...rest}>
-      {React.Children.map(children, child => React.isValidElement<{ mode?: ModeType }>(child) && React.cloneElement(child, { mode }))}
+      {mapChildrenWithMode(children, mode)}
     </thead>
   );
 };

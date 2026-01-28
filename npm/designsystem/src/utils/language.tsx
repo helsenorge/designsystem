@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useMemo } from 'react';
 
 import { LanguageContext } from '../hooks/useLanguage';
@@ -7,7 +6,7 @@ export interface LanguageContextType<T extends string = string> {
   language: T;
 }
 
-interface LanguageProviderProps<T extends string> {
+export interface LanguageProviderProps<T extends string> {
   children: React.ReactNode;
   language: T;
 }

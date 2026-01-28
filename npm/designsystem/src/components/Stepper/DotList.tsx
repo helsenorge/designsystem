@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import Dot from './Dot';
 
 interface DotListProps {

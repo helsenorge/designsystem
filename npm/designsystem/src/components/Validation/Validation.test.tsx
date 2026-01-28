@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 
 import { render, screen, fireEvent, within } from '@testing-library/react';

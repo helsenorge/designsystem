@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
@@ -27,7 +25,7 @@ const meta = {
   argTypes: {
     maxColumns: {
       control: 'select',
-      options: FormLayoutColumns,
+      options: Object.values(FormLayoutColumns),
     },
     colMinWidth: {
       control: 'number',

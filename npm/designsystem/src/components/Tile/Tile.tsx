@@ -7,8 +7,9 @@ import type { TitleTags } from './../Title/Title';
 import { AnalyticsId } from '../../constants';
 import { useBreakpoint, Breakpoint } from '../../hooks/useBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
+import { isComponent } from '../../utils/component';
 import { mergeRefs } from '../../utils/refs';
-import { IconSize } from '../Icon';
+import Icon, { IconSize, type IconProps } from '../Icon';
 
 import tileStyles from './styles.module.scss';
 
@@ -117,8 +118,9 @@ export const Tile: TileCompound = props => {
       onClick={onClick}
     >
       <div className={tileTitleWrapperClasses}>
-        {React.cloneElement(icon, { size: mobile ? IconSize.Small : IconSize.Medium, isHovered, color: highlighted ? 'white' : 'black' })}
-        {React.cloneElement(title, { highlighted: highlighted, compact: compact })}
+        {isComponent<IconProps>(icon, Icon) &&
+          React.cloneElement(icon, { size: mobile ? IconSize.Small : IconSize.Medium, isHovered, color: highlighted ? 'white' : 'black' })}
+        {isComponent<TileTitleProps>(title, Tile.Title) && React.cloneElement(title, { highlighted: highlighted, compact: compact })}
       </div>
       {!compact && !mobile && <p className={tileStyles.tile__description}>{description}</p>}
       {children && <div className={tileStyles.tile__children}>{children}</div>}

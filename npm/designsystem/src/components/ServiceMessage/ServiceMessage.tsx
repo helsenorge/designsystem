@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useId, useState } from 'react';
 
 import classNames from 'classnames';

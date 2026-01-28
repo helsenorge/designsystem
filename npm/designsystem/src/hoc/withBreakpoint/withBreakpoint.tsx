@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { Breakpoint } from '../../hooks/useBreakpoint';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';

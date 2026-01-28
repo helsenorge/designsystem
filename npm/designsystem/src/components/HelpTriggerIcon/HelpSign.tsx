@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { HelpTriggerWeights } from '../HelpTriggerIcon';
 
 export interface HelpSignProps {

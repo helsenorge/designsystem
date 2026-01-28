@@ -56,7 +56,7 @@ interface PromoPanelLinkProps {
 
 const PromoPanelLink: React.FC<PromoPanelLinkProps> = props => {
   if (props.linkComponent) {
-    return React.cloneElement(props.linkComponent, { children: props.children });
+    return React.cloneElement(props.linkComponent, undefined, props.children);
   }
 
   if (props.linkHtmlMarkup === 'button') {

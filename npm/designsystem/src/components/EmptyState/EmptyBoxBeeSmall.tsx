@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { EmptyStateIllustrationProps } from './EmptyState';
 
 const EmptyBoxBeeSmall: React.FC<EmptyStateIllustrationProps> = ({ color, svgProperties }) => {

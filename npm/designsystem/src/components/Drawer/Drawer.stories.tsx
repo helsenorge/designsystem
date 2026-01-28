@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { Source } from '@storybook/addon-docs/blocks';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';

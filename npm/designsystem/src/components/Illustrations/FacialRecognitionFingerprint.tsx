@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { SvgIllustrationProps } from '../Illustration';
 
 import FacialRecognitionFingerprintMedium from './FacialRecognitionFingerprintMedium';

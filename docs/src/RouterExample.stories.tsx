@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { MemoryRouter, Link, useLocation, useNavigate } from 'react-router';
 
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';

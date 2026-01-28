@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import cn from 'classnames';
 
 import type { TitleTags } from '../../Title';

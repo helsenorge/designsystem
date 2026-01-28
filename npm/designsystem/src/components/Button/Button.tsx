@@ -65,7 +65,7 @@ export interface ButtonProps extends Omit<HTMLButtonProps, 'onClick' | 'type'>, 
   /** Button type. Default: button */
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   /** Ref that is passed to the component */
-  ref?: React.Ref<HTMLButtonElement | HTMLAnchorElement | null>;
+  ref?: React.RefObject<HTMLButtonElement | HTMLAnchorElement | null>;
 }
 
 const getIconColor = (
@@ -129,7 +129,7 @@ const Button: React.FC<ButtonProps> = props => {
     ...restProps
   } = props;
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const { refObject, isHovered } = usePseudoClasses<HTMLElement>(ref as React.RefObject<HTMLElement>);
+  const { refObject, isHovered } = usePseudoClasses<HTMLElement | null>(ref);
   const buttonContentRef = useRef<HTMLDivElement>(null);
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
   const bothIcons = leftIcon && (rightIcon || arrow) && !onlyIcon;

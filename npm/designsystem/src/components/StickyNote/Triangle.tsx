@@ -1,5 +1,3 @@
-import type React from 'react';
-
 interface TriangleProps {
   isHover: boolean;
   isFocus: boolean;

@@ -14,6 +14,7 @@ import { PanelLayout, PanelStacking, PanelStatus, PanelVariant } from './constan
 import PanelTitle from './PanelTitle';
 import { getResources } from './resourceHelper';
 import { useLanguage } from '../../hooks/useLanguage';
+import { isComponent } from '../../utils/component';
 import Highlighter from '../Highlighter';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronRight from '../Icons/ChevronRight';
@@ -136,7 +137,7 @@ const PanelRoot: React.FC<PanelProps> = ({
 
         if (child.type === PreContainer) {
           newPreContainer.push(React.cloneElement(child, { key }));
-        } else if (child.type === PanelTitle) {
+        } else if (isComponent<PanelTitleProps>(child, PanelTitle)) {
           newTitle.push(
             React.cloneElement(child as React.ReactElement<PanelTitleProps>, {
               key,

@@ -63,19 +63,19 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: ResponsiveTableVariant,
+      options: Object.values(ResponsiveTableVariant),
     },
     fallbackVariant: {
       control: 'select',
-      options: ResponsiveTableVariant,
+      options: Object.values(ResponsiveTableVariant),
     },
     headerCategory: {
       control: 'select',
-      options: HeaderCategory,
+      options: Object.values(HeaderCategory),
     },
     mode: {
       control: 'select',
-      options: ModeType,
+      options: Object.values(ModeType),
     },
     scrollAriaLabel: {
       control: 'text',
@@ -328,7 +328,7 @@ export const SortableAndExpandable: Story = {
 
     const data = getFastlegeData(sortDirection, sortColumn);
 
-    const clickSort = (column: string) => {
+    const clickSort = (column: string): void => {
       if (column == sortColumn) {
         setSortDirection(sortDirection === SortDirection.asc ? SortDirection.desc : SortDirection.asc);
       } else {
@@ -337,7 +337,7 @@ export const SortableAndExpandable: Story = {
       }
     };
 
-    const toggleExpand = (index: number) => {
+    const toggleExpand = (index: number): void => {
       const newExpanded = [...expanded];
       newExpanded[index] = !expanded[index];
       setExpanded(newExpanded);
@@ -425,9 +425,14 @@ export const SortableAndExpandable: Story = {
                 <Title htmlMarkup="h4" appearance="title4">
                   {fastlege.Fastlege.Fornavn + ' ' + fastlege.Fastlege.Etternavn}
                 </Title>
-                <p>Godkjent som lege i {fastlege.Fastlege.Autorisert}</p>
+                <p>
+                  {'Godkjent som lege i'} {fastlege.Fastlege.Autorisert}
+                </p>
                 <p>{'Spesialist i allmennnmedisin'}</p>
-                <p>Startet som fastlege i {fastlege.Avtaledato.substring(0, 4)}.</p>
+                <p>
+                  {'Startet som fastlege i'} {fastlege.Avtaledato.substring(0, 4)}
+                  {'.'}
+                </p>
               </TableExpandedRow>
             </React.Fragment>
           ))}
@@ -445,7 +450,7 @@ export const NestedExpandableBlockTables: Story = {
 
     const data = getFastlegeData(sortDirection, sortColumn);
 
-    const clickSort = (column: string) => {
+    const clickSort = (column: string): void => {
       if (column == sortColumn) {
         setSortDirection(sortDirection === SortDirection.asc ? SortDirection.desc : SortDirection.asc);
       } else {
@@ -454,7 +459,7 @@ export const NestedExpandableBlockTables: Story = {
       }
     };
 
-    const toggleExpand = (index: number) => {
+    const toggleExpand = (index: number): void => {
       const newExpanded = [...expanded];
       newExpanded[index] = !expanded[index];
       setExpanded(newExpanded);

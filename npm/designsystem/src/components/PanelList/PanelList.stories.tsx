@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
@@ -28,7 +26,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: PanelVariant,
+      options: Object.values(PanelVariant),
     },
     highlightText: {
       control: 'text',

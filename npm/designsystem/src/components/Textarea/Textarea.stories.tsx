@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useState } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
@@ -42,7 +41,7 @@ const meta = {
     },
     onColor: {
       control: 'select',
-      options: FormOnColor,
+      options: Object.values(FormOnColor),
     },
     defaultValue: {
       control: 'text',

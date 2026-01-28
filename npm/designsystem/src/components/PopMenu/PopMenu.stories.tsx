@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
@@ -36,11 +34,11 @@ const meta = {
   argTypes: {
     popMenuVariant: {
       control: 'select',
-      options: PopMenuVariant,
+      options: Object.values(PopMenuVariant),
     },
     labelTextPosition: {
       control: 'select',
-      options: PopMenuLabelPosition,
+      options: Object.values(PopMenuLabelPosition),
     },
   },
 } satisfies Meta<typeof PopMenu>;

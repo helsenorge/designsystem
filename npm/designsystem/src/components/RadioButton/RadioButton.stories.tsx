@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useState } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
@@ -46,11 +45,11 @@ const meta = {
     },
     onColor: {
       control: 'select',
-      options: FormOnColor,
+      options: Object.values(FormOnColor),
     },
     size: {
       control: 'select',
-      options: FormSize,
+      options: Object.values(FormSize),
     },
     name: {
       control: 'text',
@@ -117,13 +116,13 @@ export const Large: Story = {
 export const Controlled: Story = {
   render: args => {
     const [selected, setSelected] = useState<string>('');
-    const onClick = e => {
+    const onClick = (e: React.ChangeEvent<HTMLInputElement>): void => {
       setSelected(e.target.value);
     };
-    const buttonClick2 = () => {
+    const buttonClick2 = (): void => {
       setSelected('2');
     };
-    const buttonClickReset = () => {
+    const buttonClickReset = (): void => {
       setSelected('');
     };
     return (

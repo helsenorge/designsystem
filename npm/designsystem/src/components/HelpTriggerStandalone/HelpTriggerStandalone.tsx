@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import classNames from 'classnames';
 
 import type { HelpTriggerWeights } from '../HelpTriggerIcon';

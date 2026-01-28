@@ -84,7 +84,7 @@ export type LinkProps = Modify<
     /**
      * Ref for lenke/knapp
      */
-    linkRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement> | null;
+    linkRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement | null>;
     /** Sets the data-testid attribute. */
     testId?: string;
     /** Highlights text. Override if different from list */
@@ -123,7 +123,7 @@ export const Link: LinkType = (props: LinkProps) => {
     ref,
     ...restProps
   } = props;
-  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement>(linkRef);
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement | null>(linkRef);
 
   const isFill = variant === 'fill';
   const isFillNegative = variant === 'fill-negative';

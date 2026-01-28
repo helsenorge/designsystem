@@ -93,7 +93,7 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   const optionsRef = useRef<HTMLUListElement>(null);
   const childrenRefList = useRef(React.Children.map(children, () => React.createRef<HTMLElement>()));
   const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const { isHovered } = usePseudoClasses<HTMLButtonElement>(buttonRef);
+  const { isHovered } = usePseudoClasses<HTMLButtonElement | null>(buttonRef);
   const openedByKeyboard = useRef<boolean>(false);
   const { value: isOpen, toggleValue: toggleIsOpen } = useToggle(!disabled && open, onToggle);
   const isMobile = useIsMobileBreakpoint();
@@ -247,19 +247,17 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
   useOutsideEvent(dropdownRef, () => isOpen && handleClose());
 
   const renderChildren = React.Children.map(children, (child, index) => {
+    const element = child as React.ReactElement<{ ref?: React.Ref<HTMLElement | null> }>;
+
     return (
       <li className={listItemClasses} id={`${optionIdPrefix}-${index}`}>
-        {React.isValidElement(child) && childrenRefList.current && childrenRefList.current[index]
+        {React.isValidElement(element) && childrenRefList.current && childrenRefList.current[index]
           ? ((): React.ReactElement => {
-              const baseProps: { ref: React.Ref<HTMLElement> } = {
-                ref: mergeRefs([child.props.ref, childrenRefList.current[index]]),
-              };
-
-              if (isMultiSelect) {
-                const label = (child.props as CheckboxProps).label as React.ReactNode;
+              if (isMultiSelect && isComponent<CheckboxProps>(element, Checkbox)) {
+                const label = element.props.label;
                 if (React.isValidElement(label) && isComponent<LabelProps>(label, Label)) {
-                  return React.cloneElement(child as React.ReactElement<CheckboxProps>, {
-                    ...baseProps,
+                  return React.cloneElement(element, {
+                    ref: mergeRefs([element.props.ref, childrenRefList.current[index]]),
                     label: React.cloneElement(label, {
                       labelClassName: classNames((label.props as LabelProps)?.labelClassName, styles['dropdown__multiselect-item']),
                     }),
@@ -267,7 +265,9 @@ export const DropdownBase: React.FC<DropdownProps> = props => {
                 }
               }
 
-              return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, baseProps);
+              return React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
+                ref: mergeRefs([element.props.ref, childrenRefList.current[index]]),
+              });
             })()
           : child}
       </li>

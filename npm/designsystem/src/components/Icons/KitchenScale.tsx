@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { SvgPathProps } from '../Icon';
 
 const KitchenScale: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.JSX.Element => {

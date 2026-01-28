@@ -1,5 +1,4 @@
 import type { AriaAttributes } from 'react';
-import type React from 'react';
 
 import classNames from 'classnames';
 

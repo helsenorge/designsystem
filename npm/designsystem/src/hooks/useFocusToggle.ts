@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useEffect } from 'react';
 
 import { useElementList } from './useElementList';
@@ -11,7 +10,7 @@ import { FOCUSABLE_SELECTORS } from './useFocusableElements';
  * @param allowFocus Om elementene skal være fokuserbare eller ikke
  * @returns void
  */
-export const useFocusToggle = (ref: React.RefObject<HTMLElement>, allowFocus?: boolean): void => {
+export const useFocusToggle = (ref: React.RefObject<HTMLElement | null>, allowFocus?: boolean): void => {
   // Kan ikke lytte på endringer i attributter, fordi det vil føre til en loop når vi endrer dem etterpå
   const focusableElementList = useElementList(ref, FOCUSABLE_SELECTORS, { attributes: false });
 

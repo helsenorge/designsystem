@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { HNDesignsystemHelpDrawer } from '../../resources/Resources';
 import type { DrawerProps } from '../Drawer';
 

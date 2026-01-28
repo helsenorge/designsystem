@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 
 import cn from 'classnames';
 
+import type { IconProps } from '../Icon';
+
 import { ModalSize, ModalVariants } from './constants';
 import { AnalyticsId, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
@@ -9,6 +11,7 @@ import { useIsVisible } from '../../hooks/useIsVisible';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import { isComponent } from '../../utils/component';
 import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import { uuid } from '../../utils/uuid';
 import Button from '../Button';
@@ -90,9 +93,10 @@ const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): Re
   if (icon) {
     return (
       <div className={styles.modal__iconWrapper}>
-        {React.cloneElement(icon, {
-          size: IconSize.Small,
-        })}
+        {isComponent<IconProps>(icon, Icon) &&
+          React.cloneElement(icon, {
+            size: IconSize.Small,
+          })}
       </div>
     );
   }

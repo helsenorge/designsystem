@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useRef } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -11,7 +10,7 @@ const UseResizeObserverExample: React.FC = () => {
   const size = useResizeObserver(ref);
 
   return (
-    <HighlightPanel color="blueberry" size="fluid">
+    <HighlightPanel color="blueberry">
       <pre ref={ref}>{JSON.stringify(size?.toJSON(), null, 2)}</pre>
     </HighlightPanel>
   );

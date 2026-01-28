@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
@@ -18,7 +17,7 @@ interface TabItemProps {
   index: number;
   color: TabsColors;
   selectedTab: number;
-  tabRefs: React.MutableRefObject<React.RefObject<HTMLButtonElement>[] | null | undefined>;
+  tabRefs: React.RefObject<React.RefObject<HTMLButtonElement | null>[] | null | undefined>;
   tabListVisible: boolean;
   onTabListClick: (index: number) => void;
 }

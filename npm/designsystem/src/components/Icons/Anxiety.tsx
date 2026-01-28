@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { SvgPathProps } from '../Icon';
 
 const Anxiety: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.ReactElement => {

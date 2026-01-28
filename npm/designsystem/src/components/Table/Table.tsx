@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
 import type { Breakpoint } from '../../hooks/useBreakpoint';
 
 import { defaultConfig, ModeType, ResponsiveTableVariant } from './constants';
-import { getCurrentConfig, getBreakpointClass, getCenteredOverflowTableStyle } from './utils';
+import { getCurrentConfig, getBreakpointClass, getCenteredOverflowTableStyle, mapChildrenWithMode, omitProps } from './utils';
 import { AnalyticsId } from '../../constants';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { useIsVisible } from '../../hooks/useIsVisible';
@@ -91,6 +91,7 @@ export const Table: React.FC<Props> = ({
 
   const breakpointClass = getBreakpointClass(currentConfig);
   const tableClass = classNames(styles.table, breakpointClass, className);
+  const domRest = omitProps(rest as Record<string, unknown>, ['breakpoint', 'variant', 'fallbackVariant', 'headerCategory']);
 
   const table = (
     <table
@@ -100,9 +101,9 @@ export const Table: React.FC<Props> = ({
       data-analyticsid={AnalyticsId.Table}
       ref={tableRef}
       style={tableStyle}
-      {...rest}
+      {...(domRest as React.ComponentPropsWithoutRef<'table'>)}
     >
-      {React.Children.map(children, child => React.isValidElement<{ mode?: ModeType }>(child) && React.cloneElement(child, { mode }))}
+      {mapChildrenWithMode(children, mode)}
     </table>
   );
 

@@ -68,7 +68,7 @@ export const Validation: React.FC<ValidationProps> = (props: ValidationProps) =>
     ) {
       return cloneFormElement<ErrorWrapperClassNameProps>(child);
     }
-    if (React.isValidElement(child) && child.type === React.Fragment) {
+    if (isComponent<React.FragmentProps>(child, React.Fragment)) {
       return React.Children.map(child.props.children, (child: React.ReactNode) => {
         return renderChild(child);
       });

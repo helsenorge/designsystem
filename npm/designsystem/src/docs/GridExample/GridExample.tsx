@@ -1,5 +1,3 @@
-import type React from 'react';
-
 type GridLayout = 'helsenorge' | 'padding' | 'none';
 
 interface GridExampleProps {

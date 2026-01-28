@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useRef } from 'react';
 
 import { screen, render } from '@testing-library/react';

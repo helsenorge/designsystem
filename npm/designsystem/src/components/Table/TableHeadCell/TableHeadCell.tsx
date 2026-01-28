@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import classNames from 'classnames';
 
 import Icon, { IconSize } from '../../Icon';

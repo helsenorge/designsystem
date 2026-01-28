@@ -1,3 +1,5 @@
+import type { ReactElement } from 'react';
+
 import type { Preview } from '@storybook/react';
 
 import GridExample from '../src/docs/GridExample';
@@ -7,16 +9,20 @@ import '../src/scss/helsenorge.scss';
 
 const placeholder = '#4A412A';
 
-const createBackgroundColors = () =>
-  Object.keys(theme.palette)
+const createBackgroundColors = (): Record<string, { name: string; value: string }> =>
+  (Object.keys(theme.palette) as Array<keyof typeof theme.palette>)
     .filter(key => theme.palette[key] !== placeholder)
     .reduce<Record<string, { name: string; value: string }>>((acc, key) => {
-      acc[key] = { name: key, value: theme.palette[key] };
+      const k = String(key);
+      acc[k] = { name: k, value: theme.palette[key] };
       return acc;
     }, {});
 
-const createCustomViewPorts = () =>
-  Object.keys(breakpoints).reduce<
+const createCustomViewPorts = (): Record<
+  string,
+  { name: string; styles: { width: string; height: string }; type: 'mobile' | 'tablet' | 'desktop' | 'other' }
+> =>
+  (Object.keys(breakpoints) as Array<keyof typeof breakpoints>).reduce<
     Record<
       string,
       {
@@ -25,11 +31,12 @@ const createCustomViewPorts = () =>
         type: 'mobile' | 'tablet' | 'desktop' | 'other';
       }
     >
-  >((acc, bp) => {
+  >((acc, bp: keyof typeof breakpoints) => {
     const px = breakpoints[bp];
     const type = px >= breakpoints.lg ? 'desktop' : px >= breakpoints.md ? 'tablet' : 'mobile';
-    acc[bp] = {
-      name: bp,
+    const k = String(bp);
+    acc[k] = {
+      name: k,
       styles: {
         width: `${bp === 'xxs' ? 320 : px}px`,
         height: '100%',
@@ -41,6 +48,9 @@ const createCustomViewPorts = () =>
 
 export const parameters = {
   layout: 'fullscreen',
+  docs: {
+    source: { type: 'code' },
+  },
   backgrounds: {
     options: createBackgroundColors(),
   },
@@ -76,7 +86,7 @@ const preview: Preview = {
   },
 
   decorators: [
-    (Story, context) => (
+    (Story, context): ReactElement => (
       <GridExample gridLayout={context.globals.layout}>
         <Story />
       </GridExample>

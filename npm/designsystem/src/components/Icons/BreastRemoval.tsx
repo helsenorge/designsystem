@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { SvgPathProps } from '../Icon';
 
 const BreastRemoval: React.FC<SvgPathProps> = ({ isHovered }: SvgPathProps): React.JSX.Element => {

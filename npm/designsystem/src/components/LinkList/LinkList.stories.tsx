@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useRef, useEffect } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';

@@ -1,4 +1,3 @@
-import type React from 'react';
 import { lazy, Suspense, useMemo } from 'react';
 
 import type { BaseIllustrationProps, SvgIllustration } from '../Illustration';

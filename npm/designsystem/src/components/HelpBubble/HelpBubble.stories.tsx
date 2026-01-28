@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useRef, useState } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
@@ -50,7 +49,7 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: HelpBubbleVariant,
+      options: Object.values(HelpBubbleVariant),
     },
   },
 } satisfies Meta<typeof HelpBubble>;

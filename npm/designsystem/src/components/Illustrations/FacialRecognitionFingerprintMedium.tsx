@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { Palette } from './FacialRecognitionFingerprint';
 import type { BaseSvgIllustrationProps } from '../Illustration';
 

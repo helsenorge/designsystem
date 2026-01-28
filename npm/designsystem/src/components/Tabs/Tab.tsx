@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { SvgIcon } from '../Icon';
 import type { IconName } from '../Icons/IconNames';
 

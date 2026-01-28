@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useState, useRef } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';

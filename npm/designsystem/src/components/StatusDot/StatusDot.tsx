@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import classNames from 'classnames';
 
 import { StatusDotOnColor, StatusDotVariant } from './constants';

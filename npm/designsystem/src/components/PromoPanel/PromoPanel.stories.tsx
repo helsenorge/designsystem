@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import type React from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
 

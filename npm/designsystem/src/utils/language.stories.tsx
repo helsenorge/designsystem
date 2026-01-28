@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -60,7 +59,7 @@ const ComponentWithTranslations: React.FC<ComponentWithTranslationsProps> = ({ r
 
 // Eksempel på bruk av provider:
 
-const LanguageProviderExample = (): React.JSX.Element => {
+const LanguageProviderExample: React.FC = () => {
   const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
 
   return (
@@ -157,6 +156,10 @@ const LanguageProviderExample = (): React.JSX.Element => {
       },
     },
     chromatic: { disableSnapshot: true },
+  },
+  args: {
+    children: undefined,
+    language: LanguageLocales.NORWEGIAN,
   },
 } satisfies Meta<typeof LanguageProvider>;
 

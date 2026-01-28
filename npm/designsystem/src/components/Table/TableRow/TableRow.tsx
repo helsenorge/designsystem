@@ -1,10 +1,9 @@
-import React from 'react';
-
 import classNames from 'classnames';
 
 import { ModeType } from '../constants';
 import tableStyles from '../styles.module.scss';
 import TableExpanderCellMobile from '../TableExpanderCell/TableExpanderCellMobile';
+import { mapChildrenWithMode } from '../utils';
 
 export interface Props extends Omit<React.ComponentPropsWithoutRef<'tr'>, 'style'> {
   /** Sets if expanded row can be expanded */
@@ -49,7 +48,7 @@ export const TableRow: React.FC<Props> = ({
 
   return (
     <tr className={tableRowClass} onClick={onClick} key={rowKey} {...rest}>
-      {React.Children.map(children, child => React.isValidElement<{ mode?: ModeType }>(child) && React.cloneElement(child, { mode }))}
+      {mapChildrenWithMode(children, mode)}
       {expandable && (
         <TableExpanderCellMobile
           expanded={expanded}

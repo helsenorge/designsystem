@@ -34,12 +34,12 @@ export const AsChildSlot: React.FC<AsChildSlotProps> = props => {
   const { children, className, content, disabled, onSelect, ariaCurrent, elementRef, ref } = props;
   const childElement = React.Children.toArray(children).filter(React.isValidElement)[0] as React.ReactElement | undefined;
   const nodeRef = React.useRef<HTMLElement | null>(null);
-  const childRef = (childElement as unknown as { ref?: React.Ref<HTMLElement> | undefined })?.ref;
+  const childPropsRef = (childElement as unknown as { props?: { ref?: React.Ref<HTMLElement> } })?.props?.ref;
   const mergedRef = mergeRefs<HTMLElement>([
     (node): void => {
       nodeRef.current = node;
     },
-    childRef,
+    childPropsRef,
     elementRef,
   ]);
 
@@ -92,22 +92,25 @@ export const AsChildSlot: React.FC<AsChildSlotProps> = props => {
   };
 
   const isButtonLike = typeof childProps.href === 'undefined';
+  const elementWithChildren = childElement as React.ReactElement<{ children?: React.ReactNode }>;
   const wrappedChildren =
     content && React.isValidElement(content)
-      ? React.cloneElement(content, content.props, childElement.props.children)
-      : childElement.props.children;
+      ? React.cloneElement(content, undefined, elementWithChildren.props.children)
+      : elementWithChildren.props.children;
 
-  return React.cloneElement(childElement, {
+  const nextProps: Record<string, unknown> = {
     ref: mergedRef,
     className: `${styles['as-child-reset']} ${className ?? ''}`,
     style: undefined,
     'aria-disabled': isDisabled || undefined,
     'aria-current': ariaCurrent,
-    ...(isButtonLike && !('type' in childProps) ? { type: 'button' } : null),
+    ...(isButtonLike && !('type' in childProps) ? { type: 'button' as const } : {}),
     onClick: wrappedOnClick,
     onKeyDown: wrappedOnKeyDown,
     children: wrappedChildren,
-  });
+  };
+
+  return React.cloneElement(childElement as React.ReactElement<Record<string, unknown>>, nextProps);
 };
 
 export default AsChildSlot;

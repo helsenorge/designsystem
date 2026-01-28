@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { Palette } from './GiveBabyFood';
 import type { BaseSvgIllustrationProps } from '../Illustration';
 

@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { BaseSvgIllustrationProps } from '../Illustration';
 
 interface Palette {

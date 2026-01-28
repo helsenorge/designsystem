@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import classNames from 'classnames';
 
 import type { HNDesignsystemHelpBubble } from '../../resources/Resources';

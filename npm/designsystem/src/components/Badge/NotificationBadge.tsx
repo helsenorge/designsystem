@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { IconSize } from '../../constants';
 
 import { palette } from '../../theme/palette';

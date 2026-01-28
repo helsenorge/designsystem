@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { ErrorDetails, FocusableElement } from './types';
 import type { AnchorLinkOnClickEvent } from '../AnchorLink';
 

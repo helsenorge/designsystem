@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
@@ -30,7 +28,7 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: TagSize,
+      options: Object.values(TagSize),
     },
     color: {
       control: 'select',
@@ -38,7 +36,7 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: TagVariant,
+      options: Object.values(TagVariant),
     },
   },
 } satisfies Meta<typeof Tag>;

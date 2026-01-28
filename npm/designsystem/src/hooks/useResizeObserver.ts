@@ -6,7 +6,7 @@ import { useEffect, useState, useRef } from 'react';
  * @param ref Element som skal observeres.
  * @returns Object med høyde, bredde, x og y til elementet
  */
-export const useResizeObserver = (ref?: React.RefObject<HTMLElement>): DOMRect | undefined => {
+export const useResizeObserver = (ref?: React.RefObject<HTMLElement | null>): DOMRect | undefined => {
   const ticking = useRef(false);
   const [size, setSize] = useState<DOMRect>();
   useEffect(() => {

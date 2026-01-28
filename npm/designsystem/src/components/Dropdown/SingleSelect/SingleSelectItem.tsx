@@ -73,7 +73,7 @@ export const SingleSelectItem: React.FC<SingleSelectItemProps> = props => {
   );
 
   const Component = (asChild ? AsChildSlot : 'button') as React.ElementType;
-  const childWithInjectedContent = childElement ? React.cloneElement(childElement, childElement.props, content) : null;
+  const childWithInjectedContent = childElement ? React.cloneElement(childElement, undefined, content) : null;
 
   const componentProps = asChild
     ? {

@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useLayoutEffect, useRef } from 'react';
 
 import classNames from 'classnames';
@@ -51,8 +50,8 @@ const StickyNote: React.FC<StickyNoteProps> = (props: StickyNoteProps) => {
   const errorTextId = useIdWithFallback(errorTextIdProp);
   const stickynoteRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const { isFocused: isTextareaFocused } = usePseudoClasses<HTMLTextAreaElement>(textareaRef);
-  const { isHovered, isActive } = usePseudoClasses<HTMLDivElement>(stickynoteRef);
+  const { isFocused: isTextareaFocused } = usePseudoClasses<HTMLTextAreaElement | null>(textareaRef);
+  const { isHovered, isActive } = usePseudoClasses<HTMLDivElement | null>(stickynoteRef);
 
   const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>): void => {
     if ((event.target as HTMLElement).closest('button')) {

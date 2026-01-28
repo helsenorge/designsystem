@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useState } from 'react';
 
 import { screen, render, within } from '@testing-library/react';

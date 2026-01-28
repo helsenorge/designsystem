@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { ValidationErrors } from './types';
 
 import ErrorListItem from './ErrorListItem';

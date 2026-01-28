@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
@@ -174,7 +172,7 @@ export const WithPlaceholderText: Story = {
     <>
       <Select
         {...args}
-        label={<Label labelTexts={[{ text: 'Velg et alternativ:', type: 'semibold' }]} />}
+        label={<Label labelTexts={[{ text: 'Velg et alternativ:' }]} />}
         name={'select name 1'}
         onChange={() => null}
         defaultValue={''}

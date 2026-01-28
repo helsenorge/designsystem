@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useEffect, useState } from 'react';
 
 import { Docs } from 'frankenstein-build-tools';
@@ -20,24 +19,10 @@ const meta = {
       },
     },
   },
-  args: {
-    children: 'Tekst',
-  },
   argTypes: {
-    children: {
-      control: 'text',
-    },
     color: {
       control: 'select',
       options: ['blueberry', 'cherry', 'neutral'],
-    },
-    type: {
-      control: 'select',
-      options: ['string', 'notification'],
-    },
-    notificationVariant: {
-      control: 'select',
-      options: ['success', 'warn', 'error', 'info'],
     },
   },
 } satisfies Meta<typeof TokensExample>;

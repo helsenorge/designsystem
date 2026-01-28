@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useState, useRef } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -22,7 +21,7 @@ const UseFocusToggleExample: React.FC = () => {
       <p>{`Fokus er ${allowFocus ? 'lov' : 'ikke lov'}`}</p>
       <Button onClick={toggleAllowFocus}>{'Slå av/på fokus'}</Button>
       <Spacer />
-      <HighlightPanel color="blueberry" size="fluid">
+      <HighlightPanel color="blueberry">
         <div ref={ref}>
           <div>
             <Button>{'Knapp 1'}</Button>

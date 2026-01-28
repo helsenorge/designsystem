@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import type { HNDesignsystemInfoTeaser } from '../../resources/Resources';
 import type { InfoTeaserTags } from '../InfoTeaser';
 import type { TitleTags } from '../Title';

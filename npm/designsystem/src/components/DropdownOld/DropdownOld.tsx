@@ -180,11 +180,13 @@ const DropdownOld: React.FC<DropdownOldProps> = props => {
   const contentClasses = classNames(styles.dropdown__content, isOpen && styles['dropdown__content--open']);
 
   const renderChildren = React.Children.map(children, (child, index) => {
+    const element = child as React.ReactElement<{ children?: React.ReactNode; ref?: React.Ref<HTMLElement | null> }>;
+
     return (
       <li className={styles.dropdown__input} id={`${optionIdPrefix}-${index}`}>
-        {React.isValidElement(child) && inputRefList.current && inputRefList.current[index]
-          ? React.cloneElement(child as React.ReactElement, {
-              ref: mergeRefs([child.props.ref, inputRefList.current[index]]),
+        {React.isValidElement(element) && inputRefList.current && inputRefList.current[index]
+          ? React.cloneElement(element, {
+              ref: mergeRefs([element.props.ref, inputRefList.current[index]]),
             })
           : child}
       </li>

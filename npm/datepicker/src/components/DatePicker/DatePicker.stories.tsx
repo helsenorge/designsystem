@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Source } from '@storybook/addon-docs/blocks';
 import { parse } from 'date-fns';
@@ -280,8 +280,8 @@ export const Default: Story = {
 };
 
 const DateRangePickerRender = (args: DatePickerProps): React.ReactElement => {
-  const [fromDate, setFromDate] = React.useState<Date | undefined>();
-  const [toDate, setToDate] = React.useState<Date | undefined>();
+  const [fromDate, setFromDate] = useState<Date | undefined>();
+  const [toDate, setToDate] = useState<Date | undefined>();
 
   return (
     <DateTimePickerWrapper>
@@ -308,7 +308,7 @@ const DateRangePickerRender = (args: DatePickerProps): React.ReactElement => {
 export const DateRangePicker: Story = { render: DateRangePickerRender };
 
 const DateAndTimeRender = (args: DatePickerProps): React.ReactElement => {
-  const [startDate] = React.useState(new Date('01.01.2024'));
+  const [startDate] = useState(new Date('01.01.2024'));
   return (
     <DateTimePickerWrapper>
       <DatePicker {...args} dateValue={startDate} label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />} />
@@ -325,7 +325,7 @@ const DateAndTimeRender = (args: DatePickerProps): React.ReactElement => {
 export const DateAndTime: Story = { render: DateAndTimeRender };
 
 const MinMaxDaysRender = (args: DatePickerProps): React.ReactElement => {
-  const [startDate] = React.useState(new Date());
+  const [startDate] = useState(new Date());
   const minDate = new Date(startDate);
   minDate.setDate(startDate.getDate() - 15);
   const maxDate = new Date(startDate);
@@ -346,7 +346,7 @@ const MinMaxDaysRender = (args: DatePickerProps): React.ReactElement => {
 export const MinMaxDays: Story = { render: MinMaxDaysRender };
 
 const DisabledDaysRender = (args: DatePickerProps): React.ReactElement => {
-  const [startDate] = React.useState(new Date('01.01.2024'));
+  const [startDate] = useState(new Date('01.01.2024'));
   const disabledDate = new Date(startDate);
   disabledDate.setDate(startDate.getDate() - 3);
 
@@ -431,7 +431,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
   const formatString = 'dd.MM.yyyy';
 
   const parsedDate = parse(dateString, formatString, new Date());
-  const [startDate] = React.useState(parsedDate);
+  const [startDate] = useState(parsedDate);
   const minDate = new Date();
   const maxDate = new Date();
   const disabledDate = new Date();

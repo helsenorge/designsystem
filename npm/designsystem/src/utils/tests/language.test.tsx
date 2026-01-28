@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { render, screen } from '@testing-library/react';
 
 import { useLanguage } from '../../hooks/useLanguage';

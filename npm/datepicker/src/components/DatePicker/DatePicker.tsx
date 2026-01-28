@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useState, useRef, useEffect } from 'react';
 
 import { format, isValid, parse } from 'date-fns';
