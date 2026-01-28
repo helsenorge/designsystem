@@ -23,5 +23,7 @@
   "validateDefaultMessageHour": "Time må være et tall mellom 00 og 23",
   "validateDefaultMessageMinute": "Minutt må være et tall mellom 00 og 59",
   "hourFormatPlaceholder": "tt",
-  "minuteFormatPlaceholder": "mm"
+  "minuteFormatPlaceholder": "mm",
+  "ariaLabelInputHour": "Time",
+  "ariaLabelInputMinute": "Minutt"
 }

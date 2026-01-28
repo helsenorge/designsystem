@@ -140,6 +140,14 @@ export type HNDesignsystemUnsafe_DatePicker = {
    * mm
    */
   minuteFormatPlaceholder: string;
+  /**
+   * Time
+   */
+  ariaLabelInputHour: string;
+  /**
+   * Minutt
+   */
+  ariaLabelInputMinute: string;
 };
 
 /* eslint:enable */
