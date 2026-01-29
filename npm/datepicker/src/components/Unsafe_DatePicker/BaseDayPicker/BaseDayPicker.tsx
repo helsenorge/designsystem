@@ -21,6 +21,7 @@ import Loader from '@helsenorge/designsystem-react/components/Loader';
 
 import { LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
 
+// eslint-disable-next-line import/order
 import { CustomCaptionLabel, CustomDropdown, CustomNextButton, CustomPreviousButton } from './CustomComponents';
 
 // import { matchesDayObjectMatcher } from './utils';
@@ -44,8 +45,10 @@ export type DatePickerModifiers = {
 //   text: string;
 // };
 
-export interface BaseDayPickerProps
-  extends Pick<DayPickerProps, 'startMonth' | 'endMonth' | 'captionLayout' | 'footer' | 'fixedWeeks' | 'animate'> {
+export interface BaseDayPickerProps extends Pick<
+  DayPickerProps,
+  'startMonth' | 'endMonth' | 'captionLayout' | 'footer' | 'fixedWeeks' | 'animate'
+> {
   /** The currenlty selected date in the calendar */
   selectedDate?: Date;
   /** Callback for change in selected date */
