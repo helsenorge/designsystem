@@ -1,4 +1,4 @@
-import React, { cloneElement, isValidElement, useState } from 'react';
+import { cloneElement, isValidElement, useState } from 'react';
 
 import { isBefore, startOfDay } from 'date-fns';
 

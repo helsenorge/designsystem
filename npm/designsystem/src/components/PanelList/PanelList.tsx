@@ -2,6 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import { PanelListContext, type PanelListContextValue } from './utils';
 import { AnalyticsId } from '../../constants';
 import { PanelVariant } from '../Panel/constants';
 
@@ -19,14 +20,6 @@ export interface PanelListProps {
   /** Ref passed to the container element */
   ref?: React.Ref<HTMLDivElement | null>;
 }
-
-interface PanelListContextValue {
-  variant: PanelVariant;
-  highlightText?: string;
-  applyPanelClassName: (existingClassName?: string) => string;
-}
-
-export const PanelListContext = React.createContext<PanelListContextValue | null>(null);
 
 const PanelList: React.FC<PanelListProps> = (props: PanelListProps) => {
   const { testId, children, variant = PanelVariant.fill, highlightText, ref } = props;
