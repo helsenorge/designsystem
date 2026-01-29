@@ -27,6 +27,22 @@
     }
   }
 
+  &--time {
+    width: 4.5rem;
+
+    @supports not (field-sizing: content) {
+      width: 5.5rem;
+    }
+
+    &--with-clear-button {
+      width: 6rem;
+
+      @supports not (field-sizing: content) {
+        width: 7rem;
+      }
+    }
+  }
+
   &__inputs {
     display: inline-flex;
     justify-content: flex-start;

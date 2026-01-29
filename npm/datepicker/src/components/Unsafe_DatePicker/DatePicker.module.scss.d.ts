@@ -7,6 +7,8 @@ export type Styles = {
   'date-picker': string;
   'date-picker__inputs': string;
   'date-picker--clear-button-focused': string;
+  'date-picker--time': string;
+  'date-picker--time--with-clear-button': string;
   'date-picker--with-clear-button': string;
   'date-segment': string;
   'date-segment--error': string;
