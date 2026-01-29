@@ -19,7 +19,7 @@ import Highlighter from '../Highlighter';
 import ChevronDown from '../Icons/ChevronDown';
 import ChevronRight from '../Icons/ChevronRight';
 import ChevronUp from '../Icons/ChevronUp';
-import { PanelListContext } from '../PanelList/PanelList';
+import { PanelListContext } from '../PanelList/utils';
 
 import styles from './styles.module.scss';
 
