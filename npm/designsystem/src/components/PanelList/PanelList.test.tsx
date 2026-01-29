@@ -1,7 +1,8 @@
 import { screen, render } from '@testing-library/react';
 
 import PanelList from './PanelList';
-import Panel, { PanelVariant } from '../Panel/Panel';
+import { PanelVariant } from '../Panel/constants';
+import Panel from '../Panel/Panel';
 
 describe('Gitt at PanelList skal vises', (): void => {
   describe('Når testId-prop er satt', (): void => {

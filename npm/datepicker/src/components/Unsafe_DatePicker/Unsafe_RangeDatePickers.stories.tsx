@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { nb } from 'date-fns/locale';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 

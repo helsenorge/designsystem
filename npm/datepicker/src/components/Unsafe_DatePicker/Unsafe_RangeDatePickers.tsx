@@ -2,7 +2,8 @@ import React, { cloneElement, isValidElement, useState } from 'react';
 
 import { isBefore, startOfDay } from 'date-fns';
 
-import { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
+import type { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
+
 import { isValidRange } from './validate';
 
 import styles from './RangeDatePickers.module.scss';

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
+import type { DateInputInternalProps } from './DateInputInternal';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import DateInputInternal, { DateInputInternalProps } from './DateInputInternal';
+import DateInputInternal from './DateInputInternal';
 
 const meta = {
   title: '@helsenorge/datepicker/Unsafe_DatePicker/_Internal/DateInputInternal',

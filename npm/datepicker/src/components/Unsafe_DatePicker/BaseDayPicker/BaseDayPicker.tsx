@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
 
 import classNames from 'classnames';
-import { isSameDay, Locale } from 'date-fns';
+import { isSameDay } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import {
   // CalendarDay,
   DayPicker,
-  DayPickerProps,
-  Labels,
-  Matcher,
-  Modifiers,
   MonthGrid,
-  MonthGridProps,
   useDayPicker,
 } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
+import type { HNDesignsystemUnsafe_DatePicker } from '../../../resources/Resources';
+import type { Locale } from 'date-fns';
+import type { DayPickerProps, Labels, Matcher, Modifiers, MonthGridProps } from 'react-day-picker';
+
 import Button from '@helsenorge/designsystem-react/components/Button';
 // import HelpBubble from '@helsenorge/designsystem-react/components/HelpBubble';
 import Loader from '@helsenorge/designsystem-react/components/Loader';
-import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
 
-import { LanguageLocales } from '@helsenorge/designsystem-react';
+import { LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
 
 import { CustomCaptionLabel, CustomDropdown, CustomNextButton, CustomPreviousButton } from './CustomComponents';
+
 // import { matchesDayObjectMatcher } from './utils';
-import { HNDesignsystemUnsafe_DatePicker } from '../../../resources/Resources';
+
 import { getResources } from '../resourceHelper';
 
 import customstyles from './BaseDayPicker.module.scss';
@@ -277,7 +276,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
         NextMonthButton: props => <CustomNextButton {...props} />,
         PreviousMonthButton: props => <CustomPreviousButton {...props} />,
         MonthGrid: isLoading
-          ? (props: MonthGridProps): JSX.Element => (
+          ? (props: MonthGridProps): React.JSX.Element => (
               <div style={{ position: 'relative' }}>
                 <MonthGrid {...props} />
                 <div className={customstyles['loading-overlay']}>

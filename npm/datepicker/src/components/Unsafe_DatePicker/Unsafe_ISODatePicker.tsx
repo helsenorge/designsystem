@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { formatISO, isValid } from 'date-fns';
 
-import Unsafe_DatePicker, { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
+import type { Unsafe_DatePickerProps } from './Unsafe_DatePicker';
+
+import Unsafe_DatePicker from './Unsafe_DatePicker';
 
 export interface ISODateInputProps extends Omit<Unsafe_DatePickerProps, 'value' | 'onChange'> {
   /** Currently given date, given as ISO string  */
@@ -11,7 +13,7 @@ export interface ISODateInputProps extends Omit<Unsafe_DatePickerProps, 'value' 
   onChange?: (dateValue: string) => void;
 }
 
-const Unsafe_ISODatePicker = ({ value, onChange, ...baseDateInputProps }: ISODateInputProps): JSX.Element => {
+const Unsafe_ISODatePicker = ({ value, onChange, ...baseDateInputProps }: ISODateInputProps): React.ReactNode => {
   const defaultDate = value ? new Date(value) : undefined;
   const [internalDate, setInternalDate] = useState<Date | undefined>(defaultDate);
 

@@ -1,14 +1,16 @@
 import { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
+
+import type { Matcher, Modifiers } from './index';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import Title from '@helsenorge/designsystem-react/components/Title';
 
-import Unsafe_DatePicker, { Matcher, Modifiers, Unsafe_ISODatePicker } from './index';
+import Unsafe_DatePicker, { Unsafe_ISODatePicker } from './index';
 
 const meta = {
   title: '@helsenorge/datepicker/Unsafe_DatePicker',
