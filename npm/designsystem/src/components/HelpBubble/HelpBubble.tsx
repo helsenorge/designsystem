@@ -16,8 +16,6 @@ import styles from './styles.module.scss';
 export const HelpBubbleVariant = PopOverVariant;
 
 export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'variant' | 'controllerRef' | 'role'> {
-  /** Sets aria-label of the bubble. */
-  ariaLabel?: string;
   /** Sets aria-labelledby of the bubble. */
   ariaLabelledById?: string;
   /** Id of the HelpBubble */
@@ -86,7 +84,6 @@ const HelpBubble: React.FC<HelpBubbleProps> = props => {
   const mergedResources: HNDesignsystemHelpBubble = {
     ...defaultResources,
     ...resources,
-    ariaLabel: props.ariaLabel ?? resources?.ariaLabel ?? defaultResources.ariaLabel,
   };
 
   const helpBubbleClasses = classNames(styles.helpbubble, className);

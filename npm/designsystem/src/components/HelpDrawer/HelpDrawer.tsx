@@ -10,16 +10,7 @@ import styles from './styles.module.scss';
 
 export interface HelpDrawerProps extends Pick<
   DrawerProps,
-  | 'ariaLabel'
-  | 'ariaLabelledBy'
-  | 'ariaLabelCloseBtn'
-  | 'children'
-  | 'isOpen'
-  | 'onRequestClose'
-  | 'title'
-  | 'titleHtmlMarkup'
-  | 'titleId'
-  | 'zIndex'
+  'ariaLabel' | 'ariaLabelledBy' | 'children' | 'isOpen' | 'onRequestClose' | 'title' | 'titleHtmlMarkup' | 'titleId' | 'zIndex'
 > {
   /** Resources for the component */
   resources?: Partial<HNDesignsystemHelpDrawer>;

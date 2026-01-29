@@ -36,8 +36,6 @@ export interface InnerDrawerProps {
   ariaLabel?: string;
   /** Sets the aria-labelledby of the drawer */
   ariaLabelledBy?: string;
-  /** @deprecated Close button aria-label */
-  ariaLabelCloseBtn?: string;
   /** Sets the style of the Drawer Close button. Meant for use by HelpDrawer */
   closeColor?: 'blueberry' | 'plum';
   /** Direction of the drawer on desktop. Default: left */
@@ -85,7 +83,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const {
     ariaLabel,
     ariaLabelledBy,
-    ariaLabelCloseBtn,
     children,
     closeColor = 'blueberry',
     desktopDirection = 'left',
@@ -126,7 +123,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const mergedResources: HNDesignsystemDrawer = {
     ...defaultResources,
     ...resources,
-    ariaLabelCloseBtn: ariaLabelCloseBtn || resources?.ariaLabelCloseBtn || defaultResources.ariaLabelCloseBtn,
   };
 
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;

@@ -36,8 +36,6 @@ export interface TextareaProps
     > {
   /** max character limit in textarea  */
   maxCharacters?: number;
-  /** @deprecated use resources instead. The text is displayed in the end of the text-counter */
-  maxText?: string;
   /** Width of textarea in characters (approximate) */
   width?: number;
   /** Sets the data-testid attribute. */
@@ -81,7 +79,6 @@ const getTextareaMaxWidth = (characters: number): string => {
 const Textarea: React.FC<TextareaProps> = props => {
   const {
     maxCharacters,
-    maxText,
     width,
     testId,
     defaultValue,
@@ -122,7 +119,6 @@ const Textarea: React.FC<TextareaProps> = props => {
   const mergedResources: HNDesignsystemTextArea = {
     ...defaultResources,
     ...resources,
-    characters: maxText || resources?.characters || defaultResources.characters,
   };
 
   useEffect(() => {

@@ -89,8 +89,6 @@ export interface InputProps
   rightOfInput?: React.ReactNode;
   /** max character limit in input  */
   maxCharacters?: number;
-  /** @deprecated use resources instead. The text is displayed in the end of the text-counter */
-  maxText?: string;
   /** Resources for component */
   resources?: Partial<HNDesignsystemInput>;
   /** Ref passed to the input element */
@@ -137,7 +135,6 @@ const Input: React.FC<InputProps> = props => {
     onKeyDown,
     autoFocus,
     maxCharacters,
-    maxText,
     inputContainerRef,
     resources,
     ref,
@@ -149,7 +146,6 @@ const Input: React.FC<InputProps> = props => {
   const mergedResources: HNDesignsystemInput = {
     ...defaultResources,
     ...resources,
-    characters: maxText || resources?.characters || defaultResources.characters,
   };
 
   const breakpoint = useBreakpoint();
