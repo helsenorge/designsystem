@@ -6,10 +6,5 @@
   "nextMonth": "Neste måned",
   "previousMonth": "Forrige måned",
   "monthDropdown": "Velg måned",
-  "yearDropdown": "Velg år",
-  "goToToday": "Gå til i dag",
-  "loadingText": "Henter info. Vennligst vent.",
-  "dayFormatPlaceholder": "dd",
-  "monthFormatPlaceholder": "mm",
-  "yearFormatPlaceholder": "åååå"
+  "yearDropdown": "Velg år"
 }

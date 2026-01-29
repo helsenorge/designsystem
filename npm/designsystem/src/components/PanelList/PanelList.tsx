@@ -2,11 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import type { PanelProps } from '../Panel/Panel';
-
+import { PanelListContext, type PanelListContextValue } from './utils';
 import { AnalyticsId } from '../../constants';
 import { PanelVariant } from '../Panel/constants';
-import Panel from '../Panel/Panel';
 
 import styles from './styles.module.scss';
 
@@ -23,29 +21,29 @@ export interface PanelListProps {
   ref?: React.Ref<HTMLDivElement | null>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-const isPanelComponent = (element: {} | null | undefined): element is React.ReactElement<PanelProps> =>
-  React.isValidElement<PanelProps>(element) && (element as React.ReactElement).type === Panel;
-
 const PanelList: React.FC<PanelListProps> = (props: PanelListProps) => {
   const { testId, children, variant = PanelVariant.fill, highlightText, ref } = props;
 
-  const renderPanel = (panel: React.ReactElement<PanelProps>): React.ReactElement<PanelProps> =>
-    React.cloneElement(panel, {
-      variant: variant,
-      className: classNames(panel.props.className, styles[`panel-list__panel--${variant}`]),
-      highlightText: panel.props.highlightText || highlightText,
-    });
+  const contextValue: PanelListContextValue = React.useMemo(
+    () => ({
+      variant,
+      highlightText,
+      applyPanelClassName: (existingClassName?: string) => classNames(existingClassName, styles[`panel-list__panel--${variant}`]),
+    }),
+    [variant, highlightText]
+  );
 
   return (
-    <div
-      ref={ref}
-      data-testid={testId}
-      data-analyticsid={AnalyticsId.PanelList}
-      className={classNames({ [styles['panel-list--outline']]: variant === PanelVariant.outline })}
-    >
-      {React.Children.map(children, child => (isPanelComponent(child) ? renderPanel(child) : child))}
-    </div>
+    <PanelListContext.Provider value={contextValue}>
+      <div
+        ref={ref}
+        data-testid={testId}
+        data-analyticsid={AnalyticsId.PanelList}
+        className={classNames({ [styles['panel-list--outline']]: variant === PanelVariant.outline })}
+      >
+        {children}
+      </div>
+    </PanelListContext.Provider>
   );
 };
 

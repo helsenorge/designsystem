@@ -83,3 +83,36 @@ export const Expandable: Story = {
     </PanelList>
   ),
 };
+
+const CustomPanel1: React.FC = () => (
+  <Panel>
+    <Panel.Title title="Overskrift 1" />
+    <Panel.A>
+      {
+        'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
+      }
+    </Panel.A>
+  </Panel>
+);
+
+const CustomPanel2: React.FC = () => (
+  <>
+    <Panel>
+      <Panel.Title title="Overskrift 2" />
+      <Panel.A>
+        {
+          'Syk og ønsker legetime? Hvis fastlegen din tilbyr videotimer på Helsenorge, kan det være et godt alternativ. Da slipper du å møte opp fysisk på legekontoret.'
+        }
+      </Panel.A>
+    </Panel>
+  </>
+);
+
+export const WithComponents: Story = {
+  render: args => (
+    <PanelList {...args}>
+      <CustomPanel1 />
+      <CustomPanel2 />
+    </PanelList>
+  ),
+};

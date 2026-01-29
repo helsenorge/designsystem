@@ -12,7 +12,10 @@
   },
   "dependencies": {
     "@helsenorge/designsystem-react": "*",
+    "@helsenorge/datepicker": "*",
+    "@tanstack/react-form": "^1.27.4",
     "classnames": "^2.5.1",
+    "date-fns": "^4.0.0",
     "normalize.css": "^8.0.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",

@@ -37,6 +37,41 @@ export type HNDesignsystemDatePicker = {
    * Velg år
    */
   yearDropdown: string;
+};
+
+export type HNDesignsystemUnsafe_DatePicker = {
+  /**
+   * Åpne datovelger
+   */
+  dateButtonAriaLabel: string;
+  /**
+   * {date}
+   */
+  dayButtonBase: string;
+  /**
+   * I dag, {date}
+   */
+  dayButtonToday: string;
+  /**
+   * {date} valgt
+   */
+  dayButtonSelected: string;
+  /**
+   * Neste måned
+   */
+  nextMonth: string;
+  /**
+   * Forrige måned
+   */
+  previousMonth: string;
+  /**
+   * Velg måned
+   */
+  monthDropdown: string;
+  /**
+   * Velg år
+   */
+  yearDropdown: string;
   /**
    * Gå til i dag
    */
@@ -57,6 +92,62 @@ export type HNDesignsystemDatePicker = {
    * åååå
    */
   yearFormatPlaceholder: string;
+  /**
+   * Åpne datovelger
+   */
+  calendarButtonAriaLabel: string;
+  /**
+   * År må være et tall med 4 siffer
+   */
+  validateDefaultMessageYear: string;
+  /**
+   * Måned må være et tall mellom 01 og 12
+   */
+  validateDefaultMessageMonth: string;
+  /**
+   * Dag må være et tall mellom 01 og 31
+   */
+  validateDefaultMessageDay: string;
+  /**
+   * Nullstill dato
+   */
+  clearButtonAriaLabel: string;
+  /**
+   * Dag
+   */
+  ariaLabelInputDay: string;
+  /**
+   * Måned
+   */
+  ariaLabelInputMonth: string;
+  /**
+   * År
+   */
+  ariaLabelInputYear: string;
+  /**
+   * Time må være et tall mellom 00 og 23
+   */
+  validateDefaultMessageHour: string;
+  /**
+   * Minutt må være et tall mellom 00 og 59
+   */
+  validateDefaultMessageMinute: string;
+  /**
+   * tt
+   */
+  hourFormatPlaceholder: string;
+  /**
+   * mm
+   */
+  minuteFormatPlaceholder: string;
+  /**
+   * Time
+   */
+  ariaLabelInputHour: string;
+  /**
+   * Minutt
+   */
+  ariaLabelInputMinute: string;
 };
 
 /* eslint:enable */

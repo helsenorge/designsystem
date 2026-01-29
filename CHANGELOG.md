@@ -1,3 +1,20 @@
+## [13.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.4.0&targetVersion=GTv13.5.0) (2026-01-21)
+
+
+### Features
+
+* **datepicker:**  beta-versjon av ny komponent ([6ac83f2](https://github.com/helsenorge/designsystem/commit/6ac83f2db1cd46459089a51c18f1934907d09051)), closes [#345238](https://github.com/helsenorge/designsystem/issues/345238)
+* **linklist:**  legger til mulighet for å markere lenke som ekstern ([d12034a](https://github.com/helsenorge/designsystem/commit/d12034a779d107cdc5463e347627f23c98a78e75)), closes [#368889](https://github.com/helsenorge/designsystem/issues/368889)
+
+
+### Bug Fixes
+
+* **datepicker:**  legg til egen sot-tekst-håndtering for ny datepicker ([a50c1c3](https://github.com/helsenorge/designsystem/commit/a50c1c309fd40f31f4903b98afb8c31b865e6da0)), closes [#345238](https://github.com/helsenorge/designsystem/issues/345238)
+* **elementheader:**  justering for både windows og mac ([a6687a7](https://github.com/helsenorge/designsystem/commit/a6687a7b757e4529868bfa5bd3ebb6b7aec72b1d)), closes [#367883](https://github.com/helsenorge/designsystem/issues/367883)
+* **elementheader:**  liten justering på plassering av tekst i elementheader ([b473626](https://github.com/helsenorge/designsystem/commit/b47362698f318e47e2f62a79552c9eb70a513d18)), closes [#367883](https://github.com/helsenorge/designsystem/issues/367883)
+* **helpbubble:**  noen skjermlesere får ikke navigert til teksten ([57221b1](https://github.com/helsenorge/designsystem/commit/57221b172bda3c0e566d6daa77e4764370207d4b)), closes [#365863](https://github.com/helsenorge/designsystem/issues/365863)
+* **panel:**  fjern buggy bredde for PanelTitle ([6735a7c](https://github.com/helsenorge/designsystem/commit/6735a7caffc50c5a3d858a52f43273f589034226)), closes [#369080](https://github.com/helsenorge/designsystem/issues/369080)
+
 ## [13.4.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.3.0&targetVersion=GTv13.4.0) (2025-12-18)
 
 
@@ -197,7 +214,7 @@
 
 *  lib mappen ble ikke med i den publiserte pakken ([1c5409e](https://github.com/helsenorge/designsystem/commit/1c5409eeaf05524c315650ea11a839a70b7dfaa3)), closes [#362474](https://github.com/helsenorge/designsystem/issues/362474)
 
-## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-07)
+## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-06)
 
 ## [12.12.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.1&targetVersion=GTv12.12.1) (2025-11-06)
 

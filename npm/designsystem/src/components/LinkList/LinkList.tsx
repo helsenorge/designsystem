@@ -15,6 +15,7 @@ import { renderElementHeader } from '../ElementHeader/utils';
 import ChevronRight from '../Icons/ChevronRight';
 import ListEditModeItem from '../ListEditMode';
 import { listEditModeWrapperClassnames } from '../ListEditMode/constants';
+import ArrowUpRight from '../Icons/ArrowUpRight';
 
 import LinkListStyles from './styles.module.scss';
 
@@ -70,6 +71,7 @@ export type LinkProps = Modify<
   React.HTMLAttributes<HTMLAnchorElement | HTMLButtonElement>,
   {
     children: React.ReactNode;
+    /** @private Turns chevron icon on/off. Overwritten by LinkList so not possible to set on LinkList.Link */
     chevron?: boolean;
     className?: string;
     icon?: React.ReactElement;
@@ -81,9 +83,7 @@ export type LinkProps = Modify<
     target?: LinkAnchorTargets;
     /** HTML markup for link. Default: a */
     htmlMarkup?: LinkTags;
-    /**
-     * Ref for lenke/knapp
-     */
+    /** Ref for lenke/knapp */
     linkRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement | null>;
     /** Sets the data-testid attribute. */
     testId?: string;
@@ -95,6 +95,8 @@ export type LinkProps = Modify<
     contentId?: string;
     /** Ref passed to the list item element */
     ref?: React.Ref<HTMLLIElement | null>;
+    /** Replaces the chevron with an arrow up right which is used for indicating external links */
+    external?: boolean;
   }
 > &
   Pick<LinkListProps, 'color' | 'size' | 'variant'> &
@@ -121,6 +123,7 @@ export const Link: LinkType = (props: LinkProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     resources, // used by ListEditModeItem in LinkList
     ref,
+    external = false,
     ...restProps
   } = props;
   const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement | null>(linkRef);
@@ -159,6 +162,13 @@ export const Link: LinkType = (props: LinkProps) => {
 
   const imageContainer = <span className={LinkListStyles['link-list__image-container']}>{image}</span>;
 
+  let chevronIcon = undefined;
+  if (external) {
+    chevronIcon = ArrowUpRight;
+  } else if (chevron) {
+    chevronIcon = ChevronRight;
+  }
+
   return editMode ? (
     <div id={contentId} className={liClasses} data-testid={testId} data-analyticsid={AnalyticsId.Link}>
       <div className={linkClasses}>
@@ -167,7 +177,7 @@ export const Link: LinkType = (props: LinkProps) => {
           titleHtmlMarkup: 'span',
           size,
           parentType: 'linklist',
-          chevronIcon: chevron ? ChevronRight : undefined,
+          chevronIcon: chevronIcon,
           icon: icon ?? imageContainer,
           highlightText,
         })}
@@ -189,7 +199,7 @@ export const Link: LinkType = (props: LinkProps) => {
             isHovered,
             size,
             parentType: 'linklist',
-            chevronIcon: chevron ? ChevronRight : undefined,
+            chevronIcon: chevronIcon,
             icon: icon ?? imageContainer,
             highlightText,
           })}
@@ -203,7 +213,7 @@ export const Link: LinkType = (props: LinkProps) => {
               isHovered,
               size,
               parentType: 'linklist',
-              chevronIcon: chevron ? ChevronRight : undefined,
+              chevronIcon: chevronIcon,
               icon: icon ?? imageContainer,
               highlightText,
             })}

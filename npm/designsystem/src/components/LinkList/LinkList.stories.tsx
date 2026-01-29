@@ -16,8 +16,13 @@ import ElementHeader from '../ElementHeader';
 import Icon from '../Icon';
 import AlarmClock from '../Icons/AlarmClock';
 import Bus from '../Icons/Bus';
+import CriticalHealthInfo from '../Icons/CriticalHealthInfo';
+import FemaleDoctor from '../Icons/FemaleDoctor';
+import Group from '../Icons/Group';
+import Hospital from '../Icons/Hospital';
 import Journal from '../Icons/Journal';
 import PaperPlane from '../Icons/PaperPlane';
+import Toolbox from '../Icons/Toolbox';
 import LazyIcon from '../LazyIcon';
 import StatusDot, { StatusDotVariant } from '../StatusDot';
 import Toggle from '../Toggle';
@@ -456,6 +461,129 @@ export const Prototype: Story = {
               target="_blank"
               onDelete={() => onDelete(item.id)}
             >
+              {item.text}
+            </LinkList.Link>
+          ))}
+        </LinkList>
+      </div>
+    );
+  },
+};
+
+export const Forside: Story = {
+  args: {
+    editMode: false,
+    variant: 'fill-negative',
+    chevron: true,
+    color: 'blueberry',
+  },
+  render: args => {
+    const [{ editMode }, setEditMode] = useArgs<LinkListProps>();
+    const toggleEditMode = (): void => setEditMode({ editMode: !editMode });
+
+    const onDelete = (id: string): void => {
+      alert(`Delete ${id}`);
+    };
+
+    const items = [
+      {
+        id: 'pasientreiser',
+        href: 'https://www.helsenorge.no',
+        text: 'Pasientreiser',
+        icon: Bus,
+      },
+      { id: 'pasientjournal', htmlMarkup: 'button', text: 'Pasientjournal', icon: Journal },
+      {
+        id: 'fullmakter',
+        href: 'https://www.helsenorge.no',
+        text: 'Fullmakter',
+        icon: Group,
+      },
+      {
+        id: 'vbs',
+        href: 'https://www.helsenorge.no',
+        text: 'Velg behandlingssted',
+        icon: Hospital,
+      },
+      {
+        id: 'fastlegen',
+        href: 'https://www.helsenorge.no',
+        text: 'Fastlegen',
+        icon: FemaleDoctor,
+      },
+      {
+        id: 'sykdom',
+        href: 'https://www.helsenorge.no',
+        text: 'Sykdom og kritisk info',
+        icon: CriticalHealthInfo,
+      },
+      {
+        id: 'verktøy',
+        href: 'https://www.helsenorge.no',
+        text: 'Verktøy',
+        icon: Toolbox,
+      },
+    ];
+    return (
+      <div style={{ backgroundColor: palette.blueberry50, padding: '1rem' }}>
+        <Toggle checked={editMode} onChange={toggleEditMode} label={[{ text: 'Redigeringsmodus' }]} />
+        <br />
+        <br />
+        <LinkList {...args}>
+          {items.map(item => (
+            <LinkList.Link
+              key={item.id}
+              icon={<Icon svgIcon={item.icon} />}
+              href={item.href}
+              target="_blank"
+              onDelete={() => onDelete(item.id)}
+            >
+              {item.text}
+            </LinkList.Link>
+          ))}
+        </LinkList>
+      </div>
+    );
+  },
+};
+
+export const WithExternalLinks: Story = {
+  args: {
+    editMode: false,
+    variant: 'fill-negative',
+    chevron: true,
+    color: 'blueberry',
+  },
+  render: args => {
+    const items = [
+      {
+        id: 'pasientreiser',
+        href: 'https://www.helsenorge.no',
+        text: 'Pasientreiser',
+        icon: Bus,
+        external: false,
+      },
+      { id: 'exorlive', htmlMarkup: 'button', text: 'Exorlive - treningsprogram', icon: Journal, external: true },
+      {
+        id: 'fastlegen',
+        href: 'https://www.helsenorge.no',
+        text: 'Fastlegen',
+        icon: FemaleDoctor,
+        external: false,
+      },
+      {
+        id: 'verktøy',
+        href: 'https://www.helsenorge.no',
+        text: 'ExorLive - treningsprogram',
+        icon: Toolbox,
+        external: true,
+      },
+    ];
+    return (
+      <div style={{ backgroundColor: palette.blueberry50, padding: '1rem' }}>
+        <LinkList {...args}>
+          {items.map(item => (
+            <LinkList.Link key={item.id} icon={<Icon svgIcon={item.icon} />} href={item.href} target="_blank" external={item.external}>
               {item.text}
             </LinkList.Link>
           ))}
