@@ -2,7 +2,7 @@
   "name": "@helsenorge/datepicker",
   "sideEffects": false,
   "private": false,
-  "version": "13.4.0",
+  "version": "13.5.0",
   "description": "The official Helsenorge datepicker.",
   "repository": {
     "type": "git",
@@ -62,6 +62,7 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.16",
     "react-day-picker": "^9.4.1"
   },
   "devDependencies": {

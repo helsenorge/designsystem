@@ -1,0 +1,18 @@
+.date-and-time {
+  &--fieldset {
+    //   overstyr fieldset styling fra browser
+    all: unset;
+
+    // styling med legend
+    // @todo: trengs dette?
+    display: flex;
+    flex-flow: column;
+    gap: 1.5rem;
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+}

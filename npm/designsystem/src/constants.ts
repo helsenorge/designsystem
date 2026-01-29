@@ -149,6 +149,7 @@ export enum KeyboardEventKey {
   End = 'End',
   Space = ' ',
   Tab = 'Tab',
+  Backspace = 'Backspace',
 }
 
 export enum LanguageLocales {

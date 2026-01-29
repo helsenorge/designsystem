@@ -44,6 +44,9 @@ stages:
           - script: npm run build --workspace=npm/build-tools
             displayName: Build frankenstein-build-tools
 
+          - script: npm run build --workspace=@helsenorge/datepicker
+            displayName: Build @helsenorge/datepicker
+
           - script: npm run build-storybook --workspace=npm/designsystem -- -o dist/$(branchName)
             displayName: Build Storybook
             env:
