@@ -21,12 +21,10 @@ import Loader from '@helsenorge/designsystem-react/components/Loader';
 
 import { LanguageLocales, useLanguage } from '@helsenorge/designsystem-react';
 
-// eslint-disable-next-line import/order
 import { CustomCaptionLabel, CustomDropdown, CustomNextButton, CustomPreviousButton } from './CustomComponents';
+import { getResources } from '../resourceHelper';
 
 // import { matchesDayObjectMatcher } from './utils';
-
-import { getResources } from '../resourceHelper';
 
 import customstyles from './BaseDayPicker.module.scss';
 
