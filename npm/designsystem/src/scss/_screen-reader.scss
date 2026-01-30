@@ -45,9 +45,6 @@
 	@note Useful for skip links 
 	@see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
 	@note Based on a HTML5 Boilerplate technique, included in Bootstrap
-	@note Fixed a bug with position: static on iOS 10.0.2 + VoiceOver
-		@author Sylvain Pigeard
-		@see https://github.com/twbs/bootstrap/issues/20732
 */
 @mixin sr-only-focusable() {
   &:active,

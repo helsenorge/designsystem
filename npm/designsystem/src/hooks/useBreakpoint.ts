@@ -38,27 +38,17 @@ export const useBreakpoint = (): Breakpoint => {
   useEffect(() => {
     const mediaQueryList = Object.values(screen).map(mediaQuery => {
       const mq = window.matchMedia(mediaQuery);
-      // iOS <=13 har ikke støtte for addEventListener/removeEventListener på MediaQueryList,
-      // men har støtte for addListener
       const handler = (): void => {
         setBreakpoint(getCurrentBreakpoint());
       };
 
-      if (mq.addEventListener) {
-        mq.addEventListener('change', handler);
-      } else if (mq.addListener) {
-        mq.addListener(handler);
-      }
+      mq.addEventListener('change', handler);
       return { mq, handler };
     });
 
     return (): void => {
       mediaQueryList.forEach(({ mq, handler }) => {
-        if (mq.removeEventListener) {
-          mq.removeEventListener('change', handler);
-        } else if (mq.removeListener) {
-          mq.removeListener(handler);
-        }
+        mq.removeEventListener('change', handler);
       });
     };
   }, []);
