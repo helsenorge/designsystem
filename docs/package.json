@@ -28,8 +28,8 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.2.3",
     "@types/react-dom": "^19.2.3",
-    "@vitest/coverage-v8": "^3.1.2",
+    "@vitest/coverage-v8": "^4.0.18",
     "jsdom": "^26.0.0",
-    "vitest": "^3.1.2"
+    "vitest": "^4.0.18"
   }
 }

@@ -14,6 +14,7 @@ export default defineConfig({
       enabled: true,
       provider: 'istanbul',
       reporter: ['cobertura', 'lcov', 'json'],
+      exclude: ['node_modules/', 'vitest.setup.ts', '**/*.stories.tsx', '**/*.stories.mdx'],
     },
     reporters: ['default', 'junit'],
     outputFile: {
