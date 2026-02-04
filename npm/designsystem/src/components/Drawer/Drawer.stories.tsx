@@ -68,7 +68,6 @@ const meta = {
   },
   argTypes: {
     ariaLabel: { control: 'text' },
-    ariaLabelCloseBtn: { control: 'text' },
     ariaLabelledBy: { control: 'text' },
     children: { control: 'text' },
     desktopDirection: { control: 'select', options: ['left', 'right'] },

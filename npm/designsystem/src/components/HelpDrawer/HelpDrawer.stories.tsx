@@ -27,8 +27,6 @@ const meta = {
     title: 'Hvorfor må jeg oppgi årsak for å få dekket reise under 10 km?',
   },
   argTypes: {
-    ariaLabel: { control: 'text' },
-    ariaLabelCloseBtn: { control: 'text' },
     ariaLabelledBy: { control: 'text' },
     children: { control: 'text' },
     isOpen: { control: 'boolean' },
