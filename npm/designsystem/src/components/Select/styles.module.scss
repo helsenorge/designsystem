@@ -57,6 +57,7 @@
   grid-column: 1 / 3;
   grid-row: 1;
   padding-left: spacers.getSpacer(xs);
+  padding-right: 2.5rem;
   border: none;
   outline: palette.$neutral700 solid 2px;
   outline-offset: -2px;
@@ -64,6 +65,7 @@
   font-size: font-settings.$font-size-sm;
   line-height: font-settings.$lineheight-size-sm;
   border-radius: 0;
+  text-overflow: ellipsis;
 
   @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
     height: calc(3rem + 0.25rem); // 48px height + 4px border
