@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 
 export interface HelpDrawerProps extends Pick<
   DrawerProps,
-  'ariaLabel' | 'ariaLabelledBy' | 'children' | 'isOpen' | 'onRequestClose' | 'title' | 'titleHtmlMarkup' | 'titleId' | 'zIndex'
+  'ariaLabelledBy' | 'children' | 'isOpen' | 'onRequestClose' | 'title' | 'titleHtmlMarkup' | 'titleId' | 'zIndex'
 > {
   /** Resources for the component */
   resources?: Partial<HNDesignsystemHelpDrawer>;
@@ -25,7 +25,7 @@ const HelpDrawer: React.FC<HelpDrawerProps> = props => {
   const mergedResources: HNDesignsystemHelpDrawer = {
     ...defaultResources,
     ...resources,
-    ariaLabel: props.ariaLabel ?? props.resources?.ariaLabel ?? defaultResources.ariaLabel,
+    ariaLabel: props.resources?.ariaLabel ?? defaultResources.ariaLabel,
   };
 
   return (
