@@ -33,9 +33,6 @@ const meta = {
     maxCharacters: {
       control: 'number',
     },
-    maxText: {
-      control: 'text',
-    },
     width: {
       control: 'number',
     },

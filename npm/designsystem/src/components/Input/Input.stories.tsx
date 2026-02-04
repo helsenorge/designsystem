@@ -82,9 +82,6 @@ const meta = {
     maxCharacters: {
       control: 'number',
     },
-    maxText: {
-      control: 'text',
-    },
     inputMode: {
       control: 'select',
       options: ['decimal', 'email', 'none', 'numeric', 'search', 'tel', 'text', 'url'],
