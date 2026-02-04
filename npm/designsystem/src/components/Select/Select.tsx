@@ -6,7 +6,7 @@ import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, IconSize } from '
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import Icon from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
 import { renderLabel } from '../Label';
@@ -16,7 +16,8 @@ import selectStyles from './styles.module.scss';
 type SelectConcept = 'normal' | 'transparent';
 
 export interface SelectProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.SelectHTMLAttributes<HTMLSelectElement>,
       'aria-describedby' | 'name' | 'disabled' | 'required' | 'value' | 'onChange' | 'autoComplete'

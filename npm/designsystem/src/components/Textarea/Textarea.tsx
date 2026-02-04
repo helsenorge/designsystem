@@ -2,21 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import cn from 'classnames';
 
+import type { HNDesignsystemTextArea } from '../../resources/Resources';
+
 import { getResources } from './resourceHelper';
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, LanguageLocales } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
-import { HNDesignsystemTextArea } from '../../resources/Resources';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { useLanguage } from '../../utils/language';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import { renderLabel } from '../Label';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';
 
 export interface TextareaProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLTextAreaElement>,
       | 'aria-describedby'

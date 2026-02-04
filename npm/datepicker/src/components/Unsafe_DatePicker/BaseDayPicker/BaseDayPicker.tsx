@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 
 import classNames from 'classnames';
-import { isSameDay, Locale } from 'date-fns';
+import { isSameDay, type Locale } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import {
   // CalendarDay,
   DayPicker,
-  DayPickerProps,
-  Labels,
-  Matcher,
-  Modifiers,
+  type DayPickerProps,
+  type Labels,
+  type Matcher,
+  type Modifiers,
   MonthGrid,
-  MonthGridProps,
+  type MonthGridProps,
   useDayPicker,
 } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
+
+import type { HNDesignsystemUnsafe_DatePicker } from '../../../resources/Resources';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 // import HelpBubble from '@helsenorge/designsystem-react/components/HelpBubble';
@@ -25,7 +27,6 @@ import { LanguageLocales } from '@helsenorge/designsystem-react';
 
 import { CustomCaptionLabel, CustomDropdown, CustomNextButton, CustomPreviousButton } from './CustomComponents';
 // import { matchesDayObjectMatcher } from './utils';
-import { HNDesignsystemUnsafe_DatePicker } from '../../../resources/Resources';
 import { getResources } from '../resourceHelper';
 
 import customstyles from './BaseDayPicker.module.scss';
@@ -45,8 +46,10 @@ export type DatePickerModifiers = {
 //   text: string;
 // };
 
-export interface BaseDayPickerProps
-  extends Pick<DayPickerProps, 'startMonth' | 'endMonth' | 'captionLayout' | 'footer' | 'fixedWeeks' | 'animate'> {
+export interface BaseDayPickerProps extends Pick<
+  DayPickerProps,
+  'startMonth' | 'endMonth' | 'captionLayout' | 'footer' | 'fixedWeeks' | 'animate'
+> {
   /** The currenlty selected date in the calendar */
   selectedDate?: Date;
   /** Callback for change in selected date */

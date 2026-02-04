@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
+import type { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import { usePseudoClasses } from '@helsenorge/designsystem-react/hooks/usePseudoClasses';
 import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
@@ -10,7 +10,8 @@ import styles from './styles.module.scss';
 export type TimeUnit = 'hours' | 'minutes';
 
 export interface DateTimeProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       'name' | 'aria-describedby' | 'aria-labelledby' | 'onBlur' | 'onChange' | 'disabled' | 'autoComplete'

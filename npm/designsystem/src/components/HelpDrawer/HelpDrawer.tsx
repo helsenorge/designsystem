@@ -1,27 +1,27 @@
-import React from 'react';
+import type React from 'react';
+
+import type { HNDesignsystemHelpDrawer } from '../../resources/Resources';
 
 import { getResources } from './resourceHelper';
 import { LanguageLocales } from '../../constants';
-import { HNDesignsystemHelpDrawer } from '../../resources/Resources';
 import { useLanguage } from '../../utils/language';
-import Drawer, { DrawerProps } from '../Drawer';
+import Drawer, { type DrawerProps } from '../Drawer';
 
 import styles from './styles.module.scss';
 
-export interface HelpDrawerProps
-  extends Pick<
-    DrawerProps,
-    | 'ariaLabel'
-    | 'ariaLabelledBy'
-    | 'ariaLabelCloseBtn'
-    | 'children'
-    | 'isOpen'
-    | 'onRequestClose'
-    | 'title'
-    | 'titleHtmlMarkup'
-    | 'titleId'
-    | 'zIndex'
-  > {
+export interface HelpDrawerProps extends Pick<
+  DrawerProps,
+  | 'ariaLabel'
+  | 'ariaLabelledBy'
+  | 'ariaLabelCloseBtn'
+  | 'children'
+  | 'isOpen'
+  | 'onRequestClose'
+  | 'title'
+  | 'titleHtmlMarkup'
+  | 'titleId'
+  | 'zIndex'
+> {
   /** Resources for the component */
   resources?: Partial<HNDesignsystemHelpDrawer>;
   /** Sets the data-testid attribute. */

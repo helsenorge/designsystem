@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
-import { Locale, format } from 'date-fns';
+import { type Locale, format } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { DayPicker, DayPickerProps, PropsSingle, Labels } from 'react-day-picker';
+import { DayPicker, type DayPickerProps, type PropsSingle, type Labels } from 'react-day-picker';
 import reactdaypickerstyles from 'react-day-picker/dist/style.module.css';
 
 import { PopOverVariant } from '@helsenorge/designsystem-react/components/PopOver';
@@ -47,10 +47,8 @@ export interface DatePickerAriaLabels {
 }
 
 interface DatePickerPopupProps
-  extends Pick<
-      DayPickerProps,
-      'dir' | 'disabled' | 'footer' | 'startMonth' | 'initialFocus' | 'locale' | 'month' | 'onMonthChange' | 'endMonth'
-    >,
+  extends
+    Pick<DayPickerProps, 'dir' | 'disabled' | 'footer' | 'startMonth' | 'initialFocus' | 'locale' | 'month' | 'onMonthChange' | 'endMonth'>,
     Pick<PropsSingle, 'selected' | 'onSelect'> {
   ariaLabels?: DatePickerAriaLabels;
   datepickerWrapperRef: React.RefObject<HTMLDivElement>;

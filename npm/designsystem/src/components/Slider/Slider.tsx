@@ -8,7 +8,7 @@ import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { useSize } from '../../hooks/useSize';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import Title from '../Title';
 
 import styles from './styles.module.scss';
@@ -39,8 +39,7 @@ export type SliderStep = {
 };
 
 export interface SliderProps
-  extends ErrorWrapperClassNameProps,
-    Pick<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'onChange' | 'onBlur'> {
+  extends ErrorWrapperClassNameProps, Pick<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'onChange' | 'onBlur'> {
   /** Activates Error style for the input */
   error?: boolean;
   /** Error text to show above the component */

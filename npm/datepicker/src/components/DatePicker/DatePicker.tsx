@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-import { Locale, format, isValid, parse } from 'date-fns';
+import { type Locale, format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
-import { Modifiers, DayOfWeek, DayPickerProps, PropsSingle } from 'react-day-picker';
+
+import type { HNDesignsystemDatePicker } from '../../resources/Resources';
+import type { Modifiers, DayOfWeek, DayPickerProps, PropsSingle } from 'react-day-picker';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
-import { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
+import type { ErrorWrapperClassNameProps } from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
 import Input from '@helsenorge/designsystem-react/components/Input';
@@ -18,16 +20,16 @@ import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
 import { isMobileUA } from '@helsenorge/designsystem-react/utils/mobile';
 import { isMutableRefObject, mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
-import DatePickerPopup, { DatePickerAriaLabels } from './DatePickerPopup';
+import DatePickerPopup, { type DatePickerAriaLabels } from './DatePickerPopup';
 import { getResources } from './resourceHelper';
-import { HNDesignsystemDatePicker } from '../../resources/Resources';
 
 import styles from './styles.module.scss';
 
 export type DateFormat = 'dd.MM.yyyy';
 
 export interface DatePickerProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<React.InputHTMLAttributes<HTMLInputElement>, 'name' | 'aria-describedby' | 'onBlur' | 'autoComplete'>,
     Pick<DayPickerProps, 'dir' | 'initialFocus'> {
   /** Setter labels for popup på desktop visning */

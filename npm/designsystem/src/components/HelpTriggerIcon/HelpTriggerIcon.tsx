@@ -16,8 +16,10 @@ export type HelpTriggerIconTags = 'button' | 'span';
 
 export type HelpTriggerWeights = 'normal' | 'strong';
 
-export interface HelpTriggerIconProps
-  extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'aria-haspopup' | 'aria-controls' | 'aria-expanded'> {
+export interface HelpTriggerIconProps extends Pick<
+  React.InputHTMLAttributes<HTMLButtonElement>,
+  'onClick' | 'aria-haspopup' | 'aria-controls' | 'aria-expanded'
+> {
   /**
    * Sets aria-label of the trigger. ariaLabel or ariaLabelledById MUST be set!
    */

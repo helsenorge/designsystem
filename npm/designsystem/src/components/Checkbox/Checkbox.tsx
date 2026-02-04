@@ -9,7 +9,7 @@ import { getColor } from '../../theme/currys/color';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { isMutableRefObject, mergeRefs } from '../../utils/refs';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
 import Icon from '../Icon';
 import Check from '../Icons/Check';
 import { getLabelText, renderLabelAsParent } from '../Label';
@@ -17,7 +17,8 @@ import { getLabelText, renderLabelAsParent } from '../Label';
 import checkboxStyles from './styles.module.scss';
 
 export interface CheckboxProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       'aria-describedby' | 'name' | 'value' | 'disabled' | 'checked' | 'required' | 'onChange'

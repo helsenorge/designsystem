@@ -2,18 +2,19 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
+import type { HNDesignsystemInput } from '../../resources/Resources';
+import type { IconName } from '../Icons/IconNames';
+
 import { getResources } from './resourceHelper';
 import { FormOnColor, FormSize, AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, LanguageLocales } from '../../constants';
 import { Breakpoint, useBreakpoint } from '../../hooks/useBreakpoint';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
-import { HNDesignsystemInput } from '../../resources/Resources';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
 import { useLanguage } from '../../utils/language';
 import { mergeRefs } from '../../utils/refs';
-import ErrorWrapper, { ErrorWrapperClassNameProps } from '../ErrorWrapper';
-import Icon, { IconSize, SvgIcon } from '../Icon';
-import { IconName } from '../Icons/IconNames';
+import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import Icon, { IconSize, type SvgIcon } from '../Icon';
 import { renderLabel } from '../Label';
 import LazyIcon from '../LazyIcon';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
@@ -21,7 +22,8 @@ import MaxCharacters from '../MaxCharacters/MaxCharacters';
 import styles from './styles.module.scss';
 
 export interface InputProps
-  extends ErrorWrapperClassNameProps,
+  extends
+    ErrorWrapperClassNameProps,
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       | 'disabled'

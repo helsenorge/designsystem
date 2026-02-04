@@ -6,12 +6,14 @@ import { AnalyticsId } from '../../constants';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
 import { mergeRefs } from '../../utils/refs';
-import { HelpTriggerIconInternal, HelpTriggerWeights } from '../HelpTriggerIcon';
+import { HelpTriggerIconInternal, type HelpTriggerWeights } from '../HelpTriggerIcon';
 
 import styles from './styles.module.scss';
 
-export interface HelpTriggerInlineProps
-  extends Pick<React.InputHTMLAttributes<HTMLButtonElement>, 'onClick' | 'aria-haspopup' | 'aria-controls' | 'aria-expanded'> {
+export interface HelpTriggerInlineProps extends Pick<
+  React.InputHTMLAttributes<HTMLButtonElement>,
+  'onClick' | 'aria-haspopup' | 'aria-controls' | 'aria-expanded'
+> {
   /**
    * Sets aria-label of the trigger. ariaLabel or ariaLabelledById MUST be set!
    */

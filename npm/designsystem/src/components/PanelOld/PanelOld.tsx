@@ -2,13 +2,13 @@ import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
-import { AnchorTarget, AnalyticsId } from '../../constants';
+import { type AnchorTarget, AnalyticsId } from '../../constants';
 import { useExpand } from '../../hooks/useExpand';
 import { palette } from '../../theme/palette';
-import { AriaLabelAttributes, getAriaLabelAttributes } from '../../utils/accessibility';
+import { type AriaLabelAttributes, getAriaLabelAttributes } from '../../utils/accessibility';
 import Badge from '../Badge';
-import Button, { ButtonProps, ButtonTags } from '../Button';
-import Icon, { IconSize, SvgPathProps } from '../Icon';
+import Button, { type ButtonProps, type ButtonTags } from '../Button';
+import Icon, { IconSize, type SvgPathProps } from '../Icon';
 import AlertSignFill from '../Icons/AlertSignFill';
 import ArrowRight from '../Icons/ArrowRight';
 import Calendar from '../Icons/Calendar';
@@ -16,7 +16,7 @@ import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
 import Pencil from '../Icons/Pencil';
 import Watch from '../Icons/Watch';
-import Title, { TitleTags } from '../Title';
+import Title, { type TitleTags } from '../Title';
 
 import panelStyles from './styles.module.scss';
 
@@ -103,8 +103,10 @@ export interface PanelOldProps {
   target?: AnchorTarget;
 }
 
-export interface LayoutProps
-  extends Pick<PanelOldProps, 'contentA' | 'contentB' | 'contentHeader' | 'icon' | 'layout' | 'status' | 'statusMessage'> {
+export interface LayoutProps extends Pick<
+  PanelOldProps,
+  'contentA' | 'contentB' | 'contentHeader' | 'icon' | 'layout' | 'status' | 'statusMessage'
+> {
   ctaContainer?: React.ReactNode;
   titleElement: React.ReactNode;
 }
