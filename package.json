@@ -39,7 +39,7 @@
     "stylelint": "npm run -ws --if-present stylelint",
     "stylelint:fix": "npm run -ws --if-present stylelint:fix",
     "typecheck": "npm run -ws --if-present typecheck",
-    "test": "npm run -ws --if-present test -- --run",
+    "test": "npm run -ws --if-present test -- --run && echo '\n✅ All tests passed' || (echo '\n❌ Tests failed in one or more packages' && exit 1)",
     "posttest": "node ./scripts/aggregate-packages-coverage.cjs && nyc report --reporter lcov",
     "─── release prep ───": "echo prep",
     "release:prepare": "npm-run-all -s build validate test release:verify",

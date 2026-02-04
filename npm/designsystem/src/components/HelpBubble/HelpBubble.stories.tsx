@@ -35,9 +35,6 @@ const meta = {
     showBubble: true,
   },
   argTypes: {
-    ariaLabel: {
-      control: 'text',
-    },
     ariaLabelledById: {
       control: 'text',
     },

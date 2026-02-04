@@ -51,6 +51,8 @@ export interface DuolistGroupProps {
   separator?: string;
   /** Sets content of the <dt> tag. */
   term: React.ReactNode;
+  /** Sets the data-testid attribute. */
+  testId?: string;
 }
 
 export const DuolistGroup: React.FC<DuolistGroupProps> = props => {
@@ -72,10 +74,16 @@ export const DuolistGroup: React.FC<DuolistGroupProps> = props => {
   const renderContent = () => {
     return (
       <>
-        <dt data-separator={nonFormatted ? separator : undefined} className={dtClassNames}>
+        <dt
+          data-separator={nonFormatted ? separator : undefined}
+          className={dtClassNames}
+          data-testid={props.testId && `${props.testId}-term`}
+        >
           {term}
         </dt>
-        <dd className={ddClassNames}>{description}</dd>
+        <dd className={ddClassNames} data-testid={props.testId && `${props.testId}-description`}>
+          {description}
+        </dd>
       </>
     );
   };
@@ -139,6 +147,7 @@ export const Duolist: React.FC<DuolistProps> = props => {
           const duolistGroup = child as React.ReactElement<DuolistGroupProps>;
           if (duolistGroup.type === DuolistGroup) {
             return React.cloneElement(child as React.ReactElement<DuolistGroupProps>, {
+              ...duolistGroup.props,
               boldColumn: duolistGroup.props.boldColumn ?? boldColumn,
               format: duolistGroup.props.format ?? format,
               separator: duolistGroup.props.separator ?? separator,
