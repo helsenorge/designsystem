@@ -173,3 +173,17 @@ export const WithHighlighter: Story = {
     </Highlighter>
   ),
 };
+
+export const WithTestid: Story = {
+  args: {
+    testId: 'duolist-test-id',
+  },
+  render: args => (
+    <Duolist {...args}>
+      <DuolistGroup term={'Term'} description={'Description'} testId="group1" />
+      <DuolistGroup term={'Term'} description={'Description'} testId="group2" />
+      <DuolistGroup term={'Term'} description={'Description'} testId="group3" />
+      <DuolistGroup term={'Term'} description={'Description'} testId="group4" />
+    </Duolist>
+  ),
+};
