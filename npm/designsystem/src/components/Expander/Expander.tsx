@@ -164,12 +164,17 @@ const Expander: React.FC<ExpanderProps> = props => {
       size === ExpanderSize.large && styles[`expander__content--${color || 'neutral'}`],
       size === ExpanderSize.large && icon && styles['expander__content--icon'],
       isExpanded && styles['expander__content--expanded'],
-      size === ExpanderSize.small && !noNestedLine && styles['expander__content--nested-line'],
+      size === ExpanderSize.small && !noNestedLine && styles['expander__content--nested-line--inner'],
       { [styles['expander__content--sticky']]: isSticky },
       contentClassNames
     );
+    const leftBorderClassName = classNames(size === ExpanderSize.small && !noNestedLine && styles['expander__content--nested-line--outer']);
 
-    return <div className={contentClassName}>{children}</div>;
+    return (
+      <div className={leftBorderClassName}>
+        <div className={contentClassName}>{children}</div>
+      </div>
+    );
   };
 
   return (

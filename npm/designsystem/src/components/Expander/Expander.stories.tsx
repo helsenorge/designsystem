@@ -4,6 +4,7 @@ import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import Expander, { ExpanderSize } from './Expander';
+import ExpanderList from '../ExpanderList';
 import LawBook from '../Icons/LawBook';
 import Loader from '../Loader';
 import { Overlay } from '../Loader/Loader';
@@ -168,6 +169,17 @@ export const WithCallback: Story = {
   render: args => (
     <Expander {...args}>
       <p>Sjekk nettleserkonsollen</p>
+    </Expander>
+  ),
+};
+
+export const WithComponentsInside: Story = {
+  render: args => (
+    <Expander {...args}>
+      <ExpanderList>
+        <ExpanderList.Expander title="Første expander">{'Første punkt i en liste'}</ExpanderList.Expander>
+        <ExpanderList.Expander title="Andre expander">{'Andre punkt i en liste'}</ExpanderList.Expander>
+      </ExpanderList>
     </Expander>
   ),
 };
