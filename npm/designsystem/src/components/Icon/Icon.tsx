@@ -27,7 +27,7 @@ export interface BaseIconProps {
   /** Sets the data-testid attribute. */
   testId?: string;
   /** Ref that is passed to the component */
-  ref?: React.Ref<SVGSVGElement | null>;
+  ref?: React.Ref<SVGSVGElement>;
 }
 
 export interface IconProps extends BaseIconProps {

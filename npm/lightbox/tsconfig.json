@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["vitest/globals", "vitest/jsdom"]
+    "types": ["vitest/globals", "vitest/jsdom", "node"]
   },
   "include": ["src"],
   "exclude": ["**/*.test.snap.tsx"],

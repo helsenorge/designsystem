@@ -78,7 +78,7 @@ export const SingleSelectItem: React.FC<SingleSelectItemProps> = props => {
   const componentProps = asChild
     ? {
         ref: asChildSlotRef,
-        elementRef: ref as React.Ref<HTMLElement>,
+        elementRef: ref,
         className: contentClasses,
         disabled: isDisabled,
         onSelect: (e: React.SyntheticEvent): void => selectThis(e),
@@ -100,7 +100,7 @@ export const SingleSelectItem: React.FC<SingleSelectItemProps> = props => {
             selectThis(e);
           }
         },
-        ref: ref as React.Ref<HTMLButtonElement>,
+        ref: ref,
         'aria-disabled': isDisabled || undefined,
         'aria-current': isSelected ? 'true' : undefined,
         children: content,

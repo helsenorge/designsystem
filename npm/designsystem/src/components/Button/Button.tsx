@@ -129,7 +129,7 @@ const Button: React.FC<ButtonProps> = props => {
     ...restProps
   } = props;
   const [leftIcon, rightIcon, restChildren] = useIcons(React.Children.toArray(children));
-  const { refObject, isHovered } = usePseudoClasses<HTMLElement | null>(ref);
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement | null>(ref);
   const buttonContentRef = useRef<HTMLDivElement>(null);
   const onlyIcon = !!(leftIcon || rightIcon) && !restChildren;
   const bothIcons = leftIcon && (rightIcon || arrow) && !onlyIcon;
@@ -236,7 +236,7 @@ const Button: React.FC<ButtonProps> = props => {
           data-testid={testId}
           data-analyticsid={AnalyticsId.Button}
           className={buttonWrapperClasses}
-          ref={refObject as React.Ref<HTMLButtonElement>}
+          ref={refObject as React.RefObject<HTMLButtonElement>}
           tabIndex={tabIndex}
           type={type}
           {...rest}
@@ -255,7 +255,7 @@ const Button: React.FC<ButtonProps> = props => {
           href={href}
           target={target}
           rel={target === '_blank' ? 'noopener noreferrer' : props.rel}
-          ref={refObject as React.Ref<HTMLAnchorElement>}
+          ref={refObject as React.RefObject<HTMLAnchorElement>}
           tabIndex={tabIndex}
           {...restProps}
         >

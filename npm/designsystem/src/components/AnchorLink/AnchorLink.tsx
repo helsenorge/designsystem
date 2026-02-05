@@ -75,11 +75,7 @@ const AnchorLink: React.FC<AnchorLinkProps> = props => {
 
   if (asChild) {
     return (
-      <AsChildSlot
-        content={<span className={anchorClasses} />}
-        className={AnchorLinkStyles['anchorlink-wrapper']}
-        elementRef={refObject as React.Ref<HTMLElement>}
-      >
+      <AsChildSlot content={<span className={anchorClasses} />} className={AnchorLinkStyles['anchorlink-wrapper']} elementRef={refObject}>
         {children}
       </AsChildSlot>
     );
