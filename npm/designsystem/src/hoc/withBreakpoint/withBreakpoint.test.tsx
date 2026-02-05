@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render, screen } from '@testing-library/react';
-import { when } from 'jest-when';
 
 import type { BreakpointProps } from './withBreakpoint';
 
@@ -31,9 +30,11 @@ describe('Gitt at withBreakpoint skal vises', (): void => {
   });
   describe('Når skjermbredden er xl', (): void => {
     test('Så er returnerer withBreakpoint xl breakpoint', (): void => {
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.xl)
-        .mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+      mockWindowMatchMedia.mockImplementation(query => ({
+        matches: query === themeScreen.xl,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      }));
 
       render(<ExampleWithBreakpoint />);
 
@@ -42,12 +43,11 @@ describe('Gitt at withBreakpoint skal vises', (): void => {
   });
   describe('Når skjermbredden er lg', (): void => {
     test('Så er returnerer withBreakpoint lg breakpoint', (): void => {
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.xl)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.lg)
-        .mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+      mockWindowMatchMedia.mockImplementation(query => ({
+        matches: query === themeScreen.lg,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      }));
 
       render(<ExampleWithBreakpoint />);
 
@@ -56,15 +56,11 @@ describe('Gitt at withBreakpoint skal vises', (): void => {
   });
   describe('Når skjermbredden er md', (): void => {
     test('Så er returnerer withBreakpoint md breakpoint', (): void => {
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.xl)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.lg)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.md)
-        .mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+      mockWindowMatchMedia.mockImplementation(query => ({
+        matches: query === themeScreen.md,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      }));
 
       render(<ExampleWithBreakpoint />);
 
@@ -73,18 +69,11 @@ describe('Gitt at withBreakpoint skal vises', (): void => {
   });
   describe('Når skjermbredden er sm', (): void => {
     test('Så er returnerer withBreakpoint sm breakpoint', (): void => {
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.xl)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.lg)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.md)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.sm)
-        .mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+      mockWindowMatchMedia.mockImplementation(query => ({
+        matches: query === themeScreen.sm,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      }));
 
       render(<ExampleWithBreakpoint />);
 
@@ -93,21 +82,11 @@ describe('Gitt at withBreakpoint skal vises', (): void => {
   });
   describe('Når skjermbredden er xs', (): void => {
     test('Så er returnerer withBreakpoint xs breakpoint', (): void => {
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.xl)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.lg)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.md)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.sm)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.xs)
-        .mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+      mockWindowMatchMedia.mockImplementation(query => ({
+        matches: query === themeScreen.xs,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      }));
 
       render(<ExampleWithBreakpoint />);
 
@@ -116,24 +95,11 @@ describe('Gitt at withBreakpoint skal vises', (): void => {
   });
   describe('Når skjermbredden er xxs', (): void => {
     test('Så er returnerer withBreakpoint xxs breakpoint', (): void => {
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.xl)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.lg)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.md)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.sm)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.xs)
-        .mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() });
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.xxs)
-        .mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+      mockWindowMatchMedia.mockImplementation(query => ({
+        matches: query === themeScreen.xxs,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      }));
 
       render(<ExampleWithBreakpoint />);
 
@@ -142,9 +108,11 @@ describe('Gitt at withBreakpoint skal vises', (): void => {
   });
   describe('Når komponenten er klassebasert', (): void => {
     test('Så er returnerer withBreakpoint breakpoint', (): void => {
-      when(mockWindowMatchMedia)
-        .calledWith(themeScreen.xl)
-        .mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+      mockWindowMatchMedia.mockImplementation(query => ({
+        matches: query === themeScreen.xl,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      }));
 
       render(<ClassExampleWithBreakpoint />);
 
