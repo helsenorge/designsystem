@@ -146,7 +146,7 @@ const Toggle: React.FC<ToggleProps> = ({
           onChange={handleChange}
           className={styles['toggle-container__input']}
           aria-label={label.map(l => l.text).join(' ')}
-          aria-describedby={`${subLabel ? subLabelId + ' ' : undefined} ${statusText ? toggleId + '-status' : undefined}`}
+          aria-describedby={[subLabel ? subLabelId : null, statusText ? toggleId + '-status' : null].filter(Boolean).join(' ') || undefined}
           role="switch"
         />
         <span id={toggleId} ref={toggleRef} className={toggleClassNames} aria-hidden="true">
