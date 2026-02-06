@@ -182,5 +182,11 @@
       column-gap: var(--core-space-2xs) 0;
       padding: var(--core-space-2xs) 0;
     }
+
+    // Hack in order to not cut the buttons on iOS in app browser from iOS 26
+    // Selector targets iOS
+    @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+      padding-bottom: 2.5rem;
+    }
   }
 }
