@@ -4,6 +4,7 @@ import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
 import FormGroup from './FormGroup';
+import { allTitleTags } from '../../../.storybook/knobs';
 import { mapToBackgoundColor } from '../../../.storybook/StoryBackground';
 import Spacer from '../../components/Spacer';
 import { FormOnColor, FormSize } from '../../constants';
@@ -53,6 +54,14 @@ const meta = {
     },
     name: {
       control: 'text',
+    },
+    legendHtmlMarkup: {
+      control: 'select',
+      options: allTitleTags,
+    },
+    titleHtmlMarkup: {
+      control: 'select',
+      options: allTitleTags,
     },
   },
 } satisfies Meta<typeof FormGroup>;

@@ -14,7 +14,7 @@ import RadioButton, { RadioButtonProps, getRadioLabelClasses } from '../RadioBut
 import Select, { SelectProps } from '../Select';
 import Slider, { SliderProps } from '../Slider';
 import Textarea, { TextareaProps } from '../Textarea';
-import Title from '../Title';
+import Title, { TitleTags } from '../Title';
 
 import formGroupStyles from './styles.module.scss';
 
@@ -57,6 +57,10 @@ export interface FormGroupProps {
   fieldsetName?: string;
   /** Sets div instead of fieldset tag */
   htmlMarkup?: FormGroupTags;
+  /** Markup for legend if formgroup htmlMarkup is div*/
+  legendHtmlMarkup?: TitleTags;
+  /** Markup for title */
+  titleHtmlMarkup?: TitleTags;
   /** Renders the error component (Default: true) */
   renderError?: boolean;
 }
@@ -77,6 +81,8 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
     renderError = true,
     errorWrapperClassName,
     errorWrapperTestId,
+    legendHtmlMarkup = 'h5',
+    titleHtmlMarkup = 'h4',
   } = props;
   const [checkedRadioId, setCheckedRadioId] = useState<string>();
   const radioGroupId = useId();
@@ -87,6 +93,8 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   const titleClasses = classNames({
     [formGroupStyles['form-group-wrapper__title--on-dark']]: onDark && !error,
   });
+
+  const CustomTagForLegend = legendHtmlMarkup;
 
   const legendClasses = classNames(
     formGroupStyles['field-set__legend'],
@@ -174,10 +182,10 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
           <div className={fieldsetClasses}>
             {props.legend && (
               <>
-                <h5 className={legendClasses}>
+                <CustomTagForLegend className={legendClasses}>
                   {props.legend}
                   {formFieldTag && isComponent<FormFieldTagProps>(formFieldTag, FormFieldTag) && React.cloneElement(formFieldTag)}
-                </h5>
+                </CustomTagForLegend>
               </>
             )}
             {React.Children.map(props.children, mapFormComponent)}
@@ -203,7 +211,12 @@ export const FormGroup = React.forwardRef((props: FormGroupProps, ref: React.For
   return (
     <div data-testid={props.testId} data-analyticsid={AnalyticsId.FormGroup} className={formGroupWrapperClasses}>
       {props.title && (
-        <Title className={titleClasses} htmlMarkup={'h4'} appearance={'title4'} margin={{ marginTop: 0, marginBottom: error ? 1 : 2 }}>
+        <Title
+          className={titleClasses}
+          htmlMarkup={titleHtmlMarkup}
+          appearance={'title4'}
+          margin={{ marginTop: 0, marginBottom: error ? 1 : 2 }}
+        >
           {props.title}
         </Title>
       )}
