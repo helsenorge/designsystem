@@ -27,6 +27,10 @@
     ".": {
       "types": "./lib/index.d.ts",
       "import": "./lib/index.js"
+    },
+    "./vite": {
+      "types": "./lib/vite.d.ts",
+      "import": "./lib/vite.js"
     }
   },
   "scripts": {
@@ -40,7 +44,6 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "typescript": "~5.9.3",
     "vite": "npm:rolldown-vite@^7.1.2",

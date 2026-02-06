@@ -1,6 +1,6 @@
-import { vi } from 'vitest';
+import { vi, type Mock } from 'vitest';
 
-export const mockWindowMatchMedia = vi.fn().mockImplementation(() => ({
+export const mockWindowMatchMedia: Mock = vi.fn().mockImplementation(() => ({
   matches: true,
   addEventListener: vi.fn(),
   removeEventListener: vi.fn(),

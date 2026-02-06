@@ -738,7 +738,7 @@
     "start": "storybook dev -p 3000",
     "prebuild": "npm-run-all link-scss clean generate:iconnames generate:illustrationnames generate:cssdefinitions",
     "build": "vite build",
-    "postbuild": "npm run link-scss",
+    "postbuild": "node ../build-tools/lib/copy.js --root ../../CHANGELOG.md --include \"src/scss/**/*\" \"src/fonts/**/*\" \"src/components/**/*.module.scss*\" && npm run link-scss",
     "link-scss": "node __scripts__/link-root-scss.mjs",
     "copy-fonts": "node __scripts__/copy-fonts.mjs",
     "prepack": "npm run copy-fonts && rimraf scss && copyfiles -u 1 'lib/scss/**/*' .",
@@ -793,15 +793,14 @@
     "@vitest/coverage-v8": "^4.0.18",
     "classnames": "^2.5.1",
     "copyfiles": "^2.4.1",
-    "frankenstein-build-tools": "file:../frankenstein-build-tools",
-    "glob": "^11.0.0",
+    "frankenstein-build-tools": "file:../build-tools",
+    "glob": "^13.0.1",
     "jest-when": "^3.6.0",
     "jsdom": "^26.0.0",
     "normalize.css": "^8.0.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-hook-form": "^7.53.0",
-    "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-visualizer": "^5.12.0",
     "sass": "^1.79.5",
@@ -810,10 +809,5 @@
     "vite": "npm:rolldown-vite@^7.1.2",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.18"
-  },
-  "overrides": {
-    "@helsenorge/typed-scss-modules": {
-      "glob": "7.2.3"
-    }
   }
 }
