@@ -38,6 +38,10 @@ const meta = {
         options: allTitleTags,
       },
     },
+    collapsedMaxHeight: {
+      control: 'text',
+      description: 'Override the default max height for collapsed teaser. Default is 12.25rem',
+    },
   },
 } satisfies Meta<typeof HelpTeaser>;
 

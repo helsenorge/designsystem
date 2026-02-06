@@ -27,8 +27,6 @@
   }
 
   &--collapsed {
-    max-height: 12.25rem;
-
     &::after {
       content: '';
       position: absolute;

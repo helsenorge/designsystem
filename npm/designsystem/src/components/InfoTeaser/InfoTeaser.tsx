@@ -20,6 +20,8 @@ export interface InfoTeaserProps {
   buttonClassName?: string;
   /** What's in the box? */
   children: React.ReactNode;
+  /** Override the default max height for collapsed teaser. Default is 12.25rem */
+  collapsedMaxHeight?: string;
   /** For overriding styling on infoteaser box */
   className?: string;
   /** Changes the underlying element of the wrapper */
@@ -37,7 +39,18 @@ export interface InfoTeaserProps {
 }
 
 const InfoTeaser: React.FC<InfoTeaserProps> = props => {
-  const { buttonClassName, children, className, htmlMarkup = 'div', resources, svgIcon, testId, title, titleHtmlMarkup = 'h2' } = props;
+  const {
+    buttonClassName,
+    children,
+    className,
+    htmlMarkup = 'div',
+    resources,
+    svgIcon,
+    testId,
+    title,
+    titleHtmlMarkup = 'h2',
+    collapsedMaxHeight,
+  } = props;
   const [expanded, setExpanded] = useState(false);
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
   const defaultResources = getResources(language);
@@ -56,6 +69,7 @@ const InfoTeaser: React.FC<InfoTeaserProps> = props => {
         className={classNames(styles.infoteaser, className, {
           [styles['infoteaser--collapsed']]: !expanded,
         })}
+        style={{ maxHeight: !expanded ? (collapsedMaxHeight ? collapsedMaxHeight : '12.25rem') : undefined }}
       >
         {svgIcon &&
           (typeof svgIcon === 'string' ? (
