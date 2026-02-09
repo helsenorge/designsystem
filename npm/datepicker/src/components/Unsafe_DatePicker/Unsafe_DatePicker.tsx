@@ -134,6 +134,7 @@ const Unsafe_DatePicker = ({
     }
   };
   useKeyboardEvent(dayPickerPopupRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
+  useKeyboardEvent(calendarButtonRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
 
   useOutsideEvent(
     [calendarButtonRef, dayPickerPopupRef],

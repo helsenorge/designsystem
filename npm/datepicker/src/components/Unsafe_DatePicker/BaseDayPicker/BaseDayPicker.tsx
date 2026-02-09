@@ -240,7 +240,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
           // const [openPopover, setOpenPopover] = useState(false);
           // const popoverText = getHelpTextForDay(day);
           const buttonRef = React.useRef<HTMLButtonElement>(null);
-          const helpBubbleId = 'helpbubble-' + day.date.getUTCDate();
+          // const helpBubbleId = 'helpbubble-' + day.date.getUTCDate();
           const handleClick = (): void => {
             handleDayButtonClick(day, modifiers);
             // if (popoverText) {
@@ -264,7 +264,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
                 ref={buttonRef}
                 onClick={handleClick}
                 // aria-haspopup={popoverText ? 'dialog' : false}
-                aria-controls={helpBubbleId} // @todo: mulig noe må gjøres her for skjermlesere
+                // aria-controls={helpBubbleId} // @todo: mulig noe må gjøres her for skjermlesere
               />
               {/* <HelpBubble
                 helpBubbleId={helpBubbleId}
