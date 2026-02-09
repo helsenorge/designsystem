@@ -70,7 +70,7 @@ export interface FormGroupProps {
   /** Renders the error component (Default: true) */
   renderError?: boolean;
   /** Ref passed to the error message element */
-  ref?: React.Ref<HTMLDivElement | null>;
+  errorMessageRef?: React.Ref<HTMLDivElement | null>;
 }
 
 export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
@@ -89,7 +89,7 @@ export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
     renderError = true,
     errorWrapperClassName,
     errorWrapperTestId,
-    ref,
+    errorMessageRef,
   } = props;
   const [checkedRadioId, setCheckedRadioId] = useState<string>();
   const radioGroupId = useId();
@@ -225,7 +225,7 @@ export const FormGroup: React.FC<FormGroupProps> = (props: FormGroupProps) => {
         errorText={error}
         testId={errorWrapperTestId}
         errorTextId={errorTextId}
-        errorMessageRef={ref}
+        errorMessageRef={errorMessageRef}
         renderError={renderError}
       >
         {formGroupContent()}
