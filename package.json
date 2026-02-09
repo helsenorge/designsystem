@@ -54,7 +54,7 @@
     "─── commit & tag ───": "echo commit",
     "v:tag": "git tag -f v$(node -p \"require('./npm/designsystem/package.json').version\")",
     "release:commit-and-push": "git add -A && git commit -m v$(node -p \"require('./npm/designsystem/package.json').version\") && npm run v:tag && npm run changelog && npm run postchangelog && git push --follow-tags",
-    "changelog": "conventional-changelog --config changelog.config.js --infile CHANGELOG.md --same-file --release-count 0 --skip-unstable --tag-prefix v --outputUnreleased false",
+    "changelog": "conventional-changelog --config changelog.config.cjs --infile CHANGELOG.md --same-file --release-count 0 --skip-unstable --tag-prefix v --outputUnreleased false",
     "postchangelog": "git add CHANGELOG.md && git commit --amend --no-edit --no-verify && git tag -f v$(node -p \"require('./npm/designsystem/package.json').version\")",
     "─── publish ───": "echo publish",
     "publish:latest": "npm-run-all -s release:ensure-clean build publish:designsystem:latest publish:consumers:latest",
