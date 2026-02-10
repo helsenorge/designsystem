@@ -163,20 +163,6 @@ stages:
               workingDir: $(working_directory)
               customCommand: 'run test'
 
-          # Test results
-          - task: PublishTestResults@2
-            displayName: 'Publish test results'
-            inputs:
-              testResultsFiles: 'npm/*/test-report.xml'
-              mergeTestResults: true
-            condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-          - task: PublishCodeCoverageResults@2
-            displayName: 'Publish code coverage'
-            inputs:
-              codeCoverageTool: Cobertura
-              summaryFileLocation: 'npm/*/coverage/cobertura-coverage.xml'
-            condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-
           # Run Code Analysis task
           - task: SonarQubeAnalyze@6
             displayName: Sonarqube Analyze
