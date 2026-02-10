@@ -1,3 +1,8 @@
+## 14.0.0-beta.4 (2026-02-10)
+
+### Bug Fixes
+
+*  constants og utils fra komponenter skal eksporteres ([ae3e5af](https://github.com/helsenorge/designsystem/commit/ae3e5af25436b79b7b52cef5f78668742cecb356)), closes [#368469](https://github.com/helsenorge/designsystem/issues/368469) [#368806](https://github.com/helsenorge/designsystem/issues/368806)
 ## 14.0.0-beta.3 (2026-02-10)
 
 ### Features

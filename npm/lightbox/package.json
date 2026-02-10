@@ -2,7 +2,7 @@
   "name": "@helsenorge/lightbox",
   "sideEffects": false,
   "private": false,
-  "version": "14.0.0-beta.3",
+  "version": "14.0.0-beta.4",
   "description": "The official Helsenorge lightbox.",
   "repository": {
     "type": "git",
@@ -62,7 +62,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@helsenorge/designsystem-react": "14.0.0-beta.3",
+    "@helsenorge/designsystem-react": "14.0.0-beta.4",
     "@helsenorge/typed-scss-modules": "^9.0.0",
     "@rollup/plugin-replace": "^6.0.1",
     "@testing-library/jest-dom": "^6.5.0",
