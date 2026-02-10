@@ -13,7 +13,19 @@ export default defineConfig({
     // Ensure .d.ts for all entries land in lib/
     dts({
       outDir: OUTPUT_DIRECTORY,
-      insertTypesEntry: true,
+      entryRoot: 'src',
+      insertTypesEntry: false,
+      rollupTypes: false,
+      include: [
+        'src/components/**/*.{ts,tsx}',
+        'src/hooks/**/*.{ts,tsx}',
+        'src/hoc/**/*.{ts,tsx}',
+        'src/theme/**/*.{ts,tsx}',
+        'src/utils/**/*.{ts,tsx}',
+        'src/__mocks__/**/*.{ts,tsx}',
+        'src/*.{ts,tsx}',
+      ],
+      exclude: ['**/__snapshots__/**', '**/*.stories.*', '**/*.test.*'],
     }),
   ],
   build: {
