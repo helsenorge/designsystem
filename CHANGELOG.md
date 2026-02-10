@@ -1,3 +1,12 @@
+## 14.0.0-beta.3 (2026-02-10)
+
+### Features
+
+* **formgroup:**  ref prop renamet til errormessageref ([0f33ed5](https://github.com/helsenorge/designsystem/commit/0f33ed5ea14a64beb8c78f1e0aac8f8a94e2e53c)), closes [#368993](https://github.com/helsenorge/designsystem/issues/368993)
+
+### Bug Fixes
+
+*  komponent dts filer havnet i feil path ([31fb3ec](https://github.com/helsenorge/designsystem/commit/31fb3ec3ffd5c93e098d82d8fd1801d84aec26d6)), closes [#368469](https://github.com/helsenorge/designsystem/issues/368469)
 ## 14.0.0-beta.2 (2026-02-09)
 ## 14.0.0-beta.1 (2026-02-09)
 ## 14.0.0-beta.0 (2026-02-09)
