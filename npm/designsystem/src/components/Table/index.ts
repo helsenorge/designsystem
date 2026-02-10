@@ -10,5 +10,6 @@ export { TableRow } from './TableRow';
 export { SortDirection, HeaderCategory, TextAlign, ResponsiveTableVariant, ModeType, defaultConfig, simpleConfig } from './constants';
 
 export * from './Table';
+export * from './utils';
 
 export default Table;
