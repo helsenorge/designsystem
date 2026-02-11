@@ -1,3 +1,26 @@
+## [13.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.5.0&targetVersion=GTv13.6.0) (2026-02-11)
+
+
+### Features
+
+*  oppdatert til motion 12 ([af5eb81](https://github.com/helsenorge/designsystem/commit/af5eb8141c74b5b1179f90b838606ae6d41b751d)), closes [#371272](https://github.com/helsenorge/designsystem/issues/371272)
+* **datepicker:**  ny komponent for input av tid ([592b6e4](https://github.com/helsenorge/designsystem/commit/592b6e4eabe9f718c142957a041084050e47c71f)), closes [#367381](https://github.com/helsenorge/designsystem/issues/367381)
+* **duolist:**  lagt til prop for testid på hver duolistgroup ([004ae83](https://github.com/helsenorge/designsystem/commit/004ae83bdfaa5ba47b70d07c4337d9238d06b774)), closes [#370261](https://github.com/helsenorge/designsystem/issues/370261)
+* **formgroup:**  åpne for flere tags for legend og title ([0cbc280](https://github.com/helsenorge/designsystem/commit/0cbc2801b654d8adaa4f610452dfd5043900e53f)), closes [#368142](https://github.com/helsenorge/designsystem/issues/368142)
+* **infoteaser:**  legg til prop for å sette høyde på collapsed teaser ([3681d3f](https://github.com/helsenorge/designsystem/commit/3681d3f7ebd16aacf9b4114b48ba7fd0d2ee1e29))
+
+
+### Bug Fixes
+
+* **datepicker:**  ikke sett default legend for ny datepicker ([f2230cb](https://github.com/helsenorge/designsystem/commit/f2230cbaff99f7e89320a8b10073c7420614d4ee)), closes [#345238](https://github.com/helsenorge/designsystem/issues/345238)
+* **drawer:**  legg på padding så ikke footer-knapper kuttes på iphone ([3616eff](https://github.com/helsenorge/designsystem/commit/3616eff6cfa040ef5d814458978f5dc7f023d470)), closes [#369303](https://github.com/helsenorge/designsystem/issues/369303)
+* **expander:**  behold bredde på innhold på desktop ([8ab0315](https://github.com/helsenorge/designsystem/commit/8ab03150ede607ace77d40dc89865f0b0e574858)), closes [#361764](https://github.com/helsenorge/designsystem/issues/361764)
+* **panellist:**  gjør panellist sin styling av panel mer robust ([b1c28dc](https://github.com/helsenorge/designsystem/commit/b1c28dc6f31ec44a64e022da653a880347d7a530)), closes [#369909](https://github.com/helsenorge/designsystem/issues/369909)
+* **select:**  skjul overflow tekst og vis ellipsis ([a56be99](https://github.com/helsenorge/designsystem/commit/a56be9933ae7dbd6d03441f94384e1b6dd3f69e1)), closes [#370560](https://github.com/helsenorge/designsystem/issues/370560)
+* **toggle:**  ariadescribedby settes til undefined ([c6b8e64](https://github.com/helsenorge/designsystem/commit/c6b8e6417e96091b087eb7af7892e54733e5a8a0)), closes [#370572](https://github.com/helsenorge/designsystem/issues/370572)
+* **unsafe_datepicker:**  ikke sett aria-controls om popup er lukket ([79349e8](https://github.com/helsenorge/designsystem/commit/79349e8d93018d3274a8af2ae5d8ed201f738601)), closes [#371062](https://github.com/helsenorge/designsystem/issues/371062)
+* **unsafe_datepicker:**  lukk kalender med escape på kalender knapp og fjern manglende IDer ([c7d2b09](https://github.com/helsenorge/designsystem/commit/c7d2b09df068719ad3f9ce7be8e54653a5691fae)), closes [#371061](https://github.com/helsenorge/designsystem/issues/371061) [#371062](https://github.com/helsenorge/designsystem/issues/371062)
+
 ## [13.5.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.4.0&targetVersion=GTv13.5.0) (2026-01-21)
 
 
@@ -214,7 +237,7 @@
 
 *  lib mappen ble ikke med i den publiserte pakken ([1c5409e](https://github.com/helsenorge/designsystem/commit/1c5409eeaf05524c315650ea11a839a70b7dfaa3)), closes [#362474](https://github.com/helsenorge/designsystem/issues/362474)
 
-## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-06)
+## [12.12.2](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.12.1&targetVersion=GTv12.12.2) (2025-11-07)
 
 ## [12.12.1](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv12.11.1&targetVersion=GTv12.12.1) (2025-11-06)
 
