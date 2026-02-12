@@ -1,5 +1,11 @@
 {
   "ariaLabelCloseButton": "Close lightbox",
   "ariaLabelLeftArrow": "Previous picture",
-  "ariaLabelCloseTextBox": "Close text box"
+  "ariaLabelLightBox": "Image display",
+  "ariaLabelRightArrow": "Next image",
+  "ariaLabelCloseTextBox": "Close text box",
+  "ariaLabelOpenTextBox": "Open text box",
+  "ariaLabelZoomIn": "Zoom in",
+  "ariaLabelZoomOut": "Zoom out",
+  "ariaLabelZoomSlider": "Zoom"
 }

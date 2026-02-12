@@ -1,5 +1,11 @@
 {
   "ariaLabelCloseButton": "Lukk lightbox",
   "ariaLabelLeftArrow": "Førre bilete",
-  "ariaLabelCloseTextBox": "Lukk tekstboks"
+  "ariaLabelLightBox": "Biletvisning",
+  "ariaLabelRightArrow": "Neste bilete",
+  "ariaLabelCloseTextBox": "Lukk tekstboks",
+  "ariaLabelOpenTextBox": "Opne tekstboks",
+  "ariaLabelZoomIn": "Zoom inn",
+  "ariaLabelZoomOut": "Zoom ut",
+  "ariaLabelZoomSlider": "Zoom"
 }

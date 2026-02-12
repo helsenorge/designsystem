@@ -1,5 +1,11 @@
 {
   "ariaLabelCloseButton": "Gidde lightboxa",
   "ariaLabelLeftArrow": "Ovddit govva",
-  "ariaLabelCloseTextBox": "Gidde teakstaboksa"
+  "ariaLabelLightBox": "Govvačájáhus",
+  "ariaLabelRightArrow": "Boahtte govva",
+  "ariaLabelCloseTextBox": "Gidde teakstaboksa",
+  "ariaLabelOpenTextBox": "Raba teakstaboksa",
+  "ariaLabelZoomIn": "Zoome stuoribun",
+  "ariaLabelZoomOut": "Zoome unnibun",
+  "ariaLabelZoomSlider": "Zoome"
 }
