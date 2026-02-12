@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
 
+import Button from '@helsenorge/designsystem-react/components/Button';
+import Dropdown from '@helsenorge/designsystem-react/components/Dropdown';
+import Globe from '@helsenorge/designsystem-react/components/Icons/Globe';
+import Spacer from '@helsenorge/designsystem-react/components/Spacer';
+import LanguageProvider from '@helsenorge/designsystem-react/utils/language';
 import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
+
+import { LanguageLocales } from '@helsenorge/designsystem-react';
 
 import LightBox from './LightBox';
 
@@ -24,15 +31,6 @@ const meta = {
     },
   },
   args: {
-    ariaLabelCloseButton: 'Lukk Lightbox',
-    ariaLabelLeftArrow: 'Forrige bilde',
-    ariaLabelLightBox: 'Bildevisning',
-    ariaLabelRightArrow: 'Neste bilde',
-    ariaLabelCloseTextBox: 'Lukk tekstboks',
-    ariaLabelOpenTextBox: 'Åpne tekstboks',
-    ariaLabelZoomIn: 'Zoom inn',
-    ariaLabelZoomOut: 'Zoom ut',
-    ariaLabelZoomSlider: 'Zoom',
     closeTextAfterSeconds: 3,
     imageAlt: 'A random cat',
     imageSrc: 'https://placehold.co/640x480',
@@ -120,4 +118,35 @@ export const EgetOppsettPåTekst: Story = {
       }
     />
   ),
+};
+
+export const WithLanguageProvider: Story = {
+  render: args => {
+    const [lightboxOpen, setLightboxOpen] = React.useState(false);
+    const [language, setLanguage] = useState<LanguageLocales>(LanguageLocales.NORWEGIAN);
+
+    return (
+      <LanguageProvider<LanguageLocales> language={language}>
+        <Dropdown svgIcon={Globe} triggerText="Velg språk">
+          <Dropdown.SingleSelectItem text={'English'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.ENGLISH)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Samisk'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.SAMI_NORTHERN)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Nynorsk'} asChild>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN_NYNORSK)} />
+          </Dropdown.SingleSelectItem>
+          <Dropdown.SingleSelectItem text={'Bokmål'} asChild defaultSelected>
+            <button onClick={() => setLanguage(LanguageLocales.NORWEGIAN)} />
+          </Dropdown.SingleSelectItem>
+        </Dropdown>
+        <Spacer />
+        <Button onClick={() => setLightboxOpen(true)} id="åpne">
+          {'Åpne LightBox'}
+        </Button>
+        {lightboxOpen && <LightBox {...args} onClose={() => setLightboxOpen(false)} />}
+      </LanguageProvider>
+    );
+  },
 };

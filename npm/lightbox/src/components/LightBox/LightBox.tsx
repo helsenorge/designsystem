@@ -11,37 +11,40 @@ import ChevronsUp from '@helsenorge/designsystem-react/components/Icons/Chevrons
 import Minus from '@helsenorge/designsystem-react/components/Icons/Minus';
 import PlusSmall from '@helsenorge/designsystem-react/components/Icons/PlusSmall';
 import X from '@helsenorge/designsystem-react/components/Icons/X';
-import { IconSize, KeyboardEventKey, ZIndex } from '@helsenorge/designsystem-react/constants';
+import { IconSize, KeyboardEventKey, LanguageLocales, ZIndex } from '@helsenorge/designsystem-react/constants';
 import { useFocusTrap } from '@helsenorge/designsystem-react/hooks/useFocusTrap';
 import { useReturnFocusOnUnmount } from '@helsenorge/designsystem-react/hooks/useReturnFocusOnUnmount';
 import { useSize } from '@helsenorge/designsystem-react/hooks/useSize';
+import { useLanguage } from '@helsenorge/designsystem-react/utils/language';
 import { disableBodyScroll, enableBodyScroll } from '@helsenorge/designsystem-react/utils/scroll';
 
 import { useKeyboardEvent } from '@helsenorge/designsystem-react';
 
 import MiniSlider from './MiniSlider';
+import { getResources } from './resourceHelper';
+import { HNDesignsystemLightBox } from '../../resources/Resources';
 
 import styles from './styles.module.scss';
 
 export interface LightBoxProps {
-  /** Aria label for the close button */
-  ariaLabelCloseButton: string;
-  /** Aria label for the text box button when its open */
-  ariaLabelCloseTextBox: string;
-  /** Aria label for the left arrow button */
+  /** @deprecated Aria label for the close button */
+  ariaLabelCloseButton?: string;
+  /** @deprecated Aria label for the text box button when its open */
+  ariaLabelCloseTextBox?: string;
+  /** @deprecated Aria label for the left arrow button */
   ariaLabelLeftArrow?: string;
-  /** Aria label for the full modal describing what the modal contains */
-  ariaLabelLightBox: string;
-  /** Aria label for the right arrow button */
+  /** @deprecated Aria label for the full modal describing what the modal contains */
+  ariaLabelLightBox?: string;
+  /** @deprecated Aria label for the right arrow button */
   ariaLabelRightArrow?: string;
-  /** Aria label for the text box button when its closed */
-  ariaLabelOpenTextBox: string;
-  /** Aria label for the zoom in button */
-  ariaLabelZoomIn: string;
-  /** Aria label for the zoom out button */
-  ariaLabelZoomOut: string;
-  /** Aria label for the slider input component */
-  ariaLabelZoomSlider: string;
+  /** @deprecated Aria label for the text box button when its closed */
+  ariaLabelOpenTextBox?: string;
+  /** @deprecated Aria label for the zoom in button */
+  ariaLabelZoomIn?: string;
+  /** @deprecated Aria label for the zoom out button */
+  ariaLabelZoomOut?: string;
+  /** @deprecated Aria label for the slider input component */
+  ariaLabelZoomSlider?: string;
   /** If set the text box closes automatically after the given seconds */
   closeTextAfterSeconds?: number;
   /** Alt text for the image */
@@ -56,6 +59,8 @@ export interface LightBoxProps {
   onLeftArrowClick?: () => void;
   /** Function is called when user clicks the right arrow button. If not given the arrow will not show. */
   onRightArrowClick?: () => void;
+  /** Resources for component */
+  resources?: Partial<HNDesignsystemLightBox>;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -77,6 +82,7 @@ const LightBox: React.FC<LightBoxProps> = ({
   onClose,
   onLeftArrowClick,
   onRightArrowClick,
+  resources,
   testId,
 }) => {
   const [imageTextOpen, setImageTextOpen] = React.useState(true);
@@ -86,6 +92,13 @@ const LightBox: React.FC<LightBoxProps> = ({
   const [zoom, setZoom] = useState(1.0);
   useFocusTrap(lightBoxRef, true);
   useReturnFocusOnUnmount(lightBoxRef);
+
+  const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
+  const defaultResources = getResources(language);
+  const mergedResources: HNDesignsystemLightBox = {
+    ...defaultResources,
+    ...resources,
+  };
 
   useKeyboardEvent(lightBoxRef, onClose, [KeyboardEventKey.Escape]);
 
@@ -116,12 +129,12 @@ const LightBox: React.FC<LightBoxProps> = ({
       role="dialog"
       aria-modal={true}
       tabIndex={-1}
-      aria-label={ariaLabelLightBox}
+      aria-label={ariaLabelLightBox || mergedResources.ariaLabelLightBox}
       ref={lightBoxRef}
     >
       <button
         onClick={onClose}
-        aria-label={ariaLabelCloseButton}
+        aria-label={ariaLabelCloseButton || mergedResources.ariaLabelCloseButton}
         data-testid="closeButton"
         className={classNames(styles.button, styles['close-button'])}
         style={{ zIndex: ZIndex.LightBoxButtons }}
@@ -132,7 +145,7 @@ const LightBox: React.FC<LightBoxProps> = ({
         <button
           className={classNames(styles.button, styles['arrow-button'], styles['arrow-button--left'])}
           onClick={onLeftArrowClick}
-          aria-label={ariaLabelLeftArrow}
+          aria-label={ariaLabelLeftArrow || mergedResources.ariaLabelLeftArrow}
           data-testid="leftArrow"
           style={{ zIndex: ZIndex.LightBoxButtons }}
         >
@@ -143,7 +156,7 @@ const LightBox: React.FC<LightBoxProps> = ({
         <button
           className={classNames(styles.button, styles['arrow-button'], styles['arrow-button--right'])}
           onClick={onRightArrowClick}
-          aria-label={ariaLabelRightArrow}
+          aria-label={ariaLabelRightArrow || mergedResources.ariaLabelRightArrow}
           data-testid="rightarrow"
           style={{ zIndex: ZIndex.LightBoxButtons }}
         >
@@ -159,7 +172,11 @@ const LightBox: React.FC<LightBoxProps> = ({
             className={classNames(styles.button, styles['image-text-box__button'])}
             onClick={() => setImageTextOpen(!imageTextOpen)}
             style={{ zIndex: ZIndex.LightBoxButtons }}
-            aria-label={imageTextOpen ? ariaLabelCloseTextBox : ariaLabelOpenTextBox}
+            aria-label={
+              imageTextOpen
+                ? ariaLabelCloseTextBox || mergedResources.ariaLabelCloseTextBox
+                : ariaLabelOpenTextBox || mergedResources.ariaLabelOpenTextBox
+            }
             aria-expanded={imageTextOpen}
           >
             {imageTextOpen ? (
@@ -189,9 +206,9 @@ const LightBox: React.FC<LightBoxProps> = ({
               transform={setTransform}
               updateStates={updateStates}
               zoom={zoom}
-              ariaLabelZoomIn={ariaLabelZoomIn}
-              ariaLabelZoomOut={ariaLabelZoomOut}
-              ariaLabelZoomSlider={ariaLabelZoomSlider}
+              ariaLabelZoomIn={ariaLabelZoomIn || mergedResources.ariaLabelZoomIn}
+              ariaLabelZoomOut={ariaLabelZoomOut || mergedResources.ariaLabelZoomOut}
+              ariaLabelZoomSlider={ariaLabelZoomSlider || mergedResources.ariaLabelZoomSlider}
             />
             <TransformComponent
               wrapperStyle={{
