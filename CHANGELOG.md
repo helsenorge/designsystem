@@ -1,3 +1,15 @@
+## [13.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.6.0&targetVersion=GTv13.7.0) (2026-02-16)
+
+
+### Features
+
+* **lightbox:**  lagt til språkhåndtering ([db207d6](https://github.com/helsenorge/designsystem/commit/db207d67b23816235e588f6bf82436799e6a39f4)), closes [#365604](https://github.com/helsenorge/designsystem/issues/365604)
+
+
+### Bug Fixes
+
+* **uselementlist:**  ekstra sjekk for å hindre mange rerenders av komponent ([3cbfcca](https://github.com/helsenorge/designsystem/commit/3cbfcca5569bf4cd308d4dd021a5e1726f21f58d)), closes [#367282](https://github.com/helsenorge/designsystem/issues/367282)
+
 ## [13.6.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.5.0&targetVersion=GTv13.6.0) (2026-02-11)
 
 
