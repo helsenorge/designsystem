@@ -40,7 +40,8 @@ export type Styles = {
   'expander__content--icon': string;
   'expander__content--kiwi': string;
   'expander__content--large': string;
-  'expander__content--nested-line': string;
+  'expander__content--nested-line--inner': string;
+  'expander__content--nested-line--outer': string;
   'expander__content--neutral': string;
   'expander__content--plum': string;
   'expander__content--small': string;

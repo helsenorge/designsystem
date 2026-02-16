@@ -170,14 +170,23 @@
     }
 
     &--nested-line {
-      padding-left: spacers.getSpacer(s);
-      border-left: solid 3px palette.$neutral200;
+      &--outer {
+        padding-left: 0;
 
-      @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-        margin-left: calc(38px / 2 - 1px); // Halvparten av chevron-ikonets bredde minus halve bredden på border
-        padding-left: calc(
-          38px / 2 + 12px - 2px
-        ); // Halvparten av chevron-ikonets bredde, pluss ikonets margin-right på tablet, minus bredden på border
+        @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+          padding-left: calc(38px / 2 - 1px); // Halvparten av chevron-ikonets bredde minus halve bredden på border
+        }
+      }
+
+      &--inner {
+        padding-left: spacers.getSpacer(s);
+        border-left: solid 3px palette.$neutral200;
+
+        @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
+          padding-left: calc(
+            38px / 2 + 12px - 2px
+          ); // Halvparten av chevron-ikonets bredde, pluss ikonets margin-right på tablet, minus bredden på border
+        }
       }
     }
 

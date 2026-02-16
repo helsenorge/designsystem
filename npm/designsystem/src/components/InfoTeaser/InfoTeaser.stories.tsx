@@ -5,7 +5,7 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 import InfoTeaser from './InfoTeaser';
 import { allTitleTags } from '../../../.storybook/knobs';
 import longLoremText from '../../utils/loremtext';
-import HandWaving from '../Icons/HandWaving';
+import InfoSignStroke from '../Icons/InfoSignStroke';
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/InfoTeaser',
@@ -21,7 +21,7 @@ const meta = {
   args: {
     title: 'Mange lurer på dette',
     children: <span>{longLoremText}</span>,
-    svgIcon: HandWaving,
+    svgIcon: InfoSignStroke,
   },
   argTypes: {
     title: {
@@ -38,6 +38,10 @@ const meta = {
         type: 'select',
         options: allTitleTags,
       },
+    },
+    collapsedMaxHeight: {
+      control: 'text',
+      description: 'Override the default max height for collapsed teaser. Default is 12.25rem',
     },
   },
 } satisfies Meta<typeof InfoTeaser>;

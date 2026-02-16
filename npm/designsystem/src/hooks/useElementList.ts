@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 /**
  * Hent ut en liste med HTML-elementer. Bruker MutationObserver-APIet.
@@ -13,11 +13,29 @@ export const useElementList = (
   options?: MutationObserverInit
 ): NodeListOf<HTMLElement> | undefined => {
   const [elementList, setElementList] = useState<NodeListOf<HTMLElement>>();
+  const previousElementsRef = useRef<HTMLElement[]>([]);
 
   useEffect(() => {
     const handleMutationChange = (): void => {
       const elements = ref.current?.querySelectorAll<HTMLElement>(selectors);
-      setElementList(elements);
+      if (!elements) {
+        if (previousElementsRef.current.length > 0) {
+          previousElementsRef.current = [];
+          setElementList(undefined);
+        }
+        return;
+      }
+
+      // We check if an element has been added/removed to avoid extra state updates on other changes.
+      const elementsArray = Array.from(elements);
+      const previousElements = previousElementsRef.current;
+
+      const hasChanged = elementsArray.length !== previousElements.length || elementsArray.some((el, i) => el !== previousElements[i]);
+
+      if (hasChanged) {
+        previousElementsRef.current = elementsArray;
+        setElementList(elements);
+      }
     };
 
     const mutationObserver = new MutationObserver(handleMutationChange);

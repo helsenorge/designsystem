@@ -144,6 +144,7 @@ const Unsafe_DatePicker = ({
     }
   };
   useKeyboardEvent(dayPickerPopupRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
+  useKeyboardEvent(calendarButtonRef, handleEscapeKeyDown, [KeyboardEventKey.Escape]);
 
   useOutsideEvent(
     [calendarButtonRef, dayPickerPopupRef],
@@ -201,7 +202,7 @@ const Unsafe_DatePicker = ({
       ? cloneElement(label, { htmlMarkup: 'legend', labelId: label.props.labelId || 'date-legend' })
       : null;
   const legendId = labelGivenAsPropIsValidLabelComponent && label.props.labelId ? label.props.labelId : 'date-legend';
-  const popupId = 'calendar-popup';
+  const popupId = isPopupOpen ? 'calendar-popup' : undefined;
 
   return (
     <ErrorWrapper errorText={errorText}>
