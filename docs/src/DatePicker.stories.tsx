@@ -1,14 +1,15 @@
 import { createFormHook as createTanstackFormHook, createFormHookContexts as createTanstackFormHookContexts } from '@tanstack/react-form';
-import { isBefore, isValid } from 'date-fns';
+import { isAfter, isBefore, isValid } from 'date-fns';
 import { Controller as RHFController, useForm as useRHForm } from 'react-hook-form';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import FormFieldTag from '@helsenorge/designsystem-react/components/FormFieldTag';
 import Input from '@helsenorge/designsystem-react/components/Input';
-import Label from '@helsenorge/designsystem-react/components/Label';
+import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import Validation from '@helsenorge/designsystem-react/components/Validation';
 
-import Unsafe_DatePicker, { Unsafe_ISODatePicker } from '@helsenorge/datepicker/components/Unsafe_DatePicker';
+import Unsafe_DatePicker, { Unsafe_ISODatePicker, Unsafe_TimeInput } from '@helsenorge/datepicker/components/Unsafe_DatePicker';
 
 const meta: Meta = {
   title: 'Documentation/Examples/NewDatePicker',
@@ -28,6 +29,63 @@ export default meta;
 type Story = StoryObj;
 
 export const WithRHForm: Story = {
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+const {
+  control,
+  handleSubmit,
+  formState: { errors },
+} = useRHForm({
+  defaultValues: { avtale: '2026-01-31' },
+  mode: 'onBlur',
+});
+
+const onSubmit = (data: any) => {
+  console.log('register submit: ', data);
+};
+
+const validateDate = (value: string) => {
+  if (!value) {
+    return 'Må velge dato';
+  }
+  const date = new Date(value);
+  if (!isValid(date)) {
+    return 'Må være på formatet dd.mm.yyyy';
+  }
+  if (isBefore(date, new Date())) {
+    return 'Kan ikke velge dato i fortiden';
+  }
+  return true;
+};
+
+return (
+  <form onSubmit={handleSubmit(onSubmit)}>
+    <RHFController
+      name="avtale"
+      control={control}
+      rules={{
+        required: 'Feltet er påkrevd',
+        validate: value => validateDate(value),
+      }}
+      render={({ field }) => (
+        <Unsafe_ISODatePicker
+          {...args}
+          errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
+          value={field.value ?? undefined}
+          onChange={val => field.onChange(val)}
+        />
+      )}
+    />
+    <br />
+    <button type="submit">{'Submit'}</button>
+  </form>
+);`,
+      },
+    },
+  },
   render: args => {
     const {
       control,
@@ -71,6 +129,173 @@ export const WithRHForm: Story = {
               errorText={errors?.avtale ? (errors?.avtale?.message as string) : undefined}
               value={field.value ?? undefined}
               onChange={val => field.onChange(val)}
+            />
+          )}
+        />
+        <br />
+        <button type="submit">{'Submit'}</button>
+      </form>
+    );
+  },
+};
+
+export const RequiredDateOptionalTime: Story = {
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        code: `
+const {
+  control,
+  handleSubmit,
+  formState: { errors },
+} = useRHForm({
+  defaultValues: { reiseDate: '2026-02-15', reiseTid: '' },
+  mode: 'onBlur',
+});
+
+const onSubmit = (data: any) => {
+  console.log('register submit: ', data);
+};
+
+const validateDate = (value: string) => {
+  if (!value) {
+    return 'Må velge dato';
+  }
+  const date = new Date(value);
+  if (!isValid(date)) {
+    return 'Må være på formatet dd.mm.yyyy';
+  }
+  if (isAfter(date, new Date())) {
+    return 'Kan ikke velge dato i fremtiden';
+  }
+  return true;
+};
+
+return (
+  <form onSubmit={handleSubmit(onSubmit)}>
+    <RHFController
+      name="reiseDate"
+      control={control}
+      rules={{
+        required: 'Dato er påkrevd',
+        validate: value => validateDate(value),
+      }}
+      render={({ field }) => (
+        <Unsafe_ISODatePicker
+          {...args}
+          errorText={errors?.reiseDate ? (errors?.reiseDate?.message as string) : undefined}
+          value={field.value ?? undefined}
+          onChange={val => field.onChange(val)}
+          aria-describedby="date-format"
+          label={
+            <Label
+              labelTexts={[{ text: 'Dato' }]}
+              formFieldTag={<FormFieldTag level="required-field" />}
+              sublabel={<Sublabel id="date-format" sublabelTexts={[{ text: 'dd.mm.åååå' }]} />}
+            />
+          }
+        />
+      )}
+    />
+    <RHFController
+      name="reiseTid"
+      control={control}
+      render={({ field }) => (
+        <Unsafe_TimeInput
+          {...args}
+          errorText={errors?.reiseTid ? (errors?.reiseTid?.message as string) : undefined}
+          value={field.value ?? undefined}
+          onChange={val => field.onChange(val)}
+          aria-describedby="tid-format"
+          label={
+            <Label
+              labelTexts={[{ text: 'Tid' }]}
+              formFieldTag={<FormFieldTag level="optional" />}
+              sublabel={<Sublabel id="tid-format" sublabelTexts={[{ text: 'tt:mm' }]} />}
+            />
+          }
+        />
+      )}
+    />
+    <br />
+    <button type="submit">{'Submit'}</button>
+  </form>
+);`,
+      },
+    },
+  },
+  render: args => {
+    const {
+      control,
+      handleSubmit,
+      formState: { errors },
+    } = useRHForm({
+      defaultValues: { reiseDate: '2026-02-15', reiseTid: '' },
+      mode: 'onBlur',
+    });
+
+    const onSubmit = (data: any) => {
+      console.log('register submit: ', data);
+    };
+
+    const validateDate = (value: string) => {
+      if (!value) {
+        return 'Må velge dato';
+      }
+      const date = new Date(value);
+      if (!isValid(date)) {
+        return 'Må være på formatet dd.mm.yyyy';
+      }
+      if (isAfter(date, new Date())) {
+        return 'Kan ikke velge dato i fremtiden';
+      }
+      return true;
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <RHFController
+          name="reiseDate"
+          control={control}
+          rules={{
+            required: 'Dato er påkrevd',
+            validate: value => validateDate(value),
+          }}
+          render={({ field }) => (
+            <Unsafe_ISODatePicker
+              {...args}
+              errorText={errors?.reiseDate ? (errors?.reiseDate?.message as string) : undefined}
+              value={field.value ?? undefined}
+              onChange={val => field.onChange(val)}
+              aria-describedby="date-format"
+              label={
+                <Label
+                  labelTexts={[{ text: 'Dato' }]}
+                  formFieldTag={<FormFieldTag level="required-field" />}
+                  sublabel={<Sublabel id="date-format" sublabelTexts={[{ text: 'dd.mm.åååå' }]} />}
+                />
+              }
+            />
+          )}
+        />
+        <RHFController
+          name="reiseTid"
+          control={control}
+          render={({ field }) => (
+            <Unsafe_TimeInput
+              {...args}
+              errorText={errors?.reiseTid ? (errors?.reiseTid?.message as string) : undefined}
+              value={field.value ?? undefined}
+              onChange={val => field.onChange(val)}
+              aria-describedby="tid-format"
+              label={
+                <Label
+                  labelTexts={[{ text: 'Tid' }]}
+                  formFieldTag={<FormFieldTag level="optional" />}
+                  sublabel={<Sublabel id="tid-format" sublabelTexts={[{ text: 'tt:mm' }]} />}
+                />
+              }
             />
           )}
         />
