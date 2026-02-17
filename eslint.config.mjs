@@ -12,6 +12,11 @@ export default [
       globals: { ...globals.node },
     },
     rules: {
+      // These three rules are temporarily set to warn so we can solve them bit by bit
+      'react-hooks/refs': 'warn',
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/immutability': 'warn',
+
       'react/prop-types': 'off',
       'react-hooks/exhaustive-deps': 'off',
       // Align with import/order grouping to avoid circular fixes

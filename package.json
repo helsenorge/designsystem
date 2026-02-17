@@ -75,7 +75,7 @@
   "devDependencies": {
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.3.0",
-    "@helsenorge/eslint-config": "^37.7.1",
+    "@helsenorge/eslint-config": "^38.0.0-beta.13",
     "conventional-changelog-cli": "^5.0.0",
     "eslint-plugin-storybook": "10.0.5",
     "husky": "^9.1.7",

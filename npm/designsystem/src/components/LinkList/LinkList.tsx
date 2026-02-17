@@ -12,10 +12,10 @@ import { AnalyticsId, LanguageLocales } from '../../constants';
 import { useLanguage } from '../../hooks/useLanguage';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { renderElementHeader } from '../ElementHeader/utils';
+import ArrowUpRight from '../Icons/ArrowUpRight';
 import ChevronRight from '../Icons/ChevronRight';
 import ListEditModeItem from '../ListEditMode';
 import { listEditModeWrapperClassnames } from '../ListEditMode/constants';
-import ArrowUpRight from '../Icons/ArrowUpRight';
 
 import LinkListStyles from './styles.module.scss';
 
