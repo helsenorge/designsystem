@@ -55,6 +55,7 @@ export const Variants: Story = {
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <StatusDot {...args} variant="success" text="success" />
       <StatusDot {...args} variant="active" text="active" />
+      <StatusDot {...args} variant="ready" text="ready" />
       <StatusDot {...args} variant="inprocess" text="inprocess" />
       <StatusDot {...args} variant="exception" text="exception" />
       <StatusDot {...args} variant="unknown" text="unknown" />

@@ -2,7 +2,7 @@ import type { SvgPathProps } from '../Icon';
 
 import { getIcon } from '../Icon/utils';
 
-const DotTransparent: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
+const DotOutline: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const xxSmall = (
     <path
       fillRule="evenodd"
@@ -27,4 +27,4 @@ const DotTransparent: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProp
   });
 };
 
-export default DotTransparent;
+export default DotOutline;

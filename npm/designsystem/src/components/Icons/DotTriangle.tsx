@@ -2,7 +2,7 @@ import type { SvgPathProps } from '../Icon';
 
 import { getIcon } from '../Icon/utils';
 
-const DotWarningTriangle: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
+const DotTriangle: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const xxSmall = (
     <path
       fillRule="evenodd"
@@ -27,4 +27,4 @@ const DotWarningTriangle: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPath
   });
 };
 
-export default DotWarningTriangle;
+export default DotTriangle;

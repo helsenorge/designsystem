@@ -25,4 +25,5 @@ export enum StatusDotVariant {
   active = 'active',
   pending = 'pending',
   inactive = 'inactive',
+  ready = 'ready',
 }

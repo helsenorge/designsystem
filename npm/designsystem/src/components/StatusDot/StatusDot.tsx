@@ -29,43 +29,45 @@ const StatusDotIcon: React.FC<StatusDotIconProps> = ({ onColor, variant = 'info'
 
   switch (variant) {
     case StatusDotVariant.success:
-      return <LazyIcon {...iconProps} iconName={'DotSuccess'} />;
+      return <LazyIcon {...iconProps} iconName={'DotCheckmark'} />;
     case StatusDotVariant.inprocess:
       return <LazyIcon {...iconProps} iconName={'DotHalfDisc'} />;
     case StatusDotVariant.exception:
-      return <LazyIcon {...iconProps} iconName={'DotWarningTriangle'} />;
+      return <LazyIcon {...iconProps} iconName={'DotTriangle'} />;
     case StatusDotVariant.unknown:
       return <LazyIcon {...iconProps} iconName={'DotQuestionMark'} />;
     case StatusDotVariant.inspected:
       return <LazyIcon {...iconProps} iconName={'DotLookingGlass'} />;
     case StatusDotVariant.cancelled:
-      return <LazyIcon {...iconProps} iconName={'DotCancelled'} />;
+      return <LazyIcon {...iconProps} iconName={'DotX'} />;
     case StatusDotVariant.alert:
-      return <LazyIcon {...iconProps} iconName={'DotAlert'} />;
+      return <LazyIcon {...iconProps} iconName={'DotExclamationMark'} />;
     case StatusDotVariant.transparent:
-      return <LazyIcon {...iconProps} iconName={'DotTransparent'} />;
+      return <LazyIcon {...iconProps} iconName={'DotOutline'} />;
     case StatusDotVariant.info:
       return <LazyIcon {...iconProps} iconName={'DotInfo'} />;
     case StatusDotVariant.group:
-      return <LazyIcon {...iconProps} iconName={'Group'} />;
+      return <LazyIcon {...iconProps} iconName={'DotGroup'} />;
     case StatusDotVariant.recurring:
-      return <LazyIcon {...iconProps} iconName={'Change'} />;
+      return <LazyIcon {...iconProps} iconName={'DotCircleArrows'} />;
     case StatusDotVariant.noaccess:
-      return <LazyIcon {...iconProps} iconName={'NoAccess'} />;
+      return <LazyIcon {...iconProps} iconName={'DotNoAccess'} />;
     case StatusDotVariant.draft:
-      return <LazyIcon {...iconProps} iconName={'Pencil'} />;
+      return <LazyIcon {...iconProps} iconName={'DotPencil'} />;
     case StatusDotVariant.hidden:
-      return <LazyIcon {...iconProps} iconName={'NoEye'} />;
+      return <LazyIcon {...iconProps} iconName={'DotNoEye'} />;
     case StatusDotVariant.login:
-      return <LazyIcon {...iconProps} iconName={'Login'} />;
+      return <LazyIcon {...iconProps} iconName={'DotLogin'} />;
     case StatusDotVariant.attachment:
-      return <LazyIcon {...iconProps} iconName={'Attachment'} />;
+      return <LazyIcon {...iconProps} iconName={'DotAttachment'} />;
     case StatusDotVariant.active:
-      return <LazyIcon {...iconProps} iconName={'DotActive'} />;
+      return <LazyIcon {...iconProps} iconName={'DotFill'} />;
     case StatusDotVariant.pending:
-      return <LazyIcon {...iconProps} iconName={'DotPending'} />;
+      return <LazyIcon {...iconProps} iconName={'DotDot'} />;
     case StatusDotVariant.inactive:
-      return <LazyIcon {...iconProps} iconName={'DotInactive'} />;
+      return <LazyIcon {...iconProps} iconName={'DotOutline'} />;
+    case StatusDotVariant.ready:
+      return <LazyIcon {...iconProps} iconName={'DotOutline'} />;
   }
 
   return null;

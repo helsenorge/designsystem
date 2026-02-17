@@ -2,7 +2,7 @@ import type { SvgPathProps } from '../Icon';
 
 import { getIcon } from '../Icon/utils';
 
-const DotSuccess: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
+const DotCheckmark: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const xxSmall = (
     <path
       fillRule="evenodd"
@@ -27,4 +27,4 @@ const DotSuccess: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): 
   });
 };
 
-export default DotSuccess;
+export default DotCheckmark;

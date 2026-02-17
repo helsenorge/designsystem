@@ -2,7 +2,7 @@ import type { SvgPathProps } from '../Icon';
 
 import { getIcon } from '../Icon/utils';
 
-const DotCancelled: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
+const DotX: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const xxSmall = (
     <path
       fillRule="evenodd"
@@ -27,4 +27,4 @@ const DotCancelled: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps)
   });
 };
 
-export default DotCancelled;
+export default DotX;

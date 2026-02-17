@@ -2,7 +2,7 @@ import type { SvgPathProps } from '../Icon';
 
 import { getIcon } from '../Icon/utils';
 
-const DotAlert: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
+const DotExclamationMark: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const xxSmall = (
     <path
       fillRule="evenodd"
@@ -27,4 +27,4 @@ const DotAlert: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): Re
   });
 };
 
-export default DotAlert;
+export default DotExclamationMark;
