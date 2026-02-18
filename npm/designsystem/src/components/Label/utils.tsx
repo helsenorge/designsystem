@@ -43,7 +43,8 @@ export const renderLabelAsParent = (
   labelTextClassName?: string,
   sublabelWrapperClassName?: string,
   large?: boolean,
-  markup?: LabelTags
+  markup?: LabelTags,
+  afterLabelChildrenClassName?: string
 ): React.ReactNode => {
   return (
     <>
@@ -58,6 +59,7 @@ export const renderLabelAsParent = (
             sublabelWrapperClassName: sublabelWrapperClassName,
             sublabel: large ? undefined : label.props.sublabel,
             statusDot: large ? undefined : label.props.statusDot,
+            afterLabelChildrenClassName: afterLabelChildrenClassName,
           })
         : typeof label === 'string' && (
             <Label
@@ -68,6 +70,7 @@ export const renderLabelAsParent = (
               labelClassName={labelClassName}
               labelTextClassName={labelTextClassName}
               sublabelWrapperClassName={sublabelWrapperClassName}
+              afterLabelChildrenClassName={afterLabelChildrenClassName}
             >
               {children}
             </Label>

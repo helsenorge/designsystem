@@ -6,12 +6,10 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 import Label from './Label';
 import { Sublabel } from './SubLabel';
 import { allLabelTags } from '../../../.storybook/knobs';
-import { IconSize } from '../../constants';
 import { getColor } from '../../theme/currys';
 import Checkbox from '../Checkbox';
 import FormFieldTag from '../FormFieldTag';
-import Icon from '../Icon';
-import HelpSign from '../Icons/HelpSign';
+import HelpTriggerIcon from '../HelpTriggerIcon';
 import Input from '../Input';
 import RadioButton from '../RadioButton/RadioButton';
 import Select from '../Select';
@@ -145,29 +143,23 @@ export const OnDark: Story = {
 };
 
 export const ChildrenAfterLabel: Story = {
+  args: {
+    labelTexts: [{ text: 'Hvilket virkestoff er det i medisinen du trenger fornyelse av resept for' }],
+    formFieldTag: <FormFieldTag level="required-radiobutton-list" />,
+    sublabel: (
+      <Sublabel id={'sublabelid'}>
+        <span>{'Eksempel på sublabel tekst'}</span>
+      </Sublabel>
+    ),
+    afterLabelChildren: <HelpTriggerIcon />,
+  },
   render: args => (
     <>
-      <Input
-        {...args}
-        label={
-          <Label labelTexts={[{ text: 'Skriv inn din tekst' }]} afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={HelpSign} />} />
-        }
-      />
+      <Input label={<Label {...args} />} />
       <br />
-      <Input
-        {...args}
-        label={
-          <Label
-            labelTexts={[{ text: 'Skriv inn din tekst' }]}
-            afterLabelChildren={<Icon size={IconSize.XSmall} svgIcon={HelpSign} />}
-            sublabel={
-              <Sublabel id={'sublabelid'}>
-                <span>{'Eksempel på sublabel tekst'}</span>
-              </Sublabel>
-            }
-          />
-        }
-      />
+      <Checkbox label={<Label {...args} />} />
+      <br />
+      <RadioButton label={<Label {...args} />} />
     </>
   ),
 };

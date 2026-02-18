@@ -17,6 +17,7 @@ export type Styles = {
   'checkbox__icon-wrapper--on-grey': string;
   'checkbox__icon-wrapper--on-invalid': string;
   'checkbox__icon-wrapper--on-white': string;
+  'checkbox-afterlabelchildren-wrapper': string;
   'checkbox-errors': string;
   'checkbox-label': string;
   'checkbox-label__large--checked': string;

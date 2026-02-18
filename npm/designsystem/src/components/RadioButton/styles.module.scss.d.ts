@@ -25,6 +25,7 @@ export type Styles = {
   'radio-button-wrapper__large--invalid': string;
   'radio-button-wrapper__large--on-blueberry': string;
   'radio-button-wrapper__large--selected': string;
+  'radiobutton-afterlabelchildren-wrapper': string;
   'radiobutton-sublabel-wrapper': string;
 };
 
