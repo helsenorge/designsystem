@@ -156,7 +156,9 @@ export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React
           radioButtonLabelClasses,
           undefined,
           radioButtonStyles['radiobutton-sublabel-wrapper'],
-          isLarge
+          isLarge,
+          undefined,
+          radioButtonStyles['radiobutton-afterlabelchildren-wrapper']
         )}
       </div>
     </ErrorWrapper>
