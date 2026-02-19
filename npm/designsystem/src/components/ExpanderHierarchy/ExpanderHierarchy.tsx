@@ -2,8 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import Expander, { ExpanderProps, ExpanderType } from './Expander';
-import { HeadingTags } from './utils';
+import type { HeadingTags } from './utils';
+
+import Expander, { type ExpanderProps, type ExpanderType } from './Expander';
 import { AnalyticsId } from '../../constants';
 import { isComponent } from '../../utils/component';
 
