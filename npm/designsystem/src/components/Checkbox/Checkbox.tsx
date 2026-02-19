@@ -171,7 +171,9 @@ export const Checkbox: React.FC<CheckboxProps> = props => {
           checkboxLabelClasses,
           labelTextClasses,
           checkboxStyles['checkbox-sublabel-wrapper'],
-          large
+          large,
+          undefined,
+          checkboxStyles['checkbox-afterlabelchildren-wrapper']
         )}
       </div>
     </ErrorWrapper>

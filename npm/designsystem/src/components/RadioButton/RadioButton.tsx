@@ -144,7 +144,9 @@ export const RadioButton: React.FC<RadioButtonProps> = props => {
           radioButtonLabelClasses,
           undefined,
           radioButtonStyles['radiobutton-sublabel-wrapper'],
-          isLarge
+          isLarge,
+          undefined,
+          radioButtonStyles['radiobutton-afterlabelchildren-wrapper']
         )}
       </div>
     </ErrorWrapper>

@@ -447,3 +447,7 @@ $padding-clickable-area-left: 8px;
   margin-top: -$padding-clickable-area-top-bottom;
   padding-left: calc(2.8rem + $padding-clickable-area-left);
 }
+
+.radiobutton-afterlabelchildren-wrapper {
+  padding-top: $padding-clickable-area-top-bottom;
+}
