@@ -249,7 +249,7 @@ const Controls = ({
     updateStates(state.scale);
   });
   const { zoomIn, zoomOut, centerView } = useControls();
-  let centerTimeout: number;
+  const centerTimeout = useRef<number>(null);
 
   const calculateZoomCenter = (newScale: number): number[] => {
     const element = document.getElementsByClassName('react-transform-component')[0];
@@ -267,13 +267,13 @@ const Controls = ({
     const [x, y] = calculateZoomCenter(newScale);
     transform(x, y, newScale, 1);
 
-    if (centerTimeout) {
-      clearTimeout(centerTimeout);
+    if (centerTimeout.current) {
+      clearTimeout(centerTimeout.current);
     }
 
     // Starter sentrering timeout hvis det zoomes ut
     if (newScale - zoom < 0) {
-      centerTimeout = window.setTimeout(() => {
+      centerTimeout.current = window.setTimeout(() => {
         centerView();
       }, 160);
     }

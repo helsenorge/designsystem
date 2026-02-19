@@ -138,6 +138,39 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   });
   useKeyboardEvent(containerRef, () => onRequestClose && onRequestClose(), [KeyboardEventKey.Escape]);
 
+  // Close animasjon, vi kaller `onClose()` til slutt
+  const closeDrawer = (): void => {
+    if (!overlayRef.current || !containerRef.current) return;
+
+    animate(overlayRef.current, { opacity: 0, pointerEvents: 'none' }, { duration: 0.3, ease: 'easeInOut' });
+
+    if (isMobile) {
+      animate(
+        containerRef.current,
+        { y: '100%' },
+        {
+          duration: 0.3,
+          ease: 'easeInOut',
+          onComplete: () => {
+            if (safeToRemove) safeToRemove();
+          },
+        }
+      );
+    } else {
+      animate(
+        containerRef.current,
+        { x: desktopDirection === 'left' ? '-100%' : '100%' },
+        {
+          duration: 0.3,
+          ease: 'easeInOut',
+          onComplete: () => {
+            if (safeToRemove) safeToRemove();
+          },
+        }
+      );
+    }
+  };
+
   useEffect(() => {
     containerRef.current?.focus();
     disableBodyScroll();
@@ -191,39 +224,6 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
 
     animate(overlayRef.current, { opacity: 1, pointerEvents: 'auto' }, { duration: 0.3, ease: 'easeInOut' });
   }, [isPresent]);
-
-  // Close animasjon, vi kaller `onClose()` til slutt
-  const closeDrawer = (): void => {
-    if (!overlayRef.current || !containerRef.current) return;
-
-    animate(overlayRef.current, { opacity: 0, pointerEvents: 'none' }, { duration: 0.3, ease: 'easeInOut' });
-
-    if (isMobile) {
-      animate(
-        containerRef.current,
-        { y: '100%' },
-        {
-          duration: 0.3,
-          ease: 'easeInOut',
-          onComplete: () => {
-            if (safeToRemove) safeToRemove();
-          },
-        }
-      );
-    } else {
-      animate(
-        containerRef.current,
-        { x: desktopDirection === 'left' ? '-100%' : '100%' },
-        {
-          duration: 0.3,
-          ease: 'easeInOut',
-          onComplete: () => {
-            if (safeToRemove) safeToRemove();
-          },
-        }
-      );
-    }
-  };
 
   const handleCTA = (callback?: () => void): void => {
     if (callback) {
