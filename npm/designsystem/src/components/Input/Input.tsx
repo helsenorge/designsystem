@@ -253,7 +253,7 @@ const Input: React.FC<InputProps> = props => {
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Input} className={inputWrapperClass} ref={inputWrapperRef}>
-        {renderLabel(label, inputId, onColor as FormOnColor)}
+        {renderLabel({ label: label, inputId: inputId, onColor: onColor as FormOnColor })}
         {/* input-elementet tillater keyboard-interaksjon */}
         <div className={styles['content-wrapper']}>
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}

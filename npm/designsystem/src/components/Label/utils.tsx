@@ -20,59 +20,70 @@ export const getLabelText = (label: React.ReactNode): string => {
   return allLabelText;
 };
 
-export const renderLabel = (label: React.ReactNode, inputId: string, onColor: FormOnColor, markup?: LabelTags): React.ReactNode => {
+interface RenderLabelProps {
+  label: React.ReactNode;
+  inputId: string;
+  onColor: FormOnColor;
+  markup?: LabelTags;
+}
+
+export const renderLabel = (props: RenderLabelProps): React.ReactNode => {
   return (
     <>
-      {label && isComponent<LabelProps>(label, Label)
-        ? React.cloneElement(label, {
-            htmlFor: inputId,
-            htmlMarkup: markup || 'label',
-            onColor,
+      {props.label && isComponent<LabelProps>(props.label, Label)
+        ? React.cloneElement(props.label, {
+            htmlFor: props.inputId,
+            htmlMarkup: props.markup || 'label',
+            onColor: props.onColor,
           })
-        : typeof label === 'string' && <Label labelTexts={[{ text: label, type: 'normal' }]} htmlFor={inputId} onColor={onColor} />}
+        : typeof props.label === 'string' && (
+            <Label labelTexts={[{ text: props.label, type: 'normal' }]} htmlFor={props.inputId} onColor={props.onColor} />
+          )}
     </>
   );
 };
 
-export const renderLabelAsParent = (
-  label: React.ReactNode,
-  children: React.ReactNode,
-  inputId: string,
-  onColor: FormOnColor,
-  labelClassName?: string,
-  labelTextClassName?: string,
-  sublabelWrapperClassName?: string,
-  large?: boolean,
-  markup?: LabelTags,
-  afterLabelChildrenClassName?: string
-): React.ReactNode => {
+interface RenderLabelAsParentProps {
+  label: React.ReactNode;
+  children: React.ReactNode;
+  inputId: string;
+  onColor: FormOnColor;
+  labelClassName?: string;
+  labelTextClassName?: string;
+  sublabelWrapperClassName?: string;
+  large?: boolean;
+  markup?: LabelTags;
+  afterLabelChildrenClassName?: string;
+}
+
+export const renderLabelAsParent = (props: RenderLabelAsParentProps): React.ReactNode => {
   return (
     <>
-      {label && isComponent<LabelProps>(label, Label)
-        ? React.cloneElement(label, {
-            htmlFor: inputId,
-            onColor,
-            children: children,
-            labelClassName: cn(labelClassName, label.props.labelClassName),
-            labelTextClassName: labelTextClassName,
-            htmlMarkup: markup || 'label',
-            sublabelWrapperClassName: sublabelWrapperClassName,
-            sublabel: large ? undefined : label.props.sublabel,
-            statusDot: large ? undefined : label.props.statusDot,
-            afterLabelChildrenClassName: afterLabelChildrenClassName,
+      {props.label && isComponent<LabelProps>(props.label, Label)
+        ? React.cloneElement(props.label, {
+            htmlFor: props.inputId,
+            onColor: props.onColor,
+            children: props.children,
+            labelClassName: cn(props.labelClassName, props.label.props.labelClassName),
+            labelTextClassName: props.labelTextClassName,
+            htmlMarkup: props.markup || 'label',
+            sublabelWrapperClassName: props.sublabelWrapperClassName,
+            sublabel: props.large ? undefined : props.label.props.sublabel,
+            statusDot: props.large ? undefined : props.label.props.statusDot,
+            afterLabelChildrenClassName: props.afterLabelChildrenClassName,
           })
-        : typeof label === 'string' && (
+        : typeof props.label === 'string' && (
             <Label
-              labelTexts={[{ text: label, type: 'subdued' }]}
-              htmlFor={inputId}
-              onColor={onColor}
-              htmlMarkup={markup || 'label'}
-              labelClassName={labelClassName}
-              labelTextClassName={labelTextClassName}
-              sublabelWrapperClassName={sublabelWrapperClassName}
-              afterLabelChildrenClassName={afterLabelChildrenClassName}
+              labelTexts={[{ text: props.label, type: 'subdued' }]}
+              htmlFor={props.inputId}
+              onColor={props.onColor}
+              htmlMarkup={props.markup || 'label'}
+              labelClassName={props.labelClassName}
+              labelTextClassName={props.labelTextClassName}
+              sublabelWrapperClassName={props.sublabelWrapperClassName}
+              afterLabelChildrenClassName={props.afterLabelChildrenClassName}
             >
-              {children}
+              {props.children}
             </Label>
           )}
     </>

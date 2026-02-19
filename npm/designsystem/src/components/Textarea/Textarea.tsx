@@ -196,7 +196,7 @@ const Textarea: React.FC<TextareaProps> = props => {
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
-        {renderLabel(label, textareaId, onColor as FormOnColor)}
+        {renderLabel({ label: label, inputId: textareaId, onColor: onColor as FormOnColor })}
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
           <textarea
             {...rest}

@@ -163,18 +163,17 @@ export const Checkbox: React.FC<CheckboxProps> = props => {
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Checkbox} className={checkboxWrapperClasses}>
-        {renderLabelAsParent(
-          label,
-          getLabelContent(),
-          inputId,
-          onColor as FormOnColor,
-          checkboxLabelClasses,
-          labelTextClasses,
-          checkboxStyles['checkbox-sublabel-wrapper'],
-          large,
-          undefined,
-          checkboxStyles['checkbox-afterlabelchildren-wrapper']
-        )}
+        {renderLabelAsParent({
+          label: label,
+          children: getLabelContent(),
+          inputId: inputId,
+          onColor: onColor as FormOnColor,
+          labelClassName: checkboxLabelClasses,
+          labelTextClassName: labelTextClasses,
+          sublabelWrapperClassName: checkboxStyles['checkbox-sublabel-wrapper'],
+          large: large,
+          afterLabelChildrenClassName: checkboxStyles['checkbox-afterlabelchildren-wrapper'],
+        })}
       </div>
     </ErrorWrapper>
   );

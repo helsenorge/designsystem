@@ -136,18 +136,16 @@ export const RadioButton: React.FC<RadioButtonProps> = props => {
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.RadioButton} className={radioButtonWrapperClasses}>
-        {renderLabelAsParent(
-          label,
-          getLabelContent(),
-          inputId,
-          onColor as FormOnColor,
-          radioButtonLabelClasses,
-          undefined,
-          radioButtonStyles['radiobutton-sublabel-wrapper'],
-          isLarge,
-          undefined,
-          radioButtonStyles['radiobutton-afterlabelchildren-wrapper']
-        )}
+        {renderLabelAsParent({
+          label: label,
+          children: getLabelContent(),
+          inputId: inputId,
+          onColor: onColor as FormOnColor,
+          labelClassName: radioButtonLabelClasses,
+          sublabelWrapperClassName: radioButtonStyles['radiobutton-sublabel-wrapper'],
+          large: isLarge,
+          afterLabelChildrenClassName: radioButtonStyles['radiobutton-afterlabelchildren-wrapper'],
+        })}
       </div>
     </ErrorWrapper>
   );

@@ -116,7 +116,7 @@ export const Select: React.FC<SelectProps> = props => {
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectWrapperClasses} style={{ maxWidth }}>
-        {renderLabel(label, selectId, onColor as FormOnColor)}
+        {renderLabel({ label: label, inputId: selectId, onColor: onColor as FormOnColor })}
         <div className={selectInnerWrapperClasses} data-testid={testId + '-inner-wrapper'}>
           <Icon
             className={selectStyles['select-arrow']}
