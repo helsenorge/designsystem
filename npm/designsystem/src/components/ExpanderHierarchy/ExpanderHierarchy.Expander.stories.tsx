@@ -4,9 +4,10 @@ import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
 
-import Expander from './Expander';
 import ExpanderHierarchy from './ExpanderHierarchy';
 import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
+
+const Expander = ExpanderHierarchy.Expander;
 
 const meta = {
   title: '@helsenorge/designsystem-react/Components/ExpanderHierarchy/Expander',
@@ -24,7 +25,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof ExpanderHierarchy>;
+type Story = StoryObj<typeof Expander>;
 
 export const Default: Story = {
   render: args => {
