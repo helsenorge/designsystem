@@ -16,7 +16,7 @@ const meta = {
       page: (): React.JSX.Element => <Docs component={ExpanderHierarchy} />,
       description: {
         component:
-          'ExpanderList allows the creation of a single list of items which can be used as triggers to expand areas within the list to display arbitrary content.',
+          'ExpanderHierarchy allows the creation of a nested hierarchy of items which can be used as triggers to expand areas within the hierarchy to display arbitrary content.',
       },
     },
   },

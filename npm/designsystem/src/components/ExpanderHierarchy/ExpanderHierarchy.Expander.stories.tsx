@@ -17,7 +17,7 @@ const meta = {
       page: (): React.JSX.Element => <Docs component={Expander} />,
       description: {
         component:
-          'ExpanderList allows the creation of a single list of items which can be used as triggers to expand areas within the list to display arbitrary content.',
+          'Expander is a compound component of ExpanderHierarchy that represents an expandable item with a title which can be used as a trigger to expand and display arbitrary content.',
       },
     },
   },
