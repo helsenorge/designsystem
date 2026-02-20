@@ -17,7 +17,7 @@ const meta = {
       page: (): React.JSX.Element => <Docs component={Expander} />,
       description: {
         component:
-          'Expander is a compound component of ExpanderHierarchy that represents an expandable item with a title which can be used as a trigger to expand and display arbitrary content.',
+          'Expander er et underkomponent av ExpanderHierarchy som representerer et utvidbart element med en tittel som skjuler detaljinformasjon når den ikke trengs, og gjør den lett tilgjengelig i kontekst når den trengs.',
       },
     },
   },

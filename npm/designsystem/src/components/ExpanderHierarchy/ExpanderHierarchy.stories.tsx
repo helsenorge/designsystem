@@ -16,7 +16,7 @@ const meta = {
       page: (): React.JSX.Element => <Docs component={ExpanderHierarchy} />,
       description: {
         component:
-          'ExpanderHierarchy allows the creation of a nested hierarchy of items which can be used as triggers to expand areas within the hierarchy to display arbitrary content.',
+          'ExpanderHierarchy er et nestet hierarki av elementer som skjuler detaljinformasjon når den ikke trengs, og gjør den lett tilgjengelig i kontekst når den trengs.',
       },
     },
   },
