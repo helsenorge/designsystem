@@ -1,3 +1,8 @@
+## 14.0.0-beta.7 (2026-02-24)
+
+### Bug Fixes
+
+*  copyfiles script feiler ([939034a](https://github.com/helsenorge/designsystem/commit/939034a10788a3e06d96046c9fb8596c8b52144d)), closes [#372259](https://github.com/helsenorge/designsystem/issues/372259)
 ## 14.0.0-beta.6 (2026-02-24)
 
 ### Bug Fixes
