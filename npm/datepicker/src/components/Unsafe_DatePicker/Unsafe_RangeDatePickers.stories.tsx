@@ -17,6 +17,11 @@ const meta = {
     from: { control: 'object' },
     to: { control: 'object' },
   },
+  args: {
+    from: <></>,
+    to: <></>,
+    onRangeChange: undefined,
+  },
 } satisfies Meta<typeof Unsafe_RangeDatePickers>;
 
 export default meta;

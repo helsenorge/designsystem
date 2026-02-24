@@ -250,7 +250,7 @@ export const AriaLabels: Story = {
         `Dato ${date.toISOString()} ${modifiers?.selected ? ', er valgt' : ', ikke valgt'}`,
       labelGrid: (date: Date) => `Måned ${date.getMonth() + 1} År ${date.getFullYear()}`,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      labelGridcell: (date: Date, modifiers?: Modifiers) => `Dato ${date.getDate()}`,
+      labelGridcell: (date: Date, _modifiers?: Modifiers) => `Dato ${date.getDate()}`,
       labelMonthDropdown: () => 'Velg måned',
       labelNext: () => 'Neste måned',
       labelPrevious: () => 'Forrige måned',

@@ -24,7 +24,7 @@ import { getRadioLabelClasses } from '../RadioButton/utils';
 import Select from '../Select';
 import Slider from '../Slider';
 import Textarea from '../Textarea';
-import Title from '../Title';
+import Title, { type TitleTags } from '../Title';
 
 import formGroupStyles from './styles.module.scss';
 

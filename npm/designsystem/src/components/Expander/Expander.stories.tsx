@@ -4,6 +4,7 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import { ExpanderSize } from './constants';
 import Expander from './Expander';
+import ExpanderList from '../ExpanderList';
 import LawBook from '../Icons/LawBook';
 import Loader, { Overlay } from '../Loader';
 
