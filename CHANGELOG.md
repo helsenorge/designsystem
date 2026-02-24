@@ -1,3 +1,8 @@
+## 14.0.0-beta.6 (2026-02-24)
+
+### Bug Fixes
+
+*  diverse typecheck feil ([584cd1f](https://github.com/helsenorge/designsystem/commit/584cd1f862e26acf790ed00a547b34910bd13db0)), closes [#368142](https://github.com/helsenorge/designsystem/issues/368142)
 ## 14.0.0-beta.5 (2026-02-24)
 
 ### Features
