@@ -79,7 +79,7 @@ export const HelpTriggerIconInternal: React.FC<HelpTriggerIconInternalProps> = p
   } = props;
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledById });
   const { refObject, isHovered: interalIsHovered } = usePseudoClasses<HTMLButtonElement>(isMutableRefObject(ref) ? ref : null);
-  const helpIcon = <HelpSign color={getIconColor(interalIsHovered || isHovered, weight)} weight={weight} />;
+  const helpIcon = <HelpSign color={getIconColor(interalIsHovered || isHovered, weight)} size={size} weight={weight} />;
   const isButton = htmlMarkup === 'button';
   const iconClasses = classNames(
     styles['help-trigger-icon'],

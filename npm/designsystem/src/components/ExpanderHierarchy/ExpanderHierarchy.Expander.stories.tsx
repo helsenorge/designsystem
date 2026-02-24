@@ -1,3 +1,5 @@
+import type React from 'react';
+
 import { Docs } from 'frankenstein-build-tools';
 
 import type { StoryObj, Meta } from '@storybook/react-vite';
@@ -5,46 +7,25 @@ import type { StoryObj, Meta } from '@storybook/react-vite';
 import ExpanderHierarchy from './ExpanderHierarchy';
 import { shortLoremText, mediumLoremText } from '../../utils/loremtext';
 
+const Expander = ExpanderHierarchy.Expander;
+
 const meta = {
-  title: '@helsenorge/designsystem-react/Components/ExpanderHierarchy',
-  component: ExpanderHierarchy,
-  tags: ['not-supernova'],
+  title: '@helsenorge/designsystem-react/Components/ExpanderHierarchy/Expander',
+  component: Expander,
   parameters: {
     docs: {
-      page: (): React.JSX.Element => <Docs component={ExpanderHierarchy} />,
+      page: (): React.JSX.Element => <Docs component={Expander} />,
       description: {
         component:
-          'ExpanderHierarchy er et nestet hierarki av elementer som skjuler detaljinformasjon når den ikke trengs, og gjør den lett tilgjengelig i kontekst når den trengs.',
+          'Expander er et underkomponent av ExpanderHierarchy som representerer et utvidbart element med en tittel som skjuler detaljinformasjon når den ikke trengs, og gjør den lett tilgjengelig i kontekst når den trengs.',
       },
     },
   },
-  argTypes: {
-    htmlMarkup: {
-      control: 'select',
-      options: ['h2', 'h3', 'h4', 'h5', 'h6'],
-      description: 'Changes the underlying element of the expander title. Default: h2.',
-    },
-    print: {
-      control: 'boolean',
-      description: 'Expand all children when printing.',
-    },
-    children: {
-      control: 'object',
-    },
-    level: {
-      control: 'number',
-      description: 'Expander nesting level. Should not be set manually.',
-    },
-    testId: {
-      control: 'text',
-      description: 'Sets the data-testid attribute on the expander list.',
-    },
-  },
-} satisfies Meta<typeof ExpanderHierarchy>;
+} satisfies Meta<typeof Expander>;
 
 export default meta;
 
-type Story = StoryObj<typeof ExpanderHierarchy>;
+type Story = StoryObj<typeof Expander>;
 
 export const Default: Story = {
   render: args => {

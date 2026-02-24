@@ -24,6 +24,8 @@ export interface ExpanderProps extends ExpanderHierarchyCommonProps {
   testId?: string;
   /** Adds custom classes to the element. */
   className?: string;
+  /** ref that is placed on the li element */
+  ref?: React.RefObject<HTMLLIElement>;
 }
 
 export type ExpanderType = typeof Expander;
@@ -38,6 +40,7 @@ const Expander: React.FC<ExpanderProps> = ({
   children,
   testId,
   className,
+  ref,
 }: ExpanderProps) => {
   const contentClasses = classNames(
     styles.expander__content,
@@ -46,7 +49,7 @@ const Expander: React.FC<ExpanderProps> = ({
   );
 
   return (
-    <li className={classNames(styles.expander, className)}>
+    <li className={classNames(styles.expander, className)} ref={ref}>
       <ExpanderButton htmlMarkup={htmlMarkup} level={level} print={print} expanded={expanded} onExpand={onExpand} testId={testId}>
         {title}
       </ExpanderButton>
