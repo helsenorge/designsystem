@@ -1,3 +1,16 @@
+## [13.8.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.7.0&targetVersion=GTv13.8.0) (2026-02-24)
+
+
+### Features
+
+* **expanderhierarchy:**  expander har fått ref prop ([74783f1](https://github.com/helsenorge/designsystem/commit/74783f17d93334b39d7c07f7b17ed8bb2b38340c)), closes [#371787](https://github.com/helsenorge/designsystem/issues/371787)
+* **label:**  flytt afterLabelChildren til topp og knyttet til hovedlabel ([c7db421](https://github.com/helsenorge/designsystem/commit/c7db421b5196399c8d976567071e97056e92d286)), closes [#366134](https://github.com/helsenorge/designsystem/issues/366134)
+
+
+### Bug Fixes
+
+* **helptriggericon:**  bruk riktig svg for str xl på desktop og mobil ([d51ce49](https://github.com/helsenorge/designsystem/commit/d51ce49ae6e6b159bcb34e3f864e72fd5c027ded)), closes [#371659](https://github.com/helsenorge/designsystem/issues/371659)
+
 ## [13.7.0](https://github.com/helsenorge/designsystem/branchCompare?baseVersion=GTv13.6.0&targetVersion=GTv13.7.0) (2026-02-16)
 
 
