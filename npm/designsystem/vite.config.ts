@@ -23,7 +23,7 @@ export default defineConfig({
         'src/theme/**/*.{ts,tsx}',
         'src/utils/**/*.{ts,tsx}',
         'src/__mocks__/**/*.{ts,tsx}',
-        'src/resources/**/*.{ts,d.ts,json}',
+        'src/resources/**/*.{ts,json}',
         'src/*.{ts,tsx}',
       ],
       exclude: ['**/__snapshots__/**', '**/*.stories.*', '**/*.test.*'],
