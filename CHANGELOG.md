@@ -1,3 +1,8 @@
+## 14.0.0-beta.8 (2026-02-25)
+
+### Bug Fixes
+
+*  resources dts skal inkluderes i lib ([dd980c3](https://github.com/helsenorge/designsystem/commit/dd980c378bd241afe74a695f2c64e037a667fabb)), closes [#372295](https://github.com/helsenorge/designsystem/issues/372295)
 ## 14.0.0-beta.7 (2026-02-24)
 
 ### Bug Fixes
