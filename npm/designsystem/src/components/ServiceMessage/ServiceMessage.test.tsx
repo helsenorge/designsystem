@@ -3,6 +3,48 @@ import userEvent from '@testing-library/user-event';
 
 import ServiceMessage from './ServiceMessage';
 
+describe('Gitt at en ServiceMessage rendres', () => {
+  describe("Når messageRole='auto' og variant er 'error'", () => {
+    it("Så skal den ha messageRole='alert'", () => {
+      render(<ServiceMessage label="Test" variant="error" messageRole="auto" />);
+      const alert = screen.getByRole('alert');
+      expect(alert).toBeInTheDocument();
+    });
+  });
+
+  describe("Når messageRole='auto' og variant ikke er 'error'", () => {
+    it("Så skal den ha messageRole='region'", () => {
+      render(<ServiceMessage label="Test" variant="info" messageRole="auto" />);
+      const region = screen.getByRole('region');
+      expect(region).toBeInTheDocument();
+    });
+  });
+
+  describe("Når messageRole='alert' er spesifisert", () => {
+    it("Så skal den ha messageRole='alert'", () => {
+      render(<ServiceMessage label="Test" messageRole="alert" />);
+      const alert = screen.getByRole('alert');
+      expect(alert).toBeInTheDocument();
+    });
+  });
+
+  describe("Når messageRole='region' er spesifisert", () => {
+    it("Så skal den ha messageRole='region'", () => {
+      render(<ServiceMessage label="Test" messageRole="region" />);
+      const region = screen.getByRole('region');
+      expect(region).toBeInTheDocument();
+    });
+  });
+
+  describe("Når messageRole='none' er spesifisert", () => {
+    it('Så skal den ikke ha noen role-attributt', () => {
+      render(<ServiceMessage label="Test" messageRole="none" testId="service-message" />);
+      const element = screen.getByTestId('service-message');
+      expect(element).not.toHaveAttribute('role');
+    });
+  });
+});
+
 describe('Gitt at ServiceMessage skal vises', () => {
   describe('Når komponenten vises med default props', () => {
     test('Så rendres komponenten riktig', (): void => {

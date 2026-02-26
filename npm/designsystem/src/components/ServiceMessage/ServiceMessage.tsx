@@ -1,13 +1,15 @@
-import React, { useId, useState } from 'react';
+import { useId, useState } from 'react';
 
 import classNames from 'classnames';
+
+import type { AnchorLinkTargets } from '../AnchorLink';
+import type { NotificationPanelVariants } from '../NotificationPanel';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { usePseudoClasses } from '../../hooks/usePseudoClasses';
 import { getColor } from '../../theme/currys';
 import { breakpoints } from '../../theme/grid';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
-import { AnchorLinkTargets } from '../AnchorLink';
 import NotificationBadge from '../Badge/NotificationBadge';
 import Close from '../Close';
 import { renderElementHeader } from '../ElementHeader/ElementHeader';
@@ -16,7 +18,6 @@ import ChevronDown from '../Icons/ChevronDown';
 import ChevronUp from '../Icons/ChevronUp';
 import Forward from '../Icons/Forward';
 import X from '../Icons/X';
-import { NotificationPanelVariants } from '../NotificationPanel';
 
 import styles from './styles.module.scss';
 
@@ -134,6 +135,8 @@ const Content: React.FC<ContentProps> = ({ info, extraInfo, urlTitle, url, targe
   );
 };
 
+export type ServiceMessageRoles = 'alert' | 'region' | 'auto' | 'none';
+
 export interface ServiceMessageProps {
   /** Sets a label for the notification panel. */
   label: string;
@@ -157,6 +160,8 @@ export interface ServiceMessageProps {
   closeBtnText?: string;
   /** Changes the visual representation. */
   variant?: NotificationPanelVariants;
+  /** Sets the role of the service message - default: auto, will decide based on variant */
+  messageRole?: ServiceMessageRoles;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -173,6 +178,7 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
   closeBtnText = 'fjern melding',
   expanderOpenFromStart = false,
   variant = 'error',
+  messageRole = 'auto',
   testId,
 }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(expanderOpenFromStart);
@@ -180,7 +186,8 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
   const labelId = useId();
   const hasExpander = !!info || !!extraInfo;
 
-  const ariaRole = variant === 'error' ? 'alert' : 'region';
+  const autoRole = variant === 'error' ? 'alert' : 'region';
+  const ariaRole = messageRole === 'auto' ? autoRole : messageRole === 'none' ? undefined : messageRole;
   const ariaLabelAttributes = getAriaLabelAttributes({ label, id: labelId });
 
   const handleClick = (): void => {
