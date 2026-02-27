@@ -25,7 +25,7 @@ export interface ExpanderProps extends ExpanderHierarchyCommonProps {
   /** Adds custom classes to the element. */
   className?: string;
   /** ref that is placed on the li element */
-  ref?: React.RefObject<HTMLLIElement>;
+  ref?: React.RefObject<HTMLLIElement | null>;
 }
 
 export type ExpanderType = typeof Expander;
