@@ -94,6 +94,15 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
     ...resources,
   };
 
+  const mergedLabels = {
+    labelNext: (): string => mergedResources.nextMonth,
+    labelPrevious: (): string => mergedResources.previousMonth,
+    labelDayButton: (): string => mergedResources.dayButtonBase,
+    labelMonthDropdown: (): string => mergedResources.monthDropdown,
+    labelYearDropdown: (): string => mergedResources.yearDropdown,
+    ...labelsForCalendar,
+  };
+
   // https://daypicker.dev/guides/translation#tweak-locale-data
   // sets abbreviated month names when using captionLayout='dropdown'
   const customLocale = {
@@ -207,7 +216,7 @@ const BaseDayPicker = (props: BaseDayPickerProps): React.ReactNode => {
       classNames={datePickerClassNames}
       locale={customLocale}
       modifiers={modifiersExtended}
-      labels={labelsForCalendar}
+      labels={mergedLabels}
       footer={
         showGoToTodayButton ? (
           <div className={classNames(customstyles['datepicker-footer'], customstyles['datepicker-footer--with-today-button'])}>

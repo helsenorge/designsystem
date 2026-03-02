@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
+import type { HNDesignsystemUnsafe_DatePicker } from '../../resources/Resources';
+
 import Icon, { IconSize } from '@helsenorge/designsystem-react/components/Icon';
 import X from '@helsenorge/designsystem-react/components/Icons/X';
 
 import { KeyboardEventKey, useKeyboardEvent } from '@helsenorge/designsystem-react';
-
-import { HNDesignsystemUnsafe_DatePicker } from '../../resources/Resources';
 
 import styles from './DatePicker.module.scss';
 
