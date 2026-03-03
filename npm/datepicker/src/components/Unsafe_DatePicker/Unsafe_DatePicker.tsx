@@ -4,14 +4,12 @@ import { autoUpdate, FloatingFocusManager, offset, shift, useClick, useDismiss, 
 import { format, isValid, parse } from 'date-fns';
 import { nb } from 'date-fns/locale';
 
-import type { BaseDayPickerProps } from './BaseDayPicker/BaseDayPicker';
 import type { HNDesignsystemUnsafe_DatePicker } from '../../resources/Resources';
 
 import ErrorWrapper from '@helsenorge/designsystem-react/components/ErrorWrapper';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
 import Calendar from '@helsenorge/designsystem-react/components/Icons/Calendar';
-import Label from '@helsenorge/designsystem-react/components/Label';
-import type { LabelProps } from '@helsenorge/designsystem-react/components/Label';
+import Label, { type LabelProps } from '@helsenorge/designsystem-react/components/Label';
 import { isComponent } from '@helsenorge/designsystem-react/utils/component';
 import { mergeRefs } from '@helsenorge/designsystem-react/utils/refs';
 
@@ -25,7 +23,7 @@ import {
   useToggle,
 } from '@helsenorge/designsystem-react';
 
-import BaseDayPicker from './BaseDayPicker/BaseDayPicker';
+import BaseDayPicker, { type BaseDayPickerProps } from './BaseDayPicker/BaseDayPicker';
 import DateInputInternal from './DateInputInternal';
 import { getResources } from './resourceHelper';
 

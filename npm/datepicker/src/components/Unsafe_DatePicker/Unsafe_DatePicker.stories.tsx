@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { nb } from 'date-fns/locale';
 import { action } from 'storybook/actions';
 
 import type { Matcher, Modifiers } from './index';
@@ -281,6 +282,16 @@ export const AriaLabels: Story = {
   },
   render: args => {
     return <Unsafe_DatePicker {...args} />;
+  },
+};
+
+export const LocaleExample: Story = {
+  args: {
+    localeForCalendar: nb,
+  },
+  render: args => {
+    const [value, setValue] = useState<Date | undefined>();
+    return <Unsafe_DatePicker {...args} value={value} onChange={setValue} />;
   },
 };
 
