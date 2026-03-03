@@ -94,9 +94,7 @@ $with-icons: // icon-class, size-class, padding-left, padding-right, padding-lef
   }
 
   :disabled > & {
-    @media (min-width: map.get(breakpoints.$grid-breakpoints, md)) {
-      color: palette.$neutral700;
-    }
+    color: palette.$neutral700;
   }
 }
 
