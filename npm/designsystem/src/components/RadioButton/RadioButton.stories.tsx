@@ -86,6 +86,16 @@ export const AllColors: Story = {
 };
 
 export const Large: Story = {
+  args: { size: 'large', label: <Label labelTexts={[{ text: 'Valg' }]} />, onColor: 'onwhite' },
+  render: args => (
+    <FormGroup legend={'Large'} name="radio1" onColor={args.onColor} size={'large'}>
+      <RadioButton {...args} />
+      <RadioButton {...args} />
+    </FormGroup>
+  ),
+};
+
+export const LargeEveryColor: Story = {
   render: args => (
     <>
       <FormGroup legend={'onwhite'} name="radio1" onColor={'onwhite'} size={'large'}>
