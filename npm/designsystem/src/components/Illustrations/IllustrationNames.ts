@@ -8,8 +8,10 @@ export const IllustrationList = [
   'GiveBabyFood',
   'HealthcarePersonnel',
   'ReadLetters',
+  'Stork',
   'Stroller',
   'Support2',
+  'Thinking',
 ] as const;
 
 export interface IllustrationSize {
@@ -26,8 +28,10 @@ export const IllustrationSizeList: Record<IllustrationName, IllustrationSize> = 
   GiveBabyFood: { medium: 'GiveBabyFoodMedium' },
   HealthcarePersonnel: { small: 'HealthcarePersonnelSmall', medium: 'HealthcarePersonnelMedium' },
   ReadLetters: { medium: 'ReadLettersMedium' },
+  Stork: { medium: 'StorkMedium' },
   Stroller: { medium: 'StrollerMedium' },
   Support2: { medium: 'Support2Medium' },
+  Thinking: { medium: 'ThinkingMedium' },
 };
 
 export type IllustrationName = (typeof IllustrationList)[number];

@@ -32,6 +32,7 @@ const meta = {
     url: 'https://www.helsenorge.no',
     target: '_parent',
     closeBtnText: 'Fjern melding',
+    messageRole: 'auto',
     testId: 'test',
   },
   argTypes: {
@@ -66,6 +67,10 @@ const meta = {
     variant: {
       control: 'select',
       options: ['info', 'warn', 'error', 'success'],
+    },
+    messageRole: {
+      control: 'select',
+      options: ['alert', 'region', 'auto', 'none'],
     },
     testId: {
       control: 'text',

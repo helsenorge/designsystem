@@ -135,6 +135,8 @@ const Content: React.FC<ContentProps> = ({ info, extraInfo, urlTitle, url, targe
   );
 };
 
+export type ServiceMessageRoles = 'alert' | 'region' | 'auto' | 'none';
+
 export interface ServiceMessageProps {
   /** Sets a label for the notification panel. */
   label: string;
@@ -158,6 +160,8 @@ export interface ServiceMessageProps {
   closeBtnText?: string;
   /** Changes the visual representation. */
   variant?: NotificationPanelVariants;
+  /** Sets the role of the service message - default: auto, will decide based on variant */
+  messageRole?: ServiceMessageRoles;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
@@ -174,6 +178,7 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
   closeBtnText = 'fjern melding',
   expanderOpenFromStart = false,
   variant = 'error',
+  messageRole = 'auto',
   testId,
 }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(expanderOpenFromStart);
@@ -181,7 +186,8 @@ const ServiceMessage: React.FC<ServiceMessageProps> = ({
   const labelId = useId();
   const hasExpander = !!info || !!extraInfo;
 
-  const ariaRole = variant === 'error' ? 'alert' : 'region';
+  const autoRole = variant === 'error' ? 'alert' : 'region';
+  const ariaRole = messageRole === 'auto' ? autoRole : messageRole === 'none' ? undefined : messageRole;
   const ariaLabelAttributes = getAriaLabelAttributes({ label, id: labelId });
 
   const handleClick = (): void => {
