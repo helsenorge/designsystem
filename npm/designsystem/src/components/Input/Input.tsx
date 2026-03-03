@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -152,14 +152,16 @@ const Input: React.FC<InputProps> = props => {
   const inputContainerRefLocal = useRef<HTMLDivElement>(null);
   const inputId = useIdWithFallback(inputIdProp);
   const [input, setInput] = useState(defaultValue || '');
+  const [prevDefaultValue, setPrevDefaultValue] = useState(defaultValue);
   const [prevValue, setPrevValue] = useState<string | number | undefined>(undefined);
   const numKeyPressed = useRef<boolean>(false);
   const errorTextId = useIdWithFallback(errorTextIdProp);
   const numRegex = /^[0-9]$/;
 
-  useEffect(() => {
+  if (defaultValue !== prevDefaultValue) {
+    setPrevDefaultValue(defaultValue);
     setInput(defaultValue || '');
-  }, [defaultValue]);
+  }
 
   const onDark = onColor === FormOnColor.ondark;
   const onBlueberry = onColor === FormOnColor.onblueberry;

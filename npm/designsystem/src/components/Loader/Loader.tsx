@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -59,6 +59,7 @@ const Loader: React.FC<LoaderProps> = props => {
   };
 
   const [display, setDisplay] = useState(showLoader());
+  const hasInitializedRef = useRef(false);
 
   const isSmall = size === 'small';
   const isMedium = size === 'medium';
@@ -93,19 +94,22 @@ const Loader: React.FC<LoaderProps> = props => {
     [loaderStyles['loader__dot--white']]: color === 'white',
   });
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (overlay === Overlay.parent && wrapperRef.current?.parentElement?.style) {
-      wrapperRef.current.parentElement.style.position = 'relative';
-      setDisplay(true);
-    }
-
-    if (inline && wrapperRef.current?.parentElement?.style) {
-      wrapperRef.current.parentElement.style.display = 'flex';
-      setDisplay(true);
-    }
-  }, []);
+  const wrapperRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (node && !hasInitializedRef.current) {
+        hasInitializedRef.current = true;
+        if (overlay === Overlay.parent && node.parentElement?.style) {
+          node.parentElement.style.position = 'relative';
+          setDisplay(true);
+        }
+        if (inline && node.parentElement?.style) {
+          node.parentElement.style.display = 'flex';
+          setDisplay(true);
+        }
+      }
+    },
+    [overlay, inline]
+  );
 
   return (
     <div className={loaderWrapperClasses} ref={wrapperRef} style={overlay === Overlay.screen ? { zIndex: ZIndex.OverlayScreen } : {}}>

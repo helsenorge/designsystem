@@ -250,6 +250,7 @@ const ExpanderListComponent: React.FC<ExpanderListProps> = (props: ExpanderListP
     editMode = false,
     ref,
   } = props;
+  const [prevChildren, setPrevChildren] = useState(children);
   const [activeExpander, setActiveExpander] = useState<ActiveExpander>();
   const [latestExpander, setLatestExpander] = useState<HTMLElement>();
   const expanderIdBase = useId();
@@ -272,8 +273,8 @@ const ExpanderListComponent: React.FC<ExpanderListProps> = (props: ExpanderListP
     }
   }, [accordion, latestExpander]);
 
-  useEffect(() => {
-    const newActiveExpander = React.Children.map(children, child => {
+  const getExpanderStateFromChildren = (): ActiveExpander | undefined => {
+    return React.Children.map(children, child => {
       if (isExpanderComponent(child)) {
         return child;
       }
@@ -284,9 +285,22 @@ const ExpanderListComponent: React.FC<ExpanderListProps> = (props: ExpanderListP
       }
       return acc;
     }, {} as ActiveExpander);
+  };
 
-    setActiveExpander({ ...activeExpander, ...newActiveExpander });
-  }, [children]);
+  if (children !== prevChildren) {
+    setPrevChildren(children);
+    const newActiveExpander = getExpanderStateFromChildren();
+    if (newActiveExpander) {
+      setActiveExpander({ ...activeExpander, ...newActiveExpander });
+    }
+  }
+
+  if (activeExpander === undefined) {
+    const initialState = getExpanderStateFromChildren();
+    if (initialState && Object.keys(initialState).length > 0) {
+      setActiveExpander(initialState);
+    }
+  }
 
   return (
     <ul className={expanderListClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.ExpanderList}>

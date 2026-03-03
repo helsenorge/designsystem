@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 
 import cn from 'classnames';
 
@@ -108,8 +108,9 @@ const Textarea: React.FC<TextareaProps> = props => {
     ...rest
   } = props;
 
-  const [rows, setRows] = useState(minRows);
   const [textareaInput, setTextareaInput] = useState(value || defaultValue || '');
+  const [prevDefaultValue, setPrevDefaultValue] = useState(defaultValue);
+  const [prevValue, setPrevValue] = useState(value);
   const referanse = useRef<HTMLDivElement>(null);
   const errorTextUuid = useIdWithFallback(errorTextIdProp);
 
@@ -121,31 +122,31 @@ const Textarea: React.FC<TextareaProps> = props => {
     ...resources,
   };
 
-  useEffect(() => {
+  if (defaultValue !== prevDefaultValue) {
+    setPrevDefaultValue(defaultValue);
     setTextareaInput(defaultValue || '');
-  }, [defaultValue]);
+  }
+
+  if (value !== prevValue) {
+    setPrevValue(value);
+
+    if (value) {
+      setTextareaInput(value);
+    }
+  }
 
   const resizeHeight = (target: HTMLTextAreaElement): void => {
     const textareaLineHeight = 28;
 
-    const previousRows = target.rows;
     target.rows = minRows; // reset number of rows in textarea
 
     const currentRows = Math.floor((target.scrollHeight - 16) / textareaLineHeight); // scrollHeight - 16px of padding to calculate the rows
 
-    if (currentRows === previousRows) {
-      target.rows = currentRows;
-    }
-
     if (currentRows >= maxRows) {
       target.rows = maxRows;
       target.scrollTop = target.scrollHeight;
-    }
-
-    if (currentRows < maxRows) {
-      setRows(currentRows);
     } else {
-      setRows(maxRows);
+      target.rows = currentRows;
     }
   };
 
@@ -170,9 +171,7 @@ const Textarea: React.FC<TextareaProps> = props => {
     [styles[`input-container__input--disabled`]]: props.disabled,
   });
 
-  useEffect(() => {
-    if (value) setTextareaInput(value);
-
+  useLayoutEffect(() => {
     if (grow && referanse.current?.children && referanse.current?.children[0]) {
       const textarea = referanse.current?.children[0] as HTMLTextAreaElement;
       resizeHeight(textarea);
@@ -200,7 +199,7 @@ const Textarea: React.FC<TextareaProps> = props => {
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
           <textarea
             {...rest}
-            rows={rows}
+            rows={minRows}
             defaultValue={defaultValue}
             id={textareaId}
             className={textareaClass}

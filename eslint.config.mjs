@@ -12,9 +12,8 @@ export default [
       globals: { ...globals.node },
     },
     rules: {
-      // These two rules are temporarily set to warn so we can solve them bit by bit
+      // This rule is temporarily set to warn so we can solve it later
       'react-hooks/refs': 'warn',
-      'react-hooks/set-state-in-effect': 'warn',
 
       'react/prop-types': 'off',
       'react-hooks/exhaustive-deps': 'off',
