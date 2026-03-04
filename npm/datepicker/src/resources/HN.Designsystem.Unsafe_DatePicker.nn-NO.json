@@ -1,11 +1,23 @@
 {
   "dateButtonAriaLabel": "Opne datoveljar",
   "dayButtonBase": "{date}",
+  "dayButtonToday": "I dag, {date}",
+  "dayButtonSelected": "{date} valt",
+  "nextMonth": "Neste månad",
+  "previousMonth": "Førre månad",
+  "monthDropdown": "Vel månad",
+  "goToToday": "Gå til i dag",
+  "loadingText": "Hentar info. Ver venleg og vent.",
+  "dayFormatPlaceholder": "dd",
+  "monthFormatPlaceholder": "mm",
   "calendarButtonAriaLabel": "Opne datoveljar",
+  "validateDefaultMessageDay": "Dag må vere eit tal mellom 01 og 31",
   "clearButtonAriaLabel": "Nullstill dato",
   "ariaLabelInputDay": "Dag",
   "ariaLabelInputMonth": "Månad",
   "ariaLabelInputYear": "År",
+  "hourFormatPlaceholder": "tt",
+  "minuteFormatPlaceholder": "mm",
   "ariaLabelInputHour": "Time",
   "ariaLabelInputMinute": "Minutt"
 }
