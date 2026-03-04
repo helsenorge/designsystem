@@ -1,0 +1,11 @@
+{
+  "dateButtonAriaLabel": "Opne datoveljar",
+  "dayButtonBase": "{date}",
+  "calendarButtonAriaLabel": "Opne datoveljar",
+  "clearButtonAriaLabel": "Nullstill dato",
+  "ariaLabelInputDay": "Dag",
+  "ariaLabelInputMonth": "Månad",
+  "ariaLabelInputYear": "År",
+  "ariaLabelInputHour": "Time",
+  "ariaLabelInputMinute": "Minutt"
+}
