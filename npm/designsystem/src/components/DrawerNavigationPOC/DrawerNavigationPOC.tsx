@@ -57,7 +57,7 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views }: DrawerNavigat
       <h1>{'Drawer Navigation POC'}</h1>
       <div>
         {viewStack.map((viewId, idx) => (
-          <span key={viewId}>
+          <span key={idx}>
             {viewId}
             {idx < viewStack.length - 1 && ' → '}
           </span>
