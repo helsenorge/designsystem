@@ -128,9 +128,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   };
 
   const contentIsScrollable = contentRef.current && contentRef.current.scrollHeight > contentRef.current.clientHeight;
-  const headerStyling = classNames(styles.drawer__header, headerClasses, {
-    [styles['drawer__header--no-close-button']]: noCloseButton,
-  });
+  const headerStyling = classNames(styles.drawer__header, headerClasses);
   const hasFooterContent = (typeof footerContent !== 'undefined' && footerContent) || onPrimaryAction || onSecondaryAction;
 
   useFocusTrap(containerRef, true);
@@ -248,7 +246,12 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
       >
         <div className={styles.drawer__container__inner}>
           <div className={headerStyling} ref={headerRef}>
-            <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
+            <Title
+              id={ariaLabelAttributes?.['aria-labelledby']}
+              className={styles['drawer__header__title']}
+              htmlMarkup={titleHtmlMarkup}
+              appearance="title3"
+            >
               {title}
             </Title>
             {!noCloseButton && onRequestClose != undefined && (
