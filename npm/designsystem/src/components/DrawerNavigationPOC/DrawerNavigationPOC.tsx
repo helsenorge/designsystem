@@ -1,5 +1,7 @@
 import { useState, useMemo } from 'react';
 
+import Drawer from '../Drawer/Drawer';
+
 interface NavigateProps {
   goToView: (id: string) => void;
   goBack: () => void;
@@ -11,6 +13,7 @@ export interface NavigationProps {
 
 export interface ViewConfig<P extends object = object> {
   id: string;
+  title: string;
   component: React.FC<NavigationProps & P>;
   props?: P;
 }
@@ -40,12 +43,13 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views }: DrawerNavigat
     }
   };
 
-  const { CurrentView, currentViewProps } = useMemo(() => {
+  const { CurrentView, currentViewProps, currentViewTitle } = useMemo(() => {
     const currentViewId = viewStack[viewStack.length - 1];
     const currentViewObj = views.find(view => view.id === currentViewId);
     return {
       CurrentView: currentViewObj?.component,
       currentViewProps: currentViewObj?.props || {},
+      currentViewTitle: currentViewObj?.title || 'Filter', // hva skal være fallback her?
       currentViewId,
     };
   }, [viewStack, views]);
@@ -53,21 +57,27 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views }: DrawerNavigat
   const navigate = { goBack, goToView, goToViewAndClearStack };
 
   return (
-    <div>
-      <h1>{'Drawer Navigation POC'}</h1>
-      <div>
-        {viewStack.map((viewId, idx) => (
-          <span key={idx}>
-            {viewId}
-            {idx < viewStack.length - 1 && ' → '}
-          </span>
-        ))}
-      </div>
+    <>
       {CurrentView && (
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        <CurrentView {...(currentViewProps as any)} navigate={navigate} />
+        <Drawer
+          isOpen={true}
+          title={currentViewTitle}
+          onRequestClose={() => console.log('delete me')}
+          withBackButton={viewStack.length > 1}
+          onRequestBack={goBack}
+        >
+          <div>
+            {viewStack.map((viewId, idx) => (
+              <span key={idx}>
+                {viewId}
+                {idx < viewStack.length - 1 && ' → '}
+              </span>
+            ))}
+          </div>
+          <CurrentView {...(currentViewProps ? currentViewProps : {})} navigate={navigate} />
+        </Drawer>
       )}
-    </div>
+    </>
   );
 }
 

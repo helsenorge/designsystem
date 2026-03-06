@@ -18,6 +18,7 @@ import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import uuid from '../../utils/uuid';
 import Button from '../Button';
 import Close from '../Close';
+import LazyIcon from '../LazyIcon';
 import Title, { TitleTags } from '../Title';
 
 import styles from './styles.module.scss';
@@ -70,6 +71,8 @@ export interface InnerDrawerProps {
   resources?: Partial<HNDesignsystemDrawer>;
   /** Sets mobile styling and animation from outer level Drawer */
   isMobile?: boolean;
+  withBackButton?: boolean;
+  onRequestBack?: () => void;
 }
 
 const Drawer: React.FC<DrawerProps> = props => {
@@ -101,6 +104,8 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     zIndex = ZIndex.OverlayScreen,
     resources,
     isMobile,
+    withBackButton,
+    onRequestBack,
   } = props;
 
   const ariaLabelAttributes = getAriaLabelAttributes({ label: ariaLabel, id: ariaLabelledBy, fallbackId: titleId });
@@ -248,6 +253,16 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
       >
         <div className={styles.drawer__container__inner}>
           <div className={headerStyling} ref={headerRef}>
+            {withBackButton && onRequestBack != undefined && (
+              <Button
+                ariaLabel={'Go back'} // fix this
+                href="https://www.helsenorge.no"
+                onClick={onRequestBack}
+                variant="borderless"
+              >
+                <LazyIcon iconName="ChevronLeft" />
+              </Button>
+            )}
             <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
               {title}
             </Title>
