@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 interface NavigateProps {
   goToView: (id: string) => void;
@@ -40,17 +40,29 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views }: DrawerNavigat
     }
   };
 
-  const currentViewId = viewStack[viewStack.length - 1];
-  const currentViewObj = views.find(view => view.id === currentViewId);
-  const CurrentView = currentViewObj?.component;
-  const currentViewProps = currentViewObj?.props || {};
+  const { CurrentView, currentViewProps } = useMemo(() => {
+    const currentViewId = viewStack[viewStack.length - 1];
+    const currentViewObj = views.find(view => view.id === currentViewId);
+    return {
+      CurrentView: currentViewObj?.component,
+      currentViewProps: currentViewObj?.props || {},
+      currentViewId,
+    };
+  }, [viewStack, views]);
 
   const navigate = { goBack, goToView, goToViewAndClearStack };
 
   return (
     <div>
       <h1>{'Drawer Navigation POC'}</h1>
-      <div>{viewStack.map(viewId => `${viewId} ->`)}</div>
+      <div>
+        {viewStack.map((viewId, idx) => (
+          <span key={viewId}>
+            {viewId}
+            {idx < viewStack.length - 1 && ' → '}
+          </span>
+        ))}
+      </div>
       {CurrentView && (
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         <CurrentView {...(currentViewProps as any)} navigate={navigate} />
