@@ -1,22 +1,27 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
-export interface NavigationProps {
+interface NavigateProps {
   goToView: (id: string) => void;
   goBack: () => void;
   goToViewAndClearStack: (id: string) => void;
 }
+export interface NavigationProps {
+  navigate: NavigateProps;
+}
 
-export interface ViewConfig<P = object> {
+export interface ViewConfig<P extends object = object> {
   id: string;
   component: React.FC<NavigationProps & P>;
   props?: P;
 }
 
-interface DrawerNavigationPOCProps {
-  views: ViewConfig<any>[];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface DrawerNavigationPOCProps<V extends ViewConfig<any>> {
+  views: V[];
 }
 
-const DrawerNavigationPOC: FC<DrawerNavigationPOCProps> = ({ views }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function DrawerNavigationPOC<V extends ViewConfig<any>>({ views }: DrawerNavigationPOCProps<V>): JSX.Element {
   const [viewStack, setViewStack] = useState<string[]>(views[0] ? [views[0].id] : []);
 
   const goToView = (id: string): void => {
@@ -40,15 +45,18 @@ const DrawerNavigationPOC: FC<DrawerNavigationPOCProps> = ({ views }) => {
   const CurrentView = currentViewObj?.component;
   const currentViewProps = currentViewObj?.props || {};
 
+  const navigate = { goBack, goToView, goToViewAndClearStack };
+
   return (
     <div>
       <h1>{'Drawer Navigation POC'}</h1>
       <div>{viewStack.map(viewId => `${viewId} ->`)}</div>
       {CurrentView && (
-        <CurrentView {...currentViewProps} goToView={goToView} goBack={goBack} goToViewAndClearStack={goToViewAndClearStack} />
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        <CurrentView {...(currentViewProps as any)} navigate={navigate} />
       )}
     </div>
   );
-};
+}
 
 export default DrawerNavigationPOC;
