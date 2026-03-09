@@ -21,10 +21,12 @@ export interface ViewConfig<P extends object = object> {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface DrawerNavigationPOCProps<V extends ViewConfig<any>> {
   views: V[];
+  onCloseButton?: () => void;
+  isOpen: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DrawerNavigationPOC<V extends ViewConfig<any>>({ views }: DrawerNavigationPOCProps<V>): JSX.Element {
+function DrawerNavigationPOC<V extends ViewConfig<any>>({ views, ...props }: DrawerNavigationPOCProps<V>): JSX.Element {
   const [viewStack, setViewStack] = useState<string[]>(views[0] ? [views[0].id] : []);
 
   const goToView = (id: string): void => {
@@ -58,10 +60,12 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views }: DrawerNavigat
 
   return (
     <TestDrawer
+      isOpen={props.isOpen}
       title={currentViewTitle}
       withBackButton={viewStack.length > 1}
       previousViewTitle={viewStack.length > 1 ? views.find(v => v.id === viewStack[viewStack.length - 2])?.title : ''}
       onBackButton={goBack}
+      onCloseButton={props.onCloseButton}
     >
       <div>
         {viewStack.map((viewId, idx) => (

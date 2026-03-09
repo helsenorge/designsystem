@@ -1,7 +1,11 @@
 import { useEffect, useRef } from 'react';
 
+import { KeyboardEventKey } from '../../constants';
+import { useKeyboardEvent } from '../../hooks/useKeyboardEvent';
+import { useOutsideEvent } from '../../hooks/useOutsideEvent';
 import Button from '../Button';
-import './test.css';
+
+import styles from './styles.module.scss';
 
 interface TestDrawerProps {
   title: string;
@@ -9,6 +13,8 @@ interface TestDrawerProps {
   previousViewTitle?: string;
   onBackButton?: () => void;
   children: React.ReactNode;
+  isOpen: boolean;
+  onCloseButton?: () => void;
 }
 
 const TestDrawer = (props: TestDrawerProps) => {
@@ -27,20 +33,30 @@ const TestDrawer = (props: TestDrawerProps) => {
     titleRef.current?.focus();
   }, [props.children]);
 
+  useEffect(() => {
+    if (props.isOpen) {
+      openDialog();
+    } else {
+      closeDialog();
+    }
+  }, [props.isOpen]);
+
+  useOutsideEvent(dialogRef, () => {
+    props.onCloseButton?.();
+  });
+  useKeyboardEvent(dialogRef, () => props.onCloseButton?.(), [KeyboardEventKey.Escape]);
+
   return (
-    <>
-      <button onClick={openDialog}>{'Open drawer'}</button>
-      <dialog aria-labelledby="tittel" ref={dialogRef}>
-        <h2 id="tittel" ref={titleRef} tabIndex={-1}>
-          {props.title}
-        </h2>
-        {props.withBackButton && <Button onClick={props.onBackButton}>{`Tilbake til ${props.previousViewTitle ?? 'forrige side'}`}</Button>}
-        <Button onClick={closeDialog} id="close-btn">
-          {'Lukk'}
-        </Button>
-        {props.children}
-      </dialog>
-    </>
+    <dialog aria-labelledby="tittel" ref={dialogRef} className={styles['dialog']}>
+      <h2 id="tittel" ref={titleRef} tabIndex={-1}>
+        {props.title}
+      </h2>
+      {props.withBackButton && <Button onClick={props.onBackButton}>{`Tilbake til ${props.previousViewTitle ?? 'forrige side'}`}</Button>}
+      <Button onClick={() => props.onCloseButton?.()} id="close-btn">
+        {'Lukk'}
+      </Button>
+      {props.children}
+    </dialog>
   );
 };
 

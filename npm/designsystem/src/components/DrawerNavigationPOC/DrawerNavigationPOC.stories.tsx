@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
@@ -30,60 +30,6 @@ const meta = {
 } satisfies Meta<typeof DrawerNavigationPOC>;
 
 export default meta;
-
-interface FirstViewProps {
-  uniqueProp: number;
-}
-const FirstView: React.FC<NavigationProps & FirstViewProps> = ({ uniqueProp, navigate }) => (
-  <div>
-    {'First view'} {uniqueProp}
-    <button onClick={navigate.goBack}>{'Go back'}</button>
-    <button onClick={() => navigate.goToView('second')}>{'Go to Second'}</button>
-  </div>
-);
-const SecondView: React.FC<NavigationProps> = ({ navigate }) => (
-  <div>
-    {'Second view'}
-    <button onClick={navigate.goBack}>{'Go Back'}</button>
-    <button onClick={() => navigate.goToView('first')}>{'Go to First'}</button>
-    <button onClick={() => navigate.goToView('third')}>{'Go to Third'}</button>
-  </div>
-);
-const ThirdView: React.FC<NavigationProps> = ({ navigate }) => (
-  <div>
-    {'Third view'}
-    <button onClick={navigate.goBack}>{'Go Back'}</button>
-    <button onClick={() => navigate.goToView('first')}>{'Go to First'}</button>
-    <button
-      onClick={() => {
-        navigate.goToViewAndClearStack('first');
-      }}
-    >
-      {'Go to First and start fresh'}
-    </button>
-    <button onClick={() => navigate.goToView('second')}>{'Go to Second'}</button>
-  </div>
-);
-
-type FirstViewConfig = ViewConfig<FirstViewProps>;
-type SecondViewConfig = ViewConfig;
-type ThirdViewConfig = ViewConfig;
-type AllViewConfigs = FirstViewConfig | SecondViewConfig | ThirdViewConfig;
-
-const views: AllViewConfigs[] = [
-  { id: 'first', title: 'First page', component: FirstView, props: { uniqueProp: 2 } },
-  { id: 'second', title: 'Second page', component: SecondView },
-  { id: 'third', title: 'Third page', component: ThirdView },
-];
-
-export const Default = {
-  args: { views },
-  render: ({ views }: { views: AllViewConfigs[] }): JSX.Element => (
-    <div>
-      <DrawerNavigationPOC views={views} />
-    </div>
-  ),
-};
 
 interface OverviewPageProps {
   badge: number;
@@ -127,11 +73,15 @@ const parameterViews: AllConfigs[] = [
   { id: 'nested', title: 'Nested parameter', component: NestedParameter },
 ];
 
-export const WithLinkList = {
+export const Default = {
   args: { views: parameterViews },
-  render: ({ views }: { views: AllViewConfigs[] }): JSX.Element => (
-    <div>
-      <DrawerNavigationPOC views={views} />
-    </div>
-  ),
+  render: ({ views }: { views: AllConfigs[] }): JSX.Element => {
+    const [isOpen, setIsOpen] = useState(false);
+    return (
+      <div>
+        <button onClick={() => setIsOpen(true)}>{'Åpne drawer'}</button>
+        <DrawerNavigationPOC views={views} isOpen={isOpen} onCloseButton={() => setIsOpen(false)} />
+      </div>
+    );
+  },
 };
