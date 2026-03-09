@@ -117,6 +117,7 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
   const bottomContent = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const [scope, animate] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
   const [headerHeight, setHeaderHeight] = React.useState(0);
@@ -238,6 +239,10 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
     }
   };
 
+  useEffect(() => {
+    titleRef.current?.focus();
+  }, [title]);
+
   return (
     <div className={styles.drawer} ref={scope} style={{ zIndex }} data-analyticsid={AnalyticsId.Drawer}>
       <div className={styles.drawer__overlay} ref={overlayRef} aria-hidden="true" />
@@ -253,24 +258,27 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
       >
         <div className={styles.drawer__container__inner}>
           <div className={headerStyling} ref={headerRef}>
+            <Title
+              id={ariaLabelAttributes?.['aria-labelledby']}
+              className={styles['drawer__header__title']}
+              htmlMarkup={titleHtmlMarkup}
+              appearance="title3"
+              ref={titleRef}
+              tabIndex={-1}
+            >
+              {title}
+            </Title>
             {withBackButton && onRequestBack != undefined && (
               <Button
                 ariaLabel={'Go back'} // fix this
                 href="https://www.helsenorge.no"
                 onClick={onRequestBack}
                 variant="borderless"
+                wrapperClassName={styles['drawer__header__back-button']}
               >
                 <LazyIcon iconName="ChevronLeft" />
               </Button>
             )}
-            <Title
-              id={ariaLabelAttributes?.['aria-labelledby']}
-              className={styles['drawer__header__title']}
-              htmlMarkup={titleHtmlMarkup}
-              appearance="title3"
-            >
-              {title}
-            </Title>
             {!noCloseButton && onRequestClose != undefined && (
               <Close
                 ariaLabel={mergedResources.ariaLabelCloseBtn}

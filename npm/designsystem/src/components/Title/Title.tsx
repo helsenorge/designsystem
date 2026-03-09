@@ -21,12 +21,14 @@ export interface TitleProps {
   htmlMarkup?: TitleTags;
   /** Changes the appearance of the title. */
   appearance?: TitleAppearances;
+  /** Sets the tabIndex. Use this with caution. */
+  tabIndex?: number;
   /** Sets the data-testid attribute. */
   testId?: string;
 }
 
 export const Title = React.forwardRef(function TitleForwardedRef(props: TitleProps, ref: React.ForwardedRef<HTMLHeadingElement>) {
-  const { id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0, testId } = props;
+  const { id, children, className, htmlMarkup = 'h1', appearance = 'title1', margin = 0, tabIndex, testId } = props;
   const titleClasses = classNames(
     titleStyles.title,
     {
@@ -47,7 +49,15 @@ export const Title = React.forwardRef(function TitleForwardedRef(props: TitlePro
     : { marginTop: `${margin}rem`, marginBottom: `${margin}rem` };
 
   return (
-    <CustomTag id={id} className={titleClasses} style={inlineStyle} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Title}>
+    <CustomTag
+      id={id}
+      className={titleClasses}
+      style={inlineStyle}
+      ref={ref}
+      data-testid={testId}
+      data-analyticsid={AnalyticsId.Title}
+      tabIndex={tabIndex}
+    >
       {children}
     </CustomTag>
   );

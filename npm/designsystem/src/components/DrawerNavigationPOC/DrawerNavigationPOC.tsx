@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 
-import TestDrawer from './TestDrawer';
+// import TestDrawer from './TestDrawer';
+import Drawer from '../Drawer/Drawer';
 
 interface NavigateProps {
   goToView: (id: string) => void;
@@ -59,24 +60,33 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views, ...props }: Dra
   const navigate = { goBack, goToView, goToViewAndClearStack };
 
   return (
-    <TestDrawer
+    // <TestDrawer
+    //   isOpen={props.isOpen}
+    //   title={currentViewTitle}
+    //   withBackButton={viewStack.length > 1}
+    //   previousViewTitle={viewStack.length > 1 ? views.find(v => v.id === viewStack[viewStack.length - 2])?.title : ''}
+    //   onBackButton={goBack}
+    //   onCloseButton={props.onCloseButton}
+    // >
+    //   <div>
+    //     {viewStack.map((viewId, idx) => (
+    //       <span key={idx}>
+    //         {viewId}
+    //         {idx < viewStack.length - 1 && ' → '}
+    //       </span>
+    //     ))}
+    //   </div>
+    //   {CurrentView && <CurrentView {...(currentViewProps ? currentViewProps : {})} navigate={navigate} />}
+    // </TestDrawer>
+    <Drawer
       isOpen={props.isOpen}
       title={currentViewTitle}
       withBackButton={viewStack.length > 1}
-      previousViewTitle={viewStack.length > 1 ? views.find(v => v.id === viewStack[viewStack.length - 2])?.title : ''}
-      onBackButton={goBack}
-      onCloseButton={props.onCloseButton}
+      onRequestBack={goBack}
+      onRequestClose={props.onCloseButton}
     >
-      <div>
-        {viewStack.map((viewId, idx) => (
-          <span key={idx}>
-            {viewId}
-            {idx < viewStack.length - 1 && ' → '}
-          </span>
-        ))}
-      </div>
-      {CurrentView && <CurrentView {...(currentViewProps ? currentViewProps : {})} navigate={navigate} />}
-    </TestDrawer>
+      {CurrentView && <CurrentView {...(currentViewProps ?? {})} navigate={navigate} />}
+    </Drawer>
   );
 }
 

@@ -84,10 +84,20 @@
 
     &__title {
       margin-top: 0.5rem !important;
+
+      &:focus,
+      &:focus-visible {
+        outline: none;
+      }
     }
 
     &__close-button {
       align-self: flex-start;
+    }
+
+    &__back-button {
+      // Moves the button visually to the left but keeps it in the DOM order for screen readers and keyboard navigation
+      order: -1;
     }
   }
 

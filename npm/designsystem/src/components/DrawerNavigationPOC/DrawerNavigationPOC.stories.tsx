@@ -37,11 +37,11 @@ interface OverviewPageProps {
 const OverviewPage: React.FC<NavigationProps & OverviewPageProps> = ({ badge, navigate }) => (
   <div>
     <LinkList>
-      <LinkList.Link onClick={() => navigate.goToView('one')} htmlMarkup="button">
+      <LinkList.Link onClick={() => navigate.goToView('one')} htmlMarkup="button" aria-label="Gå til side for å endre parameter 1">
         {'Parameter one '}
         <Badge>{badge}</Badge>
       </LinkList.Link>
-      <LinkList.Link onClick={() => navigate.goToView('two')} htmlMarkup="button">
+      <LinkList.Link onClick={() => navigate.goToView('two')} htmlMarkup="button" aria-label="Gå til side for å endre parameter 2">
         {'Parameter two'}
       </LinkList.Link>
     </LinkList>
@@ -51,13 +51,17 @@ const TweakParameterOne: React.FC<NavigationProps> = () => <div>{'Parameter one'
 const TweakParameterTwo: React.FC<NavigationProps> = ({ navigate }) => (
   <div>
     <p>{'Parameter two'}</p>
-    <Button onClick={() => navigate.goToView('nested')}>{'Go to nested parameter'}</Button>
+    <Button onClick={() => navigate.goToView('nested')} aria-label="Gå til side for nested parameter">
+      {'Go to nested parameter'}
+    </Button>
   </div>
 );
 const NestedParameter: React.FC<NavigationProps> = ({ navigate }) => (
   <div>
     <p>{'Nested parameter'}</p>
-    <Button onClick={() => navigate.goToViewAndClearStack('overview')}>{'Go back to start'}</Button>
+    <Button onClick={() => navigate.goToViewAndClearStack('overview')} aria-label="Gå tilbake til oversiktsside">
+      {'Go back to start'}
+    </Button>
   </div>
 );
 
