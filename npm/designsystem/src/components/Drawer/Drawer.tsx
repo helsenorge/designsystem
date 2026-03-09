@@ -263,7 +263,12 @@ const InnerDrawer: React.FC<InnerDrawerProps> = props => {
                 <LazyIcon iconName="ChevronLeft" />
               </Button>
             )}
-            <Title id={ariaLabelAttributes?.['aria-labelledby']} htmlMarkup={titleHtmlMarkup} appearance="title3">
+            <Title
+              id={ariaLabelAttributes?.['aria-labelledby']}
+              className={styles['drawer__header__title']}
+              htmlMarkup={titleHtmlMarkup}
+              appearance="title3"
+            >
               {title}
             </Title>
             {!noCloseButton && onRequestClose != undefined && (
