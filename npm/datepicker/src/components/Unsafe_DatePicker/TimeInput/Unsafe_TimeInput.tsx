@@ -1,11 +1,13 @@
 import { cloneElement, useState } from 'react';
 
+import type { HNDesignsystemDatePicker } from '../../../resources/Resources';
+
 import ErrorWrapper from '@helsenorge/designsystem-react/components/ErrorWrapper';
-import Label, { LabelProps } from '@helsenorge/designsystem-react/components/Label';
+import Label from '@helsenorge/designsystem-react/components/Label';
+import type { LabelProps } from '@helsenorge/designsystem-react/components/Label';
 import { isComponent } from '@helsenorge/designsystem-react/utils/component';
 
 import TimeInputInternal from './TimeInputInternal';
-import { HNDesignsystemDatePicker } from '../../../resources/Resources';
 import styles from '../DatePicker.module.scss';
 
 export interface Unsafe_TimeInputProps {

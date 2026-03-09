@@ -1,13 +1,14 @@
-import React from 'react';
-
 import classNames from 'classnames';
 
+import type { HNDesignsystemHelpBubble } from '../../resources/Resources';
+import type { AnchorLinkTargets } from '../AnchorLink';
+import type { PopOverProps } from '../PopOver';
+
 import { AnalyticsId, LanguageLocales } from '../../constants';
-import { HNDesignsystemHelpBubble } from '../../resources/Resources';
-import { useLanguage } from '../../utils/language';
-import AnchorLink, { AnchorLinkTargets } from '../AnchorLink';
+import { useLanguage } from '../../hooks/useLanguage';
+import AnchorLink from '../AnchorLink';
 import Close from '../Close';
-import PopOver, { PopOverProps, PopOverVariant } from '../PopOver';
+import PopOver, { PopOverVariant } from '../PopOver';
 import { getResources } from './resourceHelper';
 
 import styles from './styles.module.scss';
@@ -15,8 +16,6 @@ import styles from './styles.module.scss';
 export const HelpBubbleVariant = PopOverVariant;
 
 export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'variant' | 'controllerRef' | 'role'> {
-  /** Sets aria-label of the bubble. */
-  ariaLabel?: string;
   /** Sets aria-labelledby of the bubble. */
   ariaLabelledById?: string;
   /** Id of the HelpBubble */
@@ -24,7 +23,7 @@ export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'varian
   /** Content shown inside HelpBubble. */
   children: React.ReactNode;
   /** Ref for the element the HelpBubble is placed upon */
-  controllerRef: React.RefObject<HTMLElement | SVGSVGElement>;
+  controllerRef: React.RefObject<HTMLElement | SVGSVGElement | null>;
   /** Adds custom classes to the element. */
   className?: string;
   /** Determines the placement of the helpbubble. Default: automatic positioning. */
@@ -49,9 +48,11 @@ export interface HelpBubbleProps extends Pick<PopOverProps, 'children' | 'varian
   resources?: Partial<HNDesignsystemHelpBubble>;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLDivElement | SVGSVGElement | null>;
 }
 
-const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubbleProps>((props, ref) => {
+const HelpBubble: React.FC<HelpBubbleProps> = props => {
   const {
     ariaLabelledById,
     children,
@@ -70,6 +71,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     controllerRef,
     resources,
     testId,
+    ref,
   } = props;
 
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
@@ -82,13 +84,12 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
   const mergedResources: HNDesignsystemHelpBubble = {
     ...defaultResources,
     ...resources,
-    ariaLabel: props.ariaLabel ?? resources?.ariaLabel ?? defaultResources.ariaLabel,
   };
 
   const helpBubbleClasses = classNames(styles.helpbubble, className);
   const contentClasses = classNames(styles.helpbubble__content);
 
-  const renderLink = (): JSX.Element | undefined => {
+  const renderLink = (): React.ReactNode | undefined => {
     if (onLinkClick && linkText) {
       return (
         <button className={styles.helpbubble__link} onClick={onLinkClick} type="button">
@@ -104,7 +105,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
     }
   };
 
-  const renderCloseButton = (): JSX.Element | undefined => {
+  const renderCloseButton = (): React.ReactNode | undefined => {
     if (noCloseButton) {
       return;
     }
@@ -132,7 +133,7 @@ const HelpBubble = React.forwardRef<HTMLDivElement | SVGSVGElement, HelpBubblePr
       </div>
     </PopOver>
   );
-});
+};
 
 HelpBubble.displayName = 'HelpBubble';
 

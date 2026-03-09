@@ -2,8 +2,10 @@ import React, { useId } from 'react';
 
 import classNames from 'classnames';
 
-import { useSingleSelect } from './SingleSelect';
-import AsChildSlot, { AsChildSlotHandle } from '../../AsChildSlot';
+import type { AsChildSlotHandle } from '../../AsChildSlot';
+
+import { useSingleSelect } from './utils';
+import AsChildSlot from '../../AsChildSlot';
 
 import styles from './styles.module.scss';
 
@@ -24,10 +26,12 @@ export interface SingleSelectItemProps extends Pick<React.ButtonHTMLAttributes<H
   ['aria-describedby']?: string;
   /** Marks this option as initially selected */
   defaultSelected?: boolean;
+  /** Ref that is passed to the component */
+  ref?: React.Ref<HTMLElement | null>;
 }
 
-export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, ref: React.Ref<HTMLElement>) => {
-  const { text, value, testId, asChild = false, children, disabled, defaultSelected, ...rest } = props;
+export const SingleSelectItem: React.FC<SingleSelectItemProps> = props => {
+  const { text, value, testId, asChild = false, children, disabled, defaultSelected, ref, ...rest } = props;
 
   const generatedId = useId();
   const inputId = props.inputId ?? generatedId;
@@ -69,12 +73,12 @@ export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, 
   );
 
   const Component = (asChild ? AsChildSlot : 'button') as React.ElementType;
-  const childWithInjectedContent = childElement ? React.cloneElement(childElement, childElement.props, content) : null;
+  const childWithInjectedContent = childElement ? React.cloneElement(childElement, undefined, content) : null;
 
   const componentProps = asChild
     ? {
         ref: asChildSlotRef,
-        elementRef: ref as React.Ref<HTMLElement>,
+        elementRef: ref,
         className: contentClasses,
         disabled: isDisabled,
         onSelect: (e: React.SyntheticEvent): void => selectThis(e),
@@ -96,7 +100,7 @@ export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, 
             selectThis(e);
           }
         },
-        ref: ref as React.Ref<HTMLButtonElement>,
+        ref: ref,
         'aria-disabled': isDisabled || undefined,
         'aria-current': isSelected ? 'true' : undefined,
         children: content,
@@ -107,7 +111,7 @@ export const SingleSelectItem = React.forwardRef((props: SingleSelectItemProps, 
       <Component {...componentProps} />
     </div>
   );
-});
+};
 
 SingleSelectItem.displayName = 'Dropdown.SingleSelectItem';
 

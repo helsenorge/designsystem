@@ -1,15 +1,15 @@
-import React from 'react';
-
 import classNames from 'classnames';
+
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, IconSize } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
 import { getColor } from '../../theme/currys';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
+import ErrorWrapper from '../ErrorWrapper';
 import Icon from '../Icon';
 import ChevronDown from '../Icons/ChevronDown';
-import { renderLabel } from '../Label';
+import { renderLabel } from '../Label/utils';
 
 import selectStyles from './styles.module.scss';
 
@@ -48,6 +48,8 @@ export interface SelectProps
   defaultValue?: string | number;
   /** Adds custom classes to the wrapper tag */
   wrapperClassName?: string;
+  /** Ref passed to the select element */
+  ref?: React.Ref<HTMLSelectElement | null>;
 }
 
 const getSelectMaxWidth = (characters: number): string => {
@@ -61,7 +63,7 @@ const getIconColor = (invalid: boolean, disabled: boolean): string => {
   return disabled ? getColor('neutral', 500) : getColor(iconColor, 600);
 };
 
-export const Select = React.forwardRef(function SelectForwardedRef(props: SelectProps, ref: React.Ref<HTMLSelectElement>) {
+export const Select: React.FC<SelectProps> = props => {
   const {
     className,
     children,
@@ -82,6 +84,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
     defaultValue,
     autoComplete = 'off',
     wrapperClassName,
+    ref,
     ...rest
   } = props;
 
@@ -113,7 +116,7 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextId}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Select} className={selectWrapperClasses} style={{ maxWidth }}>
-        {renderLabel(label, selectId, onColor as FormOnColor)}
+        {renderLabel({ label: label, inputId: selectId, onColor: onColor as FormOnColor })}
         <div className={selectInnerWrapperClasses} data-testid={testId + '-inner-wrapper'}>
           <Icon
             className={selectStyles['select-arrow']}
@@ -143,6 +146,6 @@ export const Select = React.forwardRef(function SelectForwardedRef(props: Select
       </div>
     </ErrorWrapper>
   );
-});
+};
 
 export default Select;

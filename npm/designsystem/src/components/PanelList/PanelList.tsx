@@ -2,8 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import { PanelListContext, type PanelListContextValue } from './utils';
 import { AnalyticsId } from '../../constants';
-import { PanelVariant } from '../Panel/Panel';
+import { PanelVariant } from '../Panel/constants';
 
 import styles from './styles.module.scss';
 
@@ -16,18 +17,12 @@ export interface PanelListProps {
   testId?: string;
   /** Highlights text in title and content. Used for search results */
   highlightText?: string;
+  /** Ref passed to the container element */
+  ref?: React.Ref<HTMLDivElement | null>;
 }
 
-interface PanelListContextValue {
-  variant: PanelVariant;
-  highlightText?: string;
-  applyPanelClassName: (existingClassName?: string) => string;
-}
-
-export const PanelListContext = React.createContext<PanelListContextValue | null>(null);
-
-const PanelList = React.forwardRef(function BadgeForwardedRef(props: PanelListProps, ref: React.ForwardedRef<HTMLDivElement>) {
-  const { testId, children, variant = PanelVariant.fill, highlightText } = props;
+const PanelList: React.FC<PanelListProps> = (props: PanelListProps) => {
+  const { testId, children, variant = PanelVariant.fill, highlightText, ref } = props;
 
   const contextValue: PanelListContextValue = React.useMemo(
     () => ({
@@ -50,6 +45,6 @@ const PanelList = React.forwardRef(function BadgeForwardedRef(props: PanelListPr
       </div>
     </PanelListContext.Provider>
   );
-});
+};
 
 export default PanelList;

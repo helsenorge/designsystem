@@ -1,7 +1,6 @@
-import React from 'react';
-
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import Badge from './Badge';
 import ElementHeader from '../ElementHeader';

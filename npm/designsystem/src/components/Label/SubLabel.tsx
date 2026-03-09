@@ -1,8 +1,7 @@
-import React from 'react';
-
 import cn from 'classnames';
 
-import { LabelText } from './Label';
+import type { LabelText } from './Label';
+
 import { AnalyticsId, FormOnColor } from '../../constants';
 import Spacer from '../Spacer';
 

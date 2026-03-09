@@ -12,8 +12,15 @@ export default [
       globals: { ...globals.node },
     },
     rules: {
+      // This rule is temporarily set to warn so we can solve it later
+      'react-hooks/refs': 'warn',
+
       'react/prop-types': 'off',
       'react-hooks/exhaustive-deps': 'off',
+      // Align with import/order grouping to avoid circular fixes
+      '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'separate-type-imports' }],
+      // Allow separate type/value import statements to prevent merge-split loops
+      'import/no-duplicates': ['error', { 'prefer-inline': false, considerQueryString: true }],
     },
   },
 

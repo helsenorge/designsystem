@@ -2,12 +2,16 @@ import React, { useEffect } from 'react';
 
 import cn from 'classnames';
 
+import type { IconProps } from '../Icon';
+
+import { ModalSize, ModalVariants } from './constants';
 import { AnalyticsId, ZIndex } from '../../constants';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { useIsVisible } from '../../hooks/useIsVisible';
 import { useReturnFocusOnUnmount } from '../../hooks/useReturnFocusOnUnmount';
 import { palette } from '../../theme/palette';
 import { getAriaLabelAttributes } from '../../utils/accessibility';
+import { isComponent } from '../../utils/component';
 import { disableBodyScroll, enableBodyScroll } from '../../utils/scroll';
 import { uuid } from '../../utils/uuid';
 import Button from '../Button';
@@ -20,18 +24,6 @@ import Portal from '../Portal';
 import Title from '../Title/Title';
 
 import styles from './styles.module.scss';
-
-export enum ModalVariants {
-  normal = 'normal',
-  warning = 'warning',
-  error = 'error',
-  success = 'success',
-}
-
-export enum ModalSize {
-  large = 'large',
-  medium = 'medium',
-}
 
 export interface ModalProps {
   /** Title of the modal */
@@ -82,7 +74,7 @@ export interface ModalProps {
   role?: 'dialog' | 'alertdialog';
 }
 
-const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => {
+const getVariantIcon = (variant?: ModalProps['variant']): React.JSX.Element | null => {
   if (variant === ModalVariants.error) {
     return <Icon size={IconSize.Small} svgIcon={AlertSignFill} color={palette.cherry500} />;
   } else if (variant === ModalVariants.warning) {
@@ -93,7 +85,7 @@ const getVariantIcon = (variant?: ModalProps['variant']): JSX.Element | null => 
   return null;
 };
 
-const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): JSX.Element | null => {
+const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): React.JSX.Element | null => {
   const variantIcon = getVariantIcon(variant);
   if (variantIcon) {
     return <div className={styles.modal__iconWrapper}>{variantIcon}</div>;
@@ -101,9 +93,10 @@ const getIcon = (variant?: ModalProps['variant'], icon?: ModalProps['icon']): JS
   if (icon) {
     return (
       <div className={styles.modal__iconWrapper}>
-        {React.cloneElement(icon, {
-          size: IconSize.Small,
-        })}
+        {isComponent<IconProps>(icon, Icon) &&
+          React.cloneElement(icon, {
+            size: IconSize.Small,
+          })}
       </div>
     );
   }

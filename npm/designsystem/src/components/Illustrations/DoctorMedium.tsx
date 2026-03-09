@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { Palette } from './Doctor';
-import { BaseSvgIllustrationProps } from '../Illustration';
+import type { Palette } from './Doctor';
+import type { BaseSvgIllustrationProps } from '../Illustration';
 
 const DoctorMedium: React.FC<BaseSvgIllustrationProps> = ({ color, svgProperties, title }) => {
   const palette = ((): Palette => {

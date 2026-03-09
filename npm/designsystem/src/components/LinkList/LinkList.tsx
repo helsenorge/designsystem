@@ -2,16 +2,20 @@ import React from 'react';
 
 import cn from 'classnames';
 
-import { AnalyticsId, LanguageLocales } from '../../constants';
-import { usePseudoClasses } from '../../hooks/usePseudoClasses';
-import { HNDesignsystemLinkList } from '../../resources/Resources';
-import { PaletteNames } from '../../theme/palette';
-import { useLanguage } from '../../utils/language';
-import { ElementHeaderType, renderElementHeader } from '../ElementHeader/ElementHeader';
-import ChevronRight from '../Icons/ChevronRight';
-import ListEditModeItem, { ListEditModeItemProps, listEditModeWrapperClassnames } from '../ListEditMode';
+import type { HNDesignsystemLinkList } from '../../resources/Resources';
+import type { PaletteNames } from '../../theme/palette';
+import type { ElementHeaderType } from '../ElementHeader/ElementHeader';
+import type { ListEditModeItemProps } from '../ListEditMode';
+
 import { getResources } from './resourceHelper';
+import { AnalyticsId, LanguageLocales } from '../../constants';
+import { useLanguage } from '../../hooks/useLanguage';
+import { usePseudoClasses } from '../../hooks/usePseudoClasses';
+import { renderElementHeader } from '../ElementHeader/utils';
 import ArrowUpRight from '../Icons/ArrowUpRight';
+import ChevronRight from '../Icons/ChevronRight';
+import ListEditModeItem from '../ListEditMode';
+import { listEditModeWrapperClassnames } from '../ListEditMode/constants';
 
 import LinkListStyles from './styles.module.scss';
 
@@ -24,12 +28,12 @@ export type LinkAnchorTargets = '_self' | '_blank' | '_parent';
 export type LinkListColors = Extract<PaletteNames, 'white' | 'blueberry' | 'cherry' | 'neutral'>;
 export type LinkListVariant = 'line' | 'outline' | 'fill' | 'fill-negative';
 
-export interface LinkType extends React.ForwardRefExoticComponent<LinkProps & React.RefAttributes<HTMLLIElement>> {
+export interface LinkType extends React.FC<LinkProps> {
   ElementHeader?: ElementHeaderType;
 }
 
 export type LinkTags = 'button' | 'a';
-export interface CompoundComponent extends React.ForwardRefExoticComponent<LinkListProps & React.RefAttributes<HTMLUListElement>> {
+export interface CompoundComponent extends React.FC<LinkListProps> {
   Link: LinkType;
 }
 
@@ -57,6 +61,8 @@ export interface LinkListProps {
   editMode?: boolean;
   /** Resources for component */
   resources?: Partial<HNDesignsystemLinkList>;
+  /** Ref passed to the ul element */
+  ref?: React.Ref<HTMLUListElement | null>;
 }
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -78,7 +84,7 @@ export type LinkProps = Modify<
     /** HTML markup for link. Default: a */
     htmlMarkup?: LinkTags;
     /** Ref for lenke/knapp */
-    linkRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement> | null;
+    linkRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement | null>;
     /** Sets the data-testid attribute. */
     testId?: string;
     /** Highlights text. Override if different from list */
@@ -87,6 +93,8 @@ export type LinkProps = Modify<
     resources?: Partial<HNDesignsystemLinkList>;
     /** @experimental id for content (only used in edit mode for aria-describedby) */
     contentId?: string;
+    /** Ref passed to the list item element */
+    ref?: React.Ref<HTMLLIElement | null>;
     /** Replaces the chevron with an arrow up right which is used for indicating external links */
     external?: boolean;
   }
@@ -94,7 +102,7 @@ export type LinkProps = Modify<
   Pick<LinkListProps, 'color' | 'size' | 'variant'> &
   ListEditModeItemProps;
 
-export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref<HTMLLIElement>) => {
+export const Link: LinkType = (props: LinkProps) => {
   const {
     children,
     className = '',
@@ -114,10 +122,11 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
     contentId,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     resources, // used by ListEditModeItem in LinkList
+    ref,
     external = false,
     ...restProps
   } = props;
-  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement>(linkRef);
+  const { refObject, isHovered } = usePseudoClasses<HTMLButtonElement | HTMLAnchorElement | null>(linkRef);
 
   const isFill = variant === 'fill';
   const isFillNegative = variant === 'fill-negative';
@@ -213,9 +222,9 @@ export const Link: LinkType = React.forwardRef((props: LinkProps, ref: React.Ref
       )}
     </li>
   );
-});
+};
 
-export const LinkList = React.forwardRef(function LinkListForwardedRef(props: LinkListProps, ref: React.Ref<HTMLUListElement>) {
+const LinkListComponent: React.FC<LinkListProps> = (props: LinkListProps) => {
   const {
     children,
     className = '',
@@ -227,6 +236,7 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
     highlightText,
     editMode = false,
     resources,
+    ref,
   } = props;
 
   const { language } = useLanguage<LanguageLocales>(LanguageLocales.NORWEGIAN);
@@ -285,7 +295,9 @@ export const LinkList = React.forwardRef(function LinkListForwardedRef(props: Li
       })}
     </ul>
   );
-}) as CompoundComponent;
+};
+
+export const LinkList = LinkListComponent as CompoundComponent;
 
 LinkList.displayName = 'LinkList';
 LinkList.Link = Link;

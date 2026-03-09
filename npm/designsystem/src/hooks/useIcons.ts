@@ -1,5 +1,8 @@
-import Icon, { BaseIconProps, IconProps } from '../components/Icon';
-import LazyIcon, { LazyIconProps } from '../components/LazyIcon';
+import type { BaseIconProps, IconProps } from '../components/Icon';
+import type { LazyIconProps } from '../components/LazyIcon';
+
+import Icon from '../components/Icon';
+import LazyIcon from '../components/LazyIcon';
 import { isComponent } from '../utils/component';
 
 export type BaseIconElement = React.ReactElement<BaseIconProps>;

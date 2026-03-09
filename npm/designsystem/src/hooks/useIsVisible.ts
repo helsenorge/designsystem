@@ -12,7 +12,7 @@ import { useIntersectionObserver } from './useIntersectionObserver';
  * @returns true hvis objektet er synlig lik threshold eller mer, false hvis ikke
  */
 export const useIsVisible = (
-  ref: React.RefObject<Element>,
+  ref: React.RefObject<Element | null>,
   threshold = 1,
   options?: IntersectionObserverInit,
   initial = false

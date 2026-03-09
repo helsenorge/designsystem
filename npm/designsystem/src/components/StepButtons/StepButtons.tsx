@@ -2,8 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
+import type { ButtonProps } from '../Button';
+
 import { AnalyticsId } from '../../constants';
-import { ButtonProps } from '../Button';
 
 import styles from './styles.module.scss';
 

@@ -1,7 +1,6 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Checkbox from './Checkbox';
 import { FormOnColor, FormSize } from '../../constants';
@@ -34,11 +33,11 @@ const meta = {
     },
     onColor: {
       control: 'select',
-      options: FormOnColor,
+      options: Object.values(FormOnColor),
     },
     size: {
       control: 'select',
-      options: FormSize,
+      options: Object.values(FormSize),
     },
     name: {
       control: 'text',

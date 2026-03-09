@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { BaseSvgIllustrationProps } from '../Illustration';
+import type { BaseSvgIllustrationProps } from '../Illustration';
 
 interface Palette {
   hair: string;

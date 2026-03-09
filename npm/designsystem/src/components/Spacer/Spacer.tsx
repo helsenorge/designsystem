@@ -1,9 +1,8 @@
-import React from 'react';
-
 import classNames from 'classnames';
 
+import type { SpacerSizes } from './../../theme/spacers';
+
 import { AnalyticsId } from '../../constants';
-import { SpacerSizes } from './../../theme/spacers';
 
 import spacerStyles from './styles.module.scss';
 
@@ -14,10 +13,12 @@ export interface SpacerProps {
   className?: string;
   /** Sets the data-testid attribute. */
   testId?: string;
+  /** Ref passed to the component */
+  ref?: React.Ref<HTMLElement | null>;
 }
 
-const Spacer = React.forwardRef(function SpacerForwardedRef(props: SpacerProps, ref: React.ForwardedRef<HTMLElement>) {
-  const { size = 's', className, testId } = props;
+const Spacer: React.FC<SpacerProps> = (props: SpacerProps) => {
+  const { size = 's', className, testId, ref } = props;
   const spacerClasses = classNames(
     spacerStyles.spacer,
     {
@@ -39,6 +40,6 @@ const Spacer = React.forwardRef(function SpacerForwardedRef(props: SpacerProps, 
   );
 
   return <span className={spacerClasses} ref={ref} data-testid={testId} data-analyticsid={AnalyticsId.Spacer}></span>;
-});
+};
 
 export default Spacer;

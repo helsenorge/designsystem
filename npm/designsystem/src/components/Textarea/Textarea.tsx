@@ -1,17 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 
 import cn from 'classnames';
 
 import type { HNDesignsystemTextArea } from '../../resources/Resources';
+import type { ErrorWrapperClassNameProps } from '../ErrorWrapper';
 
 import { getResources } from './resourceHelper';
 import { AnalyticsId, AVERAGE_CHARACTER_WIDTH_PX, FormOnColor, LanguageLocales } from '../../constants';
 import { useIdWithFallback } from '../../hooks/useIdWithFallback';
+import { useLanguage } from '../../hooks/useLanguage';
 import { getAriaDescribedBy } from '../../utils/accessibility';
-import { useLanguage } from '../../utils/language';
 import { uuid } from '../../utils/uuid';
-import ErrorWrapper, { type ErrorWrapperClassNameProps } from '../ErrorWrapper';
-import { renderLabel } from '../Label';
+import ErrorWrapper from '../ErrorWrapper';
+import { renderLabel } from '../Label/utils';
 import MaxCharacters from '../MaxCharacters/MaxCharacters';
 
 import styles from './styles.module.scss';
@@ -35,8 +36,6 @@ export interface TextareaProps
     > {
   /** max character limit in textarea  */
   maxCharacters?: number;
-  /** @deprecated use resources instead. The text is displayed in the end of the text-counter */
-  maxText?: string;
   /** Width of textarea in characters (approximate) */
   width?: number;
   /** Sets the data-testid attribute. */
@@ -65,6 +64,8 @@ export interface TextareaProps
   errorTextId?: string;
   /** Resources for component */
   resources?: Partial<HNDesignsystemTextArea>;
+  /** Ref passed to the component */
+  ref?: React.Ref<HTMLTextAreaElement | null>;
 }
 
 const getTextareaMaxWidth = (characters: number): string => {
@@ -75,10 +76,9 @@ const getTextareaMaxWidth = (characters: number): string => {
   return `calc(${characters * AVERAGE_CHARACTER_WIDTH_PX}px + ${paddingWidth} + ${scrollbarWidth} + ${borderWidth})`;
 };
 
-const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
+const Textarea: React.FC<TextareaProps> = props => {
   const {
     maxCharacters,
-    maxText,
     width,
     testId,
     defaultValue,
@@ -104,11 +104,13 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     onChange,
     value,
     resources,
+    ref,
     ...rest
   } = props;
 
-  const [rows, setRows] = useState(minRows);
   const [textareaInput, setTextareaInput] = useState(value || defaultValue || '');
+  const [prevDefaultValue, setPrevDefaultValue] = useState(defaultValue);
+  const [prevValue, setPrevValue] = useState(value);
   const referanse = useRef<HTMLDivElement>(null);
   const errorTextUuid = useIdWithFallback(errorTextIdProp);
 
@@ -118,34 +120,33 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   const mergedResources: HNDesignsystemTextArea = {
     ...defaultResources,
     ...resources,
-    characters: maxText || resources?.characters || defaultResources.characters,
   };
 
-  useEffect(() => {
+  if (defaultValue !== prevDefaultValue) {
+    setPrevDefaultValue(defaultValue);
     setTextareaInput(defaultValue || '');
-  }, [defaultValue]);
+  }
+
+  if (value !== prevValue) {
+    setPrevValue(value);
+
+    if (value) {
+      setTextareaInput(value);
+    }
+  }
 
   const resizeHeight = (target: HTMLTextAreaElement): void => {
     const textareaLineHeight = 28;
 
-    const previousRows = target.rows;
     target.rows = minRows; // reset number of rows in textarea
 
     const currentRows = Math.floor((target.scrollHeight - 16) / textareaLineHeight); // scrollHeight - 16px of padding to calculate the rows
 
-    if (currentRows === previousRows) {
-      target.rows = currentRows;
-    }
-
     if (currentRows >= maxRows) {
       target.rows = maxRows;
       target.scrollTop = target.scrollHeight;
-    }
-
-    if (currentRows < maxRows) {
-      setRows(currentRows);
     } else {
-      setRows(maxRows);
+      target.rows = currentRows;
     }
   };
 
@@ -170,9 +171,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
     [styles[`input-container__input--disabled`]]: props.disabled,
   });
 
-  useEffect(() => {
-    if (value) setTextareaInput(value);
-
+  useLayoutEffect(() => {
     if (grow && referanse.current?.children && referanse.current?.children[0]) {
       const textarea = referanse.current?.children[0] as HTMLTextAreaElement;
       resizeHeight(textarea);
@@ -196,11 +195,11 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
   return (
     <ErrorWrapper className={errorWrapperClassName} errorText={errorText} errorTextId={errorTextUuid}>
       <div data-testid={testId} data-analyticsid={AnalyticsId.Textarea} className={textareaWrapperClass}>
-        {renderLabel(label, textareaId, onColor as FormOnColor)}
+        {renderLabel({ label: label, inputId: textareaId, onColor: onColor as FormOnColor })}
         <div className={contentWrapperClass} ref={referanse} style={{ maxWidth }}>
           <textarea
             {...rest}
-            rows={rows}
+            rows={minRows}
             defaultValue={defaultValue}
             id={textareaId}
             className={textareaClass}
@@ -231,7 +230,7 @@ const Textarea = React.forwardRef((props: TextareaProps, ref: React.Ref<HTMLText
       </div>
     </ErrorWrapper>
   );
-});
+};
 
 Textarea.displayName = 'Textarea';
 

@@ -20,7 +20,7 @@ describe('Gitt at Drawer skal vises', () => {
     });
 
     test('Så vises close-knappen', () => {
-      render(<Drawer onRequestClose={() => {}} title="Tittel" ariaLabelCloseBtn="close drawer" isOpen={true} />);
+      render(<Drawer onRequestClose={() => {}} title="Tittel" isOpen={true} resources={{ ariaLabelCloseBtn: 'close drawer' }} />);
       const closeButton = screen.getByRole('button', { name: /close drawer/i });
       expect(closeButton).toBeInTheDocument();
     });
@@ -55,7 +55,7 @@ describe('Gitt at Drawer skal vises', () => {
   describe('Når brukeren klikker på lukkeknappen', () => {
     it('Så kalles onRequestClose', async () => {
       const onCloseMock = vi.fn();
-      render(<Drawer onRequestClose={onCloseMock} title="Tittel" ariaLabelCloseBtn="Close" isOpen={true} />);
+      render(<Drawer onRequestClose={onCloseMock} title="Tittel" resources={{ ariaLabelCloseBtn: 'close' }} isOpen={true} />);
 
       const closeButton = screen.getByRole('button', { name: /close/i });
       await userEvent.click(closeButton);

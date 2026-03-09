@@ -1,6 +1,7 @@
-import { Modifiers, Matcher } from 'react-day-picker';
+import type { BaseDayPickerProps } from './BaseDayPicker/BaseDayPicker';
+import type { Modifiers, Matcher } from 'react-day-picker';
 
-import BaseDayPicker, { BaseDayPickerProps } from './BaseDayPicker/BaseDayPicker';
+import BaseDayPicker from './BaseDayPicker/BaseDayPicker';
 import Unsafe_TimeInput from './TimeInput/Unsafe_TimeInput';
 import Unsafe_DateAndTime from './Unsafe_DateAndTime';
 import Unsafe_DatePicker from './Unsafe_DatePicker';

@@ -1,15 +1,17 @@
 import { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { nb } from 'date-fns/locale';
 import { action } from 'storybook/actions';
+
+import type { Matcher, Modifiers } from './index';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import Input from '@helsenorge/designsystem-react/components/Input';
 import Label, { Sublabel } from '@helsenorge/designsystem-react/components/Label';
 import Title from '@helsenorge/designsystem-react/components/Title';
 
-import Unsafe_DatePicker, { Matcher, Modifiers, Unsafe_ISODatePicker } from './index';
+import Unsafe_DatePicker, { Unsafe_ISODatePicker } from './index';
 
 const meta = {
   title: '@helsenorge/datepicker/Unsafe_DatePicker',
@@ -249,7 +251,7 @@ export const AriaLabels: Story = {
         `Dato ${date.toISOString()} ${modifiers?.selected ? ', er valgt' : ', ikke valgt'}`,
       labelGrid: (date: Date) => `Måned ${date.getMonth() + 1} År ${date.getFullYear()}`,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      labelGridcell: (date: Date, modifiers?: Modifiers) => `Dato ${date.getDate()}`,
+      labelGridcell: (date: Date, _modifiers?: Modifiers) => `Dato ${date.getDate()}`,
       labelMonthDropdown: () => 'Velg måned',
       labelNext: () => 'Neste måned',
       labelPrevious: () => 'Forrige måned',

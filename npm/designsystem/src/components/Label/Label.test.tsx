@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-import Label, { LabelText } from './Label';
+import type { LabelText } from './Label';
+
+import Label from './Label';
 import { Sublabel } from './SubLabel';
 import { FormOnColor } from '../../constants';
 import Input from '../Input';

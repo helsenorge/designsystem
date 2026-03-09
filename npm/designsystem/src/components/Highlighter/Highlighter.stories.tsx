@@ -1,8 +1,7 @@
-import React from 'react';
-
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 import { action } from 'storybook/actions';
+
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import Highlighter from './Highlighter';
 import longLoremText from '../../utils/loremtext';

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Textarea from './Textarea';
 import { FormOnColor, LanguageLocales } from '../../constants';
@@ -32,15 +33,12 @@ const meta = {
     maxCharacters: {
       control: 'number',
     },
-    maxText: {
-      control: 'text',
-    },
     width: {
       control: 'number',
     },
     onColor: {
       control: 'select',
-      options: FormOnColor,
+      options: Object.values(FormOnColor),
     },
     defaultValue: {
       control: 'text',

@@ -1,19 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
+import type { PaletteNames } from '../../theme/palette';
+
+import { Overlay } from './constants';
 import { AnalyticsId, ZIndex } from '../../constants';
-import { PaletteNames } from '../../theme/palette';
 import { uuid } from '../../utils/uuid';
 
 import loaderStyles from './styles.module.scss';
 
 export type LoaderColors = PaletteNames;
 export type LoaderSizes = 'tiny' | 'small' | 'medium' | 'large';
-export enum Overlay {
-  screen = 'screen',
-  parent = 'parent',
-}
 
 export interface LoaderProps {
   /** Sets the color of the loader. If overlay is used, the color will always be white.  */
@@ -61,6 +59,7 @@ const Loader: React.FC<LoaderProps> = props => {
   };
 
   const [display, setDisplay] = useState(showLoader());
+  const hasInitializedRef = useRef(false);
 
   const isSmall = size === 'small';
   const isMedium = size === 'medium';
@@ -95,19 +94,22 @@ const Loader: React.FC<LoaderProps> = props => {
     [loaderStyles['loader__dot--white']]: color === 'white',
   });
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (overlay === Overlay.parent && wrapperRef.current?.parentElement?.style) {
-      wrapperRef.current.parentElement.style.position = 'relative';
-      setDisplay(true);
-    }
-
-    if (inline && wrapperRef.current?.parentElement?.style) {
-      wrapperRef.current.parentElement.style.display = 'flex';
-      setDisplay(true);
-    }
-  }, []);
+  const wrapperRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (node && !hasInitializedRef.current) {
+        hasInitializedRef.current = true;
+        if (overlay === Overlay.parent && node.parentElement?.style) {
+          node.parentElement.style.position = 'relative';
+          setDisplay(true);
+        }
+        if (inline && node.parentElement?.style) {
+          node.parentElement.style.display = 'flex';
+          setDisplay(true);
+        }
+      }
+    },
+    [overlay, inline]
+  );
 
   return (
     <div className={loaderWrapperClasses} ref={wrapperRef} style={overlay === Overlay.screen ? { zIndex: ZIndex.OverlayScreen } : {}}>

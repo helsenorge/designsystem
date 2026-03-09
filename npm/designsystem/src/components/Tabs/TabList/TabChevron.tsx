@@ -16,7 +16,7 @@ interface TabChevronProps {
 
 const TabChevron: React.FC<TabChevronProps> = ({ direction, onClick, backgroundColor, ariaLabel }) => {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const { isHovered } = usePseudoClasses<HTMLButtonElement>(buttonRef);
+  const { isHovered } = usePseudoClasses<HTMLButtonElement | null>(buttonRef);
 
   return (
     <button

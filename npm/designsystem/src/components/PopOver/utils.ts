@@ -1,6 +1,10 @@
-import { CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 
-import { PopOverVariant } from './PopOver';
+export enum PopOverVariant {
+  positionautomatic = 'positionautomatic',
+  positionbelow = 'positionbelow',
+  positionabove = 'positionabove',
+}
 
 type HorizontalPosition = 'left' | 'right' | 'floating';
 type BubblePosition = 'leftabove' | 'leftbelow' | 'rightabove' | 'rightbelow' | 'floatingabove' | 'floatingbelow';

@@ -1,9 +1,9 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import Tag, { TagSize, TagVariant } from './Tag';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import { TagSize, TagVariant } from './constants';
+import Tag from './Tag';
 import LawBook from '../Icons/LawBook';
 
 const meta = {
@@ -28,7 +28,7 @@ const meta = {
     },
     size: {
       control: 'select',
-      options: TagSize,
+      options: Object.values(TagSize),
     },
     color: {
       control: 'select',
@@ -36,7 +36,7 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: TagVariant,
+      options: Object.values(TagVariant),
     },
   },
 } satisfies Meta<typeof Tag>;

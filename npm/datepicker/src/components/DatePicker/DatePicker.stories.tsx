@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Source } from '@storybook/addon-docs/blocks';
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { parse } from 'date-fns';
 import { ar, nb } from 'date-fns/locale';
 import { Docs } from 'frankenstein-build-tools';
 import { useForm } from 'react-hook-form';
+
+import type { DatePickerProps } from './DatePicker';
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import Button from '@helsenorge/designsystem-react/components/Button';
 import Icon from '@helsenorge/designsystem-react/components/Icon';
@@ -19,7 +21,7 @@ import longLoremText from '@helsenorge/designsystem-react/utils/loremtext';
 
 import { LanguageLocales } from '@helsenorge/designsystem-react';
 
-import DatePicker, { DatePickerProps } from './DatePicker';
+import DatePicker from './DatePicker';
 import DateTime from './DateTime';
 import DateTimePickerWrapper from './DateTimePickerWrapper';
 import {
@@ -278,8 +280,8 @@ export const Default: Story = {
 };
 
 const DateRangePickerRender = (args: DatePickerProps): React.ReactElement => {
-  const [fromDate, setFromDate] = React.useState<Date | undefined>();
-  const [toDate, setToDate] = React.useState<Date | undefined>();
+  const [fromDate, setFromDate] = useState<Date | undefined>();
+  const [toDate, setToDate] = useState<Date | undefined>();
 
   return (
     <DateTimePickerWrapper>
@@ -306,7 +308,7 @@ const DateRangePickerRender = (args: DatePickerProps): React.ReactElement => {
 export const DateRangePicker: Story = { render: DateRangePickerRender };
 
 const DateAndTimeRender = (args: DatePickerProps): React.ReactElement => {
-  const [startDate] = React.useState(new Date('01.01.2024'));
+  const [startDate] = useState(new Date('01.01.2024'));
   return (
     <DateTimePickerWrapper>
       <DatePicker {...args} dateValue={startDate} label={<Label labelTexts={[{ text: 'Dato' }, { text: '(dd.mm.åååå)' }]} />} />
@@ -323,7 +325,7 @@ const DateAndTimeRender = (args: DatePickerProps): React.ReactElement => {
 export const DateAndTime: Story = { render: DateAndTimeRender };
 
 const MinMaxDaysRender = (args: DatePickerProps): React.ReactElement => {
-  const [startDate] = React.useState(new Date());
+  const [startDate] = useState(new Date());
   const minDate = new Date(startDate);
   minDate.setDate(startDate.getDate() - 15);
   const maxDate = new Date(startDate);
@@ -344,7 +346,7 @@ const MinMaxDaysRender = (args: DatePickerProps): React.ReactElement => {
 export const MinMaxDays: Story = { render: MinMaxDaysRender };
 
 const DisabledDaysRender = (args: DatePickerProps): React.ReactElement => {
-  const [startDate] = React.useState(new Date('01.01.2024'));
+  const [startDate] = useState(new Date('01.01.2024'));
   const disabledDate = new Date(startDate);
   disabledDate.setDate(startDate.getDate() - 3);
 
@@ -416,7 +418,7 @@ interface StoryDatePickerProps extends DatePickerProps {
   withOnDatePopupClosed?: boolean;
 }
 
-const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePickerProps): JSX.Element => {
+const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePickerProps): React.JSX.Element => {
   const {
     register,
     trigger,
@@ -429,7 +431,7 @@ const ValidateDateTimeExample = ({ withOnDatePopupClosed, ...args }: StoryDatePi
   const formatString = 'dd.MM.yyyy';
 
   const parsedDate = parse(dateString, formatString, new Date());
-  const [startDate] = React.useState(parsedDate);
+  const [startDate] = useState(parsedDate);
   const minDate = new Date();
   const maxDate = new Date();
   const disabledDate = new Date();

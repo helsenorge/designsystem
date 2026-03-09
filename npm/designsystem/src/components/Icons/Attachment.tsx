@@ -1,6 +1,6 @@
-import React from 'react';
+import type { SvgPathProps } from '../Icon';
 
-import { getIcon, SvgPathProps } from '../Icon';
+import { getIcon } from '../Icon/utils';
 
 const Attachment: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (
@@ -19,23 +19,7 @@ const Attachment: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): 
     <path d="M22.736 7.516c-3.515 0-6.075 2.204-6.85 5.904L10.94 38.107l1.734.347 4.944-24.68c.597-2.853 2.463-4.49 5.118-4.49 2.566 0 4.653 1.934 4.653 4.31v22.882c0 1.444-1.28 2.619-2.851 2.619-1.573 0-2.851-1.175-2.851-2.619V17.157c0-.476.44-.864.979-.864.54 0 .979.388.979.864v14.02h1.77v-14.02c0-1.452-1.234-2.632-2.75-2.632-1.514 0-2.747 1.18-2.747 2.632v19.32c0 2.418 2.072 4.386 4.62 4.386 2.546 0 4.619-1.968 4.619-4.387V13.594c0-3.351-2.88-6.078-6.42-6.078" />
   );
 
-  const xxSmall = (
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M15 16.434C15 11.647 19.122 8 23.915 8c4.792 0 8.92 3.646 8.931 8.437v18.185c0 3.04-2.604 5.265-5.508 5.265s-5.509-2.224-5.509-5.265V21.42h4v13.202c0 .565.537 1.265 1.509 1.265.971 0 1.508-.7 1.508-1.265V16.445C28.84 14.12 26.77 12 23.915 12 21.058 12 19 14.12 19 16.434V37.69h-4V16.434Z"
-    />
-  );
-
-  const xxSmallHover = (
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M15.25 14.469C16.016 10.344 19.975 8 23.915 8c4.792 0 8.92 3.646 8.931 8.437v18.185c0 3.04-2.604 5.265-5.508 5.265s-5.509-2.224-5.509-5.265V21.42h4v13.202c0 .565.537 1.265 1.509 1.265.971 0 1.508-.7 1.508-1.265V16.445C28.84 14.12 26.77 12 23.915 12c-2.857 0-4.509 1.828-4.759 3.375L15 37.69h-4c1.45-7.7 2.797-15.112 4.25-23.221Z"
-    />
-  );
-
-  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover, xxSmall, xxSmallHover });
+  return getIcon({ size, isHovered, normal, normalHover, xSmall, xSmallHover });
 };
 
 export default Attachment;

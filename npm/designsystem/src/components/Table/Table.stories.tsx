@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import { longLoremText } from '../../utils/loremtext';
 import AnchorLink from '../AnchorLink';
@@ -62,19 +63,19 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: ResponsiveTableVariant,
+      options: Object.values(ResponsiveTableVariant),
     },
     fallbackVariant: {
       control: 'select',
-      options: ResponsiveTableVariant,
+      options: Object.values(ResponsiveTableVariant),
     },
     headerCategory: {
       control: 'select',
-      options: HeaderCategory,
+      options: Object.values(HeaderCategory),
     },
     mode: {
       control: 'select',
-      options: ModeType,
+      options: Object.values(ModeType),
     },
     scrollAriaLabel: {
       control: 'text',
@@ -97,13 +98,13 @@ export const Default: Story = {
       <Table {...args} breakpointConfig={{ breakpoint: args.breakpoint, variant: args.variant, fallbackVariant: args.fallbackVariant }}>
         <TableHead category={args.headerCategory}>
           <TableRow>
-            <TableHeadCell>Fastlege</TableHeadCell>
-            <TableHeadCell>Alder</TableHeadCell>
-            <TableHeadCell>Kjønn</TableHeadCell>
-            <TableHeadCell>Fastlegekontor</TableHeadCell>
-            <TableHeadCell>Adresse</TableHeadCell>
-            <TableHeadCell>Ledige plasser</TableHeadCell>
-            <TableHeadCell>Antall på venteliste</TableHeadCell>
+            <TableHeadCell>{'Fastlege'}</TableHeadCell>
+            <TableHeadCell>{'Alder'}</TableHeadCell>
+            <TableHeadCell>{'Kjønn'}</TableHeadCell>
+            <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+            <TableHeadCell>{'Adresse'}</TableHeadCell>
+            <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+            <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -131,13 +132,13 @@ export const WithTextAbove: Story = {
             >
               <TableHead category={args.headerCategory}>
                 <TableRow>
-                  <TableHeadCell>Fastlege</TableHeadCell>
-                  <TableHeadCell>Alder</TableHeadCell>
-                  <TableHeadCell>Kjønn</TableHeadCell>
-                  <TableHeadCell>Fastlegekontor</TableHeadCell>
-                  <TableHeadCell>Adresse</TableHeadCell>
-                  <TableHeadCell>Ledige plasser</TableHeadCell>
-                  <TableHeadCell>Antall på venteliste</TableHeadCell>
+                  <TableHeadCell>{'Fastlege'}</TableHeadCell>
+                  <TableHeadCell>{'Alder'}</TableHeadCell>
+                  <TableHeadCell>{'Kjønn'}</TableHeadCell>
+                  <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+                  <TableHeadCell>{'Adresse'}</TableHeadCell>
+                  <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+                  <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -167,13 +168,13 @@ export const Compact: Story = {
             >
               <TableHead category={args.headerCategory}>
                 <TableRow>
-                  <TableHeadCell>Fastlege</TableHeadCell>
-                  <TableHeadCell>Alder</TableHeadCell>
-                  <TableHeadCell>Kjønn</TableHeadCell>
-                  <TableHeadCell>Fastlegekontor</TableHeadCell>
-                  <TableHeadCell>Adresse</TableHeadCell>
-                  <TableHeadCell>Ledig</TableHeadCell>
-                  <TableHeadCell>Antall</TableHeadCell>
+                  <TableHeadCell>{'Fastlege'}</TableHeadCell>
+                  <TableHeadCell>{'Alder'}</TableHeadCell>
+                  <TableHeadCell>{'Kjønn'}</TableHeadCell>
+                  <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+                  <TableHeadCell>{'Adresse'}</TableHeadCell>
+                  <TableHeadCell>{'Ledig'}</TableHeadCell>
+                  <TableHeadCell>{'Antall'}</TableHeadCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -215,13 +216,13 @@ export const DefaultResponsiveConfig: Story = {
             <Table {...args} breakpointConfig={defaultConfig}>
               <TableHead category={args.headerCategory}>
                 <TableRow>
-                  <TableHeadCell>Fastlege</TableHeadCell>
-                  <TableHeadCell>Alder</TableHeadCell>
-                  <TableHeadCell>Kjønn</TableHeadCell>
-                  <TableHeadCell>Fastlegekontor</TableHeadCell>
-                  <TableHeadCell>Adresse</TableHeadCell>
-                  <TableHeadCell>Ledige plasser</TableHeadCell>
-                  <TableHeadCell>Antall på venteliste</TableHeadCell>
+                  <TableHeadCell>{'Fastlege'}</TableHeadCell>
+                  <TableHeadCell>{'Alder'}</TableHeadCell>
+                  <TableHeadCell>{'Kjønn'}</TableHeadCell>
+                  <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+                  <TableHeadCell>{'Adresse'}</TableHeadCell>
+                  <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+                  <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -257,13 +258,13 @@ export const TableInTabs: Story = {
                 <Table {...args} breakpointConfig={defaultConfig}>
                   <TableHead category={args.headerCategory}>
                     <TableRow>
-                      <TableHeadCell>Fastlege</TableHeadCell>
-                      <TableHeadCell>Alder</TableHeadCell>
-                      <TableHeadCell>Kjønn</TableHeadCell>
-                      <TableHeadCell>Fastlegekontor</TableHeadCell>
-                      <TableHeadCell>Adresse</TableHeadCell>
-                      <TableHeadCell>Ledige plasser</TableHeadCell>
-                      <TableHeadCell>Antall på venteliste</TableHeadCell>
+                      <TableHeadCell>{'Fastlege'}</TableHeadCell>
+                      <TableHeadCell>{'Alder'}</TableHeadCell>
+                      <TableHeadCell>{'Kjønn'}</TableHeadCell>
+                      <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+                      <TableHeadCell>{'Adresse'}</TableHeadCell>
+                      <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+                      <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -296,13 +297,13 @@ export const SimpleResponsiveConfig: Story = {
             <Table {...args} breakpointConfig={simpleConfig}>
               <TableHead category={args.headerCategory}>
                 <TableRow>
-                  <TableHeadCell>Fastlege</TableHeadCell>
-                  <TableHeadCell>Alder</TableHeadCell>
-                  <TableHeadCell>Kjønn</TableHeadCell>
-                  <TableHeadCell>Fastlegekontor</TableHeadCell>
-                  <TableHeadCell>Adresse</TableHeadCell>
-                  <TableHeadCell>Ledige plasser</TableHeadCell>
-                  <TableHeadCell>Antall på venteliste</TableHeadCell>
+                  <TableHeadCell>{'Fastlege'}</TableHeadCell>
+                  <TableHeadCell>{'Alder'}</TableHeadCell>
+                  <TableHeadCell>{'Kjønn'}</TableHeadCell>
+                  <TableHeadCell>{'Fastlegekontor'}</TableHeadCell>
+                  <TableHeadCell>{'Adresse'}</TableHeadCell>
+                  <TableHeadCell>{'Ledige plasser'}</TableHeadCell>
+                  <TableHeadCell>{'Antall på venteliste'}</TableHeadCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -327,7 +328,7 @@ export const SortableAndExpandable: Story = {
 
     const data = getFastlegeData(sortDirection, sortColumn);
 
-    const clickSort = (column: string) => {
+    const clickSort = (column: string): void => {
       if (column == sortColumn) {
         setSortDirection(sortDirection === SortDirection.asc ? SortDirection.desc : SortDirection.asc);
       } else {
@@ -336,7 +337,7 @@ export const SortableAndExpandable: Story = {
       }
     };
 
-    const toggleExpand = (index: number) => {
+    const toggleExpand = (index: number): void => {
       const newExpanded = [...expanded];
       newExpanded[index] = !expanded[index];
       setExpanded(newExpanded);
@@ -424,9 +425,14 @@ export const SortableAndExpandable: Story = {
                 <Title htmlMarkup="h4" appearance="title4">
                   {fastlege.Fastlege.Fornavn + ' ' + fastlege.Fastlege.Etternavn}
                 </Title>
-                <p>Godkjent som lege i {fastlege.Fastlege.Autorisert}</p>
-                <p>Spesialist i allmennnmedisin</p>
-                <p>Startet som fastlege i {fastlege.Avtaledato.substring(0, 4)}.</p>
+                <p>
+                  {'Godkjent som lege i'} {fastlege.Fastlege.Autorisert}
+                </p>
+                <p>{'Spesialist i allmennnmedisin'}</p>
+                <p>
+                  {'Startet som fastlege i'} {fastlege.Avtaledato.substring(0, 4)}
+                  {'.'}
+                </p>
               </TableExpandedRow>
             </React.Fragment>
           ))}
@@ -444,7 +450,7 @@ export const NestedExpandableBlockTables: Story = {
 
     const data = getFastlegeData(sortDirection, sortColumn);
 
-    const clickSort = (column: string) => {
+    const clickSort = (column: string): void => {
       if (column == sortColumn) {
         setSortDirection(sortDirection === SortDirection.asc ? SortDirection.desc : SortDirection.asc);
       } else {
@@ -453,7 +459,7 @@ export const NestedExpandableBlockTables: Story = {
       }
     };
 
-    const toggleExpand = (index: number) => {
+    const toggleExpand = (index: number): void => {
       const newExpanded = [...expanded];
       newExpanded[index] = !expanded[index];
       setExpanded(newExpanded);
@@ -568,57 +574,57 @@ export const ExtraData: Story = {
       <Table {...args} breakpointConfig={defaultConfig}>
         <TableHead category={HeaderCategory.normal}>
           <TableRow>
-            <TableHeadCell>Navn</TableHeadCell>
-            <TableHeadCell>Beskrivelse</TableHeadCell>
-            <TableHeadCell>Mer info</TableHeadCell>
-            <TableHeadCell>Lenke</TableHeadCell>
-            <TableHeadCell>Antall</TableHeadCell>
-            <TableHeadCell>Dato</TableHeadCell>
+            <TableHeadCell>{'Navn'}</TableHeadCell>
+            <TableHeadCell>{'Beskrivelse'}</TableHeadCell>
+            <TableHeadCell>{'Mer info'}</TableHeadCell>
+            <TableHeadCell>{'Lenke'}</TableHeadCell>
+            <TableHeadCell>{'Antall'}</TableHeadCell>
+            <TableHeadCell>{'Dato'}</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell dataLabel="Navn">Hans Sebastian Nilsen</TableCell>
-            <TableCell dataLabel="Beskrivelse">En ganske lang beskrivelse...</TableCell>
-            <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
+            <TableCell dataLabel="Navn">{'Hans Sebastian Nilsen'}</TableCell>
+            <TableCell dataLabel="Beskrivelse">{'En ganske lang beskrivelse...'}</TableCell>
+            <TableCell dataLabel="Mer info">{'asfdasdfadsfasfdsafdasfsa'}</TableCell>
             <TableCell dataLabel="Lenke">
-              <a href="#test">Lenke til test</a>
+              <a href="#test">{'Lenke til test'}</a>
             </TableCell>
             <TableCell dataLabel="Antall" textAlign={TextAlign.right} nowrap>
-              11 234.12
+              {'11 234.12'}
             </TableCell>
             <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
-              12.12.2020
+              {'12.12.2020'}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell dataLabel="Navn">Nils Hansen-Olsen</TableCell>
-            <TableCell dataLabel="Beskrivelse">Enda en ganske lang beskrivelse...</TableCell>
-            <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
+            <TableCell dataLabel="Navn">{'Nils Hansen-Olsen'}</TableCell>
+            <TableCell dataLabel="Beskrivelse">{'Enda en ganske lang beskrivelse...'}</TableCell>
+            <TableCell dataLabel="Mer info">{'asfdasdfadsfasfdsafdasfsa'}</TableCell>
             <TableCell dataLabel="Lenke">
-              <a href="#test">Lenke til test</a>
+              <a href="#test">{'Lenke til test'}</a>
             </TableCell>
             <TableCell dataLabel="Antall" textAlign={TextAlign.right} nowrap>
-              1 234.12
+              {'1 234.12'}
             </TableCell>
             <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
-              12.12.2020
+              {'12.12.2020'}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell dataLabel="Navn">Ole Nilsen</TableCell>
+            <TableCell dataLabel="Navn">{'Ole Nilsen'}</TableCell>
             <TableCell dataLabel="Beskrivelse" nowrap>
-              En-ganske-lang-tekst-uten-noen-mellomrom
+              {'En-ganske-lang-tekst-uten-noen-mellomrom'}
             </TableCell>
-            <TableCell dataLabel="Mer info">asfdasdfadsfasfdsafdasfsa</TableCell>
+            <TableCell dataLabel="Mer info">{'asfdasdfadsfasfdsafdasfsa'}</TableCell>
             <TableCell dataLabel="Lenke">
-              <a href="#test">Lenke til test</a>
+              <a href="#test">{'Lenke til test'}</a>
             </TableCell>
             <TableCell dataLabel="Antall" textAlign={TextAlign.right} nowrap>
-              124.12
+              {'124.12'}
             </TableCell>
             <TableCell dataLabel="Dato" textAlign={TextAlign.center}>
-              12.12.2020
+              {'12.12.2020'}
             </TableCell>
           </TableRow>
         </TableBody>
@@ -675,7 +681,7 @@ export const Irregular: Story = {
 };
 
 export interface Legekontor {
-  Navn: string | JSX.Element;
+  Navn: string | React.JSX.Element;
   Adresse: string;
 }
 

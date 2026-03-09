@@ -1,8 +1,10 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 import { screen, render } from '@testing-library/react';
 
-import PopOver, { PopOverProps } from './PopOver';
+import type { PopOverProps } from './PopOver';
+
+import PopOver from './PopOver';
 
 const { dummyDomRect } = vi.hoisted(() => {
   return {

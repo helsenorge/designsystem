@@ -8,9 +8,9 @@ export const useRovingFocus = (
   /** Function to run when new index is set */
   handleNewIndex: (index: number) => void,
   /** List of elements that should have rocing focus */
-  inputRefList: React.MutableRefObject<React.RefObject<HTMLElement>[] | null | undefined>,
+  inputRefList: React.RefObject<React.RefObject<HTMLElement | null>[] | null | undefined>,
   /** Ref of container that should have the keyboard event handler */
-  containerRef: React.RefObject<HTMLElement>,
+  containerRef: React.RefObject<HTMLElement | null>,
   /** Indicated wether right/left or up/down arrows should be used for navigation. Default is up/down. */
   leftRightNavigation?: boolean
 ): void => {

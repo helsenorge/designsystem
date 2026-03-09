@@ -3,7 +3,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, test, expect, vi } from 'vitest';
 
-import AsChildSlot, { AsChildSlotHandle } from './AsChildSlot';
+import type { AsChildSlotHandle } from './AsChildSlot';
+
+import AsChildSlot from './AsChildSlot';
 
 describe('Gitt at AsChildSlot skal vises', () => {
   describe('Når AsChildSlot vises', () => {

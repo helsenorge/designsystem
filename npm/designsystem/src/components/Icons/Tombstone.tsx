@@ -1,6 +1,6 @@
-import React from 'react';
+import type { SvgPathProps } from '../Icon';
 
-import { SvgPathProps, getIcon } from '../Icon';
+import { getIcon } from '../Icon/utils';
 
 const Tombstone: React.FC<SvgPathProps> = ({ size, isHovered }: SvgPathProps): React.ReactElement => {
   const normal = (

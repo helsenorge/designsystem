@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
+
+import type { StoryObj, Meta } from '@storybook/react-vite';
 
 import HelpTooltip from '../HelpTooltip';
 import Label from '../Label';
@@ -34,7 +35,7 @@ interface MittenProps {
   initialSize: MittensSize;
 }
 
-const Mitten = ({ initialSize }: MittenProps): JSX.Element => {
+const Mitten = ({ initialSize }: MittenProps): React.JSX.Element => {
   const [size, setSize] = React.useState<MittensSize>(initialSize);
   const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     setSize(event.target.value as MittensSize);

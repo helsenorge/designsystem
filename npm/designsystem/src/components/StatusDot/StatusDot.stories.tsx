@@ -1,9 +1,9 @@
-import React from 'react';
-
-import { StoryObj, Meta } from '@storybook/react-vite';
 import { Docs } from 'frankenstein-build-tools';
 
-import StatusDot, { StatusDotVariant } from './StatusDot';
+import type { StoryObj, Meta } from '@storybook/react-vite';
+
+import { StatusDotVariant } from './constants';
+import StatusDot from './StatusDot';
 import { FormOnColor } from '../../constants';
 import { getColor } from '../../theme/currys';
 
@@ -55,6 +55,7 @@ export const Variants: Story = {
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <StatusDot {...args} variant="success" text="success" />
       <StatusDot {...args} variant="active" text="active" />
+      <StatusDot {...args} variant="ready" text="ready" />
       <StatusDot {...args} variant="inprocess" text="inprocess" />
       <StatusDot {...args} variant="exception" text="exception" />
       <StatusDot {...args} variant="unknown" text="unknown" />

@@ -472,7 +472,6 @@ export const WithTanstackForm: Story = {
       >
         <form.Field
           name="avtale"
-          // eslint-disable-next-line react/no-children-prop
           children={field => (
             <Unsafe_ISODatePicker
               {...args}
