@@ -60,6 +60,130 @@ const DateInputInternal = ({
   const clearButtonRef = useRef<HTMLButtonElement>(null);
   const [isClearButtonFocused, setIsClearButtonFocused] = useState(false);
 
+  const combinedValue = `${dd}.${mm}.${yyyy}`;
+
+  useEffect(() => {
+    if (onChange) {
+      onChange(combinedValue);
+    }
+  }, [combinedValue]);
+
+  type ValidateSegmentOptions = {
+    segment: string;
+    length: number;
+    minValue: number;
+    maxValue: number;
+    errorTextSetter: (message: string) => void;
+    errorMessage: string;
+  };
+
+  const validateSegment = ({ segment, length, minValue, maxValue, errorTextSetter, errorMessage }: ValidateSegmentOptions): boolean => {
+    if (segment === '') {
+      errorTextSetter('');
+      return true;
+    }
+    if (new RegExp(`^\\d{0,${length}}$`).test(segment)) {
+      if (length === 2 && segment === '00') {
+        errorTextSetter(errorMessage);
+        return false;
+      }
+      const parsedSegment = parseInt(segment, 10);
+      if (parsedSegment < minValue || parsedSegment > maxValue) {
+        errorTextSetter(errorMessage);
+        return false;
+      } else {
+        errorTextSetter('');
+        return true;
+      }
+    } else {
+      errorTextSetter(errorMessage);
+      return false;
+    }
+  };
+
+  const handleDdChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newDd = e.target.value;
+    setDd(newDd);
+    if (
+      validateSegment({
+        segment: newDd,
+        length: 2,
+        minValue: 0,
+        maxValue: 31,
+        errorTextSetter: setErrorTextDd,
+        errorMessage: resources?.validateDefaultMessageDay || 'Dag må være et tall mellom 01 og 31',
+      })
+    ) {
+      if (newDd.length === 2) {
+        mmRef.current?.focus();
+      }
+    }
+  };
+
+  const handleMmChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newMm = e.target.value;
+    setMm(newMm);
+    if (
+      validateSegment({
+        segment: newMm,
+        length: 2,
+        minValue: 0,
+        maxValue: 12,
+        errorTextSetter: setErrorTextMm,
+        errorMessage: resources?.validateDefaultMessageMonth || 'Måned må være et tall mellom 01 og 12',
+      })
+    ) {
+      if (newMm.length === 2) {
+        yyyyRef.current?.focus();
+      }
+    }
+  };
+
+  const handleYyyyChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newYyyy = e.target.value;
+    setYyyy(newYyyy);
+    validateSegment({
+      segment: newYyyy,
+      length: 4,
+      minValue: 0,
+      maxValue: 9999,
+      errorTextSetter: setErrorTextYyyy,
+      errorMessage: resources?.validateDefaultMessageYear || 'År må være et tall med 4 siffer',
+    });
+  };
+
+  const validateAllSegments = (latestDd?: string, latestMm?: string, latestYyyy?: string): void => {
+    validateSegment({
+      segment: latestDd ?? dd,
+      length: 2,
+      minValue: 0,
+      maxValue: 31,
+      errorTextSetter: setErrorTextDd,
+      errorMessage: resources?.validateDefaultMessageDay || 'Dag må være et tall mellom 01 og 31',
+    });
+    validateSegment({
+      segment: latestMm ?? mm,
+      length: 2,
+      minValue: 0,
+      maxValue: 12,
+      errorTextSetter: setErrorTextMm,
+      errorMessage: resources?.validateDefaultMessageMonth || 'Måned må være et tall mellom 01 og 12',
+    });
+    validateSegment({
+      segment: latestYyyy ?? yyyy,
+      length: 4,
+      minValue: 0,
+      maxValue: 9999,
+      errorTextSetter: setErrorTextYyyy,
+      errorMessage: resources?.validateDefaultMessageYear || 'År må være et tall med 4 siffer',
+    });
+  };
+
+  // ved fokus flytt til nytt input felt kjør valideringsfunksjoner på nytt
+  const handleBlurOnSegment = (): void => {
+    validateAllSegments();
+  };
+
   useEffect(() => {
     if (!value || value === '') {
       return;
@@ -77,118 +201,10 @@ const DateInputInternal = ({
       if (yyyy !== newYyyy) {
         setYyyy(newYyyy);
       }
+      // kjør valideringsfunksjoner på nytt med nyeste verdier fra value
+      validateAllSegments(newDd, newMm, newYyyy);
     }
   }, [value]);
-
-  const combinedValue = dd && mm && yyyy ? `${dd}.${mm}.${yyyy}` : '';
-
-  useEffect(() => {
-    if (onChange) {
-      onChange(combinedValue);
-    }
-  }, [combinedValue]);
-
-  const validateDd = (newDd: string): boolean => {
-    if (newDd === '') {
-      // tom verdi er gyldig
-      setErrorTextDd('');
-      return true;
-    }
-    if (/^\d{0,2}$/.test(newDd)) {
-      const dayNum = parseInt(newDd, 10);
-      if (dayNum < 0 || dayNum > 31) {
-        setErrorTextDd(resources?.validateDefaultMessageDay || 'Dag må være et tall mellom 01 og 31');
-        return false;
-      } else {
-        setErrorTextDd('');
-        return true;
-      }
-    } else {
-      setErrorTextDd(resources?.validateDefaultMessageDay || 'Dag må være et tall mellom 01 og 31');
-      return false;
-    }
-  };
-
-  const handleDdChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const newDd = e.target.value;
-    setDd(newDd);
-    if (validateDd(newDd)) {
-      if (newDd.length === 2) {
-        mmRef.current?.focus();
-      }
-    }
-  };
-
-  const validateMm = (newMm: string): boolean => {
-    if (newMm === '') {
-      // tom verdi er gyldig
-      setErrorTextMm('');
-      return true;
-    }
-    if (/^\d{0,2}$/.test(newMm)) {
-      const dayNum = parseInt(newMm, 10);
-      if (dayNum < 0 || dayNum > 12) {
-        setErrorTextMm(resources?.validateDefaultMessageMonth || 'Måned må være et tall mellom 01 og 12');
-        return false;
-      } else {
-        setErrorTextMm('');
-        return true;
-      }
-    } else {
-      setErrorTextMm(resources?.validateDefaultMessageMonth || 'Måned må være et tall mellom 01 og 12');
-      return false;
-    }
-  };
-
-  const handleMmChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const newMm = e.target.value;
-    setMm(newMm);
-    if (validateMm(newMm)) {
-      if (newMm.length === 2) {
-        yyyyRef.current?.focus();
-      }
-    }
-  };
-
-  const validateYyyy = (newYyyy: string, strict?: boolean): boolean => {
-    if (newYyyy === '') {
-      // tom verdi er gyldig
-      setErrorTextYyyy('');
-      return true;
-    }
-    if (/^\d{0,4}$/.test(newYyyy)) {
-      // sjekker om det er tall
-      const dayNum = parseInt(newYyyy, 10);
-      let minValue = 0;
-      if (strict) {
-        minValue = 1000;
-      }
-      if (dayNum < minValue || dayNum > 9999) {
-        // sjekker om det er i range
-        setErrorTextYyyy(resources?.validateDefaultMessageYear || 'År må være et tall med 4 siffer');
-        return false;
-      } else {
-        setErrorTextYyyy('');
-        return true;
-      }
-    } else {
-      setErrorTextYyyy(resources?.validateDefaultMessageYear || 'År må være et tall med 4 siffer');
-      return false;
-    }
-  };
-
-  const handleYyyyChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const newYyyy = e.target.value;
-    setYyyy(newYyyy);
-    validateYyyy(newYyyy);
-  };
-
-  // ved fokus flytt til nytt input felt kjør valideringsfunksjoner på nytt
-  const handleBlurOnSegment = (): void => {
-    validateDd(dd);
-    validateMm(mm);
-    validateYyyy(yyyy, true);
-  };
 
   useEffect(() => {
     const combinedErrors = [errorTextDd, errorTextMm, errorTextYyyy].filter(err => err !== '').join('. ');
