@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 
-import Drawer from '../Drawer/Drawer';
+import TestDrawer from './TestDrawer';
 
 interface NavigateProps {
   goToView: (id: string) => void;
@@ -57,27 +57,22 @@ function DrawerNavigationPOC<V extends ViewConfig<any>>({ views }: DrawerNavigat
   const navigate = { goBack, goToView, goToViewAndClearStack };
 
   return (
-    <>
-      {CurrentView && (
-        <Drawer
-          isOpen={true}
-          title={currentViewTitle}
-          onRequestClose={() => console.log('delete me')}
-          withBackButton={viewStack.length > 1}
-          onRequestBack={goBack}
-        >
-          <div>
-            {viewStack.map((viewId, idx) => (
-              <span key={idx}>
-                {viewId}
-                {idx < viewStack.length - 1 && ' → '}
-              </span>
-            ))}
-          </div>
-          <CurrentView {...(currentViewProps ? currentViewProps : {})} navigate={navigate} />
-        </Drawer>
-      )}
-    </>
+    <TestDrawer
+      title={currentViewTitle}
+      withBackButton={viewStack.length > 1}
+      previousViewTitle={viewStack.length > 1 ? views.find(v => v.id === viewStack[viewStack.length - 2])?.title : ''}
+      onBackButton={goBack}
+    >
+      <div>
+        {viewStack.map((viewId, idx) => (
+          <span key={idx}>
+            {viewId}
+            {idx < viewStack.length - 1 && ' → '}
+          </span>
+        ))}
+      </div>
+      {CurrentView && <CurrentView {...(currentViewProps ? currentViewProps : {})} navigate={navigate} />}
+    </TestDrawer>
   );
 }
 
